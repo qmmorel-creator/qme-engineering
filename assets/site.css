@@ -71,6 +71,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .case img{border-bottom:2px solid var(--encre);aspect-ratio:16/10;object-fit:cover;object-position:top left}
 .case-copy{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px}
 .case h3{font-size:24px}
+.case.wide{grid-column:1/-1;display:grid;grid-template-columns:1.4fr 1fr}
+.case.wide img{border-bottom:0;border-right:2px solid var(--encre);height:100%}
 .case p{font-size:15px;color:var(--texte-2)}
 .pill{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;color:#fff;background:var(--encre)}
 .pill.red{background:var(--rouge)}.pill.yellow{background:var(--jaune);color:var(--encre)}.pill.blue{background:var(--bleu)}
@@ -141,7 +143,8 @@ footer a{font-weight:600;color:var(--encre)}
 }
 @media (max-width:640px){
   .tagline{display:none}
-  .section-head,.cases,.also,.families,.formats,.about,.contact form{grid-template-columns:1fr}
+  .section-head,.cases,.also,.families,.formats,.about,.contact form,.case.wide{grid-template-columns:1fr}
+  .case.wide img{border-right:0;border-bottom:2px solid var(--encre)}
   .about blockquote{border-right:0;border-bottom:2px solid var(--encre)}
   .steps{grid-template-columns:1fr}
   .section{padding:48px 16px}
