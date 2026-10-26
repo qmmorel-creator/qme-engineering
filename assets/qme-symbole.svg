@@ -1,0 +1,5 @@
+<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QME">
+  <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>
+  <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+  <circle cx="40" cy="40" r="15" fill="#F0EDE6"/>
+</svg>
