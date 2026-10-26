@@ -75,6 +75,10 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .pill{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;color:#fff;background:var(--encre)}
 .pill.red{background:var(--rouge)}.pill.yellow{background:var(--jaune);color:var(--encre)}.pill.blue{background:var(--bleu)}
 .note{margin-top:12px;font-size:13px;color:var(--discret)}
+.downloads{margin-top:20px;font-size:15px;color:var(--texte-2)}
+.downloads a{font-weight:700;color:var(--bleu)}
+.pdf-links{font-size:15px}
+.pdf-links a{color:var(--papier);font-weight:600}
 .also{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px}
 .also li{position:relative;padding-left:22px;font-size:15px;color:var(--texte-2)}
 .also li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;background:var(--rouge)}
