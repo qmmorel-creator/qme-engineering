@@ -31,3 +31,16 @@
   to = "https://qm-engineering.fr/:splat"
   status = 301
   force = true
+
+# Ancien sous-domaine Netlify et www : redirection permanente vers le domaine principal
+[[redirects]]
+  from = "https://qme-engineering.netlify.app/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.qm-engineering.fr/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
