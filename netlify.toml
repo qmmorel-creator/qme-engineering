@@ -19,20 +19,7 @@
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=300, must-revalidate"
 
-# Domaine principal : https://qm-engineering.fr. Les autres adresses (ancien
-# sous-domaine Netlify, .cloud, www) redirigent en 301 en gardant le chemin.
-[[redirects]]
-  from = "https://qme-engineering.netlify.app/*"
-  to = "https://qm-engineering.fr/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.qm-engineering.fr/*"
-  to = "https://qm-engineering.fr/:splat"
-  status = 301
-  force = true
-
+# Domaine secondaire .cloud : redirection permanente vers le domaine principal
 [[redirects]]
   from = "https://qm-engineering.cloud/*"
   to = "https://qm-engineering.fr/:splat"
@@ -41,6 +28,19 @@
 
 [[redirects]]
   from = "https://www.qm-engineering.cloud/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
+
+# Ancien sous-domaine Netlify et www : redirection permanente vers le domaine principal
+[[redirects]]
+  from = "https://qme-engineering.netlify.app/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.qm-engineering.fr/*"
   to = "https://qm-engineering.fr/:splat"
   status = 301
   force = true
