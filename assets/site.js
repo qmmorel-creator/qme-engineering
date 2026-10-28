@@ -8,7 +8,7 @@ document.getElementById('year').textContent=new Date().getFullYear();
 function mailtoFallback(data){
   const subject=`Projet QME — ${data.get('need')}`;
   const body=[`Bonjour Quentin,`,``,`Je vous contacte au sujet de : ${data.get('need')}.`,``,`Organisation : ${data.get('company')||'Non précisée'}`,`Nom : ${data.get('name')}`,`Email : ${data.get('email')}`,``,`Contexte :`,` ${data.get('message')}`].join('\n');
-  return `mailto:qm.morel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 const form=document.getElementById('contact-form');
@@ -62,12 +62,12 @@ form.addEventListener('submit',async e=>{
       setNote('Votre demande a bien été transmise. QME reviendra vers vous après analyse.','success');
       form.reset();
     }else if(response.status===429){
-      setNote('Trop de demandes pour le moment. Réessayez dans quelques minutes, ou écrivez directement à qm.morel@gmail.com.','error');
+      setNote('Trop de demandes pour le moment. Réessayez dans quelques minutes, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
     }else{
-      setNote('L’envoi a échoué. Réessayez, ou écrivez directement à qm.morel@gmail.com.','error');
+      setNote('L’envoi a échoué. Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
     }
   }catch{
-    setNote('L’envoi a échoué (connexion). Réessayez, ou écrivez directement à qm.morel@gmail.com.','error');
+    setNote('L’envoi a échoué (connexion). Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
   }finally{
     submitButton.disabled=false;
     submitButton.textContent=submitLabel;

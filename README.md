@@ -40,6 +40,17 @@ ce dépôt ne contient que le relais signé, sans accès direct à Firestore ni 
 | `QME_INTAKE_SIGNING_KEY` | Secret HMAC, même valeur que côté `nexora-project` |
 | `NEXORA_INTAKE_URL` | URL de l'endpoint Nexora (`https://nexora-project.org/api/nexora/qme-intake`) |
 
+## Domaines
+
+- Domaine principal : **https://qm-engineering.fr** (adresse de contact `quentin.morel@qm-engineering.fr`).
+- `www.qm-engineering.fr`, `qm-engineering.cloud`, `www.qm-engineering.cloud` et l'ancienne adresse
+  `qme-engineering.netlify.app` redirigent en 301 vers le domaine principal, chemin conservé
+  (règles `[[redirects]]` de `netlify.toml`).
+- Côté Netlify (site `qme-engineering`) : `qm-engineering.fr` en domaine principal, les trois autres
+  en alias. Côté registrar : faire pointer les deux domaines vers Netlify (serveurs de noms Netlify DNS,
+  ou enregistrements `A`/`CNAME` indiqués par Netlify), sans toucher aux enregistrements `MX` de la
+  messagerie de `qm-engineering.fr`.
+
 ## Déploiement
 
 Le dépôt est destiné au site web QME uniquement. La publication Netlify utilise la racine du dépôt
