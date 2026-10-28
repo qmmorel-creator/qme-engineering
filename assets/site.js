@@ -5,9 +5,31 @@ document.querySelectorAll('.topbar a').forEach(a=>a.addEventListener('click',()=
 document.querySelectorAll('.accordions details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.accordions details').forEach(o=>{if(o!==d)o.open=false;});}));
 document.getElementById('year').textContent=new Date().getFullYear();
 
+// Textes selon la langue de la page (<html lang>). Les valeurs du formulaire envoyées à
+// Nexora restent en français sur les deux pages : seul l'affichage change.
+const EN=document.documentElement.lang==='en';
+const T=EN?{
+  success:'Your request has been sent. QME will get back to you after reviewing it.',
+  sending:'Sending…',
+  tooMany:'Too many requests right now. Try again in a few minutes, or write directly to quentin.morel@qm-engineering.fr.',
+  failed:'Sending failed. Try again, or write directly to quentin.morel@qm-engineering.fr.',
+  offline:'Sending failed (connection). Try again, or write directly to quentin.morel@qm-engineering.fr.',
+  soundOn:'Turn sound on',soundOff:'Turn sound off',
+}:{
+  success:'Votre demande a bien été transmise. QME reviendra vers vous après analyse.',
+  sending:'Envoi en cours…',
+  tooMany:'Trop de demandes pour le moment. Réessayez dans quelques minutes, ou écrivez directement à quentin.morel@qm-engineering.fr.',
+  failed:'L’envoi a échoué. Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.',
+  offline:'L’envoi a échoué (connexion). Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.',
+  soundOn:'Activer le son',soundOff:'Couper le son',
+};
+
 function mailtoFallback(data){
-  const subject=`Projet QME — ${data.get('need')}`;
-  const body=[`Bonjour Quentin,`,``,`Je vous contacte au sujet de : ${data.get('need')}.`,``,`Organisation : ${data.get('company')||'Non précisée'}`,`Nom : ${data.get('name')}`,`Email : ${data.get('email')}`,``,`Contexte :`,` ${data.get('message')}`].join('\n');
+  const needLabel=form.elements.need.selectedOptions[0]?.textContent||data.get('need');
+  const subject=EN?`QME project — ${needLabel}`:`Projet QME — ${needLabel}`;
+  const body=(EN
+    ?[`Hello Quentin,`,``,`I am contacting you about: ${needLabel}.`,``,`Organization: ${data.get('company')||'Not specified'}`,`Name: ${data.get('name')}`,`Email: ${data.get('email')}`,``,`Context:`,` ${data.get('message')}`]
+    :[`Bonjour Quentin,`,``,`Je vous contacte au sujet de : ${needLabel}.`,``,`Organisation : ${data.get('company')||'Non précisée'}`,`Nom : ${data.get('name')}`,`Email : ${data.get('email')}`,``,`Contexte :`,` ${data.get('message')}`]).join('\n');
   return `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -29,14 +51,14 @@ form.addEventListener('submit',async e=>{
   // le relais), on abandonne simplement l'envoi côté client aussi.
   const data=new FormData(e.currentTarget);
   if((data.get('company_website')||'').toString().trim()!==''){
-    setNote('Votre demande a bien été transmise. QME reviendra vers vous après analyse.','success');
+    setNote(T.success,'success');
     form.reset();
     return;
   }
 
   submitButton.disabled=true;
-  submitButton.textContent='Envoi en cours…';
-  setNote('Envoi en cours…',null);
+  submitButton.textContent=T.sending;
+  setNote(T.sending,null);
 
   const requestId=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`);
   const payload={
@@ -59,15 +81,15 @@ form.addEventListener('submit',async e=>{
     });
     const result=await response.json().catch(()=>({ok:false}));
     if(response.ok&&result.ok){
-      setNote('Votre demande a bien été transmise. QME reviendra vers vous après analyse.','success');
+      setNote(T.success,'success');
       form.reset();
     }else if(response.status===429){
-      setNote('Trop de demandes pour le moment. Réessayez dans quelques minutes, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
+      setNote(T.tooMany,'error');
     }else{
-      setNote('L’envoi a échoué. Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
+      setNote(T.failed,'error');
     }
   }catch{
-    setNote('L’envoi a échoué (connexion). Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.','error');
+    setNote(T.offline,'error');
   }finally{
     submitButton.disabled=false;
     submitButton.textContent=submitLabel;
@@ -88,6 +110,6 @@ if(fallbackLink){
 (()=>{const v=document.getElementById('film');const b=document.getElementById('film-sound');if(!v||!b)return;
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}}),{threshold:.4}).observe(v);}
- const sync=()=>{b.setAttribute('aria-pressed',String(!v.muted));b.textContent=v.muted?'Activer le son':'Couper le son';};
+ const sync=()=>{b.setAttribute('aria-pressed',String(!v.muted));b.textContent=v.muted?T.soundOn:T.soundOff;};
  b.addEventListener('click',()=>{v.muted=!v.muted;if(!v.muted){v.play().catch(()=>{});}sync();});
  v.addEventListener('volumechange',sync);})();
