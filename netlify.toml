@@ -18,3 +18,16 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=300, must-revalidate"
+
+# Domaine secondaire .cloud : redirection permanente vers le domaine principal
+[[redirects]]
+  from = "https://qm-engineering.cloud/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.qm-engineering.cloud/*"
+  to = "https://qm-engineering.fr/:splat"
+  status = 301
+  force = true
