@@ -51,9 +51,9 @@ ce dépôt ne contient que le relais signé, sans accès direct à Firestore ni 
 ## Domaines
 
 - Domaine principal : **https://qm-engineering.fr** (adresse de contact `quentin.morel@qm-engineering.fr`).
-- `www.qm-engineering.fr`, `qm-engineering.cloud`, `www.qm-engineering.cloud` et l'ancienne adresse
-  `qme-engineering.netlify.app` redirigent en 301 vers le domaine principal, chemin conservé
-  (règles `[[redirects]]` de `netlify.toml`).
+- `www.qm-engineering.fr`, `qm-engineering.cloud`, `www.qm-engineering.cloud` et l'ancien sous-domaine
+  Netlify du site redirigent en 301 vers le domaine principal, chemin conservé (règles `[[redirects]]`
+  de `netlify.toml`, seul endroit où l'ancien sous-domaine reste écrit, pour pouvoir le rediriger).
 - Côté Netlify (site `qme-engineering`) : `qm-engineering.fr` en domaine principal, les trois autres
   en alias. Côté registrar : faire pointer les deux domaines vers Netlify (serveurs de noms Netlify DNS,
   ou enregistrements `A`/`CNAME` indiqués par Netlify), sans toucher aux enregistrements `MX` de la
