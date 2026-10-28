@@ -5,20 +5,18 @@ document.querySelectorAll('.topbar a').forEach(a=>a.addEventListener('click',()=
 document.querySelectorAll('.accordions details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.accordions details').forEach(o=>{if(o!==d)o.open=false;});}));
 document.getElementById('year').textContent=new Date().getFullYear();
 
-// Textes selon la langue de la page (<html lang>). Les valeurs du formulaire envoyées à
-// Nexora restent en français sur les deux pages : seul l'affichage change.
+// Textes selon la langue de la page (<html lang>). Les valeurs du formulaire restent en
+// français sur les deux pages (champ « langue » pour les distinguer) : seul l'affichage change.
 const EN=document.documentElement.lang==='en';
 const T=EN?{
   success:'Your request has been sent. QME will get back to you after reviewing it.',
   sending:'Sending…',
-  tooMany:'Too many requests right now. Try again in a few minutes, or write directly to quentin.morel@qm-engineering.fr.',
   failed:'Sending failed. Try again, or write directly to quentin.morel@qm-engineering.fr.',
   offline:'Sending failed (connection). Try again, or write directly to quentin.morel@qm-engineering.fr.',
   soundOn:'Turn sound on',soundOff:'Turn sound off',
 }:{
   success:'Votre demande a bien été transmise. QME reviendra vers vous après analyse.',
   sending:'Envoi en cours…',
-  tooMany:'Trop de demandes pour le moment. Réessayez dans quelques minutes, ou écrivez directement à quentin.morel@qm-engineering.fr.',
   failed:'L’envoi a échoué. Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.',
   offline:'L’envoi a échoué (connexion). Réessayez, ou écrivez directement à quentin.morel@qm-engineering.fr.',
   soundOn:'Activer le son',soundOff:'Couper le son',
@@ -46,9 +44,9 @@ function setNote(text,status){
 
 form.addEventListener('submit',async e=>{
   e.preventDefault();
-  // Honeypot : un visiteur humain ne remplit jamais ce champ masqué.
-  // Rien à signaler côté formulaire (même message que succès attendu par
-  // le relais), on abandonne simplement l'envoi côté client aussi.
+  // Pot de miel : un visiteur humain ne remplit jamais ce champ masqué.
+  // Netlify rejette déjà ces envois ; on n'envoie rien et on affiche le
+  // même message qu'un succès.
   const data=new FormData(e.currentTarget);
   if((data.get('company_website')||'').toString().trim()!==''){
     setNote(T.success,'success');
@@ -60,31 +58,16 @@ form.addEventListener('submit',async e=>{
   submitButton.textContent=T.sending;
   setNote(T.sending,null);
 
-  const requestId=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`);
-  const payload={
-    requestId,
-    name:(data.get('name')||'').toString(),
-    email:(data.get('email')||'').toString(),
-    organization:(data.get('company')||'').toString(),
-    need:(data.get('need')||'').toString(),
-    message:(data.get('message')||'').toString(),
-    submittedAt:new Date().toISOString(),
-    sourceUrl:window.location.href,
-    company_website:'',
-  };
-
+  // Netlify Forms : corps URL-encodé (pas de JSON), envoyé à la racine du site.
   try{
-    const response=await fetch('/api/contact',{
+    const response=await fetch('/',{
       method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify(payload),
+      headers:{'content-type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(data).toString(),
     });
-    const result=await response.json().catch(()=>({ok:false}));
-    if(response.ok&&result.ok){
+    if(response.ok){
       setNote(T.success,'success');
       form.reset();
-    }else if(response.status===429){
-      setNote(T.tooMany,'error');
     }else{
       setNote(T.failed,'error');
     }
@@ -97,7 +80,7 @@ form.addEventListener('submit',async e=>{
 });
 
 // Solution de repli accessible : un visiteur peut toujours préparer un
-// courriel prérempli sans dépendre du BFF (lien mailto, jamais retiré).
+// courriel prérempli sans dépendre du formulaire Netlify (lien mailto, jamais retiré).
 const fallbackLink=document.getElementById('contact-fallback');
 if(fallbackLink){
   fallbackLink.addEventListener('click',e=>{

@@ -196,7 +196,10 @@
     <a class="mail" href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>
     <p class="pdf-links"><a href="../assets/QME-brochure-en.pdf?v=20261028" download data-goatcounter-click="pdf-brochure-en" data-goatcounter-title="QME brochure (PDF, EN)">Brochure (PDF)</a> · <a href="../assets/QME-references-en.pdf?v=20261028" download data-goatcounter-click="pdf-references-en" data-goatcounter-title="QME references (PDF, EN)">References (PDF)</a></p>
   </div>
-  <form id="contact-form">
+  <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="company_website">
+    <input type="hidden" name="form-name" value="contact">
+    <input type="hidden" name="langue" value="en">
+    <input type="hidden" name="subject" value="Demande QME depuis le site (EN)">
     <label>Name<input required name="name" autocomplete="name" placeholder="Your name"></label>
     <label>Email<input required type="email" name="email" autocomplete="email" placeholder="you@company.com"></label>
     <label>Organization<input required name="company" autocomplete="organization" placeholder="Your organization"></label>
@@ -217,7 +220,7 @@
       <button class="btn primary" type="submit">Send my request</button>
       <a id="contact-fallback" href="mailto:quentin.morel@qm-engineering.fr">Or write an email directly</a>
     </div>
-    <p id="form-note" class="full" role="status" aria-live="polite">No data is stored on the website.</p>
+    <p id="form-note" class="full" role="status" aria-live="polite">Your request is stored by the website host (Netlify) and passed on to Quentin Morel.</p>
   </form>
 </section>
 
@@ -228,7 +231,7 @@
   <a href="#home">Back to top</a>
 </footer>
 
-<script src="../assets/site.js?v=20261028c" defer></script>
+<script src="../assets/site.js?v=20261028d" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
