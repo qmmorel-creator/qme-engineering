@@ -4,7 +4,12 @@ Site promotionnel de Quentin Morel Engineering (QME).
 
 ## Structure
 
-- `index.html` : page principale
+- `index.html` : page principale (français)
+- `en/index.html` : version anglaise (`/en/`), mêmes sections ; drapeaux français / anglais en tête de
+  page pour passer de l'une à l'autre, balises `hreflang` sur les deux pages
+- `assets/QME-brochure-en.pdf`, `assets/QME-references-en.pdf`, `assets/qme-presentation-en.mp4` (et son
+  affiche) : plaquette, références et vidéo en anglais. Sources et scripts de génération dans le dépôt
+  Nexora, `docs/qme/en/`
 - `assets/site.css` : styles
 - `assets/site.js` : interactions du menu et soumission du formulaire (fetch vers `/api/contact`)
 - `assets/*.png` : identité visuelle QME
@@ -20,6 +25,9 @@ Netlify comprise), utiliser `netlify dev` avec les variables de `.env.example` r
 localement.
 
 ## Formulaire
+
+Sur la page anglaise, les libellés sont traduits mais les valeurs envoyées (`need`) restent en français :
+le contrat avec Nexora et les briefs créés sont identiques quelle que soit la langue.
 
 Le formulaire envoie les données à la fonction Netlify `netlify/functions/contact.mts`, qui signe
 la requête (HMAC-SHA256, anti-rejeu, honeypot) et la relaie vers l'endpoint d'ingestion prospect de
