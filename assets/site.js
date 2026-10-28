@@ -5,8 +5,8 @@ document.querySelectorAll('.topbar a').forEach(a=>a.addEventListener('click',()=
 document.querySelectorAll('.accordions details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.accordions details').forEach(o=>{if(o!==d)o.open=false;});}));
 document.getElementById('year').textContent=new Date().getFullYear();
 
-// Textes selon la langue de la page (<html lang>). Les valeurs du formulaire envoyées à
-// Nexora restent en français sur les deux pages : seul l'affichage change.
+// Textes selon la langue de la page (<html lang>). Les valeurs du formulaire (dont `need`)
+// restent en français sur les deux pages : seul l'affichage change.
 const EN=document.documentElement.lang==='en';
 const T=EN?{
   success:'Your request has been sent. QME will get back to you after reviewing it.',
@@ -47,8 +47,8 @@ function setNote(text,status){
 form.addEventListener('submit',async e=>{
   e.preventDefault();
   // Honeypot : un visiteur humain ne remplit jamais ce champ masqué.
-  // Rien à signaler côté formulaire (même message que succès attendu par
-  // le relais), on abandonne simplement l'envoi côté client aussi.
+  // On affiche le message de succès sans rien envoyer (Netlify filtre aussi
+  // ce champ côté serveur grâce à l'attribut netlify-honeypot).
   const data=new FormData(e.currentTarget);
   if((data.get('company_website')||'').toString().trim()!==''){
     setNote(T.success,'success');
@@ -60,27 +60,14 @@ form.addEventListener('submit',async e=>{
   submitButton.textContent=T.sending;
   setNote(T.sending,null);
 
-  const requestId=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`);
-  const payload={
-    requestId,
-    name:(data.get('name')||'').toString(),
-    email:(data.get('email')||'').toString(),
-    organization:(data.get('company')||'').toString(),
-    need:(data.get('need')||'').toString(),
-    message:(data.get('message')||'').toString(),
-    submittedAt:new Date().toISOString(),
-    sourceUrl:window.location.href,
-    company_website:'',
-  };
-
   try{
-    const response=await fetch('/api/contact',{
+    // Netlify Forms : envoi encodé comme un formulaire HTML classique vers la racine du site.
+    const response=await fetch('/',{
       method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify(payload),
+      headers:{'content-type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(data).toString(),
     });
-    const result=await response.json().catch(()=>({ok:false}));
-    if(response.ok&&result.ok){
+    if(response.ok){
       setNote(T.success,'success');
       form.reset();
     }else if(response.status===429){
@@ -97,7 +84,7 @@ form.addEventListener('submit',async e=>{
 });
 
 // Solution de repli accessible : un visiteur peut toujours préparer un
-// courriel prérempli sans dépendre du BFF (lien mailto, jamais retiré).
+// courriel prérempli sans dépendre de l'envoi du formulaire (lien mailto, jamais retiré).
 const fallbackLink=document.getElementById('contact-fallback');
 if(fallbackLink){
   fallbackLink.addEventListener('click',e=>{

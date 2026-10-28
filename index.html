@@ -196,7 +196,9 @@
     <a class="mail" href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>
     <p class="pdf-links"><a href="assets/QME-plaquette.pdf?v=20261028" download data-goatcounter-click="pdf-plaquette" data-goatcounter-title="Plaquette QME (PDF)">Plaquette (PDF)</a> · <a href="assets/QME-references.pdf?v=20261026" download data-goatcounter-click="pdf-references" data-goatcounter-title="Références QME (PDF)">Références (PDF)</a></p>
   </div>
-  <form id="contact-form">
+  <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="company_website">
+    <input type="hidden" name="form-name" value="contact">
+    <input type="hidden" name="langue" value="fr">
     <label>Nom<input required name="name" autocomplete="name" placeholder="Votre nom"></label>
     <label>Email<input required type="email" name="email" autocomplete="email" placeholder="vous@entreprise.fr"></label>
     <label>Organisation<input required name="company" autocomplete="organization" placeholder="Votre structure"></label>
@@ -217,7 +219,7 @@
       <button class="btn primary" type="submit">Envoyer ma demande</button>
       <a id="contact-fallback" href="mailto:quentin.morel@qm-engineering.fr">Ou préparer un courriel directement</a>
     </div>
-    <p id="form-note" class="full" role="status" aria-live="polite">Aucune donnée stockée sur le site.</p>
+    <p id="form-note" class="full" role="status" aria-live="polite">Demande transmise à QME via le service de formulaires Netlify (hébergeur du site), utilisée uniquement pour vous répondre.</p>
   </form>
 </section>
 
