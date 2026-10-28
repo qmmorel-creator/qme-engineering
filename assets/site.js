@@ -83,3 +83,11 @@ if(fallbackLink){
     window.location.href=mailtoFallback(new FormData(form));
   });
 }
+
+// Vidéo de présentation : lecture sans son quand elle est visible, son à la demande
+(()=>{const v=document.getElementById('film');const b=document.getElementById('film-sound');if(!v||!b)return;
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}}),{threshold:.4}).observe(v);}
+ const sync=()=>{b.setAttribute('aria-pressed',String(!v.muted));b.textContent=v.muted?'Activer le son':'Couper le son';};
+ b.addEventListener('click',()=>{v.muted=!v.muted;if(!v.muted){v.play().catch(()=>{});}sync();});
+ v.addEventListener('volumechange',sync);})();
