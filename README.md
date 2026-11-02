@@ -17,6 +17,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   bloc mis en avant en tête des références) vient du site vitrine du dépôt `thalvego` ; NutriQuest
   (`nutriquest-journee.webp`) est rendu avec des données inventées. Sources et PDF : dépôt Nexora, `docs/qme/`
   (`node docs/qme/build.mjs`, puis `node docs/qme/en/build.mjs`)
+- `assets/thalvego-film.mp4` (52 s, 1280 × 720, 6,9 Mo) et son affiche : film du site vitrine Thalvego
+  (dépôt `thalvego`, `site-vitrine/film/`), réencodé en 720p ; lu seulement au clic (`preload="none"`)
 - `netlify.toml` : configuration de publication Netlify
 
 ## Développement local

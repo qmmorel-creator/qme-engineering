@@ -96,6 +96,14 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .feature-shots figure:first-child{grid-row:1/3}
 .feature-shots img{flex:1;min-height:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center;border:2px solid var(--encre)}
 .feature-shots figcaption{font-size:13px;font-weight:600;color:var(--texte-2)}
+.feature-film{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);border-top:2px solid var(--encre);background:var(--encre);color:var(--papier)}
+.feature-video{margin:0;border-right:2px solid var(--encre)}
+.feature-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.feature-film-copy{padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.feature-film-copy .eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--jaune)}
+.feature-film-copy h4{margin:0;font-size:22px}
+.feature-film-copy p{margin:0;font-size:15px;color:#D6D1C6}
+.feature-film-copy p.small{font-size:13px;color:#A8A397}
 .pill{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;color:#fff;background:var(--encre)}
 .pill.red{background:var(--rouge)}.pill.yellow{background:var(--jaune);color:var(--encre)}.pill.blue{background:var(--bleu)}
 .note{margin-top:12px;font-size:13px;color:var(--discret)}
@@ -153,6 +161,7 @@ footer a{font-weight:600;color:var(--encre)}
 
 /* Tablette et téléphone */
 @media (max-width:980px){
+  .feature-body,.feature-film{grid-template-columns:1fr}.feature-video{border-right:0}
   .feature-body{grid-template-columns:1fr}.feature-body .case-copy{border-right:0;border-bottom:2px solid var(--encre)}
   .topbar nav{display:none}
   .menu{display:flex}
