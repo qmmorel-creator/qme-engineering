@@ -13,6 +13,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - `assets/site.css` : styles
 - `assets/site.js` : interactions du menu et soumission du formulaire (Netlify Forms)
 - `assets/*.png` : identité visuelle QME
+- `assets/*.webp` : captures des références (données fictives ou anonymisées). Thalvego (`thalvego-*.webp`,
+  bloc mis en avant en tête des références) vient du site vitrine du dépôt `thalvego` ; NutriQuest
+  (`nutriquest-journee.webp`) est rendu avec des données inventées. Sources et PDF : dépôt Nexora, `docs/qme/`
+  (`node docs/qme/build.mjs`, puis `node docs/qme/en/build.mjs`)
 - `netlify.toml` : configuration de publication Netlify
 
 ## Développement local
