@@ -19,6 +19,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (`node docs/qme/build.mjs`, puis `node docs/qme/en/build.mjs`)
 - `assets/thalvego-film.mp4` (52 s, 1280 × 720, 6,9 Mo) et son affiche : film du site vitrine Thalvego
   (dépôt `thalvego`, `site-vitrine/film/`), réencodé en 720p ; lu seulement au clic (`preload="none"`)
+- Section « Vidéos » (`#videos`, FR et EN) : film Thalvego et `assets/wod-motion-competition.mp4` (30 s,
+  720p, 3,1 Mo, spot WOD Motion d'une compétition fictive « QME Affiliates Cup », musique synthétisée ;
+  générateur dans le dépôt Nexora, `docs/qme/wod-competition/`). Plaquette et références y renvoient.
 - `netlify.toml` : configuration de publication Netlify
 
 ## Développement local
