@@ -10,6 +10,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - `assets/QME-brochure-en.pdf`, `assets/QME-references-en.pdf`, `assets/qme-presentation-en.mp4` (et son
   affiche) : plaquette, références et vidéo en anglais. Sources et scripts de génération dans le dépôt
   Nexora, `docs/qme/en/`
+- `assets/qme-presentation.mp4` et `assets/qme-presentation-en.mp4` (60 s) : vidéo de démonstration. Depuis le
+  03/11/2026 (nexora#1488), musique « Corporate » de litesaturation (Pixabay, licence Pixabay : usage
+  commercial sans attribution), normalisée à -16 LUFS, fondu de sortie de 3 s ; image inchangée. Les
+  musiques des vidéos tournent sur 4 pistes, décrites dans le dépôt Nexora, `docs/qme/musiques/`
 - `assets/site.css` : styles
 - `assets/site.js` : interactions du menu et soumission du formulaire (Netlify Forms)
 - `assets/*.png` : identité visuelle QME
