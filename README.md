@@ -26,6 +26,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - Section « Vidéos » (`#videos`, FR et EN) : film Thalvego et `assets/wod-motion-competition.mp4` (30 s,
   720p, 3,1 Mo, spot WOD Motion d'une compétition fictive « QME Affiliates Cup », musique synthétisée ;
   générateur dans le dépôt Nexora, `docs/qme/wod-competition/`). Plaquette et références y renvoient.
+- `assets/wod-motion-competition-en.mp4` (30 s, 720p, 3,1 Mo) et son affiche : version anglaise du spot, servie
+  par `en/index.html` depuis le 03/11/2026 (nexora#1491). Textes de `config-en.json`, musique « Motivational
+  Corporate Bed Music » d'osynthw (Pixabay, piste 2 de la rotation), normalisée à -14 LUFS
 - `netlify.toml` : configuration de publication Netlify
 
 ## Développement local
