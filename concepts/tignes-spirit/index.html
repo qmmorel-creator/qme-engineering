@@ -26,34 +26,28 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:36px 0 10px;font-weight
 .pages img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(20,20,20,.15);background:#fff}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
 footer a{color:var(--ink)}
-/* estimation */
-.est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 24px 40px;overflow:hidden}
-.est::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:#D9302A}
-.est::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:#F5B400}
-.est .eb{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
-.est .eb b{color:#D9302A;font-weight:800}
-.est h2{font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
-.est .intro{color:#3b3934;max-width:72ch;margin:0 0 20px}
-.est table{width:100%;border-collapse:collapse;font-size:15px}
-.est th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding:8px 8px;border-bottom:2px solid #141414}
-.est td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
-.est th.n,.est td.n{text-align:right;white-space:nowrap}
-.est input{width:84px;font:inherit;font-weight:600;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:#141414}
-.est input:focus{outline:2px solid #D9302A;outline-offset:1px;background:#fff}
-.est .u{display:block;font-size:12px;color:var(--muted)}
-.est td.s{font-weight:700;color:#D9302A}
-.est .tot{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
-.est .tot div{background:var(--paper);border-radius:4px;padding:14px 16px;border-top:4px solid #141414}
-.est .tot b{display:block;font-size:32px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
-.est .tot div.main{background:#D9302A;color:#fff;border-top-color:#F5B400}
-.est .tot span{font-size:14px;color:#5d5a55}
-.est .tot div.main span{color:#fde7e3}
-.est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15px;font-weight:500}
-.est .foot{color:var(--muted);font-size:13.5px;margin:14px 0 0;max-width:82ch}
-.est .reset{background:none;border:0;color:#141414;font:inherit;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:#D9302A;text-underline-offset:3px;margin-left:auto}
-@media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
- .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
- .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
+/* gains */
+.gain{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 26px 40px;overflow:hidden}
+.gain::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:#D9302A}
+.gain::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:#F5B400}
+.gain .eb{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.gain .eb b{color:#D9302A;font-weight:800}
+.gain h2{font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 16px;font-weight:700;letter-spacing:-.01em}
+.gain .big{background:#141414;color:#fff;border-left:10px solid #F5B400;border-radius:4px;padding:16px 20px;margin-bottom:22px}
+.gain .big b{display:block;font-size:clamp(22px,2.8vw,30px);line-height:1.15}
+.gain .big span{color:#d8d3c9}
+.gain .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.gain h3{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #141414}
+.gain ul{list-style:none;margin:0;padding:0}
+.gain li{position:relative;padding:7px 0 7px 22px;border-bottom:1px solid var(--line)}
+.gain li::before{content:"";position:absolute;left:0;top:15px;width:10px;height:10px;background:#D9302A}
+.gain .rel li::before{background:#F5B400}
+.gain .note{color:var(--muted);font-size:13.5px;margin:16px 0 0}
+.gain .cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.gain .cta a{display:inline-flex;background:#D9302A;color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px}
+.gain .cta a:focus-visible{outline:3px solid #141414;outline-offset:3px}
+.gain .cta span{color:var(--muted);font-size:14px}
+@media (max-width:720px){.gain{padding:20px 16px 20px 26px}.gain .cols{grid-template-columns:1fr;gap:18px}}
 </style>
 </head>
 <body>
@@ -74,47 +68,16 @@ footer a{color:var(--ink)}
     <img src="page-4.webp" width="1638" height="1157" alt="Apartments on the IGN map of Tignes and Val d'Isère with today's status" loading="lazy">
   </div>
 
-<!-- estimation -->
-  <section class="est" id="est" aria-live="polite"></section>
-  <script>
-(function(){
-  var C = {"lang": "en", "rate": 22, "rateLabel": "Cost of one working hour (including employer charges)", "period": "season", "rows": [["Re-keying bookings received by email, phone and the website", "bookings", 1200, 6, 1], ["Building the daily driver runs", "days", 140, 45, 10], ["Chasing missing sizes and pre-arrival details", "bookings", 600, 5, 1], ["Answering \"when is my delivery?\" calls and messages", "requests", 800, 3, 0.5], ["Coordinating the Saturday workshop turnaround", "Saturdays", 20, 90, 30], ["Daily cash-up and reconciliation", "days", 140, 20, 5]]}, T = Object.assign({}, {"eb": "Estimate", "h": "Estimated time saved", "intro": "A ballpark figure, not a promise. The volumes and durations below are starting assumptions based on what can be seen from the outside: replace them with your own and the total updates.", "task": "Task", "vol": "How many per {p}", "before": "Minutes today", "after": "Minutes with the tool", "saved": "Hours saved", "hours": "hours saved per {p}", "days": "7-hour days", "value": "value of the time saved per {p}, at €{rate} an hour", "reset": "Back to the starting assumptions", "foot": "Minutes are for doing the task once (one booking, one reminder, one day's runs). We would refine these assumptions together on a call.", "loc": "en-GB"}, C.txt || {}), el = document.getElementById('est');
-  var fmt = function(n, d){ return n.toLocaleString(T.loc, {maximumFractionDigits: d || 0}); };
-  var P = function(s){ return s.replace('{p}', C.period); };
-  var rows = C.rows.map(function(r, i){
-    return '<tr><td>' + r[0] + '</td>' +
-      '<td class="n" data-l="' + P(T.vol) + '"><span><input type="number" min="0" step="1" data-k="v" data-i="' + i + '" value="' + r[2] + '"><span class="u">' + r[1] + '</span></span></td>' +
-      '<td class="n" data-l="' + T.before + '"><input type="number" min="0" step="0.5" data-k="b" data-i="' + i + '" value="' + r[3] + '"></td>' +
-      '<td class="n" data-l="' + T.after + '"><input type="number" min="0" step="0.5" data-k="a" data-i="' + i + '" value="' + r[4] + '"></td>' +
-      '<td class="n s" data-l="' + T.saved + '" id="s' + i + '"></td></tr>';
-  }).join('');
-  el.innerHTML = '<p class="eb"><b>QME</b> · ' + T.eb + '</p><h2>' + T.h + '</h2><p class="intro">' + T.intro + '</p>' +
-    '<table><thead><tr><th>' + T.task + '</th><th class="n">' + P(T.vol) + '</th><th class="n">' + T.before + '</th><th class="n">' + T.after + '</th><th class="n">' + T.saved + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
-    '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">' + T.reset + '</button></div>' +
-    '<div class="tot"><div class="main"><b id="estH"></b><span>' + P(T.hours) + '</span></div><div><b id="estD"></b><span>' + T.days + '</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
-    '<p class="foot">' + T.foot + '</p>';
-  function calc(){
-    var tot = 0;
-    C.rows.forEach(function(r, i){
-      var g = function(k){ var v = parseFloat(el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value); return isNaN(v) ? 0 : v; };
-      var h = Math.max(0, g('v') * (g('b') - g('a'))) / 60; tot += h;
-      document.getElementById('s' + i).textContent = fmt(h, h < 10 ? 1 : 0) + ' h';
-    });
-    var rate = parseFloat(document.getElementById('estRate').value) || 0;
-    document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
-    document.getElementById('estD').textContent = fmt(tot / (C.dayHours || 7), 0);
-    document.getElementById('estVL').textContent = P(T.value).replace('{rate}', fmt(rate));
-    var v = fmt(Math.round(tot * rate / 10) * 10); document.getElementById('estV').textContent = T.loc === 'en-GB' ? '€' + v : v + ' €';
-  }
-  el.addEventListener('input', calc);
-  document.getElementById('estReset').addEventListener('click', function(){
-    C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
-    document.getElementById('estRate').value = C.rate; calc();
-  });
-  calc();
-})();
-</script>
-  <!-- estimation -->
+<!-- gains -->
+  <section class="gain">
+    <p class="eb"><b>QME</b> · Expected gain</p>
+    <h2>What the tool saves you</h2>
+    <div class="big"><b>Around 300 hours saved each season</b><span>close to two months of admin work, given back to customers, the shop and the workshop.</span></div>
+    <div class="cols"><div><h3>Time saved</h3><ul><li>Re-keying bookings from email, phone and the website: around 100 hours per season</li><li>Building the daily driver runs: around 80 hours</li><li>Chasing sizes and answering "when is my delivery?": around 75 hours</li><li>Saturday workshop coordination and daily cash-up: around 55 hours</li></ul></div><div class="rel"><h3>What becomes reliable</h3><ul><li>One bookings list for every channel: no double booking, nothing lost in an inbox</li><li>Driver runs built from the bookings, grouped by village and time</li><li>Sizes collected before arrival, so kit is ready on Saturday</li><li>Damage flagged in the workshop queue before the next rental</li><li>Cash-up reconciled every evening</li></ul></div></div>
+    <p class="note">Ballpark figures based on what can be seen from the outside, to be refined together with your real numbers.</p>
+    <div class="cta"><a href="mailto:quentin.morel@qm-engineering.fr?subject=Tignes%20Spirit%20concept&amp;body=Hi Quentin,%0D%0A%0D%0AI would like to talk it through. My availability:%0D%0A">Talk it through (30 min)</a><span>Video or phone call, no commitment.</span></div>
+  </section>
+  <!-- gains -->
   <p><a class="btn" href="QME-concept-Tignes-Spirit.pdf" download data-goatcounter-click="concept-tignes-spirit-pdf" data-goatcounter-title="Concept Tignes Spirit (PDF)">Download the PDF (4 pages)</a></p>
 </main>
 <footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
