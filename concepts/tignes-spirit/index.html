@@ -51,6 +51,19 @@ footer a{color:var(--ink)}
 .est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15px;font-weight:500}
 .est .foot{color:var(--muted);font-size:13.5px;margin:14px 0 0;max-width:82ch}
 .est .reset{background:none;border:0;color:#141414;font:inherit;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:#D9302A;text-underline-offset:3px;margin-left:auto}
+.est h3{font-size:22px;margin:30px 0 6px;font-weight:700}
+.est .rv{display:grid;grid-template-columns:1.4fr 1fr 1fr .6fr;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.est .rv label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:3px}
+.est .rv .r{text-align:right;font-weight:700;color:#D9302A;font-size:17px}
+.est .grand{margin-top:22px;background:#141414;color:#fff;border-radius:4px;padding:18px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-left:10px solid #F5B400}
+.est .grand b{font-size:40px;line-height:1;font-weight:700;color:#fff}
+.est .grand span{color:#d8d3c9;font-size:14.5px}
+.est .grand .gl{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:#F5B400;font-weight:600;display:block;margin-bottom:4px}
+.est .cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+.est .cta a{display:inline-flex;background:#D9302A;color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px}
+.est .cta a:focus-visible{outline:3px solid #141414;outline-offset:3px}
+.est .cta span{color:var(--muted);font-size:14px}
+@media (max-width:720px){.est .rv{grid-template-columns:1fr 1fr}.est .rv .t{grid-column:1/-1}.est .grand b{font-size:32px}}
 @media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
  .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
  .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
@@ -74,11 +87,12 @@ footer a{color:var(--ink)}
     <img src="page-4.webp" width="1638" height="1157" alt="Apartments on the IGN map of Tignes and Val d'Isère with today's status" loading="lazy">
   </div>
 
+
 <!-- estimation -->
   <section class="est" id="est" aria-live="polite"></section>
   <script>
 (function(){
-  var C = {"lang": "en", "rate": 22, "rateLabel": "Cost of one working hour (including employer charges)", "period": "season", "rows": [["Re-keying bookings received by email, phone and the website", "bookings", 1200, 6, 1], ["Building the daily driver runs", "days", 140, 45, 10], ["Chasing missing sizes and pre-arrival details", "bookings", 600, 5, 1], ["Answering \"when is my delivery?\" calls and messages", "requests", 800, 3, 0.5], ["Coordinating the Saturday workshop turnaround", "Saturdays", 20, 90, 30], ["Daily cash-up and reconciliation", "days", 140, 20, 5]]}, T = Object.assign({}, {"eb": "Estimate", "h": "Estimated time saved", "intro": "A ballpark figure, not a promise. The volumes and durations below are starting assumptions based on what can be seen from the outside: replace them with your own and the total updates.", "task": "Task", "vol": "How many per {p}", "before": "Minutes today", "after": "Minutes with the tool", "saved": "Hours saved", "hours": "hours saved per {p}", "days": "7-hour days", "value": "value of the time saved per {p}, at €{rate} an hour", "reset": "Back to the starting assumptions", "foot": "Minutes are for doing the task once (one booking, one reminder, one day's runs). We would refine these assumptions together on a call.", "loc": "en-GB"}, C.txt || {}), el = document.getElementById('est');
+  var C = {"lang": "en", "subject": "Tignes Spirit concept", "rate": 22, "rateLabel": "Cost of one working hour (including employer charges)", "period": "season", "rows": [["Re-keying bookings received by email, phone and the website", "bookings", 1200, 6, 1], ["Building the daily driver runs", "days", 140, 45, 10], ["Chasing missing sizes and pre-arrival details", "bookings", 600, 5, 1], ["Answering \"when is my delivery?\" calls and messages", "requests", 800, 3, 0.5], ["Coordinating the Saturday workshop turnaround", "Saturdays", 20, 90, 30], ["Daily cash-up and reconciliation", "days", 140, 20, 5]]}, T = Object.assign({}, {"eb": "Estimate", "h": "Estimated time saved", "intro": "A ballpark figure, not a promise. The volumes and durations below are starting assumptions based on what can be seen from the outside: replace them with your own and the total updates.", "task": "Task", "vol": "How many per {p}", "before": "Minutes today", "after": "Minutes with the tool", "saved": "Hours saved", "hours": "hours saved per {p}", "days": "7-hour days", "value": "value of the time saved per {p}, at €{rate} an hour", "reset": "Back to the starting assumptions", "foot": "Minutes are for doing the task once (one booking, one reminder, one day's runs). We would refine these assumptions together on a call.", "loc": "en-GB", "grand": "Total estimated gain per season", "gsplit": "{a} of time saved + {b} of protected revenue", "revRes": "Revenue", "cta": "Refine these figures with your real numbers (30 min)", "ctaNote": "A video or phone call, no commitment.", "body": "Hi Quentin,%0D%0A%0D%0AI would like to refine the estimate with our figures. My availability:%0D%0A"}, C.txt || {}), el = document.getElementById('est');
   var fmt = function(n, d){ return n.toLocaleString(T.loc, {maximumFractionDigits: d || 0}); };
   var P = function(s){ return s.replace('{p}', C.period); };
   var rows = C.rows.map(function(r, i){
@@ -92,7 +106,14 @@ footer a{color:var(--ink)}
     '<table><thead><tr><th>' + T.task + '</th><th class="n">' + P(T.vol) + '</th><th class="n">' + T.before + '</th><th class="n">' + T.after + '</th><th class="n">' + T.saved + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">' + T.reset + '</button></div>' +
     '<div class="tot"><div class="main"><b id="estH"></b><span>' + P(T.hours) + '</span></div><div><b id="estD"></b><span>' + T.days + '</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
-    '<p class="foot">' + T.foot + '</p>';
+    (C.rev ? '<h3>' + C.rev.h + '</h3><p class="intro" style="margin-bottom:6px">' + C.rev.intro + '</p>' + C.rev.rows.map(function(r, i){
+        return '<div class="rv"><div class="t">' + r[0] + '</div>' +
+          '<div><label>' + r[1] + '</label><input type="number" min="0" step="1" data-r="' + i + '" data-k="x" value="' + r[2] + '"> ' + r[3] + '</div>' +
+          '<div><label>' + r[4] + '</label><input type="number" min="0" step="0.5" data-r="' + i + '" data-k="y" value="' + r[5] + '"> ' + r[6] + '</div>' +
+          '<div class="r" id="rv' + i + '"></div></div>'; }).join('') +
+      '<div class="grand"><div><span class="gl">' + P(T.grand) + '</span><b id="estG"></b></div><span id="estGS"></span></div>' : '') +
+    '<p class="foot">' + T.foot + '</p>' +
+    '<div class="cta"><a href="mailto:quentin.morel@qm-engineering.fr?subject=' + encodeURIComponent(C.subject || '') + '&body=' + T.body + '">' + T.cta + '</a><span>' + T.ctaNote + '</span></div>';
   function calc(){
     var tot = 0;
     C.rows.forEach(function(r, i){
@@ -104,11 +125,23 @@ footer a{color:var(--ink)}
     document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
     document.getElementById('estD').textContent = fmt(tot / (C.dayHours || 7), 0);
     document.getElementById('estVL').textContent = P(T.value).replace('{rate}', fmt(rate));
+    var money = function(n){ var f = fmt(Math.round(n / 10) * 10); return T.loc === 'en-GB' ? '€' + f : f + ' €'; };
+    if (C.rev){
+      var rt = 0;
+      C.rev.rows.forEach(function(r, i){
+        var g = function(k){ var v = parseFloat(el.querySelector('input[data-r="' + i + '"][data-k="' + k + '"]').value); return isNaN(v) ? 0 : v; };
+        var x = g('x'), y = g('y'); var val = (r[6] === '%') ? x * y / 100 : x * y; rt += val;
+        document.getElementById('rv' + i).textContent = money(val);
+      });
+      document.getElementById('estG').textContent = money(tot * rate + rt);
+      document.getElementById('estGS').textContent = T.gsplit.replace('{a}', money(tot * rate)).replace('{b}', money(rt));
+    }
     var v = fmt(Math.round(tot * rate / 10) * 10); document.getElementById('estV').textContent = T.loc === 'en-GB' ? '€' + v : v + ' €';
   }
   el.addEventListener('input', calc);
   document.getElementById('estReset').addEventListener('click', function(){
     C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
+    if (C.rev) C.rev.rows.forEach(function(r, i){ el.querySelector('input[data-r="' + i + '"][data-k="x"]').value = r[2]; el.querySelector('input[data-r="' + i + '"][data-k="y"]').value = r[5]; });
     document.getElementById('estRate').value = C.rate; calc();
   });
   calc();
