@@ -48,7 +48,7 @@ outils/templates/          tests, serveur local, génération de codes
 
 ## Mise à jour du site (à chaque nouveau template)
 
-Obligatoire, dans la même PR que le template (sauf PDF et vidéo, dans le dépôt Nexora) :
+Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne changent pas, les références PDF seulement sur demande) :
 
 - [ ] **Accueil `index.html`** : carte du template dans la section `#templates` (ou remplacement de la
       carte mise en avant + ajout à la ligne des autres templates) ; « En préparation » mis à jour ;
@@ -60,11 +60,12 @@ Obligatoire, dans la même PR que le template (sauf PDF et vidéo, dans le dép�
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »
       si c'est pertinent.
-- [ ] **Plaquette et références PDF** (`assets/QME-plaquette.pdf`, `QME-references.pdf`, versions
-      anglaises) : sources et générateurs dans le dépôt Nexora, `docs/qme/` (`node docs/qme/build.mjs`,
-      puis `node docs/qme/en/build.mjs`) ; mentionner l'offre Templates et le nouveau produit ; changer
-      le `?v=` des liens dans les deux pages d'accueil. Si ce dépôt n'est pas disponible dans la
-      session, le signaler à Quentin au lieu de l'ignorer.
+- **Plaquette PDF : ne pas la mettre à jour pour un nouveau template** (décision de Quentin, 12/11/2026).
+  Elle présente l'offre Templates de façon générique (carte « Templates · dès … »). Seul changement admis :
+  le prix « dès … » si le template le moins cher change, et seulement si Quentin le demande.
+- [ ] **Références PDF** (facultatif, **sur demande de Quentin** seulement) : page dédiée sur le modèle de
+      `docs/qme/references/Revision.dc.html` (dépôt Nexora), puis `node docs/qme/build.mjs` et
+      `node docs/qme/en/build.mjs`, PDF recopiés dans `assets/`, `?v=` des liens mis à jour.
 - [ ] **Vidéo de présentation** (facultatif, sur demande de Quentin) : générateur dans Nexora.
 - [ ] **`netlify.toml`** : en-têtes `noindex` et `sw.js` pour `/templates/<slug>/*`.
 - [ ] **`README.md`** et **`docs/templates/IDEES.md`** (statut, liens de communication).

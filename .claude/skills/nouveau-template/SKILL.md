@@ -75,7 +75,8 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    Prérequis du compte (déjà fait une fois pour toutes) : un moyen de paiement connecté dans Gumroad
    (Settings → Payments), sinon `publish_product` est refusé.
 4. Tout le site QM Engineering : appliquer la liste à cocher de `reference.md` § « Mise à jour du site »
-   (accueil FR et EN, catalogue, connexion, références, plaquette et références PDF, README).
+   (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
+   change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
 
 ## 4. Préparer la communication
