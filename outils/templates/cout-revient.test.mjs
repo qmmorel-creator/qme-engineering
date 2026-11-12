@@ -55,6 +55,9 @@ test('jours ouvrés : semaine de 4 jours, Pentecôte travaillée', () => {
   const cinq = C.joursOuvres(2026);
   assert.ok(quatre.ouvres < cinq.ouvres);
   assert.equal(C.joursOuvres(2026, { pentecoteTravaillee: true }).ouvres, cinq.ouvres + 1);
+  const pentecote = C.joursOuvres(2026, { pentecoteTravaillee: true }).feries.find((f) => f.nom === 'Lundi de Pentecôte');
+  assert.equal(pentecote.chome, false);
+  assert.equal(pentecote.travaille, true);
   const ferieVendredi = cinq.feries.filter((f) => C.versDate(f.date).getDay() === 5 && f.chome).length; // 1er et 8 mai, Noël
   assert.equal(ferieVendredi, 3);
   assert.equal(quatre.feriesChomes, cinq.feriesChomes - ferieVendredi);

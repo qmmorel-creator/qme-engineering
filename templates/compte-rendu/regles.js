@@ -25,7 +25,7 @@
   }
   function dateCourte(s) {
     const d = versDate(s);
-    return `${JOURS[d.getDay()].slice(0, 3)}. ${d.getDate()}/${deux(d.getMonth() + 1)}`;
+    return `${JOURS[d.getDay()].slice(0, 3)}. ${deux(d.getDate())}/${deux(d.getMonth() + 1)}`;
   }
 
   // Minuscules sans accents, même longueur que le texte d'origine (les positions restent valables).
@@ -81,11 +81,14 @@
 
   // Jour et mois sans année : prochaine occurrence à partir d'aujourd'hui.
   function jourMois(auj, j, mo, an) {
-    let a = an ? Number(an.length === 2 ? `20${an}` : an) : versDate(auj).getFullYear();
-    if (!dateValide(a, mo, j)) return null;
-    let s = `${a}-${deux(mo)}-${deux(j)}`;
-    if (!an && s < auj) { a += 1; if (!dateValide(a, mo, j)) return null; s = `${a}-${deux(mo)}-${deux(j)}`; }
-    return s;
+    if (an) { const a = Number(an.length === 2 ? `20${an}` : an); return dateValide(a, mo, j) ? `${a}-${deux(mo)}-${deux(j)}` : null; }
+    // Sans année : la prochaine occurrence (un 29/02 attend l'année bissextile suivante).
+    const a0 = versDate(auj).getFullYear();
+    for (let a = a0; a <= a0 + 4; a++) {
+      const s = `${a}-${deux(mo)}-${deux(j)}`;
+      if (dateValide(a, mo, j) && s >= auj) return s;
+    }
+    return null;
   }
 
   // Cherche une échéance dans un texte. Renvoie { date, debut, fin } (positions dans le texte, préposition comprise)

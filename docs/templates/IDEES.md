@@ -76,10 +76,10 @@ déjà).
 | N° | Template | Catégorie | Cible | Statut | Prix | Taille | Priorité | Origine |
 |----|----------|-----------|-------|--------|-----------|--------|----------|---------|
 | T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 |
-| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | fiche | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
-| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | fiche | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
+| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en cours | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
+| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en cours | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | fiche | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
-| T05 | Budget du foyer | Budget perso | Particuliers | idée | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
+| T05 | Budget du foyer | Budget perso | Particuliers | en cours | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
@@ -98,11 +98,11 @@ déjà).
 | T21 | Préparation de voyage | Voyage | Voyageurs, groupes d'amis | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | idée | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
-| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | idée | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
+| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en cours | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
+| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en cours | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | idée | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
-| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | idée | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
+| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en cours | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | idée | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | idée | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en cours | 15 € | S | P1 | Backlog Quentin n° 04 |
@@ -388,6 +388,35 @@ recherche rapide insensible aux accents) ; valider la palette des graphiques ; *
 sont des données de santé de l'acheteur, hébergées en ligne par QME (voir les règles en tête). Taille L.
 
 ---
+
+## Deuxième vague (P1 de taille M et L) · lancée le 12/11/2026
+
+Décision de Quentin : tous les P1 restants sont développés sans validation intermédiaire, publication
+autorisée (Gumroad et `main`) ; il active les clés de licence. Fiches dans `docs/templates/fiches/<slug>.md`.
+Gumroad limite la création à 10 produits par jour : brouillons créés pour T02, T03, T04, T05 ; les 15 autres
+le 13/11 au soir.
+
+| N° | Slug | Préfixe | Permalien Gumroad |
+|----|------|---------|-------------------|
+| T02 | `gantt` | GNT | planning-gantt |
+| T03 | `taches` | TCH | gestionnaire-taches |
+| T04 | `nutrition` | NTR | nutrition |
+| T05 | `budget` | BDG | budget-foyer |
+| T15 | `mariage` | MRG | organisateur-mariage |
+| T24 | `visa` | VSA | circuit-visa |
+| T25 | `non-conformites` | NCF | non-conformites |
+| T28 | `crm` | CRM | crm-freelance |
+| T29 | `flotte` | VHC | gestion-flotte |
+| T30 | `planner` | PHR | planner-horaire |
+| T32 | `reserves` | RSV | levee-reserves |
+| T35 | `prospection` | PRS | pipeline-prospection |
+| T36 | `devis` | DVS | generateur-devis |
+| T42 | `tresorerie` | TRS | tresorerie-previsionnelle |
+| T45 | `parc-informatique` | PRC | parc-informatique |
+| T51 | `evenementiel` | EVT | pilote-evenementiel |
+| T53 | `inscriptions` | ASC | inscriptions-associatives |
+| T57 | `auto-ecole` | AEC | gestion-auto-ecole |
+| T67 | `travaux` | TRV | pilote-travaux |
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 

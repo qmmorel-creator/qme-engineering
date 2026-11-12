@@ -48,8 +48,9 @@ globalThis.CALCULS = (() => {
   // pentecoteTravaillee : le lundi de Pentecôte compte comme un jour travaillé.
   function joursOuvres(annee, { joursSemaine = [1, 2, 3, 4, 5], alsaceMoselle = false, pentecoteTravaillee = false } = {}) {
     const travailles = new Set(joursSemaine);
-    const feries = joursFeries(annee, { alsaceMoselle }).filter((f) => !(pentecoteTravaillee && f.nom === 'Lundi de Pentecôte'));
-    const dates = new Set(feries.map((f) => f.date));
+    const tous = joursFeries(annee, { alsaceMoselle });
+    const travaille = (f) => pentecoteTravaillee && f.nom === 'Lundi de Pentecôte';
+    const dates = new Set(tous.filter((f) => !travaille(f)).map((f) => f.date));
     const calendaires = bissextile(annee) ? 366 : 365;
     let nonTravailles = 0, feriesChomes = 0, ouvres = 0;
     for (let d = new Date(annee, 0, 1); d.getFullYear() === annee; d.setDate(d.getDate() + 1)) {
@@ -59,7 +60,8 @@ globalThis.CALCULS = (() => {
     }
     return {
       annee, calendaires, nonTravailles, feriesChomes, ouvres,
-      feries: feries.map((f) => ({ ...f, chome: travailles.has(versDate(f.date).getDay()) })),
+      // chome : férié tombant un jour travaillé ; travaille : férié travaillé par choix (Pentecôte).
+      feries: tous.map((f) => ({ ...f, chome: travailles.has(versDate(f.date).getDay()) && !travaille(f), travaille: travaille(f) })),
     };
   }
 

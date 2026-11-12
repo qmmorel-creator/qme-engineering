@@ -1,7 +1,7 @@
 {
-  "name": "Planning de révision · QME",
-  "short_name": "Révisions",
-  "description": "Planning de révision par répétition espacée.",
+  "name": "Coût de revient et prix par client · QME",
+  "short_name": "Coût de revient",
+  "description": "Charges, temps facturable, prix plancher et rentabilité par client.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

@@ -1,4 +1,4 @@
-/* Planning de révision · charte QME Bauhaus : papier, encre, aplats rouge / jaune / bleu,
+/* Coût de revient et prix par client · charte QME Bauhaus (socle repris du planning de révision) : papier, encre, aplats rouge / jaune / bleu,
    Outfit, angles droits, cadres de 2 px, ombres pleines décalées. */
 :root{
   --papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;
@@ -363,3 +363,200 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.carte h3{font-size:19px}}
+
+/* ============ Coût de revient : composants propres ============ */
+.etiquette.neutre{background:var(--trait);color:var(--encre)}
+.vue-tete .actions{align-items:flex-end}
+.champ.periode{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texte-2)}
+.champ.periode select{min-height:48px;font-size:15px;letter-spacing:0;text-transform:none;color:var(--encre);font-weight:600;padding:8px 10px}
+.alerte{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;border:2px solid var(--encre);background:var(--jaune);padding:14px 16px;margin-bottom:20px}
+.alerte b{font-size:17px}
+.alerte span{flex:1 1 320px}
+.alerte .rang{display:flex;flex-wrap:wrap;gap:8px}
+.avertissement{margin-top:36px;padding:12px 14px;border-left:6px solid var(--encre);background:var(--surface);font-size:14px;color:var(--texte-2)}
+.avertissement b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:2px}
+.tuile b{overflow-wrap:anywhere}
+.negatif{color:var(--rouge)}
+
+/* Graphique : taux horaire réel */
+.barres{display:grid;gap:6px;margin-top:6px}
+.barre-rang{display:grid;grid-template-columns:minmax(120px,220px) minmax(0,1fr) 290px;gap:14px;align-items:center;padding:6px 4px;outline-offset:0;cursor:default}
+.barre-rang:hover,.barre-rang.active{background:#F6F1E3}
+.barre-nom{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;min-width:0}
+.barre-nom i{width:12px;height:12px;flex:none;border:2px solid var(--encre)}
+.barre-piste{position:relative;height:26px;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--trait) calc(10% - 1px) 10%)}
+.barre-valeur{position:absolute;left:0;top:3px;bottom:3px;border:2px solid var(--encre);min-width:4px}
+.repere{position:absolute;top:-4px;bottom:-4px;width:0;border-left:3px solid var(--encre);z-index:2}
+.repere.conseille{border-left-style:dashed}
+.barre-chiffre{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14px;color:var(--texte-2)}
+.barre-chiffre b{font-size:17px;color:var(--encre)}
+.trait-repere{width:0!important;height:16px!important;border:0!important;border-left:3px solid var(--encre)!important}
+.trait-repere.tirets{border-left-style:dashed!important}
+.graphique-note{margin-top:10px;font-size:13px;color:var(--discret)}
+.graphique .infobulle{min-width:200px}
+.graphique .infobulle div{white-space:nowrap}
+
+/* Graphique : répartition du temps */
+.pile{display:flex;gap:2px;height:44px;border:2px solid var(--encre);background:var(--encre)}
+.pile span{flex-basis:0;min-width:3px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;overflow:hidden;white-space:nowrap}
+.legende-pile{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px 18px;margin-top:14px}
+.legende-pile li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:2px 8px;align-items:center;font-size:14px}
+.legende-pile i{width:14px;height:14px;border:2px solid var(--encre)}
+.legende-pile b{font-weight:600;overflow-wrap:anywhere}
+.legende-pile span{grid-column:2;color:var(--discret);font-size:13px}
+
+/* Clients */
+.client .matiere-chiffres b{font-size:21px}
+.client-statut{padding:12px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;border-bottom:2px solid var(--encre)}
+.client-statut p{font-size:14px;color:var(--texte-2)}
+.client-statut p b{color:var(--encre)}
+.jauge{position:relative;align-self:stretch;height:16px;background:var(--trait);margin:4px 0 2px}
+.jauge-valeur{position:absolute;left:0;top:0;bottom:0;border:2px solid var(--encre)}
+.jauge .repere{top:-5px;bottom:-5px}
+.client-ajouts{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-bottom:1px solid var(--trait)}
+.client-ajouts .btn{flex:1 1 auto}
+.saisies{display:block}
+.saisie{display:grid;grid-template-columns:70px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:8px 16px;border-bottom:1px solid var(--trait);font-size:14px}
+.saisie-type{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;text-align:center;border:2px solid var(--encre)}
+.saisie.facture .saisie-type{background:var(--encre);color:var(--papier)}
+.saisie.frais .saisie-type{background:var(--surface)}
+.saisie.temps .saisie-type{background:var(--jaune)}
+.saisie-texte{min-width:0;overflow-wrap:anywhere;color:var(--texte-2)}
+.saisie-texte b{color:var(--encre)}
+.saisie-date{color:var(--discret);font-size:13px;white-space:nowrap}
+.saisie button{background:none;border:0;padding:6px 0;min-height:36px;font-size:13px;font-weight:600;color:var(--discret);text-decoration:underline;text-underline-offset:3px}
+.saisie button:hover{color:var(--encre)}
+.client .faites{margin:0;border-top:0}
+.client .faites summary{padding:10px 16px;font-size:14px}
+
+/* Prix */
+.prix-tete{margin-bottom:24px}
+.cout-chiffres{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:6px}
+.cout-chiffres b{display:block;font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.cout-chiffres span{font-size:15px;color:var(--texte-2);font-weight:600}
+.cout-grand .sous{margin-top:18px;font-size:16px;color:var(--texte-2)}
+.cout-grand .sous b{color:var(--encre);background:var(--jaune);padding:0 4px}
+.prix-carte .compte{font-size:60px}
+.deux-colonnes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.bloc{border:2px solid var(--encre);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.bloc h2{font-size:20px}
+.bloc .rang{display:flex;flex-wrap:wrap;gap:8px}
+.calcul{width:100%;border-collapse:collapse;font-size:15px}
+.calcul th,.calcul td{padding:9px 0;border-bottom:1px solid var(--trait);text-align:left;font-weight:600;vertical-align:top}
+.calcul td{text-align:right;white-space:nowrap;padding-left:12px}
+.calcul th small{display:block;font-weight:400;font-size:13px;color:var(--discret)}
+.calcul thead td{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--texte-2)}
+.calcul tr.total th,.calcul tr.total td{border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);font-weight:800;font-size:17px}
+.saisie-unite{display:flex;align-items:stretch}
+.saisie-unite input{flex:1;min-width:0}
+.saisie-unite i{display:flex;align-items:center;padding:0 10px;border:2px solid var(--encre);border-left:0;background:var(--papier);font-style:normal;font-weight:600;font-size:14px;white-space:nowrap}
+.mission{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--encre)}
+.mission div{padding:12px 14px}
+.mission div+div{border-left:2px solid var(--encre)}
+.mission span{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
+.mission b{font-size:26px;font-weight:800}
+.mission .fort{background:var(--bleu);color:#fff}
+.mission .fort span{color:#fff;opacity:.9}
+.somme{font-size:15px;color:var(--texte-2)}
+.somme b{color:var(--encre)}
+
+/* Capacité */
+.champs-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.jours-semaine{border:0;padding:0;margin:0}
+.jours-semaine legend{padding:0;margin-bottom:6px}
+.jours-semaine div{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.jours-semaine label{position:relative;cursor:pointer}
+.jours-semaine input,.choix-mode input{position:absolute;opacity:0;inset:0;margin:0}
+.jours-semaine span{display:flex;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--encre);background:var(--surface);font-weight:700;font-size:14px}
+.jours-semaine input:checked+span{background:var(--encre);color:var(--papier)}
+.jours-semaine input:focus-visible+span,.choix-mode input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+.cascade{display:grid;gap:2px}
+.cascade li{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 64px;gap:12px;align-items:center;padding:6px 0;font-size:15px}
+.cascade-lib small{display:block;font-size:12px;color:var(--discret)}
+.cascade-barre{height:14px;background:var(--papier)}
+.cascade-barre i{display:block;height:100%;background:var(--trait);border:2px solid var(--encre)}
+.cascade li.moins b{color:var(--rouge)}
+.cascade li.moins .cascade-barre i{background:var(--rouge)}
+.cascade li.sous-total{border-top:2px solid var(--encre);font-weight:700}
+.cascade li.sous-total .cascade-barre i{background:var(--encre)}
+.cascade li.total{border-top:2px solid var(--encre);font-weight:800}
+.cascade li.total .cascade-barre i{background:var(--bleu)}
+.cascade b{text-align:right;font-weight:800}
+.resultat-capacite{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--encre)}
+.resultat-capacite div{padding:12px 14px}
+.resultat-capacite div+div{border-left:2px solid var(--encre)}
+.resultat-capacite span{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texte-2)}
+.resultat-capacite b{font-size:28px;font-weight:800}
+.resultat-capacite .fort{background:var(--jaune)}
+.feries{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.feries li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 12px;border:2px solid var(--encre);background:var(--surface);font-size:14px}
+.feries li span{grid-column:1;color:var(--texte-2)}
+.feries li em{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 6px;background:var(--rouge);color:#fff}
+.feries li.hors{border-color:var(--trait);color:var(--discret)}
+.feries li.hors em{background:var(--trait);color:var(--encre)}
+
+/* Charges */
+.choix-mode{display:flex;flex-wrap:wrap;gap:6px}
+.choix-mode label{position:relative;cursor:pointer;flex:1 1 auto}
+.choix-mode span{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 12px;border:2px solid var(--encre);background:var(--surface);font-weight:700;font-size:14px;text-align:center}
+.choix-mode input:checked+span{background:var(--encre);color:var(--papier)}
+.groupe-charges{border:2px solid var(--encre);background:var(--surface);margin-bottom:14px}
+.groupe-charges h3{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:17px;padding:10px 16px;background:var(--encre);color:var(--papier)}
+.groupe-charges h3 span{font-size:14px;font-weight:600;letter-spacing:0}
+.charge{display:grid;grid-template-columns:minmax(0,1fr) 150px 120px 120px 44px;gap:10px;align-items:center;padding:8px 16px;border-bottom:1px solid var(--trait)}
+.charge:last-child{border-bottom:0}
+.charge-nom{font-weight:600;font-size:15px;overflow-wrap:anywhere}
+.charge input,.charge select{width:100%;min-height:44px;padding:6px 10px;border:2px solid var(--encre);background:var(--papier);border-radius:0;font-size:16px}
+.charge input{text-align:right}
+.charge-an{font-size:14px;color:var(--discret);text-align:right;white-space:nowrap}
+.suppr{width:44px;height:44px;border:2px solid transparent;background:none;font-size:22px;line-height:1;color:var(--discret)}
+.suppr:hover{border-color:var(--rouge);color:var(--rouge)}
+.catalogue{border:2px solid var(--encre);background:var(--surface);padding:6px 14px 10px;margin:0}
+.catalogue legend{font-weight:800;padding:0 6px;font-size:15px}
+.catalogue .case{min-height:40px;font-size:15px}
+
+/* Premier lancement */
+.grille-accueil{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:20px;align-items:start}
+.postes-accueil{display:grid;gap:10px}
+.ligne-poste{display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:center;gap:10px;font-weight:600}
+.ligne-poste input{text-align:right}
+.ligne-poste .saisie-unite i{min-width:76px;justify-content:center}
+
+@media (max-width:1020px){
+  .barre-rang{grid-template-columns:minmax(0,1fr) 210px;gap:4px 12px}
+  .barre-nom{grid-column:1/-1}
+  .deux-colonnes,.grille-accueil{grid-template-columns:1fr}
+  .charge{grid-template-columns:minmax(0,1fr) 130px 110px 44px}
+  .charge-an{display:none}
+}
+@media (max-width:720px){
+  .tuile .surtitre{padding-right:26px}
+  .tuile::after{width:40px;height:40px;right:-14px;top:-14px}
+  .tuile b{font-size:26px}
+  .tuile b small{font-size:14px}
+  .tuile span{font-size:13px}
+  .vue-tete .actions{width:100%}
+  .vue-tete .actions .champ.periode{flex:1 1 100%}
+  .vue-tete .actions .btn{flex:1 1 auto}
+  .barre-rang{grid-template-columns:1fr;gap:4px}
+  .barre-chiffre{font-size:13px}
+  .saisie{grid-template-columns:70px minmax(0,1fr) auto;padding:8px 12px;gap:8px}
+  .saisie-type{font-size:10px;letter-spacing:.04em;padding:2px 4px}
+  .saisie-date{grid-column:2;grid-row:2;font-size:12px}
+  .saisie button{grid-column:3;grid-row:1/3}
+  .cout-chiffres{gap:12px 28px}
+  .prix-carte .compte{font-size:44px}
+  .bloc{padding:14px}
+  .cascade li{grid-template-columns:minmax(0,1fr) 70px 54px;gap:8px;font-size:14px}
+  .resultat-capacite b{font-size:22px}
+  .charge{grid-template-columns:minmax(0,1fr) 44px;gap:6px 8px;padding:10px 12px}
+  .charge-nom{grid-column:1}
+  .charge .suppr{grid-column:2;grid-row:1;justify-self:end}
+  .charge .saisie-unite{grid-column:1;grid-row:2}
+  .charge select{grid-column:2/-1;grid-row:2;width:auto;min-width:100px}
+  .charge{grid-template-columns:minmax(0,1fr) auto}
+  .groupe-charges h3{padding:10px 12px}
+  .ligne-poste{grid-template-columns:1fr}
+  .mission b{font-size:21px}
+  .alerte span{flex-basis:100%}
+}
