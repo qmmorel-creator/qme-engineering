@@ -1,6 +1,6 @@
 ---
 name: nouveau-template
-description: Développer un nouveau template QME vendu sur Gumroad (application web ouverte par clé de licence, données synchronisées, charte Bauhaus), de la fiche d'idée à la mise en vente. À utiliser quand Quentin demande de développer, lancer, créer ou prototyper un template (« lance T04 », « développe le template budget », « nouveau template »), ou d'en ajouter un au site ou à Gumroad.
+description: Développer un nouveau template QME vendu sur Gumroad (application web ouverte par clé de licence, données synchronisées, charte Bauhaus), de la fiche d'idée à la mise en vente et à sa communication (page du site, publication LinkedIn, prospects). À utiliser quand Quentin demande de développer, lancer, créer ou prototyper un template (« lance T04 », « développe le template budget », « nouveau template »), ou d'en ajouter un au site ou à Gumroad.
 ---
 
 # Nouveau template QME
@@ -69,9 +69,35 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
    **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : onglet Content →
    Insert → License key, sans multi-postes. Sans ce bloc, l'acheteur ne reçoit aucune clé. Le bloc affiche le
    `product_id` : il doit être identique à `gumroad` dans `PRODUITS`. Ne publier la fiche qu'avec son accord explicite.
+   Prérequis du compte (déjà fait une fois pour toutes) : un moyen de paiement connecté dans Gumroad
+   (Settings → Payments), sinon `publish_product` est refusé.
 4. README : section « Templates payants » à compléter.
 
-## 4. Publier
+## 4. Préparer la communication
+
+Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par Quentin avant usage :
+
+1. **Page de présentation sur le site QM Engineering** : la section `#<slug>` de `/templates/` doit se
+   suffire comme page d'atterrissage (lien direct `qm-engineering.fr/templates/#<slug>`) : promesse en une
+   phrase, pour qui, 3 à 5 bénéfices concrets, captures, prix, « Acheter » et « Essayer la démo »,
+   questions fréquentes propres au produit. Ajouter le lien `#<slug>` dans `/templates/` (sommaire) et
+   la carte sur l'accueil si le produit est mis en avant.
+2. **`linkedin.md`** : une publication de présentation (environ 1 200 à 1 500 caractères), à la première
+   personne de Quentin, ton direct et sobre, sans superlatifs ni promesses chiffrées non vérifiées :
+   accroche sur le problème, ce que fait le template (3 points), ce qui le distingue (base intégrée, tous
+   appareils, achat unique), lien vers la démo, lien d'achat. Proposer 2 variantes d'accroche, l'image à
+   joindre (couverture ou capture téléphone) et 3 à 5 hashtags. Prévoir aussi une version courte
+   (3 lignes) pour un commentaire ou une story.
+3. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations**
+   (jamais de données personnelles collectées sur des particuliers) : pour chaque segment, pourquoi il a
+   le problème, où le trouver (annuaires, réseaux, salons, groupes), qui contacter (fonction, pas nom),
+   message d'approche en 3 lignes, canal (LinkedIn, e-mail professionnel public, partenariat, affiliation
+   Gumroad), priorité. Distinguer acheteurs directs (B2C), prescripteurs (enseignants, coachs,
+   associations, influenceurs du domaine) et partenaires (structures qui pourraient offrir le template).
+   Tout organisme cité doit exister ; signaler ce qui est à vérifier.
+4. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables).
+
+## 5. Publier
 
 - Branche de travail, commits en français, PR vers `main`. **Aucune fusion sans feu vert explicite de
   Quentin** (déploiements Netlify facturés). Ordre : licence activée → fiche Gumroad publiée → fusion.

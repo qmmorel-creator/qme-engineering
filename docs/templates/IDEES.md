@@ -21,7 +21,7 @@ Non publié sur le site (chemin bloqué dans `netlify.toml`).
 
 | N° | Template | Statut | Prix visé | Taille | Origine |
 |----|----------|--------|-----------|--------|---------|
-| T01 | Planning de révision | en vente (fiche Gumroad en brouillon) | 14,90 € | M | Liste initiale, 12/11/2026 |
+| T01 | Planning de révision | prêt (Gumroad : paiement à connecter) | 14,90 € | M | Liste initiale, 12/11/2026 |
 | T02 | Planning Gantt rapide | fiche | 24,90 € | L | Quentin, 12/11/2026 (Planning rapide de Nexora) |
 | T03 | Gestionnaire de tâches | fiche | 19,90 € | M | Quentin, 12/11/2026 (tâches de Nexora) |
 | T04 | Nutrition et dépense énergétique | fiche | 14,90 € | L | Quentin, 12/11/2026 (NutriQuest) |
@@ -54,8 +54,12 @@ confirmer par Quentin avant la création de chaque fiche Gumroad.
 
 ## T01 · Planning de révision
 
-En vente : `/templates/revision/`, préfixe `REV`, fiche Gumroad `planning-revision`. Référence
-d'architecture pour tous les autres templates.
+Prêt : `/templates/revision/`, préfixe `REV`, fiche Gumroad `planning-revision` (clé de licence activée ;
+publication en attente d'un moyen de paiement connecté au compte Gumroad). Référence d'architecture
+pour tous les autres templates.
+
+Communication : page `qm-engineering.fr/templates/#revision`,
+[publication LinkedIn](communication/revision/linkedin.md), [prospects](communication/revision/prospects.md).
 
 ---
 
