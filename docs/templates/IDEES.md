@@ -250,6 +250,10 @@ pour tous les autres templates.
 
 Communication : page `qm-engineering.fr/templates/#revision`,
 [publication LinkedIn](communication/revision/linkedin.md), [prospects](communication/revision/prospects.md).
+Publication LinkedIn programmée : ID LI-73 du Google Sheet « Planning publications LinkedIn », le
+15/11/2026 à 08:30, statut Programmé ; texte :
+https://docs.google.com/document/d/10MrV1xUUH0PGz3S3qqjLqSQBaQKcGF2xNqHSIFFSGns/edit ; image
+`LI-73-revision.png`.
 
 ---
 
