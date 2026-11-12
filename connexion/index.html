@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connexion · QME</title>
+<meta name="description" content="Espace acheteurs QME : ouvrez vos templates avec la clé de licence reçue par e-mail.">
+<meta name="theme-color" content="#F0EDE6">
+<link rel="canonical" href="https://qm-engineering.fr/connexion/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=20261112">
+<style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="QME, accueil">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>
+    <span class="tagline">Quentin Morel<br>Engineering</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="/#outils">Sur mesure</a>
+    <a href="/templates/">Templates</a>
+    <a href="/#references">Références</a>
+    <a href="/#methode">Méthode</a>
+    <a class="login" href="/connexion/" aria-current="page">Connexion</a>
+    <a class="cta" href="/#contact">Parler de votre projet</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main>
+<section class="portail">
+  <div>
+    <p class="eyebrow">Espace acheteurs</p>
+    <h1>Connexion à vos templates</h1>
+    <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). Le bon template s'ouvre automatiquement.</p>
+    <form class="acces" id="acces" novalidate>
+      <label>Clé de licence ou code d'accès
+        <input type="text" id="cle" name="cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
+      </label>
+      <label class="memo"><input type="checkbox" id="memoriser" checked> Rester connecté sur cet appareil</label>
+      <p class="erreur" id="erreur" role="alert"></p>
+      <button class="btn primary" type="submit">Ouvrir mon template</button>
+    </form>
+    <div class="deja" id="deja" hidden>
+      <b>Déjà connecté sur cet appareil</b>
+      <ul class="mes-templates" id="mes-templates"></ul>
+    </div>
+  </div>
+  <aside class="aide-portail" aria-label="Aide">
+    <div class="formes" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="bloc"><h2>Où est ma clé ?</h2><p>Dans l'e-mail de reçu envoyé par Gumroad juste après le paiement, sous la forme de 4 blocs de 8 caractères. Le bouton « Ouvrir mon planning » de cet e-mail mène ici.</p></div>
+    <div class="bloc"><h2>Pas encore de template ?</h2><p>Découvrez les <a href="/templates/">templates disponibles</a>, ou essayez <a href="/templates/revision/?demo">la démo du planning de révision</a> sans rien acheter.</p></div>
+    <div class="bloc"><h2>Un problème ?</h2><p>Écrivez à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> avec l'adresse utilisée pour l'achat.</p></div>
+  </aside>
+</section>
+</main>
+
+<footer>
+  <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
+  <span><a href="/">Accueil</a> · <a href="/templates/">Templates</a> · <a href="/connexion/">Connexion</a></span>
+</footer>
+
+<script>
+const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
+menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Portail : vérifie la clé, l'enregistre pour le template concerné, puis ouvre celui-ci.
+const PRODUITS={REV:{nom:'Planning de révision',url:'/templates/revision/',cle:'qme-rev-code'}};
+const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
+const lire=(c)=>{try{const v=localStorage.getItem(c)??sessionStorage.getItem(c);return v?JSON.parse(v):null;}catch{return null;}};
+const deja=Object.entries(PRODUITS).filter(([,p])=>{const v=lire(p.cle);return v&&v!=='DEMO';});
+if(deja.length){document.getElementById('deja').hidden=false;document.getElementById('mes-templates').innerHTML=deja.map(([,p])=>`<li><a href="${p.url}">${p.nom}<span aria-hidden="true">→</span></a></li>`).join('');}
+function formater(v){const n=v.toUpperCase().replace(/[^0-9A-Z]/g,'');
+  if(n.startsWith('REV')){const r=n.slice(0,19);return[r.slice(0,3),r.slice(3,7),r.slice(7,11),r.slice(11,15),r.slice(15,19)].filter(Boolean).join('-');}
+  const l=n.slice(0,32);return[l.slice(0,8),l.slice(8,16),l.slice(16,24),l.slice(24,32)].filter(Boolean).join('-');}
+champ.addEventListener('input',()=>{const fin=champ.selectionStart===champ.value.length;champ.value=formater(champ.value);if(fin)champ.setSelectionRange(champ.value.length,champ.value.length);});
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();const code=formater(champ.value),n=code.replace(/-/g,'');
+  if(!((n.startsWith('REV')&&n.length===19)||/^[0-9A-F]{32}$/.test(n))){erreur.textContent='Clé incomplète : 4 blocs de 8 caractères, à copier depuis l’e-mail de Gumroad.';champ.focus();return;}
+  bouton.disabled=true;bouton.textContent='Vérification…';erreur.textContent='';
+  try{
+    const r=await fetch('/api/templates/connexion',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code})});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(r.status===401?'Clé inconnue. Vérifiez-la dans l’e-mail reçu après l’achat.':(j.erreur||'Le service ne répond pas. Réessayez dans un instant.'));
+    const p=PRODUITS[j.produit];if(!p)throw new Error('Template inconnu.');
+    try{localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);(document.getElementById('memoriser').checked?localStorage:sessionStorage).setItem(p.cle,JSON.stringify(code));}catch{}
+    location.href=p.url;
+  }catch(x){erreur.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;bouton.disabled=false;bouton.textContent='Ouvrir mon template';champ.focus();}
+});
+</script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

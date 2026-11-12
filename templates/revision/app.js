@@ -42,7 +42,8 @@
 
   // ---------- État ----------
   let E = null;
-  const session = { code: null, demo: false, base: null, memoriser: true };
+  // code : ce que l'acheteur a saisi (clé Gumroad ou code REV) ; jeton : code interne pour les données.
+  const session = { code: null, jeton: null, demo: false, base: null, memoriser: true };
   let vue = 'aujourdhui';
   let jourChoisi = null;
   let annulation = null;
@@ -143,7 +144,7 @@
 
   function cache(nonEnvoye = false) {
     if (session.demo) { stock.ecrire(CLE_DEMO, E); return; }
-    stock.ecrire(CLE_CACHE, { code: session.code, etat: E, base: session.base, nonEnvoye }, !session.memoriser);
+    stock.ecrire(CLE_CACHE, { code: session.code, jeton: session.jeton, etat: E, base: session.base, nonEnvoye }, !session.memoriser);
   }
 
   function sauver() {
@@ -155,7 +156,7 @@
   }
 
   async function appel(chemin, options = {}) {
-    const r = await fetch(API + chemin, { ...options, headers: { 'content-type': 'application/json', ...(session.code ? { 'x-code': session.code } : {}), ...(options.headers || {}) } });
+    const r = await fetch(API + chemin, { ...options, headers: { 'content-type': 'application/json', ...(session.jeton ? { 'x-code': session.jeton } : {}), ...(options.headers || {}) } });
     let corps = null;
     try { corps = await r.json(); } catch { /* corps vide */ }
     return { statut: r.status, corps };
@@ -217,18 +218,22 @@
   }
 
   // ---------- Connexion ----------
+  // Code REV-XXXX-XXXX-XXXX-XXXX ou clé de licence Gumroad XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX.
   function formaterCode(v) {
-    const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '').slice(0, 19);
+    const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '');
     if (n === 'DEMO' || 'DEMO'.startsWith(n)) return n;
-    return [n.slice(0, 3), n.slice(3, 7), n.slice(7, 11), n.slice(11, 15), n.slice(15, 19)].filter(Boolean).join('-');
+    if (n.startsWith('REV')) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
+    const l = n.slice(0, 32);
+    return [l.slice(0, 8), l.slice(8, 16), l.slice(16, 24), l.slice(24, 32)].filter(Boolean).join('-');
   }
+  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (n.startsWith('REV') && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
     const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
-    if (statut === 401) throw new Error('Code inconnu. Vérifie-le dans l\'e-mail reçu après ton achat.');
-    if (statut !== 200) throw new Error('Le service ne répond pas. Réessaie dans un instant.');
-    session.code = code; session.demo = false; session.memoriser = memoriser;
+    if (statut === 401) throw new Error('Clé ou code inconnu. Copie-le depuis l\'e-mail reçu après ton achat.');
+    if (statut !== 200) throw new Error(corps?.erreur || 'Le service ne répond pas. Réessaie dans un instant.');
+    session.code = code; session.jeton = corps.jeton; session.demo = false; session.memoriser = memoriser;
     stock.suppr(CLE_CODE);
     stock.ecrire(CLE_CODE, code, !memoriser);
     chargerDepuisServeur(corps.donnees);
@@ -247,9 +252,9 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
-  function ouvrirDemo() {
-    session.demo = true; session.code = null;
-    stock.ecrire(CLE_CODE, CODE_DEMO);
+  function ouvrirDemo(memoriser = true) {
+    session.demo = true; session.code = null; session.jeton = null;
+    if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
@@ -258,7 +263,7 @@
   function deconnecter(message) {
     stock.suppr(CLE_CODE);
     if (!session.demo) stock.suppr(CLE_CACHE);
-    session.code = null; session.demo = false; session.base = null; E = null;
+    session.code = null; session.jeton = null; session.demo = false; session.base = null; E = null;
     document.body.classList.remove('app');
     ecranConnexion(message);
   }
@@ -319,10 +324,10 @@
           <p class="surtitre">Accès acheteur</p>
           <h2>Ouvre ton planning</h2>
         </div>
-        <p>Saisis le code reçu par e-mail après ton achat. Tes révisions sont enregistrées en ligne et suivent ce code sur tous tes appareils.</p>
+        <p>Saisis la clé de licence reçue par e-mail après ton achat. Tes révisions sont enregistrées en ligne et te suivent sur tous tes appareils.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
-          <label class="champ code-saisie">Code d'accès
-            <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="REV-XXXX-XXXX-XXXX-XXXX" inputmode="text" required>
+          <label class="champ code-saisie">Clé de licence ou code d'accès
+            <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
           </label>
           <label class="case"><input type="checkbox" id="memoriser" checked> Rester connecté sur cet appareil</label>
           <p class="erreur" id="erreur-code" role="alert">${esc(message)}</p>
@@ -330,7 +335,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">La démo reste sur cet appareil et n'envoie rien. Code perdu : écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore de planning ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -344,7 +349,7 @@
       const code = formaterCode(champ.value);
       const err = $('#erreur-code');
       const bouton = e.target.querySelector('button[type=submit]');
-      if (code.replace(/-/g, '').length !== 19 && code !== CODE_DEMO) { err.textContent = 'Le code compte 19 caractères, par exemple REV-7K2M-Q9XA-4D8F-T1BC.'; champ.focus(); return; }
+      if (!codeComplet(code) && code !== CODE_DEMO) { err.textContent = 'Clé incomplète : elle compte 4 blocs de 8 caractères (copie-la depuis l\'e-mail de Gumroad).'; champ.focus(); return; }
       bouton.disabled = true; bouton.textContent = 'Vérification…'; err.textContent = '';
       try { await connecter(code, $('#memoriser').checked); } catch (x) {
         err.textContent = x.message === 'Failed to fetch' ? 'Pas de connexion internet. Réessaie une fois en ligne.' : x.message;
@@ -838,7 +843,7 @@
 
   function modaleReglages() {
     const r = E.reglages;
-    const code = session.code ? `${session.code.slice(0, 8)}…${session.code.slice(-4)}` : '';
+    const code = session.code ? `${session.code.slice(0, 9)}…${session.code.slice(-4)}` : '';
     const corps = `
       <label class="champ">Prénom<input name="prenom" maxlength="40" value="${esc(E.prenom)}"></label>
       <label class="champ">Intervalles entre les révisions (jours)<small>Séparés par des virgules, croissants. Par défaut : ${B.intervalles.join(', ')}.</small><input name="intervalles" value="${r.intervalles.join(', ')}" inputmode="numeric"></label>
@@ -846,7 +851,7 @@
       <p class="erreur" role="alert"></p>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
-      <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
+      <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
       const I = String(f.get('intervalles')).split(/[,;\s]+/).filter(Boolean).map(Number);
@@ -971,20 +976,23 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
+    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
+    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {
       const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
-      if (statut === 401) return deconnecter('Ce code d\'accès n\'est plus valide.');
+      if (statut === 401 || statut === 403) return deconnecter(corps?.erreur || 'Ce code d\'accès n\'est plus valide.');
       if (statut !== 200) throw new Error();
+      session.jeton = corps.jeton;
       chargerDepuisServeur(corps.donnees);
     } catch {
       // Hors ligne : on reprend la dernière version gardée sur l'appareil.
       const c = stock.lire(CLE_CACHE);
-      if (c && c.code === code && c.etat) {
-        E = normaliser(c.etat); session.base = c.base;
+      if (c && c.code === code && c.etat && c.jeton) {
+        E = normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
         demarrer(); majSync('horsligne');
       } else ecranConnexion('Pas de connexion internet. Réessaie une fois en ligne.');
     }

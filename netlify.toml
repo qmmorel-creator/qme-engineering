@@ -19,15 +19,16 @@
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=300, must-revalidate"
 
-# Templates payants (accès par code) : non indexés, service worker toujours revalidé
+# Applications des templates (accès par clé) : non indexées, toujours revalidées.
+# Le catalogue /templates/ reste indexé.
 [[headers]]
-  for = "/templates/*"
+  for = "/templates/revision/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/templates/*/sw.js"
+  for = "/templates/revision/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 
