@@ -21,17 +21,17 @@ prêts à l'emploi à vendre sur Gumroad » (n° 01–50, 12/11/2026). Chaque li
 - santé et argent : avertissement « ne remplace pas un avis professionnel ».
 
 **Règles ajoutées avec le backlog** :
-- **CNR : règle absolue.** Aucune donnée, capture ou information liée à la CNR (employeur de Quentin), ni
-  à l'hydroélectricité ou à l'énergie de la CNR, dans les produits, leurs exemples, leurs captures ou leur
-  communication. Les artefacts qui évoquent PCH, CTEX, barrage, DREAL (« Chemin critique PCH VA »,
-  « Déversoir sur clapet ») ne servent que d'inspiration de **mécanique** (calculs, écrans), jamais de
-  contenu. Les lignes concernées portent la mention **CNR**. Quand l'origine d'un artefact n'est pas
-  connue, la ligne porte **CNR à vérifier** : contrôler son contenu avant de s'en inspirer.
-- **Vensolair : règle absolue.** Aucune donnée, capture, nom de site ou chiffre Vensolair, même en
-  exemple ; ses artefacts ne donnent que la mécanique. Lignes marquées **Vensolair**.
-- **Aucune donnée réelle tirée des artefacts** (clients, montants, noms, lieux) : les artefacts nommés
-  d'après un client ou un lieu (Givry, Charpennes Tonkin, Antarès, Vigiski, BikePulse Gear, Nozze
-  Maestria, GLHF, Vensolair…) ne donnent que la mécanique. Exemples et démo : fictifs.
+- **Confidentialité : règle absolue.** Aucune donnée, capture, nom, lieu, montant ou information d'un
+  employeur, d'un client ou d'un projet réel dans les produits, leurs exemples, leurs captures ou leur
+  communication ; aucune marque tierce. Les artefacts d'origine professionnelle ou nommés d'après un client
+  ne servent que d'inspiration de **mécanique** (calculs, écrans), jamais de contenu ; exemples et démo
+  fictifs. Lignes marquées **confidentiel** ; **confidentiel à vérifier** quand l'origine de l'artefact
+  n'est pas connue (contrôler son contenu avant de s'en inspirer).
+- **Aucune marque interne** : les outils personnels de Quentin qui servent de source de code ou
+  d'inspiration (son application de pilotage personnelle, son suivi nutritionnel) ne sont jamais nommés
+  dans un produit, son nom, ses écrans, sa fiche Gumroad ou sa communication. Chaque template porte un
+  nom descriptif propre. Les chemins de code cités dans les fiches sont des repères de développement
+  internes, jamais repris dans le produit.
 - **Donnée datée** : toute ligne marquée **daté** dépend d'un barème, taux ou règle officielle qui change.
   Mise à jour annuelle obligatoire (source et date affichées dans l'application) ou valeur paramétrable
   par l'utilisateur.
@@ -51,9 +51,9 @@ et fonctionnement hors ligne, installable sur téléphone (manifeste et service 
 `templates/revision/` (le « socle technique commun » demandé en tête de l'ordre du backlog existe donc
 déjà).
 
-- **Sheets / Excel** : seulement en option complémentaire quand le backlog prévoit `HTML+Sheets`
-  (T25, T30, T41, T47, T49, T53, T56, T57, T60). Les idées prévues en `Sheets` seul (T28, T32, T36, T37,
-  T40, T44, T45, T59, T61) passent par défaut en application web ; garder un modèle Sheets reste à
+- **Tableur** : seulement en option complémentaire quand le backlog prévoit `HTML+tableur`
+  (T25, T30, T41, T47, T49, T53, T56, T57, T60). Les idées prévues en tableur seul (T28, T32, T36, T37,
+  T40, T44, T45, T59, T61) passent par défaut en application web ; garder un modèle tableur reste à
   trancher par Quentin.
 - **Remarques du backlog devenues caduques** :
   - limite `localStorage` d'environ 5 Mo pour les photos (T26) → stockage en ligne des photos à prévoir
@@ -68,38 +68,38 @@ déjà).
 
 ## Tableau de bord
 
-| N° | Template | Catégorie | Cible | Statut | Prix visé | Taille | Priorité | Origine |
+| N° | Template | Catégorie | Cible | Statut | Prix | Taille | Priorité | Origine |
 |----|----------|-----------|-------|--------|-----------|--------|----------|---------|
 | T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 |
-| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | fiche | 24,90 € (backlog : 45 €) | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
-| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | fiche | 19,90 € (backlog : 19 €) | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
-| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | fiche | 14,90 € (backlog : 19 €) | L | P1 (backlog : P2) | Quentin 12/11/2026 + Backlog Quentin n° 47 |
-| T05 | Budget du foyer | Budget perso | Particuliers | idée | 14,90 € (backlog : 15 €) | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 12,90 € | M | à fixer | Liste initiale 12/11/2026 |
-| T07 | Carnet de musculation et CrossFit | Sport | Pratiquants, coachs | idée | 12,90 € (backlog : 19 €) | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
-| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 9,90 € (backlog : 12 €) | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
-| T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T10 | Entretien du véhicule | Véhicule | Particuliers | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | idée | 7,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | idée | 19,90 € (backlog : 29 €) | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 7,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 12,90 € | M | à fixer | Liste initiale 12/11/2026 |
-| T19 | Suivi du bébé | Famille | Jeunes parents | idée | 12,90 € | M | à fixer | Liste initiale 12/11/2026 |
-| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T21 | Préparation de voyage | Voyage | Voyageurs, groupes d'amis | idée | 9,90 € | S | à fixer | Liste initiale 12/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 12,90 € (backlog : 15 €) | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | fiche | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
+| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | fiche | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
+| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | fiche | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
+| T05 | Budget du foyer | Budget perso | Particuliers | idée | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
+| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 12,90 € | M | P2 | Liste initiale 12/11/2026 |
+| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
+| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
+| T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 9,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T10 | Entretien du véhicule | Véhicule | Particuliers | idée | 9,90 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Entretien de la maison | Maison | Propriétaires, locataires | idée | 9,90 € | S | P2 | Liste initiale 12/11/2026 |
+| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | idée | 9,90 € | S | P2 | Liste initiale 12/11/2026 |
+| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 9,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | idée | 7,90 € | S | P2 | Liste initiale 12/11/2026 |
+| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | idée | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 9,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 7,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 12,90 € | M | P3 | Liste initiale 12/11/2026 |
+| T19 | Suivi du bébé | Famille | Jeunes parents | idée | 12,90 € | M | P3 | Liste initiale 12/11/2026 |
+| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 9,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T21 | Préparation de voyage | Voyage | Voyageurs, groupes d'amis | idée | 9,90 € | S | P3 | Liste initiale 12/11/2026 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | idée | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T24 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | idée | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T25 | Registre des visas documentaires | BTP / ingénierie | MOE, bureaux d'études, OPC | idée | 39 € | M | P1 | Backlog Quentin n° 05 |
 | T26 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | idée | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T27 | Changeover Day Board | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
+| T27 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T28 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T29 | CRM freelance | Commercial | Freelances, consultants | idée | 25 € | M | P1 | Backlog Quentin n° 09 |
-| T30 | Pipeline de prospection LinkedIn | Commercial | Commerciaux, indépendants B2B | idée | 25 € | M | P1 | Backlog Quentin n° 10 |
+| T30 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | idée | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T31 | Générateur de devis | Commercial | Artisans, freelances | idée | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T32 | Coût de revient et prix par client | Finance pro | Prestataires de services | idée | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T33 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
@@ -117,7 +117,7 @@ déjà).
 | T45 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T46 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T47 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | idée | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T48 | Gestion de compétition sportive | Événementiel sport | Box CrossFit, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T48 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T49 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | idée | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T50 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T51 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -137,9 +137,11 @@ déjà).
 
 **Taille** : pour T01–T22, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
-**Prix visés** indicatifs, à confirmer par Quentin avant la création de chaque fiche Gumroad. Quand les
-deux sources divergent, les deux prix sont indiqués : à trancher. **Priorité** : P1 = à produire en
-premier, P2, P3 (backlog) ; « à fixer » = idée de la liste initiale sans priorité donnée.
+**Prix** : un prix par idée, à confirmer par Quentin avant la création de chaque fiche Gumroad. Quand la
+liste initiale et le backlog divergeaient (T02, T03, T04, T05, T07, T08, T15, T22), le prix du backlog est
+retenu : plus récent, périmètre élargi par la fusion. **Priorité** : P1 = à produire en premier, puis P2,
+P3. Backlog : priorité de Quentin reprise. Liste initiale sans priorité : attribuée selon la demande
+attendue, la taille et le risque (médical, données datées) ; T04 passe en P1 (fiche validée).
 
 ## Fusions
 
@@ -153,7 +155,7 @@ détail reprend les apports du backlog.
 | 43 Budget personnel mensuel | T05 | Même produit. T05 gagne les enveloppes et le diagramme de Sankey des flux. |
 | 46 Carnet de routines | T08 | Même produit. T08 gagne les jours non applicables et la vue mensuelle. |
 | 47 Nutrition et menus | T04 | Même produit. T04 gagne les menus types et la liste de courses (lien possible avec T06). |
-| 48 Carnet CrossFit / musculation | T07 | Même produit. T07 gagne les WOD, les records personnels et le chronomètre. |
+| 48 Carnet cross-training / musculation | T07 | Même produit. T07 gagne les WOD, les records personnels et le chronomètre. |
 | 28 Organisateur de mariage | T15 | T15 devient le produit grand public « mariage » ; l'événementiel professionnel part dans T47. |
 | 50 Roue de vie | T22 | Même produit. T22 gagne la roue de vie et le bilan par domaine. |
 
@@ -173,17 +175,16 @@ détail reprend les apports du backlog.
 
 ## Packs
 
-Prix de pack repris du backlog. Les prix unitaires ayant changé pour les idées fusionnées, la valeur du
-pack est à recalculer. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
+Prix de pack repris du backlog ; valeur = somme des prix unitaires retenus. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
 par produit ou accès groupé dans `PRODUITS`).
 
-| Pack | Produits | Prix |
-|------|----------|------|
-| Freelance complet | T29, T31, T32, T35, T36, T38 | 79 € |
-| Chef de projet BTP | T02, T24, T25, T26 | 99 € |
-| Flotte | T53, T56, T39, T63 | 69 € |
-| Organisateur d'événements | T47, T15, T50 | 69 € |
-| Productivité perso | T03, T23, T08, T22 | 39 € |
+| Pack | Produits | Valeur | Prix |
+|------|----------|--------|------|
+| Freelance complet | T29, T31, T32, T35, T36, T38 | 135 € | 79 € |
+| Chef de projet BTP | T02, T24, T25, T26 | 138 € | 99 € |
+| Flotte | T53, T56, T39, T63 | 109 € | 69 € |
+| Organisateur d'événements | T47, T15, T50 | 113 € | 69 € |
+| Productivité perso | T03, T23, T08, T22 | 61 € | 39 € |
 
 ## Ordre de production conseillé
 
@@ -191,15 +192,15 @@ par produit ou accès groupé dans `PRODUITS`).
 2. P1 rapides sans donnée datée : T24, T62, T32, T05 (S dans le backlog, M dans la liste initiale).
    T35 et T36 (S, P1) sont **daté** et **fiscal**/**comptable** : à lancer une fois défini le processus
    de mise à jour annuelle (source officielle, date affichée dans l'application, rappel annuel).
-3. T03 (fiche validée, base Nexora), puis T02, produit phare B2B, qui ouvre le pack BTP.
-4. T04 (fiche validée, base Nexora), après décision sur l'hébergement des données de santé (**RGPD**)
+3. T03 (fiche validée, logique déjà écrite dans l'outil interne), puis T02, produit phare B2B, qui ouvre le pack BTP.
+4. T04 (fiche validée, logique déjà écrite dans l'outil interne), après décision sur l'hébergement des données de santé (**RGPD**)
    et vérification de la licence Ciqual.
 5. P1 de taille M : T23, T25, T26, T29, T30, T31, T37, T41, T15, T49, T56, T64.
 6. P1 de taille L : T47, puis T53 avec T56 si ce dernier n'est pas fait.
-7. P2, puis P3, puis les idées « à fixer » (regroupables en lots de S).
+7. P2, puis P3 (les petites tailles S regroupables en lots).
 
 Les petits P1 viennent d'abord parce qu'ils se font vite sur le socle de T01 et alimentent les packs
-freelance et budget. T03 et T04 suivent parce que leurs fiches sont validées et que Nexora fournit déjà
+freelance et budget. T03 et T04 suivent parce que leurs fiches sont validées et que l'outil interne de Quentin fournit déjà
 leur logique. T02 est long, mais c'est le produit phare B2B ; il est placé tôt car T26, T64 et le pack
 BTP en dépendent. Les produits à données datées (T35, T36, T39, T40) demandent une mise à jour annuelle : ils
 attendent que ce processus existe. Les produits à moteur commun se font ensemble (T53 et T56,
@@ -239,9 +240,9 @@ Communication : page `qm-engineering.fr/templates/#revision`,
 ## T02 · Planning Gantt rapide
 
 **Pour qui** : artisans, PME, chefs de projet indépendants, particuliers en rénovation, étudiants en projet
-de groupe. Ceux pour qui MS Project est trop lourd et un tableur trop pauvre.
+de groupe. Ceux pour qui un logiciel de planification professionnel est trop lourd et un tableur trop pauvre.
 
-**Ce qu'il reprend du Planning rapide de Nexora** (`apps/nexora-future-optim/src/optim/planning-rapide/`,
+**Ce qu'il reprend du planning rapide de l'outil interne de Quentin** (code : `apps/nexora-future-optim/src/optim/planning-rapide/`,
 moteur et règles pures dans `src/donnees/planning-rapide.ts`) :
 - **saisie rapide en une ligne** : `Maquette accueil 12/11 5j 40% après 2` (nom, début, durée, avancement,
   lien vers la tâche 2) ; option « Enchaîner » (chaque tâche sans date suit la précédente) ;
@@ -263,7 +264,7 @@ moteur et règles pures dans `src/donnees/planning-rapide.ts`) :
   période hachurée ; option jours ouvrés (durées hors week-ends et fériés) ;
 - vacances scolaires : **pas en base** (dates officielles annuelles) ; l'utilisateur les ajoute en période.
 
-**En plus de Nexora** : export PNG et impression A3/A4 paysage propre, partage en lecture seule
+**En plus de l'outil interne** : export PNG et impression A3/A4 paysage propre, partage en lecture seule
 (lien) en option ultérieure.
 
 **Apports du backlog n° 03** (« Pilote de projet : Gantt + chemin critique », 45 €, L, P1, produit phare
@@ -272,23 +273,23 @@ B2B ; cible ajoutée : chefs de projet PME, BTP, ingénierie) :
   tester sur des cas réels (backlog) et en tests `node --test` ;
 - **jalons à plage** (jalon avec une fenêtre de dates plutôt qu'un jour) ;
 - **export PDF A3** (rejoint l'impression A3 ci-dessus).
-- Artefacts d'inspiration : « Chemin critique PCH VA », « Jalons à plage », « Jalons Épuré ».
-  **CNR** : « Chemin critique PCH VA » ne sert que d'inspiration de mécanique ; aucun nom, tâche, date ou
-  capture n'en est repris, et aucun modèle de planning n'évoque l'hydroélectricité.
-- Prix : 24,90 € (fiche) contre 45 € (backlog), à trancher ; l'ajout du CPM et la cible B2B vont dans le
-  sens du prix haut.
+- Artefacts d'inspiration : « Chemin critique » (artefact professionnel), « Jalons à plage »,
+  « Jalons Épuré ». **confidentiel** : mécanique seulement ; aucun nom, tâche, date ou capture repris ;
+  modèles de planning fictifs.
+- Prix retenu : 45 € (backlog), justifié par le chemin critique et la cible B2B (la liste initiale
+  prévoyait 24,90 €).
 
-**Points d'attention** : porter le moteur (≈ 960 lignes) sans dépendre de React ni de Nexora ; la clé
+**Points d'attention** : porter le moteur (≈ 960 lignes) sans dépendre de React ni de l'outil interne ; la clé
 `nexora:quickPlans` et les styles Bauhaus/Épuré existent déjà ; garder le style Bauhaus QME. Taille L.
 
 ---
 
 ## T03 · Gestionnaire de tâches
 
-**Pour qui** : indépendants, étudiants, particuliers organisés ; ceux qui ont abandonné Todoist ou Notion
+**Pour qui** : indépendants, étudiants, particuliers organisés ; ceux qui ont abandonné une application de tâches
 (trop d'options ou abonnement).
 
-**Ce qu'il reprend des tâches de Nexora** (`src/donnees/modele.ts`, écrans Focus, Semaine, Archive) :
+**Ce qu'il reprend des tâches de l'outil interne** (code : `src/donnees/modele.ts`, écrans Focus, Semaine, Archive) :
 - **projets** colorés rangés en dossiers ; **statuts** personnalisables ; **types** de tâche ;
 - **criticité** et **focus du jour** (les 3 à 5 tâches qui comptent aujourd'hui) ;
 - échéances avec heure, **durée estimée**, **sous-tâches en liste à cocher**, **récurrence** ;
@@ -311,10 +312,10 @@ criticité, projet, durée).
 - **rituel du matin** (choisir le focus du jour) et **clôture du soir** (reporter, archiver, bilan) ;
 - vue « Aujourd'hui » (à rapprocher de la vue Focus).
 - Artefacts d'inspiration : Inbox et triage, Rituel du matin, Clôture du soir, Saisie rapide.
-- Marché saturé (Todoist, Notion) : vendre l'achat unique sans abonnement (l'argument « hors ligne » du
+- Marché saturé (applications à abonnement) : vendre l'achat unique sans abonnement (l'argument « hors ligne » du
   backlog devient « tous appareils, utilisable hors ligne »).
 
-**Points d'attention** : rester plus simple que Nexora (pas d'équipe, pas de connecteurs) ; récurrence
+**Points d'attention** : rester plus simple que l'outil interne (pas d'équipe, pas de connecteurs) ; récurrence
 correcte (fin de mois, jours ouvrés). Taille M.
 
 ---
@@ -324,7 +325,7 @@ correcte (fin de mois, jours ouvrés). Taille M.
 **Pour qui** : personnes qui veulent perdre, maintenir ou prendre du poids sans application à
 abonnement ni publicité ; sportifs amateurs.
 
-**Inspiré de NutriQuest** (facteur calorique de Nexora : calories mangées ÷ calories dépensées, objectif
+**Inspiré du suivi nutritionnel personnel de Quentin** (facteur calorique : calories mangées ÷ calories dépensées, objectif
 ≤ 1), mais **sans IA ni connexion à une montre** : tout est saisi à la main, la base est dans le template.
 
 **Journal des repas** :
@@ -357,9 +358,9 @@ prise, en % de déficit ou d'excédent), moyenne sur 7 jours, macros, courbe de 
 **Apports du backlog n° 47** (« Planificateur nutrition et menus », 19 €, M, P2) :
 - **menus types** par objectif (kcal, protéines), à composer avec les aliments de la base ;
 - **liste de courses** générée depuis les menus (moteur partageable avec T06) ;
-- Artefacts d'inspiration : NutriQuest, Menu type 1 500 kcal.
-- Priorité : P2 dans le backlog, mais T04 est placé tôt dans l'ordre conseillé (fiche validée, base
-  Nexora) ; à confirmer par Quentin. Prix : 14,90 € (fiche) contre 19 € (backlog), à trancher.
+- Artefacts d'inspiration : suivi nutritionnel personnel, menu type 1 500 kcal.
+- Priorité retenue : P1 (P2 dans le backlog), car la fiche est validée et l'outil interne fournit la logique.
+  Prix retenu : 19 € (backlog ; la liste initiale prévoyait 14,90 €).
 
 **Points d'attention** : **médical** : avertissement santé (ne remplace pas un avis médical ; pas de cible
 sous un plancher raisonnable), dans l'application et le guide ; taille de la base (charger à la demande,
@@ -371,14 +372,14 @@ sont des données de santé de l'acheteur, hébergées en ligne par QME (voir le
 ## Détails des idées (T05–T64)
 
 Une ligne par idée sans fiche longue. « Backlog » rappelle prix, effort et priorité de la source quand
-ils diffèrent ou complètent le tableau de bord. Marques : **CNR**, **Vensolair**, **daté**, **fiscal**,
+ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **daté**, **fiscal**,
 **comptable**, **médical**, **RGPD** (voir les règles en tête). Argent et sport : avertissement.
 
 | N° | MVP | Base intégrée envisagée | Artefact d'inspiration | Remarques |
 |----|-----|-------------------------|------------------------|-----------|
 | T05 | Dépenses → tableau de bord, écart au budget ; enveloppes, prévu/réel, Sankey des flux | Catégories et sous-catégories, règle 50/30/20 | Suivi budget 3 800 €, Sankey | Backlog n° 43 : 15 €, S, P1. Marché concurrentiel : le Sankey distingue. Argent : avertissement. Montants de l'artefact non repris. |
 | T06 | Repas de la semaine et liste de courses générée | 100 recettes avec ingrédients et quantités | — | Moteur de liste de courses partageable avec T04. Recettes : source et droits à vérifier. |
-| T07 | Carnet de musculation et CrossFit : séances, WOD, volume, records, progression, chronomètre | 150 exercices par groupe musculaire ; WOD types à définir | WOD Motion, Coach CrossFit | Backlog n° 48 : 19 €, M, P2. Noms de WOD de référence : droits à vérifier. Sport : avertissement (pas un programme médical). |
+| T07 | Carnet de musculation et cross-training : séances, WOD, volume, records, progression, chronomètre | 150 exercices par groupe musculaire ; WOD types à définir | Skills WOD et coach sportif de Quentin | Backlog n° 48 : 19 €, M, P2. Noms de WOD de référence : droits à vérifier. Sport : avertissement (pas un programme médical). |
 | T08 | Suivi d'habitudes : séries, taux de réussite, jours non applicables, vue mensuelle | 50 habitudes types | Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
 | T10 | Entretien du véhicule : échéances selon le kilométrage | Intervalles types (vidange, freins, pneus, contrôle technique) | — | **daté** : périodicité du contrôle technique. Version perso du moteur de T56. |
@@ -386,53 +387,53 @@ ils diffèrent ou complètent le tableau de bord. Marques : **CNR**, **Vensolair
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
 | T13 | Objectif d'épargne et fonds d'urgence | Scénarios d'intérêts composés (taux saisi par l'utilisateur) | — | Aucun taux de livret en base (**daté**). Argent : avertissement. |
 | T14 | Suivi des abonnements : coût mensuel et annuel, renouvellements | Abonnements courants (streaming, télécom, sport) sans prix figés | — | — |
-| T15 | Mariage : budget, prestataires, invités et RSVP, plan de table, rétroplanning 12 mois | Rétroplanning type sur 12 mois, postes de budget | Nozze Maestria | Backlog n° 28 : 29 €, M, P1 ; forte demande grand public. Événementiel pro : T47. RSVP par les invités = usage partagé à concevoir. **RGPD** (liste d'invités). |
+| T15 | Mariage : budget, prestataires, invités et RSVP, plan de table, rétroplanning 12 mois | Rétroplanning type sur 12 mois, postes de budget | Organisateur de mariage (artefact client) | Backlog n° 28 : 29 €, M, P1 ; forte demande grand public. Événementiel pro : T47. RSVP par les invités = usage partagé à concevoir. **RGPD** (liste d'invités). |
 | T16 | Déménagement : avancement, inventaire des cartons | Checklist sur 8 semaines, démarches types | — | Démarches : vérifier qu'aucune n'est datée. |
 | T17 | Suivi de lecture : statistiques, objectifs | Genres, objectifs annuels, notation | — | — |
 | T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : semis, récolte, associations | — | Source des données de culture à vérifier. |
 | T19 | Suivi du bébé : repas, sommeil, couches, courbes | Courbes de référence poids et taille (source à vérifier) | — | **médical** : avertissement ; source et licence des courbes. **RGPD** : données de santé d'un enfant hébergées en ligne. |
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. |
 | T21 | Préparation de voyage : itinéraire, budget, dépenses partagées | Listes de bagages par type de séjour | — | Dépenses partagées : moteur commun avec T62. |
-| T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, Roue d'action d'Optim, Objectifs et tâches | Backlog n° 50 : 15 €, S, P3. |
-| T23 | Grille 30 min, glisser-déposer, catégories couleur, bilan prévu/réalisé hebdomadaire | Semaines types (cadre, freelance, étudiant), catégories préréglées | Planner horaire, Grille Planning Optim, Planning rapide | — |
-| T24 | Modèle de CR, extraction des actions (qui, quoi, quand), suivi des actions ouvertes entre réunions | Modèles de CR (réunion d'équipe, comité de pilotage, chantier) | Compte rendu en actions | Exemples de CR fictifs, hors énergie. **CNR à vérifier** (artefact). **RGPD** (noms des participants). |
-| T25 | Registre par lot et indice, statuts, délais contractuels, relances, tableau de bord | Statuts de visa (VSO, VAO, REF), lots BTP types, délais paramétrables | Registre des visas, Fiche visa | Format : application + modèle Sheets. Niche solvable ; vocabulaire métier à respecter. **CNR** : vérifier que l'artefact ne reprend aucun document, lot ou nom de projet CNR ; exemples hors hydroélectricité. |
-| T26 | Liste par lot et localisation, photo, entreprise, échéance, statut, PV imprimable | Lots BTP types, modèle de PV de levée | Levée réserves lot 2B | **CNR à vérifier** (artefact) ; exemples hors ouvrages hydrauliques. Caduque : limite localStorage ~5 Mo → stockage en ligne des photos à prévoir. Moteur réutilisé par T64. |
-| T27 | Séquence horaire, responsables, go/no-go, points d'arrêt, journal d'incidents | Séquences types (migration informatique, déménagement de bureaux, ouverture de site) | Changeover Day Board | **CNR** : exemples hors mise en service d'ouvrages énergétiques. |
-| T28 | KPI mensuels, objectifs, écarts, graphiques, saisie simple | Jeu de KPI types (CA, marge, pipe, charge) | Pilotage QME, Nexora Tableaux de bord | Backlog : Sheets seul ; application web par défaut, à trancher. **CNR à vérifier** : aucun tableau de bord Nexora d'origine professionnelle repris. |
-| T29 | Fiches clients, historique, prochaine action, statut, CA par client | Statuts et prochaines actions types | Suivi clients QME | Concurrence de CRM gratuits : simplicité, achat unique. **RGPD** (données clients). Aucun client QME réel. |
-| T30 | Pipeline par étapes, cadence de relance, scripts de messages, taux de conversion | Scripts de messages et cadences de relance | Suivi commercial BikePulse Gear | Format : application + modèle Sheets. Cohérent avec le canal LinkedIn. **RGPD** (prospects). Pas d'automatisation de LinkedIn. |
-| T31 | Catalogue de prestations, lignes, remises, TVA, mentions légales, PDF | Catalogues de prestations par métier ; mentions obligatoires | Devis artisan, Devis Givry, Chiffrage Charpennes Tonkin | **daté** (TVA, mentions) ; **fiscal** : mentions à vérifier ; devis seulement, pas un logiciel de facturation (facturation électronique obligatoire en cours de déploiement : calendrier à vérifier). **RGPD** (clients). Données des devis réels non reprises. |
-| T32 | Coûts directs et indirects, temps passé, marge cible, prix plancher, rentabilité par client | à définir | QME · Coûts et prix par client | Backlog : Sheets seul ; à trancher. **daté** si les taux de charges de T35 sont repris. Aucun chiffre QME réel. |
-| T33 | Fiche contexte, questions par phase, objections, prochaine étape, résumé imprimable | Banque de questions par phase, objections types | Briefing appel Antarès / Givry / Charpennes | Produit d'appel (prix bas). **RGPD** (prospects). Contenus des briefings réels non repris. |
-| T34 | Fiches projets, filtres, page imprimable type plaquette | Modèles de fiches projets et de mise en page | Références QME, Plaquette QME | Références QME réelles non reprises (sauf exemples fictifs). |
-| T35 | Revenu cible, charges, jours facturables, statut (micro, SASU, EURL), TJM minimum | Taux de charges par statut | Profils freelance QME | **daté** : taux de charges, mise à jour annuelle obligatoire ; **fiscal**. |
-| T36 | Journal, catégories, plafonds, estimation des cotisations, export annuel | Plafonds et taux de cotisation par activité | Suivi budget 3 800 € | **daté** : plafonds et taux URSSAF, mise à jour annuelle obligatoire ; **comptable** : pas un outil certifié ; **fiscal** (plafonds, versement libératoire). Backlog : Sheets seul. |
-| T37 | Encaissements et décaissements, scénarios, seuil d'alerte, graphique | à définir (scénarios types) | Suivi budget 3 800 €, Sankey | Backlog : Sheets seul ; à trancher. **comptable**. Aucune échéance fiscale ou sociale en base sans source datée (**daté**). |
+| T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
+| T23 | Grille 30 min, glisser-déposer, catégories couleur, bilan prévu/réalisé hebdomadaire | Semaines types (cadre, freelance, étudiant), catégories préréglées | Planner horaire, grille de planning, planning rapide (outil interne) | — |
+| T24 | Modèle de CR, extraction des actions (qui, quoi, quand), suivi des actions ouvertes entre réunions | Modèles de CR (réunion d'équipe, comité de pilotage, chantier) | Compte rendu en actions | Exemples de CR fictifs. **confidentiel à vérifier** (artefact). **RGPD** (noms des participants). |
+| T25 | Registre par lot et indice, statuts, délais contractuels, relances, tableau de bord | Statuts de visa (VSO, VAO, REF), lots BTP types, délais paramétrables | Registre des visas, Fiche visa | Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : aucun document, lot ou nom de projet réel ; exemples fictifs. |
+| T26 | Liste par lot et localisation, photo, entreprise, échéance, statut, PV imprimable | Lots BTP types, modèle de PV de levée | Levée réserves lot 2B | **confidentiel à vérifier** (artefact) ; exemples fictifs. Caduque : limite localStorage ~5 Mo → stockage en ligne des photos à prévoir. Moteur réutilisé par T64. |
+| T27 | Séquence horaire, responsables, go/no-go, points d'arrêt, journal d'incidents | Séquences types (migration informatique, déménagement de bureaux, ouverture de site) | Tableau de bascule (artefact) | **confidentiel** : exemples fictifs (informatique, bureaux, commerce). |
+| T28 | KPI mensuels, objectifs, écarts, graphiques, saisie simple | Jeu de KPI types (CA, marge, pipe, charge) | Tableaux de bord de pilotage (outil interne) | Backlog : tableur seul ; application web par défaut, à trancher. **confidentiel à vérifier** : aucun tableau de bord interne d'origine professionnelle repris. |
+| T29 | Fiches clients, historique, prochaine action, statut, CA par client | Statuts et prochaines actions types | Suivi clients (outil interne) | Concurrence de CRM gratuits : simplicité, achat unique. **RGPD** (données clients). Aucun client réel. |
+| T30 | Pipeline par étapes, cadence de relance, scripts de messages, taux de conversion | Scripts de messages et cadences de relance | Suivi commercial (artefact client) | Format : application + modèle tableur. Conçu pour la prospection sur les réseaux professionnels, sans marque dans le nom du produit. **RGPD** (prospects). Aucune automatisation d'un réseau social. |
+| T31 | Catalogue de prestations, lignes, remises, TVA, mentions légales, PDF | Catalogues de prestations par métier ; mentions obligatoires | Devis artisan, devis et chiffrages clients (artefacts) | **daté** (TVA, mentions) ; **fiscal** : mentions à vérifier ; devis seulement, pas un logiciel de facturation (facturation électronique obligatoire en cours de déploiement : calendrier à vérifier). **RGPD** (clients). Données des devis réels non reprises. |
+| T32 | Coûts directs et indirects, temps passé, marge cible, prix plancher, rentabilité par client | à définir | Coûts et prix par client (outil interne) | Backlog : tableur seul ; à trancher. **daté** si les taux de charges de T35 sont repris. Aucun chiffre réel. |
+| T33 | Fiche contexte, questions par phase, objections, prochaine étape, résumé imprimable | Banque de questions par phase, objections types | Briefings d'appels clients (artefacts) | Produit d'appel (prix bas). **RGPD** (prospects). Contenus des briefings réels non repris. |
+| T34 | Fiches projets, filtres, page imprimable type plaquette | Modèles de fiches projets et de mise en page | Références et plaquette (outils internes) | Références réelles non reprises ; exemples fictifs. |
+| T35 | Revenu cible, charges, jours facturables, statut (micro, SASU, EURL), TJM minimum | Taux de charges par statut | Profils freelance (outil interne) | **daté** : taux de charges, mise à jour annuelle obligatoire ; **fiscal**. |
+| T36 | Journal, catégories, plafonds, estimation des cotisations, export annuel | Plafonds et taux de cotisation par activité | Suivi budget 3 800 € | **daté** : plafonds et taux URSSAF, mise à jour annuelle obligatoire ; **comptable** : pas un outil certifié ; **fiscal** (plafonds, versement libératoire). Backlog : tableur seul. |
+| T37 | Encaissements et décaissements, scénarios, seuil d'alerte, graphique | à définir (scénarios types) | Suivi budget 3 800 €, Sankey | Backlog : tableur seul ; à trancher. **comptable**. Aucune échéance fiscale ou sociale en base sans source datée (**daté**). |
 | T38 | Échéancier, retard en jours, pénalités légales, modèles de mails par palier | Modèles de mails par palier de relance | — | **daté** : taux des pénalités (backlog : taux BCE + 10 points, indemnité 40 €, à vérifier) ; paramétrable. **comptable**. **RGPD** (débiteurs, parfois particuliers). |
 | T39 | Saisie des frais, barème kilométrique, justificatifs, récapitulatif mensuel PDF | Barème kilométrique | Ma voiture en leasing | **daté** : barème fiscal, mise à jour annuelle obligatoire ; **fiscal**. Justificatifs : stockage de fichiers à prévoir. |
-| T40 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : Sheets seul. |
-| T41 | Inventaire, affectations, licences, fin de garantie, historique, alertes | Catégories de matériel et types de licences | Poste central | Demandé explicitement. Format : application + modèle Sheets. **RGPD** (affectations nominatives). Pack possible avec T42. **CNR à vérifier** (artefact « Poste central »). |
+| T40 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : tableur seul. |
+| T41 | Inventaire, affectations, licences, fin de garantie, historique, alertes | Catégories de matériel et types de licences | Poste central | Demandé explicitement. Format : application + modèle tableur. **RGPD** (affectations nominatives). Pack possible avec T42. **confidentiel à vérifier** (artefact « Poste central »). |
 | T42 | Checklists par rôle, responsables, échéances de J-15 à J+90, restitution du matériel | Checklists d'arrivée et de départ par rôle | Poste central | **RGPD** (salariés). Couplé à T41. |
-| T43 | Affectation par personne et projet, taux de charge, conflits, vues semaine et mois | à définir | Nexora (équipes et staffing) | Usage à plusieurs (managers) à concevoir. **RGPD**. **CNR à vérifier** : aucune équipe ni personne de Nexora reprise. |
-| T44 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : Sheets seul. |
-| T45 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : Sheets seul. **RGPD**. |
+| T43 | Affectation par personne et projet, taux de charge, conflits, vues semaine et mois | à définir | Équipes et staffing (outil interne) | Usage à plusieurs (managers) à concevoir. **RGPD**. **confidentiel à vérifier** : aucune équipe ni personne de l'outil interne reprise. |
+| T44 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
+| T45 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
 | T46 | Ressources, créneaux, conflits, vue jour | à définir | Planner horaire | Caduque : « mono-utilisateur en localStorage » ; un usage partagé est désormais possible mais réservations à plusieurs à concevoir (droits, conflits). |
-| T47 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Nozze Maestria, GLHF Compétition, Suivi budget | Demandé explicitement ; produit phare du backlog. Format : application + modèle Sheets. Même moteur que T15 et T50. **RGPD** (invités). |
-| T48 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | GLHF Compétition, Roadmap GLHF | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
-| T49 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions Centre social Charpennes Tonkin | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle Sheets. Aucune donnée du centre social. |
-| T50 | Participants, transports, chambres, régimes, programme, budget | à définir (reprend T47) | Nozze Maestria | Déclinaison de T47. **RGPD** : régimes alimentaires et allergies sont des données sensibles. |
-| T51 | Élèves, évaluations, compétences, moyennes, appréciations, bulletins | à définir | — | **RGPD** (élèves, mineurs). Caduque : « stockage local uniquement » ; les données sont désormais en ligne, à trancher avant développement. Concurrence Pronote. |
-| T52 | Classes, formateurs, salles, créneaux, détection des conflits, vues par ressource | à définir | Grille Planning Optim, Planner horaire | Pas d'optimisation automatique en V1. **RGPD** (formateurs, apprenants). |
-| T53 | Véhicules, kilométrage, entretiens, contrôles techniques, moniteurs, planning de leçons, coût par heure | Intervalles d'entretien types | Ma voiture en leasing | Demandé explicitement. Base commune avec T56. **daté** (contrôle technique). **RGPD** (élèves, moniteurs). Format : application + modèle Sheets. |
-| T54 | Banque de questions taguée, génération de quiz, correction, statistiques | à définir | Toxicologie – Questions des élèves magistrats | Contenu de l'artefact non repris. **RGPD** si résultats nominatifs. |
-| T55 | Séquences, séances, objectifs, avancement réel et prévu | à définir | Jalons à plage | **CNR** : artefact voisin de « Chemin critique PCH VA » ; mécanique seulement. |
-| T56 | Véhicules, conducteurs, entretiens, sinistres, amendes, leasing, coût total par véhicule | Intervalles d'entretien types | Ma voiture en leasing | Base commune avec T53 et T10. **daté** (contrôle technique). **RGPD** (conducteurs, amendes). Format : application + modèle Sheets. |
-| T57 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Vensolair · pilotage des parcs | **Vensolair** : aucune donnée, nom de site ni chiffre. **CNR** : aucune donnée ni exemple d'énergie hydraulique ou de la CNR ; exemples fictifs (immobilier, équipements). Format : application + modèle Sheets. |
-| T58 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Vensolair, Déversoir sur clapet | **CNR** : « Déversoir sur clapet » = mécanique seulement ; **Vensolair** : aucune donnée ; exemples hors ouvrages hydrauliques. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T60. |
-| T59 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : Sheets seul. |
-| T60 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle Sheets. |
-| T61 | Calendrier, réservations, ménage, taxe de séjour, revenus par plateforme | à définir | Vigiski Saint-François-Longchamp | **daté** : taxe de séjour, paramétrable ; **fiscal**. **RGPD** (voyageurs). Backlog : Sheets seul. Aucune donnée de l'artefact. |
+| T47 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T50. **RGPD** (invités). |
+| T48 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
+| T49 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions d'un centre social (artefact client) | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle tableur. **confidentiel** : aucune donnée de l'artefact. |
+| T50 | Participants, transports, chambres, régimes, programme, budget | à définir (reprend T47) | Organisateur de mariage (artefact client) | Déclinaison de T47. **RGPD** : régimes alimentaires et allergies sont des données sensibles. |
+| T51 | Élèves, évaluations, compétences, moyennes, appréciations, bulletins | à définir | — | **RGPD** (élèves, mineurs). Caduque : « stockage local uniquement » ; les données sont désormais en ligne, à trancher avant développement. Concurrence des logiciels de vie scolaire. |
+| T52 | Classes, formateurs, salles, créneaux, détection des conflits, vues par ressource | à définir | Grille de planning, planner horaire (outil interne) | Pas d'optimisation automatique en V1. **RGPD** (formateurs, apprenants). |
+| T53 | Véhicules, kilométrage, entretiens, contrôles techniques, moniteurs, planning de leçons, coût par heure | Intervalles d'entretien types | Ma voiture en leasing | Demandé explicitement. Base commune avec T56. **daté** (contrôle technique). **RGPD** (élèves, moniteurs). Format : application + modèle tableur. |
+| T54 | Banque de questions taguée, génération de quiz, correction, statistiques | à définir | Banque de questions d'élèves (artefact client) | Contenu de l'artefact non repris. **RGPD** si résultats nominatifs. |
+| T55 | Séquences, séances, objectifs, avancement réel et prévu | à définir | Jalons à plage | **confidentiel** : artefact professionnel ; mécanique seulement. |
+| T56 | Véhicules, conducteurs, entretiens, sinistres, amendes, leasing, coût total par véhicule | Intervalles d'entretien types | Ma voiture en leasing | Base commune avec T53 et T10. **daté** (contrôle technique). **RGPD** (conducteurs, amendes). Format : application + modèle tableur. |
+| T57 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Pilotage de parcs (artefact professionnel) | **confidentiel** : aucune donnée, nom de site ni chiffre ; exemples fictifs (immobilier, équipements). Format : application + modèle tableur. |
+| T58 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Artefacts professionnels de maintenance | **confidentiel** : mécanique seulement, aucune donnée ; exemples fictifs. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T60. |
+| T59 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : tableur seul. |
+| T60 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. |
+| T61 | Calendrier, réservations, ménage, taxe de séjour, revenus par plateforme | à définir | Location saisonnière (artefact client) | **daté** : taxe de séjour, paramétrable ; **fiscal**. **RGPD** (voyageurs). Backlog : tableur seul. Aucune donnée de l'artefact. |
 | T62 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T63 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
-| T64 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T26, T31 et T02. **CNR** : « Chemin critique » = mécanique seulement. |
+| T64 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T26, T31 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
