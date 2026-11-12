@@ -13,11 +13,11 @@ export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockf
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
-  CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/' },
-  PRX: { nom: 'Coût de revient et prix par client', url: '/templates/cout-revient/' },
-  TJM: { nom: 'Calculateur de TJM freelance', url: '/templates/tjm/' },
-  MCE: { nom: 'Livre recettes-dépenses micro-entreprise', url: '/templates/micro-entreprise/' },
-  BCM: { nom: 'Budget commun', url: '/templates/budget-commun/' },
+  CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/', gumroad: '29mMG1jJqiRppcqs_Mt09w==' },
+  PRX: { nom: 'Coût de revient et prix par client', url: '/templates/cout-revient/', gumroad: '-T__Q8H0-88YesaxXTxU4w==' },
+  TJM: { nom: 'Calculateur de TJM freelance', url: '/templates/tjm/', gumroad: 'M7_JNLoIwpFH6zWHHxhOUA==' },
+  MCE: { nom: 'Livre recettes-dépenses micro-entreprise', url: '/templates/micro-entreprise/', gumroad: 'fb4T6HNJyejxH1Q-mL8x8g==' },
+  BCM: { nom: 'Budget commun', url: '/templates/budget-commun/', gumroad: 'FK_HeZlqRLdZO8o7Y1Bccw==' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
@@ -121,15 +121,13 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
 
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
-    let rembourse = false;
-    try {
-      for (const [produit, p] of Object.entries(PRODUITS)) {
-        if (!p.gumroad) continue;
-        const v = await verifierLicence(p.gumroad, code);
-        if (v.ok) { code = codeDepuisLicence(secret, produit, code); break; }
-        if (v.raison === 'rembourse') rembourse = true;
-      }
-    } catch {
+    // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
+    const candidats = Object.entries(PRODUITS).filter(([, p]) => p.gumroad);
+    const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
+    const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
+    const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
+    if (trouve >= 0) code = codeDepuisLicence(secret, candidats[trouve][0], code);
+    else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {
       return json(502, { erreur: 'Vérification de la licence impossible pour le moment. Réessaie dans un instant.' });
     }
     if (estLicence(code)) {
