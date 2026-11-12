@@ -46,6 +46,31 @@ outils/templates/          tests, serveur local, génération de codes
 - Téléphone : barre d'onglets fixe en bas (5 onglets max), modales en feuille du bas, cibles ≥ 44 px.
 - Couleurs de catégories fixes, dans l'ordre de `BASE.couleurs`, jamais générées.
 
+## Mise à jour du site (à chaque nouveau template)
+
+Obligatoire, dans la même PR que le template (sauf PDF et vidéo, dans le dépôt Nexora) :
+
+- [ ] **Accueil `index.html`** : carte du template dans la section `#templates` (ou remplacement de la
+      carte mise en avant + ajout à la ligne des autres templates) ; « En préparation » mis à jour ;
+      prix « dès … » de la porte « Templates » si le moins cher change ; textes qui énumèrent les templates.
+- [ ] **Accueil anglais `en/index.html`** : mêmes changements, mention « in French ».
+- [ ] **Catalogue `templates/index.html`** : section `#<slug>` complète (page d'atterrissage), boutons
+      Acheter et Démo, captures, FAQ propres au produit ; ordre des sections ; liens internes.
+- [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
+      d'aide qui nomment un template (« Ouvrir mon planning »).
+- [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »
+      si c'est pertinent.
+- [ ] **Plaquette et références PDF** (`assets/QME-plaquette.pdf`, `QME-references.pdf`, versions
+      anglaises) : sources et générateurs dans le dépôt Nexora, `docs/qme/` (`node docs/qme/build.mjs`,
+      puis `node docs/qme/en/build.mjs`) ; mentionner l'offre Templates et le nouveau produit ; changer
+      le `?v=` des liens dans les deux pages d'accueil. Si ce dépôt n'est pas disponible dans la
+      session, le signaler à Quentin au lieu de l'ignorer.
+- [ ] **Vidéo de présentation** (facultatif, sur demande de Quentin) : générateur dans Nexora.
+- [ ] **`netlify.toml`** : en-têtes `noindex` et `sw.js` pour `/templates/<slug>/*`.
+- [ ] **`README.md`** et **`docs/templates/IDEES.md`** (statut, liens de communication).
+- [ ] **Vérification** : toutes les pages modifiées en Playwright (1280 px et iPhone 13), aucun lien
+      mort (boutons Acheter en 200), aucune page plus large que 390 px.
+
 ## Pièges déjà rencontrés (vérifier à chaque template)
 
 1. **Entrée dans un formulaire de modale** déclenche le premier bouton `submit` du DOM : mettre le bouton
