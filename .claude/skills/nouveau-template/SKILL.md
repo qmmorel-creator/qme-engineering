@@ -101,7 +101,11 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    Gumroad), priorité. Distinguer acheteurs directs (B2C), prescripteurs (enseignants, coachs,
    associations, influenceurs du domaine) et partenaires (structures qui pourraient offrir le template).
    Tout organisme cité doit exister ; signaler ce qui est à vérifier.
-4. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables).
+4. **Planifier l'article LinkedIn** dès que le template est prêt (règle de Quentin, 12/11/2026) : l'intercaler
+   **entre deux publications déjà prévues**, en partant du début du planning. Procédure détaillée dans
+   `reference.md` § « Planning LinkedIn ».
+5. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables, date et ID
+   de la publication LinkedIn).
 
 ## 5. Publier
 

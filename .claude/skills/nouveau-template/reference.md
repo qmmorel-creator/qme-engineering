@@ -72,6 +72,35 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
 - [ ] **Vérification** : toutes les pages modifiées en Playwright (1280 px et iPhone 13), aucun lien
       mort (boutons Acheter en 200), aucune page plus large que 390 px.
 
+## Planning LinkedIn (à chaque template prêt)
+
+Google Sheet « Planning publications LinkedIn »
+(`1EejYs9y4AsdoAtQgHc2HzXK6LgWQHwNnZmqbesSxpWU`, onglet `Planning`, outils `mcp__Google_Sheets__*`).
+Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc texte (ID) ·
+Doc texte (lien) · Fichier image (dossier Images) · Texte alternatif · Publié le · URL publication ·
+Remarque · Format. Lignes triées par date ; une publication environ tous les deux jours.
+
+1. **Relire tout l'onglet** (`get_values Planning!A1:N`) juste avant d'écrire : d'autres sessions le
+   modifient (statuts, publications).
+2. **Trouver le créneau** : en partant du début, la première paire de lignes **consécutives** dont les
+   deux statuts sont « Programmé », dont la première date est **après aujourd'hui**, séparées d'au moins
+   2 jours, et entre lesquelles aucune ligne n'est déjà intercalée. Date de l'article = le jour du milieu
+   (pour un écart de 3 jours ou plus, le lendemain de la première). Ne jamais toucher une ligne
+   « Publié », « Erreur » ou déjà passée. Chaque template suivant prend donc le créneau suivant.
+3. **Heure** : celle des créneaux voisins la plus fréquente (08:30 ou 12:15) ; à défaut 12:15.
+4. **ID** : `LI-` + (plus grand numéro existant + 1), sur deux chiffres au moins.
+5. **Texte** : créer un Google Doc nommé `LI-nn · <titre interne>` dans le même dossier Drive que les
+   autres docs du planning (le retrouver par les métadonnées d'un doc existant, colonne G), avec le texte
+   de `docs/templates/communication/<slug>/linkedin.md` (accroche retenue, texte, hashtags ; le lien
+   d'achat en premier commentaire, noté en fin de doc). Renseigner l'ID et le lien du doc.
+6. **Image** : la couverture `assets/templates-<slug>-couverture.png`, déposée dans le dossier « Images »
+   du planning sous le nom `LI-nn-<slug>.png` ; texte alternatif descriptif, mention « données fictives ».
+7. **Insérer la ligne à sa place chronologique** (`insert_dimension` puis `update_values`), jamais en bas
+   du tableau : Statut « Programmé », Thème « Template QME », Format « Image ».
+8. **Relire** la plage écrite et vérifier l'ordre des dates ; donner à Quentin l'ID, la date, l'heure et
+   le lien du doc.
+9. Ne rien publier sur LinkedIn soi-même : la publication suit le processus habituel du planning.
+
 ## Pièges déjà rencontrés (vérifier à chaque template)
 
 1. **Entrée dans un formulaire de modale** déclenche le premier bouton `submit` du DOM : mettre le bouton
