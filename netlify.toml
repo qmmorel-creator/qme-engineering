@@ -57,3 +57,22 @@
   to = "https://qm-engineering.fr/:splat"
   status = 301
   force = true
+
+# Documents internes (idées de templates, skills, consignes des assistants) : jamais servis
+[[redirects]]
+  from = "/docs/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/404"
+  status = 404
+  force = true

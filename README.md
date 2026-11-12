@@ -76,6 +76,11 @@ Le dépôt est destiné au site web QME uniquement. La publication Netlify utili
 pour les fichiers statiques.
 Aucune fusion ni publication sans feu vert explicite de Quentin (déploiements Netlify facturés).
 
+## Idées et développement des templates
+
+Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
+`.claude/skills/nouveau-template/`. Ces chemins et `CLAUDE.md` ne sont pas servis par Netlify.
+
 ## Pages du site
 
 - `/` et `/en/` : deux offres présentées à égalité en tête (« Sur mesure » et « Templates »), puis une
@@ -111,7 +116,8 @@ Aucun code n'est stocké, la signature suffit à le valider.
 - Prérequis Netlify : variable **`TEMPLATES_SECRET`** (32 caractères minimum, ex. `openssl rand -hex 32`).
   Ne jamais la changer après les premières ventes : tous les codes deviendraient invalides et les données
   inaccessibles.
-- Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify).
+- Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify), ou sous
+  Windows `outils/templates/generer-codes-REV.bat` (double-clic, secret gardé à côté du script, historique CSV).
 - Révoquer un code : ajouter ses 8 caractères aléatoires (2e et 3e blocs, sans tiret) à la variable
   `TEMPLATES_CODES_REVOQUES` (liste séparée par des virgules).
 
