@@ -6,15 +6,11 @@ templates QME, catégorie par catégorie. Rédigé le 12/11/2026. Complète, au 
 pas repris ici.
 
 Rappels produit : applications web en français, ouvertes avec une clé de licence Gumroad, achat
-unique de 7,90 à 49 €, vendues sur https://qm-engineering.fr/templates/. Seul le **Planning de
+unique de 8 à 49 € (prix visés dans `IDEES.md`), vendues sur https://qm-engineering.fr/templates/. Seul le **Planning de
 révision (T01, 14,90 €)** est en vente ; toutes les autres lignes sont des idées ou des fiches.
 
-**Numérotation** : les numéros T01–T64 sont ceux de `docs/templates/IDEES.md` sur la branche
-`claude/confident-hopper-qr7hsg`. `main` contient une autre série T23–T29 (idées tirées des projets
-Coda) qui ne correspond pas à ces numéros ; elles sont notées ici **C23 à C29** (C23 suivi de chantier
-par lot, C24 circuit de visa, C25 non-conformités, C26 notes de frais, C27 gestion locative, C28 CRM
-freelance, C29 flotte). Les doublons sont rattachés à la même catégorie (C24 ≈ T25, C26 ≈ T39,
-C28 ≈ T29, C29 ≈ T56). Réconcilier les deux numérotations reste à faire dans `IDEES.md`.
+**Numérotation** : celle de `docs/templates/IDEES.md` (T01–T67) après la fusion de `main` : T23 à T29
+sont les idées tirées des projets Coda, le backlog commence à T30.
 
 ## Règles de lecture
 
@@ -121,7 +117,7 @@ numérique vendu à des inconnus). La publicité payante sert donc d'abord à **
 ## 2. Productivité personnelle
 
 **Templates** : T03 Gestionnaire de tâches, T08 Habitudes et routines, T22 Tableau de bord annuel et
-roue de vie, T23 Time-blocking, T17 Suivi de lecture. Pack « Productivité perso ».
+roue de vie, T30 Time-blocking, T17 Suivi de lecture. Pack « Productivité perso ».
 
 1. **Cible et saisons** : B2C et indépendants, cadres. Pic : fin décembre-janvier (résolutions,
    nouvelle année) ; second pic à la rentrée de septembre.
@@ -148,7 +144,7 @@ roue de vie, T23 Time-blocking, T17 Suivi de lecture. Pack « Productivité pers
 ## 3. Budget et finances personnelles
 
 **Templates** : T05 Budget du foyer, T12 Remboursement de dettes, T13 Objectif d'épargne, T14 Suivi des
-abonnements, T62 Budget commun couple / colocation, T63 Simulateur leasing vs achat.
+abonnements, T65 Budget commun couple / colocation, T66 Simulateur leasing vs achat.
 
 1. **Cible et saisons** : B2C (foyers, couples, colocataires, jeunes actifs). Pics : janvier
    (résolutions, soldes de fin d'année), rentrée de septembre, installation en couple ou en
@@ -168,7 +164,7 @@ abonnements, T62 Budget commun couple / colocation, T63 Simulateur leasing vs ac
      « rembourser ses dettes méthode boule de neige », « leasing ou achat voiture calcul ».
    - Créateurs de contenu « finances perso » en affiliation.
    - Gumroad Discover (catégorie finances).
-4. **Budget** : 100 € en janvier pour T05 et T62. Métrique : coût par vente ; part des ventes du
+4. **Budget** : 100 € en janvier pour T05 et T65. Métrique : coût par vente ; part des ventes du
    bundle budget si créé.
 5. **À éviter** : tout ce qui ressemble à un conseil en investissement ou en crédit (vérification
    « services financiers » de Google, qui s'applique en France aux annonceurs de services financiers :
@@ -204,7 +200,7 @@ abonnements, T62 Budget commun couple / colocation, T63 Simulateur leasing vs ac
 
 **Templates** : T06 Repas et courses, T09 Garde-manger, T10 Entretien du véhicule, T11 Entretien de la
 maison, T16 Déménagement, T18 Calendrier du potager, T19 Suivi du bébé, T20 Animal de compagnie,
-T21 Préparation de voyage, T64 Pilote de travaux maison.
+T21 Préparation de voyage, T67 Pilote de travaux maison.
 
 1. **Cible et saisons** : B2C (familles, propriétaires, jardiniers, jeunes parents). Saisons propres
    à chaque produit : potager fin d'hiver-printemps ; déménagement mai-septembre ; voyage avant
@@ -212,7 +208,7 @@ T21 Préparation de voyage, T64 Pilote de travaux maison.
 2. **Payant** :
    1. **Pinterest** : canal naturel de la maison, du potager, des menus et du voyage ; épingles
       saisonnières programmées 4 à 6 semaines avant le pic.
-   2. **Meta** : jeunes parents (T19), propriétaires (T11, T64) ; carrousels.
+   2. **Meta** : jeunes parents (T19), propriétaires (T11, T67) ; carrousels.
    3. **Google Ads** : requêtes précises seulement (« calendrier potager semis », « liste
       déménagement à imprimer », « suivi travaux rénovation ») ; CPC bas attendu hors travaux
       (*ordre de grandeur non vérifié*).
@@ -221,7 +217,7 @@ T21 Préparation de voyage, T64 Pilote de travaux maison.
      déménagement », « planning repas semaine liste de courses », « carnet d'entretien maison ».
    - Communautés : forums et groupes de jardinage, de parents, de rénovation (Facebook, forums
      spécialisés) ; respecter l'interdiction fréquente de l'autopromotion.
-   - Petits produits (7,90–12,90 €) à vendre en **lots** sur Gumroad (bundle « maison ») et sur
+   - Petits produits (8 à 13 €) à vendre en **lots** sur Gumroad (bundle « maison ») et sur
      Discover.
 4. **Budget** : pas de publicité avant d'avoir 3 produits de la catégorie en vente ; ensuite
    50 €/mois Pinterest. Métrique : ventes par saison, panier moyen des lots.
@@ -254,40 +250,40 @@ T21 Préparation de voyage, T64 Pilote de travaux maison.
 
 ## 7. Événementiel professionnel et sportif
 
-**Templates** : T47 Pilote événementiel complet, T50 Séminaire / offsite, T48 Gestion de compétition
+**Templates** : T51 Pilote événementiel complet, T54 Séminaire / offsite, T52 Gestion de compétition
 sportive. Pack « Organisateur d'événements ».
 
 1. **Cible et saisons** : agences événementielles, chargés de communication, assistants de direction
-   (T47, T50) ; salles de sport, clubs et associations sportives (T48). Pics : préparation des
+   (T51, T54) ; salles de sport, clubs et associations sportives (T52). Pics : préparation des
    séminaires de rentrée (printemps) et de fin d'année (septembre-octobre).
 2. **Payant** :
    1. **LinkedIn** : ciblage par fonction (chef de projet événementiel, assistant de direction,
-      office manager), secteur événementiel ; CPC ≈ 4,90 € (La Poste Pro, mars 2025) : réservé à T47
+      office manager), secteur événementiel ; CPC ≈ 4,90 € (La Poste Pro, mars 2025) : réservé à T51
       (49 €) et au pack.
    2. **Google Ads** : « rétroplanning événement », « logiciel gestion séminaire », « gestion
       compétition sportive inscriptions ».
-   3. **Meta** : pour T48 uniquement (gérants de salles et bénévoles de clubs).
+   3. **Meta** : pour T52 uniquement (gérants de salles et bénévoles de clubs).
 3. **Gratuit** :
    - Salon : **Heavent Paris**, Paris Expo Porte de Versailles, 17–19 novembre 2026 (salon des
      professionnels de l'événement).
    - Groupes LinkedIn de professionnels de l'événementiel (à identifier) ; publications de Quentin
      sur la méthode (rétroplanning, chemin critique).
-   - T48 : fédérations et ligues sportives régionales, réseaux de salles (prescripteurs) ; essai
+   - T52 : fédérations et ligues sportives régionales, réseaux de salles (prescripteurs) ; essai
      gratuit pour une compétition.
    - SEO : « rétroplanning événementiel », « organiser un séminaire d'entreprise check-list »,
      « gérer une compétition de cross-training ».
-4. **Budget** : 150 € LinkedIn au lancement de T47. Métriques : coût par lead (démo ouverte), coût
+4. **Budget** : 150 € LinkedIn au lancement de T51. Métriques : coût par lead (démo ouverte), coût
    par vente.
 5. **À éviter** : prospection de particuliers ; noms d'événements ou de clients réels dans les
    démonstrations ; marque déposée d'un sport dans le nom du produit.
 
 ## 8. Freelance et commercial
 
-**Templates** : T29 / C28 CRM freelance, T30 Pipeline de prospection B2B, T31 Générateur de devis,
-T33 Préparateur d'appel découverte, T34 Kit références et plaquette, T35 Calculateur TJM.
+**Templates** : T28 CRM freelance, T35 Pipeline de prospection B2B, T36 Générateur de devis,
+T38 Préparateur d'appel découverte, T39 Kit références et plaquette, T40 Calculateur TJM.
 Pack « Freelance complet ».
 
-1. **Cible et saisons** : indépendants, consultants, micro-entrepreneurs, artisans (T31). Pics :
+1. **Cible et saisons** : indépendants, consultants, micro-entrepreneurs, artisans (T36). Pics :
    janvier (objectifs, tarifs de l'année), septembre (reprise), création d'activité (toute l'année).
 2. **Payant** :
    1. **Google Ads** : « calcul TJM freelance », « modèle devis artisan », « CRM freelance simple »,
@@ -307,16 +303,16 @@ Pack « Freelance complet ».
    - SEO : « calculer son TJM freelance », « modèle de devis gratuit artisan » (attirer puis proposer
      l'outil), « préparer un rendez-vous de découverte client », « relance prospect B2B ».
    - Affiliation : formateurs et créateurs de contenu pour freelances.
-4. **Budget** : 100 € Google au lancement de T35 et T29. Métrique : coût par vente, part du pack.
-5. **À éviter** : se présenter comme logiciel de facturation conforme (T31 et C28 sont des aides :
+4. **Budget** : 100 € Google au lancement de T40 et T28. Métrique : coût par vente, part du pack.
+5. **À éviter** : se présenter comme logiciel de facturation conforme (T36 et T28 sont des aides :
    mentions légales et TVA à faire vérifier par l'utilisateur) ; prospection par courriel de
    personnes sans lien avec l'offre.
 
 ## 9. Comptabilité et finance professionnelle
 
-**Templates** : T32 Coût de revient, T36 Livre recettes-dépenses micro-entreprise, T37 Trésorerie
-prévisionnelle 12 mois, T38 Relance des impayés, T39 / C26 Notes de frais et indemnités kilométriques,
-T40 Suivi de TVA.
+**Templates** : T37 Coût de revient, T41 Livre recettes-dépenses micro-entreprise, T42 Trésorerie
+prévisionnelle 12 mois, T43 Relance des impayés, T26 Notes de frais et indemnités kilométriques,
+T44 Suivi de TVA.
 
 1. **Cible et saisons** : micro-entrepreneurs, TPE, indépendants, salariés (notes de frais). Pics :
    janvier (nouvel exercice, nouveau barème), périodes de déclaration de chiffre d'affaires et de TVA,
@@ -325,15 +321,15 @@ T40 Suivi de TVA.
    1. **Google Ads** : « livre des recettes micro-entreprise », « trésorerie prévisionnelle modèle »,
       « calcul indemnités kilométriques », « lettre relance facture impayée ».
    2. **Annuaires de logiciels B2B** (Capterra, GetApp, Appvizer) : fiche gratuite possible, enchère
-      au clic ensuite (*tarifs non vérifiés*) ; à envisager pour T37 et le pack.
-   3. **LinkedIn** : seulement pour T37 (dirigeants de TPE), CPC élevé.
+      au clic ensuite (*tarifs non vérifiés*) ; à envisager pour T42 et le pack.
+   3. **LinkedIn** : seulement pour T42 (dirigeants de TPE), CPC élevé.
 3. **Gratuit** :
    - SEO : très forte intention de recherche ; une page par outil, avec la règle expliquée
      (sources officielles citées et datées).
    - Prescripteurs : experts-comptables et réseaux d'accompagnement de TPE (outil recommandé à leurs
      clients) ; coopératives d'activité.
    - Salon SME (voir catégorie 8).
-4. **Budget** : 100 € Google sur le pic de janvier (T36, T39). Métriques : coût par vente, taux de
+4. **Budget** : 100 € Google sur le pic de janvier (T41, T26). Métriques : coût par vente, taux de
    remboursement.
 5. **À éviter** : vendre avant le processus de mise à jour annuelle des barèmes (règle `IDEES.md`) ;
    toute présentation comme logiciel comptable certifié ou comme conseil fiscal ; vocabulaire de
@@ -341,15 +337,15 @@ T40 Suivi de TVA.
 
 ## 10. Gestion de projet, direction et réunions
 
-**Templates** : T02 Planning Gantt rapide, T24 Compte rendu → plan d'actions, T27 Pilotage d'une
-journée de bascule, T28 Tableau de bord de pilotage PME.
+**Templates** : T02 Planning Gantt rapide, T31 Compte rendu → plan d'actions, T33 Pilotage d'une
+journée de bascule, T34 Tableau de bord de pilotage PME.
 
 1. **Cible et saisons** : chefs de projet, managers, dirigeants de TPE/PME, artisans (T02). Pics :
    septembre et janvier (lancement de projets, budgets annuels).
 2. **Payant** :
    1. **LinkedIn** : ciblage par fonction (chef de projet, directeur de projet, dirigeant) et taille
       d'entreprise 2–200 ; format document (carrousel PDF) montrant le Gantt et le chemin critique.
-      Réservé à T02 (45 €) et T28.
+      Réservé à T02 (45 €) et T34.
    2. **Google Ads** : « diagramme de Gantt en ligne », « calcul chemin critique », « modèle compte
       rendu de réunion plan d'actions ». Concurrence d'outils établis : enchérir sur des requêtes
       longues.
@@ -367,8 +363,8 @@ journée de bascule, T28 Tableau de bord de pilotage PME.
 
 ## 11. BTP et ingénierie
 
-**Templates** : T25 / C24 Visas documentaires, T26 Levée de réserves (OPR), C23 Suivi de chantier par
-lot, C25 Non-conformités ; T02 et T24 dans le pack « Chef de projet BTP ».
+**Templates** : T24 Circuit de visa des documents, T32 Levée de réserves (OPR), T23 Suivi de chantier par
+lot, T25 Non-conformités et actions correctives ; T02 et T31 dans le pack « Chef de projet BTP ».
 
 1. **Cible et saisons** : maîtres d'œuvre, bureaux d'études, OPC, conducteurs de travaux, syndics
    (OPR), PME du BTP et de l'industrie (non-conformités). Besoin continu ; décisions d'achat plus
@@ -386,7 +382,7 @@ lot, C25 Non-conformités ; T02 et T24 dans le pack « Chef de projet BTP ».
      jamais de projet ni d'employeur réel).
    - Salons : **Batimat** (Paris Builders Show), Paris Expo Porte de Versailles, 28 septembre–
      1er octobre 2026, tous les deux ans (prochaine édition annoncée en 2028 par un agenda tiers,
-     *à confirmer*) ; **Global Industrie**, Eurexpo Lyon, 15–18 mars 2027 (pour C25 non-conformités,
+     *à confirmer*) ; **Global Industrie**, Eurexpo Lyon, 15–18 mars 2027 (pour T25 non-conformités,
      industrie) ; **Préventica** (santé-sécurité au travail, plusieurs éditions par an : Lyon
      6–8 octobre 2026 ; 2027 non confirmé).
    - Communautés : groupes LinkedIn de conducteurs de travaux, de MOE et de qualité (à identifier) ;
@@ -400,8 +396,8 @@ lot, C25 Non-conformités ; T02 et T24 dans le pack « Chef de projet BTP ».
 
 ## 12. RH, IT et moyens généraux
 
-**Templates** : T41 Parc de postes de travail, T42 Onboarding / offboarding, T43 Planning d'équipe et
-staffing, T44 Congés et absences, T45 Matrice compétences et formations, T46 Réservation de salles.
+**Templates** : T45 Parc de postes de travail, T46 Onboarding / offboarding, T47 Planning d'équipe et
+staffing, T48 Congés et absences, T49 Matrice compétences et formations, T50 Réservation de salles.
 
 1. **Cible et saisons** : RH de PME et TPE sans SIRH, managers, office managers, DSI de PME. Pics :
    fin d'année (plan de congés, entretiens annuels), janvier (plan de formation), septembre
@@ -425,11 +421,11 @@ staffing, T44 Congés et absences, T45 Matrice compétences et formations, T46 R
 
 ## 13. Exploitation, maintenance, conformité et stocks
 
-**Templates** : T57 Parcs multi-sites, T58 Maintenance préventive (GMAO légère), T59 Stocks et
-inventaire, T60 Vérifications réglementaires.
+**Templates** : T60 Parcs multi-sites, T61 Maintenance préventive (GMAO légère), T62 Stocks et
+inventaire, T63 Vérifications réglementaires.
 
 1. **Cible et saisons** : services techniques, ateliers, responsables QHSE, gestionnaires de
-   bâtiments, petits commerces et artisans (T59). Pics : fin d'année (inventaire, budgets),
+   bâtiments, petits commerces et artisans (T62). Pics : fin d'année (inventaire, budgets),
    préparation des audits.
 2. **Payant** :
    1. **Google Ads** : « GMAO gratuite » (à exclure) / « plan de maintenance préventive tableau »,
@@ -444,24 +440,24 @@ inventaire, T60 Vérifications réglementaires.
    - Communautés : groupes LinkedIn de maintenance et de QHSE, forums de techniciens (à identifier).
    - SEO : « plan de maintenance préventive exemple », « liste vérifications périodiques
      obligatoires » (avec sources officielles datées), « faire un inventaire de stock ».
-4. **Budget** : 100 € Google + LinkedIn au lancement de T58. Métrique : coût par vente.
-5. **À éviter** : présenter T60 comme garantissant la conformité réglementaire ; listes de
+4. **Budget** : 100 € Google + LinkedIn au lancement de T61. Métrique : coût par vente.
+5. **À éviter** : présenter T63 comme garantissant la conformité réglementaire ; listes de
    vérifications non sourcées ou non datées ; prospection du secteur de l'énergie.
 
 ## 14. Éducation et formation
 
-**Templates** : T51 Gestion de classe, T52 Emploi du temps d'établissement, T54 Banque de questions et
-quiz, T55 Progression pédagogique.
+**Templates** : T55 Gestion de classe, T56 Emploi du temps d'établissement, T58 Banque de questions et
+quiz, T59 Progression pédagogique.
 
 1. **Cible et saisons** : enseignants de collège et de lycée (achat personnel), formateurs
-   indépendants, organismes de formation et écoles privées (T52). Pics : fin août-septembre
+   indépendants, organismes de formation et écoles privées (T56). Pics : fin août-septembre
    (préparation de l'année), juin-juillet pour les établissements.
 2. **Payant** :
    1. **Meta (Facebook)** : les enseignants s'organisent beaucoup en groupes Facebook (*à vérifier*) ;
       publicité ciblée enseignants via centres d'intérêt, adultes uniquement.
    2. **Google Ads** : « progression pédagogique modèle », « créer un quiz formateur », « emploi du
       temps organisme de formation ».
-   3. **LinkedIn** : pour T52 seulement (directeurs d'organismes de formation).
+   3. **LinkedIn** : pour T56 seulement (directeurs d'organismes de formation).
 3. **Gratuit** :
    - Salon : **Educatech Expo**, Paris, 2–4 décembre 2026.
    - Communautés : forums d'enseignants (Néoprofs), groupes Facebook d'enseignants par discipline
@@ -470,13 +466,13 @@ quiz, T55 Progression pédagogique.
      formation ».
    - Gumroad Discover (éducation).
 4. **Budget** : 80 € fin août. Métrique : coût par vente, ventes en septembre.
-5. **À éviter** : données d'élèves (mineurs) : décision RGPD avant vente de T51 (`IDEES.md`) ;
+5. **À éviter** : données d'élèves (mineurs) : décision RGPD avant vente de T55 (`IDEES.md`) ;
    démarchage des établissements publics par des méthodes commerciales intrusives ; toute publicité
    visant des élèves.
 
 ## 15. Flotte et auto-écoles
 
-**Templates** : T56 / C29 Gestion de flotte d'entreprise, T53 Gestion de flotte auto-école (T10 en
+**Templates** : T29 Gestion de flotte d'entreprise, T57 Gestion de flotte auto-école (T10 en
 version particulier). Pack « Flotte ».
 
 1. **Cible et saisons** : PME, collectivités, gestionnaires de parc, auto-écoles. Pics : fin d'année
@@ -495,14 +491,14 @@ version particulier). Pack « Flotte ».
      lien avec T01 (thèmes du code) pour une offre croisée.
    - SEO : « tableau de bord flotte automobile », « réservation véhicule de service », « suivi
      kilométrage véhicules entreprise ».
-4. **Budget** : 150 € LinkedIn au lancement de T56. Métrique : coût par vente, ventes au secteur
+4. **Budget** : 150 € LinkedIn au lancement de T29. Métrique : coût par vente, ventes au secteur
    public.
 5. **À éviter** : marchés publics : vérifier que l'achat par carte sur Gumroad est possible pour une
    collectivité (bon de commande, facture) avant d'y investir ; aucune marque de constructeur.
 
 ## 16. Associatif
 
-**Templates** : T49 Inscriptions associatives (et T48 pour les clubs sportifs).
+**Templates** : T53 Inscriptions associatives (et T52 pour les clubs sportifs).
 
 1. **Cible et saisons** : associations, clubs, centres sociaux. Pic : fin août-septembre (forums des
    associations, inscriptions de rentrée) ; assemblées générales au printemps.
@@ -524,11 +520,11 @@ version particulier). Pack « Flotte ».
 
 ## 17. Immobilier
 
-**Templates** : T61 Location saisonnière, C27 Gestion locative.
+**Templates** : T64 Location saisonnière, T27 Gestion locative.
 
 1. **Cible et saisons** : propriétaires bailleurs particuliers, propriétaires de meublés de tourisme.
-   Pics : printemps (préparation de la saison) pour T61 ; janvier et période de déclaration des
-   revenus fonciers pour C27.
+   Pics : printemps (préparation de la saison) pour T64 ; janvier et période de déclaration des
+   revenus fonciers pour T27.
 2. **Payant** :
    1. **Google Ads** : « tableau gestion locative », « quittance de loyer modèle » (attirer),
       « suivi réservations location saisonnière ».
@@ -574,7 +570,7 @@ budget payant qu'une fois au moins un de ses produits en vente.
 ## Plan de démarrage · 3 mois (mi-novembre 2026 à mi-février 2027)
 
 Budget total : **400 € de publicité**, plafonné ; rien d'autre de payant. Point de départ : T01 seul en
-vente ; les produits suivants selon l'ordre de production de `IDEES.md` (T24, T62, T32, T05 d'abord).
+vente ; les produits suivants selon l'ordre de production de `IDEES.md` (T31, T65, T37, T05 d'abord).
 
 **Avant toute dépense (semaine 1)**
 - Liens UTM par canal vers la démo et la fiche Gumroad ; tableau de suivi (dépense, clics, démos
@@ -595,7 +591,7 @@ vente ; les produits suivants selon l'ordre de production de `IDEES.md` (T24, T6
 - Arrêt de tout canal dont le coût par vente dépasse 13 € après 50 € dépensés.
 
 **Mois 2 · mi-décembre à mi-janvier (résolutions, nouvel exercice)** : 150 €
-- Si T05 ou T62 (budget perso) ou T24 (compte rendu) sortent : Google Ads 80 € sur le nouveau
+- Si T05 ou T65 (budget perso) ou T31 (compte rendu) sortent : Google Ads 80 € sur le nouveau
   produit, mots-clés des catégories 3 ou 10 ; Pinterest 40 € (budget perso ou productivité).
 - T01 : 30 € Google sur le canal gagnant du mois 1 (bac blanc, partiels de janvier).
 - Gratuit : publication LinkedIn de lancement de chaque nouveau produit ; série de 2 publications de
@@ -603,8 +599,8 @@ vente ; les produits suivants selon l'ordre de production de `IDEES.md` (T24, T6
 
 **Mois 3 · mi-janvier à mi-février** : 100 €
 - Uniquement les canaux dont le coût par vente est resté sous la marge nette du produit.
-- Si T32 ou un produit B2B est en vente : premier test LinkedIn (100 $ minimum à vie par campagne,
-  donc ≈ 95 € ; à ne lancer que pour un panier d'au moins 25 €).
+- Si T37 ou un produit B2B est en vente : premier test LinkedIn (100 $ minimum à vie par campagne,
+  soit un peu moins de 100 € ; à ne lancer que pour un panier d'au moins 25 €).
 - Bilan écrit : ventes par canal, coût par vente, taux démo → achat, ventes affiliées ; décision sur
   les canaux à garder pour le printemps (bac, catégorie mariage, BTP).
 
