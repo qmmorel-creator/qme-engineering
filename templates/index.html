@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=20261112">
+<link rel="stylesheet" href="/assets/site.css?v=2026111202">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}</style>
 </head>
 <body>
@@ -40,7 +40,7 @@
     <h1>Des outils du quotidien, <mark>ouverts en une minute.</mark></h1>
     <p class="lead"><strong>Pas de fichier à télécharger ni de logiciel à installer.</strong> Un template QME s'ouvre dans le navigateur avec la clé reçue à l'achat, garde vos données en ligne et vous suit de l'ordinateur au téléphone.</p>
     <div class="actions">
-      <a class="btn primary" href="#revision">Voir le planning de révision</a>
+      <a class="btn primary" href="#tous">Voir les templates</a>
       <a class="btn" href="/connexion/">J'ai déjà une clé</a>
     </div>
     <p class="where">Achat unique, paiement sécurisé par Gumroad.</p>
@@ -56,6 +56,15 @@
     </div>
   </div>
 </section>
+
+<nav class="sommaire-templates" id="tous" aria-label="Tous les templates">
+  <a href="#revision"><b>Planning de révision</b><span>14,90 €</span></a>
+  <a href="#tjm"><b>Calculateur de TJM freelance</b><span>12 €</span></a>
+  <a href="#compte-rendu"><b>Compte rendu et plan d'actions</b><span>15 €</span></a>
+  <a href="#budget-commun"><b>Budget commun</b><span>15 €</span></a>
+  <a href="#cout-revient"><b>Coût de revient et prix par client</b><span>25 €</span></a>
+  <a href="#micro-entreprise"><b>Livre recettes-dépenses</b><span>25 €</span></a>
+</nav>
 
 <section class="section" id="revision">
   <div class="section-head">
@@ -88,6 +97,214 @@
     <figure><img src="/assets/templates-revision-planning.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Planning sur 4 semaines, un carré par révision à la couleur de la matière"><figcaption>Planning sur 4 semaines, charge maximale par jour</figcaption></figure>
     <figure><img src="/assets/templates-revision-bilan.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan : série de jours, révisions de la semaine, taux de réussite, graphique sur 30 jours"><figcaption>Bilan de progression sur 30 jours</figcaption></figure>
     <figure><img src="/assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Révisions du jour avec compte à rebours de l'examen"><figcaption>Révisions du jour et prochain examen</figcaption></figure>
+  </div>
+</section>
+
+<section class="section" id="tjm">
+  <div class="section-head">
+    <h2>Calculateur de TJM freelance</h2>
+    <p>Pour les freelances qui démarrent ou révisent leur tarif : partez du revenu que vous visez, de vos frais et de vos vrais jours facturables, et obtenez votre TJM minimum et votre TJM conseillé, selon votre statut.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" alt="Résultat : TJM minimum, TJM conseillé, chiffre d'affaires nécessaire, jours facturables et alerte de seuil de TVA (données fictives)">
+      <img class="tel" src="/assets/templates-tjm-tel.webp?v=20261112" width="780" height="1328" alt="Le calculateur sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Freelances · indépendants</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>TJM minimum et conseillé</b> : le tarif qui couvre votre objectif, puis celui à annoncer avec une marge de sécurité</li>
+        <li><b>Jours facturables réels</b> : jours ouvrés de l'année calculés, fériés retirés (Pâques, Ascension, Pentecôte), puis congés et jours sans client</li>
+        <li><b>Micro-entreprise</b> (prestations BIC, BNC, BNC Cipav) : cotisations, formation professionnelle et versement libératoire ; <b>SASU ou EURL</b> avec votre propre taux de charges</li>
+        <li><b>Alertes</b> : plafond de la micro-entreprise et seuils de la franchise de TVA</li>
+        <li><b>3 scénarios comparés</b> et courbe du TJM selon le nombre de jours facturés</li>
+      </ul>
+      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/calculateur-tjm" data-goatcounter-click="achat-tjm" data-goatcounter-title="Acheter : calculateur de TJM">Acheter</a>
+        <a class="btn" href="/templates/tjm/?demo" data-goatcounter-click="demo-tjm" data-goatcounter-title="Démo : calculateur de TJM">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-tjm-scenarios.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Trois scénarios comparés et courbe du TJM minimum selon les jours facturables"><figcaption>Trois scénarios côte à côte, courbe du TJM selon les jours facturés</figcaption></figure>
+    <figure><img src="/assets/templates-tjm-objectif.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Objectif : revenu net visé, frais professionnels et marge de sécurité, avec la synthèse du TJM"><figcaption>Objectif, frais et marge : le TJM se met à jour à chaque saisie</figcaption></figure>
+    <figure><img src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Résultat détaillé : où va le chiffre d'affaires, seuils et hypothèses"><figcaption>Résultat détaillé et alertes de seuils</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Les taux sont-ils à jour ?</summary><p>Le calculateur intègre les taux de la micro-entreprise au 1er janvier 2026 (cotisations, formation professionnelle, versement libératoire), le plafond de chiffre d'affaires et les seuils de la franchise de TVA, relevés sur urssaf.fr, autoentrepreneur.urssaf.fr et economie.gouv.fr. La date et les sources sont affichées dans l'application, et chaque valeur reste modifiable dans les réglages si elle change. Les taux sont revus chaque année.</p></details>
+    <details><summary>Et pour une SASU ou une EURL ?</summary><p>Les charges d'une société dépendent de votre rémunération et de vos choix (salaire, dividendes, régime fiscal) : aucun taux n'est intégré. Vous saisissez le taux de charges que vous a donné votre expert-comptable, et le calculateur en déduit le chiffre d'affaires et le TJM nécessaires.</p></details>
+    <details><summary>Le calculateur remplace-t-il un expert-comptable ?</summary><p>Non. C'est un outil d'aide pour fixer et vérifier un tarif. Pour un choix de statut ou une question fiscale, demandez conseil à un expert-comptable.</p></details>
+    <details><summary>Le revenu net s'entend-il avant ou après impôt ?</summary><p>Avant impôt sur le revenu, sauf si vous cochez le versement libératoire en micro-entreprise : l'impôt est alors prélevé avec les cotisations et compté dans le calcul. Les TJM affichés sont hors taxes.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/tjm/?demo">la démo</a> ouvre le calculateur avec trois scénarios fictifs. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="compte-rendu">
+  <div class="section-head">
+    <h2>Compte rendu et plan d'actions</h2>
+    <p>Pour les managers, chefs de projet et responsables d'association qui animent des réunions récurrentes : chaque action décidée est notée en une ligne, datée, et reprise automatiquement à la réunion suivante jusqu'à ce qu'elle soit faite.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-compte-rendu-compte-rendu.webp?v=20261112" width="1600" height="1000" alt="Compte rendu d'un point d'équipe : ordre du jour avec notes, participants et suivi des actions reprises de la réunion précédente">
+      <img class="tel" src="/assets/templates-compte-rendu-tel.webp?v=20261112" width="780" height="1328" alt="Les actions ouvertes par personne sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Réunions · équipes</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Saisie en une ligne</b> : « Marie : envoyer le devis avant vendredi » crée l'action avec son responsable et son échéance</li>
+        <li><b>Dates en français</b> : demain, vendredi, fin du mois, J+7, dans deux semaines, 20/11…</li>
+        <li><b>Suivi automatique</b> : les actions encore ouvertes reviennent en tête du compte rendu suivant de la série</li>
+        <li><b>Toutes les actions</b> au même endroit, par personne, retards en évidence, filtre « mes actions »</li>
+        <li><b>8 modèles de réunion</b> : point d'équipe, comité de pilotage, réunion de chantier, point client, rétrospective, lancement, conseil d'administration d'association, entretien individuel</li>
+      </ul>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/compte-rendu-actions" data-goatcounter-click="achat-compte-rendu" data-goatcounter-title="Acheter : compte rendu et plan d'actions">Acheter</a>
+        <a class="btn" href="/templates/compte-rendu/?demo" data-goatcounter-click="demo-compte-rendu" data-goatcounter-title="Démo : compte rendu et plan d'actions">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-compte-rendu-saisie.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Saisie rapide d'une action : l'application affiche le responsable, l'action et l'échéance comprises avant l'ajout"><figcaption>Saisie rapide : qui, quoi, pour quand</figcaption></figure>
+    <figure><img src="/assets/templates-compte-rendu-actions.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Toutes les actions ouvertes, regroupées par personne, avec les retards en rouge"><figcaption>Toutes les actions, par personne, retards en évidence</figcaption></figure>
+    <figure><img src="/assets/templates-compte-rendu-compte-rendu.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Compte rendu avec ordre du jour, participants et suivi des actions de la réunion précédente"><figcaption>Compte rendu prêt à imprimer ou à envoyer par e-mail</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:28px">
+    <details><summary>Comment fonctionne la reprise des actions ?</summary><p>Les réunions sont rangées par série (par exemple « Point d'équipe du lundi »). Quand vous créez la réunion suivante d'une série, les actions encore à faire ou en cours des réunions précédentes apparaissent en tête, dans « Suivi des actions ». Une action cochée « fait » ne revient plus.</p></details>
+    <details><summary>Comment envoyer le compte rendu aux participants ?</summary><p>Trois boutons : « Copier le texte » (à coller dans votre messagerie), « E-mail » (ouvre un nouveau message prérempli) et « Imprimer » (mise en page A4, aussi utilisable pour enregistrer un PDF). Les participants n'ont pas besoin d'accès.</p></details>
+    <details><summary>Plusieurs personnes peuvent-elles le remplir ?</summary><p>Le template est pensé pour la personne qui anime les réunions et tient le compte rendu. La clé ouvre le même espace sur tous les appareils : la partager revient à partager toutes vos réunions.</p></details>
+    <details><summary>Et les données personnelles des participants ?</summary><p>Seuls un nom et un rôle sont demandés, aucune coordonnée. Évitez les informations sensibles dans les notes. Vous pouvez tout exporter ou supprimer depuis les réglages.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/compte-rendu/?demo">la démo</a> ouvre une équipe fictive avec ses réunions et ses actions. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="budget-commun">
+  <div class="section-head">
+    <h2>Budget commun</h2>
+    <p>Pour les couples, colocations et familles qui partagent des dépenses : chacun note ce qu'il paie, la répartition se fait toute seule (à parts égales, au prorata des revenus, en parts) et l'application indique qui doit combien à qui, avec le moins de virements possible.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" alt="Vue Soldes : « Sami doit 309,89 € à Camille », virement proposé pour équilibrer, solde de chaque personne (données fictives)">
+      <img class="tel" src="/assets/templates-budget-commun-tel.webp?v=20261112" width="780" height="1328" alt="Le budget commun sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Couples · colocations · familles</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Soldes à jour</b> : qui doit combien à qui, à chaque dépense ajoutée</li>
+        <li><b>Quatre répartitions</b> : à parts égales, au prorata des revenus, en parts, en montants exacts, calculées au centime près</li>
+        <li><b>Équilibrage</b> : le nombre minimal de virements pour remettre les comptes à zéro, enregistré d'un geste</li>
+        <li><b>Dépenses récurrentes</b> : loyer, énergie, abonnements ajoutés d'eux-mêmes chaque mois</li>
+        <li><b>Bilan du mois</b> : par catégorie, par personne, et l'évolution sur 6 mois</li>
+      </ul>
+      <p>Une seule clé pour tout le foyer : chacun l'ouvre sur son propre téléphone et voit les mêmes comptes.</p>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous les appareils du foyer</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/budget-commun" data-goatcounter-click="achat-budget-commun" data-goatcounter-title="Acheter : budget commun">Acheter</a>
+        <a class="btn" href="/templates/budget-commun/?demo" data-goatcounter-click="demo-budget-commun" data-goatcounter-title="Démo : budget commun">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-budget-commun-mois.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan du mois : qui a payé, part de chacun, dépenses par catégorie et graphique sur 6 mois (données fictives)"><figcaption>Bilan du mois et évolution sur 6 mois</figcaption></figure>
+    <figure><img src="/assets/templates-budget-commun-depenses.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Liste des dépenses du mois, avec la personne qui a payé et la règle de répartition (données fictives)"><figcaption>Dépenses filtrées par mois, personne et catégorie</figcaption></figure>
+    <figure><img src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Soldes de chaque personne et virement proposé pour équilibrer (données fictives)"><figcaption>Soldes et équilibrage en un virement</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment partager avec mon ou ma partenaire, ou mes colocataires ?</summary><p>Transmettez-leur la clé reçue après l'achat. Chacun ouvre <a href="/connexion/">qm-engineering.fr/connexion</a> sur son téléphone, colle la clé, et voit les mêmes dépenses. Si deux personnes enregistrent au même moment, les deux saisies sont réunies : aucune dépense n'est perdue. Attention : la clé donne un accès complet (ajouter, modifier, supprimer), ne la donnez qu'aux membres du foyer.</p></details>
+    <details><summary>Comment fonctionne la répartition au prorata des revenus ?</summary><p>Chacun indique son revenu mensuel (facultatif) ; chaque dépense « au prorata » est alors partagée en proportion. Par exemple, 1 000 € avec des revenus de 2 600 € et 1 900 € donnent 577,78 € et 422,22 €. Changer un revenu ne réécrit pas les dépenses passées.</p></details>
+    <details><summary>Combien de personnes peut-on être ?</summary><p>De 2 à 6 personnes, avec une seule clé pour tout le foyer.</p></details>
+    <details><summary>L'application se connecte-t-elle à ma banque ?</summary><p>Non. Vous notez vous-mêmes les dépenses communes ; aucun accès bancaire n'est demandé. Les soldes sont calculés à partir de vos saisies : vérifiez-les avant un virement. Ce n'est pas un conseil financier.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/budget-commun/?demo">la démo</a> ouvre un budget de couple avec des données fictives. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="cout-revient">
+  <div class="section-head">
+    <h2>Coût de revient et prix par client</h2>
+    <p>Pour les freelances, consultants, prestataires et petites agences : savoir ce que vous coûte réellement une heure de travail, fixer un prix plancher et un prix conseillé, et voir, client par client, lesquels sont rentables.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-cout-revient-synthese.webp?v=20261112" width="1600" height="1000" alt="Synthèse : coût de revient horaire, prix conseillé, marge, et taux horaire réel de chaque client comparé au prix plancher (données fictives)">
+      <img class="tel" src="/assets/templates-cout-revient-tel.webp?v=20261112" width="780" height="1328" alt="La fiche d'un client sur téléphone : heures, montant facturé, marge et taux horaire réel">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Freelances · prestataires</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Coût de revient</b> par heure et par jour : charges, rémunération visée et cotisations, divisées par votre temps réellement facturable</li>
+        <li><b>Prix plancher et prix conseillé</b> selon votre marge cible, et le prix d'une mission en jours</li>
+        <li><b>Jours ouvrés calculés</b> pour l'année choisie : week-ends, jours fériés (Pâques compris), congés et temps non facturable</li>
+        <li><b>Rentabilité par client</b> : temps passé, frais, factures, marge et taux horaire réel ; les clients sous le plancher sont signalés</li>
+        <li><b>32 postes de charges types</b> et deux structures de départ (indépendant seul, agence de 3 personnes)</li>
+      </ul>
+      <div class="prix"><b>25 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/cout-de-revient" data-goatcounter-click="achat-cout-revient" data-goatcounter-title="Acheter : coût de revient et prix par client">Acheter</a>
+        <a class="btn" href="/templates/cout-revient/?demo" data-goatcounter-click="demo-cout-revient" data-goatcounter-title="Démo : coût de revient et prix par client">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-cout-revient-clients.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Fiches clients : heures, montant facturé, marge, statut rentable ou sous le plancher, saisies récentes"><figcaption>Rentabilité de chaque client, saisie du temps, des frais et des factures</figcaption></figure>
+    <figure><img src="/assets/templates-cout-revient-capacite.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Capacité : des 365 jours de l'année aux heures facturables, jours fériés calculés"><figcaption>Du calendrier aux heures vraiment facturables</figcaption></figure>
+    <figure><img src="/assets/templates-cout-revient-synthese.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Synthèse : coût de revient, prix conseillé, marge et classement des clients"><figcaption>Synthèse : coût horaire, prix conseillé, clients sous le plancher</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Le template connaît-il mes taux de cotisations ?</summary><p>Non, volontairement : ils dépendent de votre statut et changent chaque année. Vous saisissez vos cotisations en pourcentage de votre rémunération ou en montant, d'après l'estimation de votre expert-comptable ou d'un simulateur officiel. Aucun chiffre réglementaire n'est figé dans l'outil, il ne se périme donc pas.</p></details>
+    <details><summary>Comment sont comptés les jours travaillés ?</summary><p>Pour l'année choisie, l'outil part des jours du calendrier, retire les jours non travaillés de votre semaine et les jours fériés français, calculés chaque année (lundi de Pâques, Ascension et Pentecôte compris ; option Alsace-Moselle). Il retire ensuite vos congés, vos autres absences et la part de temps non facturable (prospection, gestion, devis).</p></details>
+    <details><summary>Quelle différence entre prix plancher et prix conseillé ?</summary><p>Le prix plancher est votre coût de revient : en dessous, une mission vous coûte plus qu'elle ne rapporte. Le prix conseillé y ajoute votre marge cible, exprimée en part du prix de vente : avec une marge de 20 %, il vaut le coût divisé par 0,8.</p></details>
+    <details><summary>Convient-il à une petite agence ?</summary><p>Oui : indiquez le nombre de personnes qui facturent et la rémunération de toute l'équipe. Une structure type « agence de 3 personnes » préremplit les postes de charges courants. Tout le monde partage les mêmes données avec la même clé.</p></details>
+    <details><summary>Remplace-t-il mon expert-comptable ?</summary><p>Non. C'est un outil d'aide à la décision : les résultats dépendent de vos saisies et ne remplacent pas un avis professionnel. Il ne tient pas de comptabilité et ne produit ni devis ni factures.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/cout-revient/?demo">la démo</a> ouvre l'outil avec une activité fictive et six clients d'exemple. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="micro-entreprise">
+  <div class="section-head">
+    <h2>Livre recettes-dépenses micro-entreprise</h2>
+    <p>Pour les micro-entrepreneurs (vente, prestations de services, professions libérales) qui tiennent leur livre des recettes sur papier ou dans un tableur : chaque encaissement noté en quelques secondes, le chiffre d'affaires à déclarer prêt à chaque échéance et une alerte avant les seuils.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-micro-entreprise-recettes.webp?v=20261112" width="1600" height="1000" alt="Livre des recettes : chiffre d'affaires de l'année, estimation à payer, alerte de seuil et liste chronologique des encaissements (données fictives)">
+      <img class="tel" src="/assets/templates-micro-entreprise-tel.webp?v=20261112" width="780" height="1328" alt="Le livre recettes-dépenses sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Micro-entrepreneurs · gestion</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Livre des recettes</b> chronologique : date d'encaissement, client, nature, montant, mode de règlement, pièce justificative</li>
+        <li><b>Registre des achats</b> pour la vente, et suivi des dépenses pour connaître ce qui vous reste</li>
+        <li><b>Déclarations</b> mensuelles ou trimestrielles : chiffre d'affaires par activité et estimation des cotisations, de la formation professionnelle et du versement libératoire</li>
+        <li><b>Seuils</b> : plafonds du régime (proratisés la première année) et franchise de TVA, avec alerte dès 80 %</li>
+        <li><b>Export CSV</b> pour votre tableur ou votre comptable, et impression propre du livre des recettes</li>
+      </ul>
+      <div class="prix"><b>25 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/livre-recettes-micro" data-goatcounter-click="achat-micro-entreprise" data-goatcounter-title="Acheter : livre recettes-dépenses">Acheter</a>
+        <a class="btn" href="/templates/micro-entreprise/?demo" data-goatcounter-click="demo-micro-entreprise" data-goatcounter-title="Démo : livre recettes-dépenses">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-micro-entreprise-declarations.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Déclarations trimestrielles : chiffre d'affaires à déclarer, cotisations estimées par activité, période à déclarer mise en évidence"><figcaption>Chiffre d'affaires à déclarer et estimation à payer</figcaption></figure>
+    <figure><img src="/assets/templates-micro-entreprise-seuils.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Seuils : jauges de la franchise de TVA et des plafonds du régime, graphique du chiffre d'affaires par mois"><figcaption>Franchise de TVA et plafonds, mois par mois</figcaption></figure>
+    <figure><img src="/assets/templates-micro-entreprise-recettes.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Livre des recettes avec catégories d'activité et pièces justificatives"><figcaption>Livre des recettes, vente et services séparés</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Les taux sont-ils à jour ?</summary><p>Le livre intègre les taux et seuils 2026 (cotisations, versement libératoire, formation professionnelle, plafonds, franchise de TVA), relevés sur urssaf.fr, autoentrepreneur.urssaf.fr et economie.gouv.fr le 12 novembre 2026. Ils sont affichés avec leur source et vous pouvez les corriger vous-même dans l'application si un taux change. Le taux réduit de l'ACRE n'est pas intégré : vous le saisissez si vous en bénéficiez.</p></details>
+    <details><summary>Est-ce un logiciel comptable ?</summary><p>Non. C'est un outil d'aide pour tenir votre livre des recettes et suivre vos seuils ; ce n'est ni un logiciel comptable certifié ni un logiciel de facturation, et il ne remplace pas un conseil. Les cotisations affichées sont des estimations : seule votre déclaration sur autoentrepreneur.urssaf.fr fait foi.</p></details>
+    <details><summary>Mes dépenses réduisent-elles mes cotisations ?</summary><p>Non : en micro-entreprise, les dépenses ne sont pas déductibles. Cotisations et impôt sont calculés sur le chiffre d'affaires encaissé, après un abattement forfaitaire pour l'impôt. Le suivi des dépenses sert à connaître ce qui vous reste réellement.</p></details>
+    <details><summary>Mon activité est mixte (vente et services) : est-ce géré ?</summary><p>Oui. Chaque recette porte sa catégorie (vente de marchandises, prestations de services BIC, prestations libérales BNC) ; les cotisations et les seuils sont calculés pour chacune, et pour le total quand c'est le cas.</p></details>
+    <details><summary>Puis-je donner le fichier à mon comptable ?</summary><p>Oui : l'export CSV (séparateur point-virgule, accents conservés) s'ouvre dans Excel, LibreOffice ou Google Sheets. Le livre des recettes et le registre des achats s'impriment aussi en PDF depuis le navigateur.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/micro-entreprise/?demo">la démo</a> ouvre le livre d'un atelier fictif avec une année d'écritures. Elle reste dans votre navigateur et n'envoie rien.</p></details>
   </div>
 </section>
 

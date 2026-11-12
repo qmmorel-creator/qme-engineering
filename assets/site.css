@@ -301,3 +301,18 @@ footer a{font-weight:600;color:var(--encre)}
   .acces{box-shadow:none;padding:18px}
   .acces input[type=text]{font-size:16px;letter-spacing:.02em}
 }
+
+/* Grille des autres templates (accueil) et sommaire du catalogue */
+.mini-produits{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:32px}
+.mini-produit{display:flex;flex-direction:column;border:2px solid var(--encre);background:var(--surface);box-shadow:6px 6px 0 var(--encre);min-width:0}
+.mini-produit img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-bottom:2px solid var(--encre)}
+.mini-produit .corps{display:flex;flex-direction:column;gap:10px;padding:18px 18px 20px;flex:1}
+.mini-produit h3{font-size:22px}
+.mini-produit p{color:var(--texte-2);font-size:15px}
+.mini-produit .prix b{font-size:28px}
+.mini-produit .actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
+.mini-produit .btn{min-height:44px;padding:0 14px;font-size:15px}
+.sommaire-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:0 max(16px,calc((100vw - var(--max))/2));margin:8px 0 8px;scroll-margin-top:90px}
+.sommaire-templates a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:8px 14px;border:2px solid var(--encre);background:var(--surface);text-decoration:none;font-size:15px}
+.sommaire-templates a:hover{background:var(--jaune)}
+.sommaire-templates span{font-weight:700;white-space:nowrap}

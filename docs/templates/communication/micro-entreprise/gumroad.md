@@ -6,7 +6,7 @@ produit dans `PRODUITS` (`netlify/lib/templates-acces.mjs`, entrée `MCE`).
 
 - **Nom** : Livre recettes-dépenses micro-entreprise
 - **Prix** : 25 €
-- **Permalien proposé** : `livre-recettes-micro-entreprise` (remplace `GUMROAD_A_REMPLIR` dans les liens)
+- **Permalien proposé** : `livre-recettes-micro-entreprise` (remplace `livre-recettes-micro` dans les liens)
 - **Catégorie** : Business & Money (ou équivalent proposé par `list_categories`)
 - **Bouton** : « Ouvrir mon livre » → contenu : lien vers https://qm-engineering.fr/connexion/
 - **Couverture** : `assets/templates-micro-entreprise-couverture.png` (1280 × 720), une fois en ligne

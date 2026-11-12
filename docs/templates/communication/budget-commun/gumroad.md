@@ -14,7 +14,7 @@ Budget commun · couple, colocation, famille
 
 ## Permalien proposé
 
-`budget-commun` (à reporter ensuite à la place de `GUMROAD_A_REMPLIR` dans les livrables du site)
+`budget-commun` (à reporter ensuite à la place de `budget-commun` dans les livrables du site)
 
 ## Résumé (une ligne)
 

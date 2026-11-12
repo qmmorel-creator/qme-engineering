@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier (le permalien Gumroad n'exi
 
 - Démo : https://qm-engineering.fr/templates/tjm/?demo
 - Présentation : https://qm-engineering.fr/templates/#tjm
-- Achat : https://qmengineering.gumroad.com/l/GUMROAD_A_REMPLIR
+- Achat : https://qmengineering.gumroad.com/l/calculateur-tjm
 
 **Image à joindre** : `assets/templates-tjm-couverture.png` (1280 × 720), ou en carrousel : couverture,
 capture téléphone (`templates-tjm-tel.webp`), capture Scénarios (`templates-tjm-scenarios.webp`).
@@ -65,7 +65,7 @@ Si vous connaissez quelqu'un qui se lance en freelance, n'hésitez pas à lui tr
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (12 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/GUMROAD_A_REMPLIR
+> https://qmengineering.gumroad.com/l/calculateur-tjm
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

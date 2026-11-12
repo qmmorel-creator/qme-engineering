@@ -243,7 +243,7 @@
     const att = attendu(r, aujIdx);
     if (av >= 1) return { code: 'termine', attendu: att, retard: 0 };
     if (av + 1e-9 < att) return { code: 'retard', attendu: att, retard: r.dur === 0 ? aujIdx - r.es : Math.ceil((att - av) * r.dur - 1e-9) };
-    if (av > 0 || att > 0) return { code: 'encours', attendu: att, retard: 0 };
+    if (av > 0 || (r.dur > 0 && aujIdx >= r.es)) return { code: 'encours', attendu: att, retard: 0 };
     return { code: 'avenir', attendu: att, retard: 0 };
   }
   // Avancement global pondéré par les durées (un jalon compte pour 1 jour).

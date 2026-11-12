@@ -340,3 +340,120 @@
   to = "/404"
   status = 404
   force = true
+
+# Templates en cours de développement : jamais servis tant qu'ils ne sont pas prêts.
+# Retirer la ligne d'un template au moment de sa mise en vente.
+[[redirects]]
+  from = "/templates/gantt/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/taches/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/nutrition/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/budget/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/mariage/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/visa/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/non-conformites/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/crm/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/flotte/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/planner/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/reserves/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/prospection/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/devis/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/tresorerie/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/parc-informatique/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/evenementiel/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/inscriptions/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/auto-ecole/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/travaux/*"
+  to = "/404"
+  status = 404
+  force = true
+

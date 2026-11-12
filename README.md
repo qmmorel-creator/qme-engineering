@@ -101,10 +101,24 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   2 jours avant). Base intégrée dans `donnees.js` : 12 formations avec leurs matières, 12 méthodes de
   révision. Installable sur téléphone (manifeste + service worker). Mode démo sans code (données
   d'exemple, locales).
+- Première vague (même socle : clé de licence, démo, synchronisation, hors ligne ; règles métier en
+  fonctions pures testées dans `outils/templates/<slug>.test.mjs`) :
+  - `templates/compte-rendu/` (CRA) : **compte rendu et plan d'actions**, saisie d'action en une ligne,
+    actions ouvertes reprises à la réunion suivante de la série, 8 modèles de réunion ;
+  - `templates/cout-revient/` (PRX) : **coût de revient et prix par client**, jours ouvrés calculés,
+    prix plancher et conseillé, rentabilité par client ;
+  - `templates/tjm/` (TJM) : **calculateur de TJM freelance**, taux micro-entreprise 2026 sourcés et
+    modifiables, alertes de plafond et de franchise de TVA, 3 scénarios ;
+  - `templates/micro-entreprise/` (MCE) : **livre recettes-dépenses micro-entreprise**, registres,
+    déclarations, seuils, export CSV ;
+  - `templates/budget-commun/` (BCM) : **budget commun**, répartitions au centime, équilibrage en un
+    minimum de virements, fusion des saisies de plusieurs appareils.
+  Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
+  annuelle obligatoire (`donnees.js`).
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
-**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Gumroad envoie à
+**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Budget commun » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
 l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie auprès de l'API Gumroad
 (`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
 convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :

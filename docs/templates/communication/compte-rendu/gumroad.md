@@ -5,7 +5,7 @@ activer dans l'éditeur Gumroad (Content → Insert → License key, sans multi-
 
 - **Nom** : Compte rendu et plan d'actions
 - **Prix** : 15 €
-- **Permalien proposé** : `compte-rendu` (à reporter dans le site à la place de `GUMROAD_A_REMPLIR`)
+- **Permalien proposé** : `compte-rendu` (à reporter dans le site à la place de `compte-rendu-actions`)
 - **Contenu** : lien vers https://qm-engineering.fr/connexion/ (bouton « Ouvrir mes comptes rendus »)
 - **Couverture** : `assets/templates-compte-rendu-couverture.png` (1280 × 720)
 

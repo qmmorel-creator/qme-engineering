@@ -81,7 +81,7 @@ window.BASE = {
         [1, 'Soubassement et dalle', 10, '7'],
         [1, 'Élévation des murs', 20, '8'],
         [1, 'Charpente et couverture', 15, '9'],
-        [1, 'Hors d\'eau, hors d\'air', 0, '10, 11'],
+        [1, 'Hors d\'eau, hors d\'air', 0, '10, 12'],
         [1, 'Menuiseries extérieures', 5, '10FF+3'],
         [2, 'Réseaux (plomberie, électricité)', 15, '11'],
         [2, 'Isolation et cloisons', 20, '13DD+5'],

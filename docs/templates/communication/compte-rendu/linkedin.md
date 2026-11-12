@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier (le permalien Gumroad n'exi
 
 - Démo : https://qm-engineering.fr/templates/compte-rendu/?demo
 - Présentation : https://qm-engineering.fr/templates/#compte-rendu
-- Achat : https://qmengineering.gumroad.com/l/GUMROAD_A_REMPLIR
+- Achat : https://qmengineering.gumroad.com/l/compte-rendu-actions
 
 **Image à joindre** : `assets/templates-compte-rendu-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-compte-rendu-tel.webp`), saisie rapide
@@ -67,7 +67,7 @@ aujourd'hui.
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (15 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/GUMROAD_A_REMPLIR
+> https://qmengineering.gumroad.com/l/compte-rendu-actions
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
