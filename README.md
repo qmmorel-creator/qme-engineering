@@ -75,3 +75,30 @@ d'ingestion côté Nexora a été supprimé le 21/10/2026 (nexora#1223).
 Le dépôt est destiné au site web QME uniquement. La publication Netlify utilise la racine du dépôt
 pour les fichiers statiques.
 Aucune fusion ni publication sans feu vert explicite de Quentin (déploiements Netlify facturés).
+
+## Templates payants (`/templates/`)
+
+Applications web vendues à l'unité, ouvertes avec un **code d'accès** remis à l'achat. Les données de
+l'acheteur sont enregistrées en ligne (Netlify Blobs) et suivent le code sur tous ses appareils ; une
+copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X-Robots-Tag`).
+
+- `templates/revision/` : **planning de révision** par répétition espacée (J+1, J+3, J+7, J+14, J+30,
+  ajustés selon la réponse « difficile / moyen / facile », bornés par la date d'examen, révision finale
+  2 jours avant). Base intégrée dans `donnees.js` : 12 formations avec leurs matières, 12 méthodes de
+  révision. Installable sur téléphone (manifeste + service worker). Mode démo sans code (données
+  d'exemple, locales).
+- `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
+  entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
+
+**Codes d'accès.** Format `REV-XXXX-XXXX-XXXX-XXXX` : 40 bits aléatoires + 40 bits de signature HMAC.
+Aucun code n'est stocké, la signature suffit à le valider.
+
+- Prérequis Netlify : variable **`TEMPLATES_SECRET`** (32 caractères minimum, ex. `openssl rand -hex 32`).
+  Ne jamais la changer après les premières ventes : tous les codes deviendraient invalides et les données
+  inaccessibles.
+- Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify).
+- Révoquer un code : ajouter ses 8 caractères aléatoires (2e et 3e blocs, sans tiret) à la variable
+  `TEMPLATES_CODES_REVOQUES` (liste séparée par des virgules).
+
+**Tester en local** : `npm install`, puis `npm run dev:templates` (serveur sur le port 8888, stockage en
+mémoire, un code valide est affiché au démarrage). Tests de l'API : `npm test`.
