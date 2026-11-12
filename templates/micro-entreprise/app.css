@@ -338,6 +338,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   #impression thead{display:table-header-group}
   #impression tr{break-inside:avoid}
   #impression .nb{text-align:right;white-space:nowrap}
+  #impression .nw,#impression td:first-child{white-space:nowrap}
   #impression tfoot th{font-weight:800}
   #impression p{margin-top:8pt;font-size:10pt}
   #impression footer{margin-top:12pt;font-size:8.5pt;color:#444}
@@ -393,7 +394,11 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .barres{padding:12px}
   .barres li{grid-template-columns:minmax(0,1fr) 80px;gap:4px 10px}
   .b-barre{grid-column:1/-1;grid-row:2}
-  .periodes{grid-template-columns:1fr}
+  .periodes{grid-template-columns:minmax(0,1fr)}
+  .mini th,.mini td{padding:6px 8px}
+  .mini th:first-child,.mini td:first-child{padding-left:12px}
+  .mini th:last-child,.mini td:last-child{padding-right:12px}
+  .periode-ca b{font-size:28px}
   .vue-tete .bascule{width:100%}
   .bascule button{flex:1}
   .accueil{padding:24px 14px 48px}

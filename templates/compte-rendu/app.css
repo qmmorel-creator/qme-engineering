@@ -164,7 +164,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .groupe .rang{display:flex;flex-wrap:wrap;gap:8px}
 
 /* Toast */
-.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:16px;max-width:calc(100% - 24px);background:var(--encre);color:var(--papier);padding:12px 16px;font-size:15px;font-weight:500;box-shadow:4px 4px 0 var(--jaune);animation:monte .2s ease-out}
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:16px;width:max-content;max-width:calc(100% - 24px);background:var(--encre);color:var(--papier);padding:12px 16px;font-size:15px;font-weight:500;box-shadow:4px 4px 0 var(--jaune);animation:monte .2s ease-out}
 .toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:36px;padding:0 12px;flex:none}
 .toast button:hover{background:var(--jaune);color:var(--encre)}
 @keyframes monte{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -195,7 +195,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .reunion-ligne:hover{background:#F6F1E3}
 .date-bloc{display:flex;flex-direction:column;align-items:center;justify-content:center;width:48px;height:48px;border:2px solid var(--encre);background:var(--papier);line-height:1}
 .date-bloc b{font-size:19px;font-weight:800}
-.date-bloc small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.date-bloc small{font-size:10px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-top:2px}
 .date-bloc.avenir{border-style:dashed;background:var(--surface)}
 .reunion-info{display:flex;flex-direction:column;min-width:0}
 .reunion-info b{font-size:15px;font-weight:700;overflow-wrap:anywhere}

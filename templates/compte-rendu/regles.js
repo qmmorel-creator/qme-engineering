@@ -242,7 +242,8 @@
   function ligneAction(etat, a, auj, avecStatut) {
     const st = STATUTS.find((s) => s.id === a.statut)?.nom || '';
     const ech = a.echeance ? ` · échéance ${dateCourte(a.echeance)}${enRetard(a, auj) ? ' (en retard)' : ''}` : '';
-    return `- ${avecStatut ? `[${st}] ` : ''}${nomPersonne(etat, a.responsableId)} : ${a.texte}${ech}`;
+    const clos = !avecStatut && !estOuverte(a) ? ` (${st.toLowerCase()})` : '';
+    return `- ${avecStatut ? `[${st}] ` : ''}${nomPersonne(etat, a.responsableId)} : ${a.texte}${ech}${clos}`;
   }
 
   function texteCompteRendu(etat, r, auj) {

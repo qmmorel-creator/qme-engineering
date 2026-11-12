@@ -34,6 +34,7 @@
   };
   const couleurHex = (id) => (B.couleurs.find((c) => c.id === id) || B.couleurs[3]).hex;
   const texteSur = (id) => (id === 'jaune' ? 'var(--encre)' : '#fff');
+  const MOIS_COURTS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
   const modele = (id) => B.modeles.find((m) => m.id === id) || null;
 
   // ---------- État ----------
@@ -219,7 +220,10 @@
     const [camille, marie, thomas, ines, hugo, sarah, julien] = P;
     E.moi = camille.id;
     const nouvelleSerie = (nom, modeleId, couleur, participants) => { const s = { id: uid(), nom, modeleId, couleur, participants: participants.map((p) => p.id) }; E.series.push(s); return s; };
-    const tenir = (s, date, { titre, lieu, notes = [], decisions = [], presents } = {}) => {
+    // Réunions tenues un jour ouvré (un samedi ou un dimanche recule au vendredi).
+    const ouvre = (d) => { const j = R.jourSemaine(d); return j === 6 ? ajout(d, -1) : j === 0 ? ajout(d, -2) : d; };
+    const tenir = (s, jour, { titre, lieu, notes = [], decisions = [], presents } = {}) => {
+      const date = ouvre(jour);
       const r = R.preparerReunion(E, { serieId: s?.id || null, date, titre, modele: modele(s?.modeleId || 'retro'), lieu }, uid);
       if (presents) r.participants = presents.map((p) => p.id);
       notes.forEach((n, i) => { if (r.points[i]) r.points[i].notes = n; });
@@ -531,7 +535,7 @@
         <ul class="reunions-liste">${tri.length ? tri.map((r) => {
           const n = E.actions.filter((a) => a.reunionId === r.id).length;
           const avenir = r.date > t;
-          return `<li><button class="reunion-ligne" data-action="ouvrir-reunion" data-id="${r.id}"><span class="date-bloc${avenir ? ' avenir' : ''}"><b>${R.versDate(r.date).getDate()}</b><small>${R.MOIS[R.versDate(r.date).getMonth()].slice(0, 4)}</small></span><span class="reunion-info"><b>${esc(r.titre)}</b><span>${esc(dateLongue(r.date))}${avenir ? ' · à venir' : ''} · ${n ? pluriel(n, 'action') : 'aucune action'}${r.suivi.length ? ` · ${r.suivi.length} en suivi` : ''}</span></span></button></li>`;
+          return `<li><button class="reunion-ligne" data-action="ouvrir-reunion" data-id="${r.id}"><span class="date-bloc${avenir ? ' avenir' : ''}"><b>${R.versDate(r.date).getDate()}</b><small>${MOIS_COURTS[R.versDate(r.date).getMonth()]}</small></span><span class="reunion-info"><b>${esc(r.titre)}</b><span>${esc(dateLongue(r.date))}${avenir ? ' · à venir' : ''} · ${n ? pluriel(n, 'action') : 'aucune action'}${r.suivi.length ? ` · ${r.suivi.length} en suivi` : ''}</span></span></button></li>`;
         }).join('') : '<li class="matiere-vide">Aucune réunion pour l\'instant.</li>'}</ul>
         <div class="serie-pied"><button class="btn petit" data-action="reunion-nouvelle" data-serie="${s ? s.id : 'ponctuelle'}">${ICONES.plus}${s ? 'Réunion suivante' : 'Réunion ponctuelle'}</button></div>
       </article>`;
@@ -600,9 +604,14 @@
         </div>
         <div class="cr-col">
           <section class="bloc bloc-participants">
-            <h2 class="bloc-titre">Participants <span>${presents.size} présents</span></h2>
+            <h2 class="bloc-titre">Participants <span>${pluriel(presents.size, 'présent')}</span></h2>
             <div class="puces">${E.personnes.filter((p) => presents.has(p.id)).concat(autres).map((p) => `<button class="puce" data-action="participant" data-id="${p.id}" aria-pressed="${presents.has(p.id)}">${esc(p.nom)}</button>`).join('')}<button class="puce ajout" data-action="personne-nouvelle" data-reunion="${r.id}">${ICONES.plus}Personne</button></div>
           </section>
+          ${suivi.length ? `<section class="bloc bloc-suivi">
+            <h2 class="bloc-titre">Suivi des actions <span>${suivi.filter(R.estOuverte).length} encore ouvertes sur ${suivi.length}</span></h2>
+            <p class="bloc-aide">Reprises des réunions précédentes de la série. Coche ce qui est fait.</p>
+            <ul class="actions-liste">${R.trierActions(suivi, t).map((a) => ligneAction(a)).join('')}</ul>
+          </section>` : ''}
           <section class="bloc bloc-actions">
             <h2 class="bloc-titre">Actions décidées <span>${acts.length ? pluriel(acts.length, 'action') : ''}</span></h2>
             <form class="saisie-rapide" data-form="action-rapide">
@@ -612,11 +621,6 @@
             </form>
             ${acts.length ? `<ul class="actions-liste">${acts.map((a) => ligneAction(a, { origine: false })).join('')}</ul>` : '<p class="bloc-vide">Aucune action pour l\'instant. Exemples : « Thomas : corriger le bug demain », « moi : appeler le client J+7 », « Inès et Hugo : préparer le stand fin du mois ».</p>'}
           </section>
-          ${suivi.length ? `<section class="bloc bloc-suivi">
-            <h2 class="bloc-titre">Suivi des actions <span>${suivi.filter(R.estOuverte).length} encore ouvertes sur ${suivi.length}</span></h2>
-            <p class="bloc-aide">Reprises des réunions précédentes de la série. Coche ce qui est fait.</p>
-            <ul class="actions-liste">${R.trierActions(suivi, t).map((a) => ligneAction(a)).join('')}</ul>
-          </section>` : ''}
         </div>
       </div>
       <p class="cr-pied"><button class="btn lien danger-lien" data-action="reunion-suppr" data-id="${r.id}">Supprimer cette réunion</button></p>`;
@@ -707,7 +711,7 @@
       ${liste.length ? ordre.map(([k, l]) => {
         const p = personne(k);
         const r = l.filter((a) => R.enRetard(a, t)).length;
-        return `<section class="groupe-personne"><h2><span class="avatar">${esc((p?.nom || '?').slice(0, 1))}</span><span class="gp-nom">${esc(p ? p.nom : 'Sans responsable')}${k && k === E.moi ? ' <span class="etiquette">Moi</span>' : ''}<small>${esc(p?.role || '')}</small></span><span class="gp-nb">${pluriel(l.length, 'action')}${r ? ` · <b>${r} en retard</b>` : ''}</span></h2><ul class="actions-liste">${R.trierActions(l, t).map((a) => ligneAction(a, { qui: false })).join('')}</ul></section>`;
+        return `<section class="groupe-personne"><h2><span class="avatar">${esc((p?.nom || '?').slice(0, 1))}</span><span class="gp-nom"><span>${esc(p ? p.nom : 'Sans responsable')}${k && k === E.moi ? ' <span class="etiquette">Moi</span>' : ''}</span><small>${esc(p?.role || '')}</small></span><span class="gp-nb">${pluriel(l.length, 'action')}${r ? ` · <b>${r} en retard</b>` : ''}</span></h2><ul class="actions-liste">${R.trierActions(l, t).map((a) => ligneAction(a, { qui: false })).join('')}</ul></section>`;
       }).join('') : vide(vides[0], vides[1], filtre === 'miennes' && !E.moi ? '<button class="btn" data-action="vue" data-vue="personnes">Ouvrir Personnes</button>' : '')}`;
   }
 
@@ -1018,7 +1022,7 @@
       ${suivi.length ? `<h2>Suivi des actions</h2>${tab(suivi, true)}` : ''}
       <h2>Ordre du jour</h2><ol>${r.points.map((p) => `<li><b>${esc(p.titre)}</b>${p.notes ? `<p>${esc(p.notes).replace(/\n/g, '<br>')}</p>` : ''}</li>`).join('')}</ol>
       ${r.decisions.length ? `<h2>Décisions</h2><ul>${r.decisions.map((d) => `<li>${esc(d.texte)}</li>`).join('')}</ul>` : ''}
-      ${acts.length ? `<h2>Actions</h2>${tab(acts, false)}` : ''}
+      ${acts.length ? `<h2>Actions</h2>${tab(acts, true)}` : ''}
       <footer>Compte rendu établi le ${esc(dateLongue(t))}</footer>`;
     window.print();
   }

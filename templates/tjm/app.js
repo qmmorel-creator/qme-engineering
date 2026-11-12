@@ -660,7 +660,7 @@
           <div><dt>CA nécessaire</dt><dd>${r.besoin ? euros(r.besoin.ca) : '–'}</dd></div>
           <div><dt>Prélèvements</dt><dd>${s.statut === 'societe' ? (r.besoin ? `${pct(s.tauxSociete)}${s.tauxFictif ? ' *' : ''}` : 'à saisir') : pct(C.tauxMicro(s.statut, E.taux, { vl: s.vl, activite: s.activite }).total)}</dd></div>
         </dl>
-        <div class="scenario-alertes">${depasse.length ? depasse.map((a) => `<span class="etiquette rouge">${a.code === 'plafond' ? 'Plafond micro' : 'TVA'} dépassé</span>`).join('') : (r.tjm ? '<span class="etiquette bleu">Sous les seuils</span>' : '<span class="etiquette">Incomplet</span>')}</div>
+        <div class="scenario-alertes">${depasse.length ? depasse.map((a) => `<span class="etiquette rouge">${a.code === 'plafond' ? 'Plafond micro dépassé' : 'Seuil de TVA dépassé'}</span>`).join('') : (r.tjm ? '<span class="etiquette bleu">Sous les seuils</span>' : '<span class="etiquette">Incomplet</span>')}</div>
         <div class="scenario-pied"><button class="btn petit primaire" data-action="scenario-ouvrir" data-id="${s.id}">Ouvrir</button><button class="btn petit" data-action="scenario-dupliquer" data-id="${s.id}" ${E.scenarios.length >= MAX_SCENARIOS ? 'disabled title="3 scénarios au maximum"' : ''}>Dupliquer</button></div>
       </article>`;
     }).join('');
@@ -737,13 +737,12 @@
   function brancherGraphique() {
     const fig = $('#graphique');
     if (!fig) return;
-    const svg = fig.querySelector('svg'), zone = fig.querySelector('.zone-survol'), bulle = fig.querySelector('.infobulle'), curseur = fig.querySelector('.curseur');
+    const zone = fig.querySelector('.zone-survol'), bulle = fig.querySelector('.infobulle'), curseur = fig.querySelector('.curseur');
     const g = Number(fig.dataset.g), d = Number(fig.dataset.d), L = Number(fig.dataset.l);
     const series = seriesGraphique();
     const montrer = (ev) => {
-      const rs = svg.getBoundingClientRect();
-      const xv = (ev.clientX - rs.left) * (L / rs.width);
-      const j = Math.round((J_MIN + (xv - g) / (L - g - d) * (J_MAX - J_MIN)));
+      const rz = zone.getBoundingClientRect();
+      const j = Math.round(J_MIN + (ev.clientX - rz.left) / rz.width * (J_MAX - J_MIN));
       const jours = Math.min(J_MAX, Math.max(J_MIN, j));
       const xs = g + (jours - J_MIN) / (J_MAX - J_MIN) * (L - g - d);
       curseur.setAttribute('x1', xs); curseur.setAttribute('x2', xs); curseur.hidden = false; curseur.removeAttribute('hidden');

@@ -765,10 +765,10 @@
     let html;
     if (id === 'recettes') {
       const l = chrono(E.recettes);
-      html = `${entete('Livre des recettes')}<table><thead><tr><th>Date d'encaissement</th><th>Client</th><th>Nature</th><th>Catégorie</th><th>Règlement</th><th>Pièce</th><th class="nb">Montant</th></tr></thead><tbody>${l.map((r) => `<tr><td>${fmtCourt(r.date)}</td><td>${esc(r.client)}</td><td>${esc(r.nature)}</td><td>${esc(cat(r.categorie).court)}</td><td>${esc(r.mode)}</td><td>${esc(r.piece)}</td><td class="nb">${eur(r.montant)}</td></tr>`).join('')}</tbody><tfoot><tr><th colspan="6">Total ${annee}</th><th class="nb">${eur(R.total(l))}</th></tr></tfoot></table>`;
+      html = `${entete('Livre des recettes')}<table><thead><tr><th>Date d'encaissement</th><th>Client</th><th>Nature</th><th>Catégorie</th><th>Règlement</th><th>Pièce</th><th class="nb">Montant</th></tr></thead><tbody>${l.map((r) => `<tr><td>${fmtCourt(r.date)}</td><td>${esc(r.client)}</td><td>${esc(r.nature)}</td><td>${esc(cat(r.categorie).court)}</td><td>${esc(r.mode)}</td><td class="nw">${esc(r.piece)}</td><td class="nb">${eur(r.montant)}</td></tr>`).join('')}</tbody><tfoot><tr><th colspan="6">Total ${annee}</th><th class="nb">${eur(R.total(l))}</th></tr></tfoot></table>`;
     } else if (id === 'achats') {
       const l = chrono(E.achats);
-      html = `${entete('Registre des achats')}<table><thead><tr><th>Date</th><th>Fournisseur</th><th>Nature</th><th>Règlement</th><th>Pièce</th><th class="nb">Montant</th></tr></thead><tbody>${l.map((r) => `<tr><td>${fmtCourt(r.date)}</td><td>${esc(r.fournisseur)}</td><td>${esc(r.nature)}</td><td>${esc(r.mode)}</td><td>${esc(r.piece)}</td><td class="nb">${eur(r.montant)}</td></tr>`).join('')}</tbody><tfoot><tr><th colspan="5">Total ${annee}</th><th class="nb">${eur(R.total(l))}</th></tr></tfoot></table>`;
+      html = `${entete('Registre des achats')}<table><thead><tr><th>Date</th><th>Fournisseur</th><th>Nature</th><th>Règlement</th><th>Pièce</th><th class="nb">Montant</th></tr></thead><tbody>${l.map((r) => `<tr><td>${fmtCourt(r.date)}</td><td>${esc(r.fournisseur)}</td><td>${esc(r.nature)}</td><td>${esc(r.mode)}</td><td class="nw">${esc(r.piece)}</td><td class="nb">${eur(r.montant)}</td></tr>`).join('')}</tbody><tfoot><tr><th colspan="5">Total ${annee}</th><th class="nb">${eur(R.total(l))}</th></tr></tfoot></table>`;
     } else {
       const mois = R.totauxParMois(E.recettes, annee);
       const tot = R.sommeParActivite(R.dansAnnee(E.recettes, annee));
@@ -1045,8 +1045,8 @@
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
     // Lien ?demo : n'écrase jamais le code d'un acheteur, et n'est pas mémorisé.
-    if (new URLSearchParams(location.search).has('demo') && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    if (new URLSearchParams(location.search).has('demo') && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
+    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;

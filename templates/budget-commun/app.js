@@ -314,7 +314,7 @@
         <a class="marque" href="/" aria-label="QME, Quentin Morel Engineering">${MARQUE}<small>Templates</small></a>
         <svg class="formes" viewBox="0 0 560 300" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
           <circle cx="120" cy="150" r="120" fill="#1D4E89"/>
-          <circle cx="250" cy="150" r="120" fill="#F5B400" fill-opacity=".92"/>
+          <circle cx="250" cy="150" r="120" fill="#F5B400"/>
           <path d="M185 49.1 A120 120 0 0 1 185 250.9 A120 120 0 0 1 185 49.1 Z" fill="#141414"/>
           <rect x="390" y="30" width="160" height="240" fill="#D9302A"/>
           <rect x="390" y="140" width="160" height="20" fill="#F0EDE6"/>
@@ -328,9 +328,9 @@
       <section class="formulaire-acces">
         <div>
           <p class="surtitre">Accès acheteur</p>
-          <h2>Ouvre votre budget</h2>
+          <h2>Ouvre ton budget commun</h2>
         </div>
-        <p>Saisis la clé de licence reçue par e-mail après l'achat. Chaque membre du foyer peut l'ouvrir sur son téléphone avec la même clé : vous voyez les mêmes comptes.</p>
+        <p>Saisis la clé de licence reçue par e-mail après l'achat. Chaque membre du foyer peut l'ouvrir sur son téléphone avec la même clé : tout le foyer voit les mêmes comptes.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
           <label class="champ code-saisie">Clé de licence ou code d'accès
             <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
@@ -384,7 +384,7 @@
     if (a.etape === 1) {
       corps = `
         <p class="surtitre">Bienvenue</p>
-        <h1>On prépare votre budget commun.</h1>
+        <h1>On prépare ton budget commun.</h1>
         <p class="intro">Choisis le modèle le plus proche de ton foyer : il règle le nombre de personnes, la répartition par défaut et les catégories. Tout reste modifiable.</p>
         <div class="filieres" role="group" aria-label="Modèle de foyer">
           ${B.modeles.map((x, i) => `<button type="button" class="filiere" style="--c:${['#1D4E89', '#F5B400', '#D9302A'][i]}" data-action="modele" data-id="${x.id}" aria-pressed="${a.modele === x.id}"><b>${esc(x.nom)}</b><span>${esc(x.detail)}</span></button>`).join('')}
@@ -498,7 +498,7 @@
   }
 
   const pastille = (id) => `<i class="pastille" style="--c:${hex(membre(id)?.couleur)}" aria-hidden="true"></i>`;
-  const AVERTISSEMENT = '<p class="avertissement"><b>À savoir.</b> Les soldes sont calculés uniquement à partir de ce que vous saisissez : vérifiez-les avant tout virement. Cet outil ne se connecte à aucune banque et ne donne pas de conseil financier.</p>';
+  const AVERTISSEMENT = '<p class="avertissement"><b>À savoir.</b> Les soldes sont calculés uniquement à partir de ce que le foyer saisit : vérifie-les avant tout virement. Cet outil ne se connecte à aucune banque et ne donne pas de conseil financier.</p>';
 
   // Soldes
   function vueSoldes() {
@@ -506,7 +506,7 @@
     const plan = R.equilibrer(s);
     const t = auj();
     const total = (id) => E.depenses.filter((d) => d.payeur === id).reduce((x, d) => x + d.montant, 0);
-    const titre = !E.depenses.length ? 'Ajoutez votre première dépense.'
+    const titre = !E.depenses.length ? 'Ajoute ta première dépense.'
       : !plan.length ? '<mark>Tout est équilibré.</mark>'
         : plan.length === 1 ? `${esc(nom(plan[0].de))} doit <mark>${eur(plan[0].montant)}</mark> à ${esc(nom(plan[0].a))}.`
           : `<mark>${pluriel(plan.length, 'virement')}</mark> pour tout équilibrer.`;
@@ -720,7 +720,7 @@
       <div class="matieres">${cartes}</div>
       ${!tousRevenus && E.membres.length ? '<p class="aide" style="margin-top:16px">Il manque au moins un revenu : les dépenses « au prorata » sont partagées à parts égales tant qu\'il n\'est pas renseigné.</p>' : ''}
       <section class="partage">
-        <div><p class="surtitre">Partager avec votre foyer</p>
+        <div><p class="surtitre">Partager avec ton foyer</p>
         <h2>Une clé, les mêmes comptes pour tous.</h2>
         <p>Chaque membre ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et saisit la même clé de licence : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
         <p><b>Attention :</b> partager la clé donne un accès complet (ajouter, modifier, supprimer). Ne la donne qu'aux personnes du foyer.</p></div>
@@ -1001,7 +1001,7 @@
       <label class="champ">Nom du foyer<small>Facultatif, affiché en haut des soldes.</small><input name="nomFoyer" maxlength="40" value="${esc(E.foyer.nom)}" placeholder="Ex. : Appartement rue des Lilas" autocomplete="off"></label>
       <label class="champ">Répartition par défaut<select name="modeDefaut">${B.modes.filter((x) => x.id !== 'montants').map((x) => `<option value="${x.id}" ${E.reglages.modeDefaut === x.id ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>
       <p class="erreur" role="alert"></p>
-      <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Vos données sont enregistrées en ligne avec votre clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
+      <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Les données du foyer sont enregistrées en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>`;
