@@ -21,7 +21,7 @@ Seuils. Texte alternatif : « Livre recettes-dépenses QME sur ordinateur et té
 ## Accroche, variante B (le geste du concepteur)
 
 > Je conçois des outils sur mesure pour des entreprises. Cette fois, j'en ai construit un pour les
-> micro-entrepreneurs, dont je connais bien les questions de fin de trimestre.
+> micro-entrepreneurs et leur livre des recettes.
 
 ---
 

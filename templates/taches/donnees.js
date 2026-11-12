@@ -1,0 +1,105 @@
+// Base intégrée du gestionnaire de tâches : couleurs, jeux de statuts et de types, modèles de projets.
+// Aucune date réglementaire : les démarches dont l'échéance change chaque année (impôts, papiers,
+// contrôle technique…) n'ont pas de date ; l'utilisateur la vérifie sur le site officiel et la saisit.
+// Jours fériés : calculés dans regles.js (Code du travail, art. L3133-1 ; service-public.gouv.fr, fiche F2405).
+window.BASE = {
+  couleurs: [
+    { id: 'rouge', hex: '#D9302A', nom: 'Rouge' },
+    { id: 'bleu', hex: '#1D4E89', nom: 'Bleu' },
+    { id: 'jaune', hex: '#F5B400', nom: 'Jaune' },
+    { id: 'encre', hex: '#141414', nom: 'Noir' },
+    { id: 'vert', hex: '#2E7D4F', nom: 'Vert' },
+    { id: 'orange', hex: '#E8702A', nom: 'Orange' },
+    { id: 'ciel', hex: '#4A90C2', nom: 'Bleu ciel' },
+    { id: 'prune', hex: '#7A3E6B', nom: 'Prune' },
+  ],
+
+  criticites: [
+    { id: 'basse', nom: 'Basse', court: 'Basse' },
+    { id: 'normale', nom: 'Normale', court: 'Normale' },
+    { id: 'haute', nom: 'Haute', court: 'Haute' },
+    { id: 'critique', nom: 'Critique', court: 'Critique' },
+  ],
+
+  // Jeux de statuts et de types préréglés. Le dernier statut (fini) marque une tâche terminée.
+  jeux: [
+    { id: 'simple', nom: 'Simple', detail: 'À faire, puis fait. Le plus rapide.',
+      statuts: [{ id: 'afaire', nom: 'À faire', couleur: 'jaune' }, { id: 'fait', nom: 'Fait', couleur: 'bleu', fini: true }],
+      types: ['Tâche', 'Rendez-vous', 'Appel', 'Achat'] },
+    { id: 'kanban', nom: 'Kanban', detail: 'À faire, en cours, en attente, fait : pour suivre l\'avancement.',
+      statuts: [{ id: 'afaire', nom: 'À faire', couleur: 'jaune' }, { id: 'encours', nom: 'En cours', couleur: 'rouge' },
+        { id: 'attente', nom: 'En attente', couleur: 'prune' }, { id: 'fait', nom: 'Fait', couleur: 'bleu', fini: true }],
+      types: ['Tâche', 'Livrable', 'Réunion', 'Relance', 'Administratif'] },
+    { id: 'gtd', nom: 'GTD', detail: 'Prochaine action, en attente, un jour peut-être ; types = contextes.',
+      statuts: [{ id: 'prochaine', nom: 'Prochaine action', couleur: 'rouge' }, { id: 'attente', nom: 'En attente', couleur: 'prune' },
+        { id: 'unjour', nom: 'Un jour peut-être', couleur: 'ciel' }, { id: 'fait', nom: 'Fait', couleur: 'bleu', fini: true }],
+      types: ['@Ordinateur', '@Téléphone', '@Dehors', '@Maison', '@Bureau'] },
+  ],
+
+  // Modèles de projets. j = décalage en jours depuis la date de départ choisie (absent : sans date).
+  // rec = récurrence (voir regles.js) ; c = criticité ; d = durée en minutes.
+  modeles: [
+    { id: 'admin', nom: 'Démarches administratives de l\'année', dossier: 'Personnel', couleur: 'bleu',
+      detail: 'Impôts, assurances, papiers, véhicule : la liste annuelle, à dater toi-même.',
+      taches: [
+        { t: 'Vérifier la date limite de la déclaration de revenus (site officiel des impôts)', c: 'haute', d: 15 },
+        { t: 'Déclarer les revenus', c: 'haute', d: 90, apres: 0 },
+        { t: 'Relire l\'avis d\'imposition et noter les échéances', c: 'normale', d: 20 },
+        { t: 'Noter la date d\'échéance de l\'assurance habitation', c: 'normale', d: 10 },
+        { t: 'Noter la date d\'échéance de l\'assurance auto', c: 'normale', d: 10 },
+        { t: 'Comparer les contrats d\'assurance avant leur échéance', c: 'basse', d: 60 },
+        { t: 'Vérifier la date du prochain contrôle technique (dernier procès-verbal)', c: 'normale', d: 10 },
+        { t: 'Vérifier les dates d\'expiration des cartes d\'identité et passeports du foyer', c: 'normale', d: 15 },
+        { t: 'Classer les papiers du mois', c: 'basse', d: 20, rec: { type: 'mois', n: 1, mode: 'fin' } },
+        { t: 'Faire le point sur les abonnements et les résilier si inutiles', c: 'basse', d: 30 },
+      ] },
+    { id: 'rentree', nom: 'Rentrée scolaire', dossier: 'Personnel', couleur: 'jaune',
+      detail: 'Fournitures, inscriptions, attestations : départ = jour de la rentrée.',
+      taches: [
+        { t: 'Récupérer la liste des fournitures', j: -30, c: 'normale', d: 15 },
+        { t: 'Acheter les fournitures', j: -20, c: 'normale', d: 90, apres: 0 },
+        { t: 'Étiqueter les affaires', j: -5, c: 'basse', d: 45, apres: 1 },
+        { t: 'Vérifier l\'attestation d\'assurance scolaire', j: -10, c: 'haute', d: 15 },
+        { t: 'Inscrire aux activités extrascolaires', j: -15, c: 'normale', d: 60 },
+        { t: 'Vérifier si un certificat médical est demandé pour les activités', j: -15, c: 'normale', d: 10 },
+        { t: 'Remplir les fiches de renseignements', j: 1, c: 'haute', d: 30 },
+        { t: 'Noter la date de la réunion de rentrée', j: 3, c: 'normale', d: 5 },
+        { t: 'Mettre à jour l\'agenda familial (activités, gardes, trajets)', j: 7, c: 'normale', d: 30 },
+      ] },
+    { id: 'freelance', nom: 'Freelance : prospection et facturation', dossier: 'Travail', couleur: 'rouge',
+      detail: 'Routines de l\'indépendant : prospecter, facturer, relancer.',
+      taches: [
+        { t: 'Contacter 3 prospects', c: 'haute', d: 60, rec: { type: 'semaine', n: 1, jours: [1] } },
+        { t: 'Publier un contenu professionnel', c: 'normale', d: 45, rec: { type: 'semaine', n: 1, jours: [3] } },
+        { t: 'Émettre les factures du mois', c: 'critique', d: 45, rec: { type: 'mois', n: 1, mode: 'ouvre', rang: -1 } },
+        { t: 'Relancer les factures échues', c: 'haute', d: 20, rec: { type: 'semaine', n: 1, jours: [5] } },
+        { t: 'Rapprocher les paiements reçus', c: 'normale', d: 30, rec: { type: 'mois', n: 1, mode: 'ouvre', rang: 1 } },
+        { t: 'Déclarer le chiffre d\'affaires (selon ta périodicité, à vérifier sur ton espace en ligne)', c: 'critique', d: 20 },
+        { t: 'Mettre à jour le tableau des devis en cours', c: 'normale', d: 20, rec: { type: 'semaine', n: 1, jours: [5] } },
+        { t: 'Sauvegarder les fichiers clients', c: 'normale', d: 15, rec: { type: 'mois', n: 1, mode: 'fin' } },
+      ] },
+    { id: 'maison', nom: 'Maison au fil des saisons', dossier: 'Personnel', couleur: 'vert',
+      detail: 'Entretien courant, une fois par an au bon moment.',
+      taches: [
+        { t: 'Tester les détecteurs de fumée', c: 'haute', d: 10, rec: { type: 'mois', n: 6, mode: 'date', jour: 1 } },
+        { t: 'Grand ménage de printemps', c: 'normale', d: 240, rec: { type: 'annee', n: 1, jour: 1, mois: 4 } },
+        { t: 'Nettoyer la terrasse ou le balcon', c: 'basse', d: 90, rec: { type: 'annee', n: 1, jour: 1, mois: 5 } },
+        { t: 'Préparer la maison avant les vacances (arrosage, volets, courrier)', c: 'normale', d: 60, rec: { type: 'annee', n: 1, jour: 1, mois: 7 } },
+        { t: 'Purger les radiateurs', c: 'normale', d: 45, rec: { type: 'annee', n: 1, jour: 1, mois: 10 } },
+        { t: 'Prendre rendez-vous pour l\'entretien du chauffage', c: 'haute', d: 15, rec: { type: 'annee', n: 1, jour: 15, mois: 9 } },
+        { t: 'Vérifier l\'isolation des portes et fenêtres', c: 'basse', d: 60, rec: { type: 'annee', n: 1, jour: 1, mois: 11 } },
+        { t: 'Rentrer le mobilier de jardin', c: 'basse', d: 45, rec: { type: 'annee', n: 1, jour: 15, mois: 10 } },
+      ] },
+    { id: 'etudiant', nom: 'Semestre étudiant', dossier: 'Études', couleur: 'prune',
+      detail: 'Inscriptions, partiels, rendus : départ = début du semestre.',
+      taches: [
+        { t: 'Récupérer l\'emploi du temps et le reporter dans l\'agenda', j: 0, c: 'haute', d: 30 },
+        { t: 'Faire l\'inscription pédagogique', j: 3, c: 'critique', d: 45 },
+        { t: 'Noter les dates des partiels et des rendus', j: 7, c: 'haute', d: 20 },
+        { t: 'Vérifier les démarches de bourse et de logement', j: 7, c: 'normale', d: 30 },
+        { t: 'Mettre ses cours au propre', c: 'normale', d: 60, rec: { type: 'semaine', n: 1, jours: [7] } },
+        { t: 'Préparer un planning de révision', j: 60, c: 'haute', d: 60 },
+        { t: 'Réserver une salle de travail pour le projet de groupe', j: 14, c: 'basse', d: 10 },
+      ] },
+  ],
+};

@@ -84,7 +84,9 @@
       if (memoDate.has(i)) return memoDate.get(i);
       let lo = Math.min(i, 2 * i) - 400, hi = Math.max(i, 2 * i) + 400;
       while (lo < hi) { const m = Math.floor((lo + hi) / 2); if (indexDecalage(m) >= i) hi = m; else lo = m + 1; }
-      const d = ajout(ORIGINE, lo);
+      // Les jours non ouvrés portent l'index du jour ouvré suivant : on avance jusqu'à lui.
+      let d = ajout(ORIGINE, lo);
+      while (!estOuvre(d)) d = ajout(d, 1);
       memoDate.set(i, d);
       return d;
     };
@@ -365,11 +367,34 @@
     return 1 + Math.round(((d - premier) / 86400000 - 3 + ((premier.getDay() + 6) % 7)) / 7);
   }
 
+  // ---------- Plannings ----------
+  // Ordre d'affichage : tâches hors section d'abord, puis chaque section dans son ordre.
+  function ordreAffichage(planning, taches) {
+    const miennes = taches.filter((t) => t.planningId === planning.id);
+    const ids = new Set((planning.sections || []).map((s) => s.id));
+    const l = miennes.filter((t) => !t.sectionId || !ids.has(t.sectionId));
+    for (const s of planning.sections || []) l.push(...miennes.filter((t) => t.sectionId === s.id));
+    return l;
+  }
+
+  // Modèle → sections et tâches neuves ; les liens du modèle (n° de ligne) deviennent des identifiants.
+  function instancierModele(modele, debut, uid) {
+    const sections = modele.sections.map((nom) => ({ id: uid(), nom, replie: false }));
+    const ids = modele.taches.map(() => uid());
+    const taches = modele.taches.map(([s, nom, duree, deps, opt = {}], i) => ({
+      id: ids[i], sectionId: sections[s]?.id ?? null, nom, debut: null, duree, avancement: 0,
+      deps: lireDeps(deps).deps.filter((x) => x.num >= 1 && x.num <= ids.length && x.num !== i + 1).map((x) => ({ id: ids[x.num - 1], type: x.type, decalage: x.decalage })),
+      plage: opt.plage ? { debut: ajout(debut, opt.plage[0]), fin: ajout(debut, opt.plage[1]) } : null,
+      reference: null, note: '',
+    }));
+    return { sections, taches };
+  }
+
   g.REGLES = {
     iso, versDate, ajout, ecart, jourSemaine, dateValide, estIso,
     paques, feries, feriesEntre, calendrier, finTache, ORIGINE,
     TYPES, NOMS_TYPES, lireDeps, ecrireDep, creeBoucle,
     ordonnancer, attendu, statut, avancementGlobal, ecartReference, etatPlage,
-    lireDate, lireSaisie, niveauEchelle, zoomPourAjuster, ZOOM_MIN, ZOOM_MAX, semaineIso,
+    lireDate, lireSaisie, ordreAffichage, instancierModele, niveauEchelle, zoomPourAjuster, ZOOM_MIN, ZOOM_MAX, semaineIso,
   };
 })(typeof window !== 'undefined' ? window : globalThis);
