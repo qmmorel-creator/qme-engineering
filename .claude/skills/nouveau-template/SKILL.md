@@ -57,6 +57,9 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
 
 ## 3. Intégrer au site et à Gumroad
 
+**Règle : chaque nouveau template entraîne la mise à jour de tout le site QM Engineering.** Liste à cocher
+complète dans `reference.md` § « Mise à jour du site » ; aucune PR de template sans elle.
+
 1. Captures pour le site (`assets/templates-<slug>-*.webp`, ordinateur 1600 px et téléphone 780 px, en
    mode démo sans bandeau) et couverture Gumroad 1280 × 720 (`assets/templates-<slug>-couverture.png`).
 2. Site : fiche dans `/templates/` (produit, galerie, FAQ si besoin), carte dans la section `#templates`
@@ -71,7 +74,10 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
    `product_id` : il doit être identique à `gumroad` dans `PRODUITS`. Ne publier la fiche qu'avec son accord explicite.
    Prérequis du compte (déjà fait une fois pour toutes) : un moyen de paiement connecté dans Gumroad
    (Settings → Payments), sinon `publish_product` est refusé.
-4. README : section « Templates payants » à compléter.
+4. Tout le site QM Engineering : appliquer la liste à cocher de `reference.md` § « Mise à jour du site »
+   (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
+   change pas à chaque template ; les références PDF seulement sur demande de Quentin.
+5. README : section « Templates payants » à compléter.
 
 ## 4. Préparer la communication
 
