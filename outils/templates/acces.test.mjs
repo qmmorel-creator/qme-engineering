@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { genererCode, verifierCode, traiter } from '../../netlify/lib/templates-acces.mjs';
+import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
 const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
@@ -56,4 +56,53 @@ test('deux codes ne partagent pas leurs données', async () => {
 test('sans secret configuré : 503', async () => {
   const r = await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: '{}' }), { secret: '', stockage: memoire() });
   assert.equal(r.status, 503);
+});
+
+const LICENCE = 'A1B2C3D4-E5F60718-293A4B5C-6D7E8F90';
+const appelLicence = (stockage, verifierLicence, code = LICENCE) => traiter(new Request('http://t/api/templates/connexion', {
+  method: 'POST', body: JSON.stringify({ code }),
+}), { secret: SECRET, stockage, verifierLicence });
+
+test('format des clés Gumroad', () => {
+  assert.ok(estLicence(LICENCE));
+  assert.ok(estLicence(` ${LICENCE.toLowerCase()} `));
+  assert.ok(!estLicence('REV-0000-0000-0000-0000'));
+  assert.ok(!estLicence('A1B2C3D4-E5F6'));
+});
+
+test('licence valide : jeton stable, mêmes données sur un autre appareil', async () => {
+  const s = memoire();
+  const r1 = await (await appelLicence(s, async () => ({ ok: true }))).json();
+  assert.equal(r1.produit, 'REV');
+  assert.equal(r1.url, '/templates/revision/');
+  assert.equal(r1.jeton, codeDepuisLicence(SECRET, 'REV', LICENCE));
+  assert.ok(verifierCode(SECRET, r1.jeton));
+  await appel(s, 'PUT', '/donnees', { code: r1.jeton, corps: { donnees: { a: 1 } } });
+  const r2 = await (await appelLicence(s, async () => ({ ok: true }), LICENCE.toLowerCase())).json();
+  assert.equal(r2.jeton, r1.jeton);
+  assert.equal(r2.donnees.a, 1);
+});
+
+test('licence inconnue 401, remboursée 403, Gumroad indisponible 502', async () => {
+  const s = memoire();
+  assert.equal((await appelLicence(s, async () => ({ ok: false, raison: 'inconnue' }))).status, 401);
+  assert.equal((await appelLicence(s, async () => ({ ok: false, raison: 'rembourse' }))).status, 403);
+  assert.equal((await appelLicence(s, async () => { throw new Error('réseau'); })).status, 502);
+});
+
+test('une licence ne sert jamais directement d\'en-tête de données', async () => {
+  const r = await appel(memoire(), 'GET', '/donnees', { code: LICENCE });
+  assert.equal(r.status, 401);
+});
+
+test('réponses Gumroad interprétées', async () => {
+  const faux = (statut, corps) => async () => new Response(JSON.stringify(corps), { status: statut });
+  assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(404, { success: false })), { ok: false, raison: 'inconnue' });
+  assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(200, { success: true, purchase: { refunded: false } })), { ok: true });
+  assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(200, { success: true, purchase: { refunded: true } })), { ok: false, raison: 'rembourse' });
+  await assert.rejects(verifierLicenceGumroad('p', LICENCE, faux(500, {})));
+});
+
+test('appel réel à Gumroad avec une clé inventée : refusée', { skip: !process.env.TEST_GUMROAD }, async () => {
+  assert.deepEqual(await verifierLicenceGumroad('zjO4cm1dUdBGh1IfYqmklw==', LICENCE), { ok: false, raison: 'inconnue' });
 });

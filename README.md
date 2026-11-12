@@ -76,6 +76,20 @@ Le dépôt est destiné au site web QME uniquement. La publication Netlify utili
 pour les fichiers statiques.
 Aucune fusion ni publication sans feu vert explicite de Quentin (déploiements Netlify facturés).
 
+## Idées et développement des templates
+
+Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
+`.claude/skills/nouveau-template/`. Ces chemins et `CLAUDE.md` ne sont pas servis par Netlify.
+
+## Pages du site
+
+- `/` et `/en/` : deux offres présentées à égalité en tête (« Sur mesure » et « Templates »), puis une
+  section `#templates` après l'offre sur mesure.
+- `/templates/` : catalogue des templates (indexé), fiche du planning de révision, fonctionnement, FAQ.
+- `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
+  pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
+
 ## Templates payants (`/templates/`)
 
 Applications web vendues à l'unité, ouvertes avec un **code d'accès** remis à l'achat. Les données de
@@ -90,13 +104,20 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
-**Codes d'accès.** Format `REV-XXXX-XXXX-XXXX-XXXX` : 40 bits aléatoires + 40 bits de signature HMAC.
+**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Gumroad envoie à
+l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie auprès de l'API Gumroad
+(`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
+convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :
+accès refusé à la connexion suivante. Prérequis Gumroad : clés de licence activées sur le produit.
+
+**Codes d'accès (hors Gumroad).** Format `REV-XXXX-XXXX-XXXX-XXXX` : 40 bits aléatoires + 40 bits de signature HMAC.
 Aucun code n'est stocké, la signature suffit à le valider.
 
 - Prérequis Netlify : variable **`TEMPLATES_SECRET`** (32 caractères minimum, ex. `openssl rand -hex 32`).
   Ne jamais la changer après les premières ventes : tous les codes deviendraient invalides et les données
   inaccessibles.
-- Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify).
+- Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify), ou sous
+  Windows `outils/templates/generer-codes-REV.bat` (double-clic, secret gardé à côté du script, historique CSV).
 - Révoquer un code : ajouter ses 8 caractères aléatoires (2e et 3e blocs, sans tiret) à la variable
   `TEMPLATES_CODES_REVOQUES` (liste séparée par des virgules).
 

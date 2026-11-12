@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="../assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="../assets/site.css?v=20261103">
+<link rel="stylesheet" href="../assets/site.css?v=20261112">
 </head>
 <body>
 
@@ -25,10 +25,11 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Main navigation">
-    <a href="#tools">The right tool</a>
+    <a href="#tools">Custom tools</a>
+    <a href="#templates">Templates</a>
     <a href="#references">References</a>
-    <a href="#videos">Videos</a>
     <a href="#method">Method</a>
+    <a class="login" href="../connexion/" data-goatcounter-click="nav-connexion-en" data-goatcounter-title="Sign in (menu, EN)">Sign in</a>
     <a class="cta" href="#contact">Discuss your project</a>
   </nav>
   <div class="lang" role="group" aria-label="Language / Langue">
@@ -48,25 +49,29 @@
 
 <section class="hero" id="home">
   <div class="hero-copy">
-    <p class="eyebrow">Custom tools · Websites and web apps · Automation · AI</p>
+    <p class="eyebrow">Custom tools · Ready-made templates · Automation · AI</p>
     <h1>Your business has its own processes. <mark>I build the tool that fits them.</mark></h1>
-    <p class="lead"><strong>Whatever your trade, whatever your need, I design a custom tool.</strong> Web app, website, automation or no-code workspace: we start from the way you work, not from off-the-shelf software.</p>
+    <p class="lead"><strong>For your business, I design a custom tool</strong>: web app, website, automation or no-code workspace, built from the way you work. <strong>For everyday needs, ready-made templates</strong>, built with the same care and opened online in a minute.</p>
     <div class="actions">
       <a class="btn primary" href="#contact">Describe my need</a>
-      <a class="btn" href="#references">See tools I have built</a>
+      <a class="btn" href="#templates">See the templates</a>
     </div>
     <p class="where">Remote, based in France.</p>
   </div>
-  <div class="before-after">
-    <div class="ba today">
-      <span class="label">Today</span>
-      <p>Duplicate spreadsheets, information lost in emails, data typed twice, forgotten follow-ups, dashboards rebuilt by hand.</p>
-    </div>
-    <div class="ba tomorrow">
-      <span class="label">With your tool</span>
-      <p>One up-to-date source, tasks that trigger themselves, a view for each role, figures you read at a glance.</p>
-    </div>
-  </div>
+  <nav class="portes" aria-label="The two QME offers">
+    <a class="porte sur-mesure" href="#tools">
+      <span class="label">For your business</span>
+      <b>Custom tools</b>
+      <p>A tool designed for your trade and processes: one up-to-date source, tasks that trigger themselves, a view for each role.</p>
+      <span class="fleche">See custom tools</span>
+    </a>
+    <a class="porte templates" href="#templates">
+      <span class="label">For you, right now</span>
+      <b>Templates</b>
+      <p>Ready-made tools, opened online with a key, on all your devices. One-time purchase, from &euro;14.90.</p>
+      <span class="fleche">See the templates</span>
+    </a>
+  </nav>
 </section>
 
 <section class="film" aria-label="QME video presentation">
@@ -79,7 +84,7 @@
 
 <section class="section" id="tools">
   <div class="section-head">
-    <h2>The right tool, chosen for your need</h2>
+    <h2>Custom tools: the right tool, chosen for your need</h2>
     <p>I do not sell software: each tool is designed for one client and their trade. We look at the way you work, what the team already uses and the budget, then pick the simplest solution that does the job.</p>
   </div>
   <div class="families">
@@ -104,6 +109,36 @@
       <small>Apps Script · Power Automate · Make · Claude, ChatGPT · MCP connectors</small>
     </article>
   </div>
+</section>
+
+<section class="section" id="templates">
+  <div class="section-head">
+    <h2>Ready-made templates</h2>
+    <p>Everyday tools built with the same standards as custom work: they open in the browser with a key received at purchase, install on your phone and keep your data online. Templates are currently available <strong>in French only</strong>.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="../assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Study planner on a computer (French interface): chapters to review today, with hard, medium, easy buttons and an exam countdown">
+      <img class="tel" src="../assets/templates-revision-tel.webp?v=20261112" width="780" height="1328" loading="lazy" alt="The same planner on a phone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Students · exams · in French</span>
+      <h3>Study planner</h3>
+      <p>Each chapter comes back at the right time: day 1, 3, 7, 14 then 30, adjusted to your answers and aligned with the exam date.</p>
+      <ul class="feature-points">
+        <li>12 pre-filled French curricula, from middle school to civil-service exams</li>
+        <li>12 study methods, one suggested for each session</li>
+        <li>4-week schedule and progress report</li>
+        <li>Computer, tablet and phone, kept in sync</li>
+      </ul>
+      <div class="prix"><b>€14.90</b><span>One-time purchase, no subscription</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-revision" data-goatcounter-click="achat-revision-accueil-en" data-goatcounter-title="Buy: study planner (EN home)">Buy</a>
+        <a class="btn" href="../templates/revision/?demo" data-goatcounter-click="demo-revision-accueil-en" data-goatcounter-title="Demo: study planner (EN home)">Try the demo</a>
+      </div>
+    </div>
+  </article>
+  <div class="a-venir"><b>Coming next:</b><span>Household budget</span><span>Vegetable garden calendar</span><span>Wedding planner</span><a class="feature-link" href="../templates/">All templates (French)</a></div>
 </section>
 
 <section class="section" id="references">
@@ -314,7 +349,7 @@
 
 <footer>
   <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Cookie-free analytics (GoatCounter)</span>
-  <a href="#home">Back to top</a>
+  <span><a href="../templates/">Templates</a> · <a href="../connexion/">Sign in</a> · <a href="#home">Back to top</a></span>
 </footer>
 
 <script src="../assets/site.js?v=20261028c" defer></script>
