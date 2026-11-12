@@ -3,6 +3,7 @@
   'use strict';
   const B = window.BASE;
   const API = '/api/templates';
+  const PRODUIT = 'REV';
   const CLE_CODE = 'qme-rev-code';
   const CLE_CACHE = 'qme-rev-cache';
   const CLE_DEMO = 'qme-rev-demo';
@@ -233,6 +234,8 @@
     const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
     if (statut === 401) throw new Error('Clé ou code inconnu. Copie-le depuis l\'e-mail reçu après ton achat.');
     if (statut !== 200) throw new Error(corps?.erreur || 'Le service ne répond pas. Réessaie dans un instant.');
+    // Clé d'un autre template : ne jamais écrire nos données dans son espace.
+    if (corps.produit !== PRODUIT) throw new Error('Cette clé ouvre un autre template QME : utilise la page qm-engineering.fr/connexion/.');
     session.code = code; session.jeton = corps.jeton; session.demo = false; session.memoriser = memoriser;
     stock.suppr(CLE_CODE);
     stock.ecrire(CLE_CODE, code, !memoriser);
@@ -986,6 +989,7 @@
       const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
       if (statut === 401 || statut === 403) return deconnecter(corps?.erreur || 'Ce code d\'accès n\'est plus valide.');
       if (statut !== 200) throw new Error();
+      if (corps.produit !== PRODUIT) return deconnecter('Cette clé ouvre un autre template QME.');
       session.jeton = corps.jeton;
       chargerDepuisServeur(corps.donnees);
     } catch {

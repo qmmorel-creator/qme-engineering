@@ -72,18 +72,19 @@ menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.
 document.getElementById('year').textContent=new Date().getFullYear();
 
 // Portail : vérifie la clé, l'enregistre pour le template concerné, puis ouvre celui-ci.
-const PRODUITS={REV:{nom:'Planning de révision',url:'/templates/revision/',cle:'qme-rev-code'}};
+const PRODUITS={REV:{nom:'Planning de révision',url:'/templates/revision/',cle:'qme-rev-code'},CRA:{nom:'Compte rendu et plan d’actions',url:'/templates/compte-rendu/',cle:'qme-cra-code'},PRX:{nom:'Coût de revient et prix par client',url:'/templates/cout-revient/',cle:'qme-prx-code'},TJM:{nom:'Calculateur de TJM freelance',url:'/templates/tjm/',cle:'qme-tjm-code'},MCE:{nom:'Livre recettes-dépenses micro-entreprise',url:'/templates/micro-entreprise/',cle:'qme-mce-code'},BCM:{nom:'Budget commun',url:'/templates/budget-commun/',cle:'qme-bcm-code'}};
+const PREFIXES=Object.keys(PRODUITS),prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
 const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
 const lire=(c)=>{try{const v=localStorage.getItem(c)??sessionStorage.getItem(c);return v?JSON.parse(v):null;}catch{return null;}};
 const deja=Object.entries(PRODUITS).filter(([,p])=>{const v=lire(p.cle);return v&&v!=='DEMO';});
 if(deja.length){document.getElementById('deja').hidden=false;document.getElementById('mes-templates').innerHTML=deja.map(([,p])=>`<li><a href="${p.url}">${p.nom}<span aria-hidden="true">→</span></a></li>`).join('');}
 function formater(v){const n=v.toUpperCase().replace(/[^0-9A-Z]/g,'');
-  if(n.startsWith('REV')){const r=n.slice(0,19);return[r.slice(0,3),r.slice(3,7),r.slice(7,11),r.slice(11,15),r.slice(15,19)].filter(Boolean).join('-');}
+  if(prefixe(n)){const r=n.slice(0,19);return[r.slice(0,3),r.slice(3,7),r.slice(7,11),r.slice(11,15),r.slice(15,19)].filter(Boolean).join('-');}
   const l=n.slice(0,32);return[l.slice(0,8),l.slice(8,16),l.slice(16,24),l.slice(24,32)].filter(Boolean).join('-');}
 champ.addEventListener('input',()=>{const fin=champ.selectionStart===champ.value.length;champ.value=formater(champ.value);if(fin)champ.setSelectionRange(champ.value.length,champ.value.length);});
 form.addEventListener('submit',async(e)=>{
   e.preventDefault();const code=formater(champ.value),n=code.replace(/-/g,'');
-  if(!((n.startsWith('REV')&&n.length===19)||/^[0-9A-F]{32}$/.test(n))){erreur.textContent='Clé incomplète : 4 blocs de 8 caractères, à copier depuis l’e-mail de Gumroad.';champ.focus();return;}
+  if(!((prefixe(n)&&n.length===19)||/^[0-9A-F]{32}$/.test(n))){erreur.textContent='Clé incomplète : 4 blocs de 8 caractères, à copier depuis l’e-mail de Gumroad.';champ.focus();return;}
   bouton.disabled=true;bouton.textContent='Vérification…';erreur.textContent='';
   try{
     const r=await fetch('/api/templates/connexion',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code})});

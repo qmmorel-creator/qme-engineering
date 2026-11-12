@@ -105,17 +105,17 @@ déjà).
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | idée | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | idée | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | idée | 15 € | M | P1 | Backlog Quentin n° 02 |
-| T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | idée | 15 € | S | P1 | Backlog Quentin n° 04 |
+| T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en cours | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | idée | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | idée | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | idée | 29 € | M | P1 | Backlog Quentin n° 11 |
-| T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | idée | 25 € | S | P1 | Backlog Quentin n° 12 |
+| T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en cours | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
-| T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | idée | 12 € | S | P1 | Backlog Quentin n° 15 |
-| T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | idée | 25 € | S | P1 | Backlog Quentin n° 16 |
+| T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en cours | 12 € | S | P1 | Backlog Quentin n° 15 |
+| T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en cours | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | idée | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | idée | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
@@ -139,7 +139,7 @@ déjà).
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | idée | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
-| T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | idée | 15 € | S | P1 | Backlog Quentin n° 44 |
+| T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en cours | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | idée | 25 € | M | P1 | Backlog Quentin n° 49 |
 
@@ -386,6 +386,141 @@ prise, en % de déficit ou d'excédent), moyenne sur 7 jours, macros, courbe de 
 sous un plancher raisonnable), dans l'application et le guide ; taille de la base (charger à la demande,
 recherche rapide insensible aux accents) ; valider la palette des graphiques ; **RGPD** : poids et repas
 sont des données de santé de l'acheteur, hébergées en ligne par QME (voir les règles en tête). Taille L.
+
+---
+
+## Première vague (P1 de taille S) · lancée le 12/11/2026
+
+Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
+(noms et prix du tableau de bord). Socle commun : `templates/revision/`. Chaque application vérifie que la
+clé saisie correspond bien à son produit (`corps.produit`), sinon elle refuse : une clé d'un autre template
+ne doit jamais écrire dans ses données.
+
+| N° | Slug | Préfixe | Nom de vente | Prix |
+|----|------|---------|--------------|------|
+| T31 | `compte-rendu` | CRA | Compte rendu et plan d'actions | 15 € |
+| T37 | `cout-revient` | PRX | Coût de revient et prix par client | 25 € |
+| T40 | `tjm` | TJM | Calculateur de TJM freelance | 12 € |
+| T41 | `micro-entreprise` | MCE | Livre recettes-dépenses micro-entreprise | 25 € |
+| T65 | `budget-commun` | BCM | Budget commun | 15 € |
+
+### T31 · Compte rendu et plan d'actions
+
+**Pour qui** : managers, chefs de projet, responsables d'association, toute personne qui anime des
+réunions récurrentes et perd le fil des actions décidées.
+
+**Écrans** :
+- **Réunions** : liste par série (ex. « Point d'équipe du lundi »), nouvelle réunion depuis un modèle ;
+- **Compte rendu** : date, participants (carnet de personnes), ordre du jour, notes par point, décisions,
+  actions ; impression propre (A4) et copie en texte pour un e-mail ;
+- **Actions** : toutes les actions ouvertes de toutes les réunions, par personne, statut (à faire, en
+  cours, fait, abandonnée), échéance, retard ; filtre « mes actions » ;
+- **Personnes** : carnet des participants (nom, rôle), sans coordonnées obligatoires.
+
+**Saisie rapide d'une action** dans le compte rendu : `Marie : envoyer le devis avant vendredi` →
+responsable, quoi, échéance. Dates en français : jour de la semaine, `demain`, `fin du mois`, `J+7`,
+`20/11`. Règle pure testée.
+
+**Mécanique clé** : à l'ouverture d'une nouvelle réunion d'une série, les actions encore ouvertes de la
+précédente sont reprises en « suivi des actions » en tête du compte rendu.
+
+**Base intégrée** : 8 modèles de compte rendu (point d'équipe hebdomadaire, comité de pilotage, réunion de
+chantier, point client, rétrospective, réunion de lancement, conseil d'administration d'association,
+entretien individuel), chacun avec ordre du jour type et rubriques.
+
+**Risques** : **RGPD** (noms de participants : rappel dans l'aide) ; exemples fictifs. Taille S.
+
+### T37 · Coût de revient et prix par client
+
+**Pour qui** : prestataires de services, freelances, petites agences qui ne savent pas si un client est
+rentable.
+
+**Écrans** :
+- **Charges** : charges fixes (mensuelles ou annuelles), rémunération visée, cotisations saisies par
+  l'utilisateur (montant ou pourcentage) ;
+- **Capacité** : jours ouvrés de l'année **calculés** (week-ends et jours fériés français calculés), moins
+  congés, moins part non facturable (prospection, administratif) → heures et jours facturables ;
+- **Coût de revient** : coût par heure et par jour = charges ÷ temps facturable ; prix plancher (coût) et
+  prix conseillé (coût + marge cible) ;
+- **Clients** : par client ou projet, temps passé, frais directs, montant facturé → marge, taux horaire
+  réel, écart au prix plancher ;
+- **Tableau de bord** : rentabilité par client (classement, clients sous le plancher), répartition du temps.
+
+**Base intégrée** : catalogue d'une trentaine de postes de charges types d'un prestataire (sans montants),
+deux structures types (indépendant seul, agence de 3 personnes).
+
+**Risques** : aucun taux de charges sociales en base (saisis par l'utilisateur) ; argent : avertissement.
+Taille S.
+
+### T40 · Calculateur de TJM freelance
+
+**Pour qui** : freelances qui démarrent ou révisent leur tarif.
+
+**Écrans** :
+- **Objectif** : revenu net visé (mensuel ou annuel), frais professionnels (liste type), marge de sécurité ;
+- **Temps** : jours ouvrés **calculés** pour l'année choisie (fériés calculés), congés, jours non
+  facturables → jours facturables ;
+- **Statut** : micro-entreprise (prestations BIC, BNC, BNC Cipav), avec cotisations, contribution à la
+  formation professionnelle et option versement libératoire ; société (SASU, EURL) : taux de charges
+  **saisi par l'utilisateur**, aucune valeur intégrée ;
+- **Résultat** : TJM minimum et TJM conseillé, chiffre d'affaires annuel nécessaire, alertes de plafond
+  (83 600 € en services) et de franchise de TVA (37 500 € / 41 250 €) ;
+- **Scénarios** : jusqu'à 3 scénarios comparés côte à côte ; courbe du TJM selon les jours facturables.
+
+**Base intégrée** (**daté**, source et date affichées, valeurs modifiables par l'utilisateur) : taux
+micro-entreprise au 1er janvier 2026 : cotisations 21,2 % (prestations BIC), 25,6 % (BNC), 23,2 % (BNC
+Cipav, à revérifier) ; versement libératoire 1,7 % (BIC services), 2,2 % (BNC) ; formation professionnelle
+0,1 % (commerçants), 0,2 % (libéraux), 0,3 % (artisans) ; plafond 83 600 € (services) ; franchise de TVA
+37 500 € (seuil majoré 41 250 €). Sources : urssaf.fr, autoentrepreneur.urssaf.fr, economie.gouv.fr
+(consultés le 12/11/2026). Mise à jour annuelle obligatoire.
+
+**Risques** : **daté**, **fiscal** (outil d'aide, pas un conseil). Taille S.
+
+### T41 · Livre recettes-dépenses micro-entreprise
+
+**Pour qui** : micro-entrepreneurs qui tiennent leur livre des recettes sur papier ou tableur.
+
+**Écrans** :
+- **Recettes** : livre chronologique : date d'encaissement, client, nature, montant, mode de règlement,
+  référence de la pièce justificative ; catégorie d'activité (vente, services BIC, BNC) ;
+- **Achats** : registre des achats (activités de vente) ;
+- **Dépenses** : suivi des dépenses de l'activité, avec la mention qu'en micro-entreprise elles ne sont pas
+  déductibles (abattement forfaitaire) ;
+- **Déclarations** : chiffre d'affaires par mois ou par trimestre (périodicité choisie), cotisations
+  estimées par catégorie, versement libératoire et formation professionnelle si choisis ; aucune date
+  limite de déclaration en base (à vérifier sur autoentrepreneur.urssaf.fr) ;
+- **Seuils** : progression vers le plafond (203 100 € vente, 83 600 € services, prorata la première année)
+  et vers la franchise de TVA (seuils de base et majorés), alertes ;
+- **Export** : CSV annuel et impression du livre des recettes.
+
+**Base intégrée** (**daté**, comme T40) : taux 2026 : cotisations 12,3 % (vente), 21,2 % (services BIC),
+25,6 % (BNC), 23,2 % (BNC Cipav) ; versement libératoire 1 %, 1,7 %, 2,2 % ; formation professionnelle
+0,1 %, 0,2 %, 0,3 % ; plafonds 203 100 € et 83 600 € ; franchise de TVA 85 000 € / 93 500 € (vente) et
+37 500 € / 41 250 € (services). Taux réduit de l'ACRE : saisi par l'utilisateur (règles modifiées au
+1er juillet 2026). Mêmes sources que T40.
+
+**Risques** : **daté**, **comptable** (pas un logiciel certifié), **fiscal**. Taille S.
+
+### T65 · Budget commun
+
+**Pour qui** : couples, colocataires, familles recomposées qui partagent des dépenses.
+
+**Écrans** :
+- **Membres** : 2 à 6 personnes, revenus facultatifs (pour la répartition au prorata) ;
+- **Dépenses** : qui a payé, montant, date, catégorie, répartition (égale, au prorata des revenus, en
+  parts, en montants personnalisés) ;
+- **Récurrentes** : loyer, énergie, abonnements, générées chaque mois ;
+- **Soldes** : qui doit combien à qui, **équilibrage** avec le moins de virements possible, virements
+  enregistrés ;
+- **Mois** : bilan par catégorie et par personne, graphique.
+
+**Base intégrée** : catégories de dépenses communes, trois modèles de foyer (couple, colocation à trois,
+famille), règles de répartition expliquées.
+
+**Partage** : une seule clé ; chaque membre ouvre l'application sur son appareil avec la même clé (mêmes
+données). Le dire clairement : partager la clé donne un accès complet.
+
+**Risques** : argent : avertissement ; données du foyer seulement. Taille S.
 
 ---
 

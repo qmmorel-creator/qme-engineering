@@ -5,7 +5,7 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { traiter, genererCode } from '../../netlify/lib/templates-acces.mjs';
+import { traiter, genererCode, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const SECRET = process.env.TEMPLATES_SECRET || 'secret-de-developpement-local-uniquement-0123456789';
@@ -34,6 +34,5 @@ createServer(async (req, res) => {
     res.end(contenu);
   } catch { res.writeHead(404); res.end('Introuvable'); }
 }).listen(PORT, () => {
-  console.log(`http://localhost:${PORT}/templates/revision/`);
-  console.log(`Code de test : ${genererCode(SECRET, 'REV')}`);
+  for (const [p, { url }] of Object.entries(PRODUITS)) console.log(`http://localhost:${PORT}${url}  code de test : ${genererCode(SECRET, p)}`);
 });

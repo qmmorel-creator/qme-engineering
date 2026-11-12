@@ -13,6 +13,11 @@ export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockf
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
+  CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/' },
+  PRX: { nom: 'Coût de revient et prix par client', url: '/templates/cout-revient/' },
+  TJM: { nom: 'Calculateur de TJM freelance', url: '/templates/tjm/' },
+  MCE: { nom: 'Livre recettes-dépenses micro-entreprise', url: '/templates/micro-entreprise/' },
+  BCM: { nom: 'Budget commun', url: '/templates/budget-commun/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
