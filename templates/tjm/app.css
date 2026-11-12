@@ -198,7 +198,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .statut-choix input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:3px}
 .taux-detail{max-width:460px}
 .tableau tr.total td{font-weight:800;border-top:2px solid var(--encre);background:#F6F1E3}
-.alerte-fictif{border-left-color:var(--rouge)}
+.aide.alerte-fictif{border-left-color:var(--rouge)}
 
 .synthese{position:sticky;top:88px;border:2px solid var(--encre);background:var(--surface);box-shadow:6px 6px 0 var(--encre);padding:18px;display:flex;flex-direction:column;gap:12px}
 .synthese .surtitre{margin:0;overflow-wrap:anywhere}

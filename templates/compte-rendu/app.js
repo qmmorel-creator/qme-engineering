@@ -1055,7 +1055,7 @@
     const el = e.target.closest('[data-action]');
     if (!el) return;
     const { action: act, id } = el.dataset;
-    const r = reunion(reunionId);
+    const r = E ? reunion(reunionId) : null;
     switch (act) {
       case 'demo': ouvrirDemo(); break;
       case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
@@ -1099,7 +1099,7 @@
     const el = e.target;
     if (el.id === 'saisie-action') { ajuster(el); apercuSaisie(); return; }
     const champ = el.dataset?.maj;
-    if (!champ) return;
+    if (!champ || !E) return;
     const r = reunion(reunionId);
     const p = r?.points.find((x) => x.id === el.dataset.id);
     if (!p) return;
@@ -1117,7 +1117,7 @@
     const f = e.target.closest('form[data-form]');
     if (!f) return;
     e.preventDefault();
-    const r = reunion(reunionId);
+    const r = E ? reunion(reunionId) : null;
     if (!r) return;
     const texte = String(new FormData(f).get('texte') || '').trim();
     const sorte = f.dataset.form;
