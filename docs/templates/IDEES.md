@@ -43,6 +43,13 @@ Non publié sur le site (chemin bloqué dans `netlify.toml`).
 | T20 | Suivi d'un animal de compagnie | idée | 9,90 € | S | Liste initiale |
 | T21 | Préparation de voyage | idée | 9,90 € | S | Liste initiale |
 | T22 | Tableau de bord annuel (objectifs trimestriels) | idée | 12,90 € | M | Liste initiale |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | idée | 39,90 € | L | Projets Coda de Quentin, 12/11/2026 |
+| T24 | Circuit de visa des documents (bureau d'études) | idée | 29,90 € | M | Projets Coda de Quentin, 12/11/2026 |
+| T25 | Registre des non-conformités et actions correctives | idée | 19,90 € | M | Projets Coda de Quentin, 12/11/2026 |
+| T26 | Notes de frais | idée | 12,90 € | S | Projets Coda de Quentin, 12/11/2026 |
+| T27 | Gestion locative (biens, locataires, loyers) | idée | 19,90 € | M | Projets Coda de Quentin, 12/11/2026 |
+| T28 | CRM freelance (clients, projets, factures) | idée | 19,90 € | M | Projets Coda de Quentin, 12/11/2026 |
+| T29 | Gestion de flotte de véhicules (réservations, entretien) | idée | 14,90 € | M | Projets Coda de Quentin, 12/11/2026 |
 
 Taille : S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus. Prix visés indicatifs, à
 confirmer par Quentin avant la création de chaque fiche Gumroad.
@@ -188,3 +195,26 @@ accents) ; valider la palette des graphiques. Taille L.
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat |
 | T21 | Préparation de voyage : itinéraire, budget, dépenses partagées | Listes de bagages par type de séjour |
 | T22 | Tableau de bord annuel : objectifs trimestriels et score | Domaines de vie, méthode OKR |
+
+---
+
+## T23 à T29 · Idées tirées des projets Coda de Quentin (12/11/2026)
+
+Sources : documents de l'espace Coda « QM Espace PRO ». Ne reprendre que la **structure** : les documents
+PCH Vallabrègues et VISA Ingénierie contiennent des données réelles de la CNR et de ses titulaires, qui ne
+doivent pas apparaître dans un template.
+
+| N° | Idée | Base intégrée prévue | Source Coda |
+|----|------|----------------------|-------------|
+| T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | PCH Vallabrègues – Suivi Projet |
+| T24 | Circuit de visa des documents : registre des documents soumis, indices de révision, avis (sans observation, avec observations, refusé), relances et délais, vue chef de projet | Types de documents par lot, codes de visa, délais types de réponse | VISA Ingénierie – Bureau d'Études |
+| T25 | Registre des non-conformités : constat, gravité, cause, action corrective, vérification, clôture, indicateurs | Typologie des écarts, méthode des 5 pourquoi, grille de gravité | PCH Vallabrègues (non-conformités fabrication et réalisation) |
+| T26 | Notes de frais : saisie, justificatifs, statut de remboursement, export mensuel | Catégories de frais ; barème kilométrique **saisi par l'utilisateur** (donnée qui se périme) | MasterPerso (Suivi des notes de frais) |
+| T27 | Gestion locative : biens, baux, quittances, révision du loyer, charges, rendement | Modèles de quittance et de relance, échéancier des révisions ; indice IRL **saisi par l'utilisateur** (donnée qui se périme) | Gestion Locative – Biens, Locataires, Loyers |
+| T28 | CRM freelance : prospects, clients, projets, devis et factures, encaissements, chiffre d'affaires | Étapes de vente, modèles de devis et de facture ; mentions et taux de TVA à faire vérifier par l'utilisateur | CRM Freelance, Prospection Commerciale |
+| T29 | Gestion de flotte : véhicules, conducteurs, réservations, kilométrage, entretiens, coûts | Intervalles d'entretien types (communs avec T10) | Autofleet Manager |
+
+T23, T24 et T25 visent une clientèle professionnelle (maîtres d'œuvre, bureaux d'études, PME du BTP et de
+l'industrie) et s'appuient sur l'expérience de chef de projet de Quentin : ce sont les plus différenciants.
+T25 peut sortir d'abord, comme produit d'appel de T23.
+
