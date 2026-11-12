@@ -66,8 +66,9 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,
    bouton « Ouvrir mon … »), `add_content_link` vers `https://qm-engineering.fr/connexion/`,
    `add_cover` une fois l'image en ligne. Reporter l'identifiant produit dans `PRODUITS`.
-   **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : sans elle,
-   l'acheteur ne reçoit rien. Ne publier la fiche qu'avec son accord explicite.
+   **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : onglet Content →
+   Insert → License key, sans multi-postes. Sans ce bloc, l'acheteur ne reçoit aucune clé. Le bloc affiche le
+   `product_id` : il doit être identique à `gumroad` dans `PRODUITS`. Ne publier la fiche qu'avec son accord explicite.
 4. README : section « Templates payants » à compléter.
 
 ## 4. Publier
