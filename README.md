@@ -180,7 +180,8 @@ Aucun code n'est stocké, la signature suffit à le valider.
   Ne jamais la changer après les premières ventes : tous les codes deviendraient invalides et les données
   inaccessibles.
 - Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify), ou sous
-  Windows `outils/templates/generer-codes-REV.bat` (double-clic, secret gardé à côté du script, historique CSV).
+  Windows `outils/templates/generer-codes.bat` (double-clic, choix du template par son préfixe — HBT, GNT, TCH… —,
+  secret gardé à côté du script, historique CSV ; `generer-codes-REV.bat` ne fait que les codes REV).
 - Révoquer un code : ajouter ses 8 caractères aléatoires (2e et 3e blocs, sans tiret) à la variable
   `TEMPLATES_CODES_REVOQUES` (liste séparée par des virgules).
 
