@@ -131,7 +131,7 @@ dans le dossier Drive « QME – Publications Instagram » (`1qy8D-0qM7ggs_Nz3ED
 Images (`1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`), Textes (`1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`) et Kit de marque.
 Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc légende (ID) ·
 Doc légende (lien) · Fichier(s) · Texte alternatif · Publié le · URL publication · Remarque · Format
-(`Image`, `Carrousel`, `Reel`) · LinkedIn associé · ID Posty (inutilisé).
+(`Image`, `Carrousel`, `Reel`) · LinkedIn associé · IDs Drive des médias (dans l'ordre ; reel : `ID vidéo | couverture : ID image`).
 
 **Publication par Instinct** (comme LinkedIn), routine « Publications Instagram depuis Drive » (prompt :
 `docs/templates/communication/instagram/PROMPT-INSTINCT.md`) : passages à 18h00, 18h15 et 18h30, il publie
@@ -149,7 +149,8 @@ de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si aban
 4. **Médias** dans Images : `IG-nn-<slug>-1.png` … (carrousel 1080 × 1350) ou `IG-nn-<slug>.mp4` +
    `IG-nn-<slug>-couverture.png` (reel 1080 × 1920, `video.mjs`). Colonne I = noms séparés par « | »
    dans l'ordre (reel : `x.mp4 | couverture : y.png`). Colonne J = un texte alternatif par image,
-   numérotés et séparés par « | ».
+   numérotés et séparés par « | ». Colonne P = les IDs Drive de ces fichiers, dans le même ordre :
+   Instinct prend les fichiers par ID. Un fichier remplacé est renommé `OBSOLETE-…`, jamais réutilisé.
 5. Statut `Prêt` ; donner à Quentin l'ID, la date, les liens du doc et des visuels pour relecture.
 6. **Seulement après l'accord explicite de Quentin** : statut `Programmé`. Instinct publie à l'heure.
 7. Ne jamais publier soi-même ni écrire `Publié` : c'est Instinct qui le fait.

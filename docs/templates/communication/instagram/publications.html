@@ -55,6 +55,7 @@ h1,h2,p{letter-spacing:-.025em}
 .cta .liste{margin-top:60px;display:flex;flex-direction:column;gap:24px;font-size:40px;font-weight:600}
 .cta .liste div{display:flex;gap:22px;align-items:center}
 .cta .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+.cta .plus{position:absolute;left:84px;right:84px;top:800px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
 .cta .bouton{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
 .cta .bouton b{font-size:52px;font-weight:800;letter-spacing:-.025em}
 .cta .bouton span{font-size:32px;font-weight:600;color:var(--jaune)}
@@ -92,10 +93,33 @@ h1,h2,p{letter-spacing:-.025em}
 .appareils .ordi{width:600px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre);background:var(--surface)}
 .appareils .ordi img{display:block;width:100%}
 .appareils .tel{width:250px;box-shadow:10px 10px 0 var(--encre);border-width:5px}
+
+/* IG-02 template ou sur mesure */
+.choix .bandeau{position:absolute;left:0;right:0;top:0;height:300px;padding:84px 84px 0}
+.choix .bandeau h2{font-size:68px;font-weight:800;line-height:1.02;margin-top:18px;max-width:800px}
+.choix .pts{position:absolute;left:84px;top:400px;width:500px;display:flex;flex-direction:column;gap:34px}
+.choix .pts.large{width:auto;right:84px;top:380px;gap:26px}
+.choix .pts div{border-left:10px solid var(--encre);padding-left:24px;font-size:30px;line-height:1.3;color:var(--texte-2)}
+.choix .pts b{display:block;color:var(--encre);font-size:40px;font-weight:800;letter-spacing:-.025em;margin-bottom:4px}
+.choix .capture{position:absolute;left:84px;right:84px;top:800px;height:400px;overflow:hidden;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--bleu)}
+.choix .capture img{width:100%;display:block;margin-top:-52px}
+.grille4{position:absolute;left:84px;right:84px;top:390px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grille4 div{background:var(--surface);border:4px solid var(--encre);border-top-width:18px;padding:26px 26px 30px;font-size:30px;line-height:1.3;color:var(--texte-2)}
+.grille4 b{display:block;color:var(--encre);font-size:40px;font-weight:800;letter-spacing:-.025em;margin-bottom:8px}
+.duree{position:absolute;left:84px;right:84px;top:900px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.duree span{background:var(--jaune);border:4px solid var(--encre);padding:22px 26px;font-size:28px;font-weight:600}
+.duree b{display:block;font-size:52px;font-weight:800;letter-spacing:-.025em}
+.cta.rouge{background:var(--rouge);color:#fff}
+.cta.rouge .liste i{background:#fff}
+.cta.rouge .bouton{background:var(--encre)}
+.cta.rouge .pied{color:#fff}
+.cta.rouge .compteur{color:var(--encre)}
+#IG-02-template-ou-sur-mesure-1 h1{font-size:108px}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
+  <g id="symbole-clair"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#F5B400"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></g>
   <g id="symbole"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></g>
 </defs></svg>
 
@@ -150,20 +174,70 @@ h1,h2,p{letter-spacing:-.025em}
     <h2>Chaque template a sa démo libre.</h2>
     <div class="liste"><div><i></i>Sans inscription, données d'exemple</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
   </div>
+  <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils : <b>je le construis sur mesure.</b></div>
   <div class="bouton"><b>Lien en bio</b><span>10 templates · dès 12 €</span></div>
-  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr</span></div>
 </section>
 
-<!-- ============ IG-02 · Coulisses ============ -->
-<section class="cadre" id="IG-02-demos-fausses">
-  <div class="texte">
-    <p class="sourcil">Coulisses</p>
-    <h1>Toutes mes démos sont fausses. C'est voulu.</h1>
-    <p class="c">Les vraies données ne m'appartiennent pas. Et un cas inventé montre mieux la règle qu'un cas réel.</p>
+<!-- ============ IG-02 · Template ou sur mesure ============ -->
+<section class="cadre couv" id="IG-02-template-ou-sur-mesure-1">
+  <div class="fa" style="background:var(--jaune)"></div><div class="fb" style="background:var(--rouge)"></div><div class="fc"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--bleu)">Template ou sur mesure ?</p>
+    <h1 style="margin-top:30px">Prêt à l'emploi, ou fait <mark>pour vous</mark> ?</h1>
+    <p class="sous">Deux façons de s'équiper, selon le besoin.</p>
   </div>
-  <div class="bandeau-ex"><span>Exemple</span><span>données fictives</span></div>
-  <div class="rond"></div>
-  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span style="color:var(--discret);font-weight:500;font-size:24px">Quentin Morel Engineering</span></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre choix" id="IG-02-template-ou-sur-mesure-2">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Le template</p><h2>Pour les usages courants.</h2></div>
+  <span class="compteur">2 / 5</span>
+  <div class="pts">
+    <div><b>Prêt tout de suite</b>Modèles, catégories et calculs déjà en place.</div>
+    <div><b>Achat unique</b>Sans abonnement, de 12 à 45 €.</div>
+    <div><b>Démo libre</b>Essayé avant d'être acheté.</div>
+    <div><b>Partout</b>Ordinateur, tablette, téléphone.</div>
+  </div>
+  <div class="tel" style="position:absolute;right:84px;top:400px;width:380px"><img src="../../../../assets/templates-compte-rendu-tel.webp" alt=""></div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre choix" id="IG-02-template-ou-sur-mesure-3">
+  <div class="bandeau" style="background:var(--bleu);color:#fff"><p class="sourcil" style="opacity:.85">Le sur mesure</p><h2>Quand votre métier a ses règles.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="pts large">
+    <div><b>Vos règles et vos documents</b>Calculs, statuts, devis et fiches propres à votre activité.</div>
+    <div><b>Plusieurs rôles</b>Chacun voit et fait ce qui le concerne.</div>
+    <div><b>Branché à vos outils</b>Agenda, mails, tableurs : plus de recopie.</div>
+  </div>
+  <div class="capture"><img src="../../../../assets/bikepulse-atelier.webp" alt=""></div>
+  <p class="note" style="left:84px;right:auto">Exemple : prototype d'atelier vélo · données fictives</p>
+</section>
+
+<section class="cadre choix" id="IG-02-template-ou-sur-mesure-4">
+  <div class="bandeau" style="background:var(--encre);color:var(--papier)"><p class="sourcil" style="color:var(--jaune)">Le sur mesure, concrètement</p><h2>Le bon outil, pas forcément une appli.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="grille4">
+    <div style="border-top-color:var(--rouge)"><b>Application web</b>Quand aucun logiciel ne colle.</div>
+    <div style="border-top-color:var(--jaune)"><b>Espace no-code</b>Dans l'outil que l'équipe utilise déjà.</div>
+    <div style="border-top-color:var(--bleu)"><b>Automatisation et IA</b>Ce qui se répète se fait seul.</div>
+    <div style="border-top-color:var(--encre)"><b>Site web</b>Vitrine ou présentation d'un produit.</div>
+  </div>
+  <div class="duree"><span><b>2 à 3 jours</b>une automatisation ciblée</span><span><b>5 à 10 jours</b>un outil sur mesure</span></div>
+  <p style="position:absolute;left:84px;right:84px;top:1110px;font-size:30px;color:var(--texte-2)">Durées indicatives, selon le besoin. Après la mise en service : reprise des données, équipe formée, évolutions.</p>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span>qm-engineering.fr/sur-mesure</span></div>
+</section>
+
+<section class="cadre cta rouge" id="IG-02-template-ou-sur-mesure-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>On commence par un échange de 30 minutes.</h2>
+    <div class="liste"><div><i></i>Le process qui vous fait perdre du temps</div><div><i></i>Le choix de l'outil, selon le besoin et le budget</div><div><i></i>Un prototype utilisable en quelques jours</div></div>
+  </div>
+  <div class="bouton"><b>Lien en bio</b><span>« Parler de votre projet »</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole-clair"/></svg><span>Q<span class="m" style="color:#fff">M</span><span class="e">E</span></span></span><span>qm-engineering.fr/sur-mesure</span></div>
 </section>
 
 <!-- ============ IG-03 · Mode d'emploi ============ -->

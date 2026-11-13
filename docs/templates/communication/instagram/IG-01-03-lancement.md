@@ -1,4 +1,8 @@
-# Instagram · lancement du compte (IG-01 à IG-03, 16/11/2026)
+# Instagram · lancement du compte (IG-01 à IG-03 le 16/11/2026, reel IG-27 le 17/11)
+
+> **Mis à jour le 13/11** : recentrage templates + sur mesure. IG-02 « démos fausses » est remplacé par
+> le carrousel « Template ou sur mesure ? ». Les légendes publiées sont celles des Google Docs
+> « … · légende » du dossier Textes (IDs en colonne G du Sheet) ; ce fichier garde l'historique.
 
 Visuels : `publications.html` → `png/IG-01-lancement-1..5.png`, `png/IG-02-demos-fausses.png`,
 `png/IG-03-mode-emploi-1..5.png` (copies dans le dossier Drive « QME – Publications Instagram / Images »).

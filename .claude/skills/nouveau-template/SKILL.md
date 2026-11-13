@@ -107,8 +107,9 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    - **carrousel de 5 vues en 1080 × 1350** générées en copiant les gabarits `car-1`, `car-2`, `car-3` de
      `docs/templates/communication/instagram/gabarits.html` (vraies captures du template, « Données
      fictives »), rendues en PNG (`rendre.mjs`) et **regardées** avant usage ;
-   - légende au vouvoiement : accroche en première ligne (2 variantes), 3 à 6 phrases, « Démo libre et
-     achat : lien en bio », 5 hashtags au plus (jeux du kit) ; aucun lien dans la légende ;
+   - légende au vouvoiement : accroche en première ligne (2 variantes), 3 à 6 phrases, une phrase de
+     pont vers le sur mesure (« Besoin de plus ? … je construis la version sur mesure »), « Démo libre et
+     contact : lien en bio », 5 hashtags au plus (jeux du kit) ; aucun lien dans la légende ;
    - texte alternatif de chaque vue ; story d'annonce (gabarit `story`, autocollant lien vers la démo).
 4. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations**
    (jamais de données personnelles collectées sur des particuliers) : pour chaque segment, pourquoi il a

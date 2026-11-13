@@ -12,25 +12,39 @@ contrôler dans l'app au moment de les appliquer.
 | Champ | Valeur |
 |---|---|
 | Nom d'utilisateur | `@qmengineering` (existant) |
-| Nom affiché | `QME · Outils prêts à l'emploi` (29 caractères ; le nom est cherchable dans Instagram) |
+| Nom affiché | `QME · Templates et sur mesure` (29 caractères ; le nom est cherchable dans Instagram) |
 | Photo | `png/ig-avatar.png` : symbole Bauhaus du site (même logo que LinkedIn), 1080 × 1080, marge prévue pour la découpe ronde |
 | Catégorie | à choisir dans la liste d'Instagram (par exemple « Logiciel » ou « Entreprise de logiciels ») *(à vérifier)* |
 | Type de compte | professionnel (Créateur ou Entreprise) |
-| Liens | 1. `https://qm-engineering.fr/templates/` (« Templates et démos ») · 2. `https://qmengineering.gumroad.com` (« Boutique ») |
+| Liens | 1. `https://qm-engineering.fr/templates/` (« Templates et démos ») · 2. `https://qm-engineering.fr/sur-mesure/` (« Outil sur mesure ») · 3. `https://qm-engineering.fr/contact/` (« Parler de votre projet ») · 4. `https://qmengineering.gumroad.com` (« Boutique ») |
 
-**Bio** (143 caractères sur 150 permis) :
+**Bio** (132 caractères sur 150) :
 
 ```
-Outils en ligne prêts à l'emploi : travail, indépendants, maison.
-Achat unique · tous vos appareils · dès 12 €
-Démos libres, sans inscription ↓
+Templates prêts à l'emploi : travail, indépendants, maison.
+Et des outils sur mesure pour votre métier.
+Démos libres, achat unique ↓
 ```
 
 **Stories à la une** (couvertures `png/ig-une-*.png`, 1080 × 1920, motif dans le rond central) :
 Templates (grille) · Démos (lecture) · Travail (barres) · Indépendants (quart de cercle) · Maison (toit) ·
-Coulisses (cercle et point). Création (faite par Quentin le 13/11/2026) : publier l'image en story →
+**Sur mesure** (équerre et quart de cercle, `ig-une-sur-mesure.png`, remplace « Coulisses » depuis le 13/11). Création (faite par Quentin le 13/11/2026) : publier l'image en story →
 « À la une » → « Nouveau » → nom → « Modifier la couverture » pour recentrer. Y ajouter ensuite les
 vraies stories du thème ; la story-couverture peut alors être retirée, la couverture reste.
+
+## Ligne éditoriale (décision de Quentin, 13/11/2026)
+
+Le compte parle **des templates et du sur mesure, rien d'autre** (pas de coulisses ni de méthode
+générale).
+- **Templates** (environ 3 posts sur 4) : un carrousel par template, le lendemain de son post LinkedIn.
+- **Sur mesure** (environ 1 post par semaine) : un cas concret tiré des posts LinkedIn (rôles,
+  atelier, maintenance, intégrations…), données fictives, dernière vue « Votre métier a ses règles ?
+  Parlons-en : lien en bio ».
+- **Pont entre les deux** dans chaque post template : vue 5 du carrousel et légende rappellent « Besoin
+  de plus ? Vos règles, vos utilisateurs, vos outils : je le construis sur mesure. »
+- Offre et durées du sur mesure : reprendre uniquement les pages Sur mesure et Méthode du site
+  (applications web, sites, no-code, automatisations et IA ; 2 à 3 jours pour une automatisation
+  ciblée, 5 à 10 jours pour un outil sur mesure ; échange de 30 minutes au départ).
 
 ## Charte
 
