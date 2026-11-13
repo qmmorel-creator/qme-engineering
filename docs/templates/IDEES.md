@@ -81,7 +81,7 @@ déjà).
 | T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 |
 | T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en vente | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
-| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | prêt | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
+| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
@@ -402,12 +402,12 @@ le 13/11 au soir.
 À vérifier par Quentin (remontées des agents) : T29, intervalles d'entretien intégrés (ordres de grandeur
 non sourcés, présentés comme indicatifs et modifiables) ; T25, délais de traitement par gravité (30, 15, 7,
 2 jours : propositions modifiables) ; T67, durées des modèles de planning (non sourcées, indicatives) ;
-T36, taux de TVA de 2,1 % repris d'un extrait de recherche (page officielle inaccessible). T04 : **ne pas
-mettre en vente avant décision de Quentin** sur la politique de confidentialité (données de santé hébergées :
-le site n'a pas de page nommant l'hébergeur, sa localisation et la durée de conservation ; besoin d'un
-hébergement certifié de données de santé à vérifier) ; facteurs d'activité 1,2 à 1,9 sans source officielle
-(présentés comme usage courant). Bases intégrées vérifiées : Ciqual 2025 (Licence Ouverte 2.0) et 2024 Adult
-Compendium (usage commercial autorisé avec citation).
+T36, taux de TVA de 2,1 % repris d'un extrait de recherche (page officielle inaccessible). T04 : **en vente depuis le 13/11/2026** (PR #46, fiche Gumroad `/l/nutrition`, 19 €). Décision de
+Quentin : consentement explicite, politique de confidentialité publiée sur `/confidentialite/`, données
+hébergées et traitées dans l'Union européenne (stockage `eu-central-1`, fonction en région `fra`). Facteurs
+d'activité : moyennes d'usage courant (1,2 à 1,9), présentées comme telles et réglables de 1 à 2,5. Reste
+ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqual 2025 (Licence Ouverte 2.0) et
+2024 Adult Compendium (usage commercial autorisé avec citation).
 
 | N° | Slug | Préfixe | Permalien Gumroad |
 |----|------|---------|-------------------|
