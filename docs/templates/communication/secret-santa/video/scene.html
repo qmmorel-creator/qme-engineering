@@ -3,57 +3,67 @@
 <style>
 @font-face{font-family:Outfit;src:url("file:///home/user/qme-engineering/assets/fonts/outfit-latin.woff2") format("woff2");font-weight:100 900}
 @font-face{font-family:Outfit;src:url("file:///home/user/qme-engineering/assets/fonts/outfit-latin-ext.woff2") format("woff2");font-weight:100 900;unicode-range:U+0100-024F,U+20AC}
-:root{--papier:#FBF7F1;--encre:#24221F;--texte-2:#514C44;--rouge:#B84A34;--corail:#E58C74;--jaune:#E8B93A;--bleu:#2E5A88;--ciel:#D8E4F0;--rose:#F8DCD3;--beurre:#FBEBC2;--sapin:#2F6B4F;--sapin-fond:#DCEBE1;--trait:#E4DCCE}
+:root{--papier:#FBF7F1;--encre:#24221F;--texte-2:#514C44;--rouge:#B84A34;--corail:#E58C74;--jaune:#E8B93A;--bleu:#2E5A88;--nuit:#1B3350;--ciel:#D8E4F0;--rose:#F8DCD3;--beurre:#FBEBC2;--sapin:#2F6B4F;--sapin-fond:#DCEBE1;--trait:#E4DCCE}
 *{box-sizing:border-box;margin:0}
 html,body{width:100%;height:100%;overflow:hidden}
-body{font-family:Outfit,sans-serif;color:var(--encre);background:linear-gradient(180deg,#CFDDEB 0%,var(--ciel) 32%,var(--papier) 78%);position:relative;font-variant-numeric:tabular-nums}
+body{font-family:Outfit,sans-serif;color:var(--encre);background:var(--papier);position:relative;font-variant-numeric:tabular-nums}
 .a{position:absolute}
-#neige i{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(46,90,136,.10),0 2px 6px rgba(46,90,136,.18)}
-#guirlande{left:0;top:0;width:100%;height:14%}
-#boules i{position:absolute;display:block;transform-origin:50% -2.2vw}
-.rond{border-radius:50%}.carre{border-radius:.5vw}
-#marque{left:5.5vw;top:10%;display:flex;align-items:center;gap:1.6vw;font-weight:800;font-size:4.4vw;letter-spacing:-.02em}
-#sol{left:0;right:0;bottom:0;height:9%;background:#fff;border-radius:50% 50% 0 0/30% 30% 0 0;box-shadow:0 -1px 0 rgba(36,34,31,.06)}
+#jour{inset:0;background:linear-gradient(180deg,#C9D9EA 0%,var(--ciel) 34%,var(--papier) 80%)}
+#nuit{inset:0;background:radial-gradient(120% 70% at 50% 28%,#2E5A88 0%,#1F3D60 45%,#142A44 100%);opacity:0}
+.neige i{position:absolute;left:0;top:0;border-radius:50%;background:#fff}
+.flocon{position:absolute;left:0;top:0}
+#guirlande{left:0;top:0;width:100%}
+#ampoules i{position:absolute;left:0;top:0;border-radius:50% 50% 45% 45%;transform-origin:50% 0}
+#marque{left:5.5vw;top:10.2%;display:flex;align-items:center;gap:1.6vw;font-weight:800;font-size:4.4vw;letter-spacing:-.02em}
+#sol{left:-5%;right:-5%;bottom:0;height:10%;background:#fff;border-radius:50% 50% 0 0/40% 40% 0 0}
 .sapin{position:absolute;transform-origin:50% 100%}
-.scene{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0}
-.titre-etape{position:absolute;left:7vw;right:7vw;text-align:left;margin-top:3%}
-.titre-etape b{display:inline-grid;place-items:center;width:10vw;height:10vw;border-radius:50%;background:var(--jaune);font-size:5.4vw;margin-bottom:2.4vw}
-.titre-etape h2{font-size:7.4vw;line-height:1.05;letter-spacing:-.03em;font-weight:800}
-.titre-etape p{font-size:4.2vw;color:var(--texte-2);margin-top:1.6vw;line-height:1.3;font-weight:500}
-.carte{position:absolute;background:#fff;border:1px solid var(--trait);border-radius:4vw;box-shadow:0 3vw 7vw rgba(36,34,31,.12)}
-.pastille{display:inline-block;padding:1.4vw 3vw;border-radius:99vw;font-weight:700;font-size:3.4vw;letter-spacing:.06em;text-transform:uppercase}
+.scene{position:absolute;inset:0;visibility:hidden}
+.mot{display:inline-block;will-change:transform}
+.titre-etape{position:absolute;left:7vw;right:7vw;top:19%}
+.badge{display:inline-grid;place-items:center;width:11vw;height:11vw;border-radius:50%;background:var(--jaune);font-size:6vw;font-weight:800;margin-bottom:2.6vw}
+.titre-etape h2{font-size:8vw;line-height:1.05;letter-spacing:-.03em;font-weight:800}
+.titre-etape p{font-size:4.3vw;color:var(--texte-2);margin-top:1.8vw;line-height:1.3;font-weight:500}
+.carte{position:absolute;background:#fff;border:1px solid var(--trait);border-radius:4.4vw;box-shadow:0 3vw 8vw rgba(36,34,31,.14)}
+.pastille{display:inline-block;padding:1.5vw 3.2vw;border-radius:99vw;font-weight:700;font-size:3.5vw;letter-spacing:.06em;text-transform:uppercase}
 .ligne{display:flex;align-items:center;gap:2.4vw;font-size:4.4vw;font-weight:600;padding:2.6vw 0;border-top:1px solid var(--trait)}
 .ligne i{width:5vw;height:5vw;flex:none}
-.avatar{position:absolute;width:15vw;height:15vw;margin:-7.5vw 0 0 -7.5vw;display:grid;place-items:center;font-weight:800;font-size:6.4vw;border-radius:50%}
+.avatar{position:absolute;width:15vw;height:15vw;margin:-7.5vw 0 0 -7.5vw;display:grid;place-items:center;font-weight:800;font-size:6.4vw;border-radius:50%;box-shadow:0 1.4vw 3vw rgba(36,34,31,.12)}
 .avatar small{position:absolute;top:16vw;font-size:3.4vw;font-weight:600;color:var(--texte-2);white-space:nowrap}
-.coche{position:absolute;right:-1vw;top:-1vw;width:5.4vw;height:5.4vw;border-radius:50%;background:var(--sapin);color:#fff;display:grid;place-items:center;font-size:3.4vw;font-weight:800}
-#telephone{position:absolute;width:54vw;left:23vw;border:2vw solid var(--encre);border-radius:8vw;background:var(--papier);overflow:hidden}
-.grand{font-size:13vw;font-weight:800;letter-spacing:-.04em;line-height:.95}
+.coche{position:absolute;right:-1vw;top:-1vw;width:5.6vw;height:5.6vw;border-radius:50%;background:var(--sapin);color:#fff;display:grid;place-items:center;font-size:3.4vw;font-weight:800}
+#telephone{position:absolute;width:56vw;left:22vw;border:2vw solid var(--encre);border-radius:8vw;background:var(--papier);overflow:hidden;box-shadow:0 4vw 10vw rgba(36,34,31,.2)}
+.grand{font-size:13vw;font-weight:800;letter-spacing:-.04em;line-height:.98}
 mark{background:var(--beurre);border-radius:2vw;padding:0 1.6vw;color:inherit}
+#iris{inset:0;pointer-events:none}
+#iris .motif{position:absolute;inset:0}
+.etincelle{position:absolute;left:0;top:0}
+#credit{left:6vw;right:6vw;bottom:11.5%;text-align:center;font-size:2.6vw;color:rgba(251,247,241,.82);font-weight:500;opacity:0}
 </style></head>
 <body>
-<div id="neige" class="a" style="inset:0"></div>
-<svg id="guirlande" class="a" viewBox="0 0 1000 140" preserveAspectRatio="none"><path id="fil" fill="none" stroke="#B9AE9C" stroke-width="3"/></svg>
-<div id="boules" class="a" style="inset:0"></div>
-<div id="marque" class="a"><svg viewBox="0 0 80 80" style="width:7vw;height:7vw"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#24221F"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg><span>Q<span style="color:var(--bleu)">M</span><span style="color:var(--jaune)">E</span></span></div>
+<div id="jour" class="a"></div>
+<div id="nuit" class="a"></div>
+<div class="a neige" id="neige-loin" style="inset:0"></div>
+<svg id="guirlande" class="a"><path id="fil" fill="none" stroke="#9E927F" stroke-width="2.5"/></svg>
+<div id="ampoules" class="a" style="inset:0"></div>
+<div id="marque" class="a"><svg viewBox="0 0 80 80" style="width:7vw;height:7vw"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="var(--fond-logo,#FBF7F1)"/></svg><span>Q<span style="color:var(--bleu)">M</span><span style="color:var(--jaune)">E</span></span></div>
 <div id="sol" class="a"></div>
 <div id="sapins" class="a" style="inset:0"></div>
+<div class="a neige" id="neige-milieu" style="inset:0"></div>
 
-<!-- Titre -->
+<!-- 0 · Titre -->
 <section class="scene" id="s0">
-  <div class="a" id="s0-texte" style="left:7vw;right:7vw;top:30%">
-    <span class="pastille" style="background:var(--sapin-fond);color:var(--sapin)">Notre cadeau de Noël</span>
-    <h1 class="grand" style="margin-top:4vw">Secret<br>Santa</h1>
-    <p style="font-size:5.4vw;font-weight:500;color:var(--texte-2);margin-top:4vw;line-height:1.25">Le tirage au sort que<br><mark>même l'organisateur</mark> ne voit pas.</p>
+  <div class="a" style="left:7vw;right:7vw;top:27%">
+    <span class="pastille mot" style="background:var(--sapin);color:#fff">Notre cadeau de Noël</span>
+    <h1 class="grand" style="margin-top:4.4vw;font-size:17vw"><span class="mot">Secret</span><br><span class="mot">Santa</span></h1>
+    <p style="font-size:5.6vw;font-weight:500;color:var(--texte-2);margin-top:4.4vw;line-height:1.25"><span class="mot">Le</span> <span class="mot">tirage</span> <span class="mot">au</span> <span class="mot">sort</span> <span class="mot">que</span><br><mark class="mot">même l'organisateur</mark> <span class="mot">ne</span> <span class="mot">voit</span> <span class="mot">pas.</span></p>
   </div>
 </section>
 
 <!-- 1 · Créer -->
 <section class="scene" id="s1">
-  <div class="titre-etape" style="top:17%"><b>1</b><h2>Tu crées l'échange</h2><p>Un nom, une date, un budget.</p></div>
-  <div class="carte" id="s1-carte" style="left:9vw;right:9vw;top:46%;padding:5vw">
+  <div class="titre-etape"><span class="badge mot">1</span><h2><span class="mot">Tu</span> <span class="mot">crées</span> <span class="mot">l'échange</span></h2><p><span class="mot">Un nom, une date, un budget.</span></p></div>
+  <div class="carte" id="s1-carte" style="left:9vw;right:9vw;top:47%;padding:5vw">
     <span class="pastille" style="background:var(--beurre);color:#6E5310">En famille</span>
-    <div style="font-size:7.4vw;font-weight:800;letter-spacing:-.03em;margin:3vw 0 2vw" id="s1-nom"></div>
+    <div style="font-size:7.6vw;font-weight:800;letter-spacing:-.03em;margin:3vw 0 2vw" id="s1-nom">&nbsp;</div>
     <div class="ligne" id="s1-l1"><i style="background:var(--corail);border-radius:50%"></i>Jeudi 24 décembre</div>
     <div class="ligne" id="s1-l2"><i style="background:var(--bleu);border-radius:1vw"></i>Budget 30&nbsp;€</div>
     <div class="ligne" id="s1-l3"><i style="width:0;height:0;border-left:2.5vw solid transparent;border-right:2.5vw solid transparent;border-bottom:5vw solid var(--sapin)"></i>On ouvre tout au réveillon</div>
@@ -63,35 +73,35 @@ mark{background:var(--beurre);border-radius:2vw;padding:0 1.6vw;color:inherit}
 
 <!-- 2 · Partager -->
 <section class="scene" id="s2">
-  <div class="titre-etape" style="top:17%"><b>2</b><h2>Tu partages le lien</h2><p>Chacun s'inscrit en une minute, sans compte, avec ses idées de cadeaux.</p></div>
-  <div class="a" id="s2-lien" style="left:50%;top:41%;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--trait);border-radius:99vw;padding:3vw 5vw;font-weight:700;font-size:4.2vw;white-space:nowrap;box-shadow:0 2vw 5vw rgba(36,34,31,.12)">qm-engineering.fr/…/secret-santa</div>
+  <div class="titre-etape"><span class="badge mot">2</span><h2><span class="mot">Tu</span> <span class="mot">partages</span> <span class="mot">le</span> <span class="mot">lien</span></h2><p><span class="mot">Chacun s'inscrit en une minute,</span> <span class="mot">sans compte, avec ses idées.</span></p></div>
+  <div class="a" id="s2-lien" style="left:50%;top:43%;background:#fff;border:1px solid var(--trait);border-radius:99vw;padding:3vw 5vw;font-weight:700;font-size:4.2vw;white-space:nowrap;box-shadow:0 2vw 5vw rgba(36,34,31,.12)">qm-engineering.fr/…/secret-santa</div>
   <div id="s2-avatars"></div>
 </section>
 
 <!-- 3 · Tirage -->
 <section class="scene" id="s3">
-  <div class="titre-etape" style="top:15%"><b>3</b><h2>Le tirage se fait en secret</h2><p>Les exclusions sont respectées. <mark>Même l'organisateur</mark> ne voit pas qui offre à qui.</p></div>
-  <svg class="a" id="s3-fleches" style="left:0;top:0;width:100%;height:100%" preserveAspectRatio="none"></svg>
+  <div class="titre-etape" style="top:17%"><span class="badge mot">3</span><h2><span class="mot">Le</span> <span class="mot">tirage</span> <span class="mot">se</span> <span class="mot">fait</span> <span class="mot">en</span> <span class="mot">secret</span></h2><p><span class="mot">Exclusions respectées.</span> <mark class="mot">Même l'organisateur</mark> <span class="mot">ne voit pas qui offre à qui.</span></p></div>
+  <svg class="a" id="s3-fleches" style="left:0;top:0;width:100%;height:100%"></svg>
   <div id="s3-avatars"></div>
-  <div class="a" id="s3-oeil" style="left:50%;width:22vw;height:22vw;margin-left:-11vw;border-radius:50%;background:var(--encre);display:grid;place-items:center">
+  <div class="a" id="s3-oeil" style="left:50%;width:22vw;height:22vw;margin-left:-11vw;border-radius:50%;background:var(--encre);display:grid;place-items:center;box-shadow:0 2vw 6vw rgba(36,34,31,.25)">
     <svg viewBox="0 0 48 48" style="width:13vw;height:13vw"><path d="M4 24s7-12 20-12 20 12 20 12-7 12-20 12S4 24 4 24Z" fill="none" stroke="#FBF7F1" stroke-width="3.5"/><circle cx="24" cy="24" r="6" fill="#E8B93A"/><path d="M8 40 40 8" stroke="#E58C74" stroke-width="4" stroke-linecap="round"/></svg>
   </div>
 </section>
 
 <!-- 4 · Découvrir -->
 <section class="scene" id="s4">
-  <div class="titre-etape" style="top:12%"><b>4</b><h2>Chacun découvre sa page</h2><p>À qui il offre, avec ses idées.</p></div>
+  <div class="titre-etape" style="top:15%"><span class="badge mot">4</span><h2><span class="mot">Chacun</span> <span class="mot">découvre</span> <span class="mot">sa</span> <span class="mot">page</span></h2><p><span class="mot">À qui il offre, avec ses idées.</span></p></div>
   <div id="telephone">
-    <div style="height:3vw"></div>
-    <div style="display:grid;place-items:center;padding:8vw 3vw 2vw;position:relative;height:34vw">
-      <svg viewBox="0 0 120 120" style="width:24vw;height:24vw;overflow:visible">
+    <div style="display:grid;place-items:center;padding:9vw 3vw 2vw;position:relative;height:36vw">
+      <svg viewBox="0 0 120 120" style="width:24vw;height:24vw;overflow:visible" id="cadeau">
         <rect x="14" y="44" width="92" height="70" rx="10" fill="#E58C74"/><rect x="52" y="44" width="16" height="70" fill="#E8B93A"/>
         <g id="couvercle"><rect x="8" y="30" width="104" height="22" rx="8" fill="#B84A34"/><rect x="52" y="30" width="16" height="22" fill="#E8B93A"/><circle cx="46" cy="22" r="13" fill="none" stroke="#E8B93A" stroke-width="7"/><circle cx="74" cy="22" r="13" fill="none" stroke="#E8B93A" stroke-width="7"/></g>
       </svg>
+      <div id="eclats" class="a" style="left:50%;top:55%"></div>
     </div>
     <div style="padding:0 4vw 5vw;text-align:center">
       <div style="font-size:2.6vw;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--texte-2)">Ton tirage</div>
-      <div id="s4-texte" style="font-size:5.4vw;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:2vw 0 3vw;min-height:12vw"></div>
+      <div id="s4-texte" style="font-size:5.4vw;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:2vw 0 3vw;min-height:12vw">&nbsp;</div>
       <div id="s4-idees" style="display:flex;flex-direction:column;gap:1.6vw;text-align:left"></div>
     </div>
   </div>
@@ -99,169 +109,235 @@ mark{background:var(--beurre);border-radius:2vw;padding:0 1.6vw;color:inherit}
 
 <!-- 5 · Gratuit -->
 <section class="scene" id="s5">
-  <div class="a" style="left:7vw;right:7vw;top:26%;text-align:center" id="s5-texte">
-    <span class="pastille" style="background:var(--sapin);color:#fff">Gratuit</span>
-    <h2 class="grand" style="font-size:11vw;margin-top:5vw">C'est notre<br>cadeau de Noël.</h2>
-    <p style="font-size:4.8vw;font-weight:600;color:var(--texte-2);margin-top:5vw">Pour la famille, les amis ou le bureau.</p>
-    <p style="font-size:5vw;font-weight:800;margin-top:6vw;display:inline-block;background:#fff;border:1px solid var(--trait);border-radius:99vw;padding:2.6vw 6vw">qm-engineering.fr</p>
+  <div id="cadeaux" class="a" style="inset:0"></div>
+  <div class="a" style="left:6vw;right:6vw;top:24%;text-align:center">
+    <span class="pastille mot" style="background:var(--sapin);color:#fff;font-size:4.4vw">Gratuit</span>
+    <h2 class="grand" style="font-size:12vw;margin-top:5vw"><span class="mot">C'est</span> <span class="mot">notre</span><br><span class="mot">cadeau</span> <span class="mot">de</span> <span class="mot">Noël.</span></h2>
+    <p style="font-size:4.8vw;font-weight:600;color:var(--texte-2);margin-top:5vw"><span class="mot">Pour la famille, les amis ou le bureau.</span></p>
+    <p class="mot" style="font-size:5vw;font-weight:800;margin-top:6vw;background:#fff;border:1px solid var(--trait);border-radius:99vw;padding:2.6vw 6vw">qm-engineering.fr</p>
   </div>
 </section>
 
-<!-- Fin -->
+<!-- 6 · Joyeux Noël (nuit) -->
 <section class="scene" id="s6">
-  <div class="a" style="left:6vw;right:6vw;top:24%;text-align:center" id="s6-texte">
-    <svg id="etoile" viewBox="0 0 100 100" style="width:22vw;height:22vw"><path d="M50 4l13.6 27.6 30.4 4.4-22 21.5 5.2 30.3L50 73.5 22.8 87.8 28 57.5 6 36l30.4-4.4Z" fill="#E8B93A"/></svg>
-    <h2 class="grand" style="font-size:16vw;margin-top:3vw">Joyeux<br>Noël</h2>
-    <p style="font-size:5.6vw;font-weight:600;color:var(--texte-2);margin-top:5vw">de la part de</p>
-    <div style="display:inline-flex;align-items:center;gap:2.6vw;margin-top:2vw;font-weight:800;font-size:12vw;letter-spacing:-.03em">
-      <svg viewBox="0 0 80 80" style="width:15vw;height:15vw"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#24221F"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
-      <span>Q<span style="color:var(--bleu)">M</span><span style="color:var(--jaune)">E</span></span>
+  <svg class="a" id="grand-sapin" viewBox="0 0 300 380" style="left:50%;width:56vw;margin-left:-28vw;top:15%;overflow:visible">
+    <g id="rayons"></g>
+    <path class="t" d="M150 40 230 150H70Z" fill="#2F6B4F"/>
+    <path class="t" d="M150 100 260 240H40Z" fill="#2F6B4F"/>
+    <path class="t" d="M150 170 290 340H10Z" fill="#2F6B4F"/>
+    <rect class="t" x="132" y="340" width="36" height="40" fill="#B84A34"/>
+    <g id="lumieres"></g>
+    <path id="etoile" d="M150 0l11 22.4 24.6 3.6-17.8 17.4 4.2 24.6L150 56.4 128 68l4.2-24.6L114.4 26 139 22.4Z" fill="#E8B93A"/>
+  </svg>
+  <div class="a" style="left:5vw;right:5vw;top:58%;text-align:center;color:var(--papier)">
+    <h2 class="grand" style="font-size:16vw"><span class="mot">Joyeux</span> <span class="mot">Noël</span></h2>
+    <p style="font-size:5.2vw;font-weight:500;margin-top:3vw;opacity:.9"><span class="mot">de la part de</span></p>
+    <div class="mot" style="display:inline-flex;align-items:center;gap:2.4vw;margin-top:1.6vw;font-weight:800;font-size:11vw;letter-spacing:-.03em">
+      <svg viewBox="0 0 80 80" style="width:13vw;height:13vw"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#FBF7F1"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#1F3D60"/></svg>
+      <span>Q<span style="color:#9DBBE0">M</span><span style="color:var(--jaune)">E</span></span>
     </div>
   </div>
 </section>
 
+<div class="a neige" id="neige-pres" style="inset:0"></div>
+<div id="credit" class="a">Musique : « Christmas is coming », Alex-Productions · CC BY 3.0 · onsound.eu · chosic.com</div>
+<div id="iris" class="a"><div class="motif"></div></div>
+
 <script>
-const W = innerWidth, H = innerHeight, R = H / W;          // 1,78 (9:16) ou 1,25 (4:5)
-const BEAT = 60 / 126, BAR = 4 * BEAT, D0 = 4 * BEAT;      // refrain à 1,905 s
-const at = (bar) => D0 + bar * BAR;
+const W = innerWidth, H = innerHeight, vw = W / 100;
+const BEAT = 60 / 130, BAR = 4 * BEAT;
+// Repères de la bande-son montée (secondes) : départ du rythme, étapes, finale, coup de cymbale.
+const T = { drop: 2 * BAR * 2, e2: 0, e3: 0, e4: 0, gratuit: 0, final: 0, cymbale: 0, fin: 46 };
+T.drop = 4 * BAR;              // 7,385
+T.e2 = T.drop + 3 * BAR;       // 12,92
+T.e3 = T.drop + 6 * BAR;       // 18,46
+T.e4 = T.drop + 9 * BAR;       // 24,00
+T.gratuit = T.drop + 12 * BAR; // 29,54
+T.final = T.gratuit + 3 * BAR; // 35,08
+T.cymbale = T.final + 2 * BAR; // 38,77
 const cl = (x) => Math.max(0, Math.min(1, x));
 const p = (t, a, b) => cl((t - a) / (b - a));
 const eo = (x) => 1 - Math.pow(1 - x, 3);
 const eio = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const dos = (x) => { const c = 1.7; return x <= 0 ? 0 : x >= 1 ? 1 : 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 const ressort = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.cos(x * Math.PI * 2.6) * Math.exp(-x * 5.5));
-let graine = 1225; const rnd = () => ((graine = (graine * 16807) % 2147483647) - 1) / 2147483646;
+const pouls = (t) => (t > T.drop && t < T.gratuit + BAR ? Math.exp(-((t % BEAT) / 0.11)) : Math.exp(-((t % BEAT) / 0.11)) * .35);
+let graine = 2512; const rnd = () => ((graine = (graine * 16807) % 2147483647) - 1) / 2147483646;
 const $ = (s) => document.querySelector(s);
-const vw = W / 100;
+const $$ = (s) => [...document.querySelectorAll(s)];
 
-// Neige (positions fixes, chute déterministe)
-const flocons = Array.from({ length: Math.round(90 * R / 1.78) + 20 }, () => ({ x: rnd() * W, y: rnd() * H, r: 2 + rnd() * 9, v: 30 + rnd() * 70, a: 10 + rnd() * 30, f: .3 + rnd() * .8, ph: rnd() * 6.28 }));
-$('#neige').innerHTML = flocons.map(() => '<i></i>').join('');
-const elFlocons = [...document.querySelectorAll('#neige i')];
-
-// Guirlande : fil en double courbe, boules aux formes Bauhaus
-const FORMES = [['rond', '#E58C74'], ['carre', '#2E5A88'], ['tri', '#E8B93A'], ['rond', '#2F6B4F'], ['carre', '#E58C74'], ['rond', '#E8B93A'], ['tri', '#2E5A88'], ['carre', '#2F6B4F'], ['rond', '#E58C74']];
-$('#boules').innerHTML = FORMES.map(([f, c]) => f === 'tri'
-  ? `<i style="width:0;height:0;border-left:${2.2 * vw}px solid transparent;border-right:${2.2 * vw}px solid transparent;border-bottom:${3.8 * vw}px solid ${c}"></i>`
-  : `<i class="${f}" style="width:${3.6 * vw}px;height:${3.6 * vw}px;background:${c}"></i>`).join('');
-const elBoules = [...document.querySelectorAll('#boules i')];
-const filY = (u, chute) => { // u in [0,1], ordonnée du fil en px
-  const creux = Math.sin(u * Math.PI * 2) ; return (H * .035 + Math.abs(Math.sin(u * Math.PI * 2)) * H * .045) * chute - (1 - chute) * H * .1 + 0 * creux;
+// ---------- Neige en trois couches ----------
+const couche = (sel, n, r0, r1, v0, v1, flou, op) => {
+  const f = Array.from({ length: n }, () => ({ x: rnd() * W, y: rnd() * H, r: r0 + rnd() * (r1 - r0), v: v0 + rnd() * (v1 - v0), a: 8 + rnd() * 26, w: .3 + rnd() * .7, ph: rnd() * 6.3 }));
+  $(sel).innerHTML = f.map((q) => `<i style="width:${q.r}px;height:${q.r}px;filter:blur(${flou}px);opacity:${op}"></i>`).join('');
+  return { f, el: $$(sel + ' i') };
 };
+const N1 = couche('#neige-loin', 70, 3, 6, 30, 55, 0, .7), N2 = couche('#neige-milieu', 40, 6, 11, 60, 95, .4, .9), N3 = couche('#neige-pres', 12, 16, 26, 120, 170, 3, .75);
+// Grands flocons géométriques (six branches) qui tournent
+const FLOCON = (c) => `<svg viewBox="-30 -30 60 60" width="100%" height="100%"><g stroke="${c}" stroke-width="3.2" stroke-linecap="round" fill="none">${[0, 60, 120].map((a) => `<g transform="rotate(${a})"><path d="M0-27V27"/><path d="M0-18l-6-6M0-18l6-6M0 18l-6 6M0 18l6 6"/></g>`).join('')}</g><circle r="4" fill="#E8B93A"/></svg>`;
+const flocons = Array.from({ length: 7 }, (_, i) => ({ x: (i + .5) / 7 * W + (rnd() - .5) * 60, y: rnd() * H, s: (7 + rnd() * 6) * vw, v: 22 + rnd() * 25, rot: rnd() * 360, vr: (rnd() - .5) * 40 }));
+document.body.insertAdjacentHTML('beforeend', flocons.map((f, i) => `<div class="flocon a" data-i="${i}" style="width:${f.s}px;height:${f.s}px;opacity:.55">${FLOCON(i % 2 ? '#2E5A88' : '#FFFFFF')}</div>`).join(''));
+const elFlocons = $$('.flocon');
+document.body.appendChild($('#neige-pres')); document.body.appendChild($('#credit')); document.body.appendChild($('#iris'));
 
-// Sapins en triangles le long du sol
-const SAPINS = [[.06, .11], [.2, .16], [.78, .2], [.93, .12], [.36, .08], [.62, .09]];
+// ---------- Guirlande lumineuse ----------
+const NB = 15, COUL = ['#E58C74', '#E8B93A', '#7FA8D6', '#5FA37E'];
+$('#guirlande').setAttribute('width', W); $('#guirlande').setAttribute('height', H * .16);
+$('#ampoules').innerHTML = Array.from({ length: NB }, (_, i) => `<i style="width:${3 * vw}px;height:${4.2 * vw}px;background:${COUL[i % 4]}"></i>`).join('');
+const elAmp = $$('#ampoules i');
+const filY = (u, chute) => (H * .03 + Math.pow(Math.sin(u * Math.PI * 3), 2) * H * .05) * chute - (1 - chute) * H * .12;
+
+// ---------- Sapins au sol ----------
+const SAPINS = [[.06, .1], [.19, .15], [.79, .19], [.93, .11], [.35, .075], [.63, .085]];
 $('#sapins').innerHTML = SAPINS.map(([x, h], i) => {
   const t = h * H, l = t * .62;
-  const boules = [[.35, .62, '#E58C74'], [.62, .45, '#E8B93A'], [.5, .8, '#2E5A88'], [.7, .78, '#FBF7F1']];
-  return `<svg class="sapin" data-i="${i}" viewBox="0 0 100 160" style="left:${x * W - l / 2}px;bottom:${H * .055}px;width:${l}px;height:${t}px">
+  return `<svg class="sapin" viewBox="0 0 100 160" style="left:${x * W - l / 2}px;bottom:${H * .065}px;width:${l}px;height:${t}px">
     <path d="M50 10 88 62H12Z" fill="#2F6B4F"/><path d="M50 40 94 100H6Z" fill="#2F6B4F"/><path d="M50 72 100 140H0Z" fill="#2F6B4F"/>
     <rect x="42" y="140" width="16" height="20" fill="#24221F"/>
-    ${boules.map(([bx, by, c], k) => `<circle class="b" data-k="${k}" cx="${bx * 100}" cy="${by * 160}" r="5" fill="${c}"/>`).join('')}
-    ${h > .15 ? '<path class="e" d="M50 0l3.5 7 7.7 1.1-5.6 5.4 1.3 7.7L50 17.6l-6.9 3.6 1.3-7.7-5.6-5.4 7.7-1.1Z" fill="#E8B93A"/>' : ''}
+    ${[[35, 99, '#E58C74'], [62, 72, '#E8B93A'], [50, 128, '#7FA8D6'], [70, 125, '#FBF7F1'], [28, 128, '#E8B93A']].map(([bx, by, c], k) => `<circle class="b" data-k="${k}" cx="${bx}" cy="${by}" r="5" fill="${c}"/>`).join('')}
+    ${h > .14 ? '<path class="e" d="M50 0l3.5 7 7.7 1.1-5.6 5.4 1.3 7.7L50 17.6l-6.9 3.6 1.3-7.7-5.6-5.4 7.7-1.1Z" fill="#E8B93A"/>' : ''}
   </svg>`;
 }).join('');
-const elSapins = [...document.querySelectorAll('.sapin')];
+const elSapins = $$('.sapin');
 
-// Avatars (participants fictifs)
+// ---------- Participants ----------
 const GENS = [['Camille', 'var(--rose)', '#8A3322'], ['Hugo', 'var(--ciel)', '#22476E'], ['Inès', 'var(--beurre)', '#6E5310'], ['Malo', 'var(--sapin-fond)', '#1F4A35'], ['Rose', 'var(--rose)', '#8A3322'], ['Yanis', 'var(--ciel)', '#22476E']];
-const av = (sel) => { $(sel).innerHTML = GENS.map(([n, f, c]) => `<div class="avatar" style="background:${f};color:${c}">${n[0]}<small>${n}</small><span class="coche">✓</span></div>`).join(''); return [...document.querySelectorAll(`${sel} .avatar`)]; };
-const av2 = av('#s2-avatars'), av3 = av('#s3-avatars');
-av3.forEach((a) => a.querySelector('.coche').remove());
+const av = (sel, coche) => { $(sel).innerHTML = GENS.map(([n, f, c]) => `<div class="avatar" style="background:${f};color:${c}">${n[0]}<small>${n}</small>${coche ? '<span class="coche">✓</span>' : ''}</div>`).join(''); return $$(sel + ' .avatar'); };
+const av2 = av('#s2-avatars', true), av3 = av('#s3-avatars', false);
 const IDEES = ['Une plante facile', 'Du thé vert', 'Un carnet de croquis'];
 $('#s4-idees').innerHTML = IDEES.map((t) => `<div style="background:#fff;border:1px solid var(--trait);border-radius:2.4vw;padding:2vw 2.6vw;font-size:3.2vw;font-weight:600">${t}</div>`).join('');
-const elIdees = [...document.querySelectorAll('#s4-idees div')];
+const elIdees = $$('#s4-idees div');
+// Éclats d'étincelles (cadeau qui s'ouvre, étoile finale)
+const ETOILE4 = (c) => `<svg viewBox="-10 -10 20 20" width="100%" height="100%"><path d="M0-10C1 -2 2 -1 10 0 2 1 1 2 0 10-1 2-2 1-10 0-2-1-1-2 0-10Z" fill="${c}"/></svg>`;
+$('#eclats').innerHTML = Array.from({ length: 14 }, (_, i) => `<div class="etincelle" style="width:${(3 + (i % 3) * 1.4) * vw}px;height:${(3 + (i % 3) * 1.4) * vw}px">${ETOILE4(['#E8B93A', '#E58C74', '#2E5A88', '#2F6B4F'][i % 4])}</div>`).join('');
+const elEclats = $$('#eclats .etincelle');
+// Cadeaux qui tombent (scène 5)
+const CAD = [['#E58C74', '#E8B93A'], ['#2E5A88', '#FBEBC2'], ['#2F6B4F', '#E58C74'], ['#E8B93A', '#B84A34'], ['#7FA8D6', '#E8B93A']];
+$('#cadeaux').innerHTML = CAD.map(([f, r], i) => `<svg class="a" data-i="${i}" viewBox="0 0 60 60" style="width:${(11 + (i % 2) * 3) * vw}px;height:${(11 + (i % 2) * 3) * vw}px;left:0;top:0"><rect x="6" y="20" width="48" height="38" rx="6" fill="${f}"/><rect x="3" y="13" width="54" height="11" rx="4" fill="${f}" style="filter:brightness(.85)"/><rect x="26" y="13" width="8" height="45" fill="${r}"/><circle cx="23" cy="9" r="6" fill="none" stroke="${r}" stroke-width="3.5"/><circle cx="37" cy="9" r="6" fill="none" stroke="${r}" stroke-width="3.5"/></svg>`).join('');
+const elCad = $$('#cadeaux svg');
+// Lumières et rayons du grand sapin
+const LUM = [[120, 120], [180, 130], [95, 195], [150, 180], [205, 200], [70, 280], [130, 260], [190, 270], [235, 300], [105, 320], [165, 315]];
+$('#lumieres').innerHTML = LUM.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="9" fill="${COUL[i % 4]}"/>`).join('');
+$('#rayons').innerHTML = Array.from({ length: 12 }, (_, i) => `<rect x="-3" y="-90" width="6" height="60" rx="3" fill="#E8B93A" transform="translate(150 28) rotate(${i * 30})"/>`).join('');
 
-// Calendrier des scènes (en mesures du refrain)
-const SC = [['s0', -1, 3], ['s1', 3, 5], ['s2', 5, 8], ['s3', 8, 11], ['s4', 11, 14], ['s5', 14, 15.6], ['s6', 15.6, 18]];
-const dans = (t, a, b) => { // opacité d'une scène avec fondu d'entrée et de sortie
-  const ta = a < 0 ? 0.25 : at(a), tb = at(b);
-  return Math.min(p(t, ta, ta + .45), 1 - p(t, tb - .35, tb));
-};
+// ---------- Scènes et transitions ----------
+const SC = [['s0', 0, T.drop], ['s1', T.drop, T.e2], ['s2', T.e2, T.e3], ['s3', T.e3, T.e4], ['s4', T.e4, T.gratuit], ['s5', T.gratuit, T.final], ['s6', T.final, 99]];
+const TRANS = [[T.drop, '#B84A34', [.15, .8], [.85, .25]], [T.e2, '#E8B93A', [.9, .3], [.1, .7]], [T.e3, '#2E5A88', [.5, .95], [.5, .1]], [T.e4, '#2F6B4F', [.1, .2], [.9, .85]], [T.gratuit, '#E58C74', [.85, .9], [.15, .2]], [T.final, '#1F3D60', [.5, .5], [.5, .3]]];
+const R = Math.hypot(W, H);
+function iris(t) {
+  const el = $('#iris');
+  for (const [tc, c, a, b] of TRANS) {
+    const avant = p(t, tc - .42, tc), apres = p(t, tc, tc + .5);
+    if (t > tc - .42 && t < tc + .5) {
+      const [x, y] = t < tc ? a : b, r = t < tc ? eio(avant) * R : (1 - eio(apres)) * R;
+      el.style.background = c; el.style.clipPath = `circle(${r}px at ${x * W}px ${y * H}px)`; el.style.visibility = 'visible';
+      const m = el.querySelector('.motif'); if (!m.firstChild) m.innerHTML = `<div class="a" style="left:0;top:0">${FLOCON('#FBF7F1')}</div>`;
+      const fl = m.firstChild, taille = Math.min(r * .9, 46 * vw); fl.style.width = fl.style.height = `${taille}px`;
+      fl.style.transform = `translate(${x * W - taille / 2}px,${y * H - taille / 2}px) rotate(${t * 120}deg)`; fl.style.opacity = .85;
+      return;
+    }
+  }
+  el.style.visibility = 'hidden';
+}
+// Mots qui montent un à un (sur les temps)
+function mots(id, t0, t, pas = BEAT / 2) {
+  $$(`#${id} .mot`).forEach((m, i) => { const q = dos(p(t, t0 + i * pas, t0 + i * pas + .45)); m.style.transform = `translateY(${(1 - q) * 9 * vw}px) rotate(${(1 - q) * 4}deg)`; m.style.opacity = cl(q * 1.6); });
+}
 
 function rendre(t) {
-  // Neige : plus dense à la fin
-  const fin = p(t, at(15.6), at(16.4));
-  elFlocons.forEach((e, i) => {
-    const f = flocons[i];
-    const y = (f.y + f.v * vw / 10 * t * (1 + fin * .6)) % (H + 20) - 10;
-    const x = f.x + Math.sin(t * f.f + f.ph) * f.a;
-    e.style.cssText = `width:${f.r * vw / 10}px;height:${f.r * vw / 10}px;transform:translate(${x}px,${y}px);opacity:${(i % 3 === 0 ? .55 : .9) * (i < flocons.length * .6 || fin > 0 ? 1 : 0)}`;
+  const nuit = eo(p(t, T.final - .1, T.final + .4));
+  $('#nuit').style.opacity = nuit;
+  $('#marque').style.color = nuit > .5 ? 'var(--papier)' : 'var(--encre)';
+  $('#marque').style.setProperty('--fond-logo', nuit > .5 ? '#1F3D60' : '#FBF7F1');
+  $('#marque').style.opacity = 1 - p(t, T.final + 1, T.final + 1.6);
+  $('#sol').style.background = nuit > .5 ? '#E9EEF4' : '#fff';
+  // Neige
+  const intens = 1 + p(t, T.final, T.cymbale) * .7;
+  for (const N of [N1, N2, N3]) N.el.forEach((e, i) => { const q = N.f[i]; const y = (q.y + q.v * vw / 10 * t * intens) % (H + 60) - 30; const x = q.x + Math.sin(t * q.w + q.ph) * q.a; e.style.transform = `translate(${x}px,${y}px)`; });
+  elFlocons.forEach((e, i) => { const f = flocons[i]; const y = (f.y + f.v * t * vw / 10) % (H + f.s * 2) - f.s; e.style.transform = `translate(${f.x - f.s / 2 + Math.sin(t * .6 + i) * 3 * vw}px,${y}px) rotate(${f.rot + f.vr * t}deg)`; e.style.opacity = .35 + .25 * nuit; });
+  // Guirlande : tombe, se balance, ampoules qui s'allument une à une puis pulsent
+  const chute = ressort(p(t, .1, 1.7));
+  $('#fil').setAttribute('d', 'M' + Array.from({ length: 61 }, (_, k) => `${k / 60 * W},${filY(k / 60, chute)}`).join(' L'));
+  const pl = pouls(t);
+  elAmp.forEach((e, i) => {
+    const u = (i + .5) / NB, y = filY(u, chute) + .4 * vw;
+    const ang = Math.sin(t * 2 * Math.PI / (BEAT * 4) + i * .9) * 7;
+    const allumee = t > .9 + i * (BEAT / 3);
+    const temps = Math.floor(t / BEAT);
+    const fort = allumee ? (.55 + .45 * ((temps + i) % 2 ? pl : .25 + .3 * Math.sin(t * 3 + i))) : .12;
+    const c = COUL[i % 4];
+    e.style.transform = `translate(${u * W - 1.5 * vw}px,${y}px) rotate(${ang}deg)`;
+    e.style.opacity = .35 + .65 * fort;
+    e.style.boxShadow = `0 0 ${(1 + 4 * fort) * vw}px ${(.3 + 1.2 * fort) * vw}px ${c}`;
   });
-  // Guirlande qui tombe puis se balance
-  const chute = ressort(p(t, .1, 1.6));
-  const pts = [];
-  for (let k = 0; k <= 40; k++) { const u = k / 40; pts.push(`${u * 1000},${(filY(u, chute) / H) * 1000 * (140 / (H * .14)) * (H / 1000)}`); }
-  $('#fil').setAttribute('d', `M${pts.join(' L')}`);
-  $('#guirlande').setAttribute('viewBox', `0 0 1000 ${H * .14 * 1000 / W}`);
-  $('#guirlande').style.height = `${H * .14}px`;
-  $('#fil').setAttribute('d', `M${Array.from({ length: 41 }, (_, k) => { const u = k / 40; return `${u * 1000},${filY(u, chute) * 1000 / W}`; }).join(' L')}`);
-  elBoules.forEach((e, i) => {
-    const u = (i + .5) / FORMES.length;
-    const ang = Math.sin(t * 2 * Math.PI / (BEAT * 4) + i * 1.1) * 9 + (1 - chute) * 30 * Math.sin(i);
-    const x = u * W, y = filY(u, chute) + vw * 1.2 + (i % 2 ? vw * 1.6 : 0);
-    e.style.transform = `translate(${x - vw * 1.8}px,${y}px) rotate(${ang}deg)`;
-  });
-  // Sapins qui poussent au début et rebondissent à la fin
+  // Sapins : poussent au début, rebondissent sur les temps, boules qui scintillent
   elSapins.forEach((e, i) => {
-    const pousse = ressort(p(t, .4 + i * .12, 1.6 + i * .12));
-    const danse = 1 + Math.max(0, Math.sin((t - at(15.6)) * Math.PI * 2 / BEAT)) * .05 * fin;
-    e.style.transform = `scaleY(${pousse * danse}) scaleX(${.6 + .4 * pousse})`;
-    e.querySelectorAll('.b').forEach((b) => { const k = +b.dataset.k; b.style.opacity = .45 + .55 * (0.5 + 0.5 * Math.sin(t * 5 + i * 1.7 + k * 2.1)); });
-    const etoile = e.querySelector('.e'); if (etoile) etoile.style.opacity = .6 + .4 * Math.abs(Math.sin(t * 3 + i));
+    const pousse = ressort(p(t, .5 + i * .14, 1.8 + i * .14));
+    const rebond = 1 + pl * .025 * (t > T.drop && t < T.gratuit + BAR ? 1 : 0);
+    e.style.transform = `scaleY(${pousse * rebond}) scaleX(${.6 + .4 * pousse})`;
+    e.querySelectorAll('.b').forEach((b) => { const k = +b.dataset.k; b.style.opacity = .4 + .6 * (.5 + .5 * Math.sin(t * 5 + i * 1.7 + k * 2.1)); });
+    const st = e.querySelector('.e'); if (st) st.style.opacity = .6 + .4 * Math.abs(Math.sin(t * 3 + i));
   });
-  $('#marque').style.opacity = 1 - p(t, at(15.4), at(15.6));
-  // Scènes
-  SC.forEach(([id, a, b]) => { $('#' + id).style.opacity = dans(t, a, b); });
-  // s0 : titre
-  { const x = eo(p(t, .5, 1.6)); $('#s0-texte').style.transform = `translateY(${(1 - x) * 8 * vw}px)`; }
-  // s1 : la carte se remplit
-  { const a = at(3), e = eo(p(t, a, a + .6));
-    $('#s1-carte').style.transform = `translateY(${(1 - e) * 20 * vw}px)`;
-    const nom = 'Noël en famille'; $('#s1-nom').textContent = nom.slice(0, Math.round(nom.length * p(t, a + .4, a + 1.4))) || ' ';
-    ['#s1-l1', '#s1-l2', '#s1-l3'].forEach((s, k) => { const q = eo(p(t, a + 1.5 + k * .35, a + 1.9 + k * .35)); $(s).style.cssText += `;opacity:${q};transform:translateX(${(1 - q) * 6 * vw}px)`; });
-    const clic = p(t, at(4.6), at(4.6) + .25); $('#s1-bouton').style.transform = `scale(${1 - Math.sin(clic * Math.PI) * .06})`;
-    $('#s1-bouton').style.background = clic > .5 ? 'var(--sapin)' : 'var(--encre)';
-    $('#s1-bouton').textContent = clic > .5 ? 'Échange créé ✓' : 'Créer l\'échange'; }
-  // s2 : le lien part vers les participants
-  { const a = at(5), cx = W / 2, cy = H * .655, ray = Math.min(W * .3, H * .13);
-    $('#s2-lien').style.transform = `translate(-50%,-50%) scale(${.7 + .3 * ressort(p(t, a, a + .8))})`;
-    av2.forEach((e, k) => {
-      const ang = -Math.PI / 2 + k * Math.PI * 2 / 6, q = ressort(p(t, a + 1 + k * BEAT, a + 1.8 + k * BEAT));
-      e.style.left = `${cx + Math.cos(ang) * ray * 1.3 * q}px`; e.style.top = `${cy + Math.sin(ang) * ray * q}px`;
-      e.style.transform = `scale(${q})`; e.style.opacity = q > 0 ? 1 : 0;
-      const c = e.querySelector('.coche'); c.style.transform = `scale(${ressort(p(t, a + 2 + k * BEAT, a + 2.6 + k * BEAT))})`;
-    }); }
-  // s3 : les avatars tournent, flèches secrètes
-  { const a = at(8), cx = W / 2, cy = H * .62, ray = Math.min(W * .29, H * .16);
-    const rot = eio(p(t, a + .3, a + 3)) * Math.PI * 2.5;
-    const ordre = [0, 3, 1, 4, 2, 5];
-    const pos = av3.map((e, k) => { const ang = -Math.PI / 2 + k * Math.PI * 2 / 6 + rot; return [cx + Math.cos(ang) * ray * 1.15, cy + Math.sin(ang) * ray]; });
-    av3.forEach((e, k) => { e.style.left = `${pos[k][0]}px`; e.style.top = `${pos[k][1]}px`; e.style.transform = `scale(${.9 + .1 * Math.sin(t * 6 + k)})`; });
-    const f = p(t, a + 3, a + 4.2);
+  // Scène visible
+  SC.forEach(([id, a, b]) => { $('#' + id).style.visibility = t >= a && t < b ? 'visible' : 'hidden'; });
+  iris(t);
+
+  // s0 : titre, mot par mot pendant l'intro
+  mots('s0', 1.6, t, BEAT * .75);
+  // s1
+  { const a = T.drop; mots('s1', a + .15, t);
+    const e = dos(p(t, a + .5, a + 1.1)); $('#s1-carte').style.transform = `translateY(${(1 - e) * 25 * vw}px) rotate(${(1 - e) * -3}deg)`;
+    const nom = 'Noël en famille'; const n = Math.round(nom.length * p(t, a + 1, a + 2)); $('#s1-nom').textContent = n ? nom.slice(0, n) : ' ';
+    ['#s1-l1', '#s1-l2', '#s1-l3'].forEach((s, k) => { const q = dos(p(t, a + 2 + k * BEAT, a + 2.4 + k * BEAT)); $(s).style.opacity = cl(q); $(s).style.transform = `translateX(${(1 - q) * 8 * vw}px)`; });
+    const clic = p(t, a + 2 * BAR + 0.1, a + 2 * BAR + .35); $('#s1-bouton').style.transform = `scale(${1 - Math.sin(clic * Math.PI) * .07})`;
+    $('#s1-bouton').style.background = clic > .5 ? 'var(--sapin)' : 'var(--encre)'; $('#s1-bouton').textContent = clic > .5 ? 'Échange créé ✓' : 'Créer l\'échange'; }
+  // s2 : lien puis participants qui arrivent sur les temps
+  { const a = T.e2; mots('s2', a + .15, t);
+    $('#s2-lien').style.transform = `translate(-50%,-50%) scale(${.6 + .4 * dos(p(t, a + .5, a + 1))})`;
+    const cx = W / 2, cy = H * .66, ry = H * .13, rx = W * .38;
+    av2.forEach((e, k) => { const t0 = a + 1.1 + k * BEAT, q = dos(p(t, t0, t0 + .4)); const ang = -Math.PI / 2 + k * Math.PI / 3;
+      e.style.left = `${cx + Math.cos(ang) * rx * q}px`; e.style.top = `${cy + Math.sin(ang) * ry * q}px`; e.style.transform = `scale(${q * (1 + pl * .05)})`;
+      e.querySelector('.coche').style.transform = `scale(${dos(p(t, t0 + .5, t0 + .8))})`; }); }
+  // s3 : rotation, flèches secrètes, œil barré sur le temps
+  { const a = T.e3; mots('s3', a + .15, t, BEAT / 3);
+    const cx = W / 2, cy = H * .665, rx = W * .33, ry = H * .14;
+    const rot = eio(p(t, a + .3, a + 2.6)) * Math.PI * 3;
+    const pos = av3.map((_, k) => { const ang = -Math.PI / 2 + k * Math.PI / 3 + rot; return [cx + Math.cos(ang) * rx, cy + Math.sin(ang) * ry]; });
+    av3.forEach((e, k) => { e.style.left = `${pos[k][0]}px`; e.style.top = `${pos[k][1]}px`; e.style.transform = `scale(${dos(p(t, a + .1 + k * .08, a + .5 + k * .08)) * (1 + pl * .06)})`; });
+    const ordre = [0, 3, 1, 4, 2, 5], f = p(t, a + 2.7, a + 3.9);
     $('#s3-fleches').setAttribute('viewBox', `0 0 ${W} ${H}`);
-    $('#s3-fleches').innerHTML = ordre.map((d, i) => {
-      const r = ordre[(i + 1) % 6], [x1, y1] = pos[d], [x2, y2] = pos[r];
-      const mx = (x1 + x2) / 2 + (cy - (y1 + y2) / 2) * .25, my = (y1 + y2) / 2 + ((x1 + x2) / 2 - cx) * .25;
-      const q = cl(f * 6 - i);
-      return `<path d="M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}" fill="none" stroke="#2E5A88" stroke-width="${.7 * vw}" stroke-dasharray="${2 * vw} ${1.6 * vw}" stroke-linecap="round" opacity="${q * .6}"/>`
-        + `<text x="${mx}" y="${my + 2 * vw}" font-family="Outfit" font-weight="800" font-size="${6 * vw}" text-anchor="middle" fill="#B84A34" opacity="${q}">?</text>`;
-    }).join('');
-    const oe = ressort(p(t, a + 4.3, a + 5));
-    $('#s3-oeil').style.top = `${cy - 11 * vw}px`; $('#s3-oeil').style.transform = `scale(${oe})`; }
-  // s4 : téléphone, cadeau qui s'ouvre, révélation
-  { const a = at(11), e = eo(p(t, a, a + .7));
-    const tel = $('#telephone'); tel.style.top = `${H * .34}px`; tel.style.transform = `translateY(${(1 - e) * 60 * vw}px)`;
-    const secoue = p(t, a + .9, a + 1.9), ouvre = eo(p(t, a + 1.9, a + 2.4));
-    $('#couvercle').setAttribute('transform', `translate(${Math.sin(secoue * 40) * 3 * (1 - ouvre) * (secoue > 0 && secoue < 1)} ${-ouvre * 26}) rotate(${-ouvre * 16} 60 40)`);
-    const txt = 'Tu offres un cadeau à Inès';
-    const n = Math.round(txt.length * p(t, a + 2.5, a + 3.6));
-    $('#s4-texte').innerHTML = n ? txt.slice(0, n).replace('Inès', '<mark>Inès</mark>').replace(/Iné?s?$/, (m) => `<mark>${m}</mark>`) : '&nbsp;';
-    elIdees.forEach((d, k) => { const q = eo(p(t, a + 3.8 + k * .3, a + 4.2 + k * .3)); d.style.opacity = q; d.style.transform = `translateY(${(1 - q) * 3 * vw}px)`; }); }
-  // s5 : gratuit
-  { const q = ressort(p(t, at(14), at(14) + .9)); $('#s5-texte').style.transform = `scale(${.85 + .15 * q})`; }
-  // s6 : Joyeux Noël
-  { const q = ressort(p(t, at(15.6), at(15.6) + 1)); $('#s6-texte').style.transform = `scale(${.8 + .2 * q})`;
-    $('#etoile').style.transform = `rotate(${Math.sin(t * 2) * 10}deg) scale(${1 + .08 * Math.sin(t * 6)})`; }
+    $('#s3-fleches').innerHTML = ordre.map((d, i) => { const r = ordre[(i + 1) % 6], [x1, y1] = pos[d], [x2, y2] = pos[r];
+      const mx = (x1 + x2) / 2 + (cy - (y1 + y2) / 2) * .3, my = (y1 + y2) / 2 + ((x1 + x2) / 2 - cx) * .3, q = cl(f * 6 - i);
+      return `<path d="M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}" fill="none" stroke="#2E5A88" stroke-width="${.7 * vw}" stroke-dasharray="${2 * vw} ${1.6 * vw}" stroke-linecap="round" opacity="${q * .55}"/><text x="${mx}" y="${my + 2 * vw}" font-family="Outfit" font-weight="800" font-size="${6 * vw}" text-anchor="middle" fill="#B84A34" opacity="${q}">?</text>`; }).join('');
+    const oe = dos(p(t, a + 4.15, a + 4.6)); $('#s3-oeil').style.top = `${cy - 11 * vw}px`; $('#s3-oeil').style.transform = `scale(${oe * (1 + pl * .08)}) rotate(${(1 - oe) * -30}deg)`; }
+  // s4 : téléphone, cadeau qui bat la mesure puis s'ouvre dans un éclat d'étincelles
+  { const a = T.e4; mots('s4', a + .15, t);
+    const tel = $('#telephone'); tel.style.top = `${H * .385}px`; const e = dos(p(t, a + .3, a + 1)); tel.style.transform = `translateY(${(1 - e) * 70 * vw}px) rotate(${(1 - e) * 4}deg)`;
+    const ouvre = a + 4 * BEAT + .9, o = eo(p(t, ouvre, ouvre + .45));
+    const saut = t < ouvre ? pl * 6 : 0;
+    $('#cadeau').style.transform = `translateY(${-saut}px) rotate(${t < ouvre ? Math.sin(t * 22) * pl * 4 : 0}deg)`;
+    $('#couvercle').setAttribute('transform', `translate(0 ${-o * 30}) rotate(${-o * 18} 60 40)`);
+    elEclats.forEach((s, i) => { const q = p(t, ouvre, ouvre + 1.2), ang = i / elEclats.length * Math.PI * 2 + .3, d = eo(q) * (18 + (i % 3) * 7) * vw;
+      s.style.transform = `translate(${Math.cos(ang) * d - 2 * vw}px,${Math.sin(ang) * d * .8 - 2 * vw - eo(q) * 4 * vw}px) rotate(${q * 180}deg) scale(${q > 0 ? 1 - q * .6 : 0})`; s.style.opacity = q > 0 ? 1 - q : 0; });
+    const txt = 'Tu offres un cadeau à Inès', n = Math.round(txt.length * p(t, ouvre + .4, ouvre + 1.3));
+    $('#s4-texte').innerHTML = n ? txt.slice(0, n).replace(/(I(n(è(s)?)?)?)$/, (m) => (n > 22 ? `<mark>${m}</mark>` : m)) : '&nbsp;';
+    elIdees.forEach((d, k) => { const q = dos(p(t, ouvre + 1.5 + k * BEAT, ouvre + 1.9 + k * BEAT)); d.style.opacity = cl(q); d.style.transform = `translateY(${(1 - q) * 4 * vw}px)`; }); }
+  // s5 : pluie de cadeaux sur les temps, texte
+  { const a = T.gratuit; mots('s5', a + .15, t);
+    elCad.forEach((c, i) => { const t0 = a + .2 + i * BEAT, q = p(t, t0, t0 + .7); const x = [.05, .8, .2, .66, .36][i] * W, y0 = H * .64, yFin = H * (.8 + (i % 2) * .02);
+      const y = y0 + (yFin - y0) * (q < .75 ? Math.pow(q / .75, 2) : 1 - Math.sin((q - .75) / .25 * Math.PI) * .12);
+      c.style.transform = `translate(${x}px,${y}px) rotate(${(i % 2 ? 1 : -1) * (1 - q) * 40 + (i % 2 ? 6 : -6)}deg) scale(${1 + (q >= 1 ? pl * .05 : 0)})`; c.style.opacity = q > 0 ? cl(q * 4) * (1 - p(t, T.final - .6, T.final - .1)) : 0; }); }
+  // s6 : nuit, le grand sapin s'assemble en triangles sur les temps ; l'étoile s'allume sur la cymbale
+  { const a = T.final;
+    $$('#grand-sapin .t').forEach((tr, i) => { const t0 = a + .3 + i * BEAT * 1.5, q = dos(p(t, t0, t0 + .5)); tr.style.transform = `translateY(${(1 - q) * -60}px)`; tr.style.opacity = cl(q * 1.5); tr.style.transformBox = 'fill-box'; });
+    const s = p(t, T.cymbale, T.cymbale + .6);
+    $('#etoile').style.transformOrigin = '150px 34px'; $('#etoile').style.transform = `scale(${t < T.cymbale ? 0 : dos(s) * (1 + .06 * Math.sin(t * 5))}) rotate(${(1 - dos(s)) * -90}deg)`;
+    $('#rayons').style.opacity = t < T.cymbale ? 0 : (1 - p(t, T.cymbale, T.cymbale + 1.4)) * .9; $('#rayons').style.transformOrigin = '150px 28px'; $('#rayons').style.transform = `scale(${.4 + eo(p(t, T.cymbale, T.cymbale + 1.4)) * 1.6})`;
+    $$('#lumieres circle').forEach((c, i) => { const on = t > T.cymbale + i * .05; c.style.opacity = on ? .55 + .45 * (.5 + .5 * Math.sin(t * 4 + i * 1.3)) : 0; c.style.filter = on ? `drop-shadow(0 0 6px ${COUL[i % 4]})` : 'none'; });
+    mots('s6', T.cymbale + .25, t, BEAT / 1.5);
+    $('#credit').style.opacity = p(t, T.cymbale + 3, T.cymbale + 3.6) * (1 - p(t, 45.3, 45.9)); }
+  // Fondu final
+  document.body.style.filter = `brightness(${1 - p(t, 45.2, 46) * .85})`;
 }
 window.rendre = rendre;
 rendre(0);

@@ -10,7 +10,8 @@ et retirer le premier commentaire. Relue et ajustée par Quentin avant publicati
 - Gumroad (gratuit) : https://qmengineering.gumroad.com/l/secret-santa (permalien à vérifier une fois la fiche créée)
 
 **Média : vidéo uniquement, aucune image** (décision de Quentin, 13/11/2026) : `assets/secret-santa-noel.mp4`,
-motion design de Noël de 35 s, 1080 × 1920, avec musique (Jingle Bells, domaine public, synthèse originale).
+motion design de Noël de 46 s, 1080 × 1920, musique « Christmas is coming » d'Alex-Productions (chosic.com,
+CC BY 3.0 à confirmer : crédit obligatoire, voir fin du texte).
 Même vidéo pour Instagram (IG-36, 01/12 à 18:30). Sources et régénération : `video/LISEZMOI.md`.
 Texte alternatif : « Animation de Noël : création d'un échange de Secret Santa, partage du lien, tirage
 secret que même l'organisateur ne voit pas, découverte du tirage sur la page de chacun ; Joyeux Noël de la
@@ -58,6 +59,9 @@ transmettre.
 Joyeux Noël de la part de QME.
 
 #SecretSanta #Noël #OutilsNumériques #VieDÉquipe #Organisation
+
+Musique : « Christmas is coming » par Alex-Productions | onsound.eu | Music promoted by chosic.com |
+Creative Commons CC BY 3.0
 
 ---
 
