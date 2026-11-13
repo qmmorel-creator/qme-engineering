@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- Reel de lancement QME (15 s, 1080 × 1920, 30 i/s). Animations CSS en pause, pilotées image par
+     image par video.mjs (document.getAnimations() → currentTime), puis assemblées par ffmpeg.
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel lancement QME</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+.s{position:absolute;inset:0}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+
+/* Scène 1 · 0 à 2,2 s : les formes forment le symbole */
+#s1{animation:sortie 400ms 2000ms}
+.f{position:absolute}
+#c1{left:390px;top:610px;width:300px;height:300px;background:var(--encre);border-radius:150px 150px 0 150px;animation:arrivee-g 700ms 0ms}
+#c2{left:540px;top:760px;width:150px;height:150px;background:var(--rouge);animation:arrivee-d 600ms 250ms}
+#c3{left:483px;top:703px;width:114px;height:114px;border-radius:50%;background:var(--papier);animation:pop 500ms 550ms}
+#mot{position:absolute;left:0;right:0;top:980px;text-align:center;font-weight:800;font-size:120px;letter-spacing:-.03em;animation:monte 500ms 900ms}
+#mot .m{color:var(--bleu)}#mot .e{color:var(--jaune)}
+#sous1{position:absolute;left:0;right:0;top:1140px;text-align:center;font-weight:700;font-size:34px;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-2);animation:monte 500ms 1200ms}
+
+/* Scène 2 · 2,2 à 5,2 s : le constat */
+#s2{background:var(--encre);color:var(--papier);animation:entree-fond 350ms 2200ms,sortie 350ms 4900ms}
+#s2 p{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+#t1{top:620px;font-size:104px;animation:monte 500ms 2400ms}
+#t2{top:1000px;font-size:104px;color:var(--jaune);animation:monte 500ms 3400ms}
+#s2 .barre{position:absolute;left:96px;top:560px;width:160px;height:16px;background:var(--rouge);animation:largeur 500ms 2300ms}
+
+/* Scène 3 · 5,2 à 11,2 s : dix templates */
+#s3{animation:entree-fond 300ms 5200ms,sortie 300ms 10900ms}
+#s3 .tete{position:absolute;left:96px;right:96px;top:300px;animation:monte 400ms 5300ms}
+#s3 .tete b{display:block;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge)}
+#s3 .tete span{display:block;font-weight:800;font-size:88px;letter-spacing:-.025em;line-height:1;margin-top:18px}
+.carte{position:absolute;left:84px;top:640px;width:912px}
+.carte img{width:912px;display:block;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--encre)}
+.carte p{margin-top:52px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:54px;letter-spacing:-.025em}
+.carte p i{font-style:normal;background:var(--jaune);padding:6px 20px;font-size:50px}
+.carte{animation:defile 560ms}
+.carte.der{animation:defile-der 900ms}
+#compte{position:absolute;right:96px;top:1500px;font-weight:700;font-size:34px;color:var(--texte-2);animation:monte 300ms 5400ms}
+
+/* Scène 4 · 11,2 à 13,4 s : promesse */
+#s4{background:var(--bleu);color:#fff;animation:entree-fond 300ms 11200ms,sortie 300ms 13200ms}
+#s4 p{position:absolute;left:96px;right:96px;font-weight:800;font-size:96px;letter-spacing:-.025em;line-height:1}
+#p1{top:560px;animation:monte 400ms 11350ms}
+#p2{top:760px;animation:monte 400ms 11650ms}
+#p3{top:960px;animation:monte 400ms 11950ms}
+#p3 span{background:var(--jaune);color:var(--encre);padding:0 14px}
+#s4 .rond{position:absolute;right:-160px;bottom:200px;width:520px;height:520px;border-radius:50%;background:var(--rouge);animation:pop 600ms 11300ms}
+
+/* Scène 5 · 13,4 à 15 s : appel */
+#s5{background:var(--jaune);animation:entree-fond 300ms 13400ms}
+#s5 h1{position:absolute;left:96px;right:96px;top:560px;font-weight:800;font-size:116px;letter-spacing:-.025em;line-height:.98;animation:monte 450ms 13500ms}
+#s5 .bouton{position:absolute;left:96px;top:1040px;background:var(--encre);color:var(--papier);font-weight:800;font-size:64px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface);animation:pop 450ms 13850ms}
+#s5 .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;animation:monte 400ms 14100ms}
+#s5 .signe svg{width:80px;height:80px}
+#s5 .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px;animation:monte 400ms 14200ms}
+
+@keyframes arrivee-g{from{transform:translateX(-700px) rotate(-90deg)}to{transform:none}}
+@keyframes arrivee-d{from{transform:translateX(700px)}to{transform:none}}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+@keyframes defile{0%{opacity:0;transform:translateX(160px)}14%{opacity:1;transform:none}86%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-160px)}}
+@keyframes defile-der{0%{opacity:0;transform:translateX(160px)}40%{opacity:1;transform:none}100%{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="s" id="s1">
+  <div class="f" id="c1"></div><div class="f" id="c2"></div><div class="f" id="c3"></div>
+  <p id="mot">Q<span class="m">M</span><span class="e">E</span></p>
+  <p id="sous1">Templates</p>
+</div>
+
+<div class="s" id="s2">
+  <div class="barre"></div>
+  <p id="t1">Un tableur trouvé en ligne dépanne…</p>
+  <p id="t2">jusqu'au jour où une formule casse.</p>
+</div>
+
+<div class="s" id="s3">
+  <div class="tete"><b>Templates QME</b><span>Des outils prêts à l'emploi.</span></div>
+  <div id="cartes"></div>
+  <p id="compte">Données fictives</p>
+</div>
+
+<div class="s" id="s4">
+  <div class="rond"></div>
+  <p id="p1">Achat unique.</p>
+  <p id="p2">Tous vos appareils.</p>
+  <p id="p3">Dès <span>12 €</span>.</p>
+</div>
+
+<div class="s" id="s5">
+  <h1>Chaque template a sa démo libre.</h1>
+  <div class="bouton">Lien en bio</div>
+  <div class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg>QME</div>
+  <p class="site">qm-engineering.fr</p>
+</div>
+
+<script>
+// Dix templates en vente (prix Gumroad du 13/11/2026), 560 ms chacun à partir de 5,5 s.
+const T=[['gantt','Planning Gantt','45 €'],['compte-rendu','Compte rendu','15 €'],['taches','Tâches','19 €'],['tjm','Calcul du TJM','12 €'],['cout-revient','Coût de revient','25 €'],['micro-entreprise','Recettes-dépenses','25 €'],['budget','Budget du foyer','15 €'],['budget-commun','Budget commun','15 €'],['revision','Révisions','14,90 €'],['nutrition','Nutrition','19 €']];
+const box=document.getElementById('cartes');
+T.forEach(([slug,nom,prix],i)=>{
+  const d=document.createElement('div');d.className='carte'+(i===T.length-1?' der':'');
+  d.style.animationDelay=(5500+i*520)+'ms';
+  d.innerHTML=`<img src="../../../../assets/templates-${slug}-couverture.png" alt=""><p><span>${nom}</span><i>${prix}</i></p>`;
+  box.appendChild(d);
+});
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

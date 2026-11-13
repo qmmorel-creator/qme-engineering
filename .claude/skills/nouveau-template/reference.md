@@ -130,26 +130,29 @@ Compte `@qmengineering`. Kit : `docs/templates/communication/instagram/README.md
 dans le dossier Drive « QME – Publications Instagram » (`1qy8D-0qM7ggs_Nz3EDFBxiUWj2MypcqC`), sous-dossiers
 Images (`1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`), Textes (`1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`) et Kit de marque.
 Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc légende (ID) ·
-Doc légende (lien) · Fichier(s) image (dossier Images) · Texte alternatif · Publié le · URL publication ·
-Remarque · Format · LinkedIn associé · ID Posty.
-Statuts : `À préparer` → `Prêt` (légende et visuels faits, à relire par Quentin) → `Programmé` (planifié dans
-Posty, ID Posty renseigné) → `Publié` ou `Erreur` ; `Annulé` si abandonné.
+Doc légende (lien) · Fichier(s) · Texte alternatif · Publié le · URL publication · Remarque · Format
+(`Image`, `Carrousel`, `Reel`) · LinkedIn associé · ID Posty (inutilisé).
+
+**Publication par Instinct** (comme LinkedIn), routine « Publications Instagram depuis Drive » (prompt :
+`docs/templates/communication/instagram/PROMPT-INSTINCT.md`) : passages à 18h00, 18h15 et 18h30, il publie
+les lignes **« Programmé »** dues depuis moins de 24 h. Posty n'est pas utilisé.
+Statuts : `À préparer` → `Prêt` (légende et visuels faits, à relire par Quentin) → `Programmé` (accord
+de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si abandonné.
 
 1. **Relire tout l'onglet** (`get_values Planning!A1:P`) juste avant d'écrire.
-2. **Ligne** : si une ligne `À préparer` existe déjà pour ce template (colonne F `Tnn · …`), la compléter ;
-   sinon en insérer une à sa place chronologique (`insert_dimension` puis `update_values`), **le lendemain
-   de la date LinkedIn du template, à 18:30**, ID `IG-` + (plus grand numéro + 1), Thème « Template QME »,
-   Format « Carrousel », colonne O = ID LinkedIn.
-3. **Légende** : Google Doc `IG-nn · <titre interne>` dans le dossier Textes, avec l'accroche retenue, la
-   légende et les hashtags de `instagram.md`. Renseigner G et H.
-4. **Images** : les PNG du carrousel déposés dans le dossier Images sous `IG-nn-<slug>-1.png` à `-5.png` ;
-   colonne I = liste des fichiers ; colonne J = texte alternatif de la première vue (les autres dans le doc).
-5. Passer le statut à `Prêt` ; donner à Quentin l'ID, la date et le lien du doc pour relecture.
-6. **Programmation** : seulement après l'accord de Quentin, via les outils Posty (plugin installé ;
-   chercher `posty` avec ToolSearch). Compte Instagram professionnel requis. Planifier à la date et à
-   l'heure de la ligne, relire ce que Posty renvoie, renseigner l'ID Posty et passer en `Programmé`. Sans
-   outil Posty dans la session : laisser `Prêt` et le dire à Quentin. Ne jamais publier immédiatement.
-7. Après publication : `Publié le`, `URL publication`, statut `Publié`.
+2. **Ligne** : compléter la ligne `À préparer` du template (colonne F `Tnn · …`) ; sinon en insérer une à
+   sa place chronologique (`insert_dimension` puis `update_values`), le lendemain de la date LinkedIn du
+   template, à 18:30, ID `IG-` + (plus grand numéro + 1), colonne O = ID LinkedIn.
+3. **Légende** : Google Doc `IG-nn · <titre interne> · légende` dans Textes, contenant **uniquement** le
+   texte à publier (accroche, légende, hashtags) : Instinct publie le doc entier. Les notes (variantes,
+   remarques) vont dans `instagram.md` ou la colonne M, jamais dans ce doc.
+4. **Médias** dans Images : `IG-nn-<slug>-1.png` … (carrousel 1080 × 1350) ou `IG-nn-<slug>.mp4` +
+   `IG-nn-<slug>-couverture.png` (reel 1080 × 1920, `video.mjs`). Colonne I = noms séparés par « | »
+   dans l'ordre (reel : `x.mp4 | couverture : y.png`). Colonne J = un texte alternatif par image,
+   numérotés et séparés par « | ».
+5. Statut `Prêt` ; donner à Quentin l'ID, la date, les liens du doc et des visuels pour relecture.
+6. **Seulement après l'accord explicite de Quentin** : statut `Programmé`. Instinct publie à l'heure.
+7. Ne jamais publier soi-même ni écrire `Publié` : c'est Instinct qui le fait.
 
 ## Pièges déjà rencontrés (vérifier à chaque template)
 

@@ -15,7 +15,7 @@ contrôler dans l'app au moment de les appliquer.
 | Nom affiché | `QME · Outils prêts à l'emploi` (29 caractères ; le nom est cherchable dans Instagram) |
 | Photo | `png/ig-avatar.png` : symbole Bauhaus du site (même logo que LinkedIn), 1080 × 1080, marge prévue pour la découpe ronde |
 | Catégorie | à choisir dans la liste d'Instagram (par exemple « Logiciel » ou « Entreprise de logiciels ») *(à vérifier)* |
-| Type de compte | professionnel (Créateur ou Entreprise) : obligatoire pour publier via Posty ou l'API |
+| Type de compte | professionnel (Créateur ou Entreprise) |
 | Liens | 1. `https://qm-engineering.fr/templates/` (« Templates et démos ») · 2. `https://qmengineering.gumroad.com` (« Boutique ») |
 
 **Bio** (143 caractères sur 150 permis) :
@@ -89,3 +89,5 @@ l'action (fond jaune : « Lien en bio », prix, « Démo libre »). Compteur « 
 Un post template **le lendemain de sa publication LinkedIn**, à 18:30, plus des stories le jour même
 (autocollant lien vers la démo). Lancement : 3 posts le même jour pour que la grille ne soit pas vide.
 Planning : Google Sheet « Planning publications Instagram » (`reference.md` du skill, § Planning Instagram).
+Publication : routine Instinct « Publications Instagram depuis Drive » (`PROMPT-INSTINCT.md`), lignes
+« Programmé » uniquement. Motion design : `reel-lancement.html` + `video.mjs` (MP4 1080 × 1920, 30 i/s).
