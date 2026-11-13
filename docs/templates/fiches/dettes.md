@@ -1,6 +1,6 @@
 # T12 · Remboursement de dettes
 
-Slug `dettes`, préfixe `DTT` (clés locales `qme-dtt-*`), prix prévu 10 € (achat unique), permalien Gumroad
+Slug `dettes`, préfixe `DTT` (clés locales `qme-dtt-*`), prix prévu 12 € (achat unique), permalien Gumroad
 prévu `remboursement-dettes`, catégorie Gumroad `business-and-money/personal-finance`, taille S, priorité P2.
 Origine : liste initiale (12/11/2026). Thème du site : « Pour la maison », colonne « Argent ».
 Statut : prêt à la mise en vente (démo ouverte, fiche Gumroad à créer).

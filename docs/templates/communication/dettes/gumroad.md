@@ -19,7 +19,7 @@ Remboursement de dettes
 
 ## Prix
 
-10 € (achat unique)
+12 € (achat unique)
 
 ## Permalien
 

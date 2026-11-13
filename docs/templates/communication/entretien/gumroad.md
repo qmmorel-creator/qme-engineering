@@ -1,7 +1,7 @@
 # Fiche Gumroad · Entretien de la maison
 
 Texte à reporter dans la fiche Gumroad (outils `mcp__Gumroad__*`) **à la mise en vente** ; aucune fiche n'est
-créée à ce stade. Nom et prix d'après le tableau de bord d'`IDEES.md` (T11, 10 €). La clé de licence est à
+créée à ce stade. Nom et prix d'après le tableau de bord d'`IDEES.md` (T11, 12 €). La clé de licence est à
 activer à la main dans l'éditeur Gumroad (Content → Insert → License key, sans multi-postes). Même contenu,
 au format des fiches de la vague 2 : `gumroad.json`.
 
@@ -18,7 +18,7 @@ Entretien de la maison
 
 ## Prix
 
-10 € (achat unique)
+12 € (achat unique)
 
 ## Permalien
 

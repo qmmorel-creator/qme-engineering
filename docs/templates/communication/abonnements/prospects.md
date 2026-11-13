@@ -5,7 +5,7 @@ structures, on écrit à des adresses professionnelles publiques ou via LinkedIn
 cités existent ; les organismes nommés sont des réseaux nationaux connus, mais leur intérêt et le bon
 interlocuteur sont **à vérifier** au premier contact. Aucun n'a été contacté.
 
-Le produit se vend d'abord à des particuliers (B2C), à petit prix (8 €) : la publication LinkedIn et
+Le produit se vend d'abord à des particuliers (B2C), à petit prix (12 €) : la publication LinkedIn et
 Instagram, et des prescripteurs du budget et de la consommation, comptent plus que la prospection directe.
 Gumroad propose un **programme d'affiliation** (commission sur les ventes apportées), adapté aux créateurs
 de contenu « finances personnelles ».

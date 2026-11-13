@@ -52,12 +52,12 @@ Lien d'achat en premier commentaire.
 
 ## Premier commentaire (une fois la fiche Gumroad en ligne)
 
-Le template Remboursement de dettes (10 €, achat unique) : https://qmengineering.gumroad.com/l/remboursement-dettes
+Le template Remboursement de dettes (12 €, achat unique) : https://qmengineering.gumroad.com/l/remboursement-dettes
 
 ## Version courte (commentaire ou story, 3 lignes)
 
 > Vos dettes, votre budget mensuel, et le plan qui les solde une à une, avec la date de fin.
-> Boule de neige, avalanche ou votre ordre, pointage des paiements réels. 10 €, sans abonnement.
+> Boule de neige, avalanche ou votre ordre, pointage des paiements réels. 12 €, sans abonnement.
 > Démo libre : https://qm-engineering.fr/templates/dettes/?demo
 
 ## Notes

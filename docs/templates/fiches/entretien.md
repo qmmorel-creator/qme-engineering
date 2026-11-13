@@ -1,6 +1,6 @@
 # T11 · Entretien de la maison
 
-Slug `entretien`, préfixe `ENT` (clés locales `qme-ent-*`), prix prévu 10 € (`price_cents` 1000), permalien
+Slug `entretien`, préfixe `ENT` (clés locales `qme-ent-*`), prix prévu 12 € (`price_cents` 1200), permalien
 Gumroad prévu `entretien-maison`. Taille S, P2. Origine : liste initiale du 12/11/2026 (ligne T11 de
 `IDEES.md`). Marqué **daté** : toute fréquence d'origine réglementaire est paramétrable, affichée avec sa
 source et « à vérifier selon votre département / votre bail ». Moteur d'échéances réutilisable pour T61

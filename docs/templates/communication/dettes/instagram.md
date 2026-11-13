@@ -9,7 +9,7 @@ créer ; aucune ligne ni aucun fichier Drive créés à ce stade).
   (sortie dans `../instagram/png/`, puis déplacée ici) → `instagram/dettes-1.png` … `dettes-5.png`.
 - Captures réelles de la démo : `assets/templates-dettes-tel.webp`, `assets/templates-dettes-comparer.webp`
   (données fictives, mention sur chaque vue qui en montre une).
-- Prix affiché sur la vue 5 : 10 € (prix prévu ; à vérifier sur Gumroad avant publication).
+- Prix affiché sur la vue 5 : 12 € (prix prévu ; à vérifier sur Gumroad avant publication).
 - Faits repris de `linkedin.md` et de l'application uniquement ; aucune promesse chiffrée.
 
 ## Vues
@@ -18,7 +18,7 @@ créer ; aucune ligne ni aucun fichier Drive créés à ce stade).
 2. Problème (fond encre) : Chaque dette a sa mensualité. Aucune ne dit quoi rembourser en premier. Quatre mensualités fictives. « Plus petit solde d'abord, ou taux le plus élevé d'abord ? »
 3. Ce que fait le template (bandeau bleu, capture téléphone, 3 points) : Une date de fin, calculée avec votre budget.
 4. Vue clé (bandeau jaune, capture de la comparaison) : Boule de neige ou avalanche, avec vos chiffres.
-5. Appel à l'action (fond jaune), 10 €, renvoi au sur mesure.
+5. Appel à l'action (fond jaune), 12 €, renvoi au sur mesure.
 
 ## Accroches (première ligne)
 
@@ -36,7 +36,7 @@ trois du domaine). Aucun lien dans la légende : « lien en bio ».
 2. Fond noir : Chaque dette a sa mensualité, aucune ne dit quoi rembourser en premier. Liste fictive : prêt voiture 210 €, crédit cuisine 115 €, réserve d'argent 60 €, découvert 40 €. Question : plus petit solde d'abord, ou taux le plus élevé d'abord ?
 3. Le template Remboursement de dettes sur téléphone : « Libre de dettes en août 2028 », choix de la méthode et paiements du mois. Trois points : vos dettes et votre budget, le report mois par mois de la mensualité d'une dette soldée, le pointage des paiements réels. Capture, données fictives.
 4. Comparaison des méthodes sur ordinateur : courbes du solde restant pour la boule de neige, l'avalanche, l'ordre personnalisé et les minimums seuls, et tableau des dates de fin et des intérêts. Boule de neige : plus petit solde d'abord ; avalanche : taux le plus élevé d'abord. Capture, données fictives ; aide au calcul, pas un conseil financier.
-5. Fond jaune : essayez-le avec un foyer fictif, démo libre, sans connexion à la banque, achat unique à 10 €. Besoin de plus ? Version sur mesure. Lien en bio.
+5. Fond jaune : essayez-le avec un foyer fictif, démo libre, sans connexion à la banque, achat unique à 12 €. Besoin de plus ? Version sur mesure. Lien en bio.
 
 ## Story d'annonce
 
@@ -54,7 +54,7 @@ Le template Remboursement de dettes fait le calcul avec vos chiffres :
 ▪ boule de neige, avalanche ou votre propre ordre, comparés côte à côte ;
 ▪ chaque mois, vous pointez ce que vous avez vraiment payé et voyez l'écart au plan.
 
-Sans connexion à la banque, calcul expliqué, achat unique à 10 €. Une aide au calcul, pas un conseil financier.
+Sans connexion à la banque, calcul expliqué, achat unique à 12 €. Une aide au calcul, pas un conseil financier.
 
 Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
 

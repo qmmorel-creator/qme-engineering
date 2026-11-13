@@ -1,6 +1,6 @@
 # T14 · Suivi des abonnements
 
-Slug `abonnements`, préfixe `ABN` (clés locales `qme-abn-*`), prix prévu 8 €, permalien Gumroad prévu
+Slug `abonnements`, préfixe `ABN` (clés locales `qme-abn-*`), prix prévu 12 €, permalien Gumroad prévu
 `suivi-abonnements`, catégorie Gumroad `business-and-money/personal-finance`, taille S, priorité P2.
 Origine : liste initiale du 12/11/2026 (ligne T14 de `IDEES.md` : coût mensuel et annuel, renouvellements ;
 base : abonnements courants sans prix figés). Fiche rédigée le 13/11/2026. Marques de risque : **argent**

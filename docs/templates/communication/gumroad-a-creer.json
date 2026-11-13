@@ -44,7 +44,7 @@
  {
   "slug": "entretien",
   "name": "Entretien de la maison",
-  "price_cents": 1000,
+  "price_cents": 1200,
   "permalink": "entretien-maison",
   "category": "self-improvement/productivity",
   "button": "Ouvrir mon calendrier",
@@ -86,7 +86,7 @@
  {
   "slug": "dettes",
   "name": "Remboursement de dettes",
-  "price_cents": 1000,
+  "price_cents": 1200,
   "permalink": "remboursement-dettes",
   "category": "business-and-money/personal-finance",
   "button": "Ouvrir mon plan",
@@ -128,7 +128,7 @@
  {
   "slug": "abonnements",
   "name": "Suivi des abonnements",
-  "price_cents": 800,
+  "price_cents": 1200,
   "permalink": "suivi-abonnements",
   "category": "business-and-money/personal-finance",
   "button": "Ouvrir mon suivi",

@@ -5,7 +5,7 @@ structures, on écrit à des adresses professionnelles publiques ou via LinkedIn
 existent ; leur intérêt pour un partenariat est **à vérifier** au premier contact, et aucun n'a été contacté.
 Aucune marque ni enseigne n'est nommée dans les messages.
 
-Le produit se vend d'abord à des particuliers (B2C), à petit prix (10 €) : l'effort commercial doit passer
+Le produit se vend d'abord à des particuliers (B2C), à petit prix (12 €) : l'effort commercial doit passer
 par des prescripteurs qui parlent déjà d'entretien du logement, et par le programme d'**affiliation
 Gumroad** (commission sur les ventes apportées).
 
