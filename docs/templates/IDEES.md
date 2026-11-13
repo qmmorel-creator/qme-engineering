@@ -105,17 +105,17 @@ déjà).
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en cours | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | idée | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | idée | 15 € | M | P1 | Backlog Quentin n° 02 |
-| T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | prêt | 15 € | S | P1 | Backlog Quentin n° 04 |
+| T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | idée | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | idée | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | idée | 29 € | M | P1 | Backlog Quentin n° 11 |
-| T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | prêt | 25 € | S | P1 | Backlog Quentin n° 12 |
+| T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
-| T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | prêt | 12 € | S | P1 | Backlog Quentin n° 15 |
-| T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | prêt | 25 € | S | P1 | Backlog Quentin n° 16 |
+| T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
+| T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | idée | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | idée | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
@@ -139,7 +139,7 @@ déjà).
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | idée | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
-| T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | prêt | 15 € | S | P1 | Backlog Quentin n° 44 |
+| T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | idée | 25 € | M | P1 | Backlog Quentin n° 49 |
 
@@ -424,6 +424,8 @@ Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans
 (noms et prix du tableau de bord). Socle commun : `templates/revision/`. Chaque application vérifie que la
 clé saisie correspond bien à son produit (`corps.produit`), sinon elle refuse : une clé d'un autre template
 ne doit jamais écrire dans ses données.
+
+Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). Communication : `docs/templates/communication/<slug>/`.
 
 | N° | Slug | Préfixe | Nom de vente | Prix |
 |----|------|---------|--------------|------|
