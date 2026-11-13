@@ -31,6 +31,10 @@ const T = {
   tjm: ['Calculateur de TJM', "Ton tarif, à l'euro près.", 'Objectif · jours facturables · statut · seuils'],
   travaux: ['Pilote de travaux maison', 'Tes travaux, devis par devis.', 'Devis comparés · budget · planning · réserves'],
   tresorerie: ['Trésorerie prévisionnelle · 12 mois', "Voir le creux avant qu'il arrive.", 'Prévu, réalisé, 3 scénarios · alerte sous ton seuil'],
+  habitudes: ["Suivi d'habitudes et routines", "Un geste par jour.", "À cocher ou chiffrées · jours non applicables · séries"],
+  entretien: ["Entretien de la maison", "Rien d'oublié, chaque saison.", "Échéances calculées · obligations sourcées · historique"],
+  dettes: ["Remboursement de dettes", "Une date de fin, enfin.", "Boule de neige · avalanche · date de fin · pointage"],
+  abonnements: ["Suivi des abonnements", "Ce que tu paies, chaque mois.", "Coût mensuel et annuel · prélèvements · à décider avant le …"],
   visa: ['Circuit de visa des documents', 'Chaque visa dans les délais.', 'Indices · VSO, VAO, REF · relances prêtes'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]

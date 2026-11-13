@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- Carrousel Instagram « Remboursement de dettes » (5 vues, 1080 × 1350), tiré des gabarits car-1, car-2,
+     car-3 de ../../instagram/gabarits.html. Rendu : node docs/templates/communication/instagram/rendre.mjs ../dettes/instagram/carrousel.html
+     (sortie dans instagram/png/, PNG ensuite déplacés ici sous dettes-1.png … dettes-5.png).
+     Captures réelles de la démo (données fictives). -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Carrousel Instagram · Remboursement de dettes</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;background:var(--papier)}
+.post{width:1080px;height:1350px}
+h1,h2,p{letter-spacing:-.025em}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+.marque{display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}
+.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
+.tel{position:absolute;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.tel img{display:block;width:100%}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid var(--encre);padding:8px 16px;background:var(--surface)}
+.mention{font-size:24px;font-weight:500}
+
+/* Vue 1 : couverture-question (car-1) */
+.c1 .titre{position:absolute;left:84px;top:200px;right:84px}
+.c1 h1{font-size:100px;font-weight:800;line-height:.98}
+.c1 h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
+.c1 .sous{font-size:38px;line-height:1.3;color:var(--texte-2);margin-top:44px;max-width:800px}
+.c1 .fa{position:absolute;right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+.c1 .fb{position:absolute;right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+.c1 .glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px}
+.c1 .glisser span{display:inline-block;width:80px;height:6px;background:var(--encre);position:relative}
+.c1 .glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid var(--encre);border-top:15px solid transparent;border-bottom:15px solid transparent}
+
+/* Vue 2 : le problème (car-1 sur fond encre) */
+.c-encre{background:var(--encre);color:var(--papier)}
+.c-encre .compteur{background:var(--encre);color:var(--papier);border-color:var(--papier)}
+.c-encre .texte{position:absolute;left:84px;right:84px;top:220px}
+.c-encre .sourcil{color:var(--jaune)}
+.c-encre h2{font-size:76px;font-weight:800;line-height:1.05;margin-top:32px}
+.c-encre .liste{margin-top:56px;display:flex;flex-direction:column;gap:18px}
+.c-encre .liste div{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #3a3833;padding-bottom:14px;font-size:36px;font-weight:600}
+.c-encre .liste b{font-weight:800;color:var(--jaune)}
+.c-encre .question{position:absolute;left:84px;right:84px;bottom:150px;font-size:44px;font-weight:800;line-height:1.15}
+.c-encre .question mark{background:var(--jaune);color:var(--encre);padding:0 8px}
+.c-encre .rond{position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;background:var(--bleu)}
+
+/* Vues 3 et 4 : ce que fait le template (car-2) */
+.c2 .bandeau{position:absolute;left:0;right:0;top:0;height:330px;background:var(--bleu);color:#fff;padding:96px 84px 0}
+.c2 .bandeau .sourcil{color:#fff;opacity:.85}
+.c2 .bandeau h2{font-size:64px;font-weight:800;line-height:1.05;margin-top:20px;max-width:780px}
+.c2 .tel{left:84px;top:420px;width:420px}
+.c2 .points{position:absolute;left:580px;right:84px;top:440px;display:flex;flex-direction:column;gap:44px}
+.c2 .points div{border-left:10px solid var(--jaune);padding-left:24px;font-size:34px;line-height:1.25;font-weight:500}
+.c2 .points b{display:block;font-weight:800;font-size:38px;margin-bottom:6px}
+.c2 .compteur{background:var(--surface);color:var(--encre);border-color:var(--surface)}
+.c2 .note{position:absolute;left:84px;bottom:70px;font-size:24px;color:var(--discret)}
+.c2.jaune .bandeau{background:var(--jaune);color:var(--encre)}
+.c2.jaune .bandeau .sourcil{color:var(--encre);opacity:.8}
+.c2.jaune .bandeau h2{font-size:58px;max-width:820px}
+.c2 .ecran{position:absolute;left:84px;right:84px;top:400px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.c2 .ecran img{display:block;width:100%}
+.c2 .bas{position:absolute;left:84px;right:84px;top:1010px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.c2 .bas div{border-left:10px solid var(--rouge);padding-left:22px;font-size:30px;line-height:1.25;font-weight:500}
+.c2 .bas div:first-child{border-color:var(--bleu)}
+.c2 .bas b{display:block;font-weight:800;font-size:34px;margin-bottom:4px}
+
+/* Vue 5 : appel à l'action (car-3) */
+.c3{background:var(--jaune)}
+.c3 .bloc{position:absolute;left:84px;right:84px;top:190px}
+.c3 h2{font-size:96px;font-weight:800;line-height:1}
+.c3 .liste{margin-top:56px;display:flex;flex-direction:column;gap:22px;font-size:40px;font-weight:600}
+.c3 .liste div{display:flex;gap:22px;align-items:center}
+.c3 .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+.c3 .plus{position:absolute;left:84px;right:84px;top:760px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
+.c3 .cta{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
+.c3 .cta b{font-size:52px;font-weight:800;letter-spacing:-.025em}
+.c3 .cta span{font-size:32px;font-weight:600;color:var(--jaune)}
+.c3 .pied{position:absolute;left:84px;right:84px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="symbole">
+      <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>
+      <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+      <circle cx="40" cy="40" r="15" fill="#F0EDE6"/>
+    </g>
+  </defs>
+</svg>
+
+<section class="cadre post c1" id="dettes-1">
+  <span class="compteur">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Dettes</p>
+    <h1 style="margin-top:30px">« Quand est-ce que j'en aurai <mark>fini</mark> ? »</h1>
+    <p class="sous">Plusieurs crédits, plusieurs mensualités. Et aucune date de fin écrite nulle part.</p>
+  </div>
+  <div class="fa"></div><div class="fb"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre post c-encre" id="dettes-2">
+  <div class="rond"></div>
+  <span class="compteur">2 / 5</span>
+  <div class="texte">
+    <p class="sourcil">Le problème</p>
+    <h2>Chaque dette a sa mensualité. Aucune ne dit quoi rembourser en premier.</h2>
+    <div class="liste">
+      <div><span>Prêt voiture</span><b>210 €</b></div>
+      <div><span>Crédit cuisine</span><b>115 €</b></div>
+      <div><span>Réserve d'argent</span><b>60 €</b></div>
+      <div><span>Découvert</span><b>40 €</b></div>
+    </div>
+  </div>
+  <p class="question">Plus petit solde d'abord, ou <mark>taux le plus élevé</mark> d'abord ?</p>
+</section>
+
+<section class="cadre post c2" id="dettes-3">
+  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Une date de fin, calculée avec votre budget.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="tel"><img src="../../../../../assets/templates-dettes-tel.webp" alt=""></div>
+  <div class="points">
+    <div><b>Vos dettes, votre budget</b>Reste dû, taux, mensualité : le plan se calcule.</div>
+    <div><b>Mois par mois</b>La mensualité d'une dette soldée passe à la suivante.</div>
+    <div><b>Pointage</b>Ce que vous avez vraiment payé, et l'écart au plan.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre post c2 jaune" id="dettes-4">
+  <div class="bandeau"><p class="sourcil">Comparer</p><h2>Boule de neige ou avalanche, avec vos chiffres.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="ecran"><img src="../../../../../assets/templates-dettes-comparer.webp" alt=""></div>
+  <div class="bas">
+    <div><b>Boule de neige</b>Plus petit solde d'abord : une première dette soldée vite.</div>
+    <div><b>Avalanche</b>Taux le plus élevé d'abord : le moins d'intérêts.</div>
+  </div>
+  <p class="note">Données fictives · aide au calcul, pas un conseil financier</p>
+</section>
+
+<section class="cadre post c3" id="dettes-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Essayez-le avec un foyer fictif.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Sans connexion à la banque</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils : <b>je le construis sur mesure.</b></div>
+  <div class="cta"><b>Lien en bio</b><span>10 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span><span>Q</span><span class="m" style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
+</section>
+</body>
+</html>

@@ -38,6 +38,10 @@ export const PRODUITS = {
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/' },
   SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/' },
+  HBT: { nom: 'Suivi d\'habitudes et routines', url: '/templates/habitudes/' },
+  ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/' },
+  DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/' },
+  ABN: { nom: 'Suivi des abonnements', url: '/templates/abonnements/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
