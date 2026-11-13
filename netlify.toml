@@ -442,6 +442,17 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+[[headers]]
+  for = "/templates/tournoi/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/tournoi/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
 # Domaine secondaire .cloud : redirection permanente vers le domaine principal
 [[redirects]]
   from = "https://qm-engineering.cloud/*"

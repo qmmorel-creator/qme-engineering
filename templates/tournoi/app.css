@@ -1,0 +1,71 @@
+/* TournoiFacile · composants propres (le socle commun est dans ../commun/socle.css). */
+.tournoi-tete{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:8px}
+.choix-tournoi select{min-height:40px!important}
+.participants{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}
+.participants li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 8px}
+.participants .seed{width:28px;height:28px;border-radius:50%;background:var(--ciel);color:var(--ciel-texte);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.participants .btn-icone{width:36px;height:36px}
+.formats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.format{display:flex;flex-direction:column;gap:6px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:14px;cursor:pointer;position:relative}
+.format input{position:absolute;opacity:0}
+.format span{font-size:13px;color:var(--texte-2)}
+.format.choisi{background:var(--beurre);border-color:transparent}
+.format:has(input:focus-visible){outline:3px solid var(--bleu)}
+.format:has(input:disabled){cursor:default}
+.options-format{gap:12px}
+.criteres{display:grid;gap:6px;margin:6px 0 10px;padding-left:22px;list-style:decimal}
+.criteres li{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--trait);border-radius:12px;padding:4px 6px 4px 12px;background:var(--papier)}
+.criteres .btn-icone{width:36px;height:36px}
+.generer{margin-top:24px;padding:18px;border-radius:16px;background:var(--ciel);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.rencontres{display:grid;gap:8px}
+.rencontre{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:6px 14px 6px 6px}
+.rencontre.et-jouable{border-left:6px solid var(--jaune)}
+.rencontre.et-jouee{border-left:6px solid var(--vert)}
+.rencontre.et-exempt,.rencontre.et-annulee{background:var(--sable)}
+.rencontre-corps{display:flex;flex-direction:column;gap:4px;border:0;background:none;text-align:left;padding:8px 10px;border-radius:12px;min-width:0}
+.rencontre-corps:not(:disabled):hover{background:var(--sable)}
+.rencontre-corps:disabled{cursor:default;color:inherit}
+.rencontre .tour{font-size:12px;color:var(--discret);font-weight:600}
+.duel{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;font-size:16px}
+.duel>span:last-child{text-align:right}
+.duel .score{font-size:15px;white-space:nowrap;padding:2px 10px;border-radius:999px;background:var(--sable)}
+.gagnant{font-weight:800}
+.exempt{color:var(--discret)}
+.arbre{display:grid;grid-template-columns:repeat(var(--n),minmax(190px,1fr));gap:18px;min-width:calc(var(--n) * 200px)}
+.colonne-arbre{display:flex;flex-direction:column}
+.colonne-arbre .boites{display:flex;flex-direction:column;justify-content:space-around;flex:1;gap:10px}
+.boite{display:flex;flex-direction:column;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:0;overflow:hidden;text-align:left;width:100%}
+.boite>span{display:flex;justify-content:space-between;gap:8px;padding:6px 10px;font-size:14px;min-height:34px;align-items:center}
+.boite>span+span{border-top:1px solid var(--trait)}
+.boite .nom{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.boite .vide{color:var(--discret)}
+.boite.et-jouable{border-color:var(--jaune);box-shadow:0 0 0 1px var(--jaune) inset}
+.boite.et-exempt,.boite.et-annulee{opacity:.6}
+.boite:disabled{cursor:default;color:inherit}
+.boite:not(:disabled):hover{border-color:var(--encre)}
+.boites-ligne{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.grille-poules{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.poule h3{font-size:17px;display:flex;gap:8px;align-items:center}
+.poule tr.qualifie td{background:#E8F3EB}
+.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end;max-width:640px;margin:10px auto 24px}
+.marche{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;border-radius:16px 16px 0 0;padding:12px;text-align:center}
+.marche b{font-size:17px;overflow-wrap:anywhere}
+.marche span{font-size:34px;font-weight:800}
+.marche.m1{background:var(--beurre);min-height:180px}
+.marche.m2{background:var(--ciel);min-height:140px}
+.marche.m3{background:var(--rose);min-height:110px}
+.saisie-score{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end}
+.saisie-score input{font-size:28px!important;font-weight:800;text-align:center;min-height:64px!important}
+.saisie-score .contre{font-size:28px;font-weight:800;padding-bottom:14px}
+.tableau tr.et-jouee td{color:var(--texte-2)}
+@media (max-width:1020px){.formats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){
+  .formats{grid-template-columns:1fr}
+  .duel{grid-template-columns:1fr;gap:2px}
+  .duel>span:last-child{text-align:left}
+  .duel .score{justify-self:start}
+  .grille-poules{grid-template-columns:1fr}
+  .rencontre{grid-template-columns:1fr;padding:6px}
+  .rencontre>.etiquette{justify-self:start;margin:0 0 6px 10px}
+}
+@media print{.boite{break-inside:avoid}.arbre{min-width:0}}
