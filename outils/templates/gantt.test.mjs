@@ -261,3 +261,87 @@ test('source des fériés affichée et datée', () => {
   assert.equal(B.sources.feries.consulteLe, '12/11/2026');
   assert.ok(!B.couleurs.some((c) => c.id === 'rouge'), 'le rouge est réservé au chemin critique');
 });
+
+// ---------- Version anglaise : calendriers, saisie et liens ----------
+test('fériés Angleterre et pays de Galles, jours de remplacement', () => {
+  const d = (an) => js(R.feries(an, 'uk').map((f) => f.date));
+  // 2026 : Noël un vendredi, lendemain de Noël un samedi → lundi 28.
+  assert.deepEqual(d(2026), ['2026-01-01', '2026-04-03', '2026-04-06', '2026-05-04', '2026-05-25', '2026-08-31', '2026-12-25', '2026-12-28']);
+  // 2027 : Noël un samedi et lendemain un dimanche → lundi 27 et mardi 28.
+  assert.ok(d(2027).includes('2027-12-27') && d(2027).includes('2027-12-28') && !d(2027).includes('2027-12-25'));
+  // 2022 : 1er janvier un samedi → lundi 3 ; Noël un dimanche → mardi 27, lendemain de Noël lundi 26.
+  assert.ok(d(2022).includes('2022-01-03'));
+  const noel2022 = R.feries(2022, 'uk').filter((f) => f.date >= '2022-12-01');
+  assert.deepEqual(js(noel2022.map((f) => [f.date, f.en])), [['2022-12-26', 'Boxing Day'], ['2022-12-27', 'Christmas Day (substitute day)']]);
+});
+
+test('fériés fédéraux des États-Unis, jours observés', () => {
+  const d = (an) => js(R.feries(an, 'us').map((f) => f.date));
+  assert.deepEqual(d(2026), ['2026-01-01', '2026-01-19', '2026-02-16', '2026-05-25', '2026-06-19', '2026-07-03', '2026-09-07', '2026-10-12', '2026-11-11', '2026-11-26', '2026-12-25']);
+  // Juneteenth seulement depuis 2021.
+  assert.equal(R.feries(2020, 'us').some((f) => f.en.startsWith('Juneteenth')), false);
+  // 1er janvier 2022 un samedi : observé le vendredi 31 décembre 2021.
+  assert.ok(R.feriesEntre('2021-12-01', '2021-12-31', 'us').some((f) => f.date === '2021-12-31'));
+  const c = R.calendrier({ ouvres: true, zone: 'us' });
+  assert.equal(c.estOuvre('2026-07-03'), false);
+  assert.equal(c.estOuvre('2026-07-06'), true);
+});
+
+test('zones : aucune, compatibilité alsace, noms anglais', () => {
+  assert.equal(R.feries(2026, 'aucun').length, 0);
+  assert.equal(R.calendrier({ ouvres: true, zone: 'aucun' }).estOuvre('2026-12-25'), true);
+  assert.equal(R.calendrier({ ouvres: true, alsace: true }).zone, 'fr-alsace');
+  assert.equal(R.feries(2026, true).length, 13);
+  assert.equal(R.feries(2026).find((f) => f.date === '2026-07-14').en, 'Bastille Day');
+  assert.equal(R.zoneDe('inconnue'), 'fr');
+});
+
+test('deux fériés le même jour ne retirent qu\'un jour ouvré (Ascension le 1er mai 2008)', () => {
+  assert.equal(R.feries(2008).filter((f) => f.date === '2008-05-01').length, 2);
+  const c = R.calendrier({ ouvres: true });
+  // Du mercredi 30 avril au vendredi 2 mai 2008 : 2 jours ouvrés (le jeudi 1er mai est férié une seule fois).
+  assert.equal(c.idx('2008-05-02') - c.idx('2008-04-30'), 1);
+  assert.equal(c.date(c.idx('2008-04-30') + 1), '2008-05-02');
+  assert.equal(c.date(c.idx('2008-04-30') + 2), '2008-05-05');
+});
+
+test('saisie rapide en anglais et dates mois/jour', () => {
+  const o = { aujourdhui: '2026-11-13', ouvres: false };
+  const t = R.lireSaisie('Homepage mockup 11/20 5d 40% after 2', { ...o, ordreDate: 'mj' });
+  assert.deepEqual(js({ nom: t.nom, debut: t.debut, duree: t.duree, av: t.avancement, deps: t.deps }), { nom: 'Homepage mockup', debut: '2026-11-20', duree: 5, av: 40, deps: [{ num: 2, type: 'FD', decalage: 0 }] });
+  const j = R.lireSaisie('Delivery milestone window 12/10-12/18 after 3, 5SS+2', { ...o, ordreDate: 'mj' });
+  assert.deepEqual(js({ jalon: j.jalon, plage: j.plage, deps: j.deps.map((x) => x.type) }), { jalon: true, plage: { debut: '2026-12-10', fin: '2026-12-18' }, deps: ['FD', 'DD'] });
+  assert.equal(R.lireSaisie('Install 2 wk after 4FF-1', { ...o, ouvres: true }).duree, 10);
+  assert.equal(R.lireSaisie('Paint 3 days', o).duree, 3);
+  assert.equal(R.lireSaisie('Review on 2027-01-05', o).debut, '2027-01-05');
+  assert.equal(R.lireSaisie('Review 05/01', o).debut, '2027-01-05');
+  assert.equal(R.lireSaisie('Review 05/01', { ...o, ordreDate: 'mj' }).debut, '2027-05-01');
+  assert.equal(R.lireSaisie('Version 2 after review', o).nom, 'Version 2 after review');
+  assert.deepEqual(js(R.lireDeps('3, 5SS+2d, 7SF').deps.map((d) => [d.type, d.decalage])), [['FD', 0], ['DD', 2], ['DF', 0]]);
+});
+
+test('liens écrits avec les codes anglais', () => {
+  assert.equal(R.ecrireDep(3, 'FD', 0, true), '3');
+  assert.equal(R.ecrireDep(3, 'FD', 2, true), '3FS+2');
+  assert.equal(R.ecrireDep(5, 'DD', -1, true), '5SS-1');
+  assert.equal(R.ecrireDep(6, 'DF', 0, true), '6SF');
+});
+
+test('traduction anglaise complète : textes du code et modèles', async () => {
+  const { clesTraduction } = await import('./textes.mjs');
+  const g = { window: {} };
+  new Function('window', readFileSync(new URL('../../templates/gantt/en.js', import.meta.url), 'utf8'))(g.window);
+  const EN = g.window.TEXTES_EN;
+  const cles = clesTraduction(new URL('../../templates/gantt/app.js', import.meta.url),
+    ['tâche', 'tâches', 'section', 'sections', 'planning', 'plannings', 'masqué', 'masqués',
+      'France', 'France (Alsace-Moselle)', 'Angleterre et pays de Galles', 'États-Unis (fériés fédéraux)', 'Aucun jour férié']);
+  const manquantes = cles.filter((k) => typeof EN[k] !== 'string');
+  assert.deepEqual(manquantes, []);
+  const vars = (s) => (s.match(/\{\w+\}/g) || []).sort().join();
+  for (const k of cles) assert.equal(vars(EN[k]), vars(k), k);
+  for (const m of B.modeles) {
+    assert.ok(m.en, m.id);
+    assert.equal(m.en.taches.length, m.taches.length, m.id);
+    assert.equal(m.en.sections.length, m.sections.length, m.id);
+  }
+});

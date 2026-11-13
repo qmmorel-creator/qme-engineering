@@ -14,7 +14,13 @@
   const dateValide = (a, m, j) => { const d = new Date(a, m - 1, j); return d.getFullYear() === a && d.getMonth() === m - 1 && d.getDate() === j; };
   const estIso = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && dateValide(...s.split('-').map(Number));
 
-  // ---------- Jours fériés (Code du travail, art. L3133-1 ; Alsace-Moselle : Vendredi saint et 26 décembre) ----------
+  // ---------- Jours fériés ----------
+  // Zones : France (Code du travail, art. L3133-1), Alsace-Moselle (Vendredi saint et 26 décembre en plus),
+  // Angleterre et pays de Galles (bank holidays, jours de remplacement le lundi suivant), États-Unis
+  // (jours fériés fédéraux, 5 U.S.C. 6103 : samedi → vendredi, dimanche → lundi), ou aucun.
+  // Les changements exceptionnels décidés une année donnée (jubilés, couronnement…) ne sont pas calculables.
+  const ZONES = ['fr', 'fr-alsace', 'uk', 'us', 'aucun'];
+  const zoneDe = (z) => (z === true ? 'fr-alsace' : ZONES.includes(z) ? z : 'fr');
   // Dimanche de Pâques, algorithme grégorien anonyme (Meeus / Jones / Butcher).
   function paques(an) {
     const a = an % 19, b = Math.floor(an / 100), c = an % 100, d = Math.floor(b / 4), e = b % 4;
@@ -25,23 +31,75 @@
     return `${an}-${deux(mois)}-${deux(jour)}`;
   }
 
-  function feries(an, alsace = false) {
+  // n-ième jour j (0 = dimanche) du mois m (1-12) ; n = -1 pour le dernier.
+  function nieme(an, m, j, n) {
+    if (n > 0) { const d = new Date(an, m - 1, 1); d.setDate(1 + ((j - d.getDay() + 7) % 7) + 7 * (n - 1)); return iso(d); }
+    const d = new Date(an, m, 0); d.setDate(d.getDate() - ((d.getDay() - j + 7) % 7)); return iso(d);
+  }
+  const estWeekend = (s) => { const j = jourSemaine(s); return j === 0 || j === 6; };
+
+  // Liste [date, nom français, nom anglais] d'une année et d'une zone.
+  function listeFeries(an, zone) {
     const p = paques(an);
+    if (zone === 'aucun') return [];
+    if (zone === 'uk') {
+      const l = [
+        [ajout(p, -2), 'Vendredi saint', 'Good Friday'],
+        [ajout(p, 1), 'Lundi de Pâques', 'Easter Monday'],
+        [nieme(an, 5, 1, 1), 'Jour férié de début mai', 'Early May bank holiday'],
+        [nieme(an, 5, 1, -1), 'Jour férié de printemps', 'Spring bank holiday'],
+        [nieme(an, 8, 1, -1), 'Jour férié d\'été', 'Summer bank holiday'],
+      ];
+      // Jours fixes : un férié tombant un week-end est remplacé par le premier jour de semaine libre suivant.
+      const fixes = [[`${an}-01-01`, 'Jour de l\'an', 'New Year\'s Day'], [`${an}-12-25`, 'Noël', 'Christmas Day'], [`${an}-12-26`, 'Lendemain de Noël', 'Boxing Day']];
+      const pris = new Set(fixes.filter(([d]) => !estWeekend(d)).map(([d]) => d));
+      for (const [d, fr, en] of fixes) {
+        if (!estWeekend(d)) { l.push([d, fr, en]); continue; }
+        let r = ajout(d, 1);
+        while (estWeekend(r) || pris.has(r)) r = ajout(r, 1);
+        pris.add(r);
+        l.push([r, `${fr} (remplacement)`, `${en} (substitute day)`]);
+      }
+      return l;
+    }
+    if (zone === 'us') {
+      const observe = (d) => { const j = jourSemaine(d); return j === 6 ? ajout(d, -1) : j === 0 ? ajout(d, 1) : d; };
+      const l = [
+        [observe(`${an}-01-01`), 'Jour de l\'an', 'New Year\'s Day'],
+        [nieme(an, 1, 1, 3), 'Martin Luther King Jr. Day', 'Martin Luther King Jr. Day'],
+        [nieme(an, 2, 1, 3), 'Anniversaire de Washington', 'Washington\'s Birthday'],
+        [nieme(an, 5, 1, -1), 'Memorial Day', 'Memorial Day'],
+        [observe(`${an}-07-04`), 'Fête de l\'Indépendance', 'Independence Day'],
+        [nieme(an, 9, 1, 1), 'Fête du Travail (Labor Day)', 'Labor Day'],
+        [nieme(an, 10, 1, 2), 'Columbus Day', 'Columbus Day'],
+        [observe(`${an}-11-11`), 'Veterans Day', 'Veterans Day'],
+        [nieme(an, 11, 4, 4), 'Thanksgiving', 'Thanksgiving Day'],
+        [observe(`${an}-12-25`), 'Noël', 'Christmas Day'],
+      ];
+      if (an >= 2021) l.push([observe(`${an}-06-19`), 'Juneteenth', 'Juneteenth National Independence Day']);
+      return l;
+    }
     const l = [
-      [`${an}-01-01`, 'Jour de l\'an'],
-      [ajout(p, 1), 'Lundi de Pâques'],
-      [`${an}-05-01`, 'Fête du Travail'],
-      [`${an}-05-08`, 'Victoire 1945'],
-      [ajout(p, 39), 'Ascension'],
-      [ajout(p, 50), 'Lundi de Pentecôte'],
-      [`${an}-07-14`, 'Fête nationale'],
-      [`${an}-08-15`, 'Assomption'],
-      [`${an}-11-01`, 'Toussaint'],
-      [`${an}-11-11`, 'Armistice 1918'],
-      [`${an}-12-25`, 'Noël'],
+      [`${an}-01-01`, 'Jour de l\'an', 'New Year\'s Day'],
+      [ajout(p, 1), 'Lundi de Pâques', 'Easter Monday'],
+      [`${an}-05-01`, 'Fête du Travail', 'Labour Day'],
+      [`${an}-05-08`, 'Victoire 1945', 'Victory in Europe Day'],
+      [ajout(p, 39), 'Ascension', 'Ascension Day'],
+      [ajout(p, 50), 'Lundi de Pentecôte', 'Whit Monday'],
+      [`${an}-07-14`, 'Fête nationale', 'Bastille Day'],
+      [`${an}-08-15`, 'Assomption', 'Assumption Day'],
+      [`${an}-11-01`, 'Toussaint', 'All Saints\' Day'],
+      [`${an}-11-11`, 'Armistice 1918', 'Armistice Day'],
+      [`${an}-12-25`, 'Noël', 'Christmas Day'],
     ];
-    if (alsace) l.push([ajout(p, -2), 'Vendredi saint (Alsace-Moselle)'], [`${an}-12-26`, 'Saint-Étienne (Alsace-Moselle)']);
-    return l.map(([date, nom]) => ({ date, nom })).sort((a, b) => a.date.localeCompare(b.date));
+    if (zone === 'fr-alsace') l.push([ajout(p, -2), 'Vendredi saint (Alsace-Moselle)', 'Good Friday (Alsace-Moselle)'], [`${an}-12-26`, 'Saint-Étienne (Alsace-Moselle)', 'St Stephen\'s Day (Alsace-Moselle)']);
+    return l;
+  }
+
+  // Fériés d'une année : [{ date, nom, en }] triés. Le second argument est la zone (ou true pour Alsace-Moselle,
+  // compatibilité avec les anciennes données).
+  function feries(an, zone = 'fr') {
+    return listeFeries(an, zoneDe(zone)).map(([date, nom, en]) => ({ date, nom, en })).sort((a, b) => a.date.localeCompare(b.date));
   }
 
   // ---------- Calendrier : index de jour (calendaires ou ouvrés) ----------
@@ -50,14 +108,16 @@
   const ORIGINE = '1990-01-01';
   const AN_MIN = 1990, AN_MAX = 2200;
   const tablesFeries = {};
-  function tableFeries(alsace) {
-    const cle = alsace ? 'a' : 'n';
+  function tableFeries(zone) {
+    const cle = zone;
     if (tablesFeries[cle]) return tablesFeries[cle];
     const dates = new Map();
     const decalages = [];
     for (let an = AN_MIN; an <= AN_MAX; an++) {
-      for (const f of feries(an, alsace)) {
-        dates.set(f.date, f.nom);
+      for (const f of feries(an, zone)) {
+        // Deux fériés le même jour (Ascension un 1er ou un 8 mai) : le jour n'est retiré qu'une fois.
+        if (dates.has(f.date)) continue;
+        dates.set(f.date, f);
         const n = ecart(ORIGINE, f.date);
         if (((n % 7) + 7) % 7 < 5) decalages.push(n);
       }
@@ -70,8 +130,9 @@
 
   function calendrier(options = {}) {
     const ouvres = !!options.ouvres;
-    const alsace = !!options.alsace;
-    const T = tableFeries(alsace);
+    const zone = zoneDe(options.zone ?? (options.alsace ? 'fr-alsace' : 'fr'));
+    const alsace = zone === 'fr-alsace';
+    const T = tableFeries(zone);
     const memoDate = new Map();
     const indexDecalage = (n) => {
       if (!ouvres) return n;
@@ -90,15 +151,16 @@
       memoDate.set(i, d);
       return d;
     };
-    const ferie = (d) => T.dates.get(d) || null;
+    const ferie = (d) => T.dates.get(d)?.nom || null;
     const estOuvre = (d) => { if (!ouvres) return true; const j = jourSemaine(d); return j !== 0 && j !== 6 && !T.dates.has(d); };
-    return { ouvres, alsace, idx, date, ferie, estOuvre };
+    return { ouvres, zone, alsace, idx, date, ferie, estOuvre };
   }
 
   // Fériés tombant dans un intervalle [de, a] (pour l'affichage en périodes hachurées).
-  function feriesEntre(de, a, alsace = false) {
-    const l = [];
-    for (let an = Number(de.slice(0, 4)); an <= Number(a.slice(0, 4)); an++) for (const f of feries(an, alsace)) if (f.date >= de && f.date <= a) l.push(f);
+  function feriesEntre(de, a, zone = 'fr') {
+    const l = [], vus = new Set();
+    // Un férié américain du 1er janvier peut être observé le 31 décembre précédent : année suivante incluse.
+    for (let an = Number(de.slice(0, 4)); an <= Number(a.slice(0, 4)) + 1; an++) for (const f of feries(an, zone)) if (f.date >= de && f.date <= a && !vus.has(f.date)) { vus.add(f.date); l.push(f); }
     return l;
   }
 
@@ -112,6 +174,7 @@
   // FD fin → début, DD début → début, FF fin → fin, DF début → fin ; décalage en jours (négatif = chevauchement).
   const TYPES = ['FD', 'DD', 'FF', 'DF'];
   const ANGLAIS = { FS: 'FD', SS: 'DD', FF: 'FF', SF: 'DF' };
+  const VERS_ANGLAIS = { FD: 'FS', DD: 'SS', FF: 'FF', DF: 'SF' };
   const NOMS_TYPES = { FD: 'fin → début', DD: 'début → début', FF: 'fin → fin', DF: 'début → fin' };
 
   // Contrainte sur le début au plus tôt du successeur.
@@ -140,7 +203,7 @@
   function lireDeps(texte) {
     const deps = [], erreurs = [];
     for (const brut of String(texte || '').split(/[,;]+/).map((s) => s.trim()).filter(Boolean)) {
-      const m = brut.replace(/\s+/g, '').match(/^(\d+)([A-Za-z]{2})?([+-]\d+)?j?$/i);
+      const m = brut.replace(/\s+/g, '').match(/^(\d+)([A-Za-z]{2})?([+-]\d+)?[jd]?$/i);
       const code = m?.[2]?.toUpperCase();
       const type = !code ? 'FD' : TYPES.includes(code) ? code : ANGLAIS[code];
       if (!m || !type) { erreurs.push(brut); continue; }
@@ -148,8 +211,10 @@
     }
     return { deps, erreurs };
   }
-  function ecrireDep(num, type, decalage) {
-    return `${num}${type === 'FD' && decalage ? 'FD' : type === 'FD' ? '' : type}${decalage > 0 ? `+${decalage}` : decalage < 0 ? decalage : ''}`;
+  // anglais : codes FS, SS, FF, SF (interface en anglais).
+  function ecrireDep(num, type, decalage, anglais = false) {
+    const code = anglais ? VERS_ANGLAIS[type] : type;
+    return `${num}${type === 'FD' && decalage ? code : type === 'FD' ? '' : code}${decalage > 0 ? `+${decalage}` : decalage < 0 ? decalage : ''}`;
   }
 
   // Ajouter le lien pred → succ créerait-il une boucle ? (succ précède déjà pred, ou lien sur soi-même)
@@ -267,11 +332,14 @@
 
   // ---------- Saisie rapide ----------
   // « Maquette accueil 12/11 5j 40% après 2 » ; « Réception jalon plage 10/12-18/12 après 5 » ; « _Lot_1 » = section.
-  const RE_DATE = /^(\d{1,2})\/(\d{1,2})(?:\/(\d{2}|\d{4}))?$/;
-  function lireDate(txt, aujourdhui) {
-    const m = String(txt).match(RE_DATE);
+  // Dates : jj/mm[/aa], ou mm/jj[/aa] si ordre = 'mj' (format américain), ou AAAA-MM-JJ.
+  const RE_DATE = /^(?:(\d{1,2})\/(\d{1,2})(?:\/(\d{2}|\d{4}))?|\d{4}-\d{2}-\d{2})$/;
+  function lireDate(txt, aujourdhui, ordre = 'jm') {
+    const t = String(txt);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(t)) return estIso(t) ? t : null;
+    const m = t.match(RE_DATE);
     if (!m) return null;
-    const j = Number(m[1]), mo = Number(m[2]);
+    const j = Number(ordre === 'mj' ? m[2] : m[1]), mo = Number(ordre === 'mj' ? m[1] : m[2]);
     if (m[3]) { const a = m[3].length === 2 ? 2000 + Number(m[3]) : Number(m[3]); return dateValide(a, mo, j) ? `${a}-${deux(mo)}-${deux(j)}` : null; }
     // Sans année : l'occurrence la plus proche d'aujourd'hui.
     const a0 = Number(aujourdhui.slice(0, 4));
@@ -279,10 +347,12 @@
     if (!cand.length) return null;
     return cand.sort((x, y) => Math.abs(ecart(aujourdhui, x)) - Math.abs(ecart(aujourdhui, y)))[0];
   }
-  const RE_DEP = /^(\d+)(FD|DD|FF|DF|FS|SS|SF)?([+-]\d+j?)?,?$/i;
+  const RE_DEP = /^(\d+)(FD|DD|FF|DF|FS|SS|SF)?([+-]\d+[jd]?)?,?$/i;
 
+  // Mots-clés français et anglais acceptés quelle que soit la langue de l'interface.
   function lireSaisie(ligne, options = {}) {
     const aujourdhui = options.aujourdhui;
+    const ordre = options.ordreDate || 'jm';
     const texte = String(ligne || '').trim();
     if (!texte) return { vide: true };
     if (texte.startsWith('_')) {
@@ -295,9 +365,9 @@
     for (let i = 0; i < mots.length; i++) {
       const m = mots[i];
       const bas = m.toLowerCase();
-      if (bas === 'après' || bas === 'apres') {
+      if (bas === 'après' || bas === 'apres' || bas === 'after') {
         let k = i + 1, pris = 0;
-        while (k < mots.length && RE_DEP.test(mots[k]) && !/^\d+j$/i.test(mots[k])) {
+        while (k < mots.length && RE_DEP.test(mots[k]) && !/^\d+[jd]$/i.test(mots[k])) {
           const { deps, erreurs } = lireDeps(mots[k]);
           res.deps.push(...deps); res.erreurs.push(...erreurs);
           k++; pris++;
@@ -305,13 +375,13 @@
         }
         if (pris) { i = k - 1; continue; }
       }
-      if (bas === 'plage' && i + 1 < mots.length) {
+      if ((bas === 'plage' || bas === 'window') && i + 1 < mots.length) {
         const deuxDates = mots[i + 1].split(/[-–→]/);
         let d1 = null, d2 = null, saut = 0;
-        if (deuxDates.length === 2) { d1 = lireDate(deuxDates[0], aujourdhui); d2 = lireDate(deuxDates[1], aujourdhui); saut = 1; }
+        if (deuxDates.length === 2) { d1 = lireDate(deuxDates[0], aujourdhui, ordre); d2 = lireDate(deuxDates[1], aujourdhui, ordre); saut = 1; }
         else if (i + 2 < mots.length) {
-          const s = ['au', 'à', 'a', '-', '–'].includes(mots[i + 2].toLowerCase()) ? 1 : 0;
-          d1 = lireDate(mots[i + 1], aujourdhui); d2 = lireDate(mots[i + 2 + s] || '', aujourdhui); saut = 2 + s;
+          const s = ['au', 'à', 'a', 'to', '-', '–'].includes(mots[i + 2].toLowerCase()) ? 1 : 0;
+          d1 = lireDate(mots[i + 1], aujourdhui, ordre); d2 = lireDate(mots[i + 2 + s] || '', aujourdhui, ordre); saut = 2 + s;
         }
         if (d1 && d2) {
           if (d2 < d1) [d1, d2] = [d2, d1];
@@ -319,18 +389,18 @@
           res.jalon = true; i += saut; continue;
         }
       }
-      if (bas === 'jalon') { res.jalon = true; continue; }
-      if ((bas === 'le' || bas === 'dès' || bas === 'des') && mots[i + 1] && RE_DATE.test(mots[i + 1]) && !res.debut) continue;
+      if (bas === 'jalon' || bas === 'milestone') { res.jalon = true; continue; }
+      if (['le', 'dès', 'des', 'on', 'from'].includes(bas) && mots[i + 1] && RE_DATE.test(mots[i + 1]) && !res.debut) continue;
       if (RE_DATE.test(m) && !res.debut) {
-        const d = lireDate(m, aujourdhui);
+        const d = lireDate(m, aujourdhui, ordre);
         if (d) { res.debut = d; continue; }
         res.erreurs.push(m); continue;
       }
-      let dm = m.match(/^(\d+)(j|jours?|s|sem|semaines?)$/i);
-      if (!dm && /^\d+$/.test(m) && /^(j|jours?|sem|semaines?)$/i.test(mots[i + 1] || '')) { dm = [m, m, mots[i + 1]]; i++; }
+      let dm = m.match(/^(\d+)(j|jours?|s|sem|semaines?|d|days?|w|wk|wks|weeks?)$/i);
+      if (!dm && /^\d+$/.test(m) && /^(j|jours?|sem|semaines?|days?|wks?|weeks?)$/i.test(mots[i + 1] || '')) { dm = [m, m, mots[i + 1]]; i++; }
       if (dm && res.duree === null) {
         const n = Number(dm[1]);
-        res.duree = /^s/i.test(dm[2]) ? n * (options.ouvres ? 5 : 7) : n;
+        res.duree = /^[sw]/i.test(dm[2]) ? n * (options.ouvres ? 5 : 7) : n;
         continue;
       }
       const pc = m.match(/^(\d{1,3})%$/);
@@ -392,7 +462,7 @@
 
   g.REGLES = {
     iso, versDate, ajout, ecart, jourSemaine, dateValide, estIso,
-    paques, feries, feriesEntre, calendrier, finTache, ORIGINE,
+    paques, feries, feriesEntre, calendrier, finTache, ORIGINE, ZONES, zoneDe,
     TYPES, NOMS_TYPES, lireDeps, ecrireDep, creeBoucle,
     ordonnancer, attendu, statut, avancementGlobal, ecartReference, etatPlage,
     lireDate, lireSaisie, ordreAffichage, instancierModele, niveauEchelle, zoomPourAjuster, ZOOM_MIN, ZOOM_MAX, semaineIso,

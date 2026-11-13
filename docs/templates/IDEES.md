@@ -252,6 +252,20 @@ par produit ou accès groupé dans `PRODUITS`).
 | Atelier et entrepôt | T70, T71, T73, T74, T76, T77 | 188 € | 129 € |
 | Foyer organisé | T14, T16, T94, T95, T96 | 77 € | 49 € |
 
+## Versions anglaises
+
+Décision de Quentin (13/11/2026) : test complet sur le Gantt, puis décision de généraliser selon les ventes
+(clics sur `/en/`, ventes de la fiche anglaise). Méthode : skill `nouveau-template` § 3 bis.
+
+| N° | Template | Nom anglais | Prix | Statut | Remarques |
+|----|----------|-------------|------|--------|-----------|
+| T02 | Planning Gantt rapide | Quick Gantt Planner | 49 $ | prêt | Fériés Angleterre et pays de Galles, États-Unis (fédéraux), France. Fiche Gumroad à créer (limite de 10 créations par jour atteinte le 13/11/2026), clé de licence à insérer par Quentin, puis `gumroadEn`. Communication : `communication/gantt/*-en.md`. |
+
+Candidats suivants (universels, sans règle française) : T03 tâches, T30 planner, T31 compte rendu, T28 CRM,
+T35 prospection, T05 budget, T65 budget commun, T15 mariage, T51 événementiel, T25 non-conformités, T32 levée
+de réserves, T24 circuit de visa, T29 flotte, T45 parc informatique, T67 travaux. À garder en français : T40,
+T41, T36, T42, T53, T57, T01, T04 (règles, programmes ou bases françaises).
+
 ## Ordre de production conseillé
 
 1. T01 : fait (en vente).

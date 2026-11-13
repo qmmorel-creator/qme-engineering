@@ -10,7 +10,9 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
-// Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
+// Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence) de la
+// fiche française et, pour un template traduit, de la fiche anglaise (gumroadEn). Les deux fiches ouvrent
+// le même template et les mêmes données ; la connexion renvoie la langue de la fiche achetée.
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
   CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/', gumroad: '29mMG1jJqiRppcqs_Mt09w==' },
@@ -39,6 +41,14 @@ export const PRODUITS = {
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
+
+// Fiches Gumroad à interroger pour une clé de licence : [{ produit, gumroad, langue }].
+export function fichesGumroad(produits = PRODUITS) {
+  return Object.entries(produits).flatMap(([produit, p]) => [
+    ...(p.gumroad ? [{ produit, gumroad: p.gumroad, langue: 'fr' }] : []),
+    ...(p.gumroadEn ? [{ produit, gumroad: p.gumroadEn, langue: 'en' }] : []),
+  ]);
+}
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
 
 function base32(octets) {
@@ -137,15 +147,16 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   }
 
   let code = requete.method === 'POST' ? corps?.code : requete.headers.get('x-code');
+  let langue = null; // langue de la fiche Gumroad achetée (connexion par clé de licence seulement)
 
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
-    // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = Object.entries(PRODUITS).filter(([, p]) => p.gumroad);
-    const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
+    // Toutes les fiches sont interrogées en parallèle : le temps de réponse ne dépend pas du nombre de produits.
+    const candidats = fichesGumroad();
+    const reponses = await Promise.allSettled(candidats.map((f) => verifierLicence(f.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
-    if (trouve >= 0) code = codeDepuisLicence(secret, candidats[trouve][0], code);
+    if (trouve >= 0) { langue = candidats[trouve].langue; code = codeDepuisLicence(secret, candidats[trouve].produit, code); }
     else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {
       return json(502, { erreur: 'Vérification de la licence impossible pour le moment. Réessaie dans un instant.' });
     }
@@ -160,7 +171,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
 
   if (chemin === '/connexion' && requete.method === 'POST') {
     const jeton = formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
-    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null });
+    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, ...(langue ? { langue } : {}), donnees: (await stockage.get(cle)) ?? null });
   }
   if (chemin === '/donnees' && requete.method === 'GET') {
     return json(200, { donnees: (await stockage.get(cle)) ?? null });

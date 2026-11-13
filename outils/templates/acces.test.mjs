@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS, stockageMigrant } from '../../netlify/lib/templates-acces.mjs';
+import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS, stockageMigrant, fichesGumroad } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
 const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
@@ -137,4 +137,36 @@ test('migration du stockage : reprise depuis l\'ancien, copie dans le nouveau, e
     { get: async (c) => ancienne2.get(c) ?? null, supprimer: async (c) => { ancienne2.delete(c); } });
   await assert.rejects(s2.get('k'));
   assert.equal(ancienne2.has('k'), true);
+});
+
+// ---------- Fiche Gumroad anglaise d'un template traduit ----------
+test('fiches Gumroad : française et anglaise, avec leur langue', () => {
+  const f = fichesGumroad({ AAA: { gumroad: 'fr1' }, BBB: { gumroad: 'fr2', gumroadEn: 'en2' }, CCC: {} });
+  assert.deepEqual(f, [
+    { produit: 'AAA', gumroad: 'fr1', langue: 'fr' },
+    { produit: 'BBB', gumroad: 'fr2', langue: 'fr' },
+    { produit: 'BBB', gumroad: 'en2', langue: 'en' },
+  ]);
+});
+
+test('clé de la fiche anglaise : même template et mêmes données, langue « en »', async () => {
+  const avant = PRODUITS.GNT.gumroadEn;
+  PRODUITS.GNT.gumroadEn = 'fiche-anglaise-test';
+  try {
+    const s = memoire();
+    // Seule la fiche anglaise du Gantt reconnaît la clé.
+    const r = await (await appelLicence(s, async (id) => ({ ok: id === 'fiche-anglaise-test' }))).json();
+    assert.equal(r.produit, 'GNT');
+    assert.equal(r.langue, 'en');
+    assert.equal(r.jeton, codeDepuisLicence(SECRET, 'GNT', LICENCE));
+    // La même clé reconnue par la fiche française donnerait le même espace de données, en français.
+    const rf = await (await appelLicence(s, async (id) => ({ ok: id === PRODUITS.GNT.gumroad }))).json();
+    assert.equal(rf.langue, 'fr');
+    assert.equal(rf.jeton, r.jeton);
+    // Un code interne ne porte pas de langue.
+    const ri = await (await appelLicence(s, async () => ({ ok: false }), r.jeton)).json();
+    assert.equal(ri.langue, undefined);
+  } finally {
+    if (avant === undefined) delete PRODUITS.GNT.gumroadEn; else PRODUITS.GNT.gumroadEn = avant;
+  }
 });
