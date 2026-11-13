@@ -9,10 +9,12 @@ et retirer le premier commentaire. Relue et ajustée par Quentin avant publicati
 - Présentation : https://qm-engineering.fr/catalogue/secret-santa/
 - Gumroad (gratuit) : https://qmengineering.gumroad.com/l/secret-santa (permalien à vérifier une fois la fiche créée)
 
-**Image à joindre** : `assets/templates-secret-santa-couverture.png` (1280 × 720), ou en carrousel :
-couverture, page d'un participant (`templates-secret-santa-tel.webp`), échange côté organisateur
-(`templates-secret-santa-tirage.webp`). Texte alternatif : « Secret Santa QME : page d'un participant qui
-découvre à qui il offre un cadeau, et vue de l'organisateur qui ne voit pas le tirage ; données fictives. »
+**Média : vidéo uniquement, aucune image** (décision de Quentin, 13/11/2026) : `assets/secret-santa-noel.mp4`,
+motion design de Noël de 35 s, 1080 × 1920, avec musique (Jingle Bells, domaine public, synthèse originale).
+Même vidéo pour Instagram (IG-36, 01/12 à 18:30). Sources et régénération : `video/LISEZMOI.md`.
+Texte alternatif : « Animation de Noël : création d'un échange de Secret Santa, partage du lien, tirage
+secret que même l'organisateur ne voit pas, découverte du tirage sur la page de chacun ; Joyeux Noël de la
+part de QME. Participants fictifs. »
 
 ---
 
@@ -45,7 +47,7 @@ voit qui s'est inscrit et qui a découvert son tirage, jamais le résultat ;
 Un même organisateur peut gérer plusieurs échanges : la famille, les amis, le bureau. Aucun e-mail n'est
 envoyé, les données sont hébergées en Europe et effacées automatiquement après la fête.
 
-Il est gratuit. C'est ma façon de montrer, sur un sujet léger, le soin que je mets dans les outils sur mesure.
+C'est notre cadeau de Noël : il est gratuit, pour la famille, les amis ou le bureau.
 
 La démo, avec trois échanges d'exemple, est ouverte à tous, sans inscription :
 https://qm-engineering.fr/templates/secret-santa/?demo
@@ -53,13 +55,15 @@ https://qm-engineering.fr/templates/secret-santa/?demo
 Si vous organisez le Secret Santa de votre équipe ou de votre famille cette année, n'hésitez pas à le
 transmettre.
 
+Joyeux Noël de la part de QME.
+
 #SecretSanta #Noël #OutilsNumériques #VieDÉquipe #Organisation
 
 ---
 
 ## Version courte (commentaire, story, message privé)
 
-> J'ai sorti un Secret Santa en ligne et gratuit : inscription par un lien, exclusions, tirage que même
+> Notre cadeau de Noël : un Secret Santa en ligne et gratuit : inscription par un lien, exclusions, tirage que même
 > l'organisateur ne voit pas, chacun découvre son tirage sur sa page. Démo :
 > https://qm-engineering.fr/templates/secret-santa/?demo
 
