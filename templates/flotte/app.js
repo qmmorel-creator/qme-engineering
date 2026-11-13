@@ -232,7 +232,7 @@
     const defs = [
       ['FL-101-QA', 'Citadine du siège', 'M1', 'ES', m(-50), 42, { prixAchat: 16900, amortMois: 60 }],
       ['FL-202-QB', 'Fourgon atelier', 'N1', 'GO', m(-74), 55, { prixAchat: 28400, amortMois: 72 }],
-      ['FL-303-QC', 'Berline commerciale', 'M1', 'HY', m(-20), 96, { lld: { dureeMois: 36, kmContrat: 90000, loyer: 489, prixKmSup: 0.07 } }],
+      ['FL-303-QC', 'Berline commerciale', 'M1', 'HY', m(-20), 84, { lld: { dureeMois: 36, kmContrat: 90000, loyer: 489, prixKmSup: 0.07 } }],
       ['FL-404-QD', 'Électrique de service', 'M1', 'EL', m(-14), 38, { lld: { dureeMois: 48, kmContrat: 60000, loyer: 329, prixKmSup: 0.06 } }],
       ['FL-505-QE', 'Utilitaire électrique', 'N1', 'EL', m(-30), 30, { prixAchat: 31000, amortMois: 60 }],
       ['FL-606-QF', 'Citadine de remplacement', 'M1', 'GO', m(-110), 18, { prixAchat: 6500, amortMois: 36 }],
@@ -260,12 +260,15 @@
     const ent = (v, j, ops, cout, prest, note = '') => D.entretiens.push({ id: id(), vehiculeId: v.id, date: ajout(t, j), km: kmA(v, ajout(t, j)), operations: ops, cout, prestataire: prest, note });
     ent(v1, -400, ['REV', 'VID', 'FAI', 'FHA', 'LDF', 'FRE', 'PNE', 'CLI', 'BAT'], 412, 'Garage du quartier (fictif)');
     ent(v1, -40, ['REV', 'VID', 'FHA', 'FRE', 'PNE', 'BAT'], 286.4, 'Garage du quartier (fictif)');
-    ent(v2, -200, ['REV', 'VID', 'FAI', 'FHA', 'LDF', 'FRE', 'CLI', 'BAT', 'LDR'], 598, 'Centre auto (fictif)', 'Plaquettes avant remplacées');
+    ent(v2, -200, ['REV', 'VID', 'FAI', 'FHA', 'LDF', 'FRE', 'CLI', 'BAT', 'LDR', 'DIS'], 1340, 'Centre auto (fictif)', 'Distribution et plaquettes avant remplacées');
     ent(v2, -120, ['PNE'], 64, 'Centre auto (fictif)');
     ent(v3, -260, ['REV', 'VID', 'FHA', 'FRE', 'PNE', 'BAT'], 0, 'Réseau du loueur (prestation incluse)');
+    ent(v3, -45, ['REV', 'VID', 'FAI', 'FHA', 'FRE', 'PNE'], 0, 'Réseau du loueur (prestation incluse)');
     ent(v4, -30, ['REV', 'FHA', 'FRE', 'PNE', 'BAT'], 0, 'Réseau du loueur (prestation incluse)');
     ent(v5, -330, ['REV', 'FHA', 'FRE', 'PNE', 'LDF', 'CLI', 'BAT'], 238, 'Atelier véhicules électriques (fictif)');
+    ent(v5, -100, ['PNE'], 48, 'Centre auto (fictif)', 'Permutation');
     ent(v6, -300, ['REV', 'VID', 'FAI', 'FHA', 'LDF', 'FRE', 'PNE', 'LDR', 'CLI', 'BAT', 'DIS'], 1190, 'Garage du quartier (fictif)', 'Distribution faite');
+    ent(v6, -90, ['PNE'], 52, 'Centre auto (fictif)');
     // Contrôles techniques.
     D.controles.push({ id: id(), vehiculeId: v1.id, date: ajout(t, -95), nature: 'periodique', resultat: 'favorable', centre: 'Centre de contrôle (fictif)', cout: 79 });
     D.controles.push({ id: id(), vehiculeId: v2.id, date: ajout(t, -345), nature: 'periodique', resultat: 'favorable', centre: 'Centre de contrôle (fictif)', cout: 85 });
@@ -570,10 +573,10 @@
     const s = synthese(v);
     const c = s.cout;
     const planTri = [...s.plan].sort((a, b) => ({ retard: 0, proche: 1, ok: 2, sans: 3 }[a.etat] - { retard: 0, proche: 1, ok: 2, sans: 3 }[b.etat]) || (a.prevue || '9').localeCompare(b.prevue || '9'));
-    const lignePlan = (e) => `<tr><td><b>${esc(e.op.nom)}</b><small>${[e.op.km > 0 && km(e.op.km), e.op.mois > 0 && `${e.op.mois} mois`].filter(Boolean).join(' ou ')}</small></td>
-      <td>${e.dernier ? `${fmtCourt(e.dernier.date)}<small>${km(e.dernier.km)}</small>` : '<small>pas encore suivi</small>'}</td>
-      <td>${[e.echKm !== null && km(e.echKm), e.echDate && fmtCourt(e.echDate)].filter(Boolean).join('<br>')}${e.dateKm && e.echKm !== null && e.kmRestant > 0 ? `<small>km atteints vers le ${fmtCourt(e.dateKm)}</small>` : ''}</td>
-      <td><span class="etiquette ${ETIQ[e.etat][0]}">${ETIQ[e.etat][1]}</span></td></tr>`;
+    const lignePlan = (e) => `<tr><td class="p-op"><b>${esc(e.op.nom)}</b><small>${[e.op.km > 0 && km(e.op.km), e.op.mois > 0 && `${e.op.mois} mois`].filter(Boolean).join(' ou ')}</small></td>
+      <td class="p-der">${e.dernier ? `${fmtCourt(e.dernier.date)}<small>${km(e.dernier.km)}</small>` : '<small>pas encore suivi</small>'}</td>
+      <td class="p-ech">${[e.echKm !== null && km(e.echKm), e.echDate && fmtCourt(e.echDate)].filter(Boolean).join('<br>')}${e.dateKm && e.echKm !== null && e.kmRestant > 0 ? `<small>km atteints vers le ${fmtCourt(e.dateKm)}</small>` : ''}</td>
+      <td class="p-etat"><span class="etiquette ${ETIQ[e.etat][0]}">${ETIQ[e.etat][1]}</span></td></tr>`;
     const ctLignes = s.ct.length ? s.ct.map((x) => `<li><span class="etiquette ${ETIQ[x.etat][0]}">${ETIQ[x.etat][1]}</span><span><b>${LIB_CT[x.nature]}${x.premier ? ' (premier)' : ''}</b> au plus tard le ${fmtCourt(x.echeance)}</span></li>`).join('')
       : `<li><span class="etiquette gris">À saisir</span><span>${v.type === 'AUTRE' ? 'Type « autre » : indique la périodicité dans la fiche du véhicule.' : 'Indique la date de 1re mise en circulation.'}</span></li>`;
     const historique = [
@@ -711,7 +714,7 @@
         <div class="tuile rond" style="--c:var(--encre)"><p class="surtitre">Coût total</p><b>${Math.round(tot.total).toLocaleString('fr-FR')}<small>€</small></b><span>${pluriel(E.vehicules.length, 'véhicule')}</span></div>
         <div class="tuile" style="--c:var(--rouge)"><p class="surtitre">Coût moyen au km</p><b>${tot.km >= 1 ? (tot.total / tot.km).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '–'}<small>€</small></b><span>${km(tot.km)} parcourus</span></div>
         <div class="tuile" style="--c:var(--jaune)"><p class="surtitre">Énergie et dépenses</p><b>${Math.round(tot.depenses || 0).toLocaleString('fr-FR')}<small>€</small></b><span>Hors loyers et entretien</span></div>
-        <div class="tuile rond" style="--c:var(--bleu)"><p class="surtitre">Amendes</p><b>${Math.round(tot.amendes).toLocaleString('fr-FR')}<small>€</small></b><span>Pour mémoire, hors coût total</span></div>
+        <div class="tuile rond" style="--c:var(--bleu)"><p class="surtitre">Amendes</p><b>${E.amendes.length}</b><span>${E.amendes.filter((a) => a.statut === 'a-designer').length} à désigner · ${tot.amendes ? `${eur(tot.amendes)} saisis, ` : ''}hors coût total</span></div>
       </div>
       <h2 class="titre-section">Par véhicule <span>Survole ou touche une barre pour le détail.</span></h2>
       <figure class="graphique" id="graphique">
