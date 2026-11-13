@@ -507,7 +507,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .apercu-interets{font-size:14px;color:var(--texte-2);padding:10px 12px;border-radius:10px;background:var(--ciel)}
 .apercu-interets:empty{display:none}
 .apercu-interets.ko{background:var(--beurre);color:var(--beurre-texte);font-weight:600}
-.modale select{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--trait);background:var(--surface);font-size:16px}
+.modale select,.champ select{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--trait);background:var(--surface);font-size:16px;border-radius:12px}
 
 /* Comparer */
 .comparaison{margin-top:16px}
@@ -608,3 +608,4 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .conseils span{font-size:14px;color:var(--texte-2)}
 @media (max-width:720px){.conseils{grid-template-columns:1fr}}
 .vue:focus,.vue:focus-visible{outline:none}
+.sous-titre-types{font-weight:700;margin:6px 0 10px}

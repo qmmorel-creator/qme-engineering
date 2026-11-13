@@ -315,6 +315,7 @@
         </label>
         <h2 class="titre-section">Tes dettes <span>${a.dettes.length ? pluriel(a.dettes.length, 'dette') : 'Choisis un type pour commencer'}</span></h2>
         ${a.dettes.length ? `<ul class="liste-accueil">${a.dettes.map((d) => `<li>${iconeType(d.type)}<span><b>${esc(d.nom)}</b><small>${eur(d.capital)} · ${R.tauxTexte(d.taux)} · ${eur(d.mensualite)} par mois</small></span><button class="btn lien" data-action="accueil-dette" data-id="${d.id}">Modifier</button></li>`).join('')}</ul>` : ''}
+        <p class="sous-titre-types">${a.dettes.length ? 'Ajouter une autre dette :' : 'Quel type de dette ?'}</p>
         <div class="types-dettes" role="group" aria-label="Ajouter une dette par type">
           ${B.types.map((t) => `<button type="button" class="type-dette" data-action="accueil-ajout" data-type="${t.id}">${iconeType(t.id)}<span>${esc(t.nom)}</span></button>`).join('')}
         </div>
