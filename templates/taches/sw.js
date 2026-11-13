@@ -1,8 +1,8 @@
 // Service worker du gestionnaire de tâches : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'taches-20261113';
-const COQUILLE = ['./', 'app.css?v=20261113', 'donnees.js?v=20261113', 'regles.js?v=20261113', 'app.js?v=20261113', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'taches-20261113b';
+const COQUILLE = ['./', 'app.css?v=20261113b', 'donnees.js?v=20261113b', 'regles.js?v=20261113b', 'app.js?v=20261113b', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
