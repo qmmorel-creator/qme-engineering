@@ -9,7 +9,8 @@ const req = (methode, corps, entetes = {}, q = '') => new Request(`https://x.tes
 test('modules : un par template, slug → nom', () => {
   assert.equal(MODULES.flotte, 'Gestion de flotte de véhicules');
   assert.equal(MODULES.revision, 'Planning de révision');
-  assert.equal(Object.keys(MODULES).length, 25);
+  assert.equal(MODULES['secret-santa'], 'Secret Santa');
+  assert.equal(Object.keys(MODULES).length, 26);
 });
 
 test('code administrateur : stable, au bon format, reconnu sans tenir compte des tirets ni de la casse', () => {

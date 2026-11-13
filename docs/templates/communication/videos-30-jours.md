@@ -152,7 +152,7 @@ d'écart.
 | 13 | sam. 28/11 | 10:30 | Instagram + Shorts | A | T01 révision | J+1, J+3, J+7 | LI-37 · 08:30 · L'inventaire tournant |
 | 14 | dim. 29/11 | 19:00 | Instagram + Shorts | A | T03 tâches | Votre liste n'est pas une liste | LI-81 · 12:15 · T03 Gestionnaire de tâches |
 | 15 | lun. 30/11 | 12:30 | Instagram + Shorts | E | QME (achat unique) | Pourquoi pas d'abonnement | LI-09 · 12:15 · Une automatisation qu'on teste avant de l'allumer |
-| 16 | mar. 01/12 | 19:00 | Instagram + Shorts | A | T05 budget | Les enveloppes | LI-82 · 12:15 · T05 Budget du foyer |
+| 16 | mar. 01/12 | 19:00 | Instagram + Shorts | A | T68 Secret Santa | Même l'organisateur ne sait pas | LI-99 · 12:15 · T68 Secret Santa |
 | 17 | mer. 02/12 | 12:30 | Instagram + Shorts | B | T24 visa (méthode) | Le document que personne ne voit | LI-10 · 08:30 · Le samedi où toute la station change de locataires |
 | 18 | jeu. 03/12 | 12:30 | Instagram + Shorts | A | T24 visa | Qui a le document ? | LI-83 · 08:30 · T24 Circuit de visa |
 | 19 | ven. 04/12 | 12:30 | Instagram + Shorts | C | T25 non-conformités | Cinq fois « pourquoi » | LI-84 · 08:30 · T25 Non-conformités |
@@ -326,12 +326,12 @@ Les 30 vidéos partent sur Instagram et YouTube Shorts. LinkedIn garde ses 30 pu
   Démos libres : lien dans la bio. »
 - *À valider par Quentin : formulation du raisonnement sur l'abonnement.*
 
-### J16 · mar. 01/12 · 19:00 · Instagram + Shorts · A · 30 s · T05 Budget
-- **LinkedIn ce jour-là** : LI-82 à 12:15 (T05 Budget du foyer), publication du Google Sheet.
-- **Accroche** : « Le 20 du mois, vous savez ce qu'il vous reste ? » [À l'écran : « Le 20 du mois »]
-- **Principe** : « La méthode des enveloppes : chaque euro a une destination avant d'être dépensé. »
-- **Démonstration** : enveloppes du mois → une dépense saisie → l'enveloppe se vide → flux du mois.
-- **Chute** : « Achat unique, sans abonnement. Démo : lien dans la bio. »
+### J16 · mar. 01/12 · 19:00 · Instagram + Shorts · A · 30 s · T68 Secret Santa
+- **LinkedIn ce jour-là** : LI-99 à 12:15 (T68 Secret Santa), publication du Google Sheet.
+- **Accroche** : « Le Secret Santa où même l'organisateur ne sait pas qui offre à qui. » [À l'écran : « Personne ne sait. Même pas moi. »]
+- **Principe** : « Je crée l'échange, j'envoie un lien, chacun s'inscrit avec ses idées de cadeaux. Le tirage se fait sur le serveur : moi, je vois seulement qui l'a découvert. »
+- **Démonstration** : lien d'invitation copié → inscription sur téléphone en 20 secondes → « Lancer le tirage » → page d'un participant : le cadeau, puis « Tu offres un cadeau à… » et ses idées.
+- **Chute** : « Gratuit, pour la famille, les amis ou le bureau. Démo : lien dans la bio. »
 
 ### J17 · mer. 02/12 · 12:30 · Instagram + Shorts · B · 35 s · T24 Visa (méthode)
 - **LinkedIn ce jour-là** : LI-10 à 08:30 (Le samedi où toute la station change de locataires), publication du Google Sheet.
