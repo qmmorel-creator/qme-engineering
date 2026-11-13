@@ -99,6 +99,12 @@ l'action (fond jaune : « Lien en bio », prix, « Démo libre »). Compteur « 
 - Maison : `#BudgetFamilial #Organisation #Budget #Colocation #Maison`
 - BTP : `#BTP #Chantier #ConducteurDeTravaux #MaîtriseDŒuvre #Qualité`
 
+## Stories
+
+Abandonnées le 13/11/2026 : Instinct publie depuis instagram.com sur ordinateur, qui ne permet pas de créer
+de story, et n'a pas d'application mobile. Les images `IG-xx-…-story.png` restent dans Drive (Images) ; les
+colonnes Q à T du planning sont prévues pour le jour où une solution existe (prompt v2, point 7 b).
+
 ## Rythme
 
 Un post template **le lendemain de sa publication LinkedIn**, à 18:30, plus des stories le jour même
