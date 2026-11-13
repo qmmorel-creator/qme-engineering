@@ -75,3 +75,8 @@ Textes alternatifs :
 3. Tableau comparatif, données et adaptation : template hébergé dans l'UE à Francfort, accès par clé, export JSON ou CSV, usages courants ; sur mesure dans vos outils ou une base dédiée, vos règles et vos rôles.
 4. Tableau comparatif, coût et appareils : template à prix fixe dès 12 €, sans abonnement, sur tous les appareils ; sur mesure sur devis, appareils selon l'outil retenu.
 5. Fond rouge : le bon choix dépend de votre besoin. Usage courant : un template, démo libre ; métier à règles : le sur mesure. Lien en bio.
+
+## Programmation (validée par Quentin le 13/11)
+
+- LinkedIn LI-98, 14/11 14:00, « Programmé » (ligne 8 du planning LinkedIn) : doc `1bXDG3W8OavNZnkRwGRMWTjnaVr-6Hhi3S3IiJtWEIhQ`, image `LI-98-comparatif.png` `1Y3wZ_8k7DVRLueFBDLwtkFsBBpxMSD2K`.
+- Instagram IG-35, 14/11 14:00, « Programmé » (ligne 2 du planning Instagram) : légende `1cpKDC6YCvjfj9Xqb1w829cGNeiSHGJY93HmCT1uLFZ4`, images 1YnWYxUhRttxZdMrqB974SBVRr3fsqQkx, 18gN0ZPGcOE9PTkZWbXaksDt9oTRHTOGE, 1i3QIVr4w12rYZ7VG-ubQOCqjiV47Ox7L, 1ktZ3Bh-QfpG3oxRFnDiWiLEDYs3AuIOL, 1U0nxHveXrhrYIL2NHlvfmwZZbdh7IHDs. Instinct passe à 18:00, 18:15 et 18:30 : publication attendue à 18:00.
