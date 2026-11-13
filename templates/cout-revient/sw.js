@@ -1,8 +1,8 @@
 // Service worker du template « Coût de revient et prix » : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'cout-revient-2026111201';
-const COQUILLE = ['./', 'app.css?v=2026111201', 'donnees.js?v=2026111201', 'calculs.js?v=2026111201', 'app.js?v=2026111201', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'cout-revient-20261113c';
+const COQUILLE = ['./', 'app.css?v=20261113c', 'donnees.js?v=20261113c', 'calculs.js?v=20261113c', 'app.js?v=20261113c', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

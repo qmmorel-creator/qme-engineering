@@ -417,3 +417,6 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .tuile .surtitre{padding-right:44px}
 .tableau td.nb{white-space:nowrap}
 @media (max-width:720px){.tableau th,.tableau td{padding:10px 10px}}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

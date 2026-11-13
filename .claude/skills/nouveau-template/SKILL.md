@@ -28,7 +28,10 @@ vouvoiement sur le site QME.
 Partir d'une copie de `templates/revision/` et garder tel quel le socle commun :
 écran de connexion (clé de licence ou code), mode démo (`?demo` et bouton), synchronisation
 (`/api/templates/*`, cache local, hors ligne, conflit 409), modales `<dialog>`, toast avec « Annuler »,
-réglages (export / import JSON, déconnexion), manifeste et service worker, icônes.
+réglages (export / import JSON, déconnexion), manifeste et service worker, icônes, et la **fenêtre
+« Comme une application »** (ajout à l'écran d'accueil du téléphone), **obligatoire dans chaque
+template** : voir `reference.md` § Ajout à l'écran d'accueil. Elle est déjà dans le socle copié ; la
+vérifier à chaque fois (clé `qme-<pre>-ecran-accueil`, entrée « Sur téléphone » des réglages).
 
 Remplacer le métier :
 - `donnees.js` : la **base intégrée** (`window.BASE`), sans logique ;
@@ -53,6 +56,10 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
 - **Regarder chaque capture** (Read) et corriger : chevauchements, textes coupés, débordements. Les
   captures pleine page sur téléphone dupliquent les éléments fixes : faire aussi des captures d'écran
   simples après défilement.
+- **Fenêtre « Comme une application »** : sur `devices['iPhone 13']` et `devices['Pixel 7']`, elle
+  s'ouvre seule en démo avec les bonnes étapes (Safari / Chrome) ; « Ne plus afficher » tient après
+  rechargement ; « Réglages > Sur téléphone > Voir comment faire » la rouvre ; à 1280 px elle ne s'ouvre
+  pas seule. Regarder la capture.
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad
