@@ -252,6 +252,11 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .ev.preparer:hover,.ev.preparer:focus-visible{background:var(--encre);color:var(--papier)}
 .ev.envoye:hover,.ev.envoye:focus-visible{background:var(--bleu);color:#fff}
 .ev.repondu:hover,.ev.repondu:focus-visible{background:var(--rouge);color:#fff}
+.ligne{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--trait)}
+.ligne:last-child{border-bottom:0}
+.ligne>i{width:12px;height:12px;background:var(--c);display:block}
+.ligne b{display:block;font-size:16px;overflow-wrap:anywhere}
+.ligne div>span{font-size:13px;color:var(--discret)}
 .liste-bloc{border:2px solid var(--encre);background:var(--surface)}
 .ligne-bouton{width:100%;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;cursor:pointer;color:inherit;font:inherit}
 .ligne-bouton:last-child{border-bottom:0}
@@ -267,7 +272,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .note{font-size:13px;color:var(--discret);margin-top:8px}
 
 /* Pipeline */
-.choix-colonne{display:none}
+.vue .choix-colonne{display:none}
 .kanban-defile{overflow-x:auto;padding:0 4px 10px 0}
 .kanban{display:grid;grid-template-columns:repeat(var(--n),minmax(176px,1fr));gap:12px;align-items:start}
 .colonne{border:2px solid var(--encre);background:var(--surface);display:flex;flex-direction:column;min-height:280px;transition:box-shadow .12s}
@@ -422,7 +427,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .modale{width:100%;max-width:none;margin:auto 0 0;max-height:92dvh;box-shadow:none;border-width:2px 0 0}
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
   .accueil-champs,.deux,.fiche-statut{grid-template-columns:1fr}
-  .choix-colonne{display:flex;margin-bottom:12px}
+  .vue .choix-colonne{display:flex;margin-bottom:12px}
   .kanban-defile{overflow:visible;padding:0}
   .kanban{grid-template-columns:1fr}
   .colonne:not(.choisie){display:none}

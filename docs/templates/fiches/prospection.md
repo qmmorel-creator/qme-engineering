@@ -94,7 +94,7 @@ d'affaires. T35 ne gère ni montants facturés, ni devis, ni factures.
   - « Relation douce » (cycles longs, recommandation, rencontre) : J0, +7 j, +14 j, +30 j
     (4 messages sur 7 semaines) ;
   - « Suivi de proposition » : +3 j, +4 j, +7 j, +14 j après l'envoi de la proposition.
-- **18 scripts de messages** rédigés, sobres, sans promesse chiffrée : premier contact (e-mail,
+- **19 scripts de messages** rédigés, sobres, sans promesse chiffrée : premier contact (e-mail,
   réseaux professionnels, téléphone, après une rencontre, sur recommandation), relances (première,
   deuxième avec un élément utile, téléphone, dernier message), réponse positive et prise de
   rendez-vous, confirmation et compte rendu de rendez-vous, envoi et suivi de proposition, objection

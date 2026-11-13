@@ -456,7 +456,7 @@
         ${choixOperation('f-op', filtre.operationId)}
         <label class="champ">Lot<select id="f-lot"><option value="">Tous les lots</option>${codesLots.map((l) => { const v = filtre.operationId ? l.id : `${l.code}|${l.nom}`; return `<option value="${esc(v)}" ${filtre.lotId === v ? 'selected' : ''}>${esc(nomLot(l))}</option>`; }).join('')}</select></label>
         <label class="champ">Entreprise<select id="f-ent"><option value="">Toutes les entreprises</option>${[...E.entreprises].sort((a, b) => a.nom.localeCompare(b.nom)).map((e) => `<option value="${e.id}" ${filtre.entrepriseId === e.id ? 'selected' : ''}>${esc(e.nom)}</option>`).join('')}</select></label>
-        <label class="champ">Statut<select id="f-statut">${[['en-cours', 'En cours (hors contrôlées)'], ['a-lever', 'À lever'], ['retard', 'En retard'], ['refusee', 'Refusées'], ['levee', 'À contrôler'], ['controlee', 'Contrôlées'], ['tous', 'Toutes']].map(([v, l]) => `<option value="${v}" ${filtre.statut === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+        <label class="champ">Statut<select id="f-statut">${[['en-cours', 'En cours'], ['a-lever', 'À lever'], ['retard', 'En retard'], ['refusee', 'Refusées'], ['levee', 'À contrôler'], ['controlee', 'Contrôlées'], ['tous', 'Toutes']].map(([v, l]) => `<option value="${v}" ${filtre.statut === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
         <label class="champ recherche">Rechercher<input id="f-texte" type="search" value="${esc(filtre.texte)}" placeholder="Local, description, n°…" autocomplete="off"></label>
       </form>
       <div id="liste">${listeHtml()}</div>`;
@@ -642,7 +642,7 @@
         </dl>
       </header>`;
     const signatures = (roles) => `<div class="signatures">${roles.map((r) => `<div><p>${r}</p><p class="sig-lignes">Nom, qualité, date<br>Signature</p></div>`).join('')}</div>`;
-    const pied = '<footer>Modèle de document établi avec le template Levée de réserves (QME). À adapter à ton marché ; il ne constitue pas un conseil juridique.</footer>';
+    const pied = '<footer>Document établi à partir d\'un modèle, à adapter au marché de l\'opération ; il ne constitue pas un conseil juridique.</footer>';
     if (type === 'pv') {
       return `${entete}
         <p class="pv-synthese">${pluriel(res.length, 'réserve')} au nom de l'entreprise : <b>${pluriel(controlees.length, 'levée et contrôlée', 'levées et contrôlées')}</b>, ${pluriel(aControler.length, 'levée en attente de contrôle', 'levées en attente de contrôle')}, ${pluriel(restantes.length, 'restant à lever', 'restant à lever')}.</p>

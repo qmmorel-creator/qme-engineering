@@ -254,7 +254,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .tuile{border:2px solid var(--encre);background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
 .tuile::after{content:"";position:absolute;right:-18px;top:-18px;width:56px;height:56px;background:var(--c,var(--encre))}
 .tuile.rond::after{border-radius:50%}
-.tuile .surtitre{margin:0}
+.tuile .surtitre{margin:0;padding-right:34px}
 .tuile b{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.03em}
 .tuile b small{font-size:18px;font-weight:700;letter-spacing:0;margin-left:4px}
 .tuile span{font-size:14px;color:var(--discret)}
@@ -545,7 +545,8 @@ button.tuile[aria-pressed="true"]{box-shadow:5px 5px 0 var(--c);transform:transl
   .pv-doc{padding:18px 14px;box-shadow:none}
   .pv-doc h2{font-size:21px}
   .pv-doc dl{grid-template-columns:1fr}
-  .pv-doc table{font-size:12px}
+  .pv-doc table{font-size:12px;min-width:600px}
+  .pv-doc{overflow-x:auto}
   .pv-doc th,.pv-doc td{padding:4px}
   .ops{grid-template-columns:1fr}
   .cycle{grid-template-columns:1fr}

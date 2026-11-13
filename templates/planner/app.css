@@ -418,6 +418,13 @@ body.glisse-en-cours,body.glisse-en-cours *{cursor:grabbing!important}
   .tendance{gap:4px}
   .ct-zone{height:120px}
   .col-tend b{font-size:13px}
+  .tableau-series,.tableau-series tbody{display:block;border:0;background:none}
+  .tableau-series thead{display:none}
+  .tableau-series tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center;padding:12px;border:2px solid var(--encre);background:var(--surface);margin-bottom:8px}
+  .tableau-series td{display:block;padding:0;border:0}
+  .tableau-series td:first-child{grid-column:1/-1}
+  .tableau-series td:nth-child(4){font-size:13px;color:var(--discret)}
+  .tableau-series td.nb{grid-column:1/-1;text-align:left;display:flex;gap:8px}
   .modale{width:100%;max-width:none;margin:auto 0 0;max-height:92dvh;box-shadow:none;border-width:2px 0 0}
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
 }

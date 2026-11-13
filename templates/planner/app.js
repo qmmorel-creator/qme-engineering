@@ -146,14 +146,17 @@
   }
 
   // ---------- Connexion ----------
+  // Code interne (PHR-…, ou celui d'un autre template, refusé ensuite avec un message clair) :
+  // 3 lettres dont au moins une hors de A–F, ce qu'une clé Gumroad hexadécimale ne peut pas être.
+  const estCodeInterne = (n) => /^[A-Z]{3}/.test(n) && /[G-Z]/.test(n.slice(0, 3));
   function formaterCode(v) {
     const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '');
     if (n === 'DEMO' || 'DEMO'.startsWith(n)) return n;
-    if (n.startsWith(PRODUIT)) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
+    if (estCodeInterne(n)) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
     const l = n.slice(0, 32);
     return [l.slice(0, 8), l.slice(8, 16), l.slice(16, 24), l.slice(24, 32)].filter(Boolean).join('-');
   }
-  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (n.startsWith(PRODUIT) && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
+  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (estCodeInterne(n) && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
