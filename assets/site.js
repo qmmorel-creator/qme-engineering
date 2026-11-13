@@ -118,18 +118,39 @@ if(fallbackLink&&form){
   finally{b.disabled=false;b.textContent=lib;}});})();
 
 // Bouton « Je suis intéressé(e) » (templates en mise en vente prochaine) : un clic compté par navigateur.
-// Seuls le template et l'heure sont enregistrés côté serveur ; le navigateur retient qu'il a déjà cliqué.
+// Seuls le template et l'heure sont enregistrés ; le navigateur retient qu'il a déjà cliqué.
+// Après le clic, champ e-mail facultatif pour être prévenu de la mise en vente.
 (()=>{document.querySelectorAll('[data-interet]').forEach(b=>{
- const m=b.dataset.interet,cle='qme-interet-'+m,note=document.querySelector(`[data-interet-note="${m}"]`);
- const deja=()=>{try{return localStorage.getItem(cle)==='1';}catch{return false;}};
- const fait=(t)=>{b.disabled=true;b.textContent='Intérêt enregistré';b.classList.add('fait');if(note)note.textContent=t;};
- if(deja())fait('Votre intérêt est déjà compté. Merci !');
+ const m=b.dataset.interet,cle='qme-interet-'+m,cleMail='qme-interet-email-'+m,note=document.querySelector(`[data-interet-note="${m}"]`);
+ const lireLS=(k)=>{try{return localStorage.getItem(k)==='1';}catch{return false;}};
+ const ecrireLS=(k)=>{try{localStorage.setItem(k,'1');}catch{}};
+ const formulaire=()=>{
+  if(lireLS(cleMail)||document.getElementById('interet-email-'+m))return;
+  const f=document.createElement('form');f.className='interet-email';f.id='interet-email-'+m;f.noValidate=true;
+  f.innerHTML=`<label for="interet-champ-${m}">Être prévenu par e-mail à la mise en vente <small>(facultatif)</small></label>
+   <div class="interet-ligne"><input id="interet-champ-${m}" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="vous@exemple.fr" required><button class="btn" type="submit">M'avertir</button></div>
+   <p class="interet-mention">Adresse utilisée uniquement pour vous prévenir de la mise en vente de ce template, puis effacée. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>`;
+  (note||b).after(f);
+  const champ=f.querySelector('input'),envoi=f.querySelector('button'),mention=f.querySelector('.interet-mention');
+  f.addEventListener('submit',async(e)=>{e.preventDefault();
+   const email=champ.value.trim();
+   if(!/^[^\s@";<>,]+@[^\s@";<>,]+\.[^\s@";<>,]{2,}$/.test(email)){mention.textContent='Adresse e-mail invalide.';mention.classList.add('erreur');champ.focus();return;}
+   envoi.disabled=true;
+   try{const r=await fetch('/api/interets',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({module:m,email})});
+    if(!r.ok)throw new Error();
+    ecrireLS(cleMail);
+    f.innerHTML='<p class="interet-merci">C’est noté : vous recevrez un e-mail à la mise en vente.</p>';
+   }catch{envoi.disabled=false;mention.textContent='L’envoi a échoué. Réessayez dans un instant.';mention.classList.add('erreur');}
+  });
+ };
+ const fait=(t)=>{b.disabled=true;b.textContent='Intérêt enregistré';b.classList.add('fait');if(note)note.textContent=t;formulaire();};
+ if(lireLS(cle))fait(lireLS(cleMail)?'Votre intérêt est déjà compté, et vous serez prévenu à la mise en vente. Merci !':'Votre intérêt est déjà compté. Merci !');
  b.addEventListener('click',async()=>{
-  if(deja())return;
+  if(lireLS(cle))return;
   b.disabled=true;
   try{const r=await fetch('/api/interets',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({module:m})});
    if(!r.ok)throw new Error();
-   try{localStorage.setItem(cle,'1');}catch{}
+   ecrireLS(cle);
    fait('Merci, c’est noté : ce template passe en priorité quand l’intérêt est là.');
   }catch{b.disabled=false;if(note)note.textContent='L’envoi a échoué. Réessayez dans un instant.';}
  });});})();

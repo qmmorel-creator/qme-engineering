@@ -11,7 +11,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
-  Blobs à Francfort, aucune donnée personnelle). Suivi en temps réel et export CSV sur `/admin/interets/`
+  Blobs à Francfort ; le clic n'enregistre aucune donnée personnelle). Après le clic, e-mail facultatif
+  pour être prévenu de la mise en vente (export CSV et effacement sur la page admin ; à effacer après
+  l'e-mail de mise en vente, au plus tard 12 mois, cf. politique de confidentialité). Suivi en temps réel et export CSV sur `/admin/interets/`
   (non indexée), avec le code administrateur donné par `outils/templates/code-admin-interets.bat`
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
