@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS, stockageMigrant } from '../../netlify/lib/templates-acces.mjs';
+import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS, stockageMigrant, codeAdmin, codeAdminProduit, estCodeAdmin } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
 const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
@@ -137,4 +137,28 @@ test('migration du stockage : reprise depuis l\'ancien, copie dans le nouveau, e
     { get: async (c) => ancienne2.get(c) ?? null, supprimer: async (c) => { ancienne2.delete(c); } });
   await assert.rejects(s2.get('k'));
   assert.equal(ancienne2.has('k'), true);
+});
+
+test('code administrateur : ouvre chaque template avec un espace personnel stable', async () => {
+  const st = memoire();
+  const adm = codeAdmin(SECRET);
+  assert.ok(estCodeAdmin(SECRET, adm.toLowerCase()));
+  assert.ok(!estCodeAdmin(SECRET, genererCode(SECRET, 'REV')));
+  // Sans template précisé : refusé.
+  assert.equal((await appel(st, 'POST', '/connexion', { corps: { code: adm } })).status, 400);
+  // Template inconnu : refusé.
+  assert.equal((await appel(st, 'POST', '/connexion', { corps: { code: adm, produit: 'XYZ' } })).status, 400);
+  const r1 = await (await appel(st, 'POST', '/connexion', { corps: { code: adm, produit: 'GNT' } })).json();
+  assert.equal(r1.produit, 'GNT');
+  assert.equal(r1.jeton, codeAdminProduit(SECRET, 'GNT'));
+  assert.ok(verifierCode(SECRET, r1.jeton), 'le jeton est un code interne valide');
+  // Données enregistrées puis relues depuis un autre appareil avec le même code administrateur.
+  assert.equal((await appel(st, 'PUT', '/donnees', { code: r1.jeton, corps: { donnees: { a: 1 } } })).status, 200);
+  const r2 = await (await appel(st, 'POST', '/connexion', { corps: { code: adm, produit: 'GNT' } })).json();
+  assert.equal(r2.donnees.a, 1);
+  // Un autre template a son propre espace.
+  const r3 = await (await appel(st, 'POST', '/connexion', { corps: { code: adm, produit: 'REV' } })).json();
+  assert.equal(r3.produit, 'REV'); assert.equal(r3.donnees, null); assert.notEqual(r3.jeton, r1.jeton);
+  // Un faux code administrateur n'ouvre rien.
+  assert.equal((await appel(st, 'POST', '/connexion', { corps: { code: 'ADM-0000-0000-0000-0000', produit: 'GNT' } })).status, 401);
 });

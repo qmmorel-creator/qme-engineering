@@ -586,3 +586,12 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .admin-table .barre-int{height:10px;border-radius:999px;background:var(--ciel);min-width:2px}
 .admin-boite{overflow-x:auto}
 .admin-etat{font-size:14px;color:var(--discret)}
+.interet-email{display:flex;flex-direction:column;gap:8px;margin-top:4px;padding:14px 16px;background:var(--sable);border-radius:16px}
+.interet-email label{font-size:15px;font-weight:600}
+.interet-email label small{font-weight:400;color:var(--discret)}
+.interet-ligne{display:flex;flex-wrap:wrap;gap:8px}
+.interet-ligne input{flex:1 1 200px;min-width:0;font:400 16px Outfit,sans-serif;padding:11px 14px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);color:var(--encre)}
+.interet-ligne input:focus{outline:3px solid var(--bleu);outline-offset:0}
+.interet-mention{font-size:13px;color:var(--discret)}
+.interet-mention.erreur{color:#A63A26;font-weight:600}
+.interet-merci{font-weight:600;color:var(--ciel-texte)}

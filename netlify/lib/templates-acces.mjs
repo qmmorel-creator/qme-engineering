@@ -55,6 +55,24 @@ function signature(secret, produit, id) {
   return base32(createHmac('sha256', secret).update(`${produit}:${id}`).digest().subarray(0, 5));
 }
 
+// Code administrateur de Quentin (ADM-XXXX-XXXX-XXXX-XXXX), toujours le même pour un secret donné :
+// lit le compteur d'intérêt (/admin/interets/) et ouvre tous les templates à titre personnel.
+export function codeAdmin(secret) {
+  if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court');
+  const s = base32(createHmac('sha256', secret).update('admin:interets').digest().subarray(0, 10));
+  return `ADM-${s.slice(0, 4)}-${s.slice(4, 8)}-${s.slice(8, 12)}-${s.slice(12, 16)}`;
+}
+export function estCodeAdmin(secret, saisie) {
+  if (!secret || secret.length < 32) return false;
+  const n = normaliser(saisie), attendu = normaliser(codeAdmin(secret));
+  return n.length === attendu.length && timingSafeEqual(Buffer.from(n), Buffer.from(attendu));
+}
+// Code interne personnel de l'administrateur pour un template : mêmes données sur tous ses appareils.
+export function codeAdminProduit(secret, produit) {
+  const id = base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
+  return formater(produit, id, signature(secret, produit, id));
+}
+
 // Majuscules, sans séparateurs ; O→0, I et L→1 (saisie tolérante).
 export function normaliser(saisie) {
   return String(saisie || '').toUpperCase().replace(/[^0-9A-Z]/g, '')
@@ -121,7 +139,7 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
 });
 
 // Routes (préfixe /api/templates) :
-//  POST /connexion   { code }            → { ok, produit, donnees }
+//  POST /connexion   { code, produit? }  → { ok, produit, donnees } (produit requis pour le code administrateur)
 //  GET  /donnees     (en-tête X-Code)    → { donnees }
 //  PUT  /donnees     { donnees, base }   → { ok, majLe } ou 409 { donnees } si une version plus récente existe
 // Le stockage expose get(cle) → objet|null et set(cle, objet).
@@ -152,6 +170,12 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
     if (estLicence(code)) {
       return json(rembourse ? 403 : 401, { erreur: rembourse ? 'Cet achat a été remboursé : la licence n\'est plus active.' : 'Clé de licence inconnue.' });
     }
+  }
+
+  // Code administrateur : ouvre le template qui le demande (champ produit), avec l'espace personnel de Quentin.
+  if (chemin === '/connexion' && requete.method === 'POST' && estCodeAdmin(secret, code)) {
+    if (!PRODUITS[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
+    code = codeAdminProduit(secret, corps.produit);
   }
 
   const acces = verifierCode(secret, code, revoques);

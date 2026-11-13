@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { traiterInterets, codeAdmin, estAdmin, synthese, csv, cleClic, lireCle, MODULES } from '../../netlify/lib/interets.mjs';
 
 const SECRET = 'secret-de-test-0123456789-0123456789-abcdef';
-const memoire = () => { const s = new Set(); return { ajouter: async (c) => { s.add(c); }, lister: async (p) => [...s].filter((c) => c.startsWith(p)), s }; };
+const memoire = () => { const s = new Map(); return { ajouter: async (c, v) => { s.set(c, v); }, lire: async (c) => s.get(c) ?? null, supprimer: async (c) => { s.delete(c); }, lister: async (p) => [...s.keys()].filter((c) => c.startsWith(p)), s }; };
 const req = (methode, corps, entetes = {}, q = '') => new Request(`https://x.test/api/interets${q}`, { method: methode, headers: entetes, body: corps === undefined ? undefined : JSON.stringify(corps) });
 
 test('modules : un par template, slug → nom', () => {
@@ -36,7 +36,7 @@ test('POST : compte un clic par appel, refuse un module inconnu ou une requête 
   assert.equal((await traiterInterets(req('POST', { module: 'flotte' }), opt)).status, 200);
   assert.equal((await traiterInterets(req('POST', { module: 'flotte' }), opt)).status, 200);
   assert.equal((await traiterInterets(req('POST', { module: 'pirate' }), opt)).status, 400);
-  assert.equal((await traiterInterets(req('POST', { module: 'x'.repeat(300) }), opt)).status, 413);
+  assert.equal((await traiterInterets(req('POST', { module: 'x'.repeat(500) }), opt)).status, 413);
   assert.equal(st.s.size, 2);
 });
 
@@ -63,3 +63,23 @@ test('GET : réservé à l’administrateur ; synthèse et CSV', async () => {
 });
 
 test('synthèse vide', () => { assert.deepEqual(synthese([], new Date('2026-11-20T00:00:00Z')).modules, []); assert.equal(csv([]), '﻿date;heure;module;template\r\n'); });
+
+test('e-mail facultatif : validé, stocké en minuscules, compté, exporté et effaçable', async () => {
+  const st = memoire();
+  const opt = { secret: SECRET, stockage: st, maintenant: () => new Date('2026-11-20T12:00:00Z') };
+  const adm = { 'x-admin': codeAdmin(SECRET) };
+  await traiterInterets(req('POST', { module: 'flotte' }), opt);
+  assert.equal((await traiterInterets(req('POST', { module: 'flotte', email: ' Marie@Exemple.fr ' }), opt)).status, 200);
+  assert.equal((await traiterInterets(req('POST', { module: 'flotte', email: 'pas-une-adresse' }), opt)).status, 400);
+  assert.equal((await traiterInterets(req('POST', { module: 'flotte', email: 'a;b@c.fr' }), opt)).status, 400, 'point-virgule refusé (CSV)');
+  assert.equal((await traiterInterets(req('POST', { module: 'inconnu', email: 'a@b.fr' }), opt)).status, 400);
+  const s = await (await traiterInterets(req('GET', undefined, adm), opt)).json();
+  assert.equal(s.emails, 1); assert.equal(s.modules[0].emails, 1); assert.equal(s.total, 1, 'l’e-mail ne compte pas comme un clic de plus');
+  assert.equal((await traiterInterets(req('GET', undefined, {}, '?format=emails'), opt)).status, 401);
+  const c = new TextDecoder().decode(await (await traiterInterets(req('GET', undefined, adm, '?format=emails'), opt)).arrayBuffer());
+  assert.equal(c.trim().split('\r\n')[1], '20/11/2026;13:00:00;flotte;"Gestion de flotte de véhicules";marie@exemple.fr');
+  assert.equal((await traiterInterets(req('DELETE', undefined, {}, '?email=marie@exemple.fr'), opt)).status, 401);
+  const d = await (await traiterInterets(req('DELETE', undefined, adm, '?email=MARIE@exemple.fr'), opt)).json();
+  assert.equal(d.effaces, 1);
+  assert.equal((await (await traiterInterets(req('GET', undefined, adm), opt)).json()).emails, 0);
+});
