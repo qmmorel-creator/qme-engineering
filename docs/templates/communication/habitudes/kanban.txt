@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="habitudes"><a href="/catalogue/habitudes/"><b>Suivi d&#x27;habitudes et routines</b><span class="phrase">Cocher en un geste, séries et grille du mois.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>

@@ -1,0 +1,1 @@
+<li class="carte prochaine" data-slug="entretien"><a href="/catalogue/entretien/"><b>Entretien de la maison</b><span class="phrase">Chaudière, ramonage, VMC : échéances calculées.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
