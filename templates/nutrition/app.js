@@ -11,7 +11,7 @@
   const CLE_DEMO = 'qme-ntr-demo';
   const CODE_DEMO = 'DEMO';
   const VERSION_FICHIERS = '20261113';
-  const VERSION_CONSENTEMENT = '2026-11-13';
+  const VERSION_CONSENTEMENT = '2026-11-13b';
 
   // ---------- Outils ----------
   const $ = (s, r = document) => r.querySelector(s);
@@ -384,9 +384,10 @@
   const TEXTE_DONNEES = `
     <ul class="puces">
       <li><b>Quelles données</b> : ton poids, ta taille, ton année de naissance, ton sexe, ton niveau d'activité, tes repas et tes séances de sport. Ce sont des <b>données de santé</b> au sens du RGPD (article 9).</li>
-      <li><b>Où</b> : en ligne, sur l'hébergement du site qm-engineering.fr, rattachées à ta clé de licence, et en copie dans ce navigateur pour fonctionner hors ligne.</li>
+      <li><b>Où</b> : en ligne, chez l'hébergeur Netlify, <b>dans l'Union européenne (Francfort, Allemagne)</b>, rattachées à ta clé de licence, et en copie dans ce navigateur pour fonctionner hors ligne.</li>
       <li><b>À quoi elles servent</b> : uniquement à calculer et afficher ton journal, ta dépense et ton bilan, sur tes appareils. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</li>
       <li><b>Comment les effacer</b> : Réglages → « Effacer toutes mes données » vide la version en ligne et celle de cet appareil. Tu peux aussi écrire à <b>quentin.morel@qm-engineering.fr</b> (Quentin Morel Engineering, responsable du traitement).</li>
+      <li><b>Le détail</b> : <a href="/confidentialite/" target="_blank" rel="noopener">politique de confidentialité de QME</a>.</li>
     </ul>`;
   const AVERTISSEMENT_SANTE = 'Outil d\'aide au suivi, pas un dispositif médical : il ne remplace pas l\'avis d\'un médecin ou d\'un diététicien. Les calculs sont des estimations. Réservé aux adultes ; déconseillé sans avis médical en cas de grossesse, d\'allaitement, de maladie chronique ou de trouble du comportement alimentaire.';
 
@@ -406,7 +407,7 @@
         <div class="consentement">${TEXTE_DONNEES}</div>
         <p class="aide avertissement-sante" style="margin-top:16px">${AVERTISSEMENT_SANTE}</p>
         <form id="form-consentement" class="consentement-form" novalidate>
-          <label class="case haute"><input type="checkbox" id="accord"> <span>J'accepte que mes données de santé (poids, mensurations, repas, activité physique) soient enregistrées en ligne pour faire fonctionner ce journal. Je pourrai retirer cet accord à tout moment en effaçant mes données.</span></label>
+          <label class="case haute"><input type="checkbox" id="accord"> <span>J'accepte que mes données de santé (poids, mensurations, repas, activité physique) soient enregistrées en ligne, dans l'Union européenne (Francfort), pour faire fonctionner ce journal. Je pourrai retirer cet accord à tout moment en effaçant mes données.</span></label>
           <label class="case haute"><input type="checkbox" id="majeur"> <span>J'ai 18 ans ou plus. Ce journal n'est pas conçu pour les mineurs.</span></label>
           <div class="accueil-pied">
             <button class="btn primaire" id="accepter" type="submit" disabled>Continuer</button>
@@ -440,7 +441,7 @@
         <label class="champ">Taille (cm)<input name="taille" inputmode="numeric" value="${esc(p.taille ?? '')}" placeholder="Ex. : 170"></label>
       </div>
       <p class="aide">Sans le sexe, l'âge et la taille, la dépense est une estimation dégradée calculée sur le poids seul : ces trois informations l'améliorent nettement.</p>
-      <fieldset class="champ sans-cadre"><legend>Ton activité en dehors des séances de sport <small>Les séances s'ajoutent à part, dans l'onglet Activité : ne les compte pas ici.</small></legend>
+      <fieldset class="champ sans-cadre"><legend>Ton activité en dehors des séances de sport <small>Les séances s'ajoutent à part, dans l'onglet Activité : ne les compte pas ici. Les facteurs proposés sont des valeurs moyennes d'usage courant : tu pourras régler le tien dans les Réglages (entre 1 et 2,5).</small></legend>
         <div class="choix-activite">${B.activites.map((a) => `<label><input type="radio" name="activite" value="${a.id}" ${p.activite === a.id ? 'checked' : ''}><span><b>${esc(a.nom)}</b><small>${esc(a.detail)} · × ${nf(a.facteur, 3).replace(/0+$/, '').replace(/,$/, '')}</small></span></label>`).join('')}</div>
       </fieldset>
       <fieldset class="champ sans-cadre"><legend>Ton objectif</legend>
@@ -655,7 +656,7 @@
       : d.methode === 'poids' ? `Estimation dégradée sur le poids seul (${nf(d.poids, 1)} kg)` : d.methode === 'manuelle' ? 'Dépense de repos saisie à la main' : 'Poids manquant';
     const lignesDep = d.methode === 'manuelle'
       ? `<tr><td>Dépense de repos saisie</td><td class="nb">${kcal(d.repos)}</td></tr>`
-      : d.base != null ? `<tr><td>Métabolisme de base<small>${esc(methode)}</small></td><td class="nb">${kcal(d.base)}</td></tr><tr><td>× facteur d'activité hors sport<small>${p.facteurPerso ? 'Facteur personnalisé' : esc(act?.nom || '')}</small></td><td class="nb">× ${nf(d.facteur, 3)}</td></tr><tr><td>= dépense de repos et de vie courante</td><td class="nb">${kcal(d.repos)}</td></tr>` : '<tr><td colspan="2">Ajoute ton poids pour calculer ta dépense.</td></tr>';
+      : d.base != null ? `<tr><td>Métabolisme de base<small>${esc(methode)}</small></td><td class="nb">${kcal(d.base)}</td></tr><tr><td>× facteur d'activité hors sport<small>${p.facteurPerso ? 'Facteur personnalisé' : esc(act?.nom || '') + ' (valeur moyenne, réglable)'}</small></td><td class="nb">× ${nf(d.facteur, 3)}</td></tr><tr><td>= dépense de repos et de vie courante</td><td class="nb">${kcal(d.repos)}</td></tr>` : '<tr><td colspan="2">Ajoute ton poids pour calculer ta dépense.</td></tr>';
     const seancesJour = E.seances.filter((s) => s.j === t);
     const cible = R.cibleKcal(d.total, p.objectif, p.ecart);
     const pesees = [...E.pesees].sort((a, b) => b.j.localeCompare(a.j));
@@ -1154,7 +1155,7 @@
     const p = E.profil;
     const corps = `<div class="form-profil">${champsProfil(p, E.prenom)}</div>
       <details class="avance"><summary>Réglages avancés</summary>
-        <label class="champ">Facteur d'activité personnalisé<small>Remplace le niveau choisi (ex. : 1,45). Laisse vide sinon.</small><input name="facteurPerso" inputmode="decimal" value="${p.facteurPerso ? nf(p.facteurPerso, 3) : ''}"></label>
+        <label class="champ">Facteur d'activité personnalisé<small>Les niveaux proposés sont des moyennes (sédentaire 1,2 ; légèrement actif 1,375 ; modérément actif 1,55 ; très actif 1,725 ; extrêmement actif 1,9). Ajuste-le si ta dépense réelle s'en écarte (ex. : 1,45), entre 1 et 2,5. Laisse vide pour garder la moyenne.</small><input name="facteurPerso" inputmode="decimal" value="${p.facteurPerso ? nf(p.facteurPerso, 3) : ''}"></label>
         <label class="champ">Dépense de repos connue (kcal par jour)<small>Mesurée par un professionnel : remplace le calcul du métabolisme × facteur. Laisse vide sinon.</small><input name="depenseManuelle" inputmode="numeric" value="${p.depenseManuelle ?? ''}"></label>
       </details>
       <fieldset class="champ sans-cadre"><legend>Cibles par jour (facultatives) <small>Fixe-les avec un professionnel de santé si besoin.</small></legend>
