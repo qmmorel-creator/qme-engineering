@@ -448,3 +448,11 @@ button.carte-el:hover,a.carte-el:hover{border-color:var(--encre)}
 .formulaire-accueil{display:flex;flex-direction:column;gap:16px;max-width:640px}
 .texte-rouge{color:var(--rouge)}
 .puces{list-style:disc;padding-left:22px;display:grid;gap:4px;font-size:14px}
+.colonnes-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 28px}
+@media (max-width:1020px){.colonnes-2{grid-template-columns:1fr}}
+/* Téléphone : pilules internes sur une ligne qui défile (au lieu de s'empiler). */
+@media (max-width:720px){
+  .onglets-internes{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-12px;margin-right:-12px;padding:0 12px 4px}
+  .onglets-internes::-webkit-scrollbar{display:none}
+  .onglets-internes button{flex:none;white-space:nowrap}
+}

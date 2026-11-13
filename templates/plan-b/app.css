@@ -1,0 +1,38 @@
+/* PlanB · composants propres (le socle commun est dans ../commun/socle.css). */
+.bloc-niveau{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:20px 24px}
+.niveau-score{width:120px;height:120px;border-radius:50%;border:10px solid var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.niveau-score b{font-size:40px;font-weight:800}
+.niveau-score span{font-size:13px;color:var(--discret)}
+.niveau-texte{font-size:24px;font-weight:800;margin-bottom:12px}
+.jauge-ligne.compacte{grid-template-columns:minmax(0,1fr) auto;max-width:360px;margin-top:6px}
+.ligne-article .ligne-info{gap:6px}
+.ligne-article.non-concerne{background:var(--sable)}
+.ligne-article.non-concerne .lien-ligne b{color:var(--texte-2)}
+.lots{display:flex;flex-wrap:wrap;gap:6px}
+.lots button{border:1px solid var(--trait);background:var(--papier);border-radius:999px;padding:4px 10px;font-size:13px;min-height:32px}
+.lots button:hover{background:var(--beurre)}
+.lots button.perime{background:var(--rose);color:var(--rose-texte);border-color:transparent;text-decoration:line-through}
+.liste-manques{display:grid;gap:8px}
+.liste-manques li{display:flex;gap:10px;align-items:baseline;font-size:15px}
+.puce-moment{width:10px;height:10px;border-radius:50%;background:var(--bleu);margin:0 7px}
+.ajout-perso{display:flex;gap:8px;align-items:center;margin-top:8px}
+.ajout-perso .champ{flex:1}
+.ajout-perso input{min-height:44px!important}
+.plan-situation{gap:14px}
+.carte-ajout{align-items:center;justify-content:center;border-style:dashed;min-height:88px;flex-direction:row}
+.sous-titre{font-size:16px;margin-bottom:10px}
+.urgences{display:grid;gap:6px}
+.urgences li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:8px 12px}
+.urgences b{font-size:20px;color:var(--rouge)}
+.encart-urgence{background:var(--rose);color:var(--rose-texte);border-radius:12px;padding:10px 14px;margin:8px 0}
+.encart-urgence b{color:var(--encre)}
+.plan-bloc{border-top:1px solid var(--trait);padding:8px 0}
+.plan-bloc h4{font-size:15px;margin:0 0 4px}
+.onglets-internes small{color:var(--discret);margin-left:4px}
+@media (max-width:720px){
+  .bloc-niveau{grid-template-columns:1fr;justify-items:start}
+  .niveau-score{width:96px;height:96px;border-width:8px}
+  .niveau-score b{font-size:32px}
+  .ajout-perso{flex-direction:column;align-items:stretch}
+}
+@media print{.encart-urgence{border:1px solid #000}.plan-bloc{break-inside:avoid}}
