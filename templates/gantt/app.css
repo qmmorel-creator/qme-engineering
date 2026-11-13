@@ -434,3 +434,14 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 body[data-vue=gantt] .vue{max-width:none;padding-left:max(16px,2vw);padding-right:max(16px,2vw)}
 body[data-vue=gantt] .vue-tete{margin-bottom:16px}
 body[data-vue=gantt] .vue-tete h1{font-size:clamp(28px,3vw,38px)}
+@media (max-width:720px){
+  body[data-vue=gantt] .vue{padding:16px 12px 32px}
+  body[data-vue=gantt] .vue-tete{gap:10px}
+  body[data-vue=gantt] .vue-tete p{display:none}
+  body[data-vue=gantt] .vue-tete .actions .btn{min-height:44px;padding:0 10px;font-size:14px}
+  .saisie-aide{font-size:13px}
+  .zoom{gap:4px}
+  .zoom .btn{width:44px}
+  .zoom-niveau{min-width:0}
+  .outils-gantt{gap:6px}
+}

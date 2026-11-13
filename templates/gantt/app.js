@@ -498,8 +498,8 @@
         <button class="btn petit" data-action="ajuster">Ajuster</button>
         <button class="btn petit" data-action="annuler" ${historique.length ? '' : 'disabled'}>Annuler</button>
         <button class="btn petit masque-tel" data-action="colonnes">${A.colonnes ? 'Masquer les colonnes' : 'Afficher les colonnes'}</button>
-        <button class="btn petit" data-action="repere-nouveau">Repère</button>
-        <button class="btn petit" data-action="periode-nouvelle">Période</button>
+        <button class="btn petit masque-tel" data-action="repere-nouveau">Repère</button>
+        <button class="btn petit masque-tel" data-action="periode-nouvelle">Période</button>
       </div>
       <div class="gantt-zone"><div class="gcadre" id="gcadre"></div><div class="infobulle" hidden></div></div>
       <div class="legende-gantt" aria-label="Légende">
