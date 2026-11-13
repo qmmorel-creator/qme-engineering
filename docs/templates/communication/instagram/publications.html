@@ -1,0 +1,240 @@
+<!doctype html>
+<!-- Visuels des publications Instagram IG-01 à IG-03 (lancement du 16/11/2026), 1080 × 1350.
+     Rendu : node docs/templates/communication/instagram/rendre.mjs publications.html
+     Chaque <section class="cadre" id="IG-nn-slug-k"> donne png/IG-nn-slug-k.png. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Publications Instagram IG-01 à IG-03</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+h1,h2,p{letter-spacing:-.025em}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid var(--encre);padding:8px 16px;background:var(--surface);letter-spacing:0}
+.marque{display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}
+.m{color:var(--bleu)}.e{color:var(--jaune)}
+.pied{position:absolute;left:84px;right:84px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px}
+.glisser span{display:inline-block;width:80px;height:6px;background:var(--encre);position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid var(--encre);border-top:15px solid transparent;border-bottom:15px solid transparent}
+.note{position:absolute;right:84px;bottom:76px;font-size:24px;color:var(--discret)}
+
+/* IG-01 · 1 couverture */
+.couv .titre{position:absolute;left:84px;right:84px;top:300px}
+.couv h1{font-size:122px;font-weight:800;line-height:.98}
+.couv h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
+.couv .sous{font-size:40px;line-height:1.3;color:var(--texte-2);margin-top:44px;font-weight:600}
+.couv .fa{position:absolute;right:-90px;top:-90px;width:330px;height:330px;border-radius:50%;background:var(--rouge)}
+.couv .fb{position:absolute;right:170px;top:150px;width:120px;height:120px;background:var(--jaune);border:6px solid var(--encre)}
+.couv .fc{position:absolute;right:0;bottom:0;width:360px;height:360px;background:var(--bleu);border-top-left-radius:360px}
+
+/* IG-01 · 2 à 4 groupes */
+.groupe .bandeau{position:absolute;left:0;right:0;top:0;height:300px;padding:84px 84px 0}
+.groupe .bandeau h2{font-size:72px;font-weight:800;line-height:1.02;margin-top:18px;max-width:780px}
+.groupe .lignes{position:absolute;left:84px;right:84px;top:360px;display:flex;flex-direction:column;gap:30px}
+.groupe .lignes.quatre{gap:22px;top:340px}
+.ligne{display:grid;grid-template-columns:380px 1fr;gap:34px;align-items:center}
+.ligne img{width:380px;display:block;border:4px solid var(--encre);box-shadow:10px 10px 0 var(--encre)}
+.quatre .ligne{grid-template-columns:330px 1fr}
+.quatre .ligne img{width:330px}
+.ligne b{display:block;font-size:42px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.quatre .ligne b{font-size:38px}
+.ligne span{display:block;font-size:28px;line-height:1.3;color:var(--texte-2);margin-top:8px}
+.ligne i{display:inline-block;font-style:normal;margin-top:14px;font-weight:800;font-size:30px;background:var(--jaune);padding:4px 14px}
+
+/* IG-01 · 5 et IG-03 · 5 appel à l'action */
+.cta{background:var(--jaune)}
+.cta .bloc{position:absolute;left:84px;right:84px;top:220px}
+.cta h2{font-size:100px;font-weight:800;line-height:1}
+.cta .liste{margin-top:60px;display:flex;flex-direction:column;gap:24px;font-size:40px;font-weight:600}
+.cta .liste div{display:flex;gap:22px;align-items:center}
+.cta .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+.cta .bouton{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
+.cta .bouton b{font-size:52px;font-weight:800;letter-spacing:-.025em}
+.cta .bouton span{font-size:32px;font-weight:600;color:var(--jaune)}
+
+/* IG-02 coulisses */
+#IG-02-demos-fausses .texte{position:absolute;left:84px;right:84px;top:200px}
+#IG-02-demos-fausses .sourcil{color:var(--rouge)}
+#IG-02-demos-fausses h1{font-size:96px;font-weight:800;line-height:1.02;margin-top:30px}
+#IG-02-demos-fausses p.c{font-size:38px;line-height:1.35;color:var(--texte-2);margin-top:44px;max-width:860px}
+#IG-02-demos-fausses .bandeau-ex{position:absolute;left:84px;bottom:230px;display:flex;align-items:center;gap:0;border:4px solid var(--encre);box-shadow:10px 10px 0 var(--encre)}
+#IG-02-demos-fausses .bandeau-ex span{padding:18px 26px;font-weight:800;font-size:34px;letter-spacing:.02em}
+#IG-02-demos-fausses .bandeau-ex span:first-child{background:var(--jaune)}
+#IG-02-demos-fausses .bandeau-ex span:last-child{background:var(--surface)}
+#IG-02-demos-fausses .rond{position:absolute;right:84px;bottom:220px;width:170px;height:170px;border-radius:50%;background:var(--bleu)}
+
+/* IG-03 mode d'emploi */
+.etape .num{position:absolute;left:84px;top:84px;width:120px;height:120px;display:grid;place-items:center;font-size:72px;font-weight:800;color:#fff}
+.etape .txt{position:absolute;left:84px;top:250px;width:440px}
+.etape h2{font-size:70px;font-weight:800;line-height:1.02}
+.etape p.c{font-size:34px;line-height:1.3;color:var(--texte-2);margin-top:30px}
+.etape p.c strong{color:var(--encre)}
+.etape .visuel{position:absolute;right:84px;top:250px;width:420px}
+.tel{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.tel img{display:block;width:100%}
+.mail{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:#fff;padding:34px 30px;font-size:26px;line-height:1.35}
+.mail .de{color:var(--discret);font-size:22px}
+.mail .obj{font-weight:800;font-size:30px;margin:8px 0 24px}
+.mail .cle{font-family:ui-monospace,Menlo,monospace;font-size:22px;background:var(--papier);border:3px dashed var(--encre);padding:16px 12px;word-break:break-all;letter-spacing:.02em}
+.mail .btn{display:inline-block;margin-top:24px;background:var(--encre);color:var(--papier);font-weight:700;padding:14px 22px}
+.recu{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);padding:34px 30px}
+.recu .l{display:flex;justify-content:space-between;font-size:30px;padding:16px 0;border-bottom:3px solid var(--trait)}
+.recu .l:last-child{border-bottom:0;font-weight:800}
+.recu .x{font-size:26px;color:var(--discret);margin-top:18px}
+.appareils{display:flex;align-items:flex-end;gap:22px}
+.appareils .ordi{width:600px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre);background:var(--surface)}
+.appareils .ordi img{display:block;width:100%}
+.appareils .tel{width:250px;box-shadow:10px 10px 0 var(--encre);border-width:5px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="symbole"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></g>
+</defs></svg>
+
+<!-- ============ IG-01 · Lancement : les templates QME ============ -->
+<section class="cadre couv" id="IG-01-lancement-1">
+  <div class="fa"></div><div class="fb"></div><div class="fc"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Templates QME</p>
+    <h1 style="margin-top:30px">Des outils du quotidien, <mark>prêts</mark> à l'emploi.</h1>
+    <p class="sous">Achat unique · tous vos appareils · dès 12 €</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre groupe" id="IG-01-lancement-2">
+  <div class="bandeau" style="background:var(--bleu);color:#fff"><p class="sourcil" style="opacity:.85">Pour le travail</p><h2>Projets, réunions, tâches.</h2></div>
+  <span class="compteur">2 / 5</span>
+  <div class="lignes">
+    <div class="ligne"><img src="../../../../assets/templates-gantt-couverture.png" alt=""><div><b>Planning Gantt rapide</b><span>Liens, jours fériés calculés, chemin critique.</span><i>45 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-compte-rendu-couverture.png" alt=""><div><b>Compte rendu et plan d'actions</b><span>Chaque action suivie jusqu'au bout.</span><i>15 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-taches-couverture.png" alt=""><div><b>Gestionnaire de tâches</b><span>Boîte de réception, triage, focus du jour.</span><i>19 €</i></div></div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre groupe" id="IG-01-lancement-3">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Pour les indépendants</p><h2>Tarif, prix, comptes.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="lignes">
+    <div class="ligne"><img src="../../../../assets/templates-tjm-couverture.png" alt=""><div><b>Calculateur de TJM</b><span>Objectif, jours facturables, statut, seuils.</span><i>12 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-cout-revient-couverture.png" alt=""><div><b>Coût de revient et prix par client</b><span>Prix plancher, prix conseillé, rentabilité.</span><i>25 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-micro-entreprise-couverture.png" alt=""><div><b>Livre recettes-dépenses</b><span>Micro-entreprise : cotisations estimées, seuils de TVA, export CSV.</span><i>25 €</i></div></div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre groupe" id="IG-01-lancement-4">
+  <div class="bandeau" style="background:var(--rouge);color:#fff"><p class="sourcil" style="opacity:.9">Pour la maison</p><h2>Budget, révisions, repas.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="lignes quatre">
+    <div class="ligne"><img src="../../../../assets/templates-budget-couverture.png" alt=""><div><b>Budget du foyer</b><span>Enveloppes, prévu et réel.</span><i>15 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-budget-commun-couverture.png" alt=""><div><b>Budget commun</b><span>Couple ou colocation : qui doit combien à qui.</span><i>15 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-revision-couverture.png" alt=""><div><b>Planning de révision</b><span>J+1, J+3, J+7… jusqu'à l'examen.</span><i>14,90 €</i></div></div>
+    <div class="ligne"><img src="../../../../assets/templates-nutrition-couverture.png" alt=""><div><b>Nutrition et dépense</b><span>Journal des repas (table Ciqual), dépense du jour.</span><i>19 €</i></div></div>
+  </div>
+</section>
+
+<section class="cadre cta" id="IG-01-lancement-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Chaque template a sa démo libre.</h2>
+    <div class="liste"><div><i></i>Sans inscription, données d'exemple</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="bouton"><b>Lien en bio</b><span>10 templates · dès 12 €</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
+</section>
+
+<!-- ============ IG-02 · Coulisses ============ -->
+<section class="cadre" id="IG-02-demos-fausses">
+  <div class="texte">
+    <p class="sourcil">Coulisses</p>
+    <h1>Toutes mes démos sont fausses. C'est voulu.</h1>
+    <p class="c">Les vraies données ne m'appartiennent pas. Et un cas inventé montre mieux la règle qu'un cas réel.</p>
+  </div>
+  <div class="bandeau-ex"><span>Exemple</span><span>données fictives</span></div>
+  <div class="rond"></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span style="color:var(--discret);font-weight:500;font-size:24px">Quentin Morel Engineering</span></div>
+</section>
+
+<!-- ============ IG-03 · Mode d'emploi ============ -->
+<section class="cadre couv" id="IG-03-mode-emploi-1">
+  <div class="fa" style="background:var(--bleu)"></div><div class="fb"></div><div class="fc" style="background:var(--rouge)"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--bleu)">Mode d'emploi</p>
+    <h1 style="margin-top:30px">Une clé, <mark>tous</mark> vos appareils.</h1>
+    <p class="sous">Comment s'ouvre un template QME, en trois étapes.</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre etape" id="IG-03-mode-emploi-2">
+  <div class="num" style="background:var(--rouge)">1</div>
+  <span class="compteur">2 / 5</span>
+  <div class="txt">
+    <h2>Achat sur Gumroad</h2>
+    <p class="c"><strong>Un seul paiement</strong>, sans abonnement ni compte à créer chez QME.</p>
+    <p class="c">Avant d'acheter : la démo libre, avec des données d'exemple.</p>
+  </div>
+  <div class="visuel recu">
+    <div class="l"><span>Compte rendu et plan d'actions</span></div>
+    <div class="l"><span>Accès</span><span>à vie</span></div>
+    <div class="l"><span>Abonnement</span><span>aucun</span></div>
+    <div class="l"><span>Total</span><span>15 €</span></div>
+    <p class="x">Exemple de commande</p>
+  </div>
+</section>
+
+<section class="cadre etape" id="IG-03-mode-emploi-3">
+  <div class="num" style="background:var(--bleu)">2</div>
+  <span class="compteur">3 / 5</span>
+  <div class="txt">
+    <h2>La clé arrive par e-mail</h2>
+    <p class="c">Dans le reçu Gumroad, juste après le paiement : <strong>4 blocs de 8 caractères</strong>.</p>
+  </div>
+  <div class="visuel mail">
+    <p class="de">Gumroad · reçu</p>
+    <p class="obj">Votre achat</p>
+    <p>Clé de licence :</p>
+    <p class="cle">A1B2C3D4-E5F60718-293A4B5C-6D7E8F90</p>
+    <span class="btn">Ouvrir mon template</span>
+    <p class="de" style="margin-top:20px">Clé d'exemple</p>
+  </div>
+</section>
+
+<section class="cadre etape" id="IG-03-mode-emploi-4">
+  <div class="num" style="background:var(--encre)">3</div>
+  <span class="compteur">4 / 5</span>
+  <div class="txt">
+    <h2>Collez-la, le template s'ouvre</h2>
+    <p class="c">Sur <strong>qm-engineering.fr/connexion</strong>, dans le navigateur. Rien à installer.</p>
+  </div>
+  <div class="visuel tel" style="width:400px"><img src="png/src-connexion-tel.png" alt=""></div>
+</section>
+
+<section class="cadre etape" id="IG-03-mode-emploi-5" style="background:var(--surface)">
+  <span class="compteur">5 / 5</span>
+  <div class="txt" style="top:120px;width:auto;right:84px">
+    <h2>Ensuite, partout.</h2>
+    <p class="c" style="max-width:860px">La même clé sur l'ordinateur, la tablette et le téléphone : <strong>les mêmes données</strong>, enregistrées en ligne et hébergées en Europe. Sur téléphone, il s'ajoute à l'écran d'accueil comme une application, et reste utilisable hors connexion.</p>
+  </div>
+  <div class="appareils" style="position:absolute;left:84px;bottom:200px">
+    <div class="ordi"><img src="../../../../assets/templates-compte-rendu-couverture.png" alt=""></div>
+    <div class="tel"><img src="../../../../assets/templates-compte-rendu-tel.webp" alt=""></div>
+  </div>
+  <div style="position:absolute;right:84px;top:520px;background:var(--jaune);border:4px solid var(--encre);padding:22px 28px;font-weight:800;font-size:40px;letter-spacing:-.025em">Lien en bio</div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span style="color:var(--discret);font-weight:500;font-size:24px">Données fictives</span></div>
+</section>
+
+</body>
+</html>

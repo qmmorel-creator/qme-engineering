@@ -132,7 +132,7 @@ Images (`1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`), Textes (`1uOEyjI7iKVDVu9qXxRcxwGvo
 Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc légende (ID) ·
 Doc légende (lien) · Fichier(s) image (dossier Images) · Texte alternatif · Publié le · URL publication ·
 Remarque · Format · LinkedIn associé · ID Posty.
-Statuts : `À préparer` → `Prêt` (légende et visuels relus par Quentin) → `Programmé` (planifié dans
+Statuts : `À préparer` → `Prêt` (légende et visuels faits, à relire par Quentin) → `Programmé` (planifié dans
 Posty, ID Posty renseigné) → `Publié` ou `Erreur` ; `Annulé` si abandonné.
 
 1. **Relire tout l'onglet** (`get_values Planning!A1:P`) juste avant d'écrire.
