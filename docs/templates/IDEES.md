@@ -146,6 +146,8 @@ déjà).
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
+| T69 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | prêt | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
+| T70 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -688,3 +690,69 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
+
+## T69 · Dossier sinistre habitation (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026), conservé dans la conversation de développement.
+Nom de travail « SinistreFacile » ; nom du produit à confirmer (nom descriptif, règle « aucune marque interne »).
+Préfixe proposé `SNH`, slug `sinistre`. Prix 29 € (Quentin). Achat unique.
+
+- **Public** : particulier qui doit constituer, documenter et suivre son dossier de sinistre habitation.
+- **Écrans** : tableau de bord (type, date, lieu, statut, assureur et numéros saisis à la main, échéances,
+  justificatifs, estimation, progression) ; assistant de création adapté aux réponses (type, dates de
+  survenance et de découverte, pièce, biens, tiers, déclaration déjà faite) ; inventaire des dommages ;
+  calculateur ; preuves ; chronologie ; rapport imprimable (garde, résumé, chronologie, inventaire, synthèse
+  financière, justificatifs, observations) ; exports CSV et JSON. Plusieurs sinistres par acheteur.
+- **Base intégrée** : classification des sinistres et des dommages, bibliothèque de biens courants par
+  catégorie (mobilier, électroménager, informatique, électronique, vêtements, décoration, revêtements,
+  menuiseries, équipements techniques), justificatifs utiles par type de sinistre, mesures conservatoires,
+  modèles de courriers à copier ou imprimer, étapes de suivi.
+- **Calculs** : prix d'achat, valeur actuelle, réparation, remplacement, vétusté **entièrement paramétrable**
+  (aucun barème imposé), montant estimé ; montants déclarés, estimés et reconnus par l'assureur séparés.
+- **Sources** : délais indicatifs issus de sources officielles (Code des assurances sur Légifrance,
+  Service-Public.fr), avec lien et date de vérification ; jamais présentés comme règle universelle (le
+  contrat prime). **daté**.
+- **Risques** : **juridique** (ni conseil, ni expertise, ni garantie d'indemnisation : affiché) ;
+  photos et documents : le stockage commun n'enregistre que du JSON (900 Ko par acheteur), comme T32 et
+  T67 → **décision de Quentin (13/11/2026) : photos et PDF gardés sur l'appareil** (IndexedDB, compressés,
+  non synchronisés, copie JSON avec photos possible) ; **RGPD** (minimiser : pas de coordonnées bancaires).
+
+**État au 13/11/2026 : prêt** (branche `claude/fervent-bell-4m5jqu`). Préfixe `SNH`, slug `sinistre`,
+application `templates/sinistre/`, page `catalogue/sinistre/` en « Mise en vente prochaine », carte du kanban
+(colonne « Projets de vie », à déplacer si Quentin préfère), carte anglaise, portail de connexion, README.
+Sources juridiques vérifiées le 13/11/2026 sur Légifrance et Service-Public (L113-2, L114-1, L114-2,
+L122-7, L125-2 en vigueur depuis le 28/05/2026, A125-6, fiches F1352, F2027, F2028, F1523, F3075, F3050) ;
+la fiche Service-Public F3076 donne encore l'ancien délai de 3 mois pour l'indemnisation des catastrophes
+naturelles : le texte de loi est retenu. Prescription de 5 ans limitée à la sécheresse. Aucun taux de
+vétusté par défaut. Tests : `outils/templates/sinistre.test.mjs` (14 tests) ; Playwright ordinateur et
+iPhone 13 / Pixel 7 (connexion, assistant, saisie, photo, impression, CSV, JSON, synchronisation, conflit
+409, hors ligne, rechargement, démo, écran d'accueil). **Reste à faire** : nom commercial définitif (nom de
+travail « SinistreFacile » non utilisé dans le produit), fiche Gumroad (confirmer nom et prix 29 €),
+activation de la clé de licence par Quentin, couverture Gumroad 1280 × 720, communication (LinkedIn,
+Instagram, prospects), revue annuelle des délais.
+
+## T70 · Assistant administratif après décès (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026). Nom de travail « AprèsVous » ; nom du produit à
+confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). Achat unique, un seul utilisateur
+(pas de partage familial).
+
+- **Public** : proche d'une personne décédée, en forte charge administrative.
+- **Écrans** : assistant de situation (lien avec le défunt, retraité ou en activité, salarié / indépendant /
+  fonctionnaire, propriétaire ou locataire, véhicule, assurances, enfants mineurs, notaire ; aucune question
+  obligatoire si elle n'est pas indispensable) ; tableau de bord (urgent, à faire, en attente, documents
+  manquants, organismes contactés, échéances, terminé) ; fiches démarches (explication, date cible
+  facultative, pièces, statut, historique, notes) ; documents (suivi par case, téléversement non exigé) ;
+  inventaire successoral indicatif (montants confirmés ou estimés, **aucun calcul de droits ni répartition**) ;
+  modèles de courriers à copier ou imprimer ; impression.
+- **Base intégrée** : démarches classées obligatoires / conditionnelles / facultatives ; organismes (mairie,
+  banque, assurances, assurance-vie, employeur, retraite, assurance maladie, mutuelle, CAF, prévoyance,
+  énergie, bailleur ou syndic, impôts, notaire) avec pourquoi, quand, informations et pièces demandées,
+  source officielle, date de vérification, niveau de fiabilité.
+- **Moteur de règles** : chaque démarche affichée dit pourquoi ; aucune démarche obligatoire masquée sur une
+  hypothèse ; délais avec source, point de départ et conditions. Espace interne des informations à
+  réactualiser.
+- **Sources** : Service-Public.fr, Notaires de France, impots.gouv.fr, Assurance retraite, Assurance
+  maladie, CAF, ministères. **daté**, revue annuelle obligatoire.
+- **Risques** : **juridique** et **fiscal** (ne remplace ni notaire, ni avocat, ni conseiller fiscal) ;
+  **RGPD** (données du défunt et de l'entourage, minimisation) ; sujet sensible pour la communication.

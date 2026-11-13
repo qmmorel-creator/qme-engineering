@@ -142,6 +142,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   Netlify Blobs à Francfort (magasin `secret-santa`), code personnel haché (scrypt), effacement de
   l'échange 60 jours après sa date (180 jours sans date). Page `catalogue/secret-santa/`, démo
   `/templates/secret-santa/?demo`.
+- `templates/sinistre/` (SNH) : **dossier sinistre habitation**, prêt, mise en vente prochaine (29 €).
+  Assistant de déclaration adapté au type (dégât des eaux, incendie, climatique et catastrophe naturelle,
+  cambriolage, bris de glace, autre), délais légaux calculés en jours ouvrés (jours fériés calculés) avec
+  source Légifrance et date de vérification, inventaire chiffré (réparation, remplacement moins vétusté
+  paramétrable, valeur actuelle ; aucun barème imposé), preuves par statut, chronologie qui fixe le statut,
+  indemnisation, rapport imprimable, CSV, courriers. Plusieurs dossiers par clé. **Photos et PDF gardés
+  sur l'appareil** (IndexedDB, compressés), jamais envoyés au serveur ; copie JSON avec photos possible.
+  Règles dans `regles.js`, tests `outils/templates/sinistre.test.mjs`. Données **datées** (délais, franchise
+  catastrophe naturelle) : revue annuelle de `donnees.js`. Page `catalogue/sinistre/`, démo
+  `/templates/sinistre/?demo`.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
