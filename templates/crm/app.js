@@ -35,7 +35,7 @@
     if (n < 0 && n > -7) return `il y a ${-n} jours`;
     return fmt(s, { day: 'numeric', month: 'short', year: versDate(s).getFullYear() === new Date().getFullYear() ? undefined : 'numeric' });
   };
-  const eur = (n, dec = true) => (Number(n) || 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 });
+  const eur = (n, dec = true) => (Number(n) || 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 }).replace(/\u202f/g, '\u00a0');
   const eurCourt = (n) => eur(n, Math.abs(n) < 1000 && Math.round(n) !== n);
   const nombreSaisi = (v) => { const n = Number(String(v ?? '').replace(/\s/g, '').replace(',', '.')); return Number.isFinite(n) ? n : NaN; };
 
@@ -172,11 +172,12 @@
   function formaterCode(v) {
     const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '');
     if (n === 'DEMO' || 'DEMO'.startsWith(n)) return n;
-    if (n.startsWith('CRM')) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
+    // Code interne : préfixe de 3 lettres (le nôtre, ou celui d'un autre template, refusé ensuite par le serveur).
+    if (n.startsWith('CRM') || /^[A-Z]{2}[G-Z]|^[A-Z][G-Z]|^[G-Z]/.test(n.slice(0, 3)) && /^[A-Z]{3}/.test(n)) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
     const l = n.slice(0, 32);
     return [l.slice(0, 8), l.slice(8, 16), l.slice(16, 24), l.slice(24, 32)].filter(Boolean).join('-');
   }
-  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (n.startsWith('CRM') && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
+  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (/^[A-Z]{3}[0-9A-Z]{16}$/.test(n) && !/^[0-9A-F]+$/.test(n)) || (/^[0-9A-F]{32}$/.test(n)); };
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
@@ -251,7 +252,7 @@
 
     const b = C('Julien Ferrand', 'Ferrand & Associés', 'Réseau professionnel', -300);
     const pb = P(b, 'Accompagnement éditorial annuel', 'gagne', 7200, -240, { avancement: 'en-cours' });
-    b.prochaine = { type: 'relance-facture', date: j(-2), note: 'Facture d\'octobre toujours pas réglée.' };
+    b.prochaine = { type: 'relance-facture', date: j(-2), note: 'Deux factures en retard, dont une payée en partie.' };
     X(b, -235, 'rdv', 'Signature de l\'accompagnement mensuel (12 mois).');
     X(b, -3, 'email', 'Relance courtoise de la facture d\'octobre, pas de réponse.');
     for (let m = 8; m >= 1; m--) {
@@ -510,7 +511,7 @@
         <div class="jour-titre">
           <p class="surtitre">${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
           <h1>${titre}</h1>
-          ${dues.length ? `<p class="sous">${retards ? `<b style="color:var(--rouge)">${retards} en retard</b> · ` : ''}${pluriel(avenir.length, 'autre action', 'autres actions')} dans les 7 jours</p>` : ''}
+          ${dues.length ? `<p class="sous">${retards ? `<b style="color:var(--rouge)">${retards} en retard</b> · ` : ''}${avenir.length ? `${pluriel(avenir.length, 'autre action', 'autres actions')} dans les 7 jours` : 'rien d\'autre dans les 7 jours'}</p>` : ''}
           <div class="actions">
             <button class="btn primaire" data-action="echange-nouveau">${ICONES.plus}Noter un échange</button>
             <button class="btn" data-action="contact-nouveau">${ICONES.plus}Contact</button>
@@ -564,7 +565,7 @@
     const st = R.statutDocument(d, t, delai());
     const facture = d.type === 'facture';
     const sous = facture
-      ? (st === 'retard' ? `échéance ${fmt(R.echeance(d, delai()))} · ${R.joursRetard(d, t, delai())} j de retard` : st === 'payee' ? `payée${d.paiements.length ? ` le ${fmt(d.paiements.at(-1).date)}` : ''}` : `échéance ${fmt(R.echeance(d, delai()))}`)
+      ? (st === 'annulee' ? 'annulée' : st === 'brouillon' ? 'pas encore envoyée' : st === 'retard' ? `échéance ${fmt(R.echeance(d, delai()))} · ${R.joursRetard(d, t, delai())} j de retard` : st === 'payee' ? `payée${d.paiements.length ? ` le ${fmt(d.paiements.at(-1).date)}` : ''}` : `échéance ${fmt(R.echeance(d, delai()))}`)
       : (d.validite ? `valable jusqu'au ${fmt(d.validite)}` : `du ${fmt(d.date)}`);
     const montant = facture && ['retard', 'partielle'].includes(st) ? `${eur(R.solde(d))} <small>dus sur ${eur(R.ttc(d))}</small>` : `${eur(R.ttc(d))} <small>TTC</small>`;
     let boutons = '';

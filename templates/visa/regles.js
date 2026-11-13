@@ -171,7 +171,7 @@
       if (noms.length) L.push(`Avis en attente : ${noms.join(', ')}.`);
       L.push('', 'Merci de nous le transmettre au plus vite afin de ne pas retarder l\'exécution.');
     } else if (etat.statut === 'resoumettre') {
-      L.push(`Le document ${doc.numero} « ${doc.titre} » a reçu à l'indice ${etat.indice} l'avis ${etat.code} le ${dateFr(etat.dateSynthese)}. Le nouvel indice était attendu pour le ${dateFr(etat.echeance)} (${etat.retard} j de retard).`);
+      L.push(`Le document ${doc.numero} « ${doc.titre} » a reçu l'avis ${etat.code} à l'indice ${etat.indice} le ${dateFr(etat.dateSynthese)}. Le nouvel indice était attendu pour le ${dateFr(etat.echeance)} (${etat.retard} j de retard).`);
       L.push('', 'Merci de nous transmettre l\'indice suivant, intégrant les observations formulées.');
     } else {
       L.push(`Le document ${doc.numero} « ${doc.titre} » était attendu pour le ${dateFr(etat.echeance)} et ne nous est pas parvenu (${etat.retard} j de retard).`);

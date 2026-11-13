@@ -66,6 +66,10 @@ test('retard : échéance de la NC ou d\'une action dépassée, jamais une fois 
   assert.equal(R.enRetard(nc({ gravite: 1, actions: [action({ echeance: '2026-11-12' })] }), AUJ, REG), false); // le jour même
   assert.equal(R.enRetard(nc({ gravite: 1, actions: [action({ echeance: '2026-11-11', faite: '2026-11-11' })] }), AUJ, REG), false);
   assert.equal(R.enRetard(nc({ gravite: 4, cloture: { date: '2026-11-20' } }), AUJ, REG), false);
+  // Actions faites : seul compte le retard de vérification (prévue 30 j après la dernière action).
+  assert.equal(R.enRetard(nc({ gravite: 3, actions: [action({ faite: '2026-11-05' })] }), AUJ, REG), false);
+  assert.equal(R.enRetard(nc({ gravite: 3, actions: [action({ faite: '2026-10-05' })] }), AUJ, REG), true); // due le 04/11
+  assert.equal(R.enRetard(nc({ gravite: 3, verifPrevue: '2026-11-12', actions: [action({ faite: '2026-10-05' })] }), AUJ, REG), false);
 });
 
 test('vérification d\'efficacité prévue après la dernière action', () => {
@@ -100,7 +104,7 @@ test('tri du registre : retards, puis à vérifier, puis en cours par échéance
     nc({ id: 'close-ancienne', gravite: 1, cloture: { date: '2026-09-01' } }),
     nc({ id: 'en-cours', gravite: 1 }), // échéance 01/12
     nc({ id: 'retard', gravite: 3 }),
-    nc({ id: 'a-verifier', gravite: 1, actions: [action({ faite: '2026-10-01' })] }),
+    nc({ id: 'a-verifier', gravite: 1, verifPrevue: '2026-11-12', actions: [action({ faite: '2026-10-01' })] }),
     nc({ id: 'close-recente', gravite: 1, cloture: { date: '2026-11-10' } }),
     nc({ id: 'en-cours-tot', gravite: 2 }), // échéance 16/11
   ];

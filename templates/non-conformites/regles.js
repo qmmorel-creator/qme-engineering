@@ -56,6 +56,8 @@
 
   function enRetard(nc, auj, reglages) {
     if (nc.cloture) return false;
+    // Actions toutes faites : seule compte la date de vérification d'efficacité.
+    if (etape(nc) === 'verification') { const p = verifPrevue(nc, reglages); return !!p && p < auj; }
     if (echeance(nc, reglages) < auj) return true;
     return (nc.actions || []).some((a) => actionEnRetard(a, auj));
   }

@@ -100,7 +100,7 @@ window.BASE = {
       taches: [
         [0, 'Devis des déménageurs ou location du véhicule', 7, ''],
         [0, 'Tri et dons', 14, '1DD'],
-        [0, 'Changements d\'adresse et contrats (énergie, internet)', 10, '1'],
+        [0, 'Changements d\'adresse et transfert des abonnements', 10, '1'],
         [0, 'Cartons des pièces peu utilisées', 14, '2DD+7'],
         [0, 'Cartons du quotidien', 4, '4'],
         [0, 'État des lieux de sortie', 0, '5'],

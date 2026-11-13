@@ -18,7 +18,7 @@
 
   const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-  // 1 234,56 € (espace fine insécable entre les milliers) ; signe : « + » devant un positif.
+  // 1 234,56 € (espace insécable entre les milliers) ; signe : « + » devant un positif.
   function euros(c, { signe = false } = {}) {
     const n = Math.abs(Math.round(c));
     const s = `${milliers(Math.floor(n / 100))},${String(n % 100).padStart(2, '0')} €`;
@@ -108,11 +108,13 @@
 
   const revenusPrevus = (E) => E.sources.reduce((s, x) => s + (Number.isInteger(x.prevu) ? x.prevu : 0), 0);
 
-  // Statut d'une enveloppe : dépassée, presque vide (≥ 90 %), hors budget (dépense sans enveloppe), ok.
+  // Statut d'une enveloppe : dépassée, utilisée pile, presque vide (≥ 90 %), hors budget (dépense sans enveloppe),
+  // aucune (ni enveloppe ni dépense), ok.
   function statutEnveloppe(disponible, depense) {
     if (disponible < 0) return 'depasse';
     if (disponible === 0) return depense > 0 ? 'hors' : 'aucune';
     if (depense > disponible) return 'depasse';
+    if (depense === disponible) return 'pile';
     if (depense * 10 >= disponible * 9) return 'presque';
     return 'ok';
   }

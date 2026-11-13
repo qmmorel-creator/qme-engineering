@@ -142,11 +142,12 @@
   function formaterCode(v) {
     const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '');
     if (n === 'DEMO' || 'DEMO'.startsWith(n)) return n;
-    if (n.startsWith('BDG')) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
+    // Code interne QME (ce produit ou un autre) : 3 lettres dont au moins une hors hexadécimal.
+    if (/^[A-Z]{3}/.test(n) && /[G-Z]/.test(n.slice(0, 3))) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
     const l = n.slice(0, 32);
     return [l.slice(0, 8), l.slice(8, 16), l.slice(16, 24), l.slice(24, 32)].filter(Boolean).join('-');
   }
-  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (n.startsWith('BDG') && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
+  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (/^[A-Z]{3}/.test(n) && /[G-Z]/.test(n.slice(0, 3)) && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
@@ -249,6 +250,9 @@
     forcer(24500 - ici('sorties'), 'sorties', 'Restaurants', 'Dîner entre amis');
     forcer(3000, 'dons', 'Associations', 'Collecte de l\'école');
     D.operations.sort((a, b) => a.date.localeCompare(b.date));
+    // Mois prévus à l'avance : vacances d'été et taxe foncière (le reste du déficit est reporté puis résorbé).
+    D.ajustements[R.ajoutMois(c, -2)] = { vacances: 100000 };
+    D.ajustements[R.ajoutMois(c, -1)] = { impots: 120000 };
     return D;
   }
 
@@ -450,7 +454,7 @@
     </div>`;
   }
 
-  const ETIQUETTES = { depasse: ['rouge', 'Dépassée'], presque: ['jaune', 'Presque vide'], hors: ['rouge', 'Hors budget'], ok: ['', ''], aucune: ['', ''] };
+  const ETIQUETTES = { depasse: ['rouge', 'Dépassée'], presque: ['jaune', 'Presque vide'], hors: ['rouge', 'Hors budget'], pile: ['bleu', 'Utilisée'], ok: ['', ''], aucune: ['', ''] };
   const etiquette = (s) => (ETIQUETTES[s][1] ? `<span class="etiquette ${ETIQUETTES[s][0]}">${ETIQUETTES[s][1]}</span>` : '');
 
   // ----- Mois (tableau de bord) -----
@@ -475,8 +479,8 @@
       ['Revenus', eurR(rev.total), `sur ${eurR(prevu)} prévus`, 'var(--encre)', 'rond'],
       ['Dépenses', eurR(reel.besoins + reel.envies), `sur ${eurR(Math.max(0, dispo.besoins) + Math.max(0, dispo.envies))} d'enveloppes`, 'var(--bleu)', ''],
       ['Épargne', eurR(reel.epargne), `sur ${eurR(Math.max(0, dispo.epargne))} prévus`, 'var(--vert)', 'rond'],
-      ['Solde du mois', `<span style="color:${solde < 0 ? 'var(--rouge)' : 'inherit'}">${solde < 0 ? '−' : solde > 0 ? '+' : ''}${eurR(Math.abs(solde))}</span>`, 'Revenus moins dépenses et épargne', solde < 0 ? 'var(--rouge)' : 'var(--jaune)', ''],
-    ].map(([lib, v, d, col, f]) => `<div class="tuile ${f}" style="--c:${col}"><p class="surtitre">${lib}</p><b>${v}</b><span>${d}</span></div>`).join('');
+      ['Solde du mois', `${solde < 0 ? '−' : solde > 0 ? '+' : ''}${eurR(Math.abs(solde))}`, 'Revenus moins dépenses et épargne', solde < 0 ? 'var(--rouge)' : 'var(--jaune)', '', solde < 0],
+    ].map(([lib, v, d, col, f, neg]) => `<div class="tuile ${f}" style="--c:${col}"><p class="surtitre">${lib}</p><b${neg ? ' class="moins"' : ''}>${v}</b><span>${d}</span></div>`).join('');
     const alertes = env.filter((x) => ['depasse', 'presque', 'hors'].includes(x.statut)).sort((a, b) => b.taux - a.taux);
     const base503020 = rev.total || prevu;
     const reperes = R.repere503020(reel, base503020);
@@ -494,7 +498,7 @@
         </section>
         <section>
           <h2 class="titre-section">À surveiller <span>${alertes.length ? pluriel(alertes.length, 'enveloppe') : ''}</span></h2>
-          ${alertes.length ? `<ul class="liste-alertes">${alertes.map((x) => { const cat = categorie(x.id); return `<li><button data-action="enveloppe" data-id="${x.id}" style="--c:${groupe(x.groupe).couleur}"><i></i><span><b>${esc(cat.nom)}</b><small>${x.statut === 'hors' ? `${eur(x.depense)} sans enveloppe` : `${eur(x.depense)} sur ${eur(x.disponible)}`}</small></span>${etiquette(x.statut)}</button></li>`; }).join('')}</ul>`
+          ${alertes.length ? `<ul class="liste-alertes">${alertes.map((x) => { const cat = categorie(x.id); return `<li><button data-action="enveloppe" data-id="${x.id}" style="--c:${groupe(x.groupe).couleur}"><i></i><span><b>${esc(cat.nom)}</b><small>${x.statut === 'hors' ? `${eur(x.depense)} sans enveloppe` : x.disponible < 0 ? `déficit reporté de ${eur(-x.disponible)}${x.depense ? `, ${eur(x.depense)} dépensés` : ''}` : `${eur(x.depense)} sur ${eur(x.disponible)}`}</small></span>${etiquette(x.statut)}</button></li>`; }).join('')}</ul>`
             : '<p class="carte-calme">Toutes les enveloppes tiennent. Rien à signaler.</p>'}
         </section>
       </div>
@@ -541,9 +545,16 @@
       const info = `data-info="${esc(`${nom}|${eur(n.valeur)}`)}"`;
       if (n.col < 2) {
         const max = Math.floor((n.w - 12) / (fs * 0.56));
+        // Nom trop long : sur deux lignes si le bloc est assez haut, sinon tronqué.
+        let lignes = [tronquer(nom, max)];
+        if (nom.length > max && n.slot >= fs * 4) {
+          const coupe = nom.lastIndexOf(' ', max);
+          if (coupe > 0) lignes = [nom.slice(0, coupe), tronquer(nom.slice(coupe + 1), max)];
+        }
+        const y0 = n.haut + n.slot / 2 - 3 - (lignes.length - 1) * (fs + 2) / 2;
         return `<g class="noeud" ${info}><rect x="${n.x}" y="${n.haut}" width="${n.w}" height="${n.slot}" fill="${fond}" stroke="#141414" stroke-width="2"/>
-          <text x="${n.x + 7}" y="${n.haut + n.slot / 2 - 3}" fill="${texte}" font-size="${fs}" font-weight="700">${esc(tronquer(nom, max))}</text>
-          <text x="${n.x + 7}" y="${n.haut + n.slot / 2 + fs - 1}" fill="${texte}" font-size="${fs}">${eurR(n.valeur)}</text></g>`;
+          ${lignes.map((l, i) => `<text x="${n.x + 7}" y="${y0 + i * (fs + 2)}" fill="${texte}" font-size="${fs}" font-weight="700">${esc(l)}</text>`).join('')}
+          <text x="${n.x + 7}" y="${y0 + (lignes.length - 1) * (fs + 2) + fs + 2}" fill="${texte}" font-size="${fs}">${eurR(n.valeur)}</text></g>`;
       }
       const max = Math.floor((n.x - 8 - xMaxEtiquette - 6) / (fs * 0.56));
       const yc = n.y + n.h / 2;
@@ -630,7 +641,7 @@
         ${reste}
       </button>
       <div class="jauge" aria-hidden="true"><i style="width:${pct}%"></i></div>
-      <p class="env-detail">${eur(x.depense)} dépensés sur ${eur(x.disponible)}${x.report ? ` (enveloppe ${eur(x.enveloppe)} ${x.report > 0 ? '+' : '−'} report ${eur(Math.abs(x.report))})` : ''}</p>
+      <p class="env-detail">${x.disponible < 0 ? `Déficit reporté des mois précédents : ${eur(-x.disponible)}. ${eur(x.depense)} dépensés` : `${eur(x.depense)} dépensés sur ${eur(x.disponible)}`}${x.report ? ` (enveloppe ${eur(x.enveloppe)} ${x.report > 0 ? '+' : '−'} report ${eur(Math.abs(x.report))})` : ''}</p>
       ${sous.length ? `<details class="env-sous"><summary>Détail par sous-catégorie</summary><ul>${sous.map(([n, v]) => `<li><span>${esc(n)}</span><b>${eur(v)}</b></li>`).join('')}</ul></details>` : ''}
     </li>`;
   }
@@ -671,7 +682,7 @@
     return `
       <div class="vue-tete"><div><h1>Opérations</h1>${navMois()}</div>
         <div class="actions"><button class="btn" data-action="operation" data-type="revenu">${ICONES.plus}Revenu</button><button class="btn primaire" data-action="operation" data-type="depense">${ICONES.plus}Dépense</button></div></div>
-      ${fixes.length ? `<div class="bandeau-fixes"><p><b>${pluriel(fixes.length, 'opération fixe')}</b> pas encore ${fixes.length > 1 ? 'ajoutées' : 'ajoutée'} en ${libelleMois(mois, { month: 'long' }).toLowerCase()} : ${esc(fixes.slice(0, 4).map((f) => f.libelle).join(', '))}${fixes.length > 4 ? '…' : ''}.</p><button class="btn petit primaire" data-action="ajouter-fixes">Les ajouter</button></div>` : ''}
+      ${fixes.length ? `<div class="bandeau-fixes"><p><b>${pluriel(fixes.length, 'opération fixe', 'opérations fixes')}</b> pas encore ${fixes.length > 1 ? 'ajoutées' : 'ajoutée'} en ${libelleMois(mois, { month: 'long' }).toLowerCase()} : ${esc(fixes.slice(0, 4).map((f) => f.libelle).join(', '))}${fixes.length > 4 ? '…' : ''}.</p><button class="btn petit primaire" data-action="ajouter-fixes">Les ajouter</button></div>` : ''}
       <div class="filtres"><label class="champ">Catégorie<select id="filtre-cat">${options}</select></label><label class="champ">Rechercher<input id="filtre-texte" type="search" value="${esc(filtre.texte)}" placeholder="Libellé, catégorie…"></label></div>
       <div id="liste-ops">${listeOperations()}</div>`;
   }
@@ -736,7 +747,7 @@
         <div class="graphique-tete"><h2>Sorties par mois</h2><div class="legende">${ORDRE_PILE.map((k) => `<span><i style="background:${groupe(k).couleur}"></i>${esc(groupe(k).nom)}</span>`).join('')}<span><i class="trait-revenu"></i>Revenus</span></div></div>
         ${graphiqueBilan(serie)}
         <div class="infobulle" hidden></div>
-        <table class="sr-only"><caption>Sorties et revenus par mois</caption><thead><tr><th>Mois</th><th>Besoins</th><th>Envies</th><th>Épargne</th><th>Revenus</th><th>Enveloppes</th></tr></thead><tbody>${serie.map((m) => `<tr><td>${libelleMois(m.mois)}</td><td>${eur(m.depenses.besoins)}</td><td>${eur(m.depenses.envies)}</td><td>${eur(m.depenses.epargne)}</td><td>${eur(m.revenus)}</td><td>${eur(m.enveloppes)}</td></tr>`).join('')}</tbody></table>
+        <div class="sr-only"><table><caption>Sorties et revenus par mois</caption><thead><tr><th>Mois</th><th>Besoins</th><th>Envies</th><th>Épargne</th><th>Revenus</th><th>Enveloppes</th></tr></thead><tbody>${serie.map((m) => `<tr><td>${libelleMois(m.mois)}</td><td>${eur(m.depenses.besoins)}</td><td>${eur(m.depenses.envies)}</td><td>${eur(m.depenses.epargne)}</td><td>${eur(m.revenus)}</td><td>${eur(m.enveloppes)}</td></tr>`).join('')}</tbody></table></div>
       </figure>
       <h2 class="titre-section">Écart au budget par catégorie <span>Depuis ${libelleMois(listeMois[0] || fin).toLowerCase()}, sans les reports. Positif : dépensé de plus que prévu.</span></h2>
       ${ecarts.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Catégorie</th><th class="nb">Moyenne / mois</th><th class="nb">Dépensé</th><th class="nb">Prévu</th><th class="nb">Écart</th></tr></thead><tbody>${ecarts.map((x) => `<tr style="--c:${groupe(x.groupe).couleur}"><td><span class="nom-matiere"><i></i>${esc(categorie(x.id)?.nom)}</span></td><td class="nb">${eur(x.moyenne)}</td><td class="nb">${eur(x.total)}</td><td class="nb">${eur(x.budget)}</td><td class="nb ${x.ecart > 0 ? 'moins' : ''}">${eur(x.ecart, { signe: true })}</td></tr>`).join('')}</tbody></table></div>` : '<p class="carte-calme">Pas encore assez de données.</p>'}

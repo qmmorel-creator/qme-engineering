@@ -1,7 +1,7 @@
 // Base intégrée du générateur de devis : taux de TVA (modifiables), unités, catalogues types par métier
 // (sans prix), mentions d'un devis et sources officielles datées. Aucune logique ici.
 // Mise à jour : revérifier chaque année les taux et les mentions (sources ci-dessous).
-window.BASE = {
+globalThis.BASE = {
   consulteLe: '2026-11-12',
 
   // Taux en centièmes de pourcent (2000 = 20 %). L'utilisateur peut les modifier dans l'onglet Entreprise.

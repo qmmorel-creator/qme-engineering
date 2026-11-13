@@ -58,7 +58,8 @@ est rangée (« Photo 0412, dossier chantier », lien vers un partage). C'est di
   (ou si la dernière vérification est inefficace et qu'aucune action n'a été ajoutée depuis) ;
   `actions` si une action reste à faire ; `verification` si toutes les actions sont faites.
 - **Échéance de traitement** = date du constat + délai de la gravité (réglable) ; **retard** si la NC
-  n'est pas clôturée après cette date ou si une de ses actions dépasse son échéance.
+  n'est pas clôturée après cette date ou si une de ses actions dépasse son échéance. Une fois toutes
+  les actions faites, seule compte la date de vérification d'efficacité (retard si elle est dépassée).
 - **Délai de clôture** = jours entre constat et clôture ; moyenne sur les NC clôturées de la période.
 - **Efficacité à la première vérification** = part des NC clôturées sans vérification inefficace.
 - Annulation (« Annuler ») des actions rapides : action faite, clôture, suppression.
@@ -118,5 +119,12 @@ exigence** : la grille, les délais et la typologie sont des propositions à ada
   `outils/templates/non-conformites.test.mjs`.
 - Une seule liste de zones par compte (lots **ou** ateliers) ; le libellé est réglable.
 - Pas de pièces jointes (voir Photo) ; pas de multi-utilisateur (un compte = une clé).
-- Démo : PME de gros œuvre et second œuvre fictive, une vingtaine de NC sur 12 mois, chaque étape
-  représentée (retard, à vérifier, inefficace, clôturées).
+- Démo : entreprise du bâtiment fictive, 21 NC sur 12 mois (chantiers A, B, C et dépôt, personnes
+  désignées par leur fonction), chaque étape représentée (à analyser, actions en retard, à vérifier,
+  vérification due, inefficace, clôturées dont deux dans les 30 derniers jours).
+- Code d'un autre template (`REV-…`, `CRA-…`) refusé dès la saisie ; clé Gumroad d'un autre produit
+  refusée après la réponse du serveur (`corps.produit !== 'NCF'`), à la connexion et à la reconnexion.
+- Graphiques : couleurs fixes de la charte (rouge « constatées », bleu « clôturées ») ; le validateur
+  du skill `dataviz` signale le bleu hors de la bande de clarté : compensé par légende, contours,
+  infobulle et tableau accessible ; les barres de répartition portent toutes leur libellé et leur
+  valeur.
