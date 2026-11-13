@@ -149,3 +149,11 @@ oublié, kilométrage de location longue durée dépassé en fin de contrat).
 - Pas de géolocalisation, pas de pièces jointes (cartes grises, avis) : le service ne stocke que du JSON
   (≈ 900 Ko par compte, plusieurs années pour 30 véhicules).
 - Un compte = une clé : pas de comptes conducteurs séparés ; les conducteurs ne réservent pas eux-mêmes.
+- Graphique des coûts : barres empilées HTML aux couleurs de la charte (bleu, jaune, rouge, encre).
+  Le validateur `dataviz` signale lightness et chroma (encre) hors bande et un contraste faible du
+  jaune : séparation daltonisme conforme ; compensé par un contour encre et un écart de 2 px par
+  segment, la légende, les montants affichés, une infobulle et un tableau accessible.
+- Démo : 6 véhicules (achat et location, thermiques, hybride, électriques, une camionnette N1),
+  états couverts : entretien en retard, dépassement de location, contre-visite et pollution à venir,
+  amende à désigner, sinistre en cours, relevé ancien, retour à saisir, réservations du jour.
+- Montants des amendes non renseignés dans la démo (aucun barème vérifié repris).

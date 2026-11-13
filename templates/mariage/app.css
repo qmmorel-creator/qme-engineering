@@ -448,7 +448,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
 /* Budget */
 .budget-graph{padding-bottom:14px}
-.repere-leg{background:var(--jaune)!important;width:4px!important;height:16px!important}
+.repere-leg{background:var(--jaune)!important;width:8px!important;height:16px!important}
 .barres{display:grid;gap:10px;margin-top:8px}
 .barres li{display:grid;grid-template-columns:200px minmax(0,1fr) 150px;gap:12px;align-items:center;cursor:default}
 .barre-nom{font-size:14px;font-weight:600;overflow-wrap:anywhere}
@@ -463,7 +463,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .barres li:hover .barre-nom{text-decoration:underline}
 .table-acc{margin-top:14px}
 .table-acc summary{cursor:pointer;font-weight:700;font-size:14px;min-height:40px;display:flex;align-items:center}
-.postes{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:24px}
+.postes{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:24px;align-items:start}
 .poste{border:2px solid var(--encre);background:var(--surface);display:flex;flex-direction:column}
 .poste.depasse{box-shadow:6px 6px 0 var(--rouge)}
 .poste-tete{display:flex;align-items:center;gap:10px;padding:0 12px 0 0;background:var(--encre);color:var(--papier)}
@@ -516,14 +516,15 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .a-placer h2 span{font-size:16px}
 .a-placer ul,.table-carte ul{display:grid;gap:6px;padding:10px}
 .a-placer .carte-calme{border:0}
-.jeton{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:8px;align-items:center;padding:6px 6px 6px 10px;border:2px solid var(--encre);background:var(--papier);cursor:grab}
+.jeton{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:8px;align-items:center;padding:6px 6px 6px 10px;border:2px solid var(--encre);background:var(--papier);cursor:grab}
 .jeton.attente{border-style:dashed}
 .jeton.non{background:#FBE9E7;border-color:var(--rouge)}
 .jeton.glisse{opacity:.4}
 .jeton b{display:block;font-size:14px;overflow-wrap:anywhere}
 .jeton small{display:block;font-size:12px;color:var(--discret)}
 .jeton select{width:100%;min-height:36px;border:2px solid var(--encre);background:var(--surface);font-size:13px;padding:0 4px}
-.tables-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.tables-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;align-items:start}
+.liste-alertes .btn{white-space:nowrap}
 .table-carte{border:2px solid var(--encre);background:var(--surface);min-height:140px}
 .table-carte.plein{box-shadow:6px 6px 0 var(--rouge)}
 .zone-depot.survol{outline:4px solid var(--jaune);outline-offset:2px}
@@ -566,3 +567,4 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .compte-carte .compte{font-size:48px}
   .bascule-vue{display:grid;width:100%}
 }
+.vue:focus{outline:none}

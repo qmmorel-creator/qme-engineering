@@ -68,8 +68,8 @@
     if (!estDate(date)) return 'Date invalide.';
     if (!Number.isFinite(km) || km < 0) return 'Kilométrage invalide.';
     const autres = points.filter((p) => !ignorerId || p.id !== ignorerId);
-    const avant = autres.filter((p) => p.date < date && p.km > km).sort((a, b) => b.km - a.km)[0];
-    if (avant) return `Incohérent : ${avant.km.toLocaleString('fr-FR')} km relevés le ${dateFr(avant.date)}, avant cette date.`;
+    const avant = autres.filter((p) => p.date <= date && p.km > km).sort((a, b) => b.km - a.km)[0];
+    if (avant) return `Incohérent : ${avant.km.toLocaleString('fr-FR')} km relevés le ${dateFr(avant.date)}${avant.date === date ? '' : ', avant cette date'}.`;
     const apres = autres.filter((p) => p.date > date && p.km < km).sort((a, b) => a.km - b.km)[0];
     if (apres) return `Incohérent : seulement ${apres.km.toLocaleString('fr-FR')} km relevés le ${dateFr(apres.date)}, après cette date.`;
     return null;

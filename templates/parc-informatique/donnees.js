@@ -2,7 +2,8 @@
 // Aucune marque de matériel ni de logiciel. Garanties et durées de renouvellement = valeurs de départ
 // indicatives (rédigées pour le produit, sans source externe), modifiables dans les réglages.
 window.BASE = {
-  // id, nom, garantie proposée (mois), durée de renouvellement indicative (années), affectable à une personne.
+  // id, nom, garantie proposée (mois), durée de renouvellement indicative (années) ;
+  // collectif : matériel partagé, installé à un emplacement plutôt que remis à une personne (« En place » quand il n'est pas affecté).
   categories: [
     { id: 'portable', nom: 'Ordinateur portable', garantie: 24, renouvellement: 4 },
     { id: 'fixe', nom: 'Ordinateur fixe', garantie: 24, renouvellement: 5 },
@@ -10,13 +11,13 @@ window.BASE = {
     { id: 'station', nom: 'Station d\'accueil', garantie: 24, renouvellement: 5 },
     { id: 'smartphone', nom: 'Smartphone', garantie: 24, renouvellement: 3 },
     { id: 'tablette', nom: 'Tablette', garantie: 24, renouvellement: 4 },
-    { id: 'imprimante', nom: 'Imprimante ou multifonction', garantie: 12, renouvellement: 5 },
-    { id: 'serveur', nom: 'Serveur', garantie: 36, renouvellement: 5 },
-    { id: 'stockage', nom: 'Stockage réseau', garantie: 24, renouvellement: 5 },
-    { id: 'reseau', nom: 'Équipement réseau', garantie: 24, renouvellement: 6 },
-    { id: 'onduleur', nom: 'Onduleur', garantie: 24, renouvellement: 5 },
+    { id: 'imprimante', nom: 'Imprimante ou multifonction', garantie: 12, renouvellement: 5, collectif: true },
+    { id: 'serveur', nom: 'Serveur', garantie: 36, renouvellement: 5, collectif: true },
+    { id: 'stockage', nom: 'Stockage réseau', garantie: 24, renouvellement: 5, collectif: true },
+    { id: 'reseau', nom: 'Équipement réseau', garantie: 24, renouvellement: 6, collectif: true },
+    { id: 'onduleur', nom: 'Onduleur', garantie: 24, renouvellement: 5, collectif: true },
     { id: 'peripherique', nom: 'Périphérique (clavier, souris, casque…)', garantie: 12, renouvellement: 3 },
-    { id: 'reunion', nom: 'Équipement de salle de réunion', garantie: 24, renouvellement: 6 },
+    { id: 'reunion', nom: 'Équipement de salle de réunion', garantie: 24, renouvellement: 6, collectif: true },
     { id: 'autre', nom: 'Autre matériel', garantie: 12, renouvellement: 5 },
   ],
 

@@ -462,6 +462,92 @@ button.tuile[aria-pressed="true"]{box-shadow:5px 5px 0 var(--c);transform:transl
 .limites li{padding:10px 12px;border-left:4px solid var(--jaune);background:var(--surface)}
 .historique{display:grid;gap:4px;font-size:14px;padding:8px 12px;background:var(--surface);border:1px solid var(--trait)}
 
+
+/* ============ Parc informatique ============ */
+.filtres-mat{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.4fr)}
+.filtres-p{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+.bascule.trois div{grid-template-columns:repeat(3,1fr)}
+.carte.res.mat{grid-template-columns:8px minmax(0,1fr) 170px}
+.res-loc .depuis{font-weight:500;color:var(--discret);font-size:14px}
+.note-mat{border-left-color:var(--jaune);background:#FBF5E1}
+.ligne-alerte{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;align-items:center;width:100%;padding:10px 14px;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;min-height:56px}
+.ligne-alerte:last-child{border-bottom:0}
+.ligne-alerte:hover{background:#F6F1E3}
+.ligne-alerte .etiquette{text-align:center}
+.ligne-alerte b{display:block;font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.ligne-alerte small{font-size:13px;color:var(--discret)}
+.etiquette.bleu{background:var(--bleu);color:#fff}
+.tuile b small{font-size:20px}
+/* Personnes */
+.personnes{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.personne{border:2px solid var(--encre);border-top:10px solid var(--c);background:var(--surface);display:flex;flex-direction:column}
+.personne-tete{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 16px 10px;border-bottom:2px solid var(--encre)}
+.personne-tete h2{font-size:21px;overflow-wrap:anywhere}
+.personne-tete p{font-size:13px;color:var(--discret);margin-top:4px}
+.personne-tete .etiquette{flex:none}
+.detenus{flex:1}
+.detenus li button{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 10px;width:100%;padding:8px 16px;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;min-height:44px}
+.detenus li button:hover{background:#F6F1E3}
+.detenus b{font-size:13px;font-weight:800}
+.detenus span{font-size:15px;overflow-wrap:anywhere}
+.detenus small{grid-column:2;font-size:12px;color:var(--discret)}
+.aucun{padding:10px 16px;color:var(--discret);font-size:14px}
+.licences-p{padding:8px 16px;font-size:13px;color:var(--texte-2);border-bottom:1px solid var(--trait)}
+.rgpd-note{margin-top:20px}
+/* Licences */
+.licences{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.licence{border:2px solid var(--encre);background:var(--surface);display:flex;flex-direction:column;transition:box-shadow .2s}
+.licence.surligne{box-shadow:6px 6px 0 var(--c)}
+.licence-tete{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--c);color:#fff}
+.licence[style*="--jaune"] .licence-tete{color:var(--encre)}
+.licence-tete h2{font-size:20px;overflow-wrap:anywhere}
+.licence-tete p{font-size:13px;margin-top:4px;font-weight:600;opacity:.92}
+.licence-tete button{flex:none;background:none;border:2px solid currentColor;color:inherit;min-height:36px;padding:0 10px;font-size:13px;font-weight:700}
+.licence-tete button:hover{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.licence-corps{padding:12px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.jauge{height:14px;border:2px solid var(--encre);background:var(--papier)}
+.jauge i{display:block;height:100%;background:var(--c)}
+.jauge-txt{font-size:14px}
+.jauge-txt em{font-style:normal;color:var(--rouge);font-weight:700}
+.attributions{display:grid;border-top:1px solid var(--trait)}
+.attributions li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:2px 0;border-bottom:1px solid var(--trait);font-size:14px;min-height:40px}
+.attributions li span{min-width:0;overflow-wrap:anywhere}
+.attributions li.a-liberer span{color:var(--rouge);font-weight:600}
+.attributions small{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.attributions button{flex:none;background:none;border:0;font-size:13px;font-weight:600;color:var(--discret);text-decoration:underline;text-underline-offset:3px;min-height:40px;padding:0 4px}
+.attributions button:hover{color:var(--rouge)}
+.choix-cibles{display:grid;gap:0 12px;max-height:300px;overflow:auto;padding:4px 10px;border:2px solid var(--encre);background:var(--surface)}
+/* Restitution */
+.restit{display:grid;gap:6px}
+.restit-ligne{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:center;padding:4px 0;border-bottom:1px solid var(--trait)}
+.restit-ligne select{min-height:44px;border:2px solid var(--encre);background:var(--surface);padding:6px 8px}
+.restit-ligne .case span{overflow-wrap:anywhere}
+.case-vide{font-size:18px;text-align:center}
+/* Réglages : table des catégories */
+.tableau.cats{font-size:14px}
+.tableau.cats td{padding:6px 10px}
+.tableau.cats input{width:84px;min-height:40px;border:2px solid var(--encre);background:var(--surface);padding:4px 8px;text-align:right;font-size:16px}
+.modale .defile{max-height:300px;overflow:auto}
+.btn-icone[aria-pressed="true"]{background:var(--encre);color:var(--papier)}
+@media (max-width:1020px){
+  .filtres-mat{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .filtres-mat .recherche{grid-column:1/-1}
+}
+@media (max-width:720px){
+  .carte.res.mat{grid-template-columns:8px minmax(0,1fr)}
+  .filtres-mat{grid-template-columns:1fr 1fr}
+  .filtres-mat .champ:first-child{grid-column:auto}
+  .filtres-p{grid-template-columns:1fr}
+  .ligne-alerte{grid-template-columns:1fr;gap:6px;padding:10px 12px}
+  .ligne-alerte .etiquette{justify-self:start}
+  .personnes,.licences{grid-template-columns:1fr}
+  .restit-ligne{grid-template-columns:1fr}
+  .barre-int{gap:8px}
+  .barre .btn-icone{width:42px;height:42px}
+  .tableau.cats input{width:64px}
+  .tableau.cats th{font-size:10px;padding:8px 6px}
+}
+
 @media print{
   @page{size:A4;margin:14mm}
   body{background:#fff;padding:0!important}

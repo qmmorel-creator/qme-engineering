@@ -238,8 +238,11 @@
       ['FL-606-QF', 'Citadine de remplacement', 'M1', 'GO', m(-110), 18, { prixAchat: 6500, amortMois: 36 }],
     ];
     const V = defs.map(([immat, libelle, type, en, mec, rythme, det]) => {
-      const entree = det.lld ? mec : (en === 'GO' && type === 'M1' ? m(-40) : mec);
-      const kmEntree = det.lld ? 10 : (entree === mec ? 10 : 98000);
+      // Occasions : citadine diesel entrée il y a 40 mois, utilitaire électrique (mis en circulation 20 mois avant son entrée).
+      const occasion = { 'FL-606-QF': [m(-40), 98000], 'FL-505-QE': [mec, 21000] }[immat];
+      if (immat === 'FL-505-QE') mec = m(-50);
+      const entree = occasion ? occasion[0] : mec;
+      const kmEntree = occasion ? occasion[1] : 10;
       const v = { id: id(), immat, libelle, type, energie: en, miseEnCirculation: mec, entree, kmEntree, actif: true, notes: '',
         detention: det.lld ? 'lld' : 'achat', prixAchat: det.prixAchat || '', amortMois: det.amortMois || '',
         lld: det.lld ? { debut: mec, kmDebut: 10, ...det.lld } : null, plan: R.planDefaut(B, en), _r: rythme };
@@ -274,9 +277,6 @@
     D.controles.push({ id: id(), vehiculeId: v2.id, date: ajout(t, -345), nature: 'periodique', resultat: 'favorable', centre: 'Centre de contrôle (fictif)', cout: 85 });
     D.controles.push({ id: id(), vehiculeId: v5.id, date: ajout(t, -400), nature: 'periodique', resultat: 'favorable', centre: 'Centre de contrôle (fictif)', cout: 79 });
     D.controles.push({ id: id(), vehiculeId: v6.id, date: ajout(t, -12), nature: 'periodique', resultat: 'contre-visite', limite: ajout(t, 18), centre: 'Centre de contrôle (fictif)', cout: 79, note: 'Défaut d\'éclairage de plaque, pneu avant usé' });
-    v5.miseEnCirculation = m(-50); // utilitaire d'occasion : premier contrôle déjà passé
-    v5.entree = m(-30);
-    v5.kmEntree = 21000;
     // Conducteurs (prénoms fictifs).
     const C = [['Camille R.', 'Services techniques'], ['Sami B.', 'Commercial'], ['Inès D.', 'Direction'], ['Hugo M.', 'Atelier'], ['Léa P.', 'Accueil et logistique']]
       .map(([nom, service], k) => { const c = { id: id(), nom, service, permis: ajout(t, -40 - k * 70) }; D.conducteurs.push(c); return c; });
@@ -344,7 +344,7 @@
         </svg>
         <div class="accroche">
           <p class="surtitre">Gestion de flotte · PME et collectivités</p>
-          <h1>Chaque véhicule à l'heure, chaque échéance en vue.</h1>
+          <h1>Ta flotte, sans échéance oubliée.</h1>
           <p>Réservations sans conflit, kilométrage, entretiens et contrôles techniques calculés, sinistres, amendes, location longue durée et coût au kilomètre.</p>
         </div>
       </section>
@@ -616,7 +616,7 @@
             <div><dt>Autorisés à ce jour</dt><dd>${km(lld.kmAutorises)} <small>${lld.ecartProrata > 0 ? `<em>+${lld.ecartProrata.toLocaleString('fr-FR')}</em>` : `${lld.ecartProrata.toLocaleString('fr-FR')}`}</small></dd></div>
             <div><dt>Projection fin de contrat</dt><dd>${km(lld.kmProjete)} <small>sur ${km(lld.kmContrat)}</small></dd></div>
             <div><dt>Dépassement projeté</dt><dd class="${lld.depassement ? 'alerte' : ''}">${lld.depassement ? `${km(lld.depassement)}${lld.coutDepassement ? ` · ≈ ${eur(lld.coutDepassement)}` : ''}` : 'aucun'}</dd></div>
-            <div><dt>Fin du contrat</dt><dd>${fmtCourt(lld.fin)} <small>${lld.termine ? 'terminé' : quand(lld.fin)}</small></dd></div>
+            <div><dt>Fin du contrat</dt><dd>${fmtCourt(lld.fin)} <small>${lld.termine ? 'terminé' : ecart(auj(), lld.fin) <= 45 ? quand(lld.fin) : `dans ${pluriel(R.moisPleins(auj(), lld.fin), 'mois', 'mois')}`}</small></dd></div>
             <div><dt>Loyers échus</dt><dd>${lld.loyersEchus} / ${v.lld.dureeMois} · ${eur(lld.loyers)}</dd></div>
           </dl>
           <p class="note">Prix du km supplémentaire : celui de ton contrat (${v.lld.prixKmSup ? `${String(v.lld.prixKmSup).replace('.', ',')} € saisi` : 'non saisi'}). Le loueur peut aussi réviser le loyer ou le kilométrage en cours de contrat : vérifie tes conditions.</p>
@@ -645,7 +645,7 @@
     const resaSem = E.reservations.filter((r) => !r.annulee && r.debut.slice(0, 10) <= jours[6] && r.fin > `${jours[0]}T00:00`);
     const cellule = (v, j) => {
       const l = R.reservationsDuJour(resaSem.filter((r) => r.vehiculeId === v.id), j);
-      return `<td class="${j === t ? 'auj' : ''}${j < t ? ' passe' : ''}">${l.map((r) => `<button class="resa" data-action="reservation-modifier" data-id="${r.id}" title="${esc(nomC(r.conducteurId))} · ${esc(r.motif || '')}"><b>${r.debut.slice(0, 10) < j ? '…' : heure(r.debut)}–${r.fin.slice(0, 10) > j ? '…' : heure(r.fin)}</b><span>${esc(nomC(r.conducteurId))}</span></button>`).join('')}${j >= t ? `<button class="libre" data-action="reservation-nouvelle" data-vehicule="${v.id}" data-jour="${j}" aria-label="Réserver ${esc(v.immat)} le ${fmtCourt(j)}">+</button>` : ''}</td>`;
+      return `<td class="${j === t ? 'auj' : ''}${j < t ? ' passe' : ''}">${l.map((r) => `<button class="resa" data-action="reservation-modifier" data-id="${r.id}" title="${esc(nomC(r.conducteurId))} · ${esc(r.motif || '')}"><b>${r.debut.slice(0, 10) < j && r.fin.slice(0, 10) > j ? 'Journée' : `${r.debut.slice(0, 10) < j ? '…' : heure(r.debut)}–${r.fin.slice(0, 10) > j ? '…' : heure(r.fin)}`}</b><span>${esc(nomC(r.conducteurId))}</span></button>`).join('')}${j >= t ? `<button class="libre" data-action="reservation-nouvelle" data-vehicule="${v.id}" data-jour="${j}" aria-label="Réserver ${esc(v.immat)} le ${fmtCourt(j)}">+</button>` : ''}</td>`;
     };
     const parJour = jours.map((j) => { const l = R.reservationsDuJour(resaSem, j); return `<div class="jour-mobile ${j === t ? 'auj' : ''}"><h3>${fmt(j, { weekday: 'long', day: 'numeric', month: 'short' })}</h3>${l.length ? l.map((r) => ligneResa(r)).join('') : '<p class="note">Aucune réservation.</p>'}</div>`; }).join('');
     const avenir = E.reservations.filter((r) => !r.annulee && r.fin > maintenant()).sort((a, b) => a.debut.localeCompare(b.debut)).slice(0, 12);
@@ -721,7 +721,7 @@
         <div class="graphique-tete"><h2>Coût total par poste</h2><div class="legende">${SEG.map(([k, lib]) => `<span><i style="background:${B.couleurs[k]}"></i>${lib}</span>`).join('')}</div></div>
         ${l.length ? `<div class="piles">${l.map(({ v, c }, k) => `<div class="pile" data-i="${k}" tabindex="0" aria-label="${esc(v.immat)} : ${SEG.map(([s, lib]) => `${lib} ${eur(c[s])}`).join(', ')}, coût au km ${ck(c.coutKm)}">
           <div class="pile-tete"><b>${esc(v.immat)} · ${esc(v.libelle || '')}</b><span>${ck(c.coutKm)} / km · ${km(c.km)}</span></div>
-          <div class="pile-barre"><div class="pile-segments" style="width:${(c.total / max) * 100}%">${SEG.map(([s]) => (c[s] > 0 ? `<i style="flex:${c[s]};background:${B.couleurs[s]}"></i>` : '')).join('')}</div><span class="pile-total">${eur(c.total)}</span></div></div>`).join('')}</div>` : '<p class="vide-graph">Aucun véhicule.</p>'}
+          <div class="pile-barre"><div class="pile-segments" style="width:calc((100% - 110px) * ${(c.total / max).toFixed(4)})">${SEG.map(([s]) => (c[s] > 0 ? `<i style="flex:${c[s]};background:${B.couleurs[s]}"></i>` : '')).join('')}</div><span class="pile-total">${eur(c.total)}</span></div></div>`).join('')}</div>` : '<p class="vide-graph">Aucun véhicule.</p>'}
         <div class="infobulle" hidden></div>
         <div class="sr-only"><table><caption>Coût par véhicule et par poste</caption><thead><tr><th>Véhicule</th>${SEG.map(([, lib]) => `<th>${lib}</th>`).join('')}<th>Coût au km</th></tr></thead><tbody>${l.map(({ v, c }) => `<tr><td>${esc(v.immat)}</td>${SEG.map(([s]) => `<td>${eur(c[s])}</td>`).join('')}<td>${ck(c.coutKm)}</td></tr>`).join('')}</tbody></table></div>
       </figure>

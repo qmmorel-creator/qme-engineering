@@ -96,6 +96,8 @@
       consommation: provision > 0 ? Math.round((imprevusReels / provision) * 100) : null,
       depasse: engage > prevu + provision + 0.005,
       aChiffrer: postes.filter((x) => !x.retenu).length,
+      // Écart engagé − prévu sur les seuls postes dont un devis est retenu (les autres ne sont pas chiffrés).
+      ecartRetenus: somme(postes.filter((x) => x.retenu), (x) => x.ecart),
     };
   }
 
@@ -109,8 +111,10 @@
   const joursCommuns = (a, b) => (seChevauchent(a, b) ? ecart(a.debut > b.debut ? a.debut : b.debut, a.fin < b.fin ? a.fin : b.fin) + 1 : 0);
 
   // pieceDe(i) : identifiant de la pièce de l'intervention (null = tout le logement, qui touche
-  // toutes les pièces). Renvoie toutes les paires qui se chevauchent, typées.
-  function chevauchements(interventions, pieceDe) {
+  // toutes les pièces). rangDe(i), facultatif : rang du poste dans l'ordre habituel ; deux postes de
+  // même rang (plomberie et électricité) avancent ensemble sans alerte de pièce.
+  // Renvoie toutes les paires qui se chevauchent, typées.
+  function chevauchements(interventions, pieceDe, rangDe) {
     const res = [];
     const l = [...interventions].sort((a, b) => a.debut.localeCompare(b.debut) || a.fin.localeCompare(b.fin));
     for (let x = 0; x < l.length; x++) {
@@ -121,7 +125,7 @@
         const pa = pieceDe(a), pb = pieceDe(b);
         let type = 'parallele';
         if (a.artisanId && a.artisanId === b.artisanId) type = 'meme-artisan';
-        else if (pa === null || pb === null || pa === pb) type = 'meme-piece';
+        else if ((pa === null || pb === null || pa === pb) && !(rangDe && rangDe(a) === rangDe(b))) type = 'meme-piece';
         res.push({ a: a.id, b: b.id, type, jours: joursCommuns(a, b) });
       }
     }

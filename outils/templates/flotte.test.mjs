@@ -73,6 +73,8 @@ test('relevé kilométrique : refusé s\'il contredit un relevé antérieur ou p
   assert.match(R.verifierReleve(pts, '2026-03-01', 46000), /seulement 45\s000 km/);
   assert.equal(R.verifierReleve(pts, '2026-03-01', 42000), null);
   assert.equal(R.verifierReleve(pts, '2026-06-01', 45000), null); // même jour, même valeur
+  assert.equal(R.verifierReleve(pts, '2026-06-01', 45200), null); // même jour, plus loin
+  assert.match(R.verifierReleve(pts, '2026-06-01', 44000), /45\s000 km relevés le 01\/06\/2026\.$/); // même jour, en arrière
   assert.equal(R.verifierReleve(pts, '13/11/2026', 1), 'Date invalide.');
 });
 

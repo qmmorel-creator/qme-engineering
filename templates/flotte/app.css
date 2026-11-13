@@ -679,3 +679,4 @@ button.tuile[aria-pressed="true"]{box-shadow:5px 5px 0 var(--c);transform:transl
   .tableau.plan .p-ech{grid-column:1/-1}
   .tableau.plan .p-der small,.tableau.plan .p-ech small{display:inline;margin-left:6px}
 }
+.pile-total{white-space:nowrap}
