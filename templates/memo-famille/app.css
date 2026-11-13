@@ -1,0 +1,26 @@
+/* MémoFamille · composants propres (le socle commun est dans ../commun/socle.css). */
+.encart-securite{border-radius:16px;background:var(--rose);color:var(--rose-texte);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.encart-securite b{color:var(--encre)}
+.encart-securite .case{color:var(--encre);font-weight:600}
+.carte-fiche{gap:8px}
+.mini-champs{display:flex;flex-direction:column;gap:1px;font-size:14px;margin:0}
+.mini-champs dt{color:var(--discret);font-size:12px;margin-top:5px}
+.mini-champs dt:first-child{margin-top:0}
+.mini-champs dd{margin:0;overflow-wrap:break-word}
+.recherche-grande input{min-height:60px!important;font-size:20px!important}
+.choix-dossier{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.choix-dossier fieldset{margin:0}
+.choix-dossier legend{float:left;width:100%;margin-bottom:6px}
+.cases-colonnes{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 12px;clear:both}
+.dossier-cat{margin-top:18px}
+.dossier-cat h3{font-size:18px;border-bottom:2px solid var(--encre);padding-bottom:4px}
+.dossier-fiche{position:relative;border-bottom:1px solid var(--trait);padding:10px 0 12px;break-inside:avoid}
+.dossier-fiche h4{font-size:16px;margin:0 0 6px}
+.dossier-fiche .exclure{position:absolute;right:0;top:4px;min-height:32px;font-size:13px}
+.avertissement-dossier{max-width:320px;text-align:right}
+.alerte-sensible{border-radius:12px;background:var(--rose);color:var(--rose-texte);padding:10px 14px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.alerte-sensible b{color:var(--encre)}
+@media (max-width:720px){
+  .avertissement-dossier{text-align:left}
+  .dossier-fiche .exclure{position:static}
+}
