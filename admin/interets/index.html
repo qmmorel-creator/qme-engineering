@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#FBF7F1">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111306">
+<link rel="stylesheet" href="/assets/site.css?v=2026111307">
 </head>
 <body>
 <main class="admin-interets">
   <p class="eyebrow">Administration QME · privé</p>
   <h1>Intérêt pour les templates à venir</h1>
-  <p class="admin-etat">Chaque clic sur « Je suis intéressé(e) » d'une page « Mise en vente prochaine » est compté (un par navigateur). Aucune donnée personnelle n'est enregistrée : seulement le template et l'heure.</p>
+  <p class="admin-etat">Chaque clic sur « Je suis intéressé(e) » d'une page « Mise en vente prochaine » est compté (un par navigateur). Le clic n'enregistre que le template et l'heure ; l'adresse e-mail, facultative, n'est donnée que par les visiteurs qui veulent être prévenus de la mise en vente.</p>
   <form class="admin-acces" id="acces">
     <label>Code administrateur<input id="code" autocomplete="off" spellcheck="false" placeholder="ADM-XXXX-XXXX-XXXX-XXXX" required></label>
     <button class="btn primary" type="submit">Afficher</button>
@@ -26,18 +26,24 @@
       <div><b id="total">0</b><span>intérêts au total</span></div>
       <div><b id="sept">0</b><span>sur les 7 derniers jours</span></div>
       <div><b id="nb">0</b><span>templates demandés</span></div>
+      <div><b id="emails">0</b><span>adresses e-mail pour prévenir</span></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
       <button class="btn" type="button" id="csv">Télécharger le CSV (tous les clics)</button>
+      <button class="btn" type="button" id="csv-emails">Télécharger les adresses e-mail (CSV)</button>
       <button class="btn" type="button" id="maj">Actualiser</button>
       <span class="admin-etat">Actualisation automatique toutes les 30 s.</span>
     </div>
     <div class="admin-boite">
       <table class="admin-table">
-        <thead><tr><th>Template</th><th>Total</th><th>7 jours</th><th style="width:30%">Part</th><th>Dernier intérêt</th></tr></thead>
+        <thead><tr><th>Template</th><th>Total</th><th>7 jours</th><th>E-mails</th><th style="width:30%">Part</th><th>Dernier intérêt</th></tr></thead>
         <tbody id="lignes"></tbody>
       </table>
     </div>
+    <form class="admin-acces" id="effacer" style="margin-top:28px">
+      <label>Effacer une adresse (demande de la personne, ou après la mise en vente)<input id="email-effacer" type="email" autocomplete="off" placeholder="adresse@exemple.fr" required></label>
+      <button class="btn" type="submit">Effacer</button>
+    </form>
   </section>
 </main>
 <script>
@@ -60,8 +66,9 @@
       $('#total').textContent = d.total;
       $('#sept').textContent = d.modules.reduce((s, m) => s + m.septJours, 0);
       $('#nb').textContent = d.modules.length;
+      $('#emails').textContent = d.emails;
       const max = Math.max(1, ...d.modules.map((m) => m.total));
-      $('#lignes').innerHTML = d.modules.length ? d.modules.map((m) => `<tr><td><a href="/catalogue/${esc(m.module)}/">${esc(m.nom)}</a></td><td class="n">${m.total}</td><td class="n">${m.septJours}</td><td><div class="barre-int" style="width:${Math.round(m.total / max * 100)}%"></div></td><td>${date(m.dernier)}</td></tr>`).join('') : '<tr><td colspan="5">Aucun intérêt enregistré pour l\'instant.</td></tr>';
+      $('#lignes').innerHTML = d.modules.length ? d.modules.map((m) => `<tr><td><a href="/catalogue/${esc(m.module)}/">${esc(m.nom)}</a></td><td class="n">${m.total}</td><td class="n">${m.septJours}</td><td class="n">${m.emails}</td><td><div class="barre-int" style="width:${Math.round(m.total / max * 100)}%"></div></td><td>${date(m.dernier)}</td></tr>`).join('') : '<tr><td colspan="6">Aucun intérêt enregistré pour l\'instant.</td></tr>';
       $('#resultats').hidden = false; $('#oublier').hidden = false;
       $('#etat').textContent = `Mis à jour à ${new Date(d.majLe).toLocaleTimeString('fr-FR')}.`;
       clearTimeout(minuterie); minuterie = setTimeout(charger, 30000);
@@ -70,12 +77,23 @@
   $('#acces').addEventListener('submit', (e) => { e.preventDefault(); garder($('#code').value.trim()); charger(); });
   $('#oublier').addEventListener('click', () => { garder(''); location.reload(); });
   $('#maj').addEventListener('click', charger);
-  $('#csv').addEventListener('click', async () => {
-    const r = await fetch('/api/interets?format=csv', { headers: { 'x-admin': lire() }, cache: 'no-store' });
+  async function telecharger(format, nom) {
+    const r = await fetch(`/api/interets?format=${format}`, { headers: { 'x-admin': lire() }, cache: 'no-store' });
     if (!r.ok) { $('#etat').textContent = 'Téléchargement refusé.'; return; }
     const url = URL.createObjectURL(await r.blob());
-    const a = Object.assign(document.createElement('a'), { href: url, download: `interets-templates-${new Date().toISOString().slice(0, 10)}.csv` });
+    const a = Object.assign(document.createElement('a'), { href: url, download: `${nom}-${new Date().toISOString().slice(0, 10)}.csv` });
     document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  }
+  $('#csv').addEventListener('click', () => telecharger('csv', 'interets-templates'));
+  $('#csv-emails').addEventListener('click', () => telecharger('emails', 'emails-interets'));
+  $('#effacer').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = $('#email-effacer').value.trim();
+    if (!email || !confirm(`Effacer toutes les entrées de ${email} ?`)) return;
+    const r = await fetch(`/api/interets?email=${encodeURIComponent(email)}`, { method: 'DELETE', headers: { 'x-admin': lire() } });
+    const d = await r.json().catch(() => ({}));
+    $('#etat').textContent = r.ok ? `${d.effaces} entrée(s) effacée(s) pour ${email}.` : 'Effacement refusé.';
+    if (r.ok) { $('#email-effacer').value = ''; charger(); }
   });
   if (lire()) { $('#code').value = lire(); charger(); }
 })();

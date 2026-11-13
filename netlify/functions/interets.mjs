@@ -9,7 +9,9 @@ export default async (requete) => {
     secret: process.env.TEMPLATES_SECRET,
     admin: process.env.INTERETS_ADMIN,
     stockage: {
-      ajouter: (cle) => store.set(cle, '1'),
+      ajouter: (cle, valeur) => store.set(cle, valeur),
+      lire: (cle) => store.get(cle),
+      supprimer: (cle) => store.delete(cle),
       lister: async (prefixe) => (await store.list({ prefix: prefixe })).blobs.map((b) => b.key),
     },
   });
