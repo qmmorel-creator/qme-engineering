@@ -142,6 +142,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   Netlify Blobs à Francfort (magasin `secret-santa`), code personnel haché (scrypt), effacement de
   l'échange 60 jours après sa date (180 jours sans date). Page `catalogue/secret-santa/`, démo
   `/templates/secret-santa/?demo`.
+- Lot du 13/11/2026, prêts, « Mise en vente prochaine » (démo libre, pas encore de fiche Gumroad ;
+  fiches à créer dans `docs/templates/communication/gumroad-a-creer.json`) : `templates/habitudes/` (HBT)
+  **suivi d'habitudes et routines** (cochées ou chiffrées, jours non applicables, séries, grille du mois) ;
+  `templates/entretien/` (ENT) **entretien de la maison** (89 tâches types, échéances calculées,
+  obligations sourcées et paramétrables) ; `templates/dettes/` (DTT) **remboursement de dettes**
+  (boule de neige, avalanche, échéancier et date de fin) ; `templates/abonnements/` (ABN) **suivi des
+  abonnements** (coût mensuel et annuel, prélèvements, « à décider avant le … », sans marque ni prix figé).
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
