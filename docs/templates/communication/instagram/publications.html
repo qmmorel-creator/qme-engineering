@@ -137,6 +137,20 @@ h1,h2,p{letter-spacing:-.025em}
 .story-t .tel{position:absolute;left:50%;transform:translateX(-50%);top:820px;width:400px;box-shadow:16px 16px 0 var(--rouge)}
 .story-t .lien{position:absolute;left:50%;transform:translateX(-50%);bottom:380px;background:var(--surface);color:var(--encre);font-weight:800;font-size:40px;padding:22px 40px;white-space:nowrap;border:6px solid var(--jaune)}
 .story-t .px{position:absolute;right:84px;top:240px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:44px;padding:8px 20px}
+
+/* IG-28 sur mesure : trois rôles */
+.roles{position:absolute;left:84px;right:84px;top:360px;display:flex;flex-direction:column;gap:26px}
+.role{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start;background:var(--surface);border:4px solid var(--encre);padding:24px 28px}
+.role .ic{width:150px;height:150px;display:grid;place-items:center}
+.role b{display:block;font-size:44px;font-weight:800;letter-spacing:-.025em}
+.role span{display:block;font-size:29px;line-height:1.3;color:var(--texte-2);margin-top:6px}
+.role em{display:inline-block;margin-top:12px;font-style:normal;font-weight:700;font-size:27px;background:var(--encre);color:var(--papier);padding:4px 12px}
+.portes{position:absolute;left:84px;right:84px;top:470px;display:flex;justify-content:space-between;align-items:flex-end}
+.portes div{width:270px;display:flex;flex-direction:column;align-items:center;gap:20px;font-weight:800;font-size:38px;letter-spacing:-.025em;color:var(--papier)}
+.portes i{display:block;width:200px;height:300px;border:6px solid var(--papier)}
+.base{position:absolute;left:84px;right:84px;top:900px;height:150px;background:var(--papier);color:var(--encre);display:grid;place-items:center;font-size:44px;font-weight:800;letter-spacing:-.025em}
+.choix .pts.grand div{font-size:36px}
+.choix .pts.grand b{font-size:52px;margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -447,6 +461,60 @@ h1,h2,p{letter-spacing:-.025em}
   <div class="c"><p class="sourcil">Template QME</p><h1>Coût de revient et prix par client</h1><p class="s">Ce que coûte vraiment une heure, et qui est rentable.</p></div>
   <div class="tel"><img src="../../../../assets/templates-cout-revient-tel.webp" alt=""></div>
   <div class="lien">Essayer la démo ↗</div>
+</section>
+
+
+<!-- ============ IG-28 · Sur mesure : un outil, trois rôles (d'après LI-01) ============ -->
+<section class="cadre couv" id="IG-28-trois-roles-1">
+  <div class="fa" style="background:var(--bleu)"></div><div class="fb"></div><div class="fc" style="background:var(--rouge)"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Sur mesure · cas réel</p>
+    <h1 style="margin-top:30px;font-size:112px">Un outil, <mark>trois</mark> portes d'entrée.</h1>
+    <p class="sous">Un outil partagé n'est pas un outil où tout le monde voit tout.</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre probleme" id="IG-28-trois-roles-2">
+  <span class="compteur">2 / 5</span>
+  <p class="t" style="top:170px;font-size:60px">Une boutique de jeux de société. Trois profils se connectent au même outil.</p>
+  <div class="portes" style="top:500px"><div><i style="background:var(--rouge)"></i>Gérant</div><div><i style="background:var(--jaune)"></i>Vendeur</div><div><i style="background:var(--bleu)"></i>Animateur</div></div>
+  <div class="base" style="top:930px">Une seule base de données</div>
+  <p style="position:absolute;left:84px;right:84px;top:1110px;font-size:40px;line-height:1.3;color:#D9D4C8;font-weight:500">Chacun entre par sa porte, et ne voit que son travail.</p>
+</section>
+
+<section class="cadre choix" id="IG-28-trois-roles-3">
+  <div class="bandeau" style="background:var(--encre);color:var(--papier)"><p class="sourcil" style="color:var(--jaune)">Qui voit quoi</p><h2>Chacun son travail.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="roles">
+    <div class="role"><div class="ic"><svg viewBox="0 0 100 100" width="150" height="150"><rect x="6" y="6" width="88" height="88" fill="#D9302A"/><rect x="22" y="52" width="14" height="30" fill="#F0EDE6"/><rect x="43" y="36" width="14" height="46" fill="#F0EDE6"/><rect x="64" y="20" width="14" height="62" fill="#F0EDE6"/></svg></div><div><b>Le gérant pilote</b><span>Chiffre d'affaires, marges, réglages de la fidélité, taux de TVA, fournisseurs.</span></div></div>
+    <div class="role"><div class="ic"><svg viewBox="0 0 100 100" width="150" height="150"><circle cx="50" cy="50" r="46" fill="#F5B400"/><rect x="26" y="34" width="48" height="34" fill="#141414"/><rect x="34" y="42" width="32" height="8" fill="#F5B400"/></svg></div><div><b>Le vendeur encaisse</b><span>Caisse, fiche client, points de fidélité, précommandes.</span><em>Ne voit pas les marges</em></div></div>
+    <div class="role"><div class="ic"><svg viewBox="0 0 100 100" width="150" height="150"><path d="M6 94 V6 A88 88 0 0 1 94 94 Z" fill="#1D4E89"/><circle cx="30" cy="62" r="10" fill="#F0EDE6"/><circle cx="56" cy="62" r="10" fill="#F0EDE6"/></svg></div><div><b>L'animateur gère ses soirées</b><span>Inscriptions, liste d'attente, présences. Parfois bénévole.</span><em>Ni caisse, ni prix</em></div></div>
+  </div>
+  <p class="note" style="left:84px;right:auto">Cas réel, présenté sans aucune donnée du client</p>
+</section>
+
+<section class="cadre choix" id="IG-28-trois-roles-4">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Ce que ça change</p><h2>Moins de risques, plus vite.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="pts large grand" style="top:410px;gap:64px">
+    <div><b>Confier sans tout ouvrir</b>Le gérant confie les soirées à un bénévole sans lui ouvrir les comptes de la boutique.</div>
+    <div><b>Un remplaçant prend la main plus vite</b>Il ne voit que ce dont il a besoin.</div>
+    <div><b>Aucune fausse manœuvre</b>Personne ne modifie par erreur un réglage qu'il ne connaît pas.</div>
+  </div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span>qm-engineering.fr/sur-mesure</span></div>
+</section>
+
+<section class="cadre cta rouge" id="IG-28-trois-roles-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Qui fait quoi, et qui ne doit pas pouvoir le faire ?</h2>
+    <div class="liste"><div><i></i>Les droits se conçoivent dès le départ</div><div><i></i>Pas après le premier incident</div></div>
+  </div>
+  <div class="plus" style="color:var(--encre);top:740px"><b>Votre métier a ses règles ?</b> On en parle en 30 minutes, puis je construis l'outil sur mesure.</div>
+  <div class="bouton"><b>Lien en bio</b><span>« Parler de votre projet »</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole-clair"/></svg><span>Q<span class="m" style="color:#fff">M</span><span class="e">E</span></span></span><span>qm-engineering.fr/sur-mesure</span></div>
 </section>
 
 </body>
