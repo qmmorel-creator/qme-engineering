@@ -8,9 +8,8 @@ Sources des faits : `templates/index.html`, `sur-mesure/index.html`, `methode/in
 `confidentialite/index.html` (hébergement des données des templates : Netlify, Francfort ; export
 JSON/CSV), publication LI-74 (hors connexion, dès 12 €). Prix affiché « dès 12 € », sans maximum (demande de Quentin le 13/11).
 
-**À vérifier par Quentin avant publication** : (1) « Sur devis » pour le sur mesure (le site n'affiche
-pas de prix) ; (2) l'hébergement du sur mesure, « dans vos outils ou une base dédiée, choisie
-ensemble » (déduit des technologies listées sur la page Sur mesure, pas écrit tel quel sur le site).
+**Validé par Quentin le 13/11/2026** : (1) « Sur devis » pour le sur mesure ; (2) l'hébergement du sur
+mesure, « dans vos outils ou une base dédiée, choisie ensemble ».
 
 ## LinkedIn (LI-98)
 
