@@ -145,6 +145,7 @@ déjà).
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
+| T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -437,8 +438,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 
 LI-73 (T01) existait déjà. Textes : Google Docs du dossier du planning ; lien d'achat en premier
 commentaire. Les templates encore « prêt » portent la remarque : ne publier que si la fiche Gumroad est en
-ligne à la date prévue, sinon décaler. LI-84 et LI-88 déplacées en semaine le 13/11/2026 (initialement
-sam. 05/12 et dim. 13/12 à 12:15 ; publics professionnels), à reporter dans le Google Sheet.
+ligne à la date prévue, sinon décaler. LI-84 et LI-88 sorties du week-end le 13/11/2026 par échange de lignes
+dans le Sheet (fait) : LI-84 ↔ LI-38 (LI-84 ven. 04/12 08:30, LI-38 sam. 05/12 12:15) et LI-88 ↔ LI-87
+(LI-88 ven. 11/12 12:15, LI-87 dim. 13/12 12:15). LI-82 décalée au 21/12 pour LI-99 (Secret Santa), décision de Quentin du 13/11. Harmonisation du 13/11 (décision de Quentin : une publication par jour sur LinkedIn et Instagram, jamais plus de deux jours sans) : LI-100 à LI-106 (22/12 → 03/01) et IG-37 à IG-61 ajoutées au statut « À préparer », vidéos tirées de `communication/videos-30-jours.md`. Ce tableau ne recopie que les publications des
+templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et reste la référence.
 
 | ID | Template | Date | Heure |
 |----|----------|------|-------|
@@ -450,16 +453,17 @@ sam. 05/12 et dim. 13/12 à 12:15 ; publics professionnels), à reporter dans le
 | LI-79 | T65 budget-commun | 2026-11-25 | 12:15 |
 | LI-80 | T02 gantt | 2026-11-27 | 08:30 |
 | LI-81 | T03 taches | 2026-11-29 | 12:15 |
-| LI-82 | T05 budget | 2026-12-01 | 12:15 |
+| LI-99 | T68 secret-santa | 2026-12-01 | 12:15 |
 | LI-83 | T24 visa | 2026-12-03 | 08:30 |
 | LI-84 | T25 non-conformites | 2026-12-04 | 08:30 |
 | LI-85 | T28 crm | 2026-12-07 | 12:15 |
 | LI-86 | T29 flotte | 2026-12-09 | 08:30 |
-| LI-87 | T30 planner | 2026-12-11 | 12:15 |
-| LI-88 | T32 reserves | 2026-12-10 | 08:30 |
+| LI-87 | T30 planner | 2026-12-13 | 12:15 |
+| LI-88 | T32 reserves | 2026-12-11 | 12:15 |
 | LI-89 | T35 prospection | 2026-12-15 | 08:30 |
 | LI-90 | T36 devis | 2026-12-17 | 08:30 |
 | LI-91 | T42 tresorerie | 2026-12-19 | 08:30 |
+| LI-82 | T05 budget | 2026-12-21 | 12:15 |
 | LI-92 | T15 mariage | 2026-12-29 | 12:15 |
 | LI-93 | T45 parc-informatique | 2026-12-31 | 12:15 |
 | LI-94 | T51 evenementiel | 2027-01-05 | 08:30 |
@@ -683,3 +687,4 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
+| T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |

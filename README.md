@@ -18,7 +18,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 25 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 26 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -133,6 +133,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
+- `templates/secret-santa/` (SNT) : **Secret Santa**, prêt, mise à disposition prochaine, **gratuit**
+  (prix libre sur Gumroad). L'organisateur (clé de licence) crée ses échanges et partage un lien
+  d'invitation ; les participants s'inscrivent sans compte (prénom, e-mail, code personnel, idées) ;
+  exclusions ; tirage fait par le serveur, jamais montré à l'organisateur ; aucun e-mail envoyé. API
+  propre `/api/secret-santa/*` (`netlify/functions/secret-santa.mjs`, moteur partagé avec la démo dans
+  `templates/secret-santa/moteur.js`, règles dans `regles.js`, tests `outils/templates/secret-santa.test.mjs`),
+  Netlify Blobs à Francfort (magasin `secret-santa`), code personnel haché (scrypt), effacement de
+  l'échange 60 jours après sa date (180 jours sans date). Page `catalogue/secret-santa/`, démo
+  `/templates/secret-santa/?demo`.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
