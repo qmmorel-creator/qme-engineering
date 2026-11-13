@@ -518,8 +518,47 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .carte-noel .sapin{width:56px;height:70px}
   .tirage-fait{grid-template-columns:1fr}
   .vue-tete .actions{width:100%}
+  .borne-noms{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .borne-nom{min-height:68px;padding:12px 14px}
+  .borne-nom b{font-size:19px}
+  .clavier{grid-template-columns:repeat(3,64px)}
+  .touche{height:64px}
   .vue-tete .actions .btn{flex:1}
 }
+
+/* Choix du mode et borne (ordinateur commun) */
+.modes{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.modes legend{font-size:14px;font-weight:600;padding:0;margin-bottom:6px}
+.mode-choix{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--trait);border-radius:14px;padding:12px 14px;cursor:pointer}
+.mode-choix:has(input:checked){border-color:var(--encre);background:var(--beurre)}
+.mode-choix input{margin-top:4px;accent-color:var(--encre);width:18px;height:18px;flex:none}
+.mode-choix span{display:flex;flex-direction:column;gap:2px}
+.mode-choix small{color:var(--texte-2);font-size:13px}
+.etiquette.rose{background:var(--rose);color:var(--rose-texte)}
+body.borne .vue{max-width:960px}
+.borne-tete{margin-bottom:20px}
+.borne-filtre{max-width:420px;margin:0 0 16px}
+.borne-noms{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.borne-nom{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:84px;padding:16px 18px;border:1px solid var(--trait);border-radius:16px;background:var(--surface);text-align:left}
+.borne-nom b{font-size:22px;line-height:1.1}
+.borne-nom small{font-size:13px;font-weight:600;color:var(--sapin-texte)}
+.borne-nom:hover{border-color:var(--encre)}
+.borne-nom.pris small{color:var(--bleu)}
+.borne-nom.bloque{opacity:.6}
+.borne-nom.bloque small{color:var(--rouge)}
+.borne-pied{margin-top:18px}
+.borne-code{max-width:440px;margin:0 auto;text-align:center;align-items:center}
+.borne-code .retour{align-self:flex-start;margin:0}
+.borne-code h2{font-size:30px}
+.points-code{display:flex;gap:12px;justify-content:center;min-height:22px}
+.points-code i{width:18px;height:18px;border-radius:50%;border:2px solid var(--encre)}
+.points-code i.plein{background:var(--encre)}
+.clavier{display:grid;grid-template-columns:repeat(3,72px);gap:12px;justify-content:center}
+.touche{height:72px;border-radius:50%;border:1px solid var(--trait);background:var(--surface);font-size:28px;font-weight:700}
+.touche:hover{background:var(--sable)}
+.touche:active{transform:scale(.96)}
+.touche.ok{background:var(--sapin);color:#fff;border-color:var(--sapin);font-size:20px}
+.touche.effacer{font-size:24px}
 
 /* ===================== Couche Noël =====================
    Ajoutée PAR-DESSUS la charte de base, sans en changer un jeton : un vert sapin en plus, une guirlande

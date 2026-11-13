@@ -197,3 +197,70 @@ test('purge planifiée : efface les échanges expirés même jamais rouverts, ga
   const index = [...b.memoire.entries()].find(([c]) => c.startsWith('adm/'))[1];
   assert.equal(index.echanges.length, 1);
 });
+
+// ---------- Mode « ordinateur commun » (sans e-mail) ----------
+test('borne : prénoms saisis par l\'organisateur, code choisi, tirage secret, découverte', async () => {
+  const b = banc();
+  const admin = genererCode(SECRET, 'SNT');
+  const A = { 'x-code': admin };
+  const { statut, corps } = await b.appel('POST', '/echanges', { nom: 'Secret Santa de la box', mode: 'borne', noms: 'Alex\nBen\nChloé\nDina\nAlex\n  ' }, A);
+  assert.equal(statut, 201);
+  const e = corps.echange;
+  assert.equal(e.mode, 'borne');
+  assert.deepEqual(e.participants.map((p) => p.nom), ['Alex', 'Ben', 'Chloé', 'Dina']); // doublon et ligne vide ignorés
+  assert.ok(e.participants.every((p) => p.email === null && !p.reclame));
+  const id = Object.fromEntries(e.participants.map((p) => [p.nom, p.id]));
+  // Le lien d'inscription par e-mail ne marche pas pour ce mode.
+  assert.equal((await b.appel('POST', '/inscription', { e: e.id, k: e.invitation, nom: 'X', email: 'x@exemple.fr', code: 'abcdef' })).statut, 404);
+  // Borne : liste des prénoms seulement.
+  const borne = (await b.appel('GET', `/borne?e=${e.id}&k=${e.invitation}`)).corps.borne;
+  assert.equal(borne.participants.length, 4);
+  assert.equal((await b.appel('GET', `/borne?e=${e.id}&k=FAUX`)).statut, 404);
+  // Réclamer : code de 4 à 8 chiffres, une seule fois.
+  const k = { e: e.id, k: e.invitation };
+  assert.equal((await b.appel('POST', '/borne/reclamer', { ...k, pid: id.Alex, code: '12a4' })).statut, 400);
+  for (const [n, c] of [['Alex', '1111'], ['Ben', '2222'], ['Chloé', '3333'], ['Dina', '4444']]) {
+    assert.equal((await b.appel('POST', '/borne/reclamer', { ...k, pid: id[n], code: c, souhaits: `idée ${n}` })).statut, 200);
+  }
+  assert.equal((await b.appel('POST', '/borne/reclamer', { ...k, pid: id.Alex, code: '9999' })).statut, 409);
+  // Avant le tirage : le bon code ouvre la page, sans destinataire.
+  const avant = await b.appel('POST', '/borne/voir', { ...k, pid: id.Alex, code: '1111' });
+  assert.equal(avant.statut, 200); assert.equal(avant.corps.destinataire, null);
+  // Tirage ; l'organisateur ne voit ni attributions, ni idées, ni codes.
+  const t = await b.appel('POST', `/echanges/${e.id}/tirage`, {}, A);
+  assert.equal(t.statut, 200);
+  const vue = JSON.stringify(t.corps) + JSON.stringify((await b.appel('GET', `/echanges/${e.id}`, null, A)).corps);
+  assert.equal(/attributions|idée |1111|hache|sel/.test(vue), false);
+  assert.ok(t.corps.echange.participants.every((p) => p.reclame));
+  const att = {};
+  for (const [n, c] of [['Alex', '1111'], ['Ben', '2222'], ['Chloé', '3333'], ['Dina', '4444']]) {
+    const r = await b.appel('POST', '/borne/voir', { ...k, pid: id[n], code: c });
+    assert.equal(r.statut, 200); assert.match(r.corps.destinataire.souhaits, /^idée /);
+    att[id[n]] = id[r.corps.destinataire.nom];
+  }
+  assert.ok(tirageValide(Object.values(id), [], att));
+  // Les codes ne sont jamais stockés en clair.
+  assert.equal([...b.memoire.values()].some((v) => /"(1111|2222|3333|4444)"/.test(JSON.stringify(v))), false);
+});
+
+test('borne : 5 codes faux bloquent le prénom ; l\'organisateur débloque ou remet à zéro', async () => {
+  const b = banc();
+  const A = { 'x-code': genererCode(SECRET, 'SNT') };
+  const e = (await b.appel('POST', '/echanges', { nom: 'Box', mode: 'borne', noms: ['Alex', 'Ben', 'Chloé'] }, A)).corps.echange;
+  const k = { e: e.id, k: e.invitation }, alex = e.participants[0].id;
+  await b.appel('POST', '/borne/reclamer', { ...k, pid: alex, code: '1234' });
+  for (let i = 0; i < 4; i++) assert.equal((await b.appel('POST', '/borne/voir', { ...k, pid: alex, code: '0000' })).statut, 401);
+  assert.equal((await b.appel('POST', '/borne/voir', { ...k, pid: alex, code: '0000' })).statut, 423);
+  assert.equal((await b.appel('POST', '/borne/voir', { ...k, pid: alex, code: '1234' })).statut, 423); // bloqué même avec le bon code
+  const v = (await b.appel('POST', `/echanges/${e.id}/participants/${alex}/debloquer`, {}, A)).corps.echange;
+  assert.equal(v.participants[0].bloque, false);
+  assert.equal((await b.appel('POST', '/borne/voir', { ...k, pid: alex, code: '1234' })).statut, 200);
+  // Remise à zéro : le prénom peut être réclamé à nouveau avec un autre code.
+  await b.appel('POST', `/echanges/${e.id}/participants/${alex}/reinitialiser`, {}, A);
+  assert.equal((await b.appel('POST', '/borne/voir', { ...k, pid: alex, code: '1234' })).statut, 409);
+  assert.equal((await b.appel('POST', '/borne/reclamer', { ...k, pid: alex, code: '5678' })).statut, 200);
+  // Ajout de prénoms avant le tirage seulement.
+  assert.equal((await b.appel('POST', `/echanges/${e.id}/participants`, { noms: 'Dina' }, A)).corps.ajoutes, 1);
+  await b.appel('POST', `/echanges/${e.id}/tirage`, {}, A);
+  assert.equal((await b.appel('POST', `/echanges/${e.id}/participants`, { noms: 'Emma' }, A)).statut, 409);
+});

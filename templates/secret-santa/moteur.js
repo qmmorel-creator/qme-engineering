@@ -78,10 +78,11 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
       invitation: e.invitation, creeLe: e.creeLe, effacement: dateEffacement(e),
       exclusions: e.exclusions,
       tirage: e.tirage ? { le: e.tirage.le, nb: Object.keys(e.tirage.attributions).length } : null,
-      participants: liste.map((p) => ({ id: p.id, nom: p.nom, email: p.email, inscritLe: p.inscritLe, aVu: Boolean(p.vuLe && e.tirage), aSouhaits: Boolean(p.souhaits) })),
+      mode: e.mode || 'lien',
+      participants: liste.map((p) => ({ id: p.id, nom: p.nom, email: p.email || null, inscritLe: p.inscritLe, aVu: Boolean(p.vuLe && e.tirage), aSouhaits: Boolean(p.souhaits), reclame: Boolean(p.hache), bloque: Boolean(p.bloque) })),
     };
   }
-  const resume = (e, liste) => ({ id: e.id, nom: e.nom, date: e.date, budget: e.budget, ouvert: e.ouvert, nbInscrits: liste.length, tirage: Boolean(e.tirage), nbVus: e.tirage ? liste.filter((p) => p.vuLe).length : 0 });
+  const resume = (e, liste) => ({ id: e.id, mode: e.mode || 'lien', nbReclames: liste.filter((p) => p.hache).length, nom: e.nom, date: e.date, budget: e.budget, ouvert: e.ouvert, nbInscrits: liste.length, tirage: Boolean(e.tirage), nbVus: e.tirage ? liste.filter((p) => p.vuLe).length : 0 });
   const vueInvitation = (e, liste) => ({ nom: e.nom, date: e.date, budget: e.budget, message: e.message, ouvert: e.ouvert && !e.tirage, nbInscrits: liste.length, tirage: Boolean(e.tirage) });
 
   function lireChampsEchange(c, actuel = {}) {
@@ -95,6 +96,22 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
       message: c.message !== undefined ? texte(c.message, LIMITES.message) : (actuel.message ?? ''),
       ouvert: c.ouvert !== undefined ? Boolean(c.ouvert) : (actuel.ouvert ?? true),
     };
+  }
+
+  // Ajoute des prénoms saisis par l'organisateur (mode borne) : identifiant aléatoire, sans e-mail ni code.
+  async function ajouterNoms(e, noms, liste) {
+    const propres = [...new Set((Array.isArray(noms) ? noms : String(noms || '').split('\n')).map((n) => ligne(n, LIMITES.nom)).filter(Boolean))];
+    const pris = new Set(liste.map((p) => p.nom.toLowerCase()));
+    const nouveaux = propres.filter((n) => !pris.has(n.toLowerCase()));
+    if (!nouveaux.length && propres.length) return { erreur: 'Ces prénoms sont déjà dans la liste.' };
+    if (liste.length + nouveaux.length > LIMITES.participants) return { erreur: `${LIMITES.participants} participants au maximum.` };
+    let k = 0;
+    for (const nom of nouveaux) {
+      const id = crypto.aleatoire(16);
+      const inscritLe = new Date(maintenant().getTime() + k++).toISOString(); // garde l'ordre de saisie
+      await stockage.set(cleParticipant(e.id, id), { id, nom, email: null, souhaits: '', sel: null, hache: null, inscritLe, vuLe: null, echecs: 0, bloque: false, bloqueJusque: null });
+    }
+    return { n: nouveaux.length };
   }
 
   // ======================= Routes de l'organisateur =======================
@@ -116,12 +133,17 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
       if (index.echanges.length >= LIMITES.echanges) return json(400, { erreur: `${LIMITES.echanges} échanges au maximum : supprimes-en un terminé.` });
       const champs = lireChampsEchange(corps);
       if (champs.erreur) return json(400, { erreur: champs.erreur });
-      const e = { id: crypto.aleatoire(10), proprio, ...champs, invitation: crypto.aleatoire(20), exclusions: [], tirage: null, creeLe: horodatage(), majLe: horodatage() };
+      const mode = corps.mode === 'borne' ? 'borne' : 'lien';
+      const e = { id: crypto.aleatoire(10), proprio, mode, ...champs, invitation: crypto.aleatoire(20), exclusions: [], tirage: null, creeLe: horodatage(), majLe: horodatage() };
+      if (mode === 'borne') {
+        const r = await ajouterNoms(e, corps.noms, []);
+        if (r.erreur) return json(400, { erreur: r.erreur });
+      }
       await stockage.set(cleEchange(e.id), e);
       const a = (await stockage.get(cleAdmin(proprio))) || { echanges: [] };
       a.echanges = [...a.echanges.filter((x) => x !== e.id), e.id];
       await stockage.set(cleAdmin(proprio), a);
-      return json(201, { echange: vueAdmin(e, []) });
+      return json(201, { echange: vueAdmin(e, await participants(e.id)) });
     }
 
     const e = await lireEchange(morceaux[1]);
@@ -171,6 +193,24 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
       return json(200, { echange: vueAdmin(e, await participants(e.id)) });
     }
 
+    // Mode « ordinateur commun » : l'organisateur ajoute des prénoms, remet un code à zéro, débloque.
+    if (morceaux[2] === 'participants' && !morceaux[3] && methode === 'POST') {
+      if (e.mode !== 'borne') return json(400, { erreur: 'Dans ce mode, les participants s\'inscrivent eux-mêmes par le lien.' });
+      if (e.tirage) return json(409, { erreur: 'Le tirage est déjà fait : refais-le après avoir ajouté des participants (retire puis ajoute, ou supprime l\'échange).' });
+      const r = await ajouterNoms(e, corps.noms, await participants(e.id));
+      if (r.erreur) return json(400, { erreur: r.erreur });
+      await enregistrer();
+      return json(200, { echange: vueAdmin(e, await participants(e.id)), ajoutes: r.n });
+    }
+    if (morceaux[2] === 'participants' && morceaux[3] && (morceaux[4] === 'reinitialiser' || morceaux[4] === 'debloquer') && methode === 'POST') {
+      const p = await stockage.get(cleParticipant(e.id, morceaux[3]));
+      if (!p) return json(404, { erreur: 'Participant introuvable.' });
+      p.echecs = 0; p.bloque = false; p.bloqueJusque = null;
+      if (morceaux[4] === 'reinitialiser') { p.hache = null; p.sel = null; p.vuLe = null; p.souhaits = ''; }
+      await stockage.set(cleParticipant(e.id, p.id), p);
+      return json(200, { echange: vueAdmin(e, await participants(e.id)) });
+    }
+
     // Retrait d'un participant : après le tirage, celui-ci est annulé (à refaire).
     if (morceaux[2] === 'participants' && morceaux[3] && methode === 'DELETE') {
       const p = await stockage.get(cleParticipant(e.id, morceaux[3]));
@@ -185,17 +225,65 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
     return json(404, { erreur: 'Route inconnue.' });
   }
 
+  // ======================= Borne (ordinateur commun, mode sans e-mail) =======================
+  // Le lien de la borne (e + k) donne seulement la liste des prénoms et l'état de chacun.
+  // Réclamer un prénom = choisir un code de 4 à 8 chiffres (gardé haché). Voir son tirage = prénom + code.
+  // 5 codes faux bloquent le prénom jusqu'à ce que l'organisateur le débloque.
+  if (chemin.startsWith('/borne')) {
+    const src = methode === 'GET' ? { e: url.searchParams.get('e'), k: url.searchParams.get('k') } : corps;
+    const e = await lireEchange(src.e);
+    if (!e || e.mode !== 'borne' || !crypto.egal(String(src.k || ''), e.invitation)) return json(404, { erreur: 'Lien de la borne invalide ou expiré. Demande le nouveau lien à l\'organisateur.' });
+    const liste = await participants(e.id);
+    const info = () => ({ nom: e.nom, date: e.date, budget: e.budget, message: e.message, tirage: Boolean(e.tirage),
+      participants: liste.map((p) => ({ id: p.id, nom: p.nom, reclame: Boolean(p.hache), bloque: Boolean(p.bloque) })) });
+    if (chemin === '/borne' && methode === 'GET') return json(200, { borne: info() });
+    const p = liste.find((x) => x.id === String(corps.pid || ''));
+    if (!p) return json(404, { erreur: 'Prénom introuvable.' });
+    const code = String(corps.code ?? '');
+    if (chemin === '/borne/reclamer' && methode === 'POST') {
+      if (p.hache) return json(409, { erreur: 'Ce prénom a déjà un code. Si ce n\'est pas toi qui l\'as choisi, préviens l\'organisateur.' });
+      if (!/^\d{4,8}$/.test(code)) return json(400, { erreur: 'Ton code doit compter de 4 à 8 chiffres.' });
+      p.sel = crypto.aleatoire(16); p.hache = await crypto.hacher(code, p.sel);
+      p.souhaits = texte(corps.souhaits, LIMITES.souhaits); p.reclameLe = horodatage();
+      await stockage.set(cleParticipant(e.id, p.id), p);
+      return json(200, { ok: true, tirage: Boolean(e.tirage) });
+    }
+    if ((chemin === '/borne/voir' || chemin === '/borne/souhaits') && methode === 'POST') {
+      if (!p.hache) return json(409, { erreur: 'Ce prénom n\'a pas encore de code : choisis-en un d\'abord.' });
+      if (p.bloque) return json(423, { erreur: 'Prénom bloqué après plusieurs codes faux : demande à l\'organisateur de le débloquer.' });
+      if (!crypto.egal(await crypto.hacher(code, p.sel), p.hache)) {
+        p.echecs = (p.echecs || 0) + 1;
+        if (p.echecs >= ESSAIS_MAX) { p.bloque = true; p.echecs = 0; }
+        await stockage.set(cleParticipant(e.id, p.id), p);
+        return json(p.bloque ? 423 : 401, { erreur: p.bloque ? 'Prénom bloqué après 5 codes faux : demande à l\'organisateur de le débloquer.' : `Code incorrect. Encore ${ESSAIS_MAX - p.echecs} essai${ESSAIS_MAX - p.echecs > 1 ? 's' : ''}.` });
+      }
+      if (p.echecs) p.echecs = 0;
+      if (chemin === '/borne/souhaits') {
+        p.souhaits = texte(corps.souhaits, LIMITES.souhaits);
+        await stockage.set(cleParticipant(e.id, p.id), p);
+        return json(200, { ok: true });
+      }
+      let destinataire = null;
+      const cible = e.tirage?.attributions?.[p.id];
+      if (cible) { const d = liste.find((x) => x.id === cible); destinataire = d ? { nom: d.nom, souhaits: d.souhaits } : null; if (!p.vuLe) p.vuLe = horodatage(); }
+      await stockage.set(cleParticipant(e.id, p.id), p);
+      return json(200, { moi: { nom: p.nom, souhaits: p.souhaits }, destinataire, echange: { nom: e.nom, date: e.date, budget: e.budget } });
+    }
+    return json(404, { erreur: 'Route inconnue.' });
+  }
+
   // ======================= Routes des participants =======================
   // Invitation : informations publiques de l'échange (sans la liste des inscrits).
   if (chemin === '/invitation' && methode === 'GET') {
     const e = await lireEchange(url.searchParams.get('e'));
-    if (!e || !crypto.egal(String(url.searchParams.get('k') || ''), e.invitation)) return json(404, { erreur: 'Lien d\'invitation invalide ou expiré. Demande un nouveau lien à l\'organisateur.' });
+    if (!e || e.mode === 'borne' || !crypto.egal(String(url.searchParams.get('k') || ''), e.invitation)) return json(404, { erreur: 'Lien d\'invitation invalide ou expiré. Demande un nouveau lien à l\'organisateur.' });
     return json(200, { invitation: vueInvitation(e, await participants(e.id)) });
   }
 
   if (chemin === '/inscription' && methode === 'POST') {
     const e = await lireEchange(corps.e);
     if (!e || !crypto.egal(String(corps.k || ''), e.invitation)) return json(404, { erreur: 'Lien d\'invitation invalide ou expiré. Demande un nouveau lien à l\'organisateur.' });
+    if (e.mode === 'borne') return json(404, { erreur: 'Cet échange se fait sur l\'ordinateur commun, sans inscription en ligne.' });
     if (e.tirage) return json(409, { erreur: 'Le tirage est déjà fait : les inscriptions sont closes. Préviens l\'organisateur.' });
     if (!e.ouvert) return json(409, { erreur: 'Les inscriptions sont fermées par l\'organisateur.' });
     const nom = ligne(corps.nom, LIMITES.nom);
