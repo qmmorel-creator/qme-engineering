@@ -467,6 +467,14 @@ sam. 05/12 et dim. 13/12 à 12:15 ; publics professionnels), à reporter dans le
 | LI-96 | T57 auto-ecole | 2027-01-09 | 12:15 |
 | LI-97 | T67 travaux | 2027-01-11 | 08:30 |
 
+## Publications Instagram des templates (`@qmengineering`)
+
+Kit de marque : [`communication/instagram/README.md`](communication/instagram/README.md). Planning :
+Google Sheet « Planning publications Instagram » (dossier Drive « QME – Publications Instagram »),
+créé le 13/11/2026 : IG-01 à IG-03 (lancement, 16/11/2026), puis IG-04 à IG-26, un carrousel par template
+le lendemain de son post LinkedIn (LI-75 à LI-97), à 18:30. Toutes les lignes sont « À préparer » ;
+publication par Instinct (lignes « Programmé ») après relecture de Quentin. Reel de lancement IG-27 le 17/11. IG-04 (T31, 18/11) et IG-05 (T37, 20/11) prêts le 13/11 : `communication/compte-rendu/instagram.md`, `communication/cout-revient/instagram.md`.
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
