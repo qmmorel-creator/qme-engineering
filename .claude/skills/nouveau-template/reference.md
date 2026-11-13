@@ -94,8 +94,9 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
       maison), mention « in French » ; « In preparation » mis à jour.
 - [ ] **Avant la mise en vente** (template prêt, fiche Gumroad pas encore publiée) : démo ouverte (pas de
       blocage 404 dans `netlify.toml`), page `catalogue/<slug>/` sans bouton Acheter ni prix, avec « Mise en
-      vente prochaine » et la démo en bouton principal, carte `carte prochaine` dans le kanban (décision de
-      Quentin, 13/11/2026). À la mise en vente, la page et la carte passent au prix et au bouton Acheter.
+      vente prochaine » et la démo en bouton principal, carte `carte prochaine` dans le kanban, bouton « Je suis
+      intéressé(e) » (`data-interet="<slug>"`, compteur `/api/interets`, suivi par Quentin sur
+      `/admin/interets/` avec son code ADM) (décision de Quentin, 13/11/2026). À la mise en vente, la page et la carte passent au prix et au bouton Acheter.
 - [ ] **Catalogue** : page `catalogue/<slug>/index.html` complète (page d'atterrissage : boutons Acheter
       et Démo, captures, FAQ propres au produit) ; carte du kanban de `templates/index.html` activée
       (lien `/catalogue/<slug>/`, prix) dans la colonne de son thème ; compteur « en vente ».

@@ -6,11 +6,14 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { traiter, genererCode, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
+import { traiterInterets, codeAdmin } from '../../netlify/lib/interets.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const SECRET = process.env.TEMPLATES_SECRET || 'secret-de-developpement-local-uniquement-0123456789';
 const PORT = Number(process.env.PORT || 8888);
 const memoire = new Map();
+const clics = new Set();
+const stockageInterets = { ajouter: async (c) => { clics.add(c); }, lister: async (p) => [...clics].filter((c) => c.startsWith(p)) };
 const stockage = { get: async (c) => memoire.get(c) ?? null, set: async (c, v) => { memoire.set(c, structuredClone(v)); } };
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript',
   '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp' };
@@ -25,6 +28,14 @@ createServer(async (req, res) => {
     res.writeHead(reponse.status, Object.fromEntries(reponse.headers));
     return res.end(await reponse.text());
   }
+  if (url.pathname === '/api/interets') {
+    const morceaux = [];
+    for await (const m of req) morceaux.push(m);
+    const corps = req.method === 'POST' ? Buffer.concat(morceaux) : undefined;
+    const reponse = await traiterInterets(new Request(url, { method: req.method, headers: req.headers, body: corps }), { secret: SECRET, stockage: stockageInterets });
+    res.writeHead(reponse.status, Object.fromEntries(reponse.headers));
+    return res.end(Buffer.from(await reponse.arrayBuffer()));
+  }
   let chemin = normalize(join(RACINE, decodeURIComponent(url.pathname)));
   if (!chemin.startsWith(RACINE)) { res.writeHead(403); return res.end(); }
   try {
@@ -34,5 +45,6 @@ createServer(async (req, res) => {
     res.end(contenu);
   } catch { res.writeHead(404); res.end('Introuvable'); }
 }).listen(PORT, () => {
+  console.log(`http://localhost:${PORT}/admin/interets/  code administrateur : ${codeAdmin(SECRET)}`);
   for (const [p, { url }] of Object.entries(PRODUITS)) console.log(`http://localhost:${PORT}${url}  code de test : ${genererCode(SECRET, p)}`);
 });

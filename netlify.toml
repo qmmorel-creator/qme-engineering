@@ -13,6 +13,13 @@
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
 
+# Administration (compteur d'intérêt) : jamais indexée, jamais mise en cache.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
 [[headers]]
   for = "/concepts/*"
   [headers.values]

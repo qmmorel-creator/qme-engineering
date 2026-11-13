@@ -1,0 +1,65 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { traiterInterets, codeAdmin, estAdmin, synthese, csv, cleClic, lireCle, MODULES } from '../../netlify/lib/interets.mjs';
+
+const SECRET = 'secret-de-test-0123456789-0123456789-abcdef';
+const memoire = () => { const s = new Set(); return { ajouter: async (c) => { s.add(c); }, lister: async (p) => [...s].filter((c) => c.startsWith(p)), s }; };
+const req = (methode, corps, entetes = {}, q = '') => new Request(`https://x.test/api/interets${q}`, { method: methode, headers: entetes, body: corps === undefined ? undefined : JSON.stringify(corps) });
+
+test('modules : un par template, slug → nom', () => {
+  assert.equal(MODULES.flotte, 'Gestion de flotte de véhicules');
+  assert.equal(MODULES.revision, 'Planning de révision');
+  assert.equal(Object.keys(MODULES).length, 25);
+});
+
+test('code administrateur : stable, au bon format, reconnu sans tenir compte des tirets ni de la casse', () => {
+  const c = codeAdmin(SECRET);
+  assert.match(c, /^ADM-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}$/);
+  assert.equal(codeAdmin(SECRET), c);
+  assert.ok(estAdmin(c.toLowerCase().replace(/-/g, ' '), { secret: SECRET }));
+  assert.ok(!estAdmin('ADM-0000-0000-0000-0000', { secret: SECRET }));
+  assert.ok(!estAdmin('', { secret: SECRET }));
+  assert.ok(estAdmin('mot-de-passe-admin-long', { secret: SECRET, admin: 'mot-de-passe-admin-long' }));
+  assert.ok(!estAdmin('court', { secret: '', admin: 'court' }), 'un mot de passe de moins de 16 caractères est refusé');
+});
+
+test('clé de clic : module et heure relus', () => {
+  const d = new Date('2026-11-13T21:05:00Z');
+  const k = lireCle(cleClic('crm', d, 'ABCDEFGH'));
+  assert.equal(k.module, 'crm'); assert.equal(k.date.toISOString(), d.toISOString());
+  assert.equal(lireCle('clic/inconnu/2026-11-13T21:05:00.000Z~X'), null);
+});
+
+test('POST : compte un clic par appel, refuse un module inconnu ou une requête trop longue', async () => {
+  const st = memoire();
+  const opt = { secret: SECRET, stockage: st };
+  assert.equal((await traiterInterets(req('POST', { module: 'flotte' }), opt)).status, 200);
+  assert.equal((await traiterInterets(req('POST', { module: 'flotte' }), opt)).status, 200);
+  assert.equal((await traiterInterets(req('POST', { module: 'pirate' }), opt)).status, 400);
+  assert.equal((await traiterInterets(req('POST', { module: 'x'.repeat(300) }), opt)).status, 413);
+  assert.equal(st.s.size, 2);
+});
+
+test('GET : réservé à l’administrateur ; synthèse et CSV', async () => {
+  const st = memoire();
+  const maintenant = () => new Date('2026-11-20T12:00:00Z');
+  await st.ajouter(cleClic('flotte', new Date('2026-11-01T08:00:00Z')));
+  await st.ajouter(cleClic('flotte', new Date('2026-11-19T08:00:00Z')));
+  await st.ajouter(cleClic('crm', new Date('2026-11-18T08:00:00Z')));
+  const opt = { secret: SECRET, stockage: st, maintenant };
+  assert.equal((await traiterInterets(req('GET'), opt)).status, 401);
+  const r = await traiterInterets(req('GET', undefined, { 'x-admin': codeAdmin(SECRET) }), opt);
+  const s = await r.json();
+  assert.equal(s.total, 3);
+  assert.deepEqual(s.modules.map((m) => [m.module, m.total, m.septJours]), [['flotte', 2, 1], ['crm', 1, 1]]);
+  assert.equal(s.modules[0].dernier, '2026-11-19T08:00:00.000Z');
+  const octets = new Uint8Array(await (await traiterInterets(req('GET', undefined, { 'x-admin': codeAdmin(SECRET) }, '?format=csv'), opt)).arrayBuffer());
+  assert.deepEqual([...octets.slice(0, 3)], [0xEF, 0xBB, 0xBF], 'BOM UTF-8 pour Excel');
+  const c = new TextDecoder().decode(octets);
+  const lignes = c.trim().split('\r\n');
+  assert.equal(lignes[0], 'date;heure;module;template');
+  assert.equal(lignes.length, 4);
+  assert.equal(lignes[1], '01/11/2026;09:00:00;flotte;"Gestion de flotte de véhicules"', 'heure de Paris (UTC+1 en novembre)');
+});
+
+test('synthèse vide', () => { assert.deepEqual(synthese([], new Date('2026-11-20T00:00:00Z')).modules, []); assert.equal(csv([]), '﻿date;heure;module;template\r\n'); });

@@ -9,6 +9,11 @@ Site promotionnel de Quentin Morel Engineering (QME).
   formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
   `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
   `/templates/#gantt`…) redirigent vers la bonne page.
+- Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
+  `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
+  Blobs à Francfort, aucune donnée personnelle). Suivi en temps réel et export CSV sur `/admin/interets/`
+  (non indexée), avec le code administrateur donné par `outils/templates/code-admin-interets.bat`
+  (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles

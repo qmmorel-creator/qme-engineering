@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test outils/templates/*.test.mjs",
     "dev:templates": "node outils/templates/serveur-local.mjs",
-    "code": "node outils/templates/generer-code.mjs"
+    "code": "node outils/templates/generer-code.mjs",
+    "code-admin": "node -e \"import('./netlify/lib/interets.mjs').then((m) => console.log(m.codeAdmin(process.env.TEMPLATES_SECRET)))\""
   },
   "dependencies": {
     "@netlify/blobs": "^11.1.9"
