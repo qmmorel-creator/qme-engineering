@@ -1,8 +1,8 @@
 // Service worker de la gestion d'auto-école : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'auto-ecole-20261113';
-const COQUILLE = ['./', 'app.css?v=20261113', 'donnees.js?v=20261113', 'regles.js?v=20261113', 'app.js?v=20261113', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'auto-ecole-20261113c';
+const COQUILLE = ['./', 'app.css?v=20261113c', 'donnees.js?v=20261113c', 'regles.js?v=20261113c', 'app.js?v=20261113c', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

@@ -523,3 +523,6 @@ em{font-style:normal;color:var(--rouge);font-weight:700}
 .cle-bleu::before,.cle-jaune::before{content:"";width:10px;height:10px;border:1.5px solid var(--encre);background:var(--bleu)}
 .cle-jaune::before{background:var(--jaune)}
 @media (max-width:720px){.vue-tete{margin-bottom:16px}.vue-tete h1{font-size:30px}.plan-barre{margin-top:-4px}}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

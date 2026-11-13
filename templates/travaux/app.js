@@ -10,6 +10,7 @@
   const CLE_CACHE = 'qme-trv-cache';
   const CLE_DEMO = 'qme-trv-demo';
   const CODE_DEMO = 'DEMO';
+  const CLE_ACCUEIL = 'qme-trv-ecran-accueil';
   const NOM = 'Pilote de travaux';
 
   // ---------- Outils ----------
@@ -418,6 +419,7 @@
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
+    proposerEcranAccueil();
   }
 
   function rendre() {
@@ -1079,7 +1081,9 @@
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton chantier est enregistré en ligne avec ta clé.'} Place utilisée : ${Math.max(1, Math.round(poids / 1000))} Ko.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
-        <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>`;
+        <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
       const nom = texte(f, 'nom');
       if (!nom) return 'Le chantier a besoin d\'un nom.';
@@ -1122,6 +1126,64 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
 
+  // ---------- Ajout à l'écran d'accueil ----------
+  // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
+  const appareil = () => {
+    const ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+    if (/Android/.test(ua)) return 'android';
+    return 'autre';
+  };
+  const dejaInstalle = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let inviteInstallation = null;
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); inviteInstallation = e; });
+  window.addEventListener('appinstalled', () => { inviteInstallation = null; stock.ecrire(CLE_ACCUEIL, 'installe'); });
+
+  const ETAPES_IOS = `<ol class="etapes-accueil">
+      <li>Ouvre cette page dans <b>Safari</b>.</li>
+      <li>Touche le bouton <b>Partager</b> (carré avec une flèche vers le haut). S'il n'est pas visible, touche d'abord <b>···</b>.</li>
+      <li>Fais défiler et choisis <b>Sur l'écran d'accueil</b>.</li>
+      <li>Laisse <b>Ouvrir comme app web</b> activé si l'option s'affiche, puis touche <b>Ajouter</b>.</li>
+    </ol>`;
+  const ETAPES_ANDROID = `<ol class="etapes-accueil">
+      <li>Ouvre cette page dans <b>Chrome</b>.</li>
+      <li>Touche le menu <b>⋮</b> en haut à droite.</li>
+      <li>Choisis <b>Ajouter à l'écran d'accueil</b> (ou <b>Installer l'application</b>), puis <b>Installer</b>.</li>
+    </ol>
+    <p class="aide">Autre navigateur : cherche la même option dans son menu.</p>`;
+
+  function modaleEcranAccueil(auto = false) {
+    const a = appareil();
+    const installable = a !== 'ios' && inviteInstallation;
+    const blocs = a === 'ios' ? ETAPES_IOS
+      : a === 'android' ? ETAPES_ANDROID
+      : `<h3 class="titre-etapes">Sur iPhone ou iPad</h3>${ETAPES_IOS}<h3 class="titre-etapes">Sur Android</h3>${ETAPES_ANDROID}`;
+    const corps = `
+      <p>Enregistre cet outil sur ton écran d'accueil : il s'ouvre ensuite d'un geste, en plein écran, comme une application, sans rien télécharger dans un magasin d'applications.</p>
+      ${installable ? '<div class="rang"><button class="btn primaire" type="button" data-action="installer">Ajouter à l\'écran d\'accueil</button></div><p class="aide">Ou à la main :</p>' : ''}
+      ${blocs}
+      <p class="aide">Tes données restent les mêmes : l'icône ouvre cette page avec ta clé déjà enregistrée sur cet appareil.${a === 'autre' ? ' Sur ordinateur, la page fonctionne aussi directement dans le navigateur.' : ''}</p>`;
+    const pied = auto
+      ? '<button class="btn primaire" value="plus-tard">Plus tard</button><button class="btn" value="jamais">Ne plus afficher</button>'
+      : '<button class="btn primaire" value="ok">Fermer</button>';
+    ouvrirModale('Comme une application', corps, pied, (_, choix) => { if (choix === 'jamais') stock.ecrire(CLE_ACCUEIL, 'masque'); });
+  }
+
+  function proposerEcranAccueil() {
+    if (dejaInstalle() || stock.lire(CLE_ACCUEIL)) return;
+    if (appareil() === 'autre' && !matchMedia('(max-width:720px)').matches) return;
+    setTimeout(() => { if (!modale().open && !dejaInstalle()) modaleEcranAccueil(true); }, 900);
+  }
+
+  async function installer() {
+    if (!inviteInstallation) return;
+    const invite = inviteInstallation; inviteInstallation = null;
+    if (modale().open) modale().close();
+    invite.prompt();
+    const { outcome } = await invite.userChoice.catch(() => ({}));
+    if (outcome === 'accepted') stock.ecrire(CLE_ACCUEIL, 'installe');
+  }
+
   // ---------- Toast ----------
   let minuterieToast = null;
   function toast(txt, action) {
@@ -1160,6 +1222,8 @@
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `pilote-travaux-${auj()}.json`, 'application/json'); break;
       case 'fermer': modale().close(); break;
       case 'poste-nouveau': modalePoste(); break;
