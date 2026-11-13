@@ -312,7 +312,40 @@ footer a{font-weight:600;color:var(--encre)}
 .mini-produit .prix b{font-size:28px}
 .mini-produit .actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
 .mini-produit .btn{min-height:44px;padding:0 14px;font-size:15px}
-.sommaire-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:0 max(16px,calc((100vw - var(--max))/2));margin:8px 0 8px;scroll-margin-top:90px}
-.sommaire-templates a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:8px 14px;border:2px solid var(--encre);background:var(--surface);text-decoration:none;font-size:15px}
-.sommaire-templates a:hover{background:var(--jaune)}
-.sommaire-templates span{font-weight:700;white-space:nowrap}
+/* Catalogue en kanban : pour le travail / pour la maison, une colonne par thème */
+.catalogue{padding:24px max(16px,calc((100vw - var(--max))/2)) 8px;scroll-margin-top:80px}
+.catalogue-tete{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:8px}
+.catalogue-tete h2{font-size:clamp(30px,4vw,44px)}
+.bascule{display:flex;border:2px solid var(--encre)}
+.bascule a{min-height:44px;display:flex;align-items:center;padding:0 16px;font-weight:700;text-decoration:none;background:var(--surface)}
+.bascule a+a{border-left:2px solid var(--encre)}
+.bascule a:hover{background:var(--jaune)}
+.tableau{margin-top:28px;scroll-margin-top:90px}
+.tableau-tete{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding-bottom:10px;border-bottom:4px solid var(--encre)}
+.tableau-tete h3{font-size:26px}
+.tableau-tete p{color:var(--discret);font-size:15px}
+.colonnes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:16px;align-items:start}
+.colonne{background:#E7E3D9;border:2px solid var(--encre);min-width:0}
+.colonne h4{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0;padding:10px 12px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--encre);border-top:8px solid var(--c)}
+.colonne h4 span{min-width:26px;height:26px;display:grid;place-items:center;background:var(--encre);color:var(--papier);font-size:13px}
+.colonne ul{list-style:none;margin:0;padding:10px;display:flex;flex-direction:column;gap:10px}
+.carte>a,.carte>div{display:flex;flex-direction:column;gap:6px;padding:12px 12px 10px;background:var(--surface);border:2px solid var(--encre);text-decoration:none;color:var(--encre)}
+.carte>a{box-shadow:4px 4px 0 var(--encre);transition:transform .12s,box-shadow .12s}
+.carte>a:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--encre);background:#fff}
+.carte b{font-size:17px;line-height:1.25}
+.carte .phrase{font-size:14px;color:var(--texte-2);line-height:1.4}
+.carte .pied{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:4px;font-size:13px;font-weight:700}
+.carte .pied em{font-style:normal;font-size:16px}
+.carte .pied span{text-decoration:underline;text-underline-offset:3px}
+.carte.bientot>div{border-style:dashed;background:transparent;color:var(--discret)}
+.carte.bientot b{color:var(--texte-2)}
+.carte.bientot .pied em{font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:2px dashed var(--discret)}
+.separateur{padding:56px max(16px,calc((100vw - var(--max))/2)) 0;scroll-margin-top:80px}
+.separateur h2{font-size:clamp(30px,4vw,44px);padding-bottom:10px;border-bottom:4px solid var(--encre)}
+.groupe-produits{font-size:22px;margin:40px 0 0;padding-bottom:8px;border-bottom:4px solid var(--encre)}
+.groupe-produits+.mini-produits{margin-top:20px}
+@media (max-width:720px){
+  .colonnes{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-left:-16px;margin-right:-16px;padding:0 16px 12px;scroll-padding:0 16px}
+  .colonne{flex:0 0 82%;scroll-snap-align:start}
+  .bascule{width:100%}.bascule a{flex:1;justify-content:center}
+}

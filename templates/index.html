@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://qm-engineering.fr/templates/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111202">
+<link rel="stylesheet" href="/assets/site.css?v=2026111301">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}</style>
 </head>
 <body>
@@ -55,91 +55,191 @@
   </div>
 </section>
 
-<nav class="sommaire-templates" id="tous" aria-label="Tous les templates">
-  <a href="#revision"><b>Planning de révision</b><span>14,90 €</span></a>
-  <a href="#tjm"><b>Calculateur de TJM freelance</b><span>12 €</span></a>
-  <a href="#compte-rendu"><b>Compte rendu et plan d'actions</b><span>15 €</span></a>
-  <a href="#budget-commun"><b>Budget commun</b><span>15 €</span></a>
-  <a href="#cout-revient"><b>Coût de revient et prix par client</b><span>25 €</span></a>
-  <a href="#micro-entreprise"><b>Livre recettes-dépenses</b><span>25 €</span></a>
-  <a href="#gantt"><b>Planning Gantt rapide</b><span>45 €</span></a>
-  <a href="#taches"><b>Gestionnaire de tâches</b><span>19 €</span></a>
-  <a href="#budget"><b>Budget du foyer</b><span>15 €</span></a>
-  <a href="#nutrition"><b>Nutrition et dépense énergétique</b><span>19 €</span></a>
-</nav>
-
-<section class="section" id="revision">
-  <div class="section-head">
-    <h2>Planning de révision</h2>
-    <p>Pour les élèves, étudiants et candidats aux concours : chaque chapitre revient au bon moment (J+1, J+3, J+7, J+14, J+30), ajusté selon vos réponses et calé sur la date de l'examen.</p>
+<section class="catalogue" id="tous" aria-label="Tous les templates">
+  <div class="catalogue-tete">
+    <h2>Tous les templates</h2>
+    <div class="bascule"><a href="#pro">Pour le travail</a><a href="#perso">Pour la maison</a></div>
   </div>
-  <article class="produit">
-    <div class="produit-visuel">
-      <img class="ecran" src="/assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" alt="Vue Aujourd'hui : chapitres à réviser, boutons difficile, moyen, facile, compte à rebours jusqu'à l'examen">
-      <img class="tel" src="/assets/templates-revision-tel.webp?v=20261112" width="780" height="1328" alt="Le planning sur téléphone">
-    </div>
-    <div class="produit-texte">
-      <span class="pill red">Étudiants · examens</span>
-      <h3>Ce que vous obtenez</h3>
-      <ul class="feature-points">
-        <li><b>Aujourd'hui</b> : les chapitres à revoir, retards compris, avec une méthode conseillée</li>
-        <li><b>Dates d'examen</b> : rien après l'examen, une révision finale 2 jours avant</li>
-        <li><b>12 formations préremplies</b> : brevet, bac, PASS, droit, prépas, concours, code de la route…</li>
-        <li><b>12 méthodes de révision</b> expliquées pas à pas</li>
-        <li><b>Bilan</b> : série de jours, taux de réussite, avancement par matière</li>
+  <div class="tableau" id="pro">
+    <div class="tableau-tete"><h3>Pour le travail</h3><p>Projets, indépendants, équipes et associations · 6 en vente</p></div>
+    <div class="colonnes">
+    <div class="colonne" style="--c:var(--bleu)">
+      <h4>Projets et chantiers<span>4</span></h4>
+      <ul>
+        <li class="carte" data-slug="gantt"><a href="#gantt"><b>Planning Gantt rapide</b><span class="phrase">Une ligne par tâche, liens, jours fériés et chemin critique.</span><span class="pied"><em>45 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte bientot" data-slug="visa"><div><b>Circuit de visa des documents</b><span class="phrase">Indices, avis des viseurs et échéances, lot par lot.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="reserves"><div><b>Levée de réserves</b><span class="phrase">Réserves par lot et entreprise, retards calculés.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="non-conformites"><div><b>Registre des non-conformités</b><span class="phrase">Constat, cause, actions correctives et vérification.</span><span class="pied"><em>Bientôt</em></span></div></li>
       </ul>
-      <div class="prix"><b>14,90 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
-      <div class="actions">
-        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-revision" data-goatcounter-click="achat-revision" data-goatcounter-title="Acheter : planning de révision">Acheter</a>
-        <a class="btn" href="/templates/revision/?demo" data-goatcounter-click="demo-revision" data-goatcounter-title="Démo : planning de révision">Essayer la démo</a>
-      </div>
     </div>
-  </article>
-  <div class="galerie">
-    <figure><img src="/assets/templates-revision-planning.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Planning sur 4 semaines, un carré par révision à la couleur de la matière"><figcaption>Planning sur 4 semaines, charge maximale par jour</figcaption></figure>
-    <figure><img src="/assets/templates-revision-bilan.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan : série de jours, révisions de la semaine, taux de réussite, graphique sur 30 jours"><figcaption>Bilan de progression sur 30 jours</figcaption></figure>
-    <figure><img src="/assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Révisions du jour avec compte à rebours de l'examen"><figcaption>Révisions du jour et prochain examen</figcaption></figure>
+    <div class="colonne" style="--c:var(--rouge)">
+      <h4>Organisation et réunions<span>2</span></h4>
+      <ul>
+        <li class="carte" data-slug="taches"><a href="#taches"><b>Gestionnaire de tâches</b><span class="phrase">Boîte de réception, priorités et focus du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte" data-slug="compte-rendu"><a href="#compte-rendu"><b>Compte rendu et plan d&#x27;actions</b><span class="phrase">Décisions et actions suivies de réunion en réunion.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--jaune)">
+      <h4>Indépendants<span>5</span></h4>
+      <ul>
+        <li class="carte" data-slug="tjm"><a href="#tjm"><b>Calculateur de TJM freelance</b><span class="phrase">Du revenu visé au tarif journalier minimum et conseillé.</span><span class="pied"><em>12 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte" data-slug="cout-revient"><a href="#cout-revient"><b>Coût de revient et prix par client</b><span class="phrase">Vos coûts réels et le prix juste pour chaque client.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte" data-slug="micro-entreprise"><a href="#micro-entreprise"><b>Livre recettes-dépenses</b><span class="phrase">Le livre de la micro-entreprise, cotisations estimées.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte bientot" data-slug="devis"><div><b>Générateur de devis</b><span class="phrase">Catalogue, remises, TVA et mentions, justes au centime.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="tresorerie"><div><b>Trésorerie prévisionnelle 12 mois</b><span class="phrase">Prévu, réalisé, scénarios et alerte de solde.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--encre)">
+      <h4>Clients et prospection<span>2</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="crm"><div><b>CRM freelance</b><span class="phrase">Clients, prochaine action datée et relances du jour.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="prospection"><div><b>Pipeline de prospection B2B</b><span class="phrase">Prospects par étape et relances selon votre cadence.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--bleu)">
+      <h4>Équipements et véhicules<span>2</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="flotte"><div><b>Gestion de flotte de véhicules</b><span class="phrase">Réservations, entretiens et coût par véhicule.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="parc-informatique"><div><b>Gestion de parc informatique</b><span class="phrase">Matériel, attributions, licences et garanties.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--rouge)">
+      <h4>Associations et événements<span>2</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="inscriptions"><div><b>Inscriptions associatives</b><span class="phrase">Créneaux, liste d&#x27;attente et tarifs par tranche.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="evenementiel"><div><b>Pilote événementiel</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--jaune)">
+      <h4>Formation<span>1</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="auto-ecole"><div><b>Gestion d&#x27;auto-école</b><span class="phrase">Élèves, leçons, moniteurs et véhicules.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="tableau" id="perso">
+    <div class="tableau-tete"><h3>Pour la maison</h3><p>Argent, études, santé et projets personnels · 4 en vente</p></div>
+    <div class="colonnes">
+    <div class="colonne" style="--c:var(--jaune)">
+      <h4>Argent<span>2</span></h4>
+      <ul>
+        <li class="carte" data-slug="budget"><a href="#budget"><b>Budget du foyer</b><span class="phrase">Dépenses, enveloppes et écart au budget, mois par mois.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+        <li class="carte" data-slug="budget-commun"><a href="#budget-commun"><b>Budget commun</b><span class="phrase">À deux ou en colocation : qui a payé, qui doit quoi.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--bleu)">
+      <h4>Études<span>1</span></h4>
+      <ul>
+        <li class="carte" data-slug="revision"><a href="#revision"><b>Planning de révision</b><span class="phrase">Chaque chapitre revient au bon moment jusqu&#x27;à l&#x27;examen.</span><span class="pied"><em>14,90 €</em><span>Voir le détail</span></span></a></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--rouge)">
+      <h4>Santé et forme<span>1</span></h4>
+      <ul>
+        <li class="carte" data-slug="nutrition"><a href="#nutrition"><b>Nutrition et dépense énergétique</b><span class="phrase">Repas, calories, macros et dépense du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--encre)">
+      <h4>Organisation<span>1</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="planner"><div><b>Planner horaire</b><span class="phrase">Votre semaine en blocs de 30 minutes, prévu et réalisé.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    <div class="colonne" style="--c:var(--bleu)">
+      <h4>Projets de vie<span>2</span></h4>
+      <ul>
+        <li class="carte bientot" data-slug="mariage"><div><b>Organisateur de mariage</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="pied"><em>Bientôt</em></span></div></li>
+        <li class="carte bientot" data-slug="travaux"><div><b>Pilote de travaux maison</b><span class="phrase">Devis comparés, budget et planning des artisans.</span><span class="pied"><em>Bientôt</em></span></div></li>
+      </ul>
+    </div>
+    </div>
   </div>
 </section>
 
-<section class="section" id="tjm">
+<div class="separateur" id="pro-detail"><p class="eyebrow">En détail</p><h2>Templates pour le travail</h2></div>
+
+<section class="section" id="gantt">
   <div class="section-head">
-    <h2>Calculateur de TJM freelance</h2>
-    <p>Pour les freelances qui démarrent ou révisent leur tarif : partez du revenu que vous visez, de vos frais et de vos vrais jours facturables, et obtenez votre TJM minimum et votre TJM conseillé, selon votre statut.</p>
+    <h2>Planning Gantt rapide</h2>
+    <p>Pour les artisans, PME, chefs de projet, bureaux d'études et particuliers en travaux : un planning qui se tape en une ligne par tâche, avec les liens, les jours fériés, l'avancement et le chemin critique calculés pour vous. Plus léger qu'un logiciel de planification, plus juste qu'un tableur.</p>
   </div>
   <article class="produit">
     <div class="produit-visuel">
-      <img class="ecran" src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" alt="Résultat : TJM minimum, TJM conseillé, chiffre d'affaires nécessaire, jours facturables et alerte de seuil de TVA (données fictives)">
-      <img class="tel" src="/assets/templates-tjm-tel.webp?v=20261112" width="780" height="1328" alt="Le calculateur sur téléphone">
+      <img class="ecran" src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" alt="Gantt d'une rénovation de cuisine : tableau des tâches à gauche, barres, liens, chemin critique en rouge, jalon à plage et ligne d'aujourd'hui (données fictives)">
+      <img class="tel" src="../assets/templates-gantt-tel.webp?v=20261113" width="780" height="1328" alt="Le Gantt sur téléphone, colonne des tâches et barres synchronisées">
     </div>
     <div class="produit-texte">
-      <span class="pill blue">Freelances · indépendants</span>
+      <span class="pill blue">Gestion de projet · chantiers</span>
       <h3>Ce que vous obtenez</h3>
       <ul class="feature-points">
-        <li><b>TJM minimum et conseillé</b> : le tarif qui couvre votre objectif, puis celui à annoncer avec une marge de sécurité</li>
-        <li><b>Jours facturables réels</b> : jours ouvrés de l'année calculés, fériés retirés (Pâques, Ascension, Pentecôte), puis congés et jours sans client</li>
-        <li><b>Micro-entreprise</b> (prestations BIC, BNC, BNC Cipav) : cotisations, formation professionnelle et versement libératoire ; <b>SASU ou EURL</b> avec votre propre taux de charges</li>
-        <li><b>Alertes</b> : plafond de la micro-entreprise et seuils de la franchise de TVA</li>
-        <li><b>3 scénarios comparés</b> et courbe du TJM selon le nombre de jours facturés</li>
+        <li><b>Saisie en une ligne</b> : « Pose des meubles 12/12 3j après 7 » crée la tâche, sa barre et son lien</li>
+        <li><b>Liens complets</b> : fin → début, début → début, fin → fin, début → fin, avec décalage ; les tâches suivantes se décalent seules</li>
+        <li><b>Jours ouvrés</b> : week-ends et jours fériés français calculés chaque année (option Alsace-Moselle)</li>
+        <li><b>Chemin critique</b> : dates au plus tôt et au plus tard, marges totale et libre, tâches critiques en rouge</li>
+        <li><b>Suivi</b> : avancement réel face à l'attendu, retards, écart avec le planning de référence, jalons à plage, impression A4 ou A3 paysage</li>
       </ul>
-      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="prix"><b>45 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
       <div class="actions">
-        <a class="btn primary" href="https://qmengineering.gumroad.com/l/calculateur-tjm" data-goatcounter-click="achat-tjm" data-goatcounter-title="Acheter : calculateur de TJM">Acheter</a>
-        <a class="btn" href="/templates/tjm/?demo" data-goatcounter-click="demo-tjm" data-goatcounter-title="Démo : calculateur de TJM">Essayer la démo</a>
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-gantt" data-goatcounter-click="achat-gantt" data-goatcounter-title="Acheter : planning Gantt rapide">Acheter</a>
+        <a class="btn" href="/templates/gantt/?demo" data-goatcounter-click="demo-gantt" data-goatcounter-title="Démo : planning Gantt rapide">Essayer la démo</a>
       </div>
     </div>
   </article>
   <div class="galerie">
-    <figure><img src="/assets/templates-tjm-scenarios.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Trois scénarios comparés et courbe du TJM minimum selon les jours facturables"><figcaption>Trois scénarios côte à côte, courbe du TJM selon les jours facturés</figcaption></figure>
-    <figure><img src="/assets/templates-tjm-objectif.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Objectif : revenu net visé, frais professionnels et marge de sécurité, avec la synthèse du TJM"><figcaption>Objectif, frais et marge : le TJM se met à jour à chaque saisie</figcaption></figure>
-    <figure><img src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Résultat détaillé : où va le chiffre d'affaires, seuils et hypothèses"><figcaption>Résultat détaillé et alertes de seuils</figcaption></figure>
+    <figure><img src="../assets/templates-gantt-critique.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Chemin critique : fin du planning, durée, tâches critiques et tableau des dates au plus tôt et au plus tard avec les marges"><figcaption>Chemin critique et marges de chaque tâche</figcaption></figure>
+    <figure><img src="../assets/templates-gantt-suivi.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Suivi : avancement réel et attendu, tâches en retard, écart avec la référence, jalon hors plage"><figcaption>Suivi de l'avancement et des retards</figcaption></figure>
+    <figure><img src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Gantt avec sections repliables, référence grisée sous les barres et jours fériés hachurés"><figcaption>Tableau et Gantt synchronisés</figcaption></figure>
   </div>
-  <div class="faq" style="margin-top:32px">
-    <details><summary>Les taux sont-ils à jour ?</summary><p>Le calculateur intègre les taux de la micro-entreprise au 1er janvier 2026 (cotisations, formation professionnelle, versement libératoire), le plafond de chiffre d'affaires et les seuils de la franchise de TVA, relevés sur urssaf.fr, autoentrepreneur.urssaf.fr et economie.gouv.fr. La date et les sources sont affichées dans l'application, et chaque valeur reste modifiable dans les réglages si elle change. Les taux sont revus chaque année.</p></details>
-    <details><summary>Et pour une SASU ou une EURL ?</summary><p>Les charges d'une société dépendent de votre rémunération et de vos choix (salaire, dividendes, régime fiscal) : aucun taux n'est intégré. Vous saisissez le taux de charges que vous a donné votre expert-comptable, et le calculateur en déduit le chiffre d'affaires et le TJM nécessaires.</p></details>
-    <details><summary>Le calculateur remplace-t-il un expert-comptable ?</summary><p>Non. C'est un outil d'aide pour fixer et vérifier un tarif. Pour un choix de statut ou une question fiscale, demandez conseil à un expert-comptable.</p></details>
-    <details><summary>Le revenu net s'entend-il avant ou après impôt ?</summary><p>Avant impôt sur le revenu, sauf si vous cochez le versement libératoire en micro-entreprise : l'impôt est alors prélevé avec les cotisations et compté dans le calcul. Les TJM affichés sont hors taxes.</p></details>
-    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/tjm/?demo">la démo</a> ouvre le calculateur avec trois scénarios fictifs. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  <div class="faq" style="margin-top:28px">
+    <details><summary>Comment fonctionne la saisie en une ligne ?</summary><p>Vous tapez le nom de la tâche suivi, dans n'importe quel ordre, d'une date (12/12), d'une durée (5j, 2 sem), d'un avancement (40%) et de ses prédécesseurs (après 3, 5DD+2). « jalon » ou « 0j » crée un jalon, « plage 10/12-18/12 » une fenêtre de dates, et une ligne « _Lot_2 » ouvre une section. Vous pouvez coller plusieurs lignes d'un coup ; tout reste modifiable dans le tableau.</p></details>
+    <details><summary>Les jours fériés sont-ils à jour chaque année ?</summary><p>Oui, ils sont calculés et non recopiés : les 11 jours fériés du Code du travail, avec Pâques, l'Ascension et la Pentecôte recalculées pour chaque année, et en option le Vendredi saint et le 26 décembre d'Alsace-Moselle. Les ponts, fermetures et vacances scolaires s'ajoutent en périodes.</p></details>
+    <details><summary>Qu'est-ce que le chemin critique ?</summary><p>C'est la suite de tâches sans marge : un jour de retard sur l'une d'elles décale la fin du projet. L'outil calcule pour chaque tâche ses dates au plus tôt et au plus tard, sa marge totale (retard possible sans décaler la fin) et sa marge libre (sans gêner la tâche suivante).</p></details>
+    <details><summary>Puis-je imprimer ou envoyer le planning ?</summary><p>Oui : impression en A4 ou A3 paysage, tout le planning tenant dans la largeur de la page (et enregistrement en PDF depuis la fenêtre d'impression), ou téléchargement d'une image PNG. Les personnes à qui vous l'envoyez n'ont pas besoin d'accès.</p></details>
+    <details><summary>Remplace-t-il un logiciel de planification professionnel ?</summary><p>Il couvre l'essentiel d'un planning de projet : liens, calendrier, chemin critique, référence et suivi. Il ne gère pas les ressources, les coûts ni le travail à plusieurs en même temps : il vise la personne qui tient le planning.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/gantt/?demo">la démo</a> ouvre quatre plannings fictifs (cuisine, site web, salon, déménagement). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="taches">
+  <div class="section-head">
+    <h2>Gestionnaire de tâches</h2>
+    <p>Pour les indépendants, cadres et étudiants qui ont abandonné une application de tâches trop chargée ou à abonnement : tout ce qui vous passe par la tête va dans une boîte de réception, vous le triez en urgent / important, et chaque matin vous ne gardez que les 3 à 5 tâches qui comptent.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" alt="Vue Aujourd'hui : quatre tâches au focus du jour, temps prévu face au temps disponible et carte de clôture du soir (données fictives)">
+      <img class="tel" src="../assets/templates-taches-tel.webp?v=20261113" width="780" height="1328" alt="Le focus du jour sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Organisation · productivité</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Saisie rapide en français</b> : « Appeler la banque demain 14h !haute #Perso 30min » donne date, heure, criticité, projet et durée</li>
+        <li><b>Boîte de réception et triage</b> urgent / important (matrice d'Eisenhower), tâche par tâche</li>
+        <li><b>Rituel du matin</b> pour choisir le focus du jour, <b>clôture du soir</b> pour reporter, archiver et faire le bilan</li>
+        <li><b>Répétitions fiables</b> : fin de mois, dernier jour ouvré, jours fériés français pris en compte</li>
+        <li><b>Vues Liste, Kanban, Matrice et Semaine</b>, projets en dossiers, 5 modèles de projets prêts, archive restaurable</li>
+      </ul>
+      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/gestionnaire-taches" data-goatcounter-click="achat-taches" data-goatcounter-title="Acheter : gestionnaire de tâches">Acheter</a>
+        <a class="btn" href="/templates/taches/?demo" data-goatcounter-click="demo-taches" data-goatcounter-title="Démo : gestionnaire de tâches">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="../assets/templates-taches-triage.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Triage d'un élément de la boîte de réception : quatre choix urgent / important, projet, échéance, criticité"><figcaption>Triage de la boîte de réception</figcaption></figure>
+    <figure><img src="../assets/templates-taches-semaine.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Semaine en sept colonnes : tâches par jour, jour férié signalé, charge prévue face au temps disponible"><figcaption>La semaine et sa charge, jour par jour</figcaption></figure>
+    <figure><img src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Focus du jour et tâches en retard"><figcaption>Focus du jour</figcaption></figure>
+  </div>
+  <div class="faq">
+    <details><summary>Qu'est-ce que la saisie rapide comprend ?</summary><p>Des dates (aujourd'hui, demain, lundi, jeudi en huit, dans 3 jours, le 15, 24/12, 3 mars, fin du mois), des heures (14h, 9h30), des durées (30min, 1h30), la criticité (!haute, !critique), le projet (#Perso) et des répétitions (chaque lundi, chaque jour ouvré, tous les mois le 5, chaque fin de mois). Ce qui est reconnu s'affiche pendant la frappe.</p></details>
+    <details><summary>Comment fonctionnent les répétitions ?</summary><p>À chaque tâche faite, la suivante est créée à la bonne date : « le 31 » tombe le 30 ou le 28 les mois plus courts, sans décaler les mois suivants ; une date peut être avancée ou reculée au jour ouvré le plus proche ; « dernier jour ouvré du mois » saute week-ends et jours fériés (France métropolitaine, option Alsace-Moselle).</p></details>
+    <details><summary>Est-ce adapté au travail en équipe ?</summary><p>Non, et c'est voulu : c'est un outil personnel, sans comptes multiples ni attribution de tâches. La clé ouvre vos tâches sur tous vos appareils.</p></details>
+    <details><summary>Puis-je importer mes tâches d'une autre application ?</summary><p>Pas d'import automatique. La saisie rapide permet de recopier une liste en quelques minutes, et les réglages proposent l'export et la restauration d'une copie complète (fichier JSON).</p></details>
+    <details><summary>Où sont enregistrées mes données ?</summary><p>En ligne, associées à votre clé, avec une copie dans le navigateur pour continuer hors connexion ; les modifications partent au retour du réseau. Vous pouvez télécharger une copie depuis les réglages.</p></details>
+    <details><summary>Est-ce un abonnement ?</summary><p>Non : un achat unique, sans renouvellement. <a href="/templates/taches/?demo">La démo</a> s'ouvre avec des données d'exemple, sans inscription.</p></details>
   </div>
 </section>
 
@@ -184,45 +284,44 @@
   </div>
 </section>
 
-<section class="section" id="budget-commun">
+<section class="section" id="tjm">
   <div class="section-head">
-    <h2>Budget commun</h2>
-    <p>Pour les couples, colocations et familles qui partagent des dépenses : chacun note ce qu'il paie, la répartition se fait toute seule (à parts égales, au prorata des revenus, en parts) et l'application indique qui doit combien à qui, avec le moins de virements possible.</p>
+    <h2>Calculateur de TJM freelance</h2>
+    <p>Pour les freelances qui démarrent ou révisent leur tarif : partez du revenu que vous visez, de vos frais et de vos vrais jours facturables, et obtenez votre TJM minimum et votre TJM conseillé, selon votre statut.</p>
   </div>
   <article class="produit">
     <div class="produit-visuel">
-      <img class="ecran" src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" alt="Vue Soldes : « Sami doit 309,89 € à Camille », virement proposé pour équilibrer, solde de chaque personne (données fictives)">
-      <img class="tel" src="/assets/templates-budget-commun-tel.webp?v=20261112" width="780" height="1328" alt="Le budget commun sur téléphone">
+      <img class="ecran" src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" alt="Résultat : TJM minimum, TJM conseillé, chiffre d'affaires nécessaire, jours facturables et alerte de seuil de TVA (données fictives)">
+      <img class="tel" src="/assets/templates-tjm-tel.webp?v=20261112" width="780" height="1328" alt="Le calculateur sur téléphone">
     </div>
     <div class="produit-texte">
-      <span class="pill blue">Couples · colocations · familles</span>
+      <span class="pill blue">Freelances · indépendants</span>
       <h3>Ce que vous obtenez</h3>
       <ul class="feature-points">
-        <li><b>Soldes à jour</b> : qui doit combien à qui, à chaque dépense ajoutée</li>
-        <li><b>Quatre répartitions</b> : à parts égales, au prorata des revenus, en parts, en montants exacts, calculées au centime près</li>
-        <li><b>Équilibrage</b> : le nombre minimal de virements pour remettre les comptes à zéro, enregistré d'un geste</li>
-        <li><b>Dépenses récurrentes</b> : loyer, énergie, abonnements ajoutés d'eux-mêmes chaque mois</li>
-        <li><b>Bilan du mois</b> : par catégorie, par personne, et l'évolution sur 6 mois</li>
+        <li><b>TJM minimum et conseillé</b> : le tarif qui couvre votre objectif, puis celui à annoncer avec une marge de sécurité</li>
+        <li><b>Jours facturables réels</b> : jours ouvrés de l'année calculés, fériés retirés (Pâques, Ascension, Pentecôte), puis congés et jours sans client</li>
+        <li><b>Micro-entreprise</b> (prestations BIC, BNC, BNC Cipav) : cotisations, formation professionnelle et versement libératoire ; <b>SASU ou EURL</b> avec votre propre taux de charges</li>
+        <li><b>Alertes</b> : plafond de la micro-entreprise et seuils de la franchise de TVA</li>
+        <li><b>3 scénarios comparés</b> et courbe du TJM selon le nombre de jours facturés</li>
       </ul>
-      <p>Une seule clé pour tout le foyer : chacun l'ouvre sur son propre téléphone et voit les mêmes comptes.</p>
-      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous les appareils du foyer</span></div>
+      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
       <div class="actions">
-        <a class="btn primary" href="https://qmengineering.gumroad.com/l/budget-commun" data-goatcounter-click="achat-budget-commun" data-goatcounter-title="Acheter : budget commun">Acheter</a>
-        <a class="btn" href="/templates/budget-commun/?demo" data-goatcounter-click="demo-budget-commun" data-goatcounter-title="Démo : budget commun">Essayer la démo</a>
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/calculateur-tjm" data-goatcounter-click="achat-tjm" data-goatcounter-title="Acheter : calculateur de TJM">Acheter</a>
+        <a class="btn" href="/templates/tjm/?demo" data-goatcounter-click="demo-tjm" data-goatcounter-title="Démo : calculateur de TJM">Essayer la démo</a>
       </div>
     </div>
   </article>
   <div class="galerie">
-    <figure><img src="/assets/templates-budget-commun-mois.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan du mois : qui a payé, part de chacun, dépenses par catégorie et graphique sur 6 mois (données fictives)"><figcaption>Bilan du mois et évolution sur 6 mois</figcaption></figure>
-    <figure><img src="/assets/templates-budget-commun-depenses.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Liste des dépenses du mois, avec la personne qui a payé et la règle de répartition (données fictives)"><figcaption>Dépenses filtrées par mois, personne et catégorie</figcaption></figure>
-    <figure><img src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Soldes de chaque personne et virement proposé pour équilibrer (données fictives)"><figcaption>Soldes et équilibrage en un virement</figcaption></figure>
+    <figure><img src="/assets/templates-tjm-scenarios.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Trois scénarios comparés et courbe du TJM minimum selon les jours facturables"><figcaption>Trois scénarios côte à côte, courbe du TJM selon les jours facturés</figcaption></figure>
+    <figure><img src="/assets/templates-tjm-objectif.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Objectif : revenu net visé, frais professionnels et marge de sécurité, avec la synthèse du TJM"><figcaption>Objectif, frais et marge : le TJM se met à jour à chaque saisie</figcaption></figure>
+    <figure><img src="/assets/templates-tjm-resultat.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Résultat détaillé : où va le chiffre d'affaires, seuils et hypothèses"><figcaption>Résultat détaillé et alertes de seuils</figcaption></figure>
   </div>
   <div class="faq" style="margin-top:32px">
-    <details><summary>Comment partager avec mon ou ma partenaire, ou mes colocataires ?</summary><p>Transmettez-leur la clé reçue après l'achat. Chacun ouvre <a href="/connexion/">qm-engineering.fr/connexion</a> sur son téléphone, colle la clé, et voit les mêmes dépenses. Si deux personnes enregistrent au même moment, les deux saisies sont réunies : aucune dépense n'est perdue. Attention : la clé donne un accès complet (ajouter, modifier, supprimer), ne la donnez qu'aux membres du foyer.</p></details>
-    <details><summary>Comment fonctionne la répartition au prorata des revenus ?</summary><p>Chacun indique son revenu mensuel (facultatif) ; chaque dépense « au prorata » est alors partagée en proportion. Par exemple, 1 000 € avec des revenus de 2 600 € et 1 900 € donnent 577,78 € et 422,22 €. Changer un revenu ne réécrit pas les dépenses passées.</p></details>
-    <details><summary>Combien de personnes peut-on être ?</summary><p>De 2 à 6 personnes, avec une seule clé pour tout le foyer.</p></details>
-    <details><summary>L'application se connecte-t-elle à ma banque ?</summary><p>Non. Vous notez vous-mêmes les dépenses communes ; aucun accès bancaire n'est demandé. Les soldes sont calculés à partir de vos saisies : vérifiez-les avant un virement. Ce n'est pas un conseil financier.</p></details>
-    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/budget-commun/?demo">la démo</a> ouvre un budget de couple avec des données fictives. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+    <details><summary>Les taux sont-ils à jour ?</summary><p>Le calculateur intègre les taux de la micro-entreprise au 1er janvier 2026 (cotisations, formation professionnelle, versement libératoire), le plafond de chiffre d'affaires et les seuils de la franchise de TVA, relevés sur urssaf.fr, autoentrepreneur.urssaf.fr et economie.gouv.fr. La date et les sources sont affichées dans l'application, et chaque valeur reste modifiable dans les réglages si elle change. Les taux sont revus chaque année.</p></details>
+    <details><summary>Et pour une SASU ou une EURL ?</summary><p>Les charges d'une société dépendent de votre rémunération et de vos choix (salaire, dividendes, régime fiscal) : aucun taux n'est intégré. Vous saisissez le taux de charges que vous a donné votre expert-comptable, et le calculateur en déduit le chiffre d'affaires et le TJM nécessaires.</p></details>
+    <details><summary>Le calculateur remplace-t-il un expert-comptable ?</summary><p>Non. C'est un outil d'aide pour fixer et vérifier un tarif. Pour un choix de statut ou une question fiscale, demandez conseil à un expert-comptable.</p></details>
+    <details><summary>Le revenu net s'entend-il avant ou après impôt ?</summary><p>Avant impôt sur le revenu, sauf si vous cochez le versement libératoire en micro-entreprise : l'impôt est alors prélevé avec les cotisations et compté dans le calcul. Les TJM affichés sont hors taxes.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/tjm/?demo">la démo</a> ouvre le calculateur avec trois scénarios fictifs. Elle reste dans votre navigateur et n'envoie rien.</p></details>
   </div>
 </section>
 
@@ -310,89 +409,9 @@
   </div>
 </section>
 
-<section class="section" id="gantt">
-  <div class="section-head">
-    <h2>Planning Gantt rapide</h2>
-    <p>Pour les artisans, PME, chefs de projet, bureaux d'études et particuliers en travaux : un planning qui se tape en une ligne par tâche, avec les liens, les jours fériés, l'avancement et le chemin critique calculés pour vous. Plus léger qu'un logiciel de planification, plus juste qu'un tableur.</p>
-  </div>
-  <article class="produit">
-    <div class="produit-visuel">
-      <img class="ecran" src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" alt="Gantt d'une rénovation de cuisine : tableau des tâches à gauche, barres, liens, chemin critique en rouge, jalon à plage et ligne d'aujourd'hui (données fictives)">
-      <img class="tel" src="../assets/templates-gantt-tel.webp?v=20261113" width="780" height="1328" alt="Le Gantt sur téléphone, colonne des tâches et barres synchronisées">
-    </div>
-    <div class="produit-texte">
-      <span class="pill blue">Gestion de projet · chantiers</span>
-      <h3>Ce que vous obtenez</h3>
-      <ul class="feature-points">
-        <li><b>Saisie en une ligne</b> : « Pose des meubles 12/12 3j après 7 » crée la tâche, sa barre et son lien</li>
-        <li><b>Liens complets</b> : fin → début, début → début, fin → fin, début → fin, avec décalage ; les tâches suivantes se décalent seules</li>
-        <li><b>Jours ouvrés</b> : week-ends et jours fériés français calculés chaque année (option Alsace-Moselle)</li>
-        <li><b>Chemin critique</b> : dates au plus tôt et au plus tard, marges totale et libre, tâches critiques en rouge</li>
-        <li><b>Suivi</b> : avancement réel face à l'attendu, retards, écart avec le planning de référence, jalons à plage, impression A4 ou A3 paysage</li>
-      </ul>
-      <div class="prix"><b>45 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
-      <div class="actions">
-        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-gantt" data-goatcounter-click="achat-gantt" data-goatcounter-title="Acheter : planning Gantt rapide">Acheter</a>
-        <a class="btn" href="/templates/gantt/?demo" data-goatcounter-click="demo-gantt" data-goatcounter-title="Démo : planning Gantt rapide">Essayer la démo</a>
-      </div>
-    </div>
-  </article>
-  <div class="galerie">
-    <figure><img src="../assets/templates-gantt-critique.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Chemin critique : fin du planning, durée, tâches critiques et tableau des dates au plus tôt et au plus tard avec les marges"><figcaption>Chemin critique et marges de chaque tâche</figcaption></figure>
-    <figure><img src="../assets/templates-gantt-suivi.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Suivi : avancement réel et attendu, tâches en retard, écart avec la référence, jalon hors plage"><figcaption>Suivi de l'avancement et des retards</figcaption></figure>
-    <figure><img src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Gantt avec sections repliables, référence grisée sous les barres et jours fériés hachurés"><figcaption>Tableau et Gantt synchronisés</figcaption></figure>
-  </div>
-  <div class="faq" style="margin-top:28px">
-    <details><summary>Comment fonctionne la saisie en une ligne ?</summary><p>Vous tapez le nom de la tâche suivi, dans n'importe quel ordre, d'une date (12/12), d'une durée (5j, 2 sem), d'un avancement (40%) et de ses prédécesseurs (après 3, 5DD+2). « jalon » ou « 0j » crée un jalon, « plage 10/12-18/12 » une fenêtre de dates, et une ligne « _Lot_2 » ouvre une section. Vous pouvez coller plusieurs lignes d'un coup ; tout reste modifiable dans le tableau.</p></details>
-    <details><summary>Les jours fériés sont-ils à jour chaque année ?</summary><p>Oui, ils sont calculés et non recopiés : les 11 jours fériés du Code du travail, avec Pâques, l'Ascension et la Pentecôte recalculées pour chaque année, et en option le Vendredi saint et le 26 décembre d'Alsace-Moselle. Les ponts, fermetures et vacances scolaires s'ajoutent en périodes.</p></details>
-    <details><summary>Qu'est-ce que le chemin critique ?</summary><p>C'est la suite de tâches sans marge : un jour de retard sur l'une d'elles décale la fin du projet. L'outil calcule pour chaque tâche ses dates au plus tôt et au plus tard, sa marge totale (retard possible sans décaler la fin) et sa marge libre (sans gêner la tâche suivante).</p></details>
-    <details><summary>Puis-je imprimer ou envoyer le planning ?</summary><p>Oui : impression en A4 ou A3 paysage, tout le planning tenant dans la largeur de la page (et enregistrement en PDF depuis la fenêtre d'impression), ou téléchargement d'une image PNG. Les personnes à qui vous l'envoyez n'ont pas besoin d'accès.</p></details>
-    <details><summary>Remplace-t-il un logiciel de planification professionnel ?</summary><p>Il couvre l'essentiel d'un planning de projet : liens, calendrier, chemin critique, référence et suivi. Il ne gère pas les ressources, les coûts ni le travail à plusieurs en même temps : il vise la personne qui tient le planning.</p></details>
-    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/gantt/?demo">la démo</a> ouvre quatre plannings fictifs (cuisine, site web, salon, déménagement). Elle reste dans votre navigateur et n'envoie rien.</p></details>
-  </div>
-</section>
+<!-- fin-pro -->
 
-<section class="section" id="taches">
-  <div class="section-head">
-    <h2>Gestionnaire de tâches</h2>
-    <p>Pour les indépendants, cadres et étudiants qui ont abandonné une application de tâches trop chargée ou à abonnement : tout ce qui vous passe par la tête va dans une boîte de réception, vous le triez en urgent / important, et chaque matin vous ne gardez que les 3 à 5 tâches qui comptent.</p>
-  </div>
-  <article class="produit">
-    <div class="produit-visuel">
-      <img class="ecran" src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" alt="Vue Aujourd'hui : quatre tâches au focus du jour, temps prévu face au temps disponible et carte de clôture du soir (données fictives)">
-      <img class="tel" src="../assets/templates-taches-tel.webp?v=20261113" width="780" height="1328" alt="Le focus du jour sur téléphone">
-    </div>
-    <div class="produit-texte">
-      <span class="pill red">Organisation · productivité</span>
-      <h3>Ce que vous obtenez</h3>
-      <ul class="feature-points">
-        <li><b>Saisie rapide en français</b> : « Appeler la banque demain 14h !haute #Perso 30min » donne date, heure, criticité, projet et durée</li>
-        <li><b>Boîte de réception et triage</b> urgent / important (matrice d'Eisenhower), tâche par tâche</li>
-        <li><b>Rituel du matin</b> pour choisir le focus du jour, <b>clôture du soir</b> pour reporter, archiver et faire le bilan</li>
-        <li><b>Répétitions fiables</b> : fin de mois, dernier jour ouvré, jours fériés français pris en compte</li>
-        <li><b>Vues Liste, Kanban, Matrice et Semaine</b>, projets en dossiers, 5 modèles de projets prêts, archive restaurable</li>
-      </ul>
-      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
-      <div class="actions">
-        <a class="btn primary" href="https://qmengineering.gumroad.com/l/gestionnaire-taches" data-goatcounter-click="achat-taches" data-goatcounter-title="Acheter : gestionnaire de tâches">Acheter</a>
-        <a class="btn" href="/templates/taches/?demo" data-goatcounter-click="demo-taches" data-goatcounter-title="Démo : gestionnaire de tâches">Essayer la démo</a>
-      </div>
-    </div>
-  </article>
-  <div class="galerie">
-    <figure><img src="../assets/templates-taches-triage.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Triage d'un élément de la boîte de réception : quatre choix urgent / important, projet, échéance, criticité"><figcaption>Triage de la boîte de réception</figcaption></figure>
-    <figure><img src="../assets/templates-taches-semaine.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Semaine en sept colonnes : tâches par jour, jour férié signalé, charge prévue face au temps disponible"><figcaption>La semaine et sa charge, jour par jour</figcaption></figure>
-    <figure><img src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Focus du jour et tâches en retard"><figcaption>Focus du jour</figcaption></figure>
-  </div>
-  <div class="faq">
-    <details><summary>Qu'est-ce que la saisie rapide comprend ?</summary><p>Des dates (aujourd'hui, demain, lundi, jeudi en huit, dans 3 jours, le 15, 24/12, 3 mars, fin du mois), des heures (14h, 9h30), des durées (30min, 1h30), la criticité (!haute, !critique), le projet (#Perso) et des répétitions (chaque lundi, chaque jour ouvré, tous les mois le 5, chaque fin de mois). Ce qui est reconnu s'affiche pendant la frappe.</p></details>
-    <details><summary>Comment fonctionnent les répétitions ?</summary><p>À chaque tâche faite, la suivante est créée à la bonne date : « le 31 » tombe le 30 ou le 28 les mois plus courts, sans décaler les mois suivants ; une date peut être avancée ou reculée au jour ouvré le plus proche ; « dernier jour ouvré du mois » saute week-ends et jours fériés (France métropolitaine, option Alsace-Moselle).</p></details>
-    <details><summary>Est-ce adapté au travail en équipe ?</summary><p>Non, et c'est voulu : c'est un outil personnel, sans comptes multiples ni attribution de tâches. La clé ouvre vos tâches sur tous vos appareils.</p></details>
-    <details><summary>Puis-je importer mes tâches d'une autre application ?</summary><p>Pas d'import automatique. La saisie rapide permet de recopier une liste en quelques minutes, et les réglages proposent l'export et la restauration d'une copie complète (fichier JSON).</p></details>
-    <details><summary>Où sont enregistrées mes données ?</summary><p>En ligne, associées à votre clé, avec une copie dans le navigateur pour continuer hors connexion ; les modifications partent au retour du réseau. Vous pouvez télécharger une copie depuis les réglages.</p></details>
-    <details><summary>Est-ce un abonnement ?</summary><p>Non : un achat unique, sans renouvellement. <a href="/templates/taches/?demo">La démo</a> s'ouvre avec des données d'exemple, sans inscription.</p></details>
-  </div>
-</section>
+<div class="separateur" id="perso-detail"><p class="eyebrow">En détail</p><h2>Templates pour la maison</h2></div>
 
 <section class="section" id="budget">
   <div class="section-head">
@@ -436,6 +455,82 @@
   </div>
 </section>
 
+<section class="section" id="budget-commun">
+  <div class="section-head">
+    <h2>Budget commun</h2>
+    <p>Pour les couples, colocations et familles qui partagent des dépenses : chacun note ce qu'il paie, la répartition se fait toute seule (à parts égales, au prorata des revenus, en parts) et l'application indique qui doit combien à qui, avec le moins de virements possible.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" alt="Vue Soldes : « Sami doit 309,89 € à Camille », virement proposé pour équilibrer, solde de chaque personne (données fictives)">
+      <img class="tel" src="/assets/templates-budget-commun-tel.webp?v=20261112" width="780" height="1328" alt="Le budget commun sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Couples · colocations · familles</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Soldes à jour</b> : qui doit combien à qui, à chaque dépense ajoutée</li>
+        <li><b>Quatre répartitions</b> : à parts égales, au prorata des revenus, en parts, en montants exacts, calculées au centime près</li>
+        <li><b>Équilibrage</b> : le nombre minimal de virements pour remettre les comptes à zéro, enregistré d'un geste</li>
+        <li><b>Dépenses récurrentes</b> : loyer, énergie, abonnements ajoutés d'eux-mêmes chaque mois</li>
+        <li><b>Bilan du mois</b> : par catégorie, par personne, et l'évolution sur 6 mois</li>
+      </ul>
+      <p>Une seule clé pour tout le foyer : chacun l'ouvre sur son propre téléphone et voit les mêmes comptes.</p>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous les appareils du foyer</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/budget-commun" data-goatcounter-click="achat-budget-commun" data-goatcounter-title="Acheter : budget commun">Acheter</a>
+        <a class="btn" href="/templates/budget-commun/?demo" data-goatcounter-click="demo-budget-commun" data-goatcounter-title="Démo : budget commun">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-budget-commun-mois.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan du mois : qui a payé, part de chacun, dépenses par catégorie et graphique sur 6 mois (données fictives)"><figcaption>Bilan du mois et évolution sur 6 mois</figcaption></figure>
+    <figure><img src="/assets/templates-budget-commun-depenses.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Liste des dépenses du mois, avec la personne qui a payé et la règle de répartition (données fictives)"><figcaption>Dépenses filtrées par mois, personne et catégorie</figcaption></figure>
+    <figure><img src="/assets/templates-budget-commun-soldes.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Soldes de chaque personne et virement proposé pour équilibrer (données fictives)"><figcaption>Soldes et équilibrage en un virement</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment partager avec mon ou ma partenaire, ou mes colocataires ?</summary><p>Transmettez-leur la clé reçue après l'achat. Chacun ouvre <a href="/connexion/">qm-engineering.fr/connexion</a> sur son téléphone, colle la clé, et voit les mêmes dépenses. Si deux personnes enregistrent au même moment, les deux saisies sont réunies : aucune dépense n'est perdue. Attention : la clé donne un accès complet (ajouter, modifier, supprimer), ne la donnez qu'aux membres du foyer.</p></details>
+    <details><summary>Comment fonctionne la répartition au prorata des revenus ?</summary><p>Chacun indique son revenu mensuel (facultatif) ; chaque dépense « au prorata » est alors partagée en proportion. Par exemple, 1 000 € avec des revenus de 2 600 € et 1 900 € donnent 577,78 € et 422,22 €. Changer un revenu ne réécrit pas les dépenses passées.</p></details>
+    <details><summary>Combien de personnes peut-on être ?</summary><p>De 2 à 6 personnes, avec une seule clé pour tout le foyer.</p></details>
+    <details><summary>L'application se connecte-t-elle à ma banque ?</summary><p>Non. Vous notez vous-mêmes les dépenses communes ; aucun accès bancaire n'est demandé. Les soldes sont calculés à partir de vos saisies : vérifiez-les avant un virement. Ce n'est pas un conseil financier.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/budget-commun/?demo">la démo</a> ouvre un budget de couple avec des données fictives. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="revision">
+  <div class="section-head">
+    <h2>Planning de révision</h2>
+    <p>Pour les élèves, étudiants et candidats aux concours : chaque chapitre revient au bon moment (J+1, J+3, J+7, J+14, J+30), ajusté selon vos réponses et calé sur la date de l'examen.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" alt="Vue Aujourd'hui : chapitres à réviser, boutons difficile, moyen, facile, compte à rebours jusqu'à l'examen">
+      <img class="tel" src="/assets/templates-revision-tel.webp?v=20261112" width="780" height="1328" alt="Le planning sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Étudiants · examens</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Aujourd'hui</b> : les chapitres à revoir, retards compris, avec une méthode conseillée</li>
+        <li><b>Dates d'examen</b> : rien après l'examen, une révision finale 2 jours avant</li>
+        <li><b>12 formations préremplies</b> : brevet, bac, PASS, droit, prépas, concours, code de la route…</li>
+        <li><b>12 méthodes de révision</b> expliquées pas à pas</li>
+        <li><b>Bilan</b> : série de jours, taux de réussite, avancement par matière</li>
+      </ul>
+      <div class="prix"><b>14,90 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-revision" data-goatcounter-click="achat-revision" data-goatcounter-title="Acheter : planning de révision">Acheter</a>
+        <a class="btn" href="/templates/revision/?demo" data-goatcounter-click="demo-revision" data-goatcounter-title="Démo : planning de révision">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-revision-planning.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Planning sur 4 semaines, un carré par révision à la couleur de la matière"><figcaption>Planning sur 4 semaines, charge maximale par jour</figcaption></figure>
+    <figure><img src="/assets/templates-revision-bilan.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Bilan : série de jours, révisions de la semaine, taux de réussite, graphique sur 30 jours"><figcaption>Bilan de progression sur 30 jours</figcaption></figure>
+    <figure><img src="/assets/templates-revision-jour.webp?v=20261112" width="1600" height="1000" loading="lazy" alt="Révisions du jour avec compte à rebours de l'examen"><figcaption>Révisions du jour et prochain examen</figcaption></figure>
+  </div>
+</section>
+
 <section class="section" id="nutrition">
   <div class="section-head">
     <h2>Nutrition et dépense énergétique</h2>
@@ -476,6 +571,8 @@
     <details><summary>Est-ce un avis médical ?</summary><p>Non. C'est un outil de suivi, réservé aux adultes, qui ne remplace pas un médecin ou un diététicien. Il vous avertit si votre cible descend sous 1 000 kcal par jour, seuil sous lequel la Haute Autorité de santé indique que les régimes ne sont pas indiqués sauf cas exceptionnels et sous supervision médicale.</p></details>
   </div>
 </section>
+
+<!-- fin-perso -->
 
 <section class="section" id="fonctionnement">
   <div class="section-head">
