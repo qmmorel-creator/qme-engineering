@@ -18,7 +18,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 26 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 28 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -142,6 +142,19 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   Netlify Blobs à Francfort (magasin `secret-santa`), code personnel haché (scrypt), effacement de
   l'échange 60 jours après sa date (180 jours sans date). Page `catalogue/secret-santa/`, démo
   `/templates/secret-santa/?demo`.
+- `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
+  catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
+  (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
+  simulateur de revente frais déduits, analyse de possession, historique mensuel et comparaison, exports
+  CSV/JSON, rapport imprimable. Règles dans `calculs.js`, tests `outils/templates/patrimoine.test.mjs`.
+- `templates/temps-de-vie/` (TDV) : **temps de vie**, prêt, mise en vente prochaine (19 €). Conversion des
+  dépenses en temps de travail selon trois conventions (contractuel, réel avec trajet et frais
+  professionnels, annuel effectif), aucun barème fiscal, bibliothèque de dépenses extensible, bilan du mode
+  de vie, scénarios A/B/C, coût total de possession. Règles dans `calculs.js`, tests
+  `outils/templates/temps-de-vie.test.mjs`.
+  Ces deux templates ont une **découverte gratuite** sans clé (bouton « Essayer gratuitement » : 10 objets
+  ou 5 dépenses, données gardées dans le navigateur, analyses avancées verrouillées, reprise des données
+  après achat), en plus de la démo fictive. Limite appliquée côté client seulement.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 

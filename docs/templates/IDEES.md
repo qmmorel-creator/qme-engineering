@@ -146,6 +146,8 @@ déjà).
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
+| T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
+| T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -688,3 +690,34 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
+
+
+## Fiches T69 et T70 (cahiers des charges de Quentin, 13/11/2026)
+
+### T69 · Inventaire valorisé (`templates/patrimoine/`, préfixe PTM)
+- Promesse : « Si tu revendais tout ce que tu possèdes aujourd'hui, combien pourrais-tu récupérer ? »
+- Base intégrée : 15 catégories du cahier des charges, 80 sous-catégories, exemples d'objets **sans prix** ;
+  7 états ; 5 fréquences d'utilisation ; 8 familles de décote (perte 1re année, perte annuelle, plancher,
+  écart de revente, liquidité) ; multiplicateur par tranche de prix ; règles de revente facile.
+- Source des coefficients : **hypothèses QME**, ordres de grandeur prudents, sans cotation, site de vente ni
+  barème d'assureur ; tous modifiables (onglet Méthode). Aucune donnée qui se périme.
+- Trois valeurs distinctes : prix d'achat, valeur actuelle estimée, revente potentielle ; saisie manuelle
+  prioritaire. Simulateur (tous, catégorie, peu utilisés, jamais, seuil, nombre ; décote, négociation,
+  commission, frais fixes, expédition). Historique mensuel automatique + valorisations manuelles,
+  comparaison entre deux dates, projection 5 ans.
+- Découverte gratuite : 10 objets, 6 catégories, bilan, répartition, revente potentielle, partage texte/image.
+- Statut : prêt (testé, PR à ouvrir). Reste : fiche Gumroad, clé de licence, page en vente, communication.
+
+### T70 · Temps de vie (`templates/temps-de-vie/`, préfixe TDV)
+- Promesse : « Combien d'heures de ta vie dois-tu travailler pour payer ce que tu consommes ? »
+- Base intégrée : 5 profils, 3 conventions (contractuel ; réel avec trajet et frais professionnels ; annuel
+  effectif), 6 périodicités, bibliothèque de 7 catégories et 45 sous-catégories (cahier des charges),
+  extensible par l'utilisateur. **Aucun montant ni barème fiscal** ; valeurs par défaut du temps de travail
+  (35 h, 5 j, 12 mois, 25 j de congés, 8 j non travaillés) uniquement pour compléter un profil partiel,
+  signalées comme hypothèses.
+- Calculateur instantané (heures, jours, semaines, mois ; 1, 5, 10 ans si récurrent), dépenses récurrentes et
+  historique des achats (taux horaire du moment mémorisé), bilan du mode de vie, scénarios A/B/C (achat
+  unique amorti sur sa durée), coût total de possession comparé.
+- Partage sélectif : revenu jamais affiché sauf case cochée.
+- Découverte gratuite : profil, calculateur illimité, 5 dépenses, synthèse, partage.
+- Statut : prêt (testé, PR à ouvrir). Reste : fiche Gumroad, clé de licence, page en vente, communication.
