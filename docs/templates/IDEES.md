@@ -437,7 +437,8 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 
 LI-73 (T01) existait déjà. Textes : Google Docs du dossier du planning ; lien d'achat en premier
 commentaire. Les templates encore « prêt » portent la remarque : ne publier que si la fiche Gumroad est en
-ligne à la date prévue, sinon décaler.
+ligne à la date prévue, sinon décaler. LI-84 et LI-88 déplacées en semaine le 13/11/2026 (initialement
+sam. 05/12 et dim. 13/12 à 12:15 ; publics professionnels), à reporter dans le Google Sheet.
 
 | ID | Template | Date | Heure |
 |----|----------|------|-------|
@@ -451,11 +452,11 @@ ligne à la date prévue, sinon décaler.
 | LI-81 | T03 taches | 2026-11-29 | 12:15 |
 | LI-82 | T05 budget | 2026-12-01 | 12:15 |
 | LI-83 | T24 visa | 2026-12-03 | 08:30 |
-| LI-84 | T25 non-conformites | 2026-12-05 | 12:15 |
+| LI-84 | T25 non-conformites | 2026-12-04 | 08:30 |
 | LI-85 | T28 crm | 2026-12-07 | 12:15 |
 | LI-86 | T29 flotte | 2026-12-09 | 08:30 |
 | LI-87 | T30 planner | 2026-12-11 | 12:15 |
-| LI-88 | T32 reserves | 2026-12-13 | 12:15 |
+| LI-88 | T32 reserves | 2026-12-10 | 08:30 |
 | LI-89 | T35 prospection | 2026-12-15 | 08:30 |
 | LI-90 | T36 devis | 2026-12-17 | 08:30 |
 | LI-91 | T42 tresorerie | 2026-12-19 | 08:30 |
