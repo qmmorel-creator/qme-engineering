@@ -63,7 +63,7 @@ en lecture seule) reste à concevoir (IDEES.md, remarque générale sur l'usage 
   date du mariage décale tout le rétroplanning d'un coup (les dates fixes ne bougent pas).
 - **Statut** à une date de référence : `fait` (date de réalisation enregistrée), `retard` (échéance
   passée), `semaine` (échéance dans les 7 jours), `avenir`.
-- **Période** : tranche de jours avant le mariage (≥ 270, ≥ 180, ≥ 90, ≥ 30, ≥ 7, ≥ 1, 0 et après).
+- **Période** : tranche de jours avant le mariage (≥ 270, ≥ 180, ≥ 90, ≥ 30, ≥ 8, ≥ 1, 0 et après).
 - **Budget par poste** : prévu (saisi) ; engagé = somme des devis des prestataires **réservés** du poste ;
   payé = somme des paiements marqués payés (tous statuts) ; reste à payer = max(engagé, payé) − payé ;
   écart = engagé − prévu (dépassement si > 0 et prévu > 0). Totaux tous postes ; « non affecté » =

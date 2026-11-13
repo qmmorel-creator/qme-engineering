@@ -20,7 +20,7 @@ window.BASE = {
     { min: 180, nom: '9 à 6 mois avant' },
     { min: 90, nom: '6 à 3 mois avant' },
     { min: 30, nom: '3 à 1 mois avant' },
-    { min: 7, nom: 'Le dernier mois' },
+    { min: 8, nom: 'Le dernier mois' },
     { min: 1, nom: 'La dernière semaine' },
     { min: 0, nom: 'Le jour J' },
     { min: -Infinity, nom: 'Après le mariage' },

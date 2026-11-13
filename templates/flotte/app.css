@@ -1,4 +1,4 @@
-/* Levée de réserves · charte QME Bauhaus : papier, encre, aplats rouge / jaune / bleu,
+/* Gestion de flotte · charte QME Bauhaus : papier, encre, aplats rouge / jaune / bleu,
    Outfit, angles droits, cadres de 2 px, ombres pleines décalées. */
 :root{
   --papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;
@@ -312,7 +312,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 
-/* ============ Levée de réserves ============ */
+/* ============ Composants communs (repris de la levée de réserves) ============ */
 .impression{display:none}
 .grille-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .grille-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -557,3 +557,109 @@ button.tuile[aria-pressed="true"]{box-shadow:5px 5px 0 var(--c);transform:transl
   .ligne-retard{grid-template-columns:48px minmax(0,1fr);padding:10px}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.carte h3{font-size:19px}}
+
+/* ============ Gestion de flotte ============ */
+.plaque{display:inline-block;font-weight:800;font-size:14px;letter-spacing:.06em;padding:3px 8px;border:2px solid var(--encre);background:#fff;color:var(--encre);white-space:nowrap;line-height:1.2}
+.plaque.grande{font-size:clamp(20px,3vw,30px);padding:2px 10px;vertical-align:middle;margin-right:6px}
+.fil{margin:-12px 0 8px}
+.fiche-tete h1{overflow-wrap:anywhere}
+.flotte{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.vh{display:flex;flex-direction:column;border:2px solid var(--encre);background:var(--surface);border-top:10px solid var(--c)}
+.vh.inactif{opacity:.7}
+.vh-tete{display:flex;align-items:center;gap:12px;padding:14px 16px;border:0;border-bottom:2px solid var(--encre);background:none;text-align:left;width:100%}
+.vh-tete:hover{background:#F6F1E3}
+.vh-nom{display:flex;flex-direction:column;min-width:0}
+.vh-nom b{font-size:18px;overflow-wrap:anywhere;line-height:1.2}
+.vh-nom small{font-size:13px;color:var(--discret)}
+.vh-chiffres{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--encre)}
+.vh-chiffres div{padding:10px 16px}
+.vh-chiffres div+div{border-left:2px solid var(--encre)}
+.vh-chiffres b{display:block;font-size:22px;font-weight:800;line-height:1.1}
+.vh-chiffres span{font-size:12px;color:var(--discret);font-weight:600}
+.vh-ech{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:12px 16px;font-size:14px;flex:1}
+.vh-actions{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--encre)}
+.vh-actions button{min-height:48px;border:0;background:var(--surface);font-weight:700;font-size:14px;padding:4px}
+.vh-actions button+button{border-left:2px solid var(--encre)}
+.vh-actions button:hover{background:var(--jaune)}
+.bloc-ech{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border:2px solid var(--encre);background:var(--surface)}
+.liste-ech{display:grid;gap:8px;font-size:15px}
+.liste-ech li{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.tableau.plan td{vertical-align:top}
+.tableau td small{display:block}
+.tableau.plan td b{font-weight:600}
+.tableau tr.total td{font-weight:800;border-top:2px solid var(--encre)}
+.rang-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lld{border:2px solid var(--encre);background:var(--surface);padding:16px}
+.lld-barre{position:relative;display:flex;height:26px;background:var(--trait);border:2px solid var(--encre);margin:6px 0 14px}
+.lld-barre i{display:block;height:100%}
+.lld-barre .fait{background:var(--bleu)}
+.lld-barre .projete{background:repeating-linear-gradient(45deg,var(--jaune) 0 6px,#F9D97A 6px 12px)}
+.lld-barre .projete.trop{background:repeating-linear-gradient(45deg,var(--rouge) 0 6px,#E8817C 6px 12px)}
+.lld-barre .repere{position:absolute;top:-8px;bottom:-8px;width:3px;background:var(--encre);transform:translateX(-50%)}
+.lld-chiffres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin:0}
+.lld-chiffres dt{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret)}
+.lld-chiffres dd{margin:0;font-weight:700;font-size:16px}
+.lld-chiffres dd small{font-weight:500;color:var(--discret)}
+.lld-chiffres dd.alerte,.lld-chiffres em{color:var(--rouge);font-style:normal}
+.ligne-hist{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:baseline;width:100%;padding:10px 14px;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;font-size:14px}
+.ligne-hist:last-child{border-bottom:0}
+.ligne-hist:hover{background:#F6F1E3}
+.ligne-hist .date{font-weight:700;color:var(--texte-2)}
+.ligne-hist b{font-weight:700}
+.ligne-hist .nb{font-weight:700;white-space:nowrap}
+.semaine-nav{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.semaine-nav b{font-size:17px}
+.planning{width:100%;min-width:900px;border-collapse:collapse;border:2px solid var(--encre);background:var(--surface);table-layout:fixed}
+.planning th,.planning td{border:1px solid var(--trait);padding:6px;vertical-align:top;text-align:left}
+.planning thead th{background:var(--encre);color:var(--papier);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.planning thead th:first-child,.planning tbody th{width:170px}
+.planning thead th.auj{background:var(--rouge)}
+.planning td.auj{background:#FBF3DA}
+.planning td.passe{background:#ECE9E1}
+.lien-v{display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:0;background:none;padding:0;text-align:left}
+.lien-v small{font-size:12px;color:var(--discret);font-weight:500}
+.lien-v:hover .plaque{background:var(--jaune)}
+.resa{display:flex;flex-direction:column;width:100%;margin-bottom:4px;padding:4px 6px;border:2px solid var(--encre);background:var(--bleu);color:#fff;text-align:left;font-size:12px;line-height:1.25}
+.resa b{font-weight:700}
+.resa span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.resa:hover{background:var(--encre)}
+.libre{display:block;width:100%;min-height:30px;border:2px dashed var(--trait);background:none;color:var(--discret);font-weight:700}
+.libre:hover{border-color:var(--encre);background:var(--jaune);color:var(--encre)}
+.planning-petit{display:none}
+.jour-mobile{margin-bottom:14px}
+.jour-mobile h3{font-size:16px;margin-bottom:6px;text-transform:capitalize}
+.jour-mobile.auj h3{color:var(--rouge)}
+.jour-mobile .ligne-retard{border:2px solid var(--encre);border-bottom-width:0;background:var(--surface)}
+.jour-mobile .ligne-retard:last-of-type{border-bottom-width:2px}
+.ligne-retard .etiquette{white-space:nowrap;padding:3px 4px}
+.ent.ajout{border-style:dashed;align-items:flex-start}
+.ent.ajout svg{margin-bottom:2px}
+.carte.inc{grid-template-columns:8px minmax(0,1fr) 170px}
+.carte.inc h3{font-size:19px;line-height:1.2}
+.carte.inc.soldee{background:#F5F3EC}
+.motif.bleu{border-left-color:var(--bleu);background:#E8EEF5}
+.aide.rgpd{border-left-color:var(--rouge)}
+.plan-edit{display:grid;gap:6px}
+.plan-ligne{display:grid;grid-template-columns:minmax(0,1fr) 96px 76px;gap:6px}
+.plan-ligne input{min-height:44px;padding:8px;border:2px solid var(--encre);background:var(--surface);font-size:15px;width:100%;min-width:0}
+.plan-ligne.entete span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+.groupe h3 small{font-weight:500;color:var(--discret);font-size:13px}
+.tableau.couts{min-width:820px}
+.tableau.couts td{white-space:nowrap}
+.legal li a{font-weight:700}
+@media (max-width:1020px){
+  .lld-chiffres{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .flotte{grid-template-columns:1fr}
+  .planning-grand{display:none}
+  .planning-petit{display:block}
+  .carte.inc{grid-template-columns:8px minmax(0,1fr)}
+  .ligne-hist{grid-template-columns:84px minmax(0,1fr);gap:4px 10px}
+  .ligne-hist .nb{grid-column:2}
+  .lld-chiffres{grid-template-columns:1fr 1fr}
+  .barre .btn-icone{width:40px;height:40px}
+  .tableau.plan{font-size:14px}
+  .tableau.plan th,.tableau.plan td{padding:8px}
+  .vh-actions button{font-size:13px}
+}

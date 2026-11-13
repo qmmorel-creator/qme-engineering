@@ -1,13 +1,15 @@
-// Service worker de la levée de réserves : garde l'interface disponible hors ligne.
+// Service worker de la gestion de flotte : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
-const VERSION = 'reserves-20261113';
+const VERSION = 'flotte-20261113';
 const COQUILLE = ['./', 'app.css?v=20261113', 'donnees.js?v=20261113', 'regles.js?v=20261113', 'app.js?v=20261113', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
 });
+// Ne supprime que les anciennes versions de CE template (les autres templates du domaine gardent leur cache).
+const famille = (k) => k.slice(0, k.lastIndexOf('-'));
 self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((cles) => Promise.all(cles.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then((cles) => Promise.all(cles.filter((k) => k !== VERSION && famille(k) === famille(VERSION)).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);

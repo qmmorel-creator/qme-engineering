@@ -64,6 +64,9 @@
   <a href="#budget-commun"><b>Budget commun</b><span>15 €</span></a>
   <a href="#cout-revient"><b>Coût de revient et prix par client</b><span>25 €</span></a>
   <a href="#micro-entreprise"><b>Livre recettes-dépenses</b><span>25 €</span></a>
+  <a href="#gantt"><b>Planning Gantt rapide</b><span>45 €</span></a>
+  <a href="#taches"><b>Gestionnaire de tâches</b><span>19 €</span></a>
+  <a href="#budget"><b>Budget du foyer</b><span>15 €</span></a>
 </nav>
 
 <section class="section" id="revision">
@@ -305,6 +308,132 @@
     <details><summary>Mon activité est mixte (vente et services) : est-ce géré ?</summary><p>Oui. Chaque recette porte sa catégorie (vente de marchandises, prestations de services BIC, prestations libérales BNC) ; les cotisations et les seuils sont calculés pour chacune, et pour le total quand c'est le cas.</p></details>
     <details><summary>Puis-je donner le fichier à mon comptable ?</summary><p>Oui : l'export CSV (séparateur point-virgule, accents conservés) s'ouvre dans Excel, LibreOffice ou Google Sheets. Le livre des recettes et le registre des achats s'impriment aussi en PDF depuis le navigateur.</p></details>
     <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/micro-entreprise/?demo">la démo</a> ouvre le livre d'un atelier fictif avec une année d'écritures. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="gantt">
+  <div class="section-head">
+    <h2>Planning Gantt rapide</h2>
+    <p>Pour les artisans, PME, chefs de projet, bureaux d'études et particuliers en travaux : un planning qui se tape en une ligne par tâche, avec les liens, les jours fériés, l'avancement et le chemin critique calculés pour vous. Plus léger qu'un logiciel de planification, plus juste qu'un tableur.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" alt="Gantt d'une rénovation de cuisine : tableau des tâches à gauche, barres, liens, chemin critique en rouge, jalon à plage et ligne d'aujourd'hui (données fictives)">
+      <img class="tel" src="../assets/templates-gantt-tel.webp?v=20261113" width="780" height="1328" alt="Le Gantt sur téléphone, colonne des tâches et barres synchronisées">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Gestion de projet · chantiers</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Saisie en une ligne</b> : « Pose des meubles 12/12 3j après 7 » crée la tâche, sa barre et son lien</li>
+        <li><b>Liens complets</b> : fin → début, début → début, fin → fin, début → fin, avec décalage ; les tâches suivantes se décalent seules</li>
+        <li><b>Jours ouvrés</b> : week-ends et jours fériés français calculés chaque année (option Alsace-Moselle)</li>
+        <li><b>Chemin critique</b> : dates au plus tôt et au plus tard, marges totale et libre, tâches critiques en rouge</li>
+        <li><b>Suivi</b> : avancement réel face à l'attendu, retards, écart avec le planning de référence, jalons à plage, impression A4 ou A3 paysage</li>
+      </ul>
+      <div class="prix"><b>45 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-gantt" data-goatcounter-click="achat-gantt" data-goatcounter-title="Acheter : planning Gantt rapide">Acheter</a>
+        <a class="btn" href="/templates/gantt/?demo" data-goatcounter-click="demo-gantt" data-goatcounter-title="Démo : planning Gantt rapide">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="../assets/templates-gantt-critique.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Chemin critique : fin du planning, durée, tâches critiques et tableau des dates au plus tôt et au plus tard avec les marges"><figcaption>Chemin critique et marges de chaque tâche</figcaption></figure>
+    <figure><img src="../assets/templates-gantt-suivi.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Suivi : avancement réel et attendu, tâches en retard, écart avec la référence, jalon hors plage"><figcaption>Suivi de l'avancement et des retards</figcaption></figure>
+    <figure><img src="../assets/templates-gantt-gantt.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Gantt avec sections repliables, référence grisée sous les barres et jours fériés hachurés"><figcaption>Tableau et Gantt synchronisés</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:28px">
+    <details><summary>Comment fonctionne la saisie en une ligne ?</summary><p>Vous tapez le nom de la tâche suivi, dans n'importe quel ordre, d'une date (12/12), d'une durée (5j, 2 sem), d'un avancement (40%) et de ses prédécesseurs (après 3, 5DD+2). « jalon » ou « 0j » crée un jalon, « plage 10/12-18/12 » une fenêtre de dates, et une ligne « _Lot_2 » ouvre une section. Vous pouvez coller plusieurs lignes d'un coup ; tout reste modifiable dans le tableau.</p></details>
+    <details><summary>Les jours fériés sont-ils à jour chaque année ?</summary><p>Oui, ils sont calculés et non recopiés : les 11 jours fériés du Code du travail, avec Pâques, l'Ascension et la Pentecôte recalculées pour chaque année, et en option le Vendredi saint et le 26 décembre d'Alsace-Moselle. Les ponts, fermetures et vacances scolaires s'ajoutent en périodes.</p></details>
+    <details><summary>Qu'est-ce que le chemin critique ?</summary><p>C'est la suite de tâches sans marge : un jour de retard sur l'une d'elles décale la fin du projet. L'outil calcule pour chaque tâche ses dates au plus tôt et au plus tard, sa marge totale (retard possible sans décaler la fin) et sa marge libre (sans gêner la tâche suivante).</p></details>
+    <details><summary>Puis-je imprimer ou envoyer le planning ?</summary><p>Oui : impression en A4 ou A3 paysage, tout le planning tenant dans la largeur de la page (et enregistrement en PDF depuis la fenêtre d'impression), ou téléchargement d'une image PNG. Les personnes à qui vous l'envoyez n'ont pas besoin d'accès.</p></details>
+    <details><summary>Remplace-t-il un logiciel de planification professionnel ?</summary><p>Il couvre l'essentiel d'un planning de projet : liens, calendrier, chemin critique, référence et suivi. Il ne gère pas les ressources, les coûts ni le travail à plusieurs en même temps : il vise la personne qui tient le planning.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/gantt/?demo">la démo</a> ouvre quatre plannings fictifs (cuisine, site web, salon, déménagement). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+
+<section class="section" id="taches">
+  <div class="section-head">
+    <h2>Gestionnaire de tâches</h2>
+    <p>Pour les indépendants, cadres et étudiants qui ont abandonné une application de tâches trop chargée ou à abonnement : tout ce qui vous passe par la tête va dans une boîte de réception, vous le triez en urgent / important, et chaque matin vous ne gardez que les 3 à 5 tâches qui comptent.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" alt="Vue Aujourd'hui : quatre tâches au focus du jour, temps prévu face au temps disponible et carte de clôture du soir (données fictives)">
+      <img class="tel" src="../assets/templates-taches-tel.webp?v=20261113" width="780" height="1328" alt="Le focus du jour sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Organisation · productivité</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Saisie rapide en français</b> : « Appeler la banque demain 14h !haute #Perso 30min » donne date, heure, criticité, projet et durée</li>
+        <li><b>Boîte de réception et triage</b> urgent / important (matrice d'Eisenhower), tâche par tâche</li>
+        <li><b>Rituel du matin</b> pour choisir le focus du jour, <b>clôture du soir</b> pour reporter, archiver et faire le bilan</li>
+        <li><b>Répétitions fiables</b> : fin de mois, dernier jour ouvré, jours fériés français pris en compte</li>
+        <li><b>Vues Liste, Kanban, Matrice et Semaine</b>, projets en dossiers, 5 modèles de projets prêts, archive restaurable</li>
+      </ul>
+      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/gestionnaire-taches" data-goatcounter-click="achat-taches" data-goatcounter-title="Acheter : gestionnaire de tâches">Acheter</a>
+        <a class="btn" href="/templates/taches/?demo" data-goatcounter-click="demo-taches" data-goatcounter-title="Démo : gestionnaire de tâches">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="../assets/templates-taches-triage.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Triage d'un élément de la boîte de réception : quatre choix urgent / important, projet, échéance, criticité"><figcaption>Triage de la boîte de réception</figcaption></figure>
+    <figure><img src="../assets/templates-taches-semaine.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Semaine en sept colonnes : tâches par jour, jour férié signalé, charge prévue face au temps disponible"><figcaption>La semaine et sa charge, jour par jour</figcaption></figure>
+    <figure><img src="../assets/templates-taches-aujourdhui.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Focus du jour et tâches en retard"><figcaption>Focus du jour</figcaption></figure>
+  </div>
+  <div class="faq">
+    <details><summary>Qu'est-ce que la saisie rapide comprend ?</summary><p>Des dates (aujourd'hui, demain, lundi, jeudi en huit, dans 3 jours, le 15, 24/12, 3 mars, fin du mois), des heures (14h, 9h30), des durées (30min, 1h30), la criticité (!haute, !critique), le projet (#Perso) et des répétitions (chaque lundi, chaque jour ouvré, tous les mois le 5, chaque fin de mois). Ce qui est reconnu s'affiche pendant la frappe.</p></details>
+    <details><summary>Comment fonctionnent les répétitions ?</summary><p>À chaque tâche faite, la suivante est créée à la bonne date : « le 31 » tombe le 30 ou le 28 les mois plus courts, sans décaler les mois suivants ; une date peut être avancée ou reculée au jour ouvré le plus proche ; « dernier jour ouvré du mois » saute week-ends et jours fériés (France métropolitaine, option Alsace-Moselle).</p></details>
+    <details><summary>Est-ce adapté au travail en équipe ?</summary><p>Non, et c'est voulu : c'est un outil personnel, sans comptes multiples ni attribution de tâches. La clé ouvre vos tâches sur tous vos appareils.</p></details>
+    <details><summary>Puis-je importer mes tâches d'une autre application ?</summary><p>Pas d'import automatique. La saisie rapide permet de recopier une liste en quelques minutes, et les réglages proposent l'export et la restauration d'une copie complète (fichier JSON).</p></details>
+    <details><summary>Où sont enregistrées mes données ?</summary><p>En ligne, associées à votre clé, avec une copie dans le navigateur pour continuer hors connexion ; les modifications partent au retour du réseau. Vous pouvez télécharger une copie depuis les réglages.</p></details>
+    <details><summary>Est-ce un abonnement ?</summary><p>Non : un achat unique, sans renouvellement. <a href="/templates/taches/?demo">La démo</a> s'ouvre avec des données d'exemple, sans inscription.</p></details>
+  </div>
+</section>
+
+<section class="section" id="budget">
+  <div class="section-head">
+    <h2>Budget du foyer</h2>
+    <p>Pour les particuliers, couples et familles qui veulent savoir où part leur argent : vos revenus répartis en enveloppes, vos dépenses comparées au prévu, et un diagramme qui montre chaque mois le trajet de l'argent, du salaire jusqu'aux courses.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="../assets/templates-budget-mois.webp?v=20261113" width="1600" height="1000" alt="Tableau de bord du mois : reste dans les enveloppes, revenus, dépenses, épargne et solde du mois (données fictives)">
+      <img class="tel" src="../assets/templates-budget-tel.webp?v=20261113" width="780" height="1328" alt="Le diagramme des flux du mois sur téléphone">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Particuliers · foyers</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Enveloppes</b> par catégorie, avec report du reste d'un mois sur l'autre (vacances, cadeaux, impôts)</li>
+        <li><b>Prévu et réel</b> : écart au budget par catégorie et sous-catégorie, enveloppes dépassées signalées</li>
+        <li><b>Diagramme des flux</b> : revenus → besoins, envies, épargne → catégories, lisible sur téléphone</li>
+        <li><b>22 catégories et 75 sous-catégories</b> prêtes, 4 modèles de foyer, repère 50/30/20</li>
+        <li><b>Opérations fixes</b> (loyer, abonnements, salaire) ajoutées en un geste chaque mois, bilan sur 12 mois</li>
+      </ul>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/budget-foyer" data-goatcounter-click="achat-budget" data-goatcounter-title="Acheter : budget du foyer">Acheter</a>
+        <a class="btn" href="/templates/budget/?demo" data-goatcounter-click="demo-budget" data-goatcounter-title="Démo : budget du foyer">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="../assets/templates-budget-flux.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Diagramme des flux : trois sources de revenus vers besoins, envies, épargne et non dépensé, puis vers chaque catégorie"><figcaption>Où va l'argent, mois par mois</figcaption></figure>
+    <figure><img src="../assets/templates-budget-enveloppes.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Enveloppes par groupe : reste à affecter, jauges dépensé sur prévu, enveloppe dépassée et presque vide"><figcaption>Enveloppes, reports et reste à affecter</figcaption></figure>
+    <figure><img src="../assets/templates-budget-mois.webp?v=20261113" width="1600" height="1000" loading="lazy" alt="Tableau de bord : ce qui reste dans les enveloppes et par jour jusqu'à la fin du mois"><figcaption>Tableau de bord du mois</figcaption></figure>
+  </div>
+  <div class="faq">
+    <details><summary>Faut-il connecter mon compte bancaire ?</summary><p>Non. Vous saisissez vous-même vos dépenses et vos revenus (les opérations fixes s'ajoutent en un geste). Aucune donnée bancaire n'est demandée ni partagée.</p></details>
+    <details><summary>Comment fonctionnent les enveloppes ?</summary><p>Chaque catégorie reçoit un montant par mois. Si vous activez le report, ce qui reste s'ajoute au mois suivant et un dépassement s'en retire : pratique pour les vacances, les cadeaux ou la taxe foncière. Un montant peut aussi être changé pour un seul mois.</p></details>
+    <details><summary>Qu'est-ce que la règle 50/30/20 ?</summary><p>Un repère courant : environ 50 % des revenus pour les besoins, 30 % pour les envies, 20 % pour l'épargne. Le template l'affiche comme point de comparaison, pas comme une règle ; vous choisissez le groupe de chaque catégorie.</p></details>
+    <details><summary>Quelle différence avec le Budget commun ?</summary><p>Le Budget commun répartit des dépenses entre plusieurs personnes (qui doit combien à qui). Le Budget du foyer suit le budget d'un foyer entier : revenus, enveloppes, prévu et réel. Toute la famille peut l'ouvrir avec la même clé.</p></details>
+    <details><summary>Où sont enregistrées mes données ?</summary><p>En ligne, associées à votre clé, avec une copie dans le navigateur pour continuer hors connexion. Vous pouvez télécharger une copie depuis les réglages. La clé donne un accès complet : ne la partagez qu'avec votre foyer.</p></details>
+    <details><summary>Est-ce un conseil financier ?</summary><p>Non : c'est un outil de suivi. Les montants sont ceux que vous saisissez ; il ne remplace pas un conseil financier, bancaire ou fiscal.</p></details>
   </div>
 </section>
 
