@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad } from '../../netlify/lib/templates-acces.mjs';
+import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
 const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
@@ -105,4 +105,16 @@ test('réponses Gumroad interprétées', async () => {
 
 test('appel réel à Gumroad avec une clé inventée : refusée', { skip: !process.env.TEST_GUMROAD }, async () => {
   assert.deepEqual(await verifierLicenceGumroad('zjO4cm1dUdBGh1IfYqmklw==', LICENCE), { ok: false, raison: 'inconnue' });
+});
+
+test('licence d\'un autre produit : routée vers ce produit, même si Gumroad échoue pour un autre', async () => {
+  const s = memoire();
+  const pour = (cible, panne) => async (idGumroad) => {
+    if (idGumroad === panne) throw new Error('réseau');
+    return idGumroad === cible ? { ok: true } : { ok: false, raison: 'inconnue' };
+  };
+  const r = await (await appelLicence(s, pour(PRODUITS.BCM.gumroad, PRODUITS.REV.gumroad))).json();
+  assert.equal(r.produit, 'BCM');
+  assert.equal(r.url, '/templates/budget-commun/');
+  assert.equal(r.jeton, codeDepuisLicence(SECRET, 'BCM', LICENCE));
 });
