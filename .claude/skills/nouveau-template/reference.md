@@ -28,6 +28,9 @@ outils/templates/          tests, serveur local, génération de codes
 - **API** : `POST /api/templates/connexion {code}` → `{produit, url, jeton, donnees}` ;
   `GET|PUT /api/templates/donnees` avec l'en-tête `x-code: <jeton>` ; `PUT {donnees, base}` renvoie 409
   avec la version du serveur si un autre appareil a écrit depuis `base`.
+- **Code administrateur** `ADM-…` (Quentin) : la connexion envoie `{ code, produit: PRODUIT }` ; le
+  serveur ouvre l'espace personnel de Quentin pour ce template. Tout nouveau template garde ce `produit`
+  dans ses deux appels à `/connexion`.
 - **Client** : `session.code` = ce que l'acheteur a saisi (stocké, re-vérifié à chaque ouverture) ;
   `session.jeton` = code interne pour les données. Stockage local : `qme-<pre>-code` (local ou session
   selon « Rester connecté »), `qme-<pre>-cache` (état + jeton + `nonEnvoye`), `qme-<pre>-demo`.
