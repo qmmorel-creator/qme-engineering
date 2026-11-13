@@ -13,9 +13,8 @@ temps, étoile qui s'allume sur le coup de cymbale (38,8 s), « Joyeux Noël de 
 musical ; fondu. Neige en trois couches et grands flocons géométriques. Participants fictifs.
 
 **Musique** : « Christmas is coming » (Long Version), Alex-Productions, 2023, fichier fourni par Quentin
-(chosic.com). Licence **à confirmer** sur la page du morceau ; les titres d'Alex-Productions diffusés par
-chosic.com sont en général sous Creative Commons **CC BY 3.0** (usage commercial permis, crédit
-obligatoire). Crédit affiché à la fin de la vidéo et à mettre dans chaque légende :
+(chosic.com). Musique libre de droits, confirmé par Quentin le 13/11/2026 ; crédit conservé (licence CC BY habituelle
+chez chosic.com). Crédit affiché à la fin de la vidéo et à mettre dans chaque légende :
 « Musique : Christmas is coming par Alex-Productions | onsound.eu | Music promoted by chosic.com | CC BY 3.0 ».
 
 ## Régénérer

@@ -1,5 +1,7 @@
 # Publication LinkedIn · Secret Santa
 
+**Validée par Quentin le 13/11/2026** (texte et vidéo), LinkedIn et Instagram, publication le 01/12/2026.
+
 Prévue le **mardi 1er décembre 2026 à 12:15** (Google Sheet « Planning publications LinkedIn », LI-98 ;
 LI-82 Budget du foyer décalée au lundi 21 décembre, décision de Quentin du 13/11/2026). À ne publier que si
 la fiche Gumroad est en ligne avec la clé de licence activée ; sinon, publier quand même avec la démo seule
@@ -11,7 +13,7 @@ et retirer le premier commentaire. Relue et ajustée par Quentin avant publicati
 
 **Média : vidéo uniquement, aucune image** (décision de Quentin, 13/11/2026) : `assets/secret-santa-noel.mp4`,
 motion design de Noël de 46 s, 1080 × 1920, musique « Christmas is coming » d'Alex-Productions (chosic.com,
-CC BY 3.0 à confirmer : crédit obligatoire, voir fin du texte).
+libre de droits, confirmé par Quentin le 13/11 ; crédit conservé en fin de texte).
 Même vidéo pour Instagram (IG-36, 01/12 à 18:30). Sources et régénération : `video/LISEZMOI.md`.
 Texte alternatif : « Animation de Noël : création d'un échange de Secret Santa, partage du lien, tirage
 secret que même l'organisateur ne voit pas, découverte du tirage sur la page de chacun ; Joyeux Noël de la
