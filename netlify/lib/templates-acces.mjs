@@ -50,6 +50,7 @@ export const PRODUITS = {
   FTB: { nom: 'FêteBudget', url: '/templates/fete-budget/' },
   JDS: { nom: 'Ludothèque', url: '/templates/ludotheque/' },
   TRN: { nom: 'TournoiFacile', url: '/templates/tournoi/' },
+  CVM: { nom: 'CaveManager', url: '/templates/cave/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

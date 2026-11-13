@@ -1,0 +1,29 @@
+/* CaveManager · composants propres (le socle commun est dans ../commun/socle.css). */
+.ligne-vin{border-left:6px solid var(--trait)}
+.ligne-vin.cat-rouge{border-left-color:#8E2F3C}
+.ligne-vin.cat-blanc{border-left-color:#E8B93A}
+.ligne-vin.cat-rose{border-left-color:#E58C74}
+.ligne-vin.cat-effervescent{border-left-color:#2E5A88}
+.ligne-vin.cat-liquoreux{border-left-color:#B8862E}
+.ligne-vin.cat-mute{border-left-color:#6B3F2A}
+.ligne-vin.epuise{background:var(--sable)}
+.ligne-vin.epuise .ligne-info b{color:var(--texte-2)}
+.stock{text-align:right}
+.stock b{font-size:22px;display:block;line-height:1}
+.stock small{font-size:12px;color:var(--discret)}
+.ligne-vin .ligne-droite{gap:8px}
+.criteres-vin{margin-bottom:12px}
+.suggestions-vin{display:grid;gap:8px}
+.suggestions-vin li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:12px 14px}
+.suggestions-vin .rang{width:36px;height:36px;border-radius:50%;background:var(--rose);color:var(--rose-texte);display:flex;align-items:center;justify-content:center;font-weight:800}
+.raisons{font-size:13px;color:var(--texte-2);margin-top:4px}
+.mvt-entree{border-left:6px solid var(--vert)}
+.mvt-sortie{border-left:6px solid #8E2F3C}
+.historique{display:grid;gap:4px;font-size:14px;max-height:180px;overflow:auto;border:1px solid var(--trait);border-radius:12px;padding:8px 12px;background:var(--surface)}
+.sous-titre{font-size:16px;margin-top:6px}
+#form-garde input{max-width:90px}
+@media (max-width:720px){
+  .suggestions-vin li{grid-template-columns:auto minmax(0,1fr)}
+  .suggestions-vin li>.btn{grid-column:2;justify-self:start}
+  .stock{text-align:left}
+}
