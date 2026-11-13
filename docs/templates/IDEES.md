@@ -8,7 +8,9 @@ Non publié sur le site (chemin bloqué dans `netlify.toml`).
 
 Sources fusionnées ici : la liste initiale (T01–T22, 12/11/2026), les idées tirées des documents de
 travail de Quentin (T23–T29, 12/11/2026) et le backlog de Quentin « 50 outils prêts à l'emploi à vendre
-sur Gumroad » (n° 01–50, 12/11/2026 ; T30 et suivants, sauf fusions). Chaque ligne indique son origine.
+sur Gumroad » (n° 01–50, 12/11/2026 ; T30 et suivants, sauf fusions), puis son extension tirée des
+documents et des publications LinkedIn de Quentin (n° 51–94, 12/11/2026 ; T68 et suivants, sauf fusions
+et idées écartées). Chaque ligne indique son origine.
 
 **Décision de Quentin (12/11/2026)** : le nom et le prix du tableau de bord valent accord ; les fiches
 Gumroad peuvent être créées et publiées sans validation intermédiaire. Restent à Quentin : l'activation de
@@ -88,13 +90,13 @@ déjà).
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Planning d'entretien de la maison | Maison | Familles, propriétaires, locataires | idée | 15 € | M | P1 | Liste initiale 12/11/2026 + Quentin 13/11/2026 (agenda d'entretien 2026) |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | idée | 8 € | S | P2 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | idée | 10 € | S | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 86 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | prêt | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 8 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 88 |
+| T17 | Carnet de films, séries et livres | Loisirs | Lecteurs, cinéphiles, amateurs de séries | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Quentin 13/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
@@ -145,6 +147,38 @@ déjà).
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
+| T68 | Calendrier éditorial LinkedIn 52 semaines | Marketing | Indépendants, dirigeants | idée | 19 € | S | P1 | Backlog Quentin n° 51 |
+| T69 | Prévisionnel financier 3 ans | Création d'entreprise | Créateurs, porteurs de projet | idée | 39 € | M | P1 | Backlog Quentin n° 53 |
+| T70 | Calcul des besoins et point de commande | Industrie / logistique | Ateliers, PME industrielles | idée | 35 € | M | P1 | Backlog Quentin n° 54 |
+| T71 | Gestion des péremptions (premier périmé, premier sorti) | Logistique | Commerces alimentaires, cuisines, officines | idée | 25 € | S | P2 | Backlog Quentin n° 55 |
+| T72 | Traçabilité par lot et rappel produit | Qualité | Fabricants, artisans alimentaires | idée | 35 € | M | P2 | Backlog Quentin n° 56 |
+| T73 | Calcul du TRS d'une ligne | Industrie | Responsables de production | idée | 35 € | M | P2 | Backlog Quentin n° 57 |
+| T74 | Charge contre capacité atelier | Industrie | Chefs d'atelier | idée | 35 € | M | P2 | Backlog Quentin n° 58 |
+| T75 | Séquencement des changements de série | Industrie | Planificateurs | idée | 39 € | L | P3 | Backlog Quentin n° 59 |
+| T76 | Préparation de commandes par vagues | Logistique / e-commerce | E-commerçants, petits entrepôts | idée | 29 € | M | P2 | Backlog Quentin n° 60 |
+| T77 | Suivi d'étalonnage des instruments | Qualité | Laboratoires, ateliers, maintenance | idée | 29 € | S | P2 | Backlog Quentin n° 61 |
+| T78 | Dossiers SAV et retours | Service client | E-commerçants, fabricants | idée | 29 € | M | P2 | Backlog Quentin n° 62 |
+| T79 | Chiffreur de réparation | Atelier | Réparateurs (vélo, électroménager, informatique) | idée | 19 € | S | P2 | Backlog Quentin n° 63 |
+| T80 | Suivi des instances et comités | Gouvernance | Directions, associations, copropriétés | idée | 19 € | S | P3 | Backlog Quentin n° 71 |
+| T81 | Registre RGPD des traitements | Conformité | TPE, associations | idée | 29 € | S | P2 | Backlog Quentin n° 73 |
+| T82 | Suivi des réclamations fournisseurs | Achats / projets | Chefs de projet, acheteurs | idée | 35 € | M | P3 | Backlog Quentin n° 74 |
+| T83 | Suivi des achats et commandes fournisseurs | Achats | PME, chantiers, particuliers en travaux | idée | 25 € | S | P2 | Backlog Quentin n° 75 |
+| T84 | Évaluation d'investissement (VAN, TRI) | Finance | PME, ingénieurs, investisseurs | idée | 29 € | S | P2 | Backlog Quentin n° 76 |
+| T85 | Facturation au temps de présence | Services | Crèches, garde, accueil, coworking | idée | 19 € | S | P2 | Backlog Quentin n° 78 |
+| T86 | Attribution de places équitable | Associatif / public | Crèches, centres de loisirs, clubs | idée | 29 € | M | P2 | Backlog Quentin n° 79 |
+| T87 | Calcul des taux d'encadrement | Accueil collectif | Centres de loisirs, sorties scolaires | idée | 12 € | S | P3 | Backlog Quentin n° 80 |
+| T88 | État des lieux / fiche d'arrivée | Location | Loueurs, gestionnaires de résidences | idée | 19 € | S | P1 | Backlog Quentin n° 81 |
+| T89 | Logistique de course (trail, raid) | Événementiel sport | Organisateurs de courses | idée | 29 € | M | P2 | Backlog Quentin n° 82 |
+| T90 | Programme de fidélité | Commerce | Commerces de proximité | idée | 25 € | M | P3 | Backlog Quentin n° 83 |
+| T91 | Commandes groupées | Associatif / équipes | Clubs, associations, CE | idée | 12 € | S | P2 | Backlog Quentin n° 84 |
+| T92 | Grille de choix multicritère | Décision | Particuliers, acheteurs | idée | 12 € | S | P2 | Backlog Quentin n° 85 |
+| T93 | Détecteur de dépenses anormales | Budget | Particuliers, TPE | idée | 15 € | S | P2 | Backlog Quentin n° 87 |
+| T94 | Dossier fiscal du foyer | Personnel | Familles | idée | 15 € | S | P2 | Backlog Quentin n° 89 |
+| T95 | Bilan patrimonial | Personnel | Particuliers, couples | idée | 25 € | S | P2 | Backlog Quentin n° 90 |
+| T96 | Carnet de santé familial | Personnel | Familles | idée | 15 € | S | P3 | Backlog Quentin n° 91 |
+| T97 | Carnet de bonnes adresses (restaurants, bars, cafés) | Loisirs | Particuliers, couples, groupes d'amis | idée | 12 € | M | P2 | Quentin 13/11/2026 (tableur « Mes bonnes adresses ») |
+| T98 | Suivi des interactions sociales | Personnel | Particuliers qui veulent entretenir leurs relations | idée | 12 € | M | P2 | Quentin 13/11/2026 |
+| T99 | Budget personnel (personne seule) | Budget perso | Étudiants, jeunes actifs, personnes seules | idée | 10 € | S | P2 | Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -173,6 +207,12 @@ détail reprend les apports du backlog.
 | 48 Carnet cross-training / musculation | T07 | Même produit. T07 gagne les WOD, les records personnels et le chronomètre. |
 | 28 Organisateur de mariage | T15 | T15 devient le produit grand public « mariage » ; l'événementiel professionnel part dans T51. |
 | 50 Roue de vie | T22 | Même produit. T22 gagne la roue de vie et le bilan par domaine. |
+| 86 Tableau des abonnements | T14 | Même produit. T14 gagne le coût mensuel ramené et le suivi des résiliations ; prix et priorité du backlog retenus (10 €, P1). |
+| 88 Organisateur de déménagement | T16 | Même produit. T16 gagne les démarches et le budget ; prix et priorité du backlog retenus (12 €, P2). |
+
+**Écartés de l'extension (décision de Quentin, 12/11/2026)** : tout ce qui touche à Google (n° 52, 92,
+93, 94 : scripts Gmail, Agenda, Drive) et à Thalvego (n° 64 à 70, 72, 77 : idées tirées de ses
+publications et référentiels). Ne pas les réintroduire.
 
 **Non fusionnés, après examen** :
 - T23 (suivi de chantier) et T25 (non-conformités) avec 06 Levée de réserves (T32) : même moteur de
@@ -193,10 +233,18 @@ détail reprend les apports du backlog.
   « gestionnaire de voitures » = T10 (élargi : kilométrage, dépenses, coût au km). Pas de nouveau numéro.
 - 44 Budget commun (T65) : distinct de T05 (répartition entre personnes) ; proche du partage de dépenses
   de T21.
+- 55 Péremptions (T71) et T09 (garde-manger) : même moteur, cible professionnelle contre foyer.
+- 61 Étalonnage (T77) et T63 (vérifications réglementaires) : même moteur d'échéances, objets et
+  acheteurs différents.
+- 63 Chiffreur de réparation (T79) et T36 (devis) : T79 est un calcul de prix d'atelier, T36 un
+  document commercial.
+- 71 Instances (T80) et T31 (compte rendu) : plusieurs réunions dans le temps contre une seule.
+- 81 État des lieux (T88) : complète T27 et T64 sans les recouvrir.
+- 87 Dépenses anormales (T93) : vendable seul, ou module de T05 (à trancher).
 
 ## Packs
 
-Prix de pack repris du backlog ; valeur = somme des prix unitaires retenus. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
+Prix de pack repris du backlog (les deux derniers : extension du backlog) ; valeur = somme des prix unitaires retenus. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
 par produit ou accès groupé dans `PRODUITS`).
 
 | Pack | Produits | Valeur | Prix |
@@ -206,6 +254,22 @@ par produit ou accès groupé dans `PRODUITS`).
 | Flotte | T57, T29, T26, T66 | 109 € | 69 € |
 | Organisateur d'événements | T51, T15, T54 | 113 € | 69 € |
 | Productivité perso | T03, T30, T08, T22 | 61 € | 39 € |
+| Atelier et entrepôt | T70, T71, T73, T74, T76, T77 | 188 € | 129 € |
+| Foyer organisé | T14, T16, T94, T95, T96 | 77 € | 49 € |
+
+## Versions anglaises
+
+Décision de Quentin (13/11/2026) : test complet sur le Gantt, puis décision de généraliser selon les ventes
+(clics sur `/en/`, ventes de la fiche anglaise). Méthode : skill `nouveau-template` § 3 bis.
+
+| N° | Template | Nom anglais | Prix | Statut | Remarques |
+|----|----------|-------------|------|--------|-----------|
+| T02 | Planning Gantt rapide | Quick Gantt Planner | 49 $ | prêt | Fériés Angleterre et pays de Galles, États-Unis (fédéraux), France. Fiche Gumroad à créer (limite de 10 créations par jour atteinte le 13/11/2026), clé de licence à insérer par Quentin, puis `gumroadEn`. Communication : `communication/gantt/*-en.md`. |
+
+Candidats suivants (universels, sans règle française) : T03 tâches, T30 planner, T31 compte rendu, T28 CRM,
+T35 prospection, T05 budget, T65 budget commun, T15 mariage, T51 événementiel, T25 non-conformités, T32 levée
+de réserves, T24 circuit de visa, T29 flotte, T45 parc informatique, T67 travaux. À garder en français : T40,
+T41, T36, T42, T53, T57, T01, T04 (règles, programmes ou bases françaises).
 
 ## Ordre de production conseillé
 
@@ -218,7 +282,8 @@ par produit ou accès groupé dans `PRODUITS`).
    et vérification de la licence Ciqual.
 5. P1 de taille M : T25, T30, T24, T32, T28, T35, T36, T42, T45, T15, T53, T29, T67.
 6. P1 de taille L : T51, puis T57 avec T29 si ce dernier n'est pas fait.
-7. P2, puis P3 (les petites tailles S regroupables en lots).
+7. Extension du backlog (T68–T96) : P1 rapides d'abord (T68, T14, T88), puis T69 et T70 (M, P1).
+8. P2, puis P3 (les petites tailles S regroupables en lots).
 
 Les petits P1 viennent d'abord parce qu'ils se font vite sur le socle de T01 et alimentent les packs
 freelance et budget. T03 et T04 suivent parce que leurs fiches sont validées et que l'outil interne de Quentin fournit déjà
@@ -603,7 +668,7 @@ données). Le dire clairement : partager la clé donne un accès complet.
 
 ---
 
-## Détails des idées (T05–T67)
+## Détails des idées (T05–T99)
 
 Une ligne par idée sans fiche longue. « Backlog » rappelle prix, effort et priorité de la source quand
 ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **daté**, **fiscal**,
@@ -617,13 +682,13 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
 | T10 | Carnet de voiture, une à quelques voitures : fiche véhicule, relevés de kilométrage, entretiens faits et à venir (échéance à la date ou au kilométrage, la première atteinte), toutes les dépenses (carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique), consommation calculée entre deux pleins, coût au kilomètre et coût mensuel, historique imprimable pour la revente | Intervalles d'entretien types, modifiables (le carnet du constructeur prime) ; catégories de dépenses | — | Demande Quentin 13/11/2026 fusionnée (gestionnaire de voitures). **daté** : périodicité du contrôle technique, vérifiée sur une source officielle ou saisie. Prix du carburant saisis, jamais intégrés. Argent : avertissement. Version perso du moteur de T29 (sans conducteurs, réservations ni sinistres). Aucune automatisation ni lien externe. |
-| T11 | Entretien de la maison : calendrier automatique | 80 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
+| T11 | Planning d'entretien hebdomadaire sur l'année, en quatre créneaux : soir de semaine (sanitaires, cuisine, rangement express, linge), week-end intérieur (poussière, salles de bains, chambres, draps une semaine sur deux, poubelles et plaids l'autre), week-end extérieur (jardin, piscine), mission tournante sur un cycle de 4 semaines (jardin, maison en profondeur, voitures et garage, extérieur) ; tâches ponctuelles placées dans l'année (réfrigérateur, four, lave-vaisselle, lave-linge, siphons, vitres, clim, détecteurs de fumée, tri pharmacie et produits, gouttières, poêle avant et après saison, ramonage) ; saisons (piscine en hivernage ou en service, pelouse selon pousse, poêle l'hiver) ; cases à cocher, semaine en cours, report de ce qui n'est pas fait ; impression A4 paysage par trimestre | Profil du foyer à cocher qui génère le planning : nombre de salles de bains et de WC, animaux (litière), enfants (jeux), piscine, poêle ou cheminée, clim réversible, jardin et terrasse, nombre de voitures ; 80 tâches avec fréquence et saison ; répartition entre membres du foyer | Agenda d'entretien maison 2026 (document personnel de Quentin, 13/11/2026) | Quentin 13/11/2026 : prix, taille et priorité relevés (10 € S P2 → 15 € M P1), à confirmer. **daté** si une fréquence est légale (ramonage, chaudière, détecteurs) : source ou paramétrable. Moteur d'échéances commun avec T61 ; répartition entre membres proche de T65. Aucun détail du foyer de Quentin dans la démo. |
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
 | T13 | Objectif d'épargne et fonds d'urgence | Scénarios d'intérêts composés (taux saisi par l'utilisateur) | — | Aucun taux de livret en base (**daté**). Argent : avertissement. |
-| T14 | Suivi des abonnements : coût mensuel et annuel, renouvellements | Abonnements courants (streaming, télécom, sport) sans prix figés | — | — |
+| T14 | Suivi des abonnements : coût mensuel ramené, coût annuel, échéances, renouvellements, résiliations | Abonnements courants (streaming, télécom, sport) sans prix figés | Publication LI-15 | Backlog Quentin n° 86 fusionné : 10 €, S, P1 ; produit d'appel. |
 | T15 | Mariage : budget, prestataires, invités et RSVP, plan de table, rétroplanning 12 mois | Rétroplanning type sur 12 mois, postes de budget | Organisateur de mariage (artefact client) | Backlog n° 28 : 29 €, M, P1 ; forte demande grand public. Événementiel pro : T51. RSVP par les invités = usage partagé à concevoir. **RGPD** (liste d'invités). |
-| T16 | Déménagement : avancement, inventaire des cartons | Checklist sur 8 semaines, démarches types | — | Démarches : vérifier qu'aucune n'est datée. |
-| T17 | Suivi de lecture : statistiques, objectifs | Genres, objectifs annuels, notation | — | — |
+| T16 | Déménagement : rétroplanning, démarches (adresse, contrats, école), cartons par pièce, budget | Checklist sur 8 semaines, démarches types | Démarches de déménagement (document personnel) | Backlog Quentin n° 88 fusionné : 12 €, S, P2. Démarches : vérifier qu'aucune n'est datée. |
+| T17 | Une fiche par œuvre (film, série, livre ; extensible : BD, podcast, jeu vidéo) : titre, auteur ou réalisateur, année, genres, statut (à voir / à lire, en cours, terminé, abandonné), date de début et de fin, note sur 5 ou 10, notes personnelles, citations ; séries suivies **épisode par épisode** (saisons, épisodes vus, prochain épisode) ; livres suivis à la page ; liste « à voir / à lire » ; **récapitulatif** du mois et de l'année (nombre d'œuvres, heures, pages, genres, meilleures notes, objectif annuel) ; **export A4** imprimable (récap annuel, liste par genre, fiches) | Genres par type d'œuvre, statuts, objectifs annuels types ; aucune base de titres sans source et licence vérifiées (la recherche automatique de titres, d'affiches ou de nombres d'épisodes passerait par un service externe : conditions, licence et règle « aucune application externe dans les templates » à vérifier) | — | Quentin 13/11/2026 : élargi des livres aux films et séries, taille et priorité relevées (S P3 → M P2) ; prix fixé à 19 € par Quentin le 13/11/2026. Saisie manuelle en V1 (saisie rapide en une ligne comme T02). Affiches : pas d'images d'œuvres protégées dans la démo (titres fictifs ou du domaine public). Version anglaise possible (universel). |
 | T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : semis, récolte, associations | — | Source des données de culture à vérifier. |
 | T19 | Suivi du bébé : repas, sommeil, couches, courbes | Courbes de référence poids et taille (source à vérifier) | — | **médical** : avertissement ; source et licence des courbes. **RGPD** : données de santé d'un enfant hébergées en ligne. |
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. |
@@ -674,3 +739,35 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
+| T68 | 52 créneaux, piliers de contenu, statuts brouillon/programmé/publié, recyclage, statistiques saisies | Piliers de contenu et accroches types par métier, 52 sujets de départ | Calendrier de publication (outil interne) | Sert aussi le canal de vente lui-même. Sans marque dans le nom du produit. Aucune automatisation d'un réseau social. |
+| T69 | Hypothèses, CA, charges, salaires, BFR simplifié, compte de résultat, plan de trésorerie, graphiques, export PDF pour la banque | Structures de charges types par activité | Business plan (document personnel) | **comptable** : ne remplace pas un expert-comptable. **daté** si des taux de charges sont en base : paramétrables. Argent : avertissement. Option modèle tableur (les banques le demandent souvent). |
+| T70 | Nomenclatures, ordres de la semaine, besoins nets, stock de sécurité, point de commande, méthode à deux bacs | Formules de point de commande et de stock de sécurité, exemples d'atelier fictifs | Publications LI-27, LI-55, LI-69 | Complète T62 (stocks simples) côté production. Moteur commun avec T71. |
+| T71 | Lots et dates, alertes J-x, ordre de sortie, pertes valorisées | Catégories de produits et délais d'alerte paramétrables | Publication LI-50 | Version professionnelle de T09 (garde-manger) : même moteur, cible et prix différents. |
+| T72 | Lots matières → lots produits → clients, recherche amont et aval, liste de rappel exportable | Exemples de chaînes de fabrication fictives | Publication LI-21 | **RGPD** (clients destinataires). Outil d'aide : ne remplace pas les obligations sanitaires de traçabilité. |
+| T73 | Saisie des arrêts, cadence, rebuts ; TRS = disponibilité × performance × qualité ; Pareto des causes | Typologie des arrêts (six grandes pertes) | Publication LI-18 | — |
+| T74 | Postes, capacité, ordres, charge par semaine, surcharge signalée | Calendriers de capacité types | Publication LI-53, plan de charge (document professionnel) | Distinct de T47 (personnes) : ici machines et postes. **confidentiel** : mécanique seulement. |
+| T75 | Ordres, familles, temps de changement, séquence proposée, contrôle des dates dues | à définir | Publication LI-30 | Heuristique simple, pas d'optimiseur. Utilise T74. |
+| T76 | Regroupement par vague, liste de prélèvement par emplacement, bons imprimables | Plans d'entrepôt types | Publication LI-43 | **RGPD** (adresses des clients sur les bons). |
+| T77 | Parc d'instruments, périodicités, certificats, signalement hors date, planning | Types d'instruments, périodicités paramétrables | Publication LI-59 | Moteur d'échéances commun avec T63 et T61. Certificats : stockage de fichiers à prévoir. |
+| T78 | Dossier par produit et numéro de série, statut, diagnostic, coût, délai, causes récurrentes | Motifs de retour et étapes de traitement types | Publication LI-66 | **RGPD** (clients). **daté** si les délais de garantie légale sont en base : sourcés ou paramétrables. |
+| T79 | Temps, pièces, taux horaire, marge, devis en trois données, historique | Temps de main-d'œuvre types par intervention (exemples fictifs) | Publications LI-40, LI-65 | Spécialisation atelier de T36 (devis) : garder distinct. **daté** (TVA) : paramétrable. |
+| T80 | Calendrier des instances, ordres du jour, décisions, suites, vue sur six mois | Types d'instances (CA, AG, comité de pilotage) | Publications LI-04, LI-56 | Distinct de T31 (une réunion) : vision multi-réunions. **RGPD** (membres). |
+| T81 | Traitements, finalités, données, durées de conservation, destinataires, demandes d'exercice des droits | Traitements types par activité (paie, clients, prospects, vidéosurveillance) | Publication LI-57 | **RGPD** : outil d'aide, pas un conseil juridique. **daté** : durées de conservation sourcées ou paramétrables. |
+| T82 | Réclamations, faits, pièces, montants, échéances, statut, synthèse | Typologie des réclamations | Analyse de réclamation (document professionnel) | **confidentiel** : aucun contenu, nom ni montant du document d'origine ; exemples fictifs. |
+| T83 | Commandes, fournisseurs, livraisons partielles, rapprochement facture, reste à payer | Statuts de commande types | Suivi de commande, budget achats et travaux (documents personnels) | Utile à T67 (travaux maison). |
+| T84 | Flux, taux d'actualisation, VAN, TRI, temps de retour, sensibilité | Cas types fictifs (machine, rénovation énergétique) | Calculs d'investissement (documents professionnels) | **confidentiel** : formules seulement. Argent : avertissement ; taux saisis par l'utilisateur. |
+| T85 | Pointages, règles d'arrondi, forfaits, relevé mensuel, facture | Règles d'arrondi et de forfait types | Publication LI-05 | **RGPD** (enfants, familles). **comptable** : relevé, pas un logiciel de facturation. Recoupe l'offre crèche étudiée (artefact client) : **confidentiel**. |
+| T86 | Critères pondérés, tirage horodaté, liste d'attente, justification par dossier | Grilles de critères types | Publication LI-20 | **RGPD** (familles, mineurs) ; décision partiellement automatisée : information des familles à prévoir. |
+| T87 | Effectifs par âge, ratios, adultes requis, alerte | Aucun ratio codé en dur | Publication LI-44 | **daté** : ratios réglementaires paramétrables ou sourcés. Produit d'appel. |
+| T88 | Pièces, éléments, état, photos, relevés de compteurs, signature, PDF | Listes de pièces et d'éléments types | Publications LI-03, LI-10 | Complète T27 et T64. Photos : stockage en ligne à prévoir. **RGPD** (locataires). Modèle à faire vérifier (outil d'aide). |
+| T89 | Coureurs, postes de ravitaillement, besoins en eau et vivres par poste, bénévoles, suivi des passages | Ratios de ravitaillement paramétrables | Publications LI-02, LI-54 | Distinct de T52 (compétition en salle). **RGPD** (coureurs, suivi en direct). |
+| T90 | Clients, points, règles, historique traçable, récompenses | Règles de fidélité types | Publication LI-49 | **RGPD** (clients). |
+| T91 | Articles, tailles, quantités, paiements, récapitulatif fournisseur | Grilles de tailles types | Commande de t-shirts (document associatif) | Produit d'appel. **RGPD** (membres). |
+| T92 | Critères pondérés, notes, classement, comparaison côte à côte | Grilles types (prestataire, logiciel, logement) | Comparaison de traiteurs (document personnel), LI-51 | Produit d'appel transversal ; utile à T15 et T51. |
+| T93 | Import CSV bancaire, deux règles (écart à la moyenne, nouveau bénéficiaire), alertes | Profils d'import pour les formats CSV courants | Publications LI-31, LI-08 | Module possible de T05. Argent : avertissement. Formats CSV différents selon les banques. |
+| T94 | Justificatifs par catégorie (garde, emploi à domicile, dons), totaux annuels, échéances | Catégories de dépenses ouvrant droit à réduction ou crédit d'impôt | Récapitulatif frais de garde (document personnel) | **fiscal** et **daté** : cases et plafonds mis à jour chaque année avec source. Justificatifs : stockage de fichiers à prévoir. |
+| T95 | Actifs, passifs, épargne, répartition, évolution annuelle | Catégories d'actifs et de passifs | Situation financière (document personnel) | Argent : avertissement ; pas un conseil en investissement. Aucun montant réel. |
+| T96 | Membres, vaccins, rendez-vous, traitements, documents, rappels | Aucun calendrier vaccinal sans source datée | Suivi santé (outil interne) | **médical** et **RGPD** (données de santé hébergées en ligne : même question que T04 et T19). **daté** (calendrier vaccinal). |
+| T97 | Fiche par adresse : nom, adresse, thème, statut (testé, à tester), budget (€ à €€€), idéal pour (déj rapide, date, groupe, apéro, brunch, café), terrasse, avis (1 à 5 étoiles), note perso ; **rangement par type** (filtres et regroupement par thème, statut, budget, occasion, terrasse) ; **vue sur plan** (épingles colorées par thème, filtres partagés avec la liste, « autour de moi ») ; liste « à tester » pour choisir une sortie ; partage d'une sélection en lecture seule | Listes de valeurs du tableur : 11 thèmes (bistrot, italien, japonais, asiatique, cuisine du monde, street food, healthy, café-brunch-pâtisserie, bar à vin, bar à bières, cocktails), statuts, budgets, occasions ; thèmes modifiables (ajout de types hors restauration : boutiques, artisans, activités) | Tableur « Mes bonnes adresses » (document personnel de Quentin, 13/11/2026 : structure seulement, vide) | Vue sur plan : géocodage des adresses et fond de carte par un service externe (OpenStreetMap ou autre) ; conditions d'usage, limites de requêtes, attribution et compatibilité avec la règle « aucune application externe dans les templates » à vérifier avant développement ; repli sans carte si le service ne répond pas. « Autour de moi » : géolocalisation du navigateur, avec accord de l'utilisateur. Partage en lecture seule : à concevoir (comme T52). Version anglaise possible (universel). |
+| T98 | Personnes classées par cercle (famille, amis proches, amis, collègues, voisins…) ; fréquence de contact souhaitée par personne ou par cercle ; journal des interactions en une ligne (appel, message, visite, repas, sortie ; date, durée, note) ; « à recontacter » trié par retard sur la fréquence souhaitée ; anniversaires et dates importantes avec rappel ; idées de cadeaux et sujets à reprendre ; tableau de bord (interactions par semaine et par cercle, personnes perdues de vue, équilibre entre cercles) | Cercles types et fréquences suggérées (paramétrables), types d'interaction, modèles de rappels | Suivi social (outil interne de Quentin) | Distinct de T28 (CRM freelance, usage commercial). **RGPD** : données de tiers (proches) saisies par l'acheteur pour un usage personnel, mais hébergées en ligne par QME : régime et mentions à vérifier (QME sous-traitant de l'hébergement). Ton du produit : aide-mémoire bienveillant, pas de score de « valeur » d'une relation. Aucune donnée de l'outil interne reprise ; démo fictive. Version anglaise possible (universel). |
+| T99 | Budget d'une personne seule, sur téléphone d'abord : revenus du mois (salaire, bourse, aides, petits boulots), charges fixes, **reste à vivre** du mois et par jour jusqu'à la prochaine paie, dépenses saisies en une ligne (« courses 23,50 »), une dizaine de catégories simples, alerte quand une catégorie dépasse, objectif d'épargne avec progression, bilan du mois en un écran | Catégories courtes adaptées à une personne seule (logement, courses, transport, sorties, abonnements, santé, études ou travail, épargne) ; montants saisis par l'utilisateur, aucun barème | — | Version simple de T05 (Budget du foyer, en vente) : même moteur de calcul, sans foyer, sans enveloppes ni Sankey. Risque de faire de l'ombre à T05 : positionner sur la simplicité et le prix (10 €), et proposer le passage à T05. Argent : avertissement (pas un conseil financier). Version anglaise possible (universel). |

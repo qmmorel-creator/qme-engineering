@@ -123,6 +123,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
+- **Versions anglaises** (premier template traduit : Gantt, 13/11/2026). Une seule application par template,
+  bilingue : socle `templates/commun/langue.js` (langue choisie > langue de la fiche achetée > navigateur ;
+  `?lang=fr|en` ; format de date jour/mois ou mois/jour), textes écrits en français dans le code et passés
+  par `tr('…')`, traductions dans `templates/<slug>/en.js` (test de complétude dans le test du template),
+  base intégrée traduite dans `donnees.js` (`en: {…}`). Côté serveur, `gumroadEn` dans `PRODUITS` : la clé
+  d'une fiche anglaise ouvre le même template et les mêmes données, la connexion renvoie `langue`. Page
+  `/en/templates/` (templates disponibles en anglais), captures `assets/templates-<slug>-en-*.webp`.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 

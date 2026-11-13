@@ -86,6 +86,30 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
 
+## 3 bis. Version anglaise (sur demande de Quentin)
+
+Une seule application, bilingue ; jamais de copie du template. Référence : `templates/gantt/` (13/11/2026).
+
+1. Ne traduire que ce qui a du sens hors de France (pas de règle fiscale, sociale ou scolaire française).
+2. Charger `/templates/commun/langue.js` dans `<head>` (avant tout), puis `en.js` avant `donnees.js`.
+   Dans `app.js` : `const { t: tr, en: EN } = window.LANGUE;` (jamais `t`, souvent pris par une tâche),
+   chaque texte en `tr('Texte français {n}', { n })`, dates par `L.locale` et `L.ordreDate`, deux-points et
+   pourcentages sans espace en anglais, `pluriel` de `LANGUE`, choix de langue dans les Réglages et sur
+   l'écran de connexion, `suivreLangueProduit(corps.langue)` à la connexion.
+3. `en.js` : dictionnaire `window.TEXTES_EN` ; test de complétude avec `outils/templates/textes.mjs`
+   (toutes les clés `tr('…')`, mêmes variables). Base intégrée : champ `en` dans `donnees.js`.
+4. Données datées propres à un pays (fériés, taux) : calculées par zone, source datée par zone.
+5. Démo : retrouver les éléments par position, pas par nom (les noms changent avec la langue).
+6. Parcours Playwright en `fr-FR`, `en-GB` et `en-US` : aucun texte français visible en anglais,
+   `window.__<slug>.manquants()` vide, zéro `pageerror`, 390 px sur téléphone.
+7. Fiche Gumroad anglaise (prix en dollars, permalien anglais, lien de contenu
+   `https://qm-engineering.fr/templates/<slug>/?lang=en`), identifiant dans `gumroadEn` de `PRODUITS`.
+   **Quentin insère la clé de licence dans cette nouvelle fiche** (celle de la fiche française ne suffit
+   pas). Gumroad limite la création à 10 produits par jour et par compte.
+8. Site : section dans `/en/templates/`, carte de `en/index.html` (plus « in French »), lien depuis
+   `/templates/#<slug>`, captures `templates-<slug>-en-*.webp`, couverture `templates-<slug>-en-couverture.png`.
+9. Communication : `gumroad-en.md`, `linkedin-en.md`, `prospects-en.md` dans le dossier du template.
+
 ## 4. Préparer la communication
 
 Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par Quentin avant usage :
