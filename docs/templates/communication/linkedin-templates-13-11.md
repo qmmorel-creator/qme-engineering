@@ -1,6 +1,6 @@
 # Publication LinkedIn · Les templates QME (présentation générale)
 
-LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1zEpWJjQUejBtjpfsx79iBckpv0qDiCq9nA5St_EzVfk/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
+LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1NWfJ6SzSq2jl9Itas4JwYg_BRuJPUa2n0xvHNG47Ijs/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
 
 - Site : https://qm-engineering.fr/templates/
 - Boutique Gumroad : https://qmengineering.gumroad.com
@@ -37,7 +37,7 @@ Ce qu'ils ont en commun :
 données, pas par une page blanche ;
 ▪ rien à installer : ils s'ouvrent dans le navigateur avec la clé reçue à l'achat, sur ordinateur,
 tablette et téléphone, et restent utilisables hors connexion ;
-▪ achat unique, sans abonnement, de 12 à 45 € ;
+▪ achat unique, sans abonnement, dès 12 € ;
 ▪ données enregistrées en ligne et hébergées en Europe.
 
 Chaque template a une démo libre, avec des données d'exemple, sans inscription.
@@ -65,5 +65,5 @@ D'autres suivent : registre de visas, gestion de flotte, devis, trésorerie pré
 publications avec liens (pratique courante, non garantie) ; à défaut, mettre le lien Gumroad en premier
 commentaire.*
 
-*Vérifié avant rédaction : 9 templates en vente, prix de 12 € (TJM) à 45 € (Gantt), boutique Gumroad
+*Vérifié avant rédaction : 9 templates en vente, prix dès 12 € (TJM), boutique Gumroad
 en ligne (200), données des acheteurs hébergées à Francfort depuis le 13/11/2026.*
