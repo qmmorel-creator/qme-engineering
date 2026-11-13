@@ -1,6 +1,7 @@
 # Kit de marque Instagram · @qmengineering
 
-Compte Instagram de QME, centré sur les templates. Non publié (dossier `docs/`). Visuels générés par
+Compte Instagram de QME, centré sur les templates. Posts IG-06 à IG-33 (22/11 au 31/12/2026) :
+`publications-2.html`, généré par `construire_ig_06_33.py` (mêmes styles que `publications.html`). Non publié (dossier `docs/`). Visuels générés par
 `gabarits.html` → `node docs/templates/communication/instagram/rendre.mjs` → `png/`. Copie des images
 du profil dans Drive : « QME – Publications Instagram / Kit de marque ».
 
