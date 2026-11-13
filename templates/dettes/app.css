@@ -607,3 +607,4 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .conseils li::before{content:counter(c);position:absolute;left:14px;top:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800}
 .conseils span{font-size:14px;color:var(--texte-2)}
 @media (max-width:720px){.conseils{grid-template-columns:1fr}}
+.vue:focus,.vue:focus-visible{outline:none}
