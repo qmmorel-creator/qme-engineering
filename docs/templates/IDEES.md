@@ -85,13 +85,13 @@ déjà).
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
-| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
+| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en cours | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
-| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Entretien de la maison | Maison | Propriétaires, locataires | en cours | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en cours | 10 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | idée | 8 € | S | P2 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | en cours | 8 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | prêt | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 8 € | S | P3 | Liste initiale 12/11/2026 |
