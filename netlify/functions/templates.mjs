@@ -23,4 +23,5 @@ export default async (requete) => {
   });
 };
 
-export const config = { path: '/api/templates/*' };
+// Fonction exécutée à Francfort (fra) : les données des templates ne transitent pas hors de l'UE.
+export const config = { path: '/api/templates/*', region: 'fra' };
