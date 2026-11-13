@@ -1,6 +1,6 @@
 # Publication LinkedIn · Les templates QME (présentation générale)
 
-LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1TLIz5nQxMsd7Qi6U_qhl0YLzCTCOQDpAO0XHdutmoPs/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
+LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1zEpWJjQUejBtjpfsx79iBckpv0qDiCq9nA5St_EzVfk/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
 
 - Site : https://qm-engineering.fr/templates/
 - Boutique Gumroad : https://qmengineering.gumroad.com
@@ -41,6 +41,11 @@ tablette et téléphone, et restent utilisables hors connexion ;
 ▪ données enregistrées en ligne et hébergées en Europe.
 
 Chaque template a une démo libre, avec des données d'exemple, sans inscription.
+
+Ce sont des outils prêts à l'emploi, pensés pour les usages les plus courants. Si vous avez besoin d'aller
+plus loin, avec vos propres règles, vos documents, vos utilisateurs ou le branchement à vos autres outils,
+c'est le rôle de la prestation sur mesure : on part de votre façon de travailler pour construire l'outil
+qui passe au niveau au-dessus.
 
 Tout voir et essayer : https://qm-engineering.fr/templates/
 Acheter directement : https://qmengineering.gumroad.com
