@@ -23,7 +23,7 @@ outils/templates/          tests, serveur local, génération de codes
   `increment_uses_count=false`) ; remboursé, contesté ou rétrofacturé → 403. Convertie en code interne
   déterministe (HMAC) : mêmes données sur tous les appareils.
 - **Code interne** `PRE-XXXX-XXXX-XXXX-XXXX` : 40 bits aléatoires + 40 bits de signature HMAC-SHA256
-  (secret `TEMPLATES_SECRET`, jamais changé). Généré à la main par `generer-codes-REV.bat` ou
+  (secret `TEMPLATES_SECRET`, jamais changé). Généré à la main par `outils/templates/generer-codes.bat` (tous les préfixes) ou
   `npm run code -- PRE n` pour les accès offerts.
 - **API** : `POST /api/templates/connexion {code}` → `{produit, url, jeton, donnees}` ;
   `GET|PUT /api/templates/donnees` avec l'en-tête `x-code: <jeton>` ; `PUT {donnees, base}` renvoie 409
