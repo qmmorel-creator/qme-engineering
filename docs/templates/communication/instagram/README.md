@@ -28,7 +28,9 @@ Démos libres, sans inscription ↓
 
 **Stories à la une** (couvertures `png/ig-une-*.png`, 1080 × 1920, motif dans le rond central) :
 Templates (grille) · Démos (lecture) · Travail (barres) · Indépendants (quart de cercle) · Maison (toit) ·
-Coulisses (cercle et point). Le nom affiché sous chaque rond se saisit dans l'app.
+Coulisses (cercle et point). Création (faite par Quentin le 13/11/2026) : publier l'image en story →
+« À la une » → « Nouveau » → nom → « Modifier la couverture » pour recentrer. Y ajouter ensuite les
+vraies stories du thème ; la story-couverture peut alors être retirée, la couverture reste.
 
 ## Charte
 
