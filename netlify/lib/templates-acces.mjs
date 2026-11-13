@@ -180,6 +180,24 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   return json(404, { erreur: 'Route inconnue' });
 }
 
+// Stockage qui migre à la volée : lit d'abord le nouveau stockage ; si la clé n'y est pas, la reprend
+// dans l'ancien, la recopie dans le nouveau, puis l'efface de l'ancien (seulement après une copie réussie).
+// Chaque stockage expose get(cle), set(cle, valeur) et, pour l'ancien, supprimer(cle).
+export function stockageMigrant(nouveau, ancien) {
+  return {
+    async get(cle) {
+      const v = await nouveau.get(cle);
+      if (v != null || !ancien) return v;
+      const anciennes = await ancien.get(cle);
+      if (anciennes == null) return null;
+      await nouveau.set(cle, anciennes);
+      await ancien.supprimer(cle);
+      return anciennes;
+    },
+    set: (cle, valeur) => nouveau.set(cle, valeur),
+  };
+}
+
 export function revoquesDepuis(variable) {
   return String(variable || '').split(/[\s,;]+/).filter(Boolean);
 }

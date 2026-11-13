@@ -160,7 +160,7 @@
     const nonPlaces = aPlacer.filter((i) => i.reponse === 'oui');
     const declinesPlaces = invites.filter((i) => i.reponse === 'non' && i.tableId && existe.has(i.tableId));
     const alertes = [];
-    occ.filter((t) => t.surcapacite).forEach((t) => alertes.push({ type: 'surcapacite', tableId: t.id, texte: `${t.nom} : ${t.occupees} invités pour ${t.places} places` }));
+    occ.filter((t) => t.surcapacite).forEach((t) => alertes.push({ type: 'surcapacite', tableId: t.id, texte: `${t.nom} : ${t.occupees} invités pour ${t.places} place${t.places > 1 ? 's' : ''}` }));
     if (nonPlaces.length) alertes.push({ type: 'nonPlaces', texte: `${nonPlaces.length} invité${nonPlaces.length > 1 ? 's' : ''} confirmé${nonPlaces.length > 1 ? 's' : ''} sans table` });
     if (declinesPlaces.length) alertes.push({ type: 'declines', texte: `${declinesPlaces.length} invité${declinesPlaces.length > 1 ? 's' : ''} ayant décliné encore placé${declinesPlaces.length > 1 ? 's' : ''}` });
     return { tables: occ, aPlacer, nonPlaces, declinesPlaces, alertes, places: somme(tables, (t) => t.places), occupees: somme(occ, (t) => t.occupees) };

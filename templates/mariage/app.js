@@ -221,11 +221,11 @@
     const pai = (libelle, montant, j, payeJ) => ({ id: uid(), libelle, montant, echeance: j === null ? '' : R.ajoutJours(t, j), paye: payeJ === undefined ? null : R.ajoutJours(t, payeJ) });
     const presta = (nom, posteNom, statut, devis, contact, paiements = [], note = '') => ({ id: uid(), nom, posteId: poste(posteNom), statut, devis, contact, note, paiements });
     D.prestataires = [
-      presta('Le domaine (réception)', 'Lieu de réception', 'reserve', 620000, 'contact@exemple.fr', [pai('Acompte', 186000, -200, -200), pai('Deuxième acompte', 186000, 20), pai('Solde', 248000, 126)], 'Salle, jardin et parking. Fin de soirée à 4 h.'),
-      presta('Traiteur n° 1', 'Traiteur et boissons', 'reserve', 980000, '06 00 00 00 01', [pai('Acompte', 294000, -60, -58), pai('Deuxième acompte', 294000, -5), pai('Solde', 392000, 133)], 'Devis pour 100 couverts, vin compris.'),
-      presta('Traiteur n° 2', 'Traiteur et boissons', 'devis', 870000, '06 00 00 00 02', [], 'Gardé en option.'),
-      presta('Photographe', 'Photo et vidéo', 'reserve', 210000, 'photo@exemple.fr', [pai('Acompte', 63000, -150, -150), pai('Solde', 147000, 140)]),
-      presta('DJ', 'Musique et animation', 'devis', 145000, 'dj@exemple.fr'),
+      presta('Le domaine (réception)', 'Lieu de réception', 'reserve', 620000, 'Visite faite, contrat signé', [pai('Acompte', 186000, -200, -200), pai('Deuxième acompte', 186000, 20), pai('Solde', 248000, 126)], 'Salle, jardin et parking. Fin de soirée à 4 h.'),
+      presta('Traiteur n° 1', 'Traiteur et boissons', 'reserve', 980000, 'Dégustation prévue', [pai('Acompte', 294000, -60, -58), pai('Deuxième acompte', 294000, -5), pai('Solde', 392000, 133)], 'Devis pour 100 couverts, vin compris.'),
+      presta('Traiteur n° 2', 'Traiteur et boissons', 'devis', 870000, 'Devis par e-mail', [], 'Gardé en option.'),
+      presta('Photographe', 'Photo et vidéo', 'reserve', 210000, 'Rendez-vous fait', [pai('Acompte', 63000, -150, -150), pai('Solde', 147000, 140)]),
+      presta('DJ', 'Musique et animation', 'devis', 145000, 'À rappeler'),
       presta('Fleuriste', 'Fleurs et décoration', 'contacter', 0, ''),
       presta('Boutique de robes', 'Tenues et accessoires', 'reserve', 165000, '', [pai('Acompte', 50000, -90, -90), pai('Solde', 115000, 30)]),
       presta('Costume sur mesure', 'Tenues et accessoires', 'reserve', 98000, '', [pai('Commande', 98000, -40, -40)]),
@@ -263,9 +263,15 @@
       if (n >= D.tables[ti].places) { ti = Math.min(ti + 1, D.tables.length - 1); n = 0; }
       i.tableId = D.tables[ti].id; n += 1;
     });
-    // Table d'honneur : proches des mariés ; deux invités de la Table 3 ajoutés à la Table 2 (surcapacité).
+    // Table d'honneur : proches des mariés ; deux confirmés sans table ; Table 2 remplie au-delà de sa capacité.
     [0, 1, 14, 15, 26, 27].forEach((x) => { if (D.invites[x].reponse !== 'non') D.invites[x].tableId = D.tables[0].id; });
-    D.invites.filter((i) => i.reponse === 'oui' && i.tableId === D.tables[3].id).slice(0, 2).forEach((i) => { i.tableId = D.tables[2].id; });
+    D.invites.filter((i) => i.reponse === 'oui').slice(-2).forEach((i) => { i.tableId = null; });
+    const t2 = D.tables[2];
+    let n2 = D.invites.filter((i) => i.tableId === t2.id && i.reponse !== 'non').length;
+    for (const i of D.invites.filter((x) => x.reponse !== 'non' && x.tableId && x.tableId !== t2.id && x.tableId !== D.tables[0].id)) {
+      if (n2 > t2.places) break;
+      i.tableId = t2.id; n2 += 1;
+    }
     const declin = D.invites.find((i) => i.reponse === 'non');
     declin.tableId = D.tables[4].id;
 

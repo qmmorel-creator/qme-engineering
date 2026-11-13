@@ -120,6 +120,7 @@ test('budget global : provision pour imprévus, consommation, dépassement d\'en
   assert.equal(g.paye, 2050);
   assert.equal(g.reste, 6450);
   assert.equal(g.depasse, false);
+  assert.equal(g.ecartRetenus, 400); // (5200 + 300 − 5000) + (2900 − 3000)
   E.imprevus.push({ id: 'i3', posteId: 'p2', montant: 400 });
   assert.equal(R.budgetGlobal(E).depasse, true); // 8900 > 8800
   assert.equal(R.budgetGlobal(etat()).consommation, null);
@@ -154,6 +155,11 @@ test('planning : chevauchements typés (même pièce, même artisan, parallèle)
   // « Tout le logement » touche toutes les pièces.
   const t = R.chevauchements([l[3], { id: 'i6', artisanId: 'x', debut: '2026-11-22', fin: '2026-11-23' }], (i) => (i.id === 'i4' ? null : 'sdb'));
   assert.equal(t[0].type, 'meme-piece');
+  // Même rang (plomberie et électricité dans tout le logement) : en parallèle, sans alerte de pièce.
+  const pe = [{ id: 'p', artisanId: 'x', debut: '2026-11-02', fin: '2026-11-06' }, { id: 'e', artisanId: 'y', debut: '2026-11-03', fin: '2026-11-04' }];
+  assert.equal(R.chevauchements(pe, () => null, () => 4)[0].type, 'parallele');
+  assert.equal(R.chevauchements(pe, () => null)[0].type, 'meme-piece');
+  assert.equal(R.chevauchements([pe[0], { ...pe[1], artisanId: 'x' }], () => null, () => 4)[0].type, 'meme-artisan');
   // Bout à bout : pas de chevauchement.
   assert.equal(R.chevauchements([{ id: 'a', debut: '2026-11-01', fin: '2026-11-02' }, { id: 'b', debut: '2026-11-03', fin: '2026-11-04' }], () => 'p').length, 0);
 });

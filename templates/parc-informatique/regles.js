@@ -174,7 +174,7 @@
       if (!n) continue;
       const j = ecart(auj, p.depart);
       if (j < 0) liste.push({ type: 'depart', gravite: 0, date: p.depart, ref: { personne: p.id }, titre: `${p.nom} est parti(e) avec du matériel non restitué`, detail: `${r.materiels.length} matériel(s), ${r.licences.length} licence(s) · départ le ${dateFr(p.depart)}` });
-      else if (j <= A.depart) liste.push({ type: 'depart', gravite: 1, date: p.depart, ref: { personne: p.id }, titre: `Départ de ${p.nom} ${j === 0 ? 'aujourd\'hui' : `dans ${j} jour${j > 1 ? 's' : ''}`}`, detail: `À récupérer : ${r.materiels.length} matériel(s), ${r.licences.length} licence(s)` });
+      else if (j <= A.depart) liste.push({ type: 'depart', gravite: 1, date: p.depart, ref: { personne: p.id }, titre: `Départ : ${p.nom} ${j === 0 ? 'aujourd\'hui' : `dans ${j} jour${j > 1 ? 's' : ''}`}`, detail: `À récupérer : ${r.materiels.length} matériel(s), ${r.licences.length} licence(s)` });
     }
     for (const l of etat.licences) {
       if (surAttribuee(l)) liste.push({ type: 'licence-depassement', gravite: 0, date: auj, ref: { licence: l.id }, titre: `${l.nom} : ${attribuees(l)} attributions pour ${l.postes} poste(s) achetés`, detail: `Dépassement de ${-disponibles(l)} : achète des postes ou libère des attributions` });

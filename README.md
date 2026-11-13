@@ -93,7 +93,7 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
 ## Templates payants (`/templates/`)
 
 Applications web vendues à l'unité, ouvertes avec un **code d'accès** remis à l'achat. Les données de
-l'acheteur sont enregistrées en ligne (Netlify Blobs) et suivent le code sur tous ses appareils ; une
+l'acheteur sont enregistrées en ligne (Netlify Blobs, région Francfort `eu-central-1` depuis le 13/11/2026 ; les enregistrements de l'ancienne région par défaut sont recopiés puis effacés à leur première lecture) et suivent le code sur tous ses appareils ; une
 copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X-Robots-Tag`).
 
 - `templates/revision/` : **planning de révision** par répétition espacée (J+1, J+3, J+7, J+14, J+30,
