@@ -1,6 +1,6 @@
 # Publication LinkedIn · Les templates QME (présentation générale)
 
-LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1NWfJ6SzSq2jl9Itas4JwYg_BRuJPUa2n0xvHNG47Ijs/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
+LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1DIjazkRXQMwz4YGutGTil9IYX8tiwNFK0WqEWvNQrzU/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
 
 - Site : https://qm-engineering.fr/templates/
 - Boutique Gumroad : https://qmengineering.gumroad.com
@@ -48,7 +48,6 @@ c'est le rôle de la prestation sur mesure : on part de votre façon de travaill
 qui passe au niveau au-dessus.
 
 Tout voir et essayer : https://qm-engineering.fr/templates/
-Acheter directement : https://qmengineering.gumroad.com
 
 D'autres suivent : registre de visas, gestion de flotte, devis, trésorerie prévisionnelle…
 
@@ -56,14 +55,17 @@ D'autres suivent : registre de visas, gestion de flotte, devis, trésorerie pré
 
 ---
 
+## Premier commentaire (à poster soi-même juste après la publication)
+
+> Pour acheter directement sur la boutique Gumroad : https://qmengineering.gumroad.com
+
 ## Version courte (commentaire, story, message privé)
 
 > Neuf outils du quotidien prêts à l'emploi, ouverts dans le navigateur, achat unique : planning
 > Gantt, TJM, budget, comptes rendus… Démos libres : https://qm-engineering.fr/templates/
 
-*Deux liens dans le texte, comme demandé par Quentin. LinkedIn diffuse généralement moins les
-publications avec liens (pratique courante, non garantie) ; à défaut, mettre le lien Gumroad en premier
-commentaire.*
+*Lien Gumroad en premier commentaire, à la demande de Quentin (LinkedIn diffuse généralement moins
+les publications avec plusieurs liens ; pratique courante, non garantie).*
 
 *Vérifié avant rédaction : 9 templates en vente, prix dès 12 € (TJM), boutique Gumroad
 en ligne (200), données des acheteurs hébergées à Francfort depuis le 13/11/2026.*
