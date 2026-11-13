@@ -500,8 +500,7 @@ non revérifiées (assainissement individuel, contrôle SPANC, débroussaillemen
 résiliation (T14) ; points conseil budget en refonte (T12, à revérifier chaque année).
 Prix minimum 12 € (règle de Quentin, 13/11/2026) : T11, T12 et T14 passent de 10 / 10 / 8 € à 12 € (textes,
 `gumroad-a-creer.json`, vue 5 des carrousels refaite). Drive : légendes IG-62, IG-64, IG-65 recréées (anciennes
-renommées `OBSOLETE-…`) ; les trois nouvelles vues 5 restent **à déposer** dans le dossier Images (colonne P
-« À DÉPOSER »), l'outil Drive de la session ne permettant pas l'envoi du fichier.
+renommées `OBSOLETE-…`) et nouvelles vues 5 déposées dans le dossier Images, colonne P mise à jour.
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
