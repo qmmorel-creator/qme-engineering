@@ -38,6 +38,8 @@ export const PRODUITS = {
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/' },
   SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/' },
+  PTM: { nom: 'Inventaire valorisé', url: '/templates/patrimoine/' },
+  TDV: { nom: 'Temps de vie', url: '/templates/temps-de-vie/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
