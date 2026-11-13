@@ -17,4 +17,5 @@ export default async () => {
   console.log(`Secret Santa : ${n} échange(s) effacé(s)`);
 };
 
-export const config = { schedule: '@daily' };
+// Exécutée à Francfort, comme les autres fonctions : aucune donnée des échanges ne transite hors de l'UE.
+export const config = { schedule: '@daily', region: 'fra' };
