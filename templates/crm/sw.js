@@ -1,8 +1,8 @@
 // Service worker du CRM freelance : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données de clients, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'crm-20261113c';
-const COQUILLE = ['./', 'app.css?v=20261113c', 'donnees.js?v=20261113c', 'regles.js?v=20261113c', 'app.js?v=20261113c', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'crm-20261113d';
+const COQUILLE = ['./', 'app.css?v=20261113d', 'donnees.js?v=20261113d', 'regles.js?v=20261113d', 'app.js?v=20261113d', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

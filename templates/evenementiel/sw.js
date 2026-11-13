@@ -1,8 +1,8 @@
 // Service worker du pilote événementiel : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'evenementiel-20261113c';
-const COQUILLE = ['./', 'app.css?v=20261113c', 'donnees.js?v=20261113c', 'regles.js?v=20261113c', 'app.js?v=20261113c', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'evenementiel-20261113d';
+const COQUILLE = ['./', 'app.css?v=20261113d', 'donnees.js?v=20261113d', 'regles.js?v=20261113d', 'app.js?v=20261113d', 'icone.svg', 'manifest.webmanifest'];
 const FAMILLE = VERSION.slice(0, VERSION.lastIndexOf('-'));
 
 self.addEventListener('install', (e) => {
