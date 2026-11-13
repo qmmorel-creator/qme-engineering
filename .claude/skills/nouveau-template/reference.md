@@ -56,17 +56,34 @@ l'écran d'accueil d'un téléphone pour l'utiliser comme une application. Réf�
 - Le manifeste doit rester `display: standalone` avec les icônes 192 et 512 px.
 - Aucune application externe : seule l'invite native du navigateur est utilisée.
 
-## Charte (application)
+## Charte (application) : Bauhaus « Pastel »
 
-- Jetons : `--papier #F0EDE6`, `--surface #FBFAF6`, `--encre #141414`, `--texte-2 #45413A`,
-  `--discret #5E5A52`, `--trait #D9D4C8`, `--rouge #D9302A`, `--jaune #F5B400`, `--bleu #1D4E89`.
-- Police Outfit (400 à 800), chiffres tabulaires ; titres 800, interlettrage −0,025em.
-- Angles droits partout, cadres de 2 px encre, ombres pleines décalées (`6px 6px 0 var(--encre)`),
-  aplats de couleur pour les en-têtes de cartes ; jaune sous texte encre, rouge et bleu sous texte blanc.
+Décision de Quentin (13/11/2026) : site et templates passent à la variante « Pastel » (maquette
+interactive, variante 2). Toujours Bauhaus (formes géométriques, Outfit, couleurs primaires), mais plus doux.
+Référence : n'importe quelle application de `templates/` (bloc « Thème Pastel » en fin de `app.css`) et
+`assets/site.css` pour le site.
+
+- Jetons (`:root`) : `--papier #FBF7F1`, `--surface #FFFFFF`, `--encre #24221F`, `--texte-2 #514C44`,
+  `--discret #6E685F`, `--trait #E4DCCE`, `--rouge #B84A34`, `--jaune #E8B93A`, `--bleu #2E5A88` ;
+  fonds teintés `--rose #F8DCD3`, `--beurre #FBEBC2`, `--ciel #D8E4F0`, `--sable #F3EDE3` ; textes sur
+  teinte `--rose-texte #8A3322`, `--beurre-texte #6E5310`, `--ciel-texte #22476E`.
+- Police Outfit (400 à 800), chiffres tabulaires ; titres 700, interlettrage −0,025em.
+- **Filets de 1 px `var(--trait)`**, jamais de cadre noir de 2 px ; **grands arrondis** (boutons en pilule
+  `999px`, champs 12 px, cartes et tuiles 16 px, fenêtres 22 px) ; **aucune ombre pleine décalée** :
+  au plus une ombre douce (`0 12px 32px rgba(36,34,31,.10)`).
+- **Aplats en teintes** : en-têtes de fenêtre et panneau de l'écran de connexion sur `--ciel`, bandeau
+  démo et surlignage (`mark`) sur `--beurre`, étiquettes en pilule sur teinte avec le texte foncé
+  correspondant. Les couleurs vives (`--rouge`, `--jaune`, `--bleu`) restent pour les données, les
+  graphiques, les statuts et les petites formes.
+- Onglets : pilule `--beurre` pour l'onglet actif, `--sable` au survol (barre du bas sur téléphone :
+  arrondi 16 px).
 - Formes Bauhaus (cercle, carré, quart de cercle) pour l'écran de connexion, les états vides, les icônes
-  de navigation (rond, grille, barres, triangle).
-- Téléphone : barre d'onglets fixe en bas (5 onglets max), modales en feuille du bas, cibles ≥ 44 px.
+  de navigation (rond, grille, barres, triangle), en teintes adoucies (`#E58C74`, `#E8B93A`, `#2E5A88`).
+- Le logo garde son rouge `#D9302A` ; son rond central prend la couleur du fond.
+- Téléphone : barre d'onglets fixe en bas (5 onglets max), fenêtres en feuille du bas (arrondi en haut),
+  cibles ≥ 44 px.
 - Couleurs de catégories fixes, dans l'ordre de `BASE.couleurs`, jamais générées.
+- Contrastes : texte ≥ 4,5:1 (texte blanc seulement sur `--rouge`, `--bleu` ou `--encre`).
 
 ## Mise à jour du site (à chaque nouveau template)
 

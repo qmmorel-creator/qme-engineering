@@ -44,7 +44,8 @@ Côté serveur, une seule ligne : ajouter le produit dans `PRODUITS` de
 `netlify/lib/templates-acces.mjs` (`nom`, `url`, `gumroad` une fois la fiche créée). Rien d'autre à écrire :
 connexion, licences Gumroad, stockage et conflits sont communs.
 
-Charte : jetons et composants dans `reference.md` § Charte. Graphiques : charger le skill `dataviz`,
+Charte : **Bauhaus « Pastel »** (filets de 1 px, grands arrondis, fonds teintés, aucune ombre dure),
+jetons et composants dans `reference.md` § Charte ; partir du socle copié, qui l'applique déjà. Graphiques : charger le skill `dataviz`,
 valider la palette avec son script et compenser ce qui échoue (contours, légende, tableau accessible).
 
 ## 2. Tester
