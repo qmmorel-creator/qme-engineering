@@ -49,3 +49,8 @@ Démo libre avec trois opérations fictives, et contact : lien en bio.
 
 `IG-12-visa-story.png` (1080 × 1920) : à publier à la main le 04/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-12, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `10jD3qxr5lXJb-EPJLaNMF3LMUlPeRSOazFv1FNANPyA` (dossier Textes).
+- Images (dossier Images) : `IG-12-visa-1.png` 1yzAKe3wnQHP-cJv_7vz9IqLkJA5lcz5Q, `IG-12-visa-2.png` 1WSVjjKf3GS7yFEQlVQwkQ6fwhn1XKZMO, `IG-12-visa-3.png` 1WK1jiC2zUohp-rpn87mI6tKHOOoV1D7G, `IG-12-visa-4.png` 1ka6dAzLKft0OyqHMbIHjTO7JQ8u4AERf, `IG-12-visa-5.png` 1NYjd7b5LN_7Yp-Di2zIZjIqfGRgNGOmv, `IG-12-visa-story.png` 1TTcgPq2qVn9yu73dWdxC7OVl6K5FHT_D.

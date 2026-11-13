@@ -49,3 +49,8 @@ Démo libre avec la semaine d'une freelance fictive, et contact : lien en bio.
 
 `IG-16-planner-story.png` (1080 × 1920) : à publier à la main le 12/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-16, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1yiym3wNFsZuGTTmZpWAuQabDUzXCUxMgw3LDyyDygiU` (dossier Textes).
+- Images (dossier Images) : `IG-16-planner-1.png` 1OnSmz6YqaAx6CR2-EpzY_uLSDipZqEwM, `IG-16-planner-2.png` 1tfLlH-bYrIAtooJVCzpDHbkqs3mI2_Kq, `IG-16-planner-3.png` 1IZNQ4VyidwNm0QQyCS6C-VD6uWxattuJ, `IG-16-planner-4.png` 13wmek4FJGDhz56m44v0kXjhq9DXsMZr2, `IG-16-planner-5.png` 1OYanQAaqgNQmmiUVk40wEEVr0gMJlL-I, `IG-16-planner-story.png` 1Cmtoeo_ecZtxCst1be2k8uIxF8cA9KjN.

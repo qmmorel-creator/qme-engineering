@@ -49,3 +49,8 @@ Démo libre avec trois scénarios fictifs, et contact : lien en bio.
 
 `IG-06-tjm-story.png` (1080 × 1920) : à publier à la main le 22/11, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-06, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `15MnDpgVCyjWj5FEfiu7qtX8PDQ8PGkiBdI_XOpSndB8` (dossier Textes).
+- Images (dossier Images) : `IG-06-tjm-1.png` 1M7_2Y_UVa91kvVlhT_psLGzUVbJAwZ30, `IG-06-tjm-2.png` 13ivDU8TouGhB8ydm-SfimEhQl7_x4Eaq, `IG-06-tjm-3.png` 14fk4GjaJmd0tR-4J-eAnxaxAaEKXgZAc, `IG-06-tjm-4.png` 1dmEWbVuAxG5deOtX9ccEKhcfihvUf1xE, `IG-06-tjm-5.png` 1NigHqcnTNVeCuiJWXqFCh_vJEWv_KNhy, `IG-06-tjm-story.png` 1Yh4-7byUV29JqQJVWm0PTz-52_WW4JAq.

@@ -30,3 +30,8 @@ Votre métier a ses règles ? Parlons-en : lien en bio.
 3. Ce qui fait varier le prix : 1. les utilisateurs et leurs droits ; 2. les liens avec l'existant (caisse, comptabilité, agenda) ; 3. la reprise des données.
 4. 4. Le terrain : téléphone, gants, hors connexion. 5. Les documents produits : devis, factures, rapports, étiquettes.
 5. Fond rouge : les écrans « au cas où » ne devraient pas peser sur le prix ; on commence par le module qui rapporte le plus vite. Votre métier a ses règles ? Parlons-en : lien en bio.
+
+## Drive (planning Instagram, ligne IG-33, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1kSltMsB0anIfQV6-M0wBRqxrwBzEkEE2z4e4aKr3FNA` (dossier Textes).
+- Images (dossier Images) : `IG-33-prix-sur-mesure-1.png` 1QTF4c6AFiMorFBlU1oY0oFt0AUJ3DguJ, `IG-33-prix-sur-mesure-2.png` 1-Lx6Nk1IMijjN1flG3K216fd7PKSEwxl, `IG-33-prix-sur-mesure-3.png` 1DI4UOXRSFkYzYINuFmI8PHcS97GEgyWh, `IG-33-prix-sur-mesure-4.png` 1guBdP98jZYvsr4cIQgnBswprwrFw52jX, `IG-33-prix-sur-mesure-5.png` 1UtSKYZosjs5u7YbBTiZ6rj0sAZARRO4G.

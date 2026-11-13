@@ -49,3 +49,8 @@ Démo libre avec des clients fictifs, et contact : lien en bio.
 
 `IG-14-crm-story.png` (1080 × 1920) : à publier à la main le 08/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-14, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `14xEASQeHhPZwnMAuQjh6G8w4XkysWdkDFT3ESELkZFk` (dossier Textes).
+- Images (dossier Images) : `IG-14-crm-1.png` 1VNb4mmY4EOXUtskgBTZrwgbyCyzr4DxF, `IG-14-crm-2.png` 1yTeBiroRWwgQsBHYVQulOB6oq1EM-6ff, `IG-14-crm-3.png` 13eRb3nNUbPR3TI7zXt8-0oP2LgZ4JvSp, `IG-14-crm-4.png` 1EOv94zPL8DE7Fb9_Is7dXuLeBnWP4Vup, `IG-14-crm-5.png` 1R9G5CMG-7vgvRGcuKoRv7-23RLWuFGnk, `IG-14-crm-story.png` 1byTCeS0JlPZXiigw3NMjMtJ4Kvz4to0c.

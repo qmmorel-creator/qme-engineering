@@ -49,3 +49,8 @@ Démo libre avec quatre plannings fictifs, et contact : lien en bio.
 
 `IG-09-gantt-story.png` (1080 × 1920) : à publier à la main le 28/11, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-09, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1_UgrbIQxMzCQG45FJgFYAkXpGKDtlNJj4GAeGKeaOFw` (dossier Textes).
+- Images (dossier Images) : `IG-09-gantt-1.png` 1o96mGv8zGp3g6FnLprplJcZG_1Y3joly, `IG-09-gantt-2.png` 1lBuyxsXvcbvoY33mnxAq6wRULBicZHo6, `IG-09-gantt-3.png` 1LnaM2W3NPB7L6cPIuU_sXdIJGXDIE3tk, `IG-09-gantt-4.png` 14NOFerY-0F8g0v_BUiHLRBe0PLlZVjsZ, `IG-09-gantt-5.png` 1Gg_cDk_pNPhp6tLLjMb_QjypUAp86Y4u, `IG-09-gantt-story.png` 1cF5UyullWDWn_LF8O5W_H27etoHWpU4s.

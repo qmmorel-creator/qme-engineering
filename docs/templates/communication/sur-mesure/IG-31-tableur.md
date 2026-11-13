@@ -31,3 +31,8 @@ Votre métier a ses règles ? Parlons-en : lien en bio.
 3. Ce qu'on lui demande et qu'il ne fait pas du tout : être partagé par dix personnes qui ne doivent pas toutes tout voir, garder l'historique, envoyer une relance, être rempli sur un téléphone.
 4. Ma première question : que fait ce tableur que personne ne voit ? Souvent trois ou quatre règles ; parfois, garder le tableur et ajouter seulement ce qui manque.
 5. Fond rouge : votre tableur fait-il plus qu'on ne le croit ? Votre métier a ses règles ? Parlons-en : lien en bio.
+
+## Drive (planning Instagram, ligne IG-31, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1hFMp9qY_9TgB7e15BQoPAZM5PI_0y3jKEBUoes7r-XY` (dossier Textes).
+- Images (dossier Images) : `IG-31-tableur-1.png` 1B2rDeZkSnL4g7TKEkFXylKKGj_KCSSJq, `IG-31-tableur-2.png` 1q7NF3ot_GROjfLmQQrfUSv7UK2EFBw7y, `IG-31-tableur-3.png` 1yQm0mTrDehUErmPFpSP-syj4HmUsa9-G, `IG-31-tableur-4.png` 1h5WlHWx-dsr9r3sWD7peS9PNKeNh0VYI, `IG-31-tableur-5.png` 1zb2NH40yz5FW274uRiCNq5902M70NHLs.

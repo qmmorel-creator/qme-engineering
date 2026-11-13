@@ -49,3 +49,8 @@ Démo libre avec huit devis fictifs, et contact : lien en bio.
 
 `IG-19-devis-story.png` (1080 × 1920) : à publier à la main le 18/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-19, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1bpsvfG2y_NpnaCUtCTS0NJ_Ns0lxbfrwshB-J3TmlW4` (dossier Textes).
+- Images (dossier Images) : `IG-19-devis-1.png` 1_hStLHHqtmzkDuaTzj94B4KoyLAysykW, `IG-19-devis-2.png` 1rkLmWZASWKfTZlbRAbxnlNg5q3C6ZL24, `IG-19-devis-3.png` 1VrTER9ViuiN92Z6Qjiu0eMLdKIT-iJc2, `IG-19-devis-4.png` 1K6d0luegaL2WfzTPn5eMTJ4cXx4DA17h, `IG-19-devis-5.png` 1UHP9_iyJtS0f-p20NqcbTLSs2aG39v2u, `IG-19-devis-story.png` 1Skx6GHCoeKFQjXXZr3mA35BZdaL7hFUT.

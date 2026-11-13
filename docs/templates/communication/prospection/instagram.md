@@ -49,3 +49,8 @@ Démo libre avec des prospects fictifs, et contact : lien en bio.
 
 `IG-18-prospection-story.png` (1080 × 1920) : à publier à la main le 16/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-18, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1tuinxAXhX04Takn3ZOeL-fYWLeM694lfILjmMfzuA08` (dossier Textes).
+- Images (dossier Images) : `IG-18-prospection-1.png` 1LgaD68duxTvnOSyXO4oeDbuby1kEC33x, `IG-18-prospection-2.png` 1N32YX_RdiszJSW6H98ZkQMPXW7tvxE2m, `IG-18-prospection-3.png` 1DFyhc9qZTuaG8_vXUFIHQCdPf5YlrjBI, `IG-18-prospection-4.png` 1-4EhP2uX1e8EieqS6sbo6-8NjDVK2PAw, `IG-18-prospection-5.png` 1ds9_biWTL5xbYLGC8VfDH53y9PQqQKKQ, `IG-18-prospection-story.png` 1rnzDSTCdFLdIA0ReIsFppE5GSvtqf1nA.

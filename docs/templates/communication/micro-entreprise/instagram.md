@@ -49,3 +49,8 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 
 `IG-07-micro-entreprise-story.png` (1080 × 1920) : à publier à la main le 24/11, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-07, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1LlZZj-9NMCBoku1T5CfHzoddrlEEzpL-ysGBWR9nNW4` (dossier Textes).
+- Images (dossier Images) : `IG-07-micro-entreprise-1.png` 1DmPhBh2tUIBD1G-SMXCWbGr66hzF_8Aw, `IG-07-micro-entreprise-2.png` 1imNrm055HCrhxVYLohVnPpGYi0ud1V9G, `IG-07-micro-entreprise-3.png` 15-sLTd9lc37HVUmVdCSV0YCXkmsXhW3C, `IG-07-micro-entreprise-4.png` 1wpFXp4msbx-Sww1LpNwhjDiFnOkoL1nj, `IG-07-micro-entreprise-5.png` 1kiMrtPX7T4N9vcndwMWjs-3zk9oHGflT, `IG-07-micro-entreprise-story.png` 1-bn6rGmQg6Pti2DAtWWJV5wJYg7i9bro.

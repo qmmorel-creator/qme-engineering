@@ -31,3 +31,8 @@ Votre métier a ses règles ? Parlons-en : lien en bio.
 3. À l'arrivée du vélo : ce qui est laissé coché case par case (batterie, chargeur, antivol…) ; accord du client sans rappel jusqu'à un montant, 150 € par défaut ; date, état et kilométrage. Cas réel, sans donnée du client.
 4. Le constat : une ligne à 0 minute et 0 €, non facturée, écrite sur la facture sous « Constats de l'atelier » ; le client repart avec un conseil, la prochaine visite est préparée.
 5. Fond rouge : un client vous confie un objet ? Garagiste, réparateur, cordonnier, retoucheuse : ces règles valent aussi pour vous. Votre métier a ses règles ? Parlons-en : lien en bio.
+
+## Drive (planning Instagram, ligne IG-29, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1IR0-rYEaT8SNOtZgJn2hWPH15res4YY-bjrXTfaW19Q` (dossier Textes).
+- Images (dossier Images) : `IG-29-fiche-arrivee-1.png` 1S-pfcTaH8NQ3rlCCu22oPZtuNrAvdB2_, `IG-29-fiche-arrivee-2.png` 1fDFfT2AzKKsD7hrPJg--5DP4ryQix1UY, `IG-29-fiche-arrivee-3.png` 1e0eaFUwNFlwAkY8nWWNrr5eEHfkXk9UF, `IG-29-fiche-arrivee-4.png` 1zZiwGQ9rVXlFGebnPhYYavyoMK79Toeq, `IG-29-fiche-arrivee-5.png` 1oTptweAEgLGFBYALjsU9fEuO2jnFwlKG.

@@ -49,3 +49,8 @@ Démo libre avec une résidence fictive, et contact : lien en bio.
 
 `IG-17-reserves-story.png` (1080 × 1920) : à publier à la main le 14/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-17, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1hzViKsc5Wj1JGWtvRh_PuYMnEfuuPxwohxGIF0x1NOw` (dossier Textes).
+- Images (dossier Images) : `IG-17-reserves-1.png` 1QzugdmnyYwC5_22Ds8wM3EtRqMEhi92c, `IG-17-reserves-2.png` 1YQKRqYJRlWLYJxFK5-nUW8XcYaPQnIK5, `IG-17-reserves-3.png` 1azvYuJpBcqNLA-Oabgz22AncKgu9idDV, `IG-17-reserves-4.png` 1YtaiqvCmMoj29p8qT5dL8EeFnyQY5zcs, `IG-17-reserves-5.png` 1p_J-dKCD1f3tvLeyMpO3GJWYBGtSokLD, `IG-17-reserves-story.png` 1R2UxJBC8CR2aOkdmKwF3mPjcfID3kKOW.

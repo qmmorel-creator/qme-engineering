@@ -49,3 +49,8 @@ Démo libre avec un an d'historique fictif, et contact : lien en bio.
 
 `IG-13-non-conformites-story.png` (1080 × 1920) : à publier à la main le 06/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-13, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1g0SAULpmgI-EQLGaU5cRG8VnXXEuPMbfozXqnPtOOQM` (dossier Textes).
+- Images (dossier Images) : `IG-13-non-conformites-1.png` 1WgEY2HxiydWv4cDm_SwiprZD3KJ4qwkS, `IG-13-non-conformites-2.png` 1mSEj2ZXrBB8X3t_0f31nmmRRBmvaO4yv, `IG-13-non-conformites-3.png` 1mYvF6jmJvqh7wHnm3pTorWEJJcwH6gVr, `IG-13-non-conformites-4.png` 1ft-_Tki7APfh9znIMRRDZl4M8bXO_yQD, `IG-13-non-conformites-5.png` 1nkXxGC4RveUUV-udYgedgzuCaz8tNY3F, `IG-13-non-conformites-story.png` 1kuxcWOdczmmfkvbG9ro8bOiQBqtyXKeb.

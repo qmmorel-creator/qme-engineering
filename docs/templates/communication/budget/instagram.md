@@ -49,3 +49,8 @@ Démo libre avec un foyer fictif, et contact : lien en bio.
 
 `IG-11-budget-story.png` (1080 × 1920) : à publier à la main le 02/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-11, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1yNA9rKlfAfDCZ_1Phh9cZnGGsQmJviiBYaB1DxD7Ytc` (dossier Textes).
+- Images (dossier Images) : `IG-11-budget-1.png` 1SwGUODqDoq2RU2NARWJk5hvxnH_JzONR, `IG-11-budget-2.png` 1KMeqi5g-Jg_8AoBp3TVbCkKl9dUk7NSO, `IG-11-budget-3.png` 1iawQAoz-FSsE_uMqAxZi9O7f-Kx1zP8r, `IG-11-budget-4.png` 1JvdBPRQeKAUAlaOAwtfapjNbDFl8Tlq1, `IG-11-budget-5.png` 1-FyBp3gbHoD6kndP17fuJRq_CY7R0Kz5, `IG-11-budget-story.png` 16FdKidzSkLMDv8-_Zsk8nk7-n2mqGBGJ.

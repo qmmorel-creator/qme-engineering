@@ -49,3 +49,8 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 
 `IG-20-tresorerie-story.png` (1080 × 1920) : à publier à la main le 20/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-20, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1BVY-ZcNUDwie7g08QogTfDtVWzABO4aAHFH9jg6lf1Y` (dossier Textes).
+- Images (dossier Images) : `IG-20-tresorerie-1.png` 1HBHgtncoY8Ri1Q3Yw3VOZwV9z0YEjPXR, `IG-20-tresorerie-2.png` 1hzz94SkCMuuL9yuUZ3kDfTGMh3QHVLqk, `IG-20-tresorerie-3.png` 1HOrSScPQwvIovibG2p6d5y4r2Etk99pV, `IG-20-tresorerie-4.png` 1jlVoluU9O0gUj-eXIKUdSGkLhUQKMB6A, `IG-20-tresorerie-5.png` 1Uy6Yhvr4zwKk38sgKSSEEGg_7VVrHs55, `IG-20-tresorerie-story.png` 1ZPLxc0TRBhSBfdRUqTnYvbzs-Xu5KeAu.

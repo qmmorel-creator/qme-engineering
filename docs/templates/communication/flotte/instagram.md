@@ -49,3 +49,8 @@ Démo libre avec six véhicules fictifs, et contact : lien en bio.
 
 `IG-15-flotte-story.png` (1080 × 1920) : à publier à la main le 10/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-15, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1v81G2Gx17GwmaUfvDGyX-_ECcFWgG9kUq-Gx1_8VEH8` (dossier Textes).
+- Images (dossier Images) : `IG-15-flotte-1.png` 17HOf7mxGnwCWkaw7V173tkOjGC2XGeGe, `IG-15-flotte-2.png` 1pB4g6Pw2PngGerWjiVc8piRuC0XRn87O, `IG-15-flotte-3.png` 1y29ziHF-OlBmfc8g-_OSyLLaF_yVBM84, `IG-15-flotte-4.png` 1xcsqzYB_Kc7yZVQkVTnAzlDNVG5jRioT, `IG-15-flotte-5.png` 1ZGVY94VbEbeww0kZBI5mnXP0zsSMLeS-, `IG-15-flotte-story.png` 1YM6KIEP67E7IrWqCe1TZOqa6aeWXkywJ.

@@ -29,3 +29,8 @@ Votre métier a ses règles ? Parlons-en : lien en bio.
 3. Questions 3 et 4 : qui doit voir l'information, et sous quelle forme ; quel est le volume réel, dix dossiers par mois ou dix par jour.
 4. Question 5 : qu'est-ce qui doit rester humain ? Un appel, une validation, un geste commercial. Parfois, un tableur bien rangé ou un logiciel existant suffit.
 5. Fond rouge : l'outil le plus simple qui suffit : parfois un tableur, parfois un logiciel existant, parfois du sur mesure. Votre métier a ses règles ? Parlons-en : lien en bio.
+
+## Drive (planning Instagram, ligne IG-32, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1Tng50awuKnIRke98O80R5Atydcf1gIFPqWcZwSY9p4o` (dossier Textes).
+- Images (dossier Images) : `IG-32-cinq-questions-1.png` 1NCxP_pkqLxQtEg_7vCIdVzhOqEUOP0Iv, `IG-32-cinq-questions-2.png` 1wyuU7c3EuAqORYTDHMIriBh1ARjS2K5X, `IG-32-cinq-questions-3.png` 1xGEzfY-zmMMVKPc4_NFIqp4xh9KHDTl-, `IG-32-cinq-questions-4.png` 1JPs-84ImhNV1jJsd_SMQ-72tF1f5kTp3, `IG-32-cinq-questions-5.png` 1_0R4h8zLDnD3N495qKB3I0JpPyZy_QsS.

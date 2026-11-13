@@ -49,3 +49,8 @@ Démo libre avec un couple fictif, et contact : lien en bio.
 
 `IG-08-budget-commun-story.png` (1080 × 1920) : à publier à la main le 26/11, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-08, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1kDxw9Zj8poD8pdMG4U6re9gtD_ShvtYo0hS88pkV-Kk` (dossier Textes).
+- Images (dossier Images) : `IG-08-budget-commun-1.png` 13W7gPrqsof3eDkiJ-6bCW9KsRGV-sYfs, `IG-08-budget-commun-2.png` 1yEnQlTqH64wsWV1Q_r8Hg_tmxH_-TnwE, `IG-08-budget-commun-3.png` 1Fxh3TLqgI3YDQvQhzq2kiiLbfbTG9YMW, `IG-08-budget-commun-4.png` 1ltM_TBvdpXONlpXU4yEKx1tny5Sq3Ti6, `IG-08-budget-commun-5.png` 1RfdPlq1DZSxO-65xP3VHv0gnKm5ZUpiy, `IG-08-budget-commun-story.png` 13CWq3qLRJLtrxVxhIxPfx1W7ccc23qGv.

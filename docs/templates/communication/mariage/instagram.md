@@ -49,3 +49,8 @@ Démo libre avec un mariage fictif, et contact : lien en bio.
 
 `IG-21-mariage-story.png` (1080 × 1920) : à publier à la main le 30/12, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-21, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1WvhShxboemyDjK48MbEiBKYsAkHJRiCp5O0XjGrtGF4` (dossier Textes).
+- Images (dossier Images) : `IG-21-mariage-1.png` 1QdUf9Em-ZfkxCQi6UsYnIezz_6qT77ce, `IG-21-mariage-2.png` 1C4_xVt92E2BrcTRuYd-_laRZRUp12TB3, `IG-21-mariage-3.png` 1-syJha3g-XdMjKaTrIzihQDGzttEx1xz, `IG-21-mariage-4.png` 1QoMD3C4jFTx_PTx7VCY9e-BlzeFMAqQE, `IG-21-mariage-5.png` 1a8iXfVgIcjkRSyLAgw3ebIdTBZ8XYeFj, `IG-21-mariage-story.png` 1xY9aFY8czTOO-kMUgxc24AsfaMuhBi8s.

@@ -49,3 +49,8 @@ Démo libre avec des tâches fictives, et contact : lien en bio.
 
 `IG-10-taches-story.png` (1080 × 1920) : à publier à la main le 30/11, autocollant « Lien » vers
 la démo, puis à la une « Templates ».
+
+## Drive (planning Instagram, ligne IG-10, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1rVvFxvd-QP86wBBMMyFB51yF6EKhEmA07l0MvmF8WEI` (dossier Textes).
+- Images (dossier Images) : `IG-10-taches-1.png` 1JqeS1ZrZBIBYY7HQQzJQiyaeH54if-VY, `IG-10-taches-2.png` 1oQGN_dl0yPS64uusWZ9ynb14f8P5IanK, `IG-10-taches-3.png` 1IP8jzySGhXL1dRMZPp1fXsti_4CoNdkH, `IG-10-taches-4.png` 1-LreBOvmpb8VVYiVl20fuZAeKKgvpJth, `IG-10-taches-5.png` 1sax6Rvr2kpCUUplNhOP8jaq-G_eFixqX, `IG-10-taches-story.png` 1vibDc6gAJL4YyUYOxaTsUkokkYgwMLI3.

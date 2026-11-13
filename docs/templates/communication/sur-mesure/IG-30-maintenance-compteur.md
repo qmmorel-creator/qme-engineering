@@ -30,3 +30,8 @@ Votre métier a ses règles ? Parlons-en : lien en bio.
 3. Au compteur : un compteur par équipement (heures, cycles, kilomètres, pièces produites), un seuil par opération avec limite calendaire au premier atteint, un relevé simple. Exemple illustratif.
 4. Ce que ça change : une échéance projetée (« vidange dans 60 heures, vers le 18 février »), des tâches préparées avant l'arrêt, moins de filtres changés encore propres.
 5. Fond rouge : vos machines tournent-elles au calendrier ? Votre métier a ses règles ? Parlons-en : lien en bio.
+
+## Drive (planning Instagram, ligne IG-30, statut « Prêt » le 13/11/2026)
+
+- Légende : Google Doc `1GPqthNSPmlwmlxlKZMywdN2NOJn3eiFSmsSqdUYDa9o` (dossier Textes).
+- Images (dossier Images) : `IG-30-maintenance-compteur-1.png` 14-Yl6NSPSasgslJAlBolA8JjUBif-I9T, `IG-30-maintenance-compteur-2.png` 1bfoRXQEG8tnGPiuEka2D4LrWXtD0IYZH, `IG-30-maintenance-compteur-3.png` 1VxhvK9QMvi-jvWFQTnWfHfIA8WykLI7H, `IG-30-maintenance-compteur-4.png` 1jrid6cHecka6UTGNANPnqyR3epnzjToX, `IG-30-maintenance-compteur-5.png` 1zbwq39tCUcnkfZiAICi1hXb3DoSiMVHp.
