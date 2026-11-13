@@ -558,3 +558,9 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .modale-idee-tete button{border:1px solid rgba(36,34,31,.25);border-radius:12px;color:var(--encre)}
 .modale-idee input,.modale-idee select,.modale-idee textarea{border:1px solid var(--trait);border-radius:14px}
 .idee-note.success{border-radius:12px;background:var(--beurre)}
+/* Templates prêts, démo ouverte, mise en vente prochaine */
+.carte.prochaine .pied em{font-size:12px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--beurre);color:var(--beurre-texte)}
+.prix.prochaine b{font-size:26px;letter-spacing:-.02em}
+.prix.prochaine b::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--jaune);margin-right:10px;vertical-align:middle}
+.carte.prochaine .pied{flex-wrap:wrap;row-gap:8px}
+.carte.prochaine .pied em,.carte.prochaine .pied span{white-space:nowrap}
