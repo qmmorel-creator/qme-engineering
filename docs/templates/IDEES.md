@@ -85,13 +85,13 @@ déjà).
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
-| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en cours | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
+| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | en cours | 10 € | S | P2 | Liste initiale 12/11/2026 |
-| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en cours | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 10 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | en cours | 8 € | S | P2 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | prêt | 8 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | prêt | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 8 € | S | P3 | Liste initiale 12/11/2026 |
@@ -433,6 +433,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T53 | `inscriptions` | ASC | inscriptions-associatives |
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
+| T08 | `habitudes` | HBT | suivi-habitudes (prévu) |
+| T11 | `entretien` | ENT | entretien-maison (prévu) |
+| T12 | `dettes` | DTT | remboursement-dettes (prévu) |
+| T14 | `abonnements` | ABN | suivi-abonnements (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -470,6 +474,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-95 | T53 inscriptions | 2027-01-07 | 12:15 |
 | LI-96 | T57 auto-ecole | 2027-01-09 | 12:15 |
 | LI-97 | T67 travaux | 2027-01-11 | 08:30 |
+| LI-107 | T14 abonnements | 2026-12-20 | 12:15 |
+| LI-108 | T08 habitudes | 2027-01-13 | 12:15 |
+| LI-109 | T11 entretien | 2027-01-15 | 12:15 |
+| LI-110 | T12 dettes | 2027-01-17 | 08:30 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -478,6 +486,17 @@ Google Sheet « Planning publications Instagram » (dossier Drive « QME – Pub
 créé le 13/11/2026 : IG-01 à IG-03 (lancement, 16/11/2026), puis IG-04 à IG-26, un carrousel par template
 le lendemain de son post LinkedIn (LI-75 à LI-97), à 18:30. Toutes les lignes sont « À préparer » ;
 publication par Instinct (lignes « Programmé ») après relecture de Quentin. Reel de lancement IG-27 le 17/11. IG-04 (T31, 18/11) et IG-05 (T37, 20/11) prêts le 13/11 : `communication/compte-rendu/instagram.md`, `communication/cout-revient/instagram.md`.
+
+**Lot du 13/11/2026 (T08, T11, T12, T14)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`) et fiches
+`fiches/<slug>.md`. Publications insérées le 13/11 avec la remarque « ne publier que si la fiche Gumroad est en
+ligne » : LinkedIn « Programmé » LI-107 (T14, 20/12), LI-108 (T08, 13/01), LI-109 (T11, 15/01), LI-110 (T12,
+17/01) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-62 (T14, 21/12, même créneau que
+IG-48 : à arbitrer), IG-63 (T08, 14/01), IG-64 (T11, 16/01), IG-65 (T12, 18/01). Restent à vérifier avant la
+vente : sources des réglages types (T08) et régime RGPD des données de santé (T08) ; trois règles d'entretien
+non revérifiées (assainissement individuel, contrôle SPANC, débroussaillement, T11) ; repères juridiques de
+résiliation (T14) ; points conseil budget en refonte (T12, à revérifier chaque année).
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
