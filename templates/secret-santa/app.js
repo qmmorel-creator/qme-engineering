@@ -205,6 +205,9 @@ async function creerDemo() {
   }
   await creer('bureau', ajout(noel, -5), D.bureau, [['Sarah', 'Thomas']]);
   await creer('amis', ajout(noel, 3), D.amis);
+  // Mode « ordinateur commun » : prénoms saisis par l'organisateur, six codes déjà choisis (code de démo 1234).
+  const box = (await appelAdmin('POST', '/echanges', { nom: 'Secret Santa de la box', date: ajout(noel, -4), budget: '15 €', message: 'Cadeau à déposer au pied du sapin de la box. Inscription sur la feuille à l\'accueil, puis code secret sur l\'ordinateur.', mode: 'borne', noms: D.box.join('\n') })).corps.echange;
+  for (const p of box.participants.slice(0, 6)) await appel('POST', `${API}/borne/reclamer`, { e: box.id, k: box.invitation, pid: p.id, code: '1234', souhaits: D.souhaits[p.nom] ?? 'Une gourde\nDes chaussettes de sport' });
   stock.ecrire(CLE_DEMO, demoMemoire);
 }
 
@@ -327,7 +330,8 @@ const allerA = (id) => { history.pushState(null, '', id ? `#e=${id}` : location.
 function rendreListe() {
   document.title = 'Mes échanges · Secret Santa';
   const cartes = echanges.map((e) => {
-    const etape = e.tirage ? (e.nbVus === e.nbInscrits ? 'Tout le monde a découvert son tirage' : `Tirage fait · ${e.nbVus}/${e.nbInscrits} l'ont découvert`) : e.ouvert ? 'Inscriptions ouvertes' : 'Inscriptions fermées';
+    const etape = e.tirage ? (e.nbVus === e.nbInscrits ? 'Tout le monde a découvert son tirage' : `Tirage fait · ${e.nbVus}/${e.nbInscrits} l'ont découvert`)
+      : e.mode === 'borne' ? `Ordinateur commun · ${e.nbReclames}/${e.nbInscrits} codes choisis` : e.ouvert ? 'Inscriptions ouvertes' : 'Inscriptions fermées';
     const classe = e.tirage ? 'sapin' : e.ouvert ? 'beurre' : 'ciel';
     return `<button class="echange-carte" data-action="ouvrir" data-id="${e.id}">
       <span class="echange-forme ${classe}" aria-hidden="true"></span>
@@ -349,6 +353,7 @@ function rendreListe() {
     </ol></section>`;
 }
 
+const lienBorne = (e) => `${location.origin}${location.pathname}?borne=${e.id}&k=${e.invitation}`;
 const lienInvitation = (e) => `${location.origin}${location.pathname}?e=${e.id}&k=${e.invitation}`;
 const texteInvitation = (e) => `Tu es invité(e) au Secret Santa « ${e.nom} »${e.date ? `, le ${fmt(e.date)}` : ''}${e.budget ? `, budget ${e.budget}` : ''}.\nInscris-toi ici : ${lienInvitation(e)}\nTu découvriras sur ta page à qui tu offres un cadeau, une fois le tirage fait.`;
 
@@ -360,13 +365,15 @@ function rendreEchange() {
   const essai = nb >= 3 ? tirer(e.participants.map((p) => p.id), e.exclusions) : { ok: false, raison: 'trop-peu' };
   const vus = e.participants.filter((p) => p.aVu).length;
   const etape = e.tirage ? 4 : nb >= 3 ? 3 : nb ? 2 : 1;
-  const etapes = ['Inviter', 'Inscriptions', 'Tirage', 'Découverte'];
+  const borne = e.mode === 'borne';
+  const sansCode = borne ? e.participants.filter((p) => !p.reclame).length : 0;
+  const etapes = borne ? ['Prénoms', 'Codes', 'Tirage', 'Découverte'] : ['Inviter', 'Inscriptions', 'Tirage', 'Découverte'];
 
   const participants = nb ? `<ul class="participants">${e.participants.map((p) => `
       <li><span class="initiale" aria-hidden="true">${esc(p.nom.slice(0, 1).toUpperCase())}</span>
-        <span class="p-nom"><b>${esc(p.nom)}</b><small>${esc(p.email)}</small></span>
-        <span class="p-etats">${p.aSouhaits ? '<span class="etiquette beurre">Idées notées</span>' : '<span class="etiquette sable">Pas d\'idées</span>'}${e.tirage ? (p.aVu ? '<span class="etiquette sapin">A découvert</span>' : '<span class="etiquette ciel">Pas encore vu</span>') : ''}</span>
-        <span class="p-actions">${session.demo ? `<button class="btn petit lien" data-action="voir-comme" data-nom="${esc(p.nom)}">Voir sa page</button>` : ''}<button class="btn-icone petit" data-action="retirer" data-id="${p.id}" aria-label="Retirer ${esc(p.nom)}" title="Retirer">×</button></span>
+        <span class="p-nom"><b>${esc(p.nom)}</b><small>${borne ? '' : esc(p.email)}</small></span>
+        <span class="p-etats">${borne ? (p.bloque ? '<span class="etiquette rose">Bloqué</span>' : p.reclame ? '<span class="etiquette beurre">Code choisi</span>' : '<span class="etiquette sable">Pas encore de code</span>') : (p.aSouhaits ? '<span class="etiquette beurre">Idées notées</span>' : '<span class="etiquette sable">Pas d\'idées</span>')}${e.tirage ? (p.aVu ? '<span class="etiquette sapin">A découvert</span>' : '<span class="etiquette ciel">Pas encore vu</span>') : ''}</span>
+        <span class="p-actions">${borne ? (p.bloque ? `<button class="btn petit lien" data-action="debloquer" data-id="${p.id}">Débloquer</button>` : '') + (p.reclame ? `<button class="btn petit lien" data-action="reinitialiser" data-id="${p.id}">Remettre le code à zéro</button>` : '') : session.demo ? `<button class="btn petit lien" data-action="voir-comme" data-nom="${esc(p.nom)}">Voir sa page</button>` : ''}<button class="btn-icone petit" data-action="retirer" data-id="${p.id}" aria-label="Retirer ${esc(p.nom)}" title="Retirer">×</button></span>
       </li>`).join('')}</ul>`
     : `<div class="vide-etat compact">${FLOCON}<p>Personne n'est encore inscrit. Envoie le lien d'invitation au groupe.</p></div>`;
 
@@ -378,7 +385,7 @@ function rendreEchange() {
         <div class="jauge" role="img" aria-label="${vus} sur ${nb}"><i style="width:${nb ? Math.round((vus / nb) * 100) : 0}%"></i></div>
         <p class="aide">Tu ne vois pas les résultats : seul chaque participant voit le sien, sur sa page. Relance ceux qui ne l'ont pas encore ouverte.</p>
         <div class="rang"><button class="btn petit" data-action="copier-relance">Copier un message de rappel</button><button class="btn petit lien" data-action="refaire">Refaire le tirage</button></div></div></div>`
-    : `<div class="tirage-attente"><p>${nb < 3 ? `Il faut au moins 3 participants (encore ${3 - nb}).` : essai.ok ? `Tout est prêt pour ${pluriel(nb, 'participant')}. Le tirage ferme les inscriptions.` : esc(MESSAGES_TIRAGE[essai.raison])}</p>
+    : `<div class="tirage-attente"><p>${nb < 3 ? `Il faut au moins 3 participants (encore ${3 - nb}).` : essai.ok ? (borne ? (sansCode ? `<b>${pluriel(sansCode, 'personne n\'a', 'personnes n\'ont')} pas encore choisi de code.</b> Tu peux lancer le tirage, mais n'importe qui pourrait alors réclamer leur prénom à leur place sur l'ordinateur commun : mieux vaut attendre.` : `Tout le monde a choisi son code. Tu peux lancer le tirage.`) : `Tout est prêt pour ${pluriel(nb, 'participant')}. Le tirage ferme les inscriptions.`) : esc(MESSAGES_TIRAGE[essai.raison])}</p>
         <button class="btn primaire jaune-noel" data-action="tirer" ${essai.ok ? '' : 'disabled'}>Lancer le tirage</button>
         <p class="aide">Le serveur tire au sort et garde le résultat. Ni toi ni personne d'autre ne peut voir qui a tiré qui, à part chaque participant pour lui-même.</p></div>`;
 
@@ -389,14 +396,19 @@ function rendreEchange() {
       <div class="actions"><button class="btn" data-action="modifier">Modifier</button></div></div>
     <ol class="progression-noel" aria-label="Étape ${etape} sur 4">${etapes.map((t, i) => `<li class="${i + 1 < etape ? 'fait' : i + 1 === etape ? 'actuel' : ''}"><i></i>${t}</li>`).join('')}</ol>
     <div class="grille-echange"><div class="col">
-      <section class="bloc invitation"><h2>Lien d'invitation</h2>
+      ${borne ? `<section class="bloc invitation"><h2>Ordinateur commun</h2>
+        <p>Ouvre ce lien sur l'ordinateur de la box et laisse-le en plein écran. Chacun y touche son prénom, ${e.tirage ? 'tape son code et découvre à qui il offre' : 'choisit un code de 4 à 8 chiffres ; après le tirage, il y revient avec ce code pour découvrir à qui il offre'}.</p>
+        <label class="champ">Lien de la borne<input readonly value="${esc(lienBorne(e))}" id="lien-invitation" aria-label="Lien de la borne"></label>
+        <div class="rang">${session.demo ? '<button class="btn primaire" data-action="ouvrir-borne">Ouvrir la borne (démo)</button>' : `<a class="btn primaire" href="${esc(lienBorne(e))}" target="_blank" rel="noopener">Ouvrir la borne</a>`}<button class="btn" data-action="copier-borne">Copier le lien</button></div>
+        <p class="aide">N'ouvre pas ton espace organisateur sur cet ordinateur. Personne ne voit les codes, ni toi. Si un prénom est réclamé par erreur, remets son code à zéro ; s'il est bloqué après 5 codes faux, débloque-le. <button class="btn lien petit" data-action="nouveau-lien">Changer de lien</button></p>
+      </section>` : `<section class="bloc invitation"><h2>Lien d'invitation</h2>
         ${e.tirage ? '<p class="aide">Inscriptions closes : le tirage est fait.</p>' : `
         <label class="champ">À envoyer au groupe<input readonly value="${esc(lienInvitation(e))}" id="lien-invitation" aria-label="Lien d'invitation"></label>
         <div class="rang"><button class="btn primaire" data-action="copier-lien">Copier le lien</button><button class="btn" data-action="copier-message">Copier le message</button></div>
         <label class="interrupteur"><input type="checkbox" data-action="ouvrir-inscriptions" ${e.ouvert ? 'checked' : ''}> Inscriptions ${e.ouvert ? 'ouvertes' : 'fermées'}</label>
         <p class="aide">Toi aussi tu participes ? <a href="${esc(lienInvitation(e))}" target="_blank" rel="noopener">Inscris-toi par le lien</a>, comme les autres. <button class="btn lien petit" data-action="nouveau-lien">Changer de lien</button> (l'ancien ne marchera plus).</p>`}
-      </section>
-      <section class="bloc participants-bloc"><h2>Participants <span class="compte-pastille">${nb}</span></h2>${participants}</section>
+      </section>`}
+      <section class="bloc participants-bloc"><h2>Participants <span class="compte-pastille">${nb}</span></h2>${participants}${borne && !e.tirage ? `<button class="btn petit" data-action="ajouter-noms">${ICONES.plus} Ajouter des prénoms</button>` : ''}</section>
     </div><div class="col">
       <section class="bloc tirage"><h2>Tirage</h2>${tirage}</section>
       <section class="bloc exclusions-bloc"><h2>Exclusions</h2>${exclusions}
@@ -430,14 +442,34 @@ function modaleEchange(e) {
       <label class="champ">Budget conseillé<small>Ex. : 20 €</small><input name="budget" maxlength="${LIMITES.budget}" value="${esc(v.budget)}"></label>
     </div>
     <label class="champ">Message pour les participants<small>Affiché sur la page d'inscription et sur la page de chacun.</small><textarea name="message" maxlength="${LIMITES.message}" rows="4">${esc(v.message)}</textarea></label>
+    ${nouveau ? `<fieldset class="modes"><legend>Comment les participants rejoignent l'échange</legend>
+      <label class="mode-choix"><input type="radio" name="mode" value="lien" checked><span><b>Par un lien, avec leur e-mail</b><small>Chacun s'inscrit depuis son téléphone et retrouve sa page où il veut.</small></span></label>
+      <label class="mode-choix"><input type="radio" name="mode" value="borne"><span><b>Liste saisie par moi + ordinateur commun</b><small>Sans e-mail : tu recopies les prénoms (liste papier), chacun choisit un code secret sur l'ordinateur commun puis y découvre son tirage.</small></span></label>
+    </fieldset>
+    <label class="champ" id="bloc-noms" hidden>Prénoms des participants<small>Un par ligne, tels qu'ils apparaîtront sur l'ordinateur commun. Ajoute une initiale si deux prénoms sont identiques.</small><textarea name="noms" rows="7" placeholder="Camille&#10;Hugo&#10;Inès"></textarea></label>` : ''}
     <p class="erreur" role="alert"></p>`;
   ouvrirModale(nouveau ? 'Nouvel échange' : 'Modifier l\'échange', corps, `<button class="btn primaire" value="ok">${nouveau ? 'Créer' : 'Enregistrer'}</button><button class="btn" value="annuler">Annuler</button>`, async (f) => {
     const donnees = { nom: f.get('nom'), date: f.get('date') || null, budget: f.get('budget'), message: f.get('message') };
     if (!String(donnees.nom).trim()) return 'Donne un nom à l\'échange.';
-    const r = await action(() => (nouveau ? appelAdmin('POST', '/echanges', donnees) : appelAdmin('PUT', `/echanges/${e.id}`, donnees)), nouveau ? 'Échange créé. Copie le lien d\'invitation et envoie-le au groupe.' : 'Échange enregistré.');
+    if (nouveau && f.get('mode') === 'borne') {
+      donnees.mode = 'borne'; donnees.noms = String(f.get('noms') || '');
+      if (donnees.noms.split('\n').filter((x) => x.trim()).length < 3) return 'Saisis au moins 3 prénoms, un par ligne.';
+    }
+    const r = await action(() => (nouveau ? appelAdmin('POST', '/echanges', donnees) : appelAdmin('PUT', `/echanges/${e.id}`, donnees)), nouveau ? (donnees.mode === 'borne' ? 'Échange créé. Ouvre la borne sur l\'ordinateur commun : chacun y choisit son code.' : 'Échange créé. Copie le lien d\'invitation et envoie-le au groupe.') : 'Échange enregistré.');
     if (!r) return '';
     if (nouveau) { modale().close(); allerA(r.echange.id); }
   });
+  modale().querySelectorAll('input[name=mode]').forEach((r) => r.addEventListener('change', () => { $('#bloc-noms').hidden = r.value !== 'borne' || !r.checked; }));
+}
+
+function modaleNoms() {
+  ouvrirModale('Ajouter des prénoms', `<label class="champ">Prénoms<small>Un par ligne. Les prénoms déjà présents sont ignorés.</small><textarea name="noms" rows="6"></textarea></label><p class="erreur" role="alert"></p>`,
+    '<button class="btn primaire" value="ok">Ajouter</button><button class="btn" value="annuler">Annuler</button>', async (f) => {
+      if (!String(f.get('noms') || '').trim()) return 'Saisis au moins un prénom.';
+      const r = await action(() => appelAdmin('POST', `/echanges/${courant.id}/participants`, { noms: f.get('noms') }));
+      if (!r) return '';
+      toast(`${pluriel(r.ajoutes, 'prénom ajouté', 'prénoms ajoutés')}.`);
+    });
 }
 
 function modaleExclusion() {
@@ -616,6 +648,139 @@ async function pagePersonnelle(bienvenue = false) {
   });
 }
 
+// ======================================================================
+// Borne : ordinateur commun, mode sans e-mail
+// ======================================================================
+// Rien n'est gardé dans le navigateur : ni code, ni résultat. Le code saisi reste en mémoire le temps
+// d'un écran, puis il est effacé. Retour automatique à la liste après 40 s sans action.
+let ctxBorne = null; // { e, k, demo, data, p, etape, saisie, premier, code, minuterie, compte }
+const DELAI_INACTIF = 40000, DELAI_RESULTAT = 20;
+const coqueBorne = (contenu) => {
+  document.body.classList.add('app', 'participant', 'borne');
+  $('#racine').innerHTML = `
+    ${ctxBorne?.demo ? '<div class="bandeau-demo"><div><b>Démo · ordinateur commun</b><span>Code de démonstration : 1234.</span><button data-action="retour-organisateur">Revenir à l\'organisateur</button></div></div>' : ''}
+    <header class="barre"><div class="barre-int"><span class="marque">${MARQUE}</span><span class="titre-produit">Secret Santa<small>Édition Noël</small></span></div>${GUIRLANDE}</header>
+    <main class="vue borne-vue" id="vue" tabindex="-1">${contenu}</main>`;
+};
+function borneVeille() {
+  clearTimeout(ctxBorne?.minuterie);
+  if (ctxBorne && ctxBorne.etape !== 'liste') ctxBorne.minuterie = setTimeout(() => borneListe(), DELAI_INACTIF);
+}
+async function ouvrirBorne(ctx) {
+  ctxBorne = { ...ctx, etape: 'liste', saisie: '' };
+  if (ctx.demo) { session.demo = true; demoMemoire = demoMemoire || stock.lire(CLE_DEMO); }
+  document.title = 'Secret Santa · ordinateur commun';
+  await borneListe();
+}
+async function borneListe(message = '') {
+  clearTimeout(ctxBorne.minuterie); clearInterval(ctxBorne.compte);
+  Object.assign(ctxBorne, { etape: 'liste', saisie: '', premier: null, code: null, p: null });
+  try {
+    const { statut, corps } = await appel('GET', `${API}/borne?e=${encodeURIComponent(ctxBorne.e)}&k=${encodeURIComponent(ctxBorne.k || '')}`);
+    if (statut !== 200) return coqueBorne(`<div class="vide-etat">${FLOCON}<h3>Lien invalide</h3><p>${esc(corps?.erreur || 'Ce lien ne fonctionne plus.')}</p></div>`);
+    ctxBorne.data = corps.borne;
+  } catch (x) { return coqueBorne(`<div class="vide-etat">${FLOCON}<h3>Pas de connexion</h3><p>${esc(messageErreur(x))}</p></div>`); }
+  const d = ctxBorne.data;
+  const consigne = d.tirage ? 'Le tirage est fait ! Touche ton prénom et tape ton code pour découvrir à qui tu offres.' : 'Touche ton prénom et choisis un code secret de 4 à 8 chiffres. Retiens-le : il te servira à découvrir ton tirage.';
+  coqueBorne(`
+    ${message ? `<div class="alerte succes" role="status">${esc(message)}</div>` : ''}
+    <section class="carte-noel borne-tete">${SAPIN(70)}<div><p class="surtitre">${d.date ? `${esc(fmt(d.date))} · ${compteARebours(d.date)}` : 'Secret Santa'}${d.budget ? ` · budget ${insec(d.budget)}` : ''}</p><h1>${esc(d.nom)}</h1><p class="message">${esc(consigne)}</p></div></section>
+    ${d.participants.length > 12 ? '<label class="champ borne-filtre"><span class="sr-only">Chercher mon prénom</span><input id="borne-filtre" placeholder="Chercher mon prénom" autocomplete="off"></label>' : ''}
+    <div class="borne-noms">${d.participants.map((p) => `<button class="borne-nom ${p.bloque ? 'bloque' : p.reclame ? 'pris' : ''}" data-action="borne-nom" data-id="${p.id}" data-filtre="${esc(p.nom.toLowerCase())}">
+      <b>${esc(p.nom)}</b><small>${p.bloque ? 'Bloqué : voir l\'organisateur' : p.reclame ? (d.tirage ? 'Voir mon tirage' : 'Code choisi') : 'Choisir mon code'}</small></button>`).join('')}</div>
+    <p class="mention borne-pied">Ton code ne s'affiche jamais et n'est connu de personne, pas même de l'organisateur. Si ton prénom a déjà un code que tu n'as pas choisi, préviens l'organisateur.</p>`);
+  $('#borne-filtre')?.addEventListener('input', (ev) => { const v = ev.target.value.trim().toLowerCase(); document.querySelectorAll('.borne-nom').forEach((b) => { b.hidden = v && !b.dataset.filtre.includes(v); }); });
+}
+const clavier = () => `<div class="clavier" role="group" aria-label="Clavier">${['1', '2', '3', '4', '5', '6', '7', '8', '9', 'effacer', '0', 'ok'].map((t) => `<button type="button" class="touche ${t.length > 1 ? t : ''}" data-action="borne-clavier" data-touche="${t}" aria-label="${t === 'effacer' ? 'Effacer' : t === 'ok' ? 'Valider' : t}">${t === 'effacer' ? '⌫' : t === 'ok' ? 'OK' : t}</button>`).join('')}</div>`;
+function borneEcranCode(titre, aide, erreur = '') {
+  const p = ctxBorne.p;
+  coqueBorne(`<section class="bloc borne-code">
+    <button class="btn lien retour" data-action="borne-retour">${ICONES.retour} Ce n'est pas moi</button>
+    <p class="surtitre">${esc(p.nom)}</p><h2>${titre}</h2><p class="aide">${aide}</p>
+    <div class="points-code" aria-live="polite" aria-label="${ctxBorne.saisie.length} chiffres saisis">${Array.from({ length: Math.max(4, ctxBorne.saisie.length) }, (_, i) => `<i class="${i < ctxBorne.saisie.length ? 'plein' : ''}"></i>`).join('')}</div>
+    <p class="erreur" role="alert">${esc(erreur)}</p>
+    ${clavier()}</section>`);
+  borneVeille();
+}
+function borneChoisir(id) {
+  const p = ctxBorne.data.participants.find((x) => x.id === id);
+  if (!p) return;
+  if (p.bloque) return borneListe(`${p.nom} est bloqué après plusieurs codes faux : demande à l'organisateur de le débloquer.`);
+  Object.assign(ctxBorne, { p, saisie: '', premier: null });
+  if (p.reclame) { ctxBorne.etape = 'code'; borneEcranCode('Tape ton code', 'Le code que tu as choisi pour ce prénom.'); }
+  else { ctxBorne.etape = 'reclamer'; borneEcranCode('Choisis ton code secret', 'De 4 à 8 chiffres. Retiens-le bien : personne ne pourra te le redonner.'); }
+}
+async function borneTouche(t) {
+  const c = ctxBorne;
+  if (!c || !['code', 'reclamer', 'confirmer'].includes(c.etape)) return;
+  if (t === 'effacer') c.saisie = c.saisie.slice(0, -1);
+  else if (/^\d$/.test(t)) { if (c.saisie.length < 8) c.saisie += t; }
+  else if (t === 'ok') return borneValider();
+  const titre = { code: 'Tape ton code', reclamer: 'Choisis ton code secret', confirmer: 'Retape ton code' }[c.etape];
+  const aide = { code: 'Le code que tu as choisi pour ce prénom.', reclamer: 'De 4 à 8 chiffres. Retiens-le bien : personne ne pourra te le redonner.', confirmer: 'Pour être sûr que c\'est le bon.' }[c.etape];
+  borneEcranCode(titre, aide);
+}
+async function borneValider() {
+  const c = ctxBorne;
+  if (c.saisie.length < 4) return borneEcranCode(c.etape === 'code' ? 'Tape ton code' : c.etape === 'confirmer' ? 'Retape ton code' : 'Choisis ton code secret', 'De 4 à 8 chiffres.', 'Il faut au moins 4 chiffres.');
+  if (c.etape === 'reclamer') { c.premier = c.saisie; c.saisie = ''; c.etape = 'confirmer'; return borneEcranCode('Retape ton code', 'Pour être sûr que c\'est le bon.'); }
+  if (c.etape === 'confirmer') {
+    if (c.saisie !== c.premier) { c.saisie = ''; c.premier = null; c.etape = 'reclamer'; return borneEcranCode('Choisis ton code secret', 'De 4 à 8 chiffres.', 'Les deux codes ne sont pas identiques : recommence.'); }
+    c.code = c.saisie; c.saisie = ''; c.etape = 'idees';
+    coqueBorne(`<section class="bloc borne-code"><p class="surtitre">${esc(c.p.nom)}</p><h2>Tes idées de cadeaux</h2>
+      <form id="form-borne-idees" class="pile"><label class="champ">Facultatif : visibles seulement par la personne qui te tirera. Une idée par ligne.<textarea name="souhaits" rows="4" maxlength="${LIMITES.souhaits}"></textarea></label>
+      <button class="btn primaire" type="submit">Valider mon code</button></form></section>`);
+    borneVeille();
+    $('#form-borne-idees textarea').addEventListener('input', borneVeille);
+    $('#form-borne-idees').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const { statut, corps } = await appel('POST', `${API}/borne/reclamer`, { e: c.e, k: c.k, pid: c.p.id, code: c.code, souhaits: new FormData(ev.target).get('souhaits') });
+      if (statut !== 200) return borneListe(corps?.erreur || 'Impossible pour le moment.');
+      if (corps.tirage) { c.saisie = c.code; c.etape = 'code'; return borneValider(); }
+      c.code = null;
+      borneListe(`C'est noté, ${c.p.nom} ! Reviens après le tirage avec ton code pour découvrir à qui tu offres.`);
+    });
+    return;
+  }
+  // Étape « code » : vérification, puis tirage ou attente
+  const code = c.saisie; c.saisie = '';
+  const { statut, corps } = await appel('POST', `${API}/borne/voir`, { e: c.e, k: c.k, pid: c.p.id, code });
+  if (statut === 423) return borneListe(corps.erreur);
+  if (statut !== 200) return borneEcranCode('Tape ton code', 'Le code que tu as choisi pour ce prénom.', corps?.erreur || 'Erreur.');
+  if (!corps.destinataire) {
+    c.etape = 'attente';
+    coqueBorne(`<section class="revelation attente">${FLOCON}<p class="surtitre">${esc(c.p.nom)}</p><h2>Pas encore de tirage.</h2><p>Ton code est bon. Reviens quand l'organisateur aura fait le tirage.</p>
+      <form id="form-borne-idees" class="pile" style="align-self:stretch;text-align:left"><label class="champ">Tes idées de cadeaux<textarea name="souhaits" rows="4" maxlength="${LIMITES.souhaits}">${esc(corps.moi.souhaits)}</textarea></label>
+      <div class="rang"><button class="btn primaire" type="submit">Enregistrer mes idées</button><button class="btn" type="button" data-action="borne-retour">Terminer</button></div></form></section>`);
+    borneVeille();
+    $('#form-borne-idees textarea').addEventListener('input', borneVeille);
+    $('#form-borne-idees').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const r = await appel('POST', `${API}/borne/souhaits`, { e: c.e, k: c.k, pid: c.p.id, code, souhaits: new FormData(ev.target).get('souhaits') });
+      borneListe(r.statut === 200 ? 'Idées enregistrées.' : (r.corps?.erreur || 'Impossible pour le moment.'));
+    });
+    return;
+  }
+  c.etape = 'resultat';
+  let reste = DELAI_RESULTAT;
+  const d = corps.destinataire;
+  const idees = d.souhaits ? `<ul class="souhaits">${d.souhaits.split('\n').map((x) => x.trim()).filter(Boolean).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '<p class="aide">Pas d\'idée notée : reste dans le budget et fais simple.</p>';
+  coqueBorne(`<section class="revelation ouverte">${CADEAU}<p class="surtitre">${esc(c.p.nom)}, ton tirage</p>
+    <h2>Tu offres un cadeau à <mark>${esc(d.nom)}</mark></h2><h3 class="titre-section">Ses idées</h3>${idees}
+    <p class="aide">Garde le secret${corps.echange.date ? ` jusqu'au ${esc(fmt(corps.echange.date))}` : ''}${corps.echange.budget ? `, budget ${insec(corps.echange.budget)}` : ''}.</p>
+    <button class="btn primaire" data-action="borne-masquer"><span>J'ai vu, masquer (<span id="compte">${reste}</span> s)</span></button></section>`);
+  clearTimeout(c.minuterie);
+  c.compte = setInterval(() => { reste -= 1; const el = $('#compte'); if (el) el.textContent = reste; if (reste <= 0) borneListe(); }, 1000);
+}
+document.addEventListener('keydown', (ev) => {
+  if (!ctxBorne || !['code', 'reclamer', 'confirmer'].includes(ctxBorne.etape) || modale().open) return;
+  if (/^\d$/.test(ev.key)) { ev.preventDefault(); borneTouche(ev.key); }
+  else if (ev.key === 'Backspace') { ev.preventDefault(); borneTouche('effacer'); }
+  else if (ev.key === 'Enter') { ev.preventDefault(); borneTouche('ok'); }
+  else if (ev.key === 'Escape') borneListe();
+});
+document.addEventListener('pointerdown', () => { if (ctxBorne && !['liste', 'resultat'].includes(ctxBorne.etape)) borneVeille(); });
+
 // ---------- Ajout à l'écran d'accueil (socle commun) ----------
 const appareil = () => {
   const ua = navigator.userAgent;
@@ -655,7 +820,7 @@ function modaleEcranAccueil(auto = false) {
 function proposerEcranAccueil() {
   if (dejaInstalle() || stock.lire(CLE_ACCUEIL)) return;
   if (appareil() === 'autre' && !matchMedia('(max-width:720px)').matches) return;
-  setTimeout(() => { if (!modale().open && !dejaInstalle() && !ctxParticipant) modaleEcranAccueil(true); }, 900);
+  setTimeout(() => { if (!modale().open && !dejaInstalle() && !ctxParticipant && !ctxBorne) modaleEcranAccueil(true); }, 900);
 }
 async function installer() {
   if (!inviteInstallation) return;
@@ -694,7 +859,9 @@ document.addEventListener('click', async (ev) => {
     }
     case 'copier-lien': copier(lienInvitation(courant), 'Lien copié : colle-le dans le message au groupe.'); break;
     case 'copier-message': copier(texteInvitation(courant), 'Message d\'invitation copié.'); break;
-    case 'copier-relance': copier(`Rappel Secret Santa « ${courant.nom} » : le tirage est fait ! Ouvre ta page pour découvrir à qui tu offres (ton lien personnel, ou ${lienInvitation(courant)} puis « Retrouver ma page » avec ton e-mail et ton code).`, 'Message de rappel copié.'); break;
+    case 'copier-relance': copier(courant.mode === 'borne'
+      ? `Rappel Secret Santa « ${courant.nom} » : le tirage est fait ! Passe sur l'ordinateur de la box, touche ton prénom et tape ton code pour découvrir à qui tu offres.`
+      : `Rappel Secret Santa « ${courant.nom} » : le tirage est fait ! Ouvre ta page pour découvrir à qui tu offres (ton lien personnel, ou ${lienInvitation(courant)} puis « Retrouver ma page » avec ton e-mail et ton code).`, 'Message de rappel copié.'); break;
     case 'nouveau-lien': if (await confirmer('Changer de lien', 'L\'ancien lien d\'invitation ne fonctionnera plus. Les personnes déjà inscrites gardent leur page.', 'Changer de lien')) action(() => appelAdmin('POST', `/echanges/${courant.id}/invitation`), 'Nouveau lien créé : envoie-le aux retardataires.'); break;
     case 'tirer': if (await confirmer('Lancer le tirage', `Tirage pour ${pluriel(courant.participants.length, 'participant')}. Les inscriptions seront fermées et tu ne verras pas le résultat.`, 'Lancer le tirage')) {
       const r = await action(() => appelAdmin('POST', `/echanges/${courant.id}/tirage`, {}));
@@ -710,6 +877,18 @@ document.addEventListener('click', async (ev) => {
       break;
     }
     case 'exclusion-ajouter': modaleExclusion(); break;
+    case 'ajouter-noms': modaleNoms(); break;
+    case 'copier-borne': copier(lienBorne(courant), 'Lien de la borne copié.'); break;
+    case 'debloquer': action(() => appelAdmin('POST', `/echanges/${courant.id}/participants/${id}/debloquer`, {}), 'Prénom débloqué : la personne peut retaper son code.'); break;
+    case 'reinitialiser': { const p = courant.participants.find((x) => x.id === id);
+      if (await confirmer('Remettre le code à zéro', `${esc(p.nom)} pourra choisir un nouveau code sur l'ordinateur commun${courant.tirage ? ' et découvrira le même tirage' : ''}. À faire seulement si cette personne n'a pas choisi le code actuel ou l'a oublié.`, 'Remettre à zéro'))
+        action(() => appelAdmin('POST', `/echanges/${courant.id}/participants/${id}/reinitialiser`, {}), `Code de ${p.nom} remis à zéro.`);
+      break; }
+    case 'ouvrir-borne': window.scrollTo({ top: 0 }); ouvrirBorne({ demo: true, e: courant.id, k: courant.invitation, retour: courant.id }); break;
+    case 'borne-nom': borneChoisir(id); break;
+    case 'borne-retour': borneListe(); break;
+    case 'borne-masquer': borneListe(); break;
+    case 'borne-clavier': borneTouche(el.dataset.touche); break;
     case 'exclusion-retirer': { const ex = courant.exclusions.filter((_, i) => i !== Number(el.dataset.i)); action(() => appelAdmin('PUT', `/echanges/${courant.id}`, { exclusions: ex }), 'Exclusion retirée.'); break; }
     case 'supprimer': if (await confirmer('Supprimer l\'échange', `Supprimer « ${esc(courant.nom)} », ses inscrits et son tirage ? Les pages des participants ne fonctionneront plus.`, 'Supprimer', true)) {
       if (await action(() => appelAdmin('DELETE', `/echanges/${courant.id}`), 'Échange supprimé.')) allerA(null);
@@ -719,7 +898,7 @@ document.addEventListener('click', async (ev) => {
       if (r.statut === 200) { window.scrollTo({ top: 0 }); ouvrirParticipant({ demo: true, jeton: r.corps.jeton, e: courant.id, k: courant.invitation, retour: courant.id }); }
       break;
     }
-    case 'retour-organisateur': { const r = ctxParticipant?.retour; ctxParticipant = null; document.body.classList.remove('participant'); await demarrer(); if (r) allerA(r); break; }
+    case 'retour-organisateur': { const r = ctxParticipant?.retour || ctxBorne?.retour; clearTimeout(ctxBorne?.minuterie); clearInterval(ctxBorne?.compte); ctxParticipant = null; ctxBorne = null; document.body.classList.remove('borne'); document.body.classList.remove('participant'); await demarrer(); if (r) allerA(r); break; }
     case 'reveler': revele = true; pagePersonnelle(); break;
     case 'copier-lien-perso': copier(lienPersonnel(ctxParticipant.jeton), 'Lien de ta page copié. Garde-le pour toi.'); break;
     case 'quitter-echange': if (await confirmer('Me désinscrire', 'Te retirer de cet échange ? Tes idées seront effacées.', 'Me désinscrire', true)) {
@@ -733,8 +912,8 @@ document.addEventListener('change', (ev) => {
   if (ev.target.dataset.action === 'ouvrir-inscriptions') action(() => appelAdmin('PUT', `/echanges/${courant.id}`, { ouvert: ev.target.checked }), ev.target.checked ? 'Inscriptions ouvertes.' : 'Inscriptions fermées.');
 });
 document.addEventListener('click', (e) => { if (e.target === modale()) modale().close(); });
-window.addEventListener('popstate', () => { if (!ctxParticipant && session.jeton) route(); });
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && courant && !modale().open && !ctxParticipant) route(); });
+window.addEventListener('popstate', () => { if (!ctxParticipant && !ctxBorne && session.jeton) route(); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && courant && !modale().open && !ctxParticipant && !ctxBorne) route(); });
 
 // ---------- Démarrage ----------
 async function init() {
@@ -742,6 +921,7 @@ async function init() {
   const q = new URLSearchParams(location.search);
   // Participant : lien personnel (?p=) ou lien d'invitation (?e=&k=). Aucune clé nécessaire.
   if (q.get('p')) { const jeton = q.get('p'); memoriserParticipation(jeton.split('.')[0], jeton); return ouvrirParticipant({ jeton, e: jeton.split('.')[0] }); }
+  if (q.get('borne')) return ouvrirBorne({ e: q.get('borne'), k: q.get('k') });
   if (q.get('e')) return ouvrirParticipant({ e: q.get('e'), k: q.get('k') });
   const code = stock.lire(CLE_CODE);
   if (q.has('demo')) { history.replaceState(null, '', location.pathname + location.hash); if (!code || code === CODE_DEMO) return ouvrirDemo(!code ? false : true); }

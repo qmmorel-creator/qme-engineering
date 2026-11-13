@@ -25,6 +25,7 @@ window.BASE = {
     famille: ['Camille', 'Hugo', 'Inès', 'Malo', 'Rose', 'Yanis', 'Lucie'],
     bureau: ['Sarah', 'Thomas', 'Nadia', 'Paul', 'Jeanne'],
     amis: ['Léo', 'Chloé'],
+    box: ['Max', 'Léa', 'Tom', 'Sofia', 'Nina', 'Jules', 'Emma', 'Lucas'],
     souhaits: {
       Camille: 'Un roman policier\nDes chaussettes rigolotes (taille 38)\nTout sauf du chocolat noir',
       Hugo: 'Un jeu de société à deux joueurs\nUn bonnet bleu',
