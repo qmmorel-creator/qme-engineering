@@ -357,7 +357,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Réservé aux adultes. Outil d'aide au suivi : il ne remplace pas l'avis d'un médecin ou d'un diététicien. Pas encore d'accès ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Réservé aux adultes. Outil d'aide au suivi : il ne remplace pas l'avis d'un médecin ou d'un diététicien. Pas encore d'accès ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -386,7 +386,7 @@
       <li><b>Quelles données</b> : ton poids, ta taille, ton année de naissance, ton sexe, ton niveau d'activité, tes repas et tes séances de sport. Ce sont des <b>données de santé</b> au sens du RGPD (article 9).</li>
       <li><b>Où</b> : en ligne, sur l'hébergement du site qm-engineering.fr, rattachées à ta clé de licence, et en copie dans ce navigateur pour fonctionner hors ligne.</li>
       <li><b>À quoi elles servent</b> : uniquement à calculer et afficher ton journal, ta dépense et ton bilan, sur tes appareils. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</li>
-      <li><b>Comment les effacer</b> : Réglages → « Effacer toutes mes données » vide la version en ligne et celle de cet appareil. Tu peux aussi écrire à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> (Quentin Morel Engineering, responsable du traitement).</li>
+      <li><b>Comment les effacer</b> : Réglages → « Effacer toutes mes données » vide la version en ligne et celle de cet appareil. Tu peux aussi écrire à <b>quentin.morel@qm-engineering.fr</b> (Quentin Morel Engineering, responsable du traitement).</li>
     </ul>`;
   const AVERTISSEMENT_SANTE = 'Outil d\'aide au suivi, pas un dispositif médical : il ne remplace pas l\'avis d\'un médecin ou d\'un diététicien. Les calculs sont des estimations. Réservé aux adultes ; déconseillé sans avis médical en cas de grossesse, d\'allaitement, de maladie chronique ou de trouble du comportement alimentaire.';
 

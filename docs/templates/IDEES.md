@@ -37,6 +37,9 @@ la clé de licence dans l'éditeur Gumroad, le feu vert de fusion dans `main` et
   dans un produit, son nom, ses écrans, sa fiche Gumroad ou sa communication. Chaque template porte un
   nom descriptif propre. Les chemins de code cités dans les fiches sont des repères de développement
   internes, jamais repris dans le produit.
+- **Aucune automatisation ni lien avec une application externe** (règle de Quentin, 13/11/2026) : pas
+  d'envoi d'e-mail, de lien d'appel ou de messagerie, d'agenda, de réseau social, de connecteur ni de
+  synchronisation avec une autre application. Partage par texte à copier, impression ou export (CSV, JSON).
 - **Donnée datée** : toute ligne marquée **daté** dépend d'un barème, taux ou règle officielle qui change.
   Mise à jour annuelle obligatoire (source et date affichées dans l'application) ou valeur paramétrable
   par l'utilisateur.

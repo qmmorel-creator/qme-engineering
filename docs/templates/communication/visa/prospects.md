@@ -45,4 +45,4 @@ ni dans les démonstrations ; la démo est entièrement fictive.
 
 > Bonjour, je propose un outil en ligne pour tenir le circuit de visa des documents d'exécution :
 > registre par lot, avis VSO / VAO / REF de chaque viseur, échéances selon vos délais et relances
-> prêtes à envoyer. La démo fictive est ici : https://qm-engineering.fr/templates/visa/?demo
+> prêtes à copier. La démo fictive est ici : https://qm-engineering.fr/templates/visa/?demo

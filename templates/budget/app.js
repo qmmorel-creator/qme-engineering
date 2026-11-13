@@ -299,7 +299,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Pas encore de budget ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Aucune connexion à ta banque : tu saisis toi-même tes montants. ${esc(AVERTISSEMENT.split(' : ')[0])}. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore de budget ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Aucune connexion à ta banque : tu saisis toi-même tes montants. ${esc(AVERTISSEMENT.split(' : ')[0])}. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');

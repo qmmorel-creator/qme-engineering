@@ -373,7 +373,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Pas encore de CRM ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore de CRM ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -543,7 +543,7 @@
           <h3>${esc(a?.nom || 'Action')} · ${esc(c.nom)}</h3>
           ${c.prochaine.note ? `<p class="carte-note">${esc(c.prochaine.note)}</p>` : ''}
           ${a ? `<p class="conseil-puce">${esc(a.conseil)}</p>` : ''}
-          <p class="carte-liens">${c.tel ? `<a href="tel:${esc(c.tel.replace(/\s/g, ''))}">${esc(c.tel)}</a>` : ''}${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : ''}</p>
+          <p class="carte-liens">${c.tel ? `<span>${esc(c.tel)}</span>` : ''}${c.email ? `<span>${esc(c.email)}</span>` : ''}</p>
         </div>
         <div class="carte-boutons">
           <button class="btn primaire" data-action="fait" data-id="${c.id}">Fait</button>
@@ -637,7 +637,7 @@
           <button class="btn petit" data-action="contact-modifier" data-id="${c.id}">Modifier</button>
         </div>
         ${revoir ? `<div class="avertissement rgpd">Pas d'échange depuis plus de ${pluriel(E.reglages.conservationAns, 'an')} : garde ce contact seulement s'il est encore utile. <span class="rang-inline"><button class="btn petit" data-action="archiver" data-id="${c.id}">Archiver</button><button class="btn petit danger" data-action="contact-supprimer" data-id="${c.id}">Supprimer</button></span></div>` : ''}
-        <p class="fiche-coord">${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : ''}${c.tel ? `<a href="tel:${esc(c.tel.replace(/\s/g, ''))}">${esc(c.tel)}</a>` : ''}${!c.email && !c.tel ? '<span>Aucune coordonnée.</span>' : ''}<span>Ajouté le ${fmtLong(c.creeLe)}</span></p>
+        <p class="fiche-coord">${c.email ? `<span>${esc(c.email)}</span>` : ''}${c.tel ? `<span>${esc(c.tel)}</span>` : ''}${!c.email && !c.tel ? '<span>Aucune coordonnée.</span>' : ''}<span>Ajouté le ${fmtLong(c.creeLe)}</span></p>
         <div class="prochaine ${p && p.date < t ? 'retard' : ''}">
           <p class="surtitre">Prochaine action</p>
           ${p ? `<h3>${esc(a?.nom || 'Action')} · <span>${quand(p.date)}</span></h3>${p.note ? `<p>${esc(p.note)}</p>` : ''}${a ? `<p class="conseil-puce">${esc(a.conseil)}</p>` : ''}

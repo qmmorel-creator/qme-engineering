@@ -306,7 +306,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Pas encore d'accès ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore d'accès ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -911,7 +911,7 @@
       <p class="aide">À : <b>${esc(dest)}</b>${derniere ? ` · dernière relance ${quand(derniere)}` : ' · première relance'}</p>
       <label class="champ">Objet<input name="objet" id="r-objet" value="${esc(objet)}"></label>
       <label class="champ">Message<textarea name="texte" id="r-texte" rows="9">${esc(texte)}</textarea></label>
-      <div class="rang"><button class="btn petit" type="button" data-action="copier-relance">Copier le texte</button><a class="btn petit" id="r-mail" href="mailto:?subject=${encodeURIComponent(objet)}&body=${encodeURIComponent(texte)}">Ouvrir dans la messagerie</a></div>
+      <div class="rang"><button class="btn petit" type="button" data-action="copier-relance">Copier le texte</button></div>
       <p class="erreur" role="alert"></p>`;
     ouvrirModale('Relancer', corps, '<button class="btn primaire" value="ok">Marquer comme relancé</button><button class="btn" value="retour">Retour</button>', (f, action) => {
       if (action === 'retour') { modaleFiche(id); return GARDER; }
@@ -919,9 +919,6 @@
       d.relances.push({ date: auj(), cible: e.cible, indice: R.indiceRelance(e) });
       fait(`Relance de ${d.numero} enregistrée. Prochaine dans ${regl().frequenceRelance} j si rien ne bouge.`);
     });
-    const maj = () => { $('#r-mail').href = `mailto:?subject=${encodeURIComponent($('#r-objet').value)}&body=${encodeURIComponent($('#r-texte').value)}`; };
-    $('#r-objet').addEventListener('input', maj);
-    $('#r-texte').addEventListener('input', maj);
   }
 
   // Choix rapide d'un document depuis le pilotage.
