@@ -470,7 +470,7 @@ fieldset.champ legend{padding:0;margin-bottom:6px}
   .registre td{padding:0;border:0}
   .registre .c-lot{grid-column:1;grid-row:1}
   .registre .c-num{grid-column:2;grid-row:1}
-  .registre .c-avis{grid-column:3;grid-row:1}
+  .registre .c-avis{grid-column:3;grid-row:1;justify-self:end}
   .registre .c-titre{grid-column:1/-1}
   .registre .c-ind,.registre .c-date{grid-column:auto;font-size:13px;color:var(--discret);text-align:left}
   .registre .c-ind::before,.registre .c-date::before{content:attr(data-titre) " : ";font-weight:600}
@@ -495,3 +495,5 @@ fieldset.champ legend{padding:0;margin-bottom:6px}
   .registre tr{break-inside:avoid}
   .etiquette,.code-avis{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+.tuile .surtitre{padding-right:44px}
+@media (max-width:720px){.tuiles .tuile:last-child{grid-column:1/-1}}

@@ -1,7 +1,7 @@
 {
-  "name": "Planning de révision · QME",
-  "short_name": "Révisions",
-  "description": "Planning de révision par répétition espacée.",
+  "name": "Levée de réserves · QME",
+  "short_name": "Réserves",
+  "description": "Réserves par opération, lot et entreprise, retards et procès-verbaux de levée.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

@@ -226,8 +226,8 @@
       [170, 'Pente d\'évacuation inversée en terrasse', 'execution', 3, 'Couverture et étanchéité', 2, 'interne', 'mesure', ['Le support n\'avait pas la pente prévue.', 'Pente non contrôlée avant pose.', 'Aucun point d\'arrêt entre gros œuvre et étanchéité.'], 'close:21', 3200],
       [142, 'Gaines électriques non repérées', 'documentaire', 1, 'Électricité', 0, 'soustraitant', 'methode', ['Repérage prévu en fin de lot.', 'Le cahier des charges du sous-traitant ne fixe pas le moment.'], 'close:28', 0],
       [118, 'Fissure sur dalle de compression', 'execution', 2, 'Gros œuvre', 1, 'interne', 'milieu', ['Le béton a séché trop vite.', 'Coulage par forte chaleur sans cure.', 'Pas de consigne de cure par temps chaud.'], 'close:14', 650],
-      [96, 'Laser de chantier déréglé', 'equipement', 2, 'Plâtrerie et cloisons', 0, 'autocontrole', 'materiel', ['Écart de 6 mm constaté sur rails.', 'Laser tombé la semaine précédente.', 'Pas de vérification du laser après une chute.'], 'close:8', 300],
-      [74, 'Peinture : reprises visibles en lumière rasante', 'aspect', 1, 'Peinture', 1, 'client', 'maindoeuvre', ['Reprises faites au rouleau sec.', 'Consigne de reprise absente.'], 'close:33', 400],
+      [96, 'Laser de chantier déréglé', 'equipement', 2, 'Plâtrerie et cloisons', 0, 'autocontrole', 'materiel', ['Écart de 6 mm constaté sur rails.', 'Laser tombé la semaine précédente.', 'Pas de vérification du laser après une chute.'], 'close:79', 300],
+      [74, 'Peinture : reprises visibles en lumière rasante', 'aspect', 1, 'Peinture', 1, 'client', 'maindoeuvre', ['Reprises faites au rouleau sec.', 'Consigne de reprise absente.'], 'close:68', 400],
       [58, 'Traitement de fissure non fait par le sous-traitant', 'soustraitance', 2, 'Revêtements de sols', 2, 'interne', 'methode', ['Le sous-traitant n\'a pas reçu la réserve.', 'Réserves transmises oralement.'], 'verif:20', 0],
       [44, 'Infiltration au pied d\'une menuiserie', 'client', 3, 'Menuiseries extérieures', 1, 'client', 'methode', ['La bavette n\'est pas raccordée à l\'étanchéité.', 'Ordre de pose inversé entre deux lots.'], 'reanalyse', 1100],
       [35, 'Enrobage d\'armatures insuffisant en rive', 'execution', 3, 'Gros œuvre', 2, 'autocontrole', 'materiel', ['Les cales d\'enrobage se sont écrasées.', 'Cales en plastique trop petites pour les barres.'], 'actions-retard', 1500],
@@ -340,6 +340,8 @@
       const code = formaterCode(champ.value);
       const err = $('#erreur-code');
       const bouton = e.target.querySelector('button[type=submit]');
+      const brut = champ.value.toUpperCase().replace(/[^0-9A-Z]/g, '');
+      if (/^[A-Z]{3}[0-9A-Z]{16}$/.test(brut) && !brut.startsWith(PRODUIT) && !/^[0-9A-F]+$/.test(brut)) { err.textContent = 'Ce code ouvre un autre template QME : utilise la page qm-engineering.fr/connexion/.'; champ.focus(); return; }
       if (!codeComplet(code) && code !== CODE_DEMO) { err.textContent = 'Clé incomplète : elle compte 4 blocs de 8 caractères (copie-la depuis l\'e-mail de Gumroad).'; champ.focus(); return; }
       bouton.disabled = true; bouton.textContent = 'Vérification…'; err.textContent = '';
       try { await connecter(code, $('#memoriser').checked); } catch (x) {
@@ -690,7 +692,7 @@
       ['Ouvertes', k.ouvertes, '', 'Non-conformités non clôturées, à ce jour.', 'var(--encre)', 'rond'],
       ['En retard', k.retard, '', 'Échéance de traitement ou d\'action dépassée.', 'var(--rouge)', ''],
       ['Délai moyen de clôture', k.delaiMoyen === null ? '–' : String(k.delaiMoyen).replace('.', ','), k.delaiMoyen === null ? '' : 'j', `Du constat à la clôture, sur ${pluriel(k.cloturees, 'clôture')} de la période.`, 'var(--jaune)', 'rond'],
-      ['Efficaces du premier coup', k.efficacite === null ? '–' : k.efficacite, k.efficacite === null ? '' : '%', 'Clôturées sans vérification jugée inefficace.', 'var(--bleu)', ''],
+      ['Efficaces du 1er coup', k.efficacite === null ? '–' : k.efficacite, k.efficacite === null ? '' : '%', 'Clôturées sans vérification jugée inefficace.', 'var(--bleu)', ''],
     ].map(([lib, v, u, d, c, f]) => `<div class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}<small>${u}</small></b><span>${d}</span></div>`).join('');
     const tri = (obj, base, coul) => Object.entries(obj).map(([id, n]) => { const x = base.find((y) => String(y.id) === String(id)); return { nom: x ? x.nom : id, n, pastille: coul ? coul(x) : null }; }).sort((a, b) => b.n - a.n);
     const parGravite = B.gravites.map((g) => ({ nom: g.nom, n: k.parGravite[g.id] || 0, pastille: g.couleur })).reverse();
@@ -749,7 +751,7 @@
       <div class="vue-tete"><div><h1>Méthode</h1><p>Les repères intégrés au registre : grille de gravité, typologie des écarts, 5 pourquoi, familles de causes. Ce sont des propositions de méthode, à adapter à ton propre système qualité : aucune norme n'impose ces seuils.</p></div></div>
       <nav class="sommaire" aria-label="Sommaire"><a href="#m-gravite">Gravité</a><a href="#m-types">Types d'écarts</a><a href="#m-pourquoi">5 pourquoi</a><a href="#m-6m">Familles de causes</a><a href="#m-decisions">Décisions sur le produit</a></nav>
       <h2 class="titre-section" id="m-gravite">Grille de gravité <span>Délai de traitement proposé, réglable dans les réglages.</span></h2>
-      <div class="methodes">${B.gravites.map((g) => `
+      <div class="methodes grille-gravite">${B.gravites.map((g) => `
         <article class="methode" style="--c:${g.couleur};--t:${g.texte}">
           <div class="methode-tete"><h2>${g.id} · ${esc(g.nom)}</h2><span>${R.delaiGravite(reg(), g.id)} j</span></div>
           <p>${esc(g.definition)}</p>

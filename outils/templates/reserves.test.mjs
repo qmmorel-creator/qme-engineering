@@ -116,6 +116,8 @@ test('filtres : opération, statut, recherche sans accents sur plusieurs mots', 
   ];
   assert.deepEqual(R.filtrer(l, { operationId: 'op1' }, AUJ).map((r) => r.id), ['a', 'b']);
   assert.deepEqual(R.filtrer(l, { statut: 'a-lever' }, AUJ).map((r) => r.id), ['a', 'c']);
+  assert.deepEqual(R.filtrer(l, { statut: 'en-cours' }, AUJ).map((r) => r.id), ['a', 'c']);
+  assert.deepEqual(R.filtrer(l, { statut: 'tous' }, AUJ).map((r) => r.id), ['a', 'b', 'c']);
   assert.deepEqual(R.filtrer(l, { statut: 'retard' }, AUJ).map((r) => r.id), ['a']);
   assert.deepEqual(R.filtrer(l, { statut: 'controlee' }, AUJ).map((r) => r.id), ['b']);
   assert.deepEqual(R.filtrer(l, { texte: 'fele CUISINE' }, AUJ).map((r) => r.id), ['a']);

@@ -364,7 +364,7 @@
         <p class="surtitre">${esc(a.nom)}</p>
         <h1>Lots et viseurs du circuit.</h1>
         <p class="intro">Coche les lots du marché et les intervenants qui visent les documents. Numéros, entreprises et noms se complètent ensuite dans l'onglet Lots.</p>
-        <h2 class="titre-section">Lots <span>${pluriel(a.lots.size, 'lot coché', 'lots cochés')}</span></h2>
+        <h2 class="titre-section">Lots <span id="nb-lots">${pluriel(a.lots.size, 'lot coché', 'lots cochés')}</span></h2>
         <div class="choix-matieres">${B.lots.map((l) => `<label class="case"><input type="checkbox" data-action="choix-lot" value="${l.code}" ${a.lots.has(l.code) ? 'checked' : ''}> ${esc(l.nom)}</label>`).join('')}</div>
         <h2 class="titre-section">Viseurs <span>Un viseur par rôle ; renomme-les ensuite.</span></h2>
         <div class="choix-matieres">${B.roles.filter((x) => x !== 'Autre').map((r) => `<label class="case"><input type="checkbox" data-action="choix-role" value="${esc(r)}" ${a.roles.has(r) ? 'checked' : ''}> ${esc(r)}</label>`).join('')}</div>
@@ -1150,7 +1150,7 @@
         if (!accueil.nom.trim()) { $('#erreur-accueil').textContent = 'Indique le nom de l\'opération.'; $('#op-nom').focus(); break; }
         accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
-      case 'choix-lot': el.checked ? accueil.lots.add(el.value) : accueil.lots.delete(el.value); $('[data-action="accueil-fin"]').disabled = !accueil.lots.size; break;
+      case 'choix-lot': el.checked ? accueil.lots.add(el.value) : accueil.lots.delete(el.value); $('[data-action="accueil-fin"]').disabled = !accueil.lots.size; $('#nb-lots').textContent = pluriel(accueil.lots.size, 'lot coché', 'lots cochés'); break;
       case 'choix-role': el.checked ? accueil.roles.add(el.value) : accueil.roles.delete(el.value); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;

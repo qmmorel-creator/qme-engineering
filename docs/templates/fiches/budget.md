@@ -69,7 +69,7 @@ revenus mensuels prévus. Les enveloppes se remplissent ensuite dans l'onglet En
 
 ## Base intégrée
 
-- **Catalogue de 22 catégories et environ 90 sous-catégories** d'un foyer français, rangées en
+- **Catalogue de 22 catégories et 75 sous-catégories** d'un foyer français, rangées en
   besoins (logement, énergie et eau, alimentation, transports, santé, télécoms, enfants, assurances et
   banque, impôts et taxes, animaux), envies (restaurants et sorties, loisirs et sport, abonnements,
   shopping, beauté et bien-être, vacances, cadeaux et fêtes, dons) et épargne (épargne de précaution,

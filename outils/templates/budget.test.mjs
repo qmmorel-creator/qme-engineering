@@ -80,7 +80,8 @@ test('statut des enveloppes', () => {
   assert.equal(R.statutEnveloppe(10000, 5000), 'ok');
   assert.equal(R.statutEnveloppe(10000, 8999), 'ok');
   assert.equal(R.statutEnveloppe(10000, 9000), 'presque');
-  assert.equal(R.statutEnveloppe(10000, 10000), 'presque');
+  assert.equal(R.statutEnveloppe(10000, 9999), 'presque');
+  assert.equal(R.statutEnveloppe(10000, 10000), 'pile');
   assert.equal(R.statutEnveloppe(10000, 10001), 'depasse');
   assert.equal(R.statutEnveloppe(0, 500), 'hors');
   assert.equal(R.statutEnveloppe(0, 0), 'aucune');

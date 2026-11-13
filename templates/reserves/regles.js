@@ -93,7 +93,8 @@
   // Minuscules sans accents pour la recherche.
   const plat = (t) => String(t ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-  // f : { operationId, lotId, entrepriseId, statut, texte } ; statut ∈ tous | a-lever | retard | levee | controlee | refusee | ouverte.
+  // f : { operationId, lotId, entrepriseId, statut, texte } ;
+  // statut ∈ tous | en-cours (hors contrôlées) | a-lever | retard | levee | controlee | refusee | ouverte.
   // noms(r) renvoie le texte indexé en plus de la réserve (lot, entreprise) ; facultatif.
   function filtrer(liste, f = {}, auj, noms = () => '') {
     const mots = plat(f.texte || '').split(/\s+/).filter(Boolean);
@@ -102,6 +103,7 @@
       if (f.lotId && r.lotId !== f.lotId) return false;
       if (f.entrepriseId && r.entrepriseId !== f.entrepriseId) return false;
       const s = f.statut || 'tous';
+      if (s === 'en-cours' && r.statut === 'controlee') return false;
       if (s === 'a-lever' && !aCharge(r)) return false;
       if (s === 'retard' && !enRetard(r, auj)) return false;
       if (['levee', 'controlee', 'refusee', 'ouverte'].includes(s) && r.statut !== s) return false;
