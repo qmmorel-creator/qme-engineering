@@ -1,0 +1,31 @@
+/* FêteBudget · composants propres (le socle commun est dans ../commun/socle.css). */
+.barre-budget{height:14px;border-radius:999px;background:var(--sable);border:1px solid var(--trait);margin-top:14px;overflow:hidden}
+.barre-budget span{display:block;height:100%;background:var(--vert);border-radius:999px}
+.barre-budget.depasse span{background:var(--rouge)}
+.liste-invites{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.liste-invites li{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--trait);background:var(--surface);border-radius:14px;padding:8px 8px 8px 14px;border-left:6px solid var(--jaune)}
+.liste-invites li.st-confirme{border-left-color:var(--vert)}
+.liste-invites li.st-decline{border-left-color:var(--trait);background:var(--sable)}
+.liste-invites li.st-decline b{text-decoration:line-through;color:var(--texte-2)}
+.statut-invite{min-height:40px;padding:0 12px;border:1px solid var(--trait);border-radius:999px;background:var(--papier);font-weight:600;font-size:13px;flex:none}
+.st-confirme .statut-invite{background:#D7EBDD;border-color:transparent;color:#1E5A37}
+.st-attente .statut-invite{background:var(--beurre);border-color:transparent;color:var(--beurre-texte)}
+.ligne.payee{border-left:6px solid var(--vert)}
+.virements{display:grid;gap:8px}
+.virements li{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;border:1px solid var(--trait);background:var(--surface);border-radius:14px;padding:10px 14px}
+.table-besoins input{max-width:120px}
+.table-besoins tr.ajuste td{background:var(--beurre)}
+.total-besoins{margin-top:14px;font-size:17px}
+.ajout-tache{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-top:14px}
+.ajout-tache .champ{flex:1 1 220px}
+.liste-cases li.retard{border-left:6px solid var(--rouge)}
+.choix-statut.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){
+  .table-besoins thead{display:none}
+  .table-besoins,.table-besoins tbody{display:block}
+  .table-besoins tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:10px 12px;border-bottom:1px solid var(--trait)}
+  .table-besoins td{display:flex;flex-direction:column;gap:2px;padding:0;border:0;text-align:left!important;white-space:normal}
+  .table-besoins td:first-child{grid-column:1/-1;font-weight:700}
+  .table-besoins td[data-libelle]:not([data-libelle=""])::before{content:attr(data-libelle);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--discret)}
+  .table-besoins input{max-width:none;width:100%}
+}
