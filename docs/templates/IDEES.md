@@ -76,10 +76,10 @@ déjà).
 | N° | Template | Catégorie | Cible | Statut | Prix | Taille | Priorité | Origine |
 |----|----------|-----------|-------|--------|-----------|--------|----------|---------|
 | T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 |
-| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en cours | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
-| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en cours | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
+| T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | prêt | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
+| T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | prêt | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | fiche | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
-| T05 | Budget du foyer | Budget perso | Particuliers | en cours | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
+| T05 | Budget du foyer | Budget perso | Particuliers | prêt | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
@@ -98,25 +98,25 @@ déjà).
 | T21 | Préparation de voyage | Voyage | Voyageurs, groupes d'amis | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en cours | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
-| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en cours | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
+| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
+| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | prêt | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | idée | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
-| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en cours | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
+| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | idée | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
-| T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | idée | 15 € | M | P1 | Backlog Quentin n° 02 |
+| T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
-| T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | idée | 39 € | M | P1 | Backlog Quentin n° 06 |
+| T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
-| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | idée | 25 € | M | P1 | Backlog Quentin n° 10 |
+| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | idée | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
-| T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | idée | 29 € | M | P1 | Backlog Quentin n° 17 |
+| T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | prêt | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | idée | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | idée | 35 € | M | P1 | Backlog Quentin n° 21 |

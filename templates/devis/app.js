@@ -1071,6 +1071,7 @@
       <p class="aide-champ">Chaque clic ajoute une ligne au devis. Quantité 1, à ajuster ensuite.</p>`,
     '<button class="btn primaire" value="annuler">Terminé</button>');
     $('#cherche-cat').addEventListener('input', (e) => { $('#choix-liste').innerHTML = liste(e.target.value.trim()); });
+    $('#cherche-cat').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   }
 
   function modaleReglages() {
