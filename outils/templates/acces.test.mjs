@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
+import { genererCode, verifierCode, traiter, estLicence, codeDepuisLicence, verifierLicenceGumroad, PRODUITS, stockageMigrant } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
 const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
@@ -117,4 +117,24 @@ test('licence d\'un autre produit : routée vers ce produit, même si Gumroad é
   assert.equal(r.produit, 'BCM');
   assert.equal(r.url, '/templates/budget-commun/');
   assert.equal(r.jeton, codeDepuisLicence(SECRET, 'BCM', LICENCE));
+});
+
+test('migration du stockage : reprise depuis l\'ancien, copie dans le nouveau, effacement de l\'ancien', async () => {
+  const ancienne = new Map([['REV/abc', { a: 1 }]]), nouvelle = new Map();
+  const ancien = { get: async (c) => ancienne.get(c) ?? null, supprimer: async (c) => { ancienne.delete(c); } };
+  const nouveau = { get: async (c) => nouvelle.get(c) ?? null, set: async (c, v) => { nouvelle.set(c, v); } };
+  const s = stockageMigrant(nouveau, ancien);
+  assert.deepEqual(await s.get('REV/abc'), { a: 1 });
+  assert.deepEqual(nouvelle.get('REV/abc'), { a: 1 });
+  assert.equal(ancienne.has('REV/abc'), false);
+  assert.equal(await s.get('REV/inconnue'), null);
+  // Écriture : toujours dans le nouveau stockage.
+  await s.set('REV/x', { b: 2 });
+  assert.deepEqual(nouvelle.get('REV/x'), { b: 2 });
+  // Copie en échec : l'ancien n'est pas effacé.
+  const ancienne2 = new Map([['k', { c: 3 }]]);
+  const s2 = stockageMigrant({ get: async () => null, set: async () => { throw new Error('réseau'); } },
+    { get: async (c) => ancienne2.get(c) ?? null, supprimer: async (c) => { ancienne2.delete(c); } });
+  await assert.rejects(s2.get('k'));
+  assert.equal(ancienne2.has('k'), true);
 });
