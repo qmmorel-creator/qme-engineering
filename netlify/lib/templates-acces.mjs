@@ -43,6 +43,7 @@ export const PRODUITS = {
   DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/' },
   ABN: { nom: 'Suivi des abonnements', url: '/templates/abonnements/' },
   MTR: { nom: 'MétréPro', url: '/templates/metre/' },
+  WTT: { nom: 'WattBudget', url: '/templates/watt-budget/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

@@ -288,7 +288,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .vue{padding:20px 12px 40px}
   .vue-tete{margin-bottom:16px}
   .vue-tete .actions{width:100%}
-  .vue-tete .actions .btn{flex:1}
+  .vue-tete .actions .btn{flex:1 1 auto;white-space:nowrap}
   .accueil{padding:24px 14px 48px}
   .accueil-pied .btn{flex:1}
   .choix-types{grid-template-columns:1fr}
