@@ -274,7 +274,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 /* Pipeline */
 .vue .choix-colonne{display:none}
 .kanban-defile{overflow-x:auto;padding:0 4px 10px 0}
-.kanban{display:grid;grid-template-columns:repeat(var(--n),minmax(176px,1fr));gap:12px;align-items:start}
+.kanban{display:grid;grid-template-columns:repeat(var(--n),minmax(148px,1fr));gap:12px;align-items:start}
 .colonne{border:2px solid var(--encre);background:var(--surface);display:flex;flex-direction:column;min-height:280px;transition:box-shadow .12s}
 .colonne.survol{box-shadow:6px 6px 0 var(--jaune);background:#F6F1E3}
 .colonne-tete{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border-top:8px solid var(--c);border-bottom:2px solid var(--encre)}

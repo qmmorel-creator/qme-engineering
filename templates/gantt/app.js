@@ -473,7 +473,7 @@
     const visibles = E.plannings.filter((p) => !p.masque);
     const actif = planning(E.planningActif) || E.plannings[0];
     const masques = E.plannings.length - visibles.length;
-    const sec = actif && sectionSaisie[actif.id] ? actif.sections.find((s) => s.id === sectionSaisie[actif.id]) : null;
+    const sec = actif ? actif.sections.find((s) => s.id === sectionCourante(actif)) : null;
     return `
       <div class="vue-tete"><div><h1>Gantt</h1><p>Une ligne par tâche : nom, date, durée, avancement et liens. Le tableau et les barres restent synchronisés.</p></div>
         <div class="actions"><button class="btn" data-action="affichage">Affichage${masques ? ` <span class="pastille">${masques} masqué${masques > 1 ? 's' : ''}</span>` : ''}</button><button class="btn" data-action="imprimer">Imprimer / PNG</button><button class="btn primaire" data-action="planning-nouveau">${ICONES.plus}Planning</button></div></div>
@@ -1009,6 +1009,13 @@
   const ecartTexte = (n, p) => (n === null ? '—' : n === 0 ? 'à l\'heure' : n > 0 ? `+${j(n, p)}` : `−${j(-n, p)}`);
 
   // ---------- Saisie rapide ----------
+  // Section de saisie : celle choisie, sinon la dernière du planning (« hors section » = choix explicite).
+  function sectionCourante(p) {
+    const v = sectionSaisie[p.id];
+    if (v === null) return null;
+    if (v && p.sections.some((x) => x.id === v)) return v;
+    return p.sections.at(-1)?.id || null;
+  }
   function saisir(texte) {
     const p = planning(E.planningActif) || E.plannings[0];
     if (!p) return;
@@ -1036,7 +1043,7 @@
         if (!pr) erreurs.push(`« ${s.nom} » : la tâche ${d.num} n'existe pas`);
         else deps.push({ id: pr.id, type: d.type, decalage: d.decalage });
       }
-      const sectionId = sectionSaisie[p.id] && p.sections.some((x) => x.id === sectionSaisie[p.id]) ? sectionSaisie[p.id] : null;
+      const sectionId = sectionCourante(p);
       const t = { id: uid(), planningId: p.id, sectionId, nom: s.nom.slice(0, 120), debut: s.debut, duree: s.duree ?? (s.jalon ? 0 : 1), avancement: s.avancement ?? 0, deps, plage: s.plage, reference: null, note: '' };
       // Enchaîner : sans date ni lien, la tâche suit la précédente de sa section (ou la dernière hors section).
       if (E.enchainer && !t.debut && !deps.length) {
@@ -1614,7 +1621,7 @@
       case 'tache-descendre': deplacerTache(id, 1); if (modale().open) modale().close(); break;
       case 'section-replier': { const s = planning(el.dataset.planning)?.sections.find((x) => x.id === id); if (s) { s.replie = !s.replie; sauver(); dessinerGantt(); } break; }
       case 'section-saisie': E.planningActif = el.dataset.planning; sectionSaisie[el.dataset.planning] = id; rendre(); $('#saisie')?.focus(); break;
-      case 'section-saisie-fin': delete sectionSaisie[E.planningActif]; rendre(); $('#saisie')?.focus(); break;
+      case 'section-saisie-fin': sectionSaisie[E.planningActif] = null; rendre(); $('#saisie')?.focus(); break;
       case 'repere-nouveau': modaleRepere(); break;
       case 'repere-modifier': modaleRepere(id); break;
       case 'periode-nouvelle': modalePeriode(); break;

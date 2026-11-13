@@ -431,3 +431,7 @@ mark.bleu{background:var(--bleu);color:#fff}
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}}
+/* Modale longue : le pied reste visible, le corps défile. */
+.modale form{max-height:calc(100dvh - 36px)}
+.modale-corps{overflow-y:auto;min-height:0;flex:1 1 auto}
+@media (max-width:720px){.modale form{max-height:calc(92dvh - 4px)}}
