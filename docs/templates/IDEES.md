@@ -472,6 +472,7 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-95 | T53 inscriptions | 2027-01-07 | 12:15 |
 | LI-96 | T57 auto-ecole | 2027-01-09 | 12:15 |
 | LI-97 | T67 travaux | 2027-01-11 | 08:30 |
+| LI-111 | T69 sinistre | 2027-01-19 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -479,7 +480,7 @@ Kit de marque : [`communication/instagram/README.md`](communication/instagram/RE
 Google Sheet « Planning publications Instagram » (dossier Drive « QME – Publications Instagram »),
 créé le 13/11/2026 : IG-01 à IG-03 (lancement, 16/11/2026), puis IG-04 à IG-26, un carrousel par template
 le lendemain de son post LinkedIn (LI-75 à LI-97), à 18:30. Toutes les lignes sont « À préparer » ;
-publication par Instinct (lignes « Programmé ») après relecture de Quentin. Reel de lancement IG-27 le 17/11. IG-04 (T31, 18/11) et IG-05 (T37, 20/11) prêts le 13/11 : `communication/compte-rendu/instagram.md`, `communication/cout-revient/instagram.md`.
+publication par Instinct (lignes « Programmé ») après relecture de Quentin. Reel de lancement IG-27 le 17/11. IG-04 (T31, 18/11) et IG-05 (T37, 20/11) prêts le 13/11 : `communication/compte-rendu/instagram.md`, `communication/cout-revient/instagram.md`. IG-66 (T69 sinistre, 20/01/2027, « Prêt ») : `communication/sinistre/instagram.md`.
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
@@ -726,10 +727,16 @@ la fiche Service-Public F3076 donne encore l'ancien délai de 3 mois pour l'inde
 naturelles : le texte de loi est retenu. Prescription de 5 ans limitée à la sécheresse. Aucun taux de
 vétusté par défaut. Tests : `outils/templates/sinistre.test.mjs` (14 tests) ; Playwright ordinateur et
 iPhone 13 / Pixel 7 (connexion, assistant, saisie, photo, impression, CSV, JSON, synchronisation, conflit
-409, hors ligne, rechargement, démo, écran d'accueil). **Reste à faire** : nom commercial définitif (nom de
-travail « SinistreFacile » non utilisé dans le produit), fiche Gumroad (confirmer nom et prix 29 €),
-activation de la clé de licence par Quentin, couverture Gumroad 1280 × 720, communication (LinkedIn,
-Instagram, prospects), revue annuelle des délais.
+409, hors ligne, rechargement, démo, écran d'accueil). **Décisions de Quentin (13/11/2026)** : pas de nom de marque (nom descriptif « Dossier sinistre
+habitation »), prix 29 €. **Communication** (`communication/sinistre/`) : `gumroad.md`, `linkedin.md`,
+`instagram.md`, `prospects.md` ; couverture `assets/templates-sinistre-couverture.png`. LinkedIn : **LI-111**
+le 19/01/2027 à 12:15 (« Programmé », remarque : ne publier que si la fiche Gumroad est en ligne), doc
+`1FM9e8fvQUtfrPGWwAIBeZJ5NJ0Gb1GRYigOTXAQnv8w`. Instagram : **IG-66** le 20/01/2027 à 18:30, carrousel
+5 vues, statut « Prêt » (à relire par Quentin avant « Programmé »), légende
+`1DTFrckLTRV8DKIqm6Xuk-r2rI-mQk67flouapQqFk2I`. Gumroad : **brouillon créé** (`nSUWbSsPnceWsczHeshUnw==`, `/l/dossier-sinistre`, 29 €, non publié).
+**Reste à faire** : activation
+de la clé de licence par Quentin, couverture Gumroad après déploiement, publication de la fiche après
+fusion, revue annuelle des délais.
 
 ## T70 · Assistant administratif après décès (fiche, 13/11/2026)
 

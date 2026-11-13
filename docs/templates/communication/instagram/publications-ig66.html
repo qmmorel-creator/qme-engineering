@@ -1,0 +1,219 @@
+<!doctype html>
+<!-- Visuels des publications Instagram IG-01 à IG-03 (lancement du 16/11/2026), 1080 × 1350.
+     Rendu : node docs/templates/communication/instagram/rendre.mjs publications.html
+     Chaque <section class="cadre" id="IG-nn-slug-k"> donne png/IG-nn-slug-k.png. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Publication Instagram IG-66</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+h1,h2,p{letter-spacing:-.025em}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid var(--encre);padding:8px 16px;background:var(--surface);letter-spacing:0}
+.marque{display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}
+.m{color:var(--bleu)}.e{color:var(--jaune)}
+.pied{position:absolute;left:84px;right:84px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px}
+.glisser span{display:inline-block;width:80px;height:6px;background:var(--encre);position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid var(--encre);border-top:15px solid transparent;border-bottom:15px solid transparent}
+.note{position:absolute;right:84px;bottom:76px;font-size:24px;color:var(--discret)}
+
+/* IG-01 · 1 couverture */
+.couv .titre{position:absolute;left:84px;right:84px;top:300px}
+.couv h1{font-size:122px;font-weight:800;line-height:.98}
+.couv h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
+.couv .sous{font-size:40px;line-height:1.3;color:var(--texte-2);margin-top:44px;font-weight:600}
+.couv .fa{position:absolute;right:-90px;top:-90px;width:330px;height:330px;border-radius:50%;background:var(--rouge)}
+.couv .fb{position:absolute;right:170px;top:150px;width:120px;height:120px;background:var(--jaune);border:6px solid var(--encre)}
+.couv .fc{position:absolute;right:0;bottom:0;width:360px;height:360px;background:var(--bleu);border-top-left-radius:360px}
+
+/* IG-01 · 2 à 4 groupes */
+.groupe .bandeau{position:absolute;left:0;right:0;top:0;height:300px;padding:84px 84px 0}
+.groupe .bandeau h2{font-size:72px;font-weight:800;line-height:1.02;margin-top:18px;max-width:780px}
+.groupe .lignes{position:absolute;left:84px;right:84px;top:360px;display:flex;flex-direction:column;gap:30px}
+.groupe .lignes.quatre{gap:22px;top:340px}
+.ligne{display:grid;grid-template-columns:380px 1fr;gap:34px;align-items:center}
+.ligne img{width:380px;display:block;border:4px solid var(--encre);box-shadow:10px 10px 0 var(--encre)}
+.quatre .ligne{grid-template-columns:330px 1fr}
+.quatre .ligne img{width:330px}
+.ligne b{display:block;font-size:42px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.quatre .ligne b{font-size:38px}
+.ligne span{display:block;font-size:28px;line-height:1.3;color:var(--texte-2);margin-top:8px}
+.ligne i{display:inline-block;font-style:normal;margin-top:14px;font-weight:800;font-size:30px;background:var(--jaune);padding:4px 14px}
+
+/* IG-01 · 5 et IG-03 · 5 appel à l'action */
+.cta{background:var(--jaune)}
+.cta .bloc{position:absolute;left:84px;right:84px;top:220px}
+.cta h2{font-size:100px;font-weight:800;line-height:1}
+.cta .liste{margin-top:60px;display:flex;flex-direction:column;gap:24px;font-size:40px;font-weight:600}
+.cta .liste div{display:flex;gap:22px;align-items:center}
+.cta .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+.cta .plus{position:absolute;left:84px;right:84px;top:760px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
+.cta .bouton{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
+.cta .bouton b{font-size:52px;font-weight:800;letter-spacing:-.025em}
+.cta .bouton span{font-size:32px;font-weight:600;color:var(--jaune)}
+
+/* IG-02 coulisses */
+#IG-02-demos-fausses .texte{position:absolute;left:84px;right:84px;top:200px}
+#IG-02-demos-fausses .sourcil{color:var(--rouge)}
+#IG-02-demos-fausses h1{font-size:96px;font-weight:800;line-height:1.02;margin-top:30px}
+#IG-02-demos-fausses p.c{font-size:38px;line-height:1.35;color:var(--texte-2);margin-top:44px;max-width:860px}
+#IG-02-demos-fausses .bandeau-ex{position:absolute;left:84px;bottom:230px;display:flex;align-items:center;gap:0;border:4px solid var(--encre);box-shadow:10px 10px 0 var(--encre)}
+#IG-02-demos-fausses .bandeau-ex span{padding:18px 26px;font-weight:800;font-size:34px;letter-spacing:.02em}
+#IG-02-demos-fausses .bandeau-ex span:first-child{background:var(--jaune)}
+#IG-02-demos-fausses .bandeau-ex span:last-child{background:var(--surface)}
+#IG-02-demos-fausses .rond{position:absolute;right:84px;bottom:220px;width:170px;height:170px;border-radius:50%;background:var(--bleu)}
+
+/* IG-03 mode d'emploi */
+.etape .num{position:absolute;left:84px;top:84px;width:120px;height:120px;display:grid;place-items:center;font-size:72px;font-weight:800;color:#fff}
+.etape .txt{position:absolute;left:84px;top:250px;width:440px}
+.etape h2{font-size:70px;font-weight:800;line-height:1.02}
+.etape p.c{font-size:34px;line-height:1.3;color:var(--texte-2);margin-top:30px}
+.etape p.c strong{color:var(--encre)}
+.etape .visuel{position:absolute;right:84px;top:250px;width:420px}
+.tel{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.tel img{display:block;width:100%}
+.mail{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:#fff;padding:34px 30px;font-size:26px;line-height:1.35}
+.mail .de{color:var(--discret);font-size:22px}
+.mail .obj{font-weight:800;font-size:30px;margin:8px 0 24px}
+.mail .cle{font-family:ui-monospace,Menlo,monospace;font-size:22px;background:var(--papier);border:3px dashed var(--encre);padding:16px 12px;word-break:break-all;letter-spacing:.02em}
+.mail .btn{display:inline-block;margin-top:24px;background:var(--encre);color:var(--papier);font-weight:700;padding:14px 22px}
+.recu{border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);padding:34px 30px}
+.recu .l{display:flex;justify-content:space-between;font-size:30px;padding:16px 0;border-bottom:3px solid var(--trait)}
+.recu .l:last-child{border-bottom:0;font-weight:800}
+.recu .x{font-size:26px;color:var(--discret);margin-top:18px}
+.appareils{display:flex;align-items:flex-end;gap:22px}
+.appareils .ordi{width:600px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre);background:var(--surface)}
+.appareils .ordi img{display:block;width:100%}
+.appareils .tel{width:250px;box-shadow:10px 10px 0 var(--encre);border-width:5px}
+
+/* IG-02 template ou sur mesure */
+.choix .bandeau{position:absolute;left:0;right:0;top:0;height:300px;padding:84px 84px 0}
+.choix .bandeau h2{font-size:68px;font-weight:800;line-height:1.02;margin-top:18px;max-width:800px}
+.choix .pts{position:absolute;left:84px;top:400px;width:500px;display:flex;flex-direction:column;gap:34px}
+.choix .pts.large{width:auto;right:84px;top:380px;gap:26px}
+.choix .pts div{border-left:10px solid var(--encre);padding-left:24px;font-size:30px;line-height:1.3;color:var(--texte-2)}
+.choix .pts b{display:block;color:var(--encre);font-size:40px;font-weight:800;letter-spacing:-.025em;margin-bottom:4px}
+.choix .capture{position:absolute;left:84px;right:84px;top:800px;height:400px;overflow:hidden;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--bleu)}
+.choix .capture img{width:100%;display:block;margin-top:-52px}
+.grille4{position:absolute;left:84px;right:84px;top:390px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grille4 div{background:var(--surface);border:4px solid var(--encre);border-top-width:18px;padding:26px 26px 30px;font-size:30px;line-height:1.3;color:var(--texte-2)}
+.grille4 b{display:block;color:var(--encre);font-size:40px;font-weight:800;letter-spacing:-.025em;margin-bottom:8px}
+.duree{position:absolute;left:84px;right:84px;top:900px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.duree span{background:var(--jaune);border:4px solid var(--encre);padding:22px 26px;font-size:28px;font-weight:600}
+.duree b{display:block;font-size:52px;font-weight:800;letter-spacing:-.025em}
+.cta.rouge{background:var(--rouge);color:#fff}
+.cta.rouge .liste i{background:#fff}
+.cta.rouge .bouton{background:var(--encre)}
+.cta.rouge .pied{color:#fff}
+.cta.rouge .compteur{color:var(--encre)}
+#IG-02-template-ou-sur-mesure-1 h1{font-size:108px}
+
+/* IG-04, IG-05 : carrousels de template */
+.probleme{background:var(--encre);color:var(--papier)}
+.probleme .t{position:absolute;left:84px;right:84px;top:300px;font-size:76px;font-weight:800;line-height:1.08;letter-spacing:-.025em}
+.probleme .t em{font-style:normal;color:var(--jaune)}
+.probleme .f{position:absolute;right:0;bottom:0;width:300px;height:300px;background:var(--rouge);border-top-left-radius:300px}
+.probleme .compteur{background:var(--encre);color:var(--papier);border-color:var(--papier)}
+.ecran{position:absolute;left:84px;right:84px;height:560px;overflow:hidden;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.ecran img{width:100%;display:block}
+.trois{position:absolute;left:84px;right:84px;display:flex;flex-direction:column;gap:24px}
+.trois div{border-left:10px solid var(--jaune);padding-left:24px;font-size:31px;line-height:1.3;color:var(--texte-2)}
+.trois b{color:var(--encre);font-weight:800}
+.modeles{position:absolute;left:84px;width:500px;top:390px;display:flex;flex-direction:column;gap:12px}
+.modeles span{background:var(--surface);border:3px solid var(--encre);padding:10px 18px;font-size:29px;font-weight:600}
+.story-t{width:1080px!important;height:1920px!important;background:var(--encre)!important;color:var(--papier)}
+.story-t .c{position:absolute;left:84px;right:84px;top:300px}
+.story-t .c p{color:var(--jaune)}
+.story-t h1{font-size:104px;font-weight:800;line-height:1;margin-top:28px}
+.story-t .s{font-size:40px;line-height:1.3;color:#D9D4C8;margin-top:30px;font-weight:500}
+.story-t .tel{position:absolute;left:50%;transform:translateX(-50%);top:820px;width:400px;box-shadow:16px 16px 0 var(--rouge)}
+.story-t .lien{position:absolute;left:50%;transform:translateX(-50%);bottom:380px;background:var(--surface);color:var(--encre);font-weight:800;font-size:40px;padding:22px 40px;white-space:nowrap;border:6px solid var(--jaune)}
+.story-t .px{position:absolute;right:84px;top:240px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:44px;padding:8px 20px}
+
+/* IG-28 sur mesure : trois rôles */
+.roles{position:absolute;left:84px;right:84px;top:360px;display:flex;flex-direction:column;gap:26px}
+.role{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start;background:var(--surface);border:4px solid var(--encre);padding:24px 28px}
+.role .ic{width:150px;height:150px;display:grid;place-items:center}
+.role b{display:block;font-size:44px;font-weight:800;letter-spacing:-.025em}
+.role span{display:block;font-size:29px;line-height:1.3;color:var(--texte-2);margin-top:6px}
+.role em{display:inline-block;margin-top:12px;font-style:normal;font-weight:700;font-size:27px;background:var(--encre);color:var(--papier);padding:4px 12px}
+.portes{position:absolute;left:84px;right:84px;top:470px;display:flex;justify-content:space-between;align-items:flex-end}
+.portes div{width:270px;display:flex;flex-direction:column;align-items:center;gap:20px;font-weight:800;font-size:38px;letter-spacing:-.025em;color:var(--papier)}
+.portes i{display:block;width:200px;height:300px;border:6px solid var(--papier)}
+.base{position:absolute;left:84px;right:84px;top:900px;height:150px;background:var(--papier);color:var(--encre);display:grid;place-items:center;font-size:44px;font-weight:800;letter-spacing:-.025em}
+.choix .pts.grand div{font-size:36px}
+.choix .pts.grand b{font-size:52px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="symbole-clair"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#F5B400"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></g>
+  <g id="symbole"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></g>
+</defs></svg>
+
+
+<!-- ============ IG-66 · T69 · Dossier sinistre habitation (d'après LI-111) ============ -->
+<section class="cadre couv" id="IG-66-sinistre-1">
+  <div class="fa" style="background:var(--bleu)"></div><div class="fb"></div><div class="fc" style="background:var(--jaune)"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--bleu)">Maison</p>
+    <h1 style="margin-top:30px;font-size:104px">Un sinistre : <mark>5 jours ouvrés</mark> pour le déclarer.</h1>
+    <p class="sous">Le délai minimal légal. Pour un vol, 2.</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre probleme" id="IG-66-sinistre-2">
+  <span class="compteur">2 / 5</span>
+  <p class="t" style="font-size:64px">D'abord couper l'eau, prévenir le voisin, mettre les meubles à l'abri.<br><br><em>Puis des semaines de factures à retrouver, de photos à classer et d'expert à relancer.</em></p>
+  <div class="f" style="background:var(--bleu)"></div>
+</section>
+<section class="cadre choix" id="IG-66-sinistre-3">
+  <div class="bandeau" style="background:var(--bleu);color:#fff"><p class="sourcil" style="opacity:.85">Dossier sinistre habitation</p><h2 style="max-width:none">La déclaration, guidée.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="ecran" style="top:360px;height:520px"><img src="../../../../assets/templates-sinistre-dossier.webp" alt=""></div>
+  <div class="trois" style="top:940px">
+    <div><b>Six questions</b> et le délai à respecter, calculé en jours ouvrés.</div>
+    <div><b>La source officielle</b> de chaque règle, avec sa date de vérification.</div>
+    <div><b>Les justificatifs</b> à réunir et les mesures d'urgence, selon le sinistre.</div>
+  </div>
+  <p style="position:absolute;left:84px;right:84px;bottom:76px;font-size:24px;color:var(--discret)">Capture de la démo, données fictives.</p>
+</section>
+<section class="cadre choix" id="IG-66-sinistre-4">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Inventaire chiffré</p><h2 style="max-width:none">Le calcul, ligne par ligne.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="ecran" style="top:360px;height:520px"><img src="../../../../assets/templates-sinistre-dommages.webp" alt=""></div>
+  <div class="trois" style="top:940px">
+    <div><b>Réparation</b>, ou remplacement moins la vétusté que vous fixez.</div>
+    <div><b>Déclaré et reconnu</b> par l'assureur restent séparés.</div>
+    <div><b>Un dossier à imprimer</b> pour l'expert, photos comprises.</div>
+  </div>
+  <p style="position:absolute;left:84px;right:84px;bottom:76px;font-size:24px;color:var(--discret)">Aucun barème imposé. Données fictives.</p>
+</section>
+<section class="cadre cta" id="IG-66-sinistre-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2 style="font-size:84px">Essayez-le avec trois dossiers fictifs.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus" style="top:800px"><b>Besoin de plus ?</b> Vos dossiers ont leurs propres étapes et documents : <b>je le construis sur mesure.</b></div>
+  <div class="bouton"><b>Lien en bio</b><span>29 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e" style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr</span></div>
+</section>
+<section class="cadre story-t" id="IG-66-sinistre-story">
+  <span class="px">29 €</span>
+  <div class="c"><p class="sourcil">Template QME</p><h1>Dossier sinistre habitation</h1><p class="s">Délais, dommages chiffrés, preuves et suivi jusqu'au versement.</p></div>
+  <div class="tel"><img src="../../../../assets/templates-sinistre-tel.webp" alt=""></div>
+  <div class="lien">Essayer la démo ↗</div>
+</section>
+
+</body>
+</html>

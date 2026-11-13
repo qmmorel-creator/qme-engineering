@@ -30,6 +30,7 @@ const T = {
   taches: ['Gestionnaire de tâches', "Tout noter. Faire l'essentiel.", 'Boîte de réception · triage · focus du jour'],
   tjm: ['Calculateur de TJM', "Ton tarif, à l'euro près.", 'Objectif · jours facturables · statut · seuils'],
   travaux: ['Pilote de travaux maison', 'Tes travaux, devis par devis.', 'Devis comparés · budget · planning · réserves'],
+  sinistre: ['Dossier sinistre habitation', 'Ton dossier d\'assurance, complet et suivi.', 'Déclaration guidée · dommages chiffrés · preuves · suivi'],
   tresorerie: ['Trésorerie prévisionnelle · 12 mois', "Voir le creux avant qu'il arrive.", 'Prévu, réalisé, 3 scénarios · alerte sous ton seuil'],
   visa: ['Circuit de visa des documents', 'Chaque visa dans les délais.', 'Indices · VSO, VAO, REF · relances prêtes'],
 };
