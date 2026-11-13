@@ -5,7 +5,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
 ## Structure
 
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue kanban travail / maison, bouton « Soumettre une idée » relié au
+  `sur-mesure/`, `templates/` (catalogue : filtres Professionnel / Vie personnelle, thèmes et recherche, état dans
+  l'adresse `?pour=…&theme=…&q=…` ; vitrine défilante des templates en vente ; liste compacte des
+  templates en préparation, dont la démo affiche un bandeau « Bientôt en vente » ; bouton « Soumettre une idée » relié au
   formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
   `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
   `/templates/#gantt`…) redirigent vers la bonne page.
@@ -18,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 28 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 32 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -142,6 +144,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   Netlify Blobs à Francfort (magasin `secret-santa`), code personnel haché (scrypt), effacement de
   l'échange 60 jours après sa date (180 jours sans date). Page `catalogue/secret-santa/`, démo
   `/templates/secret-santa/?demo`.
+- Lot du 13/11/2026, prêts, « Mise en vente prochaine » (démo libre, pas encore de fiche Gumroad ;
+  fiches à créer dans `docs/templates/communication/gumroad-a-creer.json`) : `templates/habitudes/` (HBT)
+  **suivi d'habitudes et routines** (cochées ou chiffrées, jours non applicables, séries, grille du mois) ;
+  `templates/entretien/` (ENT) **entretien de la maison** (89 tâches types, échéances calculées,
+  obligations sourcées et paramétrables) ; `templates/dettes/` (DTT) **remboursement de dettes**
+  (boule de neige, avalanche, échéancier et date de fin) ; `templates/abonnements/` (ABN) **suivi des
+  abonnements** (coût mensuel et annuel, prélèvements, « à décider avant le … », sans marque ni prix figé).
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

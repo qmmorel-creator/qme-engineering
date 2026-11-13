@@ -400,7 +400,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     const bandeau = session.demo
-      ? '<div class="bandeau-demo"><div><b>Exemple complet</b><span>Données fictives, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer l\'exemple</button><button data-action="deconnexion">J\'ai une clé</button></div></div>'
+      ? '<div class="bandeau-demo"><div><b>Exemple complet</b><a class="bientot-demo" href="/catalogue/patrimoine/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Données fictives, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer l\'exemple</button><button data-action="deconnexion">J\'ai une clé</button></div></div>'
       : session.decouverte ? `<div class="bandeau-demo"><div><b>Découverte gratuite</b><span>${pluriel(B.decouverte.maxObjets, 'objet')} au plus, sur cet appareil.</span><a href="${PAGE_OFFRE}">Application complète · ${PRIX}</a><button data-action="deconnexion">J'ai une clé</button></div></div>` : '';
     $('#racine').innerHTML = `${bandeau}
       <header class="barre"><div class="barre-int">

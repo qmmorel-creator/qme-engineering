@@ -1,0 +1,254 @@
+[
+ {
+  "slug": "habitudes",
+  "name": "Suivi d'habitudes et routines",
+  "price_cents": 1200,
+  "permalink": "suivi-habitudes",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mon suivi",
+  "summary": "Tes habitudes du jour cochées en quelques secondes sur téléphone, les habitudes chiffrées comptées, et la grille du mois avec tes séries et ton taux de réussite.",
+  "description": "<h2>Un geste par jour, une série qui tient.</h2><p>Les applications d'habitudes sont souvent trop simples (une case, rien d'autre) ou trop bavardes. Le Suivi d'habitudes et routines va à l'essentiel : tu coches tes habitudes du jour en quelques secondes sur ton téléphone, tu comptes celles qui se mesurent, et la grille du mois te montre tes séries et ton taux de réussite.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une vue « Aujourd'hui » rapide</strong> : une touche pour cocher, des boutons + et − pour compter, pensée pour le téléphone.</li><li><strong>Des habitudes à cocher ou chiffrées</strong>, avec minimum, maximum et pas : au moins 8 verres d'eau, au plus 3 cafés, 7 à 9 h de sommeil.</li><li><strong>Des jours « non applicables »</strong> (malade, en congés) qui ne cassent pas tes séries, et des jours prévus au choix pour chaque habitude.</li><li><strong>Des thèmes colorés</strong>, dont des thèmes « une seule par jour » pour un choix exclusif, comme le lieu de travail : bureau, télétravail ou déplacement.</li><li><strong>La grille du mois</strong> date par habitude, imprimable, et un bilan sur 30 jours : séries, records, taux de réussite, journées parfaites, tendance sur 8 semaines.</li><li><strong>50 habitudes types</strong> rangées en 8 thèmes, avec leurs réglages types (sources citées), et 6 routines prêtes : matin, soir, bouger plus, télétravail, bien manger, esprit serein.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis une ou plusieurs routines types, coche tes habitudes : c'est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé ; ajoute la page à l'écran d'accueil de ton téléphone pour l'ouvrir comme une application.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Journal exportable en CSV, copie complète en JSON.</p><p><em>Rien n'est coché automatiquement : aucune connexion à une montre ou à une autre application, aucune notification. Outil d'aide au suivi, pas un dispositif médical : il ne remplace pas l'avis d'un médecin ou d'un professionnel de santé, notamment pour un traitement. Démo disponible sur qm-engineering.fr/templates/habitudes/?demo.</em></p>",
+  "tags": [
+   "habitudes",
+   "habit-tracker",
+   "routine",
+   "suivi",
+   "bien-etre",
+   "organisation",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis une routine type, coche tes habitudes : c'est prêt. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui veulent tenir leurs habitudes"
+   }
+  ]
+ },
+ {
+  "slug": "entretien",
+  "name": "Entretien de la maison",
+  "price_cents": 1200,
+  "permalink": "entretien-maison",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mon calendrier",
+  "summary": "Coche les équipements de ton logement : le calendrier d'entretien se calcule seul, avec les obligations sourcées, l'historique et les coûts.",
+  "description": "<h2>Rien d'oublié, chaque saison.</h2><p>La date du dernier ramonage retrouvée sur une attestation au fond d'un tiroir, des filtres jamais changés, des gouttières qu'on nettoie quand elles débordent : l'Entretien de la maison coche les équipements de ton logement et calcule seul ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive.</p><h3>Ce que tu obtiens</h3><ul><li><strong>89 tâches types pour 37 équipements</strong> : chaudière, ramonage, poêle, pompe à chaleur, climatisation, VMC, détecteur de fumée, chauffe-eau, adoucisseur, fosse, électroménager, toiture et gouttières, jardin, piscine… Chaque fréquence est modifiable, et tu peux ajouter tes propres tâches.</li><li><strong>Échéances calculées</strong> à partir de la dernière fois et de la saison conseillée : en retard, ce mois-ci, à venir. Date inconnue ? Le calendrier propose une première date, obligations d'abord.</li><li><strong>Obligations sourcées</strong> : les fréquences d'origine réglementaire (chaudière, ramonage, pompe à chaleur…) affichent leur source et la date de relecture, avec la mention « à vérifier selon ton département et ton bail ».</li><li><strong>Historique</strong> : date, coût, intervenant et note de chaque intervention, dépenses des 12 derniers mois, export CSV.</li><li><strong>Liste de l'année à imprimer</strong>, mois par mois, avec des cases à cocher.</li><li><strong>Locataire ?</strong> Chaque tâche indique qui s'en charge le plus souvent, à titre indicatif.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton type de logement, coche tes équipements, et le calendrier est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace pas l'avis d'un professionnel ni une attestation d'entretien. Les fréquences réglementaires peuvent varier selon ton département, ton bail ou ton équipement : vérifie-les. Aucune notification ni lien avec un agenda. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "entretien",
+   "maison",
+   "calendrier",
+   "chaudiere",
+   "ramonage",
+   "locataire",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier d'entretien s'ouvre. Coche tes équipements : les échéances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Propriétaires et locataires"
+   }
+  ]
+ },
+ {
+  "slug": "dettes",
+  "name": "Remboursement de dettes",
+  "price_cents": 1200,
+  "permalink": "remboursement-dettes",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon plan",
+  "summary": "Tes dettes, ton budget mensuel, et le plan qui les solde une à une : boule de neige, avalanche ou ton ordre, avec la date de fin et le pointage des paiements.",
+  "description": "<h2>Une date de fin pour tes dettes.</h2><p>Crédit conso, renouvelable, prêt auto, découvert, argent prêté par un proche : liste tes dettes, fixe ce que tu peux y consacrer chaque mois, et le plan te dit dans quel ordre les rembourser et quand tu en auras fini.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une date de fin</strong> calculée avec ton budget mensuel, et le total des intérêts jusque-là.</li><li><strong>Trois méthodes</strong> : boule de neige (plus petit solde d'abord), avalanche (taux le plus élevé d'abord) ou ton propre ordre, comparées côte à côte avec le repère « minimums seuls ».</li><li><strong>L'échéancier mois par mois</strong> : intérêts, capital, report de la mensualité d'une dette soldée sur la suivante ; export CSV et impression.</li><li><strong>Versements exceptionnels</strong> : une prime, une vente, et ce qu'elle fait gagner en mois et en intérêts.</li><li><strong>Pointage des paiements réels</strong> : l'écart au plan, mois par mois, et le recalage du plan sur tes vrais soldes.</li><li><strong>11 types de dettes</strong> avec, pour chacun, où trouver les chiffres et les points d'attention ; alerte quand une mensualité ne couvre pas les intérêts.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes dettes et ton budget : le plan se calcule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer, aucune connexion à ta banque. Achat unique, sans abonnement.</p><p><em>Outil d'aide au calcul : il ne remplace pas un conseil professionnel. Intérêts estimés au calcul mensuel simple (taux annuel ÷ 12) ; ton prêteur peut calculer au jour près. En cas de difficulté, tu peux t'adresser gratuitement à un point conseil budget, ou à la commission de surendettement de ton département (Banque de France). Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "dettes",
+   "remboursement",
+   "boule-de-neige",
+   "avalanche",
+   "budget",
+   "credit",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton plan s'ouvre. Ajoute tes dettes et ton budget : la date de fin se calcule. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui remboursent plusieurs crédits"
+   }
+  ]
+ },
+ {
+  "slug": "abonnements",
+  "name": "Suivi des abonnements",
+  "price_cents": 1200,
+  "permalink": "suivi-abonnements",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon suivi",
+  "summary": "Tous tes abonnements au même endroit : le coût réel par mois et par an, le calendrier des prélèvements, et la date avant laquelle décider pour chaque essai gratuit ou engagement.",
+  "description": "<h2>Ce que tu paies, chaque mois.</h2><p>Une plateforme vidéo, la musique, le forfait, la box, la mutuelle, la salle de sport, un logiciel, le stockage en ligne, une livraison gratuite à l'année… Pris un par un, chaque abonnement paraît petit. Le Suivi des abonnements les réunit, calcule ce qu'ils te coûtent vraiment et te prévient avant qu'un essai gratuit devienne payant ou qu'un engagement se renouvelle.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le vrai total</strong> : chaque abonnement ramené au mois et à l'année, quelle que soit sa périodicité (semaine, mois, trimestre, semestre, an), par catégorie.</li><li><strong>Une base de 96 abonnements courants</strong> en 17 catégories (vidéo, musique, presse, téléphone, box, assurances, sport, logiciels, stockage, livraison, jeux, transports, banque…), sans aucune marque ni prix imposé : tu coches, tu saisis ton prix.</li><li><strong>« À décider avant le … »</strong> : fin d'essai gratuit, fin d'engagement avec ton préavis, renouvellement annuel ; délai d'alerte réglable.</li><li><strong>Le calendrier des prélèvements</strong> du mois, les 30 prochains jours et les 12 prochains mois, avec les pics des abonnements annuels.</li><li><strong>Partage</strong> : un abonnement partagé ne compte que pour ta part (parts égales ou montant saisi).</li><li><strong>Économies</strong> : marque « à résilier » puis « résilié », l'économie annuelle est calculée ; repères pour résilier (droit de la consommation, sources datées).</li><li><strong>Partager et garder</strong> : récapitulatif à copier, impression, export CSV et copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche tes abonnements dans la liste, saisis ton prix et la date d'un prélèvement : les suivants, les totaux et les alertes se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion bancaire et aucun lien de résiliation : tu saisis tes abonnements et tu résilies toi-même auprès de chaque prestataire. Outil d'aide au suivi de tes dépenses : il ne remplace pas un avis professionnel ; ton contrat fait foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "abonnements",
+   "budget",
+   "economies",
+   "resiliation",
+   "prelevements",
+   "finances-personnelles",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Coche tes abonnements dans la liste, saisis tes prix : les totaux et les alertes se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers et foyers"
+   }
+  ]
+ },
+ {
+  "slug": "patrimoine",
+  "name": "Inventaire valorisé",
+  "price_cents": 1900,
+  "permalink": "inventaire-valorise",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon inventaire",
+  "summary": "Combien valent vraiment tes affaires ? Inventorie tes objets en quelques secondes : valeur actuelle estimée, revente potentielle frais déduits, et ce qui dort sans servir.",
+  "description": "<h2>Si tu revendais tout aujourd'hui, combien récupérerais-tu ?</h2><p>Électronique, meubles, vélo, instruments, outillage, collections : on possède beaucoup plus de valeur qu'on ne le croit, et une partie dort au fond des placards. L'Inventaire valorisé transforme ta liste d'objets en bilan chiffré.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire en quelques secondes</strong> : 15 catégories, 80 sous-catégories et des centaines d'exemples d'objets ; un toucher, un prix, une date approximative.</li><li><strong>Trois valeurs jamais confondues</strong> : prix d'achat, valeur actuelle estimée (âge, état, famille d'objet, prix) et revente potentielle. Tu saisis la valeur toi-même quand tu la connais.</li><li><strong>Un moteur de décote transparent</strong> : 8 familles d'objets, coefficients visibles et modifiables.</li><li><strong>Un simulateur de revente</strong> : tout, une catégorie, les objets inutilisés, au-dessus d'un prix ou un nombre d'objets ; décote, négociation, commission et expédition déduites.</li><li><strong>L'analyse de possession</strong> : argent immobilisé, objets de valeur peu ou jamais utilisés, plus fortes pertes, part facilement revendable.</li><li><strong>Un historique</strong> : une valorisation par mois, comparaison entre deux dates, projection sur 5 ans. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche les familles d'objets que tu possèdes et ajoute tes objets. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Aucun nom ni adresse demandé, aucune connexion à un site de vente, rien de partagé automatiquement. Achat unique, sans abonnement.</p><p><em>Estimations indicatives calculées par des règles de décote paramétrables : ce n'est ni une expertise, ni une valeur d'assurance, ni une valeur comptable, ni une garantie de prix de revente. Aucun prix de marché n'est intégré ni récupéré. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "inventaire",
+   "patrimoine",
+   "revente",
+   "objets",
+   "budget",
+   "minimalisme",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton inventaire s'ouvre. Coche les familles d'objets que tu possèdes et ajoute tes objets : le bilan se calcule. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre tes objets. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui veulent connaître la valeur de leurs biens"
+   }
+  ]
+ },
+ {
+  "slug": "temps-de-vie",
+  "name": "Temps de vie",
+  "price_cents": 1900,
+  "permalink": "temps-de-vie",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon calculateur",
+  "summary": "Combien d'heures de travail pour payer ce que tu consommes ? Chaque dépense, habitude ou ton mode de vie entier converti en heures et en jours de travail.",
+  "description": "<h2>Combien d'heures de ta vie pour payer ce que tu consommes ?</h2><p>Un téléphone, un restaurant, un abonnement, ton loyer : derrière chaque dépense, il y a du temps de travail. Temps de vie fait la conversion avec ton revenu et ton temps de travail réels.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton revenu horaire</strong> selon trois conventions affichées clairement : temps contractuel, temps réellement consacré au travail (trajet et frais professionnels), temps annuel effectif. Le calcul fonctionne même avec un profil incomplet, hypothèses signalées.</li><li><strong>Un calculateur instantané</strong> : n'importe quelle dépense en heures, jours et semaines de travail ; pour une dépense récurrente, le coût sur 1, 5 et 10 ans.</li><li><strong>Ton mode de vie en temps</strong> : une bibliothèque de dépenses (logement, mobilité, alimentation, équipement, loisirs, services, famille) que tu complètes, la part de chaque poste et le top 10 des dépenses les plus coûteuses en temps.</li><li><strong>Des scénarios A, B, C</strong> : économies mensuelles et annuelles, heures et jours de travail récupérés, cumul sur plusieurs années.</li><li><strong>Le coût réel d'un achat</strong> : prix, frais, entretien, usage et revente sur la durée de possession, pour comparer deux options.</li><li><strong>Un résultat partageable</strong> choisi par toi, sans ton revenu sauf si tu le coches. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton revenu net et ton temps de travail, puis tes dépenses. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Aucune connexion bancaire, aucun agenda, aucun connecteur externe. Achat unique, sans abonnement.</p><p><em>Les durées sont une équivalence (montant ÷ revenu net horaire estimé), pas un temps réellement travaillé. Aucun barème fiscal intégré : tous les montants sont les tiens. Outil d'aide à la réflexion, pas un conseil financier, fiscal ou professionnel. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "budget",
+   "depenses",
+   "temps",
+   "finances-personnelles",
+   "minimalisme",
+   "economies",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calculateur s'ouvre. Indique ton revenu net et ton temps de travail : chaque dépense se convertit en heures. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre ton profil et tes dépenses. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui veulent voir le coût réel de leur mode de vie"
+   }
+  ]
+ }
+]

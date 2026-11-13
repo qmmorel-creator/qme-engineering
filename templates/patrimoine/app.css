@@ -621,3 +621,6 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .segmente label span,.segmente label:first-of-type span,.segmente label:last-of-type span{border-radius:999px}
 .segmente label+label span{border-left:1px solid var(--trait)}
 @media (max-width:720px){.synthese>.note,.synthese>.valeurs,.synthese>.synthese-tjm,.synthese>dl,.synthese>p{grid-column:1/-1}}
+.bandeau-demo .bientot-demo{display:inline-flex;align-items:center;gap:8px;color:var(--encre);font-weight:600;text-decoration:none}
+.bandeau-demo .bientot-demo strong{padding:2px 10px;border-radius:999px;background:var(--encre);color:var(--papier);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.bandeau-demo .bientot-demo span{text-decoration:underline;text-underline-offset:3px}

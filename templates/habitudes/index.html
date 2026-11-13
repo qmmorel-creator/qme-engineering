@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Suivi d'habitudes · QME</title>
+<meta name="description" content="Suivi d'habitudes et routines : cochage du jour sur téléphone, habitudes chiffrées, grille mensuelle, séries et taux de réussite, jours non applicables.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FBF7F1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Habitudes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icone.svg">
+<link rel="apple-touch-icon" href="icone-180.png">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113f">
+<link rel="stylesheet" href="app.css?v=20261113f">
+</head>
+<body>
+<div id="racine" aria-live="polite"><p class="chargement">Chargement…</p></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="modale" class="modale" aria-labelledby="modale-titre"></dialog>
+<noscript><p class="chargement">Le suivi d'habitudes a besoin de JavaScript pour fonctionner.</p></noscript>
+<script src="donnees.js?v=20261113f"></script>
+<script src="regles.js?v=20261113f"></script>
+<script src="app.js?v=20261113f"></script>
+</body>
+</html>

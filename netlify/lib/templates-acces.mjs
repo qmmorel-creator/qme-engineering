@@ -38,6 +38,10 @@ export const PRODUITS = {
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/' },
   SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/' },
+  HBT: { nom: 'Suivi d\'habitudes et routines', url: '/templates/habitudes/' },
+  ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/' },
+  DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/' },
+  ABN: { nom: 'Suivi des abonnements', url: '/templates/abonnements/' },
   PTM: { nom: 'Inventaire valorisé', url: '/templates/patrimoine/' },
   TDV: { nom: 'Temps de vie', url: '/templates/temps-de-vie/' },
 };

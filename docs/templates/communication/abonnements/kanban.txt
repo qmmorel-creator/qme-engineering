@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="abonnements"><a href="/catalogue/abonnements/"><b>Suivi des abonnements</b><span class="phrase">Coût réel par mois et par an, essais et engagements.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>

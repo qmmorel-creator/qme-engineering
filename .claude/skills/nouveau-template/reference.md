@@ -93,16 +93,28 @@ Référence : n'importe quelle application de `templates/` (bloc « Thème Paste
 Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne changent pas, les références PDF seulement sur demande) :
 
 - [ ] **Accueil `index.html`** : prix « dès … » de la porte « Templates » si le moins cher change.
-- [ ] **Templates en anglais `en/templates/index.html`** : carte du template dans son groupe (travail /
-      maison), mention « in French » ; « In preparation » mis à jour.
+- [ ] **Templates en anglais `en/templates/index.html`** : carte du template dans son groupe (Professional /
+      Personal life), mention « in French » ; « In preparation » mis à jour.
 - [ ] **Avant la mise en vente** (template prêt, fiche Gumroad pas encore publiée) : démo ouverte (pas de
       blocage 404 dans `netlify.toml`), page `catalogue/<slug>/` sans bouton Acheter ni prix, avec « Mise en
-      vente prochaine » et la démo en bouton principal, carte `carte prochaine` dans le kanban, bouton « Je suis
+      vente prochaine » et la démo en bouton principal, ligne `carte prochaine` dans la liste « En préparation » du catalogue (voir ci-dessous), bandeau
+      « Bientôt en vente · Être prévenu de la sortie » dans le bandeau de démo (`.bientot-demo` dans `app.js`
+      et `app.css`, lien vers `/catalogue/<slug>/`), bouton « Je suis
       intéressé(e) » (`data-interet="<slug>"`, compteur `/api/interets`, suivi par Quentin sur
-      `/admin/interets/` avec son code ADM) (décision de Quentin, 13/11/2026). À la mise en vente, la page et la carte passent au prix et au bouton Acheter.
+      `/admin/interets/` avec son code ADM) (décision de Quentin, 13/11/2026). À la mise en vente, la page et la carte passent au prix et au bouton Acheter, et le lien `.bientot-demo`
+      est retiré de la démo (avec un nouveau `?v=` dans `index.html` et `sw.js`).
 - [ ] **Catalogue** : page `catalogue/<slug>/index.html` complète (page d'atterrissage : boutons Acheter
-      et Démo, captures, FAQ propres au produit) ; carte du kanban de `templates/index.html` activée
-      (lien `/catalogue/<slug>/`, prix) dans la colonne de son thème ; compteur « en vente ».
+      et Démo, captures, FAQ propres au produit) ; carte dans le catalogue de `templates/index.html`
+      (section `[data-catalogue]`, décision de Quentin, 13/11/2026). Chaque carte porte `data-slug`,
+      `data-pour` (`pro` = Professionnel, `perso` = Vie personnelle), `data-theme` (identifiant d'une puce
+      de thème existante) et `style="--c:var(--couleur du thème)"`. En préparation : `<li class="carte
+      prochaine">` (nom, phrase, thème, « Bientôt ») dans `.liste-bientot`. En vente : `<li class="carte">`
+      (thème, nom, phrase, prix, « Voir le détail ») dans `.vitrine-piste`, retirée de `.liste-bientot`.
+      Mettre à jour le compteur de la puce du thème et le sous-titre « N templates · achat unique ». Pas de
+      thème d'une seule carte : rattacher le template à un thème voisin, ou créer le thème quand il en
+      réunit au moins deux (puce dans `.puces`, mêmes `data-pour` et `data-theme`). Fil d'Ariane de la page
+      catalogue : `/templates/?pour=pro#tous` « Professionnel » ou `/templates/?pour=perso#tous`
+      « Vie personnelle ».
 - [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »

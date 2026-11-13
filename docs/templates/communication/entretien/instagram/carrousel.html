@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- Carrousel Instagram · Entretien de la maison (5 vues 1080 × 1350), d'après les gabarits car-1, car-2, car-3
+     de ../../instagram/gabarits.html. Rendu : node docs/templates/communication/instagram/rendre.mjs
+     ../entretien/instagram/carrousel.html, puis déplacer png/entretien-*.png dans ce dossier. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Carrousel Instagram · Entretien de la maison</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;background:var(--papier)}
+.carre{width:1080px;height:1080px}
+.post{width:1080px;height:1350px}
+.vertical{width:1080px;height:1920px}
+h1,h2,p{letter-spacing:-.025em}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+.marque{display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}
+.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
+.sur-encre .marque .q{color:var(--papier)}
+.tel{position:absolute;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.tel img{display:block;width:100%}
+.mention{font-size:24px;font-weight:500}
+
+/* Carrousel */
+.car-1 .titre{position:absolute;left:84px;top:200px;right:84px}
+.car-1 h1{font-size:128px;font-weight:800;line-height:.98}
+.car-1 h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
+.car-1 .sous{font-size:38px;line-height:1.3;color:var(--texte-2);margin-top:44px;max-width:780px}
+.car-1 .formes{position:absolute;right:0;bottom:0;width:540px;height:430px}
+.car-1 .fa{position:absolute;right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+.car-1 .fb{position:absolute;right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+.car-1 .glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px}
+.car-1 .glisser span{display:inline-block;width:80px;height:6px;background:var(--encre);position:relative}
+.car-1 .glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid var(--encre);border-top:15px solid transparent;border-bottom:15px solid transparent}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid var(--encre);padding:8px 16px;background:var(--surface)}
+
+.car-2 .bandeau{position:absolute;left:0;right:0;top:0;height:330px;background:var(--bleu);color:#fff;padding:96px 84px 0}
+.car-2 .bandeau .sourcil{color:#fff;opacity:.85}
+.car-2 .bandeau h2{font-size:64px;font-weight:800;line-height:1.05;margin-top:20px;max-width:760px}
+.car-2 .tel{left:84px;top:420px;width:420px}
+.car-2 .points{position:absolute;left:580px;right:84px;top:440px;display:flex;flex-direction:column;gap:44px}
+.car-2 .points div{border-left:10px solid var(--jaune);padding-left:24px;font-size:34px;line-height:1.25;font-weight:500}
+.car-2 .points b{display:block;font-weight:800;font-size:38px;margin-bottom:6px}
+.car-2 .compteur{background:var(--surface);color:var(--encre);border-color:var(--surface)}
+.car-2 .note{position:absolute;left:84px;bottom:70px;font-size:24px;color:var(--discret)}
+
+.car-3{background:var(--jaune)}
+.car-3 .bloc{position:absolute;left:84px;right:84px;top:190px}
+.car-3 h2{font-size:104px;font-weight:800;line-height:1}
+.car-3 .liste{margin-top:60px;display:flex;flex-direction:column;gap:22px;font-size:40px;font-weight:600}
+.car-3 .liste div{display:flex;gap:22px;align-items:center}
+.car-3 .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+.car-3 .plus{position:absolute;left:84px;right:84px;top:760px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
+.car-3 .cta{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
+.car-3 .cta b{font-size:52px;font-weight:800;letter-spacing:-.025em}
+.car-3 .cta span{font-size:32px;font-weight:600;color:var(--jaune)}
+.car-3 .pied{position:absolute;left:84px;right:84px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+
+
+/* Variantes propres à ce carrousel */
+#entretien-2{background:var(--encre);color:var(--papier)}
+#entretien-2 .titre{position:absolute;left:84px;right:84px;top:230px}
+#entretien-2 .sourcil{color:var(--jaune)}
+#entretien-2 h2{font-size:92px;font-weight:800;line-height:1.02;margin-top:30px}
+#entretien-2 .liste{margin-top:56px;display:flex;flex-direction:column;gap:18px;font-size:38px;font-weight:600;color:#D9D4C8}
+#entretien-2 .liste span{display:flex;justify-content:space-between;border-bottom:3px solid #45413A;padding-bottom:14px}
+#entretien-2 .liste b{color:var(--jaune);font-weight:800}
+#entretien-2 .compteur{background:var(--encre);color:var(--papier);border-color:var(--papier)}
+#entretien-2 .fa{position:absolute;right:0;bottom:0;width:260px;height:260px;background:var(--rouge);border-top-left-radius:260px}
+#entretien-4 .bandeau{background:var(--jaune);color:var(--encre)}
+#entretien-4 .bandeau .sourcil{color:var(--encre)}
+#entretien-4 .capture{position:absolute;left:84px;right:84px;top:400px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden;height:560px}
+#entretien-4 .capture img{display:block;width:100%}
+#entretien-4 .points2{position:absolute;left:84px;right:84px;top:1020px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+#entretien-4 .points2 div{border-left:10px solid var(--bleu);padding-left:22px;font-size:30px;line-height:1.25;font-weight:500}
+#entretien-4 .points2 b{display:block;font-weight:800;font-size:34px;margin-bottom:4px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="symbole">
+      <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>
+      <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+      <circle cx="40" cy="40" r="15" fill="#F0EDE6"/>
+    </g>
+    <g id="symbole-clair">
+      <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/>
+      <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+      <circle cx="40" cy="40" r="15" fill="#141414"/>
+    </g>
+  </defs>
+</svg>
+
+<section class="cadre post car-1" id="entretien-1">
+  <span class="compteur">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Maison</p>
+    <h1 style="margin-top:30px">À quand le dernier <mark>ramonage</mark>&nbsp;?</h1>
+    <p class="sous">Une maison, c'est une trentaine de petites échéances. Aucune ne prévient.</p>
+  </div>
+  <div class="formes"><div class="fa"></div><div class="fb"></div></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre post car-1" id="entretien-2">
+  <span class="compteur">2 / 5</span>
+  <div class="titre">
+    <p class="sourcil">Le problème</p>
+    <h2>Chacune a sa fréquence. Personne ne la retient.</h2>
+    <div class="liste"><span>Chaudière <b>chaque année</b></span><span>Bouches de VMC <b>tous les 3 mois</b></span><span>Gouttières <b>après les feuilles</b></span><span>Détecteur de fumée <b>chaque mois</b></span></div>
+  </div>
+  <div class="fa"></div>
+</section>
+
+<section class="cadre post car-2" id="entretien-3">
+  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Vos équipements cochés, le calendrier se calcule.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="tel"><img src="../../../../../assets/templates-entretien-tel.webp" alt=""></div>
+  <div class="points">
+    <div><b>89 tâches types</b>Pour 37 équipements, fréquences modifiables.</div>
+    <div><b>En retard, ce mois-ci</b>Calculé depuis la dernière fois et la saison.</div>
+    <div><b>Fait en un geste</b>Date, coût et intervenant gardés.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre post car-2" id="entretien-4">
+  <div class="bandeau"><p class="sourcil">Les obligations</p><h2>Sourcées, à vérifier, jamais figées.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="capture"><img src="../../../../../assets/templates-entretien-echeances.webp" alt=""></div>
+  <div class="points2">
+    <div><b>Chaudière, ramonage</b>Fréquence affichée avec sa source et « à vérifier selon votre département ».</div>
+    <div><b>Locataire ?</b>Qui s'en charge le plus souvent, à titre indicatif. L'année s'imprime.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre post car-3" id="entretien-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Essayez-le avec une maison fictive.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus"><b>Besoin de plus ?</b> Un parc de logements, des contrats de maintenance, vos équipes : <b>je le construis sur mesure.</b></div>
+  <div class="cta"><b>Lien en bio</b><span>12 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span><span>Q</span><span class="m" style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
+</section>
+
+</body>
+</html>

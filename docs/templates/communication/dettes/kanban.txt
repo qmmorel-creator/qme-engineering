@@ -1,0 +1,1 @@
+<li class="carte prochaine" data-slug="dettes"><a href="/catalogue/dettes/"><b>Remboursement de dettes</b><span class="phrase">Vos dettes soldées une à une, avec une date de fin.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>

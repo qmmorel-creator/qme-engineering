@@ -1,0 +1,42 @@
+{
+  "slug": "dettes",
+  "name": "Remboursement de dettes",
+  "price_cents": 1200,
+  "permalink": "remboursement-dettes",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon plan",
+  "summary": "Tes dettes, ton budget mensuel, et le plan qui les solde une à une : boule de neige, avalanche ou ton ordre, avec la date de fin et le pointage des paiements.",
+  "description": "<h2>Une date de fin pour tes dettes.</h2><p>Crédit conso, renouvelable, prêt auto, découvert, argent prêté par un proche : liste tes dettes, fixe ce que tu peux y consacrer chaque mois, et le plan te dit dans quel ordre les rembourser et quand tu en auras fini.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une date de fin</strong> calculée avec ton budget mensuel, et le total des intérêts jusque-là.</li><li><strong>Trois méthodes</strong> : boule de neige (plus petit solde d'abord), avalanche (taux le plus élevé d'abord) ou ton propre ordre, comparées côte à côte avec le repère « minimums seuls ».</li><li><strong>L'échéancier mois par mois</strong> : intérêts, capital, report de la mensualité d'une dette soldée sur la suivante ; export CSV et impression.</li><li><strong>Versements exceptionnels</strong> : une prime, une vente, et ce qu'elle fait gagner en mois et en intérêts.</li><li><strong>Pointage des paiements réels</strong> : l'écart au plan, mois par mois, et le recalage du plan sur tes vrais soldes.</li><li><strong>11 types de dettes</strong> avec, pour chacun, où trouver les chiffres et les points d'attention ; alerte quand une mensualité ne couvre pas les intérêts.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes dettes et ton budget : le plan se calcule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer, aucune connexion à ta banque. Achat unique, sans abonnement.</p><p><em>Outil d'aide au calcul : il ne remplace pas un conseil professionnel. Intérêts estimés au calcul mensuel simple (taux annuel ÷ 12) ; ton prêteur peut calculer au jour près. En cas de difficulté, tu peux t'adresser gratuitement à un point conseil budget, ou à la commission de surendettement de ton département (Banque de France). Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "dettes",
+    "remboursement",
+    "boule-de-neige",
+    "avalanche",
+    "budget",
+    "credit",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton plan s'ouvre. Ajoute tes dettes et ton budget : la date de fin se calcule. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Particuliers qui remboursent plusieurs crédits"
+    }
+  ]
+}

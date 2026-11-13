@@ -1,8 +1,8 @@
 // Service worker du calculateur de temps de vie : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'temps-de-vie-20261113a';
-const COQUILLE = ['./', 'app.css?v=20261113a', 'donnees.js?v=20261113a', 'calculs.js?v=20261113a', 'app.js?v=20261113a', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'temps-de-vie-20261113b';
+const COQUILLE = ['./', 'app.css?v=20261113b', 'donnees.js?v=20261113b', 'calculs.js?v=20261113b', 'app.js?v=20261113b', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
