@@ -11,7 +11,7 @@
 ## Résumé (1 phrase)
 
 Le registre des documents soumis au visa, lot par lot : indices, avis VSO, VAO ou REF de chaque
-viseur, échéances selon vos délais et relances prêtes à envoyer.
+viseur, échéances selon vos délais et relances prêtes à copier.
 
 ## Description (HTML)
 
@@ -24,7 +24,7 @@ viseur, échéances selon vos délais et relances prêtes à envoyer.
 <li><b>Un registre par lot</b> : numéro, titre, type, indice, date de réception, échéance, avis et statut de chaque document, avec filtres, export CSV et impression A4 paysage.</li>
 <li><b>Un circuit à plusieurs viseurs</b> : l'avis de chaque intervenant (architecte, BET, contrôleur technique…), une synthèse qui retient le plus sévère, l'historique des indices A, B, C…</li>
 <li><b>Tes délais, pas des délais imposés</b> : délai de visa et de remise d'un nouvel indice réglables, par opération, en jours calendaires ou ouvrés (jours fériés calculés).</li>
-<li><b>Des relances prêtes</b> : chaque retard produit un message adressé à l'entreprise ou au viseur concerné, à copier ou à ouvrir dans ta messagerie, puis tracé.</li>
+<li><b>Des relances prêtes</b> : chaque retard produit un message adressé à l'entreprise ou au viseur concerné, prêt à copier, puis tracé.</li>
 <li><b>Un tableau de bord</b> : retards, taux de VSO au premier indice, délai moyen de visa comparé au délai contractuel, avis par semaine et par lot.</li>
 <li><b>Une base intégrée</b> : 18 lots types du bâtiment, 11 types de documents, des titres usuels par lot et une numérotation proposée automatiquement.</li>
 </ul>

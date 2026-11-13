@@ -37,7 +37,7 @@ J'ai donc construit un outil dédié :
 ▪ un registre par lot : indice, date de réception, échéance, avis de chaque viseur, statut ;
 ▪ des échéances calculées avec les délais de votre marché (jours calendaires ou ouvrés), par opération ;
 ▪ chaque matin, la liste de ce qui est en retard et de qui relancer, avec le message de relance déjà
-  rédigé, à copier ou à ouvrir dans la messagerie.
+  rédigé, prêt à copier.
 
 Un tableau de bord suit le délai moyen de visa face au délai contractuel et la part de documents
 visés sans observation dès le premier indice. Le registre s'exporte en CSV et s'imprime.
@@ -61,5 +61,5 @@ Maîtres d'œuvre, BET, OPC : je suis preneur de vos retours sur votre façon de
 ## Version courte (commentaire, story, message privé)
 
 > J'ai sorti un outil de suivi du circuit de visa : registre par lot, avis VSO / VAO / REF de chaque
-> viseur, échéances selon vos délais et relances prêtes à envoyer. Démo libre :
+> viseur, échéances selon vos délais et relances prêtes à copier. Démo libre :
 > https://qm-engineering.fr/templates/visa/?demo

@@ -345,7 +345,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Pas encore d'accès ? <a href="/templates/#compte-rendu">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore d'accès ? <a href="/templates/#compte-rendu">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -576,7 +576,6 @@
         <div class="actions">
           <button class="btn petit" data-action="reunion-modifier" data-id="${r.id}">Modifier</button>
           <button class="btn petit" data-action="copier" data-id="${r.id}">Copier le texte</button>
-          <button class="btn petit" data-action="email" data-id="${r.id}">E-mail</button>
           <button class="btn petit" data-action="imprimer" data-id="${r.id}">Imprimer</button>
           ${s ? `<button class="btn petit jaune" data-action="reunion-nouvelle" data-serie="${s.id}">${ICONES.plus}Réunion suivante</button>` : ''}
         </div>
@@ -990,7 +989,7 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
 
-  // ---------- Partage : texte, e-mail, impression A4 ----------
+  // ---------- Partage : texte à copier, impression A4 (aucun lien vers une application externe) ----------
   async function copier(id) {
     const texte = R.texteCompteRendu(E, reunion(id), auj());
     try { await navigator.clipboard.writeText(texte); toast('Compte rendu copié : colle-le dans ton e-mail.'); }
@@ -1000,13 +999,6 @@
     }
   }
 
-  function email(id) {
-    const r = reunion(id);
-    const texte = R.texteCompteRendu(E, r, auj());
-    location.href = `mailto:?subject=${encodeURIComponent(`Compte rendu · ${r.titre} · ${dateCourte(r.date)}`)}&body=${encodeURIComponent(texte.slice(0, 1800))}`;
-    if (texte.length > 1800) toast('Compte rendu long : le texte complet est aussi copié, colle-le dans l\'e-mail.');
-    if (texte.length > 1800) navigator.clipboard?.writeText(texte).catch(() => {});
-  }
 
   function imprimer(id) {
     const r = reunion(id);
@@ -1092,7 +1084,6 @@
       case 'point-suppr': if (r) { annulation = structuredClone(E); const p = r.points.find((x) => x.id === id); r.points = r.points.filter((x) => x.id !== id); sauver(); rendre(); toast(`Point « ${p?.titre || ''} » retiré.`, { libelle: 'Annuler', faire: annuler }); } break;
       case 'decision-suppr': if (r) { annulation = structuredClone(E); r.decisions = r.decisions.filter((x) => x.id !== id); sauver(); rendre(); toast('Décision retirée.', { libelle: 'Annuler', faire: annuler }); } break;
       case 'copier': copier(id); break;
-      case 'email': email(id); break;
       case 'imprimer': imprimer(id); break;
       default: break;
     }

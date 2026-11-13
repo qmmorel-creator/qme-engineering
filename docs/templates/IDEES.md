@@ -37,6 +37,9 @@ la clé de licence dans l'éditeur Gumroad, le feu vert de fusion dans `main` et
   dans un produit, son nom, ses écrans, sa fiche Gumroad ou sa communication. Chaque template porte un
   nom descriptif propre. Les chemins de code cités dans les fiches sont des repères de développement
   internes, jamais repris dans le produit.
+- **Aucune automatisation ni lien avec une application externe** (règle de Quentin, 13/11/2026) : pas
+  d'envoi d'e-mail, de lien d'appel ou de messagerie, d'agenda, de réseau social, de connecteur ni de
+  synchronisation avec une autre application. Partage par texte à copier, impression ou export (CSV, JSON).
 - **Donnée datée** : toute ligne marquée **daté** dépend d'un barème, taux ou règle officielle qui change.
   Mise à jour annuelle obligatoire (source et date affichées dans l'application) ou valeur paramétrable
   par l'utilisateur.
@@ -576,7 +579,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T05 | Dépenses → tableau de bord, écart au budget ; enveloppes, prévu/réel, Sankey des flux | Catégories et sous-catégories, règle 50/30/20 | Suivi budget 3 800 €, Sankey | Backlog n° 43 : 15 €, S, P1. Marché concurrentiel : le Sankey distingue. Argent : avertissement. Montants de l'artefact non repris. |
 | T06 | Repas de la semaine et liste de courses générée | 100 recettes avec ingrédients et quantités | — | Moteur de liste de courses partageable avec T04. Recettes : source et droits à vérifier. |
 | T07 | Carnet de musculation et cross-training : séances, WOD, volume, records, progression, chronomètre | 150 exercices par groupe musculaire ; WOD types à définir | Skills WOD et coach sportif de Quentin | Backlog n° 48 : 19 €, M, P2. Noms de WOD de référence : droits à vérifier. Sport : avertissement (pas un programme médical). |
-| T08 | Suivi d'habitudes : séries, taux de réussite, jours non applicables, vue mensuelle | 50 habitudes types | Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. |
+| T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
 | T10 | Entretien du véhicule : échéances selon le kilométrage | Intervalles types (vidange, freins, pneus, contrôle technique) | — | **daté** : périodicité du contrôle technique. Version perso du moteur de T29. |
 | T11 | Entretien de la maison : calendrier automatique | 80 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |

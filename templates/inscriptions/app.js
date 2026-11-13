@@ -318,7 +318,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
-        <p class="mention">Pas encore l'outil ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+        <p class="mention">Pas encore l'outil ? <a href="/templates/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
     const champ = $('#code');
@@ -570,8 +570,8 @@
       return `<li class="membre"><div class="membre-tete"><button class="lien-membre" data-action="membre-modifier" data-id="${m.id}"><b>${esc(nomMembre(m))}</b></button><span>${n === null ? 'âge inconnu' : `${n} ans`}${estMineur(m.naissance, t) ? ' <span class="etiquette petite">Mineur</span>' : ''}</span></div>
         <div class="puces">${ins.map((i) => { const x = creneauDe(i.creneauId); return x ? `<button class="puce ${i.statut}" style="--c:${couleur(x.activite.couleur)}" data-action="creneau" data-id="${x.creneau.id}"><i></i>${esc(x.activite.nom)} · ${horaire(x.creneau, true)}${i.statut === 'attente' ? ` · attente n° ${R.rangAttente(E, i)}` : ''}</button>` : ''; }).join('')}<button class="puce ajout" data-action="inscription-nouvelle" data-membre="${m.id}">${ICONES.plus}Inscrire</button></div></li>`;
     }).join('');
-    const contacts = [...(f.responsables || []).filter((r) => r.nom).map((r) => `<span><b>${esc(r.nom)}</b>${r.lien ? ` (${esc(r.lien.toLowerCase())})` : ''}${r.tel ? ` · <a href="tel:${esc(r.tel.replace(/\s/g, ''))}">${esc(r.tel)}</a>` : ''}</span>`),
-      ...(f.urgences || []).filter((r) => r.nom || r.tel).map((r) => `<span class="urgence"><b>Urgence</b> ${esc(r.nom)}${r.tel ? ` · <a href="tel:${esc(r.tel.replace(/\s/g, ''))}">${esc(r.tel)}</a>` : ''}</span>`)];
+    const contacts = [...(f.responsables || []).filter((r) => r.nom).map((r) => `<span><b>${esc(r.nom)}</b>${r.lien ? ` (${esc(r.lien.toLowerCase())})` : ''}${r.tel ? ` · <span>${esc(r.tel)}</span>` : ''}</span>`),
+      ...(f.urgences || []).filter((r) => r.nom || r.tel).map((r) => `<span class="urgence"><b>Urgence</b> ${esc(r.nom)}${r.tel ? ` · <span>${esc(r.tel)}</span>` : ''}</span>`)];
     return `<article class="famille">
       <div class="famille-tete"><div><h2>${esc(f.nom)}</h2><p>${E.tranches.length > 1 ? `QF ${f.qf ?? 'non renseigné'} · tranche ${esc(tr?.nom || '')}` : 'Tarif unique'} · ${f.nbEcheances > 1 ? `${f.nbEcheances} échéances` : 'paiement en une fois'}</p></div>${etiquette}</div>
       ${contacts.length ? `<div class="contacts">${contacts.join('')}</div>` : ''}
