@@ -18,6 +18,7 @@ const texte = (s) => echap(s)
   .replace(/\n/g, '<span class="saut"></span>');
 
 const TEINTES = ['sable', 'ciel', 'rose', 'beurre'];
+const FOND = { sable: '#F3EDE3', ciel: '#D8E4F0', rose: '#F8DCD3', beurre: '#FBEBC2' };
 
 const CSS = `
 @font-face{font-family:'Outfit';font-weight:400 800;src:url('${ASSETS}fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212;}
@@ -39,8 +40,12 @@ body{font-family:'Outfit',sans-serif;color:var(--encre);background:var(--papier)
 .bleu .num{color:#fff;opacity:.85}
 .bas{display:flex;justify-content:space-between;align-items:center;margin-top:auto;position:relative;z-index:2}
 .marque{display:flex;align-items:center;gap:18px;font-size:28px;font-weight:600;color:var(--texte-2)}
-.marque img{height:64px;padding:6px 8px;background:#fff;border-radius:14px;border:1px solid var(--trait)}
-.bleu .marque{color:#fff}
+.marque{gap:16px}
+.marque svg{width:64px;height:64px;flex:none}
+.wordmark{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--encre)}
+.wordmark .m{color:var(--bleu)}.wordmark .e{color:var(--jaune)}
+.tagline{font-size:18px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-2);line-height:1.3;margin-left:6px}
+.marque.pastille{background:var(--papier);padding:14px 26px 14px 18px;border-radius:999px}
 .fictif{font-size:24px;color:var(--discret)}
 h1{font-weight:800;letter-spacing:-.025em;line-height:1.05;font-size:100px;position:relative;z-index:2;max-width:760px}
 h2{font-weight:700;letter-spacing:-.025em;line-height:1.15;font-size:62px;position:relative;z-index:2}
@@ -81,7 +86,8 @@ function carte(post, i) {
   const n = i + 1;
   const tag = `<span class="pilule${post.sur ? ' sur' : ''}">${echap(post.tag)}</span>`;
   const haut = `<div class="haut">${tag}<span class="num">${n}/5</span></div>`;
-  const marque = `<div class="marque"><img src="${ASSETS}logo-qme.png" alt="">qm-engineering.fr</div>`;
+  // Logo du site (en-tête de index.html) : rond central de la couleur du fond.
+  const marque = (fond, pastille) => `<div class="marque${pastille ? ' pastille' : ''}"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="${fond}"/></svg><span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span><span class="tagline">Quentin Morel<br>Engineering</span></div>`;
 
   if (n === 5) {
     const titre = post.sur ? echap(post.cta || 'Un outil construit autour de votre façon de travailler.')
@@ -92,14 +98,14 @@ function carte(post, i) {
     return `<div class="carte bleu cta">${haut.replace('class="pilule', 'class="pilule" style="background:#fff;color:#24221F;border-color:#fff"').replace(' sur"', '"')}
       <div class="forme rond" style="width:520px;height:520px;right:-180px;bottom:-160px;background:#E8B93A;opacity:.9"></div>
       <div class="centre"><h2>${titre}</h2><div class="ligne">${ligne}</div>${prix}</div>
-      <div class="bas">${marque}</div></div>`;
+      <div class="bas">${marque('#FBF7F1', true)}</div></div>`;
   }
 
   const v = post.vues[i];
   if (n === 1) {
     return `<div class="carte">${formes(post.id.charCodeAt(4))}${haut}
       <div class="centre"><h1>${texte(v.t)}</h1><div class="glisser">Glissez →</div></div>
-      <div class="bas">${marque}</div></div>`;
+      <div class="bas">${marque('#FBF7F1')}</div></div>`;
   }
 
   const teinte = TEINTES[(i + post.id.charCodeAt(4)) % TEINTES.length];
@@ -108,12 +114,12 @@ function carte(post, i) {
     return `<div class="carte ${teinte}">${haut}
       <h2 class="capt" style="margin-top:44px">${texte(v.t)}</h2>
       <div class="visuel"><img class="${portrait ? 'portrait' : 'paysage'}" src="${ASSETS}${v.img}" alt=""></div>
-      <div class="bas">${marque}<span class="fictif">Données fictives</span></div></div>`;
+      <div class="bas">${marque(FOND[teinte])}<span class="fictif">Données fictives</span></div></div>`;
   }
   const court = v.t.length > 90 ? ' court' : '';
   return `<div class="carte ${teinte}">${formes(i)}${haut}
     <div class="centre"><h2 class="${court.trim()}">${texte(v.t)}</h2></div>
-    <div class="bas">${marque}</div></div>`;
+    <div class="bas">${marque(FOND[teinte])}</div></div>`;
 }
 
 (async () => {
