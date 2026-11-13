@@ -1,6 +1,6 @@
 ---
 name: nouveau-template
-description: Développer un nouveau template QME vendu sur Gumroad (application web ouverte par clé de licence, données synchronisées, charte Bauhaus), de la fiche d'idée à la mise en vente et à sa communication (page du site, publication LinkedIn, prospects). À utiliser quand Quentin demande de développer, lancer, créer ou prototyper un template (« lance T04 », « développe le template budget », « nouveau template »), ou d'en ajouter un au site ou à Gumroad.
+description: Développer un nouveau template QME vendu sur Gumroad (application web ouverte par clé de licence, données synchronisées, charte Bauhaus), de la fiche d'idée à la mise en vente et à sa communication (page du site, publications LinkedIn et Instagram, prospects). À utiliser quand Quentin demande de développer, lancer, créer ou prototyper un template (« lance T04 », « développe le template budget », « nouveau template »), ou d'en ajouter un au site ou à Gumroad.
 ---
 
 # Nouveau template QME
@@ -103,18 +103,30 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    appareils, achat unique), lien vers la démo, lien d'achat. Proposer 2 variantes d'accroche, l'image à
    joindre (couverture ou capture téléphone) et 3 à 5 hashtags. Prévoir aussi une version courte
    (3 lignes) pour un commentaire ou une story.
-3. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations**
+3. **`instagram.md`** : la publication Instagram du template, selon le kit
+   `docs/templates/communication/instagram/README.md` (charte, formats, ton, hashtags) :
+   - **carrousel de 5 vues en 1080 × 1350** générées en copiant les gabarits `car-1`, `car-2`, `car-3` de
+     `docs/templates/communication/instagram/gabarits.html` (vraies captures du template, « Données
+     fictives »), rendues en PNG (`rendre.mjs`) et **regardées** avant usage ;
+   - légende au vouvoiement : accroche en première ligne (2 variantes), 3 à 6 phrases, une phrase de
+     pont vers le sur mesure (« Besoin de plus ? … je construis la version sur mesure »), « Démo libre et
+     contact : lien en bio », 5 hashtags au plus (jeux du kit) ; aucun lien dans la légende ;
+   - texte alternatif de chaque vue ; story d'annonce (gabarit `story`, autocollant lien vers la démo).
+4. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations**
    (jamais de données personnelles collectées sur des particuliers) : pour chaque segment, pourquoi il a
    le problème, où le trouver (annuaires, réseaux, salons, groupes), qui contacter (fonction, pas nom),
    message d'approche en 3 lignes, canal (LinkedIn, e-mail professionnel public, partenariat, affiliation
    Gumroad), priorité. Distinguer acheteurs directs (B2C), prescripteurs (enseignants, coachs,
    associations, influenceurs du domaine) et partenaires (structures qui pourraient offrir le template).
    Tout organisme cité doit exister ; signaler ce qui est à vérifier.
-4. **Planifier l'article LinkedIn** dès que le template est prêt (règle de Quentin, 12/11/2026) : l'intercaler
+5. **Planifier l'article LinkedIn** dès que le template est prêt (règle de Quentin, 12/11/2026) : l'intercaler
    **entre deux publications déjà prévues**, en partant du début du planning. Procédure détaillée dans
    `reference.md` § « Planning LinkedIn ».
-5. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables, date et ID
-   de la publication LinkedIn).
+6. **Planifier le post Instagram** le lendemain de l'article LinkedIn, à 18:30 : procédure dans
+   `reference.md` § « Planning Instagram » (publication par Instinct, comme LinkedIn). Motion design
+   possible : reel 1080 × 1920 animé en HTML, rendu en MP4 par `docs/templates/communication/instagram/video.mjs`.
+7. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables, dates et ID
+   des publications LinkedIn et Instagram).
 
 ## 5. Publier
 
