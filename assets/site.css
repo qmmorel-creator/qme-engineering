@@ -1,7 +1,11 @@
-/* Charte QME Bauhaus : papier, encre, aplats rouge / jaune / bleu, Outfit, angles droits, cadres de 2 px. */
+/* Charte QME Bauhaus, variante « Pastel » (13/11/2026) : fonds teintés pêche, beurre et ciel, filets fins,
+   grands arrondis, aucune ombre dure. Les règles d'origine suivent ; le bloc « Thème Pastel » en fin de
+   fichier les adoucit. */
 :root{
-  --papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;
-  --rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;--max:1180px;
+  --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--texte-2:#514C44;--discret:#6E685F;
+  --rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--max:1180px;
+  --rose:#F8DCD3;--beurre:#FBEBC2;--ciel:#D8E4F0;--sable:#F3EDE3;--trait:#E4DCCE;
+  --rose-texte:#8A3322;--beurre-texte:#6E5310;--ciel-texte:#22476E;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -405,3 +409,152 @@ main>.section:first-child,main>.docs-band+.section{border-top:0}
   .idee-bandeau{margin:32px 16px 0;box-shadow:none}
   .catalogue-actions{width:100%}.catalogue-actions .btn.idee{width:100%}
 }
+
+/* ===================== Thème Pastel ===================== */
+h1,h2,h3{font-weight:700}
+.topbar{border-bottom:1px solid var(--trait)}
+.topbar nav{gap:8px;font-weight:500}
+.topbar nav a{padding:9px 14px;border:0;border-radius:999px}
+.topbar nav a:hover,.topbar nav a[aria-current="page"]{background:var(--beurre)}
+.topbar nav a.login{border:1px solid var(--trait);padding:9px 16px}
+.topbar nav a.login:hover,.topbar nav a.login[aria-current="page"]{background:var(--beurre)}
+.topbar nav a.cta{background:var(--bleu);color:#fff;border-radius:999px;padding:10px 18px}
+.topbar nav a.cta:hover,.topbar nav a.cta[aria-current="page"]{background:var(--encre)}
+.menu{border:1px solid var(--trait);border-radius:14px;background:var(--surface)}
+.lang a svg{border:1px solid var(--trait);border-radius:3px}
+.lang a[aria-current="page"]{border-color:var(--bleu)}
+@media (max-width:980px){.topbar.open nav{border-bottom:1px solid var(--trait);gap:4px}.topbar.open nav a{padding:12px 14px}}
+
+.docs-band{background:var(--beurre);border-bottom:0}
+.docs-band .doc{border:1px solid var(--trait);border-radius:999px;background:var(--surface)}
+.docs-band .doc:hover{background:var(--encre);color:var(--papier)}
+
+.btn{border:1px solid var(--trait);border-radius:999px;background:var(--surface);font-weight:600}
+.btn:hover{background:var(--beurre)}
+.btn.primary{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.btn.primary:hover{background:var(--bleu);border-color:var(--bleu)}
+mark{background:var(--beurre);border-radius:12px;padding:0 10px}
+
+.before-after{border:0;border-radius:24px;overflow:hidden;box-shadow:none}
+.ba.today{background:var(--rose);border-bottom:0}
+.ba.today .label{color:var(--rose-texte)}
+.ba.tomorrow{background:var(--ciel);color:var(--encre)}
+.ba.tomorrow .label{color:var(--ciel-texte)}
+
+.section{border-top:1px solid var(--trait)}
+.family{border:0;border-radius:22px;overflow:hidden;background:var(--surface)}
+.family h3{background:var(--sable);color:var(--encre)}
+.family.red h3{background:var(--rose);color:var(--encre)}
+.family.yellow h3{background:var(--beurre)}
+.family.blue h3{background:var(--ciel);color:var(--encre)}
+.case{border:1px solid var(--trait);border-radius:22px;overflow:hidden}
+.case img{border-bottom:1px solid var(--trait)}
+.case.wide img{border-right:1px solid var(--trait)}
+.case.feature{box-shadow:none}
+.feature-body .case-copy{border-right:1px solid var(--trait)}
+.feature-points li::before{border-radius:50%}
+.feature-shots img{border:1px solid var(--trait);border-radius:12px}
+.video-card{border:0;border-radius:22px;overflow:hidden;box-shadow:none}
+.feature-film{border-top:0}
+.feature-video{border-right:0}
+.pill{border-radius:999px;letter-spacing:.06em}
+.pill.red{background:var(--rose);color:var(--rose-texte)}
+.pill.yellow{background:var(--beurre);color:var(--beurre-texte)}
+.pill.blue{background:var(--ciel);color:var(--ciel-texte)}
+.also li::before{border-radius:50%}
+.not-listed{background:var(--ciel);color:var(--encre);border-radius:22px}
+.not-listed .btn.primary{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.steps li{border-top-width:4px}
+.steps .s1{border-color:#E58C74}
+.format{border:0;border-radius:18px;background:var(--sable);color:var(--encre)}
+.format.red{background:var(--rose);color:var(--encre)}
+.format.yellow{background:var(--beurre)}
+.format.blue{background:var(--ciel);color:var(--encre)}
+.about{border:1px solid var(--trait);border-radius:22px;overflow:hidden}
+.about blockquote{border-right:1px solid var(--trait)}
+
+.contact{background:var(--ciel);color:var(--encre)}
+.contact-copy p{color:var(--texte-2)}
+.contact .mail{color:var(--ciel-texte)}
+.contact input,.contact select,.contact textarea{border:1px solid var(--trait);border-radius:14px;background:var(--surface)}
+.contact input:focus,.contact select:focus,.contact textarea:focus{outline:3px solid var(--bleu)}
+.form-end .btn.primary{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.form-end .btn.primary:hover{background:var(--bleu);border-color:var(--bleu)}
+#contact-fallback{color:var(--encre)}
+#form-note{color:var(--texte-2)}
+#form-note.success{color:var(--ciel-texte)}
+#form-note.error{color:#A63A26}
+
+.film-frame{border:0;border-radius:24px;overflow:hidden;box-shadow:none}
+.film-sound{border:0;border-radius:999px;background:var(--beurre)}
+
+.portes{border:0;box-shadow:none;gap:14px}
+.porte{border-radius:24px}
+.porte.sur-mesure{background:var(--ciel);color:var(--encre);border-bottom:0}
+.porte.sur-mesure .label{color:var(--ciel-texte)}
+.porte.sur-mesure p{color:var(--texte-2)}
+.porte.sur-mesure:hover{background:#C9DAEB}
+.porte.templates{background:var(--beurre)}
+.porte.templates .label{color:var(--beurre-texte)}
+.porte.templates:hover{background:#F7E1A6}
+
+.produit{border:1px solid var(--trait);border-radius:24px;overflow:hidden;box-shadow:none}
+.produit-visuel{background:var(--ciel);border-right:1px solid var(--trait)}
+.produit-visuel::before{background:var(--rose)}
+.produit-visuel::after{background:var(--beurre);border-radius:28px}
+.produit-visuel .ecran{border:1px solid var(--trait);border-bottom:0;border-radius:12px 12px 0 0;box-shadow:none}
+.produit-visuel .tel{border:1px solid var(--trait);box-shadow:0 12px 28px rgba(36,34,31,.14)}
+.prix{border-top:1px solid var(--trait)}
+.a-venir span{border:0;border-radius:999px;background:var(--sable);font-weight:500}
+.galerie img{border:1px solid var(--trait);border-radius:14px}
+.faq{border-top:1px solid var(--trait)}
+.faq details{border-bottom:1px solid var(--trait)}
+
+.acces{border:1px solid var(--trait);border-radius:24px;box-shadow:none}
+.acces input[type=text]{border:1px solid var(--trait);border-radius:14px}
+.acces input[type=text]:focus{outline:3px solid var(--bleu)}
+.deja{border:0;border-radius:18px;background:var(--beurre)}
+.aide-portail{border:0;border-radius:24px;overflow:hidden;background:var(--ciel);color:var(--encre)}
+.aide-portail .bloc{border-bottom:1px solid rgba(36,34,31,.12)}
+.aide-portail p{color:var(--texte-2)}
+.aide-portail a{color:var(--ciel-texte)}
+.aide-portail .formes{border-bottom:0}
+.aide-portail .formes i:nth-child(1){background:#E58C74}
+.mes-templates a{border:1px solid var(--trait);border-radius:14px}
+
+.mini-produit{border:1px solid var(--trait);border-radius:22px;overflow:hidden;box-shadow:none}
+.mini-produit img{border-bottom:1px solid var(--trait)}
+.groupe-produits{border-bottom:1px solid var(--trait)}
+
+.bascule{border:0;background:var(--sable);border-radius:999px;padding:4px;gap:4px}
+.bascule a{border-radius:999px;background:transparent;font-weight:600}
+.bascule a+a{border-left:0}
+.bascule a:hover{background:var(--surface)}
+.tableau-tete{border-bottom:1px solid var(--trait)}
+.colonne{background:var(--sable);border:0;border-radius:22px;overflow:hidden}
+.colonne h4{border-bottom:0;border-top:6px solid var(--c);text-transform:none;letter-spacing:0;font-size:16px}
+.colonne h4 span{border-radius:50%;background:var(--surface);color:var(--encre)}
+.carte>a,.carte>div{border:0;border-radius:16px}
+.carte>a{box-shadow:none;background:var(--surface)}
+.carte>a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,34,31,.10);background:var(--surface)}
+.carte.bientot>div{border-top:1px solid var(--trait);border-radius:0}
+.carte.bientot .pied em{border-radius:999px;background:var(--surface)}
+
+.pager a{border:1px solid var(--trait);border-radius:18px;box-shadow:none}
+.pager a:hover{background:var(--beurre)}
+.suite-pages a{border:0;border-radius:22px}
+.suite-pages a:nth-child(1){border-top:0;background:var(--ciel)}
+.suite-pages a:nth-child(2){border-top:0;background:var(--rose)}
+.suite-pages a:nth-child(3){border-top:0;background:var(--beurre)}
+.suite-pages a:hover{background:var(--surface)}
+.rappel-templates{border-top:1px solid var(--trait)}
+.separateur h2{border-bottom:1px solid var(--trait)}
+
+.btn.idee{background:var(--rose);border-color:var(--rose)}
+.btn.idee:hover{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.idee-bandeau{background:var(--beurre);border:0;border-radius:24px;box-shadow:none}
+.modale-idee{border:0;border-radius:24px;box-shadow:0 24px 60px rgba(36,34,31,.25)}
+.modale-idee-tete{background:var(--ciel);color:var(--encre)}
+.modale-idee-tete button{border:1px solid rgba(36,34,31,.25);border-radius:12px;color:var(--encre)}
+.modale-idee input,.modale-idee select,.modale-idee textarea{border:1px solid var(--trait);border-radius:14px}
+.idee-note.success{border-radius:12px;background:var(--beurre)}
