@@ -1,0 +1,66 @@
+/* ContrôleRéception · composants propres (le socle commun est dans ../commun/socle.css). */
+.bloc-statut{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;border-radius:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--trait);border-left:8px solid var(--trait)}
+.bloc-statut .surtitre{margin-bottom:4px}
+.statut-grand{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.bloc-statut.st-conforme{border-left-color:var(--vert)}
+.bloc-statut.st-reserves{border-left-color:var(--jaune)}
+.bloc-statut.st-nonconforme{border-left-color:var(--rouge)}
+.bloc-statut.st-attente{border-left-color:var(--bleu)}
+.avancement{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-weight:600;color:var(--texte-2)}
+.table-qte input{max-width:110px}
+.points{display:grid;gap:8px}
+.point{border:1px solid var(--trait);background:var(--surface);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;border-left:6px solid var(--trait)}
+.point.res-ok{border-left-color:var(--vert)}
+.point.res-nok{border-left-color:var(--rouge)}
+.point.res-na{border-left-color:var(--discret)}
+.point-tete{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.point-tete>div:first-child{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1 1 260px}
+.tri-etat{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tri-etat button{min-height:44px;padding:0 14px;border:1px solid var(--trait);background:var(--surface);border-radius:999px;font-weight:600;font-size:14px}
+.tri-etat button[aria-pressed="true"][data-res="ok"]{background:#D7EBDD;border-color:transparent;color:#1E5A37}
+.tri-etat button[aria-pressed="true"][data-res="nok"]{background:var(--rouge);border-color:transparent;color:#fff}
+.tri-etat button[aria-pressed="true"][data-res="na"]{background:var(--sable);border-color:transparent}
+.tri-etat input,.saisie-commentaire{min-height:44px;padding:8px 12px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);font-size:16px}
+.tri-etat input{width:110px}
+.saisie-commentaire{width:100%;font-size:14px}
+.constats{display:grid;gap:8px}
+.constat{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;border:1px solid var(--trait);background:var(--surface);border-radius:14px;padding:12px 14px;border-left:6px solid var(--trait)}
+.constat.grav-critique{border-left-color:var(--rouge)}
+.constat.grav-majeure{border-left-color:var(--jaune)}
+.constat.leve{background:var(--sable);border-left-color:var(--vert)}
+.constat-corps{display:flex;flex-direction:column;gap:6px;min-width:0}
+.photos{display:flex;flex-wrap:wrap;gap:8px}
+.photos figure{position:relative;margin:0;width:120px}
+.photos img{width:120px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--trait);display:block}
+.photos figcaption{font-size:12px;color:var(--discret)}
+.photos.edition .btn-icone{position:absolute;top:4px;right:4px;width:32px;height:32px}
+.photos.petites img{width:96px;height:72px}
+.anomalies{display:grid;gap:6px}
+.anomalies li{display:flex;gap:10px;align-items:baseline;font-size:15px}
+.rang-point{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1.3fr) repeat(3,minmax(0,.8fr)) auto auto;gap:8px;align-items:end;margin-bottom:10px}
+.rang-point:not(:has([name^="pu-"])){grid-template-columns:minmax(0,3fr) minmax(0,1.3fr) auto auto}
+.rang-point .btn-icone{height:48px;font-size:22px}
+.statut-pv{font-size:20px;font-weight:800;padding:10px 14px;border-radius:12px;background:var(--sable);margin:6px 0 4px}
+.statut-pv small{font-size:13px;font-weight:500}
+.statut-pv.st-conforme{background:#D7EBDD}
+.statut-pv.st-reserves{background:var(--beurre)}
+.statut-pv.st-nonconforme{background:var(--rose)}
+@media (max-width:720px){
+  .constat{grid-template-columns:1fr}
+  .rang-point,.rang-point:not(:has([name^="pu-"])){grid-template-columns:1fr 1fr;padding:10px;border:1px dashed var(--trait);border-radius:12px}
+  .rang-point>.champ:first-child{grid-column:1/-1}
+  .table-qte input{max-width:80px}
+  .tri-etat button{padding:0 10px}
+}
+@media print{.photos img{width:90px;height:68px}}
+/* Téléphone : chaque ligne de quantité devient une fiche étiquetée (pas de défilement horizontal). */
+@media (max-width:720px){
+  .table-qte thead{display:none}
+  .table-qte,.table-qte tbody{display:block}
+  .table-qte tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;padding:12px;border-bottom:1px solid var(--trait)}
+  .table-qte td{display:flex;flex-direction:column;gap:4px;padding:0;border:0;text-align:left!important;white-space:normal}
+  .table-qte td:first-child{grid-column:1/-1}
+  .table-qte td[data-libelle]::before{content:attr(data-libelle);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+  .table-qte input{max-width:none;width:100%}
+  .table-qte .etiquette{align-self:flex-start}
+}
