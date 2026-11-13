@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intérêts par template · Admin QME</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026111306">
+</head>
+<body>
+<main class="admin-interets">
+  <p class="eyebrow">Administration QME · privé</p>
+  <h1>Intérêt pour les templates à venir</h1>
+  <p class="admin-etat">Chaque clic sur « Je suis intéressé(e) » d'une page « Mise en vente prochaine » est compté (un par navigateur). Aucune donnée personnelle n'est enregistrée : seulement le template et l'heure.</p>
+  <form class="admin-acces" id="acces">
+    <label>Code administrateur<input id="code" autocomplete="off" spellcheck="false" placeholder="ADM-XXXX-XXXX-XXXX-XXXX" required></label>
+    <button class="btn primary" type="submit">Afficher</button>
+    <button class="btn" type="button" id="oublier" hidden>Oublier le code sur cet appareil</button>
+  </form>
+  <p class="admin-etat" id="etat" role="status" aria-live="polite"></p>
+  <section id="resultats" hidden>
+    <div class="admin-tuiles">
+      <div><b id="total">0</b><span>intérêts au total</span></div>
+      <div><b id="sept">0</b><span>sur les 7 derniers jours</span></div>
+      <div><b id="nb">0</b><span>templates demandés</span></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
+      <button class="btn" type="button" id="csv">Télécharger le CSV (tous les clics)</button>
+      <button class="btn" type="button" id="maj">Actualiser</button>
+      <span class="admin-etat">Actualisation automatique toutes les 30 s.</span>
+    </div>
+    <div class="admin-boite">
+      <table class="admin-table">
+        <thead><tr><th>Template</th><th>Total</th><th>7 jours</th><th style="width:30%">Part</th><th>Dernier intérêt</th></tr></thead>
+        <tbody id="lignes"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+(() => {
+  const CLE = 'qme-admin-interets';
+  const $ = (s) => document.querySelector(s);
+  const lire = () => { try { return localStorage.getItem(CLE) || ''; } catch { return ''; } };
+  const garder = (c) => { try { c ? localStorage.setItem(CLE, c) : localStorage.removeItem(CLE); } catch { /* indisponible */ } };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const date = (iso) => iso ? new Date(iso).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—';
+  let minuterie = null;
+  async function charger() {
+    const code = lire(); if (!code) return;
+    $('#etat').textContent = 'Chargement…';
+    try {
+      const r = await fetch('/api/interets', { headers: { 'x-admin': code }, cache: 'no-store' });
+      if (r.status === 401) { garder(''); $('#resultats').hidden = true; $('#oublier').hidden = true; $('#etat').textContent = 'Code administrateur refusé.'; return; }
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      $('#total').textContent = d.total;
+      $('#sept').textContent = d.modules.reduce((s, m) => s + m.septJours, 0);
+      $('#nb').textContent = d.modules.length;
+      const max = Math.max(1, ...d.modules.map((m) => m.total));
+      $('#lignes').innerHTML = d.modules.length ? d.modules.map((m) => `<tr><td><a href="/catalogue/${esc(m.module)}/">${esc(m.nom)}</a></td><td class="n">${m.total}</td><td class="n">${m.septJours}</td><td><div class="barre-int" style="width:${Math.round(m.total / max * 100)}%"></div></td><td>${date(m.dernier)}</td></tr>`).join('') : '<tr><td colspan="5">Aucun intérêt enregistré pour l\'instant.</td></tr>';
+      $('#resultats').hidden = false; $('#oublier').hidden = false;
+      $('#etat').textContent = `Mis à jour à ${new Date(d.majLe).toLocaleTimeString('fr-FR')}.`;
+      clearTimeout(minuterie); minuterie = setTimeout(charger, 30000);
+    } catch { $('#etat').textContent = 'Chargement impossible (connexion ?). Nouvel essai dans 30 s.'; clearTimeout(minuterie); minuterie = setTimeout(charger, 30000); }
+  }
+  $('#acces').addEventListener('submit', (e) => { e.preventDefault(); garder($('#code').value.trim()); charger(); });
+  $('#oublier').addEventListener('click', () => { garder(''); location.reload(); });
+  $('#maj').addEventListener('click', charger);
+  $('#csv').addEventListener('click', async () => {
+    const r = await fetch('/api/interets?format=csv', { headers: { 'x-admin': lire() }, cache: 'no-store' });
+    if (!r.ok) { $('#etat').textContent = 'Téléchargement refusé.'; return; }
+    const url = URL.createObjectURL(await r.blob());
+    const a = Object.assign(document.createElement('a'), { href: url, download: `interets-templates-${new Date().toISOString().slice(0, 10)}.csv` });
+    document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+  if (lire()) { $('#code').value = lire(); charger(); }
+})();
+</script>
+</body>
+</html>

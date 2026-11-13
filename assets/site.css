@@ -564,3 +564,25 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .prix.prochaine b::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--jaune);margin-right:10px;vertical-align:middle}
 .carte.prochaine .pied{flex-wrap:wrap;row-gap:8px}
 .carte.prochaine .pied em,.carte.prochaine .pied span{white-space:nowrap}
+/* Bouton « Je suis intéressé(e) » */
+.btn.interet{background:var(--rose);border-color:var(--rose)}
+.btn.interet:hover{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.btn.interet.fait,.btn.interet:disabled{background:var(--sable);border-color:var(--sable);color:var(--texte-2);cursor:default}
+.interet-note{font-size:14px;color:var(--discret)}
+/* Page d'administration des intérêts */
+.admin-interets{max-width:var(--max);margin:0 auto;padding:40px 16px 72px;display:flex;flex-direction:column;gap:20px}
+.admin-interets h1{font-size:clamp(30px,4vw,44px)}
+.admin-acces{display:flex;flex-wrap:wrap;gap:10px;align-items:end;max-width:640px}
+.admin-acces label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;flex:1 1 280px}
+.admin-acces input{font:500 16px Outfit,sans-serif;padding:12px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);letter-spacing:.04em}
+.admin-tuiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.admin-tuiles div{background:var(--surface);border:1px solid var(--trait);border-radius:16px;padding:14px 16px}
+.admin-tuiles b{display:block;font-size:32px;line-height:1.1}
+.admin-tuiles span{font-size:13px;color:var(--discret)}
+.admin-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--trait);border-radius:16px;overflow:hidden}
+.admin-table th,.admin-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--trait);font-size:15px}
+.admin-table th{background:var(--sable);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.admin-table td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.admin-table .barre-int{height:10px;border-radius:999px;background:var(--ciel);min-width:2px}
+.admin-boite{overflow-x:auto}
+.admin-etat{font-size:14px;color:var(--discret)}

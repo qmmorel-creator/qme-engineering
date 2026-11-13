@@ -116,3 +116,20 @@ if(fallbackLink&&form){
    else etat(r.status===429?'Trop d’envois pour le moment. Réessayez dans quelques minutes.':'L’envoi a échoué. Réessayez dans un instant.','error');}
   catch{etat('L’envoi a échoué (connexion). Réessayez dans un instant.','error');}
   finally{b.disabled=false;b.textContent=lib;}});})();
+
+// Bouton « Je suis intéressé(e) » (templates en mise en vente prochaine) : un clic compté par navigateur.
+// Seuls le template et l'heure sont enregistrés côté serveur ; le navigateur retient qu'il a déjà cliqué.
+(()=>{document.querySelectorAll('[data-interet]').forEach(b=>{
+ const m=b.dataset.interet,cle='qme-interet-'+m,note=document.querySelector(`[data-interet-note="${m}"]`);
+ const deja=()=>{try{return localStorage.getItem(cle)==='1';}catch{return false;}};
+ const fait=(t)=>{b.disabled=true;b.textContent='Intérêt enregistré';b.classList.add('fait');if(note)note.textContent=t;};
+ if(deja())fait('Votre intérêt est déjà compté. Merci !');
+ b.addEventListener('click',async()=>{
+  if(deja())return;
+  b.disabled=true;
+  try{const r=await fetch('/api/interets',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({module:m})});
+   if(!r.ok)throw new Error();
+   try{localStorage.setItem(cle,'1');}catch{}
+   fait('Merci, c’est noté : ce template passe en priorité quand l’intérêt est là.');
+  }catch{b.disabled=false;if(note)note.textContent='L’envoi a échoué. Réessayez dans un instant.';}
+ });});})();
