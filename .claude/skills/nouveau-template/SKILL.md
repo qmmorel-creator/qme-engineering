@@ -28,7 +28,10 @@ vouvoiement sur le site QME.
 Partir d'une copie de `templates/revision/` et garder tel quel le socle commun :
 écran de connexion (clé de licence ou code), mode démo (`?demo` et bouton), synchronisation
 (`/api/templates/*`, cache local, hors ligne, conflit 409), modales `<dialog>`, toast avec « Annuler »,
-réglages (export / import JSON, déconnexion), manifeste et service worker, icônes.
+réglages (export / import JSON, déconnexion), manifeste et service worker, icônes, et la **fenêtre
+« Comme une application »** (ajout à l'écran d'accueil du téléphone), **obligatoire dans chaque
+template** : voir `reference.md` § Ajout à l'écran d'accueil. Elle est déjà dans le socle copié ; la
+vérifier à chaque fois (clé `qme-<pre>-ecran-accueil`, entrée « Sur téléphone » des réglages).
 
 Remplacer le métier :
 - `donnees.js` : la **base intégrée** (`window.BASE`), sans logique ;
@@ -53,6 +56,10 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
 - **Regarder chaque capture** (Read) et corriger : chevauchements, textes coupés, débordements. Les
   captures pleine page sur téléphone dupliquent les éléments fixes : faire aussi des captures d'écran
   simples après défilement.
+- **Fenêtre « Comme une application »** : sur `devices['iPhone 13']` et `devices['Pixel 7']`, elle
+  s'ouvre seule en démo avec les bonnes étapes (Safari / Chrome) ; « Ne plus afficher » tient après
+  rechargement ; « Réglages > Sur téléphone > Voir comment faire » la rouvre ; à 1280 px elle ne s'ouvre
+  pas seule. Regarder la capture.
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad
@@ -107,11 +114,12 @@ Une seule application, bilingue ; jamais de copie du template. Référence : `te
 
 Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par Quentin avant usage :
 
-1. **Page de présentation sur le site QM Engineering** : la section `#<slug>` de `/templates/` doit se
-   suffire comme page d'atterrissage (lien direct `qm-engineering.fr/templates/#<slug>`) : promesse en une
+1. **Page de présentation sur le site QM Engineering** : la page `/catalogue/<slug>/` (générée depuis
+   `section-site.html`) doit se suffire comme page d'atterrissage (lien direct
+   `qm-engineering.fr/catalogue/<slug>/`) : promesse en une
    phrase, pour qui, 3 à 5 bénéfices concrets, captures, prix, « Acheter » et « Essayer la démo »,
-   questions fréquentes propres au produit. Ajouter le lien `#<slug>` dans `/templates/` (sommaire) et
-   la carte sur l'accueil si le produit est mis en avant.
+   questions fréquentes propres au produit. Activer sa carte dans le kanban de `/templates/` (colonne
+   de son thème, groupe travail ou maison) et ajouter sa carte sur `/en/templates/`.
 2. **`linkedin.md`** : une publication de présentation (environ 1 200 à 1 500 caractères), à la première
    personne de Quentin, ton direct et sobre, sans superlatifs ni promesses chiffrées non vérifiées :
    accroche sur le problème, ce que fait le template (3 points), ce qui le distingue (base intégrée, tous

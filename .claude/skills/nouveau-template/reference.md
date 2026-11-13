@@ -34,6 +34,28 @@ outils/templates/          tests, serveur local, génération de codes
 - Enregistrement temporisé (≈ 600 ms) après chaque action ; indicateur Enregistré / Modifié /
   Enregistrement… / Hors ligne / Démo ; renvoi au retour du réseau ; relecture au retour sur l'onglet.
 
+## Ajout à l'écran d'accueil (obligatoire, chaque template)
+
+Décision de Quentin (13/11/2026) : chaque template publié explique comment l'enregistrer sur
+l'écran d'accueil d'un téléphone pour l'utiliser comme une application. Référence :
+`templates/gantt/app.js`, bloc « Ajout à l'écran d'accueil » (le reprendre tel quel).
+
+- **Au démarrage** (fin de `demarrer()`, `proposerEcranAccueil()`) : fenêtre « Comme une application »
+  sur téléphone et tablette (iOS, Android, ou écran ≤ 720 px), après 0,9 s, seulement si aucune autre
+  modale n'est ouverte et si la page n'est pas déjà installée (`display-mode: standalone` ou
+  `navigator.standalone`). Aussi en démo. Jamais seule sur ordinateur.
+- **Contenu** : étapes selon l'appareil. iPhone/iPad : Safari, bouton Partager (sous « ··· » s'il n'est pas
+  visible), « Sur l'écran d'accueil », laisser « Ouvrir comme app web », « Ajouter ». Android : Chrome,
+  menu ⋮, « Ajouter à l'écran d'accueil » ou « Installer l'application ». Ordinateur : les deux. Si le
+  navigateur propose l'installation (`beforeinstallprompt`), bouton « Ajouter à l'écran d'accueil » qui
+  ouvre l'invite native. Libellés relevés sur des guides récents, pas sur une page officielle Apple ou
+  Google : les revérifier si l'interface change.
+- **Boutons** : « Plus tard » (revient au prochain lancement) et « Ne plus afficher » (clé locale
+  `qme-<pre>-ecran-accueil` = `masque` ; `installe` après une installation acceptée).
+- **Réglages** : groupe « Sur téléphone » avec « Voir comment faire » (`data-action="ecran-accueil"`).
+- Le manifeste doit rester `display: standalone` avec les icônes 192 et 512 px.
+- Aucune application externe : seule l'invite native du navigateur est utilisée.
+
 ## Charte (application)
 
 - Jetons : `--papier #F0EDE6`, `--surface #FBFAF6`, `--encre #141414`, `--texte-2 #45413A`,
@@ -50,12 +72,12 @@ outils/templates/          tests, serveur local, génération de codes
 
 Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne changent pas, les références PDF seulement sur demande) :
 
-- [ ] **Accueil `index.html`** : carte du template dans la section `#templates` (ou remplacement de la
-      carte mise en avant + ajout à la ligne des autres templates) ; « En préparation » mis à jour ;
-      prix « dès … » de la porte « Templates » si le moins cher change ; textes qui énumèrent les templates.
-- [ ] **Accueil anglais `en/index.html`** : mêmes changements, mention « in French ».
-- [ ] **Catalogue `templates/index.html`** : section `#<slug>` complète (page d'atterrissage), boutons
-      Acheter et Démo, captures, FAQ propres au produit ; ordre des sections ; liens internes.
+- [ ] **Accueil `index.html`** : prix « dès … » de la porte « Templates » si le moins cher change.
+- [ ] **Templates en anglais `en/templates/index.html`** : carte du template dans son groupe (travail /
+      maison), mention « in French » ; « In preparation » mis à jour.
+- [ ] **Catalogue** : page `catalogue/<slug>/index.html` complète (page d'atterrissage : boutons Acheter
+      et Démo, captures, FAQ propres au produit) ; carte du kanban de `templates/index.html` activée
+      (lien `/catalogue/<slug>/`, prix) dans la colonne de son thème ; compteur « en vente ».
 - [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »

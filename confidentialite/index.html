@@ -23,7 +23,6 @@
 .legal dl{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 16px;margin:10px 0 16px;font-size:15px}
 .legal dt{font-weight:700;color:var(--encre)}.legal dd{margin:0;color:var(--texte-2)}
 @media (max-width:560px){.legal dl{grid-template-columns:1fr}.legal dd{margin-bottom:8px}}
-.a-completer{background:var(--jaune);color:var(--encre);padding:0 4px;font-weight:600}
 </style>
 </head>
 <body>
@@ -35,19 +34,19 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/#outils">Sur mesure</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a href="/templates/">Templates</a>
-    <a href="/#references">Références</a>
-    <a href="/#methode">Méthode</a>
+    <a href="/references/">Références</a>
+    <a href="/methode/">Méthode</a>
     <a class="login" href="/connexion/">Connexion</a>
-    <a class="cta" href="/#contact">Parler de votre projet</a>
+    <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
   <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
 </header>
 
 <main class="legal">
 <h1>Politique de confidentialité</h1>
-<p class="maj">Dernière mise à jour : <span class="a-completer">[date de mise en ligne]</span></p>
+<p class="maj">Dernière mise à jour : 13 novembre 2026</p>
 
 <p>Cette page explique quelles données personnelles QME traite sur qm-engineering.fr et dans les templates
 vendus sur la boutique QME, pourquoi, où elles sont hébergées, combien de temps elles sont gardées et comment
@@ -55,11 +54,9 @@ exercer vos droits. Principe général : collecter le moins possible, ne rien re
 aucun cookie.</p>
 
 <h2>1. Responsable du traitement</h2>
-<p>Quentin Morel, QME · Quentin Morel Engineering, <span class="a-completer">[statut juridique, numéro SIRET,
-adresse postale]</span>.<br>
+<p>Quentin Morel, QME · Quentin Morel Engineering.<br>
 Contact pour toute question sur vos données :
-<a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.
-Voir aussi les <a href="/mentions-legales/">mentions légales</a>.</p>
+<a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
 
 <h2>2. Ce que nous traitons, pourquoi et combien de temps</h2>
 
@@ -69,7 +66,16 @@ Voir aussi les <a href="/mentions-legales/">mentions légales</a>.</p>
 <dt>Finalité</dt><dd>répondre à votre demande et, le cas échéant, préparer une proposition.</dd>
 <dt>Base légale</dt><dd>mesures précontractuelles prises à votre demande ; intérêt légitime à répondre aux messages reçus.</dd>
 <dt>Hébergement</dt><dd>formulaire géré par l'hébergeur du site (Netlify) ; copie reçue dans la messagerie de QME.</dd>
-<dt>Durée</dt><dd><span class="a-completer">[proposition : 3 ans après le dernier échange si aucun contrat n'est conclu]</span>.</dd>
+<dt>Durée</dt><dd>3 ans après le dernier échange si aucun contrat n'est conclu.</dd>
+</dl>
+
+<h3>Formulaire « Soumettre une idée »</h3>
+<dl>
+<dt>Données</dt><dd>l'idée proposée, l'usage et le public visés ; adresse e-mail seulement si vous la donnez (facultative).</dd>
+<dt>Finalité</dt><dd>alimenter la liste des prochains templates et, si vous avez laissé votre adresse, vous prévenir quand l'outil voit le jour.</dd>
+<dt>Base légale</dt><dd>intérêt légitime à recueillir les suggestions des visiteurs ; votre consentement pour l'adresse e-mail.</dd>
+<dt>Hébergement</dt><dd>formulaire géré par l'hébergeur du site (Netlify) ; copie reçue dans la messagerie de QME.</dd>
+<dt>Durée</dt><dd>3 ans après l'envoi ; l'adresse e-mail est supprimée plus tôt sur simple demande.</dd>
 </dl>
 
 <h3>Achat d'un template</h3>
@@ -93,7 +99,7 @@ Voir aussi les <a href="/mentions-legales/">mentions légales</a>.</p>
 <dt>Finalité</dt><dd>vous permettre de retrouver vos données sur tous vos appareils.</dd>
 <dt>Hébergement</dt><dd>stockage en ligne de l'hébergeur Netlify, <strong>dans l'Union européenne (Francfort, Allemagne)</strong>, sous l'identifiant technique lié à votre clé. Seule votre clé y donne accès. QME ne consulte pas ces données, sauf à votre demande dans le cadre d'une assistance.</dd>
 <dt>Base légale</dt><dd>exécution du contrat.</dd>
-<dt>Durée</dt><dd>tant que vous utilisez le template ; suppression sur simple demande. <span class="a-completer">[proposition : suppression automatique 3 ans après la dernière modification]</span>.</dd>
+<dt>Durée</dt><dd>tant que vous utilisez le template, jusqu'à ce que vous effaciez vos données ou en demandiez la suppression.</dd>
 <dt>Vos exports</dt><dd>chaque template permet de télécharger une copie complète de vos données (fichier JSON, et CSV selon les templates).</dd>
 </dl>
 <p><strong>Données de tiers.</strong> Certains templates servent à gérer des informations sur d'autres personnes
@@ -102,10 +108,15 @@ décidez de ce que vous saisissez, vous informez les personnes concernées et vo
 se limite à les héberger pour votre compte, sans les utiliser à d'autres fins.</p>
 
 <h3>Template « Nutrition et dépense énergétique »</h3>
-<p>Ce template traite des données de santé (poids, repas, activité physique). Il n'enregistre rien en ligne
-sans votre consentement explicite, donné au premier lancement ; il est réservé aux personnes majeures ; un
-bouton permet d'effacer toutes vos données, en ligne et sur l'appareil. Vous pouvez retirer votre
-consentement à tout moment de la même façon.</p>
+<p>Ce template traite des <strong>données de santé</strong> au sens de l'article 9 du RGPD (poids, taille,
+année de naissance, sexe, niveau d'activité, repas, séances de sport). Leur traitement repose sur votre
+<strong>consentement explicite</strong> (article 9, paragraphe 2, a), donné au premier lancement en cochant une
+case dédiée : rien n'est enregistré en ligne avant. Elles sont enregistrées chez l'hébergeur Netlify,
+<strong>dans l'Union européenne (Francfort, Allemagne)</strong>, rattachées à l'identifiant technique de votre clé,
+et ne servent qu'à faire fonctionner votre journal : jamais vendues, partagées ni utilisées pour de la
+publicité. Le template est réservé aux personnes majeures. Le bouton « Effacer toutes mes données » des
+réglages supprime la version en ligne et celle de l'appareil ; il vaut retrait de votre consentement, que
+vous pouvez exercer à tout moment.</p>
 
 <h3>Copie dans votre navigateur</h3>
 <p>Pour fonctionner hors connexion, chaque template garde dans votre navigateur (stockage local) votre code
@@ -125,13 +136,16 @@ lui-même : aucune requête n'est envoyée à un service de polices tiers.</p>
 
 <h2>3. Prestataires et transferts hors de l'Union européenne</h2>
 <ul>
-<li><strong>Netlify, Inc.</strong> (États-Unis) : hébergement du site et du formulaire de contact ; stockage des données des templates à Francfort (Union européenne).</li>
+<li><strong>Netlify, Inc.</strong> (États-Unis) : hébergement du site et des formulaires (contact, idées) ; stockage des données des templates à Francfort (Union européenne).</li>
 <li><strong>Gumroad, Inc.</strong> (États-Unis) : vente, paiement, clés de licence.</li>
 <li><strong>GoatCounter</strong> : mesure d'audience sans cookie.</li>
 </ul>
-<p>Lorsque des données sont traitées hors de l'Union européenne, le transfert est encadré par
-<span class="a-completer">[garanties à vérifier pour chaque prestataire : adhésion au cadre de protection des
-données UE–États-Unis, ou clauses contractuelles types de la Commission européenne]</span>.</p>
+<p>Les données saisies dans les templates sont stockées et traitées à Francfort (Union européenne). Lorsque
+des données sont transférées aux États-Unis (journaux techniques de l'hébergeur, données de commande chez
+Gumroad), le transfert est encadré : Netlify, Inc. déclare adhérer au cadre de protection des données
+UE–États-Unis (Data Privacy Framework) ; Gumroad, Inc. déclare s'appuyer sur les clauses contractuelles types
+adoptées par la Commission européenne (sources : politiques de confidentialité de Netlify et de Gumroad,
+consultées le 13 novembre 2026).</p>
 
 <h2>4. Sécurité</h2>
 <p>Connexions chiffrées (HTTPS) ; accès aux données d'un template uniquement avec une clé valide, vérifiée à

@@ -4,9 +4,14 @@ Site promotionnel de Quentin Morel Engineering (QME).
 
 ## Structure
 
-- `index.html` : page principale (français)
-- `en/index.html` : version anglaise (`/en/`), mêmes sections ; drapeaux français / anglais en tête de
-  page pour passer de l'une à l'autre, balises `hreflang` sur les deux pages
+- Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
+  `sur-mesure/`, `templates/` (catalogue kanban travail / maison, bouton « Soumettre une idée » relié au
+  formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
+  `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
+  `/templates/#gantt`…) redirigent vers la bonne page.
+- `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
+  `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
+  pages jumelles
 - `assets/QME-brochure-en.pdf`, `assets/QME-references-en.pdf`, `assets/qme-presentation-en.mp4` (et son
   affiche) : plaquette, références et vidéo en anglais. Sources et scripts de génération dans le dépôt
   Nexora, `docs/qme/en/`

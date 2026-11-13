@@ -643,3 +643,6 @@ button.tuile[aria-pressed="true"]{box-shadow:5px 5px 0 var(--c);transform:transl
   .ligne-retard{grid-template-columns:48px minmax(0,1fr);padding:10px}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.carte h3{font-size:19px}}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

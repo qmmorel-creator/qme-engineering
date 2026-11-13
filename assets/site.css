@@ -312,7 +312,91 @@ footer a{font-weight:600;color:var(--encre)}
 .mini-produit .prix b{font-size:28px}
 .mini-produit .actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
 .mini-produit .btn{min-height:44px;padding:0 14px;font-size:15px}
-.sommaire-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:0 max(16px,calc((100vw - var(--max))/2));margin:8px 0 8px;scroll-margin-top:90px}
-.sommaire-templates a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:8px 14px;border:2px solid var(--encre);background:var(--surface);text-decoration:none;font-size:15px}
-.sommaire-templates a:hover{background:var(--jaune)}
-.sommaire-templates span{font-weight:700;white-space:nowrap}
+/* Catalogue en kanban : pour le travail / pour la maison, une colonne par thème */
+.catalogue{padding:24px max(16px,calc((100vw - var(--max))/2)) 8px;scroll-margin-top:80px}
+.catalogue-tete{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:8px}
+.catalogue-tete h2{font-size:clamp(30px,4vw,44px)}
+.bascule{display:flex;border:2px solid var(--encre)}
+.bascule a{min-height:44px;display:flex;align-items:center;padding:0 16px;font-weight:700;text-decoration:none;background:var(--surface)}
+.bascule a+a{border-left:2px solid var(--encre)}
+.bascule a:hover{background:var(--jaune)}
+.tableau{margin-top:28px;scroll-margin-top:90px}
+.tableau-tete{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding-bottom:10px;border-bottom:4px solid var(--encre)}
+.tableau-tete h3{font-size:26px}
+.tableau-tete p{color:var(--discret);font-size:15px}
+.colonnes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:16px;align-items:start}
+.colonne{background:#E7E3D9;border:2px solid var(--encre);min-width:0}
+.colonne h4{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0;padding:10px 12px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--encre);border-top:8px solid var(--c)}
+.colonne h4 span{min-width:26px;height:26px;display:grid;place-items:center;background:var(--encre);color:var(--papier);font-size:13px}
+.colonne ul{list-style:none;margin:0;padding:10px;display:flex;flex-direction:column;gap:10px}
+.carte>a,.carte>div{display:flex;flex-direction:column;gap:6px;padding:12px 12px 10px;background:var(--surface);border:2px solid var(--encre);text-decoration:none;color:var(--encre)}
+.carte>a{box-shadow:4px 4px 0 var(--encre);transition:transform .12s,box-shadow .12s}
+.carte>a:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--encre);background:#fff}
+.carte b{font-size:17px;line-height:1.25}
+.carte .phrase{font-size:14px;color:var(--texte-2);line-height:1.4}
+.carte .pied{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:4px;font-size:13px;font-weight:700}
+.carte .pied em{font-style:normal;font-size:16px}
+.carte .pied span{text-decoration:underline;text-underline-offset:3px}
+.carte.bientot>div{border-style:dashed;background:transparent;color:var(--discret)}
+.carte.bientot b{color:var(--texte-2)}
+.carte.bientot .pied em{font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:2px dashed var(--discret)}
+.separateur{padding:56px max(16px,calc((100vw - var(--max))/2)) 0;scroll-margin-top:80px}
+.separateur h2{font-size:clamp(30px,4vw,44px);padding-bottom:10px;border-bottom:4px solid var(--encre)}
+.groupe-produits{font-size:22px;margin:40px 0 0;padding-bottom:8px;border-bottom:4px solid var(--encre)}
+.groupe-produits+.mini-produits{margin-top:20px}
+@media (max-width:720px){
+  .colonnes{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-left:-16px;margin-right:-16px;padding:0 16px 12px;scroll-padding:0 16px}
+  .colonne{flex:0 0 82%;scroll-snap-align:start}
+  .bascule{width:100%}.bascule a{flex:1;justify-content:center}
+}
+
+/* Site en pages : titre de rubrique, pages voisines, fil d'Ariane */
+.section-head h1.h-section{font-size:clamp(34px,4.4vw,56px)}
+.contact h1.h-section{font-size:clamp(34px,4vw,52px)}
+main>.section:first-child,main>.docs-band+.section{border-top:0}
+.pager{max-width:var(--max);margin:0 auto;padding:32px 16px 56px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pager a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:2px solid var(--encre);background:var(--surface);text-decoration:none;box-shadow:4px 4px 0 var(--encre)}
+.pager a:hover{background:var(--jaune)}
+.pager span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret)}
+.pager b{font-size:20px;line-height:1.15}
+.pager .prec b::before{content:"← "}
+.pager .suiv{text-align:right;grid-column:2}
+.pager .suiv b::after{content:" →"}
+.suite-pages{max-width:var(--max);margin:0 auto;padding:16px 16px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.suite-pages a{display:flex;flex-direction:column;gap:8px;padding:20px;border:2px solid var(--encre);background:var(--surface);text-decoration:none}
+.suite-pages a:nth-child(1){border-top:8px solid var(--bleu)}.suite-pages a:nth-child(2){border-top:8px solid var(--rouge)}.suite-pages a:nth-child(3){border-top:8px solid var(--jaune)}
+.suite-pages a:hover{background:#fff}
+.suite-pages .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret)}
+.suite-pages b{font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.suite-pages .fleche{margin-top:auto;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start}
+.fil{max-width:var(--max);margin:0 auto;padding:20px 16px 0;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:var(--discret)}
+.fil a{color:var(--encre);font-weight:600}
+.fil b{color:var(--encre)}
+.fil+.section{border-top:0;padding-top:24px}
+.rappel-templates{max-width:var(--max);margin:0 auto 8px;padding:20px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-top:2px solid var(--encre)}
+.rappel-templates p{max-width:760px;color:var(--texte-2)}
+/* Soumettre une idée */
+.catalogue-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn.idee{min-height:48px;background:var(--jaune)}
+.btn.idee:hover{background:var(--encre);color:var(--papier)}
+.idee-bandeau{max-width:var(--max);margin:40px auto 0;padding:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--jaune);border:2px solid var(--encre);box-shadow:6px 6px 0 var(--encre)}
+.idee-bandeau h2{font-size:28px}
+.idee-bandeau p{margin-top:6px}
+.modale-idee{border:2px solid var(--encre);padding:0;max-width:560px;width:calc(100% - 24px);background:var(--papier);color:var(--encre);box-shadow:8px 8px 0 var(--encre);max-height:calc(100dvh - 32px)}
+.modale-idee::backdrop{background:rgba(20,20,20,.55)}
+.modale-idee form{display:flex;flex-direction:column;gap:14px;padding:0 18px 18px}
+.modale-idee-tete{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 -18px;padding:14px 18px;background:var(--encre);color:var(--papier)}
+.modale-idee-tete h2{font-size:22px}
+.modale-idee-tete button{width:40px;height:40px;border:2px solid var(--papier);background:none;color:var(--papier);font-size:22px;cursor:pointer}
+.modale-idee label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
+.modale-idee input,.modale-idee select,.modale-idee textarea{font:400 16px Outfit,sans-serif;padding:10px 12px;border:2px solid var(--encre);background:var(--surface);color:var(--encre);border-radius:0;width:100%}
+.idee-note{font-size:13px;color:var(--discret)}
+.idee-note.success{color:var(--encre);font-weight:700;background:var(--jaune);padding:8px 10px}
+.idee-note.error{color:var(--rouge);font-weight:700}
+.modale-idee-pied{display:flex;flex-direction:row-reverse;flex-wrap:wrap;gap:10px}
+@media (max-width:720px){
+  .pager{grid-template-columns:1fr}.pager .suiv{grid-column:1}
+  .suite-pages{grid-template-columns:1fr}
+  .idee-bandeau{margin:32px 16px 0;box-shadow:none}
+  .catalogue-actions{width:100%}.catalogue-actions .btn.idee{width:100%}
+}

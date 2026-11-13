@@ -15,6 +15,7 @@
   const CLE_CACHE = 'qme-gnt-cache';
   const CLE_DEMO = 'qme-gnt-demo';
   const CLE_AFFICHAGE = 'qme-gnt-affichage';
+  const CLE_ACCUEIL = 'qme-gnt-ecran-accueil';
   const CODE_DEMO = 'DEMO';
 
   // ---------- Outils ----------
@@ -481,6 +482,7 @@
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     premierAffichage = true;
     rendre();
+    proposerEcranAccueil();
   }
 
   function rendre() {
@@ -1614,6 +1616,8 @@
         ${EN ? `<div class="rang"><label class="case"><input type="radio" name="ordre" ${L.ordreDate === 'jm' ? 'checked' : ''} data-action="ordre-date" data-id="jm"> ${tr('Jour/mois (31/12)')}</label><label class="case"><input type="radio" name="ordre" ${L.ordreDate === 'mj' ? 'checked' : ''} data-action="ordre-date" data-id="mj"> ${tr('Mois/jour (12/31)')}</label></div>` : ''}
         <p class="aide">${tr('Le choix vaut pour cet appareil. Tes plannings ne sont pas traduits : seuls les textes de l\'application changent.')}</p></div>
       <div class="groupe"><h3>${tr('Jours fériés')}</h3><p class="aide">${sourcesFeries()} ${tr('Le calendrier (jours ouvrés, jours fériés) se règle dans chaque planning. Ponts et fermetures propres à ton entreprise : ajoute-les en période.')}</p></div>
+      <div class="groupe"><h3>${tr('Sur téléphone')}</h3><p class="aide">${tr('Ajoute le planning à ton écran d\'accueil pour l\'ouvrir comme une application.')}</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">${tr('Voir comment faire')}</button></div></div>
       <div class="groupe"><h3>${tr('Sauvegarde')}</h3><p class="aide">${session.demo ? tr('En démo, les données restent dans ce navigateur.') : tr('Tes plannings sont enregistrés en ligne avec ton code. Tu peux aussi garder une copie sur ton ordinateur.')}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">${tr('Télécharger une copie')}</button><label class="btn petit" style="cursor:pointer">${tr('Restaurer une copie')}<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>${tr('Compte')}</h3>${session.demo ? `<p>${tr('Mode démo.')}</p>` : `<p>${tr('Clé ou code d\'accès')}${DP} <span class="code-affiche">${esc(code)}</span></p>`}
@@ -1640,6 +1644,65 @@
     a.download = `${EN ? 'gantt-planner' : 'planning-gantt'}-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Ajout à l'écran d'accueil ----------
+  // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
+  const appareil = () => {
+    const ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+    if (/Android/.test(ua)) return 'android';
+    return 'autre';
+  };
+  const dejaInstalle = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let inviteInstallation = null;
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); inviteInstallation = e; });
+  window.addEventListener('appinstalled', () => { inviteInstallation = null; stock.ecrire(CLE_ACCUEIL, 'installe'); });
+
+  // Libellés des menus d'iOS et d'Android tels qu'ils s'affichent dans la langue du téléphone.
+  const ETAPES_IOS = `<ol class="etapes-accueil">
+      <li>${tr('Ouvre cette page dans <b>Safari</b>.')}</li>
+      <li>${tr('Touche le bouton <b>Partager</b> (carré avec une flèche vers le haut). S\'il n\'est pas visible, touche d\'abord <b>···</b>.')}</li>
+      <li>${tr('Fais défiler et choisis <b>Sur l\'écran d\'accueil</b>.')}</li>
+      <li>${tr('Laisse <b>Ouvrir comme app web</b> activé si l\'option s\'affiche, puis touche <b>Ajouter</b>.')}</li>
+    </ol>`;
+  const ETAPES_ANDROID = `<ol class="etapes-accueil">
+      <li>${tr('Ouvre cette page dans <b>Chrome</b>.')}</li>
+      <li>${tr('Touche le menu <b>⋮</b> en haut à droite.')}</li>
+      <li>${tr('Choisis <b>Ajouter à l\'écran d\'accueil</b> (ou <b>Installer l\'application</b>), puis <b>Installer</b>.')}</li>
+    </ol>
+    <p class="aide">${tr('Autre navigateur : cherche la même option dans son menu.')}</p>`;
+
+  function modaleEcranAccueil(auto = false) {
+    const a = appareil();
+    const installable = a !== 'ios' && inviteInstallation;
+    const blocs = a === 'ios' ? ETAPES_IOS
+      : a === 'android' ? ETAPES_ANDROID
+      : `<h3 class="titre-etapes">${tr('Sur iPhone ou iPad')}</h3>${ETAPES_IOS}<h3 class="titre-etapes">${tr('Sur Android')}</h3>${ETAPES_ANDROID}`;
+    const corps = `
+      <p>${tr('Enregistre le planning sur ton écran d\'accueil : il s\'ouvre ensuite d\'un geste, en plein écran, comme une application, sans rien télécharger dans un magasin d\'applications.')}</p>
+      ${installable ? `<div class="rang"><button class="btn primaire" type="button" data-action="installer">${tr('Ajouter à l\'écran d\'accueil')}</button></div><p class="aide">${tr('Ou à la main :')}</p>` : ''}
+      ${blocs}
+      <p class="aide">${tr('Tes données restent les mêmes : l\'icône ouvre cette page avec ta clé déjà enregistrée sur cet appareil.')}${a === 'autre' ? ` ${tr('Sur ordinateur, la page fonctionne aussi directement dans le navigateur.')}` : ''}</p>`;
+    const pied = auto
+      ? `<button class="btn primaire" value="plus-tard">${tr('Plus tard')}</button><button class="btn" value="jamais">${tr('Ne plus afficher')}</button>`
+      : `<button class="btn primaire" value="ok">${tr('Fermer')}</button>`;
+    ouvrirModale(tr('Comme une application'), corps, pied, (_, choix) => { if (choix === 'jamais') stock.ecrire(CLE_ACCUEIL, 'masque'); });
+  }
+
+  function proposerEcranAccueil() {
+    if (dejaInstalle() || stock.lire(CLE_ACCUEIL)) return;
+    if (appareil() === 'autre' && !telephone()) return;
+    setTimeout(() => { if (!modale().open && !dejaInstalle()) modaleEcranAccueil(true); }, 900);
+  }
+
+  async function installer() {
+    if (!inviteInstallation) return;
+    const invite = inviteInstallation; inviteInstallation = null;
+    if (modale().open) modale().close();
+    invite.prompt();
+    const { outcome } = await invite.userChoice.catch(() => ({}));
+    if (outcome === 'accepted') stock.ecrire(CLE_ACCUEIL, 'installe');
   }
 
   // ---------- Toast ----------
@@ -1670,6 +1733,8 @@
       // Langue et ordre des dates : mémorisés sur l'appareil, puis rechargement (les données ne changent pas).
       case 'langue': if (id !== L.langue) { L.definir(id); if (session.demo) stock.suppr(CLE_DEMO); location.reload(); } break;
       case 'ordre-date': if (id !== L.ordreDate) { L.definirOrdreDate(id); location.reload(); } break;
+      case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;
       case 'affichage': modaleAffichage(); break;

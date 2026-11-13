@@ -445,3 +445,6 @@ body[data-vue=gantt] .vue-tete h1{font-size:clamp(28px,3vw,38px)}
   .zoom-niveau{min-width:0}
   .outils-gantt{gap:6px}
 }
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

@@ -536,3 +536,6 @@ button.frise-ligne:hover{background:#F6F1E3}
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.tuiles.trois{grid-template-columns:1fr}.poste-tete h3{font-size:20px}}
 .note-tableau{font-size:13px;color:var(--discret);margin-top:8px}
 .tuiles+.postes,.tuiles+.vide-etat{margin-top:24px}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

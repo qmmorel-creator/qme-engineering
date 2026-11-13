@@ -560,3 +560,6 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .mission b{font-size:21px}
   .alerte span{flex-basis:100%}
 }
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

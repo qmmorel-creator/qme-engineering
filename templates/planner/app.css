@@ -435,3 +435,6 @@ body.glisse-en-cours,body.glisse-en-cours *{cursor:grabbing!important}
 .groupe-marques .marques{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr))}
 .groupe-marques .mq{border-left:0;border-right:2px solid var(--encre)}
 .groupe-marques .mq:last-child{border-right:0}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}

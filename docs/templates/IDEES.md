@@ -83,13 +83,13 @@ déjà).
 | T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 |
 | T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en vente | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
-| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | prêt | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
+| T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | idée | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T10 | Entretien du véhicule | Véhicule | Particuliers | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
+| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Planning d'entretien de la maison | Maison | Familles, propriétaires, locataires | idée | 15 € | M | P1 | Liste initiale 12/11/2026 + Quentin 13/11/2026 (agenda d'entretien 2026) |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | idée | 10 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
@@ -100,7 +100,7 @@ déjà).
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T21 | Préparation de voyage | Voyage | Voyageurs, groupes d'amis | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
+| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
@@ -115,7 +115,7 @@ déjà).
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
-| T36 | Générateur de devis | Commercial | Artisans, freelances | idée | 29 € | M | P1 | Backlog Quentin n° 11 |
+| T36 | Générateur de devis | Commercial | Artisans, freelances | prêt | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
@@ -228,6 +228,8 @@ publications et référentiels). Ne pas les réintroduire.
   produire ensemble) ; T10 (véhicule perso) peut en être une version simplifiée.
 - 39 GMAO légère (T61) et 41 Vérifications réglementaires (T63) : proches de T11 (entretien maison) par le
   moteur d'échéances, mais cible professionnelle.
+- Demandes du 13/11/2026 : « planificateur de voyage » = T21 (périmètre élargi : nuits, activités, prix) ;
+  « gestionnaire de voitures » = T10 (élargi : kilométrage, dépenses, coût au km). Pas de nouveau numéro.
 - 44 Budget commun (T65) : distinct de T05 (répartition entre personnes) ; proche du partage de dépenses
   de T21.
 - 55 Péremptions (T71) et T09 (garde-manger) : même moteur, cible professionnelle contre foyer.
@@ -466,12 +468,12 @@ le 13/11 au soir.
 À vérifier par Quentin (remontées des agents) : T29, intervalles d'entretien intégrés (ordres de grandeur
 non sourcés, présentés comme indicatifs et modifiables) ; T25, délais de traitement par gravité (30, 15, 7,
 2 jours : propositions modifiables) ; T67, durées des modèles de planning (non sourcées, indicatives) ;
-T36, taux de TVA de 2,1 % repris d'un extrait de recherche (page officielle inaccessible). T04 : **ne pas
-mettre en vente avant décision de Quentin** sur la politique de confidentialité (données de santé hébergées :
-le site n'a pas de page nommant l'hébergeur, sa localisation et la durée de conservation ; besoin d'un
-hébergement certifié de données de santé à vérifier) ; facteurs d'activité 1,2 à 1,9 sans source officielle
-(présentés comme usage courant). Bases intégrées vérifiées : Ciqual 2025 (Licence Ouverte 2.0) et 2024 Adult
-Compendium (usage commercial autorisé avec citation).
+T36, taux de TVA de 2,1 % repris d'un extrait de recherche (page officielle inaccessible). T04 : **en vente depuis le 13/11/2026** (PR #46, fiche Gumroad `/l/nutrition`, 19 €). Décision de
+Quentin : consentement explicite, politique de confidentialité publiée sur `/confidentialite/`, données
+hébergées et traitées dans l'Union européenne (stockage `eu-central-1`, fonction en région `fra`). Facteurs
+d'activité : moyennes d'usage courant (1,2 à 1,9), présentées comme telles et réglables de 1 à 2,5. Reste
+ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqual 2025 (Licence Ouverte 2.0) et
+2024 Adult Compendium (usage commercial autorisé avec citation).
 
 | N° | Slug | Préfixe | Permalien Gumroad |
 |----|------|---------|-------------------|
@@ -494,6 +496,39 @@ Compendium (usage commercial autorisé avec citation).
 | T53 | `inscriptions` | ASC | inscriptions-associatives |
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
+
+## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
+
+LI-73 (T01) existait déjà. Textes : Google Docs du dossier du planning ; lien d'achat en premier
+commentaire. Les templates encore « prêt » portent la remarque : ne publier que si la fiche Gumroad est en
+ligne à la date prévue, sinon décaler.
+
+| ID | Template | Date | Heure |
+|----|----------|------|-------|
+| LI-74 | présentation générale | 2026-11-13 | 13:00 |
+| LI-75 | T31 compte-rendu | 2026-11-17 | 12:15 |
+| LI-76 | T37 cout-revient | 2026-11-19 | 12:15 |
+| LI-77 | T40 tjm | 2026-11-21 | 08:30 |
+| LI-78 | T41 micro-entreprise | 2026-11-23 | 12:15 |
+| LI-79 | T65 budget-commun | 2026-11-25 | 12:15 |
+| LI-80 | T02 gantt | 2026-11-27 | 08:30 |
+| LI-81 | T03 taches | 2026-11-29 | 12:15 |
+| LI-82 | T05 budget | 2026-12-01 | 12:15 |
+| LI-83 | T24 visa | 2026-12-03 | 08:30 |
+| LI-84 | T25 non-conformites | 2026-12-05 | 12:15 |
+| LI-85 | T28 crm | 2026-12-07 | 12:15 |
+| LI-86 | T29 flotte | 2026-12-09 | 08:30 |
+| LI-87 | T30 planner | 2026-12-11 | 12:15 |
+| LI-88 | T32 reserves | 2026-12-13 | 12:15 |
+| LI-89 | T35 prospection | 2026-12-15 | 08:30 |
+| LI-90 | T36 devis | 2026-12-17 | 08:30 |
+| LI-91 | T42 tresorerie | 2026-12-19 | 08:30 |
+| LI-92 | T15 mariage | 2026-12-29 | 12:15 |
+| LI-93 | T45 parc-informatique | 2026-12-31 | 12:15 |
+| LI-94 | T51 evenementiel | 2027-01-05 | 08:30 |
+| LI-95 | T53 inscriptions | 2027-01-07 | 12:15 |
+| LI-96 | T57 auto-ecole | 2027-01-09 | 12:15 |
+| LI-97 | T67 travaux | 2027-01-11 | 08:30 |
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
@@ -645,7 +680,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T07 | Carnet de musculation et cross-training : séances, WOD, volume, records, progression, chronomètre | 150 exercices par groupe musculaire ; WOD types à définir | Skills WOD et coach sportif de Quentin | Backlog n° 48 : 19 €, M, P2. Noms de WOD de référence : droits à vérifier. Sport : avertissement (pas un programme médical). |
 | T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
-| T10 | Entretien du véhicule : échéances selon le kilométrage | Intervalles types (vidange, freins, pneus, contrôle technique) | — | **daté** : périodicité du contrôle technique. Version perso du moteur de T29. |
+| T10 | Carnet de voiture, une à quelques voitures : fiche véhicule, relevés de kilométrage, entretiens faits et à venir (échéance à la date ou au kilométrage, la première atteinte), toutes les dépenses (carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique), consommation calculée entre deux pleins, coût au kilomètre et coût mensuel, historique imprimable pour la revente | Intervalles d'entretien types, modifiables (le carnet du constructeur prime) ; catégories de dépenses | — | Demande Quentin 13/11/2026 fusionnée (gestionnaire de voitures). **daté** : périodicité du contrôle technique, vérifiée sur une source officielle ou saisie. Prix du carburant saisis, jamais intégrés. Argent : avertissement. Version perso du moteur de T29 (sans conducteurs, réservations ni sinistres). Aucune automatisation ni lien externe. |
 | T11 | Planning d'entretien hebdomadaire sur l'année, en quatre créneaux : soir de semaine (sanitaires, cuisine, rangement express, linge), week-end intérieur (poussière, salles de bains, chambres, draps une semaine sur deux, poubelles et plaids l'autre), week-end extérieur (jardin, piscine), mission tournante sur un cycle de 4 semaines (jardin, maison en profondeur, voitures et garage, extérieur) ; tâches ponctuelles placées dans l'année (réfrigérateur, four, lave-vaisselle, lave-linge, siphons, vitres, clim, détecteurs de fumée, tri pharmacie et produits, gouttières, poêle avant et après saison, ramonage) ; saisons (piscine en hivernage ou en service, pelouse selon pousse, poêle l'hiver) ; cases à cocher, semaine en cours, report de ce qui n'est pas fait ; impression A4 paysage par trimestre | Profil du foyer à cocher qui génère le planning : nombre de salles de bains et de WC, animaux (litière), enfants (jeux), piscine, poêle ou cheminée, clim réversible, jardin et terrasse, nombre de voitures ; 80 tâches avec fréquence et saison ; répartition entre membres du foyer | Agenda d'entretien maison 2026 (document personnel de Quentin, 13/11/2026) | Quentin 13/11/2026 : prix, taille et priorité relevés (10 € S P2 → 15 € M P1), à confirmer. **daté** si une fréquence est légale (ramonage, chaudière, détecteurs) : source ou paramétrable. Moteur d'échéances commun avec T61 ; répartition entre membres proche de T65. Aucun détail du foyer de Quentin dans la démo. |
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
 | T13 | Objectif d'épargne et fonds d'urgence | Scénarios d'intérêts composés (taux saisi par l'utilisateur) | — | Aucun taux de livret en base (**daté**). Argent : avertissement. |
@@ -656,7 +691,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : semis, récolte, associations | — | Source des données de culture à vérifier. |
 | T19 | Suivi du bébé : repas, sommeil, couches, courbes | Courbes de référence poids et taille (source à vérifier) | — | **médical** : avertissement ; source et licence des courbes. **RGPD** : données de santé d'un enfant hébergées en ligne. |
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. |
-| T21 | Préparation de voyage : itinéraire, budget, dépenses partagées | Listes de bagages par type de séjour | — | Dépenses partagées : moteur commun avec T65. |
+| T21 | Planificateur de voyage : itinéraire par étapes, lieu de chaque nuit (hébergement, adresse, arrivée/départ, statut réservé ou à réserver, montant et acompte), activités par jour avec horaire et prix, transports entre étapes, vue jour par jour et carte texte des étapes, budget prévu/réel par poste et par personne, dépenses partagées et « qui doit quoi », listes de bagages, documents à prévoir (cases à cocher) | Listes de bagages par type de séjour ; postes de budget | — | Demande Quentin 13/11/2026 fusionnée (planificateur de voyage). Dépenses partagées : moteur commun avec T65. Aucune réservation ni lien vers une plateforme : saisie et impression uniquement. Formalités (passeport, visa, santé) : renvoi à vérifier sur les sources officielles, rien d'intégré. Argent : avertissement. |
 | T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
 | T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : module ou produit séparé, à trancher. **RGPD** (intervenants, sous-traitants). |
 | T24 | Circuit de visa : registre des documents soumis par lot, indices de révision, avis (sans observation, avec observations, refusé), délais contractuels, relances, vue chef de projet, tableau de bord | Types de documents par lot, codes de visa (VSO, VAO, REF), lots BTP types, délais de réponse paramétrables | Circuit de visa, registre et fiche visa (artefacts professionnels) | Backlog n° 05 fusionné (même produit). Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : structure seulement ; exemples fictifs. Moteur d'échéances commun avec T63. |

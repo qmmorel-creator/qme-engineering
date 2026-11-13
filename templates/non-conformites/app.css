@@ -597,3 +597,6 @@ fieldset.champ legend{padding:0;margin-bottom:6px}
 .methodes.grille-gravite{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:1020px){.methodes.grille-gravite{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.methodes.grille-gravite{grid-template-columns:1fr}}
+.etapes-accueil{margin:0;padding-left:26px;list-style:decimal;display:flex;flex-direction:column;gap:8px;line-height:1.45}
+.titre-etapes{font-size:16px;margin-top:4px}
+.etapes-accueil li::marker{font-weight:700}
