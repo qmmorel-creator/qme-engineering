@@ -265,14 +265,14 @@
         });
       });
       const s = R.situation(E, f.id, t);
-      const payer = (d, montant, i) => { if (d <= t && montant > 0) E.paiements.push({ id: uid(), familleId: f.id, date: d, montant, mode: modes[(k + i) % 5], reference: (k + i) % 5 === 1 ? `Chèque n° ${4100 + k * 7 + i}` : '' }); };
+      const payer = (d, montant, i) => { if (d <= t && montant > 0) E.paiements.push({ id: uid(), familleId: f.id, date: d, montant, mode: modes[(k + i) % 5], reference: (k + i) % 5 === 1 ? `n° ${4100 + k * 7 + i}` : '' }); };
       if (paie === 'solde') payer(s.echeances[0]?.date || date, s.total, 0);
       if (paie === 'ajour') s.echeances.forEach((e, i) => { if (e.date < t) payer(e.date, e.montant, i); });
       if (paie === 'retard') payer(s.echeances[0]?.date, s.echeances[0]?.montant, 0);
       if (paie === 'partiel') { payer(s.echeances[0]?.date, s.echeances[0]?.montant, 0); payer(s.echeances[1]?.date, Math.round(s.echeances[1]?.montant / 2), 1); }
     });
     // Une famille ancienne, sans inscription cette saison : arrivée au terme de la durée de conservation.
-    const ancienne = { id: uid(), nom: 'Garnier', adresse: '', qf: 900, nbEcheances: 1, responsables: [], urgences: [], mentionsLe: ajoutMois(debut, -48), derniereFin: ajout(ajoutMois(debut, -36), -62), cree: ajoutMois(debut, -48) };
+    const ancienne = { id: uid(), nom: 'Garnier', adresse: '', qf: 900, nbEcheances: 1, responsables: [], urgences: [], mentionsLe: ajoutMois(debut, -48), derniereFin: ajout(ajoutMois(debut, -36), -63), cree: ajoutMois(debut, -48) };
     E.familles.push(ancienne);
     E.membres.push({ id: uid(), familleId: ancienne.id, prenom: 'Paul', nom: 'Garnier', naissance: ne(52, '09-09'), remarque: '' });
     return E;
@@ -294,7 +294,7 @@
           <rect x="10" y="150" width="120" height="120" fill="#1D4E89"/>
           <rect x="140" y="150" width="120" height="120" fill="none" stroke="#F0EDE6" stroke-width="4" stroke-dasharray="10 8"/>
           <circle cx="420" cy="150" r="130" fill="#D9302A"/>
-          <path d="M420 20 A130 130 0 0 1 550 150 H420 Z" fill="#141414"/>
+          <path d="M420 20 A130 130 0 0 1 550 150 H420 Z" fill="#F5B400"/>
         </svg>
         <div class="accroche">
           <p class="surtitre">Inscriptions associatives · saison</p>
@@ -512,7 +512,7 @@
       const pc = (n) => `${(n / max) * 100}%`;
       const complet = c.capacite && c.libres === 0;
       return `<button class="barre-ligne" data-action="creneau" data-id="${c.creneau.id}" aria-label="${esc(`${c.activite.nom}, ${horaire(c.creneau)} : ${c.inscrits} inscrits sur ${c.capacite} places, ${c.attente} en attente`)}">
-        <span class="barre-nom"><i style="background:${couleur(c.activite.couleur)}"></i><b>${esc(c.activite.nom)}</b> ${horaire(c.creneau, true)}</span>
+        <span class="barre-nom"><i style="background:${couleur(c.activite.couleur)}"></i><b>${esc(c.activite.nom)}</b> <span class="h">${horaire(c.creneau, true)}</span></span>
         <span class="barre-piste"><span class="cap" style="width:${pc(c.capacite)}"></span><span class="plein" style="width:${pc(Math.min(c.inscrits, c.capacite))}"></span>${c.attente ? `<span class="att" style="left:${pc(Math.min(c.inscrits, c.capacite))};width:${pc(c.attente + Math.max(0, c.inscrits - c.capacite))}"></span>` : ''}</span>
         <span class="barre-val">${c.inscrits}/${c.capacite}${c.attente ? ` <em>+${c.attente}</em>` : ''}${complet ? ' <small>complet</small>' : ''}</span>
       </button>`;
@@ -576,7 +576,7 @@
       <div class="famille-tete"><div><h2>${esc(f.nom)}</h2><p>${E.tranches.length > 1 ? `QF ${f.qf ?? 'non renseigné'} · tranche ${esc(tr?.nom || '')}` : 'Tarif unique'} · ${f.nbEcheances > 1 ? `${f.nbEcheances} échéances` : 'paiement en une fois'}</p></div>${etiquette}</div>
       ${contacts.length ? `<div class="contacts">${contacts.join('')}</div>` : ''}
       <ul class="membres">${lignesMembres || '<li class="matiere-vide">Aucun membre.</li>'}</ul>
-      <div class="famille-pied"><button class="btn petit" data-action="membre-nouveau" data-id="${f.id}">${ICONES.plus}Membre</button><button class="btn petit" data-action="famille-modifier" data-id="${f.id}">Modifier la fiche</button><button class="btn petit" data-action="famille-paiements" data-id="${f.id}">Paiements</button></div>
+      <div class="famille-pied"><button class="btn petit" data-action="membre-nouveau" data-id="${f.id}">${ICONES.plus}Membre</button><button class="btn petit" data-action="famille-modifier" data-id="${f.id}">Fiche</button><button class="btn petit" data-action="famille-paiements" data-id="${f.id}">Paiements</button></div>
     </article>`;
   }
   function listeFamilles() {
@@ -607,9 +607,9 @@
       <div class="vue-tete"><div><h1>Paiements</h1><p>Le dû de chaque famille (adhésion et activités au tarif de sa tranche) est réparti en échéances mensuelles. Une échéance passée non couverte par les paiements est en retard.</p></div>
         <div class="actions"><button class="btn" data-action="csv-soldes">Soldes (CSV)</button><button class="btn primaire" data-action="paiement-nouveau">${ICONES.plus}Encaisser</button></div></div>
       <div class="filtres" role="group" aria-label="Filtrer les familles">${[['retard', 'En retard'], ['reste', 'Reste dû'], ['soldees', 'Soldées'], ['toutes', 'Toutes']].map(([k, l]) => `<button class="filtre" data-action="filtre-paiements" data-id="${k}" aria-pressed="${filtrePaiements === k}">${l} <span>${nb[k]}</span></button>`).join('')}</div>
-      ${choisies.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Famille</th><th class="nb">Dû</th><th class="nb">Payé</th><th class="nb">Reste</th><th class="nb">En retard</th><th>Prochaine échéance</th><th></th></tr></thead><tbody>${choisies.map(({ f, s }) => `<tr>
-          <td><button class="btn lien" data-action="famille-paiements" data-id="${f.id}">${esc(f.nom)}</button></td><td class="nb">${euros(s.total)}</td><td class="nb">${euros(s.paye)}</td><td class="nb">${s.reste < 0 ? `<span class="bleu-texte">trop-perçu ${euros(-s.reste)}</span>` : euros(s.reste)}</td>
-          <td class="nb">${s.retard ? `<b class="rouge-texte">${euros(s.retard)}</b>` : '–'}</td><td>${s.prochaine ? `${fmt(s.prochaine.date)} · ${euros(s.prochaine.montant)}` : '–'}</td>
+      ${choisies.length ? `<div class="defile"><table class="tableau cartes-tel"><thead><tr><th>Famille</th><th class="nb">Dû</th><th class="nb">Payé</th><th class="nb">Reste</th><th class="nb">En retard</th><th>Prochaine échéance</th><th></th></tr></thead><tbody>${choisies.map(({ f, s }) => `<tr>
+          <td><button class="btn lien" data-action="famille-paiements" data-id="${f.id}">${esc(f.nom)}</button></td><td class="nb" data-lib="Dû">${euros(s.total)}</td><td class="nb" data-lib="Payé">${euros(s.paye)}</td><td class="nb" data-lib="Reste">${s.reste < 0 ? `<span class="bleu-texte">trop-perçu ${euros(-s.reste)}</span>` : euros(s.reste)}</td>
+          <td class="nb" data-lib="En retard">${s.retard ? `<b class="rouge-texte">${euros(s.retard)}</b>` : '–'}</td><td data-lib="Prochaine échéance">${s.prochaine ? `${fmt(s.prochaine.date)} · ${euros(s.prochaine.montant)}` : '–'}</td>
           <td><button class="btn petit" data-action="paiement-nouveau" data-id="${f.id}">Encaisser</button></td></tr>`).join('')}</tbody></table></div>`
         : `<p class="ok-ligne">${filtrePaiements === 'retard' ? 'Aucune famille en retard.' : 'Aucune famille dans ce filtre.'}</p>`}
       <h2 class="titre-section">Derniers paiements <span>${pluriel(E.paiements.length, 'paiement')} sur la saison.</span></h2>

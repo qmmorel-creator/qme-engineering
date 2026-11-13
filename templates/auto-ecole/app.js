@@ -256,7 +256,7 @@
       const e = { id: uid(), nom, boite, inscription: ajout(t, j), mineur, contact: '', statut, notes: '', competences: {}, pref: pref.id };
       E.eleves.push(e);
       hs.forEach((hh, i) => E.achats.push({ id: uid(), eleveId: e.id, date: ajout(t, i ? j + 40 : j), heures: hh, montant: ms[i], libelle: i ? `${hh} h supplémentaires` : `Forfait ${hh} h` }));
-      ps.forEach((p, i) => E.paiements.push({ id: uid(), eleveId: e.id, date: ajout(t, j + i * 21), montant: p, mode: B.modesPaiement[(k + i) % 4] }));
+      ps.forEach((p, i) => p > 0 && E.paiements.push({ id: uid(), eleveId: e.id, date: ajout(t, j + i * 21), montant: p, mode: B.modesPaiement[(k + i) % 4] }));
       return e;
     });
 
@@ -523,7 +523,7 @@
     return `<li class="lecon ${l.statut}" style="--c:${couleur(m?.couleur).hex}">
       <button class="lecon-corps" data-action="lecon-modifier" data-id="${l.id}">
         <span class="lecon-heure"><b>${l.debut}</b><small>${R.hhmm(R.finMin(l))}</small></span>
-        <span class="lecon-texte"><b>${esc(e?.nom || 'Élève supprimé')}</b><small>${esc(v?.nom || 'Sans véhicule')}${e?.boite === 'auto' ? ' · boîte auto' : ''}${s ? ` · ${s.restantes < 0 ? `<em>${h(s.restantes)}</em>` : `${h(s.restantes)} restantes`}` : ''}${l.note ? ` · ${esc(l.note)}` : ''}</small></span>
+        <span class="lecon-texte"><b>${esc(e?.nom || 'Élève supprimé')}</b><small>${esc(v?.nom || 'Sans véhicule')}${e?.boite === 'auto' ? ' · boîte auto' : ''}${s ? ` · ${s.restantes < 0 ? `<em>forfait dépassé de ${h(-s.restantes)}</em>` : `${h(s.restantes)} restantes`}` : ''}${l.note ? ` · ${esc(l.note)}` : ''}</small></span>
         <span class="etiquette ${cl}">${lib}</span>
       </button>
       ${l.statut === 'prevue' ? `<div class="lecon-actions"><button class="act" data-action="lecon-statut" data-statut="faite" data-id="${l.id}">Faite</button><button class="act absent" data-action="lecon-statut" data-statut="absent" data-id="${l.id}">Absent</button><button class="act annuler" data-action="lecon-statut" data-statut="annulee" data-id="${l.id}">Annuler</button></div>` : ''}
@@ -574,7 +574,7 @@
       }).join('')}</tr>`;
     }).join('');
     return `<div class="defile semaine-cadre"><table class="semaine"><thead>${tete}</thead><tbody>${corps}</tbody></table></div>
-      <p class="note">Pastille de la couleur du moniteur ; contour pointillé : leçon passée à pointer. Touche un jour pour l'ouvrir en vue jour.</p>`;
+      <p class="note">Couleur du moniteur ; pastille estompée : leçon faite ; contour pointillé : leçon passée à pointer. Touche un jour pour l'ouvrir en vue jour.</p>`;
   }
 
   // ---------- Vue Élèves ----------

@@ -112,6 +112,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .bandeau-demo div{max-width:var(--max);margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
 .bandeau-demo button{background:none;border:0;padding:4px 0;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
+.vue:focus{outline:none}
 .vue{max-width:var(--max);margin:0 auto;padding:32px 16px 72px}
 .vue-tete{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
 .vue-tete h1{font-size:clamp(30px,4vw,46px)}
@@ -156,6 +157,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .barre-nom{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--texte-2);min-width:0}
 .barre-nom b{color:var(--encre);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .barre-nom i{width:10px;height:10px;flex:none}
+.barre-nom .h{white-space:nowrap}
 .barre-piste{position:relative;height:22px}
 .barre-piste span{position:absolute;top:0;bottom:0;left:0}
 .barre-piste .cap{border:2px solid var(--encre);background:var(--surface)}
@@ -229,7 +231,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .membres{flex:1}
 .membre{padding:10px 16px;border-bottom:1px solid var(--trait)}
 .membre-tete{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:14px;color:var(--discret)}
-.lien-membre{background:none;border:0;padding:0;font-size:16px;text-align:left;text-decoration:underline;text-decoration-color:var(--trait);text-underline-offset:3px;min-height:32px}
+.lien-membre{color:var(--encre);background:none;border:0;padding:0;font-size:16px;text-align:left;text-decoration:underline;text-decoration-color:var(--trait);text-underline-offset:3px;min-height:32px}
 .lien-membre:hover{text-decoration-color:var(--encre)}
 .puces{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .puce{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:2px 10px;border:2px solid var(--encre);background:var(--surface);font-size:13px;font-weight:600;text-align:left}
@@ -280,12 +282,12 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .bloc h3{font-size:16px;margin-top:6px}
 .bloc p,.bloc li{font-size:15px;color:var(--texte-2)}
 .bloc ol{counter-reset:pas;display:grid;gap:8px}
-.bloc ol li{counter-increment:pas;display:grid;grid-template-columns:24px 1fr;gap:10px}
-.bloc ol li::before{content:counter(pas);display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--encre);color:var(--papier);font-weight:800;font-size:12px}
+.bloc ol li{counter-increment:pas;position:relative;padding-left:36px;min-height:24px}
+.bloc ol li::before{content:counter(pas);position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--encre);color:var(--papier);font-weight:800;font-size:12px}
 .puces-texte{display:grid;gap:4px}
 .puces-texte li{padding-left:16px;position:relative}
 .puces-texte li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--rouge)}
-.rgpd-bloc{grid-row:span 2;box-shadow:6px 6px 0 var(--bleu)}
+.rgpd-bloc{grid-column:1/-1;box-shadow:6px 6px 0 var(--bleu)}
 .sources{font-size:13px!important}
 
 /* Modale */
@@ -339,7 +341,6 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .tuiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .deux-colonnes{grid-template-columns:1fr;gap:0}
   .guide{grid-template-columns:1fr}
-  .rgpd-bloc{grid-row:auto}
 }
 
 /* ============ Téléphone ============ */
@@ -370,12 +371,13 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .vide-etat{grid-template-columns:1fr}
   .grille-champs{grid-template-columns:1fr}
   .barre-ligne{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
-  .barre-nom{grid-column:1/2}
+  .barre-nom{grid-column:1/2;flex-wrap:wrap;gap:2px 8px}
+  .barre-nom b{white-space:normal}
   .barre-val{grid-column:2/3;grid-row:1}
   .barre-piste{grid-column:1/-1}
   .activites,.familles{grid-template-columns:1fr}
-  .ligne-action{grid-template-columns:minmax(0,1fr) auto}
-  .ligne-action>.btn,.ligne-action>.etiquette{grid-column:1/-1;justify-self:start}
+  .ligne-action{padding:10px 12px;gap:6px 8px}
+  .ligne-action .btn.petit{padding:0 10px}
   .ligne-action>span:empty{display:none}
   .resume-paiement{grid-template-columns:repeat(2,minmax(0,1fr))}
   .resume-paiement span:nth-child(2){border-right:0}
@@ -392,6 +394,13 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b));width:auto}
   .guide{grid-template-columns:1fr}
   .choix-appel .champ{max-width:none}
+  .cartes-tel,.cartes-tel tbody{display:block;border:0;background:none}
+  .cartes-tel thead{display:none}
+  .cartes-tel tr{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--encre);background:var(--surface);margin-bottom:10px}
+  .cartes-tel td{white-space:normal;border-bottom:0;padding:6px 12px;text-align:left!important}
+  .cartes-tel td:first-child,.cartes-tel td:last-child{grid-column:1/-1}
+  .cartes-tel td:first-child{border-bottom:1px solid var(--trait)}
+  .cartes-tel td[data-lib]::before{content:attr(data-lib);display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}}
 

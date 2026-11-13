@@ -315,7 +315,7 @@ em{font-style:normal;color:var(--rouge);font-weight:700}
 .bascule-btn button{min-height:40px;padding:0 14px;border:0;background:var(--surface);font-weight:700;font-size:14px}
 .bascule-btn button+button{border-left:2px solid var(--encre)}
 .bascule-btn button[aria-pressed="true"]{background:var(--encre);color:var(--papier)}
-.bascule-btn button:hover:not([aria-pressed="true"]){background:var(--jaune)}
+@media (hover:hover){.bascule-btn button:hover:not([aria-pressed="true"]){background:var(--jaune)}}
 
 /* Planning : vue jour */
 .jour-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;margin-top:12px}
