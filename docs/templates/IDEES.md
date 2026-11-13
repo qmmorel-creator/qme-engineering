@@ -431,6 +431,39 @@ Compendium (usage commercial autorisé avec citation).
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
 
+## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
+
+LI-73 (T01) existait déjà. Textes : Google Docs du dossier du planning ; lien d'achat en premier
+commentaire. Les templates encore « prêt » portent la remarque : ne publier que si la fiche Gumroad est en
+ligne à la date prévue, sinon décaler.
+
+| ID | Template | Date | Heure |
+|----|----------|------|-------|
+| LI-74 | présentation générale | 2026-11-13 | 13:00 |
+| LI-75 | T31 compte-rendu | 2026-11-17 | 12:15 |
+| LI-76 | T37 cout-revient | 2026-11-19 | 12:15 |
+| LI-77 | T40 tjm | 2026-11-21 | 08:30 |
+| LI-78 | T41 micro-entreprise | 2026-11-23 | 12:15 |
+| LI-79 | T65 budget-commun | 2026-11-25 | 12:15 |
+| LI-80 | T02 gantt | 2026-11-27 | 08:30 |
+| LI-81 | T03 taches | 2026-11-29 | 12:15 |
+| LI-82 | T05 budget | 2026-12-01 | 12:15 |
+| LI-83 | T24 visa | 2026-12-03 | 08:30 |
+| LI-84 | T25 non-conformites | 2026-12-05 | 12:15 |
+| LI-85 | T28 crm | 2026-12-07 | 12:15 |
+| LI-86 | T29 flotte | 2026-12-09 | 08:30 |
+| LI-87 | T30 planner | 2026-12-11 | 12:15 |
+| LI-88 | T32 reserves | 2026-12-13 | 12:15 |
+| LI-89 | T35 prospection | 2026-12-15 | 08:30 |
+| LI-90 | T36 devis | 2026-12-17 | 08:30 |
+| LI-91 | T42 tresorerie | 2026-12-19 | 08:30 |
+| LI-92 | T15 mariage | 2026-12-29 | 12:15 |
+| LI-93 | T45 parc-informatique | 2026-12-31 | 12:15 |
+| LI-94 | T51 evenementiel | 2027-01-05 | 08:30 |
+| LI-95 | T53 inscriptions | 2027-01-07 | 12:15 |
+| LI-96 | T57 auto-ecole | 2027-01-09 | 12:15 |
+| LI-97 | T67 travaux | 2027-01-11 | 08:30 |
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
