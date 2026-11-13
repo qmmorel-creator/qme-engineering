@@ -163,9 +163,9 @@ test('tendance : n semaines dans l\'ordre, la dernière est celle demandée', ()
   const e = etat();
   e.series.push({ id: 's', titre: 'X', cat: 'a', jours: [0], debut: 540, duree: 60, depuis: '2026-10-26', jusqua: null, exceptions: {} });
   const t = R.tendance(e, LUNDI, 3, { date: '2026-11-12', min: 0 });
-  assert.deepEqual(t.map((x) => x.lundi), ['2026-10-26', '2026-11-02', '2026-11-09']);
-  assert.deepEqual(t.map((x) => x.prevu), [60, 60, 60]);
-  assert.deepEqual(t.map((x) => x.taux), [0, 0, 0]);
+  assert.deepEqual(simple(t.map((x) => x.lundi)), ['2026-10-26', '2026-11-02', '2026-11-09']);
+  assert.deepEqual(simple(t.map((x) => x.prevu)), [60, 60, 60]);
+  assert.deepEqual(simple(t.map((x) => x.taux)), [0, 0, 0]);
 });
 
 test('séries : arrêter et modifier à partir d\'une date', () => {
@@ -181,7 +181,7 @@ test('séries : arrêter et modifier à partir d\'une date', () => {
   assert.equal(e.blocs.find((b) => b.id === 'm2').serieId, n.id);
   assert.equal(e.blocs.find((b) => b.id === 'm1').serieId, 's');
   const sem = R.occurrences(e, LUNDI, '2026-11-15').map((o) => `${o.date} ${o.debut}`);
-  assert.deepEqual(sem, ['2026-11-11 480']); // lundi 9 n'est plus dans la nouvelle série
+  assert.deepEqual(simple(sem), ['2026-11-09 540', '2026-11-11 480']); // lundi 9 : ancienne série (jusqu'au 10) ; mercredi 11 : nouvelle
   // Arrêt le 18 : l'occurrence détachée encore prévue disparaît, l'historique reste.
   R.arreterSerie(e, n.id, '2026-11-18');
   assert.equal(e.series.find((s) => s.id === n.id).jusqua, '2026-11-17');

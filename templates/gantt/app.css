@@ -431,3 +431,6 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .tuile b.tuile-date{font-size:30px}
   .vue-tete .actions .btn{flex:1 1 auto}
 }
+body[data-vue=gantt] .vue{max-width:none;padding-left:max(16px,2vw);padding-right:max(16px,2vw)}
+body[data-vue=gantt] .vue-tete{margin-bottom:16px}
+body[data-vue=gantt] .vue-tete h1{font-size:clamp(28px,3vw,38px)}

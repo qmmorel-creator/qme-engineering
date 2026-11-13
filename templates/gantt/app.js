@@ -724,10 +724,11 @@
       }
       // Étiquette à droite de la barre.
       const lib = `${esc(t.nom)}${t.avancement > 0 && t.avancement < 100 ? ` · ${t.avancement} %` : ''}`;
-      const alerte = st.code === 'retard' ? ` · retard ${st.retard} j` : st.code === 'termine' ? ' ✓' : '';
+      const alerte = st.code === 'retard' ? ` · retard ${st.retard} j` : '';
+      const fait = st.code === 'termine' ? ' ✓' : '';
       const ep = t.plage ? R.etatPlage(r.debut, t.plage) : null;
       const alertePlage = ep?.code === 'depasse' ? ` · hors plage (+${ep.jours} j)` : '';
-      if (G.etiquettes !== false) barres += `<text x="${finX + (G.interactif ? 18 : 6)}" y="${ym + 4}" font-size="${G.police || 12}" fill="${PALETTE.texte2}" font-family="${POLICE}">${lib}<tspan fill="${PALETTE.rouge}" font-weight="700">${alerte}${alertePlage}</tspan></text>`;
+      if (G.etiquettes !== false) barres += `<text x="${finX + (G.interactif ? 18 : 6)}" y="${ym + 4}" font-size="${G.police || 12}" fill="${PALETTE.texte2}" font-family="${POLICE}">${lib}<tspan fill="${PALETTE.encre}" font-weight="700">${fait}</tspan><tspan fill="${PALETTE.rouge}" font-weight="700">${alerte}${alertePlage}</tspan></text>`;
     });
     // Liens à angle droit.
     if (cq.liens) {
