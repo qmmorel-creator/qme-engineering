@@ -25,7 +25,7 @@ window.BASE = {
     { id: 'communication', nom: 'Communication' },
     { id: 'invites', nom: 'Invités' },
     { id: 'logistique', nom: 'Logistique' },
-    { id: 'jourj', nom: 'Jour J' },
+    { id: 'jourj', nom: 'Sur place' },
     { id: 'bilan', nom: 'Bilan' },
   ],
 
