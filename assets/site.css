@@ -6,7 +6,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--papier);color:var(--encre);font:400 17px/1.55 Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+body{overflow-x:clip;margin:0;background:var(--papier);color:var(--encre);font:400 17px/1.55 Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums}
 a{color:inherit}
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3,p{margin:0}
@@ -337,9 +337,14 @@ footer a{font-weight:600;color:var(--encre)}
 .carte .pied{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:4px;font-size:13px;font-weight:700}
 .carte .pied em{font-style:normal;font-size:16px}
 .carte .pied span{text-decoration:underline;text-underline-offset:3px}
-.carte.bientot>div{border-style:dashed;background:transparent;color:var(--discret)}
-.carte.bientot b{color:var(--texte-2)}
-.carte.bientot .pied em{font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:2px dashed var(--discret)}
+/* À venir : une simple ligne discrète (nom + mention), sans cadre ni description */
+.carte.bientot>div{flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:9px 4px;border:0;border-top:1px solid #CFC9BC;background:transparent;color:var(--discret)}
+.carte.bientot .phrase{display:none}
+.carte.bientot b{font-size:14px;font-weight:600;line-height:1.3;color:var(--discret)}
+.carte.bientot .pied{margin:0;flex:none}
+.carte.bientot .pied em{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;background:#DDD8CC;color:var(--discret)}
+.carte.bientot+.carte.bientot{margin-top:-10px}
+.carte:not(.bientot)+.carte.bientot{margin-top:2px}
 .separateur{padding:56px max(16px,calc((100vw - var(--max))/2)) 0;scroll-margin-top:80px}
 .separateur h2{font-size:clamp(30px,4vw,44px);padding-bottom:10px;border-bottom:4px solid var(--encre)}
 .groupe-produits{font-size:22px;margin:40px 0 0;padding-bottom:8px;border-bottom:4px solid var(--encre)}
