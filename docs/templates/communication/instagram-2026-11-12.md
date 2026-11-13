@@ -13,6 +13,10 @@ avant publication.
 - Visuels : format 4:5 (1080 × 1350). Les couvertures existantes (`assets/templates-*-couverture.png`,
   1280 × 720) et les captures `.webp` sont à recadrer ou à poser sur un fond de la charte. Données
   fictives partout ; la mention « Données fictives » figure sur la vue 2 ou 3.
+- **Visuels générés** : `instagram/IG-XX/IG-XX-1.jpg` à `-5.jpg` (1080 × 1350, JPEG). Textes des cartes
+  dans `instagram/posts.cjs` ; après modification, régénérer avec
+  `node docs/templates/communication/instagram/generer.cjs [IG-29 …]`. Sur les posts sur mesure, les
+  passages entre crochets apparaissent en surligné « À compléter » : ne pas publier ces cartes en l'état.
 - Templates au statut « prêt » (T24, T25, T28, T29, T30, T32, T35, T36, T42, T15) : ne publier que si la
   fiche Gumroad est en ligne à la date prévue, sinon décaler (même règle que LinkedIn).
 - Sur mesure (IG-29 à IG-33) : les publications LinkedIn d'origine (LI-03, LI-24, LI-46, LI-51, LI-72)
