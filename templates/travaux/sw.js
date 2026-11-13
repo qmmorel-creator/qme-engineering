@@ -1,7 +1,7 @@
 // Service worker du pilote de travaux maison : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
-const VERSION = 'travaux-20261113e';
-const COQUILLE = ['./', 'app.css?v=20261113e', 'donnees.js?v=20261113e', 'regles.js?v=20261113e', 'app.js?v=20261113e', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'travaux-20261113f';
+const COQUILLE = ['./', 'app.css?v=20261113f', 'donnees.js?v=20261113f', 'regles.js?v=20261113f', 'app.js?v=20261113f', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
