@@ -495,7 +495,7 @@
           const fini = R.cadenceTerminee(p, E.cadences, B.etapes);
           return `<article class="fiche-carte" draggable="true" data-id="${p.id}">
             <button class="fiche-nom" data-action="fiche" data-id="${p.id}"><b>${esc(nomComplet(p))}</b><span>${esc(p.organisation && nomComplet(p) !== p.organisation ? p.organisation : p.fonction || '')}</span></button>
-            <p class="fiche-info">${esc(canal(p.canal))}${d ? ` · <span class="${d < t ? 'retard' : d === t ? 'jour' : ''}">${d < t ? `en retard (${quand(d)})` : `relance ${quand(d)}`}</span>` : fini ? ' · <span class="retard">cadence terminée</span>' : e.id === 'perdu' ? ` · ${esc(motif(p.motif))}` : ''}</p>
+            <p class="fiche-info">${esc(canal(p.canal))}${d ? ` · <span class="${d < t ? 'retard' : d === t ? 'dujour' : ''}">${d < t ? `en retard (${quand(d)})` : `relance ${quand(d)}`}</span>` : fini ? ' · <span class="retard">cadence terminée</span>' : e.id === 'perdu' ? ` · ${esc(motif(p.motif))}` : ''}</p>
             ${suivante && !e.fin ? `<button class="btn petit suivante" data-action="etape-suivante" data-id="${p.id}" aria-label="Passer ${esc(nomComplet(p))} à l'étape ${esc(suivante.nom)}">${esc(suivante.court)} →</button>` : ''}
           </article>`;
         }).join('') || `<p class="colonne-vide">${i === 0 ? 'Ajoute un prospect.' : 'Dépose une carte ici.'}</p>`}</div>

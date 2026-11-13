@@ -148,11 +148,13 @@
   function formaterCode(v) {
     const n = v.toUpperCase().replace(/[^0-9A-Z]/g, '');
     if (n === 'DEMO' || 'DEMO'.startsWith(n)) return n;
-    if (n.startsWith(PRODUIT)) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
+    // Code interne d'un template QME (préfixe de 3 lettres, au moins une hors hexadécimal) ; sinon clé Gumroad.
+    if (estCode(n)) { const r = n.slice(0, 19); return [r.slice(0, 3), r.slice(3, 7), r.slice(7, 11), r.slice(11, 15), r.slice(15, 19)].filter(Boolean).join('-'); }
     const l = n.slice(0, 32);
     return [l.slice(0, 8), l.slice(8, 16), l.slice(16, 24), l.slice(24, 32)].filter(Boolean).join('-');
   }
-  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (n.startsWith(PRODUIT) && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
+  const estCode = (n) => n.startsWith(PRODUIT) || (/^[A-Z]{3}/.test(n) && /[G-Z]/.test(n.slice(0, 3)));
+  const codeComplet = (c) => { const n = c.replace(/-/g, ''); return (estCode(n) && n.length === 19) || (/^[0-9A-F]{32}$/.test(n)); };
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
@@ -551,7 +553,7 @@
         <div class="graphique-tete"><h2>État des réserves par entreprise</h2><div class="legende">${SEGMENTS.map(([, l, c]) => `<span><i style="background:${c}"></i>${l}</span>`).join('')}</div></div>
         ${parEnt.length ? `<div class="piles">${parEnt.map((x, k) => pile(x, k)).join('')}</div>` : '<p class="vide-graph">Aucune réserve sur cette sélection.</p>'}
         <div class="infobulle" hidden></div>
-        <table class="sr-only"><caption>Réserves par entreprise et par statut</caption><thead><tr><th>Entreprise</th>${SEGMENTS.map(([, l]) => `<th>${l}</th>`).join('')}</tr></thead><tbody>${parEnt.map((x) => `<tr><td>${esc(entreprise(x.cle)?.nom || 'Entreprise à désigner')}</td>${SEGMENTS.map(([k]) => `<td>${x[k]}</td>`).join('')}</tr>`).join('')}</tbody></table>
+        <div class="sr-only"><table><caption>Réserves par entreprise et par statut</caption><thead><tr><th>Entreprise</th>${SEGMENTS.map(([, l]) => `<th>${l}</th>`).join('')}</tr></thead><tbody>${parEnt.map((x) => `<tr><td>${esc(entreprise(x.cle)?.nom || 'Entreprise à désigner')}</td>${SEGMENTS.map(([k]) => `<td>${x[k]}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
       </figure>
       ${sansReserve.length ? `<p class="note">Sans réserve sur cette sélection : ${sansReserve.map((e) => esc(e.nom)).join(', ')}.</p>` : ''}
       <h2 class="titre-section">Retards les plus anciens <span>À relancer en priorité.</span></h2>

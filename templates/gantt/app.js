@@ -34,7 +34,7 @@
   const texteSur = (id) => (id === 'jaune' ? '#141414' : '#fff');
   const telephone = () => matchMedia('(max-width:720px)').matches;
   const sourisFine = () => matchMedia('(pointer:fine)').matches;
-  const UNITE = (p) => (p.ouvres ? 'j ouvrés' : 'jours');
+  const UNITE = (p) => (p.ouvres ? 'jours ouvrés' : 'jours calendaires');
   const j = (n, p) => `${n} ${p?.ouvres ? 'j ouvr.' : 'j'}`;
 
   // ---------- État ----------
@@ -278,7 +278,7 @@
     const site = creerPlanning({ nom: 'Lancement du site web', debut: ajout(t, -26), ouvres: true, modele: modele('site'), couleurId: 'bleu' });
     avancer(site, { 'Intégration et développement': 20, 'Rédaction des contenus': 60 });
     const miseEnLigne = parNom(site, 'Mise en ligne');
-    miseEnLigne.plage = { debut: ajout(t, 14), fin: ajout(t, 24) };
+    miseEnLigne.plage = { debut: ajout(t, 5), fin: ajout(t, 15) };
     parNom(site, 'Arborescence et contenus attendus').note = 'Validée en atelier.';
     E.reperes.push({ id: uid(), planningId: site.id, date: ajout(t, 9), nom: 'Comité de pilotage' });
     E.periodes.push({ id: uid(), planningId: site.id, debut: ajout(t, 18), fin: ajout(t, 22), nom: 'Congés de l\'équipe' });
@@ -595,7 +595,7 @@
         const larg = Math.min(G.largeur, x(suiv)) - x0;
         const lib = haut === 'annee' ? String(dt.getFullYear()) : larg > 120 ? `${MOIS_LONGS[dt.getMonth()]} ${dt.getFullYear()}` : larg > 52 ? `${MOIS_COURTS[dt.getMonth()]} ${String(dt.getFullYear()).slice(2)}` : larg > 22 ? MOIS_COURTS[dt.getMonth()].slice(0, 3) : '';
         s += `<line x1="${x(d)}" x2="${x(d)}" y1="0" y2="${G.H}" stroke="${PALETTE.encre}" stroke-width="1"/>`;
-        if (lib && larg > 0) s += `<text x="${x0 + 6}" y="${h1 - 7}" font-size="12" font-weight="700" fill="${PALETTE.encre}" font-family="${POLICE}">${lib}</text>`;
+        if (lib && larg > 0) s += `<text class="etiq-haut" data-x0="${x(d)}" data-x1="${x(suiv)}" x="${x0 + 6}" y="${h1 - 7}" font-size="12" font-weight="700" fill="${PALETTE.encre}" font-family="${POLICE}">${lib}</text>`;
       }
     }
     s += `<line x1="0" x2="${G.largeur}" y1="${h1}" y2="${h1}" stroke="${PALETTE.trait}"/>`;
@@ -813,7 +813,19 @@
     } else { cadre.scrollLeft = scrollAvant.x; cadre.scrollTop = scrollAvant.y; }
     const niv = $('#zoom-niveau');
     if (niv) niv.textContent = { jour: 'Jours', semaine: 'Semaines', mois: 'Mois', trimestre: 'Trimestres', annee: 'Années' }[R.niveauEchelle(Z)];
+    caler(cadre);
+    cadre.onscroll = () => caler(cadre);
     brancherGantt(cadre);
+  }
+
+  // Étiquettes du bandeau supérieur (mois, années) gardées visibles au défilement horizontal.
+  function caler(cadre) {
+    const gauche = cadre.scrollLeft;
+    for (const t of cadre.querySelectorAll('.etiq-haut')) {
+      const x0 = Number(t.dataset.x0), x1 = Number(t.dataset.x1);
+      const w = t.getComputedTextLength ? t.getComputedTextLength() : 60;
+      t.setAttribute('x', Math.max(x0 + 6, Math.min(gauche + 6, x1 - w - 6)));
+    }
   }
 
   function ligneTable(l, colonnes) {
@@ -1137,7 +1149,7 @@
       <div class="vue-tete"><div><h1>Chemin critique</h1><p>La suite de tâches sans marge : un jour de retard sur l'une d'elles décale la fin du planning. Calcul des dates au plus tôt et au plus tard (méthode du chemin critique) sur ${UNITE(p)}.</p></div></div>
       ${choixPlanning(planningCritique, 'critique-planning')}
       <div class="tuiles">
-        <div class="tuile" style="--c:var(--encre)"><p class="surtitre">Fin du planning</p><b class="tuile-date">${c.liste.length ? fmt(finPlanning(c), { day: 'numeric', month: 'short' }) : '–'}</b><span>${c.liste.length ? fmt(finPlanning(c), { weekday: 'long', year: 'numeric' }) : 'Aucune tâche'}</span></div>
+        <div class="tuile" style="--c:var(--encre)"><p class="surtitre">Fin du planning</p><b class="tuile-date">${c.liste.length ? fmt(finPlanning(c), { day: 'numeric', month: 'short' }) : '–'}</b><span>${c.liste.length ? `${fmt(finPlanning(c), { weekday: 'long' })} ${finPlanning(c).slice(0, 4)}` : 'Aucune tâche'}</span></div>
         <div class="tuile" style="--c:var(--bleu)"><p class="surtitre">Durée</p><b>${duree}<small>${p.ouvres ? 'j ouvr.' : 'j'}</small></b><span>Du premier début à la dernière fin.</span></div>
         <div class="tuile rond" style="--c:var(--rouge)"><p class="surtitre">Tâches critiques</p><b>${crit.length}<small>/ ${lignes.length}</small></b><span>${chaine ? `Chaîne : ${esc(chaine.length > 60 ? `${chaine.slice(0, 58)}…` : chaine)}` : 'Aucune.'}</span></div>
         <div class="tuile" style="--c:var(--jaune)"><p class="surtitre">Plus petite marge</p><b>${Number.isFinite(margeMin) ? margeMin : '–'}<small>${Number.isFinite(margeMin) ? (p.ouvres ? 'j ouvr.' : 'j') : ''}</small></b><span>Hors chemin critique : la tâche la plus exposée.</span></div>
