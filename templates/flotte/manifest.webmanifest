@@ -1,7 +1,7 @@
 {
-  "name": "Levée de réserves · QME",
-  "short_name": "Réserves",
-  "description": "Réserves par opération, lot et entreprise, retards et procès-verbaux de levée.",
+  "name": "Gestion de flotte · QME",
+  "short_name": "Flotte",
+  "description": "Véhicules, réservations, entretiens, contrôles techniques, sinistres, amendes et coût au kilomètre.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

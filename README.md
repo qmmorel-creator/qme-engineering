@@ -113,6 +113,9 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     déclarations, seuils, export CSV ;
   - `templates/budget-commun/` (BCM) : **budget commun**, répartitions au centime, équilibrage en un
     minimum de virements, fusion des saisies de plusieurs appareils.
+- Deuxième vague, en vente : `templates/gantt/` (GNT) **planning Gantt rapide** (chemin critique,
+    jours ouvrés, jalons à plage) ; `templates/taches/` (TCH) **gestionnaire de tâches** (boîte de
+    réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit

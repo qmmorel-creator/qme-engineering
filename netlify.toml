@@ -344,25 +344,7 @@
 # Templates en cours de développement : jamais servis tant qu'ils ne sont pas prêts.
 # Retirer la ligne d'un template au moment de sa mise en vente.
 [[redirects]]
-  from = "/templates/gantt/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/templates/taches/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
   from = "/templates/nutrition/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/templates/budget/*"
   to = "/404"
   status = 404
   force = true
