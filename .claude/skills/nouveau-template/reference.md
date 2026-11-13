@@ -140,6 +140,38 @@ Remarque · Format. Lignes triées par date ; une publication environ tous les d
    le lien du doc.
 9. Ne rien publier sur LinkedIn soi-même : la publication suit le processus habituel du planning.
 
+## Planning Instagram (à chaque template prêt, après le planning LinkedIn)
+
+Compte `@qmengineering`. Kit : `docs/templates/communication/instagram/README.md`. Google Sheet
+« Planning publications Instagram » (`1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`, onglet `Planning`),
+dans le dossier Drive « QME – Publications Instagram » (`1qy8D-0qM7ggs_Nz3EDFBxiUWj2MypcqC`), sous-dossiers
+Images (`1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`), Textes (`1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`) et Kit de marque.
+Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc légende (ID) ·
+Doc légende (lien) · Fichier(s) · Texte alternatif · Publié le · URL publication · Remarque · Format
+(`Image`, `Carrousel`, `Reel`) · LinkedIn associé · IDs Drive des médias (dans l'ordre ; reel : `ID vidéo | couverture : ID image`).
+
+**Publication par Instinct** (comme LinkedIn), routine « Publications Instagram depuis Drive » (prompt :
+`docs/templates/communication/instagram/PROMPT-INSTINCT.md`) : passages à 18h00, 18h15 et 18h30, il publie
+les lignes **« Programmé »** dues depuis moins de 24 h. Posty n'est pas utilisé.
+Statuts : `À préparer` → `Prêt` (légende et visuels faits, à relire par Quentin) → `Programmé` (accord
+de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si abandonné.
+
+1. **Relire tout l'onglet** (`get_values Planning!A1:P`) juste avant d'écrire.
+2. **Ligne** : compléter la ligne `À préparer` du template (colonne F `Tnn · …`) ; sinon en insérer une à
+   sa place chronologique (`insert_dimension` puis `update_values`), le lendemain de la date LinkedIn du
+   template, à 18:30, ID `IG-` + (plus grand numéro + 1), colonne O = ID LinkedIn.
+3. **Légende** : Google Doc `IG-nn · <titre interne> · légende` dans Textes, contenant **uniquement** le
+   texte à publier (accroche, légende, hashtags) : Instinct publie le doc entier. Les notes (variantes,
+   remarques) vont dans `instagram.md` ou la colonne M, jamais dans ce doc.
+4. **Médias** dans Images : `IG-nn-<slug>-1.png` … (carrousel 1080 × 1350) ou `IG-nn-<slug>.mp4` +
+   `IG-nn-<slug>-couverture.png` (reel 1080 × 1920, `video.mjs`). Colonne I = noms séparés par « | »
+   dans l'ordre (reel : `x.mp4 | couverture : y.png`). Colonne J = un texte alternatif par image,
+   numérotés et séparés par « | ». Colonne P = les IDs Drive de ces fichiers, dans le même ordre :
+   Instinct prend les fichiers par ID. Un fichier remplacé est renommé `OBSOLETE-…`, jamais réutilisé.
+5. Statut `Prêt` ; donner à Quentin l'ID, la date, les liens du doc et des visuels pour relecture.
+6. **Seulement après l'accord explicite de Quentin** : statut `Programmé`. Instinct publie à l'heure.
+7. Ne jamais publier soi-même ni écrire `Publié` : c'est Instinct qui le fait.
+
 ## Pièges déjà rencontrés (vérifier à chaque template)
 
 1. **Entrée dans un formulaire de modale** déclenche le premier bouton `submit` du DOM : mettre le bouton
