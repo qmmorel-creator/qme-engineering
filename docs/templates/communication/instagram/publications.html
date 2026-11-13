@@ -55,7 +55,7 @@ h1,h2,p{letter-spacing:-.025em}
 .cta .liste{margin-top:60px;display:flex;flex-direction:column;gap:24px;font-size:40px;font-weight:600}
 .cta .liste div{display:flex;gap:22px;align-items:center}
 .cta .liste i{width:26px;height:26px;background:var(--encre);flex:none}
-.cta .plus{position:absolute;left:84px;right:84px;top:800px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
+.cta .plus{position:absolute;left:84px;right:84px;top:760px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
 .cta .bouton{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
 .cta .bouton b{font-size:52px;font-weight:800;letter-spacing:-.025em}
 .cta .bouton span{font-size:32px;font-weight:600;color:var(--jaune)}
@@ -115,6 +115,28 @@ h1,h2,p{letter-spacing:-.025em}
 .cta.rouge .pied{color:#fff}
 .cta.rouge .compteur{color:var(--encre)}
 #IG-02-template-ou-sur-mesure-1 h1{font-size:108px}
+
+/* IG-04, IG-05 : carrousels de template */
+.probleme{background:var(--encre);color:var(--papier)}
+.probleme .t{position:absolute;left:84px;right:84px;top:300px;font-size:76px;font-weight:800;line-height:1.08;letter-spacing:-.025em}
+.probleme .t em{font-style:normal;color:var(--jaune)}
+.probleme .f{position:absolute;right:0;bottom:0;width:300px;height:300px;background:var(--rouge);border-top-left-radius:300px}
+.probleme .compteur{background:var(--encre);color:var(--papier);border-color:var(--papier)}
+.ecran{position:absolute;left:84px;right:84px;height:560px;overflow:hidden;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface)}
+.ecran img{width:100%;display:block}
+.trois{position:absolute;left:84px;right:84px;display:flex;flex-direction:column;gap:24px}
+.trois div{border-left:10px solid var(--jaune);padding-left:24px;font-size:31px;line-height:1.3;color:var(--texte-2)}
+.trois b{color:var(--encre);font-weight:800}
+.modeles{position:absolute;left:84px;width:500px;top:390px;display:flex;flex-direction:column;gap:12px}
+.modeles span{background:var(--surface);border:3px solid var(--encre);padding:10px 18px;font-size:29px;font-weight:600}
+.story-t{width:1080px!important;height:1920px!important;background:var(--encre)!important;color:var(--papier)}
+.story-t .c{position:absolute;left:84px;right:84px;top:300px}
+.story-t .c p{color:var(--jaune)}
+.story-t h1{font-size:104px;font-weight:800;line-height:1;margin-top:28px}
+.story-t .s{font-size:40px;line-height:1.3;color:#D9D4C8;margin-top:30px;font-weight:500}
+.story-t .tel{position:absolute;left:50%;transform:translateX(-50%);top:820px;width:400px;box-shadow:16px 16px 0 var(--rouge)}
+.story-t .lien{position:absolute;left:50%;transform:translateX(-50%);bottom:380px;background:var(--surface);color:var(--encre);font-weight:800;font-size:40px;padding:22px 40px;white-space:nowrap;border:6px solid var(--jaune)}
+.story-t .px{position:absolute;right:84px;top:240px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:44px;padding:8px 20px}
 </style>
 </head>
 <body>
@@ -308,6 +330,123 @@ h1,h2,p{letter-spacing:-.025em}
   </div>
   <div style="position:absolute;right:84px;top:520px;background:var(--jaune);border:4px solid var(--encre);padding:22px 28px;font-weight:800;font-size:40px;letter-spacing:-.025em">Lien en bio</div>
   <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></span><span style="color:var(--discret);font-weight:500;font-size:24px">Données fictives</span></div>
+</section>
+
+
+<!-- ============ IG-04 · T31 Compte rendu et plan d'actions ============ -->
+<section class="cadre couv" id="IG-04-compte-rendu-1">
+  <div class="fa"></div><div class="fb"></div><div class="fc"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Réunions</p>
+    <h1 style="margin-top:30px;font-size:112px">« Qui devait envoyer le <mark>devis</mark>, déjà ? »</h1>
+    <p class="sous">Si la question revient à chaque réunion, le problème est entre deux réunions.</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre probleme" id="IG-04-compte-rendu-2">
+  <span class="compteur">2 / 5</span>
+  <p class="t">Le compte rendu part par e-mail.<br><br>Les actions vivent dans la mémoire de chacun…<br><br><em>jusqu'à la réunion suivante.</em></p>
+  <div class="f"></div>
+</section>
+
+<section class="cadre choix" id="IG-04-compte-rendu-3">
+  <div class="bandeau" style="background:var(--bleu);color:#fff"><p class="sourcil" style="opacity:.85">Compte rendu et plan d'actions</p><h2>Une ligne, une action.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="ecran" style="top:360px"><img src="../../../../assets/templates-compte-rendu-saisie.webp" alt="" style="margin-top:-20px"></div>
+  <div class="trois" style="top:980px">
+    <div><b>« Marie : devis avant vendredi »</b> crée l'action, avec responsable et échéance.</div>
+    <div><b>À la réunion suivante</b>, les actions ouvertes reviennent seules.</div>
+    <div><b>Une vue par personne</b>, les retards en évidence.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre choix" id="IG-04-compte-rendu-4">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Prêt à l'emploi</p><h2>Huit modèles de réunion.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="modeles"><span>Point d'équipe</span><span>Comité de pilotage</span><span>Réunion de chantier</span><span>Point client</span><span>Rétrospective</span><span>Lancement de projet</span><span>Conseil d'administration</span><span>Entretien individuel</span></div>
+  <div class="tel" style="position:absolute;right:84px;top:390px;width:380px"><img src="../../../../assets/templates-compte-rendu-tel.webp" alt=""></div>
+  <p style="position:absolute;left:84px;right:84px;top:1110px;font-size:32px;line-height:1.3;color:var(--texte-2)">Le compte rendu se copie dans un e-mail ou s'imprime en A4, en un clic.</p>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre cta" id="IG-04-compte-rendu-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Essayez-le avec une équipe fictive.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus"><b>Besoin de plus ?</b> Votre circuit de validation, vos diffusions, les outils de l'équipe : <b>je le construis sur mesure.</b></div>
+  <div class="bouton"><b>Lien en bio</b><span>15 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr</span></div>
+</section>
+
+<section class="cadre story-t" id="IG-04-compte-rendu-story">
+  <span class="px">15 €</span>
+  <div class="c"><p class="sourcil">Template QME</p><h1>Compte rendu et plan d'actions</h1><p class="s">Aucune action perdue entre deux réunions.</p></div>
+  <div class="tel"><img src="../../../../assets/templates-compte-rendu-tel.webp" alt=""></div>
+  <div class="lien">Essayer la démo ↗</div>
+</section>
+
+<!-- ============ IG-05 · T37 Coût de revient et prix par client ============ -->
+<section class="cadre couv" id="IG-05-cout-revient-1">
+  <div class="fa" style="background:var(--bleu)"></div><div class="fb"></div><div class="fc" style="background:var(--rouge)"></div>
+  <span class="compteur" style="right:auto;left:84px">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--bleu)">Indépendants</p>
+    <h1 style="margin-top:30px;font-size:112px">Combien vous coûte <mark>une heure</mark> ?</h1>
+    <p class="sous">Pas ce que vous facturez : ce qu'elle vous coûte.</p>
+  </div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre probleme" id="IG-05-cout-revient-2">
+  <span class="compteur">2 / 5</span>
+  <p class="t">Un client qui paie bien n'est pas forcément un client rentable.<br><br><em>Tout dépend du temps qu'il vous prend.</em></p>
+  <div class="f" style="background:var(--bleu)"></div>
+</section>
+
+<section class="cadre choix" id="IG-05-cout-revient-3">
+  <div class="bandeau" style="background:var(--bleu);color:#fff"><p class="sourcil" style="opacity:.85">Coût de revient et prix par client</p><h2>De l'année à l'heure.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="ecran" style="top:360px"><img src="../../../../assets/templates-cout-revient-synthese.webp" alt=""></div>
+  <div class="trois" style="top:980px">
+    <div><b>Les jours ouvrés sont calculés</b>, fériés compris, puis le temps non facturable est retiré.</div>
+    <div><b>Coût par heure et par jour</b>, prix plancher et prix conseillé.</div>
+    <div><b>Aucun taux figé</b> : vous saisissez vos cotisations.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre choix" id="IG-05-cout-revient-4">
+  <div class="bandeau" style="background:var(--jaune)"><p class="sourcil">Client par client</p><h2 style="max-width:none">Qui est vraiment rentable&nbsp;?</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="ecran" style="top:360px"><img src="../../../../assets/templates-cout-revient-clients.webp" alt=""></div>
+  <div class="trois" style="top:980px">
+    <div><b>Temps passé, frais, factures</b> : marge et taux horaire réel de chaque client.</div>
+    <div><b>Sous le plancher</b> : le client est signalé.</div>
+  </div>
+  <p style="position:absolute;left:84px;right:84px;bottom:76px;font-size:24px;color:var(--discret)">Aide à la décision, pas un conseil comptable · données fictives</p>
+</section>
+
+<section class="cadre cta" id="IG-05-cout-revient-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Essayez-le avec une activité fictive.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Ordinateur, tablette, téléphone</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus"><b>Besoin de plus ?</b> Relié à vos devis, votre facturation ou votre suivi des temps : <b>je le construis sur mesure.</b></div>
+  <div class="bouton"><b>Lien en bio</b><span>25 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span>Q<span class="m">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr</span></div>
+</section>
+
+<section class="cadre story-t" id="IG-05-cout-revient-story">
+  <span class="px">25 €</span>
+  <div class="c"><p class="sourcil">Template QME</p><h1>Coût de revient et prix par client</h1><p class="s">Ce que coûte vraiment une heure, et qui est rentable.</p></div>
+  <div class="tel"><img src="../../../../assets/templates-cout-revient-tel.webp" alt=""></div>
+  <div class="lien">Essayer la démo ↗</div>
 </section>
 
 </body>
