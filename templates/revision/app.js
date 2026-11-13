@@ -232,7 +232,7 @@
 
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
-    const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
+    const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code, produit: PRODUIT }) });
     if (statut === 401) throw new Error('Clé ou code inconnu. Copie-le depuis l\'e-mail reçu après ton achat.');
     if (statut !== 200) throw new Error(corps?.erreur || 'Le service ne répond pas. Réessaie dans un instant.');
     // Clé d'un autre template : ne jamais écrire nos données dans son espace.
@@ -1050,7 +1050,7 @@
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {
-      const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code }) });
+      const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code, produit: PRODUIT }) });
       if (statut === 401 || statut === 403) return deconnecter(corps?.erreur || 'Ce code d\'accès n\'est plus valide.');
       if (statut !== 200) throw new Error();
       if (corps.produit !== PRODUIT) return deconnecter('Cette clé ouvre un autre template QME.');

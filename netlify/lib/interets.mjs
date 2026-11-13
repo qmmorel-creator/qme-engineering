@@ -5,26 +5,14 @@
 // concurrente sur un même compteur, aucune donnée personnelle (ni IP, ni cookie, ni e-mail).
 // Lecture réservée à l'administrateur : code ADM-… dérivé de TEMPLATES_SECRET (voir codeAdmin), ou
 // valeur de la variable INTERETS_ADMIN si elle est définie sur Netlify.
-import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
-import { ALPHABET, PRODUITS, normaliser } from './templates-acces.mjs';
+import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { ALPHABET, PRODUITS, normaliser, codeAdmin } from './templates-acces.mjs';
+export { codeAdmin };
+
+const base32 = (octets) => { let v = 0n; for (const o of octets) v = v * 256n + BigInt(o); let s = ''; for (let i = octets.length * 8 / 5 - 1; i >= 0; i--) s += ALPHABET[Number((v >> BigInt(5 * i)) & 31n)]; return s; };
 
 // Modules : slug de l'application → nom de vente.
 export const MODULES = Object.fromEntries(Object.values(PRODUITS).map((p) => [p.url.split('/')[2], p.nom]));
-
-function base32(octets) {
-  let v = 0n;
-  for (const o of octets) v = v * 256n + BigInt(o);
-  let s = '';
-  for (let i = octets.length * 8 / 5 - 1; i >= 0; i--) s += ALPHABET[Number((v >> BigInt(5 * i)) & 31n)];
-  return s;
-}
-
-// Code administrateur, toujours le même pour un secret donné : ADM-XXXX-XXXX-XXXX-XXXX.
-export function codeAdmin(secret) {
-  if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court');
-  const s = base32(createHmac('sha256', secret).update('admin:interets').digest().subarray(0, 10));
-  return `ADM-${s.slice(0, 4)}-${s.slice(4, 8)}-${s.slice(8, 12)}-${s.slice(12, 16)}`;
-}
 
 const egal = (a, b) => a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b));
 export function estAdmin(saisie, { secret, admin }) {
