@@ -6,7 +6,7 @@ plannings. Visuels : `../instagram/publications-3.html` → `../instagram/png/IG
 
 Sources des faits : `templates/index.html`, `sur-mesure/index.html`, `methode/index.html`,
 `confidentialite/index.html` (hébergement des données des templates : Netlify, Francfort ; export
-JSON/CSV), publication LI-74 (hors connexion, 12 à 45 €).
+JSON/CSV), publication LI-74 (hors connexion, dès 12 €). Prix affiché « dès 12 € », sans maximum (demande de Quentin le 13/11).
 
 **À vérifier par Quentin avant publication** : (1) « Sur devis » pour le sur mesure (le site n'affiche
 pas de prix) ; (2) l'hébergement du sur mesure, « dans vos outils ou une base dédiée, choisie
@@ -30,7 +30,7 @@ Template : pensé pour les usages courants, le même outil pour tous les acheteu
 Sur mesure : vos règles, vos documents, plusieurs rôles, branché à vos autres outils.
 
 ▪ Coût
-Template : prix fixe, de 12 à 45 €, achat unique, sans abonnement.
+Template : prix fixe, à partir de 12 €, achat unique, sans abonnement.
 Sur mesure : sur devis, établi après l'échange. Un suivi mensuel peut ensuite prendre le relais pour les évolutions.
 
 Ma règle est simple : si un template couvre votre besoin, commencez par lui. Si votre métier a ses propres règles, ses documents ou plusieurs rôles, c'est le rôle du sur mesure.
@@ -59,7 +59,7 @@ Template ou sur mesure ? Le comparatif, point par point.
 
 ▪ Démarrage : une minute pour un template (achat, clé, navigateur) ; pour le sur mesure, un échange de 30 minutes, un prototype, puis la mise en service, en 2 à 10 jours.
 ▪ Données : les templates sont hébergés dans l'Union européenne (Francfort), accessibles avec votre seule clé, exportables en JSON ou CSV. Le sur mesure vit dans vos outils ou dans une base dédiée, choisie ensemble.
-▪ Coût : prix fixe pour un template, de 12 à 45 €, sans abonnement. Le sur mesure est sur devis, après l'échange.
+▪ Coût : prix fixe pour un template, dès 12 €, sans abonnement. Le sur mesure est sur devis, après l'échange.
 
 Usage courant : un template, démo libre. Métier à règles : le sur mesure.
 
@@ -73,5 +73,5 @@ Textes alternatifs :
 1. Titre « Template ou sur mesure : le comparatif. » Démarrage, données, prix : ce qui change vraiment.
 2. Tableau comparatif, démarrage et délai : template en une minute, démo libre ; sur mesure après un échange de 30 minutes, 2 à 3 jours pour une automatisation, 5 à 10 pour un outil.
 3. Tableau comparatif, données et adaptation : template hébergé dans l'UE à Francfort, accès par clé, export JSON ou CSV, usages courants ; sur mesure dans vos outils ou une base dédiée, vos règles et vos rôles.
-4. Tableau comparatif, coût et appareils : template à prix fixe de 12 à 45 €, sans abonnement, sur tous les appareils ; sur mesure sur devis, appareils selon l'outil retenu.
+4. Tableau comparatif, coût et appareils : template à prix fixe dès 12 €, sans abonnement, sur tous les appareils ; sur mesure sur devis, appareils selon l'outil retenu.
 5. Fond rouge : le bon choix dépend de votre besoin. Usage courant : un template, démo libre ; métier à règles : le sur mesure. Lien en bio.
