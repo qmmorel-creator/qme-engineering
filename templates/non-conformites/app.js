@@ -979,7 +979,7 @@
       <fieldset class="champ"><legend>Délai de traitement par gravité (jours)</legend><div class="delais">${B.gravites.map((g) => `<label><span>${esc(g.nom)}</span><input type="number" name="d${g.id}" min="0" max="365" value="${R.delaiGravite(r, g.id)}" inputmode="numeric"></label>`).join('')}</div></fieldset>
       <label class="champ">Vérification d'efficacité<small>Jours après la dernière action faite.</small><input type="number" name="delaiVerif" min="1" max="365" value="${r.delaiVerif}" inputmode="numeric"></label>
       <p class="erreur" role="alert"></p>
-      <div class="groupe"><h3>Exports</h3><p class="aide">CSV au point-virgule pour Excel ou LibreOffice (accents conservés).</p>
+      <div class="groupe"><h3>Exports</h3><p class="aide">CSV au point-virgule pour un tableur (accents conservés).</p>
         <div class="rang"><button class="btn petit" type="button" data-action="csv" data-id="registre">Registre (CSV)</button><button class="btn petit" type="button" data-action="csv" data-id="actions">Actions (CSV)</button></div></div>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton registre est enregistré en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
