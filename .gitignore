@@ -5,3 +5,4 @@ node_modules/
 .netlify/
 secret-templates.txt
 codes-generes.csv
+.couv-tmp/
