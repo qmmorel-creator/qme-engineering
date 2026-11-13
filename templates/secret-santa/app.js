@@ -271,7 +271,7 @@ function ecranConnexion(message = '') {
 async function demarrer() {
   document.body.classList.add('app');
   $('#racine').innerHTML = `
-    ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil. Le tirage et les pages participants fonctionnent comme en vrai.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai une clé</button></div></div>' : ''}
+    ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/secret-santa/"><strong>Bientôt disponible, gratuit</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil. Le tirage et les pages participants fonctionnent comme en vrai.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai une clé</button></div></div>' : ''}
     <header class="barre"><div class="barre-int">
       <span class="marque">${MARQUE}</span>
       <span class="titre-produit">Secret Santa<small>Édition Noël</small></span>

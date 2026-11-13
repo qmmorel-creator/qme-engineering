@@ -2,8 +2,8 @@
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // À l'activation, seuls les anciens caches de CE template (préfixe « inscriptions- ») sont supprimés.
 const PREFIXE = 'inscriptions-';
-const VERSION = PREFIXE + '20261113e';
-const COQUILLE = ['./', 'app.css?v=20261113e', 'donnees.js?v=20261113e', 'regles.js?v=20261113e', 'app.js?v=20261113e', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = PREFIXE + '20261113f';
+const COQUILLE = ['./', 'app.css?v=20261113f', 'donnees.js?v=20261113f', 'regles.js?v=20261113f', 'app.js?v=20261113f', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
