@@ -304,6 +304,28 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/patrimoine/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/patrimoine/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/temps-de-vie/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/temps-de-vie/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/secret-santa/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

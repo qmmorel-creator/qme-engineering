@@ -166,5 +166,89 @@
     "value": "Particuliers et foyers"
    }
   ]
+ },
+ {
+  "slug": "patrimoine",
+  "name": "Inventaire valorisé",
+  "price_cents": 1900,
+  "permalink": "inventaire-valorise",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon inventaire",
+  "summary": "Combien valent vraiment tes affaires ? Inventorie tes objets en quelques secondes : valeur actuelle estimée, revente potentielle frais déduits, et ce qui dort sans servir.",
+  "description": "<h2>Si tu revendais tout aujourd'hui, combien récupérerais-tu ?</h2><p>Électronique, meubles, vélo, instruments, outillage, collections : on possède beaucoup plus de valeur qu'on ne le croit, et une partie dort au fond des placards. L'Inventaire valorisé transforme ta liste d'objets en bilan chiffré.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire en quelques secondes</strong> : 15 catégories, 80 sous-catégories et des centaines d'exemples d'objets ; un toucher, un prix, une date approximative.</li><li><strong>Trois valeurs jamais confondues</strong> : prix d'achat, valeur actuelle estimée (âge, état, famille d'objet, prix) et revente potentielle. Tu saisis la valeur toi-même quand tu la connais.</li><li><strong>Un moteur de décote transparent</strong> : 8 familles d'objets, coefficients visibles et modifiables.</li><li><strong>Un simulateur de revente</strong> : tout, une catégorie, les objets inutilisés, au-dessus d'un prix ou un nombre d'objets ; décote, négociation, commission et expédition déduites.</li><li><strong>L'analyse de possession</strong> : argent immobilisé, objets de valeur peu ou jamais utilisés, plus fortes pertes, part facilement revendable.</li><li><strong>Un historique</strong> : une valorisation par mois, comparaison entre deux dates, projection sur 5 ans. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche les familles d'objets que tu possèdes et ajoute tes objets. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Aucun nom ni adresse demandé, aucune connexion à un site de vente, rien de partagé automatiquement. Achat unique, sans abonnement.</p><p><em>Estimations indicatives calculées par des règles de décote paramétrables : ce n'est ni une expertise, ni une valeur d'assurance, ni une valeur comptable, ni une garantie de prix de revente. Aucun prix de marché n'est intégré ni récupéré. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "inventaire",
+   "patrimoine",
+   "revente",
+   "objets",
+   "budget",
+   "minimalisme",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton inventaire s'ouvre. Coche les familles d'objets que tu possèdes et ajoute tes objets : le bilan se calcule. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre tes objets. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui veulent connaître la valeur de leurs biens"
+   }
+  ]
+ },
+ {
+  "slug": "temps-de-vie",
+  "name": "Temps de vie",
+  "price_cents": 1900,
+  "permalink": "temps-de-vie",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon calculateur",
+  "summary": "Combien d'heures de travail pour payer ce que tu consommes ? Chaque dépense, habitude ou ton mode de vie entier converti en heures et en jours de travail.",
+  "description": "<h2>Combien d'heures de ta vie pour payer ce que tu consommes ?</h2><p>Un téléphone, un restaurant, un abonnement, ton loyer : derrière chaque dépense, il y a du temps de travail. Temps de vie fait la conversion avec ton revenu et ton temps de travail réels.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton revenu horaire</strong> selon trois conventions affichées clairement : temps contractuel, temps réellement consacré au travail (trajet et frais professionnels), temps annuel effectif. Le calcul fonctionne même avec un profil incomplet, hypothèses signalées.</li><li><strong>Un calculateur instantané</strong> : n'importe quelle dépense en heures, jours et semaines de travail ; pour une dépense récurrente, le coût sur 1, 5 et 10 ans.</li><li><strong>Ton mode de vie en temps</strong> : une bibliothèque de dépenses (logement, mobilité, alimentation, équipement, loisirs, services, famille) que tu complètes, la part de chaque poste et le top 10 des dépenses les plus coûteuses en temps.</li><li><strong>Des scénarios A, B, C</strong> : économies mensuelles et annuelles, heures et jours de travail récupérés, cumul sur plusieurs années.</li><li><strong>Le coût réel d'un achat</strong> : prix, frais, entretien, usage et revente sur la durée de possession, pour comparer deux options.</li><li><strong>Un résultat partageable</strong> choisi par toi, sans ton revenu sauf si tu le coches. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton revenu net et ton temps de travail, puis tes dépenses. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Aucune connexion bancaire, aucun agenda, aucun connecteur externe. Achat unique, sans abonnement.</p><p><em>Les durées sont une équivalence (montant ÷ revenu net horaire estimé), pas un temps réellement travaillé. Aucun barème fiscal intégré : tous les montants sont les tiens. Outil d'aide à la réflexion, pas un conseil financier, fiscal ou professionnel. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "budget",
+   "depenses",
+   "temps",
+   "finances-personnelles",
+   "minimalisme",
+   "economies",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calculateur s'ouvre. Indique ton revenu net et ton temps de travail : chaque dépense se convertit en heures. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre ton profil et tes dépenses. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers qui veulent voir le coût réel de leur mode de vie"
+   }
+  ]
  }
 ]
