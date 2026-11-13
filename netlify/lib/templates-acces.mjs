@@ -48,6 +48,7 @@ export const PRODUITS = {
   PNB: { nom: 'PlanB', url: '/templates/plan-b/' },
   MMF: { nom: 'MémoFamille', url: '/templates/memo-famille/' },
   FTB: { nom: 'FêteBudget', url: '/templates/fete-budget/' },
+  JDS: { nom: 'Ludothèque', url: '/templates/ludotheque/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

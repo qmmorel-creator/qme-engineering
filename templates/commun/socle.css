@@ -456,3 +456,6 @@ button.carte-el:hover,a.carte-el:hover{border-color:var(--encre)}
   .onglets-internes::-webkit-scrollbar{display:none}
   .onglets-internes button{flex:none;white-space:nowrap}
 }
+/* Groupes de champs : pas de cadre gris du navigateur (les cadres voulus utilisent .cadre-champs). */
+fieldset.champ{border:0;padding:0;margin:0;min-width:0}
+fieldset.champ>legend{padding:0;margin-bottom:6px;font-size:14px;font-weight:600}

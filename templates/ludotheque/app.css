@@ -1,0 +1,25 @@
+/* Ludothèque · composants propres (le socle commun est dans ../commun/socle.css). */
+.complexite{letter-spacing:1px;color:var(--bleu);font-size:12px;margin-right:6px}
+.complexite span{color:var(--trait)}
+.carte-jeu.prete{background:var(--sable)}
+.criteres{gap:14px}
+.puces-choix{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.puces-choix button,.puce-case span{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--trait);background:var(--surface);border-radius:999px;font-weight:600;font-size:14px;cursor:pointer}
+.puces-choix button[aria-pressed="true"],.puce-case input:checked+span{background:var(--beurre);border-color:transparent}
+.puce-case{position:relative}
+.puce-case input{position:absolute;opacity:0;inset:0}
+.puce-case input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+details summary{cursor:pointer;font-weight:600;min-height:40px;display:flex;align-items:center}
+.suggestions{display:grid;gap:8px;counter-reset:none}
+.suggestions li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:12px 14px}
+.suggestions li.podium{border-left:6px solid var(--jaune)}
+.suggestions .rang{width:36px;height:36px;border-radius:50%;background:var(--ciel);color:var(--ciel-texte);display:flex;align-items:center;justify-content:center;font-weight:800}
+.raisons{font-size:13px;color:var(--texte-2);margin-top:4px}
+.classement{display:grid;gap:6px;list-style:decimal;padding-left:22px}
+.classement li::marker{font-weight:700;color:var(--discret)}
+.rang-ext{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;margin-bottom:8px}
+.rang-ext .btn-icone{height:48px;font-size:22px}
+@media (max-width:720px){
+  .suggestions li{grid-template-columns:auto minmax(0,1fr)}
+  .suggestions li>.btn{grid-column:2;justify-self:start}
+}
