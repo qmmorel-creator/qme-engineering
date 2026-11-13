@@ -63,7 +63,7 @@ le réécrire pour la communauté de remplacement (règle 4).
 ## T01 · Planning de révision
 
 Démo : https://qm-engineering.fr/templates/revision/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/planning-revision
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/planning-revision?utm_source=reddit&utm_medium=social&utm_campaign=planning-revision
 
 ### r/etudiants · « vous » collectif (passer au « tu » si c'est l'usage du fil)
 
@@ -90,7 +90,7 @@ https://qm-engineering.fr/templates/revision/?demo
 ## T02 · Planning Gantt rapide
 
 Démo : https://qm-engineering.fr/templates/gantt/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/planning-gantt
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/planning-gantt?utm_source=reddit&utm_medium=social&utm_campaign=planning-gantt
 
 ### r/gestiondeprojet · vouvoiement collectif
 
@@ -138,7 +138,7 @@ https://qm-engineering.fr/templates/gantt/?demo
 ## T03 · Gestionnaire de tâches
 
 Démo : https://qm-engineering.fr/templates/taches/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/gestionnaire-taches
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/gestionnaire-taches?utm_source=reddit&utm_medium=social&utm_campaign=gestionnaire-taches
 
 ### r/productivite · « vous » collectif (passer au « tu » si c'est l'usage du fil)
 
@@ -183,7 +183,7 @@ https://qm-engineering.fr/templates/taches/?demo
 ## T04 · Nutrition et dépense énergétique
 
 Démo : https://qm-engineering.fr/templates/nutrition/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/nutrition
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/nutrition?utm_source=reddit&utm_medium=social&utm_campaign=nutrition
 
 Rappels : public adulte ; pas de promesse de résultat ; pas de vocabulaire « perte de poids rapide » ;
 outil de suivi, pas un avis médical.
@@ -212,7 +212,7 @@ https://qm-engineering.fr/templates/nutrition/?demo
 ## T05 · Budget du foyer
 
 Démo : https://qm-engineering.fr/templates/budget/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-foyer
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-foyer?utm_source=reddit&utm_medium=social&utm_campaign=budget-foyer
 
 ### r/vosfinances · vouvoiement collectif
 
@@ -240,7 +240,7 @@ https://qm-engineering.fr/templates/budget/?demo
 ## T65 · Budget commun
 
 Démo : https://qm-engineering.fr/templates/budget-commun/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-commun
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-commun?utm_source=reddit&utm_medium=social&utm_campaign=budget-commun
 
 ### r/france · vouvoiement collectif
 
@@ -267,7 +267,7 @@ https://qm-engineering.fr/templates/budget-commun/?demo
 ## T31 · Compte rendu et plan d'actions
 
 Démo : https://qm-engineering.fr/templates/compte-rendu/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/compte-rendu-actions
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/compte-rendu-actions?utm_source=reddit&utm_medium=social&utm_campaign=compte-rendu-actions
 
 ### r/gestiondeprojet · vouvoiement collectif (au moins deux semaines après le message T02)
 
@@ -293,7 +293,7 @@ https://qm-engineering.fr/templates/compte-rendu/?demo
 ## T37 · Coût de revient et prix par client
 
 Démo : https://qm-engineering.fr/templates/cout-revient/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/cout-de-revient
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/cout-de-revient?utm_source=reddit&utm_medium=social&utm_campaign=cout-de-revient
 
 Rappel : outil d'aide à la décision, pas de conseil comptable ou fiscal ; aucun taux chiffré.
 
@@ -322,7 +322,7 @@ https://qm-engineering.fr/templates/cout-revient/?demo
 ## T40 · Calculateur de TJM freelance
 
 Démo : https://qm-engineering.fr/templates/tjm/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/calculateur-tjm
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/calculateur-tjm?utm_source=reddit&utm_medium=social&utm_campaign=calculateur-tjm
 
 Rappel : outil d'aide au calcul, pas de conseil fiscal ; ne citer aucun taux de cotisations dans le
 message.
@@ -353,7 +353,7 @@ https://qm-engineering.fr/templates/tjm/?demo
 ## T41 · Livre recettes-dépenses micro-entreprise
 
 Démo : https://qm-engineering.fr/templates/micro-entreprise/?demo
-Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/livre-recettes-micro
+Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/livre-recettes-micro?utm_source=reddit&utm_medium=social&utm_campaign=livre-recettes-micro
 
 Rappel : outil d'aide, pas un logiciel comptable certifié ni un conseil ; seule la déclaration sur le
 site de l'Urssaf fait foi.

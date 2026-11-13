@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/nutrition/?demo
 - Présentation : https://qm-engineering.fr/templates/#nutrition
-- Achat : https://qmengineering.gumroad.com/l/nutrition (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/nutrition?utm_source=linkedin&utm_medium=social&utm_campaign=nutrition (en premier commentaire)
 
 **Image à joindre** : `assets/templates-nutrition-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-nutrition-tel.webp`), Bilan, Menus et courses. Texte
@@ -64,7 +64,7 @@ Lien d'achat en commentaire.
 
 ## Premier commentaire
 
-Pour l'acheter (19 €, achat unique) : https://qmengineering.gumroad.com/l/nutrition
+Pour l'acheter (19 €, achat unique) : https://qmengineering.gumroad.com/l/nutrition?utm_source=linkedin&utm_medium=social&utm_campaign=nutrition
 
 ---
 

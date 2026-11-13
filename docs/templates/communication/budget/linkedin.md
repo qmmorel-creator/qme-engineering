@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/budget/?demo
 - Présentation : https://qm-engineering.fr/templates/#budget
-- Achat : https://qmengineering.gumroad.com/l/budget-foyer
+- Achat : https://qmengineering.gumroad.com/l/budget-foyer?utm_source=linkedin&utm_medium=social&utm_campaign=budget-foyer
 
 **Image à joindre** : `assets/templates-budget-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone du diagramme (`templates-budget-tel.webp`), capture Enveloppes. Texte
@@ -60,7 +60,7 @@ https://qm-engineering.fr/templates/budget/?demo
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (15 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/budget-foyer
+> https://qmengineering.gumroad.com/l/budget-foyer?utm_source=linkedin&utm_medium=social&utm_campaign=budget-foyer
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

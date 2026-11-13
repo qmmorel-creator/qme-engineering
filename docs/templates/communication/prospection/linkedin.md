@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/prospection/?demo
 - Présentation : https://qm-engineering.fr/templates/#prospection
-- Achat : https://qmengineering.gumroad.com/l/pipeline-prospection
+- Achat : https://qmengineering.gumroad.com/l/pipeline-prospection?utm_source=linkedin&utm_medium=social&utm_campaign=pipeline-prospection
 
 **Image à joindre** : `assets/templates-prospection-couverture.png` (1280 × 720, données fictives), ou
 en carrousel : couverture, capture téléphone (`templates-prospection-tel.webp`), pipeline
@@ -64,7 +64,7 @@ https://qm-engineering.fr/templates/prospection/?demo
 
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
-> Pour l'acheter (25 €, achat unique) : https://qmengineering.gumroad.com/l/pipeline-prospection
+> Pour l'acheter (25 €, achat unique) : https://qmengineering.gumroad.com/l/pipeline-prospection?utm_source=linkedin&utm_medium=social&utm_campaign=pipeline-prospection
 
 ## Points de vigilance
 

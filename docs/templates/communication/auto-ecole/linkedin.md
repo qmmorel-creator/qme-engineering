@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/auto-ecole/?demo
 - Présentation : https://qm-engineering.fr/templates/#auto-ecole
-- Achat : https://qmengineering.gumroad.com/l/gestion-auto-ecole (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/gestion-auto-ecole?utm_source=linkedin&utm_medium=social&utm_campaign=gestion-auto-ecole (en premier commentaire)
 
 **Image à joindre** : `assets/templates-auto-ecole-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-auto-ecole-tel.webp`), fiche élève, bilan.
@@ -59,7 +59,7 @@ retours m'intéressent.
 
 ## Premier commentaire
 
-> Le lien d'achat (45 €, achat unique) : https://qmengineering.gumroad.com/l/gestion-auto-ecole
+> Le lien d'achat (45 €, achat unique) : https://qmengineering.gumroad.com/l/gestion-auto-ecole?utm_source=linkedin&utm_medium=social&utm_campaign=gestion-auto-ecole
 
 ## Version courte (commentaire, story, message privé)
 

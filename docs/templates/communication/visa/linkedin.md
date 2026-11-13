@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/visa/?demo
 - Présentation : https://qm-engineering.fr/templates/#visa
-- Achat : https://qmengineering.gumroad.com/l/circuit-visa (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/circuit-visa?utm_source=linkedin&utm_medium=social&utm_campaign=circuit-visa (en premier commentaire)
 
 **Image à joindre** : `assets/templates-visa-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-visa-tel.webp`), Registre, Tableau de bord. Texte
@@ -56,7 +56,7 @@ Maîtres d'œuvre, BET, OPC : je suis preneur de vos retours sur votre façon de
 
 ## Premier commentaire
 
-> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/circuit-visa
+> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/circuit-visa?utm_source=linkedin&utm_medium=social&utm_campaign=circuit-visa
 
 ## Version courte (commentaire, story, message privé)
 

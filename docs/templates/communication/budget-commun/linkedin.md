@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier (le permalien Gumroad n'exi
 
 - Démo : https://qm-engineering.fr/templates/budget-commun/?demo
 - Présentation : https://qm-engineering.fr/templates/#budget-commun
-- Achat : https://qmengineering.gumroad.com/l/budget-commun
+- Achat : https://qmengineering.gumroad.com/l/budget-commun?utm_source=linkedin&utm_medium=social&utm_campaign=budget-commun
 
 **Image à joindre** : `assets/templates-budget-commun-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-budget-commun-tel.webp`), capture Mois
@@ -65,7 +65,7 @@ avec la même exigence que le sur mesure.
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (15 €, achat unique, une clé pour tout le foyer) :
-> https://qmengineering.gumroad.com/l/budget-commun
+> https://qmengineering.gumroad.com/l/budget-commun?utm_source=linkedin&utm_medium=social&utm_campaign=budget-commun
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

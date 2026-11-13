@@ -3,7 +3,7 @@
 LI-74 · 13/11/2026 à 13:00 · statut « Programmé » dans le Google Sheet « Planning publications LinkedIn ». Texte : https://docs.google.com/document/d/1DIjazkRXQMwz4YGutGTil9IYX8tiwNFK0WqEWvNQrzU/edit ; image `LI-74-templates.png` (dossier Images du planning, copie ici). Relue par Quentin avant publication.
 
 - Site : https://qm-engineering.fr/templates/
-- Boutique Gumroad : https://qmengineering.gumroad.com
+- Boutique Gumroad : https://qmengineering.gumroad.com?utm_source=linkedin&utm_medium=social&utm_campaign=boutique
 
 **Image** : `LI-74-templates.png` (1200 × 1200), mosaïque des 9 couvertures, données fictives.
 
@@ -57,7 +57,7 @@ D'autres suivent : registre de visas, gestion de flotte, devis, trésorerie pré
 
 ## Premier commentaire (à poster soi-même juste après la publication)
 
-> Pour acheter directement sur la boutique Gumroad : https://qmengineering.gumroad.com
+> Pour acheter directement sur la boutique Gumroad : https://qmengineering.gumroad.com?utm_source=linkedin&utm_medium=social&utm_campaign=boutique
 
 ## Version courte (commentaire, story, message privé)
 

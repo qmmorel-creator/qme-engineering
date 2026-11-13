@@ -9,7 +9,7 @@ et retirer le premier commentaire. Relue et ajustée par Quentin avant publicati
 
 - Démo : https://qm-engineering.fr/templates/secret-santa/?demo
 - Présentation : https://qm-engineering.fr/catalogue/secret-santa/
-- Gumroad (gratuit) : https://qmengineering.gumroad.com/l/secret-santa (permalien à vérifier une fois la fiche créée)
+- Gumroad (gratuit) : https://qmengineering.gumroad.com/l/secret-santa?utm_source=linkedin&utm_medium=social&utm_campaign=secret-santa (permalien à vérifier une fois la fiche créée)
 
 **Média : vidéo uniquement, aucune image** (décision de Quentin, 13/11/2026) : `assets/secret-santa-noel.mp4`,
 motion design de Noël de 46 s, 1080 × 1920, musique « Christmas is coming » d'Alex-Productions (chosic.com,
@@ -76,7 +76,7 @@ Creative Commons CC BY 3.0
 ## Premier commentaire (à poster soi-même, pour le lien Gumroad)
 
 > Pour l'utiliser avec votre groupe (gratuit, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/secret-santa
+> https://qmengineering.gumroad.com/l/secret-santa?utm_source=linkedin&utm_medium=social&utm_campaign=secret-santa
 
 *Le lien Gumroad en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

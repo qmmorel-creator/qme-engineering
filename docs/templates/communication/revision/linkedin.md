@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/revision/?demo
 - Présentation : https://qm-engineering.fr/templates/#revision
-- Achat : https://qmengineering.gumroad.com/l/planning-revision
+- Achat : https://qmengineering.gumroad.com/l/planning-revision?utm_source=linkedin&utm_medium=social&utm_campaign=planning-revision
 
 **Image à joindre** : `assets/templates-revision-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-revision-tel.webp`), capture Planning, capture Bilan.
@@ -62,7 +62,7 @@ n'hésitez pas à lui transmettre.
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (14,90 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/planning-revision
+> https://qmengineering.gumroad.com/l/planning-revision?utm_source=linkedin&utm_medium=social&utm_campaign=planning-revision
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

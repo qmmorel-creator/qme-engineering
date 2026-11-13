@@ -6,7 +6,7 @@ rien n'a été vérifié pour ce texte.
 
 - Démo : https://qm-engineering.fr/templates/inscriptions/?demo
 - Présentation : https://qm-engineering.fr/templates/#inscriptions
-- Achat : https://qmengineering.gumroad.com/l/inscriptions-associatives (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/inscriptions-associatives?utm_source=linkedin&utm_medium=social&utm_campaign=inscriptions-associatives (en premier commentaire)
 
 **Image à joindre** : `assets/templates-inscriptions-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-inscriptions-tel.webp`), Tableau de bord, Activités.
@@ -60,7 +60,7 @@ aujourd'hui ? Vos retours m'intéressent.
 
 ## Premier commentaire
 
-> Le lien d'achat (29 €, achat unique) : https://qmengineering.gumroad.com/l/inscriptions-associatives
+> Le lien d'achat (29 €, achat unique) : https://qmengineering.gumroad.com/l/inscriptions-associatives?utm_source=linkedin&utm_medium=social&utm_campaign=inscriptions-associatives
 
 ## Version courte (commentaire, story, message privé)
 

@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/flotte/?demo
 - Présentation : https://qm-engineering.fr/templates/#flotte
-- Achat : https://qmengineering.gumroad.com/l/gestion-flotte (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/gestion-flotte?utm_source=linkedin&utm_medium=social&utm_campaign=gestion-flotte (en premier commentaire)
 
 **Image à joindre** : `assets/templates-flotte-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-flotte-tel.webp`), Alertes, Location longue durée, Coûts.
@@ -60,7 +60,7 @@ aujourd'hui ? Vos retours m'intéressent.
 
 ## Premier commentaire
 
-> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/gestion-flotte
+> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/gestion-flotte?utm_source=linkedin&utm_medium=social&utm_campaign=gestion-flotte
 
 ## Version courte (commentaire, story, message privé)
 

@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/evenementiel/?demo
 - Présentation : https://qm-engineering.fr/templates/#evenementiel
-- Achat : https://qmengineering.gumroad.com/l/pilote-evenementiel
+- Achat : https://qmengineering.gumroad.com/l/pilote-evenementiel?utm_source=linkedin&utm_medium=social&utm_campaign=pilote-evenementiel
 
 **Image à joindre** : `assets/templates-evenementiel-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-evenementiel-tel.webp`), Budget, Jour J. Texte alternatif :
@@ -65,7 +65,7 @@ Vous organisez des événements ? Vos retours m'intéressent.
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (49 €, achat unique, toute l'équipe sur tous ses appareils) :
-> https://qmengineering.gumroad.com/l/pilote-evenementiel
+> https://qmengineering.gumroad.com/l/pilote-evenementiel?utm_source=linkedin&utm_medium=social&utm_campaign=pilote-evenementiel
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

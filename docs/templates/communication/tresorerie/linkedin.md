@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/tresorerie/?demo
 - Présentation : https://qm-engineering.fr/templates/#tresorerie
-- Achat (premier commentaire) : https://qmengineering.gumroad.com/l/tresorerie-previsionnelle
+- Achat (premier commentaire) : https://qmengineering.gumroad.com/l/tresorerie-previsionnelle?utm_source=linkedin&utm_medium=social&utm_campaign=tresorerie-previsionnelle
 
 **Image à joindre** : `assets/templates-tresorerie-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-tresorerie-tel.webp`), capture Tableau, capture Pointage.

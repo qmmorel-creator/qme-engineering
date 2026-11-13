@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier (le permalien Gumroad n'exi
 
 - Démo : https://qm-engineering.fr/templates/planner/?demo
 - Présentation : https://qm-engineering.fr/templates/#planner
-- Achat : https://qmengineering.gumroad.com/l/planner-horaire
+- Achat : https://qmengineering.gumroad.com/l/planner-horaire?utm_source=linkedin&utm_medium=social&utm_campaign=planner-horaire
 
 **Image à joindre** : `assets/templates-planner-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture Bilan (`templates-planner-bilan.webp`), capture téléphone (`templates-planner-tel.webp`).
@@ -57,7 +57,7 @@ Lien d'achat en premier commentaire.
 
 ## Premier commentaire
 
-Le planner horaire (15 €, achat unique) : https://qmengineering.gumroad.com/l/planner-horaire
+Le planner horaire (15 €, achat unique) : https://qmengineering.gumroad.com/l/planner-horaire?utm_source=linkedin&utm_medium=social&utm_campaign=planner-horaire
 
 ## Version courte (commentaire ou story, 3 lignes)
 

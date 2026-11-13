@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/reserves/?demo
 - Présentation : https://qm-engineering.fr/templates/#reserves
-- Achat : https://qmengineering.gumroad.com/l/levee-reserves (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/levee-reserves?utm_source=linkedin&utm_medium=social&utm_campaign=levee-reserves (en premier commentaire)
 
 **Image à joindre** : `assets/templates-reserves-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-reserves-tel.webp`), Tableau de bord, Procès-verbal.
@@ -58,7 +58,7 @@ aujourd'hui ? Vos retours m'intéressent.
 
 ## Premier commentaire
 
-> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/levee-reserves
+> Le lien d'achat (39 €, achat unique) : https://qmengineering.gumroad.com/l/levee-reserves?utm_source=linkedin&utm_medium=social&utm_campaign=levee-reserves
 
 ## Version courte (commentaire, story, message privé)
 

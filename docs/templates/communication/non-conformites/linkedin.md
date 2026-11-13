@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/non-conformites/?demo
 - Présentation : https://qm-engineering.fr/templates/#non-conformites
-- Achat : https://qmengineering.gumroad.com/l/non-conformites
+- Achat : https://qmengineering.gumroad.com/l/non-conformites?utm_source=linkedin&utm_medium=social&utm_campaign=non-conformites
 
 **Image à joindre** : `assets/templates-non-conformites-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-non-conformites-tel.webp`), fiche d'une non-conformité,
@@ -70,7 +70,7 @@ retours.
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (20 €, achat unique, tous les appareils) :
-> https://qmengineering.gumroad.com/l/non-conformites
+> https://qmengineering.gumroad.com/l/non-conformites?utm_source=linkedin&utm_medium=social&utm_campaign=non-conformites
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

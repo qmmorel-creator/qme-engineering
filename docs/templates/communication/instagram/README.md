@@ -17,7 +17,7 @@ contrôler dans l'app au moment de les appliquer.
 | Photo | `png/ig-avatar.png` : symbole Bauhaus du site (même logo que LinkedIn), 1080 × 1080, marge prévue pour la découpe ronde |
 | Catégorie | à choisir dans la liste d'Instagram (par exemple « Logiciel » ou « Entreprise de logiciels ») *(à vérifier)* |
 | Type de compte | professionnel (Créateur ou Entreprise) |
-| Liens | 1. `https://qm-engineering.fr/templates/` (« Templates et démos ») · 2. `https://qm-engineering.fr/sur-mesure/` (« Outil sur mesure ») · 3. `https://qm-engineering.fr/contact/` (« Parler de votre projet ») · 4. `https://qmengineering.gumroad.com` (« Boutique ») |
+| Liens | 1. `https://qm-engineering.fr/templates/` (« Templates et démos ») · 2. `https://qm-engineering.fr/sur-mesure/` (« Outil sur mesure ») · 3. `https://qm-engineering.fr/contact/` (« Parler de votre projet ») · 4. `https://qmengineering.gumroad.com?utm_source=instagram&utm_medium=bio&utm_campaign=boutique` (« Boutique ») |
 
 **Bio** (132 caractères sur 150) :
 

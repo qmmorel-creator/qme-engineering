@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/gantt/?demo
 - Présentation : https://qm-engineering.fr/templates/#gantt
-- Achat : https://qmengineering.gumroad.com/l/planning-gantt
+- Achat : https://qmengineering.gumroad.com/l/planning-gantt?utm_source=linkedin&utm_medium=social&utm_campaign=planning-gantt
 
 **Image à joindre** : `assets/templates-gantt-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture Gantt (`templates-gantt-gantt.webp`), capture Chemin critique
@@ -63,7 +63,7 @@ Si vous tenez encore vos plannings dans un tableur, je serais curieux d'avoir vo
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (45 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/planning-gantt
+> https://qmengineering.gumroad.com/l/planning-gantt?utm_source=linkedin&utm_medium=social&utm_campaign=planning-gantt
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

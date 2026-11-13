@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier (le permalien Gumroad est p
 
 - Démo : https://qm-engineering.fr/templates/devis/?demo
 - Présentation : https://qm-engineering.fr/templates/#devis
-- Achat : https://qmengineering.gumroad.com/l/generateur-devis
+- Achat : https://qmengineering.gumroad.com/l/generateur-devis?utm_source=linkedin&utm_medium=social&utm_campaign=generateur-devis
 
 **Image à joindre** : `assets/templates-devis-couverture.png` (1280 × 720), ou en carrousel : couverture,
 aperçu A4 (`templates-devis-apercu.webp`), capture téléphone (`templates-devis-tel.webp`).
@@ -67,7 +67,7 @@ Si vous connaissez un artisan ou un indépendant qui fait ses devis à la main, 
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (29 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/generateur-devis
+> https://qmengineering.gumroad.com/l/generateur-devis?utm_source=linkedin&utm_medium=social&utm_campaign=generateur-devis
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui renvoient vers un autre site.*

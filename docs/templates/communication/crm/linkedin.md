@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/crm/?demo
 - Présentation : https://qm-engineering.fr/templates/#crm
-- Achat : https://qmengineering.gumroad.com/l/crm-freelance
+- Achat : https://qmengineering.gumroad.com/l/crm-freelance?utm_source=linkedin&utm_medium=social&utm_campaign=crm-freelance
 
 **Image à joindre** : `assets/templates-crm-couverture.png` (1280 × 720, données fictives), ou en
 carrousel : couverture, capture téléphone (`templates-crm-tel.webp`), fiche contact
@@ -60,7 +60,7 @@ https://qm-engineering.fr/templates/crm/?demo
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (25 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/crm-freelance
+> https://qmengineering.gumroad.com/l/crm-freelance?utm_source=linkedin&utm_medium=social&utm_campaign=crm-freelance
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

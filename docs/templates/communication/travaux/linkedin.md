@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/travaux/?demo
 - Présentation : https://qm-engineering.fr/templates/#travaux
-- Achat : https://qmengineering.gumroad.com/l/pilote-travaux (en premier commentaire)
+- Achat : https://qmengineering.gumroad.com/l/pilote-travaux?utm_source=linkedin&utm_medium=social&utm_campaign=pilote-travaux (en premier commentaire)
 
 **Image à joindre** : `assets/templates-travaux-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-travaux-tel.webp`), Budget, Planning.
@@ -61,7 +61,7 @@ Vous avez rénové récemment : qu'est-ce qui vous a le plus manqué pour suivre
 
 ## Premier commentaire
 
-> Le lien d'achat (25 €, achat unique) : https://qmengineering.gumroad.com/l/pilote-travaux
+> Le lien d'achat (25 €, achat unique) : https://qmengineering.gumroad.com/l/pilote-travaux?utm_source=linkedin&utm_medium=social&utm_campaign=pilote-travaux
 
 ## Version courte (commentaire, story, message privé)
 

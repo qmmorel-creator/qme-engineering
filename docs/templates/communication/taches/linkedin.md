@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/taches/?demo
 - Présentation : https://qm-engineering.fr/templates/#taches
-- Achat : https://qmengineering.gumroad.com/l/gestionnaire-taches
+- Achat : https://qmengineering.gumroad.com/l/gestionnaire-taches?utm_source=linkedin&utm_medium=social&utm_campaign=gestionnaire-taches
 
 **Image à joindre** : `assets/templates-taches-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-taches-tel.webp`), triage (`templates-taches-triage.webp`),
@@ -62,7 +62,7 @@ https://qm-engineering.fr/templates/taches/?demo
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (19 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/gestionnaire-taches
+> https://qmengineering.gumroad.com/l/gestionnaire-taches?utm_source=linkedin&utm_medium=social&utm_campaign=gestionnaire-taches
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

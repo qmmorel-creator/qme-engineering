@@ -5,7 +5,7 @@ publication. Liens à vérifier au moment de publier.
 
 - Démo : https://qm-engineering.fr/templates/mariage/?demo
 - Présentation : https://qm-engineering.fr/templates/#mariage
-- Achat : https://qmengineering.gumroad.com/l/organisateur-mariage
+- Achat : https://qmengineering.gumroad.com/l/organisateur-mariage?utm_source=linkedin&utm_medium=social&utm_campaign=organisateur-mariage
 
 **Image à joindre** : `assets/templates-mariage-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone (`templates-mariage-tel.webp`), capture Budget, capture Plan de table.
@@ -64,7 +64,7 @@ Si quelqu'un autour de vous vient de dire oui, n'hésitez pas à lui transmettre
 ## Premier commentaire (à poster soi-même, pour le lien d'achat)
 
 > Pour l'acheter (29 €, accès à vie, tous les appareils) :
-> https://qmengineering.gumroad.com/l/organisateur-mariage
+> https://qmengineering.gumroad.com/l/organisateur-mariage?utm_source=linkedin&utm_medium=social&utm_campaign=organisateur-mariage
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*

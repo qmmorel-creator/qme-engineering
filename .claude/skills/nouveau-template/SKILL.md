@@ -89,7 +89,14 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
 
 ## 4. Préparer la communication
 
-Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par Quentin avant usage :
+Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par Quentin avant usage.
+
+**Liens d'achat toujours avec UTM** (attribution des vues dans les statistiques Gumroad) :
+`https://qmengineering.gumroad.com/l/<permalien>?utm_source=<source>&utm_medium=<support>&utm_campaign=<permalien>`.
+Valeurs : fiche du site `site` / `fiche` ; carte de `/templates/` `site` / `accueil` ; carte de
+`/en/templates/` `site` / `accueil-en` ; LinkedIn `linkedin` / `social` ; Reddit `reddit` / `social` ;
+bio Instagram (boutique) `instagram` / `bio` avec `utm_campaign=boutique` ; vidéos
+`<plateforme>` / `video` / `j<n>`.
 
 1. **Page de présentation sur le site QM Engineering** : la page `/catalogue/<slug>/` (générée depuis
    `section-site.html`) doit se suffire comme page d'atterrissage (lien direct
