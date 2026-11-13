@@ -184,6 +184,15 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
 
 /* ============ Trésorerie ============ */
+.etiquette{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;background:var(--encre);color:var(--papier)}
+.etiquette.rouge{background:var(--rouge);color:#fff}
+.etiquette.jaune{background:var(--jaune);color:var(--encre)}
+.etiquette.bleu{background:var(--bleu);color:#fff}
+.vide-etat{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;border:2px solid var(--encre);background:var(--surface);padding:24px}
+.vide-etat h3{font-size:24px}
+.vide-etat p{color:var(--texte-2);margin-top:6px}
+.vide-etat .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
 mark.rouge{background:var(--rouge);color:#fff}
 mark.bleu{background:var(--bleu);color:#fff}
 .lien-texte{background:none;border:0;padding:0;font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;color:inherit;cursor:pointer}
@@ -435,3 +444,7 @@ mark.bleu{background:var(--bleu);color:#fff}
 .modale form{max-height:calc(100dvh - 36px)}
 .modale-corps{overflow-y:auto;min-height:0;flex:1 1 auto}
 @media (max-width:720px){.modale form{max-height:calc(92dvh - 4px)}}
+/* Les listes déroulantes à options longues ne doivent pas élargir la modale. */
+.champ,.modale-corps>*,fieldset{min-width:0}
+.champ select{max-width:100%;text-overflow:ellipsis}
+.vue:focus{outline:none}

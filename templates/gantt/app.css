@@ -254,11 +254,11 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .gcorps .bord{cursor:ew-resize}
 .gcorps .gbarre:hover .poignee{opacity:1}
 @media (pointer:fine){.gcorps .gbarre{cursor:grab}}
-.gcol{display:grid;grid-template-columns:32px minmax(0,1fr) 112px 52px 70px 50px 84px;align-items:center;height:44px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.gcol{display:grid;grid-template-columns:32px minmax(0,1fr) 80px 52px 70px 50px 84px;align-items:center;height:44px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .gcol.compacte{grid-template-columns:32px minmax(0,1fr)}
 .gcol span{padding:0 6px;white-space:nowrap;overflow:hidden}
 .gcol .c-num{text-align:right}
-.gl{display:grid;grid-template-columns:32px minmax(0,1fr) 112px 52px 70px 50px 84px;align-items:center;height:var(--row);border-bottom:1px solid #E9E5DB;font-size:14px}
+.gl{display:grid;grid-template-columns:32px minmax(0,1fr) 80px 52px 70px 50px 84px;align-items:center;height:var(--row);border-bottom:1px solid #E9E5DB;font-size:14px}
 .gl.gl-planning,.gl.gl-section{display:flex}
 .gl .c-num{text-align:right;padding-right:6px;font-size:12px;font-weight:700;color:var(--discret)}
 .gl-tache:not([data-ligne]){grid-template-columns:32px minmax(0,1fr)}
@@ -266,7 +266,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .gl input:hover{border-color:var(--trait)}
 .gl input:focus{border-color:var(--encre);background:#fff;outline:2px solid var(--jaune);outline-offset:0}
 .gl input[type=number]{text-align:right;padding-right:2px}
-.gl input[type=date]{font-size:12.5px;padding:0 2px}
+.gl [data-champ=debut]{font-size:13px}
 .gl input.auto{color:var(--discret);font-style:italic}
 .gl .c-nom{display:flex;align-items:center;min-width:0}
 .gl .c-nom input{font-weight:600}

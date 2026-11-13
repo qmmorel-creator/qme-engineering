@@ -522,7 +522,7 @@
     const etat = b.statut !== 'prevu' ? LIB_STATUT[b.statut] : aMarquer ? 'À marquer' : enCours ? 'En cours' : '';
     const libelle = `${b.titre}, ${nomCat(b.cat)}, ${fmt(b.date, { weekday: 'long' })} ${plage(b)}${etat ? `, ${etat}` : ''}${b.serieId ? ', répété chaque semaine' : ''}`;
     const marque = { fait: '✓', raccourci: '½', deplace: '→', pasfait: '✕' }[b.statut] || (aMarquer ? '•' : '');
-    return `<button class="bloc st-${b.statut} ${aMarquer ? 'a-marquer' : ''} ${enCours ? 'en-cours' : ''} ${b.duree <= 30 ? 'court' : ''}" data-id="${b.id}" style="${styleCat(b.cat)};top:${top}px;height:${haut}px;left:calc(${(couloir / couloirs) * 100}% + 2px);width:calc(${100 / couloirs}% - 4px)" aria-label="${esc(libelle)}">
+    return `<button class="bloc st-${b.statut} ${aMarquer ? 'a-marquer' : ''} ${enCours ? 'en-cours' : ''} ${b.duree <= 30 ? 'court' : b.duree <= 60 ? 'moyen' : ''}" data-id="${b.id}" style="${styleCat(b.cat)};top:${top}px;height:${haut}px;left:calc(${(couloir / couloirs) * 100}% + 2px);width:calc(${100 / couloirs}% - 4px)" aria-label="${esc(libelle)}">
       ${reste ? `<i class="reste" style="height:${reste}%"></i>` : ''}
       <b>${esc(b.titre)}</b><span class="heure">${plage(b)}</span>${marque ? `<span class="marque-bloc" aria-hidden="true">${marque}</span>` : ''}${b.serieId ? '<span class="serie" aria-hidden="true">↻</span>' : ''}
       ${b.statut === 'deplace' ? '' : '<span class="poignee" aria-hidden="true"></span>'}
@@ -541,7 +541,7 @@
     if (corps.querySelector('.g-col.auj')) cible = ((n.min - gDe) / 30) * H - 2 * H;
     else if (premier) cible = parseFloat(premier.style.top) - H;
     if (cible === null || !estTel()) return; // sur ordinateur, la grille tient dans la page
-    const y = corps.getBoundingClientRect().top + window.scrollY + Math.max(0, cible) - 130;
+    const y = corps.getBoundingClientRect().top + window.scrollY + Math.max(0, cible) - 260;
     window.scrollTo({ top: Math.max(0, y) });
   }
 

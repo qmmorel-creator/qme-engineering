@@ -202,7 +202,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .graphique .grille{stroke:var(--trait);stroke-width:1}
 .graphique .base{stroke:var(--encre);stroke-width:2}
 .graphique .zone{fill:transparent;cursor:crosshair}
-.graphique .zone:hover+g rect,.graphique .colonne.active rect{stroke-width:2.5}
+.graphique .colonne-g{pointer-events:none}
+.graphique .zone:hover+g rect,.graphique .colonne-g.active rect{stroke-width:2.5}
 .infobulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);padding:8px 10px;font-size:13px;line-height:1.4;min-width:150px;z-index:5;box-shadow:4px 4px 0 var(--jaune)}
 .infobulle b{display:block;margin-bottom:2px}
 .infobulle i{display:inline-block;width:9px;height:9px;margin-right:6px;outline:1px solid var(--papier)}
@@ -256,7 +257,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .ligne:last-child{border-bottom:0}
 .ligne>i{width:12px;height:12px;background:var(--c);display:block}
 .ligne b{display:block;font-size:16px;overflow-wrap:anywhere}
-.ligne div>span{font-size:13px;color:var(--discret)}
+.ligne div>span:not(.etiquette){font-size:13px;color:var(--discret)}
 .liste-bloc{border:2px solid var(--encre);background:var(--surface)}
 .ligne-bouton{width:100%;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;cursor:pointer;color:inherit;font:inherit}
 .ligne-bouton:last-child{border-bottom:0}

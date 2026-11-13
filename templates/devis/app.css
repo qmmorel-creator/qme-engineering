@@ -371,7 +371,6 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .sections-ent{grid-template-columns:1fr}
   .ld-ouvrir{grid-template-columns:130px minmax(0,1fr) 150px 140px}
 }
-}
 
 /* ============ Téléphone ============ */
 @media (max-width:720px){
@@ -404,6 +403,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
   .tuiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .tuile{padding:12px}
+  .tuile .surtitre{padding-right:26px;letter-spacing:.08em;font-size:11px}
+  .tuile::after{width:40px;height:40px;right:-14px;top:-14px}
   .tuile b{font-size:30px}
   .tuile span{display:none}
   .grille-2,.champ-double{grid-template-columns:1fr}
@@ -425,7 +426,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .statut{margin:0 -2px -2px 0}
   .statut-info{grid-column:1/-1;margin:8px 0 0}
   .bloc{padding:14px 12px}
-  .l{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .l{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+  .l input,.l select{padding:8px 6px}
   .l-des{grid-column:1/-1}
   .l>.l-outils{grid-column:1/-1;grid-row:auto}
   .l-qte,.l-unite,.l-pu,.l-rem,.l-tva,.l-montant,.lignes.sans-tva .l-montant{grid-column:span 2}
@@ -453,9 +455,16 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   body,body.app{background:#fff;padding:0!important}
   .barre,.bandeau-demo,.onglets,.apercu-barre,.apercu-alerte,#toast,.modale{display:none!important}
   .vue{padding:0;max-width:none}
-  .feuille{border:0;box-shadow:none;padding:0;max-width:none;font-size:10.5pt}
+  .feuille{border:0;box-shadow:none;padding:0;max-width:none;font-size:9.5pt;line-height:1.35}
+  .f-tete{padding-bottom:8px}
+  .f-parties{margin:10px 0}
+  .f-table td,.f-table th{padding:3px 6px}
+  .f-totaux .totaux div{padding:2px 0;font-size:9.5pt}
+  .f-mentions{font-size:8.5pt;gap:3px}
+  .f-signatures{margin-top:10px}
+  .f-signatures div{min-height:90px}
   .f-defile{overflow:visible}
-  .f-table{font-size:9.5pt}
+  .f-table{font-size:9pt}
   .f-table thead{display:table-header-group}
   .f-table tr{break-inside:avoid}
   .f-titre td,.f-table th,.f-totaux .totaux .total{-webkit-print-color-adjust:exact;print-color-adjust:exact}

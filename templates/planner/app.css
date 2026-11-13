@@ -183,8 +183,10 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .bloc{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:3px 6px 6px;overflow:hidden;border:2px solid var(--encre);background:var(--c);color:var(--t);text-align:left;font-size:12px;line-height:1.25;z-index:2;touch-action:manipulation;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;cursor:grab}
 .bloc:hover{box-shadow:3px 3px 0 var(--encre);z-index:4}
 .bloc:focus-visible{outline:3px solid var(--bleu);outline-offset:1px;z-index:5}
-.bloc b{font-weight:700;font-size:13px;overflow-wrap:anywhere;padding-right:14px;position:relative;z-index:1}
+.bloc b{font-weight:700;font-size:13px;padding-right:14px;position:relative;z-index:1}
 .bloc .heure{font-size:11px;opacity:.9;position:relative;z-index:1;white-space:nowrap}
+.bloc b{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+.bloc.moyen b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .bloc.court{flex-direction:row;align-items:center;gap:6px;padding-top:0;padding-bottom:0}
 .bloc.court b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .bloc.court .heure{display:none}
@@ -393,6 +395,7 @@ body.glisse-en-cours,body.glisse-en-cours *{cursor:grabbing!important}
   .semaine-tete .nav-semaine{grid-column:1/-1;display:grid;grid-template-columns:44px 1fr 44px}
   .titre-semaine::first-letter{text-transform:uppercase}
   .legende-cats{display:none}
+  .bande-jours{position:sticky;top:62px;z-index:12;background:var(--papier);padding:6px 0;margin:0 -2px 8px}
   .grille{--larg-h:48px}
   .g-tete{display:none}
   .g-heures span{font-size:12px}
@@ -429,3 +432,6 @@ body.glisse-en-cours,body.glisse-en-cours *{cursor:grabbing!important}
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.types{grid-template-columns:1fr}}
+.groupe-marques .marques{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr))}
+.groupe-marques .mq{border-left:0;border-right:2px solid var(--encre)}
+.groupe-marques .mq:last-child{border-right:0}

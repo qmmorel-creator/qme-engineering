@@ -460,7 +460,7 @@
         : c.premierSousSeuil ? `<mark>Sous ton seuil</mark> en ${lm(c.premierSousSeuil, { annee: false })}.`
           : 'Ton compte reste <mark class="bleu">au-dessus du seuil</mark> sur 12 mois.';
     const sous = vide ? 'Saisis tes encaissements et décaissements récurrents ou ponctuels : le solde de chaque mois se calcule tout seul.'
-      : `Scénario ${scenarioNom(E.scenario).toLowerCase()} · seuil d'alerte ${eurR(E.seuil)} · ${c.moisSousSeuil ? `${pluriel(c.moisSousSeuil, 'mois')} sous le seuil` : 'aucun mois sous le seuil'}.`;
+      : `Scénario ${scenarioNom(E.scenario).toLowerCase()} · seuil d'alerte ${eurR(E.seuil)} · ${c.moisSousSeuil ? `${pluriel(c.moisSousSeuil, 'mois', 'mois')} sous le seuil` : 'aucun mois sous le seuil'}.`;
     const tuiles = [
       [`Fin ${lm(courant.mois, { annee: false })}`, eurR(courant.solde), `Solde prévu en fin de mois en cours (début : ${eurR(courant.soldeDebut)}).`, courant.decouvert ? 'var(--rouge)' : courant.sousSeuil ? 'var(--jaune)' : 'var(--bleu)', 'rond'],
       ['Point bas', c.pointBas ? eurR(c.pointBas.solde) : '–', c.pointBas ? `Fin ${lm(c.pointBas.mois)}, le solde le plus bas des 12 mois.` : '', c.pointBas && c.pointBas.solde < 0 ? 'var(--rouge)' : c.pointBas && c.pointBas.solde < c.seuil ? 'var(--jaune)' : 'var(--encre)', ''],
@@ -498,7 +498,7 @@
         <div class="graphique-tete"><h2>${scenarioNom(E.scenario)}</h2><div class="legende"><span><i class="trait" style="background:var(--bleu)"></i>Solde de fin de mois</span><span><i style="background:rgba(29,78,137,.16)"></i>Prudent ↔ optimiste</span><span><i class="trait" style="background:var(--rouge)"></i>Seuil d'alerte</span></div></div>
         ${graphique(tous)}
         <div class="infobulle" hidden></div>
-        <table class="sr-only"><caption>Solde de fin de mois par scénario</caption><thead><tr><th>Mois</th><th>Prudent</th><th>Central</th><th>Optimiste</th></tr></thead><tbody>${c.vus.map((x, i) => `<tr><td>${lm(x.mois)}</td><td>${eur(tous.prudent.vus[i].solde)}</td><td>${eur(tous.central.vus[i].solde)}</td><td>${eur(tous.optimiste.vus[i].solde)}</td></tr>`).join('')}</tbody></table>
+        <div class="sr-only"><table><caption>Solde de fin de mois par scénario</caption><thead><tr><th>Mois</th><th>Prudent</th><th>Central</th><th>Optimiste</th></tr></thead><tbody>${c.vus.map((x, i) => `<tr><td>${lm(x.mois)}</td><td>${eur(tous.prudent.vus[i].solde)}</td><td>${eur(tous.central.vus[i].solde)}</td><td>${eur(tous.optimiste.vus[i].solde)}</td></tr>`).join('')}</tbody></table></div>
         <figcaption class="note">Soldes de fin de mois : en cours de mois, le solde peut descendre plus bas selon les dates de paiement.</figcaption>
       </figure>
       <div class="deux-colonnes">
@@ -553,7 +553,7 @@
     const bande = `<path class="bande" d="M${O.map((v, i) => `${x(i)},${y(Math.max(v.solde, P[i].solde))}`).join('L')}L${P.map((v, i) => `${x(i)},${y(Math.min(v.solde, O[i].solde))}`).reverse().join('L')}Z"/>`;
     const trait = `<path class="trait-solde" d="M${c.vus.map((v, i) => `${x(i)},${y(v.solde)}`).join('L')}"/>`;
     const ys = y(c.seuil);
-    const seuil = `<line class="seuil" x1="${g}" x2="${L - d}" y1="${ys}" y2="${ys}"/><text class="etiquette-seuil" x="${L - d}" y="${ys - 6}" text-anchor="end">Seuil ${eurR(c.seuil)}</text>`;
+    const seuil = `<line class="seuil" x1="${g}" x2="${L - d}" y1="${ys}" y2="${ys}"/><text class="etiquette-seuil" x="${g + 6}" y="${ys - 6}" text-anchor="start">Seuil ${eurR(c.seuil)}</text>`;
     const pas2 = petit ? 2 : 1;
     const points = c.vus.map((v, i) => `<rect class="zone" data-i="${i}" x="${g + larg * i}" y="0" width="${larg}" height="${H - b}"/><circle class="point ${v.decouvert ? 'neg' : v.sousSeuil ? 'bas' : ''}" data-i="${i}" cx="${x(i)}" cy="${y(v.solde)}" r="${v.sousSeuil ? 5.5 : 4.5}"/>${(n - 1 - i) % pas2 === 0 ? `<text class="axe" x="${x(i)}" y="${H - 8}" text-anchor="middle">${lm(v.mois, { court: true, annee: v.mois.endsWith('-01') || i === 0 })}</text>` : ''}`).join('');
     const fin = c.vus[n - 1];

@@ -1,7 +1,7 @@
 // Service worker du planning Gantt : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
-const VERSION = 'gantt-20261112';
-const COQUILLE = ['./', 'app.css?v=20261112', 'donnees.js?v=20261112', 'regles.js?v=20261112', 'app.js?v=20261112', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'gantt-20261113';
+const COQUILLE = ['./', 'app.css?v=20261113', 'donnees.js?v=20261113', 'regles.js?v=20261113', 'app.js?v=20261113', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

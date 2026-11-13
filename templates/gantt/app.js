@@ -634,7 +634,7 @@
     const x = (d) => ecart(G.de, d) * G.Z;
     const ROW = G.ROW, H = Math.max(L.length * ROW, ROW);
     const cq = G.calques || A.calques;
-    let fond = '', avant = '', liens = '', barres = '';
+    let fond = '', avant = '', liens = '', barres = '', dessus = '';
     // Week-ends.
     if (cq.weekends && G.Z >= 3.5) {
       for (const d of bornes('semaine', ajout(G.de, -7), G.a)) { const sam = ajout(d, 5); fond += `<rect x="${x(sam)}" y="0" width="${2 * G.Z}" height="${H}" fill="${PALETTE.weekend}"/>`; }
@@ -766,12 +766,12 @@
         const xm = x(rp.date) + G.Z / 2;
         avant += `<line x1="${xm}" x2="${xm}" y1="${b.de * ROW}" y2="${(b.a + 1) * ROW}" stroke="${PALETTE.bleu}" stroke-width="2" stroke-dasharray="6 4"/>`;
         const lw = Math.min(180, rp.nom.length * 6.2 + 12);
-        avant += `<g${G.interactif ? ` data-action="repere-modifier" data-id="${rp.id}" style="cursor:pointer"` : ''}><rect x="${xm}" y="${b.de * ROW + 2}" width="${lw}" height="16" fill="${PALETTE.bleu}"/><text x="${xm + 5}" y="${b.de * ROW + 14}" font-size="10.5" font-weight="700" fill="#fff" font-family="${POLICE}">${esc(rp.nom)}</text></g>`;
+        dessus += `<g${G.interactif ? ` data-action="repere-modifier" data-id="${rp.id}" style="cursor:pointer"` : ''}><rect x="${xm}" y="${b.de * ROW + 2}" width="${lw}" height="16" fill="${PALETTE.bleu}"/><text x="${xm + 5}" y="${b.de * ROW + 14}" font-size="10.5" font-weight="700" fill="#fff" font-family="${POLICE}">${esc(rp.nom)}</text></g>`;
       }
     }
     const t = auj();
     if (t >= G.de && t <= G.a) avant += `<line x1="${x(t) + G.Z / 2}" x2="${x(t) + G.Z / 2}" y1="0" y2="${H}" stroke="${PALETTE.rouge}" stroke-width="2"/>`;
-    return { svg: `${defs(G.prefixe)}<g>${fond}</g><g>${avant}</g><g>${liens}</g><g>${barres}</g>`, H };
+    return { svg: `${defs(G.prefixe)}<g>${fond}</g><g>${avant}</g><g>${liens}</g><g>${barres}</g><g>${dessus}</g>`, H };
   }
 
   // Vue Gantt : tableau + barres dans un même cadre défilant (colonne de gauche et échelle collantes).
@@ -847,7 +847,7 @@
     return `<div class="${classes}" role="row" data-ligne="${t.id}">
       <span class="c-num">${n}</span>
       <span class="c-nom"><input data-champ="nom" data-id="${t.id}" value="${esc(t.nom)}" aria-label="Nom de la tâche ${n}" maxlength="120"><button class="ouvrir" data-action="tache-modifier" data-id="${t.id}" aria-label="Détails de ${esc(t.nom)}" title="Détails">⋯</button></span>
-      <span class="c-debut"><input type="date" data-champ="debut" data-id="${t.id}" value="${r.debut}" class="${t.debut ? '' : 'auto'}" aria-label="Début de la tâche ${n}" title="${t.debut ? 'Début imposé (pas avant cette date)' : 'Calculé à partir des liens ou du début du planning'}"></span>
+      <span class="c-debut"><input data-champ="debut" data-id="${t.id}" value="${fmtTable(r.debut)}" inputmode="numeric" placeholder="jj/mm/aa" class="${t.debut ? '' : 'auto'}" aria-label="Début de la tâche ${n}" title="${t.debut ? 'Début imposé (pas avant cette date). Vide : suit les liens.' : 'Calculé à partir des liens ou du début du planning'}"></span>
       <span class="c-duree"><input type="number" data-champ="duree" data-id="${t.id}" value="${r.dur}" min="0" max="3650" aria-label="Durée de la tâche ${n} en ${UNITE(l.p)}"></span>
       <span class="c-fin" title="${fmtLong(r.fin)}">${fmtTable(r.fin)}</span>
       <span class="c-av"><input type="number" data-champ="avancement" data-id="${t.id}" value="${t.avancement}" min="0" max="100" step="5" aria-label="Avancement de la tâche ${n} en %"></span>
@@ -1070,7 +1070,11 @@
     const v = input.value;
     memo();
     if (champ === 'nom') { if (!v.trim()) { historique.pop(); input.value = t.nom; return; } t.nom = v.trim().slice(0, 120); }
-    else if (champ === 'debut') t.debut = R.estIso(v) ? v : null;
+    else if (champ === 'debut') {
+      // Vide : la tâche suit ses liens. Sinon jj/mm, jj/mm/aa ou jj/mm/aaaa.
+      if (!v.trim()) t.debut = null;
+      else { const d = R.lireDate(v.trim(), auj()); if (!d) { historique.pop(); toast('Date non comprise : écris-la jj/mm/aa (ou vide pour suivre les liens).'); rendre(); return; } t.debut = d; }
+    }
     else if (champ === 'duree') { const n = Math.round(Number(v)); if (!Number.isFinite(n) || n < 0) { historique.pop(); rendre(); return; } t.duree = Math.min(3650, n); }
     else if (champ === 'avancement') { const n = Math.round(Number(v)); t.avancement = Math.min(100, Math.max(0, Number.isFinite(n) ? n : 0)); }
     else if (champ === 'deps') {
@@ -1473,7 +1477,8 @@
   function svgComplet({ ids, format }) {
     const L = lignesGantt(ids, true);
     const { de, a } = etendue(L.filter((l) => l.type !== 'planning' || l.c.liste.length));
-    const deV = ajout(de, -3), aV = ajout(a, 4);
+    // Marge à droite pour les étiquettes des dernières barres.
+    const deV = ajout(de, -3), aV = ajout(a, 4 + Math.ceil(ecart(de, a) * 0.14));
     const NOMS = format === 'A3' ? 330 : 270;
     const largeurTotale = format === 'A3' ? 1540 : 1080;
     const ROW = format === 'A3' ? 22 : 20;
@@ -1494,7 +1499,7 @@
       noms += `<line x1="0" x2="${NOMS}" y1="${y + ROW}" y2="${y + ROW}" stroke="#E9E5DB"/>`;
     });
     noms += `<line x1="${NOMS}" x2="${NOMS}" y1="0" y2="${H}" stroke="${PALETTE.encre}" stroke-width="2"/><text x="6" y="26" font-size="12" font-weight="800" fill="${PALETTE.encre}" font-family="${POLICE}">Tâches</text>`;
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${largeurTotale}" height="${H}" viewBox="0 0 ${largeurTotale} ${H}" font-family="${POLICE}"><rect width="100%" height="100%" fill="#fff"/>${noms}<g transform="translate(${NOMS} 0)">${svgEchelle(g)}<g transform="translate(0 40)">${corps.svg}</g></g><rect x="1" y="1" width="${largeurTotale - 2}" height="${H - 2}" fill="none" stroke="${PALETTE.encre}" stroke-width="2"/></svg>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${largeurTotale}" height="${H}" viewBox="0 0 ${largeurTotale} ${H}" font-family="${POLICE}"><rect width="100%" height="100%" fill="#fff"/><g transform="translate(${NOMS} 0)">${svgEchelle(g)}<g transform="translate(0 40)">${corps.svg}</g></g>${noms}<rect x="1" y="1" width="${largeurTotale - 2}" height="${H - 2}" fill="none" stroke="${PALETTE.encre}" stroke-width="2"/></svg>`;
     return { svg, largeur: largeurTotale, H, de: deV, a: aV };
   }
 
