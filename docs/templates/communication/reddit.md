@@ -202,7 +202,7 @@ outil de suivi, pas un avis médical.
 > On suit ensuite le rapport mangé ÷ dépensé sur la semaine plutôt qu'au jour le jour.
 >
 > J'ai créé un journal des repas en ligne qui fait ces calculs (payant, démo libre ; outil de suivi,
-> pas un avis médical). Vous, vous partez d'une estimation comme ça, ou d'une montre ?
+> pas un avis médical). Et toi, tu pars d'une estimation comme ça, ou d'une montre ?
 
 **Lien (seulement si les règles l'autorisent)** : Démo sans inscription :
 https://qm-engineering.fr/templates/nutrition/?demo
@@ -372,7 +372,7 @@ site de l'Urssaf fait foi.
 > Surveiller aussi le chiffre d'affaires cumulé face aux seuils du régime et de la franchise de TVA.
 >
 > J'ai créé un livre recettes-dépenses en ligne (payant, démo libre ; outil d'aide, pas un conseil).
-> Vous tenez le vôtre sur papier, dans un tableur, autrement ?
+> Et toi, tu tiens le tien sur papier, dans un tableur, autrement ?
 
 **Lien (seulement si les règles l'autorisent)** : Démo sans inscription :
 https://qm-engineering.fr/templates/micro-entreprise/?demo
