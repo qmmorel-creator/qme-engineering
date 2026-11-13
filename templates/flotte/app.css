@@ -722,3 +722,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .composition .marque .m{color:var(--bleu)}
 .accroche .surtitre{color:var(--ciel-texte)}
 .accroche p{color:var(--texte-2)}
+
+/* Template pas encore en vente : mention dans le bandeau de démo (retirée à la mise en vente) */
+.bandeau-demo .bientot-demo{display:inline-flex;align-items:center;gap:8px;color:var(--encre);font-weight:600;text-decoration:none}
+.bandeau-demo .bientot-demo strong{padding:2px 10px;border-radius:999px;background:var(--encre);color:var(--papier);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.bandeau-demo .bientot-demo span{text-decoration:underline;text-underline-offset:3px}

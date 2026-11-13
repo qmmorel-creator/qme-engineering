@@ -95,8 +95,9 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    `section-site.html`) doit se suffire comme page d'atterrissage (lien direct
    `qm-engineering.fr/catalogue/<slug>/`) : promesse en une
    phrase, pour qui, 3 à 5 bénéfices concrets, captures, prix, « Acheter » et « Essayer la démo »,
-   questions fréquentes propres au produit. Activer sa carte dans le kanban de `/templates/` (colonne
-   de son thème, groupe travail ou maison) et ajouter sa carte sur `/en/templates/`.
+   questions fréquentes propres au produit. Mettre sa carte dans le catalogue de `/templates/` (liste
+   « En préparation » puis vitrine « Disponibles maintenant » à la mise en vente ; voir `reference.md`
+   § « Mise à jour du site ») et ajouter sa carte sur `/en/templates/`.
 2. **`linkedin.md`** : une publication de présentation (environ 1 200 à 1 500 caractères), à la première
    personne de Quentin, ton direct et sobre, sans superlatifs ni promesses chiffrées non vérifiées :
    accroche sur le problème, ce que fait le template (3 points), ce qui le distingue (base intégrée, tous

@@ -5,7 +5,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
 ## Structure
 
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue kanban travail / maison, bouton « Soumettre une idée » relié au
+  `sur-mesure/`, `templates/` (catalogue : filtres Professionnel / Vie personnelle, thèmes et recherche, état dans
+  l'adresse `?pour=…&theme=…&q=…` ; vitrine défilante des templates en vente ; liste compacte des
+  templates en préparation, dont la démo affiche un bandeau « Bientôt en vente » ; bouton « Soumettre une idée » relié au
   formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
   `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
   `/templates/#gantt`…) redirigent vers la bonne page.

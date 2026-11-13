@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="x-default" href="https://qm-engineering.fr/templates/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111307">
+<link rel="stylesheet" href="/assets/site.css?v=2026111308">
 <script>(()=>{const h=location.hash.slice(1);if(/^[a-z-]+$/.test(h)&&!document.getElementById(h)&&!['pro','perso','tous','questions','fonctionnement'].includes(h))location.replace('/catalogue/'+h+'/');})();</script>
 </head>
 <body>
@@ -62,110 +62,82 @@
   </div>
 </section>
 
-<section class="catalogue" id="tous" aria-label="Tous les templates">
+<section class="catalogue" id="tous" aria-labelledby="catalogue-titre" data-catalogue>
   <div class="catalogue-tete">
-    <h2>Tous les templates</h2>
-    <div class="catalogue-actions"><div class="bascule"><a href="#pro">Pour le travail</a><a href="#perso">Pour la maison</a></div><button class="btn idee" type="button" data-ouvrir-idee>Soumettre une idée</button></div>
+    <h2 id="catalogue-titre">Tous les templates</h2>
+    <button class="btn idee" type="button" data-ouvrir-idee>Soumettre une idée</button>
   </div>
-  <div class="tableau" id="pro">
-    <div class="tableau-tete"><h3>Pour le travail</h3><p>Projets, indépendants, équipes et associations · 6 en vente</p></div>
-    <div class="colonnes">
-    <div class="colonne" style="--c:var(--bleu)">
-      <h4>Projets et chantiers<span>4</span></h4>
-      <ul>
-        <li class="carte" data-slug="gantt"><a href="/catalogue/gantt/"><b>Planning Gantt rapide</b><span class="phrase">Une ligne par tâche, liens, jours fériés et chemin critique.</span><span class="pied"><em>45 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte prochaine" data-slug="visa"><a href="/catalogue/visa/"><b>Circuit de visa des documents</b><span class="phrase">Indices, avis des viseurs et échéances, lot par lot.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="reserves"><a href="/catalogue/reserves/"><b>Levée de réserves</b><span class="phrase">Réserves par lot et entreprise, retards calculés.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="non-conformites"><a href="/catalogue/non-conformites/"><b>Registre des non-conformités</b><span class="phrase">Constat, cause, actions correctives et vérification.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
+  <div class="filtres-catalogue" data-filtres hidden>
+    <div class="rang">
+      <div class="segment" role="group" aria-label="Usage">
+        <button type="button" data-pour="" aria-pressed="true">Tous</button>
+        <button type="button" data-pour="pro" aria-pressed="false">Professionnel</button>
+        <button type="button" data-pour="perso" aria-pressed="false">Vie personnelle</button>
+      </div>
+      <label class="recherche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr-only">Rechercher un template</span><input id="catalogue-recherche" type="search" placeholder="Budget, devis, chantier…" autocomplete="off" enterkeyhint="search"></label>
     </div>
-    <div class="colonne" style="--c:var(--rouge)">
-      <h4>Organisation et réunions<span>2</span></h4>
-      <ul>
-        <li class="carte" data-slug="taches"><a href="/catalogue/taches/"><b>Gestionnaire de tâches</b><span class="phrase">Boîte de réception, priorités et focus du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte" data-slug="compte-rendu"><a href="/catalogue/compte-rendu/"><b>Compte rendu et plan d&#x27;actions</b><span class="phrase">Décisions et actions suivies de réunion en réunion.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
-      </ul>
+    <div class="puces" role="group" aria-label="Thème">
+      <button class="puce" type="button" data-pour="pro" data-theme="projets-et-chantiers" aria-pressed="false" style="--c:var(--bleu)">Projets et chantiers <small>4</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="organisation-et-reunions" aria-pressed="false" style="--c:var(--rouge)">Organisation et réunions <small>2</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="independants" aria-pressed="false" style="--c:var(--jaune)">Indépendants <small>5</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="clients-et-prospection" aria-pressed="false" style="--c:var(--encre)">Clients et prospection <small>2</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="equipements-et-vehicules" aria-pressed="false" style="--c:var(--bleu)">Équipements et véhicules <small>2</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="associations-formation-et-evenements" aria-pressed="false" style="--c:var(--rouge)">Associations, formation et événements <small>3</small></button>
+      <button class="puce" type="button" data-pour="perso" data-theme="argent" aria-pressed="false" style="--c:var(--jaune)">Argent <small>4</small></button>
+      <button class="puce" type="button" data-pour="perso" data-theme="organisation-et-etudes" aria-pressed="false" style="--c:var(--encre)">Organisation et études <small>4</small></button>
+      <button class="puce" type="button" data-pour="perso" data-theme="sante-et-forme" aria-pressed="false" style="--c:var(--rouge)">Santé et forme <small>2</small></button>
+      <button class="puce" type="button" data-pour="perso" data-theme="projets-de-vie" aria-pressed="false" style="--c:var(--bleu)">Projets de vie <small>2</small></button>
     </div>
-    <div class="colonne" style="--c:var(--jaune)">
-      <h4>Indépendants<span>5</span></h4>
-      <ul>
-        <li class="carte" data-slug="tjm"><a href="/catalogue/tjm/"><b>Calculateur de TJM freelance</b><span class="phrase">Du revenu visé au tarif journalier minimum et conseillé.</span><span class="pied"><em>12 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte" data-slug="cout-revient"><a href="/catalogue/cout-revient/"><b>Coût de revient et prix par client</b><span class="phrase">Vos coûts réels et le prix juste pour chaque client.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte" data-slug="micro-entreprise"><a href="/catalogue/micro-entreprise/"><b>Livre recettes-dépenses</b><span class="phrase">Le livre de la micro-entreprise, cotisations estimées.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte prochaine" data-slug="devis"><a href="/catalogue/devis/"><b>Générateur de devis</b><span class="phrase">Catalogue, remises, TVA et mentions, justes au centime.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="tresorerie"><a href="/catalogue/tresorerie/"><b>Trésorerie prévisionnelle 12 mois</b><span class="phrase">Prévu, réalisé, scénarios et alerte de solde.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--encre)">
-      <h4>Clients et prospection<span>2</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="crm"><a href="/catalogue/crm/"><b>CRM freelance</b><span class="phrase">Clients, prochaine action datée et relances du jour.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="prospection"><a href="/catalogue/prospection/"><b>Pipeline de prospection B2B</b><span class="phrase">Prospects par étape et relances selon votre cadence.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--bleu)">
-      <h4>Équipements et véhicules<span>2</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="flotte"><a href="/catalogue/flotte/"><b>Gestion de flotte de véhicules</b><span class="phrase">Réservations, entretiens et coût par véhicule.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="parc-informatique"><a href="/catalogue/parc-informatique/"><b>Gestion de parc informatique</b><span class="phrase">Matériel, attributions, licences et garanties.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--rouge)">
-      <h4>Associations et événements<span>2</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="inscriptions"><a href="/catalogue/inscriptions/"><b>Inscriptions associatives</b><span class="phrase">Créneaux, liste d&#x27;attente et tarifs par tranche.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="evenementiel"><a href="/catalogue/evenementiel/"><b>Pilote événementiel</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--jaune)">
-      <h4>Formation<span>1</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="auto-ecole"><a href="/catalogue/auto-ecole/"><b>Gestion d&#x27;auto-école</b><span class="phrase">Élèves, leçons, moniteurs et véhicules.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    </div>
+    <p class="catalogue-compte" aria-live="polite" data-compte></p>
   </div>
-  <div class="tableau" id="perso">
-    <div class="tableau-tete"><h3>Pour la maison</h3><p>Argent, études, santé et projets personnels · 4 en vente</p></div>
-    <div class="colonnes">
-    <div class="colonne" style="--c:var(--jaune)">
-      <h4>Argent<span>4</span></h4>
-      <ul>
-        <li class="carte" data-slug="budget"><a href="/catalogue/budget/"><b>Budget du foyer</b><span class="phrase">Dépenses, enveloppes et écart au budget, mois par mois.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte" data-slug="budget-commun"><a href="/catalogue/budget-commun/"><b>Budget commun</b><span class="phrase">À deux ou en colocation : qui a payé, qui doit quoi.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte prochaine" data-slug="dettes"><a href="/catalogue/dettes/"><b>Remboursement de dettes</b><span class="phrase">Vos dettes soldées une à une, avec une date de fin.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="abonnements"><a href="/catalogue/abonnements/"><b>Suivi des abonnements</b><span class="phrase">Coût réel par mois et par an, essais et engagements.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
+  <div class="vitrine" data-vitrine>
+    <div class="vitrine-tete">
+      <h3 data-vitrine-titre>Disponibles maintenant</h3>
+      <p data-vitrine-sous>10 templates · achat unique</p>
+      <div class="fleches" data-fleches hidden><button class="fleche" type="button" data-dir="-1" aria-label="Templates précédents" aria-controls="vitrine-piste"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="fleche" type="button" data-dir="1" aria-label="Templates suivants" aria-controls="vitrine-piste"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
     </div>
-    <div class="colonne" style="--c:var(--bleu)">
-      <h4>Études<span>1</span></h4>
-      <ul>
-        <li class="carte" data-slug="revision"><a href="/catalogue/revision/"><b>Planning de révision</b><span class="phrase">Chaque chapitre revient au bon moment jusqu&#x27;à l&#x27;examen.</span><span class="pied"><em>14,90 €</em><span>Voir le détail</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--rouge)">
-      <h4>Santé et forme<span>2</span></h4>
-      <ul>
-        <li class="carte" data-slug="nutrition"><a href="/catalogue/nutrition/"><b>Nutrition et dépense énergétique</b><span class="phrase">Repas, calories, macros et dépense du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
-        <li class="carte prochaine" data-slug="habitudes"><a href="/catalogue/habitudes/"><b>Suivi d&#x27;habitudes et routines</b><span class="phrase">Cocher en un geste, séries et grille du mois.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--encre)">
-      <h4>Organisation<span>3</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="planner"><a href="/catalogue/planner/"><b>Planner horaire</b><span class="phrase">Votre semaine en blocs de 30 minutes, prévu et réalisé.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="secret-santa"><a href="/catalogue/secret-santa/"><b>Secret Santa</b><span class="phrase">Tirage au sort secret, idées de cadeaux et exclusions.</span><span class="pied"><em>Bientôt, gratuit</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="entretien"><a href="/catalogue/entretien/"><b>Entretien de la maison</b><span class="phrase">Chaudière, ramonage, VMC : échéances calculées.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    <div class="colonne" style="--c:var(--bleu)">
-      <h4>Projets de vie<span>2</span></h4>
-      <ul>
-        <li class="carte prochaine" data-slug="mariage"><a href="/catalogue/mariage/"><b>Organisateur de mariage</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-        <li class="carte prochaine" data-slug="travaux"><a href="/catalogue/travaux/"><b>Pilote de travaux maison</b><span class="phrase">Devis comparés, budget et planning des artisans.</span><span class="pied"><em>Mise en vente prochaine</em><span>Voir la démo</span></span></a></li>
-      </ul>
-    </div>
-    </div>
+    <ul class="vitrine-piste" id="vitrine-piste" tabindex="0" aria-label="Templates disponibles maintenant">
+      <li class="carte" data-slug="gantt" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/gantt/"><span class="theme">Projets et chantiers</span><b>Planning Gantt rapide</b><span class="phrase">Une ligne par tâche, liens, jours fériés et chemin critique.</span><span class="pied"><em>45 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="taches" data-pour="pro" data-theme="organisation-et-reunions" style="--c:var(--rouge)"><a href="/catalogue/taches/"><span class="theme">Organisation et réunions</span><b>Gestionnaire de tâches</b><span class="phrase">Boîte de réception, priorités et focus du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="compte-rendu" data-pour="pro" data-theme="organisation-et-reunions" style="--c:var(--rouge)"><a href="/catalogue/compte-rendu/"><span class="theme">Organisation et réunions</span><b>Compte rendu et plan d&#x27;actions</b><span class="phrase">Décisions et actions suivies de réunion en réunion.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="tjm" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/tjm/"><span class="theme">Indépendants</span><b>Calculateur de TJM freelance</b><span class="phrase">Du revenu visé au tarif journalier minimum et conseillé.</span><span class="pied"><em>12 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="cout-revient" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/cout-revient/"><span class="theme">Indépendants</span><b>Coût de revient et prix par client</b><span class="phrase">Vos coûts réels et le prix juste pour chaque client.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="micro-entreprise" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/micro-entreprise/"><span class="theme">Indépendants</span><b>Livre recettes-dépenses</b><span class="phrase">Le livre de la micro-entreprise, cotisations estimées.</span><span class="pied"><em>25 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="budget" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/budget/"><span class="theme">Argent</span><b>Budget du foyer</b><span class="phrase">Dépenses, enveloppes et écart au budget, mois par mois.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="budget-commun" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/budget-commun/"><span class="theme">Argent</span><b>Budget commun</b><span class="phrase">À deux ou en colocation : qui a payé, qui doit quoi.</span><span class="pied"><em>15 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="revision" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/revision/"><span class="theme">Organisation et études</span><b>Planning de révision</b><span class="phrase">Chaque chapitre revient au bon moment jusqu&#x27;à l&#x27;examen.</span><span class="pied"><em>14,90 €</em><span>Voir le détail</span></span></a></li>
+      <li class="carte" data-slug="nutrition" data-pour="perso" data-theme="sante-et-forme" style="--c:var(--rouge)"><a href="/catalogue/nutrition/"><span class="theme">Santé et forme</span><b>Nutrition et dépense énergétique</b><span class="phrase">Repas, calories, macros et dépense du jour.</span><span class="pied"><em>19 €</em><span>Voir le détail</span></span></a></li>
+    </ul>
+  </div>
+  <div class="a-venir-catalogue" data-a-venir>
+    <h3>En préparation <span>démo ouverte, cliquez pour l'essayer</span></h3>
+    <ul class="liste-bientot">
+      <li class="carte prochaine" data-slug="visa" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/visa/"><b>Circuit de visa des documents</b><span class="phrase">Indices, avis des viseurs et échéances, lot par lot.</span><span class="theme">Projets et chantiers</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="reserves" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/reserves/"><b>Levée de réserves</b><span class="phrase">Réserves par lot et entreprise, retards calculés.</span><span class="theme">Projets et chantiers</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="non-conformites" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/non-conformites/"><b>Registre des non-conformités</b><span class="phrase">Constat, cause, actions correctives et vérification.</span><span class="theme">Projets et chantiers</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="devis" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/devis/"><b>Générateur de devis</b><span class="phrase">Catalogue, remises, TVA et mentions, justes au centime.</span><span class="theme">Indépendants</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="tresorerie" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/tresorerie/"><b>Trésorerie prévisionnelle 12 mois</b><span class="phrase">Prévu, réalisé, scénarios et alerte de solde.</span><span class="theme">Indépendants</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="crm" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/crm/"><b>CRM freelance</b><span class="phrase">Clients, prochaine action datée et relances du jour.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="prospection" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/prospection/"><b>Pipeline de prospection B2B</b><span class="phrase">Prospects par étape et relances selon votre cadence.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="flotte" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/flotte/"><b>Gestion de flotte de véhicules</b><span class="phrase">Réservations, entretiens et coût par véhicule.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="parc-informatique" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/parc-informatique/"><b>Gestion de parc informatique</b><span class="phrase">Matériel, attributions, licences et garanties.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="inscriptions" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/inscriptions/"><b>Inscriptions associatives</b><span class="phrase">Créneaux, liste d&#x27;attente et tarifs par tranche.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="evenementiel" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/evenementiel/"><b>Pilote événementiel</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="auto-ecole" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/auto-ecole/"><b>Gestion d&#x27;auto-école</b><span class="phrase">Élèves, leçons, moniteurs et véhicules.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="dettes" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/dettes/"><b>Remboursement de dettes</b><span class="phrase">Vos dettes soldées une à une, avec une date de fin.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="abonnements" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/abonnements/"><b>Suivi des abonnements</b><span class="phrase">Coût réel par mois et par an, essais et engagements.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="planner" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/planner/"><b>Planner horaire</b><span class="phrase">Votre semaine en blocs de 30 minutes, prévu et réalisé.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="secret-santa" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/secret-santa/"><b>Secret Santa</b><span class="phrase">Tirage au sort secret, idées de cadeaux et exclusions.</span><span class="theme">Organisation et études</span><em>Bientôt · gratuit</em></a></li>
+      <li class="carte prochaine" data-slug="entretien" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/entretien/"><b>Entretien de la maison</b><span class="phrase">Chaudière, ramonage, VMC : échéances calculées.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="habitudes" data-pour="perso" data-theme="sante-et-forme" style="--c:var(--rouge)"><a href="/catalogue/habitudes/"><b>Suivi d&#x27;habitudes et routines</b><span class="phrase">Cocher en un geste, séries et grille du mois.</span><span class="theme">Santé et forme</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="mariage" data-pour="perso" data-theme="projets-de-vie" style="--c:var(--bleu)"><a href="/catalogue/mariage/"><b>Organisateur de mariage</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="theme">Projets de vie</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="travaux" data-pour="perso" data-theme="projets-de-vie" style="--c:var(--bleu)"><a href="/catalogue/travaux/"><b>Pilote de travaux maison</b><span class="phrase">Devis comparés, budget et planning des artisans.</span><span class="theme">Projets de vie</span><em>Bientôt</em></a></li>
+    </ul>
+  </div>
+  <div class="catalogue-vide" data-vide hidden>
+    <b>Aucun template ne correspond.</b>
+    <p>Essayez un autre mot, ou proposez l'outil qui vous manque.</p>
+    <div class="actions"><button class="btn" type="button" data-effacer>Effacer les filtres</button><button class="btn primary" type="button" data-ouvrir-idee>Soumettre une idée</button></div>
   </div>
 </section>
 
@@ -180,7 +152,7 @@
     <input type="hidden" name="form-name" value="idee">
     <label>Votre idée<textarea required name="idee" rows="4" maxlength="2000" placeholder="L'outil qui vous manque, ce qu'il devrait faire."></textarea></label>
     <label>Pour quel usage ?
-      <select name="usage"><option>Pour le travail</option><option>Pour la maison</option><option>Les deux</option></select>
+      <select name="usage"><option>Professionnel</option><option>Vie personnelle</option><option>Les deux</option></select>
     </label>
     <label>Qui l'utiliserait ?<input name="pour_qui" maxlength="200" placeholder="Ex. : artisans, parents, associations…"></label>
     <label>E-mail (facultatif)<input type="email" name="email" autocomplete="email" placeholder="Pour être prévenu si l'outil voit le jour"></label>
@@ -229,7 +201,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026111307" defer></script>
+<script src="/assets/site.js?v=2026111308" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
