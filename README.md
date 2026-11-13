@@ -149,6 +149,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   obligations sourcées et paramétrables) ; `templates/dettes/` (DTT) **remboursement de dettes**
   (boule de neige, avalanche, échéancier et date de fin) ; `templates/abonnements/` (ABN) **suivi des
   abonnements** (coût mensuel et annuel, prélèvements, « à décider avant le … », sans marque ni prix figé).
+- Gamme de 9 applications du 13/11/2026, prêtes, « Mise en vente prochaine » (démo libre, pages
+  `catalogue/<slug>/`, pas encore de fiche Gumroad). Socle partagé `templates/commun/` (`outils.js`
+  fonctions pures, `socle.js` connexion / démo / synchronisation / exports / import, `socle.css`) ; règles
+  métier de chaque application dans `regles.js`, base dans `donnees.js`. Documentation métier, tests et
+  limites : `docs/templates/fiches/gamme-9-applications.md`. `templates/metre/` (MTR) **MétréPro** ;
+  `templates/watt-budget/` (WTT) **WattBudget** ; `templates/controle-reception/` (RCP)
+  **ContrôleRéception** ; `templates/plan-b/` (PNB) **PlanB** ; `templates/memo-famille/` (MMF)
+  **MémoFamille** ; `templates/fete-budget/` (FTB) **FêteBudget** ; `templates/ludotheque/` (JDS)
+  **Ludothèque** ; `templates/tournoi/` (TRN) **TournoiFacile** ; `templates/cave/` (CVM) **CaveManager**.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 

@@ -36,6 +36,15 @@ const T = {
   dettes: ["Remboursement de dettes", "Une date de fin, enfin.", "Boule de neige · avalanche · date de fin · pointage"],
   abonnements: ["Suivi des abonnements", "Ce que tu paies, chaque mois.", "Coût mensuel et annuel · prélèvements · à décider avant le …"],
   visa: ['Circuit de visa des documents', 'Chaque visa dans les délais.', 'Indices · VSO, VAO, REF · relances prêtes'],
+  metre: ['MétréPro', 'Des dimensions aux quantités.', 'Formules vérifiables · pertes · variantes · à commander'],
+  'watt-budget': ['WattBudget', 'Ce que coûte chaque appareil.', 'Ton tarif · gros postes · remplacement · scénarios'],
+  'controle-reception': ['ContrôleRéception', 'Contrôler avant de signer.', 'Quantités et tolérances · contrôles · réserves · PV'],
+  'plan-b': ['PlanB', 'Ton foyer est-il prêt ?', 'Réserves · autonomie · péremptions · plan familial'],
+  'memo-famille': ['MémoFamille', "L'essentiel, retrouvable.", 'Contacts · contrats · documents · sans mot de passe'],
+  'fete-budget': ['FêteBudget', 'Une fête, chaque euro maîtrisé.', 'Invités · quantités · scénarios · frais partagés'],
+  ludotheque: ['Ludothèque', 'On joue à quoi ce soir ?', 'Collection · parties · statistiques · suggestions'],
+  tournoi: ['TournoiFacile', 'Un tournoi équilibré, vite.', 'Poules · tableaux · exempts · horaires · classements'],
+  cave: ['CaveManager', 'Quoi ouvrir, quoi garder.', 'Stock · emplacements · fenêtres de consommation'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
