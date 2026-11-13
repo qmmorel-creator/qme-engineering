@@ -267,3 +267,22 @@ export async function traiterSecretSanta(requete, { stockage, crypto, verifierAd
   }
   return json(404, { erreur: 'Route inconnue.' });
 }
+
+// Effacement planifié (fonction Netlify quotidienne) : supprime tout échange dont la date d'effacement
+// est passée, avec ses participants, même s'il n'est plus jamais consulté. Renvoie le nombre d'échanges effacés.
+export async function purgerExpires({ stockage, maintenant = () => new Date() }) {
+  const auj = maintenant().toISOString().slice(0, 10);
+  let n = 0;
+  for (const cle of await stockage.lister('ech/')) {
+    const e = await stockage.get(cle);
+    if (!e) continue;
+    const fin = dateEffacement(e);
+    if (!fin || fin >= auj) continue;
+    for (const c of await stockage.lister(`par/${e.id}/`)) await stockage.supprimer(c);
+    await stockage.supprimer(cle);
+    const a = await stockage.get(`adm/${e.proprio}`);
+    if (a) { a.echanges = a.echanges.filter((x) => x !== e.id); await stockage.set(`adm/${e.proprio}`, a); }
+    n++;
+  }
+  return n;
+}

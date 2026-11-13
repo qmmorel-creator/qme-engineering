@@ -25,6 +25,7 @@ const T = {
   planner: ['Planner horaire', 'Chaque heure a sa place.', 'Blocs de 30 min · glisser-déposer · prévu / réalisé'],
   prospection: ['Prospection B2B', 'Relancer au bon moment.', 'Pipeline · cadences · scripts · conversion'],
   reserves: ['Levée de réserves', 'Chaque réserve levée, contrôlée, signée.', 'Lots · entreprises · retards · PV imprimable'],
+  'secret-santa': ['Secret Santa · cadeau de Noël', 'Même l\'organisateur ne sait pas.', 'Inscription par lien · exclusions · tirage secret · gratuit'],
   revision: ['Planning de révision', 'Réviser au bon moment.', "J+1, J+3, J+7, J+14, J+30 · jusqu'à l'examen"],
   taches: ['Gestionnaire de tâches', "Tout noter. Faire l'essentiel.", 'Boîte de réception · triage · focus du jour'],
   tjm: ['Calculateur de TJM', "Ton tarif, à l'euro près.", 'Objectif · jours facturables · statut · seuils'],
@@ -76,8 +77,9 @@ h1{margin:0;font-size:${h1.length > 34 ? 52 : 62}px;font-weight:700;letter-spaci
 (async () => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
-  const slugs = Object.keys(T);
-  for (const [i, s] of slugs.entries()) {
+  // SEUL=slug1,slug2 : ne régénérer que ces couvertures (les autres restent intactes).
+  const slugs = process.env.SEUL ? process.env.SEUL.split(',') : Object.keys(T);
+  for (const s of slugs) { const i = Object.keys(T).indexOf(s);
     fs.mkdirSync(`${R}/.couv-tmp`, { recursive: true }); const f = `${R}/.couv-tmp/couv-${s}.html`; // dossier temporaire, à supprimer ensuite
     fs.writeFileSync(f, page(s, i));
     await p.goto(`http://localhost:8899/.couv-tmp/couv-${s}.html`); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(300);

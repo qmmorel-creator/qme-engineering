@@ -30,7 +30,7 @@ secret et chacun découvre à qui il offre. Gratuit.
 <li><b>Des exclusions</b> : un couple ou deux personnes d'un même foyer ne se tirent pas.</li>
 <li><b>Une page par participant</b> : à qui il offre, les idées de la personne, le budget et la date, sur téléphone comme sur ordinateur.</li>
 <li><b>Plusieurs échanges</b> : famille, amis, collègues, chacun avec son lien, son budget et son tirage. Jusqu'à 100 participants par échange.</li>
-<li><b>Des données protégées</b> : hébergées en Europe (Francfort), code personnel chiffré, effacement automatique 60 jours après la date de l'échange.</li>
+<li><b>Des données protégées</b> : hébergées en Europe (Francfort), code personnel jamais stocké en clair, effacement automatique 60 jours après la date de l'échange.</li>
 </ul>
 
 <h3>Comment ça marche</h3>

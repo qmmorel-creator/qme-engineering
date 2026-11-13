@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { tirer, tirageValide, nettoyerExclusions, dateEffacement, emailValide } from '../../templates/secret-santa/regles.js';
-import { traiterSecretSanta } from '../../templates/secret-santa/moteur.js';
+import { traiterSecretSanta, purgerExpires } from '../../templates/secret-santa/moteur.js';
 import { dependancesServeur } from '../../netlify/lib/secret-santa.mjs';
 import { genererCode } from '../../netlify/lib/templates-acces.mjs';
 
@@ -183,4 +183,17 @@ test('API : effacement automatique 60 jours après la date', async () => {
   assert.equal((await b.appel('GET', '/participant', null, { 'x-participant': jetons.Lea })).statut, 401);
   assert.deepEqual((await b.appel('GET', '/echanges', null, { 'x-code': admin })).corps.echanges, []);
   assert.equal([...b.memoire.keys()].some((c) => c.includes(e.id)), false);
+});
+
+test('purge planifiée : efface les échanges expirés même jamais rouverts, garde les autres', async () => {
+  const b = banc();
+  const admin = genererCode(SECRET, 'SNT');
+  const { e } = await echangeAvec(b, ['Lea', 'Hugo', 'Ines'], admin);
+  await b.appel('POST', '/echanges', { nom: 'Plus tard', date: '2027-12-24' }, { 'x-code': admin });
+  const stockage = { get: async (c) => (b.memoire.has(c) ? structuredClone(b.memoire.get(c)) : null), set: async (c, v) => { b.memoire.set(c, v); }, supprimer: async (c) => { b.memoire.delete(c); }, lister: async (p) => [...b.memoire.keys()].filter((c) => c.startsWith(p)) };
+  assert.equal(await purgerExpires({ stockage, maintenant: () => new Date('2027-02-22T10:00:00Z') }), 0); // dernier jour
+  assert.equal(await purgerExpires({ stockage, maintenant: () => new Date('2027-02-23T10:00:00Z') }), 1);
+  assert.equal([...b.memoire.keys()].some((c) => c.includes(e.id)), false);
+  const index = [...b.memoire.entries()].find(([c]) => c.startsWith('adm/'))[1];
+  assert.equal(index.echanges.length, 1);
 });

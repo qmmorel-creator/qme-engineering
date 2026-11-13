@@ -440,7 +440,7 @@ LI-73 (T01) existait déjà. Textes : Google Docs du dossier du planning ; lien 
 commentaire. Les templates encore « prêt » portent la remarque : ne publier que si la fiche Gumroad est en
 ligne à la date prévue, sinon décaler. LI-84 et LI-88 sorties du week-end le 13/11/2026 par échange de lignes
 dans le Sheet (fait) : LI-84 ↔ LI-38 (LI-84 ven. 04/12 08:30, LI-38 sam. 05/12 12:15) et LI-88 ↔ LI-87
-(LI-88 ven. 11/12 12:15, LI-87 dim. 13/12 12:15). LI-82 décalée au 21/12 pour LI-99 (Secret Santa), décision de Quentin du 13/11. Ce tableau ne recopie que les publications des
+(LI-88 ven. 11/12 12:15, LI-87 dim. 13/12 12:15). LI-82 décalée au 21/12 pour LI-99 (Secret Santa), décision de Quentin du 13/11. Harmonisation du 13/11 (décision de Quentin : une publication par jour sur LinkedIn et Instagram, jamais plus de deux jours sans) : LI-100 à LI-106 (22/12 → 03/01) et IG-37 à IG-61 ajoutées au statut « À préparer », vidéos tirées de `communication/videos-30-jours.md`. Ce tableau ne recopie que les publications des
 templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et reste la référence.
 
 | ID | Template | Date | Heure |
