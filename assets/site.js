@@ -35,8 +35,8 @@ function mailtoFallback(data){
 
 const form=document.getElementById('contact-form');
 const note=document.getElementById('form-note');
-const submitButton=form.querySelector('button[type="submit"]');
-const submitLabel=submitButton.textContent;
+const submitButton=form?.querySelector('button[type="submit"]');
+const submitLabel=submitButton?.textContent;
 
 function setNote(text,status){
   note.textContent=text;
@@ -44,7 +44,7 @@ function setNote(text,status){
   if(status)note.classList.add(status);
 }
 
-form.addEventListener('submit',async e=>{
+if(form)form.addEventListener('submit',async e=>{
   e.preventDefault();
   // Honeypot : un visiteur humain ne remplit jamais ce champ masqué.
   // On affiche le message de succès sans rien envoyer (Netlify filtre aussi
@@ -86,7 +86,7 @@ form.addEventListener('submit',async e=>{
 // Solution de repli accessible : un visiteur peut toujours préparer un
 // courriel prérempli sans dépendre de l'envoi du formulaire (lien mailto, jamais retiré).
 const fallbackLink=document.getElementById('contact-fallback');
-if(fallbackLink){
+if(fallbackLink&&form){
   fallbackLink.addEventListener('click',e=>{
     e.preventDefault();
     window.location.href=mailtoFallback(new FormData(form));
@@ -100,3 +100,19 @@ if(fallbackLink){
  const sync=()=>{b.setAttribute('aria-pressed',String(!v.muted));b.textContent=v.muted?T.soundOn:T.soundOff;};
  b.addEventListener('click',()=>{v.muted=!v.muted;if(!v.muted){v.play().catch(()=>{});}sync();});
  v.addEventListener('volumechange',sync);})();
+
+// Formulaire « Soumettre une idée » (page Templates), envoyé à Netlify Forms comme le contact
+(()=>{const d=document.getElementById('modale-idee');const f=document.getElementById('idee-form');if(!d||!f)return;
+ const n=document.getElementById('idee-note');const b=f.querySelector('button[type="submit"]');const lib=b.textContent;const noteInit=n.innerHTML;
+ const etat=(t,c)=>{n.textContent=t;n.classList.remove('success','error');if(c)n.classList.add(c);};
+ document.querySelectorAll('[data-ouvrir-idee]').forEach(x=>x.addEventListener('click',()=>{n.innerHTML=noteInit;n.classList.remove('success','error');d.showModal();}));
+ d.querySelectorAll('[data-fermer-idee]').forEach(x=>x.addEventListener('click',()=>d.close()));
+ d.addEventListener('click',e=>{if(e.target===d)d.close();});
+ f.addEventListener('submit',async e=>{e.preventDefault();const data=new FormData(f);
+  if((data.get('site_web')||'').toString().trim()!==''){etat('Merci, votre idée a bien été transmise.','success');f.reset();return;}
+  b.disabled=true;b.textContent='Envoi…';
+  try{const r=await fetch('/',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
+   if(r.ok){etat('Merci, votre idée a bien été transmise.','success');f.reset();}
+   else etat(r.status===429?'Trop d’envois pour le moment. Réessayez dans quelques minutes.':'L’envoi a échoué. Réessayez dans un instant.','error');}
+  catch{etat('L’envoi a échoué (connexion). Réessayez dans un instant.','error');}
+  finally{b.disabled=false;b.textContent=lib;}});})();

@@ -50,12 +50,12 @@ outils/templates/          tests, serveur local, génération de codes
 
 Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne changent pas, les références PDF seulement sur demande) :
 
-- [ ] **Accueil `index.html`** : carte du template dans la section `#templates` (ou remplacement de la
-      carte mise en avant + ajout à la ligne des autres templates) ; « En préparation » mis à jour ;
-      prix « dès … » de la porte « Templates » si le moins cher change ; textes qui énumèrent les templates.
-- [ ] **Accueil anglais `en/index.html`** : mêmes changements, mention « in French ».
-- [ ] **Catalogue `templates/index.html`** : section `#<slug>` complète (page d'atterrissage), boutons
-      Acheter et Démo, captures, FAQ propres au produit ; ordre des sections ; liens internes.
+- [ ] **Accueil `index.html`** : prix « dès … » de la porte « Templates » si le moins cher change.
+- [ ] **Templates en anglais `en/templates/index.html`** : carte du template dans son groupe (travail /
+      maison), mention « in French » ; « In preparation » mis à jour.
+- [ ] **Catalogue** : page `catalogue/<slug>/index.html` complète (page d'atterrissage : boutons Acheter
+      et Démo, captures, FAQ propres au produit) ; carte du kanban de `templates/index.html` activée
+      (lien `/catalogue/<slug>/`, prix) dans la colonne de son thème ; compteur « en vente ».
 - [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »
