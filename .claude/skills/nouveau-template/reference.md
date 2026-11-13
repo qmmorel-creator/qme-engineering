@@ -123,6 +123,34 @@ Remarque · Format. Lignes triées par date ; une publication environ tous les d
    le lien du doc.
 9. Ne rien publier sur LinkedIn soi-même : la publication suit le processus habituel du planning.
 
+## Planning Instagram (à chaque template prêt, après le planning LinkedIn)
+
+Compte `@qmengineering`. Kit : `docs/templates/communication/instagram/README.md`. Google Sheet
+« Planning publications Instagram » (`1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`, onglet `Planning`),
+dans le dossier Drive « QME – Publications Instagram » (`1qy8D-0qM7ggs_Nz3EDFBxiUWj2MypcqC`), sous-dossiers
+Images (`1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`), Textes (`1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`) et Kit de marque.
+Colonnes : ID · Date · Heure (Europe/Paris) · Statut · Thème · Titre interne · Doc légende (ID) ·
+Doc légende (lien) · Fichier(s) image (dossier Images) · Texte alternatif · Publié le · URL publication ·
+Remarque · Format · LinkedIn associé · ID Posty.
+Statuts : `À préparer` → `Prêt` (légende et visuels relus par Quentin) → `Programmé` (planifié dans
+Posty, ID Posty renseigné) → `Publié` ou `Erreur` ; `Annulé` si abandonné.
+
+1. **Relire tout l'onglet** (`get_values Planning!A1:P`) juste avant d'écrire.
+2. **Ligne** : si une ligne `À préparer` existe déjà pour ce template (colonne F `Tnn · …`), la compléter ;
+   sinon en insérer une à sa place chronologique (`insert_dimension` puis `update_values`), **le lendemain
+   de la date LinkedIn du template, à 18:30**, ID `IG-` + (plus grand numéro + 1), Thème « Template QME »,
+   Format « Carrousel », colonne O = ID LinkedIn.
+3. **Légende** : Google Doc `IG-nn · <titre interne>` dans le dossier Textes, avec l'accroche retenue, la
+   légende et les hashtags de `instagram.md`. Renseigner G et H.
+4. **Images** : les PNG du carrousel déposés dans le dossier Images sous `IG-nn-<slug>-1.png` à `-5.png` ;
+   colonne I = liste des fichiers ; colonne J = texte alternatif de la première vue (les autres dans le doc).
+5. Passer le statut à `Prêt` ; donner à Quentin l'ID, la date et le lien du doc pour relecture.
+6. **Programmation** : seulement après l'accord de Quentin, via les outils Posty (plugin installé ;
+   chercher `posty` avec ToolSearch). Compte Instagram professionnel requis. Planifier à la date et à
+   l'heure de la ligne, relire ce que Posty renvoie, renseigner l'ID Posty et passer en `Programmé`. Sans
+   outil Posty dans la session : laisser `Prêt` et le dire à Quentin. Ne jamais publier immédiatement.
+7. Après publication : `Publié le`, `URL publication`, statut `Publié`.
+
 ## Pièges déjà rencontrés (vérifier à chaque template)
 
 1. **Entrée dans un formulaire de modale** déclenche le premier bouton `submit` du DOM : mettre le bouton
