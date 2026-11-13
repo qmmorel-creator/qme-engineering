@@ -519,3 +519,7 @@ em{font-style:normal;color:var(--rouge);font-weight:700}
   .ligne-lecon{grid-template-columns:84px minmax(0,1fr);padding:10px}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.carte h3{font-size:19px}}
+.cle-bleu,.cle-jaune{display:inline-flex;align-items:center;gap:5px;font-weight:600;color:var(--texte-2)}
+.cle-bleu::before,.cle-jaune::before{content:"";width:10px;height:10px;border:1.5px solid var(--encre);background:var(--bleu)}
+.cle-jaune::before{background:var(--jaune)}
+@media (max-width:720px){.vue-tete{margin-bottom:16px}.vue-tete h1{font-size:30px}.plan-barre{margin-top:-4px}}

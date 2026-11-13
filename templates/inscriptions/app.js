@@ -467,7 +467,7 @@
 
   const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><rect x="0" y="40" width="56" height="56" fill="#1D4E89"/><circle cx="62" cy="34" r="34" fill="#F5B400"/><path d="M56 96 96 96 96 56Z" fill="#D9302A"/></svg>';
   const vide = (titre, texte, actions = '') => `<div class="vide-etat">${FORME_VIDE}<div><h3>${titre}</h3><p>${texte}</p>${actions ? `<div class="actions">${actions}</div>` : ''}</div></div>`;
-  const avertExemple = () => (E.tranchesExemple ? `<p class="alerte">Les tranches de quotient familial sont l'<b>exemple fictif</b> fourni avec l'outil. Remplace-les par la grille votée par ton association. <button class="btn petit" data-action="tranches">Modifier les tranches</button></p>` : '');
+  const avertExemple = () => (E.tranchesExemple ? `<p class="alerte"><span>Les tranches de quotient familial sont l'<b>exemple fictif</b> fourni avec l'outil. Remplace-les par la grille votée par ton association.</span><button class="btn petit" data-action="tranches">Modifier les tranches</button></p>` : '');
   const libTranche = (t) => (t.max === null ? (E.tranches.length > 1 ? `${t.nom} : au-delà` : t.nom) : `${t.nom} : jusqu'à ${t.max}`);
 
   // Tableau de bord
@@ -517,7 +517,7 @@
     return `<figure class="graphique remplissage">
       <div class="legende"><span><i style="background:var(--bleu)"></i>Inscrits</span><span><i class="hachure"></i>Liste d'attente</span><span><i style="background:var(--surface)"></i>Places libres (cadre = capacité)</span></div>
       ${lignes}
-      <table class="sr-only"><caption>Remplissage par créneau</caption><thead><tr><th>Créneau</th><th>Inscrits</th><th>Capacité</th><th>En attente</th></tr></thead><tbody>${creneaux.map((c) => `<tr><td>${esc(c.activite.nom)} ${horaire(c.creneau)}</td><td>${c.inscrits}</td><td>${c.capacite}</td><td>${c.attente}</td></tr>`).join('')}</tbody></table>
+      <div class="sr-only"><table><caption>Remplissage par créneau</caption><thead><tr><th>Créneau</th><th>Inscrits</th><th>Capacité</th><th>En attente</th></tr></thead><tbody>${creneaux.map((c) => `<tr><td>${esc(c.activite.nom)} ${horaire(c.creneau)}</td><td>${c.inscrits}</td><td>${c.capacite}</td><td>${c.attente}</td></tr>`).join('')}</tbody></table></div>
     </figure>`;
   }
 

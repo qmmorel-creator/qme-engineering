@@ -297,6 +297,15 @@
     // Une leçon d'hier non pointée, et Manon (inscrite récemment) n'a encore rien de planifié.
     const hier = E.lecons.filter((l) => l.date < t && l.statut === 'faite').sort((a, b) => b.date.localeCompare(a.date) || b.debut.localeCompare(a.debut))[0];
     if (hier) hier.statut = 'prevue';
+    // États forcés pour la démo : Inès a dépassé ses heures achetées, le forfait de Chloé est épuisé.
+    const parNom = (n) => E.eleves.find((e) => e.nom === n);
+    const ines = parNom('Inès B.'), chloe = parNom('Chloé D.');
+    const achatsDe = (e) => E.achats.filter((a) => a.eleveId === e.id);
+    const fi = R.soldeEleve(ines.id, E, t).faites;
+    if (fi >= 22) { const a = achatsDe(ines)[1]; a.heures = fi - 21; a.libelle = `${a.heures} h supplémentaires`; }
+    E.lecons = E.lecons.filter((l) => !(l.eleveId === chloe.id && l.statut === 'prevue'));
+    const fc = R.soldeEleve(chloe.id, E, t).faites;
+    if (fc > 0) Object.assign(achatsDe(chloe)[0], { heures: fc, libelle: `Forfait ${fc} h` });
     // Compétences cochées au prorata des heures faites, dates réparties.
     for (const e of E.eleves) {
       const s = R.soldeEleve(e.id, E, t);
@@ -587,7 +596,7 @@
       </button></li>`;
     }).join('');
     return `
-      <div class="vue-tete"><div><h1>Élèves</h1><p>${pluriel(nbA, 'élève actif', 'élèves actifs')}. Heures restantes = achetées − faites${E.reglages.decompteAbsence ? ' (absences non excusées comprises)' : ''}.</p></div>
+      <div class="vue-tete"><div><h1>Élèves</h1><p>${pluriel(nbA, 'élève actif', 'élèves actifs')}. Heures restantes = achetées − faites${E.reglages.decompteAbsence ? ' (absences non excusées comprises)' : ''}. Barre : <b class="cle-bleu">faites</b>, <b class="cle-jaune">planifiées</b>.</p></div>
         <div class="actions"><button class="btn primaire" data-action="eleve-nouveau">${ICONES.plus}Élève</button></div></div>
       <div class="filtres-eleves">
         <div class="bascule-btn" role="group" aria-label="Statut">${[['actif', 'Actifs'], ['termine', 'Terminés'], ['tous', 'Tous']].map(([k, l]) => `<button data-action="eleves-statut" data-statut="${k}" aria-pressed="${filtreEleves.statut === k}">${l}</button>`).join('')}</div>

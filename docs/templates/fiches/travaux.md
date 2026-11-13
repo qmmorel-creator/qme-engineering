@@ -72,7 +72,8 @@ payé, des dates d'intervention notées au fil des appels, des défauts de fin d
    consommation de la provision = imprévus réels / provision ; « au-delà de l'enveloppe » si engagé >
    prévu + provision.
 5. **Planning** : état d'une intervention à une date donnée ; chevauchements de toutes les paires
-   (type `meme-piece`, `meme-artisan`, `parallele`), ordre inhabituel quand un poste de rang supérieur
+   (type `meme-artisan`, `meme-piece`, ou `parallele` si pièces différentes ou postes de même rang,
+   comme plomberie et électricité), ordre inhabituel quand un poste de rang supérieur
    commence avant la fin d'un poste de rang inférieur dans la même pièce ; frise (début, fin, durée).
 6. **Modèle de planning** : étapes enchaînées à partir de la date de début ; une étape `avec` la
    précédente démarre en même temps (plomberie et électricité).
