@@ -86,18 +86,18 @@ déjà).
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
-| T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
+| T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 10 € | S | P2 | Liste initiale 12/11/2026 |
-| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 10 € | S | P2 | Liste initiale 12/11/2026 |
-| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | prêt | 8 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | prêt | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 8 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 10 € | S | P3 | Liste initiale 12/11/2026 |
+| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
@@ -143,13 +143,14 @@ déjà).
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
-| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 10 € | S | P2 | Backlog Quentin n° 45 |
+| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
-**Prix** : un prix par idée, en euros ronds (sauf T01, déjà en vente à 14,90 €), à confirmer par Quentin avant la création de chaque fiche Gumroad. Quand la
+**Prix** : un prix par idée, en euros ronds (sauf T01, déjà en vente à 14,90 €), **jamais moins de 12 €**
+(règle de Quentin, 13/11/2026 : les idées prévues à 8 ou 10 € passent à 12 €), à confirmer par Quentin avant la création de chaque fiche Gumroad. Quand la
 liste initiale et le backlog divergeaient (T02, T03, T04, T05, T07, T08, T15, T22), le prix du backlog est
 retenu : plus récent, périmètre élargi par la fusion. **Priorité** : P1 = à produire en premier, puis P2,
 P3. Backlog : priorité de Quentin reprise. Liste initiale sans priorité : attribuée selon la demande
@@ -204,7 +205,7 @@ par produit ou accès groupé dans `PRODUITS`).
 |------|----------|--------|------|
 | Freelance complet | T28, T36, T37, T40, T41, T43 | 135 € | 79 € |
 | Chef de projet BTP | T02, T31, T24, T32 | 138 € | 99 € |
-| Flotte | T57, T29, T26, T66 | 109 € | 69 € |
+| Flotte | T57, T29, T26, T66 | 111 € | 69 € |
 | Organisateur d'événements | T51, T15, T54 | 113 € | 69 € |
 | Productivité perso | T03, T30, T08, T22 | 61 € | 39 € |
 
@@ -497,6 +498,9 @@ IG-48 : à arbitrer), IG-63 (T08, 14/01), IG-64 (T11, 16/01), IG-65 (T12, 18/01)
 vente : sources des réglages types (T08) et régime RGPD des données de santé (T08) ; trois règles d'entretien
 non revérifiées (assainissement individuel, contrôle SPANC, débroussaillement, T11) ; repères juridiques de
 résiliation (T14) ; points conseil budget en refonte (T12, à revérifier chaque année).
+Prix minimum 12 € (règle de Quentin, 13/11/2026) : T11, T12 et T14 passent de 10 / 10 / 8 € à 12 € (textes,
+`gumroad-a-creer.json`, vue 5 des carrousels refaite). Drive : légendes IG-62, IG-64, IG-65 recréées (anciennes
+renommées `OBSOLETE-…`) et nouvelles vues 5 déposées dans le dossier Images, colonne P mise à jour.
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 

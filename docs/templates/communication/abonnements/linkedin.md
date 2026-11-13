@@ -58,13 +58,13 @@ Lien d'achat en premier commentaire.
 
 ## Premier commentaire (une fois la fiche Gumroad en ligne)
 
-Le suivi des abonnements (8 €, achat unique) : https://qmengineering.gumroad.com/l/suivi-abonnements
+Le suivi des abonnements (12 €, achat unique) : https://qmengineering.gumroad.com/l/suivi-abonnements
 
 ## Version courte (commentaire ou story, 3 lignes)
 
 > Tous mes abonnements ramenés au mois et à l'année, le calendrier des prélèvements, et la date avant
 > laquelle décider pour chaque essai ou engagement. 96 abonnements types, aucune marque, aucun prix imposé.
-> 8 €, sans abonnement. Démo libre : https://qm-engineering.fr/templates/abonnements/?demo
+> 12 €, sans abonnement. Démo libre : https://qm-engineering.fr/templates/abonnements/?demo
 
 ## Notes
 

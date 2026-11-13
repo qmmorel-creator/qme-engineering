@@ -73,7 +73,8 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
 2. Site : fiche dans `/templates/` (produit, galerie, FAQ si besoin), carte dans la section `#templates`
    de `index.html` et `en/index.html` (préciser « in French »), entrée dans `PRODUITS` du script de
    `connexion/index.html` (`nom`, `url`, clé de stockage `qme-<préfixe en minuscules>-code`).
-3. Gumroad (outils `mcp__Gumroad__*`) : **confirmer nom et prix avec Quentin**, puis
+3. Gumroad (outils `mcp__Gumroad__*`) : **confirmer nom et prix avec Quentin** (prix minimum 12 €, règle de
+   Quentin du 13/11/2026 : aucun template vendu moins cher, hors gratuit), puis
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,
    bouton « Ouvrir mon … »), `add_content_link` vers `https://qm-engineering.fr/connexion/`,
    `add_cover` une fois l'image en ligne. Reporter l'identifiant produit dans `PRODUITS`.

@@ -59,12 +59,12 @@ Lien d'achat en premier commentaire, une fois la fiche Gumroad en ligne.
 
 ## Premier commentaire (une fois la fiche Gumroad en ligne)
 
-L'Entretien de la maison (10 €, achat unique) : https://qmengineering.gumroad.com/l/entretien-maison
+L'Entretien de la maison (12 €, achat unique) : https://qmengineering.gumroad.com/l/entretien-maison
 
 ## Version courte (commentaire ou story, 3 lignes)
 
 > Chaudière, ramonage, VMC, gouttières : cochez vos équipements, le calendrier d'entretien se calcule seul.
-> Obligations sourcées, historique des coûts, liste de l'année à imprimer. 10 €, sans abonnement.
+> Obligations sourcées, historique des coûts, liste de l'année à imprimer. 12 €, sans abonnement.
 > Démo libre : https://qm-engineering.fr/templates/entretien/?demo
 
 ---

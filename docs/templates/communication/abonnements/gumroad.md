@@ -18,7 +18,7 @@ Suivi des abonnements
 
 ## Prix
 
-8 € (achat unique)
+12 € (achat unique)
 
 ## Permalien
 
