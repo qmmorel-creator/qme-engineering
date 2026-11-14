@@ -32,7 +32,7 @@ calculés, et une revue mensuelle prête à imprimer.
 
 ## Base intégrée (ce qui fait la valeur)
 
-1. **Bibliothèque de 36 indicateurs types** en 6 domaines : commercial, finances, trésorerie, ressources
+1. **Bibliothèque de 45 indicateurs types** en 6 domaines : commercial, finances, trésorerie, ressources
    humaines, production et activité, qualité. Pour chacun : définition, formule, sens de lecture (« plus
    haut est mieux », « plus bas est mieux », « au plus près de la cible »), où trouver le chiffre, conseil
    d'interprétation, unité, mode de cumul sur l'exercice (somme des mois, moyenne, dernier mois connu),
@@ -40,7 +40,8 @@ calculés, et une revue mensuelle prête à imprimer.
 2. **Indicateurs calculés** à partir des indicateurs saisis : taux de marge brute, résultat de gestion,
    point mort, flux de trésorerie net, autonomie de trésorerie (mois de charges fixes), délai moyen de
    paiement clients (approché), taux de transformation des devis, taux de charge, taux d'absentéisme,
-   taux de rotation du personnel, chiffre d'affaires par ETP, taux de service, taux de réclamation. Ajouter
+   taux de rotation du personnel, chiffre d'affaires par ETP, taux de service, taux de réclamation (14 au
+   total). Ajouter
    un indicateur calculé ajoute aussi ceux qu'il utilise.
 3. **5 jeux de départ** par activité (services et conseil, commerce et négoce, artisanat et BTP, industrie
    et atelier, généraliste) qui cochent une douzaine d'indicateurs pertinents, modifiables ensuite.
@@ -91,7 +92,7 @@ Réglages : entreprise, mois de début d'exercice, export / import JSON, déconn
 
 ## Démo
 
-PME fictive de services techniques (« Exemple Services », 14 personnes) : exercice civil, année
+PME fictive de services techniques (« Exemple Services », 14 ETP, 26 indicateurs suivis) : exercice civil, année
 précédente complète, mois de l'exercice en cours saisis jusqu'au mois dernier ; au moins un indicateur
 atteint, à surveiller, en alerte, sans objectif, une valeur manquante, une trésorerie sous son plancher un
 mois, des actions ouvertes et faites dans les revues. Données relatives à aujourd'hui.

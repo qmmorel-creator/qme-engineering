@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="pilotage-pme" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/pilotage-pme/"><b>Tableau de bord de pilotage PME</b><span class="phrase">Vos indicateurs du mois face à vos objectifs, revue imprimable.</span><span class="theme">Indépendants</span><em>Bientôt</em></a></li>

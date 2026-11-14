@@ -111,7 +111,7 @@ déjà).
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
-| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en cours | 39 € | M | P2 | Backlog Quentin n° 08 |
+| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
@@ -807,12 +807,21 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 - Fiche détaillée : [`fiches/pilotage-pme.md`](fiches/pilotage-pme.md). Application web (pas de tableur), 39 €,
   permalien prévu `tableau-de-bord-pme`, catalogue `pro` · thème « Indépendants ».
 - Promesse : « Tes chiffres du mois face à tes objectifs, en dix minutes de saisie. »
-- Base intégrée : bibliothèque de 36 indicateurs types en 6 domaines (commercial, finances, trésorerie, RH,
+- Base intégrée : bibliothèque de 45 indicateurs types en 6 domaines (commercial, finances, trésorerie, RH,
   production et activité, qualité) avec définition, formule, sens de lecture, source du chiffre et conseil ;
-  13 indicateurs calculés (taux de marge, point mort, autonomie de trésorerie, délai de paiement approché,
+  14 indicateurs calculés (taux de marge, point mort, autonomie de trésorerie, délai de paiement approché,
   taux de charge, absentéisme…) ; 5 jeux de départ par activité. **Aucun ratio sectoriel de référence.**
 - Écrans : tableau de bord du mois (statuts, tendances, mini-courbes), saisie mensuelle rapide, fiches
   indicateurs (courbe réel / objectif / an dernier, cumul, projection), objectifs annuels répartis (égale,
   saisonnière, mois par mois) et seuils, revue mensuelle imprimable avec actions.
 - Marques : **comptable** (outil de pilotage, pas un logiciel comptable). Confidentiel vérifié : aucun tableau
   de bord interne repris, démo fictive.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/pilotage-pme/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants », carte anglaise).
+  Page `catalogue/pilotage-pme/`, captures `assets/templates-pilotage-pme-*.webp`, couverture
+  `assets/templates-pilotage-pme-couverture.png`, tests `outils/templates/pilotage-pme.test.mjs`.
+- Communication prête dans `communication/pilotage-pme/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
