@@ -49,6 +49,7 @@ export const TEMPLATES = {
   DMN: { slug: 'demenagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.', pour: 'perso' },
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
+  VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -60,7 +61,6 @@ export const PREVUS = {
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
-  VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
@@ -197,7 +197,7 @@ export const PAGES = {
       ['ARD', 'Remettez et récupérez le matériel à chaque arrivée et chaque départ.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats, achats, salles, maintenance et vérifications à venir, avec l’option Pack évolutif'],
-    prevus: ['SDR', 'GMA', 'VRF', 'CTR', 'ACH'],
+    prevus: ['SDR', 'GMA', 'CTR', 'ACH'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
@@ -348,7 +348,7 @@ export const PAGES = {
       ['CTR', 'Anticipez les préavis de résiliation des contrats fournisseurs.'],
     ],
     arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Pack en préparation : soyez prévenu de sa sortie'],
-    prevus: ['PMS', 'GMA', 'VRF', 'CTR'],
+    prevus: ['PMS', 'GMA', 'CTR'],
   },
   PCA: {
     couleur: 'rouge', cibles: ['commercants', 'independants'],

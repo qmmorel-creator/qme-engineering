@@ -140,7 +140,7 @@ déjà).
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
-| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
+| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | prêt | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
@@ -825,7 +825,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T60 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Pilotage de parcs (artefact professionnel) | **confidentiel** : aucune donnée, nom de site ni chiffre ; exemples fictifs (immobilier, équipements). Format : application + modèle tableur. |
 | T61 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Artefacts professionnels de maintenance | **confidentiel** : mécanique seulement, aucune donnée ; exemples fictifs. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T63. |
 | T62 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : tableur seul. |
-| T63 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. |
+| T63 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. Décision (14/11/2026) : application seule, base sourcée INRS ED 828 datée, preuves en référence et lien (pas de fichiers). |
 | T64 | Calendrier, réservations, ménage, taxe de séjour, revenus par plateforme | à définir | Location saisonnière (artefact client) | **daté** : taxe de séjour, paramétrable ; **fiscal**. **RGPD** (voyageurs). Backlog : tableur seul. Aucune donnée de l'artefact. |
 | T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
@@ -1038,3 +1038,36 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
+
+### T63 · Vérifications réglementaires (`templates/verifications/`, préfixe VRF, 35 €)
+- Fiche détaillée : [`fiches/verifications.md`](fiches/verifications.md). Application web (pas de tableur),
+  permalien prévu `verifications-reglementaires`, catalogue `pro` · thème « Équipements et véhicules ».
+  Packs prévus : Moyens généraux (PMG) et Exploitation et maintenance (PXP).
+- Promesse : « Aucun contrôle oublié. » Pour responsables QHSE, gestionnaires de bâtiments, dirigeants de PME
+  et d'ERP.
+- Base intégrée : 22 types de contrôles (électricité, éclairage de sécurité, extincteurs, RIA, SSI,
+  désenfumage, sprinklers, ascenseurs, portes automatiques, levage, gaz, chauffage, cuisines, ventilation),
+  chacun avec sa périodicité **sourcée** : brochure INRS ED 828 « Principales vérifications périodiques »,
+  édition de septembre 2026, page et textes cités, **consultée le 14/11/2026** (date affichée dans
+  l'application, le guide et le registre). Règles APSAD et normes signalées « référentiel, pas un texte de
+  loi ». Tout autre contrôle : type « Autre », périodicité saisie par l'utilisateur.
+- Écrans : bord (alertes, état par site), équipements par site, observations à lever (preuve obligatoire),
+  calendrier 12 mois, registre imprimable par site, guide et sources, réglages. Moteur d'échéances commun
+  avec T11/T24 (mois bornés à la fin du mois, jours), délai de 2 ans des installations électriques seulement
+  s'il est possible (arrêté du 26/12/2011, art. 3).
+- Preuves : référence et lien (le service des templates ne stocke que du JSON) ; pas de fichiers en V1.
+- Marques : **daté** (revérifier la brochure à chaque édition, au moins une fois par an) ; avertissement « outil
+  d'aide, ne remplace ni un organisme agréé ni la réglementation » partout. Confidentiel vérifié : démo fictive.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/verifications/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Équipements et véhicules »).
+  Page `catalogue/verifications/`, captures `assets/templates-verifications-*.webp`, couverture
+  `assets/templates-verifications-couverture.png`, tests `outils/templates/verifications.test.mjs`.
+  **Version anglaise en attente** (`en/` non modifié ; carte prête dans `communication/verifications/carte-en-prochaine.html`).
+- Communication prête dans `communication/verifications/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad (permalien prévu `verifications-reglementaires`) et clé de licence (Quentin), entrée
+  dans `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, plannings, page anglaise, passage en vente du site.
