@@ -830,3 +830,14 @@
   for = "/templates/entretiens-annuels/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/contrats/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/contrats/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

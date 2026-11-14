@@ -168,3 +168,15 @@ test('option « Pack évolutif » : templates ajoutés après l’achat ouverts 
     assert.equal(base.templates[0].code, evo.templates[0].code);
   } finally { PACKS.PAR.ajouts = sauve; delete PACKS.PAR.gumroad; }
 });
+
+test('chaque étape de parcours d’un pack cite un template existant ou annoncé', async () => {
+  const { PAGES, PREVUS } = await import('../packs/donnees.mjs');
+  for (const [code, page] of Object.entries(PAGES)) {
+    for (const etape of page.parcours) {
+      assert.equal(etape.length, 2, `${code} : étape sans préfixe « ${etape[0]} »`);
+      assert.ok(PRODUITS[etape[0]] || PREVUS[etape[0]], `${code} : préfixe inconnu ${etape[0]}`);
+    }
+    const pres = page.parcours.map((e) => e[0]);
+    assert.equal(new Set(pres).size, pres.length, `${code} : étape en double`);
+  }
+});

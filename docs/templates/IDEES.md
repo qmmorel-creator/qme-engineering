@@ -162,7 +162,7 @@ déjà).
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
@@ -266,7 +266,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79 | T80 | 190 € | 25 % | 142 € | 36 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81 | T82 | 240 € | 25 % | 180 € | 45 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
@@ -277,7 +277,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Famille | PFA | T05, T11, T06 | T09, T19, T20 | 40 € | 15 % | 34 € | 9 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | T55, T56 | T59, T58 | 70 € | 10 % | 63 € | 16 € |
-| Exploitation et maintenance | PXP | T61, T63, T60 | T81 | 123 € | 15 % | 104 € | 26 € |
+| Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42 | — | 108 € | 20 % | 86 € | 22 € |
 | Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
 
@@ -1733,3 +1733,33 @@ et à régénérer les pages des packs à la fusion.
   (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente), plannings,
   passage en vente du site. Point à suivre : règles de passage pour les salariés présents avant la réforme
   (questions-réponses du ministère du 12/02/2026 non consulté), revérifier F32040 à chaque mise à jour annuelle.
+
+## Fiche T81 (cadrage délégué par Quentin, 14/11/2026)
+
+### T81 · Contrats fournisseurs et échéances de résiliation (`templates/contrats/`, préfixe CTR, 25 €)
+- Fiche détaillée : [`fiches/contrats.md`](fiches/contrats.md). Application web, permalien prévu `contrats-fournisseurs`,
+  catalogue `pro` · thème « Équipements et véhicules ». Packs « Moyens généraux » (PMG) et « Exploitation et
+  maintenance » (PXP) : CTR ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PMG et PXP dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` des packs (`netlify/lib/packs.mjs`) et pages régénérées à la fusion.
+- Promesse : « Plus de reconduction subie. » Pour office managers, dirigeants de TPE et PME, services généraux.
+- Contrats par fournisseur et catégorie (10 catégories : assurances, maintenance, télécoms, location et leasing,
+  logiciels, nettoyage, énergie, sécurité, services, autre ; paramétrables), montant et périodicité, échéance avec
+  reconduction tacite avancée automatiquement, préavis (contrat ou défaut de la catégorie), date limite de réception
+  et envoi conseillé calculés, alertes J-60 / J-30 / préavis dépassé, décision (renouveler, renégocier, résilier),
+  lettre de résiliation à adapter (copie, impression), résiliation notée, coût annuel par catégorie et fournisseur,
+  économies, historique, calendrier 12 mois, export CSV. Moteur d'échéances commun avec T63.
+- **Règles légales** : aucune intégrée sans source. Seul repère cité : Code des assurances, art. L113-12 (version en
+  vigueur depuis le 28/05/2026), lu sur Légifrance le 14/11/2026, d'où le préavis par défaut de 2 mois des assurances
+  (la police prime, dérogation possible pour les risques professionnels). Loi Chatel et résiliation infra-annuelle :
+  non citées. Avertissement « outil d'aide, ne remplace pas un conseil juridique » partout.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/contrats/?demo`, bouton « Je suis
+  intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/contrats/`, captures
+  `assets/templates-contrats-*.webp`, couverture `assets/templates-contrats-couverture.png`, tests
+  `outils/templates/contrats.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/contrats/carte-en-prochaine.html`).
+- Communication prête dans `communication/contrats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `contrats-fournisseurs`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP et régénération des pages de packs, plannings,
+  page anglaise, passage en vente du site.

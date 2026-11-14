@@ -340,6 +340,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   reconduits d'une année sur l'autre, demandes de formation, contrôle de l'état des lieux (abondement CPF à
   50 salariés et plus). RGPD : données minimales, export et effacement par salarié. Règles dans `regles.js`, tests
   `outils/templates/entretiens-annuels.test.mjs`.
+- `templates/contrats/` (CTR) : **contrats fournisseurs et échéances**, prêt, « Mise en vente prochaine » (25 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/contrats/gumroad.json`). Contrats par fournisseur et
+  catégorie, échéance avec reconduction tacite, préavis (contrat ou défaut paramétrable de la catégorie), date limite
+  de résiliation calculée, alertes J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie,
+  historique, export CSV. Aucune règle légale non sourcée (seul repère : Code des assurances, art. L113-12, lu sur
+  Légifrance le 14/11/2026). Règles dans `regles.js`, tests `outils/templates/contrats.test.mjs`. Version anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

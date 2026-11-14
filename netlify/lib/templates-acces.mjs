@@ -64,6 +64,7 @@ export const PRODUITS = {
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/' },
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/' },
+  CTR: { nom: 'Contrats fournisseurs et échéances', url: '/templates/contrats/' },
   EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/' },
   CMP: { nom: 'Gestion de compétition sportive', url: '/templates/competition/' },
   SNH: { nom: 'Dossier sinistre habitation', url: '/templates/sinistre/', gumroad: 'nSUWbSsPnceWsczHeshUnw==' },

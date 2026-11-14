@@ -1,0 +1,16 @@
+{
+  "name": "Contrats fournisseurs et échéances · QME",
+  "short_name": "Contrats",
+  "description": "Tes contrats fournisseurs, la date limite de résiliation calculée, les alertes avant la tacite reconduction, la lettre de résiliation et le coût annuel par catégorie.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

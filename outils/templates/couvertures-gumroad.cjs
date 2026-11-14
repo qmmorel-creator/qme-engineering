@@ -55,6 +55,7 @@ const T = {
   'maintenance': ["Maintenance préventive · GMAO légère", "Chaque machine entretenue à temps.", "Date, compteur ou premier atteint · bons d'intervention · coût par équipement"],
   repas: ['Repas de la semaine · liste de courses', 'Le menu fait, la liste aussi.', 'Midi et soir · courses par rayon · à cocher au magasin'],
   'verifications': ["Vérifications réglementaires", "Aucun contrôle oublié.", "Périodicités sourcées · échéances · observations levées · registre"],
+  'contrats': ["Contrats fournisseurs et échéances", "Plus de reconduction subie.", "Date limite de résiliation · alertes J-60 et J-30 · lettre · coût annuel"],
   'planning-equipe': ["Planning d'équipe et staffing", "Qui fait quoi, et qui peut encore prendre.", "Charge par semaine · absences · conflits · disponibles"],
   'competition': ["Gestion de compétition sportive", "Du premier inscrit au podium.", "Inscriptions · vagues et horaires · scores · classement en direct"],
   'voiture': ["Carnet de voiture", "Ta voiture, entretenue à temps.", "Entretiens · kilométrage · dépenses"],
