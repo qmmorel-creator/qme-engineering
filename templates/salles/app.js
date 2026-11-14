@@ -373,7 +373,7 @@
     if (a.etape === 1) {
       corps = `
         <p class="surtitre">Bienvenue</p>
-        <h1>Ce que l'on réserve chez vous</h1>
+        <h1>Ce qui se réserve</h1>
         <p class="intro">Liste les salles, les bureaux en flex et le matériel que l'on se prête. Chacun réservera un créneau en saisissant son nom : une salle déjà prise est refusée. Tu pourras tout modifier dans les Réglages.</p>
         <label class="champ" style="max-width:420px;margin-top:20px">Nom du lieu ou de l'organisation <small>Facultatif, affiché en haut de l'écran « Maintenant ».</small><input id="organisation" value="${esc(a.organisation)}" maxlength="80"></label>
         <h2 class="titre-section">Tes ressources <span>Jusqu'à ${R.MAX_RESSOURCES}. Pas de véhicules ici.</span></h2>
@@ -919,7 +919,8 @@
       const vv = R.valider(c, E, { auj: t, nouvelle: !r || c.date !== r.date });
       el.innerHTML = vv.ok ? `${esc(nomRessource(c.ressource))} · ${dateLongue(c.date)} · ${plage(c)} (${R.texteDuree(R.duree(c))}) · <b>libre</b>` : `<span class="texte-alerte">${esc(vv.erreur)}</span>`;
     };
-    f2.addEventListener('input', recap); f2.addEventListener('change', recap); recap();
+    const effacerErreur = () => { dlg.querySelector('.erreur').textContent = ''; };
+    f2.addEventListener('input', () => { effacerErreur(); recap(); }); f2.addEventListener('change', () => { effacerErreur(); recap(); }); recap();
   }
 
   function reserverRapide(resId, dureeVoulue) {

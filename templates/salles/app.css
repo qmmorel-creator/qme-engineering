@@ -541,7 +541,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .info-res{display:flex;align-items:center;gap:4px;font-size:14px;color:var(--texte-2);flex:1 1 280px;min-width:0}
 .info-res>span{min-width:0}
 .sm-cadre{border:1px solid var(--trait);background:var(--surface);border-radius:16px;overscroll-behavior-x:contain}
-.sm{--h:24px;display:grid;grid-template-columns:56px repeat(var(--c),minmax(110px,1fr));min-width:calc(56px + var(--c) * 110px)}
+.sm{--h:28px;display:grid;grid-template-columns:56px repeat(var(--c),minmax(110px,1fr));min-width:calc(56px + var(--c) * 110px)}
 .sm-col{border-left:1px solid var(--trait);min-width:0}
 .sm-col-axe{border-left:0;position:sticky;left:0;z-index:4;background:var(--surface)}
 .sm-col.auj .sm-jour{background:var(--beurre)}
@@ -587,9 +587,11 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .onglets{grid-template-columns:repeat(5,1fr)}
   .onglet{font-size:10.5px}
   .grille-res{grid-template-columns:1fr}
-  .jr{--nom:104px}
+  .jr{--nom:112px}
+  .vue-jour .vue-tete p,.vue-semaine .vue-tete p{display:none}
+  .sm{--h:26px}
   .jr-nom{padding:6px 8px}
-  .jr-nom .lien-ligne b{font-size:12.5px;overflow-wrap:anywhere}
+  .jr-nom .lien-ligne b{font-size:12.5px;overflow-wrap:break-word;hyphens:auto}
   .jr-nom .lien-ligne span{font-size:11px}
   .sm{grid-template-columns:44px repeat(var(--c),minmax(92px,1fr));min-width:calc(44px + var(--c) * 92px)}
   .nav-mois h2{min-width:0;flex:1;font-size:19px}
