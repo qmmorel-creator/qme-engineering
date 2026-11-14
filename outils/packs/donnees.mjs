@@ -49,6 +49,7 @@ export const TEMPLATES = {
   DMN: { slug: 'demenagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.', pour: 'perso' },
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
+  VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -68,7 +69,6 @@ export const PREVUS = {
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
-  VYG: { nom: 'Planificateur de voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.' },
   CRN: { nom: 'Carnet de voiture', prix: 1300, phrase: 'Entretiens, kilométrage, dépenses et coût au kilomètre.' },
   PRF: { nom: 'Gestion de classe', prix: 2500, phrase: 'Élèves, évaluations, compétences et bulletins.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
