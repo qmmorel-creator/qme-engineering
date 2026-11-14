@@ -135,6 +135,8 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
 - [ ] **Vidéo de présentation** (facultatif, sur demande de Quentin) : générateur dans Nexora.
 - [ ] **`netlify.toml`** : en-têtes `noindex` et `sw.js` pour `/templates/<slug>/*`.
 - [ ] **`sitemap.xml`** : `node outils/sitemap/generer.mjs` (nouvelle page catalogue ; `outils/templates/sitemap.test.mjs` échoue sinon).
+- [ ] **Référencement de la page catalogue** : § « Référencement » ci-dessous (title, description, H2, FAQ,
+      `node outils/seo/donnees-structurees.mjs`, ligne de `docs/seo/mots-cles.md`).
 - [ ] **`README.md`** et **`docs/templates/IDEES.md`** (statut, liens de communication).
 - [ ] **Vérification** : toutes les pages modifiées en Playwright (1280 px et iPhone 13), aucun lien
       mort (boutons Acheter en 200), aucune page plus large que 390 px.
@@ -164,8 +166,55 @@ Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que 
       « Templates payants ».
 - [ ] **Plannings** : la remarque « Template pas encore en vente » des lignes LinkedIn et Instagram du
       template peut être levée (lien d'achat vérifié).
+- [ ] **Données structurées** : `node outils/seo/donnees-structurees.mjs` (le Product + Offer apparaît dès que le
+      prix et le bouton Acheter Gumroad sont sur la page ; `seo.test.mjs` vérifie prix et lien). Title et
+      description revus si la page était « bientôt » (§ « Référencement ») ; statut mis à jour dans
+      `docs/seo/mots-cles.md` ; fiche Gumroad (nom, résumé, tags, catégorie) selon § « Référencement ».
 - [ ] **Vérification après déploiement** : `grep` du slug sans « prochaine » ni « Bientôt » restant sur
       les pages publiques, bouton Acheter en 200, page catalogue et démo en 200 (ordinateur et iPhone 13).
+
+## Référencement (chaque page catalogue, depuis le 15/11/2026)
+
+Issu de l'audit SEO du 14/11/2026 (`docs/seo/audit-2026-11-14.md`, `plan-action.md`). SEO honnête uniquement : pas
+de bourrage de mots-clés, pas de texte caché, pas de faux avis ni d'`aggregateRating`, pas de page satellite.
+
+- **Requête principale** : choisie au cadrage (SKILL § 0) et notée dans `docs/seo/mots-cles.md` (segment, statut,
+  requête, variantes de l'autocomplétion, intention, concurrence observée avec l'outil et la date, volume
+  « non mesuré » sauf source réelle). La demande dominante est presque toujours « modèle … excel gratuit » :
+  viser la formulation la plus précise que le template couvre vraiment (« suivi des levées de réserves » plutôt
+  que « réserves »), jamais une promesse de gratuité.
+- **Title** : 60 caractères au plus, `<requête principale> : <bénéfice court> · QME`, unique sur le site
+  (exemple : « Relance de facture impayée : suivi, pénalités, modèles · QME »). Les pages « bientôt » peuvent
+  garder `<nom> · Templates QME` jusqu'à la mise en vente.
+- **Meta description** : 155 caractères au plus (au-delà, Google tronque), commence par la requête ou la
+  contient tôt, dit ce que fait l'outil et pour qui ; aucune promesse de résultat ; garder « Pas un avis
+  médical » ou l'équivalent quand le sujet touche la santé, l'argent, le juridique ou le fiscal. Apostrophes
+  écrites `&#x27;` dans l'attribut, comme sur les autres pages.
+- **H1** = nom du produit (identique au site, à `PRODUITS` et à la connexion). Le **premier paragraphe**
+  (`.section-head p`) contient la requête une fois, naturellement.
+- **Hiérarchie** : un seul H1 ; « Ce que vous obtenez » en **H2** (jamais H3 directement sous le H1 ; la règle
+  CSS `.produit-texte h2` garde le rendu) ; les gabarits `section-site.html` sont à jour.
+- **FAQ** : uniquement dans `<div class="faq">` avec `<details><summary>…</summary><p>…</p></details>` :
+  c'est ce que lit le générateur de FAQPage. Une question qui reprend la requête quand elle apporte une vraie
+  réponse (« Le document unique est-il obligatoire pour moi ? »).
+- **Images** : `alt` descriptif avec « données fictives », `width`/`height`, `loading="lazy"` hors première
+  capture (déjà le cas du gabarit).
+- **Données structurées** : ne jamais écrire de JSON-LD à la main. `node outils/seo/donnees-structurees.mjs`
+  le génère depuis la page (BreadcrumbList depuis `nav.fil`, FAQPage depuis `div.faq`, Product + Offer EUR
+  seulement si `<div class="prix"><b>NN €</b>` et un bouton `btn primary` vers `qmengineering.gumroad.com/l/…`
+  sont présents). Les pages packs le reçoivent via `outils/packs/generer.mjs`. Contrôle :
+  `outils/templates/seo.test.mjs` (dans `npm test`).
+- **Vérifier** : `node outils/seo/audit.mjs` (longueurs, doublons, titres, liens cassés) ; après déploiement,
+  Rich Results Test de Google sur l'URL en ligne (Produit et Fil d'Ariane sans erreur ; avertissements
+  `shippingDetails` / `hasMerchantReturnPolicy` attendus tant qu'aucune politique de remboursement n'est écrite).
+- **Fiche Gumroad** (page indexée par Google) : nom qui contient la requête quand le nom du produit ne la
+  contient pas (le proposer à Quentin, et garder le site cohérent) ; résumé au tutoiement, requête en tête quand
+  c'est naturel ; **8 tags au plus, 20 caractères au plus, minuscules, mots reliés par des tirets, sans espace,
+  `francais` toujours présent** ; catégorie et sous-catégorie cohérentes (pas « Interior Design » pour des
+  travaux). Propositions des 28 fiches existantes : `docs/seo/hors-site.md`.
+- **Guide associé** (facultatif, sur accord de Quentin) : si `docs/seo/guides.md` propose un guide pour le sujet,
+  le signaler à Quentin ; sources officielles ouvertes et datées, mention « ne remplace pas un avis
+  professionnel ».
 
 ## Planning LinkedIn (à chaque template prêt)
 
@@ -250,5 +299,8 @@ de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si aban
    API jamais mise en cache.
 10. **Netlify publie tout le dépôt** : ne rien mettre de privé hors des chemins bloqués
     (`/docs/*`, `/.claude/*`, `/CLAUDE.md` renvoient 404).
-11. **PowerShell** (machine de Quentin) : pas de `VAR=… commande` ; fournir des commandes Windows ou un
+11. **Référencement** : descriptions de plus de 160 caractères (117 pages sur 129 avant l'audit du 14/11/2026),
+    « Ce que vous obtenez » en H3, JSON-LD oublié après un changement de prix ou de FAQ, tags Gumroad avec
+    espaces ou accents étrangers (« gestión ») : voir § « Référencement ».
+12. **PowerShell** (machine de Quentin) : pas de `VAR=… commande` ; fournir des commandes Windows ou un
     `.bat`. Les commandes `npm` se lancent dans le dossier du dépôt.

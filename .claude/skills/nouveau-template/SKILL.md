@@ -22,6 +22,12 @@ vouvoiement sur le site QME.
 4. Vérifier source et licence de toute base externe (aliments, MET, courbes…) **avant** de l'intégrer ;
    noter la source dans l'application (Réglages ou pied de page) et dans `IDEES.md`.
 5. Lister les données qui se périment : les remplacer par du calcul ou par une saisie utilisateur.
+6. **Choisir la requête principale** (référencement, règle du 15/11/2026, détail dans `reference.md`
+   § « Référencement ») : interroger l'autocomplétion Google sur le sujet (seul, puis avec « modèle »,
+   « tableau », « excel », « gratuit », « logiciel »), vérifier l'intention (« gestionnaire de tâches » =
+   l'outil Windows, « temps de vie » = la durée de vie des animaux : à éviter), regarder les premiers
+   résultats. Inscrire la ligne de la page dans `docs/seo/mots-cles.md`. **Aucun volume de recherche
+   inventé** : « non mesuré » tant qu'il ne vient pas de la Search Console ou du Keyword Planner.
 
 ## 1. Construire
 
@@ -76,7 +82,7 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
 3. Gumroad (outils `mcp__Gumroad__*`) : **confirmer nom et prix avec Quentin** (prix minimum 12 €, règle de
    Quentin du 13/11/2026 : aucun template vendu moins cher, hors gratuit), puis
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,
-   bouton « Ouvrir mon … »), `add_content_link` vers `https://qm-engineering.fr/connexion/`,
+   bouton « Ouvrir mon … » ; nom, résumé, tags et catégorie selon `reference.md` § « Référencement »), `add_content_link` vers `https://qm-engineering.fr/connexion/`,
    `add_cover` une fois l'image en ligne. Reporter l'identifiant produit dans `PRODUITS`.
    **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : onglet Content →
    Insert → License key, sans multi-postes. Sans ce bloc, l'acheteur ne reçoit aucune clé. Le bloc affiche le
@@ -94,6 +100,10 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
    change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
+6. **Référencement de la page catalogue** (`reference.md` § « Référencement », obligatoire) : title et
+   description construits sur la requête principale, FAQ dans `div.faq`, puis
+   `node outils/seo/donnees-structurees.mjs` et `node outils/sitemap/generer.mjs` ;
+   `outils/templates/seo.test.mjs` et `sitemap.test.mjs` échouent sinon.
 
 ## 4. Préparer la communication
 
@@ -143,7 +153,8 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
   Quentin** (déploiements Netlify facturés). Ordre : licence activée → fiche Gumroad publiée → fusion.
 - Après fusion : attendre le déploiement, puis vérifier la page (200), les en-têtes (`noindex` sur
   l'application), l'API (`401` à une clé inventée, jamais `503`), la démo dans un navigateur mobile.
-  Donner à Quentin l'URL, le SHA et le Deploy ID.
+  Donner à Quentin l'URL, le SHA et le Deploy ID, et lui demander l'indexation de la page catalogue dans
+  la Search Console (Inspection d'URL → Demander l'indexation : aucun accès à son compte Google).
 - **À chaque publication d'une fiche Gumroad, le site retire aussitôt le statut « bientôt »** (règle de
   Quentin, 13/11/2026) : dans la même session, une PR qui fait passer le template de « Mise en vente
   prochaine » à « en vente » partout (page catalogue, carte du catalogue FR et EN, bandeau de la démo,
