@@ -96,6 +96,7 @@ export const PRODUITS = {
   CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/' },
   CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/' },
+  SBV: { nom: 'Subventions', url: '/templates/subventions/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

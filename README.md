@@ -320,6 +320,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   catalogue de 104 fournitures sans prix ni marque, historique et export CSV. Une clé partagée, nom saisi à chaque étape ;
   actions rejouées sur la version du serveur en cas de conflit 409. Aucune règle légale ni fiscale. Règles dans
   `regles.js`, tests `outils/templates/achats.test.mjs`. Version anglaise en attente.
+- `templates/subventions/` (SBV) : **subventions** (T91), prêt, « Mise en vente prochaine » (25 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/subventions/gumroad.json`). Dossiers par financeur (commune, département,
+  région, État, fondations, mécénat) et par projet, pièces à fournir avec statut, échéances saisies (dépôt, réponse,
+  versements, bilan) et alertes, demandé / accordé / versé / reste à percevoir, budget prévisionnel avec la part de chaque
+  financeur, dépenses justificatives imputables à un dossier, trame du bilan imprimable, tableau de bord annuel, CSV.
+  Aucun calendrier de financeur intégré. Rappels des subventions publiques (convention au-delà de 23 000 €, compte rendu
+  financier à 6 mois, comptes annuels au-delà de 153 000 €) repris de service-public.gouv.fr (fiches F3180 et R46623,
+  consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests `outils/templates/subventions.test.mjs`.
+  Version anglaise en attente.
 - `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
   réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),

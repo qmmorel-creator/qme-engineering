@@ -88,6 +88,7 @@ const T = {
   achats: ["Demandes d'achat et fournitures", "Qui a demandé quoi, et où en est le budget.", "Validation · commandes groupées · réception · budget par service"],
   remerciements: ["Cadeaux reçus et remerciements", "Personne n'est oublié.", "Qui a offert quoi · messages prêts · étiquettes d'adresses"],
   notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
+  subventions: ["Subventions", "Chaque dossier à temps, chaque euro justifié.", "Pièces · échéances · versements · budget du projet · bilan"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
