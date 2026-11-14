@@ -79,6 +79,9 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T95 Investissement locatif | 15 € | `rentabilite-investissement-locatif` |
 | T96 Copropriété | 15 € | `copropriete` |
 | T97 Course à pied | 15 € | `course-a-pied`, fitness-and-health (à confirmer) |
+| T54 Séminaire / offsite | 35 € | `seminaire-offsite`, business-and-money (à vérifier) |
+| T58 Banque de questions et quiz | 19 € | `banque-questions-quiz`, education (à vérifier) |
+
 - **Prix des templates à clé partagée (T50 Salles, T82 Achats, T92 Bénévoles)** : une clé utilisée par
   plusieurs personnes d'une même structure. Par défaut : prix unitaire du tableau, sans majoration ; le
   vendre plus cher ou par nombre d'utilisateurs ?
@@ -86,7 +89,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 ## Plannings LinkedIn et Instagram
 
 - Lignes Instagram en « Prêt » à relire avant de les passer en « Programmé » : IG-63 (vue 5 « bientôt en
-  vente » à refaire), IG-67 à IG-90. Instinct risque d'annoncer des produits pas encore achetables : elles
+  vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
   LI-122 (sam. 13/02), LI-124 (sam. 30/01). Décaler ?
@@ -94,13 +97,16 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
   (ancien libellé « Prochaine échéance »).
-- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8) : les garder ?
+- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8, T54, T58) : les garder ? Texte LinkedIn de T58
+  long (~1 600 caractères).
+- LI-136 (T54, 12/03) et LI-137 (T58, 14/03) placés après LI-135 ; un créneau plus tôt existait (31/01,
+  après LI-124) mais aurait aligné trois templates d'affilée. OK ?
 - T27 : accroche LinkedIn « beaucoup de propriétaires oublient » non chiffrée : l'adoucir ?
 
 ## Classement dans le catalogue
 
 - T62 Stocks sous « Indépendants » (public : commerces, artisans) ; T44 TVA sous « Indépendants » ;
-  T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59 sous
+  T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59, T54 et T58 sous
   « Associations, formation et événements ». OK ou nouveaux thèmes ?
 
 ## Par template : périmètre et choix appliqués par défaut
@@ -162,12 +168,21 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   - la démo propose d'alléger une semaine déjà allégée (l'utilisateur garde le choix) : OK ?
   - LinkedIn ouvre sur « Autour de moi » sans dire que tu cours ;
   - 3 hashtags génériques seulement (pas de jeu « Sport » dans le kit).
+- **T54 Séminaire** : rattaché à aucun pack (Moyens généraux ou Associations et clubs possibles) ; « sans porc »
+  gardé, « sans gluten » via la case allergie ; « en attente » comptés mais jamais placés automatiquement ;
+  répartition par service sans critère de genre ; tous présents sur toute la durée ; pas d'accès participant,
+  ni rétroplanning ni badges ; définition CNIL des données sensibles non relue.
+- **T58 Quiz** : QCM multiple en tout ou rien, blanc compté faux, note au demi-point ; seuils 85 % / 35 %
+  (5 réponses minimum, distracteur signalé dès 15 %) ; passation sur l'appareil du formateur seulement (pas de
+  compte apprenant), un utilisateur par clé ; 30 questions de démo rédigées pour QME ;
+  conservation 12 mois par défaut ; textes RGPD non vérifiés sur source primaire ; argument du pack
+  Enseignant remplacé par « Questions, quiz et corrections dans le même pack ».
 
 ## Prospects
 
-- Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 8.
 - T97 Course à pied : FFA, FFSE, UFOLEP, FSGT, intérêt et interlocuteur à vérifier. Idem pour les
   `prospects.md` de T73 à T96.
+- Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 9.
 
 ## Tranché
 
