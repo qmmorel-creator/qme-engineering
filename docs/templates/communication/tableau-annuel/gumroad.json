@@ -1,0 +1,42 @@
+{
+  "slug": "tableau-annuel",
+  "name": "Tableau de bord annuel et roue de vie",
+  "price_cents": 1500,
+  "permalink": "tableau-annuel-roue-de-vie",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mon tableau",
+  "summary": "Ta roue de vie notée domaine par domaine, des objectifs mesurables (méthode OKR), des actions par trimestre et une revue guidée chaque trimestre, avec l'évolution de ta roue dans le temps.",
+  "description": "<h2>Ton année, domaine par domaine.</h2><p>Les bonnes résolutions de janvier tiennent rarement jusqu'en mars, et le travail prend souvent toute la place. Le Tableau de bord annuel et roue de vie te donne une méthode simple pour piloter toute ton année : tu notes ta roue de vie, tu fixes quelques objectifs mesurables, tu les découpes en actions par trimestre, et tu fais le point chaque trimestre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une roue de vie notée, pas devinée</strong> : 12 domaines types (santé, travail, argent, famille, couple, amis, développement personnel, loisirs, cadre de vie…) ou les tiens, 8 au plus, chacun noté par 3 questions de 0 à 10.</li><li><strong>Des objectifs mesurables</strong> selon la méthode OKR : un objectif, 1 à 3 résultats clés chiffrés ou à cocher, dans un sens ou dans l'autre (réduire ses dépenses compte aussi). 33 objectifs modèles prêts à adapter.</li><li><strong>Le rythme de l'année</strong> : chaque objectif comparé à la part de l'année écoulée (dans les temps, à surveiller, en retard), et un score de l'année.</li><li><strong>Des actions par trimestre</strong> : à faire, en cours, faites, reportées ; 48 idées d'actions ; ce qui est resté ouvert au trimestre précédent remonte tout seul.</li><li><strong>Une revue guidée</strong> en 20 à 30 minutes : la roue domaine par domaine, les résultats clés, un bilan écrit (j'arrête, je continue, je commence), puis 1 à 3 priorités et leurs actions. La revue du 4e trimestre est le bilan de l'année.</li><li><strong>L'évolution dans le temps</strong> : la moyenne de ta roue et chaque domaine, revue après revue, sur la même échelle ; bilan à copier, export CSV, impression.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes domaines, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Ton tableau est enregistré en ligne et te suit sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil de réflexion personnelle : il ne remplace pas l'accompagnement d'un professionnel (coach, médecin, psychologue). Aucune connexion à une autre application. Une licence = un tableau, pour une personne. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "roue-de-vie",
+    "objectifs",
+    "okr",
+    "bilan",
+    "organisation",
+    "developpement-personnel",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton tableau s'ouvre. Choisis tes domaines de vie, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Particuliers qui veulent piloter leur année, et coachs pour eux-mêmes"
+    }
+  ]
+}
