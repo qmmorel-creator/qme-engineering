@@ -131,6 +131,34 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
 - [ ] **Vérification** : toutes les pages modifiées en Playwright (1280 px et iPhone 13), aucun lien
       mort (boutons Acheter en 200), aucune page plus large que 390 px.
 
+## À chaque publication Gumroad (passage de « bientôt » à « en vente »)
+
+Règle de Quentin (13/11/2026) : dès qu'une fiche Gumroad est publiée (`publish_product`), le site retire le
+statut « bientôt » de ce template, dans la même session, par une PR dédiée (fusion avec le feu vert de
+Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que son `id` est celui de `PRODUITS`.
+
+- [ ] **`PRODUITS`** (`netlify/lib/templates-acces.mjs`) : champ `gumroad` = identifiant du produit.
+- [ ] **Page `catalogue/<slug>/`** : bloc `prix prochaine` « Mise en vente prochaine » remplacé par le prix
+      et « Achat unique · accès à vie · tous vos appareils » ; bouton « Acheter » (lien
+      `https://qmengineering.gumroad.com/l/<permalien>`, `data-goatcounter-click="achat-<slug>"`) en bouton
+      principal, démo en second ; bouton « Je suis intéressé(e) » et sa note retirés ; bandeau final
+      « Bientôt en vente » remplacé par le rappel standard (modèle : `docs/templates/communication/<slug>/section-site.html`).
+- [ ] **Catalogue `templates/index.html`** : `<li class="carte prochaine">` retirée de `.liste-bientot`,
+      `<li class="carte">` (prix, « Voir le détail ») ajoutée dans `.vitrine-piste` ; compteurs et
+      sous-titre « N templates · achat unique » mis à jour.
+- [ ] **`en/templates/index.html`** : carte « Coming soon » passée au prix (« One-time purchase ») avec
+      « Buy » et « Try the demo ».
+- [ ] **Démo** : lien `.bientot-demo` retiré du bandeau de démo (`app.js`, `app.css`), nouveau `?v=` dans
+      `index.html` et `sw.js`.
+- [ ] **Accueil** `index.html` et `en/index.html` : prix « dès … » si le template devient le moins cher
+      (minimum 12 €).
+- [ ] **`docs/templates/IDEES.md`** : statut `en vente`, permalien définitif ; **README** : section
+      « Templates payants ».
+- [ ] **Plannings** : la remarque « Template pas encore en vente » des lignes LinkedIn et Instagram du
+      template peut être levée (lien d'achat vérifié).
+- [ ] **Vérification après déploiement** : `grep` du slug sans « prochaine » ni « Bientôt » restant sur
+      les pages publiques, bouton Acheter en 200, page catalogue et démo en 200 (ordinateur et iPhone 13).
+
 ## Planning LinkedIn (à chaque template prêt)
 
 Google Sheet « Planning publications LinkedIn »

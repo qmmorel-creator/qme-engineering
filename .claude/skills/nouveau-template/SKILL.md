@@ -137,4 +137,10 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
 - Après fusion : attendre le déploiement, puis vérifier la page (200), les en-têtes (`noindex` sur
   l'application), l'API (`401` à une clé inventée, jamais `503`), la démo dans un navigateur mobile.
   Donner à Quentin l'URL, le SHA et le Deploy ID.
+- **À chaque publication d'une fiche Gumroad, le site retire aussitôt le statut « bientôt »** (règle de
+  Quentin, 13/11/2026) : dans la même session, une PR qui fait passer le template de « Mise en vente
+  prochaine » à « en vente » partout (page catalogue, carte du catalogue FR et EN, bandeau de la démo,
+  connexion, `PRODUITS`), sans attendre le prochain lot. Liste à cocher : `reference.md`
+  § « À chaque publication Gumroad ». Un template publié sur Gumroad ne doit jamais rester affiché
+  « Bientôt » sur le site, et inversement aucun bouton Acheter n'apparaît avant la publication.
 - Statut `prêt` puis `en vente` dans `docs/templates/IDEES.md`.
