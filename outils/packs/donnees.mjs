@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
@@ -93,7 +94,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
   NTS: { nom: 'Notes et moyennes', prix: 1200, phrase: 'Moyennes pondérées, crédits et note visée à l’examen.' },
   CAN: { nom: 'Candidatures études, stages, alternance', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.' },
@@ -250,9 +250,10 @@ export const PAGES = {
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
       ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],
       ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
+      ['CDX', 'Remerciez chacun : cadeaux notés, messages prêts, étiquettes imprimées.'],
     ],
-    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Remerciements et voyage à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CDX'],
+    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PPR: {
     couleur: 'encre', cibles: ['managers', 'independants'],

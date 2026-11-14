@@ -417,6 +417,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   remboursement anticipé (durée ou mensualité, indemnités au plafond de l'article R313-25 du Code de la consommation,
   saisies ou nulles) ; export CSV, impression. Aucun taux de marché intégré. Règles dans `regles.js`, tests
   `outils/templates/emprunt.test.mjs`, page `catalogue/emprunt/`, démo `/templates/emprunt/?demo`.
+- `templates/remerciements/` (CDX) : **cadeaux reçus et remerciements** (T86), prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/remerciements/gumroad.json`). Événements
+  (mariage, naissance ou baptême, anniversaire, retraite, obsèques au ton sobre, autre), foyers et cadeaux (objet,
+  argent, cagnotte, attentions ; montant et adresse facultatifs), statut du remerciement (à écrire, écrit, envoyé),
+  44 modèles de messages originaux par événement et par ton, reste à remercier et objectif d'envoi réglable,
+  étiquettes d'adresses A4 (4 formats, départ, décalage), import d'une liste collée, export CSV, effacement des
+  adresses et d'un événement. Aucune règle légale ni donnée datée. Règles dans `regles.js`, tests
+  `outils/templates/remerciements.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
