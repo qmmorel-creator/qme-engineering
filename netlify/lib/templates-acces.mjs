@@ -59,6 +59,8 @@ export const PRODUITS = {
   GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
   BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/' },
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
+  EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
+  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

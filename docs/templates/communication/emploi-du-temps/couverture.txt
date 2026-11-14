@@ -1,0 +1,6 @@
+Emploi du temps d'établissement
+Ton planning, sans conflit.
+Groupes · formateurs · salles · heures suivies
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  'emploi-du-temps': ["Emploi du temps d'établissement", "Ton planning, sans conflit.", "Groupes · formateurs · salles · heures suivies"],
