@@ -55,8 +55,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T27 Gestion locative | 20 € | personal-finance |
 | T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership |
 | T55 Gestion de classe | 25 € | — |
-| T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement` |
-| T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites` |
+| T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement`, education ou business-and-money (à vérifier) |
+| T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites`, catégorie à choisir |
 | T09 Garde-manger | 12 € | — |
 | T17 Suivi de lecture | 12 € | — |
 | T20 Animal de compagnie | 12 € | — |
@@ -109,7 +109,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   vente » à refaire), IG-71 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
-  LI-122 (sam. 13/02), LI-124 (sam. 30/01). Décaler ?
+  LI-122 (sam. 13/02), LI-124 (sam. 30/01), LI-127 (T60, dim. 21/02). Décaler ?
 - Images à déposer à la main dans Drive : lot 5 (2 couvertures et 10 vues de carrousel ; voir la colonne
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
@@ -162,9 +162,15 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé ; moyenne annuelle =
   moyenne des périodes ; bonus compté seulement s'il fait monter la moyenne.
 - **T56 Emploi du temps** : placement manuel ; demi-groupes non rattachés à leur classe ; une séance = un
-  groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu.
+  groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu (fériés repris du template
+  congés) ; alternance A/B qui saute les semaines entièrement fermées ; « réalisé » = séance terminée, sans
+  émargement ; chaque séance au-delà du volume ou du quota signalée ; nom de l'organisme fictif de la démo
+  (« Centre de formation des Tilleuls ») non comparé aux organismes réels ; impression papier et Safari réels
+  non testés.
 - **T60 Parcs multi-sites** : pas de périodicités réglementaires, de pièces jointes ni de bons
-  d'intervention ; accès unique ; démo avec de vraies villes (Rennes, Lille, Lyon) : garder ?
+  d'intervention ; accès unique ; démo avec de vraies villes (Rennes, Lille, Lyon) : garder ? « Modèle
+  tableur » traité par import et export CSV avec deux modèles vides, pas de fichier tableur séparé : suffisant ?
+  Ouverture des CSV dans Excel ou LibreOffice non testée.
 - **T09 Garde-manger** : deux durées seulement (Anses), DGCCRF inaccessible ; DLC non suivie au congélateur ;
   gaspillage en nombre de produits.
 - **T17 Lecture** : rythme sur 14 jours ; livres audio hors objectif en pages ; titres fictifs de la démo
