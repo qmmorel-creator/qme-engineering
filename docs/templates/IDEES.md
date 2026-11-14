@@ -104,7 +104,7 @@ déjà).
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
-| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | en cours | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
+| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
@@ -555,6 +555,16 @@ hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non so
 seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
 « Indépendants » (public : commerces et artisans).
 
+**T27 Gestion locative (14/11/2026)**, prêt, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad). Application `templates/gestion-locative/` (GRT, 20 €) ; page
+`catalogue/gestion-locative/` ; fiche `fiches/gestion-locative.md` (rédigée par délégation de Quentin) ;
+livrables `communication/gestion-locative/` (linkedin.md, instagram.md et carrousel `instagram/`, prospects.md,
+gumroad.md, gumroad.json). Aucune publication planifiée (LinkedIn, Instagram) ni entrée dans
+`communication/gumroad-a-creer.json` : à faire par le coordinateur. Repères légaux relus sur
+service-public.gouv.fr le 14/11/2026 (F1311, F13723, F35247, F31269, F947, F2889) ; articles de loi cités
+d'après ces fiches, Légifrance non consulté directement. Restent à vérifier : hashtags Instagram hors kit,
+catégorie Gumroad, organismes de `prospects.md`.
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
@@ -722,7 +732,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T24 | Circuit de visa : registre des documents soumis par lot, indices de révision, avis (sans observation, avec observations, refusé), délais contractuels, relances, vue chef de projet, tableau de bord | Types de documents par lot, codes de visa (VSO, VAO, REF), lots BTP types, délais de réponse paramétrables | Circuit de visa, registre et fiche visa (artefacts professionnels) | Backlog n° 05 fusionné (même produit). Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : structure seulement ; exemples fictifs. Moteur d'échéances commun avec T63. |
 | T25 | Registre des non-conformités : constat, gravité, cause, action corrective, vérification, clôture, indicateurs | Typologie des écarts, méthode des 5 pourquoi, grille de gravité | Non-conformités de fabrication et de réalisation (artefact professionnel) | **confidentiel** : structure seulement ; exemples fictifs. Produit d'appel de T23 ; même moteur que T32 (réserves). |
 | T26 | Notes de frais : saisie, justificatifs, statut de remboursement, barème kilométrique, récapitulatif et export mensuels (PDF) | Catégories de frais ; barème kilométrique saisi par l'utilisateur | Notes de frais (outil interne), Ma voiture en leasing | Backlog n° 19 fusionné. **daté** : barème kilométrique fiscal, saisi par l'utilisateur ou mis à jour chaque année avec source ; **fiscal**. Justificatifs : stockage de fichiers à prévoir. |
-| T27 | Gestion locative : biens, baux, quittances, révision du loyer, charges, rendement | Modèles de quittance et de relance, échéancier des révisions ; indice IRL saisi par l'utilisateur | Gestion locative (outil interne) | **daté** : IRL et règles de révision, saisis ou sourcés ; modèles de quittance à faire vérifier (outil d'aide, pas un conseil juridique). **RGPD** (locataires). Argent : avertissement. Distinct de T64 (location saisonnière). |
+| T27 | Gestion locative : biens, baux, quittances, révision du loyer, charges, rendement | Modèles de quittance et de relance, échéancier des révisions ; indice IRL saisi par l'utilisateur | Gestion locative (outil interne) | **daté** : IRL et règles de révision, saisis ou sourcés ; modèles de quittance à faire vérifier (outil d'aide, pas un conseil juridique). **RGPD** (locataires). Argent : avertissement. Distinct de T64 (location saisonnière). Prêt le 14/11/2026 : fiche [`fiches/gestion-locative.md`](fiches/gestion-locative.md), application `templates/gestion-locative/` (GRT), livrables `communication/gestion-locative/`. |
 | T28 | CRM freelance : prospects, clients, historique, prochaine action, projets, devis et factures, encaissements, chiffre d'affaires par client | Étapes de vente, prochaines actions types, modèles de devis et de facture | CRM et prospection (outils internes) | Backlog n° 09 fusionné. **RGPD** (clients, prospects). **daté**/**fiscal** : mentions et taux de TVA vérifiés par l'utilisateur ; factures en suivi seulement, pas un logiciel de facturation (facturation électronique obligatoire : calendrier à vérifier). Frontières avec T35 (pipeline) et T36 (devis) à fixer. Concurrence de CRM gratuits : simplicité, achat unique. |
 | T29 | Gestion de flotte : véhicules, conducteurs, réservations, kilométrage, entretiens, sinistres, amendes, leasing, coût total par véhicule | Intervalles d'entretien types (communs avec T10) | Gestion de flotte (outil interne), Ma voiture en leasing | Backlog n° 37 fusionné. Base commune avec T57 (auto-école) et T10. **daté** (contrôle technique). **RGPD** (conducteurs, amendes). Format : application + modèle tableur. |
 | T30 | Grille 30 min, glisser-déposer, catégories couleur, bilan prévu/réalisé hebdomadaire | Semaines types (cadre, freelance, étudiant), catégories préréglées | Planner horaire, grille de planning, planning rapide (outil interne) | — |
