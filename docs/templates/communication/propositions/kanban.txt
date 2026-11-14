@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="propositions" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/propositions/"><b>Propositions commerciales</b><span class="phrase">Contexte, options comparées et planning : une proposition claire.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>

@@ -1,0 +1,5 @@
+Capacité d'emprunt · prêts
+Combien emprunter, et à quel coût.
+Capacité · budget du projet · offres comparées · amortissement
+Ligne pour T dans outils/templates/couvertures-gumroad.cjs (ajoutée) :
+  emprunt: ["Capacité d'emprunt · prêts", 'Combien emprunter, et à quel coût.', 'Capacité · budget du projet · offres comparées · amortissement'],

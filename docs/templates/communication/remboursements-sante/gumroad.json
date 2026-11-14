@@ -1,0 +1,27 @@
+{
+  "slug": "remboursements-sante",
+  "name": "Remboursements santé",
+  "price_cents": 1200,
+  "permalink": "remboursements-sante",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon suivi",
+  "summary": "Optique, dentaire, kiné, consultations, pharmacie : chaque soin payé, ce que la Sécurité sociale et ta mutuelle t'ont rendu, les remboursements en retard avec leur message de relance à copier, et le bilan de l'année par personne.",
+  "description": "<h2>Ce qu'on te doit encore, soin par soin.</h2><p>Tu avances les frais, la Sécurité sociale rembourse une partie, ta mutuelle une autre, chacune à son rythme. Un remboursement qui n'arrive pas passe facilement inaperçu. Remboursements santé tient la liste de ce que tu attends, te signale ce qui tarde et prépare le message de relance.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque soin noté en quelques secondes</strong> : la personne du foyer, le type de soin (33 types, de l'optique à la kiné), la date et ce que tu as payé. Aucun diagnostic n'est demandé.</li><li><strong>Sécurité sociale et mutuelle suivies séparément</strong> : remboursement attendu, tiers payant ou pas de prise en charge ; montant reçu et écart avec ce qui était prévu.</li><li><strong>Les retards repérés seuls</strong> : rien reçu après le délai que tu choisis (30 jours par défaut) ? Le remboursement passe « à relancer », avec un message rempli prêt à copier.</li><li><strong>Le reste à charge</strong>, soin par soin et sur l'année, par personne et par type de soin.</li><li><strong>Ta mutuelle face à ses cotisations</strong> : ce qu'elle t'a remboursé dans l'année comparé à ce que tu as cotisé. Export CSV pour ton tableur.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Donne ton accord pour l'enregistrement de ces données de santé, ajoute les membres de ton foyer, puis note ton premier soin. Tes données sont enregistrées en ligne, dans l'Union européenne, et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte Ameli ni de mutuelle à connecter, rien n'est envoyé à ta place. Achat unique, sans abonnement.</p><p><em>Outil d'aide au suivi de tes remboursements : il ne remplace ni un avis professionnel (médical, administratif ou financier) ni les relevés officiels, qui font foi. Aucun taux de remboursement n'est intégré : les montants attendus viennent de ta saisie. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "sante",
+    "mutuelle",
+    "remboursement",
+    "budget",
+    "famille",
+    "finances-personnelles",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des remboursements santé s'ouvre. Donne ton accord pour l'enregistrement des données, ajoute les membres de ton foyer et note ton premier soin. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Particuliers et familles qui avancent leurs frais de santé" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "appels-offres",
+  "name": "Suivi des appels d'offres et candidatures",
+  "price_cents": 1500,
+  "permalink": "suivi-appels-offres",
+  "category": "business-and-money/marketing-and-sales",
+  "button": "Ouvrir mon suivi des candidatures",
+  "summary": "Tes consultations repérées, décidées avec une grille go/no-go, montées pièce par pièce à rebours de la date limite, relancées après dépôt : calendrier des dates limites, bibliothèque de pièces réutilisables et taux de réussite.",
+  "description": "<h2>Répondre aux bonnes consultations, à temps.</h2><p>Des consultations repérées dans des alertes e-mail, des pièces réunies la veille de la date limite, une attestation périmée découverte au dépôt, aucune relance ensuite, et aucune idée de ce que les réponses rapportent. Le Suivi des appels d'offres et candidatures te fait décider vite, préparer à temps et mesurer ton taux de réussite.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une veille qui décide</strong> : grille go/no-go de 8 critères pondérés (cœur de métier, capacité, temps de réponse, références, rentabilité, chances, connaissance du client, intérêt stratégique), recommandation et motif gardé.</li><li><strong>Chaque dossier pièce par pièce</strong> : pièces types copiées d'un modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe), statut, responsable, échéance calculée à rebours depuis la date limite.</li><li><strong>Les échéances du jour</strong> : pièces en retard, dépôt visé avec une marge de sécurité, dernier jour des questions, décisions à prendre, relances après dépôt, fin de validité des offres.</li><li><strong>Un calendrier</strong> mensuel des dates limites, dépôts, questions et relances.</li><li><strong>Une bibliothèque de pièces réutilisables</strong> : références, CV, attestations, avec leur emplacement et leur date de validité ; alerte si une pièce expire avant la date limite.</li><li><strong>Ton bilan</strong> : taux de go et de réussite par type, montants gagnés, motifs de perte, temps passé et euros gagnés par heure de réponse ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Note ta première consultation, remplis la grille, passe-la en go : le dossier se crée avec ses pièces. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Les modèles de pièces sont des points de départ sans référence réglementaire : la liste exacte est celle du règlement de chaque consultation. Les dates de validité des attestations sont celles que tu lis sur chaque pièce. Aucune connexion à une plateforme, à un profil d'acheteur ou à une messagerie : tu déposes et tu relances toi-même. Démo avec un an de candidatures fictives sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "appels-d-offres",
+    "marches-publics",
+    "freelance",
+    "consultant",
+    "candidatures",
+    "go-no-go",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des candidatures s'ouvre. Note ta première consultation, remplis la grille go/no-go puis passe-la en go : le dossier se crée avec ses pièces et leurs échéances. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Freelances, consultants et PME qui répondent à des appels d'offres et à des missions" }
+  ]
+}

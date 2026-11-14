@@ -1,0 +1,6 @@
+Papiers du foyer
+Chaque papier a sa place.
+Où il est · combien de temps le garder · renouvellements · fiche urgence
+Ligne ajoutée à T dans outils/templates/couvertures-gumroad.cjs :
+  papiers: ['Papiers du foyer', 'Chaque papier a sa place.', 'Où il est · combien de temps le garder · renouvellements · fiche urgence'],
+Rendu : assets/templates-papiers-couverture.png (SEUL=papiers, copie du script pointée sur le serveur local 8918), regardé le 14/11/2026.

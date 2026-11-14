@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="references-plaquette" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/references-plaquette/"><b>Kit références et plaquette</b><span class="phrase">Vos réalisations en fiches, une plaquette par prospect.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>

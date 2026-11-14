@@ -1,0 +1,46 @@
+<!-- Version « en vente » de la page catalogue/papiers/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad prévu : papiers-du-foyer (à confirmer une fois la fiche créée), prix 15 €. Captures :
+     assets/templates-papiers-*.webp (démo, données fictives). À la mise en vente, retirer aussi le lien .bientot-demo
+     du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js, remplacer le bandeau
+     final « Bientôt en vente » par le rappel standard, et passer la carte du catalogue en vitrine (15 €). -->
+<section class="section" id="papiers">
+  <div class="section-head">
+    <h2>Papiers du foyer</h2>
+    <p>Pour les particuliers et les familles qui cherchent toujours le même papier au mauvais moment. Où est chaque document, jusqu'à quand le garder, ce qui peut enfin être jeté, et les pièces d'identité à renouveler avant qu'il ne soit trop tard.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-papiers-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord des papiers d'un foyer fictif : recherche « Où est… », 34 documents, 3 à renouveler dont une carte d'identité expirée, 7 documents qui peuvent être jetés, 18 essentiels, puis les listes à renouveler et à trier (données fictives)">
+      <img class="tel" src="/assets/templates-papiers-tel.webp?v=20261114" width="780" height="1328" alt="Les papiers du foyer sur téléphone : recherche et compteurs (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Argent · papiers · famille</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>« Où est… ? » en une recherche</b> : tapez « passeport Léa » ou « taxe foncière », l'outil répond « Pochette rouge, tiroir de la commode ». Chaque document a son emplacement (classeur, boîte, tiroir, dossier du cloud, notaire) et une précision libre</li>
+        <li><b>Combien de temps le garder</b> : 77 documents types en 9 catégories (identité, famille, logement, impôts, banque, santé, travail, véhicule, assurances), avec la durée de conservation de la fiche officielle de service-public.gouv.fr, datée et modifiable document par document</li>
+        <li><b>« Peut être jeté » calculé</b> : à partir de la date du document ou de l'événement qui compte (fin du bail, clôture du compte, fin du contrat), la liste à trier se remplit seule, imprimable</li>
+        <li><b>Les renouvellements à temps</b> : carte d'identité, passeport, titre de séjour, contrôle technique, échéance d'assurance ; vous saisissez la date, l'outil vous prévient des mois avant</li>
+        <li><b>La fiche « en cas d'urgence »</b> : les documents essentiels de chaque personne et où ils sont, avec un mot pour un proche, à imprimer et à confier ; inventaire complet imprimable et export CSV</li>
+      </ul>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/papiers-du-foyer" data-goatcounter-click="achat-papiers" data-goatcounter-title="Acheter : papiers du foyer">Acheter</a>
+        <a class="btn" href="/templates/papiers/?demo" data-goatcounter-click="demo-papiers" data-goatcounter-title="Démo : papiers du foyer">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-papiers-documents.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des documents par catégorie : pour chacun la personne, l'emplacement, la durée de conservation et l'échéance de renouvellement, avec des filtres par statut, personne et catégorie (données fictives)"><figcaption>Chaque document, à qui il est, où il est, jusqu'à quand le garder</figcaption></figure>
+    <figure><img src="/assets/templates-papiers-echeances.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Échéances : une carte d'identité expirée, un passeport et un contrôle technique à renouveler avec le bouton « Renouvelé », puis les documents qui peuvent être jetés avec le bouton « Jeté » (données fictives)"><figcaption>Ce qu'il faut renouveler, et ce qui peut être jeté</figcaption></figure>
+    <figure><img src="/assets/templates-papiers-urgence.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Fiche « en cas d'urgence » : un mot pour un proche, la personne à contacter, puis les documents essentiels du foyer et de chaque personne avec leur emplacement (données fictives)"><figcaption>La fiche « en cas d'urgence », à imprimer pour un proche</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>D'où viennent les durées de conservation ?</summary><p>De la fiche « Durée de conservation des papiers » de service-public.gouv.fr (fiche F19134, vérifiée par l'administration le 13 octobre 2026, consultée le 14 novembre 2026). Chaque document type affiche la durée telle qu'elle est écrite dans la fiche et la date de vérification. Ce sont des durées minimales indicatives, pas un conseil juridique : en cas de litige ou de procédure, gardez le document plus longtemps. Vous pouvez choisir une autre date ou « garder toujours » pour n'importe quel document.</p></details>
+    <details><summary>Mes pièces d'identité sont-elles stockées ?</summary><p>Non. L'outil note le nom du document, à qui il est, où il est rangé et ses dates, jamais son contenu : pas de scan, pas de numéro. Les champs libres refusent un numéro long (sécurité sociale, compte, passeport), un IBAN ou un mot de passe.</p></details>
+    <details><summary>Et les cartes d'identité, passeports, titres de séjour ?</summary><p>La fiche officielle ne leur donne pas de durée de conservation : l'outil ne propose jamais de les jeter. Vous saisissez leur date de fin de validité, et il vous prévient avant (3 mois par défaut, réglable de « le jour même » à 12 mois). Les délais d'obtention varient selon la période et la commune : vérifiez-les sur service-public.gouv.fr.</p></details>
+    <details><summary>Comment est calculé « peut être jeté » ?</summary><p>Selon le document : à partir de sa date (une facture d'électricité se garde 5 ans), d'un événement que vous datez quand il arrive (un bail se garde 3 ans après la fin de la location), ou jusqu'au 31 décembre d'une année donnée (un avis d'impôt sur le revenu, jusqu'au 31 décembre de la 2e année suivant la mise en recouvrement). Rien n'est supprimé sans vous : le bouton « Jeté » garde une trace.</p></details>
+    <details><summary>Toute la famille peut-elle s'en servir ?</summary><p>Oui : la même clé s'ouvre sur plusieurs appareils (ordinateur, téléphones) avec les mêmes données. Les personnes du foyer sont de simples prénoms pour savoir à qui est chaque carte ; il n'y a pas de comptes séparés. La fiche « en cas d'urgence » s'imprime pour un proche qui n'a pas l'outil.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/papiers/?demo">la démo</a> ouvre le foyer fictif d'une famille de trois personnes, cinq emplacements et 35 documents dans tous les états (carte expirée, passeport à renouveler, factures à jeter, bail en cours). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>

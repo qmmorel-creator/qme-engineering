@@ -1,0 +1,16 @@
+{
+  "name": "Capacité d'emprunt et comparateur de prêts · QME",
+  "short_name": "Emprunt",
+  "description": "Ce que tu peux emprunter, le budget du projet et l'offre de prêt qui coûte le moins, tableau d'amortissement compris.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "suivi-temps",
+  "name": "Suivi du temps et rentabilité par mission",
+  "price_cents": 1900,
+  "permalink": "suivi-temps-rentabilite",
+  "category": "business-and-money",
+  "button": "Ouvrir mon suivi du temps",
+  "summary": "Le temps passé sur chaque mission, au chronomètre ou en une ligne, comparé à ton TJM, à ton devis et à ton coût de revient : budget, dépassement, taux horaire effectif et rapport client.",
+  "description": "<h2>Ce que tu gagnes vraiment de l'heure.</h2><p>Ton TJM est affiché, ton devis est signé. Mais une fois la mission finie, combien as-tu vraiment gagné de l'heure ? Entre les allers-retours, les corrections offertes, les devis, les relances et l'administratif, l'écart se découvre trop tard. Le Suivi du temps et rentabilité par mission compte ton temps au fil de l'eau et le compare à ton tarif, mission par mission.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le temps saisi sans effort</strong> : un chronomètre qui te suit d'un appareil à l'autre (lancé sur l'ordinateur, arrêté sur le téléphone), ou une ligne « 1h30 ». Chaque temps rattaché à une mission et à une tâche, facturable ou non.</li><li><strong>Des missions au forfait ou en régie</strong>, avec leur budget en jours ou en heures : consommation, avancement, estimation à terminaison, alerte de vigilance et de dépassement. 7 modèles de missions et 17 catégories de tâches prêts à l'emploi.</li><li><strong>Ton taux horaire effectif</strong> : montant facturé ÷ temps réellement passé, et son équivalent journalier, comparés à ton TJM cible, au taux prévu au devis et à ton coût de revient.</li><li><strong>Le temps non facturable rendu visible</strong> : prospection, devis, administratif, facturation, comptabilité, veille… et ta semaine réelle face à ta semaine type.</li><li><strong>La rentabilité de la période</strong> : temps total, part facturable, valeur produite et taux horaire réel du mois, de trois mois ou de l'année.</li><li><strong>Un rapport client imprimable</strong> par client ou par mission, et l'export CSV de toutes tes saisies.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton TJM cible et ta semaine type, crée ta première mission, lance le chronomètre. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil de suivi du temps et de gestion, pas un logiciel de facturation ni un conseil : aucune facture émise, aucun lien avec un agenda, une banque ou un logiciel. Montants hors taxes, saisis par toi ; ton TJM cible et ton coût de revient sont tes propres repères (aucun tarif de marché intégré). Démo disponible sur qm-engineering.fr/catalogue/suivi-temps.</em></p>",
+  "tags": [
+    "suivi-du-temps",
+    "freelance",
+    "consultant",
+    "rentabilite",
+    "tjm",
+    "chronometre",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi du temps s'ouvre. Indique ton TJM cible et ta semaine type, crée ta première mission et lance le chronomètre. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Freelances et consultants"
+    }
+  ]
+}

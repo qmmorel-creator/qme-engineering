@@ -1,0 +1,49 @@
+<!-- Version « en vente » de la page catalogue/remboursements-sante/ (contenu de <main> à reprendre dans la page à la
+     mise en vente). Permalien Gumroad prévu : remboursements-sante (à confirmer une fois la fiche créée), prix 12 €.
+     Captures : assets/templates-remboursements-sante-*.webp (démo, données fictives). À la mise en vente, retirer aussi
+     le lien .bientot-demo de templates/remboursements-sante/app.js et changer ?v= dans index.html et sw.js. -->
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><a href="/templates/?pour=perso#tous">Vie personnelle</a><span>›</span><b>Remboursements santé</b></nav>
+<section class="section" id="remboursements-sante">
+  <div class="section-head">
+    <h1 class="h-section">Remboursements santé</h1>
+    <p>Pour les particuliers et les familles qui avancent leurs frais de santé (lunettes, dentiste, kiné, consultations, pharmacie) et n'ont jamais le temps de vérifier que la Sécurité sociale puis la mutuelle ont bien remboursé. Chaque soin, ce qui a été rendu, ce qui tarde, et le message de relance prêt à copier.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-remboursements-sante-tableau.webp?v=20261114" width="1600" height="1000" alt="Aperçu des remboursements santé d'un foyer : payé dans l'année, pris en charge, en attente, reste à charge, trois remboursements en retard à relancer et cinq en attente (données fictives)">
+      <img class="tel" src="/assets/templates-remboursements-sante-tel.webp?v=20261114" width="780" height="1328" alt="Le suivi des remboursements santé sur téléphone : montants de l'année et barre d'onglets avec trois retards signalés (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Particuliers · familles</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Chaque soin noté en quelques secondes</b> : la personne du foyer, le type de soin (33 types prêts, de l'optique à la kiné), la date et ce que vous avez payé. Aucun diagnostic n'est demandé</li>
+        <li><b>Sécurité sociale et mutuelle suivies séparément</b> : remboursement attendu, tiers payant ou pas de prise en charge, montant reçu et écart avec ce qui était prévu</li>
+        <li><b>Les retards repérés seuls</b> : un remboursement qui n'arrive pas dans le délai que vous choisissez passe « à relancer », avec un message prêt à copier</li>
+        <li><b>Le reste à charge, soin par soin et sur l'année</b> : par personne et par type de soin, pour savoir ce que vous coûtent vraiment les lunettes ou le dentiste</li>
+        <li><b>Votre mutuelle face à ses cotisations</b> : ce qu'elle vous a remboursé dans l'année comparé à ce que vous avez cotisé, export CSV pour votre tableur</li>
+      </ul>
+      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/remboursements-sante" data-goatcounter-click="achat-remboursements-sante" data-goatcounter-title="Acheter : remboursements santé">Acheter</a>
+        <a class="btn" href="/templates/remboursements-sante/?demo" data-goatcounter-click="demo-remboursements-sante" data-goatcounter-title="Démo : remboursements santé">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-remboursements-sante-soins.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des soins par mois avec, pour chacun, la personne, l'état du remboursement de la Sécurité sociale et de la mutuelle (attendu, tiers payant, reçu, non pris en charge) et le reste à charge (données fictives)"><figcaption>Chaque soin, ses deux remboursements et son reste à charge</figcaption></figure>
+    <figure><img src="/assets/templates-remboursements-sante-relance.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Message de relance d'une mutuelle rempli automatiquement avec le soin, la date, le montant payé, le remboursement attendu et la date de transmission, prêt à copier (données fictives)"><figcaption>Le message de relance, prêt à copier</figcaption></figure>
+    <figure><img src="/assets/templates-remboursements-sante-bilan.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Bilan de l'année : montants payés, remboursés par la Sécurité sociale et la mutuelle et reste à charge, en barres par personne et par type de soin (données fictives)"><figcaption>Le bilan de l'année par personne et par type de soin</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Les taux de remboursement sont-ils intégrés ?</summary><p>Non, volontairement. Les bases et les taux de remboursement changent et dépendent de votre contrat de mutuelle. Vous saisissez le montant attendu de chaque organisme, repris de votre décompte, de votre devis ou estimé par vous ; vous pouvez aussi le laisser vide et noter seulement ce que vous recevez. Vos relevés officiels font foi.</p></details>
+    <details><summary>Quand un remboursement est-il « en retard » ?</summary><p>Quand il n'est pas arrivé après le délai que vous choisissez : 30 jours par défaut pour la Sécurité sociale et pour la mutuelle, comptés depuis la date où vous avez transmis la feuille de soins ou la facture, ou à défaut depuis la date du soin. Après une relance, une nouvelle alerte arrive 15 jours plus tard. Ces délais sont des valeurs de départ de l'outil, sans valeur officielle : réglez-les selon votre expérience.</p></details>
+    <details><summary>Et le tiers payant ?</summary><p>Pour chaque organisme, vous choisissez : remboursement attendu, tiers payant (payé directement au praticien, rien à attendre) ou pas de prise en charge. Le montant avancé de votre poche et le reste à charge en tiennent compte.</p></details>
+    <details><summary>Quelles données de santé sont enregistrées ?</summary><p>Le strict nécessaire : la personne (un prénom suffit), le type de soin, la date, le praticien si vous le notez, et les montants. Aucun diagnostic, aucun motif, aucun numéro de sécurité sociale. Ce sont malgré tout des données de santé : elles ne sont enregistrées qu'après votre accord explicite, hébergées dans l'Union européenne (Francfort), jamais vendues ni partagées, et un bouton les efface toutes. Détail dans la <a href="/confidentialite/">politique de confidentialité</a>.</p></details>
+    <details><summary>L'outil est-il relié à mon compte Ameli ou à ma mutuelle ?</summary><p>Non. Aucun compte n'est connecté et rien n'est envoyé : vous notez ce que vous recevez, et la relance est un texte que vous copiez dans la messagerie de votre compte en ligne ou dans un courrier.</p></details>
+    <details><summary>Est-ce un conseil ?</summary><p>Non. C'est un outil d'aide au suivi de vos remboursements, à partir de votre saisie ; il ne remplace ni un avis professionnel (médical, administratif ou financier) ni les relevés officiels de l'Assurance Maladie et de votre complémentaire.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/remboursements-sante/?demo">la démo</a> ouvre un foyer fictif de quatre personnes avec des soins dans tous les états (en retard, relancé, en attente, tiers payant, non pris en charge, reçu avec un écart). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+<section class="rappel-templates"><p><b>Achat unique, sans abonnement.</b> Après l'achat sur Gumroad, vous recevez une clé de licence par e-mail : saisissez-la sur <a href="/connexion/">qm-engineering.fr/connexion</a>, vos soins sont synchronisés sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>
+<nav class="pager" aria-label="Pages"><a class="prec" href="/templates/"><span>Page précédente</span><b>Tous les templates</b></a><span></span></nav>

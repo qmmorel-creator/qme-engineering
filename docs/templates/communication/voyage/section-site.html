@@ -1,0 +1,51 @@
+<!-- Version « en vente » de la page catalogue/voyage/ (section à reprendre dans la page à la mise en vente),
+     suivie du rappel standard qui remplace le bandeau « Bientôt en vente ». Permalien Gumroad prévu :
+     planificateur-voyage (à confirmer une fois la fiche créée), prix 13 €. Captures : assets/templates-voyage-*.webp
+     (démo, données fictives). À la mise en vente, retirer aussi le lien .bientot-demo de templates/voyage/app.js
+     et changer ?v= dans index.html et sw.js. -->
+<section class="section" id="voyage">
+  <div class="section-head">
+    <h1 class="h-section">Planificateur de voyage</h1>
+    <p>Pour les voyageurs, les familles et les groupes d'amis : l'itinéraire par étapes, le toit de chaque nuit, les activités jour par jour, le budget prévu puis réel et, au retour, qui doit quoi à qui. Sur ordinateur pour préparer, sur téléphone pendant le voyage, même sans réseau une fois chargé.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-voyage-tableau.webp?v=20261114" width="1600" height="1000" alt="Aperçu d'un voyage fictif de dix jours en Italie du Nord, au jour 4 : chemin des étapes, nuits réservées, ce qui reste à réserver, dépensé sur prévu, programme du jour et du lendemain (données fictives)">
+      <img class="tel" src="/assets/templates-voyage-tel.webp?v=20261114" width="780" height="1328" alt="Le planificateur de voyage sur téléphone : jour 4 sur 10, chemin des étapes et nuits réservées (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Voyageurs · familles · groupes d'amis</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>L'itinéraire par étapes</b> : chaque lieu avec ses nuits, les transports entre deux étapes (date, heure, référence) et le chemin complet en une ligne, à copier dans un message</li>
+        <li><b>Un toit pour chaque nuit</b> : hébergement, adresse, réservé ou à réserver, montant, acompte et reste à payer sur place ; une nuit sans hébergement ou réservée deux fois est signalée</li>
+        <li><b>Le programme jour par jour</b> : transports et activités à leur heure, la nuit du soir, imprimable ; la liste de ce qui reste à réserver, du plus urgent au plus lointain</li>
+        <li><b>Le budget prévu et réel</b> par poste et par personne : le plan donne le prévu (transports, nuits, activités), les dépenses saisies en route donnent le réel</li>
+        <li><b>Qui doit quoi</b> : chaque dépense dit qui a payé et pour qui (parts égales, en parts ou montants) ; le nombre minimal de remboursements est calculé, au centime. Plus les listes de bagages par type de séjour et les documents à prévoir, à cocher</li>
+      </ul>
+      <div class="prix"><b>13 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planificateur-voyage" data-goatcounter-click="achat-voyage" data-goatcounter-title="Acheter : planificateur de voyage">Acheter</a>
+        <a class="btn" href="/templates/voyage/?demo" data-goatcounter-click="demo-voyage" data-goatcounter-title="Démo : planificateur de voyage">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-voyage-itineraire.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="L'itinéraire d'un voyage fictif : étapes et trajets dans l'ordre, tableau nuit par nuit avec l'étape, l'hébergement et son état, une nuit signalée sans toit (données fictives)"><figcaption>Les étapes, les trajets et chaque nuit</figcaption></figure>
+    <figure><img src="/assets/templates-voyage-jours.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Le programme jour par jour : pour chaque jour, les transports et les activités à leur heure, leur statut et la nuit du soir (données fictives)"><figcaption>Le programme, jour par jour</figcaption></figure>
+    <figure><img src="/assets/templates-voyage-budget.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Le budget d'un voyage fictif : prévu, réel, écart et déjà réservé, puis le réel face au prévu pour chaque poste (données fictives)"><figcaption>Prévu et réel, poste par poste</figcaption></figure>
+    <figure><img src="/assets/templates-voyage-comptes.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Qui doit quoi entre quatre voyageurs fictifs : remboursements à faire, ce que chacun a payé, sa part et son solde (données fictives)"><figcaption>Au retour, qui doit quoi à qui</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Le template réserve-t-il pour moi ?</summary><p>Non. Aucune plateforme de réservation, aucune compagnie ni aucun comparateur n'est connecté, et il n'y a aucun lien commercial. Vous réservez où vous voulez, puis vous reportez l'hébergement, le transport ou l'activité avec son statut (réservé ou à réserver), son prix et sa référence.</p></details>
+    <details><summary>Les formalités (passeport, visa, vaccins) sont-elles incluses ?</summary><p>Non, volontairement : elles dépendent du pays et de votre nationalité, et changent. L'onglet « Préparer » liste les documents à prévoir, à cocher, et renvoie aux sources officielles (Conseils aux voyageurs de France Diplomatie, service-public.fr). Vérifiez-les avant de réserver, puis de nouveau avant de partir.</p></details>
+    <details><summary>Comment sont calculés les remboursements ?</summary><p>Chaque dépense indique qui a payé et pour qui : à parts égales, en parts (2 pour un couple, 1 pour un enfant…) ou en montants précis. Le partage tombe juste au centime, et l'outil propose le plus petit nombre de virements qui remet tout le monde à zéro. C'est le même moteur de calcul que le template Budget commun. Un remboursement fait se note en un geste.</p></details>
+    <details><summary>Et les dépenses en devise étrangère ?</summary><p>Les montants se saisissent en euros : convertissez avec le taux de votre banque, et notez le montant d'origine dans la note de la dépense si vous le souhaitez. Aucun taux de change n'est intégré, il serait faux dès le lendemain.</p></details>
+    <details><summary>Peut-on l'utiliser à plusieurs ?</summary><p>Oui : la même clé ouvre le même voyage sur tous les appareils. Si deux voyageurs ajoutent une dépense en même temps, les deux sont gardées.</p></details>
+    <details><summary>Et sans réseau, en voyage ?</summary><p>Une fois ouvert, le planificateur reste consultable sans connexion ; vos ajouts sont gardés sur le téléphone et envoyés au retour du réseau. Vous pouvez aussi l'installer sur l'écran d'accueil, comme une application.</p></details>
+    <details><summary>Et après le voyage ?</summary><p>Archivez-le : un résumé est gardé (dates, prévu, réel), les voyageurs et les listes de bagages restent, prêtes pour le prochain départ. Les dépenses s'exportent en CSV avant l'archivage.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/voyage/?demo">la démo</a> ouvre le voyage fictif de quatre amis, au quatrième jour de dix (étapes, nuits, activités, dépenses partagées, bagages). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+  <p class="mention-legale" style="margin-top:24px;font-size:14px;color:#6E685F">Outil d'aide à l'organisation, pas une agence de voyage ni un conseil financier : les montants sont ceux que vous saisissez et les remboursements une proposition de calcul.</p>
+</section>
+<section class="rappel-templates"><p><b>Achat unique, sans abonnement.</b> Clé de licence reçue par e-mail, ouverture sur <a href="/connexion/">qm-engineering.fr/connexion</a>, données synchronisées sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>

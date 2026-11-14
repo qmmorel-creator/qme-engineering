@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="tableau-annuel" data-pour="perso" data-theme="projets-de-vie" style="--c:var(--bleu)"><a href="/catalogue/tableau-annuel/"><b>Tableau de bord annuel et roue de vie</b><span class="phrase">Roue de vie, objectifs mesurables et revue chaque trimestre.</span><span class="theme">Projets de vie</span><em>Bientôt</em></a></li>

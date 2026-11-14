@@ -1,0 +1,42 @@
+{
+  "slug": "salles",
+  "name": "Réservation de salles et bureaux",
+  "price_cents": 1900,
+  "permalink": "reservation-salles",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir le planning des salles",
+  "summary": "Salles, bureaux en flex et matériel prêté : ce qui est libre maintenant, vues jour et semaine, aucune double réservation même à plusieurs, réservations chaque semaine et taux d'occupation. Une clé pour toute l'équipe.",
+  "description": "<h2>La salle est libre ? Tu le sais.</h2><p>Un tableur partagé, un tableau blanc à l'entrée, un agenda que personne ne met à jour : et deux équipes qui arrivent dans la même salle à 10 h. La Réservation de salles et bureaux montre ce qui est libre maintenant, qui a réservé et jusqu'à quand, et refuse toute double réservation, même quand deux personnes réservent au même moment.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Libre maintenant</strong> : chaque salle, bureau en flex ou équipement prêté, libre jusqu'à quelle heure ou occupé jusqu'à quand, avec la prochaine réservation. Réservation de 30 minutes ou d'une heure en un geste. Actualisé chaque minute : idéal sur une tablette à l'entrée.</li><li><strong>Aucune double réservation</strong> : un créneau pris est refusé à la saisie, puis de nouveau à l'enregistrement en ligne. Si deux appareils réservent en même temps, le second est prévenu de qui a pris le créneau.</li><li><strong>Vues jour et semaine</strong> : toutes les ressources sur une journée, ou une ressource sur sept jours. Touche un créneau libre pour réserver, une réservation pour la modifier ou la libérer plus tôt.</li><li><strong>Réservations chaque semaine</strong> jusqu'à une date, avec la liste des dates en conflit avant de valider.</li><li><strong>Tes ressources</strong> : salles avec capacité et équipements (écran, visio, tableau blanc…), bureaux en flex, matériel prêté ; horaires, jours ouverts, pas de 15, 30 ou 60 minutes, jours fériés calculés et fermés.</li><li><strong>Taux d'occupation</strong> par ressource, par jour de la semaine et heure par heure, sur 1, 4 ou 12 semaines ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; liste tes salles, bureaux et équipements.</li><li>Transmets la clé aux personnes qui réservent : chacune la saisit une fois sur son téléphone ou son ordinateur, puis réserve en indiquant son nom. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de personnes qui réservent.</p><p><em>Une clé partagée, sans comptes ni droits différents : toute personne qui a la clé peut réserver, modifier ou supprimer une réservation ; chaque réservation garde le nom saisi. Aucun agenda, aucune messagerie, aucun badge connecté. Réservations dans une même journée, jusqu'à 40 ressources. Démo disponible sur qm-engineering.fr/catalogue/salles.</em></p>",
+  "tags": [
+    "reservation-salles",
+    "flex-office",
+    "coworking",
+    "moyens-generaux",
+    "pme",
+    "association",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et liste tes salles, bureaux et équipements. Transmets ensuite la clé aux personnes qui réservent : chacune la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail, partagée par l'équipe"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "PME en flex office, coworkings, associations"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "achats",
+  "name": "Demandes d'achat et fournitures",
+  "price_cents": 1900,
+  "permalink": "demandes-achat-fournitures",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir les demandes d'achat",
+  "summary": "Demandes par service, validation avec seuil automatique, commandes groupées par fournisseur, réception partielle et budget annuel par service, avec un catalogue de 104 fournitures. Une clé pour toute l'équipe.",
+  "description": "<h2>Qui a demandé quoi, et où en est le budget.</h2><p>Des demandes de fournitures par e-mail, sur un post-it ou dans un tableur partagé, des validations orales, des commandes passées quand on y pense, et personne ne sait ce qu'il reste au budget du service. Demandes d'achat et fournitures met tout le circuit au même endroit, du besoin à la réception.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des demandes claires</strong> : qui, quoi, combien, pour quel service, avec quelle urgence et pourquoi. Plusieurs articles en une fois, choisis dans un catalogue de 104 fournitures courantes, sans prix ni marque imposés.</li><li><strong>Une validation rapide</strong> : sous le seuil que tu fixes, une demande chiffrée qui tient dans le budget du service est validée tout de suite. Au-dessus, la personne qui valide voit l'effet sur le budget, valide ou refuse avec un motif.</li><li><strong>Des commandes groupées par fournisseur</strong> : un bon de commande imprimable, articles identiques additionnés, minimum de commande signalé.</li><li><strong>La réception, même partielle</strong> : au prix réel ; le reliquat reste attendu, les retards de livraison sont signalés.</li><li><strong>Le budget annuel de chaque service</strong> : consommé, engagé, en attente, disponible ; exercice civil ou décalé.</li><li><strong>L'historique</strong> : délais de validation et de livraison, taux de refus, dépenses par mois, par catégorie et par service ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; indique tes services, leur budget et ton seuil de validation.</li><li>Transmets la clé aux personnes qui demandent et à celles qui valident : chacune la saisit une fois sur son appareil et indique son nom. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de personnes.</p><p><em>Une clé partagée, sans comptes ni droits différents : toute personne qui a la clé peut demander, valider, commander et réceptionner ; chaque étape garde le nom saisi. Aucun fournisseur, aucune messagerie ni aucun paiement connecté : le bon s'imprime ou se recopie. Montants estimés par l'équipe, sans calcul de TVA : ce n'est pas une comptabilité. Démo disponible sur qm-engineering.fr/catalogue/achats.</em></p>",
+  "tags": [
+    "achats",
+    "fournitures",
+    "moyens-generaux",
+    "office-manager",
+    "pme",
+    "association",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et indique tes services et ton seuil de validation. Transmets ensuite la clé aux personnes qui demandent et à celles qui valident : chacune la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail, partagée par l'équipe"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Office managers, services généraux, associations"
+    }
+  ]
+}
