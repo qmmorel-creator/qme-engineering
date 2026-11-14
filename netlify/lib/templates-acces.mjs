@@ -100,6 +100,7 @@ export const PRODUITS = {
   BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
   MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/' },
   AGS: { nom: 'Assemblée générale et vie statutaire', url: '/templates/assemblee-generale/' },
+  RNT: { nom: "Rentabilité d'un investissement locatif", url: '/templates/investissement-locatif/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

@@ -1,0 +1,6 @@
+Investissement locatif
+Ce bien, rentable ou pas ?
+Rendement brut et net · cash-flow avant impôt · prix maximal · sensibilité
+Ligne ajoutée à T dans outils/templates/couvertures-gumroad.cjs :
+  'investissement-locatif': ['Investissement locatif', 'Ce bien, rentable ou pas ?', 'Rendement brut et net · cash-flow avant impôt · prix maximal · sensibilité'],
+Rendu : assets/templates-investissement-locatif-couverture.png (SEUL=investissement-locatif, copie du script pointée sur le serveur local 8918), regardé le 14/11/2026.

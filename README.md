@@ -448,6 +448,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
   personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
   anglaise en attente.
+- `templates/investissement-locatif/` (RNT) : **rentabilité d'un investissement locatif** (T95, 15 €), prêt, « Mise en
+  vente prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/investissement-locatif/gumroad.json`).
+  Jusqu'à 5 biens comparés (nu, meublé, colocation, saisonnier) : coût total d'acquisition (frais de notaire saisis ou
+  estimés, hypothèse affichée), loyers par lot ou à la nuitée, vacance en mois par an, charges, crédit saisi (formules
+  de `templates/emprunt/`), rendement brut et net de charges, cash-flow mensuel **avant impôt** et effort d'épargne,
+  prix maximal pour un rendement visé, sensibilité (loyer − 10 %, vacance + 1 mois, taux + 1 point), fiche d'analyse
+  imprimable, export CSV. Aucun taux de marché, prix au m² ni loyer de référence intégré ; fiscalité hors calcul,
+  signalée. Fiche `docs/templates/fiches/investissement-locatif.md`, tests `outils/templates/investissement-locatif.test.mjs`.
 - `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
   prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
   par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut

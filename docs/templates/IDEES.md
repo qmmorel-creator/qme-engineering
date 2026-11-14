@@ -170,7 +170,7 @@ déjà).
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
@@ -266,7 +266,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
-| Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95 | T94, T96 | 141 € | 25 % | 105 € | 27 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
@@ -795,6 +795,36 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T40 | `tjm` | TJM | Calculateur de TJM freelance | 12 € |
 | T41 | `micro-entreprise` | MCE | Livre recettes-dépenses micro-entreprise | 25 € |
 | T65 | `budget-commun` | BCM | Budget commun | 15 € |
+| T16 | `demenagement` | DMN | demenagement (prévu) |
+| T21 | `voyage` | VYG | planificateur-voyage (prévu) |
+| T22 | `tableau-annuel` | RDV | tableau-annuel-roue-de-vie (prévu) |
+| T34 | `pilotage-pme` | TDB | tableau-de-bord-pme (prévu) |
+| T39 | `references-plaquette` | KRF | kit-references-plaquette (prévu) |
+| T50 | `salles` | SDR | reservation-salles (prévu) |
+| T52 | `competition` | CMP | gestion-competition (prévu) |
+| T61 | `maintenance` | GMA | maintenance-preventive (prévu) |
+| T63 | `verifications` | VRF | verifications-reglementaires (prévu) |
+| T73 | `suivi-temps` | TMP | suivi-temps-rentabilite (prévu) |
+| T74 | `propositions` | PCM | propositions-commerciales (prévu) |
+| T75 | `calendrier-editorial` | CED | calendrier-editorial (prévu) |
+| T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
+| T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
+| T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
+| T80 | `document-unique` | DRP | document-unique-evaluation-risques (prévu) |
+| T81 | `contrats` | CTR | contrats-fournisseurs (prévu) |
+| T82 | `achats` | ACH | demandes-achat-fournitures (prévu) |
+| T83 | `papiers` | DCS | papiers-du-foyer (prévu) |
+| T84 | `remboursements-sante` | RBS | remboursements-sante (prévu) |
+| T85 | `emprunt` | CPT | capacite-emprunt-comparateur-prets (prévu) |
+| T86 | `remerciements` | CDX | cadeaux-remerciements (prévu) |
+| T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
+| T88 | `notes` | NTS | notes-moyennes (prévu) |
+| T89 | `candidatures` | CAN | candidatures-etudes-stages-alternance (prévu) |
+| T90 | `memoire` | MMR | planning-memoire (prévu) |
+| T91 | `subventions` | SBV | subventions-association (prévu) |
+| T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
+| T93 | `assemblee-generale` | AGS | assemblee-generale-association (prévu) |
+| T95 | `investissement-locatif` | RNT | rentabilite-investissement-locatif (prévu) |
 
 ### T31 · Compte rendu et plan d'actions
 
@@ -2129,3 +2159,32 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   `communication/gumroad-a-creer.json`, ajout de `AGS` aux `produits` du pack PAS (`netlify/lib/packs.mjs`) et
   régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
   relire par Quentin : trames de convocation et de PV, hashtags Instagram hors jeux du kit.
+
+## Fiche T95 (cadrage délégué par Quentin, 14/11/2026)
+
+### T95 · Rentabilité d'un investissement locatif (`templates/investissement-locatif/`, préfixe RNT, 15 €)
+- Fiche détaillée : `fiches/investissement-locatif.md`. Promesse : « Ce bien, rentable ou pas ? » Catalogue `perso`,
+  thème « Argent » ; pack visé « Propriétaire » (PPB). Permalien prévu `rentabilite-investissement-locatif`.
+- Public : particuliers qui étudient l'achat d'un bien locatif (nu, meublé, colocation, location saisonnière).
+- Écrans : **Comparatif** (jusqu'à 5 biens, verdict, barres signées du cash-flow, côte à côte, prix maximal pour un
+  rendement visé brut ou net), **Analyse** (tuiles, cascade loyers → vacance → charges → crédit → cash-flow, détail du
+  calcul, points à vérifier par bien), **Sensibilité** (loyer − 10 %, vacance + 1 mois, taux + 1 point, cumul ; tous les
+  biens face aux mêmes chocs), **Fiche** d'analyse imprimable ; export CSV.
+- Calculs : coût total (notaire saisi ou estimé, hypothèse 8 % ancien / 3 % neuf affichée et modifiable), loyers par
+  lot ou à la nuitée, vacance en mois par an, charges (taxe foncière saisie obligatoire), crédit aux formules de T85
+  (`templates/emprunt/`), rendement brut (sur le prix) et net de charges (sur le coût total), cash-flow avant impôt,
+  effort d'épargne, prix maximal. **Aucun** taux de marché, prix au m², loyer de référence ni taux d'impôt intégré
+  (test). **Fiscalité hors calcul**, signalée partout ; avertissement « ne remplace pas un conseil en investissement ni
+  un conseil fiscal ».
+- Confidentialité : démo fictive (quatre biens sans adresse, montants et taux inventés).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/investissement-locatif/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/investissement-locatif/`, captures `assets/templates-investissement-locatif-*.webp`,
+  couverture `assets/templates-investissement-locatif-couverture.png`, tests
+  `outils/templates/investissement-locatif.test.mjs`. RNT retiré de `PREVUS` et de la liste `prevus` du pack PPB
+  (`outils/packs/donnees.mjs`), ajouté à `TEMPLATES`.
+- Communication prête dans `communication/investissement-locatif/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-en-prochaine.html). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé
+  de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de RNT au pack PPB
+  (`netlify/lib/packs.mjs`, pages des packs régénérées), carte anglaise, plannings, passage en vente du site.

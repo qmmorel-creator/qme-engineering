@@ -2476,5 +2476,47 @@
         "value": "Bureaux d'associations, clubs, amicales"
       }
     ]
+  },
+  {
+    "slug": "investissement-locatif",
+    "name": "Rentabilité d'un investissement locatif",
+    "price_cents": 1500,
+    "permalink": "rentabilite-investissement-locatif",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon étude",
+    "summary": "Jusqu'à 5 biens locatifs comparés (nu, meublé, colocation, saisonnier) : coût total d'acquisition, loyers et vacance, charges, ton crédit, rendement brut et net, cash-flow mensuel avant impôt, effort d'épargne, prix maximal pour ton rendement visé, sensibilité et fiche d'analyse imprimable.",
+    "description": "<h2>Ce bien, rentable ou pas ?</h2><p>Le rendement des annonces divise un loyer par un prix. Il oublie le notaire, les travaux, la copropriété, le mois sans locataire et la mensualité du crédit. La Rentabilité d'un investissement locatif fait le calcul complet, avec tes chiffres, avant que tu fasses une offre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Jusqu'à 5 biens côte à côte</strong> : coût total, loyers, charges, rendement brut et net, cash-flow mensuel ; le meilleur mis en avant, les biens incomplets signalés avec ce qui manque.</li><li><strong>Le coût total d'acquisition</strong> : prix, frais de notaire saisis ou estimés (hypothèse affichée), agence, travaux, mobilier, frais bancaires.</li><li><strong>Des loyers réalistes</strong> : un loyer par chambre en colocation, des nuitées en saisonnier, la vacance en mois par an.</li><li><strong>Les charges du propriétaire</strong> : taxe foncière, copropriété non récupérable, assurances, gestion ou conciergerie, entretien, énergie et internet.</li><li><strong>Ton crédit</strong> : mensualité, assurance, cash-flow avant impôt et effort d'épargne, avec une cascade du loyer au cash-flow.</li><li><strong>Le prix maximal</strong> pour atteindre le rendement que tu vises, et la <strong>sensibilité</strong> : loyer − 10 %, un mois vide de plus, taux + 1 point.</li><li><strong>Une fiche d'analyse</strong> à imprimer ou à enregistrer en PDF ; export CSV du comparatif.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Décris un premier bien (prix, loyer, taxe foncière), puis complète les frais, les charges et ton crédit. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Simulation avant impôt à partir de ta saisie : elle ne remplace pas un conseil en investissement ni un conseil fiscal. L'impôt sur les loyers n'est pas calculé. Aucun prix au m², loyer de référence ni taux du marché n'est intégré ; frais de notaire estimés selon une hypothèse affichée et modifiable. Démo avec quatre biens fictifs sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "investissement-locatif",
+      "rentabilite",
+      "cash-flow",
+      "immobilier",
+      "rendement-locatif",
+      "simulateur",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton étude s'ouvre. Décris un premier bien (prix, loyer, taxe foncière), puis complète les frais, les charges et ton crédit : rendements et cash-flow s'affichent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui étudient l'achat d'un bien locatif (nu, meublé, colocation, saisonnier)"
+      }
+    ]
   }
 ]
