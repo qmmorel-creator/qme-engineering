@@ -15,6 +15,7 @@ export const TEMPLATES = {
   DRP: { slug: 'document-unique', prix: 2900, phrase: 'Risques par unité de travail, cotation et plan d’actions.', pour: 'pro' },
   ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
+  MMR: { slug: 'memoire', prix: 1500, phrase: 'Plan, rétroplanning et mots par jour jusqu’au rendu.', pour: 'perso' },
   RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
   BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', pour: 'pro' },
@@ -99,7 +100,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
   AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
@@ -282,9 +282,10 @@ export const PAGES = {
       ['PGS', 'Gardez le rythme de lecture des œuvres au programme, objectif au jour près.'],
       ['NTS', 'Suivez vos notes et sachez quelle note viser au prochain partiel.'],
       ['CAN', 'Pilotez vos candidatures : pièces, dates limites, relances et entretiens.'],
+      ['MMR', 'Menez le mémoire jusqu’au rendu : plan, jalons, rythme d’écriture et rendez-vous.'],
     ],
     arguments: ['La répétition espacée, une méthode de mémorisation éprouvée, sans fiche à refaire', 'Sur le téléphone, toujours à portée de main', 'Un achat unique jusqu’à l’examen, et après'],
-    prevus: ['MMR'],
+    prevus: [],
   },
   PAS: {
     couleur: 'rouge', cibles: ['associations'],

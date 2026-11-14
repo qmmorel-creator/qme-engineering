@@ -466,6 +466,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   événement, export CSV ; RGPD : export, effacement, bénévoles inactifs signalés selon la durée choisie. Une clé
   partagée par les responsables, saisies fusionnées. Pas d'inscription en ligne en V1. Règles dans `regles.js`, tests
   `outils/templates/benevoles.test.mjs`. Version anglaise en attente.
+- `templates/memoire/` (MMR) : **planning de mémoire ou de thèse** (T90, 15 €), prêt, mise en vente prochaine (démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/memoire/gumroad.json`). Projet (master, PFE, thèse ou autre ; dates
+  de début, de rendu et de soutenance ; mots visés saisis ; jours de travail), plan hiérarchique (parties, chapitres,
+  sections) avec statut (à écrire, brouillon, relu, final), mots écrits et visés, plans de départ par type ; rétroplanning
+  calculé à rebours depuis le rendu ou la soutenance, jalons types indicatifs resserrés quand le temps manque, dates
+  fixables ; mots par jour de travail jusqu'à la fin de la rédaction, rythme réel sur 14 jours et date projetée (relevé
+  quotidien du total, courbe d'avancement) ; rendez-vous avec le directeur (points, notes, actions à échéance, ordre du
+  jour à copier) ; bibliographie simple (export texte auteur-date, sans norme revendiquée) ; journal de séances ;
+  synthèse imprimable, exports CSV. Aucune règle d'établissement intégrée. Fiche `docs/templates/fiches/memoire.md`,
+  règles dans `regles.js`, tests `outils/templates/memoire.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

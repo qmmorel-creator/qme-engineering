@@ -2392,5 +2392,47 @@
         "value": "Associations, clubs, comités des fêtes, festivals"
       }
     ]
+  },
+  {
+    "slug": "memoire",
+    "name": "Planning de mémoire ou de thèse",
+    "price_cents": 1500,
+    "permalink": "planning-memoire",
+    "category": "education",
+    "button": "Ouvrir mon planning",
+    "summary": "Mémoire de master, rapport de PFE ou thèse : ton plan avec le statut de chaque chapitre, un rétroplanning calculé depuis ta date de rendu, les mots par jour qu'il te reste à écrire, tes rendez-vous avec ton directeur et une bibliographie simple.",
+    "description": "<h2>Le plan, le rythme, la date.</h2><p>Une date de rendu, un nombre de mots à atteindre, un directeur à tenir informé : le plus dur n'est pas d'écrire un jour, c'est de savoir chaque jour si tu es dans les temps. Le planning de mémoire réunit ton plan, ton rétroplanning et ton rythme d'écriture.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton plan, chapitre par chapitre</strong> : parties, chapitres et sections, chacun avec son statut (à écrire, brouillon, relu, final), ses mots écrits et ses mots visés. Un plan type de mémoire, de PFE ou de thèse pour démarrer.</li><li><strong>Un rétroplanning qui part de ta date de rendu</strong> : jalons types (plan validé, premier jet, relecture du directeur, soutenance) placés à rebours, resserrés si le temps manque, tous modifiables.</li><li><strong>Le rythme qu'il te faut</strong> : les mots par jour de travail jusqu'à la fin de la rédaction, comparés à ton rythme réel des deux dernières semaines, avec la date où tu finiras à ce train-là. Courbe d'avancement.</li><li><strong>Tes rendez-vous avec ton directeur</strong> : points abordés, ce qui a été dit, actions à faire avec échéance, et un ordre du jour prêt à envoyer avant le suivant.</li><li><strong>Une bibliographie simple et un journal de travail</strong> : références lues ou à lire, notes, chapitres où tu les cites, export texte auteur-date ; séances de travail datées ; synthèse imprimable et exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis le type de travail, saisis tes dates et le nombre de mots demandé, puis adapte le plan type à ton sujet. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Ton texte reste dans ton traitement de texte : rien n'est importé ni lu, tu recopies seulement le nombre de mots de chaque section. Achat unique, sans abonnement.</p><p><em>Les jalons types et les nombres de mots proposés sont des repères indicatifs, sans valeur officielle : les consignes de ton établissement, de ton école doctorale et de ton directeur priment. L'export bibliographique suit un format auteur-date simple et ne prétend respecter aucune norme précise. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "memoire",
+      "these",
+      "etudiant",
+      "master",
+      "redaction",
+      "planning",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning de mémoire s'ouvre. Choisis le type de travail, saisis ta date de rendu et le nombre de mots demandé, puis adapte le plan. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Étudiants de master, élèves ingénieurs en PFE, doctorants"
+      }
+    ]
   }
 ]
