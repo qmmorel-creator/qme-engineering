@@ -81,6 +81,13 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : onglet Content →
    Insert → License key, sans multi-postes. Sans ce bloc, l'acheteur ne reçoit aucune clé. Le bloc affiche le
    `product_id` : il doit être identique à `gumroad` dans `PRODUITS`. Ne publier la fiche qu'avec son accord explicite.
+   **Vérifier la clé avant de publier** (règle du 14/11/2026) : la page de la fiche
+   (`https://qmengineering.gumroad.com/l/<permalien>`) contient `"is_licensed":true` quand le bloc License key
+   est en place : `curl -s <url> | grep -o 'is_licensed&quot;:[a-z]*'` (vérifié sur les 20 produits en vente ;
+   pour un brouillon, si la page n'est pas accessible, demander à Quentin). L'API
+   `licenses/verify` ne permet pas de le savoir (même message d'erreur avec ou sans clé). `false` ou absent :
+   ne pas publier, demander à Quentin d'activer la clé. Les brouillons dont la clé est active sont publiés
+   au fil de l'eau (au plus 10 par jour), puis le site passe en vente (`reference.md`, vitrine).
    Prérequis du compte (déjà fait une fois pour toutes) : un moyen de paiement connecté dans Gumroad
    (Settings → Payments), sinon `publish_product` est refusé.
 4. Tout le site QM Engineering : appliquer la liste à cocher de `reference.md` § « Mise à jour du site »

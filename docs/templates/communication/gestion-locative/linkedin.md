@@ -1,80 +1,110 @@
 # Publication LinkedIn · Gestion locative
 
 À publier une fois la fiche Gumroad en vente et le site à jour. Relue et ajustée par Quentin avant
-publication. Titre interne proposé pour le planning : **« Template · Gestion locative »**. **Non planifiée**
-(consigne de la mission : aucun outil Google Sheets ni LinkedIn utilisé) : à insérer dans le planning selon
-`reference.md` § « Planning LinkedIn ».
+publication. Titre interne proposé pour le planning : **« Template · Gestion locative »**.
 
 - Démo : https://qm-engineering.fr/templates/gestion-locative/?demo
 - Présentation : https://qm-engineering.fr/catalogue/gestion-locative/
 - Achat : en premier commentaire, à compléter quand la fiche Gumroad sera en ligne (aucune URL Gumroad
   n'existe encore).
 
-**Image à joindre** : `assets/templates-gestion-locative-couverture.png` (1280 × 720), ou en carrousel :
-couverture, capture Loyers (`templates-gestion-locative-loyers.webp`), capture téléphone
-(`templates-gestion-locative-tel.webp`). Texte alternatif : « Gestion locative QME : loyers encaissés et en
-retard, révisions à demander et rendement net, sur ordinateur et téléphone, données fictives. »
+**Image à joindre** : `assets/templates-gestion-locative-couverture.png` (1280 × 720, à générer par le
+coordinateur), ou en carrousel : couverture, capture Révisions (`templates-gestion-locative-revisions.webp`),
+capture téléphone (`templates-gestion-locative-tel.webp`). Texte alternatif : « Gestion locative QME : loyers
+du mois, impayés, révisions à faire et rendement brut, sur ordinateur et téléphone, données fictives. »
 
 ---
 
-## Accroche, variante A (la révision perdue)
+## Accroche, variante A (la révision)
 
-> Une révision de loyer oubliée pendant un an ne se rattrape pas : elle est perdue, et elle ne s'applique
-> jamais avant la date de la demande.
+> Chaque année, beaucoup de propriétaires oublient de réviser leur loyer. Et une révision qui n'est pas
+> demandée dans l'année ne se rattrape pas.
 
-## Accroche, variante B (la quittance)
+## Accroche, variante B (le tableur)
 
-> Chaque mois, la même quittance refaite à la main. Et le mois où le loyer arrive en deux fois, on ne sait
-> plus très bien ce qu'il faut écrire.
+> Un tableur pour les loyers, un modèle de quittance à refaire chaque mois, et en fin d'année, la question :
+> qu'est-ce qui a vraiment été payé ?
 
 ---
 
 ## Texte (à placer après l'accroche choisie)
 
-Quand on loue soi-même un, trois ou dix logements, la gestion tient souvent dans un tableur et dans sa
-mémoire. Ça marche, jusqu'au jour où un loyer arrive incomplet, où la date de révision est passée depuis
-six mois, ou où il faut rendre un dépôt de garantie sans savoir avant quelle date.
+Quand on loue soi-même un ou deux logements, la gestion tient souvent dans un tableur. Il fonctionne, jusqu'au
+premier retard de paiement, à la date anniversaire du bail ou au moment de régulariser les charges.
 
 J'ai donc construit un outil de gestion locative qui fait trois choses :
 
-▪ il suit chaque échéance (loyer et charges, prorata du premier mois, paiements partiels), prépare la
-quittance détaillée quand le mois est payé, un reçu sinon, et propose la bonne relance selon le retard,
-sans frais de retard puisqu'ils sont interdits ;
-▪ il calcule la révision annuelle avec l'indice IRL que vous saisissez : date de révision, limite d'un an
-pour la demander, nouveau loyer au centime, lettre au locataire prête ;
-▪ il régularise les charges au prorata de l'occupation, contrôle le dépôt de garantie et donne le rendement
-brut et net de chaque bien.
+▪ il suit les loyers mois par mois, bail par bail : ce qui est dû, ce qui est payé, les retards ; la quittance
+du mois et la relance adaptée au retard sont prêtes à copier ou à imprimer ;
+▪ il tient l'échéancier des révisions : avec l'indice de référence des loyers que vous saisissez, il calcule le
+nouveau loyer et rappelle la date limite pour le demander ;
+▪ il compare les provisions aux charges réellement payées, prépare le décompte de régularisation et donne le
+rendement de chaque bien, avant impôt.
 
-Aucun indice n'est intégré, parce que l'Insee en publie un nouveau chaque trimestre. Chaque règle citée
-renvoie à sa fiche service-public.gouv.fr, avec sa date de vérification. Et ce n'est ni un conseil
-juridique ni un conseil fiscal : les lettres sont des modèles à adapter.
+Rien n'est envoyé à vos locataires et aucune banque n'est connectée. Aucun indice n'est fourni, parce qu'il
+change chaque trimestre. Les modèles de quittance et de relance sont à vérifier, et ce n'est pas un conseil
+fiscal : le récapitulatif de l'année aide à préparer la déclaration, il ne calcule pas d'impôt.
 
-Tout tient dans une application web : ordinateur, tablette ou téléphone, données synchronisées, achat
-unique sans abonnement.
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans
+abonnement.
 
-La démo est libre, avec quatre biens fictifs : https://qm-engineering.fr/templates/gestion-locative/?demo
+Une démo avec trois logements fictifs est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/gestion-locative/?demo
 
-Et si votre activité a ses propres règles (plusieurs propriétaires, une SCI, des locaux commerciaux), je
-construis la version sur mesure.
+Lien d'achat en premier commentaire.
 
-#GestionLocative #ProprietaireBailleur #Immobilier #Investissement #Outils
+#GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif #LocationMeublée
 
 ---
 
-## Premier commentaire
+## Premier commentaire (à compléter quand la fiche Gumroad sera en ligne)
 
-Le lien d'achat : [URL Gumroad à compléter à la mise en vente]. Achat unique, 20 €.
+La gestion locative (20 €, achat unique) : [lien Gumroad à compléter]
 
-## Version courte (commentaire ou story)
+## Version courte (commentaire ou story, 3 lignes)
 
-Loyers suivis, quittance en un geste, révision IRL sans oubli, charges et rendement par bien.
-Gestion locative, une application web pour les propriétaires bailleurs. Démo libre :
+> Mes loyers suivis mois par mois, la quittance et la relance prêtes à copier, la révision du loyer et la
+> régularisation des charges sans tableur. Rien n'est envoyé, aucune banque connectée.
+> 20 €, sans abonnement. Démo libre : https://qm-engineering.fr/templates/gestion-locative/?demo
+
+## Notes
+
+- Texte : environ 1 400 caractères (hors accroche et hashtags). Aucun gain promis ; aucun chiffre de
+  « propriétaires qui oublient » (la variante A reste qualitative : « beaucoup », non chiffré, à adoucir en
+  « on oublie souvent » si Quentin préfère).
+- Fait vérifié le 14/11/2026 : une révision non demandée dans l'année qui suit sa date est perdue, sans effet
+  rétroactif (service-public.gouv.fr, fiche F1311 « Révision du loyer »).
+- Aucune marque citée. Prix de 20 € d'après `IDEES.md`, à confirmer.
+
+---
+
+## Texte retenu pour le planning
+
+Chaque année, beaucoup de propriétaires oublient de réviser leur loyer. Et une révision qui n'est pas
+demandée dans l'année ne se rattrape pas.
+
+Quand on loue soi-même un ou deux logements, la gestion tient souvent dans un tableur. Il fonctionne, jusqu'au
+premier retard de paiement, à la date anniversaire du bail ou au moment de régulariser les charges.
+
+J'ai donc construit un outil de gestion locative qui fait trois choses :
+
+▪ il suit les loyers mois par mois, bail par bail : ce qui est dû, ce qui est payé, les retards ; la quittance
+du mois et la relance adaptée au retard sont prêtes à copier ou à imprimer ;
+▪ il tient l'échéancier des révisions : avec l'indice de référence des loyers que vous saisissez, il calcule le
+nouveau loyer et rappelle la date limite pour le demander ;
+▪ il compare les provisions aux charges réellement payées, prépare le décompte de régularisation et donne le
+rendement de chaque bien, avant impôt.
+
+Rien n'est envoyé à vos locataires et aucune banque n'est connectée. Aucun indice n'est fourni, parce qu'il
+change chaque trimestre. Les modèles de quittance et de relance sont à vérifier, et ce n'est pas un conseil
+fiscal : le récapitulatif de l'année aide à préparer la déclaration, il ne calcule pas d'impôt.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans
+abonnement.
+
+Une démo avec trois logements fictifs est ouverte à tous, sans inscription :
 https://qm-engineering.fr/templates/gestion-locative/?demo
 
-## À vérifier avant publication
+Lien d'achat en premier commentaire.
 
-- Prix (20 € d'après `IDEES.md`) et lien d'achat, une fois la fiche Gumroad en ligne.
-- Repères légaux cités (révision perdue au-delà d'un an, non-rétroactivité, frais de retard interdits) :
-  relus sur service-public.gouv.fr le 14/11/2026 (fiches F1311 et F2889), à revérifier si la publication
-  est décalée de plusieurs mois.
-- Longueur du texte (environ 1 450 caractères avec l'accroche A).
+#GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif #LocationMeublée

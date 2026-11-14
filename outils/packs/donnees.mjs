@@ -6,11 +6,14 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
+  CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
+  MSC: { slug: 'musculation', prix: 1900, phrase: 'Séances, WOD, records détectés et minuteur.', pour: 'perso' },
+  SNH: { slug: 'sinistre', prix: 2900, phrase: 'Déclaration guidée, dommages chiffrés, preuves et suivi.', pour: 'perso' },
   CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, vagues, scores et classement en direct.', pour: 'pro' },
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
   VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
-  GRT: { slug: 'gestion-locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.', pour: 'perso' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
@@ -65,17 +68,15 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
-  MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
-  CRN: { nom: 'Carnet de voiture', prix: 1300, phrase: 'Entretiens, kilométrage, dépenses et coût au kilomètre.' },
   PRF: { nom: 'Gestion de classe', prix: 2500, phrase: 'Élèves, évaluations, compétences et bulletins.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   EDT: { nom: 'Emploi du temps d’établissement', prix: 4500, phrase: 'Classes, formateurs, salles et conflits détectés.' },
   PMS: { nom: 'Pilotage de parcs multi-sites', prix: 4900, phrase: 'Sites, équipements, interventions et alertes.' },
-  // Nouvelles idées (T71–T95, 14/11/2026)
+  // Nouvelles idées (T73–T97, 14/11/2026)
   TMP: { nom: 'Suivi du temps et rentabilité par mission', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.' },
   PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
   CED: { nom: 'Calendrier éditorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.' },
@@ -284,7 +285,8 @@ export const PAGES = {
       ['SJR', 'Suivez réservations, ménage, taxe de séjour et revenu net par plateforme.'],
       ['TRV', 'Comparez les devis, tenez le budget et le planning des artisans.'],
       ['ENT', 'Recevez les échéances d’entretien calculées : chaudière, ramonage, VMC.'],
-      ['GRT', 'Encaissez les loyers, éditez les quittances et révisez le loyer sans erreur.'],
+      ['GST', 'Encaissez les loyers, éditez les quittances et révisez le loyer sans erreur.'],
+      ['SNH', 'En cas de sinistre, déclarez, chiffrez et suivez le dossier jusqu’à l’indemnisation.'],
     ],
     arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
     prevus: ['ETD', 'RNT', 'CPR', 'CPT'],
@@ -298,9 +300,10 @@ export const PAGES = {
       ['NTR', 'Suivez repas, calories, macros et dépense du jour.'],
       ['HBT', 'Tenez les habitudes qui font la différence : eau, sommeil, pas, séances.'],
       ['RPS', 'Planifiez les repas de la semaine et générez la liste de courses par rayon.'],
+      ['MSC', 'Notez vos séances, battez vos records, chronomètre en main.'],
     ],
-    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Musculation et repas de la semaine à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['MSC', 'CRS'],
+    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Le plan de course à pied à venir, inclus avec l’option Pack évolutif'],
+    prevus: ['CRS'],
   },
   PFA: {
     couleur: 'jaune', cibles: ['familles', 'couples'],
@@ -382,9 +385,9 @@ export const PAGES = {
     pourQui: 'Vous changez de voiture ou vous voulez enfin savoir ce qu’elle coûte. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
     parcours: [
       ['VTR', 'Comparez comptant, crédit, LOA et LLD sur le coût total.'],
-      ['CRN', 'Suivez entretiens, kilométrage, dépenses et coût au kilomètre.'],
+      ['CAR', 'Suivez entretiens, kilométrage, dépenses et coût au kilomètre.'],
     ],
-    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture arrive bientôt'],
-    prevus: ['CRN'],
+    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture et le simulateur se complètent'],
+    prevus: [],
   },
 };

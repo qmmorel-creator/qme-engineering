@@ -58,7 +58,6 @@ export const PRODUITS = {
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/' },
   DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/' },
-  GRT: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/' },
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
@@ -66,6 +65,10 @@ export const PRODUITS = {
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/' },
   EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/' },
   CMP: { nom: 'Gestion de compétition sportive', url: '/templates/competition/' },
+  SNH: { nom: 'Dossier sinistre habitation', url: '/templates/sinistre/', gumroad: 'nSUWbSsPnceWsczHeshUnw==' },
+  MSC: { nom: 'Carnet de musculation et cross-training', url: '/templates/musculation/' },
+  CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/' },
+  GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

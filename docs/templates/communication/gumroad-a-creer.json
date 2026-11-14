@@ -1,674 +1,842 @@
 [
- {
-  "slug": "habitudes",
-  "name": "Suivi d'habitudes et routines",
-  "price_cents": 1200,
-  "permalink": "suivi-habitudes",
-  "category": "self-improvement/productivity",
-  "button": "Ouvrir mon suivi",
-  "summary": "Tes habitudes du jour cochées en quelques secondes sur téléphone, les habitudes chiffrées comptées, et la grille du mois avec tes séries et ton taux de réussite.",
-  "description": "<h2>Un geste par jour, une série qui tient.</h2><p>Les applications d'habitudes sont souvent trop simples (une case, rien d'autre) ou trop bavardes. Le Suivi d'habitudes et routines va à l'essentiel : tu coches tes habitudes du jour en quelques secondes sur ton téléphone, tu comptes celles qui se mesurent, et la grille du mois te montre tes séries et ton taux de réussite.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une vue « Aujourd'hui » rapide</strong> : une touche pour cocher, des boutons + et − pour compter, pensée pour le téléphone.</li><li><strong>Des habitudes à cocher ou chiffrées</strong>, avec minimum, maximum et pas : au moins 8 verres d'eau, au plus 3 cafés, 7 à 9 h de sommeil.</li><li><strong>Des jours « non applicables »</strong> (malade, en congés) qui ne cassent pas tes séries, et des jours prévus au choix pour chaque habitude.</li><li><strong>Des thèmes colorés</strong>, dont des thèmes « une seule par jour » pour un choix exclusif, comme le lieu de travail : bureau, télétravail ou déplacement.</li><li><strong>La grille du mois</strong> date par habitude, imprimable, et un bilan sur 30 jours : séries, records, taux de réussite, journées parfaites, tendance sur 8 semaines.</li><li><strong>50 habitudes types</strong> rangées en 8 thèmes, avec leurs réglages types (sources citées), et 6 routines prêtes : matin, soir, bouger plus, télétravail, bien manger, esprit serein.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis une ou plusieurs routines types, coche tes habitudes : c'est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé ; ajoute la page à l'écran d'accueil de ton téléphone pour l'ouvrir comme une application.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Journal exportable en CSV, copie complète en JSON.</p><p><em>Rien n'est coché automatiquement : aucune connexion à une montre ou à une autre application, aucune notification. Outil d'aide au suivi, pas un dispositif médical : il ne remplace pas l'avis d'un médecin ou d'un professionnel de santé, notamment pour un traitement. Démo disponible sur qm-engineering.fr/templates/habitudes/?demo.</em></p>",
-  "tags": [
-   "habitudes",
-   "habit-tracker",
-   "routine",
-   "suivi",
-   "bien-etre",
-   "organisation",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis une routine type, coche tes habitudes : c'est prêt. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers qui veulent tenir leurs habitudes"
-   }
-  ]
- },
- {
-  "slug": "entretien",
-  "name": "Entretien de la maison",
-  "price_cents": 1200,
-  "permalink": "entretien-maison",
-  "category": "self-improvement/productivity",
-  "button": "Ouvrir mon calendrier",
-  "summary": "Coche les équipements de ton logement : le calendrier d'entretien se calcule seul, avec les obligations sourcées, l'historique et les coûts.",
-  "description": "<h2>Rien d'oublié, chaque saison.</h2><p>La date du dernier ramonage retrouvée sur une attestation au fond d'un tiroir, des filtres jamais changés, des gouttières qu'on nettoie quand elles débordent : l'Entretien de la maison coche les équipements de ton logement et calcule seul ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive.</p><h3>Ce que tu obtiens</h3><ul><li><strong>89 tâches types pour 37 équipements</strong> : chaudière, ramonage, poêle, pompe à chaleur, climatisation, VMC, détecteur de fumée, chauffe-eau, adoucisseur, fosse, électroménager, toiture et gouttières, jardin, piscine… Chaque fréquence est modifiable, et tu peux ajouter tes propres tâches.</li><li><strong>Échéances calculées</strong> à partir de la dernière fois et de la saison conseillée : en retard, ce mois-ci, à venir. Date inconnue ? Le calendrier propose une première date, obligations d'abord.</li><li><strong>Obligations sourcées</strong> : les fréquences d'origine réglementaire (chaudière, ramonage, pompe à chaleur…) affichent leur source et la date de relecture, avec la mention « à vérifier selon ton département et ton bail ».</li><li><strong>Historique</strong> : date, coût, intervenant et note de chaque intervention, dépenses des 12 derniers mois, export CSV.</li><li><strong>Liste de l'année à imprimer</strong>, mois par mois, avec des cases à cocher.</li><li><strong>Locataire ?</strong> Chaque tâche indique qui s'en charge le plus souvent, à titre indicatif.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton type de logement, coche tes équipements, et le calendrier est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace pas l'avis d'un professionnel ni une attestation d'entretien. Les fréquences réglementaires peuvent varier selon ton département, ton bail ou ton équipement : vérifie-les. Aucune notification ni lien avec un agenda. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "entretien",
-   "maison",
-   "calendrier",
-   "chaudiere",
-   "ramonage",
-   "locataire",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier d'entretien s'ouvre. Coche tes équipements : les échéances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Propriétaires et locataires"
-   }
-  ]
- },
- {
-  "slug": "dettes",
-  "name": "Remboursement de dettes",
-  "price_cents": 1200,
-  "permalink": "remboursement-dettes",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon plan",
-  "summary": "Tes dettes, ton budget mensuel, et le plan qui les solde une à une : boule de neige, avalanche ou ton ordre, avec la date de fin et le pointage des paiements.",
-  "description": "<h2>Une date de fin pour tes dettes.</h2><p>Crédit conso, renouvelable, prêt auto, découvert, argent prêté par un proche : liste tes dettes, fixe ce que tu peux y consacrer chaque mois, et le plan te dit dans quel ordre les rembourser et quand tu en auras fini.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une date de fin</strong> calculée avec ton budget mensuel, et le total des intérêts jusque-là.</li><li><strong>Trois méthodes</strong> : boule de neige (plus petit solde d'abord), avalanche (taux le plus élevé d'abord) ou ton propre ordre, comparées côte à côte avec le repère « minimums seuls ».</li><li><strong>L'échéancier mois par mois</strong> : intérêts, capital, report de la mensualité d'une dette soldée sur la suivante ; export CSV et impression.</li><li><strong>Versements exceptionnels</strong> : une prime, une vente, et ce qu'elle fait gagner en mois et en intérêts.</li><li><strong>Pointage des paiements réels</strong> : l'écart au plan, mois par mois, et le recalage du plan sur tes vrais soldes.</li><li><strong>11 types de dettes</strong> avec, pour chacun, où trouver les chiffres et les points d'attention ; alerte quand une mensualité ne couvre pas les intérêts.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes dettes et ton budget : le plan se calcule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer, aucune connexion à ta banque. Achat unique, sans abonnement.</p><p><em>Outil d'aide au calcul : il ne remplace pas un conseil professionnel. Intérêts estimés au calcul mensuel simple (taux annuel ÷ 12) ; ton prêteur peut calculer au jour près. En cas de difficulté, tu peux t'adresser gratuitement à un point conseil budget, ou à la commission de surendettement de ton département (Banque de France). Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "dettes",
-   "remboursement",
-   "boule-de-neige",
-   "avalanche",
-   "budget",
-   "credit",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton plan s'ouvre. Ajoute tes dettes et ton budget : la date de fin se calcule. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers qui remboursent plusieurs crédits"
-   }
-  ]
- },
- {
-  "slug": "abonnements",
-  "name": "Suivi des abonnements",
-  "price_cents": 1200,
-  "permalink": "suivi-abonnements",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon suivi",
-  "summary": "Tous tes abonnements au même endroit : le coût réel par mois et par an, le calendrier des prélèvements, et la date avant laquelle décider pour chaque essai gratuit ou engagement.",
-  "description": "<h2>Ce que tu paies, chaque mois.</h2><p>Une plateforme vidéo, la musique, le forfait, la box, la mutuelle, la salle de sport, un logiciel, le stockage en ligne, une livraison gratuite à l'année… Pris un par un, chaque abonnement paraît petit. Le Suivi des abonnements les réunit, calcule ce qu'ils te coûtent vraiment et te prévient avant qu'un essai gratuit devienne payant ou qu'un engagement se renouvelle.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le vrai total</strong> : chaque abonnement ramené au mois et à l'année, quelle que soit sa périodicité (semaine, mois, trimestre, semestre, an), par catégorie.</li><li><strong>Une base de 96 abonnements courants</strong> en 17 catégories (vidéo, musique, presse, téléphone, box, assurances, sport, logiciels, stockage, livraison, jeux, transports, banque…), sans aucune marque ni prix imposé : tu coches, tu saisis ton prix.</li><li><strong>« À décider avant le … »</strong> : fin d'essai gratuit, fin d'engagement avec ton préavis, renouvellement annuel ; délai d'alerte réglable.</li><li><strong>Le calendrier des prélèvements</strong> du mois, les 30 prochains jours et les 12 prochains mois, avec les pics des abonnements annuels.</li><li><strong>Partage</strong> : un abonnement partagé ne compte que pour ta part (parts égales ou montant saisi).</li><li><strong>Économies</strong> : marque « à résilier » puis « résilié », l'économie annuelle est calculée ; repères pour résilier (droit de la consommation, sources datées).</li><li><strong>Partager et garder</strong> : récapitulatif à copier, impression, export CSV et copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche tes abonnements dans la liste, saisis ton prix et la date d'un prélèvement : les suivants, les totaux et les alertes se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion bancaire et aucun lien de résiliation : tu saisis tes abonnements et tu résilies toi-même auprès de chaque prestataire. Outil d'aide au suivi de tes dépenses : il ne remplace pas un avis professionnel ; ton contrat fait foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "abonnements",
-   "budget",
-   "economies",
-   "resiliation",
-   "prelevements",
-   "finances-personnelles",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Coche tes abonnements dans la liste, saisis tes prix : les totaux et les alertes se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers et foyers"
-   }
-  ]
- },
- {
-  "slug": "patrimoine",
-  "name": "Inventaire valorisé",
-  "price_cents": 1900,
-  "permalink": "inventaire-valorise",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon inventaire",
-  "summary": "Combien valent vraiment tes affaires ? Inventorie tes objets en quelques secondes : valeur actuelle estimée, revente potentielle frais déduits, et ce qui dort sans servir.",
-  "description": "<h2>Si tu revendais tout aujourd'hui, combien récupérerais-tu ?</h2><p>Électronique, meubles, vélo, instruments, outillage, collections : on possède beaucoup plus de valeur qu'on ne le croit, et une partie dort au fond des placards. L'Inventaire valorisé transforme ta liste d'objets en bilan chiffré.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire en quelques secondes</strong> : 15 catégories, 80 sous-catégories et des centaines d'exemples d'objets ; un toucher, un prix, une date approximative.</li><li><strong>Trois valeurs jamais confondues</strong> : prix d'achat, valeur actuelle estimée (âge, état, famille d'objet, prix) et revente potentielle. Tu saisis la valeur toi-même quand tu la connais.</li><li><strong>Un moteur de décote transparent</strong> : 8 familles d'objets, coefficients visibles et modifiables.</li><li><strong>Un simulateur de revente</strong> : tout, une catégorie, les objets inutilisés, au-dessus d'un prix ou un nombre d'objets ; décote, négociation, commission et expédition déduites.</li><li><strong>L'analyse de possession</strong> : argent immobilisé, objets de valeur peu ou jamais utilisés, plus fortes pertes, part facilement revendable.</li><li><strong>Un historique</strong> : une valorisation par mois, comparaison entre deux dates, projection sur 5 ans. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche les familles d'objets que tu possèdes et ajoute tes objets. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Aucun nom ni adresse demandé, aucune connexion à un site de vente, rien de partagé automatiquement. Achat unique, sans abonnement.</p><p><em>Estimations indicatives calculées par des règles de décote paramétrables : ce n'est ni une expertise, ni une valeur d'assurance, ni une valeur comptable, ni une garantie de prix de revente. Aucun prix de marché n'est intégré ni récupéré. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "inventaire",
-   "patrimoine",
-   "revente",
-   "objets",
-   "budget",
-   "minimalisme",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton inventaire s'ouvre. Coche les familles d'objets que tu possèdes et ajoute tes objets : le bilan se calcule. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre tes objets. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers qui veulent connaître la valeur de leurs biens"
-   }
-  ]
- },
- {
-  "slug": "temps-de-vie",
-  "name": "Temps de vie",
-  "price_cents": 1900,
-  "permalink": "temps-de-vie",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon calculateur",
-  "summary": "Combien d'heures de travail pour payer ce que tu consommes ? Chaque dépense, habitude ou ton mode de vie entier converti en heures et en jours de travail.",
-  "description": "<h2>Combien d'heures de ta vie pour payer ce que tu consommes ?</h2><p>Un téléphone, un restaurant, un abonnement, ton loyer : derrière chaque dépense, il y a du temps de travail. Temps de vie fait la conversion avec ton revenu et ton temps de travail réels.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton revenu horaire</strong> selon trois conventions affichées clairement : temps contractuel, temps réellement consacré au travail (trajet et frais professionnels), temps annuel effectif. Le calcul fonctionne même avec un profil incomplet, hypothèses signalées.</li><li><strong>Un calculateur instantané</strong> : n'importe quelle dépense en heures, jours et semaines de travail ; pour une dépense récurrente, le coût sur 1, 5 et 10 ans.</li><li><strong>Ton mode de vie en temps</strong> : une bibliothèque de dépenses (logement, mobilité, alimentation, équipement, loisirs, services, famille) que tu complètes, la part de chaque poste et le top 10 des dépenses les plus coûteuses en temps.</li><li><strong>Des scénarios A, B, C</strong> : économies mensuelles et annuelles, heures et jours de travail récupérés, cumul sur plusieurs années.</li><li><strong>Le coût réel d'un achat</strong> : prix, frais, entretien, usage et revente sur la durée de possession, pour comparer deux options.</li><li><strong>Un résultat partageable</strong> choisi par toi, sans ton revenu sauf si tu le coches. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton revenu net et ton temps de travail, puis tes dépenses. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Aucune connexion bancaire, aucun agenda, aucun connecteur externe. Achat unique, sans abonnement.</p><p><em>Les durées sont une équivalence (montant ÷ revenu net horaire estimé), pas un temps réellement travaillé. Aucun barème fiscal intégré : tous les montants sont les tiens. Outil d'aide à la réflexion, pas un conseil financier, fiscal ou professionnel. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "budget",
-   "depenses",
-   "temps",
-   "finances-personnelles",
-   "minimalisme",
-   "economies",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calculateur s'ouvre. Indique ton revenu net et ton temps de travail : chaque dépense se convertit en heures. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre ton profil et tes dépenses. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers qui veulent voir le coût réel de leur mode de vie"
-   }
-  ]
- },
- {
-  "slug": "notes-de-frais",
-  "name": "Notes de frais et indemnités kilométriques",
-  "price_cents": 1500,
-  "permalink": "notes-de-frais",
-  "category": "business-and-money/accounting",
-  "button": "Ouvrir mes notes de frais",
-  "summary": "Tes frais avancés et tes kilomètres au même endroit : justificatifs suivis, statut de remboursement, indemnités kilométriques au barème fiscal et note du mois prête à imprimer en PDF.",
-  "description": "<h2>Chaque euro avancé, retrouvé.</h2><p>Un déjeuner chez un client, une nuit d'hôtel, un péage, un parking, cent kilomètres avec votre voiture… Chaque mois, il faut retrouver les tickets, recompter les kilomètres, appliquer le bon barème, remplir la note, puis attendre le remboursement. Les Notes de frais réunissent tout : la dépense, son justificatif et où il est rangé, le trajet au barème kilométrique, et la note du mois prête à imprimer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque frais en quelques secondes</strong> : date, catégorie (18 catégories courantes : repas, hôtel, train, avion, taxi, péage, stationnement, carburant, fournitures…), montant TTC, TVA recopiée du justificatif (jamais calculée), mission ou client.</li><li><strong>Les justificatifs suivis</strong> : fourni ou à fournir, et où il est rangé (enveloppe, dossier, numéro de scan). Aucun fichier n'est stocké : les manquants sont signalés.</li><li><strong>Brouillon, soumis, remboursé</strong> : une note par mois, datée à chaque étape, et une alerte quand un remboursement se fait attendre.</li><li><strong>Les indemnités kilométriques au barème fiscal</strong> : voiture, moto ou cyclomoteur, puissance fiscale, électrique ; calcul sur le total de l'année par véhicule, montant au fil de l'eau, montant exact et régularisation expliquée. Barème des revenus 2025 intégré avec sa source et sa date, modifiable chaque année.</li><li><strong>La note du mois</strong> imprimable ou enregistrable en PDF, avec cadres de signature ; export CSV pour ton tableur ou ton comptable ; texte à copier.</li><li><strong>Tableau de bord</strong> : à rembourser, à soumettre, remboursé dans l'année, frais par mois et par catégorie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton nom et ton véhicule, puis saisis tes frais et tes trajets au fil du mois. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la préparation de tes notes de frais : il ne remplace pas ton service comptable ni un professionnel. Le barème kilométrique intégré vient de la publication officielle (sources datées) ; ton employeur ou ton comptable peut appliquer d'autres règles, ce sont les leurs qui font foi. Aucun envoi automatique, aucun stockage de fichier. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "notes-de-frais",
-   "frais-professionnels",
-   "indemnites-kilometriques",
-   "bareme-kilometrique",
-   "independant",
-   "comptabilite",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes de frais s'ouvrent. Indique ton véhicule, puis saisis tes frais et tes trajets : la note du mois se remplit toute seule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Salariés qui avancent des frais, indépendants"
-   }
-  ]
- },
- {
-  "slug": "impayes",
-  "name": "Relance des impayés",
-  "price_cents": 1900,
-  "permalink": "relance-impayes",
-  "category": "business-and-money/accounting",
-  "button": "Ouvrir mes relances",
-  "summary": "Tes factures en retard au même endroit : le retard en jours, les pénalités et l'indemnité calculées, et le message de relance de chaque palier prêt à copier.",
-  "description": "<h2>Chaque facture payée à temps.</h2><p>Une facture en retard de trois semaines, une autre payée à moitié, un client qui ne répond plus… Sans suivi, on relance trop tard, avec les mauvais mots, et on oublie ce que la loi permet de réclamer. La Relance des impayés réunit tes factures en attente, calcule le retard et les pénalités, et te prépare le bon message au bon moment.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'échéancier clair</strong> : encours, échu par ancienneté (0-30, 31-60, 61-90, plus de 90 jours), retard en jours et statut calculé de chaque facture (à échoir, échue, en relance, payée, litige, abandonnée).</li><li><strong>Les pénalités calculées</strong> : intérêts simples au prorata des jours sur le restant dû, paiements partiels datés compris, détail période par période ; indemnité forfaitaire de 40 € entre professionnels.</li><li><strong>Des taux datés et modifiables</strong> : taux BCE du semestre + 10 points (article L441-10 du Code de commerce), taux de tes conditions générales, ou intérêt légal à partir de la mise en demeure pour un client particulier.</li><li><strong>4 paliers de relance</strong> (rappel courtois, relance ferme, mise en demeure, dernier avis), délais et modèles modifiables, avec 18 champs remplis automatiquement : montant, numéro, retard, pénalités, date limite…</li><li><strong>Copier, pas envoyer</strong> : chaque message se copie d'un bouton ; tu l'envoies depuis ta messagerie, puis tu le notes au journal des relances de la facture.</li><li><strong>Données des clients minimales</strong> : nom, type, un contact facultatif ; effacement des données personnelles en un geste ; export CSV pour ton comptable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Saisis tes factures en attente (client, numéro, montant TTC, échéance) et les paiements reçus : le retard, les pénalités et la prochaine relance se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à une messagerie, une banque ou un logiciel de facturation. Outil d'aide au suivi des paiements, pas un conseil juridique : les montants sont des estimations, tes conditions générales et les textes en vigueur font foi. Taux relevés le 13/11/2026, à mettre à jour chaque semestre dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "impayes",
-   "relance",
-   "factures",
-   "penalites-de-retard",
-   "freelance",
-   "tpe",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Saisis tes factures en attente et les paiements reçus : le retard, les pénalités et les relances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "TPE, artisans et freelances"
-   }
-  ]
- },
- {
-  "slug": "onboarding",
-  "name": "Onboarding et offboarding salarié",
-  "price_cents": 1900,
-  "permalink": "onboarding-offboarding",
-  "category": "business-and-money/management-and-leadership",
-  "button": "Ouvrir mon suivi",
-  "summary": "Les arrivées et les départs de tes salariés sans oubli : checklists par profil, un responsable et une échéance pour chaque tâche de J-15 à J+90, et le matériel remis puis rendu.",
-  "description": "<h2>Personne n'oublie rien.</h2><p>Un badge pas prêt le premier jour, des accès ouverts une semaine trop tard, une déclaration faite au dernier moment, un téléphone jamais rendu après un départ… Dans une PME, on accueille ou on voit partir quelqu'un quelques fois par an : assez pour oublier une étape. L'Onboarding et offboarding salarié donne à chaque arrivée et à chaque départ sa checklist, avec qui fait quoi et pour quand.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des checklists prêtes</strong> : 89 tâches d'arrivée et de départ en 5 profils (commun à tous, poste de bureau, poste terrain, manager, alternant ou stagiaire).</li><li><strong>Un responsable et une échéance par tâche</strong> : RH, manager, informatique, services généraux ou la personne elle-même ; de J-15 à J+90 à l'arrivée, de J-30 à J+30 au départ, calculées depuis la date du jour J.</li><li><strong>Cette semaine, par responsable</strong> : les retards en tête, puis ce qui tombe d'ici dimanche ; progression de chaque parcours.</li><li><strong>Le matériel</strong> : noté à la remise, coché à la restitution avec son état ; ce qui n'est pas rendu au dernier jour passe en alerte. « Préparer le départ » reprend le matériel remis à l'arrivée.</li><li><strong>Tes modèles</strong> : ajoute, modifie ou retire des tâches, crée tes profils ; chaque parcours garde sa propre checklist.</li><li><strong>Repères réglementaires</strong> rattachés aux tâches concernées (déclaration préalable à l'embauche, visite d'information et de prévention, documents de fin de contrat), sourcés, datés et marqués « à vérifier ».</li><li><strong>Imprimer et exporter</strong> : récapitulatif imprimable par personne (ou en PDF), export CSV des tâches et du matériel, copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes profils, ajoute une arrivée ou un départ avec sa date : la checklist se crée avec ses responsables et ses échéances. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Données minimales : prénom et initiale, poste, contrat, service, dates, matériel ; aucune donnée de santé, de salaire ou d'adresse. Effacement proposé une fois le parcours terminé ; tu restes responsable des données que tu saisis. Aucune intégration à un logiciel RH, aucun e-mail envoyé. Outil d'aide à l'organisation : il ne remplace pas un conseil juridique ou RH ; ta convention collective et les textes font foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "onboarding",
-   "offboarding",
-   "rh",
-   "integration",
-   "checklist",
-   "pme",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis tes profils, ajoute une arrivée ou un départ : la checklist se crée avec ses responsables et ses échéances. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "RH de PME et managers"
-   }
-  ]
- },
- {
-  "slug": "appel-decouverte",
-  "name": "Préparateur d'appel découverte",
-  "price_cents": 1200,
-  "permalink": "preparateur-appel-decouverte",
-  "category": "business-and-money/marketing-and-sales",
-  "button": "Ouvrir mon préparateur",
-  "summary": "Prépare chaque appel découverte en dix minutes : questions par phase, plan minuté, objections sous la main pendant l'appel, score de qualification et prochaine étape datée.",
-  "description": "<h2>Prépare l'appel. Mène-le. Conclus.</h2><p>Un premier rendez-vous avec un prospect se joue en trente minutes. Sans préparation, on oublie de demander qui décide, on bute sur « c'est trop cher » et on raccroche sans date de suite. Le Préparateur d'appel découverte t'aide à préparer chaque appel en dix minutes, à le mener avec tout sous la main et à repartir avec une décision claire.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une fiche contexte minimale</strong> : organisation, secteur, taille, fonction de ton interlocuteur, prénom facultatif. Pas de nom de famille, d'e-mail ni de téléphone.</li><li><strong>Une banque de 84 questions</strong> rédigées pour l'outil, en 7 phases (ouverture, situation actuelle, problème, impact et enjeux, décision et budget, délais, conclusion), dont 28 essentielles ; ajoute les tiennes et garde-les pour les prochains appels.</li><li><strong>Un plan minuté</strong> : la durée prévue est répartie entre les phases, avec une alerte si tu prévois trop de questions.</li><li><strong>Un mode « en appel »</strong> pour téléphone et ordinateur : chronomètre et phase prévue, questions à cocher, réponses notées, hypothèses confirmées ou infirmées.</li><li><strong>25 objections types</strong> (prix, budget, moment, besoin, confiance, concurrence, décision…) avec une piste de réponse et une question de relance, à adapter.</li><li><strong>Un score de qualification sur 8</strong>, selon une règle affichée : besoin, budget, décideur, échéance.</li><li><strong>La suite</strong> : prochaine étape datée, étapes en retard signalées dans la liste des appels, résumé imprimable (PDF) et compte rendu à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton appel, écris l'objectif, choisis tes questions : le plan se calcule. Tes appels sont enregistrés en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Les questions et les pistes de réponse sont des points de départ, à dire avec tes mots. Aucun envoi automatique, aucune connexion à un agenda ou à un logiciel tiers. Données de prospects réduites au minimum, effaçables à tout moment ; tu restes responsable de leur traitement (RGPD). Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "appel-decouverte",
-   "prospection",
-   "vente",
-   "consultant",
-   "freelance",
-   "qualification",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton préparateur s'ouvre. Crée ton premier appel, choisis tes questions : le plan minuté se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Consultants, freelances et commerciaux"
-   }
-  ]
- },
- {
-  "slug": "stocks",
-  "name": "Stocks et inventaire",
-  "price_cents": 2500,
-  "permalink": "stocks-inventaire",
-  "category": "business-and-money/management-and-leadership",
-  "button": "Ouvrir mon stock",
-  "summary": "Ton stock calculé à partir des entrées et sorties datées, les alertes de seuil et la liste à commander, la valeur au coût moyen pondéré et des inventaires dont les écarts se corrigent d'un clic.",
-  "description": "<h2>Le bon stock, au bon moment.</h2><p>Une rupture découverte devant le client, des cartons qui dorment au fond de la réserve, un inventaire de fin d'année qui ne tombe jamais juste… Sans suivi, le stock coûte cher sans qu'on le voie. Stocks et inventaire calcule ton stock à partir de chaque mouvement, te dit quoi commander et ce que vaut ce que tu as en rayon.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un stock toujours juste</strong> : il se calcule à partir des mouvements datés (entrée, sortie ou vente, perte, retour client ou fournisseur, ajustement). Une saisie oubliée et datée après coup se range à sa date. Quantités décimales pour le poids, le volume ou la longueur.</li><li><strong>Des fiches articles simples</strong> : référence, nom, catégorie, unité, emplacement, fournisseur (texte libre), prix d'achat et de vente HT, seuil d'alerte, quantité de réapprovisionnement.</li><li><strong>Les alertes et la liste à commander</strong> : ruptures et articles sous le seuil, quantité proposée, commandes regroupées par fournisseur avec un texte prêt à copier, et un bouton « Réception » pour enregistrer la livraison.</li><li><strong>La valeur du stock</strong> au coût moyen pondéré (CMUP, recalculé à chaque entrée) ou au dernier prix d'achat : la méthode est toujours affichée, l'export donne les deux. Marge théorique, taux de marque et coefficient sur tes prix de vente HT.</li><li><strong>Rotation et articles dormants</strong> : ventes de la période, jours de stock restants, articles sans vente depuis 90 jours (réglable) et l'argent qu'ils immobilisent.</li><li><strong>L'inventaire tournant ou complet</strong> : tu saisis ce que tu comptes, l'écart avec le stock théorique s'affiche en quantité et en euros, et la validation crée les ajustements. Export CSV du stock et des mouvements.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes articles avec leur stock de départ, puis note chaque entrée et chaque vente : le stock, les alertes et la valeur se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion à une caisse, une boutique en ligne ou un logiciel comptable : chaque mouvement se saisit dans l'outil. Outil de gestion de stock, pas un logiciel comptable : la valorisation comptable du stock à la clôture relève de ton expert-comptable. Démo disponible sur qm-engineering.fr/catalogue/stocks.</em></p>",
-  "tags": [
-   "stock",
-   "inventaire",
-   "gestion-de-stock",
-   "commerce",
-   "artisan",
-   "e-commerce",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton stock s'ouvre. Crée tes articles avec leur stock de départ, puis note tes entrées et tes ventes : alertes, liste à commander et valeur se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Petits commerces, artisans, ateliers, e-commerçants"
-   }
-  ]
- },
- {
-  "slug": "location-saisonniere",
-  "name": "Location saisonnière",
-  "price_cents": 2500,
-  "permalink": "location-saisonniere",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon calendrier",
-  "summary": "Le calendrier de tes meublés et chambres d'hôtes, chaque réservation avec son canal, le ménage entre deux séjours, la taxe de séjour et ton net par mois.",
-  "description": "<h2>Tes logements, toujours prêts.</h2><p>Une réservation arrive en direct, une autre par un intermédiaire, le ménage se cale entre deux séjours, la taxe de séjour se calcule à la main en fin de trimestre… et à la fin du mois, difficile de savoir ce qui reste vraiment après les commissions. La Location saisonnière réunit tes logements, tes réservations et ton argent au même endroit.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le calendrier d'occupation</strong> de 1 à 10 logements, mois par mois : deux réservations confirmées ne peuvent pas se chevaucher, une option en conflit est signalée, un départ et une arrivée le même jour se suivent.</li><li><strong>Chaque réservation complète</strong> : dates et nuits, adultes et enfants, canal que tu nommes toi-même (« Direct » et tes intermédiaires), hébergement, ménage facturé, commission, acompte et solde, avec les soldes non reçus en évidence.</li><li><strong>Le ménage entre deux séjours</strong> : un ménage par départ, à faire avant la prochaine arrivée ; en retard, du jour, à venir, rotations le jour même repérées, check-list type.</li><li><strong>La taxe de séjour calculée</strong> avec le tarif par personne et par nuit de ta commune, par logement ; mineurs exonérés si l'option est cochée ; collectée par toi ou par le canal. Aucun barème n'est intégré : chaque commune fixe le sien.</li><li><strong>Tes revenus réels</strong> : brut, commissions et net par canal, par logement et par mois, taux d'occupation, prix moyen par nuit, taxe à reverser ; export CSV.</li><li><strong>Données des voyageurs minimales</strong> : un nom et le nombre de personnes ; effacement d'un voyageur ou des séjours anciens en un geste.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes logements et tes canaux, puis saisis tes réservations : le calendrier, le ménage, la taxe et tes revenus se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune plateforme de réservation, aucun calendrier externe ni aucune banque n'est connecté : tu saisis tes réservations toi-même. Outil d'aide à la gestion, pas un conseil fiscal : aucun régime d'imposition (micro-BIC, réel, loueur en meublé) n'est calculé. Tarif de taxe de séjour à vérifier auprès de ta commune chaque année. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "location-saisonniere",
-   "meuble-de-tourisme",
-   "chambres-d-hotes",
-   "taxe-de-sejour",
-   "calendrier",
-   "reservations",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier s'ouvre. Crée tes logements et tes canaux, puis saisis tes réservations : le ménage, la taxe de séjour et tes revenus se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Propriétaires de meublés de tourisme et de chambres d'hôtes"
-   }
-  ]
- },
- {
-  "slug": "leasing",
-  "name": "Simulateur leasing ou achat",
-  "price_cents": 1200,
-  "permalink": "simulateur-leasing-achat",
-  "category": "business-and-money/personal-finance",
-  "button": "Ouvrir mon simulateur",
-  "summary": "Comptant, crédit, LOA ou LLD : le coût total net de chaque offre de voiture côte à côte, revente estimée, kilomètres en plus et frais compris, avec le coût par mois et par kilomètre.",
-  "description": "<h2>Ta voiture, au vrai prix.</h2><p>Un loyer de LOA, une offre de crédit, une proposition de LLD, un prix au comptant… Chaque vendeur met en avant un chiffre différent, et aucun ne dit combien la voiture coûtera vraiment sur la période. Le Simulateur leasing ou achat ramène toutes tes offres au même étalon : le coût total net, revente et kilomètres compris.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Quatre façons de payer côte à côte</strong> : comptant, crédit amortissable (mensualité et coût des intérêts calculés par la formule d'annuité), LOA avec premier loyer, loyers et option d'achat levée ou non, LLD avec forfait kilométrique et prix du kilomètre en plus.</li><li><strong>Le coût total net</strong> sur la durée de détention : versements, assurance, entretien (inclus ou non), frais de dossier, option d'achat, capital restant dû, moins la valeur de revente estimée. Puis le coût mensuel équivalent et le coût au kilomètre.</li><li><strong>Tes kilomètres réels face au forfait</strong> : dépassement et coût estimés, et le kilométrage annuel à partir duquel une offre devient moins chère qu'une autre.</li><li><strong>Des hypothèses que tu choisis</strong> : décote annuelle, effet du kilométrage sur la revente, coût d'opportunité de l'apport (taux de placement saisi).</li><li><strong>Le coût cumulé dans le temps</strong> en graphique, et le détail du calcul de chaque offre, poste par poste.</li><li><strong>Ce qu'il faut demander au vendeur</strong> : 18 questions par type d'offre, à cocher et à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique le véhicule, la durée et tes kilomètres par an, puis reporte les montants de chaque offre reçue : le classement se calcule. Tes comparaisons sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie, pas un conseil financier : les offres écrites et les contrats font foi. Aucune donnée de marché intégrée, aucune connexion à une banque, un vendeur ou un loueur. Pour les indépendants, la fiscalité (déductibilité, TVA, amortissement) n'est pas calculée. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "leasing",
-   "loa",
-   "lld",
-   "credit-auto",
-   "voiture",
-   "budget",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Indique le véhicule et tes kilomètres, puis reporte les montants de tes offres : le coût total net de chacune se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers et indépendants qui choisissent une voiture"
-   }
-  ]
- },
- {
-  "slug": "conges",
-  "name": "Suivi des congés et absences",
-  "price_cents": 1900,
-  "permalink": "suivi-conges-absences",
-  "category": "business-and-money/management-and-leadership",
-  "button": "Ouvrir mon suivi des congés",
-  "summary": "Les soldes de congés de ton équipe calculés, les demandes validées en un geste, et le calendrier qui signale quand trop de monde manque en même temps.",
-  "description": "<h2>Qui est là, qui part, et combien il reste.</h2><p>Un tableur de congés à recalculer chaque mois, des demandes reçues par message, et la découverte trop tard que deux personnes de la même équipe partent la même semaine… Le Suivi des congés et absences calcule les soldes de ton équipe, garde la trace de chaque demande et signale les chevauchements avant que tu valides.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des soldes calculés au jour près</strong> : congés payés acquis (2,5 jours ouvrables par mois de travail effectif par défaut, article L3141-3 du Code du travail, ou l'équivalent en jours ouvrés), pris, posés et en attente, plus les RTT, salarié par salarié.</li><li><strong>Des demandes avec un statut</strong> : demandée, validée, refusée ou annulée ; le solde après validation et les chevauchements s'affichent avant de décider.</li><li><strong>Un calendrier d'équipe</strong> mois par mois, jours fériés calculés chaque année (Pâques comprise), et une alerte quand une équipe dépasse son nombre d'absents simultanés.</li><li><strong>Des règles paramétrables et datées</strong> : jours ouvrables ou ouvrés, période de référence (1er juin ou année civile), acquisition pendant un arrêt maladie, fériés chômés, Alsace-Moselle, types d'absence (maladie, sans solde, événement familial…).</li><li><strong>Le détail de chaque solde</strong> : reliquat, acquisition par période, ajustements (fractionnement, congés conventionnels) et projection à la fin de la période.</li><li><strong>Des données minimales</strong> : prénom, nom, équipe ; aucune donnée de santé (le type « Arrêt maladie » suffit) ; export, effacement ou suppression d'un salarié ; export CSV pour ton gestionnaire de paie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes règles, crée tes équipes, ajoute tes salariés avec leur solde de départ, puis saisis les demandes reçues. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte salarié à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à un logiciel de paie. Outil d'aide au suivi des congés, ni logiciel de paie ni conseil juridique : la convention collective, les accords d'entreprise et le Code du travail font foi. Règles relevées le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "conges-payes",
-   "absences",
-   "rh",
-   "tpe",
-   "planning-equipe",
-   "rtt",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis tes règles, ajoute tes salariés et leur solde de départ : les congés acquis, les soldes et les chevauchements se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "TPE de 2 à 30 salariés sans logiciel RH"
-   }
-  ]
- },
- {
-  "slug": "tableau-annuel",
-  "name": "Tableau de bord annuel et roue de vie",
-  "price_cents": 1500,
-  "permalink": "tableau-annuel-roue-de-vie",
-  "category": "self-improvement/productivity",
-  "button": "Ouvrir mon tableau",
-  "summary": "Ta roue de vie notée domaine par domaine, des objectifs mesurables (méthode OKR), des actions par trimestre et une revue guidée chaque trimestre, avec l'évolution de ta roue dans le temps.",
-  "description": "<h2>Ton année, domaine par domaine.</h2><p>Les bonnes résolutions de janvier tiennent rarement jusqu'en mars, et le travail prend souvent toute la place. Le Tableau de bord annuel et roue de vie te donne une méthode simple pour piloter toute ton année : tu notes ta roue de vie, tu fixes quelques objectifs mesurables, tu les découpes en actions par trimestre, et tu fais le point chaque trimestre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une roue de vie notée, pas devinée</strong> : 12 domaines types (santé, travail, argent, famille, couple, amis, développement personnel, loisirs, cadre de vie…) ou les tiens, 8 au plus, chacun noté par 3 questions de 0 à 10.</li><li><strong>Des objectifs mesurables</strong> selon la méthode OKR : un objectif, 1 à 3 résultats clés chiffrés ou à cocher, dans un sens ou dans l'autre (réduire ses dépenses compte aussi). 33 objectifs modèles prêts à adapter.</li><li><strong>Le rythme de l'année</strong> : chaque objectif comparé à la part de l'année écoulée (dans les temps, à surveiller, en retard), et un score de l'année.</li><li><strong>Des actions par trimestre</strong> : à faire, en cours, faites, reportées ; 48 idées d'actions ; ce qui est resté ouvert au trimestre précédent remonte tout seul.</li><li><strong>Une revue guidée</strong> en 20 à 30 minutes : la roue domaine par domaine, les résultats clés, un bilan écrit (j'arrête, je continue, je commence), puis 1 à 3 priorités et leurs actions. La revue du 4e trimestre est le bilan de l'année.</li><li><strong>L'évolution dans le temps</strong> : la moyenne de ta roue et chaque domaine, revue après revue, sur la même échelle ; bilan à copier, export CSV, impression.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes domaines, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Ton tableau est enregistré en ligne et te suit sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil de réflexion personnelle : il ne remplace pas l'accompagnement d'un professionnel (coach, médecin, psychologue). Aucune connexion à une autre application. Une licence = un tableau, pour une personne. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "roue-de-vie",
-   "objectifs",
-   "okr",
-   "bilan",
-   "organisation",
-   "developpement-personnel",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton tableau s'ouvre. Choisis tes domaines de vie, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "Particuliers qui veulent piloter leur année, et coachs pour eux-mêmes"
-   }
-  ]
- },
- {
-  "slug": "planning-equipe",
-  "name": "Planning d'équipe et staffing",
-  "price_cents": 3500,
-  "permalink": "planning-equipe-staffing",
-  "category": "business-and-money/management-and-leadership",
-  "button": "Ouvrir mon planning d'équipe",
-  "summary": "Qui fait quoi dans ton équipe chaque semaine, la charge réelle de chacun avec ses absences et son temps partiel, et les conflits signalés avant qu'ils coincent.",
-  "description": "<h2>Qui fait quoi, et qui peut encore prendre.</h2><p>Un tableur de planning en couleurs, des temps partiels et des congés à garder en tête, et la découverte le jour J qu'une personne est affectée pendant ses vacances ou que quelqu'un tourne à 120 %… Le Planning d'équipe et staffing calcule la charge de chacun semaine par semaine et signale les conflits avant qu'ils coincent.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des affectations simples</strong> : une personne, un projet ou un poste à couvrir, des dates et un nombre d'heures par semaine, réparties sur ses jours travaillés.</li><li><strong>Le vrai taux de charge</strong> : capacité hebdomadaire de chaque personne (35 heures à temps complet par défaut, article L3121-27 du Code du travail, modifiable pour un temps partiel), moins ses jours non travaillés, congés, formations et jours fériés chômés.</li><li><strong>Les conflits signalés</strong> : surcharge, affectation pendant une absence, personne sans aucune des compétences demandées, poste à couvrir dont le besoin n'est pas tenu, et alertes de durée paramétrables (48 heures sur une semaine, 44 heures en moyenne sur 12 semaines par défaut).</li><li><strong>Des vues semaine et mois</strong>, par personne ou par projet, imprimables, et un aperçu de la charge des semaines concernées avant chaque affectation.</li><li><strong>Qui est disponible la semaine prochaine</strong> : heures libres de chacun, filtrées par compétence ou par rôle, avec un bouton pour affecter.</li><li><strong>Une clé pour tes managers</strong> : le même planning sur tous leurs appareils ; les saisies faites en même temps sont réunies et signées du prénom de leur auteur.</li><li><strong>Six modèles d'équipe</strong> pour démarrer (agence, bâtiment, commerce et restauration, atelier, services sur site, bureau d'études) : rôles, compétences et postes à couvrir proposés, tout se modifie.</li><li><strong>Des données minimales</strong> : aucune donnée de santé ; export, effacement ou suppression d'une personne ; exports CSV des affectations et de la charge sur 12 semaines.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton secteur, ajoute ton équipe, tes projets et tes postes, puis affecte des heures par semaine. Le planning est enregistré en ligne et suit chaque manager qui a la clé, sur ordinateur, tablette et téléphone.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à un agenda ou à un logiciel de paie. Outil d'aide à la planification : la charge est celle que tu planifies, pas le temps de travail effectif ; ce n'est ni un logiciel de paie ni un conseil juridique. La convention collective, les accords d'entreprise et le Code du travail font foi. Repères de durée relevés le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
-  "tags": [
-   "planning-equipe",
-   "staffing",
-   "charge-de-travail",
-   "management",
-   "pme",
-   "rh",
-   "francais"
-  ],
-  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning s'ouvre. Choisis ton secteur, ajoute ton équipe et tes projets, puis affecte des heures par semaine : la charge, les conflits et les disponibilités se calculent. Partage cette clé avec les managers qui tiennent le planning avec toi.",
-  "details": [
-   {
-    "name": "Format",
-    "value": "Application web (ordinateur, tablette, téléphone)"
-   },
-   {
-    "name": "Accès",
-    "value": "Clé de licence envoyée par e-mail, partageable entre managers"
-   },
-   {
-    "name": "Langue",
-    "value": "Français"
-   },
-   {
-    "name": "Paiement",
-    "value": "Achat unique, sans abonnement"
-   },
-   {
-    "name": "Pour",
-    "value": "TPE et PME de 3 à 50 personnes qui planifient sur un tableur"
-   }
-  ]
- }
+  {
+    "slug": "habitudes",
+    "name": "Suivi d'habitudes et routines",
+    "price_cents": 1200,
+    "permalink": "suivi-habitudes",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon suivi",
+    "summary": "Tes habitudes du jour cochées en quelques secondes sur téléphone, les habitudes chiffrées comptées, et la grille du mois avec tes séries et ton taux de réussite.",
+    "description": "<h2>Un geste par jour, une série qui tient.</h2><p>Les applications d'habitudes sont souvent trop simples (une case, rien d'autre) ou trop bavardes. Le Suivi d'habitudes et routines va à l'essentiel : tu coches tes habitudes du jour en quelques secondes sur ton téléphone, tu comptes celles qui se mesurent, et la grille du mois te montre tes séries et ton taux de réussite.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une vue « Aujourd'hui » rapide</strong> : une touche pour cocher, des boutons + et − pour compter, pensée pour le téléphone.</li><li><strong>Des habitudes à cocher ou chiffrées</strong>, avec minimum, maximum et pas : au moins 8 verres d'eau, au plus 3 cafés, 7 à 9 h de sommeil.</li><li><strong>Des jours « non applicables »</strong> (malade, en congés) qui ne cassent pas tes séries, et des jours prévus au choix pour chaque habitude.</li><li><strong>Des thèmes colorés</strong>, dont des thèmes « une seule par jour » pour un choix exclusif, comme le lieu de travail : bureau, télétravail ou déplacement.</li><li><strong>La grille du mois</strong> date par habitude, imprimable, et un bilan sur 30 jours : séries, records, taux de réussite, journées parfaites, tendance sur 8 semaines.</li><li><strong>50 habitudes types</strong> rangées en 8 thèmes, avec leurs réglages types (sources citées), et 6 routines prêtes : matin, soir, bouger plus, télétravail, bien manger, esprit serein.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis une ou plusieurs routines types, coche tes habitudes : c'est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé ; ajoute la page à l'écran d'accueil de ton téléphone pour l'ouvrir comme une application.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Journal exportable en CSV, copie complète en JSON.</p><p><em>Rien n'est coché automatiquement : aucune connexion à une montre ou à une autre application, aucune notification. Outil d'aide au suivi, pas un dispositif médical : il ne remplace pas l'avis d'un médecin ou d'un professionnel de santé, notamment pour un traitement. Démo disponible sur qm-engineering.fr/templates/habitudes/?demo.</em></p>",
+    "tags": [
+      "habitudes",
+      "habit-tracker",
+      "routine",
+      "suivi",
+      "bien-etre",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis une routine type, coche tes habitudes : c'est prêt. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui veulent tenir leurs habitudes"
+      }
+    ]
+  },
+  {
+    "slug": "entretien",
+    "name": "Entretien de la maison",
+    "price_cents": 1200,
+    "permalink": "entretien-maison",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon calendrier",
+    "summary": "Coche les équipements de ton logement : le calendrier d'entretien se calcule seul, avec les obligations sourcées, l'historique et les coûts.",
+    "description": "<h2>Rien d'oublié, chaque saison.</h2><p>La date du dernier ramonage retrouvée sur une attestation au fond d'un tiroir, des filtres jamais changés, des gouttières qu'on nettoie quand elles débordent : l'Entretien de la maison coche les équipements de ton logement et calcule seul ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive.</p><h3>Ce que tu obtiens</h3><ul><li><strong>89 tâches types pour 37 équipements</strong> : chaudière, ramonage, poêle, pompe à chaleur, climatisation, VMC, détecteur de fumée, chauffe-eau, adoucisseur, fosse, électroménager, toiture et gouttières, jardin, piscine… Chaque fréquence est modifiable, et tu peux ajouter tes propres tâches.</li><li><strong>Échéances calculées</strong> à partir de la dernière fois et de la saison conseillée : en retard, ce mois-ci, à venir. Date inconnue ? Le calendrier propose une première date, obligations d'abord.</li><li><strong>Obligations sourcées</strong> : les fréquences d'origine réglementaire (chaudière, ramonage, pompe à chaleur…) affichent leur source et la date de relecture, avec la mention « à vérifier selon ton département et ton bail ».</li><li><strong>Historique</strong> : date, coût, intervenant et note de chaque intervention, dépenses des 12 derniers mois, export CSV.</li><li><strong>Liste de l'année à imprimer</strong>, mois par mois, avec des cases à cocher.</li><li><strong>Locataire ?</strong> Chaque tâche indique qui s'en charge le plus souvent, à titre indicatif.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton type de logement, coche tes équipements, et le calendrier est prêt. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace pas l'avis d'un professionnel ni une attestation d'entretien. Les fréquences réglementaires peuvent varier selon ton département, ton bail ou ton équipement : vérifie-les. Aucune notification ni lien avec un agenda. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "entretien",
+      "maison",
+      "calendrier",
+      "chaudiere",
+      "ramonage",
+      "locataire",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier d'entretien s'ouvre. Coche tes équipements : les échéances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires et locataires"
+      }
+    ]
+  },
+  {
+    "slug": "dettes",
+    "name": "Remboursement de dettes",
+    "price_cents": 1200,
+    "permalink": "remboursement-dettes",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon plan",
+    "summary": "Tes dettes, ton budget mensuel, et le plan qui les solde une à une : boule de neige, avalanche ou ton ordre, avec la date de fin et le pointage des paiements.",
+    "description": "<h2>Une date de fin pour tes dettes.</h2><p>Crédit conso, renouvelable, prêt auto, découvert, argent prêté par un proche : liste tes dettes, fixe ce que tu peux y consacrer chaque mois, et le plan te dit dans quel ordre les rembourser et quand tu en auras fini.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une date de fin</strong> calculée avec ton budget mensuel, et le total des intérêts jusque-là.</li><li><strong>Trois méthodes</strong> : boule de neige (plus petit solde d'abord), avalanche (taux le plus élevé d'abord) ou ton propre ordre, comparées côte à côte avec le repère « minimums seuls ».</li><li><strong>L'échéancier mois par mois</strong> : intérêts, capital, report de la mensualité d'une dette soldée sur la suivante ; export CSV et impression.</li><li><strong>Versements exceptionnels</strong> : une prime, une vente, et ce qu'elle fait gagner en mois et en intérêts.</li><li><strong>Pointage des paiements réels</strong> : l'écart au plan, mois par mois, et le recalage du plan sur tes vrais soldes.</li><li><strong>11 types de dettes</strong> avec, pour chacun, où trouver les chiffres et les points d'attention ; alerte quand une mensualité ne couvre pas les intérêts.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes dettes et ton budget : le plan se calcule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer, aucune connexion à ta banque. Achat unique, sans abonnement.</p><p><em>Outil d'aide au calcul : il ne remplace pas un conseil professionnel. Intérêts estimés au calcul mensuel simple (taux annuel ÷ 12) ; ton prêteur peut calculer au jour près. En cas de difficulté, tu peux t'adresser gratuitement à un point conseil budget, ou à la commission de surendettement de ton département (Banque de France). Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "dettes",
+      "remboursement",
+      "boule-de-neige",
+      "avalanche",
+      "budget",
+      "credit",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton plan s'ouvre. Ajoute tes dettes et ton budget : la date de fin se calcule. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui remboursent plusieurs crédits"
+      }
+    ]
+  },
+  {
+    "slug": "abonnements",
+    "name": "Suivi des abonnements",
+    "price_cents": 1200,
+    "permalink": "suivi-abonnements",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon suivi",
+    "summary": "Tous tes abonnements au même endroit : le coût réel par mois et par an, le calendrier des prélèvements, et la date avant laquelle décider pour chaque essai gratuit ou engagement.",
+    "description": "<h2>Ce que tu paies, chaque mois.</h2><p>Une plateforme vidéo, la musique, le forfait, la box, la mutuelle, la salle de sport, un logiciel, le stockage en ligne, une livraison gratuite à l'année… Pris un par un, chaque abonnement paraît petit. Le Suivi des abonnements les réunit, calcule ce qu'ils te coûtent vraiment et te prévient avant qu'un essai gratuit devienne payant ou qu'un engagement se renouvelle.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le vrai total</strong> : chaque abonnement ramené au mois et à l'année, quelle que soit sa périodicité (semaine, mois, trimestre, semestre, an), par catégorie.</li><li><strong>Une base de 96 abonnements courants</strong> en 17 catégories (vidéo, musique, presse, téléphone, box, assurances, sport, logiciels, stockage, livraison, jeux, transports, banque…), sans aucune marque ni prix imposé : tu coches, tu saisis ton prix.</li><li><strong>« À décider avant le … »</strong> : fin d'essai gratuit, fin d'engagement avec ton préavis, renouvellement annuel ; délai d'alerte réglable.</li><li><strong>Le calendrier des prélèvements</strong> du mois, les 30 prochains jours et les 12 prochains mois, avec les pics des abonnements annuels.</li><li><strong>Partage</strong> : un abonnement partagé ne compte que pour ta part (parts égales ou montant saisi).</li><li><strong>Économies</strong> : marque « à résilier » puis « résilié », l'économie annuelle est calculée ; repères pour résilier (droit de la consommation, sources datées).</li><li><strong>Partager et garder</strong> : récapitulatif à copier, impression, export CSV et copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche tes abonnements dans la liste, saisis ton prix et la date d'un prélèvement : les suivants, les totaux et les alertes se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion bancaire et aucun lien de résiliation : tu saisis tes abonnements et tu résilies toi-même auprès de chaque prestataire. Outil d'aide au suivi de tes dépenses : il ne remplace pas un avis professionnel ; ton contrat fait foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "abonnements",
+      "budget",
+      "economies",
+      "resiliation",
+      "prelevements",
+      "finances-personnelles",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Coche tes abonnements dans la liste, saisis tes prix : les totaux et les alertes se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et foyers"
+      }
+    ]
+  },
+  {
+    "slug": "patrimoine",
+    "name": "Inventaire valorisé",
+    "price_cents": 1900,
+    "permalink": "inventaire-valorise",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon inventaire",
+    "summary": "Combien valent vraiment tes affaires ? Inventorie tes objets en quelques secondes : valeur actuelle estimée, revente potentielle frais déduits, et ce qui dort sans servir.",
+    "description": "<h2>Si tu revendais tout aujourd'hui, combien récupérerais-tu ?</h2><p>Électronique, meubles, vélo, instruments, outillage, collections : on possède beaucoup plus de valeur qu'on ne le croit, et une partie dort au fond des placards. L'Inventaire valorisé transforme ta liste d'objets en bilan chiffré.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire en quelques secondes</strong> : 15 catégories, 80 sous-catégories et des centaines d'exemples d'objets ; un toucher, un prix, une date approximative.</li><li><strong>Trois valeurs jamais confondues</strong> : prix d'achat, valeur actuelle estimée (âge, état, famille d'objet, prix) et revente potentielle. Tu saisis la valeur toi-même quand tu la connais.</li><li><strong>Un moteur de décote transparent</strong> : 8 familles d'objets, coefficients visibles et modifiables.</li><li><strong>Un simulateur de revente</strong> : tout, une catégorie, les objets inutilisés, au-dessus d'un prix ou un nombre d'objets ; décote, négociation, commission et expédition déduites.</li><li><strong>L'analyse de possession</strong> : argent immobilisé, objets de valeur peu ou jamais utilisés, plus fortes pertes, part facilement revendable.</li><li><strong>Un historique</strong> : une valorisation par mois, comparaison entre deux dates, projection sur 5 ans. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche les familles d'objets que tu possèdes et ajoute tes objets. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Aucun nom ni adresse demandé, aucune connexion à un site de vente, rien de partagé automatiquement. Achat unique, sans abonnement.</p><p><em>Estimations indicatives calculées par des règles de décote paramétrables : ce n'est ni une expertise, ni une valeur d'assurance, ni une valeur comptable, ni une garantie de prix de revente. Aucun prix de marché n'est intégré ni récupéré. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "inventaire",
+      "patrimoine",
+      "revente",
+      "objets",
+      "budget",
+      "minimalisme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton inventaire s'ouvre. Coche les familles d'objets que tu possèdes et ajoute tes objets : le bilan se calcule. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre tes objets. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui veulent connaître la valeur de leurs biens"
+      }
+    ]
+  },
+  {
+    "slug": "temps-de-vie",
+    "name": "Temps de vie",
+    "price_cents": 1900,
+    "permalink": "temps-de-vie",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon calculateur",
+    "summary": "Combien d'heures de travail pour payer ce que tu consommes ? Chaque dépense, habitude ou ton mode de vie entier converti en heures et en jours de travail.",
+    "description": "<h2>Combien d'heures de ta vie pour payer ce que tu consommes ?</h2><p>Un téléphone, un restaurant, un abonnement, ton loyer : derrière chaque dépense, il y a du temps de travail. Temps de vie fait la conversion avec ton revenu et ton temps de travail réels.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton revenu horaire</strong> selon trois conventions affichées clairement : temps contractuel, temps réellement consacré au travail (trajet et frais professionnels), temps annuel effectif. Le calcul fonctionne même avec un profil incomplet, hypothèses signalées.</li><li><strong>Un calculateur instantané</strong> : n'importe quelle dépense en heures, jours et semaines de travail ; pour une dépense récurrente, le coût sur 1, 5 et 10 ans.</li><li><strong>Ton mode de vie en temps</strong> : une bibliothèque de dépenses (logement, mobilité, alimentation, équipement, loisirs, services, famille) que tu complètes, la part de chaque poste et le top 10 des dépenses les plus coûteuses en temps.</li><li><strong>Des scénarios A, B, C</strong> : économies mensuelles et annuelles, heures et jours de travail récupérés, cumul sur plusieurs années.</li><li><strong>Le coût réel d'un achat</strong> : prix, frais, entretien, usage et revente sur la durée de possession, pour comparer deux options.</li><li><strong>Un résultat partageable</strong> choisi par toi, sans ton revenu sauf si tu le coches. Exports CSV et JSON, rapport imprimable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton revenu net et ton temps de travail, puis tes dépenses. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Aucune connexion bancaire, aucun agenda, aucun connecteur externe. Achat unique, sans abonnement.</p><p><em>Les durées sont une équivalence (montant ÷ revenu net horaire estimé), pas un temps réellement travaillé. Aucun barème fiscal intégré : tous les montants sont les tiens. Outil d'aide à la réflexion, pas un conseil financier, fiscal ou professionnel. Démo et découverte gratuite sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "budget",
+      "depenses",
+      "temps",
+      "finances-personnelles",
+      "minimalisme",
+      "economies",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calculateur s'ouvre. Indique ton revenu net et ton temps de travail : chaque dépense se convertit en heures. Si tu as essayé la découverte gratuite sur le même navigateur, tu pourras reprendre ton profil et tes dépenses. Sur téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui veulent voir le coût réel de leur mode de vie"
+      }
+    ]
+  },
+  {
+    "slug": "notes-de-frais",
+    "name": "Notes de frais et indemnités kilométriques",
+    "price_cents": 1500,
+    "permalink": "notes-de-frais",
+    "category": "business-and-money/accounting",
+    "button": "Ouvrir mes notes de frais",
+    "summary": "Tes frais avancés et tes kilomètres au même endroit : justificatifs suivis, statut de remboursement, indemnités kilométriques au barème fiscal et note du mois prête à imprimer en PDF.",
+    "description": "<h2>Chaque euro avancé, retrouvé.</h2><p>Un déjeuner chez un client, une nuit d'hôtel, un péage, un parking, cent kilomètres avec votre voiture… Chaque mois, il faut retrouver les tickets, recompter les kilomètres, appliquer le bon barème, remplir la note, puis attendre le remboursement. Les Notes de frais réunissent tout : la dépense, son justificatif et où il est rangé, le trajet au barème kilométrique, et la note du mois prête à imprimer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque frais en quelques secondes</strong> : date, catégorie (18 catégories courantes : repas, hôtel, train, avion, taxi, péage, stationnement, carburant, fournitures…), montant TTC, TVA recopiée du justificatif (jamais calculée), mission ou client.</li><li><strong>Les justificatifs suivis</strong> : fourni ou à fournir, et où il est rangé (enveloppe, dossier, numéro de scan). Aucun fichier n'est stocké : les manquants sont signalés.</li><li><strong>Brouillon, soumis, remboursé</strong> : une note par mois, datée à chaque étape, et une alerte quand un remboursement se fait attendre.</li><li><strong>Les indemnités kilométriques au barème fiscal</strong> : voiture, moto ou cyclomoteur, puissance fiscale, électrique ; calcul sur le total de l'année par véhicule, montant au fil de l'eau, montant exact et régularisation expliquée. Barème des revenus 2025 intégré avec sa source et sa date, modifiable chaque année.</li><li><strong>La note du mois</strong> imprimable ou enregistrable en PDF, avec cadres de signature ; export CSV pour ton tableur ou ton comptable ; texte à copier.</li><li><strong>Tableau de bord</strong> : à rembourser, à soumettre, remboursé dans l'année, frais par mois et par catégorie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton nom et ton véhicule, puis saisis tes frais et tes trajets au fil du mois. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la préparation de tes notes de frais : il ne remplace pas ton service comptable ni un professionnel. Le barème kilométrique intégré vient de la publication officielle (sources datées) ; ton employeur ou ton comptable peut appliquer d'autres règles, ce sont les leurs qui font foi. Aucun envoi automatique, aucun stockage de fichier. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "notes-de-frais",
+      "frais-professionnels",
+      "indemnites-kilometriques",
+      "bareme-kilometrique",
+      "independant",
+      "comptabilite",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes de frais s'ouvrent. Indique ton véhicule, puis saisis tes frais et tes trajets : la note du mois se remplit toute seule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Salariés qui avancent des frais, indépendants"
+      }
+    ]
+  },
+  {
+    "slug": "impayes",
+    "name": "Relance des impayés",
+    "price_cents": 1900,
+    "permalink": "relance-impayes",
+    "category": "business-and-money/accounting",
+    "button": "Ouvrir mes relances",
+    "summary": "Tes factures en retard au même endroit : le retard en jours, les pénalités et l'indemnité calculées, et le message de relance de chaque palier prêt à copier.",
+    "description": "<h2>Chaque facture payée à temps.</h2><p>Une facture en retard de trois semaines, une autre payée à moitié, un client qui ne répond plus… Sans suivi, on relance trop tard, avec les mauvais mots, et on oublie ce que la loi permet de réclamer. La Relance des impayés réunit tes factures en attente, calcule le retard et les pénalités, et te prépare le bon message au bon moment.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'échéancier clair</strong> : encours, échu par ancienneté (0-30, 31-60, 61-90, plus de 90 jours), retard en jours et statut calculé de chaque facture (à échoir, échue, en relance, payée, litige, abandonnée).</li><li><strong>Les pénalités calculées</strong> : intérêts simples au prorata des jours sur le restant dû, paiements partiels datés compris, détail période par période ; indemnité forfaitaire de 40 € entre professionnels.</li><li><strong>Des taux datés et modifiables</strong> : taux BCE du semestre + 10 points (article L441-10 du Code de commerce), taux de tes conditions générales, ou intérêt légal à partir de la mise en demeure pour un client particulier.</li><li><strong>4 paliers de relance</strong> (rappel courtois, relance ferme, mise en demeure, dernier avis), délais et modèles modifiables, avec 18 champs remplis automatiquement : montant, numéro, retard, pénalités, date limite…</li><li><strong>Copier, pas envoyer</strong> : chaque message se copie d'un bouton ; tu l'envoies depuis ta messagerie, puis tu le notes au journal des relances de la facture.</li><li><strong>Données des clients minimales</strong> : nom, type, un contact facultatif ; effacement des données personnelles en un geste ; export CSV pour ton comptable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Saisis tes factures en attente (client, numéro, montant TTC, échéance) et les paiements reçus : le retard, les pénalités et la prochaine relance se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à une messagerie, une banque ou un logiciel de facturation. Outil d'aide au suivi des paiements, pas un conseil juridique : les montants sont des estimations, tes conditions générales et les textes en vigueur font foi. Taux relevés le 13/11/2026, à mettre à jour chaque semestre dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "impayes",
+      "relance",
+      "factures",
+      "penalites-de-retard",
+      "freelance",
+      "tpe",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Saisis tes factures en attente et les paiements reçus : le retard, les pénalités et les relances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "TPE, artisans et freelances"
+      }
+    ]
+  },
+  {
+    "slug": "onboarding",
+    "name": "Onboarding et offboarding salarié",
+    "price_cents": 1900,
+    "permalink": "onboarding-offboarding",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon suivi",
+    "summary": "Les arrivées et les départs de tes salariés sans oubli : checklists par profil, un responsable et une échéance pour chaque tâche de J-15 à J+90, et le matériel remis puis rendu.",
+    "description": "<h2>Personne n'oublie rien.</h2><p>Un badge pas prêt le premier jour, des accès ouverts une semaine trop tard, une déclaration faite au dernier moment, un téléphone jamais rendu après un départ… Dans une PME, on accueille ou on voit partir quelqu'un quelques fois par an : assez pour oublier une étape. L'Onboarding et offboarding salarié donne à chaque arrivée et à chaque départ sa checklist, avec qui fait quoi et pour quand.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des checklists prêtes</strong> : 89 tâches d'arrivée et de départ en 5 profils (commun à tous, poste de bureau, poste terrain, manager, alternant ou stagiaire).</li><li><strong>Un responsable et une échéance par tâche</strong> : RH, manager, informatique, services généraux ou la personne elle-même ; de J-15 à J+90 à l'arrivée, de J-30 à J+30 au départ, calculées depuis la date du jour J.</li><li><strong>Cette semaine, par responsable</strong> : les retards en tête, puis ce qui tombe d'ici dimanche ; progression de chaque parcours.</li><li><strong>Le matériel</strong> : noté à la remise, coché à la restitution avec son état ; ce qui n'est pas rendu au dernier jour passe en alerte. « Préparer le départ » reprend le matériel remis à l'arrivée.</li><li><strong>Tes modèles</strong> : ajoute, modifie ou retire des tâches, crée tes profils ; chaque parcours garde sa propre checklist.</li><li><strong>Repères réglementaires</strong> rattachés aux tâches concernées (déclaration préalable à l'embauche, visite d'information et de prévention, documents de fin de contrat), sourcés, datés et marqués « à vérifier ».</li><li><strong>Imprimer et exporter</strong> : récapitulatif imprimable par personne (ou en PDF), export CSV des tâches et du matériel, copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes profils, ajoute une arrivée ou un départ avec sa date : la checklist se crée avec ses responsables et ses échéances. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Données minimales : prénom et initiale, poste, contrat, service, dates, matériel ; aucune donnée de santé, de salaire ou d'adresse. Effacement proposé une fois le parcours terminé ; tu restes responsable des données que tu saisis. Aucune intégration à un logiciel RH, aucun e-mail envoyé. Outil d'aide à l'organisation : il ne remplace pas un conseil juridique ou RH ; ta convention collective et les textes font foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "onboarding",
+      "offboarding",
+      "rh",
+      "integration",
+      "checklist",
+      "pme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis tes profils, ajoute une arrivée ou un départ : la checklist se crée avec ses responsables et ses échéances. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "RH de PME et managers"
+      }
+    ]
+  },
+  {
+    "slug": "appel-decouverte",
+    "name": "Préparateur d'appel découverte",
+    "price_cents": 1200,
+    "permalink": "preparateur-appel-decouverte",
+    "category": "business-and-money/marketing-and-sales",
+    "button": "Ouvrir mon préparateur",
+    "summary": "Prépare chaque appel découverte en dix minutes : questions par phase, plan minuté, objections sous la main pendant l'appel, score de qualification et prochaine étape datée.",
+    "description": "<h2>Prépare l'appel. Mène-le. Conclus.</h2><p>Un premier rendez-vous avec un prospect se joue en trente minutes. Sans préparation, on oublie de demander qui décide, on bute sur « c'est trop cher » et on raccroche sans date de suite. Le Préparateur d'appel découverte t'aide à préparer chaque appel en dix minutes, à le mener avec tout sous la main et à repartir avec une décision claire.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une fiche contexte minimale</strong> : organisation, secteur, taille, fonction de ton interlocuteur, prénom facultatif. Pas de nom de famille, d'e-mail ni de téléphone.</li><li><strong>Une banque de 84 questions</strong> rédigées pour l'outil, en 7 phases (ouverture, situation actuelle, problème, impact et enjeux, décision et budget, délais, conclusion), dont 28 essentielles ; ajoute les tiennes et garde-les pour les prochains appels.</li><li><strong>Un plan minuté</strong> : la durée prévue est répartie entre les phases, avec une alerte si tu prévois trop de questions.</li><li><strong>Un mode « en appel »</strong> pour téléphone et ordinateur : chronomètre et phase prévue, questions à cocher, réponses notées, hypothèses confirmées ou infirmées.</li><li><strong>25 objections types</strong> (prix, budget, moment, besoin, confiance, concurrence, décision…) avec une piste de réponse et une question de relance, à adapter.</li><li><strong>Un score de qualification sur 8</strong>, selon une règle affichée : besoin, budget, décideur, échéance.</li><li><strong>La suite</strong> : prochaine étape datée, étapes en retard signalées dans la liste des appels, résumé imprimable (PDF) et compte rendu à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton appel, écris l'objectif, choisis tes questions : le plan se calcule. Tes appels sont enregistrés en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Les questions et les pistes de réponse sont des points de départ, à dire avec tes mots. Aucun envoi automatique, aucune connexion à un agenda ou à un logiciel tiers. Données de prospects réduites au minimum, effaçables à tout moment ; tu restes responsable de leur traitement (RGPD). Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "appel-decouverte",
+      "prospection",
+      "vente",
+      "consultant",
+      "freelance",
+      "qualification",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton préparateur s'ouvre. Crée ton premier appel, choisis tes questions : le plan minuté se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Consultants, freelances et commerciaux"
+      }
+    ]
+  },
+  {
+    "slug": "stocks",
+    "name": "Stocks et inventaire",
+    "price_cents": 2500,
+    "permalink": "stocks-inventaire",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon stock",
+    "summary": "Ton stock calculé à partir des entrées et sorties datées, les alertes de seuil et la liste à commander, la valeur au coût moyen pondéré et des inventaires dont les écarts se corrigent d'un clic.",
+    "description": "<h2>Le bon stock, au bon moment.</h2><p>Une rupture découverte devant le client, des cartons qui dorment au fond de la réserve, un inventaire de fin d'année qui ne tombe jamais juste… Sans suivi, le stock coûte cher sans qu'on le voie. Stocks et inventaire calcule ton stock à partir de chaque mouvement, te dit quoi commander et ce que vaut ce que tu as en rayon.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un stock toujours juste</strong> : il se calcule à partir des mouvements datés (entrée, sortie ou vente, perte, retour client ou fournisseur, ajustement). Une saisie oubliée et datée après coup se range à sa date. Quantités décimales pour le poids, le volume ou la longueur.</li><li><strong>Des fiches articles simples</strong> : référence, nom, catégorie, unité, emplacement, fournisseur (texte libre), prix d'achat et de vente HT, seuil d'alerte, quantité de réapprovisionnement.</li><li><strong>Les alertes et la liste à commander</strong> : ruptures et articles sous le seuil, quantité proposée, commandes regroupées par fournisseur avec un texte prêt à copier, et un bouton « Réception » pour enregistrer la livraison.</li><li><strong>La valeur du stock</strong> au coût moyen pondéré (CMUP, recalculé à chaque entrée) ou au dernier prix d'achat : la méthode est toujours affichée, l'export donne les deux. Marge théorique, taux de marque et coefficient sur tes prix de vente HT.</li><li><strong>Rotation et articles dormants</strong> : ventes de la période, jours de stock restants, articles sans vente depuis 90 jours (réglable) et l'argent qu'ils immobilisent.</li><li><strong>L'inventaire tournant ou complet</strong> : tu saisis ce que tu comptes, l'écart avec le stock théorique s'affiche en quantité et en euros, et la validation crée les ajustements. Export CSV du stock et des mouvements.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes articles avec leur stock de départ, puis note chaque entrée et chaque vente : le stock, les alertes et la valeur se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion à une caisse, une boutique en ligne ou un logiciel comptable : chaque mouvement se saisit dans l'outil. Outil de gestion de stock, pas un logiciel comptable : la valorisation comptable du stock à la clôture relève de ton expert-comptable. Démo disponible sur qm-engineering.fr/catalogue/stocks.</em></p>",
+    "tags": [
+      "stock",
+      "inventaire",
+      "gestion-de-stock",
+      "commerce",
+      "artisan",
+      "e-commerce",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton stock s'ouvre. Crée tes articles avec leur stock de départ, puis note tes entrées et tes ventes : alertes, liste à commander et valeur se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Petits commerces, artisans, ateliers, e-commerçants"
+      }
+    ]
+  },
+  {
+    "slug": "location-saisonniere",
+    "name": "Location saisonnière",
+    "price_cents": 2500,
+    "permalink": "location-saisonniere",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon calendrier",
+    "summary": "Le calendrier de tes meublés et chambres d'hôtes, chaque réservation avec son canal, le ménage entre deux séjours, la taxe de séjour et ton net par mois.",
+    "description": "<h2>Tes logements, toujours prêts.</h2><p>Une réservation arrive en direct, une autre par un intermédiaire, le ménage se cale entre deux séjours, la taxe de séjour se calcule à la main en fin de trimestre… et à la fin du mois, difficile de savoir ce qui reste vraiment après les commissions. La Location saisonnière réunit tes logements, tes réservations et ton argent au même endroit.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le calendrier d'occupation</strong> de 1 à 10 logements, mois par mois : deux réservations confirmées ne peuvent pas se chevaucher, une option en conflit est signalée, un départ et une arrivée le même jour se suivent.</li><li><strong>Chaque réservation complète</strong> : dates et nuits, adultes et enfants, canal que tu nommes toi-même (« Direct » et tes intermédiaires), hébergement, ménage facturé, commission, acompte et solde, avec les soldes non reçus en évidence.</li><li><strong>Le ménage entre deux séjours</strong> : un ménage par départ, à faire avant la prochaine arrivée ; en retard, du jour, à venir, rotations le jour même repérées, check-list type.</li><li><strong>La taxe de séjour calculée</strong> avec le tarif par personne et par nuit de ta commune, par logement ; mineurs exonérés si l'option est cochée ; collectée par toi ou par le canal. Aucun barème n'est intégré : chaque commune fixe le sien.</li><li><strong>Tes revenus réels</strong> : brut, commissions et net par canal, par logement et par mois, taux d'occupation, prix moyen par nuit, taxe à reverser ; export CSV.</li><li><strong>Données des voyageurs minimales</strong> : un nom et le nombre de personnes ; effacement d'un voyageur ou des séjours anciens en un geste.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes logements et tes canaux, puis saisis tes réservations : le calendrier, le ménage, la taxe et tes revenus se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune plateforme de réservation, aucun calendrier externe ni aucune banque n'est connecté : tu saisis tes réservations toi-même. Outil d'aide à la gestion, pas un conseil fiscal : aucun régime d'imposition (micro-BIC, réel, loueur en meublé) n'est calculé. Tarif de taxe de séjour à vérifier auprès de ta commune chaque année. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "location-saisonniere",
+      "meuble-de-tourisme",
+      "chambres-d-hotes",
+      "taxe-de-sejour",
+      "calendrier",
+      "reservations",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier s'ouvre. Crée tes logements et tes canaux, puis saisis tes réservations : le ménage, la taxe de séjour et tes revenus se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires de meublés de tourisme et de chambres d'hôtes"
+      }
+    ]
+  },
+  {
+    "slug": "leasing",
+    "name": "Simulateur leasing ou achat",
+    "price_cents": 1200,
+    "permalink": "simulateur-leasing-achat",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon simulateur",
+    "summary": "Comptant, crédit, LOA ou LLD : le coût total net de chaque offre de voiture côte à côte, revente estimée, kilomètres en plus et frais compris, avec le coût par mois et par kilomètre.",
+    "description": "<h2>Ta voiture, au vrai prix.</h2><p>Un loyer de LOA, une offre de crédit, une proposition de LLD, un prix au comptant… Chaque vendeur met en avant un chiffre différent, et aucun ne dit combien la voiture coûtera vraiment sur la période. Le Simulateur leasing ou achat ramène toutes tes offres au même étalon : le coût total net, revente et kilomètres compris.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Quatre façons de payer côte à côte</strong> : comptant, crédit amortissable (mensualité et coût des intérêts calculés par la formule d'annuité), LOA avec premier loyer, loyers et option d'achat levée ou non, LLD avec forfait kilométrique et prix du kilomètre en plus.</li><li><strong>Le coût total net</strong> sur la durée de détention : versements, assurance, entretien (inclus ou non), frais de dossier, option d'achat, capital restant dû, moins la valeur de revente estimée. Puis le coût mensuel équivalent et le coût au kilomètre.</li><li><strong>Tes kilomètres réels face au forfait</strong> : dépassement et coût estimés, et le kilométrage annuel à partir duquel une offre devient moins chère qu'une autre.</li><li><strong>Des hypothèses que tu choisis</strong> : décote annuelle, effet du kilométrage sur la revente, coût d'opportunité de l'apport (taux de placement saisi).</li><li><strong>Le coût cumulé dans le temps</strong> en graphique, et le détail du calcul de chaque offre, poste par poste.</li><li><strong>Ce qu'il faut demander au vendeur</strong> : 18 questions par type d'offre, à cocher et à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique le véhicule, la durée et tes kilomètres par an, puis reporte les montants de chaque offre reçue : le classement se calcule. Tes comparaisons sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie, pas un conseil financier : les offres écrites et les contrats font foi. Aucune donnée de marché intégrée, aucune connexion à une banque, un vendeur ou un loueur. Pour les indépendants, la fiscalité (déductibilité, TVA, amortissement) n'est pas calculée. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "leasing",
+      "loa",
+      "lld",
+      "credit-auto",
+      "voiture",
+      "budget",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Indique le véhicule et tes kilomètres, puis reporte les montants de tes offres : le coût total net de chacune se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et indépendants qui choisissent une voiture"
+      }
+    ]
+  },
+  {
+    "slug": "conges",
+    "name": "Suivi des congés et absences",
+    "price_cents": 1900,
+    "permalink": "suivi-conges-absences",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon suivi des congés",
+    "summary": "Les soldes de congés de ton équipe calculés, les demandes validées en un geste, et le calendrier qui signale quand trop de monde manque en même temps.",
+    "description": "<h2>Qui est là, qui part, et combien il reste.</h2><p>Un tableur de congés à recalculer chaque mois, des demandes reçues par message, et la découverte trop tard que deux personnes de la même équipe partent la même semaine… Le Suivi des congés et absences calcule les soldes de ton équipe, garde la trace de chaque demande et signale les chevauchements avant que tu valides.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des soldes calculés au jour près</strong> : congés payés acquis (2,5 jours ouvrables par mois de travail effectif par défaut, article L3141-3 du Code du travail, ou l'équivalent en jours ouvrés), pris, posés et en attente, plus les RTT, salarié par salarié.</li><li><strong>Des demandes avec un statut</strong> : demandée, validée, refusée ou annulée ; le solde après validation et les chevauchements s'affichent avant de décider.</li><li><strong>Un calendrier d'équipe</strong> mois par mois, jours fériés calculés chaque année (Pâques comprise), et une alerte quand une équipe dépasse son nombre d'absents simultanés.</li><li><strong>Des règles paramétrables et datées</strong> : jours ouvrables ou ouvrés, période de référence (1er juin ou année civile), acquisition pendant un arrêt maladie, fériés chômés, Alsace-Moselle, types d'absence (maladie, sans solde, événement familial…).</li><li><strong>Le détail de chaque solde</strong> : reliquat, acquisition par période, ajustements (fractionnement, congés conventionnels) et projection à la fin de la période.</li><li><strong>Des données minimales</strong> : prénom, nom, équipe ; aucune donnée de santé (le type « Arrêt maladie » suffit) ; export, effacement ou suppression d'un salarié ; export CSV pour ton gestionnaire de paie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes règles, crée tes équipes, ajoute tes salariés avec leur solde de départ, puis saisis les demandes reçues. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte salarié à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à un logiciel de paie. Outil d'aide au suivi des congés, ni logiciel de paie ni conseil juridique : la convention collective, les accords d'entreprise et le Code du travail font foi. Règles relevées le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "conges-payes",
+      "absences",
+      "rh",
+      "tpe",
+      "planning-equipe",
+      "rtt",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis tes règles, ajoute tes salariés et leur solde de départ : les congés acquis, les soldes et les chevauchements se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "TPE de 2 à 30 salariés sans logiciel RH"
+      }
+    ]
+  },
+  {
+    "slug": "voiture",
+    "name": "Carnet de voiture",
+    "price_cents": 1300,
+    "permalink": "carnet-voiture",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon carnet de voiture",
+    "summary": "Les entretiens de ta voiture à la date ou au kilométrage, le contrôle technique, chaque plein et chaque dépense, ta consommation réelle et ton coût au kilomètre.",
+    "description": "<h2>Ta voiture, entretenue à temps.</h2><p>Une vidange oubliée, un contrôle technique découvert trop tard, des tickets de carburant dans la boîte à gants et aucune idée de ce que la voiture coûte vraiment… Le Carnet de voiture garde tout au même endroit et te dit ce qui arrive, à la date ou au kilométrage.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des entretiens à temps</strong> : chaque opération (vidange, révision, freins, pneus, distribution…) a son échéance à la date ou au kilométrage, la première atteinte compte. Plan indicatif proposé selon l'énergie, à adapter : le carnet d'entretien du constructeur prime.</li><li><strong>Le contrôle technique calculé</strong> : premier contrôle avant le 4e anniversaire de la mise en circulation, puis tous les 2 ans, contre-visite dans les 2 mois, d'après la fiche de service-public.gouv.fr (vérifiée le 1er janvier 2026). Source et date affichées, valeurs modifiables. Autre véhicule : périodicité à saisir.</li><li><strong>Toutes les dépenses</strong> : carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique, crédit ou location.</li><li><strong>La consommation réelle</strong>, calculée d'un plein complet à l'autre (L/100 km), ou d'une recharge à l'autre (kWh/100 km) pour l'électrique et l'hybride rechargeable.</li><li><strong>Le coût au kilomètre et le coût mensuel</strong> de chaque voiture, par poste et mois par mois.</li><li><strong>L'historique pour la revente</strong> : entretiens, contrôles, réparations et pneus avec date, kilométrage et garage, à imprimer ou à copier pour un acheteur.</li><li><strong>Plusieurs voitures</strong> : toutes celles du foyer, les voitures vendues gardées pour leur historique ; export CSV et copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute ta voiture (énergie, mise en circulation, kilométrage du jour), vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins et tes dépenses. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun prix de carburant ou d'électricité intégré : tu saisis ce que tu paies. Aucune connexion à un garage, une assurance ou une autre application. Outil d'aide au suivi, ni conseil mécanique ni conseil financier : le carnet d'entretien du constructeur prime. Règle du contrôle technique relevée le 14/11/2026, modifiable dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "voiture",
+      "entretien-auto",
+      "carnet-entretien",
+      "controle-technique",
+      "consommation",
+      "budget-auto",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton carnet s'ouvre. Ajoute ta voiture et son kilométrage du jour, vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins : les échéances, la consommation et le coût au kilomètre se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et foyers, une ou quelques voitures"
+      }
+    ]
+  },
+  {
+    "slug": "gestion-locative",
+    "name": "Gestion locative",
+    "price_cents": 2000,
+    "permalink": "gestion-locative",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir ma gestion locative",
+    "summary": "Tes biens, tes baux et tes loyers au même endroit : retards calculés, quittances et relances à copier, révision du loyer selon l'IRL, régularisation des charges et rendement.",
+    "description": "<h2>Tes loyers, à jour chaque mois.</h2><p>Un tableur de loyers à mettre à jour, une quittance à refaire chaque mois, la révision annuelle oubliée et, en fin d'année, plus personne ne sait ce qui a été payé… La Gestion locative réunit tes biens, tes baux, tes locataires et ton argent au même endroit.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les loyers suivis mois par mois</strong> : ce qui est dû par bail (loyer hors charges, provisions ou forfait de charges, au prorata à l'entrée et à la sortie), ce qui est payé, les retards et les impayés calculés.</li><li><strong>La quittance et le reçu</strong> : quittance quand le mois est payé, reçu quand il l'est en partie, à copier ou à imprimer.</li><li><strong>Les relances en trois paliers</strong> (rappel amical, relance, mise en demeure), proposées selon le retard, en texte à copier.</li><li><strong>La révision du loyer</strong> : échéancier de chaque bail, nouveau loyer calculé avec l'indice de référence des loyers (IRL) que tu saisis depuis la publication de l'Insee, date limite pour la demander, logements classés F ou G signalés, courrier à copier.</li><li><strong>La régularisation des charges</strong> : provisions comparées aux charges récupérables réellement payées, décompte par nature à copier, nouvelle provision proposée.</li><li><strong>Le rendement et le bilan de l'année</strong> : rendement brut et net de charges, effort mensuel avec ton crédit, loyers encaissés et dépenses par catégorie pour préparer ta déclaration ; dépôt de garantie et délai de restitution suivis.</li><li><strong>Des données de locataires minimales</strong> : un nom et, si tu veux, un contact ; aucune pièce stockée ; export, effacement ou suppression d'un locataire.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes biens et tes baux, puis encaisse les loyers : les retards, les quittances, les révisions et les charges se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Rien n'est envoyé à tes locataires et aucune banque n'est connectée. Aucun indice IRL n'est fourni : tu saisis les valeurs publiées par l'Insee. Quittances, relances et courriers sont des modèles à vérifier, pas des documents juridiques certifiés. Outil d'aide à la gestion, pas un conseil juridique ni fiscal : aucun impôt n'est calculé ; le régime (micro-foncier, réel, micro-BIC, LMNP) se vérifie sur impots.gouv.fr ou auprès d'un professionnel. Règles relevées le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "gestion-locative",
+      "proprietaire-bailleur",
+      "quittance-de-loyer",
+      "revision-loyer",
+      "irl",
+      "location-meublee",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta gestion locative s'ouvre. Crée tes biens et tes baux, puis encaisse les loyers : retards, quittances, révisions et charges se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires bailleurs, location nue ou meublée de longue durée"
+      }
+    ]
+  },
+  {
+    "slug": "musculation",
+    "name": "Carnet de musculation et cross-training",
+    "price_cents": 1900,
+    "permalink": "carnet-musculation-cross-training",
+    "category": "fitness-and-health",
+    "button": "Ouvrir mon carnet",
+    "summary": "Tes séances et tes WOD notés en quelques secondes, le volume de la semaine, les records détectés tout seuls et un minuteur qui fonctionne sans réseau.",
+    "description": "<h2>Chaque série notée, chaque record vu.</h2><p>Un carnet papier oublié dans le sac, des notes éparpillées dans le téléphone, et la question à chaque séance : « J'avais mis combien la dernière fois ? » Le Carnet de musculation et cross-training garde tes séances et tes WOD, calcule ton volume et repère tes records tout seul.</p><h3>Ce que tu obtiens</h3><ul><li><strong>150 exercices prêts à l'emploi</strong>, aux noms génériques, rangés par groupe musculaire et par famille (haltérophilie, gymnastique, kettlebell, cardio et machines…), chacun avec sa mesure : charge et répétitions, répétitions, temps, distance ou calories machine. Ajoute les tiens en quelques secondes.</li><li><strong>Des séances notées vite</strong> : séries, charges, répétitions, RPE facultatif, et la dernière fois rappelée sous chaque exercice.</li><li><strong>Des WOD avec leur score</strong> : AMRAP, EMOM, For Time et intervalles ; ton meilleur score retrouvé quand tu refais le même.</li><li><strong>Des records détectés automatiquement</strong> : charge max, répétitions, temps, distance, allure, records par répétitions, et un 1RM estimé par la formule d'Epley (ou de Brzycki), toujours présenté comme une estimation.</li><li><strong>Le volume et la progression</strong> : tonnage et séries par semaine, séries par groupe musculaire, courbe de chaque exercice.</li><li><strong>Un minuteur qui marche sans réseau</strong> : AMRAP, EMOM, For Time, intervalles et chronomètre, avec bips ; le score se reporte dans le WOD.</li><li><strong>12 modèles de séances</strong> rédigés pour le carnet, et les tiens à partir de n'importe quelle séance.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton unité, garde les modèles qui t'intéressent et note ta première séance. Ton carnet est enregistré en ligne et te suit sur téléphone, tablette et ordinateur avec la même clé ; ajoute-le à l'écran d'accueil de ton téléphone pour l'ouvrir comme une application à la salle.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Seulement tes performances sportives : aucune donnée de santé (ni poids de corps, ni mensurations, ni fréquence cardiaque). Aucun lien avec une montre ou une autre application. Ce carnet n'est ni un programme d'entraînement ni un avis médical : avant de reprendre une activité intense, consulte un médecin ou un professionnel du sport. Le 1RM affiché est une estimation par formule, pas une charge à tester seul. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "musculation",
+      "cross-training",
+      "carnet-entrainement",
+      "wod",
+      "records",
+      "minuteur",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton carnet s'ouvre. Choisis ton unité, garde les modèles qui t'intéressent et note ta première séance : le volume et les records se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (téléphone, tablette, ordinateur)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Pratiquants de musculation et de cross-training, coachs"
+      }
+    ]
+  },
+  {
+    "slug": "repas",
+    "name": "Repas de la semaine et liste de courses",
+    "price_cents": 1300,
+    "permalink": "repas-liste-de-courses",
+    "category": "food-and-cooking",
+    "button": "Ouvrir mon planning de repas",
+    "summary": "Les repas de la semaine prévus en quelques minutes, et la liste de courses qui se calcule seule : rangée par rayon, quantités additionnées, sans ce que tu as déjà.",
+    "description": "<h2>Ce soir, on mange quoi ? C'est déjà prévu.</h2><p>Les repas notés sur un coin de papier, une liste de courses recopiée à la main, la moitié des ingrédients oubliés et le sel racheté pour la troisième fois… Repas de la semaine et liste de courses organise les repas de ton foyer et calcule la liste pour toi.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La semaine en un coup d'œil</strong> : midi et soir, nombre de personnes par repas, repas de restes, cantine ou sortie, notes ; semaines types à réappliquer d'un geste.</li><li><strong>100 recettes familiales de base</strong>, rédigées pour l'outil (aucune reprise d'un site, d'un livre ou d'une marque) : ingrédients, quantités, étapes, saison, temps ; tu les modifies et tu ajoutes les tiennes.</li><li><strong>Une liste de courses calculée</strong> : quantités ajustées aux portions et additionnées sur la semaine (grammes, kilos, litres, cuillères), rangées par rayon dans l'ordre de ton magasin, à cocher en magasin.</li><li><strong>Le placard et le frigo déduits</strong> : ce que tu as toujours, ou déjà en partie cette semaine, sort de la liste ; les articles du quotidien s'ajoutent chaque semaine.</li><li><strong>Des idées quand l'inspiration manque</strong> : propositions de saison, sans resservir les plats des dernières semaines, avec des repas végétariens, du poisson ou des soirs rapides si tu veux.</li><li><strong>Un budget seulement si tu veux</strong> : note tes prix, le coût de la semaine s'estime ; aucun prix n'est fourni.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique combien vous êtes à table et ton placard, place des recettes sur la semaine, puis copie ou imprime la liste. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Ce n'est pas un outil de nutrition : aucun calcul de calories, aucune donnée de santé. Les allergènes affichés sont indicatifs, déduits d'ingrédients génériques : vérifie toujours les étiquettes des produits. Aucun lien vers un magasin ou un service de livraison : la liste se copie ou s'imprime. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "menus",
+      "liste-de-courses",
+      "recettes",
+      "planning-repas",
+      "famille",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning s'ouvre. Indique combien vous êtes à table et ce que tu as au placard, place des recettes sur la semaine : la liste de courses se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Familles et particuliers"
+      }
+    ]
+  },
+  {
+    "slug": "tableau-annuel",
+    "name": "Tableau de bord annuel et roue de vie",
+    "price_cents": 1500,
+    "permalink": "tableau-annuel-roue-de-vie",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon tableau",
+    "summary": "Ta roue de vie notée domaine par domaine, des objectifs mesurables (méthode OKR), des actions par trimestre et une revue guidée chaque trimestre, avec l'évolution de ta roue dans le temps.",
+    "description": "<h2>Ton année, domaine par domaine.</h2><p>Les bonnes résolutions de janvier tiennent rarement jusqu'en mars, et le travail prend souvent toute la place. Le Tableau de bord annuel et roue de vie te donne une méthode simple pour piloter toute ton année : tu notes ta roue de vie, tu fixes quelques objectifs mesurables, tu les découpes en actions par trimestre, et tu fais le point chaque trimestre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une roue de vie notée, pas devinée</strong> : 12 domaines types (santé, travail, argent, famille, couple, amis, développement personnel, loisirs, cadre de vie…) ou les tiens, 8 au plus, chacun noté par 3 questions de 0 à 10.</li><li><strong>Des objectifs mesurables</strong> selon la méthode OKR : un objectif, 1 à 3 résultats clés chiffrés ou à cocher, dans un sens ou dans l'autre (réduire ses dépenses compte aussi). 33 objectifs modèles prêts à adapter.</li><li><strong>Le rythme de l'année</strong> : chaque objectif comparé à la part de l'année écoulée (dans les temps, à surveiller, en retard), et un score de l'année.</li><li><strong>Des actions par trimestre</strong> : à faire, en cours, faites, reportées ; 48 idées d'actions ; ce qui est resté ouvert au trimestre précédent remonte tout seul.</li><li><strong>Une revue guidée</strong> en 20 à 30 minutes : la roue domaine par domaine, les résultats clés, un bilan écrit (j'arrête, je continue, je commence), puis 1 à 3 priorités et leurs actions. La revue du 4e trimestre est le bilan de l'année.</li><li><strong>L'évolution dans le temps</strong> : la moyenne de ta roue et chaque domaine, revue après revue, sur la même échelle ; bilan à copier, export CSV, impression.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes domaines, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Ton tableau est enregistré en ligne et te suit sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil de réflexion personnelle : il ne remplace pas l'accompagnement d'un professionnel (coach, médecin, psychologue). Aucune connexion à une autre application. Une licence = un tableau, pour une personne. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "roue-de-vie",
+      "objectifs",
+      "okr",
+      "bilan",
+      "organisation",
+      "developpement-personnel",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton tableau s'ouvre. Choisis tes domaines de vie, note ton point de départ en 5 minutes, puis ajoute tes objectifs. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui veulent piloter leur année, et coachs pour eux-mêmes"
+      }
+    ]
+  },
+  {
+    "slug": "planning-equipe",
+    "name": "Planning d'équipe et staffing",
+    "price_cents": 3500,
+    "permalink": "planning-equipe-staffing",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon planning d'équipe",
+    "summary": "Qui fait quoi dans ton équipe chaque semaine, la charge réelle de chacun avec ses absences et son temps partiel, et les conflits signalés avant qu'ils coincent.",
+    "description": "<h2>Qui fait quoi, et qui peut encore prendre.</h2><p>Un tableur de planning en couleurs, des temps partiels et des congés à garder en tête, et la découverte le jour J qu'une personne est affectée pendant ses vacances ou que quelqu'un tourne à 120 %… Le Planning d'équipe et staffing calcule la charge de chacun semaine par semaine et signale les conflits avant qu'ils coincent.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des affectations simples</strong> : une personne, un projet ou un poste à couvrir, des dates et un nombre d'heures par semaine, réparties sur ses jours travaillés.</li><li><strong>Le vrai taux de charge</strong> : capacité hebdomadaire de chaque personne (35 heures à temps complet par défaut, article L3121-27 du Code du travail, modifiable pour un temps partiel), moins ses jours non travaillés, congés, formations et jours fériés chômés.</li><li><strong>Les conflits signalés</strong> : surcharge, affectation pendant une absence, personne sans aucune des compétences demandées, poste à couvrir dont le besoin n'est pas tenu, et alertes de durée paramétrables (48 heures sur une semaine, 44 heures en moyenne sur 12 semaines par défaut).</li><li><strong>Des vues semaine et mois</strong>, par personne ou par projet, imprimables, et un aperçu de la charge des semaines concernées avant chaque affectation.</li><li><strong>Qui est disponible la semaine prochaine</strong> : heures libres de chacun, filtrées par compétence ou par rôle, avec un bouton pour affecter.</li><li><strong>Une clé pour tes managers</strong> : le même planning sur tous leurs appareils ; les saisies faites en même temps sont réunies et signées du prénom de leur auteur.</li><li><strong>Six modèles d'équipe</strong> pour démarrer (agence, bâtiment, commerce et restauration, atelier, services sur site, bureau d'études) : rôles, compétences et postes à couvrir proposés, tout se modifie.</li><li><strong>Des données minimales</strong> : aucune donnée de santé ; export, effacement ou suppression d'une personne ; exports CSV des affectations et de la charge sur 12 semaines.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton secteur, ajoute ton équipe, tes projets et tes postes, puis affecte des heures par semaine. Le planning est enregistré en ligne et suit chaque manager qui a la clé, sur ordinateur, tablette et téléphone.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à un agenda ou à un logiciel de paie. Outil d'aide à la planification : la charge est celle que tu planifies, pas le temps de travail effectif ; ce n'est ni un logiciel de paie ni un conseil juridique. La convention collective, les accords d'entreprise et le Code du travail font foi. Repères de durée relevés le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "planning-equipe",
+      "staffing",
+      "charge-de-travail",
+      "management",
+      "pme",
+      "rh",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning s'ouvre. Choisis ton secteur, ajoute ton équipe et tes projets, puis affecte des heures par semaine : la charge, les conflits et les disponibilités se calculent. Partage cette clé avec les managers qui tiennent le planning avec toi.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail, partageable entre managers"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "TPE et PME de 3 à 50 personnes qui planifient sur un tableur"
+      }
+    ]
+  }
 ]

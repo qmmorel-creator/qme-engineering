@@ -21,6 +21,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates (44 à ce jour).
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 45 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -204,13 +205,6 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
   écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
   `outils/templates/pilotage-pme.test.mjs`.
-- `templates/gestion-locative/` (GRT) : **gestion locative**, prêt, « Mise en vente prochaine » (20 €, démo libre,
-  fiche Gumroad à créer : `docs/templates/communication/gestion-locative/gumroad.json`). Biens et baux (vide, meublé,
-  mobilité), échéances mensuelles au prorata, paiements partiels, quittance ou reçu imprimable, relances par palier
-  sans frais de retard, révision annuelle avec l'IRL saisi par l'utilisateur (aucun indice intégré ; limite d'un an,
-  sans effet rétroactif), dépôt de garantie contrôlé et restitution datée, régularisation des charges au prorata,
-  rendement brut et net par bien. Repères sourcés service-public.gouv.fr (dates de vérification affichées). Règles
-  dans `regles.js`, tests `outils/templates/gestion-locative.test.mjs`.
 - `templates/suivi-chantier/` (CHT) : **suivi de chantier par lot**, prêt, mise en vente prochaine (40 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/suivi-chantier/gumroad.json`). Marché et avenants
   par lot, situations de travaux calculées depuis le cumul (révision par coefficient K saisi, retenue de
@@ -224,14 +218,6 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
   compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
   Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
-- `templates/repas/` (RPS) : **repas de la semaine et liste de courses**, prêt, « Mise en vente prochaine » (13 €,
-  démo libre, fiche Gumroad à créer : `docs/templates/communication/repas/gumroad.json`). Planning midi et soir
-  (plusieurs plats, textes libres sans courses, personnes par repas, propositions de saison, reprise de la semaine
-  précédente), liste de courses agrégée par rayon dans l'ordre du magasin (unités cohérentes, arrondis d'achat,
-  conditionnements indicatifs, cases à cocher, déjà à la maison, placard à vérifier, partage en texte), 82 recettes
-  familiales originales (régimes calculés depuis les ingrédients), recettes perso saisies en texte libre, « avec ce
-  qu'il me reste ». Moteur de liste de courses `listeCourses` réutilisable par la nutrition. Règles dans
-  `regles.js`, tests `outils/templates/repas.test.mjs`.
 - `templates/voyage/` (VYG) : **planificateur de voyage**, prêt, « Mise en vente prochaine » (13 €, démo libre, fiche
   Gumroad à créer : `docs/templates/communication/voyage/gumroad.json`). Étapes, hébergement de chaque nuit (réservé
   ou à réserver, acompte, reste à payer, nuits sans toit signalées), transports, activités jour par jour, budget
@@ -256,6 +242,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   `competition-public` à Francfort, instantané reconstruit champ par champ (aucune coordonnée), mis en cache 15 s par
   le CDN, effacé 30 jours après la compétition (à la lecture et par `competition-purge.mjs`, quotidienne). Page
   publique `/templates/competition/?ecran=<id>`. Règles dans `regles.js`, tests `outils/templates/competition.test.mjs`.
+- Lot du 14/11/2026 (3), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/repas/` (RPS) **repas de la semaine et
+  liste de courses** (100 recettes de base, repas midi et soir, liste de courses par rayon calculée selon les
+  portions, placard déduit, aucun prix intégré, pas de calories) ; `templates/musculation/` (MSC) **carnet de
+  musculation et cross-training** (150 exercices, séances et WOD, records détectés, 1RM estimé, minuteur hors
+  ligne, aucune donnée de santé) ; `templates/voiture/` (CAR) **carnet de voiture** (entretiens à la date ou au
+  km, contrôle technique sourcé et paramétrable, pleins et recharges, consommation, coût au km) ;
+  `templates/gestion-locative/` (GST) **gestion locative** (loyers et retards, quittances et relances à
+  copier, révision avec l'IRL saisi, régularisation des charges, rendement avant impôt, aucun calcul d'impôt).
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

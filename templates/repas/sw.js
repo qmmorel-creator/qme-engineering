@@ -1,4 +1,4 @@
-// Service worker du template Repas de la semaine : garde l'interface disponible hors ligne.
+// Service worker des repas de la semaine et de la liste de courses : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
 const VERSION = 'repas-20261114';

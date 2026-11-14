@@ -1,13 +1,12 @@
 <!doctype html>
-<!-- Carrousel Instagram du template Repas de la semaine (5 vues, 1080 × 1350), d'après les gabarits car-1, car-2 et
+<!-- Carrousel Instagram des Repas de la semaine et liste de courses (5 vues, 1080 × 1350), d'après les gabarits car-1, car-2 et
      car-3 de ../../instagram/gabarits.html (mêmes styles). Rendu :
      node docs/templates/communication/instagram/rendre.mjs ../repas/instagram/carrousel.html
-     puis déplacer png/repas-*.png du dossier du kit vers ce dossier. Captures : démo, données fictives.
-     Aucune marque, aucun magasin réel. -->
+     puis déplacer png/repas-*.png du dossier du kit vers ce dossier. Captures : démo, données fictives. -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Carrousel Instagram · Repas de la semaine</title>
+<title>Carrousel Instagram · Repas de la semaine et liste de courses</title>
 <style>
 @font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
 @font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
@@ -28,7 +27,7 @@ h1,h2,p{letter-spacing:-.025em}
 
 /* Vue 1 : couverture-question (gabarit car-1) */
 #repas-1 .titre{position:absolute;left:84px;top:200px;right:84px}
-#repas-1 h1{font-size:118px;font-weight:800;line-height:.98}
+#repas-1 h1{font-size:118px;font-weight:800;line-height:1.12}
 #repas-1 h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
 #repas-1 .sous{font-size:40px;line-height:1.3;color:var(--texte-2);margin-top:44px;max-width:780px}
 #repas-1 .fa{position:absolute;right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
@@ -61,9 +60,9 @@ h1,h2,p{letter-spacing:-.025em}
 .points b{display:block;font-weight:800;font-size:38px;margin-bottom:6px}
 #repas-4 .bandeau{background:var(--jaune);color:var(--encre)}
 #repas-4 .bandeau .sourcil{color:var(--encre);opacity:.75}
-#repas-4 .fenetre{position:absolute;left:84px;right:84px;top:400px;height:556px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
-#repas-4 .fenetre img{position:absolute;width:640px;left:130px;top:-104px}
-#repas-4 .points{position:absolute;left:84px;right:84px;top:1030px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+#repas-4 .fenetre{position:absolute;left:84px;right:84px;top:400px;height:473px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
+#repas-4 .fenetre img{position:absolute;width:1240px;left:-171px;top:-218px}
+#repas-4 .points{position:absolute;left:84px;right:84px;top:940px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
 #repas-4 .points div{font-size:30px}
 #repas-4 .points b{font-size:34px}
 
@@ -101,9 +100,9 @@ h1,h2,p{letter-spacing:-.025em}
 <section class="cadre post" id="repas-1">
   <span class="compteur">1 / 5</span>
   <div class="titre">
-    <p class="sourcil" style="color:var(--rouge)">Repas de la semaine</p>
-    <h1 style="margin-top:30px">On mange quoi <mark>ce soir</mark> ?</h1>
-    <p class="sous">Et qu'est-ce qu'on achète pour toute la semaine ?</p>
+    <p class="sourcil" style="color:var(--rouge)">Repas et courses</p>
+    <h1 style="margin-top:30px">Ce soir, on mange <mark>quoi</mark> ?</h1>
+    <p class="sous">Et qu'est-ce qu'il faut racheter pour ça ?</p>
   </div>
   <div class="fa"></div><div class="fb"></div>
   <p class="glisser">Faites glisser <span></span></p>
@@ -113,32 +112,32 @@ h1,h2,p{letter-spacing:-.025em}
   <span class="compteur">2 / 5</span>
   <div class="texte">
     <p class="sourcil">Le problème</p>
-    <h2>Quatorze repas, une liste, un frigo.</h2>
-    <p class="sous">Le menu dans la tête, la liste au dos d'une enveloppe, deux pots de crème au frigo. Et au magasin, <strong>il manque toujours quelque chose</strong>.</p>
+    <h2>Des repas décidés à 18 h 30, une liste refaite de mémoire.</h2>
+    <p class="sous">Des ingrédients oubliés, des allers-retours au magasin, et <strong>un quatrième pot de sel</strong> au placard.</p>
   </div>
   <div class="f1"></div><div class="f2"></div>
   <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole-clair"/></svg><span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span></span></div>
 </section>
 
 <section class="cadre post car2" id="repas-3">
-  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Le menu fait, la liste aussi.</h2></div>
+  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>La semaine prévue, la liste calculée.</h2></div>
   <span class="compteur">3 / 5</span>
   <div class="tel"><img src="../../../../../assets/templates-repas-tel.webp" alt=""></div>
   <div class="points">
-    <div><b>Midi et soir</b>Une recette, plusieurs plats, ou « restes ».</div>
-    <div><b>Quantités justes</b>Pour 2, 4 ou 6 personnes, repas par repas.</div>
-    <div><b>82 recettes familiales</b>Et les vôtres, ligne par ligne.</div>
+    <div><b>Midi et soir</b>Personnes par repas, restes, cantine ou sortie.</div>
+    <div><b>Liste par rayon</b>Quantités additionnées selon les portions, à cocher.</div>
+    <div><b>Placard déduit</b>Ce que vous avez déjà sort de la liste.</div>
   </div>
   <p class="note">Données fictives</p>
 </section>
 
 <section class="cadre post car2" id="repas-4">
-  <div class="bandeau"><p class="sourcil">La vue clé</p><h2>La liste de courses, rayon par rayon.</h2></div>
+  <div class="bandeau"><p class="sourcil">La vue clé</p><h2>Toute la semaine, en un coup d'œil.</h2></div>
   <span class="compteur">4 / 5</span>
-  <div class="fenetre"><img src="../../../../../assets/templates-repas-tel-courses.webp" alt=""></div>
+  <div class="fenetre"><img src="../../../../../assets/templates-repas-semaine.webp" alt=""></div>
   <div class="points">
-    <div><b>Additionnée</b>Dans l'ordre de votre magasin.</div>
-    <div><b>Cochée au téléphone</b>À deux, la même liste.</div>
+    <div><b>100 recettes de base</b>Rédigées pour l'outil, modifiables.</div>
+    <div><b>Des idées de saison</b>Sans resservir les plats des dernières semaines.</div>
   </div>
   <p class="note">Données fictives</p>
 </section>
@@ -146,10 +145,10 @@ h1,h2,p{letter-spacing:-.025em}
 <section class="cadre post" id="repas-5">
   <span class="compteur">5 / 5</span>
   <div class="bloc">
-    <h2>Essayez-le avec une semaine fictive.</h2>
-    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>« Avec ce qu'il me reste »</div><div><i></i>Achat unique, sans abonnement</div></div>
+    <h2>Essayez-le avec une famille fictive.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Liste à copier ou imprimer</div><div><i></i>Achat unique, sans abonnement</div></div>
   </div>
-  <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils : <b>je le construis sur mesure.</b></div>
+  <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils&nbsp;: <b>je le construis sur mesure.</b></div>
   <div class="cta"><b>Lien en bio</b><span>13 € · accès à vie</span></div>
   <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span><span>Q</span><span class="m" style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
 </section>

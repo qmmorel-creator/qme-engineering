@@ -2,48 +2,65 @@
 
 Segments et organisations à démarcher. Aucune donnée personnelle collectée : on cible des fonctions et des
 types de structures, on écrit à des adresses professionnelles publiques ou via LinkedIn. Les types
-d'organismes cités existent en France (ADIL, chambres de propriétaires, associations de propriétaires,
-conseillers en gestion de patrimoine, notaires, experts-comptables) ; **aucun organisme n'est nommé** (règle :
-pas de marque tierce) et leur intérêt, leurs règles de recommandation et le bon interlocuteur sont **à
-vérifier** au premier contact. Aucun n'a été contacté.
+d'organismes cités existent en France (ADIL, associations départementales d'information sur le logement ;
+chambres syndicales et associations de propriétaires ; experts-comptables ; notaires ; conseillers en
+gestion de patrimoine) ; **aucun organisme n'est nommé** (règle : pas de marque tierce) et leur intérêt, leurs
+règles de recommandation et le bon interlocuteur sont **à vérifier** au premier contact. Aucun n'a été
+contacté.
 
-Le produit vise des particuliers bailleurs (1 à 10 logements, gestion en direct, sans agence) à 20 € : la
-publication LinkedIn et Instagram, les prescripteurs du patrimoine et l'affiliation Gumroad comptent plus
-qu'une prospection une à une.
+Le produit vise des particuliers (1 à une dizaine de logements, gestion en direct) à 20 € : la publication
+LinkedIn et Instagram, les relais d'information des bailleurs et l'affiliation Gumroad comptent plus qu'une
+prospection une à une.
 
 Positionnement à tenir dans tous les messages : un outil que l'on **remplit soi-même**, **sans connexion** à
-une banque ni à une messagerie ; **aucun indice IRL intégré** (saisi par l'utilisateur) ; repères légaux
-**sourcés et datés** ; **ni conseil juridique ni conseil fiscal**. Pas de promesse chiffrée de rendement.
+une banque ni envoi aux locataires ; **IRL saisi** par l'utilisateur (aucun indice fourni) ; modèles de
+quittance et de relance **à vérifier** ; **pas un conseil juridique ni fiscal**, aucun impôt calculé. Pas de
+promesse chiffrée sur le rendement ou le temps gagné.
 
 ## Priorité 1 · Acheteurs directs
 
 | Segment | Pourquoi ils ont le problème | Où les trouver | Canal | Priorité |
 |---|---|---|---|---|
-| Bailleurs particuliers de 1 à 3 logements, gestion en direct | Quittances à la main, révision oubliée, charges jamais régularisées | Groupes d'entraide de propriétaires, forums d'investissement locatif, LinkedIn | LinkedIn, Instagram | Haute |
-| Investisseurs locatifs de 4 à 10 logements | Plusieurs baux, impayés à suivre, rendement par bien à justifier | Clubs et réseaux d'investisseurs immobiliers, salons de l'immobilier | LinkedIn, affiliation | Haute |
-| Propriétaires d'un logement hérité ou d'une ancienne résidence mise en location | Premier bail, peu de repères (dépôt, révision, charges) | Réseaux sociaux, recommandations de notaires | Instagram, prescripteurs | Moyenne |
-| Bailleurs en meublé (étudiants, jeunes actifs) | Baux courts, rotation des locataires, dépôts à rendre souvent | Groupes de propriétaires de logements étudiants | Instagram, LinkedIn | Moyenne |
+| Propriétaires de 1 à 3 logements loués nus, gérés sans agence | Quittances, retards, révision annuelle oubliée, régularisation des charges | Groupes et forums de propriétaires bailleurs, LinkedIn | LinkedIn, Instagram | Haute |
+| Investisseurs en location meublée de longue durée (LMNP) | Plusieurs baux meublés, dépôt de 2 mois, forfait ou provisions, récapitulatif pour le comptable | Communautés d'investisseurs locatifs, podcasts et newsletters du sujet | LinkedIn, Instagram | Haute |
+| Petites SCI familiales | Plusieurs associés, besoin d'un bilan annuel clair et partagé | Réseaux de conseil patrimonial, notaires | LinkedIn, partenaires | Moyenne |
+| Propriétaires qui louent leur ancienne résidence principale après un déménagement | Premier bail, aucun outil, crainte des oublis | Groupes d'expatriés et de mobilité professionnelle | Instagram, LinkedIn | Moyenne |
+| Bailleurs qui reprennent la gestion d'une agence | Doivent tout refaire eux-mêmes (quittances, révisions, charges) | Forums de propriétaires | LinkedIn | Basse |
 
 ## Priorité 2 · Prescripteurs
 
-| Segment | Pourquoi ils recommanderaient | Qui contacter (fonction) | Message d'approche (3 lignes) | Canal | Priorité |
+| Segment | Exemples (types, à vérifier) | Pourquoi | Qui contacter (fonction) | Approche | Canal |
 |---|---|---|---|---|---|
-| Conseillers en gestion de patrimoine indépendants | Leurs clients bailleurs gèrent seuls et demandent un outil simple | Conseiller, associé du cabinet | Vos clients qui louent en direct suivent leurs loyers dans un tableur ? Un outil à 20 € fait quittances, révision IRL, charges et rendement par bien. Démo libre, sans inscription. | LinkedIn | Haute |
-| Experts-comptables (clientèle de particuliers bailleurs) | Recevoir des loyers et des dépenses propres, par bien et par an | Expert-comptable, chargé de mission | Pour des clients bailleurs qui arrivent avec des chiffres épars : un outil qui sort loyers, charges et dépenses par bien, en CSV. Ni logiciel comptable ni conseil fiscal. Démo libre. | E-mail professionnel public, LinkedIn | Moyenne |
-| Créateurs de contenu sur l'investissement locatif (blogs, chaînes, newsletters) | Audience de bailleurs débutants | Auteur, créateur | Un outil de gestion locative sans abonnement, règles sourcées sur service-public.gouv.fr. Affiliation Gumroad possible. Démo libre pour tester. | E-mail public, affiliation Gumroad | Moyenne |
-| Notaires (après une acquisition locative ou une succession) | Le client devient bailleur et pose des questions de gestion | Notaire, clerc | Pour vos clients qui deviennent bailleurs : un outil simple pour suivre loyers, quittances et révision. Ce n'est pas un conseil juridique. Démo libre. | Courrier ou e-mail professionnel | Basse (à vérifier) |
+| ADIL (information logement, par département) | Juristes qui renseignent bailleurs et locataires | Informent gratuitement les bailleurs sur la révision, le dépôt, les charges | Directeur ou juriste | Démo pour vérifier les règles présentées ; **aucune recommandation demandée** (organisme neutre, à vérifier) ; leurs remarques améliorent l'outil | E-mail professionnel public |
+| Associations et chambres de propriétaires | Structures départementales de bailleurs privés | Accompagnent leurs adhérents (modèles, formations) | Responsable des adhérents ou de la formation | Démo, accès offert pour un atelier ; offre de groupe à étudier | E-mail professionnel public |
+| Experts-comptables spécialisés revenus fonciers et LMNP | Cabinets locaux | Reçoivent des relevés incomplets de leurs clients bailleurs | Collaborateur chargé des déclarations | Récapitulatif annuel et export CSV ; accès offert ; règles déontologiques à vérifier | LinkedIn, e-mail professionnel public |
+| Conseillers en gestion de patrimoine indépendants | Cabinets indépendants | Accompagnent des investisseurs locatifs après l'achat | Conseiller | Outil à recommander après l'investissement ; affiliation Gumroad à étudier | LinkedIn |
+| Créateurs de contenu sur l'investissement locatif | Newsletters, podcasts, comptes Instagram | Audience exactement ciblée | Adresse professionnelle publique | Affiliation Gumroad, accès gratuit, aucun contenu sponsorisé imposé | E-mail, Instagram |
 
-## Priorité 3 · Partenaires
+## Priorité 3 · Partenaires (offrir ou intégrer le template)
 
-| Segment | Intérêt | Qui contacter | Proposition | Priorité |
+| Segment | Exemples (types, à vérifier) | Pourquoi | Qui contacter (fonction) | Approche |
 |---|---|---|---|---|
-| Associations et chambres de propriétaires (locales ou départementales) | Offrir un outil à leurs adhérents | Responsable des services aux adhérents | Code de réduction ou prix adhérent ; présentation lors d'une réunion d'information | Moyenne (à vérifier) |
-| ADIL (agences départementales d'information sur le logement) | Mission d'information neutre : ne recommandent en principe aucun produit commercial | — | **À ne pas démarcher comme prescripteur** ; l'outil y renvoie ses utilisateurs pour un conseil juridique gratuit | — |
-| Écoles et formations à l'investissement immobilier | Exercices pratiques de gestion | Responsable pédagogique | Licence groupée pour les apprenants | Basse |
+| Formations « devenir bailleur » ou « investir dans l'immobilier locatif » | Organismes de formation | Outil concret à remettre aux stagiaires | Responsable pédagogique | Lot de codes `GST` à tarif de groupe, à étudier |
+| Notaires (après une acquisition locative) | Études notariales | Clients qui deviennent bailleurs | Notaire ou clerc | Fiche de présentation à remettre, sans contrepartie (règles déontologiques à vérifier) |
 
-## À vérifier
+## Calendrier conseillé
 
-- Existence locale, statut et règles de recommandation de chaque organisme avant tout contact.
-- Position des ADIL : organismes d'information neutres, sans recommandation commerciale (à confirmer, ne
-  pas les solliciter comme partenaires).
-- Conditions d'affiliation Gumroad (taux, durée) au moment de la mise en vente.
+- **Janvier** : nouvelle année, régularisation des charges de l'année écoulée.
+- **Avril-mai** : déclaration des revenus de l'année précédente (récapitulatif annuel).
+- **Après chaque publication trimestrielle de l'IRL par l'Insee** : rappel sur la révision du loyer (dates
+  exactes à vérifier sur le calendrier de l'Insee).
+
+## Message d'approche type (prescripteur, 3 lignes)
+
+> Bonjour, j'ai conçu un outil simple pour les propriétaires qui gèrent eux-mêmes leurs locations : loyers et
+> retards suivis mois par mois, quittances et relances à copier, révision selon l'IRL qu'ils saisissent et
+> régularisation des charges. Je vous propose un accès gratuit pour l'essayer : https://qm-engineering.fr/templates/gestion-locative/?demo
+
+## À vérifier avant tout contact
+
+- Les règles de neutralité des ADIL (organismes d'information) : ne demander aucune recommandation, seulement
+  un regard sur l'exactitude des règles.
+- Les règles déontologiques des experts-comptables, notaires et conseillers sur la recommandation d'un outil
+  payant.
+- Le programme d'affiliation Gumroad (taux, conditions) au moment de le proposer.

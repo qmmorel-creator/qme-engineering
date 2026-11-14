@@ -1,0 +1,16 @@
+{
+  "name": "Carnet de musculation et cross-training · QME",
+  "short_name": "Muscu",
+  "description": "Tes séances et tes WOD, le volume de la semaine, les records détectés tout seuls et un minuteur qui fonctionne sans réseau.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

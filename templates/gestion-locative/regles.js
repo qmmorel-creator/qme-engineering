@@ -1,52 +1,49 @@
 // Gestion locative QME · règles métier pures (aucun accès au DOM ni au stockage).
-// Chargé tel quel par le navigateur (window.GRT) et par les tests Node (vm).
-// Dates locales « AAAA-MM-JJ » (comparables comme des chaînes), mois « AAAA-MM », montants en centimes
-// (entiers), indices IRL en nombres à deux décimales. Un bail court de son début à sa fin (incluse) ;
-// sans fin, il est en cours. Une échéance par mois occupé, au jour d'échéance du bail.
+// Chargé tel quel par le navigateur (window.GST) et par les tests Node (vm).
+// Dates locales « AAAA-MM-JJ » (comparables comme des chaînes), mois « AAAA-MM », trimestres « AAAA-Tn ».
+// Montants en centimes (entiers). Indices IRL en nombres décimaux, SAISIS par l'utilisateur (aucun intégré).
+// Un bail produit chaque mois une échéance (loyer hors charges + provision ou forfait de charges), au
+// prorata des jours le premier et le dernier mois ; les paiements soldent les échéances dans l'ordre (FIFO).
 (function (racine) {
   'use strict';
 
-  const TYPES = ['vide', 'meuble', 'mobilite'];
-  const LIB_TYPE = { vide: 'Location vide', meuble: 'Location meublée', mobilite: 'Bail mobilité' };
-  const DEPOT_MAX = { vide: 1, meuble: 2, mobilite: null }; // mois de loyer hors charges (F31269)
-  const LIB_ECHEANCE = { payee: 'Payé', partielle: 'Partiel', aujourdhui: 'Dû aujourd\'hui', aVenir: 'À venir', retard: 'En retard' };
-  const LIB_REVISION = { aVenir: 'À venir', aDemander: 'À demander', appliquee: 'Appliquée', ignoree: 'Non appliquée', perdue: 'Perdue', bloquee: 'Bloquée' };
-  const LIB_PALIER = ['', 'Rappel amiable', 'Relance', 'Mise en demeure'];
-  const MAX_BIENS = 10;
+  const TYPES_BAIL = ['nu', 'meuble'];
+  const LIB_TYPE = { nu: 'Location nue', meuble: 'Location meublée' };
+  const MODES_CHARGES = ['provisions', 'forfait'];
+  const LIB_STATUT = { avenir: 'À venir', attente: 'Dans le délai', paye: 'Payé', payeRetard: 'Payé en retard', partiel: 'Partiel', impaye: 'Impayé' };
+  const LIB_REVISION = { avenir: 'À venir', aFaire: 'À faire', irlManquant: 'Indice à saisir', appliquee: 'Appliquée', perdue: 'Non demandée à temps', dpe: 'Interdite (DPE F ou G)', sansClause: 'Pas de clause' };
+  const DPE = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
   // ---------- Dates ----------
   const deux = (n) => String(n).padStart(2, '0');
   const iso = (d) => `${d.getFullYear()}-${deux(d.getMonth() + 1)}-${deux(d.getDate())}`;
-  const versDate = (s) => { const [a, m, j] = s.split('-').map(Number); return new Date(a, m - 1, j || 1); };
+  const versDate = (s) => { const [a, m, j] = s.split('-').map(Number); return new Date(a, m - 1, j); };
   const ajout = (s, n) => { const d = versDate(s); d.setDate(d.getDate() + n); return iso(d); };
   const ecart = (de, a) => Math.round((versDate(a) - versDate(de)) / 86400000);
   const joursDansMois = (annee, mois) => new Date(annee, mois, 0).getDate();
   const estDate = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && iso(versDate(s)) === s;
   const estMois = (s) => typeof s === 'string' && /^\d{4}-(0[1-9]|1[0-2])$/.test(s);
-  const moisDe = (s) => s.slice(0, 7);
-  function moisSuivant(m, n = 1) {
-    const a = Number(m.slice(0, 4)), mo = Number(m.slice(5, 7)) - 1 + n;
-    return `${a + Math.floor(mo / 12)}-${deux(((mo % 12) + 12) % 12 + 1)}`;
-  }
-  const premierJour = (m) => `${m}-01`;
-  const dernierJour = (m) => `${m}-${deux(joursDansMois(Number(m.slice(0, 4)), Number(m.slice(5, 7))))}`;
-  // Même jour, n mois plus tard (borné à la fin du mois : 31/01 + 1 mois = 28 ou 29/02).
   function ajoutMois(s, n) {
-    const m = moisSuivant(moisDe(s), n);
-    const j = Math.min(Number(s.slice(8, 10)), joursDansMois(Number(m.slice(0, 4)), Number(m.slice(5, 7))));
-    return `${m}-${deux(j)}`;
+    const [a, m, j] = s.split('-').map(Number);
+    const total = (a * 12 + (m - 1)) + n;
+    const an = Math.floor(total / 12), mo = total - an * 12 + 1;
+    return `${an}-${deux(mo)}-${deux(Math.min(j || 1, joursDansMois(an, mo)))}`;
   }
-  const ajoutAns = (s, n) => ajoutMois(s, 12 * n);
-  const maxDate = (a, b) => (a > b ? a : b);
-  const minDate = (a, b) => (a < b ? a : b);
-  const joursAnnee = (a) => (new Date(a, 1, 29).getDate() === 29 ? 366 : 365);
-  // Jours communs (bornes incluses) entre [a1, a2] et [b1, b2].
-  const joursCommuns = (a1, a2, b1, b2) => { const d = maxDate(a1, b1), f = minDate(a2, b2); return f < d ? 0 : ecart(d, f) + 1; };
+  const moisSuivant = (m, n = 1) => ajoutMois(`${m}-01`, n).slice(0, 7);
+  const finMois = (m) => `${m}-${deux(joursDansMois(Number(m.slice(0, 4)), Number(m.slice(5, 7))))}`;
+  const min = (a, b) => (a < b ? a : b);
+  const max = (a, b) => (a > b ? a : b);
+  // Mois de « de » à « a » inclus (« AAAA-MM »).
+  function listeMois(de, a) {
+    const l = [];
+    for (let m = de; m <= a && l.length < 1200; m = moisSuivant(m)) l.push(m);
+    return l;
+  }
 
-  // ---------- Montants ----------
-  function lireMontant(saisie) {
-    const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(',', '.');
-    if (!s || !/^\d+(\.\d{0,2})?$/.test(s)) return null;
+  // ---------- Montants, indices ----------
+  function lireMontant(saisie, { negatif = false } = {}) {
+    const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(',', '.').replace('−', '-');
+    if (!s || !(negatif ? /^-?\d+(\.\d{0,2})?$/ : /^\d+(\.\d{0,2})?$/).test(s)) return null;
     return Math.round(Number(s) * 100);
   }
   function euros(c, { centimes = true } = {}) {
@@ -58,413 +55,511 @@
     const milliers = String(arrondi).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     return `${neg ? '−' : ''}${centimes ? `${milliers},${deux(dec)}` : milliers} €`;
   }
-  const saisieMontant = (c) => (c === null || c === undefined ? '' : `${Math.floor(c / 100)},${deux(c % 100)}`);
-  const pct = (t, dec = 1) => (t === null || t === undefined || !Number.isFinite(t) ? '–' : `${t.toFixed(dec).replace('.', ',')} %`);
-  // Indice IRL : « 145,17 » → 145.17 ; null si illisible ou hors de 50–500.
+  const saisieMontant = (c) => (c === null || c === undefined ? '' : `${c < 0 ? '-' : ''}${Math.floor(Math.abs(c) / 100)},${deux(Math.abs(c) % 100)}`);
+  // Indice IRL : « 146,68 » → 146.68 ; null si vide, illisible ou hors de 10 à 1000.
   function lireIndice(saisie) {
-    const s = String(saisie ?? '').replace(/\s/g, '').replace(',', '.');
-    if (!/^\d{2,3}(\.\d{1,2})?$/.test(s)) return null;
+    const s = String(saisie ?? '').replace(/[\s ]/g, '').replace(',', '.');
+    if (!s || !/^\d+(\.\d{1,3})?$/.test(s)) return null;
     const n = Number(s);
-    return n >= 50 && n <= 500 ? Math.round(n * 100) / 100 : null;
+    return n >= 10 && n <= 1000 ? n : null;
   }
-  const indice = (n) => (Number.isFinite(n) ? n.toFixed(2).replace('.', ',') : '–');
-  // Partage un total en parts proportionnelles à des poids, au centime, sans perte.
-  function repartir(total, poids) {
-    const somme = poids.reduce((s, p) => s + p, 0);
-    if (!somme) return poids.map((_, i) => (i === poids.length - 1 ? total : 0));
-    let cumul = 0, precedent = 0;
-    return poids.map((p) => { cumul += p; const v = Math.round((total * cumul) / somme); const part = v - precedent; precedent = v; return part; });
+  const indice = (x) => (Number.isFinite(x) ? x.toFixed(2).replace('.', ',') : '–');
+  const pct = (t, dec = 1) => (t === null || t === undefined || !Number.isFinite(t) ? '–' : `${t.toFixed(dec).replace('.', ',')} %`);
+  function lireEntier(saisie, mini, maxi) {
+    const s = String(saisie ?? '').trim();
+    if (!/^\d+$/.test(s)) return null;
+    const n = Number(s);
+    return n >= mini && n <= maxi ? n : null;
   }
 
   // ---------- Trimestres IRL ----------
-  // « 2026-T2 » ; fin du trimestre « 2026-06-30 ».
-  const estTrimestre = (s) => typeof s === 'string' && /^\d{4}-T[1-4]$/.test(s);
-  const finTrimestre = (s) => dernierJour(`${s.slice(0, 4)}-${deux(Number(s.slice(6)) * 3)}`);
-  const trimestrePrecedentAnnee = (s) => `${Number(s.slice(0, 4)) - 1}-${s.slice(5)}`;
-  const libTrimestre = (s) => `${s.slice(6)}${s.slice(6) === '1' ? 'er' : 'e'} trimestre ${s.slice(0, 4)}`;
-  const valeurIrl = (irl, trimestre, zone) => (irl || []).find((x) => x.trimestre === trimestre && x.zone === zone)?.valeur ?? null;
-
-  // ---------- Baux : loyer en vigueur, échéances ----------
-  const finBail = (b) => b.fin || '9999-12-31';
-  const actifLe = (b, d) => b.debut <= d && d <= finBail(b);
-  const actifDansMois = (b, m) => b.debut <= dernierJour(m) && finBail(b) >= premierJour(m);
-  // Loyer et charges en vigueur à une date : dernier changement daté au plus tard ce jour-là.
-  function enVigueur(b, d) {
-    let v = { date: b.debut, loyer: b.loyer, charges: b.charges, motif: 'Début du bail' };
-    for (const h of [...(b.historique || [])].sort((x, y) => x.date.localeCompare(y.date))) if (h.date <= d) v = h;
-    return v;
-  }
-  // Date d'échéance du mois : jour d'échéance du bail (borné à la fin du mois), au plus tôt le début du bail.
-  function dateEcheance(b, m) {
-    const j = Math.min(b.jourEcheance || 1, joursDansMois(Number(m.slice(0, 4)), Number(m.slice(5, 7))));
-    return maxDate(`${m}-${deux(j)}`, b.debut);
-  }
-  // Échéance d'un mois : loyer et charges en vigueur à la date d'échéance, au prorata des jours occupés.
-  function echeance(b, m, reglages = {}) {
-    if (!actifDansMois(b, m)) return null;
-    const date = dateEcheance(b, m);
-    const v = enVigueur(b, date);
-    const jm = joursDansMois(Number(m.slice(0, 4)), Number(m.slice(5, 7)));
-    const jours = joursCommuns(b.debut, finBail(b), premierJour(m), dernierJour(m));
-    const prorata = reglages.prorata !== false && jours < jm;
-    const loyer = prorata ? Math.round((v.loyer * jours) / jm) : v.loyer;
-    const charges = prorata ? Math.round((v.charges * jours) / jm) : v.charges;
-    return { bail: b.id, mois: m, date, loyer, charges, du: loyer + charges, jours, joursMois: jm, prorata };
-  }
-  // Échéances d'un bail, du premier mois au mois « jusqua » inclus (et jamais après la fin du bail).
-  function echeances(b, jusqua, reglages) {
-    const res = [];
-    let m = moisDe(b.debut);
-    const fin = b.fin ? minDate(moisDe(b.fin), jusqua) : jusqua;
-    for (let i = 0; m <= fin && i < 1200; i++, m = moisSuivant(m)) { const e = echeance(b, m, reglages); if (e) res.push(e); }
-    return res;
+  const estTrimestre = (t) => typeof t === 'string' && /^\d{4}-T[1-4]$/.test(t);
+  const libelleTrimestre = (t) => (estTrimestre(t) ? `${t.slice(6)}${t.slice(6) === '1' ? 'er' : 'e'} trimestre ${t.slice(0, 4)}` : '–');
+  const trimestreDecale = (t, annees) => `${Number(t.slice(0, 4)) + annees}${t.slice(4)}`;
+  const valeurIrl = (irl, t) => { const v = (irl || []).find((x) => x.trimestre === t); return v && Number.isFinite(v.valeur) ? v.valeur : null; };
+  // Nouveau loyer = loyer × nouvel indice ÷ ancien indice, arrondi au centime (art. 17-1, formule de service-public.gouv.fr).
+  function loyerRevise(loyer, ancien, nouveau) {
+    if (!Number.isFinite(ancien) || !Number.isFinite(nouveau) || ancien <= 0 || nouveau <= 0) return null;
+    return Math.round((loyer * nouveau) / ancien);
   }
 
-  // ---------- Paiements et état d'une échéance ----------
-  const payePour = (paiements, bailId, m) => (paiements || []).filter((p) => p.bail === bailId && p.mois === m).reduce((s, p) => s + p.montant, 0);
-  function palier(joursRetard, seuils = [5, 15, 30]) { let n = 0; seuils.forEach((s) => { if (joursRetard >= s) n++; }); return n; }
-  function situation(e, paiements, t, reglages = {}) {
-    const paye = payePour(paiements, e.bail, e.mois);
-    const reste = Math.max(0, e.du - paye);
-    let etat;
-    if (reste === 0) etat = 'payee';
-    else if (e.date > t) etat = paye ? 'partielle' : 'aVenir';
-    else if (e.date === t) etat = paye ? 'partielle' : 'aujourdhui';
-    else etat = 'retard';
-    const joursRetard = etat === 'retard' ? ecart(e.date, t) : 0;
-    return { ...e, paye, reste, trop: Math.max(0, paye - e.du), etat, joursRetard, palier: etat === 'retard' ? palier(joursRetard, reglages.relances) : 0, partiel: paye > 0 && reste > 0 };
-  }
-  // Toutes les échéances échues ou du mois « jusqua », avec leur situation.
-  function situations(etat, t, jusqua = moisDe(t)) {
-    const res = [];
-    for (const b of etat.baux) for (const e of echeances(b, jusqua, etat.reglages)) res.push(situation(e, etat.paiements, t, etat.reglages));
-    return res;
-  }
-  const impayes = (etat, t) => situations(etat, t).filter((s) => s.etat === 'retard').sort((a, b) => a.date.localeCompare(b.date));
-
-  // Document de paiement : quittance si l'échéance est payée en entier, reçu si elle l'est en partie.
-  // Le détail loyer / charges est celui de l'échéance (F35247 : la quittance distingue loyer et charges).
-  function documentPaiement(etat, bailId, m, t) {
-    const b = etat.baux.find((x) => x.id === bailId);
-    if (!b) return null;
-    const e = echeance(b, m, etat.reglages);
-    if (!e) return null;
-    const s = situation(e, etat.paiements, t, etat.reglages);
-    if (!s.paye) return null;
-    const bien = etat.biens.find((x) => x.id === b.bien);
-    const pmts = (etat.paiements || []).filter((p) => p.bail === bailId && p.mois === m).sort((x, y) => x.date.localeCompare(y.date));
-    return {
-      type: s.reste ? 'recu' : 'quittance', mois: m, du: e.du, loyer: e.loyer, charges: e.charges, paye: s.paye, reste: s.reste,
-      periodeDebut: maxDate(premierJour(m), b.debut), periodeFin: minDate(dernierJour(m), finBail(b)),
-      dernierPaiement: pmts[pmts.length - 1]?.date || null, paiements: pmts,
-      bailleur: etat.reglages.bailleurNom, bailleurAdresse: etat.reglages.bailleurAdresse,
-      locataire: b.locataires, bien: bien?.nom || '', adresse: bien?.adresse || '', modeCharges: b.modeCharges,
-    };
-  }
-
-  // ---------- Révision annuelle (F1311) ----------
-  // Date de révision d'une année : date convenue (« MM-JJ ») ou anniversaire du début du bail.
-  function dateRevision(b, annee) {
-    const mmjj = b.revision?.date && /^\d{2}-\d{2}$/.test(b.revision.date) ? b.revision.date : b.debut.slice(5);
-    const m = `${annee}-${mmjj.slice(0, 2)}`;
-    return `${m}-${deux(Math.min(Number(mmjj.slice(3)), joursDansMois(annee, Number(mmjj.slice(0, 2)))))}`;
-  }
-  // Révision impossible : pas de clause, bail mobilité, ou DPE F ou G coché.
-  function blocageRevision(b) {
-    if (b.type === 'mobilite') return 'Révision interdite en bail mobilité.';
-    if (!b.revision?.clause) return 'Le bail ne prévoit pas de révision.';
-    if (b.revision.dpeFG) return 'Logement classé F ou G au DPE : révision interdite (bail signé, renouvelé ou reconduit depuis le 24/08/2022 en métropole).';
-    return null;
-  }
-  // Indices d'une révision : nouveau = valeur la plus récente du trimestre de référence saisie pour un
-  // trimestre achevé avant la date de révision ; ancien = même trimestre de l'année précédente.
-  function indicesRevision(b, D, irl, zone) {
-    const q = b.revision?.trimestre || 1;
-    const candidats = (irl || []).filter((x) => x.zone === zone && x.trimestre.endsWith(`T${q}`) && finTrimestre(x.trimestre) < D).sort((x, y) => y.trimestre.localeCompare(x.trimestre));
-    let annee = Number(D.slice(0, 4));
-    while (finTrimestre(`${annee}-T${q}`) >= D) annee--;
-    const attendu = `${annee}-T${q}`;
-    const n = candidats[0];
-    if (!n) return { manque: attendu, trimestreNouveau: attendu };
-    const tA = trimestrePrecedentAnnee(n.trimestre);
-    const a = valeurIrl(irl, tA, zone);
-    if (a === null) return { manque: tA, trimestreNouveau: n.trimestre, irlNouveau: n.valeur, trimestreAncien: tA };
-    return { trimestreNouveau: n.trimestre, irlNouveau: n.valeur, trimestreAncien: tA, irlAncien: a, retardIndice: n.trimestre < attendu };
-  }
-  // Nouveau loyer = loyer × nouveau ÷ ancien, arrondi au centime.
-  const nouveauLoyer = (loyer, irlNouveau, irlAncien) => Math.round((loyer * irlNouveau) / irlAncien);
-  // Occurrences de révision d'un bail jusqu'à la prochaine à venir, avec leur état à la date t.
-  function revisions(b, t, irl = [], zone = 'metropole') {
-    const res = [];
-    const bloc = blocageRevision(b);
-    const annee0 = Number(b.debut.slice(0, 4));
-    const fin = b.fin || '9999-12-31';
-    for (let a = annee0; a <= Number(t.slice(0, 4)) + 1; a++) {
-      const D = dateRevision(b, a);
-      if (D <= b.debut || D > fin) continue;
-      const limite = ajout(ajoutAns(D, 1), -1);
-      const fait = (b.revisions || []).find((r) => r.date === D);
-      let etat;
-      if (fait) etat = fait.statut;
-      else if (bloc) etat = 'bloquee';
-      else if (D > t) etat = 'aVenir';
-      else if (t > limite) etat = 'perdue';
-      else etat = 'aDemander';
-      const loyer = enVigueur(b, D).loyer;
-      const ind = fait ? { trimestreNouveau: fait.trimestreNouveau, irlNouveau: fait.irlNouveau, trimestreAncien: fait.trimestreAncien, irlAncien: fait.irlAncien } : indicesRevision(b, D, irl, zone);
-      const calc = !fait && ind.irlAncien && ind.irlNouveau ? nouveauLoyer(loyer, ind.irlNouveau, ind.irlAncien) : null;
-      res.push({ bail: b.id, date: D, limite, etat, loyer: fait ? fait.ancienLoyer : loyer, nouveau: fait ? fait.nouveauLoyer : calc, ...ind, fait: fait || null, joursRestants: ecart(t, limite) });
-      if (D > t) break;
+  // ---------- Bail : loyer en vigueur, échéances ----------
+  const bailDe = (etat, id) => (etat.baux || []).find((b) => b.id === id) || null;
+  const bienDe = (etat, id) => (etat.biens || []).find((b) => b.id === id) || null;
+  const finEffective = (b) => b.sortie || b.fin || null; // dernier jour d'occupation
+  const actifLe = (b, d) => b.debut <= d && (!finEffective(b) || finEffective(b) >= d);
+  const modifsTriees = (b) => [...(b.modifs || [])].sort((x, y) => x.date.localeCompare(y.date));
+  // Loyer hors charges et charges en vigueur à une date : dernière modification datée au plus tard ce jour-là.
+  function loyerA(b, d) {
+    let loyer = b.loyerHC, charges = b.charges;
+    for (const m of modifsTriees(b)) {
+      if (m.date > d) break;
+      if (Number.isFinite(m.loyerHC)) loyer = m.loyerHC;
+      if (Number.isFinite(m.charges)) charges = m.charges;
     }
-    return res;
+    return { loyerHC: loyer, charges };
   }
-  // Occurrence à traiter : la plus ancienne « à demander », sinon la prochaine à venir.
-  function revisionCourante(b, t, irl, zone) {
-    const l = revisions(b, t, irl, zone);
-    return l.find((r) => r.etat === 'aDemander') || l.find((r) => r.etat === 'aVenir') || l.find((r) => r.etat === 'bloquee' && r.date > t) || l[l.length - 1] || null;
+  // Date d'échéance du mois : jour d'échéance du bail (borné à la fin du mois), jamais avant l'entrée.
+  function echeance(b, mois) {
+    const j = Math.min(b.jourEcheance || 1, joursDansMois(Number(mois.slice(0, 4)), Number(mois.slice(5, 7))));
+    return max(`${mois}-${deux(j)}`, b.debut);
   }
-  // Appliquer une révision demandée le « demandeLe » : effet à cette date, jamais avant la date de révision,
-  // refusée après la limite d'un an (F1311 : pas de rétroactivité, révision perdue au-delà d'un an).
-  function appliquerRevision(b, D, demandeLe, irl, zone) {
-    const bloc = blocageRevision(b);
-    if (bloc) return { ok: false, erreur: bloc };
-    if (!estDate(demandeLe)) return { ok: false, erreur: 'Indique la date de la demande au locataire.' };
-    const limite = ajout(ajoutAns(D, 1), -1);
-    if (demandeLe > limite) return { ok: false, erreur: `Demande après le ${limite} : la révision de cette année est perdue (plus d'un an après la date de révision).` };
-    if ((b.revisions || []).some((r) => r.date === D)) return { ok: false, erreur: 'Cette révision est déjà enregistrée.' };
-    const ind = indicesRevision(b, D, irl, zone);
-    if (ind.manque) return { ok: false, erreur: `Indice IRL du ${libTrimestre(ind.manque)} non saisi.`, manque: ind.manque };
-    const dateEffet = maxDate(D, demandeLe);
-    const avant = enVigueur(b, dateEffet);
-    const ancienLoyer = enVigueur(b, D).loyer;
-    const nouveau = nouveauLoyer(ancienLoyer, ind.irlNouveau, ind.irlAncien);
-    const enr = { date: D, statut: 'appliquee', demandeLe, dateEffet, ancienLoyer, nouveauLoyer: nouveau, trimestreNouveau: ind.trimestreNouveau, irlNouveau: ind.irlNouveau, trimestreAncien: ind.trimestreAncien, irlAncien: ind.irlAncien };
-    const bail = { ...b, revisions: [...(b.revisions || []), enr], historique: [...(b.historique || []).filter((h) => h.date !== dateEffet), { date: dateEffet, loyer: nouveau, charges: avant.charges, motif: `Révision IRL ${ind.trimestreNouveau}` }] };
-    return { ok: true, bail, revision: enr };
+  // Part du mois occupée (prorata des jours calendaires) : 1 pour un mois entier.
+  function prorata(b, mois) {
+    const debutMois = `${mois}-01`, fin = finMois(mois);
+    const de = max(b.debut, debutMois), a = min(finEffective(b) || fin, fin);
+    if (a < de) return 0;
+    return (ecart(de, a) + 1) / joursDansMois(Number(mois.slice(0, 4)), Number(mois.slice(5, 7)));
   }
-  const ignorerRevision = (b, D) => ({ ...b, revisions: [...(b.revisions || []).filter((r) => r.date !== D), { date: D, statut: 'ignoree' }] });
-  // Annule une révision enregistrée (et le changement de loyer qu'elle a créé).
-  function annulerRevision(b, D) {
-    const r = (b.revisions || []).find((x) => x.date === D);
-    if (!r) return b;
-    return { ...b, revisions: b.revisions.filter((x) => x.date !== D), historique: (b.historique || []).filter((h) => !(r.statut === 'appliquee' && h.date === r.dateEffet && h.loyer === r.nouveauLoyer)) };
-  }
-
-  // ---------- Dépôt de garantie (F31269) ----------
-  function depotMax(b) { const m = DEPOT_MAX[b.type]; return m === null || m === undefined ? 0 : m * b.loyer; }
-  function controleDepot(b) {
-    if (b.type === 'mobilite' && b.depot > 0) return 'Dépôt de garantie interdit en bail mobilité.';
-    const max = depotMax(b);
-    if (b.type !== 'mobilite' && b.depot > max) return `Au-delà du maximum : ${DEPOT_MAX[b.type]} mois de loyer hors charges, soit ${euros(max)}.`;
-    return null;
-  }
-  // Restitution : 1 mois après la remise des clés si l'état des lieux de sortie est conforme, 2 mois sinon.
-  function etatDepot(b, t) {
-    const s = b.sortie || {};
-    if (!b.depot) return { etat: 'aucun' };
-    if (!s.remiseCles) return { etat: 'conserve' };
-    const limite = ajoutMois(s.remiseCles, s.conforme === false ? 2 : 1);
-    const retenues = (s.retenues || []).reduce((x, r) => x + r.montant, 0);
-    const aRendre = Math.max(0, b.depot - retenues);
-    if (s.restitueLe) return { etat: 'restitue', limite, retenues, aRendre, restitue: s.restitue ?? aRendre, enRetard: s.restitueLe > limite };
-    const retard = t > limite ? ecart(limite, t) : 0;
-    // Mois de retard commencés (information : la majoration suppose une mise en demeure du locataire).
-    let moisRetard = 0;
-    while (retard && ajoutMois(limite, moisRetard) < t && moisRetard < 600) moisRetard++;
-    return { etat: retard ? 'enRetard' : 'aRestituer', limite, retenues, aRendre, joursRestants: ecart(t, limite), moisRetard, majorationIndicative: moisRetard * Math.round(enVigueur(b, s.remiseCles).loyer / 10) };
-  }
-
-  // ---------- Dépenses, régularisation des charges, rendement ----------
-  const depensesAnnee = (etat, bienId, annee) => (etat.depenses || []).filter((d) => d.bien === bienId && d.date.startsWith(`${annee}-`));
-  // Part loyer / charges d'un montant d'échéance.
-  function moisAnnee(annee) { return Array.from({ length: 12 }, (_, i) => `${annee}-${deux(i + 1)}`); }
-  // Régularisation annuelle d'un bail à provisions (F947) : charges récupérables du bien sur l'année au
-  // prorata des jours du bail, moins les provisions appelées. Positif : complément à demander ; négatif :
-  // trop-perçu à rendre. Forfait : rien à régulariser.
-  function regularisation(etat, bailId, annee) {
-    const b = etat.baux.find((x) => x.id === bailId);
-    if (!b) return null;
-    const debutA = `${annee}-01-01`, finA = `${annee}-12-31`;
-    const jours = joursCommuns(b.debut, finBail(b), debutA, finA);
-    if (!jours) return null;
-    if (b.modeCharges === 'forfait') return { bail: b.id, annee, forfait: true, jours };
-    const provisions = moisAnnee(annee).map((m) => echeance(b, m, etat.reglages)).filter(Boolean).reduce((s, e) => s + e.charges, 0);
-    const deps = depensesAnnee(etat, b.bien, annee).filter((d) => d.recuperable);
-    const ja = joursAnnee(annee);
-    const parCategorie = {};
-    deps.forEach((d) => { parCategorie[d.categorie] = (parCategorie[d.categorie] || 0) + d.montant; });
-    const cats = Object.keys(parCategorie);
-    const totalBien = deps.reduce((s, d) => s + d.montant, 0);
-    const reel = Math.round((totalBien * jours) / ja);
-    const parts = repartir(reel, cats.map((c) => parCategorie[c]));
-    return {
-      bail: b.id, annee, forfait: false, jours, joursAnnee: ja, debut: maxDate(debutA, b.debut), fin: minDate(finA, finBail(b)),
-      totalBien, reel, provisions, solde: reel - provisions, detail: cats.map((c, i) => ({ categorie: c, total: parCategorie[c], part: parts[i] })),
-      faite: b.regularisations?.[annee] || null,
-    };
-  }
-  const coutBien = (bien) => (bien.prixAchat || 0) + (bien.fraisAchat || 0) + (bien.travaux || 0);
-  // Bilan d'un bien sur une année civile.
-  function bilanBien(etat, bienId, annee, t) {
-    const bien = etat.biens.find((x) => x.id === bienId);
-    const baux = etat.baux.filter((b) => b.bien === bienId);
-    let loyers = 0, charges = 0, encaisse = 0, impaye = 0;
-    for (const b of baux) for (const m of moisAnnee(annee)) {
-      const e = echeance(b, m, etat.reglages);
-      if (!e) continue;
-      const s = situation(e, etat.paiements, t, etat.reglages);
-      loyers += e.loyer; charges += e.charges; encaisse += Math.min(s.paye, e.du);
-      if (s.etat === 'retard') impaye += s.reste;
+  // Échéances mensuelles jusqu'au mois « jusqua » inclus, puis les régularisations de charges appliquées.
+  function echeances(b, jusqua) {
+    if (!b || !estDate(b.debut)) return [];
+    const dernier = finEffective(b) ? min(finEffective(b).slice(0, 7), jusqua) : jusqua;
+    const l = listeMois(b.debut.slice(0, 7), dernier).map((mois) => {
+      const date = echeance(b, mois);
+      const v = loyerA(b, date);
+      const p = prorata(b, mois);
+      const loyer = Math.round(v.loyerHC * p), charges = Math.round(v.charges * p);
+      return { id: `m-${mois}`, type: 'loyer', mois, date, loyer, charges, montant: loyer + charges, prorata: p };
+    }).filter((x) => x.prorata > 0);
+    for (const r of b.reguls || []) {
+      if (r.montant > 0 && r.date.slice(0, 7) <= jusqua) l.push({ id: `r-${r.id}`, type: 'regul', mois: r.date.slice(0, 7), date: r.date, loyer: 0, charges: r.montant, montant: r.montant, annee: r.annee });
     }
-    const deps = depensesAnnee(etat, bienId, annee);
-    const recup = deps.filter((d) => d.recuperable).reduce((s, d) => s + d.montant, 0);
-    const nonRecup = deps.filter((d) => !d.recuperable).reduce((s, d) => s + d.montant, 0);
-    const debutA = bien?.dateAchat && bien.dateAchat > `${annee}-01-01` ? bien.dateAchat : `${annee}-01-01`;
-    const finA = `${annee}-12-31`;
-    const total = debutA > finA ? 0 : ecart(debutA, finA) + 1;
-    let occupes = 0;
-    if (total) for (let d = debutA; d <= finA; d = ajout(d, 1)) if (baux.some((b) => actifLe(b, d))) occupes++;
-    const cout = bien ? coutBien(bien) : 0;
-    return {
-      bien: bienId, annee, loyers, charges, encaisse, impaye, recup, nonRecup, depenses: recup + nonRecup, cout,
-      brut: cout ? (loyers / cout) * 100 : null, net: cout ? ((loyers - nonRecup) / cout) * 100 : null,
-      cashflow: encaisse - recup - nonRecup, joursVacants: total - occupes, joursPeriode: total,
-    };
+    return l.sort((x, y) => x.date.localeCompare(y.date) || (x.type === 'loyer' ? -1 : 1));
   }
-  function bilan(etat, annee, t) {
-    const parBien = etat.biens.map((b) => bilanBien(etat, b.id, annee, t));
-    const somme = (k) => parBien.reduce((s, x) => s + x[k], 0);
-    const cout = somme('cout'), loyers = somme('loyers'), nonRecup = somme('nonRecup');
-    return { annee, parBien, loyers, charges: somme('charges'), encaisse: somme('encaisse'), impaye: somme('impaye'), recup: somme('recup'), nonRecup, cout, cashflow: somme('cashflow'),
-      brut: cout ? (loyers / cout) * 100 : null, net: cout ? ((loyers - nonRecup) / cout) * 100 : null };
+  // Crédits : paiements du locataire et remboursements de charges dus (régularisation négative).
+  function credits(etat, b) {
+    const p = (etat.paiements || []).filter((x) => x.bail === b.id).map((x) => ({ id: x.id, date: x.date, montant: x.montant, type: 'paiement' }));
+    for (const r of b.reguls || []) if (r.montant < 0) p.push({ id: `r-${r.id}`, date: r.date, montant: -r.montant, type: 'regul' });
+    return p.sort((x, y) => x.date.localeCompare(y.date) || x.id.localeCompare(y.id));
   }
-
-  // ---------- Alertes du jour ----------
-  function alertes(etat, t) {
-    const res = { impayes: impayes(etat, t), revisions: [], depots: [], regularisations: [], finsBail: [], irlManquants: [] };
-    const manq = new Set();
-    for (const b of etat.baux) {
-      // Bail terminé : plus de révision à demander (elle ne s'appliquerait qu'après la demande).
-      const r = b.fin && b.fin < t ? null : revisionCourante(b, t, etat.irl, etat.reglages.zoneIrl);
-      if (r && (r.etat === 'aDemander' || (r.etat === 'aVenir' && ecart(t, r.date) <= 45))) {
-        res.revisions.push(r);
-        if (r.manque) manq.add(r.manque);
+  // Affectation FIFO : chaque crédit solde la plus ancienne échéance. Renvoie les échéances complétées
+  // (paye, reste, soldeLe, part loyer et charges payées, détail des paiements) et l'avance restante.
+  function affecter(dus, creds) {
+    const l = dus.map((d) => ({ ...d, paye: 0, reste: d.montant, soldeLe: null, parts: [] }));
+    let i = 0, avance = 0;
+    for (const c of creds) {
+      let r = c.montant;
+      while (r > 0 && i < l.length) {
+        const d = l[i];
+        const x = Math.min(r, d.reste);
+        d.paye += x; d.reste -= x; r -= x;
+        d.parts.push({ date: c.date, montant: x, type: c.type, id: c.id });
+        if (d.reste === 0) { d.soldeLe = c.date; i++; }
       }
-      const d = etatDepot(b, t);
-      if (d.etat === 'aRestituer' || d.etat === 'enRetard') res.depots.push({ bail: b.id, ...d });
-      const annee = Number(t.slice(0, 4)) - 1;
-      const rg = regularisation(etat, b.id, annee);
-      if (rg && !rg.forfait && !rg.faite && (rg.totalBien || rg.provisions)) res.regularisations.push(rg);
-      if (!b.fin && b.finPrevue && b.finPrevue >= t && ecart(t, b.finPrevue) <= (etat.reglages.alerteFinBail ?? 90)) res.finsBail.push({ bail: b.id, date: b.finPrevue, jours: ecart(t, b.finPrevue) });
+      avance += r;
     }
-    res.irlManquants = [...manq].sort();
-    return res;
+    // Répartition loyer / charges de ce qui est payé, au prorata de l'échéance (pour le récapitulatif annuel).
+    for (const d of l) d.partsDetail = d.parts.map((p) => { const lo = d.montant ? Math.round((p.montant * d.loyer) / d.montant) : 0; return { ...p, loyer: lo, charges: p.montant - lo }; });
+    return { lignes: l, avance };
   }
-
-  // ---------- Modèles de textes ----------
-  const remplir = (modele, vars) => String(modele || '').replace(/\{(\w+)\}/g, (m, k) => (vars[k] === undefined || vars[k] === null || vars[k] === '' ? `[${k}]` : String(vars[k])));
-
-  // ---------- Normalisation ----------
-  const nouvelId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
-  const centimes = (v, def = 0) => (Number.isFinite(v) && v >= 0 ? Math.round(v) : def);
-  const texte = (v, max = 200) => String(v ?? '').slice(0, max);
-  function normaliserBien(b = {}) {
-    return { id: b.id || nouvelId(), nom: texte(b.nom, 60) || 'Bien sans nom', adresse: texte(b.adresse, 160), type: texte(b.type, 40) || 'Appartement',
-      surface: Number.isFinite(b.surface) && b.surface > 0 ? Math.round(b.surface * 10) / 10 : null,
-      prixAchat: centimes(b.prixAchat), fraisAchat: centimes(b.fraisAchat), travaux: centimes(b.travaux), dateAchat: estDate(b.dateAchat) ? b.dateAchat : null, note: texte(b.note, 300) };
+  function statutLigne(d, auj, tolerance) {
+    if (d.date > auj && d.reste > 0) return d.paye > 0 ? 'partiel' : 'avenir';
+    if (d.reste === 0) return d.soldeLe && ecart(d.date, d.soldeLe) > tolerance ? 'payeRetard' : 'paye';
+    if (ecart(d.date, auj) <= tolerance) return 'attente';
+    return d.paye > 0 ? 'partiel' : 'impaye';
   }
-  function normaliserBail(b = {}, t = '2026-01-01') {
-    const type = TYPES.includes(b.type) ? b.type : 'vide';
-    const debut = estDate(b.debut) ? b.debut : t;
-    const rv = b.revision || {};
-    const s = b.sortie || {};
+  // Compte d'un bail à une date : lignes avec statut, total échu, payé, reste échu (impayé), avance, retard.
+  function compte(etat, bailId, auj, { jusqua } = {}) {
+    const b = bailDe(etat, bailId);
+    if (!b) return null;
+    const tol = etat.reglages?.tolerance ?? 5;
+    const { lignes, avance } = affecter(echeances(b, jusqua || moisSuivant(auj.slice(0, 7))), credits(etat, b).filter((c) => c.date <= auj));
+    for (const d of lignes) d.statut = statutLigne(d, auj, tol);
+    const echues = lignes.filter((d) => d.date <= auj);
+    const enRetard = echues.filter((d) => d.reste > 0 && ecart(d.date, auj) > tol);
+    const plusAncienne = enRetard[0] || null;
+    const retard = plusAncienne ? ecart(plusAncienne.date, auj) : 0;
     return {
-      id: b.id || nouvelId(), bien: b.bien || '', locataires: texte(b.locataires, 120), type, debut,
-      fin: estDate(b.fin) && b.fin >= debut ? b.fin : null, finPrevue: estDate(b.finPrevue) ? b.finPrevue : null,
-      loyer: centimes(b.loyer), charges: centimes(b.charges), modeCharges: b.modeCharges === 'forfait' || type === 'mobilite' ? 'forfait' : 'provision',
-      jourEcheance: Number.isInteger(b.jourEcheance) && b.jourEcheance >= 1 && b.jourEcheance <= 31 ? b.jourEcheance : 1,
-      depot: type === 'mobilite' ? 0 : centimes(b.depot),
-      revision: { clause: type === 'mobilite' ? false : rv.clause !== false, trimestre: [1, 2, 3, 4].includes(rv.trimestre) ? rv.trimestre : 1, date: typeof rv.date === 'string' && /^\d{2}-\d{2}$/.test(rv.date) ? rv.date : null, dpeFG: !!rv.dpeFG },
-      historique: (Array.isArray(b.historique) ? b.historique : []).filter((h) => estDate(h.date)).map((h) => ({ date: h.date, loyer: centimes(h.loyer), charges: centimes(h.charges), motif: texte(h.motif, 80) })),
-      revisions: (Array.isArray(b.revisions) ? b.revisions : []).filter((r) => estDate(r.date) && ['appliquee', 'ignoree'].includes(r.statut)),
-      regularisations: b.regularisations && typeof b.regularisations === 'object' ? b.regularisations : {},
-      sortie: { remiseCles: estDate(s.remiseCles) ? s.remiseCles : null, conforme: s.conforme !== false, restitueLe: estDate(s.restitueLe) ? s.restitueLe : null,
-        restitue: Number.isFinite(s.restitue) ? centimes(s.restitue) : null, retenues: (Array.isArray(s.retenues) ? s.retenues : []).filter((r) => Number.isFinite(r.montant)).map((r) => ({ libelle: texte(r.libelle, 80), montant: centimes(r.montant) })) },
-      efface: !!b.efface, note: texte(b.note, 300),
+      bail: b, lignes,
+      du: echues.reduce((s, d) => s + d.montant, 0),
+      paye: echues.reduce((s, d) => s + d.paye, 0),
+      reste: echues.reduce((s, d) => s + d.reste, 0),
+      impaye: enRetard.reduce((s, d) => s + d.reste, 0),
+      enRetard, plusAncienne, retard, avance,
+      palier: palier(retard, etat.reglages?.paliers),
     };
   }
-  function normaliser(d, t, defauts) {
-    const e = etatVide(defauts);
-    if (!d || typeof d !== 'object') return e;
-    e.reglages = { ...e.reglages, ...(d.reglages || {}) };
-    if (!Array.isArray(e.reglages.relances) || e.reglages.relances.length !== 3) e.reglages.relances = [...defauts.reglages.relances];
-    e.biens = (Array.isArray(d.biens) ? d.biens : []).slice(0, MAX_BIENS).map(normaliserBien);
-    const ids = new Set(e.biens.map((b) => b.id));
-    e.baux = (Array.isArray(d.baux) ? d.baux : []).map((b) => normaliserBail(b, t)).filter((b) => ids.has(b.bien));
-    const baux = new Set(e.baux.map((b) => b.id));
-    e.paiements = (Array.isArray(d.paiements) ? d.paiements : []).filter((p) => baux.has(p.bail) && estMois(p.mois) && estDate(p.date) && Number.isFinite(p.montant) && p.montant > 0).map((p) => ({ id: p.id || nouvelId(), bail: p.bail, mois: p.mois, date: p.date, montant: Math.round(p.montant), note: texte(p.note, 120) }));
-    e.depenses = (Array.isArray(d.depenses) ? d.depenses : []).filter((x) => ids.has(x.bien) && estDate(x.date) && Number.isFinite(x.montant)).map((x) => ({ id: x.id || nouvelId(), bien: x.bien, date: x.date, categorie: texte(x.categorie, 40) || 'autre', montant: centimes(x.montant), recuperable: !!x.recuperable, note: texte(x.note, 160) }));
-    e.irl = (Array.isArray(d.irl) ? d.irl : []).filter((x) => estTrimestre(x.trimestre) && Number.isFinite(x.valeur)).map((x) => ({ trimestre: x.trimestre, valeur: Math.round(x.valeur * 100) / 100, zone: ['metropole', 'corse', 'dom'].includes(x.zone) ? x.zone : 'metropole' }));
-    e.relancesFaites = (Array.isArray(d.relancesFaites) ? d.relancesFaites : []).filter((r) => baux.has(r.bail) && estMois(r.mois) && estDate(r.date));
-    e.quittances = d.quittances && typeof d.quittances === 'object' ? d.quittances : {};
-    if (d.majLe) e.majLe = d.majLe;
+  // Palier de relance (0, 1, 2) atteint pour un retard en jours ; null si aucun.
+  function palier(retard, paliers = [5, 15, 30]) {
+    let p = null;
+    (paliers || []).forEach((j, i) => { if (retard > 0 && retard >= j) p = i; });
+    return p;
+  }
+  // Ligne du mois « mois » d'un bail (échéance de loyer), ou null.
+  const ligneDuMois = (c, mois) => c?.lignes.find((d) => d.type === 'loyer' && d.mois === mois) || null;
+
+  // ---------- Quittance et reçu ----------
+  const LIB_MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  const libelleMois = (m) => `${LIB_MOIS[Number(m.slice(5, 7)) - 1]} ${m.slice(0, 4)}`;
+  const dateTexte = (d) => `${Number(d.slice(8))}${d.slice(8) === '01' ? 'er' : ''} ${LIB_MOIS[Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}`;
+  const nomsLocataires = (etat, b) => (b.locataires || []).map((id) => (etat.locataires || []).find((l) => l.id === id)?.nom).filter(Boolean).join(' et ') || 'le locataire';
+  // Données d'une quittance du mois : « quittance » si l'échéance est entièrement payée, « reçu » si partielle
+  // (art. 21 de la loi du 6 juillet 1989), null si rien n'est payé.
+  function quittance(etat, bailId, mois, auj) {
+    const c = compte(etat, bailId, auj, { jusqua: max(mois, auj.slice(0, 7)) });
+    const d = ligneDuMois(c, mois);
+    if (!d || d.paye <= 0) return null;
+    const b = c.bail, bien = bienDe(etat, b.bien);
+    const debut = max(`${mois}-01`, b.debut), fin = min(finMois(mois), finEffective(b) || finMois(mois));
+    const recu = d.reste > 0;
+    const pd = d.partsDetail.filter((p) => p.type === 'paiement');
+    return {
+      type: recu ? 'recu' : 'quittance', mois, debut, fin,
+      bailleur: etat.bailleur?.nom || '', adresseBailleur: etat.bailleur?.adresse || '',
+      locataires: nomsLocataires(etat, b), adresse: bien?.adresse || bien?.nom || '',
+      loyer: d.loyer, charges: d.charges, montant: d.montant, paye: d.paye, reste: d.reste,
+      payeLoyer: d.partsDetail.reduce((s, p) => s + p.loyer, 0), payeCharges: d.partsDetail.reduce((s, p) => s + p.charges, 0),
+      datePaiement: pd.length ? pd.at(-1).date : d.soldeLe, forfait: b.modeCharges === 'forfait', faitLe: auj,
+    };
+  }
+  function texteQuittance(q) {
+    if (!q) return '';
+    const titre = q.type === 'recu' ? `REÇU DE PAIEMENT PARTIEL · ${libelleMois(q.mois).toUpperCase()}` : `QUITTANCE DE LOYER · ${libelleMois(q.mois).toUpperCase()}`;
+    const ch = q.forfait ? 'Forfait de charges' : 'Provision sur charges';
+    const l = [titre, '',
+      `Bailleur : ${q.bailleur || '[ton nom]'}${q.adresseBailleur ? `, ${q.adresseBailleur}` : ''}`,
+      `Locataire : ${q.locataires}`,
+      `Logement : ${q.adresse}`,
+      `Période : du ${dateTexte(q.debut)} au ${dateTexte(q.fin)}`, ''];
+    if (q.type === 'quittance') {
+      l.push(`Je soussigné(e) ${q.bailleur || '[ton nom]'}, bailleur du logement désigné ci-dessus, déclare avoir reçu de ${q.locataires} la somme de ${euros(q.montant)} au titre du loyer et des charges de la période ci-dessus, et lui en donne quittance, sous réserve de tous mes droits.`, '',
+        `Loyer hors charges : ${euros(q.loyer)}`, `${ch} : ${euros(q.charges)}`, `Total payé : ${euros(q.montant)}`);
+    } else {
+      l.push(`Je soussigné(e) ${q.bailleur || '[ton nom]'}, bailleur du logement désigné ci-dessus, déclare avoir reçu de ${q.locataires} la somme de ${euros(q.paye)}, en paiement partiel du loyer et des charges de la période ci-dessus (total dû ${euros(q.montant)}). Ce reçu ne vaut pas quittance. Reste dû : ${euros(q.reste)}.`, '',
+        `Dont loyer hors charges : ${euros(q.payeLoyer)}`, `Dont ${ch.toLowerCase()} : ${euros(q.payeCharges)}`);
+    }
+    if (q.datePaiement) l.push(`Date du paiement : ${dateTexte(q.datePaiement)}`);
+    l.push('', `Fait le ${dateTexte(q.faitLe)}`, 'Signature du bailleur :', '', 'Document remis gratuitement (art. 21 de la loi du 6 juillet 1989).');
+    return l.join('\n');
+  }
+
+  // ---------- Relances ----------
+  function remplir(modele, v) { return String(modele || '').replace(/\{(\w+)\}/g, (m, k) => (v[k] !== undefined ? v[k] : m)); }
+  function texteRelance(etat, bailId, niveau, modeles, auj) {
+    const c = compte(etat, bailId, auj);
+    if (!c || !c.enRetard.length) return null;
+    const b = c.bail, bien = bienDe(etat, b.bien);
+    const m = modeles[Math.max(0, Math.min(modeles.length - 1, niveau))];
+    const detail = c.enRetard.map((d) => `- ${d.type === 'regul' ? `Régularisation des charges ${d.annee || ''}`.trim() : `Loyer et charges de ${libelleMois(d.mois)}`} (échéance du ${dateTexte(d.date)}) : ${euros(d.reste)}${d.paye ? ` restant sur ${euros(d.montant)}` : ''}`).join('\n');
+    const v = { locataire: nomsLocataires(etat, b), adresse: bien?.adresse || bien?.nom || '', montant: euros(c.impaye), mois: c.plusAncienne.type === 'regul' ? 'la régularisation des charges' : libelleMois(c.plusAncienne.mois), depuis: dateTexte(c.plusAncienne.date), bailleur: etat.bailleur?.nom || '[ton nom]', date: dateTexte(auj), detail };
+    return { objet: remplir(m.objet, v), texte: remplir(m.texte, v), titre: m.titre, note: m.note || '' };
+  }
+
+  // ---------- Révisions annuelles ----------
+  // Échéancier des révisions d'un bail : une par anniversaire de la date d'effet, jusqu'à la prochaine à venir.
+  // Formule : loyer en vigueur × IRL(trimestre, année) ÷ IRL(même trimestre, année précédente).
+  function revisions(etat, bailId, auj) {
+    const b = bailDe(etat, bailId);
+    if (!b || !estDate(b.debut)) return [];
+    const reg = etat.reglages || {};
+    const bien = bienDe(etat, b.bien);
+    const dpe = ['F', 'G'].includes(bien?.dpe) && (b.signeLe || b.debut) >= (reg.dateGelDpe || '2022-08-24');
+    const limiteMois = reg.limiteRevisionMois ?? 12;
+    const l = [];
+    const fin = finEffective(b);
+    for (let k = 1; k < 100; k++) {
+      const date = ajoutMois(b.debut, 12 * k);
+      if (fin && date > fin) break;
+      const tr = estTrimestre(b.trimestreIrl) ? trimestreDecale(b.trimestreIrl, k) : null;
+      const trAncien = tr ? trimestreDecale(tr, -1) : null;
+      const ancien = trAncien ? valeurIrl(etat.irl, trAncien) : null;
+      const nouveau = tr ? valeurIrl(etat.irl, tr) : null;
+      const limite = ajout(ajoutMois(date, limiteMois), -1);
+      const faite = (b.modifs || []).find((m) => m.motif === 'revision' && m.revisionDe === date) || null;
+      const base = loyerA(b, ajout(date, -1)).loyerHC;
+      const calcule = loyerRevise(base, ancien, nouveau);
+      let statut;
+      if (!b.clauseRevision) statut = 'sansClause';
+      else if (faite) statut = 'appliquee';
+      else if (dpe) statut = 'dpe';
+      else if (auj > limite) statut = 'perdue';
+      else if (ecart(auj, date) > 45) statut = 'avenir';
+      else if (calcule === null) statut = 'irlManquant';
+      else statut = 'aFaire';
+      l.push({ date, limite, trimestre: tr, trimestreAncien: trAncien, ancien, nouveau, base, loyer: faite ? faite.loyerHC : calcule, hausse: calcule !== null ? calcule - base : null, statut, appliqueeLe: faite?.date || null, modif: faite?.id || null });
+      if (date > auj) break;
+    }
+    return l;
+  }
+  // Révision à appliquer : modification datée (date de la demande, jamais avant la date de révision).
+  function appliquerRevision(b, rev, dateDemande) {
+    if (!rev || rev.loyer === null || !estDate(dateDemande)) return null;
+    const date = max(dateDemande, rev.date);
+    if (date > rev.limite) return null;
+    return { date, loyerHC: rev.loyer, charges: null, motif: 'revision', revisionDe: rev.date, trimestre: rev.trimestre, ancien: rev.ancien, nouveau: rev.nouveau };
+  }
+
+  // ---------- Régularisation des charges ----------
+  const joursAnnee = (a) => ecart(`${a}-01-01`, `${a + 1}-01-01`);
+  // Jours d'occupation d'un bail dans une année civile.
+  function joursOccupes(b, annee) {
+    const de = max(b.debut, `${annee}-01-01`), a = min(finEffective(b) || `${annee}-12-31`, `${annee}-12-31`);
+    return a < de ? 0 : ecart(de, a) + 1;
+  }
+  // Provisions appelées sur l'année (échéances de loyer) comparées au réel récupérable du bien, au prorata
+  // des jours d'occupation de ce bail. Solde > 0 : complément dû par le locataire ; < 0 : à lui rembourser.
+  function regularisation(etat, bailId, annee) {
+    const b = bailDe(etat, bailId);
+    if (!b) return null;
+    const jours = joursOccupes(b, annee);
+    const part = jours / joursAnnee(annee);
+    const provisions = echeances({ ...b, reguls: [] }, `${annee}-12`).filter((d) => d.mois.startsWith(`${annee}-`)).reduce((s, d) => s + d.charges, 0);
+    const deps = (etat.depenses || []).filter((d) => d.bien === b.bien && d.date.startsWith(`${annee}-`) && d.recuperable > 0);
+    const reelBien = deps.reduce((s, d) => s + d.recuperable, 0);
+    const reel = Math.round(reelBien * part);
+    const deja = (b.reguls || []).find((r) => r.annee === annee) || null;
+    return { annee, forfait: b.modeCharges === 'forfait', jours, part, provisions, reelBien, reel, solde: reel - provisions, depenses: deps, appliquee: deja };
+  }
+  // Nouvelle provision mensuelle proposée : réel de l'année ramené à 12 mois d'occupation, arrondi à l'euro.
+  const provisionProposee = (rg) => (rg && rg.jours ? Math.round((rg.reel * 365) / rg.jours / 12 / 100) * 100 : null);
+
+  // ---------- Dépôt de garantie ----------
+  function depot(etat, b) {
+    const reg = etat.reglages || {};
+    const mois = b.type === 'meuble' ? (reg.depotMoisMeuble ?? 2) : (reg.depotMoisNu ?? 1);
+    const plafond = b.loyerHC * mois;
+    const res = { montant: b.depot || 0, plafond, mois, depasse: (b.depot || 0) > plafond, limite: null, retardMois: 0, penalite: 0, restitue: b.restitution || null };
+    if (b.sortie) {
+      const delai = b.edlConforme === false ? (reg.restitutionNonConforme ?? 2) : (reg.restitutionConforme ?? 1);
+      res.limite = ajoutMois(b.sortie, delai);
+      res.delai = delai;
+    }
+    return res;
+  }
+  // Retard de restitution à une date : mois commencés après la limite, pénalité de 10 % du loyer HC par mois.
+  function retardRestitution(etat, b, auj) {
+    const d = depot(etat, b);
+    if (!d.limite || !d.montant) return { ...d, retardMois: 0, penalite: 0 };
+    const jusqua = d.restitue?.date || auj;
+    if (jusqua <= d.limite) return { ...d, retardMois: 0, penalite: 0 };
+    let n = 0;
+    while (ajoutMois(d.limite, n) < jusqua && n < 240) n++;
+    const pctR = etat.reglages?.penaliteRetardPct ?? 10;
+    return { ...d, retardMois: n, penalite: Math.round((b.loyerHC * pctR * n) / 100) };
+  }
+
+  // ---------- Rendement (avant impôt) ----------
+  // Brut : loyers hors charges sur 12 mois ÷ prix de revient (prix + frais + travaux d'acquisition).
+  // Net : (loyers − charges annuelles non récupérables du bien) ÷ prix de revient. Hors crédit et hors impôt.
+  // Avec crédit : effort ou excédent mensuel = (loyers − charges non récupérables − mensualités × 12) ÷ 12.
+  function rendement(etat, bienId, auj) {
+    const bien = bienDe(etat, bienId);
+    if (!bien) return null;
+    const bail = (etat.baux || []).filter((b) => b.bien === bienId && actifLe(b, auj)).sort((x, y) => y.debut.localeCompare(x.debut))[0] || null;
+    const loyers = bail ? loyerA(bail, auj).loyerHC * 12 : 0;
+    const prix = (bien.prixAchat || 0) + (bien.fraisAchat || 0) + (bien.travauxAchat || 0);
+    const charges = (bien.coproNonRecup || 0) + (bien.taxeFonciere || 0) + (bien.assurance || 0) + (bien.autresCharges || 0);
+    const credit = bien.credit && bien.credit.mensualite > 0 && (!bien.credit.fin || bien.credit.fin >= auj) ? bien.credit.mensualite : 0;
+    return {
+      bien, bail, loyers, prix, charges, credit,
+      brut: prix > 0 && loyers > 0 ? (loyers / prix) * 100 : null,
+      net: prix > 0 && loyers > 0 ? ((loyers - charges) / prix) * 100 : null,
+      mensuel: Math.round((loyers - charges - credit * 12) / 12),
+      vacant: !bail,
+    };
+  }
+
+  // ---------- Récapitulatif annuel (aide à la déclaration, aucun calcul d'impôt) ----------
+  function recapAnnuel(etat, annee, auj) {
+    const parBien = (etat.biens || []).map((bien) => {
+      let loyers = 0, charges = 0;
+      for (const b of (etat.baux || []).filter((x) => x.bien === bien.id)) {
+        const c = compte(etat, b.id, max(auj, `${annee}-12-31`), { jusqua: max(`${annee}-12`, auj.slice(0, 7)) });
+        for (const d of c.lignes) for (const p of d.partsDetail) if (p.type === 'paiement' && p.date.startsWith(`${annee}-`)) { loyers += p.loyer; charges += p.charges; }
+      }
+      const deps = (etat.depenses || []).filter((d) => d.bien === bien.id && d.date.startsWith(`${annee}-`));
+      const cats = {};
+      for (const d of deps) {
+        const x = cats[d.categorie] || (cats[d.categorie] = { total: 0, recuperable: 0, n: 0 });
+        x.total += d.montant; x.recuperable += d.recuperable || 0; x.n += 1;
+      }
+      return { bien, loyers, charges, encaisse: loyers + charges, depenses: deps.reduce((s, d) => s + d.montant, 0), recuperable: deps.reduce((s, d) => s + (d.recuperable || 0), 0), cats };
+    });
+    const tot = (k) => parBien.reduce((s, x) => s + x[k], 0);
+    return { annee, parBien, loyers: tot('loyers'), charges: tot('charges'), encaisse: tot('encaisse'), depenses: tot('depenses'), recuperable: tot('recuperable') };
+  }
+
+  // ---------- Synthèse du tableau de bord ----------
+  function synthese(etat, auj) {
+    const mois = auj.slice(0, 7);
+    const baux = (etat.baux || []).filter((b) => (etat.biens || []).some((x) => x.id === b.bien));
+    const comptes = baux.map((b) => compte(etat, b.id, auj));
+    const actifs = comptes.filter((c) => actifLe(c.bail, auj) || ligneDuMois(c, mois));
+    const lignesMois = actifs.map((c) => ({ c, d: ligneDuMois(c, mois) })).filter((x) => x.d);
+    const attenduMois = lignesMois.reduce((s, x) => s + x.d.montant, 0);
+    const encaisseMois = (etat.paiements || []).filter((p) => p.date.startsWith(mois) && p.date <= auj && baux.some((b) => b.id === p.bail)).reduce((s, p) => s + p.montant, 0);
+    const retards = comptes.filter((c) => c.impaye > 0).sort((x, y) => y.retard - x.retard);
+    const revs = baux.filter((b) => !finEffective(b) || finEffective(b) >= auj).flatMap((b) => revisions(etat, b.id, auj).filter((r) => ['aFaire', 'irlManquant'].includes(r.statut)).map((r) => ({ ...r, bail: b })));
+    const depots = baux.filter((b) => b.sortie && b.depot > 0 && !b.restitution).map((b) => ({ bail: b, ...retardRestitution(etat, b, auj) }));
+    const finsBail = baux.filter((b) => b.fin && !b.sortie && b.fin >= auj && ecart(auj, b.fin) <= 120).map((b) => ({ bail: b, date: b.fin }));
+    const biensVacants = (etat.biens || []).filter((bien) => !baux.some((b) => b.bien === bien.id && actifLe(b, auj)));
+    return { mois, comptes, actifs, lignesMois, attenduMois, encaisseMois, retards, impaye: retards.reduce((s, c) => s + c.impaye, 0), revs, depots, finsBail, biensVacants };
+  }
+
+  // ---------- Normalisation (tolérante aux anciennes versions) ----------
+  let compteur = 0;
+  const nouvelId = () => `${Date.now().toString(36)}${(compteur++).toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+  const entier = (v, mini, maxi, defaut) => { const n = Math.round(Number(v)); return Number.isFinite(n) && v !== '' && v !== null && v !== undefined ? Math.min(maxi, Math.max(mini, n)) : defaut; };
+  const cts = (v, defaut = 0) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? defaut : Math.round(Number(v)));
+  const ctsPos = (v, defaut = 0) => { const n = cts(v, defaut); return n === null ? null : Math.max(0, n); };
+  const dateOuNull = (v) => (estDate(v) ? v : null);
+  const texte = (v, n) => String(v ?? '').slice(0, n);
+  const lst = (v) => (Array.isArray(v) ? v : []);
+
+  function normaliserBien(x, i = 0) {
+    const b = x && typeof x === 'object' ? x : {};
+    const cr = b.credit && typeof b.credit === 'object' ? b.credit : null;
+    return {
+      id: texte(b.id, 40) || nouvelId(), nom: texte(b.nom, 60).trim() || `Bien ${i + 1}`, adresse: texte(b.adresse, 160),
+      type: texte(b.type, 40), surface: entier(b.surface, 0, 10000, 0), dpe: DPE.includes(b.dpe) ? b.dpe : '',
+      dateAchat: dateOuNull(b.dateAchat), prixAchat: ctsPos(b.prixAchat), fraisAchat: ctsPos(b.fraisAchat), travauxAchat: ctsPos(b.travauxAchat),
+      coproAnnuel: ctsPos(b.coproAnnuel), coproNonRecup: ctsPos(b.coproNonRecup), taxeFonciere: ctsPos(b.taxeFonciere), assurance: ctsPos(b.assurance), autresCharges: ctsPos(b.autresCharges),
+      credit: cr && ctsPos(cr.mensualite) > 0 ? { mensualite: ctsPos(cr.mensualite), fin: dateOuNull(cr.fin), capital: ctsPos(cr.capital) } : null,
+      note: texte(b.note, 300),
+    };
+  }
+  function normaliserLocataire(x) {
+    const l = x && typeof x === 'object' ? x : {};
+    return { id: texte(l.id, 40) || nouvelId(), nom: texte(l.nom, 80).trim() || 'Locataire', contact: texte(l.contact, 120), efface: !!l.efface };
+  }
+  function normaliserModif(m) {
+    return { id: texte(m?.id, 40) || nouvelId(), date: dateOuNull(m?.date) || '1970-01-01', loyerHC: Number.isFinite(m?.loyerHC) ? ctsPos(m.loyerHC) : null, charges: Number.isFinite(m?.charges) ? ctsPos(m.charges) : null, motif: ['revision', 'regularisation', 'autre'].includes(m?.motif) ? m.motif : 'autre', revisionDe: dateOuNull(m?.revisionDe), trimestre: estTrimestre(m?.trimestre) ? m.trimestre : null, ancien: Number.isFinite(m?.ancien) ? m.ancien : null, nouveau: Number.isFinite(m?.nouveau) ? m.nouveau : null };
+  }
+  function normaliserBail(x, auj) {
+    const b = x && typeof x === 'object' ? x : {};
+    const debut = dateOuNull(b.debut) || auj;
+    const fin = dateOuNull(b.fin), sortie = dateOuNull(b.sortie);
+    return {
+      id: texte(b.id, 40) || nouvelId(), bien: texte(b.bien, 40), locataires: lst(b.locataires).map((v) => texte(v, 40)).filter(Boolean).slice(0, 6),
+      type: TYPES_BAIL.includes(b.type) ? b.type : 'nu', debut, signeLe: dateOuNull(b.signeLe), fin: fin && fin >= debut ? fin : null, sortie: sortie && sortie >= debut ? sortie : null,
+      loyerHC: ctsPos(b.loyerHC), charges: ctsPos(b.charges), modeCharges: MODES_CHARGES.includes(b.modeCharges) ? b.modeCharges : 'provisions',
+      depot: ctsPos(b.depot), jourEcheance: entier(b.jourEcheance, 1, 28, 1),
+      clauseRevision: b.clauseRevision === undefined ? true : !!b.clauseRevision, trimestreIrl: estTrimestre(b.trimestreIrl) ? b.trimestreIrl : null,
+      modifs: lst(b.modifs).map(normaliserModif),
+      reguls: lst(b.reguls).map((r) => ({ id: texte(r?.id, 40) || nouvelId(), annee: entier(r?.annee, 1990, 2200, 2000), date: dateOuNull(r?.date) || debut, montant: cts(r?.montant) })).filter((r) => r.montant !== 0),
+      relances: lst(b.relances).map((r) => ({ date: dateOuNull(r?.date) || debut, niveau: entier(r?.niveau, 0, 2, 0) })),
+      edlConforme: b.edlConforme === false ? false : b.edlConforme === true ? true : null,
+      restitution: b.restitution && estDate(b.restitution.date) ? { date: b.restitution.date, montant: ctsPos(b.restitution.montant), retenue: texte(b.restitution.retenue, 200) } : null,
+      note: texte(b.note, 300),
+    };
+  }
+  function normaliserPaiement(x, auj) {
+    const p = x && typeof x === 'object' ? x : {};
+    return { id: texte(p.id, 40) || nouvelId(), bail: texte(p.bail, 40), date: dateOuNull(p.date) || auj, montant: ctsPos(p.montant), mode: texte(p.mode, 20) || 'virement', note: texte(p.note, 120) };
+  }
+  function normaliserDepense(x, auj) {
+    const d = x && typeof x === 'object' ? x : {};
+    const montant = ctsPos(d.montant);
+    return { id: texte(d.id, 40) || nouvelId(), bien: texte(d.bien, 40), date: dateOuNull(d.date) || auj, categorie: texte(d.categorie, 30) || 'autre', libelle: texte(d.libelle, 120), montant, recuperable: Math.min(montant, ctsPos(d.recuperable)) };
+  }
+  function etatVide(defauts = {}) {
+    const d = JSON.parse(JSON.stringify(defauts));
+    return { version: 1, bailleur: { nom: '', adresse: '' }, reglages: { ...(d.reglages || {}) }, irl: [], biens: [], locataires: [], baux: [], paiements: [], depenses: [] };
+  }
+  function normaliserReglages(r, dv) {
+    const x = r && typeof r === 'object' ? r : {};
+    const p = lst(x.paliers).map((n) => entier(n, 1, 365, null)).filter((n) => n !== null);
+    return {
+      tolerance: entier(x.tolerance, 0, 60, dv.tolerance ?? 5),
+      paliers: p.length === 3 && p[0] < p[1] && p[1] < p[2] ? p : (dv.paliers || [5, 15, 30]),
+      depotMoisNu: entier(x.depotMoisNu, 0, 6, dv.depotMoisNu ?? 1), depotMoisMeuble: entier(x.depotMoisMeuble, 0, 6, dv.depotMoisMeuble ?? 2),
+      restitutionConforme: entier(x.restitutionConforme, 0, 12, dv.restitutionConforme ?? 1), restitutionNonConforme: entier(x.restitutionNonConforme, 0, 12, dv.restitutionNonConforme ?? 2),
+      penaliteRetardPct: entier(x.penaliteRetardPct, 0, 100, dv.penaliteRetardPct ?? 10),
+      dateGelDpe: dateOuNull(x.dateGelDpe) || dv.dateGelDpe || '2022-08-24',
+      limiteRevisionMois: entier(x.limiteRevisionMois, 1, 60, dv.limiteRevisionMois ?? 12),
+      verifieLe: dateOuNull(x.verifieLe) || dv.verifieLe || null,
+    };
+  }
+  function normaliser(d, auj, defauts = {}) {
+    const v = etatVide(defauts);
+    if (!d || typeof d !== 'object') return { ...v, reglages: normaliserReglages({}, v.reglages) };
+    const irl = [];
+    for (const x of lst(d.irl)) if (estTrimestre(x?.trimestre) && Number.isFinite(x?.valeur) && !irl.some((y) => y.trimestre === x.trimestre)) irl.push({ trimestre: x.trimestre, valeur: x.valeur, note: texte(x.note, 80) });
+    irl.sort((a, b) => a.trimestre.localeCompare(b.trimestre));
+    return {
+      version: 1, ...(d.majLe ? { majLe: d.majLe } : {}),
+      bailleur: { nom: texte(d.bailleur?.nom, 80), adresse: texte(d.bailleur?.adresse, 160) },
+      reglages: normaliserReglages(d.reglages, v.reglages),
+      irl,
+      biens: lst(d.biens).slice(0, 50).map(normaliserBien),
+      locataires: lst(d.locataires).map(normaliserLocataire),
+      baux: lst(d.baux).map((x) => normaliserBail(x, auj)),
+      paiements: lst(d.paiements).map((x) => normaliserPaiement(x, auj)).filter((p) => p.montant > 0),
+      depenses: lst(d.depenses).map((x) => normaliserDepense(x, auj)).filter((p) => p.montant > 0),
+    };
+  }
+
+  // ---------- RGPD : données des locataires ----------
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  // Effacement : le nom devient « Locataire effacé n », le contact est vidé, les notes des paiements et des
+  // baux aussi ; dates et montants restent (comptabilité du bailleur). Renvoie un nouvel état.
+  function effacerLocataire(etat, id, n = 1) {
+    const e = clone(etat);
+    const l = e.locataires.find((x) => x.id === id);
+    if (!l) return e;
+    Object.assign(l, { nom: `Locataire effacé ${n}`, contact: '', efface: true });
+    const baux = e.baux.filter((b) => b.locataires.includes(id));
+    for (const b of baux) { b.note = ''; if (b.restitution) b.restitution.retenue = ''; }
+    for (const p of e.paiements) if (baux.some((b) => b.id === p.bail)) p.note = '';
     return e;
   }
-  function etatVide(defauts) {
-    return { version: 1, reglages: structuredCloneSimple(defauts.reglages), biens: [], baux: [], paiements: [], depenses: [], irl: [], relancesFaites: [], quittances: {} };
+  // Suppression : retire le locataire des baux (un bail sans locataire reste, avec ses montants).
+  function supprimerLocataire(etat, id) {
+    const e = clone(etat);
+    e.locataires = e.locataires.filter((x) => x.id !== id);
+    for (const b of e.baux) b.locataires = b.locataires.filter((x) => x !== id);
+    return e;
   }
-  function structuredCloneSimple(o) { return JSON.parse(JSON.stringify(o)); }
-  // Ajoute ou remplace un indice (même trimestre et même zone).
-  function majIrl(irl, trimestre, valeur, zone) {
-    return [...(irl || []).filter((x) => !(x.trimestre === trimestre && x.zone === zone)), { trimestre, valeur, zone }].sort((a, b) => b.trimestre.localeCompare(a.trimestre));
-  }
-
-  // ---------- Données des locataires ----------
-  function effacerLocataire(etat, bailId) {
-    return { ...etat, baux: etat.baux.map((b) => (b.id === bailId ? { ...b, locataires: 'Locataire effacé', note: '', efface: true } : b)) };
-  }
-  // Efface les locataires des baux terminés avant « avant ».
-  function effacerAnciens(etat, avant) {
-    let n = 0;
-    const baux = etat.baux.map((b) => { if (b.fin && b.fin < avant && !b.efface) { n++; return { ...b, locataires: 'Locataire effacé', note: '', efface: true }; } return b; });
-    return { etat: { ...etat, baux }, n };
-  }
-  const peutSupprimerBien = (etat, bienId) => !etat.baux.some((b) => b.bien === bienId) && !(etat.depenses || []).some((d) => d.bien === bienId);
-  // Deux baux du même bien ne se chevauchent pas (colocation à baux multiples : hors périmètre).
-  function chevauchementBail(etat, candidat) {
-    return etat.baux.find((b) => b.id !== candidat.id && b.bien === candidat.bien && b.debut <= finBail(candidat) && candidat.debut <= finBail(b)) || null;
+  // Droit d'accès : la fiche, les baux, les échéances et les paiements du locataire.
+  function donneesLocataire(etat, id, auj) {
+    const l = etat.locataires.find((x) => x.id === id);
+    if (!l) return null;
+    const baux = etat.baux.filter((b) => b.locataires.includes(id));
+    return {
+      exporteLe: auj, locataire: { nom: l.nom, contact: l.contact },
+      baux: baux.map((b) => {
+        const c = compte(etat, b.id, auj);
+        return {
+          logement: bienDe(etat, b.bien)?.adresse || bienDe(etat, b.bien)?.nom || '', type: LIB_TYPE[b.type], debut: b.debut, fin: b.fin, sortie: b.sortie,
+          loyerHC: b.loyerHC / 100, charges: b.charges / 100, depot: b.depot / 100,
+          echeances: c.lignes.map((d) => ({ date: d.date, montant: d.montant / 100, paye: d.paye / 100, statut: LIB_STATUT[d.statut] })),
+          paiements: etat.paiements.filter((p) => p.bail === b.id).map((p) => ({ date: p.date, montant: p.montant / 100, mode: p.mode, note: p.note })),
+        };
+      }),
+    };
   }
 
   // ---------- Export CSV ----------
   const champCsv = (v) => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
-  const nombreCsv = (c) => (c === null || c === undefined ? '' : (c / 100).toFixed(2).replace('.', ','));
-  function csvEcheances(etat, t, jusqua = moisDe(t)) {
-    const tete = ['Bien', 'Locataire', 'Mois', 'Échéance', 'Loyer', 'Charges', 'Dû', 'Payé', 'Reste', 'État'];
-    const lignes = situations(etat, t, jusqua).sort((a, b) => a.date.localeCompare(b.date)).map((s) => {
-      const b = etat.baux.find((x) => x.id === s.bail);
-      const bien = etat.biens.find((x) => x.id === b.bien);
-      return [bien?.nom || '', b.locataires, s.mois, s.date, nombreCsv(s.loyer), nombreCsv(s.charges), nombreCsv(s.du), nombreCsv(s.paye), nombreCsv(s.reste), LIB_ECHEANCE[s.etat]];
-    });
+  const montantCsv = (c) => (Number.isFinite(c) ? (c / 100).toFixed(2).replace('.', ',') : '');
+  function versCsv(etat, auj) {
+    const tete = ['Bien', 'Locataire', 'Type', 'Échéance', 'Mois', 'Nature', 'Loyer HC', 'Charges', 'Total dû', 'Payé', 'Reste', 'Statut', 'Soldé le'];
+    const lignes = [];
+    for (const b of etat.baux) {
+      const c = compte(etat, b.id, auj);
+      const bien = bienDe(etat, b.bien);
+      for (const d of c.lignes) lignes.push([bien?.nom || '', nomsLocataires(etat, b), LIB_TYPE[b.type], d.date, d.mois, d.type === 'regul' ? 'Régularisation des charges' : 'Loyer', montantCsv(d.loyer), montantCsv(d.charges), montantCsv(d.montant), montantCsv(d.paye), montantCsv(d.reste), LIB_STATUT[d.statut], d.soldeLe || '']);
+    }
+    lignes.sort((x, y) => String(x[3]).localeCompare(String(y[3])));
     return '﻿' + [tete, ...lignes].map((l) => l.map(champCsv).join(';')).join('\r\n');
   }
-  function csvDepenses(etat, categories = []) {
-    const nom = (id) => categories.find((c) => c.id === id)?.nom || id;
-    const tete = ['Date', 'Bien', 'Catégorie', 'Montant', 'Récupérable', 'Note'];
-    const lignes = [...etat.depenses].sort((a, b) => a.date.localeCompare(b.date)).map((d) => [d.date, etat.biens.find((x) => x.id === d.bien)?.nom || '', nom(d.categorie), nombreCsv(d.montant), d.recuperable ? 'oui' : 'non', d.note]);
+  function depensesCsv(etat, categories) {
+    const nomCat = (id) => (categories || []).find((c) => c.id === id)?.nom || id;
+    const tete = ['Bien', 'Date', 'Catégorie', 'Libellé', 'Montant', 'Part récupérable'];
+    const lignes = [...etat.depenses].sort((a, b) => a.date.localeCompare(b.date)).map((d) => [bienDe(etat, d.bien)?.nom || '', d.date, nomCat(d.categorie), d.libelle, montantCsv(d.montant), montantCsv(d.recuperable)]);
     return '﻿' + [tete, ...lignes].map((l) => l.map(champCsv).join(';')).join('\r\n');
   }
 
-  racine.GRT = {
-    TYPES, LIB_TYPE, DEPOT_MAX, LIB_ECHEANCE, LIB_REVISION, LIB_PALIER, MAX_BIENS,
-    iso, versDate, ajout, ecart, joursDansMois, estDate, estMois, moisDe, moisSuivant, premierJour, dernierJour, ajoutMois, ajoutAns, joursAnnee, joursCommuns,
-    lireMontant, euros, saisieMontant, pct, lireIndice, indice, repartir,
-    estTrimestre, finTrimestre, trimestrePrecedentAnnee, libTrimestre, valeurIrl, majIrl,
-    finBail, actifLe, actifDansMois, enVigueur, dateEcheance, echeance, echeances,
-    payePour, palier, situation, situations, impayes, documentPaiement,
-    dateRevision, blocageRevision, indicesRevision, nouveauLoyer, revisions, revisionCourante, appliquerRevision, ignorerRevision, annulerRevision,
-    depotMax, controleDepot, etatDepot,
-    depensesAnnee, moisAnnee, regularisation, coutBien, bilanBien, bilan, alertes, remplir,
-    nouvelId, normaliserBien, normaliserBail, normaliser, etatVide,
-    effacerLocataire, effacerAnciens, peutSupprimerBien, chevauchementBail, csvEcheances, csvDepenses,
+  racine.GST = {
+    TYPES_BAIL, LIB_TYPE, MODES_CHARGES, LIB_STATUT, LIB_REVISION, DPE, LIB_MOIS,
+    iso, versDate, ajout, ecart, joursDansMois, estDate, estMois, ajoutMois, moisSuivant, finMois, listeMois,
+    lireMontant, euros, saisieMontant, lireIndice, indice, pct, lireEntier,
+    estTrimestre, libelleTrimestre, trimestreDecale, valeurIrl, loyerRevise,
+    bailDe, bienDe, finEffective, actifLe, loyerA, echeance, prorata, echeances, credits, affecter, statutLigne, compte, palier, ligneDuMois,
+    libelleMois, dateTexte, nomsLocataires, quittance, texteQuittance, remplir, texteRelance,
+    revisions, appliquerRevision, joursOccupes, regularisation, provisionProposee, depot, retardRestitution, rendement, recapAnnuel, synthese,
+    nouvelId, normaliserBien, normaliserLocataire, normaliserBail, normaliserPaiement, normaliserDepense, normaliserReglages, normaliser, etatVide,
+    effacerLocataire, supprimerLocataire, donneesLocataire, versCsv, depensesCsv,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

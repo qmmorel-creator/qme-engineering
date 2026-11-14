@@ -1,0 +1,47 @@
+<!-- Version « en vente » de la page catalogue/musculation/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : carnet-musculation-cross-training (à confirmer une fois la fiche créée), prix
+     19 € (à confirmer par Quentin). Captures : assets/templates-musculation-*.webp (démo, données fictives). À la mise
+     en vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans
+     index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="musculation">
+  <div class="section-head">
+    <h2>Carnet de musculation et cross-training</h2>
+    <p>Pour les pratiquants de musculation et de cross-training, et les coachs qui suivent leurs propres séances : chaque série et chaque WOD notés en quelques secondes, le volume de la semaine, les records détectés tout seuls et un minuteur qui fonctionne sans réseau.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-musculation-seances.webp?v=20261114" width="1600" height="1000" alt="Journal des séances : séances de la semaine, tonnage, séries, records des 30 derniers jours et liste des séances et WOD de la semaine avec leurs records (données fictives)">
+      <img class="tel" src="/assets/templates-musculation-tel.webp?v=20261114" width="780" height="1328" alt="Le carnet sur téléphone : séances de la semaine, tonnage, séries et records (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Pratiquants · coachs</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Des séances notées vite</b> : 150 exercices rangés par groupe musculaire et par famille (haltérophilie, gymnastique, cardio…), séries, charges, répétitions, RPE facultatif, et la dernière fois rappelée sous chaque exercice</li>
+        <li><b>Des WOD avec leur score</b> : AMRAP, EMOM, For Time et intervalles, le meilleur score retrouvé à chaque fois que vous refaites le même</li>
+        <li><b>Des records détectés automatiquement</b> : charge max, répétitions, temps, distance, allure, et un 1RM estimé par la formule d'Epley, présenté comme une estimation</li>
+        <li><b>Le volume et la progression</b> : tonnage et séries par semaine, séries par groupe musculaire, courbe de chaque exercice</li>
+        <li><b>Un minuteur hors ligne</b> avec bips pour l'AMRAP, l'EMOM, le For Time et les intervalles, qui reporte le score dans la séance</li>
+      </ul>
+      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/carnet-musculation-cross-training" data-goatcounter-click="achat-musculation" data-goatcounter-title="Acheter : carnet de musculation et cross-training">Acheter</a>
+        <a class="btn" href="/templates/musculation/?demo" data-goatcounter-click="demo-musculation" data-goatcounter-title="Démo : carnet de musculation et cross-training">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-musculation-progression.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Progression : séries par groupe musculaire sur 7 jours et courbe du 1RM estimé au squat arrière sur deux mois (données fictives)"><figcaption>Le volume par groupe et la courbe de chaque exercice</figcaption></figure>
+    <figure><img src="/assets/templates-musculation-records.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Records : derniers records battus avec la valeur précédente, meilleur score de chaque WOD refait (données fictives)"><figcaption>Les records, détectés à chaque séance</figcaption></figure>
+    <figure><img src="/assets/templates-musculation-minuteur.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Minuteur d'intervalles 20 secondes de travail et 10 de repos sur 8 tours, en pause au premier tour (données fictives)"><figcaption>Le minuteur AMRAP, EMOM, For Time et intervalles</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Quels exercices sont prévus ?</summary><p>150 exercices aux noms génériques, rangés en 13 groupes et familles : pectoraux, dos, épaules, bras, jambes, mollets, gainage, haltérophilie, gymnastique, kettlebell et fonctionnel, cardio et machines. Chacun a sa mesure : charge et répétitions, répétitions seules, temps tenu, distance ou calories affichées par la machine. Vous ajoutez les vôtres en quelques secondes.</p></details>
+    <details><summary>Comment le 1RM est-il calculé ?</summary><p>C'est une estimation, pas une mesure : formule d'Epley (charge × (1 + répétitions ÷ 30)) ou, au choix, de Brzycki, appliquée à vos séries de 10 répétitions au plus (réglable). Une série d'une seule répétition donne la charge elle-même. Le carnet ne vous propose jamais de tester ce maximum.</p></details>
+    <details><summary>Quels WOD sont inclus ?</summary><p>Des formats génériques (AMRAP, EMOM, For Time, intervalles) et des modèles de séance rédigés pour ce carnet, nommés d'après leur contenu (par exemple « AMRAP 12 min · poids du corps »). Aucun WOD de référence nommé n'est fourni : vous saisissez les vôtres, et le carnet retrouve votre meilleur score quand vous refaites le même.</p></details>
+    <details><summary>Le minuteur fonctionne-t-il sans réseau ?</summary><p>Oui : il est calculé dans la page, avec des bips synthétisés par le navigateur. Une fois le carnet ouvert (ou ajouté à l'écran d'accueil du téléphone), il fonctionne même sans connexion à la salle ; les séances notées hors ligne sont envoyées au retour du réseau.</p></details>
+    <details><summary>Pourquoi aucune donnée de santé ?</summary><p>Le carnet garde seulement vos performances sportives : exercices, séries, charges, répétitions, temps, distances et scores. Il ne demande ni poids de corps, ni mensurations, ni fréquence cardiaque, ni blessures : ce sont des données de santé, plus sensibles, et elles ne sont pas nécessaires pour suivre une progression. Les exercices au poids du corps se mesurent en répétitions ou en temps.</p></details>
+    <details><summary>Est-ce un programme d'entraînement ?</summary><p>Non. C'est un carnet : il enregistre et calcule, il ne prescrit rien. Ce n'est ni un programme ni un avis médical. Avant de reprendre une activité intense, ou en cas de doute sur votre santé, consultez un médecin ou un professionnel du sport.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/musculation/?demo">la démo</a> ouvre le carnet d'un pratiquant fictif sur dix semaines (séances de force, WOD et leurs scores, records, volume, modèles). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>

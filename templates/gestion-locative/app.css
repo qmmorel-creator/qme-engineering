@@ -198,7 +198,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .conseils span{font-size:14px;color:var(--texte-2)}
 .lien-ligne{display:flex;flex-direction:column;gap:2px;border:0;background:none;padding:0;text-align:left;min-width:0}
 .lien-ligne b{font-size:16px;overflow-wrap:anywhere}
-.lien-ligne span{font-size:13px;color:var(--discret)}
+.lien-ligne span{font-size:13px;color:var(--discret);overflow-wrap:anywhere}
 .lien-ligne:hover b{text-decoration:underline}
 .liste-simple{display:grid;gap:8px;margin-top:10px}
 .date-pastille{display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:var(--ciel);color:var(--ciel-texte);font-size:12px;line-height:1.1;flex:none}
@@ -236,12 +236,12 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .groupe-cat{margin-top:24px}
 .titre-cat{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:20px;margin-bottom:10px}
 .titre-cat span{font-size:14px;font-weight:600;color:var(--discret);letter-spacing:0}
-.lignes-fac{display:grid;gap:8px}
-.ligne-fac{display:grid;grid-template-columns:minmax(0,1fr) auto;border:1px solid var(--trait);background:var(--surface);border-radius:16px;align-items:stretch}
-.ligne-fac.alerte-proche{border-left:6px solid var(--jaune)}
-.ligne-fac.alerte-depasse{border-left:6px solid var(--rouge)}
-.ligne-fac.st-resilie{background:var(--sable)}
-.ligne-fac.st-resilie .ligne-info b{text-decoration:line-through;color:var(--texte-2)}
+.lignes-abs{display:grid;gap:8px}
+.ligne-abs{display:grid;grid-template-columns:minmax(0,1fr) auto;border:1px solid var(--trait);background:var(--surface);border-radius:16px;align-items:stretch}
+.ligne-abs.alerte-proche{border-left:6px solid var(--jaune)}
+.ligne-abs.alerte-depasse{border-left:6px solid var(--rouge)}
+.ligne-abs.st-resilie{background:var(--sable)}
+.ligne-abs.st-resilie .ligne-info b{text-decoration:line-through;color:var(--texte-2)}
 .ligne-info{display:flex;flex-direction:column;gap:4px;padding:12px 16px;border:0;background:none;text-align:left;min-width:0;border-radius:16px}
 .ligne-info b{font-size:17px;overflow-wrap:anywhere}
 .ligne-info:hover b{text-decoration:underline}
@@ -325,7 +325,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .graphique{padding:12px 10px}
   .outils-liste{flex-direction:column;align-items:stretch}
   .recherche{flex:1 1 auto}
-  .ligne-fac{grid-template-columns:1fr}
+  .ligne-abs{grid-template-columns:1fr}
   .ligne-droite{flex-direction:row;justify-content:space-between;align-items:center;border-top:1px solid var(--trait);padding:8px 16px;text-align:left}
   .ligne-cout b{display:inline;font-size:17px;margin-right:6px}
   .modale{width:100%;max-width:none;margin:auto 0 0;max-height:92dvh;box-shadow:none;border-width:1px 0 0}
@@ -337,7 +337,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .barre,.bandeau-demo,.toast,.outils-liste,.vue-tete .actions,.ligne-droite .btn{display:none!important}
   body{background:#fff}
   .vue{padding:0;max-width:none}
-  .ligne-fac,.groupe-cat{break-inside:avoid}
+  .ligne-abs,.groupe-cat{break-inside:avoid}
 }
 
 /* ===================== Thème Pastel (charte QME depuis le 13/11/2026) =====================
@@ -386,49 +386,59 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .bandeau-demo .bientot-demo strong{padding:2px 10px;border-radius:999px;background:var(--encre);color:var(--papier);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
 .bandeau-demo .bientot-demo span{text-decoration:underline;text-underline-offset:3px}
 
-/* ===================== Composants communs (listes, détails, cartes) ===================== */
+
+/* ===================== Composants communs (repris du suivi des congés) ===================== */
 :root{--vert-fond:#DCEBDD;--vert-texte:#1F5A36}
 .etiquette.vert{background:var(--vert-fond);color:var(--vert-texte)}
-.etiquette.beurre-fort{background:var(--jaune);color:var(--encre)}
 .numero{font-weight:600;color:var(--texte-2);font-size:15px;margin-left:4px}
 .resume-liste{font-size:14px;color:var(--texte-2);font-weight:600;margin:16px 0 10px}
-.ligne-fac.alerte-due{border-left:6px solid var(--jaune)}
-.ligne-fac.st-litige{border-left:6px solid var(--rouge)}
-.ligne-fac.st-payee,.ligne-fac.st-abandonnee{background:var(--sable)}
-.ligne-fac.st-abandonnee .ligne-info b{color:var(--texte-2)}
-.ligne-droite .btn{margin-top:4px}
-.date-pastille.retard{background:var(--rose);color:var(--rose-texte)}
-.alerte-taux{margin-top:16px;border-left-color:var(--rouge)}
-.bc-val small{display:block;font-size:12px;color:var(--discret)}
-.barre-cat{grid-template-columns:minmax(110px,160px) minmax(0,1fr) 110px}
-.relance-carte{display:grid;gap:8px;border:1px solid var(--trait);background:var(--surface);padding:14px 16px;border-radius:16px;border-left:6px solid var(--ciel)}
-.relance-carte.due{border-left-color:var(--jaune)}
-.relance-carte .etiquette{justify-self:start}
-.grille-relances{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
-.journal{display:grid;gap:8px}
-.journal li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:8px 14px 8px 8px;border-radius:16px}
-.paliers,.paliers-accueil{display:grid;gap:8px;margin-top:4px}
-.paliers li,.paliers-accueil li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:10px 14px;border-radius:16px}
-.paliers-accueil{margin-top:20px;max-width:720px}
-.paliers-accueil li{grid-template-columns:auto minmax(0,1fr) 180px}
-.paliers-accueil .etiquette{grid-column:2/-1;justify-self:start}
-.palier-num{width:32px;height:32px;border-radius:50%;background:var(--beurre);color:var(--beurre-texte);display:flex;align-items:center;justify-content:center;font-weight:800}
-.accueil-pied{display:flex;justify-content:space-between;gap:12px;margin-top:32px}
-.intro{color:var(--texte-2);max-width:680px}
+.negatif{color:var(--rouge)}
+.ligne-abs.alerte-due{border-left:6px solid var(--rouge)}
+.ligne-abs.st-demandee{border-left:6px solid var(--jaune)}
+.ligne-abs.st-demandee.alerte-due{border-left-color:var(--rouge)}
+.ligne-abs.st-refusee,.ligne-abs.st-annulee{background:var(--sable)}
+.ligne-abs.st-refusee .ligne-info b,.ligne-abs.st-annulee .ligne-info b{color:var(--texte-2)}
+.ligne-abs .ligne-info b{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ligne-droite .rang{margin-top:6px;justify-content:flex-end}
+.pastille-type{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;background:var(--f);color:var(--t);font-size:12px;font-weight:800;flex:none;line-height:1}
+.pastille-type.hachure{background:repeating-linear-gradient(135deg,#2a78d6 0 3px,#fff 3px 6px);border:1px solid #2a78d6}
+.pastille-type.demi{background:linear-gradient(90deg,#2a78d6 50%,#fff 50%);border:1px solid #2a78d6}
+.prochains li{grid-template-columns:auto minmax(0,1fr) auto;padding:8px 14px}
+.carte-demande{display:grid;gap:8px;border:1px solid var(--trait);background:var(--surface);padding:14px 16px;border-radius:16px;border-left:6px solid var(--jaune)}
+.carte-demande.alerte{border-left-color:var(--rouge)}
+.cd-tete{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.cd-alerte{font-size:14px;color:var(--rose-texte);background:var(--rose);border-radius:10px;padding:8px 10px}
+.cd-note{font-size:14px;color:var(--texte-2);font-style:italic}
+.decision-corps span:last-child b{color:var(--encre)}
+.decision-corps span:last-child b.negatif{color:var(--rouge)}
+.alertes-liste{display:grid;gap:8px}
+.alertes-liste li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:8px 14px 8px 8px;border-radius:16px}
+.date-pastille.alerte{background:var(--rose);color:var(--rose-texte)}
+.colonnes-apercu>section>.titre-section:first-child{margin-top:36px}
+.apercu{font-size:14px;display:grid;gap:8px}
+.apercu:empty{display:none}
+.apercu>p:not(.cd-alerte){background:var(--sable);border-radius:10px;padding:8px 10px}
+.choix-statut.quatre{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choix-statut.trois{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choix-statut.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
 .rang{display:flex;flex-wrap:wrap;gap:8px}
 .cases{display:flex;flex-wrap:wrap;gap:4px 20px}
-.choix-statut.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
+.intro{color:var(--texte-2);max-width:680px}
+.accueil-pied{display:flex;justify-content:space-between;gap:12px;margin-top:32px}
+.form-accueil{display:grid;gap:18px;max-width:720px;margin-top:22px}
+.form-accueil fieldset{border:0;padding:0;margin:0;min-width:0}
+.form-accueil legend{padding:0;margin-bottom:6px;font-size:14px;font-weight:600}
+.form-accueil legend small{display:block;font-weight:400;color:var(--discret)}
+.equipes-accueil{display:grid;gap:8px;margin-top:20px;max-width:720px}
+.equipes-accueil li{display:grid;grid-template-columns:auto minmax(0,1fr) 200px;gap:14px;align-items:end;border:1px solid var(--trait);background:var(--surface);padding:10px 14px;border-radius:16px}
+.equipes-accueil .palier-num{align-self:center}
+.palier-num{width:32px;height:32px;border-radius:50%;background:var(--beurre);color:var(--beurre-texte);display:flex;align-items:center;justify-content:center;font-weight:800}
+.titre-cat .btn{margin-left:auto}
+.titre-cat .lien-ligne b{font-size:20px}
 .rgpd{margin-top:32px;border-radius:16px;background:var(--ciel);color:var(--ciel-texte);padding:18px 20px}
 .rgpd h2{font-size:18px;color:var(--encre);margin-bottom:6px}
 .rgpd p{font-size:14px;line-height:1.55}
-/* Détail d'une facture */
-.resume-facture{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.resume-facture>div{border:1px solid var(--trait);background:var(--surface);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.resume-facture span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
-.resume-facture b{font-size:18px;overflow-wrap:anywhere}
-.resume-facture b .btn.lien{font-size:17px;font-weight:700;min-height:0;padding:0;text-align:left}
-.resume-facture small{font-size:13px;color:var(--texte-2)}
-.bloc-detail{border-top:1px solid var(--trait);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.bloc-detail{border-top:1px solid var(--trait);padding-top:14px;display:flex;flex-direction:column;gap:8px}
 .bloc-detail h3{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:17px}
 .bloc-detail h3 span{font-size:16px;font-weight:800}
 .tableau.petit{font-size:13px}
@@ -439,129 +449,91 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .mini-liste{display:grid;gap:6px}
 .mini-liste li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 6px 6px 12px;font-size:14px}
 .mini-liste li:has(> :nth-child(2):last-child){grid-template-columns:minmax(0,1fr) auto}
-.mini-liste small{color:var(--discret)}
+.mini-liste li>span{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .btn-suppr{width:36px;height:36px;border:1px solid var(--trait);background:var(--papier);border-radius:10px;font-size:20px;line-height:1;color:var(--texte-2)}
 .btn-suppr:hover{background:var(--rose);color:var(--rose-texte)}
 .champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
-.champs-aide ul{display:grid;gap:4px;font-size:13px;color:var(--texte-2)}
-.champs-aide code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--sable);border-radius:6px;padding:1px 5px;color:var(--encre)}
-.ligne-taux{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:10px;margin-bottom:8px}
+.champs-aide ul{display:grid;gap:6px;font-size:13px;color:var(--texte-2)}
 .groupe h3 .etiquette{vertical-align:middle;margin-left:6px}
-#msg-corps{font-size:15px;line-height:1.5}
-.filtres{gap:6px}
-@media (max-width:720px){
-  .grille-relances{grid-template-columns:1fr}
-  .filtres{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;max-width:100%}
-  .filtre{flex:none;padding:0 12px;font-size:13px}
-  .barre-cat{grid-template-columns:minmax(0,1fr) auto}
-  .paliers li{grid-template-columns:auto minmax(0,1fr)}
-  .paliers li .btn{grid-column:1/-1}
-  .paliers-accueil li{grid-template-columns:auto minmax(0,1fr)}
-  .paliers-accueil li .champ{grid-column:1/-1}
-  .journal li{grid-template-columns:auto minmax(0,1fr)}
-  .journal li .etiquette{grid-column:2;justify-self:start}
-  .resume-facture b{font-size:16px}
-  .ligne-taux{grid-template-columns:minmax(0,1fr) 96px}
-  .ligne-fac .ligne-droite{flex-wrap:wrap}
-}
+.feries{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 12px}
+.feries .case{min-height:40px;font-size:14px}
+.feries small{color:var(--discret)}
+.pastilles span{border-radius:10px}
 .champ select,.champ textarea{border-radius:12px}
-
+@media (max-width:720px){.tuile .surtitre{letter-spacing:.06em;padding-right:30px;overflow-wrap:anywhere}}
+.rang-champs{align-items:flex-end}
+.accueil-pied>span:empty{display:none}
+.accueil-pied .btn:last-child{margin-left:auto}
 
 /* ===================== Gestion locative : composants propres ===================== */
-.onglets{flex-wrap:nowrap}
-.texte-alerte{color:var(--rouge)}
-.menage-tete{display:flex;flex-wrap:wrap;gap:6px}
-.recap{font-size:14px;color:var(--texte-2);background:var(--sable);border-radius:12px;padding:10px 12px}
-.recap:empty{display:none}
-.vue-tete .actions .btn.petit{min-height:44px}
-.date-pastille.paye{background:var(--vert-fond);color:var(--vert-texte)}
-/* Échéances : une ligne par bail et par mois */
-.echeances{display:grid;gap:8px}
-.ligne-ech{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"date info montant etat" "date actions actions actions";gap:6px 14px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:10px 14px 10px 10px;border-radius:16px}
-.ligne-ech.etat-retard{border-left:6px solid var(--rouge)}
-.ligne-ech.etat-aujourdhui,.ligne-ech.etat-partielle{border-left:6px solid var(--jaune)}
-.ligne-ech.etat-payee{background:var(--sable)}
-.ligne-ech .date-pastille{grid-area:date;align-self:start}
-.ligne-ech .lien-ligne{grid-area:info}
-.ech-montant{grid-area:montant;display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap}
-.ech-montant b{font-size:18px}
-.ech-montant small{font-size:12px;color:var(--discret)}
-.ech-etat{grid-area:etat;justify-self:end}
-.ech-actions{grid-area:actions;display:flex;flex-wrap:wrap;gap:6px}
-.ech-actions:empty{display:none}
-/* Mois et grille de l'année */
-.nav-mois{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.nav-mois h2{font-size:24px;min-width:200px;text-align:center}
-.nav-mois h2::first-letter{text-transform:uppercase}
-.nav-mois .btn{min-width:44px;min-height:44px;font-size:18px}
-.defile{position:relative} /* textes masqués (sr-only) gardés dans le cadre qui défile */
-.grille-loyers th,.grille-loyers td{padding:6px 4px;text-align:center}
-.grille-loyers th:first-child,.grille-loyers td.gl-nom{text-align:left;padding-left:12px;white-space:nowrap}
-.grille-loyers .gl-nom .btn.lien{min-height:36px;padding:0;font-size:14px}
-.gl-case button{width:100%;min-width:30px;height:34px;border:0;border-radius:10px;font-weight:800;font-size:15px;background:var(--sable);color:var(--texte-2)}
-.gl-payee button{background:var(--vert-fond);color:var(--vert-texte)}
-.gl-partielle button,.gl-aujourdhui button{background:var(--beurre);color:var(--beurre-texte)}
-.gl-retard button{background:var(--rouge);color:#fff}
-.gl-actif button{outline:3px solid var(--encre);outline-offset:-3px}
-.gl-vide{background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(228,220,206,.5) 6px 8px)}
-.legende-cal{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:10px;font-size:13px;color:var(--texte-2)}
-.pastille-l{display:inline-block;width:22px;height:12px;border-radius:999px;vertical-align:middle;background:var(--sable)}
-.pastille-l.gl-payee{background:var(--vert-fond);border:1px solid var(--vert-texte)}
-.pastille-l.gl-partielle{background:var(--beurre);border:1px solid var(--beurre-texte)}
-.pastille-l.gl-retard{background:var(--rouge)}
-.pastille-l.gl-aVenir{background:var(--sable);border:1px solid var(--discret)}
-/* Biens et baux */
-.bien-bloc{margin-top:24px}
-.bien-tete{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-.bien-tete .lien-ligne b{font-size:20px}
-.ligne-fac.st-termine{background:var(--sable)}
-.ligne-fac.st-termine .ligne-info b{color:var(--texte-2)}
-/* Révisions */
-.revision-carte{display:grid;gap:8px;border:1px solid var(--trait);background:var(--surface);padding:14px 16px;border-radius:16px;border-left:6px solid var(--ciel)}
-.revision-carte.etat-aDemander{border-left-color:var(--jaune)}
-.revision-carte.etat-perdue{border-left-color:var(--rouge)}
-.revision-carte.etat-appliquee{border-left-color:var(--vert)}
-.revision-carte .plus-tard{margin-top:0}
-.tableau.irl{max-width:640px}
-.tableau td .btn.lien{justify-content:flex-start;text-align:left}
-.tableau.depenses td{padding:6px 12px;vertical-align:middle}
-.tableau.depenses .btn.lien{min-height:32px;padding:0;text-align:left;font-size:15px}
-.tableau.depenses small{color:var(--discret)}
-/* Quittance */
-.quittance{border:1px solid var(--trait);background:#fff;border-radius:14px;padding:18px 20px;display:grid;gap:12px;font-size:14px;line-height:1.5;color:var(--encre)}
-.quittance h3{font-size:22px;text-transform:uppercase;letter-spacing:.04em}
-.q-periode{font-weight:700;color:var(--texte-2)}
-.q-parties{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.q-parties div{display:flex;flex-direction:column;gap:2px;background:var(--sable);border-radius:10px;padding:8px 10px;min-width:0}
-.q-parties span{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
-.q-parties b{overflow-wrap:anywhere}
-.q-parties small{color:var(--texte-2);overflow-wrap:anywhere}
-.q-detail{width:100%;border-collapse:collapse}
-.q-detail td{padding:6px 0;border-bottom:1px solid var(--trait)}
-.q-detail td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-.q-detail .q-total td{font-weight:800}
-.q-pied{color:var(--texte-2)}
-#impression{display:none}
-#texte-copie{font-size:14px;line-height:1.5}
-@media (max-width:1020px){.onglets{gap:2px}}
-@media (max-width:720px){
-  .onglets{grid-template-columns:repeat(5,1fr)}
-  .onglet{font-size:10.5px}
-  .nav-mois h2{min-width:0;flex:1;font-size:20px}
-  .vue-tete .actions .btn.petit{flex:1}
-  .ligne-ech{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"date info info" "date etat montant" "actions actions actions";padding:10px 12px 10px 8px}
-  .ech-etat{justify-self:start}
-  .ech-actions .btn{flex:1 1 auto}
-  .bien-tete .lien-ligne b{font-size:18px}
-  .q-parties{grid-template-columns:1fr}
-  .quittance{padding:14px}
-  .projection .cp-val{font-size:9.5px}
-}
-/* Impression d'une quittance : seul le document est imprimé. */
+.etiquette.encre{background:var(--encre);color:var(--papier)}
+.positif{color:var(--vert-texte)}
+.montant-grand{font-size:20px;font-weight:800;white-space:nowrap}
+.ligne-abs.st-impaye,.ligne-abs.st-partiel{border-left:6px solid var(--rouge)}
+.ligne-abs.st-attente{border-left:6px solid var(--jaune)}
+.ligne-abs.st-paye,.ligne-abs.st-payeRetard{border-left:6px solid #7FB08E}
+.ligne-abs.st-vacant{background:var(--sable)}
+.mois-outils{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.mois-outils .rang{align-items:center}
+.mois-titre{font-size:22px;min-width:170px;text-align:center;text-transform:capitalize}
+.barre-paiement{height:8px;border-radius:999px;background:var(--sable);overflow:hidden;margin-top:6px;max-width:320px}
+.barre-paiement i{display:block;height:100%;background:var(--bleu);border-radius:999px}
+.barre-paiement.complet i{background:#2E7D4F}
+.texte-copie{white-space:pre-wrap;font:14px/1.55 Outfit,system-ui,sans-serif;background:var(--surface);border:1px solid var(--trait);border-radius:12px;padding:14px 16px;max-height:46vh;overflow:auto;margin:0}
+.modele-a-verifier{font-size:13px;color:var(--beurre-texte);background:var(--beurre);border-radius:10px;padding:8px 10px}
+.paliers-relance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.echeancier{width:100%}
+.echeancier td .etiquette{font-size:10px}
+.tableau tr.st-impaye td:first-child,.tableau tr.st-partiel td:first-child{box-shadow:inset 4px 0 0 var(--rouge)}
+.tableau tr.st-attente td:first-child{box-shadow:inset 4px 0 0 var(--jaune)}
+.cartes-biens{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.carte-bien{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.carte-bien h3{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:19px}
+.carte-bien h3 .btn{flex:none}
+.carte-bien .adresse{font-size:14px;color:var(--texte-2);overflow-wrap:anywhere}
+.chiffres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.chiffres div{background:var(--papier);border-radius:12px;padding:8px 10px;min-width:0}
+.chiffres small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--discret)}
+.chiffres b{font-size:17px;white-space:nowrap}
+.bail-resume{border-top:1px solid var(--trait);padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.bail-resume .lien-ligne b{font-size:15px}
+.ligne-detail strong{color:var(--encre);font-weight:700}
+.irl-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
+.irl-liste li span{white-space:nowrap}
+.irl-liste li{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 6px 6px 12px;font-size:14px}
+.irl-liste b{font-size:15px}
+.cases-locataires{display:grid;gap:2px}
+.bloc-fiscal{margin-top:20px;border-radius:16px;background:var(--beurre);color:var(--beurre-texte);padding:16px 18px;font-size:14px;line-height:1.55}
+.bloc-fiscal b{color:var(--encre)}
+.tableau tfoot td{background:var(--sable)}
+.alerte-texte{font-size:14px;color:var(--rose-texte);background:var(--rose);border-radius:10px;padding:8px 10px}
+.colonnes-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 28px}
+#zone-impression{display:none}
 @media print{
-  body.imprimer > *:not(#impression){display:none!important}
-  body.imprimer #impression{display:block!important}
-  body.imprimer{padding:0!important;background:#fff}
-  #impression .quittance{border:0;padding:0;font-size:12pt;max-width:180mm;margin:0 auto}
-  #impression .q-parties div{background:#fff;border:1px solid #ccc}
+  body.impression>*:not(#zone-impression){display:none!important}
+  body.impression #zone-impression{display:block;padding:24px;font:15px/1.6 Outfit,system-ui,sans-serif;color:#000;white-space:pre-wrap}
+  body.impression{padding:0!important}
 }
+@media (max-width:1020px){.colonnes-2{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .onglets{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .onglet{font-size:11px;min-width:0}
+  .onglet span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cartes-biens{grid-template-columns:1fr}
+  .prochains li{grid-template-columns:auto minmax(0,1fr)}
+  .prochains li>.etiquette{grid-column:2;justify-self:start;white-space:normal}
+  .prochains li{padding-right:10px}
+  .chiffres{gap:6px}
+  .chiffres div{padding:8px}
+  .chiffres b{font-size:15px}
+  .chiffres small{font-size:10px;letter-spacing:.03em}
+  .paliers-relance{grid-template-columns:1fr}
+  .mois-titre{min-width:0;font-size:19px}
+  .mois-outils{flex-direction:column;align-items:stretch}
+  .mois-outils .rang{justify-content:space-between}
+  .texte-copie{font-size:13px}
+  .tableau{font-size:14px}
+  .tableau th,.tableau td{padding:8px 10px}
+}
+.tableau.recap td:first-child{min-width:170px}
+.tableau.recap tr.dep td:first-child{padding-left:26px;color:var(--texte-2)}

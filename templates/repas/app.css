@@ -1,4 +1,4 @@
-/* Repas de la semaine · charte QME Bauhaus « Pastel » (socle commun des templates) : bloc « Thème Pastel », puis bloc « Repas » en fin de fichier. */
+/* Repas de la semaine et liste de courses · charte QME Bauhaus « Pastel » : voir le bloc « Thème Pastel » en fin de fichier. */
 :root{
   --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--texte-2:#514C44;--discret:#6E685F;--trait:#E4DCCE;
   --rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;--max:1180px;
@@ -152,6 +152,21 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .tuile b{font-size:36px;font-weight:800;line-height:1;letter-spacing:-.03em;white-space:nowrap}
 .tuile span{font-size:14px;color:var(--discret)}
 .graphique{border:1px solid var(--trait);background:var(--surface);padding:16px;position:relative;border-radius:16px}
+.barres-cats{display:grid;gap:4px}
+.barre-cat{display:grid;grid-template-columns:minmax(120px,220px) minmax(0,1fr) 110px;gap:12px;align-items:center;padding:6px 4px;border-radius:8px;outline-offset:2px}
+.barre-cat.survol{background:var(--sable)}
+.bc-nom{font-size:14px;font-weight:600;min-width:0;overflow-wrap:anywhere}
+.bc-piste{position:relative;height:20px;border-left:1px solid var(--trait)}
+.bc-barre{position:absolute;left:0;top:0;bottom:0;background:var(--bleu);border-radius:0 4px 4px 0}
+.bc-val{font-size:14px;text-align:right;white-space:nowrap}
+.projection{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;align-items:end}
+.col-proj{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0;border-radius:8px;outline-offset:2px;min-width:0}
+.col-proj.survol{background:var(--sable)}
+.cp-val{font-size:12px;font-weight:700;min-height:16px;white-space:nowrap}
+.cp-zone{position:relative;width:100%;height:150px;border-bottom:1px solid var(--trait);display:flex;justify-content:center;align-items:flex-end}
+.cp-barre{display:block;width:min(24px,70%);background:var(--bleu);border-radius:4px 4px 0 0}
+.col-proj.actif .cp-barre{background:var(--encre)}
+.cp-mois{font-size:12px;color:var(--discret)}
 .infobulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);padding:8px 10px;font-size:13px;line-height:1.45;min-width:170px;max-width:260px;z-index:5;box-shadow:0 4px 14px rgba(36,34,31,.08)}
 .infobulle b{display:block;margin-bottom:2px}
 .tableau-details{margin-top:10px}
@@ -210,6 +225,34 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .prochains li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:8px 14px 8px 8px;border-radius:16px}
 .prochains .nb{font-weight:700}
 
+/* ============ Factures ============ */
+.outils-liste{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.filtres{display:flex;flex-wrap:wrap;gap:6px}
+.filtre{min-height:44px;padding:0 14px;border:1px solid var(--trait);background:var(--surface);border-radius:999px;font-weight:600;font-size:14px}
+.filtre small{color:var(--discret);font-weight:600;margin-left:2px}
+.filtre[aria-pressed="true"]{background:var(--beurre);border-color:transparent}
+.filtre:hover{background:var(--sable)}
+.recherche{flex:0 1 320px}
+.groupe-cat{margin-top:24px}
+.titre-cat{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:20px;margin-bottom:10px}
+.titre-cat span{font-size:14px;font-weight:600;color:var(--discret);letter-spacing:0}
+.lignes-abs{display:grid;gap:8px}
+.ligne-abs{display:grid;grid-template-columns:minmax(0,1fr) auto;border:1px solid var(--trait);background:var(--surface);border-radius:16px;align-items:stretch}
+.ligne-abs.alerte-proche{border-left:6px solid var(--jaune)}
+.ligne-abs.alerte-depasse{border-left:6px solid var(--rouge)}
+.ligne-abs.st-resilie{background:var(--sable)}
+.ligne-abs.st-resilie .ligne-info b{text-decoration:line-through;color:var(--texte-2)}
+.ligne-info{display:flex;flex-direction:column;gap:4px;padding:12px 16px;border:0;background:none;text-align:left;min-width:0;border-radius:16px}
+.ligne-info b{font-size:17px;overflow-wrap:anywhere}
+.ligne-info:hover b{text-decoration:underline}
+.ligne-detail{font-size:14px;color:var(--texte-2)}
+.ligne-etiquettes{display:flex;flex-wrap:wrap;gap:6px}
+.ligne-etiquettes:empty{display:none}
+.ligne-droite{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:2px;padding:10px 16px;text-align:right}
+.ligne-cout b{font-size:20px;display:block}
+.ligne-cout small{font-size:12px;color:var(--discret)}
+.ligne-proch{font-size:13px;color:var(--texte-2);font-weight:600}
+
 /* Modale : champs groupés et statut */
 .modale fieldset.champ{border:0;padding:0;margin:0;min-width:0}
 .modale legend{padding:0;margin-bottom:6px;font-size:14px;font-weight:600}
@@ -256,7 +299,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .barre .titre-produit{display:none}
   .sync{margin-left:auto}
   .sync b{display:none}
-  .onglets{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;background:var(--papier);border-top:1px solid var(--trait);padding-bottom:var(--safe-b);display:grid;grid-template-columns:repeat(5,1fr)}
+  .onglets{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;background:var(--papier);border-top:1px solid var(--trait);padding-bottom:var(--safe-b);display:grid;grid-template-columns:repeat(4,1fr)}
   .onglet{flex-direction:column;justify-content:center;gap:3px;min-height:var(--nav-h);padding:0 2px;border-bottom:0;border-top:4px solid transparent;font-size:11px}
   .onglet span{display:block}
   .onglet svg{width:22px;height:22px}
@@ -273,11 +316,28 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
   .tuile{padding:12px 14px}
   .tuile b{font-size:24px}
   .tuile span{font-size:13px}
+  .barre-cat{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .bc-piste{grid-column:1/-1;grid-row:2}
+  .projection{gap:2px}
+  .cp-zone{height:110px}
+  .cp-val{font-size:10px;min-height:14px}
+  .cp-mois{font-size:10px}
   .graphique{padding:12px 10px}
   .outils-liste{flex-direction:column;align-items:stretch}
   .recherche{flex:1 1 auto}
+  .ligne-abs{grid-template-columns:1fr}
+  .ligne-droite{flex-direction:row;justify-content:space-between;align-items:center;border-top:1px solid var(--trait);padding:8px 16px;text-align:left}
+  .ligne-cout b{display:inline;font-size:17px;margin-right:6px}
   .modale{width:100%;max-width:none;margin:auto 0 0;max-height:92dvh;box-shadow:none;border-width:1px 0 0}
   .toast{bottom:calc(var(--nav-h) + 12px + var(--safe-b))}
+}
+
+/* ============ Impression ============ */
+@media print{
+  .barre,.bandeau-demo,.toast,.outils-liste,.vue-tete .actions,.ligne-droite .btn{display:none!important}
+  body{background:#fff}
+  .vue{padding:0;max-width:none}
+  .ligne-abs,.groupe-cat{break-inside:avoid}
 }
 
 /* ===================== Thème Pastel (charte QME depuis le 13/11/2026) =====================
@@ -319,221 +379,196 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .composition .marque .m{color:var(--bleu)}
 .accroche .surtitre{color:var(--ciel-texte)}
 .accroche p{color:var(--texte-2)}
+@media (max-width:720px){.col-proj:not(.max) .cp-val{visibility:hidden}}
 
 /* Template pas encore en vente : mention dans le bandeau de démo (retirée à la mise en vente) */
 .bandeau-demo .bientot-demo{display:inline-flex;align-items:center;gap:8px;color:var(--encre);font-weight:600;text-decoration:none}
 .bandeau-demo .bientot-demo strong{padding:2px 10px;border-radius:999px;background:var(--encre);color:var(--papier);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
 .bandeau-demo .bientot-demo span{text-decoration:underline;text-underline-offset:3px}
 
-button.tuile{font:inherit;color:inherit;text-align:left;cursor:pointer;align-items:flex-start}
-button.tuile:hover{background:var(--sable)}
-.tuile b{display:block}
-.progres{display:block;flex:1 1 auto;height:8px;border-radius:999px;background:var(--sable);overflow:hidden;min-width:60px}
-.progres span{display:block;height:100%;background:var(--bleu);border-radius:999px}
-.intro{color:var(--texte-2);max-width:680px;margin-bottom:24px}
+
+
+/* ===================== Repas de la semaine : composants propres ===================== */
+:root{--vert-fond:#DCEBDD;--vert-texte:#1F5A36}
+.etiquette.vert{background:var(--vert-fond);color:var(--vert-texte)}
+.resume-liste{font-size:14px;color:var(--texte-2);font-weight:600;margin:16px 0 10px}
+.apercu{font-size:14px;display:grid;gap:8px}
+.apercu:empty{display:none}
+.apercu>p{background:var(--sable);border-radius:10px;padding:8px 10px}
+.choix-statut.quatre{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choix-statut.trois{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choix-statut.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rang{display:flex;flex-wrap:wrap;gap:8px}
+.cases{display:flex;flex-wrap:wrap;gap:4px 20px}
+.intro{color:var(--texte-2);max-width:680px}
 .accueil-pied{display:flex;justify-content:space-between;gap:12px;margin-top:32px}
-.onglet .court{display:none}
-@media (max-width:1020px){.onglet span.long,.onglet span.court{display:none}}
-@media (max-width:720px){
-  .onglet span.long{display:none}
-  .onglet span.court{display:block}
-  .onglet span.long:only-of-type{display:block}
-  .titre-cat{font-size:17px}
-}
-.outils-liste{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
-.filtres{display:flex;flex-wrap:wrap;gap:6px}
-.filtre{min-height:44px;padding:0 14px;border:1px solid var(--trait);background:var(--surface);border-radius:999px;font-weight:600;font-size:14px}
-.filtre small{color:var(--discret);font-weight:600;margin-left:2px}
-.filtre[aria-pressed="true"]{background:var(--beurre);border-color:transparent}
-.filtre:hover{background:var(--sable)}
-.recherche{flex:0 1 320px}
-@media (max-width:720px){
-  .outils-liste{flex-direction:column;align-items:stretch}
-  .recherche{flex:1 1 auto}
-  .filtres{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;min-width:0;max-width:100%}
-  .filtre{flex:none;padding:0 12px}
-}
-.choix-liste{display:flex;flex-direction:column;gap:2px}
-.choix-ligne{display:flex;align-items:flex-start;gap:10px;min-height:44px;padding:10px 0 4px;font-size:15px;cursor:pointer}
-.choix-ligne input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--encre);flex:none}
-.plus-tard summary small{font-weight:400;color:var(--discret);margin-left:8px}
-.cases-ligne{display:flex;flex-wrap:wrap;gap:4px 18px}
-.stepper{display:flex;align-items:center;gap:4px;flex:none}
-.stepper b{min-width:24px;text-align:center;font-size:17px}
-.stepper .btn-icone{width:44px;height:44px;font-size:22px;font-weight:700}
-.stepper .btn-icone:disabled{opacity:.35;cursor:default}
+.accueil-pied>span:empty{display:none}
+.accueil-pied .btn:last-child{margin-left:auto}
+.form-accueil{display:grid;gap:18px;max-width:720px;margin-top:22px}
+.form-accueil fieldset{border:0;padding:0;margin:0;min-width:0}
+.form-accueil legend{padding:0;margin-bottom:6px;font-size:14px;font-weight:600}
+.form-accueil legend small{display:block;font-weight:400;color:var(--discret)}
+.placard-choix{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 16px;max-width:900px;margin-top:20px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:8px 16px}
+.mini-liste{display:grid;gap:6px}
+.mini-liste li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 6px 6px 12px;font-size:14px;min-height:44px}
+.mini-liste li:has(> :nth-child(2):last-child){grid-template-columns:minmax(0,1fr) auto}
+.mini-liste li:has(> :only-child){grid-template-columns:minmax(0,1fr)}
+.btn-suppr{width:36px;height:36px;border:1px solid var(--trait);background:var(--papier);border-radius:10px;font-size:18px;line-height:1;color:var(--texte-2)}
+.btn-suppr:hover{background:var(--rose);color:var(--rose-texte)}
+.btn-suppr:disabled{opacity:.35;cursor:default;background:var(--papier);color:var(--texte-2)}
+.champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
+.champs-aide .cases{margin-top:8px}
+.champ select,.champ textarea{border-radius:12px}
+.rang-champs{align-items:flex-end}
+.tuile b small{font-size:18px;color:var(--discret);font-weight:700;margin-left:2px}
 
-/* ============ Repas de la semaine ============ */
-.champ select{border-radius:12px}
-.pastille-nb{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--beurre);color:var(--beurre-texte);font-size:13px;font-weight:800}
-.nav-semaine{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 14px}
-.nav-semaine-titre{display:flex;flex-direction:column;min-width:0}
-.nav-semaine-titre b{font-size:18px}
-.nav-semaine-titre small{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
-.resume-semaine{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 16px;color:var(--texte-2);font-size:14px}
-.resume-semaine b{color:var(--encre);font-size:16px}
+/* Navigation entre semaines */
+.nav-semaine{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 18px}
+.nav-semaine .btn.petit:not(.lien){width:44px;padding:0;font-size:20px}
+.nav-lib{display:flex;flex-direction:column;min-width:200px;text-align:center}
+.nav-lib b{font-size:18px}
+.nav-lib span{font-size:14px;color:var(--texte-2)}
 
-/* Planning : 7 colonnes sur ordinateur, une carte par jour sur téléphone */
-.planning{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
-.jour{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px 8px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.jour.aujourdhui{border-color:var(--jaune);box-shadow:0 0 0 2px var(--beurre)}
-.jour.passe{background:var(--papier)}
-.jour-titre{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 6px;font-size:14px;padding:0 4px}
-.jour-titre span{font-weight:700}
-.jour-titre b{font-size:20px}
-.jour-titre em{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--beurre);color:var(--beurre-texte)}
-.creneau{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--trait);padding-top:8px}
-.creneau-titre{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--discret);padding:0 4px}
-.plats{display:flex;flex-direction:column;gap:6px}
-.plat{display:flex;flex-direction:column;gap:2px;width:100%;text-align:left;border:0;border-left:4px solid var(--bleu);background:var(--ciel);color:var(--encre);border-radius:10px;padding:8px 9px;min-height:44px}
-.plat b{font-size:14px;line-height:1.25;overflow-wrap:anywhere}
-.plat span{font-size:12px;color:var(--texte-2)}
-.plat em{font-style:normal;font-weight:700;color:var(--ciel-texte)}
-.plat:hover b{text-decoration:underline}
-.plat.cat-soupe{border-left-color:var(--jaune);background:var(--beurre)}
-.plat.cat-salade{border-left-color:#5E8C61;background:#E3EEDF}
-.plat.cat-tarte{border-left-color:#E58C74;background:var(--rose)}
-.plat.cat-dessert{border-left-color:var(--encre);background:var(--sable)}
-.plat.libre{background:none;border:1px dashed var(--trait);border-left-width:1px}
-.plat.libre b{font-weight:600;color:var(--texte-2)}
-.ajout-repas{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1px dashed var(--trait);background:none;border-radius:10px;color:var(--texte-2);font-weight:600;font-size:13px}
-.ajout-repas:hover{background:var(--sable);color:var(--encre)}
-.ajout-repas.discret{min-height:36px;border-color:transparent}
-.ajout-repas.discret:hover{border-color:var(--trait)}
+/* Grille de la semaine */
+.grille-semaine{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-top:20px}
+.jour{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.jour.aujourdhui{box-shadow:inset 0 0 0 2px var(--bleu);border-color:var(--bleu)}
+.jour-tete{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:13px;font-weight:700;letter-spacing:.02em}
+.jour-tete span{text-transform:uppercase;letter-spacing:.08em;color:var(--texte-2);font-size:12px}
+.jour-tete b{font-size:22px}
+.jour-tete em{font-style:normal;font-size:11px;font-weight:700;background:var(--ciel);color:var(--ciel-texte);border-radius:999px;padding:2px 8px;letter-spacing:.04em;text-transform:uppercase}
+.jour.passe .jour-tete{opacity:.7}
+.j-court{display:none}
+.jour-cases{display:grid;gap:8px}
+.creneau{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;min-height:96px;padding:8px 10px;border:1px solid var(--trait);border-radius:12px;background:var(--papier);text-align:left;font-size:14px;min-width:0}
+.creneau:hover{border-color:var(--encre)}
+.creneau .etiquette{margin-top:2px;white-space:normal}
+.cr-repas{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret)}
+.cr-nom{font-size:14px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}
+.cr-meta{font-size:12px;color:var(--texte-2)}
+.cr-type{font-size:11px;font-weight:600;color:var(--texte-2)}
+.cr-vide{display:flex;align-items:center;gap:6px;color:var(--discret);font-weight:600;margin-top:auto;margin-bottom:auto}
+.cr-vide svg{width:16px;height:16px}
+.creneau.cr-libre{border-style:dashed;background:transparent}
+.creneau.cr-recette{background:var(--surface);border-left:4px solid var(--bleu)}
+.creneau.cr-restes{background:var(--beurre);border-color:transparent}
+.creneau.cr-restes .cr-type,.creneau.cr-restes .cr-meta{color:var(--beurre-texte)}
+.creneau.cr-dehors,.creneau.cr-note{background:var(--sable);border-color:transparent}
+.pied-semaine{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-top:18px}
 
-/* Choix d'un repas */
-.liste-choix{display:flex;flex-direction:column;gap:6px;max-height:42vh;overflow:auto;padding:2px}
-.choix-recette{display:flex;flex-direction:column;gap:2px;width:100%;text-align:left;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:10px 12px;min-height:48px}
-.choix-recette:hover{background:var(--sable)}
-.choix-recette span{font-size:13px;color:var(--discret)}
-.etoile{color:var(--jaune)}
-.puces-libres{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.stepper-champ{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;font-size:15px}
-.stepper input{width:64px;min-height:44px;text-align:center;border:1px solid var(--trait);background:var(--surface);font-size:17px;font-weight:700;-moz-appearance:textfield}
-.stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-
-/* Courses */
-.bilan-courses{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:14px 18px;margin-bottom:14px}
-.bc-progres{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;flex:1 1 320px;min-width:0}
-.bc-progres>b{font-size:32px;line-height:1;letter-spacing:-.03em}
-.bc-progres>b small{font-size:18px;color:var(--discret)}
-.bc-progres .progres{height:12px;flex:1 1 140px}
-.bc-progres>span:last-child{flex-basis:100%;font-size:14px;color:var(--texte-2)}
-.bc-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
-.case.bascule{font-size:14px;font-weight:600}
-.ajout-article,.cherche{display:flex;gap:8px;align-items:flex-end;margin:0 0 16px}
-.ajout-article .champ,.cherche .champ{flex:1 1 auto;margin:0}
-.ajout-article input,.cherche input{font-size:17px;min-height:52px}
-.ajout-article .btn{min-height:52px}
-.rayon{margin-top:18px}
-.titre-rayon{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:17px;margin:0 0 8px;padding:0 4px}
-.titre-rayon span{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--sable);font-size:13px;color:var(--texte-2)}
-.articles{display:flex;flex-direction:column;border:1px solid var(--trait);background:var(--surface);border-radius:16px;overflow:hidden}
-.article{display:flex;align-items:center;gap:8px;border-top:1px solid var(--trait);padding:0 8px 0 0}
-.article:first-child{border-top:0}
-.article-case{display:flex;align-items:center;gap:14px;flex:1 1 auto;min-width:0;min-height:60px;padding:8px 6px 8px 14px;cursor:pointer}
-.article-case input{position:absolute;opacity:0;width:1px;height:1px}
-.coche{flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:2px solid var(--trait);border-radius:9px;background:var(--surface);color:transparent}
-.article-case input:checked+.coche{background:var(--bleu);border-color:var(--bleu);color:#fff}
-.article-case input:focus-visible+.coche{outline:3px solid var(--bleu);outline-offset:2px}
-.article-texte{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;align-items:baseline;flex:1 1 auto;min-width:0}
-.article-texte b{font-size:16px;font-weight:600;overflow-wrap:anywhere}
-.article-texte strong{font-size:16px;font-weight:800;white-space:nowrap;text-align:right}
-.article-texte small{grid-column:1/-1;font-size:12.5px;color:var(--discret);overflow-wrap:anywhere}
-.article.pris{background:var(--papier)}
-.article.pris .article-texte b,.article.pris .article-texte strong{color:var(--discret);text-decoration:line-through;text-decoration-thickness:2px}
-.article.maison{padding:10px 10px 10px 14px;justify-content:space-between}
-.article.maison .article-texte{flex:1 1 auto}
-.placard .articles,.plus-tard .articles{margin:4px 0 14px}
-.btn-icone.petit{width:40px;height:40px;font-size:18px}
-.liste-rayons{display:flex;flex-direction:column;gap:6px}
-.ligne-rayon{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 6px 6px 14px;font-weight:600}
-.ligne-rayon .rang{display:flex;gap:4px}
-.ligne-rayon .btn-icone:disabled{opacity:.3;cursor:default}
-.texte-copie{width:100%;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--trait);border-radius:12px;padding:10px}
+/* Liste de courses */
+.form-libre{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px;padding:12px;border:1px solid var(--trait);background:var(--surface);border-radius:16px}
+.form-libre .champ:first-child{flex:1 1 300px}
+.form-libre .champ:nth-child(2){flex:0 1 220px}
+.form-libre .case{font-size:14px}
+.progression{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding:10px 14px;background:var(--ciel);color:var(--ciel-texte);border-radius:16px;margin-bottom:16px;font-size:14px}
+.progression b{color:var(--encre)}
+.progression .mention{color:var(--ciel-texte)}
+.progression .btn.lien{margin-left:auto;min-height:36px}
+.rayons{columns:2 360px;column-gap:18px}
+.rayon{break-inside:avoid;margin:0 0 16px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px 12px 4px}
+.rayon h2{display:flex;align-items:baseline;gap:8px;font-size:17px;padding:2px 4px 6px}
+.rayon h2 span{font-size:13px;font-weight:600;color:var(--discret)}
+.article{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:4px;border-top:1px solid var(--trait);min-height:52px}
+.art-case{display:flex;align-items:center;justify-content:center;width:44px;height:44px;cursor:pointer}
+.art-case input{width:24px;height:24px;accent-color:var(--encre);margin:0;cursor:pointer}
+.art-info{display:flex;flex-direction:column;gap:1px;border:0;background:none;padding:6px 4px;text-align:left;min-width:0}
+.art-info b{font-size:15px;overflow-wrap:anywhere}
+.art-info small{font-size:12px;color:var(--discret);overflow-wrap:anywhere}
+.art-info:hover b{text-decoration:underline}
+.art-qte{text-align:right;font-weight:700;font-size:15px;white-space:nowrap;padding-right:4px}
+.art-qte small{display:block;font-size:12px;font-weight:600;color:var(--discret)}
+.article.fait .art-info b{text-decoration:line-through;color:var(--discret)}
+.article.fait .art-qte{color:var(--discret)}
+.deja-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.deja-liste li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;border:1px solid var(--trait);background:var(--sable);border-radius:12px;padding:4px 8px 4px 10px}
+.art-total{font-size:16px}
 
 /* Recettes */
-.filtres-bascules{margin:8px 0 4px}
-.grille-recettes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-.carte-recette{display:flex;flex-direction:column;border:1px solid var(--trait);background:var(--surface);border-radius:16px;overflow:hidden;border-top:6px solid var(--bleu)}
-.carte-recette.cat-soupe{border-top-color:var(--jaune)}
-.carte-recette.cat-salade{border-top-color:#5E8C61}
-.carte-recette.cat-tarte{border-top-color:#E58C74}
-.carte-recette.cat-dessert{border-top-color:var(--encre)}
-.cr-corps{display:flex;flex-direction:column;gap:6px;flex:1 1 auto;border:0;background:none;text-align:left;padding:14px 16px 8px}
-.cr-corps b{font-size:18px;line-height:1.2}
-.cr-corps:hover b{text-decoration:underline}
-.cr-cat{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
-.cr-etiquettes{display:flex;flex-wrap:wrap;gap:4px}
-.cr-pied{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 12px 12px 16px}
-.fav{color:var(--trait)}
-.fav.actif{color:var(--jaune);background:var(--beurre);border-color:transparent}
-.fiche-meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--texte-2)}
-.fiche-meta span+span::before{content:"·";margin-right:14px;color:var(--trait)}
-.titre-fiche{font-size:17px;margin-top:4px}
-.liste-ingredients{display:flex;flex-direction:column;border:1px solid var(--trait);border-radius:12px;background:var(--surface)}
-.liste-ingredients li{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-top:1px solid var(--trait);font-size:15px}
-.liste-ingredients li:first-child{border-top:0}
-.liste-ingredients b{white-space:nowrap}
-.etapes-recette{list-style:decimal;padding-left:24px;display:flex;flex-direction:column;gap:8px;line-height:1.5}
-.etapes-recette li::marker{font-weight:700}
-.apercu-ingredients{display:flex;flex-wrap:wrap;gap:6px;margin-top:-6px}
-.apercu-ingredients li{display:inline-flex;gap:6px;align-items:baseline;font-size:12.5px;padding:3px 10px;border-radius:999px;background:var(--ciel);color:var(--ciel-texte)}
-.apercu-ingredients li span{color:var(--encre)}
-.apercu-ingredients li.nouveau{background:var(--beurre);color:var(--beurre-texte)}
+.rang-recherche{display:flex;flex-wrap:wrap;gap:10px;flex:1 1 420px;justify-content:flex-end}
+.rang-recherche .champ:first-child{flex:0 1 240px}
+.rang-recherche .recherche{flex:1 1 220px}
+.cartes-recettes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.cartes-recettes li{display:flex}
+.carte-rec{display:flex;flex-direction:column;gap:6px;width:100%;padding:14px 16px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;text-align:left}
+.carte-rec:hover{border-color:var(--encre)}
+.carte-rec .surtitre{margin:0;font-size:11px}
+.carte-rec b{font-size:17px;line-height:1.2}
+.carte-rec .ligne-etiquettes{display:flex;flex-wrap:wrap;gap:4px}
+.rec-der{font-size:12px;color:var(--discret);margin-top:auto;padding-top:4px}
+.ligne-etiquettes{display:flex;flex-wrap:wrap;gap:6px}
+.ligne-etiquettes:empty{display:none}
+.rec-meta{font-size:14px;color:var(--texte-2)}
+.portions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.portions .btn.petit{width:44px;padding:0;font-size:20px}
+.portions b{min-width:110px;text-align:center}
+.portions small{color:var(--discret);font-size:13px}
+.ingredients{display:grid;border-top:1px solid var(--trait)}
+.ingredients li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;padding:7px 2px;border-bottom:1px solid var(--trait);font-size:15px}
+.ing-qte{font-weight:700;white-space:nowrap}
+.etapes{list-style:decimal;padding-left:24px;display:grid;gap:8px;font-size:15px;line-height:1.5}
+.etapes li::marker{font-weight:700}
+.choix-recettes{max-height:300px;overflow:auto;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:4px;margin-top:8px}
+.suggestions{display:grid;gap:6px}
+.choix-rec{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;min-height:48px}
+.choix-rec:hover{background:var(--sable)}
+.choix-rec:has(input:checked){background:var(--beurre)}
+.choix-rec input{width:20px;height:20px;accent-color:var(--encre);flex:none;margin:0}
+.choix-rec span{display:flex;flex-direction:column;min-width:0}
+.choix-rec b{font-size:15px;overflow-wrap:anywhere}
+.choix-rec small{font-size:12px;color:var(--discret)}
+.choix-rec.sugg{border:1px solid var(--trait);background:var(--surface)}
+.choix-rec.sugg:has(input:checked){background:var(--beurre);border-color:transparent}
+.prix-champs .champ{flex:1 1 90px}
+.ordre-rayons{display:grid;gap:4px}
+.ordre-rayons li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:10px;padding:4px 4px 4px 12px;font-size:14px}
 
-/* Avec ce qu'il me reste */
-.puces-frigo{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.puces-frigo li{display:inline-flex;align-items:center;gap:4px;padding:0 4px 0 14px;min-height:44px;border-radius:999px;background:var(--ciel);color:var(--ciel-texte);font-weight:700}
-.puces-frigo button{width:36px;height:36px;border:0;border-radius:50%;background:none;font-size:20px;color:inherit}
-.puces-frigo button:hover{background:var(--surface)}
-.suggestions-frigo .surtitre{margin:4px 0 6px}
-.resultats-restes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
-.reste-carte{display:flex;flex-direction:column;gap:8px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:14px 16px}
-.reste-carte .progres{flex:none;height:8px}
-.reste-carte .progres span{background:var(--jaune)}
-.reste-ont,.reste-manque{font-size:14px;color:var(--texte-2)}
-.reste-ont b,.reste-manque b{color:var(--encre)}
-.reste-carte .rang{margin-top:auto;display:flex;gap:8px}
+/* Historique */
+.vue-historique .prochains li{grid-template-columns:minmax(0,1fr) auto;padding:8px 8px 8px 14px}
+.semaines-passees{display:grid;gap:8px}
+.semaines-passees li{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px 14px}
+.semaines-passees .lien-ligne span{font-size:14px;color:var(--texte-2)}
 
 @media (max-width:1020px){
-  .planning{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grille-semaine{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media (max-width:720px){
-  .onglets{grid-template-columns:repeat(4,1fr)}
-  .planning{grid-template-columns:1fr;gap:10px}
-  .jour{display:grid;grid-template-columns:76px minmax(0,1fr) minmax(0,1fr);gap:8px;padding:10px}
-  .jour-titre{flex-direction:column;align-items:flex-start;gap:0;padding:2px 0}
-  .creneau{border-top:0;padding-top:0}
-  .nav-semaine .btn.petit{margin-left:auto}
-  .bilan-courses{position:sticky;top:60px;z-index:20;padding:10px 14px;border-radius:14px;box-shadow:0 12px 32px rgba(36,34,31,.10)}
-  .bc-progres>b{font-size:26px}
-  .bc-progres>span:last-child{font-size:13px}
-  .article-case{min-height:64px}
-  .grille-recettes,.resultats-restes{grid-template-columns:1fr}
-  .ajout-article .btn span{display:none}
-}
-@media (max-width:420px){
-  .jour{grid-template-columns:1fr 1fr}
-  .jour-titre{grid-column:1/-1;flex-direction:row;align-items:baseline;gap:6px}
+  .filtres{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;max-width:100%}
+  .filtre{flex:none;padding:0 12px;font-size:13px}
+  .choix-statut.quatre{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .choix-statut.trois{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tuile .surtitre{letter-spacing:.06em;padding-right:30px;overflow-wrap:anywhere}
+  .nav-semaine{justify-content:space-between}
+  .nav-lib{min-width:0;flex:1}
+  .nav-semaine .btn.lien{flex-basis:100%}
+  .grille-semaine{grid-template-columns:1fr;gap:8px}
+  .jour{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:start;gap:8px;padding:8px}
+  .jour-tete{flex-direction:column;align-items:flex-start;gap:0;padding-top:4px}
+  .jour-tete em{display:none}
+  .j-long{display:none}
+  .j-court{display:inline}
+  .jour-cases{grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
+  .creneau{min-height:80px;padding:7px 8px}
+  .form-libre .champ:first-child,.form-libre .champ:nth-child(2){flex:1 1 100%}
+  .form-libre .btn{flex:1}
+  .rayons{columns:1}
+  .rayon{padding:8px 8px 2px}
+  .rang-recherche{flex:1 1 auto}
+  .rang-recherche .champ:first-child{flex:1 1 100%}
+  .ingredients li{grid-template-columns:96px minmax(0,1fr)}
+  .progression .btn.lien{margin-left:0}
+  .deja-liste{grid-template-columns:1fr}
 }
 
-/* Impression : menu de la semaine et liste de courses */
-#impression{display:none}
+/* Impression : la semaine ou la liste, sans l'interface */
 @media print{
-  @page{margin:14mm}
-  body{background:#fff;padding:0!important}
-  body.impr-fiche>*:not(#impression){display:none!important}
-  body.impr-fiche #impression{display:block;font-size:11pt;color:#000}
-  #impression header{border-bottom:1px solid #999;padding-bottom:8px;margin-bottom:10px}
-  #impression header p{font-size:10pt}
-  #impression h1{font-size:20pt;margin:4px 0}
-  #impression h2{font-size:14pt;margin:16px 0 6px}
-  #impression h3{font-size:11pt;margin:0 0 3px}
-  #impression table{width:100%;border-collapse:collapse;font-size:10pt}
-  #impression th,#impression td{border:1px solid #bbb;padding:5px 7px;text-align:left;vertical-align:top}
-  #impression th{background:#eee}
-  #impression tr{break-inside:avoid}
-  .impr-colonnes{columns:3;column-gap:8mm;font-size:10pt}
-  .impr-colonnes section{break-inside:avoid;margin-bottom:4mm}
+  .barre,.bandeau-demo,.toast,.vue-tete .actions,.nav-semaine .btn,.form-libre,.progression .btn,.deja,.pied-semaine,.tuiles,.avertissement{display:none!important}
+  body{background:#fff}
+  .vue{padding:0;max-width:none}
+  .nav-semaine{margin:0 0 8px}
+  .grille-semaine{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+  .creneau{min-height:0;border-color:#999}
+  .rayons{columns:2}
+  .rayon,.jour{break-inside:avoid;border-color:#999}
+  .art-case input{width:16px;height:16px}
 }

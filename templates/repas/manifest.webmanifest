@@ -1,7 +1,7 @@
 {
-  "name": "Repas de la semaine · QME",
+  "name": "Repas de la semaine et liste de courses · QME",
   "short_name": "Repas",
-  "description": "Tes repas du midi et du soir, la liste de courses rangée par rayon à cocher au magasin, tes recettes et ce qu'on cuisine avec ce qu'il reste.",
+  "description": "Les repas de la semaine et la liste de courses calculée, rangée par rayon, sans ce que tu as déjà.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

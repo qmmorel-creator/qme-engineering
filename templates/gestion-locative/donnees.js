@@ -1,106 +1,76 @@
-// Base intégrée de la gestion locative : types de bail, catégories de dépenses, modèles de textes, repères.
-// Contenu original rédigé pour QME. AUCUN indice IRL n'est intégré : l'Insee en publie un chaque trimestre,
-// l'utilisateur saisit les valeurs dont il a besoin (onglet Révisions). Repères relevés le 14/11/2026 sur
-// service-public.gouv.fr (date de vérification de chaque page indiquée) : à revérifier chaque année.
+// Base intégrée de la gestion locative : réglages par défaut, catégories de dépenses, paliers de relance,
+// modèles de quittance et de relance, repères et sources. Contenu original rédigé pour QME, aucune logique ici.
+// AUCUN indice de référence des loyers (IRL) n'est intégré : il se périme chaque trimestre. L'utilisateur
+// saisit les valeurs publiées par l'Insee. Les règles légales sont des PARAMÈTRES relevés le 14/11/2026 sur
+// service-public.gouv.fr et Légifrance (loi n° 89-462 du 6 juillet 1989), modifiables dans les Réglages.
 (() => {
   window.BASE = {
     version: '2026-11-14',
-    verifieLe: '2026-11-14',
 
     reglages: {
-      bailleurNom: '',
-      bailleurAdresse: '',
-      zoneIrl: 'metropole',        // metropole, corse, dom : l'Insee publie une valeur par zone
-      relances: [5, 15, 30],       // paliers de relance, en jours de retard après l'échéance
-      prorata: true,               // premier et dernier mois au prorata des jours
-      alerteFinBail: 90,           // jours avant une fin de bail prévue
+      tolerance: 5,            // jours après l'échéance avant qu'un loyer non payé soit « en retard »
+      paliers: [5, 15, 30],    // relance 1, 2, 3 : jours de retard depuis l'échéance la plus ancienne non payée
+      depotMoisNu: 1,          // dépôt de garantie au plus : 1 mois de loyer hors charges en location nue (art. 22)
+      depotMoisMeuble: 2,      // 2 mois en meublé (art. 25-6)
+      restitutionConforme: 1,  // restitution en 1 mois si l'état des lieux de sortie est conforme à l'entrée
+      restitutionNonConforme: 2, // 2 mois sinon
+      penaliteRetardPct: 10,   // 10 % du loyer mensuel hors charges par mois de retard commencé
+      dateGelDpe: '2022-08-24', // révision interdite pour un logement classé F ou G (métropole), bail signé ou renouvelé depuis
+      limiteRevisionMois: 12,  // la révision se demande dans l'année qui suit sa date ; au-delà, elle est perdue
+      verifieLe: '2026-11-14',
     },
 
-    zones: [['metropole', 'Métropole'], ['corse', 'Corse'], ['dom', 'Outre-mer (DOM)']],
-
-    // Types de bail. depotMax en mois de loyer hors charges (null = interdit).
-    typesBail: {
-      vide: { nom: 'Location vide', depotMax: 1, revision: true, charges: 'provision' },
-      meuble: { nom: 'Location meublée', depotMax: 2, revision: true, charges: 'provision' },
-      mobilite: { nom: 'Bail mobilité', depotMax: null, revision: false, charges: 'forfait' },
-    },
-
-    typesBien: ['Appartement', 'Maison', 'Studio', 'Chambre', 'Parking ou box', 'Autre'],
-
-    // Catégories de dépenses du propriétaire ; « recuperable » est une proposition, modifiable à chaque dépense.
+    // Catégories des dépenses payées par le bailleur. « recup » : part récupérable proposée par défaut
+    // (1 = tout, 0 = rien, null = à saisir d'après le décompte). Repères, pas une liste légale complète.
     categories: [
-      { id: 'taxe-fonciere', nom: 'Taxe foncière', recuperable: false },
-      { id: 'teom', nom: 'Taxe d\'enlèvement des ordures ménagères', recuperable: true },
-      { id: 'assurance', nom: 'Assurance propriétaire non occupant', recuperable: false },
-      { id: 'copro-recup', nom: 'Charges de copropriété récupérables', recuperable: true },
-      { id: 'copro', nom: 'Charges de copropriété non récupérables', recuperable: false },
-      { id: 'eau', nom: 'Eau', recuperable: true },
-      { id: 'chauffage', nom: 'Chauffage collectif', recuperable: true },
-      { id: 'parties-communes', nom: 'Entretien des parties communes', recuperable: true },
-      { id: 'travaux', nom: 'Travaux et réparations', recuperable: false },
-      { id: 'entretien', nom: 'Entretien courant (chaudière, etc.)', recuperable: false },
-      { id: 'gestion', nom: 'Frais de gestion', recuperable: false },
-      { id: 'interets', nom: 'Intérêts d\'emprunt', recuperable: false },
-      { id: 'banque', nom: 'Frais bancaires', recuperable: false },
-      { id: 'autre', nom: 'Autre', recuperable: false },
+      { id: 'copro', nom: 'Charges de copropriété', recup: null, aide: 'La part récupérable sur le locataire figure sur le décompte annuel du syndic.' },
+      { id: 'taxeFonciere', nom: 'Taxe foncière', recup: 0, aide: 'Hors taxe d\'enlèvement des ordures ménagères, à saisir à part : elle est récupérable.' },
+      { id: 'teom', nom: 'Taxe d\'ordures ménagères', recup: 1, aide: 'Indiquée sur l\'avis de taxe foncière ; récupérable sur le locataire.' },
+      { id: 'eau', nom: 'Eau, chauffage collectif', recup: 1, aide: 'Consommations collectives refacturées.' },
+      { id: 'assurance', nom: 'Assurance du bailleur', recup: 0, aide: 'Assurance propriétaire non occupant, garantie des loyers impayés.' },
+      { id: 'travaux', nom: 'Entretien et réparations', recup: 0, aide: 'Menues réparations à la charge du locataire : à ne pas compter ici.' },
+      { id: 'interets', nom: 'Intérêts d\'emprunt', recup: 0, aide: 'Montant annuel figurant sur le tableau d\'amortissement.' },
+      { id: 'assuranceEmprunt', nom: 'Assurance d\'emprunt', recup: 0, aide: '' },
+      { id: 'gestion', nom: 'Frais de gestion', recup: 0, aide: 'Agence, frais bancaires, comptabilité.' },
+      { id: 'autre', nom: 'Autre dépense', recup: 0, aide: '' },
+    ],
+
+    modesPaiement: [['virement', 'Virement'], ['prelevement', 'Prélèvement'], ['cheque', 'Chèque'], ['especes', 'Espèces'], ['autre', 'Autre']],
+
+    // Modèles de relance par palier (à copier, rien n'est envoyé). Variables : {locataire}, {adresse},
+    // {montant}, {mois}, {depuis}, {bailleur}, {date}, {detail}. MODÈLES À VÉRIFIER, pas des documents juridiques certifiés.
+    relances: [
+      { titre: 'Rappel amical', objet: 'Loyer de {mois}', texte: 'Bonjour {locataire},\n\nSauf erreur de ma part, je n\'ai pas encore reçu le règlement du loyer de {mois} pour le logement situé {adresse}. Il reste {montant} à régler.\n\n{detail}\n\nS\'il s\'agit d\'un oubli, merci de faire le nécessaire dans les prochains jours. Si le paiement est déjà parti, ne tenez pas compte de ce message. En cas de difficulté, parlons-en : une solution est toujours plus simple à trouver tôt.\n\nBien cordialement,\n{bailleur}' },
+      { titre: 'Relance', objet: 'Relance : loyers impayés', texte: 'Bonjour {locataire},\n\nMalgré mon précédent message, les sommes suivantes restent impayées pour le logement situé {adresse} :\n\n{detail}\n\nTotal dû au {date} : {montant}, avec un retard depuis le {depuis}.\n\nJe vous remercie de régulariser la situation sous huit jours, ou de me proposer un échéancier de paiement par écrit.\n\nBien cordialement,\n{bailleur}' },
+      { titre: 'Mise en demeure', objet: 'Mise en demeure de payer', texte: 'Madame, Monsieur {locataire},\n\nLogement situé {adresse}.\n\nÀ ce jour ({date}), les loyers et charges suivants restent impayés malgré mes relances :\n\n{detail}\n\nTotal dû : {montant}, en retard depuis le {depuis}.\n\nPar la présente, je vous mets en demeure de régler cette somme sous quinze jours à compter de la réception de ce courrier. À défaut, je me verrai contraint d\'engager les démarches prévues par le bail et par la loi pour obtenir le paiement, en commençant par informer la caution le cas échéant.\n\nVeuillez agréer, Madame, Monsieur, mes salutations distinguées.\n\n{bailleur}', note: 'Courrier à envoyer toi-même en recommandé avec accusé de réception. La suite (caution, commissaire de justice, commandement de payer, clause résolutoire) dépend de ton bail et de la loi : renseigne-toi auprès d\'un professionnel ou de l\'ADIL de ton département avant d\'aller plus loin.' },
     ],
 
     conseils: [
-      ['Une échéance par mois', 'Chaque bail crée ses échéances (loyer + charges) au jour prévu. Note chaque paiement : les retards et les relances se calculent.'],
-      ['La quittance en un geste', 'Quand une échéance est payée, la quittance est prête : à imprimer ou à copier. Paiement partiel : un reçu.'],
-      ['La révision au bon moment', 'Saisis les indices IRL publiés par l\'Insee : le nouveau loyer et la date limite de la demande se calculent.'],
-      ['Ce que rapporte chaque bien', 'Note tes dépenses (taxe foncière, assurance, travaux) : rendement brut et net, et régularisation des charges.'],
+      ['Un bail, un compte', 'Chaque mois, le loyer et les provisions dus s\'ajoutent ; chaque paiement les solde dans l\'ordre. Les retards se voient tout seuls.'],
+      ['L\'indice, c\'est toi qui le saisis', 'L\'IRL est publié chaque trimestre par l\'Insee. Recopie la valeur du trimestre de ton bail : l\'outil calcule le nouveau loyer.'],
+      ['Les charges réelles', 'Saisis tes dépenses et leur part récupérable : la régularisation annuelle compare les provisions au réel.'],
+      ['Le minimum sur tes locataires', 'Un nom et, si tu veux, un contact. Aucune pièce justificative n\'est stockée ici.'],
     ],
 
-    // Modèles de textes. Variables entre accolades, remplacées par l'application. Rien n'est envoyé : à copier.
-    modeles: {
-      rappel: {
-        nom: 'Rappel amiable',
-        texte: 'Bonjour {locataire},\n\nSauf erreur de ma part, le loyer de {mois} ({du}), dû le {echeance}, ne m\'est pas encore parvenu en totalité : il reste {reste} à régler.\n\nIl s\'agit peut-être d\'un oubli. Pouvez-vous faire le nécessaire, ou me prévenir si vous rencontrez une difficulté ?\n\nMerci,\n{bailleur}',
-      },
-      relance: {
-        nom: 'Relance',
-        texte: 'Bonjour {locataire},\n\nJe reviens vers vous au sujet du loyer de {mois} du logement {bien} : il reste {reste} à régler depuis le {echeance}, soit {jours} jours de retard.\n\nMerci de régulariser la situation sous 8 jours. Si vous rencontrez des difficultés de paiement, parlons-en rapidement pour trouver une solution.\n\nCordialement,\n{bailleur}',
-      },
-      miseEnDemeure: {
-        nom: 'Mise en demeure',
-        texte: '{bailleur}\n{bailleurAdresse}\n\n{locataire}\n{bienAdresse}\n\nLe {aujourdhui}\n\nObjet : mise en demeure de payer\n\nMadame, Monsieur,\n\nMalgré mes précédentes relances, vous restez redevable de la somme de {resteTotal} au titre des loyers et charges du logement situé {bienAdresse} :\n{detailImpayes}\n\nJe vous mets en demeure de régler cette somme dans un délai de 8 jours à compter de la réception de ce courrier.\n\nÀ défaut, je me verrai contraint d\'engager les démarches prévues par le bail et par la loi pour recouvrer ces sommes.\n\nVeuillez agréer, Madame, Monsieur, mes salutations distinguées.\n\n{bailleur}',
-      },
-      revision: {
-        nom: 'Demande de révision du loyer',
-        texte: '{bailleur}\n{bailleurAdresse}\n\n{locataire}\n{bienAdresse}\n\nLe {aujourdhui}\n\nObjet : révision annuelle du loyer\n\nMadame, Monsieur,\n\nConformément à la clause de révision de votre bail, le loyer hors charges du logement situé {bienAdresse} est révisé à la date du {dateRevision}, en fonction de l\'indice de référence des loyers (IRL) publié par l\'Insee :\n\n- loyer actuel hors charges : {ancienLoyer}\n- IRL du {trimestreNouveau} : {irlNouveau}\n- IRL du {trimestreAncien} : {irlAncien}\n- nouveau loyer : {ancienLoyer} × {irlNouveau} / {irlAncien} = {nouveauLoyer}\n\nLe nouveau loyer s\'applique à partir du {dateEffet}. Les charges restent inchangées ({charges} par mois).\n\nVeuillez agréer, Madame, Monsieur, mes salutations distinguées.\n\n{bailleur}',
-      },
-      regularisation: {
-        nom: 'Décompte de régularisation des charges',
-        texte: 'Bonjour {locataire},\n\nVoici le décompte de régularisation des charges de l\'année {annee} pour le logement {bien} (du {debut} au {fin}) :\n\n{detailCharges}\n\nCharges récupérables réelles (au prorata de votre occupation, {prorata}) : {reel}\nProvisions versées : {provisions}\n\n{conclusion}\n\nLes justificatifs sont à votre disposition sur simple demande.\n\nCordialement,\n{bailleur}',
-      },
-      depot: {
-        nom: 'Restitution du dépôt de garantie',
-        texte: 'Bonjour {locataire},\n\nSuite à la remise des clés du logement {bien} le {remiseCles}, voici le décompte de votre dépôt de garantie :\n\n- dépôt versé : {depot}\n{detailRetenues}\n- montant restitué : {restitue}\n\n{justificatifs}\n\nCordialement,\n{bailleur}',
-      },
-    },
-
-    // Repères légaux (droit français, logement loué comme résidence principale). Outil d'aide : le bail et
-    // les textes font foi ; l'ADIL de ton département renseigne gratuitement.
+    // Repères (droit français, loi du 6 juillet 1989). Outil d'aide : le bail et la loi font foi.
     reperes: [
-      ['Révision annuelle', 'Le loyer ne peut être révisé qu\'une fois par an et seulement si le bail le prévoit. Nouveau loyer = loyer actuel × IRL du trimestre de référence ÷ IRL du même trimestre de l\'année précédente, arrondi au centime (service-public.gouv.fr, F1311, vérifiée le 08/08/2025).'],
-      ['Un an pour demander', 'La révision n\'est pas automatique : elle doit être demandée au locataire dans l\'année qui suit la date de révision, et ne s\'applique qu\'à partir de la demande, sans effet rétroactif. Passé un an, la révision de l\'année est perdue (F1311).'],
-      ['Révision interdite', 'Révision interdite en bail mobilité, et en métropole pour un logement classé F ou G au DPE dont le bail a été signé, renouvelé ou reconduit depuis le 24/08/2022 (01/07/2024 dans les DOM) (F1311).'],
-      ['IRL', 'L\'indice de référence des loyers est publié chaque trimestre par l\'Insee, avec une valeur pour la métropole, la Corse et les DOM (service-public.gouv.fr, F13723, vérifiée le 15/10/2026). L\'outil n\'intègre aucune valeur : saisis celles publiées.'],
-      ['Quittance', 'Le bailleur remet gratuitement une quittance au locataire qui la demande ; elle détaille le loyer et les charges. Paiement partiel : un reçu. Envoi par e-mail seulement avec l\'accord du locataire (service-public.gouv.fr, F35247, vérifiée le 25/08/2025).'],
-      ['Dépôt de garantie', 'Au plus 1 mois de loyer hors charges en location vide, 2 mois en meublé, interdit en bail mobilité. Restitution dans le mois qui suit la remise des clés si l\'état des lieux de sortie est conforme à celui d\'entrée, dans les 2 mois sinon ; en retard, 10 % du loyer mensuel hors charges par mois de retard commencé, après mise en demeure du locataire (service-public.gouv.fr, F31269, vérifiée le 09/06/2026).'],
-      ['Charges', 'Provisions mensuelles régularisées au moins une fois par an sur les dépenses réelles ; décompte par nature de charges un mois avant, justificatifs tenus à disposition 6 mois. Un forfait de charges (meublé, bail mobilité) ne se régularise pas. Liste des charges récupérables : décret n° 87-713 (service-public.gouv.fr, F947, vérifiée le 15/04/2025).'],
-      ['Pas de frais de retard', 'Le bailleur ne peut pas facturer d\'amende ni de pénalité en cas de retard de loyer : une telle clause du bail est abusive (service-public.gouv.fr, F2889, vérifiée le 15/07/2026). Les modèles de relance n\'en contiennent pas.'],
+      ['Quittance', 'Le bailleur remet gratuitement une quittance au locataire qui la demande, en distinguant le loyer et les charges ; aucun frais ne peut être facturé pour l\'avis d\'échéance ou la quittance. En cas de paiement partiel, il remet un reçu. Envoi par voie électronique possible avec l\'accord exprès du locataire (art. 21).'],
+      ['Révision du loyer', 'Une fois par an, si le bail prévoit une clause de révision : loyer × IRL du trimestre de référence de l\'année ÷ IRL du même trimestre de l\'année précédente. Trimestre de référence : celui du bail, à défaut le dernier publié à la signature. La révision n\'est pas automatique ; elle se demande dans l\'année qui suit sa date, prend effet à la date de la demande, sans rétroactivité ; au-delà d\'un an, elle est perdue pour cette année (art. 17-1).'],
+      ['Logement classé F ou G', 'En métropole, la révision est interdite pour un logement classé F ou G au diagnostic de performance énergétique si le bail a été signé, renouvelé ou tacitement reconduit depuis le 24 août 2022 (1er juillet 2024 en outre-mer).'],
+      ['Dépôt de garantie', 'Au plus un mois de loyer hors charges en location nue, deux mois en meublé (si le loyer est payé d\'avance au mois ou au bimestre). Restitué dans le mois de la remise des clés si l\'état des lieux de sortie est conforme, deux mois sinon ; au-delà, 10 % du loyer mensuel hors charges par mois de retard commencé (art. 22 et 25-6).'],
+      ['Charges', 'Location nue : provisions mensuelles et régularisation annuelle sur le réel ; décompte par nature de charges un mois avant, justificatifs tenus à disposition six mois. En meublé, le bail peut prévoir un forfait, qui ne se régularise pas. Régularisation tardive : le locataire peut demander un paiement en douze mois (art. 23 et 25-10).'],
+      ['Encadrement des loyers', 'Dans certaines communes, le loyer est plafonné par un loyer de référence fixé par arrêté préfectoral. L\'outil ne le calcule pas : vérifie auprès de ta commune ou de l\'ADIL.'],
     ],
     sources: [
-      ['Révision du loyer en cours de bail (F1311, vérifiée le 08/08/2025)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F1311'],
-      ['Indice de référence des loyers (F13723, vérifiée le 15/10/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F13723'],
-      ['Quittance de loyer : comment l\'obtenir ? (F35247, vérifiée le 25/08/2025)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F35247'],
-      ['Dépôt de garantie (F31269, vérifiée le 09/06/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F31269'],
-      ['Charges locatives (F947, vérifiée le 15/04/2025)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F947'],
-      ['Frais de retard de paiement du loyer (F2889, vérifiée le 15/07/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F2889'],
-      ['Valeurs de l\'IRL publiées par l\'Insee', 'https://www.insee.fr/fr/statistiques/serie/001515333'],
+      ['Révision du loyer (service-public.gouv.fr, fiche F1311, vérifiée le 08/08/2025 par l\'éditeur, consultée le 14/11/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F1311'],
+      ['Dépôt de garantie (service-public.gouv.fr, fiche F31269, consultée le 14/11/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F31269'],
+      ['Charges locatives (service-public.gouv.fr, fiche F947, consultée le 14/11/2026)', 'https://www.service-public.gouv.fr/particuliers/vosdroits/F947'],
+      ['Loi n° 89-462 du 6 juillet 1989, art. 21 (quittance gratuite, reçu en cas de paiement partiel)', 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028806698/'],
+      ['Indice de référence des loyers : publication trimestrielle de l\'Insee (à recopier dans l\'outil)', 'insee.fr, rubrique « Indice de référence des loyers »'],
     ],
-    sourceIrl: 'Aucun indice intégré : l\'Insee publie l\'IRL chaque trimestre. Saisis les valeurs de ta zone (métropole, Corse ou DOM) dont tes baux ont besoin. Repères relevés le 14/11/2026.',
+    sourceRegles: 'Règles relevées le 14/11/2026 sur service-public.gouv.fr (fiches F1311, F31269, F947) et Légifrance (loi du 6 juillet 1989, art. 21). Elles peuvent changer : vérifie-les avant de t\'en servir.',
+
+    // Mentions fiscales : aucun calcul d'impôt.
+    fiscal: 'Récapitulatif pour t\'aider à préparer ta déclaration, pas un calcul d\'impôt ni un conseil fiscal ou juridique. Le régime (micro-foncier ou réel pour la location nue, micro-BIC ou réel pour la location meublée, statut de loueur en meublé) et ce qui est déductible se vérifient sur impots.gouv.fr ou auprès d\'un professionnel.',
   };
 })();

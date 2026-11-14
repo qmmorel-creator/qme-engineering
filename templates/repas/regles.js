@@ -1,17 +1,15 @@
-// Repas de la semaine QME · règles métier pures (aucun accès au DOM ni au stockage).
+// Repas de la semaine et liste de courses QME · règles métier pures (aucun accès au DOM ni au stockage).
 // Chargé tel quel par le navigateur (window.RPS) et par les tests Node (vm).
-// Dates locales « AAAA-MM-JJ ». Semaine = du lundi au dimanche. Quantités en unité de base de l'ingrédient.
-//
-// Moteur de liste de courses (partageable avec le template Nutrition) : listeCourses(lignes, catalogue)
-// ne connaît que des lignes { ingredient, qte, unite, source } et un catalogue d'ingrédients
-// { id, nom, rayon, unite, poids?, u?, placard?, cuillere?, achat? } ; il ignore tout du planning.
+// Dates locales « AAAA-MM-JJ » ; une semaine est identifiée par la date de son lundi. Une case de la
+// semaine est « j-repas » (j = 0 lundi … 6 dimanche, repas = midi ou soir).
+// Le moteur de liste de courses (fusionner, appliquerStock, regrouper) ne dépend que d'une liste
+// d'ingrédients {nom, qte, unite, rayon} : il peut servir à un autre template.
 (function (racine) {
   'use strict';
 
-  const MOMENTS = ['midi', 'soir'];
-  const LIB_MOMENT = { midi: 'Midi', soir: 'Soir' };
   const JOURS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-  const SAISONS = { 1: 'hi', 2: 'hi', 3: 'pr', 4: 'pr', 5: 'pr', 6: 'et', 7: 'et', 8: 'et', 9: 'au', 10: 'au', 11: 'au', 12: 'hi' };
+  const REPAS = [['midi', 'Midi'], ['soir', 'Soir']];
+  const TYPES_CASE = ['recette', 'restes', 'dehors', 'note'];
 
   // ---------- Dates ----------
   const deux = (n) => String(n).padStart(2, '0');
@@ -20,487 +18,484 @@
   const ajout = (s, n) => { const d = versDate(s); d.setDate(d.getDate() + n); return iso(d); };
   const ecart = (de, a) => Math.round((versDate(a) - versDate(de)) / 86400000);
   const estDate = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && iso(versDate(s)) === s;
-  // Lundi de la semaine d'une date (la semaine commence le lundi).
-  const lundi = (s) => ajout(s, -((versDate(s).getDay() + 6) % 7));
-  const joursSemaine = (l) => Array.from({ length: 7 }, (_, k) => ajout(l, k));
-  const indiceJour = (s) => (versDate(s).getDay() + 6) % 7; // 0 = lundi
-  const saisonDe = (s) => SAISONS[versDate(s).getMonth() + 1];
+  const lundiDe = (s) => ajout(s, -((versDate(s).getDay() + 6) % 7));
+  // Saison météorologique : mars-mai printemps, juin-août été, septembre-novembre automne, décembre-février hiver.
+  const saisonDe = (s) => 'hhpppeeeaaah'[Number(s.slice(5, 7)) - 1] || 'h';
+  const copie = (o) => JSON.parse(JSON.stringify(o));
+  const cleCase = (j, r) => `${j}-${r}`;
+  const jourCase = (cle) => Number(String(cle).split('-')[0]);
+  const repasCase = (cle) => String(cle).split('-')[1];
+  const dateCase = (lundi, cle) => ajout(lundi, jourCase(cle));
+  // Ordre chronologique des cases d'une semaine (midi avant soir).
+  const ordreCase = (a, b) => jourCase(a) - jourCase(b) || REPAS.findIndex(([k]) => k === repasCase(a)) - REPAS.findIndex(([k]) => k === repasCase(b));
 
-  // ---------- Texte ----------
-  const sansAccents = (s) => String(s ?? '').toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/[’`]/g, '\'').normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
-  const singulierMot = (m) => (m.length > 3 && /[sx]$/.test(m) && !/ss$/.test(m) ? m.slice(0, -1) : m);
-  // Forme de comparaison : minuscules, sans accents, chaque mot au singulier, sans article en tête.
-  const cleNom = (s) => sansAccents(s).replace(/^(?:de la |de l'|des |du |de |d'|la |le |les |l'|un |une )/, '').split(/\s+/).filter(Boolean).map(singulierMot).join(' ');
-  const nouvelId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+  // ---------- Nombres ----------
+  const arrondi = (x, pas = 0.01) => Math.round((x + Number.EPSILON) / pas) * pas;
+  const nombre = (x, dec = 2) => { const v = Math.round((x + Number.EPSILON) * 10 ** dec) / 10 ** dec; return String(v).replace('.', ',').replace('-', '−'); };
+  const plafondPas = (x, pas) => Math.ceil(x / pas - 1e-9) * pas;
+  // « 2,5 », « 1/2 », « ½ » → nombre ; null si vide ou illisible.
+  function lireNombre(saisie) {
+    let s = String(saisie ?? '').trim().replace(/[\s ]/g, '').replace(',', '.');
+    const fractions = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3 };
+    if (fractions[s] !== undefined) return fractions[s];
+    let m = s.match(/^(\d+)([½¼¾⅓⅔])$/);
+    if (m) return Number(m[1]) + fractions[m[2]];
+    m = s.match(/^(\d+)\/(\d+)$/);
+    if (m) return Number(m[2]) ? Number(m[1]) / Number(m[2]) : null;
+    if (!/^\d+(\.\d+)?$/.test(s)) return null;
+    return Number(s);
+  }
+
+  // ---------- Textes ----------
+  // Clé de comparaison d'un nom d'ingrédient : minuscules, sans accents ni espaces superflus.
+  const cleNom = (s) => String(s ?? '').trim().toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’`]/g, '\'').replace(/\s+/g, ' ');
+  const majuscule = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 
   // ---------- Unités ----------
-  // dim : masse (g), volume (ml), piece (pc). f : facteur vers l'unité de base de la dimension.
+  // Dimension et facteur vers l'unité de base : masse en grammes (m), volume en millilitres (v),
+  // cuillères en cuillères à café (cuil : 1 c. à s. = 3 c. à c.), le reste à l'unité.
   const UNITES = {
-    g: { dim: 'masse', f: 1 }, kg: { dim: 'masse', f: 1000 },
-    ml: { dim: 'volume', f: 1 }, cl: { dim: 'volume', f: 10 }, dl: { dim: 'volume', f: 100 }, l: { dim: 'volume', f: 1000 },
-    cas: { dim: 'volume', f: 15 }, cac: { dim: 'volume', f: 5 },
-    pc: { dim: 'piece', f: 1 },
+    g: ['m', 1], kg: ['m', 1000], ml: ['v', 1], cl: ['v', 10], l: ['v', 1000],
+    'pièce': ['pièce', 1], 'c. à s.': ['cuil', 3], 'c. à c.': ['cuil', 1], gousse: ['gousse', 1], botte: ['botte', 1],
+    tranche: ['tranche', 1], 'pincée': ['pincée', 1], brin: ['brin', 1], feuille: ['feuille', 1], cube: ['cube', 1],
+    sachet: ['sachet', 1], 'boîte': ['boîte', 1], paquet: ['paquet', 1],
   };
-  const DIM_BASE = { g: 'masse', ml: 'volume', pc: 'piece' };
-  const dimIngredient = (ing) => (ing && ing.unite ? DIM_BASE[ing.unite] || null : null);
-
-  // Convertit une quantité saisie dans une unité vers la dimension de l'ingrédient quand c'est possible
-  // (pièces ↔ grammes avec le poids moyen d'une pièce). Sinon, garde sa propre dimension : la ligne de
-  // courses reste séparée plutôt que d'additionner des grammes et des pièces.
-  function versBase(qte, unite, ing) {
-    const dimI = dimIngredient(ing);
-    if (qte === null || qte === undefined || !Number.isFinite(Number(qte))) return { dim: null, qte: null };
-    const u = UNITES[unite || ing?.unite] || null;
-    if (!u) return { dim: dimI, qte: Number(qte) };
-    let v = Number(qte) * u.f;
-    if (!dimI || u.dim === dimI) return { dim: u.dim, qte: v };
-    if (ing.poids > 0 && u.dim === 'masse' && dimI === 'piece') return { dim: 'piece', qte: v / ing.poids };
-    if (ing.poids > 0 && u.dim === 'piece' && dimI === 'masse') return { dim: 'masse', qte: v * ing.poids };
-    return { dim: u.dim, qte: v };
+  const LISTE_UNITES = Object.keys(UNITES);
+  const ALIAS = {
+    g: 'g', gr: 'g', gramme: 'g', grammes: 'g', kg: 'kg', kilo: 'kg', kilos: 'kg', ml: 'ml', cl: 'cl', l: 'l', litre: 'l', litres: 'l',
+    'pièce': 'pièce', 'pièces': 'pièce', piece: 'pièce', pieces: 'pièce', pc: 'pièce', pcs: 'pièce',
+    'c. à s.': 'c. à s.', 'c.à.s.': 'c. à s.', 'c.à.s': 'c. à s.', 'c. a s.': 'c. à s.', cs: 'c. à s.', 'càs': 'c. à s.', cas: 'c. à s.',
+    'cuillère à soupe': 'c. à s.', 'cuillères à soupe': 'c. à s.', 'cuillere a soupe': 'c. à s.', 'cuilleres a soupe': 'c. à s.', 'cuil. à soupe': 'c. à s.',
+    'c. à c.': 'c. à c.', 'c.à.c.': 'c. à c.', 'c.à.c': 'c. à c.', 'c. a c.': 'c. à c.', cc: 'c. à c.', 'càc': 'c. à c.', cac: 'c. à c.',
+    'cuillère à café': 'c. à c.', 'cuillères à café': 'c. à c.', 'cuillere a cafe': 'c. à c.', 'cuilleres a cafe': 'c. à c.', 'cuil. à café': 'c. à c.',
+    gousse: 'gousse', gousses: 'gousse', botte: 'botte', bottes: 'botte', tranche: 'tranche', tranches: 'tranche',
+    'pincée': 'pincée', 'pincées': 'pincée', pincee: 'pincée', pincees: 'pincée', brin: 'brin', brins: 'brin',
+    feuille: 'feuille', feuilles: 'feuille', cube: 'cube', cubes: 'cube', sachet: 'sachet', sachets: 'sachet',
+    'boîte': 'boîte', 'boîtes': 'boîte', boite: 'boîte', boites: 'boîte', paquet: 'paquet', paquets: 'paquet',
+  };
+  const ALIAS_TRIES = Object.keys(ALIAS).sort((a, b) => b.length - a.length);
+  const uniteValide = (u) => (UNITES[u] ? u : 'pièce');
+  // Quantité exprimée dans l'unité de base de sa dimension. Sans quantité : dimension « sans ».
+  function versBase(qte, unite) {
+    if (qte === null || qte === undefined || !(qte > 0)) return { dim: 'sans', val: 0 };
+    const [dim, f] = UNITES[uniteValide(unite)];
+    return { dim, val: qte * f };
   }
-
-  // Arrondi d'achat : pièces entières (on n'achète pas 2,4 oignons), grammes et millilitres arrondis au-dessus.
-  function arrondiAchat(qte, dim) {
-    if (qte === null || !(qte > 0)) return qte;
-    const plafond = (x, pas) => Math.ceil(x / pas - 1e-9) * pas;
-    if (dim === 'piece') return plafond(qte, 1);
-    if (qte >= 1000) return plafond(qte, 50);
-    if (qte >= 100) return plafond(qte, 10);
-    return plafond(qte, 5);
+  const PLURIELS = { gousse: 'gousses', botte: 'bottes', tranche: 'tranches', 'pincée': 'pincées', brin: 'brins', feuille: 'feuilles', cube: 'cubes', sachet: 'sachets', 'boîte': 'boîtes', paquet: 'paquets' };
+  const COMPTES = ['pièce', 'gousse', 'botte', 'tranche', 'pincée', 'brin', 'feuille', 'cube', 'sachet', 'boîte', 'paquet'];
+  // Arrondi pour les courses : on achète un peu plus, jamais moins.
+  function arrondiCourses(dim, val) {
+    if (!(val > 0)) return 0;
+    if (dim === 'm' || dim === 'v') return val < 100 ? plafondPas(val, 5) : val < 1000 ? plafondPas(val, 10) : plafondPas(val, 50);
+    if (dim === 'cuil') return val >= 3 ? plafondPas(val / 3, 0.5) * 3 : plafondPas(val, 0.5);
+    return Math.ceil(val - 1e-9);
   }
-
-  const nombre = (n) => String(Math.round(n * 100) / 100).replace('.', ',');
-  // Quarts lisibles pour les recettes : 0,5 → ½, 1,25 → 1 ¼.
-  function fraction(n) {
-    const q = Math.round(n * 4) / 4;
-    if (q === 0) return n > 0 ? '¼' : '0';
-    const ent = Math.floor(q); const reste = q - ent;
-    const f = { 0.25: '¼', 0.5: '½', 0.75: '¾' }[reste] || '';
-    return ent ? `${ent}${f ? ` ${f}` : ''}` : f;
+  // Arrondi pour l'affichage d'une recette mise à l'échelle.
+  function arrondiRecette(dim, val) {
+    if (!(val > 0)) return 0;
+    if (dim === 'm' || dim === 'v') return val < 20 ? Math.max(1, Math.round(val)) : val < 1000 ? Math.round(val / 5) * 5 : Math.round(val / 10) * 10;
+    if (dim === 'cuil') return val >= 3 ? Math.max(0.5, Math.round(val / 1.5) / 2) * 3 : Math.max(0.5, Math.round(val * 2) / 2);
+    return Math.max(0.5, Math.round(val * 2) / 2);
   }
-  const plurielU = (u, n) => (n > 1 && !/[sx]$/.test(u) ? `${u}s` : u);
-
-  // Texte d'une quantité. mode 'achat' (liste de courses, déjà arrondie) ou 'recette' (quarts, cuillères).
-  function formatQte(qte, dim, ing = {}, mode = 'achat') {
-    if (qte === null || qte === undefined) return '';
-    if (dim === 'masse') {
-      if (qte >= 1000) return `${nombre(Math.round(qte / 10) / 100)} kg`;
-      return `${mode === 'recette' ? Math.round(qte) : Math.round(qte)} g`;
-    }
-    if (dim === 'volume') {
-      if (ing.cuillere && qte < 100) {
-        if (qte >= 15) { const c = Math.round(qte / 15 * 2) / 2; return `${fraction(c)} c. à soupe`; }
-        const c = Math.max(0.5, Math.round(qte / 5 * 2) / 2); return `${fraction(c)} c. à café`;
-      }
-      if (qte >= 1000) return `${nombre(Math.round(qte / 10) / 100)} L`;
-      if (qte >= 100) return `${nombre(Math.round(qte / 10))} cl`;
-      return `${Math.round(qte)} ml`;
-    }
-    if (dim === 'piece') {
-      const n = mode === 'recette' ? fraction(qte) : String(Math.round(qte));
-      return ing.u ? `${n} ${plurielU(ing.u, qte)}` : n;
-    }
-    return nombre(qte);
+  // Texte d'une quantité de base : « 350 g », « 1,25 kg », « 750 ml », « 1,5 l », « 3 », « 2 gousses », « 1,5 c. à s. ».
+  function texteQuantite(dim, val) {
+    if (dim === 'sans' || !(val > 0)) return '';
+    if (dim === 'm') return val >= 1000 ? `${nombre(val / 1000)} kg` : `${nombre(val)} g`;
+    if (dim === 'v') return val >= 1000 ? `${nombre(val / 1000)} l` : `${nombre(val)} ml`;
+    if (dim === 'cuil') return val >= 3 ? `${nombre(val / 3)} c. à s.` : `${nombre(val)} c. à c.`;
+    if (dim === 'pièce') return nombre(val);
+    return `${nombre(val)} ${val > 1 ? (PLURIELS[dim] || dim) : dim}`;
   }
+  const texteQuantites = (qs, mode = 'courses') => qs.filter((q) => q.dim !== 'sans' && q.val > 0)
+    .map((q) => texteQuantite(q.dim, mode === 'courses' ? arrondiCourses(q.dim, q.val) : mode === 'recette' ? arrondiRecette(q.dim, q.val) : q.val)).join(' + ');
 
-  // Conditionnement indicatif : « 2 × boîte de 400 g ».
-  function conditionnement(qte, dim, ing) {
-    if (!ing?.achat || !(qte > 0) || dim !== dimIngredient(ing)) return null;
-    const n = Math.ceil(qte / ing.achat.par - 1e-9);
-    return { n, lib: ing.achat.lib, texte: `${n} × ${ing.achat.lib}` };
-  }
-
-  // Ligne de recette → texte modifiable qui se relit à l'identique avec lireLigne : « 2 c. à soupe Huile d'olive ».
-  function ligneEnTexte([id, qte, unite], parId) {
-    const ing = parId.get(id) || { id, nom: id, unite: null };
-    if (qte === undefined || qte === null) return ing.nom;
-    const b = versBase(qte, unite, ing);
-    let q;
-    if (b.dim === 'masse') q = b.qte >= 1000 ? `${nombre(b.qte / 1000)} kg` : `${nombre(b.qte)} g`;
-    else if (b.dim === 'volume') {
-      const demi = (x) => Math.abs(x * 2 - Math.round(x * 2)) < 1e-9;
-      q = ing.cuillere && b.qte < 100 && b.qte >= 15 && demi(b.qte / 15) ? `${nombre(b.qte / 15)} c. à soupe`
-        : ing.cuillere && b.qte < 100 && demi(b.qte / 5) ? `${nombre(b.qte / 5)} c. à café`
-        : b.qte >= 1000 ? `${nombre(b.qte / 1000)} l` : b.qte % 10 ? `${nombre(b.qte)} ml` : `${nombre(b.qte / 10)} cl`;
-    }
-    else q = `${nombre(b.qte)}${ing.u ? ` ${plurielU(ing.u, b.qte)}` : ''}`;
-    return `${q} ${ing.nom}`;
-  }
-
-  // ---------- Lecture d'une ligne d'ingrédient saisie ----------
-  const MOTS_UNITE = [
-    [/^(?:kg|kilos?|kilogrammes?)$/, 'kg'], [/^(?:g|gr|grammes?)$/, 'g'],
-    [/^(?:l|litres?)$/, 'l'], [/^(?:dl)$/, 'dl'], [/^(?:cl|centilitres?)$/, 'cl'], [/^(?:ml|millilitres?)$/, 'ml'],
-    [/^(?:cas|cs|c\.?a\.?s\.?|cuilleres? a soupe|c\. a soupe|cuil\. a soupe)$/, 'cas'],
-    [/^(?:cac|cc|c\.?a\.?c\.?|cuilleres? a cafe|c\. a cafe|cuil\. a cafe)$/, 'cac'],
-  ];
-  // Mots de pièce : « 2 gousses d'ail », « 1 tranche de jambon ».
-  const MOTS_PIECE = /^(?:pieces?|gousses?|tranches?|bouquets?|branches?|feuilles?|cubes?|rouleaux?|boules?|paves?|sachets?|pots?|bottes?|tetes?|filets?)$/;
-  // Contenants convertis avec le conditionnement de l'ingrédient quand il le précise.
-  const MOTS_CONTENANT = /^(?:boites?|briques?|paquets?|barquettes?|plaquettes?|tablettes?|bocaux|bocal|sachets?|pots?|blocs?|lots?)$/;
-
-  function lireNombre(s) {
-    const t = String(s).replace(',', '.');
-    let m = /^(\d+)\s*\/\s*(\d+)$/.exec(t);
-    if (m) return Number(m[2]) ? Number(m[1]) / Number(m[2]) : null;
-    m = /^(\d+)\s+(\d+)\s*\/\s*(\d+)$/.exec(t);
-    if (m) return Number(m[1]) + Number(m[2]) / Number(m[3]);
-    const v = { '½': 0.5, '¼': 0.25, '¾': 0.75 }[t];
-    if (v) return v;
-    return /^\d+(?:\.\d+)?$/.test(t) ? Number(t) : null;
-  }
-
-  // « 200 g de farine », « 2 oignons », « 1/2 citron », « 3 c. à soupe d'huile d'olive », « sel » →
-  // { qte, unite ('g', 'kg', 'ml', 'cl', 'l', 'cas', 'cac', 'pc' ou null), contenant, nom }
-  function lireLigne(saisie) {
-    let s = String(saisie ?? '').trim().replace(/^[-•*]\s*/, '').replace(/\s+/g, ' ');
+  // ---------- Lignes d'ingrédients ----------
+  // « 400 g de spaghetti », « 2 gousses d'ail », « 1/2 botte persil », « 3 œufs », « sel » → {nom, qte, unite}.
+  function lireLigneIngredient(ligne) {
+    let s = String(ligne ?? '').trim().replace(/^[-•*▪]\s*/, '');
     if (!s) return null;
-    // Même longueur que la saisie (œ et ’ gardés) : le nom d'origine se retrouve par position.
-    const plat = s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/’/g, '\'');
-    let qte = null; let unite = null; let contenant = null;
-    const m = /^((?:\d+\s+)?\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?|[½¼¾])\s*(.*)$/.exec(plat);
-    let reste = plat;
-    if (m) {
-      qte = lireNombre(m[1].replace(/\s*\/\s*/g, '/'));
-      reste = m[2];
-      // Unité collée ou séparée : « 200g », « 200 g », « 2 c. à soupe »
-      for (const [re, u] of MOTS_UNITE) {
-        const mots = reste.split(' ');
-        for (let n = Math.min(4, mots.length); n >= 1; n--) {
-          if (re.test(mots.slice(0, n).join(' '))) { unite = u; reste = mots.slice(n).join(' '); break; }
-        }
-        if (unite) break;
-      }
-      if (!unite) {
-        const [premier, ...suite] = reste.split(' ');
-        if (MOTS_PIECE.test(premier) && !MOTS_CONTENANT.test(premier)) { unite = 'pc'; reste = suite.join(' '); }
-        else if (MOTS_CONTENANT.test(premier)) { contenant = premier; unite = 'pc'; reste = suite.join(' '); }
-        else unite = 'pc';
+    let qte = null;
+    const m = s.match(/^(\d+\s*[½¼¾⅓⅔]|\d+(?:[.,]\d+)?(?:\/\d+)?|[½¼¾⅓⅔])\s*/);
+    if (m) { qte = lireNombre(m[1].replace(/\s+/g, '')); s = s.slice(m[0].length); }
+    let unite = 'pièce';
+    const bas = s.toLowerCase();
+    for (const a of ALIAS_TRIES) {
+      if (bas.startsWith(a) && (bas.length === a.length || /[\s.']/.test(bas[a.length]) || a.endsWith('.'))) {
+        if (qte === null && a.length <= 2) break; // « l » ou « g » sans quantité : c'est le début du nom
+        unite = ALIAS[a]; s = s.slice(a.length).trim();
+        break;
       }
     }
-    reste = reste.replace(/^(?:de la |de l'|des |du |de |d'|d’)/, '').trim();
-    if (!reste) return null;
-    // Garde le nom tel que saisi (accents compris) : on retire du début autant de caractères que de texte consommé.
-    const nom = s.slice(s.length - reste.length).trim() || reste;
-    return { qte, unite, contenant, nom };
+    s = s.replace(/^(de |d'|d’|des |du )/i, '').trim();
+    if (!s) return null;
+    return { nom: s, qte: qte !== null && qte > 0 ? qte : null, unite };
   }
-
-  // Ingrédient du catalogue qui correspond à un nom saisi, ou null.
-  function trouverIngredient(nom, catalogue) {
-    const c = cleNom(nom);
-    if (!c) return null;
-    let meilleur = null;
-    for (const ing of catalogue) {
-      const k = cleNom(ing.nom);
-      if (k === c || (ing.alias || []).some((a) => cleNom(a) === c)) return ing;
-      // Inclusion mot à mot : « poulet » trouve « filets de poulet », jamais « bœuf » → « œuf ».
-      const mk = k.split(' '); const mc = c.split(' ');
-      const contient = mc.every((m) => mk.includes(m)) || mk.filter((m) => m.length > 2).every((m) => mc.includes(m));
-      if (contient && (!meilleur || Math.abs(k.length - c.length) < Math.abs(cleNom(meilleur.nom).length - c.length))) meilleur = ing;
-    }
-    return meilleur;
-  }
-
-  // Ligne saisie → ligne de recette [id, qte, unite] ; crée un ingrédient perso si besoin.
-  function ligneRecette(lu, catalogue, rayonParDefaut = 'au') {
-    if (!lu) return null;
-    let ing = trouverIngredient(lu.nom, catalogue);
-    let nouveau = null;
-    if (!ing) {
-      const dim = lu.unite ? UNITES[lu.unite].dim : null;
-      nouveau = { id: `perso-${cleNom(lu.nom).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || nouvelId()}`, nom: lu.nom.charAt(0).toUpperCase() + lu.nom.slice(1), rayon: rayonParDefaut, unite: dim === 'masse' ? 'g' : dim === 'volume' ? 'ml' : dim === 'piece' ? 'pc' : null, perso: true };
-      ing = nouveau;
-    }
-    let qte = lu.qte; let unite = lu.unite;
-    if (lu.contenant && ing.achat && sansAccents(ing.achat.lib).startsWith(lu.contenant.replace(/x$/, '').replace(/s$/, ''))) {
-      qte = (qte ?? 1) * ing.achat.par; unite = ing.unite;
-    }
-    if (qte === null) return { ligne: [ing.id], nouveau };
-    return { ligne: unite && unite !== ing.unite ? [ing.id, qte, unite] : [ing.id, qte], nouveau };
+  function ecrireLigneIngredient(i) {
+    if (!i.qte) return i.nom;
+    const q = nombre(i.qte, 3);
+    if (i.unite === 'pièce') return `${q} ${i.nom}`;
+    return `${q} ${i.unite} ${i.nom}`;
   }
 
   // ---------- Recettes ----------
-  const tempsTotal = (r) => (Number(r.prep) || 0) + (Number(r.cuisson) || 0);
-  const estRapide = (r) => tempsTotal(r) <= 30;
-  const listeSaisons = (r) => String(r.saisons || '').split(/\s+/).filter(Boolean);
-  const deSaison = (r, saison) => { const l = listeSaisons(r); return !l.length || l.includes(saison); };
-  const indexer = (liste) => new Map(liste.map((x) => [x.id, x]));
-
-  // Régimes calculés depuis les ingrédients, jamais déclarés.
-  function regimes(r, parId) {
-    const ings = r.ingredients.map(([id]) => parId.get(id)).filter(Boolean);
-    const viande = ings.some((i) => i.viande);
-    const poisson = ings.some((i) => i.poisson);
-    return { vegetarien: !viande && !poisson, sansPorc: !ings.some((i) => i.porc), poisson, viande };
+  const nouvelId = (p = 'r') => `${p}${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+  const entierBorne = (v, min, max, def) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : def; };
+  function normaliserIngredient(i) {
+    if (!i || typeof i !== 'object') return null;
+    const nom = String(i.nom ?? '').trim().slice(0, 80);
+    if (!nom) return null;
+    const q = Number(i.qte);
+    return { nom, qte: q > 0 && q < 100000 ? q : null, unite: uniteValide(i.unite), ...(i.rayon ? { rayon: String(i.rayon) } : {}) };
   }
-  const respecte = (r, parId, voulus = []) => {
-    if (!voulus.length) return true;
-    const g = regimes(r, parId);
-    return voulus.every((v) => (v === 'vegetarien' ? g.vegetarien : v === 'sans-porc' ? g.sansPorc : true));
-  };
-
-  // Quantités d'une recette pour n personnes : [{ ing, qte, dim, texte }]
-  function quantitesPour(r, personnes, parId) {
-    const f = personnes / (r.portions || 4);
-    return r.ingredients.map(([id, qte, unite]) => {
-      const ing = parId.get(id) || { id, nom: id, unite: null };
-      if (qte === undefined || qte === null) return { ing, qte: null, dim: null, texte: 'selon le goût' };
-      const b = versBase(qte * f, unite, ing);
-      return { ing, qte: b.qte, dim: b.dim, texte: formatQte(b.qte, b.dim, ing, 'recette') };
-    });
+  function normaliserRecette(r) {
+    const s = r && typeof r === 'object' ? r : {};
+    const saisons = Array.isArray(s.saisons) ? s.saisons.filter((x) => 'peah'.includes(x) && x.length === 1) : [];
+    return {
+      id: String(s.id || nouvelId()),
+      nom: String(s.nom ?? '').trim().slice(0, 100) || 'Recette sans nom',
+      categorie: String(s.categorie || 'perso'),
+      personnes: entierBorne(s.personnes, 1, 40, 4),
+      preparation: entierBorne(s.preparation, 0, 1440, 0),
+      cuisson: entierBorne(s.cuisson, 0, 1440, 0),
+      saisons: saisons.length ? [...new Set(saisons)] : ['p', 'e', 'a', 'h'],
+      etiquettes: Array.isArray(s.etiquettes) ? [...new Set(s.etiquettes.map(String))].filter((e) => !['vegetarien', 'poisson', 'rapide'].includes(e)) : [],
+      ingredients: (Array.isArray(s.ingredients) ? s.ingredients : []).map(normaliserIngredient).filter(Boolean).slice(0, 60),
+      etapes: (Array.isArray(s.etapes) ? s.etapes : String(s.etapes || '').split('\n')).map((x) => String(x).trim()).filter(Boolean).slice(0, 30),
+      note: String(s.note ?? '').slice(0, 300),
+    };
   }
-
-  // Filtre de la bibliothèque. f = { q, cat, vegetarien, sansPorc, rapide, saison, favoris, perso }
-  function filtrerRecettes(recettes, f, parId, ctx = {}) {
-    const q = sansAccents(f.q || '');
-    const mots = q.split(/\s+/).filter((m) => m.length > 1);
-    return recettes.filter((r) => {
-      if (f.cat && f.cat !== 'toutes' && r.cat !== f.cat) return false;
-      if (f.rapide && !estRapide(r)) return false;
-      if (f.saison && !deSaison(r, f.saison)) return false;
-      if (f.favoris && !(ctx.favoris || []).includes(r.id)) return false;
-      if (f.perso && !r.perso) return false;
-      const g = (f.vegetarien || f.sansPorc) ? regimes(r, parId) : null;
-      if (f.vegetarien && !g.vegetarien) return false;
-      if (f.sansPorc && !g.sansPorc) return false;
-      if (mots.length) {
-        const texte = sansAccents([r.nom, ...r.ingredients.map(([id]) => parId.get(id)?.nom || '')].join(' '));
-        if (!mots.every((m) => texte.includes(m) || texte.includes(singulierMot(m)))) return false;
-      }
-      return true;
-    }).sort((a, b) => sansAccents(a.nom).localeCompare(sansAccents(b.nom), 'fr'));
-  }
-
-  // ---------- Planning ----------
-  const repasDuJour = (repas, date, moment) => repas.filter((x) => x.date === date && x.moment === moment);
-  const repasSemaine = (repas, l) => { const fin = ajout(l, 6); return repas.filter((x) => x.date >= l && x.date <= fin); };
-
-  // Lignes de courses des repas planifiés (les textes libres « restes », « dehors » n'en donnent pas).
-  function lignesDepuisRepas(repas, recettesParId) {
-    const lignes = [];
-    for (const x of repas) {
-      const r = x.recette && recettesParId.get(x.recette);
-      if (!r) continue;
-      const f = (x.personnes || r.portions || 4) / (r.portions || 4);
-      for (const [id, qte, unite] of r.ingredients) lignes.push({ ingredient: id, qte: qte === undefined || qte === null ? null : qte * f, unite: unite || null, source: r.nom });
+  // Recettes disponibles : base (moins les masquées, remplacées par la version modifiée) puis les recettes perso.
+  function recettesDe(etat, base) {
+    const perso = new Map((etat.recettes || []).map((r) => [r.id, r]));
+    const masquees = new Set(etat.masquees || []);
+    const liste = [];
+    for (const r of base.recettes) {
+      if (masquees.has(r.id)) continue;
+      const m = perso.get(r.id);
+      liste.push(m ? { ...m, base: true, modifiee: true } : { ...r, base: true, modifiee: false });
+      perso.delete(r.id);
     }
-    return lignes;
+    for (const r of perso.values()) liste.push({ ...r, base: false, modifiee: false });
+    return liste;
+  }
+  // Rayon d'un ingrédient : choix de l'utilisateur, puis celui de la ligne, puis la base, sinon « Autres ».
+  function indexBase(base) {
+    if (!base._index) Object.defineProperty(base, '_index', { value: new Map(Object.entries(base.ingredients).map(([n, v]) => [cleNom(n), v])), enumerable: false });
+    return base._index;
+  }
+  function rayonDe(nom, base, etat = {}, rayonLigne = '') {
+    const c = cleNom(nom);
+    return etat.rayonsPerso?.[c] || rayonLigne || indexBase(base).get(c)?.[0] || 'au';
+  }
+  const tempsTotal = (r) => (r.preparation || 0) + (r.cuisson || 0);
+  // Ce qui se déduit d'une recette : végétarien (aucune viande ni poisson), poisson, rapide, allergènes indicatifs.
+  function infos(r, base) {
+    const idx = indexBase(base);
+    const nat = r.ingredients.map((i) => idx.get(cleNom(i.nom))?.[2] || '');
+    const allergenes = [...new Set(r.ingredients.flatMap((i) => (idx.get(cleNom(i.nom))?.[1] || '').split(' ').filter(Boolean)))].sort();
+    const connus = r.ingredients.filter((i) => idx.has(cleNom(i.nom))).length;
+    const vegetarien = !nat.includes('v') && !nat.includes('p') && connus === r.ingredients.length && r.ingredients.length > 0;
+    const poisson = nat.includes('p');
+    const rapide = tempsTotal(r) > 0 && tempsTotal(r) <= (base.tempsRapide || 30);
+    const etiquettes = [...(vegetarien ? ['vegetarien'] : []), ...(poisson ? ['poisson'] : []), ...(rapide ? ['rapide'] : []), ...r.etiquettes.filter((e) => !['vegetarien', 'poisson', 'rapide'].includes(e))];
+    return { vegetarien, poisson, rapide, temps: tempsTotal(r), allergenes, inconnus: r.ingredients.length - connus, etiquettes };
+  }
+  // Ingrédients d'une recette pour un nombre de portions.
+  const echelle = (r, portions) => r.ingredients.map((i) => ({ ...i, qte: i.qte ? i.qte * portions / (r.personnes || 1) : null }));
+
+  // ---------- Semaine ----------
+  function normaliserCase(c) {
+    if (!c || typeof c !== 'object' || !TYPES_CASE.includes(c.type)) return null;
+    const n = { type: c.type };
+    if (c.type === 'recette') { if (!c.recette) return null; n.recette = String(c.recette); n.personnes = entierBorne(c.personnes, 1, 40, 4); }
+    if (c.type === 'restes') { n.source = String(c.source || ''); n.personnes = entierBorne(c.personnes, 1, 40, 4); }
+    if (c.type === 'note' || c.type === 'dehors') n.texte = String(c.texte ?? '').slice(0, 80);
+    return n;
+  }
+  const casesValides = (cases) => Object.fromEntries(Object.entries(cases && typeof cases === 'object' ? cases : {})
+    .filter(([k]) => /^[0-6]-(midi|soir)$/.test(k)).map(([k, v]) => [k, normaliserCase(v)]).filter(([, v]) => v));
+  function normaliserSemaine(s) {
+    const x = s && typeof s === 'object' ? s : {};
+    const stock = {};
+    for (const [k, v] of Object.entries(x.stock && typeof x.stock === 'object' ? x.stock : {})) {
+      if (v === 'tout' || v === 'manque') stock[k] = v;
+      else if (v && typeof v === 'object' && v.val > 0 && typeof v.dim === 'string') stock[k] = { dim: v.dim, val: Number(v.val) };
+    }
+    return {
+      cases: casesValides(x.cases),
+      stock,
+      coches: Object.fromEntries(Object.entries(x.coches && typeof x.coches === 'object' ? x.coches : {}).filter(([, v]) => v === true)),
+      libres: (Array.isArray(x.libres) ? x.libres : []).map((l) => { const i = normaliserIngredient(l); return i ? { id: String(l.id || nouvelId('l')), ...i } : null; }).filter(Boolean),
+    };
+  }
+  const semaineVide = () => ({ cases: {}, stock: {}, coches: {}, libres: [] });
+  // Portions à cuisiner pour chaque case « recette » : les convives du repas plus ceux des repas
+  // « restes de… » qui la désignent (dans la même semaine).
+  function portions(semaine) {
+    const p = {};
+    for (const [k, c] of Object.entries(semaine.cases)) if (c.type === 'recette') p[k] = c.personnes;
+    for (const c of Object.values(semaine.cases)) if (c.type === 'restes' && p[c.source] !== undefined) p[c.source] += c.personnes;
+    return p;
+  }
+  // Ingrédients de la semaine (avant fusion), chacun avec sa source.
+  function besoinsSemaine(semaine, recettes, base, etat = {}, habituels = []) {
+    const parId = new Map(recettes.map((r) => [r.id, r]));
+    const p = portions(semaine);
+    const besoins = [];
+    for (const k of Object.keys(p).sort(ordreCase)) {
+      const r = parId.get(semaine.cases[k].recette);
+      if (!r) continue;
+      for (const i of echelle(r, p[k])) besoins.push({ nom: i.nom, qte: i.qte, unite: i.unite, rayon: rayonDe(i.nom, base, etat, i.rayon), source: { type: 'recette', cle: k, recette: r.id, nom: r.nom } });
+    }
+    for (const l of [...habituels.map((h) => ({ ...h, habituel: true })), ...semaine.libres]) {
+      besoins.push({ nom: l.nom, qte: l.qte, unite: l.unite, rayon: rayonDe(l.nom, base, etat, l.rayon), source: { type: l.habituel ? 'habituel' : 'libre', id: l.id } });
+    }
+    return besoins;
   }
 
   // ---------- Moteur de liste de courses ----------
-  // lignes : [{ ingredient, qte, unite?, source? }] ; catalogue : Map id → ingrédient (ou tableau).
-  // options : { ordreRayons: [ids], rayonsPerso: { id: rayon } }
-  // → articles [{ cle, id, nom, rayon, dim, qte (arrondie), brut, texte, achat, sources, placard, sansQuantite }]
-  function listeCourses(lignes, catalogue, options = {}) {
-    const parId = catalogue instanceof Map ? catalogue : indexer(catalogue);
-    const ordre = options.ordreRayons || [];
-    const perso = options.rayonsPerso || {};
-    const groupes = new Map();
-    for (const l of lignes) {
-      const ing = parId.get(l.ingredient) || { id: l.ingredient, nom: l.ingredient, rayon: 'au', unite: null };
-      const b = versBase(l.qte, l.unite, ing);
-      const cle = `${ing.id}|${b.qte === null ? 'aucune' : b.dim}`;
-      const g = groupes.get(cle) || { cle, id: ing.id, nom: ing.nom, rayon: perso[ing.id] || ing.rayon || 'au', dim: b.qte === null ? null : b.dim, brut: null, sources: [], placard: Boolean(ing.placard), ing };
-      if (b.qte !== null) g.brut = (g.brut || 0) + b.qte;
-      if (l.source && !g.sources.includes(l.source)) g.sources.push(l.source);
-      groupes.set(cle, g);
+  // Fusionne les besoins par ingrédient (nom sans accents ni casse) et additionne les quantités de même
+  // dimension (g et kg, ml, cl et l, c. à s. et c. à c.) ; les dimensions différentes restent côte à côte.
+  function fusionner(besoins) {
+    const lignes = new Map();
+    for (const b of besoins) {
+      const cle = cleNom(b.nom);
+      if (!cle) continue;
+      let l = lignes.get(cle);
+      if (!l) { l = { cle, nom: majuscule(String(b.nom).trim()), rayon: b.rayon || 'au', quantites: [], sources: [] }; lignes.set(cle, l); }
+      const q = versBase(b.qte, b.unite);
+      const ex = l.quantites.find((x) => x.dim === q.dim);
+      if (ex) ex.val += q.val; else l.quantites.push({ ...q });
+      if (b.source) l.sources.push(b.source);
     }
-    // Un ingrédient sans quantité (« sel ») disparaît si une ligne chiffrée existe pour lui.
-    const chiffres = new Set([...groupes.values()].filter((g) => g.brut !== null).map((g) => g.id));
-    const rangRayon = (id) => { const k = ordre.indexOf(id); return k < 0 ? 999 : k; };
-    return [...groupes.values()]
-      .filter((g) => g.brut !== null || !chiffres.has(g.id))
-      .map((g) => {
-        const qte = g.brut === null ? null : (g.dim === 'volume' && g.ing.cuillere && g.brut < 100 ? g.brut : arrondiAchat(g.brut, g.dim));
-        const { ing, ...reste } = g;
-        return { ...reste, qte, sansQuantite: qte === null, texte: qte === null ? '' : formatQte(qte, g.dim, ing), achat: conditionnement(qte, g.dim, ing) };
-      })
-      .sort((a, b) => rangRayon(a.rayon) - rangRayon(b.rayon) || sansAccents(a.nom).localeCompare(sansAccents(b.nom), 'fr'));
-  }
-
-  // Regroupe des articles par rayon dans l'ordre du magasin : [{ rayon, articles }]
-  function parRayon(articles, ordreRayons) {
-    const m = new Map();
-    for (const a of articles) { if (!m.has(a.rayon)) m.set(a.rayon, []); m.get(a.rayon).push(a); }
-    const rang = (id) => { const k = ordreRayons.indexOf(id); return k < 0 ? 999 : k; };
-    return [...m.entries()].sort((a, b) => rang(a[0]) - rang(b[0])).map(([rayon, liste]) => ({ rayon, articles: liste }));
-  }
-
-  // Avancement en magasin : seuls les articles à acheter comptent (pas ceux déjà à la maison).
-  function avancement(articles, etat) {
-    const coches = new Set(etat.coches || []); const maison = new Set(etat.maison || []);
-    const aAcheter = articles.filter((a) => !maison.has(a.cle));
-    const pris = aAcheter.filter((a) => coches.has(a.cle)).length;
-    return { total: aAcheter.length, pris, reste: aAcheter.length - pris, pct: aAcheter.length ? Math.round(pris / aAcheter.length * 100) : 0, maison: articles.length - aAcheter.length };
-  }
-
-  // Texte à partager (SMS, messagerie) : rayons, articles non cochés et non présents à la maison.
-  function texteListe(groupes, nomsRayons, etat, titre) {
-    const coches = new Set(etat.coches || []); const maison = new Set(etat.maison || []);
-    const lignes = [titre];
-    for (const g of groupes) {
-      const restants = g.articles.filter((a) => !coches.has(a.cle) && !maison.has(a.cle));
-      if (!restants.length) continue;
-      lignes.push('', nomsRayons[g.rayon] || 'Autres');
-      for (const a of restants) lignes.push(`- ${a.nom}${a.texte ? ` : ${a.texte}` : ''}`);
+    for (const l of lignes.values()) {
+      l.quantites = l.quantites.filter((q) => q.dim === 'sans' ? l.quantites.length === 1 : q.val > 0);
+      const rang = (d) => { const i = ['m', 'v', 'pièce', 'cuil'].indexOf(d); return i < 0 ? 9 : i; };
+      l.quantites.sort((a, b) => rang(a.dim) - rang(b.dim));
     }
-    return lignes.join('\n');
+    return [...lignes.values()];
   }
-
-  // ---------- Avec ce qu'il me reste ----------
-  // dispo : identifiants d'ingrédients présents. Les ingrédients du placard (sel, huile, épices) ne comptent pas.
-  // → [{ recette, ont, manque, pct }] trié : le moins d'ingrédients manquants, les plats avant les desserts, puis le
-  // plus d'ingrédients utilisés.
-  function avecCeQuiReste(recettes, dispo, parId, { maxManque = 3 } = {}) {
-    const a = new Set(dispo);
-    if (!a.size) return [];
-    const res = [];
-    for (const r of recettes) {
-      if (r.cat === 'dessert' && !r.ingredients.some(([id]) => a.has(id))) continue;
-      const utiles = [...new Set(r.ingredients.map(([id]) => id))].filter((id) => !parId.get(id)?.placard);
-      if (!utiles.length) continue;
-      const ont = utiles.filter((id) => a.has(id));
-      if (!ont.length) continue;
-      const manque = utiles.filter((id) => !a.has(id));
-      if (manque.length > maxManque) continue;
-      res.push({ recette: r, ont, manque, pct: Math.round(ont.length / utiles.length * 100) });
-    }
-    const dessert = (x) => (x.recette.cat === 'dessert' ? 1 : 0);
-    return res.sort((x, y) => x.manque.length - y.manque.length || dessert(x) - dessert(y) || y.ont.length - x.ont.length || tempsTotal(x.recette) - tempsTotal(y.recette));
-  }
-
-  // ---------- Propositions de repas ----------
-  // Générateur pseudo-aléatoire déterministe (mêmes entrées → mêmes propositions, testable).
-  function alea(graine) {
-    let h = 1779033703 ^ String(graine).length;
-    for (const c of String(graine)) { h = Math.imul(h ^ c.charCodeAt(0), 3432918353); h = (h << 13) | (h >>> 19); }
-    return () => { h = Math.imul(h ^ (h >>> 16), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; };
-  }
-
-  // creneaux : [{ date, moment }] à remplir ; recentes : identifiants servis récemment (évités si possible).
-  // Règles : pas de dessert ; régimes respectés ; de saison d'abord ; soupe le soir seulement ; soirs du lundi au
-  // vendredi en 40 minutes au plus ; jamais deux fois la même recette dans la proposition.
-  function proposer(recettes, creneaux, parId, { saison, regimes: voulus = [], recentes = [], graine = 1, favoris = [] } = {}) {
-    const hasard = alea(graine);
-    const vus = new Set(recentes);
-    const pris = new Set();
-    const res = [];
-    for (const c of creneaux) {
-      const semaineSoir = c.moment === 'soir' && indiceJour(c.date) < 5;
-      const candidats = recettes.filter((r) => r.cat !== 'dessert' && respecte(r, parId, voulus) && !pris.has(r.id)
-        && (r.cat !== 'soupe' || c.moment === 'soir') && (!semaineSoir || tempsTotal(r) <= 40));
-      if (!candidats.length) continue;
-      let meilleur = null; let note = -Infinity;
-      for (const r of candidats) {
-        const s = hasard() + (deSaison(r, saison) ? 1 : 0) + (vus.has(r.id) ? -2 : 0) + (favoris.includes(r.id) ? 0.4 : 0) + (r.cat === 'plat' ? 0.3 : 0);
-        if (s > note) { note = s; meilleur = r; }
-      }
-      pris.add(meilleur.id);
-      res.push({ date: c.date, moment: c.moment, recette: meilleur.id });
-    }
-    return res;
-  }
-
-  // Créneaux vides d'une semaine. moments : ['midi', 'soir'] ; jours : indices 0 (lundi) à 6.
-  function creneauxVides(repas, l, moments = MOMENTS, jours = [0, 1, 2, 3, 4, 5, 6]) {
-    const out = [];
-    joursSemaine(l).forEach((d, k) => { if (!jours.includes(k)) return; for (const m of moments) if (!repasDuJour(repas, d, m).length) out.push({ date: d, moment: m }); });
-    return out;
-  }
-
-  // Copie des repas d'une semaine sur une autre (mêmes jours, nouveaux identifiants), sans écraser un créneau rempli.
-  function copierSemaine(repas, de, vers) {
-    const ajoutes = [];
-    for (const x of repasSemaine(repas, de)) {
-      const date = ajout(vers, ecart(de, x.date));
-      if (repasDuJour(repas, date, x.moment).length) continue;
-      ajoutes.push({ ...x, id: nouvelId(), date });
-    }
-    return ajoutes;
-  }
-
-  // ---------- Normalisation ----------
-  const entier = (v, min, max, def) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(min, Math.min(max, n)) : def; };
-  const texte = (v, max) => String(v ?? '').trim().slice(0, max);
-  function montant(v) {
-    if (v === null || v === undefined || v === '') return null;
-    const n = typeof v === 'number' ? v : Number(String(v).replace(/\s/g, '').replace(',', '.'));
-    return Number.isFinite(n) && n >= 0 ? n : null;
-  }
-
-  function normaliserRepas(x) {
-    const o = x && typeof x === 'object' ? x : {};
-    return { id: o.id || nouvelId(), date: estDate(o.date) ? o.date : null, moment: MOMENTS.includes(o.moment) ? o.moment : 'soir', recette: o.recette ? String(o.recette) : null, texte: texte(o.texte, 60), personnes: entier(o.personnes, 1, 30, 4) };
-  }
-  function normaliserIngredient(x, rayons) {
-    const o = x && typeof x === 'object' ? x : {};
-    return { id: String(o.id || `perso-${nouvelId()}`), nom: texte(o.nom, 60) || 'Ingrédient', rayon: rayons.includes(o.rayon) ? o.rayon : 'au', unite: ['g', 'ml', 'pc'].includes(o.unite) ? o.unite : null, perso: true };
-  }
-  function normaliserRecette(x, cats) {
-    const o = x && typeof x === 'object' ? x : {};
-    const ings = (Array.isArray(o.ingredients) ? o.ingredients : []).filter((l) => Array.isArray(l) && l[0]).map(([id, qte, unite]) => {
-      const q = montant(qte);
-      return q === null ? [String(id)] : unite && UNITES[unite] ? [String(id), q, unite] : [String(id), q];
+  // Retire ce qui est déjà là : « tout » (en stock), une quantité (déduite), ou un article du placard
+  // (supposé en stock sauf s'il est marqué « à racheter » cette semaine).
+  function appliquerStock(lignes, stock = {}, placard = []) {
+    const auPlacard = new Set(placard.map(cleNom));
+    return lignes.map((l) => {
+      const s = stock[l.cle];
+      let reste = l.quantites.map((q) => ({ ...q }));
+      let raison = '';
+      if (s === 'tout') { reste = []; raison = 'stock'; }
+      else if (s && typeof s === 'object') {
+        reste = reste.map((q) => (q.dim === s.dim ? { ...q, val: Math.max(0, q.val - s.val) } : q)).filter((q) => q.val > 0 || q.dim === 'sans');
+        raison = reste.length ? 'partiel' : 'stock';
+      } else if (auPlacard.has(l.cle) && s !== 'manque') { reste = []; raison = 'placard'; }
+      return { ...l, reste, raison, enStock: raison === 'stock' || raison === 'placard', aRacheter: s === 'manque' };
     });
-    return {
-      id: String(o.id || `p-${nouvelId()}`), nom: texte(o.nom, 80) || 'Ma recette', cat: cats.includes(o.cat) ? o.cat : 'plat',
-      prep: entier(o.prep, 0, 600, 0), cuisson: entier(o.cuisson, 0, 600, 0),
-      saisons: String(o.saisons || '').split(/\s+/).filter((s) => ['pr', 'et', 'au', 'hi'].includes(s)).join(' '),
-      portions: entier(o.portions, 1, 30, 4), ingredients: ings,
-      etapes: (Array.isArray(o.etapes) ? o.etapes : []).map((e) => texte(e, 400)).filter(Boolean).slice(0, 20),
-      note: texte(o.note, 300), origine: o.origine ? String(o.origine) : null, perso: true,
-    };
   }
-  function normaliserCourses(x) {
-    const o = x && typeof x === 'object' ? x : {};
-    const liste = (v) => [...new Set((Array.isArray(v) ? v : []).map(String))];
-    return {
-      coches: liste(o.coches), maison: liste(o.maison), placard: liste(o.placard),
-      extras: (Array.isArray(o.extras) ? o.extras : []).filter((e) => e && e.nom).map((e) => ({ id: e.id || nouvelId(), nom: texte(e.nom, 60), qte: texte(e.qte, 30), rayon: String(e.rayon || 'au') })),
-    };
+  // Groupes de rayons dans l'ordre du magasin, articles triés par nom.
+  function regrouper(lignes, rayons, ordre = null) {
+    const ids = rayons.map(([id]) => id);
+    const rang = (ordre && ordre.length ? [...ordre.filter((x) => ids.includes(x)), ...ids.filter((x) => !ordre.includes(x))] : ids);
+    const nomRayon = Object.fromEntries(rayons);
+    const groupes = rang.map((id) => ({ id, nom: nomRayon[id], lignes: lignes.filter((l) => (ids.includes(l.rayon) ? l.rayon : 'au') === id).sort((a, b) => a.cle.localeCompare(b.cle)) }));
+    return groupes.filter((g) => g.lignes.length);
+  }
+  // Liste complète d'une semaine.
+  function listeCourses(etat, base, lundi) {
+    const semaine = etat.semaines[lundi] || semaineVide();
+    const recettes = recettesDe(etat, base);
+    const lignes = appliquerStock(fusionner(besoinsSemaine(semaine, recettes, base, etat, etat.habituels || [])), semaine.stock, etat.placard || []);
+    const aAcheter = lignes.filter((l) => !l.enStock).map((l) => ({ ...l, coche: !!semaine.coches[l.cle] }));
+    const enStock = lignes.filter((l) => l.enStock).sort((a, b) => a.cle.localeCompare(b.cle));
+    return { lignes, aAcheter, enStock, rayons: regrouper(aAcheter, base.rayons, etat.reglages?.ordreRayons), nbCoches: aAcheter.filter((l) => l.coche).length };
+  }
+  // Texte à copier : rayon par rayon, articles restant à acheter (les cochés en magasin sont exclus si demandé).
+  function texteListe(liste, { titre = 'Liste de courses', sansCoches = false } = {}) {
+    const blocs = liste.rayons.map((g) => {
+      const ls = g.lignes.filter((l) => !(sansCoches && l.coche));
+      if (!ls.length) return '';
+      return `${g.nom.toUpperCase()}\n${ls.map((l) => { const q = texteQuantites(l.reste); return `- ${l.nom}${q ? ` : ${q}` : ''}`; }).join('\n')}`;
+    }).filter(Boolean);
+    return [titre, '', ...blocs.flatMap((b) => [b, ''])].join('\n').trim() + '\n';
+  }
+  // Export CSV (point-virgule, BOM UTF-8).
+  const champCsv = (v) => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  function versCsv(liste, base) {
+    const nomRayon = Object.fromEntries(base.rayons);
+    const tete = ['Rayon', 'Article', 'Quantité', 'Déjà là', 'Coché'];
+    const lignes = [...liste.rayons.flatMap((g) => g.lignes.map((l) => [g.nom, l.nom, texteQuantites(l.reste), l.raison === 'partiel' ? 'en partie' : '', l.coche ? 'oui' : ''])),
+      ...liste.enStock.map((l) => [nomRayon[l.rayon] || 'Autres', l.nom, texteQuantites(l.quantites), l.raison === 'placard' ? 'placard' : 'oui', ''])];
+    return '﻿' + [tete, ...lignes].map((l) => l.map(champCsv).join(';')).join('\r\n');
   }
 
-  const etatVide = (B) => ({
-    version: 1, personnes: 4, regimes: [], repas: [], recettes: [], ingredients: [], favoris: [],
-    courses: {}, habituels: [], rayonsPerso: {}, ordreRayons: B.rayons.map((r) => r.id), frigo: [],
-  });
+  // ---------- Budget (seulement avec les prix saisis par l'utilisateur) ----------
+  // Prix : {prix, qte, unite} = « prix pour qte unite » (ex. 2,40 € pour 1 kg). Coût de la ligne à acheter,
+  // ou null si aucune quantité n'est dans la dimension du prix.
+  function coutLigne(quantites, p) {
+    if (!p || !(p.prix >= 0) || !(p.qte > 0)) return null;
+    const ref = versBase(p.qte, p.unite);
+    const q = quantites.find((x) => x.dim === ref.dim && x.dim !== 'sans');
+    if (!q) return null;
+    return arrondiCourses(q.dim, q.val) / ref.val * p.prix;
+  }
+  function budget(lignes, prix = {}) {
+    let total = 0, avec = 0, sans = 0;
+    for (const l of lignes) {
+      const c = coutLigne(l.reste || l.quantites, prix[l.cle]);
+      if (c === null) sans += 1; else { total += c; avec += 1; }
+    }
+    return { total: Math.round(total * 100) / 100, avecPrix: avec, sansPrix: sans };
+  }
 
-  function normaliser(d, B) {
-    const e = etatVide(B);
+  // ---------- Historique ----------
+  // Dates où chaque recette a été au menu (cases « recette », toutes semaines).
+  function historique(etat) {
+    const h = new Map();
+    for (const [lundi, s] of Object.entries(etat.semaines || {})) {
+      for (const [k, c] of Object.entries(s.cases)) {
+        if (c.type !== 'recette') continue;
+        if (!h.has(c.recette)) h.set(c.recette, []);
+        h.get(c.recette).push(dateCase(lundi, k));
+      }
+    }
+    for (const v of h.values()) v.sort();
+    return h;
+  }
+  // Dernière date strictement avant « avant » (ou null).
+  function derniereFois(hist, id, avant) {
+    const d = (hist.get(id) || []).filter((x) => !avant || x < avant);
+    return d.length ? d.at(-1) : null;
+  }
+  // Recettes les plus servies depuis une date.
+  function frequences(etat, depuis, jusqua) {
+    const h = historique(etat);
+    return [...h.entries()].map(([id, dates]) => { const d = dates.filter((x) => (!depuis || x >= depuis) && (!jusqua || x <= jusqua)); return { id, n: d.length, derniere: d.at(-1) || null }; })
+      .filter((x) => x.n > 0).sort((a, b) => b.n - a.n || String(b.derniere).localeCompare(String(a.derniere)));
+  }
+
+  // ---------- Suggestions et tirage ----------
+  // Générateur pseudo-aléatoire reproductible (mulberry32).
+  function aleatoire(graine = Date.now()) {
+    let a = (Number(graine) >>> 0) || 1;
+    return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  // Candidates pour un repas daté. Contraintes : saison du jour, végétarien ou poisson imposé, temps
+  // maximum, étiquettes requises, allergènes exclus (indicatif), recettes exclues, et pas de recette
+  // servie il y a moins de « eviterJours ». Score : ancienneté (plafonnée à 120 jours, jamais servie = 150)
+  // plus une part de hasard ; les mieux notées d'abord.
+  function proposer(recettes, base, opts = {}, alea = Math.random, n = 3) {
+    const { date, hist = new Map(), eviterJours = 21, exclure = new Set(), vegetarien = false, poisson = false, tempsMax = null, etiquettes = [], sansAllergenes = [], saison = true } = opts;
+    const sai = date ? saisonDe(date) : null;
+    const ok = recettes.filter((r) => {
+      if (exclure.has(r.id) || !r.ingredients.length) return false;
+      const inf = infos(r, base);
+      if (vegetarien && !inf.vegetarien) return false;
+      if (poisson && !inf.poisson) return false;
+      if (tempsMax && (!inf.temps || inf.temps > tempsMax)) return false;
+      if (etiquettes.some((e) => !inf.etiquettes.includes(e))) return false;
+      if (sansAllergenes.some((a) => inf.allergenes.includes(a))) return false;
+      if (saison && sai && !r.saisons.includes(sai)) return false;
+      const der = derniereFois(hist, r.id, date);
+      if (der && date && ecart(der, date) < eviterJours) return false;
+      return true;
+    });
+    return ok.map((r) => { const der = derniereFois(hist, r.id, date); return { recette: r, derniere: der, score: (der && date ? Math.min(120, ecart(der, date)) : 150) + alea() * 80 }; })
+      .sort((a, b) => b.score - a.score).slice(0, n);
+  }
+  // Remplit les cases vides demandées. Options : nbVegetariens, nbPoisson (au moins, si possible),
+  // soirsRapides (soirs du lundi au vendredi en moins de tempsRapide minutes), personnes, contraintes de proposer().
+  // Si une contrainte ne laisse aucune recette, elle est relâchée dans l'ordre : temps, saison, répétitions.
+  function remplirSemaine(semaine, lundi, recettes, base, opts = {}, alea = Math.random) {
+    const s = copie(semaine);
+    const vides = (opts.cases || []).filter((k) => !s.cases[k]).sort(ordreCase);
+    const melange = [...vides];
+    for (let i = melange.length - 1; i > 0; i--) { const j = Math.floor(alea() * (i + 1)); [melange[i], melange[j]] = [melange[j], melange[i]]; }
+    const imposes = {};
+    const nbV = Math.max(0, opts.nbVegetariens || 0), nbP = Math.max(0, opts.nbPoisson || 0);
+    melange.slice(0, nbV).forEach((k) => { imposes[k] = 'vegetarien'; });
+    melange.slice(nbV, nbV + nbP).forEach((k) => { imposes[k] = 'poisson'; });
+    const exclure = new Set([...(opts.exclure || []), ...Object.values(s.cases).filter((c) => c.type === 'recette').map((c) => c.recette)]);
+    const ajoutees = [];
+    for (const k of vides) {
+      const date = dateCase(lundi, k);
+      const rapide = opts.soirsRapides && jourCase(k) < 5 && repasCase(k) === 'soir' ? (base.tempsRapide || 30) : null;
+      const base0 = { ...opts, date, exclure, vegetarien: imposes[k] === 'vegetarien', poisson: imposes[k] === 'poisson', tempsMax: rapide };
+      const essais = [base0, { ...base0, tempsMax: null }, { ...base0, tempsMax: null, saison: false }, { ...base0, tempsMax: null, saison: false, eviterJours: 0 }, { ...base0, tempsMax: null, saison: false, eviterJours: 0, vegetarien: false, poisson: false }];
+      let choix = null;
+      for (const e of essais) { choix = proposer(recettes, base, e, alea, 1)[0]; if (choix) break; }
+      if (!choix) continue;
+      s.cases[k] = { type: 'recette', recette: choix.recette.id, personnes: opts.personnes || 4 };
+      exclure.add(choix.recette.id);
+      ajoutees.push(k);
+    }
+    return { semaine: s, ajoutees };
+  }
+
+  // ---------- Semaines types ----------
+  // Une semaine type garde les cases (recettes, restes, dehors, notes) sans le stock ni les courses.
+  const semaineTypeDepuis = (semaine) => copie(casesValides(semaine.cases));
+  function appliquerType(semaine, cases, remplacer = false) {
+    const s = copie(semaine);
+    if (remplacer) s.cases = {};
+    for (const [k, c] of Object.entries(casesValides(cases))) if (remplacer || !s.cases[k]) s.cases[k] = copie(c);
+    // Une case « restes » dont la source n'est plus une recette devient une note.
+    for (const [k, c] of Object.entries(s.cases)) if (c.type === 'restes' && s.cases[c.source]?.type !== 'recette') s.cases[k] = { type: 'note', texte: 'Restes' };
+    return s;
+  }
+  // Supprime une case ; les repas « restes » qui en dépendaient deviennent des notes.
+  function viderCase(semaine, cle) {
+    const s = copie(semaine);
+    delete s.cases[cle];
+    for (const [k, c] of Object.entries(s.cases)) if (c.type === 'restes' && c.source === cle) s.cases[k] = { type: 'note', texte: 'Restes' };
+    return s;
+  }
+
+  // ---------- État ----------
+  function normaliserReglages(r, defaut) {
+    const x = r && typeof r === 'object' ? r : {};
+    const repas = Array.isArray(x.repas) ? REPAS.map(([k]) => k).filter((k) => x.repas.includes(k)) : defaut.repas;
+    return {
+      personnes: entierBorne(x.personnes, 1, 20, defaut.personnes),
+      repas: repas.length ? repas : ['soir'],
+      eviterJours: entierBorne(x.eviterJours, 0, 120, defaut.eviterJours),
+      ordreRayons: Array.isArray(x.ordreRayons) ? x.ordreRayons.map(String) : null,
+      monnaie: String(x.monnaie || defaut.monnaie || '€').slice(0, 4),
+    };
+  }
+  function etatVide(base) {
+    return { version: 1, foyer: '', reglages: normaliserReglages({}, base.reglages), recettes: [], masquees: [], semaines: {}, semainesTypes: [], placard: [...base.placard], habituels: [], prix: {}, rayonsPerso: {} };
+  }
+  const MAX_SEMAINES = 60;
+  function normaliser(d, base) {
+    const e = etatVide(base);
     if (!d || typeof d !== 'object') return e;
-    const rayons = B.rayons.map((r) => r.id);
-    const cats = B.categories.map((c) => c.id);
-    e.personnes = entier(d.personnes, 1, 30, 4);
-    e.regimes = (Array.isArray(d.regimes) ? d.regimes : []).filter((r) => B.regimes.some((x) => x.id === r));
-    e.repas = (Array.isArray(d.repas) ? d.repas : []).map(normaliserRepas).filter((x) => x.date && (x.recette || x.texte));
-    e.recettes = (Array.isArray(d.recettes) ? d.recettes : []).map((r) => normaliserRecette(r, cats));
-    e.ingredients = (Array.isArray(d.ingredients) ? d.ingredients : []).map((x) => normaliserIngredient(x, rayons));
-    e.favoris = [...new Set((Array.isArray(d.favoris) ? d.favoris : []).map(String))];
-    if (d.courses && typeof d.courses === 'object') for (const [k, v] of Object.entries(d.courses)) if (estDate(k)) e.courses[k] = normaliserCourses(v);
-    e.habituels = (Array.isArray(d.habituels) ? d.habituels : []).filter((h) => h && h.nom).map((h) => ({ id: h.id || nouvelId(), nom: texte(h.nom, 60), rayon: rayons.includes(h.rayon) ? h.rayon : 'au' }));
-    if (d.rayonsPerso && typeof d.rayonsPerso === 'object') for (const [k, v] of Object.entries(d.rayonsPerso)) if (rayons.includes(v)) e.rayonsPerso[k] = v;
-    const ordre = (Array.isArray(d.ordreRayons) ? d.ordreRayons : []).filter((r) => rayons.includes(r));
-    e.ordreRayons = [...new Set([...ordre, ...rayons])];
-    e.frigo = [...new Set((Array.isArray(d.frigo) ? d.frigo : []).map(String))];
+    e.foyer = String(d.foyer ?? '').slice(0, 80);
+    e.reglages = normaliserReglages(d.reglages, base.reglages);
+    const vus = new Set();
+    e.recettes = (Array.isArray(d.recettes) ? d.recettes : []).map(normaliserRecette).filter((r) => !vus.has(r.id) && vus.add(r.id));
+    e.masquees = Array.isArray(d.masquees) ? [...new Set(d.masquees.map(String))] : [];
+    const lundis = Object.keys(d.semaines && typeof d.semaines === 'object' ? d.semaines : {}).filter((k) => estDate(k) && lundiDe(k) === k).sort().slice(-MAX_SEMAINES);
+    e.semaines = Object.fromEntries(lundis.map((k) => [k, normaliserSemaine(d.semaines[k])]));
+    e.semainesTypes = (Array.isArray(d.semainesTypes) ? d.semainesTypes : []).filter((t) => t && typeof t === 'object').map((t) => ({ id: String(t.id || nouvelId('t')), nom: String(t.nom ?? '').trim().slice(0, 60) || 'Semaine type', cases: casesValides(t.cases) })).slice(0, 20);
+    if (Array.isArray(d.placard)) e.placard = [...new Map(d.placard.map((x) => String(x).trim()).filter(Boolean).map((x) => [cleNom(x), x])).values()];
+    e.habituels = (Array.isArray(d.habituels) ? d.habituels : []).map((l) => { const i = normaliserIngredient(l); return i ? { id: String(l.id || nouvelId('h')), ...i } : null; }).filter(Boolean);
+    e.prix = {};
+    for (const [k, p] of Object.entries(d.prix && typeof d.prix === 'object' ? d.prix : {})) if (p && Number(p.prix) >= 0 && Number(p.qte) > 0) e.prix[cleNom(k)] = { prix: Number(p.prix), qte: Number(p.qte), unite: uniteValide(p.unite) };
+    e.rayonsPerso = {};
+    const ids = base.rayons.map(([id]) => id);
+    for (const [k, v] of Object.entries(d.rayonsPerso && typeof d.rayonsPerso === 'object' ? d.rayonsPerso : {})) if (ids.includes(v)) e.rayonsPerso[cleNom(k)] = v;
     if (d.majLe) e.majLe = d.majLe;
     return e;
   }
 
-  // Les listes de courses de plus de 8 semaines ne servent plus : on les retire pour garder un état léger.
-  function purgerCourses(courses, aujourdhui) {
-    const limite = ajout(lundi(aujourdhui), -56);
-    return Object.fromEntries(Object.entries(courses).filter(([k]) => k >= limite));
-  }
-
   racine.RPS = {
-    MOMENTS, LIB_MOMENT, JOURS, UNITES,
-    iso, versDate, ajout, ecart, estDate, lundi, joursSemaine, indiceJour, saisonDe,
-    sansAccents, cleNom, nouvelId, montant,
-    versBase, arrondiAchat, formatQte, fraction, conditionnement, dimIngredient,
-    lireLigne, trouverIngredient, ligneRecette, ligneEnTexte,
-    tempsTotal, estRapide, deSaison, regimes, respecte, quantitesPour, filtrerRecettes, indexer,
-    repasDuJour, repasSemaine, lignesDepuisRepas, listeCourses, parRayon, avancement, texteListe,
-    avecCeQuiReste, proposer, creneauxVides, copierSemaine, alea,
-    normaliserRepas, normaliserRecette, normaliserIngredient, normaliserCourses, etatVide, normaliser, purgerCourses,
+    JOURS, REPAS, TYPES_CASE, UNITES, LISTE_UNITES,
+    iso, versDate, ajout, ecart, estDate, lundiDe, saisonDe, cleCase, jourCase, repasCase, dateCase, ordreCase,
+    arrondi, nombre, lireNombre, cleNom, majuscule,
+    versBase, arrondiCourses, arrondiRecette, texteQuantite, texteQuantites, lireLigneIngredient, ecrireLigneIngredient,
+    nouvelId, normaliserIngredient, normaliserRecette, recettesDe, rayonDe, tempsTotal, infos, echelle,
+    normaliserCase, normaliserSemaine, semaineVide, portions, besoinsSemaine,
+    fusionner, appliquerStock, regrouper, listeCourses, texteListe, versCsv, coutLigne, budget,
+    historique, derniereFois, frequences, aleatoire, proposer, remplirSemaine, semaineTypeDepuis, appliquerType, viderCase,
+    normaliserReglages, etatVide, normaliser,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

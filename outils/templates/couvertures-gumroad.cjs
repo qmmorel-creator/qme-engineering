@@ -32,6 +32,7 @@ const T = {
   taches: ['Gestionnaire de tâches', "Tout noter. Faire l'essentiel.", 'Boîte de réception · triage · focus du jour'],
   tjm: ['Calculateur de TJM', "Ton tarif, à l'euro près.", 'Objectif · jours facturables · statut · seuils'],
   travaux: ['Pilote de travaux maison', 'Tes travaux, devis par devis.', 'Devis comparés · budget · planning · réserves'],
+  sinistre: ['Dossier sinistre habitation', 'Ton dossier d\'assurance, complet et suivi.', 'Déclaration guidée · dommages chiffrés · preuves · suivi'],
   tresorerie: ['Trésorerie prévisionnelle · 12 mois', "Voir le creux avant qu'il arrive.", 'Prévu, réalisé, 3 scénarios · alerte sous ton seuil'],
   habitudes: ["Suivi d'habitudes et routines", "Un geste par jour.", "À cocher ou chiffrées · jours non applicables · séries"],
   entretien: ["Entretien de la maison", "Rien d'oublié, chaque saison.", "Échéances calculées · obligations sourcées · historique"],
@@ -50,13 +51,16 @@ const T = {
   'epargne': ["Objectif d'épargne · fonds d'urgence", "Chaque euro a un but.", "Fonds d'urgence en mois de dépenses · date d'atteinte · scénarios"],
   voyage: ['Planificateur de voyage', 'Le voyage tient dans ta poche.', 'Étapes et nuits · jour par jour · budget · qui doit quoi'],
   'pilotage-pme': ["Tableau de bord de pilotage PME", "Tes chiffres, face à tes objectifs.", "45 indicateurs expliqués · écarts · alertes · revue du mois"],
-  'gestion-locative': ["Gestion locative", "Tes loyers, sans tableur.", "Quittances · relances · révision IRL · charges · rendement"],
   'suivi-chantier': ["Suivi de chantier par lot", "Chaque lot tenu, du marché au solde.", "Avenants · situations · jalons recalés · revue de projet"],
   'maintenance': ["Maintenance préventive · GMAO légère", "Chaque machine entretenue à temps.", "Date, compteur ou premier atteint · bons d'intervention · coût par équipement"],
   repas: ['Repas de la semaine · liste de courses', 'Le menu fait, la liste aussi.', 'Midi et soir · courses par rayon · à cocher au magasin'],
   'verifications': ["Vérifications réglementaires", "Aucun contrôle oublié.", "Périodicités sourcées · échéances · observations levées · registre"],
   'planning-equipe': ["Planning d'équipe et staffing", "Qui fait quoi, et qui peut encore prendre.", "Charge par semaine · absences · conflits · disponibles"],
   'competition': ["Gestion de compétition sportive", "Du premier inscrit au podium.", "Inscriptions · vagues et horaires · scores · classement en direct"],
+  'voiture': ["Carnet de voiture", "Ta voiture, entretenue à temps.", "Entretiens · kilométrage · dépenses"],
+  'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
+  'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
+  'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

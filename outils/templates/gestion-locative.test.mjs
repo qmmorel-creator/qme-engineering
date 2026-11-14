@@ -9,273 +9,367 @@ const ctx = { window: {} };
 vm.createContext(ctx);
 vm.runInContext(readFileSync(new URL('donnees.js', dossier), 'utf8'), ctx);
 vm.runInContext(readFileSync(new URL('regles.js', dossier), 'utf8'), ctx);
-const R = ctx.window.GRT;
+const R = ctx.window.GST;
 const BASE = ctx.window.BASE;
 const simple = (o) => JSON.parse(JSON.stringify(o));
 const AUJ = '2026-11-14';
 const DEFAUTS = { reglages: BASE.reglages };
+// Un bien, un locataire, un bail nu de 600 € + 50 € de provisions au 1er du mois depuis le 01/01/2026.
+const etat = (bail = {}, extra = {}) => {
+  const e = R.normaliser({
+    bailleur: { nom: 'Bailleur Exemple', adresse: '1 rue Imaginaire, 99000 Exempleville' },
+    biens: [{ id: 'b1', nom: 'T2 Exemple', adresse: '12 rue Imaginaire, 99000 Exempleville', prixAchat: 15000000, fraisAchat: 1200000, travauxAchat: 300000, coproNonRecup: 40000, taxeFonciere: 90000, assurance: 15000 }],
+    locataires: [{ id: 'l1', nom: 'Paul Exemple', contact: 'paul@exemple.invalid' }],
+    baux: [{ id: 'x', bien: 'b1', locataires: ['l1'], type: 'nu', debut: '2026-01-01', loyerHC: 60000, charges: 5000, depot: 60000, jourEcheance: 1, trimestreIrl: '2025-T2', ...bail }],
+    ...extra,
+  }, AUJ, DEFAUTS);
+  return e;
+};
+const paie = (date, montant, bail = 'x') => ({ id: `p${date}${montant}`, bail, date, montant });
 
-const bail = (extra = {}) => R.normaliserBail({ id: 'B1', bien: 'L1', locataires: 'Camille Exemple', type: 'vide', debut: '2025-03-15', loyer: 60000, charges: 5000, depot: 60000, jourEcheance: 1, revision: { clause: true, trimestre: 2 }, ...extra }, AUJ);
-function etat(baux = [bail()], extra = {}) {
-  const e = R.etatVide(DEFAUTS);
-  e.biens = [R.normaliserBien({ id: 'L1', nom: 'T2 Centre', adresse: '1 rue Fictive, 00000 Exempleville', prixAchat: 12000000, fraisAchat: 900000, travaux: 600000 }), R.normaliserBien({ id: 'L2', nom: 'Studio' })];
-  e.baux = baux;
-  return Object.assign(e, extra);
-}
-
-test('base intégrée : aucun indice IRL, sources service-public datées, modèles sans pénalité de retard', () => {
-  const src = readFileSync(new URL('donnees.js', dossier), 'utf8');
-  assert.ok(!('irl' in BASE), 'aucune table IRL dans la base');
-  assert.doesNotMatch(src, /\b1[34]\d,\d\d\b/, 'aucune valeur d\'indice codée en dur');
-  assert.ok(BASE.sources.length >= 6 && BASE.sources.every(([, u]) => u.startsWith('https://')));
-  assert.ok(BASE.sources.filter(([l]) => /vérifiée le \d\d\/\d\d\/\d{4}/.test(l)).length >= 6);
-  for (const [, m] of Object.entries(BASE.modeles)) assert.doesNotMatch(m.texte, /pénalit|intérêts de retard|frais de retard/i);
-  assert.equal(BASE.typesBail.vide.depotMax, 1);
-  assert.equal(BASE.typesBail.meuble.depotMax, 2);
-  assert.equal(BASE.typesBail.mobilite.depotMax, null);
-  assert.ok(BASE.categories.length >= 12 && new Set(BASE.categories.map((c) => c.id)).size === BASE.categories.length);
-});
-
-test('dates : mois suivant, ajout de mois borné, trimestres', () => {
-  assert.equal(R.moisSuivant('2026-12'), '2027-01');
-  assert.equal(R.moisSuivant('2026-01', -1), '2025-12');
+test('dates, mois et montants', () => {
   assert.equal(R.ajoutMois('2026-01-31', 1), '2026-02-28');
-  assert.equal(R.ajoutAns('2024-02-29', 1), '2025-02-28');
-  assert.equal(R.finTrimestre('2026-T2'), '2026-06-30');
-  assert.equal(R.finTrimestre('2026-T4'), '2026-12-31');
-  assert.equal(R.trimestrePrecedentAnnee('2026-T3'), '2025-T3');
-  assert.equal(R.joursCommuns('2026-01-10', '2026-03-01', '2026-02-01', '2026-02-28'), 28);
+  assert.equal(R.ajoutMois('2024-02-29', 12), '2025-02-28');
+  assert.equal(R.moisSuivant('2026-12'), '2027-01');
+  assert.equal(R.finMois('2028-02'), '2028-02-29');
+  assert.deepEqual(simple(R.listeMois('2026-11', '2027-02')), ['2026-11', '2026-12', '2027-01', '2027-02']);
+  assert.equal(R.lireMontant('1 234,5 €'), 123450);
+  assert.equal(R.lireMontant('12,345'), null);
+  assert.equal(R.lireMontant('-15', { negatif: true }), -1500);
+  assert.equal(R.lireMontant('-15'), null);
+  assert.equal(R.euros(123456), '1 234,56 €');
+  assert.equal(R.euros(-500), '−5,00 €');
+  assert.equal(R.saisieMontant(-1505), '-15,05');
+  assert.equal(R.lireIndice('146,68'), 146.68);
+  assert.equal(R.lireIndice('5'), null);
+  assert.equal(R.lireIndice('abc'), null);
+  assert.equal(R.libelleTrimestre('2026-T1'), '1er trimestre 2026');
+  assert.equal(R.libelleTrimestre('2026-T3'), '3e trimestre 2026');
+  assert.equal(R.trimestreDecale('2025-T2', 1), '2026-T2');
 });
 
-test('montants et indices : lecture tolérante', () => {
-  assert.equal(R.lireMontant('1 234,56'), 123456);
-  assert.equal(R.lireMontant('600 €'), 60000);
-  assert.equal(R.lireMontant('abc'), null);
-  assert.equal(R.lireIndice('145,17'), 145.17);
-  assert.equal(R.lireIndice('145.2'), 145.2);
-  assert.equal(R.lireIndice('12'), null);
-  assert.equal(R.euros(60691), '606,91 €');
-  assert.deepEqual(R.repartir(1000, [1, 1, 1]), [333, 334, 333]);
+test('formule de révision : exemple de service-public.gouv.fr (600 € → 606,91 €)', () => {
+  assert.equal(R.loyerRevise(60000, 146.68, 148.37), 60691);
+  assert.equal(R.loyerRevise(60000, 0, 148.37), null);
+  assert.equal(R.loyerRevise(60000, null, 148.37), null);
+  // Baisse de l'indice : le loyer baisse aussi.
+  assert.equal(R.loyerRevise(50000, 140, 139), 49643);
 });
 
-test('échéances : prorata du premier mois, loyer en vigueur à la date d\'échéance', () => {
-  const b = bail();
-  const e1 = R.echeance(b, '2025-03', { prorata: true });
-  assert.equal(e1.date, '2025-03-15');
-  assert.equal(e1.jours, 17);
-  assert.equal(e1.loyer, Math.round((60000 * 17) / 31));
-  assert.equal(R.echeance(b, '2025-03', { prorata: false }).loyer, 60000);
-  assert.equal(R.echeance(b, '2025-02', {}), null);
-  const e2 = R.echeance(b, '2025-04', {});
-  assert.deepEqual([e2.date, e2.du, e2.prorata], ['2025-04-01', 65000, false]);
-  assert.equal(R.echeances(b, '2025-12', {}).length, 10);
-  // Fin de bail le 10 : dernier mois au prorata, plus rien ensuite.
-  const f = bail({ fin: '2026-06-10' });
-  assert.equal(R.echeance(f, '2026-06', {}).loyer, 20000);
-  assert.equal(R.echeance(f, '2026-07', {}), null);
-  // Jour d'échéance 31 en février : dernier jour du mois.
-  assert.equal(R.dateEcheance(bail({ jourEcheance: 31 }), '2026-02'), '2026-02-28');
-  // Changement de loyer daté : appliqué aux échéances à partir de cette date.
-  const h = bail({ historique: [{ date: '2026-04-05', loyer: 61000, charges: 5000, motif: 'Révision' }] });
-  assert.equal(R.echeance(h, '2026-04', {}).loyer, 60000, 'échéance du 1er avril avant le changement');
-  assert.equal(R.echeance(h, '2026-05', {}).loyer, 61000);
+test('échéances mensuelles, prorata d\'entrée et de sortie', () => {
+  const e = etat({ debut: '2026-01-15' });
+  const l = R.echeances(e.baux[0], '2026-03');
+  assert.equal(l.length, 3);
+  assert.equal(l[0].date, '2026-01-15'); // jamais avant l'entrée
+  assert.equal(l[0].loyer, Math.round(60000 * 17 / 31));
+  assert.equal(l[1].montant, 65000);
+  assert.equal(l[1].date, '2026-02-01');
+  const s = etat({ debut: '2026-01-01', sortie: '2026-03-10' });
+  const l2 = R.echeances(s.baux[0], '2026-12');
+  assert.equal(l2.length, 3);
+  assert.equal(l2[2].loyer, Math.round(60000 * 10 / 31));
+  // Jour d'échéance 31 borné à la fin du mois.
+  const j = etat({ jourEcheance: 28 });
+  assert.equal(R.echeance(j.baux[0], '2026-02'), '2026-02-28');
 });
 
-test('situation d\'une échéance : payée, partielle, en retard avec palier, à venir', () => {
-  const e = etat();
-  const ech = R.echeance(e.baux[0], '2026-11', e.reglages);
-  assert.equal(R.situation(ech, [], '2026-10-30', e.reglages).etat, 'aVenir');
-  assert.equal(R.situation(ech, [], '2026-11-01', e.reglages).etat, 'aujourdhui');
-  const r = R.situation(ech, [], AUJ, e.reglages);
-  assert.deepEqual([r.etat, r.joursRetard, r.palier, r.reste], ['retard', 13, 1, 65000]);
-  assert.equal(R.situation(ech, [], '2026-11-16', e.reglages).palier, 2);
-  assert.equal(R.situation(ech, [], '2026-12-01', e.reglages).palier, 3);
-  const p = [{ bail: 'B1', mois: '2026-11', date: '2026-11-02', montant: 30000 }];
-  const s = R.situation(ech, p, AUJ, e.reglages);
-  assert.deepEqual([s.etat, s.partiel, s.reste], ['retard', true, 35000]);
-  p.push({ bail: 'B1', mois: '2026-11', date: '2026-11-10', montant: 35000 });
-  assert.equal(R.situation(ech, p, AUJ, e.reglages).etat, 'payee');
-  // Impayés : toutes les échéances échues non soldées.
-  e.paiements = [];
-  assert.equal(R.impayes(e, AUJ).length, R.echeances(e.baux[0], '2026-11', e.reglages).length);
+test('loyer en vigueur selon les modifications datées', () => {
+  const e = etat({ modifs: [{ date: '2026-06-01', loyerHC: 61000, motif: 'revision' }, { date: '2026-09-01', charges: 7000, motif: 'regularisation' }] });
+  const b = e.baux[0];
+  assert.deepEqual(simple(R.loyerA(b, '2026-05-31')), { loyerHC: 60000, charges: 5000 });
+  assert.deepEqual(simple(R.loyerA(b, '2026-06-01')), { loyerHC: 61000, charges: 5000 });
+  assert.deepEqual(simple(R.loyerA(b, '2026-10-01')), { loyerHC: 61000, charges: 7000 });
+  const l = R.echeances(b, '2026-10');
+  assert.equal(l.find((d) => d.mois === '2026-06').montant, 66000);
+  assert.equal(l.find((d) => d.mois === '2026-10').montant, 68000);
 });
 
-test('quittance si payée en entier, reçu si partielle, rien si rien n\'est payé', () => {
-  const e = etat();
-  e.reglages.bailleurNom = 'Bailleur Exemple';
-  assert.equal(R.documentPaiement(e, 'B1', '2026-10', AUJ), null);
-  e.paiements = [{ id: 'p1', bail: 'B1', mois: '2026-10', date: '2026-10-03', montant: 40000 }];
-  const r = R.documentPaiement(e, 'B1', '2026-10', AUJ);
-  assert.deepEqual([r.type, r.paye, r.reste], ['recu', 40000, 25000]);
-  e.paiements.push({ id: 'p2', bail: 'B1', mois: '2026-10', date: '2026-10-08', montant: 25000 });
-  const q = R.documentPaiement(e, 'B1', '2026-10', AUJ);
-  assert.deepEqual([q.type, q.loyer, q.charges, q.periodeDebut, q.periodeFin, q.dernierPaiement], ['quittance', 60000, 5000, '2026-10-01', '2026-10-31', '2026-10-08']);
-  assert.equal(q.adresse, '1 rue Fictive, 00000 Exempleville');
+test('affectation FIFO, statuts, retard et palier', () => {
+  const pay = ['2026-01-03', '2026-02-02', '2026-03-20', '2026-04-01', '2026-05-01', '2026-06-01', '2026-07-01', '2026-08-01', '2026-09-01'].map((d) => paie(d, 65000));
+  const e = etat({}, { paiements: [...pay, paie('2026-10-08', 30000)] });
+  const c = R.compte(e, 'x', AUJ);
+  const st = Object.fromEntries(c.lignes.map((d) => [d.mois, d.statut]));
+  assert.equal(st['2026-01'], 'paye');
+  assert.equal(st['2026-03'], 'payeRetard'); // payé 19 jours après l'échéance, tolérance 5
+  assert.equal(st['2026-10'], 'partiel');
+  assert.equal(st['2026-11'], 'impaye');
+  assert.equal(st['2026-12'], 'avenir');
+  assert.equal(c.impaye, 35000 + 65000);
+  assert.equal(c.plusAncienne.mois, '2026-10');
+  assert.equal(c.retard, 44);
+  assert.equal(c.palier, 2);
+  assert.equal(c.avance, 0);
+  // Dans le délai de tolérance : ni retard ni palier.
+  const t = R.compte(etat({}, { paiements: pay.concat([paie('2026-10-01', 65000)]) }), 'x', '2026-11-04');
+  assert.equal(t.lignes.find((d) => d.mois === '2026-11').statut, 'attente');
+  assert.equal(t.impaye, 0);
+  assert.equal(t.palier, null);
+  // Paiement trop élevé : l'excédent part sur l'échéance suivante, puis en avance.
+  const a = R.compte(etat({ debut: '2026-11-01' }, { paiements: [paie('2026-11-01', 80000)] }), 'x', AUJ);
+  assert.equal(a.lignes[1].paye, 15000);
+  assert.equal(a.lignes[1].statut, 'partiel');
+  assert.equal(a.avance, 0);
+  assert.equal(R.compte(etat({ debut: '2026-11-01' }, { paiements: [paie('2026-11-01', 140000)] }), 'x', AUJ).avance, 10000);
+  assert.equal(R.palier(4, [5, 15, 30]), null);
+  assert.equal(R.palier(5, [5, 15, 30]), 0);
+  assert.equal(R.palier(29, [5, 15, 30]), 1);
+  assert.equal(R.palier(0, [5, 15, 30]), null);
 });
 
-test('révision : formule IRL arrondie au centime (exemple de service-public F1311)', () => {
-  assert.equal(R.nouveauLoyer(60000, 148.37, 146.68), 60691);
+test('paiement futur ignoré à la date du jour', () => {
+  const e = etat({ debut: '2026-11-01' }, { paiements: [paie('2026-11-20', 65000)] });
+  const c = R.compte(e, 'x', AUJ);
+  assert.equal(c.paye, 0);
+  assert.equal(c.impaye, 65000);
 });
 
-test('révision : indices du trimestre de référence achevé avant la date, ancien = même trimestre N-1', () => {
-  const b = bail();
-  const irl = [{ trimestre: '2025-T2', valeur: 140, zone: 'metropole' }, { trimestre: '2026-T2', valeur: 142.8, zone: 'metropole' }, { trimestre: '2026-T1', valeur: 141, zone: 'metropole' }];
-  const i = R.indicesRevision(b, '2026-03-15', irl, 'metropole');
-  // Le T2 2026 n'est pas achevé au 15/03/2026 : on attend le T2 2025, et il manque le T2 2024.
-  assert.equal(i.manque, '2024-T2');
-  const j = R.indicesRevision(b, '2026-08-01', irl, 'metropole');
-  assert.deepEqual([j.trimestreNouveau, j.irlNouveau, j.trimestreAncien, j.irlAncien], ['2026-T2', 142.8, '2025-T2', 140]);
-  assert.equal(R.indicesRevision(b, '2026-08-01', irl, 'corse').manque, '2026-T2', 'zone distincte');
-  assert.equal(R.indicesRevision(b, '2026-08-01', [], 'metropole').manque, '2026-T2');
+test('quittance si payé, reçu si partiel, rien si impayé', () => {
+  const e = etat({ debut: '2026-10-01' }, { paiements: [paie('2026-10-02', 65000), paie('2026-11-05', 20000)] });
+  const q = R.quittance(e, 'x', '2026-10', AUJ);
+  assert.equal(q.type, 'quittance');
+  assert.equal(q.loyer, 60000);
+  assert.equal(q.charges, 5000);
+  assert.equal(q.debut, '2026-10-01');
+  assert.equal(q.fin, '2026-10-31');
+  const t = R.texteQuittance(q);
+  assert.match(t, /QUITTANCE DE LOYER · OCTOBRE 2026/);
+  assert.match(t, /Loyer hors charges : 600,00 €/);
+  assert.match(t, /Provision sur charges : 50,00 €/);
+  assert.match(t, /gratuitement/);
+  const r = R.quittance(e, 'x', '2026-11', AUJ);
+  assert.equal(r.type, 'recu');
+  assert.equal(r.paye, 20000);
+  assert.equal(r.reste, 45000);
+  assert.match(R.texteQuittance(r), /ne vaut pas quittance/);
+  assert.equal(r.payeLoyer + r.payeCharges, 20000);
+  assert.equal(R.quittance(e, 'x', '2026-12', AUJ), null);
+  assert.equal(R.quittance(e, 'x', '2025-12', AUJ), null);
+  // Forfait de charges en meublé.
+  const f = etat({ debut: '2026-10-01', type: 'meuble', modeCharges: 'forfait' }, { paiements: [paie('2026-10-02', 65000)] });
+  assert.match(R.texteQuittance(R.quittance(f, 'x', '2026-10', AUJ)), /Forfait de charges : 50,00 €/);
 });
 
-test('révision : occurrences, limite d\'un an, perdue, bloquée', () => {
-  const irl = [{ trimestre: '2025-T2', valeur: 140, zone: 'metropole' }, { trimestre: '2026-T2', valeur: 142.8, zone: 'metropole' }, { trimestre: '2024-T2', valeur: 138, zone: 'metropole' }];
-  const b = bail({ debut: '2024-09-01' });
-  const l = R.revisions(b, AUJ, irl, 'metropole');
-  assert.deepEqual(simple(l.map((r) => [r.date, r.etat])), [['2025-09-01', 'perdue'], ['2026-09-01', 'aDemander'], ['2027-09-01', 'aVenir']]);
-  const c = R.revisionCourante(b, AUJ, irl, 'metropole');
-  assert.deepEqual([c.date, c.limite, c.nouveau], ['2026-09-01', '2027-08-31', Math.round(60000 * 142.8 / 140)]);
-  assert.equal(R.revisionCourante(bail({ type: 'mobilite' }), AUJ, irl, 'metropole').etat, 'bloquee');
-  assert.match(R.blocageRevision(bail({ revision: { clause: true, trimestre: 2, dpeFG: true } })), /DPE/);
-  assert.match(R.blocageRevision(bail({ revision: { clause: false } })), /ne prévoit pas/);
-  // Date de révision convenue dans le bail.
-  assert.equal(R.dateRevision(bail({ revision: { clause: true, trimestre: 2, date: '01-01' } }), 2027), '2027-01-01');
+test('relance : texte rempli par palier, rien sans retard', () => {
+  const e = etat({ debut: '2026-09-01' }, { paiements: [paie('2026-09-01', 65000)] });
+  const r = R.texteRelance(e, 'x', 1, BASE.relances, AUJ);
+  assert.equal(r.titre, 'Relance');
+  assert.match(r.texte, /Paul Exemple/);
+  assert.match(r.texte, /1 300,00 €/);
+  assert.match(r.texte, /octobre 2026/);
+  assert.match(r.texte, /12 rue Imaginaire/);
+  assert.doesNotMatch(r.texte, /\{\w+\}/);
+  const m = R.texteRelance(e, 'x', 2, BASE.relances, AUJ);
+  assert.match(m.texte, /mets en demeure/);
+  assert.ok(m.note.length > 0);
+  assert.equal(R.texteRelance(etat({ debut: '2026-11-01' }, { paiements: [paie('2026-11-01', 65000)] }), 'x', 0, BASE.relances, AUJ), null);
+  // Tous les modèles : aucune variable inconnue.
+  for (const mo of BASE.relances) for (const v of (mo.texte + mo.objet).match(/\{(\w+)\}/g) || []) assert.ok(['{locataire}', '{adresse}', '{montant}', '{mois}', '{depuis}', '{bailleur}', '{date}', '{detail}'].includes(v), v);
 });
 
-test('révision appliquée : effet à la date de la demande, non rétroactive, refusée après un an', () => {
-  const irl = [{ trimestre: '2025-T2', valeur: 140, zone: 'metropole' }, { trimestre: '2026-T2', valeur: 142.8, zone: 'metropole' }];
-  const b = bail({ debut: '2024-09-01' });
-  assert.equal(R.appliquerRevision(b, '2026-09-01', '2027-09-02', irl, 'metropole').ok, false);
-  const r = R.appliquerRevision(b, '2026-09-01', '2026-11-14', irl, 'metropole');
-  assert.ok(r.ok);
-  assert.equal(r.revision.dateEffet, '2026-11-14');
-  assert.equal(r.revision.nouveauLoyer, 61200);
-  assert.equal(R.echeance(r.bail, '2026-11', {}).loyer, 60000, 'novembre échu le 01/11 : ancien loyer');
-  assert.equal(R.echeance(r.bail, '2026-12', {}).loyer, 61200);
-  assert.equal(R.revisionCourante(r.bail, AUJ, irl, 'metropole').date, '2027-09-01');
-  assert.equal(R.appliquerRevision(r.bail, '2026-09-01', '2026-11-14', irl, 'metropole').ok, false, 'pas deux fois');
-  // Demande faite avant la date de révision : effet à la date de révision.
-  const avant = R.appliquerRevision(b, '2026-09-01', '2026-08-20', irl, 'metropole');
-  assert.equal(avant.revision.dateEffet, '2026-09-01');
-  // Indice manquant : message clair.
-  const m = R.appliquerRevision(b, '2026-09-01', '2026-11-14', [], 'metropole');
-  assert.equal(m.manque, '2026-T2');
-  // Annulation : historique et enregistrement retirés.
-  const a = R.annulerRevision(r.bail, '2026-09-01');
-  assert.equal(R.echeance(a, '2026-12', {}).loyer, 60000);
-  assert.equal(R.revisions(R.ignorerRevision(b, '2026-09-01'), AUJ, irl, 'metropole').find((x) => x.date === '2026-09-01').etat, 'ignoree');
+test('révisions : échéancier, indice manquant, à faire, appliquée, perdue', () => {
+  const irl = [{ trimestre: '2024-T2', valeur: 140 }, { trimestre: '2025-T2', valeur: 142.1 }, { trimestre: '2026-T2', valeur: 143.5 }];
+  // Bail du 01/12/2024 : révisions le 01/12/2025 (perdue au 14/11/2026 ? non : limite 30/11/2026) et 01/12/2026.
+  const e = etat({ debut: '2024-12-01', trimestreIrl: '2024-T2' }, { irl });
+  const r = R.revisions(e, 'x', AUJ);
+  assert.equal(r.length, 2);
+  assert.equal(r[0].date, '2025-12-01');
+  assert.equal(r[0].limite, '2026-11-30');
+  assert.equal(r[0].trimestre, '2025-T2');
+  assert.equal(r[0].statut, 'aFaire');
+  assert.equal(r[0].loyer, R.loyerRevise(60000, 140, 142.1));
+  assert.equal(r[1].date, '2026-12-01');
+  assert.equal(r[1].statut, 'aFaire'); // dans moins de 45 jours, indices saisis
+  assert.equal(r[1].trimestreAncien, '2025-T2');
+  // Après la limite : perdue.
+  assert.equal(R.revisions(e, 'x', '2026-12-01')[0].statut, 'perdue');
+  // Indice manquant.
+  const m = etat({ debut: '2024-12-01', trimestreIrl: '2024-T2' }, { irl: irl.slice(0, 2) });
+  assert.equal(R.revisions(m, 'x', AUJ)[1].statut, 'irlManquant');
+  // Appliquée : la suivante part du loyer révisé.
+  const rev = R.revisions(e, 'x', AUJ)[0];
+  const modif = R.appliquerRevision(e.baux[0], rev, '2026-01-10');
+  assert.equal(modif.date, '2026-01-10'); // date de la demande, sans rétroactivité
+  assert.equal(modif.revisionDe, '2025-12-01');
+  e.baux[0].modifs.push({ id: 'm1', ...modif });
+  const r2 = R.revisions(e, 'x', AUJ);
+  assert.equal(r2[0].statut, 'appliquee');
+  assert.equal(r2[1].base, rev.loyer);
+  assert.equal(r2[1].loyer, R.loyerRevise(rev.loyer, 142.1, 143.5));
+  // Demande avant la date : prend effet à la date de révision ; après la limite : refusée.
+  assert.equal(R.appliquerRevision(e.baux[0], rev, '2025-11-01').date, '2025-12-01');
+  assert.equal(R.appliquerRevision(e.baux[0], rev, '2026-12-01'), null);
+  // Sans clause, révision à venir.
+  assert.equal(R.revisions(etat({ debut: '2024-12-01', clauseRevision: false }, { irl }), 'x', AUJ)[0].statut, 'sansClause');
+  assert.equal(R.revisions(etat({ debut: '2026-06-01' }, { irl }), 'x', AUJ)[0].statut, 'avenir');
 });
 
-test('dépôt de garantie : maximum selon le type, délai de restitution 1 ou 2 mois', () => {
-  assert.equal(R.controleDepot(bail()), null);
-  assert.match(R.controleDepot(bail({ depot: 70000 })), /1 mois/);
-  assert.equal(R.controleDepot(bail({ type: 'meuble', depot: 120000 })), null);
-  assert.equal(R.normaliserBail({ type: 'mobilite', depot: 50000 }).depot, 0);
-  assert.equal(R.etatDepot(bail(), AUJ).etat, 'conserve');
-  const s = bail({ fin: '2026-10-31', sortie: { remiseCles: '2026-10-31', conforme: true, retenues: [{ libelle: 'Ménage', montant: 8000 }] } });
-  const d = R.etatDepot(s, AUJ);
-  assert.deepEqual([d.etat, d.limite, d.aRendre], ['aRestituer', '2026-11-30', 52000]);
-  const nc = R.etatDepot(bail({ sortie: { remiseCles: '2026-08-31', conforme: false } }), AUJ);
-  assert.deepEqual([nc.etat, nc.limite, nc.moisRetard, nc.majorationIndicative], ['enRetard', '2026-10-31', 1, 6000]);
-  assert.equal(R.etatDepot(bail({ sortie: { remiseCles: '2026-08-31', restitueLe: '2026-09-15', restitue: 60000 } }), AUJ).etat, 'restitue');
+test('révision interdite pour un logement classé F ou G (bail depuis le 24/08/2022)', () => {
+  const irl = [{ trimestre: '2025-T2', valeur: 142.1 }, { trimestre: '2026-T2', valeur: 143.5 }];
+  const e = etat({ debut: '2025-12-01' }, { irl });
+  e.biens[0].dpe = 'G';
+  assert.equal(R.revisions(e, 'x', AUJ)[0].statut, 'dpe');
+  const ancien = etat({ debut: '2025-12-01', signeLe: '2021-05-01' }, { irl });
+  ancien.biens[0].dpe = 'F';
+  assert.equal(R.revisions(ancien, 'x', AUJ)[0].statut, 'aFaire');
+  e.biens[0].dpe = 'E';
+  assert.equal(R.revisions(e, 'x', AUJ)[0].statut, 'aFaire');
 });
 
-test('régularisation des charges : provisions appelées contre charges récupérables au prorata', () => {
-  const e = etat([bail({ debut: '2025-07-01', charges: 5000 })]);
-  e.depenses = [
-    { id: 'd1', bien: 'L1', date: '2025-05-10', categorie: 'eau', montant: 36500, recuperable: true },
-    { id: 'd2', bien: 'L1', date: '2025-10-01', categorie: 'teom', montant: 18250, recuperable: true },
-    { id: 'd3', bien: 'L1', date: '2025-10-15', categorie: 'taxe-fonciere', montant: 90000, recuperable: false },
-    { id: 'd4', bien: 'L2', date: '2025-10-15', categorie: 'eau', montant: 99999, recuperable: true },
+test('régularisation des charges : provisions contre réel récupérable, au prorata', () => {
+  const deps = [
+    { id: 'd1', bien: 'b1', date: '2025-06-01', categorie: 'copro', montant: 200000, recuperable: 80000 },
+    { id: 'd2', bien: 'b1', date: '2025-10-15', categorie: 'teom', montant: 18000, recuperable: 18000 },
+    { id: 'd3', bien: 'b1', date: '2025-10-15', categorie: 'taxeFonciere', montant: 90000, recuperable: 0 },
+    { id: 'd4', bien: 'b1', date: '2026-02-01', categorie: 'copro', montant: 50000, recuperable: 20000 },
   ];
-  const r = R.regularisation(e, 'B1', 2025);
-  assert.equal(r.jours, 184);
-  assert.equal(r.totalBien, 54750);
-  assert.equal(r.reel, Math.round((54750 * 184) / 365));
-  assert.equal(r.provisions, 6 * 5000);
-  assert.equal(r.solde, r.reel - 30000);
-  assert.equal(r.detail.reduce((s, x) => s + x.part, 0), r.reel);
-  assert.equal(R.regularisation(etat([bail({ type: 'meuble', modeCharges: 'forfait' })]), 'B1', 2025).forfait, true);
-  assert.equal(R.regularisation(e, 'B1', 2024), null);
+  const e = etat({ debut: '2025-01-01' }, { depenses: deps });
+  const rg = R.regularisation(e, 'x', 2025);
+  assert.equal(rg.provisions, 60000);
+  assert.equal(rg.reelBien, 98000);
+  assert.equal(rg.reel, 98000);
+  assert.equal(rg.solde, 38000);
+  assert.equal(rg.depenses.length, 2);
+  assert.equal(R.provisionProposee(rg), 8200);
+  // Entrée au 1er juillet : moitié de l'année environ.
+  const p = R.regularisation(etat({ debut: '2025-07-01' }, { depenses: deps }), 'x', 2025);
+  assert.equal(p.jours, 184);
+  assert.equal(p.reel, Math.round(98000 * 184 / 365));
+  assert.equal(p.provisions, 30000);
+  // Appliquée : la régularisation devient une échéance (ou un crédit si négative).
+  e.baux[0].reguls = [{ id: 'g1', annee: 2025, date: '2026-03-01', montant: 38000 }];
+  assert.ok(R.regularisation(e, 'x', 2025).appliquee);
+  const l = R.echeances(e.baux[0], '2026-03');
+  assert.ok(l.some((d) => d.type === 'regul' && d.montant === 38000));
+  const neg = etat({ debut: '2026-01-01', reguls: [{ id: 'g2', annee: 2025, date: '2026-02-01', montant: -10000 }] });
+  const c = R.compte(neg, 'x', '2026-02-10');
+  assert.equal(c.paye, 10000); // crédit affecté à la première échéance
+  // Forfait : signalé.
+  assert.equal(R.regularisation(etat({ modeCharges: 'forfait' }), 'x', 2026).forfait, true);
 });
 
-test('bilan : rendement brut et net, vacance, impayés', () => {
-  const e = etat([bail({ debut: '2026-01-01', loyer: 60000, charges: 5000 })]);
-  e.depenses = [{ id: 'd', bien: 'L1', date: '2026-10-15', categorie: 'taxe-fonciere', montant: 90000, recuperable: false }];
-  e.paiements = R.moisAnnee(2026).slice(0, 10).map((m, i) => ({ id: `p${i}`, bail: 'B1', mois: m, date: `${m}-02`, montant: 65000 }));
-  const b = R.bilanBien(e, 'L1', 2026, AUJ);
-  assert.equal(b.cout, 13500000);
-  assert.equal(b.loyers, 12 * 60000);
-  assert.equal(b.brut.toFixed(2), (720000 / 13500000 * 100).toFixed(2));
-  assert.equal(b.net.toFixed(2), ((720000 - 90000) / 13500000 * 100).toFixed(2));
-  assert.equal(b.impaye, 65000, 'novembre en retard, décembre à venir');
-  assert.equal(b.joursVacants, 0);
-  const vide = R.bilanBien(e, 'L2', 2026, AUJ);
-  assert.equal(vide.joursVacants, 365);
-  assert.equal(vide.brut, null);
-  assert.equal(R.bilan(e, 2026, AUJ).loyers, 720000);
+test('dépôt de garantie : plafond, délai de restitution, pénalité', () => {
+  const e = etat({ depot: 70000 });
+  assert.equal(R.depot(e, e.baux[0]).depasse, true);
+  assert.equal(R.depot(e, e.baux[0]).plafond, 60000);
+  const m = etat({ type: 'meuble', depot: 120000 });
+  assert.equal(R.depot(m, m.baux[0]).depasse, false);
+  const s = etat({ debut: '2025-01-01', sortie: '2026-08-10', edlConforme: true });
+  assert.equal(R.depot(s, s.baux[0]).limite, '2026-09-10');
+  const r = R.retardRestitution(s, s.baux[0], AUJ);
+  assert.equal(r.retardMois, 3); // 10/09 → 14/11 : 3 mois commencés
+  assert.equal(r.penalite, 3 * 6000);
+  const nc = etat({ debut: '2025-01-01', sortie: '2026-08-10', edlConforme: false });
+  assert.equal(R.depot(nc, nc.baux[0]).limite, '2026-10-10');
+  const rendu = etat({ debut: '2025-01-01', sortie: '2026-08-10', edlConforme: true, restitution: { date: '2026-09-01', montant: 60000 } });
+  assert.equal(R.retardRestitution(rendu, rendu.baux[0], AUJ).penalite, 0);
 });
 
-test('alertes : impayés, révision à demander et indice manquant, dépôt, régularisation, fin de bail', () => {
-  const e = etat([
-    bail({ id: 'B1', debut: '2024-09-01' }),
-    bail({ id: 'B2', bien: 'L2', debut: '2025-01-01', fin: '2026-10-31', sortie: { remiseCles: '2026-10-31' } }),
-  ]);
-  e.baux[0].finPrevue = '2027-01-15';
-  e.depenses = [{ id: 'd', bien: 'L1', date: '2025-06-01', categorie: 'eau', montant: 20000, recuperable: true }];
-  const a = R.alertes(e, AUJ);
-  assert.ok(a.impayes.length > 10);
-  assert.deepEqual(simple(a.revisions.map((r) => r.bail)), ['B1'], 'bail terminé : plus de révision proposée');
-  assert.deepEqual(simple(a.irlManquants), ['2026-T2']);
-  assert.equal(a.depots.length, 1);
-  assert.equal(a.regularisations.length, 2);
-  assert.equal(a.finsBail.length, 1);
-  e.baux[0].regularisations = { 2025: { date: '2026-02-01', solde: 0 } };
-  assert.equal(R.alertes(e, AUJ).regularisations.length, 1);
+test('rendement brut, net et mensuel avec crédit', () => {
+  const e = etat({ debut: '2025-01-01' });
+  const r = R.rendement(e, 'b1', AUJ);
+  assert.equal(r.prix, 16500000);
+  assert.equal(r.loyers, 720000);
+  assert.equal(r.charges, 145000);
+  assert.ok(Math.abs(r.brut - 720000 / 16500000 * 100) < 1e-9);
+  assert.ok(Math.abs(r.net - 575000 / 16500000 * 100) < 1e-9);
+  assert.equal(r.mensuel, Math.round(575000 / 12));
+  e.biens[0].credit = { mensualite: 70000, fin: '2040-01-01' };
+  assert.equal(R.rendement(e, 'b1', AUJ).mensuel, Math.round((575000 - 840000) / 12));
+  // Vacant : pas de rendement.
+  const v = etat({ debut: '2025-01-01', sortie: '2026-06-30' });
+  assert.equal(R.rendement(v, 'b1', AUJ).vacant, true);
+  assert.equal(R.rendement(v, 'b1', AUJ).brut, null);
 });
 
-test('modèles : variables remplacées, variable manquante visible', () => {
-  assert.equal(R.remplir('Bonjour {locataire}, {reste}.', { locataire: 'Camille', reste: '10,00 €' }), 'Bonjour Camille, 10,00 €.');
-  assert.equal(R.remplir('{bailleur}', {}), '[bailleur]');
+test('récapitulatif annuel : loyers et charges encaissés, dépenses par catégorie', () => {
+  const e = etat({ debut: '2025-12-01' }, {
+    paiements: [paie('2025-12-01', 65000), paie('2026-01-02', 65000), paie('2026-02-01', 32500)],
+    depenses: [{ id: 'd', bien: 'b1', date: '2026-10-01', categorie: 'taxeFonciere', montant: 90000, recuperable: 0 }, { id: 'e', bien: 'b1', date: '2026-10-01', categorie: 'teom', montant: 15000, recuperable: 15000 }],
+  });
+  const r = R.recapAnnuel(e, 2026, AUJ);
+  assert.equal(r.loyers, 60000 + 30000);
+  assert.equal(r.charges, 5000 + 2500);
+  assert.equal(r.encaisse, 97500);
+  assert.equal(r.parBien[0].cats.taxeFonciere.total, 90000);
+  assert.equal(r.recuperable, 15000);
+  assert.equal(R.recapAnnuel(e, 2025, AUJ).loyers, 60000);
 });
 
-test('normalisation : tolérante, références orphelines retirées, aucun dépôt en bail mobilité', () => {
-  const e = R.normaliser({ biens: [{ id: 'L1', nom: 'A' }], baux: [{ id: 'B1', bien: 'L1', debut: '2026-01-01', loyer: 50000, type: 'inconnu' }, { id: 'B2', bien: 'X' }], paiements: [{ bail: 'B1', mois: '2026-01', date: '2026-01-02', montant: 100 }, { bail: 'B2', mois: '2026-01', date: '2026-01-02', montant: 100 }], irl: [{ trimestre: '2026-T5', valeur: 1 }, { trimestre: '2026-T1', valeur: 145.123 }] }, AUJ, DEFAUTS);
-  assert.equal(e.baux.length, 1);
-  assert.equal(e.baux[0].type, 'vide');
-  assert.equal(e.paiements.length, 1);
-  assert.deepEqual(simple(e.irl), [{ trimestre: '2026-T1', valeur: 145.12, zone: 'metropole' }]);
-  assert.deepEqual(simple(R.normaliser(null, AUJ, DEFAUTS).reglages.relances), [5, 15, 30]);
-  assert.equal(R.normaliserBail({ type: 'mobilite' }).modeCharges, 'forfait');
-  assert.equal(R.normaliserBail({ type: 'mobilite' }).revision.clause, false);
-  const irl = R.majIrl([{ trimestre: '2026-T1', valeur: 1, zone: 'metropole' }], '2026-T1', 145, 'metropole');
-  assert.deepEqual(simple(irl), [{ trimestre: '2026-T1', valeur: 145, zone: 'metropole' }]);
+test('RGPD : effacer, supprimer, exporter un locataire', () => {
+  const e = etat({ note: 'Garant : un parent' }, { paiements: [{ ...paie('2026-01-01', 65000), note: 'Virement de M. Exemple' }] });
+  const ef = R.effacerLocataire(e, 'l1', 2);
+  assert.equal(ef.locataires[0].nom, 'Locataire effacé 2');
+  assert.equal(ef.locataires[0].contact, '');
+  assert.equal(ef.baux[0].note, '');
+  assert.equal(ef.paiements[0].note, '');
+  assert.equal(ef.paiements[0].montant, 65000);
+  assert.equal(e.locataires[0].nom, 'Paul Exemple'); // état d'origine intact
+  const su = R.supprimerLocataire(e, 'l1');
+  assert.equal(su.locataires.length, 0);
+  assert.deepEqual(simple(su.baux[0].locataires), []);
+  assert.equal(su.baux.length, 1);
+  const d = R.donneesLocataire(e, 'l1', AUJ);
+  assert.equal(d.locataire.nom, 'Paul Exemple');
+  assert.equal(d.baux[0].paiements.length, 1);
+  assert.equal(d.baux[0].loyerHC, 600);
+  assert.equal(R.donneesLocataire(e, 'inconnu', AUJ), null);
 });
 
-test('locataires : effacement, chevauchement de baux, suppression d\'un bien', () => {
-  const e = etat([bail({ fin: '2025-12-31' }), bail({ id: 'B2', debut: '2026-02-01' })]);
-  const x = R.effacerAnciens(e, '2026-06-01');
-  assert.equal(x.n, 1);
-  assert.equal(x.etat.baux[0].locataires, 'Locataire effacé');
-  assert.equal(x.etat.baux[1].locataires, 'Camille Exemple');
-  assert.equal(R.chevauchementBail(e, R.normaliserBail({ id: 'N', bien: 'L1', debut: '2025-06-01' })).id, 'B1');
-  assert.equal(R.chevauchementBail(e, R.normaliserBail({ id: 'N', bien: 'L1', debut: '2026-01-01', fin: '2026-01-31' })), null);
-  assert.equal(R.peutSupprimerBien(e, 'L1'), false);
-  assert.equal(R.peutSupprimerBien(e, 'L2'), true);
+test('normalisation tolérante et réglages bornés', () => {
+  const v = R.normaliser(null, AUJ, DEFAUTS);
+  assert.deepEqual(simple(v.baux), []);
+  assert.equal(v.reglages.tolerance, 5);
+  const n = R.normaliser({
+    irl: [{ trimestre: '2026-T2', valeur: 143.5 }, { trimestre: '2026-T2', valeur: 1 }, { trimestre: 'xx', valeur: 3 }, { trimestre: '2025-T2', valeur: 142 }],
+    baux: [{ debut: 'mauvais', loyerHC: -5, type: 'bizarre', jourEcheance: 40, fin: '2000-01-01' }],
+    paiements: [{ bail: 'a', montant: 0 }, { bail: 'a', montant: 100 }],
+    depenses: [{ montant: 1000, recuperable: 5000 }],
+    reglages: { paliers: [30, 15, 5], tolerance: 999 },
+  }, AUJ, DEFAUTS);
+  assert.deepEqual(simple(n.irl.map((x) => x.trimestre)), ['2025-T2', '2026-T2']);
+  assert.equal(n.irl[1].valeur, 143.5);
+  assert.equal(n.baux[0].debut, AUJ);
+  assert.equal(n.baux[0].loyerHC, 0);
+  assert.equal(n.baux[0].type, 'nu');
+  assert.equal(n.baux[0].jourEcheance, 28);
+  assert.equal(n.baux[0].fin, null);
+  assert.equal(n.baux[0].clauseRevision, true);
+  assert.equal(n.paiements.length, 1);
+  assert.equal(n.depenses[0].recuperable, 1000);
+  assert.deepEqual(simple(n.reglages.paliers), [5, 15, 30]);
+  assert.equal(n.reglages.tolerance, 60);
 });
 
-test('CSV : séparateur point-virgule, montants en euros, BOM', () => {
-  const e = etat();
-  e.paiements = [{ id: 'p', bail: 'B1', mois: '2025-04', date: '2025-04-01', montant: 65000 }];
-  const c = R.csvEcheances(e, AUJ);
-  assert.ok(c.startsWith('﻿Bien;Locataire;Mois'));
-  assert.match(c, /T2 Centre;Camille Exemple;2025-04;2025-04-01;600,00;50,00;650,00;650,00;0,00;Payé/);
-  e.depenses = [{ id: 'd', bien: 'L1', date: '2026-01-02', categorie: 'eau', montant: 1234, recuperable: true, note: 'a;b' }];
-  assert.match(R.csvDepenses(e, BASE.categories), /2026-01-02;T2 Centre;Eau;12,34;oui;"a;b"/);
+test('synthèse : encaissé du mois, retards, révisions, dépôt à rendre', () => {
+  const irl = [{ trimestre: '2025-T2', valeur: 142.1 }, { trimestre: '2026-T2', valeur: 143.5 }];
+  const e = etat({ debut: '2025-12-01' }, { irl, paiements: [paie('2026-11-02', 65000)] });
+  e.baux.push(R.normaliserBail({ id: 'y', bien: 'b1', locataires: [], debut: '2024-01-01', sortie: '2025-11-20', loyerHC: 50000, depot: 50000, edlConforme: true }, AUJ));
+  const s = R.synthese(e, AUJ);
+  assert.equal(s.encaisseMois, 65000);
+  assert.equal(s.attenduMois, 65000);
+  assert.ok(s.retards.length >= 1); // le bail y (ancien) n'a aucun paiement
+  assert.equal(s.revs.length, 1);
+  assert.equal(s.depots.length, 1);
+  assert.ok(s.depots[0].penalite > 0);
+  assert.equal(s.biensVacants.length, 0);
 });
 
-test('aucune marque ni plateforme tierce dans le template', () => {
-  const textes = ['donnees.js', 'regles.js', 'app.js'].map((f) => readFileSync(new URL(f, dossier), 'utf8')).join('\n');
-  assert.doesNotMatch(textes, /airbnb|seloger|leboncoin|pap\.fr|bailfacile|rentila|google|whatsapp/i);
+test('export CSV : en-tête, séparateur point-virgule, BOM', () => {
+  const e = etat({ debut: '2026-10-01' }, { paiements: [paie('2026-10-01', 65000)] });
+  const csv = R.versCsv(e, AUJ);
+  assert.ok(csv.startsWith('﻿Bien;Locataire'));
+  assert.match(csv, /T2 Exemple;Paul Exemple;Location nue;2026-10-01;2026-10;Loyer;600,00;50,00;650,00;650,00;0,00;Payé;2026-10-01/);
+  const dc = R.depensesCsv(etat({}, { depenses: [{ bien: 'b1', date: '2026-01-01', categorie: 'teom', libelle: 'Avis; 2026', montant: 1500, recuperable: 1500 }] }), BASE.categories);
+  assert.match(dc, /"Avis; 2026"/);
+  assert.match(dc, /Taxe d'ordures ménagères/);
+});
+
+test('base intégrée : aucun indice IRL, règles et sources datées', () => {
+  assert.equal(BASE.irl, undefined);
+  assert.ok(!/\b1[34]\d,\d\d\b/.test(readFileSync(new URL('donnees.js', dossier), 'utf8').replace(/F1311[^']*'/g, '')));
+  assert.equal(BASE.relances.length, 3);
+  assert.equal(BASE.reglages.paliers.length, 3);
+  assert.ok(BASE.sources.length >= 4);
+  assert.ok(BASE.categories.every((c) => c.id && c.nom));
+  assert.match(BASE.fiscal, /pas un calcul d'impôt/);
 });

@@ -54,15 +54,15 @@ export const PACKS = {
   PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV'] },
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT'] },
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP'] },
-  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GRT'] },
-  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS'] },
+  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH'] },
+  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC'] },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
   PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS'] },
   PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'] },
   PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: [] },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF'] },
   PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS'] },
-  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR'] },
+  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR'] },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.

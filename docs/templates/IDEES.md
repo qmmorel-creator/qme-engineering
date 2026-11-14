@@ -83,11 +83,11 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses (fiche en fin de fichier) | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
-| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
+| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -147,34 +147,36 @@ déjà).
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
-| T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
+| T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | prêt | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
-| T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T75 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T76 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T77 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T78 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T79 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
-| T80 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
-| T81 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T82 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T83 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
-| T84 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
-| T85 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
-| T86 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T87 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T88 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T90 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T91 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T92 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T93 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T94 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T95 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
+| T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -256,24 +258,24 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
-| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
-| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T75, T76 | 198 € | 25 % | 148 € | 37 € |
-| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T77, T78 | 171 € | 25 % | 128 € | 32 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63 | T50, T79, T80 | 167 € | 25 % | 125 € | 32 € |
-| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T81, T82, T83 | 89 € | 25 % | 66 € | 17 € |
-| Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T84 | 84 € | 25 % | 63 € | 16 € |
-| Productivité perso | PPR | T03, T30, T08, T22 | T85 | 61 € | 20 % | 48 € | 12 € |
-| Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
-| Associations et clubs | PAS | T53, T51, T42, T52 | T89, T90, T91 | 156 € | 20 % | 124 € | 31 € |
-| Propriétaire | PPB | T64, T67, T11, T27 | T92, T93, T94, T83 | 82 € | 20 % | 65 € | 17 € |
-| Forme | PFM | T04, T08, T06 | T07, T95 | 44 € | 15 % | 37 € | 10 € |
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T73 | 139 € | 25 % | 104 € | 26 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T74, T75, T76 | 62 € | 15 % | 52 € | 13 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63 | T50, T81, T82 | 167 € | 25 % | 125 € | 32 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
+| Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
+| Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
+| Étudiant | PET | T01, T30, T08 | T88, T89, T90 | 41,90 € | 15 % | 35 € | 9 € |
+| Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71 | T94, T95, T96, T85 | 111 € | 25 % | 83 € | 21 € |
+| Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06 | T09, T19, T20 | 40 € | 15 % | 34 € | 9 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | — | T59, T58, T55, T56 | 104 € (prévu) | 20 % | 83 € | 21 € |
-| Exploitation et maintenance | PXP | T61, T63 | T60, T79 | 74 € | 10 % | 66 € | 17 € |
+| Exploitation et maintenance | PXP | T61, T63 | T60, T81 | 74 € | 10 % | 66 € | 17 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42 | — | 108 € | 20 % | 86 € | 22 € |
-| Ma voiture | PVT | T66 | T10 | 25 € (prévu) | 10 % | 22 € | 9 € |
+| Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -518,9 +520,12 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
 | T13 | `epargne` | EPG | objectif-epargne (prévu) |
-| T27 | `gestion-locative` | GRT | gestion-locative (prévu) |
 | T23 | `suivi-chantier` | CHT | suivi-chantier-lot (prévu) |
 | T47 | `planning-equipe` | EQP | planning-equipe-staffing (prévu) |
+| T06 | `repas` | RPS | repas-liste-de-courses (prévu) |
+| T07 | `musculation` | MSC | carnet-musculation-cross-training (prévu) |
+| T10 | `voiture` | CAR | carnet-voiture (prévu) |
+| T27 | `gestion-locative` | GST | gestion-locative (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -562,6 +567,7 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-108 | T08 habitudes | 2027-01-13 | 12:15 |
 | LI-109 | T11 entretien | 2027-01-15 | 12:15 |
 | LI-110 | T12 dettes | 2027-01-17 | 08:30 |
+| LI-111 | T71 sinistre | 2027-01-19 | 12:15 |
 | LI-112 | T26 notes-de-frais | 2027-01-21 | 12:15 |
 | LI-113 | T38 appel-decouverte | 2027-01-23 | 12:15 |
 | LI-114 | T43 impayes | 2027-01-25 | 12:15 |
@@ -570,6 +576,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-117 | T62 stocks | 2027-02-03 | 12:15 |
 | LI-118 | T64 location-saisonniere | 2027-02-05 | 12:15 |
 | LI-119 | T66 leasing | 2027-02-07 | 08:30 |
+| LI-120 | T06 repas | 2027-02-09 | 12:15 |
+| LI-121 | T07 musculation | 2027-02-11 | 12:15 |
+| LI-122 | T10 voiture | 2027-02-13 | 08:30 |
+| LI-123 | T27 gestion-locative | 2027-02-15 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -646,6 +656,29 @@ ajout aux `produits` du pack (`netlify/lib/packs.mjs`) reste à faire. **Publica
 planifiées** (mission sans Google Sheets) : lignes à insérer selon `reference.md`. Restent à vérifier : articles
 L3121-20, L3121-22 et L3121-27 relus sur code.travail.gouv.fr seulement ; organismes de `prospects.md` marqués « à
 vérifier ».
+**Lot du 14/11/2026, troisième (T06, T07, T10, T27)**, prêts, « Mise en vente prochaine » (démo libre, bouton
+« Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/repas/` (RPS, 13 €), `templates/musculation/` (MSC, 19 €), `templates/voiture/` (CAR, 13 €),
+`templates/gestion-locative/` (GST, 20 €) ; pages `catalogue/<slug>/` ; fiches `fiches/<slug>.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`). Noms et
+prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad. Publications
+insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé »
+LI-120 (T06, 09/02), LI-121 (T07, 11/02), LI-122 (T10, sam. 13/02 : créneau donné par la règle), LI-123 (T27,
+15/02) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-75 (T06, 10/02), IG-76 (T07, 12/02),
+IG-77 (T10, 14/02), IG-78 (T27, 16/02). **Images non déposées dans Drive** (envoi de fichiers impossible depuis
+la session) : couvertures LinkedIn `assets/templates-<slug>-couverture.png` à renommer `LI-12x-<slug>.png`, et
+carrousels `communication/<slug>/instagram/<slug>-1…5.png` à renommer `IG-7x-<slug>-1…5.png`, puis IDs Drive
+en colonne P du planning Instagram (consigne dans la colonne Remarque de chaque ligne). Restent à vérifier :
+T06, recettes rédigées par QME (quantités et temps non testés), liste des 14 allergènes (règlement UE
+1169/2011) non revérifiée sur EUR-Lex, attribution indicative ; T07, aucune donnée de santé, aucun WOD nommé,
+le mot « CrossFit » absent ; sources des formules d'Epley et de Brzycki et de l'échelle RPE non consultées
+directement ; usage du terme « WOD » à arbitrer ; pas de jeu de hashtags « sport » dans le kit ; T10, contrôle
+technique vérifié sur service-public.gouv.fr (F2878) le 14/11/2026, délai d'une contre-visite elle-même
+défavorable non vérifié, intervalles d'entretien indicatifs non sourcés ; T27, fiches service-public F1311,
+F31269, F947 et article 21 de la loi de 1989 relus le 14/11/2026, autres numéros d'articles, charges
+récupérables, gel des loyers des logements classés E à vérifier, aucun calcul d'impôt, hashtags hors kit ;
+catégories Gumroad (`food-and-cooking`, `fitness-and-health`, `personal-finance`) à vérifier à la création ;
+organismes de `prospects.md` marqués « à vérifier ».
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
@@ -814,7 +847,6 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T24 | Circuit de visa : registre des documents soumis par lot, indices de révision, avis (sans observation, avec observations, refusé), délais contractuels, relances, vue chef de projet, tableau de bord | Types de documents par lot, codes de visa (VSO, VAO, REF), lots BTP types, délais de réponse paramétrables | Circuit de visa, registre et fiche visa (artefacts professionnels) | Backlog n° 05 fusionné (même produit). Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : structure seulement ; exemples fictifs. Moteur d'échéances commun avec T63. |
 | T25 | Registre des non-conformités : constat, gravité, cause, action corrective, vérification, clôture, indicateurs | Typologie des écarts, méthode des 5 pourquoi, grille de gravité | Non-conformités de fabrication et de réalisation (artefact professionnel) | **confidentiel** : structure seulement ; exemples fictifs. Produit d'appel de T23 ; même moteur que T32 (réserves). |
 | T26 | Notes de frais : saisie, justificatifs, statut de remboursement, barème kilométrique, récapitulatif et export mensuels (PDF) | Catégories de frais ; barème kilométrique saisi par l'utilisateur | Notes de frais (outil interne), Ma voiture en leasing | Backlog n° 19 fusionné. **daté** : barème kilométrique fiscal, saisi par l'utilisateur ou mis à jour chaque année avec source ; **fiscal**. Justificatifs : stockage de fichiers à prévoir. |
-| T27 | Gestion locative : biens, baux, quittances, révision du loyer, charges, rendement | Modèles de quittance et de relance, échéancier des révisions ; indice IRL saisi par l'utilisateur | Gestion locative (outil interne) | **daté** : IRL et règles de révision, saisis ou sourcés ; modèles de quittance à faire vérifier (outil d'aide, pas un conseil juridique). **RGPD** (locataires). Argent : avertissement. Distinct de T64 (location saisonnière). Prêt le 14/11/2026 : fiche [`fiches/gestion-locative.md`](fiches/gestion-locative.md), application `templates/gestion-locative/` (GRT), livrables `communication/gestion-locative/`. |
 | T28 | CRM freelance : prospects, clients, historique, prochaine action, projets, devis et factures, encaissements, chiffre d'affaires par client | Étapes de vente, prochaines actions types, modèles de devis et de facture | CRM et prospection (outils internes) | Backlog n° 09 fusionné. **RGPD** (clients, prospects). **daté**/**fiscal** : mentions et taux de TVA vérifiés par l'utilisateur ; factures en suivi seulement, pas un logiciel de facturation (facturation électronique obligatoire : calendrier à vérifier). Frontières avec T35 (pipeline) et T36 (devis) à fixer. Concurrence de CRM gratuits : simplicité, achat unique. |
 | T29 | Gestion de flotte : véhicules, conducteurs, réservations, kilométrage, entretiens, sinistres, amendes, leasing, coût total par véhicule | Intervalles d'entretien types (communs avec T10) | Gestion de flotte (outil interne), Ma voiture en leasing | Backlog n° 37 fusionné. Base commune avec T57 (auto-école) et T10. **daté** (contrôle technique). **RGPD** (conducteurs, amendes). Format : application + modèle tableur. |
 | T30 | Grille 30 min, glisser-déposer, catégories couleur, bilan prévu/réalisé hebdomadaire | Semaines types (cadre, freelance, étudiant), catégories préréglées | Planner horaire, grille de planning, planning rapide (outil interne) | — |
@@ -856,31 +888,32 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
-| T71 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
-| T72 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
-| T73 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
-| T74 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
-| T75 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
-| T76 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
-| T77 | Calendrier des entretiens annuels et professionnels par salarié, trames, objectifs, suivi des formations demandées | Trames d'entretien, questions types | — | **daté** : périodicité de l'entretien professionnel à sourcer (Légifrance) ou paramétrable. **RGPD**. Lien avec T49. |
-| T78 | Unités de travail, risques, cotation (gravité × probabilité), actions de prévention, mise à jour, export | Familles de risques types par secteur | — | **daté**/réglementaire : obligations à sourcer (INRS, Légifrance) ; ne remplace pas un préventeur. **confidentiel** : exemples fictifs. |
-| T79 | Contrats (assurances, maintenance, télécoms, leasing), échéance, préavis de résiliation calculé, tacite reconduction, coût annuel | Catégories de contrats, préavis types paramétrables | — | Règles de résiliation : paramétrables, aucune règle légale non sourcée. Moteur d'échéances commun avec T63. |
-| T80 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
-| T81 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
-| T82 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
-| T83 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
-| T84 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
-| T85 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
-| T86 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
-| T87 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
-| T88 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
-| T89 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
-| T90 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
-| T91 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
-| T92 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
-| T93 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
-| T94 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
-| T95 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
+| T73 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
+| T74 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
+| T75 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
+| T76 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
+| T77 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
+| T78 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
+| T79 | Calendrier des entretiens annuels et professionnels par salarié, trames, objectifs, suivi des formations demandées | Trames d'entretien, questions types | — | **daté** : périodicité de l'entretien professionnel à sourcer (Légifrance) ou paramétrable. **RGPD**. Lien avec T49. |
+| T80 | Unités de travail, risques, cotation (gravité × probabilité), actions de prévention, mise à jour, export | Familles de risques types par secteur | — | **daté**/réglementaire : obligations à sourcer (INRS, Légifrance) ; ne remplace pas un préventeur. **confidentiel** : exemples fictifs. |
+| T81 | Contrats (assurances, maintenance, télécoms, leasing), échéance, préavis de résiliation calculé, tacite reconduction, coût annuel | Catégories de contrats, préavis types paramétrables | — | Règles de résiliation : paramétrables, aucune règle légale non sourcée. Moteur d'échéances commun avec T63. |
+| T82 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
+| T83 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
+| T84 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
+| T85 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
+| T86 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
+| T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
+| T88 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
+| T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
+| T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
+| T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
+| T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
+| T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
+| T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
+| T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
+| T96 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
+| T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
+| T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer en priorité le 14/11 au soir (prix libre, 0 € possible), puis publication dès que la clé de licence est active (vérification `is_licensed`). |
 
 
 ## Fiches T69 et T70 (cahiers des charges de Quentin, 13/11/2026)
@@ -1110,57 +1143,6 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
 - À vérifier : périodicités indicatives des plans types ; libellés des vérifications réglementaires (liste non
   exhaustive) ; catégorie Gumroad.
 
-## Fiche T06 · Repas de la semaine et liste de courses (`templates/repas/`, préfixe RPS, 13 €)
-
-Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
-
-- **Promesse** : « Le menu de la semaine, la liste de courses faite toute seule. » On choisit les repas du midi et
-  du soir, la liste se calcule, rangée par rayon, et se coche au magasin sur le téléphone.
-- **Pour qui** : familles et foyers qui cuisinent au quotidien (packs « Forme » et « Famille ») ; usage à deux
-  (même clé sur les deux téléphones : l'un planifie, l'autre fait les courses). Catalogue : `perso`, thème
-  « Santé et forme ».
-- **Écrans** (4 onglets) : **Semaine** (planning lundi → dimanche, midi et soir, plusieurs plats par créneau,
-  nombre de personnes par repas, texte libre « restes », « dehors » sans courses ; propositions automatiques
-  pour les créneaux vides selon la saison et les régimes ; copie de la semaine précédente) ; **Courses** (liste
-  agrégée par rayon dans l'ordre de son magasin, unités cohérentes, conditionnements indicatifs, cases à cocher
-  en magasin avec progression, « déjà à la maison », articles ajoutés à la main et articles habituels, partage
-  en texte) ; **Recettes** (base intégrée et recettes perso, recherche, filtres catégorie, végétarien, sans porc,
-  rapide, de saison, favoris ; fiche avec quantités recalculées pour N personnes ; « créer ma version » d'une
-  recette de la base) ; **Avec ce qu'il me reste** (ingrédients du frigo → recettes classées par ce qui manque).
-- **Base intégrée** (`donnees.js`) : **recettes familiales simples rédigées pour QME** (aucune copiée d'un site
-  ou d'un livre : noms de plats courants, quantités et étapes écrites pour le template), ingrédients et
-  quantités pour 4 personnes, temps, saisons, catégories ; catalogue d'ingrédients avec rayon, unité, poids
-  moyen d'une pièce (hypothèses QME, ordres de grandeur) et marqueurs viande, porc, poisson qui calculent les
-  régimes (végétarien, sans porc) au lieu de les déclarer ; 13 rayons.
-- **Calculs** (`regles.js`, testés dans `outils/templates/repas.test.mjs`) : mise à l'échelle des quantités,
-  conversion d'unités (g, kg, ml, cl, l, cuillères, pièces ; pièces ↔ grammes quand le poids moyen est connu),
-  agrégation de la liste par ingrédient et par rayon, arrondis d'achat (pièces entières), lecture d'une ligne
-  d'ingrédient saisie (« 200 g de farine »), classement « avec ce qu'il me reste », propositions de repas
-  (saison, régimes, pas deux fois la même recette, soirs de semaine rapides), semaine (lundi), saison du mois.
-  **Moteur de liste de courses partageable avec T04** : `listeCourses(lignes, catalogue)` ne dépend que de
-  lignes `{ ingredient, qte, unite }`, sans rien savoir du planning.
-- **Données qui se périment : aucune.** Pas de prix, pas d'enseigne, pas de valeurs nutritionnelles (c'est T04).
-  Saisons des recettes : repères de cuisine, pas une donnée réglementaire.
-- **Risques** : allergies (les régimes sont calculés depuis les ingrédients de la base, pas une garantie :
-  avertissement « vérifie les étiquettes ») ; aucune marque, aucun magasin, aucun drive connecté ; démo fictive.
-- **Base livrée** : 82 recettes (47 plats, 6 tartes et pizzas, 8 soupes, 9 salades, 12 desserts ; 48 sans
-  viande ni poisson), 126 ingrédients, 14 rayons. Saisie d'une recette perso en texte libre (« 200 g de farine »,
-  « 1 boîte de tomates concassées » convertie avec le conditionnement), ingrédient inconnu créé dans « Autres » et
-  déplaçable de rayon depuis la liste.
-- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/repas/?demo`, bouton
-  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Santé et forme » ; version anglaise en
-  attente : aucune carte sur `/en/`). Page `catalogue/repas/`, captures `assets/templates-repas-*.webp`, couverture
-  `assets/templates-repas-couverture.png`, tests `outils/templates/repas.test.mjs`. Packs : `RPS` ajouté à
-  `TEMPLATES` et retiré de `PREVUS` et des listes `prevus` des packs Forme et Famille dans
-  `outils/packs/donnees.mjs` ; **reste à l'ajouter à `produits` des packs Forme (PFM) et Famille (PFA)** dans
-  `netlify/lib/packs.mjs` et à régénérer les pages (`node outils/packs/generer.mjs`).
-- Communication prête dans `communication/repas/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
-  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN, kanban.txt). **Pas de fiche Gumroad,
-  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
-  fiche Gumroad (permalien prévu `repas-liste-de-courses`) et clé de licence (Quentin), entrée dans
-  `communication/gumroad-a-creer.json`, plannings, carte anglaise, passage en vente du site.
-
-
 ## Fiche T21 (cadrage délégué par Quentin, 14/11/2026)
 
 ### T21 · Planificateur de voyage (`templates/voyage/`, préfixe VYG, 13 €)
@@ -1277,3 +1259,74 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   (permalien prévu `gestion-competition`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
   ajout au pack « Associations et clubs » (`netlify/lib/packs.mjs`, pages des packs), carte anglaise, plannings,
   passage en vente du site.
+## T71 · Dossier sinistre habitation (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026), conservé dans la conversation de développement.
+Nom de travail « SinistreFacile » ; nom du produit à confirmer (nom descriptif, règle « aucune marque interne »).
+Préfixe proposé `SNH`, slug `sinistre`. Prix 29 € (Quentin). Achat unique.
+
+- **Public** : particulier qui doit constituer, documenter et suivre son dossier de sinistre habitation.
+- **Écrans** : tableau de bord (type, date, lieu, statut, assureur et numéros saisis à la main, échéances,
+  justificatifs, estimation, progression) ; assistant de création adapté aux réponses (type, dates de
+  survenance et de découverte, pièce, biens, tiers, déclaration déjà faite) ; inventaire des dommages ;
+  calculateur ; preuves ; chronologie ; rapport imprimable (garde, résumé, chronologie, inventaire, synthèse
+  financière, justificatifs, observations) ; exports CSV et JSON. Plusieurs sinistres par acheteur.
+- **Base intégrée** : classification des sinistres et des dommages, bibliothèque de biens courants par
+  catégorie (mobilier, électroménager, informatique, électronique, vêtements, décoration, revêtements,
+  menuiseries, équipements techniques), justificatifs utiles par type de sinistre, mesures conservatoires,
+  modèles de courriers à copier ou imprimer, étapes de suivi.
+- **Calculs** : prix d'achat, valeur actuelle, réparation, remplacement, vétusté **entièrement paramétrable**
+  (aucun barème imposé), montant estimé ; montants déclarés, estimés et reconnus par l'assureur séparés.
+- **Sources** : délais indicatifs issus de sources officielles (Code des assurances sur Légifrance,
+  Service-Public.fr), avec lien et date de vérification ; jamais présentés comme règle universelle (le
+  contrat prime). **daté**.
+- **Risques** : **juridique** (ni conseil, ni expertise, ni garantie d'indemnisation : affiché) ;
+  photos et documents : le stockage commun n'enregistre que du JSON (900 Ko par acheteur), comme T32 et
+  T67 → **décision de Quentin (13/11/2026) : photos et PDF gardés sur l'appareil** (IndexedDB, compressés,
+  non synchronisés, copie JSON avec photos possible) ; **RGPD** (minimiser : pas de coordonnées bancaires).
+
+**État au 13/11/2026 : prêt** (branche `claude/fervent-bell-4m5jqu`). Préfixe `SNH`, slug `sinistre`,
+application `templates/sinistre/`, page `catalogue/sinistre/` en « Mise en vente prochaine », carte du kanban
+(colonne « Projets de vie », à déplacer si Quentin préfère), carte anglaise, portail de connexion, README.
+Sources juridiques vérifiées le 13/11/2026 sur Légifrance et Service-Public (L113-2, L114-1, L114-2,
+L122-7, L125-2 en vigueur depuis le 28/05/2026, A125-6, fiches F1352, F2027, F2028, F1523, F3075, F3050) ;
+la fiche Service-Public F3076 donne encore l'ancien délai de 3 mois pour l'indemnisation des catastrophes
+naturelles : le texte de loi est retenu. Prescription de 5 ans limitée à la sécheresse. Aucun taux de
+vétusté par défaut. Tests : `outils/templates/sinistre.test.mjs` (14 tests) ; Playwright ordinateur et
+iPhone 13 / Pixel 7 (connexion, assistant, saisie, photo, impression, CSV, JSON, synchronisation, conflit
+409, hors ligne, rechargement, démo, écran d'accueil). **Décisions de Quentin (13/11/2026)** : pas de nom de marque (nom descriptif « Dossier sinistre
+habitation »), prix 29 €. **Communication** (`communication/sinistre/`) : `gumroad.md`, `linkedin.md`,
+`instagram.md`, `prospects.md` ; couverture `assets/templates-sinistre-couverture.png`. LinkedIn : **LI-111**
+le 19/01/2027 à 12:15 (« Programmé », remarque : ne publier que si la fiche Gumroad est en ligne), doc
+`1FM9e8fvQUtfrPGWwAIBeZJ5NJ0Gb1GRYigOTXAQnv8w`. Instagram : **IG-66** le 20/01/2027 à 18:30, carrousel
+5 vues, statut « Prêt » (à relire par Quentin avant « Programmé »), légende
+`1DTFrckLTRV8DKIqm6Xuk-r2rI-mQk67flouapQqFk2I`. Gumroad : **brouillon créé** (`nSUWbSsPnceWsczHeshUnw==`, `/l/dossier-sinistre`, 29 €, non publié).
+**Reste à faire** : activation
+de la clé de licence par Quentin, couverture Gumroad après déploiement, publication de la fiche après
+fusion, revue annuelle des délais.
+
+## T72 · Assistant administratif après décès (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026). Nom de travail « AprèsVous » ; nom du produit à
+confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). Achat unique, un seul utilisateur
+(pas de partage familial).
+
+- **Public** : proche d'une personne décédée, en forte charge administrative.
+- **Écrans** : assistant de situation (lien avec le défunt, retraité ou en activité, salarié / indépendant /
+  fonctionnaire, propriétaire ou locataire, véhicule, assurances, enfants mineurs, notaire ; aucune question
+  obligatoire si elle n'est pas indispensable) ; tableau de bord (urgent, à faire, en attente, documents
+  manquants, organismes contactés, échéances, terminé) ; fiches démarches (explication, date cible
+  facultative, pièces, statut, historique, notes) ; documents (suivi par case, téléversement non exigé) ;
+  inventaire successoral indicatif (montants confirmés ou estimés, **aucun calcul de droits ni répartition**) ;
+  modèles de courriers à copier ou imprimer ; impression.
+- **Base intégrée** : démarches classées obligatoires / conditionnelles / facultatives ; organismes (mairie,
+  banque, assurances, assurance-vie, employeur, retraite, assurance maladie, mutuelle, CAF, prévoyance,
+  énergie, bailleur ou syndic, impôts, notaire) avec pourquoi, quand, informations et pièces demandées,
+  source officielle, date de vérification, niveau de fiabilité.
+- **Moteur de règles** : chaque démarche affichée dit pourquoi ; aucune démarche obligatoire masquée sur une
+  hypothèse ; délais avec source, point de départ et conditions. Espace interne des informations à
+  réactualiser.
+- **Sources** : Service-Public.fr, Notaires de France, impots.gouv.fr, Assurance retraite, Assurance
+  maladie, CAF, ministères. **daté**, revue annuelle obligatoire.
+- **Risques** : **juridique** et **fiscal** (ne remplace ni notaire, ni avocat, ni conseiller fiscal) ;
+  **RGPD** (données du défunt et de l'entourage, minimisation) ; sujet sensible pour la communication.

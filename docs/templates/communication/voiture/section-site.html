@@ -1,0 +1,48 @@
+<!-- Version « en vente » de la page catalogue/voiture/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : carnet-voiture (à confirmer une fois la fiche créée), prix 13 € (à
+     confirmer par Quentin). Captures : assets/templates-voiture-*.webp (démo, données fictives). À la mise en
+     vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans
+     index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="voiture">
+  <div class="section-head">
+    <h2>Carnet de voiture</h2>
+    <p>Pour une voiture ou celles du foyer : les entretiens à faire selon la date ou le kilométrage, le contrôle technique, chaque plein, recharge et dépense, et ce que chaque voiture coûte vraiment, au mois et au kilomètre.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-voiture-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord du carnet de voiture : une vidange en retard, contrôle technique et contre-visite à venir, coût mensuel et coût au kilomètre, trois voitures avec leur kilométrage et leur consommation (données fictives)">
+      <img class="tel" src="/assets/templates-voiture-tel.webp?v=20261114" width="780" height="1328" alt="Le carnet de voiture sur téléphone : la liste des échéances, vidange en retard, kilométrage à mettre à jour, contrôle technique (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Particuliers · foyers à plusieurs voitures</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Des entretiens à temps</b> : chaque opération a son échéance à la date ou au kilométrage, la première atteinte compte, avec un plan indicatif à adapter au carnet du constructeur</li>
+        <li><b>Le contrôle technique calculé</b> : premier contrôle, contrôle tous les 2 ans, contre-visite dans les 2 mois, selon la règle publiée sur service-public.gouv.fr (date de vérification affichée, valeurs modifiables)</li>
+        <li><b>Toutes les dépenses</b> : carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique, crédit</li>
+        <li><b>La consommation réelle</b> calculée d'un plein à l'autre (L/100 km), ou d'une recharge à l'autre (kWh/100 km) pour l'électrique et l'hybride rechargeable</li>
+        <li><b>Le coût au kilomètre et le coût mensuel</b> de chaque voiture, et un historique d'entretien imprimable pour la revente</li>
+      </ul>
+      <div class="prix"><b>13 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/carnet-voiture" data-goatcounter-click="achat-voiture" data-goatcounter-title="Acheter : carnet de voiture">Acheter</a>
+        <a class="btn" href="/templates/voiture/?demo" data-goatcounter-click="demo-voiture" data-goatcounter-title="Démo : carnet de voiture">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-voiture-entretiens.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Plan d'entretien d'une citadine : contrôle technique bientôt, vidange en retard (date dépassée), pneus, révision et filtres à jour avec leur prochaine échéance en kilomètres ou en date (données fictives)"><figcaption>Chaque entretien à la date ou au kilométrage, le premier atteint</figcaption></figure>
+    <figure><img src="/assets/templates-voiture-depenses.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Dépenses des 12 derniers mois par poste et par mois, consommation en litres et en kilowattheures pour 100 km de trois voitures (données fictives)"><figcaption>Dépenses par poste et par mois, consommation plein à plein</figcaption></figure>
+    <figure><img src="/assets/templates-voiture-historique.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Historique pour la revente : entretiens, contrôles techniques et réparations d'une voiture avec date, kilométrage et garage, à imprimer ou à copier (données fictives)"><figcaption>L'historique d'entretien, prêt pour la revente</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment sont calculées les échéances d'entretien ?</summary><p>Chaque opération (vidange, révision, freins, pneus, distribution…) a un intervalle en kilomètres, en mois, ou les deux. L'échéance part du dernier entretien noté et c'est la première atteinte qui compte. Le kilométrage du jour est estimé d'après vos relevés et vos pleins. Le plan proposé est indicatif : le carnet d'entretien du constructeur prime, et vous recopiez ses intervalles en quelques secondes.</p></details>
+    <details><summary>Et le contrôle technique ?</summary><p>Pour une voiture particulière, l'outil applique la règle publiée sur service-public.gouv.fr (fiche « Contrôle technique d'une voiture », vérifiée le 1er janvier 2026) : premier contrôle avant le 4e anniversaire de la mise en circulation, puis tous les 2 ans, contre-visite dans les 2 mois après une défaillance majeure ou critique. La source et la date de vérification sont affichées, et les valeurs se modifient si la règle change. Pour un deux-roues ou un autre véhicule, vous saisissez la périodicité.</p></details>
+    <details><summary>Comment la consommation est-elle calculée ?</summary><p>D'un plein complet à l'autre : vous notez les litres, le montant et le compteur, l'outil divise le carburant mis par les kilomètres parcourus. Les appoints sont comptés, un plein oublié coupe le calcul pour ne pas fausser la moyenne. Pour une voiture électrique ou hybride rechargeable, même principe en kWh pour 100 km, d'une recharge complète à l'autre.</p></details>
+    <details><summary>Les prix du carburant sont-ils intégrés ?</summary><p>Non, volontairement : ils changent tout le temps. Vous saisissez ce que vous avez payé, et l'outil en tire le prix moyen au litre ou au kWh, le coût mensuel et le coût au kilomètre. Aucune connexion à un garage, une assurance ou une autre application.</p></details>
+    <details><summary>Puis-je suivre plusieurs voitures ?</summary><p>Oui : toutes les voitures du foyer, avec un filtre pour en voir une seule, et les voitures vendues gardées pour leur historique. Le même accès fonctionne sur votre téléphone, à la pompe, et sur votre ordinateur.</p></details>
+    <details><summary>À quoi sert l'historique pour la revente ?</summary><p>Il rassemble les entretiens, contrôles techniques, réparations et pneus d'une voiture, avec date, kilométrage et garage, montants affichés ou non. Vous l'imprimez ou copiez son texte pour un acheteur ; les factures restent la preuve.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/voiture/?demo">la démo</a> ouvre le carnet d'un foyer fictif avec trois voitures (essence, diesel, électrique) et une voiture vendue : vidange en retard, contrôle technique et contre-visite à venir, pleins, recharges et dépenses sur un an. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+    <details><summary>Est-ce un conseil mécanique ou financier ?</summary><p>Non. C'est un outil d'aide au suivi : les intervalles d'entretien sont indicatifs et le carnet du constructeur prime ; les coûts sont calculés à partir de votre saisie. En cas de doute, votre garagiste reste la référence.</p></details>
+  </div>
+</section>
