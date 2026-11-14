@@ -1,0 +1,27 @@
+{
+  "slug": "emprunt",
+  "name": "Capacité d'emprunt et comparateur de prêts",
+  "price_cents": 1500,
+  "permalink": "capacite-emprunt-comparateur-prets",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon simulateur",
+  "summary": "Ce que tes revenus permettent d'emprunter, le budget complet du projet, tes offres de prêt comparées sur leur coût total (assurance, frais, garantie, TAEG estimé), le tableau d'amortissement et l'effet d'un remboursement anticipé.",
+  "description": "<h2>Combien emprunter, et à quel coût.</h2><p>Une simulation de banque qui donne un montant sans dire comment, des offres qui ne comptent pas l'assurance de la même façon, une mensualité plus basse qui cache un coût total plus élevé. La Capacité d'emprunt et comparateur de prêts met tout à plat, avec tes chiffres.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta capacité d'emprunt</strong> : revenus d'un ou deux emprunteurs, loyers retenus à la part que tu fixes, crédits en cours ; mensualité maximale au taux d'effort que tu choisis et montant empruntable selon la durée et le taux saisis ; reste à vivre.</li><li><strong>Le budget complet du projet</strong> : prix, frais de notaire saisis ou estimés (hypothèse affichée), travaux, autres frais et apport ; ce qu'il reste à emprunter et le prix maximal à ta portée.</li><li><strong>De 2 à 5 offres côte à côte</strong> : mensualité, assurance sur capital initial ou restant dû, frais de dossier, garantie, courtage, coût total du crédit, TAEG approché et taux d'effort de chaque offre.</li><li><strong>Le tableau d'amortissement</strong> par mois ou par année, avec le graphique capital et intérêts ; export CSV et impression.</li><li><strong>L'effet d'un remboursement anticipé</strong> : intérêts économisés, indemnités (plafond légal, montant de ton offre ou aucune), durée raccourcie ou mensualité baissée.</li><li><strong>Les questions à poser à ta banque</strong>, à cocher au fil des rendez-vous.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique tes revenus et ton projet, puis le taux d'une simulation ou d'une offre : ta capacité s'affiche. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie : elle ne remplace pas le conseil d'un professionnel du crédit. Aucun taux du marché n'est intégré ; l'offre de prêt écrite, son TAEG et son tableau d'amortissement font foi. Seuils de départ 35 % et 25 ans d'après la décision D-HCSF-2021-7 du Haut Conseil de stabilité financière (vérifiée le 14/11/2026), modifiables. Démo avec un projet fictif sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "credit-immobilier",
+    "capacite-emprunt",
+    "pret-immobilier",
+    "primo-accedant",
+    "tableau-amortissement",
+    "simulateur",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Indique tes revenus et ton projet, puis le taux d'une simulation ou d'une offre reçue : ta capacité d'emprunt s'affiche. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Primo-accédants et investisseurs particuliers qui préparent un crédit immobilier" }
+  ]
+}

@@ -66,6 +66,7 @@ const T = {
   'parcs-multi-sites': ["Pilotage de parcs multi-sites", "Tous tes sites, une seule vue.", "Préventif · pannes · disponibilité · coût par site"],
   doe: ['Registre du DOE', 'Chaque pièce remise, vérifiée, transmise.', 'Pièces par lot · relances datées · complétude · bordereau'],
   'sous-traitants': ["Conformité des sous-traitants", "Aucune attestation périmée sur ton chantier.", "Lots et rangs · acceptation · vigilance · alertes J-30"],
+  emprunt: ["Capacité d'emprunt · prêts", 'Combien emprunter, et à quel coût.', 'Capacité · budget du projet · offres comparées · amortissement'],
   'appels-offres': ["Appels d'offres et candidatures", "Répondre aux bonnes consultations, à temps.", "Go/no-go · pièces à rebours · dates limites · taux de réussite"],
   'lecture': ["Suivi de lecture", "Lis, on compte.", "Rythme · date de fin · objectif au jour près"],
   tva: ['Suivi de TVA', 'Ta TVA, période par période.', 'Collectée · déductible · échéances · contrôles'],

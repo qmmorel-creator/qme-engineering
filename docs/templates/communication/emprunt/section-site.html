@@ -1,0 +1,47 @@
+<!-- Version « en vente » de la page catalogue/emprunt/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad prévu : capacite-emprunt-comparateur-prets (à confirmer une fois la fiche créée), prix 15 €.
+     Captures : assets/templates-emprunt-*.webp (démo, données fictives). À la mise en vente, retirer aussi le lien
+     .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js, et remplacer le
+     bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="emprunt">
+  <div class="section-head">
+    <h2>Capacité d'emprunt et comparateur de prêts</h2>
+    <p>Pour les primo-accédants et les investisseurs : savoir combien vous pouvez emprunter, ce que coûte vraiment le projet, et quelle offre de prêt revient le moins cher, avant de signer.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-emprunt-capacite.webp?v=20261114" width="1600" height="1000" alt="Capacité d'emprunt d'un couple : revenus retenus, mensualité maximale à 35 % de taux d'effort, montant empruntable sur 25 ans au taux saisi, et le détail du calcul (données fictives)">
+      <img class="tel" src="/assets/templates-emprunt-tel.webp?v=20261114" width="780" height="1328" alt="La capacité d'emprunt sur téléphone : revenus, mensualité maximale, montant empruntable et taux d'effort (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Primo-accédants · investisseurs</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Votre capacité d'emprunt</b> : revenus d'un ou deux emprunteurs, loyers retenus à la part que vous fixez, crédits en cours ; mensualité maximale au taux d'effort saisi et montant empruntable selon la durée et le taux saisis, reste à vivre</li>
+        <li><b>Le budget complet du projet</b> : prix, frais de notaire saisis ou estimés (hypothèse affichée), travaux, autres frais, apport ; ce qu'il reste à emprunter et le prix maximal à votre portée</li>
+        <li><b>De 2 à 5 offres côte à côte</b> : mensualité, assurance sur capital initial ou restant dû, frais de dossier, garantie, courtage, coût total du crédit et TAEG approché (estimation)</li>
+        <li><b>Le tableau d'amortissement</b>, par mois ou par année, avec le graphique capital et intérêts, export CSV et impression</li>
+        <li><b>L'effet d'un remboursement anticipé</b> : intérêts économisés, indemnités (plafond légal ou montant de votre offre), durée raccourcie ou mensualité baissée</li>
+      </ul>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/capacite-emprunt-comparateur-prets" data-goatcounter-click="achat-emprunt" data-goatcounter-title="Acheter : capacité d'emprunt et comparateur de prêts">Acheter</a>
+        <a class="btn" href="/templates/emprunt/?demo" data-goatcounter-click="demo-emprunt" data-goatcounter-title="Démo : capacité d'emprunt et comparateur de prêts">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-emprunt-offres.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Quatre offres de prêt comparées : la moins chère en coût total mise en avant, avec sa mensualité et son TAEG approché, et une offre encore à compléter (données fictives)"><figcaption>Les offres classées par coût total du crédit</figcaption></figure>
+    <figure><img src="/assets/templates-emprunt-amortissement.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Graphique du capital remboursé, des intérêts et de l'assurance année par année sur 25 ans, avec le détail d'une année au survol, puis le tableau d'amortissement (données fictives)"><figcaption>Capital et intérêts, année par année</figcaption></figure>
+    <figure><img src="/assets/templates-emprunt-anticipe.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Simulation d'un remboursement anticipé de 20 000 € après 7 ans : intérêts économisés, indemnités au plafond légal, gain net et durée gagnée (données fictives)"><figcaption>Ce que rapporte un remboursement anticipé</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Le comparateur contient-il les taux du marché ?</summary><p>Non, volontairement : les taux changent souvent et dépendent de votre dossier. Vous saisissez le taux, l'assurance, les frais et la garantie de chaque offre reçue, ou d'une simulation de votre banque. Rien n'est inventé à votre place : sans taux saisi, aucun montant empruntable n'est affiché.</p></details>
+    <details><summary>D'où viennent les 35 % et les 25 ans ?</summary><p>Ce sont les valeurs proposées au départ, celles de la norme du Haut Conseil de stabilité financière (décision D-HCSF-2021-7 du 29 septembre 2021, applicable depuis le 1er janvier 2022) : taux d'effort de 35 % au plus, assurance comprise, et durée de 25 ans au plus. La source et la date de vérification (14/11/2026) sont affichées dans l'application, et vous pouvez modifier ces seuils.</p></details>
+    <details><summary>Comment sont estimés les frais de notaire ?</summary><p>Vous pouvez saisir le montant donné par le notaire. À défaut, une hypothèse modifiable est appliquée et affichée comme telle (8 % du prix dans l'ancien, 3 % dans le neuf, haut des ordres de grandeur couramment donnés) : le montant exact dépend du bien et du département.</p></details>
+    <details><summary>Le TAEG affiché est-il celui de la banque ?</summary><p>C'est une estimation : un taux actuariel calculé à partir du montant reçu (capital moins frais de dossier, garantie et courtage) et des mensualités assurance comprise. Il sert à comparer vos offres entre elles ; seul le TAEG de l'offre de prêt écrite fait foi.</p></details>
+    <details><summary>Et l'assurance emprunteur ?</summary><p>Pour chaque offre, vous indiquez son taux annuel, la quotité et sa base de calcul : capital initial (cotisation constante) ou capital restant dû (cotisation qui baisse). Le coût total de l'assurance et son effet sur la mensualité sont calculés, ce qui permet de comparer l'assurance de la banque et une assurance externe.</p></details>
+    <details><summary>Est-ce un conseil en crédit ?</summary><p>Non. C'est une simulation à partir de votre saisie ; elle ne remplace pas le conseil d'un professionnel du crédit (banque, courtier). Aucune banque n'est connectée, et l'offre de prêt écrite fait foi.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/emprunt/?demo">la démo</a> ouvre la simulation fictive d'un couple de primo-accédants (appartement ancien, quatre offres dont une à compléter). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>

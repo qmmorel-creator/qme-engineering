@@ -160,7 +160,7 @@ déjà).
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -261,12 +261,12 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
-| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84 | T85 | 116 € | 25 % | 87 € | 22 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
 | Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
 | Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
-| Propriétaire | PPB | T64, T67, T11, T27, T71 | T94, T95, T96, T85 | 111 € | 25 % | 83 € | 21 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
@@ -1874,3 +1874,34 @@ régénérer les pages des packs à la fusion.
   plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé partagée au prix
   d'un template individuel), fiche Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout
   d'ACH au pack PMG (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T85 (cadrage délégué par Quentin, 14/11/2026)
+
+### T85 · Capacité d'emprunt et comparateur de prêts (`templates/emprunt/`, préfixe CPT, 15 €)
+- Fiche détaillée : `fiches/emprunt.md`. Promesse : « Combien emprunter, et à quel coût. » Catalogue `perso`, thème
+  « Argent » ; packs visés « Reprendre la main sur son argent » (PAR) et « Propriétaire » (PPB). Permalien prévu
+  `capacite-emprunt-comparateur-prets`.
+- Public : primo-accédants (seuls ou à deux) et investisseurs particuliers (loyers retenus à une part saisie).
+- Écrans : **Capacité** (revenus, crédits en cours, mensualité maximale au taux d'effort saisi, montant empruntable au
+  taux, à la durée et à l'assurance saisis, reste à vivre, montant selon la durée), **Projet** (prix, frais de notaire
+  saisis ou estimés en hypothèse affichée, travaux, autres frais, apport, besoin de financement, prix maximal),
+  **Offres** (2 à 5 : assurance sur capital initial ou restant dû, quotité, frais de dossier, garantie, courtage ; coût
+  total, TAEG approché présenté comme estimation, taux d'effort ; graphique en barres empilées ; questions à poser à la
+  banque), **Amortissement** (par mois ou par année, graphique capital et intérêts, CSV, impression ; remboursement
+  anticipé avec durée raccourcie ou mensualité baissée et indemnités).
+- **Aucun taux de marché intégré.** Données datées, toutes modifiables et affichées avec leur source : seuils 35 % et
+  25 ans (décision D-HCSF-2021-7 du 29/09/2021, vérifiée le 14/11/2026) ; plafond des indemnités de remboursement
+  anticipé (Code de la consommation, L313-47, L313-48, R313-25, lu le 14/11/2026 sur des reprises du code, **à relire
+  sur Légifrance**) ; frais de notaire estimés 8 % ancien et 3 % neuf présentés comme hypothèse.
+- Confidentialité : démo fictive (Camille et Sam, banques inventées). Argent : avertissement « ne remplace pas le
+  conseil d'un professionnel du crédit » sur chaque vue, la page du site et la fiche Gumroad.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/emprunt/?demo`, bouton « Je
+  suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en attente).
+  Page `catalogue/emprunt/`, captures `assets/templates-emprunt-*.webp`, couverture
+  `assets/templates-emprunt-couverture.png`, tests `outils/templates/emprunt.test.mjs`.
+- Communication prête dans `communication/emprunt/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, kanban.txt). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de CPT aux packs PAR et PPB (`netlify/lib/packs.mjs`, pages
+  des packs régénérées ; le tableau « Packs » ci-dessus le liste encore en prévu), cartes anglaises, plannings, passage
+  en vente du site.
