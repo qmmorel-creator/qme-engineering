@@ -671,3 +671,5 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuile .surtitre{padding-right:34px}
 .piece-champs select{border-radius:12px}
 .filiere{border-radius:16px;overflow:hidden}
+.resume-carte{border-radius:16px}
+@media (min-width:1021px){.cal-liste{max-height:600px;overflow:auto}}

@@ -421,6 +421,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/appels-offres/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/appels-offres/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/bascule/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

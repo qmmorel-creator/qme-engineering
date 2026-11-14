@@ -278,6 +278,17 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
   export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
+- `templates/appels-offres/` (CND) : **suivi des appels d'offres et candidatures**, prêt, mise en vente prochaine
+  (15 €, freelances, consultants et PME ; pack visé « Freelance : trouver ses clients »). Veille avec grille go/no-go
+  (8 critères pondérés, éliminatoires, seuils réglables) ; dossier par candidature avec pièces types copiées d'un
+  modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe ; points de départ sans
+  référence réglementaire, la liste exacte est celle du règlement de chaque consultation), statut, responsable et
+  échéance à rebours depuis la date limite ; dépôt visé avec marge ; calendrier des dates limites ; relances après
+  dépôt, validité des offres ; résultat (montant, motif, classement) ; bibliothèque de pièces réutilisables
+  (emplacement et date de validité, pas de fichier) ; bilan : taux de go et de réussite par type, montants, temps
+  passé, motifs de perte ; export CSV. Aucune connexion à une plateforme ni à un profil d'acheteur. Règles dans
+  `regles.js`, tests `outils/templates/appels-offres.test.mjs`, page `catalogue/appels-offres/`, démo
+  `/templates/appels-offres/?demo`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
