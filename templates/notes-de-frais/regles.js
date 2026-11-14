@@ -37,16 +37,16 @@
     if (!s || !/^\d+(\.\d{0,2})?$/.test(s)) return null;
     return signe * Math.round(Number(s) * 100);
   }
-  // 1299 → « 12,99 € » ; 120000 → « 1 200,00 € » (espace fine insécable).
+  // 1299 → « 12,99 € » ; 120000 → « 1 200,00 € » (espaces insécables).
   function euros(c, { centimes = true, signe = false } = {}) {
     if (c === null || c === undefined || Number.isNaN(c)) return '–';
     const neg = c < 0;
     const n = Math.abs(Math.round(c));
     const ent = Math.floor(n / 100), dec = n % 100;
     const arrondi = centimes ? ent : Math.round(n / 100);
-    const milliers = String(arrondi).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const milliers = String(arrondi).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
     const texte = centimes ? `${milliers},${deux(dec)}` : milliers;
-    return `${neg ? '−' : signe && n ? '+' : ''}${texte} €`;
+    return `${neg ? '−' : signe && n ? '+' : ''}${texte}\u00a0€`;
   }
   const saisieMontant = (c) => (c === null || c === undefined ? '' : `${c < 0 ? '-' : ''}${Math.floor(Math.abs(c) / 100)},${deux(Math.abs(c) % 100)}`);
 
@@ -62,7 +62,7 @@
   function km(n) {
     const v = arrondiKm(n || 0);
     const [e, d] = String(v).split('.');
-    return `${e.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}${d ? `,${d}` : ''} km`;
+    return `${e.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0')}${d ? `,${d}` : ''}\u00a0km`;
   }
   // Distance d'un trajet : aller simple, ou aller-retour (double).
   const kmTrajet = (t) => arrondiKm((Number(t.km) || 0) * (t.allerRetour ? 2 : 1));

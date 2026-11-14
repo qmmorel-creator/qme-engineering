@@ -1,7 +1,7 @@
 # T26 · Notes de frais et indemnités kilométriques
 
 Slug `notes-de-frais`, préfixe `NDF` (clés locales `qme-ndf-*`), prix prévu 15 €, permalien Gumroad prévu
-`notes-de-frais`, catégorie Gumroad `business-and-money` (à confirmer), taille S, priorité P2.
+`notes-de-frais`, catégorie Gumroad `business-and-money/accounting`, taille S, priorité P2.
 Origine : ligne T26 de `IDEES.md` (documents de travail de Quentin du 12/11/2026, backlog n° 19 fusionné :
 saisie, justificatifs, statut de remboursement, barème kilométrique, récapitulatif et export mensuels).
 Fiche rédigée le 13/11/2026. Marques de risque : **fiscal** (avertissement « outil d'aide, ne remplace pas

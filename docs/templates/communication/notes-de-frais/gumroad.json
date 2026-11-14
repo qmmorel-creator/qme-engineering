@@ -1,0 +1,42 @@
+{
+  "slug": "notes-de-frais",
+  "name": "Notes de frais et indemnités kilométriques",
+  "price_cents": 1500,
+  "permalink": "notes-de-frais",
+  "category": "business-and-money/accounting",
+  "button": "Ouvrir mes notes de frais",
+  "summary": "Tes frais avancés et tes kilomètres au même endroit : justificatifs suivis, statut de remboursement, indemnités kilométriques au barème fiscal et note du mois prête à imprimer en PDF.",
+  "description": "<h2>Chaque euro avancé, retrouvé.</h2><p>Un déjeuner chez un client, une nuit d'hôtel, un péage, un parking, cent kilomètres avec votre voiture… Chaque mois, il faut retrouver les tickets, recompter les kilomètres, appliquer le bon barème, remplir la note, puis attendre le remboursement. Les Notes de frais réunissent tout : la dépense, son justificatif et où il est rangé, le trajet au barème kilométrique, et la note du mois prête à imprimer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque frais en quelques secondes</strong> : date, catégorie (18 catégories courantes : repas, hôtel, train, avion, taxi, péage, stationnement, carburant, fournitures…), montant TTC, TVA recopiée du justificatif (jamais calculée), mission ou client.</li><li><strong>Les justificatifs suivis</strong> : fourni ou à fournir, et où il est rangé (enveloppe, dossier, numéro de scan). Aucun fichier n'est stocké : les manquants sont signalés.</li><li><strong>Brouillon, soumis, remboursé</strong> : une note par mois, datée à chaque étape, et une alerte quand un remboursement se fait attendre.</li><li><strong>Les indemnités kilométriques au barème fiscal</strong> : voiture, moto ou cyclomoteur, puissance fiscale, électrique ; calcul sur le total de l'année par véhicule, montant au fil de l'eau, montant exact et régularisation expliquée. Barème des revenus 2025 intégré avec sa source et sa date, modifiable chaque année.</li><li><strong>La note du mois</strong> imprimable ou enregistrable en PDF, avec cadres de signature ; export CSV pour ton tableur ou ton comptable ; texte à copier.</li><li><strong>Tableau de bord</strong> : à rembourser, à soumettre, remboursé dans l'année, frais par mois et par catégorie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton nom et ton véhicule, puis saisis tes frais et tes trajets au fil du mois. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la préparation de tes notes de frais : il ne remplace pas ton service comptable ni un professionnel. Le barème kilométrique intégré vient de la publication officielle (sources datées) ; ton employeur ou ton comptable peut appliquer d'autres règles, ce sont les leurs qui font foi. Aucun envoi automatique, aucun stockage de fichier. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "notes-de-frais",
+    "frais-professionnels",
+    "indemnites-kilometriques",
+    "bareme-kilometrique",
+    "independant",
+    "comptabilite",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes de frais s'ouvrent. Indique ton véhicule, puis saisis tes frais et tes trajets : la note du mois se remplit toute seule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Salariés qui avancent des frais, indépendants"
+    }
+  ]
+}

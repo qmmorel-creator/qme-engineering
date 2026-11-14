@@ -28,9 +28,9 @@ test('montants : lecture tolérante, négatifs seulement sur demande, affichage'
   assert.equal(R.lireMontant('-12'), null);
   assert.equal(R.lireMontant('-12,40', { negatif: true }), -1240);
   assert.equal(R.lireMontant('−3', { negatif: true }), -300);
-  assert.equal(R.euros(123456), '1 234,56 €');
-  assert.equal(R.euros(-1240), '−12,40 €');
-  assert.equal(R.euros(500, { signe: true }), '+5,00 €');
+  assert.equal(R.euros(123456), '1\u00a0234,56\u00a0€');
+  assert.equal(R.euros(-1240), '−12,40\u00a0€');
+  assert.equal(R.euros(500, { signe: true }), '+5,00\u00a0€');
   assert.equal(R.saisieMontant(-1240), '-12,40');
 });
 
@@ -43,7 +43,7 @@ test('kilomètres : lecture, aller-retour, affichage', () => {
   assert.equal(R.lireKm('9000'), null);
   assert.equal(R.kmTrajet({ km: 37.5, allerRetour: true }), 75);
   assert.equal(R.kmTrajet({ km: 37.5, allerRetour: false }), 37.5);
-  assert.equal(R.km(12345.5), '12 345,5 km');
+  assert.equal(R.km(12345.5), '12\u00a0345,5\u00a0km');
 });
 
 test('base intégrée : catégories courantes, barème complet et daté avec sa source', () => {
