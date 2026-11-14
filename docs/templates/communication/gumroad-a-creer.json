@@ -250,5 +250,131 @@
     "value": "Particuliers qui veulent voir le coût réel de leur mode de vie"
    }
   ]
+ },
+ {
+  "slug": "notes-de-frais",
+  "name": "Notes de frais et indemnités kilométriques",
+  "price_cents": 1500,
+  "permalink": "notes-de-frais",
+  "category": "business-and-money/accounting",
+  "button": "Ouvrir mes notes de frais",
+  "summary": "Tes frais avancés et tes kilomètres au même endroit : justificatifs suivis, statut de remboursement, indemnités kilométriques au barème fiscal et note du mois prête à imprimer en PDF.",
+  "description": "<h2>Chaque euro avancé, retrouvé.</h2><p>Un déjeuner chez un client, une nuit d'hôtel, un péage, un parking, cent kilomètres avec votre voiture… Chaque mois, il faut retrouver les tickets, recompter les kilomètres, appliquer le bon barème, remplir la note, puis attendre le remboursement. Les Notes de frais réunissent tout : la dépense, son justificatif et où il est rangé, le trajet au barème kilométrique, et la note du mois prête à imprimer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque frais en quelques secondes</strong> : date, catégorie (18 catégories courantes : repas, hôtel, train, avion, taxi, péage, stationnement, carburant, fournitures…), montant TTC, TVA recopiée du justificatif (jamais calculée), mission ou client.</li><li><strong>Les justificatifs suivis</strong> : fourni ou à fournir, et où il est rangé (enveloppe, dossier, numéro de scan). Aucun fichier n'est stocké : les manquants sont signalés.</li><li><strong>Brouillon, soumis, remboursé</strong> : une note par mois, datée à chaque étape, et une alerte quand un remboursement se fait attendre.</li><li><strong>Les indemnités kilométriques au barème fiscal</strong> : voiture, moto ou cyclomoteur, puissance fiscale, électrique ; calcul sur le total de l'année par véhicule, montant au fil de l'eau, montant exact et régularisation expliquée. Barème des revenus 2025 intégré avec sa source et sa date, modifiable chaque année.</li><li><strong>La note du mois</strong> imprimable ou enregistrable en PDF, avec cadres de signature ; export CSV pour ton tableur ou ton comptable ; texte à copier.</li><li><strong>Tableau de bord</strong> : à rembourser, à soumettre, remboursé dans l'année, frais par mois et par catégorie.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton nom et ton véhicule, puis saisis tes frais et tes trajets au fil du mois. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la préparation de tes notes de frais : il ne remplace pas ton service comptable ni un professionnel. Le barème kilométrique intégré vient de la publication officielle (sources datées) ; ton employeur ou ton comptable peut appliquer d'autres règles, ce sont les leurs qui font foi. Aucun envoi automatique, aucun stockage de fichier. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "notes-de-frais",
+   "frais-professionnels",
+   "indemnites-kilometriques",
+   "bareme-kilometrique",
+   "independant",
+   "comptabilite",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes de frais s'ouvrent. Indique ton véhicule, puis saisis tes frais et tes trajets : la note du mois se remplit toute seule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Salariés qui avancent des frais, indépendants"
+   }
+  ]
+ },
+ {
+  "slug": "impayes",
+  "name": "Relance des impayés",
+  "price_cents": 1900,
+  "permalink": "relance-impayes",
+  "category": "business-and-money/accounting",
+  "button": "Ouvrir mes relances",
+  "summary": "Tes factures en retard au même endroit : le retard en jours, les pénalités et l'indemnité calculées, et le message de relance de chaque palier prêt à copier.",
+  "description": "<h2>Chaque facture payée à temps.</h2><p>Une facture en retard de trois semaines, une autre payée à moitié, un client qui ne répond plus… Sans suivi, on relance trop tard, avec les mauvais mots, et on oublie ce que la loi permet de réclamer. La Relance des impayés réunit tes factures en attente, calcule le retard et les pénalités, et te prépare le bon message au bon moment.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'échéancier clair</strong> : encours, échu par ancienneté (0-30, 31-60, 61-90, plus de 90 jours), retard en jours et statut calculé de chaque facture (à échoir, échue, en relance, payée, litige, abandonnée).</li><li><strong>Les pénalités calculées</strong> : intérêts simples au prorata des jours sur le restant dû, paiements partiels datés compris, détail période par période ; indemnité forfaitaire de 40 € entre professionnels.</li><li><strong>Des taux datés et modifiables</strong> : taux BCE du semestre + 10 points (article L441-10 du Code de commerce), taux de tes conditions générales, ou intérêt légal à partir de la mise en demeure pour un client particulier.</li><li><strong>4 paliers de relance</strong> (rappel courtois, relance ferme, mise en demeure, dernier avis), délais et modèles modifiables, avec 18 champs remplis automatiquement : montant, numéro, retard, pénalités, date limite…</li><li><strong>Copier, pas envoyer</strong> : chaque message se copie d'un bouton ; tu l'envoies depuis ta messagerie, puis tu le notes au journal des relances de la facture.</li><li><strong>Données des clients minimales</strong> : nom, type, un contact facultatif ; effacement des données personnelles en un geste ; export CSV pour ton comptable.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Saisis tes factures en attente (client, numéro, montant TTC, échéance) et les paiements reçus : le retard, les pénalités et la prochaine relance se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à une messagerie, une banque ou un logiciel de facturation. Outil d'aide au suivi des paiements, pas un conseil juridique : les montants sont des estimations, tes conditions générales et les textes en vigueur font foi. Taux relevés le 13/11/2026, à mettre à jour chaque semestre dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "impayes",
+   "relance",
+   "factures",
+   "penalites-de-retard",
+   "freelance",
+   "tpe",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Saisis tes factures en attente et les paiements reçus : le retard, les pénalités et les relances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "TPE, artisans et freelances"
+   }
+  ]
+ },
+ {
+  "slug": "onboarding",
+  "name": "Onboarding et offboarding salarié",
+  "price_cents": 1900,
+  "permalink": "onboarding-offboarding",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon suivi",
+  "summary": "Les arrivées et les départs de tes salariés sans oubli : checklists par profil, un responsable et une échéance pour chaque tâche de J-15 à J+90, et le matériel remis puis rendu.",
+  "description": "<h2>Personne n'oublie rien.</h2><p>Un badge pas prêt le premier jour, des accès ouverts une semaine trop tard, une déclaration faite au dernier moment, un téléphone jamais rendu après un départ… Dans une PME, on accueille ou on voit partir quelqu'un quelques fois par an : assez pour oublier une étape. L'Onboarding et offboarding salarié donne à chaque arrivée et à chaque départ sa checklist, avec qui fait quoi et pour quand.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des checklists prêtes</strong> : 89 tâches d'arrivée et de départ en 5 profils (commun à tous, poste de bureau, poste terrain, manager, alternant ou stagiaire).</li><li><strong>Un responsable et une échéance par tâche</strong> : RH, manager, informatique, services généraux ou la personne elle-même ; de J-15 à J+90 à l'arrivée, de J-30 à J+30 au départ, calculées depuis la date du jour J.</li><li><strong>Cette semaine, par responsable</strong> : les retards en tête, puis ce qui tombe d'ici dimanche ; progression de chaque parcours.</li><li><strong>Le matériel</strong> : noté à la remise, coché à la restitution avec son état ; ce qui n'est pas rendu au dernier jour passe en alerte. « Préparer le départ » reprend le matériel remis à l'arrivée.</li><li><strong>Tes modèles</strong> : ajoute, modifie ou retire des tâches, crée tes profils ; chaque parcours garde sa propre checklist.</li><li><strong>Repères réglementaires</strong> rattachés aux tâches concernées (déclaration préalable à l'embauche, visite d'information et de prévention, documents de fin de contrat), sourcés, datés et marqués « à vérifier ».</li><li><strong>Imprimer et exporter</strong> : récapitulatif imprimable par personne (ou en PDF), export CSV des tâches et du matériel, copie JSON.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes profils, ajoute une arrivée ou un départ avec sa date : la checklist se crée avec ses responsables et ses échéances. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Données minimales : prénom et initiale, poste, contrat, service, dates, matériel ; aucune donnée de santé, de salaire ou d'adresse. Effacement proposé une fois le parcours terminé ; tu restes responsable des données que tu saisis. Aucune intégration à un logiciel RH, aucun e-mail envoyé. Outil d'aide à l'organisation : il ne remplace pas un conseil juridique ou RH ; ta convention collective et les textes font foi. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "onboarding",
+   "offboarding",
+   "rh",
+   "integration",
+   "checklist",
+   "pme",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Choisis tes profils, ajoute une arrivée ou un départ : la checklist se crée avec ses responsables et ses échéances. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "RH de PME et managers"
+   }
+  ]
  }
 ]
