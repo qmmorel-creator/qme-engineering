@@ -907,7 +907,8 @@
   function enregistrer(liste, objet, message) {
     retenir();
     const o = op();
-    const brut = { ...o, [liste]: [...o[liste].filter((x) => x.id !== objet.id), objet] };
+    const existe = o[liste].some((x) => x.id === objet.id);
+    const brut = { ...o, [liste]: existe ? o[liste].map((x) => (x.id === objet.id ? objet : x)) : [...o[liste], objet] };
     const norm = R.normaliserOperation(brut, DEFAUTS);
     E.operations = E.operations.map((x) => (x.id === o.id ? norm : x));
     sauver(); rendre();
@@ -1104,7 +1105,12 @@
     const lotInit = s?.lot || lotId || filtre.lot || o.lots[0]?.id;
     if (!o.lots.length) return toast('Crée d\'abord un lot.');
     const prec = (lid, mois) => { const l = o.situations.filter((x) => x.lot === lid && x.mois < mois && x.id !== id).sort((a, b) => (a.mois < b.mois ? 1 : -1)); return l[0]?.cumul || 0; };
-    const v = s || { lot: lotInit, numero: R.prochaineSituation(o, lotInit), mois: R.moisDe(ajout(t, -20)), cumul: 0, k: 1, penalites: 0, dateReception: t, statut: 'recue', dateValidation: '', datePaiement: '', note: '' };
+    // Nouvelle situation : le mois qui suit la dernière du lot (sinon le mois écoulé), cumul précédent repris.
+    const proposition = (lid) => {
+      const der = o.situations.filter((x) => x.lot === lid).sort((a, b) => (a.mois < b.mois ? 1 : -1))[0];
+      return { numero: R.prochaineSituation(o, lid), mois: der ? R.moisSuivant(der.mois) : R.moisDe(ajout(t, -20)), cumul: der ? der.cumul : 0, k: der ? der.k : 1 };
+    };
+    const v = s || { lot: lotInit, ...proposition(lotInit), penalites: 0, dateReception: t, statut: 'recue', dateValidation: '', datePaiement: '', note: '' };
     const corps = `
       <div class="rang-champs"><label class="champ">Lot<select name="lot" id="s-lot">${o.lots.map((l) => `<option value="${l.id}" ${l.id === v.lot ? 'selected' : ''}>${esc(l.code)} · ${esc(l.nom)}</option>`).join('')}</select></label><label class="champ" style="flex:0 1 100px">N°<input name="numero" type="number" min="1" value="${v.numero}"></label><label class="champ" style="flex:0 1 170px">Mois des travaux<input name="mois" type="month" value="${esc(v.mois)}" id="s-mois" required></label></div>
       <label class="champ">Cumul des travaux exécutés à fin de mois (HT, hors révision) <small id="s-aide"></small><input name="cumul" id="s-cumul" inputmode="decimal" value="${R.saisieMontant(v.cumul)}"></label>
@@ -1139,6 +1145,12 @@
       const tr = c - p0, rev = Math.round(tr * (k - 1)), mt = tr + rev, rg = Math.round(mt * o.reglages.rg / 100);
       $('#recap').textContent = `Travaux du mois   ${euros(tr)}\nRévision (K − 1)  ${euros(rev, { signe: true })}\nRetenue ${String(o.reglages.rg).replace('.', ',')} %     −${euros(rg)}\nPénalités         −${euros(p)}\nNet HT            ${euros(mt - rg - p)}${c > act ? `\n⚠ Cumul au-delà du marché actualisé (${pct(act ? c / act * 100 : 0)})` : ''}`;
     };
+    if (!id) $('#s-lot').addEventListener('change', (e) => {
+      const p = proposition(e.target.value);
+      modale().querySelector('[name=numero]').value = p.numero; $('#s-mois').value = p.mois;
+      $('#s-cumul').value = R.saisieMontant(p.cumul); $('#s-k').value = String(p.k).replace('.', ',');
+      recalc();
+    });
     ['#s-lot', '#s-mois', '#s-cumul', '#s-k', '#s-pen'].forEach((sel) => $(sel).addEventListener('input', recalc));
     recalc();
   }

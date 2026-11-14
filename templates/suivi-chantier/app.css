@@ -510,8 +510,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .reperes dd{margin:0;font-size:13px;color:var(--texte-2)}
 
 /* Revue de projet */
-.revue{display:grid;gap:18px}
-.revue-section{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;break-inside:avoid}
+.revue{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.revue-section{min-width:0;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;break-inside:avoid}
 .revue-section h2{font-size:21px}
 .revue-question{font-size:14px;color:var(--discret);font-style:italic}
 .revue-note{font-size:14px;color:var(--texte-2)}
