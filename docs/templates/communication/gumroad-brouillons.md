@@ -23,3 +23,24 @@ Avant publication : Quentin active la clé de licence (Content → Insert → Li
 T24 visa : 2 couvertures (doublon à supprimer dans l'éditeur Gumroad).
 
 Hors de ce choix, créés par d'autres sessions : « Dossier sinistre habitation », « Registre des non-conformités ».
+
+## Lot du 14/11/2026, 22 h 30 UTC (choix de Quentin : les 8 à plus forte probabilité de vente)
+
+Fiches créées et remplies (permalien, catégorie, résumé, tags, détails, reçu, bouton, lien vers
+`/connexion/`, couverture). **Publication seulement quand `is_licensed` vaut `true`** (bloc License key
+inséré par Quentin dans l'éditeur Gumroad).
+
+| N° | Slug | Préfixe | Identifiant Gumroad | Lien | Clé de licence | Statut |
+|----|------|---------|---------------------|------|----------------|--------|
+| T80 | document-unique | DRP | KZHfWPckpGMOxeFYDPcrow== | /l/document-unique-evaluation-risques | oui | **publié**, site en vente |
+| T43 | impayes | RCV | xbHURXS0w79P1ap-nFBbWQ== | /l/relance-impayes | à activer | brouillon |
+| T32 | reserves | RSV | 1xyF3Lz36TxDCOz4KnVB4A== | /l/levee-reserves | à activer | brouillon |
+| T94 | etat-des-lieux | ETD | eo2d-2oYp7KgqGwQQ_v4OA== | /l/etat-des-lieux | à activer | brouillon |
+| T22 | tableau-annuel | RDV | XMvZIWF4YueA-fSR5lunEg== | /l/tableau-annuel-roue-de-vie | à activer | brouillon |
+| T47 | planning-equipe | EQP | uGMwDvkv48r4plEy5vFJNQ== | /l/planning-equipe-staffing | à activer | brouillon |
+| T28 | crm | CRM | OGiloE9iB6oIL0UuitwyBA== | /l/crm-freelance | à activer | brouillon |
+| T95 | investissement-locatif | RNT | geVSrMzs3CshVaDi9IeCaQ== | /l/rentabilite-investissement-locatif | à activer | brouillon |
+
+Écarts avec les `gumroad.json` (limites Gumroad : tag de 2 à 20 caractères, bouton de 26 caractères au plus) :
+tags `evaluation-risques` (T80), `developpement-perso` (T22), `invest-locatif` (T95) ; bouton du reçu de T47
+« Ouvrir mon planning ». T12 et T68 restent à créer.

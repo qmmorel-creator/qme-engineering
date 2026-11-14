@@ -155,7 +155,7 @@ déjà).
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
@@ -883,7 +883,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
 | T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
 | T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
-| T80 | `document-unique` | DRP | document-unique-evaluation-risques (prévu) |
+| T80 | `document-unique` | DRP | document-unique-evaluation-risques |
 | T81 | `contrats` | CTR | contrats-fournisseurs (prévu) |
 | T82 | `achats` | ACH | demandes-achat-fournitures (prévu) |
 | T83 | `papiers` | DCS | papiers-du-foyer (prévu) |

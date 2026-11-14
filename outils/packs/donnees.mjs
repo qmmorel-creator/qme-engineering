@@ -18,7 +18,7 @@ export const TEMPLATES = {
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
   TVA: { slug: 'tva', prix: 1900, phrase: 'Collectée, déductible, crédit reporté, échéances et contrôles.', pour: 'pro' },
-  DRP: { slug: 'document-unique', prix: 2900, phrase: 'Risques par unité de travail, cotation et plan d’actions.', pour: 'pro' },
+  DRP: { slug: 'document-unique', prix: 2900, phrase: 'Risques par unité de travail, cotation et plan d’actions.', permalien: 'document-unique-evaluation-risques', pour: 'pro' },
   ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
   MMR: { slug: 'memoire', prix: 1500, phrase: 'Plan, rétroplanning et mots par jour jusqu’au rendu.', pour: 'perso' },

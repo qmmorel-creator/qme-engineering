@@ -368,6 +368,37 @@
     ]
   },
   {
+    "code": "PPE",
+    "slug": "petite-entreprise",
+    "nom": "Pack Petite entreprise",
+    "permalien": "pack-petite-entreprise",
+    "prix_cents": 16400,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 16400
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 20500
+      }
+    ],
+    "resume": "L’administratif de l’équipe, sans logiciel RH.",
+    "description_html": "<p><strong>L’administratif de l’équipe, sans logiciel RH.</strong></p>\n<p>Congés, planning d’équipe, notes de frais, arrivées et départs, entretiens annuels, document unique, réunions, trésorerie et tableau de bord : tout ce que le dirigeant d’une petite équipe gère « à côté ».</p>\n<p><strong>Pour qui ?</strong> Vous dirigez une TPE ou une PME de quelques personnes à quelques dizaines. Les demandes de congés arrivent par SMS, les notes de frais dans une enveloppe, l’arrivée d’un salarié se prépare la veille. Un logiciel RH coûte trop cher pour ce que vous en feriez.</p>\n<p><strong>Le contenu du pack (9 templates) :</strong></p>\n<ul><li><strong>Suivi des congés et absences</strong> : Soldes calculés, demandes, calendrier et chevauchements. (19 € seul)</li><li><strong>Notes de frais et indemnités kilométriques</strong> : Frais, justificatifs, kilomètres au barème, note du mois. (15 € seul)</li><li><strong>Onboarding et offboarding salarié</strong> : Checklists d’arrivée et de départ, responsables, matériel. (19 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Compte rendu et plan d'actions</strong> : Décisions et actions suivies de réunion en réunion. (15 € seul)</li><li><strong>Tableau de bord de pilotage PME</strong> : Vos indicateurs du mois, objectifs et écarts. (39 € seul)</li><li><strong>Planning d'équipe et staffing</strong> : Qui fait quoi cette semaine, charge et conflits visibles. (35 € seul)</li><li><strong>Entretiens annuels et professionnels</strong> : Échéances, trames et objectifs de chaque salarié. (19 € seul)</li><li><strong>Document unique d'évaluation des risques</strong> : Risques par unité de travail, cotation et plan d’actions. (29 € seul)</li></ul>\n<p>219 € à l’achat séparé, 164 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (164 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (205 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "3/9",
+    "templates_a_mettre_en_vente": [
+      "Suivi des congés et absences",
+      "Notes de frais et indemnités kilométriques",
+      "Onboarding et offboarding salarié",
+      "Tableau de bord de pilotage PME",
+      "Planning d'équipe et staffing",
+      "Entretiens annuels et professionnels"
+    ]
+  },
+  {
     "code": "PFC",
     "slug": "freelance-clients",
     "nom": "Pack Freelance : trouver ses clients",
@@ -397,38 +428,6 @@
       "Kit références et plaquette",
       "Calendrier éditorial",
       "Suivi des appels d'offres et candidatures"
-    ]
-  },
-  {
-    "code": "PPE",
-    "slug": "petite-entreprise",
-    "nom": "Pack Petite entreprise",
-    "permalien": "pack-petite-entreprise",
-    "prix_cents": 16400,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 16400
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 20500
-      }
-    ],
-    "resume": "L’administratif de l’équipe, sans logiciel RH.",
-    "description_html": "<p><strong>L’administratif de l’équipe, sans logiciel RH.</strong></p>\n<p>Congés, planning d’équipe, notes de frais, arrivées et départs, entretiens annuels, document unique, réunions, trésorerie et tableau de bord : tout ce que le dirigeant d’une petite équipe gère « à côté ».</p>\n<p><strong>Pour qui ?</strong> Vous dirigez une TPE ou une PME de quelques personnes à quelques dizaines. Les demandes de congés arrivent par SMS, les notes de frais dans une enveloppe, l’arrivée d’un salarié se prépare la veille. Un logiciel RH coûte trop cher pour ce que vous en feriez.</p>\n<p><strong>Le contenu du pack (9 templates) :</strong></p>\n<ul><li><strong>Suivi des congés et absences</strong> : Soldes calculés, demandes, calendrier et chevauchements. (19 € seul)</li><li><strong>Notes de frais et indemnités kilométriques</strong> : Frais, justificatifs, kilomètres au barème, note du mois. (15 € seul)</li><li><strong>Onboarding et offboarding salarié</strong> : Checklists d’arrivée et de départ, responsables, matériel. (19 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Compte rendu et plan d'actions</strong> : Décisions et actions suivies de réunion en réunion. (15 € seul)</li><li><strong>Tableau de bord de pilotage PME</strong> : Vos indicateurs du mois, objectifs et écarts. (39 € seul)</li><li><strong>Planning d'équipe et staffing</strong> : Qui fait quoi cette semaine, charge et conflits visibles. (35 € seul)</li><li><strong>Entretiens annuels et professionnels</strong> : Échéances, trames et objectifs de chaque salarié. (19 € seul)</li><li><strong>Document unique d'évaluation des risques</strong> : Risques par unité de travail, cotation et plan d’actions. (29 € seul)</li></ul>\n<p>219 € à l’achat séparé, 164 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (164 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (205 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "2/9",
-    "templates_a_mettre_en_vente": [
-      "Suivi des congés et absences",
-      "Notes de frais et indemnités kilométriques",
-      "Onboarding et offboarding salarié",
-      "Tableau de bord de pilotage PME",
-      "Planning d'équipe et staffing",
-      "Entretiens annuels et professionnels",
-      "Document unique d'évaluation des risques"
     ]
   },
   {

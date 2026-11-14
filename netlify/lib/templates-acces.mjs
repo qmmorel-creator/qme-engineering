@@ -58,7 +58,7 @@ export const PRODUITS = {
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/' },
   DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
   PCM: { nom: 'Propositions commerciales', url: '/templates/propositions/' },
-  DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/' },
+  DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/', gumroad: 'KZHfWPckpGMOxeFYDPcrow==' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/' },
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/' },
