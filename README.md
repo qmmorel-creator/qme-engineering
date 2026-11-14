@@ -204,6 +204,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   en semaines, conditions, aperçu A4 imprimable ; suivi (validité, relances avec message à copier, réponse et motif,
   taux de transformation en nombre et en valeur), duplication. Prix hors taxes, aucune règle légale : mentions et TVA
   renvoyées au devis (T36). Règles dans `regles.js`, tests `outils/templates/propositions.test.mjs`.
+- `templates/document-unique/` (DRP) : **document unique d'évaluation des risques** (T80), prêt, « Mise en vente
+  prochaine » (29 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/document-unique/gumroad.json`).
+  Unités de travail, 20 familles de risques inspirées de l'INRS ED 840 (reformulées), démarrage par secteur, cotation
+  gravité × probabilité sur grille paramétrable, risque initial et résiduel, matrice, plan d'actions (programme
+  annuel dès 50 salariés), événements, versions archivées et figées, document imprimable. Obligations selon
+  l'effectif sourcées et datées (service-public.gouv.fr et INRS, consultés le 14/11/2026 : à revérifier chaque
+  année). Règles dans `regles.js`, tests `outils/templates/document-unique.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio

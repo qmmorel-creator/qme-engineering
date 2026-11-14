@@ -68,6 +68,7 @@ const T = {
   'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],
   'suivi-temps': ["Suivi du temps · rentabilité", "Ce que tu gagnes vraiment de l'heure.", "Chronomètre · budget des missions · taux effectif face au TJM"],
   propositions: ['Propositions commerciales', 'Une proposition claire, trois options, une réponse.', 'Options comparées · planning · PDF soigné · relances et taux de transformation'],
+  'document-unique': ['Document unique d’évaluation des risques', 'Tes risques évalués, ton document à jour.', 'Unités de travail · cotation G × P · plan d’actions · versions datées'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
