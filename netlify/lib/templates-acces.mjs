@@ -86,6 +86,7 @@ export const PRODUITS = {
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/' },
   GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/' },
+  NTS: { nom: 'Notes et moyennes', url: '/templates/notes/' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
 };
