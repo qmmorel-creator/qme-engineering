@@ -69,6 +69,7 @@ export const PRODUITS = {
   MSC: { nom: 'Carnet de musculation et cross-training', url: '/templates/musculation/' },
   CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/' },
   GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
+  SDR: { nom: 'Réservation de salles et bureaux', url: '/templates/salles/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

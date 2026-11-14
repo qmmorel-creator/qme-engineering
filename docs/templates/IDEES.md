@@ -129,7 +129,7 @@ déjà).
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
+| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
@@ -262,7 +262,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T74, T75, T76 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63 | T50, T81, T82 | 167 € | 25 % | 125 € | 32 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50 | T81, T82 | 186 € | 25 % | 139 € | 35 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
@@ -869,7 +869,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T47 | Affectation par personne et projet en heures par semaine, taux de charge (temps partiel, absences, fériés déduits), conflits, postes à couvrir, vues semaine et mois, disponibles la semaine prochaine | 6 modèles d'équipe (rôles, compétences, postes) ; repères de durée L3121-27, L3121-20, L3121-22 datés et paramétrables | Équipes et staffing (outil interne) : mécanique seulement | Fiche détaillée : `fiches/planning-equipe.md`. Une clé partagée par les managers, saisies simultanées fusionnées (pas de comptes séparés en V1). **RGPD** : aucune donnée de santé, export, effacement, suppression. **confidentiel** : aucune équipe ni personne de l'outil interne reprise, démo fictive. **daté** : repères de durée relevés le 14/11/2026. |
 | T48 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
 | T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
-| T50 | Ressources, créneaux, conflits, vue jour | à définir | Planner horaire | Caduque : « mono-utilisateur en localStorage » ; un usage partagé est désormais possible mais réservations à plusieurs à concevoir (droits, conflits). |
+| T50 | Ressources, créneaux, conflits, vue jour | Types de ressources, équipements de salle, jours fériés calculés | Planner horaire | Usage à plusieurs tranché le 14/11/2026 : une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes en V1, conflits refusés (y compris entre deux appareils). Fiche en fin de document. **RGPD** (noms des personnes qui réservent). |
 | T51 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T54. **RGPD** (invités). |
 | T52 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
 | T53 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions d'un centre social (artefact client) | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle tableur. **confidentiel** : aucune donnée de l'artefact. |
@@ -1330,3 +1330,58 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   maladie, CAF, ministères. **daté**, revue annuelle obligatoire.
 - **Risques** : **juridique** et **fiscal** (ne remplace ni notaire, ni avocat, ni conseiller fiscal) ;
   **RGPD** (données du défunt et de l'entourage, minimisation) ; sujet sensible pour la communication.
+
+## Fiche T50 (cadrage délégué par Quentin, 14/11/2026)
+
+### T50 · Réservation de salles et bureaux (`templates/salles/`, préfixe SDR, 19 €)
+- Promesse : « Qui a la salle, quand elle se libère, et aucune double réservation. » Catalogue `pro`, thème
+  « Équipements et véhicules » ; pack visé « Moyens généraux » (PMG). Permalien prévu `reservation-salles`.
+- Public : PME en flex office (office manager, services généraux, dirigeant), petits espaces de coworking,
+  associations qui prêtent leurs salles. Une dizaine à quelques dizaines de ressources (40 au plus en V1).
+- **Usage à plusieurs (décision de cadrage)** : une seule clé de licence, partagée par l'équipe (même lien,
+  mêmes données sur tous les appareils). **Pas de comptes ni de droits en V1** : chacun saisit son nom à la
+  réservation (mémorisé sur son appareil seulement, pour pré-remplir et filtrer « Mes réservations »). Toute
+  personne qui a la clé peut modifier ou supprimer une réservation : l'outil le dit, et garde l'auteur et la date
+  de création. Évolution possible : un code « lecture et réservation » distinct du code « administration ».
+- **Conflits refusés** : deux réservations de la même ressource ne peuvent pas se chevaucher (créneaux
+  bout à bout autorisés). Contrôle à la saisie, puis **à nouveau au moment de l'enregistrement en ligne** : si un
+  autre appareil a écrit entre-temps (conflit 409), les réservations locales en attente sont rejouées sur la
+  version du serveur ; celles qui chevauchent une réservation arrivée entre-temps sont refusées et signalées
+  (fonction pure `rejouer`, testée). Réservations dans une même journée (pas de nuit) en V1.
+- Ressources : salles (capacité, équipements cochés dans une liste intégrée : écran, vidéoprojecteur,
+  visioconférence, tableau blanc, paperboard, accès de plain-pied…), bureaux en flex (zone ou étage),
+  équipements prêtables (vidéoprojecteur portable, kit de visioconférence…). **Pas de véhicules** (template
+  T29 Gestion de flotte). Couleur fixe par ressource dans l'ordre de `BASE.couleurs`. Ressource archivable.
+- Réservation : ressource, date, début et fin au pas choisi (15, 30 ou 60 min), objet, nom saisi, nombre de
+  personnes (refusé au-delà de la capacité), note ; **récurrence simple « chaque semaine » jusqu'à une date
+  (52 occurrences au plus)** : les dates en conflit sont listées avant validation et ne sont pas créées ;
+  modifier ou supprimer « cette date » ou « cette date et les suivantes ». « Libérer maintenant » raccourcit une
+  réservation en cours.
+- Écrans : **Maintenant** (« libre maintenant » : chaque ressource libre ou occupée, jusqu'à quand, prochaine
+  réservation, réservation rapide 30 ou 60 min, filtre par type, rafraîchi chaque minute, bon pour une tablette à
+  l'entrée) ; **Jour** (grille ressources × heures, toucher une case vide pour réserver) ; **Semaine** (une
+  ressource, 7 jours × heures) ; **Réservations** (à venir, mes réservations, passées, recherche, export CSV) ;
+  **Occupation** (taux par ressource et par jour de la semaine sur 1, 4 ou 12 semaines : minutes réservées sur
+  minutes d'ouverture, jours fermés et fériés exclus ; carte des heures les plus demandées).
+- Réglages : horaires d'ouverture, jours ouverts, pas, durée maximale et délai de réservation à l'avance
+  (facultatifs), jours fériés fermés (option Alsace-Moselle), ressources, export et import JSON, effacement des
+  noms des réservations passées depuis N mois (les créneaux restent pour les taux d'occupation).
+- Donnée datée : **jours fériés calculés** (fêtes fixes et mobiles depuis la date de Pâques), liste du Code du
+  travail (art. L3133-1) relevée sur service-public.gouv.fr, fiche F2405 « Jours fériés et ponts dans le secteur
+  privé » (vérifiée le 01/01/2026 par la DILA, consultée le 14/11/2026) ; Alsace-Moselle : Vendredi saint et
+  26 décembre en option. Aucun autre barème.
+- Marques : **RGPD** (noms des personnes qui réservent : minimum utile, prénom ou initiales, effacement).
+  Aucune automatisation : pas d'agenda externe, pas d'e-mail, pas de badge ni de capteur.
+- Confidentialité : démo fictive (« Atelier Exemple »), aucune donnée ni capture d'un espace réel.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/salles/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Équipements et véhicules » ; pas de carte
+  anglaise : version anglaise en attente). Page `catalogue/salles/`, captures `assets/templates-salles-*.webp`,
+  couverture `assets/templates-salles-couverture.png`, tests `outils/templates/salles.test.mjs` (règles, jours
+  fériés, série, libre maintenant, occupation, rejeu des réservations en cas de conflit entre appareils).
+- Communication prête dans `communication/salles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (dont la question
+  d'une clé partagée par toute l'équipe au prix d'un template individuel), fiche Gumroad (permalien prévu
+  `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
+  passage en vente du site.

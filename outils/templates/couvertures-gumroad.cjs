@@ -61,6 +61,7 @@ const T = {
   'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
+  'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

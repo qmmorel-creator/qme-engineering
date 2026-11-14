@@ -21,7 +21,6 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates (44 à ce jour).
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 45 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -251,6 +250,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   km, contrôle technique sourcé et paramétrable, pleins et recharges, consommation, coût au km) ;
   `templates/gestion-locative/` (GST) **gestion locative** (loyers et retards, quittances et relances à
   copier, révision avec l'IRL saisi, régularisation des charges, rendement avant impôt, aucun calcul d'impôt).
+- `templates/salles/` (SDR) : **réservation de salles et bureaux**, prêt, « Mise en vente prochaine » (19 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/salles/gumroad.json`). Salles (capacité, équipements), bureaux en
+  flex et matériel prêté ; une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes ; conflits refusés
+  à la saisie et rejoués à l'enregistrement en ligne (conflit 409 entre deux appareils) ; « libre maintenant », vues jour et
+  semaine, réservations chaque semaine, taux d'occupation, jours fériés calculés. Règles dans `regles.js`, tests
+  `outils/templates/salles.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

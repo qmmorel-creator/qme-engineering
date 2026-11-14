@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', pour: 'pro' },
   GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
   CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
   MSC: { slug: 'musculation', prix: 1900, phrase: 'Séances, WOD, records détectés et minuteur.', pour: 'perso' },
@@ -67,7 +68,6 @@ export const TEMPLATES = {
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
-  SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
@@ -200,9 +200,10 @@ export const PAGES = {
       ['ARD', 'Remettez et récupérez le matériel à chaque arrivée et chaque départ.'],
       ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
+      ['SDR', 'Réservez salles, bureaux et équipements sans doublon, avec la vue « libre maintenant ».'],
     ],
-    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats, achats, salles, maintenance et vérifications à venir, avec l’option Pack évolutif'],
-    prevus: ['SDR', 'CTR', 'ACH'],
+    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats fournisseurs et demandes d’achat à venir, avec l’option Pack évolutif'],
+    prevus: ['CTR', 'ACH'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
