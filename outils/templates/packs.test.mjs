@@ -180,3 +180,15 @@ test('chaque étape de parcours d’un pack cite un template existant ou annonc�
     assert.equal(new Set(pres).size, pres.length, `${code} : étape en double`);
   }
 });
+
+test('le menu de chaque page en français mène aux packs', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { execSync } = await import('node:child_process');
+  const racine = new URL('../../', import.meta.url);
+  const pages = execSync("grep -rl '<nav aria-label=\"Navigation principale\">' --include=index.html . | grep -v '^./en/' | grep -v '^./.claude' | grep -v '^./docs'", { cwd: racine, encoding: 'utf8' }).split('\n').filter(Boolean);
+  for (const f of pages) {
+    const s = await readFile(new URL(f, racine), 'utf8');
+    const nav = s.slice(s.indexOf('<nav aria-label="Navigation principale">'), s.indexOf('</nav>', s.indexOf('<nav aria-label="Navigation principale">')));
+    if (nav.includes('href="/templates/"')) assert.ok(nav.includes('href="/packs/"'), `${f} : lien Packs absent du menu`);
+  }
+});

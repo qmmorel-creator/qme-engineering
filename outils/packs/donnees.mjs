@@ -133,7 +133,7 @@ export const PAGES = {
   PFG: {
     couleur: 'jaune', cibles: ['independants', 'tpe'],
     accroche: 'Du bon tarif à l’argent sur le compte.',
-    resume: 'Les six outils qui font tourner une activité d’indépendant : fixer son prix, chiffrer, facturer, relancer et voir venir.',
+    resume: 'Les outils qui font tourner une activité d’indépendant : fixer son prix, mesurer son temps, chiffrer, facturer, relancer et voir venir.',
     pourQui: 'Vous êtes freelance, consultant, artisan ou micro-entrepreneur. Vous savez faire votre métier ; c’est tout ce qui l’entoure qui prend vos soirées : le tarif « au feeling », le devis refait de zéro, la facture oubliée, le compte qui baisse sans prévenir.',
     parcours: [
       ['TJM', 'Fixez un tarif qui paie vraiment vos charges, vos congés et vos jours non facturés.'],
@@ -144,7 +144,7 @@ export const PAGES = {
       ['TRS', 'Regardez douze mois devant vous et voyez le creux avant qu’il n’arrive.'],
       ['TMP', 'Mesurez le temps réellement passé par mission et le taux horaire qu’il vous rapporte.'],
     ],
-    arguments: ['Un parcours complet, de la proposition à l’encaissement', 'Le tarif, la marge et les encaissements enfin calculés de la même façon', 'Une seule clé pour les six outils, sur tous vos appareils'],
+    arguments: ['Un parcours complet, de la proposition à l’encaissement', 'Le tarif, la marge et les encaissements enfin calculés de la même façon', 'Une seule clé pour tous les outils, sur tous vos appareils'],
     prevus: [],
   },
   PFC: {
@@ -185,7 +185,7 @@ export const PAGES = {
   PPE: {
     couleur: 'bleu', cibles: ['tpe', 'office'],
     accroche: 'L’administratif de l’équipe, sans logiciel RH.',
-    resume: 'Congés, notes de frais, arrivées et départs, réunions et trésorerie : ce que le dirigeant d’une petite équipe gère « à côté ».',
+    resume: 'Congés, planning d’équipe, notes de frais, arrivées et départs, entretiens annuels, document unique, réunions, trésorerie et tableau de bord : tout ce que le dirigeant d’une petite équipe gère « à côté ».',
     pourQui: 'Vous dirigez une TPE ou une PME de quelques personnes à quelques dizaines. Les demandes de congés arrivent par SMS, les notes de frais dans une enveloppe, l’arrivée d’un salarié se prépare la veille. Un logiciel RH coûte trop cher pour ce que vous en feriez.',
     parcours: [
       ['ARD', 'Préparez chaque arrivée et chaque départ avec une checklist et des responsables.'],
@@ -204,7 +204,7 @@ export const PAGES = {
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],
     accroche: 'Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.',
-    resume: 'Parc informatique, flotte de véhicules et passation du matériel à l’arrivée et au départ des salariés.',
+    resume: 'Matériel informatique, véhicules, salles, maintenance, vérifications réglementaires, contrats fournisseurs, achats et journées de bascule : les moyens généraux d’une PME au même endroit.',
     pourQui: 'Office manager, responsable des services généraux ou dirigeant qui s’en occupe lui-même : vous devez savoir qui a quel ordinateur, quand la camionnette passe au contrôle technique et quoi récupérer quand quelqu’un part.',
     parcours: [
       ['PRC', 'Inventoriez le matériel, les attributions, les licences et les fins de garantie.'],
@@ -223,7 +223,7 @@ export const PAGES = {
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
     accroche: 'Savoir où passe votre argent, et ce qu’il vous coûte vraiment.',
-    resume: 'Budget, abonnements, dettes, patrimoine et temps de travail : cinq angles sur le même argent, pour décider en connaissance de cause.',
+    resume: 'Budget, abonnements, dettes, épargne, papiers, santé, emprunt, patrimoine et temps de travail : tous les angles sur le même argent, pour décider en connaissance de cause.',
     pourQui: 'Vous gagnez correctement votre vie mais la fin du mois reste floue. Les prélèvements s’accumulent, un crédit traîne, et vous ne savez pas vraiment ce que vous possédez. Ce pack vous donne la vue d’ensemble, sans application bancaire intrusive.',
     parcours: [
       ['BDG', 'Fixez vos enveloppes et voyez l’écart au budget, mois par mois.'],
@@ -242,7 +242,7 @@ export const PAGES = {
   PMR: {
     couleur: 'rouge', cibles: ['couples'],
     accroche: 'Le grand jour, puis la vie à deux, sans dispute d’argent.',
-    resume: 'Organiser le mariage, puis tenir le budget du foyer et partager les dépenses communes.',
+    resume: 'Le mariage, les remerciements, le voyage de noces, le déménagement, puis le budget du foyer et les dépenses partagées.',
     pourQui: 'Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?',
     parcours: [
       ['MRG', 'Pilotez le rétroplanning, les prestataires, les invités et le budget du mariage.'],
@@ -258,7 +258,7 @@ export const PAGES = {
   PPR: {
     couleur: 'encre', cibles: ['managers', 'independants'],
     accroche: 'Moins de listes, plus de choses faites.',
-    resume: 'Trier ce qui arrive, le caser dans la semaine, puis le tenir dans la durée.',
+    resume: 'Trier ce qui arrive, le caser dans la semaine, tenir ses routines, faire le point chaque semaine et chaque trimestre.',
     pourQui: 'Cadre, indépendant ou manager : votre boîte de réception déborde, votre agenda ne laisse aucune place au travail de fond et vos bonnes résolutions tiennent dix jours.',
     parcours: [
       ['TCH', 'Videz la boîte de réception et décidez des trois priorités du jour.'],
@@ -273,7 +273,7 @@ export const PAGES = {
   PET: {
     couleur: 'bleu', cibles: ['etudiants'],
     accroche: 'Réviser au bon moment, chaque jour, jusqu’à l’examen.',
-    resume: 'Le planning de révision par répétition espacée, l’emploi du temps de la semaine et les routines qui tiennent.',
+    resume: 'Le planning de révision par répétition espacée, l’emploi du temps de la semaine, les routines et le suivi de lecture.',
     pourQui: 'Bac, partiels, concours : vous avez beaucoup à retenir et peu de temps. Ce pack dit quoi réviser aujourd’hui, quand le placer dans la semaine et comment tenir le rythme.',
     parcours: [
       ['REV', 'Chaque chapitre revient au bon moment, selon la répétition espacée.'],
@@ -287,7 +287,7 @@ export const PAGES = {
   PAS: {
     couleur: 'rouge', cibles: ['associations'],
     accroche: 'Les adhérents, les événements et la caisse du club.',
-    resume: 'Inscriptions, organisation d’événements et trésorerie : ce que les bénévoles gèrent le soir et le week-end.',
+    resume: 'Inscriptions, événements, compétitions sportives et trésorerie : ce que les bénévoles gèrent le soir et le week-end.',
     pourQui: 'Président, trésorier ou secrétaire bénévole d’une association, d’un club ou d’un centre social : vous gérez des inscriptions, un ou deux événements par an et une trésorerie à présenter en assemblée générale.',
     parcours: [
       ['ASC', 'Gérez les inscriptions, les créneaux, la liste d’attente et les tarifs par tranche.'],
@@ -301,7 +301,7 @@ export const PAGES = {
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],
     accroche: 'Votre bien entretenu, rénové et rentable.',
-    resume: 'Location saisonnière, travaux et entretien : la maison comme un petit projet bien tenu.',
+    resume: 'Location saisonnière, gestion locative, travaux, entretien, capacité d’emprunt et dossier de sinistre : votre bien, de l’achat à la location.',
     pourQui: 'Vous louez un meublé de tourisme, vous rénovez ou vous voulez simplement ne plus oublier la chaudière. Les réservations, les devis d’artisans et les entretiens obligatoires finissent par se mélanger.',
     parcours: [
       ['SJR', 'Suivez réservations, ménage, taxe de séjour et revenu net par plateforme.'],
@@ -317,7 +317,7 @@ export const PAGES = {
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],
     accroche: 'Manger juste, bouger, tenir.',
-    resume: 'La nutrition et la dépense énergétique, avec les habitudes qui font durer les efforts.',
+    resume: 'Nutrition, musculation, repas de la semaine et habitudes : de quoi manger juste, bouger et tenir.',
     pourQui: 'Vous voulez perdre du poids, en prendre ou simplement mieux manger et bouger. Les applications grand public vous noient sous la publicité ou l’abonnement.',
     parcours: [
       ['NTR', 'Suivez repas, calories, macros et dépense du jour.'],
@@ -331,7 +331,7 @@ export const PAGES = {
   PFA: {
     couleur: 'jaune', cibles: ['familles', 'couples'],
     accroche: 'La maison qui tourne, sans tout garder en tête.',
-    resume: 'Budget, entretien de la maison, repas, placards, bébé et animal : la logistique familiale au même endroit.',
+    resume: 'Budget, entretien de la maison, repas, placards et animal : la logistique familiale au même endroit.',
     pourQui: 'Vous êtes parents. Entre le budget du mois, les menus, ce qui reste au frigo, les rendez-vous du petit et le vaccin du chien, la charge mentale déborde. Ce pack la sort de votre tête.',
     parcours: [
       ['BDG', 'Tenez le budget de la famille, enveloppe par enveloppe.'],
@@ -387,7 +387,7 @@ export const PAGES = {
   PCA: {
     couleur: 'rouge', cibles: ['commercants', 'independants'],
     accroche: 'Le stock, les devis et la caisse, enfin d’accord.',
-    resume: 'Stocks, devis, livre des recettes et trésorerie : la gestion du commerçant et de l’artisan.',
+    resume: 'Stocks, devis, livre des recettes, TVA et trésorerie : la gestion du commerçant et de l’artisan.',
     pourQui: 'Vous tenez un petit commerce ou un atelier. Vous découvrez les ruptures de stock trop tard, vos devis sont faits à la main et vous ne savez pas si le mois prochain passera.',
     parcours: [
       ['STK', 'Suivez le stock, les seuils d’alerte et la liste à commander.'],
