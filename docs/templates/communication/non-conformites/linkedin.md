@@ -74,3 +74,59 @@ retours.
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-84
+
+Doc : https://docs.google.com/document/d/1mqxDa7CvDuKY_fMp7-vLJjalbLQHhf_jioyppTSJxvU/edit
+
+Noter un écart, tout le monde sait le faire. Vérifier que l'action corrective a marché, presque jamais.
+
+Dans beaucoup de PME, le registre des non-conformités est un tableur : on y note l'écart, parfois l'action, rarement la cause.
+
+Et la veille d'une revue de direction ou d'un audit client, il faut des heures pour sortir quelques chiffres.
+
+J'ai construit un registre qui tient la démarche jusqu'au bout :
+
+▪ le constat se saisit en 30 secondes, sur le terrain, depuis le téléphone : lot ou atelier, type d'écart, gravité, décision sur le produit ;
+▪ la cause se cherche avec les 5 pourquoi, guidés : chaque question reprend la réponse précédente, et la cause racine est classée en 6M ;
+▪ les actions correctives et préventives sont suivies avec un responsable et une échéance, puis une vérification d'efficacité décide de la clôture. Si l'action n'a pas marché, la fiche revient à l'analyse.
+
+Il arrive prêt à servir : une grille de gravité en quatre niveaux, dix types d'écarts illustrés (BTP et industrie), un modèle des 5 pourquoi avec deux exemples complets.
+
+Et des indicateurs prêts : ouvertes, en retard, délai moyen de clôture, répartition par cause et par gravité. Export CSV et fiche imprimable.
+
+Pas de logiciel à installer : il s'ouvre dans le navigateur avec une clé, sur ordinateur, tablette et téléphone. Achat unique, sans abonnement.
+
+La démo, avec une entreprise fictive et un an d'historique, est ouverte à tous : https://qm-engineering.fr/templates/non-conformites/?demo
+
+Responsables qualité, conducteurs de travaux, chefs d'atelier : chez vous, qui décide qu'une non-conformité est close, et sur quel critère ?
+
+#Qualité #BTP #Industrie #AméliorationContinue #PME
+
+
+## Version finale (15/11/2026) · LI-84
+
+Doc : https://docs.google.com/document/d/1azbMlA3cLZ36yOXfQ1_DNbs8XKlSPIHjQ2Eu57kkrlY/edit
+
+Noter un écart prend 30 secondes. Vérifier que l'action corrective a marché, presque personne ne le fait.
+
+Dans beaucoup de PME, le registre des non-conformités est un tableur : on y note l'écart, parfois l'action, rarement la cause. La veille d'une revue de direction, il faut des heures pour en sortir quelques chiffres.
+
+J'ai construit un registre qui tient la démarche jusqu'au bout. Le constat se saisit en 30 secondes sur le terrain, depuis le téléphone : lot ou atelier, type d'écart, gravité, décision sur le produit. La cause se cherche avec les 5 pourquoi guidés, chaque question reprenant la réponse précédente, puis se classe en 6M. Les actions ont un responsable et une échéance, et c'est une vérification d'efficacité qui décide de la clôture. Si l'action n'a pas marché, la fiche revient à l'analyse.
+
+Il arrive avec une grille de gravité en quatre niveaux, dix types d'écarts illustrés (BTP et industrie) et deux exemples complets des 5 pourquoi. Les indicateurs sont prêts : ouvertes, en retard, délai moyen de clôture, répartition par cause et par gravité, export CSV.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur, tablette et téléphone. Achat unique, sans abonnement. La démo, avec une entreprise fictive et un an d'historique : https://qm-engineering.fr/templates/non-conformites/?demo
+
+Lien d'achat en commentaire.
+
+Chez vous, qui décide qu'une non-conformité est close, et sur quel critère ?
+
+#Qualité #BTP #Industrie #AméliorationContinue #PME
+
+Premier commentaire :
+
+Registre des non-conformités, 20 €, achat unique, tous les appareils :
+https://qmengineering.gumroad.com/l/non-conformites

@@ -54,3 +54,47 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1rVvFxvd-QP86wBBMMyFB51yF6EKhEmA07l0MvmF8WEI` (dossier Textes).
 - Images (dossier Images) : `IG-10-taches-1.png` 1JqeS1ZrZBIBYY7HQQzJQiyaeH54if-VY, `IG-10-taches-2.png` 1oQGN_dl0yPS64uusWZ9ynb14f8P5IanK, `IG-10-taches-3.png` 1IP8jzySGhXL1dRMZPp1fXsti_4CoNdkH, `IG-10-taches-4.png` 1-LreBOvmpb8VVYiVl20fuZAeKKgvpJth, `IG-10-taches-5.png` 1sax6Rvr2kpCUUplNhOP8jaq-G_eFixqX, `IG-10-taches-story.png` 1vibDc6gAJL4YyUYOxaTsUkokkYgwMLI3.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-10
+
+Doc : https://docs.google.com/document/d/1MczMnFAUpd7bOP1U7vBCAFbmpAyzA2kXSF9V4o074Ik/edit
+
+Une liste qui s'allonge ne dit pas quoi faire ce matin. Elle dit seulement qu'on est en retard.
+
+Le problème n'est pas de noter les tâches. C'est de choisir, chaque jour, celles qui comptent vraiment, sans perdre le reste de vue.
+
+Le Gestionnaire de tâches, autour de trois gestes :
+▪ noter vite : « Appeler la banque demain 14h !haute #Perso 30min » donne la date, l'heure, la priorité, le projet et la durée ;
+▪ trier : urgent ou pas, important ou pas, un élément après l'autre ;
+▪ choisir : 3 à 5 tâches au focus, avec le temps prévu face au temps disponible.
+
+Des répétitions fiables et cinq modèles de projets. C'est un outil personnel, pas un logiciel d'équipe. Achat unique, 19 €.
+
+Pour une équipe, avec vos rôles et vos validations ? Je construis la version sur mesure.
+
+Démo libre avec des tâches fictives, et contact : lien en bio.
+
+Combien de tâches compte votre liste en ce moment ?
+
+#Organisation #Productivité #GestionDuTemps #Freelance #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-10
+
+Doc : https://docs.google.com/document/d/1GbNDZlfShSg2LNsMoATedW2pBw0koFqP8TeUjM7_UE8/edit
+
+Une liste qui s'allonge, ou 3 à 5 tâches choisies : laquelle vous dit quoi faire ce matin ?
+
+La liste longue rassure : rien n'est oublié. Mais elle ne fait que rappeler qu'on est en retard.
+
+La liste courte demande un effort : trier chaque élément, urgent ou pas, important ou pas, puis en garder 3 à 5 au focus, avec le temps prévu face au temps disponible.
+
+Le Gestionnaire de tâches garde les deux. Tout se note en une ligne (« Appeler la banque demain 14h !haute #Perso 30min »), et seul le focus du jour s'affiche le matin. Le soir, on reporte, on archive, la journée est close.
+
+Outil personnel, pas un logiciel d'équipe. Achat unique, 19 €. Pour une équipe, avec vos rôles et vos validations, je construis la version sur mesure.
+
+Démo libre avec des tâches fictives : lien en bio.
+
+#Organisation #Productivité #GestionDuTemps #Freelance

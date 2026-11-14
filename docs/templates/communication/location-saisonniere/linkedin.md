@@ -112,3 +112,54 @@ https://qm-engineering.fr/templates/location-saisonniere/?demo
 Lien d'achat en premier commentaire.
 
 #LocationSaisonnière #ChambresDHôtes #MeubléDeTourisme #Gîte #Tourisme
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-118
+
+Doc : https://docs.google.com/document/d/1bQuKOdXusEIBP0u5J7fIHf1KeTvKMGp0E_1xaJbmkk8/edit
+
+Une nuit louée 100 €, ce n'est pas 100 € gagnés. Entre la commission du canal, le ménage et la taxe de séjour, combien vous reste-t-il vraiment ?
+
+Quand on loue soi-même un meublé de tourisme ou quelques chambres d'hôtes, les réservations arrivent de partout : en direct, par un ou deux intermédiaires. Chacun a son calendrier, sa commission, sa façon de gérer la taxe de séjour. Le tableur finit par ne plus suivre.
+
+J'ai donc construit un outil de location saisonnière qui fait trois choses :
+
+▪ il tient le calendrier de vos logements, mois par mois, et refuse deux réservations confirmées sur la même nuit ; une option en conflit est signalée ;
+▪ il crée le ménage de chaque départ, à faire avant la prochaine arrivée, et repère les rotations le jour même ;
+▪ il calcule pour chaque séjour le brut, la commission, le net, l'acompte, le solde et la taxe de séjour, avec le tarif de votre commune, puis vos revenus par canal et par mois, le taux d'occupation et le prix moyen par nuit.
+
+Aucune plateforme n'est connectée : vous nommez vos canaux et saisissez vos réservations. Aucun barème de taxe n'est intégré, parce que chaque commune fixe le sien. Et ce n'est pas un conseil fiscal : les recettes sont là pour votre déclaration, pas un calcul d'impôt.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec trois logements fictifs est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/location-saisonniere/?demo
+
+Lien d'achat en premier commentaire.
+
+Vous louez en direct et par un intermédiaire : sur quel canal votre nuit nette est-elle la plus basse ?
+
+#LocationSaisonnière #ChambresDHôtes #MeubléDeTourisme #Gîte #Tourisme
+
+
+## Version finale (15/11/2026) · LI-118
+
+Doc : https://docs.google.com/document/d/126b_5-_XYl8w-QneTswipqC6FlIQeTMTG9sfMnGK9JU/edit
+
+Une nuit louée 100 €, combien vous en reste-t-il après la commission, le ménage et la taxe de séjour ?
+
+Et sur quel canal cette nuit vous rapporte-t-elle le moins ? Quand les réservations arrivent en direct et par un ou deux intermédiaires, chacun a son calendrier, sa commission, sa façon de gérer la taxe de séjour. Le tableur finit par ne plus suivre.
+
+J'ai construit un outil de location saisonnière qui répond à ces questions :
+▪ il tient le calendrier de vos logements et refuse deux réservations confirmées sur la même nuit ; une option en conflit est signalée ;
+▪ il crée le ménage de chaque départ, à faire avant la prochaine arrivée, et repère les rotations le jour même ;
+▪ il calcule pour chaque séjour le brut, la commission, le net, l'acompte, le solde et la taxe de séjour au tarif de votre commune, puis le net par canal et par mois, le taux d'occupation et le prix moyen par nuit.
+
+Aucune plateforme n'est connectée : vous nommez vos canaux et saisissez vos réservations. Aucun barème de taxe n'est intégré, chaque commune fixe le sien. Ce n'est pas un conseil fiscal.
+
+Il sera bientôt en vente. La démo, avec trois logements fictifs, est ouverte à tous : https://qm-engineering.fr/templates/location-saisonniere/?demo
+
+Et vous, sur quel canal votre nuit nette est-elle la plus basse ?
+
+#LocationSaisonnière #ChambresDHôtes #MeubléDeTourisme #Gîte

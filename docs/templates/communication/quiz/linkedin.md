@@ -75,3 +75,55 @@ La banque de questions et quiz (19 €, achat unique) : [lien Gumroad à complé
 - Aucune plateforme de quiz du marché nommée.
 - Hashtags : `#Formation`, `#Enseignement` et `#Pédagogie` hors des jeux habituels du planning (comme pour la
   progression pédagogique), **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-137
+
+Doc : https://docs.google.com/document/d/1qX8D6a4LVvxH7R-pT4PKR-3wh_2KuTe3bZ1kiGapyJk/edit
+
+Les questions sont dans dix fichiers. Le quiz, on le refait à la main. Et on ne sait toujours pas quelle question fait échouer le groupe.
+
+Quand on forme ou qu'on enseigne, les questions s'accumulent : un fichier par module, un autre par groupe, des versions qui se recopient. Chaque quiz se reconstruit et se corrige au stylo.
+
+J'ai donc construit une banque de questions et quiz en ligne qui fait trois choses :
+
+▪ elle range les questions une fois : QCM, vrai ou faux, réponse courte, avec des étiquettes (notion, module), une difficulté et une explication. Une liste rédigée ailleurs se colle d'un coup ;
+▪ elle tire un quiz en un clic par étiquettes et difficulté, mélange les propositions, et imprime le sujet avec son corrigé sur une page à part ;
+▪ elle corrige : on saisit les lettres cochées ou la réponse écrite, la note se calcule. Les réponses courtes qui ne correspondent pas sont laissées à trancher, d'un geste.
+
+Ensuite, les statistiques : réussite par question et par étiquette, questions trop faciles ou trop difficiles, et la mauvaise réponse qui attire le plus. C'est souvent là qu'on comprend l'erreur fréquente, ou l'énoncé ambigu.
+
+Côté données, le moins possible : copies anonymes ou pseudonymes, et les résultats s'exportent puis s'effacent à tout moment (un apprenant, une session, ou tout). Aucune question fournie : la banque reste celle du formateur. Ça s'ouvre dans le navigateur avec une clé, sur ordinateur, tablette ou téléphone. Achat unique, sans abonnement.
+
+Une démo avec une banque et des apprenants fictifs est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/quiz/?demo
+
+Lien d'achat en premier commentaire.
+
+Formateurs, enseignants : la dernière question ratée par tout un groupe, c'était la notion ou l'énoncé ?
+
+#Formation #Enseignement #Pédagogie #OutilsNumériques #Organisation
+
+
+## Version finale (15/11/2026) · LI-137
+
+Doc : https://docs.google.com/document/d/1loaAZ-rde4eEllDfRsmKVlFji4rOaHIijghV880XDDc/edit · publication prévue le 2027-03-17 · style : question directe au lecteur
+
+La dernière question ratée par tout un groupe, c'était la notion ou l'énoncé ? Sans statistiques par question, impossible de le dire.
+
+Quand on forme ou qu'on enseigne, les questions s'accumulent dans dix fichiers, chaque quiz se reconstruit à la main et se corrige au stylo. On voit la moyenne, rarement la question qui l'a fait chuter.
+
+J'ai construit une banque de questions et quiz en ligne pour répondre à cette question-là.
+
+Les questions se rangent une fois : QCM, vrai ou faux, réponse courte, avec étiquettes, difficulté et explication. Un quiz se tire en un clic par étiquettes et difficulté, et s'imprime avec son corrigé à part. La note se calcule à partir des réponses saisies ; les réponses courtes qui ne correspondent pas sont laissées à trancher, d'un geste.
+
+Puis viennent les statistiques : réussite par question et par étiquette, questions trop faciles ou trop difficiles, et la mauvaise réponse qui attire le plus. C'est souvent là qu'apparaît l'énoncé ambigu.
+
+Copies anonymes ou pseudonymes, résultats effaçables à tout moment. Aucune question fournie : la banque reste la vôtre.
+
+Elle sera bientôt en vente. La démo, avec une banque et des apprenants fictifs, est ouverte sans inscription :
+https://qm-engineering.fr/templates/quiz/?demo
+
+Formateurs, enseignants : quelle question fait trébucher votre groupe à chaque session ?
+
+#Formation #Enseignement #Pédagogie #OutilsNumériques

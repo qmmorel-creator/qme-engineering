@@ -65,3 +65,46 @@ Gabarit `story` du kit (1080 × 1920) : « Leasing ou achat : le vrai prix de vo
 https://qm-engineering.fr/templates/leasing/?demo (« Essayer la démo ») ; mention « Données fictives » si
 une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-74
+
+Doc : https://docs.google.com/document/d/1wX4VlUbFXvCQUZeR_-cXgZWVkEs5Nvhr8OXURbjtheo/edit
+
+Un loyer de LOA n'est pas le prix de votre voiture.
+
+Premier loyer, option d'achat, forfait kilométrique, revente : chaque offre met en avant un chiffre différent, et aucune ne dit ce que la voiture coûtera vraiment.
+
+Le Simulateur leasing ou achat :
+▪ compare comptant, crédit, LOA et LLD sur la même période, revente estimée déduite ;
+▪ donne le coût par mois et par kilomètre, et le kilométrage où une offre passe devant une autre ;
+▪ liste les questions à poser au vendeur avant de signer.
+
+Vous reportez vos propres devis, les hypothèses restent visibles. Simulation, pas un conseil financier. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À enregistrer avant votre prochain rendez-vous chez un vendeur.
+
+Combien de kilomètres faites-vous par an, à peu près ?
+
+#Voiture #LOA #BudgetFamilial #Budget #Indépendant
+
+## Version finale (15/11/2026) · IG-74
+
+Doc : https://docs.google.com/document/d/1ztWm2DCPaKamTE8wSzALeXvTkJkaaGSK1Rh_QMS94tc/edit
+
+Trois étapes avant de signer une LOA : un coût total, vos vrais kilomètres, les bonnes questions au vendeur.
+
+1. Ramenez chaque offre au même étalon. Comptant, crédit, LOA, LLD : le coût total sur la même période, revente estimée déduite.
+2. Comparez le forfait à vos kilomètres réels. Le simulateur donne le dépassement et le kilométrage où une offre passe devant une autre.
+3. Posez les questions qui changent le calcul. Il les liste selon le type d'offre.
+
+Le Simulateur leasing ou achat fait les trois avec vos propres devis, hypothèses visibles. Simulation, pas un conseil financier. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec deux voitures fictives : lien en bio. À enregistrer avant votre prochain rendez-vous chez un vendeur.
+
+#Voiture #LOA #Budget #BudgetFamilial

@@ -60,3 +60,51 @@ Gabarit `story` du kit (1080 × 1920) : « Votre stock, juste, sans tableur. » 
 seuil, liste à commander, inventaire » ; autocollant lien vers https://qm-engineering.fr/templates/stocks/?demo
 (« Essayer la démo ») ; mention « Données fictives » si une capture est reprise. Stories en pause depuis le
 13/11/2026 (voir le kit) : image à produire seulement quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-72
+
+Doc : https://docs.google.com/document/d/1UGPx_SF3k5Eeng5yGld4kAL3MygQPuSv4pMaTuk_PFc/edit
+
+La rupture de stock se découvre devant le client. Les cartons qui dorment en réserve, jamais.
+
+Dans une boutique ou un atelier, le stock se suit souvent de tête. On commande trop tard ce qui part, trop de ce qui ne part pas, et l'inventaire ne tombe jamais juste.
+
+Stocks et inventaire :
+▪ calcule le stock de chaque article à partir de ses entrées, ventes, pertes et retours ;
+▪ prévient au seuil d'alerte et prépare la liste à commander par fournisseur ;
+▪ donne la valeur du stock au coût moyen pondéré, et transforme les écarts d'inventaire en ajustements.
+
+Rien n'est relié à une caisse : chaque mouvement se note en quelques secondes. Outil de gestion, pas un logiciel comptable. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Votre stock, vous le suivez de tête, sur papier ou dans un tableur ?
+
+#Commerce #PME #Entrepreneur #Indépendant #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · IG-72
+
+Doc : https://docs.google.com/document/d/1g7K3rPlvB3GqNfItSuzFdbp2C0Zsu0871rsHoc73HEs/edit
+
+Un stock suivi de tête ne dit pas trois choses : ce qui manquera, ce qui dort, ce que ça vaut.
+
+1. Ce qui manquera : le stock se calcule à partir des entrées, ventes, pertes et retours, et une alerte prévient au seuil, avec la liste à commander par fournisseur.
+2. Ce qui dort : les articles qui ne se vendent plus ressortent.
+3. Ce que ça vaut : la valeur au coût moyen pondéré, et les écarts d'inventaire en quantité et en euros, transformés en ajustements.
+
+Rien n'est relié à une caisse : chaque mouvement se note en quelques secondes. Outil de gestion, pas logiciel comptable. Le template sera bientôt en vente.
+
+Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec un atelier fictif, et contact : lien en bio.
+
+Votre stock, vous le suivez de tête, sur papier ou dans un tableur ?
+
+#Commerce #GestionDeStock #PME #Organisation

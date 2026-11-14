@@ -65,3 +65,48 @@ image à produire seulement quand elles reprennent.
 ## Remarque
 
 `#AnimauxDeCompagnie` ne fait pas partie des jeux de hashtags du kit : à valider par Quentin.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-85
+
+Doc : https://docs.google.com/document/d/1lR2cqs2m2ZTbwaz31pfMEbpc9pdBlcOOorsCsH2vOzQ/edit
+
+Son vermifuge, c'était quand, déjà ?
+
+Antiparasitaire, vermifuge, rappel de vaccin, toilettage : les dates sont sur le carnet de santé, rarement sous la main.
+
+Le Suivi d'un animal de compagnie :
+▪ calcule chaque prochaine échéance à partir des intervalles que votre vétérinaire vous a donnés ;
+▪ trace sa courbe de poids, pesée après pesée ;
+▪ garde les visites, les traitements notés et tous les frais, par mois et par an.
+
+Aucun calendrier de vaccins intégré : c'est votre vétérinaire qui décide, l'outil calcule. Il ne remplace pas son avis. Carnet imprimable pour la pension. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Chez vous, qui pense au vermifuge : vous, le calendrier ou le vétérinaire ?
+
+#AnimauxDeCompagnie #Organisation #Maison #Budget #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-85
+
+Doc : https://docs.google.com/document/d/1JdcC7IRwsNDDemWsdX5g_FBYDAs-MNLvYZNjl_5bAw0/edit
+
+Son vermifuge, c'était quand ? Trois choses à noter pour ne plus se poser la question.
+
+1. La date du dernier soin et l'intervalle donné par votre vétérinaire : l'outil en déduit la prochaine échéance.
+2. Chaque pesée : la courbe de poids se trace, sans interprétation.
+3. Chaque visite, traitement et frais : classés par mois et par an.
+
+C'est tout ce que demande le Suivi d'un animal de compagnie. Aucun calendrier de vaccins n'est intégré : votre vétérinaire décide, l'outil calcule, et il ne remplace pas son avis. Carnet imprimable pour la pension. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois animaux fictifs : lien en bio. À enregistrer pour la prochaine visite.
+
+Chez vous, qui pense au vermifuge : vous, le calendrier ou le vétérinaire ?
+
+#AnimauxDeCompagnie #Organisation #Maison #Chien

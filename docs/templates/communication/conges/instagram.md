@@ -63,3 +63,44 @@ Gabarit `story` du kit (1080 × 1920) : « Les congés de votre équipe, sans ta
 https://qm-engineering.fr/templates/conges/?demo (« Essayer la démo ») ; mention « Données fictives » si
 une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-71
+
+Doc : https://docs.google.com/document/d/1HL328SOE-UVFI6__R5aBXcW7GsAdVq7Ajbd_BlR6Wow/edit
+
+Deux personnes de la même équipe en congé la même semaine : on s'en rend compte le lundi matin.
+
+Dans une petite entreprise sans logiciel RH, les congés vivent dans un tableur et quelques messages.
+
+Le Suivi des congés et absences :
+▪ calcule les soldes de chaque salarié, congés payés et RTT, au jour près ;
+▪ garde chaque demande avec son statut et affiche le solde après validation ;
+▪ signale sur le calendrier les jours où une équipe a trop d'absents.
+
+Règles visibles et modifiables, aucune donnée de santé. Outil d'aide : la convention collective et le Code du travail font foi. Achat unique, 19 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui valide les congés chez vous.
+
+Chez vous, une demande de congé arrive comment : mail, message ou papier ?
+
+#PME #RessourcesHumaines #Organisation #Entrepreneur #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-71
+
+Doc : https://docs.google.com/document/d/1jWrydF0AX_-f2EjmP6jB3FhO2Gs2E_csLQSNGAb5m9c/edit
+
+Un chevauchement de congés se voit au moment de valider la demande. Pas le lundi où il manque deux personnes.
+
+C'est ce que fait d'abord le Suivi des congés et absences. Le calendrier de l'équipe signale les jours où trop de monde est absent, et chaque demande affiche le solde après validation, avant que vous décidiez.
+
+Soldes au jour près, congés payés et RTT, règles modifiables, aucune donnée de santé. Outil d'aide : la convention collective et le Code du travail font foi. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui valide les congés chez vous.
+
+#PME #RessourcesHumaines #Organisation #Entrepreneur #OutilsNumériques

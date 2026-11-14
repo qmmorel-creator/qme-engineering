@@ -67,3 +67,48 @@ salles · heures suivies » ; autocollant lien vers https://qm-engineering.fr/te
 
 Jeu « Travail » du kit (`../instagram/README.md`), repris tel quel. Le kit n'a pas de jeu « formation » :
 un jeu dédié (par exemple `#FormationProfessionnelle`) serait **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-81
+
+Doc : https://docs.google.com/document/d/1bryjUHCJdp2M9TJjQSWqcNllVeX7B9W7xyxHQJHcgaY/edit
+
+Un formateur placé dans deux groupes à la même heure. On le découvre le matin même.
+
+Dans beaucoup d'organismes de formation, l'emploi du temps vit dans un tableur par groupe, et personne ne voit les croisements.
+
+L'Emploi du temps d'établissement :
+▪ réunit groupes, formateurs, salles et modules sur une grille semaine, placée à la main ;
+▪ signale chaque conflit au moment où vous posez la séance ;
+▪ compte les heures réalisées, placées et prévues, module par module.
+
+Semaines A et B, jours fériés calculés, impression A4. Aucun nom d'apprenant. Achat unique, 45 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui monte les plannings chez vous.
+
+Votre emploi du temps tient dans combien de tableurs aujourd'hui ?
+
+#Formation #OrganismeDeFormation #Organisation #PME #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-81
+
+Doc : https://docs.google.com/document/d/1_b1YbR8ayiO3dFvvRg4H4AHfyzcS412YW5uuGngH5VQ/edit
+
+Un emploi du temps sans conflit de salle, en 3 étapes.
+
+1. Réunir sur une seule grille ce qui vit dans plusieurs tableurs : groupes, formateurs, salles et modules.
+
+2. Placer chaque séance à la main, et faire vérifier chaque pose : formateur pris deux fois, salle de 14 places pour 18 stagiaires, jour férié.
+
+3. Suivre les heures réalisées, placées et prévues, module par module, pour voir ce qui dépasse.
+
+C'est ce que fait l'Emploi du temps d'établissement. Semaines A et B, jours fériés calculés, impression A4, aucun nom d'apprenant. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec un centre de formation fictif, et contact : lien en bio. À envoyer à la personne qui monte les plannings chez vous.
+
+#Formation #OrganismeDeFormation #Organisation #PME #OutilsNumériques

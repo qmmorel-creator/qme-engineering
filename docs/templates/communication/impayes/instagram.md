@@ -63,3 +63,48 @@ Gabarit `story` du kit (1080 × 1920) : « Vos factures en retard, relancées au
 https://qm-engineering.fr/templates/impayes/?demo (« Essayer la démo ») ; mention « Données fictives » si
 une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-69
+
+Doc : https://docs.google.com/document/d/1pIPAy8ZsFCoArZ49SSd8vCUcDWqCt_InfXbayRvPvTM/edit
+
+Entre professionnels, chaque facture en retard ouvre droit à 40 € d'indemnité. Une somme qu'on oublie souvent de réclamer.
+
+On attend, on hésite, on relance trop tard. Et on oublie ce que la loi permet de réclamer : des pénalités de retard et 40 € d'indemnité par facture.
+
+La Relance des impayés :
+▪ range vos factures par retard et calcule l'encours, paiements partiels compris ;
+▪ calcule les pénalités jour par jour, avec des taux datés que vous mettez à jour ;
+▪ prépare le message de chaque palier, du rappel courtois à la mise en demeure.
+
+Le message se copie, rien n'est envoyé à votre place. Outil d'aide, pas un conseil juridique. Achat unique, 19 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À enregistrer pour la prochaine facture qui traîne.
+
+Au bout de combien de jours de retard relancez-vous ?
+
+#Freelance #Indépendant #Entrepreneur #PME #MicroEntreprise
+
+
+## Version finale (15/11/2026) · IG-69
+
+Doc : https://docs.google.com/document/d/1Rq3EXvRwd2jWjpQ5mVLlvip2kuxiufoZUhtsF1GVdmo/edit
+
+40 € par facture en retard : l'indemnité qu'on oublie de réclamer entre professionnels.
+
+Relancer en trois étapes :
+1. Classer : chaque facture par retard, avec l'encours réel, paiements partiels compris.
+2. Chiffrer : les pénalités jour par jour sur le restant dû, plus les 40 € d'indemnité.
+3. Écrire : le message du bon palier, du rappel courtois à la mise en demeure, avec le montant et le retard déjà remplis.
+
+La Relance des impayés fait les trois. Le message se copie, rien n'est envoyé à votre place, et vous mettez à jour les taux datés. Outil d'aide, pas un conseil juridique. Achat unique, 19 €.
+
+Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une entreprise fictive : lien en bio. Enregistrez-le pour la prochaine facture qui traîne.
+
+#Freelance #Indépendant #Facturation #PME

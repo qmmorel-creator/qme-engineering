@@ -54,3 +54,46 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1kDxw9Zj8poD8pdMG4U6re9gtD_ShvtYo0hS88pkV-Kk` (dossier Textes).
 - Images (dossier Images) : `IG-08-budget-commun-1.png` 13W7gPrqsof3eDkiJ-6bCW9KsRGV-sYfs, `IG-08-budget-commun-2.png` 1yEnQlTqH64wsWV1Q_r8Hg_tmxH_-TnwE, `IG-08-budget-commun-3.png` 1Fxh3TLqgI3YDQvQhzq2kiiLbfbTG9YMW, `IG-08-budget-commun-4.png` 1ltM_TBvdpXONlpXU4yEKx1tny5Sq3Ti6, `IG-08-budget-commun-5.png` 1RfdPlq1DZSxO-65xP3VHv0gnKm5ZUpiy, `IG-08-budget-commun-story.png` 13CWq3qLRJLtrxVxhIxPfx1W7ccc23qGv.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-08
+
+Doc : https://docs.google.com/document/d/1LFGouv8Lo4azU7iKPPCguhDr3SGA9R00ABEO7Vo1gcg/edit
+
+Qui doit combien à qui ? Sans tableur ni discussion.
+
+« Je t'ai fait un virement pour les courses… ou c'était pour l'électricité ? » Partager à parts égales, c'est simple. Dès qu'on tient compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient vite une source de discussions.
+
+Le Budget commun :
+▪ répartit chaque dépense à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près ;
+▪ tient les soldes à jour et calcule le nombre minimal de virements pour remettre les comptes à zéro ;
+▪ ajoute chaque mois le loyer, l'énergie et les abonnements avec la bonne répartition.
+
+Une seule clé pour le foyer, chacun sur son téléphone. Pas de connexion bancaire, pas d'abonnement : achat unique, 15 €.
+
+Une association, un club, d'autres règles de partage ? Je construis la version sur mesure.
+
+Démo libre avec un couple fictif, et contact : lien en bio. À envoyer à la personne avec qui vous partagez les comptes.
+
+Chez vous, c'est moitié-moitié ou au prorata des revenus ?
+
+#BudgetCommun #Colocation #BudgetFamilial #Organisation #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-08
+
+Doc : https://docs.google.com/document/d/1LYtXsL1qWmpojL4STVOs7qwvtbNj8CBvuoNcIP_KbPU/edit
+
+Plus votre partage est juste, plus le calcul se complique. Sauf si ce n'est pas vous qui le faites.
+
+Moitié-moitié, ça se compte de tête. Au prorata des revenus, avec un enfant ou une chambre plus grande, la note de téléphone ne suit plus.
+
+Le Budget commun fait le calcul : chacun note ce qu'il paie, la dépense est répartie comme vous l'avez décidé, au centime près, et les soldes donnent le nombre minimal de virements pour revenir à zéro. Loyer, énergie et abonnements reviennent chaque mois avec la bonne répartition.
+
+Une clé pour le foyer, chacun sur son téléphone. Pas de connexion bancaire, achat unique à 15 €.
+
+Une association, un club, vos propres règles de partage ? Je construis la version sur mesure.
+
+Démo libre avec un couple fictif : lien en bio. À envoyer à la personne avec qui vous partagez les comptes.
+
+#BudgetCommun #Colocation #BudgetFamilial #VieDeCouple

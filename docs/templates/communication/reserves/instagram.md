@@ -54,3 +54,48 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1hzViKsc5Wj1JGWtvRh_PuYMnEfuuPxwohxGIF0x1NOw` (dossier Textes).
 - Images (dossier Images) : `IG-17-reserves-1.png` 1QzugdmnyYwC5_22Ds8wM3EtRqMEhi92c, `IG-17-reserves-2.png` 1YQKRqYJRlWLYJxFK5-nUW8XcYaPQnIK5, `IG-17-reserves-3.png` 1azvYuJpBcqNLA-Oabgz22AncKgu9idDV, `IG-17-reserves-4.png` 1YtaiqvCmMoj29p8qT5dL8EeFnyQY5zcs, `IG-17-reserves-5.png` 1p_J-dKCD1f3tvLeyMpO3GJWYBGtSokLD, `IG-17-reserves-story.png` 1R2UxJBC8CR2aOkdmKwF3mPjcfID3kKOW.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-17
+
+Doc : https://docs.google.com/document/d/1l5yA_Q3sQdi_EkdNNt8d9wqkw7eSEJVINnzOrX5v8S0/edit
+
+Des dizaines de réserves, dix entreprises, et une liste recopiée à chaque visite.
+
+Une réserve suit toujours le même chemin : constatée, reprise, contrôlée, acceptée ou refusée. Le problème, c'est le volume.
+
+La Levée de réserves :
+▪ la saisie pendant la visite, sur téléphone : bâtiment, niveau, local, lot, entreprise ;
+▪ le cycle complet daté : levée, contrôle, refus motivé avec une nouvelle échéance ;
+▪ un tableau de bord par entreprise et par lot, et le procès-verbal de levée prêt à imprimer.
+
+Retards calculés avec vos propres délais, export CSV. Achat unique, 39 €.
+
+Photos, plans, vos modèles de procès-verbaux ? Je construis la version sur mesure.
+
+Démo libre avec une résidence fictive, et contact : lien en bio.
+
+À vos dernières OPR, combien de réserves restaient ouvertes un mois après ?
+
+#BTP #Chantier #ConducteurDeTravaux #MaîtriseDŒuvre #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-17
+
+Doc : https://docs.google.com/document/d/1sc_iWo31uO50-L9pucLDQ8dNSp2aNfzIrB51gWyxD9M/edit
+
+Recopier la liste des réserves à chaque visite, c'est perdre le fil en un mois. Le suivi jusqu'à la levée, en 3 étapes.
+
+1. Saisir pendant la visite, sur téléphone : bâtiment, niveau, local, lot, entreprise, numéro automatique.
+
+2. Dater chaque étape : levée par l'entreprise, contrôle, refus motivé avec une nouvelle échéance. Les retards se calculent avec vos propres délais.
+
+3. Remettre à chaque entreprise sa liste de réserves à lever, puis le procès-verbal de levée, prêt à imprimer.
+
+C'est ce que fait le template Levée de réserves, avec un tableau de bord par entreprise et par lot, et un export CSV. Achat unique, 39 €.
+
+Photos, plans, vos modèles de procès-verbaux ? Je construis la version sur mesure.
+
+Démo libre avec une résidence fictive, et contact : lien en bio. À envoyer à qui prépare ses prochaines OPR.
+
+#BTP #Chantier #ConducteurDeTravaux #MaîtriseDŒuvre #OutilsSurMesure

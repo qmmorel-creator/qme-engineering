@@ -108,3 +108,57 @@ https://qm-engineering.fr/templates/stocks/?demo
 Lien d'achat en premier commentaire.
 
 #Commerce #Artisanat #GestionDeStock #TPE #Entrepreneur
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-117
+
+Doc : https://docs.google.com/document/d/1XZXugpapAou-zwjomyU_EtHURGI8FCgk2YbIk5ge-Qg/edit
+
+La rupture de stock se découvre toujours au mauvais moment : devant le client, ou la veille d'une commande.
+
+Dans un petit commerce ou un atelier, le stock se suit souvent de tête, sur un carnet ou dans un tableur qu'on oublie de mettre à jour. On commande trop tard ce qui part, trop de ce qui ne part pas, et l'inventaire de fin d'année ne tombe jamais juste.
+
+J'ai donc construit un outil de gestion de stock qui fait trois choses :
+▪ il calcule le stock de chaque article à partir de ses mouvements datés (entrées, ventes, pertes, retours, ajustements) et prévient quand un article atteint son seuil, avec la liste à commander par fournisseur ;
+▪ il donne la valeur du stock au coût moyen pondéré, recalculé à chaque réception, ou au dernier prix d'achat, avec la marge théorique et les articles qui ne se vendent plus ;
+▪ il organise l'inventaire, complet ou tournant : on saisit ce que l'on compte, l'écart s'affiche en quantité et en euros, et la validation corrige le stock.
+
+Rien n'est relié à une caisse ni à une boutique en ligne : chaque mouvement se note dans l'outil, en quelques secondes, sur ordinateur ou sur téléphone.
+
+C'est un outil de gestion, pas un logiciel comptable : la valorisation de clôture reste l'affaire de l'expert-comptable.
+
+Il s'ouvre dans le navigateur avec une clé. Achat unique, sans abonnement.
+
+Une démo avec un atelier fictif est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/stocks/?demo
+
+Lien d'achat en premier commentaire.
+
+Commerçants, artisans : votre stock, vous le suivez aujourd'hui de tête, sur un carnet ou dans un tableur ?
+
+#Commerce #Artisanat #GestionDeStock #TPE #Entrepreneur
+
+
+---
+
+## Version finale (15/11/2026) · LI-117
+
+Doc : https://docs.google.com/document/d/1hbjhaZaQW-35P3AQWkxoPwfXzZbFtmflvo4DTaqw2xs/edit
+
+Votre stock se calcule avec cinq mouvements : entrées, ventes, pertes, retours, ajustements. Le reste n'est que de la mémoire.
+
+Dans un petit commerce ou un atelier, le stock se suit souvent de tête, sur un carnet ou dans un tableur qu'on oublie de mettre à jour. La rupture se découvre devant le client, ou la veille d'une commande. On commande trop tard ce qui part, trop de ce qui ne part pas, et l'inventaire de fin d'année ne tombe jamais juste.
+
+J'ai donc construit un outil de gestion de stock qui part de ces mouvements datés.
+
+▪ le stock de chaque article se calcule à partir de ses mouvements, et une alerte prévient quand il atteint son seuil, avec la liste à commander par fournisseur ;
+▪ la valeur du stock est donnée au coût moyen pondéré, recalculé à chaque réception, ou au dernier prix d'achat, avec la marge théorique et les articles qui ne se vendent plus ;
+▪ l'inventaire, complet ou tournant, affiche chaque écart en quantité et en euros, et la validation corrige le stock.
+
+Rien n'est relié à une caisse ni à une boutique en ligne : chaque mouvement se note en quelques secondes, sur ordinateur ou sur téléphone. C'est un outil de gestion, pas un logiciel comptable : la valorisation de clôture reste l'affaire de l'expert-comptable.
+
+Il sera bientôt en vente. La démo, avec un atelier fictif, est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/stocks/?demo
+
+#Commerce #Artisanat #GestionDeStock #TPE #Entrepreneur

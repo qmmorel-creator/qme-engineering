@@ -76,3 +76,60 @@ vente au 14/11/2026]
   A4 paysage, aucun nom d'apprenant). Prix de 45 € d'après `IDEES.md`, à confirmer.
 - Hashtags : `#OrganismeDeFormation`, `#FormationProfessionnelle` et `#EmploiDuTemps` hors des jeux habituels du
   planning, **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-126
+
+Doc : https://docs.google.com/document/d/19MrWEFXGMSSgK510neCHdvb5v0fA0U_vQQEuoeX6rdg/edit
+
+Dans un organisme de formation, qui s'aperçoit que la salle est déjà prise ? Souvent le formateur, le matin même, devant la porte.
+
+Beaucoup de petits organismes de formation et d'écoles privées construisent leur emploi du temps dans un tableur. Ça tient tant que tout est stable.
+
+Puis un formateur change de jour, une salle ferme pour travaux, un groupe grossit, et les croisements se découvrent trop tard.
+
+J'ai donc construit un emploi du temps d'établissement qui fait trois choses :
+
+▪ il réunit groupes, formateurs, salles et modules sur une grille semaine, et on y place chaque séance à la main, d'un clic sur un créneau libre ;
+▪ il signale chaque conflit au moment où on pose la séance : formateur, salle ou groupe pris deux fois, salle trop petite pour l'effectif, équipement manquant, formateur indisponible, jour férié ou fermé ;
+▪ il compte les heures : réalisé, placé et prévu par module et par formateur, avec ce qui reste à placer et ce qui dépasse.
+
+Il ne place rien tout seul : c'est vous qui décidez, l'outil vérifie.
+
+Une semaine type se recopie sur les suivantes (ou sur les seules semaines A ou B), les jours fériés sont calculés et sautés, chaque vue s'imprime en A4 paysage. Côté données personnelles : le nom des formateurs et des groupes, aucun nom d'apprenant.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec un centre de formation fictif est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/emploi-du-temps/?demo
+
+Lien d'achat en premier commentaire.
+
+Chez vous, qui repère un conflit de salle aujourd'hui : la personne qui fait le planning, ou le formateur devant la porte ?
+
+#OrganismeDeFormation #FormationProfessionnelle #EmploiDuTemps #Planning #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-126
+
+Doc : https://docs.google.com/document/d/1HaQuEn5YgJcmGgsZXe3AJlgTLFcQqGzQHZUZTJJayl0/edit
+
+Dans un organisme de formation, le conflit de salle se découvre souvent le matin même, devant la porte, avec tout le groupe.
+
+L'erreur fréquente n'est pas d'utiliser un tableur. C'est de croire qu'il suffit. Puis un formateur change de jour, une salle ferme pour travaux, un groupe grossit, et les croisements se découvrent trop tard : une séance à déplacer, un groupe qui attend, un formateur attendu à deux endroits.
+
+J'ai construit un emploi du temps d'établissement qui vérifie tout au moment de la saisie. Groupes, formateurs, salles et modules sont réunis sur une grille semaine, et chaque séance se place à la main, d'un clic sur un créneau libre. Dès qu'on la pose, l'outil signale chaque conflit : formateur, salle ou groupe pris deux fois, salle trop petite pour l'effectif, équipement manquant, formateur indisponible, jour férié ou fermé. Il compte aussi les heures par module et par formateur : réalisé, placé, prévu, et ce qui dépasse.
+
+Il ne place rien tout seul : c'est vous qui décidez, l'outil vérifie.
+
+Une semaine type se recopie (y compris en semaines A et B), les fériés sont sautés, chaque vue s'imprime en A4. Côté données : le nom des formateurs et des groupes, aucun nom d'apprenant.
+
+Il s'ouvre dans le navigateur avec une clé. Bientôt en vente, en achat unique. La démo, avec un centre de formation fictif, est en commentaire.
+
+Chez vous, qui repère un conflit de salle aujourd'hui : la personne qui fait le planning, ou le formateur devant la porte ?
+
+#OrganismeDeFormation #FormationProfessionnelle #EmploiDuTemps #Planning #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec un centre de formation fictif, sans inscription :
+https://qm-engineering.fr/templates/emploi-du-temps/?demo

@@ -65,3 +65,47 @@ gabarit `story` du kit, titre « Qui sait faire quoi, et qui former », capture 
 mention « Données fictives », autocollant lien vers https://qm-engineering.fr/templates/competences/?demo
 (texte « Essayer la démo »). Texte alternatif : « Story : Qui sait faire quoi, et qui former. Capture de la matrice
 des compétences sur téléphone, données fictives. Lien vers la démo. »
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-87
+
+Doc : https://docs.google.com/document/d/1-h0pL1oYoqyAQKEYDHJiwLZV6n__HxIJeEcGnTplNDo/edit
+
+Le jour où il est absent, qui répare la machine ?
+
+Dans une PME, chacun sait à peu près qui sait faire quoi. La liste, elle, n'existe nulle part, et le plan de formation se décide sans voir les compétences rares.
+
+La Matrice compétences et formations :
+▪ met les compétences de chaque personne face à ce que son poste demande, et calcule les écarts ;
+▪ signale les compétences critiques qui ne tiennent qu'à une personne ;
+▪ relie le plan de formation aux écarts, avec son budget.
+
+44 compétences et 9 postes prêts, à adapter. Données minimales, sans logiciel RH. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui prépare le plan de formation.
+
+Chez vous, quelle compétence ne tient qu'à une seule personne ?
+
+#PME #RessourcesHumaines #Formation #Organisation #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-87
+
+Doc : https://docs.google.com/document/d/1nNA-YqkHxenK1IB_YGE1RmG6x9ZyBmKr5ohFa86LLMY/edit · publication prévue le 2027-03-13 · style : mini-tutoriel en 3 étapes
+
+Le jour où il est absent, qui répare la machine ? Trois étapes pour le savoir avant.
+
+1. Listez les compétences de chaque personne face à ce que son poste demande.
+2. Repérez celles qui ne tiennent qu'à une seule personne.
+3. Reliez le plan de formation à ces écarts, avec son budget.
+
+La Matrice compétences et formations fait ces trois étapes avec vous : 44 compétences et 9 postes prêts à adapter, données minimales, sans logiciel RH. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec une PME fictive : lien en bio. Enregistrez-le, ou envoyez-le à la personne qui prépare le plan de formation.
+
+#PME #RessourcesHumaines #Formation #OutilsNumériques

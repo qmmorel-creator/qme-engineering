@@ -57,3 +57,48 @@ Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la ver
 Démo libre et contact : lien en bio.
 
 #Freelance #Indépendant #Entrepreneur #PME #OutilsNumériques
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-68
+
+Doc : https://docs.google.com/document/d/1qdZKj-LFy-yEwq9rLUprmdGVFA-YErgCCshKnMtilYE/edit
+
+Premier rendez-vous terminé. Vous savez qui décide, et quand ?
+
+Un appel découverte tient en trente minutes : comprendre la situation, mesurer l'enjeu, savoir qui décide et avec quel budget, finir sur une date.
+
+Le Préparateur d'appel découverte :
+▪ vous fait choisir vos questions dans une banque de 84, en 7 phases, avec un plan minuté ;
+▪ garde sous la main, pendant l'appel, les questions à cocher, vos notes et 25 objections types avec une piste de réponse ;
+▪ calcule un score de qualification sur 8 et fixe la prochaine étape datée.
+
+Le strict nécessaire sur vos prospects : organisation, fonction, prénom facultatif. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Quelle question oubliez-vous le plus souvent en premier rendez-vous ?
+
+#Freelance #Indépendant #Entrepreneur #PME #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-68
+
+Doc : https://docs.google.com/document/d/1FqxKU2rUHWv0II4u-eDiQdJlNYpmfkVsgsirUYbkP6o/edit
+
+Premier rendez-vous terminé. Vous savez qui décide, et quand ?
+
+Un appel découverte en trois étapes :
+1. Préparer en dix minutes : vos questions choisies dans une banque de 84, en 7 phases, avec un plan minuté.
+2. Mener l'appel : questions à cocher, notes, chronomètre et 25 objections types avec une piste de réponse.
+3. Conclure : un score de qualification sur 8 (besoin, budget, décideur, échéance) et une prochaine étape datée.
+
+C'est ce que fait le Préparateur d'appel découverte, avec le strict nécessaire sur vos prospects : organisation, fonction, prénom facultatif. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec douze appels fictifs : lien en bio. Enregistrez-le avant votre prochain premier rendez-vous.
+
+#Prospection #Freelance #Consultant #Vente

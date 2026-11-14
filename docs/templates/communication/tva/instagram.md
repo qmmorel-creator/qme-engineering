@@ -66,3 +66,49 @@ kit) : image à produire seulement quand elles reprennent.
 
 Jeu « Travail » du kit (`../instagram/README.md`), repris tel quel. Un jeu « comptabilité » (par exemple
 `#TVA #Comptabilité #Artisan`) serait **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-86
+
+Doc : https://docs.google.com/document/d/1C0EK8B_97CJlrX9z5TVzz12YYoFApasN7KmUST0sa-g/edit
+
+Votre CA3, vous la remplissez de mémoire ?
+
+Dans beaucoup de petites sociétés, la TVA se suit dans un tableur, et un crédit ou une facture tardive passent facilement à la trappe.
+
+Le Suivi de TVA :
+▪ calcule chaque opération au centime, en HT ou en TTC ;
+▪ donne pour chaque période la TVA à payer ou le crédit reporté ;
+▪ tient l'échéancier et liste les contrôles avant de déclarer.
+
+Réel normal ou simplifié, export CSV pour le cabinet. Outil d'aide, pas un conseil fiscal. Achat unique, 19 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Votre TVA, vous la suivez dans un tableur, un logiciel, ou avec le cabinet ?
+
+#TVA #Comptabilité #PME #TPE #Entrepreneur
+
+## Version finale (15/11/2026) · IG-86
+
+Doc : https://docs.google.com/document/d/1bC8a9uO13mEnIc8h8jmICcWC9Aer_J-3zfzKds57FMQ/edit
+
+Votre CA3, vous la remplissez de mémoire ?
+
+Avant : trois onglets et une calculatrice. Une TVA recopiée de travers, un achat retrouvé après la déclaration, un crédit du mois précédent qu'on oublie d'imputer.
+
+Après, avec le Suivi de TVA :
+▪ chaque opération calculée au centime, en HT ou en TTC ;
+▪ pour chaque période, la TVA à payer ou le crédit reporté ;
+▪ l'échéancier tenu, et la liste des contrôles avant de déclarer.
+
+Réel normal ou simplifié, export CSV pour le cabinet. Outil d'aide, pas un conseil fiscal. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une menuiserie fictive, et contact : lien en bio. Enregistrez ce post pour votre prochaine déclaration.
+
+#TVA #Comptabilité #PME #TPE #Entrepreneur

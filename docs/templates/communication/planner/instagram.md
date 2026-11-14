@@ -54,3 +54,49 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1yiym3wNFsZuGTTmZpWAuQabDUzXCUxMgw3LDyyDygiU` (dossier Textes).
 - Images (dossier Images) : `IG-16-planner-1.png` 1OnSmz6YqaAx6CR2-EpzY_uLSDipZqEwM, `IG-16-planner-2.png` 1tfLlH-bYrIAtooJVCzpDHbkqs3mI2_Kq, `IG-16-planner-3.png` 1IZNQ4VyidwNm0QQyCS6C-VD6uWxattuJ, `IG-16-planner-4.png` 13wmek4FJGDhz56m44v0kXjhq9DXsMZr2, `IG-16-planner-5.png` 1OYanQAaqgNQmmiUVk40wEEVr0gMJlL-I, `IG-16-planner-story.png` 1Cmtoeo_ecZtxCst1be2k8uIxF8cA9KjN.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-16
+
+Doc : https://docs.google.com/document/d/1zw9t3yojJRjRKiGJCjwHMsrWq9OPsUvPEuTPkewgqpI/edit
+
+Le lundi, la semaine est parfaite sur le papier. Le vendredi, qui la compare à ce qui s'est vraiment passé ?
+
+Le time blocking donne à chaque heure de la semaine une destination : travail de fond le matin, messages regroupés, sport deux soirs. Le plus difficile, c'est de voir l'écart avec la réalité.
+
+Le Planner horaire :
+▪ une grille de 30 minutes où les blocs se posent et se déplacent au glisser-déposer ;
+▪ chaque bloc se marque en un geste : fait, raccourci, déplacé ou pas fait ;
+▪ le bilan compare le prévu et le réalisé par catégorie, avec la tendance des six dernières semaines.
+
+Trois semaines types (cadre, freelance, étudiant), et toute semaine peut devenir un modèle. Achat unique, 15 €.
+
+Le planning d'une équipe, avec vos contraintes ? Je construis la version sur mesure.
+
+Démo libre avec la semaine d'une freelance fictive, et contact : lien en bio.
+
+Dans votre semaine type, quel bloc saute en premier ?
+
+#Productivité #Organisation #GestionDuTemps #Freelance #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-16
+
+Doc : https://docs.google.com/document/d/1i-z2NPqZEdWoeiFBzIHXj03GD7H5ZlumBsxwLGJhe-8/edit
+
+L'erreur du time blocking : planifier sa semaine le lundi et ne jamais la relire le vendredi.
+
+Donner à chaque heure une destination, c'est facile : travail de fond le matin, messages regroupés, sport deux soirs. Sans bilan, l'écart avec la réalité reste invisible.
+
+Le Planner horaire fait les deux :
+▪ une grille de 30 minutes où les blocs se posent et se déplacent au glisser-déposer ;
+▪ chaque bloc se marque en un geste : fait, raccourci, déplacé ou pas fait ;
+▪ le bilan compare le prévu et le réalisé, avec la tendance sur six semaines.
+
+Trois semaines types (cadre, freelance, étudiant). Bientôt en vente, en achat unique.
+
+Le planning d'une équipe, avec vos contraintes ? Je construis la version sur mesure.
+
+Démo libre avec la semaine d'une freelance fictive, et contact : lien en bio. Enregistrez-le pour vendredi.
+
+#Productivité #Organisation #GestionDuTemps #Freelance #OutilsSurMesure

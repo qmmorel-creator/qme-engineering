@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- Reel IG-57 · Livre recettes-dépenses micro-entreprise (script J8 de videos-30-jours.md), motion design
+     sans voix ni musique. 22 s, 1080 × 1920, 30 i/s. Animations CSS en pause, pilotées par video.mjs :
+       node docs/templates/communication/instagram/video.mjs production/IG-57.html 22 3000
+     puis renommer png/IG-57.mp4 → png/IG-57-micro-entreprise.mp4 et png/IG-57-couverture.png →
+     png/IG-57-micro-entreprise-couverture.png. Zones sûres : rien d'important dans les 250 px du haut ni les
+     340 px du bas. Faits : micro-entreprise/linkedin.md et script J8. Capture de la démo : données fictives. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-57 · Livre des recettes</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+.s{position:absolute;inset:0}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.sourcil{font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.marque{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:20px;font-weight:800;font-size:56px}
+.marque svg{width:76px;height:76px}
+
+/* Scène 1 · 0 à 3,8 s : l'accroche */
+#s1{animation:sortie 350ms 3500ms}
+#s1 .rond{position:absolute;right:-150px;top:170px;width:440px;height:440px;border-radius:50%;background:var(--bleu);animation:pop 600ms 0ms}
+#s1 .carre{position:absolute;left:96px;top:330px;width:120px;height:120px;background:var(--rouge);border:8px solid var(--encre);animation:pop 450ms 150ms}
+#s1 .sourcil{position:absolute;left:96px;top:540px;color:var(--rouge);animation:monte 400ms 300ms}
+#s1 h1{position:absolute;left:96px;right:96px;top:610px;font-weight:800;font-size:132px;letter-spacing:-.03em;line-height:1.06;animation:monte 500ms 600ms}
+#s1 h1 mark{background:var(--jaune);color:inherit;padding:0 12px;white-space:nowrap}
+#s1 .quart{position:absolute;right:0;bottom:0;width:360px;height:360px;background:var(--jaune);border-top-left-radius:360px;animation:arrivee-d 600ms 400ms}
+
+/* Scène 2 · 3,8 à 9,4 s : le principe */
+#s2{background:var(--encre);color:var(--papier);animation:entree-fond 350ms 3800ms,sortie 350ms 9100ms}
+#s2 .barre{position:absolute;left:96px;top:330px;width:160px;height:16px;background:var(--rouge);animation:largeur 500ms 3900ms}
+#s2 .t{position:absolute;left:96px;right:96px;top:390px;font-weight:800;font-size:84px;letter-spacing:-.025em;line-height:1.04;animation:monte 450ms 4000ms}
+.ch{position:absolute;left:96px;display:flex;gap:20px}
+.ch span{font-weight:700;font-size:40px;padding:14px 26px;border:4px solid var(--papier)}
+#c1{top:760px;animation:monte 350ms 4900ms}#c2{top:860px;animation:monte 350ms 5300ms}
+#s2 .t2{position:absolute;left:96px;right:96px;top:1060px;font-weight:800;font-size:76px;letter-spacing:-.025em;line-height:1.06;color:var(--jaune);animation:monte 450ms 6400ms}
+
+/* Scène 3 · 9,4 à 15,6 s : la démo */
+#s3{animation:entree-fond 300ms 9400ms,sortie 300ms 15300ms}
+#s3 .tete{position:absolute;left:96px;right:96px;top:300px;animation:monte 400ms 9500ms}
+#s3 .tete .sourcil{color:var(--rouge)}
+#s3 .tete h2{font-weight:800;font-size:80px;letter-spacing:-.025em;line-height:1;margin-top:18px}
+#tel{position:absolute;left:84px;top:560px;width:412px;border:6px solid var(--encre);box-shadow:18px 18px 0 var(--encre);animation:arrivee-g 600ms 9800ms}
+#tel img{display:block;width:400px}
+.et{position:absolute;left:560px;right:72px;border-left:10px solid var(--jaune);padding-left:22px;font-size:31px;line-height:1.25;color:var(--texte-2)}
+.et b{display:block;font-weight:800;font-size:42px;color:var(--encre);letter-spacing:-.02em;margin-bottom:6px}
+#e1{top:580px;animation:monte 400ms 10500ms}#e2{top:870px;animation:monte 400ms 11900ms}#e3{top:1160px;animation:monte 400ms 13300ms}
+#s3 .note{position:absolute;left:84px;top:1330px;font-weight:700;font-size:32px;color:var(--texte-2);animation:monte 300ms 10200ms}
+
+/* Scène 4 · 15,6 à 18,8 s : honnêteté */
+#s4{background:var(--bleu);color:#fff;animation:entree-fond 300ms 15600ms,sortie 300ms 18500ms}
+#s4 p{position:absolute;left:96px;right:96px;font-weight:800;font-size:96px;letter-spacing:-.025em;line-height:1}
+#p1{top:560px;animation:monte 400ms 15750ms}
+#p2{top:900px;font-size:60px!important;font-weight:600!important;line-height:1.2!important;animation:monte 400ms 16400ms}
+#p2 span{background:var(--jaune);color:var(--encre);padding:0 12px;font-weight:800}
+#s4 .rond{position:absolute;right:-160px;bottom:220px;width:500px;height:500px;border-radius:50%;background:var(--rouge);animation:pop 600ms 15700ms}
+
+/* Scène 5 · 18,8 à 22 s : appel */
+#s5{background:var(--jaune);animation:entree-fond 300ms 18800ms}
+#s5 h1{position:absolute;left:96px;right:96px;top:520px;font-weight:800;font-size:104px;letter-spacing:-.025em;line-height:1;animation:monte 450ms 18900ms}
+#s5 .plus{position:absolute;left:96px;right:96px;top:950px;font-size:46px;font-weight:600;line-height:1.25;letter-spacing:-.02em;animation:monte 400ms 19200ms}
+#s5 .plus b{font-weight:800}
+#s5 .bouton{position:absolute;left:96px;top:1170px;background:var(--encre);color:var(--papier);font-weight:800;font-size:64px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface);animation:pop 450ms 19500ms}
+#s5 .marque{animation:monte 400ms 19700ms}
+#s5 .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px;animation:monte 400ms 19800ms}
+
+@keyframes arrivee-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes arrivee-d{from{transform:translateX(900px)}to{transform:none}}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+</style>
+</head>
+<body>
+<div class="s" id="s1">
+  <div class="rond"></div><div class="carre"></div><div class="quart"></div>
+  <p class="sourcil">Micro-entrepreneur</p>
+  <h1>Il est <mark>à jour</mark>, votre livre des recettes ?</h1>
+</div>
+
+<div class="s" id="s2">
+  <div class="barre"></div>
+  <p class="t">Obligatoire : chaque encaissement, dans l'ordre.</p>
+  <div class="ch" id="c1"><span>Date</span><span>Client</span><span>Montant</span></div>
+  <div class="ch" id="c2"><span>Mode de paiement</span><span>Pièce</span></div>
+  <p class="t2">Le faire en fin d'année, c'est reconstituer douze mois de relevés.</p>
+</div>
+
+<div class="s" id="s3">
+  <div class="tete"><p class="sourcil">Livre recettes-dépenses</p><h2>Tenu au fil des encaissements.</h2></div>
+  <div id="tel"><img src="../../../../../assets/templates-micro-entreprise-tel.webp" alt=""></div>
+  <div class="et" id="e1"><b>1. Une recette</b>notée en quelques secondes, rangée par activité.</div>
+  <div class="et" id="e2"><b>2. Le chiffre à déclarer</b>prêt à chaque échéance, mensuelle ou trimestrielle.</div>
+  <div class="et" id="e3"><b>3. Les seuils suivis</b>avec une alerte avant de les atteindre.</div>
+  <p class="note">Capture de la démo · Données fictives</p>
+</div>
+
+<div class="s" id="s4">
+  <div class="rond"></div>
+  <p id="p1">Un outil d'aide, pas un logiciel comptable.</p>
+  <p id="p2">Taux 2026 sourcés et modifiables. <span>Achat unique</span>, sans abonnement.</p>
+</div>
+
+<div class="s" id="s5">
+  <h1>Démo libre avec un atelier fictif.</h1>
+  <p class="plus">Besoin de plus ? Relié à vos devis et à vos factures : <b>je le construis sur mesure</b>.</p>
+  <div class="bouton">Lien en bio</div>
+  <div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></div>
+  <p class="site">qm-engineering.fr</p>
+</div>
+
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

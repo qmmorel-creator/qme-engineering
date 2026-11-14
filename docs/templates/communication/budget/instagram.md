@@ -54,3 +54,45 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1yNA9rKlfAfDCZ_1Phh9cZnGGsQmJviiBYaB1DxD7Ytc` (dossier Textes).
 - Images (dossier Images) : `IG-11-budget-1.png` 1SwGUODqDoq2RU2NARWJk5hvxnH_JzONR, `IG-11-budget-2.png` 1KMeqi5g-Jg_8AoBp3TVbCkKl9dUk7NSO, `IG-11-budget-3.png` 1iawQAoz-FSsE_uMqAxZi9O7f-Kx1zP8r, `IG-11-budget-4.png` 1JvdBPRQeKAUAlaOAwtfapjNbDFl8Tlq1, `IG-11-budget-5.png` 1-FyBp3gbHoD6kndP17fuJRq_CY7R0Kz5, `IG-11-budget-story.png` 16FdKidzSkLMDv8-_Zsk8nk7-n2mqGBGJ.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-11
+
+Doc : https://docs.google.com/document/d/1UOM7T77MuPGJfNCVCZy976xB1db_C9-g6IyiPA3FNq4/edit
+
+Où est passé l'argent ce mois-ci ? Le relevé bancaire ne répond qu'à moitié.
+
+Il liste les dépenses une par une. Il ne dit ni si vous restez dans ce que vous aviez prévu, ni quelle part de ce qui rentre part en loyer, en courses ou en épargne.
+
+Le Budget du foyer :
+▪ des enveloppes par catégorie, avec report du reste d'un mois sur l'autre ;
+▪ le prévu face au réel, avec les enveloppes dépassées signalées dès qu'elles le sont ;
+▪ un diagramme des flux : chaque mois, le trajet de l'argent des revenus vers chaque catégorie.
+
+22 catégories, 75 sous-catégories, quatre modèles de foyer. Pas de connexion à la banque : vous saisissez vos montants. Achat unique, 15 €.
+
+Une association, un petit commerce, vos propres catégories ? Je construis la version sur mesure.
+
+Démo libre avec un foyer fictif, et contact : lien en bio. À envoyer à la personne avec qui vous tenez les comptes.
+
+Chez vous, quelle enveloppe déborde le plus souvent ?
+
+#Budget #BudgetFamilial #Organisation #Maison #OutilsSurMesure
+
+
+---
+
+## Version finale (15/11/2026) · IG-11
+
+Doc : https://docs.google.com/document/d/1MLGDQ0W9XJGGoLuJq7CF8EOWg6rBFdLTj6agUMQtb78/edit
+
+Le relevé bancaire dit ce que vous avez dépensé. Pas si c'était prévu.
+
+C'est toute l'idée du Budget du foyer : une enveloppe par catégorie, le prévu face au réel, et chaque enveloppe dépassée signalée dès qu'elle l'est. Un diagramme des flux montre où part chaque euro.
+
+Vous saisissez vos montants, sans connexion à la banque. Achat unique, 15 €. Une association, un petit commerce, vos propres catégories ? Je construis la version sur mesure.
+
+Démo libre avec un foyer fictif : lien en bio. À envoyer à la personne avec qui vous tenez les comptes.
+
+#Budget #BudgetFamilial #Organisation #Maison

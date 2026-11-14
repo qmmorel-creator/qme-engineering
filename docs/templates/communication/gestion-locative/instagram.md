@@ -70,3 +70,48 @@ seulement quand elles reprennent.
 
 Le kit ne propose pas de jeu « immobilier » : `#Budget` vient du jeu Maison ; les quatre autres sont propres au
 sujet, comme pour la Location saisonnière. À valider par Quentin.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-78
+
+Doc : https://docs.google.com/document/d/1vSPmCHrqEzHR-3yZFjAkbrFT0dvmY1tjAUdFXVyOdIc/edit
+
+Avez-vous révisé votre loyer cette année ?
+
+Une révision qui n'est pas demandée dans l'année qui suit sa date ne se rattrape pas. Et entre les quittances, les retards et les charges à régulariser, c'est rarement le seul oubli.
+
+La Gestion locative :
+▪ suit vos loyers mois par mois et calcule les retards, avec la quittance et la relance prêtes à copier ;
+▪ calcule le nouveau loyer avec l'indice que vous saisissez et rappelle la date limite ;
+▪ compare les provisions aux charges réelles et donne le rendement de chaque bien.
+
+Rien n'est envoyé à vos locataires. Pas un conseil juridique ni fiscal. Achat unique, 20 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à un propriétaire bailleur de votre entourage.
+
+Votre dernière révision de loyer, c'était quand ?
+
+#Immobilier #PropriétaireBailleur #GestionLocative #InvestissementLocatif #Budget
+
+
+## Version finale (15/11/2026) · IG-78
+
+Doc : https://docs.google.com/document/d/1g9k76pekfWkp3KD4zzW6NTLMTDS6CO-UIlYx9jF92WA/edit
+
+Avez-vous révisé votre loyer cette année ? Passé un an, la révision ne se rattrape pas.
+
+Trois oublis fréquents quand on gère soi-même :
+1. La révision annuelle, non demandée à temps.
+2. Le retard de paiement qui passe inaperçu.
+3. Les charges de l'année, jamais régularisées.
+
+La Gestion locative suit vos loyers mois par mois, prépare la quittance et la relance, calcule le nouveau loyer avec l'indice que vous saisissez et rappelle la date limite. Elle compare aussi les provisions aux charges réelles. Rien n'est envoyé à vos locataires. Pas un conseil juridique ni fiscal. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois logements fictifs : lien en bio. À envoyer à un propriétaire bailleur de votre entourage.
+
+#Immobilier #PropriétaireBailleur #GestionLocative #InvestissementLocatif

@@ -62,3 +62,45 @@ Gabarit `story` du kit (1080 × 1920) : « Ta bascule, minute par minute. » ; s
 retour arrière · retard en direct » ; autocollant lien vers https://qm-engineering.fr/templates/bascule/?demo
 (« Essayer la démo ») ; mention « Données fictives » si une capture est reprise. Stories en pause depuis le
 13/11/2026 (voir le kit) : image à produire seulement quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-79
+
+Doc : https://docs.google.com/document/d/1rrO20bmarUFY5xlCqWBGwbiNP0iz9IWobjDtjCs9pFY/edit
+
+Jusqu'à quelle heure pouvez-vous encore revenir en arrière ?
+
+Une migration de nuit, un déménagement, l'ouverture d'un site : le jour J, le déroulé vit dans un tableur et les heures se recalculent à la main.
+
+Le Pilotage d'une journée de bascule :
+▪ recalcule la suite dès qu'une étape démarre ou finit : retard cumulé, fin estimée, marge ;
+▪ prépare les go/no-go sur des critères écrits à l'avance ;
+▪ calcule l'heure limite du retour arrière et tient le journal d'incidents.
+
+Cinq séquences types fictives à adapter. Vue en direct sur téléphone. Achat unique, 29 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+À votre dernière bascule, l'heure limite du retour arrière était-elle écrite quelque part ?
+
+#GestionDeProjet #Productivité #Organisation #PME #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-79
+
+Doc : https://docs.google.com/document/d/1syDDFxuUBXs3JnTvdXP3J_kx1CSVZ5DkyN93xg_eDhs/edit · publication prévue le 2027-02-26 · style : contre-intuition
+
+Dans une bascule, la décision clé se prend avant de commencer : l'heure après laquelle on ne revient plus.
+
+Le soir même, il est trop tard pour la calculer. Le déroulé vit dans un tableur, une étape prend 30 minutes de plus, et le go/no-go se décide à l'impression du moment.
+
+Le Pilotage d'une journée de bascule calcule cette heure limite (fin de fenêtre moins durée du repli), recalcule retard cumulé et marge dès qu'une étape démarre ou finit, et prépare les go/no-go sur des critères écrits à l'avance. Cinq séquences types fictives à adapter. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec une migration fictive en cours : lien en bio. Enregistrez-le avant votre prochaine bascule.
+
+#GestionDeProjet #PME #Organisation #OutilsNumériques

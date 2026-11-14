@@ -83,3 +83,83 @@ publications qui contiennent plusieurs liens (pratique courante, non garantie).*
 
 *Vérifié avant rédaction : tirage avec exclusions, organisateur sans accès aux attributions ni aux idées,
 inscription sans compte, aucun e-mail, effacement 60 jours après la date (tests automatisés du 13/11/2026).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-99
+
+Doc : https://docs.google.com/document/d/1iFbLJf4A1mQfDgkTyQyUpIusv4tz52qf0-vPbQuZPSY/edit
+
+Le Secret Santa a une seule règle : personne ne doit savoir qui l'a tiré. Pas même celui qui organise.
+
+Chaque année, le même dilemme : soit quelqu'un fait le tirage et connaît tous les résultats, soit on tire des papiers dans un bol et quelqu'un pioche son propre nom.
+
+Les méthodes habituelles tiennent mal cette règle, surtout quand le groupe est dispersé ou que l'organisateur participe lui aussi.
+
+J'ai donc construit un Secret Santa en ligne :
+
+▪ l'organisateur crée l'échange (date, budget, message) et partage un lien ; chacun s'inscrit en une minute, sans compte, avec ses idées de cadeaux ;
+▪ le tirage est fait par le serveur, en respectant les exclusions (on ne tire pas son conjoint) ; l'organisateur voit qui s'est inscrit et qui a découvert son tirage, jamais le résultat ;
+▪ chaque participant ouvre sa page et découvre à qui il offre, avec la liste d'idées de la personne.
+
+Un même organisateur peut gérer plusieurs échanges : la famille, les amis, le bureau. Aucun e-mail n'est envoyé, les données sont hébergées en Europe et effacées automatiquement après la fête.
+
+C'est notre cadeau de Noël : il est gratuit, pour la famille, les amis ou le bureau.
+
+La démo, avec trois échanges d'exemple, est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/secret-santa/?demo
+
+Si quelqu'un organise le Secret Santa de votre équipe ou de votre famille cette année, envoyez-lui ce post.
+
+Et chez vous, qui fait le tirage d'habitude ?
+
+Joyeux Noël de la part de QME.
+
+#SecretSanta #Noël #OutilsNumériques #VieDÉquipe #Organisation
+
+Musique : « Christmas is coming » par Alex-Productions | onsound.eu | Music promoted by chosic.com | Creative Commons CC BY 3.0
+
+
+---
+
+## Version finale (15/11/2026) · LI-99
+
+Doc : https://docs.google.com/document/d/1u-knVDGmPGzThMQdcpIvPA2KH_n_DmqBdXfN8U63UaA/edit
+
+Avant : un bol, des papiers, et quelqu'un qui pioche son propre nom. Cette année, même l'organisateur ne saura pas qui offre à qui.
+
+Le Secret Santa se jouait jusqu'ici de deux façons. Soit une personne faisait le tirage et connaissait tous les résultats. Soit on tirait des papiers, et il fallait recommencer dès que quelqu'un tombait sur lui-même. Avec un groupe dispersé, ou un organisateur qui participe, aucune ne tenait la seule règle du jeu : personne ne doit savoir qui l'a tiré.
+
+J'ai donc construit un Secret Santa en ligne.
+
+L'organisateur crée l'échange (date, budget, message) et partage un lien. Chacun s'inscrit en une minute, sans compte, avec ses idées de cadeaux. Le tirage est fait par le serveur, en respectant les exclusions (on ne tire pas son conjoint). L'organisateur voit qui s'est inscrit et qui a découvert son tirage, jamais le résultat. Chaque participant ouvre sa page et découvre à qui il offre, avec la liste d'idées de la personne.
+
+Plusieurs échanges à la fois, aucun e-mail envoyé, données hébergées en Europe et effacées automatiquement après la fête.
+
+C'est notre cadeau de Noël : il sera gratuit, et il arrive bientôt. La démo, avec trois échanges d'exemple, est déjà ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/secret-santa/?demo
+
+Vous connaissez la personne qui organise le tirage cette année ? Envoyez-lui ce post.
+
+#SecretSanta #Noël #OutilsNumériques #VieDÉquipe #Organisation
+
+Musique : « Christmas is coming » par Alex-Productions | onsound.eu | Music promoted by chosic.com | Creative Commons CC BY 3.0
+
+
+---
+
+## Version finale (15/11/2026) · IG-36
+
+Doc : https://docs.google.com/document/d/18d7GYs1wIWKnAejX7pQISzJjc1JUzABcfkg9buUkO8A/edit
+
+L'erreur classique du Secret Santa : l'organisateur fait le tirage, et lui seul n'a plus de surprise.
+
+Avec des papiers dans un bonnet, il faut tout recommencer dès que quelqu'un pioche son nom. Notre cadeau de Noël règle les deux. Vous créez l'échange, vous envoyez un lien, chacun s'inscrit en une minute avec ses idées de cadeaux. Le tirage se fait en secret, exclusions comprises (on ne tire pas son conjoint), puis chacun découvre sur sa page à qui il offre.
+
+Aucun compte pour les participants, aucun e-mail, données hébergées en Europe et effacées après la fête.
+
+Gratuit, il arrive bientôt. Démo avec trois échanges d'exemple : lien en bio. Envoyez ce reel à qui organise l'échange chez vous.
+
+Musique : « Christmas is coming » par Alex-Productions | onsound.eu | Music promoted by chosic.com | CC BY 3.0
+
+#SecretSanta #Noël #CadeauDeNoël #Famille #Organisation

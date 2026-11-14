@@ -68,3 +68,47 @@ produire seulement quand elles reprennent.
 Le kit n'a pas de jeu « lecture » : jeu proposé `#Lecture #Livres #Bookstagram #ObjectifLecture #Organisation`
 (5 au plus), **à valider par Quentin**. `#Bookstagram` est le mot-dièse de la communauté lecture sur Instagram
 (usage courant, volume non vérifié).
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-84
+
+Doc : https://docs.google.com/document/d/1UQkMaG-RELd7fEI-N0nJlK5auDMLIe7p_MMOsTzk5Qo/edit
+
+Vous finirez votre livre quand, au juste ?
+
+On se fixe 24 livres en janvier, et en novembre on compte sur ses doigts.
+
+Le Suivi de lecture :
+▪ tient votre bibliothèque papier, numérique et audio, et votre liste à lire par priorité ;
+▪ transforme chaque session en progression, en rythme et en date de fin estimée ;
+▪ vous dit au jour près si vous êtes en avance ou en retard sur votre objectif de l'année.
+
+Statistiques par mois, genre et auteur, notes et citations. Pas de profil public, rien n'est cherché en ligne. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Et vous, combien de livres visez-vous cette année ?
+
+#Lecture #Livres #Bookstagram #ObjectifLecture #Organisation
+
+
+## Version finale (15/11/2026) · IG-84
+
+Doc : https://docs.google.com/document/d/1Zh6Y_SQ3MrEaO-4wtHk74Ij0_bhu3cvGYbEJ_sMA_no/edit
+
+En novembre, il vous manque quatre livres. Le problème n'était pas de lire trop peu : on ne voyait pas le retard venir.
+
+Un objectif fixé en janvier ne dit rien au jour le jour. Ce qui aide, c'est de savoir, au jour près, si l'on est en avance ou en retard, et combien de pages par jour il faut pour tenir.
+
+Le Suivi de lecture transforme chaque session en progression, en rythme et en date de fin estimée. Il tient votre bibliothèque papier, numérique et audio, et compare l'objectif de l'année à ce qui est lu. Pas de profil public, rien n'est cherché en ligne. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec un lecteur fictif : lien en bio.
+
+Et vous, combien de livres visez-vous cette année ?
+
+#Lecture #Livres #ObjectifLecture #Organisation

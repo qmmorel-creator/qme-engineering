@@ -99,3 +99,60 @@ https://qm-engineering.fr/templates/repas/?demo
 Lien d'achat en premier commentaire.
 
 #Organisation #Famille #ListeDeCourses #Cuisine #OutilsNumériques
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-120
+
+Doc : https://docs.google.com/document/d/14zQfjLJoRmdFM9Pvkek_mQpt61TYHEG3oxgkKa8Ld5E/edit
+
+18 h 30. « On mange quoi ce soir ? » La même question, cinq soirs par semaine.
+
+Dans beaucoup de foyers, les repas se décident au dernier moment et la liste de courses se reconstitue de mémoire. Résultat : des allers-retours au magasin, des doublons dans le placard et peu de temps gagné.
+
+J'ai donc construit un outil pour les repas de la semaine qui fait trois choses :
+▪ il place les repas sur la semaine, midi et soir, avec le nombre de personnes de chaque repas, les restes du lendemain, la cantine ou la sortie ;
+▪ il calcule la liste de courses : les quantités de chaque recette ajustées aux portions, additionnées sur la semaine et rangées par rayon, dans l'ordre de votre magasin ;
+▪ il retire ce qui est déjà à la maison : le placard, ou une partie d'un ingrédient que vous avez encore.
+
+Il part de 100 recettes familiales de base que j'ai rédigées pour l'outil, que chacun modifie ou complète avec les siennes. Quand l'inspiration manque, il propose des plats de saison sans resservir ceux des dernières semaines.
+
+Ce n'est pas un outil de nutrition : pas de calories, pas de donnée de santé.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur pour préparer la semaine et sur téléphone pour cocher la liste au magasin. Achat unique, sans abonnement.
+
+Une démo avec une famille fictive est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/repas/?demo
+
+Lien d'achat en premier commentaire.
+
+Chez vous, les repas de la semaine se décident plutôt le week-end ou chaque soir à 18 h 30 ?
+
+#Organisation #Famille #ListeDeCourses #Cuisine #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-120
+
+Doc : https://docs.google.com/document/d/151egmCWMaP5YZwnJfhu8nkMUJ3gR3v0gqd4Wq2UdhFw/edit
+
+18 h 30. « On mange quoi ce soir ? » La même question, cinq soirs par semaine.
+
+Il y a deux façons d'y répondre.
+
+Chaque soir, au dernier moment. C'est souple, et ça ne demande aucune préparation. Mais la liste de courses se reconstitue de mémoire, il manque toujours un ingrédient, et le placard se remplit de doublons.
+
+Une fois pour la semaine. Ça demande un moment de préparation, et c'est ce moment que j'ai voulu réduire.
+
+J'ai construit un outil pour les repas de la semaine. Il place les repas midi et soir, avec le nombre de personnes de chaque repas, les restes du lendemain, la cantine ou la sortie. Il calcule la liste de courses : les quantités de chaque recette ajustées aux portions, additionnées sur la semaine et rangées par rayon, dans l'ordre de votre magasin. Et il retire ce qui est déjà à la maison, y compris la partie d'un ingrédient qu'il vous reste.
+
+Il part de 100 recettes familiales de base que j'ai rédigées pour l'outil, que chacun modifie ou complète. Quand l'inspiration manque, il propose des plats de saison sans resservir ceux des dernières semaines. Ce n'est pas un outil de nutrition : pas de calories, pas de donnée de santé.
+
+Il s'ouvre dans le navigateur avec une clé : sur ordinateur pour préparer la semaine, sur téléphone pour cocher la liste au magasin. Bientôt en vente, en achat unique. La démo, avec une famille fictive, est en commentaire.
+
+Chez vous, les repas se décident plutôt le week-end, ou chaque soir à 18 h 30 ?
+
+#Organisation #Famille #ListeDeCourses #Cuisine #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec une famille fictive, sans inscription :
+https://qm-engineering.fr/templates/repas/?demo

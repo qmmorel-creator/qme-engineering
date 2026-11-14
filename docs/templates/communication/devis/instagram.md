@@ -54,3 +54,47 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1bpsvfG2y_NpnaCUtCTS0NJ_Ns0lxbfrwshB-J3TmlW4` (dossier Textes).
 - Images (dossier Images) : `IG-19-devis-1.png` 1_hStLHHqtmzkDuaTzj94B4KoyLAysykW, `IG-19-devis-2.png` 1rkLmWZASWKfTZlbRAbxnlNg5q3C6ZL24, `IG-19-devis-3.png` 1VrTER9ViuiN92Z6Qjiu0eMLdKIT-iJc2, `IG-19-devis-4.png` 1K6d0luegaL2WfzTPn5eMTJ4cXx4DA17h, `IG-19-devis-5.png` 1UHP9_iyJtS0f-p20NqcbTLSs2aG39v2u, `IG-19-devis-story.png` 1Skx6GHCoeKFQjXXZr3mA35BZdaL7hFUT.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-19
+
+Doc : https://docs.google.com/document/d/10oeExperRQ31EDoVl2KsI-Aqtmgi6EjmV7JX6kJJrBA/edit
+
+Un ancien devis modifié, une ligne changée… et un total qui n'a pas suivi.
+
+Beaucoup d'artisans et de freelances font leurs devis à partir d'un ancien devis. Ça marche, jusqu'au jour où une ligne a changé, mais pas le total.
+
+Le Générateur de devis :
+▪ un catalogue de prestations (unité, prix HT, TVA) : les prix, c'est vous ;
+▪ des devis par lignes et sections, remises, TVA par ligne, acompte ; totaux calculés en centimes ;
+▪ les mentions d'un devis relevées sur les sites officiels, avec un contrôle de ce qui manque avant l'envoi.
+
+Il fait des devis, pas des factures. Chacun reste responsable des mentions propres à son activité. Achat unique, 29 €.
+
+Votre bibliothèque d'ouvrages, vos métrés, vos modèles ? Je construis la version sur mesure.
+
+Démo libre avec huit devis fictifs, et contact : lien en bio.
+
+Vos devis, vous partez d'un modèle vierge ou du dernier envoyé ?
+
+#Artisan #Devis #Freelance #Indépendant #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-19
+
+Doc : https://docs.google.com/document/d/1lzJTZOw2PuPzDiGaiDJGXGxE-jJgly1sJSQpP9uKMVw/edit · publication prévue le 2026-12-13 · style : chiffre qui surprend
+
+Dix lignes arrondies une à une, et le total de TVA peut s'écarter de quelques centimes du bon calcul.
+
+Beaucoup de devis partent d'un ancien devis modifié. Ça marche jusqu'au jour où une ligne a changé, mais pas le total.
+
+Le Générateur de devis calcule les totaux en centimes et la TVA par taux, sur un catalogue de prestations dont vous fixez les prix. Sections, remises, acompte, durée de validité. Avant l'envoi, il contrôle les mentions relevées sur les sites officiels.
+
+Des devis, pas des factures. Chacun reste responsable des mentions de son activité. Achat unique, 29 €.
+
+Votre bibliothèque d'ouvrages, vos métrés, vos modèles ? Je construis la version sur mesure.
+
+Démo libre avec huit devis fictifs : lien en bio. Enregistrez-le pour votre prochain devis.
+
+#Artisan #Devis #Freelance #OutilsSurMesure

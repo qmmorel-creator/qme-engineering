@@ -69,3 +69,55 @@ Vous organisez des événements ? Vos retours m'intéressent.
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-94
+
+Doc : https://docs.google.com/document/d/1UkGHrPqu-tgKb7ADUac62q-C5u9JkttfKBzv7uwyD-Q/edit
+
+Un séminaire en mars, un salon en avril, une soirée de lancement en mai. Et des acomptes qu'on découvre en retard.
+
+Quand on mène plusieurs événements de front, l'information est partout : le rétroplanning dans un fichier par client, le budget dans un autre, les devis dans les e-mails, la liste d'invités exportée d'un formulaire, le conducteur du jour J imprimé la veille.
+
+J'ai réuni tout cela dans un seul outil, le Pilote événementiel :
+▪ un rétroplanning calculé depuis la date de chaque événement : si la date bouge, toutes les échéances suivent, et les retards remontent sur un tableau de bord commun ;
+▪ le budget prévu, engagé et payé par poste et par prestataire, avec l'échéancier des acomptes ;
+▪ les invités par catégorie, les régimes comptés pour le traiteur, les badges à imprimer, et un conducteur minute par minute qui se décale en cascade quand le programme glisse.
+
+Il arrive avec trois rétroplannings types (séminaire, salon côté exposant, soirée de lancement), des conducteurs d'exemple et une checklist du jour J.
+
+Aucun prix de référence inventé : seuls vos devis et vos contrats comptent.
+
+Il s'ouvre dans le navigateur avec une clé, garde les données en ligne et suit toute l'équipe de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+Une démo avec une agence fictive et quatre événements en préparation est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Vous menez plusieurs événements de front : qu'est-ce qui vous échappe en premier ? Le rétroplanning, le budget ou les invités ?
+
+#Événementiel #CommunicationÉvénementielle #GestionDeProjet #Séminaire #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-94
+
+Doc : https://docs.google.com/document/d/1CCn0Obrx0W81ffa6uA5GrntS9hmDFEGMVaNF9DeCe4U/edit
+
+« L'acompte du traiteur pour le séminaire, il était dû quand ? » Personne ne sait dans quel fichier chercher.
+
+Un séminaire en mars, un salon en avril, une soirée de lancement en mai. Quand on mène plusieurs événements de front, l'information est partout : le rétroplanning dans un fichier par client, le budget dans un autre, les devis dans les e-mails, les invités exportés d'un formulaire, le conducteur du jour J imprimé la veille.
+
+« Et le nombre de repas végétariens ? »
+« Dans le formulaire. Ou dans le dernier export. »
+
+J'ai réuni tout cela dans un seul outil, le Pilote événementiel :
+▪ un rétroplanning calculé depuis la date de chaque événement ; si la date bouge, les échéances suivent, et les retards remontent sur un tableau de bord commun ;
+▪ le budget prévu, engagé et payé par poste et par prestataire, avec l'échéancier des acomptes ;
+▪ les invités par catégorie, les régimes comptés pour le traiteur, les badges, et un conducteur minute par minute qui se décale en cascade quand le programme glisse.
+
+Trois rétroplannings types sont fournis (séminaire, salon côté exposant, soirée de lancement), mais aucun prix de référence inventé : seuls vos devis comptent.
+
+Il sera bientôt en vente. La démo, avec une agence fictive et quatre événements en préparation, est déjà ouverte à tous : https://qm-engineering.fr/templates/evenementiel/?demo
+
+Vous menez plusieurs événements de front : qu'est-ce qui vous échappe en premier ?
+
+#Événementiel #GestionDeProjet #Séminaire #OutilsNumériques

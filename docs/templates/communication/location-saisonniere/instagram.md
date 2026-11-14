@@ -64,3 +64,50 @@ ménage, taxe de séjour, net par canal » ; autocollant lien vers
 https://qm-engineering.fr/templates/location-saisonniere/?demo (« Essayer la démo ») ; mention « Données
 fictives » si une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à
 produire seulement quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-73
+
+Doc : https://docs.google.com/document/d/1JLor9UWlpyAfL7xbW72cvm2QNo7o81N6suaMwB9daUA/edit
+
+Une nuit louée, ce n'est pas une nuit gagnée.
+
+Entre la commission du canal, le ménage et la taxe de séjour, le net de chaque séjour se perd vite. Et avec plusieurs canaux, le calendrier aussi.
+
+La Location saisonnière :
+▪ tient le calendrier de vos logements et refuse deux réservations confirmées sur la même nuit ;
+▪ crée le ménage de chaque départ, avant la prochaine arrivée ;
+▪ calcule la taxe de séjour avec le tarif de votre commune, et votre net par canal et par mois.
+
+Aucune plateforme connectée, vous saisissez vos réservations. Pas un conseil fiscal. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vous louez sur combien de canaux à la fois ?
+
+#LocationSaisonnière #ChambresDHôtes #Gîte #MeubléDeTourisme #Tourisme
+
+
+## Version finale (15/11/2026) · IG-73
+
+Doc : https://docs.google.com/document/d/18nTVrESmE8BTvrCYatPsG50p7m6Atmb0Iux5ONk5qQ8/edit
+
+Une nuit louée n'est pas une nuit gagnée. Combien vous en reste-t-il, au juste ?
+
+Avant : trois canaux, trois calendriers. Le ménage se cale entre deux séjours, la taxe de séjour se compte à la main, et le net du mois reste flou.
+
+Après, avec la Location saisonnière :
+▪ un seul calendrier, qui refuse deux réservations confirmées sur la même nuit ;
+▪ le ménage de chaque départ, créé avant la prochaine arrivée ;
+▪ la taxe de séjour au tarif de votre commune, et votre net par canal et par mois.
+
+Aucune plateforme connectée : vous saisissez vos réservations. Pas un conseil fiscal. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois logements fictifs : lien en bio. À envoyer à quelqu'un qui loue un gîte ou des chambres d'hôtes.
+
+#LocationSaisonnière #ChambresDHôtes #Gîte #MeubléDeTourisme

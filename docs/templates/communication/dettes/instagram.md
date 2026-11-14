@@ -61,3 +61,51 @@ Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la ver
 Démo libre et contact : lien en bio.
 
 #Budget #BudgetFamilial #FinancesPersonnelles #Dettes #Organisation
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-65
+
+Doc : https://docs.google.com/document/d/19OPRYLjiGTnTL9eIFh5vdWbmaTCbQeLurdpGfT39QbA/edit
+
+Plusieurs crédits, plusieurs mensualités, et aucune date de fin écrite nulle part.
+
+Un prêt voiture, un crédit conso, une réserve d'argent, un découvert : chaque dette a sa mensualité, mais aucune ne dit quoi rembourser en premier, ni jusqu'à quand.
+
+Le template Remboursement de dettes fait le calcul avec vos chiffres :
+▪ vos dettes et ce que vous pouvez y consacrer chaque mois donnent une date de fin ;
+▪ boule de neige, avalanche ou votre propre ordre, comparés côte à côte ;
+▪ chaque mois, vous pointez ce que vous avez vraiment payé et voyez l'écart au plan.
+
+Sans connexion à la banque, calcul expliqué, achat unique à 12 €. Une aide au calcul, pas un conseil financier.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Plus petit solde d'abord, ou taux le plus élevé d'abord : vous commenceriez par lequel ?
+
+#Budget #BudgetFamilial #FinancesPersonnelles #Dettes #Organisation
+
+
+## Version finale (15/11/2026) · IG-65
+
+Doc : https://docs.google.com/document/d/11RUbNqquNWMUQHrDr9hwvh9Tgvdf_OiZgGkwby57v5M/edit · publication prévue le 2027-02-21 · style : liste numérotée courte
+
+Quatre dettes, quatre mensualités, et une question : laquelle rembourser en premier ?
+
+Le template Remboursement de dettes y répond avec vos chiffres :
+1. Vous listez vos dettes et ce que vous pouvez y consacrer chaque mois.
+2. Il calcule la date de fin pour la boule de neige, l'avalanche ou votre propre ordre, comparés côte à côte.
+3. Quand une dette est soldée, sa mensualité passe à la suivante.
+4. Chaque mois, vous pointez ce que vous avez vraiment payé.
+
+Sans connexion à la banque, calcul expliqué. Une aide au calcul, pas un conseil financier. Bientôt en vente.
+
+Besoin de plus ? Je construis aussi des outils sur mesure.
+
+Démo libre avec un foyer fictif : lien en bio. Enregistrez ce post pour le jour où vous ferez le point.
+
+Plus petit solde d'abord, ou taux le plus élevé d'abord : vous commenceriez par lequel ?
+
+#Budget #FinancesPersonnelles #Dettes #Organisation

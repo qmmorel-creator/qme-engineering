@@ -66,3 +66,45 @@ records détectés, minuteur hors ligne » ; autocollant lien vers
 https://qm-engineering.fr/templates/musculation/?demo (« Essayer la démo ») ; mention « Données fictives » si
 une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-76
+
+Doc : https://docs.google.com/document/d/16EqLkKAvQKMDNbbAVhF64VBlyV6FXIxDGmExLCQwvGw/edit
+
+« J'avais mis combien la dernière fois ? » Et ce record, l'avez-vous vu passer ?
+
+En musculation comme en cross-training, la progression se lit dans les chiffres, encore faut-il les retrouver.
+
+Le Carnet de musculation et cross-training :
+▪ note une séance en quelques secondes, avec 150 exercices rangés par groupe musculaire ;
+▪ garde vos WOD avec leur score et repère vos records tout seul ;
+▪ suit votre volume par semaine, avec un minuteur qui marche sans réseau.
+
+Seulement vos performances, aucune donnée de santé. Ni programme ni avis médical. Achat unique, 19 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vos charges, vous les notez où aujourd'hui : carnet, téléphone ou de tête ?
+
+#Musculation #CrossTraining #Sport #Organisation
+
+
+## Version finale (15/11/2026) · IG-76
+
+Doc : https://docs.google.com/document/d/1e2fxB-CZHKPXDmzRErB2jCqg269UpDOLvvdUU6g0W3M/edit · publication prévue le 2027-03-03 · style : une seule idée, texte très court
+
+« Combien la dernière fois ? » Le Carnet de musculation et cross-training répond sous chaque exercice.
+
+Séances notées en quelques secondes, WOD avec leur score, records repérés tout seuls, minuteur qui marche sans réseau. Aucune donnée de santé, ni programme ni avis médical. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec un carnet fictif : lien en bio. Envoyez-le à votre binôme d'entraînement.
+
+Vos charges, vous les notez où : carnet, téléphone ou de tête ?
+
+#Musculation #CrossTraining #Sport

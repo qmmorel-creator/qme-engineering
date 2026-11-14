@@ -101,3 +101,53 @@ https://qm-engineering.fr/templates/competences/?demo
 Lien d'achat en premier commentaire.
 
 #RessourcesHumaines #Formation #Compétences #PME #Management
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-132
+
+Doc : https://docs.google.com/document/d/14-nkegxXobKeeKzaQcINHo7sAMCe3SgxC0CR9u9Py9c/edit
+
+Le jour où le seul technicien qui sait diagnostiquer la panne est en congé, on découvre qu'il était le seul.
+
+Dans une PME, chacun sait à peu près qui sait faire quoi. À peu près : la liste n'existe nulle part.
+
+On ne la cherche qu'au moment de l'entretien annuel, ou d'une absence qui bloque l'équipe.
+
+J'ai construit un outil qui fait trois choses :
+
+▪ il met les compétences de chaque personne face à ce que son poste demande, dans une matrice en couleur, et calcule les écarts par personne et par équipe ;
+▪ il signale les compétences critiques qui ne tiennent qu'à une personne, ou à personne ;
+▪ il relie le plan de formation à ces écarts : date, coût, statut, budget de l'année, et le niveau atteint après la formation met la matrice à jour.
+
+Il démarre avec un référentiel générique de 44 compétences transverses et 9 modèles de postes, à adapter à son métier. Ce n'est pas un outil de conformité, et une évaluation de compétence n'y est jamais une appréciation disciplinaire.
+
+Côté données, le minimum : prénom et initiale, poste, équipe, niveaux. Pas d'intégration à un logiciel RH. Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique.
+
+Une démo avec une PME fictive est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/competences/?demo
+
+Lien d'achat en premier commentaire.
+
+Dans votre équipe, quelle compétence ne tient aujourd'hui qu'à une seule personne ?
+
+#RessourcesHumaines #Formation #Compétences #PME #Management
+
+
+## Version finale (15/11/2026) · LI-132
+
+Doc : https://docs.google.com/document/d/1DQqDtuIjKaNCMIBgjHqh-q41hg-1cJvkedpeuOB_1Tk/edit · publication prévue le 2027-03-12 · style : erreur fréquente et son coût
+
+Le jour où le seul technicien qui sait diagnostiquer la panne est en congé, on découvre qu'il était le seul.
+
+L'erreur courante dans une PME : croire que l'on sait qui sait faire quoi. On le sait à peu près, et la liste n'existe nulle part. On ne la cherche qu'à l'entretien annuel, ou le jour d'une absence qui bloque l'équipe. Le coût, c'est une machine à l'arrêt, une formation décidée trop tard, ou un plan de formation qui passe à côté des compétences rares.
+
+J'ai construit un outil pour rendre cette liste visible. Une matrice en couleur met les compétences de chaque personne face à ce que son poste demande, et calcule les écarts par personne et par équipe. Les compétences critiques qui ne tiennent qu'à une personne, ou à personne, sont signalées. Le plan de formation se relie à ces écarts, avec date, coût, statut et budget de l'année.
+
+Il démarre avec 44 compétences transverses et 9 modèles de postes, à adapter. Côté données, le minimum : prénom et initiale, poste, équipe, niveaux. Pas de logiciel RH. Une évaluation n'y est jamais une appréciation disciplinaire.
+
+Il sera bientôt en vente. La démo, avec une PME fictive, est ouverte sans inscription :
+https://qm-engineering.fr/templates/competences/?demo
+
+Dans votre équipe, quelle compétence ne tient aujourd'hui qu'à une seule personne ?
+
+#RessourcesHumaines #Formation #Compétences #PME

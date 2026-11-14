@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- Reel IG-47 · Décembre, le mois où le budget déraille (22 s, 1080 × 1920, 30 i/s), d'après le script J27
+     de videos-30-jours.md, en motion design : sans voix, sans musique.
+     Rendu, depuis la racine du dépôt :
+       node docs/templates/communication/instagram/video.mjs production/IG-47.html 22 3400
+     puis renommer png/IG-47.mp4 → png/IG-47-decembre.mp4 et png/IG-47-couverture.png → png/IG-47-decembre-couverture.png.
+     Les dépenses de fêtes et l'enveloppe sont une illustration (aucun montant) ; la capture est celle de la
+     démo du Budget du foyer (données fictives). Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-47 décembre</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.sourcil{font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.gros{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.etiquette{position:absolute;left:96px;top:300px;font-weight:800;font-size:44px;letter-spacing:.12em;color:#fff;padding:14px 30px}
+.fictif{position:absolute;left:96px;bottom:400px;font-size:30px;font-weight:600;color:var(--discret)}
+
+/* Scène 1 · 0 à 4 s : l'accroche */
+#s1{animation:sortie 300ms 3800ms}
+#s1 .sourcil{position:absolute;left:96px;top:480px;color:var(--rouge);animation:monte 400ms 100ms}
+#mois{top:560px;font-size:170px;letter-spacing:-.04em;animation:monte 500ms 200ms}
+#mois span{background:var(--jaune);padding:0 18px}
+#a2{top:860px;font-size:84px;animation:monte 500ms 1300ms}
+#s1 .rond{position:absolute;right:-140px;top:-60px;width:420px;height:420px;border-radius:50%;background:var(--rouge);animation:pop 600ms 0ms}
+#s1 .carre{position:absolute;left:96px;top:1320px;width:150px;height:150px;background:var(--bleu);animation:pop 500ms 1700ms}
+
+/* Scène 2 · 4 à 7,6 s : le contre-pied */
+#s2{background:var(--encre);color:var(--papier);animation:entree-fond 350ms 4000ms,sortie 300ms 7400ms}
+#b1{top:640px;font-size:110px;animation:monte 500ms 4300ms}
+#s2 .barre{position:absolute;left:96px;top:580px;width:160px;height:16px;background:var(--rouge);animation:largeur 500ms 4200ms}
+#s2 .f{position:absolute;right:0;bottom:0;width:320px;height:320px;background:var(--jaune);border-top-left-radius:320px;animation:pop 500ms 4800ms}
+
+/* Scène 3 · 7,6 à 12,2 s : les dix petites */
+#s3{animation:entree-fond 350ms 7600ms,sortie 300ms 12000ms}
+#s3 .titre{top:300px;font-size:84px;animation:monte 400ms 7700ms}
+#s3 .titre em{font-style:normal;color:var(--rouge)}
+.tag{position:absolute;font-weight:700;font-size:44px;padding:20px 30px;border:5px solid var(--encre);box-shadow:10px 10px 0 var(--encre);white-space:nowrap;animation:tombe 450ms;transform:rotate(var(--r))}
+#s3 .fictif{animation:monte 300ms 8000ms}
+
+/* Scène 4 · 12,2 à 16,4 s : l'enveloppe */
+#s4{animation:entree-fond 350ms 12200ms,sortie 300ms 16200ms}
+#s4 .titre{top:300px;font-size:84px;animation:monte 400ms 12300ms}
+.env{position:absolute;left:96px;right:96px;top:700px;background:var(--surface);border:6px solid var(--encre);box-shadow:20px 20px 0 var(--bleu);padding:50px 50px 60px;animation:monte 500ms 12600ms}
+.env .nom{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:64px;letter-spacing:-.025em}
+.env .nom span{font-size:34px;font-weight:700;background:var(--jaune);padding:6px 16px;letter-spacing:0}
+.env .piste{position:relative;height:70px;border:5px solid var(--encre);margin-top:40px}
+.env .rempli{position:absolute;left:0;top:0;bottom:0;width:62%;background:var(--bleu);transform-origin:left;animation:remplit 1800ms 13200ms}
+.env .leg{display:flex;justify-content:space-between;margin-top:22px;font-size:34px;font-weight:600;color:var(--texte-2)}
+.env .ok{margin-top:44px;font-size:44px;font-weight:800;letter-spacing:-.02em;animation:monte 400ms 15000ms}
+#s4 .fictif{animation:monte 300ms 12800ms}
+
+/* Scène 5 · 16,4 à 19,6 s : on sait où on en est */
+#s5{animation:entree-fond 350ms 16400ms,sortie 300ms 19400ms}
+#s5 .titre{top:300px;font-size:84px;animation:monte 400ms 16500ms}
+.tel{position:absolute;left:290px;top:520px;width:500px;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--rouge);background:var(--surface);overflow:hidden;animation:glisse 700ms 16700ms}
+.tel img{display:block;width:100%}
+#s5 .fictif{animation:monte 300ms 17100ms}
+
+/* Scène 6 · 19,6 à 22 s : appel */
+#s6{background:var(--jaune);animation:entree-fond 300ms 19600ms}
+#s6 h1{position:absolute;left:96px;right:96px;top:600px;font-weight:800;font-size:116px;letter-spacing:-.025em;line-height:.98;animation:monte 450ms 19700ms}
+#s6 .plus{position:absolute;left:96px;right:96px;top:860px;font-size:52px;font-weight:600;line-height:1.2;letter-spacing:-.02em;animation:monte 400ms 19950ms}
+#s6 .bouton{position:absolute;left:96px;top:1080px;background:var(--encre);color:var(--papier);font-weight:800;font-size:64px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface);animation:pop 450ms 20200ms}
+#s6 .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;animation:monte 400ms 20300ms}
+#s6 .signe svg{width:80px;height:80px}
+#s6 .signe .m{color:var(--bleu)}#s6 .signe .e{color:var(--surface)}
+#s6 .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px;animation:monte 400ms 20400ms}
+
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+@keyframes raye{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes barre-l{from{color:inherit}to{color:var(--discret)}}
+@keyframes disparait{from{opacity:1}to{opacity:0}}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+@keyframes fond-rouge{from{background:transparent}to{background:#F9E1DF}}
+@keyframes glisse{from{opacity:0;transform:translateX(500px)}to{opacity:1;transform:none}}
+@keyframes tombe{from{opacity:0;transform:translateY(-120px) rotate(0deg)}to{opacity:1;transform:rotate(var(--r))}}
+@keyframes remplit{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+<div class="s" id="s1">
+  <div class="rond"></div>
+  <p class="sourcil">Le budget du foyer</p>
+  <p class="gros" id="mois"><span>Décembre</span></p>
+  <p class="gros" id="a2">c'est souvent le mois où le budget déraille.</p>
+  <div class="carre"></div>
+</div>
+
+<div class="s" id="s2">
+  <div class="barre"></div>
+  <p class="gros" id="b1">Pas à cause des grosses dépenses.</p>
+  <div class="f"></div>
+</div>
+
+<div class="s" id="s3">
+  <p class="gros titre">Ce sont les <em>dix petites</em> qu'on ne note pas.</p>
+  <div class="tag" style="left:96px;top:560px;--r:-4deg;background:var(--surface);animation-delay:7900ms">Papier cadeau</div>
+  <div class="tag" style="left:560px;top:600px;--r:3deg;background:var(--jaune);animation-delay:8200ms">Chocolats</div>
+  <div class="tag" style="left:140px;top:760px;--r:2deg;background:var(--surface);animation-delay:8500ms">Sapin</div>
+  <div class="tag" style="left:600px;top:800px;--r:-3deg;background:var(--surface);animation-delay:8800ms">Guirlandes</div>
+  <div class="tag" style="left:96px;top:960px;--r:-2deg;background:var(--jaune);animation-delay:9100ms">Cartes de vœux</div>
+  <div class="tag" style="left:520px;top:1000px;--r:4deg;background:var(--surface);animation-delay:9400ms">Frais de port</div>
+  <div class="tag" style="left:96px;top:1170px;--r:3deg;background:var(--surface);animation-delay:9700ms">Calendrier de l'Avent</div>
+  <div class="tag" style="left:690px;top:1180px;--r:-4deg;background:var(--jaune);animation-delay:10000ms">Petit cadeau</div>
+  <div class="tag" style="left:96px;top:1360px;--r:2deg;background:var(--surface);animation-delay:10300ms">Bûche</div>
+  <div class="tag" style="left:480px;top:1400px;--r:-2deg;background:var(--surface);animation-delay:10600ms">Repas entre amis</div>
+  <p class="fictif">Exemple illustratif</p>
+</div>
+
+<div class="s" id="s4">
+  <p class="gros titre">Une enveloppe « Fêtes », fixée avant.</p>
+  <div class="env">
+    <div class="nom">Fêtes<span>Décembre</span></div>
+    <div class="piste"><div class="rempli"></div></div>
+    <div class="leg"><span>Dépensé</span><span>Prévu</span></div>
+    <p class="ok">Chaque petite dépense y entre.</p>
+  </div>
+  <p class="fictif">Exemple illustratif</p>
+</div>
+
+<div class="s" id="s5">
+  <p class="gros titre">Et on sait où on en est.</p>
+  <div class="tel"><img src="../../../../../assets/templates-budget-tel.webp" alt=""></div>
+  <p class="fictif">Budget du foyer · données fictives</p>
+</div>
+
+<div class="s" id="s6">
+  <h1>La démo du budget est libre.</h1>
+  <p class="plus">Budget du foyer : achat unique, sans abonnement.</p>
+  <div class="bouton">Lien en bio</div>
+  <div class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site">qm-engineering.fr</p>
+</div>
+
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

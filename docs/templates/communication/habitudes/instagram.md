@@ -54,3 +54,46 @@ Démo libre et contact : lien en bio.
 
 #Habitudes #Routine #Organisation #BienÊtre #OutilsSurMesure
 ```
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-63
+
+Doc : https://docs.google.com/document/d/19eg8bIoqfo8tXnTy-MjlsVSeBUk9K5sfsp9HbFxxwOo/edit
+
+Une semaine de congés ne devrait pas effacer 40 jours de sport.
+
+La plupart des suivis d'habitudes ne font pas la différence entre « je n'ai pas fait » et « ce n'était pas possible ». Celui-ci, si.
+
+Le Suivi d'habitudes et routines :
+▪ la vue du jour se coche d'une touche, l'eau ou le sommeil se comptent avec + et − ;
+▪ un jour « non applicable » ne compte pas et ne casse pas la série ;
+▪ la grille du mois montre vos séries et votre taux de réussite.
+
+50 habitudes types en 8 thèmes colorés, 6 routines prêtes. Pour un traitement, c'est un pense-bête, pas un avis médical.
+
+Le suivi d'une équipe, d'un club ou d'un programme, avec vos règles ? Je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Quelle habitude avez-vous déjà abandonnée après une série cassée ?
+
+#Habitudes #Routine #Organisation #BienÊtre #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-63
+
+Doc : https://docs.google.com/document/d/1ch5h-chfZYk3_u8rdUZ3pU8mo4zyTCAtHHr7orCA-8A/edit
+
+Un suivi d'habitudes qui compte vos vacances comme des échecs est mal conçu.
+
+40 jours de sport, une semaine de congés, et la série retombe à zéro. C'est souvent là qu'on abandonne, faute d'un outil qui distingue « je n'ai pas fait » de « ce n'était pas possible ».
+
+Le Suivi d'habitudes et routines fait cette différence. Un jour « non applicable » ne compte pas et ne casse pas la série. Une touche pour cocher, + et − pour l'eau ou le sommeil, et la grille du mois montre vos séries.
+
+50 habitudes types en 8 thèmes, 6 routines prêtes. Pour un traitement, c'est un pense-bête, pas un avis médical. Achat unique, 12 €.
+
+Le suivi d'une équipe, d'un club ou d'un programme ? Je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. Enregistrez ce post si vous reprenez une habitude en janvier.
+
+#Habitudes #Routine #Organisation #BienÊtre #OutilsSurMesure

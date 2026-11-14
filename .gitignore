@@ -6,3 +6,4 @@ node_modules/
 secret-templates.txt
 codes-generes.csv
 .couv-tmp/
+__pycache__/

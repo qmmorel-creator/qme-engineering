@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- IG-59 · Votre pipeline commercial en vingt secondes : Reel en motion design (20 s, 1080 × 1920, 30 i/s), sans voix ni musique.
+     Script J30 de videos-30-jours.md. T35 n'est pas en vente (gumroad-en-vente.md, 15/11/2026) : chute « bientôt
+     en vente », sans prix ni achat. Faits : docs/templates/communication/prospection/linkedin.md. Captures de la
+     démo, données fictives.
+     Rendu : node docs/templates/communication/instagram/video.mjs production/IG-59.html 20 <couverture_ms>
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-59</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.gros{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.gros mark{background:var(--jaune);color:var(--encre);padding:0 14px}
+.barre{position:absolute;left:96px;width:160px;height:16px;background:var(--rouge)}
+.forme{position:absolute}
+.puces{position:absolute;left:96px;right:96px;display:flex;flex-direction:column;gap:30px}
+.puces div{display:flex;align-items:center;gap:30px;font-weight:800;font-size:64px;letter-spacing:-.025em}
+.puces i{flex:none;width:96px;height:96px;display:grid;place-items:center;font-style:normal;font-size:34px;font-weight:800}
+.tel{position:absolute;left:50%;margin-left:-300px;width:600px;height:1000px;overflow:hidden;border:8px solid var(--encre);box-shadow:22px 22px 0 var(--encre);background:var(--surface)}
+.tel img{display:block;width:100%}
+.fictif{position:absolute;right:96px;font-weight:800;font-size:30px;background:var(--encre);color:var(--papier);padding:10px 20px;letter-spacing:.02em}
+.cta h1{position:absolute;left:96px;right:96px;top:470px;font-weight:800;font-size:104px;letter-spacing:-.025em;line-height:1}
+.cta .plus{position:absolute;left:96px;right:96px;top:960px;font-size:50px;font-weight:600;line-height:1.2;letter-spacing:-.02em}
+.cta .plus b{font-weight:800}
+.cta .bouton{position:absolute;left:96px;top:1170px;background:var(--encre);color:var(--papier);font-weight:800;font-size:60px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface)}
+.cta .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px}
+.cta .signe svg{width:80px;height:80px}
+.cta .signe .m{color:var(--bleu)}.cta .signe .e{color:var(--surface)}
+.cta .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+@keyframes arrivee-d{from{transform:translateX(700px)}to{transform:none}}
+@keyframes arrivee-g{from{transform:translateX(-700px) rotate(-90deg)}to{transform:none}}
+@keyframes tel-in{from{opacity:0;transform:translateY(240px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="s" id="s1" style="background:var(--papier);color:var(--encre);animation:entree-fond 350ms 0ms,sortie 300ms 2700ms">
+<div class="barre" style="top:570px;animation:largeur 500ms 100ms"></div>
+<p class="sourcil" style="top:490px;color:var(--rouge);animation:monte 450ms 150ms">Prospection</p>
+<p class="gros" style="top:640px;font-size:120px;animation:monte 500ms 300ms">Votre pipeline</p>
+<p class="gros" style="top:764px;font-size:120px;animation:monte 500ms 550ms">en <mark>20 secondes</mark>.</p>
+<div class="forme" style="right:-160px;top:180px;width:420px;height:420px;border-radius:50%;background:var(--bleu);animation:pop 600ms 0ms"></div>
+<div class="forme" style="left:0;bottom:0;width:380px;height:380px;background:var(--rouge);border-top-right-radius:380px;animation:arrivee-g 700ms 200ms"></div>
+<div class="forme" style="right:150px;bottom:470px;width:150px;height:150px;background:var(--jaune);border:8px solid var(--encre);animation:arrivee-d 600ms 500ms"></div>
+</div>
+<div class="s" id="s2" style="background:var(--papier);color:var(--encre);animation:entree-fond 350ms 3000ms,sortie 300ms 7100ms">
+<p class="sourcil" style="top:290px;color:var(--rouge);animation:monte 400ms 3100ms">Par étape</p>
+<p class="gros" style="top:350px;font-size:76px;animation:monte 450ms 3250ms">De « À contacter » à « Gagné ».</p>
+<div class="tel" style="top:585px;animation:tel-in 600ms 3400ms"><img src="captures/prospection-pipeline.webp" alt="" style=""></div>
+<p class="fictif" style="top:555px;animation:pop 400ms 3900ms">Données fictives</p>
+</div>
+<div class="s" id="s3" style="background:var(--papier);color:var(--encre);animation:entree-fond 350ms 7400ms,sortie 300ms 11500ms">
+<p class="sourcil" style="top:290px;color:var(--bleu);animation:monte 400ms 7500ms">Chaque matin</p>
+<p class="gros" style="top:350px;font-size:76px;animation:monte 450ms 7650ms">Les relances du jour, retards en tête.</p>
+<div class="tel" style="top:585px;animation:tel-in 600ms 7800ms"><img src="../../../../../assets/templates-prospection-tel.webp" alt="" style=""></div>
+<p class="fictif" style="top:555px;animation:pop 400ms 8300ms">Données fictives</p>
+</div>
+<div class="s" id="s4" style="background:var(--papier);color:var(--encre);animation:entree-fond 350ms 11800ms,sortie 300ms 15700ms">
+<p class="sourcil" style="top:290px;color:var(--rouge);animation:monte 400ms 11900ms">Les chiffres</p>
+<p class="gros" style="top:350px;font-size:68px;animation:monte 450ms 12050ms">Le taux de passage d'une étape à l'autre.</p>
+<div class="tel" style="top:585px;animation:tel-in 600ms 12200ms"><img src="captures/prospection-chiffres.webp" alt="" style=""></div>
+<p class="fictif" style="top:555px;animation:pop 400ms 12700ms">Données fictives</p>
+</div>
+<div class="s" id="s5" style="background:var(--jaune);color:var(--encre);animation:entree-fond 350ms 16000ms">
+<div class="cta"><h1 style="animation:monte 450ms 16100ms">Pipeline de prospection.</h1>
+<p class="plus" style="animation:monte 400ms 16450ms"><b>Bientôt en vente.</b> La démo est déjà ouverte, avec des prospects fictifs.</p>
+<div class="bouton" style="animation:pop 450ms 16800ms">Lien en bio</div>
+<div class="signe" style="animation:monte 400ms 17000ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+<p class="site" style="animation:monte 400ms 17100ms">qm-engineering.fr/templates</p></div>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

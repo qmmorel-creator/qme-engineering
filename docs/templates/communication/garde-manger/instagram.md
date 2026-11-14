@@ -69,3 +69,45 @@ du jour · gaspillage suivi » ; autocollant lien vers https://qm-engineering.fr
 
 Trois du jeu « Maison » du kit (`#Organisation #Maison #BudgetFamilial`) plus `#AntiGaspillage`, hors des jeux du
 kit : **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-83
+
+Doc : https://docs.google.com/document/d/1oNoQlSg1W6HjKjo8Ch9y2ikUO4WJKbHqDD2_onfnv3I/edit
+
+Ce yaourt au fond du frigo, il est encore bon ?
+
+« À consommer jusqu'au » (DLC) : au-delà, on ne mange pas. « De préférence avant » (DDM) : au-delà, on vérifie l'aspect et l'odeur. Deux dates, deux réflexes. À enregistrer pour la prochaine hésitation.
+
+Le Garde-manger et dates de péremption :
+▪ range chaque produit par lieu, avec sa quantité et sa date ;
+▪ affiche chaque jour ce qu'il faut manger d'abord ;
+▪ compte ce qui est jeté, et pourquoi.
+
+L'emballage et l'aspect du produit priment toujours. Sans scan, sans abonnement : 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Qu'est-ce qui finit le plus souvent à la poubelle chez vous ?
+
+#Organisation #Maison #BudgetFamilial #AntiGaspillage
+
+
+---
+
+## Version finale (15/11/2026) · IG-83
+
+Doc : https://docs.google.com/document/d/17xMbG2cfWj4fCDs7bFo2fGw0YeQvNmfUgXzLXSgWeYQ/edit
+
+« À consommer jusqu'au » et « de préférence avant » ne disent pas la même chose. Les confondre, c'est jeter du bon.
+
+DLC : au-delà, on ne mange pas. DDM : au-delà, on vérifie l'aspect et l'odeur. Deux dates, deux réflexes.
+
+Le Garde-manger les distingue pour vous, range chaque produit par lieu et affiche chaque jour ce qu'il faut manger d'abord. L'emballage et l'aspect du produit priment toujours. Le template sera bientôt en vente, et une version sur mesure reste possible.
+
+Démo libre avec un foyer fictif, et contact : lien en bio. Enregistrez-le pour la prochaine hésitation devant le frigo.
+
+#AntiGaspillage #Organisation #Maison #BudgetFamilial

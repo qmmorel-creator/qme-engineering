@@ -66,3 +66,60 @@ https://qm-engineering.fr/templates/taches/?demo
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-81
+
+Doc : https://docs.google.com/document/d/1hcrIdOTYhMWNJjEjZClgqVTK17RDljdunB95thGmCL0/edit
+
+Une liste de tâches qui ne fait que s'allonger ne dit pas quoi faire ce matin. Elle dit seulement qu'on est en retard.
+
+Le problème n'est pas de noter les tâches. C'est de choisir, chaque jour, celles qui comptent vraiment, sans perdre le reste de vue.
+
+J'ai donc construit un gestionnaire de tâches autour de trois gestes :
+
+▪ noter vite : une ligne comme « Appeler la banque demain 14h !haute #Perso 30min » donne la date, l'heure, la priorité, le projet et la durée ; tout arrive dans une boîte de réception ;
+▪ trier : urgent ou pas, important ou pas, un élément après l'autre ;
+▪ choisir : chaque matin, 3 à 5 tâches au focus, avec le temps prévu face au temps disponible ; le soir, on reporte, on archive, la journée est close.
+
+Les répétitions sont fiables : « le 31 » tombe le 30 ou le 28 les mois plus courts, « dernier jour ouvré du mois » saute week-ends et jours fériés.
+
+Cinq modèles de projets sont fournis : démarches de l'année, rentrée scolaire, freelance, maison, semestre étudiant.
+
+Pas de fichier à télécharger : il s'ouvre dans le navigateur avec une clé, garde les données en ligne et suit de l'ordinateur au téléphone. C'est un outil personnel, pas un logiciel d'équipe. Achat unique, sans abonnement.
+
+Une démo avec des données d'exemple est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Le matin, comment choisissez-vous la première tâche de la journée : la plus urgente, la plus courte, ou celle qu'on repousse depuis une semaine ?
+
+#Organisation #Productivité #GestionDuTemps #Freelance #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-81
+
+Doc : https://docs.google.com/document/d/1hopEeqKKbuUrxmPqaIdlB5d7gzsgFwDCkXG7BO39noI/edit
+
+Votre liste de tâches ne vous dit pas quoi faire ce matin. Elle dit seulement que vous êtes en retard.
+
+Noter n'est pas le plus difficile. Choisir l'est. Voici la méthode que j'ai mise dans mon gestionnaire de tâches, en trois étapes.
+
+Étape 1, noter vite. Une ligne suffit : « Appeler la banque demain 14h !haute #Perso 30min » donne la date, l'heure, la priorité, le projet et la durée. Tout arrive dans une boîte de réception, sans trier sur le moment.
+
+Étape 2, trier. Un élément après l'autre : urgent ou pas, important ou pas.
+
+Étape 3, choisir. Chaque matin, 3 à 5 tâches au focus, avec le temps prévu face au temps disponible. Le soir, on reporte ou on archive, et la journée est close.
+
+Les répétitions sont fiables (« le 31 » tombe le 30 ou le 28 les mois plus courts), et cinq modèles de projets sont fournis, des démarches de l'année au semestre étudiant. C'est un outil personnel, pas un logiciel d'équipe : il s'ouvre dans le navigateur avec une clé, sur ordinateur et téléphone, en achat unique.
+
+La démo et le lien d'achat sont en commentaire. Essayez la méthode sur votre liste de demain matin.
+
+#Organisation #Productivité #GestionDuTemps #Freelance
+
+Premier commentaire :
+
+La démo, avec des données d'exemple, ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/taches/?demo
+
+Gestionnaire de tâches, 19 €, achat unique, accès à vie sur tous vos appareils :
+https://qmengineering.gumroad.com/l/gestionnaire-taches

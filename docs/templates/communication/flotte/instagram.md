@@ -54,3 +54,48 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1v81G2Gx17GwmaUfvDGyX-_ECcFWgG9kUq-Gx1_8VEH8` (dossier Textes).
 - Images (dossier Images) : `IG-15-flotte-1.png` 17HOf7mxGnwCWkaw7V173tkOjGC2XGeGe, `IG-15-flotte-2.png` 1pB4g6Pw2PngGerWjiVc8piRuC0XRn87O, `IG-15-flotte-3.png` 1y29ziHF-OlBmfc8g-_OSyLLaF_yVBM84, `IG-15-flotte-4.png` 1xcsqzYB_Kc7yZVQkVTnAzlDNVG5jRioT, `IG-15-flotte-5.png` 1ZGVY94VbEbeww0kZBI5mnXP0zsSMLeS-, `IG-15-flotte-story.png` 1YM6KIEP67E7IrWqCe1TZOqa6aeWXkywJ.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-15
+
+Doc : https://docs.google.com/document/d/15koJbLfw4WcdU9lu80ZbpFluCVb-o0WQOhIXTbnHUXo/edit
+
+Contrôle technique, entretien, amende à désigner : qui suit les dates ?
+
+Quelques véhicules suffisent pour multiplier les échéances : entretien au kilomètre ou à la date, contrôle technique, contre-visite, amendes à désigner dans les délais.
+
+La Gestion de flotte :
+▪ une seule liste d'alertes, retards en tête ;
+▪ des réservations par véhicule, sans chevauchement, avec le kilométrage au retour ;
+▪ le coût total et le coût au kilomètre, et pour la location longue durée le dépassement estimé.
+
+Règles du contrôle technique et délai de désignation datés depuis les sites officiels. Intervalles d'entretien indicatifs. Achat unique, 39 €.
+
+Vos engins, vos habilitations, vos cartes carburant ? Je construis la version sur mesure.
+
+Démo libre avec six véhicules fictifs, et contact : lien en bio.
+
+Combien de véhicules suivez-vous, et dans quel outil ?
+
+#GestionDeFlotte #PME #Collectivités #Organisation #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-15
+
+Doc : https://docs.google.com/document/d/1OomUlVZGQbm0U12dB1Ex2eneCLIyBIyaX5uwKbpAuNI/edit
+
+Qui, chez vous, sait quand passe le prochain contrôle technique de chaque véhicule ?
+
+Entretien au kilomètre ou à la date, contrôle technique, contre-visite, amendes à désigner : quelques véhicules suffisent pour multiplier les échéances.
+
+La Gestion de flotte les rassemble dans une seule liste d'alertes, retards en tête. Elle gère les réservations sans chevauchement et donne le coût au kilomètre, avec le dépassement estimé en location longue durée.
+
+Règles officielles datées, intervalles d'entretien indicatifs. Bientôt en vente.
+
+Vos engins, vos habilitations, vos cartes carburant ? Je construis la version sur mesure.
+
+Démo libre avec six véhicules fictifs : lien en bio. À envoyer à qui gère les véhicules chez vous.
+
+Combien de véhicules suivez-vous, et dans quel outil ?
+
+#GestionDeFlotte #PME #Collectivités #OutilsSurMesure

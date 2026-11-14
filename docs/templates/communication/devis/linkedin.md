@@ -71,3 +71,62 @@ Si vous connaissez un artisan ou un indépendant qui fait ses devis à la main, 
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui renvoient vers un autre site.*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-90
+
+Doc : https://docs.google.com/document/d/1zN8gZcplWJdBArD_pQtvjNHrVxTsw4JPgmlMMH2hwiw/edit
+
+Une ligne a changé, le total non. C'est l'erreur classique du devis refait à partir d'un ancien devis.
+
+Beaucoup d'artisans et de freelances travaillent encore ainsi, dans un traitement de texte. Ça marche, jusqu'au jour où ça ne marche plus : un total recalculé à la main, une TVA arrondie ligne par ligne, un numéro qu'on ne retrouve plus. Et parfois une mention oubliée.
+
+J'ai donc construit un générateur de devis :
+
+▪ un catalogue de prestations (unité, prix HT, TVA), avec des listes types par métier à importer, sans prix : les prix, c'est vous ;
+▪ des devis par lignes avec sections, remise par ligne et remise globale, TVA par ligne, acompte et durée de validité ; les totaux sont calculés en centimes, la TVA par taux ;
+▪ les mentions d'un devis relevées sur les sites officiels, avec leur source et leur date, et un contrôle de ce qui manque avant l'envoi.
+
+Chaque devis a son numéro et un statut (brouillon, envoyé, accepté, refusé) ; un devis envoyé dont la validité est passée est signalé. Un clic le duplique, un autre l'imprime en A4 ou l'enregistre en PDF.
+
+Il fait des devis, pas des factures : la facturation électronique devient obligatoire, et elle mérite un outil dédié. C'est un outil d'aide : chacun reste responsable des mentions propres à son activité.
+
+Il s'ouvre dans le navigateur avec une clé, garde vos devis en ligne et fonctionne sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+La démo (une entreprise fictive, huit devis) est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Artisans, freelances : votre prochain devis, vous le partez d'un modèle, d'un ancien devis ou d'une page blanche ?
+
+Et si vous connaissez quelqu'un qui fait encore ses devis à la main, transmettez-lui.
+
+#Artisan #Freelance #Devis #Indépendants #TPE
+
+
+## Version finale (15/11/2026) · LI-90
+
+Doc : https://docs.google.com/document/d/1XvrSFMZ4T9w48K6m2ns95s_IDJ8j2e1OjoCGu5ohvI0/edit · publication prévue le 2026-12-12 · style : contre-intuition
+
+Le devis le plus risqué n'est pas celui qu'on écrit sur une page blanche. C'est l'ancien devis qu'on modifie.
+
+Une ligne a changé, le total non. Une TVA arrondie ligne par ligne, un numéro qu'on ne retrouve plus, parfois une mention oubliée. Beaucoup d'artisans et de freelances travaillent encore ainsi, dans un traitement de texte, et ça marche jusqu'au jour où ça ne marche plus.
+
+J'ai donc construit un générateur de devis qui part de vos prestations, pas d'un ancien document. Un catalogue (unité, prix HT, TVA), avec des listes types par métier à importer, sans prix : les prix, c'est vous. Des sections, des remises par ligne ou globales, un acompte, une durée de validité. Les totaux sont calculés en centimes, la TVA par taux.
+
+Avant l'envoi, il contrôle les mentions relevées sur les sites officiels, avec leur source et leur date. Chaque devis a son numéro et son statut, et un devis dont la validité est passée est signalé. Impression A4 ou PDF.
+
+Il fait des devis, pas des factures. C'est un outil d'aide : chacun reste responsable des mentions propres à son activité. Achat unique, sans abonnement.
+
+La démo, avec une entreprise fictive et huit devis, est ouverte sans inscription : lien en commentaire.
+
+Votre prochain devis, vous le commencerez à partir d'un modèle, d'un ancien devis ou d'une page blanche ?
+
+#Artisan #Freelance #Devis #TPE
+
+Premier commentaire :
+
+La démo (une entreprise fictive, huit devis), sans inscription :
+https://qm-engineering.fr/templates/devis/?demo
+
+Le Générateur de devis (29 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/generateur-devis

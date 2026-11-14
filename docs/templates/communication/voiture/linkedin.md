@@ -73,3 +73,56 @@ Le carnet de voiture (13 €, achat unique) : [lien Gumroad à compléter]
 - Fait vérifié le 14/11/2026 sur service-public.gouv.fr (fiche F2878, « vérifié le 1er janvier 2026 ») :
   premier contrôle avant le 4e anniversaire de la mise en circulation, résultat favorable valable 2 ans,
   contre-visite dans les 2 mois. Prix de 13 € d'après `IDEES.md`, à confirmer.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-122
+
+Doc : https://docs.google.com/document/d/1dQ50F2_ingaBiD0ghAGj8Ofb6orvkXd-HDxCH564ywU/edit
+
+« La vidange, c'était quand, déjà ? » La réponse est souvent dans une boîte à gants.
+
+Une voiture, c'est un entretien à surveiller à la date ou au kilométrage, un contrôle technique tous les deux ans, et des dépenses éparpillées entre la pompe, le garage et l'assurance.
+
+Avec deux voitures dans le foyer, tout se mélange.
+
+J'ai donc construit un carnet de voiture qui fait trois choses :
+
+▪ il calcule chaque échéance d'entretien à la date ou au kilométrage, la première atteinte, avec un plan indicatif que vous adaptez au carnet du constructeur ;
+▪ il calcule le contrôle technique (premier contrôle, contrôle tous les deux ans, contre-visite) d'après la règle publiée par l'administration, avec la source et la date de vérification affichées ;
+▪ il garde chaque plein, recharge et dépense, et en tire la consommation réelle d'un plein à l'autre, le coût mensuel et le coût au kilomètre.
+
+Les prix ne sont pas intégrés : vous saisissez ce que vous payez. Le jour de la revente, l'historique d'entretien s'imprime ou se copie pour l'acheteur.
+
+Il s'ouvre dans le navigateur avec une clé, sur téléphone à la pompe comme sur ordinateur. Achat unique, sans abonnement. C'est un outil d'aide : le carnet d'entretien du constructeur prime.
+
+Une démo avec trois voitures fictives est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/voiture/?demo
+
+Lien d'achat en premier commentaire.
+
+Et chez vous, la date de la prochaine vidange est notée où : dans un carnet, une application, ou la boîte à gants ?
+
+#Automobile #Budget #Organisation #Entretien #OutilsNumériques
+
+
+---
+
+## Version finale (15/11/2026) · LI-122
+
+Doc : https://docs.google.com/document/d/16F1Q-yU0k6RIJRnBpjxq8moQjcJV0wJRz-palFp9vPQ/edit
+
+« La vidange, c'était quand, déjà ? » La réponse est souvent dans une boîte à gants.
+
+La scène est connue dans un foyer à deux voitures. L'une approche de son contrôle technique, l'autre a passé sa vidange sans que personne s'en rende compte, et les factures sont quelque part entre la pompe, le garage et l'assurance. Tout se mélange.
+
+J'ai donc construit un carnet de voiture. Il calcule chaque échéance d'entretien à la date ou au kilométrage, la première atteinte, avec un plan indicatif que vous adaptez au carnet du constructeur. Il calcule le contrôle technique (premier contrôle, contrôle tous les deux ans, contre-visite) d'après la règle publiée par l'administration, source et date de vérification affichées. Il garde chaque plein, recharge et dépense, et en tire la consommation réelle d'un plein à l'autre, le coût mensuel et le coût au kilomètre.
+
+Les prix ne sont pas intégrés : vous saisissez ce que vous payez. Le jour de la revente, l'historique d'entretien s'imprime ou se copie pour l'acheteur. C'est un outil d'aide : le carnet du constructeur prime.
+
+Il sera bientôt en vente. La démo, avec trois voitures fictives, est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/voiture/?demo
+
+Chez vous, la date de la prochaine vidange est notée où ?
+
+#Automobile #Budget #Organisation #Entretien #OutilsNumériques

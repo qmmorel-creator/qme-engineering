@@ -54,3 +54,47 @@ Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la ver
 Démo libre et contact : lien en bio.
 
 #Budget #FinancesPersonnelles #Abonnements #Organisation #Maison
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-62
+
+Doc : https://docs.google.com/document/d/14vcEXXOoy72He9x16w1Z7dfa-QD4V89bDPhX5Zew2Xk/edit
+
+Combien vous coûtent vos abonnements ? Pas par mois : par an.
+
+Vidéo, musique, forfait, box, assurances, salle de sport, logiciels, stockage en ligne : pris un par un, chaque prélèvement paraît petit.
+
+Le Suivi des abonnements :
+▪ ramène chaque abonnement au mois et à l'année, votre part seulement s'il est partagé ;
+▪ affiche les prélèvements du mois dans un calendrier, et les douze prochains mois ;
+▪ calcule la date avant laquelle décider pour chaque essai gratuit, fin d'engagement ou renouvellement.
+
+96 abonnements types intégrés, sans marque ni prix imposé. Aucune connexion bancaire. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Sans regarder vos relevés : combien d'abonnements payez-vous ?
+
+#Budget #FinancesPersonnelles #Abonnements #Organisation #Maison
+
+
+## Version finale (15/11/2026) · IG-62
+
+Doc : https://docs.google.com/document/d/1kyrigOLjXGsfCodOYO2TY6o-WZ-T_Fo9900oKw4Lh9w/edit · publication prévue le 2026-12-19 · style : opinion assumée
+
+Un abonnement se juge à l'année, pas au mois.
+
+Vidéo, musique, forfait, box, assurances, salle de sport, stockage en ligne : un par un, chaque prélèvement paraît petit. Additionnés sur douze mois, avec l'essai gratuit devenu payant et l'engagement reconduit, c'est une autre histoire.
+
+Le Suivi des abonnements ramène chacun au mois et à l'année, votre part seulement s'il est partagé, et affiche la date avant laquelle décider, préavis compris. 96 abonnements types, sans marque ni prix. Aucune connexion bancaire. Achat unique, 12 €.
+
+Besoin d'autre chose ? Je construis aussi des outils sur mesure.
+
+Démo libre avec un foyer fictif : lien en bio. Envoyez-le à la personne avec qui vous partagez les factures.
+
+Sans regarder vos relevés : combien d'abonnements payez-vous ?
+
+#Budget #FinancesPersonnelles #Abonnements #Maison

@@ -66,3 +66,43 @@ kit) : image à produire seulement quand elles reprennent.
 
 Deux du jeu « Maison » du kit (`#Organisation #Maison`) plus `#Potager` et `#Jardinage`, hors des jeux du kit : **à
 valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-89
+
+Doc : https://docs.google.com/document/d/1yVzB1sJBMcZ-343cDVeVN2RjoXhAn0vpftl0e368jXw/edit
+
+Qu'y avait-il sur cette planche l'an dernier ? Et les carottes, c'était fin mars ou mi-avril ?
+
+Le Calendrier du potager garde vos cultures avec vos dates, celles de vos sachets, par quinzaine. Chaque semaine :
+▪ ce qu'il y a à semer, planter et récolter ;
+▪ ce qui est déjà fait, et les fenêtres passées ;
+▪ une alerte si une même famille revient au même endroit.
+
+Pas de calendrier générique : vos dates, avec un décalage pour votre région. Sans abonnement : 13 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vos dates de semis, vous les notez où aujourd'hui ?
+
+#Potager #Jardinage #Organisation #Maison
+
+
+## Version finale (15/11/2026) · IG-89
+
+Doc : https://docs.google.com/document/d/1ed2gtmDZRqItjdYykrsxad2P93CzSRwbHfoEOBid1jM/edit
+
+Qu'y avait-il sur cette planche l'an dernier ?
+
+Le carnet de jardin garde la réponse, mais il ne prévient de rien. Le Calendrier du potager, lui, part de vos dates, celles de vos sachets, et vous dit chaque semaine quoi semer, planter et récolter. Il signale aussi une même famille qui revient au même endroit.
+
+Pas de calendrier générique : vos dates, décalées pour votre région. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec un jardin fictif : lien en bio. Enregistrez-le pour vos semis de printemps.
+
+#Potager #Jardinage #Organisation #Maison
