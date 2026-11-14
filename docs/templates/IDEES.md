@@ -83,7 +83,7 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T06 | Repas de la semaine et liste de courses (fiche en fin de fichier) | Cuisine | Familles, particuliers | en cours | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -1038,3 +1038,39 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T06 · Repas de la semaine et liste de courses (`templates/repas/`, préfixe RPS, 13 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Le menu de la semaine, la liste de courses faite toute seule. » On choisit les repas du midi et
+  du soir, la liste se calcule, rangée par rayon, et se coche au magasin sur le téléphone.
+- **Pour qui** : familles et foyers qui cuisinent au quotidien (packs « Forme » et « Famille ») ; usage à deux
+  (même clé sur les deux téléphones : l'un planifie, l'autre fait les courses). Catalogue : `perso`, thème
+  « Santé et forme ».
+- **Écrans** (4 onglets) : **Semaine** (planning lundi → dimanche, midi et soir, plusieurs plats par créneau,
+  nombre de personnes par repas, texte libre « restes », « dehors » sans courses ; propositions automatiques
+  pour les créneaux vides selon la saison et les régimes ; copie de la semaine précédente) ; **Courses** (liste
+  agrégée par rayon dans l'ordre de son magasin, unités cohérentes, conditionnements indicatifs, cases à cocher
+  en magasin avec progression, « déjà à la maison », articles ajoutés à la main et articles habituels, partage
+  en texte) ; **Recettes** (base intégrée et recettes perso, recherche, filtres catégorie, végétarien, sans porc,
+  rapide, de saison, favoris ; fiche avec quantités recalculées pour N personnes ; « créer ma version » d'une
+  recette de la base) ; **Avec ce qu'il me reste** (ingrédients du frigo → recettes classées par ce qui manque).
+- **Base intégrée** (`donnees.js`) : **recettes familiales simples rédigées pour QME** (aucune copiée d'un site
+  ou d'un livre : noms de plats courants, quantités et étapes écrites pour le template), ingrédients et
+  quantités pour 4 personnes, temps, saisons, catégories ; catalogue d'ingrédients avec rayon, unité, poids
+  moyen d'une pièce (hypothèses QME, ordres de grandeur) et marqueurs viande, porc, poisson qui calculent les
+  régimes (végétarien, sans porc) au lieu de les déclarer ; 13 rayons.
+- **Calculs** (`regles.js`, testés dans `outils/templates/repas.test.mjs`) : mise à l'échelle des quantités,
+  conversion d'unités (g, kg, ml, cl, l, cuillères, pièces ; pièces ↔ grammes quand le poids moyen est connu),
+  agrégation de la liste par ingrédient et par rayon, arrondis d'achat (pièces entières), lecture d'une ligne
+  d'ingrédient saisie (« 200 g de farine »), classement « avec ce qu'il me reste », propositions de repas
+  (saison, régimes, pas deux fois la même recette, soirs de semaine rapides), semaine (lundi), saison du mois.
+  **Moteur de liste de courses partageable avec T04** : `listeCourses(lignes, catalogue)` ne dépend que de
+  lignes `{ ingredient, qte, unite }`, sans rien savoir du planning.
+- **Données qui se périment : aucune.** Pas de prix, pas d'enseigne, pas de valeurs nutritionnelles (c'est T04).
+  Saisons des recettes : repères de cuisine, pas une donnée réglementaire.
+- **Risques** : allergies (les régimes sont calculés depuis les ingrédients de la base, pas une garantie :
+  avertissement « vérifie les étiquettes ») ; aucune marque, aucun magasin, aucun drive connecté ; démo fictive.
+- **Statut** : en cours (14/11/2026).
+
