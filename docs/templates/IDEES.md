@@ -160,7 +160,7 @@ déjà).
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en cours | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
@@ -1482,3 +1482,18 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `TMP` aux `produits` du pack PFG
   (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente),
   plannings, passage en vente du site.
+
+## Fiche T79 (cadrage délégué par Quentin, 14/11/2026)
+
+### T79 · Entretiens annuels et professionnels (`templates/entretiens-annuels/`, préfixe ENP)
+- Fiche détaillée : [`fiches/entretiens-annuels.md`](fiches/entretiens-annuels.md). Application web, 19 €,
+  permalien prévu `entretiens-annuels-professionnels`, catalogue `pro` · thème « Organisation et réunions ».
+  Pack visé : « Petite entreprise » (PPE), où T79 est prévu.
+- Promesse : « Chaque salarié a ses entretiens à jour : échéances calculées, trame prête, compte rendu
+  imprimable, objectifs et formations suivis d'une année sur l'autre. »
+- **Daté** : entretien de parcours professionnel (loi n° 2025-989 du 24/10/2025) la première année puis tous
+  les 4 ans, état des lieux récapitulatif tous les 8 ans, cas du retour d'absence, de la mi-carrière et des
+  60 ans, abondement CPF de 3 000 € (50 salariés et plus) : service-public.gouv.fr F32040 (vérifiée le
+  01/10/2026), relevé le 14/11/2026 ; périodicités paramétrables ; transition pour les salariés présents avant
+  la réforme non tranchée (historique saisi). **RGPD** : données minimales, export et effacement par salarié.
+- Statut : en cours.
