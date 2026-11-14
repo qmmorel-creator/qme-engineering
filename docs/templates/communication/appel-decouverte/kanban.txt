@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="appel-decouverte" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/appel-decouverte/"><b>Préparateur d'appel découverte</b><span class="phrase">Questions par phase, objections et prochaine étape datée.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>

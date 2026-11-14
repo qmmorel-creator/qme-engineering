@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- Carrousel Instagram du Préparateur d'appel découverte (5 vues, 1080 × 1350), d'après les gabarits car-1, car-2 et
+     car-3 de ../../instagram/gabarits.html (mêmes styles). Rendu :
+     node docs/templates/communication/instagram/rendre.mjs ../appel-decouverte/instagram/carrousel.html
+     puis déplacer png/appel-decouverte-*.png du dossier du kit vers ce dossier. Captures : démo, données fictives. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Carrousel Instagram · Préparateur d'appel découverte</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;background:var(--papier)}
+.post{width:1080px;height:1350px}
+h1,h2,p{letter-spacing:-.025em}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+.marque{display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}
+.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
+.sur-encre .marque .q{color:var(--papier)}
+.tel{position:absolute;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
+.tel img{display:block;width:100%}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid var(--encre);padding:8px 16px;background:var(--surface)}
+
+/* Vue 1 : couverture-question (gabarit car-1) */
+#appel-decouverte-1 .titre{position:absolute;left:84px;top:200px;right:84px}
+#appel-decouverte-1 h1{font-size:118px;font-weight:800;line-height:.98}
+#appel-decouverte-1 h1 mark{background:var(--jaune);color:inherit;padding:0 10px}
+#appel-decouverte-1 .sous{font-size:40px;line-height:1.3;color:var(--texte-2);margin-top:44px;max-width:780px}
+#appel-decouverte-1 .fa{position:absolute;right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+#appel-decouverte-1 .fb{position:absolute;right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+#appel-decouverte-1 .glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px}
+#appel-decouverte-1 .glisser span{display:inline-block;width:80px;height:6px;background:var(--encre);position:relative}
+#appel-decouverte-1 .glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid var(--encre);border-top:15px solid transparent;border-bottom:15px solid transparent}
+
+/* Vue 2 : le problème (fond encre) */
+#appel-decouverte-2{background:var(--encre);color:var(--papier)}
+#appel-decouverte-2 .compteur{background:var(--encre);color:var(--papier);border-color:var(--papier)}
+#appel-decouverte-2 .texte{position:absolute;left:84px;right:84px;top:230px}
+#appel-decouverte-2 .sourcil{color:var(--jaune)}
+#appel-decouverte-2 h2{font-size:92px;font-weight:800;line-height:1.02;margin-top:30px}
+#appel-decouverte-2 p.sous{font-size:40px;line-height:1.35;color:#D9D4C8;margin-top:48px;max-width:860px}
+#appel-decouverte-2 p.sous strong{background:var(--jaune);color:var(--encre);padding:0 8px;font-weight:700}
+#appel-decouverte-2 .f1{position:absolute;left:84px;bottom:150px;width:170px;height:170px;border-radius:50%;background:var(--rouge)}
+#appel-decouverte-2 .f2{position:absolute;left:280px;bottom:150px;width:170px;height:170px;background:var(--bleu);border:6px solid var(--papier)}
+#appel-decouverte-2 .pied{position:absolute;left:84px;right:84px;bottom:60px;display:flex;justify-content:flex-end}
+
+/* Vues 3 et 4 : ce que fait le template (gabarit car-2) */
+.car2 .bandeau{position:absolute;left:0;right:0;top:0;height:330px;background:var(--bleu);color:#fff;padding:96px 84px 0}
+.car2 .bandeau .sourcil{color:#fff;opacity:.85}
+.car2 .bandeau h2{font-size:64px;font-weight:800;line-height:1.05;margin-top:20px;max-width:760px}
+.car2 .compteur{background:var(--surface);color:var(--encre);border-color:var(--surface)}
+.car2 .note{position:absolute;left:84px;bottom:70px;font-size:24px;color:var(--discret)}
+#appel-decouverte-3 .tel{left:84px;top:420px;width:420px}
+#appel-decouverte-3 .points{position:absolute;left:580px;right:84px;top:440px;display:flex;flex-direction:column;gap:44px}
+.points div{border-left:10px solid var(--jaune);padding-left:24px;font-size:34px;line-height:1.25;font-weight:500}
+.points b{display:block;font-weight:800;font-size:38px;margin-bottom:6px}
+#appel-decouverte-4 .bandeau{background:var(--jaune);color:var(--encre)}
+#appel-decouverte-4 .bandeau .sourcil{color:var(--encre);opacity:.75}
+#appel-decouverte-4 .fenetre{position:absolute;left:84px;right:84px;top:400px;height:473px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
+#appel-decouverte-4 .fenetre img{position:absolute;width:1000px;left:-45px;top:-152px}
+#appel-decouverte-4 .points{position:absolute;left:84px;right:84px;top:940px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+#appel-decouverte-4 .points div{font-size:30px}
+#appel-decouverte-4 .points b{font-size:34px}
+
+/* Vue 5 : appel à l'action (gabarit car-3) */
+#appel-decouverte-5{background:var(--jaune)}
+#appel-decouverte-5 .bloc{position:absolute;left:84px;right:84px;top:190px}
+#appel-decouverte-5 h2{font-size:100px;font-weight:800;line-height:1}
+#appel-decouverte-5 .liste{margin-top:60px;display:flex;flex-direction:column;gap:22px;font-size:40px;font-weight:600}
+#appel-decouverte-5 .liste div{display:flex;gap:22px;align-items:center}
+#appel-decouverte-5 .liste i{width:26px;height:26px;background:var(--encre);flex:none}
+#appel-decouverte-5 .plus{position:absolute;left:84px;right:84px;top:780px;background:var(--surface);border:4px solid var(--encre);padding:26px 30px;font-size:36px;line-height:1.3}
+#appel-decouverte-5 .cta{position:absolute;left:84px;right:84px;bottom:200px;background:var(--encre);color:var(--papier);padding:40px 48px;box-shadow:16px 16px 0 var(--surface);display:flex;justify-content:space-between;align-items:center}
+#appel-decouverte-5 .cta b{font-size:52px;font-weight:800;letter-spacing:-.025em}
+#appel-decouverte-5 .cta span{font-size:32px;font-weight:600;color:var(--jaune)}
+#appel-decouverte-5 .pied{position:absolute;left:84px;right:84px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="symbole">
+      <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>
+      <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+      <circle cx="40" cy="40" r="15" fill="#F0EDE6"/>
+    </g>
+    <g id="symbole-clair">
+      <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/>
+      <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>
+      <circle cx="40" cy="40" r="15" fill="#141414"/>
+    </g>
+  </defs>
+</svg>
+
+<section class="cadre post" id="appel-decouverte-1">
+  <span class="compteur">1 / 5</span>
+  <div class="titre">
+    <p class="sourcil" style="color:var(--rouge)">Appel découverte</p>
+    <h1 style="margin-top:30px">Qui <mark>décide</mark>, au fait ?</h1>
+    <p class="sous">La question qu'on oublie en premier rendez-vous.</p>
+  </div>
+  <div class="fa"></div><div class="fb"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre post sur-encre" id="appel-decouverte-2">
+  <span class="compteur">2 / 5</span>
+  <div class="texte">
+    <p class="sourcil">Le problème</p>
+    <h2>Trente minutes pour tout comprendre.</h2>
+    <p class="sous">La situation, l'enjeu, le budget, le calendrier. Et souvent, on raccroche <strong>sans savoir qui décide</strong>, ni quand, ni la prochaine étape.</p>
+  </div>
+  <div class="f1"></div><div class="f2"></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole-clair"/></svg><span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span></span></div>
+</section>
+
+<section class="cadre post car2" id="appel-decouverte-3">
+  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Préparer l'appel en dix minutes.</h2></div>
+  <span class="compteur">3 / 5</span>
+  <div class="tel"><img src="../../../../../assets/templates-appel-decouverte-tel.webp" alt=""></div>
+  <div class="points">
+    <div><b>84 questions</b>En 7 phases : vous cochez celles qui comptent.</div>
+    <div><b>Un plan minuté</b>La durée répartie entre les phases.</div>
+    <div><b>Une suite datée</b>La prochaine étape, suivie jusqu'au bout.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre post car2" id="appel-decouverte-4">
+  <div class="bandeau"><p class="sourcil">La vue clé</p><h2>Tout sous la main pendant l'appel.</h2></div>
+  <span class="compteur">4 / 5</span>
+  <div class="fenetre"><img src="../../../../../assets/templates-appel-decouverte-appel.webp" alt=""></div>
+  <div class="points">
+    <div><b>Cocher, noter</b>Chaque question posée, sa réponse en deux mots.</div>
+    <div><b>Qualifier</b>Besoin, budget, décideur, échéance : un score sur 8.</div>
+  </div>
+  <p class="note">Données fictives</p>
+</section>
+
+<section class="cadre post" id="appel-decouverte-5">
+  <span class="compteur">5 / 5</span>
+  <div class="bloc">
+    <h2>Essayez-le avec douze appels fictifs.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>25 objections et leurs pistes</div><div><i></i>Achat unique, sans abonnement</div></div>
+  </div>
+  <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils : <b>je le construis sur mesure.</b></div>
+  <div class="cta"><b>Lien en bio</b><span>12 € · accès à vie</span></div>
+  <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span><span>Q</span><span class="m" style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
+</section>
+
+</body>
+</html>
