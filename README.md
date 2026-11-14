@@ -170,6 +170,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/suivi-chantier/` (CHT) : **suivi de chantier par lot**, prêt, mise en vente prochaine (40 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/suivi-chantier/gumroad.json`). Marché et avenants
+  par lot, situations de travaux calculées depuis le cumul (révision par coefficient K saisi, retenue de
+  garantie, pénalités, date de paiement), échéancier et courbe prévu / réalisé, jalons recalés par les avenants
+  et les intempéries retenues du journal, sous-traitants, non-conformités simplifiées, risques en matrice
+  4 × 4, courriers et ordres de service, revue de projet imprimable ; plusieurs opérations par clé. Aucun
+  indice ni taux réglementaire intégré. Règles dans `regles.js`, tests `outils/templates/suivi-chantier.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
