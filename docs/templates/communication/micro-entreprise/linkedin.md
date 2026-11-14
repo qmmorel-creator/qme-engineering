@@ -102,3 +102,32 @@ La démo, avec un atelier fictif et une année d'écritures, est ouverte à tous
 Micro-entrepreneurs : votre livre des recettes, vous le tenez au fil de l'eau, ou vous le reconstituez au moment de déclarer ?
 
 #MicroEntreprise #AutoEntrepreneur #Indépendants #Freelance #Gestion
+
+
+## Version finale (15/11/2026) · LI-78
+
+Doc : https://docs.google.com/document/d/1-M0CMmhkww13UPMz864vpBJanrdU05Kz6v6LTeMlEFo/edit · publication prévue le 2026-11-22 · style : comparatif deux options
+
+Deux façons de tenir son livre des recettes : au fil des encaissements, ou la veille de la déclaration URSSAF.
+
+En micro-entreprise, il est obligatoire : chaque encaissement, à sa date, avec le client, la nature, le montant, le mode de règlement et la référence de la pièce. Plus un registre des achats si l'on vend des marchandises.
+
+La veille de la déclaration, on rouvre le carnet, le relevé bancaire et plusieurs tableurs pour retrouver un seul chiffre, son chiffre d'affaires. On refait tous les totaux, et l'on découvre un seuil de TVA quand il est déjà proche.
+
+Au fil de l'eau, c'est ce que j'ai voulu rendre facile. Dans le livre recettes-dépenses que j'ai construit, une recette se note en quelques secondes, rangée par activité (vente, services, libéral). À chaque échéance, mensuelle ou trimestrielle, le chiffre à déclarer est prêt, avec une estimation des cotisations. Les plafonds du régime et les seuils de franchise de TVA sont suivis toute l'année, avec une alerte avant de les atteindre.
+
+Taux 2026 sourcés et modifiables, export CSV, livre imprimable. Ce n'est pas un logiciel comptable : c'est un outil d'aide. Achat unique, sans abonnement.
+
+La démo, avec un atelier fictif et une année d'écritures, est ouverte à tous : lien en commentaire.
+
+Micro-entrepreneurs, à votre dernière déclaration : au fil de l'eau, ou la veille ?
+
+#MicroEntreprise #AutoEntrepreneur #Indépendants #Freelance
+
+Premier commentaire :
+
+La démo, avec un atelier fictif et une année d'écritures, ouverte à tous :
+https://qm-engineering.fr/templates/micro-entreprise/?demo
+
+Le Livre recettes-dépenses micro-entreprise (25 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/livre-recettes-micro

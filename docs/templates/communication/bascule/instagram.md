@@ -87,3 +87,20 @@ Démo libre et contact : lien en bio.
 À votre dernière bascule, l'heure limite du retour arrière était-elle écrite quelque part ?
 
 #GestionDeProjet #Productivité #Organisation #PME #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-79
+
+Doc : https://docs.google.com/document/d/1syDDFxuUBXs3JnTvdXP3J_kx1CSVZ5DkyN93xg_eDhs/edit · publication prévue le 2027-02-26 · style : contre-intuition
+
+Dans une bascule, la décision clé se prend avant de commencer : l'heure après laquelle on ne revient plus.
+
+Le soir même, il est trop tard pour la calculer. Le déroulé vit dans un tableur, une étape prend 30 minutes de plus, et le go/no-go se décide à l'impression du moment.
+
+Le Pilotage d'une journée de bascule calcule cette heure limite (fin de fenêtre moins durée du repli), recalcule retard cumulé et marge dès qu'une étape démarre ou finit, et prépare les go/no-go sur des critères écrits à l'avance. Cinq séquences types fictives à adapter. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec une migration fictive en cours : lien en bio. Enregistrez-le avant votre prochaine bascule.
+
+#GestionDeProjet #PME #Organisation #OutilsNumériques

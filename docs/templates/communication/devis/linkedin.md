@@ -101,3 +101,32 @@ Artisans, freelances : votre prochain devis, vous le partez d'un modèle, d'un a
 Et si vous connaissez quelqu'un qui fait encore ses devis à la main, transmettez-lui.
 
 #Artisan #Freelance #Devis #Indépendants #TPE
+
+
+## Version finale (15/11/2026) · LI-90
+
+Doc : https://docs.google.com/document/d/1XvrSFMZ4T9w48K6m2ns95s_IDJ8j2e1OjoCGu5ohvI0/edit · publication prévue le 2026-12-12 · style : contre-intuition
+
+Le devis le plus risqué n'est pas celui qu'on écrit sur une page blanche. C'est l'ancien devis qu'on modifie.
+
+Une ligne a changé, le total non. Une TVA arrondie ligne par ligne, un numéro qu'on ne retrouve plus, parfois une mention oubliée. Beaucoup d'artisans et de freelances travaillent encore ainsi, dans un traitement de texte, et ça marche jusqu'au jour où ça ne marche plus.
+
+J'ai donc construit un générateur de devis qui part de vos prestations, pas d'un ancien document. Un catalogue (unité, prix HT, TVA), avec des listes types par métier à importer, sans prix : les prix, c'est vous. Des sections, des remises par ligne ou globales, un acompte, une durée de validité. Les totaux sont calculés en centimes, la TVA par taux.
+
+Avant l'envoi, il contrôle les mentions relevées sur les sites officiels, avec leur source et leur date. Chaque devis a son numéro et son statut, et un devis dont la validité est passée est signalé. Impression A4 ou PDF.
+
+Il fait des devis, pas des factures. C'est un outil d'aide : chacun reste responsable des mentions propres à son activité. Achat unique, sans abonnement.
+
+La démo, avec une entreprise fictive et huit devis, est ouverte sans inscription : lien en commentaire.
+
+Votre prochain devis, vous le commencerez à partir d'un modèle, d'un ancien devis ou d'une page blanche ?
+
+#Artisan #Freelance #Devis #TPE
+
+Premier commentaire :
+
+La démo (une entreprise fictive, huit devis), sans inscription :
+https://qm-engineering.fr/templates/devis/?demo
+
+Le Générateur de devis (29 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/generateur-devis

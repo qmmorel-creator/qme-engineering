@@ -102,3 +102,25 @@ Lien d'achat en premier commentaire.
 Lors de votre dernière bascule, l'heure limite du retour arrière était-elle écrite quelque part avant de commencer ?
 
 #GestionDeProjet #ConduiteDuChangement #Production #Logistique #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-124
+
+Doc : https://docs.google.com/document/d/1gS0jWSMVIfTsMST68LB82dV9AKiwQxCZqIKFzUnGMpk/edit · publication prévue le 2027-02-25 · style : récit d'une situation vécue
+
+23 h 40, une étape de la migration prend trente minutes de plus. Quelqu'un demande : jusqu'à quand peut-on encore revenir en arrière ?
+
+Scène fictive, mais familière à qui a déjà piloté une bascule. Le déroulé vit dans un tableur, les heures se recalculent à la main, et le go/no-go se décide à l'impression du moment. L'heure limite du retour arrière n'est écrite nulle part.
+
+Une migration de nuit, un déménagement, l'ouverture d'un site : la journée de bascule se prépare des semaines et se joue en quelques heures. J'ai construit un outil pour ces heures-là.
+
+Le déroulé horaire garde ses responsables et ses dépendances, et la suite se recalcule dès qu'une étape démarre ou finit : retard cumulé, fin estimée, marge avant la fin de fenêtre. Les go/no-go reposent sur des critères écrits à l'avance. L'heure limite du retour arrière est calculée (fin de fenêtre moins durée du repli). Les incidents sont horodatés dans un journal.
+
+Cinq séquences types, fictives, servent de point de départ. La vue en direct se lit sur téléphone. C'est un outil d'aide : la décision reste aux personnes désignées.
+
+Il sera bientôt en vente. La démo, avec quatre bascules fictives, est ouverte sans inscription :
+https://qm-engineering.fr/templates/bascule/?demo
+
+À votre dernière bascule, cette heure limite était-elle écrite avant de commencer ?
+
+#GestionDeProjet #ConduiteDuChangement #Production #Logistique

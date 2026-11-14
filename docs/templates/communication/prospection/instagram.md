@@ -79,3 +79,22 @@ Démo libre avec des prospects fictifs, et contact : lien en bio.
 Vos relances, vous les suivez où aujourd'hui ?
 
 #Prospection #B2B #Indépendant #Entrepreneur #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-18
+
+Doc : https://docs.google.com/document/d/1Z22NAA-7pJxAKymjy_QpAMU790PQES5Vp5tMY7IrK0k/edit · publication prévue le 2027-02-16 · style : comparatif deux options
+
+Un tableur et votre mémoire, ou une liste de relances prête chaque matin.
+
+Quand on prospecte seul, la première option est la plus courante : on oublie qui relancer, et on réécrit le même message de zéro.
+
+La seconde, c'est le Pipeline de prospection. Les prospects avancent de « À contacter » à « Gagné », les relances du jour arrivent selon la cadence choisie, retards en tête, et chaque relance a son script rempli avec le prénom du prospect, à relire et copier.
+
+Rien n'est automatisé : vous envoyez vous-même. Bientôt en vente.
+
+Pour une équipe commerciale, relié à vos mails ? Je construis la version sur mesure.
+
+Démo libre avec des prospects fictifs : lien en bio. Envoyez-le à un indépendant qui prospecte seul.
+
+#Prospection #B2B #Indépendant #OutilsSurMesure

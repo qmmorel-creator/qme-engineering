@@ -103,3 +103,27 @@ Lien d'achat en premier commentaire.
 Formateurs, enseignants : la dernière question ratée par tout un groupe, c'était la notion ou l'énoncé ?
 
 #Formation #Enseignement #Pédagogie #OutilsNumériques #Organisation
+
+
+## Version finale (15/11/2026) · LI-137
+
+Doc : https://docs.google.com/document/d/1loaAZ-rde4eEllDfRsmKVlFji4rOaHIijghV880XDDc/edit · publication prévue le 2027-03-17 · style : question directe au lecteur
+
+La dernière question ratée par tout un groupe, c'était la notion ou l'énoncé ? Sans statistiques par question, impossible de le dire.
+
+Quand on forme ou qu'on enseigne, les questions s'accumulent dans dix fichiers, chaque quiz se reconstruit à la main et se corrige au stylo. On voit la moyenne, rarement la question qui l'a fait chuter.
+
+J'ai construit une banque de questions et quiz en ligne pour répondre à cette question-là.
+
+Les questions se rangent une fois : QCM, vrai ou faux, réponse courte, avec étiquettes, difficulté et explication. Un quiz se tire en un clic par étiquettes et difficulté, et s'imprime avec son corrigé à part. La note se calcule à partir des réponses saisies ; les réponses courtes qui ne correspondent pas sont laissées à trancher, d'un geste.
+
+Puis viennent les statistiques : réussite par question et par étiquette, questions trop faciles ou trop difficiles, et la mauvaise réponse qui attire le plus. C'est souvent là qu'apparaît l'énoncé ambigu.
+
+Copies anonymes ou pseudonymes, résultats effaçables à tout moment. Aucune question fournie : la banque reste la vôtre.
+
+Elle sera bientôt en vente. La démo, avec une banque et des apprenants fictifs, est ouverte sans inscription :
+https://qm-engineering.fr/templates/quiz/?demo
+
+Formateurs, enseignants : quelle question fait trébucher votre groupe à chaque session ?
+
+#Formation #Enseignement #Pédagogie #OutilsNumériques

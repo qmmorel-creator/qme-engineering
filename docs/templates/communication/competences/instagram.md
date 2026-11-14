@@ -90,3 +90,22 @@ Démo libre et contact : lien en bio. À envoyer à la personne qui prépare le 
 Chez vous, quelle compétence ne tient qu'à une seule personne ?
 
 #PME #RessourcesHumaines #Formation #Organisation #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-87
+
+Doc : https://docs.google.com/document/d/1nNA-YqkHxenK1IB_YGE1RmG6x9ZyBmKr5ohFa86LLMY/edit · publication prévue le 2027-03-13 · style : mini-tutoriel en 3 étapes
+
+Le jour où il est absent, qui répare la machine ? Trois étapes pour le savoir avant.
+
+1. Listez les compétences de chaque personne face à ce que son poste demande.
+2. Repérez celles qui ne tiennent qu'à une seule personne.
+3. Reliez le plan de formation à ces écarts, avec son budget.
+
+La Matrice compétences et formations fait ces trois étapes avec vous : 44 compétences et 9 postes prêts à adapter, données minimales, sans logiciel RH. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec une PME fictive : lien en bio. Enregistrez-le, ou envoyez-le à la personne qui prépare le plan de formation.
+
+#PME #RessourcesHumaines #Formation #OutilsNumériques

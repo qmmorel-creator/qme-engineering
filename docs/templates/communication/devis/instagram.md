@@ -79,3 +79,22 @@ Démo libre avec huit devis fictifs, et contact : lien en bio.
 Vos devis, vous partez d'un modèle vierge ou du dernier envoyé ?
 
 #Artisan #Devis #Freelance #Indépendant #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-19
+
+Doc : https://docs.google.com/document/d/1lzJTZOw2PuPzDiGaiDJGXGxE-jJgly1sJSQpP9uKMVw/edit · publication prévue le 2026-12-13 · style : chiffre qui surprend
+
+Dix lignes arrondies une à une, et le total de TVA peut s'écarter de quelques centimes du bon calcul.
+
+Beaucoup de devis partent d'un ancien devis modifié. Ça marche jusqu'au jour où une ligne a changé, mais pas le total.
+
+Le Générateur de devis calcule les totaux en centimes et la TVA par taux, sur un catalogue de prestations dont vous fixez les prix. Sections, remises, acompte, durée de validité. Avant l'envoi, il contrôle les mentions relevées sur les sites officiels.
+
+Des devis, pas des factures. Chacun reste responsable des mentions de son activité. Achat unique, 29 €.
+
+Votre bibliothèque d'ouvrages, vos métrés, vos modèles ? Je construis la version sur mesure.
+
+Démo libre avec huit devis fictifs : lien en bio. Enregistrez-le pour votre prochain devis.
+
+#Artisan #Devis #Freelance #OutilsSurMesure

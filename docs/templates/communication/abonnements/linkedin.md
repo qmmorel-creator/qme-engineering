@@ -131,3 +131,32 @@ Lien d'achat en premier commentaire.
 Un essai gratuit devenu payant sans que vous le voyiez passer : au bout de combien de temps l'avez-vous remarqué ?
 
 #Budget #FinancesPersonnelles #Abonnements #Consommation #Organisation
+
+
+## Version finale (15/11/2026) · LI-107
+
+Doc : https://docs.google.com/document/d/1_YyoZVNqAs1c1Oz2ZGv9hUO_ALbjAdWpjv0mFjIaWzw/edit · publication prévue le 2026-12-17 · style : comparatif deux options
+
+Un abonnement à 8,99 € ne fait peur à personne. Quinze, additionnés enfin sur un an, si.
+
+Il y a deux façons de regarder ses abonnements.
+
+Au mois, un par un : chaque prélèvement paraît petit, et c'est ainsi qu'on les lit sur un relevé.
+
+À l'année, tous ensemble : c'est le chiffre qui compte, et presque personne ne le calcule. Les prélèvements sont hebdomadaires, mensuels, trimestriels ou annuels, certains sont partagés, d'autres engagent pour douze mois avec un préavis.
+
+J'ai construit un suivi des abonnements pour la seconde lecture. Il ramène chaque abonnement au mois et à l'année, votre part seulement s'il est partagé. Il affiche les prélèvements du mois et les pics des annuels sur douze mois. Et pour chaque essai gratuit ou fin d'engagement, il calcule la date avant laquelle décider, préavis compris.
+
+96 abonnements courants sont proposés, sans marque ni prix : on coche, on saisit ce qu'on paie vraiment. Pas de connexion bancaire. Achat unique, sans abonnement, ce qui s'imposait.
+
+La démo, avec un foyer fictif, est ouverte sans inscription : lien en commentaire. Faites le total une fois, à l'année.
+
+#Budget #FinancesPersonnelles #Abonnements #Consommation
+
+Premier commentaire :
+
+La démo, avec un foyer fictif, sans inscription :
+https://qm-engineering.fr/templates/abonnements/?demo
+
+Le Suivi des abonnements (12 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/suivi-abonnements

@@ -79,3 +79,24 @@ Démo libre avec quatre plannings fictifs, et contact : lien en bio.
 Votre planning de chantier ou de projet, aujourd'hui : tableur, papier ou logiciel ?
 
 #GestionDeProjet #Planning #BTP #PME #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-09
+
+Doc : https://docs.google.com/document/d/1jr8ZP0IACBiuvXSIZsXt_pE_BLhDPkPu2LHq25FB4uI/edit · publication prévue le 2026-11-28 · style : question directe au lecteur
+
+Quand une date bouge, combien de cellules reprenez-vous à la main ?
+
+Dans un planning tenu sur tableur, une tâche qui glisse oblige à tout décaler soi-même, sans oublier le jour férié du mois prochain.
+
+Le Planning Gantt rapide crée une tâche, sa barre et son lien en une ligne (« Pose des meubles 12/12 3j après 7 »), recalcule les dates en jours ouvrés, jours fériés compris, et montre le chemin critique : ce qui décale la fin, et la marge du reste.
+
+Douze modèles pour démarrer, impression A3. Achat unique, 45 €.
+
+Plusieurs chantiers, vos équipes, vos ressources ? Je construis la version sur mesure.
+
+Démo libre avec quatre plannings fictifs : lien en bio. À envoyer à la personne qui tient le planning chez vous.
+
+Votre planning aujourd'hui : tableur, papier ou logiciel ?
+
+#GestionDeProjet #Planning #BTP #PME #OutilsSurMesure

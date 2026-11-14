@@ -104,3 +104,25 @@ Lien d'achat en premier commentaire.
 Sur un parc de plusieurs sites, qu'est-ce qui vous échappe en premier : les préventifs, les pannes ou les coûts ?
 
 #Maintenance #FacilityManagement #GestionDePatrimoine #ServicesGénéraux #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-127
+
+Doc : https://docs.google.com/document/d/15MImHvOMzMwqtEuHjb_o3086FjiKl7xd68DIngxsxz8/edit · publication prévue le 2027-03-07 · style : comparatif deux options
+
+Lequel de vos sites n'a vu passer personne depuis six mois ? Dans un tableur à un onglet par site, personne ne le voit.
+
+Résidences, bureaux, commerces, entrepôts : quand on exploite plusieurs sites, on choisit souvent entre deux organisations.
+
+Un onglet par site. Les échéances de préventif se recalculent à la main, les pannes se suivent par e-mail, et le coût de chaque site se reconstitue en fin d'année. Chaque onglet est juste ; la vue d'ensemble n'existe pas.
+
+Une seule base pour tout le parc. C'est le choix de l'outil de pilotage de parcs multi-sites que j'ai construit. Le prochain préventif se calcule à partir du dernier passage réalisé. Chaque panne est suivie jusqu'à sa résolution, avec la disponibilité et le coût par site. Les alertes remontent seules : préventif dépassé, équipement à l'arrêt trop longtemps, site sans visite depuis plusieurs mois.
+
+Les sites se consultent en liste ou sur une carte schématique, sans fond de carte en ligne. Une liste existante se reprend depuis un tableur, et tout s'exporte au même format. Aucune périodicité réglementaire imposée : chacun saisit celle de son contrat.
+
+Il sera bientôt en vente. La démo, avec un parc fictif de dix sites, est ouverte sans inscription :
+https://qm-engineering.fr/templates/parcs-multi-sites/?demo
+
+Sur votre parc, qu'est-ce qui échappe en premier : les préventifs, les pannes ou les coûts ?
+
+#Maintenance #FacilityManagement #ServicesGénéraux #OutilsNumériques

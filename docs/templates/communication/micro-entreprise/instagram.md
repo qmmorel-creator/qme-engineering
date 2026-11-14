@@ -77,3 +77,22 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 Votre livre des recettes, aujourd'hui : carnet, tableur ou relevé bancaire ?
 
 #MicroEntreprise #AutoEntrepreneur #Indépendant #Freelance #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-07
+
+Doc : https://docs.google.com/document/d/1dbhoKNTvUKX-JSxd9nhERcxoek0NY6qjxyyumipSk4s/edit · publication prévue le 2026-11-23 · style : opinion assumée
+
+Le livre des recettes ne devrait jamais se reconstituer la veille de la déclaration URSSAF.
+
+Obligatoire en micro-entreprise, il se tient souvent sur papier ou dans un tableur, et l'on refait les totaux à chaque échéance. Chaque total refait à la main est une occasion de se tromper.
+
+Le Livre recettes-dépenses note chaque recette en quelques secondes, prépare à chaque échéance, mensuelle ou trimestrielle, le chiffre d'affaires à déclarer avec une estimation des cotisations, et suit plafonds et seuils de TVA, avec une alerte avant de les atteindre.
+
+Un outil d'aide, pas un logiciel comptable. Achat unique, 25 €.
+
+Le relier à vos devis et à vos factures ? Je construis la version sur mesure.
+
+Démo libre avec un atelier fictif : lien en bio. Enregistrez ce post pour votre prochaine échéance.
+
+#MicroEntreprise #AutoEntrepreneur #Indépendant #OutilsSurMesure

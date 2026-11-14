@@ -96,3 +96,33 @@ La démo, avec quatre plannings d'exemple, est ouverte à tous, sans inscription
 Quand une tâche glisse, combien de temps vous faut-il pour remettre tout votre planning à jour ?
 
 #GestionDeProjet #Planning #Gantt #BTP #PME
+
+
+## Version finale (15/11/2026) · LI-80
+
+Doc : https://docs.google.com/document/d/1XxpZKUnXn1s0K15Q6ISo8DyVA21SrAsgv6_huA6oihc/edit · publication prévue le 2026-11-27 · style : liste numérotée courte
+
+Une date bouge dans un planning tenu sur tableur, et ce sont vingt cellules à reprendre à la main. Plus le jour férié du mois prochain.
+
+Entre le tableur, qui ne calcule rien, et le logiciel de planification, long à prendre en main, il manquait un outil simple pour les artisans, les PME et les chefs de projet. J'ai construit un planning Gantt en ligne. Ce qu'il fait, dans l'ordre où l'on s'en sert :
+
+1. Une ligne suffit : « Pose des meubles 12/12 3j après 7 » crée la tâche, sa barre et son lien.
+2. Les dates se recalculent en jours ouvrés, jours fériés français compris, calculés chaque année.
+3. Le chemin critique apparaît : les tâches qui décalent la fin du projet, et la marge des autres.
+4. L'avancement se suit face au prévu et au planning de référence, puis s'imprime en A3 paysage.
+
+Douze modèles fictifs servent de point de départ : rénovation, construction, déménagement, site web, salon…
+
+Il s'ouvre dans le navigateur avec une clé, de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+La démo, avec quatre plannings d'exemple, est ouverte sans inscription : lien en commentaire. Décalez une tâche et regardez le reste suivre.
+
+#GestionDeProjet #Planning #Gantt #BTP #PME
+
+Premier commentaire :
+
+La démo, avec quatre plannings d'exemple, sans inscription :
+https://qm-engineering.fr/templates/gantt/?demo
+
+Le Planning Gantt rapide (45 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/planning-gantt

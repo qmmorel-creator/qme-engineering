@@ -93,3 +93,20 @@ Démo libre et contact : lien en bio.
 Combien de sites suivez-vous, et dans combien d'onglets ?
 
 #Maintenance #Organisation #PME #ServicesGénéraux #OutilsNumériques
+
+
+## Version finale (15/11/2026) · IG-82
+
+Doc : https://docs.google.com/document/d/1mRAHjpivGkOA_NpOfnBEJOd6pBsP3xkkkJYmtRfRKV8/edit · publication prévue le 2027-03-08 · style : opinion assumée
+
+Avec plusieurs sites, un onglet par site ne suffit pas : chaque onglet est juste, la vue d'ensemble n'existe pas.
+
+Un préventif glisse, une porte de quai reste à l'arrêt depuis douze jours, et le coût de chaque site se reconstitue en fin d'année.
+
+Le Pilotage de parcs multi-sites calcule le prochain préventif à partir du dernier passage, suit chaque panne jusqu'à sa résolution et alerte sur les retards, les arrêts prolongés et les sites oubliés. Carte schématique sans fond de carte en ligne, import et export pour votre tableur. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec un parc fictif de dix sites : lien en bio. À envoyer à la personne qui gère vos sites.
+
+#Maintenance #ServicesGénéraux #PME #OutilsNumériques

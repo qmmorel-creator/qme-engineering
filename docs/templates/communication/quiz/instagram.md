@@ -93,3 +93,20 @@ Démo libre et contact : lien en bio.
 Quelle question fait trébucher votre groupe à chaque fois ?
 
 #Enseignant #Formation #Enseignement #Quiz #Organisation
+
+
+## Version finale (15/11/2026) · IG-92
+
+Doc : https://docs.google.com/document/d/1JiKuJ9-_Nzc45Bd_kCxeODsYWXfpbaLEy-l8CdBJs1s/edit · publication prévue le 2027-03-18 · style : avant / après
+
+Avant : dix fichiers de questions, un quiz recopié, une correction au stylo. Après : une seule banque, un quiz en un clic.
+
+Avant, on ne sait jamais quelle question a fait échouer le groupe. Après, la réussite s'affiche par question et par étiquette, avec la mauvaise réponse qui attire le plus.
+
+La Banque de questions et quiz range QCM, vrai ou faux et réponses courtes avec étiquettes et difficulté, imprime le sujet avec son corrigé à part et calcule la note à partir des réponses saisies. Copies anonymes ou pseudonymes. Bientôt en vente, sans abonnement.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec une banque fictive : lien en bio. Envoyez-le à un collègue formateur.
+
+#Enseignant #Formation #Quiz #Enseignement

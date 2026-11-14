@@ -97,3 +97,34 @@ Vous avez rénové récemment : qu'est-ce qui vous a le plus manqué pour suivre
 Si quelqu'un autour de vous attend ses devis, transmettez-lui ce post.
 
 #Rénovation #Travaux #Maison #Immobilier #Budget
+
+
+## Version finale (15/11/2026) · LI-97
+
+Doc : https://docs.google.com/document/d/1ed1lL3M0mEi_B__0Pmqjh1O5eU5tqN2zD4UGxbKbcQI/edit · publication prévue le 2026-12-27 · style : dialogue ou scène
+
+« On prend le moins cher, 3 025 € ? » Sur trois devis de salle de bains, c'est le seul qui n'inclut pas l'étanchéité.
+
+(Montants fictifs, tirés de la démo : 3 025 €, 3 410 € et 3 910 €.)
+
+« Il est où, le devis du carreleur ? » « Dans tes mails, je crois. » « Et le plombier, il passe avant ou après ? »
+
+Quand on rénove avec plusieurs artisans sans maître d'œuvre, on devient chef de chantier sans les outils. J'en ai construit un, pensé pour un particulier.
+
+Les devis se comparent poste par poste : montants HT et TTC, ce qui est inclus ou non, délai, assurance déclarée. Le moins cher et les écarts sont calculés. Le budget distingue le prévu, l'engagé et le payé, avec une provision pour imprévus dont on voit la consommation. La frise des interventions signale deux artisans dans la même pièce le même jour, ou une peinture prévue avant la plâtrerie.
+
+En fin de travaux, les défauts à reprendre se notent par poste, avec la fin de la garantie de parfait achèvement. Aucun prix moyen ni montant d'aide : seuls vos devis comptent.
+
+Il s'ouvre dans le navigateur avec une clé, à deux si besoin. Achat unique, sans abonnement.
+
+La démo, avec un T3 fictif en plein chantier, est ouverte sans inscription : lien en commentaire. Si quelqu'un autour de vous attend ses devis, transmettez-lui.
+
+#Rénovation #Travaux #Maison #Budget
+
+Premier commentaire :
+
+La démo, un appartement T3 fictif en plein chantier, sans inscription :
+https://qm-engineering.fr/templates/travaux/?demo
+
+Le Pilote de travaux maison (25 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/pilote-travaux

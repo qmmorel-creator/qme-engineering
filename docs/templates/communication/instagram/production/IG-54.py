@@ -45,7 +45,7 @@ VUE5 = f'''<section class="cadre cta rouge" id="IG-54-relances-5">
     <h2 style="font-size:84px">{ig.e("Combien de vos prospects n'ont pas de prochaine action ?")}</h2>
     <div class="liste"><div><i></i>Une étape par prospect</div><div><i></i>Une prochaine action datée</div></div>
   </div>
-  <div class="plus" style="color:var(--encre);top:840px"><b>Pipeline de prospection QME</b> {ig.e("bientôt en vente : il applique cette règle. La démo est déjà ouverte, sans inscription.")}</div>
+  <div class="plus" style="color:var(--encre);top:720px"><b>Pipeline de prospection QME</b> {ig.e(": il applique cette règle. Bientôt en vente, démo déjà ouverte.")}</div>
   <div class="bouton"><b>Lien en bio</b><span>{ig.e("« Templates et démos »")}</span></div>
   {ig.MARQUE.format(s='symbole-clair', ms=' style="color:#fff"', es='', url='qm-engineering.fr/templates')}
 </section>'''
@@ -55,7 +55,7 @@ ALT = [
     "Fond noir : le premier message est rarement celui qui obtient la réponse. C'est souvent la relance qu'on n'a pas envoyée. Quand on prospecte seul, tout tient dans un tableur et dans sa tête.",
     "La règle, pas de date, pas de relance : une étape par prospect, de « À contacter » à « Gagné » ; une prochaine action datée pour chacun ; une cadence choisie qui fixe la date de la relance suivante.",
     "Chaque matin, une seule liste : les relances du jour, retards en tête ; le message préparé avec le prénom, envoyé par vous ; les personnes qui ne veulent plus être contactées mises de côté.",
-    "Fond rouge : combien de vos prospects n'ont pas de prochaine action ? Le Pipeline de prospection QME, bientôt en vente, applique cette règle ; démo ouverte sans inscription. Lien en bio.",
+    "Fond rouge : combien de vos prospects n'ont pas de prochaine action ? Le Pipeline de prospection QME applique cette règle : bientôt en vente, démo déjà ouverte. Lien en bio.",
 ]
 
 if __name__ == '__main__':

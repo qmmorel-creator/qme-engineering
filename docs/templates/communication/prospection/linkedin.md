@@ -99,3 +99,25 @@ Une démo avec des prospects fictifs est ouverte à tous, sans inscription : lie
 Vous qui prospectez seul : au bout de combien de relances sans réponse classez-vous un prospect comme perdu ?
 
 #Prospection #B2B #DéveloppementCommercial #Indépendants #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-89
+
+Doc : https://docs.google.com/document/d/10EkuMmfoj_l8LeCdVCy4e1Vgq1v-KIgJfw6upDF5cJM/edit · publication prévue le 2027-02-15 · style : mini-tutoriel en 3 étapes
+
+En prospection, la réponse vient rarement du premier message. Elle vient souvent de la relance qu'on a oublié d'envoyer.
+
+Quand on prospecte seul, tout tient dans un tableur et dans sa tête, et les relances glissent les premières. La méthode tient en trois étapes, que j'ai ensuite traduites en outil.
+
+1. Fixer une cadence avant le premier message : combien de relances, à combien de jours d'écart. Ce n'est plus une décision à prendre chaque matin.
+2. Chaque matin, ne regarder que la liste des relances du jour, retards en tête.
+3. Partir d'un script déjà écrit pour chaque étape, rempli avec le prénom et l'organisation du prospect, à relire avant d'envoyer.
+
+Le pipeline de prospection que j'ai construit fait exactement cela. Les prospects avancent de « À contacter » à « Gagné » en glissant une carte, avec trois cadences types et dix-neuf scripts sobres. Les chiffres montrent le taux de passage d'une étape à l'autre et ce que donne chaque canal. Rien n'est automatisé : vous envoyez vous-même chaque message, et les personnes qui ne veulent plus être contactées sont mises de côté en un clic.
+
+Il sera bientôt en vente. La démo, avec des prospects fictifs, est déjà ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/prospection/?demo
+
+Au bout de combien de relances sans réponse classez-vous un prospect comme perdu ?
+
+#Prospection #B2B #Indépendants #DéveloppementCommercial

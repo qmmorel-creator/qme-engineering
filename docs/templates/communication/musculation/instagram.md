@@ -91,3 +91,20 @@ Démo libre et contact : lien en bio.
 Vos charges, vous les notez où aujourd'hui : carnet, téléphone ou de tête ?
 
 #Musculation #CrossTraining #Sport #Organisation
+
+
+## Version finale (15/11/2026) · IG-76
+
+Doc : https://docs.google.com/document/d/1e2fxB-CZHKPXDmzRErB2jCqg269UpDOLvvdUU6g0W3M/edit · publication prévue le 2027-03-03 · style : une seule idée, texte très court
+
+« Combien la dernière fois ? » Le Carnet de musculation et cross-training répond sous chaque exercice.
+
+Séances notées en quelques secondes, WOD avec leur score, records repérés tout seuls, minuteur qui marche sans réseau. Aucune donnée de santé, ni programme ni avis médical. Bientôt en vente.
+
+Besoin de plus ? Je construis la version sur mesure.
+
+Démo libre avec un carnet fictif : lien en bio. Envoyez-le à votre binôme d'entraînement.
+
+Vos charges, vous les notez où : carnet, téléphone ou de tête ?
+
+#Musculation #CrossTraining #Sport

@@ -101,3 +101,30 @@ La démo, avec une équipe fictive, est ouverte à tous, sans inscription : lien
 Et chez vous, entre deux réunions, les actions vivent où ? Dans le compte rendu, dans un tableur, dans la mémoire de chacun ?
 
 #GestionDeProjet #Management #Réunions #PlanDAction #Productivité
+
+
+## Version finale (15/11/2026) · LI-75
+
+Doc : https://docs.google.com/document/d/1oeaW4qdUn9Tt7rdlK_NQZBaU7Cg-UqZ_KX782-sJJTk/edit · publication prévue le 2026-11-17 · style : contre-intuition
+
+Un compte rendu soigné ne fait avancer aucune action. Ce qui compte, c'est ce qui se passe le lendemain de la réunion.
+
+« Qui devait envoyer le devis, déjà ? » Si la question revient à chaque point, la réunion n'est pas en cause. Le compte rendu part par e-mail, puis les actions vivent dans la mémoire de chacun jusqu'à la réunion suivante, où l'on découvre ce qui n'a pas bougé.
+
+J'ai donc construit un compte rendu qui sert d'abord de plan d'actions. On tape « Marie : envoyer le devis avant vendredi », et l'action est créée avec sa responsable et son échéance. À la réunion suivante de la série, ce qui reste ouvert revient de lui-même en tête. Une vue rassemble les actions de toutes les réunions, par personne, retards en évidence.
+
+Huit modèles de réunion sont fournis, du point d'équipe au comité de pilotage, en passant par la réunion de chantier. Le compte rendu se copie ou s'imprime en A4.
+
+Il s'ouvre dans le navigateur avec une clé, de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+La démo, avec une équipe fictive, est ouverte à tous, sans inscription : lien en commentaire. Essayez-la avec votre prochaine réunion en tête.
+
+#GestionDeProjet #Management #Réunions #PlanDAction
+
+Premier commentaire :
+
+La démo, avec une équipe fictive, sans inscription :
+https://qm-engineering.fr/templates/compte-rendu/?demo
+
+Le template Compte rendu et plan d'actions (15 €, achat unique, accès à vie) :
+https://qmengineering.gumroad.com/l/compte-rendu-actions
