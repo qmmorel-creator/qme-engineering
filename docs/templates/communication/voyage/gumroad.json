@@ -1,0 +1,42 @@
+{
+  "slug": "voyage",
+  "name": "Planificateur de voyage",
+  "price_cents": 1300,
+  "permalink": "planificateur-voyage",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mon voyage",
+  "summary": "L'itinéraire par étapes, le toit de chaque nuit, les activités jour par jour, le budget prévu et réel, et au retour, qui doit quoi à qui. Aucune réservation, aucune publicité.",
+  "description": "<h2>Le voyage tient dans ta poche.</h2><p>Les réservations sont dans dix e-mails, le programme dans une note, le budget dans un tableur et, au retour, personne ne sait plus qui doit quoi. Le Planificateur de voyage réunit tout au même endroit, sur ordinateur pour préparer et sur téléphone pendant le voyage.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'itinéraire par étapes</strong> : chaque lieu avec ses nuits, les transports entre deux étapes (date, heure, référence) et le chemin complet en une ligne, à copier dans un message.</li><li><strong>Un toit pour chaque nuit</strong> : hébergement, adresse, réservé ou à réserver, montant, acompte et reste à payer sur place. Une nuit sans hébergement ou réservée deux fois est signalée.</li><li><strong>Le programme jour par jour</strong> : transports et activités à leur heure, la nuit du soir, imprimable. La liste de ce qui reste à réserver, du plus urgent au plus lointain.</li><li><strong>Le budget prévu et réel</strong> par poste et par personne : le plan donne le prévu, les dépenses saisies en route donnent le réel.</li><li><strong>Qui doit quoi</strong> : chaque dépense dit qui a payé et pour qui (parts égales, en parts ou montants). Le partage tombe juste au centime et le nombre minimal de remboursements est calculé.</li><li><strong>Bagages et documents</strong> : des listes par type de séjour (ville, plage, montagne, hiver, camping, voiture, enfants…) et les documents à prévoir, à cocher.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique les dates et les voyageurs : ton voyage se crée. Il est enregistré en ligne et te suit sur tous tes appareils ; partage la clé avec tes compagnons de route pour voir les mêmes données. Une fois ouvert, il reste consultable sans réseau.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation, ni agence de voyage ni conseil financier : aucune réservation n'est faite et aucune plateforme n'est connectée ; les montants sont ceux que tu saisis, en euros. Formalités (papiers, visa, santé) : rien n'est intégré, l'outil renvoie aux sources officielles. Démo disponible sur qm-engineering.fr/catalogue/voyage.</em></p>",
+  "tags": [
+    "voyage",
+    "itineraire",
+    "budget",
+    "depenses-partagees",
+    "organisation",
+    "vacances",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton voyage s'ouvre. Indique les dates et les voyageurs, puis ajoute tes étapes. Garde cet e-mail : la même clé fonctionne sur tous tes appareils, et tes compagnons de route peuvent l'utiliser aussi.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Voyageurs, familles et groupes d'amis"
+    }
+  ]
+}

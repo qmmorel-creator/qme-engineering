@@ -53,6 +53,7 @@ export const TEMPLATES = {
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
   RPS: { slug: 'repas', prix: 1300, phrase: 'Menus de la semaine, liste de courses par rayon à cocher.', pour: 'perso' },
+  VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -68,7 +69,6 @@ export const PREVUS = {
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
-  VYG: { nom: 'Planificateur de voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.' },
   CRN: { nom: 'Carnet de voiture', prix: 1300, phrase: 'Entretiens, kilométrage, dépenses et coût au kilomètre.' },
   PRF: { nom: 'Gestion de classe', prix: 2500, phrase: 'Élèves, évaluations, compétences et bulletins.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
@@ -227,9 +227,10 @@ export const PAGES = {
       ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
       ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],
+      ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
     ],
     arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Remerciements et voyage à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CDX', 'VYG'],
+    prevus: ['CDX'],
   },
   PPR: {
     couleur: 'encre', cibles: ['managers', 'independants'],
@@ -321,11 +322,12 @@ export const PAGES = {
     resume: 'L’itinéraire, les nuits, les activités et le budget, puis le partage des dépenses entre voyageurs.',
     pourQui: 'Vous partez en famille, en couple ou entre amis. Les réservations sont dans dix e-mails, le budget dans une note, et au retour personne ne sait qui doit quoi.',
     parcours: [
-      ['VYG', 'Construisez l’itinéraire : étapes, nuits, activités, budget prévu et réel.'],
+      ['Construisez l’itinéraire : étapes, nuits, activités, budget prévu et réel.'],
       ['BCM', 'Partagez les dépenses et voyez en un coup d’œil qui doit quoi.'],
+      ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
     ],
     arguments: ['Aucune réservation ni publicité : vous gardez la main', 'Toute la troupe sur la même clé', 'Le planificateur de voyage arrive bientôt'],
-    prevus: ['VYG'],
+    prevus: [],
   },
   PNS: {
     couleur: 'rouge', cibles: ['enseignants'],

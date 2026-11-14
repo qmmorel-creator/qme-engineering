@@ -225,6 +225,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   familiales originales (régimes calculés depuis les ingrédients), recettes perso saisies en texte libre, « avec ce
   qu'il me reste ». Moteur de liste de courses `listeCourses` réutilisable par la nutrition. Règles dans
   `regles.js`, tests `outils/templates/repas.test.mjs`.
+- `templates/voyage/` (VYG) : **planificateur de voyage**, prêt, « Mise en vente prochaine » (13 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/voyage/gumroad.json`). Étapes, hébergement de chaque nuit (réservé
+  ou à réserver, acompte, reste à payer, nuits sans toit signalées), transports, activités jour par jour, budget
+  prévu et réel par poste et par personne, dépenses partagées et qui doit quoi, bagages par type de séjour et
+  documents à prévoir (formalités renvoyées aux sources officielles). Dépenses partagées : moteur du budget commun,
+  `templates/budget-commun/regles.js` chargé tel quel (et gardé hors ligne par `sw.js`). Règles dans `regles.js`,
+  tests `outils/templates/voyage.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

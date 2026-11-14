@@ -62,6 +62,7 @@ export const PRODUITS = {
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/' },
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
+  VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
