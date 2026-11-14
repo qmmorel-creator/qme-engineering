@@ -90,7 +90,7 @@ déjà).
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
-| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -448,6 +448,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T62 | `stocks` | STK | stocks-inventaire (prévu) |
 | T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
+| T13 | `epargne` | EPG | objectif-epargne (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -800,3 +801,42 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
   Communication prête : `communication/temps-de-vie/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et carrousel PNG, prospects.md),
   fiche ajoutée à `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad, clé de licence
   (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram.
+
+## Fiche T13 (décisions de cadrage déléguées par Quentin, 14/11/2026)
+
+### T13 · Objectif d'épargne et fonds d'urgence (`templates/epargne/`, préfixe EPG)
+- Promesse : « Chaque euro a un but. » Un montant, un versement mensuel, une date d'atteinte pour chaque
+  objectif, en commençant par le fonds d'urgence.
+- Public : particuliers et familles qui épargnent pour un projet (jeunes actifs, futurs acheteurs immobiliers,
+  indépendants aux revenus variables, parents). Prix 12 € (prix minimum), nom et prix choisis par délégation.
+- Base intégrée (`donnees.js`, contenu original QME, **aucun montant, taux, plafond ni produit**) : 13 objectifs
+  types (fonds d'urgence, apport immobilier, voiture, voyage, travaux, arrivée d'un enfant, mariage ou fête,
+  études d'un enfant, permis, déménagement, dépenses annuelles prévisibles, projet personnel, autre), chacun
+  avec ses postes de budget à chiffrer, un horizon indicatif pour la date visée proposée, un conseil de
+  support générique (disponible, sans risque…) et un point d'attention ; 11 postes de dépenses essentielles
+  pour le fonds d'urgence ; questionnaire de taille du fonds (3 situations, 5 facteurs) ; paliers de jalons
+  (10, 25, 50, 75, 100 % et 1, 3, 6 mois couverts) ; 8 conseils, glossaire de 8 termes, mode de calcul.
+- Source du repère de taille : « 3 à 6 mois de dépenses », ordre de grandeur courant en éducation financière,
+  présenté comme repère ; ajustement par situation (stable 3, variable 5, indépendant 6, + 1 par facteur,
+  borné de 3 à 12) = **hypothèses QME**, affichées comme telles. Aucune donnée qui se périme : le taux est
+  saisi par l'utilisateur pour chaque objectif (0 % par défaut), capitalisation mensuelle ou annuelle
+  (décembre, comme un livret).
+- Écrans : Tableau (versements du mois cochés en un geste, alertes retard, capacité dépassée, rythme,
+  absence de fonds d'urgence, prochains jalons, épargne totale réelle puis projetée) ; Objectifs (cartes par
+  statut, capacité d'épargne, plan des 12 prochains mois ; détail : trajectoire réelle et projetée, budget
+  par postes ou fonds d'urgence avec questionnaire, jalons datés, versements ponctuels prévus, historique,
+  archivage) ; Scénarios (3 hypothèses versement, taux, apport ; date d'atteinte, total versé, intérêts,
+  solde à la date visée ; versement nécessaire pour un mois choisi ; « Appliquer à l'objectif ») ; Historique
+  (versements, retraits, intérêts reçus, filtre, export CSV) ; Guide.
+- Calculs (`regles.js`, testés dans `outils/templates/epargne.test.mjs`) : projection mensuelle (intérêts
+  sur le solde de début de mois, puis versement ; arrêt des versements à l'atteinte, dernier versement
+  ajusté), versement nécessaire par recherche dichotomique arrondi à l'euro supérieur, statut (atteint, dans
+  les temps, en retard, sans date, en pause, hors d'atteinte), mois couverts, jalons réels et prévus.
+- Risques : **argent**, avertissement dans l'application, la page et la fiche Gumroad (aide au calcul, aucun
+  produit ni taux recommandé, fiscalité non calculée) ; banques calculant par quinzaine ou au jour près :
+  estimation signalée.
+- Statut : prêt le 14/11/2026 (page « Mise en vente prochaine », démo libre, bouton « Je suis intéressé(e) »).
+  Communication prête : `communication/epargne/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et
+  carrousel PNG, prospects.md, section-site.html, cartes). Reste : création de la fiche Gumroad (et ajout à
+  `communication/gumroad-a-creer.json`), clé de licence (Quentin), passage en vente du site, lignes des
+  plannings LinkedIn et Instagram (non insérées : aucune session n'a eu accès aux plannings pour ce template).

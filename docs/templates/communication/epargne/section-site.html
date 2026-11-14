@@ -1,0 +1,49 @@
+<!-- Version « en vente » de la page catalogue/epargne/ (contenu de <main> à reprendre dans la page à la mise
+     en vente). Permalien Gumroad prévu : objectif-epargne (à confirmer une fois la fiche créée), prix 12 €.
+     Captures : assets/templates-epargne-*.webp (démo, données fictives). À la mise en vente, retirer aussi le
+     lien .bientot-demo de templates/epargne/app.js et changer ?v= dans index.html et sw.js. -->
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><a href="/templates/?pour=perso#tous">Vie personnelle</a><span>›</span><b>Objectif d'épargne et fonds d'urgence</b></nav>
+<section class="section" id="epargne">
+  <div class="section-head">
+    <h1 class="h-section">Objectif d'épargne et fonds d'urgence</h1>
+    <p>Pour mettre de l'argent de côté avec un but précis : un fonds d'urgence de quelques mois de dépenses, un apport immobilier, une voiture, un voyage. Chaque objectif a son montant, son versement et la date où vous y arrivez.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-epargne-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord d'épargne : versements du mois par objectif, alerte d'un objectif en retard, épargne totale, mois de dépenses couverts par le fonds d'urgence et avancement de cinq objectifs (données fictives)">
+      <img class="tel" src="/assets/templates-epargne-tel.webp?v=20261114" width="780" height="1328" alt="L'outil d'épargne sur téléphone : date du prochain objectif atteint et versements du mois à cocher (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Particuliers · familles</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>12 objectifs types prêts à chiffrer</b> : fonds d'urgence, apport immobilier, voiture, voyage, travaux, arrivée d'un enfant, études, permis, déménagement, dépenses annuelles… chacun avec ses postes de budget</li>
+        <li><b>Un fonds d'urgence calculé en mois de dépenses</b> : vos dépenses essentielles poste par poste, les mois couverts aujourd'hui, et un repère de taille selon votre situation</li>
+        <li><b>La date d'atteinte et le versement nécessaire</b> : au rythme actuel, l'objectif est atteint quand ? Et pour la date que vous visez, combien verser par mois ?</li>
+        <li><b>Des scénarios d'intérêts composés</b> : trois hypothèses côte à côte (versement, taux, apport), au taux de votre propre placement ; aucun taux n'est fourni par l'outil</li>
+        <li><b>Jalons et historique</b> : versements du mois cochés en un geste, retraits et intérêts notés, paliers franchis datés, plan des 12 prochains mois</li>
+      </ul>
+      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/objectif-epargne" data-goatcounter-click="achat-epargne" data-goatcounter-title="Acheter : objectif d'épargne et fonds d'urgence">Acheter</a>
+        <a class="btn" href="/templates/epargne/?demo" data-goatcounter-click="demo-epargne" data-goatcounter-title="Démo : objectif d'épargne et fonds d'urgence">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-epargne-urgence.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Détail du fonds d'urgence : somme de côté, reste à réunir, intérêts d'ici l'objectif, 2,3 mois de dépenses couverts sur 6, et trajectoire du solde réel puis projeté jusqu'à la cible (données fictives)"><figcaption>Le fonds d'urgence en mois de dépenses, et sa trajectoire</figcaption></figure>
+    <figure><img src="/assets/templates-epargne-scenarios.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Trois scénarios pour un apport immobilier : plan actuel, versement plus élevé et sans intérêts, avec la date d'atteinte de chacun et leurs courbes face à la cible (données fictives)"><figcaption>Trois scénarios côte à côte, au taux que vous saisissez</figcaption></figure>
+    <figure><img src="/assets/templates-epargne-objectifs.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des objectifs avec leur statut (sans date, en retard, dans les temps, atteint, en pause), la capacité d'épargne mensuelle et le versement nécessaire pour tenir la date visée (données fictives)"><figcaption>Tous vos objectifs, leur statut et votre capacité d'épargne</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Quel taux d'intérêt l'outil utilise-t-il ?</summary><p>Celui que vous saisissez, objectif par objectif : le taux de votre propre placement, net si vous le connaissez. Par défaut il est à 0 %. L'outil ne contient aucun taux de livret ni de marché, qui changent dans l'année : vous le mettez à jour quand votre banque l'annonce. Vous choisissez aussi si les intérêts sont ajoutés chaque mois ou une fois par an, en décembre.</p></details>
+    <details><summary>Combien de mois pour un fonds d'urgence ?</summary><p>L'ordre de grandeur couramment cité est de 3 à 6 mois de dépenses essentielles, davantage si vos revenus sont incertains. Un court questionnaire (revenus stables ou variables, indépendant, personnes à charge, propriétaire…) donne un repère adapté à votre situation, entre 3 et 12 mois. C'est un repère, pas une règle : vous choisissez.</p></details>
+    <details><summary>Comment la date d'atteinte est-elle calculée ?</summary><p>Mois par mois, à partir de votre solde réel : intérêts du mois au taux saisi, puis versement prévu et versements ponctuels (prime, remboursement) ou retraits prévus. Le versement nécessaire est le plus petit montant mensuel, arrondi à l'euro, qui atteint la cible à la date visée. Le calcul est expliqué dans l'application.</p></details>
+    <details><summary>Et si je dois puiser dans mon épargne ?</summary><p>Notez le retrait : le solde réel, les jalons et la date d'atteinte se recalculent, et vous voyez combien de mois il faut pour reconstituer le fonds. Un fonds d'urgence est fait pour ça.</p></details>
+    <details><summary>L'outil est-il relié à ma banque ?</summary><p>Non. Aucune banque, aucun compte n'est connecté : vous notez vos versements (un geste par mois avec le bouton « Fait »). Vos données restent à vous, exportables en JSON et CSV.</p></details>
+    <details><summary>Est-ce un conseil financier ?</summary><p>Non. C'est un outil d'aide au calcul à partir de votre saisie ; il ne recommande ni produit ni placement. Une épargne placée avec un risque peut perdre de la valeur, et la fiscalité éventuelle n'est pas calculée.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/epargne/?demo">la démo</a> ouvre un foyer fictif avec cinq objectifs dans tous les états (atteint, dans les temps, en retard, en pause, fonds d'urgence entamé puis reconstitué). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+<section class="rappel-templates"><p><b>Achat unique, sans abonnement.</b> Après l'achat sur Gumroad, vous recevez une clé de licence par e-mail : saisissez-la sur <a href="/connexion/">qm-engineering.fr/connexion</a>, vos objectifs sont synchronisés sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>
+<nav class="pager" aria-label="Pages"><a class="prec" href="/templates/"><span>Page précédente</span><b>Tous les templates</b></a><span></span></nav>
