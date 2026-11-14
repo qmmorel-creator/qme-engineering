@@ -6,6 +6,10 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
+  BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
+  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
+  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
   AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
