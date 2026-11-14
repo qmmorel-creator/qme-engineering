@@ -543,8 +543,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .option-edit.reco{border-color:var(--jaune);background:#FFFBF0;box-shadow:inset 0 4px 0 var(--jaune)}
 .option-edit .grille-2{gap:8px}
 .option-edit .l-outils{justify-content:flex-end}
-.option-haut{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
-.reco-case{font-size:14px;min-height:44px}
+.option-haut{display:flex;flex-direction:column;gap:2px}
+.reco-case{font-size:14px;min-height:40px}
 .comparatif th,.comparatif td{text-align:center;vertical-align:middle}
 .comparatif th{background:var(--sable);color:var(--encre);text-transform:none;letter-spacing:0}
 .comparatif tbody th{background:var(--surface);font-size:14px}

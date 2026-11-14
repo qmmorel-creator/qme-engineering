@@ -191,6 +191,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   relatif au jour J et filtré par la situation, démarches et contrats sans délai légal chiffré (renvoi au bail,
   aux contrats ou à service-public.fr), cartons numérotés par pièce avec recherche et étiquettes A4, volume
   estimé, devis comparés au m³, budget. Règles dans `regles.js`, tests `outils/templates/demenagement.test.mjs`.
+- `templates/propositions/` (PCM) : **propositions commerciales** (T74), prêt, « Mise en vente prochaine » (19 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/propositions/gumroad.json`). Contexte, objectifs,
+  livrables, blocs de bibliothèque (présentation, méthode, références), options comparées (bon, mieux, premium), planning
+  en semaines, conditions, aperçu A4 imprimable ; suivi (validité, relances avec message à copier, réponse et motif,
+  taux de transformation en nombre et en valeur), duplication. Prix hors taxes, aucune règle légale : mentions et TVA
+  renvoyées au devis (T36). Règles dans `regles.js`, tests `outils/templates/propositions.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio

@@ -823,7 +823,7 @@
       ['Taux de transformation', s.taux === null ? '–' : `${s.taux}<small>%</small>`, `${s.acceptees} sur ${s.acceptees + s.refusees + s.sansSuite} tranchées`, 'var(--encre)', ''],
       ['En valeur', s.tauxValeur === null ? '–' : `${s.tauxValeur}<small>%</small>`, s.montantDecide ? `${euros(s.montantAccepte)} sur ${euros(s.montantDecide)}` : '', 'var(--bleu)', 'rond'],
       ['Délai de réponse', s.delaiMoyen === null ? '–' : `${s.delaiMoyen}<small> j</small>`, 'entre l\'envoi et la réponse', 'var(--jaune)', ''],
-      ['Panier moyen', s.panierMoyen === null ? '–' : euros(s.panierMoyen), 'par proposition acceptée', 'var(--rouge)', 'rond'],
+      ['Panier moyen', s.panierMoyen === null ? '–' : euros(Math.round(s.panierMoyen / 100) * 100), 'par proposition acceptée', 'var(--rouge)', 'rond'],
     ].map(([lib, v, u, c, f]) => `<div class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><em>${u}</em></div>`).join('');
     return `
       <div class="vue-tete"><div><h1>Suivi</h1><p>Relances du jour et résultats des 12 derniers mois (propositions tranchées : acceptées, refusées ou classées sans suite). Rien n'est envoyé à ta place : les messages se copient.</p></div></div>
