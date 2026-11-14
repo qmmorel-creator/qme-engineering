@@ -89,6 +89,7 @@ const T = {
   competences: ['Matrice compétences et formations', 'Qui sait faire quoi, et qui former.', 'Écarts au poste · compétences fragiles · formations'],
   progression: ['Progression pédagogique', 'Ton programme, séance après séance.', 'Prévu et réel · retard en heures · fin projetée'],
   potager: ['Calendrier du potager', 'Chaque semis à sa date.', 'Tes dates · cette semaine · rotation · récoltes'],
+  bebe: ['Suivi du bébé', "Ses journées, notées d'une main.", 'Tétées · sommeil · couches · à deux parents'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
