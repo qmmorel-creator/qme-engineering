@@ -306,6 +306,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   facturé ÷ temps réel) face au TJM cible, au devis et au coût de revient saisis (mêmes notions que `tjm` et
   `cout-revient`) ; semaine type, rentabilité par période, rapport client imprimable, export CSV. Aucun taux ni tarif
   intégré. Règles dans `regles.js`, tests `outils/templates/suivi-temps.test.mjs`.
+- `templates/achats/` (ACH) : **demandes d'achat et fournitures** (T82), prêt, « Mise en vente prochaine » (19 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/achats/gumroad.json`). Demandes par service (quantité,
+  urgence, motif), validation avec seuil automatique (prix estimé et budget suffisant), commandes groupées par fournisseur
+  et bon imprimable, réception partielle et prix réel, budget annuel par service (consommé, engagé, en attente),
+  catalogue de 104 fournitures sans prix ni marque, historique et export CSV. Une clé partagée, nom saisi à chaque étape ;
+  actions rejouées sur la version du serveur en cas de conflit 409. Aucune règle légale ni fiscale. Règles dans
+  `regles.js`, tests `outils/templates/achats.test.mjs`. Version anglaise en attente.
 - `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
   réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),

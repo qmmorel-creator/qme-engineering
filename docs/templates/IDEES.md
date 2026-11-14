@@ -157,7 +157,7 @@ déjà).
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
-| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
@@ -260,7 +260,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81 | T82 | 240 € | 25 % | 180 € | 45 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84 | T85 | 116 € | 25 % | 87 € | 22 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
@@ -1851,3 +1851,26 @@ Réglages, page, Gumroad). Livrables dans `communication/remboursements-sante/` 
 5 vues, prospects.md, gumroad.md et gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente).
 Publications LinkedIn et Instagram **non planifiées**. À rattacher à `PAR` dans `netlify/lib/packs.mjs` et à
 régénérer les pages des packs à la fusion.
+
+## Fiche T82 (cadrage délégué par Quentin, 14/11/2026)
+
+### T82 · Demandes d'achat et fournitures (`templates/achats/`, préfixe ACH, 19 €)
+- Fiche détaillée : [`fiches/achats.md`](fiches/achats.md). Catalogue `pro` · thème « Équipements et véhicules » ; pack
+  visé « Moyens généraux » (PMG). Permalien prévu `demandes-achat-fournitures`.
+- Promesse : « Qui a demandé quoi, qui l'a validé, et où en est le budget. » Public : office managers, services
+  généraux de PME, petites structures associatives.
+- Usage à plusieurs : une clé partagée, nom saisi à chaque étape, pas de comptes en V1 (comme T50). Une demande = un
+  article (plusieurs en un envoi) ; circuit demandée → validée/refusée (motif) → commandée → reçue, partielle possible,
+  reliquat abandonnable ; seuil de validation automatique (prix estimé, montant sous le seuil, budget suffisant).
+- Commandes groupées par fournisseur, bon A4 imprimable (rien n'est envoyé), délai de livraison et retard ; budget
+  annuel par service (consommé, engagé, en attente, disponible), exercice décalable ; historique, délais moyens, CSV.
+- Base : 104 fournitures types en 6 catégories, **sans prix ni marque** ; aucune donnée datée ni règle légale ou
+  fiscale (HT/TTC simple libellé). Conflits 409 : actions rejouées sur la version du serveur (fonction `rejouer`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/achats/?demo`, page
+  `catalogue/achats/`, captures `assets/templates-achats-*.webp`, couverture `assets/templates-achats-couverture.png`,
+  tests `outils/templates/achats.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/achats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé partagée au prix
+  d'un template individuel), fiche Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout
+  d'ACH au pack PMG (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.

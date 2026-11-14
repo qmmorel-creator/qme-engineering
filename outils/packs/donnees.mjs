@@ -15,6 +15,7 @@ export const TEMPLATES = {
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
   RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
+  ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -91,7 +92,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
   CPT: { nom: 'Capacité d’emprunt et comparateur de prêts', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.' },
   CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
@@ -215,9 +215,10 @@ export const PAGES = {
       ['SDR', 'Réservez salles, bureaux et équipements sans doublon, avec la vue « libre maintenant ».'],
       ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
       ['CTR', 'Anticipez les préavis des contrats fournisseurs et ne subissez plus la tacite reconduction.'],
+      ['ACH', 'Centralisez les demandes d’achat, validez-les et regroupez les commandes par fournisseur.'],
     ],
-    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les demandes d’achat à venir, avec l’option Pack évolutif'],
-    prevus: ['ACH'],
+    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
