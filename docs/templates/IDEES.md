@@ -161,7 +161,7 @@ déjà).
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
@@ -265,7 +265,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
-| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79 | T80 | 190 € | 25 % | 142 € | 36 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81 | T82 | 240 € | 25 % | 180 € | 45 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
@@ -1763,3 +1763,34 @@ et à régénérer les pages des packs à la fusion.
   (permalien prévu `contrats-fournisseurs`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP et régénération des pages de packs, plannings,
   page anglaise, passage en vente du site.
+
+## Fiche T80 (cadrage délégué par Quentin, 14/11/2026)
+
+### T80 · Document unique d'évaluation des risques (`templates/document-unique/`, préfixe DRP, 29 €)
+- Fiche détaillée : [`fiches/document-unique.md`](fiches/document-unique.md). Application web, permalien prévu
+  `document-unique-evaluation-risques`, catalogue `pro` · thème « Organisation et réunions ». Pack visé :
+  « Petite entreprise » (PPE).
+- Promesse : « Tes risques évalués, ton document à jour. » Pour les employeurs de TPE/PME, dès le premier salarié.
+- Base intégrée : 20 familles de risques inspirées de la brochure INRS ED 840 (titres, situations et mesures
+  reformulés, source citée), 9 secteurs avec unités de travail et risques à examiner, grille 4 × 4 par défaut
+  (paramétrable), 6 types de mesures, motifs de mise à jour et types d'événements. **Obligations sourcées et
+  datées** : service-public.gouv.fr fiche F35360 (vérifiée le 22/07/2026) et INRS « Document unique, ce qu'il
+  faut retenir » (mise à jour le 18/10/2024), consultés le 14/11/2026, articles du Code du travail cités par
+  ces pages (Légifrance inaccessible à nos outils). Seuils 11 (mise à jour annuelle) et 50 (programme annuel).
+- Écrans : bord (alertes, matrice G × P, unités), évaluation par unité (initial et résiduel), plan d'actions /
+  programme annuel, document imprimable (sommaire, inventaire par unité, plan, historique), versions archivées
+  et événements, obligations et sources, réglages (grille, entreprise, revue conseillée).
+- Marques : **daté** (revérifier les sources chaque année), **confidentiel** vérifié (démo fictive « Menuiserie
+  Exemple »), avertissement « outil d'aide, ne remplace ni un préventeur ni un conseil juridique ».
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/document-unique/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/document-unique/`,
+  captures `assets/templates-document-unique-*.webp`, couverture `assets/templates-document-unique-couverture.png`,
+  tests `outils/templates/document-unique.test.mjs`. Produit `DRP` déclaré (serveur, connexion, en-têtes Netlify) ;
+  `DRP` passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPE).
+- Communication prête dans `communication/document-unique/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et
+  prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
+  anglaise, plannings, passage en vente du site.
