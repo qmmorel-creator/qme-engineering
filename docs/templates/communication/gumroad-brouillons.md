@@ -1,5 +1,8 @@
 # Brouillons Gumroad (14/11/2026)
 
+**Mise à jour 14/11, 23 h 30** : les 8 produits créés sont publiés (en vente) et le site est passé à « en
+vente » pour chacun. T12 et T68 restent à créer.
+
 Choix de Quentin (13/11) : T08, T12, T14, T15, T24, T36, T42, T53, T67, T68. Brouillons **non publiés**.
 Avant publication : Quentin active la clé de licence (Content → Insert → License key) ; puis appliquer
 `reference.md` § « À chaque publication Gumroad ». Limite Gumroad : 10 créations par 24 h glissantes.
