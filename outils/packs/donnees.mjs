@@ -12,6 +12,7 @@ export const TEMPLATES = {
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
   EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
+  CND: { slug: 'appels-offres', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.', pour: 'pro' },
   PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', pour: 'pro' },
@@ -83,7 +84,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
   ENP: { nom: 'Entretiens annuels et professionnels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.' },
   DRP: { nom: 'Document unique d’évaluation des risques', prix: 2900, phrase: 'Risques par unité de travail, cotation et actions.' },
   CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
@@ -157,9 +157,10 @@ export const PAGES = {
       ['PCM', 'Transformez l’appel en proposition claire : contexte, options à prix et planning.'],
       ['KRF', 'Montrez vos meilleures réalisations : une plaquette adaptée à chaque prospect.'],
       ['CED', 'Publiez régulièrement : piliers, idées, calendrier et statistiques saisies.'],
+      ['CND', 'Répondez aux appels d’offres sans rater une date limite : go/no-go, pièces et résultats.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
-    prevus: ['CND'],
+    prevus: [],
   },
   PBT: {
     couleur: 'rouge', cibles: ['btp', 'managers'],
