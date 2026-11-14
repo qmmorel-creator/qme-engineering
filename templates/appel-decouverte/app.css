@@ -562,3 +562,4 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .chrono-actions .btn{min-height:40px;padding:0 6px;font-size:13px}
   .filtres .filtre{flex:1 1 auto}
 }
+@media (hover:none){.chrono-actions .btn:not(.jaune):not(.primaire):hover{background:var(--surface)}}

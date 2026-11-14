@@ -40,6 +40,7 @@ const T = {
   'notes-de-frais': ["Notes de frais et indemnités kilométriques", "Chaque euro avancé, retrouvé.", "Justificatifs · barème kilométrique · note du mois en PDF"],
   impayes: ["Relance des impayés", "Chaque facture payée à temps.", "Retard en jours · pénalités calculées · relances par palier"],
   onboarding: ["Onboarding et offboarding salarié", "Personne n'oublie rien.", "Checklists par profil · J-15 à J+90 · matériel remis et rendu"],
+  'appel-decouverte': ["Préparateur d'appel découverte", "Prépare l'appel. Mène-le. Conclus.", "84 questions par phase · objections · score de qualification · prochaine étape datée"],
   visa: ['Circuit de visa des documents', 'Chaque visa dans les délais.', 'Indices · VSO, VAO, REF · relances prêtes'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
