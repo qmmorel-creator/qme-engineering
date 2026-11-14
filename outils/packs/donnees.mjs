@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  GRT: { slug: 'gestion-locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.', pour: 'perso' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
@@ -62,7 +63,6 @@ export const PREVUS = {
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
-  GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
   RPS: { nom: 'Repas de la semaine et liste de courses', prix: 1300, phrase: 'Menus planifiés, liste de courses générée.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
@@ -278,9 +278,10 @@ export const PAGES = {
       ['SJR', 'Suivez réservations, ménage, taxe de séjour et revenu net par plateforme.'],
       ['TRV', 'Comparez les devis, tenez le budget et le planning des artisans.'],
       ['ENT', 'Recevez les échéances d’entretien calculées : chaudière, ramonage, VMC.'],
+      ['GRT', 'Encaissez les loyers, éditez les quittances et révisez le loyer sans erreur.'],
     ],
     arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['GRT', 'ETD', 'RNT', 'CPR', 'CPT'],
+    prevus: ['ETD', 'RNT', 'CPR', 'CPT'],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],

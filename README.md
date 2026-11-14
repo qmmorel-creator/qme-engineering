@@ -197,6 +197,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
   écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
   `outils/templates/pilotage-pme.test.mjs`.
+- `templates/gestion-locative/` (GRT) : **gestion locative**, prêt, « Mise en vente prochaine » (20 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/gestion-locative/gumroad.json`). Biens et baux (vide, meublé,
+  mobilité), échéances mensuelles au prorata, paiements partiels, quittance ou reçu imprimable, relances par palier
+  sans frais de retard, révision annuelle avec l'IRL saisi par l'utilisateur (aucun indice intégré ; limite d'un an,
+  sans effet rétroactif), dépôt de garantie contrôlé et restitution datée, régularisation des charges au prorata,
+  rendement brut et net par bien. Repères sourcés service-public.gouv.fr (dates de vérification affichées). Règles
+  dans `regles.js`, tests `outils/templates/gestion-locative.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
