@@ -52,6 +52,10 @@ export const PRODUITS = {
   STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/' },
   SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
+  RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
+  MSC: { nom: 'Carnet de musculation et cross-training', url: '/templates/musculation/' },
+  CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/' },
+  GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
