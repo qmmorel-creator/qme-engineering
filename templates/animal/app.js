@@ -733,7 +733,7 @@
     const inactif = a.actif === false;
     const p = s.prochain;
     const annuel = R.coutAnnuel(E, B, a.id, auj());
-    const fiche = [a.race, a.sexe === 'F' ? 'Femelle' : a.sexe === 'M' ? 'Mâle' : '', a.sterilise === 'oui' ? 'stérilisé(e)' : a.sterilise === 'non' ? 'non stérilisé(e)' : ''].filter(Boolean).join(' · ');
+    const fiche = [a.race, a.sexe === 'F' ? 'Femelle' : a.sexe === 'M' ? 'Mâle' : '', a.sterilise ? `${a.sterilise === 'non' ? 'non ' : ''}stérilisé${a.sexe === 'F' ? 'e' : a.sexe === 'M' ? '' : '(e)'}` : ''].filter(Boolean).join(' · ');
     return `<li class="animal ${inactif ? 'inactif' : ''}" style="--c:${inactif ? 'var(--trait)' : couleurEtat(s.pire)}">
       <div class="an-tete"><div class="an-nom"><b>${esc(a.nom)}</b><small>${esc(fiche || especeNom(a))}${inactif ? ` · parti${a.departLe ? ` le ${dateCourte(a.departLe)}` : ''}` : ''}</small></div>${pastilleEspece(a)}</div>
       <div class="an-chiffres">
@@ -1018,7 +1018,7 @@
     const t = auj();
     const c = R.carnet(E, B, a, t, { montants });
     const el = $('#impression');
-    const fiche = [especeNom(a), a.race, a.sexe === 'F' ? 'femelle' : a.sexe === 'M' ? 'mâle' : '', a.sterilise === 'oui' ? 'stérilisé(e)' : '', a.naissance ? `né(e) le ${dateLongue(a.naissance)}${c.age ? ` (${R.texteAge(c.age)})` : ''}` : ''].filter(Boolean);
+    const fiche = [especeNom(a), a.race, a.sexe === 'F' ? 'femelle' : a.sexe === 'M' ? 'mâle' : '', a.sterilise === 'oui' ? `stérilisé${a.sexe === 'F' ? 'e' : a.sexe === 'M' ? '' : '(e)'}` : '', a.naissance ? `né(e) le ${dateLongue(a.naissance)}${c.age ? ` (${R.texteAge(c.age)})` : ''}` : ''].filter(Boolean);
     el.innerHTML = `<header class="imp-tete"><div><p class="surtitre">Carnet de suivi</p><h1>${esc(a.nom)}</h1><p>${fiche.map(esc).join(' · ')}</p>${a.identification ? `<p>Identification : ${esc(a.identification)}</p>` : ''}${a.veterinaire ? `<p>Vétérinaire : ${esc(a.veterinaire)}</p>` : ''}</div>
       <div class="imp-km"><b>${c.poids.dernier ? kg(c.poids.dernier.poids) : '–'}</b><span>${c.poids.dernier ? `pesé le ${dateLongue(c.poids.dernier.date)}` : 'pas de pesée'}</span></div></header>
       <h2>Soins récurrents</h2>
