@@ -29,6 +29,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
 - Clé de licence : à activer sur chaque nouveau brouillon (liste donnée par le point d'étape de 23 h 47).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
+- T12 Remboursement de dettes et T68 Secret Santa : pas encore créés sur Gumroad (limite de 10 créations par
+  24 h). La reprise automatique prévue le 14/11 à 22 h 30 a été désactivée à 17 h 48 sans s'exécuter (sans
+  doute par la session qui gère la file Gumroad) : qui les crée, et quand ? Les 8 autres de ton choix du 13/11
+  sont publiés et en vente sur le site (vérifié le 14/11 à 23 h 30).
+- T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
+  suggéré ?
 
 ## Noms, prix, permaliens et catégories Gumroad (valeurs proposées, appliquées par défaut)
 
@@ -88,6 +94,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Plannings LinkedIn et Instagram
 
+- IG-62 (T14 abonnements, lun. 21/12 18:30) tombe sur le même créneau que IG-48 (« À préparer ») : lequel
+  décaler ?
+- LI-107 (T14, 20/12) et LI-108 (T08, 13/01), IG-62 et IG-63 : produits en vente, la remarque « ne publier
+  que si la fiche Gumroad est en ligne » peut être levée (lien d'achat en premier commentaire). LI-109 et
+  IG-64 (T11 entretien, hors de ton choix du 13/11) et LI-110 et IG-65 (T12 dettes) : pas encore sur Gumroad,
+  remarque maintenue.
 - Lignes Instagram en « Prêt » à relire avant de les passer en « Programmé » : IG-63 (vue 5 « bientôt en
   vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
@@ -105,12 +117,23 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Classement dans le catalogue
 
+- Prix minimum 12 € (règle du 13/11) : la valeur du pack Flotte passe de 109 € à 111 € (T66 à 12 €), son
+  prix reste 69 €. OK ?
 - T62 Stocks sous « Indépendants » (public : commerces, artisans) ; T44 TVA sous « Indépendants » ;
   T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59, T54 et T58 sous
   « Associations, formation et événements ». OK ou nouveaux thèmes ?
 
 ## Par template : périmètre et choix appliqués par défaut
 
+- **T08 Habitudes** : sources des réglages types (eau, sport, sommeil) marquées « à vérifier » ; habitudes de
+  santé (médicaments) hébergées en ligne avec un simple rappel « pas un avis médical » : même question RGPD
+  que T19, en moins sensible (l'acheteur saisit ses propres données). OK ?
+- **T11 Entretien** : trois règles non revérifiées sur source primaire (vidange de l'assainissement
+  individuel, contrôle du SPANC, débroussaillement), affichées « à vérifier » et modifiables.
+- **T12 Dettes** : points conseil budget annoncés en refonte (labels 2027-2029), à revérifier chaque année ;
+  calcul d'intérêts mensuel simple (taux annuel ÷ 12), expliqué dans l'outil.
+- **T14 Abonnements** : repères juridiques de résiliation (L215-1, L224-28, loi Hamon, résiliation en ligne
+  depuis le 01/06/2023) rédigés de mémoire, affichés « à vérifier ».
 - **T48 Congés** : Code du travail relu seulement sur code.travail.gouv.fr (Légifrance en 404) ; règles non
   vérifiées (équivalence en jours ouvrés 2,0833/mois et 25 max, maladie 1,6667 et 20 ; samedi en jours
   ouvrables ; événement familial = travail effectif ; prorata calendaire au lieu de L3141-4) ; pas de report de
@@ -182,6 +205,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 - T97 Course à pied : FFA, FFSE, UFOLEP, FSGT, intérêt et interlocuteur à vérifier. Idem pour les
   `prospects.md` de T73 à T96.
+- Organismes marqués « à vérifier » dans les `prospects.md` de T08, T11, T12 et T14.
 - Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 9.
 
 ## Tranché
