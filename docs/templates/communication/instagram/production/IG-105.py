@@ -37,9 +37,9 @@ S = dict(id='IG-105', slug='depense-anormale', titre='Méthode · Repérer une d
        "Une dépense est signalée si trois conditions sont réunies : au moins 3 opérations plus anciennes avec le même tiers ; un montant supérieur à 1,8 fois la moyenne ; un écart d'au moins 20 €.",
        "Exemple, un fournisseur à 40 € en moyenne : une facture à 95 € est signalée, une facture à 55 € ne l'est pas. En plus, les doublons probables : même date, même tiers, même montant au centime.",
        "Fond rouge : qui relit vos factures fournisseurs, avant paiement et à quelle fréquence ? Votre métier a ses règles ? Parlons-en : lien en bio."],
-  legende="""Une facture deux fois plus chère que d'habitude passe souvent inaperçue. Personne ne connaît la moyenne de chaque fournisseur.
+  legende="""Une facture fournisseur deux fois plus chère que d'habitude passe souvent inaperçue.
 
-Dans un outil de suivi de comptes que j'ai conçu, une dépense récente est signalée comme inhabituelle quand trois conditions sont réunies : le tiers a au moins 3 opérations plus anciennes, le montant dépasse 1,8 fois sa moyenne, et l'écart atteint au moins 20 €.
+Pas par négligence : personne ne connaît par cœur la moyenne de chaque fournisseur. Dans un outil de suivi de comptes que j'ai conçu, une dépense récente est signalée comme inhabituelle quand trois conditions sont réunies : le tiers a au moins 3 opérations plus anciennes, le montant dépasse 1,8 fois sa moyenne, et l'écart atteint au moins 20 €.
 
 Un fournisseur facture 40 € en moyenne. Une facture à 95 € est signalée. Une facture à 55 € ne l'est pas : elle reste sous 1,8 fois la moyenne, et 15 € d'écart ne méritent pas votre attention.
 

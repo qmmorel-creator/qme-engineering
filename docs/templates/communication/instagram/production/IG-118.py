@@ -42,7 +42,7 @@ ALT = [
     "Fond rouge : où se trouve la liste de vos instruments ? Inventaire, échéances, historique. Votre métier a ses règles ? Parlons-en : lien en bio.",
 ]
 
-LEGENDE = """Un pied à coulisse dont l'étalonnage a expiré il y a trois mois : toutes les mesures faites avec depuis deviennent discutables.
+LEGENDE = """Un pied à coulisse hors date depuis trois mois : toutes les mesures faites avec depuis deviennent discutables.
 
 Le jour de l'audit, c'est la question qui fâche. Pour un atelier ou un laboratoire, je construirais quatre choses.
 

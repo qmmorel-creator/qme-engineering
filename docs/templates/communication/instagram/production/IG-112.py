@@ -48,7 +48,7 @@ ALT = [
     "Fond rouge : « Est-ce que ça passe ? », posée chaque semaine avec des chiffres, pas un logiciel de planification complet. Votre métier a ses règles ? Parlons-en : lien en bio.",
 ]
 
-LEGENDE = """« On a de la place cette semaine ? » Dans beaucoup d'ateliers, la réponse se fait de tête. Et la surcharge se découvre le jeudi soir.
+LEGENDE = """« On a de la place cette semaine ? » Dans beaucoup d'ateliers, on répond de tête. Et la surcharge se voit le jeudi soir.
 
 Pour un responsable de production, je partirais de deux choses : chaque ordre de fabrication avec sa gamme (les postes par lesquels il passe et le temps prévu sur chacun), et la capacité de chaque poste sur la semaine.
 
