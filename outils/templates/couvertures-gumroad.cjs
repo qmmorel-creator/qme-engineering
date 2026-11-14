@@ -65,6 +65,7 @@ const T = {
   'parcs-multi-sites': ["Pilotage de parcs multi-sites", "Tous tes sites, une seule vue.", "Préventif · pannes · disponibilité · coût par site"],
   doe: ['Registre du DOE', 'Chaque pièce remise, vérifiée, transmise.', 'Pièces par lot · relances datées · complétude · bordereau'],
   'sous-traitants': ["Conformité des sous-traitants", "Aucune attestation périmée sur ton chantier.", "Lots et rangs · acceptation · vigilance · alertes J-30"],
+  'remboursements-sante': ["Remboursements santé", "Ce qu'on te doit encore, soin par soin.", "Sécu et mutuelle · retards · relances · bilan annuel"],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
   'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],

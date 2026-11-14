@@ -7,6 +7,7 @@
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
+  RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
@@ -89,7 +90,6 @@ export const PREVUS = {
   CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
   DCS: { nom: 'Papiers du foyer', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.' },
-  RBS: { nom: 'Remboursements santé', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.' },
   CPT: { nom: 'Capacité d’emprunt et comparateur de prêts', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.' },
   CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
@@ -227,7 +227,7 @@ export const PAGES = {
       ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
     ],
     arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Papiers, remboursements santé et emprunt à venir, avec l’option Pack évolutif'],
-    prevus: ['DCS', 'RBS', 'CPT'],
+    prevus: ['DCS', 'CPT'],
   },
   PMR: {
     couleur: 'rouge', cibles: ['couples'],
