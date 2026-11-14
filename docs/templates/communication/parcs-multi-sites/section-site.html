@@ -1,0 +1,48 @@
+<!-- Version « en vente » de la page catalogue/parcs-multi-sites/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : pilotage-parcs-multi-sites (à confirmer une fois la fiche créée), prix 49 €
+     (à confirmer par Quentin). Captures : assets/templates-parcs-multi-sites-*.webp (démo, données fictives). À la
+     mise en vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v=
+     dans index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="parcs-multi-sites">
+  <div class="section-head">
+    <h2>Pilotage de parcs multi-sites</h2>
+    <p>Pour les exploitants qui gèrent plusieurs sites et leurs équipements : immeubles, résidences, commerces, entrepôts, établissements recevant du public, sites techniques. Une seule vue pour savoir quel préventif est dû, quel équipement est à l'arrêt, quel site n'a pas été visité, et ce que coûte chaque site.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-parcs-multi-sites-alertes.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord d'un parc de dix sites : 5 alertes en retard et 5 à surveiller, 2 équipements à l'arrêt, 3 préventifs en retard, disponibilité moyenne de 99,3 %, puis la liste des alertes (site sans visite depuis 8 mois, préventifs dépassés, porte de quai à l'arrêt depuis 12 jours) (données fictives)">
+      <img class="tel" src="/assets/templates-parcs-multi-sites-tel.webp?v=20261114" width="780" height="1328" alt="Le pilotage de parcs sur téléphone : alertes en retard, nombre de sites, équipements à l'arrêt, préventifs en retard et disponibilité du parc (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Exploitation · patrimoine · services généraux</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Vos sites et leurs équipements</b> au même endroit : type, ville, région, responsable ; pour chaque équipement, catégorie, marque et modèle, mise en service, criticité et périodicité du préventif</li>
+        <li><b>Le préventif calculé</b> : la prochaine échéance part du dernier passage réalisé ; ce qui est dépassé ou proche remonte en tête, et le taux de préventif réalisé à temps se mesure tout seul</li>
+        <li><b>Les pannes suivies de bout en bout</b> : date de signalement, de résolution, arrêt ou non de l'équipement, prestataire, coût ; la disponibilité et le délai moyen de résolution en découlent</li>
+        <li><b>Des indicateurs par site et pour tout le parc</b> : disponibilité, interventions en retard, délai de résolution, coût par site et par catégorie d'équipement</li>
+        <li><b>Une liste triable et filtrable, et une carte schématique</b> des sites placés par leurs coordonnées, sans fond de carte ni service en ligne ; import et export CSV pour votre tableur, avec un modèle vide</li>
+      </ul>
+      <div class="prix"><b>49 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/pilotage-parcs-multi-sites" data-goatcounter-click="achat-parcs-multi-sites" data-goatcounter-title="Acheter : pilotage de parcs multi-sites">Acheter</a>
+        <a class="btn" href="/templates/parcs-multi-sites/?demo" data-goatcounter-click="demo-parcs-multi-sites" data-goatcounter-title="Démo : pilotage de parcs multi-sites">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-parcs-multi-sites-liste.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des sites triée par état : en retard, à surveiller, à jour, avec ville, région, nombre d'équipements, disponibilité, préventifs en retard, délai moyen de résolution et coût sur douze mois (données fictives)"><figcaption>La liste des sites, triable et filtrable par région, type et état</figcaption></figure>
+    <figure><img src="/assets/templates-parcs-multi-sites-carte.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Carte schématique : huit sites placés selon leurs coordonnées sur un quadrillage, sans fond de carte, avec une forme et une couleur par état et le détail d'un site au survol ; les sites sans coordonnées sont regroupés par région (données fictives)"><figcaption>La carte schématique, sans fond de carte en ligne</figcaption></figure>
+    <figure><img src="/assets/templates-parcs-multi-sites-indicateurs.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Indicateurs consolidés : disponibilité, préventif réalisé à temps, interventions en retard, délai moyen de résolution, coût total, puis le coût par site en barres (données fictives)"><figcaption>Les indicateurs du parc, puis par site et par catégorie</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment l'échéance du préventif est-elle calculée ?</summary><p>Pour chaque équipement, vous indiquez la périodicité de son préventif (celle de votre contrat, de la notice ou de la réglementation qui s'applique). L'échéance part du dernier préventif noté comme réalisé, ou de la mise en service s'il n'y en a pas encore. Elle est « à prévoir » dans les 30 jours qui précèdent (réglable) et « en retard » une fois dépassée. Aucune périodicité légale n'est fournie : c'est vous qui la fixez.</p></details>
+    <details><summary>Comment la disponibilité est-elle mesurée ?</summary><p>Quand vous notez une panne, vous indiquez si l'équipement est à l'arrêt. La disponibilité d'un équipement est la part de la période (12 mois par défaut) sans arrêt, les arrêts qui se chevauchent comptant une fois ; celle d'un site ou du parc est la moyenne de ses équipements actifs. Le délai de résolution est le nombre de jours entre le signalement et la résolution.</p></details>
+    <details><summary>Quelles alertes sont prévues ?</summary><p>Préventif dépassé ou proche, équipement à l'arrêt depuis un nombre de jours que vous choisissez (7 par défaut), site sans visite depuis un nombre de mois que vous choisissez (6 par défaut). Une visite, c'est un préventif réalisé, une panne résolue ou une tournée notée sur le site.</p></details>
+    <details><summary>Comment fonctionne la carte ?</summary><p>Chaque site peut recevoir une latitude et une longitude (lisibles dans n'importe quelle application de cartes). Les sites sont alors placés les uns par rapport aux autres sur un quadrillage, avec une forme et une couleur selon leur état. Aucun fond de carte n'est chargé et aucune adresse n'est envoyée à un service en ligne. Les sites sans coordonnées sont regroupés par région, et la liste reste toujours disponible.</p></details>
+    <details><summary>Puis-je reprendre ma liste existante depuis un tableur ?</summary><p>Oui. L'application fournit deux modèles CSV vides (sites et équipements) qui s'ouvrent dans Excel, LibreOffice ou Numbers. Remplissez-les, enregistrez-les en CSV, puis importez-les : un aperçu indique les ajouts, mises à jour et lignes ignorées avant tout changement. Les sites, équipements et interventions s'exportent dans le même format (point-virgule, UTF-8).</p></details>
+    <details><summary>Les prestataires ou les responsables de site peuvent-ils saisir eux-mêmes ?</summary><p>Le même accès s'ouvre sur plusieurs appareils (bureau, tablette, téléphone sur le terrain) avec les mêmes données, mais il n'y a pas de comptes séparés ni de droits par personne : la personne qui pilote le parc enregistre les interventions. Les prestataires sont simplement nommés dans chaque intervention.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/parcs-multi-sites/?demo">la démo</a> ouvre un parc fictif de dix sites (résidences, bureaux, commerce, entrepôts, école, atelier, local technique) et trente équipements, avec des préventifs en retard, des pannes en cours, un site oublié et deux ans d'historique. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+    <details><summary>Est-ce une GMAO ?</summary><p>C'est un outil de pilotage léger, sans installation ni paramétrage : sites, équipements, préventif, pannes, coûts et alertes. Il ne gère ni les stocks de pièces, ni les bons de travail signés, ni les pièces jointes, ni les obligations réglementaires propres à chaque installation, qui restent sous votre responsabilité.</p></details>
+  </div>
+</section>

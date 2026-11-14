@@ -1,0 +1,5 @@
+Pilotage de parcs multi-sites
+Tous tes sites, une seule vue.
+Préventif · pannes · disponibilité · coût par site
+Ligne pour T dans outils/templates/couvertures-gumroad.cjs :
+  'parcs-multi-sites': ["Pilotage de parcs multi-sites", "Tous tes sites, une seule vue.", "Préventif · pannes · disponibilité · coût par site"],
