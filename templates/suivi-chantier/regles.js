@@ -37,7 +37,7 @@
   }
 
   // ---------- Nombres ----------
-  const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
   // « 1 234,56 », « −2 500 » → centimes ; null si vide ou illisible. signe : accepte un montant négatif.
   function lireMontant(saisie, { signe = false } = {}) {
     const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(',', '.').replace('−', '-');
@@ -57,12 +57,12 @@
     const neg = c < 0;
     const e = Math.abs(c) / 100;
     const pre = neg ? '−' : (signe && c > 0 ? '+' : '');
-    if (!centimes) return `${pre}${milliers(Math.round(e))} €`;
+    if (!centimes) return `${pre}${milliers(Math.round(e))}\u00A0€`;
     const [ent, fr] = e.toFixed(2).split('.');
-    return `${pre}${milliers(ent)},${fr} €`;
+    return `${pre}${milliers(ent)},${fr}\u00A0€`;
   }
   const saisieMontant = (c) => (c === null || c === undefined ? '' : (c / 100).toFixed(2).replace('.', ','));
-  const pct = (v, dec = 1) => `${(Math.round(v * 10 ** dec) / 10 ** dec).toLocaleString('fr-FR')} %`;
+  const pct = (v, dec = 1) => `${(Math.round(v * 10 ** dec) / 10 ** dec).toLocaleString('fr-FR')}\u00A0%`;
   const arrondi = (x) => Math.round(x);
 
   // ---------- Marché par lot ----------

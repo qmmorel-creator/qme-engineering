@@ -12,6 +12,7 @@ vm.runInContext(readFileSync(new URL('regles.js', dossier), 'utf8'), ctx);
 const R = ctx.window.CHT;
 const BASE = ctx.window.BASE;
 const simple = (o) => JSON.parse(JSON.stringify(o));
+const esp = (s) => s.replace(/[\u00A0\u202F]/g, ' '); // espaces insécables de l'affichage
 const AUJ = '2026-11-14';
 const DEF = { reglages: BASE.reglages, pieces: BASE.pieces };
 
@@ -49,10 +50,10 @@ test('saisie tolérante des montants et du coefficient de révision, affichage',
   assert.equal(R.lireCoefficient(''), 1);
   assert.equal(R.lireCoefficient('1,0234'), 1.0234);
   assert.equal(R.lireCoefficient('3'), null);
-  assert.equal(R.euros(123456), '1 234,56 €');
-  assert.equal(R.euros(-500), '−5,00 €');
-  assert.equal(R.euros(250000, { signe: true }), '+2 500,00 €');
-  assert.equal(R.euros(123456789, { centimes: false }), '1 234 568 €');
+  assert.equal(esp(R.euros(123456)), '1 234,56 €');
+  assert.equal(esp(R.euros(-500)), '−5,00 €');
+  assert.equal(esp(R.euros(250000, { signe: true })), '+2 500,00 €');
+  assert.equal(esp(R.euros(123456789, { centimes: false })), '1 234 568 €');
   assert.equal(R.saisieMontant(1250), '12,50');
 });
 

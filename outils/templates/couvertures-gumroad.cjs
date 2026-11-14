@@ -46,6 +46,7 @@ const T = {
   'location-saisonniere': ["Location saisonnière", "Tes logements, toujours prêts.", "Calendrier · ménage · taxe de séjour · net par canal"],
   'leasing': ["Simulateur leasing ou achat", "Ta voiture, au vrai prix.", "Comptant · crédit · LOA · LLD : le coût total net côte à côte"],
   'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
+  'suivi-chantier': ["Suivi de chantier par lot", "Chaque lot tenu, du marché au solde.", "Avenants · situations · jalons recalés · revue de projet"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
