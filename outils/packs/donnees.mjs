@@ -57,6 +57,7 @@ export const TEMPLATES = {
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
   RPS: { slug: 'repas', prix: 1300, phrase: 'Menus de la semaine, liste de courses par rayon à cocher.', pour: 'perso' },
   VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', pour: 'perso' },
+  CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', pour: 'pro' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -78,7 +79,6 @@ export const PREVUS = {
   // Nouvelles idées (T71–T95, 14/11/2026)
   TMP: { nom: 'Suivi du temps et rentabilité par mission', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.' },
   PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
-  CED: { nom: 'Calendrier éditorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.' },
   CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
   RDE: { nom: 'Registre du DOE', prix: 2900, phrase: 'Les pièces à remettre par lot, relancées jusqu’au complet.' },
   STR: { nom: 'Conformité des sous-traitants', prix: 2900, phrase: 'Agréments et attestations, alertes avant expiration.' },
@@ -153,7 +153,7 @@ export const PAGES = {
       ['CRM', 'Gardez le fil avec vos clients : historique, prochaine action datée, chiffre d’affaires.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
-    prevus: ['KRF', 'PCM', 'CED', 'CND'],
+    prevus: ['KRF', 'PCM', 'CND'],
   },
   PBT: {
     couleur: 'rouge', cibles: ['btp', 'managers'],

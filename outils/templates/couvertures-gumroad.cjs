@@ -57,6 +57,7 @@ const T = {
   'verifications': ["Vérifications réglementaires", "Aucun contrôle oublié.", "Périodicités sourcées · échéances · observations levées · registre"],
   'planning-equipe': ["Planning d'équipe et staffing", "Qui fait quoi, et qui peut encore prendre.", "Charge par semaine · absences · conflits · disponibles"],
   'competition': ["Gestion de compétition sportive", "Du premier inscrit au podium.", "Inscriptions · vagues et horaires · scores · classement en direct"],
+  'calendrier-editorial': ["Calendrier éditorial", "Publier chaque semaine, sans chercher quoi dire.", "Piliers · banque de sujets · calendrier · statistiques · régularité"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

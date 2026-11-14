@@ -66,6 +66,7 @@ export const PRODUITS = {
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/' },
   EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/' },
   CMP: { nom: 'Gestion de compétition sportive', url: '/templates/competition/' },
+  CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
