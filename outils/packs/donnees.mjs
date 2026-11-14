@@ -7,6 +7,7 @@
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
+  SDR: { slug: 'salles', prix: 1900, phrase: 'Libre maintenant, vues jour et semaine, aucune double réservation.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
   CRA: { slug: 'compte-rendu', prix: 1500, phrase: 'Décisions et actions suivies de réunion en réunion.', permalien: 'compte-rendu-actions', pour: 'pro' },
@@ -58,7 +59,6 @@ export const PREVUS = {
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   CHT: { nom: 'Suivi de chantier par lot', prix: 4000, phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
-  SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
@@ -197,7 +197,7 @@ export const PAGES = {
       ['ARD', 'Remettez et récupérez le matériel à chaque arrivée et chaque départ.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats, achats, salles, maintenance et vérifications à venir, avec l’option Pack évolutif'],
-    prevus: ['SDR', 'GMA', 'VRF', 'CTR', 'ACH'],
+    prevus: ['GMA', 'VRF', 'CTR', 'ACH'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],

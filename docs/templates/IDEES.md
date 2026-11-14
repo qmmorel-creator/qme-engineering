@@ -127,7 +127,7 @@ déjà).
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
+| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en cours | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
@@ -812,7 +812,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T47 | Affectation par personne et projet, taux de charge, conflits, vues semaine et mois | à définir | Équipes et staffing (outil interne) | Usage à plusieurs (managers) à concevoir. **RGPD**. **confidentiel à vérifier** : aucune équipe ni personne de l'outil interne reprise. |
 | T48 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
 | T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
-| T50 | Ressources, créneaux, conflits, vue jour | à définir | Planner horaire | Caduque : « mono-utilisateur en localStorage » ; un usage partagé est désormais possible mais réservations à plusieurs à concevoir (droits, conflits). |
+| T50 | Ressources, créneaux, conflits, vue jour | Types de ressources, équipements de salle, jours fériés calculés | Planner horaire | Usage à plusieurs tranché le 14/11/2026 : une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes en V1, conflits refusés (y compris entre deux appareils). Fiche en fin de document. **RGPD** (noms des personnes qui réservent). |
 | T51 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T54. **RGPD** (invités). |
 | T52 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
 | T53 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions d'un centre social (artefact client) | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle tableur. **confidentiel** : aucune donnée de l'artefact. |
@@ -1038,3 +1038,47 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T50 (cadrage délégué par Quentin, 14/11/2026)
+
+### T50 · Réservation de salles et bureaux (`templates/salles/`, préfixe SDR, 19 €)
+- Promesse : « Qui a la salle, quand elle se libère, et aucune double réservation. » Catalogue `pro`, thème
+  « Équipements et véhicules » ; pack visé « Moyens généraux » (PMG). Permalien prévu `reservation-salles`.
+- Public : PME en flex office (office manager, services généraux, dirigeant), petits espaces de coworking,
+  associations qui prêtent leurs salles. Une dizaine à quelques dizaines de ressources (40 au plus en V1).
+- **Usage à plusieurs (décision de cadrage)** : une seule clé de licence, partagée par l'équipe (même lien,
+  mêmes données sur tous les appareils). **Pas de comptes ni de droits en V1** : chacun saisit son nom à la
+  réservation (mémorisé sur son appareil seulement, pour pré-remplir et filtrer « Mes réservations »). Toute
+  personne qui a la clé peut modifier ou supprimer une réservation : l'outil le dit, et garde l'auteur et la date
+  de création. Évolution possible : un code « lecture et réservation » distinct du code « administration ».
+- **Conflits refusés** : deux réservations de la même ressource ne peuvent pas se chevaucher (créneaux
+  bout à bout autorisés). Contrôle à la saisie, puis **à nouveau au moment de l'enregistrement en ligne** : si un
+  autre appareil a écrit entre-temps (conflit 409), les réservations locales en attente sont rejouées sur la
+  version du serveur ; celles qui chevauchent une réservation arrivée entre-temps sont refusées et signalées
+  (fonction pure `rejouer`, testée). Réservations dans une même journée (pas de nuit) en V1.
+- Ressources : salles (capacité, équipements cochés dans une liste intégrée : écran, vidéoprojecteur,
+  visioconférence, tableau blanc, paperboard, accès de plain-pied…), bureaux en flex (zone ou étage),
+  équipements prêtables (vidéoprojecteur portable, kit de visioconférence…). **Pas de véhicules** (template
+  T29 Gestion de flotte). Couleur fixe par ressource dans l'ordre de `BASE.couleurs`. Ressource archivable.
+- Réservation : ressource, date, début et fin au pas choisi (15, 30 ou 60 min), objet, nom saisi, nombre de
+  personnes (refusé au-delà de la capacité), note ; **récurrence simple « chaque semaine » jusqu'à une date
+  (52 occurrences au plus)** : les dates en conflit sont listées avant validation et ne sont pas créées ;
+  modifier ou supprimer « cette date » ou « cette date et les suivantes ». « Libérer maintenant » raccourcit une
+  réservation en cours.
+- Écrans : **Maintenant** (« libre maintenant » : chaque ressource libre ou occupée, jusqu'à quand, prochaine
+  réservation, réservation rapide 30 ou 60 min, filtre par type, rafraîchi chaque minute, bon pour une tablette à
+  l'entrée) ; **Jour** (grille ressources × heures, toucher une case vide pour réserver) ; **Semaine** (une
+  ressource, 7 jours × heures) ; **Réservations** (à venir, mes réservations, passées, recherche, export CSV) ;
+  **Occupation** (taux par ressource et par jour de la semaine sur 1, 4 ou 12 semaines : minutes réservées sur
+  minutes d'ouverture, jours fermés et fériés exclus ; carte des heures les plus demandées).
+- Réglages : horaires d'ouverture, jours ouverts, pas, durée maximale et délai de réservation à l'avance
+  (facultatifs), jours fériés fermés (option Alsace-Moselle), ressources, export et import JSON, effacement des
+  noms des réservations passées depuis N mois (les créneaux restent pour les taux d'occupation).
+- Donnée datée : **jours fériés calculés** (fêtes fixes et mobiles depuis la date de Pâques), liste du Code du
+  travail (art. L3133-1) relevée sur service-public.gouv.fr, fiche F2405 « Jours fériés et ponts dans le secteur
+  privé » (vérifiée le 01/01/2026 par la DILA, consultée le 14/11/2026) ; Alsace-Moselle : Vendredi saint et
+  26 décembre en option. Aucun autre barème.
+- Marques : **RGPD** (noms des personnes qui réservent : minimum utile, prénom ou initiales, effacement).
+  Aucune automatisation : pas d'agenda externe, pas d'e-mail, pas de badge ni de capteur.
+- Confidentialité : démo fictive (« Atelier Exemple »), aucune donnée ni capture d'un espace réel.
+- Statut : en cours (14/11/2026).
