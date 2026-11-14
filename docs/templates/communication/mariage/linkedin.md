@@ -68,3 +68,33 @@ Si quelqu'un autour de vous vient de dire oui, n'hésitez pas à lui transmettre
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-92
+
+Doc : https://docs.google.com/document/d/1DwqdmNLxPwD5eRr08aoZiDqfqGqInjL8LUitQ7Tympc/edit
+
+Un mariage, c'est un carnet de tâches, un tableur de devis, une liste d'invités dans le téléphone et un plan de table dessiné sur une nappe. Et deux personnes qui n'ont jamais la même version.
+
+Des dizaines de tâches étalées sur un an, une dizaine de prestataires, des acomptes à des dates différentes, des invités qui répondent au compte-gouttes.
+
+C'est de la gestion de projet, sans l'outil.
+
+J'ai donc construit un organisateur de mariage qui tient tout au même endroit :
+
+▪ un rétroplanning de 40 tâches calculé depuis la date du mariage : si la date change, tout se recale, et les tâches en retard remontent en tête ;
+▪ le budget suivi poste par poste, avec ce qui est prévu, engagé auprès des prestataires et déjà payé, acomptes et soldes compris ;
+▪ la liste des invités, leurs réponses et leurs régimes, puis un plan de table où l'on glisse chacun à sa place, avec une alerte quand une table déborde.
+
+Il arrive prêt à l'emploi, sans prix moyens inventés : les postes de budget sont vides, c'est votre budget. Pour les démarches en mairie, il ne cite que ce qui est vérifié sur service-public.gouv.fr.
+
+Il s'ouvre dans le navigateur avec une clé, sur les deux téléphones des futurs mariés et sur l'ordinateur, et fonctionne hors connexion. Achat unique, sans abonnement.
+
+Une démo avec un mariage fictif est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Si vous vous êtes marié : qu'est-ce qui a été le plus difficile à garder à jour, le budget, les invités ou le plan de table ?
+
+Et si quelqu'un autour de vous vient de dire oui, transmettez-lui.
+
+#Mariage #Organisation #GestionDeProjet #OutilsNumériques #Templates

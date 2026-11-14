@@ -94,3 +94,34 @@ https://qm-engineering.fr/templates/habitudes/?demo
 Lien d'achat en premier commentaire.
 
 #Habitudes #Routine #Organisation #BienÊtre #Productivité
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-108
+
+Doc : https://docs.google.com/document/d/1Amh_U0IdQHRTc9X_PpEqRxUtDv-eryDOC1L_2YRvsCI/edit
+
+Une semaine de congés, et la série de 40 jours de sport tombe à zéro. C'est souvent là qu'on abandonne une habitude.
+
+Un outil de suivi devrait faire la différence entre « je n'ai pas fait » et « ce n'était pas possible ».
+
+J'ai donc construit un suivi d'habitudes et routines qui tient sur un téléphone :
+
+▪ la vue du jour se coche d'une touche ; les habitudes qui se comptent (verres d'eau, heures de sommeil, minutes de marche) ont un minimum, un maximum et des boutons + et − ;
+▪ un jour peut être marqué « non applicable » : il ne compte pas et ne casse pas la série, comme les jours où l'habitude n'est pas prévue ;
+▪ la grille du mois, date par habitude, montre d'un coup d'œil les séries, les trous et le taux de réussite, avec un bilan sur 30 jours.
+
+Les habitudes se rangent par thèmes colorés ; un thème peut n'accepter qu'une réponse par jour, comme le lieu de travail.
+
+50 habitudes types sont prêtes, avec leurs réglages et leurs sources, et 6 routines (matin, soir, bouger plus…). Rien ne se coche automatiquement et aucune application tierce n'est branchée. Pour un traitement, c'est un pense-bête, pas un avis médical.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec neuf semaines d'historique fictif est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/habitudes/?demo
+
+Lien d'achat en premier commentaire.
+
+Quelle habitude avez-vous déjà lâchée juste après avoir cassé une longue série ?
+
+#Habitudes #Routine #Organisation #BienÊtre #Productivité

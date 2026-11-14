@@ -110,3 +110,33 @@ https://qm-engineering.fr/templates/impayes/?demo
 Lien d'achat en premier commentaire.
 
 #Freelance #TPE #Facturation #Trésorerie #Entrepreneur
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-114
+
+Doc : https://docs.google.com/document/d/1HiA5UY7kcwmiHIawdKiJ1al0Ky9D37WnDB3S_uaVX0A/edit
+
+Un message trop vague, envoyé trois semaines trop tard : c'est souvent ainsi qu'une facture en retard le reste.
+
+Une facture en retard ne se règle presque jamais toute seule. Elle se règle quand on relance, au bon moment, avec les bons mots.
+
+Quand on facture seul ou à quelques-uns, la relance passe après le travail. On attend, on hésite. Et on ne sait plus très bien ce que la loi permet de réclamer.
+
+J'ai donc construit un outil de relance des impayés qui fait trois choses :
+
+▪ il range chaque facture par retard (0-30, 31-60, 61-90, plus de 90 jours) et calcule l'encours, en tenant compte des paiements partiels ;
+▪ il calcule les pénalités de retard jour par jour sur le restant dû, au taux du Code de commerce ou de vos conditions générales, et l'indemnité forfaitaire de 40 € entre professionnels ; pour un particulier, les intérêts au taux légal après mise en demeure ;
+▪ il prépare le message de chaque palier, du rappel courtois à la mise en demeure, avec le montant, le numéro, le retard et les pénalités déjà remplis.
+
+Rien n'est envoyé à votre place : on copie le message, on l'envoie depuis sa messagerie, on le note au journal. Les taux sont datés et modifiables, parce qu'ils changent chaque semestre. Les données des clients restent minimales et s'effacent d'un geste.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement. C'est un outil d'aide, pas un conseil juridique.
+
+Une démo avec une entreprise fictive est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/impayes/?demo
+
+Lien d'achat en premier commentaire.
+
+Freelances, dirigeants de TPE : au bout de combien de jours de retard envoyez-vous votre première relance ?
+
+#Freelance #TPE #Facturation #Trésorerie #Entrepreneur

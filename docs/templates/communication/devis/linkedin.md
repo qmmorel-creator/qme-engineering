@@ -71,3 +71,33 @@ Si vous connaissez un artisan ou un indépendant qui fait ses devis à la main, 
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui renvoient vers un autre site.*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-90
+
+Doc : https://docs.google.com/document/d/1zN8gZcplWJdBArD_pQtvjNHrVxTsw4JPgmlMMH2hwiw/edit
+
+Une ligne a changé, le total non. C'est l'erreur classique du devis refait à partir d'un ancien devis.
+
+Beaucoup d'artisans et de freelances travaillent encore ainsi, dans un traitement de texte. Ça marche, jusqu'au jour où ça ne marche plus : un total recalculé à la main, une TVA arrondie ligne par ligne, un numéro qu'on ne retrouve plus. Et parfois une mention oubliée.
+
+J'ai donc construit un générateur de devis :
+
+▪ un catalogue de prestations (unité, prix HT, TVA), avec des listes types par métier à importer, sans prix : les prix, c'est vous ;
+▪ des devis par lignes avec sections, remise par ligne et remise globale, TVA par ligne, acompte et durée de validité ; les totaux sont calculés en centimes, la TVA par taux ;
+▪ les mentions d'un devis relevées sur les sites officiels, avec leur source et leur date, et un contrôle de ce qui manque avant l'envoi.
+
+Chaque devis a son numéro et un statut (brouillon, envoyé, accepté, refusé) ; un devis envoyé dont la validité est passée est signalé. Un clic le duplique, un autre l'imprime en A4 ou l'enregistre en PDF.
+
+Il fait des devis, pas des factures : la facturation électronique devient obligatoire, et elle mérite un outil dédié. C'est un outil d'aide : chacun reste responsable des mentions propres à son activité.
+
+Il s'ouvre dans le navigateur avec une clé, garde vos devis en ligne et fonctionne sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+La démo (une entreprise fictive, huit devis) est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Artisans, freelances : votre prochain devis, vous le partez d'un modèle, d'un ancien devis ou d'une page blanche ?
+
+Et si vous connaissez quelqu'un qui fait encore ses devis à la main, transmettez-lui.
+
+#Artisan #Freelance #Devis #Indépendants #TPE

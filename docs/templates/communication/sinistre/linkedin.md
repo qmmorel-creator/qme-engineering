@@ -73,3 +73,31 @@ Vous avez déjà eu un sinistre chez vous : qu'est-ce qui a été le plus pénib
 > J'ai sorti un dossier sinistre habitation : déclaration guidée avec les délais légaux, inventaire
 > chiffré des dommages, preuves classées et dossier imprimable pour l'assureur. Démo libre :
 > https://qm-engineering.fr/templates/sinistre/?demo
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-111
+
+Doc : https://docs.google.com/document/d/1xe6NX5UbRSC9ia0HW39UGL9kkITEggWLj5E_XlqjqsI/edit
+
+5 jours ouvrés. C'est le délai minimal que la loi laisse pour déclarer un sinistre à son assureur. Pour un vol, 2 jours ouvrés.
+
+Et ce délai tombe au pire moment : quand il faut couper l'eau, prévenir le voisin, mettre les meubles à l'abri et retrouver un numéro de contrat.
+
+J'ai construit un outil pour ces semaines-là, pensé pour un particulier :
+
+▪ une déclaration guidée en six questions, qui calcule le délai à respecter en jours ouvrés (jours fériés compris) et affiche la source officielle de chaque règle ;
+▪ un inventaire chiffré des biens abîmés, où le calcul est visible ligne par ligne : réparation, ou remplacement moins la vétusté que vous fixez vous-même ; ce que vous déclarez et ce que l'assureur reconnaît restent séparés ;
+▪ les preuves rangées par statut (à fournir, reçu, vérifié, manquant), rattachées à un bien ou à une étape, et un dossier complet à imprimer pour l'expert.
+
+La chronologie suit le dossier jusqu'au versement : expertise, proposition, franchise, reste à recevoir.
+
+Volontairement, aucun barème de vétusté imposé et aucune promesse d'indemnisation : c'est un outil d'organisation, pas un conseil juridique. Votre contrat fait foi.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur et téléphone. Les photos restent sur l'appareil qui les a prises. Achat unique, sans abonnement.
+
+La démo (trois dossiers fictifs : un dégât des eaux en cours d'expertise, un cambriolage à déclarer, un bris de glace clos) est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Vous avez déjà eu un sinistre chez vous : qu'est-ce qui a été le plus pénible à suivre ?
+
+#Assurance #Habitation #DégâtDesEaux #Maison #Organisation

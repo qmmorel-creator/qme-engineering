@@ -70,3 +70,35 @@ https://qm-engineering.fr/templates/micro-entreprise/?demo
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-78
+
+Doc : https://docs.google.com/document/d/1o-d1IigfH1oBNQrMevCb8Kfmmus5-3U7zSfs9KcTylg/edit
+
+Fin de trimestre, déclaration URSSAF à faire. On rouvre le carnet, le relevé bancaire et plusieurs tableurs, pour un seul chiffre : son chiffre d'affaires.
+
+Il y a plus simple.
+
+En micro-entreprise, il faut tenir un livre des recettes : chaque encaissement, à sa date, avec le client, la nature, le montant, le mode de règlement et la référence de la pièce. Et, si l'on vend des marchandises, un registre des achats.
+
+Beaucoup le tiennent sur papier ou dans un tableur, et refont les totaux à chaque déclaration.
+
+J'ai donc construit un livre recettes-dépenses en ligne qui s'en charge :
+
+▪ chaque recette se note en quelques secondes, rangée par activité (vente, services, libéral) ;
+▪ à chaque échéance, mensuelle ou trimestrielle, le chiffre d'affaires à déclarer est prêt, avec une estimation des cotisations, de la formation professionnelle et du versement libératoire ;
+▪ les plafonds du régime et les seuils de franchise de TVA sont suivis toute l'année, avec une alerte avant de les atteindre.
+
+Les taux 2026 sont intégrés avec leur source officielle et restent modifiables. L'export CSV s'ouvre dans n'importe quel tableur, et le livre des recettes s'imprime proprement.
+
+Ce n'est pas un logiciel comptable : c'est un outil d'aide, qui rappelle aussi qu'en micro-entreprise les dépenses ne se déduisent pas.
+
+Pas de fichier à télécharger : il s'ouvre dans le navigateur avec une clé, garde les données en ligne et passe de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+La démo, avec un atelier fictif et une année d'écritures, est ouverte à tous : lien en premier commentaire.
+
+Micro-entrepreneurs : votre livre des recettes, vous le tenez au fil de l'eau, ou vous le reconstituez au moment de déclarer ?
+
+#MicroEntreprise #AutoEntrepreneur #Indépendants #Freelance #Gestion
