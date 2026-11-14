@@ -83,6 +83,7 @@ export const PRODUITS = {
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/' },
   CND: { nom: 'Suivi des appels d\'offres et candidatures', url: '/templates/appels-offres/' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/' },
+  RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
