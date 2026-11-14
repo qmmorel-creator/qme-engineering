@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="leasing" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/leasing/"><b>Simulateur leasing ou achat</b><span class="phrase">Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>

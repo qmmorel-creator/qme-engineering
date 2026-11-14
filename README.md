@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 36 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 40 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -160,6 +160,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   L441-10 et indemnité D441-5 à taux datés modifiables, messages par palier à copier, rien n'est envoyé) ;
   `templates/onboarding/` (ARD) **onboarding et offboarding salarié** (checklists par profil de J-15 à J+90,
   responsables, matériel remis et rendu). Règles dans `regles.js`, tests `outils/templates/<slug>.test.mjs`.
+- Lot du 14/11/2026 (2), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/conges/` (CNG) **suivi des congés et
+  absences** (soldes en jours ouvrables ou ouvrés, règles du Code du travail paramétrables, demandes et
+  validation, calendrier d'équipe avec fériés et seuil d'absents, aucune donnée de santé) ;
+  `templates/stocks/` (STK) **stocks et inventaire** (stock calculé par les mouvements, seuils et liste à
+  commander, valeur au coût moyen pondéré ou au dernier prix, inventaire tournant avec écarts) ;
+  `templates/location-saisonniere/` (SJR) **location saisonnière** (calendrier sans double réservation,
+  ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
+  plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
+  LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

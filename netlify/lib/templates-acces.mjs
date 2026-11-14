@@ -24,7 +24,7 @@ export const PRODUITS = {
   BDG: { nom: 'Budget du foyer', url: '/templates/budget/', gumroad: 'YvGeAPDZjuqr9yflNtLhhw==' },
   MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
-  NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/' },
+  NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
   CRM: { nom: 'CRM freelance', url: '/templates/crm/' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/' },
   PHR: { nom: 'Planner horaire', url: '/templates/planner/' },
@@ -48,6 +48,10 @@ export const PRODUITS = {
   APD: { nom: 'Préparateur d\'appel découverte', url: '/templates/appel-decouverte/' },
   RCV: { nom: 'Relance des impayés', url: '/templates/impayes/' },
   ARD: { nom: 'Onboarding et offboarding salarié', url: '/templates/onboarding/' },
+  CNG: { nom: 'Suivi des congés et absences', url: '/templates/conges/' },
+  STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/' },
+  SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
+  VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

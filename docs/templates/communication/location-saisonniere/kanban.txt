@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="location-saisonniere" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/location-saisonniere/"><b>Location saisonnière</b><span class="phrase">Calendrier, ménage, taxe de séjour et net par canal.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>

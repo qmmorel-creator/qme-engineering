@@ -1,0 +1,42 @@
+{
+  "slug": "leasing",
+  "name": "Simulateur leasing ou achat",
+  "price_cents": 1200,
+  "permalink": "simulateur-leasing-achat",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon simulateur",
+  "summary": "Comptant, crédit, LOA ou LLD : le coût total net de chaque offre de voiture côte à côte, revente estimée, kilomètres en plus et frais compris, avec le coût par mois et par kilomètre.",
+  "description": "<h2>Ta voiture, au vrai prix.</h2><p>Un loyer de LOA, une offre de crédit, une proposition de LLD, un prix au comptant… Chaque vendeur met en avant un chiffre différent, et aucun ne dit combien la voiture coûtera vraiment sur la période. Le Simulateur leasing ou achat ramène toutes tes offres au même étalon : le coût total net, revente et kilomètres compris.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Quatre façons de payer côte à côte</strong> : comptant, crédit amortissable (mensualité et coût des intérêts calculés par la formule d'annuité), LOA avec premier loyer, loyers et option d'achat levée ou non, LLD avec forfait kilométrique et prix du kilomètre en plus.</li><li><strong>Le coût total net</strong> sur la durée de détention : versements, assurance, entretien (inclus ou non), frais de dossier, option d'achat, capital restant dû, moins la valeur de revente estimée. Puis le coût mensuel équivalent et le coût au kilomètre.</li><li><strong>Tes kilomètres réels face au forfait</strong> : dépassement et coût estimés, et le kilométrage annuel à partir duquel une offre devient moins chère qu'une autre.</li><li><strong>Des hypothèses que tu choisis</strong> : décote annuelle, effet du kilométrage sur la revente, coût d'opportunité de l'apport (taux de placement saisi).</li><li><strong>Le coût cumulé dans le temps</strong> en graphique, et le détail du calcul de chaque offre, poste par poste.</li><li><strong>Ce qu'il faut demander au vendeur</strong> : 18 questions par type d'offre, à cocher et à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique le véhicule, la durée et tes kilomètres par an, puis reporte les montants de chaque offre reçue : le classement se calcule. Tes comparaisons sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie, pas un conseil financier : les offres écrites et les contrats font foi. Aucune donnée de marché intégrée, aucune connexion à une banque, un vendeur ou un loueur. Pour les indépendants, la fiscalité (déductibilité, TVA, amortissement) n'est pas calculée. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "leasing",
+    "loa",
+    "lld",
+    "credit-auto",
+    "voiture",
+    "budget",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Indique le véhicule et tes kilomètres, puis reporte les montants de tes offres : le coût total net de chacune se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Particuliers et indépendants qui choisissent une voiture"
+    }
+  ]
+}

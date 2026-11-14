@@ -85,14 +85,14 @@ déjà).
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
-| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
+| T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
-| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | prêt | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
@@ -101,8 +101,8 @@ déjà).
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
-| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | prêt | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
+| T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
+| T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
@@ -113,24 +113,24 @@ déjà).
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
-| T36 | Générateur de devis | Commercial | Artisans, freelances | prêt | 29 € | M | P1 | Backlog Quentin n° 11 |
+| T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
-| T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | prêt | 29 € | M | P1 | Backlog Quentin n° 17 |
+| T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | prêt | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
-| T48 | Suivi congés et absences | RH | TPE sans SIRH | idée | 19 € | S | P2 | Backlog Quentin n° 24 |
+| T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
-| T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | prêt | 29 € | M | P1 | Backlog Quentin n° 30 |
+| T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | idée | 45 € | L | P2 | Backlog Quentin n° 33 |
@@ -139,12 +139,12 @@ déjà).
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
-| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | idée | 25 € | S | P2 | Backlog Quentin n° 40 |
+| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
-| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
+| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
-| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 12 € | S | P2 | Backlog Quentin n° 45 |
-| T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | prêt | 25 € | M | P1 | Backlog Quentin n° 49 |
+| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
+| T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
@@ -444,6 +444,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T38 | `appel-decouverte` | APD | preparateur-appel-decouverte (prévu) |
 | T43 | `impayes` | RCV | relance-impayes (prévu) |
 | T46 | `onboarding` | ARD | onboarding-offboarding (prévu) |
+| T48 | `conges` | CNG | suivi-conges-absences (prévu) |
+| T62 | `stocks` | STK | stocks-inventaire (prévu) |
+| T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
+| T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -489,6 +493,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-113 | T38 appel-decouverte | 2027-01-23 | 12:15 |
 | LI-114 | T43 impayes | 2027-01-25 | 12:15 |
 | LI-115 | T46 onboarding | 2027-01-27 | 12:15 |
+| LI-116 | T48 conges | 2027-01-29 | 08:30 |
+| LI-117 | T62 stocks | 2027-02-03 | 12:15 |
+| LI-118 | T64 location-saisonniere | 2027-02-05 | 12:15 |
+| LI-119 | T66 leasing | 2027-02-07 | 08:30 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -527,6 +535,24 @@ vérifier : T26, majoration de 20 % des véhicules électriques pour les deux-ro
 365 jours et pénalités sur le TTC, taux BCE à mettre à jour au 01/01/2027 ; T46, articles R4624-10 et
 L1221-13 du Code du travail non relus sur Légifrance ; T38, durée de conservation CNIL des prospects
 (3 ans) ; organismes de `prospects.md` marqués « à vérifier ».
+
+**Lot du 14/11/2026, deuxième (T48, T62, T64, T66)**, prêts, « Mise en vente prochaine » (démo libre, bouton
+« Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/conges/` (CNG, 19 €), `templates/stocks/` (STK, 25 €), `templates/location-saisonniere/` (SJR, 25 €),
+`templates/leasing/` (VTR, 12 €) ; pages `catalogue/<slug>/` ; fiches `fiches/<slug>.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`). Noms et
+prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad. Publications
+insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé »
+LI-116 (T48, ven. 29/01), LI-117 (T62, 03/02), LI-118 (T64, 05/02), LI-119 (T66, dim. 07/02 : créneau donné
+par la règle, à décaler si besoin) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-71 (T48,
+30/01), IG-72 (T62, 04/02), IG-73 (T64, 06/02), IG-74 (T66, 08/02). Restent à vérifier : T48, articles du Code
+du travail relus sur code.travail.gouv.fr seulement (Légifrance indisponible), équivalence en jours ouvrés,
+samedi en jours ouvrables, report de 15 mois après un arrêt non géré ; T62, obligation d'inventaire annuel
+(L123-12 du Code de commerce) non relue, marquée « à vérifier » ; T64, exonération des mineurs pour la taxe de
+séjour (source secondaire), collecte de la taxe par les intermédiaires non vérifiée, hashtags hors kit ; T66,
+hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non sourcées, seuil calculé en km/an
+seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
+« Indépendants » (public : commerces et artisans).
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 

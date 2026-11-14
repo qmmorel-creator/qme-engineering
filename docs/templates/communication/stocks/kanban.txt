@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="stocks" data-pour="pro" data-theme="independants" style="--c:var(--jaune)"><a href="/catalogue/stocks/"><b>Stocks et inventaire</b><span class="phrase">Seuils d'alerte, liste à commander, valeur et inventaire.</span><span class="theme">Indépendants</span><em>Bientôt</em></a></li>
