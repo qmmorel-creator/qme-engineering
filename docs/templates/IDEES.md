@@ -164,7 +164,7 @@ déjà).
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -533,6 +533,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
 | T44 | `tva` | TVA | suivi-tva (prévu) |
+| T89 | `candidatures` | CAN | candidatures-etudes-stages-alternance (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1002,7 +1003,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T86 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
 | T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
 | T88 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
-| T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
+| T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. Fiche `fiches/candidatures.md` (cadrage délégué par Quentin, 14/11/2026). Prêt le 14/11/2026, mise en vente prochaine : application `templates/candidatures/` (CAN), page `catalogue/candidatures/`, communication `communication/candidatures/`. Publications LinkedIn et Instagram non planifiées. |
 | T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
 | T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
 | T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
@@ -1828,3 +1829,33 @@ et à régénérer les pages des packs à la fusion.
   prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
   ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
   anglaise, plannings, passage en vente du site.
+
+## Fiche T89 (cadrage délégué par Quentin, 14/11/2026)
+
+### T89 · Candidatures études, stages, alternance (`templates/candidatures/`, préfixe CAN, 12 €)
+- Fiche détaillée : `fiches/candidatures.md`. Promesse : « Chaque dossier, à temps. » Catalogue `perso`, thème
+  « Organisation et études » ; pack visé « Étudiant » (PET). Permalien prévu `candidatures-etudes-stages-alternance`.
+- Public : lycéens (orientation après le bac), étudiants (master, écoles), candidats à un stage, une alternance ou un
+  job étudiant.
+- Écrans : **Tableau de bord** (à envoyer avec pièces manquantes, relances dues, 14 prochains jours, compteurs par
+  statut), **Candidatures** (filtres type et statut, fiche : statut en 7 étapes, pièces à statut au toucher, dates,
+  relances avec message à copier, lettre, entretien, notes ; dupliquer, imprimer), **Vœux** (classement par type),
+  **Échéances** (à traiter puis mois par mois, export .ics), **Lettres et entretiens** (5 trames originales avec aperçu
+  et champs manquants surlignés ; 32 questions types avec piste, notes, fiche imprimable).
+- Base : 4 types, 7 statuts, 23 pièces types (4 après acceptation), 6 listes de départ, 7 thèmes de questions,
+  3 messages. **Aucune date ni calendrier officiel** (test), **aucune plateforme nommée** (test sur la base,
+  l'interface et la page). Relance : délai réglable (10 jours par défaut) hors formation ; pour une formation,
+  seulement après la date de réponse annoncée ; remerciement après un entretien passé.
+- Confidentialité : démo fictive (étudiant « Noa », établissements et entreprises inventés). **À trancher par
+  Quentin** : public en partie mineur (achat par un parent, données saisies par le candidat lui-même, aucune note ni
+  pièce stockée).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/candidatures/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/candidatures/`, captures `assets/templates-candidatures-*.webp`, couverture
+  `assets/templates-candidatures-couverture.png`, tests `outils/templates/candidatures.test.mjs`. CAN retiré de
+  `PREVUS` et de la liste `prevus` du pack PET (`outils/packs/donnees.mjs`), ajouté à `TEMPLATES`.
+- Communication prête dans `communication/candidatures/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-en-prochaine.html). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de
+  licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de CAN au pack PET
+  (`netlify/lib/packs.mjs`, pages des packs régénérées), cartes anglaises, plannings, passage en vente du site.

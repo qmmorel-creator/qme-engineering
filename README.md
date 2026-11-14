@@ -392,6 +392,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   d'urgence » pour un proche ; inventaire, liste à trier et fiche imprimables ; export CSV. Aucun contenu ni numéro de
   pièce stocké (numéros longs, IBAN et mots de passe refusés dans les champs libres). Fiche
   `docs/templates/fiches/papiers.md`, tests `outils/templates/papiers.test.mjs`.
+- `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
+  prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
+  par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut
+  de chaque pièce, statut de la candidature (à préparer, envoyée, entretien, liste d'attente, acceptée, refusée, retirée)
+  et réponse ; dates saisies par l'utilisateur (**aucun calendrier officiel intégré**, aucune plateforme nommée ni
+  connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
+  motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
+  `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

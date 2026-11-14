@@ -80,6 +80,7 @@ export const TEMPLATES = {
   VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', pour: 'perso' },
   CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', pour: 'pro' },
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', pour: 'perso' },
+  CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -96,7 +97,6 @@ export const PREVUS = {
   CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
   NTS: { nom: 'Notes et moyennes', prix: 1200, phrase: 'Moyennes pondérées, crédits et note visée à l’examen.' },
-  CAN: { nom: 'Candidatures études, stages, alternance', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.' },
   MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
   SBV: { nom: 'Subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.' },
   BNV: { nom: 'Bénévoles et planning des créneaux', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.' },
@@ -277,7 +277,7 @@ export const PAGES = {
       ['PGS', 'Gardez le rythme de lecture des œuvres au programme, objectif au jour près.'],
     ],
     arguments: ['La répétition espacée, une méthode de mémorisation éprouvée, sans fiche à refaire', 'Sur le téléphone, toujours à portée de main', 'Un achat unique jusqu’à l’examen, et après'],
-    prevus: ['NTS', 'CAN', 'MMR'],
+    prevus: ['NTS', 'MMR'],
   },
   PAS: {
     couleur: 'rouge', cibles: ['associations'],
