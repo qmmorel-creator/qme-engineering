@@ -313,6 +313,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   avec courrier à copier ou imprimer (aucun envoi) ; complétude par lot, entreprise et famille ; bordereau de
   transmission et état des pièces manquantes imprimables ; export CSV. Seule référence : article 40 du CCAG Travaux
   2021, en paraphrase datée. Fiche `docs/templates/fiches/doe.md`, tests `outils/templates/doe.test.mjs`.
+- `templates/sous-traitants/` (STR) : **conformité des sous-traitants**, prêt, mise en vente prochaine (29 €). Opérations,
+  lots, titulaires et sous-traitants par rang (donneur d'ordre), acceptation et agrément des conditions de paiement
+  (loi n° 75-1334), pièces de vigilance par entreprise avec date de validité (attestation Urssaf, Kbis, liste des
+  salariés étrangers, décennale ; seuil de 5 000 € HT, durées et pièces paramétrables, sources lues le 14/11/2026 et
+  citées dans le guide), alertes J-30 / J-15 / expirée, relances depuis un modèle (copie ou messagerie), tableau de
+  conformité par opération, registre imprimable A4 paysage, export CSV ; aucun document stocké, outil d'aide sans
+  valeur de conseil juridique. Règles dans `regles.js`, tests `outils/templates/sous-traitants.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

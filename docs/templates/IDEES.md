@@ -112,7 +112,7 @@ déjà).
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
+| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
@@ -141,7 +141,7 @@ déjà).
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
@@ -159,7 +159,7 @@ déjà).
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
@@ -264,7 +264,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75 | T76 | 115 € | 25 % | 86 € | 22 € |
-| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77 | T78 | 227 € | 25 % | 170 € | 43 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
@@ -1648,3 +1648,24 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix
   à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout au
   pack PFC (`netlify/lib/packs.mjs`) et régénération des pages de packs, plannings, page anglaise, passage en vente.
+
+## Fiche T78 (cadrage délégué par Quentin, 14/11/2026)
+
+### T78 · Conformité des sous-traitants (`templates/sous-traitants/`, préfixe STR, 29 €)
+
+Fiche détaillée : [`fiches/sous-traitants.md`](fiches/sous-traitants.md). Statut **prêt**, « Mise en vente
+prochaine » (démo libre `/templates/sous-traitants/?demo`, page `/catalogue/sous-traitants/`, carte `carte
+prochaine` du thème « Projets et chantiers », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/sous-traitants/gumroad.json`, permalien proposé `conformite-sous-traitants`). Opérations, lots,
+entreprises par rang sous leur donneur d'ordre, acceptation et agrément du paiement, pièces de vigilance par
+entreprise avec date de validité, alertes J-30 / J-15 / expirée, relances depuis un modèle, tableau de conformité,
+registre imprimable, export CSV. **Daté** : seuil de 5 000 € HT, validité de 6 mois (vigilance, Kbis, liste des
+salariés étrangers), décennale, loi de 1975, sourcés (Service-Public F36261, urssaf.fr, Code du travail D8222-5,
+D8254-2 et D8254-4, Code des assurances L243-2, Légifrance) et **lus le 14/11/2026**, date affichée dans le Guide ;
+tout est paramétrable (seuil, durées, portée, pièces ajoutées). Renforcement annoncé par décret au plus tard le
+27/12/2026 : affiché, à revérifier avant la mise en vente. **RGPD** : coordonnées professionnelles, aucun document
+stocké. Avertissement « outil d'aide, ne remplace pas un conseil juridique » (Guide, registre, page, Gumroad).
+Livrables dans `communication/sous-traitants/` (linkedin.md, instagram.md + carrousel, prospects.md, gumroad.md et
+gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram
+**non planifiées** (pas d'accès aux plannings dans cette session). À rattacher à `PBT` dans `netlify/lib/packs.mjs`
+et à régénérer les pages des packs à la fusion.

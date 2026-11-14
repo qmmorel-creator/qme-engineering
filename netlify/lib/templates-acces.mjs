@@ -79,6 +79,7 @@ export const PRODUITS = {
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/' },
   RDE: { nom: 'Registre du DOE', url: '/templates/doe/' },
+  STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
