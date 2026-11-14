@@ -97,7 +97,7 @@ légale par défaut et sa source affichée dans l'application (Réglages et ongl
 ## Base intégrée (`donnees.js`)
 
 - 3 trames (annuel, EPP, état des lieux) et 4 thèmes complémentaires (retour d'absence, mi-carrière, fin de
-  carrière, charge de travail des salariés au forfait jours) ; environ 70 questions originales.
+  carrière, charge de travail des salariés au forfait jours) ; 58 questions originales (44 dans les trames, 14 dans les thèmes complémentaires).
 - Types d'absence ouvrant droit à un EPP au retour (liste sourcée, à vérifier) ; natures et statuts de
   formation ; statuts d'objectif ; repères réglementaires datés avec leurs sources ; conseils de démarrage.
 

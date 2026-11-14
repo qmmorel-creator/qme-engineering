@@ -75,6 +75,7 @@ export const PRODUITS = {
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
   PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/' },
+  ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

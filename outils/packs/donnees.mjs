@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -84,7 +85,6 @@ export const PREVUS = {
   CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
   RDE: { nom: 'Registre du DOE', prix: 2900, phrase: 'Les pièces à remettre par lot, relancées jusqu’au complet.' },
   STR: { nom: 'Conformité des sous-traitants', prix: 2900, phrase: 'Agréments et attestations, alertes avant expiration.' },
-  ENP: { nom: 'Entretiens annuels et professionnels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.' },
   DRP: { nom: 'Document unique d’évaluation des risques', prix: 2900, phrase: 'Risques par unité de travail, cotation et actions.' },
   CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
@@ -189,7 +189,7 @@ export const PAGES = {
       ['EQP', 'Affectez l’équipe semaine par semaine et voyez surcharges et trous avant qu’ils n’arrivent.'],
     ],
     arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Entretiens annuels et document unique à venir, avec l’option Pack évolutif'],
-    prevus: ['ENP', 'DRP'],
+    prevus: ['DRP'],
   },
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],
