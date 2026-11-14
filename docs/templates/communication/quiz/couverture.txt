@@ -1,0 +1,11 @@
+Banque de questions et quiz
+Tes questions, tes quiz, tes résultats.
+Questions taguées · quiz et corrigé · statistiques
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  quiz: ['Banque de questions et quiz', 'Tes questions, tes quiz, tes résultats.', 'Questions taguées · quiz et corrigé · statistiques'],
+
+(Couverture assets/templates-quiz-couverture.png générée avec une copie du script dans le scratchpad, où cette ligne
+était la première de la table, serveur local sur le port 8931 au lieu de 8899 : ambiance n° 0 (bloc ciel, forme rose,
+quart de cercle jaune). Placée ailleurs dans la table, une régénération donnerait l'ambiance de son rang modulo 3 :
+régénérer avec SEUL=quiz seulement si on le souhaite.)

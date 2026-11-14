@@ -1,0 +1,11 @@
+Séminaire / offsite
+Tout le monde au bon endroit, au bon moment.
+Réponses · qui voyage avec qui · chambres · coût par personne
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur, en fin de table) :
+  seminaire: ['Séminaire / offsite', 'Tout le monde au bon endroit, au bon moment.', 'Réponses · qui voyage avec qui · chambres · coût par personne'],
+
+(Couverture assets/templates-seminaire-couverture.png générée le 14/11/2026 avec une copie du script où cette ligne
+était la dernière de la table, juste après 'etat-des-lieux' (rang 92 en partant de 0 : ambiance n° 2, bloc beurre, grand
+rond ciel, quart de cercle pêche), servie par le serveur local du dépôt. Placée ailleurs dans la table, une régénération donnerait
+l'ambiance de son rang modulo 3 : régénérer avec SEUL=seminaire seulement si on le souhaite.)

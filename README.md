@@ -227,6 +227,25 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   l'entrée (service-public.gouv.fr F31270, F33671, F31269, consultées le 14/11/2026), document imprimable à signer,
   export CSV. Outil d'aide, pas un document certifié. Règles dans `regles.js`, tests
   `outils/templates/etat-des-lieux.test.mjs`.
+- `templates/seminaire/` (SMN) : **séminaire / offsite** (T54), prêt, « Mise en vente prochaine » (35 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/seminaire/gumroad.json`). Déclinaison du pilote événementiel pour
+  les assistants de direction, RH et office managers : plusieurs séminaires par clé ; participants et réponses (saisie
+  rapide depuis un tableur, relance après la date limite, suivi par service) ; trajets aller et retour avec places et
+  passagers, horaires comparés au programme ; chambres, occupants et répartition automatique des confirmés par service,
+  liste imprimable pour l'hébergement ; programme en salles parallèles, chevauchements, décalage en cascade ; budget
+  prévu / engagé / payé, paiements en retard, coût par participant confirmé. **RGPD** : régime en liste fermée, cases
+  allergie et accessibilité sans détail, saisie facultative, fiche traiteur en nombres seulement, export CSV sans données
+  sensibles par défaut, effacement des données sensibles d'un séminaire. Rattaché à aucun pack. Règles dans `regles.js`,
+  tests `outils/templates/seminaire.test.mjs`.
+- `templates/quiz/` (QZZ) : **banque de questions et quiz** (T58), prêt, « Mise en vente prochaine » (19 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/quiz/gumroad.json`). Questions étiquetées (QCM à une ou plusieurs
+  bonnes réponses, vrai ou faux, réponse courte avec variantes), difficulté, points, explication ; collage d'une liste ;
+  quiz tirés par étiquettes, difficulté et type, propositions mélangées ; sujet imprimable et corrigé à part ; sessions
+  anonymes ou nominatives (prénom et initiale, ou pseudonyme), note automatique, réponses courtes non reconnues « à
+  vérifier » ; statistiques par question et par étiquette, questions trop faciles ou trop difficiles, distracteur le plus
+  choisi. **RGPD** : mention au premier lancement, export JSON et CSV, effacement d'un apprenant, d'une session ou de tous
+  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le pack Enseignant et formateur.
+  Règles dans `regles.js`, tests `outils/templates/quiz.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio

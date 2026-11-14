@@ -131,11 +131,11 @@ déjà).
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
-| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
+| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | prêt | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
-| T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
+| T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
@@ -270,7 +270,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
-| Enseignant et formateur | PNS | T59, T55, T56 | T58 | 85 € | 15 % | 72 € | 18 € |
+| Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
@@ -603,6 +603,8 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-133 | T59 progression | 2027-03-06 | 12:15 |
 | LI-134 | T18 potager | 2027-03-08 | 12:15 |
 | LI-135 | T19 bebe | 2027-03-10 | 08:30 |
+| LI-136 | T54 seminaire | 2027-03-12 | 12:15 |
+| LI-137 | T58 quiz | 2027-03-14 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -820,6 +822,39 @@ RH (T49) ; taxonomie de Bloom sur une source primaire et article L3133-1 (T59) ;
 Firefox réels (émulation Chromium seulement), ouverture des CSV dans un tableur ; organismes de `prospects.md`
 (« à vérifier »).
 
+**Lot du 14/11/2026, dixième et dernier de la série (T54, T58)**, prêts, « Mise en vente prochaine » (démo libre, bouton
+« Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/seminaire/` (SMN, 35 €, démo `/templates/seminaire/?demo`, page `/catalogue/seminaire/`) et `templates/quiz/`
+(QZZ, 19 €, démo `/templates/quiz/?demo`, page `/catalogue/quiz/`) ; fiches `fiches/seminaire.md` et `fiches/quiz.md` ;
+livrables dans `communication/<slug>/` (linkedin.md, instagram.md + carrousel `instagram/`, prospects.md, gumroad.md et
+gumroad.json, cartes FR/EN, section-site.html, couverture.txt, integration.md, qui détaille les points ci-dessous).
+Préfixe `SMN` nouveau ; `QZZ`, réservé, passe de `PREVUS` aux templates et rejoint le pack Enseignant et formateur (4
+templates, 83 € au lieu de 104 €, −20 %, option évolutive 21 € ; argument « La banque de quiz à venir » remplacé par
+« Questions, quiz et corrections dans le même pack »). **T54 n'est rattaché à aucun pack** (aucun pack événements ;
+Moyens généraux ou Associations et clubs possibles, à trancher). Thème du catalogue : « Associations, formation et
+événements » pour les deux. Publications insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en
+ligne » : LinkedIn « Programmé » LI-136 (T54, ven. 12/03, 12:15) et LI-137 (T58, dim. 14/03, 12:15) ; Instagram « Prêt »
+IG-91 (T54, 13/03) et IG-92 (T58, 15/03), à relire par Quentin avant « Programmé ». Couvertures et carrousels déposés
+dans Drive (IDs dans les colonnes Remarque et P des plannings).
+**Exigences de Quentin** : T54, régimes et allergies traités comme données sensibles (mention explicite à la saisie, en
+tête des participants et dans les réglages ; saisie facultative ; liste fermée de 5 régimes, une case allergie et une
+case accessibilité sans aucun détail, pas de champ libre médical ; traiteur informé en nombres ; effacement par
+séminaire) ; T58, aucun contenu d'artefact repris (30 questions de démo rédigées pour QME), résultats nominatifs sous
+RGPD (copies anonymes par défaut, export JSON et CSV, effacement d'un apprenant, d'une session ou de tout,
+anonymisation). Démos entièrement fictives.
+**À faire valider par Quentin** : prix (35 € et 19 €), noms, permaliens (`seminaire-offsite`, `banque-questions-quiz`)
+et catégories Gumroad (`business-and-money`, `education`, à vérifier) ; pack de T54 ; nouvel argument du pack PNS ;
+T54, « sans porc » gardé dans la liste fermée et « sans gluten » passé par la case allergie, présence sur toute la
+durée, « en attente » comptés mais jamais placés, répartition par service sans critère de genre, ni accès participant
+ni rétroplanning ni badges (renvoi vers T51) ; T58, QCM multiple en tout ou rien, blanc compté faux, note arrondie au
+demi-point, réponses courtes « à vérifier », seuils 85 % / 35 % (5 réponses minimum, distracteur dès 15 %),
+conservation de 12 mois par défaut (aucune durée légale affirmée), passation sur l'appareil du formateur ; hashtags hors
+jeux habituels (`#OfficeManager`, `#AssistantDeDirection`, `#RessourcesHumaines`, `#Formation`, `#Enseignement`,
+`#Pédagogie`).
+Non vérifiés : définition CNIL « donnée sensible » non relue pour T54 (reprise de T51) ; textes RGPD de T58 sur une
+source primaire ; impression papier réelle (vue écran en média « print ») ; Safari et Firefox réels (émulation Chromium
+seulement) ; ouverture des CSV dans un tableur ; organismes de `prospects.md` (« à vérifier »).
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
@@ -866,6 +901,8 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
 | T93 | `assemblee-generale` | AGS | assemblee-generale-association (prévu) |
 | T95 | `investissement-locatif` | RNT | rentabilite-investissement-locatif (prévu) |
+| T54 | `seminaire` | SMN | seminaire-offsite (prévu) |
+| T58 | `quiz` | QZZ | banque-questions-quiz (prévu) |
 
 ### T31 · Compte rendu et plan d'actions
 
@@ -1043,11 +1080,11 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T51 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T54. **RGPD** (invités). |
 | T52 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
 | T53 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions d'un centre social (artefact client) | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle tableur. **confidentiel** : aucune donnée de l'artefact. |
-| T54 | Participants, transports, chambres, régimes, programme, budget | à définir (reprend T51) | Organisateur de mariage (artefact client) | Déclinaison de T51. **RGPD** : régimes alimentaires et allergies sont des données sensibles. |
+| T54 | Participants, transports, chambres, régimes, programme, budget | 2 programmes types (journée, deux jours avec nuitée), 12 postes de budget sans montant, 5 types de chambre, 7 types de session, régimes en liste fermée (5), rédigés pour QME ; aucun horaire ni tarif | Organisateur de mariage (artefact client) ; moteur du pilote événementiel | Déclinaison de T51. **RGPD** : régime en liste fermée, allergie et accessibilité par une case sans détail, saisie facultative, traiteur informé en nombres seulement, effacement par séminaire ; démo fictive. |
 | T55 | Élèves, évaluations, compétences, moyennes, appréciations, bulletins | à définir | — | **RGPD** (élèves, mineurs). Caduque : « stockage local uniquement » ; les données sont désormais en ligne, à trancher avant développement. Concurrence des logiciels de vie scolaire. |
 | T56 | Classes, formateurs, salles, créneaux, détection des conflits, vues par ressource | à définir | Grille de planning, planner horaire (outil interne) | Pas d'optimisation automatique en V1. **RGPD** (formateurs, apprenants). |
 | T57 | Véhicules, kilométrage, entretiens, contrôles techniques, moniteurs, planning de leçons, coût par heure | Intervalles d'entretien types | Ma voiture en leasing | Demandé explicitement. Base commune avec T29. **daté** (contrôle technique). **RGPD** (élèves, moniteurs). Format : application + modèle tableur. |
-| T58 | Banque de questions taguée, génération de quiz, correction, statistiques | à définir | Banque de questions d'élèves (artefact client) | Contenu de l'artefact non repris. **RGPD** si résultats nominatifs. |
+| T58 | Banque de questions taguée, génération de quiz, correction, statistiques | aucune question fournie ; types, difficultés, format de collage et conseils rédigés pour QME | Banque de questions d'élèves (artefact client) | Contenu de l'artefact non repris (mécanique générique seulement, démo de 30 questions génériques rédigées pour QME). **RGPD** : copies anonymes par défaut ou pseudonymes, mention au premier lancement, export JSON et CSV, effacement d'un apprenant, d'une session ou de tout, anonymisation, rappel de conservation. |
 | T59 | Séquences, séances, objectifs, avancement réel et prévu | 5 modèles de structure génériques, déroulé type de séquence, 73 verbes d'objectifs selon la taxonomie de Bloom révisée (rédigés pour QME), fériés calculés ; aucun programme officiel ni calendrier de vacances | Jalons à plage | **confidentiel** : artefact professionnel ; mécanique seulement (fenêtres de fin des séquences) ; démo fictive ; aucune donnée d'élève. |
 | T60 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Pilotage de parcs (artefact professionnel) | **confidentiel** : aucune donnée, nom de site ni chiffre ; exemples fictifs (immobilier, équipements). Format : application + modèle tableur. |
 | T61 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Artefacts professionnels de maintenance | **confidentiel** : mécanique seulement, aucune donnée ; exemples fictifs. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T63. |
