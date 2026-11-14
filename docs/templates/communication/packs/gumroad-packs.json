@@ -1,5 +1,31 @@
 [
   {
+    "code": "PFG",
+    "slug": "freelance-gestion",
+    "nom": "Pack Freelance : chiffrer, facturer, encaisser",
+    "permalien": "pack-freelance-gestion",
+    "prix_cents": 11800,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 11800
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 14800
+      }
+    ],
+    "resume": "Du bon tarif à l’argent sur le compte.",
+    "description_html": "<p><strong>Du bon tarif à l’argent sur le compte.</strong></p>\n<p>Les outils qui font tourner une activité d’indépendant : fixer son prix, mesurer son temps, chiffrer, facturer, relancer et voir venir.</p>\n<p><strong>Pour qui ?</strong> Vous êtes freelance, consultant, artisan ou micro-entrepreneur. Vous savez faire votre métier ; c’est tout ce qui l’entoure qui prend vos soirées : le tarif « au feeling », le devis refait de zéro, la facture oubliée, le compte qui baisse sans prévenir.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Calculateur de TJM freelance</strong> : Du revenu visé au tarif journalier minimum et conseillé. (12 € seul)</li><li><strong>Coût de revient et prix par client</strong> : Vos coûts réels et le prix juste pour chaque client. (25 € seul)</li><li><strong>Générateur de devis</strong> : Catalogue, remises, TVA et mentions, justes au centime. (29 € seul)</li><li><strong>Livre recettes-dépenses micro-entreprise</strong> : Le livre de la micro-entreprise, cotisations estimées. (25 € seul)</li><li><strong>Relance des impayés</strong> : Retard en jours, pénalités et relances par palier. (19 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Suivi du temps et rentabilité par mission</strong> : Le temps réellement passé, comparé au tarif et au devis. (19 € seul)</li></ul>\n<p>158 € à l’achat séparé, 118 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (118 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (148 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "6/7",
+    "templates_a_mettre_en_vente": [
+      "Suivi du temps et rentabilité par mission"
+    ]
+  },
+  {
     "code": "PVY",
     "slug": "voyage",
     "nom": "Pack Voyage",
@@ -53,33 +79,6 @@
     ]
   },
   {
-    "code": "PFG",
-    "slug": "freelance-gestion",
-    "nom": "Pack Freelance : chiffrer, facturer, encaisser",
-    "permalien": "pack-freelance-gestion",
-    "prix_cents": 11800,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 11800
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 14800
-      }
-    ],
-    "resume": "Du bon tarif à l’argent sur le compte.",
-    "description_html": "<p><strong>Du bon tarif à l’argent sur le compte.</strong></p>\n<p>Les outils qui font tourner une activité d’indépendant : fixer son prix, mesurer son temps, chiffrer, facturer, relancer et voir venir.</p>\n<p><strong>Pour qui ?</strong> Vous êtes freelance, consultant, artisan ou micro-entrepreneur. Vous savez faire votre métier ; c’est tout ce qui l’entoure qui prend vos soirées : le tarif « au feeling », le devis refait de zéro, la facture oubliée, le compte qui baisse sans prévenir.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Calculateur de TJM freelance</strong> : Du revenu visé au tarif journalier minimum et conseillé. (12 € seul)</li><li><strong>Coût de revient et prix par client</strong> : Vos coûts réels et le prix juste pour chaque client. (25 € seul)</li><li><strong>Générateur de devis</strong> : Catalogue, remises, TVA et mentions, justes au centime. (29 € seul)</li><li><strong>Livre recettes-dépenses micro-entreprise</strong> : Le livre de la micro-entreprise, cotisations estimées. (25 € seul)</li><li><strong>Relance des impayés</strong> : Retard en jours, pénalités et relances par palier. (19 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Suivi du temps et rentabilité par mission</strong> : Le temps réellement passé, comparé au tarif et au devis. (19 € seul)</li></ul>\n<p>158 € à l’achat séparé, 118 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (118 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (148 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "5/7",
-    "templates_a_mettre_en_vente": [
-      "Relance des impayés",
-      "Suivi du temps et rentabilité par mission"
-    ]
-  },
-  {
     "code": "PVT",
     "slug": "voiture",
     "nom": "Pack Ma voiture",
@@ -104,6 +103,61 @@
     "templates_a_mettre_en_vente": [
       "Simulateur leasing ou achat",
       "Carnet de voiture"
+    ]
+  },
+  {
+    "code": "PPR",
+    "slug": "productivite",
+    "nom": "Pack Productivité perso",
+    "permalien": "pack-productivite",
+    "prix_cents": 5400,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 5400
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 6800
+      }
+    ],
+    "resume": "Moins de listes, plus de choses faites.",
+    "description_html": "<p><strong>Moins de listes, plus de choses faites.</strong></p>\n<p>Trier ce qui arrive, le caser dans la semaine, tenir ses routines, faire le point chaque semaine et chaque trimestre.</p>\n<p><strong>Pour qui ?</strong> Cadre, indépendant ou manager : votre boîte de réception déborde, votre agenda ne laisse aucune place au travail de fond et vos bonnes résolutions tiennent dix jours.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Gestionnaire de tâches</strong> : Boîte de réception, priorités et focus du jour. (19 € seul)</li><li><strong>Planner horaire</strong> : Votre semaine en blocs de 30 minutes, prévu et réalisé. (15 € seul)</li><li><strong>Suivi d'habitudes et routines</strong> : Cocher en un geste, séries et grille du mois. (12 € seul)</li><li><strong>Tableau de bord annuel et roue de vie</strong> : Vos domaines de vie notés, objectifs et bilan trimestriel. (15 € seul)</li><li><strong>Revue hebdomadaire et journal de bord</strong> : Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités. (12 € seul)</li></ul>\n<p>73 € à l’achat séparé, 54 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (54 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (68 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "3/5",
+    "templates_a_mettre_en_vente": [
+      "Planner horaire",
+      "Revue hebdomadaire et journal de bord"
+    ]
+  },
+  {
+    "code": "PBT",
+    "slug": "chef-de-projet-btp",
+    "nom": "Pack Chef de projet BTP",
+    "permalien": "pack-chef-de-projet-btp",
+    "prix_cents": 19200,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 19200
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 24000
+      }
+    ],
+    "resume": "Votre opération pilotée de la première réunion à la levée des réserves.",
+    "description_html": "<p><strong>Votre opération pilotée de la première réunion à la levée des réserves.</strong></p>\n<p>Planning, comptes rendus, visas, qualité et réception : les registres du chef de projet, construits par un ingénieur qui les tient lui-même.</p>\n<p><strong>Pour qui ?</strong> Maître d’œuvre, bureau d’études, OPC ou conducteur de travaux : vous jonglez entre le planning, le compte rendu de la semaine, les documents à viser et les réserves à lever. Chaque sujet a son tableur ; aucun ne parle aux autres.</p>\n<p><strong>Le contenu du pack (8 templates) :</strong></p>\n<ul><li><strong>Planning Gantt rapide</strong> : Une ligne par tâche, liens, jours fériés et chemin critique. (45 € seul)</li><li><strong>Circuit de visa des documents</strong> : Indices, avis des viseurs et échéances, lot par lot. (39 € seul)</li><li><strong>Levée de réserves</strong> : Réserves par lot et entreprise, retards calculés. (39 € seul)</li><li><strong>Registre des non-conformités</strong> : Constat, cause, actions correctives et vérification. (20 € seul)</li><li><strong>Compte rendu et plan d'actions</strong> : Décisions et actions suivies de réunion en réunion. (15 € seul)</li><li><strong>Suivi de chantier par lot</strong> : Jalons, avenants, situations, journal et risques par lot. (40 € seul)</li><li><strong>Registre du DOE</strong> : Les pièces du DOE par lot et entreprise, relancées jusqu’au complet. (29 € seul)</li><li><strong>Conformité des sous-traitants</strong> : Agréments et pièces de vigilance, alertes avant expiration. (29 € seul)</li></ul>\n<p>256 € à l’achat séparé, 192 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (192 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (240 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "5/8",
+    "templates_a_mettre_en_vente": [
+      "Suivi de chantier par lot",
+      "Registre du DOE",
+      "Conformité des sous-traitants"
     ]
   },
   {
@@ -160,63 +214,6 @@
       "Déménagement",
       "Planificateur de voyage",
       "Cadeaux reçus et remerciements"
-    ]
-  },
-  {
-    "code": "PPR",
-    "slug": "productivite",
-    "nom": "Pack Productivité perso",
-    "permalien": "pack-productivite",
-    "prix_cents": 5400,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 5400
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 6800
-      }
-    ],
-    "resume": "Moins de listes, plus de choses faites.",
-    "description_html": "<p><strong>Moins de listes, plus de choses faites.</strong></p>\n<p>Trier ce qui arrive, le caser dans la semaine, tenir ses routines, faire le point chaque semaine et chaque trimestre.</p>\n<p><strong>Pour qui ?</strong> Cadre, indépendant ou manager : votre boîte de réception déborde, votre agenda ne laisse aucune place au travail de fond et vos bonnes résolutions tiennent dix jours.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Gestionnaire de tâches</strong> : Boîte de réception, priorités et focus du jour. (19 € seul)</li><li><strong>Planner horaire</strong> : Votre semaine en blocs de 30 minutes, prévu et réalisé. (15 € seul)</li><li><strong>Suivi d'habitudes et routines</strong> : Cocher en un geste, séries et grille du mois. (12 € seul)</li><li><strong>Tableau de bord annuel et roue de vie</strong> : Vos domaines de vie notés, objectifs et bilan trimestriel. (15 € seul)</li><li><strong>Revue hebdomadaire et journal de bord</strong> : Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités. (12 € seul)</li></ul>\n<p>73 € à l’achat séparé, 54 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (54 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (68 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "2/5",
-    "templates_a_mettre_en_vente": [
-      "Planner horaire",
-      "Tableau de bord annuel et roue de vie",
-      "Revue hebdomadaire et journal de bord"
-    ]
-  },
-  {
-    "code": "PBT",
-    "slug": "chef-de-projet-btp",
-    "nom": "Pack Chef de projet BTP",
-    "permalien": "pack-chef-de-projet-btp",
-    "prix_cents": 19200,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 19200
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 24000
-      }
-    ],
-    "resume": "Votre opération pilotée de la première réunion à la levée des réserves.",
-    "description_html": "<p><strong>Votre opération pilotée de la première réunion à la levée des réserves.</strong></p>\n<p>Planning, comptes rendus, visas, qualité et réception : les registres du chef de projet, construits par un ingénieur qui les tient lui-même.</p>\n<p><strong>Pour qui ?</strong> Maître d’œuvre, bureau d’études, OPC ou conducteur de travaux : vous jonglez entre le planning, le compte rendu de la semaine, les documents à viser et les réserves à lever. Chaque sujet a son tableur ; aucun ne parle aux autres.</p>\n<p><strong>Le contenu du pack (8 templates) :</strong></p>\n<ul><li><strong>Planning Gantt rapide</strong> : Une ligne par tâche, liens, jours fériés et chemin critique. (45 € seul)</li><li><strong>Circuit de visa des documents</strong> : Indices, avis des viseurs et échéances, lot par lot. (39 € seul)</li><li><strong>Levée de réserves</strong> : Réserves par lot et entreprise, retards calculés. (39 € seul)</li><li><strong>Registre des non-conformités</strong> : Constat, cause, actions correctives et vérification. (20 € seul)</li><li><strong>Compte rendu et plan d'actions</strong> : Décisions et actions suivies de réunion en réunion. (15 € seul)</li><li><strong>Suivi de chantier par lot</strong> : Jalons, avenants, situations, journal et risques par lot. (40 € seul)</li><li><strong>Registre du DOE</strong> : Les pièces du DOE par lot et entreprise, relancées jusqu’au complet. (29 € seul)</li><li><strong>Conformité des sous-traitants</strong> : Agréments et pièces de vigilance, alertes avant expiration. (29 € seul)</li></ul>\n<p>256 € à l’achat séparé, 192 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (192 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (240 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "4/8",
-    "templates_a_mettre_en_vente": [
-      "Levée de réserves",
-      "Suivi de chantier par lot",
-      "Registre du DOE",
-      "Conformité des sous-traitants"
     ]
   },
   {
@@ -388,46 +385,13 @@
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "3/9",
+    "templates_en_vente": "4/9",
     "templates_a_mettre_en_vente": [
       "Suivi des congés et absences",
       "Notes de frais et indemnités kilométriques",
       "Onboarding et offboarding salarié",
       "Tableau de bord de pilotage PME",
-      "Planning d'équipe et staffing",
       "Entretiens annuels et professionnels"
-    ]
-  },
-  {
-    "code": "PFC",
-    "slug": "freelance-clients",
-    "nom": "Pack Freelance : trouver ses clients",
-    "permalien": "pack-freelance-clients",
-    "prix_cents": 9700,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 9700
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 12200
-      }
-    ],
-    "resume": "Moins de prospects perdus, plus de rendez-vous qui aboutissent.",
-    "description_html": "<p><strong>Moins de prospects perdus, plus de rendez-vous qui aboutissent.</strong></p>\n<p>Préparer l’appel, suivre chaque prospect, ne plus oublier une relance : la chaîne commerciale de l’indépendant B2B.</p>\n<p><strong>Pour qui ?</strong> Vous vendez vos services à des entreprises. Vos prospects sont dans un carnet, vos relances dans votre tête et vos appels se préparent sur le trajet. Ce pack met de l’ordre sans vous imposer un CRM d’entreprise.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Préparateur d'appel découverte</strong> : Questions par phase, objections et prochaine étape datée. (12 € seul)</li><li><strong>Pipeline de prospection B2B</strong> : Prospects par étape et relances selon votre cadence. (25 € seul)</li><li><strong>CRM freelance</strong> : Clients, prochaine action datée et relances du jour. (25 € seul)</li><li><strong>Propositions commerciales</strong> : Contexte, options comparées et planning : une proposition claire. (19 € seul)</li><li><strong>Kit références et plaquette</strong> : Vos réalisations mises en valeur, plaquette imprimable par prospect. (19 € seul)</li><li><strong>Calendrier éditorial</strong> : Sujets, formats et régularité de vos publications. (15 € seul)</li><li><strong>Suivi des appels d'offres et candidatures</strong> : Consultations, pièces, dates limites et résultats. (15 € seul)</li></ul>\n<p>130 € à l’achat séparé, 97 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (97 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (122 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "0/7",
-    "templates_a_mettre_en_vente": [
-      "Préparateur d'appel découverte",
-      "Pipeline de prospection B2B",
-      "CRM freelance",
-      "Propositions commerciales",
-      "Kit références et plaquette",
-      "Calendrier éditorial",
-      "Suivi des appels d'offres et candidatures"
     ]
   },
   {
@@ -451,15 +415,44 @@
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "2/9",
+    "templates_en_vente": "4/9",
     "templates_a_mettre_en_vente": [
       "Location saisonnière",
       "Entretien de la maison",
       "Gestion locative",
       "Capacité d'emprunt et comparateur de prêts",
-      "Rentabilité d'un investissement locatif",
-      "Charges et AG de copropriété",
-      "État des lieux d’entrée et de sortie"
+      "Charges et AG de copropriété"
+    ]
+  },
+  {
+    "code": "PFC",
+    "slug": "freelance-clients",
+    "nom": "Pack Freelance : trouver ses clients",
+    "permalien": "pack-freelance-clients",
+    "prix_cents": 9700,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 9700
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 12200
+      }
+    ],
+    "resume": "Moins de prospects perdus, plus de rendez-vous qui aboutissent.",
+    "description_html": "<p><strong>Moins de prospects perdus, plus de rendez-vous qui aboutissent.</strong></p>\n<p>Préparer l’appel, suivre chaque prospect, ne plus oublier une relance : la chaîne commerciale de l’indépendant B2B.</p>\n<p><strong>Pour qui ?</strong> Vous vendez vos services à des entreprises. Vos prospects sont dans un carnet, vos relances dans votre tête et vos appels se préparent sur le trajet. Ce pack met de l’ordre sans vous imposer un CRM d’entreprise.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Préparateur d'appel découverte</strong> : Questions par phase, objections et prochaine étape datée. (12 € seul)</li><li><strong>Pipeline de prospection B2B</strong> : Prospects par étape et relances selon votre cadence. (25 € seul)</li><li><strong>CRM freelance</strong> : Clients, prochaine action datée et relances du jour. (25 € seul)</li><li><strong>Propositions commerciales</strong> : Contexte, options comparées et planning : une proposition claire. (19 € seul)</li><li><strong>Kit références et plaquette</strong> : Vos réalisations mises en valeur, plaquette imprimable par prospect. (19 € seul)</li><li><strong>Calendrier éditorial</strong> : Sujets, formats et régularité de vos publications. (15 € seul)</li><li><strong>Suivi des appels d'offres et candidatures</strong> : Consultations, pièces, dates limites et résultats. (15 € seul)</li></ul>\n<p>130 € à l’achat séparé, 97 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (97 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (122 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "1/7",
+    "templates_a_mettre_en_vente": [
+      "Préparateur d'appel découverte",
+      "Pipeline de prospection B2B",
+      "Propositions commerciales",
+      "Kit références et plaquette",
+      "Calendrier éditorial",
+      "Suivi des appels d'offres et candidatures"
     ]
   },
   {
