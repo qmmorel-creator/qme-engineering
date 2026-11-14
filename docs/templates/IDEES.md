@@ -129,7 +129,7 @@ déjà).
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en cours | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -1038,3 +1038,17 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T52 (cadrage délégué par Quentin, 14/11/2026)
+
+### T52 · Gestion de compétition sportive (`templates/competition/`, préfixe CMP, 49 €)
+- Fiche détaillée : [`fiches/competition.md`](fiches/competition.md). Application web, catalogue `pro` · thème
+  « Associations, formation et événements », pack « Associations et clubs ».
+- Promesse : « Du premier inscrit au podium, sans tableur. »
+- Inscriptions (individuel ou équipes), catégories, épreuves (temps avec temps limite et « CAP+ », répétitions,
+  charge, points, départage, coefficient), vagues générées avec horaires et feuilles de juge, saisie des scores,
+  classement paramétrable (somme des rangs ou barème, départage général).
+- Affichage public : mode écran plein écran dans l'application et lien public en lecture seule
+  (`/api/competition/*`, instantané sans coordonnées, effacé 30 jours après la compétition).
+- Marques : **RGPD** (participants). Aucun nom d'épreuve de référence ou de marque.
+- Statut : **en cours**.
