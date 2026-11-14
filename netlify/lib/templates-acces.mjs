@@ -74,6 +74,7 @@ export const PRODUITS = {
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
   PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/' },
+  RDE: { nom: 'Registre du DOE', url: '/templates/doe/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
