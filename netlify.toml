@@ -918,3 +918,14 @@
   for = "/templates/remboursements-sante/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/memoire/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/memoire/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

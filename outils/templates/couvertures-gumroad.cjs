@@ -72,6 +72,7 @@ const T = {
   'animal': ["Suivi d'un animal de compagnie", "Ses soins, à temps.", "Soins · poids · visites · frais"],
   'garde-manger': ['Garde-manger et dates de péremption', 'Rien ne se perd au fond du frigo.', 'DLC et DDM · priorités du jour · gaspillage suivi'],
   papiers: ['Papiers du foyer', 'Chaque papier a sa place.', 'Où il est · combien de temps le garder · renouvellements · fiche urgence'],
+  memoire: ['Planning de mémoire ou de thèse', 'Le plan, le rythme, la date.', 'Plan et statuts · rétroplanning · mots par jour · directeur'],
   'remboursements-sante': ["Remboursements santé", "Ce qu'on te doit encore, soin par soin.", "Sécu et mutuelle · retards · relances · bilan annuel"],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
