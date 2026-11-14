@@ -1,0 +1,42 @@
+{
+  "slug": "garde-manger",
+  "name": "Garde-manger et dates de péremption",
+  "price_cents": 1200,
+  "permalink": "garde-manger-dates-peremption",
+  "category": "food-and-cooking",
+  "button": "Ouvrir mon garde-manger",
+  "summary": "L'inventaire du réfrigérateur, du congélateur et des placards avec leurs dates, la DLC et la DDM distinguées, chaque jour ce qu'il faut manger d'abord, le gaspillage compté et la liste de courses des produits épuisés.",
+  "description": "<h2>Rien ne se perd au fond du frigo.</h2><p>Le yaourt retrouvé une semaine trop tard, le pot de pesto ouvert dont on ne sait plus quand, la deuxième boîte de thon achetée parce qu'on ignorait qu'il en restait une… Garde-manger et dates de péremption tient l'inventaire de ta maison et te dit chaque jour ce qu'il faut manger d'abord.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire par lieu</strong> : réfrigérateur, congélateur, placard, et les lieux que tu ajoutes (cave, second congélateur, corbeille à fruits) ; pour chaque produit, sa quantité, sa catégorie et la date imprimée.</li><li><strong>DLC et DDM distinguées</strong> : « à consommer jusqu'au » (sécurité) dépassée affiche « ne pas consommer » ; « à consommer de préférence avant » (qualité) dépassée invite à vérifier l'aspect et l'odeur.</li><li><strong>L'ouverture prise en compte</strong> : date d'ouverture et délai indiqué sur l'emballage ; au congélateur, la date que tu fixes ; un produit décongelé est à finir sous 3 jours, sans le recongeler.</li><li><strong>À consommer en priorité</strong> : ce qui est dépassé, ce qui expire aujourd'hui, sous 3 jours et cette semaine, avec « Fini » ou « Jeté » en un geste.</li><li><strong>Le gaspillage suivi</strong> : produits consommés et jetés, motif (date dépassée, abîmé, oublié, trop acheté…), valeur si tu la notes, évolution sur six mois.</li><li><strong>Une liste de courses simple</strong>, alimentée par les produits épuisés, à cocher et à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes lieux de rangement, ajoute tes produits avec leur date, puis ouvre chaque jour « À consommer ». Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de gestion des stocks de la maison, pas un avis sanitaire : les alertes sont calculées à partir des dates que tu saisis. La date et les consignes de l'emballage, et l'aspect du produit, priment toujours ; DLC dépassée : ne pas consommer. Définitions DLC / DDM et deux durées (3 jours pour un plat non préemballé sans date, 3 jours après décongélation) reprises de l'Anses, source et date affichées ; aucune autre durée de conservation n'est fournie. Pas de scan de code-barres ni de base produit. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "garde-manger",
+    "dates-de-peremption",
+    "anti-gaspillage",
+    "frigo",
+    "liste-de-courses",
+    "famille",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton garde-manger s'ouvre. Choisis tes lieux de rangement, ajoute tes produits avec la date imprimée sur l'emballage, puis ouvre « À consommer » chaque jour. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Familles, foyers"
+    }
+  ]
+}

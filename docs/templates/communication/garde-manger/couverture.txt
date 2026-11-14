@@ -1,0 +1,6 @@
+Garde-manger et dates de péremption
+Rien ne se perd au fond du frigo.
+DLC et DDM · priorités du jour · gaspillage suivi
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  'garde-manger': ['Garde-manger et dates de péremption', 'Rien ne se perd au fond du frigo.', 'DLC et DDM · priorités du jour · gaspillage suivi'],
