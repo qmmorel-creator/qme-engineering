@@ -108,6 +108,7 @@ export const PRODUITS = {
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
   SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
+  QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

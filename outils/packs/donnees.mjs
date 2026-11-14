@@ -98,6 +98,7 @@ export const TEMPLATES = {
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', pour: 'perso' },
   CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', pour: 'perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', pour: 'perso' },
+  QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
   SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
 };
 
@@ -105,7 +106,6 @@ export const TEMPLATES = {
 // `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
-  QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
@@ -379,8 +379,8 @@ export const PAGES = {
       ['CSE', 'Suivez évaluations, compétences et appréciations jusqu’au bulletin.'],
       ['EDT', 'Organisez classes, formateurs et salles sans conflit.'],
     ],
-    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'La banque de quiz à venir, avec l’option Pack évolutif'],
-    prevus: ['QZZ'],
+    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'Questions, quiz et corrections dans le même pack'],
+    prevus: [],
   },
   PXP: {
     couleur: 'encre', cibles: ['exploitants', 'office'],
