@@ -111,7 +111,7 @@ déjà).
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
-| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
+| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
@@ -257,7 +257,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31 | T23, T75, T76 | 158 € | 25 % | 118 € | 30 € |
-| Petite entreprise | PPE | T48, T26, T46, T42, T31 | T47, T34, T77, T78 | 97 € | 25 % | 72 € | 18 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34 | T47, T77, T78 | 136 € | 25 % | 102 € | 26 € |
 | Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T81, T82, T83 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16 | T84, T21 | 71 € | 20 % | 56 € | 14 € |
@@ -1014,3 +1014,27 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   linkedin.md, instagram.md et carrousel PNG, prospects.md, section-site.html pour la mise en vente).
   Reste : création de la fiche Gumroad et report dans `communication/gumroad-a-creer.json`, clé de licence
   (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram (non créées).
+## Fiche T34 (cadrage délégué par Quentin, 14/11/2026)
+
+### T34 · Tableau de bord de pilotage PME (`templates/pilotage-pme/`, préfixe TDB)
+- Fiche détaillée : [`fiches/pilotage-pme.md`](fiches/pilotage-pme.md). Application web (pas de tableur), 39 €,
+  permalien prévu `tableau-de-bord-pme`, catalogue `pro` · thème « Indépendants ».
+- Promesse : « Tes chiffres du mois face à tes objectifs, en dix minutes de saisie. »
+- Base intégrée : bibliothèque de 45 indicateurs types en 6 domaines (commercial, finances, trésorerie, RH,
+  production et activité, qualité) avec définition, formule, sens de lecture, source du chiffre et conseil ;
+  14 indicateurs calculés (taux de marge, point mort, autonomie de trésorerie, délai de paiement approché,
+  taux de charge, absentéisme…) ; 5 jeux de départ par activité. **Aucun ratio sectoriel de référence.**
+- Écrans : tableau de bord du mois (statuts, tendances, mini-courbes), saisie mensuelle rapide, fiches
+  indicateurs (courbe réel / objectif / an dernier, cumul, projection), objectifs annuels répartis (égale,
+  saisonnière, mois par mois) et seuils, revue mensuelle imprimable avec actions.
+- Marques : **comptable** (outil de pilotage, pas un logiciel comptable). Confidentiel vérifié : aucun tableau
+  de bord interne repris, démo fictive.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/pilotage-pme/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants », carte anglaise).
+  Page `catalogue/pilotage-pme/`, captures `assets/templates-pilotage-pme-*.webp`, couverture
+  `assets/templates-pilotage-pme-couverture.png`, tests `outils/templates/pilotage-pme.test.mjs`.
+- Communication prête dans `communication/pilotage-pme/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, passage en vente du site.

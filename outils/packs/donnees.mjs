@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
   CRA: { slug: 'compte-rendu', prix: 1500, phrase: 'Décisions et actions suivies de réunion en réunion.', permalien: 'compte-rendu-actions', pour: 'pro' },
@@ -57,7 +58,6 @@ export const PREVUS = {
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   CHT: { nom: 'Suivi de chantier par lot', prix: 4000, phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
-  TDB: { nom: 'Tableau de bord de pilotage PME', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
@@ -181,9 +181,10 @@ export const PAGES = {
       ['NDF', 'Recevez des notes de frais complètes, au barème, prêtes à rembourser.'],
       ['CRA', 'Tenez vos réunions d’équipe avec des décisions et des actions suivies.'],
       ['TRS', 'Anticipez la trésorerie sur douze mois, salaires et charges compris.'],
+      ['TDB', 'Suivez chaque mois vos indicateurs clés, objectifs et écarts.'],
     ],
     arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Planning d’équipe, tableau de bord, entretiens et document unique à venir, avec l’option Pack évolutif'],
-    prevus: ['EQP', 'TDB', 'ENP', 'DRP'],
+    prevus: ['EQP', 'ENP', 'DRP'],
   },
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],

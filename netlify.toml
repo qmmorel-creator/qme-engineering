@@ -555,3 +555,14 @@
   for = "/templates/demenagement/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/pilotage-pme/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/pilotage-pme/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
