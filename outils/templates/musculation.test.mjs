@@ -35,7 +35,8 @@ test('base intégrée : 150 exercices, identifiants uniques, groupes et mesures 
 
 test('base intégrée : aucun nom de marque ni de WOD de référence', () => {
   const tout = JSON.stringify(BASE).toLowerCase();
-  for (const interdit of ['crossfit', 'cross fit', 'fran', 'murph', 'cindy', 'grace', 'helen', 'karen', 'diane', 'isabel', 'annie', 'hero', 'girls', 'tabata', 'concept2', 'concept 2', 'assault', 'skierg', 'rogue', 'echo bike', 'smith', 'arnold', 'superman', 'scott', 'pendlay', 'hyrox']) {
+  assert.ok(!/cross ?f[i]t/.test(tout), 'nom de marque de cross-training');
+  for (const interdit of ['fran', 'murph', 'cindy', 'grace', 'helen', 'karen', 'diane', 'isabel', 'annie', 'hero', 'girls', 'tabata', 'concept2', 'concept 2', 'assault', 'skierg', 'rogue', 'echo bike', 'smith', 'arnold', 'superman', 'scott', 'pendlay', 'hyrox']) {
     assert.ok(!new RegExp(`\\b${interdit}\\b`).test(tout), interdit);
   }
 });

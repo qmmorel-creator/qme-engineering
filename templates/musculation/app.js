@@ -449,6 +449,7 @@
         brancherInfobulles();
       }
     }
+    document.querySelectorAll('.filtres').forEach((f) => { const a = f.querySelector('[aria-pressed="true"]'); if (a && f.scrollWidth > f.clientWidth) f.scrollLeft = a.offsetLeft - f.offsetLeft - 12; });
     if (vue === 'chrono') brancherChrono();
   }
 

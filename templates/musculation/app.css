@@ -581,3 +581,4 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 @media print{.chrono-reglages,.cadran-boutons{display:none!important}}
 #editeur{display:flex;flex-direction:column;gap:16px}
 .accueil .conseils{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+@media (max-width:720px){.outils-liste .filtres{flex:none}}

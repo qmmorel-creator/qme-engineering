@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="repas" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/repas/"><b>Repas de la semaine et liste de courses</b><span class="phrase">Midi et soir prévus, courses par rayon calculées.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
