@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
@@ -100,7 +101,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
   CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
@@ -299,9 +299,10 @@ export const PAGES = {
       ['CMP', 'Organisez la compétition : inscriptions, vagues, scores et classement affiché en direct.'],
       ['SBV', 'Suivez chaque demande de subvention, du dépôt au bilan, sans rater d’échéance.'],
       ['BNV', 'Planifiez les bénévoles par créneau, sans trou ni doublon.'],
+      ['AGS', 'Préparez l’assemblée générale : convocation, quorum, votes et procès-verbal.'],
     ],
-    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['AGS'],
+    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],

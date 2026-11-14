@@ -168,7 +168,7 @@ déjà).
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
@@ -265,7 +265,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
-| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92 | T93 | 200 € | 25 % | 150 € | 38 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
@@ -2099,3 +2099,33 @@ présentés comme repères indicatifs. Le texte du mémoire n'est jamais lu. Liv
 (linkedin.md, instagram.md + carrousel 5 vues, prospects.md, gumroad.md et gumroad.json, couverture.txt,
 section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram **non
 planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régénérer les pages des packs à la fusion.
+
+## Fiche T93 (cadrage délégué par Quentin, 14/11/2026)
+
+### T93 · Assemblée générale et vie statutaire (`templates/assemblee-generale/`, préfixe AGS, 19 €)
+- Fiche détaillée : [`fiches/assemblee-generale.md`](fiches/assemblee-generale.md). Application web, 19 €, permalien
+  prévu `assemblee-generale-association`, catalogue `pro` · thème « Associations, formation et événements ». Pack :
+  « Associations et clubs » (PAS, où T93 est prévu).
+- Promesse : « Une AG en règle, sans stress. »
+- Cadrage : quatre instances (AG ordinaire, AG extraordinaire, conseil, bureau) ; **aucune règle légale intégrée** :
+  délai de convocation, quorum (fraction au moins / plus de, nombre, aucun ; pouvoirs comptés ou non ; seconde
+  convocation), pouvoirs (admis, plafond), majorités nommées (base, fraction) et durée des mandats saisis d'après
+  les statuts, valeurs de départ marquées « à vérifier » jusqu'à confirmation ; calculs en entiers. Membres votants
+  = case « cotisation à jour » ; conseil et bureau = mandats en cours. Rétroplanning daté depuis la date limite de
+  convocation ; trames originales de convocation (formelle, conviviale, conseil), de pouvoir et de PV ; feuille de
+  présence et pouvoirs vérifiés ; votes pour / contre / abstentions ; PV imprimable ; mandats avec échéances,
+  alertes et renouvellement ; archive par année ; exports CSV. Avertissement : outil d'aide, les statuts font foi,
+  ne remplace pas un conseil juridique. **RGPD** : nom, catégorie, e-mail facultatif ; suppression d'un membre.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/assemblee-generale/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/assemblee-generale/`,
+  captures `assets/templates-assemblee-generale-*.webp`, couverture `assets/templates-assemblee-generale-couverture.png`,
+  tests `outils/templates/assemblee-generale.test.mjs`. Produit `AGS` déclaré (serveur, connexion, en-têtes
+  Netlify) ; `AGS` passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` de la
+  page du pack PAS).
+- Communication prête dans `communication/assemblee-generale/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout de `AGS` aux `produits` du pack PAS (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
+  relire par Quentin : trames de convocation et de PV, hashtags Instagram hors jeux du kit.
