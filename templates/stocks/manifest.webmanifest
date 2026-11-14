@@ -1,0 +1,16 @@
+{
+  "name": "Stocks et inventaire · QME",
+  "short_name": "Stocks",
+  "description": "Tes articles, les entrées et sorties datées, les alertes de seuil, la liste à commander, la valeur de ton stock et tes inventaires.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
