@@ -511,7 +511,7 @@
       tuile('Récupérable sur le locataire', sd && R.aLoue(c) ? euros(sd.recuperable) : '–', R.aLoue(c) ? (sd ? `${pct(sd.charges ? (sd.recuperable / sd.charges) * 100 : null)} des charges ${ex(dernier.annee)}` : 'après le décompte annuel') : 'aucun lot loué', 'var(--vert)', 'rond'),
     ].join('');
     return `
-      <div class="vue-tete"><div><h1>${esc(c.nom)}</h1><p>${c.syndic ? `Syndic : ${esc(c.syndic)} · ` : ''}${pluriel(c.lots.length, 'lot')}${p !== null ? ` · ${R.tantiemesLots(c).toLocaleString('fr-FR')} / ${c.tantiemesTotal.toLocaleString('fr-FR')} tantièmes (${pct(p * 100, 2)})` : ''} · exercice ${ex(exC)}</p></div>
+      <div class="vue-tete"><div><h1>${esc(c.nom)}</h1><p>${c.syndic ? `Syndic : ${esc(c.syndic)} · ` : ''}${pluriel(c.lots.length, 'lot')}${p !== null ? ` · ${R.tantiemesLots(c).toLocaleString('fr-FR').replace(/[\s\u202f]/g, '\u00a0')} / ${c.tantiemesTotal.toLocaleString('fr-FR').replace(/[\s\u202f]/g, '\u00a0')} tantièmes (${pct(p * 100, 2)})` : ''} · exercice ${ex(exC)}</p></div>
         <div class="actions"><button class="btn primaire" data-action="nouvel-appel">${ICONES.plus}Appel de fonds</button><button class="btn" data-action="copro">Copropriété et lots</button></div></div>
       <div class="tuiles">${tuiles}</div>
       <div class="colonnes-apercu">
@@ -524,7 +524,7 @@
           <h2 class="titre-section">Prochaine assemblée</h2>
           ${ag ? `<button class="carte-ag" data-action="assemblee" data-id="${ag.id}"><span class="surtitre">${esc(B.typesAG.find((x) => x.id === ag.type).nom)}</span><b>${dateLongue(ag.date)}</b><span>${pluriel(ag.resolutions.length, 'résolution')} · ${ag.preparee ? 'préparée' : `${R.sansIntention(ag)} sans intention de vote`}${ag.convocationRecue ? ` · convocation reçue le ${dateCourte(ag.convocationRecue)}` : ''}</span></button>` : `<div class="vide-etat petit"><div><h3>Aucune AG à venir</h3><p>À réception d'une convocation, note la date et l'ordre du jour.</p><div class="actions"><button class="btn petit" data-action="nouvelle-ag">${ICONES.plus}Assemblée</button></div></div></div>`}
           <h2 class="titre-section">Tes lots <span>${p !== null ? `quote-part ${pct(p * 100, 2)}` : 'tantièmes de l\'immeuble à saisir'}</span></h2>
-          ${c.lots.length ? `<ul class="liste-lots">${c.lots.map((l) => `<li><span><b>${esc(l.nom)}</b><small>${esc(B.typesLot.find((x) => x.id === l.type)?.nom || '')}${l.numero ? ` · lot n° ${esc(l.numero)}` : ''}${l.loue ? ' · loué' : ''}</small></span><span class="nb">${l.tantiemes.toLocaleString('fr-FR')} tantièmes</span></li>`).join('')}</ul>` : '<p class="aide">Aucun lot saisi.</p>'}
+          ${c.lots.length ? `<ul class="liste-lots">${c.lots.map((l) => `<li><span><b>${esc(l.nom)}</b><small>${esc(B.typesLot.find((x) => x.id === l.type)?.nom || '')}${l.numero ? ` · lot n° ${esc(l.numero)}` : ''}${l.loue ? ' · loué' : ''}</small></span><span class="nb">${l.tantiemes.toLocaleString('fr-FR').replace(/[\s\u202f]/g, '\u00a0')} tantièmes</span></li>`).join('')}</ul>` : '<p class="aide">Aucun lot saisi.</p>'}
           <div class="rang"><button class="btn petit" data-action="copro">Modifier les lots</button></div>
         </section>
       </div>
@@ -591,7 +591,7 @@
     const bw = Math.min(28, (larg - 14) / 2);
     const col = (x, v, c) => { if (v === null || v <= 0) return ''; const top = y(v), r = Math.min(4, (y(0) - top) / 2); return `<path d="M${x} ${y(0)} V${top + r} Q${x} ${top} ${x + r} ${top} H${x + bw - r} Q${x + bw} ${top} ${x + bw} ${top + r} V${y(0)} Z" fill="${c}"/>`; };
     const grille = [];
-    for (let v = 0; v <= haut + 0.001; v += pas) grille.push(`<line x1="${g}" x2="${W - d}" y1="${y(v)}" y2="${y(v)}" stroke="var(--trait)" stroke-width="1"/><text x="${g - 6}" y="${y(v) + 4}" text-anchor="end" class="axe">${v >= 1000 ? `${(v / 1000).toLocaleString('fr-FR')} k€` : `${v} €`}</text>`);
+    for (let v = 0; v <= haut + 0.001; v += pas) grille.push(`<line x1="${g}" x2="${W - d}" y1="${y(v)}" y2="${y(v)}" stroke="var(--trait)" stroke-width="1"/><text x="${g - 6}" y="${y(v) + 4}" text-anchor="end" class="axe">${v >= 1000 ? `${(v / 1000).toLocaleString('fr-FR').replace(/[\s\u202f]/g, '\u00a0')} k€` : `${v} €`}</text>`);
     const dernier = evo[evo.length - 1];
     const groupes = evo.map((x, i) => {
       const x0 = g + i * larg + (larg - 2 * bw - 2) / 2;

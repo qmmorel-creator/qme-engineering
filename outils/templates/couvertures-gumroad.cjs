@@ -89,6 +89,7 @@ const T = {
   remerciements: ["Cadeaux reçus et remerciements", "Personne n'est oublié.", "Qui a offert quoi · messages prêts · étiquettes d'adresses"],
   notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
   subventions: ["Subventions", "Chaque dossier à temps, chaque euro justifié.", "Pièces · échéances · versements · budget du projet · bilan"],
+  copropriete: ["Charges et AG de copropriété", "Chaque appel payé, chaque vote préparé.", "Appels de fonds · charges par poste · régularisation · résolutions · travaux votés"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
