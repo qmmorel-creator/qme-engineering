@@ -167,7 +167,7 @@ déjà).
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
@@ -265,7 +265,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89 | T90 | 77,90 € | 25 % | 58 € | 15 € |
-| Associations et clubs | PAS | T53, T51, T42, T52, T91 | T92, T93 | 181 € | 25 % | 135 € | 34 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92 | T93 | 200 € | 25 % | 150 € | 38 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
@@ -2048,3 +2048,33 @@ régénérer les pages des packs à la fusion.
   de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
   Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de SBV au pack PAS
   (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T92 (cadrage délégué par Quentin, 14/11/2026)
+
+### T92 · Bénévoles et planning des créneaux (`templates/benevoles/`, préfixe BNV, 19 €)
+- Fiche détaillée : [`fiches/benevoles.md`](fiches/benevoles.md). Catalogue `pro` · thème « Associations, formation et
+  événements » ; pack visé « Associations et clubs » (PAS). Permalien prévu `benevoles-planning-creneaux`.
+- Promesse : « Chaque créneau tenu, sans trou ni doublon. » Public : associations, clubs sportifs, comités des fêtes,
+  organisateurs de festivals ou de compétitions.
+- Usage à plusieurs : une clé partagée par les responsables, prénom saisi sur l'appareil, pas de comptes ; saisies
+  simultanées fusionnées (`fusionner`), une double affectation née d'une fusion apparaît en conflit. **Pas
+  d'inscription en ligne des bénévoles en V1** (le responsable saisit les réponses).
+- Annuaire (coordonnées minimales, compétences, postes préférés et à éviter), événements créés depuis 6 modèles (33
+  postes types, créneaux types avec besoin en personnes), réponses par événement (disponible, en partie avec plages,
+  indisponible, sans réponse, maximum d'heures), affectation manuelle et suggestion (disponible, compétence,
+  équité de charge), remplissage automatique des trous (le créneau le plus contraint d'abord), conflits (double,
+  indisponible, sans pause, journée trop longue, maximum, compétence), plannings A4 par poste et par personne,
+  message à copier par bénévole, bilan des heures (part du quart le plus investi), duplication d'un événement, CSV.
+- **Aucune règle légale ni donnée datée** : repères de pause et d'heures choisis par l'association (les bénévoles ne
+  relèvent pas du Code du travail) ; RGPD (art. 5.1.c, 5.1.e, 13, 15, 17) lu sur cnil.fr le 14/11/2026 ; durée de
+  conservation choisie par l'association (24 mois par défaut, bénévoles inactifs signalés). Lien avec T51 et T52 :
+  modèle « Compétition sportive » et postes « Sport », sans lien technique.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/benevoles/?demo`, page
+  `catalogue/benevoles/`, captures `assets/templates-benevoles-*.webp`, couverture
+  `assets/templates-benevoles-couverture.png`, tests `outils/templates/benevoles.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/benevoles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-prochaine.html). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé
+  partagée par le bureau au prix d'un template individuel), fiche Gumroad et clé de licence, entrée dans
+  `communication/gumroad-a-creer.json`, ajout de BNV au pack PAS (`netlify/lib/packs.mjs`, pages des packs
+  régénérées ; BNV retiré des prévus dans `outils/packs/donnees.mjs`), carte anglaise, plannings, passage en vente.

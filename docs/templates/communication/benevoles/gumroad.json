@@ -1,0 +1,42 @@
+{
+  "slug": "benevoles",
+  "name": "Bénévoles et planning des créneaux",
+  "price_cents": 1900,
+  "permalink": "benevoles-planning-creneaux",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir le planning des bénévoles",
+  "summary": "Annuaire des bénévoles, événements créés depuis six modèles, affectation suggérée, places à pourvoir et conflits signalés, plannings imprimables et messages à copier, bilan des heures. Une clé pour tout le bureau.",
+  "description": "<h2>Chaque créneau tenu, sans trou ni doublon.</h2><p>Un tableur partagé, des disponibilités notées au fil des messages, des cases remplies à la main, et le jour J on découvre qu'un bénévole est inscrit à deux postes à la fois ou qu'il avait prévenu qu'il ne viendrait pas. Bénévoles et planning des créneaux met tout au même endroit, de la préparation au bilan.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'annuaire de tes bénévoles</strong> : un prénom, un moyen de contact, ce qu'ils savent faire et les postes qu'ils préfèrent. Rien de plus.</li><li><strong>Tes événements prêts en une minute</strong> : six modèles (fête de village, festival, compétition sportive, course, brocante, repas ou loto) créent les postes et les créneaux types ; 33 postes types avec leurs consignes ; duplication pour l'édition suivante.</li><li><strong>Des créneaux remplis sans casse-tête</strong> : tu notes qui vient et sur quelles plages, puis tu affectes à la main ou tu laisses l'outil suggérer, les bénévoles les moins sollicités d'abord.</li><li><strong>Les trous et les conflits sous les yeux</strong> : places à pourvoir, double affectation, bénévole indisponible, enchaînement sans pause ou journée trop longue selon tes propres repères, compétence manquante.</li><li><strong>Le jour J préparé</strong> : plannings imprimables par poste et par personne, un message par bénévole avec ses créneaux, prêt à copier.</li><li><strong>Le bilan</strong> : heures données par bénévole et par poste, pour remercier et pour le rapport d'activité ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; choisis le modèle de ton premier événement.</li><li>Transmets la clé aux membres du bureau ou aux responsables de poste : chacun la saisit une fois sur son appareil. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de bénévoles.</p><p><em>Pas d'inscription en ligne des bénévoles dans cette version : le responsable saisit les réponses. Rien n'est envoyé par l'outil : les messages se copient. Les repères de pause et d'heures sont ceux de ton association, pas des règles légales. Données personnelles réduites au minimum, export et effacement par bénévole : ton association reste responsable de ces données. Démo disponible sur qm-engineering.fr/catalogue/benevoles.</em></p>",
+  "tags": [
+    "benevoles",
+    "association",
+    "planning",
+    "evenement",
+    "club-sportif",
+    "comite-des-fetes",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et choisis le modèle de ton premier événement. Transmets ensuite la clé aux membres du bureau : chacun la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail, partagée par le bureau"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Associations, clubs, comités des fêtes, festivals"
+    }
+  ]
+}

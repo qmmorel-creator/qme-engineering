@@ -17,6 +17,7 @@ export const TEMPLATES = {
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
   RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
+  BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', pour: 'pro' },
   ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
@@ -99,7 +100,6 @@ export const PREVUS = {
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
-  BNV: { nom: 'Bénévoles et planning des créneaux', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.' },
   AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
@@ -297,9 +297,10 @@ export const PAGES = {
       ['TRS', 'Prévoyez la trésorerie de la saison et voyez venir les mois creux.'],
       ['CMP', 'Organisez la compétition : inscriptions, vagues, scores et classement affiché en direct.'],
       ['SBV', 'Suivez chaque demande de subvention, du dépôt au bilan, sans rater d’échéance.'],
+      ['BNV', 'Planifiez les bénévoles par créneau, sans trou ni doublon.'],
     ],
     arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['BNV', 'AGS'],
+    prevus: ['AGS'],
   },
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],
