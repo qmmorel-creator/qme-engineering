@@ -39,8 +39,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T07 Carnet de musculation | 19 € | fitness-and-health |
 | T10 Carnet de voiture | 13 € | personal-finance |
 | T27 Gestion locative | 20 € | personal-finance |
-| T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership |
-| T55 Gestion de classe | 25 € | — |
+| T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership (à vérifier) |
+| T55 Gestion de classe | 25 € | `gestion-classe`, education (catégorie à vérifier) |
 | T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement` |
 | T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites` |
 | T09 Garde-manger | 12 € | — |
@@ -98,9 +98,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T27 Gestion locative** : articles autres que l'art. 21 de la loi de 1989, liste des charges récupérables
   et gel des loyers des logements E à vérifier.
 - **T33 Bascule** : 5 séquences types fictives et libellé « point d'arrêt » ; accès unique partagé sans rôles ;
-  impression non vérifiée en aperçu PDF.
-- **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé ; moyenne annuelle =
-  moyenne des périodes ; bonus compté seulement s'il fait monter la moyenne.
+  impression non vérifiée en aperçu PDF ; bouton « Je suis intéressé(e) » non cliqué en test.
+- **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé (à relire mot pour mot) ;
+  Éduscol (403) et cnil.fr non consultés ; moyenne annuelle = moyenne des périodes, chacune pesant autant ;
+  bonus compté seulement s'il fait monter la moyenne ; bilan d'une compétence = moyenne des positionnements de
+  la période, arrondie (,5 vers le haut) ; classes dans l'ordre de création ; page `/confidentialite/` à
+  compléter selon ta décision RGPD.
 - **T56 Emploi du temps** : placement manuel ; demi-groupes non rattachés à leur classe ; une séance = un
   groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu.
 - **T60 Parcs multi-sites** : pas de périodicités réglementaires, de pièces jointes ni de bons
