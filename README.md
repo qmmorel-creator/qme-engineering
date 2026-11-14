@@ -425,6 +425,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   étiquettes d'adresses A4 (4 formats, départ, décalage), import d'une liste collée, export CSV, effacement des
   adresses et d'un événement. Aucune règle légale ni donnée datée. Règles dans `regles.js`, tests
   `outils/templates/remerciements.test.mjs`.
+- `templates/assemblee-generale/` (AGS) : **assemblée générale et vie statutaire** (T93), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/assemblee-generale/gumroad.json`).
+  Membres votants (case « cotisation à jour »), réunions des quatre instances (AG ordinaire et extraordinaire, conseil,
+  bureau), rétroplanning daté depuis le délai de convocation saisi, convocation et pouvoir à copier ou imprimer,
+  feuille de présence et pouvoirs (plafond saisi), quorum et majorités calculés en entiers selon les règles des
+  statuts saisies (aucune règle légale intégrée, valeurs de départ « à vérifier »), votes, procès-verbal imprimable,
+  mandats et renouvellements, archive par année, exports CSV. RGPD : données minimales, suppression d'un membre.
+  Règles dans `regles.js`, tests `outils/templates/assemblee-generale.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
