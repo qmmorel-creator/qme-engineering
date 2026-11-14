@@ -129,7 +129,7 @@ déjà).
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en cours | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -1051,4 +1051,14 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
 - Affichage public : mode écran plein écran dans l'application et lien public en lecture seule
   (`/api/competition/*`, instantané sans coordonnées, effacé 30 jours après la compétition).
 - Marques : **RGPD** (participants). Aucun nom d'épreuve de référence ou de marque.
-- Statut : **en cours**.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/competition/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Associations, formation et événements »).
+  Page `catalogue/competition/`, captures `assets/templates-competition-*.webp`, couverture
+  `assets/templates-competition-couverture.png`, tests `outils/templates/competition.test.mjs`. Pas de carte anglaise
+  (version anglaise en attente).
+- Communication prête dans `communication/competition/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `gestion-competition`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout au pack « Associations et clubs » (`netlify/lib/packs.mjs`, pages des packs), carte anglaise, plannings,
+  passage en vente du site.
