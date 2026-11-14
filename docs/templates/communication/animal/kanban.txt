@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="animal" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/animal/"><b>Suivi d'un animal de compagnie</b><span class="phrase">Soins aux dates du vétérinaire, poids, visites, frais par an.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>

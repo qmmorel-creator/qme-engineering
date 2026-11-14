@@ -1,0 +1,6 @@
+Suivi de TVA
+Ta TVA, période par période.
+Collectée · déductible · échéances · contrôles
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  tva: ['Suivi de TVA', 'Ta TVA, période par période.', 'Collectée · déductible · échéances · contrôles'],

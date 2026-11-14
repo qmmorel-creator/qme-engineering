@@ -1,0 +1,49 @@
+<!-- Version « en vente » de la page catalogue/tva/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad prévu : suivi-tva (à confirmer une fois la fiche créée), prix 19 € (à confirmer par Quentin).
+     Captures : assets/templates-tva-*.webp (démo, données fictives). À la mise en vente, retirer aussi le lien
+     .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js, et remplacer
+     le bandeau final « Bientôt en vente » par le rappel standard ci-dessous. L'avertissement fiscal reste. -->
+<section class="section" id="tva">
+  <div class="section-head">
+    <h2>Suivi de TVA</h2>
+    <p>Pour les petites sociétés au réel qui suivent leur TVA dans un tableur : chaque vente et chaque achat saisis en HT ou en TTC, la TVA collectée et déductible de chaque période, ce qui reste à payer ou le crédit à reporter, les échéances de vos déclarations et ce qui mérite un contrôle avant de déclarer.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-tva-synthese.webp?v=20261114" width="1600" height="1000" alt="Synthèse du suivi de TVA d'une menuiserie fictive au réel normal mensuel : TVA nette du mois en cours, prochaine échéance, crédit reporté, nombre de contrôles, graphique de la TVA collectée et déductible sur douze mois et liste des déclarations à faire (données fictives)">
+      <img class="tel" src="/assets/templates-tva-tel.webp?v=20261114" width="780" height="1328" alt="Le suivi de TVA sur téléphone : TVA du mois en cours, prochaine échéance, crédit reporté et contrôles, barre d'onglets en bas (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Petites sociétés au réel · TVA</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Une saisie au centime</b> : ventes (TVA collectée), achats, frais et immobilisations (TVA déductible), en HT ou en TTC ; la TVA est calculée et tout écart avec votre facture est signalé</li>
+        <li><b>Votre régime</b> : réel normal mensuel ou trimestriel, ou réel simplifié avec ses deux acomptes et sa déclaration annuelle ; les périodes suivent ce choix</li>
+        <li><b>Chaque période en clair</b> : TVA collectée et déductible par taux, crédit antérieur imputé, nette à payer ou crédit reporté, remboursement demandé</li>
+        <li><b>Un échéancier paramétrable</b> : jour d'échéance de vos CA3, acomptes et CA12, report des week-ends et jours fériés, pointage « déclarée » puis « payée »</li>
+        <li><b>Des contrôles avant de déclarer</b> : TVA différente de HT × taux, taux inhabituel, opération saisie après la déclaration ou hors période, période non déclarée ou non payée, crédit oublié, déductible supérieure à la collectée plusieurs périodes de suite ; export et import CSV</li>
+      </ul>
+      <p style="margin:0 0 16px;font-size:14px;line-height:1.5;padding:12px 14px;border-radius:12px;background:var(--ciel,#D8E4F0);color:var(--ciel-texte,#22476E)"><b>Outil d'aide au suivi, pas un conseil fiscal.</b> Il ne remplace ni votre expert-comptable ni les déclarations officielles, et ne se connecte ni à l'espace professionnel des impôts, ni à une banque, ni à un logiciel comptable. Taux et échéances par défaut vérifiés le 14/11/2026, avec leurs sources, et modifiables.</p>
+      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/suivi-tva" data-goatcounter-click="achat-tva" data-goatcounter-title="Acheter : suivi de TVA">Acheter</a>
+        <a class="btn" href="/templates/tva/?demo" data-goatcounter-click="demo-tva" data-goatcounter-title="Démo : suivi de TVA">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-tva-periodes.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Les périodes mensuelles : TVA collectée, déductible, crédit antérieur, montant à payer ou crédit, et statut de chaque déclaration (en cours, bientôt, en retard, fait), données fictives"><figcaption>Chaque période : à payer ou crédit reporté</figcaption></figure>
+    <figure><img src="/assets/templates-tva-controles.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des contrôles : déclaration non payée, TVA différente de HT × taux, opération saisie après la déclaration, crédit reporté non utilisé, taux inhabituel (données fictives)"><figcaption>Les contrôles avant de déclarer</figcaption></figure>
+    <figure><img src="/assets/templates-tva-operations.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des opérations : date, libellé, type (vente, achat, frais, immobilisation), montant HT et taux, TVA collectée ou déductible, montant TTC, filtres par type et par période (données fictives)"><figcaption>Les opérations, filtrées par type et par période</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Est-ce que l'outil fait ma déclaration de TVA ?</summary><p>Non. Il calcule, période par période, la TVA collectée, la TVA déductible (biens et services, immobilisations), le détail par taux et le solde à payer ou le crédit, à partir de ce que vous saisissez. Vous reportez ces montants dans votre déclaration, que vous déposez vous-même ou par votre expert-comptable. Rien n'est transmis à l'administration, et l'outil ne se connecte à aucun espace professionnel, aucune banque ni aucun logiciel comptable.</p></details>
+    <details><summary>Quels régimes sont pris en charge ?</summary><p>Le réel normal avec déclaration mensuelle ou trimestrielle (CA3), et le réel simplifié avec ses deux acomptes et sa déclaration annuelle (CA12), y compris pour un exercice qui ne finit pas le 31 décembre. La loi de finances pour 2025 prévoit la suppression du régime simplifié de TVA à partir de 2027 : l'outil le signale, et la date se règle dans les réglages, car ses modalités sont à vérifier. Ne sont pas gérés : l'autoliquidation, la TVA sur marge, le prorata de déduction, les opérations intracommunautaires et l'outre-mer.</p></details>
+    <details><summary>Les taux et les échéances sont-ils à jour ?</summary><p>Les valeurs par défaut (taux de 20 %, 10 %, 5,5 % et 2,1 %, CA3 mensuelle ou trimestrielle sous 4 000 € de TVA annuelle, acomptes de 55 % et 40 %, CA12 en mai) ont été vérifiées le 14/11/2026 ; leurs sources sont affichées dans l'application, et celles qui n'ont pas pu être confirmées sur une page officielle sont marquées « à vérifier ». Le jour exact de vos échéances dépend de votre entreprise : vous le saisissez. Tout reste modifiable si une règle change.</p></details>
+    <details><summary>Que vérifient les contrôles ?</summary><p>Qu'une TVA saisie correspond au montant HT multiplié par le taux (au centime près, tolérance réglable) et que HT plus TVA font le TTC ; qu'un taux figure dans votre liste ; qu'une opération n'a pas été ajoutée après la déclaration de sa période ; qu'aucune échéance passée n'est restée sans déclaration ou sans paiement ; qu'un crédit reporté a bien été imputé ; et ils signalent une TVA déductible supérieure à la collectée ou un crédit reporté sur plusieurs périodes de suite.</p></details>
+    <details><summary>Puis-je importer mes opérations depuis un tableur ?</summary><p>Oui, en CSV : les colonnes sont reconnues par leur titre (Date, Type, Libellé, Pièce, Montant HT, Taux, TVA, Montant TTC). Il suffit de la date, du type et du HT ou du TTC ; le reste est calculé, et les lignes déjà saisies sont ignorées. Les opérations, le bilan des périodes et l'échéancier s'exportent aussi en CSV pour votre expert-comptable.</p></details>
+    <details><summary>Plusieurs personnes peuvent-elles l'utiliser ?</summary><p>Le même accès s'ouvre sur plusieurs appareils avec les mêmes données (le dernier enregistrement l'emporte, et un conflit d'enregistrement est signalé). Il n'y a pas de comptes séparés : pour votre expert-comptable, exportez les CSV.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/tva/?demo">la démo</a> ouvre onze mois d'une menuiserie fictive au réel normal mensuel, avec un investissement qui crée un crédit de TVA, une déclaration en retard et quelques erreurs à repérer. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+<section class="rappel-templates"><p><b>Achat unique sur Gumroad.</b> Clé de licence reçue par e-mail, ouverture sur <a href="/connexion/">qm-engineering.fr/connexion</a>, données synchronisées sur tous vos appareils. Outil d'aide au suivi, pas un conseil fiscal.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>

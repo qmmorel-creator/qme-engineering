@@ -6,6 +6,10 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
+  ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
+  TVA: { slug: 'tva', prix: 1900, phrase: 'Collectée, déductible, crédit reporté, échéances et contrôles.', pour: 'pro' },
   DRP: { slug: 'document-unique', prix: 2900, phrase: 'Risques par unité de travail, cotation et plan d’actions.', pour: 'pro' },
   ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
@@ -81,9 +85,7 @@ export const TEMPLATES = {
 // `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
-  GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
-  ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
@@ -271,6 +273,7 @@ export const PAGES = {
       ['REV', 'Chaque chapitre revient au bon moment, selon la répétition espacée.'],
       ['PHR', 'Placez les révisions dans la semaine, entre les cours et le reste.'],
       ['HBT', 'Tenez le rythme : sommeil, sport, temps d’écran, séries à ne pas casser.'],
+      ['PGS', 'Gardez le rythme de lecture des œuvres au programme, objectif au jour près.'],
     ],
     arguments: ['La répétition espacée, une méthode de mémorisation éprouvée, sans fiche à refaire', 'Sur le téléphone, toujours à portée de main', 'Un achat unique jusqu’à l’examen, et après'],
     prevus: ['NTS', 'CAN', 'MMR'],
@@ -327,12 +330,12 @@ export const PAGES = {
       ['BDG', 'Tenez le budget de la famille, enveloppe par enveloppe.'],
       ['ENT', 'Recevez les échéances d’entretien de la maison, calculées pour vous.'],
       ['RPS', 'Planifiez les repas de la semaine et générez la liste de courses par rayon.'],
-      ['GMG', 'Sachez ce qu’il y a dans les placards et ce qui périme bientôt.'],
+      ['GRD', 'Sachez ce qu’il y a dans les placards et ce qui périme bientôt.'],
       ['BBE', 'Suivez repas, sommeil et croissance du bébé.'],
       ['ANM', 'Gardez le carnet de santé et les frais de l’animal à jour.'],
     ],
-    arguments: ['Une clé partagée entre les deux parents', 'Les mêmes données sur vos deux téléphones', 'Repas, placards, bébé et animal à venir, avec l’option Pack évolutif'],
-    prevus: ['GMG', 'BBE', 'ANM'],
+    arguments: ['Une clé partagée entre les deux parents', 'Les mêmes données sur vos deux téléphones', 'Le suivi du bébé à venir, avec l’option Pack évolutif'],
+    prevus: ['BBE'],
   },
   PVY: {
     couleur: 'bleu', cibles: ['voyageurs', 'couples'],
@@ -384,6 +387,7 @@ export const PAGES = {
       ['DVS', 'Chiffrez vos devis au centime, mentions comprises.'],
       ['MCE', 'Tenez le livre des recettes et voyez venir vos cotisations.'],
       ['TRS', 'Prévoyez la trésorerie sur douze mois.'],
+      ['TVA', 'Suivez la TVA collectée et déductible, et ne ratez plus une échéance.'],
     ],
     arguments: ['Du stock à la trésorerie, sans logiciel de caisse coûteux', 'Un achat unique', 'Une clé pour le comptoir et pour la maison'],
   },

@@ -86,7 +86,7 @@ déjà).
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
-| T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
@@ -103,6 +103,14 @@ déjà).
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T17 | Suivi de lecture | Loisirs | Lecteurs | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
@@ -125,7 +133,7 @@ déjà).
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | prêt | 19 € | S | P2 | Backlog Quentin n° 18 |
-| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
+| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | prêt | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
@@ -270,15 +278,15 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
-| Étudiant | PET | T01, T30, T08 | T88, T89, T90 | 41,90 € | 15 % | 35 € | 9 € |
+| Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
 | Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71 | T94, T95, T96, T85 | 111 € | 25 % | 83 € | 21 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
-| Famille | PFA | T05, T11, T06 | T09, T19, T20 | 40 € | 15 % | 34 € | 9 € |
+| Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | T55, T56 | T59, T58 | 70 € | 10 % | 63 € | 16 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
-| Commerçant et artisan | PCA | T62, T36, T41, T42 | — | 108 € | 20 % | 86 € | 22 € |
+| Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
@@ -535,6 +543,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
+| T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
+| T17 | `lecture` | PGS | suivi-lecture (prévu) |
+| T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
+| T44 | `tva` | TVA | suivi-tva (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -593,6 +605,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-125 | T55 gestion-classe | 2027-02-17 | 12:15 |
 | LI-126 | T56 emploi-du-temps | 2027-02-19 | 08:30 |
 | LI-127 | T60 parcs-multi-sites | 2027-02-21 | 12:15 |
+| LI-128 | T09 garde-manger | 2027-02-23 | 12:15 |
+| LI-129 | T17 lecture | 2027-02-25 | 08:30 |
+| LI-130 | T20 animal | 2027-02-27 | 12:15 |
+| LI-131 | T44 tva | 2027-03-01 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -744,6 +760,39 @@ T60). Non vérifiés : article L3133-1 du Code du travail (jours fériés repris
 réelle, Safari et Firefox réels (émulation Chromium seulement), ouverture des CSV dans Excel ou LibreOffice, organismes
 de `prospects.md` (« à vérifier »).
 
+**Lot du 14/11/2026, septième (T09, T17, T20, T44)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/garde-manger/` (GRD, 12 €, démo `/templates/garde-manger/?demo`, page `/catalogue/garde-manger/`),
+`templates/lecture/` (PGS, 12 €, démo `/templates/lecture/?demo`, page `/catalogue/lecture/`), `templates/animal/` (ANM,
+12 €, démo `/templates/animal/?demo`, page `/catalogue/animal/`) et `templates/tva/` (TVA, 19 €, démo
+`/templates/tva/?demo`, page `/catalogue/tva/`) ; fiches `fiches/<slug>.md` ; livrables dans `communication/<slug>/`
+(linkedin.md, instagram.md + carrousel `instagram/`, prospects.md, gumroad.md et gumroad.json, cartes FR/EN,
+couverture.txt, integration.md). Noms et prix repris du tableau, à confirmer par Quentin avant la création des fiches
+Gumroad (permaliens proposés `garde-manger-dates-peremption`, `suivi-lecture`, `suivi-animal-compagnie`, `suivi-tva` ;
+catégories à vérifier). Publications insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en
+ligne » : LinkedIn « Programmé » LI-128 (T09, mar. 23/02, 12:15), LI-129 (T17, jeu. 25/02, 08:30), LI-130 (T20, sam.
+27/02, 12:15) et LI-131 (T44, lun. 01/03, 12:15) ; Instagram « Prêt » IG-83 (T09, 24/02), IG-84 (T17, 26/02), IG-85
+(T20, 28/02) et IG-86 (T44, 02/03), à relire par Quentin avant « Programmé ». Couvertures et carrousels déposés dans
+Drive (IDs dans les colonnes Remarque et P des plannings). Mentions respectées : T09, rappel « l'emballage et l'aspect
+priment », DLC et DDM distinguées, deux seules durées chiffrées (Anses, source et date affichées) ; T20, **médical**
+(avertissement partout, aucune posologie) et **daté** (aucun calendrier vaccinal intégré, intervalles saisis d'après le
+vétérinaire) ; T44, **daté** (taux et échéances paramétrables, sourcés et datés, statut « à vérifier ») et **fiscal**
+(« outil d'aide, pas un conseil fiscal »), application web plutôt que tableur seul. Thèmes du catalogue : T09, T17 et T20
+rattachés à « Organisation et études » (pas de puce Maison, Loisirs ni Animaux ; une puce « Maison et loisirs » pourrait
+les réunir), T44 à « Indépendants » (pas de puce Comptabilité).
+**À faire valider par Quentin** : prix, noms, permaliens et catégories Gumroad des quatre ; thèmes ci-dessus ; T09, choix
+de ne fournir que deux durées sourcées, DLC ignorée au congélateur, gaspillage compté en nombre de sorties ; T17, calculs
+(rythme sur 14 jours, objectif réparti uniformément, audio hors objectif en pages), périmètre V1 (ni relecture, ni séries,
+ni prêt, ni import) ; T20, parti pris « aucun calendrier intégré », traitement en texte libre, un accès par foyer ; T44,
+valeurs par défaut « à vérifier » (échéance CA3 au 15, acomptes 55 / 40 % au 15, dispense 1 000 €, CA12 au 2e jour ouvré
+après le 1er mai, fin du régime simplifié au 01/01/2027 et ce qui le remplace), base des acomptes, seuil du trimestriel
+testé sur la TVA nette des 4 derniers trimestres, garder ou non un modèle tableur ; hashtags hors jeux habituels
+(LinkedIn des quatre, Instagram de T09, T17 et T20). Non vérifiés : pages DGCCRF (403) pour T09 ; pages officielles des
+acomptes, de la CA12 et de la réforme 2027 pour T44 (sources secondaires) ; homonymies des livres inventés de T17 ;
+impression papier réelle, Safari réel (émulation Chromium seulement) ; organismes de `prospects.md` (« à vérifier »).
+La capture et la couverture de T44 montrent encore « Prochaine échéance 15/10 » sur la tuile d'une échéance en retard
+(libellé corrigé depuis en « Échéance en retard »).
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
@@ -893,7 +942,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T06 | Repas de la semaine et liste de courses générée | 100 recettes avec ingrédients et quantités | — | Moteur de liste de courses partageable avec T04. Recettes : source et droits à vérifier. |
 | T07 | Carnet de musculation et cross-training : séances, WOD, volume, records, progression, chronomètre | 150 exercices par groupe musculaire ; WOD types à définir | Skills WOD et coach sportif de Quentin | Backlog n° 48 : 19 €, M, P2. Noms de WOD de référence : droits à vérifier. Sport : avertissement (pas un programme médical). |
 | T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
-| T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
+| T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : seules deux reprises de l'Anses (plat non préemballé sans date 3 j, décongelé 3 j ; page du 04/01/2021 consultée le 14/11/2026), affichées avec la source ; aucune durée après ouverture ni au congélateur fournie (pas de tableau officiel trouvé), saisies par l'utilisateur. |
 | T10 | Carnet de voiture, une à quelques voitures : fiche véhicule, relevés de kilométrage, entretiens faits et à venir (échéance à la date ou au kilométrage, la première atteinte), toutes les dépenses (carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique), consommation calculée entre deux pleins, coût au kilomètre et coût mensuel, historique imprimable pour la revente | Intervalles d'entretien types, modifiables (le carnet du constructeur prime) ; catégories de dépenses | — | Demande Quentin 13/11/2026 fusionnée (gestionnaire de voitures). **daté** : périodicité du contrôle technique, vérifiée sur une source officielle ou saisie. Prix du carburant saisis, jamais intégrés. Argent : avertissement. Version perso du moteur de T29 (sans conducteurs, réservations ni sinistres). Aucune automatisation ni lien externe. |
 | T11 | Entretien de la maison : calendrier automatique | 85 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
@@ -904,7 +953,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T17 | Suivi de lecture : statistiques, objectifs | Genres, objectifs annuels, notation | — | — |
 | T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : semis, récolte, associations | — | Source des données de culture à vérifier. |
 | T19 | Suivi du bébé : repas, sommeil, couches, courbes | Courbes de référence poids et taille (source à vérifier) | — | **médical** : avertissement ; source et licence des courbes. **RGPD** : données de santé d'un enfant hébergées en ligne. |
-| T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. |
+| T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. Fait (14/11/2026) : aucun calendrier intégré (modèles de soins = noms seuls, intervalles saisis d'après le vétérinaire), avertissement médical dans l'application, la page catalogue et la fiche Gumroad ; aucune source vétérinaire intégrée, donc rien de daté. |
 | T21 | Planificateur de voyage : itinéraire par étapes, lieu de chaque nuit (hébergement, adresse, arrivée/départ, statut réservé ou à réserver, montant et acompte), activités par jour avec horaire et prix, transports entre étapes, vue jour par jour et carte texte des étapes, budget prévu/réel par poste et par personne, dépenses partagées et « qui doit quoi », listes de bagages, documents à prévoir (cases à cocher) | Listes de bagages par type de séjour ; postes de budget | — | Demande Quentin 13/11/2026 fusionnée (planificateur de voyage). Dépenses partagées : moteur commun avec T65. Aucune réservation ni lien vers une plateforme : saisie et impression uniquement. Formalités (passeport, visa, santé) : renvoi à vérifier sur les sources officielles, rien d'intégré. Argent : avertissement. |
 | T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
 | T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : **produit séparé** (tranché le 14/11/2026, voir « Fiche T23 » en fin de fichier). **RGPD** (intervenants, sous-traitants). |
@@ -927,7 +976,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T41 | Journal, catégories, plafonds, estimation des cotisations, export annuel | Plafonds et taux de cotisation par activité | Suivi budget 3 800 € | **daté** : plafonds et taux URSSAF, mise à jour annuelle obligatoire ; **comptable** : pas un outil certifié ; **fiscal** (plafonds, versement libératoire). Backlog : tableur seul. |
 | T42 | Encaissements et décaissements, scénarios, seuil d'alerte, graphique | à définir (scénarios types) | Suivi budget 3 800 €, Sankey | Backlog : tableur seul ; à trancher. **comptable**. Aucune échéance fiscale ou sociale en base sans source datée (**daté**). |
 | T43 | Échéancier, retard en jours, pénalités légales, modèles de mails par palier | Modèles de mails par palier de relance | — | **daté** : taux des pénalités (backlog : taux BCE + 10 points, indemnité 40 €, à vérifier) ; paramétrable. **comptable**. **RGPD** (débiteurs, parfois particuliers). |
-| T44 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : tableur seul. |
+| T44 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : tableur seul. Fait (14/11/2026) : application web avec export et import CSV ; taux et échéances en Réglages avec source, statut « vérifié / à vérifier » et date de vérification ; avertissement fiscal dans l'application, la page catalogue et la fiche Gumroad. |
 | T45 | Inventaire, affectations, licences, fin de garantie, historique, alertes | Catégories de matériel et types de licences | Poste central | Demandé explicitement. Format : application + modèle tableur. **RGPD** (affectations nominatives). Pack possible avec T46. **confidentiel à vérifier** (artefact « Poste central »). |
 | T46 | Checklists par rôle, responsables, échéances de J-15 à J+90, restitution du matériel | Checklists d'arrivée et de départ par rôle | Poste central | **RGPD** (salariés). Couplé à T45. |
 | T47 | Affectation par personne et projet en heures par semaine, taux de charge (temps partiel, absences, fériés déduits), conflits, postes à couvrir, vues semaine et mois, disponibles la semaine prochaine | 6 modèles d'équipe (rôles, compétences, postes) ; repères de durée L3121-27, L3121-20, L3121-22 datés et paramétrables | Équipes et staffing (outil interne) : mécanique seulement | Fiche détaillée : `fiches/planning-equipe.md`. Une clé partagée par les managers, saisies simultanées fusionnées (pas de comptes séparés en V1). **RGPD** : aucune donnée de santé, export, effacement, suppression. **confidentiel** : aucune équipe ni personne de l'outil interne reprise, démo fictive. **daté** : repères de durée relevés le 14/11/2026. |

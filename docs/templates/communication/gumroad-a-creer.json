@@ -924,6 +924,174 @@
     ]
   },
   {
+    "slug": "garde-manger",
+    "name": "Garde-manger et dates de péremption",
+    "price_cents": 1200,
+    "permalink": "garde-manger-dates-peremption",
+    "category": "food-and-cooking",
+    "button": "Ouvrir mon garde-manger",
+    "summary": "L'inventaire du réfrigérateur, du congélateur et des placards avec leurs dates, la DLC et la DDM distinguées, chaque jour ce qu'il faut manger d'abord, le gaspillage compté et la liste de courses des produits épuisés.",
+    "description": "<h2>Rien ne se perd au fond du frigo.</h2><p>Le yaourt retrouvé une semaine trop tard, le pot de pesto ouvert dont on ne sait plus quand, la deuxième boîte de thon achetée parce qu'on ignorait qu'il en restait une… Garde-manger et dates de péremption tient l'inventaire de ta maison et te dit chaque jour ce qu'il faut manger d'abord.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un inventaire par lieu</strong> : réfrigérateur, congélateur, placard, et les lieux que tu ajoutes (cave, second congélateur, corbeille à fruits) ; pour chaque produit, sa quantité, sa catégorie et la date imprimée.</li><li><strong>DLC et DDM distinguées</strong> : « à consommer jusqu'au » (sécurité) dépassée affiche « ne pas consommer » ; « à consommer de préférence avant » (qualité) dépassée invite à vérifier l'aspect et l'odeur.</li><li><strong>L'ouverture prise en compte</strong> : date d'ouverture et délai indiqué sur l'emballage ; au congélateur, la date que tu fixes ; un produit décongelé est à finir sous 3 jours, sans le recongeler.</li><li><strong>À consommer en priorité</strong> : ce qui est dépassé, ce qui expire aujourd'hui, sous 3 jours et cette semaine, avec « Fini » ou « Jeté » en un geste.</li><li><strong>Le gaspillage suivi</strong> : produits consommés et jetés, motif (date dépassée, abîmé, oublié, trop acheté…), valeur si tu la notes, évolution sur six mois.</li><li><strong>Une liste de courses simple</strong>, alimentée par les produits épuisés, à cocher et à copier.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes lieux de rangement, ajoute tes produits avec leur date, puis ouvre chaque jour « À consommer ». Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de gestion des stocks de la maison, pas un avis sanitaire : les alertes sont calculées à partir des dates que tu saisis. La date et les consignes de l'emballage, et l'aspect du produit, priment toujours ; DLC dépassée : ne pas consommer. Définitions DLC / DDM et deux durées (3 jours pour un plat non préemballé sans date, 3 jours après décongélation) reprises de l'Anses, source et date affichées ; aucune autre durée de conservation n'est fournie. Pas de scan de code-barres ni de base produit. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "garde-manger",
+      "dates-de-peremption",
+      "anti-gaspillage",
+      "frigo",
+      "liste-de-courses",
+      "famille",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton garde-manger s'ouvre. Choisis tes lieux de rangement, ajoute tes produits avec la date imprimée sur l'emballage, puis ouvre « À consommer » chaque jour. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Familles, foyers"
+      }
+    ]
+  },
+  {
+    "slug": "animal",
+    "name": "Suivi d'un animal de compagnie",
+    "price_cents": 1200,
+    "permalink": "suivi-animal-compagnie",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon suivi",
+    "summary": "Les soins de ton chien, de ton chat ou d'un autre animal aux intervalles fixés avec ton vétérinaire, sa courbe de poids, ses visites et ses traitements, et ce qu'il te coûte par mois et par an.",
+    "description": "<h2>Ses soins, à temps.</h2><p>Le dernier antiparasitaire, c'était quand ? Le rappel de vaccin, à quelle date ? Les réponses sont sur le carnet de santé, quelque part dans un tiroir, et personne ne sait ce que l'animal coûte vraiment sur une année. Le Suivi d'un animal de compagnie garde tout au même endroit et te dit ce qui arrive.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des soins à temps</strong> : vaccins, antiparasitaires, vermifuge, toilettage, griffes… chacun avec sa dernière date et l'intervalle que ton vétérinaire t'a indiqué ; la prochaine échéance, les retards et ce qui arrive dans les 14 jours.</li><li><strong>La date du vétérinaire en priorité</strong> : quand il inscrit lui-même la prochaine date, c'est elle qui compte.</li><li><strong>La courbe de poids</strong>, pesée après pesée, avec l'écart depuis la précédente et sur 90 jours, sans aucune interprétation.</li><li><strong>Les visites et traitements</strong> : motif, ce qu'a dit le vétérinaire, traitement recopié de l'ordonnance, affiché « en cours » jusqu'à sa date de fin.</li><li><strong>Tous les frais</strong> : vétérinaire, soins, médicaments, alimentation, toilettage, assurance, garde… par catégorie, par mois et par an, avec le coût annuel.</li><li><strong>Plusieurs animaux</strong> : chiens, chats, lapins ou autres, frais communs, animaux partis gardés pour leur historique.</li><li><strong>Un carnet imprimable</strong> pour la pension, la garde ou un nouveau vétérinaire ; export CSV et copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute ton animal, coche les soins à suivre, puis saisis pour chacun l'intervalle indiqué par ton vétérinaire. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de suivi : il ne remplace pas l'avis de ton vétérinaire, ne pose aucun diagnostic et ne donne aucune posologie. Aucun calendrier de vaccins ni d'antiparasitaires n'est intégré : les intervalles sont ceux que tu saisis. Aucune marque de produit vétérinaire ou d'aliment, aucune connexion à une clinique, une assurance ou une autre application. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "animal-de-compagnie",
+      "chien",
+      "chat",
+      "carnet-de-sante",
+      "budget",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Ajoute ton animal, coche ses soins, puis saisis l'intervalle de chacun d'après ton vétérinaire : les prochaines échéances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires de chien, de chat ou d'un autre animal"
+      }
+    ]
+  },
+  {
+    "slug": "tva",
+    "name": "Suivi de TVA",
+    "price_cents": 1900,
+    "permalink": "suivi-tva",
+    "category": "business-and-money",
+    "button": "Ouvrir mon suivi de TVA",
+    "summary": "Ventes, achats, frais et immobilisations saisis en HT ou TTC, la TVA collectée et déductible de chaque période, ce qui reste à payer ou le crédit reporté, l'échéancier de tes déclarations et les contrôles avant de déclarer.",
+    "description": "<h2>Ta TVA, période par période.</h2><p>Un onglet pour les ventes, un autre pour les achats, et le crédit du mois dernier noté quelque part : la TVA au tableur tient tant que rien ne bouge. Puis une facture arrive après la déclaration, une TVA est recopiée de travers, un crédit n'est pas reporté. Le Suivi de TVA calcule chaque période au centime et te signale ce qui mérite un coup d'œil avant de déclarer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une saisie au centime</strong> : ventes (TVA collectée), achats, frais et immobilisations (TVA déductible), en HT ou en TTC ; la TVA est calculée, et tout écart avec ta facture est signalé.</li><li><strong>Ton régime</strong> : réel normal mensuel ou trimestriel, ou réel simplifié avec ses deux acomptes et sa déclaration annuelle, y compris pour un exercice décalé.</li><li><strong>Chaque période en clair</strong> : TVA collectée et déductible par taux, crédit antérieur imputé, nette à payer ou crédit reporté, remboursement demandé.</li><li><strong>Un échéancier paramétrable</strong> : jour d'échéance de tes CA3, acomptes et CA12, report des week-ends et jours fériés, pointage « déclarée » puis « payée ».</li><li><strong>Des contrôles</strong> : TVA différente de HT × taux, taux inhabituel, opération saisie après la déclaration ou hors période, période non déclarée ou non payée, crédit oublié, déductible supérieure à la collectée plusieurs périodes de suite.</li><li><strong>Export et import CSV</strong> : opérations, bilan des périodes et échéancier pour ton expert-comptable ; import depuis ton tableur.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton régime, la date de début et ton crédit éventuel, puis saisis ou importe tes opérations. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide au suivi de la TVA, pas un conseil fiscal : il ne remplace ni ton expert-comptable ni les déclarations officielles, et ne transmet rien à l'administration. Aucune connexion à l'espace professionnel des impôts, à une banque ou à un logiciel comptable. Taux et échéances par défaut vérifiés le 14/11/2026, sources affichées, tout est modifiable ; certaines règles du réel simplifié (réforme annoncée pour 2027) sont à vérifier. Non gérés : autoliquidation, TVA sur marge, prorata de déduction, opérations intracommunautaires, outre-mer. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "tva",
+      "comptabilite",
+      "declaration-tva",
+      "petite-entreprise",
+      "artisan",
+      "gestion",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi de TVA s'ouvre. Choisis ton régime et la date de début, puis saisis ou importe tes opérations : chaque période se calcule au fur et à mesure. Garde cet e-mail : la même clé fonctionne sur tous tes appareils. Outil d'aide au suivi, pas un conseil fiscal.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Petites sociétés et entrepreneurs au régime réel de TVA"
+      }
+    ]
+  },
+  {
+    "slug": "lecture",
+    "name": "Suivi de lecture",
+    "price_cents": 1200,
+    "permalink": "suivi-lecture",
+    "category": "self-improvement",
+    "button": "Ouvrir mon suivi de lecture",
+    "summary": "Ta bibliothèque papier, numérique et audio, une session notée en deux secondes, ton rythme et la date où tu finiras ton livre, ton objectif de l'année au jour près, tes notes, citations et statistiques.",
+    "description": "<h2>Lis, on compte.</h2><p>Un objectif de 24 livres fixé en janvier, un marque-page dans le livre en cours, une liste « à lire » dans un coin du téléphone, et en novembre on découvre qu'il en manque quatre. Le Suivi de lecture réunit ta bibliothèque, tes sessions et ton objectif, et fait les comptes à ta place.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta bibliothèque</strong> : titre, auteur, genre (liste modifiable), format papier, numérique ou audio, nombre de pages ou durée ; à lire, en cours, lu ou abandonné.</li><li><strong>Une session en deux secondes</strong> : la page où tu es arrivé, ou les pages lues ; les minutes écoutées pour un livre audio.</li><li><strong>Ton rythme et ta date de fin</strong> : progression, pages par jour sur les 14 derniers jours et date à laquelle tu finiras ton livre à ce rythme.</li><li><strong>Ton objectif de l'année</strong> en livres et en pages : l'avance ou le retard au jour près, la projection au 31 décembre et le rythme qu'il faut pour tenir.</li><li><strong>Des statistiques</strong> : livres et pages par mois, genres, formats, auteurs les plus lus, pages par jour, séries de jours de lecture, note moyenne.</li><li><strong>Notes, avis et citations</strong> avec leur page, et une <strong>liste à lire classée par priorité</strong>.</li><li><strong>Export</strong> de la bibliothèque et des sessions en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Fixe ton objectif de l'année, ajoute le livre que tu lis et ceux qui t'attendent, puis note ta page après chaque lecture. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Tout se saisit à la main : aucun livre n'est cherché en ligne (pas de base de livres, pas de couverture, pas de numéro ISBN consulté), aucun lien avec une liseuse, une application de lecture ou une librairie. Pas de profil public ni de partage : tes avis et citations restent privés. Le rythme, la date de fin et l'objectif sont calculés à partir de ce que tu saisis. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "lecture",
+      "livres",
+      "objectif-lecture",
+      "reading-tracker",
+      "bibliotheque",
+      "statistiques",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi de lecture s'ouvre. Fixe ton objectif de l'année, ajoute le livre que tu lis, puis note ta page après chaque lecture. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Lecteurs, auditeurs de livres audio, clubs de lecture"
+      }
+    ]
+  },
+  {
     "slug": "tableau-annuel",
     "name": "Tableau de bord annuel et roue de vie",
     "price_cents": 1500,

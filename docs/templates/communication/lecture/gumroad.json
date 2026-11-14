@@ -1,0 +1,42 @@
+{
+  "slug": "lecture",
+  "name": "Suivi de lecture",
+  "price_cents": 1200,
+  "permalink": "suivi-lecture",
+  "category": "self-improvement",
+  "button": "Ouvrir mon suivi de lecture",
+  "summary": "Ta bibliothèque papier, numérique et audio, une session notée en deux secondes, ton rythme et la date où tu finiras ton livre, ton objectif de l'année au jour près, tes notes, citations et statistiques.",
+  "description": "<h2>Lis, on compte.</h2><p>Un objectif de 24 livres fixé en janvier, un marque-page dans le livre en cours, une liste « à lire » dans un coin du téléphone, et en novembre on découvre qu'il en manque quatre. Le Suivi de lecture réunit ta bibliothèque, tes sessions et ton objectif, et fait les comptes à ta place.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta bibliothèque</strong> : titre, auteur, genre (liste modifiable), format papier, numérique ou audio, nombre de pages ou durée ; à lire, en cours, lu ou abandonné.</li><li><strong>Une session en deux secondes</strong> : la page où tu es arrivé, ou les pages lues ; les minutes écoutées pour un livre audio.</li><li><strong>Ton rythme et ta date de fin</strong> : progression, pages par jour sur les 14 derniers jours et date à laquelle tu finiras ton livre à ce rythme.</li><li><strong>Ton objectif de l'année</strong> en livres et en pages : l'avance ou le retard au jour près, la projection au 31 décembre et le rythme qu'il faut pour tenir.</li><li><strong>Des statistiques</strong> : livres et pages par mois, genres, formats, auteurs les plus lus, pages par jour, séries de jours de lecture, note moyenne.</li><li><strong>Notes, avis et citations</strong> avec leur page, et une <strong>liste à lire classée par priorité</strong>.</li><li><strong>Export</strong> de la bibliothèque et des sessions en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Fixe ton objectif de l'année, ajoute le livre que tu lis et ceux qui t'attendent, puis note ta page après chaque lecture. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Tout se saisit à la main : aucun livre n'est cherché en ligne (pas de base de livres, pas de couverture, pas de numéro ISBN consulté), aucun lien avec une liseuse, une application de lecture ou une librairie. Pas de profil public ni de partage : tes avis et citations restent privés. Le rythme, la date de fin et l'objectif sont calculés à partir de ce que tu saisis. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "lecture",
+    "livres",
+    "objectif-lecture",
+    "reading-tracker",
+    "bibliotheque",
+    "statistiques",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi de lecture s'ouvre. Fixe ton objectif de l'année, ajoute le livre que tu lis, puis note ta page après chaque lecture. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Lecteurs, auditeurs de livres audio, clubs de lecture"
+    }
+  ]
+}

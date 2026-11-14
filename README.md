@@ -353,6 +353,35 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   de résiliation calculée, alertes J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie,
   historique, export CSV. Aucune règle légale non sourcée (seul repère : Code des assurances, art. L113-12, lu sur
   Légifrance le 14/11/2026). Règles dans `regles.js`, tests `outils/templates/contrats.test.mjs`. Version anglaise en attente.
+- Lot du 14/11/2026 (7), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/garde-manger/` (GRD) **garde-manger et dates de
+  péremption** (inventaire par lieu : réfrigérateur, congélateur, placard et lieux personnalisables ; quantité,
+  catégorie, date imprimée ; DLC et DDM distinguées : DLC dépassée « ne pas consommer », DDM dépassée « à vérifier » ;
+  date d'ouverture et délai de l'emballage ; décongelé à finir sous 3 jours ; au congélateur, date fixée par
+  l'utilisateur ; vue « à consommer en priorité » (dépassé, aujourd'hui, 3 jours, semaine) ; consommé ou jeté avec
+  motif et valeur, bilan du gaspillage sur six mois ; liste de courses issue des produits épuisés ; définitions et
+  deux seules durées reprises de l'Anses, source et date affichées ; aucun scan ni base produit) ;
+  `templates/lecture/` (PGS) **suivi de lecture** (bibliothèque papier, numérique et audio avec genres modifiables,
+  statuts à lire / en cours / lu / abandonné ; sessions en page atteinte, pages lues ou minutes écoutées, qui font
+  suivre le statut ; progression, rythme sur 14 jours et date de fin estimée ; objectif annuel en livres et en pages
+  avec l'avance ou le retard au jour près, projection et rythme nécessaire ; statistiques par mois, genre, format et
+  auteur, pages par jour, séries de jours de lecture ; note, avis et citations ; liste à lire par priorité ; export
+  CSV ; aucune base de livres ni couverture, aucune liseuse ni librairie) ; `templates/animal/` (ANM) **suivi d'un
+  animal de compagnie** (un ou plusieurs animaux, chien, chat ou autre, identification en saisie libre ; soins
+  récurrents avec dernière date et intervalle saisi d'après le vétérinaire, date fixée par le vétérinaire prioritaire,
+  prochaine échéance, retards et à venir ; courbe de poids SVG sans interprétation ; visites et traitements recopiés
+  de l'ordonnance ; frais par catégorie, par mois et par an, dépenses communes, coût annuel ; carnet imprimable ;
+  aucun calendrier vaccinal ou antiparasitaire intégré, aucune posologie, aucune marque ; avertissement « ne remplace
+  pas l'avis du vétérinaire ») ; `templates/tva/` (TVA) **suivi de TVA** (petites sociétés au réel : ventes, achats,
+  frais et immobilisations saisis en HT ou TTC, TVA calculée au centime et écarts signalés ; régime réel normal
+  mensuel ou trimestriel, ou réel simplifié avec acomptes et CA12 ; par période : TVA collectée et déductible par
+  taux, crédit antérieur, nette à payer ou crédit reporté, remboursement demandé ; échéancier paramétrable avec report
+  des week-ends et jours fériés, pointage déclarée et payée ; contrôles : TVA ≠ HT × taux, HT + TVA ≠ TTC, taux
+  inhabituel, opération hors période ou saisie après la déclaration, échéance non déclarée ou non payée, crédit non
+  imputé, déductible > collectée et crédit reporté plusieurs périodes, seuil du trimestriel, fin annoncée du simplifié
+  ; taux et échéances par défaut sourcés et datés, modifiables ; export CSV (opérations, périodes, échéancier) et
+  import CSV ; outil d'aide, pas un conseil fiscal, aucune connexion externe). Règles dans `regles.js`, tests
+  `outils/templates/<slug>.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
