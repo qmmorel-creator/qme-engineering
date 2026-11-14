@@ -278,6 +278,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
   export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
+- `templates/suivi-temps/` (TMP) : **suivi du temps et rentabilité par mission** (T73), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/suivi-temps/gumroad.json`).
+  Chronomètre synchronisé entre appareils ou saisie en une ligne, temps facturable ou non ; missions au forfait ou en
+  régie, budget en jours ou heures, avancement, estimation à terminaison, alertes ; taux horaire effectif (montant
+  facturé ÷ temps réel) face au TJM cible, au devis et au coût de revient saisis (mêmes notions que `tjm` et
+  `cout-revient`) ; semaine type, rentabilité par période, rapport client imprimable, export CSV. Aucun taux ni tarif
+  intégré. Règles dans `regles.js`, tests `outils/templates/suivi-temps.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

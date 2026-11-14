@@ -154,7 +154,7 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | prêt | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
@@ -262,7 +262,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
-| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T73 | 139 € | 25 % | 104 € | 26 € |
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T74, T75, T76 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
@@ -1448,3 +1448,37 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
   SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
   passage en vente du site.
+
+## Fiche T73 (cadrage délégué par Quentin, 14/11/2026)
+
+### T73 · Suivi du temps passé et rentabilité par mission (`templates/suivi-temps/`, préfixe TMP)
+- Fiche détaillée : [`fiches/suivi-temps.md`](fiches/suivi-temps.md). Application web, 19 €, permalien prévu
+  `suivi-temps-rentabilite`, catalogue `pro` · thème « Indépendants ». Pack visé : « Freelance : chiffrer,
+  facturer, encaisser » (PFG), où il était prévu (ancien numéro T71, renuméroté T73 le 14/11/2026 :
+  T71 et T72 sont pris sur `main`).
+- Promesse : « Combien tu gagnes vraiment de l'heure, mission par mission. »
+- Base intégrée : 17 catégories de tâches (7 facturables, 10 non facturables : prospection, devis,
+  administratif, facturation, comptabilité, formation, veille…), 7 modèles de missions avec leurs tâches
+  types, 4 semaines types, seuils d'alerte par défaut. **Aucun taux, barème ni tarif de marché** : TJM cible,
+  heures par jour et coût de revient horaire sont saisis (cohérents avec T40 et T37).
+- Écrans : Aujourd'hui (chronomètre synchronisé, saisie en une ligne « 1h30 », journée face à la semaine
+  type), Semaine (feuille de temps 7 jours, prévu / réalisé, part facturable), Missions (forfait ou régie,
+  budget en jours ou heures, avancement, consommation, projection à terminaison, alertes, temps par tâche),
+  Rentabilité (taux horaire effectif = montant facturé ÷ temps réel, TJM équivalent, comparaison au TJM
+  cible, au taux du devis et au coût de revient, temps non facturable par catégorie, 8 dernières semaines),
+  Rapport client imprimable et exports CSV.
+- Marques : argent (avertissement « outil de gestion, pas un logiciel de facturation ni un conseil »),
+  montants hors taxes. Confidentiel vérifié : démo fictive, aucune donnée réelle.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/suivi-temps/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants »). Page
+  `catalogue/suivi-temps/`, captures `assets/templates-suivi-temps-*.webp`, couverture
+  `assets/templates-suivi-temps-couverture.png`, tests `outils/templates/suivi-temps.test.mjs`. Produit `TMP`
+  déclaré (serveur, connexion, en-têtes Netlify) ; `TMP` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PFG).
+- Communication prête dans `communication/suivi-temps/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad (permalien prévu `suivi-temps-rentabilite`) et clé de licence
+  (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `TMP` aux `produits` du pack PFG
+  (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente),
+  plannings, passage en vente du site.

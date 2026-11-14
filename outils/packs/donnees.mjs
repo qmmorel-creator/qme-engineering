@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
   EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
@@ -78,7 +79,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  TMP: { nom: 'Suivi du temps et rentabilité par mission', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.' },
   PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
   CED: { nom: 'Calendrier éditorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.' },
   CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
@@ -140,9 +140,10 @@ export const PAGES = {
       ['MCE', 'Tenez le livre des recettes et voyez vos cotisations arriver.'],
       ['RCV', 'Relancez les retards au bon moment, avec le bon ton.'],
       ['TRS', 'Regardez douze mois devant vous et voyez le creux avant qu’il n’arrive.'],
+      ['TMP', 'Mesurez le temps réellement passé par mission et le taux horaire qu’il vous rapporte.'],
     ],
     arguments: ['Un parcours complet, de la proposition à l’encaissement', 'Le tarif, la marge et les encaissements enfin calculés de la même façon', 'Une seule clé pour les six outils, sur tous vos appareils'],
-    prevus: ['TMP'],
+    prevus: [],
   },
   PFC: {
     couleur: 'encre', cibles: ['independants', 'managers'],
