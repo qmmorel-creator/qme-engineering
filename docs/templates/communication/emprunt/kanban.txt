@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="emprunt" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/emprunt/"><b>Capacité d'emprunt et comparateur de prêts</b><span class="phrase">Ce que vous pouvez emprunter, et quelle offre coûte le moins.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>

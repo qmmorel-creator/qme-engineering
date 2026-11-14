@@ -166,7 +166,7 @@ déjà).
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) ; fiche `fiches/emprunt.md` |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -535,6 +535,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
+| T85 | `emprunt` | CPT | capacite-emprunt-comparateur-prets (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -964,7 +965,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T82 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
 | T83 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
 | T84 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
-| T85 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
+| T85 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. Prêt le 14/11/2026 (`templates/emprunt/`, CPT) : seuils HCSF et plafond des indemnités sourcés, datés et modifiables, frais de notaire en hypothèse affichée ; fiche `fiches/emprunt.md`. |
 | T86 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
 | T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
 | T88 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
@@ -1700,3 +1701,34 @@ et à régénérer les pages des packs à la fusion.
   plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
   entrée dans `communication/gumroad-a-creer.json`, ajout de CND au pack PFC (`netlify/lib/packs.mjs`, pages des packs
   régénérées), cartes anglaises, plannings, passage en vente du site.
+
+## Fiche T85 (cadrage délégué par Quentin, 14/11/2026)
+
+### T85 · Capacité d'emprunt et comparateur de prêts (`templates/emprunt/`, préfixe CPT, 15 €)
+- Fiche détaillée : `fiches/emprunt.md`. Promesse : « Combien emprunter, et à quel coût. » Catalogue `perso`, thème
+  « Argent » ; packs visés « Reprendre la main sur son argent » (PAR) et « Propriétaire » (PPB). Permalien prévu
+  `capacite-emprunt-comparateur-prets`.
+- Public : primo-accédants (seuls ou à deux) et investisseurs particuliers (loyers retenus à une part saisie).
+- Écrans : **Capacité** (revenus, crédits en cours, mensualité maximale au taux d'effort saisi, montant empruntable au
+  taux, à la durée et à l'assurance saisis, reste à vivre, montant selon la durée), **Projet** (prix, frais de notaire
+  saisis ou estimés en hypothèse affichée, travaux, autres frais, apport, besoin de financement, prix maximal),
+  **Offres** (2 à 5 : assurance sur capital initial ou restant dû, quotité, frais de dossier, garantie, courtage ; coût
+  total, TAEG approché présenté comme estimation, taux d'effort ; graphique en barres empilées ; questions à poser à la
+  banque), **Amortissement** (par mois ou par année, graphique capital et intérêts, CSV, impression ; remboursement
+  anticipé avec durée raccourcie ou mensualité baissée et indemnités).
+- **Aucun taux de marché intégré.** Données datées, toutes modifiables et affichées avec leur source : seuils 35 % et
+  25 ans (décision D-HCSF-2021-7 du 29/09/2021, vérifiée le 14/11/2026) ; plafond des indemnités de remboursement
+  anticipé (Code de la consommation, L313-47, L313-48, R313-25, lu le 14/11/2026 sur des reprises du code, **à relire
+  sur Légifrance**) ; frais de notaire estimés 8 % ancien et 3 % neuf présentés comme hypothèse.
+- Confidentialité : démo fictive (Camille et Sam, banques inventées). Argent : avertissement « ne remplace pas le
+  conseil d'un professionnel du crédit » sur chaque vue, la page du site et la fiche Gumroad.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/emprunt/?demo`, bouton « Je
+  suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en attente).
+  Page `catalogue/emprunt/`, captures `assets/templates-emprunt-*.webp`, couverture
+  `assets/templates-emprunt-couverture.png`, tests `outils/templates/emprunt.test.mjs`.
+- Communication prête dans `communication/emprunt/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, kanban.txt). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de CPT aux packs PAR et PPB (`netlify/lib/packs.mjs`, pages
+  des packs régénérées ; le tableau « Packs » ci-dessus le liste encore en prévu), cartes anglaises, plannings, passage
+  en vente du site.
