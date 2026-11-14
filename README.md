@@ -278,6 +278,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
   export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
+- `templates/doe/` (RDE) : **registre du DOE** (T77, 29 €), prêt, « Mise en vente prochaine » (démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/doe/gumroad.json`). Pièces du dossier des ouvrages exécutés par
+  opération, lot et entreprise ; base de 20 lots types avec leurs pièces attendues (plans, notices, PV d'essais,
+  fiches techniques, garanties), modifiable ; pièce « Éléments pour le DIUO » par lot si l'opération en comporte un ;
+  statuts attendue, reçue, à reprendre (motif), validée ; date limite par opération ou par pièce ; relances datées
+  avec courrier à copier ou imprimer (aucun envoi) ; complétude par lot, entreprise et famille ; bordereau de
+  transmission et état des pièces manquantes imprimables ; export CSV. Seule référence : article 40 du CCAG Travaux
+  2021, en paraphrase datée. Fiche `docs/templates/fiches/doe.md`, tests `outils/templates/doe.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
