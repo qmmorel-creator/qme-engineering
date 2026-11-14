@@ -27,7 +27,7 @@ Tout votre mariage au même endroit : un rétroplanning calé sur votre date, le
 <h2>Le grand jour, sans le grand désordre.</h2>
 <p>Organiser un mariage, c'est un carnet de tâches, un tableur de devis, une liste d'invités dans les notes du téléphone et un plan de table griffonné sur une nappe. L'Organisateur de mariage réunit tout dans une seule application, ouverte sur vos deux téléphones et votre ordinateur.</p>
 
-<h3>Ce que vous obtenez</h3>
+<h2>Ce que vous obtenez</h2>
 <ul>
   <li><strong>Rétroplanning sur 12 mois</strong> : 40 tâches types (lieu, prestataires, invités, tenues, cérémonie, réception, jour J) dont l'échéance se calcule depuis la date du mariage. Si la date change, tout se recale. Tâches en retard et de la semaine en tête.</li>
   <li><strong>Budget et prestataires</strong> : 16 postes types sans montant imposé ; pour chaque poste, prévu, engagé (devis réservés) et payé ; prestataires à contacter, devis reçu, réservé ou écarté ; acomptes et soldes avec leurs échéances.</li>

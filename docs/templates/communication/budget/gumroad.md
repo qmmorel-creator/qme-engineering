@@ -27,7 +27,7 @@ Un budget par enveloppes pour tout le foyer : revenus, prévu et réel, report d
 <h2>Chaque euro a une place.</h2>
 <p>Savoir combien on gagne, c'est facile. Savoir où part l'argent, mois après mois, beaucoup moins. Le Budget du foyer répartit vos revenus en enveloppes, compare chaque dépense au prévu et dessine le trajet de votre argent, du salaire jusqu'aux courses.</p>
 
-<h3>Ce que vous obtenez</h3>
+<h2>Ce que vous obtenez</h2>
 <ul>
   <li><strong>Tableau de bord du mois</strong> : ce qui reste dans vos enveloppes, et combien par jour jusqu'à la fin du mois.</li>
   <li><strong>Enveloppes</strong> par catégorie, avec report du reste d'un mois sur l'autre (vacances, cadeaux, impôts) et « reste à affecter ».</li>

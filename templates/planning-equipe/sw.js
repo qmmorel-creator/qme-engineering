@@ -1,8 +1,8 @@
 // Service worker du planning d'équipe : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'planning-equipe-20261114';
-const COQUILLE = ['./', 'app.css?v=20261114', 'donnees.js?v=20261114', 'regles.js?v=20261114', 'app.js?v=20261114', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'planning-equipe-20261114v';
+const COQUILLE = ['./', 'app.css?v=20261114v', 'donnees.js?v=20261114v', 'regles.js?v=20261114v', 'app.js?v=20261114v', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

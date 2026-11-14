@@ -1,0 +1,9 @@
+# qm-engineering.fr : pages publiques ouvertes à l'exploration.
+# Les applications payantes, l'administration et l'espace client sont en noindex (en-têtes dans netlify.toml).
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /connexion/
+Disallow: /packs/espace/
+
+Sitemap: https://qm-engineering.fr/sitemap.xml

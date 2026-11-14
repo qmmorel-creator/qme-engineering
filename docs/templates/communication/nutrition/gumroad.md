@@ -26,7 +26,7 @@ Un journal des repas appuyé sur la table Ciqual de l'Anses, votre dépense du j
 <h2>Ce que vous mangez, face à ce que vous dépensez.</h2>
 <p>Compter ses calories n'a de sens que si l'on sait combien on dépense. Ce template réunit les deux : un journal des repas avec plus de 3 300 aliments de la table Ciqual 2025 de l'Anses, votre dépense du jour calculée à partir de votre profil et de vos séances de sport, et un facteur calorique (mangé ÷ dépensé) à suivre jour après jour. Sans abonnement, sans publicité, sans montre connectée.</p>
 
-<h3>Ce que vous obtenez</h3>
+<h2>Ce que vous obtenez</h2>
 <ul>
   <li><strong>Journal des repas</strong> : petit-déjeuner, déjeuner, dîner, collations ; recherche sans accents dans la base, quantités en grammes ou en portions que vous définissez, favoris, repas enregistrés, copie de la veille, aliments personnels.</li>
   <li><strong>Totaux du jour</strong> : calories, protéines, glucides, lipides, fibres, sucres et sel, face à vos cibles.</li>

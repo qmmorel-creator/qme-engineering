@@ -4,11 +4,23 @@ Site promotionnel de Quentin Morel Engineering (QME).
 
 ## Structure
 
+- Référencement : `robots.txt` (déclare le sitemap ; administration, API, connexion et espace client exclus) et
+  `sitemap.xml` (pages publiques à leur URL canonique), généré par `node outils/sitemap/generer.mjs` ; les
+  applications `/templates/<slug>/` restent en `noindex` (en-têtes de `netlify.toml`).
+  Données structurées JSON-LD (depuis le 14/11/2026) : générées depuis le contenu visible par
+  `node outils/seo/donnees-structurees.mjs` (Organization et WebSite sur l'accueil, Product + Offer sur les pages
+  catalogue en vente, BreadcrumbList, FAQPage là où une FAQ est affichée ; jamais de note ni d'avis), automatiquement
+  pour les packs par `outils/packs/generer.mjs`, contrôlées par `outils/templates/seo.test.mjs` (à relancer après
+  tout changement de prix, de FAQ ou de fil d'Ariane). Audit statique : `node outils/seo/audit.mjs`. Dossier de
+  référencement (audit, mots-clés, guides proposés, Gumroad, plan d'action) : `docs/seo/`.
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue : filtres Professionnel / Vie personnelle, thèmes et recherche, état dans
-  l'adresse `?pour=…&theme=…&q=…` ; vitrine défilante des templates en vente ; liste compacte des
-  templates en préparation, dont la démo affiche un bandeau « Bientôt en vente » ; bouton « Soumettre une idée » relié au
-  formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
+  `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
+  puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
+  templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. État dans l'adresse
+  `?pour=…&q=…&vue=sommaire`, `?theme=…` ouvre un volet. Les vues sont construites par `assets/site.js` à partir des
+  cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour ceux en préparation, dont la démo
+  affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles quelles sans JS. En bas, la carte des
+  prix des packs (générée) ; bouton « Soumettre une idée » relié au formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
   `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
   `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
@@ -107,7 +119,9 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
-  (`/packs/espace/`, non indexé). Pages générées : `node outils/packs/generer.mjs` (données dans
+  (`/packs/espace/`, non indexé). La page `/packs/` présente une ligne dépliable par pack (contenu, jauge de
+  disponibilité, prix, actions), filtrée par « Je suis… » sur les publics présents dans au moins deux packs ;
+  `/packs/#<slug>` ouvre le pack. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
@@ -160,7 +174,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   indemnités kilométriques** (justificatifs référencés sans fichier stocké, barème kilométrique fiscal daté et
   modifiable appliqué au cumul annuel, note du mois imprimable) ; `templates/appel-decouverte/` (APD)
   **préparateur d'appel découverte** (84 questions en 7 phases, 25 objections, mode « en appel », score de
-  qualification) ; `templates/impayes/` (RCV) **relance des impayés** (retard par ancienneté, pénalités
+  qualification) ; `templates/impayes/` (RCV) **relance des impayés**, en vente depuis le 14/11/2026 (19 €, Gumroad `/l/relance-impayes`) (retard par ancienneté, pénalités
   L441-10 et indemnité D441-5 à taux datés modifiables, messages par palier à copier, rien n'est envoyé) ;
   `templates/onboarding/` (ARD) **onboarding et offboarding salarié** (checklists par profil de J-15 à J+90,
   responsables, matériel remis et rendu). Règles dans `regles.js`, tests `outils/templates/<slug>.test.mjs`.
@@ -174,15 +188,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
-- `templates/planning-equipe/` (EQP) : **planning d'équipe et staffing**, prêt, « Mise en vente prochaine » (35 €,
-  démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Affectations par
+- `templates/planning-equipe/` (EQP) : **planning d'équipe et staffing**, **en vente** depuis le 14/11/2026 (35 €,
+  Gumroad `/l/planning-equipe-staffing`). Affectations par
   personne et par projet ou poste en heures par semaine, taux de charge avec temps partiel, absences et fériés
   déduits, alertes (surcharge, affectation pendant une absence, compétence manquante, poste non couvert, durées
   L3121-20 et L3121-22 paramétrables), vues semaine et mois, « qui est disponible la semaine prochaine ». Une clé
   partagée par les managers : saisies simultanées fusionnées (`fusionner`). Règles dans `regles.js`, tests
   `outils/templates/planning-equipe.test.mjs`.
-- `templates/tableau-annuel/` (RDV) : **tableau de bord annuel et roue de vie**, prêt, « Mise en vente prochaine »
-  (15 €, démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Roue de vie
+- `templates/tableau-annuel/` (RDV) : **tableau de bord annuel et roue de vie**, **en vente** depuis le 14/11/2026
+  (15 €, Gumroad `/l/tableau-annuel-roue-de-vie`). Roue de vie
   notée par 3 questions par domaine (12 domaines types, 8 au plus), objectifs et résultats clés (méthode OKR, 33
   modèles, cibles à la hausse ou à la baisse) comparés à la part de l'année écoulée, actions trimestrielles (48 idées,
   report des actions restées ouvertes), revue guidée chaque trimestre (bilan annuel au 4e), évolution de la roue
@@ -204,8 +218,8 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   en semaines, conditions, aperçu A4 imprimable ; suivi (validité, relances avec message à copier, réponse et motif,
   taux de transformation en nombre et en valeur), duplication. Prix hors taxes, aucune règle légale : mentions et TVA
   renvoyées au devis (T36). Règles dans `regles.js`, tests `outils/templates/propositions.test.mjs`.
-- `templates/document-unique/` (DRP) : **document unique d'évaluation des risques** (T80), prêt, « Mise en vente
-  prochaine » (29 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/document-unique/gumroad.json`).
+- `templates/document-unique/` (DRP) : **document unique d'évaluation des risques** (T80), **en vente** depuis le
+  14/11/2026 (29 €, Gumroad `/l/document-unique-evaluation-risques`, fiche : `docs/templates/communication/document-unique/gumroad.json`).
   Unités de travail, 20 familles de risques inspirées de l'INRS ED 840 (reformulées), démarrage par secteur, cotation
   gravité × probabilité sur grille paramétrable, risque initial et résiduel, matrice, plan d'actions (programme
   annuel dès 50 salariés), événements, versions archivées et figées, document imprimable. Obligations selon
@@ -218,8 +232,8 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions), note nécessaire aux épreuves à
   venir (dichotomie), courbe de la moyenne, relevé imprimable, export CSV. Aucun barème officiel intégré. Règles dans
   `regles.js`, tests `outils/templates/notes.test.mjs`.
-- `templates/etat-des-lieux/` (ETD) : **état des lieux d'entrée et de sortie** (T94), prêt, « Mise en vente prochaine »
-  (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/etat-des-lieux/gumroad.json`). Un dossier par
+- `templates/etat-des-lieux/` (ETD) : **état des lieux d'entrée et de sortie** (T94), **en vente** depuis le 14/11/2026
+  (19 €, Gumroad `/l/etat-des-lieux`, fiche : `docs/templates/communication/etat-des-lieux/gumroad.json`). Un dossier par
   bail, pièces et éléments types modifiables (mobilier en meublé), état codé (neuf, bon, usage normal, dégradé, hors
   service) avec commentaire et vignette photo (réduite dans le navigateur, synchronisée, 30 par compte par défaut),
   compteurs et clés, sortie comparée à l'entrée (usure normale distinguée des dégradations), vétusté selon la grille
@@ -485,8 +499,8 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
   personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
   anglaise en attente.
-- `templates/investissement-locatif/` (RNT) : **rentabilité d'un investissement locatif** (T95, 15 €), prêt, « Mise en
-  vente prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/investissement-locatif/gumroad.json`).
+- `templates/investissement-locatif/` (RNT) : **rentabilité d'un investissement locatif** (T95, 15 €), **en vente** depuis le
+  14/11/2026 (Gumroad `/l/rentabilite-investissement-locatif`, fiche : `docs/templates/communication/investissement-locatif/gumroad.json`).
   Jusqu'à 5 biens comparés (nu, meublé, colocation, saisonnier) : coût total d'acquisition (frais de notaire saisis ou
   estimés, hypothèse affichée), loyers par lot ou à la nuitée, vacance en mois par an, charges, crédit saisi (formules
   de `templates/emprunt/`), rendement brut et net de charges, cash-flow mensuel **avant impôt** et effort d'épargne,

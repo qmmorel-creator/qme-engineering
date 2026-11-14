@@ -27,7 +27,7 @@ Notez tout en une ligne, triez en urgent / important et gardez chaque matin les 
 <h2>Tout noter vite. Ne faire que l'essentiel.</h2>
 <p>Les applications de tâches finissent souvent en liste interminable, ou en abonnement mensuel. Ce gestionnaire part d'un principe simple : tout ce qui vous passe par la tête va dans une boîte de réception, vous le triez une fois, et chaque matin vous choisissez les quelques tâches qui feront de la journée une bonne journée.</p>
 
-<h3>Ce que vous obtenez</h3>
+<h2>Ce que vous obtenez</h2>
 <ul>
   <li><strong>Saisie rapide en français</strong> : « Appeler la banque demain 14h !haute #Perso 30min » donne la date, l'heure, la criticité, le projet et la durée.</li>
   <li><strong>Boîte de réception et triage</strong> urgent / important (matrice d'Eisenhower), un élément après l'autre.</li>

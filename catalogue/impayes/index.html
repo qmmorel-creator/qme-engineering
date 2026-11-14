@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Relance des impayés · Templates QME</title>
-<meta name="description" content="Vos factures en retard au même endroit : échéancier, retard en jours, encours par ancienneté, pénalités de retard et indemnité forfaitaire calculées, modèles de relance par palier prêts à copier, journal des relances.">
+<title>Relance de facture impayée : suivi, pénalités, modèles · QME</title>
+<meta name="description" content="Relancez vos factures impayées : retard en jours, pénalités et indemnité calculées, modèles de relance par palier prêts à copier, journal des relances.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/catalogue/impayes/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111308">
+<link rel="stylesheet" href="/assets/site.css?v=2026111501">
+<script type="application/ld+json" id="donnees-structurees">
+{"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://qm-engineering.fr/catalogue/impayes/#produit","name":"Relance des impayés","description":"Relancez vos factures impayées : retard en jours, pénalités et indemnité calculées, modèles de relance par palier prêts à copier, journal des relances.","url":"https://qm-engineering.fr/catalogue/impayes/","image":["https://qm-engineering.fr/assets/templates-impayes-tableau.webp?v=20261113","https://qm-engineering.fr/assets/templates-impayes-tel.webp?v=20261113"],"category":"Application web (template)","brand":{"@id":"https://qm-engineering.fr/#organisation"},"offers":{"@type":"Offer","price":"19.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://qmengineering.gumroad.com/l/relance-impayes","seller":{"@id":"https://qm-engineering.fr/#organisation"}}},{"@type":"BreadcrumbList","@id":"https://qm-engineering.fr/catalogue/impayes/#fil","itemListElement":[{"@type":"ListItem","position":1,"name":"Templates","item":"https://qm-engineering.fr/templates/"},{"@type":"ListItem","position":2,"name":"Professionnel","item":"https://qm-engineering.fr/templates/?pour=pro"},{"@type":"ListItem","position":3,"name":"Relance des impayés","item":"https://qm-engineering.fr/catalogue/impayes/"}]},{"@type":"FAQPage","@id":"https://qm-engineering.fr/catalogue/impayes/#faq","mainEntity":[{"@type":"Question","name":"Les messages sont-ils envoyés automatiquement ?","acceptedAnswer":{"@type":"Answer","text":"Non. Chaque message est rempli avec les données de la facture et se copie d'un bouton ; vous le collez dans votre messagerie ou votre courrier, puis vous le notez comme envoyé. Aucune messagerie, aucune banque, aucun logiciel de facturation n'est connecté : vous gardez la main sur chaque relance."}},{"@type":"Question","name":"Comment les pénalités sont-elles calculées ?","acceptedAnswer":{"@type":"Answer","text":"Entre professionnels, à défaut de taux dans vos conditions générales, le taux de la Banque centrale européenne du semestre majoré de 10 points (article L441-10 du Code de commerce), dès le lendemain de l'échéance, en intérêts simples au prorata des jours sur le restant dû, plus l'indemnité forfaitaire de 40 € par facture (article D441-5). Pour un client particulier, pas d'indemnité : intérêts au taux légal à partir de la mise en demeure, sauf taux prévu au contrat. Les taux sont datés et modifiables dans les réglages."}},{"@type":"Question","name":"Que se passe-t-il quand les taux changent ?","acceptedAnswer":{"@type":"Answer","text":"Le taux de référence change chaque semestre. Vous saisissez le nouveau taux dans les réglages (la date de relevé est affichée) ; le calcul applique à chaque période le taux de son semestre et signale un taux manquant « à vérifier »."}},{"@type":"Question","name":"Et les données de mes clients ?","acceptedAnswer":{"@type":"Answer","text":"Le minimum suffit : un nom, le type de client (professionnel ou particulier) et, si vous le souhaitez, un contact. Vous pouvez effacer les données personnelles d'un client (les montants et dates restent) ou le supprimer avec ses factures, et exporter vos factures en CSV. Vous restez responsable des données de vos débiteurs."}},{"@type":"Question","name":"Est-ce un conseil juridique ?","acceptedAnswer":{"@type":"Answer","text":"Non. C'est un outil d'aide au suivi des paiements : les montants calculés sont des estimations à partir de votre saisie, et vos conditions générales, vos factures et les textes en vigueur font foi. Pour une procédure de recouvrement, adressez-vous à un professionnel du droit."}},{"@type":"Question","name":"Puis-je l'essayer avant d'acheter ?","acceptedAnswer":{"@type":"Answer","text":"Oui : la démo ouvre le suivi d'une entreprise fictive avec 12 factures (à échoir, en relance, paiement partiel, mise en demeure, litige, payée en retard). Elle reste dans votre navigateur et n'envoie rien."}}]}]}
+</script>
 </head>
 <body>
 
@@ -40,7 +43,7 @@
 <section class="section" id="impayes">
   <div class="section-head">
     <h1 class="h-section">Relance des impayés</h1>
-    <p>Pour les TPE et les freelances qui attendent des paiements : chaque facture en retard avec son retard en jours, les pénalités et l'indemnité calculées selon le Code de commerce, et le bon message de relance prêt à copier, palier après palier.</p>
+    <p>Pour les TPE et les freelances qui attendent des paiements : chaque facture impayée avec son retard en jours, les pénalités et l'indemnité calculées selon le Code de commerce, et le bon message de relance prêt à copier, palier après palier.</p>
   </div>
   <article class="produit">
     <div class="produit-visuel">
@@ -49,7 +52,7 @@
     </div>
     <div class="produit-texte">
       <span class="pill blue">TPE · freelances</span>
-      <h3>Ce que vous obtenez</h3>
+      <h2>Ce que vous obtenez</h2>
       <ul class="feature-points">
         <li><b>L'échéancier clair</b> : encours, échu par tranche d'ancienneté (0-30, 31-60, 61-90, plus de 90 jours), retard en jours et statut de chaque facture</li>
         <li><b>Les pénalités calculées</b> : intérêts simples au prorata des jours sur le restant dû, paiements partiels compris ; indemnité forfaitaire de 40 € entre professionnels</li>
@@ -57,12 +60,11 @@
         <li><b>4 paliers de relance</b> (rappel courtois, relance ferme, mise en demeure, dernier avis) avec leurs modèles de messages remplis : montant, numéro, retard, pénalités</li>
         <li><b>Un journal des relances</b> par facture, et la prochaine relance due affichée le bon jour</li>
       </ul>
-      <div class="prix prochaine"><b>Mise en vente prochaine</b><span>Démo libre dès maintenant, sans inscription</span></div>
+      <div class="prix"><b>19 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
       <div class="actions">
-        <a class="btn primary" href="/templates/impayes/?demo" data-goatcounter-click="demo-impayes" data-goatcounter-title="Démo : relance des impayés">Essayer la démo</a>
-        <button class="btn interet" type="button" data-interet="impayes">Je suis intéressé(e)</button>
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/relance-impayes" data-goatcounter-click="achat-impayes" data-goatcounter-title="Acheter : relance des impayés">Acheter</a>
+        <a class="btn" href="/templates/impayes/?demo" data-goatcounter-click="demo-impayes" data-goatcounter-title="Démo : relance des impayés">Essayer la démo</a>
       </div>
-      <p class="interet-note" data-interet-note="impayes" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce template. Rien d'autre n'est enregistré.</p>
     </div>
   </article>
   <div class="galerie">
@@ -79,7 +81,7 @@
     <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/impayes/?demo">la démo</a> ouvre le suivi d'une entreprise fictive avec 12 factures (à échoir, en relance, paiement partiel, mise en demeure, litige, payée en retard). Elle reste dans votre navigateur et n'envoie rien.</p></details>
   </div>
 </section>
-<section class="rappel-templates"><p><b>Bientôt en vente.</b> La démo est libre dès maintenant. À la mise en vente : achat unique sur Gumroad, clé de licence reçue par e-mail, ouverture sur <a href="/connexion/">qm-engineering.fr/connexion</a>, données synchronisées sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>
+<section class="rappel-templates"><p><b>Comment ça marche :</b> achat unique sur Gumroad, clé de licence reçue par e-mail, ouverture sur <a href="/connexion/">qm-engineering.fr/connexion</a>, données synchronisées sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>
 <nav class="pager" aria-label="Pages"><a class="prec" href="/templates/"><span>Page précédente</span><b>Tous les templates</b></a><span></span></nav>
 </main>
 
