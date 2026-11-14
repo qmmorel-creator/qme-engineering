@@ -744,7 +744,9 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .compte-filtre .btn.lien{min-height:0;padding:0;font-size:inherit}
 .seulement-petit,.cartes-sites.seulement-petit{display:none}
 .tableau.sites td:nth-child(2){min-width:200px}
-.tableau.sites td:nth-child(4){min-width:130px}
+.tableau.sites th .tri{padding:8px 10px}
+.tableau.sites td{padding:10px}
+.tableau.sites td:nth-child(4){min-width:120px}
 /* Tableau des sites : en-têtes triables */
 .tableau.sites th{padding:0}
 .tableau.sites th .tri{display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:8px 14px;border:0;background:none;color:inherit;font:inherit;text-transform:inherit;letter-spacing:inherit;text-align:left}

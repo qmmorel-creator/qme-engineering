@@ -597,6 +597,7 @@
       ${affichage.mode === 'carte' ? vueCarte(lignes) : listeSites(lignes)}` : vide('Aucun site', 'Ajoute ton premier site, ou importe ta liste depuis un tableur.', `<button class="btn" data-action="import">Importer (CSV)</button><button class="btn primaire" data-action="site-nouveau">${ICONES.plus}Site</button>`)}`;
   }
   const COLS_SITES = [['etat', 'État'], ['nom', 'Site'], ['ville', 'Ville'], ['region', 'Région'], ['equipements', 'Équipements'], ['disponibilite', 'Disponibilité'], ['retards', 'Préventifs en retard'], ['delai', 'Délai de résolution'], ['cout', 'Coût']];
+  const COURTS_SITES = { equipements: 'Équip.', disponibilite: 'Dispo.', retards: 'Retards', delai: 'Délai moyen' };
 
   function listeSites(lignes) {
     if (!lignes.length) return vide('Aucun site ne correspond', 'Change ou efface les filtres.', '<button class="btn" data-action="filtres-raz">Tout afficher</button>', true);
@@ -606,7 +607,7 @@
     };
     const nbCols = new Set(['equipements', 'disponibilite', 'retards', 'delai', 'cout']);
     return `
-      <div class="defile seulement-grand"><table class="tableau sites"><thead><tr>${COLS_SITES.map((c) => th(c, nbCols.has(c[0]) ? 'nb' : '')).join('')}</tr></thead><tbody>
+      <div class="defile seulement-grand"><table class="tableau sites"><thead><tr>${COLS_SITES.map(([k, l2]) => th([k, COURTS_SITES[k] || l2], nbCols.has(k) ? 'nb' : '')).join('')}</tr></thead><tbody>
         ${lignes.map(({ site: s, ind, etat }) => `<tr>
           <td><span class="etiquette ${ETAT_SITE[etat][0]}">${ETAT_SITE[etat][1]}</span></td>
           <td><button class="lien-v" data-action="site" data-id="${s.id}"><b>${esc(s.nom)}</b><small>${esc(typeCourt(s.type))}${s.responsable ? ` · ${esc(s.responsable)}` : ''}</small></button></td>
