@@ -87,6 +87,7 @@ const T = {
   achats: ["Demandes d'achat et fournitures", "Qui a demandé quoi, et où en est le budget.", "Validation · commandes groupées · réception · budget par service"],
   remerciements: ["Cadeaux reçus et remerciements", "Personne n'est oublié.", "Qui a offert quoi · messages prêts · étiquettes d'adresses"],
   competences: ['Matrice compétences et formations', 'Qui sait faire quoi, et qui former.', 'Écarts au poste · compétences fragiles · formations'],
+  progression: ['Progression pédagogique', 'Ton programme, séance après séance.', 'Prévu et réel · retard en heures · fin projetée'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
