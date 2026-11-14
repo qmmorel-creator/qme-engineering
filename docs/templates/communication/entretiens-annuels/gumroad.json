@@ -1,0 +1,42 @@
+{
+  "slug": "entretiens-annuels",
+  "name": "Entretiens annuels et professionnels",
+  "price_cents": 1900,
+  "permalink": "entretiens-annuels-professionnels",
+  "category": "business-and-money",
+  "button": "Ouvrir mon suivi des entretiens",
+  "summary": "Les échéances de chaque salarié calculées (annuel, entretien de parcours professionnel, état des lieux des 8 ans), des trames prêtes, un compte rendu imprimable, et les objectifs comme les formations suivis d'une année sur l'autre.",
+  "description": "<h2>Aucun entretien oublié.</h2><p>Sans logiciel RH, les entretiens vivent dans un dossier Word et un tableur : on les tient quand on y pense, et le jour de l'état des lieux des 8 ans, il faut tout retrouver. Les Entretiens annuels et professionnels calculent les échéances de chacun de tes salariés, te donnent la trame et gardent l'historique, d'une année sur l'autre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les échéances de chaque salarié, calculées</strong> : entretien annuel, entretien de parcours professionnel (la première année après l'embauche, puis tous les 4 ans), état des lieux des 8 ans, et les cas particuliers : retour de congé parental ou de maternité, visite de mi-carrière, approche des 60 ans.</li><li><strong>Des trames prêtes</strong> : 58 questions par thème pour l'entretien annuel, l'entretien de parcours et l'état des lieux, que tu complètes avec tes propres questions.</li><li><strong>Un questionnaire de préparation</strong> à copier et envoyer au salarié, puis un compte rendu saisi pendant l'entretien, imprimé ou enregistré en PDF avec les cases de signature.</li><li><strong>Des objectifs SMART suivis d'une année sur l'autre</strong> : avancement, bilan à l'entretien suivant, reconduction, et un contrôle qui signale l'objectif flou.</li><li><strong>Les demandes de formation</strong>, de la demande à la réalisation, avec leur nature (obligatoire ou non).</li><li><strong>Le contrôle de l'état des lieux</strong> : entretiens tenus sur 8 ans, formation non obligatoire suivie, risque d'abondement CPF pour les entreprises de 50 salariés et plus.</li><li><strong>Des données minimales</strong> : prénom et initiale, poste, dates ; chaque fiche s'exporte et s'efface.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes salariés avec la date de leur dernier entretien : les échéances se calculent aussitôt. Tes données sont enregistrées en ligne (hébergement en Europe) et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation, pas un conseil juridique ni un logiciel de paie. Périodicités relevées le 14/11/2026 sur service-public.gouv.fr (fiche F32040), affichées avec leur source et modifiables : ta convention collective, tes accords et les textes font foi. Démo disponible sur qm-engineering.fr/catalogue/entretiens-annuels.</em></p>",
+  "tags": [
+    "entretien-professionnel",
+    "entretien-annuel",
+    "ressources-humaines",
+    "tpe",
+    "pme",
+    "management",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des entretiens s'ouvre. Ajoute tes salariés avec la date de leur dernier entretien : les échéances se calculent aussitôt. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Dirigeants de TPE et PME, managers"
+    }
+  ]
+}

@@ -285,6 +285,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   facturé ÷ temps réel) face au TJM cible, au devis et au coût de revient saisis (mêmes notions que `tjm` et
   `cout-revient`) ; semaine type, rentabilité par période, rapport client imprimable, export CSV. Aucun taux ni tarif
   intégré. Règles dans `regles.js`, tests `outils/templates/suivi-temps.test.mjs`.
+- `templates/entretiens-annuels/` (ENP) : **entretiens annuels et professionnels** (T79), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/entretiens-annuels/gumroad.json`).
+  Échéances par salarié : annuel (facultatif, 12 mois), entretien de parcours professionnel (première année puis
+  48 mois), état des lieux des 8 ans, retour d'absence, mi-carrière, avant 60 ans ; périodicités sourcées
+  (service-public.gouv.fr F32040, relevé du 14/11/2026, `donnees.js`) et modifiables, mise à jour annuelle.
+  Trames originales (58 questions), questionnaire de préparation copiable, compte rendu imprimable, objectifs SMART
+  reconduits d'une année sur l'autre, demandes de formation, contrôle de l'état des lieux (abondement CPF à
+  50 salariés et plus). RGPD : données minimales, export et effacement par salarié. Règles dans `regles.js`, tests
+  `outils/templates/entretiens-annuels.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

@@ -123,3 +123,7 @@ personnelles, sources.
   d'entreprise peuvent prévoir d'autres périodicités (d'où les réglages).
 - Les règles transitoires de la réforme ne sont pas tranchées par l'outil : l'utilisateur saisit l'historique.
 - Aucun envoi d'e-mail ni signature électronique : impression ou PDF.
+
+## Statut
+
+Prêt le 14/11/2026, « Mise en vente prochaine ». Communication dans `../communication/entretiens-annuels/`.
