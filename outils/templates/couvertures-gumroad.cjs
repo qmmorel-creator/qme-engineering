@@ -42,6 +42,10 @@ const T = {
   onboarding: ["Onboarding et offboarding salarié", "Personne n'oublie rien.", "Checklists par profil · J-15 à J+90 · matériel remis et rendu"],
   'appel-decouverte': ["Préparateur d'appel découverte", "Prépare l'appel. Mène-le. Conclus.", "84 questions par phase · objections · score de qualification · prochaine étape datée"],
   visa: ['Circuit de visa des documents', 'Chaque visa dans les délais.', 'Indices · VSO, VAO, REF · relances prêtes'],
+  'stocks': ["Stocks et inventaire", "Le bon stock, au bon moment.", "Alertes de seuil · liste à commander · coût moyen · inventaire"],
+  'location-saisonniere': ["Location saisonnière", "Tes logements, toujours prêts.", "Calendrier · ménage · taxe de séjour · net par canal"],
+  'leasing': ["Simulateur leasing ou achat", "Ta voiture, au vrai prix.", "Comptant · crédit · LOA · LLD : le coût total net côte à côte"],
+  'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

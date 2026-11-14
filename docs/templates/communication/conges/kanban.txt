@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="conges" data-pour="pro" data-theme="organisation-et-reunions" style="--c:var(--rouge)"><a href="/catalogue/conges/"><b>Suivi des congés et absences</b><span class="phrase">Soldes calculés, demandes, calendrier et chevauchements.</span><span class="theme">Organisation et réunions</span><em>Bientôt</em></a></li>

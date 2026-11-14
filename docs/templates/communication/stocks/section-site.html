@@ -1,0 +1,44 @@
+<!-- Version « en vente » de la page catalogue/stocks/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : stocks-inventaire (à confirmer une fois la fiche créée), prix 25 €.
+     Captures : assets/templates-stocks-*.webp (démo, données fictives). -->
+<section class="section" id="stocks">
+  <div class="section-head">
+    <h2>Stocks et inventaire</h2>
+    <p>Pour les petits commerces, les artisans, les ateliers et les e-commerçants qui débutent : le stock de chaque article calculé à partir de ses entrées et sorties datées, les alertes de seuil et la liste à commander, la valeur du stock et des inventaires dont les écarts se corrigent d'un clic.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-stocks-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord du stock : valeur au coût moyen pondéré, alertes, montant à commander, stock dormant, ruptures et articles sous le seuil, valeur par catégorie (données fictives)">
+      <img class="tel" src="/assets/templates-stocks-tel.webp?v=20261114" width="780" height="1328" alt="Stocks et inventaire sur téléphone : valeur du stock, alertes, montant à commander et stock dormant (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Commerces · artisans · ateliers</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Un stock toujours juste</b> : il se calcule à partir des mouvements datés (entrée, sortie ou vente, perte, retour client ou fournisseur, ajustement), quantités décimales comprises (kg, litres, mètres)</li>
+        <li><b>Les alertes et la liste à commander</b> : seuil d'alerte et quantité de réapprovisionnement par article, commandes regroupées par fournisseur, texte de commande prêt à copier</li>
+        <li><b>La valeur de votre stock</b> au coût moyen pondéré (CMUP) ou au dernier prix d'achat, méthode affichée, et la marge théorique sur vos prix de vente HT</li>
+        <li><b>Rotation et articles dormants</b> : ventes de la période, jours de stock restants, articles sans vente depuis 90 jours (réglable)</li>
+        <li><b>L'inventaire tournant ou complet</b> : comptage saisi face au stock théorique, écarts en quantité et en euros, validation qui génère les ajustements ; export CSV</li>
+      </ul>
+      <div class="prix"><b>25 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/stocks-inventaire" data-goatcounter-click="achat-stocks" data-goatcounter-title="Acheter : stocks et inventaire">Acheter</a>
+        <a class="btn" href="/templates/stocks/?demo" data-goatcounter-click="demo-stocks" data-goatcounter-title="Démo : stocks et inventaire">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-stocks-inventaire.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Inventaire tournant des emballages en cours : stock théorique, quantité comptée, écart en quantité et en euros, exactitude et écart net (données fictives)"><figcaption>L'inventaire tournant, écart par écart</figcaption></figure>
+    <figure><img src="/assets/templates-stocks-commandes.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste à commander regroupée par fournisseur : stock, seuil, quantité proposée, coût estimé, boutons Réception et Copier la commande (données fictives)"><figcaption>La liste à commander, par fournisseur</figcaption></figure>
+    <figure><img src="/assets/templates-stocks-fiche.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Fiche d'un article : stock, valeur, coût moyen pondéré et dernier prix d'achat, rotation, dernière vente et historique des mouvements avec le stock et le CMUP après chaque ligne (données fictives)"><figcaption>Le coût moyen pondéré, mouvement par mouvement</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Est-ce relié à ma caisse ou à ma boutique en ligne ?</summary><p>Non. Chaque entrée, vente, perte ou retour se saisit dans l'outil, en quelques secondes, sur ordinateur ou sur téléphone. Aucune caisse, aucune boutique en ligne, aucun logiciel comptable n'est connecté : rien ne part sans vous. Pour un volume de ventes important, notez les sorties en fin de journée ou de semaine, ou contrôlez-les par un inventaire tournant.</p></details>
+    <details><summary>Comment la valeur du stock est-elle calculée ?</summary><p>Au coût moyen unitaire pondéré (CMUP), recalculé à chaque entrée : (stock × coût moyen + quantité reçue × prix d'achat HT) ÷ nouveau stock ; les sorties, pertes et retours clients se font au coût moyen du moment. Ou, au choix, au dernier prix d'achat. La méthode affichée est toujours indiquée et l'export CSV donne les deux. La méthode « premier entré, premier sorti » n'est pas calculée.</p></details>
+    <details><summary>Comment se passe un inventaire ?</summary><p>Vous choisissez un inventaire complet ou tournant (une catégorie, un emplacement, ou les articles comptés le moins récemment), puis vous saisissez ce que vous comptez. L'outil affiche l'écart avec le stock théorique de la fin de journée du comptage, en quantité et en euros. À la validation, chaque écart devient un ajustement daté ; une ligne non comptée ne change rien.</p></details>
+    <details><summary>Est-ce un logiciel comptable ?</summary><p>Non. C'est un outil de gestion de stock : les valeurs sont calculées à partir de votre saisie, en prix hors taxes. La valorisation comptable du stock à la clôture de l'exercice relève de votre expert-comptable ; l'export CSV lui transmet l'état du stock et le journal des mouvements.</p></details>
+    <details><summary>Et si je vends au poids ou au mètre ?</summary><p>Chaque article a son unité (pièce, lot, boîte, kg, L, m, m²…) et les quantités acceptent trois décimales : 2,5 kg de cire, 0,35 L de parfum. Les prix d'achat acceptent quatre décimales pour les petites fournitures (0,065 € la mèche).</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/stocks/?demo">la démo</a> ouvre le stock d'un atelier fictif de bougies avec boutique : 17 articles, six mois de mouvements, une rupture, des articles sous le seuil, un article dormant, un inventaire validé et un inventaire tournant en cours. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>

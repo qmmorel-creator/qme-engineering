@@ -125,7 +125,7 @@ déjà).
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
-| T48 | Suivi congés et absences | RH | TPE sans SIRH | idée | 19 € | S | P2 | Backlog Quentin n° 24 |
+| T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
@@ -139,11 +139,11 @@ déjà).
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
-| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | idée | 25 € | S | P2 | Backlog Quentin n° 40 |
+| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
-| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
+| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
-| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 12 € | S | P2 | Backlog Quentin n° 45 |
+| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
@@ -444,6 +444,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T38 | `appel-decouverte` | APD | preparateur-appel-decouverte (prévu) |
 | T43 | `impayes` | RCV | relance-impayes (prévu) |
 | T46 | `onboarding` | ARD | onboarding-offboarding (prévu) |
+| T48 | `conges` | CNG | suivi-conges-absences (prévu) |
+| T62 | `stocks` | STK | stocks-inventaire (prévu) |
+| T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
+| T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -489,6 +493,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-113 | T38 appel-decouverte | 2027-01-23 | 12:15 |
 | LI-114 | T43 impayes | 2027-01-25 | 12:15 |
 | LI-115 | T46 onboarding | 2027-01-27 | 12:15 |
+| LI-116 | T48 conges | 2027-01-29 | 08:30 |
+| LI-117 | T62 stocks | 2027-02-03 | 12:15 |
+| LI-118 | T64 location-saisonniere | 2027-02-05 | 12:15 |
+| LI-119 | T66 leasing | 2027-02-07 | 08:30 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -527,6 +535,24 @@ vérifier : T26, majoration de 20 % des véhicules électriques pour les deux-ro
 365 jours et pénalités sur le TTC, taux BCE à mettre à jour au 01/01/2027 ; T46, articles R4624-10 et
 L1221-13 du Code du travail non relus sur Légifrance ; T38, durée de conservation CNIL des prospects
 (3 ans) ; organismes de `prospects.md` marqués « à vérifier ».
+
+**Lot du 14/11/2026, deuxième (T48, T62, T64, T66)**, prêts, « Mise en vente prochaine » (démo libre, bouton
+« Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/conges/` (CNG, 19 €), `templates/stocks/` (STK, 25 €), `templates/location-saisonniere/` (SJR, 25 €),
+`templates/leasing/` (VTR, 12 €) ; pages `catalogue/<slug>/` ; fiches `fiches/<slug>.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`). Noms et
+prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad. Publications
+insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé »
+LI-116 (T48, ven. 29/01), LI-117 (T62, 03/02), LI-118 (T64, 05/02), LI-119 (T66, dim. 07/02 : créneau donné
+par la règle, à décaler si besoin) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-71 (T48,
+30/01), IG-72 (T62, 04/02), IG-73 (T64, 06/02), IG-74 (T66, 08/02). Restent à vérifier : T48, articles du Code
+du travail relus sur code.travail.gouv.fr seulement (Légifrance indisponible), équivalence en jours ouvrés,
+samedi en jours ouvrables, report de 15 mois après un arrêt non géré ; T62, obligation d'inventaire annuel
+(L123-12 du Code de commerce) non relue, marquée « à vérifier » ; T64, exonération des mineurs pour la taxe de
+séjour (source secondaire), collecte de la taxe par les intermédiaires non vérifiée, hashtags hors kit ; T66,
+hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non sourcées, seuil calculé en km/an
+seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
+« Indépendants » (public : commerces et artisans).
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
