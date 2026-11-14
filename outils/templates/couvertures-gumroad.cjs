@@ -49,6 +49,7 @@ const T = {
   'tableau-annuel': ["Tableau de bord annuel · roue de vie", "Ton année, domaine par domaine.", "Roue de vie · objectifs et résultats clés · revue chaque trimestre"],
   'epargne': ["Objectif d'épargne · fonds d'urgence", "Chaque euro a un but.", "Fonds d'urgence en mois de dépenses · date d'atteinte · scénarios"],
   'pilotage-pme': ["Tableau de bord de pilotage PME", "Tes chiffres, face à tes objectifs.", "45 indicateurs expliqués · écarts · alertes · revue du mois"],
+  'maintenance': ["Maintenance préventive · GMAO légère", "Chaque machine entretenue à temps.", "Date, compteur ou premier atteint · bons d'intervention · coût par équipement"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
