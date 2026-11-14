@@ -1,0 +1,16 @@
+{
+  "name": "Emploi du temps d'établissement · QME",
+  "short_name": "Emploi du temps",
+  "description": "Groupes, formateurs, salles et modules placés à la main sur une grille semaine, conflits détectés en direct, heures prévues, placées et réalisées.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
