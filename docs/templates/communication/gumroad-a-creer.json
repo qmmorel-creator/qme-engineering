@@ -1174,5 +1174,1097 @@
         "value": "TPE et PME de 3 à 50 personnes qui planifient sur un tableur"
       }
     ]
+  },
+  {
+    "slug": "epargne",
+    "name": "Objectif d'épargne et fonds d'urgence",
+    "price_cents": 1200,
+    "permalink": "objectif-epargne",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon épargne",
+    "summary": "Fonds d'urgence en mois de dépenses, apport, voiture, voyage : chaque objectif chiffré, son versement mensuel, sa date d'atteinte et des scénarios d'intérêts composés au taux que tu saisis.",
+    "description": "<h2>Chaque euro a un but.</h2><p>Épargner « pour plus tard » tient rarement. Un objectif chiffré, un versement tenu chaque mois et une date qu'on voit approcher, si. L'outil Objectif d'épargne et fonds d'urgence te dit quel montant viser, combien verser, et quand tu y arrives.</p><h3>Ce que tu obtiens</h3><ul><li><strong>12 objectifs types prêts à chiffrer</strong> : fonds d'urgence, apport immobilier, voiture, voyage, travaux, arrivée d'un enfant, mariage, études, permis, déménagement, dépenses annuelles, projet personnel, chacun avec ses postes de budget et ses points d'attention.</li><li><strong>Un fonds d'urgence en mois de dépenses</strong> : tes dépenses essentielles poste par poste, les mois couverts aujourd'hui, et un repère de taille selon ta situation (revenus stables ou variables, indépendant, personnes à charge, propriétaire…).</li><li><strong>La date d'atteinte et le versement nécessaire</strong> : au rythme actuel, quand l'objectif est atteint ; pour la date que tu vises, combien verser chaque mois. Alerte quand un objectif prend du retard ou quand tes versements dépassent ta capacité d'épargne.</li><li><strong>Trois scénarios d'intérêts composés</strong> côte à côte (versement, taux, somme versée tout de suite), capitalisation mensuelle ou annuelle, au taux de ton propre placement : aucun taux n'est intégré.</li><li><strong>Jalons et historique</strong> : versements du mois notés en un geste, retraits et intérêts reçus, paliers franchis datés, plan des 12 prochains mois, export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes objectifs, chiffre-les et indique ce que tu peux verser : la date d'atteinte se calcule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte bancaire à connecter. Achat unique, sans abonnement.</p><p><em>Outil d'aide au calcul, pas un conseil financier : il ne recommande ni produit ni placement. Les résultats dépendent du taux que tu saisis et des règles de ta banque ; la fiscalité éventuelle n'est pas calculée. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "epargne",
+      "fonds-urgence",
+      "budget",
+      "objectif",
+      "finances-personnelles",
+      "interets-composes",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton outil d'épargne s'ouvre. Choisis tes objectifs (commence par le fonds d'urgence), chiffre-les et indique ton versement mensuel : la date d'atteinte se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et familles qui épargnent pour un objectif"
+      }
+    ]
+  },
+  {
+    "slug": "demenagement",
+    "name": "Déménagement",
+    "price_cents": 1200,
+    "permalink": "demenagement",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon déménagement",
+    "summary": "Un rétroplanning calé sur ta date de déménagement, les démarches et contrats à prévenir, chaque carton numéroté et retrouvé en une recherche, les devis de déménageurs comparés et le budget.",
+    "description": "<h2>Chaque carton à sa place.</h2><p>Un déménagement, c'est une date, une centaine de choses à ne pas oublier et des dizaines de cartons qui se ressemblent tous. Le template Déménagement cale tout sur ton jour J : ce qu'il faut faire chaque semaine, qui prévenir, ce qu'il y a dans chaque carton, et ce que ça coûte.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un rétroplanning calé sur ta date</strong> : 85 tâches types, de la relecture du bail au premier mois dans le nouveau logement, filtrées selon ta situation (location ou achat, déménageur ou utilitaire, enfants, animal, véhicule). Si la date change, toutes les échéances suivent.</li><li><strong>Les démarches et les contrats</strong> : changements d'adresse, électricité, gaz, internet, eau, assurance, école, sans délai légal inventé. Quand un délai dépend d'un texte, la tâche renvoie à ton bail, ton contrat ou service-public.fr.</li><li><strong>Chaque carton numéroté</strong> avec sa pièce d'arrivée et son contenu : « dans quel carton est la perceuse ? » trouve la réponse en une recherche. Étiquettes en couleur à imprimer (huit par page A4), liste par pièce pour le déménageur, pointage « arrivé » le jour J depuis ton téléphone.</li><li><strong>Le volume estimé</strong> à partir de tes meubles et de tes cartons, avec un inventaire à copier dans tes demandes de devis.</li><li><strong>Les devis comparés</strong> : prix au m³, prestations incluses ou non, validité, acompte ; le devis retenu s'inscrit au budget.</li><li><strong>Le budget du déménagement</strong> : prévu, réel et payé, poste par poste, export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique la date et ta situation : ta checklist se crée. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé, même hors connexion le jour J.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation, pas un conseil juridique : les démarches sont des repères généraux, sans délai légal ; ton bail, tes contrats et service-public.fr font foi. Volumes indicatifs : la visite du déménageur fait foi. Aucun déménageur, fournisseur ni administration n'est connecté. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "demenagement",
+      "checklist",
+      "cartons",
+      "organisation",
+      "maison",
+      "planning",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton déménagement s'ouvre. Indique la date et ta situation : ta checklist se crée, puis note tes cartons au fur et à mesure. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et familles qui déménagent"
+      }
+    ]
+  },
+  {
+    "slug": "voyage",
+    "name": "Planificateur de voyage",
+    "price_cents": 1300,
+    "permalink": "planificateur-voyage",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon voyage",
+    "summary": "L'itinéraire par étapes, le toit de chaque nuit, les activités jour par jour, le budget prévu et réel, et au retour, qui doit quoi à qui. Aucune réservation, aucune publicité.",
+    "description": "<h2>Le voyage tient dans ta poche.</h2><p>Les réservations sont dans dix e-mails, le programme dans une note, le budget dans un tableur et, au retour, personne ne sait plus qui doit quoi. Le Planificateur de voyage réunit tout au même endroit, sur ordinateur pour préparer et sur téléphone pendant le voyage.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'itinéraire par étapes</strong> : chaque lieu avec ses nuits, les transports entre deux étapes (date, heure, référence) et le chemin complet en une ligne, à copier dans un message.</li><li><strong>Un toit pour chaque nuit</strong> : hébergement, adresse, réservé ou à réserver, montant, acompte et reste à payer sur place. Une nuit sans hébergement ou réservée deux fois est signalée.</li><li><strong>Le programme jour par jour</strong> : transports et activités à leur heure, la nuit du soir, imprimable. La liste de ce qui reste à réserver, du plus urgent au plus lointain.</li><li><strong>Le budget prévu et réel</strong> par poste et par personne : le plan donne le prévu, les dépenses saisies en route donnent le réel.</li><li><strong>Qui doit quoi</strong> : chaque dépense dit qui a payé et pour qui (parts égales, en parts ou montants). Le partage tombe juste au centime et le nombre minimal de remboursements est calculé.</li><li><strong>Bagages et documents</strong> : des listes par type de séjour (ville, plage, montagne, hiver, camping, voiture, enfants…) et les documents à prévoir, à cocher.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique les dates et les voyageurs : ton voyage se crée. Il est enregistré en ligne et te suit sur tous tes appareils ; partage la clé avec tes compagnons de route pour voir les mêmes données. Une fois ouvert, il reste consultable sans réseau.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation, ni agence de voyage ni conseil financier : aucune réservation n'est faite et aucune plateforme n'est connectée ; les montants sont ceux que tu saisis, en euros. Formalités (papiers, visa, santé) : rien n'est intégré, l'outil renvoie aux sources officielles. Démo disponible sur qm-engineering.fr/catalogue/voyage.</em></p>",
+    "tags": [
+      "voyage",
+      "itineraire",
+      "budget",
+      "depenses-partagees",
+      "organisation",
+      "vacances",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton voyage s'ouvre. Indique les dates et les voyageurs, puis ajoute tes étapes. Garde cet e-mail : la même clé fonctionne sur tous tes appareils, et tes compagnons de route peuvent l'utiliser aussi.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Voyageurs, familles et groupes d'amis"
+      }
+    ]
+  },
+  {
+    "slug": "suivi-chantier",
+    "name": "Suivi de chantier par lot",
+    "price_cents": 4000,
+    "permalink": "suivi-chantier-lot",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon suivi de chantier",
+    "summary": "Chaque lot de ton chantier tenu, du marché au solde : avenants, situations de travaux calculées, échéancier et courbe d'avancement, jalons recalés par les intempéries, non-conformités, risques, ordres de service et revue de projet.",
+    "description": "<h2>Chaque lot tenu, du marché au solde.</h2><p>Un tableur par lot pour les situations, un autre pour les avenants, des courriers dans la messagerie, un journal de chantier sur papier, et une revue de projet à reconstruire avant chaque réunion… Le Suivi de chantier par lot rassemble le pilotage contractuel et financier d'une opération, lot par lot, et prépare la revue de projet à ta place.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le marché de chaque lot</strong> : entreprise, montant initial, avenants signés, en projet ou refusés, marché actualisé et écart en pourcentage. Sous-traitants déclarés, montant, acceptation et paiement direct.</li><li><strong>Des situations de travaux calculées</strong> : tu saisis le cumul des travaux exécutés, l'outil donne les travaux du mois, la révision (coefficient K de ta formule), la retenue de garantie, les pénalités déduites, le net HT et la date de paiement attendue. Dépassement du marché et retards de paiement signalés.</li><li><strong>L'échéancier et la courbe d'avancement</strong> : prévu réparti au prorata des jours entre le début et la fin de chaque lot, retouchable mois par mois ; réalisé issu des situations ; écart au prévisionnel.</li><li><strong>Des jalons recalés</strong> : délais des avenants signés et intempéries retenues dans le journal de chantier, état de chaque jalon (atteint, en retard, proche) et pénalités encourues estimées d'après ton CCAP.</li><li><strong>Les registres</strong> : non-conformités simplifiées (gravité, action, échéance), risques en matrice 4 × 4 avec réponse, action et porteur, courriers et ordres de service avec la réponse attendue, intervenants.</li><li><strong>La revue de projet</strong> : délais, finances, qualité, risques, courriers en attente et points à arbitrer, à imprimer ou à copier dans ton compte rendu. Exports CSV de la synthèse financière et des situations.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton opération à partir du découpage type en lots, saisis le marché de chaque lot, puis tes situations, avenants et jalons. Tes opérations sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Plusieurs opérations avec la même clé.</p><p><em>Outil de suivi, pas un conseil juridique. Aucun indice de révision ni taux réglementaire intégré : retenue de garantie, délai de paiement, coefficient K et pénalités se saisissent d'après ton marché ; les pénalités affichées sont une estimation. Montants hors taxes. Aucun envoi d'e-mail ni lien avec un autre logiciel. Démo disponible sur qm-engineering.fr/catalogue/suivi-chantier.</em></p>",
+    "tags": [
+      "btp",
+      "chantier",
+      "maitrise-d-oeuvre",
+      "conduite-de-travaux",
+      "gestion-de-projet",
+      "situations-de-travaux",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi de chantier s'ouvre. Crée ton opération à partir du découpage type en lots, saisis le marché de chaque lot, puis tes situations, avenants et jalons. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Maîtres d'œuvre, bureaux d'études, conducteurs de travaux, PME du BTP"
+      }
+    ]
+  },
+  {
+    "slug": "pilotage-pme",
+    "name": "Tableau de bord de pilotage PME",
+    "price_cents": 3900,
+    "permalink": "tableau-de-bord-pme",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon tableau de bord",
+    "summary": "Tes indicateurs du mois face à tes objectifs : 45 indicateurs types expliqués, saisie mensuelle rapide, objectifs répartis, écarts, tendances, alertes et revue mensuelle imprimable.",
+    "description": "<h2>Tes chiffres, face à tes objectifs.</h2><p>Le chiffre d'affaires, tu le connais. Mais ta marge du mois dernier, ta trésorerie de fin de mois, la charge de ton équipe ou tes réclamations ? Sans tableau de bord, on les découvre au bilan, quand il est trop tard pour corriger. Le Tableau de bord de pilotage PME met tes chiffres du mois face à tes objectifs, en une dizaine de minutes de saisie par mois.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une bibliothèque de 45 indicateurs types</strong> en six domaines (commercial, finances, trésorerie, ressources humaines, production et activité, qualité). Pour chacun : définition, formule, sens de lecture, où trouver le chiffre et un conseil. Aucun ratio sectoriel « de référence » : tes objectifs sont les tiens.</li><li><strong>5 jeux de départ</strong> selon ton activité (services, commerce, artisanat et BTP, industrie, généraliste), modifiables, et tes propres indicateurs, saisis ou calculés.</li><li><strong>Une saisie mensuelle rapide</strong> : un champ par indicateur, le mois précédent et l'an dernier en rappel. Taux de marge, résultat de gestion, point mort, délai de paiement, autonomie de trésorerie, taux de charge, absentéisme se calculent seuls.</li><li><strong>Des objectifs annuels répartis</strong> sur 12 mois : également, selon la saisonnalité de l'an dernier, ou mois par mois ; tolérance, plancher et plafond par indicateur.</li><li><strong>Écarts, tendances et alertes</strong> : statut atteint, à surveiller ou en alerte, tendance sur 3 mois, cumul de l'exercice, projection de fin d'année, courbe réel, objectif et année précédente.</li><li><strong>La revue mensuelle imprimable</strong> : synthèse, tableau par domaine, points d'attention, faits marquants, décisions et actions suivies d'un mois sur l'autre. Export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton activité et tes indicateurs, saisis les chiffres du mois, fixe tes objectifs : écarts, tendances et revue se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion à une banque, une comptabilité ou un CRM : chaque chiffre se saisit dans l'outil. Outil de pilotage, pas un logiciel comptable : les indicateurs calculés sont des estimations de gestion, le résultat comptable relève de ton expert-comptable. Démo disponible sur qm-engineering.fr/catalogue/pilotage-pme.</em></p>",
+    "tags": [
+      "tableau-de-bord",
+      "pilotage",
+      "kpi",
+      "pme",
+      "tpe",
+      "dirigeant",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton tableau de bord s'ouvre. Choisis ton activité et tes indicateurs, saisis les chiffres du mois dernier, puis fixe tes objectifs : écarts, tendances et revue mensuelle se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Dirigeants de TPE et de PME"
+      }
+    ]
+  },
+  {
+    "slug": "references-plaquette",
+    "name": "Kit références et plaquette",
+    "price_cents": 1900,
+    "permalink": "kit-references-plaquette",
+    "category": "business-and-money",
+    "button": "Ouvrir mon kit de références",
+    "summary": "Tes réalisations en fiches (contexte, mission, résultat chiffré, témoignage), des filtres, et pour chaque prospect une sélection de références mise en page, prête à imprimer ou en PDF.",
+    "description": "<h2>Tes réalisations, prêtes à convaincre.</h2><p>« Vous avez des références proches de mon projet ? » La question revient à chaque proposition, et la réponse dort dans des mails, des dossiers de photos et un vieux PDF refait à la main. Le Kit références et plaquette range chaque réalisation une fois pour toutes, et compose pour chaque prospect la bonne sélection, mise en page.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une fiche par réalisation</strong> : contexte, mission, jusqu'à quatre résultats chiffrés, témoignage, mots-clés, période, visuel facultatif. Des modèles pour 9 métiers (conseil, web, design, communication, formation, artisanat du bâtiment, architecture et décoration, photo et vidéo, généraliste) proposent types de mission, mots-clés et résultats à mesurer.</li><li><strong>La confidentialité par défaut</strong> : sans accord noté, le client est décrit par sa taille, son secteur et sa région, jamais nommé. Un témoignage sans accord de citation n'est pas imprimé ; une adresse e-mail ou un téléphone oublié dans un texte est signalé.</li><li><strong>Des filtres et une note de complétude</strong> : recherche, secteur, type de mission, année, mots-clés, « avec résultat chiffré », « avec témoignage », « à compléter ». Chaque fiche dit ce qui lui manque pour convaincre.</li><li><strong>Une sélection par prospect</strong> : son secteur et ses mots-clés, les références les plus proches proposées avec leurs raisons, un mot d'introduction, l'ordre de ton choix.</li><li><strong>Une plaquette A4 imprimable ou en PDF</strong> : trois mises en page (plaquette avec couverture et chiffres clés, une référence par page, liste récapitulative), la couleur de ton choix, et le même contenu en texte à coller dans un e-mail.</li><li><strong>Une demande de témoignage</strong> à copier : cinq questions courtes à envoyer au client à la fin du projet.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton métier, crée tes premières fiches, puis une sélection pour ton prochain prospect : la plaquette se compose seule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun envoi automatique, aucun réseau social ni messagerie connectés : la plaquette s'imprime ou s'enregistre en PDF depuis ton navigateur, les textes se copient. Les chiffres sont ceux que tu saisis. Bonne pratique : demande l'accord écrit du client avant de citer son nom ou ses propos. Démo disponible sur qm-engineering.fr/catalogue/references-plaquette.</em></p>",
+    "tags": [
+      "references-clients",
+      "plaquette",
+      "portfolio",
+      "freelance",
+      "consultant",
+      "prospection",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton kit de références s'ouvre. Choisis ton métier, crée la fiche de ta réalisation la plus parlante, puis une sélection pour ton prochain prospect : la plaquette s'imprime ou s'enregistre en PDF. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Indépendants, consultants, petites agences, artisans"
+      }
+    ]
+  },
+  {
+    "slug": "salles",
+    "name": "Réservation de salles et bureaux",
+    "price_cents": 1900,
+    "permalink": "reservation-salles",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir le planning des salles",
+    "summary": "Salles, bureaux en flex et matériel prêté : ce qui est libre maintenant, vues jour et semaine, aucune double réservation même à plusieurs, réservations chaque semaine et taux d'occupation. Une clé pour toute l'équipe.",
+    "description": "<h2>La salle est libre ? Tu le sais.</h2><p>Un tableur partagé, un tableau blanc à l'entrée, un agenda que personne ne met à jour : et deux équipes qui arrivent dans la même salle à 10 h. La Réservation de salles et bureaux montre ce qui est libre maintenant, qui a réservé et jusqu'à quand, et refuse toute double réservation, même quand deux personnes réservent au même moment.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Libre maintenant</strong> : chaque salle, bureau en flex ou équipement prêté, libre jusqu'à quelle heure ou occupé jusqu'à quand, avec la prochaine réservation. Réservation de 30 minutes ou d'une heure en un geste. Actualisé chaque minute : idéal sur une tablette à l'entrée.</li><li><strong>Aucune double réservation</strong> : un créneau pris est refusé à la saisie, puis de nouveau à l'enregistrement en ligne. Si deux appareils réservent en même temps, le second est prévenu de qui a pris le créneau.</li><li><strong>Vues jour et semaine</strong> : toutes les ressources sur une journée, ou une ressource sur sept jours. Touche un créneau libre pour réserver, une réservation pour la modifier ou la libérer plus tôt.</li><li><strong>Réservations chaque semaine</strong> jusqu'à une date, avec la liste des dates en conflit avant de valider.</li><li><strong>Tes ressources</strong> : salles avec capacité et équipements (écran, visio, tableau blanc…), bureaux en flex, matériel prêté ; horaires, jours ouverts, pas de 15, 30 ou 60 minutes, jours fériés calculés et fermés.</li><li><strong>Taux d'occupation</strong> par ressource, par jour de la semaine et heure par heure, sur 1, 4 ou 12 semaines ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; liste tes salles, bureaux et équipements.</li><li>Transmets la clé aux personnes qui réservent : chacune la saisit une fois sur son téléphone ou son ordinateur, puis réserve en indiquant son nom. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de personnes qui réservent.</p><p><em>Une clé partagée, sans comptes ni droits différents : toute personne qui a la clé peut réserver, modifier ou supprimer une réservation ; chaque réservation garde le nom saisi. Aucun agenda, aucune messagerie, aucun badge connecté. Réservations dans une même journée, jusqu'à 40 ressources. Démo disponible sur qm-engineering.fr/catalogue/salles.</em></p>",
+    "tags": [
+      "reservation-salles",
+      "flex-office",
+      "coworking",
+      "moyens-generaux",
+      "pme",
+      "association",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et liste tes salles, bureaux et équipements. Transmets ensuite la clé aux personnes qui réservent : chacune la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail, partagée par l'équipe"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "PME en flex office, coworkings, associations"
+      }
+    ]
+  },
+  {
+    "slug": "competition",
+    "name": "Gestion de compétition sportive",
+    "price_cents": 4900,
+    "permalink": "gestion-competition",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir ma compétition",
+    "summary": "Inscriptions par catégorie, vagues et horaires calculés, scores saisis au bord du plateau, classement à tes règles, mode écran et lien public en lecture seule pour les spectateurs.",
+    "description": "<h2>Du premier inscrit au podium.</h2><p>Une compétition, c'est 40 athlètes, quatre épreuves, des vagues à caler, des feuilles de juge et un classement que tout le plateau réclame entre deux vagues. Le template Gestion de compétition sportive réunit tout au même endroit : inscriptions, vagues et horaires, scores saisis au bord du plateau, classement calculé en direct et affiché sur grand écran.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les inscriptions par catégorie</strong> : athlètes ou équipes (2 à 12), dossard automatique, statut, paiement, pièces vérifiées ; une liste collée depuis ton tableur ou ton formulaire s'importe en une fois.</li><li><strong>Les vagues et leurs horaires</strong> : vagues équilibrées selon le nombre de couloirs, les mieux classés en dernier (ou dossard, ou tirage), horaires calculés depuis le temps limite et le battement, alertes de repos, feuilles de juge imprimables.</li><li><strong>Les scores au bord du plateau</strong> : temps, répétitions au temps limite (« CAP+7 »), répétitions, charge ou points, départage au temps, absent ou disqualifié ; le rang se recalcule à chaque saisie, depuis plusieurs téléphones avec la même clé.</li><li><strong>Un classement à tes règles</strong> : somme des rangs ou barème de points, coefficient par épreuve, départage du général (meilleures places ou dernière épreuve), ex aequo gérés.</li><li><strong>Le classement affiché</strong> : mode écran plein écran pour la télévision, et un lien en lecture seule pour les spectateurs (classement, programme des vagues, recherche d'un nom), mis à jour seul.</li><li><strong>Six formats de départ</strong> et douze épreuves génériques à renommer, sans épreuve de référence imposée.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis un format de départ, inscris les participants, génère les vagues. Tes données sont enregistrées en ligne et suivent la clé sur ordinateur, tablette et téléphone, même hors connexion.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'organisation, pas un logiciel fédéral homologué : les règles de classement sont celles que tu choisis. Données des participants (RGPD) : collecte limitée, aucune donnée de santé, coordonnées jamais publiées, classement public effacé 30 jours après la compétition, mention d'information fournie. Aucun e-mail envoyé, aucun paiement encaissé. Démo disponible sur qm-engineering.fr/catalogue/competition.</em></p>",
+    "tags": [
+      "competition",
+      "cross-training",
+      "club",
+      "association",
+      "classement",
+      "sport",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta compétition s'ouvre. Choisis un format de départ, puis inscris les participants. Garde cet e-mail : la même clé fonctionne sur tous les appareils de l'organisation (table de marque, téléphones des juges).",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Salles de cross-training, clubs et associations sportives"
+      }
+    ]
+  },
+  {
+    "slug": "maintenance",
+    "name": "Maintenance préventive (GMAO légère)",
+    "price_cents": 3900,
+    "permalink": "maintenance-preventive",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir ma maintenance",
+    "summary": "Une GMAO légère pour ateliers et services techniques : plans de maintenance types, échéances à la date, au compteur ou au premier atteint, bons d'intervention imprimables, pièces, coût par équipement et indicateurs.",
+    "description": "<h2>Chaque machine entretenue à temps.</h2><p>La dernière vidange du compresseur, c'était quand ? Le prochain filtre, à quel compteur ? Dans un atelier ou un service technique, la maintenance préventive se fait souvent quand on y pense, et l'historique se cherche le jour de la panne. Maintenance préventive est une GMAO légère : tes équipements, leurs plans de maintenance, les échéances et les bons d'intervention, sans paramétrage de plusieurs semaines.</p><h3>Ce que tu obtiens</h3><ul><li><strong>16 familles d'équipements avec leur plan type</strong> (compresseur, machine-outil, presse, chariot élévateur, pont roulant, groupe électrogène, chaudière, climatisation, ventilation, pompe, convoyeur, portes automatiques, installation électrique, sécurité incendie, cuisine professionnelle, bâtiment) : 54 opérations avec leurs points de contrôle. Les périodicités sont des repères indicatifs : la notice du fabricant prime.</li><li><strong>Des échéances à la date, au compteur ou au premier atteint</strong> : heures de fonctionnement, cycles, kilomètres. Le rythme d'utilisation relevé donne la date estimée d'une échéance au compteur. En retard, bientôt, à venir : tout se voit d'un coup d'œil.</li><li><strong>Des bons d'intervention imprimables</strong> : préventifs ouverts depuis l'échéancier, correctifs pour les pannes. À la clôture (date, compteur, durée, pièces, constat), l'échéance suivante se recale toute seule.</li><li><strong>L'historique et le coût de chaque équipement</strong> : main-d'œuvre au taux horaire, pièces, sous-traitance, préventif et correctif, pannes et heures d'arrêt, sur 12 mois et depuis le début.</li><li><strong>Les pièces de rechange</strong> : stock calculé (réceptions moins consommations des bons), alerte sous le seuil.</li><li><strong>Des indicateurs simples</strong> : taux de réalisation du préventif, ponctualité, retard moyen, part du préventif dans le coût. Exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes équipements : le plan type de leur famille t'est proposé. Relève les compteurs, ouvre et clôture les bons. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Réglementaire : seules deux obligations sont préremplies, avec leur source (entretien annuel des chaudières de 4 à 400 kW ; entretien des climatisations et pompes à chaleur de 4 à 70 kW). Les autres vérifications (levage, pression, électricité, incendie, portes automatiques…) arrivent sans périodicité : tu saisis celle de ton texte. La liste n'est pas exhaustive et la conformité de ton site reste de ta responsabilité. Aucun capteur ni logiciel connecté. Démo disponible sur qm-engineering.fr/catalogue/maintenance.</em></p>",
+    "tags": [
+      "maintenance",
+      "gmao",
+      "maintenance-preventive",
+      "atelier",
+      "industrie",
+      "pme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta maintenance s'ouvre. Crée tes équipements : le plan type de leur famille t'est proposé, à ajuster selon la notice. Relève les compteurs, ouvre et clôture les bons : les échéances et les coûts se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Ateliers, services techniques, gestionnaires de bâtiments"
+      }
+    ]
+  },
+  {
+    "slug": "verifications",
+    "name": "Vérifications réglementaires",
+    "price_cents": 3500,
+    "permalink": "verifications-reglementaires",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon registre",
+    "summary": "Le registre de tes vérifications périodiques, site par site : 22 contrôles types avec périodicité sourcée et datée, échéances, organismes, observations suivies jusqu'à leur levée avec preuve, alertes et registre imprimable.",
+    "description": "<h2>Aucun contrôle oublié.</h2><p>Installations électriques, extincteurs, portes automatiques, ascenseur, chariots élévateurs, désenfumage : chaque site a sa liste de vérifications périodiques, chacune sa périodicité, son organisme et ses observations à lever. Dans un tableur, l'échéance dépassée se découvre souvent le jour de l'audit. Vérifications réglementaires tient le registre à ta place, site par site.</p><h3>Ce que tu obtiens</h3><ul><li><strong>22 types de contrôles avec une périodicité sourcée</strong> : électricité, éclairage de sécurité, extincteurs, RIA, SSI, désenfumage, sprinklers, ascenseurs, portes et portails automatiques, appareils et accessoires de levage, gaz, chauffage, grandes cuisines, ventilation. Chacun cite la brochure INRS ED 828 (page, textes de référence) avec sa date de consultation. Les règles APSAD et les normes sont signalées comme telles : ce ne sont pas des textes de loi.</li><li><strong>Tes propres contrôles</strong> : un contrôle absent de la base se crée avec la périodicité que tu saisis, affichée « saisie » partout.</li><li><strong>Les échéances calculées</strong> depuis le dernier rapport, site par site, avec l'organisme vérificateur ; alerte avant l'échéance, retards en tête, dates manquantes signalées, calendrier des douze prochains mois.</li><li><strong>Les observations suivies jusqu'à leur levée</strong> : gravité, échéance de levée, responsable, puis date et preuve (référence de facture, bon d'intervention ou lien). Délai moyen de levée calculé.</li><li><strong>Le délai de deux ans des installations électriques</strong>, appliqué seulement quand il est possible : dernier rapport sans observation, ou observations levées avant l'échéance.</li><li><strong>Un registre imprimable par site</strong> : contrôles, périodicités et leur source, historique des vérifications avec les références des rapports, observations et levées. Export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton premier site, coche les contrôles qui existent, reporte la date du dernier rapport : échéances, alertes et registre se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace ni un organisme agréé ou accrédité, ni la lecture des textes applicables à ton établissement. Périodicités tirées de la brochure INRS ED 828 (édition de septembre 2026, consultée le 14/11/2026), à revérifier à chaque nouvelle édition. Les rapports et preuves restent dans ton espace documentaire : l'outil en garde la référence et le lien. Démo disponible sur qm-engineering.fr/catalogue/verifications.</em></p>",
+    "tags": [
+      "verifications-periodiques",
+      "registre-de-securite",
+      "qhse",
+      "erp",
+      "maintenance",
+      "conformite",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre s'ouvre. Crée ton premier site, coche les contrôles qui existent et reporte la date du dernier rapport de chacun : échéances, alertes et registre imprimable se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Responsables QHSE, gestionnaires de bâtiments, dirigeants de PME et d'ERP"
+      }
+    ]
+  },
+  {
+    "slug": "suivi-temps",
+    "name": "Suivi du temps et rentabilité par mission",
+    "price_cents": 1900,
+    "permalink": "suivi-temps-rentabilite",
+    "category": "business-and-money",
+    "button": "Ouvrir mon suivi du temps",
+    "summary": "Le temps passé sur chaque mission, au chronomètre ou en une ligne, comparé à ton TJM, à ton devis et à ton coût de revient : budget, dépassement, taux horaire effectif et rapport client.",
+    "description": "<h2>Ce que tu gagnes vraiment de l'heure.</h2><p>Ton TJM est affiché, ton devis est signé. Mais une fois la mission finie, combien as-tu vraiment gagné de l'heure ? Entre les allers-retours, les corrections offertes, les devis, les relances et l'administratif, l'écart se découvre trop tard. Le Suivi du temps et rentabilité par mission compte ton temps au fil de l'eau et le compare à ton tarif, mission par mission.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le temps saisi sans effort</strong> : un chronomètre qui te suit d'un appareil à l'autre (lancé sur l'ordinateur, arrêté sur le téléphone), ou une ligne « 1h30 ». Chaque temps rattaché à une mission et à une tâche, facturable ou non.</li><li><strong>Des missions au forfait ou en régie</strong>, avec leur budget en jours ou en heures : consommation, avancement, estimation à terminaison, alerte de vigilance et de dépassement. 7 modèles de missions et 17 catégories de tâches prêts à l'emploi.</li><li><strong>Ton taux horaire effectif</strong> : montant facturé ÷ temps réellement passé, et son équivalent journalier, comparés à ton TJM cible, au taux prévu au devis et à ton coût de revient.</li><li><strong>Le temps non facturable rendu visible</strong> : prospection, devis, administratif, facturation, comptabilité, veille… et ta semaine réelle face à ta semaine type.</li><li><strong>La rentabilité de la période</strong> : temps total, part facturable, valeur produite et taux horaire réel du mois, de trois mois ou de l'année.</li><li><strong>Un rapport client imprimable</strong> par client ou par mission, et l'export CSV de toutes tes saisies.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton TJM cible et ta semaine type, crée ta première mission, lance le chronomètre. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil de suivi du temps et de gestion, pas un logiciel de facturation ni un conseil : aucune facture émise, aucun lien avec un agenda, une banque ou un logiciel. Montants hors taxes, saisis par toi ; ton TJM cible et ton coût de revient sont tes propres repères (aucun tarif de marché intégré). Démo disponible sur qm-engineering.fr/catalogue/suivi-temps.</em></p>",
+    "tags": [
+      "suivi-du-temps",
+      "freelance",
+      "consultant",
+      "rentabilite",
+      "tjm",
+      "chronometre",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi du temps s'ouvre. Indique ton TJM cible et ta semaine type, crée ta première mission et lance le chronomètre. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Freelances et consultants"
+      }
+    ]
+  },
+  {
+    "slug": "propositions",
+    "name": "Propositions commerciales",
+    "price_cents": 1900,
+    "permalink": "propositions-commerciales",
+    "category": "business-and-money/sales",
+    "button": "Ouvrir mes propositions",
+    "summary": "Tes propositions commerciales structurées : contexte, objectifs, livrables, trois options comparées, planning et conditions dans un PDF soigné, puis le suivi jusqu'à la signature (relances, validité, taux de transformation).",
+    "description": "<h2>Une proposition claire, trois options, une réponse.</h2><p>Un client te demande « une proposition ». Tu repars d'un vieux document, tu changes le nom, tu mets un prix unique à prendre ou à laisser… et la relance ne part jamais. Propositions commerciales te fait rédiger en une heure une proposition structurée, la présenter dans un PDF propre, puis la suivre jusqu'au oui.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une proposition structurée</strong> : contexte, objectifs, livrables, options, planning et conditions, avec des questions pour t'aider à écrire chaque partie.</li><li><strong>4 trames par métier</strong> (conseil, développement, formation, travaux) : livrables, étapes et trois options types prêts à adapter. Aucun prix imposé : tu chiffres.</li><li><strong>Trois options comparées</strong> (bon, mieux, premium) : prix hors taxes, contenu de chacune, écarts de prix et option recommandée, dans un tableau calculé tout seul.</li><li><strong>Une bibliothèque de blocs</strong> réutilisables (présentation, méthode, références, engagements), insérés par copie dans chaque proposition.</li><li><strong>Un planning en semaines</strong>, étapes à la suite ou en parallèle, dates calculées depuis le début prévu, affiché en barres.</li><li><strong>Un PDF soigné</strong> : page de titre, sections numérotées, options, planning et bon pour accord, imprimé ou enregistré depuis le navigateur.</li><li><strong>Le suivi</strong> : date de validité, relances à la bonne cadence avec un message prêt à copier (rien n'est envoyé à ta place), réponse et motif de refus, taux de transformation en nombre et en valeur, délai de réponse, option la plus choisie. Duplication d'une proposition en un clic.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ta trame, personnalise tes blocs, crée ta première proposition. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Une proposition, pas un devis : prix hors taxes, aucune règle légale intégrée. Le devis détaillé (TVA, mentions obligatoires) se fait à l'acceptation, par exemple avec le Générateur de devis QME. Démo disponible sur qm-engineering.fr/catalogue/propositions.</em></p>",
+    "tags": [
+      "proposition-commerciale",
+      "freelance",
+      "consultant",
+      "devis",
+      "prospection",
+      "vente",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes propositions s'ouvrent. Choisis la trame de ton métier, personnalise tes blocs de présentation et de méthode, puis crée ta première proposition. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Freelances, consultants, formateurs, petites agences"
+      }
+    ]
+  },
+  {
+    "slug": "calendrier-editorial",
+    "name": "Calendrier éditorial",
+    "price_cents": 1500,
+    "permalink": "calendrier-editorial",
+    "category": "business-and-money/marketing-and-sales",
+    "button": "Ouvrir mon calendrier",
+    "summary": "Le calendrier éditorial des indépendants : piliers et rythme, banque de 92 sujets pour 8 métiers, calendrier, brouillon avec compteur de caractères, statistiques saisies à la main, régularité et recyclage des meilleurs contenus.",
+    "description": "<h2>Publier chaque semaine, sans chercher quoi dire.</h2><p>Quand on est indépendant, publier régulièrement sur son réseau professionnel fait partie du travail commercial. C'est aussi la première chose qui saute entre deux missions : pas d'idée le jour J, des brouillons éparpillés, et aucune idée de ce qui a vraiment apporté un rendez-vous. Calendrier éditorial range tes sujets, tient ton rythme et garde ce qui compte.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes piliers éditoriaux et ton rythme</strong> : trois à six familles de sujets (expertise, cas clients, coulisses, conseils, points de vue, parcours) avec la part visée de chacune, un objectif de publications par semaine et tes jours préférés. Le pilier que tu délaisses t'est signalé.</li><li><strong>Une banque de 92 sujets</strong> pour 8 métiers d'indépendants (consultant, développeur, designer, coach, formateur, rédacteur, photographe, marketing) et des sujets valables pour tous, chacun avec son pilier, son format et une trame de texte à compléter (11 trames : liste de conseils, étude de cas, erreur que j'ai faite, avant / après, avis argumenté…).</li><li><strong>Le calendrier du mois et de la semaine</strong> : chaque contenu passe d'idée à brouillon, programmé puis publié. Prochains créneaux libres, semaines sous l'objectif et contenus oubliés signalés.</li><li><strong>Le brouillon avec compteur</strong> : caractères, mots, hashtags, longueur de l'accroche, passages [entre crochets] à remplacer, limite du réseau que tu saisis. Un bouton pour copier le texte.</li><li><strong>Les statistiques qui comptent</strong>, saisies à la main : vues, réactions, commentaires, partages et contacts générés. Meilleurs contenus, moyennes par pilier et par format, export CSV.</li><li><strong>La régularité</strong> : semaines tenues d'affilée, record, semaines de pause qui ne cassent rien ; et les meilleurs contenus anciens à recycler sous une autre forme.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton métier, tes piliers et ton rythme : les sujets proposés arrivent dans ta banque d'idées. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion à un réseau social : l'outil ne publie rien, ne lit aucune statistique et ne demande aucun accès à tes comptes. Les limites de caractères sont celles que tu saisis. Sujets, trames et repères d'écriture sont des points de départ à adapter ; aucune promesse d'audience ni de clients. Démo disponible sur qm-engineering.fr/catalogue/calendrier-editorial.</em></p>",
+    "tags": [
+      "calendrier-editorial",
+      "freelance",
+      "independant",
+      "consultant",
+      "contenu",
+      "ligne-editoriale",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier s'ouvre. Choisis ton métier, tes piliers et ton rythme : les sujets proposés arrivent dans ta banque d'idées. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Freelances, consultants, indépendants"
+      }
+    ]
+  },
+  {
+    "slug": "appels-offres",
+    "name": "Suivi des appels d'offres et candidatures",
+    "price_cents": 1500,
+    "permalink": "suivi-appels-offres",
+    "category": "business-and-money/marketing-and-sales",
+    "button": "Ouvrir mon suivi des candidatures",
+    "summary": "Tes consultations repérées, décidées avec une grille go/no-go, montées pièce par pièce à rebours de la date limite, relancées après dépôt : calendrier des dates limites, bibliothèque de pièces réutilisables et taux de réussite.",
+    "description": "<h2>Répondre aux bonnes consultations, à temps.</h2><p>Des consultations repérées dans des alertes e-mail, des pièces réunies la veille de la date limite, une attestation périmée découverte au dépôt, aucune relance ensuite, et aucune idée de ce que les réponses rapportent. Le Suivi des appels d'offres et candidatures te fait décider vite, préparer à temps et mesurer ton taux de réussite.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une veille qui décide</strong> : grille go/no-go de 8 critères pondérés (cœur de métier, capacité, temps de réponse, références, rentabilité, chances, connaissance du client, intérêt stratégique), recommandation et motif gardé.</li><li><strong>Chaque dossier pièce par pièce</strong> : pièces types copiées d'un modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe), statut, responsable, échéance calculée à rebours depuis la date limite.</li><li><strong>Les échéances du jour</strong> : pièces en retard, dépôt visé avec une marge de sécurité, dernier jour des questions, décisions à prendre, relances après dépôt, fin de validité des offres.</li><li><strong>Un calendrier</strong> mensuel des dates limites, dépôts, questions et relances.</li><li><strong>Une bibliothèque de pièces réutilisables</strong> : références, CV, attestations, avec leur emplacement et leur date de validité ; alerte si une pièce expire avant la date limite.</li><li><strong>Ton bilan</strong> : taux de go et de réussite par type, montants gagnés, motifs de perte, temps passé et euros gagnés par heure de réponse ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Note ta première consultation, remplis la grille, passe-la en go : le dossier se crée avec ses pièces. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Les modèles de pièces sont des points de départ sans référence réglementaire : la liste exacte est celle du règlement de chaque consultation. Les dates de validité des attestations sont celles que tu lis sur chaque pièce. Aucune connexion à une plateforme, à un profil d'acheteur ou à une messagerie : tu déposes et tu relances toi-même. Démo avec un an de candidatures fictives sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "appels-d-offres",
+      "marches-publics",
+      "freelance",
+      "consultant",
+      "candidatures",
+      "go-no-go",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des candidatures s'ouvre. Note ta première consultation, remplis la grille go/no-go puis passe-la en go : le dossier se crée avec ses pièces et leurs échéances. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Freelances, consultants et PME qui répondent à des appels d'offres et à des missions"
+      }
+    ]
+  },
+  {
+    "slug": "doe",
+    "name": "Registre du DOE",
+    "price_cents": 2900,
+    "permalink": "registre-doe",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon registre du DOE",
+    "summary": "Les pièces du dossier des ouvrages exécutés par opération, lot et entreprise : pièces types par lot, statuts, relances datées avec courrier, complétude par lot et par entreprise, bordereau de transmission imprimable.",
+    "description": "<h2>Chaque pièce remise, vérifiée, transmise.</h2><p>La réception est prononcée, et le DOE reste à réunir : plans de récolement, notices, PV d'essais, fiches techniques, garanties, lot par lot, entreprise par entreprise. Une liste par lot dans un tableur, des relances dans la messagerie, et plus personne ne sait ce qui manque ni qui a été relancé. Le Registre du DOE te le dit, et prépare le bordereau de transmission.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les pièces attendues créées pour toi</strong> : chaque lot ajouté reçoit sa liste de pièces types, tirée d'une base de 20 lots courants du bâtiment (plans, notices, PV d'essais, fiches techniques, garanties). Tu ajustes les pièces types une fois pour toutes, et chaque opération selon son marché.</li><li><strong>Le DIUO en option</strong> : une case de l'opération ajoute à chaque lot une pièce « Éléments pour le DIUO ».</li><li><strong>Un statut par pièce</strong> : attendue, reçue à vérifier, à reprendre (avec motif et nouvelle date), validée ; référence du document et format de remise notés.</li><li><strong>Des retards calculés</strong> : date limite de remise du DOE pour l'opération, ou propre à une pièce.</li><li><strong>Des relances datées</strong> : les entreprises à relancer remontent seules ; courrier prérempli avec la liste des pièces manquantes, à copier ou à imprimer ; journal des relances.</li><li><strong>La complétude</strong> par lot, par entreprise et par famille de pièces.</li><li><strong>Des documents imprimables</strong> : bordereau de transmission des pièces validées, lot par lot, et état des pièces manquantes par entreprise. Export CSV pour ton tableur.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton opération, coche ses lots, attribue chaque lot à son entreprise : les pièces attendues sont créées. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de suivi, pas un conseil juridique : la liste des pièces et les délais qui font foi sont ceux de ton marché (CCAP, CCTP). Les documents ne sont pas stockés (seule leur référence est notée). Aucune relance n'est envoyée par l'outil. Un accès partagé sur plusieurs appareils, sans comptes pour les entreprises. Démo avec deux opérations fictives sur qm-engineering.fr/catalogue/doe.</em></p>",
+    "tags": [
+      "btp",
+      "doe",
+      "chantier",
+      "maitrise-d-oeuvre",
+      "reception",
+      "registre",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre du DOE s'ouvre. Crée ton opération, coche ses lots et attribue chacun à son entreprise : les pièces attendues sont créées, à ajuster selon ton marché. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Maîtres d'œuvre, OPC, entreprises générales, bureaux d'études"
+      }
+    ]
+  },
+  {
+    "slug": "sous-traitants",
+    "name": "Conformité des sous-traitants",
+    "price_cents": 2900,
+    "permalink": "conformite-sous-traitants",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mon registre",
+    "summary": "Tes sous-traitants par lot et par rang : acceptation et agrément du paiement, attestations de vigilance, Kbis, liste des salariés étrangers et décennale datés, alertes à J-30 et J-15, relances préparées, registre imprimable et export CSV.",
+    "description": "<h2>Aucune attestation périmée sur ton chantier.</h2><p>Une ligne par entreprise dans un classeur, des attestations à redemander tous les six mois, des déclarations de sous-traitance suivies par e-mail : avec plusieurs chantiers et une chaîne jusqu'au rang 2, l'attestation périmée se découvre au moment du règlement. La Conformité des sous-traitants te dit, chaque jour, ce qui manque, ce qui expire et qui relancer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La chaîne de sous-traitance, lot par lot</strong> : opérations, lots, titulaires et sous-traitants de rang 1, 2 ou plus, chacun sous son donneur d'ordre, avec le montant de son contrat.</li><li><strong>L'acceptation suivie</strong> : déclaration au maître d'ouvrage, dates de demande et de décision, agrément des conditions de paiement, paiement direct en marché public.</li><li><strong>Les pièces datées</strong> : attestation de vigilance Urssaf, Kbis, liste des salariés étrangers, décennale ; échéance calculée ou lue sur la pièce ; une pièce reçue vaut pour toutes les opérations de l'entreprise.</li><li><strong>Des alertes</strong> à J-30, à J-15 et à l'expiration (seuils réglables), et le sous-traitant qui intervient sans acceptation en tête de liste.</li><li><strong>Des relances préparées</strong> depuis ton modèle, avec les pièces de chaque entreprise, à copier ou à ouvrir dans ta messagerie.</li><li><strong>Un tableau de conformité par opération</strong>, un registre daté imprimable et un export CSV (point-virgule, UTF-8).</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton opération, ajoute les entreprises lot par lot, puis note les dates des pièces reçues : tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide au suivi, qui ne remplace pas un conseil juridique. Les règles retenues (seuil de 5 000 € HT, validité de 6 mois de l'attestation de vigilance, liste des salariés étrangers, décennale, acceptation des sous-traitants) sont citées dans l'application avec leur source officielle et la date de lecture (14/11/2026), et se modifient dans les réglages. Aucun document n'est stocké : seules les dates des pièces sont suivies. Démo avec trois chantiers fictifs sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "btp",
+      "sous-traitance",
+      "obligation-de-vigilance",
+      "chantier",
+      "conformite",
+      "conduite-de-travaux",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre des sous-traitants s'ouvre. Crée ton opération, ajoute les entreprises lot par lot, puis les dates des pièces reçues : échéances, alertes et relances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone) + export CSV"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Entreprises générales, maîtres d'ouvrage, maîtres d'œuvre"
+      }
+    ]
+  },
+  {
+    "slug": "entretiens-annuels",
+    "name": "Entretiens annuels et professionnels",
+    "price_cents": 1900,
+    "permalink": "entretiens-annuels-professionnels",
+    "category": "business-and-money",
+    "button": "Ouvrir mon suivi des entretiens",
+    "summary": "Les échéances de chaque salarié calculées (annuel, entretien de parcours professionnel, état des lieux des 8 ans), des trames prêtes, un compte rendu imprimable, et les objectifs comme les formations suivis d'une année sur l'autre.",
+    "description": "<h2>Aucun entretien oublié.</h2><p>Sans logiciel RH, les entretiens vivent dans un dossier Word et un tableur : on les tient quand on y pense, et le jour de l'état des lieux des 8 ans, il faut tout retrouver. Les Entretiens annuels et professionnels calculent les échéances de chacun de tes salariés, te donnent la trame et gardent l'historique, d'une année sur l'autre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les échéances de chaque salarié, calculées</strong> : entretien annuel, entretien de parcours professionnel (la première année après l'embauche, puis tous les 4 ans), état des lieux des 8 ans, et les cas particuliers : retour de congé parental ou de maternité, visite de mi-carrière, approche des 60 ans.</li><li><strong>Des trames prêtes</strong> : 58 questions par thème pour l'entretien annuel, l'entretien de parcours et l'état des lieux, que tu complètes avec tes propres questions.</li><li><strong>Un questionnaire de préparation</strong> à copier et envoyer au salarié, puis un compte rendu saisi pendant l'entretien, imprimé ou enregistré en PDF avec les cases de signature.</li><li><strong>Des objectifs SMART suivis d'une année sur l'autre</strong> : avancement, bilan à l'entretien suivant, reconduction, et un contrôle qui signale l'objectif flou.</li><li><strong>Les demandes de formation</strong>, de la demande à la réalisation, avec leur nature (obligatoire ou non).</li><li><strong>Le contrôle de l'état des lieux</strong> : entretiens tenus sur 8 ans, formation non obligatoire suivie, risque d'abondement CPF pour les entreprises de 50 salariés et plus.</li><li><strong>Des données minimales</strong> : prénom et initiale, poste, dates ; chaque fiche s'exporte et s'efface.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute tes salariés avec la date de leur dernier entretien : les échéances se calculent aussitôt. Tes données sont enregistrées en ligne (hébergement en Europe) et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation, pas un conseil juridique ni un logiciel de paie. Périodicités relevées le 14/11/2026 sur service-public.gouv.fr (fiche F32040), affichées avec leur source et modifiables : ta convention collective, tes accords et les textes font foi. Démo disponible sur qm-engineering.fr/catalogue/entretiens-annuels.</em></p>",
+    "tags": [
+      "entretien-professionnel",
+      "entretien-annuel",
+      "ressources-humaines",
+      "tpe",
+      "pme",
+      "management",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des entretiens s'ouvre. Ajoute tes salariés avec la date de leur dernier entretien : les échéances se calculent aussitôt. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Dirigeants de TPE et PME, managers"
+      }
+    ]
+  },
+  {
+    "slug": "document-unique",
+    "name": "Document unique d'évaluation des risques",
+    "price_cents": 2900,
+    "permalink": "document-unique-evaluation-risques",
+    "category": "business-and-money",
+    "button": "Ouvrir mon document unique",
+    "summary": "Ton document unique d'évaluation des risques (DUERP) tenu à jour : unités de travail, risques cotés gravité × probabilité avant et après les mesures, plan d'actions daté, versions archivées, rappels de mise à jour selon l'effectif et document complet à imprimer.",
+    "description": "<h2>Tes risques évalués, ton document à jour.</h2><p>Le document unique d'évaluation des risques est obligatoire dès le premier salarié. Souvent, il est rempli une fois, puis rangé : les actions n'ont pas de date, les risques ne sont jamais recotés, et la mise à jour annuelle arrive sans prévenir. Document unique te fait évaluer tes risques unité par unité, suivre les actions et garder chaque mise à jour.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un démarrage guidé</strong> : choisis ton activité (bureaux, commerce, restauration, bâtiment, atelier, logistique, aide à domicile, coiffure…), coche tes unités de travail, et les risques à examiner arrivent déjà listés.</li><li><strong>20 familles de risques</strong> inspirées des fiches de l'INRS (brochure ED 840), reformulées, avec des exemples de situations et de mesures de prévention.</li><li><strong>Une cotation claire</strong> : gravité × probabilité, avant et après les mesures en place (risque résiduel), sur une grille que tu adaptes (3 à 5 niveaux, seuils de priorité), avec la matrice de criticité.</li><li><strong>Un plan d'actions suivi</strong> : type de mesure, responsable, échéance, coût estimé, indicateur, statut. Dès 50 salariés, il devient le programme annuel de prévention. Une action faite te propose de recoter le risque.</li><li><strong>Des versions datées</strong> : chaque mise à jour est figée, réimprimable et datée, avec sa date limite de conservation (40 ans).</li><li><strong>Des rappels</strong> : mise à jour annuelle dès 11 salariés, événements (accident, aménagement, information nouvelle) qui appellent une mise à jour, actions en retard, risques prioritaires sans action.</li><li><strong>Le document complet</strong> : sommaire, cadre et méthode, inventaire par unité de travail, plan d'actions, historique des mises à jour, modalités d'accès, annexe. Impression ou PDF depuis le navigateur, exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton activité et ton effectif, coche tes unités de travail, puis cote tes risques. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide : il ne remplace ni un préventeur ni un conseil juridique. Obligations résumées d'après service-public.gouv.fr et l'INRS, avec leur date de consultation (à revérifier chaque année). Démo disponible sur qm-engineering.fr/catalogue/document-unique.</em></p>",
+    "tags": [
+      "document-unique",
+      "duerp",
+      "evaluation-des-risques",
+      "prevention",
+      "tpe",
+      "pme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton document unique s'ouvre. Indique ton activité et ton effectif, coche tes unités de travail, puis cote les risques proposés. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Employeurs de TPE et PME, dès le premier salarié"
+      }
+    ]
+  },
+  {
+    "slug": "contrats",
+    "name": "Contrats fournisseurs et échéances",
+    "price_cents": 2500,
+    "permalink": "contrats-fournisseurs",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir mes contrats",
+    "summary": "Tes contrats fournisseurs avec la date limite de résiliation de chacun : reconduction tacite suivie, alertes à J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie, historique et export CSV.",
+    "description": "<h2>Plus de reconduction subie.</h2><p>Assurance des locaux, maintenance, fibre, copieur en location, logiciels, nettoyage, énergie : chaque contrat a son échéance, sa reconduction et son préavis. La date qui compte, celle avant laquelle il faut résilier, n'est écrite nulle part. Contrats fournisseurs et échéances la calcule pour chaque contrat et te prévient à temps.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La date limite de résiliation calculée</strong> : échéance de la période en cours moins le préavis (en mois ou en jours), avec une marge d'envoi réglable. Les reconductions tacites déjà passées font avancer l'échéance d'elles-mêmes.</li><li><strong>Des alertes à J-60, J-30 et « préavis dépassé »</strong>, avec la prochaine date limite utile quand un préavis est manqué, et un calendrier des douze prochains mois.</li><li><strong>Une décision par échéance</strong> : renouveler, renégocier ou résilier. La décision « Renouveler » éteint l'alerte jusqu'à l'échéance suivante.</li><li><strong>Une lettre de résiliation à adapter</strong>, préremplie avec ta structure, le fournisseur, le numéro de contrat, l'échéance et le préavis, à copier ou imprimer ; puis la résiliation notée (date, mode, numéro de recommandé) jusqu'à la fin effective.</li><li><strong>Le coût annuel par catégorie et par fournisseur</strong>, quelle que soit la périodicité, et les économies obtenues par renégociation ou résiliation.</li><li><strong>Catégories et préavis par défaut paramétrables</strong>, historique par contrat, export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes catégories, puis saisis chaque contrat avec sa date de fin et son préavis : dates limites, alertes et coûts se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace ni la lecture de tes contrats ni un conseil juridique. Aucune règle légale de résiliation n'est intégrée sans source : les préavis par catégorie sont des valeurs par défaut à remplacer par ceux de tes contrats ; seul repère cité, pour les assurances, l'article L113-12 du Code des assurances (lien Légifrance et date de consultation dans l'outil). Rien n'est envoyé par l'outil. Démo disponible sur qm-engineering.fr/catalogue/contrats.</em></p>",
+    "tags": [
+      "contrats",
+      "resiliation",
+      "tacite-reconduction",
+      "services-generaux",
+      "office-manager",
+      "tpe-pme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes contrats s'ouvrent. Choisis tes catégories, puis saisis chaque contrat avec sa date de fin et son préavis : dates limites de résiliation, alertes et coûts se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Office managers, dirigeants de TPE et PME, services généraux"
+      }
+    ]
+  },
+  {
+    "slug": "achats",
+    "name": "Demandes d'achat et fournitures",
+    "price_cents": 1900,
+    "permalink": "demandes-achat-fournitures",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir les demandes d'achat",
+    "summary": "Demandes par service, validation avec seuil automatique, commandes groupées par fournisseur, réception partielle et budget annuel par service, avec un catalogue de 104 fournitures. Une clé pour toute l'équipe.",
+    "description": "<h2>Qui a demandé quoi, et où en est le budget.</h2><p>Des demandes de fournitures par e-mail, sur un post-it ou dans un tableur partagé, des validations orales, des commandes passées quand on y pense, et personne ne sait ce qu'il reste au budget du service. Demandes d'achat et fournitures met tout le circuit au même endroit, du besoin à la réception.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des demandes claires</strong> : qui, quoi, combien, pour quel service, avec quelle urgence et pourquoi. Plusieurs articles en une fois, choisis dans un catalogue de 104 fournitures courantes, sans prix ni marque imposés.</li><li><strong>Une validation rapide</strong> : sous le seuil que tu fixes, une demande chiffrée qui tient dans le budget du service est validée tout de suite. Au-dessus, la personne qui valide voit l'effet sur le budget, valide ou refuse avec un motif.</li><li><strong>Des commandes groupées par fournisseur</strong> : un bon de commande imprimable, articles identiques additionnés, minimum de commande signalé.</li><li><strong>La réception, même partielle</strong> : au prix réel ; le reliquat reste attendu, les retards de livraison sont signalés.</li><li><strong>Le budget annuel de chaque service</strong> : consommé, engagé, en attente, disponible ; exercice civil ou décalé.</li><li><strong>L'historique</strong> : délais de validation et de livraison, taux de refus, dépenses par mois, par catégorie et par service ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; indique tes services, leur budget et ton seuil de validation.</li><li>Transmets la clé aux personnes qui demandent et à celles qui valident : chacune la saisit une fois sur son appareil et indique son nom. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de personnes.</p><p><em>Une clé partagée, sans comptes ni droits différents : toute personne qui a la clé peut demander, valider, commander et réceptionner ; chaque étape garde le nom saisi. Aucun fournisseur, aucune messagerie ni aucun paiement connecté : le bon s'imprime ou se recopie. Montants estimés par l'équipe, sans calcul de TVA : ce n'est pas une comptabilité. Démo disponible sur qm-engineering.fr/catalogue/achats.</em></p>",
+    "tags": [
+      "achats",
+      "fournitures",
+      "moyens-generaux",
+      "office-manager",
+      "pme",
+      "association",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et indique tes services et ton seuil de validation. Transmets ensuite la clé aux personnes qui demandent et à celles qui valident : chacune la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail, partagée par l'équipe"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Office managers, services généraux, associations"
+      }
+    ]
+  },
+  {
+    "slug": "papiers",
+    "name": "Papiers du foyer",
+    "price_cents": 1500,
+    "permalink": "papiers-du-foyer",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mes papiers",
+    "summary": "Où est chaque papier du foyer, combien de temps le garder (durées de service-public.gouv.fr, datées), ce qui peut être jeté, les pièces d'identité à renouveler, et une fiche « en cas d'urgence » pour un proche.",
+    "description": "<h2>Chaque papier a sa place.</h2><p>Le passeport avant un voyage, l'avis d'impôt pour un dossier de location, le bail pour l'état des lieux : c'est toujours le même papier qu'on cherche au mauvais moment. Et au moment de trier, la même question : combien de temps faut-il garder ça ? Papiers du foyer te dit où est chaque document, jusqu'à quand le garder, et ce qu'il faut renouveler.</p><h3>Ce que tu obtiens</h3><ul><li><strong>« Où est… ? » en une recherche</strong> : tape « passeport Léa » ou « taxe foncière », l'outil répond « Pochette rouge, tiroir de la commode ». Chaque document a son emplacement (classeur, boîte, tiroir, dossier du cloud, notaire) et une précision.</li><li><strong>77 documents types en 9 catégories</strong> : identité, famille, logement, impôts, banque, santé, travail, véhicule, assurances, avec la durée de conservation de la fiche officielle de service-public.gouv.fr, datée et modifiable document par document.</li><li><strong>« Peut être jeté » calculé</strong> à partir de la date du document ou de l'événement qui compte (fin du bail, clôture du compte, fin du contrat) ; liste à trier imprimable.</li><li><strong>Les renouvellements à temps</strong> : carte d'identité, passeport, titre de séjour, contrôle technique, échéance d'assurance ; tu saisis la date, l'outil te prévient des mois avant.</li><li><strong>La fiche « en cas d'urgence »</strong> : les documents essentiels de chaque personne et où ils sont, avec un mot pour un proche, à imprimer et à confier.</li><li><strong>Un inventaire imprimable</strong> par emplacement et un export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique les prénoms du foyer et ton premier emplacement, coche les documents que tu as : ton inventaire est créé. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Durées de conservation : fiche « Durée de conservation des papiers » de service-public.gouv.fr (vérifiée le 13 octobre 2026), durées minimales indicatives, pas un conseil juridique. Aucune pièce d'identité stockée : l'outil note où est le document, jamais son contenu ni son numéro. Rappels visibles à l'ouverture (aucun e-mail envoyé). Démo avec un foyer fictif sur qm-engineering.fr/catalogue/papiers.</em></p>",
+    "tags": [
+      "papiers",
+      "administratif",
+      "classement",
+      "famille",
+      "budget",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes papiers du foyer s'ouvrent. Indique les prénoms du foyer, ton premier emplacement, coche les documents que tu as : ton inventaire est prêt. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et familles"
+      }
+    ]
+  },
+  {
+    "slug": "remboursements-sante",
+    "name": "Remboursements santé",
+    "price_cents": 1200,
+    "permalink": "remboursements-sante",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon suivi",
+    "summary": "Optique, dentaire, kiné, consultations, pharmacie : chaque soin payé, ce que la Sécurité sociale et ta mutuelle t'ont rendu, les remboursements en retard avec leur message de relance à copier, et le bilan de l'année par personne.",
+    "description": "<h2>Ce qu'on te doit encore, soin par soin.</h2><p>Tu avances les frais, la Sécurité sociale rembourse une partie, ta mutuelle une autre, chacune à son rythme. Un remboursement qui n'arrive pas passe facilement inaperçu. Remboursements santé tient la liste de ce que tu attends, te signale ce qui tarde et prépare le message de relance.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Chaque soin noté en quelques secondes</strong> : la personne du foyer, le type de soin (33 types, de l'optique à la kiné), la date et ce que tu as payé. Aucun diagnostic n'est demandé.</li><li><strong>Sécurité sociale et mutuelle suivies séparément</strong> : remboursement attendu, tiers payant ou pas de prise en charge ; montant reçu et écart avec ce qui était prévu.</li><li><strong>Les retards repérés seuls</strong> : rien reçu après le délai que tu choisis (30 jours par défaut) ? Le remboursement passe « à relancer », avec un message rempli prêt à copier.</li><li><strong>Le reste à charge</strong>, soin par soin et sur l'année, par personne et par type de soin.</li><li><strong>Ta mutuelle face à ses cotisations</strong> : ce qu'elle t'a remboursé dans l'année comparé à ce que tu as cotisé. Export CSV pour ton tableur.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Donne ton accord pour l'enregistrement de ces données de santé, ajoute les membres de ton foyer, puis note ton premier soin. Tes données sont enregistrées en ligne, dans l'Union européenne, et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte Ameli ni de mutuelle à connecter, rien n'est envoyé à ta place. Achat unique, sans abonnement.</p><p><em>Outil d'aide au suivi de tes remboursements : il ne remplace ni un avis professionnel (médical, administratif ou financier) ni les relevés officiels, qui font foi. Aucun taux de remboursement n'est intégré : les montants attendus viennent de ta saisie. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "sante",
+      "mutuelle",
+      "remboursement",
+      "budget",
+      "famille",
+      "finances-personnelles",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des remboursements santé s'ouvre. Donne ton accord pour l'enregistrement des données, ajoute les membres de ton foyer et note ton premier soin. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers et familles qui avancent leurs frais de santé"
+      }
+    ]
+  },
+  {
+    "slug": "emprunt",
+    "name": "Capacité d'emprunt et comparateur de prêts",
+    "price_cents": 1500,
+    "permalink": "capacite-emprunt-comparateur-prets",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon simulateur",
+    "summary": "Ce que tes revenus permettent d'emprunter, le budget complet du projet, tes offres de prêt comparées sur leur coût total (assurance, frais, garantie, TAEG estimé), le tableau d'amortissement et l'effet d'un remboursement anticipé.",
+    "description": "<h2>Combien emprunter, et à quel coût.</h2><p>Une simulation de banque qui donne un montant sans dire comment, des offres qui ne comptent pas l'assurance de la même façon, une mensualité plus basse qui cache un coût total plus élevé. La Capacité d'emprunt et comparateur de prêts met tout à plat, avec tes chiffres.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta capacité d'emprunt</strong> : revenus d'un ou deux emprunteurs, loyers retenus à la part que tu fixes, crédits en cours ; mensualité maximale au taux d'effort que tu choisis et montant empruntable selon la durée et le taux saisis ; reste à vivre.</li><li><strong>Le budget complet du projet</strong> : prix, frais de notaire saisis ou estimés (hypothèse affichée), travaux, autres frais et apport ; ce qu'il reste à emprunter et le prix maximal à ta portée.</li><li><strong>De 2 à 5 offres côte à côte</strong> : mensualité, assurance sur capital initial ou restant dû, frais de dossier, garantie, courtage, coût total du crédit, TAEG approché et taux d'effort de chaque offre.</li><li><strong>Le tableau d'amortissement</strong> par mois ou par année, avec le graphique capital et intérêts ; export CSV et impression.</li><li><strong>L'effet d'un remboursement anticipé</strong> : intérêts économisés, indemnités (plafond légal, montant de ton offre ou aucune), durée raccourcie ou mensualité baissée.</li><li><strong>Les questions à poser à ta banque</strong>, à cocher au fil des rendez-vous.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique tes revenus et ton projet, puis le taux d'une simulation ou d'une offre : ta capacité s'affiche. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie : elle ne remplace pas le conseil d'un professionnel du crédit. Aucun taux du marché n'est intégré ; l'offre de prêt écrite, son TAEG et son tableau d'amortissement font foi. Seuils de départ 35 % et 25 ans d'après la décision D-HCSF-2021-7 du Haut Conseil de stabilité financière (vérifiée le 14/11/2026), modifiables. Démo avec un projet fictif sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "credit-immobilier",
+      "capacite-emprunt",
+      "pret-immobilier",
+      "primo-accedant",
+      "tableau-amortissement",
+      "simulateur",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Indique tes revenus et ton projet, puis le taux d'une simulation ou d'une offre reçue : ta capacité d'emprunt s'affiche. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Primo-accédants et investisseurs particuliers qui préparent un crédit immobilier"
+      }
+    ]
+  },
+  {
+    "slug": "remerciements",
+    "name": "Cadeaux reçus et remerciements",
+    "price_cents": 1200,
+    "permalink": "cadeaux-remerciements",
+    "category": "self-improvement",
+    "button": "Ouvrir mon suivi des remerciements",
+    "summary": "Qui a offert quoi, un message de remerciement prêt pour chaque foyer (44 modèles par événement et par ton), le compteur « reste à remercier » et les étiquettes d'adresses A4. Mariage, naissance, anniversaire, retraite, obsèques.",
+    "description": "<h2>Personne n'est oublié.</h2><p>Après un mariage, une naissance, un anniversaire marquant, un départ à la retraite ou des obsèques, les cadeaux et les attentions arrivent de partout. Les cartes s'écrivent par vagues, et la liste se perd entre un carnet, un tableur et trois messageries. Cadeaux reçus et remerciements garde qui a offert quoi, prépare un message pour chaque foyer et compte ce qu'il reste à envoyer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Qui a offert quoi, noté en deux secondes</strong> : un foyer (« Tante Agnès et Paul », « Collègues de Camille »), ce qu'il a offert, un montant si tu veux, et les participations à une cagnotte totalisées.</li><li><strong>Un message prêt pour chaque foyer</strong> : 44 modèles originaux par événement (mariage, naissance ou baptême, anniversaire, retraite, obsèques) et par ton (chaleureux, sobre, bref, léger), remplis avec ce que le foyer a offert. Tu retouches, tu copies.</li><li><strong>Le compteur « reste à remercier »</strong> : à écrire, écrit, envoyé, avec un objectif d'envoi que tu fixes et les foyers à remercier en priorité.</li><li><strong>Les étiquettes d'adresses</strong> imprimées sur une planche A4 (4 formats courants), en commençant là où la planche est entamée.</li><li><strong>Une liste collée</strong> depuis un tableur ou tes notes, et un export CSV.</li><li><strong>Des données minimales</strong> : un nom par foyer, une adresse seulement pour la poste ; les adresses et l'événement s'effacent une fois les cartes parties.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton événement et note les cadeaux au fil de l'eau. Tes données sont enregistrées en ligne (hébergement en Europe) et te suivent sur ordinateur, tablette et téléphone avec la même clé, à deux si vous écrivez les cartes ensemble.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Aucun message n'est envoyé par l'outil : tu copies le texte, tu l'écris ou tu l'imprimes.</p><p><em>Démo disponible sur qm-engineering.fr/catalogue/remerciements.</em></p>",
+    "tags": [
+      "mariage",
+      "remerciements",
+      "naissance",
+      "cadeaux",
+      "organisation",
+      "famille",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des remerciements s'ouvre. Crée ton événement et note les cadeaux reçus : un message est prêt pour chaque foyer. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Jeunes mariés, jeunes parents, familles"
+      }
+    ]
+  },
+  {
+    "slug": "revue-hebdo",
+    "name": "Revue hebdomadaire et journal de bord",
+    "price_cents": 1200,
+    "permalink": "revue-hebdomadaire",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir ma revue",
+    "summary": "Une ligne de journal par jour, puis chaque semaine, le jour que tu choisis, une revue guidée de 20 minutes : réussites, apprentissages, 3 priorités, rendez-vous à venir. Historique cherchable, série de semaines tenues, humeur et énergie, export texte.",
+    "description": "<h2>Ta semaine, revue en 20 minutes.</h2><p>Le lundi, tout est urgent. Le vendredi, on ne sait plus ce qui a avancé ni ce qui devait passer en premier. Revue hebdomadaire et journal de bord installe un rituel simple : une ligne par jour, une revue guidée par semaine, et trois priorités pour la suivante.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une revue guidée en 7 étapes</strong> : vider la tête, regarder la semaine (journal relu, priorités notées faites, en partie ou pas faites), réussites et difficultés, apprentissages, 3 priorités pour la semaine suivante, rendez-vous et échéances, énergie et humeur.</li><li><strong>55 questions de revue</strong> rédigées pour l'outil : une proposée par étape et par semaine, à tour de rôle. Masque celles qui ne te parlent pas, ajoute les tiennes.</li><li><strong>Un journal d'une ligne par jour</strong>, avec une humeur facultative de 1 à 5, relu en une minute au moment de la revue.</li><li><strong>Le rappel le jour choisi</strong> (vendredi par défaut), affiché à l'ouverture de l'outil, avec rattrapage possible en début de semaine. Aucune notification.</li><li><strong>L'historique cherchable</strong> (revues et journal, sans souci des accents) et l'<strong>export de tout en texte</strong>.</li><li><strong>La tendance</strong> : série de semaines tenues, part des semaines revues sur douze, humeur et énergie semaine après semaine, part des priorités tenues.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis le jour de ta revue, écris ta première ligne de journal. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>L'humeur et l'énergie sont des repères personnels pour voir la tendance, sans aucune portée médicale : l'outil ne remplace pas l'avis d'un professionnel de santé. Aucun lien avec une autre application, aucune notification. Démo disponible sur qm-engineering.fr/catalogue/revue-hebdo.</em></p>",
+    "tags": [
+      "revue-hebdomadaire",
+      "journal",
+      "productivite",
+      "priorites",
+      "rituel",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta revue s'ouvre. Choisis le jour de ta revue, écris une ligne de journal par jour, puis fais ta première revue guidée. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Cadres, indépendants, managers"
+      }
+    ]
+  },
+  {
+    "slug": "notes",
+    "name": "Notes et moyennes",
+    "price_cents": 1200,
+    "permalink": "notes-moyennes",
+    "category": "education",
+    "button": "Ouvrir mes notes",
+    "summary": "Tes semestres, UE et matières avec leurs coefficients ou crédits ECTS, tes notes, tes moyennes au centième selon les règles de ton diplôme, et la note qu'il te faut au prochain partiel pour atteindre ton objectif.",
+    "description": "<h2>Ta moyenne, au centième près.</h2><p>Un 7 sur 10 en TP, un partiel coefficient 2, des UE en crédits ECTS, une note éliminatoire dans le règlement : la moyenne se refait à la main, souvent la veille des examens. Notes et moyennes tient ta maquette et fait le calcul à ta place, avec tes règles.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta maquette</strong> : années, semestres ou trimestres, unités d'enseignement et matières avec leurs coefficients ou leurs crédits ECTS.</li><li><strong>Chaque note en deux secondes</strong> : 14,5 ou 7/10, avec son coefficient dans la matière (contrôle, partiel, oral, TP) ; notation sur 20, sur 10, sur 100 ou en lettres.</li><li><strong>Tes moyennes</strong> par matière, UE, période et année, et les crédits acquis.</li><li><strong>Les règles de ton diplôme</strong>, que tu saisis : seuil de validation, compensation entre matières, par UE ou aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions.</li><li><strong>La note qu'il te faut</strong> aux épreuves à venir pour atteindre ton objectif, ou la confirmation qu'il est déjà assuré (ou hors de portée).</li><li><strong>L'évolution</strong> de ta moyenne après chaque note et un <strong>relevé imprimable</strong>.</li><li><strong>Export</strong> des notes et du relevé en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ta formation (lycée, BTS ou BUT, licence ou master, prépa ou concours), recopie tes matières et note chaque résultat. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun barème officiel d'examen ni règle de diplôme n'est intégré : coefficients, crédits et règles sont ceux que tu saisis, d'après ton règlement des études. Le relevé est personnel et sans valeur officielle : seul celui de ton établissement fait foi. Aucun lien avec ton établissement ni avec un logiciel de scolarité. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "notes",
+      "moyenne",
+      "etudiant",
+      "ects",
+      "partiels",
+      "lycee",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes s'ouvrent. Choisis ta formation, recopie tes matières avec leurs coefficients ou crédits, puis note chaque résultat. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Lycéens, étudiants (BTS, BUT, licence, master, écoles), candidats aux concours"
+      }
+    ]
   }
 ]
