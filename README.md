@@ -4,6 +4,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
 
 ## Structure
 
+- Référencement : `robots.txt` (déclare le sitemap ; administration, API, connexion et espace client exclus) et
+  `sitemap.xml` (pages publiques à leur URL canonique), généré par `node outils/sitemap/generer.mjs` ; les
+  applications `/templates/<slug>/` restent en `noindex` (en-têtes de `netlify.toml`).
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
   `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
   puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
