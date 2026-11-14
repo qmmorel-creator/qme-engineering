@@ -9,7 +9,7 @@ import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026111403';
+const V = '2026111404';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -179,58 +179,78 @@ function pagePack(p) {
 ` + pied();
 }
 
-// --- Cartes de packs (liste et catalogue) ----------------------------------------------------------
-function cartePack(p, niveau = 'h3') {
-  return `<li class="carte-pack c-${p.couleur}"><a href="/packs/${p.slug}/">
-      <span class="haut"><span class="nb">${p.nombre} templates${p.indicatif ? ' prévus' : ''}</span>${p.enVente ? '' : '<em>Bientôt</em>'}</span>
-      <${niveau}>${esc(p.nom.replace(/^Pack /, ''))}</${niveau}>
-      <span class="phrase">${esc(p.accroche)}</span>
-      ${pastilles(p.cibles)}
-      <span class="pied">${blocPrix(p, { court: true })}<span class="voir">Voir le pack</span></span>
-    </a></li>`;
+// --- Carte des prix (section « Packs » du catalogue /templates/) ------------------------------------
+// Deux colonnes, Professionnel et Vie personnelle : nom, points de conduite, prix ; en dessous le nombre de
+// templates, la remise et le nombre déjà disponibles. Chaque ligne ouvre le pack sur la page /packs/.
+function cartePrix(packs) {
+  const ligne = (p) => `<li><a href="/packs/#${p.slug}"><span class="nm">${esc(p.nom.replace(/^Pack /, ''))}${badgeBientot(p)}</span><span class="pts" aria-hidden="true"></span><b>${euros(p.prix)}</b><small>${p.nombre} templates${p.indicatif ? ' prévus' : ''}${p.pct ? ` · −${p.pct} %` : ''} · ${disponibles(p)}</small></a></li>`;
+  const colonne = (pour, titre) => `<div><h3>${titre}</h3><ul>${packs.filter((p) => pourPack(p) === pour).map(ligne).join('')}</ul></div>`;
+  return `${noteBientot()}<div class="carte-prix">
+    ${colonne('pro', 'Professionnel')}
+    ${colonne('perso', 'Vie personnelle')}
+  </div>`;
 }
 
 const bareme = () => `<ul class="bareme" aria-label="Remise selon le nombre de templates">${[...REMISES].reverse().map(([n, pct]) => `<li><b>−${pct} %</b><span>${n === 5 ? '5 templates et plus' : `${n} templates`}</span></li>`).join('')}</ul>`;
 
 // Packs professionnels (le reste est rangé en « Vie personnelle »).
 const PACKS_PRO = new Set(['PFG', 'PFC', 'PBT', 'PPE', 'PMG', 'PAS', 'PXP', 'PCA', 'PNS']);
+const pourPack = (p) => (PACKS_PRO.has(p.code) ? 'pro' : 'perso');
+const nbVente = (p) => p.templates.filter((t) => t.statut === 'vente').length;
+// Pack pas encore achetable : une phrase unique tant qu'aucun pack n'est en vente, sinon un badge par pack.
+let aucunEnVente = true;
+const badgeBientot = (p) => (!p.enVente && !aucunEnVente ? ' <em class="bientot-pack">Bientôt</em>' : '');
+const noteBientot = () => (aucunEnVente ? '<p class="note-packs">Les packs seront mis en vente prochainement. Les templates déjà disponibles s’achètent dès maintenant à l’unité.</p>' : '');
+const disponibles = (p) => { const n = nbVente(p); return n ? `${n} disponible${n > 1 ? 's' : ''}` : 'aucun encore disponible'; };
 
-// Bloc détaillé d'un pack pour la page /packs/ : pour qui, contenu complet, prix, option, actions.
-function blocDetail(p) {
+// Ligne dépliable d'un pack pour la page /packs/ (décision de Quentin, 14/11/2026) : fermée, nom, taille,
+// prix et remise ; ouverte, accroche, jauge de disponibilité, contenu, publics, prix détaillé et actions.
+function jauge(p) {
+  const nb = (s) => p.templates.filter((t) => t.statut === s).length;
+  const segs = [...p.templates.map((t) => t.statut), ...p.prevus.map(() => 'prevu')].map((s) => `<i class="${s}"></i>`).join('');
+  const leg = [[nb('vente'), 'disponible', 'disponibles'], [nb('bientot'), 'bientôt', 'bientôt'], [p.prevus.length, 'en préparation', 'en préparation']]
+    .filter(([n]) => n).map(([n, un, plus]) => `${n} ${n > 1 ? plus : un}`).join(' · ');
+  return `<div class="jauge-pack"><span class="segments" aria-hidden="true">${segs}</span><span class="legende">${leg}</span></div>`;
+}
+function lignePack(p) {
   const module = `pack-${p.slug}`;
-  const lignes = p.templates.map((t) => `<li><div class="ligne-t"><b>${esc(t.nom)}</b>${etiquetteStatut(t.statut)}</div><span class="phrase">${esc(t.phrase)}</span><span class="meta">${euros(t.prix)} seul · <a href="/catalogue/${t.slug}/">détail</a> · <a href="/templates/${t.slug}/?demo">démo</a></span></li>`).join('');
-  const prevus = p.prevus.length ? `<div class="detail-prevus"><b>${p.indicatif ? 'En préparation' : 'À venir dans ce pack'}</b><ul>${p.prevus.map((t) => `<li>${esc(t.nom)}</li>`).join('')}</ul>${p.indicatif ? '' : `<p>Inclus sans supplément avec l’option ${OPTION.nom}.</p>`}</div>` : '';
+  const lignes = p.templates.map((t) => `<li><b>${esc(t.nom)}</b>${etiquetteStatut(t.statut)}<span class="meta">${euros(t.prix)} seul · <a href="/catalogue/${t.slug}/">détail</a> · <a href="/templates/${t.slug}/?demo">démo</a></span></li>`).join('');
+  const prevus = p.prevus.map((t) => `<li class="prevu"><b>${esc(t.nom)}</b>${etiquetteStatut('prevu')}</li>`).join('');
   const actions = p.enVente
     ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=Pack">Acheter le pack</a><a class="btn" href="/packs/${p.slug}/">Voir le pack</a>`
     : `<a class="btn primary" href="/packs/${p.slug}/">Voir le pack</a><button class="btn interet" type="button" data-interet="${module}">Je suis intéressé(e)</button>`;
-  return `<article class="pack-detail c-${p.couleur}" id="${p.slug}" data-cibles="${p.cibles.join(' ')}" data-pour="${PACKS_PRO.has(p.code) ? 'pro' : 'perso'}">
-    <div class="pd-tete">
-      <p class="eyebrow">${p.nombre} templates${p.indicatif ? ' prévus' : ''} · ${p.enVente ? 'disponible' : (p.indicatif ? 'en préparation' : 'bientôt')}</p>
-      <h3>${esc(p.nom.replace(/^Pack /, ''))}</h3>
-      <p class="accroche">${esc(p.accroche)}</p>
-      <p>${esc(p.resume)}</p>
-      ${pastilles(p.cibles)}
+  return `<details class="pack-ligne c-${p.couleur}" id="${p.slug}" data-cibles="${p.cibles.join(' ')}" data-pour="${pourPack(p)}">
+    <summary>
+      <span class="carre" aria-hidden="true"></span>
+      <span class="nm"><b>${esc(p.nom.replace(/^Pack /, ''))}${badgeBientot(p)}</b><small>${p.nombre} templates${p.indicatif ? ' prévus' : ''} · ${disponibles(p)}</small></span>
+      <span class="px"><b>${euros(p.prix)}</b>${p.pct ? `<small>−${p.pct} %</small>` : ''}</span>
+      <span class="chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="pl-corps">
+      <div class="pl-contenu">
+        <p class="accroche">${esc(p.accroche)}</p>
+        <p class="resume">${esc(p.resume)}</p>
+        ${jauge(p)}
+        <ul class="contenu-ligne">${lignes}${prevus}</ul>
+        ${pastilles(p.cibles)}
+      </div>
+      <div class="pl-achat">
+        <p class="prix-pack"><b>${euros(p.prix)}</b>${p.pct ? `<s>${euros(p.valeur)}</s> <span class="remise">−${p.pct} %</span>` : ''}</p>
+        <p class="detail">${p.indicatif ? 'Prix prévu, calculé avec le barème' : (p.pct ? `${euros(p.economie)} économisés sur l’achat séparé` : 'Achat unique')}</p>
+        <p class="option-ligne"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>les templates ajoutés plus tard, avec la même clé</span></p>
+        <div class="actions">${actions}</div>
+        ${p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">${p.indicatif ? 'Pack en préparation : un clic pour être prévenu de sa sortie.' : 'Mise en vente prochaine : un clic pour être compté parmi les intéressés.'}</p>`}
+      </div>
     </div>
-    <div class="pd-corps">
-      <details class="pour-qui"><summary>Pour qui, et pourquoi tout avoir</summary><p>${esc(p.pourQui)}</p><ul class="arguments-liste">${p.arguments.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></details>
-      <h4>Le contenu du pack</h4>
-      ${lignes ? `<ul class="contenu-pack">${lignes}</ul>` : ''}
-      ${prevus}
-    </div>
-    <aside class="pack-detail-achat pd-achat">
-      <p class="prix-pack"><b>${euros(p.prix)}</b>${p.pct ? `<s>${euros(p.valeur)}</s> <span class="remise">−${p.pct} %</span>` : ''}</p>
-      <p class="detail">${p.indicatif ? 'Prix prévu, calculé avec le barème' : (p.pct ? `${euros(p.economie)} économisés sur l’achat séparé` : 'Achat unique')}</p>
-      <p class="option-ligne"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>les templates ajoutés plus tard, avec la même clé</span></p>
-      <div class="actions">${actions}</div>
-      ${p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">${p.indicatif ? 'Pack en préparation : un clic pour être prévenu de sa sortie.' : 'Mise en vente prochaine : un clic pour être compté parmi les intéressés.'}</p>`}
-    </aside>
-  </article>`;
+  </details>`;
 }
 
 function pageListe(packs) {
-  const ids = [...new Set(packs.flatMap((p) => p.cibles))];
-  const groupe = (pour) => packs.filter((p) => (PACKS_PRO.has(p.code) ? 'pro' : 'perso') === pour);
-  const sommaire = (liste) => `<ul class="sommaire-packs">${liste.map((p) => `<li><a href="#${p.slug}"><span>${esc(p.nom.replace(/^Pack /, ''))}</span><b>${euros(p.prix)}</b><small>${p.nombre} templates${p.pct ? ` · −${p.pct} %` : ''}</small></a></li>`).join('')}</ul>`;
+  // Filtre « Je suis… » réduit aux publics principaux : ceux qui concernent au moins deux packs.
+  const occurrences = {};
+  for (const p of packs) for (const id of p.cibles) occurrences[id] = (occurrences[id] || 0) + 1;
+  const ids = Object.keys(occurrences).filter((id) => occurrences[id] >= 2).sort((a, b) => occurrences[b] - occurrences[a]);
+  const groupe = (pour) => packs.filter((p) => pourPack(p) === pour);
   return tete({
     titre: 'Packs de templates · QME',
     description: 'Les packs de templates QME, par métier et par situation : contenu détaillé, prix, remise jusqu’à 25 % et option Pack évolutif. Ou composez votre pack sur mesure.',
@@ -261,20 +281,22 @@ function pageListe(packs) {
 </section>
 
 <section class="section" id="tous-les-packs">
-  <div class="section-head"><h2>Tous les packs</h2><p>Le sommaire, puis le détail de chaque pack : à qui il s’adresse, ce qu’il contient, combien il coûte.</p></div>
-  <div class="sommaires">
-    <div><h3>Professionnel</h3>${sommaire(groupe('pro'))}</div>
-    <div><h3>Vie personnelle</h3>${sommaire(groupe('perso'))}</div>
-  </div>
-  <div class="filtre-packs" role="group" aria-label="Filtrer par public" data-filtre-packs>
+  <div class="section-head"><h2>Tous les packs</h2><p>Ouvrez un pack pour voir sur place son contenu, l’état de chaque template et son prix.</p></div>
+  <div class="filtre-packs" role="group" aria-label="Je suis…" data-filtre-packs>
+    <span class="label-filtre">Je suis…</span>
     <button type="button" class="cible-filtre" aria-pressed="true" data-cible="">Tous les publics</button>
     ${ids.map((id) => `<button type="button" class="cible cible-filtre c-${CIBLES[id].couleur} f-${CIBLES[id].forme}" aria-pressed="false" data-cible="${id}">${esc(CIBLES[id].nom)}</button>`).join('\n    ')}
   </div>
+  ${noteBientot()}
   <p class="compte-packs" data-compte-packs aria-live="polite"></p>
-  <h3 class="titre-groupe" data-groupe="pro">Professionnel</h3>
-  ${groupe('pro').map(blocDetail).join('\n  ')}
-  <h3 class="titre-groupe" data-groupe="perso">Vie personnelle</h3>
-  ${groupe('perso').map(blocDetail).join('\n  ')}
+  <div class="groupe-packs" data-groupe="pro">
+  <h3 class="titre-groupe">Professionnel</h3>
+  ${groupe('pro').map(lignePack).join('\n  ')}
+  </div>
+  <div class="groupe-packs" data-groupe="perso">
+  <h3 class="titre-groupe">Vie personnelle</h3>
+  ${groupe('perso').map(lignePack).join('\n  ')}
+  </div>
 </section>
 
 <section class="rappel-templates"><p><b>Aucun pack ne vous ressemble ?</b> Cochez les templates dont vous avez besoin : le prix se calcule aussitôt, remise comprise.</p><a class="btn primary" href="/packs/composer/">Composer mon pack sur mesure</a></section>
@@ -365,10 +387,8 @@ function sectionCatalogue(packs) {
     <h2 id="packs-titre">Les packs : jusqu’à −25 %</h2>
     <p>Les templates qui vont ensemble, réunis par métier ou par situation, ouverts avec une seule clé. <a href="/packs/">Tous les packs</a> · <a href="/packs/composer/">composer le vôtre</a>.</p>
   </div>
-  <ul class="liste-packs compacte">
-    ${packs.map((p) => cartePack(p, 'h3')).join('\n    ')}
-    <li class="carte-pack c-encre sur-mesure"><a href="/packs/composer/"><span class="haut"><span class="nb">À la carte</span></span><h3>Pack sur mesure</h3><span class="phrase">Cochez vos templates : −10 % dès deux, jusqu’à −25 % à partir de cinq.</span><span class="pied"><span class="voir">Composer mon pack</span></span></a></li>
-  </ul>
+  ${cartePrix(packs)}
+  <p class="carte-prix-pied"><a href="/packs/composer/">Pack sur mesure</a> : cochez vos templates, −10 % dès deux, jusqu’à −25 % à partir de cinq.</p>
 </section>
 <!-- packs:fin -->`;
 }
@@ -381,6 +401,7 @@ async function ecrire(chemin, contenu) {
 
 export async function generer() {
   const packs = Object.keys(PACKS).map(calculerPack);
+  aucunEnVente = !packs.some((p) => p.enVente);
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));
   await ecrire('packs/composer/index.html', pageComposer(packs));

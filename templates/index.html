@@ -12,8 +12,8 @@
 <link rel="alternate" hreflang="x-default" href="https://qm-engineering.fr/templates/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111308">
-<link rel="stylesheet" href="/assets/packs.css?v=2026111403">
+<link rel="stylesheet" href="/assets/site.css?v=2026111401">
+<link rel="stylesheet" href="/assets/packs.css?v=2026111404">
 <script>(()=>{const h=location.hash.slice(1);if(/^[a-z-]+$/.test(h)&&!document.getElementById(h)&&!['pro','perso','tous','packs','questions','fonctionnement'].includes(h))location.replace('/catalogue/'+h+'/');})();</script>
 </head>
 <body>
@@ -77,6 +77,10 @@
         <button type="button" data-pour="perso" aria-pressed="false">Vie personnelle</button>
       </div>
       <label class="recherche"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr-only">Rechercher un template</span><input id="catalogue-recherche" type="search" placeholder="Budget, devis, chantier…" autocomplete="off" enterkeyhint="search"></label>
+      <div class="segment vues" role="group" aria-label="Affichage">
+        <button type="button" data-vue="themes" aria-pressed="true">Par thème</button>
+        <button type="button" data-vue="sommaire" aria-pressed="false">Sommaire</button>
+      </div>
     </div>
     <div class="puces" role="group" aria-label="Thème">
       <button class="puce" type="button" data-pour="pro" data-theme="projets-et-chantiers" aria-pressed="false" style="--c:var(--bleu)">Projets et chantiers <small>8</small></button>
@@ -92,6 +96,7 @@
     </div>
     <p class="catalogue-compte" aria-live="polite" data-compte></p>
   </div>
+  <div class="vues-catalogue" data-vues hidden></div>
   <div class="vitrine" data-vitrine>
     <div class="vitrine-tete">
       <h3 data-vitrine-titre>Disponibles maintenant</h3>
@@ -215,135 +220,11 @@
     <h2 id="packs-titre">Les packs : jusqu’à −25 %</h2>
     <p>Les templates qui vont ensemble, réunis par métier ou par situation, ouverts avec une seule clé. <a href="/packs/">Tous les packs</a> · <a href="/packs/composer/">composer le vôtre</a>.</p>
   </div>
-  <ul class="liste-packs compacte">
-    <li class="carte-pack c-jaune"><a href="/packs/freelance-gestion/">
-      <span class="haut"><span class="nb">7 templates</span><em>Bientôt</em></span>
-      <h3>Freelance : chiffrer, facturer, encaisser</h3>
-      <span class="phrase">Du bon tarif à l’argent sur le compte.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-jaune f-rond">Freelances et indépendants</li><li class="cible c-bleu f-carre">TPE et PME</li></ul>
-      <span class="pied"><span class="prix-pack"><b>118 €</b><s>158 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-encre"><a href="/packs/freelance-clients/">
-      <span class="haut"><span class="nb">7 templates</span><em>Bientôt</em></span>
-      <h3>Freelance : trouver ses clients</h3>
-      <span class="phrase">Moins de prospects perdus, plus de rendez-vous qui aboutissent.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-jaune f-rond">Freelances et indépendants</li><li class="cible c-encre f-carre">Managers et chefs de projet</li></ul>
-      <span class="pied"><span class="prix-pack"><b>97 €</b><s>130 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-rouge"><a href="/packs/chef-de-projet-btp/">
-      <span class="haut"><span class="nb">8 templates</span><em>Bientôt</em></span>
-      <h3>Chef de projet BTP</h3>
-      <span class="phrase">Votre opération pilotée de la première réunion à la levée des réserves.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-triangle">BTP et ingénierie</li><li class="cible c-encre f-carre">Managers et chefs de projet</li></ul>
-      <span class="pied"><span class="prix-pack"><b>192 €</b><s>256 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/petite-entreprise/">
-      <span class="haut"><span class="nb">9 templates</span><em>Bientôt</em></span>
-      <h3>Petite entreprise</h3>
-      <span class="phrase">L’administratif de l’équipe, sans logiciel RH.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-carre">TPE et PME</li><li class="cible c-jaune f-triangle">Office managers et RH</li></ul>
-      <span class="pied"><span class="prix-pack"><b>164 €</b><s>219 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/moyens-generaux/">
-      <span class="haut"><span class="nb">9 templates</span><em>Bientôt</em></span>
-      <h3>Moyens généraux</h3>
-      <span class="phrase">Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-jaune f-triangle">Office managers et RH</li><li class="cible c-bleu f-carre">TPE et PME</li></ul>
-      <span class="pied"><span class="prix-pack"><b>194 €</b><s>259 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-jaune"><a href="/packs/argent/">
-      <span class="haut"><span class="nb">9 templates</span><em>Bientôt</em></span>
-      <h3>Reprendre la main sur son argent</h3>
-      <span class="phrase">Savoir où passe votre argent, et ce qu’il vous coûte vraiment.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-jaune f-carre">Particuliers</li><li class="cible c-rouge f-rond">Couples et familles</li></ul>
-      <span class="pied"><span class="prix-pack"><b>98 €</b><s>131 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-rouge"><a href="/packs/mariage-installation/">
-      <span class="haut"><span class="nb">6 templates</span><em>Bientôt</em></span>
-      <h3>Mariage et installation à deux</h3>
-      <span class="phrase">Le grand jour, puis la vie à deux, sans dispute d’argent.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-rond">Couples et familles</li></ul>
-      <span class="pied"><span class="prix-pack"><b>72 €</b><s>96 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-encre"><a href="/packs/productivite/">
-      <span class="haut"><span class="nb">5 templates</span><em>Bientôt</em></span>
-      <h3>Productivité perso</h3>
-      <span class="phrase">Moins de listes, plus de choses faites.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-encre f-carre">Managers et chefs de projet</li><li class="cible c-jaune f-rond">Freelances et indépendants</li></ul>
-      <span class="pied"><span class="prix-pack"><b>54 €</b><s>73 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/etudiant/">
-      <span class="haut"><span class="nb">7 templates</span><em>Bientôt</em></span>
-      <h3>Étudiant</h3>
-      <span class="phrase">Réviser au bon moment, chaque jour, jusqu’à l’examen.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-rond">Lycéens et étudiants</li></ul>
-      <span class="pied"><span class="prix-pack"><b>69 €</b><s>92,90 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-rouge"><a href="/packs/associations/">
-      <span class="haut"><span class="nb">7 templates</span><em>Bientôt</em></span>
-      <h3>Associations et clubs</h3>
-      <span class="phrase">Les adhérents, les événements et la caisse du club.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-carre">Associations et clubs</li></ul>
-      <span class="pied"><span class="prix-pack"><b>164 €</b><s>219 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/proprietaire/">
-      <span class="haut"><span class="nb">9 templates</span><em>Bientôt</em></span>
-      <h3>Propriétaire</h3>
-      <span class="phrase">Votre bien entretenu, rénové et rentable.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-triangle">Propriétaires</li><li class="cible c-jaune f-carre">Particuliers</li></ul>
-      <span class="pied"><span class="prix-pack"><b>131 €</b><s>175 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-encre"><a href="/packs/forme/">
-      <span class="haut"><span class="nb">5 templates</span><em>Bientôt</em></span>
-      <h3>Forme</h3>
-      <span class="phrase">Manger juste, bouger, tenir.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-encre f-triangle">Sport et santé</li><li class="cible c-jaune f-carre">Particuliers</li></ul>
-      <span class="pied"><span class="prix-pack"><b>58 €</b><s>78 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-jaune"><a href="/packs/famille/">
-      <span class="haut"><span class="nb">6 templates</span><em>Bientôt</em></span>
-      <h3>Famille</h3>
-      <span class="phrase">La maison qui tourne, sans tout garder en tête.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-jaune f-rond">Parents</li><li class="cible c-rouge f-rond">Couples et familles</li></ul>
-      <span class="pied"><span class="prix-pack"><b>57 €</b><s>77 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/voyage/">
-      <span class="haut"><span class="nb">2 templates</span><em>Bientôt</em></span>
-      <h3>Voyage</h3>
-      <span class="phrase">Le voyage préparé, les comptes faits au retour.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-carre">Voyageurs</li><li class="cible c-rouge f-rond">Couples et familles</li></ul>
-      <span class="pied"><span class="prix-pack"><b>25 €</b><s>28 €</s> <span class="remise">−10 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-rouge"><a href="/packs/enseignant/">
-      <span class="haut"><span class="nb">4 templates</span><em>Bientôt</em></span>
-      <h3>Enseignant et formateur</h3>
-      <span class="phrase">Préparer, évaluer, organiser : la classe sous contrôle.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-triangle">Enseignants et formateurs</li></ul>
-      <span class="pied"><span class="prix-pack"><b>83 €</b><s>104 €</s> <span class="remise">−20 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-encre"><a href="/packs/exploitation/">
-      <span class="haut"><span class="nb">4 templates</span><em>Bientôt</em></span>
-      <h3>Exploitation et maintenance</h3>
-      <span class="phrase">Vos sites et vos équipements, aucune échéance oubliée.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-encre f-rond">Exploitants et services techniques</li><li class="cible c-jaune f-triangle">Office managers et RH</li></ul>
-      <span class="pied"><span class="prix-pack"><b>118 €</b><s>148 €</s> <span class="remise">−20 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-rouge"><a href="/packs/commercant-artisan/">
-      <span class="haut"><span class="nb">5 templates</span><em>Bientôt</em></span>
-      <h3>Commerçant et artisan</h3>
-      <span class="phrase">Le stock, les devis et la caisse, enfin d’accord.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-rond">Commerçants et artisans</li><li class="cible c-jaune f-rond">Freelances et indépendants</li></ul>
-      <span class="pied"><span class="prix-pack"><b>95 €</b><s>127 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-bleu"><a href="/packs/voiture/">
-      <span class="haut"><span class="nb">2 templates</span><em>Bientôt</em></span>
-      <h3>Ma voiture</h3>
-      <span class="phrase">Ce que votre voiture vous coûte vraiment.</span>
-      <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-carre">Automobilistes</li><li class="cible c-jaune f-carre">Particuliers</li></ul>
-      <span class="pied"><span class="prix-pack"><b>22 €</b><s>25 €</s> <span class="remise">−10 %</span></span><span class="voir">Voir le pack</span></span>
-    </a></li>
-    <li class="carte-pack c-encre sur-mesure"><a href="/packs/composer/"><span class="haut"><span class="nb">À la carte</span></span><h3>Pack sur mesure</h3><span class="phrase">Cochez vos templates : −10 % dès deux, jusqu’à −25 % à partir de cinq.</span><span class="pied"><span class="voir">Composer mon pack</span></span></a></li>
-  </ul>
+  <p class="note-packs">Les packs seront mis en vente prochainement. Les templates déjà disponibles s’achètent dès maintenant à l’unité.</p><div class="carte-prix">
+    <div><h3>Professionnel</h3><ul><li><a href="/packs/#freelance-gestion"><span class="nm">Freelance : chiffrer, facturer, encaisser</span><span class="pts" aria-hidden="true"></span><b>118 €</b><small>7 templates · −25 % · 5 disponibles</small></a></li><li><a href="/packs/#freelance-clients"><span class="nm">Freelance : trouver ses clients</span><span class="pts" aria-hidden="true"></span><b>97 €</b><small>7 templates · −25 % · aucun encore disponible</small></a></li><li><a href="/packs/#chef-de-projet-btp"><span class="nm">Chef de projet BTP</span><span class="pts" aria-hidden="true"></span><b>192 €</b><small>8 templates · −25 % · 4 disponibles</small></a></li><li><a href="/packs/#petite-entreprise"><span class="nm">Petite entreprise</span><span class="pts" aria-hidden="true"></span><b>164 €</b><small>9 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#moyens-generaux"><span class="nm">Moyens généraux</span><span class="pts" aria-hidden="true"></span><b>194 €</b><small>9 templates · −25 % · aucun encore disponible</small></a></li><li><a href="/packs/#associations"><span class="nm">Associations et clubs</span><span class="pts" aria-hidden="true"></span><b>164 €</b><small>7 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#enseignant"><span class="nm">Enseignant et formateur</span><span class="pts" aria-hidden="true"></span><b>83 €</b><small>4 templates · −20 % · aucun encore disponible</small></a></li><li><a href="/packs/#exploitation"><span class="nm">Exploitation et maintenance</span><span class="pts" aria-hidden="true"></span><b>118 €</b><small>4 templates · −20 % · aucun encore disponible</small></a></li><li><a href="/packs/#commercant-artisan"><span class="nm">Commerçant et artisan</span><span class="pts" aria-hidden="true"></span><b>95 €</b><small>5 templates · −25 % · 3 disponibles</small></a></li></ul></div>
+    <div><h3>Vie personnelle</h3><ul><li><a href="/packs/#argent"><span class="nm">Reprendre la main sur son argent</span><span class="pts" aria-hidden="true"></span><b>98 €</b><small>9 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#mariage-installation"><span class="nm">Mariage et installation à deux</span><span class="pts" aria-hidden="true"></span><b>72 €</b><small>6 templates · −25 % · 3 disponibles</small></a></li><li><a href="/packs/#productivite"><span class="nm">Productivité perso</span><span class="pts" aria-hidden="true"></span><b>54 €</b><small>5 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#etudiant"><span class="nm">Étudiant</span><span class="pts" aria-hidden="true"></span><b>69 €</b><small>7 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#proprietaire"><span class="nm">Propriétaire</span><span class="pts" aria-hidden="true"></span><b>131 €</b><small>9 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#forme"><span class="nm">Forme</span><span class="pts" aria-hidden="true"></span><b>58 €</b><small>5 templates · −25 % · 2 disponibles</small></a></li><li><a href="/packs/#famille"><span class="nm">Famille</span><span class="pts" aria-hidden="true"></span><b>57 €</b><small>6 templates · −25 % · 1 disponible</small></a></li><li><a href="/packs/#voyage"><span class="nm">Voyage</span><span class="pts" aria-hidden="true"></span><b>25 €</b><small>2 templates · −10 % · 1 disponible</small></a></li><li><a href="/packs/#voiture"><span class="nm">Ma voiture</span><span class="pts" aria-hidden="true"></span><b>22 €</b><small>2 templates · −10 % · aucun encore disponible</small></a></li></ul></div>
+  </div>
+  <p class="carte-prix-pied"><a href="/packs/composer/">Pack sur mesure</a> : cochez vos templates, −10 % dès deux, jusqu’à −25 % à partir de cinq.</p>
 </section>
 <!-- packs:fin -->
 
@@ -407,7 +288,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026111308" defer></script>
+<script src="/assets/site.js?v=2026111401" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

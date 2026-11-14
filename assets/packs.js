@@ -122,18 +122,28 @@
     });
     charger();
   }
-  // --- Page /packs/ : filtre des packs par public -----------------------------------------------------
+  // --- Page /packs/ : filtre « Je suis… » et lignes dépliables -----------------------------------------
   const filtre = document.querySelector('[data-filtre-packs]');
   if (filtre) {
-    const blocs = [...document.querySelectorAll('.pack-detail')];
+    const blocs = [...document.querySelectorAll('.pack-ligne')];
     const compte = document.querySelector('[data-compte-packs]');
     const appliquer = (cible) => {
       for (const b of filtre.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.cible === cible));
       let n = 0;
       for (const bl of blocs) { const ok = !cible || bl.dataset.cibles.split(' ').includes(cible); bl.hidden = !ok; if (ok) n++; }
-      for (const t of document.querySelectorAll('.titre-groupe')) t.hidden = !blocs.some((bl) => !bl.hidden && bl.dataset.pour === t.dataset.groupe);
+      for (const g of document.querySelectorAll('.groupe-packs')) g.hidden = !blocs.some((bl) => !bl.hidden && bl.dataset.pour === g.dataset.groupe);
       compte.textContent = cible ? `${n} pack${n > 1 ? 's' : ''} pour ce public` : '';
     };
     filtre.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) appliquer(b.dataset.cible); });
+    // Arrivée par /packs/#slug (carte des prix du catalogue) : le pack visé s'ouvre.
+    const ouvrir = () => {
+      const bl = blocs.find((x) => '#' + x.id === location.hash);
+      if (!bl) return;
+      if (bl.hidden) appliquer('');
+      bl.open = true;
+      bl.scrollIntoView({ block: 'start' });
+    };
+    window.addEventListener('hashchange', ouvrir);
+    ouvrir();
   }
 })();
