@@ -74,8 +74,10 @@ const T = {
   'animal': ["Suivi d'un animal de compagnie", "Ses soins, à temps.", "Soins · poids · visites · frais"],
   'garde-manger': ['Garde-manger et dates de péremption', 'Rien ne se perd au fond du frigo.', 'DLC et DDM · priorités du jour · gaspillage suivi'],
   papiers: ['Papiers du foyer', 'Chaque papier a sa place.', 'Où il est · combien de temps le garder · renouvellements · fiche urgence'],
+  memoire: ['Planning de mémoire ou de thèse', 'Le plan, le rythme, la date.', 'Plan et statuts · rétroplanning · mots par jour · directeur'],
   'remboursements-sante': ["Remboursements santé", "Ce qu'on te doit encore, soin par soin.", "Sécu et mutuelle · retards · relances · bilan annuel"],
   candidatures: ['Candidatures études, stages, alternance', 'Chaque dossier, à temps.', 'Pièces à fournir · dates et relances · vœux classés · lettres et entretiens'],
+  'investissement-locatif': ['Investissement locatif', 'Ce bien, rentable ou pas ?', 'Rendement brut et net · cash-flow avant impôt · prix maximal · sensibilité'],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
   'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],
@@ -89,10 +91,14 @@ const T = {
   remerciements: ["Cadeaux reçus et remerciements", "Personne n'est oublié.", "Qui a offert quoi · messages prêts · étiquettes d'adresses"],
   notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
   subventions: ["Subventions", "Chaque dossier à temps, chaque euro justifié.", "Pièces · échéances · versements · budget du projet · bilan"],
+  benevoles: ['Bénévoles et planning des créneaux', 'Chaque créneau tenu, sans trou ni doublon.', 'Disponibilités · affectation suggérée · conflits · plannings imprimables'],
+  'assemblee-generale': ["Assemblée générale et vie statutaire", "Une AG en règle, sans stress.", "Rétroplanning · convocation · quorum et votes · PV · mandats"],
   competences: ['Matrice compétences et formations', 'Qui sait faire quoi, et qui former.', 'Écarts au poste · compétences fragiles · formations'],
   progression: ['Progression pédagogique', 'Ton programme, séance après séance.', 'Prévu et réel · retard en heures · fin projetée'],
   potager: ['Calendrier du potager', 'Chaque semis à sa date.', 'Tes dates · cette semaine · rotation · récoltes'],
   bebe: ['Suivi du bébé', "Ses journées, notées d'une main.", 'Tétées · sommeil · couches · à deux parents'],
+  copropriete: ["Charges et AG de copropriété", "Chaque appel payé, chaque vote préparé.", "Appels de fonds · charges par poste · régularisation · résolutions · travaux votés"],
+  'etat-des-lieux': ['État des lieux', 'Entrée, sortie, et ce qui a changé.', 'Pièce par pièce · photos · compteurs et clés · document à signer'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

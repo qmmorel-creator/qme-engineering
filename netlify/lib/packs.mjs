@@ -52,9 +52,9 @@ export const PACKS = {
   PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS', 'RBS', 'CPT'] },
   PMR: { slug: 'mariage-installation', nom: 'Pack Mariage et installation à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'] },
   PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV', 'RVH'] },
-  PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS', 'NTS', 'CAN'] },
-  PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP', 'SBV'] },
-  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT'] },
+  PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS', 'NTS', 'CAN', 'MMR'] },
+  PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP', 'SBV', 'BNV', 'AGS'] },
+  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT', 'RNT', 'CPR', 'ETD'] },
   PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC'] },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
   PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM'] },

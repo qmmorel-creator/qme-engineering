@@ -1,0 +1,11 @@
+État des lieux
+Entrée, sortie, et ce qui a changé.
+Pièce par pièce · photos · compteurs et clés · document à signer
+
+Ligne ajoutée à la table T de outils/templates/couvertures-gumroad.cjs :
+  'etat-des-lieux': ['État des lieux', 'Entrée, sortie, et ce qui a changé.', 'Pièce par pièce · photos · compteurs et clés · document à signer'],
+
+Couverture générée : assets/templates-etat-des-lieux-couverture.png (copie du script sur le port 8915, SEUL=etat-des-lieux).
+Texte alternatif : « État des lieux QME : “Entrée, sortie, et ce qui a changé.” Sortie comparée à l'entrée avec les
+dégradations, l'usure normale, les retenues proposées et le dépôt de garantie à rendre, sur ordinateur, et l'état de
+sortie pièce par pièce sur téléphone. Logements et personnes fictifs. »

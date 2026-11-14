@@ -218,6 +218,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions), note nécessaire aux épreuves à
   venir (dichotomie), courbe de la moyenne, relevé imprimable, export CSV. Aucun barème officiel intégré. Règles dans
   `regles.js`, tests `outils/templates/notes.test.mjs`.
+- `templates/etat-des-lieux/` (ETD) : **état des lieux d'entrée et de sortie** (T94), prêt, « Mise en vente prochaine »
+  (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/etat-des-lieux/gumroad.json`). Un dossier par
+  bail, pièces et éléments types modifiables (mobilier en meublé), état codé (neuf, bon, usage normal, dégradé, hors
+  service) avec commentaire et vignette photo (réduite dans le navigateur, synchronisée, 30 par compte par défaut),
+  compteurs et clés, sortie comparée à l'entrée (usure normale distinguée des dégradations), vétusté selon la grille
+  saisie (aucune intégrée), retenues proposées, délai de restitution du dépôt de garantie et de rectification de
+  l'entrée (service-public.gouv.fr F31270, F33671, F31269, consultées le 14/11/2026), document imprimable à signer,
+  export CSV. Outil d'aide, pas un document certifié. Règles dans `regles.js`, tests
+  `outils/templates/etat-des-lieux.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
@@ -329,6 +338,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   financier à 6 mois, comptes annuels au-delà de 153 000 €) repris de service-public.gouv.fr (fiches F3180 et R46623,
   consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests `outils/templates/subventions.test.mjs`.
   Version anglaise en attente.
+- `templates/copropriete/` (CPR) : **charges et AG de copropriété** (T96), prêt, « Mise en vente prochaine » (15 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/copropriete/gumroad.json`). Lots et tantièmes
+  (plusieurs copropriétés par clé), appels de fonds (provisions, fonds de travaux, travaux votés) payés ou à payer,
+  4 appels trimestriels générés depuis le budget, décompte annuel par poste, régularisation, part récupérable sur le
+  locataire saisie par poste (aide limitée aux catégories citées par la fiche F947), évolution sur plusieurs exercices,
+  AG (ordre du jour, majorité saisie, intention de vote, résultat), travaux votés avec échéancier, documents à conserver
+  (référence de rangement), alertes, CSV. Aucune règle de majorité intégrée. Repères service-public.gouv.fr (F20586,
+  F34026, F947, consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests
+  `outils/templates/copropriete.test.mjs`. Version anglaise en attente.
 - `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
   réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),
@@ -448,6 +466,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
   personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
   anglaise en attente.
+- `templates/investissement-locatif/` (RNT) : **rentabilité d'un investissement locatif** (T95, 15 €), prêt, « Mise en
+  vente prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/investissement-locatif/gumroad.json`).
+  Jusqu'à 5 biens comparés (nu, meublé, colocation, saisonnier) : coût total d'acquisition (frais de notaire saisis ou
+  estimés, hypothèse affichée), loyers par lot ou à la nuitée, vacance en mois par an, charges, crédit saisi (formules
+  de `templates/emprunt/`), rendement brut et net de charges, cash-flow mensuel **avant impôt** et effort d'épargne,
+  prix maximal pour un rendement visé, sensibilité (loyer − 10 %, vacance + 1 mois, taux + 1 point), fiche d'analyse
+  imprimable, export CSV. Aucun taux de marché, prix au m² ni loyer de référence intégré ; fiscalité hors calcul,
+  signalée. Fiche `docs/templates/fiches/investissement-locatif.md`, tests `outils/templates/investissement-locatif.test.mjs`.
 - `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
   prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
   par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut
@@ -456,6 +482,34 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
   motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
   `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
+- `templates/benevoles/` (BNV) : **bénévoles et planning des créneaux** (T92), prêt, « Mise en vente prochaine » (19 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/benevoles/gumroad.json`). Annuaire des bénévoles
+  (coordonnées minimales, compétences, postes préférés), événements créés depuis 6 modèles (33 postes types, créneaux
+  types avec besoin en personnes), réponses par événement avec plages, affectation manuelle ou suggérée (disponible,
+  compétence, équité de charge) et remplissage automatique des trous, conflits (double affectation, indisponible, sans
+  pause, journée trop longue, compétence manquante ; repères choisis par l'association, aucune règle légale), plannings
+  A4 par poste et par personne, message à copier par bénévole (rien n'est envoyé), bilan des heures, duplication d'un
+  événement, export CSV ; RGPD : export, effacement, bénévoles inactifs signalés selon la durée choisie. Une clé
+  partagée par les responsables, saisies fusionnées. Pas d'inscription en ligne en V1. Règles dans `regles.js`, tests
+  `outils/templates/benevoles.test.mjs`. Version anglaise en attente.
+- `templates/memoire/` (MMR) : **planning de mémoire ou de thèse** (T90, 15 €), prêt, mise en vente prochaine (démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/memoire/gumroad.json`). Projet (master, PFE, thèse ou autre ; dates
+  de début, de rendu et de soutenance ; mots visés saisis ; jours de travail), plan hiérarchique (parties, chapitres,
+  sections) avec statut (à écrire, brouillon, relu, final), mots écrits et visés, plans de départ par type ; rétroplanning
+  calculé à rebours depuis le rendu ou la soutenance, jalons types indicatifs resserrés quand le temps manque, dates
+  fixables ; mots par jour de travail jusqu'à la fin de la rédaction, rythme réel sur 14 jours et date projetée (relevé
+  quotidien du total, courbe d'avancement) ; rendez-vous avec le directeur (points, notes, actions à échéance, ordre du
+  jour à copier) ; bibliographie simple (export texte auteur-date, sans norme revendiquée) ; journal de séances ;
+  synthèse imprimable, exports CSV. Aucune règle d'établissement intégrée. Fiche `docs/templates/fiches/memoire.md`,
+  règles dans `regles.js`, tests `outils/templates/memoire.test.mjs`.
+- `templates/assemblee-generale/` (AGS) : **assemblée générale et vie statutaire** (T93), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/assemblee-generale/gumroad.json`).
+  Membres votants (case « cotisation à jour »), réunions des quatre instances (AG ordinaire et extraordinaire, conseil,
+  bureau), rétroplanning daté depuis le délai de convocation saisi, convocation et pouvoir à copier ou imprimer,
+  feuille de présence et pouvoirs (plafond saisi), quorum et majorités calculés en entiers selon les règles des
+  statuts saisies (aucune règle légale intégrée, valeurs de départ « à vérifier »), votes, procès-verbal imprimable,
+  mandats et renouvellements, archive par année, exports CSV. RGPD : données minimales, suppression d'un membre.
+  Règles dans `regles.js`, tests `outils/templates/assemblee-generale.test.mjs`.
 - Lot du 14/11/2026 (9), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
   `docs/templates/communication/gumroad-a-creer.json`) : `templates/competences/` (FRM) **matrice compétences et
   formations** (référentiel intégré de 44 compétences transverses en 8 domaines, dont 8 critiques, et 9 modèles de postes

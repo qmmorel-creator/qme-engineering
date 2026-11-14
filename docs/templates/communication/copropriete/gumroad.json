@@ -1,0 +1,42 @@
+{
+  "slug": "copropriete",
+  "name": "Charges et AG de copropriété",
+  "price_cents": 1500,
+  "permalink": "charges-ag-copropriete",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir ma copropriété",
+  "summary": "Appels de fonds payés ou à payer, charges par poste et régularisation, part récupérable sur le locataire, évolution sur plusieurs années, assemblées générales (ordre du jour, vote, résultat) et travaux votés avec échéancier.",
+  "description": "<h2>Chaque appel payé, chaque vote préparé.</h2><p>Copropriétaire, tu reçois toute l'année des appels de fonds, un décompte annuel, une convocation, un procès-verbal. Charges et AG de copropriété les range au même endroit : ce qui est payé, ce que coûte chaque poste, ce qui a été voté.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les appels de fonds</strong> : provisions, fonds de travaux, travaux votés ; payé ou à payer, alerte avant l'échéance ; les 4 appels trimestriels de l'exercice créés à partir du budget voté.</li><li><strong>Les charges poste par poste</strong> : recopiées du décompte annuel, avec la régularisation (charges réelles moins provisions appelées) et l'évolution sur plusieurs années en graphique.</li><li><strong>La part récupérable sur le locataire</strong> : saisie par poste, avec une aide qui propose les catégories citées par la liste officielle ; récapitulatif imprimable des charges par nature.</li><li><strong>Les assemblées générales</strong> : convocation, ordre du jour collé en une fois, majorité recopiée de la convocation, ton intention de vote, puis le résultat.</li><li><strong>Les travaux votés</strong> : ta quote-part (estimée avec tes tantièmes ou saisie), l'échéancier, chaque échéance appelée puis payée.</li><li><strong>Les documents à conserver</strong> : où est rangé chaque papier (règlement, procès-verbaux, décomptes, factures) ; exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; indique ta copropriété et tes lots avec leurs tantièmes.</li><li>Recopie le dernier appel de fonds reçu, ou génère les appels de l'exercice ; ajoute le décompte et la prochaine AG quand ils arrivent.</li></ol><p>Rien à installer. Plusieurs copropriétés avec la même clé. Achat unique, sans abonnement.</p><p><em>Outil d'aide : le règlement de copropriété, les décisions d'assemblée et les documents du syndic font foi ; il ne remplace pas un conseil juridique. Aucune règle de majorité intégrée. Repères indicatifs repris de service-public.gouv.fr (provisions trimestrielles, fonds de travaux, charges récupérables), désactivables. Démo disponible sur qm-engineering.fr/catalogue/copropriete.</em></p>",
+  "tags": [
+    "copropriete",
+    "charges",
+    "syndic",
+    "assemblee-generale",
+    "proprietaire",
+    "bailleur",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, puis indique ta copropriété et tes lots avec leurs tantièmes. Recopie ensuite le dernier appel de fonds reçu. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Copropriétaires occupants ou bailleurs, conseils syndicaux"
+    }
+  ]
+}

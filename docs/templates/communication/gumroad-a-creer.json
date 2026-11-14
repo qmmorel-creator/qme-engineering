@@ -2521,5 +2521,257 @@
         "value": "Outil de notes : ne remplace pas l'avis du médecin, de la sage-femme ou de la PMI"
       }
     ]
+  },
+  {
+    "slug": "benevoles",
+    "name": "Bénévoles et planning des créneaux",
+    "price_cents": 1900,
+    "permalink": "benevoles-planning-creneaux",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir le planning des bénévoles",
+    "summary": "Annuaire des bénévoles, événements créés depuis six modèles, affectation suggérée, places à pourvoir et conflits signalés, plannings imprimables et messages à copier, bilan des heures. Une clé pour tout le bureau.",
+    "description": "<h2>Chaque créneau tenu, sans trou ni doublon.</h2><p>Un tableur partagé, des disponibilités notées au fil des messages, des cases remplies à la main, et le jour J on découvre qu'un bénévole est inscrit à deux postes à la fois ou qu'il avait prévenu qu'il ne viendrait pas. Bénévoles et planning des créneaux met tout au même endroit, de la préparation au bilan.</p><h3>Ce que tu obtiens</h3><ul><li><strong>L'annuaire de tes bénévoles</strong> : un prénom, un moyen de contact, ce qu'ils savent faire et les postes qu'ils préfèrent. Rien de plus.</li><li><strong>Tes événements prêts en une minute</strong> : six modèles (fête de village, festival, compétition sportive, course, brocante, repas ou loto) créent les postes et les créneaux types ; 33 postes types avec leurs consignes ; duplication pour l'édition suivante.</li><li><strong>Des créneaux remplis sans casse-tête</strong> : tu notes qui vient et sur quelles plages, puis tu affectes à la main ou tu laisses l'outil suggérer, les bénévoles les moins sollicités d'abord.</li><li><strong>Les trous et les conflits sous les yeux</strong> : places à pourvoir, double affectation, bénévole indisponible, enchaînement sans pause ou journée trop longue selon tes propres repères, compétence manquante.</li><li><strong>Le jour J préparé</strong> : plannings imprimables par poste et par personne, un message par bénévole avec ses créneaux, prêt à copier.</li><li><strong>Le bilan</strong> : heures données par bénévole et par poste, pour remercier et pour le rapport d'activité ; export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; choisis le modèle de ton premier événement.</li><li>Transmets la clé aux membres du bureau ou aux responsables de poste : chacun la saisit une fois sur son appareil. Pas de compte à créer.</li></ol><p>Rien à installer. Achat unique, sans abonnement, quel que soit le nombre de bénévoles.</p><p><em>Pas d'inscription en ligne des bénévoles dans cette version : le responsable saisit les réponses. Rien n'est envoyé par l'outil : les messages se copient. Les repères de pause et d'heures sont ceux de ton association, pas des règles légales. Données personnelles réduites au minimum, export et effacement par bénévole : ton association reste responsable de ces données. Démo disponible sur qm-engineering.fr/catalogue/benevoles.</em></p>",
+    "tags": [
+      "benevoles",
+      "association",
+      "planning",
+      "evenement",
+      "club-sportif",
+      "comite-des-fetes",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et choisis le modèle de ton premier événement. Transmets ensuite la clé aux membres du bureau : chacun la saisit une fois sur son appareil. Garde cet e-mail : la même clé fonctionne sur tous les appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail, partagée par le bureau"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Associations, clubs, comités des fêtes, festivals"
+      }
+    ]
+  },
+  {
+    "slug": "memoire",
+    "name": "Planning de mémoire ou de thèse",
+    "price_cents": 1500,
+    "permalink": "planning-memoire",
+    "category": "education",
+    "button": "Ouvrir mon planning",
+    "summary": "Mémoire de master, rapport de PFE ou thèse : ton plan avec le statut de chaque chapitre, un rétroplanning calculé depuis ta date de rendu, les mots par jour qu'il te reste à écrire, tes rendez-vous avec ton directeur et une bibliographie simple.",
+    "description": "<h2>Le plan, le rythme, la date.</h2><p>Une date de rendu, un nombre de mots à atteindre, un directeur à tenir informé : le plus dur n'est pas d'écrire un jour, c'est de savoir chaque jour si tu es dans les temps. Le planning de mémoire réunit ton plan, ton rétroplanning et ton rythme d'écriture.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton plan, chapitre par chapitre</strong> : parties, chapitres et sections, chacun avec son statut (à écrire, brouillon, relu, final), ses mots écrits et ses mots visés. Un plan type de mémoire, de PFE ou de thèse pour démarrer.</li><li><strong>Un rétroplanning qui part de ta date de rendu</strong> : jalons types (plan validé, premier jet, relecture du directeur, soutenance) placés à rebours, resserrés si le temps manque, tous modifiables.</li><li><strong>Le rythme qu'il te faut</strong> : les mots par jour de travail jusqu'à la fin de la rédaction, comparés à ton rythme réel des deux dernières semaines, avec la date où tu finiras à ce train-là. Courbe d'avancement.</li><li><strong>Tes rendez-vous avec ton directeur</strong> : points abordés, ce qui a été dit, actions à faire avec échéance, et un ordre du jour prêt à envoyer avant le suivant.</li><li><strong>Une bibliographie simple et un journal de travail</strong> : références lues ou à lire, notes, chapitres où tu les cites, export texte auteur-date ; séances de travail datées ; synthèse imprimable et exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis le type de travail, saisis tes dates et le nombre de mots demandé, puis adapte le plan type à ton sujet. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Ton texte reste dans ton traitement de texte : rien n'est importé ni lu, tu recopies seulement le nombre de mots de chaque section. Achat unique, sans abonnement.</p><p><em>Les jalons types et les nombres de mots proposés sont des repères indicatifs, sans valeur officielle : les consignes de ton établissement, de ton école doctorale et de ton directeur priment. L'export bibliographique suit un format auteur-date simple et ne prétend respecter aucune norme précise. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "memoire",
+      "these",
+      "etudiant",
+      "master",
+      "redaction",
+      "planning",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning de mémoire s'ouvre. Choisis le type de travail, saisis ta date de rendu et le nombre de mots demandé, puis adapte le plan. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Étudiants de master, élèves ingénieurs en PFE, doctorants"
+      }
+    ]
+  },
+  {
+    "slug": "assemblee-generale",
+    "name": "Assemblée générale et vie statutaire",
+    "price_cents": 1900,
+    "permalink": "assemblee-generale-association",
+    "category": "business-and-money",
+    "button": "Ouvrir mon espace association",
+    "summary": "L'AG de ton association en règle : rétroplanning daté depuis tes statuts, convocation et pouvoir prêts, feuille de présence, quorum et majorités calculés avec tes règles, procès-verbal imprimable, mandats du bureau suivis jusqu'au renouvellement.",
+    "description": "<h2>Une AG en règle, sans stress.</h2><p>Chaque année, le bureau rouvre les statuts : quand convoquer, combien de membres il faut, combien de pouvoirs chacun peut porter, quelle majorité vaut décision. Puis il faut la feuille de présence, compter les voix en séance et rédiger le procès-verbal. Assemblée générale et vie statutaire garde tes règles et fait les calculs.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes statuts, pas des règles toutes faites</strong> : délai de convocation, quorum, pouvoirs et majorités saisis pour l'AG ordinaire, l'AG extraordinaire, le conseil et le bureau. Aucune règle légale n'est intégrée.</li><li><strong>Le rétroplanning de l'AG daté</strong> depuis la date limite de convocation : comptes, rapports, point des cotisations, convocation, pouvoirs, procès-verbal.</li><li><strong>La convocation prête</strong> : ordre du jour, trame formelle ou conviviale, modèle de pouvoir, adresses des convoqués à copier.</li><li><strong>Le quorum et les votes calculés en séance</strong> : membres présents, représentés, pouvoirs dans la limite de tes statuts ; pour, contre, abstentions, et la résolution adoptée ou rejetée avec le seuil expliqué.</li><li><strong>Le procès-verbal imprimé</strong>, construit avec la présence, le quorum, les votes et tes notes.</li><li><strong>Les mandats du bureau et du conseil</strong> suivis jusqu'au renouvellement, avec une alerte avant l'échéance, et l'archive des réunions année par année.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Recopie les règles de tes statuts, ajoute les membres (ou colle leur liste) et prépare la prochaine AG. Les données sont enregistrées en ligne (hébergement en Europe) et suivent la clé sur ordinateur, tablette et téléphone : partage-la avec les membres du bureau.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Aucune convocation n'est envoyée par l'outil : tu copies le texte ou tu l'imprimes. Outil d'aide à l'organisation : les statuts de ton association font foi, et il ne remplace pas un conseil juridique.</p><p><em>Démo disponible sur qm-engineering.fr/catalogue/assemblee-generale.</em></p>",
+    "tags": [
+      "association",
+      "assemblee generale",
+      "loi 1901",
+      "benevolat",
+      "club",
+      "proces-verbal",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et l'espace de ton association s'ouvre. Commence par recopier les règles de tes statuts, puis ajoute les membres. Garde cet e-mail : la même clé fonctionne sur tous les appareils du bureau.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Bureaux d'associations, clubs, amicales"
+      }
+    ]
+  },
+  {
+    "slug": "investissement-locatif",
+    "name": "Rentabilité d'un investissement locatif",
+    "price_cents": 1500,
+    "permalink": "rentabilite-investissement-locatif",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mon étude",
+    "summary": "Jusqu'à 5 biens locatifs comparés (nu, meublé, colocation, saisonnier) : coût total d'acquisition, loyers et vacance, charges, ton crédit, rendement brut et net, cash-flow mensuel avant impôt, effort d'épargne, prix maximal pour ton rendement visé, sensibilité et fiche d'analyse imprimable.",
+    "description": "<h2>Ce bien, rentable ou pas ?</h2><p>Le rendement des annonces divise un loyer par un prix. Il oublie le notaire, les travaux, la copropriété, le mois sans locataire et la mensualité du crédit. La Rentabilité d'un investissement locatif fait le calcul complet, avec tes chiffres, avant que tu fasses une offre.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Jusqu'à 5 biens côte à côte</strong> : coût total, loyers, charges, rendement brut et net, cash-flow mensuel ; le meilleur mis en avant, les biens incomplets signalés avec ce qui manque.</li><li><strong>Le coût total d'acquisition</strong> : prix, frais de notaire saisis ou estimés (hypothèse affichée), agence, travaux, mobilier, frais bancaires.</li><li><strong>Des loyers réalistes</strong> : un loyer par chambre en colocation, des nuitées en saisonnier, la vacance en mois par an.</li><li><strong>Les charges du propriétaire</strong> : taxe foncière, copropriété non récupérable, assurances, gestion ou conciergerie, entretien, énergie et internet.</li><li><strong>Ton crédit</strong> : mensualité, assurance, cash-flow avant impôt et effort d'épargne, avec une cascade du loyer au cash-flow.</li><li><strong>Le prix maximal</strong> pour atteindre le rendement que tu vises, et la <strong>sensibilité</strong> : loyer − 10 %, un mois vide de plus, taux + 1 point.</li><li><strong>Une fiche d'analyse</strong> à imprimer ou à enregistrer en PDF ; export CSV du comparatif.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Décris un premier bien (prix, loyer, taxe foncière), puis complète les frais, les charges et ton crédit. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Simulation avant impôt à partir de ta saisie : elle ne remplace pas un conseil en investissement ni un conseil fiscal. L'impôt sur les loyers n'est pas calculé. Aucun prix au m², loyer de référence ni taux du marché n'est intégré ; frais de notaire estimés selon une hypothèse affichée et modifiable. Démo avec quatre biens fictifs sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "investissement-locatif",
+      "rentabilite",
+      "cash-flow",
+      "immobilier",
+      "rendement-locatif",
+      "simulateur",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton étude s'ouvre. Décris un premier bien (prix, loyer, taxe foncière), puis complète les frais, les charges et ton crédit : rendements et cash-flow s'affichent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Particuliers qui étudient l'achat d'un bien locatif (nu, meublé, colocation, saisonnier)"
+      }
+    ]
+  },
+  {
+    "slug": "copropriete",
+    "name": "Charges et AG de copropriété",
+    "price_cents": 1500,
+    "permalink": "charges-ag-copropriete",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir ma copropriété",
+    "summary": "Appels de fonds payés ou à payer, charges par poste et régularisation, part récupérable sur le locataire, évolution sur plusieurs années, assemblées générales (ordre du jour, vote, résultat) et travaux votés avec échéancier.",
+    "description": "<h2>Chaque appel payé, chaque vote préparé.</h2><p>Copropriétaire, tu reçois toute l'année des appels de fonds, un décompte annuel, une convocation, un procès-verbal. Charges et AG de copropriété les range au même endroit : ce qui est payé, ce que coûte chaque poste, ce qui a été voté.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les appels de fonds</strong> : provisions, fonds de travaux, travaux votés ; payé ou à payer, alerte avant l'échéance ; les 4 appels trimestriels de l'exercice créés à partir du budget voté.</li><li><strong>Les charges poste par poste</strong> : recopiées du décompte annuel, avec la régularisation (charges réelles moins provisions appelées) et l'évolution sur plusieurs années en graphique.</li><li><strong>La part récupérable sur le locataire</strong> : saisie par poste, avec une aide qui propose les catégories citées par la liste officielle ; récapitulatif imprimable des charges par nature.</li><li><strong>Les assemblées générales</strong> : convocation, ordre du jour collé en une fois, majorité recopiée de la convocation, ton intention de vote, puis le résultat.</li><li><strong>Les travaux votés</strong> : ta quote-part (estimée avec tes tantièmes ou saisie), l'échéancier, chaque échéance appelée puis payée.</li><li><strong>Les documents à conserver</strong> : où est rangé chaque papier (règlement, procès-verbaux, décomptes, factures) ; exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; indique ta copropriété et tes lots avec leurs tantièmes.</li><li>Recopie le dernier appel de fonds reçu, ou génère les appels de l'exercice ; ajoute le décompte et la prochaine AG quand ils arrivent.</li></ol><p>Rien à installer. Plusieurs copropriétés avec la même clé. Achat unique, sans abonnement.</p><p><em>Outil d'aide : le règlement de copropriété, les décisions d'assemblée et les documents du syndic font foi ; il ne remplace pas un conseil juridique. Aucune règle de majorité intégrée. Repères indicatifs repris de service-public.gouv.fr (provisions trimestrielles, fonds de travaux, charges récupérables), désactivables. Démo disponible sur qm-engineering.fr/catalogue/copropriete.</em></p>",
+    "tags": [
+      "copropriete",
+      "charges",
+      "syndic",
+      "assemblee-generale",
+      "proprietaire",
+      "bailleur",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, puis indique ta copropriété et tes lots avec leurs tantièmes. Recopie ensuite le dernier appel de fonds reçu. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Copropriétaires occupants ou bailleurs, conseils syndicaux"
+      }
+    ]
+  },
+  {
+    "slug": "etat-des-lieux",
+    "name": "État des lieux d'entrée et de sortie",
+    "price_cents": 1900,
+    "permalink": "etat-des-lieux",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mes états des lieux",
+    "summary": "Pièce par pièce, un état et une photo pour chaque élément, les compteurs et les clés, puis la sortie comparée à l'entrée avec la vétusté de ta grille, les retenues proposées et un document à signer.",
+    "description": "<h2>Entrée, sortie, et ce qui a changé.</h2><p>L'état des lieux d'entrée dort dans un classeur, les photos dans un téléphone, et à la sortie la comparaison se fait de mémoire, le jour où il faut parler du dépôt de garantie. État des lieux tient les deux constats dans le même dossier et compare pour toi.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un dossier par bail</strong> : logement vide ou meublé, bailleur, mandataire, locataires, dates du bail, dépôt de garantie.</li><li><strong>Les pièces types et leurs éléments</strong> (sols, murs, plafonds, menuiseries, électricité, équipements, mobilier en meublé), tous modifiables, et 6 modèles de logement (du studio à la maison).</li><li><strong>Un état codé en un toucher</strong> : neuf, bon, usage normal, dégradé, hors service, avec un commentaire et une photo réduite sur l'appareil.</li><li><strong>Compteurs et clés</strong> : relevés d'entrée et de sortie, consommations, clés remises et rendues.</li><li><strong>La sortie comparée à l'entrée</strong> : dégradations séparées de l'usure normale, vétusté calculée d'après la grille de ton bail si tu la saisis, retenues proposées, date limite de restitution du dépôt de garantie.</li><li><strong>Un document à imprimer et signer à la main</strong>, avec une colonne entrée et une colonne sortie, et la liste de ce qu'il reste à compléter.</li><li><strong>Le locataire suivant</strong> : un nouveau dossier dont l'état d'entrée reprend l'état de sortie.</li><li><strong>Export</strong> en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton logement, choisis un modèle et note chaque élément le jour de la visite, sur tablette ou téléphone. Tes dossiers sont enregistrés en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la rédaction, pas un document juridique certifié : il ne remplace ni le bail, ni un constat de commissaire de justice, ni un conseil juridique. Aucune grille de vétusté intégrée : celle de ton bail se saisit. Délais rappelés d'après service-public.gouv.fr (consulté le 14/11/2026), modifiables. Photos limitées à 30 vignettes par défaut ; garde tes originaux. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "etat-des-lieux",
+      "location",
+      "proprietaire",
+      "bailleur",
+      "locataire",
+      "immobilier",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes états des lieux s'ouvrent. Crée ton logement, choisis un modèle de pièces, puis note chaque élément le jour de la visite. Sur ta tablette ou ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires bailleurs (location vide ou meublée), locataires, petites agences"
+      }
+    ]
   }
 ]

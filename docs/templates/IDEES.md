@@ -126,13 +126,8 @@ déjà).
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
-<<<<<<< HEAD
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
-=======
-| T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
->>>>>>> origin/main
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
@@ -170,13 +165,13 @@ déjà).
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
@@ -269,9 +264,9 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
-| Étudiant | PET | T01, T30, T08, T17, T88, T89 | T90 | 77,90 € | 25 % | 58 € | 15 € |
-| Associations et clubs | PAS | T53, T51, T42, T52, T91 | T92, T93 | 181 € | 25 % | 135 € | 34 € |
-| Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
+| Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
@@ -841,6 +836,36 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T40 | `tjm` | TJM | Calculateur de TJM freelance | 12 € |
 | T41 | `micro-entreprise` | MCE | Livre recettes-dépenses micro-entreprise | 25 € |
 | T65 | `budget-commun` | BCM | Budget commun | 15 € |
+| T16 | `demenagement` | DMN | demenagement (prévu) |
+| T21 | `voyage` | VYG | planificateur-voyage (prévu) |
+| T22 | `tableau-annuel` | RDV | tableau-annuel-roue-de-vie (prévu) |
+| T34 | `pilotage-pme` | TDB | tableau-de-bord-pme (prévu) |
+| T39 | `references-plaquette` | KRF | kit-references-plaquette (prévu) |
+| T50 | `salles` | SDR | reservation-salles (prévu) |
+| T52 | `competition` | CMP | gestion-competition (prévu) |
+| T61 | `maintenance` | GMA | maintenance-preventive (prévu) |
+| T63 | `verifications` | VRF | verifications-reglementaires (prévu) |
+| T73 | `suivi-temps` | TMP | suivi-temps-rentabilite (prévu) |
+| T74 | `propositions` | PCM | propositions-commerciales (prévu) |
+| T75 | `calendrier-editorial` | CED | calendrier-editorial (prévu) |
+| T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
+| T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
+| T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
+| T80 | `document-unique` | DRP | document-unique-evaluation-risques (prévu) |
+| T81 | `contrats` | CTR | contrats-fournisseurs (prévu) |
+| T82 | `achats` | ACH | demandes-achat-fournitures (prévu) |
+| T83 | `papiers` | DCS | papiers-du-foyer (prévu) |
+| T84 | `remboursements-sante` | RBS | remboursements-sante (prévu) |
+| T85 | `emprunt` | CPT | capacite-emprunt-comparateur-prets (prévu) |
+| T86 | `remerciements` | CDX | cadeaux-remerciements (prévu) |
+| T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
+| T88 | `notes` | NTS | notes-moyennes (prévu) |
+| T89 | `candidatures` | CAN | candidatures-etudes-stages-alternance (prévu) |
+| T90 | `memoire` | MMR | planning-memoire (prévu) |
+| T91 | `subventions` | SBV | subventions-association (prévu) |
+| T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
+| T93 | `assemblee-generale` | AGS | assemblee-generale-association (prévu) |
+| T95 | `investissement-locatif` | RNT | rentabilite-investissement-locatif (prévu) |
 
 ### T31 · Compte rendu et plan d'actions
 
@@ -2094,3 +2119,172 @@ régénérer les pages des packs à la fusion.
   de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
   Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de SBV au pack PAS
   (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T92 (cadrage délégué par Quentin, 14/11/2026)
+
+### T92 · Bénévoles et planning des créneaux (`templates/benevoles/`, préfixe BNV, 19 €)
+- Fiche détaillée : [`fiches/benevoles.md`](fiches/benevoles.md). Catalogue `pro` · thème « Associations, formation et
+  événements » ; pack visé « Associations et clubs » (PAS). Permalien prévu `benevoles-planning-creneaux`.
+- Promesse : « Chaque créneau tenu, sans trou ni doublon. » Public : associations, clubs sportifs, comités des fêtes,
+  organisateurs de festivals ou de compétitions.
+- Usage à plusieurs : une clé partagée par les responsables, prénom saisi sur l'appareil, pas de comptes ; saisies
+  simultanées fusionnées (`fusionner`), une double affectation née d'une fusion apparaît en conflit. **Pas
+  d'inscription en ligne des bénévoles en V1** (le responsable saisit les réponses).
+- Annuaire (coordonnées minimales, compétences, postes préférés et à éviter), événements créés depuis 6 modèles (33
+  postes types, créneaux types avec besoin en personnes), réponses par événement (disponible, en partie avec plages,
+  indisponible, sans réponse, maximum d'heures), affectation manuelle et suggestion (disponible, compétence,
+  équité de charge), remplissage automatique des trous (le créneau le plus contraint d'abord), conflits (double,
+  indisponible, sans pause, journée trop longue, maximum, compétence), plannings A4 par poste et par personne,
+  message à copier par bénévole, bilan des heures (part du quart le plus investi), duplication d'un événement, CSV.
+- **Aucune règle légale ni donnée datée** : repères de pause et d'heures choisis par l'association (les bénévoles ne
+  relèvent pas du Code du travail) ; RGPD (art. 5.1.c, 5.1.e, 13, 15, 17) lu sur cnil.fr le 14/11/2026 ; durée de
+  conservation choisie par l'association (24 mois par défaut, bénévoles inactifs signalés). Lien avec T51 et T52 :
+  modèle « Compétition sportive » et postes « Sport », sans lien technique.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/benevoles/?demo`, page
+  `catalogue/benevoles/`, captures `assets/templates-benevoles-*.webp`, couverture
+  `assets/templates-benevoles-couverture.png`, tests `outils/templates/benevoles.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/benevoles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-prochaine.html). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé
+  partagée par le bureau au prix d'un template individuel), fiche Gumroad et clé de licence, entrée dans
+  `communication/gumroad-a-creer.json`, ajout de BNV au pack PAS (`netlify/lib/packs.mjs`, pages des packs
+  régénérées ; BNV retiré des prévus dans `outils/packs/donnees.mjs`), carte anglaise, plannings, passage en vente.
+
+## Fiche T90 (cadrage délégué par Quentin, 14/11/2026)
+
+### T90 · Planning de mémoire ou de thèse (`templates/memoire/`, préfixe MMR, 15 €)
+
+Fiche détaillée : [`fiches/memoire.md`](fiches/memoire.md). Statut **prêt**, « Mise en vente prochaine » (démo libre
+`/templates/memoire/?demo`, page `/catalogue/memoire/`, carte `carte prochaine` du thème « Organisation et études »,
+bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans `communication/memoire/gumroad.json`, permalien
+proposé `planning-memoire`, catégorie `education`). Cible : étudiants de master, élèves ingénieurs en PFE, doctorants.
+Projet (type master, PFE, thèse ou autre ; dates de début, de rendu, de soutenance ; mots visés saisis ; mots par page ;
+jours de travail), plan hiérarchique partie / chapitre / section avec statut (à écrire, brouillon, relu, final), mots
+écrits et visés, plans de départ ; rétroplanning calculé à rebours depuis le rendu ou la soutenance (4 modèles de jalons
+types, resserrés quand le temps manque, dates fixables, jalon « fin de la rédaction ») ; rythme nécessaire en mots par
+jour de travail, rythme réel sur 14 jours (relevé quotidien du total) et date projetée ; courbe d'avancement et barres
+par statut (skill `dataviz`, palette validée) ; rendez-vous avec le directeur (points, notes, actions à échéance, ordre
+du jour à copier) ; bibliographie simple (export texte auteur-date, **aucune norme revendiquée**) ; journal de séances ;
+synthèse imprimable, exports CSV et JSON. **Aucune donnée datée ni règle d'établissement** : jalons et mots proposés
+présentés comme repères indicatifs. Le texte du mémoire n'est jamais lu. Livrables dans `communication/memoire/`
+(linkedin.md, instagram.md + carrousel 5 vues, prospects.md, gumroad.md et gumroad.json, couverture.txt,
+section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram **non
+planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régénérer les pages des packs à la fusion.
+
+## Fiche T93 (cadrage délégué par Quentin, 14/11/2026)
+
+### T93 · Assemblée générale et vie statutaire (`templates/assemblee-generale/`, préfixe AGS, 19 €)
+- Fiche détaillée : [`fiches/assemblee-generale.md`](fiches/assemblee-generale.md). Application web, 19 €, permalien
+  prévu `assemblee-generale-association`, catalogue `pro` · thème « Associations, formation et événements ». Pack :
+  « Associations et clubs » (PAS, où T93 est prévu).
+- Promesse : « Une AG en règle, sans stress. »
+- Cadrage : quatre instances (AG ordinaire, AG extraordinaire, conseil, bureau) ; **aucune règle légale intégrée** :
+  délai de convocation, quorum (fraction au moins / plus de, nombre, aucun ; pouvoirs comptés ou non ; seconde
+  convocation), pouvoirs (admis, plafond), majorités nommées (base, fraction) et durée des mandats saisis d'après
+  les statuts, valeurs de départ marquées « à vérifier » jusqu'à confirmation ; calculs en entiers. Membres votants
+  = case « cotisation à jour » ; conseil et bureau = mandats en cours. Rétroplanning daté depuis la date limite de
+  convocation ; trames originales de convocation (formelle, conviviale, conseil), de pouvoir et de PV ; feuille de
+  présence et pouvoirs vérifiés ; votes pour / contre / abstentions ; PV imprimable ; mandats avec échéances,
+  alertes et renouvellement ; archive par année ; exports CSV. Avertissement : outil d'aide, les statuts font foi,
+  ne remplace pas un conseil juridique. **RGPD** : nom, catégorie, e-mail facultatif ; suppression d'un membre.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/assemblee-generale/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/assemblee-generale/`,
+  captures `assets/templates-assemblee-generale-*.webp`, couverture `assets/templates-assemblee-generale-couverture.png`,
+  tests `outils/templates/assemblee-generale.test.mjs`. Produit `AGS` déclaré (serveur, connexion, en-têtes
+  Netlify) ; `AGS` passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` de la
+  page du pack PAS).
+- Communication prête dans `communication/assemblee-generale/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout de `AGS` aux `produits` du pack PAS (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
+  relire par Quentin : trames de convocation et de PV, hashtags Instagram hors jeux du kit.
+
+## Fiche T95 (cadrage délégué par Quentin, 14/11/2026)
+
+### T95 · Rentabilité d'un investissement locatif (`templates/investissement-locatif/`, préfixe RNT, 15 €)
+- Fiche détaillée : `fiches/investissement-locatif.md`. Promesse : « Ce bien, rentable ou pas ? » Catalogue `perso`,
+  thème « Argent » ; pack visé « Propriétaire » (PPB). Permalien prévu `rentabilite-investissement-locatif`.
+- Public : particuliers qui étudient l'achat d'un bien locatif (nu, meublé, colocation, location saisonnière).
+- Écrans : **Comparatif** (jusqu'à 5 biens, verdict, barres signées du cash-flow, côte à côte, prix maximal pour un
+  rendement visé brut ou net), **Analyse** (tuiles, cascade loyers → vacance → charges → crédit → cash-flow, détail du
+  calcul, points à vérifier par bien), **Sensibilité** (loyer − 10 %, vacance + 1 mois, taux + 1 point, cumul ; tous les
+  biens face aux mêmes chocs), **Fiche** d'analyse imprimable ; export CSV.
+- Calculs : coût total (notaire saisi ou estimé, hypothèse 8 % ancien / 3 % neuf affichée et modifiable), loyers par
+  lot ou à la nuitée, vacance en mois par an, charges (taxe foncière saisie obligatoire), crédit aux formules de T85
+  (`templates/emprunt/`), rendement brut (sur le prix) et net de charges (sur le coût total), cash-flow avant impôt,
+  effort d'épargne, prix maximal. **Aucun** taux de marché, prix au m², loyer de référence ni taux d'impôt intégré
+  (test). **Fiscalité hors calcul**, signalée partout ; avertissement « ne remplace pas un conseil en investissement ni
+  un conseil fiscal ».
+- Confidentialité : démo fictive (quatre biens sans adresse, montants et taux inventés).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/investissement-locatif/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/investissement-locatif/`, captures `assets/templates-investissement-locatif-*.webp`,
+  couverture `assets/templates-investissement-locatif-couverture.png`, tests
+  `outils/templates/investissement-locatif.test.mjs`. RNT retiré de `PREVUS` et de la liste `prevus` du pack PPB
+  (`outils/packs/donnees.mjs`), ajouté à `TEMPLATES`.
+- Communication prête dans `communication/investissement-locatif/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-en-prochaine.html). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé
+  de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de RNT au pack PPB
+  (`netlify/lib/packs.mjs`, pages des packs régénérées), carte anglaise, plannings, passage en vente du site.
+
+## Fiche T96 (cadrage délégué par Quentin, 14/11/2026)
+
+### T96 · Charges et assemblées générales de copropriété (`templates/copropriete/`, préfixe CPR, 15 €)
+- Fiche détaillée : [`fiches/copropriete.md`](fiches/copropriete.md). Catalogue `perso` · thème « Argent » ; pack visé
+  « Propriétaire » (PPB). Permalien prévu `charges-ag-copropriete`.
+- Promesse : « Chaque appel payé, chaque vote préparé. » Public : copropriétaires occupants ou bailleurs, membres de
+  conseil syndical. Plusieurs copropriétés par clé, aucune donnée personnelle demandée.
+- Lots et tantièmes (quote-part estimée), appels de fonds (provisions, fonds de travaux, échéances de travaux votés)
+  payés ou à payer, 4 appels trimestriels générés depuis le budget, décompte annuel par poste (15 postes types),
+  régularisation (charges réelles − provisions appelées), part récupérable sur le locataire saisie par poste (aide
+  limitée aux catégories citées par F947), répartition par poste et évolution sur plusieurs exercices (graphiques
+  dataviz), AG (convocation, ordre du jour collé, majorité **saisie**, intention de vote, résultat), travaux votés avec
+  échéancier, documents à conserver (référence de rangement, aucun fichier), alertes, CSV, impressions.
+- **Aucune règle de majorité intégrée**. Repères sourcés service-public.gouv.fr, consultés le 14/11/2026,
+  désactivables : F20586 (vérifiée le 04/08/2026 : provisions au quart du budget, 1er jour du trimestre), F34026
+  (vérifiée le 09/06/2026 : fonds de travaux ≥ 5 % du budget prévisionnel), F947 (vérifiée le 15/04/2025 : liste des
+  charges récupérables, décret n° 87-713). Avertissement : outil d'aide, le règlement de copropriété et le syndic font
+  foi, ne remplace pas un conseil juridique.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/copropriete/?demo`, page
+  `catalogue/copropriete/`, captures `assets/templates-copropriete-*.webp`, couverture
+  `assets/templates-copropriete-couverture.png`, tests `outils/templates/copropriete.test.mjs`). Version anglaise en
+  attente.
+- Communication prête dans `communication/copropriete/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte-prochaine.html, couverture.txt). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de CPR au pack PPB
+  (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T94 (cadrage délégué par Quentin, 14/11/2026)
+
+### T94 · État des lieux d'entrée et de sortie (`templates/etat-des-lieux/`, préfixe ETD, 19 €)
+- Fiche détaillée : [`fiches/etat-des-lieux.md`](fiches/etat-des-lieux.md). Application web, permalien prévu
+  `etat-des-lieux`, catalogue `perso` · thème « Argent ». Pack visé : « Propriétaire » (PPB).
+- Promesse : « Entrée, sortie, et ce qui a changé. » Pour les propriétaires bailleurs (vide ou meublé), les
+  locataires et les petites agences.
+- Fonctions : un dossier par bail (logement, parties, mandataire, dates, dépôt de garantie), 12 types de pièce et
+  leurs éléments (mobilier ajouté en meublé), 6 modèles de logement, état codé en un toucher (neuf, bon, usage
+  normal, dégradé, hors service) avec commentaire et photo, compteurs et clés, sortie comparée à l'entrée (usure
+  normale distinguée des dégradations), vétusté selon la grille **saisie** (aucune intégrée), retenues proposées,
+  date limite de restitution du dépôt et délai de rectification de l'entrée, document imprimable à signer (une ou
+  deux colonnes), points à compléter, « Nouveau locataire » (entrée = sortie précédente), export CSV.
+- Photos : vignettes JPEG réduites dans le navigateur (≤ 20 000 caractères), synchronisées avec le dossier, une par
+  élément et par constat, 30 par compte (réglable jusqu'à 60) ; originaux non gardés (dit à l'utilisateur).
+- Marques : outil d'aide, **pas un document juridique certifié** ; délais (1 et 2 mois, 10 jours) relevés sur
+  service-public.gouv.fr (F31270, F33671, F31269) le 14/11/2026, modifiables ; démo fictive (« Claire Exemple »,
+  « Ville-Exemple », « Agence Démo Immobilier »).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/etat-des-lieux/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/etat-des-lieux/`, captures
+  `assets/templates-etat-des-lieux-*.webp`, couverture `assets/templates-etat-des-lieux-couverture.png`, tests
+  `outils/templates/etat-des-lieux.test.mjs`. Produit `ETD` déclaré (serveur, connexion, en-têtes Netlify) ; `ETD`
+  passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPB).
+- Communication prête dans `communication/etat-des-lieux/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  `ETD` aux `produits` du pack PPB (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise,
+  plannings, passage en vente du site.

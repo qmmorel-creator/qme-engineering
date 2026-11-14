@@ -6,12 +6,14 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
-  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
   PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
-  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
   BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
+  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
+  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
+  AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  ETD: { slug: 'etat-des-lieux', prix: 1900, phrase: 'Pièce par pièce, photos, sortie comparée à l’entrée et document à signer.', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
@@ -19,10 +21,13 @@ export const TEMPLATES = {
   DRP: { slug: 'document-unique', prix: 2900, phrase: 'Risques par unité de travail, cotation et plan d’actions.', pour: 'pro' },
   ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
+  MMR: { slug: 'memoire', prix: 1500, phrase: 'Plan, rétroplanning et mots par jour jusqu’au rendu.', pour: 'perso' },
   RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
+  BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', pour: 'pro' },
   ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', pour: 'pro' },
+  CPR: { slug: 'copropriete', prix: 1500, phrase: 'Appels de fonds, charges, régularisation et votes en AG.', pour: 'perso' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -92,6 +97,7 @@ export const TEMPLATES = {
   CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', pour: 'pro' },
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', pour: 'perso' },
   CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', pour: 'perso' },
+  RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -100,12 +106,6 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
-  BNV: { nom: 'Bénévoles et planning des créneaux', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.' },
-  AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
-  ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
-  RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
-  CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
@@ -284,9 +284,10 @@ export const PAGES = {
       ['PGS', 'Gardez le rythme de lecture des œuvres au programme, objectif au jour près.'],
       ['NTS', 'Suivez vos notes et sachez quelle note viser au prochain partiel.'],
       ['CAN', 'Pilotez vos candidatures : pièces, dates limites, relances et entretiens.'],
+      ['MMR', 'Menez le mémoire jusqu’au rendu : plan, jalons, rythme d’écriture et rendez-vous.'],
     ],
     arguments: ['La répétition espacée, une méthode de mémorisation éprouvée, sans fiche à refaire', 'Sur le téléphone, toujours à portée de main', 'Un achat unique jusqu’à l’examen, et après'],
-    prevus: ['MMR'],
+    prevus: [],
   },
   PAS: {
     couleur: 'rouge', cibles: ['associations'],
@@ -299,9 +300,11 @@ export const PAGES = {
       ['TRS', 'Prévoyez la trésorerie de la saison et voyez venir les mois creux.'],
       ['CMP', 'Organisez la compétition : inscriptions, vagues, scores et classement affiché en direct.'],
       ['SBV', 'Suivez chaque demande de subvention, du dépôt au bilan, sans rater d’échéance.'],
+      ['BNV', 'Planifiez les bénévoles par créneau, sans trou ni doublon.'],
+      ['AGS', 'Préparez l’assemblée générale : convocation, quorum, votes et procès-verbal.'],
     ],
-    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['BNV', 'AGS'],
+    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],
@@ -315,9 +318,12 @@ export const PAGES = {
       ['GST', 'Encaissez les loyers, éditez les quittances et révisez le loyer sans erreur.'],
       ['SNH', 'En cas de sinistre, déclarez, chiffrez et suivez le dossier jusqu’à l’indemnisation.'],
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
+      ['RNT', 'Avant d’acheter, comparez rendement et cash-flow de plusieurs biens.'],
+      ['CPR', 'Suivez appels de fonds, charges récupérables et votes de l’assemblée générale.'],
+      ['ETD', 'Faites l’état des lieux pièce par pièce, photos et comparaison entrée-sortie comprises.'],
     ],
-    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD', 'RNT', 'CPR'],
+    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],

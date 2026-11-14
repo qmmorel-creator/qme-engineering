@@ -1,0 +1,16 @@
+{
+  "name": "Rentabilité d'un investissement locatif · QME",
+  "short_name": "Locatif",
+  "description": "Coût total, loyers, charges et crédit : rendement brut et net, cash-flow avant impôt et effort d'épargne de plusieurs biens comparés.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
