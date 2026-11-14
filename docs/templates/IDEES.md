@@ -133,11 +133,11 @@ déjà).
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
-| T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | en cours | 45 € | L | P2 | Backlog Quentin n° 33 |
+| T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | en cours | 49 € | L | P2 | Backlog Quentin n° 38 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
@@ -456,6 +456,8 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T27 | `gestion-locative` | GST | gestion-locative (prévu) |
 | T33 | `bascule` | BSC | pilotage-bascule (prévu) |
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
+| T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
+| T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -512,6 +514,8 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-123 | T27 gestion-locative | 2027-02-15 | 12:15 |
 | LI-124 | T33 bascule | 2027-01-30 | 08:30 |
 | LI-125 | T55 gestion-classe | 2027-02-17 | 12:15 |
+| LI-126 | T56 emploi-du-temps | 2027-02-19 | 08:30 |
+| LI-127 | T60 parcs-multi-sites | 2027-02-21 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -617,6 +621,32 @@ consultés, choix de calcul (moyenne annuelle des moyennes de périodes, bonus s
 moyenne, arrondi des compétences) ; T33, les 5 séquences types fictives et le libellé « point d'arrêt », accès
 unique sans rôles ni lecture seule, impression vérifiée dans le code seulement ; organismes de `prospects.md`
 marqués « à vérifier ».
+
+**Lot du 14/11/2026, sixième (T56, T60)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/emploi-du-temps/` (EDT, 45 €, démo `/templates/emploi-du-temps/?demo`, page `/catalogue/emploi-du-temps/`) et
+`templates/parcs-multi-sites/` (PRK, 49 €, démo `/templates/parcs-multi-sites/?demo`, page
+`/catalogue/parcs-multi-sites/`) ; fiches `fiches/emploi-du-temps.md` et `fiches/parcs-multi-sites.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md + carrousel `instagram/`, prospects.md, gumroad.md et gumroad.json,
+cartes FR/EN). Noms et prix repris du tableau, à confirmer par Quentin avant la création des fiches Gumroad (permaliens
+proposés `emploi-du-temps-etablissement` et `pilotage-parcs-multi-sites`, catégories à vérifier). Publications insérées
+le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé » LI-126 (T56, ven.
+19/02, 08:30) et LI-127 (T60, dim. 21/02, 12:15) ; Instagram « Prêt » IG-81 (T56, 20/02) et IG-82 (T60, 22/02), à
+relire par Quentin avant « Programmé ». Couvertures et carrousels déposés dans Drive (IDs dans les colonnes Remarque et
+P des plannings). T60 est **confidentiel** : démo entièrement fictive (sites inventés, villes réelles utilisées seulement
+comme repères géographiques, à remplacer par des villes fictives si Quentin le préfère), aucune donnée ni chiffre réel,
+carte schématique en SVG sans fond de carte ni service externe ; « modèle tableur » traité par import et export CSV
+(`;`, UTF-8 avec BOM) et deux modèles vides téléchargeables, pas de fichier tableur séparé. T56 : **RGPD** limité au nom
+des formateurs et des groupes, aucun nom d'apprenant (effectif chiffré seulement), avertissement dans les Réglages.
+**À faire valider par Quentin** : T56, périmètre V1 (placement manuel seulement, pas de demi-groupes hiérarchiques, une
+séance = un groupe, accès unique sans comptes formateurs), alternance A/B qui saute les semaines fermées, « réalisé » =
+séance terminée, limite de taille (environ 200 séances par semaine sur l'année, purge des semaines passées), nom de
+l'organisme fictif de la démo ; T60, périmètre léger (aucune périodicité réglementaire en base, pas de pièces jointes
+ni de bons d'intervention, accès sans droits par personne), thème « Équipements et véhicules », vue 1 du carrousel
+(« trente équipements » alors que la démo en compte 29) ; hashtags hors jeux habituels (LinkedIn des deux, Instagram de
+T60). Non vérifiés : article L3133-1 du Code du travail (jours fériés repris du template congés), impression papier
+réelle, Safari et Firefox réels (émulation Chromium seulement), ouverture des CSV dans Excel ou LibreOffice, organismes
+de `prospects.md` (« à vérifier »).
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
