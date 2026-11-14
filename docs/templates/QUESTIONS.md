@@ -54,8 +54,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T07 Carnet de musculation | 19 € | fitness-and-health |
 | T10 Carnet de voiture | 13 € | personal-finance |
 | T27 Gestion locative | 20 € | personal-finance |
-| T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership |
-| T55 Gestion de classe | 25 € | — |
+| T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership (à vérifier) |
+| T55 Gestion de classe | 25 € | `gestion-classe`, education (catégorie à vérifier) |
 | T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement`, education ou business-and-money (à vérifier) |
 | T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites`, catégorie à choisir |
 | T09 Garde-manger | 12 € | `garde-manger-dates-peremption`, food-and-cooking (à vérifier) |
@@ -111,8 +111,6 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
   LI-122 (sam. 13/02), LI-124 (sam. 30/01), LI-127 (T60, dim. 21/02), LI-130 (T20, sam. 27/02). Décaler ?
-- Images à déposer à la main dans Drive : lot 5 (2 couvertures et 10 vues de carrousel ; voir la colonne
-  Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
   (ancien libellé « Prochaine échéance »).
 - Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8, lot 9, T54, T58) : les garder ? Texte LinkedIn de T58
@@ -164,9 +162,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T27 Gestion locative** : articles autres que l'art. 21 de la loi de 1989, liste des charges récupérables
   et gel des loyers des logements E à vérifier.
 - **T33 Bascule** : 5 séquences types fictives et libellé « point d'arrêt » ; accès unique partagé sans rôles ;
-  impression non vérifiée en aperçu PDF.
-- **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé ; moyenne annuelle =
-  moyenne des périodes ; bonus compté seulement s'il fait monter la moyenne.
+  impression non vérifiée en aperçu PDF ; bouton « Je suis intéressé(e) » non cliqué en test.
+- **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé (à relire mot pour mot) ;
+  Éduscol (403) et cnil.fr non consultés ; moyenne annuelle = moyenne des périodes, chacune pesant autant ;
+  bonus compté seulement s'il fait monter la moyenne ; bilan d'une compétence = moyenne des positionnements de
+  la période, arrondie (,5 vers le haut) ; classes dans l'ordre de création ; page `/confidentialite/` à
+  compléter selon ta décision RGPD.
 - **T56 Emploi du temps** : placement manuel ; demi-groupes non rattachés à leur classe ; une séance = un
   groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu (fériés repris du template
   congés) ; alternance A/B qui saute les semaines entièrement fermées ; « réalisé » = séance terminée, sans
@@ -261,6 +262,9 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 9.
 
 ## Tranché
+
+- 14/11 : images du lot 5 déposées dans Drive (LI-124, LI-125, IG-79, IG-80) ; IG-79 et IG-80 passées en
+  « Prêt », à relire avant « Programmé » (IG-80 seulement après la décision RGPD de T55).
 
 - 14/11 : IG-67 à IG-70 (lot 2) passés en « Programmé » (« Publie »).
 - 14/11 : noms et prix du lot 2 (T26 15 €, T38 12 €, T43 19 €, T46 19 €), LI-113 maintenue, points « à

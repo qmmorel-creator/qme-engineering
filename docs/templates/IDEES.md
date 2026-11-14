@@ -713,11 +713,10 @@ prix repris du tableau de bord, à confirmer par Quentin avant la création des 
 proposés `pilotage-bascule` et `gestion-classe`, catégories `business-and-money/management-and-leadership` et
 `education` à vérifier). Publications insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad
 est en ligne » : LinkedIn « Programmé » LI-124 (T33, sam. 30/01 : créneau donné par la règle, à décaler si
-besoin) et LI-125 (T55, 17/02) ; Instagram « À préparer » IG-79 (T33, 31/01) et IG-80 (T55, 18/02).
-**Images non déposées dans Drive** (envoi de fichiers trop lourd depuis la session) : couvertures
-`assets/templates-<slug>-couverture.png` à déposer sous `LI-124-bascule.png` et `LI-125-gestion-classe.png`,
-carrousels `communication/<slug>/instagram/<slug>-1…5.png` sous `IG-79-bascule-1…5.png` et
-`IG-80-gestion-classe-1…5.png`, IDs en colonne P, puis statut « Prêt » (consigne dans la colonne Remarque).
+besoin) et LI-125 (T55, 17/02) ; Instagram IG-79 (T33, 31/01) et IG-80 (T55, 18/02).
+Images déposées dans Drive le 14/11 (couvertures `LI-124-bascule.png` et `LI-125-gestion-classe.png`,
+carrousels `IG-79-bascule-1…5.png` et `IG-80-gestion-classe-1…5.png`, IDs en colonne P) : IG-79 et IG-80 passées
+en « Prêt », à relire par Quentin avant « Programmé ».
 **T55 : point bloquant RGPD** (données d'élèves mineurs hébergées en ligne par QME) à trancher par Quentin
 avant toute mise en vente et avant LI-125 / IG-80 : options détaillées dans `fiches/gestion-classe.md`
 (minimisation déjà en place : prénom et initiale ou pseudonyme, aucun champ sensible, avertissements,
