@@ -1,0 +1,27 @@
+{
+  "slug": "papiers",
+  "name": "Papiers du foyer",
+  "price_cents": 1500,
+  "permalink": "papiers-du-foyer",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mes papiers",
+  "summary": "Où est chaque papier du foyer, combien de temps le garder (durées de service-public.gouv.fr, datées), ce qui peut être jeté, les pièces d'identité à renouveler, et une fiche « en cas d'urgence » pour un proche.",
+  "description": "<h2>Chaque papier a sa place.</h2><p>Le passeport avant un voyage, l'avis d'impôt pour un dossier de location, le bail pour l'état des lieux : c'est toujours le même papier qu'on cherche au mauvais moment. Et au moment de trier, la même question : combien de temps faut-il garder ça ? Papiers du foyer te dit où est chaque document, jusqu'à quand le garder, et ce qu'il faut renouveler.</p><h3>Ce que tu obtiens</h3><ul><li><strong>« Où est… ? » en une recherche</strong> : tape « passeport Léa » ou « taxe foncière », l'outil répond « Pochette rouge, tiroir de la commode ». Chaque document a son emplacement (classeur, boîte, tiroir, dossier du cloud, notaire) et une précision.</li><li><strong>77 documents types en 9 catégories</strong> : identité, famille, logement, impôts, banque, santé, travail, véhicule, assurances, avec la durée de conservation de la fiche officielle de service-public.gouv.fr, datée et modifiable document par document.</li><li><strong>« Peut être jeté » calculé</strong> à partir de la date du document ou de l'événement qui compte (fin du bail, clôture du compte, fin du contrat) ; liste à trier imprimable.</li><li><strong>Les renouvellements à temps</strong> : carte d'identité, passeport, titre de séjour, contrôle technique, échéance d'assurance ; tu saisis la date, l'outil te prévient des mois avant.</li><li><strong>La fiche « en cas d'urgence »</strong> : les documents essentiels de chaque personne et où ils sont, avec un mot pour un proche, à imprimer et à confier.</li><li><strong>Un inventaire imprimable</strong> par emplacement et un export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique les prénoms du foyer et ton premier emplacement, coche les documents que tu as : ton inventaire est créé. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Durées de conservation : fiche « Durée de conservation des papiers » de service-public.gouv.fr (vérifiée le 13 octobre 2026), durées minimales indicatives, pas un conseil juridique. Aucune pièce d'identité stockée : l'outil note où est le document, jamais son contenu ni son numéro. Rappels visibles à l'ouverture (aucun e-mail envoyé). Démo avec un foyer fictif sur qm-engineering.fr/catalogue/papiers.</em></p>",
+  "tags": [
+    "papiers",
+    "administratif",
+    "classement",
+    "famille",
+    "budget",
+    "organisation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes papiers du foyer s'ouvrent. Indique les prénoms du foyer, ton premier emplacement, coche les documents que tu as : ton inventaire est prêt. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Particuliers et familles" }
+  ]
+}
