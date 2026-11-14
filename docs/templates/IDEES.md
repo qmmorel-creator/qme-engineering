@@ -98,8 +98,8 @@ déjà).
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | en cours | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T19 | Suivi du bébé | Famille | Jeunes parents | en cours | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T19 | Suivi du bébé | Famille | Jeunes parents | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
@@ -127,7 +127,7 @@ déjà).
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 <<<<<<< HEAD
-| T49 | Matrice compétences et formations | RH | Responsables formation, managers | en cours | 25 € | S | P3 | Backlog Quentin n° 25 |
+| T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 =======
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
@@ -141,7 +141,7 @@ déjà).
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
-| T59 | Progression pédagogique | Éducation | Enseignants, formateurs | en cours | 15 € | S | P3 | Backlog Quentin n° 36 |
+| T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
@@ -273,9 +273,9 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
-| Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
+| Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
-| Enseignant et formateur | PNS | T55, T56 | T59, T58 | 70 € | 10 % | 63 € | 16 € |
+| Enseignant et formateur | PNS | T59, T55, T56 | T58 | 85 € | 15 % | 72 € | 18 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
@@ -538,6 +538,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
 | T44 | `tva` | TVA | suivi-tva (prévu) |
+| T49 | `competences` | FRM | matrice-competences-formations (prévu) |
+| T59 | `progression` | PRG | progression-pedagogique (prévu) |
+| T18 | `potager` | PTG | calendrier-potager (prévu) |
+| T19 | `bebe` | BBE | suivi-bebe (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -600,6 +604,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-129 | T17 lecture | 2027-02-25 | 08:30 |
 | LI-130 | T20 animal | 2027-02-27 | 12:15 |
 | LI-131 | T44 tva | 2027-03-01 | 12:15 |
+| LI-132 | T49 competences | 2027-03-04 | 08:30 |
+| LI-133 | T59 progression | 2027-03-06 | 12:15 |
+| LI-134 | T18 potager | 2027-03-08 | 12:15 |
+| LI-135 | T19 bebe | 2027-03-10 | 08:30 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -784,6 +792,39 @@ impression papier réelle, Safari réel (émulation Chromium seulement) ; organi
 La capture et la couverture de T44 montrent encore « Prochaine échéance 15/10 » sur la tuile d'une échéance en retard
 (libellé corrigé depuis en « Échéance en retard »).
 
+**Lot du 14/11/2026, neuvième (T49, T59, T18, T19)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/competences/` (FRM, 25 €, démo `/templates/competences/?demo`, page `/catalogue/competences/`),
+`templates/progression/` (PRG, 15 €, démo `/templates/progression/?demo`, page `/catalogue/progression/`),
+`templates/potager/` (PTG, 13 €, démo `/templates/potager/?demo`, page `/catalogue/potager/`) et `templates/bebe/` (BBE,
+13 €, démo `/templates/bebe/?demo`, page `/catalogue/bebe/`) ; fiches `fiches/<slug>.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md + carrousel `instagram/`, prospects.md, gumroad.md et gumroad.json,
+cartes FR/EN, couverture.txt, integration.md, qui détaille les points ci-dessous). Préfixe `PRG` (et non `SQC`) et
+`BBE`, réservés par les packs : T59 rejoint le pack Enseignant et formateur, T19 le pack Famille ; T49 et T18 ne sont
+rattachés à aucun pack. Thèmes du catalogue : T49 « Organisation et réunions », T59 « Associations, formation et
+événements », T18 « Organisation et études », T19 « Santé et forme ». Publications insérées le 14/11 avec la remarque
+« ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé » LI-132 (T49, jeu. 04/03, 08:30), LI-133
+(T59, sam. 06/03, 12:15), LI-134 (T18, lun. 08/03, 12:15) et LI-135 (T19, mer. 10/03, 08:30) ; Instagram « Prêt » IG-87
+(T49, 05/03), IG-88 (T59, 07/03), IG-89 (T18, 09/03) et IG-90 (T19, 11/03), à relire par Quentin avant « Programmé ».
+Couvertures et carrousels déposés dans Drive (IDs dans les colonnes Remarque et P des plannings).
+Sources : T18, **aucune période de culture ni association intégrée** (seule source publique trouvée, DRAAF
+Auvergne-Rhône-Alpes, écartée pour licence contradictoire et auteur tiers) ; T19, **aucune courbe de croissance de
+référence** (OMS : CC BY-NC-SA 3.0 IGO, usage commercial soumis à autorisation ; AFPA–Inserm 2018 : aucune licence
+trouvée) ; T49 et T59, bases rédigées pour QME sans source externe.
+**À faire valider par Quentin** : prix, noms, permaliens et catégories Gumroad des quatre ; T19, **RGPD** (vente d'un
+outil qui héberge des données de santé d'enfants, consentement explicite repris de T04, certification HDS non vérifiée,
+paragraphe pour `/confidentialite/` proposé dans `communication/bebe/integration.md`, non appliqué), absence de courbes
+ou demande d'autorisation, numéros d'urgence 15 et 112 dans l'avertissement, fusion des saisies de deux appareils
+(dernière modification gagnante, par élément) ; T18, choix de ne fournir aucune date (promesse « vos dates »), rotation
+par défaut à 1 an, familles botaniques de la base ; T49, application web au lieu du tableur seul, contenu du référentiel
+et des 8 compétences critiques, seuil de couverture 2 et réévaluation à 12 mois, une clé partagée sans droits par
+personne ; T59, choix de calcul (prévu posé à la suite sans répartir la réserve, séquence en cours plafonnée, retard en
+séances = heures ÷ durée moyenne d'un créneau), alternance A/B qui saute les semaines sans cours, Lundi de Pentecôte sans
+cours par défaut ; hashtags hors jeux du kit (les quatre). Non vérifiés : API de data.gouv.fr (T18) ; référentiel CNIL
+RH (T49) ; taxonomie de Bloom sur une source primaire et article L3133-1 (T59) ; impression papier réelle, Safari et
+Firefox réels (émulation Chromium seulement), ouverture des CSV dans un tableur ; organismes de `prospects.md`
+(« à vérifier »).
+
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
 Décision de Quentin : les cinq P1 de taille S sont développés d'un bloc, sans validation intermédiaire
@@ -942,8 +983,8 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T15 | Mariage : budget, prestataires, invités et RSVP, plan de table, rétroplanning 12 mois | Rétroplanning type sur 12 mois, postes de budget | Organisateur de mariage (artefact client) | Backlog n° 28 : 29 €, M, P1 ; forte demande grand public. Événementiel pro : T51. RSVP par les invités = usage partagé à concevoir. **RGPD** (liste d'invités). |
 | T16 | Déménagement : avancement, inventaire des cartons | Checklist sur 8 semaines, démarches types | — | Démarches : vérifier qu'aucune n'est datée. |
 | T17 | Suivi de lecture : statistiques, objectifs | Genres, objectifs annuels, notation | — | — |
-| T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : semis, récolte, associations | — | Source des données de culture à vérifier. |
-| T19 | Suivi du bébé : repas, sommeil, couches, courbes | Courbes de référence poids et taille (source à vérifier) | — | **médical** : avertissement ; source et licence des courbes. **RGPD** : données de santé d'un enfant hébergées en ligne. |
+| T18 | Calendrier du potager : semis selon les cultures choisies | 60 légumes : nom latin et famille botanique (sans périodes) | — | Aucune période ni association intégrée : seule source publique trouvée (DRAAF Auvergne-Rhône-Alpes, PDF « Calendrier des semis, plantations et récoltes », consulté le 14/11/2026) écartée, licence contradictoire (pied de page etalab-2.0, mentions légales « reprise conditionnée à l'accord de l'auteur ») et auteur probablement tiers ; rien sur data.gouv.fr. Base : 60 légumes avec nom latin et famille botanique (APG IV, connaissance générale) ; fenêtres et voisins saisis par l'utilisateur. |
+| T19 | Suivi du bébé : repas, sommeil, couches, courbes | Aucune courbe de référence intégrée | — | **médical** : avertissement partout, aucune norme ni alerte. Courbes : normes OMS sous CC BY-NC-SA 3.0 IGO (usage commercial soumis à autorisation, page copyright OMS consultée le 14/11/2026) ; courbes AFPA–Inserm/CRESS–CompuGroup Medical 2018 sans licence de réutilisation trouvée (communiqués AFPA et Inserm du 05/03/2018) ; mesures saisies tracées seules, sans percentile. **RGPD** : données de santé d'un enfant hébergées en ligne, consentement explicite avant tout enregistrement (repris de T04), à trancher par Quentin avant la vente. |
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. Fait (14/11/2026) : aucun calendrier intégré (modèles de soins = noms seuls, intervalles saisis d'après le vétérinaire), avertissement médical dans l'application, la page catalogue et la fiche Gumroad ; aucune source vétérinaire intégrée, donc rien de daté. |
 | T21 | Planificateur de voyage : itinéraire par étapes, lieu de chaque nuit (hébergement, adresse, arrivée/départ, statut réservé ou à réserver, montant et acompte), activités par jour avec horaire et prix, transports entre étapes, vue jour par jour et carte texte des étapes, budget prévu/réel par poste et par personne, dépenses partagées et « qui doit quoi », listes de bagages, documents à prévoir (cases à cocher) | Listes de bagages par type de séjour ; postes de budget | — | Demande Quentin 13/11/2026 fusionnée (planificateur de voyage). Dépenses partagées : moteur commun avec T65. Aucune réservation ni lien vers une plateforme : saisie et impression uniquement. Formalités (passeport, visa, santé) : renvoi à vérifier sur les sources officielles, rien d'intégré. Argent : avertissement. |
 | T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
@@ -972,7 +1013,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T46 | Checklists par rôle, responsables, échéances de J-15 à J+90, restitution du matériel | Checklists d'arrivée et de départ par rôle | Poste central | **RGPD** (salariés). Couplé à T45. |
 | T47 | Affectation par personne et projet en heures par semaine, taux de charge (temps partiel, absences, fériés déduits), conflits, postes à couvrir, vues semaine et mois, disponibles la semaine prochaine | 6 modèles d'équipe (rôles, compétences, postes) ; repères de durée L3121-27, L3121-20, L3121-22 datés et paramétrables | Équipes et staffing (outil interne) : mécanique seulement | Fiche détaillée : `fiches/planning-equipe.md`. Une clé partagée par les managers, saisies simultanées fusionnées (pas de comptes séparés en V1). **RGPD** : aucune donnée de santé, export, effacement, suppression. **confidentiel** : aucune équipe ni personne de l'outil interne reprise, démo fictive. **daté** : repères de durée relevés le 14/11/2026. |
 | T48 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
-| T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
+| T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | Référentiel générique de 44 compétences en 8 domaines (8 critiques) et 9 modèles de postes, rédigé pour QME sans source externe | — | Backlog : tableur seul (fait en application web ; modèle tableur non fait, à trancher). **RGPD** : données minimales (prénom et initiale, poste, équipe, niveaux), aucune donnée sensible, « une évaluation n'est jamais une sanction », effacement de la fiche au départ, rappel CNIL général à vérifier. Pas un outil de conformité. Aucune donnée datée. |
 | T50 | Ressources, créneaux, conflits, vue jour | Types de ressources, équipements de salle, jours fériés calculés | Planner horaire | Usage à plusieurs tranché le 14/11/2026 : une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes en V1, conflits refusés (y compris entre deux appareils). Fiche en fin de document. **RGPD** (noms des personnes qui réservent). |
 | T51 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T54. **RGPD** (invités). |
 | T52 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
@@ -982,7 +1023,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T56 | Classes, formateurs, salles, créneaux, détection des conflits, vues par ressource | à définir | Grille de planning, planner horaire (outil interne) | Pas d'optimisation automatique en V1. **RGPD** (formateurs, apprenants). |
 | T57 | Véhicules, kilométrage, entretiens, contrôles techniques, moniteurs, planning de leçons, coût par heure | Intervalles d'entretien types | Ma voiture en leasing | Demandé explicitement. Base commune avec T29. **daté** (contrôle technique). **RGPD** (élèves, moniteurs). Format : application + modèle tableur. |
 | T58 | Banque de questions taguée, génération de quiz, correction, statistiques | à définir | Banque de questions d'élèves (artefact client) | Contenu de l'artefact non repris. **RGPD** si résultats nominatifs. |
-| T59 | Séquences, séances, objectifs, avancement réel et prévu | à définir | Jalons à plage | **confidentiel** : artefact professionnel ; mécanique seulement. |
+| T59 | Séquences, séances, objectifs, avancement réel et prévu | 5 modèles de structure génériques, déroulé type de séquence, 73 verbes d'objectifs selon la taxonomie de Bloom révisée (rédigés pour QME), fériés calculés ; aucun programme officiel ni calendrier de vacances | Jalons à plage | **confidentiel** : artefact professionnel ; mécanique seulement (fenêtres de fin des séquences) ; démo fictive ; aucune donnée d'élève. |
 | T60 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Pilotage de parcs (artefact professionnel) | **confidentiel** : aucune donnée, nom de site ni chiffre ; exemples fictifs (immobilier, équipements). Format : application + modèle tableur. |
 | T61 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Artefacts professionnels de maintenance | **confidentiel** : mécanique seulement, aucune donnée ; exemples fictifs. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T63. |
 | T62 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : tableur seul. |
