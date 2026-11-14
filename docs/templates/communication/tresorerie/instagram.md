@@ -79,3 +79,24 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 Votre trésorerie, vous la regardez combien de mois à l'avance ?
 
 #Trésorerie #TPE #Entrepreneur #Indépendant #OutilsSurMesure
+
+
+---
+
+## Version finale (15/11/2026) · IG-20
+
+Doc : https://docs.google.com/document/d/1e2NKcFPG_6uShi1WTTd1rJ77e1G5twzr6fn-0lsCRFI/edit
+
+Votre trésorerie, vous la voyez combien de mois à l'avance ?
+
+Un achat de matériel, une échéance annuelle et un client qui paie en retard tombent le même mois. Vu à l'avance, c'est une décision à prendre. Vu le jour même, c'est une urgence.
+
+La Trésorerie prévisionnelle projette 12 mois glissants : encaissements et décaissements prévus, ponctuels ou récurrents, réalisé saisi en regard du prévu, trois scénarios et un seuil d'alerte. Le mois à surveiller apparaît tout de suite.
+
+37 catégories types et 4 profils d'activité pour démarrer. Ce n'est pas un logiciel comptable. Achat unique, 29 €.
+
+Relié à vos factures et à vos devis signés ? Je construis la version sur mesure.
+
+Démo libre avec un atelier fictif, et contact : lien en bio. Enregistrez le post pour votre prochain point trésorerie.
+
+#Trésorerie #TPE #Entrepreneur #Indépendant #OutilsSurMesure

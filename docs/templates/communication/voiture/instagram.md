@@ -88,3 +88,22 @@ Démo libre et contact : lien en bio.
 Votre voiture vous coûte combien au kilomètre, à votre avis ?
 
 #BudgetFamilial #Organisation #Budget #Voiture #OutilsNumériques
+
+
+---
+
+## Version finale (15/11/2026) · IG-77
+
+Doc : https://docs.google.com/document/d/1FFpYZmC7ir4lbfLQ8lfV6nWdhlMbicRYu1HRjHGwiRw/edit
+
+Le prix du plein ne dit pas ce que coûte votre voiture. Son coût au kilomètre, si.
+
+Entre la pompe, le garage et l'assurance, les dépenses s'éparpillent, et le coût réel reste une impression. Le Carnet de voiture tire de vos pleins la consommation réelle, le coût mensuel et le coût au kilomètre. Il calcule aussi chaque entretien à la date ou au kilométrage, le premier atteint, et le contrôle technique d'après la règle officielle, source affichée.
+
+Vos prix, saisis par vous. Le carnet du constructeur prime. Historique imprimable pour la revente. Le template sera bientôt en vente.
+
+Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec trois voitures fictives, et contact : lien en bio. Enregistrez le post pour votre prochain passage au garage.
+
+#Voiture #Budget #BudgetFamilial #Organisation

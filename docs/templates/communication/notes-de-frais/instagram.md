@@ -86,3 +86,22 @@ Démo libre et contact : lien en bio.
 Vos tickets, vous les gardez où : enveloppe, photo, boîte mail ?
 
 #NotesDeFrais #Indépendant #Freelance #Comptabilité #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · IG-67
+
+Doc : https://docs.google.com/document/d/1dOmKNogy5lB_KkMF0G_EheNOVwqUF2LdHIQ22IbiKDQ/edit
+
+Avant : une enveloppe de tickets et des trajets oubliés.
+
+Après : la note du mois prête en PDF, suivie jusqu'au remboursement.
+
+Les Notes de frais gardent chaque dépense avec son justificatif et l'endroit où il est rangé. Elles valorisent vos trajets au barème kilométrique fiscal, sur le total de l'année, véhicule par véhicule. Le barème est officiel, daté et modifiable. Aucun envoi automatique : c'est un outil d'aide, il ne remplace pas votre comptable.
+
+Le template sera bientôt en vente. Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une salariée fictive, et contact : lien en bio. À envoyer au collègue qui rend toujours sa note à la dernière minute.
+
+#NotesDeFrais #Indépendant #Freelance #Comptabilité

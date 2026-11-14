@@ -79,3 +79,22 @@ Démo libre avec trois opérations fictives, et contact : lien en bio.
 Sur vos opérations, qui envoie les relances de visa ?
 
 #BTP #MaîtriseDŒuvre #Chantier #GestionDeProjet #OutilsSurMesure
+
+
+---
+
+## Version finale (15/11/2026) · IG-12
+
+Doc : https://docs.google.com/document/d/1o5mJgG4bYcDdjuGxn3jKBJFBgFgxa47tF3n0YXgQZs8/edit
+
+Un visa en retard, c'est rarement un problème technique. C'est souvent une relance que personne n'a envoyée.
+
+On cherche la cause dans le plan, alors qu'elle est dans le suivi. Avec dix lots, quatre viseurs et des dizaines de documents à différents indices, le tableur dit ce qui a été reçu, pas qui relancer.
+
+Le Circuit de visa tient un registre par lot (indice, réception, échéance, avis VSO, VAO ou REF de chaque viseur), calcule les échéances avec les délais de votre marché et sort chaque matin la liste des relances, message déjà rédigé. Un tableau de bord suit le délai moyen face au délai contractuel. Achat unique, 39 €.
+
+Relié à votre GED, vos mails ou vos autres registres ? Je construis la version sur mesure.
+
+Démo libre avec trois opérations fictives, et contact : lien en bio. À envoyer à l'OPC de votre opération.
+
+#BTP #MaîtriseDŒuvre #Chantier #GestionDeProjet #OutilsSurMesure

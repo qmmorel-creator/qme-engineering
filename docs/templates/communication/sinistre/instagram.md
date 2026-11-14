@@ -87,3 +87,24 @@ Démo libre avec trois dossiers fictifs, et contact : lien en bio. Enregistrez l
 Ce soir, sauriez-vous retrouver votre numéro de contrat d'habitation ?
 
 #Assurance #Habitation #DégâtDesEaux #Maison #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · IG-66
+
+Doc : https://docs.google.com/document/d/1dOzTNRZZuhcnV1W2vETApg00Ti5ZEHRX9MSzXqVoI_o/edit
+
+Avant : chercher le délai le jour du dégât des eaux, entre l'eau à couper et le voisin à prévenir.
+
+Après : 5 jours ouvrés au minimum, 2 pour un vol, calculés et sourcés.
+
+Le Dossier sinistre habitation pose six questions et calcule le délai en jours ouvrés. Il chiffre l'inventaire ligne par ligne (réparation, ou remplacement moins la vétusté que vous fixez), garde séparés le déclaré et le reconnu, range les preuves par statut et imprime le dossier pour l'expert.
+
+Aucune promesse d'indemnisation : c'est un outil d'organisation, votre contrat fait foi. Achat unique, 29 €.
+
+Vos dossiers ont leurs propres étapes et documents ? Je construis la version sur mesure.
+
+Démo libre avec trois dossiers fictifs, et contact : lien en bio. Enregistrez le post : ces délais, on les cherche le jour où l'on en a besoin.
+
+#Assurance #Habitation #DégâtDesEaux #Maison

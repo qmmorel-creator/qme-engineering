@@ -101,3 +101,38 @@ La démo (trois dossiers fictifs : un dégât des eaux en cours d'expertise, un 
 Vous avez déjà eu un sinistre chez vous : qu'est-ce qui a été le plus pénible à suivre ?
 
 #Assurance #Habitation #DégâtDesEaux #Maison #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · LI-111
+
+Doc : https://docs.google.com/document/d/1FKXwy1nUEG7PfOMP1kPSndUmDmF6nkB_2mWRcocUK78/edit
+
+Combien de jours avez-vous pour déclarer un dégât des eaux ? La loi en laisse au minimum 5 ouvrés. Pour un vol, 2.
+
+Et ce délai tombe au pire moment : quand il faut couper l'eau, prévenir le voisin, mettre les meubles à l'abri et retrouver un numéro de contrat.
+
+J'ai construit un outil pour ces semaines-là, pensé pour un particulier.
+
+La déclaration est guidée en six questions. L'outil calcule le délai à respecter en jours ouvrés, jours fériés compris, et affiche la source officielle de chaque règle.
+
+L'inventaire des biens abîmés est chiffré ligne par ligne : réparation, ou remplacement moins la vétusté que vous fixez vous-même. Ce que vous déclarez et ce que l'assureur reconnaît restent séparés.
+
+Les preuves sont rangées par statut (à fournir, reçu, vérifié, manquant) et rattachées à un bien ou à une étape. Un dossier complet s'imprime pour l'expert, et la chronologie suit le dossier jusqu'au versement : expertise, proposition, franchise, reste à recevoir.
+
+Aucun barème de vétusté imposé, aucune promesse d'indemnisation : c'est un outil d'organisation, pas un conseil juridique. Votre contrat fait foi.
+
+Il s'ouvre dans le navigateur avec une clé, et les photos restent sur l'appareil qui les a prises. Achat unique, sans abonnement. La démo, avec trois dossiers fictifs, est en commentaire.
+
+Vous avez déjà eu un sinistre chez vous : qu'est-ce qui a été le plus pénible à suivre ?
+
+#Assurance #Habitation #DégâtDesEaux #Maison #Organisation
+
+Premier commentaire :
+
+La démo, avec trois dossiers fictifs (un dégât des eaux en cours d'expertise, un cambriolage à déclarer, un bris de glace clos), sans inscription :
+https://qm-engineering.fr/templates/sinistre/?demo
+
+Pour l'acheter (29 €, achat unique) :
+https://qmengineering.gumroad.com/l/dossier-sinistre

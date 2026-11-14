@@ -94,3 +94,20 @@ Démo libre et contact : lien en bio.
 Qu'est-ce qui finit le plus souvent à la poubelle chez vous ?
 
 #Organisation #Maison #BudgetFamilial #AntiGaspillage
+
+
+---
+
+## Version finale (15/11/2026) · IG-83
+
+Doc : https://docs.google.com/document/d/17xMbG2cfWj4fCDs7bFo2fGw0YeQvNmfUgXzLXSgWeYQ/edit
+
+« À consommer jusqu'au » et « de préférence avant » ne disent pas la même chose. Les confondre, c'est jeter du bon.
+
+DLC : au-delà, on ne mange pas. DDM : au-delà, on vérifie l'aspect et l'odeur. Deux dates, deux réflexes.
+
+Le Garde-manger les distingue pour vous, range chaque produit par lieu et affiche chaque jour ce qu'il faut manger d'abord. L'emballage et l'aspect du produit priment toujours. Le template sera bientôt en vente, et une version sur mesure reste possible.
+
+Démo libre avec un foyer fictif, et contact : lien en bio. Enregistrez-le pour la prochaine hésitation devant le frigo.
+
+#AntiGaspillage #Organisation #Maison #BudgetFamilial

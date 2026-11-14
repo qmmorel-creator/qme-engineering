@@ -107,3 +107,28 @@ Lien d'achat en premier commentaire.
 Chez vous, quel produit finit le plus souvent oublié au fond du frigo ?
 
 #AntiGaspillage #Organisation #Famille #OutilsNumériques #Maison
+
+
+---
+
+## Version finale (15/11/2026) · LI-128
+
+Doc : https://docs.google.com/document/d/15NxTv7lCd1OuxerSspSqUjrdX5wX0ohYNBXSvdNZ1_4/edit
+
+« Il est encore bon, ce yaourt ? » « Regarde la date. » « Laquelle ? »
+
+« À consommer jusqu'au » (DLC) est une date de sécurité. « À consommer de préférence avant » (DDM) est une date de qualité. On les confond, et on jette des produits encore bons.
+
+Dans une famille, personne ne tient vraiment l'inventaire du réfrigérateur, du congélateur et des placards. On rachète ce qu'on a déjà, on oublie le pot entamé.
+
+J'ai donc construit un garde-manger en ligne. Chaque produit y est rangé par lieu, avec sa quantité et la date imprimée sur l'emballage. Une DLC dépassée affiche « ne pas consommer », une DDM dépassée invite à vérifier l'aspect et l'odeur, et la date d'ouverture est prise en compte avec le délai indiqué sur l'emballage. Chaque jour, l'outil affiche ce qu'il faut manger d'abord : dépassé, aujourd'hui, sous 3 jours, cette semaine.
+
+Ce qui est fini ou jeté est compté, avec le motif et la valeur si on la note. Les produits épuisés alimentent la liste de courses.
+
+Pas de scan ni de base produit : on saisit le nom et la date en quelques secondes. L'emballage et l'aspect du produit priment toujours. Les définitions et les deux seules durées proposées viennent de l'Anses, source et date affichées.
+
+Il sera bientôt en vente. La démo, avec un foyer fictif, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/garde-manger/?demo
+
+Chez vous, quel produit finit le plus souvent oublié au fond du frigo ?
+
+#AntiGaspillage #Organisation #Famille #OutilsNumériques #Maison

@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- Reel IG-52 · Votre agenda dit « réunion », jamais « travail » (25 s, 1080 × 1920, 30 i/s), d'après le script
+     J28 de videos-30-jours.md, en motion design : sans voix, sans musique.
+     Le Planner horaire (T30) n'est pas en vente au 15/11/2026 : selon le § 4.1, pas de démo, la partie méthode
+     seulement et la chute « L'outil arrive bientôt ». Semaine et bilan : exemple fictif dessiné, pas une capture.
+     Rendu, depuis la racine du dépôt :
+       node docs/templates/communication/instagram/video.mjs production/IG-52.html 25 4200
+     puis renommer png/IG-52.mp4 → png/IG-52-planner.mp4 et png/IG-52-couverture.png → png/IG-52-planner-couverture.png.
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-52 time-blocking</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.sourcil{font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.gros{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.etiquette{position:absolute;left:96px;top:300px;font-weight:800;font-size:44px;letter-spacing:.12em;color:#fff;padding:14px 30px}
+.fictif{position:absolute;left:96px;bottom:400px;font-size:30px;font-weight:600;color:var(--discret)}
+
+/* Scène 1 · 0 à 4,6 s : l'accroche */
+#s1{animation:sortie 300ms 4400ms}
+#s1 .sourcil{position:absolute;left:96px;top:520px;color:var(--rouge);animation:monte 400ms 100ms}
+#s1 .barre{position:absolute;left:96px;top:590px;width:160px;height:16px;background:var(--rouge);animation:largeur 500ms 200ms}
+#a1{top:660px;font-size:110px;animation:monte 500ms 300ms}
+#a2{top:980px;font-size:110px;line-height:1.18;animation:monte 500ms 1700ms}
+#a2 span{background:var(--jaune);padding:0 12px}
+#s1 .quart{position:absolute;right:0;top:0;width:300px;height:300px;background:var(--bleu);border-bottom-left-radius:300px;animation:pop 500ms 0ms}
+
+/* Scène 2 · 4,6 à 9 s : le principe */
+#s2{background:var(--bleu);color:#fff;animation:entree-fond 350ms 4600ms,sortie 300ms 8800ms}
+#s2 .sourcil{position:absolute;left:96px;top:500px;color:var(--jaune);animation:monte 400ms 4800ms}
+#p1{top:580px;font-size:84px;animation:monte 500ms 5000ms}
+#p2{top:840px;font-size:84px;animation:monte 500ms 6300ms}
+#p2 span{background:var(--jaune);color:var(--encre);padding:0 12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#s2 .rond{position:absolute;left:-150px;bottom:150px;width:400px;height:400px;border-radius:50%;background:var(--rouge);animation:pop 600ms 4900ms}
+
+/* Scène 3 · 9 à 15,8 s : une semaine en blocs */
+#s3{animation:entree-fond 350ms 9000ms,sortie 300ms 15600ms}
+#s3 .titre{top:300px;font-size:76px;animation:monte 400ms 9100ms}
+.grille{position:absolute;inset:0;animation:monte 400ms 9200ms}
+.grille .h span{position:absolute;left:96px;font-size:26px;font-weight:700;color:var(--discret)}
+.grille .j span{position:absolute;top:540px;width:168px;text-align:center;font-size:32px;font-weight:800}
+.grille .lg i{position:absolute;left:176px;width:840px;height:2px;background:var(--trait)}
+.b{position:absolute;width:156px;padding:10px 12px;font-size:24px;font-weight:700;line-height:1.1;animation:pop 350ms;transform-origin:top left}
+.reu{background:#D9D4C8;color:var(--encre);border-left:8px solid var(--encre)}
+.fond{background:var(--bleu);color:#fff}
+.msg{background:var(--jaune);color:var(--encre)}
+#glisse{animation:pop 350ms 11650ms,deplace 900ms 13300ms;box-shadow:12px 12px 0 var(--encre)}
+#geste{position:absolute;left:96px;top:1528px;font-size:40px;font-weight:800;opacity:0;animation:monte 400ms 13100ms}
+#geste b{background:var(--rouge);color:#fff;padding:2px 12px}
+
+/* Scène 4 · 15,8 à 21,2 s : le bilan */
+#s4{background:var(--surface);animation:entree-fond 350ms 15800ms,sortie 300ms 21000ms}
+#s4 .sourcil{position:absolute;left:96px;top:300px;color:var(--rouge);animation:monte 400ms 15900ms}
+#s4 .titre{top:360px;font-size:84px;animation:monte 400ms 16000ms}
+.bilan{position:absolute;left:96px;right:96px;top:700px;display:flex;flex-direction:column;gap:70px;animation:monte 400ms 16300ms}
+.cat .n{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:44px;letter-spacing:-.02em}
+.cat .n span:last-child{font-size:30px;font-weight:600;color:var(--texte-2);letter-spacing:0}
+.cat .pv{height:34px;margin-top:18px;border:4px dashed var(--encre)}
+.cat .rl{height:44px;margin-top:10px;transform-origin:left;animation:remplit 900ms}
+.leg4{position:absolute;left:96px;top:1350px;font-size:32px;font-weight:600;color:var(--texte-2);animation:monte 400ms 18500ms}
+#s4 .fictif{animation:monte 300ms 16500ms}
+
+/* Scène 5 · 21,2 à 25 s : chute */
+#s5{background:var(--jaune);animation:entree-fond 300ms 21200ms}
+#s5 .sourcil{position:absolute;left:96px;top:520px;animation:monte 400ms 21300ms}
+#s5 h1{position:absolute;left:96px;right:96px;top:590px;font-weight:800;font-size:124px;letter-spacing:-.025em;line-height:.98;animation:monte 450ms 21400ms}
+#s5 .plus{position:absolute;left:96px;right:96px;top:1000px;font-size:52px;font-weight:600;line-height:1.2;letter-spacing:-.02em;animation:monte 400ms 21700ms}
+#s5 .plus b{font-weight:800}
+#s5 .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;animation:monte 400ms 22000ms}
+#s5 .signe svg{width:80px;height:80px}
+#s5 .signe .m{color:var(--bleu)}#s5 .signe .e{color:var(--surface)}
+#s5 .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px;animation:monte 400ms 22100ms}
+
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+@keyframes raye{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes barre-l{from{color:inherit}to{color:var(--discret)}}
+@keyframes disparait{from{opacity:1}to{opacity:0}}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+@keyframes fond-rouge{from{background:transparent}to{background:#F9E1DF}}
+@keyframes glisse{from{opacity:0;transform:translateX(500px)}to{opacity:1;transform:none}}
+@keyframes remplit{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes deplace{from{transform:none}to{transform:translateY(-264px)}}
+</style>
+</head>
+<body>
+<div class="s" id="s1">
+  <div class="quart"></div>
+  <p class="sourcil">Bloquez votre travail</p>
+  <div class="barre"></div>
+  <p class="gros" id="a1">Votre agenda dit «&nbsp;réunion&nbsp;».</p>
+  <p class="gros" id="a2">Il ne dit jamais <span>«&nbsp;travail&nbsp;»</span>.</p>
+</div>
+
+<div class="s" id="s2">
+  <div class="rond"></div>
+  <p class="sourcil">Le time-blocking</p>
+  <p class="gros" id="p1">Réserver des créneaux pour le travail de fond,</p>
+  <p class="gros" id="p2"><span>comme une réunion avec soi-même.</span></p>
+</div>
+
+<div class="s" id="s3">
+  <p class="gros titre">Une semaine en blocs.</p>
+  <div class="grille">
+    <div class="lg"><i style="top:600px"></i><i style="top:688px"></i><i style="top:776px"></i><i style="top:864px"></i><i style="top:952px"></i><i style="top:1040px"></i><i style="top:1128px"></i><i style="top:1216px"></i><i style="top:1304px"></i><i style="top:1392px"></i><i style="top:1480px"></i></div>
+    <div class="h"><span style="top:586px">8 h</span><span style="top:762px">10 h</span><span style="top:938px">12 h</span><span style="top:1114px">14 h</span><span style="top:1290px">16 h</span><span style="top:1466px">18 h</span></div>
+    <div class="j"><span style="left:176px">Lun</span><span style="left:344px">Mar</span><span style="left:512px">Mer</span><span style="left:680px">Jeu</span><span style="left:848px">Ven</span></div>
+  </div>
+  <div class="b reu" style="left:182px;top:779px;height:82px;animation-delay:9400ms">Réunion</div><div class="b reu" style="left:350px;top:1131px;height:126px;animation-delay:9520ms">Réunion</div><div class="b reu" style="left:518px;top:691px;height:82px;animation-delay:9640ms">Réunion</div><div class="b reu" style="left:686px;top:867px;height:82px;animation-delay:9760ms">Réunion</div><div class="b reu" style="left:854px;top:1131px;height:82px;animation-delay:9880ms">Réunion</div><div class="b reu" style="left:182px;top:1307px;height:82px;animation-delay:10000ms">Réunion</div><div class="b reu" style="left:518px;top:1219px;height:82px;animation-delay:10120ms">Réunion</div><div class="b fond" style="left:182px;top:603px;height:170px;animation-delay:10900ms">Travail de fond</div><div class="b fond" style="left:350px;top:603px;height:258px;animation-delay:11150ms">Travail de fond</div><div class="b fond" style="left:686px;top:603px;height:214px;animation-delay:11400ms">Travail de fond</div><div class="b fond" style="left:854px;top:603px;height:258px;animation-delay:11650ms">Travail de fond</div><div class="b msg" style="left:182px;top:955px;height:82px;animation-delay:12000ms">Messages</div><div class="b msg" style="left:350px;top:955px;height:82px;animation-delay:12080ms">Messages</div><div class="b msg" style="left:518px;top:955px;height:82px;animation-delay:12160ms">Messages</div><div class="b msg" style="left:686px;top:955px;height:82px;animation-delay:12240ms">Messages</div><div class="b msg" style="left:854px;top:955px;height:82px;animation-delay:12320ms">Messages</div><div class="b fond" id="glisse" style="left:518px;top:1043px;height:170px">Travail de fond</div>
+  <p id="geste"><b>Glisser</b> un bloc quand la semaine bouge.</p>
+  <p class="fictif" style="top:410px;bottom:auto">Exemple fictif</p>
+</div>
+
+<div class="s" id="s4">
+  <p class="sourcil">Le vendredi</p>
+  <p class="gros titre">Le prévu face au réalisé.</p>
+  <div class="bilan">
+    <div class="cat"><div class="n"><span>Travail de fond</span><span>9 h réalisées / 12 h prévues</span></div>
+    <div class="pv" style="width:672px"></div><div class="rl" style="width:504px;background:var(--bleu);animation-delay:17000ms"></div></div><div class="cat"><div class="n"><span>Réunions</span><span>7 h réalisées / 6 h prévues</span></div>
+    <div class="pv" style="width:336px"></div><div class="rl" style="width:392px;background:var(--encre);animation-delay:17300ms"></div></div><div class="cat"><div class="n"><span>Messages</span><span>6 h réalisées / 5 h prévues</span></div>
+    <div class="pv" style="width:280px"></div><div class="rl" style="width:336px;background:var(--jaune);animation-delay:17600ms"></div></div>
+  </div>
+  <p class="leg4">Pointillés : prévu · plein : réalisé</p>
+  <p class="fictif">Exemple fictif</p>
+</div>
+
+<div class="s" id="s5">
+  <p class="sourcil">Planner horaire QME</p>
+  <h1>L'outil arrive bientôt.</h1>
+  <p class="plus">En attendant, essayez le principe : <b>un bloc de travail de fond</b> dans votre agenda, dès lundi.</p>
+  <div class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site">qm-engineering.fr</p>
+</div>
+
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

@@ -63,3 +63,24 @@ retours m'intéressent.
 > J'ai sorti un outil de gestion de parc informatique : inventaire et garanties, qui a quoi depuis
 > quand, licences à renouveler, fiche de restitution au départ d'un salarié. Démo libre :
 > https://qm-engineering.fr/templates/parc-informatique/?demo
+
+
+---
+
+## Version finale (15/11/2026) · LI-93
+
+Doc : https://docs.google.com/document/d/1C2uIoS6tz3ocfO4U-q9wRRKluG9hiBW_rdxyOhDuXt4/edit
+
+Un salarié part vendredi. Savoir quoi récupérer ne devrait pas dépendre de la mémoire de quelqu'un.
+
+Son portable, son téléphone, ses abonnements logiciels : dans une petite structure, la réponse est souvent dans la tête de l'office manager, de la direction ou de la personne qui s'y connaît. Les numéros de série dorment sur des factures, les garanties expirent sans prévenir, les licences s'achètent au jugé.
+
+Je pense qu'un parc informatique, même petit, mérite un registre. J'ai donc construit un outil simple.
+
+Un inventaire où la fin de garantie se calcule à partir de la date d'achat, et où le matériel à renouveler ressort tout seul. Des affectations nominatives datées, avec l'historique de qui a eu quoi et quand. Les licences, postes achetés contre postes attribués, avec leurs échéances et les attributions à libérer au départ d'un salarié, fiche de restitution à cocher.
+
+Fiches de remise imprimables, exports CSV, rappel des règles de la CNIL sur les données des salariés. Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone, sans logiciel à installer. Il sera bientôt en vente.
+
+La démo, avec le parc d'une PME fictive, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/parc-informatique/?demo
+
+#ParcInformatique #PME #OfficeManager #DSI #GestionDesActifs

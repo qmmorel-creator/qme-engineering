@@ -91,3 +91,34 @@ La démo, avec un foyer fictif, est ouverte à tous : lien en premier commentair
 Chez vous, quelle enveloppe dépasse le plus souvent ce qui était prévu ?
 
 #Budget #FinancesPersonnelles #Épargne #OutilsNumériques #Famille
+
+
+---
+
+## Version finale (15/11/2026) · LI-82
+
+Doc : https://docs.google.com/document/d/1WztGhIYkGr4Ghnr-BAlEvCR-nHmJPpwIm12YpF8TmsY/edit
+
+« On a dépensé quoi, ce mois-ci ? » « Je ne sais pas. Mais il n'y a plus rien. »
+
+Cette conversation, beaucoup de foyers l'ont en fin de mois. Le relevé bancaire est là, il liste les dépenses une par une. Il ne dit pas si on est resté dans ce qu'on avait prévu, ni quelle part de ce qui rentre part vraiment en loyer, en courses ou en épargne.
+
+J'ai construit un budget du foyer pour répondre à ces deux questions.
+
+Chaque catégorie a son enveloppe, et le reste se reporte d'un mois sur l'autre, pratique pour les vacances ou la taxe foncière. Le prévu fait face au réel, et une enveloppe dépassée est signalée dès qu'elle l'est. Chaque mois, un diagramme des flux montre le trajet de l'argent des revenus vers les besoins, les envies, l'épargne, puis chaque catégorie. Il reste lisible sur téléphone.
+
+Pour démarrer : 22 catégories, 75 sous-catégories, quatre modèles de foyer, et les opérations fixes (loyer, abonnements, salaire) ajoutées en un geste. Le repère 50/30/20 est affiché pour comparer, pas comme une règle.
+
+Pas de connexion à la banque : on saisit ses montants. Il s'ouvre dans le navigateur avec une clé et suit tout le foyer de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+La démo, avec un foyer fictif, est en commentaire. Essayez-la à deux, un soir de fin de mois.
+
+#Budget #FinancesPersonnelles #Épargne #OutilsNumériques #Famille
+
+Premier commentaire :
+
+La démo, avec un foyer fictif, sans inscription :
+https://qm-engineering.fr/templates/budget/?demo
+
+Pour l'acheter (15 €, accès à vie, tous les appareils) :
+https://qmengineering.gumroad.com/l/budget-foyer

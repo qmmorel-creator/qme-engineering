@@ -79,3 +79,20 @@ Démo libre avec un foyer fictif, et contact : lien en bio. À envoyer à la per
 Chez vous, quelle enveloppe déborde le plus souvent ?
 
 #Budget #BudgetFamilial #Organisation #Maison #OutilsSurMesure
+
+
+---
+
+## Version finale (15/11/2026) · IG-11
+
+Doc : https://docs.google.com/document/d/1MLGDQ0W9XJGGoLuJq7CF8EOWg6rBFdLTj6agUMQtb78/edit
+
+Le relevé bancaire dit ce que vous avez dépensé. Pas si c'était prévu.
+
+C'est toute l'idée du Budget du foyer : une enveloppe par catégorie, le prévu face au réel, et chaque enveloppe dépassée signalée dès qu'elle l'est. Un diagramme des flux montre où part chaque euro.
+
+Vous saisissez vos montants, sans connexion à la banque. Achat unique, 15 €. Une association, un petit commerce, vos propres catégories ? Je construis la version sur mesure.
+
+Démo libre avec un foyer fictif : lien en bio. À envoyer à la personne avec qui vous tenez les comptes.
+
+#Budget #BudgetFamilial #Organisation #Maison

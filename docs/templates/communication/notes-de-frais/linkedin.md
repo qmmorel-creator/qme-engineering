@@ -104,3 +104,30 @@ Lien d'achat en premier commentaire.
 Vos tickets du mois, ils attendent où : enveloppe, portefeuille ou photo sur le téléphone ?
 
 #NotesDeFrais #Indépendants #FraisProfessionnels #Comptabilité #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · LI-112
+
+Doc : https://docs.google.com/document/d/1j3154hax-mMENNf1hh94itYo_RLiHO1XbV11Mkn26fY/edit
+
+Vos tickets du mois attendent où : dans une enveloppe, un portefeuille ou en photo sur le téléphone ?
+
+Fin du mois : une enveloppe de tickets, trois trajets oubliés, et une note de frais à rendre avant vendredi.
+
+Qu'on soit salarié qui avance ses frais ou indépendant qui se rembourse par sa société, les questions reviennent chaque mois. Où est ce ticket ? Combien de kilomètres ce jour-là, à quel barème ? Et ce remboursement d'il y a six semaines, il est arrivé ?
+
+J'ai construit un template qui y répond.
+
+▪ chaque dépense est saisie avec sa catégorie, son montant, la TVA recopiée du ticket et l'endroit où le justificatif est rangé ; les justificatifs manquants sont signalés ;
+▪ chaque trajet est valorisé au barème kilométrique fiscal, véhicule par véhicule, sur le cumul de l'année, avec la régularisation expliquée ;
+▪ chaque mois, la note est prête à imprimer ou à enregistrer en PDF, puis suivie de « soumise » à « remboursée », avec une alerte si le remboursement tarde.
+
+Le barème intégré est celui publié en avril 2026, avec sa source et sa date ; il se modifie chaque année. Aucun fichier stocké, aucun envoi automatique : c'est un outil d'aide, pas un service comptable.
+
+Il sera bientôt en vente. La démo, avec une salariée fictive et dix mois de frais, est déjà ouverte à tous, sans inscription : https://qm-engineering.fr/templates/notes-de-frais/?demo
+
+Le plus long, chez vous : retrouver le ticket, appliquer le barème ou attendre le remboursement ?
+
+#NotesDeFrais #Indépendants #FraisProfessionnels #Comptabilité #Organisation

@@ -93,3 +93,24 @@ Démo libre et contact : lien en bio. À envoyer à un collègue de votre équip
 Votre progression de septembre, elle tient encore ?
 
 #Enseignant #Professeur #Enseignement #Formation #Organisation
+
+
+---
+
+## Version finale (15/11/2026) · IG-88
+
+Doc : https://docs.google.com/document/d/1AXUT3z8rxmEBEUXyKWZdPsmxSNerKU0l_DDWCzLvlyY/edit
+
+Une progression faite en septembre ne tient pas jusqu'en juin sans être recomptée. Il faut la suivre cours par cours.
+
+Une sortie, un examen blanc, deux cours annulés, et la progression ne dit plus la vérité. On le découvre souvent en mai.
+
+La Progression pédagogique pose les séquences et leurs heures sur le vrai calendrier (vacances, fériés, semaines A et B). Après chaque cours, un geste : faite, reportée ou annulée. Elle calcule le retard en heures et la date de fin projetée, et prévient si le programme ne tient pas.
+
+Aucune donnée d'élève, aucun programme recopié. Le template sera bientôt en vente.
+
+Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec trois classes fictives, et contact : lien en bio. À envoyer à un collègue de votre équipe pédagogique.
+
+#Enseignant #Enseignement #Formation #Organisation
