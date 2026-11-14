@@ -98,6 +98,7 @@ export const TEMPLATES = {
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', pour: 'perso' },
   CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', pour: 'perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', pour: 'perso' },
+  SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans

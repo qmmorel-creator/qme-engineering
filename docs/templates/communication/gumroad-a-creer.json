@@ -2773,5 +2773,47 @@
         "value": "Propriétaires bailleurs (location vide ou meublée), locataires, petites agences"
       }
     ]
+  },
+  {
+    "slug": "seminaire",
+    "name": "Séminaire / offsite",
+    "price_cents": 3500,
+    "permalink": "seminaire-offsite",
+    "category": "business-and-money",
+    "button": "Ouvrir mon séminaire",
+    "summary": "Les participants et leurs réponses, qui voyage avec qui, qui dort dans quelle chambre, le programme en salles parallèles et le coût par participant, avec un comptage des régimes pour le traiteur, sans aucun nom.",
+    "description": "<h2>Tout le monde au bon endroit, au bon moment.</h2><p>Un tableur d'inscrits, des billets dans la messagerie, une liste de chambres envoyée à l'hôtel, un programme dans un document à part : à la veille du séminaire, personne ne voit qui n'a pas de train ou pas de chambre. Séminaire / offsite réunit tout au même endroit et te dit chaque jour ce qui reste à régler.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les participants et leurs réponses</strong> : liste collée d'un coup depuis un tableur, réponse en un geste (oui, en attente, non), relance signalée après la date limite, suivi par service, export CSV.</li><li><strong>Qui voyage avec qui</strong> : trains, vols, cars et navettes aller et retour avec leurs places réservées, passagers cochés en quelques secondes, personnes sans trajet, et une alerte quand un train arrive après le début du programme ou repart avant la fin.</li><li><strong>Qui dort où</strong> : chambres ajoutées d'un coup (individuelles, doubles, twins…), occupants, places libres, personnes à loger, répartition automatique qui garde les collègues d'un même service ensemble, liste imprimable pour l'hôtel.</li><li><strong>Le programme en salles parallèles</strong> : plénières, ateliers, repas et activités jour par jour, deux sessions dans la même salle signalées, décalage en cascade, programme type d'une ou deux journées, impression.</li><li><strong>Le budget et le coût par participant</strong> : prévu, engagé et payé par poste, paiements à venir ou en retard, budget cible, coût par personne confirmée.</li><li><strong>Une fiche traiteur sans nom</strong> : couverts par repas et régimes comptés, nombre d'allergies à signaler.</li></ul><h3>Données sensibles</h3><p>Régimes alimentaires et allergies sont des données sensibles : leur saisie est facultative, le régime se choisit dans une liste fermée, une allergie se signale par une simple case sans aucun détail médical, et le traiteur ne reçoit que des nombres. Un bouton efface ces informations après le séminaire.</p><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton séminaire, colle la liste des participants, ajoute les trajets et les chambres. Tes données sont enregistrées en ligne et suivent l'équipe d'organisation sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de suivi : aucun horaire de transporteur ni tarif d'hôtel intégré, les montants sont ceux que tu saisis. Rappel RGPD dans l'application, qui n'est pas un conseil juridique. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "seminaire",
+      "offsite",
+      "assistant-de-direction",
+      "office-manager",
+      "evenementiel",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton séminaire s'ouvre. Crée ton séminaire, colle la liste des participants, puis ajoute les trajets et les chambres. Garde cet e-mail : la même clé fonctionne sur tous les appareils de ton équipe d'organisation.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Assistants de direction, RH, office managers"
+      }
+    ]
   }
 ]
