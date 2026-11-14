@@ -679,7 +679,7 @@
         <div class="cb-tete"><b>${esc(m.nom)}</b><span class="etiquette sable">${esc(B.unites.find(([u]) => u === m.unite)?.[1] || m.unite)}</span>${m.calcul ? '<span class="etiquette ciel">Calculé</span>' : ''}</div>
         <p>${esc(m.definition)}</p>
         <p class="cb-formule"><span>Formule</span>${esc(m.formule)}</p>
-        <p class="cb-sens"><span>${esc(R.SENS[m.sens])}</span>${esc(m.lecture)}</p>
+        <p class="cb-sens"><span>Sens de lecture</span>${m.lecture.startsWith(R.SENS[m.sens]) ? "" : `${esc(R.SENS[m.sens])}. `}${esc(m.lecture)}</p>
         <details><summary>Où trouver le chiffre, conseil</summary><p><b>Source :</b> ${esc(m.source)}</p><p><b>Conseil :</b> ${esc(m.conseil)}</p><p class="mention">Cumul sur l'exercice : ${esc(R.CUMULS[m.cumul].toLowerCase())} · tolérance proposée ${m.tolerance} % de l'objectif.</p></details>
         <div class="cb-pied">${suivi ? '<span class="statut st-atteint">' + ICONE_STATUT.atteint + '<span>Suivi</span></span>' : `<button class="btn petit primaire" data-action="ajouter-modele" data-id="${m.id}">${ICONES.plus}Ajouter${deps.length ? ` (+${deps.length})` : ''}</button>`}${deps.length && !suivi ? `<small>Ajoute aussi : ${deps.map((x) => esc(B.indicateurs.find((y) => y.id === x).nom)).join(', ')}</small>` : ''}</div>
       </li>`;

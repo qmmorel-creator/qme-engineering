@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 40 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 41 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -170,6 +170,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
+  types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
+  sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
+  écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
+  `outils/templates/pilotage-pme.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
