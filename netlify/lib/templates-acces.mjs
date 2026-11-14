@@ -65,6 +65,10 @@ export const PRODUITS = {
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
+  FRM: { nom: 'Matrice compétences et formations', url: '/templates/competences/' },
+  SQC: { nom: 'Progression pédagogique', url: '/templates/progression/' },
+  PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
+  BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
