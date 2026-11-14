@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
   VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
   GRT: { slug: 'gestion-locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.', pour: 'perso' },
@@ -62,7 +63,6 @@ export const TEMPLATES = {
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
-  EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
@@ -183,9 +183,10 @@ export const PAGES = {
       ['CRA', 'Tenez vos réunions d’équipe avec des décisions et des actions suivies.'],
       ['TRS', 'Anticipez la trésorerie sur douze mois, salaires et charges compris.'],
       ['TDB', 'Suivez chaque mois vos indicateurs clés, objectifs et écarts.'],
+      ['EQP', 'Affectez l’équipe semaine par semaine et voyez surcharges et trous avant qu’ils n’arrivent.'],
     ],
-    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Planning d’équipe, tableau de bord, entretiens et document unique à venir, avec l’option Pack évolutif'],
-    prevus: ['EQP', 'ENP', 'DRP'],
+    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Entretiens annuels et document unique à venir, avec l’option Pack évolutif'],
+    prevus: ['ENP', 'DRP'],
   },
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],

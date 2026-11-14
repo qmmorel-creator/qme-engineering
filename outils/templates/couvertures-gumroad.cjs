@@ -55,6 +55,7 @@ const T = {
   'maintenance': ["Maintenance préventive · GMAO légère", "Chaque machine entretenue à temps.", "Date, compteur ou premier atteint · bons d'intervention · coût par équipement"],
   repas: ['Repas de la semaine · liste de courses', 'Le menu fait, la liste aussi.', 'Midi et soir · courses par rayon · à cocher au magasin'],
   'verifications': ["Vérifications réglementaires", "Aucun contrôle oublié.", "Périodicités sourcées · échéances · observations levées · registre"],
+  'planning-equipe': ["Planning d'équipe et staffing", "Qui fait quoi, et qui peut encore prendre.", "Charge par semaine · absences · conflits · disponibles"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

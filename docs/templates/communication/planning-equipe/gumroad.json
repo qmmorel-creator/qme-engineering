@@ -1,0 +1,42 @@
+{
+  "slug": "planning-equipe",
+  "name": "Planning d'équipe et staffing",
+  "price_cents": 3500,
+  "permalink": "planning-equipe-staffing",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon planning d'équipe",
+  "summary": "Qui fait quoi dans ton équipe chaque semaine, la charge réelle de chacun avec ses absences et son temps partiel, et les conflits signalés avant qu'ils coincent.",
+  "description": "<h2>Qui fait quoi, et qui peut encore prendre.</h2><p>Un tableur de planning en couleurs, des temps partiels et des congés à garder en tête, et la découverte le jour J qu'une personne est affectée pendant ses vacances ou que quelqu'un tourne à 120 %… Le Planning d'équipe et staffing calcule la charge de chacun semaine par semaine et signale les conflits avant qu'ils coincent.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des affectations simples</strong> : une personne, un projet ou un poste à couvrir, des dates et un nombre d'heures par semaine, réparties sur ses jours travaillés.</li><li><strong>Le vrai taux de charge</strong> : capacité hebdomadaire de chaque personne (35 heures à temps complet par défaut, article L3121-27 du Code du travail, modifiable pour un temps partiel), moins ses jours non travaillés, congés, formations et jours fériés chômés.</li><li><strong>Les conflits signalés</strong> : surcharge, affectation pendant une absence, personne sans aucune des compétences demandées, poste à couvrir dont le besoin n'est pas tenu, et alertes de durée paramétrables (48 heures sur une semaine, 44 heures en moyenne sur 12 semaines par défaut).</li><li><strong>Des vues semaine et mois</strong>, par personne ou par projet, imprimables, et un aperçu de la charge des semaines concernées avant chaque affectation.</li><li><strong>Qui est disponible la semaine prochaine</strong> : heures libres de chacun, filtrées par compétence ou par rôle, avec un bouton pour affecter.</li><li><strong>Une clé pour tes managers</strong> : le même planning sur tous leurs appareils ; les saisies faites en même temps sont réunies et signées du prénom de leur auteur.</li><li><strong>Six modèles d'équipe</strong> pour démarrer (agence, bâtiment, commerce et restauration, atelier, services sur site, bureau d'études) : rôles, compétences et postes à couvrir proposés, tout se modifie.</li><li><strong>Des données minimales</strong> : aucune donnée de santé ; export, effacement ou suppression d'une personne ; exports CSV des affectations et de la charge sur 12 semaines.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton secteur, ajoute ton équipe, tes projets et tes postes, puis affecte des heures par semaine. Le planning est enregistré en ligne et suit chaque manager qui a la clé, sur ordinateur, tablette et téléphone.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun e-mail envoyé, aucune connexion à un agenda ou à un logiciel de paie. Outil d'aide à la planification : la charge est celle que tu planifies, pas le temps de travail effectif ; ce n'est ni un logiciel de paie ni un conseil juridique. La convention collective, les accords d'entreprise et le Code du travail font foi. Repères de durée relevés le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "planning-equipe",
+    "staffing",
+    "charge-de-travail",
+    "management",
+    "pme",
+    "rh",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning s'ouvre. Choisis ton secteur, ajoute ton équipe et tes projets, puis affecte des heures par semaine : la charge, les conflits et les disponibilités se calculent. Partage cette clé avec les managers qui tiennent le planning avec toi.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail, partageable entre managers"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "TPE et PME de 3 à 50 personnes qui planifient sur un tableur"
+    }
+  ]
+}

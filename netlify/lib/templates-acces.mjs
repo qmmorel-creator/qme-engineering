@@ -64,6 +64,7 @@ export const PRODUITS = {
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/' },
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/' },
+  EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

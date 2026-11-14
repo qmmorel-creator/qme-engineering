@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="planning-equipe" data-pour="pro" data-theme="organisation-et-reunions" style="--c:var(--rouge)"><a href="/catalogue/planning-equipe/"><b>Planning d'équipe et staffing</b><span class="phrase">Qui fait quoi cette semaine, charge et conflits visibles.</span><span class="theme">Organisation et réunions</span><em>Bientôt</em></a></li>
