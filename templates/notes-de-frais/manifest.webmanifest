@@ -1,0 +1,16 @@
+{
+  "name": "Notes de frais · QME",
+  "short_name": "Notes de frais",
+  "description": "Tes frais avancés et tes kilomètres : justificatifs, remboursements, barème kilométrique et note du mois à imprimer.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
