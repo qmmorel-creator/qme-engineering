@@ -7,6 +7,7 @@
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
+  KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations en fiches, une plaquette par prospect.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
   CRA: { slug: 'compte-rendu', prix: 1500, phrase: 'Décisions et actions suivies de réunion en réunion.', permalien: 'compte-rendu-actions', pour: 'pro' },
@@ -55,7 +56,6 @@ export const TEMPLATES = {
 // `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
-  KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   CHT: { nom: 'Suivi de chantier par lot', prix: 4000, phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
@@ -153,7 +153,7 @@ export const PAGES = {
       ['CRM', 'Gardez le fil avec vos clients : historique, prochaine action datée, chiffre d’affaires.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
-    prevus: ['KRF', 'PCM', 'CED', 'CND'],
+    prevus: ['PCM', 'CED', 'CND'],
   },
   PBT: {
     couleur: 'rouge', cibles: ['btp', 'managers'],

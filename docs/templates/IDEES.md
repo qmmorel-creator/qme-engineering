@@ -116,7 +116,7 @@ déjà).
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
-| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
+| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | en cours | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
