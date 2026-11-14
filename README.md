@@ -174,6 +174,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/planning-equipe/` (EQP) : **planning d'équipe et staffing**, prêt, « Mise en vente prochaine » (35 €,
+  démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Affectations par
+  personne et par projet ou poste en heures par semaine, taux de charge avec temps partiel, absences et fériés
+  déduits, alertes (surcharge, affectation pendant une absence, compétence manquante, poste non couvert, durées
+  L3121-20 et L3121-22 paramétrables), vues semaine et mois, « qui est disponible la semaine prochaine ». Une clé
+  partagée par les managers : saisies simultanées fusionnées (`fusionner`). Règles dans `regles.js`, tests
+  `outils/templates/planning-equipe.test.mjs`.
 - `templates/tableau-annuel/` (RDV) : **tableau de bord annuel et roue de vie**, prêt, « Mise en vente prochaine »
   (15 €, démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Roue de vie
   notée par 3 questions par domaine (12 domaines types, 8 au plus), objectifs et résultats clés (méthode OKR, 33

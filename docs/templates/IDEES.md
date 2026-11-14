@@ -124,7 +124,7 @@ déjà).
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
-| T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
+| T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
@@ -515,6 +515,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T62 | `stocks` | STK | stocks-inventaire (prévu) |
 | T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
+| T47 | `planning-equipe` | EQP | planning-equipe-staffing (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -620,6 +621,17 @@ séjour (source secondaire), collecte de la taxe par les intermédiaires non vé
 hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non sourcées, seuil calculé en km/an
 seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
 « Indépendants » (public : commerces et artisans).
+
+**T47 Planning d'équipe et staffing (14/11/2026)**, prêt, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrée dans `communication/gumroad-a-creer.json`). Cadrage délégué par Quentin :
+fiche `fiches/planning-equipe.md`. Application `templates/planning-equipe/` (EQP, 35 €), page `catalogue/planning-equipe/`,
+livrables dans `communication/planning-equipe/` (linkedin.md, instagram.md et carrousel `instagram/`, prospects.md,
+gumroad.md et gumroad.json, section-site.html, carte anglaise préparée mais non insérée : version anglaise en attente).
+Ajouté à `outils/packs/donnees.mjs` (TEMPLATES, retiré de PREVUS et des `prevus` du Pack Petite entreprise) : son
+ajout aux `produits` du pack (`netlify/lib/packs.mjs`) reste à faire. **Publications LinkedIn et Instagram non
+planifiées** (mission sans Google Sheets) : lignes à insérer selon `reference.md`. Restent à vérifier : articles
+L3121-20, L3121-22 et L3121-27 relus sur code.travail.gouv.fr seulement ; organismes de `prospects.md` marqués « à
+vérifier ».
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
@@ -808,7 +820,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T44 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : tableur seul. |
 | T45 | Inventaire, affectations, licences, fin de garantie, historique, alertes | Catégories de matériel et types de licences | Poste central | Demandé explicitement. Format : application + modèle tableur. **RGPD** (affectations nominatives). Pack possible avec T46. **confidentiel à vérifier** (artefact « Poste central »). |
 | T46 | Checklists par rôle, responsables, échéances de J-15 à J+90, restitution du matériel | Checklists d'arrivée et de départ par rôle | Poste central | **RGPD** (salariés). Couplé à T45. |
-| T47 | Affectation par personne et projet, taux de charge, conflits, vues semaine et mois | à définir | Équipes et staffing (outil interne) | Usage à plusieurs (managers) à concevoir. **RGPD**. **confidentiel à vérifier** : aucune équipe ni personne de l'outil interne reprise. |
+| T47 | Affectation par personne et projet en heures par semaine, taux de charge (temps partiel, absences, fériés déduits), conflits, postes à couvrir, vues semaine et mois, disponibles la semaine prochaine | 6 modèles d'équipe (rôles, compétences, postes) ; repères de durée L3121-27, L3121-20, L3121-22 datés et paramétrables | Équipes et staffing (outil interne) : mécanique seulement | Fiche détaillée : `fiches/planning-equipe.md`. Une clé partagée par les managers, saisies simultanées fusionnées (pas de comptes séparés en V1). **RGPD** : aucune donnée de santé, export, effacement, suppression. **confidentiel** : aucune équipe ni personne de l'outil interne reprise, démo fictive. **daté** : repères de durée relevés le 14/11/2026. |
 | T48 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
 | T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
 | T50 | Ressources, créneaux, conflits, vue jour | à définir | Planner horaire | Caduque : « mono-utilisateur en localStorage » ; un usage partagé est désormais possible mais réservations à plusieurs à concevoir (droits, conflits). |

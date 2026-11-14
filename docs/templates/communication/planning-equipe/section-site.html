@@ -1,0 +1,46 @@
+<!-- Version « en vente » de la page catalogue/planning-equipe/ (section à reprendre dans la page à la mise
+     en vente). Permalien Gumroad prévu : planning-equipe-staffing (à confirmer une fois la fiche créée), prix 35 €.
+     Captures : assets/templates-planning-equipe-*.webp (démo, données fictives). À la mise en vente, retirer aussi
+     le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js. -->
+<section class="section" id="planning-equipe">
+  <div class="section-head">
+    <h2>Planning d'équipe et staffing</h2>
+    <p>Pour le dirigeant ou le manager d'une équipe de 3 à 50 personnes qui fait aujourd'hui son planning sur un tableur : qui travaille sur quoi chaque semaine, la charge réelle de chacun avec ses absences et son temps partiel, et les conflits signalés avant qu'ils coincent.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-planning-equipe-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord du planning d'équipe : charge de l'équipe, personne en surcharge, besoins non couverts, disponibles la semaine prochaine, alertes à régler et charge de chaque personne (données fictives)">
+      <img class="tel" src="/assets/templates-planning-equipe-tel.webp?v=20261114" width="780" height="1328" alt="Le planning d'équipe sur téléphone : charge de l'équipe, surcharge, besoins non couverts et disponibles (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">TPE et PME · dirigeants · managers</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Des affectations simples</b> : une personne, un projet ou un poste, des dates et un nombre d'heures par semaine ; la charge se calcule toute seule</li>
+        <li><b>Le vrai taux de charge</b>, semaine par semaine : temps partiel, jours non travaillés, congés, formation et jours fériés déduits de la capacité</li>
+        <li><b>Les conflits signalés</b> : surcharge, personne affectée pendant une absence, compétence manquante, poste à couvrir non tenu, durées au-delà des seuils que vous fixez</li>
+        <li><b>Des vues semaine et mois</b>, par personne ou par projet, et la question qui revient chaque vendredi : qui est disponible la semaine prochaine, avec quelle compétence ?</li>
+        <li><b>Une clé pour vos managers</b> : le même planning sur l'ordinateur et le téléphone de chacun, les saisies faites en même temps réunies</li>
+      </ul>
+      <div class="prix"><b>35 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/planning-equipe-staffing" data-goatcounter-click="achat-planning-equipe" data-goatcounter-title="Acheter : planning d'équipe et staffing">Acheter</a>
+        <a class="btn" href="/templates/planning-equipe/?demo" data-goatcounter-click="demo-planning-equipe" data-goatcounter-title="Démo : planning d'équipe et staffing">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-planning-equipe-semaine.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Planning de la semaine par personne : heures par projet chaque jour, congés et formations, affectations pendant une absence hachurées en rouge, taux de charge de chacun (données fictives)"><figcaption>La semaine, personne par personne</figcaption></figure>
+    <figure><img src="/assets/templates-planning-equipe-mois.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Vue du mois : taux de charge de chaque personne semaine par semaine, disponible, plein, surcharge ou absent (données fictives)"><figcaption>Le mois en un coup d'œil</figcaption></figure>
+    <figure><img src="/assets/templates-planning-equipe-dispos.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Qui est disponible la semaine prochaine : heures libres de chacun, absences déduites, compétences, bouton pour affecter (données fictives)"><figcaption>Qui est disponible la semaine prochaine</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment la charge est-elle calculée ?</summary><p>Chaque affectation donne un nombre d'heures par semaine, réparties sur les jours travaillés de la personne. La capacité de la semaine part de ses heures hebdomadaires (35 heures à temps complet par défaut, modifiable pour un temps partiel), moins ses jours non travaillés, ses congés, ses formations et les jours fériés chômés de l'entreprise. Le taux de charge est le rapport des deux ; vous fixez les seuils de surcharge et de disponibilité.</p></details>
+    <details><summary>Quels conflits sont signalés ?</summary><p>Une personne au-delà de sa capacité, une affectation qui tombe pendant une absence, une personne affectée sans aucune des compétences demandées par le projet, un poste à couvrir dont le besoin hebdomadaire n'est pas tenu, et des alertes de durée paramétrables : 48 heures sur une semaine et 44 heures en moyenne sur 12 semaines par défaut (articles L3121-20 et L3121-22 du Code du travail). Les alertes portent sur les 4 prochaines semaines et sur l'affectation en cours de saisie.</p></details>
+    <details><summary>Plusieurs managers peuvent-ils l'utiliser ?</summary><p>Oui, avec la même clé : chacun ouvre le planning sur son ordinateur ou son téléphone. Quand deux personnes modifient en même temps, leurs changements sont réunis ; chaque affectation garde le prénom de qui l'a saisie. Il n'y a pas de comptes séparés ni de droits différents par manager dans cette version.</p></details>
+    <details><summary>Et les congés ?</summary><p>Vous saisissez les absences acquises (congés, formation, autre) pour que la capacité en tienne compte. Pour gérer les soldes et les demandes de congés, le <a href="/catalogue/conges/">Suivi des congés et absences</a> QME est fait pour ça ; les deux outils ne sont pas reliés automatiquement.</p></details>
+    <details><summary>Et les données de mon équipe ?</summary><p>Le minimum suffit : prénom, nom, rôle, compétences, heures par semaine, affectations et absences, sans aucune donnée de santé. Pour chaque personne, vous pouvez exporter ses données, les effacer (le nom est remplacé, les heures restent pour une charge juste) ou la supprimer. Exports CSV des affectations et de la charge sur 12 semaines.</p></details>
+    <details><summary>Remplace-t-il un logiciel de paie ou de temps de travail ?</summary><p>Non. C'est un outil de planification : la charge est celle que vous planifiez, pas le temps de travail effectif. Les alertes de durée sont des repères paramétrables ; la convention collective, les accords d'entreprise et le Code du travail font foi.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/planning-equipe/?demo">la démo</a> ouvre le planning d'une agence fictive de 9 personnes (temps partiels, alternance, congés et formations, projets clients fictifs et postes à couvrir, surcharge et trous à combler). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
