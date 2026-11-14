@@ -632,7 +632,7 @@ button.tuile:hover{background:var(--sable)}
   .cartons,.devis-grille,.liste-volume{grid-template-columns:1fr}
   .carton-num{width:48px;height:48px;font-size:20px}
   .barres-pieces li{grid-template-columns:minmax(0,1fr) 72px}
-  .ligne-piece{grid-template-columns:auto minmax(0,1fr) 96px auto;gap:6px}
+  .ligne-piece{grid-template-columns:auto minmax(0,1fr) 124px auto;gap:6px}
   .dc-prix{font-size:28px}
   .volume-bilan b{font-size:32px}
   .tableau-budget th,.tableau-budget td{padding:8px 8px}

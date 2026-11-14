@@ -170,6 +170,11 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/demenagement/` (DMN) : **déménagement**, prêt, « Mise en vente prochaine » (12 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/demenagement/gumroad.json`). Rétroplanning de 85 tâches types
+  relatif au jour J et filtré par la situation, démarches et contrats sans délai légal chiffré (renvoi au bail,
+  aux contrats ou à service-public.fr), cartons numérotés par pièce avec recherche et étiquettes A4, volume
+  estimé, devis comparés au m³, budget. Règles dans `regles.js`, tests `outils/templates/demenagement.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
