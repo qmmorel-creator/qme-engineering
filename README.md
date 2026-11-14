@@ -170,6 +170,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- Lot du 14/11/2026 (3), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/repas/` (RPS) **repas de la semaine et
+  liste de courses** (100 recettes de base, repas midi et soir, liste de courses par rayon calculée selon les
+  portions, placard déduit, aucun prix intégré, pas de calories) ; `templates/musculation/` (MSC) **carnet de
+  musculation et cross-training** (150 exercices, séances et WOD, records détectés, 1RM estimé, minuteur hors
+  ligne, aucune donnée de santé) ; `templates/voiture/` (CAR) **carnet de voiture** (entretiens à la date ou au
+  km, contrôle technique sourcé et paramétrable, pleins et recharges, consommation, coût au km) ;
+  `templates/gestion-locative/` (GST) **gestion locative** (loyers et retards, quittances et relances à
+  copier, révision avec l'IRL saisi, régularisation des charges, rendement avant impôt, aucun calcul d'impôt).
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
