@@ -70,3 +70,32 @@ https://qm-engineering.fr/templates/prospection/?demo
 
 - Aucun chiffre de taux de réponse « moyen » : aucune source vérifiée ; ne pas en ajouter.
 - Ne pas présenter l'outil comme conforme au RGPD : il rappelle des bonnes pratiques, avec sources.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-89
+
+Doc : https://docs.google.com/document/d/1MgNv5RldYs60sA7EXKmiVlDnZu2u6dggilildrtkffc/edit
+
+En prospection, le premier message est rarement celui qui obtient la réponse. C'est souvent la relance qu'on n'a pas envoyée.
+
+Quand on prospecte seul, tout tient dans un tableur et dans sa tête : qui a reçu le premier message, qui relancer cette semaine, ce qu'on lui a déjà écrit.
+
+Les relances glissent. Et on finit par réécrire le même message de zéro à chaque fois.
+
+J'ai donc construit un pipeline de prospection, volontairement simple :
+▪ vos prospects avancent par étapes, de « À contacter » à « Gagné », en glissant une carte ou d'un clic depuis le téléphone ;
+▪ chaque matin, la liste des relances du jour, calculée selon la cadence choisie, retards en tête ;
+▪ pour chaque relance, un script de message rempli avec le prénom et l'organisation du prospect, à relire et copier en un clic.
+
+Il arrive prêt à l'emploi : trois cadences types et dix-neuf scripts sobres, du premier contact au suivi de proposition. Les chiffres montrent le taux de passage d'une étape à l'autre et ce que donne chaque canal.
+
+Vous envoyez vous-même chaque message, et les personnes qui ne veulent plus être contactées sont mises de côté en un clic.
+
+Pas d'abonnement ni d'installation : il s'ouvre dans le navigateur avec une clé, garde les données en ligne et suit de l'ordinateur au téléphone. Achat unique.
+
+Une démo avec des prospects fictifs est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Vous qui prospectez seul : au bout de combien de relances sans réponse classez-vous un prospect comme perdu ?
+
+#Prospection #B2B #DéveloppementCommercial #Indépendants #OutilsNumériques

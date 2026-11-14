@@ -68,3 +68,32 @@ Vous avez rénové récemment : qu'est-ce qui vous a le plus manqué pour suivre
 > J'ai sorti un pilote de travaux pour les particuliers : devis d'artisans comparés, budget prévu,
 > engagé et payé, planning des interventions et réserves de fin de travaux. Démo libre :
 > https://qm-engineering.fr/templates/travaux/?demo
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-97
+
+Doc : https://docs.google.com/document/d/1ghv9DEmFru302IboxEZyioDPx9TBkRbu-iDmXOdUV94/edit
+
+Trois devis pour la même salle de bains. 3 025 €, 3 410 €, 3 910 €. Le moins cher n'est pas forcément le bon : il n'inclut pas l'étanchéité.
+
+(Montants fictifs, tirés de la démo.)
+
+Quand on rénove avec plusieurs artisans sans maître d'œuvre, on devient chef de chantier sans les outils. J'en ai construit un, pensé pour un particulier :
+▪ les devis comparés poste par poste : montants HT et TTC, taux de TVA déduit des montants, ce qui est inclus ou non, délai, assurance déclarée, sa propre note ; le moins cher et les écarts sont calculés ;
+▪ un budget qui distingue le prévu, l'engagé (devis signés et imprévus) et le payé, avec une provision pour imprévus dont on voit la consommation ;
+▪ le planning des interventions sur une frise, qui signale deux artisans dans la même pièce le même jour, ou une peinture prévue avant la plâtrerie.
+
+En fin de travaux, les défauts à faire reprendre se notent par poste, avec la fin de la garantie de parfait achèvement.
+
+Volontairement, aucun prix moyen et aucun montant d'aide : seuls vos devis comptent, et le guide renvoie vers les sites officiels, avec la date de vérification.
+
+Pas de logiciel à installer : il s'ouvre dans le navigateur avec une clé, sur ordinateur et téléphone, à deux si besoin. Achat unique, sans abonnement.
+
+La démo (un appartement T3 fictif en plein chantier) est ouverte à tous, sans inscription : lien en premier commentaire.
+
+Vous avez rénové récemment : qu'est-ce qui vous a le plus manqué pour suivre vos artisans ?
+
+Si quelqu'un autour de vous attend ses devis, transmettez-lui ce post.
+
+#Rénovation #Travaux #Maison #Immobilier #Budget

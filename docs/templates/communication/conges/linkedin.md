@@ -106,3 +106,33 @@ https://qm-engineering.fr/templates/conges/?demo
 Lien d'achat en premier commentaire.
 
 #TPE #RessourcesHumaines #Congés #Management #Entrepreneur
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-116
+
+Doc : https://docs.google.com/document/d/1dwVwGbFCJ-2WFUM0P4_teGm-HB-8xXEU5H4aJgK3CWg/edit
+
+Deux personnes de la même équipe en congé la même semaine. On s'en rend compte le lundi matin.
+
+Dans une TPE sans logiciel RH, les congés vivent dans un tableur, un calendrier au mur et quelques messages. Les soldes se recalculent à la main, les demandes se perdent, et les chevauchements se voient trop tard.
+
+J'ai donc construit un outil de suivi des congés et absences qui fait trois choses :
+▪ il calcule les soldes de chaque salarié au jour près : congés acquis selon le Code du travail (ou selon vos règles), pris, posés, en attente, et les RTT ;
+▪ il garde chaque demande avec son statut (demandée, validée, refusée, annulée) et affiche le solde après validation avant que vous décidiez ;
+▪ il montre l'équipe sur un calendrier, avec les jours fériés calculés, et signale les jours où une équipe dépasse le nombre d'absents que vous avez fixé.
+
+Les règles sont visibles et modifiables : jours ouvrables ou ouvrés, période de référence, acquisition pendant un arrêt maladie, fériés chômés.
+
+Les données des salariés restent minimales, sans aucune donnée de santé, et s'exportent ou s'effacent d'un geste.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement. C'est un outil d'aide : la convention collective et le Code du travail font foi.
+
+Une démo avec une entreprise fictive est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/conges/?demo
+
+Lien d'achat en premier commentaire.
+
+Dirigeants de TPE : un chevauchement de congés, vous le voyez au moment de valider la demande, ou le jour où il manque quelqu'un ?
+
+#TPE #RessourcesHumaines #Congés #Management #Entrepreneur

@@ -61,3 +61,28 @@ Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la ver
 Démo libre et contact : lien en bio.
 
 #Budget #BudgetFamilial #FinancesPersonnelles #Dettes #Organisation
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-65
+
+Doc : https://docs.google.com/document/d/19OPRYLjiGTnTL9eIFh5vdWbmaTCbQeLurdpGfT39QbA/edit
+
+Plusieurs crédits, plusieurs mensualités, et aucune date de fin écrite nulle part.
+
+Un prêt voiture, un crédit conso, une réserve d'argent, un découvert : chaque dette a sa mensualité, mais aucune ne dit quoi rembourser en premier, ni jusqu'à quand.
+
+Le template Remboursement de dettes fait le calcul avec vos chiffres :
+▪ vos dettes et ce que vous pouvez y consacrer chaque mois donnent une date de fin ;
+▪ boule de neige, avalanche ou votre propre ordre, comparés côte à côte ;
+▪ chaque mois, vous pointez ce que vous avez vraiment payé et voyez l'écart au plan.
+
+Sans connexion à la banque, calcul expliqué, achat unique à 12 €. Une aide au calcul, pas un conseil financier.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Plus petit solde d'abord, ou taux le plus élevé d'abord : vous commenceriez par lequel ?
+
+#Budget #BudgetFamilial #FinancesPersonnelles #Dettes #Organisation

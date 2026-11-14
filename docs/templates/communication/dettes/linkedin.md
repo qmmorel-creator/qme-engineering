@@ -94,3 +94,37 @@ https://qm-engineering.fr/templates/dettes/?demo
 Lien d'achat en premier commentaire.
 
 #FinancesPersonnelles #Budget #Dettes #OutilsNumériques
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-110
+
+Doc : https://docs.google.com/document/d/1UppifasAw1ADRFj3VJ2nB-QxIAvtj2SUwNF8x2IdVOc/edit
+
+Un crédit auto, une réserve d'argent, un découvert, un prêt d'un proche. Chacun a sa mensualité. Personne ne vous dit quand tout sera fini.
+
+Quand on rembourse plusieurs dettes à la fois, la question n'est pas seulement « combien par mois ». C'est : dans quel ordre, et jusqu'à quand.
+
+Deux méthodes sont connues :
+▪ la boule de neige solde d'abord le plus petit solde, pour des victoires rapides ;
+▪ l'avalanche attaque d'abord le taux le plus élevé, pour payer moins d'intérêts.
+
+Dans les deux cas, la mensualité d'une dette soldée passe à la suivante.
+
+J'ai construit un template qui fait le calcul avec vos propres chiffres :
+▪ vous listez vos dettes (reste dû, taux, mensualité) et ce que vous pouvez y consacrer chaque mois ;
+▪ il calcule l'échéancier mois par mois, la date de fin et les intérêts, pour chaque méthode ou pour votre propre ordre ;
+▪ chaque mois, vous pointez ce que vous avez vraiment payé et voyez l'écart au plan.
+
+Il signale aussi une mensualité qui ne couvre même pas les intérêts du mois, et montre ce qu'une prime versée en une fois fait gagner.
+
+Aucune connexion à la banque, aucun taux imposé : vous saisissez vos contrats. Le calcul (taux annuel ÷ 12) est expliqué dans l'outil. C'est une aide au calcul, pas un conseil financier. Achat unique, sans abonnement.
+
+Démo avec un foyer fictif, sans inscription :
+https://qm-engineering.fr/templates/dettes/?demo
+
+Lien d'achat en premier commentaire.
+
+Si vous remboursez plusieurs crédits : connaissez-vous leur date de fin, ou seulement leurs mensualités ?
+
+#FinancesPersonnelles #Budget #Dettes #OutilsNumériques

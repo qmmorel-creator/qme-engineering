@@ -54,3 +54,28 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `14xEASQeHhPZwnMAuQjh6G8w4XkysWdkDFT3ESELkZFk` (dossier Textes).
 - Images (dossier Images) : `IG-14-crm-1.png` 1VNb4mmY4EOXUtskgBTZrwgbyCyzr4DxF, `IG-14-crm-2.png` 1yTeBiroRWwgQsBHYVQulOB6oq1EM-6ff, `IG-14-crm-3.png` 13eRb3nNUbPR3TI7zXt8-0oP2LgZ4JvSp, `IG-14-crm-4.png` 1EOv94zPL8DE7Fb9_Is7dXuLeBnWP4Vup, `IG-14-crm-5.png` 1R9G5CMG-7vgvRGcuKoRv7-23RLWuFGnk, `IG-14-crm-story.png` 1byTCeS0JlPZXiigw3NMjMtJ4Kvz4to0c.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-14
+
+Doc : https://docs.google.com/document/d/1DFSvduehlhIMlosNpM3cLSF4tXHgU_U8YB58atebMOA/edit
+
+Le devis envoyé il y a dix jours : quelqu'un l'a relancé ?
+
+Quand on travaille seul, le suivi commercial vit dans la boîte mail, un carnet et un tableur. Tout est quelque part, rien ne remonte au bon moment.
+
+Le CRM freelance :
+▪ une prochaine action datée par contact, et chaque matin la liste de qui relancer ;
+▪ après un échange, un clic sur « Fait » : il est noté et l'action suivante est proposée ;
+▪ devis et factures suivis, avec le chiffre d'affaires par mois et par client.
+
+Six étapes de vente et quatorze actions types. Ce n'est pas un logiciel de facturation : il en suit le paiement. Achat unique, 25 €.
+
+Pour une équipe, relié à votre facturation ou à vos mails ? Je construis la version sur mesure.
+
+Démo libre avec des clients fictifs, et contact : lien en bio.
+
+Combien de devis attendent une réponse chez vous en ce moment ?
+
+#Freelance #Indépendant #Prospection #Entrepreneur #OutilsSurMesure

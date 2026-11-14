@@ -61,3 +61,28 @@ Démo libre et contact : lien en bio.
 Fond papier, titre « Vos notes de frais, prêtes chaque mois », capture téléphone, autocollant lien vers
 la démo : https://qm-engineering.fr/templates/notes-de-frais/?demo (mention « Données fictives »). Rien
 d'important dans les 250 px du haut ni les 340 px du bas.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-67
+
+Doc : https://docs.google.com/document/d/1c7VUoOIak7FnkwDbVMkWBSIGGuCYnwk2DD05A4UXXTI/edit
+
+Fin du mois : une enveloppe de tickets, des trajets oubliés, et une note de frais à rendre.
+
+Repas chez un client, hôtel, péage, parking, kilomètres avec votre voiture : chaque mois, il faut tout retrouver, appliquer le bon barème et attendre le remboursement.
+
+Les Notes de frais :
+▪ gardent chaque dépense avec son justificatif et l'endroit où il est rangé ;
+▪ valorisent vos trajets au barème kilométrique fiscal, sur le total de l'année, véhicule par véhicule ;
+▪ préparent la note du mois en PDF et la suivent jusqu'au remboursement.
+
+Barème officiel daté et modifiable. Aucun envoi automatique. Achat unique, 15 €. Outil d'aide : il ne remplace pas votre comptable.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vos tickets, vous les gardez où : enveloppe, photo, boîte mail ?
+
+#NotesDeFrais #Indépendant #Freelance #Comptabilité #Organisation

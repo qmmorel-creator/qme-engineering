@@ -69,3 +69,28 @@ du jour · gaspillage suivi » ; autocollant lien vers https://qm-engineering.fr
 
 Trois du jeu « Maison » du kit (`#Organisation #Maison #BudgetFamilial`) plus `#AntiGaspillage`, hors des jeux du
 kit : **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-83
+
+Doc : https://docs.google.com/document/d/1oNoQlSg1W6HjKjo8Ch9y2ikUO4WJKbHqDD2_onfnv3I/edit
+
+Ce yaourt au fond du frigo, il est encore bon ?
+
+« À consommer jusqu'au » (DLC) : au-delà, on ne mange pas. « De préférence avant » (DDM) : au-delà, on vérifie l'aspect et l'odeur. Deux dates, deux réflexes. À enregistrer pour la prochaine hésitation.
+
+Le Garde-manger et dates de péremption :
+▪ range chaque produit par lieu, avec sa quantité et sa date ;
+▪ affiche chaque jour ce qu'il faut manger d'abord ;
+▪ compte ce qui est jeté, et pourquoi.
+
+L'emballage et l'aspect du produit priment toujours. Sans scan, sans abonnement : 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Qu'est-ce qui finit le plus souvent à la poubelle chez vous ?
+
+#Organisation #Maison #BudgetFamilial #AntiGaspillage

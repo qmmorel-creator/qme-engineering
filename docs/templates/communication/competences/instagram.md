@@ -65,3 +65,28 @@ gabarit `story` du kit, titre « Qui sait faire quoi, et qui former », capture 
 mention « Données fictives », autocollant lien vers https://qm-engineering.fr/templates/competences/?demo
 (texte « Essayer la démo »). Texte alternatif : « Story : Qui sait faire quoi, et qui former. Capture de la matrice
 des compétences sur téléphone, données fictives. Lien vers la démo. »
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-87
+
+Doc : https://docs.google.com/document/d/1-h0pL1oYoqyAQKEYDHJiwLZV6n__HxIJeEcGnTplNDo/edit
+
+Le jour où il est absent, qui répare la machine ?
+
+Dans une PME, chacun sait à peu près qui sait faire quoi. La liste, elle, n'existe nulle part, et le plan de formation se décide sans voir les compétences rares.
+
+La Matrice compétences et formations :
+▪ met les compétences de chaque personne face à ce que son poste demande, et calcule les écarts ;
+▪ signale les compétences critiques qui ne tiennent qu'à une personne ;
+▪ relie le plan de formation aux écarts, avec son budget.
+
+44 compétences et 9 postes prêts, à adapter. Données minimales, sans logiciel RH. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui prépare le plan de formation.
+
+Chez vous, quelle compétence ne tient qu'à une seule personne ?
+
+#PME #RessourcesHumaines #Formation #Organisation #OutilsNumériques

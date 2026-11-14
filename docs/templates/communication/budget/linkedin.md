@@ -64,3 +64,30 @@ https://qm-engineering.fr/templates/budget/?demo
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-82
+
+Doc : https://docs.google.com/document/d/1ZWvtFvowFgSk4LuTl8v26n63OEvBftBrU2NkVC8hNl0/edit
+
+À la fin du mois, on sait rarement où est passé l'argent. On sait juste qu'il n'est plus là.
+
+Un relevé bancaire liste les dépenses une par une. Il ne dit pas si on reste dans ce qu'on avait prévu. Ni quelle part de ce qui rentre part vraiment en loyer, en courses ou en épargne.
+
+J'ai donc construit un budget du foyer qui répond à ces questions :
+▪ des enveloppes par catégorie, avec report du reste d'un mois sur l'autre (pratique pour les vacances ou la taxe foncière) ;
+▪ le prévu face au réel, avec les enveloppes dépassées signalées dès qu'elles le sont ;
+▪ un diagramme des flux : chaque mois, le trajet de l'argent des revenus vers les besoins, les envies, l'épargne, puis chaque catégorie. Lisible aussi sur téléphone.
+
+Il arrive prêt à l'emploi : 22 catégories et 75 sous-catégories, quatre modèles de foyer, les opérations fixes (loyer, abonnements, salaire) ajoutées en un geste.
+
+Le repère 50/30/20 est affiché comme point de comparaison, pas comme une règle.
+
+Pas de connexion à la banque : on saisit ses montants. Il s'ouvre dans le navigateur avec une clé, garde les données en ligne et suit tout le foyer de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+La démo, avec un foyer fictif, est ouverte à tous : lien en premier commentaire.
+
+Chez vous, quelle enveloppe dépasse le plus souvent ce qui était prévu ?
+
+#Budget #FinancesPersonnelles #Épargne #OutilsNumériques #Famille

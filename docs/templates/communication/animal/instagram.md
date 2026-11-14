@@ -65,3 +65,28 @@ image à produire seulement quand elles reprennent.
 ## Remarque
 
 `#AnimauxDeCompagnie` ne fait pas partie des jeux de hashtags du kit : à valider par Quentin.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-85
+
+Doc : https://docs.google.com/document/d/1lR2cqs2m2ZTbwaz31pfMEbpc9pdBlcOOorsCsH2vOzQ/edit
+
+Son vermifuge, c'était quand, déjà ?
+
+Antiparasitaire, vermifuge, rappel de vaccin, toilettage : les dates sont sur le carnet de santé, rarement sous la main.
+
+Le Suivi d'un animal de compagnie :
+▪ calcule chaque prochaine échéance à partir des intervalles que votre vétérinaire vous a donnés ;
+▪ trace sa courbe de poids, pesée après pesée ;
+▪ garde les visites, les traitements notés et tous les frais, par mois et par an.
+
+Aucun calendrier de vaccins intégré : c'est votre vétérinaire qui décide, l'outil calcule. Il ne remplace pas son avis. Carnet imprimable pour la pension. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Chez vous, qui pense au vermifuge : vous, le calendrier ou le vétérinaire ?
+
+#AnimauxDeCompagnie #Organisation #Maison #Budget #OutilsNumériques

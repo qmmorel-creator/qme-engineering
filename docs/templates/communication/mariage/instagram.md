@@ -54,3 +54,28 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1WvhShxboemyDjK48MbEiBKYsAkHJRiCp5O0XjGrtGF4` (dossier Textes).
 - Images (dossier Images) : `IG-21-mariage-1.png` 1QdUf9Em-ZfkxCQi6UsYnIezz_6qT77ce, `IG-21-mariage-2.png` 1C4_xVt92E2BrcTRuYd-_laRZRUp12TB3, `IG-21-mariage-3.png` 1-syJha3g-XdMjKaTrIzihQDGzttEx1xz, `IG-21-mariage-4.png` 1QoMD3C4jFTx_PTx7VCY9e-BlzeFMAqQE, `IG-21-mariage-5.png` 1a8iXfVgIcjkRSyLAgw3ebIdTBZ8XYeFj, `IG-21-mariage-story.png` 1xY9aFY8czTOO-kMUgxc24AsfaMuhBi8s.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-21
+
+Doc : https://docs.google.com/document/d/1G72q66TZk8E0dvt2EeGKxkL9lwlT7N-QRXEDxcxx1Nc/edit
+
+Un an, une dizaine de prestataires, des acomptes à des dates différentes : un mariage, c'est un projet. Sans l'outil.
+
+Ajoutez des dizaines de tâches étalées sur l'année et des invités qui répondent au compte-gouttes.
+
+L'Organisateur de mariage :
+▪ un rétroplanning de 40 tâches calculé depuis la date : si elle change, tout se recale ;
+▪ le budget poste par poste : prévu, engagé, payé, acomptes et soldes compris ;
+▪ les invités, leurs réponses et leurs régimes, puis un plan de table au glisser-déposer.
+
+Postes de budget vides : pas de prix moyens inventés, c'est votre budget. Sur les deux téléphones et l'ordinateur, même hors connexion. Achat unique, 29 €.
+
+Organisateur d'événements, avec vos prestataires et vos clients ? Je construis la version sur mesure.
+
+Démo libre avec un mariage fictif, et contact : lien en bio. À envoyer à la personne avec qui vous l'organisez.
+
+Qu'est-ce qui vous prend le plus de temps : les prestataires, le budget ou les invités ?
+
+#Mariage #Organisation #GestionDeProjet #Événement #OutilsSurMesure

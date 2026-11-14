@@ -66,3 +66,26 @@ kit) : image à produire seulement quand elles reprennent.
 
 Deux du jeu « Maison » du kit (`#Organisation #Maison`) plus `#Potager` et `#Jardinage`, hors des jeux du kit : **à
 valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-89
+
+Doc : https://docs.google.com/document/d/1yVzB1sJBMcZ-343cDVeVN2RjoXhAn0vpftl0e368jXw/edit
+
+Qu'y avait-il sur cette planche l'an dernier ? Et les carottes, c'était fin mars ou mi-avril ?
+
+Le Calendrier du potager garde vos cultures avec vos dates, celles de vos sachets, par quinzaine. Chaque semaine :
+▪ ce qu'il y a à semer, planter et récolter ;
+▪ ce qui est déjà fait, et les fenêtres passées ;
+▪ une alerte si une même famille revient au même endroit.
+
+Pas de calendrier générique : vos dates, avec un décalage pour votre région. Sans abonnement : 13 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vos dates de semis, vous les notez où aujourd'hui ?
+
+#Potager #Jardinage #Organisation #Maison

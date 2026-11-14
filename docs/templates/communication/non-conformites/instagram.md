@@ -54,3 +54,28 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `1g0SAULpmgI-EQLGaU5cRG8VnXXEuPMbfozXqnPtOOQM` (dossier Textes).
 - Images (dossier Images) : `IG-13-non-conformites-1.png` 1WgEY2HxiydWv4cDm_SwiprZD3KJ4qwkS, `IG-13-non-conformites-2.png` 1mSEj2ZXrBB8X3t_0f31nmmRRBmvaO4yv, `IG-13-non-conformites-3.png` 1mYvF6jmJvqh7wHnm3pTorWEJJcwH6gVr, `IG-13-non-conformites-4.png` 1ft-_Tki7APfh9znIMRRDZl4M8bXO_yQD, `IG-13-non-conformites-5.png` 1nkXxGC4RveUUV-udYgedgzuCaz8tNY3F, `IG-13-non-conformites-story.png` 1kuxcWOdczmmfkvbG9ro8bOiQBqtyXKeb.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-13
+
+Doc : https://docs.google.com/document/d/1oExocmi-UnXhpdqAiOpDAUhINn94DG9dj9s0nD2ZrlU/edit
+
+Le même écart revient trois fois. Le registre, lui, n'a noté que l'écart.
+
+Dans beaucoup de PME, le registre des non-conformités note l'écart, parfois l'action, rarement la cause, presque jamais la vérification.
+
+Le Registre des non-conformités :
+▪ le constat se saisit en 30 secondes, sur le terrain, depuis le téléphone ;
+▪ la cause se cherche avec les 5 pourquoi guidés, puis se classe en 6M ;
+▪ les actions sont suivies, puis une vérification d'efficacité décide de la clôture.
+
+Grille de gravité, dix types d'écarts (BTP et industrie), indicateurs prêts pour la revue de direction. Achat unique, 20 €.
+
+Vos procédures, vos audits, vos modèles de fiches ? Je construis la version sur mesure.
+
+Démo libre avec un an d'historique fictif, et contact : lien en bio.
+
+Chez vous, qui vérifie qu'une action corrective a vraiment marché ?
+
+#Qualité #BTP #Industrie #PME #OutilsSurMesure

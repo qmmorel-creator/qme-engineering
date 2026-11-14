@@ -65,3 +65,28 @@ Gabarit `story` du kit (1080 × 1920) : « Leasing ou achat : le vrai prix de vo
 https://qm-engineering.fr/templates/leasing/?demo (« Essayer la démo ») ; mention « Données fictives » si
 une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-74
+
+Doc : https://docs.google.com/document/d/1wX4VlUbFXvCQUZeR_-cXgZWVkEs5Nvhr8OXURbjtheo/edit
+
+Un loyer de LOA n'est pas le prix de votre voiture.
+
+Premier loyer, option d'achat, forfait kilométrique, revente : chaque offre met en avant un chiffre différent, et aucune ne dit ce que la voiture coûtera vraiment.
+
+Le Simulateur leasing ou achat :
+▪ compare comptant, crédit, LOA et LLD sur la même période, revente estimée déduite ;
+▪ donne le coût par mois et par kilomètre, et le kilométrage où une offre passe devant une autre ;
+▪ liste les questions à poser au vendeur avant de signer.
+
+Vous reportez vos propres devis, les hypothèses restent visibles. Simulation, pas un conseil financier. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À enregistrer avant votre prochain rendez-vous chez un vendeur.
+
+Combien de kilomètres faites-vous par an, à peu près ?
+
+#Voiture #LOA #BudgetFamilial #Budget #Indépendant
