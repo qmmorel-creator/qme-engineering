@@ -1258,5 +1258,46 @@
         "value": "Enseignants, formateurs"
       }
     ]
+  },
+  {
+    "slug": "potager",
+    "name": "Calendrier du potager",
+    "price_cents": 1300,
+    "permalink": "calendrier-potager",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon potager",
+    "summary": "Tes cultures avec tes dates de semis, de plantation et de récolte, ce qu'il y a à faire cette semaine, la frise de l'année, la rotation des familles sur tes planches et le bilan de tes récoltes.",
+    "description": "<h2>Chaque semis à sa date.</h2><p>La fenêtre de semis des carottes qui passe sans qu'on y pense, la planche dont on ne sait plus ce qu'elle portait l'an dernier, le carnet de jardin qui ne prévient de rien… Le Calendrier du potager garde tes dates, te dit chaque semaine quoi semer, planter et récolter, et surveille la rotation de tes planches.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes cultures et leurs fenêtres</strong> : semis sous abri, semis en pleine terre, plantation, récolte, par quinzaine, y compris les semis d'automne qui passent l'hiver ; une liste de 60 légumes avec leur nom latin et leur famille botanique pour démarrer.</li><li><strong>À faire cette semaine</strong> : ce qui s'ouvre, ce qui finit bientôt, ce qui est déjà fait, les fenêtres passées sans rien noter et ce qui arrive le mois prochain.</li><li><strong>La frise des 12 mois</strong>, imprimable, avec un décalage en semaines que tu règles pour ta région ou ton jardin.</li><li><strong>La rotation surveillée</strong> : planches, carrés, serre, bacs, année après année ; alerte si une même famille revient au même endroit, et si deux cultures que tu as notées « à éloigner » se retrouvent côte à côte.</li><li><strong>Le journal et le bilan</strong> : semis, levées, plantations, récoltes avec leur quantité ; kilos récoltés par culture et par mois, comparés à l'année précédente.</li><li><strong>Export CSV</strong> des cultures, du journal et du plan des parcelles.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche tes cultures, recopie leurs fenêtres depuis tes sachets de graines ou ton carnet, crée tes planches. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucune période de semis, de plantation ou de récolte et aucune association de cultures ne sont fournies : nous n'avons trouvé aucune source publique dont la licence de réutilisation soit vérifiée. Ce sont tes dates (sachets, livre, expérience). La base contient les noms, noms latins et familles botaniques de 60 légumes. Aucune météo, aucun service externe. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "potager",
+      "jardin",
+      "calendrier-semis",
+      "rotation-des-cultures",
+      "jardinage",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier du potager s'ouvre. Coche tes cultures, recopie leurs fenêtres depuis tes sachets de graines, crée tes planches, puis ouvre « Cette semaine » au jardin. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Jardiniers amateurs"
+      }
+    ]
   }
 ]
