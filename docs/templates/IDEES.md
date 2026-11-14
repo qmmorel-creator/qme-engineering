@@ -83,11 +83,11 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
-| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
+| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | en cours | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | en cours | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | en cours | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -104,7 +104,7 @@ déjà).
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
-| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
+| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | en cours | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
