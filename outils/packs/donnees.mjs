@@ -8,6 +8,7 @@
 export const TEMPLATES = {
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
   TVA: { slug: 'tva', prix: 1900, phrase: 'Collectée, déductible, crédit reporté, échéances et contrôles.', pour: 'pro' },
@@ -95,7 +96,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  NTS: { nom: 'Notes et moyennes', prix: 1200, phrase: 'Moyennes pondérées, crédits et note visée à l’examen.' },
   CAN: { nom: 'Candidatures études, stages, alternance', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.' },
   MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
   SBV: { nom: 'Subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.' },
@@ -280,9 +280,10 @@ export const PAGES = {
       ['PHR', 'Placez les révisions dans la semaine, entre les cours et le reste.'],
       ['HBT', 'Tenez le rythme : sommeil, sport, temps d’écran, séries à ne pas casser.'],
       ['PGS', 'Gardez le rythme de lecture des œuvres au programme, objectif au jour près.'],
+      ['NTS', 'Suivez vos notes et sachez quelle note viser au prochain partiel.'],
     ],
     arguments: ['La répétition espacée, une méthode de mémorisation éprouvée, sans fiche à refaire', 'Sur le téléphone, toujours à portée de main', 'Un achat unique jusqu’à l’examen, et après'],
-    prevus: ['NTS', 'CAN', 'MMR'],
+    prevus: ['CAN', 'MMR'],
   },
   PAS: {
     couleur: 'rouge', cibles: ['associations'],

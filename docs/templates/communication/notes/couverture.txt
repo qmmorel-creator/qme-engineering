@@ -1,0 +1,11 @@
+Notes et moyennes
+Ta moyenne, au centième près.
+Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel
+
+Ligne ajoutée à la table T de outils/templates/couvertures-gumroad.cjs :
+  notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
+
+Couverture générée : assets/templates-notes-couverture.png (copie du script sur le port 8915, SEUL=notes).
+Texte alternatif : « Notes et moyennes QME : “Ta moyenne, au centième près.” Bilan d'un semestre avec la moyenne,
+l'objectif, les crédits ECTS et la prochaine épreuve, sur ordinateur et sur téléphone. Étudiante fictive, données
+fictives. »

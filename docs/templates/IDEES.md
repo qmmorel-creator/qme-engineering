@@ -163,7 +163,7 @@ déjà).
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
-| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -264,7 +264,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
-| Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
+| Étudiant | PET | T01, T30, T08, T17, T88 | T89, T90 | 65,90 € | 25 % | 49 € | 13 € |
 | Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
@@ -1963,3 +1963,33 @@ régénérer les pages des packs à la fusion.
   (permalien prévu `revue-hebdomadaire`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, ajout au pack PPR et régénération des pages de packs, plannings, page
   anglaise, passage en vente du site.
+
+## Fiche T88 (cadrage délégué par Quentin, 14/11/2026)
+
+### T88 · Notes et moyennes (`templates/notes/`, préfixe NTS, 12 €)
+- Fiche détaillée : [`fiches/notes.md`](fiches/notes.md). Application web, permalien prévu `notes-moyennes`,
+  catalogue `perso` · thème « Organisation et études ». Pack visé : « Étudiant » (PET).
+- Promesse : « Ta moyenne, au centième près. » Pour les lycéens, étudiants (BTS, BUT, licence, master, écoles) et
+  candidats aux concours.
+- Fonctions : années et périodes (semestres, trimestres), UE et matières avec coefficients ou crédits ECTS, notes
+  avec barème et coefficient propres (contrôles, partiels, oraux, TP, rattrapages, absences neutralisées),
+  moyennes par matière, UE, période et année comparées aux seuils au centième, crédits acquis, règles du diplôme
+  **saisies par l'utilisateur** (compensation totale, par UE ou aucune, note éliminatoire, rattrapage
+  « remplace » ou « meilleure », compensation entre périodes, mentions), simulateur de la note nécessaire aux
+  épreuves à venir (dichotomie), courbe de la moyenne (skill `dataviz`, palette validée), relevé imprimable,
+  export CSV. Notation sur 20, sur 10, sur 100 ou en lettres (table saisie).
+- Marques : **aucun barème officiel ni règle de diplôme intégrés** (valeurs proposées modifiables : seuil 10,
+  mentions 12 / 14 / 16, table de lettres) ; aucune donnée datée ; relevé « sans valeur officielle » ; démo
+  fictive (« Camille Exemple », établissement inventé).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/notes/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/notes/`, captures
+  `assets/templates-notes-*.webp`, couverture `assets/templates-notes-couverture.png`, tests
+  `outils/templates/notes.test.mjs`. Produit `NTS` déclaré (serveur, connexion, en-têtes Netlify) ; `NTS` passé de
+  `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PET).
+- Communication prête dans `communication/notes/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte d'accueil FR,
+  carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `NTS` aux
+  `produits` du pack PET (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise, plannings,
+  passage en vente du site.

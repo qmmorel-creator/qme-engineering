@@ -1,0 +1,42 @@
+{
+  "slug": "notes",
+  "name": "Notes et moyennes",
+  "price_cents": 1200,
+  "permalink": "notes-moyennes",
+  "category": "education",
+  "button": "Ouvrir mes notes",
+  "summary": "Tes semestres, UE et matières avec leurs coefficients ou crédits ECTS, tes notes, tes moyennes au centième selon les règles de ton diplôme, et la note qu'il te faut au prochain partiel pour atteindre ton objectif.",
+  "description": "<h2>Ta moyenne, au centième près.</h2><p>Un 7 sur 10 en TP, un partiel coefficient 2, des UE en crédits ECTS, une note éliminatoire dans le règlement : la moyenne se refait à la main, souvent la veille des examens. Notes et moyennes tient ta maquette et fait le calcul à ta place, avec tes règles.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ta maquette</strong> : années, semestres ou trimestres, unités d'enseignement et matières avec leurs coefficients ou leurs crédits ECTS.</li><li><strong>Chaque note en deux secondes</strong> : 14,5 ou 7/10, avec son coefficient dans la matière (contrôle, partiel, oral, TP) ; notation sur 20, sur 10, sur 100 ou en lettres.</li><li><strong>Tes moyennes</strong> par matière, UE, période et année, et les crédits acquis.</li><li><strong>Les règles de ton diplôme</strong>, que tu saisis : seuil de validation, compensation entre matières, par UE ou aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions.</li><li><strong>La note qu'il te faut</strong> aux épreuves à venir pour atteindre ton objectif, ou la confirmation qu'il est déjà assuré (ou hors de portée).</li><li><strong>L'évolution</strong> de ta moyenne après chaque note et un <strong>relevé imprimable</strong>.</li><li><strong>Export</strong> des notes et du relevé en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ta formation (lycée, BTS ou BUT, licence ou master, prépa ou concours), recopie tes matières et note chaque résultat. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun barème officiel d'examen ni règle de diplôme n'est intégré : coefficients, crédits et règles sont ceux que tu saisis, d'après ton règlement des études. Le relevé est personnel et sans valeur officielle : seul celui de ton établissement fait foi. Aucun lien avec ton établissement ni avec un logiciel de scolarité. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "notes",
+    "moyenne",
+    "etudiant",
+    "ects",
+    "partiels",
+    "lycee",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes notes s'ouvrent. Choisis ta formation, recopie tes matières avec leurs coefficients ou crédits, puis note chaque résultat. Sur ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Lycéens, étudiants (BTS, BUT, licence, master, écoles), candidats aux concours"
+    }
+  ]
+}
