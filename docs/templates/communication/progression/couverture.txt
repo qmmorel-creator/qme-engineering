@@ -1,0 +1,10 @@
+Progression pédagogique
+Ton programme, séance après séance.
+Prévu et réel · retard en heures · fin projetée
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  progression: ['Progression pédagogique', 'Ton programme, séance après séance.', 'Prévu et réel · retard en heures · fin projetée'],
+
+(Couverture assets/templates-progression-couverture.png générée avec une copie du script où cette ligne était la première
+de la table : ambiance n° 0 (bloc ciel, forme rose, quart de cercle jaune). Placée ailleurs dans la table, une
+régénération donnerait l'ambiance de son rang modulo 3 : régénérer avec SEUL=progression seulement si on le souhaite.)

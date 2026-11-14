@@ -1,0 +1,6 @@
+Suivi du bébé
+Ses journées, notées d'une main.
+Tétées · sommeil · couches · à deux parents
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  'bebe': ["Suivi du bébé", "Ses journées, notées d'une main.", "Tétées · sommeil · couches · à deux parents"],

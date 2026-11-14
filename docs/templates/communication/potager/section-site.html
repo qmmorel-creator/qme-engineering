@@ -1,0 +1,49 @@
+<!-- Version « en vente » de la page catalogue/potager/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad proposé : calendrier-potager (à confirmer une fois la fiche créée), prix 13 € (à confirmer par
+     Quentin). Captures : assets/templates-potager-*.webp (démo, données fictives). À la mise en vente, retirer aussi le
+     lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js, retirer le
+     bouton « Je suis intéressé(e) » et sa note, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="potager">
+  <div class="section-head">
+    <h2>Calendrier du potager</h2>
+    <p>Pour les jardiniers amateurs qui notent leurs semis sur un carnet et ne savent plus, au printemps, ce qu'il y avait sur chaque planche l'an dernier : vos cultures avec vos dates, ce qu'il y a à semer, planter et récolter cette semaine, la rotation de vos planches et le bilan de vos récoltes.</p>
+    <p><b>Vos dates, pas un calendrier générique :</b> l'outil ne fournit aucune période de semis ni aucune association toute faite. Vous recopiez celles de vos sachets de graines, de votre livre ou de votre carnet, et un décalage en semaines adapte tout le calendrier à votre jardin.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-potager-semaine.webp?v=20261114" width="1600" height="1000" alt="Écran « Cette semaine » : compteurs à semer, à planter, à récolter et fenêtres passées, puis la liste des semis, plantations et récoltes de la semaine avec leurs dates et ce qui est déjà fait (données fictives)">
+      <img class="tel" src="/assets/templates-potager-tel.webp?v=20261114" width="780" height="1328" alt="La frise de l'année sur téléphone : pour chaque culture, les quinzaines de semis, de plantation et de récolte en couleurs, avec la quinzaine en cours (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Jardiniers amateurs</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Vos cultures et leurs fenêtres</b> : semis sous abri, semis en pleine terre, plantation, récolte, par quinzaine, y compris les semis d'automne qui passent l'hiver ; une liste de 60 légumes avec leur famille botanique pour démarrer</li>
+        <li><b>À faire cette semaine</b> : ce qui s'ouvre, ce qui finit bientôt, ce qui est déjà fait, les fenêtres passées sans rien noter et ce qui arrive le mois prochain</li>
+        <li><b>La frise des 12 mois</b>, imprimable, avec un décalage en semaines pour votre région ou votre jardin</li>
+        <li><b>La rotation surveillée</b> : vos planches, carrés, serre ou bacs, année après année ; alerte si une même famille revient au même endroit, et si deux cultures que vous avez notées « à éloigner » se retrouvent côte à côte</li>
+        <li><b>Le journal et le bilan</b> : semis, levées, plantations, récoltes avec leur quantité ; kilos récoltés par culture et par mois, comparés à l'année précédente ; export CSV</li>
+      </ul>
+      <div class="prix"><b>13 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/calendrier-potager" data-goatcounter-click="achat-potager" data-goatcounter-title="Acheter : calendrier du potager">Acheter</a>
+        <a class="btn" href="/templates/potager/?demo" data-goatcounter-click="demo-potager" data-goatcounter-title="Démo : calendrier du potager">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-potager-calendrier.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Frise des 12 mois par quinzaine : une ligne par opération et par culture (semis sous abri, semis en pleine terre, plantation, récolte), filtres et légende (données fictives)"><figcaption>La frise de l'année, culture par culture</figcaption></figure>
+    <figure><img src="/assets/templates-potager-parcelles.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Les parcelles de l'année : planches, carré et serre avec leurs cultures, alertes de rotation et de cultures à éloigner, familles des années précédentes (données fictives)"><figcaption>Où pousse quoi, et la rotation des familles</figcaption></figure>
+    <figure><img src="/assets/templates-potager-journal.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Bilan des récoltes : nombre de récoltes, kilos récoltés, cultures récoltées, comparaison avec l'année précédente, barres par culture et par mois (données fictives)"><figcaption>Le bilan des récoltes de la saison</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Pourquoi les dates de semis ne sont-elles pas fournies ?</summary><p>Parce que nous n'avons trouvé aucun calendrier public dont la source et la licence de réutilisation soient vérifiées, et que nous ne voulons pas vous vendre des dates sans origine. Elles varient d'ailleurs selon la région, l'exposition et la variété : celles de vos sachets de graines ou de votre livre de jardinage sont les bonnes. Vous les saisissez une fois par culture, en deux listes (« de » et « à »), et elles servent ensuite chaque année.</p></details>
+    <details><summary>Que contient la base de 60 légumes ?</summary><p>Le nom courant, le nom latin et la famille botanique (solanacées, cucurbitacées, fabacées, brassicacées…) de 60 légumes, aromatiques et petits fruits du potager. La famille sert à la rotation ; aucune période ni association n'y figure.</p></details>
+    <details><summary>Comment adapter le calendrier à ma région ?</summary><p>Avec un décalage en semaines, que vous réglez vous-même (de 8 semaines plus tôt à 8 semaines plus tard) : si vous semez d'habitude deux semaines après les dates de vos sachets, réglez +2 et tout le calendrier suit. Aucun zonage climatique n'est intégré.</p></details>
+    <details><summary>Comment fonctionne l'alerte de rotation ?</summary><p>Chaque année, vous placez vos cultures sur vos planches, carrés, serre ou bacs. Si une culture de la même famille botanique occupait la même parcelle l'année précédente (ou dans les 2 à 5 dernières années, selon votre réglage), l'outil le signale avant même d'enregistrer.</p></details>
+    <details><summary>Et les associations de cultures ?</summary><p>Vous notez vous-même, sur chaque culture, ses « bons voisins » et les cultures « à éloigner ». L'outil vous prévient quand deux cultures à éloigner se retrouvent sur la même parcelle la même année. Aucune liste d'associations n'est fournie.</p></details>
+    <details><summary>Tient-il compte de la météo ?</summary><p>Non : aucune météo ni aucun service externe. Les dates viennent de vos saisies ; l'état de votre sol et le temps qu'il fait restent à juger sur place.</p></details>
+    <details><summary>Puis-je l'utiliser au jardin, sur mon téléphone ?</summary><p>Oui : la même clé ouvre vos données sur le téléphone (à ajouter à l'écran d'accueil comme une application) et sur l'ordinateur. Une fois chargé, il fonctionne aussi sans réseau au fond du jardin ; vos saisies sont envoyées au retour de la connexion.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/potager/?demo">la démo</a> ouvre le jardin fictif « Jardin des Tilleuls » (dix-sept cultures, six parcelles, deux saisons de journal). Ses dates sont inventées pour l'exemple et calées sur le jour d'ouverture : ce ne sont pas des conseils de culture. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
