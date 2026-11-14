@@ -1,8 +1,9 @@
 <!doctype html>
-<!-- Carrousel Instagram du Simulateur leasing ou achat (5 vues, 1080 × 1350), d'après les gabarits car-1, car-2 et
+<!-- Carrousel Instagram du simulateur leasing ou achat (5 vues, 1080 × 1350), d'après les gabarits car-1, car-2 et
      car-3 de ../../instagram/gabarits.html (mêmes styles). Rendu :
      node docs/templates/communication/instagram/rendre.mjs ../leasing/instagram/carrousel.html
-     puis déplacer png/leasing-*.png du dossier du kit vers ce dossier. Captures : démo, données fictives. -->
+     puis déplacer png/leasing-*.png du dossier du kit vers ce dossier. Captures : démo, données fictives.
+     Aucune marque ni modèle de voiture réel. -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -60,9 +61,9 @@ h1,h2,p{letter-spacing:-.025em}
 .points b{display:block;font-weight:800;font-size:38px;margin-bottom:6px}
 #leasing-4 .bandeau{background:var(--jaune);color:var(--encre)}
 #leasing-4 .bandeau .sourcil{color:var(--encre);opacity:.75}
-#leasing-4 .fenetre{position:absolute;left:84px;right:84px;top:400px;height:473px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
-#leasing-4 .fenetre img{position:absolute;width:2140px;left:-604px;top:-416px}
-#leasing-4 .points{position:absolute;left:84px;right:84px;top:940px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+#leasing-4 .fenetre{position:absolute;left:84px;right:84px;top:400px;height:590px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);background:var(--surface);overflow:hidden}
+#leasing-4 .fenetre img{position:absolute;width:800px;left:56px;top:-6px}
+#leasing-4 .points{position:absolute;left:84px;right:84px;top:1050px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
 #leasing-4 .points div{font-size:30px}
 #leasing-4 .points b{font-size:34px}
 
@@ -100,9 +101,9 @@ h1,h2,p{letter-spacing:-.025em}
 <section class="cadre post" id="leasing-1">
   <span class="compteur">1 / 5</span>
   <div class="titre">
-    <p class="sourcil" style="color:var(--rouge)">Factures impayées</p>
-    <h1 style="margin-top:30px">Quand avez-vous <mark>relancé</mark> ce client ?</h1>
-    <p class="sous">Et que pouviez-vous lui réclamer ?</p>
+    <p class="sourcil" style="color:var(--rouge)">Prochaine voiture</p>
+    <h1 style="margin-top:30px">LOA, LLD, crédit ou <mark>comptant</mark> ?</h1>
+    <p class="sous">Laquelle vous coûtera vraiment le moins cher ?</p>
   </div>
   <div class="fa"></div><div class="fb"></div>
   <p class="glisser">Faites glisser <span></span></p>
@@ -112,32 +113,32 @@ h1,h2,p{letter-spacing:-.025em}
   <span class="compteur">2 / 5</span>
   <div class="texte">
     <p class="sourcil">Le problème</p>
-    <h2>Une facture en retard ne se règle pas toute seule.</h2>
-    <p class="sous">On attend, on hésite, on relance trop tard avec un message trop vague. Et on oublie <strong>les pénalités et les 40 € d'indemnité</strong> prévus entre professionnels.</p>
+    <h2>Un loyer n'est pas un prix.</h2>
+    <p class="sous">Premier loyer, option d'achat, forfait kilométrique, revente : chaque offre met en avant un chiffre différent. Ce qui compte, c'est <strong>le coût total sur la période</strong>.</p>
   </div>
   <div class="f1"></div><div class="f2"></div>
   <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole-clair"/></svg><span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span></span></div>
 </section>
 
 <section class="cadre post car2" id="leasing-3">
-  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Ce qui vous est dû, et depuis quand.</h2></div>
+  <div class="bandeau"><p class="sourcil">Ce que fait le template</p><h2>Toutes vos offres, au même étalon.</h2></div>
   <span class="compteur">3 / 5</span>
   <div class="tel"><img src="../../../../../assets/templates-leasing-tel.webp" alt=""></div>
   <div class="points">
-    <div><b>Retard en jours</b>L'échu rangé par ancienneté : 0-30, 31-60, 61-90, plus de 90 jours.</div>
-    <div><b>Pénalités calculées</b>Jour par jour, sur le restant dû, paiements partiels compris.</div>
-    <div><b>Taux datés</b>Modifiables à chaque semestre, sources affichées.</div>
+    <div><b>Coût total net</b>Versements, frais, option, moins la revente estimée.</div>
+    <div><b>Par mois et par km</b>Pour comparer comptant, crédit, LOA et LLD.</div>
+    <div><b>Vos hypothèses</b>Décote, entretien, placement de l'apport : visibles et modifiables.</div>
   </div>
   <p class="note">Données fictives</p>
 </section>
 
 <section class="cadre post car2" id="leasing-4">
-  <div class="bandeau"><p class="sourcil">La vue clé</p><h2>Le bon message, au bon palier.</h2></div>
+  <div class="bandeau"><p class="sourcil">La vue clé</p><h2>Vos kilomètres font le classement.</h2></div>
   <span class="compteur">4 / 5</span>
-  <div class="fenetre"><img src="../../../../../assets/templates-leasing-relance.webp" alt=""></div>
+  <div class="fenetre"><img src="../../../../../assets/templates-leasing-km-tel.webp" alt=""></div>
   <div class="points">
-    <div><b>4 paliers</b>Rappel courtois, relance ferme, mise en demeure, dernier avis.</div>
-    <div><b>Copier, pas envoyer</b>Montant, numéro, retard et pénalités déjà remplis.</div>
+    <div><b>Le seuil</b>Le kilométrage où une offre passe devant une autre.</div>
+    <div><b>Le dépassement</b>Forfait, km réels, coût estimé à la restitution.</div>
   </div>
   <p class="note">Données fictives</p>
 </section>
@@ -145,11 +146,11 @@ h1,h2,p{letter-spacing:-.025em}
 <section class="cadre post" id="leasing-5">
   <span class="compteur">5 / 5</span>
   <div class="bloc">
-    <h2>Essayez-le avec une entreprise fictive.</h2>
-    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Aucun message envoyé à votre place</div><div><i></i>Achat unique, sans abonnement</div></div>
+    <h2>Essayez-le avec deux voitures fictives.</h2>
+    <div class="liste"><div><i></i>Démo libre, sans inscription</div><div><i></i>Aucune donnée de marché : vos devis</div><div><i></i>Achat unique, sans abonnement</div></div>
   </div>
   <div class="plus"><b>Besoin de plus ?</b> Vos règles, vos utilisateurs, vos outils : <b>je le construis sur mesure.</b></div>
-  <div class="cta"><b>Lien en bio</b><span>19 € · accès à vie</span></div>
+  <div class="cta"><b>Lien en bio</b><span>12 € · accès à vie</span></div>
   <div class="pied"><span class="marque"><svg viewBox="0 0 80 80"><use href="#symbole"/></svg><span><span>Q</span><span class="m" style="color:var(--bleu)">M</span><span style="color:var(--surface)">E</span></span></span><span>qm-engineering.fr/templates</span></div>
 </section>
 
