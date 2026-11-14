@@ -140,7 +140,7 @@ déjà).
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
@@ -260,7 +260,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T75, T76 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34 | T47, T77, T78 | 136 € | 25 % | 102 € | 26 € |
-| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
+| Moyens généraux | PMG | T45, T29, T46, T61 | T50, T63, T79, T80 | 132 € | 20 % | 105 € | 27 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T81, T82, T83 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16 | T84, T21 | 71 € | 20 % | 56 € | 14 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T85 | 61 € | 20 % | 48 € | 12 € |
@@ -271,7 +271,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Famille | PFA | T05, T11 | T06, T09, T19, T20 | 27 € | 10 % | 24 € | 9 € |
 | Voyage | PVY | T65 | T21 | 28 € (prévu) | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | — | T59, T58, T55, T56 | 104 € (prévu) | 20 % | 83 € | 21 € |
-| Exploitation et maintenance | PXP | — | T60, T61, T63, T79 | 148 € (prévu) | 20 % | 118 € | 30 € |
+| Exploitation et maintenance | PXP | T61 | T60, T63, T79 | 148 € (prévu) | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42 | — | 108 € | 20 % | 86 € | 22 € |
 | Ma voiture | PVT | T66 | T10 | 25 € (prévu) | 10 % | 22 € | 9 € |
 
@@ -1072,3 +1072,30 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   PNG, prospects.md, section-site.html). Reste : confirmation du nom et du prix, création de la fiche
   Gumroad (non ajoutée à `communication/gumroad-a-creer.json`, fichier partagé), clé de licence (Quentin),
   lignes des plannings LinkedIn et Instagram, passage en vente du site.
+
+## Fiche T61 (cadrage délégué par Quentin, 14/11/2026)
+
+### T61 · Maintenance préventive, GMAO légère (`templates/maintenance/`, préfixe GMA)
+- Fiche détaillée : [`fiches/maintenance.md`](fiches/maintenance.md). Application web, 39 €, permalien prévu
+  `maintenance-preventive`, catalogue `pro` · thème « Équipements et véhicules ». Packs prévus : Moyens généraux,
+  Exploitation et maintenance (`GMA` ajouté à `TEMPLATES` et retiré de `PREVUS` dans `outils/packs/donnees.mjs` ;
+  ajout aux `produits` des packs laissé au coordinateur).
+- Promesse : « Chaque machine entretenue à temps. »
+- Base intégrée : 16 familles d'équipements, 54 opérations types avec points de contrôle (périodicités
+  **indicatives, non sourcées**, la notice du fabricant prime) ; **daté** : 2 obligations sourcées reprises de
+  T11 (chaudières 4–400 kW, art. R224-41-4 à R224-41-9 ; thermodynamiques 4–70 kW, art. R224-44 à R224-44-5),
+  vérifiées le 13/11/2026, à revoir chaque année ; 10 vérifications réglementaires **sans périodicité**
+  (levage, pression, électricité, incendie, portes automatiques, éclairage de sécurité, fluides frigorigènes,
+  conduit de cuisine) : « à paramétrer » jusqu'à la saisie de l'utilisateur.
+- Moteur d'échéances commun avec T11 et T29 (date, compteur, premier atteint, date estimée par le rythme,
+  recalage glissant ou calendaire) ; bons d'intervention imprimables ; pièces de rechange ; coût par équipement ;
+  indicateurs (taux de réalisation du préventif, ponctualité, retards, pannes).
+- **Confidentiel** vérifié : aucun artefact professionnel repris, démo fictive (« Atelier Exemple »).
+- Statut : **prêt**, « Mise en vente prochaine » (page `catalogue/maintenance/`, démo libre, bouton « Je suis
+  intéressé(e) »). Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, cartes). Reste :
+  fiche Gumroad (et entrée de `communication/gumroad-a-creer.json`), clé de licence (Quentin), lignes des
+  plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).
+- À vérifier : périodicités indicatives des plans types ; libellés des vérifications réglementaires (liste non
+  exhaustive) ; catégorie Gumroad.
+

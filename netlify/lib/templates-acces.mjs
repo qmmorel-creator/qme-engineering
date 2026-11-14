@@ -60,6 +60,7 @@ export const PRODUITS = {
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/' },
   GRT: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/' },
+  GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

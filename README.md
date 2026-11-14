@@ -211,6 +211,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   et les intempéries retenues du journal, sous-traitants, non-conformités simplifiées, risques en matrice
   4 × 4, courriers et ordres de service, revue de projet imprimable ; plusieurs opérations par clé. Aucun
   indice ni taux réglementaire intégré. Règles dans `regles.js`, tests `outils/templates/suivi-chantier.test.mjs`.
+- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, prêt, « Mise en vente prochaine » (39 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/maintenance/gumroad.json`). 16 familles
+  d'équipements et leurs plans types (périodicités indicatives ; seules les chaudières 4–400 kW et climatisations 4–70 kW
+  portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
+  compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
+  Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
