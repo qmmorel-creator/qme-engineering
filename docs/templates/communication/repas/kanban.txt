@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="repas" data-pour="perso" data-theme="sante-et-forme" style="--c:var(--rouge)"><a href="/catalogue/repas/"><b>Repas de la semaine et liste de courses</b><span class="phrase">Menus midi et soir, liste de courses par rayon à cocher au magasin.</span><span class="theme">Santé et forme</span><em>Bientôt</em></a></li>
