@@ -16,6 +16,11 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   explicite demandé avant tout enregistrement ; certification HDS non vérifiée ; paragraphe pour
   `/confidentialite/` proposé dans `docs/templates/communication/bebe/integration.md`, non appliqué. IG-90 ne
   passe pas en « Programmé » avant ta décision.
+- **Lot 2 (T26, T38, T43, T46) : fiches Gumroad à mettre en ligne avant le 22/01/2027.** IG-67 à IG-70 sont
+  « Programmé » depuis le 14/11 (« Publie ») : Instinct les publiera les 22, 24, 26 et 28/01 à 18:30, même si
+  la fiche n'est pas en ligne (la remarque de la colonne M n'est pas garantie lue). Sans fiche à ces dates :
+  repasser la ligne en « Prêt » ou la décaler. Même condition pour LI-112 à LI-115 (21, 23, 25, 27/01).
+  Entrées prêtes dans `docs/templates/communication/gumroad-a-creer.json`.
 - **T84 Remboursements santé : données de santé d'adultes hébergées en ligne par QME** (soins, montants,
   remboursements). Même question que T19 : à trancher avant toute vente. Par défaut : en « Mise en vente
   prochaine », pas de fiche Gumroad créée avant ta décision.
@@ -101,7 +106,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   IG-64 (T11 entretien, hors de ton choix du 13/11) et LI-110 et IG-65 (T12 dettes) : pas encore sur Gumroad,
   remarque maintenue.
 - Lignes Instagram en « Prêt » à relire avant de les passer en « Programmé » : IG-63 (vue 5 « bientôt en
-  vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
+  vente » à refaire), IG-71 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
   LI-122 (sam. 13/02), LI-124 (sam. 30/01). Décaler ?
@@ -176,6 +181,17 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   60 légumes avec leur famille ; dates saisies par l'utilisateur.
 - **T19 Bébé** : courbes de croissance non intégrées (licence OMS non commerciale, AFPA–Inserm sans licence
   trouvée) ; seules les mesures saisies sont tracées.
+
+- **T26 Notes de frais** : majoration de 20 % des véhicules électriques appliquée aux deux-roues non
+  confirmée ; barème des trajets 2026 publié au printemps 2027 (l'application utilise celui de 2025 et le
+  dit) ; pages impots.gouv.fr et BOFiP non lues (source : service-public.fr A14686 du 09/04/2026).
+- **T38 Appel découverte** : durée de conservation CNIL des prospects (3 ans) à confirmer ; règle du score
+  de qualification (sur 8, « qualifié » dès 6 avec besoin « oui ») choisie par QME.
+- **T43 Impayés** : taux de l'intérêt légal 2026 tiré d'une source secondaire (à confirmer au JORF) ; base
+  365 jours et pénalités sur le TTC à vérifier ; taux BCE à mettre à jour au 01/01/2027 (2,65 % annoncé).
+- **T46 Onboarding** : articles R4624-10 et L1221-13 du Code du travail non relus sur Légifrance ; 89 tâches
+  types rédigées par QME.
+
 - **Sources juridiques à relire sur source primaire (T77, T78, T79, T80, T83, T85)** : DOE (pièces par lot),
   attestations de vigilance (périodicité de 6 mois), entretien professionnel (tous les 2 ans, bilan à 6 ans),
   DUERP (obligation, mise à jour, conservation), durées de conservation des papiers, taux d'endettement
@@ -203,6 +219,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Prospects
 
+- Organismes marqués « à vérifier » dans les `prospects.md` des lots 2 à 9 (lot 2 : AGA/OMGA, CAE et
+  portage pour T26).
 - T97 Course à pied : FFA, FFSE, UFOLEP, FSGT, intérêt et interlocuteur à vérifier. Idem pour les
   `prospects.md` de T73 à T96.
 - Organismes marqués « à vérifier » dans les `prospects.md` de T08, T11, T12 et T14.
@@ -210,6 +228,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Tranché
 
+- 14/11 : IG-67 à IG-70 (lot 2) passés en « Programmé » (« Publie »).
 - 14/11 : noms et prix du lot 2 (T26 15 €, T38 12 €, T43 19 €, T46 19 €), LI-113 maintenue, points « à
   vérifier » du lot 2 laissés en l'état (« ok pour tout »).
 - 14/11 : packs créés sur Gumroad après les templates ; un pack n'est créé qu'une fois tous ses templates en
