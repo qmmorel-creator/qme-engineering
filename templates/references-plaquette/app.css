@@ -626,7 +626,10 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .onglet span.long{display:none}
   .onglet span.court{display:block}
   .vue-tete .actions{flex-wrap:wrap}
-  .bloc-filtres>summary{display:flex;align-items:center;min-height:44px;font-weight:700;cursor:pointer}
+  .bloc-filtres>summary{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);font-weight:700;font-size:15px;cursor:pointer;list-style:none}
+  .bloc-filtres>summary::-webkit-details-marker{display:none}
+  .bloc-filtres>summary::after{content:"+";font-size:20px;line-height:1}
+  .bloc-filtres[open]>summary::after{content:"−"}
   .grille-refs{grid-template-columns:1fr}
   .petit-champ{flex:1 1 140px}
   .outils-refs .recherche{max-width:none}

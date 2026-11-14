@@ -197,6 +197,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
   écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
   `outils/templates/pilotage-pme.test.mjs`.
+- `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
+  réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),
+  modèles de 9 métiers, client anonymisé sans accord noté, alertes de confidentialité, note de complétude, filtres ;
+  sélections par prospect avec suggestions par pertinence ; plaquette A4 en trois mises en page (impression ou PDF
+  du navigateur) et texte à copier. Règles dans `regles.js`, tests `outils/templates/references-plaquette.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
