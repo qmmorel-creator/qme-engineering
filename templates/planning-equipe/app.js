@@ -453,7 +453,7 @@
   }
 
   const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><rect x="0" y="0" width="56" height="56" fill="#1D4E89"/><circle cx="62" cy="62" r="34" fill="#F5B400"/><path d="M0 96 0 56 A40 40 0 0 1 40 96Z" fill="#D9302A"/></svg>';
-  const etiquetteEtat = (b) => `<span class="etiquette etat-${b.etat}">${b.etat === 'surcharge' && b.capacite <= 0 ? 'Absent mais affecté' : ETAT_LIB[b.etat]}</span>`;
+  const etiquetteEtat = (b) => `<span class="etiquette etat-${b.etat}">${b.etat === 'surcharge' && b.capacite <= 0 ? 'Conflit' : ETAT_LIB[b.etat]}</span>`;
   const puceProjet = (pr, texte, extra = '') => `<span class="puce-projet" style="--c:${couleur(pr)}" ${extra}>${texte}</span>`;
   const chipsCompetences = (ids, surligne = '') => ids.map((c) => `<span class="puce-comp ${c === surligne ? 'ok' : ''}">${esc(nomC(c))}</span>`).join('');
   const vide = (titre, texte, bouton = '') => `<div class="vide-etat">${FORME_VIDE}<div><h3>${titre}</h3><p>${texte}</p>${bouton ? `<div class="actions">${bouton}</div>` : ''}</div></div>`;
@@ -861,7 +861,7 @@
       const pr = projet(brut.projet);
       let html = `<p><b>${esc(p.prenom)}</b>, ${ap.total > 1 ? `${ap.total} semaines` : '1 semaine'} : ${ap.surcharges ? `<b class="negatif">surcharge ${ap.surcharges > 1 ? `${ap.surcharges} semaines` : '1 semaine'}</b>` : 'pas de surcharge'}${ap.total > 12 ? ' (12 premières semaines vérifiées)' : ''}.</p>`;
       html += `<div class="apercu-semaines">${ap.semaines.map((b) => `<span class="mois-case petit etat-${b.etat}" title="${esc(`${libSemaine(b.lundi)} : ${h(b.charge)} pour ${h(b.capacite)}`)}"><small>${sem(b.lundi)}</small><b>${b.etat === 'absent' || b.capacite <= 0 ? 'Abs.' : pct(b.taux)}</b></span>`).join('')}</div>`;
-      if (ap.absences.length) html += `<p class="cd-alerte">Absence pendant cette période : ${ap.absences.map((x) => `${esc(typeAbs(x.type).nom)} ${plage(x)}`).join(', ')}. Les heures de ces jours ne seront pas faites.</p>`;
+      if (ap.absences.length) html += `<p class="cd-alerte">Absence pendant cette période (${ap.absences.map((x) => `${esc(typeAbs(x.type).nom)} ${plage(x)}`).join(', ')}) : les heures de ces jours ne seront pas faites.</p>`;
       if (ap.manquantes.length) html += `<p class="cd-alerte">${esc(p.prenom)} n'a ${ap.manquantes.length > 1 ? 'aucune des compétences' : 'pas la compétence'} ${ap.manquantes.map((c) => `« ${esc(nomC(c))} »`).join(', ')} demandée par ${esc(pr?.nom || '')}.</p>`;
       if (ap.horsPeriode) html += `<p>Attention : l'affectation dépasse les dates du projet (${pr.debut ? dateCourte(pr.debut) : '…'} → ${pr.fin ? dateCourte(pr.fin) : '…'}).</p>`;
       zone.innerHTML = html;
@@ -873,7 +873,9 @@
     d.querySelector('[name=projet]').addEventListener('change', (e) => {
       if (a) return;
       const pr = projet(e.target.value);
+      if (pr?.debut && pr.debut > de.value) de.value = pr.debut;
       if (pr?.fin && pr.fin >= de.value) fi.value = pr.fin;
+      if (fi.value < de.value) fi.value = de.value;
       majApercu();
     });
     majApercu();
