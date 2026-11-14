@@ -626,6 +626,12 @@
   }
 
   // ---------- Échéances ----------
+  const calculTexte = (e, montant) => {
+    const calcul = e.credit ? `crédit de ${eur(e.credit)}` : eur(e.montant);
+    if (e.montantDeclare !== null && e.montantDeclare !== e.montant) return `${eur(montant)} déclarés (calcul : ${calcul})`;
+    if (e.credit) return `Crédit de ${eur(e.credit)}, rien à payer`;
+    return montant ? eur(montant) : 'Rien à payer';
+  };
   function ligneEcheance(e) {
     const [c, lib] = STATUT[e.statut];
     const d = R.versDate(e.date);
@@ -636,7 +642,7 @@
           : `<button class="btn petit primaire" data-action="marquer-paye" data-id="${e.cle}">Payée</button>`;
     return `<li class="echeance st-${e.statut}">
       <span class="date-pastille ${e.statut === 'retard' ? 'alerte' : ''}"><b>${d.getDate()}</b>${R.MOIS_C[d.getMonth()]}</span>
-      <button class="lien-ligne" data-action="pointer" data-id="${e.cle}"><b>${esc(e.libelle)}</b><span>${e.credit ? `Crédit de ${eur(e.credit)}, rien à payer` : montant ? `${eur(montant)}${e.montantDeclare !== null && e.montantDeclare !== e.montant ? ` déclarés (calcul ${eur(e.montant)})` : ''}` : 'Rien à payer'}${e.declare ? ` · déclarée le ${esc(dC(e.declare))}` : ''}${e.paye ? ` · payée le ${esc(dC(e.paye))}` : ''}</span></button>
+      <button class="lien-ligne" data-action="pointer" data-id="${e.cle}"><b>${esc(e.libelle)}</b><span>${calculTexte(e, montant)}${e.declare ? ` · déclarée le ${esc(dC(e.declare))}` : ''}${e.paye ? ` · payée le ${esc(dC(e.paye))}` : ''}</span></button>
       <span class="echeance-droite"><span class="etiquette ${c}">${lib}</span>${actions}</span></li>`;
   }
   function vueEcheances() {
@@ -788,6 +794,8 @@
         <p class="ligne-somme"><span>− TVA déductible</span><b>${eur(b.deductible)}</b></p>
         <p class="ligne-somme"><span>− Crédit reporté de la période précédente</span><b>${eur(b.creditAnterieur)}</b></p>
         ${simp ? b.acomptes.map((a) => `<p class="ligne-somme"><span>− ${a.numero === 1 ? '1er' : '2e'} acompte (${pct(a.pct)}, ${esc(dC(a.date))})</span><b>${eur(a.verse)}</b></p>`).join('') : ''}
+        ${simp && b.dispense ? `<p class="mention">Acomptes non dus : TVA de référence (${eur(b.baseAcomptes)}) inférieure à ${eur(r.dispenseAcomptes)}.</p>` : ''}
+        ${simp && b.baseAcomptes === null ? '<p class="mention">Acomptes non calculés : indique la TVA de référence ci-dessous.</p>' : ''}
         <p class="ligne-somme total"><span>${b.creditFin ? 'Crédit de TVA' : 'TVA à payer'}</span><b>${eur(b.creditFin || b.aPayer)}</b></p>
         ${b.rembourse ? `<p class="ligne-somme"><span>Remboursement demandé</span><b>− ${eur(b.rembourse)}</b></p>` : ''}
         <p class="ligne-somme"><span>Crédit reporté sur la période suivante</span><b>${eur(b.creditReporte)}</b></p>
