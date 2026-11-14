@@ -1,0 +1,47 @@
+<!-- Version « en vente » de la page catalogue/investissement-locatif/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad prévu : rentabilite-investissement-locatif (à confirmer une fois la fiche créée), prix 15 €.
+     Captures : assets/templates-investissement-locatif-*.webp (démo, données fictives). À la mise en vente, retirer aussi
+     le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js, et
+     remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="investissement-locatif">
+  <div class="section-head">
+    <h2>Rentabilité d'un investissement locatif</h2>
+    <p>Pour les particuliers qui étudient l'achat d'un bien à louer, nu, meublé, en colocation ou en location saisonnière : savoir ce que le bien rapporte vraiment, ce qu'il coûtera chaque mois, et jusqu'à quel prix il reste intéressant, avant de faire une offre.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-investissement-locatif-comparatif.webp?v=20261114" width="1600" height="1000" alt="Trois biens comparés et un quatrième à compléter : meilleur rendement net mis en avant, rendement net et cash-flow mensuel de chaque bien (données fictives)">
+      <img class="tel" src="/assets/templates-investissement-locatif-tel.webp?v=20261114" width="780" height="1328" alt="L'analyse d'un bien sur téléphone : rendement brut, rendement net, cash-flow mensuel et effort d'épargne (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Investisseurs particuliers</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Jusqu'à 5 biens côte à côte</b> : coût total, loyers, charges, rendement brut et net, cash-flow mensuel, le meilleur mis en avant</li>
+        <li><b>Le coût total d'acquisition</b> : prix, frais de notaire saisis ou estimés (hypothèse affichée), agence, travaux, mobilier, frais bancaires</li>
+        <li><b>Loyers et charges réalistes</b> : un loyer par chambre en colocation, nuitées en saisonnier, vacance en mois par an, taxe foncière, copropriété, assurances, gestion, entretien</li>
+        <li><b>Le crédit saisi</b> : mensualité et assurance, cash-flow avant impôt et effort d'épargne chaque mois</li>
+        <li><b>Prix maximal et sensibilité</b> : le prix à ne pas dépasser pour le rendement visé ; loyer − 10 %, vacance + 1 mois, taux + 1 point ; fiche d'analyse imprimable</li>
+      </ul>
+      <div class="prix"><b>15 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/rentabilite-investissement-locatif" data-goatcounter-click="achat-investissement-locatif" data-goatcounter-title="Acheter : rentabilité d'un investissement locatif">Acheter</a>
+        <a class="btn" href="/templates/investissement-locatif/?demo" data-goatcounter-click="demo-investissement-locatif" data-goatcounter-title="Démo : rentabilité d'un investissement locatif">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-investissement-locatif-analyse.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Graphique en cascade d'un T2 : loyers du mois, moins la vacance, les charges et le crédit, jusqu'au cash-flow mensuel avant impôt, avec le détail d'une étape au survol (données fictives)"><figcaption>Du loyer au cash-flow, mois par mois</figcaption></figure>
+    <figure><img src="/assets/templates-investissement-locatif-sensibilite.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Sensibilité d'une maison en colocation : cash-flow mensuel si le loyer baisse de 10 %, si la vacance augmente d'un mois, si le taux monte d'un point, puis les trois à la fois (données fictives)"><figcaption>Ce que devient le bien si tout se dégrade</figcaption></figure>
+    <figure><img src="/assets/templates-investissement-locatif-fiche.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Fiche d'analyse imprimable : rendements, cash-flow, effort d'épargne, acquisition, loyers, charges et financement poste par poste (données fictives)"><figcaption>Une fiche d'analyse à imprimer ou à enregistrer en PDF</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>L'outil contient-il des prix au m² ou des loyers de référence ?</summary><p>Non, volontairement : ils varient d'une rue à l'autre et vieillissent vite. Vous saisissez le prix, les loyers, les charges et les conditions de votre crédit ; rien n'est inventé à votre place. Tant qu'un chiffre indispensable manque (loyer, taxe foncière, taux du crédit), le bien est marqué « à compléter » et aucun rendement n'est affiché.</p></details>
+    <details><summary>Comment sont calculés les rendements ?</summary><p>Le rendement brut divise les loyers annuels, sans vacance, par le prix d'achat : c'est le chiffre des annonces. Le rendement net de charges divise les loyers réellement encaissés (vacance déduite), moins les charges du propriétaire, par le coût total d'acquisition (prix, notaire, travaux, mobilier, frais). Les formules sont rappelées dans l'application.</p></details>
+    <details><summary>Et l'impôt sur les loyers ?</summary><p>Il n'est pas calculé, et c'est signalé partout : il dépend du type de location, du régime choisi, de vos autres revenus et des règles de l'année. Tous les résultats sont avant impôt. Faites estimer l'impôt par un conseiller fiscal ou un expert-comptable, ou consultez impots.gouv.fr.</p></details>
+    <details><summary>Comment sont estimés les frais de notaire ?</summary><p>Vous pouvez saisir le montant donné par le notaire. À défaut, une hypothèse modifiable est appliquée et affichée comme telle (8 % du prix dans l'ancien, 3 % dans le neuf, haut des ordres de grandeur couramment donnés) : le montant exact dépend du bien et du département.</p></details>
+    <details><summary>Que veut dire « prix maximal » ?</summary><p>C'est le prix d'achat au-delà duquel le rendement que vous visez (brut ou net de charges) n'est plus atteint, avec les mêmes loyers et les mêmes charges. L'écart avec le prix demandé vous donne la baisse à obtenir lors de la négociation.</p></details>
+    <details><summary>Est-ce un conseil en investissement ?</summary><p>Non. C'est une simulation avant impôt à partir de votre saisie ; elle ne remplace pas un conseil en investissement ni un conseil fiscal. Aucune banque, agence ou plateforme n'est connectée, et l'offre de prêt écrite fait foi.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/investissement-locatif/?demo">la démo</a> ouvre l'étude fictive de quatre biens (un T2 à crédit, une maison en colocation, un appartement de vacances payé comptant et un studio meublé à compléter). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
