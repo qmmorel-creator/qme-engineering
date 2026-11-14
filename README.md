@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 40 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 41 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -170,6 +170,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/gestion-locative/` (GRT) : **gestion locative**, prêt, « Mise en vente prochaine » (20 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/gestion-locative/gumroad.json`). Biens et baux (vide, meublé,
+  mobilité), échéances mensuelles au prorata, paiements partiels, quittance ou reçu imprimable, relances par palier
+  sans frais de retard, révision annuelle avec l'IRL saisi par l'utilisateur (aucun indice intégré ; limite d'un an,
+  sans effet rétroactif), dépôt de garantie contrôlé et restitution datée, régularisation des charges au prorata,
+  rendement brut et net par bien. Repères sourcés service-public.gouv.fr (dates de vérification affichées). Règles
+  dans `regles.js`, tests `outils/templates/gestion-locative.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
