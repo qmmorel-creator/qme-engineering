@@ -19,6 +19,7 @@ export const TEMPLATES = {
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
   ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', pour: 'pro' },
+  CPR: { slug: 'copropriete', prix: 1500, phrase: 'Appels de fonds, charges, régularisation et votes en AG.', pour: 'perso' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -103,7 +104,6 @@ export const PREVUS = {
   AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
-  CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
@@ -315,7 +315,7 @@ export const PAGES = {
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
     ],
     arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD', 'RNT', 'CPR'],
+    prevus: ['ETD', 'RNT'],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],
