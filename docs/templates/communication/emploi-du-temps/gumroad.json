@@ -1,0 +1,42 @@
+{
+  "slug": "emploi-du-temps",
+  "name": "Emploi du temps d'établissement",
+  "price_cents": 4500,
+  "permalink": "emploi-du-temps-etablissement",
+  "category": "education",
+  "button": "Ouvrir mon emploi du temps",
+  "summary": "Groupes, formateurs, salles et modules placés à la main sur une grille semaine, les conflits signalés tout de suite, des vues par groupe, formateur et salle, et les heures réalisées comparées aux volumes prévus.",
+  "description": "<h2>Ton planning, sans conflit.</h2><p>Un tableur par groupe, un autre pour les salles, et les croisements se découvrent le matin même : un formateur attendu dans deux groupes à la même heure, une salle de 14 places pour 18 stagiaires, un module qui dépasse son volume d'heures sans que personne ne le voie. L'Emploi du temps d'établissement réunit groupes, formateurs, salles et modules sur une seule grille, et signale chaque conflit au moment où tu poses la séance.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une grille semaine à remplir à la main</strong> : tes créneaux, tes jours de cours ; un clic sur une case libre pour poser une séance (module, formateur, salle). Aucune répartition automatique : tu décides, l'outil vérifie.</li><li><strong>Les conflits signalés tout de suite</strong> : formateur, salle ou groupe pris deux fois, salle trop petite pour l'effectif, équipement manquant, formateur indisponible ou absent, séance un jour férié ou fermé, volume prévu ou quota du formateur dépassé, séance sans formateur ou sans salle.</li><li><strong>Trois vues du même planning</strong> : par groupe, par formateur, par salle, sur ordinateur et sur téléphone.</li><li><strong>Le suivi des heures</strong> : réalisé, placé et prévu par module et par formateur, reste à placer, dépassements.</li><li><strong>Le calendrier de l'année</strong> : semaines A et B, fermetures (vacances, ponts), jours fériés français calculés chaque année (Alsace-Moselle en option).</li><li><strong>Une semaine type recopiée en un geste</strong> sur les semaines suivantes, ou sur les seules semaines A ou B ; jours fermés sautés, aperçu avant de valider.</li><li><strong>Impression A4 paysage</strong> de la semaine d'un groupe, d'un formateur ou d'une salle, <strong>export CSV</strong> des séances et du bilan des heures.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton année et tes créneaux, ajoute tes groupes (effectif), formateurs (disponibilités, quota), salles (capacité, équipements) et modules (volume prévu), puis place ta première semaine et recopie-la. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la construction de l'emploi du temps : il signale les conflits à partir de ce que tu saisis et ne place rien automatiquement ; les obligations de ton établissement priment. Données personnelles réduites au minimum : nom des formateurs et des groupes, aucun nom d'apprenant (l'effectif suffit), absences sans motif. Pas de lien avec un logiciel de scolarité ni un agenda. Un accès partagé sur plusieurs appareils, sans comptes séparés ni lecture seule. Pour une petite structure (de l'ordre de 200 séances par semaine sur une année). Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "emploi-du-temps",
+    "planning",
+    "organisme-de-formation",
+    "ecole",
+    "salles",
+    "formateurs",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton emploi du temps s'ouvre. Indique ton année et tes créneaux, ajoute tes groupes, formateurs, salles et modules, puis place ta première semaine : les conflits s'affichent au fur et à mesure. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Organismes de formation, écoles privées, petites structures"
+    }
+  ]
+}

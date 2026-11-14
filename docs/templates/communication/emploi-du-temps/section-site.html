@@ -1,0 +1,48 @@
+<!-- Version « en vente » de la page catalogue/emploi-du-temps/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : emploi-du-temps-etablissement (à confirmer une fois la fiche créée), prix 45 €
+     (à confirmer par Quentin). Captures : assets/templates-emploi-du-temps-*.webp (démo, données fictives). À la mise
+     en vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans
+     index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="emploi-du-temps">
+  <div class="section-head">
+    <h2>Emploi du temps d'établissement</h2>
+    <p>Pour les organismes de formation et les petites écoles privées qui construisent leur planning dans un tableur : les groupes, les formateurs, les salles et les modules placés à la main sur une grille semaine, chaque conflit signalé au moment où vous posez la séance, et les heures réalisées comparées aux volumes prévus.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-emploi-du-temps-planning.webp?v=20261114" width="1600" height="1000" alt="Grille de la semaine d'un groupe de formation : séances de 8 h 30 à 18 h du lundi au vendredi, couleur par module, formateur et salle sur chaque séance, conflits marqués en rouge (groupe en double, formateur en double) et en jaune (équipement manquant), données fictives">
+      <img class="tel" src="/assets/templates-emploi-du-temps-tel.webp?v=20261114" width="780" height="1328" alt="L'emploi du temps sur téléphone : choix du jour, puis les séances créneau par créneau avec leurs conflits (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Organismes de formation · écoles privées</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Une grille semaine à remplir à la main</b> : vos créneaux, vos jours de cours, un clic sur une case libre pour poser une séance (module, formateur, salle) ; semaines A et B, fermetures et jours fériés français calculés</li>
+        <li><b>Les conflits signalés tout de suite</b> : formateur, salle ou groupe pris deux fois, salle trop petite pour l'effectif, équipement manquant, formateur indisponible ou absent, séance un jour fermé</li>
+        <li><b>Trois vues</b> du même planning : par groupe, par formateur et par salle, sur ordinateur et sur téléphone</li>
+        <li><b>Le suivi des heures</b> : réalisé, placé et prévu par module et par formateur, avec le reste à placer et les volumes ou quotas dépassés</li>
+        <li><b>Une semaine type recopiée en un geste</b> sur les semaines suivantes (ou sur les seules semaines A ou B), impression A4 paysage, export CSV</li>
+      </ul>
+      <div class="prix"><b>45 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/emploi-du-temps-etablissement" data-goatcounter-click="achat-emploi-du-temps" data-goatcounter-title="Acheter : emploi du temps d'établissement">Acheter</a>
+        <a class="btn" href="/templates/emploi-du-temps/?demo" data-goatcounter-click="demo-emploi-du-temps" data-goatcounter-title="Démo : emploi du temps d'établissement">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-emploi-du-temps-formateur.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="La même semaine vue par formateur : les séances d'une formatrice dans trois groupes, deux séances en même temps signalées en rouge, une salle trop petite signalée en jaune (données fictives)"><figcaption>Vue par formateur : ses groupes, ses salles, ses conflits</figcaption></figure>
+    <figure><img src="/assets/templates-emploi-du-temps-conflits.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des conflits classés par semaine : bloquants, à vérifier et incomplets, filtres par type (formateur, salle ou groupe en double, salle trop petite, indisponibilité, volume dépassé), données fictives"><figcaption>Tous les conflits, semaine par semaine</figcaption></figure>
+    <figure><img src="/assets/templates-emploi-du-temps-heures.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Suivi des heures par module : barres réalisé, placé et volume prévu, reste à placer ou dépassement pour chaque module d'un groupe (données fictives)"><figcaption>Réalisé, placé et prévu, module par module</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Le planning se construit-il tout seul ?</summary><p>Non, et c'est voulu : vous placez chaque séance vous-même, l'outil vérifie. Il signale au moment où vous posez la séance tout ce qui l'empêcherait d'avoir lieu (double réservation, salle trop petite, formateur indisponible) et ce qui mérite une vérification (équipement, volume prévu dépassé). Aucune répartition automatique n'est proposée.</p></details>
+    <details><summary>Quels conflits sont détectés ?</summary><p>Un formateur, une salle ou un groupe pris deux fois au même moment ; une salle dont la capacité est inférieure à l'effectif du groupe ; une salle sans l'équipement que demande le module ; un formateur sur un créneau où il n'est pas disponible ou un jour d'absence ; une séance un jour férié, un jour de fermeture ou un jour sans cours ; un module qui dépasse son volume d'heures prévu ; un formateur qui dépasse son quota ; une séance sans formateur ou sans salle.</p></details>
+    <details><summary>Comment fonctionnent les semaines A et B et la duplication ?</summary><p>Si vous cochez les semaines A et B, chaque semaine de l'année reçoit son type ; une semaine entièrement fermée (vacances) ne compte pas dans l'alternance. Vous construisez une semaine, puis vous la recopiez sur la suivante ou sur toutes les semaines jusqu'à une date, éventuellement les seules semaines du même type. Les jours fériés et les fermetures sont sautés, et un aperçu indique le nombre de séances ajoutées avant de valider.</p></details>
+    <details><summary>Quels jours fériés sont pris en compte ?</summary><p>Les onze jours fériés légaux en France, calculés chaque année (dont Pâques, l'Ascension et la Pentecôte), plus le Vendredi saint et le 26 décembre pour l'Alsace-Moselle si vous le cochez. Vos vacances et fermetures se saisissent à part.</p></details>
+    <details><summary>Quelles données personnelles sont enregistrées ?</summary><p>Le moins possible : le nom (ou le prénom et l'initiale) des formateurs et le nom des groupes. Aucun nom d'apprenant n'est demandé, l'effectif suffit pour vérifier les salles, et les absences des formateurs se notent sans motif. Les données sont enregistrées en ligne, liées à votre clé, et ne sont ni lues ni partagées.</p></details>
+    <details><summary>Plusieurs personnes peuvent-elles l'utiliser ?</summary><p>Le même accès s'ouvre sur plusieurs appareils avec les mêmes données (le dernier enregistrement l'emporte, et un conflit d'enregistrement est signalé). Il n'y a pas de comptes séparés ni d'accès en lecture seule pour les formateurs : vous leur transmettez leur planning imprimé ou exporté en CSV.</p></details>
+    <details><summary>Pour quelle taille d'établissement ?</summary><p>Pour une petite structure : quelques dizaines de groupes, de formateurs et de salles, et une année de séances. Au-delà d'environ 200 séances par semaine sur toute l'année, il faudra retirer les semaines passées après les avoir exportées. Pour un établissement plus grand, ou un lien avec vos outils de scolarité, un outil sur mesure est plus adapté.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/emploi-du-temps/?demo">la démo</a> ouvre l'année d'un organisme de formation fictif (cinq groupes, six formateurs, cinq salles), avec une semaine qui contient chaque sorte de conflit. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
