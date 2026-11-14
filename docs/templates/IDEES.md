@@ -158,7 +158,7 @@ déjà).
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
@@ -264,7 +264,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75 | T76 | 115 € | 25 % | 86 € | 22 € |
-| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77 | T78 | 227 € | 25 % | 170 € | 43 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
@@ -534,6 +534,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T77 | `doe` | RDE | registre-doe (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -955,7 +956,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T74 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
 | T75 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
 | T76 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
-| T77 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
+| T77 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. Fiche `fiches/doe.md` (cadrage délégué par Quentin, 14/11/2026). Prêt le 14/11/2026, mise en vente prochaine : application `templates/doe/` (RDE), page `catalogue/doe/`, communication `communication/doe/` (section-site, carte EN « Coming soon » non appliquée, fiche Gumroad `gumroad.json` / `gumroad.md`, LinkedIn, Instagram avec carrousel 5 vues, prospects). Seule référence : article 40 du CCAG Travaux 2021 en paraphrase (consulté le 14/11/2026, à revérifier sur Légifrance). Publications LinkedIn et Instagram non planifiées. |
 | T78 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
 | T79 | Calendrier des entretiens annuels et professionnels par salarié, trames, objectifs, suivi des formations demandées | Trames d'entretien, questions types | — | **daté** : périodicité de l'entretien professionnel à sourcer (Légifrance) ou paramétrable. **RGPD**. Lien avec T49. |
 | T80 | Unités de travail, risques, cotation (gravité × probabilité), actions de prévention, mise à jour, export | Familles de risques types par secteur | — | **daté**/réglementaire : obligations à sourcer (INRS, Légifrance) ; ne remplace pas un préventeur. **confidentiel** : exemples fictifs. |

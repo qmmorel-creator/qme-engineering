@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates (44 à ce jour).
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -305,6 +305,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   modèles de 9 métiers, client anonymisé sans accord noté, alertes de confidentialité, note de complétude, filtres ;
   sélections par prospect avec suggestions par pertinence ; plaquette A4 en trois mises en page (impression ou PDF
   du navigateur) et texte à copier. Règles dans `regles.js`, tests `outils/templates/references-plaquette.test.mjs`.
+- `templates/doe/` (RDE) : **registre du DOE** (T77, 29 €), prêt, « Mise en vente prochaine » (démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/doe/gumroad.json`). Pièces du dossier des ouvrages exécutés par
+  opération, lot et entreprise ; base de 20 lots types avec leurs pièces attendues (plans, notices, PV d'essais,
+  fiches techniques, garanties), modifiable ; pièce « Éléments pour le DIUO » par lot si l'opération en comporte un ;
+  statuts attendue, reçue, à reprendre (motif), validée ; date limite par opération ou par pièce ; relances datées
+  avec courrier à copier ou imprimer (aucun envoi) ; complétude par lot, entreprise et famille ; bordereau de
+  transmission et état des pièces manquantes imprimables ; export CSV. Seule référence : article 40 du CCAG Travaux
+  2021, en paraphrase datée. Fiche `docs/templates/fiches/doe.md`, tests `outils/templates/doe.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

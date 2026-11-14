@@ -1,0 +1,27 @@
+{
+  "slug": "doe",
+  "name": "Registre du DOE",
+  "price_cents": 2900,
+  "permalink": "registre-doe",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon registre du DOE",
+  "summary": "Les pièces du dossier des ouvrages exécutés par opération, lot et entreprise : pièces types par lot, statuts, relances datées avec courrier, complétude par lot et par entreprise, bordereau de transmission imprimable.",
+  "description": "<h2>Chaque pièce remise, vérifiée, transmise.</h2><p>La réception est prononcée, et le DOE reste à réunir : plans de récolement, notices, PV d'essais, fiches techniques, garanties, lot par lot, entreprise par entreprise. Une liste par lot dans un tableur, des relances dans la messagerie, et plus personne ne sait ce qui manque ni qui a été relancé. Le Registre du DOE te le dit, et prépare le bordereau de transmission.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les pièces attendues créées pour toi</strong> : chaque lot ajouté reçoit sa liste de pièces types, tirée d'une base de 20 lots courants du bâtiment (plans, notices, PV d'essais, fiches techniques, garanties). Tu ajustes les pièces types une fois pour toutes, et chaque opération selon son marché.</li><li><strong>Le DIUO en option</strong> : une case de l'opération ajoute à chaque lot une pièce « Éléments pour le DIUO ».</li><li><strong>Un statut par pièce</strong> : attendue, reçue à vérifier, à reprendre (avec motif et nouvelle date), validée ; référence du document et format de remise notés.</li><li><strong>Des retards calculés</strong> : date limite de remise du DOE pour l'opération, ou propre à une pièce.</li><li><strong>Des relances datées</strong> : les entreprises à relancer remontent seules ; courrier prérempli avec la liste des pièces manquantes, à copier ou à imprimer ; journal des relances.</li><li><strong>La complétude</strong> par lot, par entreprise et par famille de pièces.</li><li><strong>Des documents imprimables</strong> : bordereau de transmission des pièces validées, lot par lot, et état des pièces manquantes par entreprise. Export CSV pour ton tableur.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton opération, coche ses lots, attribue chaque lot à son entreprise : les pièces attendues sont créées. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de suivi, pas un conseil juridique : la liste des pièces et les délais qui font foi sont ceux de ton marché (CCAP, CCTP). Les documents ne sont pas stockés (seule leur référence est notée). Aucune relance n'est envoyée par l'outil. Un accès partagé sur plusieurs appareils, sans comptes pour les entreprises. Démo avec deux opérations fictives sur qm-engineering.fr/catalogue/doe.</em></p>",
+  "tags": [
+    "btp",
+    "doe",
+    "chantier",
+    "maitrise-d-oeuvre",
+    "reception",
+    "registre",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre du DOE s'ouvre. Crée ton opération, coche ses lots et attribue chacun à son entreprise : les pièces attendues sont créées, à ajuster selon ton marché. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Maîtres d'œuvre, OPC, entreprises générales, bureaux d'études" }
+  ]
+}
