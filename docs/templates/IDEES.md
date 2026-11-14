@@ -90,17 +90,17 @@ déjà).
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
-| T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
-| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
@@ -111,12 +111,12 @@ déjà).
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
-| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
+| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
-| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
+| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | prêt | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
@@ -124,12 +124,12 @@ déjà).
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | prêt | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
-| T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
+| T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | prêt | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
+| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -138,9 +138,9 @@ déjà).
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
-| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
+| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | prêt | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
@@ -148,6 +148,31 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | prêt | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
+| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -202,16 +227,58 @@ détail reprend les apports du backlog.
 
 ## Packs
 
-Prix de pack repris du backlog ; valeur = somme des prix unitaires retenus. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
-par produit ou accès groupé dans `PRODUITS`).
+**Décisions de Quentin (14/11/2026)** : remise progressive selon le nombre de templates, de 10 à 25 % (2 → 10 %,
+3 → 15 %, 4 → 20 %, 5 et plus → 25 %), prix arrondi à l'euro inférieur ; même barème pour le **pack sur mesure**
+(l'acheteur coche ses templates sur `/packs/composer/`). Un pack est « Bientôt » tant qu'un de ses templates n'est
+pas en vente ou que sa fiche Gumroad n'existe pas, avec le bouton « Je suis intéressé(e) » (module `pack-<slug>`).
 
-| Pack | Produits | Valeur | Prix |
-|------|----------|--------|------|
-| Freelance complet | T28, T36, T37, T40, T41, T43 | 135 € | 79 € |
-| Chef de projet BTP | T02, T31, T24, T32 | 138 € | 99 € |
-| Flotte | T57, T29, T26, T66 | 111 € | 69 € |
-| Organisateur d'événements | T51, T15, T54 | 113 € | 69 € |
-| Productivité perso | T03, T30, T08, T22 | 61 € | 39 € |
+**Source unique** : composition et préfixes dans `netlify/lib/packs.mjs` ; textes, cibles (pastilles couleur +
+forme) et templates à venir dans `outils/packs/donnees.mjs` ; pages générées par `node outils/packs/generer.mjs`
+(`/packs/`, `/packs/<slug>/`, `/packs/composer/`, `/packs/espace/`, section `#packs` de `/templates/`). À relancer
+après chaque changement de pack, de prix ou de statut d'un template.
+
+**Accès** : une clé de pack (licence Gumroad du produit pack, ou code `PFG-…` généré par `npm run code -- PFG`)
+se colle sur `/connexion/` et ouvre le tableau de bord `/packs/espace/` ; le serveur calcule un code par template
+(`codePackProduit`), les templates n'ont rien à changer. Pack sur mesure : code `SMP-<préfixes>-…` signé
+(`npm run code -- SMP BDG,ABN,DTT`).
+
+**Option « Pack évolutif » (décision de Quentin, 14/11/2026)** : sans option, un pack ouvre les templates qu'il
+contenait le jour de l'achat ; avec l'option, il ouvre aussi tous les templates ajoutés ensuite. Prix : 25 % du
+prix du pack, arrondi à l'euro supérieur, 9 € minimum. Sur Gumroad : deux versions du produit pack (« Pack » et
+« Pack évolutif ») ; le serveur lit la version et la date d'achat dans la licence. À l'ajout d'un template à un
+pack : préfixe dans `produits` et date dans `ajouts` (`netlify/lib/packs.mjs`). Codes à la main : `PFG+`.
+Pas d'option pour le pack sur mesure (composition fixe).
+
+**Pack sur mesure sur Gumroad (vérifié le 14/11/2026)** : produit unique à prix libre avec clé de licence et
+champ « Templates » ; le lien pré-remplit prix et champ (`?wanted=true&price=…&Templates=…`), le serveur relit
+prix payé et champ dans la licence et refuse un montant inférieur au barème. Les codes de réduction Gumroad ne
+permettent pas une remise par nombre de produits différents (minimum de quantité = exemplaires d'un même produit).
+
+| Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
+|------|---------|-------------------------|---------|--------|--------|------|-----------------|
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
+| Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
+| Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
+| Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
+| Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
+| Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
+| Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
+| Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
+| Enseignant et formateur | PNS | T55, T56 | T59, T58 | 70 € | 10 % | 63 € | 16 € |
+| Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
+| Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
+| Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
+
+Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
+`/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
+par e-mail, code `SMP` généré à la main). Packs abandonnés : « Flotte » (T57 contient déjà la flotte) et
+« Organisateur d'événements » (mélangeait mariage grand public et agences).
 
 ## Ordre de production conseillé
 
@@ -450,6 +517,9 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T62 | `stocks` | STK | stocks-inventaire (prévu) |
 | T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
+| T13 | `epargne` | EPG | objectif-epargne (prévu) |
+| T23 | `suivi-chantier` | CHT | suivi-chantier-lot (prévu) |
+| T47 | `planning-equipe` | EQP | planning-equipe-staffing (prévu) |
 | T06 | `repas` | RPS | repas-liste-de-courses (prévu) |
 | T07 | `musculation` | MSC | carnet-musculation-cross-training (prévu) |
 | T10 | `voiture` | CAR | carnet-voiture (prévu) |
@@ -458,6 +528,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T77 | `doe` | RDE | registre-doe (prévu) |
 | T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
@@ -581,6 +652,25 @@ hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non so
 seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
 « Indépendants » (public : commerces et artisans).
 
+**T27 Gestion locative (14/11/2026)**, prêt, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad). Application `templates/gestion-locative/` (GRT, 20 €) ; page
+`catalogue/gestion-locative/` ; fiche `fiches/gestion-locative.md` (rédigée par délégation de Quentin) ;
+livrables `communication/gestion-locative/` (linkedin.md, instagram.md et carrousel `instagram/`, prospects.md,
+gumroad.md, gumroad.json). Aucune publication planifiée (LinkedIn, Instagram) ni entrée dans
+`communication/gumroad-a-creer.json` : à faire par le coordinateur. Repères légaux relus sur
+service-public.gouv.fr le 14/11/2026 (F1311, F13723, F35247, F31269, F947, F2889) ; articles de loi cités
+d'après ces fiches, Légifrance non consulté directement. Restent à vérifier : hashtags Instagram hors kit,
+catégorie Gumroad, organismes de `prospects.md`.
+**T47 Planning d'équipe et staffing (14/11/2026)**, prêt, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrée dans `communication/gumroad-a-creer.json`). Cadrage délégué par Quentin :
+fiche `fiches/planning-equipe.md`. Application `templates/planning-equipe/` (EQP, 35 €), page `catalogue/planning-equipe/`,
+livrables dans `communication/planning-equipe/` (linkedin.md, instagram.md et carrousel `instagram/`, prospects.md,
+gumroad.md et gumroad.json, section-site.html, carte anglaise préparée mais non insérée : version anglaise en attente).
+Ajouté à `outils/packs/donnees.mjs` (TEMPLATES, retiré de PREVUS et des `prevus` du Pack Petite entreprise) : son
+ajout aux `produits` du pack (`netlify/lib/packs.mjs`) reste à faire. **Publications LinkedIn et Instagram non
+planifiées** (mission sans Google Sheets) : lignes à insérer selon `reference.md`. Restent à vérifier : articles
+L3121-20, L3121-22 et L3121-27 relus sur code.travail.gouv.fr seulement ; organismes de `prospects.md` marqués « à
+vérifier ».
 **Lot du 14/11/2026, troisième (T06, T07, T10, T27)**, prêts, « Mise en vente prochaine » (démo libre, bouton
 « Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
 `templates/repas/` (RPS, 13 €), `templates/musculation/` (MSC, 19 €), `templates/voiture/` (CAR, 13 €),
@@ -840,7 +930,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : seules deux reprises de l'Anses (plat non préemballé sans date 3 j, décongelé 3 j ; page du 04/01/2021 consultée le 14/11/2026), affichées avec la source ; aucune durée après ouverture ni au congélateur fournie (pas de tableau officiel trouvé), saisies par l'utilisateur. |
 | T10 | Carnet de voiture, une à quelques voitures : fiche véhicule, relevés de kilométrage, entretiens faits et à venir (échéance à la date ou au kilométrage, la première atteinte), toutes les dépenses (carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique), consommation calculée entre deux pleins, coût au kilomètre et coût mensuel, historique imprimable pour la revente | Intervalles d'entretien types, modifiables (le carnet du constructeur prime) ; catégories de dépenses | — | Demande Quentin 13/11/2026 fusionnée (gestionnaire de voitures). **daté** : périodicité du contrôle technique, vérifiée sur une source officielle ou saisie. Prix du carburant saisis, jamais intégrés. Argent : avertissement. Version perso du moteur de T29 (sans conducteurs, réservations ni sinistres). Aucune automatisation ni lien externe. |
-| T11 | Entretien de la maison : calendrier automatique | 80 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
+| T11 | Entretien de la maison : calendrier automatique | 85 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
 | T13 | Objectif d'épargne et fonds d'urgence | Scénarios d'intérêts composés (taux saisi par l'utilisateur) | — | Aucun taux de livret en base (**daté**). Argent : avertissement. |
 | T14 | Suivi des abonnements : coût mensuel et annuel, renouvellements | Abonnements courants (streaming, télécom, sport) sans prix figés | — | — |
@@ -852,11 +942,10 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. Fait (14/11/2026) : aucun calendrier intégré (modèles de soins = noms seuls, intervalles saisis d'après le vétérinaire), avertissement médical dans l'application, la page catalogue et la fiche Gumroad ; aucune source vétérinaire intégrée, donc rien de daté. |
 | T21 | Planificateur de voyage : itinéraire par étapes, lieu de chaque nuit (hébergement, adresse, arrivée/départ, statut réservé ou à réserver, montant et acompte), activités par jour avec horaire et prix, transports entre étapes, vue jour par jour et carte texte des étapes, budget prévu/réel par poste et par personne, dépenses partagées et « qui doit quoi », listes de bagages, documents à prévoir (cases à cocher) | Listes de bagages par type de séjour ; postes de budget | — | Demande Quentin 13/11/2026 fusionnée (planificateur de voyage). Dépenses partagées : moteur commun avec T65. Aucune réservation ni lien vers une plateforme : saisie et impression uniquement. Formalités (passeport, visa, santé) : renvoi à vérifier sur les sources officielles, rien d'intégré. Argent : avertissement. |
 | T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
-| T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : module ou produit séparé, à trancher. **RGPD** (intervenants, sous-traitants). |
+| T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : **produit séparé** (tranché le 14/11/2026, voir « Fiche T23 » en fin de fichier). **RGPD** (intervenants, sous-traitants). |
 | T24 | Circuit de visa : registre des documents soumis par lot, indices de révision, avis (sans observation, avec observations, refusé), délais contractuels, relances, vue chef de projet, tableau de bord | Types de documents par lot, codes de visa (VSO, VAO, REF), lots BTP types, délais de réponse paramétrables | Circuit de visa, registre et fiche visa (artefacts professionnels) | Backlog n° 05 fusionné (même produit). Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : structure seulement ; exemples fictifs. Moteur d'échéances commun avec T63. |
 | T25 | Registre des non-conformités : constat, gravité, cause, action corrective, vérification, clôture, indicateurs | Typologie des écarts, méthode des 5 pourquoi, grille de gravité | Non-conformités de fabrication et de réalisation (artefact professionnel) | **confidentiel** : structure seulement ; exemples fictifs. Produit d'appel de T23 ; même moteur que T32 (réserves). |
 | T26 | Notes de frais : saisie, justificatifs, statut de remboursement, barème kilométrique, récapitulatif et export mensuels (PDF) | Catégories de frais ; barème kilométrique saisi par l'utilisateur | Notes de frais (outil interne), Ma voiture en leasing | Backlog n° 19 fusionné. **daté** : barème kilométrique fiscal, saisi par l'utilisateur ou mis à jour chaque année avec source ; **fiscal**. Justificatifs : stockage de fichiers à prévoir. |
-| T27 | Gestion locative : biens, baux, quittances, révision du loyer, charges, rendement | Modèles de quittance et de relance, échéancier des révisions ; indice IRL saisi par l'utilisateur | Gestion locative (outil interne) | **daté** : IRL et règles de révision, saisis ou sourcés ; modèles de quittance à faire vérifier (outil d'aide, pas un conseil juridique). **RGPD** (locataires). Argent : avertissement. Distinct de T64 (location saisonnière). |
 | T28 | CRM freelance : prospects, clients, historique, prochaine action, projets, devis et factures, encaissements, chiffre d'affaires par client | Étapes de vente, prochaines actions types, modèles de devis et de facture | CRM et prospection (outils internes) | Backlog n° 09 fusionné. **RGPD** (clients, prospects). **daté**/**fiscal** : mentions et taux de TVA vérifiés par l'utilisateur ; factures en suivi seulement, pas un logiciel de facturation (facturation électronique obligatoire : calendrier à vérifier). Frontières avec T35 (pipeline) et T36 (devis) à fixer. Concurrence de CRM gratuits : simplicité, achat unique. |
 | T29 | Gestion de flotte : véhicules, conducteurs, réservations, kilométrage, entretiens, sinistres, amendes, leasing, coût total par véhicule | Intervalles d'entretien types (communs avec T10) | Gestion de flotte (outil interne), Ma voiture en leasing | Backlog n° 37 fusionné. Base commune avec T57 (auto-école) et T10. **daté** (contrôle technique). **RGPD** (conducteurs, amendes). Format : application + modèle tableur. |
 | T30 | Grille 30 min, glisser-déposer, catégories couleur, bilan prévu/réalisé hebdomadaire | Semaines types (cadre, freelance, étudiant), catégories préréglées | Planner horaire, grille de planning, planning rapide (outil interne) | — |
@@ -876,10 +965,10 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T44 | TVA collectée et déductible, échéancier, contrôle de cohérence | Échéances par régime (paramétrables) | — | **daté** (taux, échéances) ; **fiscal** : outil d'aide, pas de conseil. Backlog : tableur seul. Fait (14/11/2026) : application web avec export et import CSV ; taux et échéances en Réglages avec source, statut « vérifié / à vérifier » et date de vérification ; avertissement fiscal dans l'application, la page catalogue et la fiche Gumroad. |
 | T45 | Inventaire, affectations, licences, fin de garantie, historique, alertes | Catégories de matériel et types de licences | Poste central | Demandé explicitement. Format : application + modèle tableur. **RGPD** (affectations nominatives). Pack possible avec T46. **confidentiel à vérifier** (artefact « Poste central »). |
 | T46 | Checklists par rôle, responsables, échéances de J-15 à J+90, restitution du matériel | Checklists d'arrivée et de départ par rôle | Poste central | **RGPD** (salariés). Couplé à T45. |
-| T47 | Affectation par personne et projet, taux de charge, conflits, vues semaine et mois | à définir | Équipes et staffing (outil interne) | Usage à plusieurs (managers) à concevoir. **RGPD**. **confidentiel à vérifier** : aucune équipe ni personne de l'outil interne reprise. |
+| T47 | Affectation par personne et projet en heures par semaine, taux de charge (temps partiel, absences, fériés déduits), conflits, postes à couvrir, vues semaine et mois, disponibles la semaine prochaine | 6 modèles d'équipe (rôles, compétences, postes) ; repères de durée L3121-27, L3121-20, L3121-22 datés et paramétrables | Équipes et staffing (outil interne) : mécanique seulement | Fiche détaillée : `fiches/planning-equipe.md`. Une clé partagée par les managers, saisies simultanées fusionnées (pas de comptes séparés en V1). **RGPD** : aucune donnée de santé, export, effacement, suppression. **confidentiel** : aucune équipe ni personne de l'outil interne reprise, démo fictive. **daté** : repères de durée relevés le 14/11/2026. |
 | T48 | Soldes, demandes, calendrier d'équipe, chevauchements | Règles d'acquisition paramétrables | — | **daté** (règles légales et conventionnelles) : paramétrable. **RGPD**. Backlog : tableur seul. |
 | T49 | Matrice personnes × compétences, niveaux, écarts, plan de formation | à définir | — | Backlog : tableur seul. **RGPD**. |
-| T50 | Ressources, créneaux, conflits, vue jour | à définir | Planner horaire | Caduque : « mono-utilisateur en localStorage » ; un usage partagé est désormais possible mais réservations à plusieurs à concevoir (droits, conflits). |
+| T50 | Ressources, créneaux, conflits, vue jour | Types de ressources, équipements de salle, jours fériés calculés | Planner horaire | Usage à plusieurs tranché le 14/11/2026 : une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes en V1, conflits refusés (y compris entre deux appareils). Fiche en fin de document. **RGPD** (noms des personnes qui réservent). |
 | T51 | Rétroplanning, budget prévu/engagé/payé, prestataires et contrats, invités, checklist jour J | Rétroplanning type, postes de budget, checklist jour J | Organisateur de mariage, gestion de compétition, suivi budget (artefacts) | Demandé explicitement ; produit phare du backlog. Format : application + modèle tableur. Même moteur que T15 et T54. **RGPD** (invités). |
 | T52 | Inscriptions, catégories, heats, saisie des scores, classement, affichage | Règles de classement paramétrables, catégories types | Gestion de compétition et feuille de route (artefacts client) | Affichage public = partage en lecture seule à concevoir. **RGPD** (participants). |
 | T53 | Fiches adhérents, activités, quotient familial, paiements, listes d'appel | Activités types, tranches de quotient familial paramétrables | Inscriptions d'un centre social (artefact client) | **daté** : tranches de quotient familial, paramétrables. **RGPD** (adhérents, mineurs possibles) : obligations dans le guide. Format : application + modèle tableur. **confidentiel** : aucune donnée de l'artefact. |
@@ -892,11 +981,36 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T60 | Sites, équipements, interventions, indicateurs, carte ou liste, alertes | à définir | Pilotage de parcs (artefact professionnel) | **confidentiel** : aucune donnée, nom de site ni chiffre ; exemples fictifs (immobilier, équipements). Format : application + modèle tableur. |
 | T61 | Équipements, plans de maintenance, échéances, bons d'intervention, historique | Plans de maintenance types | Artefacts professionnels de maintenance | **confidentiel** : mécanique seulement, aucune donnée ; exemples fictifs. **daté** si des périodicités réglementaires sont en base. Moteur commun avec T11 et T63. |
 | T62 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : tableur seul. |
-| T63 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. |
+| T63 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. Décision (14/11/2026) : application seule, base sourcée INRS ED 828 datée, preuves en référence et lien (pas de fichiers). |
 | T64 | Calendrier, réservations, ménage, taxe de séjour, revenus par plateforme | à définir | Location saisonnière (artefact client) | **daté** : taxe de séjour, paramétrable ; **fiscal**. **RGPD** (voyageurs). Backlog : tableur seul. Aucune donnée de l'artefact. |
 | T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
+| T73 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
+| T74 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
+| T75 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
+| T76 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
+| T77 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. Fiche `fiches/doe.md` (cadrage délégué par Quentin, 14/11/2026). Prêt le 14/11/2026, mise en vente prochaine : application `templates/doe/` (RDE), page `catalogue/doe/`, communication `communication/doe/` (section-site, carte EN « Coming soon » non appliquée, fiche Gumroad `gumroad.json` / `gumroad.md`, LinkedIn, Instagram avec carrousel 5 vues, prospects). Seule référence : article 40 du CCAG Travaux 2021 en paraphrase (consulté le 14/11/2026, à revérifier sur Légifrance). Publications LinkedIn et Instagram non planifiées. |
+| T78 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
+| T79 | Calendrier des entretiens annuels et professionnels par salarié, trames, objectifs, suivi des formations demandées | Trames d'entretien, questions types | — | **daté** : périodicité de l'entretien professionnel à sourcer (Légifrance) ou paramétrable. **RGPD**. Lien avec T49. |
+| T80 | Unités de travail, risques, cotation (gravité × probabilité), actions de prévention, mise à jour, export | Familles de risques types par secteur | — | **daté**/réglementaire : obligations à sourcer (INRS, Légifrance) ; ne remplace pas un préventeur. **confidentiel** : exemples fictifs. |
+| T81 | Contrats (assurances, maintenance, télécoms, leasing), échéance, préavis de résiliation calculé, tacite reconduction, coût annuel | Catégories de contrats, préavis types paramétrables | — | Règles de résiliation : paramétrables, aucune règle légale non sourcée. Moteur d'échéances commun avec T63. |
+| T82 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
+| T83 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
+| T84 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
+| T85 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
+| T86 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
+| T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
+| T88 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
+| T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
+| T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
+| T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
+| T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
+| T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
+| T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
+| T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
+| T96 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
+| T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer en priorité le 14/11 au soir (prix libre, 0 € possible), puis publication dès que la clé de licence est active (vérification `is_licensed`). |
 
 
@@ -936,6 +1050,313 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
   fiche ajoutée à `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad, clé de licence
   (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram.
 
+## Fiche T22 (cadrage délégué par Quentin, 14/11/2026)
+
+### T22 · Tableau de bord annuel et roue de vie (`templates/tableau-annuel/`, préfixe RDV, 15 €)
+- Promesse : « Ton année, domaine par domaine. » Piloter toute son année, pas seulement le travail : noter sa
+  roue de vie, fixer quelques objectifs mesurables, les découper en actions trimestrielles, faire le point
+  chaque trimestre et voir sa roue bouger dans le temps. Fusion du backlog n° 50 (roue de vie, bilan par domaine).
+- Public : particuliers (cadres, indépendants, personnes en transition, adeptes du bilan de fin d'année) ;
+  coachs pour eux-mêmes et en prescription (une licence = un tableau pour une personne ; suivi de plusieurs
+  clients = sur mesure).
+- Écrans : connexion ; premier lancement (prénom, choix de 4 à 8 domaines) puis point de départ guidé ;
+  **Tableau** (roue de la dernière revue contre la précédente en pointillés, tuiles équilibre, score des
+  objectifs contre l'attendu à date, actions du trimestre, prochaine revue ; bandeau quand une revue est due ou
+  en retard ; objectifs à surveiller ; actions ouvertes) ; **Objectifs** par année (cartes avec résultats clés,
+  statut, repère « attendu à date », reprise des objectifs non atteints de l'année précédente) ; **Trimestre**
+  (actions par état, priorités choisies à la revue, actions restées ouvertes aux trimestres précédents à
+  reporter ou abandonner, idées d'actions) ; **Évolution** (moyenne de la roue par revue, petits multiples par
+  domaine sur la même échelle, avancement des objectifs, tableau des données, bilans écrits relus) ; **revue
+  guidée** (un domaine par étape avec 3 questions de 0 à 10 et la note précédente rappelée, résultats clés,
+  bilan écrit, 1 à 3 priorités avec actions du trimestre suivant, résumé ; brouillon synchronisé, reprise
+  possible) ; réglages (domaines personnels, couleurs, questions, export JSON et CSV, « Sur téléphone »).
+- Base intégrée (contenu original QME, `donnees.js`) : 12 domaines types (8 proposés par défaut) avec 3 questions
+  chacun (36), 33 objectifs modèles avec 1 à 3 résultats clés, 48 idées d'actions, questions de bilan (5
+  trimestrielles, 3 annuelles), repères de méthode (roue de vie, OKR, trimestre, revue), unités.
+- Calculs (`regles.js`, testés) : note d'un domaine = moyenne de ses questions ; équilibre = moyenne des
+  domaines notés ; variations entre deux revues ; domaines faibles suggérés comme priorités ; avancement d'un
+  résultat clé du départ vers la cible dans les deux sens, plafonné ; statut d'un objectif contre la part de
+  l'année écoulée (atteint, dans les temps, à surveiller à moins de 15 points, en retard, non atteint) ; score de
+  l'année ; revue due 21 jours avant la fin du trimestre, revue oubliée signalée en retard, revue du 4e
+  trimestre = bilan annuel ; report d'action ; reprise d'objectifs ; export CSV ; texte du bilan.
+- Sources : roue de vie (outil classique de coaching) et méthode OKR (largement documentée) citées comme
+  méthodes, aucune base externe reprise ; rien ne se périme. Aucune donnée ni contenu de l'outil interne de
+  Quentin. Avertissement : outil de réflexion personnelle, ne remplace pas un professionnel ; aucune donnée de
+  santé demandée.
+- Statut : prêt le 14/11/2026 (branche locale, non poussée, sans PR). Page `catalogue/tableau-annuel/`
+  « Mise en vente prochaine », cartes du catalogue FR (Projets de vie) et EN, connexion, `PRODUITS`, en-têtes
+  Netlify. Communication prête : `communication/tableau-annuel/` (gumroad.md et gumroad.json, linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, section-site.html), fiche ajoutée à
+  `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad (permalien prévu
+  `tableau-annuel-roue-de-vie`), clé de licence (Quentin), passage en vente du site, lignes des plannings
+  LinkedIn et Instagram (non planifiées).
+
+## Fiche T13 (décisions de cadrage déléguées par Quentin, 14/11/2026)
+
+### T13 · Objectif d'épargne et fonds d'urgence (`templates/epargne/`, préfixe EPG)
+- Promesse : « Chaque euro a un but. » Un montant, un versement mensuel, une date d'atteinte pour chaque
+  objectif, en commençant par le fonds d'urgence.
+- Public : particuliers et familles qui épargnent pour un projet (jeunes actifs, futurs acheteurs immobiliers,
+  indépendants aux revenus variables, parents). Prix 12 € (prix minimum), nom et prix choisis par délégation.
+- Base intégrée (`donnees.js`, contenu original QME, **aucun montant, taux, plafond ni produit**) : 13 objectifs
+  types (fonds d'urgence, apport immobilier, voiture, voyage, travaux, arrivée d'un enfant, mariage ou fête,
+  études d'un enfant, permis, déménagement, dépenses annuelles prévisibles, projet personnel, autre), chacun
+  avec ses postes de budget à chiffrer, un horizon indicatif pour la date visée proposée, un conseil de
+  support générique (disponible, sans risque…) et un point d'attention ; 11 postes de dépenses essentielles
+  pour le fonds d'urgence ; questionnaire de taille du fonds (3 situations, 5 facteurs) ; paliers de jalons
+  (10, 25, 50, 75, 100 % et 1, 3, 6 mois couverts) ; 8 conseils, glossaire de 8 termes, mode de calcul.
+- Source du repère de taille : « 3 à 6 mois de dépenses », ordre de grandeur courant en éducation financière,
+  présenté comme repère ; ajustement par situation (stable 3, variable 5, indépendant 6, + 1 par facteur,
+  borné de 3 à 12) = **hypothèses QME**, affichées comme telles. Aucune donnée qui se périme : le taux est
+  saisi par l'utilisateur pour chaque objectif (0 % par défaut), capitalisation mensuelle ou annuelle
+  (décembre, comme un livret).
+- Écrans : Tableau (versements du mois cochés en un geste, alertes retard, capacité dépassée, rythme,
+  absence de fonds d'urgence, prochains jalons, épargne totale réelle puis projetée) ; Objectifs (cartes par
+  statut, capacité d'épargne, plan des 12 prochains mois ; détail : trajectoire réelle et projetée, budget
+  par postes ou fonds d'urgence avec questionnaire, jalons datés, versements ponctuels prévus, historique,
+  archivage) ; Scénarios (3 hypothèses versement, taux, apport ; date d'atteinte, total versé, intérêts,
+  solde à la date visée ; versement nécessaire pour un mois choisi ; « Appliquer à l'objectif ») ; Historique
+  (versements, retraits, intérêts reçus, filtre, export CSV) ; Guide.
+- Calculs (`regles.js`, testés dans `outils/templates/epargne.test.mjs`) : projection mensuelle (intérêts
+  sur le solde de début de mois, puis versement ; arrêt des versements à l'atteinte, dernier versement
+  ajusté), versement nécessaire par recherche dichotomique arrondi à l'euro supérieur, statut (atteint, dans
+  les temps, en retard, sans date, en pause, hors d'atteinte), mois couverts, jalons réels et prévus.
+- Risques : **argent**, avertissement dans l'application, la page et la fiche Gumroad (aide au calcul, aucun
+  produit ni taux recommandé, fiscalité non calculée) ; banques calculant par quinzaine ou au jour près :
+  estimation signalée.
+- Statut : prêt le 14/11/2026 (page « Mise en vente prochaine », démo libre, bouton « Je suis intéressé(e) »).
+  Communication prête : `communication/epargne/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et
+  carrousel PNG, prospects.md, section-site.html, cartes). Reste : création de la fiche Gumroad (et ajout à
+  `communication/gumroad-a-creer.json`), clé de licence (Quentin), passage en vente du site, lignes des
+  plannings LinkedIn et Instagram (non insérées : aucune session n'a eu accès aux plannings pour ce template).
+
+## Fiche T16 · Déménagement (`templates/demenagement/`, préfixe DMN, 12 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Chaque carton à sa place. » Un déménagement calé sur sa date : quoi faire chaque semaine,
+  qui prévenir, ce qu'il y a dans chaque carton, ce que ça coûte.
+- **Pour qui** : particuliers et familles qui déménagent (location ou achat, avec un déménageur ou par
+  leurs propres moyens) ; usage à deux possible (même clé sur plusieurs appareils).
+- **Écrans** : tableau de bord (compte à rebours, recherche « dans quel carton est… », à faire maintenant,
+  cartons par pièce, budget) ; checklist par phase (plus de deux mois avant → premier mois), filtres par
+  catégorie ; cartons (numéro, pièce d'arrivée et sa couleur, contenu, fragile, lourd, à ouvrir en premier,
+  état à remplir → fermé → arrivé → déballé, étiquettes A4 huit par page, liste par pièce imprimable,
+  manquants signalés après J) ; devis et volume (devis comparés : prix au m³, prestations incluses,
+  validité, acompte, devis retenu inscrit au budget ; estimation du volume par meubles et cartons, inventaire
+  à copier pour les demandes de devis) ; budget (prévu, réel, payé, reste à payer, CSV).
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 85 tâches types en 7 catégories (logement, adresse,
+  contrats, organisation, famille, jour J, installation), échéances relatives de J−90 à J+30, filtrées par la
+  situation (départ locataire ou propriétaire, arrivée location ou achat, déménageur ou soi-même, enfants,
+  animal, véhicule) ; 8 pièces et 10 couleurs d'étiquette ; 39 meubles avec un volume indicatif ; 13 postes de
+  budget ; 3 formules et 8 prestations de devis.
+- **Calculs** (`regles.js`, testés dans `outils/templates/demenagement.test.mjs`) : échéances relatives au
+  jour J (changer la date recale tout), statuts (en retard, sous 7 jours), progression, changement de
+  situation (ajout des tâches devenues utiles, retrait de celles encore à faire, tâches retirées à la main
+  jamais remises), recherche sans accents ni casse (numéro exact en tête), volume (meubles + cartons × 0,06 m³
+  + marge), comparaison des devis, budget.
+- **Données qui se périment : aucune.** Aucune démarche datée ni délai légal chiffré (vérifié par un test
+  qui refuse tout « n jours / mois / ans » et toute année dans la base) : préavis, état des lieux, dépôt de
+  garantie, carte grise, listes électorales renvoient au bail, au contrat ou à service-public.fr. Volumes des
+  meubles : ordres de grandeur indicatifs (hypothèses QME), présentés comme tels. Carton standard de
+  55 × 35 × 30 cm ≈ 0,06 m³ (calcul).
+- **Risques** : pas un conseil juridique (avertissement dans l'application, la page et la fiche Gumroad) ;
+  aucune marque, aucun déménageur réel (démo : « Déménageur A, B, C ») ; aucune automatisation ni envoi.
+  À vérifier par Quentin : la mention du téléservice de changement de coordonnées de service-public.fr
+  (tâche « a02 », formulée avec « vérifie la liste des organismes couverts »).
+- **Statut** : prêt le 14/11/2026, « Mise en vente prochaine » (page `catalogue/demenagement/`, démo libre,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, carte « Coming soon » sur
+  `/en/templates/`). Communication prête : `communication/demenagement/` (gumroad.md et gumroad.json,
+  linkedin.md, instagram.md et carrousel PNG, prospects.md, section-site.html pour la mise en vente).
+  Reste : création de la fiche Gumroad et report dans `communication/gumroad-a-creer.json`, clé de licence
+  (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram (non créées).
+## Fiche T34 (cadrage délégué par Quentin, 14/11/2026)
+
+### T34 · Tableau de bord de pilotage PME (`templates/pilotage-pme/`, préfixe TDB)
+- Fiche détaillée : [`fiches/pilotage-pme.md`](fiches/pilotage-pme.md). Application web (pas de tableur), 39 €,
+  permalien prévu `tableau-de-bord-pme`, catalogue `pro` · thème « Indépendants ».
+- Promesse : « Tes chiffres du mois face à tes objectifs, en dix minutes de saisie. »
+- Base intégrée : bibliothèque de 45 indicateurs types en 6 domaines (commercial, finances, trésorerie, RH,
+  production et activité, qualité) avec définition, formule, sens de lecture, source du chiffre et conseil ;
+  14 indicateurs calculés (taux de marge, point mort, autonomie de trésorerie, délai de paiement approché,
+  taux de charge, absentéisme…) ; 5 jeux de départ par activité. **Aucun ratio sectoriel de référence.**
+- Écrans : tableau de bord du mois (statuts, tendances, mini-courbes), saisie mensuelle rapide, fiches
+  indicateurs (courbe réel / objectif / an dernier, cumul, projection), objectifs annuels répartis (égale,
+  saisonnière, mois par mois) et seuils, revue mensuelle imprimable avec actions.
+- Marques : **comptable** (outil de pilotage, pas un logiciel comptable). Confidentiel vérifié : aucun tableau
+  de bord interne repris, démo fictive.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/pilotage-pme/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants », carte anglaise).
+  Page `catalogue/pilotage-pme/`, captures `assets/templates-pilotage-pme-*.webp`, couverture
+  `assets/templates-pilotage-pme-couverture.png`, tests `outils/templates/pilotage-pme.test.mjs`.
+- Communication prête dans `communication/pilotage-pme/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+## Fiche T23 · Suivi de chantier par lot (`templates/suivi-chantier/`, préfixe CHT)
+
+Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/suivi-chantier.md`.
+- Périmètre tranché : **produit séparé** de T32 (réserves) et de T25 (non-conformités). Pilotage contractuel
+  et financier par lot (marché, avenants, situations de travaux, échéancier, jalons, journal et intempéries,
+  sous-traitants, risques, courriers et ordres de service, synthèse financière, revue de projet) avec un
+  registre de non-conformités simplifié qui renvoie vers T25 et T32.
+- Base intégrée : découpage type en 20 lots, 15 jalons types, 12 pièces de marché, typologies des
+  non-conformités (10) et des risques (10), modèle de revue de projet. **Aucun indice, taux ou délai
+  réglementaire** : retenue (5 % par défaut), délai de paiement, coefficient de révision K et pénalités
+  saisis d'après le marché. Deux repères juridiques cités « à vérifier sur Légifrance » (lois du 16/07/1971
+  et du 31/12/1975), non consultés.
+- **Confidentiel** : structure seulement, démo entièrement fictive. **RGPD** : intervenants limités à des
+  coordonnées professionnelles, rappel dans l'application.
+- Statut : prêt le 14/11/2026 (branche locale, non poussée), « Mise en vente prochaine » (démo libre, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du thème « Projets et chantiers »). Communication prête
+  dans `communication/suivi-chantier/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et carrousel
+  PNG, prospects.md, section-site.html). Reste : confirmation du nom et du prix, création de la fiche
+  Gumroad (non ajoutée à `communication/gumroad-a-creer.json`, fichier partagé), clé de licence (Quentin),
+  lignes des plannings LinkedIn et Instagram, passage en vente du site.
+
+## Fiche T61 (cadrage délégué par Quentin, 14/11/2026)
+
+### T61 · Maintenance préventive, GMAO légère (`templates/maintenance/`, préfixe GMA)
+- Fiche détaillée : [`fiches/maintenance.md`](fiches/maintenance.md). Application web, 39 €, permalien prévu
+  `maintenance-preventive`, catalogue `pro` · thème « Équipements et véhicules ». Packs prévus : Moyens généraux,
+  Exploitation et maintenance (`GMA` ajouté à `TEMPLATES` et retiré de `PREVUS` dans `outils/packs/donnees.mjs` ;
+  ajout aux `produits` des packs laissé au coordinateur).
+- Promesse : « Chaque machine entretenue à temps. »
+- Base intégrée : 16 familles d'équipements, 54 opérations types avec points de contrôle (périodicités
+  **indicatives, non sourcées**, la notice du fabricant prime) ; **daté** : 2 obligations sourcées reprises de
+  T11 (chaudières 4–400 kW, art. R224-41-4 à R224-41-9 ; thermodynamiques 4–70 kW, art. R224-44 à R224-44-5),
+  vérifiées le 13/11/2026, à revoir chaque année ; 10 vérifications réglementaires **sans périodicité**
+  (levage, pression, électricité, incendie, portes automatiques, éclairage de sécurité, fluides frigorigènes,
+  conduit de cuisine) : « à paramétrer » jusqu'à la saisie de l'utilisateur.
+- Moteur d'échéances commun avec T11 et T29 (date, compteur, premier atteint, date estimée par le rythme,
+  recalage glissant ou calendaire) ; bons d'intervention imprimables ; pièces de rechange ; coût par équipement ;
+  indicateurs (taux de réalisation du préventif, ponctualité, retards, pannes).
+- **Confidentiel** vérifié : aucun artefact professionnel repris, démo fictive (« Atelier Exemple »).
+- Statut : **prêt**, « Mise en vente prochaine » (page `catalogue/maintenance/`, démo libre, bouton « Je suis
+  intéressé(e) »). Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, cartes). Reste :
+  fiche Gumroad (et entrée de `communication/gumroad-a-creer.json`), clé de licence (Quentin), lignes des
+  plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).
+- À vérifier : périodicités indicatives des plans types ; libellés des vérifications réglementaires (liste non
+  exhaustive) ; catégorie Gumroad.
+
+## Fiche T21 (cadrage délégué par Quentin, 14/11/2026)
+
+### T21 · Planificateur de voyage (`templates/voyage/`, préfixe VYG, 13 €)
+
+Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadrage déléguées par Quentin).
+
+- **Promesse** : « Le voyage tient dans ta poche. » L'itinéraire par étapes, le toit de chaque nuit, les
+  activités jour par jour, le budget prévu puis réel et, au retour, qui doit quoi à qui.
+- **Pour qui** : voyageurs, familles et groupes d'amis (usage `perso`, catalogue « Vie personnelle » ·
+  thème « Projets de vie ») ; un voyage à la fois, plusieurs voyageurs sur la même clé (1 à 20). Packs visés :
+  « Voyage » (PVY, avec le Budget commun) et « Mariage et installation à deux » (PMR, lune de miel).
+- **Écrans** (5 onglets + réglages) : **Aperçu** (J−n, « jour k sur n » ou « terminé » ; chemin des étapes en
+  une ligne ; tuiles nuits réservées, à réserver, dépensé sur prévu, préparation ; alertes : nuit sans
+  hébergement, deux hébergements la même nuit, hébergement hors dates, étapes qui se chevauchent ;
+  programme d'aujourd'hui et de demain ; à réserver ; à payer sur place ; qui doit quoi) ; **Itinéraire**
+  (étapes et trajets dans l'ordre, tableau nuit par nuit avec étape, hébergement et état, liste des
+  hébergements avec montant, acompte et reste à payer, liste des transports) ; **Jour par jour** (une carte
+  par jour : transports et activités à leur heure, nuit du soir, ajout direct ; activités sans date à
+  part ; impression ; itinéraire en texte à copier) ; **Budget** (prévu et réel par poste et par personne,
+  écart, déjà réservé, barres réel/prévu et tableau ; dépenses filtrées par poste, CSV ; qui doit quoi :
+  remboursements proposés, par voyageur payé/part/solde, remboursements faits) ; **Préparer** (bagages par
+  liste avec progression, documents à prévoir, sources officielles des formalités). Réglages : voyage,
+  voyageurs, archivage, exports, sauvegarde JSON, compte, « Sur téléphone », données personnelles, à propos.
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 9 postes de budget (3 alimentés par le plan :
+  transports, hébergements, activités) ; 8 modes de transport ; 9 listes de bagages par type de séjour
+  (essentiels, ville, plage, montagne, hiver, camping, vol long-courrier, jeunes enfants, voiture ;
+  83 éléments) ; 10 documents à prévoir, chacun avec une consigne sans règle chiffrée ; 4 conseils ;
+  4 sources officielles.
+- **Calculs** (`regles.js`, `window.VYG`, testés dans `outils/templates/voyage.test.mjs`) : nuits = dates du
+  soir (départ exclu) ; couverture nuit par nuit (sans toit, à réserver, réservé, en double) ; reste à
+  payer = montant − acompte tant que non soldé ; étape de chaque nuit et étapes du jour de transition ;
+  programme trié par heure ; itinéraire et chemin en texte ; à réserver trié par date, urgent à 14 jours ;
+  budget prévu = plan + montants saisis, réel = dépenses, engagé = réservé ; **dépenses partagées : moteur
+  commun avec T65**, `templates/budget-commun/regles.js` chargé tel quel avant `regles.js` (répartition au
+  centime en parts égales, en parts ou en montants, soldes, nombre minimal de remboursements ; mode
+  « prorata des revenus » ramené à parts égales) ; dépense créée depuis un élément du plan (liée) ; bagages
+  sans doublon ; archivage (résumé gardé, listes décochées) ; fusion entre appareils en cas de conflit 409
+  (union, le plus récent l'emporte, aucune dépense perdue) ; CSV des dépenses.
+- **Données qui se périment : aucune intégrée.** Aucune règle de formalité (validité des papiers, visa,
+  vaccins) ni délai : un test refuse tout « n jours / mois / ans » dans la base. Formalités renvoyées à France
+  Diplomatie (Conseils aux voyageurs) et à service-public.fr (Passeport N360, Carte d'identité N358,
+  Autorisation de sortie du territoire F1359), adresses vérifiées le 14/11/2026. Aucun taux de change : les
+  montants se saisissent en euros (note libre pour le montant d'origine).
+- **Risques** : argent (avertissement dans l'application, la page et la fiche Gumroad : ni agence ni conseil
+  financier, remboursements = proposition de calcul) ; aucune réservation, aucune plateforme, aucune marque
+  (test qui refuse les noms de plateformes et de compagnies) ; démo fictive (« Italie du Nord, exemple
+  fictif », hébergements et adresses fictifs) ; données personnelles : rappel de ne saisir ni numéro de
+  passeport ni code de carte. Confidentiel vérifié : aucun artefact repris.
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/voyage/?demo`,
+  page `catalogue/voyage/` avec « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème
+  « Projets de vie »). Captures `assets/templates-voyage-*.webp`, couverture
+  `assets/templates-voyage-couverture.png`. Communication prête dans `communication/voyage/` (linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, carte
+  d'accueil FR, carte anglaise « Coming soon » non insérée). **Version anglaise en attente** (`en/` non
+  modifié). **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces
+  outils). Restent : fiche Gumroad (permalien prévu `planificateur-voyage`) et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de `VYG` aux packs PVY et PMR
+  (`netlify/lib/packs.mjs`, `PAGES` de `outils/packs/donnees.mjs`, pages `/packs/` régénérées), plannings,
+  carte anglaise, passage en vente du site.
+
+## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
+
+### T63 · Vérifications réglementaires (`templates/verifications/`, préfixe VRF, 35 €)
+- Fiche détaillée : [`fiches/verifications.md`](fiches/verifications.md). Application web (pas de tableur),
+  permalien prévu `verifications-reglementaires`, catalogue `pro` · thème « Équipements et véhicules ».
+  Packs prévus : Moyens généraux (PMG) et Exploitation et maintenance (PXP).
+- Promesse : « Aucun contrôle oublié. » Pour responsables QHSE, gestionnaires de bâtiments, dirigeants de PME
+  et d'ERP.
+- Base intégrée : 22 types de contrôles (électricité, éclairage de sécurité, extincteurs, RIA, SSI,
+  désenfumage, sprinklers, ascenseurs, portes automatiques, levage, gaz, chauffage, cuisines, ventilation),
+  chacun avec sa périodicité **sourcée** : brochure INRS ED 828 « Principales vérifications périodiques »,
+  édition de septembre 2026, page et textes cités, **consultée le 14/11/2026** (date affichée dans
+  l'application, le guide et le registre). Règles APSAD et normes signalées « référentiel, pas un texte de
+  loi ». Tout autre contrôle : type « Autre », périodicité saisie par l'utilisateur.
+- Écrans : bord (alertes, état par site), équipements par site, observations à lever (preuve obligatoire),
+  calendrier 12 mois, registre imprimable par site, guide et sources, réglages. Moteur d'échéances commun
+  avec T11/T24 (mois bornés à la fin du mois, jours), délai de 2 ans des installations électriques seulement
+  s'il est possible (arrêté du 26/12/2011, art. 3).
+- Preuves : référence et lien (le service des templates ne stocke que du JSON) ; pas de fichiers en V1.
+- Marques : **daté** (revérifier la brochure à chaque édition, au moins une fois par an) ; avertissement « outil
+  d'aide, ne remplace ni un organisme agréé ni la réglementation » partout. Confidentiel vérifié : démo fictive.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/verifications/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Équipements et véhicules »).
+  Page `catalogue/verifications/`, captures `assets/templates-verifications-*.webp`, couverture
+  `assets/templates-verifications-couverture.png`, tests `outils/templates/verifications.test.mjs`.
+  **Version anglaise en attente** (`en/` non modifié ; carte prête dans `communication/verifications/carte-en-prochaine.html`).
+- Communication prête dans `communication/verifications/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad (permalien prévu `verifications-reglementaires`) et clé de licence (Quentin), entrée
+  dans `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, plannings, page anglaise, passage en vente du site.
+
+## Fiche T52 (cadrage délégué par Quentin, 14/11/2026)
+
+### T52 · Gestion de compétition sportive (`templates/competition/`, préfixe CMP, 49 €)
+- Fiche détaillée : [`fiches/competition.md`](fiches/competition.md). Application web, catalogue `pro` · thème
+  « Associations, formation et événements », pack « Associations et clubs ».
+- Promesse : « Du premier inscrit au podium, sans tableur. »
+- Inscriptions (individuel ou équipes), catégories, épreuves (temps avec temps limite et « CAP+ », répétitions,
+  charge, points, départage, coefficient), vagues générées avec horaires et feuilles de juge, saisie des scores,
+  classement paramétrable (somme des rangs ou barème, départage général).
+- Affichage public : mode écran plein écran dans l'application et lien public en lecture seule
+  (`/api/competition/*`, instantané sans coordonnées, effacé 30 jours après la compétition).
+- Marques : **RGPD** (participants). Aucun nom d'épreuve de référence ou de marque.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/competition/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Associations, formation et événements »).
+  Page `catalogue/competition/`, captures `assets/templates-competition-*.webp`, couverture
+  `assets/templates-competition-couverture.png`, tests `outils/templates/competition.test.mjs`. Pas de carte anglaise
+  (version anglaise en attente).
+- Communication prête dans `communication/competition/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `gestion-competition`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout au pack « Associations et clubs » (`netlify/lib/packs.mjs`, pages des packs), carte anglaise, plannings,
+  passage en vente du site.
 ## T71 · Dossier sinistre habitation (fiche, 13/11/2026)
 
 Source : cahier des charges complet de Quentin (13/11/2026), conservé dans la conversation de développement.
@@ -1007,3 +1428,538 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   maladie, CAF, ministères. **daté**, revue annuelle obligatoire.
 - **Risques** : **juridique** et **fiscal** (ne remplace ni notaire, ni avocat, ni conseiller fiscal) ;
   **RGPD** (données du défunt et de l'entourage, minimisation) ; sujet sensible pour la communication.
+
+## Fiche T50 (cadrage délégué par Quentin, 14/11/2026)
+
+### T50 · Réservation de salles et bureaux (`templates/salles/`, préfixe SDR, 19 €)
+- Promesse : « Qui a la salle, quand elle se libère, et aucune double réservation. » Catalogue `pro`, thème
+  « Équipements et véhicules » ; pack visé « Moyens généraux » (PMG). Permalien prévu `reservation-salles`.
+- Public : PME en flex office (office manager, services généraux, dirigeant), petits espaces de coworking,
+  associations qui prêtent leurs salles. Une dizaine à quelques dizaines de ressources (40 au plus en V1).
+- **Usage à plusieurs (décision de cadrage)** : une seule clé de licence, partagée par l'équipe (même lien,
+  mêmes données sur tous les appareils). **Pas de comptes ni de droits en V1** : chacun saisit son nom à la
+  réservation (mémorisé sur son appareil seulement, pour pré-remplir et filtrer « Mes réservations »). Toute
+  personne qui a la clé peut modifier ou supprimer une réservation : l'outil le dit, et garde l'auteur et la date
+  de création. Évolution possible : un code « lecture et réservation » distinct du code « administration ».
+- **Conflits refusés** : deux réservations de la même ressource ne peuvent pas se chevaucher (créneaux
+  bout à bout autorisés). Contrôle à la saisie, puis **à nouveau au moment de l'enregistrement en ligne** : si un
+  autre appareil a écrit entre-temps (conflit 409), les réservations locales en attente sont rejouées sur la
+  version du serveur ; celles qui chevauchent une réservation arrivée entre-temps sont refusées et signalées
+  (fonction pure `rejouer`, testée). Réservations dans une même journée (pas de nuit) en V1.
+- Ressources : salles (capacité, équipements cochés dans une liste intégrée : écran, vidéoprojecteur,
+  visioconférence, tableau blanc, paperboard, accès de plain-pied…), bureaux en flex (zone ou étage),
+  équipements prêtables (vidéoprojecteur portable, kit de visioconférence…). **Pas de véhicules** (template
+  T29 Gestion de flotte). Couleur fixe par ressource dans l'ordre de `BASE.couleurs`. Ressource archivable.
+- Réservation : ressource, date, début et fin au pas choisi (15, 30 ou 60 min), objet, nom saisi, nombre de
+  personnes (refusé au-delà de la capacité), note ; **récurrence simple « chaque semaine » jusqu'à une date
+  (52 occurrences au plus)** : les dates en conflit sont listées avant validation et ne sont pas créées ;
+  modifier ou supprimer « cette date » ou « cette date et les suivantes ». « Libérer maintenant » raccourcit une
+  réservation en cours.
+- Écrans : **Maintenant** (« libre maintenant » : chaque ressource libre ou occupée, jusqu'à quand, prochaine
+  réservation, réservation rapide 30 ou 60 min, filtre par type, rafraîchi chaque minute, bon pour une tablette à
+  l'entrée) ; **Jour** (grille ressources × heures, toucher une case vide pour réserver) ; **Semaine** (une
+  ressource, 7 jours × heures) ; **Réservations** (à venir, mes réservations, passées, recherche, export CSV) ;
+  **Occupation** (taux par ressource et par jour de la semaine sur 1, 4 ou 12 semaines : minutes réservées sur
+  minutes d'ouverture, jours fermés et fériés exclus ; carte des heures les plus demandées).
+- Réglages : horaires d'ouverture, jours ouverts, pas, durée maximale et délai de réservation à l'avance
+  (facultatifs), jours fériés fermés (option Alsace-Moselle), ressources, export et import JSON, effacement des
+  noms des réservations passées depuis N mois (les créneaux restent pour les taux d'occupation).
+- Donnée datée : **jours fériés calculés** (fêtes fixes et mobiles depuis la date de Pâques), liste du Code du
+  travail (art. L3133-1) relevée sur service-public.gouv.fr, fiche F2405 « Jours fériés et ponts dans le secteur
+  privé » (vérifiée le 01/01/2026 par la DILA, consultée le 14/11/2026) ; Alsace-Moselle : Vendredi saint et
+  26 décembre en option. Aucun autre barème.
+- Marques : **RGPD** (noms des personnes qui réservent : minimum utile, prénom ou initiales, effacement).
+  Aucune automatisation : pas d'agenda externe, pas d'e-mail, pas de badge ni de capteur.
+- Confidentialité : démo fictive (« Atelier Exemple »), aucune donnée ni capture d'un espace réel.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/salles/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Équipements et véhicules » ; pas de carte
+  anglaise : version anglaise en attente). Page `catalogue/salles/`, captures `assets/templates-salles-*.webp`,
+  couverture `assets/templates-salles-couverture.png`, tests `outils/templates/salles.test.mjs` (règles, jours
+  fériés, série, libre maintenant, occupation, rejeu des réservations en cas de conflit entre appareils).
+- Communication prête dans `communication/salles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (dont la question
+  d'une clé partagée par toute l'équipe au prix d'un template individuel), fiche Gumroad (permalien prévu
+  `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
+  passage en vente du site.
+
+## Fiche T73 (cadrage délégué par Quentin, 14/11/2026)
+
+### T73 · Suivi du temps passé et rentabilité par mission (`templates/suivi-temps/`, préfixe TMP)
+- Fiche détaillée : [`fiches/suivi-temps.md`](fiches/suivi-temps.md). Application web, 19 €, permalien prévu
+  `suivi-temps-rentabilite`, catalogue `pro` · thème « Indépendants ». Pack visé : « Freelance : chiffrer,
+  facturer, encaisser » (PFG), où il était prévu (ancien numéro T71, renuméroté T73 le 14/11/2026 :
+  T71 et T72 sont pris sur `main`).
+- Promesse : « Combien tu gagnes vraiment de l'heure, mission par mission. »
+- Base intégrée : 17 catégories de tâches (7 facturables, 10 non facturables : prospection, devis,
+  administratif, facturation, comptabilité, formation, veille…), 7 modèles de missions avec leurs tâches
+  types, 4 semaines types, seuils d'alerte par défaut. **Aucun taux, barème ni tarif de marché** : TJM cible,
+  heures par jour et coût de revient horaire sont saisis (cohérents avec T40 et T37).
+- Écrans : Aujourd'hui (chronomètre synchronisé, saisie en une ligne « 1h30 », journée face à la semaine
+  type), Semaine (feuille de temps 7 jours, prévu / réalisé, part facturable), Missions (forfait ou régie,
+  budget en jours ou heures, avancement, consommation, projection à terminaison, alertes, temps par tâche),
+  Rentabilité (taux horaire effectif = montant facturé ÷ temps réel, TJM équivalent, comparaison au TJM
+  cible, au taux du devis et au coût de revient, temps non facturable par catégorie, 8 dernières semaines),
+  Rapport client imprimable et exports CSV.
+- Marques : argent (avertissement « outil de gestion, pas un logiciel de facturation ni un conseil »),
+  montants hors taxes. Confidentiel vérifié : démo fictive, aucune donnée réelle.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/suivi-temps/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants »). Page
+  `catalogue/suivi-temps/`, captures `assets/templates-suivi-temps-*.webp`, couverture
+  `assets/templates-suivi-temps-couverture.png`, tests `outils/templates/suivi-temps.test.mjs`. Produit `TMP`
+  déclaré (serveur, connexion, en-têtes Netlify) ; `TMP` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PFG).
+- Communication prête dans `communication/suivi-temps/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad (permalien prévu `suivi-temps-rentabilite`) et clé de licence
+  (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `TMP` aux `produits` du pack PFG
+  (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente),
+  plannings, passage en vente du site.
+
+## Fiche T74 (cadrage délégué par Quentin, 14/11/2026)
+
+### T74 · Propositions commerciales (`templates/propositions/`, préfixe PCM, 19 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire. Pack visé :
+« Freelance : trouver ses clients » (PFC).
+
+- **Promesse** : « Une proposition claire, trois options, une réponse. » Rédiger en une heure une proposition
+  commerciale structurée, la présenter proprement en PDF, puis suivre la réponse jusqu'à la signature.
+- **Pour qui** : freelances, consultants, formateurs, développeurs, petites agences et artisans qui répondent à une
+  demande par une proposition (avant le devis détaillé). Catalogue `pro`, thème « Commercial » (ou voisin).
+- **Distinct de T36** (générateur de devis) : la proposition explique le projet, la méthode, les options et le
+  calendrier ; le devis chiffre ligne à ligne avec TVA et mentions légales. La proposition affiche des prix **hors
+  taxes** et renvoie le détail chiffré, la TVA et les mentions obligatoires au devis (T36). Aucune règle légale
+  intégrée.
+- **Écrans** :
+  - **Propositions** : tuiles (en attente, à relancer, taux de transformation 12 mois, signé sur 12 mois), filtres
+    par statut, recherche, duplication en un clic ;
+  - **Édition** : en-tête (client, interlocuteur, titre, trame, date, validité, début prévu), contexte (questions
+    d'aide par trame), objectifs, livrables, blocs de la bibliothèque insérés (copies modifiables), **options
+    comparées** (bon / mieux / premium : prix HT, contenu, délai, option recommandée, tableau de comparaison
+    calculé), **planning** par étapes en semaines (étapes parallèles possibles, dates calculées depuis le début
+    prévu), conditions (modèles par trame), notes internes non imprimées ; complétude de la proposition ;
+  - **Aperçu A4** : page de garde, sections numérotées, tableau des options, planning en barres, bon pour accord
+    avec choix de l'option ; impression ou PDF par le navigateur ;
+  - **Suivi** : statuts (brouillon, envoyée, acceptée, refusée, sans suite ; affichés « à relancer » et
+    « validité dépassée »), relances datées (intervalle réglable, message de relance à copier, rien n'est
+    envoyé), prolongation de validité, option retenue, motif de refus ; statistiques : taux de transformation
+    en nombre et en valeur, délai moyen de décision, option la plus choisie, motifs de refus, détail par trame,
+    propositions envoyées et acceptées sur 12 mois ;
+  - **Bibliothèque** : blocs réutilisables (présentation, méthode, références, engagements, autre), insérés par
+    copie dans une proposition ;
+  - **Profil** : identité affichée sur les propositions, validité et intervalle de relance par défaut, préfixe
+    de numérotation, affichage facultatif du TTC à un taux **saisi par l'utilisateur** (vide par défaut).
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 4 trames métier (conseil, développement, formation,
+  travaux) avec questions de contexte, objectifs types, livrables types, étapes de planning types en semaines,
+  trois options types et conditions types (commerciales, sans référence légale) ; 10 blocs types de
+  bibliothèque à personnaliser (aucune référence réelle : gabarits à remplir avec l'accord des clients) ; motifs
+  de refus.
+- **Calculs** (`regles.js`, testés dans `outils/templates/propositions.test.mjs`) : montants en centimes,
+  numérotation annuelle sans réutilisation, fin de validité, statut affiché, prochaine relance, planning
+  (dates des étapes, fin du projet), comparaison des options (écarts, contenu commun et différences),
+  montant d'une proposition (option retenue, sinon recommandée), complétude, taux de transformation,
+  statistiques, duplication.
+- **Données qui se périment : aucune.** Pas de taux de TVA intégré (saisie facultative), pas de délai de paiement
+  légal, pas de mention obligatoire : renvoi au devis (T36) et aux sources officielles par l'utilisateur.
+- **Risques** : pas un conseil juridique (avertissement dans l'application) ; données de clients (RGPD :
+  ne garder que le nécessaire, suppression possible) ; démo 100 % fictive (organisations « exemple »).
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/propositions/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/propositions/`, captures `assets/templates-propositions-*.webp`, couverture
+  `assets/templates-propositions-couverture.png`, tests `outils/templates/propositions.test.mjs`. Options types
+  nommées Essentiel, Confort (recommandée) et Premium.
+- **Communication** prête dans `communication/propositions/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte d'accueil FR, carte anglaise
+  `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `propositions-commerciales`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, ajout au pack PFC, passage en vente du site.
+
+## Fiche T39 (cadrage délégué par Quentin, 14/11/2026)
+
+### T39 · Kit références et plaquette (`templates/references-plaquette/`, préfixe KRF)
+- Fiche détaillée : [`fiches/references-plaquette.md`](fiches/references-plaquette.md). Application web, 19 €, permalien
+  prévu `kit-references-plaquette`, catalogue `pro` · thème « Clients et prospection », pack « Freelance : trouver ses
+  clients » (PFC ; KRF retiré de `prevus` dans `outils/packs/donnees.mjs`, à ajouter aux `produits` du pack à la fusion).
+- Promesse : « Tes réalisations, prêtes à convaincre. »
+- Base intégrée : modèles de fiches pour 9 métiers (types de mission, mots-clés, résultats à mesurer sans valeur,
+  questions d'aide), 12 secteurs et 8 tailles de client pour décrire sans nommer, trame contexte · mission · résultat,
+  verbes d'action, formulations d'anonymisation, demande de témoignage en 5 questions, 3 mises en page A4.
+- Écrans : références (filtres, mots-clés, complétude, mise en avant), fiche (aperçu imprimé, manques, alertes),
+  sélections par prospect (suggestions par pertinence avec raisons, ordre, options d'affichage), plaquette A4
+  (plaquette, fiches, liste ; impression ou PDF du navigateur ; texte pour un e-mail), profil (présentation,
+  chiffres clés saisis, couleur).
+- **Confidentiel vérifié** : mécanique inspirée des outils internes de références de QME, aucune référence réelle ;
+  démo d'une consultante fictive (« Atelier Exemple »), clients fictifs ou anonymisés. Aucune donnée datée ni règle
+  légale intégrée : l'accord du client est présenté comme bonne pratique ; chiffres saisis par l'utilisateur.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/references-plaquette/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/references-plaquette/`,
+  captures `assets/templates-references-plaquette-*.webp`, couverture `assets/templates-references-plaquette-couverture.png`,
+  tests `outils/templates/references-plaquette.test.mjs`. **Version anglaise en attente** (carte prête dans
+  `communication/references-plaquette/carte-en-prochaine.html`, non insérée dans `en/`).
+- Communication prête dans `communication/references-plaquette/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, plannings, carte anglaise,
+  passage en vente du site.
+
+## Fiche T06 · Repas de la semaine et liste de courses (`templates/repas/`, préfixe RPS, 13 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Le menu de la semaine, la liste de courses faite toute seule. » On choisit les repas du midi et
+  du soir, la liste se calcule, rangée par rayon, et se coche au magasin sur le téléphone.
+- **Pour qui** : familles et foyers qui cuisinent au quotidien (packs « Forme » et « Famille ») ; usage à deux
+  (même clé sur les deux téléphones : l'un planifie, l'autre fait les courses). Catalogue : `perso`, thème
+  « Santé et forme ».
+- **Écrans** (4 onglets) : **Semaine** (planning lundi → dimanche, midi et soir, plusieurs plats par créneau,
+  nombre de personnes par repas, texte libre « restes », « dehors » sans courses ; propositions automatiques
+  pour les créneaux vides selon la saison et les régimes ; copie de la semaine précédente) ; **Courses** (liste
+  agrégée par rayon dans l'ordre de son magasin, unités cohérentes, conditionnements indicatifs, cases à cocher
+  en magasin avec progression, « déjà à la maison », articles ajoutés à la main et articles habituels, partage
+  en texte) ; **Recettes** (base intégrée et recettes perso, recherche, filtres catégorie, végétarien, sans porc,
+  rapide, de saison, favoris ; fiche avec quantités recalculées pour N personnes ; « créer ma version » d'une
+  recette de la base) ; **Avec ce qu'il me reste** (ingrédients du frigo → recettes classées par ce qui manque).
+- **Base intégrée** (`donnees.js`) : **recettes familiales simples rédigées pour QME** (aucune copiée d'un site
+  ou d'un livre : noms de plats courants, quantités et étapes écrites pour le template), ingrédients et
+  quantités pour 4 personnes, temps, saisons, catégories ; catalogue d'ingrédients avec rayon, unité, poids
+  moyen d'une pièce (hypothèses QME, ordres de grandeur) et marqueurs viande, porc, poisson qui calculent les
+  régimes (végétarien, sans porc) au lieu de les déclarer ; 13 rayons.
+- **Calculs** (`regles.js`, testés dans `outils/templates/repas.test.mjs`) : mise à l'échelle des quantités,
+  conversion d'unités (g, kg, ml, cl, l, cuillères, pièces ; pièces ↔ grammes quand le poids moyen est connu),
+  agrégation de la liste par ingrédient et par rayon, arrondis d'achat (pièces entières), lecture d'une ligne
+  d'ingrédient saisie (« 200 g de farine »), classement « avec ce qu'il me reste », propositions de repas
+  (saison, régimes, pas deux fois la même recette, soirs de semaine rapides), semaine (lundi), saison du mois.
+  **Moteur de liste de courses partageable avec T04** : `listeCourses(lignes, catalogue)` ne dépend que de
+  lignes `{ ingredient, qte, unite }`, sans rien savoir du planning.
+- **Données qui se périment : aucune.** Pas de prix, pas d'enseigne, pas de valeurs nutritionnelles (c'est T04).
+  Saisons des recettes : repères de cuisine, pas une donnée réglementaire.
+- **Risques** : allergies (les régimes sont calculés depuis les ingrédients de la base, pas une garantie :
+  avertissement « vérifie les étiquettes ») ; aucune marque, aucun magasin, aucun drive connecté ; démo fictive.
+- **Base livrée** : 82 recettes (47 plats, 6 tartes et pizzas, 8 soupes, 9 salades, 12 desserts ; 48 sans
+  viande ni poisson), 126 ingrédients, 14 rayons. Saisie d'une recette perso en texte libre (« 200 g de farine »,
+  « 1 boîte de tomates concassées » convertie avec le conditionnement), ingrédient inconnu créé dans « Autres » et
+  déplaçable de rayon depuis la liste.
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/repas/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Santé et forme » ; version anglaise en
+  attente : aucune carte sur `/en/`). Page `catalogue/repas/`, captures `assets/templates-repas-*.webp`, couverture
+  `assets/templates-repas-couverture.png`, tests `outils/templates/repas.test.mjs`. Packs : `RPS` ajouté à
+  `TEMPLATES` et retiré de `PREVUS` et des listes `prevus` des packs Forme et Famille dans
+  `outils/packs/donnees.mjs` ; **reste à l'ajouter à `produits` des packs Forme (PFM) et Famille (PFA)** dans
+  `netlify/lib/packs.mjs` et à régénérer les pages (`node outils/packs/generer.mjs`).
+- Communication prête dans `communication/repas/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN, kanban.txt). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad (permalien prévu `repas-liste-de-courses`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, passage en vente du site.
+
+## Fiche T75 (cadrage délégué par Quentin, 14/11/2026)
+
+### T75 · Calendrier éditorial des réseaux professionnels (`templates/calendrier-editorial/`, préfixe CED, 15 €)
+- Fiche détaillée : [`fiches/calendrier-editorial.md`](fiches/calendrier-editorial.md). Ex-T73, renuméroté T75 le
+  14/11/2026 (T71 et T72 déjà pris sur `main`). Application web, permalien prévu `calendrier-editorial`, catalogue
+  `pro` · thème « Clients et prospection ». Pack « Freelance : trouver ses clients » (PFC).
+- Promesse : « Publier chaque semaine, sans chercher quoi dire. » Pour freelances, consultants et indépendants.
+- Piliers avec part visée, objectif de publications par semaine et jours préférés ; banque de 92 sujets (8 métiers
+  et sujets généraux) avec 11 trames ; statuts idée → brouillon → programmé → publié ; calendrier mois et semaine ;
+  brouillon avec compteur (caractères, mots, hashtags, accroche, crochets restants, limite saisie par canal) ;
+  statistiques saisies (vues, réactions, commentaires, partages, contacts générés) ; régularité (semaines tenues,
+  pauses, série) ; recyclage des meilleurs contenus anciens.
+- Aucune marque de réseau social, aucune connexion ni publication automatique, aucune limite de réseau intégrée
+  (saisie par l'utilisateur) ; repères d'écriture QME modifiables. Démo fictive.
+- Préfixe `CED` entièrement hexadécimal : la saisie de plus de 19 caractères est traitée comme une clé Gumroad
+  (application et `/connexion/`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/calendrier-editorial/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/calendrier-editorial/`, captures `assets/templates-calendrier-editorial-*.webp`, couverture
+  `assets/templates-calendrier-editorial-couverture.png`, tests `outils/templates/calendrier-editorial.test.mjs`.
+  **Version anglaise en attente** (`en/` non modifié).
+- Communication prête dans `communication/calendrier-editorial/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte du catalogue et carte d'accueil FR). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix
+  à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout au
+  pack PFC (`netlify/lib/packs.mjs`) et régénération des pages de packs, plannings, page anglaise, passage en vente.
+
+## Fiche T78 (cadrage délégué par Quentin, 14/11/2026)
+
+### T78 · Conformité des sous-traitants (`templates/sous-traitants/`, préfixe STR, 29 €)
+
+Fiche détaillée : [`fiches/sous-traitants.md`](fiches/sous-traitants.md). Statut **prêt**, « Mise en vente
+prochaine » (démo libre `/templates/sous-traitants/?demo`, page `/catalogue/sous-traitants/`, carte `carte
+prochaine` du thème « Projets et chantiers », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/sous-traitants/gumroad.json`, permalien proposé `conformite-sous-traitants`). Opérations, lots,
+entreprises par rang sous leur donneur d'ordre, acceptation et agrément du paiement, pièces de vigilance par
+entreprise avec date de validité, alertes J-30 / J-15 / expirée, relances depuis un modèle, tableau de conformité,
+registre imprimable, export CSV. **Daté** : seuil de 5 000 € HT, validité de 6 mois (vigilance, Kbis, liste des
+salariés étrangers), décennale, loi de 1975, sourcés (Service-Public F36261, urssaf.fr, Code du travail D8222-5,
+D8254-2 et D8254-4, Code des assurances L243-2, Légifrance) et **lus le 14/11/2026**, date affichée dans le Guide ;
+tout est paramétrable (seuil, durées, portée, pièces ajoutées). Renforcement annoncé par décret au plus tard le
+27/12/2026 : affiché, à revérifier avant la mise en vente. **RGPD** : coordonnées professionnelles, aucun document
+stocké. Avertissement « outil d'aide, ne remplace pas un conseil juridique » (Guide, registre, page, Gumroad).
+Livrables dans `communication/sous-traitants/` (linkedin.md, instagram.md + carrousel, prospects.md, gumroad.md et
+gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram
+**non planifiées** (pas d'accès aux plannings dans cette session). À rattacher à `PBT` dans `netlify/lib/packs.mjs`
+et à régénérer les pages des packs à la fusion.
+
+## Fiche T76 (cadrage délégué par Quentin, 14/11/2026)
+
+### T76 · Suivi des appels d'offres et candidatures (`templates/appels-offres/`, préfixe CND, 15 €)
+- Fiche détaillée : `fiches/appels-offres.md`. Promesse : « Répondre aux bonnes consultations, à temps. » Catalogue
+  `pro`, thème « Clients et prospection » ; pack visé « Freelance : trouver ses clients » (PFC). Permalien prévu
+  `suivi-appels-offres`.
+- Public : freelances, consultants et PME qui répondent à des marchés publics, à des appels d'offres privés, à des
+  missions sur plateforme (aucun nom de plateforme ni de marque) et à des consultations directes.
+- Écrans : **Échéances** (à faire jusqu'à 7 jours, retards en tête, pièces regroupées par dossier ; calendrier
+  mensuel des dates limites, dépôts visés, questions, relances, validité des offres), **Veille** (grille go/no-go de 8
+  critères pondérés notés de 0 à 3, 3 éliminatoires, seuils go 65 % et à discuter 45 % réglables ; no-go avec motif),
+  **Dossiers** (pièces copiées d'un modèle, statut, responsable, échéance à rebours avancée au vendredi si week-end,
+  pièce de bibliothèque liée avec alerte de validité ; dépôt visé = date limite − marge ; relances ; résultat avec
+  montant, motif, classement ; temps passé), **Pièces** (bibliothèque : emplacement et date de validité saisie, pas
+  de fichier ; modèles de dossiers modifiables), **Bilan** (taux de go, taux de réussite = gagnées ÷ (gagnées +
+  perdues), montants, temps, euros par heure, par type, par motif, par mois ; export CSV).
+- **Aucune référence réglementaire** : le modèle « Marché public » liste des pièces souvent demandées, présentées
+  comme point de départ ; la liste exacte est celle du règlement de chaque consultation (dit dans l'application, la
+  page du site et la fiche Gumroad). Dates de validité saisies par l'utilisateur. Aucune donnée datée en base (test).
+- Confidentialité : démo fictive (consultant « Alex », acheteurs inventés), aucune donnée réelle. **RGPD** : prénoms
+  de responsables et noms d'organisations seulement.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/appels-offres/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/appels-offres/`, captures `assets/templates-appels-offres-*.webp`, couverture
+  `assets/templates-appels-offres-couverture.png`, tests `outils/templates/appels-offres.test.mjs`.
+- Communication prête dans `communication/appels-offres/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, kanban.txt). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de CND au pack PFC (`netlify/lib/packs.mjs`, pages des packs
+  régénérées), cartes anglaises, plannings, passage en vente du site.
+
+## Fiche T79 (cadrage délégué par Quentin, 14/11/2026)
+
+### T79 · Entretiens annuels et professionnels (`templates/entretiens-annuels/`, préfixe ENP)
+- Fiche détaillée : [`fiches/entretiens-annuels.md`](fiches/entretiens-annuels.md). Application web, 19 €,
+  permalien prévu `entretiens-annuels-professionnels`, catalogue `pro` · thème « Organisation et réunions ».
+  Pack visé : « Petite entreprise » (PPE), où T79 est prévu.
+- Promesse : « Chaque salarié a ses entretiens à jour : échéances calculées, trame prête, compte rendu
+  imprimable, objectifs et formations suivis d'une année sur l'autre. »
+- **Daté** : entretien de parcours professionnel (loi n° 2025-989 du 24/10/2025) la première année puis tous
+  les 4 ans, état des lieux récapitulatif tous les 8 ans, cas du retour d'absence, de la mi-carrière et des
+  60 ans, abondement CPF de 3 000 € (50 salariés et plus) : service-public.gouv.fr F32040 (vérifiée le
+  01/10/2026), relevé le 14/11/2026 ; périodicités paramétrables ; transition pour les salariés présents avant
+  la réforme non tranchée (historique saisi). **RGPD** : données minimales, export et effacement par salarié.
+- Écrans : Échéances (tuiles, à traiter, à finaliser, états des lieux à surveiller, formations en attente,
+  bandeau RGPD), Salariés (fiche : échéances, historique, objectifs, formations, absences, export, effacement),
+  Entretiens (préparation copiable, trame par thème, blocs objectifs, formations et contrôle des 8 ans,
+  synthèse, copie remise, impression ; sous-onglet Trames avec questions masquées ou ajoutées et repères
+  datés), Objectifs (SMART, avancement, reconduction), Formations (statuts, CSV).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/entretiens-annuels/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Organisation et réunions »).
+  Page `catalogue/entretiens-annuels/`, captures `assets/templates-entretiens-annuels-*.webp`, couverture
+  `assets/templates-entretiens-annuels-couverture.png`, tests `outils/templates/entretiens-annuels.test.mjs`.
+  Produit `ENP` déclaré (serveur, connexion, en-têtes Netlify) ; `ENP` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PPE).
+- Communication prête dans `communication/entretiens-annuels/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad (permalien prévu `entretiens-annuels-professionnels`) et clé de licence
+  (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `ENP` aux `produits` du pack PPE
+  (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente), plannings,
+  passage en vente du site. Point à suivre : règles de passage pour les salariés présents avant la réforme
+  (questions-réponses du ministère du 12/02/2026 non consulté), revérifier F32040 à chaque mise à jour annuelle.
+
+## Fiche T81 (cadrage délégué par Quentin, 14/11/2026)
+
+### T81 · Contrats fournisseurs et échéances de résiliation (`templates/contrats/`, préfixe CTR, 25 €)
+- Fiche détaillée : [`fiches/contrats.md`](fiches/contrats.md). Application web, permalien prévu `contrats-fournisseurs`,
+  catalogue `pro` · thème « Équipements et véhicules ». Packs « Moyens généraux » (PMG) et « Exploitation et
+  maintenance » (PXP) : CTR ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PMG et PXP dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` des packs (`netlify/lib/packs.mjs`) et pages régénérées à la fusion.
+- Promesse : « Plus de reconduction subie. » Pour office managers, dirigeants de TPE et PME, services généraux.
+- Contrats par fournisseur et catégorie (10 catégories : assurances, maintenance, télécoms, location et leasing,
+  logiciels, nettoyage, énergie, sécurité, services, autre ; paramétrables), montant et périodicité, échéance avec
+  reconduction tacite avancée automatiquement, préavis (contrat ou défaut de la catégorie), date limite de réception
+  et envoi conseillé calculés, alertes J-60 / J-30 / préavis dépassé, décision (renouveler, renégocier, résilier),
+  lettre de résiliation à adapter (copie, impression), résiliation notée, coût annuel par catégorie et fournisseur,
+  économies, historique, calendrier 12 mois, export CSV. Moteur d'échéances commun avec T63.
+- **Règles légales** : aucune intégrée sans source. Seul repère cité : Code des assurances, art. L113-12 (version en
+  vigueur depuis le 28/05/2026), lu sur Légifrance le 14/11/2026, d'où le préavis par défaut de 2 mois des assurances
+  (la police prime, dérogation possible pour les risques professionnels). Loi Chatel et résiliation infra-annuelle :
+  non citées. Avertissement « outil d'aide, ne remplace pas un conseil juridique » partout.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/contrats/?demo`, bouton « Je suis
+  intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/contrats/`, captures
+  `assets/templates-contrats-*.webp`, couverture `assets/templates-contrats-couverture.png`, tests
+  `outils/templates/contrats.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/contrats/carte-en-prochaine.html`).
+- Communication prête dans `communication/contrats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `contrats-fournisseurs`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP et régénération des pages de packs, plannings,
+  page anglaise, passage en vente du site.
+
+## Fiche T80 (cadrage délégué par Quentin, 14/11/2026)
+
+### T80 · Document unique d'évaluation des risques (`templates/document-unique/`, préfixe DRP, 29 €)
+- Fiche détaillée : [`fiches/document-unique.md`](fiches/document-unique.md). Application web, permalien prévu
+  `document-unique-evaluation-risques`, catalogue `pro` · thème « Organisation et réunions ». Pack visé :
+  « Petite entreprise » (PPE).
+- Promesse : « Tes risques évalués, ton document à jour. » Pour les employeurs de TPE/PME, dès le premier salarié.
+- Base intégrée : 20 familles de risques inspirées de la brochure INRS ED 840 (titres, situations et mesures
+  reformulés, source citée), 9 secteurs avec unités de travail et risques à examiner, grille 4 × 4 par défaut
+  (paramétrable), 6 types de mesures, motifs de mise à jour et types d'événements. **Obligations sourcées et
+  datées** : service-public.gouv.fr fiche F35360 (vérifiée le 22/07/2026) et INRS « Document unique, ce qu'il
+  faut retenir » (mise à jour le 18/10/2024), consultés le 14/11/2026, articles du Code du travail cités par
+  ces pages (Légifrance inaccessible à nos outils). Seuils 11 (mise à jour annuelle) et 50 (programme annuel).
+- Écrans : bord (alertes, matrice G × P, unités), évaluation par unité (initial et résiduel), plan d'actions /
+  programme annuel, document imprimable (sommaire, inventaire par unité, plan, historique), versions archivées
+  et événements, obligations et sources, réglages (grille, entreprise, revue conseillée).
+- Marques : **daté** (revérifier les sources chaque année), **confidentiel** vérifié (démo fictive « Menuiserie
+  Exemple »), avertissement « outil d'aide, ne remplace ni un préventeur ni un conseil juridique ».
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/document-unique/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/document-unique/`,
+  captures `assets/templates-document-unique-*.webp`, couverture `assets/templates-document-unique-couverture.png`,
+  tests `outils/templates/document-unique.test.mjs`. Produit `DRP` déclaré (serveur, connexion, en-têtes Netlify) ;
+  `DRP` passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPE).
+- Communication prête dans `communication/document-unique/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et
+  prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
+  anglaise, plannings, passage en vente du site.
+
+## Fiche T84 (cadrage délégué par Quentin, 14/11/2026)
+
+### T84 · Remboursements santé (`templates/remboursements-sante/`, préfixe RBS, 12 €)
+
+Fiche détaillée : [`fiches/remboursements-sante.md`](fiches/remboursements-sante.md). Statut **prêt**, « Mise en
+vente prochaine » (démo libre `/templates/remboursements-sante/?demo`, page `/catalogue/remboursements-sante/`, carte
+`carte prochaine` du thème « Argent », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/remboursements-sante/gumroad.json`, permalien proposé `remboursements-sante`). Membres du foyer, soins
+(33 types en 10 familles, date, praticien facultatif, montant payé), Sécurité sociale et mutuelle suivies séparément
+(remboursement attendu, tiers payant, pas de prise en charge ; reçu et écart), reste à charge, retards après un délai
+réglable (30 / 30 / 15 jours par défaut, **sans valeur officielle**, présentés comme tels), message de relance à copier
+et relances notées, bilan annuel par personne et par famille de soins (barres empilées, tableau), mutuelle comparée aux
+cotisations **saisies**, export CSV et JSON. **Aucun taux de remboursement intégré**, aucune donnée datée.
+**Médical / RGPD** : décision de T04 appliquée (consentement explicite au premier lancement, rien en ligne avant ;
+hébergement UE ; « Effacer toutes mes données » = retrait du consentement) ; minimisation : aucun diagnostic, motif,
+médicament ni numéro de sécurité sociale, pas de champ de note libre ; seconde case pour les soins des autres membres du
+foyer (accord ou représentant légal) ; paragraphe ajouté à `/confidentialite/`. HDS non vérifiée (comme T04).
+Avertissement « ne remplace ni un avis professionnel ni les relevés officiels » (consentement, pied de chaque vue,
+Réglages, page, Gumroad). Livrables dans `communication/remboursements-sante/` (linkedin.md, instagram.md + carrousel
+5 vues, prospects.md, gumroad.md et gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente).
+Publications LinkedIn et Instagram **non planifiées**. À rattacher à `PAR` dans `netlify/lib/packs.mjs` et à
+régénérer les pages des packs à la fusion.
+
+## Fiche T82 (cadrage délégué par Quentin, 14/11/2026)
+
+### T82 · Demandes d'achat et fournitures (`templates/achats/`, préfixe ACH, 19 €)
+- Fiche détaillée : [`fiches/achats.md`](fiches/achats.md). Catalogue `pro` · thème « Équipements et véhicules » ; pack
+  visé « Moyens généraux » (PMG). Permalien prévu `demandes-achat-fournitures`.
+- Promesse : « Qui a demandé quoi, qui l'a validé, et où en est le budget. » Public : office managers, services
+  généraux de PME, petites structures associatives.
+- Usage à plusieurs : une clé partagée, nom saisi à chaque étape, pas de comptes en V1 (comme T50). Une demande = un
+  article (plusieurs en un envoi) ; circuit demandée → validée/refusée (motif) → commandée → reçue, partielle possible,
+  reliquat abandonnable ; seuil de validation automatique (prix estimé, montant sous le seuil, budget suffisant).
+- Commandes groupées par fournisseur, bon A4 imprimable (rien n'est envoyé), délai de livraison et retard ; budget
+  annuel par service (consommé, engagé, en attente, disponible), exercice décalable ; historique, délais moyens, CSV.
+- Base : 104 fournitures types en 6 catégories, **sans prix ni marque** ; aucune donnée datée ni règle légale ou
+  fiscale (HT/TTC simple libellé). Conflits 409 : actions rejouées sur la version du serveur (fonction `rejouer`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/achats/?demo`, page
+  `catalogue/achats/`, captures `assets/templates-achats-*.webp`, couverture `assets/templates-achats-couverture.png`,
+  tests `outils/templates/achats.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/achats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé partagée au prix
+  d'un template individuel), fiche Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout
+  d'ACH au pack PMG (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T85 (cadrage délégué par Quentin, 14/11/2026)
+
+### T85 · Capacité d'emprunt et comparateur de prêts (`templates/emprunt/`, préfixe CPT, 15 €)
+- Fiche détaillée : `fiches/emprunt.md`. Promesse : « Combien emprunter, et à quel coût. » Catalogue `perso`, thème
+  « Argent » ; packs visés « Reprendre la main sur son argent » (PAR) et « Propriétaire » (PPB). Permalien prévu
+  `capacite-emprunt-comparateur-prets`.
+- Public : primo-accédants (seuls ou à deux) et investisseurs particuliers (loyers retenus à une part saisie).
+- Écrans : **Capacité** (revenus, crédits en cours, mensualité maximale au taux d'effort saisi, montant empruntable au
+  taux, à la durée et à l'assurance saisis, reste à vivre, montant selon la durée), **Projet** (prix, frais de notaire
+  saisis ou estimés en hypothèse affichée, travaux, autres frais, apport, besoin de financement, prix maximal),
+  **Offres** (2 à 5 : assurance sur capital initial ou restant dû, quotité, frais de dossier, garantie, courtage ; coût
+  total, TAEG approché présenté comme estimation, taux d'effort ; graphique en barres empilées ; questions à poser à la
+  banque), **Amortissement** (par mois ou par année, graphique capital et intérêts, CSV, impression ; remboursement
+  anticipé avec durée raccourcie ou mensualité baissée et indemnités).
+- **Aucun taux de marché intégré.** Données datées, toutes modifiables et affichées avec leur source : seuils 35 % et
+  25 ans (décision D-HCSF-2021-7 du 29/09/2021, vérifiée le 14/11/2026) ; plafond des indemnités de remboursement
+  anticipé (Code de la consommation, L313-47, L313-48, R313-25, lu le 14/11/2026 sur des reprises du code, **à relire
+  sur Légifrance**) ; frais de notaire estimés 8 % ancien et 3 % neuf présentés comme hypothèse.
+- Confidentialité : démo fictive (Camille et Sam, banques inventées). Argent : avertissement « ne remplace pas le
+  conseil d'un professionnel du crédit » sur chaque vue, la page du site et la fiche Gumroad.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/emprunt/?demo`, bouton « Je
+  suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en attente).
+  Page `catalogue/emprunt/`, captures `assets/templates-emprunt-*.webp`, couverture
+  `assets/templates-emprunt-couverture.png`, tests `outils/templates/emprunt.test.mjs`.
+- Communication prête dans `communication/emprunt/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, kanban.txt). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de CPT aux packs PAR et PPB (`netlify/lib/packs.mjs`, pages
+  des packs régénérées ; le tableau « Packs » ci-dessus le liste encore en prévu), cartes anglaises, plannings, passage
+  en vente du site.
+
+## Fiche T86 (cadrage délégué par Quentin, 14/11/2026)
+
+### T86 · Cadeaux reçus et remerciements (`templates/remerciements/`, préfixe CDX, 12 €)
+- Fiche détaillée : [`fiches/remerciements.md`](fiches/remerciements.md). Application web, 12 €, permalien prévu
+  `cadeaux-remerciements`, catalogue `perso` · thème « Projets de vie ». Packs : « Mariage et installation à deux »
+  (PMR, où T86 est prévu), utile au pack Famille. Complète T15 (même logique de liste collée).
+- Promesse : « Qui a offert quoi, et à qui il reste à dire merci. »
+- Cadrage : unité de remerciement = le foyer (statut et message), cadeaux rattachés ; plusieurs événements
+  (mariage, naissance ou baptême, anniversaire, retraite, obsèques au ton sobre, autre) ; 9 types de cadeaux ou
+  d'attentions, montant facultatif, totaux par cagnotte ; statut à écrire, écrit, envoyé ; 44 modèles de messages
+  originaux par événement et par ton ; objectif d'envoi réglé par l'utilisateur (6 semaines par défaut, pas une
+  règle) ; étiquettes A4 (4 formats décrits par leurs dimensions, départ, décalage) ; import d'une liste collée ;
+  export CSV ; effacement des adresses déjà utilisées et de l'événement. Aucune règle légale ni donnée datée.
+  **RGPD** : données de tiers minimisées (nom d'usage, adresse facultative pour la poste, aucun contact).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/remerciements/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Projets de vie »). Page
+  `catalogue/remerciements/`, captures `assets/templates-remerciements-*.webp`, couverture
+  `assets/templates-remerciements-couverture.png`, tests `outils/templates/remerciements.test.mjs`. Produit `CDX`
+  déclaré (serveur, connexion, en-têtes Netlify) ; `CDX` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PMR).
+- Communication prête dans `communication/remerciements/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout de `CDX` aux `produits` du pack PMR (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
+  relire par Quentin : ton des modèles pour les obsèques, hashtags Instagram hors jeux du kit.
+
+## Fiche T87 (cadrage délégué par Quentin, 14/11/2026)
+
+### T87 · Revue hebdomadaire et journal de bord (`templates/revue-hebdo/`, préfixe RVH, 12 €)
+- Fiche détaillée : [`fiches/revue-hebdo.md`](fiches/revue-hebdo.md). Application web, permalien prévu
+  `revue-hebdomadaire`, catalogue `perso` · thème « Organisation et études » (avec le planner). Pack « Productivité
+  perso » (PPR) : RVH ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PPR dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` du pack (`netlify/lib/packs.mjs`), à une étape `parcours`
+  de PPR et pages régénérées à la fusion.
+- Promesse : « Ta semaine, revue en 20 minutes. » Pour cadres, indépendants, managers (rituel du vendredi).
+- Revue guidée en 7 étapes (vider la tête, semaine passée et priorités notées, réussites et difficultés,
+  apprentissages, 3 priorités pour la semaine suivante, rendez-vous et échéances, énergie et humeur de 1 à 5),
+  55 questions de revue originales en rotation (masquables, questions personnelles), journal d'une ligne par jour
+  avec humeur facultative, historique cherchable, tendance (série, semaines tenues sur 12, humeur et énergie,
+  priorités tenues ; palette validée par le skill dataviz), rappel le jour choisi affiché dans l'outil (aucune
+  notification), export texte. Complète T03, T30 et T08 sans connexion automatique.
+- **Santé** : humeur et énergie = repères personnels, sans portée médicale (mention dans l'outil, sur la page du
+  site, la fiche Gumroad et la communication) ; repère bienveillant après 3 semaines notées à 2 ou moins, sans
+  diagnostic ni numéro cité. Aucune base externe, aucune donnée datée.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/revue-hebdo/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/revue-hebdo/`, captures
+  `assets/templates-revue-hebdo-*.webp`, couverture `assets/templates-revue-hebdo-couverture.png`, tests
+  `outils/templates/revue-hebdo.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/revue-hebdo/carte-en-prochaine.html`).
+- Communication prête dans `communication/revue-hebdo/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne
+  aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `revue-hebdomadaire`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout au pack PPR et régénération des pages de packs, plannings, page
+  anglaise, passage en vente du site.

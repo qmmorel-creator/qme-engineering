@@ -1,0 +1,6 @@
+Registre du DOE
+Chaque pièce remise, vérifiée, transmise.
+Pièces par lot · relances datées · complétude · bordereau
+Ligne ajoutée à T dans outils/templates/couvertures-gumroad.cjs :
+  doe: ['Registre du DOE', 'Chaque pièce remise, vérifiée, transmise.', 'Pièces par lot · relances datées · complétude · bordereau'],
+Rendu : assets/templates-doe-couverture.png (SEUL=doe), regardé le 14/11/2026.

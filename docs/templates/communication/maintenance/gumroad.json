@@ -1,0 +1,42 @@
+{
+  "slug": "maintenance",
+  "name": "Maintenance préventive (GMAO légère)",
+  "price_cents": 3900,
+  "permalink": "maintenance-preventive",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir ma maintenance",
+  "summary": "Une GMAO légère pour ateliers et services techniques : plans de maintenance types, échéances à la date, au compteur ou au premier atteint, bons d'intervention imprimables, pièces, coût par équipement et indicateurs.",
+  "description": "<h2>Chaque machine entretenue à temps.</h2><p>La dernière vidange du compresseur, c'était quand ? Le prochain filtre, à quel compteur ? Dans un atelier ou un service technique, la maintenance préventive se fait souvent quand on y pense, et l'historique se cherche le jour de la panne. Maintenance préventive est une GMAO légère : tes équipements, leurs plans de maintenance, les échéances et les bons d'intervention, sans paramétrage de plusieurs semaines.</p><h3>Ce que tu obtiens</h3><ul><li><strong>16 familles d'équipements avec leur plan type</strong> (compresseur, machine-outil, presse, chariot élévateur, pont roulant, groupe électrogène, chaudière, climatisation, ventilation, pompe, convoyeur, portes automatiques, installation électrique, sécurité incendie, cuisine professionnelle, bâtiment) : 54 opérations avec leurs points de contrôle. Les périodicités sont des repères indicatifs : la notice du fabricant prime.</li><li><strong>Des échéances à la date, au compteur ou au premier atteint</strong> : heures de fonctionnement, cycles, kilomètres. Le rythme d'utilisation relevé donne la date estimée d'une échéance au compteur. En retard, bientôt, à venir : tout se voit d'un coup d'œil.</li><li><strong>Des bons d'intervention imprimables</strong> : préventifs ouverts depuis l'échéancier, correctifs pour les pannes. À la clôture (date, compteur, durée, pièces, constat), l'échéance suivante se recale toute seule.</li><li><strong>L'historique et le coût de chaque équipement</strong> : main-d'œuvre au taux horaire, pièces, sous-traitance, préventif et correctif, pannes et heures d'arrêt, sur 12 mois et depuis le début.</li><li><strong>Les pièces de rechange</strong> : stock calculé (réceptions moins consommations des bons), alerte sous le seuil.</li><li><strong>Des indicateurs simples</strong> : taux de réalisation du préventif, ponctualité, retard moyen, part du préventif dans le coût. Exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes équipements : le plan type de leur famille t'est proposé. Relève les compteurs, ouvre et clôture les bons. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Réglementaire : seules deux obligations sont préremplies, avec leur source (entretien annuel des chaudières de 4 à 400 kW ; entretien des climatisations et pompes à chaleur de 4 à 70 kW). Les autres vérifications (levage, pression, électricité, incendie, portes automatiques…) arrivent sans périodicité : tu saisis celle de ton texte. La liste n'est pas exhaustive et la conformité de ton site reste de ta responsabilité. Aucun capteur ni logiciel connecté. Démo disponible sur qm-engineering.fr/catalogue/maintenance.</em></p>",
+  "tags": [
+    "maintenance",
+    "gmao",
+    "maintenance-preventive",
+    "atelier",
+    "industrie",
+    "pme",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta maintenance s'ouvre. Crée tes équipements : le plan type de leur famille t'est proposé, à ajuster selon la notice. Relève les compteurs, ouvre et clôture les bons : les échéances et les coûts se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Ateliers, services techniques, gestionnaires de bâtiments"
+    }
+  ]
+}

@@ -121,7 +121,7 @@ if(fallbackLink&&form){
 // Seuls le template et l'heure sont enregistrés ; le navigateur retient qu'il a déjà cliqué.
 // Après le clic, champ e-mail facultatif pour être prévenu de la mise en vente.
 (()=>{document.querySelectorAll('[data-interet]').forEach(b=>{
- const m=b.dataset.interet,cle='qme-interet-'+m,cleMail='qme-interet-email-'+m,note=document.querySelector(`[data-interet-note="${m}"]`);
+ const m=b.dataset.interet,objet=m.startsWith('pack-')?'ce pack':'ce template',cle='qme-interet-'+m,cleMail='qme-interet-email-'+m,note=document.querySelector(`[data-interet-note="${m}"]`);
  const lireLS=(k)=>{try{return localStorage.getItem(k)==='1';}catch{return false;}};
  const ecrireLS=(k)=>{try{localStorage.setItem(k,'1');}catch{}};
  const formulaire=()=>{
@@ -129,7 +129,7 @@ if(fallbackLink&&form){
   const f=document.createElement('form');f.className='interet-email';f.id='interet-email-'+m;f.noValidate=true;
   f.innerHTML=`<label for="interet-champ-${m}">Être prévenu par e-mail à la mise en vente <small>(facultatif)</small></label>
    <div class="interet-ligne"><input id="interet-champ-${m}" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="vous@exemple.fr" required><button class="btn" type="submit">M'avertir</button></div>
-   <p class="interet-mention">Adresse utilisée uniquement pour vous prévenir de la mise en vente de ce template, puis effacée. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>`;
+   <p class="interet-mention">Adresse utilisée uniquement pour vous prévenir de la mise en vente de ${objet}, puis effacée. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>`;
   (note||b).after(f);
   const champ=f.querySelector('input'),envoi=f.querySelector('button'),mention=f.querySelector('.interet-mention');
   f.addEventListener('submit',async(e)=>{e.preventDefault();
@@ -151,7 +151,7 @@ if(fallbackLink&&form){
   try{const r=await fetch('/api/interets',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({module:m})});
    if(!r.ok)throw new Error();
    ecrireLS(cle);
-   fait('Merci, c’est noté : ce template passe en priorité quand l’intérêt est là.');
+   fait(`Merci, c’est noté : ${objet} passe en priorité quand l’intérêt est là.`);
   }catch{b.disabled=false;if(note)note.textContent='L’envoi a échoué. Réessayez dans un instant.';}
  });});})();
 

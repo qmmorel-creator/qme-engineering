@@ -1,0 +1,16 @@
+{
+  "name": "Suivi de chantier par lot · QME",
+  "short_name": "Chantier",
+  "description": "Tes lots, marchés et avenants, situations de travaux, jalons recalés, non-conformités, risques, ordres de service et la revue de projet.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#FBF7F1",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

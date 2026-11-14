@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="salles" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/salles/"><b>Réservation de salles et bureaux</b><span class="phrase">Libre maintenant, vues jour et semaine, aucune double réservation.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>

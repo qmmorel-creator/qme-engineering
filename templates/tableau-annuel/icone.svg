@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#FBF7F1"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#24221F" stroke-width="10" stroke-dasharray="22 14"/>
+    <path d="M256 256 L194.0 106.4 A161.92000000000002 161.92000000000002 0 0 1 318.0 106.4 Z" fill="#2E5A88" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L296.4 158.4 A105.6 105.6 0 0 1 353.6 215.6 Z" fill="#E58C74" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L382.8 203.5 A137.28 137.28 0 0 1 382.8 308.5 Z" fill="#E8B93A" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L337.3 289.7 A88.0 88.0 0 0 1 289.7 337.3 Z" fill="#2E5A88" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L313.9 395.8 A151.35999999999999 151.35999999999999 0 0 1 198.1 395.8 Z" fill="#E58C74" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L211.5 363.3 A116.16000000000001 116.16000000000001 0 0 1 148.7 300.5 Z" fill="#E8B93A" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L135.7 305.8 A130.24 130.24 0 0 1 135.7 206.2 Z" fill="#2E5A88" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M256 256 L166.6 219.0 A96.80000000000001 96.80000000000001 0 0 1 219.0 166.6 Z" fill="#E58C74" stroke="#FBF7F1" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="256" cy="256" r="26" fill="#24221F"/>
+</svg>

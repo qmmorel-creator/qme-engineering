@@ -1,0 +1,27 @@
+{
+  "slug": "sous-traitants",
+  "name": "Conformité des sous-traitants",
+  "price_cents": 2900,
+  "permalink": "conformite-sous-traitants",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon registre",
+  "summary": "Tes sous-traitants par lot et par rang : acceptation et agrément du paiement, attestations de vigilance, Kbis, liste des salariés étrangers et décennale datés, alertes à J-30 et J-15, relances préparées, registre imprimable et export CSV.",
+  "description": "<h2>Aucune attestation périmée sur ton chantier.</h2><p>Une ligne par entreprise dans un classeur, des attestations à redemander tous les six mois, des déclarations de sous-traitance suivies par e-mail : avec plusieurs chantiers et une chaîne jusqu'au rang 2, l'attestation périmée se découvre au moment du règlement. La Conformité des sous-traitants te dit, chaque jour, ce qui manque, ce qui expire et qui relancer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La chaîne de sous-traitance, lot par lot</strong> : opérations, lots, titulaires et sous-traitants de rang 1, 2 ou plus, chacun sous son donneur d'ordre, avec le montant de son contrat.</li><li><strong>L'acceptation suivie</strong> : déclaration au maître d'ouvrage, dates de demande et de décision, agrément des conditions de paiement, paiement direct en marché public.</li><li><strong>Les pièces datées</strong> : attestation de vigilance Urssaf, Kbis, liste des salariés étrangers, décennale ; échéance calculée ou lue sur la pièce ; une pièce reçue vaut pour toutes les opérations de l'entreprise.</li><li><strong>Des alertes</strong> à J-30, à J-15 et à l'expiration (seuils réglables), et le sous-traitant qui intervient sans acceptation en tête de liste.</li><li><strong>Des relances préparées</strong> depuis ton modèle, avec les pièces de chaque entreprise, à copier ou à ouvrir dans ta messagerie.</li><li><strong>Un tableau de conformité par opération</strong>, un registre daté imprimable et un export CSV (point-virgule, UTF-8).</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton opération, ajoute les entreprises lot par lot, puis note les dates des pièces reçues : tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide au suivi, qui ne remplace pas un conseil juridique. Les règles retenues (seuil de 5 000 € HT, validité de 6 mois de l'attestation de vigilance, liste des salariés étrangers, décennale, acceptation des sous-traitants) sont citées dans l'application avec leur source officielle et la date de lecture (14/11/2026), et se modifient dans les réglages. Aucun document n'est stocké : seules les dates des pièces sont suivies. Démo avec trois chantiers fictifs sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "btp",
+    "sous-traitance",
+    "obligation-de-vigilance",
+    "chantier",
+    "conformite",
+    "conduite-de-travaux",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre des sous-traitants s'ouvre. Crée ton opération, ajoute les entreprises lot par lot, puis les dates des pièces reçues : échéances, alertes et relances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone) + export CSV" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Entreprises générales, maîtres d'ouvrage, maîtres d'œuvre" }
+  ]
+}

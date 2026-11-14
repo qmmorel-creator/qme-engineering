@@ -1,0 +1,42 @@
+{
+  "slug": "contrats",
+  "name": "Contrats fournisseurs et échéances",
+  "price_cents": 2500,
+  "permalink": "contrats-fournisseurs",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mes contrats",
+  "summary": "Tes contrats fournisseurs avec la date limite de résiliation de chacun : reconduction tacite suivie, alertes à J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie, historique et export CSV.",
+  "description": "<h2>Plus de reconduction subie.</h2><p>Assurance des locaux, maintenance, fibre, copieur en location, logiciels, nettoyage, énergie : chaque contrat a son échéance, sa reconduction et son préavis. La date qui compte, celle avant laquelle il faut résilier, n'est écrite nulle part. Contrats fournisseurs et échéances la calcule pour chaque contrat et te prévient à temps.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La date limite de résiliation calculée</strong> : échéance de la période en cours moins le préavis (en mois ou en jours), avec une marge d'envoi réglable. Les reconductions tacites déjà passées font avancer l'échéance d'elles-mêmes.</li><li><strong>Des alertes à J-60, J-30 et « préavis dépassé »</strong>, avec la prochaine date limite utile quand un préavis est manqué, et un calendrier des douze prochains mois.</li><li><strong>Une décision par échéance</strong> : renouveler, renégocier ou résilier. La décision « Renouveler » éteint l'alerte jusqu'à l'échéance suivante.</li><li><strong>Une lettre de résiliation à adapter</strong>, préremplie avec ta structure, le fournisseur, le numéro de contrat, l'échéance et le préavis, à copier ou imprimer ; puis la résiliation notée (date, mode, numéro de recommandé) jusqu'à la fin effective.</li><li><strong>Le coût annuel par catégorie et par fournisseur</strong>, quelle que soit la périodicité, et les économies obtenues par renégociation ou résiliation.</li><li><strong>Catégories et préavis par défaut paramétrables</strong>, historique par contrat, export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis tes catégories, puis saisis chaque contrat avec sa date de fin et son préavis : dates limites, alertes et coûts se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace ni la lecture de tes contrats ni un conseil juridique. Aucune règle légale de résiliation n'est intégrée sans source : les préavis par catégorie sont des valeurs par défaut à remplacer par ceux de tes contrats ; seul repère cité, pour les assurances, l'article L113-12 du Code des assurances (lien Légifrance et date de consultation dans l'outil). Rien n'est envoyé par l'outil. Démo disponible sur qm-engineering.fr/catalogue/contrats.</em></p>",
+  "tags": [
+    "contrats",
+    "resiliation",
+    "tacite-reconduction",
+    "services-generaux",
+    "office-manager",
+    "tpe-pme",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes contrats s'ouvrent. Choisis tes catégories, puis saisis chaque contrat avec sa date de fin et son préavis : dates limites de résiliation, alertes et coûts se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Office managers, dirigeants de TPE et PME, services généraux"
+    }
+  ]
+}

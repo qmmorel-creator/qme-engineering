@@ -1,0 +1,5 @@
+Conformité des sous-traitants
+Aucune attestation périmée sur ton chantier.
+Lots et rangs · acceptation · vigilance · alertes J-30
+Ligne pour T dans outils/templates/couvertures-gumroad.cjs (déjà ajoutée) :
+  'sous-traitants': ["Conformité des sous-traitants", "Aucune attestation périmée sur ton chantier.", "Lots et rangs · acceptation · vigilance · alertes J-30"],

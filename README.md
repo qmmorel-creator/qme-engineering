@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 49 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -105,6 +105,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
 - `/templates/` : catalogue des templates (indexé), fiche du planning de révision, fonctionnement, FAQ.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
+  pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
+  (`/packs/espace/`, non indexé). Pages générées : `node outils/packs/generer.mjs` (données dans
+  `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
 ## Templates payants (`/templates/`)
@@ -170,6 +174,94 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ménages, taxe de séjour au tarif saisi de la commune, net par canal nommé par l'utilisateur, aucune
   plateforme connectée) ; `templates/leasing/` (VTR) **simulateur leasing ou achat** (comptant, crédit, LOA,
   LLD comparés sur la même période, revente estimée, coût par mois et par km, seuils de kilométrage).
+- `templates/planning-equipe/` (EQP) : **planning d'équipe et staffing**, prêt, « Mise en vente prochaine » (35 €,
+  démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Affectations par
+  personne et par projet ou poste en heures par semaine, taux de charge avec temps partiel, absences et fériés
+  déduits, alertes (surcharge, affectation pendant une absence, compétence manquante, poste non couvert, durées
+  L3121-20 et L3121-22 paramétrables), vues semaine et mois, « qui est disponible la semaine prochaine ». Une clé
+  partagée par les managers : saisies simultanées fusionnées (`fusionner`). Règles dans `regles.js`, tests
+  `outils/templates/planning-equipe.test.mjs`.
+- `templates/tableau-annuel/` (RDV) : **tableau de bord annuel et roue de vie**, prêt, « Mise en vente prochaine »
+  (15 €, démo libre, fiche Gumroad à créer dans `docs/templates/communication/gumroad-a-creer.json`). Roue de vie
+  notée par 3 questions par domaine (12 domaines types, 8 au plus), objectifs et résultats clés (méthode OKR, 33
+  modèles, cibles à la hausse ou à la baisse) comparés à la part de l'année écoulée, actions trimestrielles (48 idées,
+  report des actions restées ouvertes), revue guidée chaque trimestre (bilan annuel au 4e), évolution de la roue
+  revue après revue. Règles dans `regles.js`, tests `outils/templates/tableau-annuel.test.mjs`.
+- `templates/epargne/` (EPG) : **objectif d'épargne et fonds d'urgence**, prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/epargne/gumroad.json`). 12 objectifs
+  types (plus « Autre ») avec postes de budget, fonds d'urgence en mois de dépenses essentielles avec repère de taille selon la
+  situation, date d'atteinte et versement nécessaire, scénarios d'intérêts composés au taux saisi (aucun taux
+  intégré), jalons, historique des versements, plan des 12 prochains mois. Règles dans `regles.js`, tests
+  `outils/templates/epargne.test.mjs`.
+- `templates/demenagement/` (DMN) : **déménagement**, prêt, « Mise en vente prochaine » (12 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/demenagement/gumroad.json`). Rétroplanning de 85 tâches types
+  relatif au jour J et filtré par la situation, démarches et contrats sans délai légal chiffré (renvoi au bail,
+  aux contrats ou à service-public.fr), cartons numérotés par pièce avec recherche et étiquettes A4, volume
+  estimé, devis comparés au m³, budget. Règles dans `regles.js`, tests `outils/templates/demenagement.test.mjs`.
+- `templates/propositions/` (PCM) : **propositions commerciales** (T74), prêt, « Mise en vente prochaine » (19 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/propositions/gumroad.json`). Contexte, objectifs,
+  livrables, blocs de bibliothèque (présentation, méthode, références), options comparées (bon, mieux, premium), planning
+  en semaines, conditions, aperçu A4 imprimable ; suivi (validité, relances avec message à copier, réponse et motif,
+  taux de transformation en nombre et en valeur), duplication. Prix hors taxes, aucune règle légale : mentions et TVA
+  renvoyées au devis (T36). Règles dans `regles.js`, tests `outils/templates/propositions.test.mjs`.
+- `templates/document-unique/` (DRP) : **document unique d'évaluation des risques** (T80), prêt, « Mise en vente
+  prochaine » (29 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/document-unique/gumroad.json`).
+  Unités de travail, 20 familles de risques inspirées de l'INRS ED 840 (reformulées), démarrage par secteur, cotation
+  gravité × probabilité sur grille paramétrable, risque initial et résiduel, matrice, plan d'actions (programme
+  annuel dès 50 salariés), événements, versions archivées et figées, document imprimable. Obligations selon
+  l'effectif sourcées et datées (service-public.gouv.fr et INRS, consultés le 14/11/2026 : à revérifier chaque
+  année). Règles dans `regles.js`, tests `outils/templates/document-unique.test.mjs`.
+- `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
+  types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
+  sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
+  écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
+  `outils/templates/pilotage-pme.test.mjs`.
+- `templates/suivi-chantier/` (CHT) : **suivi de chantier par lot**, prêt, mise en vente prochaine (40 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/suivi-chantier/gumroad.json`). Marché et avenants
+  par lot, situations de travaux calculées depuis le cumul (révision par coefficient K saisi, retenue de
+  garantie, pénalités, date de paiement), échéancier et courbe prévu / réalisé, jalons recalés par les avenants
+  et les intempéries retenues du journal, sous-traitants, non-conformités simplifiées, risques en matrice
+  4 × 4, courriers et ordres de service, revue de projet imprimable ; plusieurs opérations par clé. Aucun
+  indice ni taux réglementaire intégré. Règles dans `regles.js`, tests `outils/templates/suivi-chantier.test.mjs`.
+- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, prêt, « Mise en vente prochaine » (39 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/maintenance/gumroad.json`). 16 familles
+  d'équipements et leurs plans types (périodicités indicatives ; seules les chaudières 4–400 kW et climatisations 4–70 kW
+  portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
+  compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
+  Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
+- `templates/voyage/` (VYG) : **planificateur de voyage**, prêt, « Mise en vente prochaine » (13 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/voyage/gumroad.json`). Étapes, hébergement de chaque nuit (réservé
+  ou à réserver, acompte, reste à payer, nuits sans toit signalées), transports, activités jour par jour, budget
+  prévu et réel par poste et par personne, dépenses partagées et qui doit quoi, bagages par type de séjour et
+  documents à prévoir (formalités renvoyées aux sources officielles). Dépenses partagées : moteur du budget commun,
+  `templates/budget-commun/regles.js` chargé tel quel (et gardé hors ligne par `sw.js`). Règles dans `regles.js`,
+  tests `outils/templates/voyage.test.mjs`.
+- `templates/calendrier-editorial/` (CED) : **calendrier éditorial des réseaux professionnels**, prêt, « Mise en vente
+  prochaine » (15 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/calendrier-editorial/gumroad.json`).
+  Piliers avec part visée, objectif de publications par semaine, banque de 92 sujets pour 8 métiers avec 11 trames,
+  statuts idée → brouillon → programmé → publié, calendrier mois et semaine, brouillon avec compteur de caractères
+  (limite saisie par canal, aucune règle de réseau intégrée), statistiques saisies à la main, régularité (semaines
+  tenues, pauses, série) et recyclage. Aucune marque ni connexion à un réseau social. Préfixe entièrement hexadécimal :
+  une saisie de plus de 19 caractères est lue comme une clé Gumroad. Règles dans `regles.js`, tests
+  `outils/templates/calendrier-editorial.test.mjs`. Version anglaise en attente.
+- `templates/verifications/` (VRF) : **vérifications réglementaires**, prêt, « Mise en vente prochaine » (35 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/verifications/gumroad.json`). Registre des contrôles
+  périodiques par site : 22 types avec périodicité sourcée (brochure INRS ED 828, édition de septembre 2026, page et
+  textes cités, consultée le 14/11/2026, à revérifier à chaque édition) ou saisie par l'utilisateur, échéances,
+  organismes, observations suivies jusqu'à leur levée avec preuve (référence et lien, pas de fichiers), délai de
+  2 ans des installations électriques sous conditions, calendrier, registre imprimable par site. Règles dans
+  `regles.js`, tests `outils/templates/verifications.test.mjs`. Version anglaise en attente.
+- `templates/competition/` (CMP) : **gestion de compétition sportive**, prêt, « Mise en vente prochaine » (49 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/competition/gumroad.json`). Inscriptions par catégorie
+  (individuel ou équipes), épreuves au temps (temps limite, « CAP+n »), aux répétitions, à la charge ou aux points,
+  départage, vagues équilibrées et horaires, alertes de repos, feuilles de juge, saisie des scores, classement
+  paramétrable (somme des rangs ou barème, coefficient, départage général), mode écran. **Lien public en lecture
+  seule** : API propre `/api/competition/*` (`netlify/functions/competition.mjs`, moteur
+  `templates/competition/moteur.js`, dépendances `netlify/lib/competition.mjs`), magasin Netlify Blobs
+  `competition-public` à Francfort, instantané reconstruit champ par champ (aucune coordonnée), mis en cache 15 s par
+  le CDN, effacé 30 jours après la compétition (à la lecture et par `competition-purge.mjs`, quotidienne). Page
+  publique `/templates/competition/?ecran=<id>`. Règles dans `regles.js`, tests `outils/templates/competition.test.mjs`.
 - Lot du 14/11/2026 (3), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
   `docs/templates/communication/gumroad-a-creer.json`) : `templates/repas/` (RPS) **repas de la semaine et
   liste de courses** (100 recettes de base, repas midi et soir, liste de courses par rayon calculée selon les
@@ -179,6 +271,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   km, contrôle technique sourcé et paramétrable, pleins et recharges, consommation, coût au km) ;
   `templates/gestion-locative/` (GST) **gestion locative** (loyers et retards, quittances et relances à
   copier, révision avec l'IRL saisi, régularisation des charges, rendement avant impôt, aucun calcul d'impôt).
+- `templates/salles/` (SDR) : **réservation de salles et bureaux**, prêt, « Mise en vente prochaine » (19 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/salles/gumroad.json`). Salles (capacité, équipements), bureaux en
+  flex et matériel prêté ; une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes ; conflits refusés
+  à la saisie et rejoués à l'enregistrement en ligne (conflit 409 entre deux appareils) ; « libre maintenant », vues jour et
+  semaine, réservations chaque semaine, taux d'occupation, jours fériés calculés. Règles dans `regles.js`, tests
+  `outils/templates/salles.test.mjs`.
 - Lot du 14/11/2026 (5), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
   `docs/templates/communication/gumroad-a-creer.json`) : `templates/bascule/` (BSC) **pilotage d'une journée de
   bascule** (déroulé horaire avec responsables et dépendances, recalculé à chaque étape notée : retard cumulé, fin
@@ -201,6 +299,67 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
   export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
+- `templates/suivi-temps/` (TMP) : **suivi du temps et rentabilité par mission** (T73), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/suivi-temps/gumroad.json`).
+  Chronomètre synchronisé entre appareils ou saisie en une ligne, temps facturable ou non ; missions au forfait ou en
+  régie, budget en jours ou heures, avancement, estimation à terminaison, alertes ; taux horaire effectif (montant
+  facturé ÷ temps réel) face au TJM cible, au devis et au coût de revient saisis (mêmes notions que `tjm` et
+  `cout-revient`) ; semaine type, rentabilité par période, rapport client imprimable, export CSV. Aucun taux ni tarif
+  intégré. Règles dans `regles.js`, tests `outils/templates/suivi-temps.test.mjs`.
+- `templates/achats/` (ACH) : **demandes d'achat et fournitures** (T82), prêt, « Mise en vente prochaine » (19 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/achats/gumroad.json`). Demandes par service (quantité,
+  urgence, motif), validation avec seuil automatique (prix estimé et budget suffisant), commandes groupées par fournisseur
+  et bon imprimable, réception partielle et prix réel, budget annuel par service (consommé, engagé, en attente),
+  catalogue de 104 fournitures sans prix ni marque, historique et export CSV. Une clé partagée, nom saisi à chaque étape ;
+  actions rejouées sur la version du serveur en cas de conflit 409. Aucune règle légale ni fiscale. Règles dans
+  `regles.js`, tests `outils/templates/achats.test.mjs`. Version anglaise en attente.
+- `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
+  réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),
+  modèles de 9 métiers, client anonymisé sans accord noté, alertes de confidentialité, note de complétude, filtres ;
+  sélections par prospect avec suggestions par pertinence ; plaquette A4 en trois mises en page (impression ou PDF
+  du navigateur) et texte à copier. Règles dans `regles.js`, tests `outils/templates/references-plaquette.test.mjs`.
+- `templates/doe/` (RDE) : **registre du DOE** (T77, 29 €), prêt, « Mise en vente prochaine » (démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/doe/gumroad.json`). Pièces du dossier des ouvrages exécutés par
+  opération, lot et entreprise ; base de 20 lots types avec leurs pièces attendues (plans, notices, PV d'essais,
+  fiches techniques, garanties), modifiable ; pièce « Éléments pour le DIUO » par lot si l'opération en comporte un ;
+  statuts attendue, reçue, à reprendre (motif), validée ; date limite par opération ou par pièce ; relances datées
+  avec courrier à copier ou imprimer (aucun envoi) ; complétude par lot, entreprise et famille ; bordereau de
+  transmission et état des pièces manquantes imprimables ; export CSV. Seule référence : article 40 du CCAG Travaux
+  2021, en paraphrase datée. Fiche `docs/templates/fiches/doe.md`, tests `outils/templates/doe.test.mjs`.
+- `templates/sous-traitants/` (STR) : **conformité des sous-traitants**, prêt, mise en vente prochaine (29 €). Opérations,
+  lots, titulaires et sous-traitants par rang (donneur d'ordre), acceptation et agrément des conditions de paiement
+  (loi n° 75-1334), pièces de vigilance par entreprise avec date de validité (attestation Urssaf, Kbis, liste des
+  salariés étrangers, décennale ; seuil de 5 000 € HT, durées et pièces paramétrables, sources lues le 14/11/2026 et
+  citées dans le guide), alertes J-30 / J-15 / expirée, relances depuis un modèle (copie ou messagerie), tableau de
+  conformité par opération, registre imprimable A4 paysage, export CSV ; aucun document stocké, outil d'aide sans
+  valeur de conseil juridique. Règles dans `regles.js`, tests `outils/templates/sous-traitants.test.mjs`.
+- `templates/appels-offres/` (CND) : **suivi des appels d'offres et candidatures**, prêt, mise en vente prochaine
+  (15 €, freelances, consultants et PME ; pack visé « Freelance : trouver ses clients »). Veille avec grille go/no-go
+  (8 critères pondérés, éliminatoires, seuils réglables) ; dossier par candidature avec pièces types copiées d'un
+  modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe ; points de départ sans
+  référence réglementaire, la liste exacte est celle du règlement de chaque consultation), statut, responsable et
+  échéance à rebours depuis la date limite ; dépôt visé avec marge ; calendrier des dates limites ; relances après
+  dépôt, validité des offres ; résultat (montant, motif, classement) ; bibliothèque de pièces réutilisables
+  (emplacement et date de validité, pas de fichier) ; bilan : taux de go et de réussite par type, montants, temps
+  passé, motifs de perte ; export CSV. Aucune connexion à une plateforme ni à un profil d'acheteur. Règles dans
+  `regles.js`, tests `outils/templates/appels-offres.test.mjs`, page `catalogue/appels-offres/`, démo
+  `/templates/appels-offres/?demo`.
+- `templates/entretiens-annuels/` (ENP) : **entretiens annuels et professionnels** (T79), prêt, « Mise en vente
+  prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/entretiens-annuels/gumroad.json`).
+  Échéances par salarié : annuel (facultatif, 12 mois), entretien de parcours professionnel (première année puis
+  48 mois), état des lieux des 8 ans, retour d'absence, mi-carrière, avant 60 ans ; périodicités sourcées
+  (service-public.gouv.fr F32040, relevé du 14/11/2026, `donnees.js`) et modifiables, mise à jour annuelle.
+  Trames originales (58 questions), questionnaire de préparation copiable, compte rendu imprimable, objectifs SMART
+  reconduits d'une année sur l'autre, demandes de formation, contrôle de l'état des lieux (abondement CPF à
+  50 salariés et plus). RGPD : données minimales, export et effacement par salarié. Règles dans `regles.js`, tests
+  `outils/templates/entretiens-annuels.test.mjs`.
+- `templates/contrats/` (CTR) : **contrats fournisseurs et échéances**, prêt, « Mise en vente prochaine » (25 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/contrats/gumroad.json`). Contrats par fournisseur et
+  catégorie, échéance avec reconduction tacite, préavis (contrat ou défaut paramétrable de la catégorie), date limite
+  de résiliation calculée, alertes J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie,
+  historique, export CSV. Aucune règle légale non sourcée (seul repère : Code des assurances, art. L113-12, lu sur
+  Légifrance le 14/11/2026). Règles dans `regles.js`, tests `outils/templates/contrats.test.mjs`. Version anglaise en attente.
 - Lot du 14/11/2026 (7), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
   `docs/templates/communication/gumroad-a-creer.json`) : `templates/garde-manger/` (GRD) **garde-manger et dates de
   péremption** (inventaire par lieu : réfrigérateur, congélateur, placard et lieux personnalisables ; quantité,
@@ -230,6 +389,49 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ; taux et échéances par défaut sourcés et datés, modifiables ; export CSV (opérations, périodes, échéancier) et
   import CSV ; outil d'aide, pas un conseil fiscal, aucune connexion externe). Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
+- `templates/papiers/` (DCS) : **papiers du foyer** (T83, 15 €), prêt, « Mise en vente prochaine » (démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/papiers/gumroad.json`). Inventaire des documents du foyer et de leur
+  emplacement (classeur, boîte, tiroir, cloud, notaire : noms libres), recherche « où est… », 77 documents types en 9
+  catégories avec la durée de conservation de la fiche F19134 de service-public.gouv.fr (vérifiée le 13/10/2026,
+  consultée le 14/11/2026, à revérifier chaque année : `BASE.source` dans `donnees.js`), modifiable par document ;
+  « peut être jeté » calculé (date du document, événement daté par l'utilisateur ou 31 décembre de l'année N+k) ;
+  échéances de renouvellement saisies (pièces d'identité, contrôle technique, assurances) avec rappel ; fiche « en cas
+  d'urgence » pour un proche ; inventaire, liste à trier et fiche imprimables ; export CSV. Aucun contenu ni numéro de
+  pièce stocké (numéros longs, IBAN et mots de passe refusés dans les champs libres). Fiche
+  `docs/templates/fiches/papiers.md`, tests `outils/templates/papiers.test.mjs`.
+- `templates/remboursements-sante/` (RBS) : **remboursements santé**, prêt, mise en vente prochaine (12 €). Membres du
+  foyer, soins (type parmi 33, date, praticien facultatif, montant payé ; aucun diagnostic), Sécurité sociale et mutuelle
+  suivies séparément (remboursement attendu, tiers payant ou pas de prise en charge, reçu et écart), reste à charge,
+  retards après un délai réglable (30 jours par défaut, sans valeur officielle), message de relance à copier, bilan
+  annuel par personne et par type de soin, mutuelle comparée aux cotisations saisies, export CSV. Aucun taux de
+  remboursement intégré. Données de santé : consentement explicite au premier lancement et effacement, comme la
+  nutrition (`/confidentialite/`). Règles dans `regles.js`, tests `outils/templates/remboursements-sante.test.mjs`.
+- `templates/emprunt/` (CPT) : **capacité d'emprunt et comparateur de prêts** (T85), prêt, mise en vente prochaine
+  (15 €, primo-accédants et investisseurs ; packs visés « Reprendre la main sur son argent » et « Propriétaire »).
+  Profil d'un ou deux emprunteurs (revenus, loyers retenus à la part saisie, crédits en cours), mensualité maximale au
+  taux d'effort saisi et montant empruntable au taux, à la durée et à l'assurance saisis, reste à vivre ; seuils de
+  départ 35 % et 25 ans (décision D-HCSF-2021-7, source et date de vérification affichées, modifiables) ; budget du
+  projet (frais de notaire saisis ou estimés en hypothèse affichée, travaux, apport, prix maximal) ; 2 à 5 offres
+  comparées (assurance sur capital initial ou restant dû, frais de dossier, garantie, courtage, coût total, TAEG
+  approché présenté comme estimation) ; tableau d'amortissement par mois ou par année, graphique capital et intérêts ;
+  remboursement anticipé (durée ou mensualité, indemnités au plafond de l'article R313-25 du Code de la consommation,
+  saisies ou nulles) ; export CSV, impression. Aucun taux de marché intégré. Règles dans `regles.js`, tests
+  `outils/templates/emprunt.test.mjs`, page `catalogue/emprunt/`, démo `/templates/emprunt/?demo`.
+- `templates/remerciements/` (CDX) : **cadeaux reçus et remerciements** (T86), prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/remerciements/gumroad.json`). Événements
+  (mariage, naissance ou baptême, anniversaire, retraite, obsèques au ton sobre, autre), foyers et cadeaux (objet,
+  argent, cagnotte, attentions ; montant et adresse facultatifs), statut du remerciement (à écrire, écrit, envoyé),
+  44 modèles de messages originaux par événement et par ton, reste à remercier et objectif d'envoi réglable,
+  étiquettes d'adresses A4 (4 formats, départ, décalage), import d'une liste collée, export CSV, effacement des
+  adresses et d'un événement. Aucune règle légale ni donnée datée. Règles dans `regles.js`, tests
+  `outils/templates/remerciements.test.mjs`.
+- `templates/revue-hebdo/` (RVH) : **revue hebdomadaire et journal de bord** (T87), prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/revue-hebdo/gumroad.json`). Revue guidée en
+  7 étapes le jour choisi (rappel affiché dans l'outil, aucune notification), 55 questions de revue en rotation,
+  journal d'une ligne par jour avec humeur facultative, 3 priorités notées la semaine suivante, rendez-vous à venir,
+  historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
+  personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
+  anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
