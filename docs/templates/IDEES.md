@@ -574,10 +574,8 @@ prix repris du tableau de bord, à confirmer par Quentin avant la création des 
 insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé »
 LI-120 (T06, 09/02), LI-121 (T07, 11/02), LI-122 (T10, sam. 13/02 : créneau donné par la règle), LI-123 (T27,
 15/02) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-75 (T06, 10/02), IG-76 (T07, 12/02),
-IG-77 (T10, 14/02), IG-78 (T27, 16/02). **Images non déposées dans Drive** (envoi de fichiers impossible depuis
-la session) : couvertures LinkedIn `assets/templates-<slug>-couverture.png` à renommer `LI-12x-<slug>.png`, et
-carrousels `communication/<slug>/instagram/<slug>-1…5.png` à renommer `IG-7x-<slug>-1…5.png`, puis IDs Drive
-en colonne P du planning Instagram (consigne dans la colonne Remarque de chaque ligne). Restent à vérifier :
+IG-77 (T10, 14/02), IG-78 (T27, 16/02). Images déposées dans Drive le 14/11 (couvertures `LI-120…123-<slug>.png` dans le dossier Images du planning
+LinkedIn, carrousels `IG-75…78-<slug>-1…5.png` dans Images Instagram, IDs en colonne P). Restent à vérifier :
 T06, recettes rédigées par QME (quantités et temps non testés), liste des 14 allergènes (règlement UE
 1169/2011) non revérifiée sur EUR-Lex, attribution indicative ; T07, aucune donnée de santé, aucun WOD nommé,
 le mot « CrossFit » absent ; sources des formules d'Epley et de Brzycki et de l'échelle RPE non consultées
