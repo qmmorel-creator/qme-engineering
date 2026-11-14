@@ -49,6 +49,7 @@ export const TEMPLATES = {
   DMN: { slug: 'demenagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.', pour: 'perso' },
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
+  RPS: { slug: 'repas', prix: 1300, phrase: 'Menus de la semaine, liste de courses par rayon à cocher.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -64,7 +65,6 @@ export const PREVUS = {
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
-  RPS: { nom: 'Repas de la semaine et liste de courses', prix: 1300, phrase: 'Menus planifiés, liste de courses générée.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
@@ -292,7 +292,7 @@ export const PAGES = {
       ['HBT', 'Tenez les habitudes qui font la différence : eau, sommeil, pas, séances.'],
     ],
     arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Musculation et repas de la semaine à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['MSC', 'RPS', 'CRS'],
+    prevus: ['MSC', 'CRS'],
   },
   PFA: {
     couleur: 'jaune', cibles: ['familles', 'couples'],
@@ -308,7 +308,7 @@ export const PAGES = {
       ['ANM', 'Gardez le carnet de santé et les frais de l’animal à jour.'],
     ],
     arguments: ['Une clé partagée entre les deux parents', 'Les mêmes données sur vos deux téléphones', 'Repas, placards, bébé et animal à venir, avec l’option Pack évolutif'],
-    prevus: ['RPS', 'GMG', 'BBE', 'ANM'],
+    prevus: ['GMG', 'BBE', 'ANM'],
   },
   PVY: {
     couleur: 'bleu', cibles: ['voyageurs', 'couples'],
