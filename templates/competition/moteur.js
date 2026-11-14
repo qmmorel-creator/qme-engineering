@@ -36,6 +36,7 @@ export function nettoyerInstantane(i) {
   return {
     v: 1, nom: txt(i.nom, 100), lieu: txt(i.lieu, 100), dateDebut: date(i.dateDebut), dateFin: date(i.dateFin),
     methode: i.methode === 'bareme' ? 'bareme' : 'rang',
+    ecran: { secondes: Math.min(120, Math.max(5, num(i.ecran?.secondes) ?? 15)), lignes: Math.min(30, Math.max(4, num(i.ecran?.lignes) ?? 10)) },
     epreuves: liste(i.epreuves, LIMITES.epreuves).map((e) => ({ id: txt(e?.id, 24), nom: txt(e?.nom), type: ['temps', 'reps', 'charge', 'points'].includes(e?.type) ? e.type : 'temps', coefficient: num(e?.coefficient) ?? 1 })),
     categories: liste(i.categories, LIMITES.categories).map((c) => ({
       id: txt(c?.id, 24), nom: txt(c?.nom, 60), provisoire: Boolean(c?.provisoire),

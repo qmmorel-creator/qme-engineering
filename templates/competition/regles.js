@@ -409,7 +409,7 @@
     }));
     return {
       v: 1, nom: etat.competition.nom, lieu: etat.competition.lieu, dateDebut: etat.competition.dateDebut, dateFin: etat.competition.dateFin,
-      methode: r.methode, publieLe: publieLe || null,
+      methode: r.methode, publieLe: publieLe || null, ecran: { secondes: r.ecranSecondes, lignes: r.ecranLignes },
       epreuves: etat.epreuves.map((ep) => ({ id: ep.id, nom: ep.nom, type: ep.type, coefficient: ep.coefficient })),
       categories, programme: prog,
     };
