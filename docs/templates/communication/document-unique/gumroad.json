@@ -1,0 +1,27 @@
+{
+  "slug": "document-unique",
+  "name": "Document unique d'évaluation des risques",
+  "price_cents": 2900,
+  "permalink": "document-unique-evaluation-risques",
+  "category": "business-and-money",
+  "button": "Ouvrir mon document unique",
+  "summary": "Ton document unique d'évaluation des risques (DUERP) tenu à jour : unités de travail, risques cotés gravité × probabilité avant et après les mesures, plan d'actions daté, versions archivées, rappels de mise à jour selon l'effectif et document complet à imprimer.",
+  "description": "<h2>Tes risques évalués, ton document à jour.</h2><p>Le document unique d'évaluation des risques est obligatoire dès le premier salarié. Souvent, il est rempli une fois, puis rangé : les actions n'ont pas de date, les risques ne sont jamais recotés, et la mise à jour annuelle arrive sans prévenir. Document unique te fait évaluer tes risques unité par unité, suivre les actions et garder chaque mise à jour.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un démarrage guidé</strong> : choisis ton activité (bureaux, commerce, restauration, bâtiment, atelier, logistique, aide à domicile, coiffure…), coche tes unités de travail, et les risques à examiner arrivent déjà listés.</li><li><strong>20 familles de risques</strong> inspirées des fiches de l'INRS (brochure ED 840), reformulées, avec des exemples de situations et de mesures de prévention.</li><li><strong>Une cotation claire</strong> : gravité × probabilité, avant et après les mesures en place (risque résiduel), sur une grille que tu adaptes (3 à 5 niveaux, seuils de priorité), avec la matrice de criticité.</li><li><strong>Un plan d'actions suivi</strong> : type de mesure, responsable, échéance, coût estimé, indicateur, statut. Dès 50 salariés, il devient le programme annuel de prévention. Une action faite te propose de recoter le risque.</li><li><strong>Des versions datées</strong> : chaque mise à jour est figée, réimprimable et datée, avec sa date limite de conservation (40 ans).</li><li><strong>Des rappels</strong> : mise à jour annuelle dès 11 salariés, événements (accident, aménagement, information nouvelle) qui appellent une mise à jour, actions en retard, risques prioritaires sans action.</li><li><strong>Le document complet</strong> : sommaire, cadre et méthode, inventaire par unité de travail, plan d'actions, historique des mises à jour, modalités d'accès, annexe. Impression ou PDF depuis le navigateur, exports CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique ton activité et ton effectif, coche tes unités de travail, puis cote tes risques. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide : il ne remplace ni un préventeur ni un conseil juridique. Obligations résumées d'après service-public.gouv.fr et l'INRS, avec leur date de consultation (à revérifier chaque année). Démo disponible sur qm-engineering.fr/catalogue/document-unique.</em></p>",
+  "tags": [
+    "document-unique",
+    "duerp",
+    "evaluation-des-risques",
+    "prevention",
+    "tpe",
+    "pme",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton document unique s'ouvre. Indique ton activité et ton effectif, coche tes unités de travail, puis cote les risques proposés. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Employeurs de TPE et PME, dès le premier salarié" }
+  ]
+}

@@ -161,7 +161,7 @@ déjà).
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) ; fiche [`fiches/document-unique.md`](fiches/document-unique.md) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
@@ -1542,3 +1542,34 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
   (permalien prévu `propositions-commerciales`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, carte anglaise, ajout au pack PFC, passage en vente du site.
+
+## Fiche T80 (cadrage délégué par Quentin, 14/11/2026)
+
+### T80 · Document unique d'évaluation des risques (`templates/document-unique/`, préfixe DRP, 29 €)
+- Fiche détaillée : [`fiches/document-unique.md`](fiches/document-unique.md). Application web, permalien prévu
+  `document-unique-evaluation-risques`, catalogue `pro` · thème « Organisation et réunions ». Pack visé :
+  « Petite entreprise » (PPE).
+- Promesse : « Tes risques évalués, ton document à jour. » Pour les employeurs de TPE/PME, dès le premier salarié.
+- Base intégrée : 20 familles de risques inspirées de la brochure INRS ED 840 (titres, situations et mesures
+  reformulés, source citée), 9 secteurs avec unités de travail et risques à examiner, grille 4 × 4 par défaut
+  (paramétrable), 6 types de mesures, motifs de mise à jour et types d'événements. **Obligations sourcées et
+  datées** : service-public.gouv.fr fiche F35360 (vérifiée le 22/07/2026) et INRS « Document unique, ce qu'il
+  faut retenir » (mise à jour le 18/10/2024), consultés le 14/11/2026, articles du Code du travail cités par
+  ces pages (Légifrance inaccessible à nos outils). Seuils 11 (mise à jour annuelle) et 50 (programme annuel).
+- Écrans : bord (alertes, matrice G × P, unités), évaluation par unité (initial et résiduel), plan d'actions /
+  programme annuel, document imprimable (sommaire, inventaire par unité, plan, historique), versions archivées
+  et événements, obligations et sources, réglages (grille, entreprise, revue conseillée).
+- Marques : **daté** (revérifier les sources chaque année), **confidentiel** vérifié (démo fictive « Menuiserie
+  Exemple »), avertissement « outil d'aide, ne remplace ni un préventeur ni un conseil juridique ».
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/document-unique/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/document-unique/`,
+  captures `assets/templates-document-unique-*.webp`, couverture `assets/templates-document-unique-couverture.png`,
+  tests `outils/templates/document-unique.test.mjs`. Produit `DRP` déclaré (serveur, connexion, en-têtes Netlify) ;
+  `DRP` passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPE).
+- Communication prête dans `communication/document-unique/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et
+  prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
+  anglaise, plannings, passage en vente du site.
