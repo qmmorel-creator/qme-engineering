@@ -159,7 +159,7 @@ déjà).
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) ; fiche [`fiches/sous-traitants.md`](fiches/sous-traitants.md) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
@@ -534,6 +534,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1448,3 +1449,24 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
   SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
   passage en vente du site.
+
+## Fiche T78 (cadrage délégué par Quentin, 14/11/2026)
+
+### T78 · Conformité des sous-traitants (`templates/sous-traitants/`, préfixe STR, 29 €)
+
+Fiche détaillée : [`fiches/sous-traitants.md`](fiches/sous-traitants.md). Statut **prêt**, « Mise en vente
+prochaine » (démo libre `/templates/sous-traitants/?demo`, page `/catalogue/sous-traitants/`, carte `carte
+prochaine` du thème « Projets et chantiers », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/sous-traitants/gumroad.json`, permalien proposé `conformite-sous-traitants`). Opérations, lots,
+entreprises par rang sous leur donneur d'ordre, acceptation et agrément du paiement, pièces de vigilance par
+entreprise avec date de validité, alertes J-30 / J-15 / expirée, relances depuis un modèle, tableau de conformité,
+registre imprimable, export CSV. **Daté** : seuil de 5 000 € HT, validité de 6 mois (vigilance, Kbis, liste des
+salariés étrangers), décennale, loi de 1975, sourcés (Service-Public F36261, urssaf.fr, Code du travail D8222-5,
+D8254-2 et D8254-4, Code des assurances L243-2, Légifrance) et **lus le 14/11/2026**, date affichée dans le Guide ;
+tout est paramétrable (seuil, durées, portée, pièces ajoutées). Renforcement annoncé par décret au plus tard le
+27/12/2026 : affiché, à revérifier avant la mise en vente. **RGPD** : coordonnées professionnelles, aucun document
+stocké. Avertissement « outil d'aide, ne remplace pas un conseil juridique » (Guide, registre, page, Gumroad).
+Livrables dans `communication/sous-traitants/` (linkedin.md, instagram.md + carrousel, prospects.md, gumroad.md et
+gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram
+**non planifiées** (pas d'accès aux plannings dans cette session). À rattacher à `PBT` dans `netlify/lib/packs.mjs`
+et à régénérer les pages des packs à la fusion.

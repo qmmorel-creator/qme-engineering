@@ -1,0 +1,1 @@
+<li class="carte prochaine" data-slug="sous-traitants" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/sous-traitants/"><b>Conformité des sous-traitants</b><span class="phrase">Agréments et attestations, alertes avant expiration.</span><span class="theme">Projets et chantiers</span><em>Bientôt</em></a></li>
