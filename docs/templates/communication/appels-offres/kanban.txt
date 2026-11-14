@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="appels-offres" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/appels-offres/"><b>Suivi des appels d'offres et candidatures</b><span class="phrase">Consultations, pièces, dates limites et résultats.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>

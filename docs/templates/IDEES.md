@@ -157,7 +157,7 @@ déjà).
 | T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) ; fiche `fiches/appels-offres.md` |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
@@ -534,6 +534,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1448,3 +1449,34 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
   SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
   passage en vente du site.
+
+## Fiche T76 (cadrage délégué par Quentin, 14/11/2026)
+
+### T76 · Suivi des appels d'offres et candidatures (`templates/appels-offres/`, préfixe CND, 15 €)
+- Fiche détaillée : `fiches/appels-offres.md`. Promesse : « Répondre aux bonnes consultations, à temps. » Catalogue
+  `pro`, thème « Clients et prospection » ; pack visé « Freelance : trouver ses clients » (PFC). Permalien prévu
+  `suivi-appels-offres`.
+- Public : freelances, consultants et PME qui répondent à des marchés publics, à des appels d'offres privés, à des
+  missions sur plateforme (aucun nom de plateforme ni de marque) et à des consultations directes.
+- Écrans : **Échéances** (à faire jusqu'à 7 jours, retards en tête, pièces regroupées par dossier ; calendrier
+  mensuel des dates limites, dépôts visés, questions, relances, validité des offres), **Veille** (grille go/no-go de 8
+  critères pondérés notés de 0 à 3, 3 éliminatoires, seuils go 65 % et à discuter 45 % réglables ; no-go avec motif),
+  **Dossiers** (pièces copiées d'un modèle, statut, responsable, échéance à rebours avancée au vendredi si week-end,
+  pièce de bibliothèque liée avec alerte de validité ; dépôt visé = date limite − marge ; relances ; résultat avec
+  montant, motif, classement ; temps passé), **Pièces** (bibliothèque : emplacement et date de validité saisie, pas
+  de fichier ; modèles de dossiers modifiables), **Bilan** (taux de go, taux de réussite = gagnées ÷ (gagnées +
+  perdues), montants, temps, euros par heure, par type, par motif, par mois ; export CSV).
+- **Aucune référence réglementaire** : le modèle « Marché public » liste des pièces souvent demandées, présentées
+  comme point de départ ; la liste exacte est celle du règlement de chaque consultation (dit dans l'application, la
+  page du site et la fiche Gumroad). Dates de validité saisies par l'utilisateur. Aucune donnée datée en base (test).
+- Confidentialité : démo fictive (consultant « Alex », acheteurs inventés), aucune donnée réelle. **RGPD** : prénoms
+  de responsables et noms d'organisations seulement.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/appels-offres/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/appels-offres/`, captures `assets/templates-appels-offres-*.webp`, couverture
+  `assets/templates-appels-offres-couverture.png`, tests `outils/templates/appels-offres.test.mjs`.
+- Communication prête dans `communication/appels-offres/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, kanban.txt). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de CND au pack PFC (`netlify/lib/packs.mjs`, pages des packs
+  régénérées), cartes anglaises, plannings, passage en vente du site.

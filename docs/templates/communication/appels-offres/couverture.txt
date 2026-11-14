@@ -1,0 +1,5 @@
+Appels d'offres et candidatures
+Répondre aux bonnes consultations, à temps.
+Go/no-go · pièces à rebours · dates limites · taux de réussite
+Ligne pour T dans outils/templates/couvertures-gumroad.cjs (ajoutée) :
+  'appels-offres': ["Appels d'offres et candidatures", "Répondre aux bonnes consultations, à temps.", "Go/no-go · pièces à rebours · dates limites · taux de réussite"],
