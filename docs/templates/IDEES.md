@@ -125,7 +125,7 @@ déjà).
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
-| T48 | Suivi congés et absences | RH | TPE sans SIRH | idée | 19 € | S | P2 | Backlog Quentin n° 24 |
+| T48 | Suivi congés et absences | RH | TPE sans SIRH | en cours | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
@@ -139,11 +139,11 @@ déjà).
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
-| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | idée | 25 € | S | P2 | Backlog Quentin n° 40 |
+| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en cours | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
-| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | idée | 25 € | S | P2 | Backlog Quentin n° 42 |
+| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | en cours | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
-| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | idée | 12 € | S | P2 | Backlog Quentin n° 45 |
+| T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | en cours | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
