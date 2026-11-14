@@ -169,7 +169,7 @@ déjà).
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) · [fiche](fiches/etat-des-lieux.md) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
@@ -1007,7 +1007,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
 | T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
 | T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
-| T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
+| T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Photos : vignettes réduites dans le navigateur, synchronisées, 30 par compte. Outil d'aide, pas un document juridique certifié. Délais sourcés (service-public.gouv.fr, 14/11/2026). |
 | T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
 | T96 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
 | T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
@@ -1993,3 +1993,34 @@ régénérer les pages des packs à la fusion.
   fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `NTS` aux
   `produits` du pack PET (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise, plannings,
   passage en vente du site.
+
+## Fiche T94 (cadrage délégué par Quentin, 14/11/2026)
+
+### T94 · État des lieux d'entrée et de sortie (`templates/etat-des-lieux/`, préfixe ETD, 19 €)
+- Fiche détaillée : [`fiches/etat-des-lieux.md`](fiches/etat-des-lieux.md). Application web, permalien prévu
+  `etat-des-lieux`, catalogue `perso` · thème « Argent ». Pack visé : « Propriétaire » (PPB).
+- Promesse : « Entrée, sortie, et ce qui a changé. » Pour les propriétaires bailleurs (vide ou meublé), les
+  locataires et les petites agences.
+- Fonctions : un dossier par bail (logement, parties, mandataire, dates, dépôt de garantie), 12 types de pièce et
+  leurs éléments (mobilier ajouté en meublé), 6 modèles de logement, état codé en un toucher (neuf, bon, usage
+  normal, dégradé, hors service) avec commentaire et photo, compteurs et clés, sortie comparée à l'entrée (usure
+  normale distinguée des dégradations), vétusté selon la grille **saisie** (aucune intégrée), retenues proposées,
+  date limite de restitution du dépôt et délai de rectification de l'entrée, document imprimable à signer (une ou
+  deux colonnes), points à compléter, « Nouveau locataire » (entrée = sortie précédente), export CSV.
+- Photos : vignettes JPEG réduites dans le navigateur (≤ 20 000 caractères), synchronisées avec le dossier, une par
+  élément et par constat, 30 par compte (réglable jusqu'à 60) ; originaux non gardés (dit à l'utilisateur).
+- Marques : outil d'aide, **pas un document juridique certifié** ; délais (1 et 2 mois, 10 jours) relevés sur
+  service-public.gouv.fr (F31270, F33671, F31269) le 14/11/2026, modifiables ; démo fictive (« Claire Exemple »,
+  « Ville-Exemple », « Agence Démo Immobilier »).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/etat-des-lieux/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/etat-des-lieux/`, captures
+  `assets/templates-etat-des-lieux-*.webp`, couverture `assets/templates-etat-des-lieux-couverture.png`, tests
+  `outils/templates/etat-des-lieux.test.mjs`. Produit `ETD` déclaré (serveur, connexion, en-têtes Netlify) ; `ETD`
+  passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPB).
+- Communication prête dans `communication/etat-des-lieux/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  `ETD` aux `produits` du pack PPB (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise,
+  plannings, passage en vente du site.
