@@ -152,3 +152,53 @@
   .liste-packs.compacte{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:82%;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 -16px;padding:4px 16px 14px;scroll-padding:0 16px}
   .liste-packs.compacte>li{scroll-snap-align:start}
 }
+
+/* Page /packs/ : sommaire, filtre par public, bloc détaillé par pack */
+.sommaires{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.sommaires h3{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);margin-bottom:8px}
+.sommaire-packs{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.sommaire-packs a{display:grid;grid-template-columns:1fr auto;gap:0 12px;padding:10px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--encre)}
+.sommaire-packs a:hover{border-color:var(--encre)}
+.sommaire-packs span{font-weight:700}
+.sommaire-packs b{font-size:17px}
+.sommaire-packs small{grid-column:1/-1;color:var(--discret);font-size:13px}
+.filtre-packs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
+.cible-filtre{cursor:pointer;font:600 13px Outfit,sans-serif;min-height:34px}
+button.cible-filtre:not(.cible){padding:0 12px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);color:var(--encre)}
+.cible-filtre[aria-pressed="true"]{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.compte-packs{font-size:14px;color:var(--discret);margin-bottom:12px}
+.titre-groupe{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);margin:26px 0 10px}
+.pack-detail{display:grid;grid-template-columns:1fr 300px;grid-template-areas:'tete achat' 'corps achat';gap:8px 24px;align-items:start;margin-bottom:18px;padding:24px;border:1px solid var(--trait);border-left:6px solid var(--pc);border-radius:22px;background:var(--surface);scroll-margin-top:96px}
+.pack-detail .eyebrow{color:var(--pt);margin-bottom:4px}
+.pack-detail h3{font-size:26px;margin-bottom:6px}
+.pack-detail .accroche{font-size:18px;font-weight:700;margin-bottom:6px}
+.pd-tete{grid-area:tete}.pd-corps{grid-area:corps}.pd-achat{grid-area:achat}
+.pd-tete>p{color:var(--texte-2);margin-bottom:10px}
+.pack-detail h4{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--discret);margin:16px 0 8px}
+.pour-qui{margin-top:12px;padding:10px 14px;border-radius:14px;background:var(--pf)}
+.pour-qui summary{cursor:pointer;font-weight:700;color:var(--pt)}
+.pour-qui p{margin:8px 0;color:var(--texte-2)}
+.arguments-liste{margin:0;padding-left:18px;color:var(--texte-2)}
+.contenu-pack{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.contenu-pack li{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border:1px solid var(--trait);border-radius:12px;background:var(--papier)}
+.ligne-t{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ligne-t b{font-size:15px;line-height:1.25}
+.contenu-pack .phrase{font-size:13px;color:var(--texte-2);line-height:1.35}
+.contenu-pack .meta{font-size:13px;color:var(--discret);margin-top:auto}
+.contenu-pack .meta a{color:var(--encre);font-weight:600}
+.detail-prevus{margin-top:10px;padding:10px 12px;border:1px dashed var(--discret);border-radius:12px;font-size:14px}
+.detail-prevus ul{margin:4px 0;padding-left:18px;color:var(--texte-2)}
+.detail-prevus p{color:var(--discret);font-size:13px}
+.pack-detail-achat{align-self:start;position:sticky;top:96px;display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:18px;background:var(--pf)}
+.pack-detail-achat .prix-pack b{font-size:36px}
+.pack-detail-achat .detail{font-size:14px;color:var(--texte-2)}
+.option-ligne{display:flex;flex-direction:column;font-size:14px;padding-top:8px;border-top:1px solid var(--trait)}
+.option-ligne span{color:var(--texte-2)}
+.pack-detail-achat .actions{display:flex;flex-wrap:wrap;gap:8px}
+.pack-detail-achat .btn.interet:not(:disabled){background:var(--encre);border-color:var(--encre);color:var(--papier)}
+.pack-detail[hidden],.titre-groupe[hidden]{display:none}
+@media (max-width:900px){
+  .pack-detail{grid-template-columns:1fr;grid-template-areas:'tete' 'achat' 'corps';padding:18px}
+  .pack-detail-achat{position:static}
+  .sommaires{grid-template-columns:1fr}
+}

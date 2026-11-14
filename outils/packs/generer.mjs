@@ -9,7 +9,7 @@ import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026111402';
+const V = '2026111403';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -64,7 +64,8 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
   </a>
   <nav aria-label="Navigation principale">
     <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/" aria-current="page">Templates</a>
+    <a href="/templates/">Templates</a>
+    <a href="/packs/" aria-current="page">Packs</a>
     <a href="/references/">Références</a>
     <a href="/methode/">Méthode</a>
     <a class="login" href="/connexion/">Connexion</a>
@@ -191,11 +192,48 @@ function cartePack(p, niveau = 'h3') {
 
 const bareme = () => `<ul class="bareme" aria-label="Remise selon le nombre de templates">${[...REMISES].reverse().map(([n, pct]) => `<li><b>−${pct} %</b><span>${n === 5 ? '5 templates et plus' : `${n} templates`}</span></li>`).join('')}</ul>`;
 
+// Packs professionnels (le reste est rangé en « Vie personnelle »).
+const PACKS_PRO = new Set(['PFG', 'PFC', 'PBT', 'PPE', 'PMG', 'PAS', 'PXP', 'PCA', 'PNS']);
+
+// Bloc détaillé d'un pack pour la page /packs/ : pour qui, contenu complet, prix, option, actions.
+function blocDetail(p) {
+  const module = `pack-${p.slug}`;
+  const lignes = p.templates.map((t) => `<li><div class="ligne-t"><b>${esc(t.nom)}</b>${etiquetteStatut(t.statut)}</div><span class="phrase">${esc(t.phrase)}</span><span class="meta">${euros(t.prix)} seul · <a href="/catalogue/${t.slug}/">détail</a> · <a href="/templates/${t.slug}/?demo">démo</a></span></li>`).join('');
+  const prevus = p.prevus.length ? `<div class="detail-prevus"><b>${p.indicatif ? 'En préparation' : 'À venir dans ce pack'}</b><ul>${p.prevus.map((t) => `<li>${esc(t.nom)}</li>`).join('')}</ul>${p.indicatif ? '' : `<p>Inclus sans supplément avec l’option ${OPTION.nom}.</p>`}</div>` : '';
+  const actions = p.enVente
+    ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=Pack">Acheter le pack</a><a class="btn" href="/packs/${p.slug}/">Voir le pack</a>`
+    : `<a class="btn primary" href="/packs/${p.slug}/">Voir le pack</a><button class="btn interet" type="button" data-interet="${module}">Je suis intéressé(e)</button>`;
+  return `<article class="pack-detail c-${p.couleur}" id="${p.slug}" data-cibles="${p.cibles.join(' ')}" data-pour="${PACKS_PRO.has(p.code) ? 'pro' : 'perso'}">
+    <div class="pd-tete">
+      <p class="eyebrow">${p.nombre} templates${p.indicatif ? ' prévus' : ''} · ${p.enVente ? 'disponible' : (p.indicatif ? 'en préparation' : 'bientôt')}</p>
+      <h3>${esc(p.nom.replace(/^Pack /, ''))}</h3>
+      <p class="accroche">${esc(p.accroche)}</p>
+      <p>${esc(p.resume)}</p>
+      ${pastilles(p.cibles)}
+    </div>
+    <div class="pd-corps">
+      <details class="pour-qui"><summary>Pour qui, et pourquoi tout avoir</summary><p>${esc(p.pourQui)}</p><ul class="arguments-liste">${p.arguments.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></details>
+      <h4>Le contenu du pack</h4>
+      ${lignes ? `<ul class="contenu-pack">${lignes}</ul>` : ''}
+      ${prevus}
+    </div>
+    <aside class="pack-detail-achat pd-achat">
+      <p class="prix-pack"><b>${euros(p.prix)}</b>${p.pct ? `<s>${euros(p.valeur)}</s> <span class="remise">−${p.pct} %</span>` : ''}</p>
+      <p class="detail">${p.indicatif ? 'Prix prévu, calculé avec le barème' : (p.pct ? `${euros(p.economie)} économisés sur l’achat séparé` : 'Achat unique')}</p>
+      <p class="option-ligne"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>les templates ajoutés plus tard, avec la même clé</span></p>
+      <div class="actions">${actions}</div>
+      ${p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">${p.indicatif ? 'Pack en préparation : un clic pour être prévenu de sa sortie.' : 'Mise en vente prochaine : un clic pour être compté parmi les intéressés.'}</p>`}
+    </aside>
+  </article>`;
+}
+
 function pageListe(packs) {
   const ids = [...new Set(packs.flatMap((p) => p.cibles))];
+  const groupe = (pour) => packs.filter((p) => (PACKS_PRO.has(p.code) ? 'pro' : 'perso') === pour);
+  const sommaire = (liste) => `<ul class="sommaire-packs">${liste.map((p) => `<li><a href="#${p.slug}"><span>${esc(p.nom.replace(/^Pack /, ''))}</span><b>${euros(p.prix)}</b><small>${p.nombre} templates${p.pct ? ` · −${p.pct} %` : ''}</small></a></li>`).join('')}</ul>`;
   return tete({
     titre: 'Packs de templates · QME',
-    description: 'Des packs de templates QME pensés par métier et par situation : une seule clé, jusqu’à 25 % de remise. Ou composez votre pack sur mesure.',
+    description: 'Les packs de templates QME, par métier et par situation : contenu détaillé, prix, remise jusqu’à 25 % et option Pack évolutif. Ou composez votre pack sur mesure.',
     canonical: '/packs/',
   }) + `<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><b>Packs</b></nav>
 <section class="hero packs-hero">
@@ -203,26 +241,45 @@ function pageListe(packs) {
     <p class="eyebrow">Packs de templates · une seule clé</p>
     <h1>Les outils qui vont ensemble, <mark>au prix d’un pack.</mark></h1>
     <p class="lead">Chaque pack réunit les templates d’un même métier ou d’une même situation. <strong>Plus il y a de templates, plus la remise monte</strong>, jusqu’à −25 %, et tout s’ouvre avec une seule clé, sur tous vos appareils.</p>
-    <div class="actions"><a class="btn primary" href="#packs">Voir les packs</a><a class="btn" href="/packs/composer/">Composer mon pack</a></div>
+    <div class="actions"><a class="btn primary" href="#tous-les-packs">Voir les ${packs.length} packs</a><a class="btn" href="/packs/composer/">Composer mon pack</a></div>
   </div>
   <div class="bareme-bloc">
     <p class="label">La remise suit le nombre de templates</p>
     ${bareme()}
-    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure. Option ${OPTION.nom} : les futurs templates du pack inclus, pour ${OPTION.pct} % du prix du pack.</p>
+    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure. Option ${OPTION.nom} : les futurs templates du pack inclus, pour ${OPTION.pct} % du prix du pack (${euros(OPTION.minimum)} minimum).</p>
   </div>
 </section>
 
-<section class="section" id="packs">
-  <div class="section-head"><h2>Les packs</h2><p>Repérez le vôtre grâce aux pastilles : elles disent à qui chaque pack s’adresse.</p></div>
-  <div class="legende-cibles">${pastilles(ids)}</div>
-  <ul class="liste-packs">
-    ${packs.map((p) => cartePack(p, 'h3')).join('\n    ')}
-  </ul>
+<section class="section comment-packs">
+  <div class="section-head"><h2>Comment fonctionne un pack</h2><p>Un achat, une clé, tous les outils du pack.</p></div>
+  <ol class="steps">
+    <li class="s1"><b>Vous achetez le pack</b><span>Paiement unique et sécurisé par Gumroad, sans abonnement.</span></li>
+    <li class="s2"><b>Vous recevez une clé</b><span>Une seule clé, quel que soit le nombre de templates.</span></li>
+    <li class="s3"><b>Votre tableau de bord s’ouvre</b><span>Sur <a href="/connexion/">la page Connexion</a>, la clé ouvre l’espace du pack : un bouton par template.</span></li>
+    <li><b>Le pack peut grandir</b><span>Avec l’option ${OPTION.nom}, les templates ajoutés plus tard s’ouvrent avec la même clé.</span></li>
+  </ol>
+</section>
+
+<section class="section" id="tous-les-packs">
+  <div class="section-head"><h2>Tous les packs</h2><p>Le sommaire, puis le détail de chaque pack : à qui il s’adresse, ce qu’il contient, combien il coûte.</p></div>
+  <div class="sommaires">
+    <div><h3>Professionnel</h3>${sommaire(groupe('pro'))}</div>
+    <div><h3>Vie personnelle</h3>${sommaire(groupe('perso'))}</div>
+  </div>
+  <div class="filtre-packs" role="group" aria-label="Filtrer par public" data-filtre-packs>
+    <button type="button" class="cible-filtre" aria-pressed="true" data-cible="">Tous les publics</button>
+    ${ids.map((id) => `<button type="button" class="cible cible-filtre c-${CIBLES[id].couleur} f-${CIBLES[id].forme}" aria-pressed="false" data-cible="${id}">${esc(CIBLES[id].nom)}</button>`).join('\n    ')}
+  </div>
+  <p class="compte-packs" data-compte-packs aria-live="polite"></p>
+  <h3 class="titre-groupe" data-groupe="pro">Professionnel</h3>
+  ${groupe('pro').map(blocDetail).join('\n  ')}
+  <h3 class="titre-groupe" data-groupe="perso">Vie personnelle</h3>
+  ${groupe('perso').map(blocDetail).join('\n  ')}
 </section>
 
 <section class="rappel-templates"><p><b>Aucun pack ne vous ressemble ?</b> Cochez les templates dont vous avez besoin : le prix se calcule aussitôt, remise comprise.</p><a class="btn primary" href="/packs/composer/">Composer mon pack sur mesure</a></section>
 <nav class="pager" aria-label="Pages"><a class="prec" href="/templates/"><span>Page précédente</span><b>Tous les templates</b></a><a class="suiv" href="/packs/composer/"><span>Page suivante</span><b>Pack sur mesure</b></a></nav>
-` + pied();
+` + pied(`<script src="/assets/packs.js?v=${V}" defer></script>\n`);
 }
 
 // --- Pack sur mesure ------------------------------------------------------------------------------
