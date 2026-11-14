@@ -423,6 +423,10 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .choix-mois .btn-icone{width:40px;height:40px;border:0;background:none;font-size:22px;font-weight:700;border-radius:999px}
 .choix-mois .btn-icone:hover:not(:disabled){background:var(--sable)}
 .choix-mois input[type=date]{border:0;background:none;font-weight:700;font-size:15px;padding:6px;min-height:40px;border-radius:999px}
+.date-choisie{position:relative;display:flex;align-items:center;justify-content:center;min-height:40px;padding:0 10px;font-weight:700;font-size:15px;white-space:nowrap;border-radius:999px;cursor:pointer}
+.date-choisie:hover{background:var(--sable)}
+.date-choisie:focus-within{outline:3px solid var(--bleu)}
+.date-choisie input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0}
 .choix-mois .exo-lib{padding:0 10px;font-size:15px;font-weight:700;white-space:nowrap}
 .vue-tete .actions{align-items:center}
 

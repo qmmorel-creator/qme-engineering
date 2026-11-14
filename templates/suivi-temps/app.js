@@ -578,7 +578,7 @@
     const sem = R.feuilleSemaine(E, R.lundi(jourVu));
     const nav = `<div class="choix-mois" role="group" aria-label="Jour affiché">
         <button type="button" class="btn-icone" data-action="jour" data-d="-1" aria-label="Jour précédent">‹</button>
-        <label><span class="sr-only">Date</span><input type="date" id="choix-jour" value="${jourVu}" max="${auj}"></label>
+        <label class="date-choisie"><span aria-hidden="true">${esc(R.JOURS_COURTS[R.rangJour(jourVu)])} ${esc(R.libDate(jourVu, { annee: false }))}</span><input type="date" id="choix-jour" value="${jourVu}" max="${auj}" aria-label="Choisir la date"></label>
         <button type="button" class="btn-icone" data-action="jour" data-d="1" aria-label="Jour suivant" ${jourVu >= auj ? 'disabled' : ''}>›</button>
       </div>`;
     return `
