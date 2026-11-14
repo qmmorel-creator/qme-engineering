@@ -8,6 +8,7 @@
 export const TEMPLATES = {
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  ETD: { slug: 'etat-des-lieux', prix: 1900, phrase: 'Pièce par pièce, photos, sortie comparée à l’entrée et document à signer.', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
@@ -101,7 +102,6 @@ export const PREVUS = {
   SBV: { nom: 'Subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.' },
   BNV: { nom: 'Bénévoles et planning des créneaux', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.' },
   AGS: { nom: 'Assemblée générale et vie statutaire', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.' },
-  ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
   CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
@@ -313,7 +313,7 @@ export const PAGES = {
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
     ],
     arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD', 'RNT', 'CPR'],
+    prevus: ['RNT', 'CPR'],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],
