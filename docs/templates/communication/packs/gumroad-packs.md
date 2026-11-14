@@ -10,11 +10,11 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 | Pack Commerçant et artisan | pack-commercant-artisan | 95 € | 119 € | 3/5 | Stocks et inventaire, Suivi de TVA |
 | Pack Freelance : chiffrer, facturer, encaisser | pack-freelance-gestion | 118 € | 148 € | 5/7 | Relance des impayés, Suivi du temps et rentabilité par mission |
 | Pack Ma voiture | pack-voiture | 22 € | 31 € | 0/2 | Simulateur leasing ou achat, Carnet de voiture |
-| Pack Enseignant et formateur | pack-enseignant | 72 € | 90 € | 0/3 | Progression pédagogique, Gestion de classe, Emploi du temps d'établissement |
 | Pack Forme | pack-forme | 58 € | 73 € | 2/5 | Repas de la semaine et liste de courses, Carnet de musculation et cross-training, Plan d'entraînement course à pied |
 | Pack Mariage et installation à deux | pack-mariage-installation | 72 € | 90 € | 3/6 | Déménagement, Planificateur de voyage, Cadeaux reçus et remerciements |
 | Pack Productivité perso | pack-productivite | 54 € | 68 € | 2/5 | Planner horaire, Tableau de bord annuel et roue de vie, Revue hebdomadaire et journal de bord |
 | Pack Chef de projet BTP | pack-chef-de-projet-btp | 192 € | 240 € | 4/8 | Levée de réserves, Suivi de chantier par lot, Registre du DOE, Conformité des sous-traitants |
+| Pack Enseignant et formateur | pack-enseignant | 83 € | 104 € | 0/4 | Progression pédagogique, Banque de questions et quiz, Gestion de classe, Emploi du temps d'établissement |
 | Pack Exploitation et maintenance | pack-exploitation | 118 € | 148 € | 0/4 | Maintenance préventive, Vérifications réglementaires, Pilotage de parcs multi-sites, Contrats fournisseurs et échéances |
 | Pack Associations et clubs | pack-associations | 164 € | 205 € | 2/7 | Pilote événementiel, Gestion de compétition sportive, Subventions, Bénévoles et planning des créneaux, Assemblée générale et vie statutaire |
 | Pack Étudiant | pack-etudiant | 69 € | 87 € | 2/7 | Planner horaire, Suivi de lecture, Notes et moyennes, Candidatures études, stages, alternance, Planning de mémoire ou de thèse |

@@ -107,34 +107,6 @@
     ]
   },
   {
-    "code": "PNS",
-    "slug": "enseignant",
-    "nom": "Pack Enseignant et formateur",
-    "permalien": "pack-enseignant",
-    "prix_cents": 7200,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 7200
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 9000
-      }
-    ],
-    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
-    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique et emploi du temps : les outils de l’enseignant et du formateur.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (3 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li></ul>\n<p><strong>À venir dans ce pack :</strong> Banque de questions et quiz.</p>\n<p>85 € à l’achat séparé, 72 € en pack (−15 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (72 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (90 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "0/3",
-    "templates_a_mettre_en_vente": [
-      "Progression pédagogique",
-      "Gestion de classe",
-      "Emploi du temps d'établissement"
-    ]
-  },
-  {
     "code": "PFM",
     "slug": "forme",
     "nom": "Pack Forme",
@@ -245,6 +217,35 @@
       "Suivi de chantier par lot",
       "Registre du DOE",
       "Conformité des sous-traitants"
+    ]
+  },
+  {
+    "code": "PNS",
+    "slug": "enseignant",
+    "nom": "Pack Enseignant et formateur",
+    "permalien": "pack-enseignant",
+    "prix_cents": 8300,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 8300
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 10400
+      }
+    ],
+    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
+    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique et emploi du temps : les outils de l’enseignant et du formateur.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (4 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Banque de questions et quiz</strong> : Questions taguées, quiz générés et corrigés. (19 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li></ul>\n<p>104 € à l’achat séparé, 83 € en pack (−20 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (83 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (104 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "0/4",
+    "templates_a_mettre_en_vente": [
+      "Progression pédagogique",
+      "Banque de questions et quiz",
+      "Gestion de classe",
+      "Emploi du temps d'établissement"
     ]
   },
   {

@@ -100,6 +100,8 @@ const T = {
   copropriete: ["Charges et AG de copropriété", "Chaque appel payé, chaque vote préparé.", "Appels de fonds · charges par poste · régularisation · résolutions · travaux votés"],
   'etat-des-lieux': ['État des lieux', 'Entrée, sortie, et ce qui a changé.', 'Pièce par pièce · photos · compteurs et clés · document à signer'],
   'course-a-pied': ['Plan d’entraînement course à pied', 'Tes allures et tes semaines, jusqu’au jour J.', 'Allures calculées · plan du 10 km au marathon · séances cochées'],
+  seminaire: ['Séminaire / offsite', 'Tout le monde au bon endroit, au bon moment.', 'Réponses · qui voyage avec qui · chambres · coût par personne'],
+  quiz: ['Banque de questions et quiz', 'Tes questions, tes quiz, tes résultats.', 'Questions taguées · quiz et corrigé · statistiques'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
