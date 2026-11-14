@@ -169,7 +169,7 @@ déjà).
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
@@ -266,7 +266,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
-| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96 | T94 | 156 € | 25 % | 117 € | 30 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
@@ -2257,3 +2257,34 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
   Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de CPR au pack PPB
   (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
+
+## Fiche T94 (cadrage délégué par Quentin, 14/11/2026)
+
+### T94 · État des lieux d'entrée et de sortie (`templates/etat-des-lieux/`, préfixe ETD, 19 €)
+- Fiche détaillée : [`fiches/etat-des-lieux.md`](fiches/etat-des-lieux.md). Application web, permalien prévu
+  `etat-des-lieux`, catalogue `perso` · thème « Argent ». Pack visé : « Propriétaire » (PPB).
+- Promesse : « Entrée, sortie, et ce qui a changé. » Pour les propriétaires bailleurs (vide ou meublé), les
+  locataires et les petites agences.
+- Fonctions : un dossier par bail (logement, parties, mandataire, dates, dépôt de garantie), 12 types de pièce et
+  leurs éléments (mobilier ajouté en meublé), 6 modèles de logement, état codé en un toucher (neuf, bon, usage
+  normal, dégradé, hors service) avec commentaire et photo, compteurs et clés, sortie comparée à l'entrée (usure
+  normale distinguée des dégradations), vétusté selon la grille **saisie** (aucune intégrée), retenues proposées,
+  date limite de restitution du dépôt et délai de rectification de l'entrée, document imprimable à signer (une ou
+  deux colonnes), points à compléter, « Nouveau locataire » (entrée = sortie précédente), export CSV.
+- Photos : vignettes JPEG réduites dans le navigateur (≤ 20 000 caractères), synchronisées avec le dossier, une par
+  élément et par constat, 30 par compte (réglable jusqu'à 60) ; originaux non gardés (dit à l'utilisateur).
+- Marques : outil d'aide, **pas un document juridique certifié** ; délais (1 et 2 mois, 10 jours) relevés sur
+  service-public.gouv.fr (F31270, F33671, F31269) le 14/11/2026, modifiables ; démo fictive (« Claire Exemple »,
+  « Ville-Exemple », « Agence Démo Immobilier »).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/etat-des-lieux/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/etat-des-lieux/`, captures
+  `assets/templates-etat-des-lieux-*.webp`, couverture `assets/templates-etat-des-lieux-couverture.png`, tests
+  `outils/templates/etat-des-lieux.test.mjs`. Produit `ETD` déclaré (serveur, connexion, en-têtes Netlify) ; `ETD`
+  passé de `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PPB).
+- Communication prête dans `communication/etat-des-lieux/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte
+  d'accueil FR, carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
+  confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  `ETD` aux `produits` du pack PPB (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise,
+  plannings, passage en vente du site.

@@ -2731,5 +2731,47 @@
         "value": "Copropriétaires occupants ou bailleurs, conseils syndicaux"
       }
     ]
+  },
+  {
+    "slug": "etat-des-lieux",
+    "name": "État des lieux d'entrée et de sortie",
+    "price_cents": 1900,
+    "permalink": "etat-des-lieux",
+    "category": "business-and-money/personal-finance",
+    "button": "Ouvrir mes états des lieux",
+    "summary": "Pièce par pièce, un état et une photo pour chaque élément, les compteurs et les clés, puis la sortie comparée à l'entrée avec la vétusté de ta grille, les retenues proposées et un document à signer.",
+    "description": "<h2>Entrée, sortie, et ce qui a changé.</h2><p>L'état des lieux d'entrée dort dans un classeur, les photos dans un téléphone, et à la sortie la comparaison se fait de mémoire, le jour où il faut parler du dépôt de garantie. État des lieux tient les deux constats dans le même dossier et compare pour toi.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un dossier par bail</strong> : logement vide ou meublé, bailleur, mandataire, locataires, dates du bail, dépôt de garantie.</li><li><strong>Les pièces types et leurs éléments</strong> (sols, murs, plafonds, menuiseries, électricité, équipements, mobilier en meublé), tous modifiables, et 6 modèles de logement (du studio à la maison).</li><li><strong>Un état codé en un toucher</strong> : neuf, bon, usage normal, dégradé, hors service, avec un commentaire et une photo réduite sur l'appareil.</li><li><strong>Compteurs et clés</strong> : relevés d'entrée et de sortie, consommations, clés remises et rendues.</li><li><strong>La sortie comparée à l'entrée</strong> : dégradations séparées de l'usure normale, vétusté calculée d'après la grille de ton bail si tu la saisis, retenues proposées, date limite de restitution du dépôt de garantie.</li><li><strong>Un document à imprimer et signer à la main</strong>, avec une colonne entrée et une colonne sortie, et la liste de ce qu'il reste à compléter.</li><li><strong>Le locataire suivant</strong> : un nouveau dossier dont l'état d'entrée reprend l'état de sortie.</li><li><strong>Export</strong> en tableur (CSV), copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton logement, choisis un modèle et note chaque élément le jour de la visite, sur tablette ou téléphone. Tes dossiers sont enregistrés en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à la rédaction, pas un document juridique certifié : il ne remplace ni le bail, ni un constat de commissaire de justice, ni un conseil juridique. Aucune grille de vétusté intégrée : celle de ton bail se saisit. Délais rappelés d'après service-public.gouv.fr (consulté le 14/11/2026), modifiables. Photos limitées à 30 vignettes par défaut ; garde tes originaux. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "etat-des-lieux",
+      "location",
+      "proprietaire",
+      "bailleur",
+      "locataire",
+      "immobilier",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes états des lieux s'ouvrent. Crée ton logement, choisis un modèle de pièces, puis note chaque élément le jour de la visite. Sur ta tablette ou ton téléphone, ajoute la page à l'écran d'accueil pour l'ouvrir comme une application. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Propriétaires bailleurs (location vide ou meublée), locataires, petites agences"
+      }
+    ]
   }
 ]

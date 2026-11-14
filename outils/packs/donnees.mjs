@@ -13,6 +13,7 @@ export const TEMPLATES = {
   AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  ETD: { slug: 'etat-des-lieux', prix: 1900, phrase: 'Pièce par pièce, photos, sortie comparée à l’entrée et document à signer.', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
   ANM: { slug: 'animal', prix: 1200, phrase: 'Soins aux dates du vétérinaire, poids, visites, frais par an.', pour: 'perso' },
@@ -105,7 +106,6 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
@@ -320,9 +320,10 @@ export const PAGES = {
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
       ['RNT', 'Avant d’acheter, comparez rendement et cash-flow de plusieurs biens.'],
       ['CPR', 'Suivez appels de fonds, charges récupérables et votes de l’assemblée générale.'],
+      ['ETD', 'Faites l’état des lieux pièce par pièce, photos et comparaison entrée-sortie comprises.'],
     ],
-    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'L’état des lieux à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD'],
+    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],

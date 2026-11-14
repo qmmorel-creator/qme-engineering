@@ -87,6 +87,7 @@ export const PRODUITS = {
   GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/' },
+  ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/' },

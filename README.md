@@ -218,6 +218,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions), note nécessaire aux épreuves à
   venir (dichotomie), courbe de la moyenne, relevé imprimable, export CSV. Aucun barème officiel intégré. Règles dans
   `regles.js`, tests `outils/templates/notes.test.mjs`.
+- `templates/etat-des-lieux/` (ETD) : **état des lieux d'entrée et de sortie** (T94), prêt, « Mise en vente prochaine »
+  (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/etat-des-lieux/gumroad.json`). Un dossier par
+  bail, pièces et éléments types modifiables (mobilier en meublé), état codé (neuf, bon, usage normal, dégradé, hors
+  service) avec commentaire et vignette photo (réduite dans le navigateur, synchronisée, 30 par compte par défaut),
+  compteurs et clés, sortie comparée à l'entrée (usure normale distinguée des dégradations), vétusté selon la grille
+  saisie (aucune intégrée), retenues proposées, délai de restitution du dépôt de garantie et de rectification de
+  l'entrée (service-public.gouv.fr F31270, F33671, F31269, consultées le 14/11/2026), document imprimable à signer,
+  export CSV. Outil d'aide, pas un document certifié. Règles dans `regles.js`, tests
+  `outils/templates/etat-des-lieux.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
