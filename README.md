@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 26 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 36 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -151,6 +151,28 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   obligations sourcées et paramétrables) ; `templates/dettes/` (DTT) **remboursement de dettes**
   (boule de neige, avalanche, échéancier et date de fin) ; `templates/abonnements/` (ABN) **suivi des
   abonnements** (coût mensuel et annuel, prélèvements, « à décider avant le … », sans marque ni prix figé).
+- Lot du 14/11/2026, prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/notes-de-frais/` (NDF) **notes de frais et
+  indemnités kilométriques** (justificatifs référencés sans fichier stocké, barème kilométrique fiscal daté et
+  modifiable appliqué au cumul annuel, note du mois imprimable) ; `templates/appel-decouverte/` (APD)
+  **préparateur d'appel découverte** (84 questions en 7 phases, 25 objections, mode « en appel », score de
+  qualification) ; `templates/impayes/` (RCV) **relance des impayés** (retard par ancienneté, pénalités
+  L441-10 et indemnité D441-5 à taux datés modifiables, messages par palier à copier, rien n'est envoyé) ;
+  `templates/onboarding/` (ARD) **onboarding et offboarding salarié** (checklists par profil de J-15 à J+90,
+  responsables, matériel remis et rendu). Règles dans `regles.js`, tests `outils/templates/<slug>.test.mjs`.
+- `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
+  catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
+  (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
+  simulateur de revente frais déduits, analyse de possession, historique mensuel et comparaison, exports
+  CSV/JSON, rapport imprimable. Règles dans `calculs.js`, tests `outils/templates/patrimoine.test.mjs`.
+- `templates/temps-de-vie/` (TDV) : **temps de vie**, prêt, mise en vente prochaine (19 €). Conversion des
+  dépenses en temps de travail selon trois conventions (contractuel, réel avec trajet et frais
+  professionnels, annuel effectif), aucun barème fiscal, bibliothèque de dépenses extensible, bilan du mode
+  de vie, scénarios A/B/C, coût total de possession. Règles dans `calculs.js`, tests
+  `outils/templates/temps-de-vie.test.mjs`.
+  Ces deux templates ont une **découverte gratuite** sans clé (bouton « Essayer gratuitement » : 10 objets
+  ou 5 dépenses, données gardées dans le navigateur, analyses avancées verrouillées, reprise des données
+  après achat), en plus de la démo fictive. Limite appliquée côté client seulement.
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
@@ -167,7 +189,8 @@ Aucun code n'est stocké, la signature suffit à le valider.
   Ne jamais la changer après les premières ventes : tous les codes deviendraient invalides et les données
   inaccessibles.
 - Générer des codes : `TEMPLATES_SECRET=… npm run code -- REV 10` (même secret que sur Netlify), ou sous
-  Windows `outils/templates/generer-codes-REV.bat` (double-clic, secret gardé à côté du script, historique CSV).
+  Windows `outils/templates/generer-codes.bat` (double-clic, choix du template par son préfixe — HBT, GNT, TCH… —,
+  secret gardé à côté du script, historique CSV ; `generer-codes-REV.bat` ne fait que les codes REV).
 - Révoquer un code : ajouter ses 8 caractères aléatoires (2e et 3e blocs, sans tiret) à la variable
   `TEMPLATES_CODES_REVOQUES` (liste séparée par des virgules).
 

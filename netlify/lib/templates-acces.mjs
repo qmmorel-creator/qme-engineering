@@ -42,6 +42,12 @@ export const PRODUITS = {
   ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/' },
   DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/' },
   ABN: { nom: 'Suivi des abonnements', url: '/templates/abonnements/' },
+  PTM: { nom: 'Inventaire valorisé', url: '/templates/patrimoine/' },
+  TDV: { nom: 'Temps de vie', url: '/templates/temps-de-vie/' },
+  NDF: { nom: 'Notes de frais et indemnités kilométriques', url: '/templates/notes-de-frais/' },
+  APD: { nom: 'Préparateur d\'appel découverte', url: '/templates/appel-decouverte/' },
+  RCV: { nom: 'Relance des impayés', url: '/templates/impayes/' },
+  ARD: { nom: 'Onboarding et offboarding salarié', url: '/templates/onboarding/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
