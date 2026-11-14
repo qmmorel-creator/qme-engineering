@@ -162,7 +162,7 @@ déjà).
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
-| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -263,7 +263,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
-| Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
+| Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
 | Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
@@ -1933,3 +1933,33 @@ régénérer les pages des packs à la fusion.
   `communication/gumroad-a-creer.json`, ajout de `CDX` aux `produits` du pack PMR (`netlify/lib/packs.mjs`) et
   régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
   relire par Quentin : ton des modèles pour les obsèques, hashtags Instagram hors jeux du kit.
+
+## Fiche T87 (cadrage délégué par Quentin, 14/11/2026)
+
+### T87 · Revue hebdomadaire et journal de bord (`templates/revue-hebdo/`, préfixe RVH, 12 €)
+- Fiche détaillée : [`fiches/revue-hebdo.md`](fiches/revue-hebdo.md). Application web, permalien prévu
+  `revue-hebdomadaire`, catalogue `perso` · thème « Organisation et études » (avec le planner). Pack « Productivité
+  perso » (PPR) : RVH ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PPR dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` du pack (`netlify/lib/packs.mjs`), à une étape `parcours`
+  de PPR et pages régénérées à la fusion.
+- Promesse : « Ta semaine, revue en 20 minutes. » Pour cadres, indépendants, managers (rituel du vendredi).
+- Revue guidée en 7 étapes (vider la tête, semaine passée et priorités notées, réussites et difficultés,
+  apprentissages, 3 priorités pour la semaine suivante, rendez-vous et échéances, énergie et humeur de 1 à 5),
+  55 questions de revue originales en rotation (masquables, questions personnelles), journal d'une ligne par jour
+  avec humeur facultative, historique cherchable, tendance (série, semaines tenues sur 12, humeur et énergie,
+  priorités tenues ; palette validée par le skill dataviz), rappel le jour choisi affiché dans l'outil (aucune
+  notification), export texte. Complète T03, T30 et T08 sans connexion automatique.
+- **Santé** : humeur et énergie = repères personnels, sans portée médicale (mention dans l'outil, sur la page du
+  site, la fiche Gumroad et la communication) ; repère bienveillant après 3 semaines notées à 2 ou moins, sans
+  diagnostic ni numéro cité. Aucune base externe, aucune donnée datée.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/revue-hebdo/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/revue-hebdo/`, captures
+  `assets/templates-revue-hebdo-*.webp`, couverture `assets/templates-revue-hebdo-couverture.png`, tests
+  `outils/templates/revue-hebdo.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/revue-hebdo/carte-en-prochaine.html`).
+- Communication prête dans `communication/revue-hebdo/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne
+  aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `revue-hebdomadaire`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout au pack PPR et régénération des pages de packs, plannings, page
+  anglaise, passage en vente du site.

@@ -951,3 +951,14 @@
   for = "/templates/remerciements/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/revue-hebdo/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/revue-hebdo/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

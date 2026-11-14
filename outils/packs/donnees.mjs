@@ -34,6 +34,7 @@ export const TEMPLATES = {
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
   VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
   CTR: { slug: 'contrats', prix: 2500, phrase: 'Dates limites de résiliation calculées, plus de tacite reconduction subie.', pour: 'pro' },
+  RVH: { slug: 'revue-hebdo', prix: 1200, phrase: 'Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités.', pour: 'perso' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts.', pour: 'pro' },
@@ -94,7 +95,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
   NTS: { nom: 'Notes et moyennes', prix: 1200, phrase: 'Moyennes pondérées, crédits et note visée à l’examen.' },
   CAN: { nom: 'Candidatures études, stages, alternance', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.' },
   MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
@@ -265,9 +265,10 @@ export const PAGES = {
       ['PHR', 'Placez ces priorités en blocs de 30 minutes et comparez prévu et réalisé.'],
       ['HBT', 'Ancrez les routines qui tiennent la semaine : séries et grille du mois.'],
       ['RDV', 'Prenez du recul chaque trimestre : roue de vie, objectifs et bilan.'],
+      ['RVH', 'Faites le point chaque semaine : bilan, apprentissages et trois priorités.'],
     ],
-    arguments: ['Une méthode complète : trier, planifier, tenir, prendre du recul', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'La revue hebdomadaire à venir, incluse avec l’option Pack évolutif'],
-    prevus: ['RVH'],
+    arguments: ['Une méthode complète : trier, planifier, tenir, prendre du recul', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PET: {
     couleur: 'bleu', cibles: ['etudiants'],

@@ -425,6 +425,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   étiquettes d'adresses A4 (4 formats, départ, décalage), import d'une liste collée, export CSV, effacement des
   adresses et d'un événement. Aucune règle légale ni donnée datée. Règles dans `regles.js`, tests
   `outils/templates/remerciements.test.mjs`.
+- `templates/revue-hebdo/` (RVH) : **revue hebdomadaire et journal de bord** (T87), prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/revue-hebdo/gumroad.json`). Revue guidée en
+  7 étapes le jour choisi (rappel affiché dans l'outil, aucune notification), 55 questions de revue en rotation,
+  journal d'une ligne par jour avec humeur facultative, 3 priorités notées la semaine suivante, rendez-vous à venir,
+  historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
+  personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
+  anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
