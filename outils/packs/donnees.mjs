@@ -6,10 +6,10 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
-  FRM: { slug: 'competences', prix: 2500, phrase: 'Qui sait faire quoi, les écarts au poste et le plan de formation.', pour: 'pro' },
-  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.', pour: 'pro' },
-  PTG: { slug: 'potager', prix: 1300, phrase: 'Semis, plantations et récoltes de vos cultures, mois par mois.', pour: 'perso' },
-  BBE: { slug: 'bebe', prix: 1300, phrase: 'Repas, sommeil, couches et mesures, notés d’une main.', pour: 'perso' },
+  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
+  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
+  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
+  BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', pour: 'perso' },
