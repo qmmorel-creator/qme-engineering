@@ -102,3 +102,21 @@ Lien d'achat en premier commentaire.
 Pour les soins de votre animal, vous vous fiez plutôt au carnet, à l'agenda ou à la mémoire ?
 
 #AnimauxDeCompagnie #Organisation #Budget #OutilsNumériques #Chien
+
+## Version finale (15/11/2026) · LI-130
+
+Doc : https://docs.google.com/document/d/1ezO4ofQMh9eQCKIzNmttQwaPLUzkH2EQXzu7DY9rUF4/edit
+
+Chaque mois ou presque, un soin à ne pas oublier. Avec deux animaux, le double, et les dates sont dans un tiroir.
+
+Antiparasitaire, vermifuge, rappel de vaccin, toilettage : les dates sont sur le carnet de santé ou l'ordonnance, rarement sous la main. « Son vermifuge, c'était quand, déjà ? » Et avec deux animaux, tout se mélange.
+
+J'ai donc construit un outil de suivi qui calcule la prochaine échéance de chaque soin à partir de la dernière date et de l'intervalle indiqué par votre vétérinaire (ou de la date qu'il a inscrite), et qui montre ce qui est en retard. Il trace aussi la courbe de poids, pesée après pesée, sans l'interpréter, et garde les visites, les traitements recopiés de l'ordonnance et tous les frais, par catégorie, par mois et par an.
+
+Un choix assumé : aucun calendrier de vaccins n'est intégré. Les rythmes dépendent de l'animal et c'est le vétérinaire qui les fixe ; l'outil calcule, il ne recommande rien et ne remplace pas son avis.
+
+Un carnet s'imprime pour la pension ou la personne qui garde l'animal.
+
+L'outil sera bientôt en vente. La démo, avec trois animaux fictifs, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/animal/?demo
+
+#AnimauxDeCompagnie #Organisation #Budget #Chien

@@ -79,3 +79,21 @@ Démo libre avec un couple fictif, et contact : lien en bio. À envoyer à la pe
 Chez vous, c'est moitié-moitié ou au prorata des revenus ?
 
 #BudgetCommun #Colocation #BudgetFamilial #Organisation #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-08
+
+Doc : https://docs.google.com/document/d/1LYtXsL1qWmpojL4STVOs7qwvtbNj8CBvuoNcIP_KbPU/edit
+
+Plus votre partage est juste, plus le calcul se complique. Sauf si ce n'est pas vous qui le faites.
+
+Moitié-moitié, ça se compte de tête. Au prorata des revenus, avec un enfant ou une chambre plus grande, la note de téléphone ne suit plus.
+
+Le Budget commun fait le calcul : chacun note ce qu'il paie, la dépense est répartie comme vous l'avez décidé, au centime près, et les soldes donnent le nombre minimal de virements pour revenir à zéro. Loyer, énergie et abonnements reviennent chaque mois avec la bonne répartition.
+
+Une clé pour le foyer, chacun sur son téléphone. Pas de connexion bancaire, achat unique à 15 €.
+
+Une association, un club, vos propres règles de partage ? Je construis la version sur mesure.
+
+Démo libre avec un couple fictif : lien en bio. À envoyer à la personne avec qui vous partagez les comptes.
+
+#BudgetCommun #Colocation #BudgetFamilial #VieDeCouple

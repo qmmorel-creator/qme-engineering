@@ -90,3 +90,21 @@ Démo libre et contact : lien en bio. À enregistrer avant votre prochain rendez
 Combien de kilomètres faites-vous par an, à peu près ?
 
 #Voiture #LOA #BudgetFamilial #Budget #Indépendant
+
+## Version finale (15/11/2026) · IG-74
+
+Doc : https://docs.google.com/document/d/1ztWm2DCPaKamTE8wSzALeXvTkJkaaGSK1Rh_QMS94tc/edit
+
+Trois étapes avant de signer une LOA : un coût total, vos vrais kilomètres, les bonnes questions au vendeur.
+
+1. Ramenez chaque offre au même étalon. Comptant, crédit, LOA, LLD : le coût total sur la même période, revente estimée déduite.
+2. Comparez le forfait à vos kilomètres réels. Le simulateur donne le dépassement et le kilométrage où une offre passe devant une autre.
+3. Posez les questions qui changent le calcul. Il les liste selon le type d'offre.
+
+Le Simulateur leasing ou achat fait les trois avec vos propres devis, hypothèses visibles. Simulation, pas un conseil financier. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec deux voitures fictives : lien en bio. À enregistrer avant votre prochain rendez-vous chez un vendeur.
+
+#Voiture #LOA #Budget #BudgetFamilial

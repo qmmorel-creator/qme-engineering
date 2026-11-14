@@ -139,3 +139,24 @@ Lien d'achat en premier commentaire.
 À votre dernier changement de voiture, quel chiffre a fait pencher la balance : le loyer, la mensualité ou le coût total ?
 
 #Voiture #Budget #FinancesPersonnelles #Leasing #Indépendant
+
+## Version finale (15/11/2026) · LI-119
+
+Doc : https://docs.google.com/document/d/12ww9f2AhZqpvI1Tp0Iy-qKef2eHeOm9EO-_v4iZW-8s/edit
+
+Comparer un loyer de LOA à une mensualité de crédit, c'est comparer deux chiffres qui ne mesurent pas la même chose.
+
+Quand on change de voiture, chaque vendeur met en avant le chiffre qui l'arrange. Le loyer paraît bas, mais il y a le premier loyer, l'option d'achat, le forfait kilométrique. Le crédit paraît cher, mais la voiture vous reste et se revend. Choisir sur la mensualité, c'est risquer de payer plus au total, ou de découvrir en fin de contrat le prix des kilomètres en trop.
+
+Le seul étalon commun est le coût total sur la même période, revente comprise. J'ai construit un simulateur qui y ramène chaque offre :
+▪ comptant, crédit (mensualité et intérêts par la formule d'annuité), LOA avec ou sans levée de l'option, LLD avec son forfait : coût total net, revente estimée déduite, puis coût par mois et par kilomètre ;
+▪ vos kilomètres réels face au forfait : le dépassement, son coût, et le kilométrage à partir duquel une offre passe devant une autre ;
+▪ les questions à poser au vendeur avant de signer, selon le type d'offre.
+
+Les hypothèses sont les vôtres et restent visibles. Aucun prix ni taux du marché n'est intégré : on reporte ses propres devis. C'est une simulation, pas un conseil financier ; pour un indépendant, la fiscalité n'est pas calculée.
+
+Il sera bientôt en vente. Démo avec deux voitures fictives, sans inscription : https://qm-engineering.fr/templates/leasing/?demo
+
+À votre prochain rendez-vous chez un vendeur, demandez le coût total, pas la mensualité.
+
+#Voiture #Budget #FinancesPersonnelles #Leasing

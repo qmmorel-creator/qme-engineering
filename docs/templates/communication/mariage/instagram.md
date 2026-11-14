@@ -79,3 +79,23 @@ Démo libre avec un mariage fictif, et contact : lien en bio. À envoyer à la p
 Qu'est-ce qui vous prend le plus de temps : les prestataires, le budget ou les invités ?
 
 #Mariage #Organisation #GestionDeProjet #Événement #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-21
+
+Doc : https://docs.google.com/document/d/10ABpMP44xFfqTr84-EBIS8Ubqbe8UMUja5Td-H4ypDc/edit
+
+40 tâches, une dizaine de prestataires, un an de préparation : un mariage est un projet, et il mérite un planning.
+
+Chaque tâche est datée depuis le jour J. Si la date change, les 40 se recalent d'un coup.
+
+L'Organisateur de mariage réunit aussi le budget (prévu, engagé, payé, acomptes et soldes compris), les invités avec leurs réponses et leurs régimes, et un plan de table au glisser-déposer.
+
+Postes de budget vides : pas de prix moyens inventés. Sur les deux téléphones et l'ordinateur, même hors connexion. Achat unique, 29 €.
+
+Organisateur d'événements, avec vos prestataires et vos clients ? Je construis la version sur mesure.
+
+Démo libre avec un mariage fictif : lien en bio. À envoyer à qui l'organise avec vous.
+
+Qu'est-ce qui vous prend le plus de temps : les prestataires, le budget ou les invités ?
+
+#Mariage #Organisation #GestionDeProjet #Événement #OutilsSurMesure

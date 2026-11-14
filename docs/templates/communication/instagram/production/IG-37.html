@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- Reel IG-37 · Une seule chaîne décide de votre date de fin (script J3, videos-30-jours.md).
+     Motion design sans voix ni musique, 1080 × 1920, 30 i/s, 23 s. Gabarit : ../reel-lancement.html
+     (animations CSS en pause, window.placer(ms)). Rendu, depuis docs/templates/communication/instagram :
+       node video.mjs production/IG-37.html 23 3000
+       puis png/IG-37.mp4 → png/IG-37-chemin-critique.mp4 et png/IG-37-couverture.png → png/IG-37-chemin-critique-couverture.png
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-37</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+.f{position:absolute}
+.bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:60px;padding:28px 44px;box-shadow:16px 16px 0 var(--surface);letter-spacing:-.025em}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--surface)}
+.site{position:absolute;right:96px;font-weight:700;font-size:34px}
+.carte{position:absolute;left:84px;right:84px;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--encre);background:var(--surface)}
+.carte img{width:100%;display:block}
+.note{position:absolute;left:96px;right:96px;font-size:28px;font-weight:600;color:var(--texte-2)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes glisse-d{from{transform:translateX(900px)}to{transform:none}}
+
+@keyframes decaleA{0%,15.8%{transform:none}23.7%,50%{transform:translateX(76px)}55.3%,100%{transform:none}}
+@keyframes decaleB{0%,60.5%{transform:none}68.4%,100%{transform:translateX(76px)}}
+@keyframes margeB{0%,60.5%{transform:none}68.4%,100%{transform:translateX(76px) scaleX(.6667)}}
+@keyframes visA{0%,14%{opacity:0;transform:translateY(30px)}18%,48%{opacity:1;transform:none}52%,100%{opacity:0;transform:none}}
+@keyframes visA2{0%,22%{opacity:0;transform:scale(.6)}26%,48%{opacity:1;transform:none}52%,100%{opacity:0;transform:none}}
+@keyframes visB{0%,57%{opacity:0;transform:translateY(30px)}61%,100%{opacity:1;transform:none}}
+@keyframes visB2{0%,67%{opacity:0;transform:scale(.6)}71%,100%{opacity:1;transform:none}}
+.pill{position:absolute;left:96px;font-weight:800;font-size:56px;letter-spacing:-.025em;padding:14px 28px;color:#fff}
+
+</style>
+</head>
+<body>
+<div class="s" id="s1" style="animation:sortie 300ms 3300ms;">
+  <div class="f" style="right:-120px;top:120px;width:420px;height:420px;border-radius:50%;background:var(--rouge);animation:pop 600ms 0ms"></div>
+  <div class="f" style="right:220px;top:420px;width:130px;height:130px;background:var(--jaune);border:6px solid var(--encre);animation:pop 500ms 250ms"></div>
+  <div class="f" style="left:0;bottom:0;width:440px;height:440px;background:var(--bleu);border-top-right-radius:440px;animation:glisse-g 700ms 100ms"></div>
+  <p class="sourcil" style="top:640px;color:var(--rouge);animation:monte 500ms 250ms">Méthode · planning</p>
+  <p class="x" style="top:710px;font-size:124px;animation:monte 550ms 450ms">Laquelle de vos tâches <mark>décale tout</mark> ?</p>
+</div>
+
+<div class="s" id="s2" style="animation:entree-fond 350ms 3600ms,sortie 300ms 7900ms;background:var(--encre);color:var(--papier)">
+  <div class="f" style="left:96px;top:560px;width:160px;height:16px;background:var(--rouge);transform-origin:left;animation:largeur 500ms 3700ms"></div>
+  <p class="x" style="top:620px;font-size:92px;animation:monte 500ms 3800ms">Sur un planning, une seule chaîne de tâches décide de votre date de fin.</p>
+  <p class="x" style="top:1180px;font-size:92px;color:var(--jaune);animation:monte 500ms 5600ms">Les autres ont de la marge.</p>
+</div>
+
+<div class="s" id="s3" style="animation:entree-fond 350ms 8200ms,sortie 300ms 15500ms;">
+  <p class="sourcil" style="top:300px;color:var(--bleu);animation:monte 500ms 8300ms">Rénovation de cuisine · exemple fictif</p>
+  <p class="x" style="top:360px;font-size:76px;animation:monte 500ms 8400ms">Un retard, deux cas.</p>
+  <div style="position:absolute;inset:0;animation:monte 400ms 8400ms">
+    <p style="position:absolute;left:96px;width:290px;top:626px;font-weight:700;font-size:30px;line-height:1.1">Dépose</p>
+    <div style="position:absolute;left:400px;top:618px;width:114px;height:64px;background:var(--rouge);border:4px solid var(--encre)"></div>
+  </div>
+  <div style="position:absolute;inset:0;animation:monte 400ms 8520ms">
+    <p style="position:absolute;left:96px;width:290px;top:744px;font-weight:700;font-size:30px;line-height:1.1">Plomberie, électricité</p>
+    <div style="position:absolute;left:514px;top:736px;width:152px;height:64px;background:var(--rouge);border:4px solid var(--encre)"></div>
+  </div>
+  <div style="position:absolute;inset:0;animation:monte 400ms 8640ms">
+    <p style="position:absolute;left:96px;width:290px;top:862px;font-weight:700;font-size:30px;line-height:1.1">Pose des meubles</p>
+    <div style="position:absolute;left:666px;top:854px;width:114px;height:64px;background:var(--rouge);border:4px solid var(--encre);animation:decaleA 7600ms 8200ms"></div>
+  </div>
+  <div style="position:absolute;inset:0;animation:monte 400ms 8760ms">
+    <p style="position:absolute;left:96px;width:290px;top:980px;font-weight:700;font-size:30px;line-height:1.1">Peinture du séjour</p>
+    <div style="position:absolute;left:666px;top:972px;width:228px;height:64px;border:4px dashed var(--bleu);transform-origin:left;animation:margeB 7600ms 8200ms"></div><div style="position:absolute;left:590px;top:972px;width:76px;height:64px;background:var(--bleu);border:4px solid var(--encre);animation:decaleB 7600ms 8200ms"></div>
+  </div>
+  <div style="position:absolute;inset:0;animation:monte 400ms 8880ms">
+    <p style="position:absolute;left:96px;width:290px;top:1098px;font-weight:700;font-size:30px;line-height:1.1">Plan de travail</p>
+    <div style="position:absolute;left:780px;top:1090px;width:114px;height:64px;background:var(--rouge);border:4px solid var(--encre);animation:decaleA 7600ms 8200ms"></div>
+  </div>
+  <div class="f" style="left:891px;top:560px;width:6px;height:640px;background:var(--encre);animation:decaleA 7600ms 8200ms"><span style="position:absolute;left:-30px;top:-46px;font-weight:800;font-size:32px">Fin</span></div>
+  <p class="note" style="top:1220px;display:flex;gap:34px;align-items:center;animation:monte 400ms 8900ms"><span style="display:inline-block;width:36px;height:24px;background:var(--rouge);border:3px solid var(--encre)"></span>Chemin critique<span style="display:inline-block;width:36px;height:24px;border:3px dashed var(--bleu)"></span>Marge</p>
+  <p class="x" style="top:1320px;font-size:60px;animation:visA 7600ms 8200ms">Pose des meubles : +2 jours</p>
+  <p class="pill" style="top:1420px;background:var(--rouge);animation:visA2 7600ms 8200ms">Fin : +2 jours</p>
+  <p class="x" style="top:1320px;font-size:60px;animation:visB 7600ms 8200ms">Peinture du séjour : +2 jours</p>
+  <p class="pill" style="top:1420px;background:var(--bleu);animation:visB2 7600ms 8200ms">Fin : inchangée</p>
+</div>
+
+<div class="s" id="s4" style="animation:entree-fond 350ms 15800ms,sortie 300ms 19100ms;background:var(--bleu);color:#fff">
+  <div class="f" style="right:-160px;bottom:260px;width:520px;height:520px;border-radius:50%;background:var(--rouge);animation:pop 600ms 15900ms"></div>
+  <p class="x" style="top:480px;font-size:104px;animation:monte 500ms 16000ms">C'est le chemin critique.</p>
+  <p class="x" style="top:760px;font-size:64px;font-weight:700;animation:monte 500ms 16600ms">La suite de tâches liées la plus longue.</p>
+  <p class="x" style="top:1000px;font-size:64px;font-weight:700;animation:monte 500ms 17400ms">Un jour de retard dessus, <span style="background:var(--jaune);color:var(--encre);padding:0 12px">un jour de retard</span> à la livraison.</p>
+</div>
+
+<div class="s" id="s5" style="animation:entree-fond 350ms 19400ms;background:var(--jaune)">
+  <p class="x" style="top:300px;font-size:92px;animation:monte 500ms 19500ms">Savoir où regarder, c'est la moitié du pilotage.</p>
+  <div class="carte" style="top:640px;height:460px;animation:monte 500ms 19900ms"><img src="captures/templates-gantt-critique.webp" alt=""></div>
+  <p class="note" style="top:1135px;color:var(--encre);animation:monte 500ms 20100ms">Planning Gantt rapide · capture de la démo, données fictives</p>
+  <div class="bouton" style="top:1220px;animation:pop 450ms 20300ms">Démo libre : lien en bio</div>
+  <div class="signe" style="top:1440px;animation:monte 400ms 20500ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site" style="top:1464px;animation:monte 400ms 20600ms">qm-engineering.fr</p>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

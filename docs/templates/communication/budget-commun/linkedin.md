@@ -102,3 +102,29 @@ Lien d'achat en premier commentaire.
 Chez vous, les dépenses communes se partagent à parts égales ou selon les revenus de chacun ?
 
 #BudgetCommun #Colocation #FinancesPersonnelles #VieDeCouple #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-79
+
+Doc : https://docs.google.com/document/d/1vGZhZ9nQ8YMD2Lc3cpafu8i2s73_E3O-7kh_SrMRZas/edit
+
+Dimanche soir, relevés ouverts, trois mois de courses à reprendre : « Je t'ai fait un virement pour les courses… ou pour l'électricité ? »
+
+Personne n'a tort, personne n'est sûr. Les comptes communs tenaient dans une note de téléphone et dans la mémoire de chacun, et la discussion tourne vite à « qui a mis combien ».
+
+Tant que tout se partage à parts égales, ça passe encore. Le jour où l'on veut tenir compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient une source de discussions de plus.
+
+C'est pour cette soirée-là que j'ai construit le Budget commun. Chacun note ce qu'il paie, et la dépense est répartie à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près. Les soldes se tiennent à jour : qui doit combien à qui, et le nombre minimal de virements pour remettre les comptes à zéro. Le loyer, l'énergie et les abonnements reviennent chaque mois avec la bonne répartition.
+
+Une seule clé pour le foyer : chacun l'ouvre sur son téléphone et voit les mêmes comptes. Si deux personnes saisissent en même temps, les deux dépenses sont gardées. Pas de connexion bancaire, pas d'abonnement.
+
+La démo, avec un couple fictif, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/budget-commun/?demo
+Lien d'achat en commentaire.
+
+Chez vous, les dépenses communes se partagent à parts égales ou selon les revenus de chacun ?
+
+#BudgetCommun #Colocation #FinancesPersonnelles #VieDeCouple
+
+Premier commentaire :
+
+Le Budget commun (15 €, achat unique, une clé pour tout le foyer) :
+https://qmengineering.gumroad.com/l/budget-commun

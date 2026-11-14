@@ -66,3 +66,17 @@ retours m'intéressent.
 > J'ai sorti un outil de gestion d'auto-école : planning sans double réservation, heures et
 > paiements des élèves, suivi des véhicules et coût par heure. Démo libre :
 > https://qm-engineering.fr/templates/auto-ecole/?demo
+
+## Version finale (15/11/2026) · LI-96
+
+Doc : https://docs.google.com/document/d/1DV6yCWdW8BvWo7i5pt22fYqltdVrufq_9mSdU4NxQKg/edit
+
+« Il me reste combien d'heures ? » Dans une auto-école, la réponse ne devrait pas demander de recompter une fiche cartonnée.
+
+Une auto-école tient trois plannings à la fois : moniteurs, véhicules, élèves. La question de l'élève se trouve au croisement des trois, et c'est pour elle que j'ai construit cet outil.
+
+Pour chaque élève, il affiche les heures achetées, faites, planifiées et restantes, avec le reste à payer et les compétences cochées. Le planning par moniteur et par véhicule refuse toute leçon qui en chevauche une autre, même moniteur, même voiture ou même élève. La réponse est donc juste au moment où on la demande.
+
+Il sera bientôt en vente. La démo, avec une auto-école fictive, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/auto-ecole/?demo
+
+#AutoÉcole #Permis #Moniteur #Planning

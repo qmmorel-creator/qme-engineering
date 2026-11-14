@@ -1,0 +1,148 @@
+<!doctype html>
+<!-- Reel IG-42 · Le tableur trouvé en ligne : avant / après (20 s, 1080 × 1920, 30 i/s), d'après le script J20
+     de videos-30-jours.md (format D), en motion design : sans voix, sans musique.
+     Rendu, depuis la racine du dépôt :
+       node docs/templates/communication/instagram/video.mjs production/IG-42.html 20 3200
+     puis renommer png/IG-42.mp4 → png/IG-42-avant-apres.mp4 et png/IG-42-couverture.png → png/IG-42-avant-apres-couverture.png.
+     Données fictives : celles du foyer de démonstration du Budget du foyer (Camille et Sami, novembre 2026).
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-42 avant / après</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.sourcil{font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.gros{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.etiquette{position:absolute;left:96px;top:300px;font-weight:800;font-size:44px;letter-spacing:.12em;color:#fff;padding:14px 30px}
+.fictif{position:absolute;left:96px;bottom:400px;font-size:30px;font-weight:600;color:var(--discret)}
+
+/* Scène 1 · 0 à 4 s : l'accroche */
+#s1{background:var(--encre);color:var(--papier);animation:sortie 300ms 3800ms}
+#s1 .sourcil{position:absolute;left:96px;top:520px;color:var(--jaune);animation:monte 400ms 100ms}
+#s1 .barre{position:absolute;left:96px;top:590px;width:160px;height:16px;background:var(--rouge);animation:largeur 500ms 200ms}
+#a1{top:660px;font-size:104px;animation:monte 500ms 300ms}
+#a2{top:1010px;font-size:104px;color:var(--jaune);animation:monte 500ms 1500ms}
+#s1 .f{position:absolute;right:0;bottom:0;width:300px;height:300px;background:var(--rouge);border-top-left-radius:300px;animation:pop 500ms 1700ms}
+
+/* Scène 2 · 4 à 9,6 s : avant */
+#s2{animation:entree-fond 350ms 4000ms,sortie 300ms 9400ms}
+#s2 .etiquette{background:var(--rouge);animation:monte 400ms 4200ms}
+#s2 .titre{top:420px;font-size:72px;animation:monte 400ms 4350ms}
+.tableur{position:absolute;left:96px;right:96px;top:640px;background:#fff;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--encre);font-size:38px;animation:monte 500ms 4500ms}
+.tableur .l{display:grid;grid-template-columns:70px 1fr 300px;border-bottom:2px solid var(--trait);height:84px;align-items:center;position:relative}
+.tableur .l:last-child{border-bottom:0}
+.tableur .l>span{padding:0 20px;height:100%;display:flex;align-items:center}
+.tableur .l>span:first-child{background:#ECEAE4;color:var(--discret);font-size:28px;justify-content:center;border-right:2px solid var(--trait)}
+.tableur .l>span:last-child{justify-content:flex-end;border-left:2px solid var(--trait)}
+.tableur .t{font-weight:800}
+.tableur .ent{background:#ECEAE4;height:56px;font-size:28px;color:var(--discret)}
+.tableur .ent>span{justify-content:center!important}
+.ok,.err{position:absolute;right:20px}
+.err{color:var(--rouge);font-weight:800;opacity:0}
+#l3{animation:barre-l 500ms 6200ms}
+#l3::after{content:"";position:absolute;left:70px;right:0;top:50%;height:6px;background:var(--rouge);transform-origin:left;animation:raye 400ms 6200ms}
+.casse .ok{animation:disparait 200ms 7000ms}
+.casse .err{animation:apparait 200ms 7000ms}
+.casse{animation:fond-rouge 400ms 7000ms}
+#leg2{top:1420px;font-size:48px;font-weight:700;animation:monte 400ms 7300ms}
+
+/* Scène 3 · 9,6 à 15,4 s : après */
+#s3{animation:entree-fond 350ms 9600ms,sortie 300ms 15200ms}
+#s3 .etiquette{background:var(--bleu);animation:monte 400ms 9800ms}
+#s3 .titre{top:420px;font-size:72px;animation:monte 400ms 9950ms}
+.tel{position:absolute;left:290px;top:590px;width:500px;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--bleu);background:var(--surface);overflow:hidden;animation:glisse 700ms 10200ms}
+.tel img{display:block;width:100%}
+#s3 .rond{position:absolute;left:-120px;top:1160px;width:300px;height:300px;border-radius:50%;background:var(--jaune);animation:pop 500ms 10600ms}
+#s3 .fictif{animation:monte 300ms 10800ms}
+
+/* Scène 4 · 15,4 à 17,6 s : la chute */
+#s4{background:var(--bleu);color:#fff;animation:entree-fond 300ms 15400ms,sortie 300ms 17400ms}
+#c1{top:700px;font-size:120px;animation:monte 400ms 15550ms}
+#c2{top:860px;font-size:120px;animation:monte 400ms 15950ms}
+#c2 span{background:var(--jaune);color:var(--encre);padding:0 16px}
+#s4 .carre{position:absolute;right:96px;top:1180px;width:200px;height:200px;background:var(--rouge);animation:pop 500ms 16200ms}
+
+/* Scène 5 · 17,6 à 20 s : appel */
+#s5{background:var(--jaune);animation:entree-fond 300ms 17600ms}
+#s5 h1{position:absolute;left:96px;right:96px;top:600px;font-weight:800;font-size:120px;letter-spacing:-.025em;line-height:.98;animation:monte 450ms 17700ms}
+#s5 .plus{position:absolute;left:96px;right:96px;top:860px;font-size:52px;font-weight:600;line-height:1.2;letter-spacing:-.02em;animation:monte 400ms 17950ms}
+#s5 .bouton{position:absolute;left:96px;top:1080px;background:var(--encre);color:var(--papier);font-weight:800;font-size:64px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface);animation:pop 450ms 18200ms}
+#s5 .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;animation:monte 400ms 18300ms}
+#s5 .signe svg{width:80px;height:80px}
+#s5 .signe .m{color:var(--bleu)}#s5 .signe .e{color:var(--surface)}
+#s5 .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px;animation:monte 400ms 18400ms}
+
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{width:0}to{width:160px}}
+@keyframes raye{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes barre-l{from{color:inherit}to{color:var(--discret)}}
+@keyframes disparait{from{opacity:1}to{opacity:0}}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+@keyframes fond-rouge{from{background:transparent}to{background:#F9E1DF}}
+@keyframes glisse{from{opacity:0;transform:translateX(500px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="s" id="s1">
+  <p class="sourcil">Avant / après</p>
+  <div class="barre"></div>
+  <p class="gros" id="a1">Un tableur trouvé en ligne dépanne.</p>
+  <p class="gros" id="a2">Jusqu'au jour où une formule casse.</p>
+  <div class="f"></div>
+</div>
+
+<div class="s" id="s2">
+  <div class="etiquette">AVANT</div>
+  <p class="gros titre">Le tableur du foyer.</p>
+  <div class="tableur">
+    <div class="l ent"><span></span><span>A</span><span>B</span></div>
+    <div class="l"><span>1</span><span class="t">Budget novembre</span><span></span></div>
+    <div class="l"><span>2</span><span>Salaire Camille</span><span>2 450 €</span></div>
+    <div class="l" id="l3"><span>3</span><span>Salaire Sami</span><span>2 100 €</span></div>
+    <div class="l"><span>4</span><span>Allocations</span><span>150 €</span></div>
+    <div class="l casse"><span>5</span><span class="t">Revenus</span><span><b class="ok">4 700 €</b><b class="err">#REF!</b></span></div>
+    <div class="l"><span>6</span><span>Dépenses</span><span>2 621 €</span></div>
+    <div class="l"><span>7</span><span>Épargne</span><span>600 €</span></div>
+    <div class="l casse"><span>8</span><span class="t">Reste</span><span><b class="ok">1 479 €</b><b class="err">#REF!</b></span></div>
+  </div>
+  <p class="gros" id="leg2">Une ligne supprimée, et les totaux cassent.</p>
+  <p class="fictif" style="bottom:360px">Données fictives</p>
+</div>
+
+<div class="s" id="s3">
+  <div class="etiquette">APRÈS</div>
+  <p class="gros titre">Le même foyer, dans l'outil.</p>
+  <div class="rond"></div>
+  <div class="tel"><img src="../../../../../assets/templates-budget-tel.webp" alt=""></div>
+  <p class="fictif">Budget du foyer · données fictives</p>
+</div>
+
+<div class="s" id="s4">
+  <p class="gros" id="c1">Même usage.</p>
+  <p class="gros" id="c2"><span>Rien à réparer.</span></p>
+  <div class="carre"></div>
+</div>
+
+<div class="s" id="s5">
+  <h1>Démos libres, sans inscription.</h1>
+  <p class="plus">Templates QME : achat unique, sans abonnement.</p>
+  <div class="bouton">Lien en bio</div>
+  <div class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site">qm-engineering.fr</p>
+</div>
+
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

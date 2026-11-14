@@ -96,3 +96,33 @@ Lien d'achat en premier commentaire.
 Vos relances, aujourd'hui, vous les retrouvez où : boîte mail, carnet ou tableur ?
 
 #Freelance #Indépendants #Prospection #RelationClient #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-85
+
+Doc : https://docs.google.com/document/d/1PMj9Wpov1vV0PChLEyRV2BKo-vi3SRo4-vERl_ZCxRU/edit
+
+Combien de vos devis attendent une réponse en ce moment, et lequel relancez-vous demain matin ?
+
+Si la réponse demande d'ouvrir la boîte mail, un carnet et un tableur, vous n'êtes pas seul. Quand on travaille en indépendant, le suivi commercial vit à trois endroits, et rien ne remonte au bon moment. Un contrat se perd parfois sans rendez-vous raté, sur une simple relance oubliée.
+
+J'ai donc construit un CRM pour freelances, volontairement simple.
+
+▪ Chaque contact a une prochaine action datée ; chaque matin, la liste de qui relancer, retards en tête.
+▪ Après un échange, un clic sur « Fait » : il est noté dans l'historique et l'action suivante est proposée.
+▪ Devis et factures sont suivis (échéance, encaissements, retards), avec le chiffre d'affaires par mois et par client.
+
+Il arrive prêt à l'emploi : six étapes de vente et quatorze actions types, de la première prise de contact à la demande de témoignage, chacune avec un délai et un conseil. Ce n'est pas un logiciel de facturation : vos factures restent faites avec votre outil, le CRM en suit le paiement.
+
+Pas d'abonnement ni d'installation : il s'ouvre dans le navigateur avec une clé, de l'ordinateur au téléphone.
+
+La démo, avec des clients fictifs, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/crm/?demo
+Lien d'achat en commentaire.
+
+Et vos relances, aujourd'hui, vous les retrouvez où ?
+
+#Freelance #Indépendants #Prospection #RelationClient
+
+Premier commentaire :
+
+Le CRM freelance (25 €, achat unique, accès à vie, tous les appareils) :
+https://qmengineering.gumroad.com/l/crm-freelance

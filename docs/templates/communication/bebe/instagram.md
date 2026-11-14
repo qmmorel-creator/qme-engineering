@@ -93,3 +93,21 @@ Démo libre et contact : lien en bio. À envoyer à de futurs parents autour de 
 Chez vous, qui note quoi, et où ?
 
 #Organisation #Maison #OutilsNumériques #JeunesParents #Parentalité
+
+## Version finale (15/11/2026) · IG-90
+
+Doc : https://docs.google.com/document/d/1Ecx0VlSeZfhysNI7EwnNYwB46oBkp00IdhlnQNqX9xo/edit
+
+Un suivi de bébé sans aucune norme ni aucune alerte. C'est voulu.
+
+L'outil additionne ce que vous notez, il n'interprète rien. Pas de quantité « recommandée », pas de courbe de référence : le médecin, la sage-femme ou la PMI s'en chargent, avec un récapitulatif clair sous les yeux.
+
+Le Suivi du bébé note une tétée, un biberon, un sommeil ou une couche en un geste, même la nuit sans réseau, réunit les saisies des deux parents et prépare les résumés de la semaine. Rien n'est enregistré sans votre accord. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec un bébé fictif : lien en bio. À envoyer à de futurs parents autour de vous.
+
+Chez vous, qui note quoi, et où ?
+
+#JeunesParents #Parentalité #Organisation #OutilsNumériques

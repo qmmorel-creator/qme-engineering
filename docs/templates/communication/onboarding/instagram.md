@@ -87,3 +87,21 @@ Démo libre et contact : lien en bio. À envoyer à la personne qui prépare les
 À la dernière arrivée, quelle étape a été oubliée ?
 
 #PME #Organisation #RessourcesHumaines #Onboarding #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-70
+
+Doc : https://docs.google.com/document/d/1E9Tthr_6awUprnzy1oEURw1bFtoEoxDR4ehccCGVJAc/edit
+
+Une PME n'a pas besoin d'un logiciel RH pour bien accueillir. Elle a besoin d'une checklist qui ne s'oublie pas.
+
+Dans une PME, on accueille quelqu'un trois ou quatre fois par an : assez pour oublier chaque fois une étape différente.
+
+L'Onboarding et offboarding salarié crée la checklist de chaque arrivée ou départ depuis des modèles par profil, chaque tâche avec son responsable et son échéance, de J-15 à J+90. Chacun voit ce qu'il doit faire cette semaine, et le matériel non rendu au départ est signalé.
+
+89 tâches types, modèles modifiables, données minimales, sans logiciel RH. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre : lien en bio. À envoyer à la personne qui prépare les arrivées chez vous.
+
+#PME #RessourcesHumaines #Onboarding #Organisation

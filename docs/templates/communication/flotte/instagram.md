@@ -79,3 +79,23 @@ Démo libre avec six véhicules fictifs, et contact : lien en bio.
 Combien de véhicules suivez-vous, et dans quel outil ?
 
 #GestionDeFlotte #PME #Collectivités #Organisation #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-15
+
+Doc : https://docs.google.com/document/d/1OomUlVZGQbm0U12dB1Ex2eneCLIyBIyaX5uwKbpAuNI/edit
+
+Qui, chez vous, sait quand passe le prochain contrôle technique de chaque véhicule ?
+
+Entretien au kilomètre ou à la date, contrôle technique, contre-visite, amendes à désigner : quelques véhicules suffisent pour multiplier les échéances.
+
+La Gestion de flotte les rassemble dans une seule liste d'alertes, retards en tête. Elle gère les réservations sans chevauchement et donne le coût au kilomètre, avec le dépassement estimé en location longue durée.
+
+Règles officielles datées, intervalles d'entretien indicatifs. Bientôt en vente.
+
+Vos engins, vos habilitations, vos cartes carburant ? Je construis la version sur mesure.
+
+Démo libre avec six véhicules fictifs : lien en bio. À envoyer à qui gère les véhicules chez vous.
+
+Combien de véhicules suivez-vous, et dans quel outil ?
+
+#GestionDeFlotte #PME #Collectivités #OutilsSurMesure

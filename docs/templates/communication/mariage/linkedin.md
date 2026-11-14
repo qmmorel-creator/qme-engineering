@@ -98,3 +98,33 @@ Si vous vous êtes marié : qu'est-ce qui a été le plus difficile à garder à
 Et si quelqu'un autour de vous vient de dire oui, transmettez-lui.
 
 #Mariage #Organisation #GestionDeProjet #OutilsNumériques #Templates
+
+## Version finale (15/11/2026) · LI-92
+
+Doc : https://docs.google.com/document/d/1D11gYoLVggvoGjjS1TWZwhydRVQGRCl_OXGzxWs2irM/edit
+
+Le plus dur dans l'organisation d'un mariage n'est pas le budget. C'est que deux personnes n'ont jamais la même version.
+
+Un carnet de tâches, un tableur de devis, une liste d'invités dans un téléphone, un plan de table dessiné sur une nappe. Chaque morceau est juste, mais aucun n'est à jour au même moment pour les deux futurs mariés.
+
+Des dizaines de tâches étalées sur un an, une dizaine de prestataires, des acomptes à des dates différentes, des invités qui répondent au compte-gouttes : c'est de la gestion de projet, sans l'outil.
+
+J'ai donc construit un organisateur de mariage qui tient tout au même endroit, sur les deux téléphones et sur l'ordinateur, même hors connexion.
+
+▪ Un rétroplanning de 40 tâches calculé depuis la date du mariage : si la date change, tout se recale, et les retards remontent en tête.
+▪ Le budget poste par poste : prévu, engagé auprès des prestataires, déjà payé, acomptes et soldes compris.
+▪ Les invités, leurs réponses et leurs régimes, puis un plan de table où l'on glisse chacun à sa place, avec une alerte quand une table déborde.
+
+Les postes de budget arrivent vides, sans prix moyens inventés : c'est votre budget. Pour les démarches en mairie, l'outil ne cite que ce qui est vérifié sur service-public.gouv.fr. Achat unique, sans abonnement.
+
+La démo, avec un mariage fictif, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/mariage/?demo
+Lien d'achat en commentaire.
+
+Si quelqu'un autour de vous vient de dire oui, transmettez-lui.
+
+#Mariage #Organisation #GestionDeProjet #OutilsNumériques
+
+Premier commentaire :
+
+L'Organisateur de mariage (29 €, achat unique, accès à vie, tous les appareils) :
+https://qmengineering.gumroad.com/l/organisateur-mariage

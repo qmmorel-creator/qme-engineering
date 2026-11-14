@@ -79,3 +79,21 @@ Démo libre avec des clients fictifs, et contact : lien en bio.
 Combien de devis attendent une réponse chez vous en ce moment ?
 
 #Freelance #Indépendant #Prospection #Entrepreneur #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-14
+
+Doc : https://docs.google.com/document/d/1UQ8Fiz7YxShrxtoTHJuODoWXohfegtnN-T31Kt9UBZA/edit
+
+Avant : la boîte mail, un carnet, un tableur. Après : chaque matin, la liste de qui relancer.
+
+Avant, le suivi commercial vit à trois endroits. Le devis envoyé il y a dix jours, le client qui devait rappeler : tout est quelque part, rien ne remonte à temps.
+
+Après, avec le CRM freelance, chaque contact a une prochaine action datée. Un clic sur « Fait » après un échange, et l'action suivante est proposée. Devis et factures sont suivis, avec le chiffre d'affaires par mois et par client.
+
+Six étapes de vente et quatorze actions types prêtes. Ce n'est pas un logiciel de facturation : il en suit le paiement. Achat unique, 25 €.
+
+Pour une équipe, relié à votre facturation ou à vos mails ? Je construis la version sur mesure.
+
+Démo libre avec des clients fictifs : lien en bio. À enregistrer pour votre prochain point commercial.
+
+#Freelance #Indépendant #Prospection #OutilsSurMesure

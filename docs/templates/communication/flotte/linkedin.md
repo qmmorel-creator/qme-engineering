@@ -96,3 +96,24 @@ La démo, avec six véhicules fictifs, est ouverte à tous, sans inscription : l
 Services généraux, secrétaires de mairie, dirigeants de PME : la dernière échéance de véhicule que vous avez découverte en retard, c'était laquelle ?
 
 #GestionDeFlotte #ServicesGénéraux #PME #Collectivités #Mobilité
+
+## Version finale (15/11/2026) · LI-86
+
+Doc : https://docs.google.com/document/d/1ETCMBWPKUkLhMb030kAtTOrFXM_y7nm1WqKU7d05msg/edit
+
+Le contrôle technique du fourgon est passé de date. L'échéance était dans un tableur, les réservations dans un autre.
+
+Quelques véhicules suffisent pour multiplier les dates à surveiller. J'ai construit un outil de gestion de flotte qui les rassemble en quatre points.
+
+1. Une seule liste d'alertes, retards en tête : entretien dû (le premier critère atteint, kilomètre ou date), contrôle technique, contre-visite, amende à désigner, sinistre en cours.
+2. Des réservations par véhicule : les chevauchements sont refusés, le kilométrage est saisi au retour.
+3. Le coût total et le coût au kilomètre de chaque véhicule.
+4. Pour la location longue durée, la projection en fin de contrat avec le dépassement de kilométrage estimé.
+
+Les règles du contrôle technique et le délai de désignation du conducteur viennent des sites officiels, avec leur date de vérification dans l'application. Les intervalles d'entretien sont indicatifs : on les adapte au carnet du constructeur.
+
+Il s'ouvre dans le navigateur avec une clé et fonctionne sur téléphone. Il sera bientôt en vente ; la démo, avec six véhicules fictifs, est déjà ouverte à tous, sans inscription : https://qm-engineering.fr/templates/flotte/?demo
+
+Services généraux, secrétaires de mairie, dirigeants de PME : essayez-la avec vos propres véhicules en tête.
+
+#GestionDeFlotte #ServicesGénéraux #PME #Collectivités

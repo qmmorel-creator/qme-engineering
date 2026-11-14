@@ -107,3 +107,27 @@ Lien d'achat en premier commentaire.
 Collègues enseignants : pour un conseil de classe, combien de soirées vous prennent les appréciations ?
 
 #Enseignement #Éducation #Professeur #OutilsNumériques #Organisation
+
+## Version finale (15/11/2026) · LI-125
+
+Doc : https://docs.google.com/document/d/1vaYssU28Gs9O2wSAnPYohhSPWfHXOqWOlfFpTVLNQr8/edit
+
+Combien de soirées vous prennent les appréciations d'un conseil de classe ?
+
+La veille du conseil, il reste souvent des dizaines d'appréciations à écrire, et une moyenne à recalculer parce qu'un coefficient a changé. Plusieurs classes, des barèmes différents, des compétences à positionner.
+
+J'ai donc construit une gestion de classe qui fait gagner du temps à trois endroits.
+
+▪ La saisie : la note puis Entrée, l'élève suivant ; une lettre pour absent, non noté ou dispensé ; au clavier comme sur téléphone.
+▪ Le calcul : moyennes pondérées (tout barème ramené sur 20, coefficients, bonus retenu seulement s'il fait monter la moyenne) et statistiques de la classe, médiane, extrêmes, répartition.
+▪ La fin de période : compétences sur quatre échelons, appréciations rédigées à partir d'une banque de phrases que chacun réécrit à sa façon, jusqu'au bulletin imprimable.
+
+Le référentiel de départ reprend les domaines du socle commun et l'échelle de maîtrise du code de l'éducation, source affichée ; tout est modifiable.
+
+Côté données, j'ai voulu en savoir le moins possible : un prénom et une initiale, ou un pseudonyme, aucun champ sensible. Outil personnel de préparation, il ne remplace pas le logiciel de l'établissement ; chacun vérifie avec son établissement avant d'y mettre des données réelles.
+
+Il sera bientôt en vente. Démo avec trois classes fictives : https://qm-engineering.fr/templates/gestion-classe/?demo
+
+Collègues enseignants : la saisie, le calcul ou les appréciations, qu'est-ce qui vous coûte le plus ?
+
+#Enseignement #Éducation #Professeur #Organisation

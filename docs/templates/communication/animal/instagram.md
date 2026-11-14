@@ -90,3 +90,23 @@ Démo libre et contact : lien en bio.
 Chez vous, qui pense au vermifuge : vous, le calendrier ou le vétérinaire ?
 
 #AnimauxDeCompagnie #Organisation #Maison #Budget #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-85
+
+Doc : https://docs.google.com/document/d/1JdcC7IRwsNDDemWsdX5g_FBYDAs-MNLvYZNjl_5bAw0/edit
+
+Son vermifuge, c'était quand ? Trois choses à noter pour ne plus se poser la question.
+
+1. La date du dernier soin et l'intervalle donné par votre vétérinaire : l'outil en déduit la prochaine échéance.
+2. Chaque pesée : la courbe de poids se trace, sans interprétation.
+3. Chaque visite, traitement et frais : classés par mois et par an.
+
+C'est tout ce que demande le Suivi d'un animal de compagnie. Aucun calendrier de vaccins n'est intégré : votre vétérinaire décide, l'outil calcule, et il ne remplace pas son avis. Carnet imprimable pour la pension. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois animaux fictifs : lien en bio. À enregistrer pour la prochaine visite.
+
+Chez vous, qui pense au vermifuge : vous, le calendrier ou le vétérinaire ?
+
+#AnimauxDeCompagnie #Organisation #Maison #Chien

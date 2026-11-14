@@ -90,3 +90,21 @@ Démo libre et contact : lien en bio. À envoyer à un collègue qui prépare se
 Vos moyennes, vous les calculez avec quoi aujourd'hui ?
 
 #Enseignant #Professeur #Éducation #Organisation #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-80
+
+Doc : https://docs.google.com/document/d/1zudIxvKd2CS7CZfAxWElIhipJl2wZUJiDEowxLdL0-I/edit
+
+Avant : la note, le tableur, la calculette. Après : la note, Entrée, l'élève suivant.
+
+Avant, en fin de trimestre, on reprend tout : plusieurs classes, des barèmes différents, une moyenne à refaire au moindre coefficient.
+
+Après, avec la Gestion de classe, la saisie se fait au clavier ou sur téléphone, les moyennes pondérées et les statistiques de la classe se calculent seules, et les compétences se positionnent sur quatre échelons, avec une aide pour composer les appréciations.
+
+Prénom et initiale des élèves, rien de plus. Vérifiez avec votre établissement avant d'y saisir des données réelles. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois classes fictives : lien en bio. À envoyer à un collègue avant les conseils de classe.
+
+#Enseignant #Professeur #Éducation #Organisation

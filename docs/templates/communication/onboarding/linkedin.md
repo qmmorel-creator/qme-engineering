@@ -137,3 +137,26 @@ Lien d'achat en premier commentaire.
 RH, managers : lors du dernier départ dans votre équipe, qu'est-ce qui a été oublié ?
 
 #RessourcesHumaines #Onboarding #PME #Management #Organisation
+
+## Version finale (15/11/2026) · LI-115
+
+Doc : https://docs.google.com/document/d/1ggbwMNvRJixPteh5M4lOR6gEvnfUFThSJXoIUuzsBQ8/edit
+
+Une arrivée préparée le jour J, ou quinze jours avant : la différence se voit au badge, au poste et aux accès.
+
+Option 1, le jour J. Le nouveau salarié arrive, et l'on découvre ensemble que le badge n'est pas prêt, que les accès attendent une validation et que le téléphone est encore dans son carton. Au départ, c'est l'inverse : le matériel non rendu se remarque des semaines plus tard.
+
+Option 2, une checklist datée. Une arrivée, c'est une vingtaine de petites tâches réparties entre les RH, le manager, l'informatique et les services généraux, chacune à son moment : avant le premier jour, le jour même, la première semaine, le premier mois. Un départ en compte autant, dans l'autre sens.
+
+C'est la seconde que j'ai construite :
+▪ la checklist de chaque arrivée ou départ se crée depuis des modèles par profil (poste de bureau, poste terrain, manager, alternant), chaque tâche avec son responsable et son échéance, de J-15 à J+90 ;
+▪ chaque semaine, chaque responsable voit ce qu'il doit faire, retards en tête ;
+▪ le matériel remis à l'arrivée est suivi, et ce qui n'est pas rendu au départ est signalé.
+
+Les modèles se modifient. Quelques repères réglementaires sont rattachés aux tâches, avec leur source et leur date, à vérifier. Côté données, le minimum : prénom et initiale, poste, dates.
+
+L'outil sera bientôt en vente. Démo avec une PME fictive, sans inscription : https://qm-engineering.fr/templates/onboarding/?demo
+
+RH, managers : lors du dernier départ dans votre équipe, qu'est-ce qui a été oublié ?
+
+#RessourcesHumaines #Onboarding #PME #Management
