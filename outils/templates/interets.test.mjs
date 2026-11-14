@@ -10,7 +10,7 @@ test('modules : un par template, slug → nom', () => {
   assert.equal(MODULES.flotte, 'Gestion de flotte de véhicules');
   assert.equal(MODULES.revision, 'Planning de révision');
   assert.equal(MODULES['secret-santa'], 'Secret Santa');
-  assert.equal(Object.keys(MODULES).length, 45);
+  assert.equal(Object.keys(MODULES).length, 49);
   assert.equal(MODULES.sinistre, 'Dossier sinistre habitation');
   assert.equal(MODULES.patrimoine, 'Inventaire valorisé');
   assert.equal(MODULES['temps-de-vie'], 'Temps de vie');
