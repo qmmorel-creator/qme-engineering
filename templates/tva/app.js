@@ -485,7 +485,7 @@
     const rouges = CTL.filter((c) => c.gravite === 'rouge').length, jaunes = CTL.filter((c) => c.gravite === 'jaune').length;
     const tuiles = [
       tuile(`En cours · ${esc(p.libelle)}`, p.creditFin > 0 ? `− ${eur0(p.creditFin)}` : eur0(p.aPayer), p.creditFin > 0 ? 'Crédit à ce jour (rien à payer)' : `Collectée ${eur0(p.collectee)} · déductible ${eur0(p.deductible)}`, 'var(--bleu)', 'rond'),
-      tuile('Prochaine échéance', prochaine ? esc(dC(prochaine.date).slice(0, 5)) : '—', prochaine ? `${esc(prochaine.libelle)} · ${(prochaine.montantDeclare ?? prochaine.montant) ? eur((prochaine.montantDeclare ?? prochaine.montant)) : 'rien à payer'}` : 'Aucune échéance', prochaine?.statut === 'retard' ? 'var(--rouge)' : 'var(--jaune)'),
+      tuile(prochaine?.statut === 'retard' ? 'Échéance en retard' : 'Prochaine échéance', prochaine ? esc(dC(prochaine.date).slice(0, 5)) : '—', prochaine ? `${esc(prochaine.libelle)} · ${(prochaine.montantDeclare ?? prochaine.montant) ? eur((prochaine.montantDeclare ?? prochaine.montant)) : 'rien à payer'}` : 'Aucune échéance', prochaine?.statut === 'retard' ? 'var(--rouge)' : 'var(--jaune)'),
       tuile('Crédit reporté', eur0(dernierClos?.creditReporte || 0), dernierClos ? `À fin ${esc(dernierClos.libelle)}` : 'Aucune période close', 'var(--encre)', 'rond'),
       tuile('Contrôles', String(rouges + jaunes), rouges ? `${pluriel(rouges, 'point')} à corriger, ${jaunes} à vérifier` : jaunes ? `${pluriel(jaunes, 'point')} à vérifier` : 'Rien à signaler', rouges ? 'var(--rouge)' : 'var(--encre)'),
     ].join('');
