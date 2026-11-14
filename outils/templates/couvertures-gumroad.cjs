@@ -50,6 +50,7 @@ const T = {
   'epargne': ["Objectif d'épargne · fonds d'urgence", "Chaque euro a un but.", "Fonds d'urgence en mois de dépenses · date d'atteinte · scénarios"],
   'pilotage-pme': ["Tableau de bord de pilotage PME", "Tes chiffres, face à tes objectifs.", "45 indicateurs expliqués · écarts · alertes · revue du mois"],
   'gestion-locative': ["Gestion locative", "Tes loyers, sans tableur.", "Quittances · relances · révision IRL · charges · rendement"],
+  'suivi-chantier': ["Suivi de chantier par lot", "Chaque lot tenu, du marché au solde.", "Avenants · situations · jalons recalés · revue de projet"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

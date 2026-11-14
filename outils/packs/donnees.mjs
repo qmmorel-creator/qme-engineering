@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
   GRT: { slug: 'gestion-locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.', pour: 'perso' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
@@ -57,7 +58,6 @@ export const TEMPLATES = {
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
-  CHT: { nom: 'Suivi de chantier par lot', prix: 4000, phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
@@ -166,9 +166,10 @@ export const PAGES = {
       ['VSA', 'Tenez le registre des visas : indices, avis, délais contractuels, relances.'],
       ['NCF', 'Traitez les non-conformités jusqu’à la vérification de l’action corrective.'],
       ['RSV', 'Levez les réserves par lot et par entreprise, PV prêt à imprimer.'],
+      ['CHT', 'Pilotez chaque lot : marché, avenants, situations de travaux et jalons recalés.'],
     ],
     arguments: ['Le vocabulaire et les usages du BTP (lots, VSO / VAO / REF, OPR)', 'Construit par un chef de projet qui tient ces registres au quotidien', 'Une clé pour l’opération, sur ordinateur au bureau et sur téléphone au chantier'],
-    prevus: ['CHT', 'RDE', 'STR'],
+    prevus: ['RDE', 'STR'],
   },
   PPE: {
     couleur: 'bleu', cibles: ['tpe', 'office'],

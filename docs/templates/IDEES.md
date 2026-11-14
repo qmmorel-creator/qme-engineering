@@ -101,6 +101,8 @@ déjà).
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
@@ -256,7 +258,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
-| Chef de projet BTP | PBT | T02, T24, T32, T25, T31 | T23, T75, T76 | 158 € | 25 % | 118 € | 30 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T75, T76 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34 | T47, T77, T78 | 136 € | 25 % | 102 € | 26 € |
 | Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T81, T82, T83 | 89 € | 25 % | 66 € | 17 € |
@@ -517,6 +519,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
 | T13 | `epargne` | EPG | objectif-epargne (prévu) |
 | T27 | `gestion-locative` | GRT | gestion-locative (prévu) |
+| T23 | `suivi-chantier` | CHT | suivi-chantier-lot (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -796,7 +799,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T20 | Animal de compagnie : soins, poids, frais | Calendrier vaccinal et antiparasitaire chien et chat | — | **médical** (vétérinaire) : avertissement ; source à vérifier. **daté** : recommandations vaccinales révisées, source datée ou paramétrable. |
 | T21 | Planificateur de voyage : itinéraire par étapes, lieu de chaque nuit (hébergement, adresse, arrivée/départ, statut réservé ou à réserver, montant et acompte), activités par jour avec horaire et prix, transports entre étapes, vue jour par jour et carte texte des étapes, budget prévu/réel par poste et par personne, dépenses partagées et « qui doit quoi », listes de bagages, documents à prévoir (cases à cocher) | Listes de bagages par type de séjour ; postes de budget | — | Demande Quentin 13/11/2026 fusionnée (planificateur de voyage). Dépenses partagées : moteur commun avec T65. Aucune réservation ni lien vers une plateforme : saisie et impression uniquement. Formalités (passeport, visa, santé) : renvoi à vérifier sur les sources officielles, rien d'intégré. Argent : avertissement. |
 | T22 | Tableau de bord annuel : roue de vie, objectifs par domaine, actions trimestrielles, score, bilan | Domaines de vie, méthode OKR | Constellations de vie, roue d'action, objectifs et tâches (outil interne) | Backlog n° 50 : 15 €, S, P3. |
-| T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : module ou produit séparé, à trancher. **RGPD** (intervenants, sous-traitants). |
+| T23 | Suivi de chantier par lot : jalons contractuels, avenants, échéancier de paiement, non-conformités, journal de chantier, intempéries, sous-traitants, risques, courriers et ordres de service, synthèse financière | Découpage type en lots, jalons et pièces contractuelles types, typologie des non-conformités et des risques, modèle de revue de projet | Suivi de projet (artefact professionnel) | **confidentiel** : structure seulement, aucune donnée de l'artefact ; exemples fictifs. Avec T24 et T25, le plus différenciant (expérience de chef de projet de Quentin). Proche de T32 (levée de réserves) : **produit séparé** (tranché le 14/11/2026, voir « Fiche T23 » en fin de fichier). **RGPD** (intervenants, sous-traitants). |
 | T24 | Circuit de visa : registre des documents soumis par lot, indices de révision, avis (sans observation, avec observations, refusé), délais contractuels, relances, vue chef de projet, tableau de bord | Types de documents par lot, codes de visa (VSO, VAO, REF), lots BTP types, délais de réponse paramétrables | Circuit de visa, registre et fiche visa (artefacts professionnels) | Backlog n° 05 fusionné (même produit). Format : application + modèle tableur. Niche solvable ; vocabulaire métier à respecter. **confidentiel** : structure seulement ; exemples fictifs. Moteur d'échéances commun avec T63. |
 | T25 | Registre des non-conformités : constat, gravité, cause, action corrective, vérification, clôture, indicateurs | Typologie des écarts, méthode des 5 pourquoi, grille de gravité | Non-conformités de fabrication et de réalisation (artefact professionnel) | **confidentiel** : structure seulement ; exemples fictifs. Produit d'appel de T23 ; même moteur que T32 (réserves). |
 | T26 | Notes de frais : saisie, justificatifs, statut de remboursement, barème kilométrique, récapitulatif et export mensuels (PDF) | Catégories de frais ; barème kilométrique saisi par l'utilisateur | Notes de frais (outil interne), Ma voiture en leasing | Backlog n° 19 fusionné. **daté** : barème kilométrique fiscal, saisi par l'utilisateur ou mis à jour chaque année avec source ; **fiscal**. Justificatifs : stockage de fichiers à prévoir. |
@@ -1049,3 +1052,23 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+## Fiche T23 · Suivi de chantier par lot (`templates/suivi-chantier/`, préfixe CHT)
+
+Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/suivi-chantier.md`.
+- Périmètre tranché : **produit séparé** de T32 (réserves) et de T25 (non-conformités). Pilotage contractuel
+  et financier par lot (marché, avenants, situations de travaux, échéancier, jalons, journal et intempéries,
+  sous-traitants, risques, courriers et ordres de service, synthèse financière, revue de projet) avec un
+  registre de non-conformités simplifié qui renvoie vers T25 et T32.
+- Base intégrée : découpage type en 20 lots, 15 jalons types, 12 pièces de marché, typologies des
+  non-conformités (10) et des risques (10), modèle de revue de projet. **Aucun indice, taux ou délai
+  réglementaire** : retenue (5 % par défaut), délai de paiement, coefficient de révision K et pénalités
+  saisis d'après le marché. Deux repères juridiques cités « à vérifier sur Légifrance » (lois du 16/07/1971
+  et du 31/12/1975), non consultés.
+- **Confidentiel** : structure seulement, démo entièrement fictive. **RGPD** : intervenants limités à des
+  coordonnées professionnelles, rappel dans l'application.
+- Statut : prêt le 14/11/2026 (branche locale, non poussée), « Mise en vente prochaine » (démo libre, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du thème « Projets et chantiers »). Communication prête
+  dans `communication/suivi-chantier/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et carrousel
+  PNG, prospects.md, section-site.html). Reste : confirmation du nom et du prix, création de la fiche
+  Gumroad (non ajoutée à `communication/gumroad-a-creer.json`, fichier partagé), clé de licence (Quentin),
+  lignes des plannings LinkedIn et Instagram, passage en vente du site.

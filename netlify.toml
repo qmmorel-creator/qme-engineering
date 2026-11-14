@@ -577,3 +577,14 @@
   for = "/templates/gestion-locative/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/suivi-chantier/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/suivi-chantier/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
