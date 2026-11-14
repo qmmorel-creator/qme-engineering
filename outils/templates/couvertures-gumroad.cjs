@@ -51,6 +51,7 @@ const T = {
   'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
   'bascule': ["Pilotage d'une journée de bascule", "Ta bascule, minute par minute.", "Go/no-go · retour arrière · retard en direct"],
   'gestion-classe': ["Gestion de classe", "Tes classes, de la note au bulletin.", "Notes · compétences · appréciations · bulletins"],
+  'emploi-du-temps': ["Emploi du temps d'établissement", "Ton planning, sans conflit.", "Groupes · formateurs · salles · heures suivies"],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
 };
