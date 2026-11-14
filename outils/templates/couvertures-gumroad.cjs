@@ -80,6 +80,7 @@ const T = {
   'calendrier-editorial': ["Calendrier éditorial", "Publier chaque semaine, sans chercher quoi dire.", "Piliers · banque de sujets · calendrier · statistiques · régularité"],
   'entretiens-annuels': ["Entretiens annuels et professionnels", "Aucun entretien oublié.", "Échéances par salarié · trames · objectifs et formations suivis"],
   'document-unique': ['Document unique d’évaluation des risques', 'Tes risques évalués, ton document à jour.', 'Unités de travail · cotation G × P · plan d’actions · versions datées'],
+  notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

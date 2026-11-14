@@ -211,6 +211,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   annuel dès 50 salariés), événements, versions archivées et figées, document imprimable. Obligations selon
   l'effectif sourcées et datées (service-public.gouv.fr et INRS, consultés le 14/11/2026 : à revérifier chaque
   année). Règles dans `regles.js`, tests `outils/templates/document-unique.test.mjs`.
+- `templates/notes/` (NTS) : **notes et moyennes** (T88), prêt, « Mise en vente prochaine » (12 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/notes/gumroad.json`). Années, semestres ou trimestres, UE et
+  matières avec coefficients ou crédits ECTS, notes avec barème et coefficient propres (sur 20, 10, 100 ou lettres),
+  moyennes pondérées comparées aux seuils au centième, règles du diplôme saisies (compensation totale, par UE ou
+  aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions), note nécessaire aux épreuves à
+  venir (dichotomie), courbe de la moyenne, relevé imprimable, export CSV. Aucun barème officiel intégré. Règles dans
+  `regles.js`, tests `outils/templates/notes.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
