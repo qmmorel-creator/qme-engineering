@@ -236,7 +236,7 @@ footer a{font-weight:600;color:var(--encre)}
 .produit-visuel .ecran{position:relative;z-index:1;border:2px solid var(--encre);border-bottom:0;width:88%;box-shadow:6px 0 0 var(--encre)}
 .produit-visuel .tel{position:absolute;z-index:2;right:22px;bottom:-30px;width:27%;border:2px solid var(--encre);border-radius:18px;box-shadow:6px 6px 0 var(--encre)}
 .produit-texte{padding:24px 24px 26px;display:flex;flex-direction:column;gap:12px}
-.produit-texte h3{font-size:32px}
+.produit-texte h2,.produit-texte h3{font-size:32px}
 .produit-texte>p{color:var(--texte-2);font-size:16px}
 .prix{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-top:4px;padding-top:14px;border-top:2px solid var(--encre)}
 .prix b{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
@@ -300,7 +300,7 @@ footer a{font-weight:600;color:var(--encre)}
   .produit,.portes{box-shadow:none}
   .produit-visuel{padding:18px 18px 0}
   .produit-visuel .tel{width:32%;right:12px;bottom:-20px;border-radius:12px}
-  .produit-texte h3{font-size:26px}
+  .produit-texte h2,.produit-texte h3{font-size:26px}
   .galerie{grid-template-columns:1fr}
   .porte b{font-size:24px}
   .acces{box-shadow:none;padding:18px}
@@ -457,7 +457,7 @@ main>.section:first-child,main>.docs-band+.section{border-top:0}
 .suite-pages a{display:flex;flex-direction:column;gap:8px;padding:20px;border:2px solid var(--encre);background:var(--surface);text-decoration:none}
 .suite-pages a:nth-child(1){border-top:8px solid var(--bleu)}.suite-pages a:nth-child(2){border-top:8px solid var(--rouge)}.suite-pages a:nth-child(3){border-top:8px solid var(--jaune)}
 .suite-pages a:hover{background:#fff}
-.suite-pages .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret)}
+.suite-pages .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
 .suite-pages b{font-size:22px;line-height:1.15;letter-spacing:-.02em}
 .suite-pages .fleche{margin-top:auto;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start}
 .fil{max-width:var(--max);margin:0 auto;padding:20px 16px 0;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:var(--discret)}
