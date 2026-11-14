@@ -403,17 +403,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/templates/pilotage-pme/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/pilotage-pme/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
   for = "/templates/gestion-classe/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -421,17 +410,6 @@
 
 [[headers]]
   for = "/templates/gestion-classe/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/templates/maintenance/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/maintenance/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 
