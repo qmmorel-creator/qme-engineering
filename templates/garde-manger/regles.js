@@ -217,10 +217,10 @@
     }
     return [...groupes.entries()].map(([nom, l]) => `${nom}\n${l.map((x) => `- ${x}`).join('\n')}`).join('\n\n');
   }
-  // Produits épuisés récemment (consommés en entier) qui ne sont ni en stock ni sur la liste : suggestions.
+  // Produits finis récemment qui ne sont ni en stock ni sur la liste (même cochés) : suggestions.
   function suggestionsCourses(etat, auj, jours = 30) {
     const enStock = new Set((etat.produits || []).map((p) => plat(p.nom)));
-    const surListe = new Set((etat.courses || []).filter((c) => !c.fait).map((c) => plat(c.nom)));
+    const surListe = new Set((etat.courses || []).map((c) => plat(c.nom))); // cochés compris : déjà achetés
     const vus = new Set();
     const l = [];
     for (const s of [...(etat.sorties || [])].sort((a, b) => b.date.localeCompare(a.date))) {

@@ -219,6 +219,7 @@ test('courses : ajout sans doublon, texte groupé, suggestions des produits épu
     { id: 's4', date: '2026-09-01', type: 'consomme', produit: 'Café', categorie: 'epicerie' },
     { id: 's5', date: '2026-11-13', type: 'consomme', produit: 'Œufs', categorie: 'oeufs' },
     { id: 's6', date: '2026-11-13', type: 'consomme', produit: 'Tomates', categorie: 'fruits' },
+    { id: 's7', date: '2026-11-13', type: 'consomme', produit: 'Pain', categorie: 'epicerie' }, // coché sur la liste
   ];
   assert.deepEqual(simple(R.suggestionsCourses(e, AUJ)), [{ nom: 'beurre', categorie: 'laitier', date: '2026-11-13' }]);
 });
