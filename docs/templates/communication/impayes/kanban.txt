@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="impayes" data-pour="pro" data-theme="clients-et-prospection" style="--c:var(--encre)"><a href="/catalogue/impayes/"><b>Relance des impayés</b><span class="phrase">Retard en jours, pénalités et relances par palier.</span><span class="theme">Clients et prospection</span><em>Bientôt</em></a></li>
