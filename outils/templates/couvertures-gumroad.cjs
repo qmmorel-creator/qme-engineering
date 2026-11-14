@@ -48,6 +48,7 @@ const T = {
   'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
   'voiture': ["Carnet de voiture", "Ta voiture, entretenue à temps.", "Entretiens · kilométrage · dépenses"],
   'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
+  'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
