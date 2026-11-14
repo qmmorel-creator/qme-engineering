@@ -55,6 +55,7 @@ export const PRODUITS = {
   SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/' },
+  EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

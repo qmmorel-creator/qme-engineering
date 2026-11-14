@@ -46,6 +46,7 @@ export const TEMPLATES = {
   PHR: { slug: 'planner', prix: 1500, phrase: 'Votre semaine en blocs de 30 minutes, prévu et réalisé.', pour: 'perso' },
   ENT: { slug: 'entretien', prix: 1200, phrase: 'Chaudière, ramonage, VMC : échéances calculées.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
+  EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -54,7 +55,6 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   CHT: { nom: 'Suivi de chantier par lot', prix: 4000, phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
-  EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   TDB: { nom: 'Tableau de bord de pilotage PME', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
@@ -183,7 +183,7 @@ export const PAGES = {
       ['TRS', 'Anticipez la trésorerie sur douze mois, salaires et charges compris.'],
     ],
     arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Planning d’équipe, tableau de bord, entretiens et document unique à venir, avec l’option Pack évolutif'],
-    prevus: ['EQP', 'TDB', 'ENP', 'DRP'],
+    prevus: ['TDB', 'ENP', 'DRP'],
   },
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],
