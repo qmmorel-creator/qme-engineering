@@ -8,8 +8,8 @@
 // Aucun code n'est stocké : la signature suffit à le valider. Un code se révoque en
 // listant son identifiant (les 8 caractères aléatoires) dans TEMPLATES_CODES_REVOQUES.
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
-import { PACKS, SUR_MESURE } from './packs.mjs';
-export { PACKS, SUR_MESURE };
+import { PACKS, SUR_MESURE, ACHAT_SUR_MESURE, compositionDepuisAchat, prixComposition } from './packs.mjs';
+export { PACKS, SUR_MESURE, ACHAT_SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
@@ -129,7 +129,7 @@ export async function verifierLicenceGumroad(produitGumroad, licence, fetchImpl 
   if (!r.ok || !corps.purchase) throw new Error(`Gumroad ${r.status}`);
   const a = corps.purchase;
   if (a.refunded || a.chargebacked || a.disputed) return { ok: false, raison: 'rembourse' };
-  return { ok: true };
+  return { ok: true, achat: { price: a.price, currency: a.currency, custom_fields: a.custom_fields } };
 }
 
 // --- Packs -----------------------------------------------------------------------------------------
@@ -175,6 +175,13 @@ export function verifierCodePack(secret, saisie, revoques = []) {
   if (revoques.map(normaliser).includes(id)) return null;
   const produits = pack === SUR_MESURE ? compo.match(/.{3}/g) : PACKS[pack].produits;
   return { pack, id, produits: produits.filter((p) => PRODUITS[p]) };
+}
+
+// Code de pack sur mesure déterministe associé à une clé Gumroad du produit « Pack sur mesure ».
+export function codeSurMesureDepuisLicence(secret, licence, compo) {
+  const id = base32(createHmac('sha256', secret).update(`gumroad-smp:${licence.trim().toUpperCase()}:${compo.join('')}`).digest().subarray(0, 5));
+  const sig = signerPack(secret, SUR_MESURE, compo.join(''), id);
+  return `${SUR_MESURE}-${compo.join('')}-${id.slice(0, 4)}-${id.slice(4)}-${sig.slice(0, 4)}-${sig.slice(4)}`;
 }
 
 // Code du template `produit` ouvert par le pack (pack, id).
@@ -234,13 +241,22 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS)].filter(([, p]) => p.gumroad);
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE]].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
     if (trouve >= 0) {
       const [cle] = candidats[trouve];
-      code = PACKS[cle] ? codePackDepuisLicence(secret, cle, code) : codeDepuisLicence(secret, cle, code);
+      if (cle === SUR_MESURE) {
+        // Pack sur mesure : composition lue dans l'achat, montant payé contrôlé contre le barème.
+        const achat = reponses[trouve].value.achat;
+        const compo = compositionDepuisAchat(achat, PRODUITS);
+        if (compo.length < 2) return json(422, { erreur: 'Pack sur mesure : la liste des templates est introuvable dans l’achat. Écrivez à quentin.morel@qm-engineering.fr.' });
+        if (String(achat?.currency || '').toLowerCase() !== 'eur' || Number(achat?.price) < prixComposition(compo)) {
+          return json(403, { erreur: 'Pack sur mesure : le montant payé ne correspond pas aux templates choisis. Écrivez à quentin.morel@qm-engineering.fr.' });
+        }
+        code = codeSurMesureDepuisLicence(secret, code, compo);
+      } else code = PACKS[cle] ? codePackDepuisLicence(secret, cle, code) : codeDepuisLicence(secret, cle, code);
     }
     else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {
       return json(502, { erreur: 'Vérification de la licence impossible pour le moment. Réessaie dans un instant.' });

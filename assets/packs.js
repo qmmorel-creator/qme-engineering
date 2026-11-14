@@ -42,10 +42,21 @@
       if (pack) conseils.push(`Le ${pack.nom} contient tout votre choix${pack.produits.length > liste.length ? ', et plus encore,' : ''} pour ${euros(pack.prix)}. <a href="/packs/${pack.slug}/">Voir ce pack</a>.`);
       if (liste.some((t) => t.statut !== 'vente')) conseils.push('Certains templates choisis sont en mise en vente prochaine : leur démo est déjà ouverte.');
       $('[data-conseil]').innerHTML = conseils.join(' ');
-      const ok = liste.length >= 2;
+      // Achat en ligne réservé aux templates déjà en vente (règle : pas de bouton Acheter avant la mise en vente).
+      const bientot = liste.filter((t) => t.statut !== 'vente');
+      if (D.achat && bientot.length) conseils.push(`Pour acheter maintenant, retirez ${bientot.length > 1 ? 'les templates marqués « Bientôt »' : 'le template marqué « Bientôt »'}, ou cliquez sur « Je suis intéressé(e) ».`);
+      $('[data-conseil]').innerHTML = conseils.join(' ');
+      const ok = liste.length >= 2 && !(D.achat && bientot.length);
       commander.setAttribute('aria-disabled', String(!ok));
       const corps = `Bonjour,\n\nJe souhaite commander un pack sur mesure :\n${liste.map((t) => `- ${t.nom} (${euros(t.prix)})`).join('\n')}\n\nAchat séparé : ${euros(p.valeur)}\nRemise : ${p.pct} %\nPrix du pack : ${euros(p.prix)}\n\nMerci de m'envoyer le lien de paiement.\n`;
-      commander.href = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Pack sur mesure (${liste.length} templates, ${euros(p.prix)})`)}&body=${encodeURIComponent(corps)}`;
+      if (D.achat) {
+        // Prix libre et champ « Templates » pré-remplis ; le serveur recontrôle le montant à la connexion.
+        const u = new URL(D.achat.url);
+        u.searchParams.set('wanted', 'true');
+        u.searchParams.set('price', String(p.prix / 100));
+        u.searchParams.set(D.achat.champ, liste.map((t) => t.pre).join(','));
+        commander.href = u.href;
+      } else commander.href = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Pack sur mesure (${liste.length} templates, ${euros(p.prix)})`)}&body=${encodeURIComponent(corps)}`;
       majAdresse(liste);
     }
     const depart = (new URLSearchParams(location.search).get('t') || '').split(',');

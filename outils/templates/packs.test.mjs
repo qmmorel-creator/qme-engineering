@@ -104,3 +104,25 @@ test('le site connaît tous les packs : connexion, pages générées, textes', a
   }
   for (const pre of Object.keys(PRODUITS)) if (pre !== 'SNT') assert.ok(TEMPLATES[pre], `fiche courte du template ${pre} dans outils/packs/donnees.mjs`);
 });
+
+test('achat Gumroad du pack sur mesure : composition lue dans l’achat, montant contrôlé', async () => {
+  const { ACHAT_SUR_MESURE } = await import('../../netlify/lib/templates-acces.mjs');
+  const { compositionDepuisAchat } = await import('../../netlify/lib/packs.mjs');
+  assert.deepEqual(compositionDepuisAchat({ custom_fields: ['Templates: bdg, ABN,DTT, ZZZ, BDG'] }, PRODUITS), ['BDG', 'ABN', 'DTT']);
+  assert.deepEqual(compositionDepuisAchat({ custom_fields: { Templates: 'TJM PRX' } }, PRODUITS), ['TJM', 'PRX']);
+  const LICENCE = '0A1B2C3D-4E5F6071-8293A4B5-C6D7E8F9';
+  ACHAT_SUR_MESURE.gumroad = 'pack-smp';
+  try {
+    const achat = (price, custom_fields = ['Templates: BDG,ABN,DTT']) => async (produit) => produit === 'pack-smp' ? { ok: true, achat: { price, currency: 'eur', custom_fields } } : { ok: false, raison: 'inconnue' };
+    // BDG 15 + ABN 12 + DTT 12 = 39 € ; −15 % → 33,15 → 33 €.
+    const ok = await connexion(LICENCE, { verifierLicence: achat(3300) });
+    assert.equal(ok.status, 200);
+    const j = await ok.json();
+    assert.equal(j.pack, SUR_MESURE);
+    assert.deepEqual(j.templates.map((t) => t.produit), ['BDG', 'ABN', 'DTT']);
+    const j2 = await (await connexion(LICENCE, { verifierLicence: achat(3300) })).json();
+    assert.equal(j2.code, j.code);
+    assert.equal((await connexion(LICENCE, { verifierLicence: achat(3200) })).status, 403);
+    assert.equal((await connexion(LICENCE, { verifierLicence: achat(3300, ['Templates: BDG']) })).status, 422);
+  } finally { delete ACHAT_SUR_MESURE.gumroad; }
+});

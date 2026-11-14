@@ -5,7 +5,7 @@
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
-import { PACKS, REMISES, prixPack } from '../../netlify/lib/packs.mjs';
+import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE } from '../../netlify/lib/packs.mjs';
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
@@ -230,6 +230,7 @@ function pageComposer(packs) {
     .sort((a, b) => a.pour.localeCompare(b.pour) || a.nom.localeCompare(b.nom, 'fr'));
   const donnees = {
     remises: REMISES,
+    achat: ACHAT_SUR_MESURE.permalien ? { url: GUMROAD + ACHAT_SUR_MESURE.permalien, champ: ACHAT_SUR_MESURE.champ } : null,
     templates: liste.map(({ pre, nom, prix, statut, pour, slug }) => ({ pre, nom, prix, statut, pour, slug })),
     packs: packs.map((p) => ({ slug: p.slug, nom: p.nom, produits: p.templates.map((t) => t.pre), prix: p.prix })),
   };
@@ -265,10 +266,10 @@ function pageComposer(packs) {
       </dl>
       <p class="conseil" data-conseil aria-live="polite"></p>
       <div class="actions">
-        <a class="btn primary" data-commander href="mailto:quentin.morel@qm-engineering.fr" aria-disabled="true">Demander ce pack</a>
+        <a class="btn primary" data-commander href="mailto:quentin.morel@qm-engineering.fr" aria-disabled="true">${ACHAT_SUR_MESURE.permalien ? 'Acheter ce pack' : 'Demander ce pack'}</a>
         <button class="btn interet" type="button" data-interet="pack-sur-mesure">Je suis intéressé(e)</button>
       </div>
-      <p class="interet-note" data-interet-note="pack-sur-mesure" role="status" aria-live="polite">Le paiement en ligne du pack sur mesure arrive bientôt. En attendant, « Demander ce pack » prépare un e-mail avec votre sélection : vous recevez un lien de paiement, puis une clé unique qui ouvre tous vos templates.</p>
+      <p class="interet-note" data-interet-note="pack-sur-mesure" role="status" aria-live="polite">${ACHAT_SUR_MESURE.permalien ? 'Paiement sécurisé par Gumroad. Vous recevez une clé unique : collée sur la page Connexion, elle ouvre tous les templates choisis.' : 'Le paiement en ligne du pack sur mesure arrive bientôt. En attendant, « Demander ce pack » prépare un e-mail avec votre sélection : vous recevez un lien de paiement, puis une clé unique qui ouvre tous vos templates.'}</p>
     </aside>
   </div>
 </section>

@@ -1,3 +1,5 @@
+import { TEMPLATES } from '../../outils/packs/donnees.mjs';
+
 // Packs de templates QME : une seule clé ouvre plusieurs templates.
 //
 // Source unique côté serveur (codes de pack, licences Gumroad des packs) et côté site (générateur des pages
@@ -42,3 +44,24 @@ export const PACKS = {
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.
 export const SUR_MESURE = 'SMP';
+
+// Achat du pack sur mesure sur Gumroad (vérifié le 14/11/2026 dans l'aide Gumroad) : un produit unique
+// « Pack sur mesure » à prix libre, avec clé de licence et un champ personnalisé « Templates ». La page
+// /packs/composer/ envoie l'acheteur sur …/l/<permalien>?wanted=true&price=<euros>&Templates=<préfixes>
+// (pré-remplissage du prix libre et du champ). À la connexion, l'API de vérification de licence renvoie
+// le prix payé (`price`, en centimes) et `custom_fields` : le serveur en tire la composition et refuse
+// si le montant payé est inférieur au prix du barème. `gumroad` : identifiant du produit, une fois créé.
+// Réglages Gumroad à faire à la main : prix libre (minimum 12 €), champ « Templates » obligatoire, clé de
+// licence, parité de pouvoir d'achat désactivée pour ce produit, aucun code de réduction applicable.
+export const ACHAT_SUR_MESURE = { gumroad: undefined, permalien: undefined, champ: 'Templates' };
+
+
+// Composition lue dans les champs personnalisés d'un achat (format tolérant : tableau de textes
+// « Templates: BDG, ABN », tableau d'objets ou objet), limitée aux templates connus, sans doublon.
+export function compositionDepuisAchat(achat, connus) {
+  const texte = JSON.stringify(achat?.custom_fields ?? '').toUpperCase();
+  return [...new Set((texte.match(/\b[A-Z]{3}\b/g) || []).filter((p) => connus[p] && TEMPLATES[p]))];
+}
+
+// Prix du barème pour une composition (centimes), d'après les prix unitaires de outils/packs/donnees.mjs.
+export const prixComposition = (compo) => prixPack(compo.map((p) => TEMPLATES[p].prix)).prix;

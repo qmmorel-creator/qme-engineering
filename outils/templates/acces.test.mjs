@@ -98,7 +98,7 @@ test('une licence ne sert jamais directement d\'en-tête de données', async () 
 test('réponses Gumroad interprétées', async () => {
   const faux = (statut, corps) => async () => new Response(JSON.stringify(corps), { status: statut });
   assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(404, { success: false })), { ok: false, raison: 'inconnue' });
-  assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(200, { success: true, purchase: { refunded: false } })), { ok: true });
+  assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(200, { success: true, purchase: { refunded: false, price: 1200, currency: 'eur', custom_fields: [] } })), { ok: true, achat: { price: 1200, currency: 'eur', custom_fields: [] } });
   assert.deepEqual(await verifierLicenceGumroad('p', LICENCE, faux(200, { success: true, purchase: { refunded: true } })), { ok: false, raison: 'rembourse' });
   await assert.rejects(verifierLicenceGumroad('p', LICENCE, faux(500, {})));
 });
