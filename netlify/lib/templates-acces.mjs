@@ -91,6 +91,7 @@ export const PRODUITS = {
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/' },
   RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
   ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/' },
+  SBV: { nom: 'Subventions', url: '/templates/subventions/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
