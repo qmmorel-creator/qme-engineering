@@ -417,6 +417,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   remboursement anticipé (durée ou mensualité, indemnités au plafond de l'article R313-25 du Code de la consommation,
   saisies ou nulles) ; export CSV, impression. Aucun taux de marché intégré. Règles dans `regles.js`, tests
   `outils/templates/emprunt.test.mjs`, page `catalogue/emprunt/`, démo `/templates/emprunt/?demo`.
+- `templates/benevoles/` (BNV) : **bénévoles et planning des créneaux** (T92), prêt, « Mise en vente prochaine » (19 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/benevoles/gumroad.json`). Annuaire des bénévoles
+  (coordonnées minimales, compétences, postes préférés), événements créés depuis 6 modèles (33 postes types, créneaux
+  types avec besoin en personnes), réponses par événement avec plages, affectation manuelle ou suggérée (disponible,
+  compétence, équité de charge) et remplissage automatique des trous, conflits (double affectation, indisponible, sans
+  pause, journée trop longue, compétence manquante ; repères choisis par l'association, aucune règle légale), plannings
+  A4 par poste et par personne, message à copier par bénévole (rien n'est envoyé), bilan des heures, duplication d'un
+  événement, export CSV ; RGPD : export, effacement, bénévoles inactifs signalés selon la durée choisie. Une clé
+  partagée par les responsables, saisies fusionnées. Pas d'inscription en ligne en V1. Règles dans `regles.js`, tests
+  `outils/templates/benevoles.test.mjs`. Version anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

@@ -167,7 +167,7 @@ déjà).
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) ; fiche [`fiches/benevoles.md`](fiches/benevoles.md) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
@@ -1005,7 +1005,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
 | T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
 | T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
-| T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
+| T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. Fiche `fiches/benevoles.md` (cadrage délégué par Quentin, 14/11/2026) ; prêt le 14/11/2026 (`templates/benevoles/`, BNV). |
 | T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
 | T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
 | T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
@@ -1905,3 +1905,33 @@ régénérer les pages des packs à la fusion.
   entrée dans `communication/gumroad-a-creer.json`, ajout de CPT aux packs PAR et PPB (`netlify/lib/packs.mjs`, pages
   des packs régénérées ; le tableau « Packs » ci-dessus le liste encore en prévu), cartes anglaises, plannings, passage
   en vente du site.
+
+## Fiche T92 (cadrage délégué par Quentin, 14/11/2026)
+
+### T92 · Bénévoles et planning des créneaux (`templates/benevoles/`, préfixe BNV, 19 €)
+- Fiche détaillée : [`fiches/benevoles.md`](fiches/benevoles.md). Catalogue `pro` · thème « Associations, formation et
+  événements » ; pack visé « Associations et clubs » (PAS). Permalien prévu `benevoles-planning-creneaux`.
+- Promesse : « Chaque créneau tenu, sans trou ni doublon. » Public : associations, clubs sportifs, comités des fêtes,
+  organisateurs de festivals ou de compétitions.
+- Usage à plusieurs : une clé partagée par les responsables, prénom saisi sur l'appareil, pas de comptes ; saisies
+  simultanées fusionnées (`fusionner`), une double affectation née d'une fusion apparaît en conflit. **Pas
+  d'inscription en ligne des bénévoles en V1** (le responsable saisit les réponses).
+- Annuaire (coordonnées minimales, compétences, postes préférés et à éviter), événements créés depuis 6 modèles (33
+  postes types, créneaux types avec besoin en personnes), réponses par événement (disponible, en partie avec plages,
+  indisponible, sans réponse, maximum d'heures), affectation manuelle et suggestion (disponible, compétence,
+  équité de charge), remplissage automatique des trous (le créneau le plus contraint d'abord), conflits (double,
+  indisponible, sans pause, journée trop longue, maximum, compétence), plannings A4 par poste et par personne,
+  message à copier par bénévole, bilan des heures (part du quart le plus investi), duplication d'un événement, CSV.
+- **Aucune règle légale ni donnée datée** : repères de pause et d'heures choisis par l'association (les bénévoles ne
+  relèvent pas du Code du travail) ; RGPD (art. 5.1.c, 5.1.e, 13, 15, 17) lu sur cnil.fr le 14/11/2026 ; durée de
+  conservation choisie par l'association (24 mois par défaut, bénévoles inactifs signalés). Lien avec T51 et T52 :
+  modèle « Compétition sportive » et postes « Sport », sans lien technique.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/benevoles/?demo`, page
+  `catalogue/benevoles/`, captures `assets/templates-benevoles-*.webp`, couverture
+  `assets/templates-benevoles-couverture.png`, tests `outils/templates/benevoles.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/benevoles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-prochaine.html). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé
+  partagée par le bureau au prix d'un template individuel), fiche Gumroad et clé de licence, entrée dans
+  `communication/gumroad-a-creer.json`, ajout de BNV au pack PAS (`netlify/lib/packs.mjs`, pages des packs
+  régénérées ; BNV retiré des prévus dans `outils/packs/donnees.mjs`), carte anglaise, plannings, passage en vente.
