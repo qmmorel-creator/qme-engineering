@@ -20,6 +20,7 @@ export const TEMPLATES = {
   CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, vagues, scores et classement en direct.', pour: 'pro' },
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
   VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
+  CTR: { slug: 'contrats', prix: 2500, phrase: 'Dates limites de résiliation calculées, plus de tacite reconduction subie.', pour: 'pro' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts.', pour: 'pro' },
@@ -86,7 +87,6 @@ export const PREVUS = {
   STR: { nom: 'Conformité des sous-traitants', prix: 2900, phrase: 'Agréments et attestations, alertes avant expiration.' },
   ENP: { nom: 'Entretiens annuels et professionnels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.' },
   DRP: { nom: 'Document unique d’évaluation des risques', prix: 2900, phrase: 'Risques par unité de travail, cotation et actions.' },
-  CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
   DCS: { nom: 'Papiers du foyer', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.' },
   RBS: { nom: 'Remboursements santé', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.' },
@@ -208,7 +208,7 @@ export const PAGES = {
       ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats fournisseurs et demandes d’achat à venir, avec l’option Pack évolutif'],
-    prevus: ['CTR', 'ACH'],
+    prevus: ['ACH'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
@@ -369,7 +369,7 @@ export const PAGES = {
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
     ],
     arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Les contrats fournisseurs à venir, avec l’option Pack évolutif'],
-    prevus: ['CTR'],
+    prevus: [],
   },
   PCA: {
     couleur: 'rouge', cibles: ['commercants', 'independants'],
