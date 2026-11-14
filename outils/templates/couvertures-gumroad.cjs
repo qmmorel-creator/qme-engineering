@@ -70,6 +70,7 @@ const T = {
   propositions: ['Propositions commerciales', 'Une proposition claire, trois options, une réponse.', 'Options comparées · planning · PDF soigné · relances et taux de transformation'],
   'references-plaquette': ["Kit références et plaquette", "Tes réalisations, prêtes à convaincre.", "Fiches projets · filtres · une plaquette PDF par prospect"],
   'calendrier-editorial': ["Calendrier éditorial", "Publier chaque semaine, sans chercher quoi dire.", "Piliers · banque de sujets · calendrier · statistiques · régularité"],
+  achats: ["Demandes d'achat et fournitures", "Qui a demandé quoi, et où en est le budget.", "Validation · commandes groupées · réception · budget par service"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
