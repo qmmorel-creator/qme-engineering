@@ -6,6 +6,10 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
+  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
+  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
+  BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', pour: 'perso' },
@@ -94,9 +98,7 @@ export const TEMPLATES = {
 // `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
-  BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
-  PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   MMR: { nom: 'Planning de mémoire ou de thèse', prix: 1500, phrase: 'Plan, jalons, chapitres et rendez-vous avec le directeur.' },
   BNV: { nom: 'Bénévoles et planning des créneaux', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.' },
@@ -344,8 +346,8 @@ export const PAGES = {
       ['BBE', 'Suivez repas, sommeil et croissance du bébé.'],
       ['ANM', 'Gardez le carnet de santé et les frais de l’animal à jour.'],
     ],
-    arguments: ['Une clé partagée entre les deux parents', 'Les mêmes données sur vos deux téléphones', 'Le suivi du bébé à venir, avec l’option Pack évolutif'],
-    prevus: ['BBE'],
+    arguments: ['Une clé partagée entre les deux parents', 'Les mêmes données sur vos deux téléphones', 'Le suivi du bébé partagé entre les deux parents'],
+    prevus: [],
   },
   PVY: {
     couleur: 'bleu', cibles: ['voyageurs', 'couples'],
@@ -370,8 +372,8 @@ export const PAGES = {
       ['CSE', 'Suivez évaluations, compétences et appréciations jusqu’au bulletin.'],
       ['EDT', 'Organisez classes, formateurs et salles sans conflit.'],
     ],
-    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'Progression et banque de quiz à venir, avec l’option Pack évolutif'],
-    prevus: ['PRG', 'QZZ'],
+    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'La banque de quiz à venir, avec l’option Pack évolutif'],
+    prevus: ['QZZ'],
   },
   PXP: {
     couleur: 'encre', cibles: ['exploitants', 'office'],

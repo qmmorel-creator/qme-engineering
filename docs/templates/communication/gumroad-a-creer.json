@@ -2350,5 +2350,176 @@
         "value": "Associations, clubs, centres sociaux, structures culturelles"
       }
     ]
+  },
+  {
+    "slug": "competences",
+    "name": "Matrice compétences et formations",
+    "price_cents": 2500,
+    "permalink": "matrice-competences-formations",
+    "category": "business-and-money/management-and-leadership",
+    "button": "Ouvrir ma matrice",
+    "summary": "Qui sait faire quoi face à ce que chaque poste demande : 44 compétences et 9 postes prêts, écarts calculés, compétences critiques tenues par une seule personne signalées, plan de formation avec son budget.",
+    "description": "<h2>Qui sait faire quoi, et qui former.</h2><p>Le jour où le seul technicien qui sait diagnostiquer la panne est en congé, on découvre que personne d'autre ne sait le faire. Et le plan de formation se décide souvent au feeling, sans voir ce qui manque vraiment par rapport aux postes. La Matrice compétences et formations met les compétences de ton équipe face à ce que chaque poste demande, signale ce qui ne tient qu'à une personne et relie le plan de formation aux écarts.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un référentiel prêt</strong> : 44 compétences transverses en 8 domaines (bureautique, sécurité, management, qualité, relation client, projet, organisation, technique) et 9 modèles de postes avec le niveau requis. Tout se modifie : tes compétences métier, tes postes, ton échelle (0 à 3, 4 ou 5).</li><li><strong>La matrice personnes × compétences</strong>, en couleur, filtrable par équipe et par domaine, en niveaux ou en écarts au poste. Une case touchée, une évaluation datée.</li><li><strong>Les écarts calculés</strong> : par personne, par équipe et pour toute l'entreprise, avec les compétences jamais évaluées et les réévaluations à faire.</li><li><strong>Les compétences fragiles</strong> : une compétence que tu marques critique et que moins de deux personnes maîtrisent au niveau requis est signalée (seuil réglable).</li><li><strong>Le plan de formation</strong> : actions par personne et compétence visée, modalité, date, durée, coût, statut ; budget de l'année prévu, engagé et réalisé. Une formation réalisée enregistre le niveau atteint et met la matrice à jour.</li><li><strong>Imprimer et exporter</strong> : la matrice, la fiche d'une personne avec visas, et des exports CSV (matrice, plan, historique).</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Garde les domaines et postes qui te servent, ajoute ton équipe, évalue, puis planifie les formations depuis les écarts. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation des compétences et de la formation : il ne remplace ni un conseil RH ou juridique, ni un logiciel de conformité. Formations obligatoires, autorisations, habilitations et entretiens professionnels relèvent des textes et de ta convention collective. Référentiel générique rédigé pour QME, à adapter. Données personnelles de salariés : saisie minimale (prénom et initiale, poste, équipe, niveaux), aucune donnée sensible, une évaluation n'est jamais une sanction ; tu restes responsable de ce traitement. Pas d'intégration à un logiciel RH. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "competences",
+      "formation",
+      "plan-de-formation",
+      "ressources-humaines",
+      "management",
+      "pme",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta matrice s'ouvre. Garde les domaines et postes qui te servent, ajoute ton équipe avec son poste, puis évalue : les écarts et les compétences fragiles se calculent seuls. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Responsables formation, managers, PME"
+      }
+    ]
+  },
+  {
+    "slug": "progression",
+    "name": "Progression pédagogique",
+    "price_cents": 1500,
+    "permalink": "progression-pedagogique",
+    "category": "education",
+    "button": "Ouvrir ma progression",
+    "summary": "Tes séquences, leurs objectifs et leurs heures posés sur ton vrai calendrier ; après chaque cours, l'avancement face au prévu, le retard en heures, la date de fin projetée et l'alerte quand le programme ne tient plus.",
+    "description": "<h2>Ton programme, séance après séance.</h2><p>Une sortie, un examen blanc, deux cours annulés, une séquence qui déborde… et c'est en mai qu'on découvre que le programme ne tiendra pas. Progression pédagogique pose tes séquences sur ton vrai calendrier et te dit, après chaque cours, où tu en es face au prévu et quand tu finiras.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Ton vrai calendrier</strong> : dates de l'année, vacances de ta zone et jours sans cours que tu saisis, jours fériés calculés chaque année, créneaux de chaque classe ou groupe (semaines A et B comprises) : les heures réellement disponibles en découlent.</li><li><strong>Des séquences avec leurs objectifs</strong> : ordre, durée en heures, compétences visées, fenêtre de fin facultative ; une banque de verbes d'objectifs rangés selon les six niveaux de la taxonomie de Bloom révisée, et les objectifs flous signalés.</li><li><strong>Le réel face au prévu</strong> : chaque séance faite, reportée (replacée au prochain créneau libre) ou annulée ; avancement, retard en heures et en séances, date de fin projetée et alerte si le programme ne tient pas avant la fin des cours.</li><li><strong>Une frise de l'année</strong> : chaque séquence prévue, réalisée puis projetée, avec la fenêtre dans laquelle elle doit se terminer.</li><li><strong>Un cahier de textes imprimable</strong> par classe et par période, et l'export CSV de toutes les séances.</li><li><strong>L'année suivante en un clic</strong> : modèles de structure calculés sur tes heures réelles, duplication d'une progression vers un autre groupe ou l'année d'après.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique les dates de ton année, ta première classe et ses créneaux, puis ajoute les vacances de ta zone et tes séquences. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil personnel de planification : aucun programme officiel ni calendrier de vacances scolaires intégré (les dates de ta zone sont à saisir), aucune donnée d'élève. Jours fériés calculés. Ne remplace pas le cahier de textes officiel de ton établissement. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "progression-pedagogique",
+      "enseignant",
+      "formateur",
+      "sequences",
+      "cahier-de-textes",
+      "planification",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta progression s'ouvre. Indique les dates de ton année et les créneaux de ta classe, ajoute les vacances de ta zone, puis tes séquences. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Enseignants, formateurs"
+      }
+    ]
+  },
+  {
+    "slug": "potager",
+    "name": "Calendrier du potager",
+    "price_cents": 1300,
+    "permalink": "calendrier-potager",
+    "category": "self-improvement/productivity",
+    "button": "Ouvrir mon potager",
+    "summary": "Tes cultures avec tes dates de semis, de plantation et de récolte, ce qu'il y a à faire cette semaine, la frise de l'année, la rotation des familles sur tes planches et le bilan de tes récoltes.",
+    "description": "<h2>Chaque semis à sa date.</h2><p>La fenêtre de semis des carottes qui passe sans qu'on y pense, la planche dont on ne sait plus ce qu'elle portait l'an dernier, le carnet de jardin qui ne prévient de rien… Le Calendrier du potager garde tes dates, te dit chaque semaine quoi semer, planter et récolter, et surveille la rotation de tes planches.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes cultures et leurs fenêtres</strong> : semis sous abri, semis en pleine terre, plantation, récolte, par quinzaine, y compris les semis d'automne qui passent l'hiver ; une liste de 60 légumes avec leur nom latin et leur famille botanique pour démarrer.</li><li><strong>À faire cette semaine</strong> : ce qui s'ouvre, ce qui finit bientôt, ce qui est déjà fait, les fenêtres passées sans rien noter et ce qui arrive le mois prochain.</li><li><strong>La frise des 12 mois</strong>, imprimable, avec un décalage en semaines que tu règles pour ta région ou ton jardin.</li><li><strong>La rotation surveillée</strong> : planches, carrés, serre, bacs, année après année ; alerte si une même famille revient au même endroit, et si deux cultures que tu as notées « à éloigner » se retrouvent côte à côte.</li><li><strong>Le journal et le bilan</strong> : semis, levées, plantations, récoltes avec leur quantité ; kilos récoltés par culture et par mois, comparés à l'année précédente.</li><li><strong>Export CSV</strong> des cultures, du journal et du plan des parcelles.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Coche tes cultures, recopie leurs fenêtres depuis tes sachets de graines ou ton carnet, crée tes planches. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucune période de semis, de plantation ou de récolte et aucune association de cultures ne sont fournies : nous n'avons trouvé aucune source publique dont la licence de réutilisation soit vérifiée. Ce sont tes dates (sachets, livre, expérience). La base contient les noms, noms latins et familles botaniques de 60 légumes. Aucune météo, aucun service externe. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "potager",
+      "jardin",
+      "calendrier-semis",
+      "rotation-des-cultures",
+      "jardinage",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier du potager s'ouvre. Coche tes cultures, recopie leurs fenêtres depuis tes sachets de graines, crée tes planches, puis ouvre « Cette semaine » au jardin. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (ordinateur, tablette, téléphone)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Jardiniers amateurs"
+      }
+    ]
+  },
+  {
+    "slug": "bebe",
+    "name": "Suivi du bébé",
+    "price_cents": 1300,
+    "permalink": "suivi-bebe",
+    "category": "fitness-and-health",
+    "button": "Ouvrir mon suivi",
+    "summary": "Les tétées et biberons, le sommeil, les couches, les mesures et les rendez-vous de ton bébé, notés d'une main sur ton téléphone et celui de l'autre parent, avec des résumés sans jugement et un récapitulatif à imprimer pour le rendez-vous.",
+    "description": "<h2>Ses journées, notées d'une main.</h2><p>La dernière tétée, c'était quand ? Quel côté ? Il a dormi combien de temps cet après-midi ? À trois heures du matin, personne ne s'en souvient, et la question revient au rendez-vous chez le médecin ou à la PMI. Le Suivi du bébé garde tout au même endroit, sur les deux téléphones.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Noter d'une main</strong> : tétée à gauche ou à droite, biberon, sommeil, couche pipi ou selle, en un geste depuis l'écran « Aujourd'hui », même la nuit.</li><li><strong>Un minuteur qui tourne sans réseau</strong> : la tétée ou le sommeil démarre, le temps est compté depuis l'heure de début, même application fermée.</li><li><strong>Dernier repas, dernier côté, dernière couche</strong> : « il y a 2 h 05 », d'un coup d'œil.</li><li><strong>À deux, sur deux téléphones</strong> : la même clé sur le téléphone de l'autre parent ; les saisies faites en même temps se rejoignent.</li><li><strong>Des résumés sans jugement</strong> : totaux par jour, moyenne des jours notés, rythme du sommeil et des repas heure par heure, sans comparaison à une norme.</li><li><strong>Les mesures notées</strong> : poids, taille et périmètre crânien tracés selon l'âge, sans courbe de référence ni percentile.</li><li><strong>Rendez-vous et récapitulatif</strong> : les rendez-vous avec les questions à poser, tes notes, et un récapitulatif imprimable ou à copier ; export CSV.</li><li><strong>Plusieurs enfants</strong> : jumeaux ou aîné, chacun son suivi.</li></ul><h3>Tes données</h3><p>Ce sont des données de santé d'un enfant. Rien n'est enregistré avant ton accord explicite, demandé à la première ouverture. Elles sont hébergées dans l'Union européenne (Francfort), ne servent qu'à faire fonctionner ton suivi, et s'effacent d'un bouton. Seuls un prénom (ou un surnom) et la date de naissance sont demandés.</p><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Donne ton accord, indique le prénom et la date de naissance de ton enfant, et note la prochaine tétée. Ouvre la même clé sur le téléphone de l'autre parent.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de notes pour les parents : il ne remplace pas l'avis du médecin, de la sage-femme ou de la PMI. Il ne pose aucun diagnostic, n'interprète aucune mesure, n'émet aucune alerte médicale et ne donne ni posologie, ni quantité de lait, ni durée de sommeil recommandées. Aucun calendrier vaccinal, aucune marque de lait ou de couches, aucune connexion à une autre application. En cas d'urgence : le 15 ou le 112. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+    "tags": [
+      "bebe",
+      "allaitement",
+      "sommeil-bebe",
+      "jeunes-parents",
+      "suivi",
+      "organisation",
+      "francais"
+    ],
+    "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la : le suivi te demande d'abord ton accord pour enregistrer les données de ton enfant, puis son prénom et sa date de naissance. Ouvre la même clé sur le téléphone de l'autre parent pour noter à deux. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+    "details": [
+      {
+        "name": "Format",
+        "value": "Application web (téléphone, tablette, ordinateur)"
+      },
+      {
+        "name": "Accès",
+        "value": "Clé de licence envoyée par e-mail"
+      },
+      {
+        "name": "Langue",
+        "value": "Français"
+      },
+      {
+        "name": "Paiement",
+        "value": "Achat unique, sans abonnement"
+      },
+      {
+        "name": "Pour",
+        "value": "Jeunes parents"
+      },
+      {
+        "name": "Santé",
+        "value": "Outil de notes : ne remplace pas l'avis du médecin, de la sage-femme ou de la PMI"
+      }
+    ]
   }
 ]

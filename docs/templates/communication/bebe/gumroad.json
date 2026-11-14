@@ -1,0 +1,46 @@
+{
+  "slug": "bebe",
+  "name": "Suivi du bébé",
+  "price_cents": 1300,
+  "permalink": "suivi-bebe",
+  "category": "fitness-and-health",
+  "button": "Ouvrir mon suivi",
+  "summary": "Les tétées et biberons, le sommeil, les couches, les mesures et les rendez-vous de ton bébé, notés d'une main sur ton téléphone et celui de l'autre parent, avec des résumés sans jugement et un récapitulatif à imprimer pour le rendez-vous.",
+  "description": "<h2>Ses journées, notées d'une main.</h2><p>La dernière tétée, c'était quand ? Quel côté ? Il a dormi combien de temps cet après-midi ? À trois heures du matin, personne ne s'en souvient, et la question revient au rendez-vous chez le médecin ou à la PMI. Le Suivi du bébé garde tout au même endroit, sur les deux téléphones.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Noter d'une main</strong> : tétée à gauche ou à droite, biberon, sommeil, couche pipi ou selle, en un geste depuis l'écran « Aujourd'hui », même la nuit.</li><li><strong>Un minuteur qui tourne sans réseau</strong> : la tétée ou le sommeil démarre, le temps est compté depuis l'heure de début, même application fermée.</li><li><strong>Dernier repas, dernier côté, dernière couche</strong> : « il y a 2 h 05 », d'un coup d'œil.</li><li><strong>À deux, sur deux téléphones</strong> : la même clé sur le téléphone de l'autre parent ; les saisies faites en même temps se rejoignent.</li><li><strong>Des résumés sans jugement</strong> : totaux par jour, moyenne des jours notés, rythme du sommeil et des repas heure par heure, sans comparaison à une norme.</li><li><strong>Les mesures notées</strong> : poids, taille et périmètre crânien tracés selon l'âge, sans courbe de référence ni percentile.</li><li><strong>Rendez-vous et récapitulatif</strong> : les rendez-vous avec les questions à poser, tes notes, et un récapitulatif imprimable ou à copier ; export CSV.</li><li><strong>Plusieurs enfants</strong> : jumeaux ou aîné, chacun son suivi.</li></ul><h3>Tes données</h3><p>Ce sont des données de santé d'un enfant. Rien n'est enregistré avant ton accord explicite, demandé à la première ouverture. Elles sont hébergées dans l'Union européenne (Francfort), ne servent qu'à faire fonctionner ton suivi, et s'effacent d'un bouton. Seuls un prénom (ou un surnom) et la date de naissance sont demandés.</p><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Donne ton accord, indique le prénom et la date de naissance de ton enfant, et note la prochaine tétée. Ouvre la même clé sur le téléphone de l'autre parent.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de notes pour les parents : il ne remplace pas l'avis du médecin, de la sage-femme ou de la PMI. Il ne pose aucun diagnostic, n'interprète aucune mesure, n'émet aucune alerte médicale et ne donne ni posologie, ni quantité de lait, ni durée de sommeil recommandées. Aucun calendrier vaccinal, aucune marque de lait ou de couches, aucune connexion à une autre application. En cas d'urgence : le 15 ou le 112. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "bebe",
+    "allaitement",
+    "sommeil-bebe",
+    "jeunes-parents",
+    "suivi",
+    "organisation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la : le suivi te demande d'abord ton accord pour enregistrer les données de ton enfant, puis son prénom et sa date de naissance. Ouvre la même clé sur le téléphone de l'autre parent pour noter à deux. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (téléphone, tablette, ordinateur)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Jeunes parents"
+    },
+    {
+      "name": "Santé",
+      "value": "Outil de notes : ne remplace pas l'avis du médecin, de la sage-femme ou de la PMI"
+    }
+  ]
+}

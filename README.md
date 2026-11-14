@@ -456,6 +456,26 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
   motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
   `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
+- Lot du 14/11/2026 (9), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/competences/` (FRM) **matrice compétences et
+  formations** (référentiel intégré de 44 compétences transverses en 8 domaines, dont 8 critiques, et 9 modèles de postes
+  avec niveau requis, rédigés pour QME ; échelle 0 à 4 réglable ; matrice personnes × compétences en couleur, écarts au
+  poste par personne, équipe et entreprise ; compétences critiques fragiles sous un seuil réglable ; plan de formation relié
+  aux compétences avec budget prévu, engagé et réalisé ; historique des évaluations ; impression et CSV ; données minimales,
+  rappel RGPD) ; `templates/progression/` (PRG) **progression pédagogique** (vacances saisies, fériés calculés, créneaux par
+  classe, semaines A et B ; séquences avec objectifs, durée et fenêtre de fin ; séances faites, reportées au prochain
+  créneau ou annulées ; prévu face au réel, retard en heures et en séances, fin projetée et alerte « le programme ne tient
+  pas » ; frise, cahier de textes imprimable, 73 verbes d'objectifs selon la taxonomie de Bloom ; aucune donnée d'élève ni
+  programme officiel) ; `templates/potager/` (PTG) **calendrier du potager** (fenêtres de semis, plantation et récolte
+  saisies par le jardinier, par quinzaine, décalage régional réglable ; « cette semaine », frise des 12 mois, parcelles et
+  rotation des familles, journal et bilan des récoltes en kg ; base de 60 légumes avec nom latin et famille, **aucune
+  période ni association fournie** faute de source réutilisable vérifiée) ; `templates/bebe/` (BBE) **suivi du bébé**
+  (tétées avec minuteur hors ligne, biberons, sommeil, couches, vue « Aujourd'hui » à une main, résumés sans norme, mesures
+  tracées **sans courbe de référence** (licences OMS et AFPA–Inserm incompatibles ou non établies), rendez-vous et
+  récapitulatif imprimable, deux parents sur deux appareils ; **données de santé d'un enfant : consentement explicite avant
+  tout enregistrement**, effacement complet, avertissement médical ; **RGPD à trancher par Quentin avant la vente**). BBE
+  rejoint le pack Famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
+  `outils/templates/<slug>.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

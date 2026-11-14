@@ -722,45 +722,76 @@
 # Retirer la ligne d'un template au moment de sa mise en vente.
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/competences/*"
+=======
   for = "/templates/epargne/*"
+>>>>>>> origin/main
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/competences/sw.js"
+=======
   for = "/templates/epargne/sw.js"
+>>>>>>> origin/main
   [headers.values]
     Cache-Control = "no-cache"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/progression/*"
+=======
   for = "/templates/competition/*"
+>>>>>>> origin/main
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/progression/sw.js"
+=======
   for = "/templates/competition/sw.js"
+>>>>>>> origin/main
   [headers.values]
     Cache-Control = "no-cache"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/potager/*"
+=======
   for = "/templates/demenagement/*"
+>>>>>>> origin/main
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/potager/sw.js"
+=======
   for = "/templates/demenagement/sw.js"
+>>>>>>> origin/main
   [headers.values]
     Cache-Control = "no-cache"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/bebe/*"
+=======
   for = "/templates/pilotage-pme/*"
+>>>>>>> origin/main
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
+<<<<<<< HEAD
+  for = "/templates/bebe/sw.js"
+=======
   for = "/templates/pilotage-pme/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
@@ -971,6 +1002,7 @@
 
 [[headers]]
   for = "/templates/revue-hebdo/sw.js"
+>>>>>>> origin/main
   [headers.values]
     Cache-Control = "no-cache"
 

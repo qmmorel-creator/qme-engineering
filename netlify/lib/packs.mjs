@@ -57,9 +57,9 @@ export const PACKS = {
   PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT'] },
   PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC'] },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
-  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'ANM'] },
+  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM'] },
   PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'] },
-  PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: ['CSE', 'EDT'] },
+  PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: ['PRG', 'CSE', 'EDT'] },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'PRK', 'CTR'] },
   PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'] },
   PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR'] },
