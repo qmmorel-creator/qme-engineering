@@ -1,0 +1,47 @@
+<!-- Version « en vente » de la page catalogue/notes/ (section à reprendre dans la page à la mise en vente).
+     Permalien Gumroad prévu : notes-moyennes (à confirmer une fois la fiche créée), prix 12 € (à confirmer par
+     Quentin). Captures : assets/templates-notes-*.webp (démo, étudiante fictive, données fictives). À la mise en
+     vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans
+     index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard ci-dessous. -->
+<section class="section" id="notes">
+  <div class="section-head">
+    <h2>Notes et moyennes</h2>
+    <p>Pour les lycéens, les étudiants et les candidats aux concours qui veulent savoir où ils en sont : vos matières avec leurs coefficients ou leurs crédits ECTS, vos notes, vos moyennes par matière, UE et semestre selon les règles de votre diplôme, et la note qu'il vous faut au prochain partiel pour atteindre votre objectif.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-notes-bilan.webp?v=20261114" width="1600" height="1000" alt="Bilan d'un semestre : moyenne provisoire, objectif, crédits ECTS acquis, prochaine épreuve, note à viser aux épreuves prévues pour atteindre 12 de moyenne, matières à surveiller et moyennes par matière face au seuil (étudiante fictive, données fictives)">
+      <img class="tel" src="/assets/templates-notes-tel.webp?v=20261114" width="780" height="1328" alt="Notes et moyennes sur téléphone : moyenne du semestre, objectif, crédits et prochaine épreuve (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Lycéens · étudiants · concours</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Votre maquette</b> : années, semestres ou trimestres, unités d'enseignement et matières avec leurs coefficients ou leurs crédits ECTS</li>
+        <li><b>Chaque note en deux secondes</b> : 14,5 ou 7/10, avec son coefficient (contrôle, partiel, oral, TP) ; moyennes par matière, UE, période et année calculées au centième</li>
+        <li><b>Les règles de votre diplôme</b>, saisies par vous : seuil, compensation entre matières ou par UE, note éliminatoire, rattrapage, mentions, compensation entre semestres</li>
+        <li><b>La note qu'il vous faut</b> au prochain partiel pour avoir 12 (ou votre objectif) de moyenne, sur une épreuve ou sur toutes celles à venir</li>
+        <li><b>L'évolution</b> de votre moyenne après chaque note, et un <b>relevé imprimable</b> avec les crédits acquis</li>
+      </ul>
+      <div class="prix"><b>12 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/notes-moyennes" data-goatcounter-click="achat-notes" data-goatcounter-title="Acheter : notes et moyennes">Acheter</a>
+        <a class="btn" href="/templates/notes/?demo" data-goatcounter-click="demo-notes" data-goatcounter-title="Démo : notes et moyennes">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-notes-objectifs.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Simulateur : moyenne visée, épreuves à venir cochées, note nécessaire à chaque épreuve et tableau « Et si tu avais… » (données fictives)"><figcaption>La note à viser au prochain partiel</figcaption></figure>
+    <figure><img src="/assets/templates-notes-evolution.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Courbe de la moyenne du semestre après chaque note, avec l'objectif et le seuil de validation en pointillés, et moyennes par matière (données fictives)"><figcaption>Votre moyenne, note après note</figcaption></figure>
+    <figure><img src="/assets/templates-notes-releve.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Relevé de l'année : moyennes par UE et par matière, résultats (acquise, compensée), crédits ECTS acquis, moyenne et mention (étudiante fictive)"><figcaption>Le relevé, prêt à imprimer</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Les coefficients et les règles de mon diplôme sont-ils déjà intégrés ?</summary><p>Non, et c'est voulu : chaque établissement a son règlement des études. Vous recopiez votre maquette (matières, coefficients ou crédits) et vous choisissez vos règles : seuil de validation, compensation entre toutes les matières, à l'intérieur de chaque UE ou aucune, note éliminatoire, rattrapage qui remplace la note ou ne compte que s'il est meilleur, compensation entre semestres, mentions. Aucun barème officiel n'est intégré.</p></details>
+    <details><summary>Comment la note nécessaire est-elle calculée ?</summary><p>Vous ajoutez vos épreuves à venir sans note (partiel coefficient 2, oral…). Le simulateur cherche la plus petite note, la même à chaque épreuve choisie, qui donne la moyenne visée avec vos coefficients, vos crédits et votre règle de rattrapage. Il dit aussi quand l'objectif est déjà assuré, ou hors de portée, avec la meilleure moyenne encore possible.</p></details>
+    <details><summary>Ça marche au lycée, en BTS, en licence, en école ?</summary><p>Oui : trimestres ou semestres, avec ou sans unités d'enseignement, matières pondérées par coefficients ou par crédits ECTS. Les notes peuvent être sur 20, sur 10, sur 100 ou en lettres (table de correspondance à saisir), et chaque note garde son propre barème : un 7/10 compte pour 14/20.</p></details>
+    <details><summary>Que deviennent les notes sur 10 ou les absences ?</summary><p>Chaque note a son barème et son coefficient dans la matière. Une absence justifiée peut être neutralisée : la note reste visible mais ne compte pas dans la moyenne.</p></details>
+    <details><summary>Le relevé a-t-il une valeur officielle ?</summary><p>Non. C'est un relevé personnel, établi à partir de vos propres saisies, pour vous repérer et anticiper. Seul le relevé de votre établissement fait foi. Il s'imprime ou s'exporte en tableur (CSV), avec toutes vos notes.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/notes/?demo">la démo</a> ouvre le suivi d'une étudiante fictive en licence (deux années, quatre semestres, partiels à venir). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>
+<section class="rappel-templates"><p><b>Comment ça marche :</b> achat unique sur Gumroad, clé de licence reçue par e-mail, ouverture sur <a href="/connexion/">qm-engineering.fr/connexion</a>, données synchronisées sur tous vos appareils.</p><a class="btn" href="/templates/#questions">Questions fréquentes</a></section>

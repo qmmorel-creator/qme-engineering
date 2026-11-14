@@ -1,0 +1,27 @@
+{
+  "slug": "candidatures",
+  "name": "Candidatures études, stages, alternance",
+  "price_cents": 1200,
+  "permalink": "candidatures-etudes-stages-alternance",
+  "category": "education",
+  "button": "Ouvrir mes candidatures",
+  "summary": "Toutes tes candidatures au même endroit : formations, stages, alternance, jobs étudiants. Pièces à fournir, dates que tu saisis, statuts et réponses, vœux classés, relances, entretiens préparés et lettres de motivation sur trame.",
+  "description": "<h2>Chaque dossier, à temps.</h2><p>Quatre masters, deux stages, une alternance, un job d'été : chaque dossier a ses pièces, ses dates et sa façon de répondre. Et c'est toujours la pièce oubliée qui bloque, la veille de la date limite. Candidatures te montre quoi envoyer d'abord, qui relancer, et t'aide à préparer lettres et entretiens.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une fiche par candidature</strong> : formation (après le bac, master, école), stage, alternance ou job étudiant, avec l'établissement ou l'entreprise, le statut (à préparer, envoyée, entretien, liste d'attente, acceptée, refusée, retirée) et la réponse.</li><li><strong>Les pièces à fournir</strong> : 23 pièces types et 6 listes de départ selon le type de candidature, à adapter ; chaque pièce passe de « à faire » à « prête » puis « envoyée » d'un toucher.</li><li><strong>Tes dates, saisies par toi</strong> : date limite, entretien ou épreuve, réponse attendue ; alertes avant la date limite, échéances mois par mois, export vers ton agenda (.ics).</li><li><strong>Tes vœux classés</strong> par ordre de préférence, type par type.</li><li><strong>Les relances au bon moment</strong>, avec un message prêt à copier, et un remerciement après l'entretien.</li><li><strong>Lettres et entretiens</strong> : 5 trames originales de lettre de motivation à compléter champ par champ, 32 questions d'entretien types avec une piste de réponse et tes notes, fiches imprimables.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ta première candidature : type, liste de pièces de départ, date limite. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun calendrier officiel intégré et aucune plateforme de candidature connectée : les dates sont celles que tu saisis, à vérifier auprès de chaque établissement ou recruteur. Les listes de pièces sont des points de départ. L'outil ne dépose rien à ta place et n'envoie aucun e-mail. Démo avec un étudiant fictif sur qm-engineering.fr/catalogue/candidatures.</em></p>",
+  "tags": [
+    "candidature",
+    "orientation",
+    "etudiant",
+    "stage",
+    "alternance",
+    "lettre de motivation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes candidatures s'ouvrent. Crée ta première candidature avec sa liste de pièces et sa date limite. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Lycéens, étudiants, candidats à un stage ou une alternance" }
+  ]
+}

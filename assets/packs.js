@@ -122,4 +122,18 @@
     });
     charger();
   }
+  // --- Page /packs/ : filtre des packs par public -----------------------------------------------------
+  const filtre = document.querySelector('[data-filtre-packs]');
+  if (filtre) {
+    const blocs = [...document.querySelectorAll('.pack-detail')];
+    const compte = document.querySelector('[data-compte-packs]');
+    const appliquer = (cible) => {
+      for (const b of filtre.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.cible === cible));
+      let n = 0;
+      for (const bl of blocs) { const ok = !cible || bl.dataset.cibles.split(' ').includes(cible); bl.hidden = !ok; if (ok) n++; }
+      for (const t of document.querySelectorAll('.titre-groupe')) t.hidden = !blocs.some((bl) => !bl.hidden && bl.dataset.pour === t.dataset.groupe);
+      compte.textContent = cible ? `${n} pack${n > 1 ? 's' : ''} pour ce public` : '';
+    };
+    filtre.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) appliquer(b.dataset.cible); });
+  }
 })();

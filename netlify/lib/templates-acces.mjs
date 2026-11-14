@@ -86,6 +86,7 @@ export const PRODUITS = {
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/' },
   GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/' },
+  NTS: { nom: 'Notes et moyennes', url: '/templates/notes/' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/' },
@@ -94,6 +95,8 @@ export const PRODUITS = {
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/' },
   CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/' },
+  CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/' },
+  SBV: { nom: 'Subventions', url: '/templates/subventions/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

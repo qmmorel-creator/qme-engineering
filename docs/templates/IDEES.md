@@ -163,10 +163,10 @@ déjà).
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
-| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
@@ -264,8 +264,8 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
-| Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
-| Associations et clubs | PAS | T53, T51, T42, T52 | T91, T92, T93 | 156 € | 20 % | 124 € | 31 € |
+| Étudiant | PET | T01, T30, T08, T17, T88, T89 | T90 | 77,90 € | 25 % | 58 € | 15 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91 | T92, T93 | 181 € | 25 % | 135 € | 34 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85 | T94, T95, T96 | 126 € | 25 % | 94 € | 24 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T20 | T19 | 64 € | 25 % | 48 € | 12 € |
@@ -1963,3 +1963,88 @@ régénérer les pages des packs à la fusion.
   (permalien prévu `revue-hebdomadaire`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, ajout au pack PPR et régénération des pages de packs, plannings, page
   anglaise, passage en vente du site.
+
+## Fiche T88 (cadrage délégué par Quentin, 14/11/2026)
+
+### T88 · Notes et moyennes (`templates/notes/`, préfixe NTS, 12 €)
+- Fiche détaillée : [`fiches/notes.md`](fiches/notes.md). Application web, permalien prévu `notes-moyennes`,
+  catalogue `perso` · thème « Organisation et études ». Pack visé : « Étudiant » (PET).
+- Promesse : « Ta moyenne, au centième près. » Pour les lycéens, étudiants (BTS, BUT, licence, master, écoles) et
+  candidats aux concours.
+- Fonctions : années et périodes (semestres, trimestres), UE et matières avec coefficients ou crédits ECTS, notes
+  avec barème et coefficient propres (contrôles, partiels, oraux, TP, rattrapages, absences neutralisées),
+  moyennes par matière, UE, période et année comparées aux seuils au centième, crédits acquis, règles du diplôme
+  **saisies par l'utilisateur** (compensation totale, par UE ou aucune, note éliminatoire, rattrapage
+  « remplace » ou « meilleure », compensation entre périodes, mentions), simulateur de la note nécessaire aux
+  épreuves à venir (dichotomie), courbe de la moyenne (skill `dataviz`, palette validée), relevé imprimable,
+  export CSV. Notation sur 20, sur 10, sur 100 ou en lettres (table saisie).
+- Marques : **aucun barème officiel ni règle de diplôme intégrés** (valeurs proposées modifiables : seuil 10,
+  mentions 12 / 14 / 16, table de lettres) ; aucune donnée datée ; relevé « sans valeur officielle » ; démo
+  fictive (« Camille Exemple », établissement inventé).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/notes/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/notes/`, captures
+  `assets/templates-notes-*.webp`, couverture `assets/templates-notes-couverture.png`, tests
+  `outils/templates/notes.test.mjs`. Produit `NTS` déclaré (serveur, connexion, en-têtes Netlify) ; `NTS` passé de
+  `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PET).
+- Communication prête dans `communication/notes/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte d'accueil FR,
+  carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `NTS` aux
+  `produits` du pack PET (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise, plannings,
+  passage en vente du site.
+
+## Fiche T89 (cadrage délégué par Quentin, 14/11/2026)
+
+### T89 · Candidatures études, stages, alternance (`templates/candidatures/`, préfixe CAN, 12 €)
+- Fiche détaillée : `fiches/candidatures.md`. Promesse : « Chaque dossier, à temps. » Catalogue `perso`, thème
+  « Organisation et études » ; pack visé « Étudiant » (PET). Permalien prévu `candidatures-etudes-stages-alternance`.
+- Public : lycéens (orientation après le bac), étudiants (master, écoles), candidats à un stage, une alternance ou un
+  job étudiant.
+- Écrans : **Tableau de bord** (à envoyer avec pièces manquantes, relances dues, 14 prochains jours, compteurs par
+  statut), **Candidatures** (filtres type et statut, fiche : statut en 7 étapes, pièces à statut au toucher, dates,
+  relances avec message à copier, lettre, entretien, notes ; dupliquer, imprimer), **Vœux** (classement par type),
+  **Échéances** (à traiter puis mois par mois, export .ics), **Lettres et entretiens** (5 trames originales avec aperçu
+  et champs manquants surlignés ; 32 questions types avec piste, notes, fiche imprimable).
+- Base : 4 types, 7 statuts, 23 pièces types (4 après acceptation), 6 listes de départ, 7 thèmes de questions,
+  3 messages. **Aucune date ni calendrier officiel** (test), **aucune plateforme nommée** (test sur la base,
+  l'interface et la page). Relance : délai réglable (10 jours par défaut) hors formation ; pour une formation,
+  seulement après la date de réponse annoncée ; remerciement après un entretien passé.
+- Confidentialité : démo fictive (étudiant « Noa », établissements et entreprises inventés). **À trancher par
+  Quentin** : public en partie mineur (achat par un parent, données saisies par le candidat lui-même, aucune note ni
+  pièce stockée).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/candidatures/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/candidatures/`, captures `assets/templates-candidatures-*.webp`, couverture
+  `assets/templates-candidatures-couverture.png`, tests `outils/templates/candidatures.test.mjs`. CAN retiré de
+  `PREVUS` et de la liste `prevus` du pack PET (`outils/packs/donnees.mjs`), ajouté à `TEMPLATES`.
+- Communication prête dans `communication/candidatures/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-en-prochaine.html). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de
+  licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de CAN au pack PET
+  (`netlify/lib/packs.mjs`, pages des packs régénérées), cartes anglaises, plannings, passage en vente du site.
+
+## Fiche T91 (cadrage délégué par Quentin, 14/11/2026)
+
+### T91 · Subventions (`templates/subventions/`, préfixe SBV, 25 €)
+- Fiche détaillée : [`fiches/subventions.md`](fiches/subventions.md). Catalogue `pro` · thème « Associations,
+  formation et événements » ; pack visé « Associations et clubs » (PAS). Permalien prévu `subventions-association`.
+- Promesse : « Chaque dossier déposé à temps, chaque euro justifié. » Public : associations, clubs, centres sociaux,
+  petites structures culturelles. Une clé partagée par le bureau, aucune donnée personnelle demandée.
+- Financeurs typés (public / privé), projets avec budget prévisionnel par poste, un dossier par financeur et par
+  projet (demandé, accordé, statut, dates toutes saisies), pièces types proposées selon le financeur, versements en
+  plusieurs fois et reste à percevoir, échéances (dépôt, réponse à relancer, versements, bilan, convention) avec
+  alertes, dépenses justificatives imputables à un dossier, trame du bilan imprimable, tableau de bord annuel, CSV.
+- **Aucun calendrier de financeur intégré** (daté). Rappels des subventions publiques sourcés : service-public.gouv.fr
+  F3180 (vérifiée le 01/01/2026 : convention au-delà de 23 000 €, comptes annuels au-delà de 153 000 €) et R46623
+  (vérifiée le 30/12/2025 : compte rendu financier Cerfa n° 15059*02 dans les 6 mois suivant la fin de l'exercice),
+  consultées le 14/11/2026, désactivables.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/subventions/?demo`, page
+  `catalogue/subventions/`, captures `assets/templates-subventions-*.webp`, couverture
+  `assets/templates-subventions-couverture.png`, tests `outils/templates/subventions.test.mjs`). Version anglaise en
+  attente.
+- Communication prête dans `communication/subventions/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte-prochaine.html, couverture.txt). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de SBV au pack PAS
+  (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.

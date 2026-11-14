@@ -211,6 +211,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   annuel dès 50 salariés), événements, versions archivées et figées, document imprimable. Obligations selon
   l'effectif sourcées et datées (service-public.gouv.fr et INRS, consultés le 14/11/2026 : à revérifier chaque
   année). Règles dans `regles.js`, tests `outils/templates/document-unique.test.mjs`.
+- `templates/notes/` (NTS) : **notes et moyennes** (T88), prêt, « Mise en vente prochaine » (12 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/notes/gumroad.json`). Années, semestres ou trimestres, UE et
+  matières avec coefficients ou crédits ECTS, notes avec barème et coefficient propres (sur 20, 10, 100 ou lettres),
+  moyennes pondérées comparées aux seuils au centième, règles du diplôme saisies (compensation totale, par UE ou
+  aucune, note éliminatoire, rattrapage, compensation entre semestres, mentions), note nécessaire aux épreuves à
+  venir (dichotomie), courbe de la moyenne, relevé imprimable, export CSV. Aucun barème officiel intégré. Règles dans
+  `regles.js`, tests `outils/templates/notes.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
   types en 6 domaines (définition, formule, sens de lecture, source), 14 calculés, 5 jeux de départ, aucun ratio
@@ -313,6 +320,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   catalogue de 104 fournitures sans prix ni marque, historique et export CSV. Une clé partagée, nom saisi à chaque étape ;
   actions rejouées sur la version du serveur en cas de conflit 409. Aucune règle légale ni fiscale. Règles dans
   `regles.js`, tests `outils/templates/achats.test.mjs`. Version anglaise en attente.
+- `templates/subventions/` (SBV) : **subventions** (T91), prêt, « Mise en vente prochaine » (25 €, démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/subventions/gumroad.json`). Dossiers par financeur (commune, département,
+  région, État, fondations, mécénat) et par projet, pièces à fournir avec statut, échéances saisies (dépôt, réponse,
+  versements, bilan) et alertes, demandé / accordé / versé / reste à percevoir, budget prévisionnel avec la part de chaque
+  financeur, dépenses justificatives imputables à un dossier, trame du bilan imprimable, tableau de bord annuel, CSV.
+  Aucun calendrier de financeur intégré. Rappels des subventions publiques (convention au-delà de 23 000 €, compte rendu
+  financier à 6 mois, comptes annuels au-delà de 153 000 €) repris de service-public.gouv.fr (fiches F3180 et R46623,
+  consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests `outils/templates/subventions.test.mjs`.
+  Version anglaise en attente.
 - `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
   réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),
@@ -432,6 +448,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
   personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
   anglaise en attente.
+- `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
+  prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
+  par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut
+  de chaque pièce, statut de la candidature (à préparer, envoyée, entretien, liste d'attente, acceptée, refusée, retirée)
+  et réponse ; dates saisies par l'utilisateur (**aucun calendrier officiel intégré**, aucune plateforme nommée ni
+  connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
+  motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
+  `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

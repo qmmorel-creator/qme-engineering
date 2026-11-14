@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026111308">
-<link rel="stylesheet" href="/assets/packs.css?v=2026111402">
+<link rel="stylesheet" href="/assets/packs.css?v=2026111403">
 <script>(()=>{const h=location.hash.slice(1);if(/^[a-z-]+$/.test(h)&&!document.getElementById(h)&&!['pro','perso','tous','packs','questions','fonctionnement'].includes(h))location.replace('/catalogue/'+h+'/');})();</script>
 </head>
 <body>
@@ -27,6 +27,7 @@
   <nav aria-label="Navigation principale">
     <a href="/sur-mesure/">Sur mesure</a>
     <a href="/templates/" aria-current="page">Templates</a>
+    <a href="/packs/">Packs</a>
     <a href="/references/">Références</a>
     <a href="/methode/">Méthode</a>
     <a class="login" href="/connexion/">Connexion</a>
@@ -83,9 +84,9 @@
       <button class="puce" type="button" data-pour="pro" data-theme="independants" aria-pressed="false" style="--c:var(--jaune)">Indépendants <small>10</small></button>
       <button class="puce" type="button" data-pour="pro" data-theme="clients-et-prospection" aria-pressed="false" style="--c:var(--encre)">Clients et prospection <small>8</small></button>
       <button class="puce" type="button" data-pour="pro" data-theme="equipements-et-vehicules" aria-pressed="false" style="--c:var(--bleu)">Équipements et véhicules <small>8</small></button>
-      <button class="puce" type="button" data-pour="pro" data-theme="associations-formation-et-evenements" aria-pressed="false" style="--c:var(--rouge)">Associations, formation et événements <small>6</small></button>
+      <button class="puce" type="button" data-pour="pro" data-theme="associations-formation-et-evenements" aria-pressed="false" style="--c:var(--rouge)">Associations, formation et événements <small>7</small></button>
       <button class="puce" type="button" data-pour="perso" data-theme="argent" aria-pressed="false" style="--c:var(--jaune)">Argent <small>14</small></button>
-      <button class="puce" type="button" data-pour="perso" data-theme="organisation-et-etudes" aria-pressed="false" style="--c:var(--encre)">Organisation et études <small>10</small></button>
+      <button class="puce" type="button" data-pour="perso" data-theme="organisation-et-etudes" aria-pressed="false" style="--c:var(--encre)">Organisation et études <small>12</small></button>
       <button class="puce" type="button" data-pour="perso" data-theme="sante-et-forme" aria-pressed="false" style="--c:var(--rouge)">Santé et forme <small>3</small></button>
       <button class="puce" type="button" data-pour="perso" data-theme="projets-de-vie" aria-pressed="false" style="--c:var(--bleu)">Projets de vie <small>6</small></button>
     </div>
@@ -153,6 +154,7 @@
       <li class="carte prochaine" data-slug="contrats" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/contrats/"><b>Contrats fournisseurs et échéances</b><span class="phrase">Dates limites de résiliation calculées, plus de tacite reconduction subie.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="salles" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/salles/"><b>Réservation de salles et bureaux</b><span class="phrase">Libre maintenant, vues jour et semaine, aucune double réservation.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="achats" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/achats/"><b>Demandes d'achat et fournitures</b><span class="phrase">Demandes, validation, commandes et budget par service.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="subventions" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/subventions/"><b>Subventions</b><span class="phrase">Dossiers, échéances, justificatifs et bilans.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="competition" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/competition/"><b>Gestion de compétition sportive</b><span class="phrase">Inscriptions, vagues, scores et classement en direct.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="parcs-multi-sites" data-pour="pro" data-theme="equipements-et-vehicules" style="--c:var(--bleu)"><a href="/catalogue/parcs-multi-sites/"><b>Pilotage de parcs multi-sites</b><span class="phrase">Sites, équipements, préventif, pannes et coût par site.</span><span class="theme">Équipements et véhicules</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="evenementiel" data-pour="pro" data-theme="associations-formation-et-evenements" style="--c:var(--rouge)"><a href="/catalogue/evenementiel/"><b>Pilote événementiel</b><span class="phrase">Rétroplanning, budget, prestataires et invités.</span><span class="theme">Associations, formation et événements</span><em>Bientôt</em></a></li>
@@ -182,6 +184,8 @@
       <li class="carte prochaine" data-slug="garde-manger" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/garde-manger/"><b>Garde-manger et dates de péremption</b><span class="phrase">DLC et DDM, à consommer en priorité, gaspillage suivi.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="animal" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/animal/"><b>Suivi d'un animal de compagnie</b><span class="phrase">Soins aux dates du vétérinaire, poids, visites, frais par an.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="lecture" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/lecture/"><b>Suivi de lecture</b><span class="phrase">Rythme, date de fin du livre, objectif de l'année au jour près.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="notes" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/notes/"><b>Notes et moyennes</b><span class="phrase">Moyennes pondérées, crédits ECTS, note à viser au prochain partiel.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
+      <li class="carte prochaine" data-slug="candidatures" data-pour="perso" data-theme="organisation-et-etudes" style="--c:var(--encre)"><a href="/catalogue/candidatures/"><b>Candidatures études, stages, alternance</b><span class="phrase">Vœux, pièces, dates et réponses au même endroit.</span><span class="theme">Organisation et études</span><em>Bientôt</em></a></li>
       <li class="carte prochaine" data-slug="musculation" data-pour="perso" data-theme="sante-et-forme" style="--c:var(--rouge)"><a href="/catalogue/musculation/"><b>Carnet de musculation et cross-training</b><span class="phrase">Séances, WOD, records détectés et minuteur.</span><span class="theme">Santé et forme</span><em>Bientôt</em></a></li>
     </ul>
   </div>
@@ -256,18 +260,18 @@
       <span class="pied"><span class="prix-pack"><b>54 €</b><s>73 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
     </a></li>
     <li class="carte-pack c-bleu"><a href="/packs/etudiant/">
-      <span class="haut"><span class="nb">4 templates</span><em>Bientôt</em></span>
+      <span class="haut"><span class="nb">6 templates</span><em>Bientôt</em></span>
       <h3>Étudiant</h3>
       <span class="phrase">Réviser au bon moment, chaque jour, jusqu’à l’examen.</span>
       <ul class="cibles" aria-label="Pour qui"><li class="cible c-bleu f-rond">Lycéens et étudiants</li></ul>
-      <span class="pied"><span class="prix-pack"><b>43 €</b><s>53,90 €</s> <span class="remise">−20 %</span></span><span class="voir">Voir le pack</span></span>
+      <span class="pied"><span class="prix-pack"><b>58 €</b><s>77,90 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
     </a></li>
     <li class="carte-pack c-rouge"><a href="/packs/associations/">
-      <span class="haut"><span class="nb">4 templates</span><em>Bientôt</em></span>
+      <span class="haut"><span class="nb">5 templates</span><em>Bientôt</em></span>
       <h3>Associations et clubs</h3>
       <span class="phrase">Les adhérents, les événements et la caisse du club.</span>
       <ul class="cibles" aria-label="Pour qui"><li class="cible c-rouge f-carre">Associations et clubs</li></ul>
-      <span class="pied"><span class="prix-pack"><b>124 €</b><s>156 €</s> <span class="remise">−20 %</span></span><span class="voir">Voir le pack</span></span>
+      <span class="pied"><span class="prix-pack"><b>135 €</b><s>181 €</s> <span class="remise">−25 %</span></span><span class="voir">Voir le pack</span></span>
     </a></li>
     <li class="carte-pack c-bleu"><a href="/packs/proprietaire/">
       <span class="haut"><span class="nb">6 templates</span><em>Bientôt</em></span>
