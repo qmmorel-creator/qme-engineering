@@ -1,0 +1,27 @@
+{
+  "slug": "propositions",
+  "name": "Propositions commerciales",
+  "price_cents": 1900,
+  "permalink": "propositions-commerciales",
+  "category": "business-and-money/sales",
+  "button": "Ouvrir mes propositions",
+  "summary": "Tes propositions commerciales structurées : contexte, objectifs, livrables, trois options comparées, planning et conditions dans un PDF soigné, puis le suivi jusqu'à la signature (relances, validité, taux de transformation).",
+  "description": "<h2>Une proposition claire, trois options, une réponse.</h2><p>Un client te demande « une proposition ». Tu repars d'un vieux document, tu changes le nom, tu mets un prix unique à prendre ou à laisser… et la relance ne part jamais. Propositions commerciales te fait rédiger en une heure une proposition structurée, la présenter dans un PDF propre, puis la suivre jusqu'au oui.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une proposition structurée</strong> : contexte, objectifs, livrables, options, planning et conditions, avec des questions pour t'aider à écrire chaque partie.</li><li><strong>4 trames par métier</strong> (conseil, développement, formation, travaux) : livrables, étapes et trois options types prêts à adapter. Aucun prix imposé : tu chiffres.</li><li><strong>Trois options comparées</strong> (bon, mieux, premium) : prix hors taxes, contenu de chacune, écarts de prix et option recommandée, dans un tableau calculé tout seul.</li><li><strong>Une bibliothèque de blocs</strong> réutilisables (présentation, méthode, références, engagements), insérés par copie dans chaque proposition.</li><li><strong>Un planning en semaines</strong>, étapes à la suite ou en parallèle, dates calculées depuis le début prévu, affiché en barres.</li><li><strong>Un PDF soigné</strong> : page de titre, sections numérotées, options, planning et bon pour accord, imprimé ou enregistré depuis le navigateur.</li><li><strong>Le suivi</strong> : date de validité, relances à la bonne cadence avec un message prêt à copier (rien n'est envoyé à ta place), réponse et motif de refus, taux de transformation en nombre et en valeur, délai de réponse, option la plus choisie. Duplication d'une proposition en un clic.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ta trame, personnalise tes blocs, crée ta première proposition. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Une proposition, pas un devis : prix hors taxes, aucune règle légale intégrée. Le devis détaillé (TVA, mentions obligatoires) se fait à l'acceptation, par exemple avec le Générateur de devis QME. Démo disponible sur qm-engineering.fr/catalogue/propositions.</em></p>",
+  "tags": [
+    "proposition-commerciale",
+    "freelance",
+    "consultant",
+    "devis",
+    "prospection",
+    "vente",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes propositions s'ouvrent. Choisis la trame de ton métier, personnalise tes blocs de présentation et de méthode, puis crée ta première proposition. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Freelances, consultants, formateurs, petites agences" }
+  ]
+}

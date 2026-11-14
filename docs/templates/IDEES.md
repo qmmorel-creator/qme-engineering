@@ -101,7 +101,7 @@ déjà).
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
@@ -115,7 +115,7 @@ déjà).
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
-| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
+| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
@@ -155,7 +155,7 @@ déjà).
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
-| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
@@ -263,7 +263,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T74, T75, T76 | 62 € | 15 % | 52 € | 13 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28, T74 | T39, T75, T76 | 81 € | 20 % | 64 € | 16 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
@@ -1482,3 +1482,63 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `TMP` aux `produits` du pack PFG
   (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente),
   plannings, passage en vente du site.
+
+## Fiche T74 (cadrage délégué par Quentin, 14/11/2026)
+
+### T74 · Propositions commerciales (`templates/propositions/`, préfixe PCM, 19 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire. Pack visé :
+« Freelance : trouver ses clients » (PFC).
+
+- **Promesse** : « Une proposition claire, trois options, une réponse. » Rédiger en une heure une proposition
+  commerciale structurée, la présenter proprement en PDF, puis suivre la réponse jusqu'à la signature.
+- **Pour qui** : freelances, consultants, formateurs, développeurs, petites agences et artisans qui répondent à une
+  demande par une proposition (avant le devis détaillé). Catalogue `pro`, thème « Commercial » (ou voisin).
+- **Distinct de T36** (générateur de devis) : la proposition explique le projet, la méthode, les options et le
+  calendrier ; le devis chiffre ligne à ligne avec TVA et mentions légales. La proposition affiche des prix **hors
+  taxes** et renvoie le détail chiffré, la TVA et les mentions obligatoires au devis (T36). Aucune règle légale
+  intégrée.
+- **Écrans** :
+  - **Propositions** : tuiles (en attente, à relancer, taux de transformation 12 mois, signé sur 12 mois), filtres
+    par statut, recherche, duplication en un clic ;
+  - **Édition** : en-tête (client, interlocuteur, titre, trame, date, validité, début prévu), contexte (questions
+    d'aide par trame), objectifs, livrables, blocs de la bibliothèque insérés (copies modifiables), **options
+    comparées** (bon / mieux / premium : prix HT, contenu, délai, option recommandée, tableau de comparaison
+    calculé), **planning** par étapes en semaines (étapes parallèles possibles, dates calculées depuis le début
+    prévu), conditions (modèles par trame), notes internes non imprimées ; complétude de la proposition ;
+  - **Aperçu A4** : page de garde, sections numérotées, tableau des options, planning en barres, bon pour accord
+    avec choix de l'option ; impression ou PDF par le navigateur ;
+  - **Suivi** : statuts (brouillon, envoyée, acceptée, refusée, sans suite ; affichés « à relancer » et
+    « validité dépassée »), relances datées (intervalle réglable, message de relance à copier, rien n'est
+    envoyé), prolongation de validité, option retenue, motif de refus ; statistiques : taux de transformation
+    en nombre et en valeur, délai moyen de décision, option la plus choisie, motifs de refus, détail par trame,
+    propositions envoyées et acceptées sur 12 mois ;
+  - **Bibliothèque** : blocs réutilisables (présentation, méthode, références, engagements, autre), insérés par
+    copie dans une proposition ;
+  - **Profil** : identité affichée sur les propositions, validité et intervalle de relance par défaut, préfixe
+    de numérotation, affichage facultatif du TTC à un taux **saisi par l'utilisateur** (vide par défaut).
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 4 trames métier (conseil, développement, formation,
+  travaux) avec questions de contexte, objectifs types, livrables types, étapes de planning types en semaines,
+  trois options types et conditions types (commerciales, sans référence légale) ; 10 blocs types de
+  bibliothèque à personnaliser (aucune référence réelle : gabarits à remplir avec l'accord des clients) ; motifs
+  de refus.
+- **Calculs** (`regles.js`, testés dans `outils/templates/propositions.test.mjs`) : montants en centimes,
+  numérotation annuelle sans réutilisation, fin de validité, statut affiché, prochaine relance, planning
+  (dates des étapes, fin du projet), comparaison des options (écarts, contenu commun et différences),
+  montant d'une proposition (option retenue, sinon recommandée), complétude, taux de transformation,
+  statistiques, duplication.
+- **Données qui se périment : aucune.** Pas de taux de TVA intégré (saisie facultative), pas de délai de paiement
+  légal, pas de mention obligatoire : renvoi au devis (T36) et aux sources officielles par l'utilisateur.
+- **Risques** : pas un conseil juridique (avertissement dans l'application) ; données de clients (RGPD :
+  ne garder que le nécessaire, suppression possible) ; démo 100 % fictive (organisations « exemple »).
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/propositions/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/propositions/`, captures `assets/templates-propositions-*.webp`, couverture
+  `assets/templates-propositions-couverture.png`, tests `outils/templates/propositions.test.mjs`. Options types
+  nommées Essentiel, Confort (recommandée) et Premium.
+- **Communication** prête dans `communication/propositions/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte d'accueil FR, carte anglaise
+  `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `propositions-commerciales`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, ajout au pack PFC, passage en vente du site.

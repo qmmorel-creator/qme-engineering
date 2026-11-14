@@ -67,6 +67,7 @@ const T = {
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
   'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],
   'suivi-temps': ["Suivi du temps · rentabilité", "Ce que tu gagnes vraiment de l'heure.", "Chronomètre · budget des missions · taux effectif face au TJM"],
+  propositions: ['Propositions commerciales', 'Une proposition claire, trois options, une réponse.', 'Options comparées · planning · PDF soigné · relances et taux de transformation'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

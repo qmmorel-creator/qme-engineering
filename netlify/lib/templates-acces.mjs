@@ -57,6 +57,7 @@ export const PRODUITS = {
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/' },
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/' },
   DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
+  PCM: { nom: 'Propositions commerciales', url: '/templates/propositions/' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/' },
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/' },

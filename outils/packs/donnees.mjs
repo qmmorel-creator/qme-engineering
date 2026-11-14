@@ -49,6 +49,7 @@ export const TEMPLATES = {
   CRM: { slug: 'crm', prix: 2500, phrase: 'Clients, prochaine action datée et relances du jour.', pour: 'pro' },
   PRS: { slug: 'prospection', prix: 2500, phrase: 'Prospects par étape et relances selon votre cadence.', pour: 'pro' },
   RCV: { slug: 'impayes', prix: 1900, phrase: 'Retard en jours, pénalités et relances par palier.', pour: 'pro' },
+  PCM: { slug: 'propositions', prix: 1900, phrase: 'Contexte, options comparées et planning : une proposition claire.', pour: 'pro' },
   APD: { slug: 'appel-decouverte', prix: 1200, phrase: 'Questions par phase, objections et prochaine étape datée.', pour: 'pro' },
   VHC: { slug: 'flotte', prix: 3900, phrase: 'Réservations, entretiens et coût par véhicule.', pour: 'pro' },
   PRC: { slug: 'parc-informatique', prix: 3500, phrase: 'Matériel, attributions, licences et garanties.', pour: 'pro' },
@@ -79,7 +80,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
   CED: { nom: 'Calendrier éditorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.' },
   CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
   RDE: { nom: 'Registre du DOE', prix: 2900, phrase: 'Les pièces à remettre par lot, relancées jusqu’au complet.' },
@@ -154,9 +154,10 @@ export const PAGES = {
       ['APD', 'Arrivez à l’appel découverte avec vos questions, les objections probables et la prochaine étape.'],
       ['PRS', 'Faites avancer chaque prospect d’étape en étape, relances à la bonne cadence.'],
       ['CRM', 'Gardez le fil avec vos clients : historique, prochaine action datée, chiffre d’affaires.'],
+      ['PCM', 'Transformez l’appel en proposition claire : contexte, options à prix et planning.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
-    prevus: ['KRF', 'PCM', 'CED', 'CND'],
+    prevus: ['KRF', 'CED', 'CND'],
   },
   PBT: {
     couleur: 'rouge', cibles: ['btp', 'managers'],

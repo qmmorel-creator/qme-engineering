@@ -334,7 +334,11 @@ export async function generer() {
   const nouveau = re.test(cat) ? cat.replace(re, section)
     : cat.replace('<section class="idee-bandeau"', `${section}\n\n<section class="idee-bandeau"`);
   if (!nouveau.includes('packs:debut')) throw new Error('Section packs : point d’insertion introuvable dans templates/index.html');
-  await writeFile(RACINE + 'templates/index.html', nouveau);
+  // La section des packs a besoin de sa feuille de style sur le catalogue.
+  const avecStyle = nouveau.includes('/assets/packs.css') ? nouveau.replace(/\/assets\/packs\.css\?v=[0-9]+/, `/assets/packs.css?v=${V}`)
+    : nouveau.replace(/(<link rel="stylesheet" href="\/assets\/site\.css[^>]*>)/, `$1\n<link rel="stylesheet" href="/assets/packs.css?v=${V}">`);
+  if (!avecStyle.includes('/assets/packs.css')) throw new Error('packs.css : insertion impossible dans templates/index.html');
+  await writeFile(RACINE + 'templates/index.html', avecStyle);
   return packs;
 }
 
