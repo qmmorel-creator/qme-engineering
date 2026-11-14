@@ -6,6 +6,10 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
+  CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
+  EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
+  PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', pour: 'pro' },
   GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
   CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
@@ -71,11 +75,8 @@ export const PREVUS = {
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
-  PRF: { nom: 'Gestion de classe', prix: 2500, phrase: 'Élèves, évaluations, compétences et bulletins.' },
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
-  EDT: { nom: 'Emploi du temps d’établissement', prix: 4500, phrase: 'Classes, formateurs, salles et conflits détectés.' },
-  PMS: { nom: 'Pilotage de parcs multi-sites', prix: 4900, phrase: 'Sites, équipements, interventions et alertes.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   TMP: { nom: 'Suivi du temps et rentabilité par mission', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.' },
   PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
@@ -201,6 +202,7 @@ export const PAGES = {
       ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
       ['SDR', 'Réservez salles, bureaux et équipements sans doublon, avec la vue « libre maintenant ».'],
+      ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats fournisseurs et demandes d’achat à venir, avec l’option Pack évolutif'],
     prevus: ['CTR', 'ACH'],
@@ -344,11 +346,11 @@ export const PAGES = {
     parcours: [
       ['PRG', 'Planifiez séquences et séances, et voyez où vous en êtes.'],
       ['QZZ', 'Constituez votre banque de questions et générez vos quiz.'],
-      ['PRF', 'Suivez évaluations, compétences et appréciations jusqu’au bulletin.'],
+      ['CSE', 'Suivez évaluations, compétences et appréciations jusqu’au bulletin.'],
       ['EDT', 'Organisez classes, formateurs et salles sans conflit.'],
     ],
-    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'Pack en préparation : soyez prévenu de sa sortie'],
-    prevus: ['PRG', 'QZZ', 'PRF', 'EDT'],
+    arguments: ['Pensé pour l’enseignement français', 'Sans abonnement d’établissement', 'Progression et banque de quiz à venir, avec l’option Pack évolutif'],
+    prevus: ['PRG', 'QZZ'],
   },
   PXP: {
     couleur: 'encre', cibles: ['exploitants', 'office'],
@@ -356,15 +358,15 @@ export const PAGES = {
     resume: 'Parcs multi-sites, maintenance préventive, vérifications réglementaires et contrats fournisseurs.',
     pourQui: 'Exploitant, responsable des services techniques ou gestionnaire de patrimoine : vous suivez des équipements sur plusieurs sites, avec des contrôles obligatoires et des contrats de maintenance qui se renouvellent seuls.',
     parcours: [
-      ['PMS', 'Suivez sites, équipements, interventions et indicateurs.'],
+      ['PRK', 'Suivez sites, équipements, interventions et indicateurs.'],
       ['Planifiez la maintenance préventive et ses bons d’intervention.'],
       ['Tenez le registre des vérifications et rangez les preuves.'],
       ['CTR', 'Anticipez les préavis de résiliation des contrats fournisseurs.'],
       ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
     ],
-    arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Pack en préparation : soyez prévenu de sa sortie'],
-    prevus: ['PMS', 'CTR'],
+    arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Les contrats fournisseurs à venir, avec l’option Pack évolutif'],
+    prevus: ['CTR'],
   },
   PCA: {
     couleur: 'rouge', cibles: ['commercants', 'independants'],

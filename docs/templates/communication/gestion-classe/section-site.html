@@ -1,0 +1,49 @@
+<!-- Version « en vente » de la page catalogue/gestion-classe/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : gestion-classe (à confirmer une fois la fiche créée), prix 25 € (à
+     confirmer par Quentin). Mise en vente seulement après la décision de Quentin sur la question RGPD.
+     Captures : assets/templates-gestion-classe-*.webp (démo, élèves fictifs). À la mise en vente, retirer aussi
+     le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js,
+     et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="gestion-classe">
+  <div class="section-head">
+    <h2>Gestion de classe</h2>
+    <p>Pour les enseignants de collège et de lycée qui suivent plusieurs classes et groupes : les notes saisies en quelques secondes, les moyennes et les statistiques calculées, les compétences positionnées sur quatre échelons, et des appréciations composées à partir d'une banque de phrases pour préparer les conseils de classe.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-gestion-classe-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord de la gestion de classe : notes à saisir, appréciations à rédiger avant la fin du trimestre, évaluations à venir, trois classes avec leur moyenne, leur médiane et leurs extrêmes (élèves fictifs)">
+      <img class="tel" src="/assets/templates-gestion-classe-tel.webp?v=20261114" width="780" height="1328" alt="Saisie des notes sur téléphone : une note par élève, conversion sur 20 affichée, boutons absent, non noté et dispensé (élèves fictifs)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill red">Enseignants · collège et lycée</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Une saisie rapide</b> : la note puis Entrée, l'élève suivant ; absent, non noté ou dispensé d'une lettre ; au clavier comme sur téléphone</li>
+        <li><b>Des moyennes justes</b> : barème libre (sur 10, 20, 40…) ramené sur 20, coefficients, notes spéciales jamais comptées, évaluation bonus retenue seulement si elle fait monter la moyenne</li>
+        <li><b>Les statistiques de la classe</b> : moyenne, médiane, plus basse et plus haute, répartition par tranches, par trimestre ou semestre et sur l'année</li>
+        <li><b>Les compétences sur quatre échelons</b> : référentiel modifiable, avec les domaines du socle commun et l'échelle de maîtrise du code de l'éducation (source et date de vérification affichées)</li>
+        <li><b>Les appréciations et les bulletins</b> : banque de phrases par niveau à composer et à modifier, bulletin par élève à imprimer ou à copier, export CSV</li>
+      </ul>
+      <div class="prix"><b>25 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/gestion-classe" data-goatcounter-click="achat-gestion-classe" data-goatcounter-title="Acheter : gestion de classe">Acheter</a>
+        <a class="btn" href="/templates/gestion-classe/?demo" data-goatcounter-click="demo-gestion-classe" data-goatcounter-title="Démo : gestion de classe">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-gestion-classe-notes.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Carnet de notes d'une classe de 4e : moyenne, médiane et extrêmes, une colonne par évaluation avec son barème et son coefficient, notes absent et dispensé, évaluation bonus (élèves fictifs)"><figcaption>Le carnet de notes, moyennes pondérées et statistiques</figcaption></figure>
+    <figure><img src="/assets/templates-gestion-classe-competences.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Bilan des compétences d'une classe sur quatre échelons, de la maîtrise insuffisante à la très bonne maîtrise, par domaine du socle commun (élèves fictifs)"><figcaption>Les compétences positionnées sur quatre échelons</figcaption></figure>
+    <figure><img src="/assets/templates-gestion-classe-bulletins.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Rédaction d'une appréciation : moyenne de l'élève et de la classe, compétences, phrases types par axe et par niveau à ajouter d'un clic (élève fictif)"><figcaption>Des appréciations composées en quelques clics</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Où sont stockées les données de mes élèves ?</summary><p>En ligne, hébergées par QME et liées à votre clé, pour vous suivre sur ordinateur, tablette et téléphone. C'est un outil personnel de préparation : avant d'y saisir des données réelles d'élèves, vérifiez avec votre établissement (et, si besoin, le délégué à la protection des données de votre académie) que cet usage est possible. Il ne remplace pas le logiciel de vie scolaire officiel de votre établissement.</p></details>
+    <details><summary>Quelles informations sur les élèves faut-il saisir ?</summary><p>Le moins possible, et c'est voulu : un prénom suivi de l'initiale du nom, ou un pseudonyme. Il n'existe aucun champ pour la date de naissance, l'adresse, une photo, des coordonnées, la santé, un handicap ou la famille. L'outil rappelle de n'écrire aucune donnée sensible dans les remarques et les appréciations.</p></details>
+    <details><summary>Comment sont calculées les moyennes ?</summary><p>Chaque note est ramenée sur 20 selon le barème de l'évaluation, puis pondérée par son coefficient. Absent, non noté et dispensé ne comptent pas. Une évaluation marquée « bonus » ne compte que si elle fait monter la moyenne de l'élève. La moyenne de la classe est la moyenne des élèves notés ; la moyenne annuelle, celle des trimestres ou des semestres.</p></details>
+    <details><summary>Le socle commun est-il intégré ?</summary><p>Oui, comme référentiel de départ modifiable : les cinq domaines et les quatre composantes du domaine 1, avec l'échelle maîtrise insuffisante, fragile, satisfaisante, très bonne maîtrise, d'après les articles D122-1 et D122-3 du code de l'éducation lus sur Légifrance le 14/11/2026. Vous pouvez aussi partir d'un exemple générique et y mettre les compétences de votre matière.</p></details>
+    <details><summary>Les dates de trimestres ou de semestres sont-elles prévues ?</summary><p>Vous choisissez trimestres ou semestres et l'outil propose des dates de fin, à ajuster à celles de votre établissement : aucun calendrier officiel n'est intégré. Les évaluations sont rangées dans leur période selon leur date.</p></details>
+    <details><summary>Que se passe-t-il en fin d'année ?</summary><p>Vous exportez les notes (CSV) et une copie complète, puis un bouton efface les élèves, leurs notes et leurs appréciations de l'année. Vos classes, vos évaluations, votre référentiel et votre banque de phrases restent, et la nouvelle année peut reprendre vos classes.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/gestion-classe/?demo">la démo</a> ouvre l'espace d'un enseignant fictif avec deux classes de collège et un groupe de lycée, des élèves aux prénoms fictifs, des notes, des compétences et des appréciations. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+    <details><summary>Est-ce relié au logiciel de vie scolaire de mon établissement ?</summary><p>Non, volontairement : aucune connexion à une autre application. Le bulletin de chaque élève se copie en texte, s'imprime, et les notes s'exportent en CSV pour un tableur.</p></details>
+  </div>
+</section>

@@ -399,6 +399,50 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/emploi-du-temps/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/emploi-du-temps/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/parcs-multi-sites/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/parcs-multi-sites/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/bascule/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/bascule/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/gestion-classe/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/gestion-classe/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/conges/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

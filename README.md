@@ -256,6 +256,28 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   à la saisie et rejoués à l'enregistrement en ligne (conflit 409 entre deux appareils) ; « libre maintenant », vues jour et
   semaine, réservations chaque semaine, taux d'occupation, jours fériés calculés. Règles dans `regles.js`, tests
   `outils/templates/salles.test.mjs`.
+- Lot du 14/11/2026 (5), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/bascule/` (BSC) **pilotage d'une journée de
+  bascule** (déroulé horaire avec responsables et dépendances, recalculé à chaque étape notée : retard cumulé, fin
+  estimée, marge ; go/no-go sur critères, points d'arrêt, plan de retour arrière avec heure limite calculée ; journal
+  d'incidents, point de situation à copier ; 5 séquences types fictives) ; `templates/gestion-classe/` (CSE)
+  **gestion de classe** (élèves en prénom et initiale ou pseudonyme, notes sur barème libre ramenées sur 20,
+  coefficients, ABS / NN / dispensé, statistiques de classe, compétences sur quatre échelons du socle commun,
+  banque d'appréciations, bulletins imprimables, effacement de fin d'année ; **RGPD à trancher par Quentin avant
+  la vente**, données d'élèves mineurs hébergées en ligne).
+- Lot du 14/11/2026 (6), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/emploi-du-temps/` (EDT) **emploi du temps
+  d'établissement** (organismes de formation, écoles privées : groupes avec effectif, formateurs avec disponibilités et
+  quota, salles avec capacité et équipements, modules avec volume prévu ; séances placées à la main sur une grille
+  semaine, vues par groupe, formateur et salle ; conflits détectés à la saisie ; heures réalisées, placées et prévues ;
+  semaines A/B, fermetures, jours fériés calculés ; duplication de semaine ; impression A4 paysage ; export CSV ; aucun
+  nom d'apprenant, aucune optimisation automatique) ; `templates/parcs-multi-sites/` (PRK) **pilotage de parcs
+  multi-sites** (exploitants immobilier et équipements : sites, équipements par site avec criticité et état, préventif
+  périodique à échéance calculée, correctifs avec délai de résolution, prestataires nommés par l'utilisateur, coûts ;
+  indicateurs par site et consolidés : disponibilité, retards, délai moyen, coût par site et par catégorie, préventif à
+  temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
+  export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
+  tests `outils/templates/<slug>.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

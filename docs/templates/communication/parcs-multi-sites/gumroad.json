@@ -1,0 +1,42 @@
+{
+  "slug": "parcs-multi-sites",
+  "name": "Pilotage de parcs multi-sites",
+  "price_cents": 4900,
+  "permalink": "pilotage-parcs-multi-sites",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon pilotage de parcs",
+  "summary": "Tes sites et leurs équipements au même endroit : préventif calculé, pannes suivies jusqu'à leur résolution, disponibilité et coût par site, alertes, liste triable, carte schématique et modèle tableur.",
+  "description": "<h2>Tous tes sites, une seule vue.</h2><p>Dix sites, trente équipements, autant de prestataires : un onglet de tableur par site, des échéances de préventif recalculées à la main, des pannes suivies dans la messagerie, et le coût de chaque site reconstitué en fin d'année. Le Pilotage de parcs multi-sites te dit ce qui est dû, ce qui est à l'arrêt, le site qu'on a oublié, et ce que coûte chacun.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes sites et leurs équipements</strong> : type, ville, région, responsable, coordonnées GPS facultatives ; pour chaque équipement, catégorie, marque et modèle (texte libre), mise en service, criticité et périodicité du préventif.</li><li><strong>Le préventif calculé</strong> : l'échéance part du dernier passage réalisé ; ce qui est dépassé ou proche remonte en tête, et le taux de préventif réalisé à temps se mesure tout seul.</li><li><strong>Les pannes suivies de bout en bout</strong> : signalement, résolution, équipement à l'arrêt ou non, prestataire que tu nommes, coût.</li><li><strong>Des indicateurs par site et pour tout le parc</strong> : disponibilité, interventions en retard, délai moyen de résolution, coût par site et par catégorie d'équipement.</li><li><strong>Des alertes</strong> : préventif dépassé ou proche, équipement à l'arrêt depuis N jours, site sans visite depuis N mois (seuils réglables).</li><li><strong>Une liste triable et filtrable</strong> (région, type, état, recherche) et <strong>une carte schématique</strong> des sites placés par leurs coordonnées, sans fond de carte ni service en ligne ; les sites sans coordonnées sont regroupés par région.</li><li><strong>Un modèle tableur</strong> : modèles CSV vides pour les sites et les équipements, import avec aperçu, export des sites, équipements et interventions (point-virgule, UTF-8, s'ouvre dans Excel, LibreOffice ou Numbers).</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton premier site ou importe ta liste depuis le modèle tableur, ajoute les équipements, puis note les préventifs réalisés et les pannes : tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de pilotage, pas un registre réglementaire : aucune périodicité légale n'est fournie, tu saisis celle de ton contrat ou de ta réglementation, qui prime. Aucun fond de carte, aucun géocodage, aucune connexion à une autre application. Un accès partagé sur plusieurs appareils, sans comptes ni droits par personne. Démo avec un parc fictif disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "maintenance",
+    "multi-sites",
+    "patrimoine",
+    "exploitation",
+    "services-generaux",
+    "maintenance-preventive",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton pilotage de parcs s'ouvre. Crée ton premier site ou importe ta liste avec le modèle tableur, ajoute les équipements et leur périodicité de préventif : les échéances, la disponibilité et les alertes se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone) + modèles CSV"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Exploitants multi-sites, gestionnaires de patrimoine, services généraux"
+    }
+  ]
+}
