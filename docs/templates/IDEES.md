@@ -98,7 +98,7 @@ déjà).
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
@@ -1038,3 +1038,63 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T21 (cadrage délégué par Quentin, 14/11/2026)
+
+### T21 · Planificateur de voyage (`templates/voyage/`, préfixe VYG, 13 €)
+
+Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadrage déléguées par Quentin).
+
+- **Promesse** : « Le voyage tient dans ta poche. » L'itinéraire par étapes, le toit de chaque nuit, les
+  activités jour par jour, le budget prévu puis réel et, au retour, qui doit quoi à qui.
+- **Pour qui** : voyageurs, familles et groupes d'amis (usage `perso`, catalogue « Vie personnelle » ·
+  thème « Projets de vie ») ; un voyage à la fois, plusieurs voyageurs sur la même clé (1 à 20). Packs visés :
+  « Voyage » (PVY, avec le Budget commun) et « Mariage et installation à deux » (PMR, lune de miel).
+- **Écrans** (5 onglets + réglages) : **Aperçu** (J−n, « jour k sur n » ou « terminé » ; chemin des étapes en
+  une ligne ; tuiles nuits réservées, à réserver, dépensé sur prévu, préparation ; alertes : nuit sans
+  hébergement, deux hébergements la même nuit, hébergement hors dates, étapes qui se chevauchent ;
+  programme d'aujourd'hui et de demain ; à réserver ; à payer sur place ; qui doit quoi) ; **Itinéraire**
+  (étapes et trajets dans l'ordre, tableau nuit par nuit avec étape, hébergement et état, liste des
+  hébergements avec montant, acompte et reste à payer, liste des transports) ; **Jour par jour** (une carte
+  par jour : transports et activités à leur heure, nuit du soir, ajout direct ; activités sans date à
+  part ; impression ; itinéraire en texte à copier) ; **Budget** (prévu et réel par poste et par personne,
+  écart, déjà réservé, barres réel/prévu et tableau ; dépenses filtrées par poste, CSV ; qui doit quoi :
+  remboursements proposés, par voyageur payé/part/solde, remboursements faits) ; **Préparer** (bagages par
+  liste avec progression, documents à prévoir, sources officielles des formalités). Réglages : voyage,
+  voyageurs, archivage, exports, sauvegarde JSON, compte, « Sur téléphone », données personnelles, à propos.
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 9 postes de budget (3 alimentés par le plan :
+  transports, hébergements, activités) ; 8 modes de transport ; 9 listes de bagages par type de séjour
+  (essentiels, ville, plage, montagne, hiver, camping, vol long-courrier, jeunes enfants, voiture ;
+  83 éléments) ; 10 documents à prévoir, chacun avec une consigne sans règle chiffrée ; 4 conseils ;
+  4 sources officielles.
+- **Calculs** (`regles.js`, `window.VYG`, testés dans `outils/templates/voyage.test.mjs`) : nuits = dates du
+  soir (départ exclu) ; couverture nuit par nuit (sans toit, à réserver, réservé, en double) ; reste à
+  payer = montant − acompte tant que non soldé ; étape de chaque nuit et étapes du jour de transition ;
+  programme trié par heure ; itinéraire et chemin en texte ; à réserver trié par date, urgent à 14 jours ;
+  budget prévu = plan + montants saisis, réel = dépenses, engagé = réservé ; **dépenses partagées : moteur
+  commun avec T65**, `templates/budget-commun/regles.js` chargé tel quel avant `regles.js` (répartition au
+  centime en parts égales, en parts ou en montants, soldes, nombre minimal de remboursements ; mode
+  « prorata des revenus » ramené à parts égales) ; dépense créée depuis un élément du plan (liée) ; bagages
+  sans doublon ; archivage (résumé gardé, listes décochées) ; fusion entre appareils en cas de conflit 409
+  (union, le plus récent l'emporte, aucune dépense perdue) ; CSV des dépenses.
+- **Données qui se périment : aucune intégrée.** Aucune règle de formalité (validité des papiers, visa,
+  vaccins) ni délai : un test refuse tout « n jours / mois / ans » dans la base. Formalités renvoyées à France
+  Diplomatie (Conseils aux voyageurs) et à service-public.fr (Passeport N360, Carte d'identité N358,
+  Autorisation de sortie du territoire F1359), adresses vérifiées le 14/11/2026. Aucun taux de change : les
+  montants se saisissent en euros (note libre pour le montant d'origine).
+- **Risques** : argent (avertissement dans l'application, la page et la fiche Gumroad : ni agence ni conseil
+  financier, remboursements = proposition de calcul) ; aucune réservation, aucune plateforme, aucune marque
+  (test qui refuse les noms de plateformes et de compagnies) ; démo fictive (« Italie du Nord, exemple
+  fictif », hébergements et adresses fictifs) ; données personnelles : rappel de ne saisir ni numéro de
+  passeport ni code de carte. Confidentiel vérifié : aucun artefact repris.
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/voyage/?demo`,
+  page `catalogue/voyage/` avec « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème
+  « Projets de vie »). Captures `assets/templates-voyage-*.webp`, couverture
+  `assets/templates-voyage-couverture.png`. Communication prête dans `communication/voyage/` (linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, carte
+  d'accueil FR, carte anglaise « Coming soon » non insérée). **Version anglaise en attente** (`en/` non
+  modifié). **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces
+  outils). Restent : fiche Gumroad (permalien prévu `planificateur-voyage`) et clé de licence (Quentin),
+  entrée dans `communication/gumroad-a-creer.json`, ajout de `VYG` aux packs PVY et PMR
+  (`netlify/lib/packs.mjs`, `PAGES` de `outils/packs/donnees.mjs`, pages `/packs/` régénérées), plannings,
+  carte anglaise, passage en vente du site.
