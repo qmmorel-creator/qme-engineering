@@ -786,3 +786,14 @@
   for = "/templates/calendrier-editorial/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/achats/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/achats/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

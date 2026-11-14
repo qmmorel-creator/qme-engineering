@@ -78,6 +78,7 @@ export const PRODUITS = {
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/' },
+  ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

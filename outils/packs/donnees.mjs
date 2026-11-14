@@ -7,6 +7,7 @@
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
+  ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -87,7 +88,6 @@ export const PREVUS = {
   ENP: { nom: 'Entretiens annuels et professionnels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.' },
   DRP: { nom: 'Document unique d’évaluation des risques', prix: 2900, phrase: 'Risques par unité de travail, cotation et actions.' },
   CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
-  ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
   DCS: { nom: 'Papiers du foyer', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.' },
   RBS: { nom: 'Remboursements santé', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.' },
   CPT: { nom: 'Capacité d’emprunt et comparateur de prêts', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.' },
@@ -209,7 +209,7 @@ export const PAGES = {
       ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats fournisseurs et demandes d’achat à venir, avec l’option Pack évolutif'],
-    prevus: ['CTR', 'ACH'],
+    prevus: ['CTR'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
