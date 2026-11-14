@@ -1,0 +1,27 @@
+{
+  "slug": "remerciements",
+  "name": "Cadeaux reçus et remerciements",
+  "price_cents": 1200,
+  "permalink": "cadeaux-remerciements",
+  "category": "self-improvement",
+  "button": "Ouvrir mon suivi des remerciements",
+  "summary": "Qui a offert quoi, un message de remerciement prêt pour chaque foyer (44 modèles par événement et par ton), le compteur « reste à remercier » et les étiquettes d'adresses A4. Mariage, naissance, anniversaire, retraite, obsèques.",
+  "description": "<h2>Personne n'est oublié.</h2><p>Après un mariage, une naissance, un anniversaire marquant, un départ à la retraite ou des obsèques, les cadeaux et les attentions arrivent de partout. Les cartes s'écrivent par vagues, et la liste se perd entre un carnet, un tableur et trois messageries. Cadeaux reçus et remerciements garde qui a offert quoi, prépare un message pour chaque foyer et compte ce qu'il reste à envoyer.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Qui a offert quoi, noté en deux secondes</strong> : un foyer (« Tante Agnès et Paul », « Collègues de Camille »), ce qu'il a offert, un montant si tu veux, et les participations à une cagnotte totalisées.</li><li><strong>Un message prêt pour chaque foyer</strong> : 44 modèles originaux par événement (mariage, naissance ou baptême, anniversaire, retraite, obsèques) et par ton (chaleureux, sobre, bref, léger), remplis avec ce que le foyer a offert. Tu retouches, tu copies.</li><li><strong>Le compteur « reste à remercier »</strong> : à écrire, écrit, envoyé, avec un objectif d'envoi que tu fixes et les foyers à remercier en priorité.</li><li><strong>Les étiquettes d'adresses</strong> imprimées sur une planche A4 (4 formats courants), en commençant là où la planche est entamée.</li><li><strong>Une liste collée</strong> depuis un tableur ou tes notes, et un export CSV.</li><li><strong>Des données minimales</strong> : un nom par foyer, une adresse seulement pour la poste ; les adresses et l'événement s'effacent une fois les cartes parties.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton événement et note les cadeaux au fil de l'eau. Tes données sont enregistrées en ligne (hébergement en Europe) et te suivent sur ordinateur, tablette et téléphone avec la même clé, à deux si vous écrivez les cartes ensemble.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Aucun message n'est envoyé par l'outil : tu copies le texte, tu l'écris ou tu l'imprimes.</p><p><em>Démo disponible sur qm-engineering.fr/catalogue/remerciements.</em></p>",
+  "tags": [
+    "mariage",
+    "remerciements",
+    "naissance",
+    "cadeaux",
+    "organisation",
+    "famille",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi des remerciements s'ouvre. Crée ton événement et note les cadeaux reçus : un message est prêt pour chaque foyer. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Jeunes mariés, jeunes parents, familles" }
+  ]
+}

@@ -122,3 +122,9 @@ Types d'événement (vocabulaire, tons, cadeaux proposés), 9 types de cadeaux o
   réglable, impression d'essai sur papier ordinaire conseillée).
 - Ton des modèles pour les obsèques : relu pour éviter toute formule festive ; à relire par Quentin.
 - Usage à deux (couple) : même clé sur deux appareils, conflit 409 commun ; pas de rôles.
+
+## Statut
+
+**Prêt** le 14/11/2026, « Mise en vente prochaine » : démo libre, page `catalogue/remerciements/`, communication dans
+`docs/templates/communication/remerciements/`. Restent la fiche Gumroad et la clé de licence (Quentin), le pack PMR
+(`netlify/lib/packs.mjs`), la carte anglaise et les plannings LinkedIn et Instagram.

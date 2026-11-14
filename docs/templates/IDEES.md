@@ -167,7 +167,7 @@ déjà).
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
-| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en cours | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -1733,3 +1733,31 @@ et à régénérer les pages des packs à la fusion.
   (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente), plannings,
   passage en vente du site. Point à suivre : règles de passage pour les salariés présents avant la réforme
   (questions-réponses du ministère du 12/02/2026 non consulté), revérifier F32040 à chaque mise à jour annuelle.
+
+## Fiche T86 (cadrage délégué par Quentin, 14/11/2026)
+
+### T86 · Cadeaux reçus et remerciements (`templates/remerciements/`, préfixe CDX, 12 €)
+- Fiche détaillée : [`fiches/remerciements.md`](fiches/remerciements.md). Application web, 12 €, permalien prévu
+  `cadeaux-remerciements`, catalogue `perso` · thème « Projets de vie ». Packs : « Mariage et installation à deux »
+  (PMR, où T86 est prévu), utile au pack Famille. Complète T15 (même logique de liste collée).
+- Promesse : « Qui a offert quoi, et à qui il reste à dire merci. »
+- Cadrage : unité de remerciement = le foyer (statut et message), cadeaux rattachés ; plusieurs événements
+  (mariage, naissance ou baptême, anniversaire, retraite, obsèques au ton sobre, autre) ; 9 types de cadeaux ou
+  d'attentions, montant facultatif, totaux par cagnotte ; statut à écrire, écrit, envoyé ; 44 modèles de messages
+  originaux par événement et par ton ; objectif d'envoi réglé par l'utilisateur (6 semaines par défaut, pas une
+  règle) ; étiquettes A4 (4 formats décrits par leurs dimensions, départ, décalage) ; import d'une liste collée ;
+  export CSV ; effacement des adresses déjà utilisées et de l'événement. Aucune règle légale ni donnée datée.
+  **RGPD** : données de tiers minimisées (nom d'usage, adresse facultative pour la poste, aucun contact).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/remerciements/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Projets de vie »). Page
+  `catalogue/remerciements/`, captures `assets/templates-remerciements-*.webp`, couverture
+  `assets/templates-remerciements-couverture.png`, tests `outils/templates/remerciements.test.mjs`. Produit `CDX`
+  déclaré (serveur, connexion, en-têtes Netlify) ; `CDX` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PMR).
+- Communication prête dans `communication/remerciements/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout de `CDX` aux `produits` du pack PMR (`netlify/lib/packs.mjs`) et
+  régénération des pages de packs, carte anglaise (`en/`, en attente), plannings, passage en vente du site. À
+  relire par Quentin : ton des modèles pour les obsèques, hashtags Instagram hors jeux du kit.
