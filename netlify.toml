@@ -852,3 +852,14 @@
   for = "/templates/etat-des-lieux/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/templates/course-a-pied/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/course-a-pied/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

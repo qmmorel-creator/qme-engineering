@@ -172,7 +172,7 @@ déjà).
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -267,7 +267,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
-| Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
+| Forme | PFM | T04, T08, T06, T07, T97 | — | 78 € | 25 % | 58 € | 15 € |
 | Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | T59, T55, T56 | T58 | 85 € | 15 % | 72 € | 18 € |
@@ -2288,3 +2288,36 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
   `ETD` aux `produits` du pack PPB (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise,
   plannings, passage en vente du site.
+
+## Fiche T97 (cadrage délégué par Quentin, 14/11/2026)
+
+### T97 · Plan d'entraînement course à pied (`templates/course-a-pied/`, préfixe CRS, 15 €)
+- Fiche détaillée : [`fiches/course-a-pied.md`](fiches/course-a-pied.md). Catalogue `perso` · thème « Santé et forme » ;
+  pack visé « Forme » (PFM). Permalien prévu `plan-entrainement-course-a-pied`.
+- Promesse : « Tes allures et tes semaines, jusqu'au jour J. » Public : coureurs amateurs qui préparent un 10 km, un
+  semi-marathon ou un marathon.
+- Chrono de référence (le plus récent l'emporte), objectif (distance, date, temps visé facultatif, nom), disponibilité
+  (3 à 5 séances, jours, jour de la sortie longue, volume). Allures en fourchettes (récupération, footing, sortie
+  longue, seuil, fractionné, spécifique) depuis les allures prédites ; prédiction par la **formule de Riegel**
+  (Riegel P. S., American Scientist, vol. 69, n° 3, 1981, p. 285-290, référence vérifiée le 14/11/2026), exposant
+  réglable ; fourchettes = **repères QME présentés comme des estimations**. Avis sur le temps visé, avertissements
+  (chrono ancien, extrapolation lointaine).
+- Plans types originaux : 8 semaines (10 km), 12 (semi), 16 (marathon), 46 séances rédigées pour QME, progression puis
+  affûtage, semaines d'assimilation ; placement sur les jours choisis ; plan raccourci si la course est proche (3
+  semaines au moins). Séances cochées (distance, durée, ressenti, note) ou manquées, déplacement dans la semaine avec
+  avertissements, semaine allégée (proposée après 3 séances dures sur 4 ou 2 manquées en 7 jours), recalcul des
+  séances à venir, volume hebdomadaire prévu et fait (graphique, skill `dataviz`), impression, exports CSV et .ics.
+- **Aucune donnée de santé** ; avertissement (ni programme médical ni avis médical, avis d'un médecin avant de
+  commencer) ; aucune marque, méthode ni plan commercial (test automatique) ; aucune règle d'inscription aux courses
+  intégrée (renvoi à l'organisateur).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/course-a-pied/?demo`, page
+  `catalogue/course-a-pied/`, captures `assets/templates-course-a-pied-*.webp`, couverture
+  `assets/templates-course-a-pied-couverture.png`, tests `outils/templates/course-a-pied.test.mjs`). Version anglaise en
+  attente.
+- Communication prête dans `communication/course-a-pied/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-prochaine.html). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de CRS au pack PFM
+  (`netlify/lib/packs.mjs`, pages des packs régénérées ; CRS retiré des prévus dans `outils/packs/donnees.mjs`, et la
+  phrase « Le plan de course à pied à venir » des arguments de PFM à revoir), carte anglaise, plannings, passage en
+  vente.

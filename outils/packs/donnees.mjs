@@ -40,6 +40,7 @@ export const TEMPLATES = {
   GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
   CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
   MSC: { slug: 'musculation', prix: 1900, phrase: 'Séances, WOD, records détectés et minuteur.', pour: 'perso' },
+  CRS: { slug: 'course-a-pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.', pour: 'perso' },
   SNH: { slug: 'sinistre', prix: 2900, phrase: 'Déclaration guidée, dommages chiffrés, preuves et suivi.', pour: 'perso' },
   CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, vagues, scores et classement en direct.', pour: 'pro' },
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
@@ -106,7 +107,6 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
 // Cibles : pastille = couleur + forme (le libellé est toujours écrit, la couleur ne porte pas seule le sens).
@@ -328,16 +328,17 @@ export const PAGES = {
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],
     accroche: 'Manger juste, bouger, tenir.',
-    resume: 'Nutrition, musculation, repas de la semaine et habitudes : de quoi manger juste, bouger et tenir.',
+    resume: 'Nutrition, musculation, course à pied, repas de la semaine et habitudes : de quoi manger juste, bouger et tenir.',
     pourQui: 'Vous voulez perdre du poids, en prendre ou simplement mieux manger et bouger. Les applications grand public vous noient sous la publicité ou l’abonnement.',
     parcours: [
       ['NTR', 'Suivez repas, calories, macros et dépense du jour.'],
       ['HBT', 'Tenez les habitudes qui font la différence : eau, sommeil, pas, séances.'],
       ['RPS', 'Planifiez les repas de la semaine et générez la liste de courses par rayon.'],
       ['MSC', 'Notez vos séances, battez vos records, chronomètre en main.'],
+      ['CRS', 'Préparez votre course : allures calculées depuis votre chrono, plan semaine par semaine.'],
     ],
-    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Le plan de course à pied à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CRS'],
+    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
   },
   PFA: {
     couleur: 'jaune', cibles: ['familles', 'couples'],
