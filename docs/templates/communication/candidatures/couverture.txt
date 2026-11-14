@@ -1,0 +1,6 @@
+Candidatures études, stages, alternance
+Chaque dossier, à temps.
+Pièces à fournir · dates et relances · vœux classés · lettres et entretiens
+Ligne ajoutée à T dans outils/templates/couvertures-gumroad.cjs :
+  candidatures: ['Candidatures études, stages, alternance', 'Chaque dossier, à temps.', 'Pièces à fournir · dates et relances · vœux classés · lettres et entretiens'],
+Rendu : assets/templates-candidatures-couverture.png (SEUL=candidatures, copie du script pointée sur le serveur local 8918), regardé le 14/11/2026.

@@ -75,6 +75,7 @@ const T = {
   'garde-manger': ['Garde-manger et dates de péremption', 'Rien ne se perd au fond du frigo.', 'DLC et DDM · priorités du jour · gaspillage suivi'],
   papiers: ['Papiers du foyer', 'Chaque papier a sa place.', 'Où il est · combien de temps le garder · renouvellements · fiche urgence'],
   'remboursements-sante': ["Remboursements santé", "Ce qu'on te doit encore, soin par soin.", "Sécu et mutuelle · retards · relances · bilan annuel"],
+  candidatures: ['Candidatures études, stages, alternance', 'Chaque dossier, à temps.', 'Pièces à fournir · dates et relances · vœux classés · lettres et entretiens'],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
   'salles': ["Réservation de salles et bureaux", "La salle est libre ? Tu le sais.", "Libre maintenant · jour et semaine · aucune double réservation"],
