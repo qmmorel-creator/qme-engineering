@@ -331,6 +331,17 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   passé, motifs de perte ; export CSV. Aucune connexion à une plateforme ni à un profil d'acheteur. Règles dans
   `regles.js`, tests `outils/templates/appels-offres.test.mjs`, page `catalogue/appels-offres/`, démo
   `/templates/appels-offres/?demo`.
+- `templates/emprunt/` (CPT) : **capacité d'emprunt et comparateur de prêts** (T85), prêt, mise en vente prochaine
+  (15 €, primo-accédants et investisseurs ; packs visés « Reprendre la main sur son argent » et « Propriétaire »).
+  Profil d'un ou deux emprunteurs (revenus, loyers retenus à la part saisie, crédits en cours), mensualité maximale au
+  taux d'effort saisi et montant empruntable au taux, à la durée et à l'assurance saisis, reste à vivre ; seuils de
+  départ 35 % et 25 ans (décision D-HCSF-2021-7, source et date de vérification affichées, modifiables) ; budget du
+  projet (frais de notaire saisis ou estimés en hypothèse affichée, travaux, apport, prix maximal) ; 2 à 5 offres
+  comparées (assurance sur capital initial ou restant dû, frais de dossier, garantie, courtage, coût total, TAEG
+  approché présenté comme estimation) ; tableau d'amortissement par mois ou par année, graphique capital et intérêts ;
+  remboursement anticipé (durée ou mensualité, indemnités au plafond de l'article R313-25 du Code de la consommation,
+  saisies ou nulles) ; export CSV, impression. Aucun taux de marché intégré. Règles dans `regles.js`, tests
+  `outils/templates/emprunt.test.mjs`, page `catalogue/emprunt/`, démo `/templates/emprunt/?demo`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

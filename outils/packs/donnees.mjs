@@ -16,6 +16,7 @@ export const TEMPLATES = {
   PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', pour: 'pro' },
+  CPT: { slug: 'emprunt', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.', pour: 'perso' },
   GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
   CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
   MSC: { slug: 'musculation', prix: 1900, phrase: 'Séances, WOD, records détectés et minuteur.', pour: 'perso' },
@@ -90,7 +91,6 @@ export const PREVUS = {
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
   DCS: { nom: 'Papiers du foyer', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.' },
   RBS: { nom: 'Remboursements santé', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.' },
-  CPT: { nom: 'Capacité d’emprunt et comparateur de prêts', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.' },
   CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', prix: 1200, phrase: 'Le rituel du vendredi qui fait tenir la semaine suivante.' },
   NTS: { nom: 'Notes et moyennes', prix: 1200, phrase: 'Moyennes pondérées, crédits et note visée à l’examen.' },
@@ -228,7 +228,7 @@ export const PAGES = {
       ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
     ],
     arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Papiers, remboursements santé et emprunt à venir, avec l’option Pack évolutif'],
-    prevus: ['DCS', 'RBS', 'CPT'],
+    prevus: ['DCS', 'RBS'],
   },
   PMR: {
     couleur: 'rouge', cibles: ['couples'],
@@ -299,7 +299,7 @@ export const PAGES = {
       ['SNH', 'En cas de sinistre, déclarez, chiffrez et suivez le dossier jusqu’à l’indemnisation.'],
     ],
     arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD', 'RNT', 'CPR', 'CPT'],
+    prevus: ['ETD', 'RNT', 'CPR'],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],
