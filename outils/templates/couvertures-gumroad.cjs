@@ -56,6 +56,7 @@ const T = {
   repas: ['Repas de la semaine · liste de courses', 'Le menu fait, la liste aussi.', 'Midi et soir · courses par rayon · à cocher au magasin'],
   'verifications': ["Vérifications réglementaires", "Aucun contrôle oublié.", "Périodicités sourcées · échéances · observations levées · registre"],
   'planning-equipe': ["Planning d'équipe et staffing", "Qui fait quoi, et qui peut encore prendre.", "Charge par semaine · absences · conflits · disponibles"],
+  'competition': ["Gestion de compétition sportive", "Du premier inscrit au podium.", "Inscriptions · vagues et horaires · scores · classement en direct"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

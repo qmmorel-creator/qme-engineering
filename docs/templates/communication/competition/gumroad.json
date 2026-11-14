@@ -1,0 +1,42 @@
+{
+  "slug": "competition",
+  "name": "Gestion de compétition sportive",
+  "price_cents": 4900,
+  "permalink": "gestion-competition",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir ma compétition",
+  "summary": "Inscriptions par catégorie, vagues et horaires calculés, scores saisis au bord du plateau, classement à tes règles, mode écran et lien public en lecture seule pour les spectateurs.",
+  "description": "<h2>Du premier inscrit au podium.</h2><p>Une compétition, c'est 40 athlètes, quatre épreuves, des vagues à caler, des feuilles de juge et un classement que tout le plateau réclame entre deux vagues. Le template Gestion de compétition sportive réunit tout au même endroit : inscriptions, vagues et horaires, scores saisis au bord du plateau, classement calculé en direct et affiché sur grand écran.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les inscriptions par catégorie</strong> : athlètes ou équipes (2 à 12), dossard automatique, statut, paiement, pièces vérifiées ; une liste collée depuis ton tableur ou ton formulaire s'importe en une fois.</li><li><strong>Les vagues et leurs horaires</strong> : vagues équilibrées selon le nombre de couloirs, les mieux classés en dernier (ou dossard, ou tirage), horaires calculés depuis le temps limite et le battement, alertes de repos, feuilles de juge imprimables.</li><li><strong>Les scores au bord du plateau</strong> : temps, répétitions au temps limite (« CAP+7 »), répétitions, charge ou points, départage au temps, absent ou disqualifié ; le rang se recalcule à chaque saisie, depuis plusieurs téléphones avec la même clé.</li><li><strong>Un classement à tes règles</strong> : somme des rangs ou barème de points, coefficient par épreuve, départage du général (meilleures places ou dernière épreuve), ex aequo gérés.</li><li><strong>Le classement affiché</strong> : mode écran plein écran pour la télévision, et un lien en lecture seule pour les spectateurs (classement, programme des vagues, recherche d'un nom), mis à jour seul.</li><li><strong>Six formats de départ</strong> et douze épreuves génériques à renommer, sans épreuve de référence imposée.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis un format de départ, inscris les participants, génère les vagues. Tes données sont enregistrées en ligne et suivent la clé sur ordinateur, tablette et téléphone, même hors connexion.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'organisation, pas un logiciel fédéral homologué : les règles de classement sont celles que tu choisis. Données des participants (RGPD) : collecte limitée, aucune donnée de santé, coordonnées jamais publiées, classement public effacé 30 jours après la compétition, mention d'information fournie. Aucun e-mail envoyé, aucun paiement encaissé. Démo disponible sur qm-engineering.fr/catalogue/competition.</em></p>",
+  "tags": [
+    "competition",
+    "cross-training",
+    "club",
+    "association",
+    "classement",
+    "sport",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta compétition s'ouvre. Choisis un format de départ, puis inscris les participants. Garde cet e-mail : la même clé fonctionne sur tous les appareils de l'organisation (table de marque, téléphones des juges).",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Salles de cross-training, clubs et associations sportives"
+    }
+  ]
+}

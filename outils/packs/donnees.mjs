@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, vagues, scores et classement en direct.', pour: 'pro' },
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
   VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
@@ -64,7 +65,6 @@ export const PREVUS = {
   // Idées déjà listées (T06–T63)
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
-  CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
@@ -270,9 +270,10 @@ export const PAGES = {
       ['ASC', 'Gérez les inscriptions, les créneaux, la liste d’attente et les tarifs par tranche.'],
       ['EVT', 'Organisez l’événement : rétroplanning, budget, prestataires, invités, jour J.'],
       ['TRS', 'Prévoyez la trésorerie de la saison et voyez venir les mois creux.'],
+      ['CMP', 'Organisez la compétition : inscriptions, vagues, scores et classement affiché en direct.'],
     ],
-    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Compétition, subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CMP', 'SBV', 'BNV', 'AGS'],
+    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
+    prevus: ['SBV', 'BNV', 'AGS'],
   },
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],

@@ -131,7 +131,7 @@ déjà).
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office | idée | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -265,7 +265,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T84 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T85 | 61 € | 20 % | 48 € | 12 € |
 | Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
-| Associations et clubs | PAS | T53, T51, T42 | T52, T89, T90, T91 | 107 € | 15 % | 90 € | 23 € |
+| Associations et clubs | PAS | T53, T51, T42, T52 | T89, T90, T91 | 156 € | 20 % | 124 € | 31 € |
 | Propriétaire | PPB | T64, T67, T11, T27 | T92, T93, T94, T83 | 82 € | 20 % | 65 € | 17 € |
 | Forme | PFM | T04, T08, T06 | T07, T95 | 44 € | 15 % | 37 € | 10 € |
 | Famille | PFA | T05, T11, T06 | T09, T19, T20 | 40 € | 15 % | 34 € | 9 € |
@@ -1253,3 +1253,27 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   confirmer, fiche Gumroad (permalien prévu `verifications-reglementaires`) et clé de licence (Quentin), entrée
   dans `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP (`netlify/lib/packs.mjs`) et
   régénération des pages de packs, plannings, page anglaise, passage en vente du site.
+
+## Fiche T52 (cadrage délégué par Quentin, 14/11/2026)
+
+### T52 · Gestion de compétition sportive (`templates/competition/`, préfixe CMP, 49 €)
+- Fiche détaillée : [`fiches/competition.md`](fiches/competition.md). Application web, catalogue `pro` · thème
+  « Associations, formation et événements », pack « Associations et clubs ».
+- Promesse : « Du premier inscrit au podium, sans tableur. »
+- Inscriptions (individuel ou équipes), catégories, épreuves (temps avec temps limite et « CAP+ », répétitions,
+  charge, points, départage, coefficient), vagues générées avec horaires et feuilles de juge, saisie des scores,
+  classement paramétrable (somme des rangs ou barème, départage général).
+- Affichage public : mode écran plein écran dans l'application et lien public en lecture seule
+  (`/api/competition/*`, instantané sans coordonnées, effacé 30 jours après la compétition).
+- Marques : **RGPD** (participants). Aucun nom d'épreuve de référence ou de marque.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/competition/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Associations, formation et événements »).
+  Page `catalogue/competition/`, captures `assets/templates-competition-*.webp`, couverture
+  `assets/templates-competition-couverture.png`, tests `outils/templates/competition.test.mjs`. Pas de carte anglaise
+  (version anglaise en attente).
+- Communication prête dans `communication/competition/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `gestion-competition`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
+  ajout au pack « Associations et clubs » (`netlify/lib/packs.mjs`, pages des packs), carte anglaise, plannings,
+  passage en vente du site.

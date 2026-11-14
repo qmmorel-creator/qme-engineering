@@ -246,6 +246,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   organismes, observations suivies jusqu'à leur levée avec preuve (référence et lien, pas de fichiers), délai de
   2 ans des installations électriques sous conditions, calendrier, registre imprimable par site. Règles dans
   `regles.js`, tests `outils/templates/verifications.test.mjs`. Version anglaise en attente.
+- `templates/competition/` (CMP) : **gestion de compétition sportive**, prêt, « Mise en vente prochaine » (49 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/competition/gumroad.json`). Inscriptions par catégorie
+  (individuel ou équipes), épreuves au temps (temps limite, « CAP+n »), aux répétitions, à la charge ou aux points,
+  départage, vagues équilibrées et horaires, alertes de repos, feuilles de juge, saisie des scores, classement
+  paramétrable (somme des rangs ou barème, coefficient, départage général), mode écran. **Lien public en lecture
+  seule** : API propre `/api/competition/*` (`netlify/functions/competition.mjs`, moteur
+  `templates/competition/moteur.js`, dépendances `netlify/lib/competition.mjs`), magasin Netlify Blobs
+  `competition-public` à Francfort, instantané reconstruit champ par champ (aucune coordonnée), mis en cache 15 s par
+  le CDN, effacé 30 jours après la compétition (à la lecture et par `competition-purge.mjs`, quotidienne). Page
+  publique `/templates/competition/?ecran=<id>`. Règles dans `regles.js`, tests `outils/templates/competition.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
