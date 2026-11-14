@@ -162,7 +162,7 @@ déjà).
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) ; fiche [`fiches/contrats.md`](fiches/contrats.md) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
@@ -1570,3 +1570,33 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
   Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, plannings, carte anglaise,
   passage en vente du site.
+
+## Fiche T81 (cadrage délégué par Quentin, 14/11/2026)
+
+### T81 · Contrats fournisseurs et échéances de résiliation (`templates/contrats/`, préfixe CTR, 25 €)
+- Fiche détaillée : [`fiches/contrats.md`](fiches/contrats.md). Application web, permalien prévu `contrats-fournisseurs`,
+  catalogue `pro` · thème « Équipements et véhicules ». Packs « Moyens généraux » (PMG) et « Exploitation et
+  maintenance » (PXP) : CTR ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PMG et PXP dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` des packs (`netlify/lib/packs.mjs`) et pages régénérées à la fusion.
+- Promesse : « Plus de reconduction subie. » Pour office managers, dirigeants de TPE et PME, services généraux.
+- Contrats par fournisseur et catégorie (10 catégories : assurances, maintenance, télécoms, location et leasing,
+  logiciels, nettoyage, énergie, sécurité, services, autre ; paramétrables), montant et périodicité, échéance avec
+  reconduction tacite avancée automatiquement, préavis (contrat ou défaut de la catégorie), date limite de réception
+  et envoi conseillé calculés, alertes J-60 / J-30 / préavis dépassé, décision (renouveler, renégocier, résilier),
+  lettre de résiliation à adapter (copie, impression), résiliation notée, coût annuel par catégorie et fournisseur,
+  économies, historique, calendrier 12 mois, export CSV. Moteur d'échéances commun avec T63.
+- **Règles légales** : aucune intégrée sans source. Seul repère cité : Code des assurances, art. L113-12 (version en
+  vigueur depuis le 28/05/2026), lu sur Légifrance le 14/11/2026, d'où le préavis par défaut de 2 mois des assurances
+  (la police prime, dérogation possible pour les risques professionnels). Loi Chatel et résiliation infra-annuelle :
+  non citées. Avertissement « outil d'aide, ne remplace pas un conseil juridique » partout.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/contrats/?demo`, bouton « Je suis
+  intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/contrats/`, captures
+  `assets/templates-contrats-*.webp`, couverture `assets/templates-contrats-couverture.png`, tests
+  `outils/templates/contrats.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/contrats/carte-en-prochaine.html`).
+- Communication prête dans `communication/contrats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `contrats-fournisseurs`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP et régénération des pages de packs, plannings,
+  page anglaise, passage en vente du site.

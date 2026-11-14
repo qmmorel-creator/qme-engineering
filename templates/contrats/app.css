@@ -616,6 +616,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .journal-ctr li.evt-renegociation .cal-date{background:var(--vert-fond);color:var(--vert-texte)}
 #lettre-texte{font:15px/1.5 Outfit,system-ui,sans-serif;min-height:320px}
 #impression{display:none}
+.bloc-detail .mini-liste li{grid-template-columns:minmax(0,1fr) auto}
 @media (max-width:720px){
   .choix-cats{grid-template-columns:1fr}
   .choix-decision{grid-template-columns:1fr}

@@ -224,7 +224,7 @@
     for (const s of specs) {
       const c = R.normaliserContrat({ id: uid(), reconduction: 'tacite', ...s });
       e.contrats.push(c);
-      R.journal(e, { contrat: c.id, date: c.debut && c.debut < j(-200) ? j(-200) : (c.debut || j(-30)), type: 'creation', texte: 'Contrat saisi dans l\'outil.' }, uid);
+      R.journal(e, { contrat: c.id, date: c.debut || j(-30), type: 'creation', texte: 'Contrat saisi dans l\'outil.' }, uid);
     }
     const par = (nom) => e.contrats.find((c) => c.nom === nom);
     for (const c of e.contrats) {
@@ -815,7 +815,7 @@
       ${c.note ? `<p class="aide">${esc(c.note)}</p>` : ''}
       ${actions}
       <section class="bloc-detail"><h3>Historique <span>${pluriel(h.length, 'événement')}</span></h3>
-        ${h.length ? `<ul class="mini-liste">${h.map((x) => `<li><span><b>${dateCourte(x.date)} · ${esc(R.LIB_EVT[x.type])}</b><br><small>${esc(x.texte)}</small></span><span></span>${x.derive ? '<span></span>' : `<button type="button" class="btn-suppr" data-action="suppr-evt" data-id="${x.id}" data-retour="${c.id}" aria-label="Supprimer cet événement">×</button>`}</li>`).join('')}</ul>` : '<p class="mention">Aucun événement.</p>'}
+        ${h.length ? `<ul class="mini-liste">${h.map((x) => `<li><span><b>${dateCourte(x.date)} · ${esc(R.LIB_EVT[x.type])}</b><br><small>${esc(x.texte)}</small></span>${x.derive ? '<span></span>' : `<button type="button" class="btn-suppr" data-action="suppr-evt" data-id="${x.id}" data-retour="${c.id}" aria-label="Supprimer cet événement">×</button>`}</li>`).join('')}</ul>` : '<p class="mention">Aucun événement.</p>'}
         <div class="rang"><button type="button" class="btn petit" data-action="note" data-id="${c.id}">${ICONES.plus}Ajouter une note</button></div>
       </section>`;
     ouvrirModale(esc(c.nom), corps, `<button class="btn primaire" value="annuler">Fermer</button><button class="btn" type="button" data-action="modifier" data-id="${c.id}">Modifier le contrat</button>`);
