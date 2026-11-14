@@ -5,7 +5,7 @@
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
-import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE } from '../../netlify/lib/packs.mjs';
+import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
@@ -34,7 +34,7 @@ export function calculerPack(code) {
     .filter((p, i, t) => t.indexOf(p) === i && !PRODUITS[p]).map((p) => ({ pre: p, ...PREVUS[p] }));
   const prix = prixPack(templates.map((t) => t.prix));
   const enVente = Boolean(pack.gumroad && pack.permalien) && templates.every((t) => t.statut === 'vente');
-  return { code, ...pack, ...page, templates, prevus, ...prix, enVente };
+  return { code, ...pack, ...page, templates, prevus, ...prix, option: prixOption(prix.prix), enVente };
 }
 
 // --- Gabarit commun ------------------------------------------------------------------------------
@@ -99,7 +99,8 @@ function blocPrix(p, { court = false } = {}) {
   if (court) return `<span class="prix-pack"><b>${euros(p.prix)}</b>${barre}</span>`;
   return `<div class="prix-pack-bloc${p.enVente ? '' : ' prochaine'}">
         <p class="prix-pack"><b>${euros(p.prix)}</b>${barre}</p>
-        <p class="detail">${p.templates.length} templates · ${p.pct ? `vous économisez ${euros(p.economie)} sur l’achat séparé` : 'achat unique'}${p.prevus.length ? ` · ${p.prevus.length === 1 ? 'un template à venir inclus' : `${p.prevus.length} templates à venir inclus`}, sans supplément` : ''}</p>
+        <p class="detail">${p.templates.length} templates · ${p.pct ? `vous économisez ${euros(p.economie)} sur l’achat séparé` : 'achat unique'}</p>
+        <div class="option-pack"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>Les templates ajoutés au pack après votre achat s’ouvrent avec la même clé${p.prevus.length ? `, à commencer par ${p.prevus.length === 1 ? 'le template annoncé' : `les ${p.prevus.length} templates annoncés`}` : ''}.</span></div>
         ${p.enVente ? '' : '<p class="prochaine-note"><b>Mise en vente prochaine.</b> Les démos sont libres dès maintenant.</p>'}
       </div>`;
 }
@@ -108,7 +109,7 @@ function blocPrix(p, { court = false } = {}) {
 function pagePack(p) {
   const module = `pack-${p.slug}`;
   const actions = p.enVente
-    ? `<a class="btn primary" href="${GUMROAD}${p.permalien}" data-goatcounter-click="achat-${module}">Acheter le pack</a><a class="btn" href="#contenu">Voir le contenu</a>`
+    ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=Pack" data-goatcounter-click="achat-${module}">Acheter le pack</a><a class="btn" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=${encodeURIComponent(OPTION.nom)}" data-goatcounter-click="achat-${module}-evolutif">Avec l’option (+${euros(p.option)})</a>`
     : `<button class="btn interet" type="button" data-interet="${module}">Je suis intéressé(e)</button><a class="btn" href="#contenu">Voir le contenu</a>`;
   const note = p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce pack. Rien d'autre n'est enregistré.</p>`;
   const cartes = p.templates.map((t) => `<li class="t-pack">
@@ -118,8 +119,8 @@ function pagePack(p) {
       </li>`).join('\n      ');
   const prevus = p.prevus.length ? `
   <div class="prevus">
-    <h3>À venir dans ce pack, sans supplément</h3>
-    <p>Ces templates sont en préparation. Dès leur sortie, ils s’ajoutent au pack : si vous l’avez déjà acheté, ils s’ouvrent avec la même clé.</p>
+    <h3>À venir dans ce pack</h3>
+    <p>Ces templates sont en préparation et rejoindront le pack à leur sortie. Avec l’option ${OPTION.nom} (+${euros(p.option)}), ils s’ouvriront avec votre clé, sans rien payer de plus.</p>
     <ul>${p.prevus.map((t) => `<li><b>${esc(t.nom)}</b><span>${esc(t.phrase)}</span></li>`).join('')}</ul>
   </div>` : '';
   const parcours = p.parcours.filter(([pre]) => PRODUITS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre].nom)}</b><p>${esc(texte)}</p></div></li>`).join('\n      ');
@@ -166,7 +167,7 @@ function pagePack(p) {
   <div class="faq">
     <details><summary>Comment j’accède aux templates du pack ?</summary><p>Vous recevez une seule clé par e-mail après l’achat. Collez-la sur <a href="/connexion/">qm-engineering.fr/connexion</a> : votre tableau de bord du pack s’ouvre, avec un bouton par template. La même clé fonctionne sur tous vos appareils.</p></details>
     <details><summary>Les templates partagent-ils leurs données ?</summary><p>Non : chaque template garde ses propres données, synchronisées sur vos appareils. Le pack réunit les outils et l’accès, pas une base commune.</p></details>
-    <details><summary>Et les templates ajoutés plus tard ?</summary><p>Un template ajouté au pack s’ouvre avec votre clé, sans supplément. Le prix du pack peut augmenter pour les nouveaux acheteurs ; le vôtre est réglé une fois pour toutes.</p></details>
+    <details><summary>Et les templates ajoutés plus tard ?</summary><p>Le pack ouvre les templates qu’il contient le jour de votre achat. Avec l’option ${OPTION.nom} (+${euros(p.option)}), chaque template ajouté au pack ensuite s’ouvre aussi avec votre clé, sans rien payer de plus. Le prix du pack peut augmenter pour les nouveaux acheteurs ; le vôtre est réglé une fois pour toutes.</p></details>
     <details><summary>J’ai déjà acheté un des templates du pack.</summary><p>Écrivez à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> avant d’acheter le pack : nous trouverons une solution pour ne pas vous le faire payer deux fois.</p></details>
     <details><summary>Est-ce un abonnement ?</summary><p>Non : un achat unique, paiement sécurisé par Gumroad, sans renouvellement.</p></details>
   </div>
@@ -207,7 +208,7 @@ function pageListe(packs) {
   <div class="bareme-bloc">
     <p class="label">La remise suit le nombre de templates</p>
     ${bareme()}
-    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure.</p>
+    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure. Option ${OPTION.nom} : les futurs templates du pack inclus, pour ${OPTION.pct} % du prix du pack.</p>
   </div>
 </section>
 

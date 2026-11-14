@@ -145,3 +145,5 @@
   .composer-barre{position:sticky;bottom:12px;z-index:5;order:2;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:10px 18px;border-radius:999px;background:var(--encre);color:var(--papier);text-decoration:none;font-weight:600;box-shadow:0 8px 24px rgba(36,34,31,.18)}
   .composer-barre b{text-decoration:underline;text-underline-offset:3px}
 }
+.option-pack{display:flex;flex-direction:column;gap:2px;margin-top:10px;padding:10px 12px;border:1px dashed var(--discret);border-radius:12px;font-size:14px}
+.option-pack span{color:var(--texte-2);line-height:1.4}

@@ -213,22 +213,34 @@ après chaque changement de pack, de prix ou de statut d'un template.
 **Accès** : une clé de pack (licence Gumroad du produit pack, ou code `PFG-…` généré par `npm run code -- PFG`)
 se colle sur `/connexion/` et ouvre le tableau de bord `/packs/espace/` ; le serveur calcule un code par template
 (`codePackProduit`), les templates n'ont rien à changer. Pack sur mesure : code `SMP-<préfixes>-…` signé
-(`npm run code -- SMP BDG,ABN,DTT`). Un template ajouté à un pack s'ouvre aussitôt pour ses acheteurs.
+(`npm run code -- SMP BDG,ABN,DTT`).
 
-| Pack | Préfixe | Templates (aujourd'hui) | À venir | Valeur | Remise | Prix |
-|------|---------|-------------------------|---------|--------|--------|------|
-| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | — | 139 € | 25 % | 104 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39 | 62 € | 15 % | 52 € |
-| Chef de projet BTP | PBT | T02, T31, T24, T25, T32 | T23 | 158 € | 25 % | 118 € |
-| Petite entreprise | PPE | T46, T48, T26, T31, T42 | T47, T34 | 97 € | 25 % | 72 € |
-| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63 | 93 € | 15 % | 79 € |
-| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13 | 77 € | 25 % | 57 € |
-| Mariage et installation à deux | PMR | T15, T65, T05 | T16 | 59 € | 15 % | 50 € |
-| Productivité perso | PPR | T03, T30, T08 | T22 | 46 € | 15 % | 39 € |
-| Étudiant | PET | T01, T30, T08 | — | 41,90 € | 15 % | 35 € |
-| Associations et clubs | PAS | T53, T51, T42 | T52 | 107 € | 15 % | 90 € |
-| Propriétaire | PPB | T64, T67, T11 | T27 | 62 € | 15 % | 52 € |
-| Forme | PFM | T04, T08 | T07, T06 | 31 € | 10 % | 27 € |
+**Option « Pack évolutif » (décision de Quentin, 14/11/2026)** : sans option, un pack ouvre les templates qu'il
+contenait le jour de l'achat ; avec l'option, il ouvre aussi tous les templates ajoutés ensuite. Prix : 25 % du
+prix du pack, arrondi à l'euro supérieur, 9 € minimum. Sur Gumroad : deux versions du produit pack (« Pack » et
+« Pack évolutif ») ; le serveur lit la version et la date d'achat dans la licence. À l'ajout d'un template à un
+pack : préfixe dans `produits` et date dans `ajouts` (`netlify/lib/packs.mjs`). Codes à la main : `PFG+`.
+Pas d'option pour le pack sur mesure (composition fixe).
+
+**Pack sur mesure sur Gumroad (vérifié le 14/11/2026)** : produit unique à prix libre avec clé de licence et
+champ « Templates » ; le lien pré-remplit prix et champ (`?wanted=true&price=…&Templates=…`), le serveur relit
+prix payé et champ dans la licence et refuse un montant inférieur au barème. Les codes de réduction Gumroad ne
+permettent pas une remise par nombre de produits différents (minimum de quantité = exemplaires d'un même produit).
+
+| Pack | Préfixe | Templates (aujourd'hui) | À venir | Valeur | Remise | Prix | Option évolutif |
+|------|---------|-------------------------|---------|--------|--------|------|-----------------|
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | — | 139 € | 25 % | 104 € | 26 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39 | 62 € | 15 % | 52 € | 13 € |
+| Chef de projet BTP | PBT | T02, T31, T24, T25, T32 | T23 | 158 € | 25 % | 118 € | 30 € |
+| Petite entreprise | PPE | T46, T48, T26, T31, T42 | T47, T34 | 97 € | 25 % | 72 € | 18 € |
+| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63 | 93 € | 15 % | 79 € | 20 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13 | 77 € | 25 % | 57 € | 15 € |
+| Mariage et installation à deux | PMR | T15, T65, T05 | T16 | 59 € | 15 % | 50 € | 13 € |
+| Productivité perso | PPR | T03, T30, T08 | T22 | 46 € | 15 % | 39 € | 10 € |
+| Étudiant | PET | T01, T30, T08 | — | 41,90 € | 15 % | 35 € | 9 € |
+| Associations et clubs | PAS | T53, T51, T42 | T52 | 107 € | 15 % | 90 € | 23 € |
+| Propriétaire | PPB | T64, T67, T11 | T27 | 62 € | 15 % | 52 € | 13 € |
+| Forme | PFM | T04, T08 | T07, T06 | 31 € | 10 % | 27 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande

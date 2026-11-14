@@ -76,10 +76,11 @@ test('licence Gumroad d’un pack : convertie en code de pack', async () => {
   const sauve = PACKS.PFC.gumroad;
   PACKS.PFC.gumroad = 'pack-pfc';
   try {
-    const verifierLicence = async (produit) => ({ ok: produit === 'pack-pfc' });
+    const verifierLicence = async (produit) => ({ ok: produit === 'pack-pfc', achat: { variants: '', sale_timestamp: '2026-11-20T10:00:00Z' } });
     const j = await (await connexion(LICENCE, { verifierLicence })).json();
     assert.equal(j.pack, 'PFC');
-    assert.equal(j.code, codePackDepuisLicence(SECRET, 'PFC', LICENCE));
+    assert.equal(j.code, LICENCE);
+    assert.equal(j.option, false);
     assert.ok(j.templates.length >= 2);
   } finally {
     if (sauve === undefined) delete PACKS.PFC.gumroad; else PACKS.PFC.gumroad = sauve;
@@ -125,4 +126,35 @@ test('achat Gumroad du pack sur mesure : composition lue dans l’achat, montant
     assert.equal((await connexion(LICENCE, { verifierLicence: achat(3200) })).status, 403);
     assert.equal((await connexion(LICENCE, { verifierLicence: achat(3300, ['Templates: BDG']) })).status, 422);
   } finally { delete ACHAT_SUR_MESURE.gumroad; }
+});
+
+test('option « Pack évolutif » : templates ajoutés après l’achat ouverts seulement avec l’option', async () => {
+  const { prixOption, produitsAccessibles } = await import('../../netlify/lib/packs.mjs');
+  assert.equal(prixOption(10400), 2600);
+  assert.equal(prixOption(5000), 1300);
+  assert.equal(prixOption(2700), 900);
+  const sauve = PACKS.PAR.ajouts;
+  PACKS.PAR.ajouts = { ABN: '2026-12-01' }; // template entré dans le pack après son lancement (simulation)
+  try {
+    assert.ok(!produitsAccessibles('PAR', { date: '2026-11-20' }, PRODUITS).includes('ABN'));
+    assert.ok(produitsAccessibles('PAR', { date: '2026-12-02' }, PRODUITS).includes('ABN'));
+    assert.ok(produitsAccessibles('PAR', { option: true, date: '2026-11-20' }, PRODUITS).includes('ABN'));
+    // Codes générés à la main : sans option, templates d'origine ; avec option, tout le pack.
+    const sans = verifierCodePack(SECRET, genererCodePack(SECRET, 'PAR'));
+    const avec = verifierCodePack(SECRET, genererCodePack(SECRET, 'PAR', [], { option: true }));
+    assert.deepEqual([sans.option, avec.option], [false, true]);
+    assert.ok(!sans.produits.includes('ABN'));
+    assert.ok(avec.produits.includes('ABN'));
+    // Licence Gumroad : la version « Pack évolutif » donne l'option, la date d'achat fait le reste.
+    const LICENCE = '11111111-22222222-33333333-44444444';
+    PACKS.PAR.gumroad = 'pack-par';
+    const achat = (variants, date) => async (p) => p === 'pack-par' ? { ok: true, achat: { variants, sale_timestamp: date } } : { ok: false, raison: 'inconnue' };
+    const base = await (await connexion(LICENCE, { verifierLicence: achat('(Pack)', '2026-11-20T09:00:00Z') })).json();
+    const evo = await (await connexion(LICENCE, { verifierLicence: achat('(Pack évolutif)', '2026-11-20T09:00:00Z') })).json();
+    assert.ok(!base.templates.some((t) => t.produit === 'ABN'));
+    assert.ok(evo.templates.some((t) => t.produit === 'ABN'));
+    assert.equal(evo.option, true);
+    // Même clé, mêmes codes de template : les données ne changent pas si l'option est ajoutée.
+    assert.equal(base.templates[0].code, evo.templates[0].code);
+  } finally { PACKS.PAR.ajouts = sauve; delete PACKS.PAR.gumroad; }
 });

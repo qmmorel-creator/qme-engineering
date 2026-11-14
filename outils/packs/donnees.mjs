@@ -47,8 +47,8 @@ export const TEMPLATES = {
   ENT: { slug: 'entretien', prix: 1200, phrase: 'Chaudière, ramonage, VMC : échéances calculées.', pour: 'perso' },
 };
 
-// Templates en développement annoncés dans un pack (ils rejoignent le pack, sans supplément pour ceux qui
-// l'ont déjà acheté, dès qu'ils entrent dans PRODUITS ; il suffit alors d'ajouter leur préfixe au pack).
+// Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
+// `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   KRF: { nom: 'Kit références et plaquette', phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   CHT: { nom: 'Suivi de chantier par lot', phrase: 'Jalons, avenants, échéancier, journal et risques par lot.' },
@@ -138,7 +138,7 @@ export const PAGES = {
       ['CRA', 'Tenez vos réunions d’équipe avec des décisions et des actions suivies.'],
       ['TRS', 'Anticipez la trésorerie sur douze mois, salaires et charges compris.'],
     ],
-    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Le planning d’équipe et le tableau de bord du dirigeant arrivent dans le pack'],
+    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Planning d’équipe et tableau de bord du dirigeant à venir, inclus avec l’option Pack évolutif'],
     prevus: ['EQP', 'TDB'],
   },
   PMG: {
@@ -151,7 +151,7 @@ export const PAGES = {
       ['VHC', 'Gérez les réservations, les entretiens, les sinistres et le coût de chaque véhicule.'],
       ['ARD', 'Remettez et récupérez le matériel à chaque arrivée et chaque départ.'],
     ],
-    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Salles, maintenance et vérifications réglementaires arrivent dans le pack'],
+    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Salles, maintenance et vérifications à venir, incluses avec l’option Pack évolutif'],
     prevus: ['SDR', 'GMA', 'VRF'],
   },
   PAR: {
@@ -166,7 +166,7 @@ export const PAGES = {
       ['TDV', 'Convertissez chaque dépense en heures de travail avant d’acheter.'],
       ['PTM', 'Estimez ce que valent vos biens et ce que leur revente rapporterait.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'L’objectif d’épargne arrive dans le pack'],
+    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'L’objectif d’épargne à venir, inclus avec l’option Pack évolutif'],
     prevus: ['EPG'],
   },
   PMR: {
@@ -179,7 +179,7 @@ export const PAGES = {
       ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
     ],
-    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Le déménagement arrive dans le pack'],
+    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Le déménagement à venir, inclus avec l’option Pack évolutif'],
     prevus: ['DMN'],
   },
   PPR: {
@@ -192,7 +192,7 @@ export const PAGES = {
       ['PHR', 'Placez ces priorités en blocs de 30 minutes et comparez prévu et réalisé.'],
       ['HBT', 'Ancrez les routines qui tiennent la semaine : séries et grille du mois.'],
     ],
-    arguments: ['Une méthode complète : trier, planifier, tenir', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Le tableau de bord annuel arrive dans le pack'],
+    arguments: ['Une méthode complète : trier, planifier, tenir', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Le tableau de bord annuel à venir, inclus avec l’option Pack évolutif'],
     prevus: ['RDV'],
   },
   PET: {
@@ -217,7 +217,7 @@ export const PAGES = {
       ['EVT', 'Organisez l’événement : rétroplanning, budget, prestataires, invités, jour J.'],
       ['TRS', 'Prévoyez la trésorerie de la saison et voyez venir les mois creux.'],
     ],
-    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'La gestion de compétition arrive dans le pack'],
+    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'La gestion de compétition à venir, incluse avec l’option Pack évolutif'],
     prevus: ['CMP'],
   },
   PPB: {
@@ -230,7 +230,7 @@ export const PAGES = {
       ['TRV', 'Comparez les devis, tenez le budget et le planning des artisans.'],
       ['ENT', 'Recevez les échéances d’entretien calculées : chaudière, ramonage, VMC.'],
     ],
-    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'La gestion locative arrive dans le pack'],
+    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'La gestion locative à venir, incluse avec l’option Pack évolutif'],
     prevus: ['GRT'],
   },
   PFM: {
@@ -242,7 +242,7 @@ export const PAGES = {
       ['NTR', 'Suivez repas, calories, macros et dépense du jour.'],
       ['HBT', 'Tenez les habitudes qui font la différence : eau, sommeil, pas, séances.'],
     ],
-    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Le carnet de musculation et les repas de la semaine arrivent dans le pack'],
+    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Musculation et repas de la semaine à venir, inclus avec l’option Pack évolutif'],
     prevus: ['MSC', 'RPS'],
   },
 };
