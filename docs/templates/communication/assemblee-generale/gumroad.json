@@ -1,0 +1,27 @@
+{
+  "slug": "assemblee-generale",
+  "name": "Assemblée générale et vie statutaire",
+  "price_cents": 1900,
+  "permalink": "assemblee-generale-association",
+  "category": "business-and-money",
+  "button": "Ouvrir mon espace association",
+  "summary": "L'AG de ton association en règle : rétroplanning daté depuis tes statuts, convocation et pouvoir prêts, feuille de présence, quorum et majorités calculés avec tes règles, procès-verbal imprimable, mandats du bureau suivis jusqu'au renouvellement.",
+  "description": "<h2>Une AG en règle, sans stress.</h2><p>Chaque année, le bureau rouvre les statuts : quand convoquer, combien de membres il faut, combien de pouvoirs chacun peut porter, quelle majorité vaut décision. Puis il faut la feuille de présence, compter les voix en séance et rédiger le procès-verbal. Assemblée générale et vie statutaire garde tes règles et fait les calculs.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes statuts, pas des règles toutes faites</strong> : délai de convocation, quorum, pouvoirs et majorités saisis pour l'AG ordinaire, l'AG extraordinaire, le conseil et le bureau. Aucune règle légale n'est intégrée.</li><li><strong>Le rétroplanning de l'AG daté</strong> depuis la date limite de convocation : comptes, rapports, point des cotisations, convocation, pouvoirs, procès-verbal.</li><li><strong>La convocation prête</strong> : ordre du jour, trame formelle ou conviviale, modèle de pouvoir, adresses des convoqués à copier.</li><li><strong>Le quorum et les votes calculés en séance</strong> : membres présents, représentés, pouvoirs dans la limite de tes statuts ; pour, contre, abstentions, et la résolution adoptée ou rejetée avec le seuil expliqué.</li><li><strong>Le procès-verbal imprimé</strong>, construit avec la présence, le quorum, les votes et tes notes.</li><li><strong>Les mandats du bureau et du conseil</strong> suivis jusqu'au renouvellement, avec une alerte avant l'échéance, et l'archive des réunions année par année.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Recopie les règles de tes statuts, ajoute les membres (ou colle leur liste) et prépare la prochaine AG. Les données sont enregistrées en ligne (hébergement en Europe) et suivent la clé sur ordinateur, tablette et téléphone : partage-la avec les membres du bureau.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement. Aucune convocation n'est envoyée par l'outil : tu copies le texte ou tu l'imprimes. Outil d'aide à l'organisation : les statuts de ton association font foi, et il ne remplace pas un conseil juridique.</p><p><em>Démo disponible sur qm-engineering.fr/catalogue/assemblee-generale.</em></p>",
+  "tags": [
+    "association",
+    "assemblee generale",
+    "loi 1901",
+    "benevolat",
+    "club",
+    "proces-verbal",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et l'espace de ton association s'ouvre. Commence par recopier les règles de tes statuts, puis ajoute les membres. Garde cet e-mail : la même clé fonctionne sur tous les appareils du bureau.",
+  "details": [
+    { "name": "Format", "value": "Application web (ordinateur, tablette, téléphone)" },
+    { "name": "Accès", "value": "Clé de licence envoyée par e-mail" },
+    { "name": "Langue", "value": "Français" },
+    { "name": "Paiement", "value": "Achat unique, sans abonnement" },
+    { "name": "Pour", "value": "Bureaux d'associations, clubs, amicales" }
+  ]
+}
