@@ -115,6 +115,11 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
       réunit au moins deux (puce dans `.puces`, mêmes `data-pour` et `data-theme`). Fil d'Ariane de la page
       catalogue : `/templates/?pour=pro#tous` « Professionnel » ou `/templates/?pour=perso#tous`
       « Vie personnelle ».
+- [ ] **Packs** (depuis le 14/11/2026) : fiche courte du template dans `outils/packs/donnees.mjs` → `TEMPLATES`
+      (`PRE: { slug, prix en centimes, phrase, pour }`), préfixe retiré de `PREVUS` et des listes `prevus` de `PAGES`
+      (sans toucher aux étapes `parcours`) ; rattachement au(x) pack(s) dans `netlify/lib/packs.mjs` (`produits`, et
+      `ajouts` avec la date si le pack est déjà en vente), puis `node outils/packs/generer.mjs`. La page catalogue
+      garde le lien « Packs » dans son menu (après « Templates »). `outils/templates/packs.test.mjs` vérifie tout cela.
 - [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »
