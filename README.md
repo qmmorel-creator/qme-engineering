@@ -197,6 +197,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   sectoriel de référence ; saisie mensuelle, objectifs annuels répartis (égale, saisonnière, mois par mois), seuils,
   écarts, tendances, projection, revue mensuelle imprimable avec actions. Règles dans `regles.js`, tests
   `outils/templates/pilotage-pme.test.mjs`.
+- `templates/salles/` (SDR) : **réservation de salles et bureaux**, prêt, « Mise en vente prochaine » (19 €, démo libre,
+  fiche Gumroad à créer : `docs/templates/communication/salles/gumroad.json`). Salles (capacité, équipements), bureaux en
+  flex et matériel prêté ; une clé partagée par l'équipe, nom saisi à chaque réservation, pas de comptes ; conflits refusés
+  à la saisie et rejoués à l'enregistrement en ligne (conflit 409 entre deux appareils) ; « libre maintenant », vues jour et
+  semaine, réservations chaque semaine, taux d'occupation, jours fériés calculés. Règles dans `regles.js`, tests
+  `outils/templates/salles.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

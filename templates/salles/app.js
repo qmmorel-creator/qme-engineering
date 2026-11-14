@@ -619,7 +619,7 @@
     if (!jr) return;
     const nom = parseFloat(getComputedStyle(jr).getPropertyValue('--nom')) || 180;
     const n = Number(jr.style.getPropertyValue('--n')) || 22;
-    const min = E.reglages.pas === 15 ? 18 : E.reglages.pas === 60 ? 52 : 28;
+    const min = (E.reglages.pas === 15 ? 18 : E.reglages.pas === 60 ? 52 : 28) + (estTel() ? 6 : 0);
     jr.style.setProperty('--w', `${Math.max(min, Math.floor((cadre.clientWidth - nom - 2) / n))}px`);
     if (jourVu === auj() && cadre.scrollWidth > cadre.clientWidth) {
       const o = minutes(E.reglages.ouverture);
