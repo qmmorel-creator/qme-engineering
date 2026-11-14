@@ -586,5 +586,47 @@
     "value": "TPE de 2 à 30 salariés sans logiciel RH"
    }
   ]
+ },
+ {
+  "slug": "voiture",
+  "name": "Carnet de voiture",
+  "price_cents": 1300,
+  "permalink": "carnet-voiture",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon carnet de voiture",
+  "summary": "Les entretiens de ta voiture à la date ou au kilométrage, le contrôle technique, chaque plein et chaque dépense, ta consommation réelle et ton coût au kilomètre.",
+  "description": "<h2>Ta voiture, entretenue à temps.</h2><p>Une vidange oubliée, un contrôle technique découvert trop tard, des tickets de carburant dans la boîte à gants et aucune idée de ce que la voiture coûte vraiment… Le Carnet de voiture garde tout au même endroit et te dit ce qui arrive, à la date ou au kilométrage.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des entretiens à temps</strong> : chaque opération (vidange, révision, freins, pneus, distribution…) a son échéance à la date ou au kilométrage, la première atteinte compte. Plan indicatif proposé selon l'énergie, à adapter : le carnet d'entretien du constructeur prime.</li><li><strong>Le contrôle technique calculé</strong> : premier contrôle avant le 4e anniversaire de la mise en circulation, puis tous les 2 ans, contre-visite dans les 2 mois, d'après la fiche de service-public.gouv.fr (vérifiée le 1er janvier 2026). Source et date affichées, valeurs modifiables. Autre véhicule : périodicité à saisir.</li><li><strong>Toutes les dépenses</strong> : carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique, crédit ou location.</li><li><strong>La consommation réelle</strong>, calculée d'un plein complet à l'autre (L/100 km), ou d'une recharge à l'autre (kWh/100 km) pour l'électrique et l'hybride rechargeable.</li><li><strong>Le coût au kilomètre et le coût mensuel</strong> de chaque voiture, par poste et mois par mois.</li><li><strong>L'historique pour la revente</strong> : entretiens, contrôles, réparations et pneus avec date, kilométrage et garage, à imprimer ou à copier pour un acheteur.</li><li><strong>Plusieurs voitures</strong> : toutes celles du foyer, les voitures vendues gardées pour leur historique ; export CSV et copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute ta voiture (énergie, mise en circulation, kilométrage du jour), vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins et tes dépenses. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun prix de carburant ou d'électricité intégré : tu saisis ce que tu paies. Aucune connexion à un garage, une assurance ou une autre application. Outil d'aide au suivi, ni conseil mécanique ni conseil financier : le carnet d'entretien du constructeur prime. Règle du contrôle technique relevée le 14/11/2026, modifiable dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "voiture",
+   "entretien-auto",
+   "carnet-entretien",
+   "controle-technique",
+   "consommation",
+   "budget-auto",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton carnet s'ouvre. Ajoute ta voiture et son kilométrage du jour, vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins : les échéances, la consommation et le coût au kilomètre se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers et foyers, une ou quelques voitures"
+   }
+  ]
  }
 ]
