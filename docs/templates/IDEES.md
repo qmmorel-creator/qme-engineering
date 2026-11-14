@@ -165,7 +165,7 @@ déjà).
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
@@ -963,7 +963,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T81 | Contrats (assurances, maintenance, télécoms, leasing), échéance, préavis de résiliation calculé, tacite reconduction, coût annuel | Catégories de contrats, préavis types paramétrables | — | Règles de résiliation : paramétrables, aucune règle légale non sourcée. Moteur d'échéances commun avec T63. |
 | T82 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
 | T83 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
-| T84 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
+| T84 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, décision de T04 appliquée (consentement explicite, hébergement UE, effacement), minimisation (aucun diagnostic). Aucun taux de remboursement intégré (saisis). Fiche `fiches/remboursements-sante.md`, prêt le 14/11/2026. |
 | T85 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
 | T86 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
 | T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
@@ -1669,3 +1669,26 @@ Livrables dans `communication/sous-traitants/` (linkedin.md, instagram.md + carr
 gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram
 **non planifiées** (pas d'accès aux plannings dans cette session). À rattacher à `PBT` dans `netlify/lib/packs.mjs`
 et à régénérer les pages des packs à la fusion.
+
+## Fiche T84 (cadrage délégué par Quentin, 14/11/2026)
+
+### T84 · Remboursements santé (`templates/remboursements-sante/`, préfixe RBS, 12 €)
+
+Fiche détaillée : [`fiches/remboursements-sante.md`](fiches/remboursements-sante.md). Statut **prêt**, « Mise en
+vente prochaine » (démo libre `/templates/remboursements-sante/?demo`, page `/catalogue/remboursements-sante/`, carte
+`carte prochaine` du thème « Argent », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/remboursements-sante/gumroad.json`, permalien proposé `remboursements-sante`). Membres du foyer, soins
+(33 types en 10 familles, date, praticien facultatif, montant payé), Sécurité sociale et mutuelle suivies séparément
+(remboursement attendu, tiers payant, pas de prise en charge ; reçu et écart), reste à charge, retards après un délai
+réglable (30 / 30 / 15 jours par défaut, **sans valeur officielle**, présentés comme tels), message de relance à copier
+et relances notées, bilan annuel par personne et par famille de soins (barres empilées, tableau), mutuelle comparée aux
+cotisations **saisies**, export CSV et JSON. **Aucun taux de remboursement intégré**, aucune donnée datée.
+**Médical / RGPD** : décision de T04 appliquée (consentement explicite au premier lancement, rien en ligne avant ;
+hébergement UE ; « Effacer toutes mes données » = retrait du consentement) ; minimisation : aucun diagnostic, motif,
+médicament ni numéro de sécurité sociale, pas de champ de note libre ; seconde case pour les soins des autres membres du
+foyer (accord ou représentant légal) ; paragraphe ajouté à `/confidentialite/`. HDS non vérifiée (comme T04).
+Avertissement « ne remplace ni un avis professionnel ni les relevés officiels » (consentement, pied de chaque vue,
+Réglages, page, Gumroad). Livrables dans `communication/remboursements-sante/` (linkedin.md, instagram.md + carrousel
+5 vues, prospects.md, gumroad.md et gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente).
+Publications LinkedIn et Instagram **non planifiées**. À rattacher à `PAR` dans `netlify/lib/packs.mjs` et à
+régénérer les pages des packs à la fusion.
