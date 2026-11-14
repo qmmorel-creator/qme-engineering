@@ -52,6 +52,7 @@ export const PRODUITS = {
   STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/' },
   SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
+  SNH: { nom: 'Dossier sinistre habitation', url: '/templates/sinistre/', gumroad: 'nSUWbSsPnceWsczHeshUnw==' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/' },
   MSC: { nom: 'Carnet de musculation et cross-training', url: '/templates/musculation/' },
   CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/' },
