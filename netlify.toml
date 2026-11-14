@@ -20,6 +20,13 @@
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
 
+# Tableau de bord des acheteurs d'un pack : jamais indexé.
+[[headers]]
+  for = "/packs/espace/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
 [[headers]]
   for = "/concepts/*"
   [headers.values]

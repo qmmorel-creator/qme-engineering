@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mon pack · QME</title>
+<meta name="description" content="Tableau de bord des templates de votre pack QME.">
+<meta name="theme-color" content="#FBF7F1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026111308">
+<link rel="stylesheet" href="/assets/packs.css?v=20261114">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="QME, accueil">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
+    <span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>
+    <span class="tagline">Quentin Morel<br>Engineering</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="/sur-mesure/">Sur mesure</a>
+    <a href="/templates/" aria-current="page">Templates</a>
+    <a href="/references/">Références</a>
+    <a href="/methode/">Méthode</a>
+    <a class="login" href="/connexion/">Connexion</a>
+    <a class="cta" href="/contact/">Parler de votre projet</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main>
+<section class="section espace-pack" data-espace>
+  <div class="composer-tete">
+    <p class="eyebrow">Espace acheteurs · packs</p>
+    <h1>Mes packs</h1>
+    <p class="lead">Chaque template de votre pack s’ouvre d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+  </div>
+  <div data-mes-packs></div>
+  <form class="acces espace-form" id="espace-form" novalidate>
+    <label>Clé de licence du pack ou code de pack
+      <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
+    </label>
+    <p class="erreur" id="espace-erreur" role="alert"></p>
+    <button class="btn primary" type="submit">Ouvrir mon pack</button>
+  </form>
+</section>
+</main>
+
+<footer>
+  <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+</footer>
+
+<script src="/assets/site.js?v=2026111308" defer></script>
+<script src="/assets/packs.js?v=20261114" defer></script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

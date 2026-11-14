@@ -8,6 +8,8 @@
 // Aucun code n'est stocké : la signature suffit à le valider. Un code se révoque en
 // listant son identifiant (les 8 caractères aléatoires) dans TEMPLATES_CODES_REVOQUES.
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+import { PACKS, SUR_MESURE } from './packs.mjs';
+export { PACKS, SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
@@ -130,6 +132,64 @@ export async function verifierLicenceGumroad(produitGumroad, licence, fetchImpl 
   return { ok: true };
 }
 
+// --- Packs -----------------------------------------------------------------------------------------
+// Code de pack : PACK-AAAA-AAAA-SSSS-SSSS (même forme qu'un code de template, préfixe de PACKS).
+// Code sur mesure : SMP-<préfixes accolés>-AAAA-AAAA-SSSS-SSSS ; la signature couvre la composition.
+// Chaque template du pack reçoit un code de template déterministe (codePackProduit) : mêmes données
+// d'un appareil à l'autre, et les templates n'ont rien à savoir des packs.
+const signerPack = (secret, pack, compo, id) => signature(secret, compo ? `${pack}:${compo}` : `pack:${pack}`, id);
+
+export function genererCodePack(secret, pack, composition = []) {
+  if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
+  const id = base32(randomBytes(5));
+  if (pack === SUR_MESURE) {
+    const compo = [...new Set(composition)];
+    if (compo.length < 2 || compo.some((p) => !PRODUITS[p])) throw new Error('Pack sur mesure : au moins 2 templates connus');
+    const sig = signerPack(secret, SUR_MESURE, compo.join(''), id);
+    return `${SUR_MESURE}-${compo.join('')}-${id.slice(0, 4)}-${id.slice(4)}-${sig.slice(0, 4)}-${sig.slice(4)}`;
+  }
+  if (!PACKS[pack]) throw new Error(`Pack inconnu : ${pack}`);
+  return formater(pack, id, signerPack(secret, pack, '', id));
+}
+
+// Code de pack déterministe associé à une clé Gumroad de pack.
+export function codePackDepuisLicence(secret, pack, licence) {
+  const id = base32(createHmac('sha256', secret).update(`gumroad-pack:${pack}:${licence.trim().toUpperCase()}`).digest().subarray(0, 5));
+  return formater(pack, id, signerPack(secret, pack, '', id));
+}
+
+// Renvoie { pack, id, produits } si le code de pack est valide, sinon null.
+export function verifierCodePack(secret, saisie, revoques = []) {
+  if (!secret) return null;
+  const n = normaliser(saisie);
+  let pack, compo = '', reste;
+  if (n.startsWith(SUR_MESURE) && (n.length - SUR_MESURE.length - 16) % 3 === 0 && n.length >= SUR_MESURE.length + 6 + 16) {
+    pack = SUR_MESURE; compo = n.slice(3, n.length - 16); reste = n.slice(-16);
+  } else {
+    pack = Object.keys(PACKS).find((p) => n.startsWith(p) && n.length === p.length + 16);
+    if (!pack) return null;
+    reste = n.slice(pack.length);
+  }
+  const id = reste.slice(0, 8), sig = reste.slice(8);
+  if (!timingSafeEqual(Buffer.from(sig), Buffer.from(signerPack(secret, pack, compo, id)))) return null;
+  if (revoques.map(normaliser).includes(id)) return null;
+  const produits = pack === SUR_MESURE ? compo.match(/.{3}/g) : PACKS[pack].produits;
+  return { pack, id, produits: produits.filter((p) => PRODUITS[p]) };
+}
+
+// Code du template `produit` ouvert par le pack (pack, id).
+export function codePackProduit(secret, pack, id, produit) {
+  const id2 = base32(createHmac('sha256', secret).update(`pack-produit:${pack}:${id}:${produit}`).digest().subarray(0, 5));
+  return formater(produit, id2, signature(secret, produit, id2));
+}
+
+function reponsePack(secret, acces, code) {
+  const nom = acces.pack === SUR_MESURE ? 'Pack sur mesure' : PACKS[acces.pack].nom;
+  const slug = acces.pack === SUR_MESURE ? 'sur-mesure' : PACKS[acces.pack].slug;
+  const templates = acces.produits.map((p) => ({ produit: p, nom: PRODUITS[p].nom, url: PRODUITS[p].url, code: codePackProduit(secret, acces.pack, acces.id, p) }));
+  return json(200, { ok: true, pack: acces.pack, slug, nom, code, templates });
+}
+
 // Renvoie { produit, id } si le code est valide, sinon null.
 export function verifierCode(secret, saisie, revoques = []) {
   if (!secret) return null;
@@ -174,11 +234,14 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = Object.entries(PRODUITS).filter(([, p]) => p.gumroad);
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS)].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
-    if (trouve >= 0) code = codeDepuisLicence(secret, candidats[trouve][0], code);
+    if (trouve >= 0) {
+      const [cle] = candidats[trouve];
+      code = PACKS[cle] ? codePackDepuisLicence(secret, cle, code) : codeDepuisLicence(secret, cle, code);
+    }
     else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {
       return json(502, { erreur: 'Vérification de la licence impossible pour le moment. Réessaie dans un instant.' });
     }
@@ -191,6 +254,12 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   if (chemin === '/connexion' && requete.method === 'POST' && estCodeAdmin(secret, code)) {
     if (!PRODUITS[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
     code = codeAdminProduit(secret, corps.produit);
+  }
+
+  // Pack : renvoie la liste de ses templates, chacun avec son code (tableau de bord /packs/espace/).
+  if (chemin === '/connexion' && requete.method === 'POST') {
+    const pack = verifierCodePack(secret, code, revoques);
+    if (pack) return reponsePack(secret, pack, code);
   }
 
   const acces = verifierCode(secret, code, revoques);

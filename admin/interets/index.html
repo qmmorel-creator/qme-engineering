@@ -68,7 +68,7 @@
       $('#nb').textContent = d.modules.length;
       $('#emails').textContent = d.emails;
       const max = Math.max(1, ...d.modules.map((m) => m.total));
-      $('#lignes').innerHTML = d.modules.length ? d.modules.map((m) => `<tr><td><a href="/catalogue/${esc(m.module)}/">${esc(m.nom)}</a></td><td class="n">${m.total}</td><td class="n">${m.septJours}</td><td class="n">${m.emails}</td><td><div class="barre-int" style="width:${Math.round(m.total / max * 100)}%"></div></td><td>${date(m.dernier)}</td></tr>`).join('') : '<tr><td colspan="6">Aucun intérêt enregistré pour l\'instant.</td></tr>';
+      $('#lignes').innerHTML = d.modules.length ? d.modules.map((m) => `<tr><td><a href="${m.module.startsWith('pack-') ? `/packs/${esc(m.module.slice(5))}/` : `/catalogue/${esc(m.module)}/`}">${esc(m.nom)}</a></td><td class="n">${m.total}</td><td class="n">${m.septJours}</td><td class="n">${m.emails}</td><td><div class="barre-int" style="width:${Math.round(m.total / max * 100)}%"></div></td><td>${date(m.dernier)}</td></tr>`).join('') : '<tr><td colspan="6">Aucun intérêt enregistré pour l\'instant.</td></tr>';
       $('#resultats').hidden = false; $('#oublier').hidden = false;
       $('#etat').textContent = `Mis à jour à ${new Date(d.majLe).toLocaleTimeString('fr-FR')}.`;
       clearTimeout(minuterie); minuterie = setTimeout(charger, 30000);

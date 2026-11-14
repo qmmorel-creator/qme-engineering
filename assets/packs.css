@@ -1,0 +1,147 @@
+/* Packs de templates : listes, page d'un pack, pack sur mesure, espace acheteur. Charte Bauhaus « Pastel »
+   (jetons de site.css) : fonds teintés, filets de 1 px, grands arrondis, aucune ombre dure. */
+.c-rouge{--pc:var(--rouge);--pf:var(--rose);--pt:var(--rose-texte)}
+.c-jaune{--pc:var(--jaune);--pf:var(--beurre);--pt:var(--beurre-texte)}
+.c-bleu{--pc:var(--bleu);--pf:var(--ciel);--pt:var(--ciel-texte)}
+.c-encre{--pc:var(--encre);--pf:var(--sable);--pt:var(--encre)}
+
+/* Pastilles de cible : couleur + forme, libellé toujours écrit */
+.cibles{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.cible{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding:0 11px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);font-size:13px;font-weight:600;color:var(--encre);line-height:1.2}
+.cible::before{content:"";flex:none;width:10px;height:10px;background:var(--pc)}
+.cible.f-rond::before{border-radius:50%}
+.cible.f-carre::before{border-radius:2px}
+.cible.f-triangle::before{clip-path:polygon(50% 0,100% 100%,0 100%);width:11px;height:10px}
+.legende-cibles{margin:-8px 0 22px}
+
+/* Barème */
+.bareme{list-style:none;margin:10px 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.bareme li{display:flex;flex-direction:column;gap:2px;padding:12px 10px;border:1px solid var(--trait);border-radius:14px;background:var(--surface)}
+.bareme b{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.bareme span{font-size:13px;color:var(--texte-2);line-height:1.3}
+.bareme li:nth-child(1){background:var(--ciel)}.bareme li:nth-child(2){background:var(--beurre)}.bareme li:nth-child(3){background:var(--rose)}.bareme li:nth-child(4){background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.bareme li:nth-child(4) span{color:var(--papier);opacity:.85}
+.bareme-bloc{align-self:center;padding:22px;border:1px solid var(--trait);border-radius:24px;background:var(--surface)}
+.bareme-bloc .label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+.bareme-bloc .detail{font-size:14px;color:var(--texte-2)}
+
+/* Cartes de packs */
+.liste-packs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.carte-pack{display:flex;min-width:0}
+.carte-pack>a{flex:1;display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--surface);border:1px solid var(--trait);border-top:6px solid var(--pc);border-radius:20px;text-decoration:none;color:var(--encre);transition:transform .15s,box-shadow .15s}
+.carte-pack>a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,34,31,.10)}
+.carte-pack .haut{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.carte-pack .nb{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pt)}
+.carte-pack .haut em{font-style:normal;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--pf);color:var(--pt)}
+.carte-pack h3{font-size:21px;line-height:1.15}
+.carte-pack .phrase{font-size:15px;color:var(--texte-2);line-height:1.4}
+.carte-pack .cible{min-height:24px;font-size:12px;padding:0 9px}
+.carte-pack .pied{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:auto;padding-top:10px;border-top:1px solid var(--trait)}
+.carte-pack .voir{white-space:nowrap;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.carte-pack.sur-mesure>a{background:var(--sable);border-style:dashed;border-top-style:solid}
+@media (prefers-reduced-motion:reduce){.carte-pack>a{transition:none}.carte-pack>a:hover{transform:none}}
+.prix-pack{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.prix-pack b{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.prix-pack s{color:var(--discret);font-size:15px}
+.prix-pack .remise{font-size:13px;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--encre);color:var(--papier)}
+.packs-catalogue{border-top:1px solid var(--trait)}
+
+/* Page d'un pack */
+.pack-hero{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start;max-width:var(--max);width:calc(100% - 32px);margin:12px auto 0;padding:32px;border-radius:28px;background:var(--pf);border:1px solid var(--trait)}
+.pack-hero h1{font-size:clamp(34px,5vw,56px);margin:8px 0 14px}
+.pack-hero .eyebrow{color:var(--pt)}
+.pack-hero .lead{font-size:19px;color:var(--texte-2);margin-bottom:18px}
+.pack-hero-achat{padding:22px;border-radius:22px;background:var(--surface);border:1px solid var(--trait);display:flex;flex-direction:column;gap:14px}
+.pack-hero-achat .prix-pack b{font-size:44px}
+.pack-hero-achat .detail{font-size:14px;color:var(--texte-2);margin-top:6px}
+.prochaine-note{font-size:14px;margin-top:8px;padding:8px 12px;border-radius:12px;background:var(--pf);color:var(--pt)}
+.pack-hero-achat .actions{display:flex;flex-wrap:wrap;gap:10px}
+.pack-section .section-head p{max-width:760px}
+.arguments{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.arguments li{padding:16px 18px;border:1px solid var(--trait);border-radius:18px;background:var(--surface);font-weight:600;line-height:1.4}
+.arguments li::before{content:"";display:block;width:22px;height:4px;margin-bottom:10px;background:var(--jaune);border-radius:2px}
+.parcours{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:etape}
+.parcours li{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border:1px solid var(--trait);border-radius:18px;background:var(--surface)}
+.parcours .n{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--encre);color:var(--papier);font-weight:800}
+.parcours li:nth-child(3n+2) .n{background:var(--rouge)}.parcours li:nth-child(3n+3) .n{background:var(--bleu)}
+.parcours b{font-size:17px}.parcours p{color:var(--texte-2);font-size:15px;margin-top:2px}
+.templates-pack{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.t-pack{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--trait);border-radius:18px;background:var(--surface)}
+.t-tete{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.t-tete b{font-size:16px;line-height:1.25}
+.t-pack p{font-size:14px;color:var(--texte-2);line-height:1.4}
+.t-pied{display:flex;gap:14px;align-items:center;margin-top:auto;padding-top:8px;border-top:1px solid var(--trait);font-size:14px}
+.t-pied span{margin-right:auto;color:var(--discret);font-weight:600}
+.t-pied a{font-weight:700;text-underline-offset:3px;min-height:32px;display:inline-flex;align-items:center}
+.etat{flex:none;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.etat.vente{background:var(--ciel);color:var(--ciel-texte)}
+.etat.bientot{background:var(--beurre);color:var(--beurre-texte)}
+.etat.prevu{background:var(--sable);color:var(--texte-2)}
+.prevus{margin-top:22px;padding:20px;border:1px dashed var(--discret);border-radius:20px}
+.prevus h3{font-size:19px}.prevus>p{color:var(--texte-2);font-size:15px;margin:6px 0 10px}
+.prevus ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.prevus li{display:flex;flex-wrap:wrap;gap:4px 10px}.prevus li span{color:var(--texte-2)}
+
+/* Pack sur mesure */
+.composer .section-head h1{margin:6px 0 10px}
+.composer-grille{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.groupe-compo{margin:0 0 18px;padding:0;border:0}
+.groupe-compo legend{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);margin-bottom:8px}
+.groupe-compo ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.groupe-compo label{display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"c n d" "c p d";gap:2px 12px;align-items:center;padding:11px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--surface);cursor:pointer}
+.groupe-compo label:has(input:checked){border-color:var(--encre);background:var(--beurre)}
+.groupe-compo input{grid-area:c;width:20px;height:20px;accent-color:var(--encre);margin:0}
+.groupe-compo .nom{grid-area:n;font-weight:700}
+.groupe-compo .phrase{grid-area:p;font-size:14px;color:var(--texte-2);line-height:1.35}
+.groupe-compo .droite{grid-area:d;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.composer-resume{position:sticky;top:96px;padding:20px;border:1px solid var(--trait);border-radius:22px;background:var(--surface);display:flex;flex-direction:column;gap:12px}
+.composer-resume h2{font-size:22px}
+.composer-resume .vide{color:var(--discret);font-size:15px}
+.choisis{list-style:none;margin:0;padding:0;display:grid;gap:4px;max-height:220px;overflow:auto;font-size:14px}
+.choisis li{display:flex;justify-content:space-between;gap:10px}
+.totaux{margin:0;display:grid;gap:6px;padding-top:10px;border-top:1px solid var(--trait)}
+.totaux div{display:flex;justify-content:space-between;gap:10px}
+.totaux dt{color:var(--texte-2)}.totaux dd{margin:0;font-weight:700}
+.totaux .total{padding-top:8px;border-top:2px solid var(--encre)}
+.totaux .total dt{font-weight:700;color:var(--encre)}.totaux .total dd{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.conseil{font-size:14px;color:var(--texte-2)}
+.conseil:empty{display:none}
+.composer-resume .actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+
+/* Espace pack */
+.espace-pack .pack-espace{margin-bottom:22px;padding:20px;border:1px solid var(--trait);border-radius:22px;background:var(--surface)}
+.pack-espace-tete{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.pack-espace-tete h2{font-size:22px}
+.pack-espace ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.pack-espace li button,.pack-espace li a{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:10px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--papier);font:600 16px Outfit,sans-serif;color:var(--encre);cursor:pointer;text-align:left;text-decoration:none}
+.pack-espace li button:hover{border-color:var(--encre);background:var(--beurre)}
+.espace-form{max-width:520px}
+.lien-discret{background:none;border:0;padding:0;font:inherit;font-size:14px;color:var(--discret);text-decoration:underline;cursor:pointer}
+
+@media (max-width:980px){
+  .pack-hero{grid-template-columns:1fr;padding:24px}
+  .arguments{grid-template-columns:1fr}
+  .composer-grille{grid-template-columns:1fr}
+  .composer-resume{position:static;scroll-margin-top:90px}
+}
+@media (max-width:640px){
+  .pack-hero{width:calc(100% - 32px);padding:20px 16px;border-radius:22px}
+  .pack-hero-achat{padding:16px}
+  .pack-hero-achat .prix-pack b{font-size:36px}
+  .bareme{grid-template-columns:repeat(2,1fr)}
+  .groupe-compo label{grid-template-columns:22px 1fr;grid-template-areas:"c n" "c p" "c d"}
+  .groupe-compo .droite{flex-direction:row;align-items:center;justify-content:space-between}
+  .totaux .total dd{font-size:24px}
+}
+.pack-hero-achat .btn.interet:not(:disabled){background:var(--encre);border-color:var(--encre);color:var(--papier)}
+.pack-hero-achat .btn.interet:not(:disabled):hover{background:var(--rouge);border-color:var(--rouge)}
+.composer-tete{max-width:760px;margin-bottom:26px}
+.composer-tete h1{font-size:clamp(34px,5vw,54px);margin:8px 0 12px}
+.composer-tete .lead{font-size:18px;color:var(--texte-2)}
+.composer-barre{display:none}
+@media (max-width:980px){
+  .composer-grille{gap:16px}
+  .composer-barre{position:sticky;bottom:12px;z-index:5;order:2;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:10px 18px;border-radius:999px;background:var(--encre);color:var(--papier);text-decoration:none;font-weight:600;box-shadow:0 8px 24px rgba(36,34,31,.18)}
+  .composer-barre b{text-decoration:underline;text-underline-offset:3px}
+}

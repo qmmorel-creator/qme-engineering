@@ -200,16 +200,40 @@ détail reprend les apports du backlog.
 
 ## Packs
 
-Prix de pack repris du backlog ; valeur = somme des prix unitaires retenus. Technique à concevoir : un pack Gumroad doit ouvrir plusieurs templates (une clé
-par produit ou accès groupé dans `PRODUITS`).
+**Décisions de Quentin (14/11/2026)** : remise progressive selon le nombre de templates, de 10 à 25 % (2 → 10 %,
+3 → 15 %, 4 → 20 %, 5 et plus → 25 %), prix arrondi à l'euro inférieur ; même barème pour le **pack sur mesure**
+(l'acheteur coche ses templates sur `/packs/composer/`). Un pack est « Bientôt » tant qu'un de ses templates n'est
+pas en vente ou que sa fiche Gumroad n'existe pas, avec le bouton « Je suis intéressé(e) » (module `pack-<slug>`).
 
-| Pack | Produits | Valeur | Prix |
-|------|----------|--------|------|
-| Freelance complet | T28, T36, T37, T40, T41, T43 | 135 € | 79 € |
-| Chef de projet BTP | T02, T31, T24, T32 | 138 € | 99 € |
-| Flotte | T57, T29, T26, T66 | 111 € | 69 € |
-| Organisateur d'événements | T51, T15, T54 | 113 € | 69 € |
-| Productivité perso | T03, T30, T08, T22 | 61 € | 39 € |
+**Source unique** : composition et préfixes dans `netlify/lib/packs.mjs` ; textes, cibles (pastilles couleur +
+forme) et templates à venir dans `outils/packs/donnees.mjs` ; pages générées par `node outils/packs/generer.mjs`
+(`/packs/`, `/packs/<slug>/`, `/packs/composer/`, `/packs/espace/`, section `#packs` de `/templates/`). À relancer
+après chaque changement de pack, de prix ou de statut d'un template.
+
+**Accès** : une clé de pack (licence Gumroad du produit pack, ou code `PFG-…` généré par `npm run code -- PFG`)
+se colle sur `/connexion/` et ouvre le tableau de bord `/packs/espace/` ; le serveur calcule un code par template
+(`codePackProduit`), les templates n'ont rien à changer. Pack sur mesure : code `SMP-<préfixes>-…` signé
+(`npm run code -- SMP BDG,ABN,DTT`). Un template ajouté à un pack s'ouvre aussitôt pour ses acheteurs.
+
+| Pack | Préfixe | Templates (aujourd'hui) | À venir | Valeur | Remise | Prix |
+|------|---------|-------------------------|---------|--------|--------|------|
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | — | 139 € | 25 % | 104 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39 | 62 € | 15 % | 52 € |
+| Chef de projet BTP | PBT | T02, T31, T24, T25, T32 | T23 | 158 € | 25 % | 118 € |
+| Petite entreprise | PPE | T46, T48, T26, T31, T42 | T47, T34 | 97 € | 25 % | 72 € |
+| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63 | 93 € | 15 % | 79 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13 | 77 € | 25 % | 57 € |
+| Mariage et installation à deux | PMR | T15, T65, T05 | T16 | 59 € | 15 % | 50 € |
+| Productivité perso | PPR | T03, T30, T08 | T22 | 46 € | 15 % | 39 € |
+| Étudiant | PET | T01, T30, T08 | — | 41,90 € | 15 % | 35 € |
+| Associations et clubs | PAS | T53, T51, T42 | T52 | 107 € | 15 % | 90 € |
+| Propriétaire | PPB | T64, T67, T11 | T27 | 62 € | 15 % | 52 € |
+| Forme | PFM | T04, T08 | T07, T06 | 31 € | 10 % | 27 € |
+
+Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
+`/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
+par e-mail, code `SMP` généré à la main). Packs abandonnés : « Flotte » (T57 contient déjà la flotte) et
+« Organisateur d'événements » (mélangeait mariage grand public et agences).
 
 ## Ordre de production conseillé
 

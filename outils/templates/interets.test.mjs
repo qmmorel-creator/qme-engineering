@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { PRODUITS, PACKS } from '../../netlify/lib/templates-acces.mjs';
 import { traiterInterets, codeAdmin, estAdmin, synthese, csv, cleClic, lireCle, MODULES } from '../../netlify/lib/interets.mjs';
 
 const SECRET = 'secret-de-test-0123456789-0123456789-abcdef';
@@ -10,7 +11,9 @@ test('modules : un par template, slug → nom', () => {
   assert.equal(MODULES.flotte, 'Gestion de flotte de véhicules');
   assert.equal(MODULES.revision, 'Planning de révision');
   assert.equal(MODULES['secret-santa'], 'Secret Santa');
-  assert.equal(Object.keys(MODULES).length, 40);
+  assert.equal(Object.keys(MODULES).length, Object.keys(PRODUITS).length + Object.keys(PACKS).length + 1);
+  assert.equal(MODULES['pack-argent'], PACKS.PAR.nom);
+  assert.equal(MODULES['pack-sur-mesure'], 'Pack sur mesure');
   assert.equal(MODULES.patrimoine, 'Inventaire valorisé');
   assert.equal(MODULES['temps-de-vie'], 'Temps de vie');
 });

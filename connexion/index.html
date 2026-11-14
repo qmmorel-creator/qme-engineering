@@ -36,7 +36,7 @@
   <div>
     <p class="eyebrow">Espace acheteurs</p>
     <h1>Connexion à vos templates</h1>
-    <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). Le bon template s'ouvre automatiquement.</p>
+    <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). Le bon template s'ouvre automatiquement ; une clé de pack ouvre <a href="/packs/espace/">le tableau de bord du pack</a>.</p>
     <form class="acces" id="acces" novalidate>
       <label>Clé de licence ou code d'accès
         <input type="text" id="cle" name="cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
@@ -71,18 +71,21 @@ document.getElementById('year').textContent=new Date().getFullYear();
 
 // Portail : vérifie la clé, l'enregistre pour le template concerné, puis ouvre celui-ci.
 const PRODUITS={REV:{nom:'Planning de révision',url:'/templates/revision/',cle:'qme-rev-code'},CRA:{nom:'Compte rendu et plan d’actions',url:'/templates/compte-rendu/',cle:'qme-cra-code'},PRX:{nom:'Coût de revient et prix par client',url:'/templates/cout-revient/',cle:'qme-prx-code'},TJM:{nom:'Calculateur de TJM freelance',url:'/templates/tjm/',cle:'qme-tjm-code'},MCE:{nom:'Livre recettes-dépenses micro-entreprise',url:'/templates/micro-entreprise/',cle:'qme-mce-code'},BCM:{nom:'Budget commun',url:'/templates/budget-commun/',cle:'qme-bcm-code'},GNT:{nom:'Planning Gantt rapide',url:'/templates/gantt/',cle:'qme-gnt-code'},TCH:{nom:'Gestionnaire de tâches',url:'/templates/taches/',cle:'qme-tch-code'},NTR:{nom:'Nutrition et dépense énergétique',url:'/templates/nutrition/',cle:'qme-ntr-code'},BDG:{nom:'Budget du foyer',url:'/templates/budget/',cle:'qme-bdg-code'},MRG:{nom:'Organisateur de mariage',url:'/templates/mariage/',cle:'qme-mrg-code'},VSA:{nom:'Circuit de visa des documents',url:'/templates/visa/',cle:'qme-vsa-code'},NCF:{nom:'Registre des non-conformités',url:'/templates/non-conformites/',cle:'qme-ncf-code'},CRM:{nom:'CRM freelance',url:'/templates/crm/',cle:'qme-crm-code'},VHC:{nom:'Gestion de flotte de véhicules',url:'/templates/flotte/',cle:'qme-vhc-code'},PHR:{nom:'Planner horaire',url:'/templates/planner/',cle:'qme-phr-code'},RSV:{nom:'Levée de réserves',url:'/templates/reserves/',cle:'qme-rsv-code'},PRS:{nom:'Pipeline de prospection B2B',url:'/templates/prospection/',cle:'qme-prs-code'},DVS:{nom:'Générateur de devis',url:'/templates/devis/',cle:'qme-dvs-code'},TRS:{nom:'Trésorerie prévisionnelle 12 mois',url:'/templates/tresorerie/',cle:'qme-trs-code'},PRC:{nom:'Gestion de parc informatique',url:'/templates/parc-informatique/',cle:'qme-prc-code'},EVT:{nom:'Pilote événementiel',url:'/templates/evenementiel/',cle:'qme-evt-code'},ASC:{nom:'Inscriptions associatives',url:'/templates/inscriptions/',cle:'qme-asc-code'},AEC:{nom:'Gestion d’auto-école',url:'/templates/auto-ecole/',cle:'qme-aec-code'},TRV:{nom:'Pilote de travaux maison',url:'/templates/travaux/',cle:'qme-trv-code'},SNT:{nom:'Secret Santa',url:'/templates/secret-santa/',cle:'qme-snt-code'},PTM:{nom:'Inventaire valorisé',url:'/templates/patrimoine/',cle:'qme-ptm-code'},TDV:{nom:'Temps de vie',url:'/templates/temps-de-vie/',cle:'qme-tdv-code'},NDF:{nom:'Notes de frais et indemnités kilométriques',url:'/templates/notes-de-frais/',cle:'qme-ndf-code'},APD:{nom:'Préparateur d’appel découverte',url:'/templates/appel-decouverte/',cle:'qme-apd-code'},RCV:{nom:'Relance des impayés',url:'/templates/impayes/',cle:'qme-rcv-code'},ARD:{nom:'Onboarding et offboarding salarié',url:'/templates/onboarding/',cle:'qme-ard-code'},HBT:{nom:'Suivi d’habitudes et routines',url:'/templates/habitudes/',cle:'qme-hbt-code'},ENT:{nom:'Entretien de la maison',url:'/templates/entretien/',cle:'qme-ent-code'},DTT:{nom:'Remboursement de dettes',url:'/templates/dettes/',cle:'qme-dtt-code'},ABN:{nom:'Suivi des abonnements',url:'/templates/abonnements/',cle:'qme-abn-code'},CNG:{nom:'Suivi des congés et absences',url:'/templates/conges/',cle:'qme-cng-code'},STK:{nom:'Stocks et inventaire',url:'/templates/stocks/',cle:'qme-stk-code'},SJR:{nom:'Location saisonnière',url:'/templates/location-saisonniere/',cle:'qme-sjr-code'},VTR:{nom:'Simulateur leasing ou achat',url:'/templates/leasing/',cle:'qme-vtr-code'}};
-const PREFIXES=[...Object.keys(PRODUITS),'ADM'],prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
+// Packs (netlify/lib/packs.mjs) : une clé de pack ouvre le tableau de bord /packs/espace/. SMP : pack sur mesure.
+const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM'];
+const PREFIXES=[...Object.keys(PRODUITS),...PACKS,'ADM'],prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
 const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
 const lire=(c)=>{try{const v=localStorage.getItem(c)??sessionStorage.getItem(c);return v?JSON.parse(v):null;}catch{return null;}};
 const deja=Object.entries(PRODUITS).filter(([,p])=>{const v=lire(p.cle);return v&&v!=='DEMO';});
 if(deja.length){document.getElementById('deja').hidden=false;document.getElementById('mes-templates').innerHTML=deja.map(([,p])=>`<li><a href="${p.url}">${p.nom}<span aria-hidden="true">→</span></a></li>`).join('');}
 function formater(v){const n=v.toUpperCase().replace(/[^0-9A-Z]/g,'');
+  if(n.startsWith('SMP'))return v.toUpperCase().replace(/[^0-9A-Z-]/g,'');
   if(prefixe(n)){const r=n.slice(0,19);return[r.slice(0,3),r.slice(3,7),r.slice(7,11),r.slice(11,15),r.slice(15,19)].filter(Boolean).join('-');}
   const l=n.slice(0,32);return[l.slice(0,8),l.slice(8,16),l.slice(16,24),l.slice(24,32)].filter(Boolean).join('-');}
 champ.addEventListener('input',()=>{const fin=champ.selectionStart===champ.value.length;champ.value=formater(champ.value);if(fin)champ.setSelectionRange(champ.value.length,champ.value.length);});
 form.addEventListener('submit',async(e)=>{
   e.preventDefault();const code=formater(champ.value),n=code.replace(/-/g,'');
-  if(!((prefixe(n)&&n.length===19)||/^[0-9A-F]{32}$/.test(n))){erreur.textContent='Clé incomplète : 4 blocs de 8 caractères, à copier depuis l’e-mail de Gumroad.';champ.focus();return;}
+  if(!((prefixe(n)&&n.length===19)||(n.startsWith('SMP')&&n.length>=25&&(n.length-19)%3===0)||/^[0-9A-F]{32}$/.test(n))){erreur.textContent='Clé incomplète : 4 blocs de 8 caractères, à copier depuis l’e-mail de Gumroad.';champ.focus();return;}
   bouton.disabled=true;bouton.textContent='Vérification…';erreur.textContent='';
   try{
     // Code administrateur : vérifié sur un template, puis enregistré pour tous ; la liste complète s'affiche.
@@ -100,6 +103,8 @@ form.addEventListener('submit',async(e)=>{
     const r=await fetch('/api/templates/connexion',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code})});
     const j=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(r.status===401?'Clé inconnue. Vérifiez-la dans l’e-mail reçu après l’achat.':(j.erreur||'Le service ne répond pas. Réessayez dans un instant.'));
+    // Pack : le code du pack est retenu sur l'appareil, puis le tableau de bord du pack s'ouvre.
+    if(j.pack){try{const l=JSON.parse(localStorage.getItem('qme-packs')||'[]').filter((c)=>c!==j.code);l.push(j.code);localStorage.setItem('qme-packs',JSON.stringify(l));}catch{}location.href='/packs/espace/';return;}
     const p=PRODUITS[j.produit];if(!p)throw new Error('Template inconnu.');
     try{localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);(document.getElementById('memoriser').checked?localStorage:sessionStorage).setItem(p.cle,JSON.stringify(code));}catch{}
     location.href=p.url;

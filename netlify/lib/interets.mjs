@@ -8,13 +8,17 @@
 // Lecture réservée à l'administrateur : code ADM-… dérivé de TEMPLATES_SECRET (voir codeAdmin), ou
 // valeur de la variable INTERETS_ADMIN si elle est définie sur Netlify.
 import { randomBytes, timingSafeEqual } from 'node:crypto';
-import { ALPHABET, PRODUITS, normaliser, codeAdmin } from './templates-acces.mjs';
+import { ALPHABET, PRODUITS, PACKS, normaliser, codeAdmin } from './templates-acces.mjs';
 export { codeAdmin };
 
 const base32 = (octets) => { let v = 0n; for (const o of octets) v = v * 256n + BigInt(o); let s = ''; for (let i = octets.length * 8 / 5 - 1; i >= 0; i--) s += ALPHABET[Number((v >> BigInt(5 * i)) & 31n)]; return s; };
 
-// Modules : slug de l'application → nom de vente.
-export const MODULES = Object.fromEntries(Object.values(PRODUITS).map((p) => [p.url.split('/')[2], p.nom]));
+// Modules : slug de l'application → nom de vente ; packs : pack-<slug> (page /packs/<slug>/).
+export const MODULES = Object.fromEntries([
+  ...Object.values(PRODUITS).map((p) => [p.url.split('/')[2], p.nom]),
+  ...Object.values(PACKS).map((p) => [`pack-${p.slug}`, p.nom]),
+  ['pack-sur-mesure', 'Pack sur mesure'],
+]);
 
 const egal = (a, b) => a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b));
 export function estAdmin(saisie, { secret, admin }) {
