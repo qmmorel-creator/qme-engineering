@@ -125,3 +125,33 @@ Lien d'achat en premier commentaire.
 Quelle habitude avez-vous déjà lâchée juste après avoir cassé une longue série ?
 
 #Habitudes #Routine #Organisation #BienÊtre #Productivité
+
+## Version finale (15/11/2026) · LI-108
+
+Doc : https://docs.google.com/document/d/131W9c6hXnxTC6IY9i0YU7XYgp9yRWDDhmw9kvndVYno/edit
+
+Une semaine de congés, et une série de 40 jours de sport retombe à zéro. C'est souvent là qu'on abandonne une habitude.
+
+Deux façons de suivre une habitude.
+
+La première ne connaît que deux états : fait, ou pas fait. Elle est simple, et elle traite une semaine de vacances, une fièvre ou un déplacement comme autant d'échecs. La série casse, et la motivation avec.
+
+La seconde ajoute un troisième état : « non applicable ». Ce jour-là ne compte pas et ne casse pas la série, exactement comme les jours où l'habitude n'était pas prévue.
+
+J'ai construit mon suivi d'habitudes et routines sur la seconde. Sur téléphone, la vue du jour se coche d'une touche ; les habitudes qui se comptent (verres d'eau, heures de sommeil, minutes de marche) ont un minimum, un maximum et des boutons + et −. La grille du mois montre les séries, les trous et le taux de réussite, avec un bilan sur 30 jours.
+
+50 habitudes types sont prêtes, avec leurs réglages et leurs sources, et 6 routines (matin, soir, bouger plus…). Rien ne se coche automatiquement. Pour un traitement, c'est un pense-bête, pas un avis médical.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement. La démo, avec neuf semaines d'historique fictif, est en commentaire.
+
+Quelle habitude avez-vous déjà lâchée juste après avoir cassé une longue série ?
+
+#Habitudes #Routine #Organisation #BienÊtre #Productivité
+
+Premier commentaire :
+
+La démo, avec neuf semaines d'historique fictif, sans inscription :
+https://qm-engineering.fr/templates/habitudes/?demo
+
+Suivi d'habitudes et routines (12 €, achat unique) :
+https://qmengineering.gumroad.com/l/suivi-habitudes

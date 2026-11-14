@@ -138,3 +138,25 @@ Lien d'achat en premier commentaire.
 Propriétaires bailleurs : la date de révision de vos baux, vous la retrouvez comment chaque année ?
 
 #GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif #LocationMeublée
+
+
+## Version finale (15/11/2026) · LI-123
+
+Doc : https://docs.google.com/document/d/1JA1qnEocJcWkEgr0Nsc4VUoyVfReKDGEkxTcCm7DjlM/edit
+
+Un an. C'est le délai pour demander la révision d'un loyer. Passé ce délai, elle ne se rattrape pas.
+
+Quand on loue soi-même un ou deux logements, la gestion tient souvent dans un tableur. Il fonctionne, jusqu'au premier retard de paiement, à la date anniversaire du bail ou au moment de régulariser les charges. Et l'indice de référence des loyers change chaque trimestre.
+
+J'ai donc construit un outil de gestion locative :
+▪ il suit les loyers mois par mois, bail par bail : ce qui est dû, ce qui est payé, les retards ; la quittance et la relance adaptée sont prêtes à copier ou à imprimer ;
+▪ il tient l'échéancier des révisions : avec l'indice que vous saisissez, il calcule le nouveau loyer et rappelle la date limite pour le demander ;
+▪ il compare les provisions aux charges réellement payées, prépare le décompte de régularisation et donne le rendement de chaque bien, avant impôt.
+
+Rien n'est envoyé à vos locataires, aucune banque n'est connectée, et aucun indice n'est fourni. Les modèles de quittance et de relance sont à vérifier ; ce n'est pas un conseil fiscal.
+
+Il sera bientôt en vente. La démo, avec trois logements fictifs, est ouverte à tous : https://qm-engineering.fr/templates/gestion-locative/?demo
+
+Propriétaires bailleurs : la date de révision de vos baux, vous la retrouvez comment ?
+
+#GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif

@@ -109,3 +109,30 @@ Lien d'achat en premier commentaire.
 Vous qui avez déjà organisé un séminaire : qu'est-ce qui restait à régler la veille ?
 
 #Organisation #OfficeManager #AssistantDeDirection #RessourcesHumaines #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-136
+
+Doc : https://docs.google.com/document/d/1j6nTQg9wOkk_N-e1cLMk0UL3P-derfce6egxZ7rprO8/edit
+
+18 passagers pour 20 places dans le train du matin, deux de trop dans le car. La veille d'un séminaire, ce sont ces chiffres qui comptent.
+
+À ce stade, la question n'est plus le programme : qui n'a pas encore de train ?
+
+C'est souvent le travail d'une assistante de direction, d'un RH ou d'une office manager, en plus du reste. Les réponses arrivent au fil de l'eau, les billets sont pris en plusieurs fois, l'hôtel attend la liste des chambres, et le traiteur veut savoir combien de repas végétariens.
+
+J'ai construit un outil en ligne qui réunit tout au même endroit. Les participants et leurs réponses, avec une relance signalée après la date limite. Qui voyage avec qui et qui dort où : trains, cars et navettes avec leurs places comptées, chambres réparties en gardant les collègues d'un même service ensemble. Le programme en salles parallèles et le budget, prévu, engagé et payé, avec le coût par participant.
+
+Chaque matin, le tableau de bord dit ce qui reste à régler : réponses à relancer, personnes sans trajet ou sans chambre, train qui arrive après l'ouverture, paiement en retard.
+
+Les régimes et les allergies sont des données sensibles : saisie facultative, aucune précision médicale, et le traiteur ne reçoit que des nombres. Un bouton efface tout après le séminaire.
+
+Bientôt en vente, en achat unique. La démo, avec une entreprise fictive, est en commentaire.
+
+Vous qui avez déjà organisé un séminaire : qu'est-ce qui restait à régler la veille ?
+
+#Organisation #OfficeManager #AssistantDeDirection #RessourcesHumaines #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec une entreprise fictive, sans inscription :
+https://qm-engineering.fr/templates/seminaire/?demo

@@ -94,3 +94,23 @@ Démo libre et contact : lien en bio. À envoyer à la personne qui organise le 
 La veille de votre dernier séminaire, qu'est-ce qui manquait encore ?
 
 #Organisation #Productivité #OutilsNumériques #PME #OfficeManager
+
+## Version finale (15/11/2026) · IG-91
+
+Doc : https://docs.google.com/document/d/1E0MQzs8jJ5sf6wOeBunisjjXjRd50VSHvuCXy9pTx5E/edit
+
+18 passagers pour 20 places, un car avec deux personnes de trop. La veille du séminaire, voici les 3 questions à régler.
+
+1. Qui a répondu, et qui faut-il relancer ?
+
+2. Qui voyage avec qui, qui dort où, et qui n'a encore ni trajet ni chambre ?
+
+3. Le programme tient-il, et combien coûte chaque participant ?
+
+Le template Séminaire / offsite répond aux trois sur un seul écran, au lieu d'un tableur d'inscrits, de billets dans la messagerie et d'une liste de chambres. Les régimes ? Des nombres pour le traiteur, jamais de noms. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec un séminaire fictif, et contact : lien en bio. À envoyer à la personne qui organise le prochain séminaire.
+
+#Organisation #Productivité #OutilsNumériques #PME #OfficeManager

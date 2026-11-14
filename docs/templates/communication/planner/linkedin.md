@@ -94,3 +94,28 @@ Lien d'achat en premier commentaire.
 Sur une semaine ordinaire, quel bloc saute en premier chez vous ?
 
 #Productivité #TimeBlocking #Organisation #Freelance #GestionDuTemps
+
+## Version finale (15/11/2026) · LI-87
+
+Doc : https://docs.google.com/document/d/1_g0Ax8SCLSRdC2F4b7QCfx8W4VcAXFbcIg83wOWH2LY/edit
+
+Lundi, la semaine paraît large. Vendredi, on se demande où sont passées les heures prévues pour le travail qui compte.
+
+Avant, la semaine tient dans une liste de tâches. On coche ce qui est fait, on reporte le reste, et le vendredi personne ne sait combien d'heures ont vraiment servi au travail de fond.
+
+Le time blocking change la question : au lieu d'une liste, chaque heure de la semaine reçoit une destination. Travail de fond le matin, messages regroupés, prospection le mercredi, sport deux soirs. Le difficile n'est pas de le prévoir, c'est de voir l'écart avec la réalité.
+
+Après, avec le planner horaire que j'ai construit, la semaine se pose sur une grille de 30 minutes. Les blocs se posent, se déplacent et s'allongent au glisser-déposer, à la souris comme au doigt, et ce qui revient chaque semaine n'est saisi qu'une fois. Chaque bloc se marque en un geste : fait, raccourci, déplacé ou pas fait. Le vendredi, le bilan compare le prévu et le réalisé par catégorie, avec le taux de réalisation et la tendance des six dernières semaines.
+
+Trois semaines types sont prêtes (cadre, freelance, étudiant), et toute semaine peut devenir un modèle. Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Bientôt en vente, en achat unique.
+
+La démo, avec la semaine d'une freelance fictive, est ouverte à tous : lien en commentaire.
+
+Sur une semaine ordinaire, quel bloc saute en premier chez vous ?
+
+#Productivité #TimeBlocking #Organisation #Freelance #GestionDuTemps
+
+Premier commentaire :
+
+La démo, avec la semaine d'une freelance fictive, sans inscription :
+https://qm-engineering.fr/templates/planner/?demo

@@ -108,3 +108,28 @@ Lien d'achat en premier commentaire.
 Chez vous, qui repère un conflit de salle aujourd'hui : la personne qui fait le planning, ou le formateur devant la porte ?
 
 #OrganismeDeFormation #FormationProfessionnelle #EmploiDuTemps #Planning #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-126
+
+Doc : https://docs.google.com/document/d/1HaQuEn5YgJcmGgsZXe3AJlgTLFcQqGzQHZUZTJJayl0/edit
+
+Dans un organisme de formation, le conflit de salle se découvre souvent le matin même, devant la porte, avec tout le groupe.
+
+L'erreur fréquente n'est pas d'utiliser un tableur. C'est de croire qu'il suffit. Puis un formateur change de jour, une salle ferme pour travaux, un groupe grossit, et les croisements se découvrent trop tard : une séance à déplacer, un groupe qui attend, un formateur attendu à deux endroits.
+
+J'ai construit un emploi du temps d'établissement qui vérifie tout au moment de la saisie. Groupes, formateurs, salles et modules sont réunis sur une grille semaine, et chaque séance se place à la main, d'un clic sur un créneau libre. Dès qu'on la pose, l'outil signale chaque conflit : formateur, salle ou groupe pris deux fois, salle trop petite pour l'effectif, équipement manquant, formateur indisponible, jour férié ou fermé. Il compte aussi les heures par module et par formateur : réalisé, placé, prévu, et ce qui dépasse.
+
+Il ne place rien tout seul : c'est vous qui décidez, l'outil vérifie.
+
+Une semaine type se recopie (y compris en semaines A et B), les fériés sont sautés, chaque vue s'imprime en A4. Côté données : le nom des formateurs et des groupes, aucun nom d'apprenant.
+
+Il s'ouvre dans le navigateur avec une clé. Bientôt en vente, en achat unique. La démo, avec un centre de formation fictif, est en commentaire.
+
+Chez vous, qui repère un conflit de salle aujourd'hui : la personne qui fait le planning, ou le formateur devant la porte ?
+
+#OrganismeDeFormation #FormationProfessionnelle #EmploiDuTemps #Planning #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec un centre de formation fictif, sans inscription :
+https://qm-engineering.fr/templates/emploi-du-temps/?demo

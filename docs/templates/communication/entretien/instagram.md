@@ -81,3 +81,24 @@ Démo libre et contact : lien en bio.
 Quelle échéance de la maison oubliez-vous le plus souvent ?
 
 #Maison #Organisation #EntretienMaison #Locataire #Propriétaire
+
+## Version finale (15/11/2026) · IG-64
+
+Doc : https://docs.google.com/document/d/1AHZk-w8JyuMNo1IcPJh1iCeSpkQKT8AVu7YVp5tWCXA/edit
+
+Le plus dur dans l'entretien d'une maison, ce n'est pas de le faire. C'est de savoir quand.
+
+Chaudière chaque année, bouches de VMC tous les 3 mois, gouttières après les feuilles, détecteur de fumée chaque mois : une trentaine de petites échéances, et aucune ne prévient.
+
+Entretien de la maison retient les dates pour vous :
+▪ vous cochez les équipements de votre logement, 89 tâches types se mettent en place ;
+▪ l'application calcule ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive ;
+▪ chaque intervention garde sa date et son coût.
+
+Obligations sourcées, à vérifier selon votre département et votre bail. Bientôt en vente, en achat unique.
+
+Un parc de logements, des contrats de maintenance ? Je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. Enregistrez ce post avant le prochain ramonage.
+
+#Maison #Organisation #EntretienMaison #Locataire #Propriétaire

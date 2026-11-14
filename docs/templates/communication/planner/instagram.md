@@ -79,3 +79,24 @@ Démo libre avec la semaine d'une freelance fictive, et contact : lien en bio.
 Dans votre semaine type, quel bloc saute en premier ?
 
 #Productivité #Organisation #GestionDuTemps #Freelance #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-16
+
+Doc : https://docs.google.com/document/d/1i-z2NPqZEdWoeiFBzIHXj03GD7H5ZlumBsxwLGJhe-8/edit
+
+L'erreur du time blocking : planifier sa semaine le lundi et ne jamais la relire le vendredi.
+
+Donner à chaque heure une destination, c'est facile : travail de fond le matin, messages regroupés, sport deux soirs. Sans bilan, l'écart avec la réalité reste invisible.
+
+Le Planner horaire fait les deux :
+▪ une grille de 30 minutes où les blocs se posent et se déplacent au glisser-déposer ;
+▪ chaque bloc se marque en un geste : fait, raccourci, déplacé ou pas fait ;
+▪ le bilan compare le prévu et le réalisé, avec la tendance sur six semaines.
+
+Trois semaines types (cadre, freelance, étudiant). Bientôt en vente, en achat unique.
+
+Le planning d'une équipe, avec vos contraintes ? Je construis la version sur mesure.
+
+Démo libre avec la semaine d'une freelance fictive, et contact : lien en bio. Enregistrez-le pour vendredi.
+
+#Productivité #Organisation #GestionDuTemps #Freelance #OutilsSurMesure

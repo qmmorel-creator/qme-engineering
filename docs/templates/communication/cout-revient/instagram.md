@@ -74,3 +74,22 @@ Démo libre avec une activité fictive, et contact : lien en bio. Enregistrez le
 Votre client le mieux payé est-il aussi le plus rentable ?
 
 #Freelance #Indépendant #Tarification #Entrepreneur #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-05
+
+Doc : https://docs.google.com/document/d/1URpHGmSApjRapXdUsi1_AsZvgsCrpzK_F-KH1QjgeEc/edit
+
+Votre client le mieux payé est-il aussi le plus rentable ?
+
+Vous ne pouvez répondre qu'en sachant ce que vous coûte une heure. Pas ce que vous la facturez : ce qu'elle vous coûte, une fois retirés les jours fériés, les congés, la prospection et la gestion.
+
+Le template Coût de revient et prix par client fait ce calcul : coût par heure et par jour, prix plancher, prix conseillé. Puis, client par client, la marge et le taux horaire réel, avec un signal pour ceux qui passent sous le plancher.
+
+Vous saisissez vos propres cotisations. C'est une aide à la décision, pas un conseil comptable. Achat unique, 25 €.
+
+Besoin de le relier à vos devis ou à votre suivi des temps ? Je construis la version sur mesure.
+
+Démo libre avec une activité fictive : lien en bio. Enregistrez le post pour votre prochaine révision de tarifs.
+
+#Freelance #Indépendant #Tarification #Entrepreneur

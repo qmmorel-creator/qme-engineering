@@ -81,3 +81,23 @@ Démo libre avec trois scénarios fictifs, et contact : lien en bio.
 Et le vôtre : calculé, ou aligné sur celui des autres ?
 
 #Freelance #TJM #MicroEntreprise #Indépendant #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-06
+
+Doc : https://docs.google.com/document/d/17vT0Ejc39-dU3u9v4HGS9_l-PG4LlkDT8CpM2ZcekuI/edit
+
+On ne calcule pas son TJM en divisant par 365. La méthode, en 3 étapes.
+
+1. Partez du revenu que vous voulez vous verser, pas du tarif des autres.
+
+2. Ajoutez vos frais et ce que prélève votre statut.
+
+3. Divisez par les jours que vous facturerez vraiment : jours ouvrés, moins les fériés, les congés, la prospection et l'administratif.
+
+Le Calculateur de TJM fait ces trois étapes, en micro-entreprise (BIC, BNC, Cipav) ou en société avec votre taux. Il donne un TJM minimum et un TJM conseillé, et compare trois scénarios. Taux 2026 sourcés et modifiables. Outil d'aide, pas un conseil : il ne remplace pas un expert-comptable. Achat unique, 12 €.
+
+Relié à votre facturation ou à votre suivi des temps ? Je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. Enregistrez ce post pour revoir votre tarif.
+
+#Freelance #TJM #MicroEntreprise #Indépendant #OutilsSurMesure

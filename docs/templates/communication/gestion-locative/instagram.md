@@ -95,3 +95,23 @@ Démo libre et contact : lien en bio. À envoyer à un propriétaire bailleur de
 Votre dernière révision de loyer, c'était quand ?
 
 #Immobilier #PropriétaireBailleur #GestionLocative #InvestissementLocatif #Budget
+
+
+## Version finale (15/11/2026) · IG-78
+
+Doc : https://docs.google.com/document/d/1g9k76pekfWkp3KD4zzW6NTLMTDS6CO-UIlYx9jF92WA/edit
+
+Avez-vous révisé votre loyer cette année ? Passé un an, la révision ne se rattrape pas.
+
+Trois oublis fréquents quand on gère soi-même :
+1. La révision annuelle, non demandée à temps.
+2. Le retard de paiement qui passe inaperçu.
+3. Les charges de l'année, jamais régularisées.
+
+La Gestion locative suit vos loyers mois par mois, prépare la quittance et la relance, calcule le nouveau loyer avec l'indice que vous saisissez et rappelle la date limite. Elle compare aussi les provisions aux charges réelles. Rien n'est envoyé à vos locataires. Pas un conseil juridique ni fiscal. Bientôt en vente.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre avec trois logements fictifs : lien en bio. À envoyer à un propriétaire bailleur de votre entourage.
+
+#Immobilier #PropriétaireBailleur #GestionLocative #InvestissementLocatif

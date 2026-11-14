@@ -109,3 +109,26 @@ Lien d'achat en premier commentaire.
 Votre objectif de lecture pour cette année, c'est combien de livres, et où en êtes-vous ?
 
 #Lecture #Livres #ObjectifLecture #Organisation #OutilsNumériques
+
+
+## Version finale (15/11/2026) · LI-129
+
+Doc : https://docs.google.com/document/d/1Dfnqq1AvJFjHynflxr5EvzAKomNaF2S59CoRaU0jre4/edit
+
+En janvier, on se fixe 24 livres. En novembre, on compte sur ses doigts.
+
+Entre les deux, il y a un marque-page dans le livre en cours, une liste à lire dans un coin du téléphone, et une question qui reste sans réponse : est-ce que je suis en avance ou en retard, et de combien ?
+
+Le suivi tient souvent dans un carnet, un tableur, ou une application de lecture qui demande un profil public. J'ai voulu autre chose : un suivi de lecture qui compte à votre place.
+
+▪ Il tient la bibliothèque papier, numérique et audio, avec une liste à lire classée par priorité.
+▪ Chaque session, la page atteinte ou les minutes écoutées, devient une progression, un rythme et une date de fin estimée.
+▪ L'objectif de l'année est comparé à ce qui est lu, au jour près : avance ou retard en jours, projection au 31 décembre, pages par jour pour tenir.
+
+Les statistiques suivent, avec les notes et les citations qui ont marqué, et leur page. Rien n'est public : pas de profil, pas de réseau, pas de publicité.
+
+Il sera bientôt en vente. La démo, avec la bibliothèque d'un lecteur fictif, est ouverte à tous : https://qm-engineering.fr/templates/lecture/?demo
+
+Si vous connaissez quelqu'un qui tient sa liste de lectures dans un carnet, n'hésitez pas à lui transmettre.
+
+#Lecture #Livres #ObjectifLecture #Organisation

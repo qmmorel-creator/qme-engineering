@@ -79,3 +79,22 @@ Démo libre avec des tâches fictives, et contact : lien en bio.
 Combien de tâches compte votre liste en ce moment ?
 
 #Organisation #Productivité #GestionDuTemps #Freelance #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-10
+
+Doc : https://docs.google.com/document/d/1GbNDZlfShSg2LNsMoATedW2pBw0koFqP8TeUjM7_UE8/edit
+
+Une liste qui s'allonge, ou 3 à 5 tâches choisies : laquelle vous dit quoi faire ce matin ?
+
+La liste longue rassure : rien n'est oublié. Mais elle ne fait que rappeler qu'on est en retard.
+
+La liste courte demande un effort : trier chaque élément, urgent ou pas, important ou pas, puis en garder 3 à 5 au focus, avec le temps prévu face au temps disponible.
+
+Le Gestionnaire de tâches garde les deux. Tout se note en une ligne (« Appeler la banque demain 14h !haute #Perso 30min »), et seul le focus du jour s'affiche le matin. Le soir, on reporte, on archive, la journée est close.
+
+Outil personnel, pas un logiciel d'équipe. Achat unique, 19 €. Pour une équipe, avec vos rôles et vos validations, je construis la version sur mesure.
+
+Démo libre avec des tâches fictives : lien en bio.
+
+#Organisation #Productivité #GestionDuTemps #Freelance

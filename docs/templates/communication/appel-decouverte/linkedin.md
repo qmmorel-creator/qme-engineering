@@ -141,3 +141,25 @@ Lien d'achat en premier commentaire.
 Vous qui menez des appels découverte : quelle question oubliez-vous le plus souvent de poser avant de raccrocher ?
 
 #Prospection #Vente #Freelance #Consultant #DéveloppementCommercial
+
+
+## Version finale (15/11/2026) · LI-113
+
+Doc : https://docs.google.com/document/d/1MtrhLxOYCkIap740hsA0lSXHGFPq5lOpSKqObXVqd7c/edit
+
+On raccroche content du premier rendez-vous. Puis on s'aperçoit qu'on ne sait ni qui décide, ni quand.
+
+C'est une erreur courante de l'appel découverte : écouter si bien qu'on oublie de qualifier. Elle coûte une prochaine étape floue, et une relance qu'on ne sait pas à qui adresser.
+
+En trente ou quarante-cinq minutes, il faut faire parler la personne de sa situation, mesurer ce que le problème lui coûte, savoir qui décide et avec quel budget, et finir sur une date. C'est beaucoup à garder en tête en écoutant.
+
+J'ai donc construit un préparateur d'appel découverte :
+▪ avant, une fiche contexte, des hypothèses à vérifier et des questions choisies dans une banque de 84, rangées en 7 phases, avec un plan minuté qui prévient quand on en prévoit trop ;
+▪ pendant, sur téléphone ou ordinateur, les questions à cocher, les réponses notées, un chronomètre et 25 objections types avec une piste de réponse ;
+▪ après, un score de qualification sur 8 (besoin, budget, décideur, échéance) selon une règle affichée, et une prochaine étape datée, signalée si elle prend du retard.
+
+Côté données, le strict nécessaire : l'organisation, la fonction, un prénom si on veut. Il sera bientôt en vente ; la démo, avec douze appels fictifs, est ouverte à tous : https://qm-engineering.fr/templates/appel-decouverte/?demo
+
+Si vous connaissez un consultant ou un freelance qui enchaîne les premiers rendez-vous, n'hésitez pas à lui transmettre.
+
+#Prospection #Vente #Freelance #Consultant

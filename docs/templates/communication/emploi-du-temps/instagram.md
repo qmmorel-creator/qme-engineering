@@ -92,3 +92,23 @@ Démo libre et contact : lien en bio. À envoyer à la personne qui monte les pl
 Votre emploi du temps tient dans combien de tableurs aujourd'hui ?
 
 #Formation #OrganismeDeFormation #Organisation #PME #OutilsNumériques
+
+## Version finale (15/11/2026) · IG-81
+
+Doc : https://docs.google.com/document/d/1_b1YbR8ayiO3dFvvRg4H4AHfyzcS412YW5uuGngH5VQ/edit
+
+Un emploi du temps sans conflit de salle, en 3 étapes.
+
+1. Réunir sur une seule grille ce qui vit dans plusieurs tableurs : groupes, formateurs, salles et modules.
+
+2. Placer chaque séance à la main, et faire vérifier chaque pose : formateur pris deux fois, salle de 14 places pour 18 stagiaires, jour férié.
+
+3. Suivre les heures réalisées, placées et prévues, module par module, pour voir ce qui dépasse.
+
+C'est ce que fait l'Emploi du temps d'établissement. Semaines A et B, jours fériés calculés, impression A4, aucun nom d'apprenant. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec un centre de formation fictif, et contact : lien en bio. À envoyer à la personne qui monte les plannings chez vous.
+
+#Formation #OrganismeDeFormation #Organisation #PME #OutilsNumériques

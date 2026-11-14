@@ -98,3 +98,32 @@ Lien d'achat en premier commentaire.
 Votre tarif actuel, vous l'avez fixé à partir de vos coûts ou à partir des prix des autres ?
 
 #Freelance #Indépendants #Tarification #EntrepreneuriatFrance #GestionDEntreprise
+
+
+## Version finale (15/11/2026) · LI-76
+
+Doc : https://docs.google.com/document/d/13B8mQcJ0jqGFWPjufu0Trgt6vqoYBsDO4sGSyRo9rdw/edit
+
+Votre client le mieux payé est peut-être celui qui vous rapporte le moins.
+
+Tout dépend du temps qu'il vous prend. Pour le savoir, il faut d'abord connaître ce que vous coûte une heure, et ce chiffre ne se trouve pas en regardant les tarifs des autres.
+
+Le calcul tient en quatre étapes :
+
+1. Additionner ce que l'activité doit couvrir dans l'année : charges, rémunération, cotisations.
+2. Compter les jours ouvrés, jours fériés compris, puis retirer congés, prospection et gestion. Il reste les heures vraiment vendables, souvent bien moins qu'on ne le pense.
+3. Diviser : on obtient le coût de revient par heure et par jour, d'où un prix plancher et un prix conseillé selon la marge visée.
+4. Pour chaque client, rapporter le temps passé, les frais et les factures à ce coût : on voit sa marge et son taux horaire réel.
+
+J'ai construit un outil qui fait ces quatre étapes et signale les clients sous le plancher. Aucun taux de cotisations n'est figé dedans : vous saisissez le vôtre. Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone, en achat unique. C'est une aide à la décision, pas un conseil comptable.
+
+La démo, avec une activité fictive, est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/cout-revient/?demo
+
+Le lien d'achat est en commentaire.
+
+#Freelance #Indépendants #Tarification #EntrepreneuriatFrance
+
+Premier commentaire :
+
+Coût de revient et prix par client, 25 €, achat unique, accès à vie sur tous vos appareils :
+https://qmengineering.gumroad.com/l/cout-de-revient

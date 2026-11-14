@@ -91,3 +91,24 @@ Démo libre et contact : lien en bio.
 Votre TVA, vous la suivez dans un tableur, un logiciel, ou avec le cabinet ?
 
 #TVA #Comptabilité #PME #TPE #Entrepreneur
+
+## Version finale (15/11/2026) · IG-86
+
+Doc : https://docs.google.com/document/d/1bC8a9uO13mEnIc8h8jmICcWC9Aer_J-3zfzKds57FMQ/edit
+
+Votre CA3, vous la remplissez de mémoire ?
+
+Avant : trois onglets et une calculatrice. Une TVA recopiée de travers, un achat retrouvé après la déclaration, un crédit du mois précédent qu'on oublie d'imputer.
+
+Après, avec le Suivi de TVA :
+▪ chaque opération calculée au centime, en HT ou en TTC ;
+▪ pour chaque période, la TVA à payer ou le crédit reporté ;
+▪ l'échéancier tenu, et la liste des contrôles avant de déclarer.
+
+Réel normal ou simplifié, export CSV pour le cabinet. Outil d'aide, pas un conseil fiscal. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une menuiserie fictive, et contact : lien en bio. Enregistrez ce post pour votre prochaine déclaration.
+
+#TVA #Comptabilité #PME #TPE #Entrepreneur

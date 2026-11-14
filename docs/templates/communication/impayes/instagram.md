@@ -88,3 +88,23 @@ Démo libre et contact : lien en bio. À enregistrer pour la prochaine facture q
 Au bout de combien de jours de retard relancez-vous ?
 
 #Freelance #Indépendant #Entrepreneur #PME #MicroEntreprise
+
+
+## Version finale (15/11/2026) · IG-69
+
+Doc : https://docs.google.com/document/d/1Rq3EXvRwd2jWjpQ5mVLlvip2kuxiufoZUhtsF1GVdmo/edit
+
+40 € par facture en retard : l'indemnité qu'on oublie de réclamer entre professionnels.
+
+Relancer en trois étapes :
+1. Classer : chaque facture par retard, avec l'encours réel, paiements partiels compris.
+2. Chiffrer : les pénalités jour par jour sur le restant dû, plus les 40 € d'indemnité.
+3. Écrire : le message du bon palier, du rappel courtois à la mise en demeure, avec le montant et le retard déjà remplis.
+
+La Relance des impayés fait les trois. Le message se copie, rien n'est envoyé à votre place, et vous mettez à jour les taux datés. Outil d'aide, pas un conseil juridique. Achat unique, 19 €.
+
+Vos règles, vos utilisateurs, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une entreprise fictive : lien en bio. Enregistrez-le pour la prochaine facture qui traîne.
+
+#Freelance #Indépendant #Facturation #PME

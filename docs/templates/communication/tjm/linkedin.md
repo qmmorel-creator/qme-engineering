@@ -103,3 +103,31 @@ Et vous, avez-vous déjà compté les jours que vous facturez vraiment sur une a
 Si vous connaissez quelqu'un qui se lance en freelance, transmettez-lui ce post.
 
 #Freelance #TJM #MicroEntreprise #Indépendants #Entrepreneuriat
+
+## Version finale (15/11/2026) · LI-77
+
+Doc : https://docs.google.com/document/d/1JWZFkW_8mcRn7YLizfOvNyJFSGbYgrjwCPfsqjDXTHg/edit
+
+Un TJM copié sur celui des autres se paie en fin d'année, le jour où l'on compte les jours vraiment facturés.
+
+L'erreur se comprend : le tarif d'un confrère est le seul chiffre qu'on a sous la main. Mais il ignore vos frais, votre statut et vos jours facturés.
+
+Un TJM se calcule à l'envers. Le revenu que vous voulez vous verser, plus les frais, plus ce que prélève le statut, divisé par les jours réellement facturés. Pas par 365 : une fois retirés les week-ends, les fériés, les congés, la prospection et l'administratif, il en reste souvent bien moins qu'on ne pense.
+
+J'ai construit un calculateur qui fait ce calcul. Il compte les jours ouvrés de l'année, fériés retirés (Pâques, Ascension, Pentecôte compris). Il gère la micro-entreprise (BIC, BNC, Cipav) avec cotisations, formation professionnelle et versement libératoire, ou la SASU / EURL avec votre propre taux de charges. Il donne un TJM minimum et un TJM conseillé, et alerte si le chiffre d'affaires nécessaire dépasse le plafond de la micro-entreprise ou les seuils de la franchise de TVA.
+
+Trois scénarios se comparent côte à côte : rester en micro ou passer en société, viser plus, travailler moins. Les taux 2026 sont intégrés avec leur source et leur date, et restent modifiables. C'est un outil d'aide, pas un conseil : il ne remplace pas un expert-comptable.
+
+Achat unique. La démo avec trois scénarios fictifs est ouverte à tous : lien en commentaire.
+
+Si quelqu'un autour de vous se lance en freelance, envoyez-lui ce post avant qu'il ne fixe son tarif.
+
+#Freelance #TJM #MicroEntreprise #Indépendants
+
+Premier commentaire :
+
+La démo, avec trois scénarios fictifs, sans inscription :
+https://qm-engineering.fr/templates/tjm/?demo
+
+Le Calculateur de TJM freelance (12 €, achat unique) :
+https://qmengineering.gumroad.com/l/calculateur-tjm

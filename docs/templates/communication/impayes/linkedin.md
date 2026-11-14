@@ -140,3 +140,31 @@ Lien d'achat en premier commentaire.
 Freelances, dirigeants de TPE : au bout de combien de jours de retard envoyez-vous votre première relance ?
 
 #Freelance #TPE #Facturation #Trésorerie #Entrepreneur
+
+
+## Version finale (15/11/2026) · LI-114
+
+Doc : https://docs.google.com/document/d/1BCY6M8YYf1biSTSaJMQG19Qlttw92hz1_GKX9jwv-yI/edit
+
+Une relance trop vague, envoyée trop tard, et 40 € d'indemnité jamais réclamés : l'erreur coûte deux fois.
+
+Quand on facture seul ou à quelques-uns, la relance passe après le travail. On attend, on hésite, et quand on écrit enfin, c'est un « petit rappel » sans montant ni échéance. Pendant ce temps, on oublie ce que la loi permet de réclamer entre professionnels : des pénalités de retard et une indemnité forfaitaire de 40 €.
+
+J'ai donc construit un outil de relance des impayés :
+▪ il range chaque facture par retard (0-30, 31-60, 61-90, plus de 90 jours) et calcule l'encours, paiements partiels compris ;
+▪ il calcule les pénalités jour par jour sur le restant dû, au taux du Code de commerce ou de vos conditions générales ; pour un particulier, les intérêts au taux légal après mise en demeure ;
+▪ il prépare le message de chaque palier, du rappel courtois à la mise en demeure, avec le montant, le numéro, le retard et les pénalités déjà remplis.
+
+Rien n'est envoyé à votre place : vous copiez le message et l'envoyez depuis votre messagerie. Les taux sont datés et modifiables, parce qu'ils changent chaque semestre. C'est un outil d'aide, pas un conseil juridique. Achat unique, sans abonnement.
+
+La démo, avec une entreprise fictive : https://qm-engineering.fr/templates/impayes/?demo
+Lien d'achat en commentaire.
+
+Au bout de combien de jours de retard envoyez-vous votre première relance ?
+
+#Freelance #TPE #Facturation #Trésorerie
+
+Premier commentaire :
+
+Relance des impayés, 19 €, achat unique :
+https://qmengineering.gumroad.com/l/relance-impayes

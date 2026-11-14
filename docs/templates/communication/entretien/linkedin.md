@@ -122,3 +122,26 @@ Lien d'achat en premier commentaire.
 Chez vous, laquelle de ces échéances passe le plus souvent à la trappe ?
 
 #Maison #Organisation #Entretien #Locataire #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-109
+
+Doc : https://docs.google.com/document/d/1jBOLBNZrfK_voizzSBry-Z90mpbj7e4ccZH1xCHIAf0/edit
+
+« Vous avez le certificat de ramonage ? » C'est souvent à cette question de l'assureur qu'on cherche la date du dernier passage.
+
+On fouille les mails, un tiroir, un carnet. Le ramonage n'est jamais le seul oublié : chaudière, filtres de VMC, détecteur de fumée, gouttières, adoucisseur. Une maison, c'est une trentaine de petites échéances, chacune avec sa fréquence, et aucune ne prévient.
+
+J'ai construit un outil simple pour que cette scène n'arrive plus, chez les propriétaires comme chez les locataires. On coche les équipements du logement, et 89 tâches types se mettent en place, chacune avec une fréquence modifiable et la saison conseillée. L'application calcule ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive, à partir de la dernière intervention. Chaque intervention garde sa date, son coût, l'intervenant et une note, et la liste de l'année s'imprime.
+
+Un point m'a demandé du soin : les obligations. L'entretien de la chaudière, le ramonage ou celui des pompes à chaleur ont une origine réglementaire. L'outil affiche la source de chaque fréquence, avec la mention « à vérifier selon votre département et votre bail », et la laisse modifiable. Pour un locataire, chaque tâche indique qui s'en charge le plus souvent, à titre indicatif.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Bientôt en vente, en achat unique. La démo, avec une maison fictive, est en commentaire.
+
+Chez vous, laquelle de ces échéances passe le plus souvent à la trappe ?
+
+#Maison #Organisation #Entretien #Locataire #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec une maison fictive, sans inscription :
+https://qm-engineering.fr/templates/entretien/?demo

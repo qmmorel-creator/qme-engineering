@@ -99,3 +99,28 @@ Lien d'achat en premier commentaire.
 Dirigeants et gestionnaires : aujourd'hui, où suivez-vous le crédit de TVA à reporter d'un mois sur l'autre ?
 
 #TVA #PME #Artisan #Comptabilité #OutilsNumériques
+
+## Version finale (15/11/2026) · LI-131
+
+Doc : https://docs.google.com/document/d/1G9EMQsSGjcyo35KiFWVDHp90GxOM0ssTIiDpk7br-oo/edit
+
+Le crédit de TVA du mois dernier : reporté sur la CA3 de ce mois-ci, ou resté dans un coin du tableur ?
+
+Dans beaucoup de petites sociétés au réel, la TVA se suit dans un tableur, entre deux échanges avec l'expert-comptable. Ça tient tant que rien ne bouge. Puis une facture arrive après la déclaration, une TVA est recopiée de travers, un investissement crée un crédit qu'il faut reporter plusieurs mois de suite.
+
+Savez-vous, là, maintenant, ce qu'il reste à imputer ?
+
+J'ai construit un suivi de TVA qui y répond. Il calcule chaque opération au centime, en HT ou en TTC, et signale tout écart avec la facture. Il donne, période par période, la TVA collectée, la TVA déductible par taux, le crédit antérieur imputé, puis ce qui reste à payer ou le crédit reporté. Il tient l'échéancier des déclarations (réel normal mensuel ou trimestriel, réel simplifié avec acomptes) et liste ce qui mérite un contrôle avant de déclarer : taux inhabituel, opération saisie après la déclaration, échéance non pointée, crédit oublié.
+
+Ce n'est pas un conseil fiscal et il ne déclare rien à votre place : c'est un outil d'aide au suivi, à côté de votre expert-comptable. Taux et échéances par défaut sourcés, datés et modifiables ; export CSV pour le cabinet.
+
+Il s'ouvre dans le navigateur avec une clé. Bientôt en vente, en achat unique. La démo, avec une menuiserie fictive, est en commentaire.
+
+Dirigeants et gestionnaires : aujourd'hui, où suivez-vous le crédit de TVA à reporter d'un mois sur l'autre ?
+
+#TVA #PME #Artisan #Comptabilité #OutilsNumériques
+
+Premier commentaire :
+
+La démo, avec une menuiserie fictive, sans inscription :
+https://qm-engineering.fr/templates/tva/?demo

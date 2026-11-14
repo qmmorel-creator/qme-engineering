@@ -79,3 +79,23 @@ Démo libre avec une résidence fictive, et contact : lien en bio.
 À vos dernières OPR, combien de réserves restaient ouvertes un mois après ?
 
 #BTP #Chantier #ConducteurDeTravaux #MaîtriseDŒuvre #OutilsSurMesure
+
+## Version finale (15/11/2026) · IG-17
+
+Doc : https://docs.google.com/document/d/1sc_iWo31uO50-L9pucLDQ8dNSp2aNfzIrB51gWyxD9M/edit
+
+Recopier la liste des réserves à chaque visite, c'est perdre le fil en un mois. Le suivi jusqu'à la levée, en 3 étapes.
+
+1. Saisir pendant la visite, sur téléphone : bâtiment, niveau, local, lot, entreprise, numéro automatique.
+
+2. Dater chaque étape : levée par l'entreprise, contrôle, refus motivé avec une nouvelle échéance. Les retards se calculent avec vos propres délais.
+
+3. Remettre à chaque entreprise sa liste de réserves à lever, puis le procès-verbal de levée, prêt à imprimer.
+
+C'est ce que fait le template Levée de réserves, avec un tableau de bord par entreprise et par lot, et un export CSV. Achat unique, 39 €.
+
+Photos, plans, vos modèles de procès-verbaux ? Je construis la version sur mesure.
+
+Démo libre avec une résidence fictive, et contact : lien en bio. À envoyer à qui prépare ses prochaines OPR.
+
+#BTP #Chantier #ConducteurDeTravaux #MaîtriseDŒuvre #OutilsSurMesure

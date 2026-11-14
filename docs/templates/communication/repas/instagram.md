@@ -86,3 +86,24 @@ Démo libre et contact : lien en bio.
 Chez vous, les menus se décident le dimanche ou à 18 h 30 ?
 
 #Organisation #Maison #BudgetFamilial #Repas #ListeDeCourses
+
+## Version finale (15/11/2026) · IG-75
+
+Doc : https://docs.google.com/document/d/1n2kFwBTSHAZCKf0mMUqi8gQ886k6SfqQIegOTv0fz9Q/edit
+
+Une liste de courses ne devrait pas se faire de mémoire. Elle devrait se calculer.
+
+Quand les repas se décident à 18 h 30, la liste se refait de tête, il manque toujours un ingrédient, et un quatrième pot de sel finit au placard.
+
+Repas de la semaine et liste de courses :
+▪ place les repas midi et soir, avec le nombre de personnes, les restes, la cantine ou la sortie ;
+▪ calcule la liste, quantités additionnées selon les portions et rangées par rayon ;
+▪ retire ce que vous avez déjà au placard.
+
+100 recettes de base rédigées pour l'outil, modifiables. Pas un outil de nutrition : pas de calories. Bientôt en vente, en achat unique.
+
+Vos règles, vos outils ? Je construis la version sur mesure.
+
+Démo libre avec une famille fictive, et contact : lien en bio. Envoyez-le à la personne qui fait les courses chez vous.
+
+#Organisation #Maison #BudgetFamilial #Repas #ListeDeCourses

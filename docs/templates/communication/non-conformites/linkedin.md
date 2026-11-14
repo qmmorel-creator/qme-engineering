@@ -104,3 +104,29 @@ La démo, avec une entreprise fictive et un an d'historique, est ouverte à tous
 Responsables qualité, conducteurs de travaux, chefs d'atelier : chez vous, qui décide qu'une non-conformité est close, et sur quel critère ?
 
 #Qualité #BTP #Industrie #AméliorationContinue #PME
+
+
+## Version finale (15/11/2026) · LI-84
+
+Doc : https://docs.google.com/document/d/1azbMlA3cLZ36yOXfQ1_DNbs8XKlSPIHjQ2Eu57kkrlY/edit
+
+Noter un écart prend 30 secondes. Vérifier que l'action corrective a marché, presque personne ne le fait.
+
+Dans beaucoup de PME, le registre des non-conformités est un tableur : on y note l'écart, parfois l'action, rarement la cause. La veille d'une revue de direction, il faut des heures pour en sortir quelques chiffres.
+
+J'ai construit un registre qui tient la démarche jusqu'au bout. Le constat se saisit en 30 secondes sur le terrain, depuis le téléphone : lot ou atelier, type d'écart, gravité, décision sur le produit. La cause se cherche avec les 5 pourquoi guidés, chaque question reprenant la réponse précédente, puis se classe en 6M. Les actions ont un responsable et une échéance, et c'est une vérification d'efficacité qui décide de la clôture. Si l'action n'a pas marché, la fiche revient à l'analyse.
+
+Il arrive avec une grille de gravité en quatre niveaux, dix types d'écarts illustrés (BTP et industrie) et deux exemples complets des 5 pourquoi. Les indicateurs sont prêts : ouvertes, en retard, délai moyen de clôture, répartition par cause et par gravité, export CSV.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur, tablette et téléphone. Achat unique, sans abonnement. La démo, avec une entreprise fictive et un an d'historique : https://qm-engineering.fr/templates/non-conformites/?demo
+
+Lien d'achat en commentaire.
+
+Chez vous, qui décide qu'une non-conformité est close, et sur quel critère ?
+
+#Qualité #BTP #Industrie #AméliorationContinue #PME
+
+Premier commentaire :
+
+Registre des non-conformités, 20 €, achat unique, tous les appareils :
+https://qmengineering.gumroad.com/l/non-conformites

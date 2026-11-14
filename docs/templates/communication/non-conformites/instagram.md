@@ -79,3 +79,24 @@ Démo libre avec un an d'historique fictif, et contact : lien en bio.
 Chez vous, qui vérifie qu'une action corrective a vraiment marché ?
 
 #Qualité #BTP #Industrie #PME #OutilsSurMesure
+
+
+## Version finale (15/11/2026) · IG-13
+
+Doc : https://docs.google.com/document/d/1OE-ydzP2N1gIdcA5VqO9czJ_vTg5y9fIgW1lT93_krY/edit
+
+Le même écart revient trois fois. Votre registre, lui, n'a noté que l'écart.
+
+Un registre utile suit quatre étapes :
+1. Le constat, en 30 secondes, sur le terrain, depuis le téléphone.
+2. La cause, cherchée avec les 5 pourquoi guidés et classée en 6M.
+3. L'action, avec un responsable et une échéance.
+4. La vérification d'efficacité, qui seule décide de la clôture. Si l'action n'a pas marché, retour à l'analyse.
+
+Le Registre des non-conformités suit ces quatre étapes, avec des indicateurs prêts pour la revue de direction. Achat unique, 20 €.
+
+Vos procédures, vos audits, vos modèles de fiches ? Je construis la version sur mesure.
+
+Démo libre avec un an d'historique fictif : lien en bio. À envoyer à votre responsable qualité.
+
+#Qualité #BTP #Industrie #PME
