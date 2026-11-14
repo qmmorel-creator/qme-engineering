@@ -87,8 +87,8 @@ conseils ; puis choix des familles d'équipements présentes (pour proposer leur
 
 - **Compteur actuel** = plus grande valeur connue (compteur à la mise en service, relevés, compteurs notés à
   la clôture des bons) ; un relevé incohérent (inférieur à un relevé antérieur ou supérieur à un relevé
-  postérieur) est refusé ; remise à zéro possible (compteur remplacé) par un relevé marqué « nouveau
-  compteur » qui décale la base.
+  postérieur) est refusé. Compteur remplacé ou remis à zéro : non géré en V1 (créer un nouvel équipement
+  ou corriger les relevés).
 - **Rythme** d'utilisation (unités par jour) sur 90 jours, à défaut sur tout l'historique.
 - **Échéance d'une opération** : référence = dernière réalisation (bon préventif clôturé de cette opération),
   sinon date et compteur de départ de l'opération. Échéance date = référence + périodicité (jours, semaines,
@@ -96,7 +96,7 @@ conseils ; puis choix des familles d'équipements présentes (pour proposer leur
   atteint » quand les deux existent. Date estimée du compteur = aujourd'hui + reste ÷ rythme. Recalage au
   choix : depuis la réalisation (glissant, par défaut) ou depuis l'échéance prévue (calendaire fixe, utile
   pour le réglementaire).
-- **État** : en retard (date dépassée ou compteur atteint), bientôt (≤ N jours, ≤ N % de l'intervalle
+- **État** : en retard (date dépassée ou compteur atteint), bientôt (≤ N jours, borné au quart de la période, ≤ N % de l'intervalle
   compteur restant, ou date estimée ≤ N jours), à venir, plus tard, à paramétrer (aucune périodicité),
   bon ouvert (un bon non clôturé existe), suspendue (opération ou équipement archivé).
 - **Coût d'une intervention** = main-d'œuvre interne (durée × taux horaire, modifiable) + sous-traitance +
