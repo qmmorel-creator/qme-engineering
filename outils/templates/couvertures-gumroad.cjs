@@ -97,6 +97,7 @@ const T = {
   progression: ['Progression pédagogique', 'Ton programme, séance après séance.', 'Prévu et réel · retard en heures · fin projetée'],
   potager: ['Calendrier du potager', 'Chaque semis à sa date.', 'Tes dates · cette semaine · rotation · récoltes'],
   bebe: ['Suivi du bébé', "Ses journées, notées d'une main.", 'Tétées · sommeil · couches · à deux parents'],
+  copropriete: ["Charges et AG de copropriété", "Chaque appel payé, chaque vote préparé.", "Appels de fonds · charges par poste · régularisation · résolutions · travaux votés"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

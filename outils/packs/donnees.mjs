@@ -26,6 +26,7 @@ export const TEMPLATES = {
   BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', pour: 'pro' },
   ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', pour: 'pro' },
   SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', pour: 'pro' },
+  CPR: { slug: 'copropriete', prix: 1500, phrase: 'Appels de fonds, charges, régularisation et votes en AG.', pour: 'perso' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -105,7 +106,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
-  CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
   CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
@@ -319,9 +319,10 @@ export const PAGES = {
       ['SNH', 'En cas de sinistre, déclarez, chiffrez et suivez le dossier jusqu’à l’indemnisation.'],
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
       ['RNT', 'Avant d’acheter, comparez rendement et cash-flow de plusieurs biens.'],
+      ['CPR', 'Suivez appels de fonds, charges récupérables et votes de l’assemblée générale.'],
     ],
-    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Gestion locative, état des lieux et copropriété à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['ETD', 'CPR'],
+    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'L’état des lieux à venir, inclus avec l’option Pack évolutif'],
+    prevus: ['ETD'],
   },
   PFM: {
     couleur: 'encre', cibles: ['forme', 'particuliers'],

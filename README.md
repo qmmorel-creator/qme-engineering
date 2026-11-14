@@ -329,6 +329,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   financier à 6 mois, comptes annuels au-delà de 153 000 €) repris de service-public.gouv.fr (fiches F3180 et R46623,
   consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests `outils/templates/subventions.test.mjs`.
   Version anglaise en attente.
+- `templates/copropriete/` (CPR) : **charges et AG de copropriété** (T96), prêt, « Mise en vente prochaine » (15 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/copropriete/gumroad.json`). Lots et tantièmes
+  (plusieurs copropriétés par clé), appels de fonds (provisions, fonds de travaux, travaux votés) payés ou à payer,
+  4 appels trimestriels générés depuis le budget, décompte annuel par poste, régularisation, part récupérable sur le
+  locataire saisie par poste (aide limitée aux catégories citées par la fiche F947), évolution sur plusieurs exercices,
+  AG (ordre du jour, majorité saisie, intention de vote, résultat), travaux votés avec échéancier, documents à conserver
+  (référence de rangement), alertes, CSV. Aucune règle de majorité intégrée. Repères service-public.gouv.fr (F20586,
+  F34026, F947, consultées le 14/11/2026), désactivables. Règles dans `regles.js`, tests
+  `outils/templates/copropriete.test.mjs`. Version anglaise en attente.
 - `templates/references-plaquette/` (KRF) : **kit références et plaquette**, prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/references-plaquette/gumroad.json`). Une fiche par
   réalisation (contexte, mission, résultats chiffrés saisis, témoignage, mots-clés, visuel réduit dans le navigateur),

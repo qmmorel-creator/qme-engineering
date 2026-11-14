@@ -105,6 +105,7 @@ export const PRODUITS = {
   PRG: { nom: 'Progression pédagogique', url: '/templates/progression/' },
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
+  CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

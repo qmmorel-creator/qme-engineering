@@ -174,7 +174,7 @@ déjà).
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
@@ -269,7 +269,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
-| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95 | T94, T96 | 141 € | 25 % | 105 € | 27 € |
+| Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96 | T94 | 156 € | 25 % | 117 € | 30 € |
 | Forme | PFM | T04, T08, T06, T07 | T97 | 63 € | 20 % | 50 € | 13 € |
 | Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
@@ -2232,3 +2232,31 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé
   de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de RNT au pack PPB
   (`netlify/lib/packs.mjs`, pages des packs régénérées), carte anglaise, plannings, passage en vente du site.
+
+## Fiche T96 (cadrage délégué par Quentin, 14/11/2026)
+
+### T96 · Charges et assemblées générales de copropriété (`templates/copropriete/`, préfixe CPR, 15 €)
+- Fiche détaillée : [`fiches/copropriete.md`](fiches/copropriete.md). Catalogue `perso` · thème « Argent » ; pack visé
+  « Propriétaire » (PPB). Permalien prévu `charges-ag-copropriete`.
+- Promesse : « Chaque appel payé, chaque vote préparé. » Public : copropriétaires occupants ou bailleurs, membres de
+  conseil syndical. Plusieurs copropriétés par clé, aucune donnée personnelle demandée.
+- Lots et tantièmes (quote-part estimée), appels de fonds (provisions, fonds de travaux, échéances de travaux votés)
+  payés ou à payer, 4 appels trimestriels générés depuis le budget, décompte annuel par poste (15 postes types),
+  régularisation (charges réelles − provisions appelées), part récupérable sur le locataire saisie par poste (aide
+  limitée aux catégories citées par F947), répartition par poste et évolution sur plusieurs exercices (graphiques
+  dataviz), AG (convocation, ordre du jour collé, majorité **saisie**, intention de vote, résultat), travaux votés avec
+  échéancier, documents à conserver (référence de rangement, aucun fichier), alertes, CSV, impressions.
+- **Aucune règle de majorité intégrée**. Repères sourcés service-public.gouv.fr, consultés le 14/11/2026,
+  désactivables : F20586 (vérifiée le 04/08/2026 : provisions au quart du budget, 1er jour du trimestre), F34026
+  (vérifiée le 09/06/2026 : fonds de travaux ≥ 5 % du budget prévisionnel), F947 (vérifiée le 15/04/2025 : liste des
+  charges récupérables, décret n° 87-713). Avertissement : outil d'aide, le règlement de copropriété et le syndic font
+  foi, ne remplace pas un conseil juridique.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/copropriete/?demo`, page
+  `catalogue/copropriete/`, captures `assets/templates-copropriete-*.webp`, couverture
+  `assets/templates-copropriete-couverture.png`, tests `outils/templates/copropriete.test.mjs`). Version anglaise en
+  attente.
+- Communication prête dans `communication/copropriete/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte-prochaine.html, couverture.txt). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de CPR au pack PPB
+  (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
