@@ -578,7 +578,7 @@
     ].map(([lib, v, de, c, fo]) => `<div class="tuile ${fo}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><span>${esc(de || '')}</span></div>`).join('');
     return `
       <button class="btn lien retour" data-action="vue" data-vue="dossiers">← Tous les dossiers</button>
-      <div class="vue-tete"><div><p class="surtitre">${pastilleType(f?.type)}${esc(nomFinanceur(d.financeur))} · ${esc(typeF(f?.type).nom)}</p><h1>${esc(titreDossier(d))}</h1><p>${etiquetteStatut(d)} ${p ? `<button class="lien-inline" data-action="projet" data-id="${p.id}">${esc(p.nom)}</button>` : 'Sans projet (fonctionnement)'} · ${ex(d.annee)}</p></div>
+      <div class="vue-tete"><div><p class="surtitre">${pastilleType(f?.type)}${esc(nomFinanceur(d.financeur))}${f && !R.sansAccents(f.nom).startsWith(R.sansAccents(typeF(f.type).nom.split(' ')[0])) ? ` · ${esc(typeF(f.type).nom)}` : ''}</p><h1>${esc(titreDossier(d))}</h1><p>${etiquetteStatut(d)} ${p ? `<button class="lien-inline" data-action="projet" data-id="${p.id}">${esc(p.nom)}</button>` : 'Sans projet (fonctionnement)'} · ${ex(d.annee)}</p></div>
         <div class="actions">${boutons}<button class="btn" data-action="modifier-dossier" data-id="${d.id}">Modifier</button><button class="btn" data-action="imprimer-dossier" data-id="${d.id}">Imprimer</button></div></div>
       ${ech.length ? `<ul class="liste-echeances">${ech.map((x) => ligneEcheance(x, { compacte: true })).join('')}</ul>` : ''}
       <div class="tuiles" style="margin-top:16px">${tuiles}</div>

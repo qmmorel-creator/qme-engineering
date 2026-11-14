@@ -83,6 +83,7 @@ const T = {
   'entretiens-annuels': ["Entretiens annuels et professionnels", "Aucun entretien oublié.", "Échéances par salarié · trames · objectifs et formations suivis"],
   'document-unique': ['Document unique d’évaluation des risques', 'Tes risques évalués, ton document à jour.', 'Unités de travail · cotation G × P · plan d’actions · versions datées'],
   achats: ["Demandes d'achat et fournitures", "Qui a demandé quoi, et où en est le budget.", "Validation · commandes groupées · réception · budget par service"],
+  subventions: ["Subventions", "Chaque dossier à temps, chaque euro justifié.", "Pièces · échéances · versements · budget du projet · bilan"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
