@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="musculation" data-pour="perso" data-theme="sante-et-forme" style="--c:var(--rouge)"><a href="/catalogue/musculation/"><b>Carnet de musculation et cross-training</b><span class="phrase">Séances, WOD, records détectés et minuteur.</span><span class="theme">Santé et forme</span><em>Bientôt</em></a></li>

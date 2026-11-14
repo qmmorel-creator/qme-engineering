@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="gestion-locative" data-pour="perso" data-theme="argent" style="--c:var(--jaune)"><a href="/catalogue/gestion-locative/"><b>Gestion locative</b><span class="phrase">Loyers, retards, quittances, révision et charges.</span><span class="theme">Argent</span><em>Bientôt</em></a></li>
