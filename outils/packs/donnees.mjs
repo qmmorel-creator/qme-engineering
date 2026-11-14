@@ -49,6 +49,7 @@ export const TEMPLATES = {
   DMN: { slug: 'demenagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.', pour: 'perso' },
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
+  CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.', pour: 'pro' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -61,7 +62,6 @@ export const PREVUS = {
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
-  CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
   RPS: { nom: 'Repas de la semaine et liste de courses', prix: 1300, phrase: 'Menus planifiés, liste de courses générée.' },
@@ -267,7 +267,7 @@ export const PAGES = {
       ['TRS', 'Prévoyez la trésorerie de la saison et voyez venir les mois creux.'],
     ],
     arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Compétition, subventions, bénévoles et AG à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CMP', 'SBV', 'BNV', 'AGS'],
+    prevus: ['SBV', 'BNV', 'AGS'],
   },
   PPB: {
     couleur: 'bleu', cibles: ['proprietaires', 'particuliers'],
