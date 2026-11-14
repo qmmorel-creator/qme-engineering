@@ -74,7 +74,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 ## Classement dans le catalogue
 
 - T62 Stocks sous « Indépendants » (public : commerces, artisans) ; T44 TVA sous « Indépendants » ;
-  T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59 sous
+  T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59, T54 et T58 sous
   « Associations, formation et événements ». OK ou nouveaux thèmes ?
 
 ## Par template : périmètre et choix appliqués par défaut
@@ -126,7 +126,9 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   gardé, « sans gluten » via la case allergie ; « en attente » comptés mais jamais placés automatiquement ;
   répartition par service sans critère de genre ; tous présents sur toute la durée ; pas d'accès participant,
   ni rétroplanning ni badges ; définition CNIL des données sensibles non relue.
-- **T58 Quiz** : QCM multiple en tout ou rien, blanc compté faux, note au demi-point ; seuils 85 % / 35 % ;
+- **T58 Quiz** : QCM multiple en tout ou rien, blanc compté faux, note au demi-point ; seuils 85 % / 35 %
+  (5 réponses minimum, distracteur signalé dès 15 %) ; passation sur l'appareil du formateur seulement (pas de
+  compte apprenant), un utilisateur par clé ; 30 questions de démo rédigées pour QME ;
   conservation 12 mois par défaut ; textes RGPD non vérifiés sur source primaire ; argument du pack
   Enseignant remplacé par « Questions, quiz et corrections dans le même pack ».
 
