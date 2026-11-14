@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 32 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 36 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -151,6 +151,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   obligations sourcées et paramétrables) ; `templates/dettes/` (DTT) **remboursement de dettes**
   (boule de neige, avalanche, échéancier et date de fin) ; `templates/abonnements/` (ABN) **suivi des
   abonnements** (coût mensuel et annuel, prélèvements, « à décider avant le … », sans marque ni prix figé).
+- Lot du 14/11/2026, prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/notes-de-frais/` (NDF) **notes de frais et
+  indemnités kilométriques** (justificatifs référencés sans fichier stocké, barème kilométrique fiscal daté et
+  modifiable appliqué au cumul annuel, note du mois imprimable) ; `templates/appel-decouverte/` (APD)
+  **préparateur d'appel découverte** (84 questions en 7 phases, 25 objections, mode « en appel », score de
+  qualification) ; `templates/impayes/` (RCV) **relance des impayés** (retard par ancienneté, pénalités
+  L441-10 et indemnité D441-5 à taux datés modifiables, messages par palier à copier, rien n'est envoyé) ;
+  `templates/onboarding/` (ARD) **onboarding et offboarding salarié** (checklists par profil de J-15 à J+90,
+  responsables, matériel remis et rendu). Règles dans `regles.js`, tests `outils/templates/<slug>.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

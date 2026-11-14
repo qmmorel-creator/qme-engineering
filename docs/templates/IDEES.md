@@ -103,7 +103,7 @@ déjà).
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | prêt | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
-| T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | idée | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
+| T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
@@ -115,15 +115,15 @@ déjà).
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | prêt | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
-| T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | idée | 12 € | S | P2 | Backlog Quentin n° 13 |
+| T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | prêt | 29 € | M | P1 | Backlog Quentin n° 17 |
-| T43 | Relance des impayés | Comptabilité | TPE, freelances | idée | 19 € | S | P2 | Backlog Quentin n° 18 |
+| T43 | Relance des impayés | Comptabilité | TPE, freelances | prêt | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | idée | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
-| T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | idée | 19 € | S | P2 | Backlog Quentin n° 22 |
+| T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | idée | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
@@ -440,6 +440,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T11 | `entretien` | ENT | entretien-maison (prévu) |
 | T12 | `dettes` | DTT | remboursement-dettes (prévu) |
 | T14 | `abonnements` | ABN | suivi-abonnements (prévu) |
+| T26 | `notes-de-frais` | NDF | notes-de-frais (prévu) |
+| T38 | `appel-decouverte` | APD | preparateur-appel-decouverte (prévu) |
+| T43 | `impayes` | RCV | relance-impayes (prévu) |
+| T46 | `onboarding` | ARD | onboarding-offboarding (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -481,6 +485,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-108 | T08 habitudes | 2027-01-13 | 12:15 |
 | LI-109 | T11 entretien | 2027-01-15 | 12:15 |
 | LI-110 | T12 dettes | 2027-01-17 | 08:30 |
+| LI-112 | T26 notes-de-frais | 2027-01-21 | 12:15 |
+| LI-113 | T38 appel-decouverte | 2027-01-23 | 12:15 |
+| LI-114 | T43 impayes | 2027-01-25 | 12:15 |
+| LI-115 | T46 onboarding | 2027-01-27 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -503,6 +511,22 @@ résiliation (T14) ; points conseil budget en refonte (T12, à revérifier chaqu
 Prix minimum 12 € (règle de Quentin, 13/11/2026) : T11, T12 et T14 passent de 10 / 10 / 8 € à 12 € (textes,
 `gumroad-a-creer.json`, vue 5 des carrousels refaite). Drive : légendes IG-62, IG-64, IG-65 recréées (anciennes
 renommées `OBSOLETE-…`) et nouvelles vues 5 déposées dans le dossier Images, colonne P mise à jour.
+
+**Lot du 14/11/2026 (T26, T38, T43, T46)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/notes-de-frais/` (NDF, 15 €), `templates/appel-decouverte/` (APD, 12 €), `templates/impayes/` (RCV,
+19 €), `templates/onboarding/` (ARD, 19 €) ; pages `catalogue/<slug>/` ; fiches `fiches/<slug>.md` ; livrables
+dans `communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`).
+Noms et prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad.
+Publications insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » :
+LinkedIn « Programmé » LI-112 (T26, 21/01), LI-113 (T38, sam. 23/01 : créneau donné par la règle, à décaler
+si besoin), LI-114 (T43, 25/01), LI-115 (T46, 27/01) ; Instagram « Prêt » (à relire par Quentin avant
+« Programmé ») IG-67 (T26, 22/01), IG-68 (T38, 24/01), IG-69 (T43, 26/01), IG-70 (T46, 28/01). Restent à
+vérifier : T26, majoration de 20 % des véhicules électriques pour les deux-roues, et barème des trajets 2026
+(publié au printemps 2027) ; T43, taux de l'intérêt légal (source secondaire, à confirmer au JORF), base
+365 jours et pénalités sur le TTC, taux BCE à mettre à jour au 01/01/2027 ; T46, articles R4624-10 et
+L1221-13 du Code du travail non relus sur Légifrance ; T38, durée de conservation CNIL des prospects
+(3 ans) ; organismes de `prospects.md` marqués « à vérifier ».
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
