@@ -148,7 +148,7 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | en cours | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
@@ -1038,3 +1038,24 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T71 (cadrage délégué par Quentin, 14/11/2026)
+
+### T71 · Suivi du temps passé et rentabilité par mission (`templates/suivi-temps/`, préfixe TMP)
+- Fiche détaillée : [`fiches/suivi-temps.md`](fiches/suivi-temps.md). Application web, 19 €, permalien prévu
+  `suivi-temps-rentabilite`, catalogue `pro` · thème « Indépendants ». Pack visé : « Freelance : chiffrer,
+  facturer, encaisser » (PFG), où T71 était prévu.
+- Promesse : « Combien tu gagnes vraiment de l'heure, mission par mission. »
+- Base intégrée : 17 catégories de tâches (7 facturables, 10 non facturables : prospection, devis,
+  administratif, facturation, comptabilité, formation, veille…), 7 modèles de missions avec leurs tâches
+  types, 4 semaines types, seuils d'alerte par défaut. **Aucun taux, barème ni tarif de marché** : TJM cible,
+  heures par jour et coût de revient horaire sont saisis (cohérents avec T40 et T37).
+- Écrans : Aujourd'hui (chronomètre synchronisé, saisie en une ligne « 1h30 », journée face à la semaine
+  type), Semaine (feuille de temps 7 jours, prévu / réalisé, part facturable), Missions (forfait ou régie,
+  budget en jours ou heures, avancement, consommation, projection à terminaison, alertes, temps par tâche),
+  Rentabilité (taux horaire effectif = montant facturé ÷ temps réel, TJM équivalent, comparaison au TJM
+  cible, au taux du devis et au coût de revient, temps non facturable par catégorie, 8 dernières semaines),
+  Rapport client imprimable et exports CSV.
+- Marques : argent (avertissement « outil de gestion, pas un logiciel de facturation ni un conseil »),
+  montants hors taxes. Confidentiel vérifié : démo fictive, aucune donnée réelle.
+- Statut : en cours.
