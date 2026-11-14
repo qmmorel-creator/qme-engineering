@@ -110,7 +110,9 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
       de thème existante) et `style="--c:var(--couleur du thème)"`. En préparation : `<li class="carte
       prochaine">` (nom, phrase, thème, « Bientôt ») dans `.liste-bientot`. En vente : `<li class="carte">`
       (thème, nom, phrase, prix, « Voir le détail ») dans `.vitrine-piste`, retirée de `.liste-bientot`.
-      Mettre à jour le compteur de la puce du thème et le sous-titre « N templates · achat unique ». Pas de
+      Mettre à jour le compteur de la puce du thème et le sous-titre « N templates · achat unique » (repli sans JS :
+      avec JS, `site.js` relit cartes et puces pour construire les vues « Par thème » et « Sommaire » et recalcule
+      les nombres ; une puce est donc obligatoire pour que le thème ait son volet). Pas de
       thème d'une seule carte : rattacher le template à un thème voisin, ou créer le thème quand il en
       réunit au moins deux (puce dans `.puces`, mêmes `data-pour` et `data-theme`). Fil d'Ariane de la page
       catalogue : `/templates/?pour=pro#tous` « Professionnel » ou `/templates/?pour=perso#tous`

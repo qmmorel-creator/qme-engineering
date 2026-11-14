@@ -155,51 +155,78 @@ if(fallbackLink&&form){
   }catch{b.disabled=false;if(note)note.textContent='L’envoi a échoué. Réessayez dans un instant.';}
  });});})();
 
-/* Catalogue des templates : filtres (usage, thème, recherche), vitrine défilante des templates en vente,
-   liste compacte des templates en préparation. Sans JS, tout reste visible. État dans l'adresse
-   (?pour=pro&theme=argent&q=…) ; jamais dans le # (le script de tête redirige les # inconnus vers /catalogue/). */
+/* Catalogue des templates (décision de Quentin, 14/11/2026). Les cartes du HTML (.vitrine-piste pour les
+   templates en vente, .liste-bientot pour ceux en préparation) et les puces de thème restent la source : sans
+   JS, elles s'affichent telles quelles. Avec JS, elles sont relues pour construire deux vues :
+   - « Par thème » : accordéon, « Disponibles maintenant » ouvert, puis un volet par thème (groupés Pro /
+     Perso), templates en vente en tête de chaque volet ;
+   - « Sommaire » : tout le catalogue en colonnes, un bloc par thème.
+   Recherche et filtre Pro / Perso s'appliquent aux deux. État dans l'adresse (?pour=pro&q=…&vue=sommaire ;
+   ?theme=… ouvre un volet) ; jamais dans le # (le script de tête redirige les # inconnus vers /catalogue/). */
 (()=>{const cat=document.querySelector('[data-catalogue]');if(!cat)return;
- const filtres=cat.querySelector('[data-filtres]'),champ=cat.querySelector('#catalogue-recherche'),compte=cat.querySelector('[data-compte]'),
-  vitrine=cat.querySelector('[data-vitrine]'),piste=vitrine.querySelector('.vitrine-piste'),titreVit=cat.querySelector('[data-vitrine-titre]'),sousVit=cat.querySelector('[data-vitrine-sous]'),
-  aVenir=cat.querySelector('[data-a-venir]'),vide=cat.querySelector('[data-vide]'),
-  segs=[...cat.querySelectorAll('.segment button')],puces=[...cat.querySelectorAll('.puce')],cartes=[...cat.querySelectorAll('.carte')];
- const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
- cartes.forEach(c=>c._texte=norm(c.textContent));
- const sousInit=sousVit.textContent,total=cartes.length,enVente=cartes.filter(c=>!c.classList.contains('prochaine')).length;
- const s={pour:'',theme:'',q:''};
+ const $=(sel,el=cat)=>el.querySelector(sel),$$=(sel,el=cat)=>[...el.querySelectorAll(sel)];
+ const filtres=$('[data-filtres]'),champ=$('#catalogue-recherche'),compte=$('[data-compte]'),vues=$('[data-vues]'),vide=$('[data-vide]');
+ const segs=$$('.segment:not(.vues) button'),boutonsVue=$$('.segment.vues button');
+ const norm=t=>t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+ const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const texte=(el,sel)=>el.querySelector(sel)?.textContent.trim()||'';
+ const themes=$$('.puce').map(b=>({id:b.dataset.theme,pour:b.dataset.pour,nom:b.firstChild.textContent.trim(),c:b.style.getPropertyValue('--c')}));
+ const items=$$('.carte').map(c=>{const a=c.querySelector('a'),prochaine=c.classList.contains('prochaine');
+  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em')};
+  it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
+ const dispoDabord=l=>[...l].sort((a,b)=>b.vente-a.vente);
+ const total=items.length,enVente=items.filter(t=>t.vente).length;
+ const s={pour:'',q:'',vue:'themes',theme:''};
  const p=new URLSearchParams(location.search),h=location.hash.slice(1);
  if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
- if(p.get('theme')&&puces.some(b=>b.dataset.theme===p.get('theme')&&(!s.pour||b.dataset.pour===s.pour))){s.theme=p.get('theme');s.pour=puces.find(b=>b.dataset.theme===s.theme).dataset.pour;}
+ if(themes.some(t=>t.id===p.get('theme')))s.theme=p.get('theme');
+ if(p.get('vue')==='sommaire')s.vue='sommaire';
  s.q=(p.get('q')||'').slice(0,80);champ.value=s.q;
  const compter=(chemin,titre)=>{try{window.goatcounter?.count?.({path:chemin,title:titre,event:true});}catch(e){}};
- function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.theme)q.set('theme',s.theme);if(s.q)q.set('q',s.q);
+ function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.vue!=='themes')q.set('vue',s.vue);
   const qs=q.toString();history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+(qs||h==='tous'?'#tous':''));}
+ /* Construction des deux vues, une seule fois */
+ const etat=t=>t.vente?`<em class="tarif">${esc(t.prix)}</em>`:'<em class="bientot">Bientôt</em>';
+ const ligne=t=>`<li class="${t.vente?'':'prochaine'}" data-slug="${esc(t.slug)}"><a href="${esc(t.href)}"><b>${esc(t.nom)}</b>${etat(t)}<span class="phrase">${esc(t.phrase)}</span></a></li>`;
+ const volet=(cle,titre,c,liste,ouvert)=>`<details class="volet" data-volet="${cle}" style="--c:${c}"${ouvert?' open':''}><summary><span class="titre"><b>${titre}</b><span class="cpt" data-cpt></span></span><span class="apercu" aria-hidden="true">${liste.slice(0,4).map(t=>esc(t.nom)).join(' · ')}…</span><span class="chevron" aria-hidden="true"></span></summary><ul class="lignes">${liste.map(ligne).join('')}</ul></details>`;
+ const groupes=[['pro','Professionnel'],['perso','Vie personnelle']];
+ const parTheme=id=>dispoDabord(items.filter(t=>t.theme===id));
+ const blocSommaire=t=>`<section class="bloc-sommaire" data-volet="${t.id}" style="--c:${t.c}"><h4>${esc(t.nom)}</h4><ul>${parTheme(t.id).map(x=>`<li class="${x.vente?'':'prochaine'}" data-slug="${esc(x.slug)}"><a href="${esc(x.href)}"><span>${esc(x.nom)}</span><span>${x.vente?esc(x.prix):'bientôt'}</span></a></li>`).join('')}</ul></section>`;
+ vues.innerHTML=`<div class="vue-themes" data-vue-panneau="themes">${volet('dispo','Disponibles maintenant','var(--jaune)',items.filter(t=>t.vente),true)}`
+  +groupes.map(([g,nom])=>`<div class="groupe-volets" data-groupe="${g}"><h3>${nom}</h3>${themes.filter(t=>t.pour===g).map(t=>volet(t.id,esc(t.nom),t.c,parTheme(t.id),t.id===s.theme)).join('')}</div>`).join('')
+  +`</div><div class="vue-sommaire" data-vue-panneau="sommaire"><p class="legende-sommaire"><b>En gras</b> : disponibles, avec leur prix. En gris : en préparation.</p>`
+  +groupes.map(([g,nom])=>`<div class="groupe-sommaire" data-groupe="${g}"><h3>${nom}</h3><div class="colonnes-sommaire">${themes.filter(t=>t.pour===g).map(blocSommaire).join('')}</div></div>`).join('')+`</div>`;
+ $$('.vitrine,.a-venir-catalogue,.puces').forEach(el=>el.hidden=true);
+ const parSlug={};items.forEach(t=>parSlug[t.slug]=t);
+ const volets=$$('.volet',vues),blocs=$$('.bloc-sommaire',vues);
+ volets.forEach(v=>v.addEventListener('toggle',()=>{if(v.open&&!s.q&&v.dataset.volet!=='dispo')compter('catalogue-theme-'+v.dataset.volet,'Catalogue : thème '+texte(v,'summary b'));}));
  function rendre(){
-  const actif=!!(s.pour||s.theme||s.q),mots=norm(s.q).split(/\s+/).filter(Boolean);
+  const actif=!!(s.pour||s.q),mots=norm(s.q).split(/\s+/).filter(Boolean);
+  const ok=t=>(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
   segs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pour===s.pour)));
-  puces.forEach(b=>{b.hidden=!!s.pour&&b.dataset.pour!==s.pour;b.setAttribute('aria-pressed',String(b.dataset.theme===s.theme&&b.dataset.pour===(s.pour||b.dataset.pour)));});
-  let nVente=0,nBientot=0;
-  cartes.forEach(c=>{const ok=(!s.pour||c.dataset.pour===s.pour)&&(!s.theme||c.dataset.theme===s.theme)&&mots.every(m=>c._texte.includes(m));
-   c.hidden=!ok;if(ok)c.classList.contains('prochaine')?nBientot++:nVente++;});
-  cat.classList.toggle('filtre',actif);
-  vitrine.hidden=actif&&!nVente;aVenir.hidden=!nBientot;vide.hidden=nVente+nBientot>0;
-  titreVit.textContent=actif?'Disponibles':'Disponibles maintenant';
-  sousVit.textContent=actif?nVente+' en vente':sousInit;
+  boutonsVue.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vue===s.vue)));
+  $$('[data-vue-panneau]',vues).forEach(el=>el.hidden=el.dataset.vuePanneau!==s.vue);
+  $$('li[data-slug]',vues).forEach(li=>li.hidden=!ok(parSlug[li.dataset.slug]));
+  for(const v of volets){const lis=$$('li[data-slug]',v),vis=lis.filter(li=>!li.hidden),n=vis.length,nv=vis.filter(li=>!li.classList.contains('prochaine')).length;
+   v.hidden=!n;
+   v.querySelector('[data-cpt]').textContent=v.dataset.volet==='dispo'?`${n} template${n>1?'s':''} · achat unique`:`${mots.length?`${n} sur ${lis.length}`:`${n} templates`} · ${nv} disponible${nv>1?'s':''}`;
+   if(mots.length)v.open=true;}
+  for(const b of blocs)b.hidden=!$$('li[data-slug]',b).some(li=>!li.hidden);
+  for(const g of $$('.groupe-volets,.groupe-sommaire',vues))g.hidden=!$$('.volet,.bloc-sommaire',g).some(x=>!x.hidden);
+  let nVente=0,nBientot=0;items.forEach(t=>{if(ok(t))t.vente?nVente++:nBientot++;});
+  cat.classList.toggle('filtre',actif);vide.hidden=nVente+nBientot>0;vues.hidden=!(nVente+nBientot);
   compte.innerHTML=actif?`<b>${nVente+nBientot}</b> sur ${total} · ${nVente} en vente, ${nBientot} en préparation · <button type="button" data-effacer>Effacer les filtres</button>`:`${total} templates · ${enVente} en vente, ${total-enVente} en préparation`;
-  majFleches();
  }
- function effacer(){s.pour='';s.theme='';s.q='';champ.value='';rendre();adresse();}
- segs.forEach(b=>b.addEventListener('click',()=>{s.pour=b.dataset.pour;s.theme='';rendre();adresse();if(s.pour)compter('catalogue-filtre-'+s.pour,'Catalogue : filtre '+b.textContent);}));
- puces.forEach(b=>b.addEventListener('click',()=>{const meme=s.theme===b.dataset.theme;s.theme=meme?'':b.dataset.theme;if(!meme)s.pour=b.dataset.pour;rendre();adresse();if(!meme)compter('catalogue-theme-'+b.dataset.theme,'Catalogue : thème '+b.firstChild.textContent.trim());}));
- let attente;champ.addEventListener('input',()=>{s.q=champ.value.slice(0,80);rendre();clearTimeout(attente);attente=setTimeout(adresse,400);});
+ /* Fin d'une recherche : retour à l'état de départ (« Disponibles maintenant » seul ouvert). */
+ let qPrec=s.q;
+ function finRecherche(){if(qPrec&&!s.q)volets.forEach(v=>v.open=v.dataset.volet==='dispo');qPrec=s.q;}
+ function effacer(){s.pour='';s.q='';champ.value='';finRecherche();rendre();adresse();}
+ segs.forEach(b=>b.addEventListener('click',()=>{s.pour=b.dataset.pour;rendre();adresse();if(s.pour)compter('catalogue-filtre-'+s.pour,'Catalogue : filtre '+b.textContent);}));
+ boutonsVue.forEach(b=>b.addEventListener('click',()=>{if(s.vue===b.dataset.vue)return;s.vue=b.dataset.vue;rendre();adresse();compter('catalogue-vue-'+s.vue,'Catalogue : vue '+b.textContent);}));
+ let attente;champ.addEventListener('input',()=>{s.q=champ.value.slice(0,80);finRecherche();rendre();clearTimeout(attente);attente=setTimeout(adresse,400);});
  cat.addEventListener('click',e=>{if(e.target.closest('[data-effacer]')){effacer();champ.focus();}});
- /* Flèches de la vitrine */
- const fl=vitrine.querySelector('[data-fleches]'),[g,d]=fl.querySelectorAll('.fleche');
- function majFleches(){g.disabled=piste.scrollLeft<4;d.disabled=piste.scrollLeft+piste.clientWidth>=piste.scrollWidth-4;fl.hidden=cat.classList.contains('filtre')||(g.disabled&&d.disabled);}
- const doux=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
- [g,d].forEach(b=>b.addEventListener('click',()=>piste.scrollBy({left:+b.dataset.dir*piste.clientWidth*.9,behavior:doux()})));
- piste.addEventListener('scroll',majFleches,{passive:true});
- if('ResizeObserver' in window)new ResizeObserver(majFleches).observe(piste);
  filtres.hidden=false;rendre();
- if(s.pour||s.theme||s.q)requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
+ const cible=s.theme&&volets.find(x=>x.dataset.volet===s.theme&&!x.hidden);
+ if(cible)requestAnimationFrame(()=>cible.scrollIntoView({block:'start'}));
+ else if(s.pour||s.q||s.vue!=='themes')requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
 })();

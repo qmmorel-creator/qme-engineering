@@ -5,10 +5,13 @@ Site promotionnel de Quentin Morel Engineering (QME).
 ## Structure
 
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue : filtres Professionnel / Vie personnelle, thèmes et recherche, état dans
-  l'adresse `?pour=…&theme=…&q=…` ; vitrine défilante des templates en vente ; liste compacte des
-  templates en préparation, dont la démo affiche un bandeau « Bientôt en vente » ; bouton « Soumettre une idée » relié au
-  formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
+  `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
+  puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
+  templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. État dans l'adresse
+  `?pour=…&q=…&vue=sommaire`, `?theme=…` ouvre un volet. Les vues sont construites par `assets/site.js` à partir des
+  cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour ceux en préparation, dont la démo
+  affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles quelles sans JS. En bas, la carte des
+  prix des packs (générée) ; bouton « Soumettre une idée » relié au formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
   `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
   `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
@@ -107,7 +110,9 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
-  (`/packs/espace/`, non indexé). Pages générées : `node outils/packs/generer.mjs` (données dans
+  (`/packs/espace/`, non indexé). La page `/packs/` présente une ligne dépliable par pack (contenu, jauge de
+  disponibilité, prix, actions), filtrée par « Je suis… » sur les publics présents dans au moins deux packs ;
+  `/packs/#<slug>` ouvre le pack. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
