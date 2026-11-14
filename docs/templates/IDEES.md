@@ -83,7 +83,7 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T06 | Repas de la semaine et liste de courses (fiche en fin de fichier) | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -267,8 +267,8 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
 | Associations et clubs | PAS | T53, T51, T42 | T52, T89, T90, T91 | 107 € | 15 % | 90 € | 23 € |
 | Propriétaire | PPB | T64, T67, T11, T27 | T92, T93, T94, T83 | 82 € | 20 % | 65 € | 17 € |
-| Forme | PFM | T04, T08 | T07, T06, T95 | 31 € | 10 % | 27 € | 9 € |
-| Famille | PFA | T05, T11 | T06, T09, T19, T20 | 27 € | 10 % | 24 € | 9 € |
+| Forme | PFM | T04, T08, T06 | T07, T95 | 44 € | 15 % | 37 € | 10 € |
+| Famille | PFA | T05, T11, T06 | T09, T19, T20 | 40 € | 15 % | 34 € | 9 € |
 | Voyage | PVY | T65 | T21 | 28 € (prévu) | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | — | T59, T58, T55, T56 | 104 € (prévu) | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61 | T60, T63, T79 | 148 € (prévu) | 20 % | 118 € | 30 € |
@@ -1098,4 +1098,54 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).
 - À vérifier : périodicités indicatives des plans types ; libellés des vérifications réglementaires (liste non
   exhaustive) ; catégorie Gumroad.
+
+## Fiche T06 · Repas de la semaine et liste de courses (`templates/repas/`, préfixe RPS, 13 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Le menu de la semaine, la liste de courses faite toute seule. » On choisit les repas du midi et
+  du soir, la liste se calcule, rangée par rayon, et se coche au magasin sur le téléphone.
+- **Pour qui** : familles et foyers qui cuisinent au quotidien (packs « Forme » et « Famille ») ; usage à deux
+  (même clé sur les deux téléphones : l'un planifie, l'autre fait les courses). Catalogue : `perso`, thème
+  « Santé et forme ».
+- **Écrans** (4 onglets) : **Semaine** (planning lundi → dimanche, midi et soir, plusieurs plats par créneau,
+  nombre de personnes par repas, texte libre « restes », « dehors » sans courses ; propositions automatiques
+  pour les créneaux vides selon la saison et les régimes ; copie de la semaine précédente) ; **Courses** (liste
+  agrégée par rayon dans l'ordre de son magasin, unités cohérentes, conditionnements indicatifs, cases à cocher
+  en magasin avec progression, « déjà à la maison », articles ajoutés à la main et articles habituels, partage
+  en texte) ; **Recettes** (base intégrée et recettes perso, recherche, filtres catégorie, végétarien, sans porc,
+  rapide, de saison, favoris ; fiche avec quantités recalculées pour N personnes ; « créer ma version » d'une
+  recette de la base) ; **Avec ce qu'il me reste** (ingrédients du frigo → recettes classées par ce qui manque).
+- **Base intégrée** (`donnees.js`) : **recettes familiales simples rédigées pour QME** (aucune copiée d'un site
+  ou d'un livre : noms de plats courants, quantités et étapes écrites pour le template), ingrédients et
+  quantités pour 4 personnes, temps, saisons, catégories ; catalogue d'ingrédients avec rayon, unité, poids
+  moyen d'une pièce (hypothèses QME, ordres de grandeur) et marqueurs viande, porc, poisson qui calculent les
+  régimes (végétarien, sans porc) au lieu de les déclarer ; 13 rayons.
+- **Calculs** (`regles.js`, testés dans `outils/templates/repas.test.mjs`) : mise à l'échelle des quantités,
+  conversion d'unités (g, kg, ml, cl, l, cuillères, pièces ; pièces ↔ grammes quand le poids moyen est connu),
+  agrégation de la liste par ingrédient et par rayon, arrondis d'achat (pièces entières), lecture d'une ligne
+  d'ingrédient saisie (« 200 g de farine »), classement « avec ce qu'il me reste », propositions de repas
+  (saison, régimes, pas deux fois la même recette, soirs de semaine rapides), semaine (lundi), saison du mois.
+  **Moteur de liste de courses partageable avec T04** : `listeCourses(lignes, catalogue)` ne dépend que de
+  lignes `{ ingredient, qte, unite }`, sans rien savoir du planning.
+- **Données qui se périment : aucune.** Pas de prix, pas d'enseigne, pas de valeurs nutritionnelles (c'est T04).
+  Saisons des recettes : repères de cuisine, pas une donnée réglementaire.
+- **Risques** : allergies (les régimes sont calculés depuis les ingrédients de la base, pas une garantie :
+  avertissement « vérifie les étiquettes ») ; aucune marque, aucun magasin, aucun drive connecté ; démo fictive.
+- **Base livrée** : 82 recettes (47 plats, 6 tartes et pizzas, 8 soupes, 9 salades, 12 desserts ; 48 sans
+  viande ni poisson), 126 ingrédients, 14 rayons. Saisie d'une recette perso en texte libre (« 200 g de farine »,
+  « 1 boîte de tomates concassées » convertie avec le conditionnement), ingrédient inconnu créé dans « Autres » et
+  déplaçable de rayon depuis la liste.
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/repas/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Santé et forme » ; version anglaise en
+  attente : aucune carte sur `/en/`). Page `catalogue/repas/`, captures `assets/templates-repas-*.webp`, couverture
+  `assets/templates-repas-couverture.png`, tests `outils/templates/repas.test.mjs`. Packs : `RPS` ajouté à
+  `TEMPLATES` et retiré de `PREVUS` et des listes `prevus` des packs Forme et Famille dans
+  `outils/packs/donnees.mjs` ; **reste à l'ajouter à `produits` des packs Forme (PFM) et Famille (PFA)** dans
+  `netlify/lib/packs.mjs` et à régénérer les pages (`node outils/packs/generer.mjs`).
+- Communication prête dans `communication/repas/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN, kanban.txt). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad (permalien prévu `repas-liste-de-courses`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, passage en vente du site.
 

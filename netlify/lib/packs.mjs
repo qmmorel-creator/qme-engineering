@@ -55,9 +55,9 @@ export const PACKS = {
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT'] },
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS'] },
   PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GRT'] },
-  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT'] },
+  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS'] },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
-  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT'] },
+  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS'] },
   PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM'] },
   PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: [] },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA'] },

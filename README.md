@@ -217,6 +217,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
   compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
   Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
+- `templates/repas/` (RPS) : **repas de la semaine et liste de courses**, prêt, « Mise en vente prochaine » (13 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/repas/gumroad.json`). Planning midi et soir
+  (plusieurs plats, textes libres sans courses, personnes par repas, propositions de saison, reprise de la semaine
+  précédente), liste de courses agrégée par rayon dans l'ordre du magasin (unités cohérentes, arrondis d'achat,
+  conditionnements indicatifs, cases à cocher, déjà à la maison, placard à vérifier, partage en texte), 82 recettes
+  familiales originales (régimes calculés depuis les ingrédients), recettes perso saisies en texte libre, « avec ce
+  qu'il me reste ». Moteur de liste de courses `listeCourses` réutilisable par la nutrition. Règles dans
+  `regles.js`, tests `outils/templates/repas.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

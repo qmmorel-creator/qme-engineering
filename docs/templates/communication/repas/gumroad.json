@@ -1,0 +1,42 @@
+{
+  "slug": "repas",
+  "name": "Repas de la semaine et liste de courses",
+  "price_cents": 1300,
+  "permalink": "repas-liste-de-courses",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mes repas",
+  "summary": "Le menu de la semaine, midi et soir, et la liste de courses calculée toute seule : ingrédients additionnés pour le bon nombre de personnes, rangés par rayon et cochés sur le téléphone au magasin. 82 recettes familiales et les tiennes.",
+  "description": "<h2>Le menu fait, la liste aussi.</h2><p>« On mange quoi ce soir ? » revient quatorze fois par semaine. Le template Repas de la semaine planifie les repas du midi et du soir et en tire la liste de courses, rangée dans l'ordre de ton magasin, à cocher sur ton téléphone.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le planning de la semaine</strong> : midi et soir, une recette, plusieurs plats ou simplement « restes » ou « cantine ». Chaque repas a son nombre de personnes. Des propositions de saison remplissent les créneaux vides, sans revoir deux fois le même plat ; la semaine précédente se reprend en un geste.</li><li><strong>La liste de courses calculée</strong> : ingrédients additionnés dans des unités cohérentes (grammes, litres, pièces), arrondis à l'achat, avec un conditionnement indicatif ; rangés par rayon dans l'ordre de ton magasin ; articles habituels et articles ajoutés à la main ; « déjà à la maison » et placard à vérifier.</li><li><strong>Cochée au magasin</strong> : grandes cases sur le téléphone, progression du chariot, liste partageable en texte. À deux, la même clé ouvre la même liste.</li><li><strong>82 recettes familiales simples</strong>, rédigées pour ce template : plats, soupes, salades, tartes et desserts, avec temps et saisons ; filtres végétarien, sans porc, rapide, de saison, favoris. Quantités recalculées pour le nombre de personnes choisi.</li><li><strong>Tes recettes</strong> : colle la liste des ingrédients, une ligne par ingrédient (« 200 g de farine », « 2 oignons »), elle est reconnue et rejoint ta liste de courses.</li><li><strong>Avec ce qu'il me reste</strong> : note ce qu'il reste au frigo, les recettes qui l'utilisent remontent avec ce qu'il manque.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique combien vous êtes à table : ta semaine se crée. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé, même hors connexion au magasin.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Recettes et quantités indicatives, rédigées pour QME. Les mentions végétarien et sans porc sont calculées depuis les ingrédients : en cas d'allergie, vérifie toujours les étiquettes. Aucun prix, aucune enseigne, aucun drive connecté. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "repas",
+    "menu",
+    "liste-de-courses",
+    "cuisine",
+    "famille",
+    "organisation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et tes repas s'ouvrent. Indique combien vous êtes à table, choisis tes repas : la liste de courses se fait toute seule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Familles et foyers qui cuisinent au quotidien"
+    }
+  ]
+}

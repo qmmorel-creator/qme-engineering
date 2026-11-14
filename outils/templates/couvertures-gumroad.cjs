@@ -52,6 +52,7 @@ const T = {
   'gestion-locative': ["Gestion locative", "Tes loyers, sans tableur.", "Quittances · relances · révision IRL · charges · rendement"],
   'suivi-chantier': ["Suivi de chantier par lot", "Chaque lot tenu, du marché au solde.", "Avenants · situations · jalons recalés · revue de projet"],
   'maintenance': ["Maintenance préventive · GMAO légère", "Chaque machine entretenue à temps.", "Date, compteur ou premier atteint · bons d'intervention · coût par équipement"],
+  repas: ['Repas de la semaine · liste de courses', 'Le menu fait, la liste aussi.', 'Midi et soir · courses par rayon · à cocher au magasin'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
