@@ -100,7 +100,7 @@ déjà).
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
-| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
@@ -144,7 +144,7 @@ déjà).
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | idée | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | prêt | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
@@ -156,7 +156,7 @@ déjà).
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
@@ -263,7 +263,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39 | T75, T76 | 100 € | 25 % | 75 € | 19 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75 | T76 | 115 € | 25 % | 86 € | 22 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
@@ -1570,3 +1570,80 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
   Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, plannings, carte anglaise,
   passage en vente du site.
+
+## Fiche T06 · Repas de la semaine et liste de courses (`templates/repas/`, préfixe RPS, 13 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Le menu de la semaine, la liste de courses faite toute seule. » On choisit les repas du midi et
+  du soir, la liste se calcule, rangée par rayon, et se coche au magasin sur le téléphone.
+- **Pour qui** : familles et foyers qui cuisinent au quotidien (packs « Forme » et « Famille ») ; usage à deux
+  (même clé sur les deux téléphones : l'un planifie, l'autre fait les courses). Catalogue : `perso`, thème
+  « Santé et forme ».
+- **Écrans** (4 onglets) : **Semaine** (planning lundi → dimanche, midi et soir, plusieurs plats par créneau,
+  nombre de personnes par repas, texte libre « restes », « dehors » sans courses ; propositions automatiques
+  pour les créneaux vides selon la saison et les régimes ; copie de la semaine précédente) ; **Courses** (liste
+  agrégée par rayon dans l'ordre de son magasin, unités cohérentes, conditionnements indicatifs, cases à cocher
+  en magasin avec progression, « déjà à la maison », articles ajoutés à la main et articles habituels, partage
+  en texte) ; **Recettes** (base intégrée et recettes perso, recherche, filtres catégorie, végétarien, sans porc,
+  rapide, de saison, favoris ; fiche avec quantités recalculées pour N personnes ; « créer ma version » d'une
+  recette de la base) ; **Avec ce qu'il me reste** (ingrédients du frigo → recettes classées par ce qui manque).
+- **Base intégrée** (`donnees.js`) : **recettes familiales simples rédigées pour QME** (aucune copiée d'un site
+  ou d'un livre : noms de plats courants, quantités et étapes écrites pour le template), ingrédients et
+  quantités pour 4 personnes, temps, saisons, catégories ; catalogue d'ingrédients avec rayon, unité, poids
+  moyen d'une pièce (hypothèses QME, ordres de grandeur) et marqueurs viande, porc, poisson qui calculent les
+  régimes (végétarien, sans porc) au lieu de les déclarer ; 13 rayons.
+- **Calculs** (`regles.js`, testés dans `outils/templates/repas.test.mjs`) : mise à l'échelle des quantités,
+  conversion d'unités (g, kg, ml, cl, l, cuillères, pièces ; pièces ↔ grammes quand le poids moyen est connu),
+  agrégation de la liste par ingrédient et par rayon, arrondis d'achat (pièces entières), lecture d'une ligne
+  d'ingrédient saisie (« 200 g de farine »), classement « avec ce qu'il me reste », propositions de repas
+  (saison, régimes, pas deux fois la même recette, soirs de semaine rapides), semaine (lundi), saison du mois.
+  **Moteur de liste de courses partageable avec T04** : `listeCourses(lignes, catalogue)` ne dépend que de
+  lignes `{ ingredient, qte, unite }`, sans rien savoir du planning.
+- **Données qui se périment : aucune.** Pas de prix, pas d'enseigne, pas de valeurs nutritionnelles (c'est T04).
+  Saisons des recettes : repères de cuisine, pas une donnée réglementaire.
+- **Risques** : allergies (les régimes sont calculés depuis les ingrédients de la base, pas une garantie :
+  avertissement « vérifie les étiquettes ») ; aucune marque, aucun magasin, aucun drive connecté ; démo fictive.
+- **Base livrée** : 82 recettes (47 plats, 6 tartes et pizzas, 8 soupes, 9 salades, 12 desserts ; 48 sans
+  viande ni poisson), 126 ingrédients, 14 rayons. Saisie d'une recette perso en texte libre (« 200 g de farine »,
+  « 1 boîte de tomates concassées » convertie avec le conditionnement), ingrédient inconnu créé dans « Autres » et
+  déplaçable de rayon depuis la liste.
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/repas/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Santé et forme » ; version anglaise en
+  attente : aucune carte sur `/en/`). Page `catalogue/repas/`, captures `assets/templates-repas-*.webp`, couverture
+  `assets/templates-repas-couverture.png`, tests `outils/templates/repas.test.mjs`. Packs : `RPS` ajouté à
+  `TEMPLATES` et retiré de `PREVUS` et des listes `prevus` des packs Forme et Famille dans
+  `outils/packs/donnees.mjs` ; **reste à l'ajouter à `produits` des packs Forme (PFM) et Famille (PFA)** dans
+  `netlify/lib/packs.mjs` et à régénérer les pages (`node outils/packs/generer.mjs`).
+- Communication prête dans `communication/repas/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN, kanban.txt). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad (permalien prévu `repas-liste-de-courses`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, passage en vente du site.
+
+## Fiche T75 (cadrage délégué par Quentin, 14/11/2026)
+
+### T75 · Calendrier éditorial des réseaux professionnels (`templates/calendrier-editorial/`, préfixe CED, 15 €)
+- Fiche détaillée : [`fiches/calendrier-editorial.md`](fiches/calendrier-editorial.md). Ex-T73, renuméroté T75 le
+  14/11/2026 (T71 et T72 déjà pris sur `main`). Application web, permalien prévu `calendrier-editorial`, catalogue
+  `pro` · thème « Clients et prospection ». Pack « Freelance : trouver ses clients » (PFC).
+- Promesse : « Publier chaque semaine, sans chercher quoi dire. » Pour freelances, consultants et indépendants.
+- Piliers avec part visée, objectif de publications par semaine et jours préférés ; banque de 92 sujets (8 métiers
+  et sujets généraux) avec 11 trames ; statuts idée → brouillon → programmé → publié ; calendrier mois et semaine ;
+  brouillon avec compteur (caractères, mots, hashtags, accroche, crochets restants, limite saisie par canal) ;
+  statistiques saisies (vues, réactions, commentaires, partages, contacts générés) ; régularité (semaines tenues,
+  pauses, série) ; recyclage des meilleurs contenus anciens.
+- Aucune marque de réseau social, aucune connexion ni publication automatique, aucune limite de réseau intégrée
+  (saisie par l'utilisateur) ; repères d'écriture QME modifiables. Démo fictive.
+- Préfixe `CED` entièrement hexadécimal : la saisie de plus de 19 caractères est traitée comme une clé Gumroad
+  (application et `/connexion/`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/calendrier-editorial/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/calendrier-editorial/`, captures `assets/templates-calendrier-editorial-*.webp`, couverture
+  `assets/templates-calendrier-editorial-couverture.png`, tests `outils/templates/calendrier-editorial.test.mjs`.
+  **Version anglaise en attente** (`en/` non modifié).
+- Communication prête dans `communication/calendrier-editorial/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte du catalogue et carte d'accueil FR). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix
+  à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout au
+  pack PFC (`netlify/lib/packs.mjs`) et régénération des pages de packs, plannings, page anglaise, passage en vente.

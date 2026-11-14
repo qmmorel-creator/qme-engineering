@@ -69,6 +69,7 @@ const T = {
   'suivi-temps': ["Suivi du temps · rentabilité", "Ce que tu gagnes vraiment de l'heure.", "Chronomètre · budget des missions · taux effectif face au TJM"],
   propositions: ['Propositions commerciales', 'Une proposition claire, trois options, une réponse.', 'Options comparées · planning · PDF soigné · relances et taux de transformation'],
   'references-plaquette': ["Kit références et plaquette", "Tes réalisations, prêtes à convaincre.", "Fiches projets · filtres · une plaquette PDF par prospect"],
+  'calendrier-editorial': ["Calendrier éditorial", "Publier chaque semaine, sans chercher quoi dire.", "Piliers · banque de sujets · calendrier · statistiques · régularité"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

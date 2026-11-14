@@ -1,0 +1,42 @@
+{
+  "slug": "calendrier-editorial",
+  "name": "Calendrier éditorial",
+  "price_cents": 1500,
+  "permalink": "calendrier-editorial",
+  "category": "business-and-money/marketing-and-sales",
+  "button": "Ouvrir mon calendrier",
+  "summary": "Le calendrier éditorial des indépendants : piliers et rythme, banque de 92 sujets pour 8 métiers, calendrier, brouillon avec compteur de caractères, statistiques saisies à la main, régularité et recyclage des meilleurs contenus.",
+  "description": "<h2>Publier chaque semaine, sans chercher quoi dire.</h2><p>Quand on est indépendant, publier régulièrement sur son réseau professionnel fait partie du travail commercial. C'est aussi la première chose qui saute entre deux missions : pas d'idée le jour J, des brouillons éparpillés, et aucune idée de ce qui a vraiment apporté un rendez-vous. Calendrier éditorial range tes sujets, tient ton rythme et garde ce qui compte.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Tes piliers éditoriaux et ton rythme</strong> : trois à six familles de sujets (expertise, cas clients, coulisses, conseils, points de vue, parcours) avec la part visée de chacune, un objectif de publications par semaine et tes jours préférés. Le pilier que tu délaisses t'est signalé.</li><li><strong>Une banque de 92 sujets</strong> pour 8 métiers d'indépendants (consultant, développeur, designer, coach, formateur, rédacteur, photographe, marketing) et des sujets valables pour tous, chacun avec son pilier, son format et une trame de texte à compléter (11 trames : liste de conseils, étude de cas, erreur que j'ai faite, avant / après, avis argumenté…).</li><li><strong>Le calendrier du mois et de la semaine</strong> : chaque contenu passe d'idée à brouillon, programmé puis publié. Prochains créneaux libres, semaines sous l'objectif et contenus oubliés signalés.</li><li><strong>Le brouillon avec compteur</strong> : caractères, mots, hashtags, longueur de l'accroche, passages [entre crochets] à remplacer, limite du réseau que tu saisis. Un bouton pour copier le texte.</li><li><strong>Les statistiques qui comptent</strong>, saisies à la main : vues, réactions, commentaires, partages et contacts générés. Meilleurs contenus, moyennes par pilier et par format, export CSV.</li><li><strong>La régularité</strong> : semaines tenues d'affilée, record, semaines de pause qui ne cassent rien ; et les meilleurs contenus anciens à recycler sous une autre forme.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton métier, tes piliers et ton rythme : les sujets proposés arrivent dans ta banque d'idées. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucune connexion à un réseau social : l'outil ne publie rien, ne lit aucune statistique et ne demande aucun accès à tes comptes. Les limites de caractères sont celles que tu saisis. Sujets, trames et repères d'écriture sont des points de départ à adapter ; aucune promesse d'audience ni de clients. Démo disponible sur qm-engineering.fr/catalogue/calendrier-editorial.</em></p>",
+  "tags": [
+    "calendrier-editorial",
+    "freelance",
+    "independant",
+    "consultant",
+    "contenu",
+    "ligne-editoriale",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton calendrier s'ouvre. Choisis ton métier, tes piliers et ton rythme : les sujets proposés arrivent dans ta banque d'idées. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Freelances, consultants, indépendants"
+    }
+  ]
+}
