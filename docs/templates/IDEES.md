@@ -163,7 +163,7 @@ déjà).
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
-| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) ; `templates/achats/`, ACH, fiche [`fiches/achats.md`](fiches/achats.md) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
@@ -1448,6 +1448,29 @@ confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). A
   `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
   SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
   passage en vente du site.
+
+## Fiche T82 (cadrage délégué par Quentin, 14/11/2026)
+
+### T82 · Demandes d'achat et fournitures (`templates/achats/`, préfixe ACH, 19 €)
+- Fiche détaillée : [`fiches/achats.md`](fiches/achats.md). Catalogue `pro` · thème « Équipements et véhicules » ; pack
+  visé « Moyens généraux » (PMG). Permalien prévu `demandes-achat-fournitures`.
+- Promesse : « Qui a demandé quoi, qui l'a validé, et où en est le budget. » Public : office managers, services
+  généraux de PME, petites structures associatives.
+- Usage à plusieurs : une clé partagée, nom saisi à chaque étape, pas de comptes en V1 (comme T50). Une demande = un
+  article (plusieurs en un envoi) ; circuit demandée → validée/refusée (motif) → commandée → reçue, partielle possible,
+  reliquat abandonnable ; seuil de validation automatique (prix estimé, montant sous le seuil, budget suffisant).
+- Commandes groupées par fournisseur, bon A4 imprimable (rien n'est envoyé), délai de livraison et retard ; budget
+  annuel par service (consommé, engagé, en attente, disponible), exercice décalable ; historique, délais moyens, CSV.
+- Base : 104 fournitures types en 6 catégories, **sans prix ni marque** ; aucune donnée datée ni règle légale ou
+  fiscale (HT/TTC simple libellé). Conflits 409 : actions rejouées sur la version du serveur (fonction `rejouer`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/achats/?demo`, page
+  `catalogue/achats/`, captures `assets/templates-achats-*.webp`, couverture `assets/templates-achats-couverture.png`,
+  tests `outils/templates/achats.test.mjs`). Version anglaise en attente.
+- Communication prête dans `communication/achats/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (clé partagée au prix
+  d'un template individuel), fiche Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout
+  d'ACH au pack PMG (`netlify/lib/packs.mjs`, pages générées), carte anglaise, plannings, passage en vente.
 
 ## Fiche T73 (cadrage délégué par Quentin, 14/11/2026)
 
