@@ -148,6 +148,8 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
+| T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
+| T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -489,6 +491,7 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-108 | T08 habitudes | 2027-01-13 | 12:15 |
 | LI-109 | T11 entretien | 2027-01-15 | 12:15 |
 | LI-110 | T12 dettes | 2027-01-17 | 08:30 |
+| LI-111 | T71 sinistre | 2027-01-19 | 12:15 |
 | LI-112 | T26 notes-de-frais | 2027-01-21 | 12:15 |
 | LI-113 | T38 appel-decouverte | 2027-01-23 | 12:15 |
 | LI-114 | T43 impayes | 2027-01-25 | 12:15 |
@@ -800,3 +803,75 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
   Communication prête : `communication/temps-de-vie/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et carrousel PNG, prospects.md),
   fiche ajoutée à `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad, clé de licence
   (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram.
+
+## T71 · Dossier sinistre habitation (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026), conservé dans la conversation de développement.
+Nom de travail « SinistreFacile » ; nom du produit à confirmer (nom descriptif, règle « aucune marque interne »).
+Préfixe proposé `SNH`, slug `sinistre`. Prix 29 € (Quentin). Achat unique.
+
+- **Public** : particulier qui doit constituer, documenter et suivre son dossier de sinistre habitation.
+- **Écrans** : tableau de bord (type, date, lieu, statut, assureur et numéros saisis à la main, échéances,
+  justificatifs, estimation, progression) ; assistant de création adapté aux réponses (type, dates de
+  survenance et de découverte, pièce, biens, tiers, déclaration déjà faite) ; inventaire des dommages ;
+  calculateur ; preuves ; chronologie ; rapport imprimable (garde, résumé, chronologie, inventaire, synthèse
+  financière, justificatifs, observations) ; exports CSV et JSON. Plusieurs sinistres par acheteur.
+- **Base intégrée** : classification des sinistres et des dommages, bibliothèque de biens courants par
+  catégorie (mobilier, électroménager, informatique, électronique, vêtements, décoration, revêtements,
+  menuiseries, équipements techniques), justificatifs utiles par type de sinistre, mesures conservatoires,
+  modèles de courriers à copier ou imprimer, étapes de suivi.
+- **Calculs** : prix d'achat, valeur actuelle, réparation, remplacement, vétusté **entièrement paramétrable**
+  (aucun barème imposé), montant estimé ; montants déclarés, estimés et reconnus par l'assureur séparés.
+- **Sources** : délais indicatifs issus de sources officielles (Code des assurances sur Légifrance,
+  Service-Public.fr), avec lien et date de vérification ; jamais présentés comme règle universelle (le
+  contrat prime). **daté**.
+- **Risques** : **juridique** (ni conseil, ni expertise, ni garantie d'indemnisation : affiché) ;
+  photos et documents : le stockage commun n'enregistre que du JSON (900 Ko par acheteur), comme T32 et
+  T67 → **décision de Quentin (13/11/2026) : photos et PDF gardés sur l'appareil** (IndexedDB, compressés,
+  non synchronisés, copie JSON avec photos possible) ; **RGPD** (minimiser : pas de coordonnées bancaires).
+
+**État au 13/11/2026 : prêt** (branche `claude/fervent-bell-4m5jqu`). Préfixe `SNH`, slug `sinistre`,
+application `templates/sinistre/`, page `catalogue/sinistre/` en « Mise en vente prochaine », carte du kanban
+(colonne « Projets de vie », à déplacer si Quentin préfère), carte anglaise, portail de connexion, README.
+Sources juridiques vérifiées le 13/11/2026 sur Légifrance et Service-Public (L113-2, L114-1, L114-2,
+L122-7, L125-2 en vigueur depuis le 28/05/2026, A125-6, fiches F1352, F2027, F2028, F1523, F3075, F3050) ;
+la fiche Service-Public F3076 donne encore l'ancien délai de 3 mois pour l'indemnisation des catastrophes
+naturelles : le texte de loi est retenu. Prescription de 5 ans limitée à la sécheresse. Aucun taux de
+vétusté par défaut. Tests : `outils/templates/sinistre.test.mjs` (14 tests) ; Playwright ordinateur et
+iPhone 13 / Pixel 7 (connexion, assistant, saisie, photo, impression, CSV, JSON, synchronisation, conflit
+409, hors ligne, rechargement, démo, écran d'accueil). **Décisions de Quentin (13/11/2026)** : pas de nom de marque (nom descriptif « Dossier sinistre
+habitation »), prix 29 €. **Communication** (`communication/sinistre/`) : `gumroad.md`, `linkedin.md`,
+`instagram.md`, `prospects.md` ; couverture `assets/templates-sinistre-couverture.png`. LinkedIn : **LI-111**
+le 19/01/2027 à 12:15 (« Programmé », remarque : ne publier que si la fiche Gumroad est en ligne), doc
+`1FM9e8fvQUtfrPGWwAIBeZJ5NJ0Gb1GRYigOTXAQnv8w`. Instagram : **IG-66** le 20/01/2027 à 18:30, carrousel
+5 vues, statut « Prêt » (à relire par Quentin avant « Programmé »), légende
+`1DTFrckLTRV8DKIqm6Xuk-r2rI-mQk67flouapQqFk2I`. Gumroad : **brouillon créé** (`nSUWbSsPnceWsczHeshUnw==`, `/l/dossier-sinistre`, 29 €, non publié).
+**Reste à faire** : activation
+de la clé de licence par Quentin, couverture Gumroad après déploiement, publication de la fiche après
+fusion, revue annuelle des délais.
+
+## T72 · Assistant administratif après décès (fiche, 13/11/2026)
+
+Source : cahier des charges complet de Quentin (13/11/2026). Nom de travail « AprèsVous » ; nom du produit à
+confirmer. Préfixe proposé `DCS`, slug `apres-deces`. Prix 39 € (Quentin). Achat unique, un seul utilisateur
+(pas de partage familial).
+
+- **Public** : proche d'une personne décédée, en forte charge administrative.
+- **Écrans** : assistant de situation (lien avec le défunt, retraité ou en activité, salarié / indépendant /
+  fonctionnaire, propriétaire ou locataire, véhicule, assurances, enfants mineurs, notaire ; aucune question
+  obligatoire si elle n'est pas indispensable) ; tableau de bord (urgent, à faire, en attente, documents
+  manquants, organismes contactés, échéances, terminé) ; fiches démarches (explication, date cible
+  facultative, pièces, statut, historique, notes) ; documents (suivi par case, téléversement non exigé) ;
+  inventaire successoral indicatif (montants confirmés ou estimés, **aucun calcul de droits ni répartition**) ;
+  modèles de courriers à copier ou imprimer ; impression.
+- **Base intégrée** : démarches classées obligatoires / conditionnelles / facultatives ; organismes (mairie,
+  banque, assurances, assurance-vie, employeur, retraite, assurance maladie, mutuelle, CAF, prévoyance,
+  énergie, bailleur ou syndic, impôts, notaire) avec pourquoi, quand, informations et pièces demandées,
+  source officielle, date de vérification, niveau de fiabilité.
+- **Moteur de règles** : chaque démarche affichée dit pourquoi ; aucune démarche obligatoire masquée sur une
+  hypothèse ; délais avec source, point de départ et conditions. Espace interne des informations à
+  réactualiser.
+- **Sources** : Service-Public.fr, Notaires de France, impots.gouv.fr, Assurance retraite, Assurance
+  maladie, CAF, ministères. **daté**, revue annuelle obligatoire.
+- **Risques** : **juridique** et **fiscal** (ne remplace ni notaire, ni avocat, ni conseiller fiscal) ;
+  **RGPD** (données du défunt et de l'entourage, minimisation) ; sujet sensible pour la communication.
