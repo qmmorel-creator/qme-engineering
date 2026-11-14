@@ -148,6 +148,31 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
+| T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T76 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T77 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T78 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T79 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T80 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T81 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T82 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T83 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T84 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T85 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T86 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T87 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T88 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T90 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T91 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T93 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T94 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 
 **Taille** : pour T01–T29, S ≈ une session de développement, M ≈ deux, L ≈ trois ou plus ; pour les
 idées du backlog, effort estimé par Quentin (S < 1 jour, M 1 à 3 jours, L > 3 jours), repris tel quel.
@@ -227,20 +252,26 @@ champ « Templates » ; le lien pré-remplit prix et champ (`?wanted=true&price=
 prix payé et champ dans la licence et refuse un montant inférieur au barème. Les codes de réduction Gumroad ne
 permettent pas une remise par nombre de produits différents (minimum de quantité = exemplaires d'un même produit).
 
-| Pack | Préfixe | Templates (aujourd'hui) | À venir | Valeur | Remise | Prix | Option évolutif |
+| Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
-| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | — | 139 € | 25 % | 104 € | 26 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39 | 62 € | 15 % | 52 € | 13 € |
-| Chef de projet BTP | PBT | T02, T31, T24, T25, T32 | T23 | 158 € | 25 % | 118 € | 30 € |
-| Petite entreprise | PPE | T46, T48, T26, T31, T42 | T47, T34 | 97 € | 25 % | 72 € | 18 € |
-| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63 | 93 € | 15 % | 79 € | 20 € |
-| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13 | 77 € | 25 % | 57 € | 15 € |
-| Mariage et installation à deux | PMR | T15, T65, T05 | T16 | 59 € | 15 % | 50 € | 13 € |
-| Productivité perso | PPR | T03, T30, T08 | T22 | 46 € | 15 % | 39 € | 10 € |
-| Étudiant | PET | T01, T30, T08 | — | 41,90 € | 15 % | 35 € | 9 € |
-| Associations et clubs | PAS | T53, T51, T42 | T52 | 107 € | 15 % | 90 € | 23 € |
-| Propriétaire | PPB | T64, T67, T11 | T27 | 62 € | 15 % | 52 € | 13 € |
-| Forme | PFM | T04, T08 | T07, T06 | 31 € | 10 % | 27 € | 9 € |
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
+| Chef de projet BTP | PBT | T02, T24, T32, T25, T31 | T23, T75, T76 | 158 € | 25 % | 118 € | 30 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31 | T47, T34, T77, T78 | 97 € | 25 % | 72 € | 18 € |
+| Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13, T81, T82, T83 | 77 € | 25 % | 57 € | 15 € |
+| Mariage et installation à deux | PMR | T15, T65, T05 | T16, T84, T21 | 59 € | 15 % | 50 € | 13 € |
+| Productivité perso | PPR | T03, T30, T08 | T22, T85 | 46 € | 15 % | 39 € | 10 € |
+| Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
+| Associations et clubs | PAS | T53, T51, T42 | T52, T89, T90, T91 | 107 € | 15 % | 90 € | 23 € |
+| Propriétaire | PPB | T64, T67, T11 | T27, T92, T93, T94, T83 | 62 € | 15 % | 52 € | 13 € |
+| Forme | PFM | T04, T08 | T07, T06, T95 | 31 € | 10 % | 27 € | 9 € |
+| Famille | PFA | T05, T11 | T06, T09, T19, T20 | 27 € | 10 % | 24 € | 9 € |
+| Voyage | PVY | T65 | T21 | 28 € (prévu) | 10 % | 25 € | 9 € |
+| Enseignant et formateur | PNS | — | T59, T58, T55, T56 | 104 € (prévu) | 20 % | 83 € | 21 € |
+| Exploitation et maintenance | PXP | — | T60, T61, T63, T79 | 148 € (prévu) | 20 % | 118 € | 30 € |
+| Commerçant et artisan | PCA | T62, T36, T41, T42 | — | 108 € | 20 % | 86 € | 22 € |
+| Ma voiture | PVT | T66 | T10 | 25 € (prévu) | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -799,6 +830,31 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
+| T71 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
+| T72 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
+| T73 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
+| T74 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
+| T75 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
+| T76 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
+| T77 | Calendrier des entretiens annuels et professionnels par salarié, trames, objectifs, suivi des formations demandées | Trames d'entretien, questions types | — | **daté** : périodicité de l'entretien professionnel à sourcer (Légifrance) ou paramétrable. **RGPD**. Lien avec T49. |
+| T78 | Unités de travail, risques, cotation (gravité × probabilité), actions de prévention, mise à jour, export | Familles de risques types par secteur | — | **daté**/réglementaire : obligations à sourcer (INRS, Légifrance) ; ne remplace pas un préventeur. **confidentiel** : exemples fictifs. |
+| T79 | Contrats (assurances, maintenance, télécoms, leasing), échéance, préavis de résiliation calculé, tacite reconduction, coût annuel | Catégories de contrats, préavis types paramétrables | — | Règles de résiliation : paramétrables, aucune règle légale non sourcée. Moteur d'échéances commun avec T63. |
+| T80 | Demandes d'achat, validation, commandes, réception, budget par service | Catalogue de fournitures types sans prix | — | Usage à plusieurs (demandeur / valideur) à concevoir. |
+| T81 | Inventaire des documents du foyer (où ils sont rangés), durée de conservation, rappels de renouvellement (passeport, assurances) | Types de documents et durées de conservation | — | **daté** : durées à sourcer (service-public.gouv.fr, date de vérification) ou paramétrables. Pas de stockage de pièces d'identité en V1. |
+| T82 | Soins, montant payé, remboursé Sécurité sociale et mutuelle, reste à charge, relances des remboursements en attente | Types de soins | — | **médical** : données de santé, hébergement à trancher (comme T04). Aucun taux de remboursement intégré (saisis). |
+| T83 | Capacité d'emprunt (revenus, charges, taux d'endettement saisi), comparaison d'offres de prêt (taux, assurance, frais), tableau d'amortissement | Méthode de calcul d'amortissement | — | Taux et seuils saisis par l'utilisateur (**daté** sinon). Argent : avertissement. |
+| T84 | Cadeaux reçus (de qui, quoi), carte de remerciement envoyée, adresses | — | — | **RGPD** (adresses de tiers). Complète T15. |
+| T85 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
+| T86 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
+| T87 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
+| T88 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
+| T89 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
+| T90 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
+| T91 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
+| T92 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
+| T93 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
+| T94 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
+| T95 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
 
 
 ## Fiches T69 et T70 (cahiers des charges de Quentin, 13/11/2026)

@@ -32,9 +32,11 @@ export function calculerPack(code) {
   const templates = pack.produits.filter((p) => PRODUITS[p]).map(infoTemplate);
   const prevus = [...(page.prevus || []), ...pack.produits.filter((p) => !PRODUITS[p])]
     .filter((p, i, t) => t.indexOf(p) === i && !PRODUITS[p]).map((p) => ({ pre: p, ...PREVUS[p] }));
-  const prix = prixPack(templates.map((t) => t.prix));
+  // Moins de deux templates prêts : prix prévu, calculé sur le pack complet (templates prêts et à venir).
+  const indicatif = templates.length < 2;
+  const prix = prixPack([...templates, ...(indicatif ? prevus : [])].map((t) => t.prix));
   const enVente = Boolean(pack.gumroad && pack.permalien) && templates.every((t) => t.statut === 'vente');
-  return { code, ...pack, ...page, templates, prevus, ...prix, option: prixOption(prix.prix), enVente };
+  return { code, ...pack, ...page, templates, prevus, indicatif, nombre: indicatif ? templates.length + prevus.length : templates.length, ...prix, option: prixOption(prix.prix), enVente: enVente && !indicatif };
 }
 
 // --- Gabarit commun ------------------------------------------------------------------------------
@@ -99,9 +101,9 @@ function blocPrix(p, { court = false } = {}) {
   if (court) return `<span class="prix-pack"><b>${euros(p.prix)}</b>${barre}</span>`;
   return `<div class="prix-pack-bloc${p.enVente ? '' : ' prochaine'}">
         <p class="prix-pack"><b>${euros(p.prix)}</b>${barre}</p>
-        <p class="detail">${p.templates.length} templates · ${p.pct ? `vous économisez ${euros(p.economie)} sur l’achat séparé` : 'achat unique'}</p>
-        <div class="option-pack"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>Les templates ajoutés au pack après votre achat s’ouvrent avec la même clé${p.prevus.length ? `, à commencer par ${p.prevus.length === 1 ? 'le template annoncé' : `les ${p.prevus.length} templates annoncés`}` : ''}.</span></div>
-        ${p.enVente ? '' : '<p class="prochaine-note"><b>Mise en vente prochaine.</b> Les démos sont libres dès maintenant.</p>'}
+        <p class="detail">${p.indicatif ? `Prix prévu pour les ${p.nombre} templates, calculé avec le même barème · ` : `${p.templates.length} templates · `}${p.pct ? `${p.indicatif ? 'économie prévue' : 'vous économisez'} ${euros(p.economie)} sur l’achat séparé` : 'achat unique'}</p>
+        <div class="option-pack"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>Les templates ajoutés au pack après votre achat s’ouvrent avec la même clé${p.prevus.length && !p.indicatif ? `, à commencer par ${p.prevus.length === 1 ? 'le template annoncé' : `les ${p.prevus.length} templates annoncés`}` : ''}.</span></div>
+        ${p.enVente ? '' : p.indicatif ? '<p class="prochaine-note"><b>Pack en préparation.</b> Il sera mis en vente quand ses templates seront prêts.</p>' : '<p class="prochaine-note"><b>Mise en vente prochaine.</b> Les démos sont libres dès maintenant.</p>'}
       </div>`;
 }
 
@@ -119,14 +121,14 @@ function pagePack(p) {
       </li>`).join('\n      ');
   const prevus = p.prevus.length ? `
   <div class="prevus">
-    <h3>À venir dans ce pack</h3>
-    <p>Ces templates sont en préparation et rejoindront le pack à leur sortie. Avec l’option ${OPTION.nom} (+${euros(p.option)}), ils s’ouvriront avec votre clé, sans rien payer de plus.</p>
-    <ul>${p.prevus.map((t) => `<li><b>${esc(t.nom)}</b><span>${esc(t.phrase)}</span></li>`).join('')}</ul>
+    <h3>${p.indicatif ? 'Les templates du pack, en préparation' : 'À venir dans ce pack'}</h3>
+    <p>${p.indicatif ? 'Ces templates sont en cours de développement. Le pack sera mis en vente quand ils seront prêts ; cliquez sur « Je suis intéressé(e) » pour être prévenu.' : `Ces templates sont en préparation et rejoindront le pack à leur sortie. Avec l’option ${OPTION.nom} (+${euros(p.option)}), ils s’ouvriront avec votre clé, sans rien payer de plus.`}</p>
+    <ul>${p.prevus.map((t) => `<li><b>${esc(t.nom)}</b><span>${esc(t.phrase)}</span>${p.indicatif ? `<em>${euros(t.prix)}</em>` : ''}</li>`).join('')}</ul>
   </div>` : '';
-  const parcours = p.parcours.filter(([pre]) => PRODUITS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre].nom)}</b><p>${esc(texte)}</p></div></li>`).join('\n      ');
+  const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${PRODUITS[pre] ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
   return tete({
     titre: `${p.nom} · QME`,
-    description: `${p.accroche} ${p.resume} ${p.templates.length} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
+    description: `${p.accroche} ${p.resume} ${p.nombre} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
     canonical: `/packs/${p.slug}/`,
   }) + `<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><a href="/packs/">Packs</a><span>›</span><b>${esc(p.nom.replace(/^Pack /, ''))}</b></nav>
 <section class="pack-hero c-${p.couleur}">
@@ -156,10 +158,8 @@ function pagePack(p) {
 </section>
 
 <section class="section pack-section" id="contenu">
-  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription.</p></div>
-  <ul class="templates-pack">
-      ${cartes}
-  </ul>${prevus}
+  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.indicatif ? `${p.nombre} templates prévus, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.${p.templates.length ? ' La démo du template prêt s’ouvre sans inscription.' : ''}` : `${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription.`}</p></div>
+  ${cartes ? `<ul class="templates-pack">\n      ${cartes}\n  </ul>` : ''}${prevus}
 </section>
 
 <section class="section pack-section" id="questions">
@@ -181,7 +181,7 @@ function pagePack(p) {
 // --- Cartes de packs (liste et catalogue) ----------------------------------------------------------
 function cartePack(p, niveau = 'h3') {
   return `<li class="carte-pack c-${p.couleur}"><a href="/packs/${p.slug}/">
-      <span class="haut"><span class="nb">${p.templates.length} templates</span>${p.enVente ? '' : '<em>Bientôt</em>'}</span>
+      <span class="haut"><span class="nb">${p.nombre} templates${p.indicatif ? ' prévus' : ''}</span>${p.enVente ? '' : '<em>Bientôt</em>'}</span>
       <${niveau}>${esc(p.nom.replace(/^Pack /, ''))}</${niveau}>
       <span class="phrase">${esc(p.accroche)}</span>
       ${pastilles(p.cibles)}

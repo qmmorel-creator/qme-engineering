@@ -56,6 +56,13 @@ export const PACKS = {
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS'] },
   PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT'] },
   PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT'] },
+  // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
+  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT'] },
+  PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM'] },
+  PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: [] },
+  PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: [] },
+  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS'] },
+  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR'] },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.

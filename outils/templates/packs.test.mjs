@@ -16,15 +16,24 @@ test('remise progressive de 10 à 25 % et prix arrondi à l’euro inférieur', 
   assert.deepEqual(prixPack([1900]), { valeur: 1900, pct: 0, prix: 1900, economie: 0 });
 });
 
-test('les packs sont cohérents : préfixes uniques, sans I L O U, slugs uniques', () => {
+test('les packs sont cohérents : préfixes uniques, sans I L O U, slugs uniques', async () => {
   const prefixes = [...Object.keys(PACKS), SUR_MESURE];
-  for (const p of prefixes) {
-    assert.match(p, /^[A-HJKMNP-TV-Z]{3}$/);
-    assert.ok(!PRODUITS[p], `${p} est déjà un template`);
+  const { PREVUS } = await import('../packs/donnees.mjs');
+  for (const p of [...prefixes, ...Object.keys(PREVUS)]) {
+    assert.match(p, /^[A-HJKMNP-TV-Z]{3}$/, p);
   }
+  for (const p of prefixes) assert.ok(!PRODUITS[p] && !PREVUS[p], `${p} est déjà un template`);
+  const tous = [...prefixes, ...Object.keys(PREVUS)];
+  assert.equal(new Set(tous).size, tous.length, 'préfixes en double');
   const slugs = Object.values(PACKS).map((p) => p.slug);
   assert.equal(new Set(slugs).size, slugs.length);
-  for (const p of Object.values(PACKS)) assert.ok(p.produits.length >= 2, p.slug);
+  const { PAGES } = await import('../packs/donnees.mjs');
+  for (const [code, p] of Object.entries(PACKS)) {
+    const prevus = PAGES[code]?.prevus || [];
+    assert.ok(p.produits.length + prevus.length >= 2, p.slug);
+    for (const x of prevus) assert.ok(PREVUS[x]?.prix >= 1200, `${x} : fiche et prix (12 € minimum)`);
+    for (const x of p.produits) assert.ok(PRODUITS[x], `${x} du pack ${p.slug} : seulement des templates existants (les autres dans prevus)`);
+  }
 });
 
 test('un code de pack est valide, falsifié il est refusé, révoqué aussi', () => {
