@@ -94,23 +94,13 @@ déjà).
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
-| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
-| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
@@ -120,8 +110,6 @@ déjà).
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
-| T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
@@ -149,8 +137,6 @@ déjà).
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
@@ -1000,7 +986,6 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
-| T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
 | T73 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
 | T74 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
 | T75 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
