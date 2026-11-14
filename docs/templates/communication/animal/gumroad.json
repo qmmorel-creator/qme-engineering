@@ -1,0 +1,42 @@
+{
+  "slug": "animal",
+  "name": "Suivi d'un animal de compagnie",
+  "price_cents": 1200,
+  "permalink": "suivi-animal-compagnie",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir mon suivi",
+  "summary": "Les soins de ton chien, de ton chat ou d'un autre animal aux intervalles fixés avec ton vétérinaire, sa courbe de poids, ses visites et ses traitements, et ce qu'il te coûte par mois et par an.",
+  "description": "<h2>Ses soins, à temps.</h2><p>Le dernier antiparasitaire, c'était quand ? Le rappel de vaccin, à quelle date ? Les réponses sont sur le carnet de santé, quelque part dans un tiroir, et personne ne sait ce que l'animal coûte vraiment sur une année. Le Suivi d'un animal de compagnie garde tout au même endroit et te dit ce qui arrive.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des soins à temps</strong> : vaccins, antiparasitaires, vermifuge, toilettage, griffes… chacun avec sa dernière date et l'intervalle que ton vétérinaire t'a indiqué ; la prochaine échéance, les retards et ce qui arrive dans les 14 jours.</li><li><strong>La date du vétérinaire en priorité</strong> : quand il inscrit lui-même la prochaine date, c'est elle qui compte.</li><li><strong>La courbe de poids</strong>, pesée après pesée, avec l'écart depuis la précédente et sur 90 jours, sans aucune interprétation.</li><li><strong>Les visites et traitements</strong> : motif, ce qu'a dit le vétérinaire, traitement recopié de l'ordonnance, affiché « en cours » jusqu'à sa date de fin.</li><li><strong>Tous les frais</strong> : vétérinaire, soins, médicaments, alimentation, toilettage, assurance, garde… par catégorie, par mois et par an, avec le coût annuel.</li><li><strong>Plusieurs animaux</strong> : chiens, chats, lapins ou autres, frais communs, animaux partis gardés pour leur historique.</li><li><strong>Un carnet imprimable</strong> pour la pension, la garde ou un nouveau vétérinaire ; export CSV et copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute ton animal, coche les soins à suivre, puis saisis pour chacun l'intervalle indiqué par ton vétérinaire. Tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil de suivi : il ne remplace pas l'avis de ton vétérinaire, ne pose aucun diagnostic et ne donne aucune posologie. Aucun calendrier de vaccins ni d'antiparasitaires n'est intégré : les intervalles sont ceux que tu saisis. Aucune marque de produit vétérinaire ou d'aliment, aucune connexion à une clinique, une assurance ou une autre application. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "animal-de-compagnie",
+    "chien",
+    "chat",
+    "carnet-de-sante",
+    "budget",
+    "organisation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton suivi s'ouvre. Ajoute ton animal, coche ses soins, puis saisis l'intervalle de chacun d'après ton vétérinaire : les prochaines échéances se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Propriétaires de chien, de chat ou d'un autre animal"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Suivi d'un animal de compagnie
+Ses soins, à temps.
+Soins · poids · visites · frais
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  'animal': ["Suivi d'un animal de compagnie", "Ses soins, à temps.", "Soins · poids · visites · frais"],
