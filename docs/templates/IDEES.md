@@ -149,7 +149,7 @@ déjà).
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
-| T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en cours | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
@@ -832,7 +832,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
 | T71 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
-| T72 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
+| T74 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
 | T73 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
 | T74 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
 | T75 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
@@ -1038,3 +1038,53 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T74 (cadrage délégué par Quentin, 14/11/2026)
+
+### T74 · Propositions commerciales (`templates/propositions/`, préfixe PCM, 19 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire. Pack visé :
+« Freelance : trouver ses clients » (PFC).
+
+- **Promesse** : « Une proposition claire, trois options, une réponse. » Rédiger en une heure une proposition
+  commerciale structurée, la présenter proprement en PDF, puis suivre la réponse jusqu'à la signature.
+- **Pour qui** : freelances, consultants, formateurs, développeurs, petites agences et artisans qui répondent à une
+  demande par une proposition (avant le devis détaillé). Catalogue `pro`, thème « Commercial » (ou voisin).
+- **Distinct de T36** (générateur de devis) : la proposition explique le projet, la méthode, les options et le
+  calendrier ; le devis chiffre ligne à ligne avec TVA et mentions légales. La proposition affiche des prix **hors
+  taxes** et renvoie le détail chiffré, la TVA et les mentions obligatoires au devis (T36). Aucune règle légale
+  intégrée.
+- **Écrans** :
+  - **Propositions** : tuiles (en attente, à relancer, taux de transformation 12 mois, signé sur 12 mois), filtres
+    par statut, recherche, duplication en un clic ;
+  - **Édition** : en-tête (client, interlocuteur, titre, trame, date, validité, début prévu), contexte (questions
+    d'aide par trame), objectifs, livrables, blocs de la bibliothèque insérés (copies modifiables), **options
+    comparées** (bon / mieux / premium : prix HT, contenu, délai, option recommandée, tableau de comparaison
+    calculé), **planning** par étapes en semaines (étapes parallèles possibles, dates calculées depuis le début
+    prévu), conditions (modèles par trame), notes internes non imprimées ; complétude de la proposition ;
+  - **Aperçu A4** : page de garde, sections numérotées, tableau des options, planning en barres, bon pour accord
+    avec choix de l'option ; impression ou PDF par le navigateur ;
+  - **Suivi** : statuts (brouillon, envoyée, acceptée, refusée, sans suite ; affichés « à relancer » et
+    « validité dépassée »), relances datées (intervalle réglable, message de relance à copier, rien n'est
+    envoyé), prolongation de validité, option retenue, motif de refus ; statistiques : taux de transformation
+    en nombre et en valeur, délai moyen de décision, option la plus choisie, motifs de refus, détail par trame,
+    propositions envoyées et acceptées sur 12 mois ;
+  - **Bibliothèque** : blocs réutilisables (présentation, méthode, références, engagements, autre), insérés par
+    copie dans une proposition ;
+  - **Profil** : identité affichée sur les propositions, validité et intervalle de relance par défaut, préfixe
+    de numérotation, affichage facultatif du TTC à un taux **saisi par l'utilisateur** (vide par défaut).
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 4 trames métier (conseil, développement, formation,
+  travaux) avec questions de contexte, objectifs types, livrables types, étapes de planning types en semaines,
+  trois options types et conditions types (commerciales, sans référence légale) ; 10 blocs types de
+  bibliothèque à personnaliser (aucune référence réelle : gabarits à remplir avec l'accord des clients) ; motifs
+  de refus.
+- **Calculs** (`regles.js`, testés dans `outils/templates/propositions.test.mjs`) : montants en centimes,
+  numérotation annuelle sans réutilisation, fin de validité, statut affiché, prochaine relance, planning
+  (dates des étapes, fin du projet), comparaison des options (écarts, contenu commun et différences),
+  montant d'une proposition (option retenue, sinon recommandée), complétude, taux de transformation,
+  statistiques, duplication.
+- **Données qui se périment : aucune.** Pas de taux de TVA intégré (saisie facultative), pas de délai de paiement
+  légal, pas de mention obligatoire : renvoi au devis (T36) et aux sources officielles par l'utilisateur.
+- **Risques** : pas un conseil juridique (avertissement dans l'application) ; données de clients (RGPD :
+  ne garder que le nécessaire, suppression possible) ; démo 100 % fictive (organisations « exemple »).
+
