@@ -172,7 +172,7 @@ déjà).
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) ; fiche [`fiches/course-a-pied.md`](fiches/course-a-pied.md) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -1010,7 +1010,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
 | T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
 | T96 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
-| T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
+| T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. Fiche `fiches/course-a-pied.md` (cadrage délégué par Quentin, 14/11/2026) ; formule de Riegel (American Scientist, 1981, vérifiée le 14/11/2026) ; prêt le 14/11/2026 (`templates/course-a-pied/`, CRS). |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer en priorité le 14/11 au soir (prix libre, 0 € possible), puis publication dès que la clé de licence est active (vérification `is_licensed`). |
 
 
@@ -2078,3 +2078,36 @@ régénérer les pages des packs à la fusion.
   partagée par le bureau au prix d'un template individuel), fiche Gumroad et clé de licence, entrée dans
   `communication/gumroad-a-creer.json`, ajout de BNV au pack PAS (`netlify/lib/packs.mjs`, pages des packs
   régénérées ; BNV retiré des prévus dans `outils/packs/donnees.mjs`), carte anglaise, plannings, passage en vente.
+
+## Fiche T97 (cadrage délégué par Quentin, 14/11/2026)
+
+### T97 · Plan d'entraînement course à pied (`templates/course-a-pied/`, préfixe CRS, 15 €)
+- Fiche détaillée : [`fiches/course-a-pied.md`](fiches/course-a-pied.md). Catalogue `perso` · thème « Santé et forme » ;
+  pack visé « Forme » (PFM). Permalien prévu `plan-entrainement-course-a-pied`.
+- Promesse : « Tes allures et tes semaines, jusqu'au jour J. » Public : coureurs amateurs qui préparent un 10 km, un
+  semi-marathon ou un marathon.
+- Chrono de référence (le plus récent l'emporte), objectif (distance, date, temps visé facultatif, nom), disponibilité
+  (3 à 5 séances, jours, jour de la sortie longue, volume). Allures en fourchettes (récupération, footing, sortie
+  longue, seuil, fractionné, spécifique) depuis les allures prédites ; prédiction par la **formule de Riegel**
+  (Riegel P. S., American Scientist, vol. 69, n° 3, 1981, p. 285-290, référence vérifiée le 14/11/2026), exposant
+  réglable ; fourchettes = **repères QME présentés comme des estimations**. Avis sur le temps visé, avertissements
+  (chrono ancien, extrapolation lointaine).
+- Plans types originaux : 8 semaines (10 km), 12 (semi), 16 (marathon), 46 séances rédigées pour QME, progression puis
+  affûtage, semaines d'assimilation ; placement sur les jours choisis ; plan raccourci si la course est proche (3
+  semaines au moins). Séances cochées (distance, durée, ressenti, note) ou manquées, déplacement dans la semaine avec
+  avertissements, semaine allégée (proposée après 3 séances dures sur 4 ou 2 manquées en 7 jours), recalcul des
+  séances à venir, volume hebdomadaire prévu et fait (graphique, skill `dataviz`), impression, exports CSV et .ics.
+- **Aucune donnée de santé** ; avertissement (ni programme médical ni avis médical, avis d'un médecin avant de
+  commencer) ; aucune marque, méthode ni plan commercial (test automatique) ; aucune règle d'inscription aux courses
+  intégrée (renvoi à l'organisateur).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo `/templates/course-a-pied/?demo`, page
+  `catalogue/course-a-pied/`, captures `assets/templates-course-a-pied-*.webp`, couverture
+  `assets/templates-course-a-pied-couverture.png`, tests `outils/templates/course-a-pied.test.mjs`). Version anglaise en
+  attente.
+- Communication prête dans `communication/course-a-pied/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-prochaine.html). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence, entrée dans `communication/gumroad-a-creer.json`, ajout de CRS au pack PFM
+  (`netlify/lib/packs.mjs`, pages des packs régénérées ; CRS retiré des prévus dans `outils/packs/donnees.mjs`, et la
+  phrase « Le plan de course à pied à venir » des arguments de PFM à revoir), carte anglaise, plannings, passage en
+  vente.

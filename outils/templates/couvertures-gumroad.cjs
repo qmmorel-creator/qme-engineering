@@ -90,6 +90,7 @@ const T = {
   notes: ['Notes et moyennes', 'Ta moyenne, au centième près.', 'Coefficients et ECTS · règles de ton diplôme · note à viser au prochain partiel'],
   subventions: ["Subventions", "Chaque dossier à temps, chaque euro justifié.", "Pièces · échéances · versements · budget du projet · bilan"],
   benevoles: ['Bénévoles et planning des créneaux', 'Chaque créneau tenu, sans trou ni doublon.', 'Disponibilités · affectation suggérée · conflits · plannings imprimables'],
+  'course-a-pied': ['Plan d’entraînement course à pied', 'Tes allures et tes semaines, jusqu’au jour J.', 'Allures calculées · plan du 10 km au marathon · séances cochées'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

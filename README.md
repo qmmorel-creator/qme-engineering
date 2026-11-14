@@ -466,6 +466,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   événement, export CSV ; RGPD : export, effacement, bénévoles inactifs signalés selon la durée choisie. Une clé
   partagée par les responsables, saisies fusionnées. Pas d'inscription en ligne en V1. Règles dans `regles.js`, tests
   `outils/templates/benevoles.test.mjs`. Version anglaise en attente.
+- `templates/course-a-pied/` (CRS) : **plan d'entraînement course à pied** (T97), prêt, « Mise en vente prochaine » (15 €,
+  démo libre, fiche Gumroad à créer : `docs/templates/communication/course-a-pied/gumroad.json`). Chrono de référence,
+  objectif du 10 km au marathon, allures d'entraînement en fourchettes et prédiction de temps par la formule de Riegel
+  (American Scientist, 1981, exposant réglable ; estimations), plans types rédigés pour QME (8, 12 ou 16 semaines, 3 à 5
+  séances) placés sur les jours choisis, séances cochées avec distance, durée et ressenti, déplacement et semaine
+  allégée proposée, volume hebdomadaire prévu et fait, impression, exports CSV et iCalendar. Aucune donnée de santé ;
+  pas un programme médical. Règles dans `regles.js`, tests `outils/templates/course-a-pied.test.mjs`. Version anglaise
+  en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

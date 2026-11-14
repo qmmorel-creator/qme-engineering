@@ -32,6 +32,7 @@ export const TEMPLATES = {
   GST: { slug: 'gestion-locative', prix: 2000, phrase: 'Loyers, quittances, relances et révision, bien par bien.', pour: 'perso' },
   CAR: { slug: 'voiture', prix: 1300, phrase: 'Entretiens à la date ou au km, dépenses, consommation, coût au km.', pour: 'perso' },
   MSC: { slug: 'musculation', prix: 1900, phrase: 'Séances, WOD, records détectés et minuteur.', pour: 'perso' },
+  CRS: { slug: 'course-a-pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.', pour: 'perso' },
   SNH: { slug: 'sinistre', prix: 2900, phrase: 'Déclaration guidée, dommages chiffrés, preuves et suivi.', pour: 'perso' },
   CMP: { slug: 'competition', prix: 4900, phrase: 'Inscriptions, vagues, scores et classement en direct.', pour: 'pro' },
   EQP: { slug: 'planning-equipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.', pour: 'pro' },
@@ -104,7 +105,6 @@ export const PREVUS = {
   ETD: { nom: 'État des lieux', prix: 1900, phrase: 'Pièce par pièce, photos, entrée et sortie comparées.' },
   RNT: { nom: 'Rentabilité d’un investissement locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.' },
   CPR: { nom: 'Charges et AG de copropriété', prix: 1500, phrase: 'Appels de fonds, charges et résolutions votées.' },
-  CRS: { nom: 'Plan d’entraînement course à pied', prix: 1500, phrase: 'Vos allures et vos semaines jusqu’au jour de la course.' },
 };
 
 // Cibles : pastille = couleur + forme (le libellé est toujours écrit, la couleur ne porte pas seule le sens).
@@ -330,7 +330,7 @@ export const PAGES = {
       ['MSC', 'Notez vos séances, battez vos records, chronomètre en main.'],
     ],
     arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Le plan de course à pied à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['CRS'],
+    prevus: [],
   },
   PFA: {
     couleur: 'jaune', cibles: ['familles', 'couples'],
