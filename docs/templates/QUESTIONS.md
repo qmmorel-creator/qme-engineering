@@ -5,7 +5,7 @@ questions pour plus tard, centralise-les »). Les sessions continuent sans atten
 a une valeur par défaut déjà appliquée, sauf ceux marqués **bloquant**. Quand tu tranches, écris ta réponse
 sous la question (ou dis-la à une session) : elle l'applique et déplace le point dans « Tranché ».
 
-Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 14/11/2026.
+Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 14/11/2026 (lot 9 complété).
 
 ## Bloquant
 
@@ -15,7 +15,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T19 Suivi du bébé : vendre un outil qui héberge en ligne des données de santé d'enfants ?** Consentement
   explicite demandé avant tout enregistrement ; certification HDS non vérifiée ; paragraphe pour
   `/confidentialite/` proposé dans `docs/templates/communication/bebe/integration.md`, non appliqué. IG-90 ne
-  passe pas en « Programmé » avant ta décision.
+  passe pas en « Programmé » avant ta décision. LI-135 (10/03) est déjà « Programmé » avec la remarque « pas encore en
+  vente » : à décaler ou annuler si la réponse est non.
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
@@ -47,10 +48,10 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T17 Suivi de lecture | 12 € | — |
 | T20 Animal de compagnie | 12 € | — |
 | T44 Suivi de TVA | 19 € | `suivi-tva`, business-and-money |
-| T49 Matrice compétences et formations | 25 € | — |
+| T49 Matrice compétences et formations | 25 € | `matrice-competences-formations`, business-and-money/management-and-leadership |
 | T59 Progression pédagogique | 15 € | `progression-pedagogique`, education |
-| T18 Calendrier du potager | 13 € | — |
-| T19 Suivi du bébé | 13 € | — |
+| T18 Calendrier du potager | 13 € | `calendrier-potager`, self-improvement/productivity (à vérifier) |
+| T19 Suivi du bébé | 13 € | `suivi-bebe`, fitness-and-health (à vérifier) |
 | T54 Séminaire / offsite | 35 € | `seminaire-offsite`, business-and-money (à vérifier) |
 | T58 Banque de questions et quiz | 19 € | `banque-questions-quiz`, education (à vérifier) |
 
@@ -65,17 +66,22 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
   (ancien libellé « Prochaine échéance »).
-- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8, T54, T58) : les garder ? Texte LinkedIn de T58
+- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8, lot 9, T54, T58) : les garder ? Texte LinkedIn de T58
   long (~1 600 caractères).
 - LI-136 (T54, 12/03) et LI-137 (T58, 14/03) placés après LI-135 ; un créneau plus tôt existait (31/01,
   après LI-124) mais aurait aligné trois templates d'affilée. OK ?
+- Lot 9 : LI-132 à LI-135 en « Programmé » (04, 06, 08 et 10/03) alors que les quatre templates ne sont pas en vente ;
+  la remarque demande de vérifier le lien d'achat avant publication. Les laisser en « Programmé » ?
 - T27 : accroche LinkedIn « beaucoup de propriétaires oublient » non chiffrée : l'adoucir ?
 
 ## Classement dans le catalogue
 
 - T62 Stocks sous « Indépendants » (public : commerces, artisans) ; T44 TVA sous « Indépendants » ;
   T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59, T54 et T58 sous
-  « Associations, formation et événements ». OK ou nouveaux thèmes ?
+  « Associations, formation et événements » ; T49 sous « Organisation et réunions » ; T18 sous « Organisation et
+  études » ; T19 sous « Santé et forme ». OK ou nouveaux thèmes ?
+- Packs : T49 et T18 ne sont rattachés à aucun pack (T49 irait dans « Petite entreprise », T18 dans « Propriétaire »
+  ou « Famille »). Les ajouter ?
 
 ## Par template : périmètre et choix appliqués par défaut
 
@@ -114,13 +120,25 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   2e jour ouvré après le 1er mai, fin du réel simplifié au 01/01/2027) ; base des acomptes, seuil de 4 000 €
   sur 4 trimestres, contrôles à 3 périodes et 0,01 € ; garder un modèle tableur en plus ?
 - **T49 Compétences** : référentiel CNIL RH non vérifié ; choix de calcul dans `IDEES.md` (bloc du lot 9).
+  Application web au lieu du « tableur seul » du backlog (modèle tableur non fait : en faire un ?) ; référentiel de
+  44 compétences, 9 postes et choix des 8 compétences critiques à relire ; seuil de couverture à 2 personnes et
+  réévaluation à 12 mois par défaut ; formations sans date hors budget ; une clé partagée entre managers, sans
+  droits par personne ; nom de l'entreprise de la démo « Ateliers Brunet (fictif) » : homonymie avec une vraie
+  entreprise non vérifiée, le garder ?
 - **T59 Progression** : prévu posé à la suite sans réserve ; séquence terminée = durée prévue ; retard en
   séances avec la durée moyenne d'un créneau ; A/B saute les semaines sans cours ; lundi de Pentecôte sans
   cours ; un utilisateur par clé ; Bloom et L3133-1 non vérifiés sur source primaire.
 - **T18 Potager** : aucune date de semis ni association intégrée (licence de la source DRAAF contradictoire) ;
-  60 légumes avec leur famille ; dates saisies par l'utilisateur.
+  60 légumes avec leur famille ; dates saisies par l'utilisateur. Risque commercial de ce choix (promesse « vos
+  dates ») : l'accepter, ou chercher une source sous licence ouverte (API data.gouv.fr non interrogée) ? Rotation
+  par défaut sur 1 an (réglable de 1 à 5) ; familles botaniques à relire (mâche en Caprifoliacées ; blette,
+  betterave et épinard en Amaranthacées, selon APG IV) ; associations de la démo (tomate et basilic, oignon et
+  fève) présentées comme les notes du jardinier fictif.
 - **T19 Bébé** : courbes de croissance non intégrées (licence OMS non commerciale, AFPA–Inserm sans licence
-  trouvée) ; seules les mesures saisies sont tracées.
+  trouvée) ; seules les mesures saisies sont tracées. Demander une autorisation à l'OMS ou aux auteurs
+  AFPA–Inserm (contact Inserm : courbesdecroissance.cress@inserm.fr, non sollicité) ? Numéros d'urgence 15 et 112
+  dans l'avertissement : OK ? Fusion des saisies de deux appareils : la dernière modification gagne, élément par
+  élément : OK ?
 
 - **T54 Séminaire** : rattaché à aucun pack (Moyens généraux ou Associations et clubs possibles) ; « sans porc »
   gardé, « sans gluten » via la case allergie ; « en attente » comptés mais jamais placés automatiquement ;
