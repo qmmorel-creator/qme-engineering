@@ -43,9 +43,9 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T55 Gestion de classe | 25 € | — |
 | T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement` |
 | T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites` |
-| T09 Garde-manger | 12 € | — |
-| T17 Suivi de lecture | 12 € | — |
-| T20 Animal de compagnie | 12 € | — |
+| T09 Garde-manger | 12 € | `garde-manger-dates-peremption`, food-and-cooking (à vérifier) |
+| T17 Suivi de lecture | 12 € | `suivi-lecture`, self-improvement ou writing-and-publishing (à vérifier) |
+| T20 Animal de compagnie | 12 € | `suivi-animal-compagnie`, self-improvement (à vérifier) |
 | T44 Suivi de TVA | 19 € | `suivi-tva`, business-and-money |
 | T49 Matrice compétences et formations | 25 € | — |
 | T59 Progression pédagogique | 15 € | `progression-pedagogique`, education |
@@ -60,7 +60,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
-  LI-122 (sam. 13/02), LI-124 (sam. 30/01). Décaler ?
+  LI-122 (sam. 13/02), LI-124 (sam. 30/01), LI-130 (T20, sam. 27/02). Décaler ?
 - Images à déposer à la main dans Drive : lot 5 (2 couvertures et 10 vues de carrousel ; voir la colonne
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
@@ -106,13 +106,17 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T60 Parcs multi-sites** : pas de périodicités réglementaires, de pièces jointes ni de bons
   d'intervention ; accès unique ; démo avec de vraies villes (Rennes, Lille, Lyon) : garder ?
 - **T09 Garde-manger** : deux durées seulement (Anses), DGCCRF inaccessible ; DLC non suivie au congélateur ;
-  gaspillage en nombre de produits.
-- **T17 Lecture** : rythme sur 14 jours ; livres audio hors objectif en pages ; titres fictifs de la démo
-  non vérifiés contre de vrais livres.
-- **T20 Animal** : pas de calendrier vaccinal intégré, traitements en texte libre.
+  gaspillage en nombre de produits ; « Restes : 2 jours » dans la démo présenté comme le choix du foyer fictif.
+- **T17 Lecture** : rythme sur 14 jours ; objectif réparti uniformément sur l'année ; livres audio hors objectif
+  en pages ; livre noté lu sans sessions compté à sa date de fin ; périmètre V1 sans relecture, séries de livres,
+  prêt ni import ; titres et auteurs fictifs de la démo non vérifiés contre de vrais livres.
+- **T20 Animal** : pas de calendrier vaccinal intégré, traitements en texte libre ; un seul accès par foyer.
 - **T44 TVA** : valeurs « à vérifier » (CA3 au 15, acomptes 55 % et 40 %, dispense sous 1 000 €, CA12 au
   2e jour ouvré après le 1er mai, fin du réel simplifié au 01/01/2027) ; base des acomptes, seuil de 4 000 €
   sur 4 trimestres, contrôles à 3 périodes et 0,01 € ; garder un modèle tableur en plus ?
+  Sources secondaires seulement pour les acomptes, la CA12 et la réforme 2027 (pages officielles illisibles
+  ou en 403) ; non lus : ce qui remplace le réel simplifié en 2027, la recodification du CGI, le calendrier de
+  la facturation électronique. À trancher avant la mise en vente (outil fiscal daté).
 - **T49 Compétences** : référentiel CNIL RH non vérifié ; choix de calcul dans `IDEES.md` (bloc du lot 9).
 - **T59 Progression** : prévu posé à la suite sans réserve ; séquence terminée = durée prévue ; retard en
   séances avec la durée moyenne d'un créneau ; A/B saute les semaines sans cours ; lundi de Pentecôte sans
@@ -131,6 +135,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   compte apprenant), un utilisateur par clé ; 30 questions de démo rédigées pour QME ;
   conservation 12 mois par défaut ; textes RGPD non vérifiés sur source primaire ; argument du pack
   Enseignant remplacé par « Questions, quiz et corrections dans le même pack ».
+
+## Non vérifié (lot 7 : T09, T17, T20, T44)
+
+- Safari réel (émulation Chromium seulement) et impression papier réelle.
+- Publications LI-128 à LI-131 déjà en « Programmé » alors que les fiches Gumroad n'existent pas : elles
+  portent la remarque « ne publier que si la fiche Gumroad est en ligne, sinon décaler ».
 
 ## Prospects
 
