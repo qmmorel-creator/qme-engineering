@@ -105,6 +105,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
 - `/templates/` : catalogue des templates (indexé), fiche du planning de révision, fonctionnement, FAQ.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
+  pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
+  (`/packs/espace/`, non indexé). Pages générées : `node outils/packs/generer.mjs` (données dans
+  `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
 ## Templates payants (`/templates/`)
