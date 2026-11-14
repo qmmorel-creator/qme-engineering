@@ -1,0 +1,42 @@
+{
+  "slug": "references-plaquette",
+  "name": "Kit références et plaquette",
+  "price_cents": 1900,
+  "permalink": "kit-references-plaquette",
+  "category": "business-and-money",
+  "button": "Ouvrir mon kit de références",
+  "summary": "Tes réalisations en fiches (contexte, mission, résultat chiffré, témoignage), des filtres, et pour chaque prospect une sélection de références mise en page, prête à imprimer ou en PDF.",
+  "description": "<h2>Tes réalisations, prêtes à convaincre.</h2><p>« Vous avez des références proches de mon projet ? » La question revient à chaque proposition, et la réponse dort dans des mails, des dossiers de photos et un vieux PDF refait à la main. Le Kit références et plaquette range chaque réalisation une fois pour toutes, et compose pour chaque prospect la bonne sélection, mise en page.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une fiche par réalisation</strong> : contexte, mission, jusqu'à quatre résultats chiffrés, témoignage, mots-clés, période, visuel facultatif. Des modèles pour 9 métiers (conseil, web, design, communication, formation, artisanat du bâtiment, architecture et décoration, photo et vidéo, généraliste) proposent types de mission, mots-clés et résultats à mesurer.</li><li><strong>La confidentialité par défaut</strong> : sans accord noté, le client est décrit par sa taille, son secteur et sa région, jamais nommé. Un témoignage sans accord de citation n'est pas imprimé ; une adresse e-mail ou un téléphone oublié dans un texte est signalé.</li><li><strong>Des filtres et une note de complétude</strong> : recherche, secteur, type de mission, année, mots-clés, « avec résultat chiffré », « avec témoignage », « à compléter ». Chaque fiche dit ce qui lui manque pour convaincre.</li><li><strong>Une sélection par prospect</strong> : son secteur et ses mots-clés, les références les plus proches proposées avec leurs raisons, un mot d'introduction, l'ordre de ton choix.</li><li><strong>Une plaquette A4 imprimable ou en PDF</strong> : trois mises en page (plaquette avec couverture et chiffres clés, une référence par page, liste récapitulative), la couleur de ton choix, et le même contenu en texte à coller dans un e-mail.</li><li><strong>Une demande de témoignage</strong> à copier : cinq questions courtes à envoyer au client à la fin du projet.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton métier, crée tes premières fiches, puis une sélection pour ton prochain prospect : la plaquette se compose seule. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Aucun envoi automatique, aucun réseau social ni messagerie connectés : la plaquette s'imprime ou s'enregistre en PDF depuis ton navigateur, les textes se copient. Les chiffres sont ceux que tu saisis. Bonne pratique : demande l'accord écrit du client avant de citer son nom ou ses propos. Démo disponible sur qm-engineering.fr/catalogue/references-plaquette.</em></p>",
+  "tags": [
+    "references-clients",
+    "plaquette",
+    "portfolio",
+    "freelance",
+    "consultant",
+    "prospection",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton kit de références s'ouvre. Choisis ton métier, crée la fiche de ta réalisation la plus parlante, puis une sélection pour ton prochain prospect : la plaquette s'imprime ou s'enregistre en PDF. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Indépendants, consultants, petites agences, artisans"
+    }
+  ]
+}

@@ -120,7 +120,7 @@ déjà).
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
-| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | idée | 19 € | S | P3 | Backlog Quentin n° 14 |
+| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | prêt | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
@@ -263,7 +263,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28, T74 | T39, T75, T76 | 81 € | 20 % | 64 € | 16 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39 | T75, T76 | 100 € | 25 % | 75 € | 19 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T77, T78 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
@@ -1542,3 +1542,31 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
   (permalien prévu `propositions-commerciales`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, carte anglaise, ajout au pack PFC, passage en vente du site.
+
+## Fiche T39 (cadrage délégué par Quentin, 14/11/2026)
+
+### T39 · Kit références et plaquette (`templates/references-plaquette/`, préfixe KRF)
+- Fiche détaillée : [`fiches/references-plaquette.md`](fiches/references-plaquette.md). Application web, 19 €, permalien
+  prévu `kit-references-plaquette`, catalogue `pro` · thème « Clients et prospection », pack « Freelance : trouver ses
+  clients » (PFC ; KRF retiré de `prevus` dans `outils/packs/donnees.mjs`, à ajouter aux `produits` du pack à la fusion).
+- Promesse : « Tes réalisations, prêtes à convaincre. »
+- Base intégrée : modèles de fiches pour 9 métiers (types de mission, mots-clés, résultats à mesurer sans valeur,
+  questions d'aide), 12 secteurs et 8 tailles de client pour décrire sans nommer, trame contexte · mission · résultat,
+  verbes d'action, formulations d'anonymisation, demande de témoignage en 5 questions, 3 mises en page A4.
+- Écrans : références (filtres, mots-clés, complétude, mise en avant), fiche (aperçu imprimé, manques, alertes),
+  sélections par prospect (suggestions par pertinence avec raisons, ordre, options d'affichage), plaquette A4
+  (plaquette, fiches, liste ; impression ou PDF du navigateur ; texte pour un e-mail), profil (présentation,
+  chiffres clés saisis, couleur).
+- **Confidentiel vérifié** : mécanique inspirée des outils internes de références de QME, aucune référence réelle ;
+  démo d'une consultante fictive (« Atelier Exemple »), clients fictifs ou anonymisés. Aucune donnée datée ni règle
+  légale intégrée : l'accord du client est présenté comme bonne pratique ; chiffres saisis par l'utilisateur.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/references-plaquette/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/references-plaquette/`,
+  captures `assets/templates-references-plaquette-*.webp`, couverture `assets/templates-references-plaquette-couverture.png`,
+  tests `outils/templates/references-plaquette.test.mjs`. **Version anglaise en attente** (carte prête dans
+  `communication/references-plaquette/carte-en-prochaine.html`, non insérée dans `en/`).
+- Communication prête dans `communication/references-plaquette/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas
+  de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche
+  Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, plannings, carte anglaise,
+  passage en vente du site.

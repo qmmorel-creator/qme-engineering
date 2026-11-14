@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
@@ -73,7 +74,6 @@ export const TEMPLATES = {
 // `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
-  KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
   BBE: { nom: 'Suivi du bébé', prix: 1300, phrase: 'Repas, sommeil, couches et courbes de croissance.' },
   ANM: { nom: 'Suivi d’un animal de compagnie', prix: 1200, phrase: 'Soins, vaccins, poids et frais du chien ou du chat.' },
@@ -155,9 +155,10 @@ export const PAGES = {
       ['PRS', 'Faites avancer chaque prospect d’étape en étape, relances à la bonne cadence.'],
       ['CRM', 'Gardez le fil avec vos clients : historique, prochaine action datée, chiffre d’affaires.'],
       ['PCM', 'Transformez l’appel en proposition claire : contexte, options à prix et planning.'],
+      ['KRF', 'Montrez vos meilleures réalisations : une plaquette adaptée à chaque prospect.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
-    prevus: ['KRF', 'CED', 'CND'],
+    prevus: ['CED', 'CND'],
   },
   PBT: {
     couleur: 'rouge', cibles: ['btp', 'managers'],
