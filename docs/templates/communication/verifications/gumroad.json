@@ -1,0 +1,42 @@
+{
+  "slug": "verifications",
+  "name": "Vérifications réglementaires",
+  "price_cents": 3500,
+  "permalink": "verifications-reglementaires",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon registre",
+  "summary": "Le registre de tes vérifications périodiques, site par site : 22 contrôles types avec périodicité sourcée et datée, échéances, organismes, observations suivies jusqu'à leur levée avec preuve, alertes et registre imprimable.",
+  "description": "<h2>Aucun contrôle oublié.</h2><p>Installations électriques, extincteurs, portes automatiques, ascenseur, chariots élévateurs, désenfumage : chaque site a sa liste de vérifications périodiques, chacune sa périodicité, son organisme et ses observations à lever. Dans un tableur, l'échéance dépassée se découvre souvent le jour de l'audit. Vérifications réglementaires tient le registre à ta place, site par site.</p><h3>Ce que tu obtiens</h3><ul><li><strong>22 types de contrôles avec une périodicité sourcée</strong> : électricité, éclairage de sécurité, extincteurs, RIA, SSI, désenfumage, sprinklers, ascenseurs, portes et portails automatiques, appareils et accessoires de levage, gaz, chauffage, grandes cuisines, ventilation. Chacun cite la brochure INRS ED 828 (page, textes de référence) avec sa date de consultation. Les règles APSAD et les normes sont signalées comme telles : ce ne sont pas des textes de loi.</li><li><strong>Tes propres contrôles</strong> : un contrôle absent de la base se crée avec la périodicité que tu saisis, affichée « saisie » partout.</li><li><strong>Les échéances calculées</strong> depuis le dernier rapport, site par site, avec l'organisme vérificateur ; alerte avant l'échéance, retards en tête, dates manquantes signalées, calendrier des douze prochains mois.</li><li><strong>Les observations suivies jusqu'à leur levée</strong> : gravité, échéance de levée, responsable, puis date et preuve (référence de facture, bon d'intervention ou lien). Délai moyen de levée calculé.</li><li><strong>Le délai de deux ans des installations électriques</strong>, appliqué seulement quand il est possible : dernier rapport sans observation, ou observations levées avant l'échéance.</li><li><strong>Un registre imprimable par site</strong> : contrôles, périodicités et leur source, historique des vérifications avec les références des rapports, observations et levées. Export CSV.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée ton premier site, coche les contrôles qui existent, reporte la date du dernier rapport : échéances, alertes et registre se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Outil d'aide à l'organisation : il ne remplace ni un organisme agréé ou accrédité, ni la lecture des textes applicables à ton établissement. Périodicités tirées de la brochure INRS ED 828 (édition de septembre 2026, consultée le 14/11/2026), à revérifier à chaque nouvelle édition. Les rapports et preuves restent dans ton espace documentaire : l'outil en garde la référence et le lien. Démo disponible sur qm-engineering.fr/catalogue/verifications.</em></p>",
+  "tags": [
+    "verifications-periodiques",
+    "registre-de-securite",
+    "qhse",
+    "erp",
+    "maintenance",
+    "conformite",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton registre s'ouvre. Crée ton premier site, coche les contrôles qui existent et reporte la date du dernier rapport de chacun : échéances, alertes et registre imprimable se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Responsables QHSE, gestionnaires de bâtiments, dirigeants de PME et d'ERP"
+    }
+  ]
+}

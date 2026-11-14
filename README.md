@@ -232,6 +232,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   documents à prévoir (formalités renvoyées aux sources officielles). Dépenses partagées : moteur du budget commun,
   `templates/budget-commun/regles.js` chargé tel quel (et gardé hors ligne par `sw.js`). Règles dans `regles.js`,
   tests `outils/templates/voyage.test.mjs`.
+- `templates/verifications/` (VRF) : **vérifications réglementaires**, prêt, « Mise en vente prochaine » (35 €, démo
+  libre, fiche Gumroad à créer : `docs/templates/communication/verifications/gumroad.json`). Registre des contrôles
+  périodiques par site : 22 types avec périodicité sourcée (brochure INRS ED 828, édition de septembre 2026, page et
+  textes cités, consultée le 14/11/2026, à revérifier à chaque édition) ou saisie par l'utilisateur, échéances,
+  organismes, observations suivies jusqu'à leur levée avec preuve (référence et lien, pas de fichiers), délai de
+  2 ans des installations électriques sous conditions, calendrier, registre imprimable par site. Règles dans
+  `regles.js`, tests `outils/templates/verifications.test.mjs`. Version anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

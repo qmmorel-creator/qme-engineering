@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  VRF: { slug: 'verifications', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.', pour: 'pro' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', pour: 'pro' },
   GRT: { slug: 'gestion-locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.', pour: 'perso' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
@@ -63,7 +64,6 @@ export const PREVUS = {
   KRF: { nom: 'Kit références et plaquette', prix: 1900, phrase: 'Vos projets mis en valeur, page imprimable type plaquette.' },
   EQP: { nom: 'Planning d’équipe', prix: 3500, phrase: 'Qui fait quoi cette semaine, charge et conflits visibles.' },
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
-  VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
   GMG: { nom: 'Garde-manger et dates de péremption', prix: 1200, phrase: 'Ce qu’il y a dans les placards, et ce qui périme bientôt.' },
@@ -197,9 +197,10 @@ export const PAGES = {
       ['VHC', 'Gérez les réservations, les entretiens, les sinistres et le coût de chaque véhicule.'],
       ['ARD', 'Remettez et récupérez le matériel à chaque arrivée et chaque départ.'],
       ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
+      ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Contrats, achats, salles, maintenance et vérifications à venir, avec l’option Pack évolutif'],
-    prevus: ['SDR', 'VRF', 'CTR', 'ACH'],
+    prevus: ['SDR', 'CTR', 'ACH'],
   },
   PAR: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
@@ -351,12 +352,13 @@ export const PAGES = {
     parcours: [
       ['PMS', 'Suivez sites, équipements, interventions et indicateurs.'],
       ['Planifiez la maintenance préventive et ses bons d’intervention.'],
-      ['VRF', 'Tenez le registre des vérifications et rangez les preuves.'],
+      ['Tenez le registre des vérifications et rangez les preuves.'],
       ['CTR', 'Anticipez les préavis de résiliation des contrats fournisseurs.'],
       ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
+      ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
     ],
     arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Pack en préparation : soyez prévenu de sa sortie'],
-    prevus: ['PMS', 'VRF', 'CTR'],
+    prevus: ['PMS', 'CTR'],
   },
   PCA: {
     couleur: 'rouge', cibles: ['commercants', 'independants'],
