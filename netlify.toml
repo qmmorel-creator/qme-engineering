@@ -392,6 +392,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/tableau-annuel/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/tableau-annuel/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/patrimoine/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
