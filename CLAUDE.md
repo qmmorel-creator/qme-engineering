@@ -9,6 +9,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Templates
 
+- **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
+  `docs/templates/codes-gratuits.md` (code, id de révocation, destinataire, statut).
+
 - **Idées** : `docs/templates/IDEES.md` est la liste vivante. Toute idée de template donnée par Quentin y
   est ajoutée tout de suite (ligne du tableau + fiche si elle est détaillée), et le statut suit le
   développement (`idée`, `fiche`, `en cours`, `prêt`, `en vente`).
