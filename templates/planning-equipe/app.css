@@ -621,13 +621,20 @@ button.mois-case:hover{outline:2px solid var(--encre);outline-offset:1px}
 .ligne-droite .ligne-proch .negatif{color:var(--rouge)}
 .vue-planning .aide,.vue-planning .legende{margin-top:12px}
 .vue-planning .cal-outils .rang{gap:8px}
+.vue-planning .cal-mois,.vue-dispos .cal-mois{text-transform:none}
+.pl-cellule{min-width:0}
+.pl-cellule .puce-projet span{flex:1 1 auto}
 @media (max-width:720px){
-  .onglets{grid-template-columns:repeat(5,1fr)}
-  .onglet{font-size:10px}
+  .onglets{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .onglet{font-size:11px;min-width:0}
+  .onglet span{max-width:100%;text-align:center;line-height:1.1;overflow-wrap:anywhere}
   .barre-pers{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
   .barre-pers .jauge{grid-column:1/-1;grid-row:2}
   .bp-val{min-width:0}
-  .cal.planning td,.cal.planning thead th{min-width:96px}
+  .alertes-liste li{grid-template-columns:minmax(0,1fr);gap:6px}
+  .alertes-liste li .etiquette{grid-column:1;justify-self:start}
+  .cal.planning td,.cal.planning thead th{min-width:108px}
+  .pl-cellule{width:100px}
   .cal .pl-total{min-width:88px}
   .cal.mois td,.cal.mois thead th{min-width:72px}
   .grille-dispo{grid-template-columns:1fr}

@@ -194,7 +194,8 @@
       affecte += b.charge;
       couvert += couv;
       personnes[p.id] = (personnes[p.id] || 0) + b.charge;
-      const manquantes = pr.competences.filter((c) => !p.competences.includes(c));
+      // Signalé seulement si la personne n'a AUCUNE des compétences demandées (une équipe se complète).
+      const manquantes = pr.competences.some((c) => p.competences.includes(c)) ? [] : [...pr.competences];
       if (manquantes.length && b.charge > 0 && !competences.some((x) => x.personne === p.id)) competences.push({ personne: p.id, manquantes, affectation: a.id });
     }
     affecte = Math.round(affecte * 100) / 100;
@@ -265,7 +266,7 @@
     let n = 0;
     for (let l = lundiDe(aff.debut); l <= aff.fin; l = ajout(l, 7)) n++;
     const absences = etat.absences.filter((a) => a.personne === p.id && seChevauchent(a, aff));
-    const manquantes = pr ? pr.competences.filter((c) => !p.competences.includes(c)) : [];
+    const manquantes = pr && !pr.competences.some((c) => p.competences.includes(c)) ? [...pr.competences] : [];
     const horsPeriode = pr && ((pr.debut && aff.debut < pr.debut) || (pr.fin && aff.fin > pr.fin));
     return { semaines, total: n, absences, manquantes, horsPeriode, surcharges: semaines.filter((b) => b.etat === 'surcharge').length };
   }

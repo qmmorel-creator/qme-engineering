@@ -247,9 +247,9 @@
     pe('julien', 'Julien', 'Michel', 'Directeur technique', ['web', 'gp', 'a11y']);
     pe('manon', 'Manon', 'Garcia', 'Support', ['support'], 35, { sortie: j(-17) });
     const pr = (id, nom, client, couleur, debut, fin, besoin, competences, extra = {}) => e.projets.push(R.normaliserProjet({ id, nom, client, couleur, debut, fin, besoin, competences, ...extra }));
-    pr('orion', 'Refonte du site', 'Client Orion', 0, j(-28), j(41), 60, ['web', 'design']);
-    pr('vega', 'Application de réservation', 'Client Vega', 1, j(-14), j(83), 50, ['web', 'ux']);
-    pr('lyra', 'Campagne de printemps', 'Client Lyra', 2, j(14), j(55), 30, ['design', 'redac']);
+    pr('orion', 'Refonte du site', 'Client Orion', 0, j(-28), j(41), 60, ['web', 'design', 'redac', 'gp']);
+    pr('vega', 'Application de réservation', 'Client Vega', 1, j(-14), j(83), 50, ['web', 'ux', 'gp']);
+    pr('lyra', 'Campagne de printemps', 'Client Lyra', 2, j(14), j(55), 30, ['design', 'redac', 'gp']);
     pr('altair', 'Identité visuelle', 'Client Altaïr', 3, j(-7), j(20), 20, ['design']);
     pr('deneb', 'Audit d\'accessibilité', 'Client Deneb', 4, L, j(13), 14, ['a11y']);
     pr('support', 'Support client', '', 5, null, null, 35, ['support'], { type: 'poste', note: 'Permanence du lundi au vendredi.' });
@@ -271,10 +271,10 @@
     const ab = (personneId, type, debut, fin, extra = {}) => e.absences.push(R.normaliserAbsence({ id: uid(), personne: personneId, type, debut, fin, par: 'Camille', ...extra }));
     ab('sophie', 'conges', j(7), j(11), { note: 'Vacances' });
     ab('lea', 'formation', j(10), j(11), { note: 'Formation outil de tickets' });
-    ab('julien', 'formation', j(3), j(3), { demiFin: true });
+    ab('julien', 'formation', j(9), j(9), { demiFin: true });
     ab('camille', 'conges', j(-10), j(-8));
     ab('hugo', 'conges', j(21), j(25), { note: 'Posé il y a un mois' });
-    ab('nora', 'autre', j(1), j(1));
+    ab('nora', 'autre', j(15), j(15));
     return e;
   }
 
@@ -476,7 +476,7 @@
       case 'plafond': return [`${esc(nomP(x.personne))} : ${h(x.valeur)} planifiées`, `au-delà de ${h(r.plafondSemaine)} sur une semaine`, per, 'rouge', 'Durée'];
       case 'moyenne': return [`${esc(nomP(x.personne))} : ${h(x.valeur)} en moyenne`, `au-delà de ${h(r.plafondMoyen)} sur 12 semaines`, per, 'rouge', 'Durée'];
       case 'trou': return [`${esc(nomPr(x.projet))} : ${h(x.valeur)} non couvertes`, `besoin de ${h(x.besoin)} dans la semaine`, per, 'jaune', 'À couvrir'];
-      case 'competence': return [`${esc(prenomP(x.personne))} sur ${esc(nomPr(x.projet))}`, `sans la compétence ${x.manquantes.map((c) => `« ${esc(nomC(c))} »`).join(', ')}`, per, 'ciel', 'Compétence'];
+      case 'competence': return [`${esc(prenomP(x.personne))} sur ${esc(nomPr(x.projet))}`, `sans ${x.manquantes.length > 1 ? 'aucune des compétences' : 'la compétence'} ${x.manquantes.map((c) => `« ${esc(nomC(c))} »`).join(', ')}`, per, 'ciel', 'Compétence'];
       default: return ['', '', per, 'sable', ''];
     }
   }
@@ -490,7 +490,7 @@
   function vueTableau() {
     const t = auj();
     const L = lundiDe(t), N = ajout(L, 7);
-    const titre = `<div class="vue-tete"><div><h1>Tableau de bord</h1><p>${E.entreprise ? `${esc(E.entreprise)} · ` : ''}${libSemaine(L)}. La charge de l'équipe, ce qui coince dans les 4 prochaines semaines et qui peut prendre.</p></div>
+    const titre = `<div class="vue-tete"><div><h1>Tableau de bord</h1><p>${E.entreprise ? `${esc(E.entreprise)} · ` : ''}La charge de l'équipe, ce qui coince dans les 4 prochaines semaines et qui peut prendre · ${libSemaine(L)}</p></div>
         <div class="actions">${BTN_AFFECTER}</div></div>`;
     if (!E.personnes.length) return `${titre}${vide('Aucune personne pour l\'instant', 'Ajoute les personnes de ton équipe (prénom, rôle, compétences, heures par semaine), puis tes projets et postes à couvrir : la charge se calcule ensuite toute seule.', BTN_PERSONNE)}${AVERTISSEMENT}`;
     const eq = R.equipeSemaine(E, L);
@@ -514,7 +514,7 @@
       <div class="colonnes-apercu">
         <section>
           <h2 class="titre-section">À régler <span>4 prochaines semaines · ${pluriel(al.length, 'alerte')}</span></h2>
-          ${al.length ? `<ul class="alertes-liste">${al.slice(0, 12).map(ligneAlerte).join('')}</ul>${al.length > 12 ? `<p class="aide">Et ${pluriel(al.length - 12, 'autre alerte')} : voir le planning.</p>` : ''}` : '<div class="vide-etat petit"><div><h3>Rien à régler</h3><p>Ni surcharge, ni affectation pendant une absence, ni besoin non couvert dans les 4 prochaines semaines.</p></div></div>'}
+          ${al.length ? `<ul class="alertes-liste">${al.slice(0, 12).map(ligneAlerte).join('')}</ul>${al.length > 12 ? `<p class="aide">Et ${al.length - 12} autre${al.length > 13 ? 's' : ''} alerte${al.length > 13 ? 's' : ''} : voir le planning.</p>` : ''}` : '<div class="vide-etat petit"><div><h3>Rien à régler</h3><p>Ni surcharge, ni affectation pendant une absence, ni besoin non couvert dans les 4 prochaines semaines.</p></div></div>'}
           <h2 class="titre-section">Disponibles la semaine prochaine <span>${libSemaine(N)}</span></h2>
           ${dispo.length ? `<ul class="prochains">${dispo.slice(0, 5).map((x) => `<li><span class="libre-pastille"><b>${nombre(x.bilan.libre)}</b>h</span><button class="lien-ligne" data-action="personne" data-id="${x.personne.id}"><b>${esc(nomP(x.personne.id))}</b><span>${esc(x.personne.role)}${x.personne.competences.length ? ` · ${x.personne.competences.map((c) => esc(nomC(c))).join(', ')}` : ''}</span></button><button class="btn petit" data-action="nouvelle-affectation" data-personne="${x.personne.id}" data-lundi="${N}">Affecter</button></li>`).join('')}</ul>
             <button class="btn lien" data-action="vue" data-vue="dispos">Chercher par compétence</button>` : '<p class="aide">Personne n\'a d\'heures libres la semaine prochaine.</p>'}
@@ -566,7 +566,7 @@
     if (!pl.lundi) pl.lundi = lundiDe(t);
     if (!pl.mois) pl.mois = t.slice(0, 7);
     const semaine = pl.mode === 'semaine';
-    const titreNav = semaine ? libSemaine(pl.lundi) : versDate(`${pl.mois}-01`).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    const titreNav = semaine ? libSemaine(pl.lundi) : versDate(`${pl.mois}-01`).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }).replace(/^./, (c) => c.toUpperCase());
     const estCourant = semaine ? pl.lundi === lundiDe(t) : pl.mois === t.slice(0, 7);
     const bascule = (nom, val, lib) => `<button class="filtre" data-action="pl" data-cle="${nom}" data-val="${val}" aria-pressed="${pl[nom] === val}">${lib}</button>`;
     const outils = `<div class="cal-outils">
@@ -653,7 +653,7 @@
       if (!R.actifSemaine(p, l)) return '<td class="hors"></td>';
       const b = R.bilanSemaine(E, p, l);
       const info = `<b>${esc(nomP(p.id))} · ${sem(l)}</b>${h(b.charge)} pour ${h(b.capacite)}${b.joursAbsents ? ` · ${nombre(b.joursAbsents)} j d'absence` : ''}<br>${Object.entries(b.parProjet).map(([k, v]) => `${esc(nomPr(k))} : ${h(v)}`).join('<br>')}`;
-      return `<td class="${l === L0 ? 'auj' : ''}"><button class="mois-case etat-${b.etat}" data-action="aller-semaine" data-lundi="${l}" data-info="${esc(info)}" aria-label="${esc(`${nomP(p.id)}, ${sem(l)}, ${pct(b.taux)}, ${ETAT_LIB[b.etat]}`)}"><b>${b.etat === 'absent' ? 'Absent' : pct(b.taux)}</b><small>${b.joursAbsents && b.etat !== 'absent' ? `${nombre(b.joursAbsents)} j abs.` : `${nombre(b.charge)} h`}</small></button></td>`;
+      return `<td class="${l === L0 ? 'auj' : ''}"><button class="mois-case etat-${b.etat}" data-action="aller-semaine" data-lundi="${l}" data-info="${esc(info)}" aria-label="${esc(`${nomP(p.id)}, ${sem(l)}, ${pct(b.taux)}, ${ETAT_LIB[b.etat]}`)}"><b>${b.etat === 'absent' || b.capacite <= 0 ? 'Absent' : pct(b.taux)}</b><small>${b.capacite <= 0 && b.charge > 0 ? `${nombre(b.charge)} h affectées` : b.joursAbsents && b.etat !== 'absent' ? `${nombre(b.joursAbsents)} j abs.` : `${nombre(b.charge)} h`}</small></button></td>`;
     }).join('')}</tr>`).join('');
     const totaux = `<tr class="cal-total"><th scope="row" class="cal-nom">Équipe</th>${semaines.map((l) => { const eq = R.equipeSemaine(E, l); return `<td>${pct(eq.taux)}</td>`; }).join('')}</tr>`;
     return `<figure class="graphique cal-cadre"><div class="cal-defile" tabindex="0" aria-label="Charge du mois, défilement horizontal"><table class="cal mois"><caption class="sr-only">Charge par semaine</caption><thead>${tete}</thead><tbody>${lignes}${totaux}</tbody></table></div><div class="infobulle" hidden></div></figure>
@@ -845,7 +845,7 @@
       retenir();
       if (a) Object.assign(a, brut); else E.affectations.push(brut);
       sauver(); rendre();
-      toast(`${prenomP(brut.personne)} sur ${nomPr(brut.projet)} : ${h(brut.heures)} par semaine, ${plage(brut)}.`, { libelle: 'Annuler', faire: annuler });
+      toast(`${prenomP(brut.personne)} sur ${nomPr(brut.projet)} : ${h(brut.heures)} par semaine (${plage(brut)})`, { libelle: 'Annuler', faire: annuler });
     });
     const d = modale();
     const majApercu = () => {
@@ -860,9 +860,9 @@
       if (!ap) { zone.innerHTML = ''; return; }
       const pr = projet(brut.projet);
       let html = `<p><b>${esc(p.prenom)}</b>, ${ap.total > 1 ? `${ap.total} semaines` : '1 semaine'} : ${ap.surcharges ? `<b class="negatif">surcharge ${ap.surcharges > 1 ? `${ap.surcharges} semaines` : '1 semaine'}</b>` : 'pas de surcharge'}${ap.total > 12 ? ' (12 premières semaines vérifiées)' : ''}.</p>`;
-      html += `<div class="apercu-semaines">${ap.semaines.map((b) => `<span class="mois-case petit etat-${b.etat}" title="${esc(`${libSemaine(b.lundi)} : ${h(b.charge)} pour ${h(b.capacite)}`)}"><small>${sem(b.lundi)}</small><b>${b.etat === 'absent' ? 'Abs.' : pct(b.taux)}</b></span>`).join('')}</div>`;
+      html += `<div class="apercu-semaines">${ap.semaines.map((b) => `<span class="mois-case petit etat-${b.etat}" title="${esc(`${libSemaine(b.lundi)} : ${h(b.charge)} pour ${h(b.capacite)}`)}"><small>${sem(b.lundi)}</small><b>${b.etat === 'absent' || b.capacite <= 0 ? 'Abs.' : pct(b.taux)}</b></span>`).join('')}</div>`;
       if (ap.absences.length) html += `<p class="cd-alerte">Absence pendant cette période : ${ap.absences.map((x) => `${esc(typeAbs(x.type).nom)} ${plage(x)}`).join(', ')}. Les heures de ces jours ne seront pas faites.</p>`;
-      if (ap.manquantes.length) html += `<p class="cd-alerte">${esc(p.prenom)} n'a pas la compétence ${ap.manquantes.map((c) => `« ${esc(nomC(c))} »`).join(', ')} demandée par ${esc(pr?.nom || '')}.</p>`;
+      if (ap.manquantes.length) html += `<p class="cd-alerte">${esc(p.prenom)} n'a ${ap.manquantes.length > 1 ? 'aucune des compétences' : 'pas la compétence'} ${ap.manquantes.map((c) => `« ${esc(nomC(c))} »`).join(', ')} demandée par ${esc(pr?.nom || '')}.</p>`;
       if (ap.horsPeriode) html += `<p>Attention : l'affectation dépasse les dates du projet (${pr.debut ? dateCourte(pr.debut) : '…'} → ${pr.fin ? dateCourte(pr.fin) : '…'}).</p>`;
       zone.innerHTML = html;
     };
@@ -925,7 +925,7 @@
       if (a) Object.assign(a, brut); else E.absences.push(brut);
       sauver(); rendre();
       const affs = E.affectations.filter((x) => x.personne === brut.personne && R.seChevauchent(x, brut) && projet(x.projet)?.statut === 'actif');
-      toast(`${typeAbs(brut.type).nom} de ${prenomP(brut.personne)} : ${plage(brut)}.${affs.length ? ` ${pluriel(affs.length, 'affectation')} à revoir pendant l'absence.` : ''}`, { libelle: 'Annuler', faire: annuler });
+      toast(`${typeAbs(brut.type).nom} de ${prenomP(brut.personne)} (${plage(brut)}).${affs.length ? ` ${pluriel(affs.length, 'affectation')} à revoir pendant l'absence.` : ''}`, { libelle: 'Annuler', faire: annuler });
     });
     const d = modale();
     const de = d.querySelector('[name=debut]'), fi = d.querySelector('[name=fin]');
@@ -944,7 +944,7 @@
       const affs = E.affectations.filter((a) => a.personne === p.id && a.fin >= t).sort((x, y) => x.debut.localeCompare(y.debut));
       detail = `
       <section class="bloc-detail"><h3>Charge des 8 prochaines semaines</h3>
-        <div class="apercu-semaines">${semaines.map((b) => `<button type="button" class="mois-case petit etat-${b.etat}" data-action="aller-semaine" data-lundi="${b.lundi}" title="${esc(`${libSemaine(b.lundi)} : ${h(b.charge)} pour ${h(b.capacite)}`)}"><small>${sem(b.lundi)}</small><b>${b.etat === 'absent' ? 'Abs.' : pct(b.taux)}</b></button>`).join('')}</div></section>
+        <div class="apercu-semaines">${semaines.map((b) => `<button type="button" class="mois-case petit etat-${b.etat}" data-action="aller-semaine" data-lundi="${b.lundi}" title="${esc(`${libSemaine(b.lundi)} : ${h(b.charge)} pour ${h(b.capacite)}`)}"><small>${sem(b.lundi)}</small><b>${b.etat === 'absent' || b.capacite <= 0 ? 'Abs.' : pct(b.taux)}</b></button>`).join('')}</div></section>
       <section class="bloc-detail"><h3>Affectations en cours et à venir <span>${affs.length}</span></h3>
         ${affs.length ? `<ul class="mini-liste">${affs.map((a) => `<li><span>${puceProjet(projet(a.projet), esc(nomPr(a.projet)))} ${h(a.heures)}/sem. · ${plage(a)}</span><button type="button" class="btn petit" data-action="affectation" data-id="${a.id}">Modifier</button></li>`).join('')}</ul>` : '<p class="mention">Aucune affectation à venir.</p>'}
         <div class="rang"><button type="button" class="btn petit" data-action="nouvelle-affectation" data-personne="${p.id}">${ICONES.plus}Affecter</button><button type="button" class="btn petit" data-action="nouvelle-absence" data-personne="${p.id}">${ICONES.plus}Absence</button></div></section>
@@ -1281,8 +1281,8 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
+    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;
