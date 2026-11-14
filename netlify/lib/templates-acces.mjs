@@ -107,6 +107,7 @@ export const PRODUITS = {
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
+  CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/' },
   SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
 };
