@@ -134,6 +134,7 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
       `node docs/qme/en/build.mjs`, PDF recopiés dans `assets/`, `?v=` des liens mis à jour.
 - [ ] **Vidéo de présentation** (facultatif, sur demande de Quentin) : générateur dans Nexora.
 - [ ] **`netlify.toml`** : en-têtes `noindex` et `sw.js` pour `/templates/<slug>/*`.
+- [ ] **`sitemap.xml`** : `node outils/sitemap/generer.mjs` (nouvelle page catalogue ; `outils/templates/sitemap.test.mjs` échoue sinon).
 - [ ] **`README.md`** et **`docs/templates/IDEES.md`** (statut, liens de communication).
 - [ ] **Vérification** : toutes les pages modifiées en Playwright (1280 px et iPhone 13), aucun lien
       mort (boutons Acheter en 200), aucune page plus large que 390 px.
