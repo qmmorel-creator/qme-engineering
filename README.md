@@ -382,6 +382,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ; taux et échéances par défaut sourcés et datés, modifiables ; export CSV (opérations, périodes, échéancier) et
   import CSV ; outil d'aide, pas un conseil fiscal, aucune connexion externe). Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
+- `templates/papiers/` (DCS) : **papiers du foyer** (T83, 15 €), prêt, « Mise en vente prochaine » (démo libre, fiche
+  Gumroad à créer : `docs/templates/communication/papiers/gumroad.json`). Inventaire des documents du foyer et de leur
+  emplacement (classeur, boîte, tiroir, cloud, notaire : noms libres), recherche « où est… », 77 documents types en 9
+  catégories avec la durée de conservation de la fiche F19134 de service-public.gouv.fr (vérifiée le 13/10/2026,
+  consultée le 14/11/2026, à revérifier chaque année : `BASE.source` dans `donnees.js`), modifiable par document ;
+  « peut être jeté » calculé (date du document, événement daté par l'utilisateur ou 31 décembre de l'année N+k) ;
+  échéances de renouvellement saisies (pièces d'identité, contrôle technique, assurances) avec rappel ; fiche « en cas
+  d'urgence » pour un proche ; inventaire, liste à trier et fiche imprimables ; export CSV. Aucun contenu ni numéro de
+  pièce stocké (numéros longs, IBAN et mots de passe refusés dans les champs libres). Fiche
+  `docs/templates/fiches/papiers.md`, tests `outils/templates/papiers.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

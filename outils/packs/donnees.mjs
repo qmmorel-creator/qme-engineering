@@ -79,6 +79,7 @@ export const TEMPLATES = {
   RPS: { slug: 'repas', prix: 1300, phrase: 'Menus de la semaine, liste de courses par rayon à cocher.', pour: 'perso' },
   VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', pour: 'perso' },
   CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', pour: 'pro' },
+  DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -90,7 +91,6 @@ export const PREVUS = {
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
-  DCS: { nom: 'Papiers du foyer', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.' },
   RBS: { nom: 'Remboursements santé', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.' },
   CPT: { nom: 'Capacité d’emprunt et comparateur de prêts', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.' },
   CDX: { nom: 'Cadeaux reçus et remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.' },
@@ -231,9 +231,10 @@ export const PAGES = {
       ['TDV', 'Convertissez chaque dépense en heures de travail avant d’acheter.'],
       ['PTM', 'Estimez ce que valent vos biens et ce que leur revente rapporterait.'],
       ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
+      ['DCS', 'Retrouvez chaque papier et sachez combien de temps le garder.'],
     ],
     arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Papiers, remboursements santé et emprunt à venir, avec l’option Pack évolutif'],
-    prevus: ['DCS', 'RBS', 'CPT'],
+    prevus: ['RBS', 'CPT'],
   },
   PMR: {
     couleur: 'rouge', cibles: ['couples'],

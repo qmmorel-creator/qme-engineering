@@ -465,6 +465,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/papiers/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/papiers/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/doe/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
