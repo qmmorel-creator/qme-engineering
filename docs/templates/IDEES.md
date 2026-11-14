@@ -138,7 +138,7 @@ déjà).
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | idée | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | idée | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en cours | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | idée | 35 € | M | P2 | Backlog Quentin n° 41 |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
@@ -1038,3 +1038,30 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
+
+## Fiche T61 (cadrage délégué par Quentin, 14/11/2026)
+
+### T61 · Maintenance préventive, GMAO légère (`templates/maintenance/`, préfixe GMA)
+- Fiche détaillée : [`fiches/maintenance.md`](fiches/maintenance.md). Application web, 39 €, permalien prévu
+  `maintenance-preventive`, catalogue `pro` · thème « Équipements et véhicules ». Packs prévus : Moyens généraux,
+  Exploitation et maintenance (`GMA` ajouté à `TEMPLATES` et retiré de `PREVUS` dans `outils/packs/donnees.mjs` ;
+  ajout aux `produits` des packs laissé au coordinateur).
+- Promesse : « Chaque machine entretenue à temps. »
+- Base intégrée : 16 familles d'équipements, 54 opérations types avec points de contrôle (périodicités
+  **indicatives, non sourcées**, la notice du fabricant prime) ; **daté** : 2 obligations sourcées reprises de
+  T11 (chaudières 4–400 kW, art. R224-41-4 à R224-41-9 ; thermodynamiques 4–70 kW, art. R224-44 à R224-44-5),
+  vérifiées le 13/11/2026, à revoir chaque année ; 10 vérifications réglementaires **sans périodicité**
+  (levage, pression, électricité, incendie, portes automatiques, éclairage de sécurité, fluides frigorigènes,
+  conduit de cuisine) : « à paramétrer » jusqu'à la saisie de l'utilisateur.
+- Moteur d'échéances commun avec T11 et T29 (date, compteur, premier atteint, date estimée par le rythme,
+  recalage glissant ou calendaire) ; bons d'intervention imprimables ; pièces de rechange ; coût par équipement ;
+  indicateurs (taux de réalisation du préventif, ponctualité, retards, pannes).
+- **Confidentiel** vérifié : aucun artefact professionnel repris, démo fictive (« Atelier Exemple »).
+- Statut : **prêt**, « Mise en vente prochaine » (page `catalogue/maintenance/`, démo libre, bouton « Je suis
+  intéressé(e) »). Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, cartes). Reste :
+  fiche Gumroad (et entrée de `communication/gumroad-a-creer.json`), clé de licence (Quentin), lignes des
+  plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).
+- À vérifier : périodicités indicatives des plans types ; libellés des vérifications réglementaires (liste non
+  exhaustive) ; catégorie Gumroad.
+

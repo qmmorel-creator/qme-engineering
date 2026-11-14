@@ -71,9 +71,9 @@ conseils ; puis choix des familles d'équipements présentes (pour proposer leur
 
 ## Base intégrée (`templates/maintenance/donnees.js`)
 
-- 16 **familles d'équipements** avec leur unité de compteur usuelle et leur **plan type** (60 opérations
-  environ) : nature (entretien, contrôle, réglementaire), périodicité indicative à la date et/ou au compteur,
-  durée estimée, intervenant habituel (interne ou prestataire), 2 à 4 **points de contrôle** par opération.
+- 16 **familles d'équipements** avec leur unité de compteur usuelle et leur **plan type** (54 opérations) :
+  nature (entretien, contrôle, réglementaire), périodicité indicative à la date et/ou au compteur,
+  durée estimée, intervenant habituel (interne ou prestataire), 1 à 4 **points de contrôle** par opération.
 - 2 **obligations sourcées** (daté) : chaudières 4–400 kW (Code de l'environnement, art. R224-41-4 à
   R224-41-9 ; arrêté du 15 septembre 2009) et systèmes thermodynamiques 4–70 kW (art. R224-44 à R224-44-5 ;
   arrêté du 24 juillet 2020), reprises de T11.
