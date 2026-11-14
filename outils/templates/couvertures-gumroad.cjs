@@ -49,6 +49,8 @@ const T = {
   'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
   'voiture': ["Carnet de voiture", "Ta voiture, entretenue à temps.", "Entretiens · kilométrage · dépenses"],
   'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
+  'bascule': ["Pilotage d'une journée de bascule", "Ta bascule, minute par minute.", "Go/no-go · retour arrière · retard en direct"],
+  'gestion-classe': ["Gestion de classe", "Tes classes, de la note au bulletin.", "Notes · compétences · appréciations · bulletins"],
   'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
   'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
 };
