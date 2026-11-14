@@ -45,6 +45,7 @@ export const TEMPLATES = {
   VTR: { slug: 'leasing', prix: 1200, phrase: 'Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.', pour: 'perso' },
   PHR: { slug: 'planner', prix: 1500, phrase: 'Votre semaine en blocs de 30 minutes, prévu et réalisé.', pour: 'perso' },
   ENT: { slug: 'entretien', prix: 1200, phrase: 'Chaudière, ramonage, VMC : échéances calculées.', pour: 'perso' },
+  EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
 };
 
@@ -59,7 +60,6 @@ export const PREVUS = {
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
-  EPG: { nom: 'Objectif d’épargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.' },
   DMN: { nom: 'Déménagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
@@ -209,9 +209,10 @@ export const PAGES = {
       ['DTT', 'Soldez vos dettes une à une avec une date de fin.'],
       ['TDV', 'Convertissez chaque dépense en heures de travail avant d’acheter.'],
       ['PTM', 'Estimez ce que valent vos biens et ce que leur revente rapporterait.'],
+      ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Épargne, papiers, santé et emprunt à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['EPG', 'DCS', 'RBS', 'CPT'],
+    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Papiers, remboursements santé et emprunt à venir, avec l’option Pack évolutif'],
+    prevus: ['DCS', 'RBS', 'CPT'],
   },
   PMR: {
     couleur: 'rouge', cibles: ['couples'],

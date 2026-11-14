@@ -180,6 +180,12 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   modèles, cibles à la hausse ou à la baisse) comparés à la part de l'année écoulée, actions trimestrielles (48 idées,
   report des actions restées ouvertes), revue guidée chaque trimestre (bilan annuel au 4e), évolution de la roue
   revue après revue. Règles dans `regles.js`, tests `outils/templates/tableau-annuel.test.mjs`.
+- `templates/epargne/` (EPG) : **objectif d'épargne et fonds d'urgence**, prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/epargne/gumroad.json`). 12 objectifs
+  types (plus « Autre ») avec postes de budget, fonds d'urgence en mois de dépenses essentielles avec repère de taille selon la
+  situation, date d'atteinte et versement nécessaire, scénarios d'intérêts composés au taux saisi (aucun taux
+  intégré), jalons, historique des versements, plan des 12 prochains mois. Règles dans `regles.js`, tests
+  `outils/templates/epargne.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

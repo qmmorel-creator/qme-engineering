@@ -47,6 +47,7 @@ const T = {
   'leasing': ["Simulateur leasing ou achat", "Ta voiture, au vrai prix.", "Comptant · crédit · LOA · LLD : le coût total net côte à côte"],
   'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
   'tableau-annuel': ["Tableau de bord annuel · roue de vie", "Ton année, domaine par domaine.", "Roue de vie · objectifs et résultats clés · revue chaque trimestre"],
+  'epargne': ["Objectif d'épargne · fonds d'urgence", "Chaque euro a un but.", "Fonds d'urgence en mois de dépenses · date d'atteinte · scénarios"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
