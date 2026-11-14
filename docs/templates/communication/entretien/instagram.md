@@ -56,3 +56,28 @@ Besoin de plus ? Un parc de logements, des contrats de maintenance, vos équipes
 Démo libre et contact : lien en bio.
 
 #Maison #Organisation #EntretienMaison #Locataire #Propriétaire
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-64
+
+Doc : https://docs.google.com/document/d/12Ypk-f25iG-ppq3Ys0ev9rJSHjPTFxf7WwyDakN3FeI/edit
+
+À quand remonte le dernier ramonage ? En général, on le découvre le jour où l'assureur demande le certificat.
+
+Chaudière, ramonage, filtres de VMC, détecteur de fumée, gouttières : une maison, c'est une trentaine de petites échéances, et aucune ne prévient.
+
+Entretien de la maison :
+▪ vous cochez les équipements de votre logement, 89 tâches types se mettent en place ;
+▪ l'application calcule ce qui est en retard, ce qui tombe ce mois-ci et ce qui arrive ;
+▪ chaque intervention garde sa date, son coût et l'intervenant, et l'année s'imprime.
+
+Les fréquences d'origine réglementaire affichent leur source, à vérifier selon votre département et votre bail. Achat unique, 12 €.
+
+Besoin de plus ? Un parc de logements, des contrats de maintenance, vos équipes : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Quelle échéance de la maison oubliez-vous le plus souvent ?
+
+#Maison #Organisation #EntretienMaison #Locataire #Propriétaire

@@ -105,3 +105,35 @@ https://qm-engineering.fr/templates/onboarding/?demo
 Lien d'achat en premier commentaire.
 
 #RessourcesHumaines #Onboarding #PME #Management #Organisation
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-115
+
+Doc : https://docs.google.com/document/d/15-YNRzd6CClulfI6XFrt0txzAmkFXjFmgAGvXxmxC0Y/edit
+
+Le premier jour d'un nouveau salarié se prépare quinze jours avant. Son dernier jour aussi : le badge, le téléphone, les accès, les documents.
+
+Une arrivée, c'est une vingtaine de petites tâches réparties entre les RH, le manager, l'informatique et les services généraux.
+
+Chacune a son moment : avant le premier jour, le jour même, la première semaine, le premier mois. Un départ en compte autant, dans l'autre sens.
+
+J'ai construit un outil qui fait trois choses :
+
+▪ il crée la checklist de chaque arrivée ou départ depuis des modèles par profil (poste de bureau, poste terrain, manager, alternant), chaque tâche avec son responsable et son échéance de J-15 à J+90 ;
+▪ il montre chaque semaine ce que chaque responsable doit faire, les retards en tête ;
+▪ il suit le matériel remis à l'arrivée et signale ce qui n'est pas rendu au départ.
+
+Les modèles se modifient : on ajoute ses propres tâches, on retire celles qui ne servent pas. Quelques repères réglementaires sont rattachés aux tâches concernées, avec leur source et leur date, à vérifier.
+
+Côté données, le minimum : prénom et initiale, poste, dates. Pas d'intégration à un logiciel RH, et l'effacement de la fiche est proposé une fois le parcours terminé.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique.
+
+Une démo avec une PME fictive est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/onboarding/?demo
+
+Lien d'achat en premier commentaire.
+
+RH, managers : lors du dernier départ dans votre équipe, qu'est-ce qui a été oublié ?
+
+#RessourcesHumaines #Onboarding #PME #Management #Organisation

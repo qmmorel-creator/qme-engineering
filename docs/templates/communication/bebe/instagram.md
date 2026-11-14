@@ -68,3 +68,28 @@ kit) : image à produire seulement quand elles reprennent.
 ## Remarque
 
 `#JeunesParents` et `#Parentalité` ne font pas partie des jeux de hashtags du kit : à valider par Quentin.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-90
+
+Doc : https://docs.google.com/document/d/10k4urzMbg5_0p_XfVK5nqrsrmt-9e7hLOtfVSMA98HY/edit
+
+La dernière tétée, c'était quand ?
+
+Les premières semaines, on note tout, partout : sur un carnet, dans deux téléphones, sur le frigo.
+
+Le Suivi du bébé :
+▪ note une tétée, un biberon, un sommeil ou une couche en un geste, même la nuit sans réseau ;
+▪ réunit les saisies des deux parents dans le même suivi ;
+▪ prépare les résumés de la semaine et un récapitulatif pour le rendez-vous.
+
+Aucune norme, aucune alerte : l'outil additionne, le médecin, la sage-femme ou la PMI interprète. Rien n'est enregistré sans votre accord.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à de futurs parents autour de vous.
+
+Chez vous, qui note quoi, et où ?
+
+#Organisation #Maison #OutilsNumériques #JeunesParents #Parentalité

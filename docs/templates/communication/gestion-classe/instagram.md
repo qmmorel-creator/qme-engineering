@@ -65,3 +65,28 @@ Gabarit `story` du kit (1080 × 1920) : « Tes classes, de la note au bulletin. 
 https://qm-engineering.fr/templates/gestion-classe/?demo (« Essayer la démo ») ; mention « Élèves fictifs »
 si une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement
 quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-80
+
+Doc : https://docs.google.com/document/d/17OtJtGteqdFHTlHHzTQ_1lo7klDeBNtx_FNJbUw38G8/edit
+
+28 appréciations à écrire pour demain, et une moyenne à refaire ?
+
+Plusieurs classes, des groupes, des barèmes différents : la fin de trimestre arrive vite.
+
+La Gestion de classe :
+▪ saisit les notes au clavier ou sur téléphone, la note puis Entrée ;
+▪ calcule les moyennes pondérées et les statistiques de la classe ;
+▪ positionne les compétences sur quatre échelons et aide à composer les appréciations.
+
+Prénom et initiale des élèves, rien de plus. Outil personnel de préparation : vérifiez avec votre établissement avant d'y saisir des données réelles. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à un collègue qui prépare ses conseils de classe.
+
+Vos moyennes, vous les calculez avec quoi aujourd'hui ?
+
+#Enseignant #Professeur #Éducation #Organisation #OutilsNumériques

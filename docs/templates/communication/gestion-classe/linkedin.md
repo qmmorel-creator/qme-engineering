@@ -77,3 +77,33 @@ La gestion de classe (25 €, achat unique) : [lien Gumroad à compléter : le t
   (échelle à quatre échelons) du code de l'éducation, en vigueur depuis le 1er septembre 2016.
 - Prix de 25 € d'après `IDEES.md`, à confirmer. Aucun logiciel de vie scolaire nommé.
 - Ne pas publier avant que Quentin ait tranché la question RGPD (voir la fiche).
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-125
+
+Doc : https://docs.google.com/document/d/1iGOI2eYIBRUKV0cEJSNjjLsh-G0tB4wYi6pENTplUr4/edit
+
+La veille du conseil de classe, il reste 28 appréciations à écrire et une moyenne à recalculer parce qu'un coefficient a changé.
+
+Un enseignant de collège ou de lycée jongle avec plusieurs classes, des groupes, des barèmes différents et des compétences à positionner, puis rédige des dizaines d'appréciations en fin de période.
+
+J'ai donc construit une gestion de classe qui fait trois choses :
+
+▪ elle accélère la saisie : la note puis Entrée, l'élève suivant ; une lettre pour absent, non noté ou dispensé ; au clavier comme sur téléphone ;
+▪ elle calcule les moyennes pondérées (tout barème ramené sur 20, coefficients, bonus retenu seulement s'il fait monter la moyenne) et les statistiques de la classe : médiane, extrêmes, répartition ;
+▪ elle positionne les compétences sur quatre échelons et aide à rédiger les appréciations à partir d'une banque de phrases que chacun réécrit à sa façon, jusqu'au bulletin imprimable.
+
+Le référentiel de départ reprend les domaines du socle commun et l'échelle de maîtrise du code de l'éducation, source affichée ; tout est modifiable.
+
+Côté données, j'ai fait le choix d'en savoir le moins possible : un prénom et une initiale, ou un pseudonyme, et aucun champ sensible. C'est un outil personnel de préparation : il ne remplace pas le logiciel de l'établissement, et chacun vérifie avec son établissement avant d'y mettre des données réelles.
+
+Ordinateur et téléphone, achat unique, sans abonnement.
+
+Une démo avec trois classes fictives est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/gestion-classe/?demo
+
+Lien d'achat en premier commentaire.
+
+Collègues enseignants : pour un conseil de classe, combien de soirées vous prennent les appréciations ?
+
+#Enseignement #Éducation #Professeur #OutilsNumériques #Organisation

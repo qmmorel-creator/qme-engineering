@@ -74,3 +74,33 @@ fiche sera en ligne]
 - Texte : environ 1 400 caractères (hors accroche et hashtags). Aucun chiffre de gain promis.
 - Prix 15 € d'après `IDEES.md`, à confirmer. « Barème publié en avril 2026 » : actualité Service-public
   A14686 du 9 avril 2026 (revenus 2025).
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-112
+
+Doc : https://docs.google.com/document/d/1sJphCosoY23STaFuE5P5G2hQVWBaqYHlL-Bl72OVNiQ/edit
+
+Fin du mois : une enveloppe de tickets, trois trajets oubliés, et une note de frais à rendre avant vendredi.
+
+Qu'on soit salarié qui avance ses frais ou indépendant qui se rembourse par sa société, la note de frais revient chaque mois avec les mêmes questions.
+
+Où est ce ticket ? Combien de kilomètres ce jour-là, à quel barème ? Et ce remboursement d'il y a six semaines, il est arrivé ?
+
+J'ai construit un template qui répond à ces trois questions :
+
+▪ chaque dépense est saisie avec sa catégorie, son montant, la TVA recopiée du ticket et l'endroit où le justificatif est rangé ; les justificatifs manquants sont signalés ;
+▪ chaque trajet est valorisé au barème kilométrique fiscal, véhicule par véhicule, sur le cumul de l'année : montant au fil de l'eau, montant exact et régularisation expliquée ;
+▪ chaque mois, la note est prête à imprimer ou à enregistrer en PDF, puis suivie de « soumise » à « remboursée », avec une alerte si le remboursement tarde.
+
+Le barème intégré est celui publié en avril 2026, avec sa source et sa date ; il se modifie chaque année. Aucun fichier stocké, aucun envoi automatique : c'est un outil d'aide, pas un service comptable.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec une salariée fictive et dix mois de frais est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/notes-de-frais/?demo
+
+Lien d'achat en premier commentaire.
+
+Vos tickets du mois, ils attendent où : enveloppe, portefeuille ou photo sur le téléphone ?
+
+#NotesDeFrais #Indépendants #FraisProfessionnels #Comptabilité #Organisation

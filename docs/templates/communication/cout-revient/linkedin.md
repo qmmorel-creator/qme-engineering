@@ -68,3 +68,33 @@ https://qm-engineering.fr/templates/cout-revient/?demo
 
 *Le lien d'achat en commentaire plutôt que dans le texte : LinkedIn diffuse généralement moins les
 publications qui contiennent plusieurs liens (pratique courante, non garantie).*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-76
+
+Doc : https://docs.google.com/document/d/1N_CxkOuUed5S6cdI0a4vyt4hQ3x-weVVPoN1qC1qTSM/edit
+
+Un client qui paie bien n'est pas forcément un client rentable. Tout dépend du temps qu'il vous prend.
+
+Beaucoup d'indépendants fixent leur tarif en regardant celui des autres. Le bon point de départ est ailleurs : ce que l'activité doit couvrir dans l'année (charges, rémunération, cotisations), divisé par le temps réellement facturable.
+
+Une fois les week-ends, les jours fériés, les congés, la prospection et la gestion retirés, ce temps est souvent bien plus court qu'on ne le pense.
+
+J'ai donc construit un outil qui fait ce calcul de bout en bout :
+
+▪ les jours ouvrés de l'année sont calculés (jours fériés compris), puis le temps non facturable est retiré : on obtient les heures vraiment vendables ;
+▪ le coût de revient par heure et par jour en découle, avec un prix plancher et un prix conseillé selon la marge visée ;
+▪ pour chaque client, on saisit le temps passé, les frais et les factures : l'outil affiche la marge, le taux horaire réel et signale les clients sous le plancher.
+
+Il arrive avec un catalogue de postes de charges types d'un prestataire et deux structures de départ (indépendant seul, agence de trois personnes). Aucun taux de cotisations n'est figé dedans : chacun saisit le sien, l'outil ne se périme pas.
+
+Pas de tableur à maintenir : il s'ouvre dans le navigateur avec une clé, garde les données en ligne et fonctionne sur ordinateur comme sur téléphone. Achat unique, sans abonnement. C'est un outil d'aide à la décision, pas un conseil comptable.
+
+Une démo avec une activité fictive est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/cout-revient/?demo
+
+Lien d'achat en premier commentaire.
+
+Votre tarif actuel, vous l'avez fixé à partir de vos coûts ou à partir des prix des autres ?
+
+#Freelance #Indépendants #Tarification #EntrepreneuriatFrance #GestionDEntreprise

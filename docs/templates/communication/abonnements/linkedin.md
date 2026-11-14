@@ -103,3 +103,31 @@ https://qm-engineering.fr/templates/abonnements/?demo
 Lien d'achat en premier commentaire.
 
 #Budget #FinancesPersonnelles #Abonnements #Consommation #Organisation
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-107
+
+Doc : https://docs.google.com/document/d/1M02bjQpeNLj_Kc-rRcRqy-CVd4ewLiT3_kzUu8XS6Do/edit
+
+Un abonnement à 8,99 € ne fait peur à personne. Quinze, si, quand on les additionne enfin sur un an.
+
+Le coût d'un abonnement se lit au mois. Celui de tous les abonnements se lit à l'année, et presque personne ne le calcule : les prélèvements sont hebdomadaires, mensuels, trimestriels ou annuels, certains sont partagés, d'autres engagent pour douze mois avec un préavis.
+
+J'ai donc construit un suivi des abonnements qui fait trois choses :
+
+▪ il ramène chaque abonnement au mois et à l'année, votre part seulement s'il est partagé, et additionne par catégorie ;
+▪ il affiche les prélèvements du mois dans un calendrier, et les douze prochains mois avec les pics des annuels ;
+▪ il calcule pour chaque essai gratuit, fin d'engagement ou renouvellement annuel la date avant laquelle décider, préavis compris.
+
+Une liste de 96 abonnements courants est intégrée, sans aucune marque ni prix : on coche, on saisit ce qu'on paie vraiment. Marquer « à résilier » puis « résilié » chiffre l'économie annuelle.
+
+Pas de connexion bancaire, pas de lien de résiliation : vous gardez la main. Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement, ce qui s'imposait.
+
+Une démo avec un foyer fictif est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/abonnements/?demo
+
+Lien d'achat en premier commentaire.
+
+Un essai gratuit devenu payant sans que vous le voyiez passer : au bout de combien de temps l'avez-vous remarqué ?
+
+#Budget #FinancesPersonnelles #Abonnements #Consommation #Organisation

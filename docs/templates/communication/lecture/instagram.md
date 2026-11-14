@@ -68,3 +68,28 @@ produire seulement quand elles reprennent.
 Le kit n'a pas de jeu « lecture » : jeu proposé `#Lecture #Livres #Bookstagram #ObjectifLecture #Organisation`
 (5 au plus), **à valider par Quentin**. `#Bookstagram` est le mot-dièse de la communauté lecture sur Instagram
 (usage courant, volume non vérifié).
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-84
+
+Doc : https://docs.google.com/document/d/1UQkMaG-RELd7fEI-N0nJlK5auDMLIe7p_MMOsTzk5Qo/edit
+
+Vous finirez votre livre quand, au juste ?
+
+On se fixe 24 livres en janvier, et en novembre on compte sur ses doigts.
+
+Le Suivi de lecture :
+▪ tient votre bibliothèque papier, numérique et audio, et votre liste à lire par priorité ;
+▪ transforme chaque session en progression, en rythme et en date de fin estimée ;
+▪ vous dit au jour près si vous êtes en avance ou en retard sur votre objectif de l'année.
+
+Statistiques par mois, genre et auteur, notes et citations. Pas de profil public, rien n'est cherché en ligne. Achat unique, 12 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Et vous, combien de livres visez-vous cette année ?
+
+#Lecture #Livres #Bookstagram #ObjectifLecture #Organisation

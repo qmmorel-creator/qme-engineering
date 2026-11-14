@@ -63,3 +63,35 @@ Lien d'achat en commentaire.
 > J'ai sorti une trésorerie prévisionnelle en ligne : prévu, réalisé, trois scénarios et une alerte dès
 > que le solde passe sous ton seuil, sur 12 mois glissants. Démo libre :
 > https://qm-engineering.fr/templates/tresorerie/?demo
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-91
+
+Doc : https://docs.google.com/document/d/1PInJU2_zCKLKhB6ENiLBYOiXI7Mqi5BQqcjPTXtl4fE/edit
+
+Un compte bancaire positif aujourd'hui ne dit rien du mois de mars.
+
+Dans une petite entreprise, le creux de trésorerie se voit souvent trop tard. Un achat de matériel, une échéance annuelle et un client qui paie en retard tombent le même mois, et le découvert arrive sans prévenir.
+
+Le plan de trésorerie existe pour ça. Mais le tableur qui le porte est rarement tenu à jour.
+
+J'ai donc construit une trésorerie prévisionnelle sur 12 mois glissants :
+
+▪ les encaissements et décaissements prévus, ponctuels ou récurrents (mensuels, trimestriels, annuels) ;
+▪ le réalisé saisi en regard du prévu, mois après mois : le solde se recalcule avec le réel ;
+▪ trois scénarios (prudent, central, optimiste) et un seuil d'alerte : le mois à surveiller apparaît tout de suite, sur un graphique et dans le tableau.
+
+Il arrive prêt à l'emploi : 37 catégories types d'une TPE et 4 profils d'activité (prestataire, commerce, artisan, société avec salariés) pour démarrer en quelques minutes. Le plan s'exporte en CSV pour le tableur ou l'expert-comptable.
+
+Ce n'est pas un logiciel comptable, et il ne contient aucune échéance fiscale ou sociale toute faite : chacun saisit les siennes.
+
+C'est un outil d'aide à la décision, simple, qui s'ouvre dans le navigateur avec une clé et suit son utilisateur de l'ordinateur au téléphone. Achat unique, sans abonnement.
+
+Une démo avec un atelier fictif est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/tresorerie/?demo
+
+Lien d'achat en premier commentaire.
+
+Dirigeants de TPE, indépendants : votre prévisionnel de trésorerie, il a été mis à jour quand pour la dernière fois ?
+
+#Trésorerie #TPE #Entrepreneuriat #Indépendants #Gestion

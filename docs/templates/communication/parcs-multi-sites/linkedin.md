@@ -76,3 +76,31 @@ vente au 14/11/2026]
 - Faits repris de l'application uniquement (démo à 10 sites et 30 équipements, alertes, modèle CSV, carte
   sans fond de carte). Prix de 49 € d'après `IDEES.md`, à confirmer.
 - Les exemples de l'accroche (porte de quai, douze jours) sont ceux de la démo fictive.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-127
+
+Doc : https://docs.google.com/document/d/1hPZ1B9JGvIgOBk-_lFY4HHuflBjDJdVVUcZGExYl0Bs/edit
+
+Lequel de vos sites n'a pas vu passer quelqu'un depuis six mois ? Dans un tableur à un onglet par site, personne ne le voit.
+
+Quand on exploite plusieurs sites (résidences, bureaux, commerces, entrepôts), l'information est éparpillée : un onglet par site, des échéances de préventif recalculées à la main, des pannes suivies par e-mail, et le coût de chaque site reconstitué en fin d'année.
+
+J'ai construit un outil de pilotage de parcs multi-sites qui fait trois choses :
+▪ il tient les sites et leurs équipements, et calcule le prochain préventif à partir du dernier passage réalisé ;
+▪ il suit chaque panne du signalement à la résolution, et en tire la disponibilité, le délai moyen de résolution et le coût par site et par catégorie ;
+▪ il alerte : préventif dépassé, équipement à l'arrêt depuis trop longtemps, site sans visite depuis plusieurs mois.
+
+Les sites se consultent en liste triable ou sur une carte schématique, placés par leurs coordonnées, sans fond de carte en ligne. Une liste existante se reprend depuis un tableur (modèle CSV fourni), et tout s'exporte dans le même format.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement. Aucune périodicité réglementaire n'est imposée : chacun saisit celle de son contrat.
+
+Une démo avec un parc fictif de dix sites est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/parcs-multi-sites/?demo
+
+Lien d'achat en premier commentaire.
+
+Sur un parc de plusieurs sites, qu'est-ce qui vous échappe en premier : les préventifs, les pannes ou les coûts ?
+
+#Maintenance #FacilityManagement #GestionDePatrimoine #ServicesGénéraux #OutilsNumériques

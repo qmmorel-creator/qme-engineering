@@ -54,3 +54,28 @@ la démo, puis à la une « Templates ».
 
 - Légende : Google Doc `10jD3qxr5lXJb-EPJLaNMF3LMUlPeRSOazFv1FNANPyA` (dossier Textes).
 - Images (dossier Images) : `IG-12-visa-1.png` 1yzAKe3wnQHP-cJv_7vz9IqLkJA5lcz5Q, `IG-12-visa-2.png` 1WSVjjKf3GS7yFEQlVQwkQ6fwhn1XKZMO, `IG-12-visa-3.png` 1WK1jiC2zUohp-rpn87mI6tKHOOoV1D7G, `IG-12-visa-4.png` 1ka6dAzLKft0OyqHMbIHjTO7JQ8u4AERf, `IG-12-visa-5.png` 1NYjd7b5LN_7Yp-Di2zIZjIqfGRgNGOmv, `IG-12-visa-story.png` 1TTcgPq2qVn9yu73dWdxC7OVl6K5FHT_D.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-12
+
+Doc : https://docs.google.com/document/d/1k1qWGojkHw7edEp8vJ7pRxquHUA3L-GXS_efQJUNBI8/edit
+
+Un plan qui attend son visa trois semaines ? Souvent, c'est une relance que personne n'a envoyée.
+
+Avec dix lots, quatre viseurs et des dizaines de documents à différents indices, le suivi des visas déborde vite du tableur.
+
+Le Circuit de visa :
+▪ un registre par lot : indice, réception, échéance, avis de chaque viseur (VSO, VAO, REF) ;
+▪ des échéances calculées avec les délais de votre marché, calendaires ou ouvrés ;
+▪ chaque matin, qui relancer, avec le message de relance déjà rédigé.
+
+Un tableau de bord suit le délai moyen face au délai contractuel. Export CSV, impression. Achat unique, 39 €.
+
+Relié à votre GED, vos mails ou vos autres registres ? Je construis la version sur mesure.
+
+Démo libre avec trois opérations fictives, et contact : lien en bio.
+
+Sur vos opérations, qui envoie les relances de visa ?
+
+#BTP #MaîtriseDŒuvre #Chantier #GestionDeProjet #OutilsSurMesure

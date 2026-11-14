@@ -62,3 +62,28 @@ gabarit `story` du kit, titre « Arrivées et départs, sans oubli », capture `
 mention « Données fictives », autocollant lien vers https://qm-engineering.fr/templates/onboarding/?demo
 (texte « Essayer la démo »). Texte alternatif : « Story : Arrivées et départs, sans oubli. Capture du tableau
 de bord de l'onboarding sur téléphone, données fictives. Lien vers la démo. »
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-70
+
+Doc : https://docs.google.com/document/d/10qqQ4CE10FbCuzK6HxMM1vaLWS6-YyNLGNRdDCyVs04/edit
+
+Le badge est prêt pour lundi ? Et le téléphone de celui qui part vendredi ?
+
+Dans une PME, on accueille quelqu'un trois ou quatre fois par an : assez pour oublier chaque fois une étape différente.
+
+L'Onboarding et offboarding salarié :
+▪ crée la checklist de chaque arrivée ou départ depuis des modèles par profil, chaque tâche avec son responsable et son échéance, de J-15 à J+90 ;
+▪ montre ce que chaque responsable doit faire cette semaine, les retards en tête ;
+▪ suit le matériel remis à l'arrivée et signale ce qui n'est pas rendu au départ.
+
+89 tâches types, modèles modifiables. Données minimales, sans logiciel RH. Achat unique, 19 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à la personne qui prépare les arrivées chez vous.
+
+À la dernière arrivée, quelle étape a été oubliée ?
+
+#PME #Organisation #RessourcesHumaines #Onboarding #OutilsNumériques

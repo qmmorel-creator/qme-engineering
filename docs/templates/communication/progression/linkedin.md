@@ -75,3 +75,33 @@ La progression pédagogique (15 €, achat unique) : [lien Gumroad à compléter
   15 € d'après `IDEES.md`, à confirmer.
 - Hashtags : `#Enseignement`, `#Formation` et `#Pédagogie` hors des jeux habituels du planning, **à valider par
   Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-133
+
+Doc : https://docs.google.com/document/d/1e6-iWPK_fGVjtSnUXmbUsiaZ21hSrm0-wCv2RkpjP3o/edit
+
+C'est souvent en mai qu'on découvre que le programme ne tiendra pas.
+
+Une progression annuelle, on la construit en septembre. Ensuite, l'année fait sa vie : vacances, jours fériés, semaines A et B, cours annulés, séquence qui déborde. Et on n'a jamais le temps de recompter les heures qui restent.
+
+J'ai donc construit une progression pédagogique en ligne qui fait trois choses :
+▪ elle pose les séquences, leurs objectifs et leurs heures sur le vrai calendrier : les vacances de la zone (saisies), les jours fériés (calculés chaque année) et les créneaux de chaque classe ;
+▪ après chaque cours, un geste : faite, reportée ou annulée. Une séance reportée est replacée au prochain créneau libre ;
+▪ elle compare le réel au prévu : avancement, retard en heures et en séances, date de fin projetée, et une alerte quand le programme ne tient plus avant la fin des cours, avec les heures qui manquent.
+
+Une frise montre chaque séquence sur l'année, avec la fenêtre où elle doit se terminer (avant une évaluation commune, un examen blanc).
+
+Pour écrire les objectifs, une banque de verbes rangés selon les six niveaux de la taxonomie de Bloom ; les objectifs flous (« connaître », « maîtriser ») sont signalés. Cahier de textes imprimable, export CSV, et la structure se recopie sur l'année suivante.
+
+Aucune donnée d'élève, aucun programme officiel recopié : les séquences restent celles de l'enseignant ou du formateur. Ça s'ouvre dans le navigateur avec une clé, sur le téléphone en sortant de cours comme sur l'ordinateur. Achat unique, sans abonnement.
+
+Une démo avec trois classes fictives est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/progression/?demo
+
+Lien d'achat en premier commentaire.
+
+Enseignants, formateurs : en général, à quel moment de l'année voyez-vous que le programme ne tiendra pas ?
+
+#Enseignement #Formation #Pédagogie #OutilsNumériques #Organisation

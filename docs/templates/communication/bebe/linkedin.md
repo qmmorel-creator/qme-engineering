@@ -66,3 +66,37 @@ création de la fiche).
 Tétées, sommeil, couches : notés d'une main, à deux parents, même la nuit sans réseau.
 Des résumés sans norme et un récapitulatif pour le rendez-vous. Rien d'enregistré sans votre accord.
 Démo libre : qm-engineering.fr/templates/bebe/?demo
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-135
+
+Doc : https://docs.google.com/document/d/1OU-VUV2VFVzSihO8-h5jrcimv0O8EZ9qT31XLv59W9A/edit
+
+« Il a mangé à quelle heure, et de quel côté ? » À trois heures du matin, aucun des deux parents ne s'en souvient.
+
+Les premières semaines avec un bébé, on note tout : les tétées, le côté, les biberons, les siestes, les couches. Sur un carnet, dans une application de notes, chacun de son côté.
+
+Et au rendez-vous, il faut tout reconstituer.
+
+J'ai construit un outil de suivi qui tient sur le téléphone, à une main :
+
+▪ une tétée, un biberon, un sommeil ou une couche se notent en un geste ; le minuteur tourne même sans réseau ;
+▪ les deux parents ouvrent le même suivi sur leur téléphone, et leurs saisies se rejoignent ;
+▪ les résumés montrent les totaux par jour et le rythme de la semaine, et un récapitulatif s'imprime pour le médecin, la sage-femme ou la PMI.
+
+Deux choix assumés.
+
+Aucune norme : l'outil additionne ce que vous notez, sans quantité de lait ni durée de sommeil « recommandée », sans courbe de croissance de référence, sans alerte. C'est le professionnel qui interprète.
+
+Et aucune donnée n'est enregistrée avant votre accord explicite : ce sont des données de santé d'un enfant, hébergées dans l'Union européenne et effaçables d'un bouton.
+
+Il s'ouvre dans le navigateur avec une clé, comme une application sur l'écran d'accueil. Achat unique, sans abonnement. C'est un outil de notes : il ne remplace pas l'avis du médecin.
+
+Une démo avec un bébé fictif est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/bebe/?demo
+
+Lien d'achat en premier commentaire.
+
+Jeunes parents : la nuit, qu'est-ce qui vous échappe le plus vite, l'heure de la dernière tétée ou le côté ?
+
+#JeunesParents #Parentalité #Organisation #OutilsNumériques #RGPD

@@ -64,3 +64,33 @@ Le planner horaire (15 €, achat unique) : https://qmengineering.gumroad.com/l/
 > Ma semaine en blocs de 30 minutes, et chaque vendredi l'écart entre le prévu et le réalisé.
 > Glisser-déposer, blocs récurrents, semaines types cadre, freelance, étudiant. 15 €, sans abonnement.
 > Démo libre : https://qm-engineering.fr/templates/planner/?demo
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-87
+
+Doc : https://docs.google.com/document/d/1QfPTUFUR9q2OknrlqPTFiJMyumao-jme5fDhZbYiLO8/edit
+
+Le lundi, la semaine paraît large. Le vendredi, on se demande où sont passées les heures prévues pour le travail qui compte.
+
+La méthode est connue : au lieu d'une liste de tâches, on donne à chaque heure de la semaine une destination. Travail de fond le matin, messages regroupés, prospection le mercredi, sport deux soirs.
+
+Le difficile n'est pas de le prévoir. C'est de voir l'écart avec la réalité.
+
+J'ai donc construit un planner horaire qui fait les deux :
+
+▪ une grille de 30 minutes où les blocs se posent, se déplacent et s'allongent au glisser-déposer, à la souris comme au doigt ; ce qui revient chaque semaine n'est saisi qu'une fois ;
+▪ chaque bloc se marque en un geste : fait, raccourci, déplacé ou pas fait ;
+▪ le bilan de la semaine compare le prévu et le réalisé par catégorie, avec le taux de réalisation et la tendance des six dernières semaines.
+
+Trois semaines types sont prêtes (cadre, freelance, étudiant) avec leurs catégories de couleur, et toute semaine peut devenir un modèle. Sur téléphone, la semaine s'affiche jour par jour.
+
+Il s'ouvre dans le navigateur avec une clé, garde vos semaines en ligne et fonctionne sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec la semaine d'une freelance fictive est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/planner/?demo
+
+Lien d'achat en premier commentaire.
+
+Sur une semaine ordinaire, quel bloc saute en premier chez vous ?
+
+#Productivité #TimeBlocking #Organisation #Freelance #GestionDuTemps

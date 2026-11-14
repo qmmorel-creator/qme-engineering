@@ -68,3 +68,28 @@ image à produire seulement quand elles reprennent.
 
 Trois du jeu « Travail » du kit (`#Organisation #Productivité #OutilsNumériques`) plus `#Formation` et `#Enseignement`,
 hors des jeux du kit : **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-92
+
+Doc : https://docs.google.com/document/d/165iowauRCyFMV8Z5oL3aljc0TgZaDgNS3dIpdAMyf6s/edit
+
+Vos questions sont dans dix fichiers ?
+
+Chaque quiz se recopie, se corrige au stylo, et on ne sait jamais quelle question a posé problème.
+
+La Banque de questions et quiz :
+▪ range les questions une fois (QCM, vrai ou faux, réponse courte, étiquettes, difficulté) ;
+▪ tire un quiz en un clic et imprime le sujet avec son corrigé à part ;
+▪ calcule la note à partir des réponses saisies, et montre les questions trop faciles ou trop difficiles.
+
+Copies anonymes ou pseudonymes, résultats effaçables à tout moment. Bientôt en vente, sans abonnement.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Quelle question fait trébucher votre groupe à chaque fois ?
+
+#Enseignant #Formation #Enseignement #Quiz #Organisation

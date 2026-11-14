@@ -68,3 +68,28 @@ image à produire seulement quand elles reprennent.
 
 Trois du jeu « Travail » du kit (`#Organisation #Productivité #OutilsNumériques`) plus `#Enseignement` et
 `#Formation`, hors des jeux du kit : **à valider par Quentin**.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-88
+
+Doc : https://docs.google.com/document/d/1_Xdj0LLgKuthSDxIIE6orVHqntwQ8dZA-j10OAfzVGM/edit
+
+Le programme tiendra jusqu'en juin ?
+
+Une sortie, un examen blanc, deux cours annulés : la progression faite en septembre ne tient plus, et on le découvre souvent trop tard.
+
+La Progression pédagogique :
+▪ pose les séquences et leurs heures sur le vrai calendrier (vacances, fériés, semaines A et B) ;
+▪ après chaque cours, un geste : faite, reportée ou annulée ;
+▪ calcule le retard en heures et la date de fin projetée, et prévient si ça ne tient pas.
+
+Aucune donnée d'élève, aucun programme recopié. Sans abonnement : 15 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio. À envoyer à un collègue de votre équipe pédagogique.
+
+Votre progression de septembre, elle tient encore ?
+
+#Enseignant #Professeur #Enseignement #Formation #Organisation

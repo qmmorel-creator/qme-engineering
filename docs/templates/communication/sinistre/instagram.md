@@ -62,3 +62,28 @@ Démo libre avec trois dossiers fictifs, et contact : lien en bio.
 
 `IG-66-sinistre-story.png` (1080 × 1920) : stories abandonnées le 13/11/2026 (voir le kit) ; image gardée
 pour le jour où une solution existe.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-66
+
+Doc : https://docs.google.com/document/d/1B8lU3GzInm2JtBNYWceVZpUy30STZDzgvg1-Tj-wIq8/edit
+
+Un sinistre : 5 jours ouvrés pour le déclarer. 2 pour un vol.
+
+C'est le délai minimal prévu par la loi, et il tombe au pire moment : quand il faut couper l'eau, prévenir le voisin et retrouver un numéro de contrat.
+
+Le Dossier sinistre habitation :
+▪ six questions, et le délai à respecter calculé en jours ouvrés, avec la source officielle de chaque règle ;
+▪ un inventaire chiffré où le calcul est visible : réparation, ou remplacement moins la vétusté que vous fixez ; déclaré et reconnu restent séparés ;
+▪ les preuves rangées par statut, et un dossier complet à imprimer pour l'expert.
+
+Aucune promesse d'indemnisation : c'est un outil d'organisation, votre contrat fait foi. Achat unique, 29 €.
+
+Besoin de plus ? Vos dossiers ont leurs propres étapes et documents : je construis la version sur mesure.
+
+Démo libre avec trois dossiers fictifs, et contact : lien en bio. Enregistrez le post : ces délais, on les cherche le jour où l'on en a besoin.
+
+Ce soir, sauriez-vous retrouver votre numéro de contrat d'habitation ?
+
+#Assurance #Habitation #DégâtDesEaux #Maison #Organisation

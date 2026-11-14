@@ -72,3 +72,33 @@ publications qui contiennent plusieurs liens (pratique courante, non garantie).*
 
 *À vérifier avant publication : « deuxième template QME » dépend de l'ordre de mise en vente des
 templates développés en parallèle ; adapter la phrase si besoin.*
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-79
+
+Doc : https://docs.google.com/document/d/16rTG6cnEKAEqkmwsVVsOsDpXvY9aeDsUJvzFfxY-1yU/edit
+
+« Je t'ai fait un virement pour les courses… ou c'était pour l'électricité ? »
+
+Dans beaucoup de foyers, les comptes communs tiennent dans une note de téléphone et dans la mémoire de chacun.
+
+Partager à deux, à trois ou en famille, c'est simple tant que tout est à parts égales. Dès qu'on veut tenir compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient vite une source de discussions.
+
+J'ai donc construit un budget commun qui fait les calculs à votre place :
+
+▪ chacun note ce qu'il paie ; la dépense est répartie à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près ;
+▪ les soldes se tiennent à jour : qui doit combien à qui, et le nombre minimal de virements pour remettre les comptes à zéro ;
+▪ le loyer, l'énergie et les abonnements reviennent chaque mois, avec la bonne répartition.
+
+Une seule clé pour le foyer : chacun l'ouvre sur son propre téléphone et voit les mêmes comptes. Si deux personnes saisissent en même temps, les deux dépenses sont gardées.
+
+Pas de connexion bancaire, pas d'abonnement : un achat unique, et les données restent celles que vous saisissez.
+
+Une démo avec un couple fictif est ouverte à tous, sans inscription : https://qm-engineering.fr/templates/budget-commun/?demo
+
+Lien d'achat en premier commentaire.
+
+Chez vous, les dépenses communes se partagent à parts égales ou selon les revenus de chacun ?
+
+#BudgetCommun #Colocation #FinancesPersonnelles #VieDeCouple #OutilsNumériques

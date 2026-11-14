@@ -108,3 +108,33 @@ https://qm-engineering.fr/templates/gestion-locative/?demo
 Lien d'achat en premier commentaire.
 
 #GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif #LocationMeublée
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-123
+
+Doc : https://docs.google.com/document/d/1o6od0wNzxMtdddBTNmdAp-hXJiAPJ_76o7otd4fYpIU/edit
+
+Chaque année, beaucoup de propriétaires oublient de réviser leur loyer. Et une révision qui n'est pas demandée dans l'année ne se rattrape pas.
+
+Quand on loue soi-même un ou deux logements, la gestion tient souvent dans un tableur. Il fonctionne, jusqu'au premier retard de paiement, à la date anniversaire du bail ou au moment de régulariser les charges.
+
+J'ai donc construit un outil de gestion locative qui fait trois choses :
+▪ il suit les loyers mois par mois, bail par bail : ce qui est dû, ce qui est payé, les retards ; la quittance du mois et la relance adaptée au retard sont prêtes à copier ou à imprimer ;
+▪ il tient l'échéancier des révisions : avec l'indice de référence des loyers que vous saisissez, il calcule le nouveau loyer et rappelle la date limite pour le demander ;
+▪ il compare les provisions aux charges réellement payées, prépare le décompte de régularisation et donne le rendement de chaque bien, avant impôt.
+
+Rien n'est envoyé à vos locataires et aucune banque n'est connectée. Aucun indice n'est fourni, parce qu'il change chaque trimestre.
+
+Les modèles de quittance et de relance sont à vérifier, et ce n'est pas un conseil fiscal : le récapitulatif de l'année aide à préparer la déclaration, il ne calcule pas d'impôt.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement.
+
+Une démo avec trois logements fictifs est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/gestion-locative/?demo
+
+Lien d'achat en premier commentaire.
+
+Propriétaires bailleurs : la date de révision de vos baux, vous la retrouvez comment chaque année ?
+
+#GestionLocative #PropriétaireBailleur #Immobilier #InvestissementLocatif #LocationMeublée

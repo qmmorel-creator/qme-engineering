@@ -61,3 +61,28 @@ sous-titre « Midi et soir · liste par rayon · placard déduit » ; autocollan
 https://qm-engineering.fr/templates/repas/?demo (« Essayer la démo ») ; mention « Données fictives » si une
 capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à produire seulement quand
 elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-75
+
+Doc : https://docs.google.com/document/d/19BMdktzPC21S-fXms66zae3ikPDSAqvmC_GdJJPGZZE/edit
+
+Ce soir, on mange quoi ? Et qu'est-ce qu'il faut racheter pour ça ?
+
+Quand les repas se décident à 18 h 30, la liste se refait de mémoire, et il manque toujours un ingrédient.
+
+Repas de la semaine et liste de courses :
+▪ place les repas midi et soir, avec le nombre de personnes, les restes, la cantine ou la sortie ;
+▪ calcule la liste de courses, quantités additionnées selon les portions et rangées par rayon ;
+▪ retire ce que vous avez déjà au placard.
+
+100 recettes de base rédigées pour l'outil, modifiables. Ce n'est pas un outil de nutrition : pas de calories. Achat unique, 13 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Chez vous, les menus se décident le dimanche ou à 18 h 30 ?
+
+#Organisation #Maison #BudgetFamilial #Repas #ListeDeCourses

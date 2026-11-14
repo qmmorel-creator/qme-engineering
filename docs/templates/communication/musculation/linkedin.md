@@ -112,3 +112,34 @@ https://qm-engineering.fr/templates/musculation/?demo
 Lien d'achat en premier commentaire.
 
 #Musculation #CrossTraining #Sport #Entraînement #OutilsNumériques
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-121
+
+Doc : https://docs.google.com/document/d/1IE3jI41wVQCOEmArLRx7Uy_1iOgpIyewy5dhrY3AmaM/edit
+
+« J'avais mis combien au squat, la semaine dernière ? » La question revient à chaque séance.
+
+En musculation comme en cross-training, la progression se lit dans les chiffres : charges, répétitions, scores. Pourtant, beaucoup les notent dans un carnet papier, les notes du téléphone ou un tableur, et ne les relisent jamais.
+
+J'ai donc construit un carnet d'entraînement qui fait trois choses :
+
+▪ il note une séance en quelques secondes : 150 exercices rangés par groupe musculaire, séries, charges, répétitions, et la dernière fois rappelée sous chaque exercice ;
+▪ il garde les WOD (AMRAP, EMOM, For Time, intervalles) avec leur score, et retrouve le meilleur quand on refait le même ;
+▪ il repère les records tout seul et trace la progression : volume par semaine, séries par groupe musculaire, courbe de chaque exercice.
+
+Un minuteur avec bips est intégré et fonctionne sans réseau, au fond d'une salle comme dans un garage.
+
+Deux choix assumés : le carnet ne garde que des performances sportives, aucune donnée de santé (ni poids de corps, ni fréquence cardiaque) ; et le 1RM affiché est une estimation par formule, présentée comme telle. Ce n'est ni un programme d'entraînement ni un avis médical.
+
+Il s'ouvre dans le navigateur avec une clé, sur téléphone comme sur ordinateur. Achat unique, sans abonnement.
+
+Une démo avec un pratiquant fictif est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/musculation/?demo
+
+Lien d'achat en premier commentaire.
+
+Et vous, vos charges de la semaine dernière, elles sont où : carnet, téléphone, tableur, ou dans votre tête ?
+
+#Musculation #CrossTraining #Sport #Entraînement #OutilsNumériques

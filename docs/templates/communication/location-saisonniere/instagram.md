@@ -64,3 +64,28 @@ ménage, taxe de séjour, net par canal » ; autocollant lien vers
 https://qm-engineering.fr/templates/location-saisonniere/?demo (« Essayer la démo ») ; mention « Données
 fictives » si une capture est reprise. Stories en pause depuis le 13/11/2026 (voir le kit) : image à
 produire seulement quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-73
+
+Doc : https://docs.google.com/document/d/1JLor9UWlpyAfL7xbW72cvm2QNo7o81N6suaMwB9daUA/edit
+
+Une nuit louée, ce n'est pas une nuit gagnée.
+
+Entre la commission du canal, le ménage et la taxe de séjour, le net de chaque séjour se perd vite. Et avec plusieurs canaux, le calendrier aussi.
+
+La Location saisonnière :
+▪ tient le calendrier de vos logements et refuse deux réservations confirmées sur la même nuit ;
+▪ crée le ménage de chaque départ, avant la prochaine arrivée ;
+▪ calcule la taxe de séjour avec le tarif de votre commune, et votre net par canal et par mois.
+
+Aucune plateforme connectée, vous saisissez vos réservations. Pas un conseil fiscal. Achat unique, 25 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+Vous louez sur combien de canaux à la fois ?
+
+#LocationSaisonnière #ChambresDHôtes #Gîte #MeubléDeTourisme #Tourisme

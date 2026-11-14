@@ -108,3 +108,34 @@ https://qm-engineering.fr/templates/leasing/?demo
 Lien d'achat en premier commentaire.
 
 #Voiture #Budget #FinancesPersonnelles #Leasing #Indépendant
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · LI-119
+
+Doc : https://docs.google.com/document/d/1nK_tuaFKX9SwB6k6v6yNjJypC561JV37fTYBSbwrEBM/edit
+
+Un loyer de LOA, une mensualité de crédit, un prix au comptant : trois chiffres qui ne se comparent pas. Ce qui compte, c'est le coût total, revente comprise.
+
+Quand on change de voiture, chaque vendeur met en avant le chiffre qui l'arrange.
+
+Le loyer mensuel paraît bas, mais il y a le premier loyer, l'option d'achat, le forfait kilométrique. Le crédit paraît cher, mais la voiture vous reste et se revend. Comparer à la main, c'est un tableur et une soirée.
+
+J'ai construit un simulateur qui ramène toutes les offres au même étalon :
+
+▪ comptant, crédit (mensualité et intérêts par la formule d'annuité), LOA avec ou sans levée de l'option, LLD avec son forfait : le coût total net sur la même période, revente estimée déduite, puis le coût par mois et par kilomètre ;
+▪ vos kilomètres réels face au forfait : le dépassement et son coût, et le kilométrage à partir duquel une offre passe devant une autre ;
+▪ la liste des questions à poser au vendeur avant de signer, selon le type d'offre.
+
+Les hypothèses sont les vôtres et restent visibles : décote, entretien, rendement de l'apport s'il restait placé. Aucun prix ni taux du marché n'est intégré : on reporte ses propres devis.
+
+Il s'ouvre dans le navigateur avec une clé, sur ordinateur comme sur téléphone. Achat unique, sans abonnement. C'est une simulation, pas un conseil financier ; pour un indépendant, la fiscalité n'est pas calculée.
+
+Une démo avec deux voitures fictives est ouverte à tous, sans inscription :
+https://qm-engineering.fr/templates/leasing/?demo
+
+Lien d'achat en premier commentaire.
+
+À votre dernier changement de voiture, quel chiffre a fait pencher la balance : le loyer, la mensualité ou le coût total ?
+
+#Voiture #Budget #FinancesPersonnelles #Leasing #Indépendant

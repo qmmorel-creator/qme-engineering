@@ -62,3 +62,28 @@ Gabarit `story` du kit (1080 × 1920) : « Ta bascule, minute par minute. » ; s
 retour arrière · retard en direct » ; autocollant lien vers https://qm-engineering.fr/templates/bascule/?demo
 (« Essayer la démo ») ; mention « Données fictives » si une capture est reprise. Stories en pause depuis le
 13/11/2026 (voir le kit) : image à produire seulement quand elles reprennent.
+
+---
+
+## Version v2 (audit de viralité, 14/11/2026) · IG-79
+
+Doc : https://docs.google.com/document/d/1rrO20bmarUFY5xlCqWBGwbiNP0iz9IWobjDtjCs9pFY/edit
+
+Jusqu'à quelle heure pouvez-vous encore revenir en arrière ?
+
+Une migration de nuit, un déménagement, l'ouverture d'un site : le jour J, le déroulé vit dans un tableur et les heures se recalculent à la main.
+
+Le Pilotage d'une journée de bascule :
+▪ recalcule la suite dès qu'une étape démarre ou finit : retard cumulé, fin estimée, marge ;
+▪ prépare les go/no-go sur des critères écrits à l'avance ;
+▪ calcule l'heure limite du retour arrière et tient le journal d'incidents.
+
+Cinq séquences types fictives à adapter. Vue en direct sur téléphone. Achat unique, 29 €.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+Démo libre et contact : lien en bio.
+
+À votre dernière bascule, l'heure limite du retour arrière était-elle écrite quelque part ?
+
+#GestionDeProjet #Productivité #Organisation #PME #OutilsNumériques
