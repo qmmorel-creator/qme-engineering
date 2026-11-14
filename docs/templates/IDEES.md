@@ -160,7 +160,7 @@ déjà).
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
+| T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | idée | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
@@ -265,7 +265,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
-| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T79, T80 | 171 € | 25 % | 128 € | 32 € |
+| Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79 | T80 | 190 € | 25 % | 142 € | 36 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33 | T81, T82 | 215 € | 25 % | 161 € | 41 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T83, T84, T85 | 89 € | 25 % | 66 € | 17 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
@@ -1700,3 +1700,36 @@ et à régénérer les pages des packs à la fusion.
   plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de licence (Quentin),
   entrée dans `communication/gumroad-a-creer.json`, ajout de CND au pack PFC (`netlify/lib/packs.mjs`, pages des packs
   régénérées), cartes anglaises, plannings, passage en vente du site.
+
+## Fiche T79 (cadrage délégué par Quentin, 14/11/2026)
+
+### T79 · Entretiens annuels et professionnels (`templates/entretiens-annuels/`, préfixe ENP)
+- Fiche détaillée : [`fiches/entretiens-annuels.md`](fiches/entretiens-annuels.md). Application web, 19 €,
+  permalien prévu `entretiens-annuels-professionnels`, catalogue `pro` · thème « Organisation et réunions ».
+  Pack visé : « Petite entreprise » (PPE), où T79 est prévu.
+- Promesse : « Chaque salarié a ses entretiens à jour : échéances calculées, trame prête, compte rendu
+  imprimable, objectifs et formations suivis d'une année sur l'autre. »
+- **Daté** : entretien de parcours professionnel (loi n° 2025-989 du 24/10/2025) la première année puis tous
+  les 4 ans, état des lieux récapitulatif tous les 8 ans, cas du retour d'absence, de la mi-carrière et des
+  60 ans, abondement CPF de 3 000 € (50 salariés et plus) : service-public.gouv.fr F32040 (vérifiée le
+  01/10/2026), relevé le 14/11/2026 ; périodicités paramétrables ; transition pour les salariés présents avant
+  la réforme non tranchée (historique saisi). **RGPD** : données minimales, export et effacement par salarié.
+- Écrans : Échéances (tuiles, à traiter, à finaliser, états des lieux à surveiller, formations en attente,
+  bandeau RGPD), Salariés (fiche : échéances, historique, objectifs, formations, absences, export, effacement),
+  Entretiens (préparation copiable, trame par thème, blocs objectifs, formations et contrôle des 8 ans,
+  synthèse, copie remise, impression ; sous-onglet Trames avec questions masquées ou ajoutées et repères
+  datés), Objectifs (SMART, avancement, reconduction), Formations (statuts, CSV).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/entretiens-annuels/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Organisation et réunions »).
+  Page `catalogue/entretiens-annuels/`, captures `assets/templates-entretiens-annuels-*.webp`, couverture
+  `assets/templates-entretiens-annuels-couverture.png`, tests `outils/templates/entretiens-annuels.test.mjs`.
+  Produit `ENP` déclaré (serveur, connexion, en-têtes Netlify) ; `ENP` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PPE).
+- Communication prête dans `communication/entretiens-annuels/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad (permalien prévu `entretiens-annuels-professionnels`) et clé de licence
+  (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `ENP` aux `produits` du pack PPE
+  (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente), plannings,
+  passage en vente du site. Point à suivre : règles de passage pour les salariés présents avant la réforme
+  (questions-réponses du ministère du 12/02/2026 non consulté), revérifier F32040 à chaque mise à jour annuelle.

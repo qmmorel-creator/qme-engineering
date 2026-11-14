@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  ENP: { slug: 'entretiens-annuels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.', pour: 'pro' },
   STR: { slug: 'sous-traitants', prix: 2900, phrase: 'Agréments et pièces de vigilance, alertes avant expiration.', pour: 'pro' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', pour: 'pro' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
@@ -84,7 +85,6 @@ export const PREVUS = {
   QZZ: { nom: 'Banque de questions et quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.' },
   PRG: { nom: 'Progression pédagogique', prix: 1500, phrase: 'Séquences, séances et avancement prévu et réel.' },
   // Nouvelles idées (T73–T97, 14/11/2026)
-  ENP: { nom: 'Entretiens annuels et professionnels', prix: 1900, phrase: 'Échéances, trames et objectifs de chaque salarié.' },
   DRP: { nom: 'Document unique d’évaluation des risques', prix: 2900, phrase: 'Risques par unité de travail, cotation et actions.' },
   CTR: { nom: 'Contrats fournisseurs et échéances', prix: 2500, phrase: 'Préavis de résiliation calculés, plus de tacite reconduction subie.' },
   ACH: { nom: 'Demandes d’achat et fournitures', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.' },
@@ -193,9 +193,10 @@ export const PAGES = {
       ['TRS', 'Anticipez la trésorerie sur douze mois, salaires et charges compris.'],
       ['TDB', 'Suivez chaque mois vos indicateurs clés, objectifs et écarts.'],
       ['EQP', 'Affectez l’équipe semaine par semaine et voyez surcharges et trous avant qu’ils n’arrivent.'],
+      ['ENP', 'Tenez les entretiens annuels et professionnels à l’heure, trames et objectifs compris.'],
     ],
     arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Entretiens annuels et document unique à venir, avec l’option Pack évolutif'],
-    prevus: ['ENP', 'DRP'],
+    prevus: ['DRP'],
   },
   PMG: {
     couleur: 'bleu', cibles: ['office', 'tpe'],

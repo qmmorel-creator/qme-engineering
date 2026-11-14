@@ -9,7 +9,7 @@ import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '20261114';
+const V = '2026111402';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
