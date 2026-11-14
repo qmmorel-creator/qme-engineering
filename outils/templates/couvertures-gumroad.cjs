@@ -74,6 +74,7 @@ const T = {
   'references-plaquette': ["Kit références et plaquette", "Tes réalisations, prêtes à convaincre.", "Fiches projets · filtres · une plaquette PDF par prospect"],
   'calendrier-editorial': ["Calendrier éditorial", "Publier chaque semaine, sans chercher quoi dire.", "Piliers · banque de sujets · calendrier · statistiques · régularité"],
   'entretiens-annuels': ["Entretiens annuels et professionnels", "Aucun entretien oublié.", "Échéances par salarié · trames · objectifs et formations suivis"],
+  remerciements: ["Cadeaux reçus et remerciements", "Personne n'est oublié.", "Qui a offert quoi · messages prêts · étiquettes d'adresses"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [
