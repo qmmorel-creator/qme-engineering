@@ -487,6 +487,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/investissement-locatif/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/investissement-locatif/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/doe/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

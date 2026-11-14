@@ -170,7 +170,7 @@ déjà).
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
@@ -1008,7 +1008,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
 | T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
 | T94 | Pièces, éléments, état (entrée / sortie), photos, comparaison, relevés de compteurs, document imprimable | Pièces et éléments types | — | Stockage des photos à prévoir (comme T32). Outil d'aide, pas un document juridique certifié. |
-| T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. |
+| T95 | Prix d'achat, frais, travaux, loyers, charges, crédit (saisi), rendement brut et net, cash-flow | Postes types | — | Fiscalité hors calcul (signalé). Argent : avertissement. Fiche `fiches/investissement-locatif.md` (cadrage délégué par Quentin, 14/11/2026). Prêt le 14/11/2026, mise en vente prochaine : application `templates/investissement-locatif/` (RNT), page `catalogue/investissement-locatif/`, communication `communication/investissement-locatif/`. Publications LinkedIn et Instagram non planifiées. |
 | T96 | Appels de fonds, charges par poste, AG (résolutions, votes), travaux votés | Postes de charges types | — | Pas de règle de majorité intégrée (saisie). |
 | T97 | Objectif (10 km à marathon), allures calculées depuis un chrono de référence, plan par semaines, séances cochées | Plans types par distance | — | Sport : avertissement (pas un programme médical). Allures : formules à sourcer. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer en priorité le 14/11 au soir (prix libre, 0 € possible), puis publication dès que la clé de licence est active (vérification `is_licensed`). |
@@ -2023,3 +2023,32 @@ régénérer les pages des packs à la fusion.
   pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé de
   licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de CAN au pack PET
   (`netlify/lib/packs.mjs`, pages des packs régénérées), cartes anglaises, plannings, passage en vente du site.
+
+## Fiche T95 (cadrage délégué par Quentin, 14/11/2026)
+
+### T95 · Rentabilité d'un investissement locatif (`templates/investissement-locatif/`, préfixe RNT, 15 €)
+- Fiche détaillée : `fiches/investissement-locatif.md`. Promesse : « Ce bien, rentable ou pas ? » Catalogue `perso`,
+  thème « Argent » ; pack visé « Propriétaire » (PPB). Permalien prévu `rentabilite-investissement-locatif`.
+- Public : particuliers qui étudient l'achat d'un bien locatif (nu, meublé, colocation, location saisonnière).
+- Écrans : **Comparatif** (jusqu'à 5 biens, verdict, barres signées du cash-flow, côte à côte, prix maximal pour un
+  rendement visé brut ou net), **Analyse** (tuiles, cascade loyers → vacance → charges → crédit → cash-flow, détail du
+  calcul, points à vérifier par bien), **Sensibilité** (loyer − 10 %, vacance + 1 mois, taux + 1 point, cumul ; tous les
+  biens face aux mêmes chocs), **Fiche** d'analyse imprimable ; export CSV.
+- Calculs : coût total (notaire saisi ou estimé, hypothèse 8 % ancien / 3 % neuf affichée et modifiable), loyers par
+  lot ou à la nuitée, vacance en mois par an, charges (taxe foncière saisie obligatoire), crédit aux formules de T85
+  (`templates/emprunt/`), rendement brut (sur le prix) et net de charges (sur le coût total), cash-flow avant impôt,
+  effort d'épargne, prix maximal. **Aucun** taux de marché, prix au m², loyer de référence ni taux d'impôt intégré
+  (test). **Fiscalité hors calcul**, signalée partout ; avertissement « ne remplace pas un conseil en investissement ni
+  un conseil fiscal ».
+- Confidentialité : démo fictive (quatre biens sans adresse, montants et taux inventés).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/investissement-locatif/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue ; pas de carte anglaise : version anglaise en
+  attente). Page `catalogue/investissement-locatif/`, captures `assets/templates-investissement-locatif-*.webp`,
+  couverture `assets/templates-investissement-locatif-couverture.png`, tests
+  `outils/templates/investissement-locatif.test.mjs`. RNT retiré de `PREVUS` et de la liste `prevus` du pack PPB
+  (`outils/packs/donnees.mjs`), ajouté à `TEMPLATES`.
+- Communication prête dans `communication/investissement-locatif/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, couverture.txt, carte-en-prochaine.html). **Pas de fiche
+  Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : fiche Gumroad et clé
+  de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de RNT au pack PPB
+  (`netlify/lib/packs.mjs`, pages des packs régénérées), carte anglaise, plannings, passage en vente du site.
