@@ -90,6 +90,7 @@ export const PRODUITS = {
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/' },
   RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
+  MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
