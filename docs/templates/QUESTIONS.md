@@ -16,6 +16,14 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   explicite demandé avant tout enregistrement ; certification HDS non vérifiée ; paragraphe pour
   `/confidentialite/` proposé dans `docs/templates/communication/bebe/integration.md`, non appliqué. IG-90 ne
   passe pas en « Programmé » avant ta décision.
+- **Lot 2 (T26, T38, T43, T46) : fiches Gumroad à mettre en ligne avant le 22/01/2027.** IG-67 à IG-70 sont
+  « Programmé » depuis le 14/11 (« Publie ») : Instinct les publiera les 22, 24, 26 et 28/01 à 18:30, même si
+  la fiche n'est pas en ligne (la remarque de la colonne M n'est pas garantie lue). Sans fiche à ces dates :
+  repasser la ligne en « Prêt » ou la décaler. Même condition pour LI-112 à LI-115 (21, 23, 25, 27/01).
+  Entrées prêtes dans `docs/templates/communication/gumroad-a-creer.json`.
+- **T84 Remboursements santé : données de santé d'adultes hébergées en ligne par QME** (soins, montants,
+  remboursements). Même question que T19 : à trancher avant toute vente. Par défaut : en « Mise en vente
+  prochaine », pas de fiche Gumroad créée avant ta décision.
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
@@ -26,6 +34,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
 - Clé de licence : à activer sur chaque nouveau brouillon (liste donnée par le point d'étape de 23 h 47).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
+- T12 Remboursement de dettes et T68 Secret Santa : pas encore créés sur Gumroad (limite de 10 créations par
+  24 h). La reprise automatique prévue le 14/11 à 22 h 30 a été désactivée à 17 h 48 sans s'exécuter (sans
+  doute par la session qui gère la file Gumroad) : qui les crée, et quand ? Les 8 autres de ton choix du 13/11
+  sont publiés et en vente sur le site (vérifié le 14/11 à 23 h 30).
+- T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
+  suggéré ?
 
 ## Noms, prix, permaliens et catégories Gumroad (valeurs proposées, appliquées par défaut)
 
@@ -41,8 +55,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T27 Gestion locative | 20 € | personal-finance |
 | T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership |
 | T55 Gestion de classe | 25 € | — |
-| T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement` |
-| T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites` |
+| T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement`, education ou business-and-money (à vérifier) |
+| T60 Pilotage de parcs multi-sites | 49 € | `pilotage-parcs-multi-sites`, catégorie à choisir |
 | T09 Garde-manger | 12 € | `garde-manger-dates-peremption`, food-and-cooking (à vérifier) |
 | T17 Suivi de lecture | 12 € | `suivi-lecture`, self-improvement ou writing-and-publishing (à vérifier) |
 | T20 Animal de compagnie | 12 € | `suivi-animal-compagnie`, self-improvement (à vérifier) |
@@ -51,16 +65,51 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T59 Progression pédagogique | 15 € | `progression-pedagogique`, education |
 | T18 Calendrier du potager | 13 € | — |
 | T19 Suivi du bébé | 13 € | — |
+| T73 Suivi du temps passé et rentabilité | 19 € | `suivi-temps-rentabilite` |
+| T74 Propositions commerciales | 19 € | `propositions-commerciales` |
+| T75 Calendrier éditorial | 15 € | `calendrier-editorial` |
+| T76 Suivi des appels d'offres | 15 € | `suivi-appels-offres` |
+| T77 Registre du DOE | 29 € | `registre-doe` |
+| T78 Conformité des sous-traitants | 29 € | `conformite-sous-traitants` |
+| T79 Entretiens annuels et professionnels | 19 € | `entretiens-annuels-professionnels` |
+| T80 Document unique (DUERP) | 29 € | `document-unique-evaluation-risques` |
+| T81 Contrats fournisseurs | 25 € | `contrats-fournisseurs` |
+| T82 Demandes d'achat | 19 € | `demandes-achat-fournitures` |
+| T83 Papiers du foyer | 15 € | `papiers-du-foyer` |
+| T84 Remboursements santé | 12 € | `remboursements-sante` |
+| T85 Capacité d'emprunt | 15 € | `capacite-emprunt-comparateur-prets` |
+| T86 Cadeaux et remerciements | 12 € | `cadeaux-remerciements` |
+| T87 Revue hebdomadaire | 12 € | `revue-hebdomadaire` |
+| T88 Notes et moyennes | 12 € | `notes-moyennes` |
+| T89 Candidatures études | 12 € | `candidatures-etudes-stages-alternance` |
+| T90 Planning de mémoire | 15 € | `planning-memoire` |
+| T91 Subventions | 25 € | `subventions-association` |
+| T92 Bénévoles | 19 € | `benevoles-planning-creneaux` |
+| T93 Assemblée générale | 19 € | `assemblee-generale-association` |
+| T94 État des lieux | 19 € | `etat-des-lieux` |
+| T95 Investissement locatif | 15 € | `rentabilite-investissement-locatif` |
+| T96 Copropriété | 15 € | `copropriete` |
+| T97 Course à pied | 15 € | `course-a-pied`, fitness-and-health (à confirmer) |
 | T54 Séminaire / offsite | 35 € | `seminaire-offsite`, business-and-money (à vérifier) |
 | T58 Banque de questions et quiz | 19 € | `banque-questions-quiz`, education (à vérifier) |
 
+- **Prix des templates à clé partagée (T50 Salles, T82 Achats, T92 Bénévoles)** : une clé utilisée par
+  plusieurs personnes d'une même structure. Par défaut : prix unitaire du tableau, sans majoration ; le
+  vendre plus cher ou par nombre d'utilisateurs ?
+
 ## Plannings LinkedIn et Instagram
 
+- IG-62 (T14 abonnements, lun. 21/12 18:30) tombe sur le même créneau que IG-48 (« À préparer ») : lequel
+  décaler ?
+- LI-107 (T14, 20/12) et LI-108 (T08, 13/01), IG-62 et IG-63 : produits en vente, la remarque « ne publier
+  que si la fiche Gumroad est en ligne » peut être levée (lien d'achat en premier commentaire). LI-109 et
+  IG-64 (T11 entretien, hors de ton choix du 13/11) et LI-110 et IG-65 (T12 dettes) : pas encore sur Gumroad,
+  remarque maintenue.
 - Lignes Instagram en « Prêt » à relire avant de les passer en « Programmé » : IG-63 (vue 5 « bientôt en
-  vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
+  vente » à refaire), IG-71 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
-  LI-122 (sam. 13/02), LI-124 (sam. 30/01), LI-130 (T20, sam. 27/02). Décaler ?
+  LI-122 (sam. 13/02), LI-124 (sam. 30/01), LI-127 (T60, dim. 21/02), LI-130 (T20, sam. 27/02). Décaler ?
 - Images à déposer à la main dans Drive : lot 5 (2 couvertures et 10 vues de carrousel ; voir la colonne
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
@@ -73,12 +122,23 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Classement dans le catalogue
 
+- Prix minimum 12 € (règle du 13/11) : la valeur du pack Flotte passe de 109 € à 111 € (T66 à 12 €), son
+  prix reste 69 €. OK ?
 - T62 Stocks sous « Indépendants » (public : commerces, artisans) ; T44 TVA sous « Indépendants » ;
   T09, T17, T20 sous « Organisation et études » ; T60 sous « Équipements et véhicules » ; T59, T54 et T58 sous
   « Associations, formation et événements ». OK ou nouveaux thèmes ?
 
 ## Par template : périmètre et choix appliqués par défaut
 
+- **T08 Habitudes** : sources des réglages types (eau, sport, sommeil) marquées « à vérifier » ; habitudes de
+  santé (médicaments) hébergées en ligne avec un simple rappel « pas un avis médical » : même question RGPD
+  que T19, en moins sensible (l'acheteur saisit ses propres données). OK ?
+- **T11 Entretien** : trois règles non revérifiées sur source primaire (vidange de l'assainissement
+  individuel, contrôle du SPANC, débroussaillement), affichées « à vérifier » et modifiables.
+- **T12 Dettes** : points conseil budget annoncés en refonte (labels 2027-2029), à revérifier chaque année ;
+  calcul d'intérêts mensuel simple (taux annuel ÷ 12), expliqué dans l'outil.
+- **T14 Abonnements** : repères juridiques de résiliation (L215-1, L224-28, loi Hamon, résiliation en ligne
+  depuis le 01/06/2023) rédigés de mémoire, affichés « à vérifier ».
 - **T48 Congés** : Code du travail relu seulement sur code.travail.gouv.fr (Légifrance en 404) ; règles non
   vérifiées (équivalence en jours ouvrés 2,0833/mois et 25 max, maladie 1,6667 et 20 ; samedi en jours
   ouvrables ; événement familial = travail effectif ; prorata calendaire au lieu de L3141-4) ; pas de report de
@@ -102,9 +162,15 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé ; moyenne annuelle =
   moyenne des périodes ; bonus compté seulement s'il fait monter la moyenne.
 - **T56 Emploi du temps** : placement manuel ; demi-groupes non rattachés à leur classe ; une séance = un
-  groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu.
+  groupe ; accès unique ; ~200 séances par semaine sur un an ; L3133-1 non relu (fériés repris du template
+  congés) ; alternance A/B qui saute les semaines entièrement fermées ; « réalisé » = séance terminée, sans
+  émargement ; chaque séance au-delà du volume ou du quota signalée ; nom de l'organisme fictif de la démo
+  (« Centre de formation des Tilleuls ») non comparé aux organismes réels ; impression papier et Safari réels
+  non testés.
 - **T60 Parcs multi-sites** : pas de périodicités réglementaires, de pièces jointes ni de bons
-  d'intervention ; accès unique ; démo avec de vraies villes (Rennes, Lille, Lyon) : garder ?
+  d'intervention ; accès unique ; démo avec de vraies villes (Rennes, Lille, Lyon) : garder ? « Modèle
+  tableur » traité par import et export CSV avec deux modèles vides, pas de fichier tableur séparé : suffisant ?
+  Ouverture des CSV dans Excel ou LibreOffice non testée.
 - **T09 Garde-manger** : deux durées seulement (Anses), DGCCRF inaccessible ; DLC non suivie au congélateur ;
   gaspillage en nombre de produits ; « Restes : 2 jours » dans la démo présenté comme le choix du foyer fictif.
 - **T17 Lecture** : rythme sur 14 jours ; objectif réparti uniformément sur l'année ; livres audio hors objectif
@@ -126,6 +192,31 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T19 Bébé** : courbes de croissance non intégrées (licence OMS non commerciale, AFPA–Inserm sans licence
   trouvée) ; seules les mesures saisies sont tracées.
 
+- **T26 Notes de frais** : majoration de 20 % des véhicules électriques appliquée aux deux-roues non
+  confirmée ; barème des trajets 2026 publié au printemps 2027 (l'application utilise celui de 2025 et le
+  dit) ; pages impots.gouv.fr et BOFiP non lues (source : service-public.fr A14686 du 09/04/2026).
+- **T38 Appel découverte** : durée de conservation CNIL des prospects (3 ans) à confirmer ; règle du score
+  de qualification (sur 8, « qualifié » dès 6 avec besoin « oui ») choisie par QME.
+- **T43 Impayés** : taux de l'intérêt légal 2026 tiré d'une source secondaire (à confirmer au JORF) ; base
+  365 jours et pénalités sur le TTC à vérifier ; taux BCE à mettre à jour au 01/01/2027 (2,65 % annoncé).
+- **T46 Onboarding** : articles R4624-10 et L1221-13 du Code du travail non relus sur Légifrance ; 89 tâches
+  types rédigées par QME.
+
+- **Sources juridiques à relire sur source primaire (T77, T78, T79, T80, T83, T85)** : DOE (pièces par lot),
+  attestations de vigilance (périodicité de 6 mois), entretien professionnel (tous les 2 ans, bilan à 6 ans),
+  DUERP (obligation, mise à jour, conservation), durées de conservation des papiers, taux d'endettement
+  (35 % HCSF). Par défaut : règles citées avec leur source secondaire datée (service-public, INRS…) ou
+  marquées « à vérifier » ; Légifrance non relu.
+- **T89 Candidatures études : utilisateurs mineurs (lycéens)**. Par défaut : aucune donnée sensible demandée,
+  avertissement d'usage ; même question de principe que T55.
+- **T86 Cadeaux, T92 Bénévoles : données de tiers** (noms, adresses, disponibilités). Par défaut :
+  avertissement RGPD et effacement possible ; rien de plus.
+- **T97 Course à pied** :
+  - allures (footing, seuil, sortie longue…) = repères QME présentés comme tels, seule la formule de Riegel
+    est sourcée ;
+  - la démo propose d'alléger une semaine déjà allégée (l'utilisateur garde le choix) : OK ?
+  - LinkedIn ouvre sur « Autour de moi » sans dire que tu cours ;
+  - 3 hashtags génériques seulement (pas de jeu « Sport » dans le kit).
 - **T54 Séminaire** : rattaché à aucun pack (Moyens généraux ou Associations et clubs possibles) ; « sans porc »
   gardé, « sans gluten » via la case allergie ; « en attente » comptés mais jamais placés automatiquement ;
   répartition par service sans critère de genre ; tous présents sur toute la durée ; pas d'accès participant,
@@ -144,10 +235,16 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Prospects
 
+- Organismes marqués « à vérifier » dans les `prospects.md` des lots 2 à 9 (lot 2 : AGA/OMGA, CAE et
+  portage pour T26).
+- T97 Course à pied : FFA, FFSE, UFOLEP, FSGT, intérêt et interlocuteur à vérifier. Idem pour les
+  `prospects.md` de T73 à T96.
+- Organismes marqués « à vérifier » dans les `prospects.md` de T08, T11, T12 et T14.
 - Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 9.
 
 ## Tranché
 
+- 14/11 : IG-67 à IG-70 (lot 2) passés en « Programmé » (« Publie »).
 - 14/11 : noms et prix du lot 2 (T26 15 €, T38 12 €, T43 19 €, T46 19 €), LI-113 maintenue, points « à
   vérifier » du lot 2 laissés en l'état (« ok pour tout »).
 - 14/11 : packs créés sur Gumroad après les templates ; un pack n'est créé qu'une fois tous ses templates en
