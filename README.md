@@ -346,6 +346,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   de résiliation calculée, alertes J-60 et J-30, décision, lettre de résiliation à adapter, coût annuel par catégorie,
   historique, export CSV. Aucune règle légale non sourcée (seul repère : Code des assurances, art. L113-12, lu sur
   Légifrance le 14/11/2026). Règles dans `regles.js`, tests `outils/templates/contrats.test.mjs`. Version anglaise en attente.
+- `templates/revue-hebdo/` (RVH) : **revue hebdomadaire et journal de bord** (T87), prêt, « Mise en vente prochaine »
+  (12 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/revue-hebdo/gumroad.json`). Revue guidée en
+  7 étapes le jour choisi (rappel affiché dans l'outil, aucune notification), 55 questions de revue en rotation,
+  journal d'une ligne par jour avec humeur facultative, 3 priorités notées la semaine suivante, rendez-vous à venir,
+  historique cherchable, tendance (série, semaines tenues, humeur et énergie), export texte. Humeur = repère
+  personnel, sans portée médicale. Règles dans `regles.js`, tests `outils/templates/revue-hebdo.test.mjs`. Version
+  anglaise en attente.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

@@ -168,7 +168,7 @@ déjà).
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
-| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) ; fiche [`fiches/revue-hebdo.md`](fiches/revue-hebdo.md) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -535,6 +535,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
 | T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
+| T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1763,3 +1764,33 @@ et à régénérer les pages des packs à la fusion.
   (permalien prévu `contrats-fournisseurs`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, ajout aux packs PMG et PXP et régénération des pages de packs, plannings,
   page anglaise, passage en vente du site.
+
+## Fiche T87 (cadrage délégué par Quentin, 14/11/2026)
+
+### T87 · Revue hebdomadaire et journal de bord (`templates/revue-hebdo/`, préfixe RVH, 12 €)
+- Fiche détaillée : [`fiches/revue-hebdo.md`](fiches/revue-hebdo.md). Application web, permalien prévu
+  `revue-hebdomadaire`, catalogue `perso` · thème « Organisation et études » (avec le planner). Pack « Productivité
+  perso » (PPR) : RVH ajouté aux `TEMPLATES` et retiré de `PREVUS` et des `prevus` de PPR dans
+  `outils/packs/donnees.mjs` ; à ajouter aux `produits` du pack (`netlify/lib/packs.mjs`), à une étape `parcours`
+  de PPR et pages régénérées à la fusion.
+- Promesse : « Ta semaine, revue en 20 minutes. » Pour cadres, indépendants, managers (rituel du vendredi).
+- Revue guidée en 7 étapes (vider la tête, semaine passée et priorités notées, réussites et difficultés,
+  apprentissages, 3 priorités pour la semaine suivante, rendez-vous et échéances, énergie et humeur de 1 à 5),
+  55 questions de revue originales en rotation (masquables, questions personnelles), journal d'une ligne par jour
+  avec humeur facultative, historique cherchable, tendance (série, semaines tenues sur 12, humeur et énergie,
+  priorités tenues ; palette validée par le skill dataviz), rappel le jour choisi affiché dans l'outil (aucune
+  notification), export texte. Complète T03, T30 et T08 sans connexion automatique.
+- **Santé** : humeur et énergie = repères personnels, sans portée médicale (mention dans l'outil, sur la page du
+  site, la fiche Gumroad et la communication) ; repère bienveillant après 3 semaines notées à 2 ou moins, sans
+  diagnostic ni numéro cité. Aucune base externe, aucune donnée datée.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/revue-hebdo/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/revue-hebdo/`, captures
+  `assets/templates-revue-hebdo-*.webp`, couverture `assets/templates-revue-hebdo-couverture.png`, tests
+  `outils/templates/revue-hebdo.test.mjs`. **Version anglaise en attente** (`en/` non modifié ; carte prête dans
+  `communication/revue-hebdo/carte-en-prochaine.html`).
+- Communication prête dans `communication/revue-hebdo/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, cartes d'accueil FR et EN). **Pas de fiche Gumroad, pas de ligne
+  aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `revue-hebdomadaire`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, ajout au pack PPR et régénération des pages de packs, plannings, page
+  anglaise, passage en vente du site.

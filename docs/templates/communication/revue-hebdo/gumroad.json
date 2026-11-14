@@ -1,0 +1,42 @@
+{
+  "slug": "revue-hebdo",
+  "name": "Revue hebdomadaire et journal de bord",
+  "price_cents": 1200,
+  "permalink": "revue-hebdomadaire",
+  "category": "self-improvement/productivity",
+  "button": "Ouvrir ma revue",
+  "summary": "Une ligne de journal par jour, puis chaque semaine, le jour que tu choisis, une revue guidée de 20 minutes : réussites, apprentissages, 3 priorités, rendez-vous à venir. Historique cherchable, série de semaines tenues, humeur et énergie, export texte.",
+  "description": "<h2>Ta semaine, revue en 20 minutes.</h2><p>Le lundi, tout est urgent. Le vendredi, on ne sait plus ce qui a avancé ni ce qui devait passer en premier. Revue hebdomadaire et journal de bord installe un rituel simple : une ligne par jour, une revue guidée par semaine, et trois priorités pour la suivante.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Une revue guidée en 7 étapes</strong> : vider la tête, regarder la semaine (journal relu, priorités notées faites, en partie ou pas faites), réussites et difficultés, apprentissages, 3 priorités pour la semaine suivante, rendez-vous et échéances, énergie et humeur.</li><li><strong>55 questions de revue</strong> rédigées pour l'outil : une proposée par étape et par semaine, à tour de rôle. Masque celles qui ne te parlent pas, ajoute les tiennes.</li><li><strong>Un journal d'une ligne par jour</strong>, avec une humeur facultative de 1 à 5, relu en une minute au moment de la revue.</li><li><strong>Le rappel le jour choisi</strong> (vendredi par défaut), affiché à l'ouverture de l'outil, avec rattrapage possible en début de semaine. Aucune notification.</li><li><strong>L'historique cherchable</strong> (revues et journal, sans souci des accents) et l'<strong>export de tout en texte</strong>.</li><li><strong>La tendance</strong> : série de semaines tenues, part des semaines revues sur douze, humeur et énergie semaine après semaine, part des priorités tenues.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis le jour de ta revue, écris ta première ligne de journal. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>L'humeur et l'énergie sont des repères personnels pour voir la tendance, sans aucune portée médicale : l'outil ne remplace pas l'avis d'un professionnel de santé. Aucun lien avec une autre application, aucune notification. Démo disponible sur qm-engineering.fr/catalogue/revue-hebdo.</em></p>",
+  "tags": [
+    "revue-hebdomadaire",
+    "journal",
+    "productivite",
+    "priorites",
+    "rituel",
+    "organisation",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta revue s'ouvre. Choisis le jour de ta revue, écris une ligne de journal par jour, puis fais ta première revue guidée. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Cadres, indépendants, managers"
+    }
+  ]
+}
