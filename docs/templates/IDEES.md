@@ -149,7 +149,7 @@ déjà).
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
-| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en cours | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
@@ -1087,4 +1087,15 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   légal, pas de mention obligatoire : renvoi au devis (T36) et aux sources officielles par l'utilisateur.
 - **Risques** : pas un conseil juridique (avertissement dans l'application) ; données de clients (RGPD :
   ne garder que le nécessaire, suppression possible) ; démo 100 % fictive (organisations « exemple »).
+- **Statut** : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/propositions/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/propositions/`, captures `assets/templates-propositions-*.webp`, couverture
+  `assets/templates-propositions-couverture.png`, tests `outils/templates/propositions.test.mjs`. Options types
+  nommées Essentiel, Confort (recommandée) et Premium.
+- **Communication** prête dans `communication/propositions/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte d'accueil FR, carte anglaise
+  `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer, fiche Gumroad
+  (permalien prévu `propositions-commerciales`) et clé de licence (Quentin), entrée dans
+  `communication/gumroad-a-creer.json`, plannings, carte anglaise, ajout au pack PFC, passage en vente du site.
 
