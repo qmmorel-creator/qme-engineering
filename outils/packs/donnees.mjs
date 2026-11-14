@@ -6,6 +6,7 @@
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
 export const TEMPLATES = {
+  TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', pour: 'pro' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
@@ -76,7 +77,6 @@ export const PREVUS = {
   EDT: { nom: 'Emploi du temps d’établissement', prix: 4500, phrase: 'Classes, formateurs, salles et conflits détectés.' },
   PMS: { nom: 'Pilotage de parcs multi-sites', prix: 4900, phrase: 'Sites, équipements, interventions et alertes.' },
   // Nouvelles idées (T71–T95, 14/11/2026)
-  TMP: { nom: 'Suivi du temps et rentabilité par mission', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.' },
   PCM: { nom: 'Propositions commerciales', prix: 1900, phrase: 'Cadrage, options et planning : une proposition qui convainc.' },
   CED: { nom: 'Calendrier éditorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.' },
   CND: { nom: 'Suivi des appels d’offres et candidatures', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.' },
@@ -140,7 +140,7 @@ export const PAGES = {
       ['TRS', 'Regardez douze mois devant vous et voyez le creux avant qu’il n’arrive.'],
     ],
     arguments: ['Un parcours complet, de la proposition à l’encaissement', 'Le tarif, la marge et les encaissements enfin calculés de la même façon', 'Une seule clé pour les six outils, sur tous vos appareils'],
-    prevus: ['TMP'],
+    prevus: [],
   },
   PFC: {
     couleur: 'encre', cibles: ['independants', 'managers'],
