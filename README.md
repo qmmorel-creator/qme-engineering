@@ -7,6 +7,12 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - Référencement : `robots.txt` (déclare le sitemap ; administration, API, connexion et espace client exclus) et
   `sitemap.xml` (pages publiques à leur URL canonique), généré par `node outils/sitemap/generer.mjs` ; les
   applications `/templates/<slug>/` restent en `noindex` (en-têtes de `netlify.toml`).
+  Données structurées JSON-LD (depuis le 14/11/2026) : générées depuis le contenu visible par
+  `node outils/seo/donnees-structurees.mjs` (Organization et WebSite sur l'accueil, Product + Offer sur les pages
+  catalogue en vente, BreadcrumbList, FAQPage là où une FAQ est affichée ; jamais de note ni d'avis), automatiquement
+  pour les packs par `outils/packs/generer.mjs`, contrôlées par `outils/templates/seo.test.mjs` (à relancer après
+  tout changement de prix, de FAQ ou de fil d'Ariane). Audit statique : `node outils/seo/audit.mjs`. Dossier de
+  référencement (audit, mots-clés, guides proposés, Gumroad, plan d'action) : `docs/seo/`.
 - Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
   `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
   puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les

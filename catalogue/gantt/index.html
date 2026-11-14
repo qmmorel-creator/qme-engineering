@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Planning Gantt rapide · Templates QME</title>
-<meta name="description" content="Pour les artisans, PME, chefs de projet, bureaux d&#x27;études et particuliers en travaux : un planning qui se tape en une ligne par tâche, avec les liens, les jours fériés, l&#x27;avancement et le chemin critique calculés pour vous. Plus léger qu&#x27;un logiciel de planification, plus juste qu&#x27;un tableur.">
+<title>Diagramme de Gantt en ligne, simple et rapide · QME</title>
+<meta name="description" content="Diagramme de Gantt en ligne : une ligne par tâche, liens, jours fériés, avancement et chemin critique calculés. Pour artisans, PME et chefs de projet.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/catalogue/gantt/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111308">
+<link rel="stylesheet" href="/assets/site.css?v=2026111501">
+<script type="application/ld+json" id="donnees-structurees">
+{"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://qm-engineering.fr/catalogue/gantt/#produit","name":"Planning Gantt rapide","description":"Diagramme de Gantt en ligne : une ligne par tâche, liens, jours fériés, avancement et chemin critique calculés. Pour artisans, PME et chefs de projet.","url":"https://qm-engineering.fr/catalogue/gantt/","image":["https://qm-engineering.fr/assets/templates-gantt-gantt.webp?v=20261113p","https://qm-engineering.fr/assets/templates-gantt-tel.webp?v=20261113p"],"category":"Application web (template)","brand":{"@id":"https://qm-engineering.fr/#organisation"},"offers":{"@type":"Offer","price":"45.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://qmengineering.gumroad.com/l/planning-gantt","seller":{"@id":"https://qm-engineering.fr/#organisation"}}},{"@type":"BreadcrumbList","@id":"https://qm-engineering.fr/catalogue/gantt/#fil","itemListElement":[{"@type":"ListItem","position":1,"name":"Templates","item":"https://qm-engineering.fr/templates/"},{"@type":"ListItem","position":2,"name":"Professionnel","item":"https://qm-engineering.fr/templates/?pour=pro"},{"@type":"ListItem","position":3,"name":"Planning Gantt rapide","item":"https://qm-engineering.fr/catalogue/gantt/"}]},{"@type":"FAQPage","@id":"https://qm-engineering.fr/catalogue/gantt/#faq","mainEntity":[{"@type":"Question","name":"Comment fonctionne la saisie en une ligne ?","acceptedAnswer":{"@type":"Answer","text":"Vous tapez le nom de la tâche suivi, dans n'importe quel ordre, d'une date (12/12), d'une durée (5j, 2 sem), d'un avancement (40%) et de ses prédécesseurs (après 3, 5DD+2). « jalon » ou « 0j » crée un jalon, « plage 10/12-18/12 » une fenêtre de dates, et une ligne « _Lot_2 » ouvre une section. Vous pouvez coller plusieurs lignes d'un coup ; tout reste modifiable dans le tableau."}},{"@type":"Question","name":"Les jours fériés sont-ils à jour chaque année ?","acceptedAnswer":{"@type":"Answer","text":"Oui, ils sont calculés et non recopiés : les 11 jours fériés du Code du travail, avec Pâques, l'Ascension et la Pentecôte recalculées pour chaque année, et en option le Vendredi saint et le 26 décembre d'Alsace-Moselle. Les ponts, fermetures et vacances scolaires s'ajoutent en périodes."}},{"@type":"Question","name":"Qu'est-ce que le chemin critique ?","acceptedAnswer":{"@type":"Answer","text":"C'est la suite de tâches sans marge : un jour de retard sur l'une d'elles décale la fin du projet. L'outil calcule pour chaque tâche ses dates au plus tôt et au plus tard, sa marge totale (retard possible sans décaler la fin) et sa marge libre (sans gêner la tâche suivante)."}},{"@type":"Question","name":"Puis-je imprimer ou envoyer le planning ?","acceptedAnswer":{"@type":"Answer","text":"Oui : impression en A4 ou A3 paysage, tout le planning tenant dans la largeur de la page (et enregistrement en PDF depuis la fenêtre d'impression), ou téléchargement d'une image PNG. Les personnes à qui vous l'envoyez n'ont pas besoin d'accès."}},{"@type":"Question","name":"Remplace-t-il un logiciel de planification professionnel ?","acceptedAnswer":{"@type":"Answer","text":"Il couvre l'essentiel d'un planning de projet : liens, calendrier, chemin critique, référence et suivi. Il ne gère pas les ressources, les coûts ni le travail à plusieurs en même temps : il vise la personne qui tient le planning."}},{"@type":"Question","name":"Puis-je l'essayer avant d'acheter ?","acceptedAnswer":{"@type":"Answer","text":"Oui : la démo ouvre quatre plannings fictifs (cuisine, site web, salon, déménagement). Elle reste dans votre navigateur et n'envoie rien."}}]}]}
+</script>
 </head>
 <body>
 
@@ -40,7 +43,7 @@
 <section class="section" id="gantt">
   <div class="section-head">
     <h1 class="h-section">Planning Gantt rapide</h1>
-    <p>Pour les artisans, PME, chefs de projet, bureaux d'études et particuliers en travaux : un planning qui se tape en une ligne par tâche, avec les liens, les jours fériés, l'avancement et le chemin critique calculés pour vous. Plus léger qu'un logiciel de planification, plus juste qu'un tableur.</p>
+    <p>Pour les artisans, PME, chefs de projet, bureaux d'études et particuliers en travaux : un planning Gantt qui se tape en une ligne par tâche, avec les liens, les jours fériés, l'avancement et le chemin critique calculés pour vous. Plus léger qu'un logiciel de planification, plus juste qu'un tableur.</p>
   </div>
   <article class="produit">
     <div class="produit-visuel">
@@ -49,7 +52,7 @@
     </div>
     <div class="produit-texte">
       <span class="pill blue">Gestion de projet · chantiers</span>
-      <h3>Ce que vous obtenez</h3>
+      <h2>Ce que vous obtenez</h2>
       <ul class="feature-points">
         <li><b>Saisie en une ligne</b> : « Pose des meubles 12/12 3j après 7 » crée la tâche, sa barre et son lien</li>
         <li><b>Liens complets</b> : fin → début, début → début, fin → fin, début → fin, avec décalage ; les tâches suivantes se décalent seules</li>

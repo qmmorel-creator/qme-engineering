@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
+import { avecDonnees } from '../seo/donnees-structurees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const V = '2026111404';
@@ -51,7 +52,7 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111308">
+<link rel="stylesheet" href="/assets/site.css?v=2026111501">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
 <body>
@@ -396,6 +397,9 @@ function sectionCatalogue(packs) {
 async function ecrire(chemin, contenu) {
   const complet = RACINE + chemin;
   await mkdir(complet.replace(/\/[^/]+$/, ''), { recursive: true });
+  // Données structurées (fil d'Ariane, FAQ visibles) des pages publiques ; l'espace acheteurs est en noindex.
+  const canonique = contenu.match(/rel="canonical" href="([^"]+)"/);
+  if (canonique && !chemin.startsWith('packs/espace/')) contenu = avecDonnees(contenu, canonique[1]);
   await writeFile(complet, contenu);
 }
 

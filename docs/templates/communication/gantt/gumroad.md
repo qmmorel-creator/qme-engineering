@@ -22,7 +22,7 @@ l'avancement et le chemin critique calculés pour vous.
 calcule ni les liens ni les jours fériés. Ce planning Gantt en ligne fait le calcul à votre place : vous tapez
 « Pose des meubles 12/12 3j après 7 », la barre, le lien et les dates suivent.</p>
 
-<h3>Ce que vous obtenez</h3>
+<h2>Ce que vous obtenez</h2>
 <ul>
   <li><strong>Saisie rapide</strong> : nom, date, durée (5j, 2 sem), avancement (40%), liens (après 3, 5DD+2), jalons et plages de dates, sections (_Lot_2). Plusieurs lignes collées d'un coup.</li>
   <li><strong>Tableau et Gantt synchronisés</strong> : modifiez une cellule ou glissez une barre, tout se recalcule ; zoom du jour à l'année.</li>
