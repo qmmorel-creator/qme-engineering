@@ -1,0 +1,1 @@
+      <li class="carte prochaine" data-slug="demenagement" data-pour="perso" data-theme="projets-de-vie" style="--c:var(--bleu)"><a href="/catalogue/demenagement/"><b>Déménagement</b><span class="phrase">Rétroplanning, démarches, cartons retrouvés, devis comparés.</span><span class="theme">Projets de vie</span><em>Bientôt</em></a></li>

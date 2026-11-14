@@ -45,6 +45,7 @@ export const TEMPLATES = {
   VTR: { slug: 'leasing', prix: 1200, phrase: 'Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.', pour: 'perso' },
   PHR: { slug: 'planner', prix: 1500, phrase: 'Votre semaine en blocs de 30 minutes, prévu et réalisé.', pour: 'perso' },
   ENT: { slug: 'entretien', prix: 1200, phrase: 'Chaudière, ramonage, VMC : échéances calculées.', pour: 'perso' },
+  DMN: { slug: 'demenagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.', pour: 'perso' },
   EPG: { slug: 'epargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.', pour: 'perso' },
   RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
 };
@@ -60,7 +61,6 @@ export const PREVUS = {
   SDR: { nom: 'Réservation de salles et bureaux', prix: 1900, phrase: 'Créneaux, ressources et conflits, vue du jour.' },
   GMA: { nom: 'Maintenance préventive', prix: 3900, phrase: 'Plans de maintenance, échéances et bons d’intervention.' },
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
-  DMN: { nom: 'Déménagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
@@ -223,9 +223,10 @@ export const PAGES = {
       ['MRG', 'Pilotez le rétroplanning, les prestataires, les invités et le budget du mariage.'],
       ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
+      ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],
     ],
-    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Déménagement, remerciements et voyage à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['DMN', 'CDX', 'VYG'],
+    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Remerciements et voyage à venir, inclus avec l’option Pack évolutif'],
+    prevus: ['CDX', 'VYG'],
   },
   PPR: {
     couleur: 'encre', cibles: ['managers', 'independants'],

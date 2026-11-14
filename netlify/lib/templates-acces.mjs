@@ -56,6 +56,7 @@ export const PRODUITS = {
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/' },
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/' },
+  DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

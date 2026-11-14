@@ -93,7 +93,7 @@ déjà).
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
@@ -260,7 +260,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Petite entreprise | PPE | T48, T26, T46, T42, T31 | T47, T34, T77, T78 | 97 € | 25 % | 72 € | 18 € |
 | Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13 | T81, T82, T83 | 89 € | 25 % | 66 € | 17 € |
-| Mariage et installation à deux | PMR | T15, T65, T05 | T16, T84, T21 | 59 € | 15 % | 50 € | 13 € |
+| Mariage et installation à deux | PMR | T15, T65, T05, T16 | T84, T21 | 71 € | 20 % | 56 € | 14 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T85 | 61 € | 20 % | 48 € | 12 € |
 | Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
 | Associations et clubs | PAS | T53, T51, T42 | T52, T89, T90, T91 | 107 € | 15 % | 90 € | 23 € |
@@ -773,7 +773,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T08 | Suivi d'habitudes (habit tracker) : thèmes colorés, habitudes à cocher ou chiffrées (minimum, maximum, pas), thème « une seule habitude par jour » (ex. lieu de travail) ou habitudes indépendantes, jours « non applicable » qui ne cassent pas les séries, journal date × habitude en grille mensuelle, séries et taux de réussite | 50 habitudes types rangées par thèmes, réglages types (eau en verres, sport, sommeil…) | Suivi d'habitudes de l'outil interne de Quentin (demande du 13/11/2026 : « comme celui de l'outil interne ») ; Carnet des routines, Rituel du matin | Backlog n° 46 : 12 €, S, P2. Demande de Quentin du 13/11/2026 (doublon de T08, fusionnée ici). Cochage automatique depuis une application de sport : pas en V1 (aucun connecteur, aucune marque). Aucune habitude ni donnée de l'outil interne reprise. **médical** si des habitudes de santé (médicaments) sont saisies : rappel, et données de santé hébergées (voir T04). |
 | T09 | Garde-manger et congélateur : alertes de péremption | Durées de conservation par type d'aliment | — | Durées : source à vérifier. |
 | T10 | Carnet de voiture, une à quelques voitures : fiche véhicule, relevés de kilométrage, entretiens faits et à venir (échéance à la date ou au kilométrage, la première atteinte), toutes les dépenses (carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique), consommation calculée entre deux pleins, coût au kilomètre et coût mensuel, historique imprimable pour la revente | Intervalles d'entretien types, modifiables (le carnet du constructeur prime) ; catégories de dépenses | — | Demande Quentin 13/11/2026 fusionnée (gestionnaire de voitures). **daté** : périodicité du contrôle technique, vérifiée sur une source officielle ou saisie. Prix du carburant saisis, jamais intégrés. Argent : avertissement. Version perso du moteur de T29 (sans conducteurs, réservations ni sinistres). Aucune automatisation ni lien externe. |
-| T11 | Entretien de la maison : calendrier automatique | 80 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
+| T11 | Entretien de la maison : calendrier automatique | 85 tâches avec fréquence (chaudière, ramonage, filtres) | — | **daté** si une fréquence est légale (ramonage, chaudière) : source ou paramétrable. Moteur commun avec T61. |
 | T12 | Remboursement de dettes : plan et date de fin | Méthodes boule de neige et avalanche | — | Argent : avertissement. |
 | T13 | Objectif d'épargne et fonds d'urgence | Scénarios d'intérêts composés (taux saisi par l'utilisateur) | — | Aucun taux de livret en base (**daté**). Argent : avertissement. |
 | T14 | Suivi des abonnements : coût mensuel et annuel, renouvellements | Abonnements courants (streaming, télécom, sport) sans prix figés | — | — |
@@ -973,3 +973,44 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
   carrousel PNG, prospects.md, section-site.html, cartes). Reste : création de la fiche Gumroad (et ajout à
   `communication/gumroad-a-creer.json`), clé de licence (Quentin), passage en vente du site, lignes des
   plannings LinkedIn et Instagram (non insérées : aucune session n'a eu accès aux plannings pour ce template).
+
+## Fiche T16 · Déménagement (`templates/demenagement/`, préfixe DMN, 12 €)
+
+Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans validation intermédiaire.
+
+- **Promesse** : « Chaque carton à sa place. » Un déménagement calé sur sa date : quoi faire chaque semaine,
+  qui prévenir, ce qu'il y a dans chaque carton, ce que ça coûte.
+- **Pour qui** : particuliers et familles qui déménagent (location ou achat, avec un déménageur ou par
+  leurs propres moyens) ; usage à deux possible (même clé sur plusieurs appareils).
+- **Écrans** : tableau de bord (compte à rebours, recherche « dans quel carton est… », à faire maintenant,
+  cartons par pièce, budget) ; checklist par phase (plus de deux mois avant → premier mois), filtres par
+  catégorie ; cartons (numéro, pièce d'arrivée et sa couleur, contenu, fragile, lourd, à ouvrir en premier,
+  état à remplir → fermé → arrivé → déballé, étiquettes A4 huit par page, liste par pièce imprimable,
+  manquants signalés après J) ; devis et volume (devis comparés : prix au m³, prestations incluses,
+  validité, acompte, devis retenu inscrit au budget ; estimation du volume par meubles et cartons, inventaire
+  à copier pour les demandes de devis) ; budget (prévu, réel, payé, reste à payer, CSV).
+- **Base intégrée** (`donnees.js`, rédigée pour QME) : 85 tâches types en 7 catégories (logement, adresse,
+  contrats, organisation, famille, jour J, installation), échéances relatives de J−90 à J+30, filtrées par la
+  situation (départ locataire ou propriétaire, arrivée location ou achat, déménageur ou soi-même, enfants,
+  animal, véhicule) ; 8 pièces et 10 couleurs d'étiquette ; 39 meubles avec un volume indicatif ; 13 postes de
+  budget ; 3 formules et 8 prestations de devis.
+- **Calculs** (`regles.js`, testés dans `outils/templates/demenagement.test.mjs`) : échéances relatives au
+  jour J (changer la date recale tout), statuts (en retard, sous 7 jours), progression, changement de
+  situation (ajout des tâches devenues utiles, retrait de celles encore à faire, tâches retirées à la main
+  jamais remises), recherche sans accents ni casse (numéro exact en tête), volume (meubles + cartons × 0,06 m³
+  + marge), comparaison des devis, budget.
+- **Données qui se périment : aucune.** Aucune démarche datée ni délai légal chiffré (vérifié par un test
+  qui refuse tout « n jours / mois / ans » et toute année dans la base) : préavis, état des lieux, dépôt de
+  garantie, carte grise, listes électorales renvoient au bail, au contrat ou à service-public.fr. Volumes des
+  meubles : ordres de grandeur indicatifs (hypothèses QME), présentés comme tels. Carton standard de
+  55 × 35 × 30 cm ≈ 0,06 m³ (calcul).
+- **Risques** : pas un conseil juridique (avertissement dans l'application, la page et la fiche Gumroad) ;
+  aucune marque, aucun déménageur réel (démo : « Déménageur A, B, C ») ; aucune automatisation ni envoi.
+  À vérifier par Quentin : la mention du téléservice de changement de coordonnées de service-public.fr
+  (tâche « a02 », formulée avec « vérifie la liste des organismes couverts »).
+- **Statut** : prêt le 14/11/2026, « Mise en vente prochaine » (page `catalogue/demenagement/`, démo libre,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, carte « Coming soon » sur
+  `/en/templates/`). Communication prête : `communication/demenagement/` (gumroad.md et gumroad.json,
+  linkedin.md, instagram.md et carrousel PNG, prospects.md, section-site.html pour la mise en vente).
+  Reste : création de la fiche Gumroad et report dans `communication/gumroad-a-creer.json`, clé de licence
+  (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram (non créées).
