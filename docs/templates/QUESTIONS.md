@@ -17,6 +17,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   `/confidentialite/` proposé dans `docs/templates/communication/bebe/integration.md`, non appliqué. IG-90 ne
   passe pas en « Programmé » avant ta décision.
 
+## Fusions en attente
+
+- **PR #85** (`docs/templates/IDEES.md` seulement, fichier non publié) : mention des images du lot T06, T07,
+  T10, T27 déposées dans Drive. Non fusionnée pour éviter un déploiement Netlify facturé : la fusionner avec
+  le prochain lot, ou tout de suite ?
+
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
 - Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur de mariage,
@@ -35,10 +41,10 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T62 Stocks et inventaire | 25 € | — |
 | T64 Location saisonnière | 25 € | — |
 | T66 Simulateur leasing ou achat | 12 € | — |
-| T06 Repas de la semaine | 13 € | food-and-cooking |
-| T07 Carnet de musculation | 19 € | fitness-and-health |
-| T10 Carnet de voiture | 13 € | personal-finance |
-| T27 Gestion locative | 20 € | personal-finance |
+| T06 Repas de la semaine | 13 € | `repas-liste-de-courses`, food-and-cooking (catégorie peut-être inexistante ; repli self-improvement/productivity) |
+| T07 Carnet de musculation | 19 € | `carnet-musculation-cross-training`, fitness-and-health (non vérifiée ; repli self-improvement/productivity) |
+| T10 Carnet de voiture | 13 € | `carnet-voiture`, personal-finance (pas de catégorie automobile trouvée) |
+| T27 Gestion locative | 20 € | `gestion-locative`, personal-finance (une catégorie immobilier serait plus juste si elle existe) |
 | T33 Pilotage d'une journée de bascule | 29 € | `pilotage-bascule`, management-and-leadership |
 | T55 Gestion de classe | 25 € | — |
 | T56 Emploi du temps d'établissement | 45 € | `emploi-du-temps-etablissement` |
@@ -70,6 +76,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - LI-136 (T54, 12/03) et LI-137 (T58, 14/03) placés après LI-135 ; un créneau plus tôt existait (31/01,
   après LI-124) mais aurait aligné trois templates d'affilée. OK ?
 - T27 : accroche LinkedIn « beaucoup de propriétaires oublient » non chiffrée : l'adoucir ?
+- T07 (IG-76) : le kit n'a pas de jeu de hashtags « sport », la légende n'en a que 3. Ajouter un jeu Sport
+  (`#Musculation #CrossTraining`…) ? T10 (IG-77) mélange deux jeux du kit : OK ?
 
 ## Classement dans le catalogue
 
@@ -90,13 +98,17 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T66 Leasing** : hypothèses par défaut sans source (décote 20 % puis 12 %/an, entretien 500 €/an,
   assurance 60 €/mois) ; seuil calculé en km/an seulement.
 - **T06 Repas** : 100 recettes rédigées par QME, non testées en cuisine ; 14 allergènes non revérifiés sur
-  EUR-Lex.
+  EUR-Lex. Choix : quantités arrondies vers le haut à l'achat ; placard retiré de la liste chaque semaine sauf
+  « à racheter » ; un repas « restes » ne vient que d'un repas antérieur de la même semaine.
 - **T07 Musculation** : garder « WOD » ? Formules Epley, Brzycki et échelle RPE non vérifiées sur source
-  primaire.
+  primaire. Choix : 1RM estimé seulement jusqu'à 10 répétitions (réglable) ; mouvements de WOD hors records
+  d'exercice ; volume des WOD sur les tours complets ; kg ou lb = libellé, sans conversion.
 - **T10 Voiture** : délai d'une contre-visite défavorable non vérifié (service-public F2878) ; intervalles
-  d'entretien indicatifs sans source.
+  d'entretien indicatifs sans source. Choix : coût au km sans prix d'achat ni décote ; consommation électrique
+  d'une recharge « au niveau habituel » à la suivante.
 - **T27 Gestion locative** : articles autres que l'art. 21 de la loi de 1989, liste des charges récupérables
-  et gel des loyers des logements E à vérifier.
+  et gel des loyers des logements E à vérifier. Choix : chaque paiement solde l'échéance la plus ancienne (pas
+  de paiement ciblé sur un mois) ; régularisation des charges sur l'année civile ; aucun calcul d'impôt.
 - **T33 Bascule** : 5 séquences types fictives et libellé « point d'arrêt » ; accès unique partagé sans rôles ;
   impression non vérifiée en aperçu PDF.
 - **T55 Gestion de classe** : D122-1 et D122-3 du Code de l'éducation lus en résumé ; moyenne annuelle =
