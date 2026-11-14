@@ -674,8 +674,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 
 /* Simulateur */
 .cases-epreuves{display:grid;gap:4px}
-.cases-epreuves .case{align-items:flex-start;padding-top:8px;font-size:14px}
-.cases-epreuves .case input{margin-top:4px}
+.cases-epreuves .case{align-items:center;font-size:14px}
+
 .cases-epreuves .case>span{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
 #sim-resultat{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--trait);padding-top:14px}
 .tableau td.ok{background:var(--vert-fond);color:var(--vert-texte);font-weight:800}

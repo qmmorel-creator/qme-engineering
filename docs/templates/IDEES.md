@@ -163,7 +163,7 @@ déjà).
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
-| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) ; fiche [`fiches/notes.md`](fiches/notes.md) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -533,6 +533,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
 | T44 | `tva` | TVA | suivi-tva (prévu) |
+| T88 | `notes` | NTS | notes-moyennes (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1828,3 +1829,33 @@ et à régénérer les pages des packs à la fusion.
   prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
   ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
   anglaise, plannings, passage en vente du site.
+
+## Fiche T88 (cadrage délégué par Quentin, 14/11/2026)
+
+### T88 · Notes et moyennes (`templates/notes/`, préfixe NTS, 12 €)
+- Fiche détaillée : [`fiches/notes.md`](fiches/notes.md). Application web, permalien prévu `notes-moyennes`,
+  catalogue `perso` · thème « Organisation et études ». Pack visé : « Étudiant » (PET).
+- Promesse : « Ta moyenne, au centième près. » Pour les lycéens, étudiants (BTS, BUT, licence, master, écoles) et
+  candidats aux concours.
+- Fonctions : années et périodes (semestres, trimestres), UE et matières avec coefficients ou crédits ECTS, notes
+  avec barème et coefficient propres (contrôles, partiels, oraux, TP, rattrapages, absences neutralisées),
+  moyennes par matière, UE, période et année comparées aux seuils au centième, crédits acquis, règles du diplôme
+  **saisies par l'utilisateur** (compensation totale, par UE ou aucune, note éliminatoire, rattrapage
+  « remplace » ou « meilleure », compensation entre périodes, mentions), simulateur de la note nécessaire aux
+  épreuves à venir (dichotomie), courbe de la moyenne (skill `dataviz`, palette validée), relevé imprimable,
+  export CSV. Notation sur 20, sur 10, sur 100 ou en lettres (table saisie).
+- Marques : **aucun barème officiel ni règle de diplôme intégrés** (valeurs proposées modifiables : seuil 10,
+  mentions 12 / 14 / 16, table de lettres) ; aucune donnée datée ; relevé « sans valeur officielle » ; démo
+  fictive (« Camille Exemple », établissement inventé).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/notes/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue). Page `catalogue/notes/`, captures
+  `assets/templates-notes-*.webp`, couverture `assets/templates-notes-couverture.png`, tests
+  `outils/templates/notes.test.mjs`. Produit `NTS` déclaré (serveur, connexion, en-têtes Netlify) ; `NTS` passé de
+  `PREVUS` à `TEMPLATES` dans `outils/packs/donnees.mjs` (et retiré des `prevus` du pack PET).
+- Communication prête dans `communication/notes/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt, carte d'accueil FR,
+  carte anglaise `carte-en-prochaine.html` non insérée : version anglaise en attente). **Pas de fiche Gumroad,
+  pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer,
+  fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `NTS` aux
+  `produits` du pack PET (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise, plannings,
+  passage en vente du site.
