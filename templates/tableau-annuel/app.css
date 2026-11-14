@@ -544,7 +544,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .r-note{fill:var(--encre);font-weight:800}
 .r-cible{cursor:default;outline:none}
 .r-cible.survol,.r-cible:focus-visible{fill:rgba(36,34,31,.06);stroke:var(--encre);stroke-width:2}
-.legende-roue{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:13px;color:var(--texte-2);margin-top:8px}
+.legende-roue{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:13px;color:var(--texte-2);margin-top:16px}
 .legende-roue span{display:inline-flex;align-items:center;gap:6px}
 .legende-roue i{display:block;width:22px;height:12px;border-radius:3px}
 .legende-roue i.plein{background:var(--bleu)}
@@ -576,10 +576,11 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .methode summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
 .methode p{max-width:760px;margin-top:6px}
 .groupe-dom{margin-top:22px}
-.objectifs{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.objectifs{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;align-items:start}
 .objectif{position:relative;border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .objectif::before{content:"";position:absolute;left:-1px;top:16px;width:4px;height:28px;border-radius:0 4px 4px 0;background:var(--c)}
 .objectif-tete{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.objectif-dom{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texte-2);margin-bottom:-4px}
 .objectif-tete h3{font-size:19px;line-height:1.2}
 .objectif-tete p{font-size:14px;margin-top:4px}
 .objectif-av{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
@@ -716,3 +717,4 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .bandeau-revue .btn{width:100%}
   .act-retard .btn{flex:1}
 }
+.champ select{border-radius:12px}

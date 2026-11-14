@@ -444,7 +444,7 @@
     const ds = actifs();
     const n = ds.length;
     const W = Math.max(300, Math.min(560, largeur));
-    const marge = W < 420 ? 62 : 84;
+    const marge = W < 420 ? 80 : 84;
     const Rm = W / 2 - marge;
     const H = Rm * 2 + 96;
     const cx = W / 2, cy = H / 2;
@@ -456,8 +456,8 @@
     };
     const grille = [2, 4, 6, 8, 10].map((k) => `<circle cx="${cx}" cy="${cy}" r="${(Rm * k) / 10}" fill="none" stroke="var(--trait)" stroke-width="1"/>`).join('')
       + ds.map((_, i) => { const [x, y] = pt(part(i, Rm).a0, Rm); return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--trait)" stroke-width="1"/>`; }).join('')
-      + `<text x="${cx + 4}" y="${cy - Rm / 2 + 12}" class="r-echelle">5</text><text x="${cx + 4}" y="${cy - Rm + 12}" class="r-echelle">10</text>`;
-    const fs = W < 420 ? 12 : 13;
+;
+    const fs = W < 420 ? 11 : 13;
     const parts = ds.map((d, i) => {
       const c = teinte(d.couleur);
       const note = revue ? R.noteDomaine(revue.notes?.[d.id]) : null;
@@ -599,6 +599,7 @@
       const s = R.statutObjectif(o, t);
       const x = R.pourcent(R.avancementObjectif(o));
       return `<article class="objectif" style="${styleDom(o.domaine)}">
+        <p class="objectif-dom nom-dom"><i></i>${esc(domaine(o.domaine)?.nom || 'Domaine retiré')}</p>
         <div class="objectif-tete"><div><h3>${esc(o.titre)}</h3>${o.pourquoi ? `<p class="discret">${esc(o.pourquoi)}</p>` : ''}</div><span class="pastille st-${s}">${LIB_STATUT_OBJ[s]}</span></div>
         <div class="objectif-av">${barre(x, a === R.anneeDe(t) ? att : undefined)}<b>${x ?? '–'} %</b></div>
         <ul class="resultats">${o.resultats.map((r) => {
@@ -614,10 +615,9 @@
           <div class="nav-mois"><button class="btn-icone" data-action="annee-prec" aria-label="Année précédente">${ICONES.gauche}</button><button class="btn petit" data-action="annee-auj">${R.anneeDe(t)}</button><button class="btn-icone" data-action="annee-suiv" aria-label="Année suivante">${ICONES.droite}</button></div>
           <button class="btn primaire" data-action="objectif-nouveau">${ICONES.plus}Objectif</button>
         </div></div>
-      ${aReprendre ? `<div class="bandeau-revue doux"><div><b>${pluriel(aReprendre, 'objectif non atteint', 'objectifs non atteints')} en ${a - 1}.</b><span>Reprends-les en ${a}, en partant de là où tu en étais.</span></div><button class="btn" data-action="reprendre">Reprendre en ${a}</button></div>` : ''}
+      ${aReprendre ? `<div class="bandeau-revue doux"><div><b>${pluriel(aReprendre, 'objectif non atteint', 'objectifs non atteints')} en ${a - 1}.</b><span>Reprends-${aReprendre > 1 ? 'les' : 'le'} en ${a}, en partant de là où tu en étais.</span></div><button class="btn" data-action="reprendre">Reprendre en ${a}</button></div>` : ''}
       <details class="methode"><summary>La méthode en deux phrases</summary><p>${esc(B.methode.okr)}</p><p>Le repère « attendu à date » est la part de l'année écoulée : un objectif au-dessus est dans les temps.</p></details>
-      ${objs.length ? parDom.filter((x) => x.liste.length).map(({ d, liste }) => `<section class="groupe-dom" style="${styleDom(d.id)}"><h2 class="theme-titre"><i></i>${esc(d.nom)}<small>${pluriel(liste.length, 'objectif')}</small></h2><div class="objectifs">${liste.map(carte).join('')}</div></section>`).join('')
-        + (sansDom.length ? `<section class="groupe-dom"><h2 class="theme-titre">Domaines retirés</h2><div class="objectifs">${sansDom.map(carte).join('')}</div></section>` : '')
+      ${objs.length ? `<div class="objectifs">${[...parDom.flatMap((x) => x.liste), ...sansDom].map(carte).join('')}</div>`
         + `<h2 class="titre-section">Domaines sans objectif <span>ajoute un objectif modèle en un geste</span></h2><div class="puces">${parDom.filter((x) => !x.liste.length).map(({ d }) => `<button class="puce" style="${styleDom(d.id)}" data-action="objectif-nouveau" data-domaine="${d.id}"><i></i>${esc(d.nom)}</button>`).join('') || '<span class="discret">Tous tes domaines ont un objectif.</span>'}</div>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucun objectif en ${a}</h3><p>Commence par les domaines les plus bas de ta roue. Chaque domaine propose des objectifs modèles avec leurs résultats clés.</p><div class="actions"><button class="btn primaire" data-action="objectif-nouveau">${ICONES.plus}Choisir un objectif</button></div></div></div>`}`;
   }
@@ -654,7 +654,7 @@
       ${av.total ? `<div class="jauge" aria-hidden="true"><i style="width:${av.taux}%"></i></div>` : ''}
       ${prios.length ? `<p class="priorites"><span class="discret">Priorités choisies à la revue :</span> ${prios.map((id) => `<span class="puce statique" style="${styleDom(id)}"><i></i>${esc(domaine(id).nom)}</span>`).join('')}</p>` : ''}
       ${retard.length ? `<section class="bloc-retard"><h2 class="theme-titre">Restées ouvertes aux trimestres précédents <small>${pluriel(retard.length, 'action')}</small></h2><ul class="actions-liste">${retard.map((x) => `<li class="ligne act-retard" style="${domaine(x.domaine) ? styleDom(x.domaine) : ''}"><span class="ligne-nom" style="padding-left:12px"><b>${esc(x.titre)}</b><span>${esc(`T${x.trimestre} ${x.annee}`)}${domaine(x.domaine) ? ` · ${esc(domaine(x.domaine).nom)}` : ''}</span></span><button class="btn petit" data-action="reporter-ici" data-id="${x.id}">Reporter ici</button><button class="btn petit lien" data-action="abandonner" data-id="${x.id}">Abandonner</button></li>`).join('')}</ul></section>` : ''}
-      ${groupes.length ? groupes.map(({ d, l }) => `<section class="theme-jour" style="${d ? styleDom(d.id) : ''}"><h2 class="theme-titre"><i></i>${d ? esc(d.nom) : 'Sans domaine'}</h2><ul class="actions-liste">${ordre(l).map(ligneAction).join('')}</ul></section>`).join('')
+      ${groupes.length ? `<h2 class="titre-section">Actions du trimestre <span>rangées par domaine, puis par état</span></h2><ul class="actions-liste">${groupes.flatMap(({ l }) => ordre(l)).map(ligneAction).join('')}</ul>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune action ce trimestre</h3><p>Trois à huit actions concrètes suffisent : une ou deux par domaine prioritaire.</p><div class="actions"><button class="btn primaire" data-action="action-nouvelle">${ICONES.plus}Ajouter une action</button><button class="btn" data-action="idees">Idées d'actions</button></div></div></div>`}
       <p class="astuce">Touche une action pour la faire passer de « à faire » à « en cours » puis « fait ». Le bouton ··· permet de la modifier, de la reporter au trimestre suivant ou de l'abandonner.</p>`;
   }
@@ -790,7 +790,7 @@
           <li><b>${actifs().filter((d) => R.noteDomaine(b.notes[d.id]) !== null).length}</b> domaines notés sur ${actifs().length}</li>
           <li><b>${b.priorites.length}</b> ${b.priorites.length > 1 ? 'domaines prioritaires' : 'domaine prioritaire'}${b.priorites.length ? ` : ${b.priorites.map((id) => esc(domaine(id).nom)).join(', ')}` : ''}</li>
           <li><b>${b.actions.length}</b> ${b.actions.length > 1 ? 'actions ajoutées' : 'action ajoutée'} au ${nomTrim(cible.trimestre)} ${cible.annee}</li>
-          ${b.type !== 'initiale' ? `<li><b>${Object.values(b.bilan).filter((v) => String(v).trim()).length}</b> réponses au bilan</li>` : ''}
+          ${b.type !== 'initiale' ? (() => { const n = Object.values(b.bilan).filter((v) => String(v).trim()).length; return `<li><b>${n}</b> ${n > 1 ? 'réponses' : 'réponse'} au bilan</li>`; })() : ''}
         </ul><p class="aide">${esc(B.methode.revue)}</p></div></div>`;
     }
     const derniere = b.etape === etapes.length - 1;
