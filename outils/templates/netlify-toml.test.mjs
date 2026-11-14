@@ -23,3 +23,14 @@ test('netlify.toml : pas de marqueur de conflit ni de chemin en double', () => {
   const chemins = [...texte.matchAll(/^\s*for = "([^"]+)"/gm)].map((m) => m[1]);
   assert.deepEqual(chemins.filter((c, i) => chemins.indexOf(c) !== i), []);
 });
+
+test('netlify.toml : chaque application de templates/ est en noindex et son sw.js en no-cache', async () => {
+  const { readdirSync } = await import('node:fs');
+  const racine = new URL('../../templates/', import.meta.url);
+  const slugs = readdirSync(racine, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+  const manquants = slugs.filter((s) => {
+    const bloc = texte.split(/^\[\[/m).find((b) => b.includes(`for = "/templates/${s}/*"`));
+    return !bloc || !bloc.includes('X-Robots-Tag = "noindex, nofollow"') || !texte.includes(`for = "/templates/${s}/sw.js"`);
+  });
+  assert.deepEqual(manquants, []);
+});
