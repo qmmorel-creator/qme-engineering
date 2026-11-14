@@ -83,11 +83,11 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | idée | 13 € | M | P2 | Liste initiale 12/11/2026 |
-| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | idée | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
+| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | idée | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne | Budget perso | Particuliers | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -104,7 +104,7 @@ déjà).
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
-| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | idée | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
+| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | prêt | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
@@ -450,6 +450,10 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T62 | `stocks` | STK | stocks-inventaire (prévu) |
 | T64 | `location-saisonniere` | SJR | location-saisonniere (prévu) |
 | T66 | `leasing` | VTR | simulateur-leasing-achat (prévu) |
+| T06 | `repas` | RPS | repas-liste-de-courses (prévu) |
+| T07 | `musculation` | MSC | carnet-musculation-cross-training (prévu) |
+| T10 | `voiture` | CAR | carnet-voiture (prévu) |
+| T27 | `gestion-locative` | GST | gestion-locative (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -500,6 +504,10 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-117 | T62 stocks | 2027-02-03 | 12:15 |
 | LI-118 | T64 location-saisonniere | 2027-02-05 | 12:15 |
 | LI-119 | T66 leasing | 2027-02-07 | 08:30 |
+| LI-120 | T06 repas | 2027-02-09 | 12:15 |
+| LI-121 | T07 musculation | 2027-02-11 | 12:15 |
+| LI-122 | T10 voiture | 2027-02-13 | 08:30 |
+| LI-123 | T27 gestion-locative | 2027-02-15 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -556,6 +564,30 @@ séjour (source secondaire), collecte de la taxe par les intermédiaires non vé
 hypothèses par défaut (décote 20 % puis 12 %/an, entretien, assurance) non sourcées, seuil calculé en km/an
 seulement ; organismes de `prospects.md` marqués « à vérifier ». Le thème du catalogue de T62 est
 « Indépendants » (public : commerces et artisans).
+
+**Lot du 14/11/2026, troisième (T06, T07, T10, T27)**, prêts, « Mise en vente prochaine » (démo libre, bouton
+« Je suis intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). Applications
+`templates/repas/` (RPS, 13 €), `templates/musculation/` (MSC, 19 €), `templates/voiture/` (CAR, 13 €),
+`templates/gestion-locative/` (GST, 20 €) ; pages `catalogue/<slug>/` ; fiches `fiches/<slug>.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`). Noms et
+prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad. Publications
+insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad est en ligne » : LinkedIn « Programmé »
+LI-120 (T06, 09/02), LI-121 (T07, 11/02), LI-122 (T10, sam. 13/02 : créneau donné par la règle), LI-123 (T27,
+15/02) ; Instagram « Prêt » (à relire par Quentin avant « Programmé ») IG-75 (T06, 10/02), IG-76 (T07, 12/02),
+IG-77 (T10, 14/02), IG-78 (T27, 16/02). **Images non déposées dans Drive** (envoi de fichiers impossible depuis
+la session) : couvertures LinkedIn `assets/templates-<slug>-couverture.png` à renommer `LI-12x-<slug>.png`, et
+carrousels `communication/<slug>/instagram/<slug>-1…5.png` à renommer `IG-7x-<slug>-1…5.png`, puis IDs Drive
+en colonne P du planning Instagram (consigne dans la colonne Remarque de chaque ligne). Restent à vérifier :
+T06, recettes rédigées par QME (quantités et temps non testés), liste des 14 allergènes (règlement UE
+1169/2011) non revérifiée sur EUR-Lex, attribution indicative ; T07, aucune donnée de santé, aucun WOD nommé,
+le mot « CrossFit » absent ; sources des formules d'Epley et de Brzycki et de l'échelle RPE non consultées
+directement ; usage du terme « WOD » à arbitrer ; pas de jeu de hashtags « sport » dans le kit ; T10, contrôle
+technique vérifié sur service-public.gouv.fr (F2878) le 14/11/2026, délai d'une contre-visite elle-même
+défavorable non vérifié, intervalles d'entretien indicatifs non sourcés ; T27, fiches service-public F1311,
+F31269, F947 et article 21 de la loi de 1989 relus le 14/11/2026, autres numéros d'articles, charges
+récupérables, gel des loyers des logements classés E à vérifier, aucun calcul d'impôt, hashtags hors kit ;
+catégories Gumroad (`food-and-cooking`, `fitness-and-health`, `personal-finance`) à vérifier à la création ;
+organismes de `prospects.md` marqués « à vérifier ».
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 

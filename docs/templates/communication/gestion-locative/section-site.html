@@ -1,0 +1,47 @@
+<!-- Version « en vente » de la page catalogue/gestion-locative/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : gestion-locative (à confirmer une fois la fiche créée), prix 20 € (à confirmer
+     par Quentin). Captures : assets/templates-gestion-locative-*.webp (démo, données fictives). À la mise en vente,
+     retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans index.html et sw.js. -->
+<section class="section" id="gestion-locative">
+  <div class="section-head">
+    <h2>Gestion locative</h2>
+    <p>Pour les propriétaires qui louent eux-mêmes un ou plusieurs logements, nus ou meublés, en location de longue durée : les loyers suivis mois par mois avec les retards calculés, la quittance et la relance prêtes à copier, la révision annuelle et la régularisation des charges faites sans tableur.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-gestion-locative-tableau.webp?v=20261114" width="1600" height="1000" alt="Tableau de bord de la gestion locative : encaissé du mois, impayés, révisions à faire, rendement brut, baux à relancer avec le palier de relance, loyers du mois et échéances à venir (données fictives)">
+      <img class="tel" src="/assets/templates-gestion-locative-tel.webp?v=20261114" width="780" height="1328" alt="La gestion locative sur téléphone : encaissé du mois, impayés, révisions et rendement brut (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill yellow">Propriétaires bailleurs · location nue ou meublée</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Les loyers suivis mois par mois</b> : ce qui est dû par bail (loyer hors charges et provisions, au prorata à l'entrée et à la sortie), ce qui est payé, les retards et les impayés calculés</li>
+        <li><b>La quittance et la relance prêtes à copier</b> : quittance quand le mois est payé, reçu quand il l'est en partie, relance en trois paliers selon le retard ; à imprimer ou à copier, rien n'est envoyé</li>
+        <li><b>La révision du loyer</b> : échéancier de chaque bail, nouveau loyer calculé avec l'indice de référence des loyers que vous saisissez, date limite pour la demander, logements classés F ou G signalés</li>
+        <li><b>La régularisation des charges</b> : provisions comparées aux charges récupérables réellement payées, décompte par nature à copier, nouvelle provision proposée</li>
+        <li><b>Le rendement et le récapitulatif de l'année</b> : rendement brut et net de charges, effort mensuel avec le crédit, loyers encaissés et dépenses par catégorie pour préparer votre déclaration (aucun calcul d'impôt)</li>
+      </ul>
+      <div class="prix"><b>20 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/gestion-locative" data-goatcounter-click="achat-gestion-locative" data-goatcounter-title="Acheter : gestion locative">Acheter</a>
+        <a class="btn" href="/templates/gestion-locative/?demo" data-goatcounter-click="demo-gestion-locative" data-goatcounter-title="Démo : gestion locative">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-gestion-locative-quittance.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Quittance de loyer du mois générée pour un locataire : bailleur, logement, période, loyer hors charges, provision sur charges, date du paiement, avec la mention modèle à vérifier (données fictives)"><figcaption>La quittance du mois, à copier ou à imprimer</figcaption></figure>
+    <figure><img src="/assets/templates-gestion-locative-revisions.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Échéancier des révisions d'un bail : révision à faire avec les indices du trimestre de référence et le nouveau loyer, révisions déjà appliquées les années précédentes (données fictives)"><figcaption>La révision annuelle, indices et nouveau loyer</figcaption></figure>
+    <figure><img src="/assets/templates-gestion-locative-bilan.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Charges et bilan de l'année : loyers et charges encaissés, dépenses, régularisation des charges par bail avec complément à demander ou trop-perçu à rembourser (données fictives)"><figcaption>La régularisation des charges et le bilan de l'année</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment le nouveau loyer est-il calculé à la révision ?</summary><p>Selon la formule indiquée par service-public.gouv.fr : loyer hors charges × indice de référence des loyers (IRL) du trimestre de référence de votre bail ÷ IRL du même trimestre de l'année précédente, arrondi au centime. Aucun indice n'est fourni avec l'outil, car il change chaque trimestre : vous recopiez la valeur publiée par l'Insee. L'outil affiche la date limite pour demander la révision (dans l'année qui suit sa date, sans effet rétroactif) et signale les logements classés F ou G, pour lesquels elle est interdite.</p></details>
+    <details><summary>Les quittances et les relances sont-elles envoyées à mes locataires ?</summary><p>Non. Rien n'est envoyé : la quittance (ou le reçu, si le mois n'est payé qu'en partie), la relance, le courrier de révision et le décompte de charges sont des textes à copier dans votre message ou à imprimer. Ce sont des modèles à vérifier, pas des documents juridiques certifiés.</p></details>
+    <details><summary>Comment sont calculés les retards ?</summary><p>Chaque mois, le loyer et les charges du bail deviennent dus à la date d'échéance que vous choisissez. Chaque paiement solde l'échéance la plus ancienne. Au-delà d'un délai de tolérance (5 jours par défaut), un mois non soldé passe en retard, et l'outil propose le palier de relance adapté (rappel amical, relance, mise en demeure), selon des seuils que vous réglez.</p></details>
+    <details><summary>Est-ce que l'outil calcule mes impôts ?</summary><p>Non. Il fournit un récapitulatif annuel (loyers et charges encaissés, dépenses par catégorie) pour vous aider à préparer votre déclaration. Le régime (micro-foncier ou réel pour la location nue, micro-BIC ou réel pour la location meublée) et ce qui est déductible se vérifient sur impots.gouv.fr ou auprès d'un professionnel.</p></details>
+    <details><summary>Et la location saisonnière ?</summary><p>Ce template est fait pour les baux de longue durée, nus ou meublés. Pour louer à la nuit ou à la semaine, voyez la <a href="/catalogue/location-saisonniere/">Location saisonnière</a> : calendrier, ménage et taxe de séjour.</p></details>
+    <details><summary>Et les données de mes locataires ?</summary><p>Le minimum suffit : un nom et, si vous le souhaitez, un contact. Aucune pièce justificative n'est stockée. Pour chaque locataire, vous pouvez exporter ses données, les effacer (le nom est remplacé, les montants restent pour votre comptabilité) ou le supprimer. Vous restez responsable des données de vos locataires.</p></details>
+    <details><summary>Les règles légales sont-elles à jour ?</summary><p>Elles ont été relevées le 14 novembre 2026 sur service-public.gouv.fr et Légifrance (plafond du dépôt de garantie, délai de restitution, révision, quittance) et restent modifiables dans les réglages, avec leur date de vérification. L'encadrement des loyers n'est pas calculé. C'est un outil d'aide : le bail et la loi font foi.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/gestion-locative/?demo">la démo</a> ouvre la gestion de trois logements fictifs (loyers payés, en retard et partiels, révisions, dépôt de garantie à rendre, régularisation des charges). Elle reste dans votre navigateur et n'envoie rien.</p></details>
+  </div>
+</section>

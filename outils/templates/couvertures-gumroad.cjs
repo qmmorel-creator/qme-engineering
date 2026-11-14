@@ -47,6 +47,10 @@ const T = {
   'location-saisonniere': ["Location saisonnière", "Tes logements, toujours prêts.", "Calendrier · ménage · taxe de séjour · net par canal"],
   'leasing': ["Simulateur leasing ou achat", "Ta voiture, au vrai prix.", "Comptant · crédit · LOA · LLD : le coût total net côte à côte"],
   'conges': ["Suivi des congés et absences", "Qui est là, qui part, et combien il reste.", "Soldes calculés · demandes · calendrier d'équipe"],
+  'voiture': ["Carnet de voiture", "Ta voiture, entretenue à temps.", "Entretiens · kilométrage · dépenses"],
+  'gestion-locative': ["Gestion locative", "Tes loyers, à jour chaque mois.", "Loyers et retards · quittances · révision IRL"],
+  'musculation': ["Carnet de musculation et cross-training", "Chaque série notée, chaque record vu.", "Séances et WOD · records détectés · minuteur"],
+  'repas': ["Repas de la semaine et liste de courses", "Ce soir, on mange quoi ? C'est déjà prévu.", "100 recettes · liste par rayon · placard déduit"],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

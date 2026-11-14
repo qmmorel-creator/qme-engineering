@@ -586,5 +586,173 @@
     "value": "TPE de 2 à 30 salariés sans logiciel RH"
    }
   ]
+ },
+ {
+  "slug": "voiture",
+  "name": "Carnet de voiture",
+  "price_cents": 1300,
+  "permalink": "carnet-voiture",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon carnet de voiture",
+  "summary": "Les entretiens de ta voiture à la date ou au kilométrage, le contrôle technique, chaque plein et chaque dépense, ta consommation réelle et ton coût au kilomètre.",
+  "description": "<h2>Ta voiture, entretenue à temps.</h2><p>Une vidange oubliée, un contrôle technique découvert trop tard, des tickets de carburant dans la boîte à gants et aucune idée de ce que la voiture coûte vraiment… Le Carnet de voiture garde tout au même endroit et te dit ce qui arrive, à la date ou au kilométrage.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Des entretiens à temps</strong> : chaque opération (vidange, révision, freins, pneus, distribution…) a son échéance à la date ou au kilométrage, la première atteinte compte. Plan indicatif proposé selon l'énergie, à adapter : le carnet d'entretien du constructeur prime.</li><li><strong>Le contrôle technique calculé</strong> : premier contrôle avant le 4e anniversaire de la mise en circulation, puis tous les 2 ans, contre-visite dans les 2 mois, d'après la fiche de service-public.gouv.fr (vérifiée le 1er janvier 2026). Source et date affichées, valeurs modifiables. Autre véhicule : périodicité à saisir.</li><li><strong>Toutes les dépenses</strong> : carburant ou recharge, entretien, réparations, pneus, assurance, péage, stationnement, contrôle technique, crédit ou location.</li><li><strong>La consommation réelle</strong>, calculée d'un plein complet à l'autre (L/100 km), ou d'une recharge à l'autre (kWh/100 km) pour l'électrique et l'hybride rechargeable.</li><li><strong>Le coût au kilomètre et le coût mensuel</strong> de chaque voiture, par poste et mois par mois.</li><li><strong>L'historique pour la revente</strong> : entretiens, contrôles, réparations et pneus avec date, kilométrage et garage, à imprimer ou à copier pour un acheteur.</li><li><strong>Plusieurs voitures</strong> : toutes celles du foyer, les voitures vendues gardées pour leur historique ; export CSV et copie de sauvegarde.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Ajoute ta voiture (énergie, mise en circulation, kilométrage du jour), vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins et tes dépenses. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Aucun prix de carburant ou d'électricité intégré : tu saisis ce que tu paies. Aucune connexion à un garage, une assurance ou une autre application. Outil d'aide au suivi, ni conseil mécanique ni conseil financier : le carnet d'entretien du constructeur prime. Règle du contrôle technique relevée le 14/11/2026, modifiable dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "voiture",
+   "entretien-auto",
+   "carnet-entretien",
+   "controle-technique",
+   "consommation",
+   "budget-auto",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton carnet s'ouvre. Ajoute ta voiture et son kilométrage du jour, vérifie le plan d'entretien avec ton carnet constructeur, puis note tes pleins : les échéances, la consommation et le coût au kilomètre se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Particuliers et foyers, une ou quelques voitures"
+   }
+  ]
+ },
+ {
+  "slug": "gestion-locative",
+  "name": "Gestion locative",
+  "price_cents": 2000,
+  "permalink": "gestion-locative",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir ma gestion locative",
+  "summary": "Tes biens, tes baux et tes loyers au même endroit : retards calculés, quittances et relances à copier, révision du loyer selon l'IRL, régularisation des charges et rendement.",
+  "description": "<h2>Tes loyers, à jour chaque mois.</h2><p>Un tableur de loyers à mettre à jour, une quittance à refaire chaque mois, la révision annuelle oubliée et, en fin d'année, plus personne ne sait ce qui a été payé… La Gestion locative réunit tes biens, tes baux, tes locataires et ton argent au même endroit.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Les loyers suivis mois par mois</strong> : ce qui est dû par bail (loyer hors charges, provisions ou forfait de charges, au prorata à l'entrée et à la sortie), ce qui est payé, les retards et les impayés calculés.</li><li><strong>La quittance et le reçu</strong> : quittance quand le mois est payé, reçu quand il l'est en partie, à copier ou à imprimer.</li><li><strong>Les relances en trois paliers</strong> (rappel amical, relance, mise en demeure), proposées selon le retard, en texte à copier.</li><li><strong>La révision du loyer</strong> : échéancier de chaque bail, nouveau loyer calculé avec l'indice de référence des loyers (IRL) que tu saisis depuis la publication de l'Insee, date limite pour la demander, logements classés F ou G signalés, courrier à copier.</li><li><strong>La régularisation des charges</strong> : provisions comparées aux charges récupérables réellement payées, décompte par nature à copier, nouvelle provision proposée.</li><li><strong>Le rendement et le bilan de l'année</strong> : rendement brut et net de charges, effort mensuel avec ton crédit, loyers encaissés et dépenses par catégorie pour préparer ta déclaration ; dépôt de garantie et délai de restitution suivis.</li><li><strong>Des données de locataires minimales</strong> : un nom et, si tu veux, un contact ; aucune pièce stockée ; export, effacement ou suppression d'un locataire.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Crée tes biens et tes baux, puis encaisse les loyers : les retards, les quittances, les révisions et les charges se calculent. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Rien n'est envoyé à tes locataires et aucune banque n'est connectée. Aucun indice IRL n'est fourni : tu saisis les valeurs publiées par l'Insee. Quittances, relances et courriers sont des modèles à vérifier, pas des documents juridiques certifiés. Outil d'aide à la gestion, pas un conseil juridique ni fiscal : aucun impôt n'est calculé ; le régime (micro-foncier, réel, micro-BIC, LMNP) se vérifie sur impots.gouv.fr ou auprès d'un professionnel. Règles relevées le 14/11/2026, modifiables dans les réglages. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "gestion-locative",
+   "proprietaire-bailleur",
+   "quittance-de-loyer",
+   "revision-loyer",
+   "irl",
+   "location-meublee",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ta gestion locative s'ouvre. Crée tes biens et tes baux, puis encaisse les loyers : retards, quittances, révisions et charges se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Propriétaires bailleurs, location nue ou meublée de longue durée"
+   }
+  ]
+ },
+ {
+  "slug": "musculation",
+  "name": "Carnet de musculation et cross-training",
+  "price_cents": 1900,
+  "permalink": "carnet-musculation-cross-training",
+  "category": "fitness-and-health",
+  "button": "Ouvrir mon carnet",
+  "summary": "Tes séances et tes WOD notés en quelques secondes, le volume de la semaine, les records détectés tout seuls et un minuteur qui fonctionne sans réseau.",
+  "description": "<h2>Chaque série notée, chaque record vu.</h2><p>Un carnet papier oublié dans le sac, des notes éparpillées dans le téléphone, et la question à chaque séance : « J'avais mis combien la dernière fois ? » Le Carnet de musculation et cross-training garde tes séances et tes WOD, calcule ton volume et repère tes records tout seul.</p><h3>Ce que tu obtiens</h3><ul><li><strong>150 exercices prêts à l'emploi</strong>, aux noms génériques, rangés par groupe musculaire et par famille (haltérophilie, gymnastique, kettlebell, cardio et machines…), chacun avec sa mesure : charge et répétitions, répétitions, temps, distance ou calories machine. Ajoute les tiens en quelques secondes.</li><li><strong>Des séances notées vite</strong> : séries, charges, répétitions, RPE facultatif, et la dernière fois rappelée sous chaque exercice.</li><li><strong>Des WOD avec leur score</strong> : AMRAP, EMOM, For Time et intervalles ; ton meilleur score retrouvé quand tu refais le même.</li><li><strong>Des records détectés automatiquement</strong> : charge max, répétitions, temps, distance, allure, records par répétitions, et un 1RM estimé par la formule d'Epley (ou de Brzycki), toujours présenté comme une estimation.</li><li><strong>Le volume et la progression</strong> : tonnage et séries par semaine, séries par groupe musculaire, courbe de chaque exercice.</li><li><strong>Un minuteur qui marche sans réseau</strong> : AMRAP, EMOM, For Time, intervalles et chronomètre, avec bips ; le score se reporte dans le WOD.</li><li><strong>12 modèles de séances</strong> rédigés pour le carnet, et les tiens à partir de n'importe quelle séance.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis ton unité, garde les modèles qui t'intéressent et note ta première séance. Ton carnet est enregistré en ligne et te suit sur téléphone, tablette et ordinateur avec la même clé ; ajoute-le à l'écran d'accueil de ton téléphone pour l'ouvrir comme une application à la salle.</li></ol><p>Rien à installer, aucun compte à créer. Achat unique, sans abonnement.</p><p><em>Seulement tes performances sportives : aucune donnée de santé (ni poids de corps, ni mensurations, ni fréquence cardiaque). Aucun lien avec une montre ou une autre application. Ce carnet n'est ni un programme d'entraînement ni un avis médical : avant de reprendre une activité intense, consulte un médecin ou un professionnel du sport. Le 1RM affiché est une estimation par formule, pas une charge à tester seul. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "musculation",
+   "cross-training",
+   "carnet-entrainement",
+   "wod",
+   "records",
+   "minuteur",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton carnet s'ouvre. Choisis ton unité, garde les modèles qui t'intéressent et note ta première séance : le volume et les records se calculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (téléphone, tablette, ordinateur)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Pratiquants de musculation et de cross-training, coachs"
+   }
+  ]
+ },
+ {
+  "slug": "repas",
+  "name": "Repas de la semaine et liste de courses",
+  "price_cents": 1300,
+  "permalink": "repas-liste-de-courses",
+  "category": "food-and-cooking",
+  "button": "Ouvrir mon planning de repas",
+  "summary": "Les repas de la semaine prévus en quelques minutes, et la liste de courses qui se calcule seule : rangée par rayon, quantités additionnées, sans ce que tu as déjà.",
+  "description": "<h2>Ce soir, on mange quoi ? C'est déjà prévu.</h2><p>Les repas notés sur un coin de papier, une liste de courses recopiée à la main, la moitié des ingrédients oubliés et le sel racheté pour la troisième fois… Repas de la semaine et liste de courses organise les repas de ton foyer et calcule la liste pour toi.</p><h3>Ce que tu obtiens</h3><ul><li><strong>La semaine en un coup d'œil</strong> : midi et soir, nombre de personnes par repas, repas de restes, cantine ou sortie, notes ; semaines types à réappliquer d'un geste.</li><li><strong>100 recettes familiales de base</strong>, rédigées pour l'outil (aucune reprise d'un site, d'un livre ou d'une marque) : ingrédients, quantités, étapes, saison, temps ; tu les modifies et tu ajoutes les tiennes.</li><li><strong>Une liste de courses calculée</strong> : quantités ajustées aux portions et additionnées sur la semaine (grammes, kilos, litres, cuillères), rangées par rayon dans l'ordre de ton magasin, à cocher en magasin.</li><li><strong>Le placard et le frigo déduits</strong> : ce que tu as toujours, ou déjà en partie cette semaine, sort de la liste ; les articles du quotidien s'ajoutent chaque semaine.</li><li><strong>Des idées quand l'inspiration manque</strong> : propositions de saison, sans resservir les plats des dernières semaines, avec des repas végétariens, du poisson ou des soirs rapides si tu veux.</li><li><strong>Un budget seulement si tu veux</strong> : note tes prix, le coût de la semaine s'estime ; aucun prix n'est fourni.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Indique combien vous êtes à table et ton placard, place des recettes sur la semaine, puis copie ou imprime la liste. Tes données sont enregistrées en ligne et te suivent sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Ce n'est pas un outil de nutrition : aucun calcul de calories, aucune donnée de santé. Les allergènes affichés sont indicatifs, déduits d'ingrédients génériques : vérifie toujours les étiquettes des produits. Aucun lien vers un magasin ou un service de livraison : la liste se copie ou s'imprime. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+   "menus",
+   "liste-de-courses",
+   "recettes",
+   "planning-repas",
+   "famille",
+   "organisation",
+   "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton planning s'ouvre. Indique combien vous êtes à table et ce que tu as au placard, place des recettes sur la semaine : la liste de courses se calcule. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+   {
+    "name": "Format",
+    "value": "Application web (ordinateur, tablette, téléphone)"
+   },
+   {
+    "name": "Accès",
+    "value": "Clé de licence envoyée par e-mail"
+   },
+   {
+    "name": "Langue",
+    "value": "Français"
+   },
+   {
+    "name": "Paiement",
+    "value": "Achat unique, sans abonnement"
+   },
+   {
+    "name": "Pour",
+    "value": "Familles et particuliers"
+   }
+  ]
  }
 ]
