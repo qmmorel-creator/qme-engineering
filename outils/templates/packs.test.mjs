@@ -23,6 +23,7 @@ test('les packs sont cohérents : préfixes uniques, sans I L O U, slugs uniques
     assert.match(p, /^[A-HJKMNP-TV-Z]{3}$/, p);
   }
   for (const p of prefixes) assert.ok(!PRODUITS[p] && !PREVUS[p], `${p} est déjà un template`);
+  for (const p of Object.keys(PREVUS)) assert.ok(!PRODUITS[p], `${p} existe : le retirer de PREVUS et l’ajouter à TEMPLATES et aux packs`);
   const tous = [...prefixes, ...Object.keys(PREVUS)];
   assert.equal(new Set(tous).size, tous.length, 'préfixes en double');
   const slugs = Object.values(PACKS).map((p) => p.slug);

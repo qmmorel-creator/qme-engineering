@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tableau de bord annuel · QME</title>
+<meta name="description" content="Tableau de bord annuel et roue de vie : domaines notés de 0 à 10, objectifs et résultats clés, actions trimestrielles, revue guidée et évolution dans le temps.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FBF7F1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mon année">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icone.svg">
+<link rel="apple-touch-icon" href="icone-180.png">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261114">
+<link rel="stylesheet" href="app.css?v=20261114">
+</head>
+<body>
+<div id="racine" aria-live="polite"><p class="chargement">Chargement…</p></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="modale" class="modale" aria-labelledby="modale-titre"></dialog>
+<noscript><p class="chargement">Le tableau de bord annuel a besoin de JavaScript pour fonctionner.</p></noscript>
+<script src="donnees.js?v=20261114"></script>
+<script src="regles.js?v=20261114"></script>
+<script src="app.js?v=20261114"></script>
+</body>
+</html>

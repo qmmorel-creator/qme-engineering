@@ -45,6 +45,7 @@ export const TEMPLATES = {
   VTR: { slug: 'leasing', prix: 1200, phrase: 'Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.', pour: 'perso' },
   PHR: { slug: 'planner', prix: 1500, phrase: 'Votre semaine en blocs de 30 minutes, prévu et réalisé.', pour: 'perso' },
   ENT: { slug: 'entretien', prix: 1200, phrase: 'Chaudière, ramonage, VMC : échéances calculées.', pour: 'perso' },
+  RDV: { slug: 'tableau-annuel', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -60,7 +61,6 @@ export const PREVUS = {
   VRF: { nom: 'Vérifications réglementaires', prix: 3500, phrase: 'Contrôles périodiques, échéances et preuves rangées.' },
   EPG: { nom: 'Objectif d’épargne', prix: 1200, phrase: 'Fonds d’urgence et projets : combien, jusqu’à quand.' },
   DMN: { nom: 'Déménagement', prix: 1200, phrase: 'Rétroplanning, démarches et cartons retrouvés.' },
-  RDV: { nom: 'Tableau de bord annuel et roue de vie', prix: 1500, phrase: 'Vos domaines de vie notés, objectifs et bilan trimestriel.' },
   CMP: { nom: 'Gestion de compétition sportive', prix: 4900, phrase: 'Inscriptions, heats, scores et classement en direct.' },
   GRT: { nom: 'Gestion locative', prix: 2000, phrase: 'Baux, loyers, quittances et révisions, bien par bien.' },
   MSC: { nom: 'Carnet de musculation et cross-training', prix: 1900, phrase: 'Séances, records et progression, chronomètre inclus.' },
@@ -235,9 +235,10 @@ export const PAGES = {
       ['TCH', 'Videz la boîte de réception et décidez des trois priorités du jour.'],
       ['PHR', 'Placez ces priorités en blocs de 30 minutes et comparez prévu et réalisé.'],
       ['HBT', 'Ancrez les routines qui tiennent la semaine : séries et grille du mois.'],
+      ['RDV', 'Prenez du recul chaque trimestre : roue de vie, objectifs et bilan.'],
     ],
-    arguments: ['Une méthode complète : trier, planifier, tenir', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Le tableau de bord annuel à venir, inclus avec l’option Pack évolutif'],
-    prevus: ['RDV', 'RVH'],
+    arguments: ['Une méthode complète : trier, planifier, tenir, prendre du recul', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'La revue hebdomadaire à venir, incluse avec l’option Pack évolutif'],
+    prevus: ['RVH'],
   },
   PET: {
     couleur: 'bleu', cibles: ['etudiants'],

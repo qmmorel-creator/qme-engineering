@@ -99,7 +99,7 @@ déjà).
 | T19 | Suivi du bébé | Famille | Jeunes parents | idée | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | idée | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | idée | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | idée | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
+| T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | prêt | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | idée | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
@@ -261,7 +261,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Moyens généraux | PMG | T45, T29, T46 | T50, T61, T63, T79, T80 | 93 € | 15 % | 79 € | 20 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69 | T13, T81, T82, T83 | 77 € | 25 % | 57 € | 15 € |
 | Mariage et installation à deux | PMR | T15, T65, T05 | T16, T84, T21 | 59 € | 15 % | 50 € | 13 € |
-| Productivité perso | PPR | T03, T30, T08 | T22, T85 | 46 € | 15 % | 39 € | 10 € |
+| Productivité perso | PPR | T03, T30, T08, T22 | T85 | 61 € | 20 % | 48 € | 12 € |
 | Étudiant | PET | T01, T30, T08 | T86, T87, T88 | 41,90 € | 15 % | 35 € | 9 € |
 | Associations et clubs | PAS | T53, T51, T42 | T52, T89, T90, T91 | 107 € | 15 % | 90 € | 23 € |
 | Propriétaire | PPB | T64, T67, T11 | T27, T92, T93, T94, T83 | 62 € | 15 % | 52 € | 13 € |
@@ -892,3 +892,44 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
   Communication prête : `communication/temps-de-vie/` (gumroad.md et gumroad.json, linkedin.md, instagram.md et carrousel PNG, prospects.md),
   fiche ajoutée à `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad, clé de licence
   (Quentin), passage en vente du site, lignes des plannings LinkedIn et Instagram.
+
+## Fiche T22 (cadrage délégué par Quentin, 14/11/2026)
+
+### T22 · Tableau de bord annuel et roue de vie (`templates/tableau-annuel/`, préfixe RDV, 15 €)
+- Promesse : « Ton année, domaine par domaine. » Piloter toute son année, pas seulement le travail : noter sa
+  roue de vie, fixer quelques objectifs mesurables, les découper en actions trimestrielles, faire le point
+  chaque trimestre et voir sa roue bouger dans le temps. Fusion du backlog n° 50 (roue de vie, bilan par domaine).
+- Public : particuliers (cadres, indépendants, personnes en transition, adeptes du bilan de fin d'année) ;
+  coachs pour eux-mêmes et en prescription (une licence = un tableau pour une personne ; suivi de plusieurs
+  clients = sur mesure).
+- Écrans : connexion ; premier lancement (prénom, choix de 4 à 8 domaines) puis point de départ guidé ;
+  **Tableau** (roue de la dernière revue contre la précédente en pointillés, tuiles équilibre, score des
+  objectifs contre l'attendu à date, actions du trimestre, prochaine revue ; bandeau quand une revue est due ou
+  en retard ; objectifs à surveiller ; actions ouvertes) ; **Objectifs** par année (cartes avec résultats clés,
+  statut, repère « attendu à date », reprise des objectifs non atteints de l'année précédente) ; **Trimestre**
+  (actions par état, priorités choisies à la revue, actions restées ouvertes aux trimestres précédents à
+  reporter ou abandonner, idées d'actions) ; **Évolution** (moyenne de la roue par revue, petits multiples par
+  domaine sur la même échelle, avancement des objectifs, tableau des données, bilans écrits relus) ; **revue
+  guidée** (un domaine par étape avec 3 questions de 0 à 10 et la note précédente rappelée, résultats clés,
+  bilan écrit, 1 à 3 priorités avec actions du trimestre suivant, résumé ; brouillon synchronisé, reprise
+  possible) ; réglages (domaines personnels, couleurs, questions, export JSON et CSV, « Sur téléphone »).
+- Base intégrée (contenu original QME, `donnees.js`) : 12 domaines types (8 proposés par défaut) avec 3 questions
+  chacun (36), 33 objectifs modèles avec 1 à 3 résultats clés, 48 idées d'actions, questions de bilan (5
+  trimestrielles, 3 annuelles), repères de méthode (roue de vie, OKR, trimestre, revue), unités.
+- Calculs (`regles.js`, testés) : note d'un domaine = moyenne de ses questions ; équilibre = moyenne des
+  domaines notés ; variations entre deux revues ; domaines faibles suggérés comme priorités ; avancement d'un
+  résultat clé du départ vers la cible dans les deux sens, plafonné ; statut d'un objectif contre la part de
+  l'année écoulée (atteint, dans les temps, à surveiller à moins de 15 points, en retard, non atteint) ; score de
+  l'année ; revue due 21 jours avant la fin du trimestre, revue oubliée signalée en retard, revue du 4e
+  trimestre = bilan annuel ; report d'action ; reprise d'objectifs ; export CSV ; texte du bilan.
+- Sources : roue de vie (outil classique de coaching) et méthode OKR (largement documentée) citées comme
+  méthodes, aucune base externe reprise ; rien ne se périme. Aucune donnée ni contenu de l'outil interne de
+  Quentin. Avertissement : outil de réflexion personnelle, ne remplace pas un professionnel ; aucune donnée de
+  santé demandée.
+- Statut : prêt le 14/11/2026 (branche locale, non poussée, sans PR). Page `catalogue/tableau-annuel/`
+  « Mise en vente prochaine », cartes du catalogue FR (Projets de vie) et EN, connexion, `PRODUITS`, en-têtes
+  Netlify. Communication prête : `communication/tableau-annuel/` (gumroad.md et gumroad.json, linkedin.md,
+  instagram.md et carrousel PNG, prospects.md, section-site.html), fiche ajoutée à
+  `communication/gumroad-a-creer.json`. Reste : création de la fiche Gumroad (permalien prévu
+  `tableau-annuel-roue-de-vie`), clé de licence (Quentin), passage en vente du site, lignes des plannings
+  LinkedIn et Instagram (non planifiées).
