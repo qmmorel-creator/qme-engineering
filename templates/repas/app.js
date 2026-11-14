@@ -634,6 +634,7 @@
     const d = modale();
     d.dataset.date = date; d.dataset.moment = moment; d.dataset.remplace = remplace || '';
     d._etatChoix = etat; d._listeChoix = liste;
+    if (!estTel()) $('#cherche-choix', d).focus();
     $('#cherche-choix', d).addEventListener('input', (e) => { etat.q = e.target.value; $('#liste-choix', d).innerHTML = liste(); });
   }
 
