@@ -48,6 +48,10 @@ export const PRODUITS = {
   APD: { nom: 'Préparateur d\'appel découverte', url: '/templates/appel-decouverte/' },
   RCV: { nom: 'Relance des impayés', url: '/templates/impayes/' },
   ARD: { nom: 'Onboarding et offboarding salarié', url: '/templates/onboarding/' },
+  CNG: { nom: 'Suivi des congés et absences', url: '/templates/conges/' },
+  STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/' },
+  SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
+  VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
