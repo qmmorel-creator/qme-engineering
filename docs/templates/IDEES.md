@@ -148,7 +148,7 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en cours | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | en cours | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
@@ -254,7 +254,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
-| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
+| Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T73 | 139 € | 25 % | 104 € | 26 € |
 | Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31 | T23, T75, T76 | 158 € | 25 % | 118 € | 30 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34 | T47, T77, T78 | 136 € | 25 % | 102 € | 26 € |
@@ -831,7 +831,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
-| T71 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
+| T73 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
 | T72 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
 | T73 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
 | T74 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
@@ -1039,12 +1039,13 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   confirmer, fiche Gumroad (permalien prévu `tableau-de-bord-pme`) et clé de licence (Quentin), entrée dans
   `communication/gumroad-a-creer.json`, plannings, passage en vente du site.
 
-## Fiche T71 (cadrage délégué par Quentin, 14/11/2026)
+## Fiche T73 (cadrage délégué par Quentin, 14/11/2026)
 
-### T71 · Suivi du temps passé et rentabilité par mission (`templates/suivi-temps/`, préfixe TMP)
+### T73 · Suivi du temps passé et rentabilité par mission (`templates/suivi-temps/`, préfixe TMP)
 - Fiche détaillée : [`fiches/suivi-temps.md`](fiches/suivi-temps.md). Application web, 19 €, permalien prévu
   `suivi-temps-rentabilite`, catalogue `pro` · thème « Indépendants ». Pack visé : « Freelance : chiffrer,
-  facturer, encaisser » (PFG), où T71 était prévu.
+  facturer, encaisser » (PFG), où il était prévu (ancien numéro T71, renuméroté T73 le 14/11/2026 :
+  T71 et T72 sont pris sur `main`).
 - Promesse : « Combien tu gagnes vraiment de l'heure, mission par mission. »
 - Base intégrée : 17 catégories de tâches (7 facturables, 10 non facturables : prospection, devis,
   administratif, facturation, comptabilité, formation, veille…), 7 modèles de missions avec leurs tâches
@@ -1058,4 +1059,16 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
   Rapport client imprimable et exports CSV.
 - Marques : argent (avertissement « outil de gestion, pas un logiciel de facturation ni un conseil »),
   montants hors taxes. Confidentiel vérifié : démo fictive, aucune donnée réelle.
-- Statut : en cours.
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/suivi-temps/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Indépendants »). Page
+  `catalogue/suivi-temps/`, captures `assets/templates-suivi-temps-*.webp`, couverture
+  `assets/templates-suivi-temps-couverture.png`, tests `outils/templates/suivi-temps.test.mjs`. Produit `TMP`
+  déclaré (serveur, connexion, en-têtes Netlify) ; `TMP` passé de `PREVUS` à `TEMPLATES` dans
+  `outils/packs/donnees.mjs` (et retiré des `prevus` de la page du pack PFG).
+- Communication prête dans `communication/suivi-temps/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html en version « en vente », couverture.txt).
+  **Pas de fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent :
+  nom et prix à confirmer, fiche Gumroad (permalien prévu `suivi-temps-rentabilite`) et clé de licence
+  (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de `TMP` aux `produits` du pack PFG
+  (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte anglaise (`en/`, en attente),
+  plannings, passage en vente du site.

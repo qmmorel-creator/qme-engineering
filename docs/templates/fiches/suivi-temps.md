@@ -1,8 +1,9 @@
-# T71 · Suivi du temps passé et rentabilité par mission
+# T73 · Suivi du temps passé et rentabilité par mission
 
 Slug `suivi-temps`, préfixe `TMP` (clés locales `qme-tmp-*`, règles `window.TMP`), prix 19 €, permalien
 Gumroad prévu `suivi-temps-rentabilite`, catégorie Gumroad prévue `business-and-money` (à confirmer), taille M,
-priorité P2, usage `pro`. Origine : proposition validée par Quentin le 14/11/2026 (pack « Freelance : chiffrer,
+priorité P2, usage `pro`. Numéro T73 (ancien T71, renuméroté le 14/11/2026 : T71 et T72 sont pris sur
+`main`). Origine : proposition validée par Quentin le 14/11/2026 (pack « Freelance : chiffrer,
 facturer, encaisser »). Fiche rédigée le 14/11/2026 par délégation de Quentin (décisions de cadrage
 déléguées, pas de validation à attendre). Catalogue : `data-pour="pro"`, thème `independants`
 (`--c:var(--jaune)`). Marque de risque : **argent** (avertissement : outil de gestion, pas un logiciel de
