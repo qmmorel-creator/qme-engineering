@@ -1,0 +1,48 @@
+<!-- Version « en vente » de la page catalogue/bascule/ (section à reprendre dans la page à la mise en
+     vente). Permalien Gumroad prévu : pilotage-bascule (à confirmer une fois la fiche créée), prix 29 € (à
+     confirmer par Quentin). Captures : assets/templates-bascule-*.webp (démo, données fictives). À la mise en
+     vente, retirer aussi le lien .bientot-demo du bandeau de démo (app.js et app.css) avec un nouveau ?v= dans
+     index.html et sw.js, et remplacer le bandeau final « Bientôt en vente » par le rappel standard. -->
+<section class="section" id="bascule">
+  <div class="section-head">
+    <h2>Pilotage d'une journée de bascule</h2>
+    <p>Pour la journée (ou la nuit) où tout change : migration informatique, déménagement de bureaux, ouverture d'un site, mise en service d'un équipement. Le déroulé heure par heure avec ses responsables, les décisions go/no-go sur critères écrits, le plan de retour arrière et son heure limite, et le retard recalculé à chaque étape notée.</p>
+  </div>
+  <article class="produit">
+    <div class="produit-visuel">
+      <img class="ecran" src="/assets/templates-bascule-direct.webp?v=20261114" width="1600" height="1000" alt="Vue en direct d'une migration informatique en cours : heure, retard cumulé de 30 minutes, marge avant la fin de fenêtre, heure limite de retour arrière, frise prévu et réel par phase, étape en cours et prochaine décision go/no-go avec ses critères (données fictives)">
+      <img class="tel" src="/assets/templates-bascule-tel.webp?v=20261114" width="780" height="1328" alt="Le pilotage de bascule sur téléphone : étape en cours avec les boutons Terminé et Bloqué, puis les étapes à suivre avec leur heure estimée (données fictives)">
+    </div>
+    <div class="produit-texte">
+      <span class="pill blue">Production · IT · logistique · chefs de projet</span>
+      <h3>Ce que vous obtenez</h3>
+      <ul class="feature-points">
+        <li><b>Un déroulé horaire qui se recalcule</b> : chaque étape a sa durée, son responsable et ses dépendances ; dès qu'une étape démarre ou finit, l'heure de la suite, le retard cumulé et la fin estimée se mettent à jour</li>
+        <li><b>Des go/no-go sur critères</b> : les conditions écrites à l'avance, cochées une à une, la décision, l'heure et le décideur notés ; des points d'arrêt pour les contrôles à valider avant de continuer</li>
+        <li><b>Un plan de retour arrière chiffré</b> : ses étapes, sa durée et l'heure limite pour le décider (fin de fenêtre moins durée du repli), avec une alerte avant qu'il soit trop tard</li>
+        <li><b>Un journal d'incidents horodaté</b> et la chronologie complète de la journée, pour le bilan à chaud et la prochaine fois</li>
+        <li><b>Une vue en direct lisible sur téléphone</b>, un point de situation à copier en un geste, le déroulé et le « qui fait quoi » à imprimer</li>
+      </ul>
+      <div class="prix"><b>29 €</b><span>Achat unique · accès à vie · tous vos appareils</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://qmengineering.gumroad.com/l/pilotage-bascule" data-goatcounter-click="achat-bascule" data-goatcounter-title="Acheter : pilotage de bascule">Acheter</a>
+        <a class="btn" href="/templates/bascule/?demo" data-goatcounter-click="demo-bascule" data-goatcounter-title="Démo : pilotage de bascule">Essayer la démo</a>
+      </div>
+    </div>
+  </article>
+  <div class="galerie">
+    <figure><img src="/assets/templates-bascule-deroule.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Déroulé d'une migration par phase : heure prévue et heure réelle ou estimée de chaque étape, responsable, go/no-go et point d'arrêt, écarts en minutes (données fictives)"><figcaption>Le déroulé par phase, prévu et réel côte à côte</figcaption></figure>
+    <figure><img src="/assets/templates-bascule-journal.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Chronologie d'une répétition de migration : départs et fins d'étapes, incident bloquant, décision NO-GO et retour arrière exécuté, heure par heure (données fictives)"><figcaption>La chronologie, du lancement au retour arrière</figcaption></figure>
+    <figure><img src="/assets/templates-bascule-bascules.webp?v=20261114" width="1600" height="1000" loading="lazy" alt="Liste des bascules (en préparation, en cours, retour arrière effectué, terminée) et cinq séquences types : migration informatique, déménagement de bureaux, ouverture de site, mise en service, changement d'entrepôt (données fictives)"><figcaption>Vos bascules et cinq séquences types à adapter</figcaption></figure>
+  </div>
+  <div class="faq" style="margin-top:32px">
+    <details><summary>Comment le retard est-il recalculé ?</summary><p>Chaque étape a une durée et commence après l'étape précédente, après des étapes que vous choisissez (pour les tâches en parallèle) ou pas avant une heure fixe. Quand vous touchez « Démarrer » ou « Terminé », l'heure réelle est notée : les étapes suivantes partent de là, une étape qui dépasse sa durée repousse la suite, et rien ne peut démarrer avant l'heure actuelle. Le retard cumulé et la fin estimée sont toujours à jour.</p></details>
+    <details><summary>Comment fonctionnent les go/no-go et les points d'arrêt ?</summary><p>Un go/no-go est une étape de décision avec ses critères écrits à l'avance (« sauvegarde vérifiée », « recette validée »…). Le jour J, vous les cochez, choisissez GO ou NO-GO, et l'heure et le décideur sont notés. Un NO-GO peut lancer le retour arrière en un geste. Un point d'arrêt est un contrôle à valider par son responsable avant que la suite démarre.</p></details>
+    <details><summary>Qu'est-ce que l'heure limite de retour arrière ?</summary><p>C'est l'heure après laquelle un retour arrière ne tiendrait plus dans la fenêtre : la fin de fenêtre moins la durée du plan de repli, calculée à partir de ses étapes (ou fixée à la main). La vue en direct affiche le temps qu'il reste pour décider et alerte à l'approche de cette limite.</p></details>
+    <details><summary>Quelles séquences types sont fournies ?</summary><p>Cinq exemples génériques et fictifs : migration informatique de nuit, déménagement de bureaux, ouverture d'un site (point de vente, agence), mise en service d'un équipement de production, changement d'entrepôt. Chacun a ses phases, ses durées, ses rôles, ses go/no-go et son plan de retour arrière : un point de départ à adapter à vos procédures, qui priment. Un déroulé vierge est aussi proposé.</p></details>
+    <details><summary>Plusieurs personnes peuvent-elles suivre la bascule ?</summary><p>Le même accès s'ouvre sur l'ordinateur de la salle de crise et sur votre téléphone, avec les mêmes données. Pour informer les autres, le point de situation se copie en texte (avancement, retard, prochaine décision, incidents ouverts) et se colle dans votre messagerie habituelle. Aucun message n'est envoyé par l'outil, aucune connexion à une autre application.</p></details>
+    <details><summary>Faut-il saisir les coordonnées de l'équipe ?</summary><p>Non. Un prénom et un rôle suffisent, avec si vous le voulez l'endroit où trouver la personne le jour J (salle de crise, sur site…). Le « qui fait quoi » s'imprime.</p></details>
+    <details><summary>Puis-je l'essayer avant d'acheter ?</summary><p>Oui : <a href="/templates/bascule/?demo">la démo</a> ouvre quatre bascules fictives : une migration en cours avec du retard et un incident ouvert, un déménagement en préparation, une répétition terminée par un NO-GO et un retour arrière, une ouverture de site réussie. Elle reste dans votre navigateur et n'envoie rien.</p></details>
+    <details><summary>L'outil décide-t-il à ma place ?</summary><p>Non. C'est un outil d'aide au pilotage : il calcule des heures à partir de vos durées et des heures réelles notées, et rappelle les critères. Les décisions restent celles des personnes désignées, et vos procédures et règles de sécurité priment.</p></details>
+  </div>
+</section>

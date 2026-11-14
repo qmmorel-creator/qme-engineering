@@ -20,7 +20,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
-  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 45 templates.
+  (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour les 47 templates.
 - `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
   `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
@@ -179,6 +179,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   km, contrôle technique sourcé et paramétrable, pleins et recharges, consommation, coût au km) ;
   `templates/gestion-locative/` (GST) **gestion locative** (loyers et retards, quittances et relances à
   copier, révision avec l'IRL saisi, régularisation des charges, rendement avant impôt, aucun calcul d'impôt).
+- Lot du 14/11/2026 (5), prêts, « Mise en vente prochaine » (démo libre, fiches Gumroad à créer dans
+  `docs/templates/communication/gumroad-a-creer.json`) : `templates/bascule/` (BSC) **pilotage d'une journée de
+  bascule** (déroulé horaire avec responsables et dépendances, recalculé à chaque étape notée : retard cumulé, fin
+  estimée, marge ; go/no-go sur critères, points d'arrêt, plan de retour arrière avec heure limite calculée ; journal
+  d'incidents, point de situation à copier ; 5 séquences types fictives) ; `templates/gestion-classe/` (CSE)
+  **gestion de classe** (élèves en prénom et initiale ou pseudonyme, notes sur barème libre ramenées sur 20,
+  coefficients, ABS / NN / dispensé, statistiques de classe, compétences sur quatre échelons du socle commun,
+  banque d'appréciations, bulletins imprimables, effacement de fin d'année ; **RGPD à trancher par Quentin avant
+  la vente**, données d'élèves mineurs hébergées en ligne).
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

@@ -1,0 +1,42 @@
+{
+  "slug": "bascule",
+  "name": "Pilotage d'une journée de bascule",
+  "price_cents": 2900,
+  "permalink": "pilotage-bascule",
+  "category": "business-and-money/management-and-leadership",
+  "button": "Ouvrir mon pilotage de bascule",
+  "summary": "Le déroulé horaire de ta bascule avec ses responsables, des go/no-go sur critères, le plan de retour arrière et son heure limite, le retard recalculé en direct et le journal d'incidents.",
+  "description": "<h2>Ta bascule, minute par minute.</h2><p>Une migration de nuit, un déménagement, l'ouverture d'un site : le jour J, le déroulé est dans un tableur, les heures se recalculent à la main dès qu'une étape dérape, le go/no-go se décide à l'impression du moment et personne ne sait jusqu'à quelle heure on peut encore revenir en arrière. Le Pilotage d'une journée de bascule tient tout cela à jour, à la minute.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Un déroulé horaire qui se recalcule</strong> : chaque étape a sa durée, son responsable et ses dépendances (en série ou en parallèle, « pas avant » une heure fixe). Dès qu'une étape démarre ou finit, l'heure de la suite, le retard cumulé et la fin estimée se mettent à jour.</li><li><strong>Des go/no-go sur critères</strong> : les conditions écrites à l'avance, cochées une à une le jour J, la décision GO ou NO-GO, l'heure et le décideur notés. Des points d'arrêt pour les contrôles à valider avant de continuer.</li><li><strong>Un plan de retour arrière chiffré</strong> : ses étapes, sa durée et l'heure limite pour le décider (fin de fenêtre moins durée du repli), avec une alerte avant qu'il soit trop tard. Un NO-GO le lance en un geste.</li><li><strong>Un journal d'incidents horodaté</strong> (mineur, majeur, bloquant, étape liée, action, résolu) et la chronologie complète de la journée.</li><li><strong>Une vue en direct lisible sur téléphone</strong> : heure, étape en cours, prochaine décision, retard, marge, alertes.</li><li><strong>Point de situation à copier</strong> en un geste, déroulé et « qui fait quoi » à imprimer, export CSV.</li><li><strong>5 séquences types</strong> à adapter : migration informatique, déménagement de bureaux, ouverture de site, mise en service d'un équipement, changement d'entrepôt. Duplique une répétition pour préparer la vraie, avec les durées réellement mesurées.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Choisis une séquence type, nomme l'équipe, adapte les étapes et les critères. Le jour J, ouvre la vue En direct sur ton téléphone ou en salle de crise : tes données sont enregistrées en ligne et te suivent sur tous tes appareils avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Outil d'aide au pilotage : les séquences types sont des exemples génériques et fictifs, à adapter ; tes procédures et règles de sécurité priment et les décisions restent celles des personnes désignées. Aucun envoi de message, aucune connexion à un agenda ou à une autre application. Un accès partagé sur plusieurs appareils, sans gestion de droits. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "bascule",
+    "mise-en-service",
+    "migration",
+    "go-no-go",
+    "retour-arriere",
+    "gestion-de-projet",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton pilotage s'ouvre. Choisis une séquence type, nomme l'équipe et adapte le déroulé ; le jour J, note chaque étape d'un geste : le retard et la fin estimée se recalculent. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Responsables production, IT, logistique, chefs de projet"
+    }
+  ]
+}

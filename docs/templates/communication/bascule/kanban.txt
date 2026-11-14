@@ -1,0 +1,1 @@
+        <li class="carte prochaine" data-slug="bascule" data-pour="pro" data-theme="projets-et-chantiers" style="--c:var(--bleu)"><a href="/catalogue/bascule/"><b>Pilotage d'une journée de bascule</b><span class="phrase">Déroulé horaire, go/no-go, retour arrière, retard en direct.</span><span class="theme">Projets et chantiers</span><em>Bientôt</em></a></li>

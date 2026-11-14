@@ -1,0 +1,3 @@
+Pilotage d'une journée de bascule
+Ta bascule, minute par minute.
+Go/no-go · retour arrière · retard en direct

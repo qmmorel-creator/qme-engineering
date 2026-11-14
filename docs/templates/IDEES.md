@@ -110,7 +110,7 @@ déjà).
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | prêt | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | idée | 29 € | M | P2 | Backlog Quentin n° 07 |
+| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | idée | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
@@ -132,7 +132,7 @@ déjà).
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | idée | 35 € | M | P3 | Backlog Quentin n° 31 |
-| T55 | Gestion de classe | Éducation | Enseignants collège et lycée | idée | 25 € | M | P2 | Backlog Quentin n° 32 |
+| T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | idée | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | idée | 19 € | M | P3 | Backlog Quentin n° 35 |
@@ -454,6 +454,8 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T07 | `musculation` | MSC | carnet-musculation-cross-training (prévu) |
 | T10 | `voiture` | CAR | carnet-voiture (prévu) |
 | T27 | `gestion-locative` | GST | gestion-locative (prévu) |
+| T33 | `bascule` | BSC | pilotage-bascule (prévu) |
+| T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -508,6 +510,8 @@ templates : le Sheet en programme d'autres (LI-01 à LI-72), une par jour, et re
 | LI-121 | T07 musculation | 2027-02-11 | 12:15 |
 | LI-122 | T10 voiture | 2027-02-13 | 08:30 |
 | LI-123 | T27 gestion-locative | 2027-02-15 | 12:15 |
+| LI-124 | T33 bascule | 2027-01-30 | 08:30 |
+| LI-125 | T55 gestion-classe | 2027-02-17 | 12:15 |
 
 ## Publications Instagram des templates (`@qmengineering`)
 
@@ -588,6 +592,31 @@ F31269, F947 et article 21 de la loi de 1989 relus le 14/11/2026, autres numéro
 récupérables, gel des loyers des logements classés E à vérifier, aucun calcul d'impôt, hashtags hors kit ;
 catégories Gumroad (`food-and-cooking`, `fitness-and-health`, `personal-finance`) à vérifier à la création ;
 organismes de `prospects.md` marqués « à vérifier ».
+
+**Lot du 14/11/2026, cinquième (T33, T55)**, prêts, « Mise en vente prochaine » (démo libre, bouton « Je suis
+intéressé(e) », pas de fiche Gumroad : entrées dans `communication/gumroad-a-creer.json`). T34 et T61, prévus
+dans ce lot, en ont été retirés : déjà développés sur la branche `claude/wonderful-hypatia-ikasey` d'une autre
+session. Applications `templates/bascule/` (BSC, 29 €) et `templates/gestion-classe/` (CSE, 25 €) ; pages
+`catalogue/<slug>/` ; fiches `fiches/bascule.md` et `fiches/gestion-classe.md` ; livrables dans
+`communication/<slug>/` (linkedin.md, instagram.md, prospects.md, gumroad.md, carrousel `instagram/`). Noms et
+prix repris du tableau de bord, à confirmer par Quentin avant la création des fiches Gumroad (permaliens
+proposés `pilotage-bascule` et `gestion-classe`, catégories `business-and-money/management-and-leadership` et
+`education` à vérifier). Publications insérées le 14/11 avec la remarque « ne publier que si la fiche Gumroad
+est en ligne » : LinkedIn « Programmé » LI-124 (T33, sam. 30/01 : créneau donné par la règle, à décaler si
+besoin) et LI-125 (T55, 17/02) ; Instagram « À préparer » IG-79 (T33, 31/01) et IG-80 (T55, 18/02).
+**Images non déposées dans Drive** (envoi de fichiers trop lourd depuis la session) : couvertures
+`assets/templates-<slug>-couverture.png` à déposer sous `LI-124-bascule.png` et `LI-125-gestion-classe.png`,
+carrousels `communication/<slug>/instagram/<slug>-1…5.png` sous `IG-79-bascule-1…5.png` et
+`IG-80-gestion-classe-1…5.png`, IDs en colonne P, puis statut « Prêt » (consigne dans la colonne Remarque).
+**T55 : point bloquant RGPD** (données d'élèves mineurs hébergées en ligne par QME) à trancher par Quentin
+avant toute mise en vente et avant LI-125 / IG-80 : options détaillées dans `fiches/gestion-classe.md`
+(minimisation déjà en place : prénom et initiale ou pseudonyme, aucun champ sensible, avertissements,
+effacement de fin d'année). Restent à vérifier : T55, articles D122-1 et D122-3 du code de l'éducation lus sur
+Légifrance le 14/11/2026 par un outil de lecture résumée (à relire mot pour mot), Éduscol et cnil.fr non
+consultés, choix de calcul (moyenne annuelle des moyennes de périodes, bonus seulement s'il fait monter la
+moyenne, arrondi des compétences) ; T33, les 5 séquences types fictives et le libellé « point d'arrêt », accès
+unique sans rôles ni lecture seule, impression vérifiée dans le code seulement ; organismes de `prospects.md`
+marqués « à vérifier ».
 
 ## Première vague (P1 de taille S) · lancée le 12/11/2026
 
