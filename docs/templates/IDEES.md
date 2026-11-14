@@ -165,7 +165,7 @@ déjà).
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | idée | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | idée | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | idée | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -533,6 +533,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
 | T44 | `tva` | TVA | suivi-tva (prévu) |
+| T90 | `memoire` | MMR | planning-memoire (prévu) |
 
 ## Publications LinkedIn des templates (planning Google Sheet, statut « Programmé »)
 
@@ -1003,7 +1004,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T87 | Revue hebdomadaire guidée (bilan, priorités, prochaine semaine), journal court, historique | Questions de revue types | — | Complète T03, T30, T08. |
 | T88 | Matières, coefficients, notes, moyennes pondérées, crédits ECTS, note nécessaire pour atteindre un objectif | Systèmes de notation (sur 20, ECTS) paramétrables | — | Pas de barème officiel d'examen intégré. |
 | T89 | Vœux et candidatures (formation, établissement, pièces, dates saisies, statut, réponse) | Checklists de pièces types | — | **daté** : calendriers officiels non intégrés (saisis). Aucune marque de plateforme dans le nom. |
-| T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | — |
+| T90 | Plan du mémoire, jalons, chapitres, rendez-vous avec le directeur, bibliographie simple, compte de mots | Jalons types (mémoire de master, thèse) | — | Fiche `fiches/memoire.md` (cadrage délégué par Quentin, 14/11/2026). Prêt le 14/11/2026, mise en vente prochaine : application `templates/memoire/` (MMR), page `catalogue/memoire/`, communication `communication/memoire/`. Aucune règle d'établissement intégrée (jalons indicatifs, saisis ou modifiables). Publications LinkedIn et Instagram non planifiées. |
 | T91 | Dossiers de subvention (financeur, montant, dates saisies, pièces, statut), justificatifs, bilan d'utilisation | Pièces types d'un dossier | — | Aucun calendrier de financeur intégré (**daté**). |
 | T92 | Bénévoles (disponibilités, compétences), créneaux d'un événement, affectation, conflits, liste imprimable | Postes types (accueil, buvette, montage) | — | **RGPD** (bénévoles). Lien avec T51 et T52. |
 | T93 | Calendrier de l'AG, convocations, ordre du jour, quorum calculé (règle saisie), PV, mandats du bureau | Trames de convocation et de PV | — | Règles de quorum : celles des statuts, saisies. **RGPD**. |
@@ -1851,3 +1852,24 @@ Réglages, page, Gumroad). Livrables dans `communication/remboursements-sante/` 
 5 vues, prospects.md, gumroad.md et gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente).
 Publications LinkedIn et Instagram **non planifiées**. À rattacher à `PAR` dans `netlify/lib/packs.mjs` et à
 régénérer les pages des packs à la fusion.
+
+## Fiche T90 (cadrage délégué par Quentin, 14/11/2026)
+
+### T90 · Planning de mémoire ou de thèse (`templates/memoire/`, préfixe MMR, 15 €)
+
+Fiche détaillée : [`fiches/memoire.md`](fiches/memoire.md). Statut **prêt**, « Mise en vente prochaine » (démo libre
+`/templates/memoire/?demo`, page `/catalogue/memoire/`, carte `carte prochaine` du thème « Organisation et études »,
+bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans `communication/memoire/gumroad.json`, permalien
+proposé `planning-memoire`, catégorie `education`). Cible : étudiants de master, élèves ingénieurs en PFE, doctorants.
+Projet (type master, PFE, thèse ou autre ; dates de début, de rendu, de soutenance ; mots visés saisis ; mots par page ;
+jours de travail), plan hiérarchique partie / chapitre / section avec statut (à écrire, brouillon, relu, final), mots
+écrits et visés, plans de départ ; rétroplanning calculé à rebours depuis le rendu ou la soutenance (4 modèles de jalons
+types, resserrés quand le temps manque, dates fixables, jalon « fin de la rédaction ») ; rythme nécessaire en mots par
+jour de travail, rythme réel sur 14 jours (relevé quotidien du total) et date projetée ; courbe d'avancement et barres
+par statut (skill `dataviz`, palette validée) ; rendez-vous avec le directeur (points, notes, actions à échéance, ordre
+du jour à copier) ; bibliographie simple (export texte auteur-date, **aucune norme revendiquée**) ; journal de séances ;
+synthèse imprimable, exports CSV et JSON. **Aucune donnée datée ni règle d'établissement** : jalons et mots proposés
+présentés comme repères indicatifs. Le texte du mémoire n'est jamais lu. Livrables dans `communication/memoire/`
+(linkedin.md, instagram.md + carrousel 5 vues, prospects.md, gumroad.md et gumroad.json, couverture.txt,
+section-site.html, carte-en-prochaine.html pour `en/` en attente). Publications LinkedIn et Instagram **non
+planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régénérer les pages des packs à la fusion.
