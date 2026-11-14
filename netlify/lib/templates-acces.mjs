@@ -89,6 +89,7 @@ export const PRODUITS = {
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/' },
+  RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

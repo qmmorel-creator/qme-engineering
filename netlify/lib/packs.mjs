@@ -49,7 +49,7 @@ export const PACKS = {
   PBT: { slug: 'chef-de-projet-btp', nom: 'Pack Chef de projet BTP', produits: ['GNT', 'VSA', 'RSV', 'NCF', 'CRA', 'CHT', 'RDE', 'STR'] },
   PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'] },
   PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR'] },
-  PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS'] },
+  PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS', 'RBS'] },
   PMR: { slug: 'mariage-installation', nom: 'Pack Mariage et installation à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG'] },
   PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV'] },
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS'] },

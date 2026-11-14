@@ -159,7 +159,7 @@ déjà).
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | idée | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | idée | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | idée | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
@@ -261,7 +261,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81 | T82 | 240 € | 25 % | 180 € | 45 € |
-| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83 | T84, T85 | 104 € | 25 % | 78 € | 20 € |
+| Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84 | T85 | 116 € | 25 % | 87 € | 22 € |
 | Mariage et installation à deux | PMR | T15, T65, T05, T16, T21 | T86 | 84 € | 25 % | 63 € | 16 € |
 | Productivité perso | PPR | T03, T30, T08, T22 | T87 | 61 € | 20 % | 48 € | 12 € |
 | Étudiant | PET | T01, T30, T08, T17 | T88, T89, T90 | 53,90 € | 20 % | 43 € | 11 € |
@@ -1828,3 +1828,26 @@ et à régénérer les pages des packs à la fusion.
   prix à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
   ajout de `DRP` aux `produits` du pack PPE (`netlify/lib/packs.mjs`) et régénération des pages de packs, carte
   anglaise, plannings, passage en vente du site.
+
+## Fiche T84 (cadrage délégué par Quentin, 14/11/2026)
+
+### T84 · Remboursements santé (`templates/remboursements-sante/`, préfixe RBS, 12 €)
+
+Fiche détaillée : [`fiches/remboursements-sante.md`](fiches/remboursements-sante.md). Statut **prêt**, « Mise en
+vente prochaine » (démo libre `/templates/remboursements-sante/?demo`, page `/catalogue/remboursements-sante/`, carte
+`carte prochaine` du thème « Argent », bouton « Je suis intéressé(e) »), pas de fiche Gumroad (valeurs dans
+`communication/remboursements-sante/gumroad.json`, permalien proposé `remboursements-sante`). Membres du foyer, soins
+(33 types en 10 familles, date, praticien facultatif, montant payé), Sécurité sociale et mutuelle suivies séparément
+(remboursement attendu, tiers payant, pas de prise en charge ; reçu et écart), reste à charge, retards après un délai
+réglable (30 / 30 / 15 jours par défaut, **sans valeur officielle**, présentés comme tels), message de relance à copier
+et relances notées, bilan annuel par personne et par famille de soins (barres empilées, tableau), mutuelle comparée aux
+cotisations **saisies**, export CSV et JSON. **Aucun taux de remboursement intégré**, aucune donnée datée.
+**Médical / RGPD** : décision de T04 appliquée (consentement explicite au premier lancement, rien en ligne avant ;
+hébergement UE ; « Effacer toutes mes données » = retrait du consentement) ; minimisation : aucun diagnostic, motif,
+médicament ni numéro de sécurité sociale, pas de champ de note libre ; seconde case pour les soins des autres membres du
+foyer (accord ou représentant légal) ; paragraphe ajouté à `/confidentialite/`. HDS non vérifiée (comme T04).
+Avertissement « ne remplace ni un avis professionnel ni les relevés officiels » (consentement, pied de chaque vue,
+Réglages, page, Gumroad). Livrables dans `communication/remboursements-sante/` (linkedin.md, instagram.md + carrousel
+5 vues, prospects.md, gumroad.md et gumroad.json, section-site.html, carte-en-prochaine.html pour `en/` en attente).
+Publications LinkedIn et Instagram **non planifiées**. À rattacher à `PAR` dans `netlify/lib/packs.mjs` et à
+régénérer les pages des packs à la fusion.

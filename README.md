@@ -392,6 +392,13 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   d'urgence » pour un proche ; inventaire, liste à trier et fiche imprimables ; export CSV. Aucun contenu ni numéro de
   pièce stocké (numéros longs, IBAN et mots de passe refusés dans les champs libres). Fiche
   `docs/templates/fiches/papiers.md`, tests `outils/templates/papiers.test.mjs`.
+- `templates/remboursements-sante/` (RBS) : **remboursements santé**, prêt, mise en vente prochaine (12 €). Membres du
+  foyer, soins (type parmi 33, date, praticien facultatif, montant payé ; aucun diagnostic), Sécurité sociale et mutuelle
+  suivies séparément (remboursement attendu, tiers payant ou pas de prise en charge, reçu et écart), reste à charge,
+  retards après un délai réglable (30 jours par défaut, sans valeur officielle), message de relance à copier, bilan
+  annuel par personne et par type de soin, mutuelle comparée aux cotisations saisies, export CSV. Aucun taux de
+  remboursement intégré. Données de santé : consentement explicite au premier lancement et effacement, comme la
+  nutrition (`/confidentialite/`). Règles dans `regles.js`, tests `outils/templates/remboursements-sante.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),
