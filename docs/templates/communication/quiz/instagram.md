@@ -23,7 +23,7 @@ Titre interne proposé pour le planning : **« Template · Banque de questions e
    quiz, tes résultats.
 4. La vue clé (bandeau jaune, extrait « Par étiquette » de `templates-quiz-statistiques.webp`) : ce qui passe, ce qui
    bloque.
-5. Appel à l'action (fond jaune), 19 €, renvoi au sur mesure.
+5. Appel à l'action (fond jaune), « Bientôt en vente » (prix non affiché tant que la fiche Gumroad n'est pas en ligne ; à la mise en vente, remplacer par « 19 € · accès à vie » et rendre de nouveau), renvoi au sur mesure.
 
 ## Accroches (première ligne de la légende)
 
@@ -36,7 +36,7 @@ Titre interne proposé pour le planning : **« Template · Banque de questions e
 2. Fond noir : copier, coller, renuméroter, corriger. Et personne ne sait quelle question fait échouer tout le groupe.
 3. Le template Banque de questions et quiz : tes questions, tes quiz, tes résultats. Capture sur téléphone de la correction d'une session, avec le nombre de copies, la moyenne, la médiane et deux réponses courtes à vérifier. Banque étiquetée, quiz en un clic avec son corrigé, correction automatique. Données fictives.
 4. Ce qui passe, ce qui bloque : réussite par étiquette en barres horizontales (orthographe, pourcentages, sécurité numérique, tableur, TVA, unités). Par question : trop facile, trop difficile, mauvaise réponse qui attire. Données fictives.
-5. Fond jaune : essayez-la avec une banque fictive, démo libre sans inscription, copies anonymes ou pseudonymes, achat unique à 19 €. Besoin de plus ? Version sur mesure. Lien en bio.
+5. Fond jaune : essayez-la avec une banque fictive, démo libre sans inscription, copies anonymes ou pseudonymes, achat unique sans abonnement. Besoin de plus ? Version sur mesure. Lien en bio, bientôt en vente.
 
 ## Légende retenue
 
@@ -49,7 +49,7 @@ La Banque de questions et quiz :
 ▪ tire un quiz en un clic et imprime le sujet avec son corrigé à part ;
 ▪ calcule la note à partir des réponses saisies, et montre les questions trop faciles ou trop difficiles.
 
-Copies anonymes ou pseudonymes, résultats effaçables à tout moment. Sans abonnement : 19 €.
+Copies anonymes ou pseudonymes, résultats effaçables à tout moment. Bientôt en vente, sans abonnement.
 
 Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
 
