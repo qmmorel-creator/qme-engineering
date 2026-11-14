@@ -51,11 +51,13 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 | T59 Progression pédagogique | 15 € | `progression-pedagogique`, education |
 | T18 Calendrier du potager | 13 € | — |
 | T19 Suivi du bébé | 13 € | — |
+| T54 Séminaire / offsite | 35 € | `seminaire-offsite`, business-and-money (à vérifier) |
+| T58 Banque de questions et quiz | 19 € | `banque-questions-quiz`, education (à vérifier) |
 
 ## Plannings LinkedIn et Instagram
 
 - Lignes Instagram en « Prêt » à relire avant de les passer en « Programmé » : IG-63 (vue 5 « bientôt en
-  vente » à refaire), IG-67 à IG-90. Instinct risque d'annoncer des produits pas encore achetables : elles
+  vente » à refaire), IG-67 à IG-92. Instinct risque d'annoncer des produits pas encore achetables : elles
   restent en « Prêt » tant que tu ne dis rien.
 - Publications qui tombent un samedi ou un dimanche : LI-113 (sam. 23/01, maintenue), LI-119 (dim. 07/02),
   LI-122 (sam. 13/02), LI-124 (sam. 30/01). Décaler ?
@@ -63,7 +65,10 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   Remarque de IG-79 et IG-80, qui restent « À préparer »).
 - Images à refaire : T60 carrousel vue 1 (« trente équipements », la démo en a 29) ; T44 couverture et vue 3
   (ancien libellé « Prochaine échéance »).
-- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8) : les garder ?
+- Hashtags hors du kit (T27, T56, T60, T64, lot 7, lot 8, T54, T58) : les garder ? Texte LinkedIn de T58
+  long (~1 600 caractères).
+- LI-136 (T54, 12/03) et LI-137 (T58, 14/03) placés après LI-135 ; un créneau plus tôt existait (31/01,
+  après LI-124) mais aurait aligné trois templates d'affilée. OK ?
 - T27 : accroche LinkedIn « beaucoup de propriétaires oublient » non chiffrée : l'adoucir ?
 
 ## Classement dans le catalogue
@@ -117,9 +122,17 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - **T19 Bébé** : courbes de croissance non intégrées (licence OMS non commerciale, AFPA–Inserm sans licence
   trouvée) ; seules les mesures saisies sont tracées.
 
+- **T54 Séminaire** : rattaché à aucun pack (Moyens généraux ou Associations et clubs possibles) ; « sans porc »
+  gardé, « sans gluten » via la case allergie ; « en attente » comptés mais jamais placés automatiquement ;
+  répartition par service sans critère de genre ; tous présents sur toute la durée ; pas d'accès participant,
+  ni rétroplanning ni badges ; définition CNIL des données sensibles non relue.
+- **T58 Quiz** : QCM multiple en tout ou rien, blanc compté faux, note au demi-point ; seuils 85 % / 35 % ;
+  conservation 12 mois par défaut ; textes RGPD non vérifiés sur source primaire ; argument du pack
+  Enseignant remplacé par « Questions, quiz et corrections dans le même pack ».
+
 ## Prospects
 
-- Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 8.
+- Organismes marqués « à vérifier » dans les `prospects.md` des lots 3 à 9.
 
 ## Tranché
 
