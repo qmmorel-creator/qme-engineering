@@ -127,7 +127,7 @@ déjà).
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | idée | 35 € | L | P2 | Backlog Quentin n° 23 |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | idée | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en cours | 19 € | M | P3 | Backlog Quentin n° 26 |
+| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | idée | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
@@ -1081,4 +1081,15 @@ Cadrage délégué par Quentin (14/11/2026) : fiche rédigée et appliquée sans
 - Marques : **RGPD** (noms des personnes qui réservent : minimum utile, prénom ou initiales, effacement).
   Aucune automatisation : pas d'agenda externe, pas d'e-mail, pas de badge ni de capteur.
 - Confidentialité : démo fictive (« Atelier Exemple »), aucune donnée ni capture d'un espace réel.
-- Statut : en cours (14/11/2026).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/salles/?demo`, bouton
+  « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Équipements et véhicules » ; pas de carte
+  anglaise : version anglaise en attente). Page `catalogue/salles/`, captures `assets/templates-salles-*.webp`,
+  couverture `assets/templates-salles-couverture.png`, tests `outils/templates/salles.test.mjs` (règles, jours
+  fériés, série, libre maintenant, occupation, rejeu des réservations en cas de conflit entre appareils).
+- Communication prête dans `communication/salles/` (linkedin.md, instagram.md et carrousel PNG, prospects.md,
+  gumroad.md et gumroad.json, section-site.html, carte d'accueil FR). **Pas de fiche Gumroad, pas de ligne aux
+  plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix à confirmer (dont la question
+  d'une clé partagée par toute l'équipe au prix d'un template individuel), fiche Gumroad (permalien prévu
+  `reservation-salles`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout de
+  SDR au pack « Moyens généraux » (`netlify/lib/packs.mjs`, pages générées), cartes anglaises, plannings,
+  passage en vente du site.
