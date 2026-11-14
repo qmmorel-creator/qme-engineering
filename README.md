@@ -239,6 +239,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   documents à prévoir (formalités renvoyées aux sources officielles). Dépenses partagées : moteur du budget commun,
   `templates/budget-commun/regles.js` chargé tel quel (et gardé hors ligne par `sw.js`). Règles dans `regles.js`,
   tests `outils/templates/voyage.test.mjs`.
+- `templates/calendrier-editorial/` (CED) : **calendrier éditorial des réseaux professionnels**, prêt, « Mise en vente
+  prochaine » (15 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/calendrier-editorial/gumroad.json`).
+  Piliers avec part visée, objectif de publications par semaine, banque de 92 sujets pour 8 métiers avec 11 trames,
+  statuts idée → brouillon → programmé → publié, calendrier mois et semaine, brouillon avec compteur de caractères
+  (limite saisie par canal, aucune règle de réseau intégrée), statistiques saisies à la main, régularité (semaines
+  tenues, pauses, série) et recyclage. Aucune marque ni connexion à un réseau social. Préfixe entièrement hexadécimal :
+  une saisie de plus de 19 caractères est lue comme une clé Gumroad. Règles dans `regles.js`, tests
+  `outils/templates/calendrier-editorial.test.mjs`. Version anglaise en attente.
 - `templates/verifications/` (VRF) : **vérifications réglementaires**, prêt, « Mise en vente prochaine » (35 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/verifications/gumroad.json`). Registre des contrôles
   périodiques par site : 22 types avec périodicité sourcée (brochure INRS ED 828, édition de septembre 2026, page et

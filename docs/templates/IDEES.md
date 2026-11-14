@@ -152,7 +152,7 @@ déjà).
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
 | T71 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T72 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | idée | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T73 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients), ex-T73 renuméroté ; fiche [`fiches/calendrier-editorial.md`](fiches/calendrier-editorial.md) |
 | T74 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | idée | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T76 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | idée | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
@@ -257,7 +257,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42 | T71 | 139 € | 25 % | 104 € | 26 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T73, T74 | 62 € | 15 % | 52 € | 13 € |
+| Freelance : trouver ses clients | PFC | T38, T35, T28 | T39, T72, T75, T74 | 62 € | 15 % | 52 € | 13 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23 | T75, T76 | 198 € | 25 % | 148 € | 37 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47 | T77, T78 | 171 € | 25 % | 128 € | 32 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63 | T50, T79, T80 | 167 € | 25 % | 125 € | 32 € |
@@ -858,7 +858,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T68 | L'organisateur (clé `SNT`) crée plusieurs échanges ; les participants s'inscrivent sans compte par un lien (prénom, e-mail, code personnel, idées) ; exclusions ; tirage par le serveur, jamais montré à l'organisateur ; chacun découvre son tirage sur sa page | Modèles famille / amis / collègues (message et budget suggérés) | — | **Mode « ordinateur commun » ajouté le 13/11 (demande de Quentin, Secret Santa en box)** : l'organisateur saisit les prénoms, chacun choisit un code de 4 à 8 chiffres sur un ordinateur partagé (borne `?borne=`), puis y découvre son tirage ; 5 codes faux bloquent le prénom (déblocage ou remise à zéro par l'organisateur), résultat effacé de l'écran après 20 s. Décisions de Quentin (13/11/2026) : **aucun e-mail** (lien personnel ou reconnexion e-mail + code), **gratuit** (prix libre), exclusions, listes d'idées, budget et date, plusieurs échanges ; charte de base + couche Noël. API dédiée `/api/secret-santa/*` (moteur partagé avec la démo : `templates/secret-santa/moteur.js`, store Blobs `secret-santa` à Francfort). **RGPD** (données de tiers) : code personnel haché (scrypt), effacement automatique 60 jours après la date (180 sans date). Tests : `outils/templates/secret-santa.test.mjs`. LinkedIn : LI-99 le 01/12/2026 12:15 ; Instagram : IG-36 (Reel) le 01/12 18:30 ; média = vidéo de motion design de Noël uniquement (`assets/secret-santa-noel.mp4`, 46 s, musique « Christmas is coming » d'Alex-Productions, libre de droits (confirmé par Quentin le 13/11), crédit conservé ; texte et vidéo validés par Quentin le 13/11 ; sources `docs/templates/communication/secret-santa/video/`). Gumroad : fiche à créer (limite quotidienne atteinte le 13/11). |
 | T71 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
 | T72 | Proposition structurée : contexte, objectifs, livrables, options à prix, planning, conditions ; export PDF ; suivi envoyée/acceptée | Trames par métier (conseil, développement, formation, travaux) | — | Distinct de T36 (devis chiffré). Mentions légales : renvoi à T36. |
-| T73 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. |
+| T75 | Sujets, formats, piliers éditoriaux, calendrier, régularité, statistiques saisies à la main | Banque d'idées de sujets par métier, formats types | — | Aucune marque dans le nom ; aucune automatisation d'un réseau social ; statistiques saisies. Fiche détaillée : `fiches/calendrier-editorial.md` (ex-T73). |
 | T74 | Registre des consultations et candidatures (date limite, pièces, statut, résultat), taux de réussite, relances | Checklists de pièces types (sans référence réglementaire datée) | — | Pièces des marchés publics : paramétrables, pas de liste réglementaire non sourcée. |
 | T75 | Liste des pièces DOE par lot (plans, notices, PV, fiches techniques), statut, relances, complétude par entreprise, bordereau imprimable | Pièces types par lot BTP | — | **confidentiel** : structure seulement. Lien avec T23 et T32. |
 | T76 | Sous-traitants par lot, agrément, pièces de vigilance avec date de validité, alertes d'expiration | Types de pièces de vigilance | — | **daté** : périodicité des attestations à sourcer (service-public / Urssaf) ou paramétrable. **RGPD**. |
@@ -1277,3 +1277,30 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   (permalien prévu `gestion-competition`) et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`,
   ajout au pack « Associations et clubs » (`netlify/lib/packs.mjs`, pages des packs), carte anglaise, plannings,
   passage en vente du site.
+
+## Fiche T75 (cadrage délégué par Quentin, 14/11/2026)
+
+### T75 · Calendrier éditorial des réseaux professionnels (`templates/calendrier-editorial/`, préfixe CED, 15 €)
+- Fiche détaillée : [`fiches/calendrier-editorial.md`](fiches/calendrier-editorial.md). Ex-T73, renuméroté T75 le
+  14/11/2026 (T71 et T72 déjà pris sur `main`). Application web, permalien prévu `calendrier-editorial`, catalogue
+  `pro` · thème « Clients et prospection ». Pack « Freelance : trouver ses clients » (PFC).
+- Promesse : « Publier chaque semaine, sans chercher quoi dire. » Pour freelances, consultants et indépendants.
+- Piliers avec part visée, objectif de publications par semaine et jours préférés ; banque de 92 sujets (8 métiers
+  et sujets généraux) avec 11 trames ; statuts idée → brouillon → programmé → publié ; calendrier mois et semaine ;
+  brouillon avec compteur (caractères, mots, hashtags, accroche, crochets restants, limite saisie par canal) ;
+  statistiques saisies (vues, réactions, commentaires, partages, contacts générés) ; régularité (semaines tenues,
+  pauses, série) ; recyclage des meilleurs contenus anciens.
+- Aucune marque de réseau social, aucune connexion ni publication automatique, aucune limite de réseau intégrée
+  (saisie par l'utilisateur) ; repères d'écriture QME modifiables. Démo fictive.
+- Préfixe `CED` entièrement hexadécimal : la saisie de plus de 19 caractères est traitée comme une clé Gumroad
+  (application et `/connexion/`).
+- Statut : **prêt** le 14/11/2026, « Mise en vente prochaine » (démo libre `/templates/calendrier-editorial/?demo`,
+  bouton « Je suis intéressé(e) », carte `carte prochaine` du catalogue, thème « Clients et prospection »). Page
+  `catalogue/calendrier-editorial/`, captures `assets/templates-calendrier-editorial-*.webp`, couverture
+  `assets/templates-calendrier-editorial-couverture.png`, tests `outils/templates/calendrier-editorial.test.mjs`.
+  **Version anglaise en attente** (`en/` non modifié).
+- Communication prête dans `communication/calendrier-editorial/` (linkedin.md, instagram.md et carrousel PNG,
+  prospects.md, gumroad.md et gumroad.json, section-site.html, carte du catalogue et carte d'accueil FR). **Pas de
+  fiche Gumroad, pas de ligne aux plannings LinkedIn et Instagram** (mission sans ces outils). Restent : nom et prix
+  à confirmer, fiche Gumroad et clé de licence (Quentin), entrée dans `communication/gumroad-a-creer.json`, ajout au
+  pack PFC (`netlify/lib/packs.mjs`) et régénération des pages de packs, plannings, page anglaise, passage en vente.
