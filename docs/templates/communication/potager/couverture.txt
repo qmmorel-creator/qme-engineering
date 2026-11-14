@@ -1,0 +1,10 @@
+Calendrier du potager
+Chaque semis à sa date.
+Tes dates · cette semaine · rotation · récoltes
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
+  potager: ['Calendrier du potager', 'Chaque semis à sa date.', 'Tes dates · cette semaine · rotation · récoltes'],
+
+(La couverture assets/templates-potager-couverture.png est déjà générée avec cette ligne, sur une copie du script dans
+le scratchpad, ajoutée en fin de table T, serveur statique sur le port 8923. Si la ligne est insérée ailleurs dans la
+table, l'ambiance de couleurs, qui dépend de la position, peut changer à la prochaine régénération.)
