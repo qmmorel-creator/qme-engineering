@@ -74,6 +74,8 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
 - **Guide « Comment ça marche »** : il s'ouvre seul au premier lancement (vrai code et démo), pas au
   rechargement ni sur un second appareil avec le même code ; `?` et « Revoir le guide » le rouvrent ;
   sur téléphone, « Comme une application » suit sa fermeture. Relire chaque phrase contre le code.
+  Script : `node outils/templates/guide-e2e.cjs <slug> <dossier-captures>` (démo, ordinateur, iPhone,
+  Pixel), serveur local lancé ; le premier lancement avec un vrai code se teste à part.
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad
