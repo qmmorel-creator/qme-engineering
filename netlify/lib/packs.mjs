@@ -64,7 +64,7 @@ export const PACKS = {
   PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'] },
   PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR'] },
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
-  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'] },
+  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==' },
   PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'] },
 };
 
