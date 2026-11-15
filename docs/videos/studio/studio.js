@@ -30,7 +30,7 @@
   const PLAN_LARGE = VUE.l / LARGEUR;
   const cam = { cx: LARGEUR / 2, cy: VUE.h / 2 / PLAN_LARGE, s: PLAN_LARGE };
   const cible = { ...cam };
-  let mode = 'fixe', zoomSuivi = 2.2, tau = 0.3, punch = { t0: -1e9, a: 0 };
+  let mode = 'fixe', zoomSuivi = 2.2, decalSuivi = 0, tau = 0.3, punch = { t0: -1e9, a: 0 };
   let applique = { x: 0, y: 0, s: cam.s };
   // Centre atteignable (la caméra ne sort jamais de l'application).
   function centreBorne(cx, cy, s) {
@@ -55,7 +55,7 @@
     }
     return attendreCamera();
   }
-  function suivre(zoom = 2.2, t = 0.15) { mode = 'suivre'; zoomSuivi = zoom; tau = t; }
+  function suivre(zoom = 2.2, t = 0.15, dx = -150) { mode = 'suivre'; zoomSuivi = zoom; tau = t; decalSuivi = dx; } // dx : cadre un peu à gauche du curseur (noms des lignes visibles)
   function attendreCamera(max = 2200) {
     const t0 = performance.now();
     return new Promise((fin) => {
@@ -73,7 +73,7 @@
   let rythmeP = 0, rythmeT0 = 0, dernierTemps = -1;
   function rythme(periodeMs, ecouleMs) { rythmeP = periodeMs; rythmeT0 = performance.now() - ecouleMs; }
   function battement(k) {
-    for (const n of [$('#formes'), $('#marque')]) { n.classList.remove('bat'); void n.offsetWidth; n.classList.add('bat'); }
+    for (const n of [$('#marque')]) { n.classList.remove('bat'); void n.offsetWidth; n.classList.add('bat'); }
     if (k % 2 === 0 && performance.now() - punch.t0 > 500) punch = { t0: performance.now(), a: 0.012 };
   }
 
@@ -176,7 +176,7 @@
       cur.x = trajet.de.x + (trajet.a.x - trajet.de.x) * e; cur.y = trajet.de.y + (trajet.a.y - trajet.de.y) * e;
       if (k >= 1) { const f = trajet.fin; trajet = null; f(); }
     }
-    if (mode === 'suivre') Object.assign(cible, { cx: cur.x, cy: cur.y, s: zoomSuivi });
+    if (mode === 'suivre') Object.assign(cible, { cx: cur.x + decalSuivi, cy: cur.y, s: zoomSuivi });
     const c = centreBorne(cible.cx, cible.cy, cible.s);
     const kp = 1 - Math.exp(-dt / tau), ks = 1 - Math.exp(-dt / (tau * 1.15));
     cam.s += (cible.s - cam.s) * ks;
@@ -189,6 +189,7 @@
     curseur.style.setProperty('--x', `${p.x - 6}px`); curseur.style.setProperty('--y', `${p.y - 3}px`);
     const v = vue.getBoundingClientRect(), tt = toile.getBoundingClientRect();
     const vx = v.left - tt.left, vy = v.top - tt.top;
+    curseur.classList.toggle('hors', p.x < vx || p.x > vx + VUE.l || p.y < vy || p.y > vy + VUE.h); // curseur sorti du champ : masqué
     for (const r of ancres.values()) {
       try {
         const q = ancreToile(r.sel), mx = q.x + q.w / 2, my = q.y + q.h / 2;

@@ -8,7 +8,7 @@
 // et mixe les bruitages (synthétisés, aucune ressource externe) et, en option, une musique fournie.
 import { createRequire } from 'node:module';
 import { spawn, execFileSync } from 'node:child_process';
-import { mkdirSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join, resolve, basename, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -121,9 +121,16 @@ console.log(`Capture : ${images.length} images en ${duree.toFixed(1)} s (${(imag
 // 5. Vidéo : chaque image dure jusqu'à la suivante (rythme réel), rééchantillonnée à 30 i/s.
 const liste = images.map((im, i) => `file '${im.f}'\nduration ${((images[i + 1]?.t ?? duree) - im.t).toFixed(4)}`).join('\n') + `\nfile '${images.at(-1).f}'\n`;
 writeFileSync(join(TMP, 'images.txt'), liste);
+// Diffusion Reels Instagram / LinkedIn : 720 × 1280, encodage en deux passes avec un débit calculé pour tenir
+// sous TAILLE_MAX (limite d'envoi automatique vers Google Drive). Capture faite en 1080 × 1920 puis réduite.
+const TAILLE_MAX = (cfg.tailleMaxMo ?? 2.9) * 1e6, AUDIO_KBPS = 96;
+const debitVideo = Math.floor((TAILLE_MAX * 8 / duree) / 1000 - AUDIO_KBPS - 40); // 40 kbit/s de marge (conteneur)
 const video = join(TMP, 'video.mp4');
-execFileSync('ffmpeg', ['-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', join(TMP, 'images.txt'), '-vf', `fps=${FPS},format=yuv420p`,
-  '-c:v', 'libx264', '-preset', brouillon ? 'veryfast' : 'slow', '-crf', brouillon ? '26' : '18', '-t', duree.toFixed(3), video]);
+const encodage = ['-f', 'concat', '-safe', '0', '-i', join(TMP, 'images.txt'), '-vf', `fps=${FPS},scale=720:1280:flags=lanczos,format=yuv420p`,
+  '-c:v', 'libx264', '-preset', brouillon ? 'veryfast' : 'slow', '-b:v', `${debitVideo}k`, '-passlogfile', join(TMP, 'passe'), '-t', duree.toFixed(3)];
+execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '1', '-an', '-f', 'null', '/dev/null']);
+execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '2', video]);
+if (duree > (cfg.dureeMax ?? 40)) console.error(`Attention : ${duree.toFixed(1)} s, au-delà de la durée maximale (${cfg.dureeMax ?? 40} s).`);
 
 // 6. Bruitages synthétisés (ffmpeg), placés aux instants réels des actions.
 const SONS = {
@@ -158,7 +165,7 @@ if (n) {
   execFileSync('ffmpeg', ['-y', '-v', 'error', ...entrees, '-filter_complex', filtres.join(';'), '-map', '[a]', '-ar', '48000', '-ac', '2', audio]);
 }
 const final = join(SORTIE, `${nom}.mp4`);
-execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', video, ...(n ? ['-i', audio, '-c:a', 'aac', '-b:a', '160k', '-shortest'] : []), '-c:v', 'copy', '-movflags', '+faststart', final]);
+execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', video, ...(n ? ['-i', audio, '-c:a', 'aac', '-b:a', `${AUDIO_KBPS}k`, '-shortest'] : []), '-c:v', 'copy', '-movflags', '+faststart', final]);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-ss', String(cfg.affiche ?? 1.5), '-i', final, '-frames:v', '1', '-q:v', '3', join(SORTIE, `${nom}-affiche.jpg`)]);
 if (!options.includes('--garder')) rmSync(TMP, { recursive: true, force: true });
-console.log(`Vidéo : ${final} (${duree.toFixed(1)} s)`);
+console.log(`Vidéo : ${final} (${duree.toFixed(1)} s, ${(statSync(final).size / 1e6).toFixed(2)} Mo)`);

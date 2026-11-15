@@ -52,10 +52,9 @@ export async function jouer(v) {
   const FINT = (nom) => `${tache(nom)} .c-fin`;
   const DUREE = (nom) => `${tache(nom)} [data-champ="duree"]`;
 
-  // Accroche : un mot par demi-temps
+  // Accroche : un mot par demi-temps (un seul son d'entrée, pas un par mot)
   const lignes = ['Une tâche prend', '*3_jours* de retard.', '!La fin du chantier *bouge ?*'];
-  const nbMots = lignes.join(' ').split(/\s+/).length;
-  for (let i = 0; i < nbMots; i++) setTimeout(() => son('pop', 0.45), i * T / 2);
+  son('whoosh', 0.6);
   await S('accroche', lignes, T / 2);
   await v.temps();
   son('whoosh'); await S('accrocheSortie');

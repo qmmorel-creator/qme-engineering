@@ -145,8 +145,6 @@ body{font:400 40px/1.2 Outfit,system-ui,sans-serif;color:var(--encre);-webkit-fo
 #calque .hors{opacity:0!important;transition:opacity .2s}
 
 /* Battement sur le temps */
-#formes{transform-origin:50% 50%}
-#formes.bat{animation:bat .32s cubic-bezier(.2,.9,.3,1)}
 #marque.bat img{animation:batLogo .32s cubic-bezier(.2,.9,.3,1)}
-@keyframes bat{0%{scale:1.035}100%{scale:1}}
 @keyframes batLogo{0%{scale:1.18;rotate:-8deg}100%{scale:1;rotate:0deg}}
+#curseur.hors{opacity:0}
