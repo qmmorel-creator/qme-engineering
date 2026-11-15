@@ -39,7 +39,7 @@ export const PRODUITS = {
   ASC: { nom: 'Inscriptions associatives', url: '/templates/inscriptions/', gumroad: '5XuVWuitD2ZzpVkwQFHlVw==' },
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/', gumroad: 'leplToyYwMtXCmdXZa9T4Q==' },
-  SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/' },
+  SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/', gumroad: 'fCyii9wIVdIfFc1YQdbZzQ==' },
   HBT: { nom: 'Suivi d\'habitudes et routines', url: '/templates/habitudes/', gumroad: 'DvjP1MxGl7bGDZiHfGgcfQ==' },
   ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/' },
   DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/' },

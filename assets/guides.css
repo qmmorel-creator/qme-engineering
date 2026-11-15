@@ -1,0 +1,83 @@
+/* Rubrique /guides/ : mise en page de lecture (colonne de texte), mention d'information, tableaux,
+   check-list imprimable et calculateur. Complète assets/site.css (mêmes jetons de couleur). */
+.guide{max-width:var(--max);margin:0 auto;padding:24px 16px 56px}
+.guide-corps{max-width:760px}
+.guide h1{font-size:clamp(32px,4.4vw,52px);margin-bottom:18px}
+.guide .chapeau{font-size:19px;color:var(--texte-2);margin-bottom:20px}
+.guide-mention{margin:0 0 28px;padding:14px 18px;border-radius:16px;background:var(--beurre);color:var(--encre);font-size:15px}
+.guide h2{font-size:clamp(24px,3vw,32px);margin:44px 0 14px;scroll-margin-top:90px}
+.guide h3{font-size:20px;margin:28px 0 10px}
+.guide p,.guide li{color:var(--encre)}
+.guide p+p{margin-top:12px}
+.guide ul,.guide ol{padding-left:22px;margin:12px 0}
+.guide li+li{margin-top:6px}
+.guide a{color:var(--bleu);font-weight:600}
+.guide .btn{color:var(--encre)}
+.guide .btn.primary{color:var(--papier)}
+.guide .petit{font-size:14px;color:var(--discret)}
+.guide-sommaire{margin:0 0 8px;padding:16px 20px;border:1px solid var(--trait);border-radius:18px;background:var(--surface)}
+.guide-sommaire b{display:block;margin-bottom:6px}
+.guide-sommaire ol{margin:0}
+.encadre{margin:20px 0;padding:16px 20px;border-radius:18px;background:var(--ciel);color:var(--encre)}
+.encadre p,.encadre li{color:var(--encre)}
+.encadre.rose{background:var(--rose)}
+.tableau{overflow-x:auto;margin:16px 0;border:1px solid var(--trait);border-radius:16px;background:var(--surface)}
+.tableau table{width:100%;border-collapse:collapse;font-size:15px}
+.tableau th,.tableau td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--trait)}
+.tableau tr:last-child td{border-bottom:0}
+.tableau th{background:var(--sable);font-size:14px}
+.tableau td.n,.tableau th.n{text-align:right;white-space:nowrap}
+.message{margin:12px 0;padding:14px 18px;border-left:4px solid var(--jaune);background:var(--surface);border-radius:0 14px 14px 0;font-size:16px}
+.message p{color:var(--texte-2)}
+.sources{font-size:15px}
+.sources li{color:var(--texte-2)}
+.guide-fin{margin-top:48px;padding:24px;border-radius:24px;background:var(--sable)}
+.guide-fin h2{margin-top:0}
+.guide-fin .actions{margin-top:16px}
+
+/* Check-list de réception (imprimable) */
+.checklist{list-style:none;padding:0!important}
+.checklist li{position:relative;padding:6px 0 6px 34px;border-bottom:1px solid var(--trait)}
+.checklist li+li{margin-top:0}
+.checklist li::before{content:"";position:absolute;left:2px;top:9px;width:18px;height:18px;border:2px solid var(--encre);border-radius:4px;background:var(--surface)}
+
+/* Calculateur budget à deux */
+.calculateur{margin:20px 0;padding:20px;border:1px solid var(--trait);border-radius:22px;background:var(--surface)}
+.calculateur .champs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.calculateur label{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:600}
+.calculateur input{font:400 17px Outfit,sans-serif;padding:11px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--papier);color:var(--encre);width:100%;min-width:0}
+.calculateur input:focus{outline:3px solid var(--bleu);outline-offset:0}
+.calculateur .erreur{margin-top:12px;color:#A63A26;font-weight:600}
+.calculateur .resultats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.calculateur .resultat{padding:14px 16px;border-radius:16px;background:var(--ciel)}
+.calculateur .resultat.prorata{background:var(--beurre)}
+.calculateur .resultat h3{margin:0 0 8px;font-size:17px}
+.calculateur .resultat p{font-size:15px;color:var(--encre)}
+.calculateur .resultat b{font-size:20px}
+.calculateur .confidentialite{margin-top:12px;font-size:14px;color:var(--discret)}
+
+/* Index des guides */
+.liste-guides{display:grid;gap:16px;margin-top:24px;padding:0;list-style:none}
+.liste-guides a{display:block;padding:20px 22px;border:1px solid var(--trait);border-radius:22px;background:var(--surface);text-decoration:none;color:var(--encre)}
+.liste-guides a:hover{background:var(--beurre)}
+.liste-guides b{display:block;font-size:20px;line-height:1.2;margin-bottom:6px}
+.liste-guides span{display:block;color:var(--texte-2)}
+.liste-guides em{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--discret)}
+
+@media (max-width:640px){
+  .calculateur .champs,.calculateur .resultats{grid-template-columns:1fr}
+  .guide-fin .actions .btn{width:100%}
+}
+
+@media print{
+  .topbar,footer,.fil,.guide-fin,.pas-imprime,.guide-sommaire{display:none!important}
+  body{background:#fff;font-size:12pt}
+  .guide{padding:0}
+  .guide a{color:inherit}
+  .checklist li{break-inside:avoid}
+  .guide h2{break-after:avoid}
+}
+/* Bouton « Imprimer la check-list » : seule la check-list part à l'impression. */
+@media print{
+  body.imprimer-checklist .guide-corps>*:not(#check-list),body.imprimer-checklist .guide>*:not(.guide-corps){display:none!important}
+}

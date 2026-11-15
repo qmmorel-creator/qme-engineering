@@ -115,6 +115,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
 - `/` et `/en/` : deux offres présentées à égalité en tête (« Sur mesure » et « Templates »), puis une
   section `#templates` après l'offre sur mesure.
 - `/templates/` : catalogue des templates (indexé), fiche du planning de révision, fonctionnement, FAQ.
+- `/guides/` (depuis le 15/11/2026) : guides pratiques indexés (facture impayée, levée des réserves, budget à deux),
+  reliés depuis le pied de page et les pages catalogue concernées ; styles `assets/guides.css`, calculateur et
+  impression de la check-list `assets/guides.js` (le calculateur charge `templates/budget-commun/regles.js`). Suivi et
+  règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par

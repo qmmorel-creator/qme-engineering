@@ -18,7 +18,7 @@ ventes, effort = temps de travail et nombre de déploiements. Aucune promesse de
 | 1 | **Search Console et Bing Webmaster Tools** : validation du domaine, sitemap, indexation des pages prioritaires (procédure ci-dessous) | Fort (sans cela, rien n'est mesuré) | Faible | Quentin |
 | 2 | Fusionner la PR SEO après relecture (1 déploiement) | Fort | Faible | Quentin |
 | 3 | Rich Results Test sur 3 URL en ligne après déploiement (accueil, une page en vente, une page « bientôt ») | Moyen (contrôle) | Faible | Quentin ou session suivante |
-| 4 | Écrire les 2 à 3 premiers guides (document unique, facture impayée, levée des réserves) : `guides.md` | Fort à moyen terme sur les requêtes larges | Moyen | Session suivante, relecture de Quentin |
+| 4 | Écrire les 2 à 3 premiers guides : **lot 1 rédigé le 15/11/2026, PR #118 (non fusionnée)** : facture impayée, levée des réserves, budget à deux 50/50 ou prorata (avec calculateur), rubrique `/guides/`. Reste : document unique et les suivants (`guides.md`) | Fort à moyen terme sur les requêtes larges | Moyen | Relecture de Quentin, puis fusion |
 | 5 | Fiches Gumroad : noms, résumés, tags, catégories (`hors-site.md`) | Moyen (pages Gumroad indexées, Discover) | Faible | Quentin (fiches publiques) |
 | 6 | Balises Open Graph (titre, description, image 1200 × 630) sur toutes les pages publiques, générées comme le JSON-LD | Moyen (clics depuis LinkedIn et Instagram) | Moyen | Lot suivant |
 | 7 | Bloc « Voir aussi » sur les pages catalogue (2 à 3 templates du même thème) et liens des guides vers les produits | Moyen (maillage) | Moyen | Lot suivant |

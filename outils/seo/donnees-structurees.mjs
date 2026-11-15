@@ -3,7 +3,9 @@
 // - toute page avec un fil d'Ariane visible (nav.fil) : BreadcrumbList ;
 // - toute page avec une FAQ visible (div.faq > details) : FAQPage (questions et réponses telles qu'affichées) ;
 // - page catalogue en vente (prix affiché + bouton Acheter Gumroad) : Product + Offer en EUR.
-//   Les pages « Mise en vente prochaine » n'ont pas de Product : sans offre, Google le signale en erreur.
+//   Les pages « Mise en vente prochaine » n'ont pas de Product : sans offre, Google le signale en erreur ;
+// - guide (/guides/<slug>/) : Article (titre H1, meta description, date de la mention visible « à jour au
+//   JJ/MM/AAAA »).
 // Aucune note ni aucun avis (pas d'aggregateRating sans avis réels).
 // Usage : node outils/seo/donnees-structurees.mjs   (à relancer après toute modification de prix, de FAQ,
 // de titre ou de fil d'Ariane ; outils/templates/seo.test.mjs échoue sinon)
@@ -84,6 +86,29 @@ function produit(html, canonique) {
   };
 }
 
+// Guide : Article tiré du H1, de la meta description et de la date de la mention visible
+// (« Guide d'information générale, à jour au JJ/MM/AAAA »).
+export const estGuide = (canonique) => /^https:\/\/qm-engineering\.fr\/guides\/[^/]+\/$/.test(canonique);
+function article(html, canonique) {
+  if (!estGuide(canonique)) return null;
+  const date = html.match(/<p class="guide-mention">[^<]*à jour au (\d{2})\/(\d{2})\/(\d{4})/);
+  if (!date) throw new Error(`${canonique} : mention « à jour au JJ/MM/AAAA » introuvable`);
+  const iso = `${date[3]}-${date[2]}-${date[1]}`;
+  return {
+    '@type': 'Article',
+    '@id': `${canonique}#article`,
+    headline: texte(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]),
+    description: texte(html.match(/<meta name="description" content="([^"]*)"/)[1]),
+    url: canonique,
+    mainEntityOfPage: canonique,
+    inLanguage: 'fr-FR',
+    datePublished: iso,
+    dateModified: iso,
+    author: { '@type': 'Organization', '@id': ORG, name: 'Quentin Morel Engineering', url: `${SITE}/` },
+    publisher: { '@type': 'Organization', '@id': ORG, name: 'Quentin Morel Engineering', logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo-qme.png` } },
+  };
+}
+
 function accueil() {
   return [
     {
@@ -111,7 +136,7 @@ function accueil() {
 export function donnees(html, canonique) {
   const graphe = [];
   if (canonique === `${SITE}/`) graphe.push(...accueil());
-  for (const bloc of [produit(html, canonique), filAriane(html, canonique), faq(html, canonique)]) if (bloc) graphe.push(bloc);
+  for (const bloc of [produit(html, canonique), article(html, canonique), filAriane(html, canonique), faq(html, canonique)]) if (bloc) graphe.push(bloc);
   return graphe.length ? { '@context': 'https://schema.org', '@graph': graphe } : null;
 }
 
