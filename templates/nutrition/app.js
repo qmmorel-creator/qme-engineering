@@ -88,7 +88,7 @@
   let apresPortion = null; // rouvre la modale d'origine après la définition d'une portion
 
   const etatVide = () => ({
-    version: 1, consentement: null, prenom: '',
+    version: 1, consentement: null, prenom: '', tutorielVu: false,
     profil: { sexe: null, annee: null, taille: null, activite: 'sedentaire', facteurPerso: null, depenseManuelle: null, objectif: 'maintien', ecart: 0, cibles: {} },
     pesees: [], journal: [], seances: [], aliments: {}, portions: {}, favoris: [], repasEnr: [], menus: [], semaine: [null, null, null, null, null, null, null], coches: [],
   });
@@ -519,6 +519,7 @@
     menus: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     aliments: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21 A18 18 0 0 1 21 3 V21Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     etoile: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2l2.9 6.9L22 9.6l-5.5 4.8L18.2 22 12 18.1 5.8 22l1.7-7.6L2 9.6l7.1-.7Z" fill="currentColor"/></svg>',
   };
@@ -536,12 +537,13 @@
         <span class="titre-produit">Nutrition<br>et dépense</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, sources et données" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1277,6 +1279,8 @@
         </ul></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du journal, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Fermer</button>');
@@ -1333,6 +1337,53 @@
     stock.suppr(CLE_CACHE);
     modale().close();
     ecranConsentement('Toutes tes données ont été effacées, en ligne et sur cet appareil. Tu peux recommencer ou te déconnecter.');
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const p = E.profil;
+    const vise = R.facteurVise(p.objectif, p.ecart);
+    const facteur = R.facteurActivite(p, B.activites);
+    const facteurTexte = nf(facteur, 3).replace(/0+$/, '').replace(/,$/, '');
+    const depenseTexte = p.depenseManuelle > 0
+      ? `Ta dépense de repos est celle que tu as saisie dans ton profil (${kcal(p.depenseManuelle)} par jour), plus tes séances de sport.`
+      : `Ta dépense du jour, c'est ton métabolisme de base (équation de Mifflin-St Jeor&nbsp;: sexe, âge, taille, poids) multiplié par ton facteur d'activité hors sport (${facteurTexte}, réglable dans ton profil), plus tes séances. Sans sexe, âge ou taille, elle est estimée sur ton poids seul, moins précisément.`;
+    const objectifTexte = p.objectif === 'perte'
+      ? `Ton objectif&nbsp;: perdre, avec ${nf(p.ecart)}&nbsp;% sous ta dépense. Le facteur visé est donc ${nf(vise, 2)} ou moins&nbsp;; au-dessus, il s'affiche en rouge.`
+      : p.objectif === 'prise'
+        ? `Ton objectif&nbsp;: prendre, avec ${nf(p.ecart)}&nbsp;% au-dessus de ta dépense. Le facteur visé est donc ${nf(vise, 2)} ou plus&nbsp;; en dessous, il s'affiche en rouge.`
+        : 'Ton objectif&nbsp;: maintenir. Un facteur de 1,00 veut dire que tu manges autant que tu dépenses.';
+    const blocs = [
+      ['rose', 'Note ce que tu manges', `Dans <b>Journal</b>, ajoute chaque aliment à son repas, en grammes ou en portions. Les valeurs viennent de la table Ciqual de l'Anses&nbsp;; un produit absent se crée dans <b>Aliments</b> à partir de son emballage. <b>Copier la veille</b>, les favoris et les repas enregistrés t'évitent de tout ressaisir.`],
+      ['beurre', 'Ta dépense est calculée', `${depenseTexte} Une séance compte (MET − 1) × poids × durée en heures. Note ton poids dans <b>Activité</b>&nbsp;: le calcul prend la dernière pesée.`],
+      ['ciel', 'Suis ton facteur calorique', `Facteur calorique = calories mangées ÷ calories dépensées. ${objectifTexte} La tuile <b>Reste à manger</b> indique l'écart avec ta cible du jour. Une cible sous ${nf(B.seuilTresBasCalories)} kcal par jour déclenche un avertissement (Haute Autorité de santé).`],
+      ['sable', 'Regarde la tendance', `<b>Bilan</b> calcule ton facteur sur 7 ou 30 jours&nbsp;: total mangé ÷ total dépensé. Les jours sans repas noté sont exclus des moyennes&nbsp;: un oubli ne compte pas comme un jour à 0 kcal. La courbe de poids apparaît dès deux pesées sur les 90 derniers jours.`],
+      ['rose', 'Prépare ta semaine', `Dans <b>Menus</b>, compose des journées types et place-les sur les jours de la semaine&nbsp;: la liste de courses s'additionne seule, rangée par rayon. <b>Copier dans le journal</b> reporte un menu sur un jour.`],
+    ];
+    const corps = `
+      <p>Le journal calcule ce que tu dépenses chaque jour et le compare à ce que tu manges. Ton rôle&nbsp;: noter tes repas, tes séances de sport et ton poids.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Activité</b> regroupe ton profil, ton poids et tes séances. ${session.demo ? 'En démo, les données sont fictives et restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne, dans l\'Union européenne, avec ta clé&nbsp;: tu les retrouves sur tous tes appareils et tu peux les effacer dans les réglages.'} Les calculs sont des estimations&nbsp;: ils ne remplacent pas l'avis d'un médecin ou d'un diététicien. Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premierAliment = auto && !E.journal.length;
+    const pied = premierAliment
+      ? '<button class="btn primaire" value="aliment">Ajouter mon premier aliment</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'aliment') setTimeout(() => { if (vue !== 'journal') changerVue('journal'); modaleAjout({ jour: jourJournal, repas: repasDuMoment() }); }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1417,6 +1468,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'profil': modaleProfil(); break;
       case 'exporter': exporter(); break;

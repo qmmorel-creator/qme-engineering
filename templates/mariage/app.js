@@ -44,7 +44,7 @@
   let filtreInv = { groupe: '', reponse: '', texte: '' };
   let annulation = null;
 
-  const etatVide = () => ({ version: 1, noms: ['', ''], date: '', lieu: '', budgetGlobal: 0, taches: [], postes: [], prestataires: [], groupes: [], invites: [], tables: [], jourJ: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, noms: ['', ''], date: '', lieu: '', budgetGlobal: 0, taches: [], postes: [], prestataires: [], groupes: [], invites: [], tables: [], jourJ: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -401,6 +401,7 @@
     invites: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="currentColor"/><circle cx="17" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M1 21a7 7 0 0 1 14 0Z" fill="currentColor"/><path d="M14 21a5 5 0 0 1 9 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     tables: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><circle cx="12" cy="3" r="2" fill="currentColor"/><circle cx="12" cy="21" r="2" fill="currentColor"/><circle cx="3" cy="12" r="2" fill="currentColor"/><circle cx="21" cy="12" r="2" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['apercu', 'Aperçu'], ['planning', 'Planning'], ['budget', 'Budget'], ['invites', 'Invités'], ['tables', 'Tables']];
@@ -416,12 +417,13 @@
         <span class="titre-produit">Organisateur<br>de mariage</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1049,6 +1051,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a ta clé voit et modifie l'organisation, liste d'invités comprise.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(AVERTISSEMENT)}</p><p class="aide">${esc(B.sourceDemarches.titre)} : ${esc(B.sourceDemarches.source)} Les invités ne reçoivent pas de lien de réponse : vous saisissez leurs réponses.</p></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'organisateur, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1084,6 +1088,45 @@
     a.download = `organisateur-mariage-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const date = E.date
+      ? `Les échéances sont calées sur le ${esc(fmtLong(E.date))} : si la date change dans les réglages, tout se recale.`
+      : 'Sans date du mariage, les tâches n\'ont pas d\'échéance&nbsp;: ajoute-la dans les réglages.';
+    const blocs = [
+      ['rose', 'Le rétroplanning suit la date', `Chaque tâche a son échéance, en jours avant le mariage ou à date fixe. ${date} Une tâche passe <b>Cette semaine</b> 7 jours avant son échéance, puis <b>En retard</b> si elle n'est pas cochée à temps.`],
+      ['beurre', 'Prévu, engagé, payé', `Dans <b>Budget</b>, chaque poste a un montant prévu. Le devis d'un prestataire compte dans l'<b>engagé</b> dès qu'il est <b>Réservé</b>&nbsp;; le <b>payé</b> additionne les paiements cochés. Note acomptes et soldes avec leur échéance&nbsp;: un paiement non réglé à temps passe en retard, et un poste dont l'engagé dépasse le prévu est signalé.`],
+      ['ciel', 'Les réponses se notent ici', `Les invités ne reçoivent pas de lien&nbsp;: c'est toi qui notes <b>Oui</b>, <b>Non</b> ou <b>En attente</b>. Les couverts à prévoir comptent les oui et les en attente. Régimes et allergies sont regroupés pour le traiteur&nbsp;; ce sont des données de santé, à effacer après le mariage depuis les réglages.`],
+      ['sable', 'Le plan de table se vérifie seul', `Crée tes tables avec leur nombre de places, puis glisse chaque invité sur une table, ou choisis-la dans la liste. Seuls les oui et les en attente sont à placer. Une alerte signale une table trop pleine, un invité confirmé sans table ou un invité qui a décliné mais reste placé.`],
+    ];
+    const corps = `
+      <p>L'organisateur cale chaque tâche sur la date du mariage et fait les comptes du budget, des réponses et des places. Ton rôle&nbsp;: cocher ce qui est fait, noter devis et paiements, saisir les réponses des invités.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Aperçu</b> résume l'urgent, les prochains paiements et les réponses&nbsp;; <b>Planning</b> garde aussi la checklist du <b>Jour J</b>. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tout est enregistré en ligne avec ta clé&nbsp;: toi et ta moitié le retrouvez sur tous vos appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Organisateur tout juste créé : rien de saisi côté invités ni prestataires.
+    const premier = auto && !E.invites.length && !E.prestataires.length ? (E.date ? 'invites' : 'date') : null;
+    const pied = premier
+      ? `<button class="btn primaire" value="${premier}">${premier === 'date' ? 'Ajouter la date du mariage' : 'Ajouter mes premiers invités'}</button><button class="btn" value="ok">Fermer</button>`
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'date') setTimeout(() => modaleReglages(), 0);
+      if (choix === 'invites') setTimeout(() => { if (vue !== 'invites') changerVue('invites'); modaleInvitesLot(); }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1176,6 +1219,7 @@
       case 'filtre-taches': filtreTaches = el.dataset.v; rendre(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

@@ -43,7 +43,7 @@
   let filtre = { categorie: '', texte: '' };
   let annulation = null;
 
-  const etatVide = () => ({ version: 1, foyer: '', modele: null, debut: moisCourant(), categories: [], sources: [], ajustements: {}, operations: [], fixes: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, foyer: '', modele: null, debut: moisCourant(), categories: [], sources: [], ajustements: {}, operations: [], fixes: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -402,6 +402,7 @@
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     categories: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['mois', 'Mois'], ['enveloppes', 'Enveloppes'], ['operations', 'Opérations'], ['bilan', 'Bilan'], ['categories', 'Catégories']];
@@ -417,12 +418,13 @@
         <span class="titre-produit">Budget<br>du foyer</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1017,6 +1019,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a ta clé voit et modifie ce budget.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(AVERTISSEMENT)}</p><p class="aide">${esc(B.repere.titre)} : ${esc(B.repere.source)}</p></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du budget, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1046,6 +1050,44 @@
     a.download = `budget-foyer-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const depart = E.debut ? ` (${libelleMois(E.debut).toLowerCase()}, modifiable dans les réglages)` : '';
+    const blocs = [
+      ['rose', 'Donne une place à chaque euro', `Dans l'onglet <b>Enveloppes</b>, chaque catégorie reçoit un montant pour le mois. Le <b>Reste à affecter</b> correspond à tes revenus prévus moins tes enveloppes&nbsp;: vise 0&nbsp;€. Un nouveau montant vaut pour le mois affiché et les suivants, ou pour ce mois seulement&nbsp;; les mois passés gardent le leur.`],
+      ['beurre', 'Note ce qui entre et ce qui sort', `Ajoute tes dépenses et tes revenus avec les boutons <b>Dépense</b> et <b>Revenu</b>. Rien n'est importé de ta banque&nbsp;: tu saisis toi-même tes montants. Loyer, salaire, abonnements&nbsp;: déclare-les une fois en opérations fixes (onglet <b>Catégories</b>), puis ajoute-les en un clic chaque mois depuis l'onglet <b>Opérations</b>.`],
+      ['ciel', 'Surveille tes enveloppes', `Une enveloppe passe <b>Presque vide</b> à 90&nbsp;% dépensés et <b>Dépassée</b> au-delà de son montant. Une dépense dans une catégorie sans enveloppe est <b>Hors budget</b>. Ces enveloppes remontent dans <b>À surveiller</b>, sur l'onglet <b>Mois</b>, qui indique aussi, pour le mois en cours, combien tu peux encore dépenser par jour.`],
+      ['sable', 'Reporte ce qui reste', `Avec le <b>Report</b>, ce qui reste d'une enveloppe s'ajoute au mois suivant et un dépassement s'en retire. Pratique pour les vacances, les impôts ou les cadeaux&nbsp;: tu mets de côté un peu chaque mois. Le report se calcule depuis le mois de départ du budget${depart}.`],
+      ['rose', 'Situe-toi avec le repère 50/30/20', `Tes catégories sont rangées en besoins, envies et épargne. L'onglet <b>Mois</b> compare la part de chaque groupe dans tes revenus du mois à un repère courant&nbsp;: 50&nbsp;%, 30&nbsp;% et 20&nbsp;%. C'est un repère, pas une règle. Le diagramme <b>Où va l'argent</b> montre le trajet de tes revenus jusqu'à chaque catégorie.`],
+    ];
+    const corps = `
+      <p>Le budget compare chaque mois ce que tu avais prévu à ce que tu dépenses vraiment. Ton rôle&nbsp;: répartir tes revenus prévus en enveloppes, puis noter tes dépenses et tes revenus au fil du mois.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Bilan</b> montre tes 12 derniers mois, <b>Catégories</b> tes revenus prévus, tes catégories et tes opérations fixes. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton budget est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Budget tout juste créé : catégories sans montant et aucune opération.
+    const premiere = auto && !E.operations.length && !E.categories.some((c) => c.enveloppe)
+      && B.groupes.flatMap((g) => E.categories.filter((c) => c.groupe === g.id))[0];
+    const pied = premiere
+      ? '<button class="btn primaire" value="enveloppe">Remplir ma première enveloppe</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'enveloppe') setTimeout(() => { if (vue !== 'enveloppes') changerVue('enveloppes'); modaleEnveloppe(premiere.id); }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1148,6 +1190,7 @@
       case 'mois-courant': mois = moisCourant(); rendre(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

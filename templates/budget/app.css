@@ -504,3 +504,11 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .composition .marque .m{color:var(--bleu)}
 .accroche .surtitre{color:var(--ciel-texte)}
 .accroche p{color:var(--texte-2)}
+
+/* Guide « Comment ça marche » : principes numérotés sur fonds teintés */
+.tuto{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:tuto}
+.tuto li{counter-increment:tuto;display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 12px;padding:12px 14px;border:1px solid var(--trait);border-radius:16px;background:var(--surface)}
+.tuto li::before{content:counter(tuto);grid-row:span 2;width:34px;height:34px;border-radius:50%;background:var(--f);color:var(--t);display:flex;align-items:center;justify-content:center;font-weight:700;font-variant-numeric:tabular-nums}
+.tuto li b{font-size:16px}
+.tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
+.tuto li span b{font-size:inherit;color:var(--encre)}
