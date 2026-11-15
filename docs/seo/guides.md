@@ -8,9 +8,9 @@ juridiques à la date de publication.
 
 | Guide | Statut |
 |---|---|
-| 2. Facture impayée → `/guides/facture-impayee/` | Rédigé, PR #PR_GUIDES (non fusionnée), sources revérifiées le 15/11/2026 |
-| 3. Levée des réserves → `/guides/levee-des-reserves/` | Rédigé, PR #PR_GUIDES (non fusionnée), sources revérifiées le 15/11/2026 |
-| Budget à deux, 50/50 ou prorata → `/guides/budget-couple-50-50-ou-prorata/` (décidé le 15/11/2026, hors liste initiale) | Rédigé, PR #PR_GUIDES (non fusionnée), calculateur sur le moteur de `templates/budget-commun/regles.js` |
+| 2. Facture impayée → `/guides/facture-impayee/` | Rédigé, PR #118 (non fusionnée), sources revérifiées le 15/11/2026 |
+| 3. Levée des réserves → `/guides/levee-des-reserves/` | Rédigé, PR #118 (non fusionnée), sources revérifiées le 15/11/2026 |
+| Budget à deux, 50/50 ou prorata → `/guides/budget-couple-50-50-ou-prorata/` (décidé le 15/11/2026, hors liste initiale) | Rédigé, PR #118 (non fusionnée), calculateur sur le moteur de `templates/budget-commun/regles.js` |
 | 1, 4, 5, 6, 7, 8 | Proposés, non rédigés |
 
 Rubrique `/guides/` (lot 1, 15/11/2026) : page d'index, `assets/guides.css` et `assets/guides.js`, JSON-LD `Article`
