@@ -130,3 +130,11 @@ chaque réseau. Le post Instagram d'un sujet sort en principe le lendemain de so
 | mar. 16/03 | LI-136 Séminaire / offsite : qui n'a pas encore de train ? | IG-90 T19 · Suivi du bébé (carrousel existant) |
 | mer. 17/03 | LI-137 Banque de questions et quiz : la question qui fait échouer le groupe | IG-91 T54 · Séminaire / offsite (carrousel existant) |
 | jeu. 18/03 |   | IG-92 T58 · Banque de questions et quiz (carrousel existant) |
+
+## Modifications du 15/11/2026 (après la baisse du Suivi des abonnements à 9 €)
+
+- LI-107 avancé au **sam. 21/11 12:15** (Doc v2 : 9 €, lien d'achat tracé) ; LI-77 (TJM) reporté au **jeu. 17/12 12:15**.
+- IG-62 avancé au **dim. 22/11 18:30** (Doc v2 : 9 €, vue 5 remplacée par `IG-62-abonnements-5-9eur.png`,
+  ID Drive 1Ck88iyL1nFA8eOoJvsYK6OV3cEffh5QP) ; IG-06 (TJM) reporté au **sam. 19/12 18:30**.
+- Raison : produit d'appel prioritaire (`docs/strategie/classement-produits.md`) ; les anciens textes et la
+  vue 5 affichaient 12 €.
