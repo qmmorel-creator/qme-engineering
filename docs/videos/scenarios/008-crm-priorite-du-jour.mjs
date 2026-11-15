@@ -99,6 +99,7 @@ export async function jouer(v) {
   await v.temps(); await S('legende', `Et ce client pèse combien ? <b>Chiffres</b>.`);
   son('dezoom'); await S('suivre', 1.5, 0.15);
   await v.cliquer(ONGLET('chiffres'), { ms: 520 });
+  await v.page.mouse.move(540, 1880); // la vraie souris quitte le graphique (pas d'infobulle) ; le curseur dessiné reste en place
   son('zoom'); await S('cadrer', ['table.clients thead th:first-child', `${CLIENT1} td:first-child b`, `${CLIENT1} td:nth-child(4)`], { max: 2.3, marge: 30 });
   const part = await v.lire(`${CLIENT1} td:last-child small`);
   const reste = await v.lire(`${CLIENT1} td:nth-child(4)`);

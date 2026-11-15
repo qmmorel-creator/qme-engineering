@@ -25,6 +25,7 @@ const MACHINE = 'Nouvelle machine à commande numérique';
 const MOIS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 const ajout = (m, n) => { const [a, x] = m.split('-').map(Number); const d = new Date(Date.UTC(a, x - 1 + n, 1)); return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`; };
 const nomMois = (m) => MOIS_FR[Number(m.split('-')[1]) - 1];
+const frappe = (m) => { const n = nomMois(m); return n.length > 5 ? n.slice(0, 4) : n; }; // « avril », « sept » : le champ mois complète
 
 const ONGLET = (vue) => `.onglet[data-vue="${vue}"]`;
 const MOIS = '#modale input[name="mois"]';
@@ -82,32 +83,33 @@ export async function jouer(v) {
   await S('accroche', ['Votre client paie', '*3_mois* plus tard.', '!Le compte *tient-il_?*'], T / 2);
   await v.temps();
   son('whoosh'); await S('accrocheSortie');
-  await S('question', 'Un client paie en retard : le compte *tient-il* ?');
+  await S('question', 'Le compte *tient-il* ?');
   await v.temps(); son('whoosh', 0.7); await S('fenetre', true);
 
   // L'encaissement attendu
-  await v.temps(); son('zoom'); await S('cadrer', v.ECOLE, { max: 2.4, marge: 150 });
+  await v.temps(); son('zoom'); await S('cadrer', v.ECOLE, { max: 2.4, marge: 40 });
   const quand0 = await QUAND(v.ECOLE)(v);
   await v.temps(); son('pop'); await S('anneau', 'e', v.ECOLE, { etiquette: `Prévu en ${quand0}`, cote: 'dessous', marge: 4 });
   await S('legende', `Un atelier fictif attend <b>${montant}</b> d'un client.`);
-  await temps(2);
+  await temps(1.5);
   await S('retirer', 'e');
 
   // Problème : le client paie 3 mois plus tard. La caméra suit la souris.
   await v.temps(); await S('legende', `Le client paie <b>3 mois plus tard</b>.`, 'Problème');
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer(v.ECOLE, { ms: 480, fx: 0.3 });
-  await temps(0.5);
-  await v.saisir(MOIS, nomMois(v.cibleEcole), { ms: 520 });
+  await S('suivre', 1.9, 0.15, 0); // fenêtre de saisie : cadrée sur le curseur, bouton Enregistrer compris
+  await temps(0.3);
+  await v.saisir(MOIS, frappe(v.cibleEcole), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
   await v.temps();
   const quand1 = await QUAND(v.ECOLE)(v);
   if (!quand1.startsWith(nomMois(v.cibleEcole))) throw new Error(`Le mois n'a pas changé : ${quand1}`);
-  son('zoom', 0.6); await S('cadrer', v.ECOLE, { max: 2.4, marge: 150 });
+  son('zoom', 0.6); await S('cadrer', v.ECOLE, { max: 2.4, marge: 40 });
   await S('flash', v.ECOLE, 'var(--ciel)');
   son('pop'); await S('avantApres', 'e', `${v.ECOLE} small`, quand0, quand1, { couleur: 'var(--bleu)', cote: 'dessous' });
-  await temps(1.5);
+  await temps(1.2);
   await S('retirer', 'e');
 
   // La synthèse signale le découvert
@@ -120,30 +122,34 @@ export async function jouer(v) {
   await v.temps();
   await S('flash', TITRE, 'var(--rouge)');
   son('alerte', 0.8); await S('avantApres', 'b', BAS_VAL, v.bas0, bas1, { couleur: 'var(--rouge)', cote: 'dessous', note: 'point bas' });
-  await v.temps(); son('tampon', 0.6); await S('secouer', 'b'); await S('coup', 0.05);
-  await v.temps(); son('tampon');
+  await v.temps(); son('tampon'); await S('secouer', 'b'); await S('coup', 0.05);
   await S('tampon', `Découvert en ${moisDec}`, `Point bas : ${bas1}`, 'var(--rouge)');
-  await temps(2.2);
+  await temps(1.8);
   await S('tamponFin'); await S('retirer');
 
   // Solution : reporter l'achat de la machine
   await v.temps(); await S('legende', `Reporter <b>l'achat de la machine</b>.`, 'Solution');
   son('dezoom'); await S('suivre', 1.5, 0.15);
   await v.cliquer(ONGLET('previsions'), { ms: 520 });
+  // La ligne de la machine est en bas de page : vraie molette pour la remonter au-dessus du message « Prévision enregistrée ».
+  await S('curseurVers', 900, 1000, 450); son('glisse', 0.5);
+  const t = await S('versToile', 900, 1000); await v.page.mouse.move(t.x, t.y);
+  for (let i = 0; i < 8; i++) { await v.page.mouse.wheel(0, 80); await pause(30); }
   son('zoom', 0.7); await S('suivre', 2.2);
   const quand2 = await QUAND(v.MACHINE)(v);
   await v.cliquer(v.MACHINE, { ms: 520, fx: 0.3 });
-  await temps(0.5);
-  await v.saisir(MOIS, nomMois(v.cibleMachine), { ms: 520 });
+  await S('suivre', 1.9, 0.15, 0);
+  await temps(0.3);
+  await v.saisir(MOIS, frappe(v.cibleMachine), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
   await v.temps();
   const quand3 = await QUAND(v.MACHINE)(v);
   if (!quand3.startsWith(nomMois(v.cibleMachine))) throw new Error(`Le mois n'a pas changé : ${quand3}`);
-  son('zoom', 0.6); await S('cadrer', v.MACHINE, { max: 2.4, marge: 150 });
+  son('zoom', 0.6); await S('cadrer', v.MACHINE, { max: 2.4, marge: 40 });
   await S('flash', v.MACHINE, 'var(--ciel)');
-  son('pop'); await S('avantApres', 'm', `${v.MACHINE} small`, quand2, quand3, { couleur: 'var(--bleu)', cote: 'dessus' });
-  await temps(1.5);
+  son('pop'); await S('avantApres', 'm', `${v.MACHINE} small`, quand2, quand3, { couleur: 'var(--bleu)', cote: 'dessous' });
+  await temps(1.2);
   await S('retirer', 'm');
 
   // Verdict
@@ -159,7 +165,7 @@ export async function jouer(v) {
   son('trait', 0.6); await S('souligner', 's', TITRE, 'var(--vert)');
   await v.temps(); son('tampon'); son('ding', 0.7);
   await S('tampon', 'Plus de découvert', 'Au-dessus du seuil sur 12 mois', 'var(--vert)');
-  await temps(2.4);
+  await temps(2);
   await S('tamponFin'); await S('retirer'); await S('cacherCurseur');
 
   // Fin
@@ -167,5 +173,5 @@ export async function jouer(v) {
   await S('legende', null);
   await S('outro', { titre: 'Trésorerie prévisionnelle', sous: 'Le creux de trésorerie repéré<br>des mois à l\'avance.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
-  await temps(4);
+  await temps(3.5);
 }

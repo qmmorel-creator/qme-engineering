@@ -29,7 +29,7 @@ const TTC = `${TOTAUX} .total dd`;
 const TOTAL_HT = `${TOTAUX} .fort dd`;
 const BOUTON_CATALOGUE = '[data-action="ligne-catalogue"]';
 const CHERCHE = 'dialog[open] #cherche-cat';
-const CHOIX = `dialog[open] .choix-cat:has-text("${PRESTATION}")`;
+const CHOIX = 'dialog[open] #choix-liste .choix-cat'; // un seul résultat après la recherche (contrôlé dans preparer et après la frappe)
 const TERMINE = 'dialog[open] .modale-pied button[value="annuler"]';
 const DERNIERE = 'ul.lignes > li:last-child';
 const QTE = `${DERNIERE} [data-l="quantite"]`;
@@ -105,6 +105,8 @@ export async function jouer(v) {
   await pause(250);
   await v.saisir(CHERCHE, RECHERCHE, { ms: 420 });
   await v.temps(2);
+  const resultats = await appli.$$eval(CHOIX, (b) => b.map((x) => x.innerText));
+  if (resultats.length !== 1 || !resultats[0].includes(PRESTATION)) throw new Error(`Recherche inattendue : ${JSON.stringify(resultats)}`);
   await v.cliquer(CHOIX, { ms: 480 });
   await v.temps(2);
   await v.cliquer(TERMINE, { ms: 480 });
