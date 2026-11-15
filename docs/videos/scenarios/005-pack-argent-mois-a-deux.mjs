@@ -12,7 +12,7 @@ export const config = {
   largeur: 1280, hauteur: 1600,
   marque: 'QME · Pack Argent du quotidien',
   url: 'qm-engineering.fr/templates/abonnements',
-  affiche: 1.8,
+  affiche: 3.2,
   // Même musique que le modèle validé (gantt-retard) : « Corporate », litesaturation, licence Pixabay.
   musique: { fichier: 'docs/videos/musique/corporate-litesaturation.m4a', bpm: 110, premierTemps: 0.534, debut: 20.170, volume: 0.6 },
 };
@@ -29,7 +29,11 @@ const ALIM = '[data-action="enveloppe"][data-id="alimentation"]';
 const DOIT = 'h1 mark';
 const MONTANT = '84';
 
-const euros = (t) => t.replace(/\s+/g, ' ').trim();
+// Cadre de la phrase-résultat : du début de la phrase au montant surligné (et un peu après), avec la place de
+// l'étiquette avant → après dessous. Le h1 occupe toute la largeur : le cadrer entier donnerait un plan trop large.
+const autour = (v, sel) => v.appli.$eval(sel, (e) => { const r = e.getBoundingClientRect();
+  return { x: 50, y: r.top - 40, w: r.right + 150 - 50, h: r.height + 160 }; });
+const euros = (t) => t.replace(/\s+/g, '\u00a0').trim(); // espaces insécables : « 270,56 € » ne se coupe pas
 
 export async function preparer(v) {
   const { appli } = v;
@@ -43,18 +47,23 @@ export async function preparer(v) {
   await v.S('fenetre', false);
 }
 
-// Changement de template derrière le volet. La fenêtre sort pendant le volet, le template suivant se charge hors
-// champ ; son guide du premier lancement s'ouvre ~300 ms après l'initialisation (plus tard si la machine est chargée) :
-// on attend qu'il apparaisse, on le ferme, on cadre, puis la fenêtre revient.
-async function changer(v, slug, question, cible, cadrage) {
+// Changement de template derrière le volet, la fenêtre sortie pendant le chargement.
+// v.ouvrir n'est pas utilisé ici : son fermerDialogues clique le bouton « Fermer » du guide par Playwright ; quand ce
+// bouton n'est pas visible dans la page du studio (fenêtre sortie, ou hors du cadre zoomé), chaque clic attend 30 s
+// avant d'échouer en silence (3 essais : 90 s figées dans la vidéo, guide resté ouvert). On fait donc la même chose
+// que v.ouvrir (S.changerApp puis nouveau cadre), et le guide est fermé par son propre bouton, déclenché dans la page.
+async function changer(v, slug, question) {
   v.son('whoosh');
-  await Promise.all([v.S('volet'), v.S('fenetre', false)]);
-  await v.ouvrir(`/templates/${slug}/?demo`, `qm-engineering.fr/templates/${slug}`);
+  await Promise.all([v.S('volet'), v.S('fenetre', false), v.S('legende', null)]);
+  await v.S('changerApp', `/templates/${slug}/?demo`, { url: `qm-engineering.fr/templates/${slug}` });
+  v.appli = v.page.frames().find((f) => f !== v.page.mainFrame());
+  // Le guide du premier lancement s'ouvre ~300 ms après l'initialisation : on l'attend, puis on le ferme.
   for (let i = 0; i < 40 && !(await v.appli.$('dialog[open]')); i++) await v.pause(100);
-  await v.fermerDialogues();
+  await v.appli.evaluate(() => document.querySelector('dialog[open] [data-action="fermer"]')?.click());
+  await v.pause(250);
   if (await v.appli.$('dialog[open]')) throw new Error(`Guide de ${slug} resté ouvert`);
   await v.S('question', question);
-  await v.S('cadrer', cible, cadrage);
+  await v.S('cadrer', await autour(v, 'h1 mark'), { max: 2.2, marge: 30 });
   v.son('whoosh', 0.7); await v.S('fenetre', true);
 }
 async function formulaireOuvert(v) {
@@ -94,18 +103,17 @@ export async function jouer(v) {
   await S('suivre', 2.3);
   const eco0 = euros(await v.lire(`${ECO} b`));
   await v.cliquer(`${ESSAI} [data-action="a-resilier"]`, { ms: 520 });
-  await v.temps();
   await S('flash', ESSAI, 'var(--ciel)');
   son('zoom'); await S('cadrer', ECO, { max: 2.4, marge: 60 });
   const eco1 = euros(await v.lire(`${ECO} b`));
   if (eco1 === eco0) throw new Error('La tuile Économies n\'a pas changé');
   await S('flash', ECO, 'var(--vert)');
   son('pop'); await S('avantApres', 'eco', `${ECO} b`, eco0, eco1, { couleur: 'var(--vert)', cote: 'dessous', note: 'par an, décidé à temps' });
-  await temps(2);
+  await temps(1.5);
   await S('retirer');
 
   // 2. Budget du foyer : les courses
-  await v.temps(); await changer(v, 'budget', '2 · Votre *budget* du mois', RESTE, { max: 2.2, marge: 120 });
+  await v.temps(); await changer(v, 'budget', '2 · Votre *budget* du mois');
   await verifierBudget(v);
   const reste0 = euros(await v.lire(RESTE));
   await S('legende', `Les courses : <b>${MONTANT} €</b>.`, '2/3');
@@ -119,19 +127,18 @@ export async function jouer(v) {
   const cat = await v.appli.$eval('dialog[open] select[name="categorie"]', (s) => s.selectedOptions[0].textContent);
   if (cat !== 'Alimentation') throw new Error(`Catégorie inattendue : ${cat}`);
   await v.cliquer('dialog[open] button[value="ok"]', { ms: 450 });
-  await v.temps();
-  son('zoom'); await S('cadrer', RESTE, { max: 2.4, marge: 110 });
+  son('dezoom'); await S('cadrer', await autour(v, 'h1 mark'), { max: 2.2, marge: 30 });
   const reste1 = euros(await v.lire(RESTE));
   const alim = await v.lire(`${ALIM} .etiquette`);
   if (reste1 === reste0) throw new Error('« Il reste » n\'a pas changé');
   await S('flash', RESTE, 'var(--jaune)');
   son('pop'); await S('avantApres', 'reste', RESTE, reste0, reste1, { couleur: 'var(--bleu)', cote: 'dessous', note: `Alimentation : ${alim.toLowerCase()}` });
   son('trait', 0.6); await S('souligner', 's', RESTE, 'var(--bleu)');
-  await temps(2);
+  await temps(1.5);
   await S('retirer');
 
   // 3. Budget commun : qui a payé les courses
-  await v.temps(); await changer(v, 'budget-commun', '3 · Vos comptes *à deux*', DOIT, { max: 2.2, marge: 120 });
+  await v.temps(); await changer(v, 'budget-commun', '3 · Vos comptes *à deux*');
   await verifierCommun(v);
   const doit0 = euros(await v.lire(DOIT));
   await S('legende', `Sami a payé les courses.`, '3/3');
@@ -147,8 +154,7 @@ export async function jouer(v) {
   const mode = await v.lire('dialog[open] input[name="mode"]:checked + span');
   if (payeur !== 'Sami') throw new Error(`Payeur inattendu : ${payeur}`);
   await v.cliquer('dialog[open] button[value="ok"]', { ms: 450 });
-  await v.temps();
-  son('zoom'); await S('cadrer', DOIT, { max: 2.4, marge: 110 });
+  son('dezoom'); await S('cadrer', await autour(v, 'h1 mark'), { max: 2.2, marge: 30 });
   const doit1 = euros(await v.lire(DOIT));
   if (doit1 === doit0) throw new Error('Le solde n\'a pas changé');
   await S('flash', DOIT, 'var(--vert)');
@@ -156,7 +162,7 @@ export async function jouer(v) {
   son('eclat'); await S('eclat', DOIT, ['var(--vert)', 'var(--jaune)', 'var(--bleu)']);
   await v.temps(); son('tampon'); son('ding', 0.7);
   await S('tampon', `Sami doit ${doit1}`, 'soldes recalculés, au centime près', 'var(--vert)');
-  await temps(2);
+  await temps(1.6);
   await S('tamponFin'); await S('retirer'); await S('cacherCurseur');
 
   // Fin
@@ -166,5 +172,5 @@ export async function jouer(v) {
   son('ding', 0.6);
   v.valeurs = { limite, eco0, eco1, reste0, reste1, alim, doit0, doit1, mode, payeur, cat };
   console.log('Valeurs lues :', JSON.stringify(v.valeurs));
-  await temps(3.5);
+  await temps(3);
 }

@@ -83,14 +83,23 @@ const v = {
       v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(150);
     }
   },
-  // Ouvre un autre template dans la fenêtre (vidéo d'un pack) ; à faire derrière S('volet').
-  async ouvrir(url, barre) { await v.S('changerApp', url, { url: barre }); v.appli = cadreApp(); await page.waitForTimeout(300); await v.fermerDialogues(); },
-  // Ferme les fenêtres ouvertes au premier lancement (guide « Comment ça marche », etc.).
+  // Ouvre un autre template dans la fenêtre (vidéo d'un pack) ; à faire derrière S('volet') et S('fenetre', false).
+  async ouvrir(url, barre) {
+    await v.S('changerApp', url, { url: barre }); v.appli = cadreApp();
+    await v.appli.waitForSelector('dialog[open]', { timeout: 1500 }).catch(() => {}); // le guide s'ouvre ~300 ms après le chargement
+    await v.fermerDialogues();
+  },
+  // Ferme les fenêtres ouvertes au premier lancement (guide « Comment ça marche », etc.), hors caméra.
+  // Clic déclenché dans la page : un clic Playwright attendrait 30 s si le bouton est hors du cadre zoomé.
   async fermerDialogues() {
     for (let i = 0; i < 3; i++) {
-      const ouvert = await v.appli.$('dialog[open]'); if (!ouvert) return;
-      const bouton = await v.appli.$('dialog[open] button[aria-label="Fermer"], dialog[open] button.fermer, dialog[open] [data-action="fermer"]');
-      if (bouton) await bouton.click().catch(() => {}); else await v.appli.evaluate(() => document.querySelector('dialog[open]')?.close());
+      const reste = await v.appli.evaluate(() => {
+        const d = document.querySelector('dialog[open]'); if (!d) return false;
+        const b = d.querySelector('button[aria-label="Fermer"], button.fermer, [data-action="fermer"]');
+        if (b) b.click(); else d.close();
+        return true;
+      });
+      if (!reste) return;
       await page.waitForTimeout(250);
     }
   },
