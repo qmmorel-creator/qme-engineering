@@ -91,14 +91,18 @@ export async function jouer(v) {
   await temps(1.5);
   await S('retirer', 'p');
   await v.cliquer(ENREGISTRER, { ms: 560 });
-  await v.temps();
+  await S('cacherCurseur');
 
-  // Effet local : le coût de la ligne
+  // Effet local : la ligne de la box (nom + étiquette « Partagé · 2 parts »), puis son coût
   const apres = (await v.lire(COUT)).trim();
   if (apres === avant) throw new Error(`Le coût de la box n'a pas changé (${avant})`);
-  son('zoom'); await S('cadrer', `${LIGNE} .ligne-droite`, { max: 2.4, marge: 170 });
+  const etiquette = await v.lire(`${LIGNE} .ligne-etiquettes`);
+  if (!/2 parts/i.test(etiquette)) throw new Error(`Étiquette de partage absente : ${etiquette}`);
+  son('dezoom', 0.6); await S('cadrer', LIGNE, { max: 2.4, marge: 40 });
   await S('flash', LIGNE, 'var(--ciel)');
-  son('pop'); await S('avantApres', 'r', COUT, avant, apres, { couleur: 'var(--bleu)', cote: 'dessous', note: 'votre part par mois' });
+  await v.temps(); await temps(0.5);
+  son('zoom'); await S('cadrer', `${LIGNE} .ligne-droite`, { max: 2.2, marge: 230 });
+  son('pop'); await S('avantApres', 'r', COUT, avant, apres, { couleur: 'var(--bleu)', cote: 'dessus', note: 'votre part par mois' });
   await temps(2.5);
   await S('retirer', 'r');
 
