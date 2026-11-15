@@ -64,7 +64,7 @@
 
   const coefsDefaut = () => ({ familles: structuredClone(B.familles), etats: structuredClone(B.etats), tranchesPrix: structuredClone(B.tranchesPrix), reventeFacile: structuredClone(B.reventeFacile) });
   const simulationVide = (nom) => ({ id: uid(), nom, perimetre: 'tous', cible: null, ...structuredClone(B.simulationDefaut) });
-  const etatVide = () => ({ version: 1, categoriesPossedees: [], objets: [], coefs: coefsDefaut(), seuilValeur: B.seuilValeur, simulations: [], simActive: null, historique: [], partage: { montants: true, repartition: true, nombre: true, revente: true } });
+  const etatVide = () => ({ version: 1, tutorielVu: false, categoriesPossedees: [], objets: [], coefs: coefsDefaut(), seuilValeur: B.seuilValeur, simulations: [], simActive: null, historique: [], partage: { montants: true, repartition: true, nombre: true, revente: true } });
 
   const fusionParId = (defaut, saisi) => defaut.map((d) => ({ ...d, ...((Array.isArray(saisi) ? saisi : []).find((s) => s && s.id === d.id) || {}) }));
   function normaliserCoefs(c) {
@@ -119,7 +119,8 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
-        E = normaliser(corps.donnees); session.base = corps.donnees.majLe; cache(false); rendre();
+        const vu = E.tutorielVu;
+        E = normaliser(corps.donnees); if (vu) E.tutorielVu = true; session.base = corps.donnees.majLe; cache(false); rendre();
         toast('Un autre appareil a modifié ton inventaire entre-temps : sa version est affichée. Refais ta dernière modification si elle manque.');
       } else if (statut === 401) { deconnecter('Ce code d\'accès n\'est plus valide.'); return; }
       else if (statut !== 200) throw new Error(String(statut));
@@ -391,6 +392,7 @@
     analyse: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" rx="1" fill="currentColor"/><rect x="10" y="6" width="4" height="15" rx="1" fill="currentColor"/><rect x="17" y="2" width="4" height="19" rx="1" fill="currentColor"/></svg>',
     methode: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 21V12a9 9 0 0 1 9 9Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" rx="1" fill="#F5B400" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="9" width="4" height="6.5" rx="1" fill="#D9302A" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="15" width="4" height="6.5" rx="1" fill="#1D4E89" stroke="currentColor" stroke-width="1.5"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     cadenas: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
   const ONGLETS = [['bilan', 'Bilan'], ['inventaire', 'Inventaire'], ['revente', 'Revente'], ['analyse', 'Analyse'], ['methode', 'Méthode']];
@@ -408,13 +410,14 @@
         <span class="titre-produit">Inventaire<br>valorisé</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, export et confidentialité" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : session.decouverte ? 'decouverte' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     valorisationAuto();
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   // Valorisation automatique du mois (application complète) : créée à la première ouverture du mois, puis tenue
@@ -983,6 +986,8 @@
         <div class="rang"><button class="btn petit danger" type="button" data-action="tout-effacer">Effacer toutes mes données</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Exemple complet (données fictives).</p>' : session.decouverte ? `<p>Découverte gratuite. <a href="${PAGE_OFFRE}">Application complète · ${PRIX}</a></p>` : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter l\'exemple' : session.decouverte ? 'Quitter la découverte' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'inventaire, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <p class="mention">Estimations indicatives : ni expertise, ni valeur d'assurance, ni garantie de revente.</p>`;
@@ -995,7 +1000,7 @@
         if (!Array.isArray(d.objets)) throw new Error();
         if (session.decouverte && d.objets.length > B.decouverte.maxObjets) { toast(`La découverte garde ${B.decouverte.maxObjets} objets au plus : cette copie en contient ${d.objets.length}.`); return; }
         if (!confirm(`Remplacer ton inventaire actuel par cette copie (${pluriel(d.objets.length, 'objet')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; if (vu) E.tutorielVu = true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de l\'inventaire.'); }
     });
@@ -1004,7 +1009,7 @@
     if (!confirm(session.decouverte || session.demo ? 'Effacer toutes les données de ce navigateur ?' : 'Effacer tout ton inventaire, en ligne et sur cet appareil ? Pense à télécharger une copie avant : cette action est définitive.')) return;
     if (session.demo) { stock.suppr(CLE_DEMO); modale().close(); deconnecter(); return; }
     if (session.decouverte) { stock.suppr(CLE_DECOUVERTE); modale().close(); deconnecter(); return; }
-    E = etatVide();
+    E = { ...etatVide(), tutorielVu: E.tutorielVu }; // le guide déjà vu ne revient pas
     modale().close();
     sauver();
     toast('Toutes tes données ont été effacées.');
@@ -1012,6 +1017,41 @@
   }
   function exporter() { telecharger(`inventaire-valorise-${auj()}.json`, JSON.stringify(E, null, 2), 'application/json'); toast('Copie téléchargée.'); }
   function exporterCSV() { telecharger(`inventaire-valorise-${auj()}.csv`, C.csv(bilan(), B, E.coefs), 'text/csv;charset=utf-8'); toast('Fichier CSV téléchargé (séparateur point-virgule).'); }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const max = B.decouverte.maxObjets;
+    const blocs = [
+      ['rose', 'Ajoute tes objets', `Dans <b>Inventaire</b>, touche un exemple ou utilise l'ajout rapide&nbsp;: nom, prix d'achat, mois d'achat. Précise ensuite l'état et l'utilisation dans la fiche de l'objet. Un prix approximatif suffit&nbsp;; sans prix ni valeur connue, l'objet compte pour 0&nbsp;€.`],
+      ['beurre', 'Trois valeurs, jamais confondues', `Le <b>prix d'achat</b> ne change pas. La <b>valeur actuelle estimée</b> baisse avec l'âge selon la famille de l'objet, puis selon son état. La <b>revente potentielle</b> est ce qu'une vente rapide entre particuliers pourrait rapporter, avant frais. Si tu connais une valeur, saisis-la dans la fiche&nbsp;: elle remplace l'estimation.`],
+      ['ciel', 'Des règles visibles', `L'onglet <b>Méthode</b> montre toutes les règles de décote, et tu peux les modifier. Elles donnent des ordres de grandeur&nbsp;: ni expertise, ni valeur d'assurance, ni cote. Aucun prix n'est récupéré en ligne.`],
+      complet()
+        ? ['sable', 'Simule et suis dans le temps', `<b>Revente</b> calcule ce que tu récupérerais vraiment, négociation, frais de vente et expédition déduits, avec jusqu'à ${MAX_SIMULATIONS}&nbsp;scénarios. <b>Analyse</b> repère les objets peu utilisés qui ont de la valeur et enregistre une valorisation chaque mois, pour suivre l'évolution.`]
+        : ['sable', 'Découverte gratuite', `Tu peux inventorier jusqu'à ${max}&nbsp;objets, dans ${B.categories.filter((c) => c.decouverte).length} catégories. Le simulateur de revente, l'analyse, l'historique et l'export CSV sont réservés à l'application complète, où tes objets pourront être repris.`],
+    ];
+    const corps = `
+      <p>L'inventaire estime pour toi ce que valent tes objets aujourd'hui et ce que tu pourrais en tirer en les revendant. Ton rôle&nbsp;: les ajouter avec leur prix d'achat, leur date d'achat et leur état.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Bilan</b> résume la valeur de tout ce que tu possèdes, par catégorie. ${session.demo ? 'Dans l\'exemple, les données fictives restent dans ce navigateur.' : session.decouverte ? 'En découverte, tes objets restent dans ce navigateur et ne sont jamais envoyés.' : 'Ton inventaire est enregistré en ligne sous ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.objets.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="objet">Ajouter mon premier objet</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'objet') setTimeout(() => modaleObjet(null, {}), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   const appareil = () => {
@@ -1089,7 +1129,7 @@
       case 'demo': ouvrirDemo(); break;
       case 'demo-voir': if (confirm('Ouvrir l\'exemple complet ? Tes objets de découverte restent enregistrés dans ce navigateur.')) ouvrirDemo(); break;
       case 'decouverte': ouvrirDecouverte(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de l\'exemple et repartir de zéro ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de l\'exemple et repartir de zéro ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': deconnecter(); break;
       case 'a-cat': if (choixAccueil.has(id)) choixAccueil.delete(id); else choixAccueil.add(id); el.setAttribute('aria-pressed', String(choixAccueil.has(id))); break;
       case 'a-tout': B.categories.forEach((c) => choixAccueil.add(c.id)); document.querySelectorAll('[data-action="a-cat"]').forEach((b) => b.setAttribute('aria-pressed', 'true')); break;
@@ -1097,6 +1137,7 @@
       case 'reprendre-essai': reprendreEssai(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
