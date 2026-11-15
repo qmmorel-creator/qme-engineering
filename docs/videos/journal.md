@@ -25,4 +25,4 @@ Types : `démonstration`, `problème`, `question`, `paramétrage`, `interface`, 
 
 | N° | Date | Produit | Type | Titre | Scénario | Durée | Drive | LinkedIn | Instagram | Statut |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 001 | 2026-11-15 | GNT | question | Un retard décale-t-il la fin du chantier ? | `scenarios/gantt-retard.mjs` | 32,2 s | [v4](https://drive.google.com/file/d/1LSaJ5EYicetQzLSkGH35cbueV8rFQqYP/view) | LI-143 · 2026-11-15 15:20 | IG-139 · 2026-11-15 15:20 | Programmé (test, publication immédiate demandée par Quentin) |
+| 001 | 2026-11-15 | GNT | question | Un retard décale-t-il la fin du chantier ? | `scenarios/gantt-retard.mjs` | 32,2 s | [v4](https://drive.google.com/file/d/1LSaJ5EYicetQzLSkGH35cbueV8rFQqYP/view) | [LI-143](https://www.linkedin.com/feed/update/urn:li:ugcPost:7527737799110983680) · publié 2026-11-15 15:23 | [IG-139](https://www.instagram.com/qmengineering/reel/Dfw_PBCuZuu/) · publié 2026-11-15 15:24 | Publié (test réussi : vidéo native LinkedIn et reel Instagram avec son et couverture) |

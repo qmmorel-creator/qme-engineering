@@ -86,7 +86,7 @@ export async function jouer(v) {
   const ttc0 = avant['Total TTC'];
   await v.temps(); son('pop'); await S('anneau', 'ttc', `${TOTAUX} .total`, { etiquette: `Total TTC : ${ttc0}`, cote: 'dessous', marge: 6 });
   await S('legende', `Remise de <b>5 %</b>, deux taux de TVA, un acompte.`);
-  await temps(1.5);
+  await temps(1);
   await S('retirer', 'ttc');
 
   // Vraie molette : on descend jusqu'aux lignes du devis
@@ -145,7 +145,7 @@ export async function jouer(v) {
   son('eclat'); await S('eclat', `${TOTAUX} .total`, ['var(--vert)', 'var(--jaune)', 'var(--bleu)']);
   await v.temps(); son('tampon'); son('ding', 0.7);
   await S('tampon', 'Recalculé au centime', `Total HT ${apres['Total HT']} · TTC ${ttc1}`, 'var(--vert)');
-  await temps(2);
+  await temps(1.6);
   await S('tamponFin'); await S('retirer');
 
   // Le devis prêt : aperçu A4
@@ -156,16 +156,17 @@ export async function jouer(v) {
   const fTtc = await v.lire(F_TTC);
   const fLigne = await appli.$eval(F_LIGNE, (r) => r.innerText.replace(/\s+/g, ' '));
   if (fTtc !== ttc1 || !fLigne.includes(PRESTATION)) throw new Error(`Aperçu inattendu : ${fTtc} · ${fLigne}`);
-  son('zoom'); await S('cadrer', [F_LIGNE, F_TOTAUX], { max: 2.4, marge: 40 });
-  await v.temps();
+  son('dezoom', 0.6); await S('cadrer', [F_LIGNE, F_TOTAUX], { max: 2.4, marge: 30 });
   await S('flash', F_LIGNE, 'var(--ciel)');
   son('pop'); await S('anneau', 'fl', F_LIGNE, { couleur: 'var(--bleu)', etiquette: 'La ligne ajoutée', cote: 'dessus', pulse: false, marge: 4 });
   await v.temps();
+  await S('retirer', 'fl');
+  son('zoom'); await S('cadrer', F_TOTAUX, { max: 2.4, marge: 30 });
   await S('flash', `${F_TOTAUX} .total`, 'var(--vert)');
   son('trait', 0.6); await S('souligner', 's2', `${F_TOTAUX} .total`, 'var(--vert)');
   await v.temps(); son('tampon'); son('ding', 0.6);
   await S('tampon', 'Prêt à envoyer', 'Imprimé en A4 ou enregistré en PDF', 'var(--vert)');
-  await temps(2);
+  await temps(1.8);
   await S('tamponFin'); await S('retirer'); await S('cacherCurseur');
 
   // Fin
@@ -173,5 +174,5 @@ export async function jouer(v) {
   await S('legende', null);
   await S('outro', { titre: 'Générateur de devis', sous: 'Des totaux justes au centime,<br>à chaque ligne ajoutée.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
-  await temps(3.5);
+  await temps(3);
 }

@@ -14,7 +14,7 @@ export const config = {
   largeur: 1280, hauteur: 1600,
   marque: 'QME · Trésorerie prévisionnelle',
   url: 'qm-engineering.fr/templates/tresorerie',
-  affiche: 1.8,
+  affiche: 3.0,
   // Musique de la vidéo de présentation QME (« Corporate », litesaturation, licence Pixabay : usage commercial sans attribution).
   musique: { fichier: 'docs/videos/musique/corporate-litesaturation.m4a', bpm: 110, premierTemps: 0.534, debut: 20.170, volume: 0.6 },
 };
@@ -99,7 +99,6 @@ export async function jouer(v) {
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer(v.ECOLE, { ms: 480, fx: 0.3 });
   await S('suivre', 1.9, 0.15, 0); // fenêtre de saisie : cadrée sur le curseur, bouton Enregistrer compris
-  await temps(0.3);
   await v.saisir(MOIS, frappe(v.cibleEcole), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
@@ -139,7 +138,6 @@ export async function jouer(v) {
   const quand2 = await QUAND(v.MACHINE)(v);
   await v.cliquer(v.MACHINE, { ms: 520, fx: 0.3 });
   await S('suivre', 1.9, 0.15, 0);
-  await temps(0.3);
   await v.saisir(MOIS, frappe(v.cibleMachine), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
@@ -165,7 +163,7 @@ export async function jouer(v) {
   son('trait', 0.6); await S('souligner', 's', TITRE, 'var(--vert)');
   await v.temps(); son('tampon'); son('ding', 0.7);
   await S('tampon', 'Plus de découvert', 'Au-dessus du seuil sur 12 mois', 'var(--vert)');
-  await temps(2);
+  await temps(1.8);
   await S('tamponFin'); await S('retirer'); await S('cacherCurseur');
 
   // Fin
@@ -173,5 +171,5 @@ export async function jouer(v) {
   await S('legende', null);
   await S('outro', { titre: 'Trésorerie prévisionnelle', sous: 'Le creux de trésorerie repéré<br>des mois à l\'avance.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
-  await temps(3.5);
+  await temps(3);
 }
