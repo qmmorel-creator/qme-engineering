@@ -117,7 +117,6 @@ export async function jouer(v) {
   await S('flash', NOUVELLE, 'var(--vert)');
   const resume = meta.filter((m) => !m.startsWith('saisie')).join(' · ');
   son('pop'); await S('anneau', 'n', `${NOUVELLE} .tache-meta`, { couleur: 'var(--vert)', etiquette: resume, cote: 'dessous', pulse: false, marge: 6 });
-  son('trait', 0.6); await S('souligner', 's', `${NOUVELLE} .tache-corps b`, 'var(--vert)');
   await v.temps(); son('eclat'); await S('eclat', NOUVELLE, ['var(--vert)', 'var(--jaune)', 'var(--bleu)']);
   await v.temps(); son('tampon'); son('ding', 0.7);
   const crit = puces.find((p) => p.startsWith('Criticité')) || '';

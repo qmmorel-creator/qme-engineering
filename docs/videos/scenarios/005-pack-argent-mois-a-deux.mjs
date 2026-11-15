@@ -43,6 +43,18 @@ export async function preparer(v) {
   await v.S('fenetre', false);
 }
 
+// Changement de template derrière le volet. Le guide du premier lancement s'ouvre ~350 ms après le chargement :
+// sur une machine chargée il peut arriver après le fermerDialogues de v.ouvrir, on le surveille donc encore un peu.
+async function changer(v, slug) {
+  await v.S('volet');
+  await v.ouvrir(`/templates/${slug}/?demo`, `qm-engineering.fr/templates/${slug}`);
+  for (let i = 0; i < 7; i++) { if (await v.appli.$('dialog[open]')) await v.fermerDialogues(); await v.pause(100); }
+}
+async function formulaireOuvert(v) {
+  const titre = await v.appli.$eval('dialog[open] h2', (e) => e.textContent).catch(() => null);
+  if (titre !== 'Nouvelle dépense') throw new Error(`Formulaire non ouvert (${titre})`);
+}
+
 // Contrôles après chaque changement de template (lèvent une erreur si la démo n'a pas le cas attendu).
 async function verifierBudget(v) {
   const h1 = await v.lire('h1');
@@ -86,8 +98,7 @@ export async function jouer(v) {
   await S('retirer');
 
   // 2. Budget du foyer : les courses
-  await v.temps(); son('whoosh'); await S('volet');
-  await v.ouvrir('/templates/budget/?demo', 'qm-engineering.fr/templates/budget');
+  await v.temps(); son('whoosh'); await changer(v, 'budget');
   await verifierBudget(v);
   await S('question', '2 · Votre *budget* du mois');
   await S('cadrer', RESTE, { max: 2.2, marge: 120 });
@@ -95,6 +106,7 @@ export async function jouer(v) {
   await S('legende', `Les courses : <b>${MONTANT} €</b>.`, '2/3');
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer('[data-action="operation"][data-type="depense"]', { ms: 480 });
+  await formulaireOuvert(v);
   await v.saisir('dialog[open] input[name="montant"]', MONTANT, { ms: 450 });
   await v.viser('dialog[open] select[name="categorie"]', { ms: 380 });
   await v.appli.focus('dialog[open] select[name="categorie"]');
@@ -114,8 +126,7 @@ export async function jouer(v) {
   await S('retirer');
 
   // 3. Budget commun : qui a payé les courses
-  await v.temps(); son('whoosh'); await S('volet');
-  await v.ouvrir('/templates/budget-commun/?demo', 'qm-engineering.fr/templates/budget-commun');
+  await v.temps(); son('whoosh'); await changer(v, 'budget-commun');
   await verifierCommun(v);
   await S('question', '3 · Vos comptes *à deux*');
   await S('cadrer', DOIT, { max: 2.2, marge: 120 });
@@ -123,6 +134,7 @@ export async function jouer(v) {
   await S('legende', `Sami a payé les courses.`, '3/3');
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer('[data-action="depense-nouvelle"]', { ms: 480 });
+  await formulaireOuvert(v);
   await v.saisir('dialog[open] input[name="libelle"]', 'Courses', { ms: 420 });
   await v.saisir('dialog[open] input[name="montant"]', MONTANT, { ms: 380 });
   await v.viser('dialog[open] select[name="payeur"]', { ms: 380 });
