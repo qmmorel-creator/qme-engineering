@@ -48,8 +48,11 @@
   const filtre = { enfant: stock.lire(CLE_ENFANT) || '', jour: null, periode: 0 };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu (guide « Comment ça marche » déjà vu) est gardé tel quel par R.normaliser ; la fusion de deux
+  // appareils garde la version en ligne : on le conserve s'il était vu d'un côté ou de l'autre.
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  const normaliser = (d) => ({ tutorielVu: false, ...R.normaliser(d, B) });
+  const fusionner = (local, serveur) => { const f = R.fusionner(local, serveur); if (f && local?.tutorielVu) f.tutorielVu = true; return f; };
   const enfant = (id) => E.enfants.find((a) => a.id === id);
   const presents = () => E.enfants.filter((a) => a.actif !== false);
   // Enfant choisi (mémorisé sur cet appareil), sinon le plus jeune encore suivi.
@@ -116,7 +119,7 @@
         const serveur = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         if (!R.consentementValide(serveur.consentement)) { donneesEffacees(); return; }
-        E = R.fusionner(E, serveur);
+        E = fusionner(E, serveur);
         ({ statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) }));
         if (!modale().open) rendre();
       }
@@ -202,7 +205,7 @@
     session.base = donnees?.majLe ?? null;
     // Saisies faites hors ligne et pas encore envoyées : fusionnées avec la version en ligne.
     if (c && c.code === session.code && c.nonEnvoye && R.consentementValide(c.etat?.consentement) && (!serveur || R.consentementValide(serveur.consentement))) {
-      E = serveur ? R.fusionner(normaliser(c.etat), serveur) : normaliser(c.etat);
+      E = serveur ? fusionner(normaliser(c.etat), serveur) : normaliser(c.etat);
       demarrer(); envoyer();
       return;
     }
@@ -479,6 +482,7 @@
     croissance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19 9 13l4 3 8-10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="21" cy="6" r="2.5" fill="currentColor"/></svg>',
     carnet: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#E8B93A" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#B84A34" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#2E5A88" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['jour', 'Aujourd\'hui'], ['journal', 'Journal'], ['bilan', 'Résumés'], ['croissance', 'Mesures'], ['carnet', 'Carnet']];
@@ -502,12 +506,13 @@
         <span class="titre-produit">Suivi<br>du bébé</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   let jourRendu = null;
@@ -1114,6 +1119,8 @@
         <div class="rang"><button class="btn petit danger" type="button" data-action="effacer-tout">Effacer toutes mes données</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi du bébé, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le suivi à ton écran d'accueil pour l'ouvrir d'un geste, même la nuit, comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Santé de ton enfant</h3><p class="mention">${AVERTISSEMENT_TEXTE}</p></div>
@@ -1134,8 +1141,9 @@
         const consentement = E.consentement;
         const t = Date.now();
         const anciens = [...E.enfants, ...E.evenements, ...E.rdv].map((x) => x.id);
+        const vu = E.tutorielVu;
         E = normaliser(d); delete E.majLe;
-        E.consentement = consentement;
+        E.consentement = consentement; E.tutorielVu = E.tutorielVu || vu;
         for (const l of ['enfants', 'evenements', 'rdv']) E[l] = E[l].map((x) => ({ ...x, maj: t }));
         const gardes = new Set([...E.enfants, ...E.evenements, ...E.rdv].map((x) => x.id));
         for (const id of anciens) if (!gardes.has(id)) E.supprimes[id] = t;
@@ -1185,6 +1193,36 @@
     stock.suppr(CLE_ENFANT);
     modale().close();
     ecranConsentement('Toutes les données ont été effacées, en ligne et sur cet appareil. Tu peux recommencer ou te déconnecter.');
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Note en un geste', `Dans <b>Aujourd'hui</b>, touche <b>Tétée</b> (gauche ou droit), <b>Biberon</b>, <b>Sommeil</b> ou <b>Couche</b>&nbsp;: l'heure notée est celle du moment. Une tétée ou un sommeil lance un minuteur, arrêté par <b>Terminer</b> ou <b>Réveil</b>. Tout se modifie ensuite, et un geste s'annule depuis le message qui s'affiche.`],
+      ['beurre', 'Depuis quand&nbsp;?', `Les tuiles montrent depuis quand ont eu lieu le dernier repas et la dernière couche, le dernier côté donné, et depuis quand ton enfant dort ou est éveillé. Les totaux du jour se comptent depuis minuit.`],
+      ['ciel', 'Résumés et mesures', `<b>Résumés</b> donne les totaux par jour et la moyenne des jours notés, sur ${E.reglages.resumeJours}&nbsp;jours par défaut. <b>Mesures</b> trace le poids, la taille et le périmètre crânien que tu saisis, sans courbe de référence ni percentile.`],
+      ['sable', 'Le carnet des rendez-vous', `Dans <b>Carnet</b>, note les rendez-vous et les questions à poser. Le <b>Récapitulatif</b> prépare une page à imprimer pour le médecin, la sage-femme ou la PMI.`],
+      ['rose', 'Des notes, pas un avis médical', `Aucun diagnostic, aucune norme, aucune alerte médicale&nbsp;: les totaux et les moyennes ne sont que la somme de tes saisies. En cas d'inquiétude, appelle ton médecin&nbsp;; en cas d'urgence, le&nbsp;15 ou le&nbsp;112.`],
+    ];
+    const corps = `
+      <p>Le suivi additionne pour toi les repas, le sommeil et les couches de ton enfant, et garde ses mesures et ses rendez-vous. Ton rôle&nbsp;: noter, en un geste, au moment où ça se passe.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">${session.demo ? 'En démo, les données sont fictives et restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne, dans l\'Union européenne, avec ta clé&nbsp;: l\'autre parent qui ouvre le suivi avec la même clé note au même endroit, et vos saisies se rejoignent.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const pied = `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1263,12 +1301,13 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-retour': ecranConsentement(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

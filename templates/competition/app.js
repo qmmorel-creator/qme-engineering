@@ -42,8 +42,9 @@
   const filtre = { cat: '', statut: 'tous', q: '', ep: '', catScore: '', catClass: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
-  const normaliser = (d) => R.normaliser(d, DEFAUTS);
+  // R.normaliser ne garde que les champs connus : tutorielVu (guide « Comment ça marche » déjà vu) est réinjecté ici.
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, DEFAUTS), tutorielVu: !!d?.tutorielVu });
   const participant = (id) => E.participants.find((p) => p.id === id);
   const categorie = (id) => E.categories.find((c) => c.id === id);
   const epreuve = (id) => E.epreuves.find((x) => x.id === id);
@@ -426,6 +427,7 @@
     scores: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V11A10 10 0 0 1 13 21Z" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     classement: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="5" width="6" height="16" fill="currentColor"/><rect x="2" y="10" width="6" height="11" fill="none" stroke="currentColor" stroke-width="2"/><rect x="16" y="13" width="6" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Aperçu'], ['inscrits', 'Inscrits'], ['epreuves', 'Épreuves'], ['scores', 'Scores'], ['classement', 'Classement']];
@@ -443,12 +445,13 @@
         <span class="titre-produit">Gestion de<br>compétition</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1198,6 +1201,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="mention">Les bénévoles de la table de marque et les juges peuvent ouvrir la compétition avec la même clé : leurs saisies arrivent ici.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la gestion de compétition, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application au bord du plateau.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Outil d'organisation, pas un logiciel fédéral homologué. Aucun e-mail envoyé, aucun connecteur : le partage se fait par le lien public en lecture seule, l'impression ou l'export. Épreuves génériques rédigées pour QME, sans nom d'épreuve de référence.</p></div>`;
@@ -1216,7 +1221,8 @@
         if (!Array.isArray(d.participants) || !Array.isArray(d.epreuves)) throw new Error();
         if (!confirm(`Remplacer la compétition actuelle par cette copie (${pluriel(d.participants.length, 'inscrit')}, ${pluriel(d.epreuves.length, 'épreuve')}) ?`)) return;
         const pubAvant = E.publication;
-        E = normaliser(d); delete E.majLe; E.publication = pubAvant;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.publication = pubAvant; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de la compétition.'); }
     });
@@ -1264,6 +1270,43 @@
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `competition-${auj()}.json`);
   async function copier(texte, message) {
     try { await navigator.clipboard.writeText(texte); toast(message); } catch { toast('Copie impossible ici : sélectionne le texte à la main.'); }
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages, b = r.bareme;
+    const calcul = r.methode === 'bareme'
+      ? `Barème&nbsp;: ${b.premier}&nbsp;points pour le 1er, ${nombre(b.pas)} de moins à chaque place, jamais sous ${nombre(b.plancher)}&nbsp;; le total le plus haut gagne.`
+      : 'Chaque épreuve donne un rang, multiplié par son coefficient&nbsp;; on additionne et le total le plus bas gagne.';
+    const blocs = [
+      ['rose', 'Inscris les participants', `Chacun dans une catégorie, avec un dossard numéroté tout seul. Tu peux aussi <b>coller une liste</b> depuis ton tableur. Un forfait sort du classement. Les coordonnées restent privées&nbsp;: elles ne s'affichent jamais en public.`],
+      ['beurre', 'Génère les vagues', `Dans <b>Épreuves</b>, les vagues se remplissent catégorie par catégorie, de façon équilibrée selon le nombre de couloirs. Chaque vague démarre après la précédente&nbsp;: temps limite plus battement. Moins de ${r.reposMin}&nbsp;min de repos entre deux vagues d'un même participant&nbsp;: une alerte s'affiche.`],
+      ['ciel', 'Saisis les scores', `Dans <b>Scores</b>, par épreuve et par catégorie, dans l'ordre des vagues. Chaque saisie est enregistrée aussitôt et le rang se recalcule&nbsp;; deux scores égaux ont le même rang. Coche <b>Validé</b> quand la feuille du juge est signée.`],
+      ['sable', 'Le classement se calcule', `${calcul} À égalité de total, ${{ places: 'le plus de meilleures places l\'emporte (1res, puis 2es…)', derniere: 'le meilleur rang sur la dernière épreuve disputée l\'emporte', aucun: 'les participants restent ex aequo' }[r.departage]}. Le classement reste provisoire tant qu'il manque des scores. Tout se règle dans <b>Classement</b>, bouton <b>Règles</b>.`],
+      ['rose', 'Partage-le en direct', `<b>Lien public</b> donne aux spectateurs le classement et le programme en lecture seule, mis à jour quelques secondes après chaque saisie, sans aucune coordonnée. <b>Mode écran</b> fait défiler le classement sur une télévision.`],
+    ];
+    const corps = `
+      <p>L'outil calcule les vagues, les horaires et le classement à partir de tes inscrits et des scores. Ton rôle&nbsp;: inscrire les participants, saisir les scores épreuve par épreuve, puis partager le classement. Rien n'est envoyé aux participants.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Aperçu</b> montre ce qui est en piste et les alertes. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'La compétition est enregistrée en ligne avec ta clé&nbsp;: les bénévoles et les juges qui l\'ouvrent avec la même clé saisissent au même endroit.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.participants.length && E.categories.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="inscrit">Inscrire mon premier participant</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'inscrit') setTimeout(() => modaleInscrit(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1349,7 +1392,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); fermerEcranApp(); deconnecter(); break;
       case 'accueil-suivant': {
         if (accueil.dateDebut && accueil.dateFin && accueil.dateFin < accueil.dateDebut) { $('#a-err').textContent = 'Le dernier jour précède le premier.'; break; }
@@ -1362,6 +1405,7 @@
       case 'regles': modaleRegles(); break;
       case 'partage': modalePartage(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

@@ -54,8 +54,9 @@
   const filtre = { cat: 'toutes', statut: 'tous', personne: 'tous', q: '', echeances: false };
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu (guide « Comment ça marche » déjà vu) est gardé tel quel par R.normaliser.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ tutorielVu: false, ...R.normaliser(d, B) });
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -402,6 +403,7 @@
     echeances: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     urgence: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     loupe: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="m15 15 6 6" stroke="currentColor" stroke-width="2.5"/></svg>',
   };
@@ -420,12 +422,13 @@
         <span class="titre-produit">Papiers du foyer</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -908,6 +911,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes des papiers du foyer, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application : pratique pour retrouver un papier depuis n'importe où.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Sources et à propos</h3><p class="mention">Durées de conservation : fiche « ${esc(s.titre)} » de ${esc(s.editeur)} (${esc(s.reference)}), vérifiée par l'administration le ${esc(s.verifiePar)}, consultée par QME le ${dateLongue(s.consulte)} : <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url.replace('https://', ''))}</a>. Durées minimales indicatives, pas un conseil juridique ; une procédure en cours peut imposer de garder un document plus longtemps. Chaque durée est modifiable document par document. Les pièces d'identité, permis et titres de séjour n'ont pas de durée dans cette fiche : l'application suit leur validité, que tu saisis. Base intégrée version ${B.version} : ${B.documents.length} documents types en ${B.categories.length} catégories. Aucune pièce d'identité ni aucun numéro n'est stocké : seulement le nom du document et son emplacement.</p></div>`;
@@ -933,7 +938,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.documents) || !Array.isArray(d.lieux)) throw new Error();
         if (!confirm(`Remplacer ton inventaire actuel par cette copie (${pluriel(d.documents.length, 'document')}, ${pluriel(d.lieux.length, 'emplacement')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de tes papiers.'); }
     });
@@ -949,6 +955,41 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `papiers-${auj()}.json`);
   const exporterCsv = () => telecharger(R.versCsv(E.documents, { type: typeDoc, nomCat, nomPersonne: (id) => (personne(id) ? nomPersonne(id) : 'Foyer'), nomLieu }, auj()), 'text/csv;charset=utf-8', `papiers-inventaire-${auj()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Note où il est rangé', `Chaque document a son emplacement (classeur, boîte, tiroir, dossier numérique), avec une précision si besoin. Tape un mot dans la recherche pour retrouver un papier en un instant. Aucun numéro complet, IBAN ni mot de passe n'est accepté&nbsp;: seulement l'endroit.`],
+      ['beurre', 'La durée de conservation se calcule', `Pour les ${B.documents.length} documents types, la durée proposée vient de service-public.gouv.fr. Selon le type, elle part de la date du document (facture, avis…) ou d'un événement (fin de la location…), à saisir. Tu peux aussi choisir une date, ou garder toujours.`],
+      ['ciel', 'Rien n\'est jeté sans toi', `Une fois la durée passée, le document passe en «&nbsp;Peut être jeté&nbsp;»&nbsp;; ceux jetables dans les ${R.HORIZON_JETER}&nbsp;jours sont signalés à part. Quand tu l'as détruit, touche <b>Jeté</b>&nbsp;: il reste visible avec le filtre «&nbsp;Jetés&nbsp;».`],
+      ['sable', 'Les renouvellements', `Saisis l'échéance d'une pièce (fin de validité, échéance annuelle)&nbsp;: un rappel s'affiche ${R.RAPPEL_DEFAUT}&nbsp;mois avant, réglable pour chaque document. <b>Échéances</b> réunit ce qui est à renouveler et ce qui peut être jeté.`],
+      ['rose', 'En cas d\'urgence', `Coche «&nbsp;Essentiel en cas d'urgence&nbsp;» sur les papiers à retrouver vite. <b>Urgence</b> imprime la fiche à laisser à un proche&nbsp;: le nom des documents et leur emplacement, sans aucun numéro.`],
+    ];
+    const corps = `
+      <p>L'application calcule pour toi jusqu'à quand garder chaque papier et te prévient avant qu'une pièce expire. Ton rôle&nbsp;: noter où chaque document est rangé, avec ses dates.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Rangements</b> montre ce que contient chaque emplacement, avec un inventaire à imprimer. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.documents.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="document">Ajouter mon premier document</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'document') setTimeout(() => modaleDoc(null, R.normaliserDoc({ type: null, cat: 'identite', titre: '', lieu: E.lieux[0]?.id || null, essentiel: false }, B)), 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1026,7 +1067,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.choix = lireChoix(); accueil.etape = 1; ecranAccueil(); break;
@@ -1038,6 +1079,7 @@
       case 'voir-lieu': changerVue('rangements'); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

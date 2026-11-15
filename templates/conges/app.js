@@ -44,8 +44,9 @@
   let equipeCal = '';
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
-  const normaliser = (d) => R.normaliser(d, DEFAUTS);
+  // tutorielVu (guide « Comment ça marche » déjà vu) est gardé tel quel par R.normaliser.
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
+  const normaliser = (d) => ({ tutorielVu: false, ...R.normaliser(d, DEFAUTS) });
   const salarie = (id) => E.salaries.find((s) => s.id === id);
   const absence = (id) => E.absences.find((a) => a.id === id);
   const equipe = (id) => E.equipes.find((e) => e.id === id);
@@ -391,6 +392,7 @@
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     equipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="18" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Tableau de bord'], ['demandes', 'Absences'], ['calendrier', 'Calendrier'], ['equipe', 'Équipe']];
@@ -409,12 +411,13 @@
         <span class="titre-produit">Congés et<br>absences</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -990,6 +993,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des congés, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Le suivi est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. Tu es responsable des données de tes salariés : garde le minimum, aucune donnée de santé, et efface ou supprime un salarié depuis sa fiche quand rien ne t'oblige à conserver ses données.</p></div>
@@ -1019,7 +1024,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.salaries) || !Array.isArray(donnees.absences)) throw new Error();
         if (!confirm(`Remplacer ton suivi actuel par cette copie (${pluriel(donnees.salaries.length, 'salarié')}, ${pluriel(donnees.absences.length, 'absence')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi.'); }
     });
@@ -1058,6 +1064,42 @@
     E = R.supprimerSalarie(E, id);
     sauver(); rendre(); modale().close();
     toast(`${s.prenom} supprimé.`, { libelle: 'Annuler', faire: annuler });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages, ac = r.acquisition;
+    const u = r.decompte === 'ouvres' ? 'jours ouvrés' : 'jours ouvrables';
+    const p = R.periode(auj(), r);
+    const libP = r.moisDebut === 1 ? 'l\'année civile' : `du 1er ${fmt(p.debut, { month: 'long' })} au ${fmt(p.fin, { day: 'numeric', month: 'long' })}`;
+    const blocs = [
+      ['rose', 'Tes salariés et leur solde de départ', `Pour chacun&nbsp;: prénom, nom, équipe, date d'entrée et le solde qui lui restait au début du suivi${r.debutSuivi ? ` (le ${fmt(r.debutSuivi).replace(/^1 /, '1er ')})` : ''}, d'après son dernier bulletin de paie. Ensuite, l'outil compte tout seul.`],
+      ['beurre', 'Les congés s\'acquièrent seuls', `${nombre(ac.mois)}&nbsp;${u} par mois de travail, ${nombre(ac.plafond)} au plus sur la période de référence (${libP}). Un mois d'arrêt maladie en donne ${nombre(ac.maladieMois)}, ${nombre(ac.maladiePlafond)} au plus&nbsp;; un congé sans solde n'en donne aucun.${r.arrondiSup ? ' À la clôture de la période, le total est arrondi au jour supérieur.' : ''}`],
+      ['ciel', 'Une demande, puis ta décision', `Chaque absence a un statut&nbsp;: demandée, validée, refusée ou annulée. Valide ou refuse les demandes depuis le <b>Tableau de bord</b> ou l'onglet <b>Absences</b>&nbsp;: le solde après validation s'affiche avant ta décision. Seules les absences validées sont retirées du solde${r.decompte === 'ouvres' ? '' : '&nbsp;; en jours ouvrables, une semaine de congé compte 6 jours'}.`],
+      ['sable', 'Pas trop d\'absents à la fois', `Chaque équipe a un nombre maximal d'absents en même temps. Au-delà, la demande et le calendrier signalent un chevauchement, demandes en attente comprises, et le tableau de bord liste ceux des 60 prochains jours. Tu peux valider malgré tout, après confirmation.`],
+    ];
+    const corps = `
+      <p>L'outil calcule les congés acquis de chacun et repère les absences qui se chevauchent. Ton rôle&nbsp;: saisir tes salariés et leurs absences, puis valider ou refuser les demandes. Rien n'est envoyé à tes salariés.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> montre les absences mois par mois, <b>Équipe</b> le solde de chacun. Unité, période, acquisition et jours fériés se changent dans les réglages&nbsp;: ta convention collective fait foi. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.salaries.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="salarie">Ajouter mon premier salarié</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'salarie') setTimeout(() => modaleSalarie(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1136,7 +1178,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1144,6 +1186,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;
