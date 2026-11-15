@@ -1,0 +1,124 @@
+/* Studio vidéo QME : toile 1080 × 1920 (Reel / Short), charte Bauhaus « Pastel ». */
+:root{
+  --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--discret:#6E685F;--trait:#E4DCCE;
+  --rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;
+  --rose:#F8DCD3;--beurre:#FBEBC2;--ciel:#D8E4F0;--sable:#F3EDE3;
+  --ressort:cubic-bezier(.34,1.56,.64,1);--doux:cubic-bezier(.65,0,.35,1);--sortie:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier)}
+body{font:400 40px/1.2 Outfit,system-ui,sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+#toile{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--papier)}
+
+/* Formes de fond : flottent lentement */
+#formes .f{position:absolute;display:block;opacity:.9}
+.rond{border-radius:50%}
+.jaune{background:var(--jaune)}.rouge{background:var(--rouge)}.bleu{background:var(--bleu)}.ciel{background:var(--ciel)}
+#formes .rond.jaune{width:260px;height:260px;left:-90px;top:120px;animation:flotte 9s ease-in-out infinite}
+#formes .carre{width:150px;height:150px;right:-40px;top:300px;transform:rotate(12deg);animation:tourne 14s linear infinite}
+#formes .tri{width:0;height:0;background:none;border-left:95px solid transparent;border-right:95px solid transparent;border-bottom:165px solid var(--bleu);left:60px;bottom:120px;animation:flotte 11s ease-in-out infinite reverse}
+#formes .rond.ciel{width:340px;height:340px;right:-120px;bottom:-60px;animation:flotte 12s ease-in-out infinite}
+@keyframes flotte{50%{translate:0 -26px}}
+@keyframes tourne{to{rotate:360deg}}
+
+/* En-tête : marque + question persistante */
+#haut{position:absolute;left:60px;right:60px;top:150px;height:260px;display:flex;flex-direction:column;gap:22px;z-index:3}
+#marque{display:flex;align-items:center;gap:16px;font-size:30px;font-weight:700;letter-spacing:.02em;color:var(--encre)}
+#marque img{width:52px;height:52px}
+#marque span{background:var(--surface);border:1px solid var(--trait);padding:8px 20px;border-radius:999px}
+#question{font-size:62px;font-weight:800;letter-spacing:-.03em;line-height:1.02;min-height:130px}
+#question .mot{display:inline-block;opacity:0;transform:translateY(40px) scale(.6);transition:opacity .35s,transform .55s var(--ressort);margin-right:.22em}
+#question .mot.vu{opacity:1;transform:none}
+#question mark{background:var(--jaune);color:var(--encre);padding:0 10px;border-radius:12px}
+
+/* Fenêtre de navigateur + caméra */
+#fenetre{position:absolute;left:40px;top:430px;width:1000px;height:980px;background:var(--surface);border-radius:28px;overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(36,34,31,.35),0 0 0 2px var(--encre);z-index:2;transition:transform .8s var(--ressort),opacity .5s}
+#fenetre.cache{transform:translateY(1700px) rotate(4deg)}
+#chrome{height:44px;background:var(--sable);display:flex;align-items:center;gap:10px;padding:0 18px;border-bottom:2px solid var(--encre)}
+#chrome i{width:14px;height:14px;border-radius:50%;background:var(--rouge)}
+#chrome i:nth-child(2){background:var(--jaune)}#chrome i:nth-child(3){background:var(--bleu)}
+#url{margin-left:14px;font-size:20px;color:var(--discret);background:var(--surface);padding:4px 16px;border-radius:999px;flex:1}
+#vue{position:relative;width:1000px;height:936px;overflow:hidden;background:var(--papier)}
+#camera{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#camera.bouge{transition:transform var(--duree,900ms) var(--doux)}
+#app{display:block;border:0;background:var(--papier)}
+
+/* Calque des repères ancrés sur l'application */
+#calque{position:absolute;inset:0;pointer-events:none;z-index:5}
+.anneau{position:absolute;border:6px solid var(--c,var(--jaune));border-radius:16px;box-shadow:0 0 0 9999px rgba(36,34,31,var(--voile,0));
+  opacity:0;transform:scale(1.4);transition:opacity .25s,transform .5s var(--ressort),border-color .3s,box-shadow .4s}
+.anneau.vu{opacity:1;transform:scale(1)}
+.anneau.pulse{animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{50%{outline:10px solid color-mix(in srgb,var(--c,var(--jaune)) 35%,transparent);outline-offset:4px}}
+.etiquette{position:absolute;white-space:nowrap;font-size:34px;font-weight:800;padding:12px 22px;border-radius:18px;background:var(--c,var(--encre));color:#fff;
+  opacity:0;transform:translateY(20px) scale(.7);transition:opacity .25s,transform .5s var(--ressort)}
+.etiquette.vu{opacity:1;transform:none}
+.etiquette::after{content:"";position:absolute;left:var(--fx,40px);border:14px solid transparent}
+.etiquette.dessus::after{top:100%;border-top-color:var(--c,var(--encre))}
+.etiquette.dessous::after{bottom:100%;border-bottom-color:var(--c,var(--encre))}
+.etiquette.jaune{color:var(--encre)}
+
+/* Touches tapées */
+.touche{position:absolute;min-width:76px;height:76px;padding:0 18px;display:grid;place-items:center;font-size:38px;font-weight:800;background:var(--surface);
+  border:3px solid var(--encre);border-bottom-width:9px;border-radius:16px;animation:touche .9s var(--sortie) forwards}
+@keyframes touche{0%{opacity:0;transform:translateY(20px) scale(.5)}20%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0;transform:translateY(-60px)}}
+
+/* Tampon de verdict */
+.tampon{position:absolute;left:50%;top:var(--y,900px);translate:-50% -50%;padding:30px 44px;border-radius:30px;background:var(--c);color:#fff;font-size:58px;font-weight:800;
+  letter-spacing:-.02em;line-height:1.05;text-align:center;box-shadow:0 24px 50px -16px rgba(0,0,0,.45);z-index:6;
+  animation:tampon .6s var(--ressort) forwards}
+.tampon small{display:block;font-size:34px;font-weight:600;margin-top:10px;opacity:.95}
+.tampon.sort{animation:tamponSort .35s ease-in forwards}
+@keyframes tampon{0%{opacity:0;transform:scale(2.4) rotate(-14deg)}100%{opacity:1;transform:scale(1) rotate(-4deg)}}
+@keyframes tamponSort{to{opacity:0;transform:scale(.6) rotate(6deg)}}
+
+/* Légende (sous-titre) */
+#legende{position:absolute;left:60px;right:60px;top:1450px;min-height:160px;z-index:4;display:flex;align-items:flex-start;justify-content:center}
+#legende .ligne{background:var(--encre);color:var(--papier);font-size:46px;font-weight:700;line-height:1.18;padding:22px 32px;border-radius:24px;text-align:center;
+  animation:entre .5s var(--ressort) both}
+#legende .ligne b{color:var(--jaune)}
+#legende .ligne.sort{animation:sort .3s ease-in forwards}
+@keyframes entre{from{opacity:0;transform:translateY(40px) scale(.85)}}
+@keyframes sort{to{opacity:0;transform:translateY(-20px)}}
+.pastille{display:inline-block;font-size:30px;font-weight:800;padding:6px 18px;border-radius:999px;background:var(--jaune);color:var(--encre);margin-right:14px;vertical-align:4px}
+
+/* Accroche plein écran */
+#accroche{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;justify-content:center;padding:0 80px;gap:26px;pointer-events:none}
+#accroche .l{font-size:104px;font-weight:800;letter-spacing:-.04em;line-height:.98}
+#accroche .mot{display:inline-block;opacity:0;transform:translateY(80px) rotate(6deg);animation:mot .6s var(--ressort) forwards;margin-right:.2em}
+#accroche .mot mark{background:var(--jaune);color:var(--encre);padding:0 14px;border-radius:18px}
+#accroche .mot.rouge mark{background:var(--rouge);color:#fff}
+#accroche.sort{animation:sortAcc .45s ease-in forwards}
+@keyframes mot{to{opacity:1;transform:none}}
+@keyframes sortAcc{to{opacity:0;transform:translateY(-160px)}}
+
+/* Volet de transition : trois bandes Bauhaus */
+#volet{position:absolute;inset:0;z-index:9;pointer-events:none}
+#volet .v{position:absolute;left:0;width:100%;height:34%;transform:translateX(-105%)}
+#volet .v:nth-child(1){top:0}#volet .v:nth-child(2){top:33%}#volet .v:nth-child(3){top:66%}
+#volet.passe .v{animation:volet .9s var(--doux) forwards}
+#volet.passe .v:nth-child(2){animation-delay:.07s}#volet.passe .v:nth-child(3){animation-delay:.14s}
+@keyframes volet{0%{transform:translateX(-105%)}45%,55%{transform:none}100%{transform:translateX(105%)}}
+
+/* Outro */
+#outro{position:absolute;inset:0;z-index:8;background:var(--papier);display:none;flex-direction:column;align-items:center;justify-content:center;gap:34px;text-align:center;padding:0 80px}
+#outro.vu{display:flex}
+#outro img{width:190px;height:190px;animation:logo .8s var(--ressort) both}
+#outro h2{font-size:92px;font-weight:800;letter-spacing:-.04em;line-height:1;animation:entre .6s var(--ressort) .15s both}
+#outro p{font-size:46px;font-weight:600;color:var(--discret);animation:entre .6s var(--ressort) .3s both}
+#outro .url{font-size:48px;font-weight:800;background:var(--encre);color:var(--papier);padding:20px 40px;border-radius:999px;animation:entre .6s var(--ressort) .45s both}
+#outro .url b{color:var(--jaune)}
+@keyframes logo{from{opacity:0;transform:scale(.2) rotate(-180deg)}}
+
+/* Curseur */
+#curseur{position:absolute;left:0;top:0;width:58px;height:58px;z-index:10;transform:translate(var(--x,540px),var(--y,1300px));opacity:0;
+  transition:opacity .3s;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+#curseur.vu{opacity:1}
+#curseur.appui{scale:.82}
+.onde{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:6px solid var(--jaune);z-index:9;animation:onde .55s ease-out forwards}
+@keyframes onde{to{transform:scale(4.2);opacity:0}}
+
+/* L'habillage ne doit jamais intercepter la vraie souris : seuls les clics sur l'application comptent. */
+#formes,#haut,#calque,#legende,#accroche,#outro,#volet,#curseur,.onde,.touche,.tampon{pointer-events:none}
+#legende{transition:opacity .25s}#legende.masque{opacity:0}
