@@ -91,7 +91,7 @@ déjà).
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |

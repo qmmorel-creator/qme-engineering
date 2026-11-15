@@ -21,6 +21,7 @@ const fiches = Object.keys(PACKS).map(calculerPack).map((p) => {
     `<p>${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.</p>`,
     `<p><strong>Deux versions :</strong> « Pack » (${euros(p.prix)}) ouvre les templates présents le jour de l’achat ; « ${OPTION.nom} » (${euros(p.prix + p.option)}) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>`,
     `<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>`,
+    p.avertissement ? `<p>${esc(p.avertissement)}</p>` : '',
     `<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>`,
   ].filter(Boolean).join('\n');
   return {

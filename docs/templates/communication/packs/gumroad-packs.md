@@ -6,6 +6,8 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 
 | Pack | Permalien | Pack | Pack évolutif | Templates en vente | Manquent |
 |---|---|---|---|---|---|
+| Pack Argent du quotidien | pack-argent-du-quotidien | 43 € | 54 € | 4/4 | — |
+| Pack Bien démarrer l’année | pack-bien-demarrer | 39 € | 49 € | 3/3 | — |
 | Pack Freelance : chiffrer, facturer, encaisser | pack-freelance-gestion | 118 € | 148 € | 6/7 | Suivi du temps et rentabilité par mission |
 | Pack Voyage | pack-voyage | 25 € | 34 € | 1/2 | Planificateur de voyage |
 | Pack Commerçant et artisan | pack-commercant-artisan | 95 € | 119 € | 3/5 | Stocks et inventaire, Suivi de TVA |
@@ -22,5 +24,5 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 | Pack Petite entreprise | pack-petite-entreprise | 164 € | 205 € | 4/9 | Suivi des congés et absences, Notes de frais et indemnités kilométriques, Onboarding et offboarding salarié, Tableau de bord de pilotage PME, Entretiens annuels et professionnels |
 | Pack Propriétaire | pack-proprietaire | 131 € | 164 € | 4/9 | Location saisonnière, Entretien de la maison, Gestion locative, Capacité d'emprunt et comparateur de prêts, Charges et AG de copropriété |
 | Pack Freelance : trouver ses clients | pack-freelance-clients | 97 € | 122 € | 1/7 | Préparateur d'appel découverte, Pipeline de prospection B2B, Propositions commerciales, Kit références et plaquette, Calendrier éditorial, Suivi des appels d'offres et candidatures |
-| Pack Reprendre la main sur son argent | pack-argent | 98 € | 123 € | 2/9 | Remboursement de dettes, Temps de vie, Inventaire valorisé, Objectif d'épargne et fonds d'urgence, Papiers du foyer, Remboursements santé, Capacité d'emprunt et comparateur de prêts |
+| Pack Reprendre la main sur son argent | pack-argent | 96 € | 120 € | 2/9 | Remboursement de dettes, Temps de vie, Inventaire valorisé, Objectif d'épargne et fonds d'urgence, Papiers du foyer, Remboursements santé, Capacité d'emprunt et comparateur de prêts |
 | Pack Moyens généraux | pack-moyens-generaux | 194 € | 243 € | 0/9 | Gestion de parc informatique, Gestion de flotte de véhicules, Onboarding et offboarding salarié, Maintenance préventive, Vérifications réglementaires, Réservation de salles et bureaux, Pilotage d'une journée de bascule, Contrats fournisseurs et échéances, Demandes d'achat et fournitures |
