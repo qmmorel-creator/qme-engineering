@@ -7,8 +7,10 @@ contrôle de réserve sans production. Non publié (`/docs/*` en 404).
 
 - LinkedIn : une publication classique par jour jusqu'au **22/03/2027** (premier jour vide : 23/03/2027).
 - Instagram : une publication classique par jour jusqu'au **26/03/2027** (premier jour vide : 27/03/2027).
-- La réserve LinkedIn passe sous 7 jours le **16/03/2027** : premières productions attendues ce jour-là
-  (Instagram le 20/03/2027), sauf annulation ou déplacement de publications d'ici là.
+- **Harmonisation au 22/03/2027** (décision de Quentin du 15/11/2026) : la date de référence commune est la fin
+  de la réserve LinkedIn, 22/03/2027. Les posts Instagram du 23 au 26/03 (IG-98, IG-43, IG-48, IG-54) sont
+  gardés tels quels. La routine démarre **le 16/03/2027 sur les deux réseaux** : LinkedIn à partir du 23/03,
+  Instagram à partir du 27/03 (pendants des posts LinkedIn), sauf annulation ou déplacement d'ici là.
 
 ## Publications
 

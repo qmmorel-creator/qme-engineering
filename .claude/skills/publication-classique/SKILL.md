@@ -32,11 +32,15 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui est 
 1. Relire **en entier** les deux onglets `Planning` (LinkedIn `1EejYs9y4AsdoAtQgHc2HzXK6LgWQHwNnZmqbesSxpWU` A1:N,
    Instagram `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8` A1:P).
 2. Ne compter que les publications **classiques** : statut ≠ « Annulé », Thème ≠ « Vidéo démo ».
-3. Pour chaque réseau, trouver le **premier jour sans publication classique** à partir de demain.
-4. Si ce jour est à **plus de 7 jours** pour les deux réseaux : ne rien produire, ajouter une ligne
-   « contrôle, réserve OK (LinkedIn jusqu'au …, Instagram jusqu'au …) » au journal et s'arrêter.
-5. Sinon, produire les publications des jours manquants dans les 7 prochains jours, **3 par réseau au plus**
-   par exécution (la tâche repasse le lendemain).
+3. Pour chaque réseau, trouver le **premier jour sans publication classique** à partir de demain. La
+   **date de référence commune** est le plus tôt des deux (décision de Quentin du 15/11/2026 : les deux réseaux
+   démarrent ensemble, sur le réseau le moins couvert ; au 15/11/2026, LinkedIn couvert jusqu'au 22/03/2027).
+4. Si cette date de référence est à **plus de 7 jours** : ne rien produire, ajouter une ligne « contrôle,
+   réserve OK (LinkedIn jusqu'au …, Instagram jusqu'au …) » au journal et s'arrêter.
+5. Sinon, produire **sur les deux réseaux** : pour chacun, ses premiers jours libres (au plus 3 publications par
+   réseau et par exécution ; la tâche repasse le lendemain). Instagram garde son avance éventuelle : il reprend
+   à son premier jour libre, de préférence avec le pendant d'un post LinkedIn déjà programmé et pas encore
+   décliné sur Instagram. Ne jamais déplacer ni supprimer une publication existante pour aligner les dates.
 
 ## 2. Choisir les sujets (non-redondance)
 
