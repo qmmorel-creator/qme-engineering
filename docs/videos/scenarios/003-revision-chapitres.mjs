@@ -117,9 +117,13 @@ export async function jouer(v) {
   await v.temps(); await S('legende', `Le détail du <b>${b2.jour.toLowerCase()}</b>, en un clic.`);
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer(C2, { ms: 520 });
-  // Le clic fait défiler l'application jusqu'au détail (défilement doux) : mesurer une fois la page immobile.
-  let r = await S('rectApp', DETAIL);
-  for (let i = 0; i < 12; i++) { await pause(120); const q = await S('rectApp', DETAIL); if (Math.abs(q.y - r.y) < 1) break; r = q; }
+  // Le clic appelle scrollIntoView (défilement doux) : le navigateur fait aussi défiler les conteneurs du studio,
+  // ce qui décale l'image de l'application. On remet ces conteneurs à zéro (aucun changement dans l'application).
+  for (let i = 0; i < 8; i++) {
+    await pause(90);
+    await page.evaluate(() => { for (const e of [document.scrollingElement, ...document.querySelectorAll('*')]) if (e && (e.scrollTop || e.scrollLeft)) { e.scrollTop = 0; e.scrollLeft = 0; } });
+  }
+  const r = await S('rectApp', DETAIL);
   son('zoom'); await S('cadrer', { x: r.x, y: r.y, w: 560, h: r.h }, { max: 2.2, marge: 40 });
   const titres = await v.appli.$$eval(`${DETAIL} .ligne b`, (bs) => bs.map((b) => b.textContent.trim()));
   const resume = await v.lire(`${DETAIL} h2 span`);
