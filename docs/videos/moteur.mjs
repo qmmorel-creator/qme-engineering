@@ -54,12 +54,20 @@ const v = {
   page, appli, pause: (ms) => page.waitForTimeout(ms),
   S: (nomFn, ...args) => page.evaluate(([n, a]) => S[n](...a), [nomFn, args]),
   son: (type, volume = 1) => { if (t0 != null) sons.push({ t: maintenant(), type, volume }); },
-  async cliquer(sel, { ms = 650, decalage = [0.5, 0.5], son = 'clic' } = {}) {
-    const r = await v.S('ancre', sel);
-    const x = r.x + r.w * decalage[0], y = r.y + r.h * decalage[1];
-    await Promise.all([v.S('curseurVers', x, y, ms), page.mouse.move(x, y, { steps: Math.max(2, Math.round(ms / 40)) })]);
-    await page.waitForTimeout(90);
-    v.son(son); await v.S('appui', x, y);
+  // Le curseur va sur l'élément (la caméra le suit), puis la vraie souris clique au point exact une fois la caméra posée.
+  async viser(sel, { ms = 700, fx = 0.5, fy = 0.5, glisse = true } = {}) {
+    const p = await v.S('pointeur', sel, fx, fy);
+    if (glisse) v.son('glisse', 0.35);
+    await v.S('curseurVers', p.x, p.y, ms);
+    await v.S('attendreCamera', 1800);
+    return p;
+  },
+  async cliquer(sel, options = {}) {
+    const p = await v.viser(sel, options);
+    const t = await v.S('versToile', p.x, p.y);
+    await page.mouse.move(t.x, t.y, { steps: 3 });
+    await page.waitForTimeout(80);
+    v.son(options.son || 'clic'); await v.S('appui');
     await page.mouse.down(); await page.waitForTimeout(70); await page.mouse.up();
     await page.waitForTimeout(160);
   },
@@ -116,6 +124,11 @@ const SONS = {
   ding: "aevalsrc='0.35*(sin(2*PI*1318*t)+0.6*sin(2*PI*1975*t))*exp(-5*t)':d=0.9",
   alerte: "aevalsrc='0.4*sin(2*PI*196*t)*(1+0.5*sin(2*PI*392*t))*exp(-3*t)*lt(t,0.18)+0.4*sin(2*PI*165*t)*(1+0.5*sin(2*PI*330*t))*exp(-3*(t-0.2))*gt(t,0.2)':d=0.7",
   tampon: "aevalsrc='0.9*sin(2*PI*(70+90*exp(-25*t))*t)*exp(-9*t)':d=0.4",
+  zoom: "aevalsrc='0.22*sin(2*PI*(180+520*t*t)*t)*sin(PI*t/0.5)+0.18*(random(0)*2-1)*sin(PI*t/0.5)':d=0.5,lowpass=f=3200",
+  dezoom: "aevalsrc='0.22*sin(2*PI*(520-300*t)*t)*sin(PI*t/0.45)+0.18*(random(0)*2-1)*sin(PI*t/0.45)':d=0.45,lowpass=f=2400",
+  glisse: 'anoisesrc=d=0.3:c=pink:a=0.4,bandpass=f=2400:w=1800,afade=t=in:d=0.12,afade=t=out:st=0.12:d=0.18',
+  eclat: "aevalsrc='0.28*(sin(2*PI*1568*t)*lt(t,0.09)+sin(2*PI*2093*t)*gt(t,0.07)*lt(t,0.17)+sin(2*PI*2637*t)*gt(t,0.15))*exp(-5*t)':d=0.7",
+  trait: 'anoisesrc=d=0.4:c=brown:a=0.6,highpass=f=900,bandpass=f=2600:w=2000,afade=t=in:d=0.05,afade=t=out:st=0.15:d=0.25',
 };
 const types = [...new Set(sons.map((s) => s.type))];
 for (const t of types) execFileSync('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', SONS[t], '-ar', '48000', '-ac', '1', join(TMP, `son-${t}.wav`)]);

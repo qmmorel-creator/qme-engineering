@@ -38,76 +38,102 @@ export async function preparer(v) {
   })));
   await appli.click('button[data-vue="gantt"]'); await page.waitForTimeout(300);
   if (v.marges[PLATRERIE] == null || v.marges[POSE] !== 0) throw new Error(`Données de démo inattendues : ${JSON.stringify(v.marges)}`);
-  await v.S('cadrer', null, 0);
+  await v.S('cadrer', null);
   await v.S('fenetre', false);
 }
 
 export async function jouer(v) {
   const { S, son, pause } = v;
+  const FINT = (nom) => `${tache(nom)} .c-fin`;
+  const DUREE = (nom) => `${tache(nom)} [data-champ="duree"]`;
+
   // 0-3 s · Accroche
   son('pop'); setTimeout(() => son('pop'), 450); setTimeout(() => son('pop'), 1000);
-  await S('accroche', ['Une tâche prend', '*3 jours* de retard.', '!La fin du chantier *bouge ?*']);
-  await pause(700);
+  await S('accroche', ['Une tâche prend', '*3_jours* de retard.', '!La fin du chantier *bouge ?*']);
+  await pause(500);
   son('whoosh'); await S('accrocheSortie');
-  await S('question', 'Un retard décale-t-il *la fin* ?');
+  await S('question', 'Un retard décale-t-il la *fin* ?');
   await S('fenetre', true);
 
-  // 3-6 s · Le planning et sa date de fin
-  son('whoosh', 0.6);
-  await S('cadrer', [BANDEAU, '.gl-planning', tache(PLATRERIE), tache(POSE)], 1100);
+  // 3-6 s · Zoom sur la date de fin du chantier
+  son('zoom'); await S('cadrer', BANDEAU, { max: 2.4, marge: 190 });
   const fin0 = FIN(await v.lire(BANDEAU));
   son('pop'); await S('anneau', 'fin', BANDEAU, { etiquette: `Fin prévue : ${fin0}`, cote: 'dessous', marge: 6 });
   await S('legende', `Un chantier de cuisine, <b>14 tâches</b> liées.`);
-  await pause(1600);
+  await pause(1000);
+  await S('retirer', 'fin');
 
-  // 6-14 s · Cas 1 : tâche avec de la marge
+  // 6-15 s · Cas 1 : tâche avec de la marge. La caméra suit la souris.
   await S('legende', `La plâtrerie prend <b>3 jours de plus</b>.`, 'Cas 1');
-  await S('anneau', 't', tache(PLATRERIE), { couleur: 'var(--bleu)', pulse: false, marge: 2 });
-  await pause(500);
-  await v.saisir(`${tache(PLATRERIE)} [data-champ="duree"]`, '6');
+  son('zoom', 0.7); await S('suivre', 2.3);
+  const avant7 = await v.lire(FINT(PLATRERIE));
+  await v.saisir(DUREE(PLATRERIE), '6');
   await v.valider();
-  await pause(700);
+  await pause(450);
+  const apres7 = await v.lire(FINT(PLATRERIE));
+  await S('flash', tache(PLATRERIE), 'var(--ciel)');
+  son('pop'); await S('avantApres', 'r', FINT(PLATRERIE), avant7, apres7, { couleur: 'var(--bleu)', note: 'la tâche finit plus tard' });
+  await pause(1000);
+  // Panoramique vers le résultat : la fin du chantier
+  await S('retirer', 'r');
+  son('zoom'); await S('cadrer', BANDEAU, { max: 2.6, marge: 170 });
   const fin1 = FIN(await v.lire(BANDEAU));
-  await S('couleurRepere', 'fin', 'var(--vert)', fin1 === fin0 ? `Fin : ${fin1} · inchangée` : `Fin : ${fin1}`);
-  son('tampon'); son('ding', 0.8);
-  await S('tampon', fin1 === fin0 ? 'La fin ne bouge pas' : `Fin : ${fin1}`, `${v.marges[PLATRERIE]} jours de marge absorbent le retard`, 'var(--vert)', 1530);
-  await pause(2000);
-  await S('tamponFin'); await S('retirer', 't');
-
-  // 14-22 s · Cas 2 : tâche critique
-  await S('couleurRepere', 'fin', 'var(--jaune)', `Fin prévue : ${fin1}`);
-  await S('legende', `La pose des meubles prend <b>3 jours de plus</b>.`, 'Cas 2');
-  await S('anneau', 't', tache(POSE), { couleur: 'var(--bleu)', pulse: false, marge: 2 });
-  await pause(500);
-  await v.saisir(`${tache(POSE)} [data-champ="duree"]`, '6');
-  await v.valider();
+  await S('retirer', 'r');
+  await S('flash', BANDEAU, 'var(--vert)');
+  son('eclat'); await S('eclat', BANDEAU, ['var(--vert)', 'var(--jaune)', 'var(--bleu)']);
+  await S('avantApres', 'fin', BANDEAU, fin0, fin1, { couleur: 'var(--vert)', cote: 'dessous', note: fin1 === fin0 ? 'inchangée' : '' });
+  son('trait', 0.6); await S('souligner', 's', BANDEAU, 'var(--vert)');
   await pause(700);
-  const fin2 = FIN(await v.lire(BANDEAU));
-  const ecart = ecartOuvres(fin1, fin2);
-  await S('couleurRepere', 'fin', 'var(--rouge)', `Fin : ${fin2} · +${ecart} j`);
-  son('tampon'); son('alerte', 0.8);
-  await S('tampon', `La fin recule de ${ecart} jours`, 'Tâche critique : aucune marge', 'var(--rouge)', 1530);
-  await pause(2100);
+  son('tampon'); son('ding', 0.7);
+  await S('tampon', fin1 === fin0 ? 'La fin ne bouge pas' : `Fin : ${fin1}`, `${v.marges[PLATRERIE]} jours de marge absorbent le retard`, 'var(--vert)');
+  await pause(1400);
   await S('tamponFin'); await S('retirer');
 
-  // 22-27 s · Navigation : l'onglet Chemin critique
+  // 15-24 s · Cas 2 : tâche critique
+  await S('legende', `La pose des meubles prend <b>3 jours de plus</b>.`, 'Cas 2');
+  son('zoom', 0.7); await S('suivre', 2.3);
+  const avant9 = await v.lire(FINT(POSE));
+  await v.saisir(DUREE(POSE), '6');
+  await v.valider();
+  await pause(450);
+  const apres9 = await v.lire(FINT(POSE));
+  await S('flash', tache(POSE), 'var(--rose)');
+  son('pop'); await S('avantApres', 'r', FINT(POSE), avant9, apres9, { couleur: 'var(--bleu)', note: 'la tâche finit plus tard' });
+  await pause(1300);
+  await S('retirer', 'r');
+  son('zoom'); await S('cadrer', BANDEAU, { max: 2.6, marge: 170 });
+  const fin2 = FIN(await v.lire(BANDEAU));
+  const ecart = ecartOuvres(fin1, fin2);
+  await S('retirer', 'r');
+  await S('flash', BANDEAU, 'var(--rouge)');
+  son('alerte', 0.8); await S('avantApres', 'fin', BANDEAU, fin1, fin2, { couleur: 'var(--rouge)', cote: 'dessous', note: `+${ecart} j ouvrés` });
+  await pause(500); son('tampon', 0.6); await S('secouer', 'fin'); await S('coup', 0.05);
+  await pause(400);
+  son('tampon');
+  await S('tampon', `La fin recule de ${ecart} jours`, 'Tâche critique : aucune marge', 'var(--rouge)');
+  await pause(1500);
+  await S('tamponFin'); await S('retirer');
+
+  // 24-28 s · Navigation : l'onglet Chemin critique
   await S('legende', `Lesquelles surveiller ? L'onglet <b>Chemin critique</b>.`);
-  son('whoosh', 0.6); await S('cadrer', null, 700);
-  await v.cliquer('button[data-vue="critique"]');
-  await pause(500);
-  son('whoosh', 0.6); await S('cadrer', ['.vue-tete h1', '.tuiles'], 1000);
+  son('dezoom'); await S('suivre', 1.5, 0.3);
+  await v.cliquer('button[data-vue="critique"]', { ms: 650 });
+  await pause(350);
+  son('zoom'); await S('cadrer', ['.vue-tete h1', '.tuiles'], { tau: 0.3 });
   const finCalc = await v.lire('.tuile:first-child .tuile-date');
   const [nbCrit, nbTot] = (await v.lire('.tuile:nth-child(3) b')).split('/').map((x) => x.trim());
+  await S('flash', '.tuile:first-child', 'var(--rose)');
   son('pop'); await S('anneau', 'c1', '.tuile:first-child', { couleur: 'var(--rouge)', etiquette: `Nouvelle fin : ${finCalc}`, cote: 'dessous', pulse: false });
-  await pause(1100);
+  await pause(900);
+  await S('flash', '.tuile:nth-child(3)', 'var(--rose)');
   son('pop'); await S('anneau', 'c2', '.tuile:nth-child(3)', { couleur: 'var(--rouge)', etiquette: `${nbCrit} tâches sur ${nbTot} à surveiller`, cote: 'dessous', pulse: false });
   await pause(1500);
   await S('retirer'); await S('cacherCurseur');
 
-  // 27-30 s · Fin
+  // 28-31 s · Fin
   son('whoosh'); await S('volet');
   await S('legende', null);
   await S('outro', { titre: 'Planning Gantt', sous: 'Le chemin critique recalculé<br>à chaque saisie.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
-  await pause(2600);
+  await pause(2400);
 }
