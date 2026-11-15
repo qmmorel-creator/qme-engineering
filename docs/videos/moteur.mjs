@@ -48,6 +48,9 @@ const appli = page.frames().find((f) => f !== page.mainFrame());
 
 // 3. Outils du scénario.
 const sons = [];
+// Musique : { fichier, bpm, premierTemps (s), debut (s, calé sur un temps) }. Les temps tombent alors à k × période depuis 0.
+const musiqueCfg = cfg.musique || null;
+const PERIODE = musiqueCfg ? 60 / musiqueCfg.bpm : 0.5;
 let t0 = null;
 const maintenant = () => (t0 == null ? 0 : Date.now() / 1000 - t0);
 const v = {
@@ -71,15 +74,21 @@ const v = {
     await page.mouse.down(); await page.waitForTimeout(70); await page.mouse.up();
     await page.waitForTimeout(160);
   },
-  async saisir(sel, texte, { touches = true } = {}) {
-    await v.cliquer(sel);
+  async saisir(sel, texte, { touches = true, ms } = {}) {
+    await v.cliquer(sel, ms ? { ms } : {});
     await page.keyboard.press('Control+A'); await page.waitForTimeout(120);
     for (const c of texte) {
       if (touches) await v.S('touche', c);
-      v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(230);
+      v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(150);
     }
   },
   async valider() { await v.S('touche', 'Entrée ⏎'); v.son('touche'); await page.keyboard.press('Enter'); await page.waitForTimeout(200); },
+  // Attend le prochain temps de la musique (sub = 2 : demi-temps). Les actions tombent ainsi sur le rythme.
+  async temps(sub = 1) {
+    const p = PERIODE / sub, t = maintenant();
+    const suivant = Math.ceil((t + 0.02) / p) * p;
+    await page.waitForTimeout(Math.max(0, (suivant - t) * 1000));
+  },
   lire: (sel) => appli.$eval(sel, (e) => (e.value ?? e.textContent).trim()),
 };
 
@@ -98,6 +107,7 @@ cdp.on('Page.screencastFrame', async ({ data, metadata, sessionId }) => {
 await cdp.send('Page.startScreencast', { format: 'jpeg', quality: brouillon ? 70 : 93, maxWidth: 1080, maxHeight: 1920, everyNthFrame: 1 });
 while (t0 == null) await page.waitForTimeout(20);
 const debut = Date.now();
+await v.S('rythme', PERIODE * 1000, (maintenant() * 1000) % (PERIODE * 1000));
 try { await scenario.jouer(v); } catch (e) {
   await page.screenshot({ path: join(SORTIE, `${nom}-erreur.png`) });
   console.error(`Échec du scénario (capture : ${join(SORTIE, `${nom}-erreur.png`)})`); await navigateur.close(); fin(); throw e;
@@ -117,8 +127,9 @@ execFileSync('ffmpeg', ['-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i',
 
 // 6. Bruitages synthétisés (ffmpeg), placés aux instants réels des actions.
 const SONS = {
-  clic: 'anoisesrc=d=0.05:c=pink:a=0.9,highpass=f=1500,afade=t=out:st=0:d=0.05',
-  touche: 'anoisesrc=d=0.035:c=white:a=0.5,bandpass=f=3500:w=2000,afade=t=out:st=0:d=0.035',
+  // Clic de souris : appui puis relâchement 75 ms plus tard ; transitoire bref, résonance du plastique (1,8 et 4 kHz) et petit corps grave.
+  clic: "aevalsrc='(0.55*(random(0)*2-1)*exp(-t*2600)+0.7*sin(2*PI*4000*t)*exp(-t*1400)+0.45*sin(2*PI*1800*t)*exp(-t*800)+0.3*sin(2*PI*260*t)*exp(-t*300))*lt(t,0.07)+0.6*(0.5*(random(0)*2-1)*exp(-(t-0.075)*3000)+0.6*sin(2*PI*4600*t)*exp(-(t-0.075)*1600)+0.35*sin(2*PI*2100*t)*exp(-(t-0.075)*900))*gte(t,0.075)':d=0.16,highpass=f=120",
+  touche: "aevalsrc='0.5*(random(0)*2-1)*exp(-t*1800)+0.45*sin(2*PI*2300*t)*exp(-t*700)+0.35*sin(2*PI*190*t)*exp(-t*220)':d=0.09,highpass=f=150",
   pop: "aevalsrc='0.6*sin(2*PI*(380+2600*t)*t)*exp(-28*t)':d=0.16",
   whoosh: 'anoisesrc=d=0.5:c=pink:a=0.5,bandpass=f=900:w=1400,afade=t=in:d=0.22,afade=t=out:st=0.22:d=0.28',
   ding: "aevalsrc='0.35*(sin(2*PI*1318*t)+0.6*sin(2*PI*1975*t))*exp(-5*t)':d=0.9",
@@ -137,12 +148,13 @@ sons.forEach((s, i) => {
   entrees.push('-i', join(TMP, `son-${s.type}.wav`));
   filtres.push(`[${i}]adelay=${Math.round(s.t * 1000)}:all=1,volume=${s.volume}[s${i}]`);
 });
-let musique = cfg.musique && existsSync(resolve(RACINE, cfg.musique)) ? resolve(RACINE, cfg.musique) : null;
-if (musique) { entrees.push('-stream_loop', '-1', '-i', musique); filtres.push(`[${sons.length}]atrim=0:${duree},volume=0.22,afade=t=out:st=${duree - 2.5}:d=2.5[m]`); }
+const musique = musiqueCfg && existsSync(resolve(RACINE, musiqueCfg.fichier)) ? resolve(RACINE, musiqueCfg.fichier) : null;
+if (musiqueCfg && !musique) console.error(`Musique introuvable : ${musiqueCfg.fichier}`);
+if (musique) { entrees.push('-ss', String(musiqueCfg.debut || 0), '-i', musique); filtres.push(`[${sons.length}]atrim=0:${duree},asetpts=PTS-STARTPTS,volume=${musiqueCfg.volume ?? 0.55},afade=t=in:d=0.15,afade=t=out:st=${Math.max(0, duree - 1.8)}:d=1.8[m]`); }
 const n = sons.length + (musique ? 1 : 0);
 const audio = join(TMP, 'audio.wav');
 if (n) {
-  filtres.push(`${sons.map((_, i) => `[s${i}]`).join('')}${musique ? '[m]' : ''}amix=inputs=${n}:normalize=0:duration=longest,apad,atrim=0:${duree},loudnorm=I=-16:TP=-1.5:LRA=11[a]`);
+  filtres.push(`${sons.map((_, i) => `[s${i}]`).join('')}${musique ? '[m]' : ''}amix=inputs=${n}:normalize=0:duration=longest,apad,atrim=0:${duree},loudnorm=I=-14:TP=-1.5:LRA=11[a]`);
   execFileSync('ffmpeg', ['-y', '-v', 'error', ...entrees, '-filter_complex', filtres.join(';'), '-map', '[a]', '-ar', '48000', '-ac', '2', audio]);
 }
 const final = join(SORTIE, `${nom}.mp4`);

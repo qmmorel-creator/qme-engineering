@@ -45,7 +45,7 @@
     const v = vue.getBoundingClientRect(), t = toile.getBoundingClientRect();
     return { x: v.left - t.left + applique.x + px * applique.s, y: v.top - t.top + applique.y + py * applique.s };
   }
-  function cadrer(zone, { tau: t = 0.24, marge = 28, max = 2.8 } = {}) {
+  function cadrer(zone, { tau: t = 0.17, marge = 28, max = 2.8 } = {}) {
     mode = 'fixe'; tau = t;
     if (!zone) Object.assign(cible, { cx: LARGEUR / 2, cy: VUE.h / 2 / PLAN_LARGE, s: PLAN_LARGE });
     else {
@@ -55,7 +55,7 @@
     }
     return attendreCamera();
   }
-  function suivre(zoom = 2.2, t = 0.22) { mode = 'suivre'; zoomSuivi = zoom; tau = t; }
+  function suivre(zoom = 2.2, t = 0.15) { mode = 'suivre'; zoomSuivi = zoom; tau = t; }
   function attendreCamera(max = 2200) {
     const t0 = performance.now();
     return new Promise((fin) => {
@@ -68,6 +68,14 @@
     });
   }
   function coup(a = 0.07) { punch = { t0: performance.now(), a }; }
+
+  // ---------- Rythme : un battement visuel sur chaque temps de la musique ----------
+  let rythmeP = 0, rythmeT0 = 0, dernierTemps = -1;
+  function rythme(periodeMs, ecouleMs) { rythmeP = periodeMs; rythmeT0 = performance.now() - ecouleMs; }
+  function battement(k) {
+    for (const n of [$('#formes'), $('#marque')]) { n.classList.remove('bat'); void n.offsetWidth; n.classList.add('bat'); }
+    if (k % 2 === 0 && performance.now() - punch.t0 > 500) punch = { t0: performance.now(), a: 0.012 };
+  }
 
   // ---------- Curseur (coordonnées de l'application) ----------
   const cur = { x: LARGEUR / 2, y: 700 };
@@ -162,6 +170,7 @@
   let tPrec = performance.now();
   (function boucle(t) {
     const dt = Math.min(0.05, ((t ?? tPrec) - tPrec) / 1000); tPrec = t ?? tPrec;
+    if (rythmeP) { const k = Math.floor((performance.now() - rythmeT0) / rythmeP); if (k !== dernierTemps) { dernierTemps = k; battement(k); } }
     if (trajet) {
       const k = Math.min(1, (performance.now() - trajet.t0) / trajet.ms), e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
       cur.x = trajet.de.x + (trajet.a.x - trajet.de.x) * e; cur.y = trajet.de.y + (trajet.a.y - trajet.de.y) * e;
@@ -191,7 +200,7 @@
   })();
 
   // ---------- Textes ----------
-  function accroche(lignes) {
+  function accroche(lignes, pas = 110) {
     const a = $('#accroche'); a.className = ''; a.innerHTML = '';
     let d = 0;
     for (const ligne of lignes) {
@@ -199,11 +208,11 @@
       const rouge = ligne.startsWith('!');
       for (const m of mots(ligne.replace(/^!/, ''))) {
         const s = document.createElement('span'); s.className = 'mot' + (rouge && m.fort ? ' rouge' : '');
-        s.innerHTML = m.html; s.style.animationDelay = `${d}ms`; d += 110; l.append(s);
+        s.innerHTML = m.html; s.style.animationDelay = `${d}ms`; d += pas; l.append(s);
       }
-      d += 160; a.append(l);
+      a.append(l);
     }
-    return pause(d + 400);
+    return pause(d);
   }
   function accrocheSortie() { $('#accroche').classList.add('sort'); return pause(450); }
   function question(texte) {
@@ -239,7 +248,7 @@
   const pret = new Promise((r) => app.addEventListener('load', r, { once: true }));
   app.src = params.get('app') || '/templates/gantt/?demo';
 
-  window.S = { pret: () => pret, rectApp, versToile, pointeur, cadrer, suivre, attendreCamera, coup,
+  window.S = { pret: () => pret, rythme, rectApp, versToile, pointeur, cadrer, suivre, attendreCamera, coup,
     curseurVers, placerCurseur, appui, cacherCurseur, touche,
     anneau, couleurRepere, avantApres, flash, souligner, eclat, secouer, retirer,
     accroche, accrocheSortie, question, legende, tampon, tamponFin, fenetre, volet, outro, pause };
