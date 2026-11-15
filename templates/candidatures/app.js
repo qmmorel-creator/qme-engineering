@@ -58,8 +58,9 @@
   const filtre = { statut: 'actives', type: 'tous', q: '', nature: 'toutes' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu (guide « Comment ça marche » déjà vu) : propre à l'application, réinjecté après la normalisation.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, B), tutorielVu: !!d?.tutorielVu });
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -100,7 +101,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -404,6 +407,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     tableau: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
     candidatures: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="18" height="4" fill="currentColor"/></svg>',
     voeux: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="14" width="5" height="7" fill="currentColor"/><rect x="9.5" y="4" width="5" height="17" fill="currentColor"/><rect x="16" y="9" width="5" height="12" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
@@ -428,12 +432,13 @@
         <span class="titre-produit">Candidatures</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
   function lireHash() {
     const [v, id] = location.hash.slice(1).split('/');
@@ -1137,6 +1142,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des candidatures, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application : pratique pour cocher une pièce ou relire tes notes avant un entretien.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Aucun calendrier officiel n'est intégré et aucune plateforme de candidature n'est connectée : les dates sont celles que tu saisis, à vérifier sur le site de chaque établissement ou auprès de chaque recruteur. Les listes de pièces (${B.pieces.length} pièces types, ${B.modeles.length - 1} listes de départ) sont des points de départ. Questions d'entretien (${B.questions.length}), pistes et trames de lettre (${B.trames.length}) : textes originaux QME, base version ${B.version}. Ne note ici aucun mot de passe ni identifiant de connexion.</p></div>`;
@@ -1155,7 +1162,9 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.candidatures)) throw new Error();
         if (!confirm(`Remplacer tes candidatures actuelles par cette copie (${pluriel(d.candidatures.length, 'candidature')}) ?`)) return;
+        const vu = E.tutorielVu;
         E = normaliser(d); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); sel = null; rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de tes candidatures.'); }
     });
@@ -1177,6 +1186,39 @@
     const h = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
     telecharger(R.versIcs(evs, { nomNature }, h), 'text/calendar;charset=utf-8', `candidatures-echeances-${auj()}.ics`);
     toast(`${pluriel(evs.length, 'date')} exportée${evs.length > 1 ? 's' : ''} : ouvre le fichier pour l'ajouter à ton agenda.`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const rg = E.reglages;
+    const blocs = [
+      ['rose', 'Une fiche par candidature', `Formation, stage, alternance ou job étudiant&nbsp;: chaque fiche part d'une liste de pièces à adapter, que tu fais passer de <b>À faire</b> à <b>Prête</b> puis <b>Envoyée</b>. Recopie aussi les dates données par l'établissement ou le recruteur&nbsp;: date limite, entretien, réponse annoncée. Aucun calendrier officiel n'est intégré.`],
+      ['beurre', 'Envoie d\'abord le plus urgent', `Le <b>Tableau de bord</b> liste dans <b>À envoyer</b> les candidatures à préparer dont la date limite est passée ou tombe dans les ${rg.alerte}&nbsp;jours, la plus proche en premier, avec les pièces qui manquent encore. Il montre aussi les entretiens et les réponses des 14 prochains jours.`],
+      ['ciel', 'Tiens le statut à jour', `<b>À préparer</b>, <b>Envoyée</b>, <b>Entretien</b>, <b>Liste d'attente</b>, puis <b>Acceptée</b>, <b>Refusée</b> ou <b>Retirée</b>. Une relance est proposée quand la date de réponse annoncée est passée et, hors formation, ${rg.relance}&nbsp;jours après le dernier contact sans nouvelles. Après un entretien, c'est un remerciement. Un message prêt à copier t'aide à l'écrire.`],
+      ['sable', 'Classe tes vœux et prépare-toi', `Dans <b>Vœux</b>, range tes candidatures par ordre de préférence, type par type&nbsp;: tu sauras quoi choisir quand une réponse arrive. <b>Lettres et entretiens</b> t'aide à écrire une lettre de motivation sur une trame et à préparer les questions types avec tes notes.`],
+    ];
+    const corps = `
+      <p>L'application te dit quoi envoyer d'abord, qui relancer et quelles dates arrivent. Ton rôle&nbsp;: créer une fiche par candidature, y recopier les dates qu'on te donne et tenir son statut à jour.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Échéances</b> réunit toutes tes dates et s'ajoute à ton agenda (.ics). Les délais d'alerte et de relance se règlent dans les réglages. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes candidatures sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.candidatures.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="nouvelle">Ajouter ma première candidature</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'nouvelle') setTimeout(() => modaleNouvelle(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1260,7 +1302,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); sel = null; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; sel = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': lireAccueil2(); accueil.etape = 1; ecranAccueil(); break;
@@ -1275,6 +1317,7 @@
       case 'preparer': sousVue = el.dataset.sous || 'lettre'; changerVue('preparer', id); break;
       case 'sous-vue': sousVue = el.dataset.sous; rendre(); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

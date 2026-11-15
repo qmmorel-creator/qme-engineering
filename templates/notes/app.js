@@ -47,7 +47,8 @@
   const sim = { cible: '', objectif: '', coches: null };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const periode = (id) => E.periodes.find((p) => p.id === id);
   const annee = (id) => E.annees.find((a) => a.id === id);
@@ -437,6 +438,7 @@
     evolution: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18 9 11l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="6" r="2.5" fill="currentColor"/></svg>',
     releve: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l4 4v16H5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="8" y="10" width="8" height="2" fill="currentColor"/><rect x="8" y="14" width="8" height="2" fill="currentColor"/><path d="M5 2h6v6H5Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bilan', 'Bilan'], ['notes', 'Notes'], ['simulateur', 'Objectifs'], ['evolution', 'Évolution'], ['releve', 'Relevé']];
@@ -460,12 +462,13 @@
         <span class="titre-produit">Notes<br>et moyennes</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1077,6 +1080,8 @@
         <p class="mention">Taille : ${N(Math.round(t / 1000))} Ko sur 900 Ko permis (${pct} %)${pct >= 70 ? ' : exporte une copie, puis supprime les années anciennes.' : '.'}</p></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calcul des moyennes, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute tes notes à ton écran d'accueil pour saisir une note à la sortie du partiel et voir tout de suite ta moyenne.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Tes notes sont enregistrées en ligne, liées à ta clé, et ne sont ni lues ni partagées par QME. Aucun lien avec ton établissement, ton espace numérique de travail ou un logiciel de scolarité.</p></div>
@@ -1111,7 +1116,7 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.matieres) || !Array.isArray(donnees.notes)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.matieres.length, 'matière')}, ${pluriel(donnees.notes.length, 'note')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(donnees); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de Notes et moyennes.'); }
     });
@@ -1127,6 +1132,38 @@
   }
   const CSV = 'text/csv;charset=utf-8';
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `notes-moyennes-${auj()}.json`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Recopie ta maquette', `Chaque période (semestre, trimestre…) regroupe ses UE et ses matières, avec leurs coefficients ou leurs crédits ECTS. Les règles viennent de ton règlement des études&nbsp;: seuil de validation, compensation, note éliminatoire, rattrapage. Elles se règlent par période, avec le bouton <b>Règles</b> de l'onglet <b>Notes</b>.`],
+      ['beurre', 'Note chaque résultat', `Saisis une note comme sur ta copie («&nbsp;14,5&nbsp;», «&nbsp;7/10&nbsp;», «&nbsp;85&nbsp;%&nbsp;»), avec son coefficient. Une épreuve pas encore passée s'ajoute comme <b>prévue</b>&nbsp;: elle ne compte pas encore dans la moyenne. Une absence justifiée peut être neutralisée.`],
+      ['ciel', 'Les moyennes en cascade', `Une matière fait la moyenne de ses notes, pondérées par leur coefficient. Puis viennent l'UE, la période et l'année, pondérées par les coefficients ou les crédits. Une note de rattrapage remplace la première moyenne, ou ne compte que si elle est meilleure, selon la règle de la période.`],
+      ['sable', 'Quelle note te faut-il&nbsp;?', `L'onglet <b>Objectifs</b> cherche la plus petite note, la même à chaque épreuve prévue cochée, qui donne la moyenne que tu vises. Il te dit aussi quand l'objectif est déjà assuré, ou hors de portée.`],
+    ];
+    const corps = `
+      <p>L'outil calcule tes moyennes, tes crédits acquis et la note qu'il te faut aux prochaines épreuves, selon les règles que tu saisis. Ton rôle&nbsp;: recopier ta maquette, puis noter chaque résultat.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Bilan</b> montre la période choisie (moyennes, statuts, crédits acquis), <b>Évolution</b> ta moyenne au fil des notes, <b>Relevé</b> un relevé personnel à imprimer, sans valeur officielle. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && E.periodes.length && !E.matieres.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="matiere">Ajouter ma première matière</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'matiere') setTimeout(() => modaleMatiere(null, {}), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1205,7 +1242,7 @@
     const fermerPuis = (f) => { if (modale().open) { modale().close(); d2(f); } else f(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); sel.periode = ''; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; sel.periode = ''; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1213,6 +1250,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': fermerPuis(() => modaleEcranAccueil()); break;
+      case 'tutoriel': fermerPuis(() => modaleTutoriel()); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-notes': telecharger(R.csvNotes(E, B, NOMS_TYPES), CSV, `notes-${auj()}.csv`); break;

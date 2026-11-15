@@ -45,7 +45,9 @@
   const filtre = { domaine: '', q: '' };
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d);
+  // R.normaliser ne garde que les champs connus : tutorielVu (guide « Comment ça marche » déjà vu) est réinjecté ici.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: !!d?.tutorielVu });
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
     if (!annulation) return;
@@ -193,7 +195,7 @@
   // satisfaction pas encore saisie ce mois-ci, autonomie sans objectif, un accident du travail, des actions
   // faites et ouvertes dans les revues. Dates relatives à aujourd'hui.
   function donneesDemo() {
-    const e = R.etatVide();
+    const e = etatVide();
     e.entreprise = 'Exemple Services';
     e.profil = 'services';
     const ids = [...B.profils.find((p) => p.id === 'services').indicateurs, 'autonomie', 'retards', 'absenteisme', 'formation', 'accidents', 'reclamations'];
@@ -398,7 +400,7 @@
 
   function terminerAccueil() {
     if (!accueil.choisis.size) { toast('Coche au moins un indicateur.'); return; }
-    E = R.etatVide();
+    E = etatVide();
     E.entreprise = accueil.entreprise.trim();
     E.debutMois = accueil.debutMois;
     E.profil = accueil.profil;
@@ -419,6 +421,7 @@
     objectifs: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>',
     revue: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     imprimer: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="6" y="3" width="12" height="5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="9" width="18" height="8" fill="currentColor"/><rect x="7" y="14" width="10" height="7" fill="#fff" stroke="currentColor" stroke-width="2"/></svg>',
   };
@@ -468,12 +471,13 @@
         <span class="titre-produit">Pilotage<br>PME</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span><span class="court">${id === 'tableau' ? 'Bord' : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const saisieEnCours = () => document.activeElement?.matches?.('[data-saisie],[data-obj],textarea');
@@ -1043,6 +1047,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du tableau de bord, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application et consulter tes chiffres en déplacement.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Bibliothèque de ${B.indicateurs.length} indicateurs rédigée pour QME à partir de définitions de gestion courantes ; aucun ratio sectoriel de référence. Aucune connexion à une banque, une comptabilité ou un CRM : chaque chiffre se saisit ici. Outil de pilotage, pas un logiciel comptable ; le résultat comptable relève de ton expert-comptable.</p></div>`;
@@ -1063,7 +1069,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.indicateurs) || typeof d.saisies !== 'object') throw new Error();
         if (!confirm(`Remplacer ton tableau de bord actuel par cette copie (${pluriel(d.indicateurs.length, 'indicateur')}, ${pluriel(Object.keys(d.saisies || {}).length, 'mois saisi', 'mois saisis')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du tableau de bord.'); }
     });
@@ -1078,6 +1085,36 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `pilotage-pme-${aujIso()}.json`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Saisis le mois', `Dans <b>Saisie</b>, un chiffre par indicateur, hors taxes sauf mention contraire. Chaque valeur s'enregistre dès que tu quittes le champ, et les indicateurs calculés (taux de marge…) se mettent à jour seuls. Rien n'est relié à ta banque ni à ta comptabilité.`],
+      ['beurre', 'Fixe tes objectifs', `Dans <b>Objectifs</b>, un objectif par indicateur pour l'exercice, qui commence en ${R.MOIS[E.debutMois - 1]}. Un flux (chiffre d'affaires, heures…) se répartit sur 12 mois&nbsp;: à parts égales, selon l'année précédente ou mois par mois. Pour un taux ou un niveau, l'objectif est la cible de chaque mois. Aucun objectif n'est proposé d'office.`],
+      ['ciel', 'Atteint, à surveiller, en alerte', `Chaque indicateur se lit selon son sens (plus haut, plus bas ou au plus près de la cible). Il est <b>à surveiller</b> s'il manque son objectif de moins que sa tolérance, un pourcentage de l'objectif réglable dans ses seuils, et <b>en alerte</b> au-delà ou s'il franchit son plancher ou son plafond.`],
+      ['sable', 'Regarde la tendance', `La fiche d'un indicateur donne sa courbe sur 12 mois, le cumul de l'exercice, la tendance (moyenne des 3 derniers mois face aux 3 précédents), le même mois l'an dernier et, pour un flux, une projection de fin d'exercice.`],
+      ['rose', 'Fais le point chaque mois', `<b>Revue</b> rassemble les indicateurs, les faits marquants, les décisions et les actions, prête à imprimer ou à enregistrer en PDF. Une action pas encore faite revient dans les revues des mois suivants.`],
+    ];
+    const corps = `
+      <p>Le tableau de bord compare chaque mois tes chiffres à tes objectifs et signale ce qui s'en écarte. Ton rôle&nbsp;: saisir tes chiffres une fois par mois, fixer tes objectifs de l'année, puis faire le point.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Tableau de bord</b> montre d'abord les points d'attention, <b>Indicateurs</b> la définition et la formule de chacun, avec une bibliothèque pour en ajouter. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton tableau de bord est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const pied = `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1206,7 +1243,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); mois = R.moisParDefaut(E, moisCourant()); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; mois = R.moisParDefaut(E, moisCourant()); cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.entreprise = $('#entreprise')?.value ?? accueil.entreprise; accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1232,6 +1269,7 @@
       case 'csv-saisies': telecharger(R.versCsvSaisies(E), 'text/csv;charset=utf-8', `saisies-pilotage-${aujIso()}.csv`); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

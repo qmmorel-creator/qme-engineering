@@ -68,7 +68,7 @@
   let jourChoisi = null;
 
   const reglagesDefaut = () => ({ monNom: '', marge: 1, horizon: 7, delaiDecision: 7, intervalleRelance: 15, seuilBiblio: 30, seuilGo: B.seuils.go, seuilDiscuter: B.seuils.discuter });
-  const etatVide = () => ({ version: 1, reglages: reglagesDefaut(), criteres: copie(B.criteres), modeles: copie(B.modeles), biblio: [], consultations: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, reglages: reglagesDefaut(), criteres: copie(B.criteres), modeles: copie(B.modeles), biblio: [], consultations: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -404,8 +404,7 @@
     E.reglages.marge = accueil.marge;
     accueil = { monNom: '', marge: 1 };
     sauver();
-    demarrer();
-    setTimeout(() => modaleConsultation(), 250);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter la première consultation
   }
 
   // ---------- Rendu : application ----------
@@ -416,6 +415,7 @@
     bibliotheque: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="5" height="18" fill="currentColor"/><rect x="10" y="3" width="5" height="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M17 4.5 21 3.5 23 20.5 19 21.5Z" fill="currentColor"/></svg>',
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="13" height="4" fill="currentColor"/><rect x="3" y="16" width="7" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['echeances', 'Échéances'], ['veille', 'Veille'], ['dossiers', 'Dossiers'], ['bibliotheque', 'Pièces'], ['bilan', 'Bilan']];
@@ -431,12 +431,13 @@
         <span class="titre-produit">Appels d'offres<br>et candidatures</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1109,6 +1110,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label><button class="btn petit" type="button" data-action="exporter-csv">Exporter les consultations (CSV)</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des appels d'offres, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <p class="mention">Aucune connexion à une plateforme, à un profil d'acheteur ou à une messagerie : tu déposes et tu relances toi-même. Les modèles de pièces ne remplacent pas le règlement de la consultation, qui seul fait foi.</p>`;
@@ -1131,7 +1134,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.consultations)) throw new Error();
         if (!confirm(`Remplacer ton suivi actuel par cette copie (${pluriel(d.consultations.length, 'consultation')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi.'); }
     });
@@ -1144,6 +1148,41 @@
     a.download = nom;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const depot = r.marge > 0 ? `${pluriel(r.marge, 'jour')} avant la date limite` : 'le jour de la date limite';
+    const blocs = [
+      ['rose', 'Décide avant de t\'y mettre', `Chaque consultation repérée va dans <b>Veille</b>. La grille go/no-go note ${E.criteres.length} critères de 0 à 3, pondérés&nbsp;: à partir de ${r.seuilGo}&nbsp;%, go conseillé&nbsp;; sous ${r.seuilDiscuter}&nbsp;%, ou avec un critère éliminatoire à 0, no-go conseillé. C'est toi qui décides.`],
+      ['beurre', 'Un rétroplanning par dossier', `Au go, le dossier reçoit la liste de pièces de son modèle, à adapter au règlement de la consultation. Chaque pièce a une échéance&nbsp;: la date limite moins son délai, avancée au vendredi si elle tombe un week-end. Ton dépôt visé est fixé ${depot}.`],
+      ['ciel', 'Les échéances d\'abord', `<b>Échéances</b> montre les retards, puis ce qui arrive dans les ${pluriel(r.horizon, 'jour')}&nbsp;: décision à prendre (${pluriel(r.delaiDecision, 'jour')} avant la date limite), questions, pièces, dépôt, relance, fin de validité d'une offre.`],
+      ['sable', 'Après le dépôt', `Note le dépôt&nbsp;: une relance est prévue après le délai du type de consultation, puis ${pluriel(r.intervalleRelance, 'jour')} après chaque relance notée. Le résultat (gagnée, perdue avec son motif, sans suite) nourrit le <b>Bilan</b>&nbsp;: taux de go, taux de réussite, temps passé.`],
+      ['rose', 'Des pièces réutilisables', `<b>Pièces</b> garde tes références, CV et attestations avec leur date de validité. Une alerte prévient ${pluriel(r.seuilBiblio, 'jour')} avant l'expiration, ou si une pièce liée à un dossier expire avant sa date limite. L'outil garde l'emplacement, pas le fichier.`],
+    ];
+    const corps = `
+      <p>L'outil calcule ce qu'il faut faire et quand&nbsp;: décider, préparer chaque pièce, déposer, relancer. Ton rôle&nbsp;: noter les consultations repérées, puis faire avancer chaque dossier. Il ne se connecte à aucune plateforme&nbsp;: tu déposes toi-même.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Dossiers</b> regroupe toutes tes consultations, en cours ou terminées. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.consultations.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="consultation">Ajouter ma première consultation</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'consultation') setTimeout(() => modaleConsultation(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1254,13 +1293,14 @@
     const fermer = () => { if (modale().open) modale().close(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': fermer(); deconnecter(); break;
       case 'acc-marge': accueil.marge = Number(id); document.querySelectorAll('[data-action="acc-marge"]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === id))); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `appels-offres-${auj()}.json`, 'application/json'); break;
       case 'exporter-csv': telecharger(`﻿${R.csv(E.consultations, B, E.criteres)}`, `consultations-${auj()}.csv`, 'text/csv;charset=utf-8'); toast('Export CSV téléchargé (point-virgule, UTF-8).'); break;

@@ -42,7 +42,7 @@
   const ficheChoix = { personneId: '', type: 'remise' };
 
   const reglagesDefaut = () => ({ alertes: { ...B.alertes }, categories: Object.fromEntries(B.categories.map((c) => [c.id, { garantie: c.garantie, renouvellement: c.renouvellement }])) });
-  const etatVide = () => ({ version: 1, structure: '', demarre: false, reglages: reglagesDefaut(), materiels: [], personnes: [], affectations: [], licences: [] });
+  const etatVide = () => ({ version: 1, structure: '', demarre: false, tutorielVu: false, reglages: reglagesDefaut(), materiels: [], personnes: [], affectations: [], licences: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -405,8 +405,7 @@
       E.demarre = true;
       sauver();
       vue = 'materiel';
-      demarrer();
-      setTimeout(() => modaleMateriel(), 250);
+      demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter le premier matériel
     });
   }
 
@@ -433,6 +432,7 @@
     fiches: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="6" width="10" height="2" fill="currentColor"/><rect x="7" y="10" width="10" height="2" fill="currentColor"/><rect x="7" y="16" width="5" height="3" fill="currentColor"/></svg>',
     guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/><circle cx="8" cy="16" r="3" fill="#F5B400"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['alertes', 'Alertes'], ['materiel', 'Matériel'], ['personnes', 'Personnes'], ['licences', 'Licences'], ['fiches', 'Fiches']];
@@ -450,12 +450,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et rappel RGPD" title="Guide">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1164,6 +1165,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du parc, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, pied2('Enregistrer'), (f) => {
@@ -1182,7 +1185,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.materiels) || !Array.isArray(d.personnes)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.materiels.length, 'matériel')}, ${pluriel(d.personnes.length, 'personne')}) ?`)) return;
-        E = normaliser(d); delete E.majLe; E.demarre = true;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.demarre = true; E.tutorielVu = vu || E.tutorielVu === true;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1206,6 +1210,40 @@
     const liste = quoi === 'tout' ? E.materiels : listeMateriel();
     telecharger(R.csvInventaire(E, t, ctxCsv(), liste), `parc-inventaire-${t}.csv`, CSV);
     toast(`${pluriel(liste.length, 'matériel')} exporté${liste.length > 1 ? 's' : ''} (CSV, point-virgule).`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const a = A();
+    const blocs = [
+      ['rose', 'Inventorie ton matériel', `Ajoute chaque matériel avec sa catégorie, son numéro de série et sa date d'achat. La durée de garantie proposée dépend de la catégorie&nbsp;: la fin de garantie se calcule toute seule et une alerte arrive ${pluriel(a.garantie, 'jour')} avant. Un matériel qui ne sert plus passe en <b>Sorti du parc</b>, avec son historique.`],
+      ['beurre', 'Note chaque remise et chaque retour', `<b>Remettre du matériel</b> enregistre qui le reçoit, à quelle date et dans quel état. <b>Restituer</b> le remet en stock avec l'état constaté. L'onglet <b>Fiches</b> prépare la fiche de remise ou de restitution, à imprimer et à faire signer.`],
+      ['ciel', 'Anticipe les départs', `Indique la date de départ dans la fiche de la personne. ${pluriel(a.depart, 'jour')} avant, une alerte liste le matériel et les licences à récupérer&nbsp;; elle devient urgente si la date est passée et que tout n'est pas rendu. <b>Tout restituer</b> enregistre les retours et libère ses licences en une seule fois.`],
+      ['sable', 'Compte tes licences', `Pour chaque logiciel, note les postes achetés et attribue-les à des personnes ou à des postes. Plus d'attributions que de postes, ou une échéance dépassée, c'est urgent&nbsp;; le renouvellement est signalé ${pluriel(a.licence, 'jour')} avant l'échéance. <b>Renouvelée</b> repousse l'échéance d'un mois ou d'un an, selon le type.`],
+      ['rose', 'Traite les alertes', `L'onglet <b>Alertes</b> range tout en <b>Urgent</b>, <b>À prévoir</b> et <b>À surveiller</b>. S'y ajoutent les réparations de plus de ${pluriel(a.reparationLongue, 'jour')} et le matériel qui atteint la durée de renouvellement de sa catégorie. Touche une ligne pour agir.`],
+    ];
+    const corps = `
+      <p>Le parc tient pour toi la liste de ton matériel, de qui le détient et de tes licences, et te prévient quand il faut agir. Ton rôle&nbsp;: saisir le matériel, enregistrer chaque remise et chaque retour, puis traiter les alertes.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Personnes</b> montre qui détient quoi. Le <b>Guide</b>, à côté du bouton <b>?</b>, détaille les règles des alertes et le rappel sur les données des salariés (RGPD). ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton parc est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.materiels.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="materiel">Ajouter mon premier matériel</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'materiel') setTimeout(() => modaleMateriel(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1300,10 +1338,11 @@
     const fermer = () => { if (modale().open) modale().close(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': fermer(); deconnecter(); break;
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `parc-informatique-${auj()}.json`, 'application/json'); break;

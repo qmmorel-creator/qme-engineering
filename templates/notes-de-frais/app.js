@@ -52,8 +52,9 @@
   const filtre = { statut: 'tous', q: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, auj(), B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, auj(), B), tutorielVu: Boolean(d?.tutorielVu) });
   const unFrais = (id) => E.frais.find((x) => x.id === id);
   const unTrajet = (id) => E.trajets.find((x) => x.id === id);
   const vehicule = (id) => E.vehicules.find((x) => x.id === id);
@@ -408,6 +409,7 @@
     trajets: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 21H3Z" fill="currentColor"/></svg>',
     notes: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     droite: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -427,12 +429,13 @@
         <span class="titre-produit">Notes<br>de frais</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1142,6 +1145,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes des notes de frais, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Base intégrée : ${B.categories.filter((c) => !c.interne).length} catégories de frais, 3 types de véhicule, barème kilométrique fiscal (version ${B.version}) : ${esc(B.baremes[0].source)} Justificatifs : ${esc(MENTION_JUSTIF)} Outil d'aide : il ne remplace pas ton service comptable ni un professionnel.</p></div>`;
@@ -1162,7 +1167,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.frais) || !Array.isArray(d.trajets)) throw new Error();
         if (!confirm(`Remplacer tes notes de frais actuelles par cette copie (${pluriel(d.frais.length, 'frais', 'frais')}, ${pluriel(d.trajets.length, 'trajet')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide des notes de frais.'); }
     });
@@ -1187,6 +1192,39 @@
     setTimeout(() => { window.print(); }, 60);
   }
   window.addEventListener('afterprint', () => document.body.classList.remove('impression-note'));
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const delai = E.reglages.delaiRemboursement;
+    const blocs = [
+      ['rose', 'Chaque dépense, avec son justificatif', `Ajoute un frais dès que tu paies&nbsp;: date, catégorie, montant TTC, et la TVA si elle figure sur le reçu (l'outil ne la calcule jamais). Aucun fichier n'est stocké&nbsp;: indique si le justificatif est fourni et où il est rangé. Un frais sans justificatif est signalé tant qu'il n'est pas remboursé.`],
+      ['beurre', 'Les kilomètres au barème', `Pour un trajet avec ton véhicule, saisis le départ, l'arrivée et les kilomètres (aller simple, doublés si aller-retour). Le barème s'applique au total de l'année, véhicule par véhicule&nbsp;: chaque trajet est d'abord compté à un taux provisoire, et l'écart avec le montant exact devient une <b>régularisation</b> à ajouter en frais.`],
+      ['ciel', 'Une note par mois', `<b>Notes du mois</b> regroupe les frais et trajets du mois. Imprime-la ou enregistre-la en PDF, puis touche <b>Marquer soumise</b> quand tu l'envoies et <b>Marquer remboursée</b> quand l'argent arrive. Chaque élément passe ainsi de brouillon à soumis, puis à remboursé.`],
+      ['sable', 'Ce qui reste à faire', `L'<b>Aperçu</b> signale les mois passés encore en brouillon, les justificatifs à retrouver, et les notes soumises depuis plus de ${pluriel(delai, 'jour')} sans remboursement (délai réglable dans les réglages). Le barème de ton employeur ou de ton comptable fait foi.`],
+    ];
+    const corps = `
+      <p>L'outil additionne tes frais, calcule tes indemnités kilométriques et prépare la note de chaque mois. Ton rôle&nbsp;: saisir chaque dépense et chaque trajet, puis suivre leur remboursement.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Frais</b> liste toutes tes dépenses, avec des filtres par statut, <b>Kilomètres</b> tes véhicules et tes trajets de l'année. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.frais.length && !E.trajets.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="frais">Ajouter mon premier frais</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'frais') setTimeout(() => modaleFrais(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1264,7 +1302,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1272,6 +1310,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

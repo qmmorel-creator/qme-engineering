@@ -51,7 +51,7 @@
   const ui = Object.assign({ evtId: null, retroTout: false, resp: '', cat: '', rep: '', q: '', jour: 1 }, stock.lire(CLE_UI) || {});
   const memoUi = () => stock.ecrire(CLE_UI, { evtId: ui.evtId, retroTout: ui.retroTout });
 
-  const etatVide = () => ({ version: 1, structure: '', reglages: { convention: 'TTC' },
+  const etatVide = () => ({ version: 1, structure: '', tutorielVu: false, reglages: { convention: 'TTC' },
     evenements: [], taches: [], postes: [], prestataires: [], contrats: [], invites: [], conducteur: [], checklist: [] });
   const normaliser = (d) => {
     const v = etatVide();
@@ -480,6 +480,7 @@
     invites: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     jourj: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     coche: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
   };
@@ -497,13 +498,14 @@
         <span class="titre-produit">Pilote<br>événementiel</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span data-court="${COURTS[id]}">${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>
       <div id="impression" aria-hidden="true"></div>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1252,6 +1254,8 @@
       <div class="groupe"><h3>Base intégrée</h3><p class="aide">Rétroplannings, conducteurs, checklist et postes rédigés pour ce template : délais et horaires indicatifs, aucun prix de référence.</p></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du pilote, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1267,13 +1271,46 @@
         if (!Array.isArray(d.evenements) || !Array.isArray(d.taches)) throw new Error();
         if (!confirm(`Remplacer toutes tes données par cette copie (${pluriel(d.evenements.length, 'événement')}) ?`)) return;
         memo();
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); fait('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du pilote événementiel.'); }
     });
   }
   function exporter() {
     telecharger(new Blob([JSON.stringify(E, null, 2)], { type: 'application/json' }), `pilote-evenementiel-${auj()}.json`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const conv = E.reglages.convention;
+    const blocs = [
+      ['rose', 'Un rétroplanning calé sur la date', `Chaque tâche a une échéance relative à l'événement (J-45&nbsp;= 45 jours avant) ou une date fixe. Changer la date de l'événement décale toutes les échéances relatives. À 7 jours ou moins de son échéance, une tâche passe <b>Cette semaine</b>&nbsp;; une fois l'échéance dépassée, <b>En retard</b>. Coche-la quand elle est faite.`],
+      ['beurre', 'Prévu, engagé, payé', `Saisis ton prévu par poste. Seuls les contrats <b>Signés</b> comptent dans l'engagé, et seules les échéances marquées payées dans le payé. Un poste dont l'engagé dépasse le prévu est signalé, comme un engagé au-delà du budget cible. Les montants sont ceux que tu saisis (${conv}).`],
+      ['ciel', 'Les paiements à ne pas manquer', `Chaque contrat a son échéancier&nbsp;: acomptes et solde, avec leurs dates. Une échéance non payée remonte dans les alertes 14&nbsp;jours avant sa date, puis passe en retard. Touche <b>Payée</b> le jour du règlement. La part d'un contrat signé qui n'est dans aucune échéance est signalée «&nbsp;à planifier&nbsp;».`],
+      ['sable', 'Invités et jour J', `Note les réponses&nbsp;: les couverts à prévoir comptent les oui et les en attente. Le jour&nbsp;J, pointe les arrivées et suis le conducteur&nbsp;: la séquence en cours s'affiche, et deux séquences qui se chevauchent dans un même lieu sont signalées. Régimes et accessibilité sont des données sensibles&nbsp;: efface-les après l'événement, depuis les réglages.`],
+    ];
+    const corps = `
+      <p>Le pilote calcule pour toi les échéances, le budget engagé et les paiements à venir de chaque événement. Ton rôle&nbsp;: cocher les tâches faites, saisir tes contrats et leurs échéances, tenir la liste des invités.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Tableau de bord</b> réunit tous tes événements et les alertes, les plus urgentes d'abord. Le carnet des prestataires, dans <b>Budget</b>, est commun à tous les événements. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils, comme toute personne qui a la clé.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.evenements.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="evenement">Créer mon premier événement</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'evenement') setTimeout(() => modaleEvenement(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1356,7 +1393,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1365,6 +1402,7 @@
       case 'ouvrir-evt': ui.evtId = id; ui.jour = 1; memoUi(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

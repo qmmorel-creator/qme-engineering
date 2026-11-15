@@ -47,7 +47,9 @@
   let saisieRapide = { cible: '', tache: '', facturable: true };
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  // Les règles reconstruisent l'état champ par champ : le champ est réinjecté ici.
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: Boolean(d?.tutorielVu) });
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
     if (!annulation) return;
@@ -88,7 +90,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -394,7 +398,7 @@
 
   function terminerAccueil(sansMission) {
     const a = accueil;
-    E = R.normaliser({ activite: a.activite.trim(), tjm: a.tjm, heuresJour: a.heuresJour, coutHeure: a.coutHeure, semaineType: B.semaines.find((s) => s.id === a.semaine).heures });
+    E = normaliser({ activite: a.activite.trim(), tjm: a.tjm, heuresJour: a.heuresJour, coutHeure: a.coutHeure, semaineType: B.semaines.find((s) => s.id === a.semaine).heures });
     if (!sansMission && a.mission.nom.trim()) {
       const mo = B.modeles.find((x) => x.id === a.mission.modele);
       E.missions.push(R.normaliserMission({ nom: a.mission.nom.trim(), client: a.mission.client.trim(), mode: a.mission.mode, montant: a.mission.mode === 'forfait' ? a.mission.montant : null, taux: a.mission.mode === 'regie' ? a.mission.montant : null, uniteTaux: 'jour', budget: a.mission.budget, uniteBudget: 'jour', couleur: 0, debut: aujIso(), taches: mo.taches.map(([nom, categorie]) => ({ nom, categorie })) }));
@@ -414,6 +418,7 @@
     rentabilite: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="13" width="5" height="8" fill="currentColor"/><rect x="10" y="8" width="5" height="13" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="5" height="18" fill="currentColor"/></svg>',
     rapport: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     lecture: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 4v16l13-8Z" fill="currentColor"/></svg>',
     stop: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>',
@@ -457,13 +462,14 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom, court]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span><span class="court">${court}</span></button>`).join('')}</nav>
         <button class="chrono-barre" data-action="vue" data-vue="jour" hidden><i aria-hidden="true"></i><b></b></button>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
     demarrerTic();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const saisieEnCours = () => document.activeElement?.matches?.('input:not([type=checkbox]),textarea,select');
@@ -992,6 +998,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi du temps, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour lancer et arrêter le chronomètre d'un geste, comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. ${B.categories.length} catégories de tâches et ${B.modeles.length} modèles de missions rédigés pour QME ; aucun taux, barème ni tarif de marché intégré. Aucun lien avec un agenda, une banque ou un logiciel de facturation. Outil de gestion, pas un logiciel de facturation ni un conseil.</p></div>`;
@@ -1003,7 +1011,7 @@
       const st = Array.from({ length: 7 }, (_, i) => lu(`st${i}`) ?? 0);
       if (st.some((h) => h < 0 || h > 24)) return 'La semaine type : de 0 à 24 h par jour.';
       retenir();
-      E = R.normaliser({ ...E, activite: String(fd.get('activite') || '').trim(), tjm: lu('tjm'), heuresJour: lu('heuresJour'), coutHeure: lu('coutHeure'), seuilVigilance: lu('seuilVigilance'), derive: lu('derive'), objectifFacturable: lu('objectifFacturable'), arrondi: Number(fd.get('arrondi')), semaineType: st });
+      E = normaliser({ ...E, activite: String(fd.get('activite') || '').trim(), tjm: lu('tjm'), heuresJour: lu('heuresJour'), coutHeure: lu('coutHeure'), seuilVigilance: lu('seuilVigilance'), derive: lu('derive'), objectifFacturable: lu('objectifFacturable'), arrondi: Number(fd.get('arrondi')), semaineType: st });
       sauver(); rendre();
       toast('Réglages enregistrés.', { libelle: 'Annuler', faire: annuler });
     });
@@ -1014,7 +1022,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.missions) || !Array.isArray(d.entrees)) throw new Error();
         if (!confirm(`Remplacer ton suivi actuel par cette copie (${pluriel(d.missions.length, 'mission')}, ${pluriel(d.entrees.length, 'saisie')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; if (vu) E.tutorielVu = true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi du temps.'); }
     });
@@ -1030,6 +1038,43 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `suivi-temps-${aujIso()}.json`);
   const nomFichier = (s) => String(s || 'rapport').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const nbsp = (s) => s.replace(/ /g, '&nbsp;');
+    const cible = R.tauxCible(E), plancher = R.plancher(E);
+    const reperes = cible !== null
+      ? `Il est comparé à ton TJM cible de ${nbsp(R.euros(E.tjm))}, soit ${nbsp(tauxH(cible))} sur ${nbsp(String(R.heuresJour(E)).replace('.', ','))}&nbsp;h par jour${plancher !== null ? `, et à ton coût de revient de ${nbsp(tauxH(plancher))}` : ''}.`
+      : `Indique ton TJM cible dans les réglages pour le comparer${plancher !== null ? ` (ton coût de revient de ${nbsp(tauxH(plancher))} sert déjà de plancher)` : ''}.`;
+    const blocs = [
+      ['rose', 'Une mission, un prix', `Chaque mission est au <b>forfait</b> (un montant pour tout) ou en <b>régie</b> (un taux par jour ou par heure), avec un budget en jours ou en heures si tu en as un. Le temps interne (prospection, administratif, devis…) se saisit sans mission.`],
+      ['beurre', 'Saisis tout ton temps', `Lance le <b>chronomètre</b>, ou saisis une durée («&nbsp;1h30&nbsp;», «&nbsp;45&nbsp;min&nbsp;»). La case <b>Facturable</b> se coche selon la tâche choisie&nbsp;; le temps interne ne l'est pas.${E.arrondi ? ` À l'arrêt, le chronomètre arrondit aux ${E.arrondi}&nbsp;minutes les plus proches.` : ''}`],
+      ['ciel', 'Le taux réel', `Le taux réel d'une mission, c'est ce qu'elle rapporte divisé par toutes les heures passées dessus, facturables ou non. ${reperes}`],
+      ['sable', 'Le budget sous surveillance', `Une mission en cours qui a un budget passe <b>À surveiller</b> à ${nbsp(String(E.seuilVigilance).replace('.', ','))}&nbsp;% de son budget, quand le temps passé devance l'avancement de plus de ${nbsp(String(E.derive).replace('.', ','))}&nbsp;points, ou quand l'estimation à terminaison dépasse le budget. Au-delà de 100&nbsp;%, le budget est dépassé. Note l'avancement de tes missions pour garder cette estimation juste.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi ce que te rapporte vraiment chaque heure, mission par mission. Ton rôle&nbsp;: saisir tout ton temps, facturable ou non, au chronomètre ou à la main.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Semaine</b> montre ta feuille de temps, <b>Rentabilité</b> compare tes missions et ta part de temps facturable, <b>Rapport</b> prépare le détail du temps passé pour un client, à imprimer ou en CSV. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes temps sont enregistrés en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.missions.length && !E.entrees.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="mission">Créer ma première mission</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'mission') setTimeout(() => modaleMission(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1153,7 +1198,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); jourVu = aujIso(); missionVue = null; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; jourVu = aujIso(); missionVue = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': { const err = verifierAccueil(); if (err) { toast(err); break; } accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break; }
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1187,6 +1232,7 @@
       case 'csv-saisies': telecharger(R.versCsvEntrees(E, { du: rapportOpt.du || null, au: rapportOpt.au || null }, B.categories), 'text/csv;charset=utf-8', `saisies-temps-${rapportOpt.du || 'debut'}-${rapportOpt.au || aujIso()}.csv`); break;
       case 'csv-tout': telecharger(R.versCsvEntrees(E, {}, B.categories), 'text/csv;charset=utf-8', `saisies-temps-${aujIso()}.csv`); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

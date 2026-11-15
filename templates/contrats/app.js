@@ -87,7 +87,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
-        E = R.normaliser(corps.donnees);
+        const vu = E.tutorielVu;
+        E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -115,7 +117,7 @@
     try {
       const { statut, corps } = await appel('/donnees');
       if (statut === 200 && corps.donnees && corps.donnees.majLe !== session.base) {
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         cache(false);
         if (!modale().open) rendre();
@@ -162,11 +164,11 @@
   function chargerDepuisServeur(donnees) {
     const c = stock.lire(CLE_CACHE);
     if (c && c.code === session.code && c.nonEnvoye && (!donnees || c.base === donnees.majLe)) {
-      E = R.normaliser(c.etat); session.base = donnees?.majLe ?? null;
+      E = normaliser(c.etat); session.base = donnees?.majLe ?? null;
       demarrer(); envoyer();
       return;
     }
-    E = donnees ? R.normaliser(donnees) : null;
+    E = donnees ? normaliser(donnees) : null;
     session.base = donnees?.majLe ?? null;
     if (E && E.initialise) { cache(false); demarrer(); } else ecranAccueil();
   }
@@ -174,7 +176,7 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? R.normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
   }
@@ -194,7 +196,7 @@
   // tacites déjà intervenues (fibre), renégociations (portes, fibre), résiliation envoyée (télésurveillance),
   // contrat terminé (fontaines), paiement unique, date de fin à saisir (messagerie), décision « Renouveler ».
   function donneesDemo() {
-    const e = R.etatVide();
+    const e = etatVide();
     e.initialise = true;
     e.structure = 'Société Exemple';
     e.lettre = { adresse: '12 rue de l\'Exemple, 00000 Ville-Exemple', ville: 'Ville-Exemple', signataire: 'Camille Exemple', fonction: 'Office manager' };
@@ -237,7 +239,7 @@
     // Résiliations : une envoyée (fin le mois prochain), une terminée.
     R.resilier(e, par('Télésurveillance').id, { envoyeeLe: j(-40), mode: B.modesEnvoi[0], reference: 'RAR 1A 000 000 0001 2' }, j(-40), uid);
     R.resilier(e, par('Fontaines à eau').id, { envoyeeLe: j(-150), effetLe: j(-60), mode: B.modesEnvoi[2] }, j(-150), uid);
-    return R.normaliser(e);
+    return normaliser(e);
   }
 
   // ---------- Rendu : connexion ----------
@@ -352,7 +354,9 @@
       const s = String(v).trim();
       if (s && !(Number.isInteger(Number(s)) && Number(s) >= 0 && Number(s) <= 36)) { toast(`Préavis illisible pour « ${B.categories.find((c) => c.id === id)?.nom} » : un nombre de mois entre 0 et 36.`); return; }
     }
-    E = R.etatVide();
+    const vu = !!E?.tutorielVu;
+    E = etatVide();
+    E.tutorielVu = vu;
     E.initialise = true;
     E.structure = a.structure.trim();
     E.lettre.ville = a.ville.trim();
@@ -366,6 +370,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     tableau: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
     contrats: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="18" height="4" fill="currentColor"/></svg>',
@@ -375,6 +380,9 @@
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#E8B93A" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#B84A34" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#2E5A88" stroke="currentColor" stroke-width="2"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
+  // tutorielVu (guide « Comment ça marche » déjà vu) : propre à l'application, réinjecté après la normalisation.
+  function etatVide() { return { ...R.etatVide(), tutorielVu: false }; }
+  function normaliser(d) { return { ...R.normaliser(d), tutorielVu: !!d?.tutorielVu }; }
   const ONGLETS = [['tableau', 'Bord'], ['contrats', 'Contrats'], ['calendrier', 'Calendrier'], ['couts', 'Coûts'], ['historique', 'Historique']];
   const VUES = [...ONGLETS.map(([id]) => id), 'guide'];
   const AVERTISSEMENT = '<p class="mention avertissement">Outil d\'aide à l\'organisation : il ne remplace ni la lecture de tes contrats ni un conseil juridique. Les dates limites dépendent de ce que tu saisis (échéance, préavis, reconduction) ; vérifie-les dans les conditions générales et particulières de chaque contrat, qui priment.</p>';
@@ -398,12 +406,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et calculs" title="Guide et calculs">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1059,6 +1068,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des contrats, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, par exemple quand un commercial t'appelle pour renouveler.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Aucune règle légale de résiliation intégrée, sauf le repère sourcé sur les assurances (Code des assurances, art. L113-12, lu sur Légifrance le ${esc(R.sourceCategorie('assurances').consulte)}). Préavis par défaut : repères d'organisation, modifiables. Outil d'aide : il ne remplace ni la lecture de tes contrats ni un conseil juridique.</p></div>`;
@@ -1082,7 +1093,9 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.contrats)) throw new Error();
         if (!confirm(`Remplacer tes contrats actuels par cette copie (${pluriel(d.contrats.length, 'contrat')}) ?`)) return;
-        E = R.normaliser(d); E.initialise = true; delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); E.initialise = true; delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de tes contrats.'); }
     });
@@ -1097,6 +1110,39 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `contrats-${auj()}.json`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Saisis chaque contrat', `Le fournisseur, le montant et sa périodicité, la date de fin de la période en cours et le préavis. Sans préavis saisi, c'est celui de la catégorie qui compte&nbsp;: un repère par défaut, pas une règle. Avec une reconduction tacite, une échéance passée avance seule jusqu'à la prochaine, et chaque reconduction est notée dans l'historique.`],
+      ['beurre', 'L\'outil calcule la date limite', `Date limite de réception de ta résiliation = échéance moins préavis. L'envoi conseillé tombe ${pluriel(r.margeEnvoi, 'jour')} plus tôt, pour l'acheminement du courrier. Ces dates ne valent que ce que valent tes saisies&nbsp;: vérifie-les dans le contrat, qui prime.`],
+      ['ciel', 'Suis les alertes', `Sur la date d'envoi conseillée&nbsp;: <b>À anticiper</b> à J-${r.alerteLongue}, <b>À traiter</b> à J-${r.alerteCourte}, puis <b>Préavis dépassé</b>&nbsp;: le contrat sera reconduit et la prochaine date limite s'affiche. Le <b>Bord</b> les réunit, avec le coût annuel de tes contrats.`],
+      ['sable', 'Décide à temps', `Pour chaque alerte, choisis&nbsp;: <b>Renouveler</b> éteint l'alerte jusqu'à l'échéance suivante, <b>Renégocier</b> te laisse ensuite noter le nouveau montant et l'économie, <b>Résilier</b> prépare une lettre à adapter. Rien n'est envoyé par l'outil&nbsp;: note ensuite la date et le mode d'envoi.`],
+    ];
+    const corps = `
+      <p>L'outil fait avancer les reconductions, calcule la date limite pour résilier et te prévient à temps. Ton rôle&nbsp;: saisir tes contrats tels qu'ils sont écrits, puis décider quand une alerte arrive.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> liste les dates limites, <b>Coûts</b> le coût annuel par catégorie, <b>Historique</b> les décisions et économies. Le bouton <b>Guide et calculs</b> détaille chaque calcul. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes contrats sont enregistrés en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.contrats.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="contrat">Ajouter mon premier contrat</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'contrat') setTimeout(() => modaleContrat(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1174,7 +1220,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1182,6 +1228,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'filtre-vue': filtre.statut = el.dataset.statut; changerVue('contrats'); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'categories': modaleCategories(); break;
       case 'ajout-cat': ajouterCategorie(); break;
       case 'suppr-cat': supprimerCategorie(id); break;
@@ -1244,7 +1291,7 @@
     } catch {
       const c = stock.lire(CLE_CACHE);
       if (c && c.code === code && c.etat && c.jeton) {
-        E = R.normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
+        E = normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
         demarrer(); majSync('horsligne');
       } else ecranConnexion('Pas de connexion internet. Réessaie une fois en ligne.');
     }

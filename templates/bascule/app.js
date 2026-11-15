@@ -44,7 +44,7 @@
   const filtre = { journal: 'ouverts' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const bascule = (id) => E.bascules.find((b) => b.id === id);
   const etape = (id) => E.etapes.find((x) => x.id === id);
@@ -432,6 +432,7 @@
     equipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="currentColor"/><circle cx="17" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 21a6 6 0 0 1 12 0Z" fill="currentColor"/><path d="M14 21a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     bascules: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['direct', 'En direct'], ['deroule', 'Déroulé'], ['journal', 'Journal'], ['equipe', 'Équipe'], ['bascules', 'Bascules']];
@@ -458,12 +459,13 @@
         <span class="titre-produit">Journée de<br>bascule</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1223,6 +1225,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du pilotage, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le pilotage à ton écran d'accueil pour l'ouvrir comme une application pendant la bascule, en salle de crise ou sur le terrain.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Les bascules sont enregistrées en ligne, liées à ta clé, et ne sont ni lues ni partagées par QME. Pour l'équipe, un prénom et un rôle suffisent : aucune coordonnée n'est demandée. Efface les noms quand tu n'en as plus besoin.</p></div>
@@ -1243,7 +1247,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.bascules) || !Array.isArray(donnees.etapes)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.bascules.length, 'bascule')}, ${pluriel(donnees.etapes.length, 'étape')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du pilotage de bascule.'); }
     });
@@ -1259,6 +1264,40 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `pilotage-bascule-${auj()}.json`);
   const exporterCsv = () => { const b = choisie(); if (b) telecharger(R.csvDeroule(E, B, synth(b)), 'text/csv;charset=utf-8', `deroule-${R.plat(b.nom).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}-${auj()}.csv`); };
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Prépare le déroulé', `Dans <b>Déroulé</b>, chaque étape a une durée et un responsable, et commence quand la précédente finit (ou après les étapes que tu choisis). Les heures prévues s'enchaînent depuis l'heure de début. Indique la fin de la fenêtre&nbsp;: l'heure où tout doit être fini, ou revenu en arrière.`],
+      ['beurre', 'Pilote en direct', `Le jour J, dans <b>En direct</b>, touche <b>Démarrer</b> puis <b>Terminé</b> à chaque étape, ou <b>Bloqué</b> si ça coince. Chaque heure réelle recalcule la fin estimée et la marge&nbsp;: une étape pas encore commencée ne peut plus démarrer avant maintenant, donc le retard se reporte sur la suite. Une alerte part au-delà de ${r.toleranceMinutes}&nbsp;min de retard.`],
+      ['ciel', 'Décide aux points go/no-go', `Un point go/no-go a ses critères à cocher. Une alerte te prévient ${r.alerteMinutes}&nbsp;min avant une décision dont des critères ne sont pas cochés. <b>Décider</b> enregistre GO ou NO-GO, avec l'heure et le décideur&nbsp;; un NO-GO peut lancer le retour arrière.`],
+      ['sable', 'Garde un retour arrière possible', `Le plan de retour arrière regroupe les étapes de la phase du même nom. Sauf limite saisie, il faut le décider au plus tard à la fin de la fenêtre moins la durée de ce plan&nbsp;; une alerte part ${r.margeRetourMinutes}&nbsp;min avant cette limite. Une fois lancé, il devient le déroulé à suivre.`],
+    ];
+    const corps = `
+      <p>L'outil recalcule en continu l'heure de fin de ta bascule et la marge qui te reste. Ton rôle&nbsp;: préparer le déroulé, puis, le jour J, noter le début et la fin de chaque étape au moment où elle se fait.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Journal</b> garde les incidents et la chronologie, <b>Équipe</b> dit qui fait quoi, <b>Bascules</b> permet de dupliquer une bascule en reprenant ses durées réelles. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes bascules sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const b = choisie();
+    const premiere = auto && b && !etapesB(b.id).length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="etape">Ajouter ma première étape</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'etape') setTimeout(() => modaleEtape(null, ''), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1336,7 +1375,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); courante = ''; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; courante = ''; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1344,6 +1383,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

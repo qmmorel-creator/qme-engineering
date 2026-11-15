@@ -51,7 +51,7 @@
   const filtre = { cat: 'toutes', faites: false, q: '', piece: 'toutes', devis: 'devis' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B, auj());
+  const etatVide = () => ({ ...R.etatVide(B, auj()), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, auj(), B);
 
   function retenir() { annulation = structuredClone(E); }
@@ -416,6 +416,7 @@
     devis: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     budget: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     coche: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m5 12 5 5 9-10" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     loupe: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="m15 15 6 6" stroke="currentColor" stroke-width="2.5"/></svg>',
@@ -435,12 +436,13 @@
         <span class="titre-produit">Déménagement</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1049,6 +1051,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du déménagement, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, pratique le jour J pour pointer les cartons.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Base intégrée version ${B.version}, rédigée pour QME : ${B.taches.length} tâches types en ${B.categories.length} catégories, ${B.meubles.length} meubles avec un volume indicatif, ${B.postes.length} postes de budget. Aucune démarche datée ni délai légal chiffré : les délais qui dépendent des textes renvoient à ton bail, à tes contrats ou à service-public.fr. Volumes : ordres de grandeur, pas une mesure. Aucun déménageur, aucun fournisseur ni aucune administration n'est connecté.</p></div>`;
@@ -1074,7 +1078,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.taches) || !Array.isArray(d.cartons)) throw new Error();
         if (!confirm(`Remplacer ton déménagement actuel par cette copie (${pluriel(d.taches.length, 'tâche')}, ${pluriel(d.cartons.length, 'carton')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de ton déménagement.'); }
     });
@@ -1098,6 +1103,35 @@
     try { await navigator.clipboard.writeText(texte); toast('Inventaire copié : colle-le dans ta demande de devis.'); } catch {
       ouvrirModale('Inventaire pour les devis', `<p class="aide">Sélectionne le texte et copie-le.</p><textarea class="texte-copie" rows="14" readonly>${esc(texte)}</textarea>`, '<button class="btn primaire" value="ok">Fermer</button>');
     }
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const carton = String(B.volumeCarton).replace('.', ',');
+    const blocs = [
+      ['rose', 'Tout part du jour J', `La checklist reprend les tâches types qui correspondent à ta situation (locataire ou propriétaire, déménageur ou par tes moyens, enfants, animaux, véhicule). Chaque échéance se compte depuis le jour J, actuellement le ${dateLongue(E.date)}&nbsp;: si la date change, les échéances suivent. Changer ta situation dans les réglages ajoute ou retire les tâches qui vont avec.`],
+      ['beurre', 'Coche au fil des semaines', `Le <b>Tableau de bord</b> montre les tâches en retard puis celles des 7 prochains jours. Coche une tâche quand elle est faite&nbsp;; si elle ne te concerne pas, passe-la en <b>S.&nbsp;O.</b> (sans objet)&nbsp;: elle sort du compte. La progression compte les tâches faites sur celles qui restent applicables.`],
+      ['ciel', 'Numérote tes cartons', `Ajoute chaque carton en le fermant&nbsp;: son numéro suit tout seul, avec sa pièce d'arrivée et son contenu. Il passe ensuite <b>Fermé</b>, <b>Arrivé</b>, puis <b>Déballé</b>. La recherche «&nbsp;Dans quel carton est…&nbsp;» retrouve un objet. Après le jour J, les cartons pas encore pointés «&nbsp;arrivé&nbsp;» sont signalés.`],
+      ['sable', 'Compare les devis, suis le budget', `Le volume estimé additionne tes meubles, tes cartons à ${carton}&nbsp;m³ chacun et une marge de ${E.volume.marge}&nbsp;%. Chaque devis reporté affiche son prix au m³ et ses prestations incluses. Retenir un devis inscrit son montant sur la ligne «&nbsp;Déménageur&nbsp;» du budget, qui suit le prévu, le réel et le payé.`],
+    ];
+    const corps = `
+      <p>L'outil cale ta checklist sur la date du déménagement et suit tes cartons, tes devis et ton budget. Ton rôle&nbsp;: cocher les tâches au fil des semaines, noter chaque carton et reporter les devis reçus.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Cartons</b> imprime aussi les étiquettes et la liste, <b>Devis et volume</b> copie ton inventaire pour demander des devis sur la même base. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1176,7 +1210,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.situation = lireSituation($('#situation-accueil')); accueil.etape = 1; ecranAccueil(); break;
@@ -1185,6 +1219,7 @@
       case 'voir-piece': filtre.piece = el.dataset.piece || 'sans'; filtre.q = ''; changerVue('cartons'); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-taches': exporterCsv('taches'); break;

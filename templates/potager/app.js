@@ -45,7 +45,7 @@
   const filtre = { op: pref.op || '', famille: '', type: '', anCal: null, anParc: null, anJ: null, toutJ: false };
   let annulation = null;
 
-  const etatVide = (codes, nb) => R.etatVide(B, codes, nb);
+  const etatVide = (codes, nb) => ({ ...R.etatVide(B, codes, nb), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const trouver = (l, id) => (E[l] || []).find((x) => x.id === id);
   const culture = (id) => R.cultureDe(E, id);
@@ -97,7 +97,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -395,6 +397,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     semaine: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor"/></svg>',
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="9" height="4" rx="1.5" fill="currentColor"/><rect x="7" y="11" width="12" height="4" rx="1.5" fill="currentColor"/><rect x="13" y="17" width="9" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     parcelles: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/></svg>',
@@ -426,12 +429,13 @@
         <span class="titre-produit">Calendrier<br>du potager</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -864,6 +868,8 @@
         <div class="rang-champs"><label class="champ">Retirer le journal avant le<input id="purge" type="date"></label><button class="btn petit" type="button" data-action="purger" style="align-self:flex-end">Retirer</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calendrier, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le calendrier à ton écran d'accueil pour l'ouvrir comme une application, au jardin.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Base intégrée : ${B.legumes.length} légumes avec leur nom latin et leur famille botanique (classification APG IV), connaissance botanique générale. Aucune période de semis, de plantation ou de récolte et aucune association ne sont fournies : la seule source publique française trouvée (fiche d'une direction régionale de l'agriculture, consultée le 14/11/2026) n'indiquait pas clairement une licence de réutilisation ; les fenêtres et les voisins sont donc les tiens. Aucune météo, aucun service externe, aucune connexion à une autre application.</p></div>`;
@@ -880,7 +886,9 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.cultures) || !Array.isArray(donnees.journal)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.cultures.length, 'culture')}) ?`)) return;
+        const vu = E.tutorielVu;
         E = normaliser(donnees); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du calendrier du potager.'); }
     });
@@ -907,6 +915,48 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `potager-${auj()}.json`);
   const CSV = 'text/csv;charset=utf-8';
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const decalage = r.decalage ? ` (actuellement ${r.decalage > 0 ? '+' : '−'}${pluriel(Math.abs(r.decalage), 'semaine')})` : '';
+    const rotation = r.rotation > 1 ? `les ${r.rotation} années précédentes` : 'l\'année précédente';
+    const blocs = [
+      ['rose', 'Note les fenêtres de tes cultures', `Dans <b>Cultures</b>, chaque culture a jusqu'à quatre fenêtres, par quinzaine&nbsp;: semis sous abri, semis en pleine terre, plantation, récolte. L'outil ne fournit aucune date&nbsp;: recopie celles de tes sachets ou de ton carnet. Le décalage en semaines des réglages avance ou retarde toutes tes dates d'un coup${decalage}.`],
+      ['beurre', 'Regarde ce qu\'il y a à faire', `L'onglet <b>Cette semaine</b> liste les fenêtres ouvertes du lundi au dimanche et prévient quand il ne reste qu'une semaine ou moins pour semer ou planter. Il montre aussi ce qui s'ouvre plus tard ce mois-ci et le mois prochain. Le nombre de semis et de plantations à faire s'affiche sur l'onglet.`],
+      ['ciel', 'Note au journal ce que tu fais', `Un semis, une plantation ou un repiquage noté pendant sa fenêtre la marque <b>Fait</b>. Une fenêtre de semis ou de plantation finie depuis moins de 3 semaines sans rien de noté remonte dans <b>Fenêtres passées</b>. Les récoltes, avec leur quantité, font le bilan de la saison dans <b>Journal</b>, comparé à l'année d'avant.`],
+      ['sable', 'Fais tourner les familles', `Dans <b>Parcelles</b>, place chaque année tes cultures sur tes planches. L'outil signale une culture de la même famille botanique que ce qui a poussé au même endroit ${rotation}, et deux cultures que tu as notées «&nbsp;à éloigner&nbsp;» sur la même parcelle.`],
+    ];
+    const corps = `
+      <p>Le calendrier te dit chaque semaine quoi semer, planter et récolter, d'après les dates que tu lui donnes. Ton rôle&nbsp;: noter les fenêtres de tes cultures, puis noter au journal ce que tu fais.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> dessine la frise de l'année, par quinzaine, et s'imprime. L'outil ne tient pas compte de la météo&nbsp;: fie-toi aussi à ton sol et au temps qu'il fait. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton potager est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Potager tout juste créé : cultures cochées mais sans fenêtre, ou aucune culture.
+    const sansFenetre = auto && !E.journal.length && !E.cultures.some(R.aDesFenetres);
+    const premiere = sansFenetre && [...E.cultures].sort((x, y) => x.nom.localeCompare(y.nom, 'fr'))[0];
+    const pied = !sansFenetre
+      ? `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`
+      : premiere
+        ? '<button class="btn primaire" value="fenetres">Saisir mes premières fenêtres</button><button class="btn" value="ok">Fermer</button>'
+        : '<button class="btn primaire" value="culture">Ajouter ma première culture</button><button class="btn" value="ok">Fermer</button>';
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'fenetres') setTimeout(() => { if (vue !== 'cultures') changerVue('cultures'); modaleCulture(premiere.id); }, 0);
+      if (choix === 'culture') setTimeout(() => { if (vue !== 'cultures') changerVue('cultures'); modaleCulture(null); }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -984,13 +1034,14 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

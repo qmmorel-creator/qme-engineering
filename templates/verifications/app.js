@@ -45,6 +45,11 @@
   const equipement = (id) => E.equipements.find((e) => e.id === id);
   const nomSite = (id) => site(id)?.nom || 'Site supprimé';
 
+  // État vide et normalisation : ceux de regles.js, plus « guide déjà vu » (tutorielVu), que la normalisation
+  // champ par champ de regles.js ne connaît pas.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: !!d?.tutorielVu });
+
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
     if (!annulation) return;
@@ -85,7 +90,7 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -113,7 +118,7 @@
     try {
       const { statut, corps } = await appel('/donnees');
       if (statut === 200 && corps.donnees && corps.donnees.majLe !== session.base) {
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         cache(false);
         if (!modale().open) rendre();
@@ -160,11 +165,11 @@
   function chargerDepuisServeur(donnees) {
     const c = stock.lire(CLE_CACHE);
     if (c && c.code === session.code && c.nonEnvoye && (!donnees || c.base === donnees.majLe)) {
-      E = R.normaliser(c.etat); session.base = donnees?.majLe ?? null;
+      E = normaliser(c.etat); session.base = donnees?.majLe ?? null;
       demarrer(); envoyer();
       return;
     }
-    E = donnees ? R.normaliser(donnees) : null;
+    E = donnees ? normaliser(donnees) : null;
     session.base = donnees?.majLe ?? null;
     if (E && E.sites.length) { cache(false); demarrer(); } else ecranAccueil();
   }
@@ -172,7 +177,7 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? R.normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
   }
@@ -192,7 +197,7 @@
   // délai de 2 ans appliqué (électricité du siège), périodicité saisie (rayonnages), équipement hors service,
   // rapport défavorable avec observation « danger », observations en retard, levées avec preuve.
   function donneesDemo() {
-    const e = R.etatVide();
+    const e = etatVide();
     e.structure = 'Services Exemple';
     const t = auj();
     const j = (n) => ajout(t, n);
@@ -261,7 +266,7 @@
     obs(9, v(9), [['Usure du flexible de levage : à remplacer', 'majeure', m(-3, 26), 'Responsable logistique', m(-3, 12), 'Bon de commande pièces CE-0919']]);
     obs(17, v(17), [['Plan d\'évacuation à mettre à jour après le réaménagement', 'mineure', j(30), 'Services généraux']]);
     obs(19, v(19), [['Déclencheur manuel du couloir masqué par du mobilier', 'majeure', m(-9, 15), 'Services généraux', m(-9, 3), 'Photo et consigne affichée le jour même']]);
-    return R.normaliser(e);
+    return normaliser(e);
   }
 
   // ---------- Rendu : connexion ----------
@@ -378,7 +383,7 @@
 
   function terminerAccueil() {
     const a = accueil;
-    E = R.etatVide();
+    E = etatVide();
     E.structure = a.structure.trim();
     const s = R.normaliserSite({ id: uid(), nom: a.site.trim() || 'Site principal', adresse: a.adresse, type: a.typeSite });
     E.sites.push(s);
@@ -400,6 +405,7 @@
     registre: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V11A10 10 0 0 1 13 21Z" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 3h16v18H4z" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="7" width="8" height="2" fill="currentColor"/><rect x="8" y="11" width="8" height="2" fill="currentColor"/><circle cx="12" cy="17" r="1.6" fill="#B84A34"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#E8B93A" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#B84A34" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#2E5A88" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Bord'], ['equipements', 'Équipements'], ['observations', 'Observations'], ['calendrier', 'Calendrier'], ['registre', 'Registre']];
@@ -432,12 +438,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et sources" title="Guide et sources">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1003,6 +1010,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des vérifications, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application pendant une visite de site ou le passage d'un organisme.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Périodicités : ${esc(B.source.titre)}, ${esc(B.source.edition)}, consultée le ${esc(B.source.consulte)} ; à revérifier à chaque nouvelle édition. Pas de stockage de fichiers : les rapports et preuves restent dans ton espace documentaire, l'outil en garde la référence et le lien. Outil d'aide : il ne remplace ni un organisme agréé ni la réglementation.</p></div>`;
@@ -1025,7 +1034,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.sites) || !Array.isArray(d.equipements)) throw new Error();
         if (!confirm(`Remplacer ton registre actuel par cette copie (${pluriel(d.sites.length, 'site')}, ${pluriel(d.equipements.length, 'équipement')}) ?`)) return;
-        E = R.normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du registre.'); }
     });
@@ -1040,6 +1050,39 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `verifications-${auj()}.json`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Range tes équipements par site', `Chaque équipement appartient à un site et à un type de contrôle. Sa périodicité vient de la brochure INRS ED 828, avec la page citée&nbsp;; pour un «&nbsp;Autre contrôle&nbsp;», c'est toi qui la saisis, et une périodicité saisie passe toujours en premier. Indique la date du dernier rapport connu&nbsp;: l'échéance se calcule.`],
+      ['beurre', 'Note chaque vérification', `Avec <b>Vérification faite</b>, note la date, l'organisme, la référence du rapport et le résultat&nbsp;: sans observation, avec observations ou défavorable. La prochaine échéance est la date de cette vérification plus la périodicité, sauf si le rapport fixe une autre date.`],
+      ['ciel', 'Surveille les échéances', `Un contrôle passe <b>À prévoir</b> ${pluriel(r.alerteJours, 'jour')} avant son échéance (au plus le tiers de la périodicité pour les contrôles fréquents), puis <b>En retard</b> le lendemain de l'échéance. Sans date, il reste <b>Date à renseigner</b>. Le <b>Bord</b> rassemble ces alertes.`],
+      ['sable', 'Lève les observations', `Chaque observation a une gravité, avec un délai de levée proposé&nbsp;: ${r.levee.danger}&nbsp;jours pour un danger, ${r.levee.majeure} pour une majeure, ${r.levee.mineure} pour une mineure. Pour la lever, note la date et une preuve (référence ou lien). Installations électriques&nbsp;: le délai de 2 ans s'applique si tu le coches et si le dernier rapport est sans observation, ou si ses observations ont toutes été levées avant l'échéance annuelle.`],
+    ];
+    const corps = `
+      <p>L'outil calcule l'échéance de chaque contrôle et tient le registre de tes vérifications. Ton rôle&nbsp;: renseigner le dernier rapport de chaque équipement, puis noter chaque vérification et lever ses observations.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> montre les échéances des douze prochains mois, <b>Registre</b> le registre à imprimer site par site. Le bouton <b>Guide et sources</b> de l'en-tête détaille les sources. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton registre est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.equipements.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="equipement">Ajouter mon premier équipement</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'equipement') setTimeout(() => modaleEquipement(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1117,7 +1160,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1126,6 +1169,7 @@
       case 'voir-site': filtre.site = id; filtre.statut = 'tous'; changerVue('equipements'); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-registre': telecharger(R.versCsvRegistre(E, auj(), vue === 'registre' ? filtre.registre : ''), 'text/csv;charset=utf-8', `registre-verifications-${auj()}.csv`); break;
@@ -1176,7 +1220,7 @@
     } catch {
       const c = stock.lire(CLE_CACHE);
       if (c && c.code === code && c.etat && c.jeton) {
-        E = R.normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
+        E = normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
         demarrer(); majSync('horsligne');
       } else ecranConnexion('Pas de connexion internet. Réessaie une fois en ligne.');
     }

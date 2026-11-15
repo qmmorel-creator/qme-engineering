@@ -51,8 +51,9 @@
   let periodeOcc = 4;
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
-  const normaliser = (d) => R.normaliser(d, auj(), DEFAUTS);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, auj(), DEFAUTS), tutorielVu: Boolean(d?.tutorielVu) });
   const resa = (id) => E.reservations.find((r) => r.id === id);
   const ressource = (id) => E.ressources.find((x) => x.id === id);
   const actives = () => E.ressources.filter((x) => !x.archive);
@@ -101,7 +102,9 @@
   function fusionnerAvecServeur(donnees) {
     const { etat, refusees } = R.rejouer(normaliser(donnees), ops);
     const perdues = autresModifs;
+    const vu = E?.tutorielVu || donnees?.tutorielVu; // guide déjà vu sur l'un des deux appareils
     E = etat;
+    E.tutorielVu = Boolean(vu);
     session.base = donnees.majLe;
     return { refusees, perdues };
   }
@@ -440,6 +443,7 @@
     liste: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 20H3Z" fill="currentColor"/></svg>',
     occupation: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="9" width="4" height="12" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['maintenant', 'Maintenant'], ['jour', 'Jour'], ['semaine', 'Semaine'], ['liste', 'Réservations'], ['occupation', 'Occupation']];
@@ -456,12 +460,13 @@
         <span class="titre-produit">Salles<br>et bureaux</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, ressources et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (ops.length || autresModifs ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1035,6 +1040,8 @@
       <div class="groupe"><h3>Partager avec l'équipe</h3><p class="aide">Transmets la clé aux personnes qui réservent (de vive voix ou par ta messagerie habituelle) : chacune la saisit une fois sur <b>qm-engineering.fr/templates/salles/</b>. Pas de compte, pas de droits différents : tout le monde peut réserver, modifier et supprimer.</p></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planning, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Les réservations et les noms saisis sont enregistrés en ligne, liés à la clé, et ne sont ni lus ni partagés par QME. L'organisation qui utilise l'outil est responsable des noms saisis : garde le minimum et efface ce qui ne sert plus.</p></div>
@@ -1063,7 +1070,7 @@
         if (!Array.isArray(d.reservations) || !Array.isArray(d.ressources)) throw new Error();
         if (!confirm(`Remplacer toutes les données (pour toute l'équipe) par cette copie (${pluriel(d.ressources.length, 'ressource')}, ${pluriel(d.reservations.length, 'réservation')}) ?`)) return;
         retenir();
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         ops = []; autresModifs = true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.', { libelle: 'Annuler', faire: annuler });
       } catch { toast('Ce fichier n\'est pas une copie valide du planning.'); }
@@ -1094,6 +1101,40 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `salles-${auj()}.json`);
   const exporterCsv = () => telecharger(R.versCsv(E), 'text/csv;charset=utf-8', `reservations-salles-${auj()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const g = E.reglages;
+    const limites = [g.dureeMax ? `${R.texteDuree(g.dureeMax)} au plus par réservation` : '', g.avanceMax ? `${pluriel(g.avanceMax, 'jour')} à l'avance au plus` : ''].filter(Boolean).join(', ');
+    const blocs = [
+      ['rose', 'Une clé, tout le monde réserve', `Partage la clé avec les personnes qui réservent&nbsp;: chacun voit le même planning, sans compte. Ton nom, saisi une fois sur cet appareil, est pré-rempli à chaque réservation et retrouve les tiennes.`],
+      ['beurre', 'Jamais deux réservations en même temps', `Une ressource ne peut pas être réservée deux fois sur le même créneau&nbsp;: le conflit est refusé, avec le nom de qui l'occupe. Si deux appareils réservent le même créneau au même moment, la première réservation enregistrée l'emporte et l'autre est prévenue.`],
+      ['ciel', 'Les règles du lieu', `Réservations de ${g.ouverture} à ${g.fermeture}, les jours ouverts${g.feries ? ', hors jours fériés' : ''}, par créneaux de ${g.pas}&nbsp;minutes${limites ? `, ${limites}` : ''}. Une salle n'accepte pas plus de personnes que sa capacité. Tout se règle dans les réglages.`],
+      ['sable', 'Maintenant, en un geste', `<b>Maintenant</b> montre ce qui est libre, ce qui est pris et jusqu'à quand. Prends une ressource libre tout de suite en un geste, ou libère la tienne avant l'heure. Une réservation peut se répéter chaque semaine, le même jour.`],
+    ];
+    const corps = `
+      <p>Le planning montre à tout moment ce qui est libre et refuse toute réservation qui en chevauche une autre. Ton rôle&nbsp;: réserver tes créneaux, et libérer ce que tu n'utilises plus.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Jour</b> et <b>Semaine</b> montrent le planning heure par heure, <b>Occupation</b> la part des heures d'ouverture réservées. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Les réservations sont enregistrées en ligne avec la clé&nbsp;: toute personne qui l\'a peut réserver, modifier ou supprimer.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && actives().length && !E.reservations.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="reserver">Faire ma première réservation</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'reserver') setTimeout(() => modaleReservation(null, {}), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   const appareil = () => {
@@ -1170,7 +1211,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-ressource': if (accueil.ressources.length < R.MAX_RESSOURCES) { accueil.ressources.push(ligneRessourceVide(el.dataset.type)); ecranAccueil(); } break;
       case 'accueil-suivant': accueilSuivant(); break;
@@ -1179,6 +1220,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

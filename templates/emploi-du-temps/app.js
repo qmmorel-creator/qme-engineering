@@ -48,8 +48,9 @@
   let C = { liste: [], parSeance: new Map() }; // conflits, recalculés à chaque rendu
   let SEM = []; // semaines de l'année
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu (guide « Comment ça marche » déjà vu) est gardé tel quel par R.normaliser.
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  const normaliser = (d) => ({ tutorielVu: false, ...R.normaliser(d, B) });
   const trouver = (l, id) => (E[l] || []).find((x) => x.id === id);
   const groupe = (id) => trouver('groupes', id);
   const formateur = (id) => trouver('formateurs', id);
@@ -437,6 +438,7 @@
     ressources: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="currentColor"/><circle cx="17" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 21a6 6 0 0 1 12 0Z" fill="currentColor"/><path d="M14 21a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="5" width="18" height="5" rx="2" fill="currentColor"/><circle cx="12" cy="15.5" r="2.5" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['planning', 'Planning'], ['conflits', 'Conflits'], ['heures', 'Heures'], ['ressources', 'Ressources'], ['calendrier', 'Calendrier']];
@@ -458,12 +460,13 @@
         <span class="titre-produit">Emploi<br>du temps</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1063,6 +1066,8 @@
         <div class="rang-champs"><label class="champ">Retirer les séances avant le<input id="purge" type="date"></label><button class="btn petit" type="button" data-action="purger" style="align-self:flex-end">Retirer</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'emploi du temps, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute l'emploi du temps à ton écran d'accueil pour l'ouvrir comme une application, entre deux cours ou à l'accueil.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention avertissement-rgpd">L'emploi du temps est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. N'y mets que le nom (ou le prénom et l'initiale) des formateurs et le nom des groupes : <b>aucun nom d'apprenant</b>, l'effectif suffit. Les absences se notent sans motif. Informe les formateurs que leur planning est tenu ici et efface ce qui ne sert plus en fin d'année.</p></div>
@@ -1080,7 +1085,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.seances) || !Array.isArray(donnees.groupes)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.groupes.length, 'groupe')}, ${pluriel(donnees.seances.length, 'séance')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de l\'emploi du temps.'); }
     });
@@ -1111,6 +1117,38 @@
   function csvSemaine() { const res = ressourceCourante(); const opt = { debut: plan.lundi, fin: R.ajout(plan.lundi, 6) }; if (res && vue === 'planning') Object.assign(opt, { type: plan.type, id: res.id }); telecharger(R.csvSeances(E, opt), CSV, `seances-${res && vue === 'planning' ? `${nomFichier(res.nom)}-` : ''}${plan.lundi}.csv`); }
   const csvAnnee = () => telecharger(R.csvSeances(E, { debut: E.reglages.debut || '0000-01-01', fin: E.reglages.fin || '9999-12-31' }), CSV, `seances-annee-${auj()}.csv`);
   const csvHeures = () => telecharger(R.csvHeures(E, maintenant()), CSV, `heures-${auj()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'D\'abord les ressources', `Dans <b>Ressources</b>&nbsp;: les groupes avec leur effectif, les formateurs (quota d'heures, indisponibilités, absences), les salles (capacité, équipements) et les modules. Un module appartient à un groupe et a un volume d'heures prévu.`],
+      ['beurre', 'Place les séances', `Dans <b>Planning</b>, choisis un groupe, un formateur ou une salle, puis place les séances sur la grille de la semaine. Une semaine prête se recopie avec <b>Dupliquer la semaine</b>${E.reglages.alternance ? ', sur les semaines A ou B si tu veux' : ''}&nbsp;: les jours fériés et les fermetures sont sautés.`],
+      ['ciel', 'Les conflits se calculent seuls', `<b>Bloquant</b>&nbsp;: un formateur, une salle ou un groupe pris deux fois en même temps, ou une séance un jour fermé. <b>À vérifier</b>&nbsp;: salle trop petite ou sans l'équipement demandé, formateur indisponible, volume ou quota dépassé. <b>Incomplet</b>&nbsp;: séance sans formateur ou sans salle. Tout est listé dans <b>Conflits</b>.`],
+      ['sable', 'Les heures suivent', `<b>Heures</b> compare, pour chaque module et chaque formateur, le réalisé (séances passées), le placé (toutes les séances non annulées) et le prévu (volume du module ou quota du formateur).`],
+    ];
+    const corps = `
+      <p>L'outil vérifie ton emploi du temps à chaque modification et signale les conflits. Il ne place rien à ta place&nbsp;: ton rôle, décrire tes ressources puis placer les séances sur la grille.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> règle l'année, les créneaux de la journée, les jours fériés et les fermetures. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton emploi du temps est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.groupes.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="groupe">Ajouter mon premier groupe</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'groupe') setTimeout(() => modaleGroupe(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1194,7 +1232,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1202,6 +1240,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-semaine': csvSemaine(); break;

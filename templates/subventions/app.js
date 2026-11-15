@@ -57,8 +57,9 @@
   let anneeVue = Number(auj().slice(0, 4));
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B.reglages);
-  const normaliser = (d) => R.normaliser(d, auj(), B);
+  // R.normaliser ne garde que les champs connus : tutorielVu (guide « Comment ça marche » déjà vu) est réinjecté ici.
+  const etatVide = () => ({ ...R.etatVide(B.reglages), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, auj(), B), tutorielVu: !!d?.tutorielVu });
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -383,6 +384,7 @@
     projets: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="5" height="9" fill="currentColor"/><rect x="10" y="6" width="5" height="15" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     financeurs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const COURTS = { tableau: 'Accueil', financeurs: 'Financeurs' };
@@ -399,12 +401,13 @@
         <span class="titre-produit">Subventions</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const ONGLET_DE = { dossier: 'dossiers', projet: 'projets' };
@@ -1145,6 +1148,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span>. Partage-la avec les membres du bureau qui suivent les dossiers.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des subventions, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application : pratique pour noter un versement ou vérifier une pièce en réunion.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Sources et à propos</h3><p class="mention">Rappels réglementaires : ${B.sources.map((s) => `fiche « ${esc(s.titre)} » de ${esc(s.editeur)}, vérifiée par l'administration le ${esc(s.verifiePar)}, consultée par QME le ${dateLongue(s.consulte)} : <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url.replace('https://', ''))}</a>`).join(' ; ')}. Indicatifs, pas un conseil juridique : la convention ou l'arrêté d'attribution prévaut. Aucun calendrier de financeur, aucun montant de dispositif ni aucun appel à projets n'est intégré : ils changent chaque année et se saisissent dossier par dossier. Pièces types : liste de pièces souvent demandées, à ajuster selon chaque financeur. Base intégrée version ${B.version}.</p></div>`;
@@ -1161,7 +1166,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.dossiers) || !Array.isArray(d.financeurs)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.dossiers.length, 'dossier')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de tes subventions.'); }
     });
@@ -1178,6 +1184,43 @@
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `subventions-${auj()}.json`);
   const exporterCsv = () => telecharger(R.versCsv(E, B, auj()), 'text/csv;charset=utf-8', `subventions-dossiers-${auj()}.csv`);
   const exporterCsvDepenses = () => telecharger(R.versCsvDepenses(E), 'text/csv;charset=utf-8', `subventions-depenses-${auj()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const g = E.reglages, rg = B.regles;
+    const rappels = g.rappels
+      ? `Pour un financeur public, l'application rappelle la convention attendue au-delà de ${euros(rg.convention.seuil)} accordés et, pour une aide affectée à une action, le compte rendu financier à rendre dans les ${rg.compteRendu.mois}&nbsp;mois suivant la fin de l'exercice. Le tableau de bord signale aussi quand les subventions publiques reçues sur l'exercice approchent ${euros(rg.comptesAnnuels.seuil)} (comptes annuels obligatoires au-delà).`
+      : 'Les rappels réglementaires des subventions publiques (convention, compte rendu financier, comptes annuels) sont désactivés&nbsp;: tu peux les rétablir dans les réglages.';
+    const blocs = [
+      ['rose', 'Un dossier par financeur', `Chaque dossier relie un projet et un financeur, avec le montant demandé et la date limite de dépôt lue dans l'appel à projets. Il reçoit une liste de pièces, selon que le financeur est public ou privé&nbsp;: coche-les au fur et à mesure.`],
+      ['beurre', 'Il avance d\'étape en étape', `En préparation, déposé, puis accordé ou refusé. Sans date de réponse saisie, une relance est proposée ${pluriel(g.relanceReponse, 'jour')} après le dépôt. Une fois accordé, note les versements prévus et coche-les à réception&nbsp;: le reste à percevoir se calcule.`],
+      ['ciel', 'Les échéances d\'abord', `<b>Échéances</b> réunit dépôts, réponses, versements, bilans et conventions&nbsp;: les retards en premier, puis ce qui arrive dans les ${pluriel(g.alerte, 'jour')} (un bilan est signalé au moins 45&nbsp;jours avant). Les dates viennent de tes dossiers.`],
+      ['sable', 'Les rappels réglementaires', rappels],
+      ['rose', 'Le bilan se prépare', `Note les dépenses de chaque projet et coche leur justificatif quand il est rangé. Le bilan d'un dossier additionne les dépenses qui lui sont imputées&nbsp;; sans imputation, il estime la part du financeur d'après le budget prévu du projet. Un dossier accordé, versé et dont le bilan est rendu passe en «&nbsp;Clos&nbsp;».`],
+    ];
+    const corps = `
+      <p>L'application te prévient avant chaque échéance de tes demandes de subvention et prépare le bilan à partir de tes dépenses. Ton rôle&nbsp;: créer un dossier par financeur sollicité et y noter les dates et les montants. Rien n'est envoyé aux financeurs.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Projets</b> porte le budget prévu et les dépenses de chaque action, <b>Financeurs</b> tes interlocuteurs. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: les membres du bureau qui la saisissent suivent les mêmes dossiers.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.dossiers.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="dossier">Ajouter mon premier dossier</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'dossier') setTimeout(() => modaleDossier(null, { projet: E.projets[0]?.id }), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1255,7 +1298,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
@@ -1264,6 +1307,7 @@
       case 'annee': anneeVue = Number(el.dataset.annee); rendre(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

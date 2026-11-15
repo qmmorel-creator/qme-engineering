@@ -58,7 +58,7 @@
   let annulation = null;
 
   const profilVide = () => ({ nom: '', enseigne: '', activite: '', email: '', telephone: '', site: '', signature: '', prefixe: 'P', validiteJours: 30, relanceJours: 7, tauxTva: null, conditions: '' });
-  const etatVide = () => ({ version: 1, trame: null, profil: profilVide(), blocs: [], propositions: [], compteurs: {} });
+  const etatVide = () => ({ version: 1, tutorielVu: false, trame: null, profil: profilVide(), blocs: [], propositions: [], compteurs: {} });
   const tableau = (x) => (Array.isArray(x) ? x : []);
   const normaliserProposition = (p) => ({
     titre: '', trame: 'autre', client: {}, validiteJours: 30, debut: '', contexte: '', notes: '', conditions: '', statut: 'brouillon',
@@ -162,7 +162,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false); rendre();
         toast('Un autre appareil a modifié tes propositions entre-temps : sa version est affichée. Refais ta dernière modification si elle manque.');
@@ -441,6 +443,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     propositions: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
     suivi: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="13" width="4" height="8" fill="currentColor"/><rect x="10" y="8" width="4" height="13" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     bibliotheque: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
@@ -468,12 +471,13 @@
         <span class="titre-produit">Propositions<br>commerciales</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1002,6 +1006,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes des propositions commerciales, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="aide-champ">Propositions commerciales QME. Trames et blocs types rédigés pour QME, sans donnée datée ni règle légale : prix hors taxes, mentions obligatoires dans le devis.</p></div>`;
@@ -1013,7 +1019,9 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.propositions) || !d.profil) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.propositions.length, 'proposition')}) ?`)) return;
+        const vu = E.tutorielVu;
         E = normaliser(d); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide des propositions commerciales.'); }
     });
@@ -1025,6 +1033,39 @@
     a.download = `propositions-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const pr = E.profil;
+    const blocs = [
+      ['rose', 'Pars de la trame de ton métier', `Chaque nouvelle proposition démarre, selon la trame choisie, avec des questions de contexte, des livrables, des étapes de planning et trois options types, sans prix. Tout se modifie. Son numéro est attribué seul, et <b>Dupliquer</b> repart d'une proposition existante.`],
+      ['beurre', 'Chiffre tes options', `Trois niveaux (bon, mieux, premium) laissent le client choisir. La <b>Complétude</b> liste ce qui manque encore&nbsp;; l'aperçu s'imprime ou s'enregistre en PDF. Les notes internes ne sont jamais imprimées.`],
+      ['ciel', 'Relance au bon moment', `Clique <b>Marquer comme envoyée</b> une fois la proposition partie. Sans nouvelles, elle passe <b>À relancer</b> ${pluriel(relanceJours(), 'jour')} après l'envoi ou la dernière relance, et <b>Validité dépassée</b> à la fin de sa validité (${pluriel(pr.validiteJours || 30, 'jour')} après sa date, par défaut). Le message de relance se copie&nbsp;: rien n'est envoyé à ta place.`],
+      ['sable', 'Note la réponse', `Acceptée (avec l'option retenue), refusée (avec son motif) ou sans suite. L'onglet <b>Suivi</b> en tire ton taux de transformation, en nombre et en valeur, ton délai de réponse moyen et les options préférées de tes clients, sur 12 mois.`],
+    ];
+    const corps = `
+      <p>L'outil met tes propositions en page, les numérote et te dit quand relancer. Ton rôle&nbsp;: compléter chaque proposition, chiffrer ses options, puis noter l'envoi et la réponse du client.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Bibliothèque</b> garde tes blocs réutilisables (présentation, méthode, références), <b>Profil</b> ton identité et tes valeurs par défaut. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes propositions sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.propositions.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="nouvelle">Créer ma première proposition</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'nouvelle') setTimeout(() => modaleNouvelle(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1194,7 +1235,7 @@
     const p = E ? uneProp(ouverte) : null;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); changerVue('propositions'); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); changerVue('propositions'); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'trame-accueil': accueil.trame = id; ecranAccueil(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
@@ -1206,6 +1247,7 @@
       }
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

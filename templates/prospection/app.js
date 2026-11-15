@@ -61,7 +61,7 @@
   let periode = '90';
 
   const reglagesDefaut = () => ({ monPrenom: '', monActivite: '', cadenceDefaut: 'premier', conservationMois: B.rgpd.conservationMois, delaiAction: 7 });
-  const etatVide = () => ({ version: 1, reglages: reglagesDefaut(), scripts: copie(B.scripts), cadences: copie(B.cadences), prospects: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, reglages: reglagesDefaut(), scripts: copie(B.scripts), cadences: copie(B.cadences), prospects: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -110,7 +110,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -352,8 +354,7 @@
     E.reglages.cadenceDefaut = accueil.cadence;
     accueil = { monPrenom: '', monActivite: '', cadence: 'premier' };
     sauver();
-    demarrer();
-    setTimeout(() => modaleProspect(), 250);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter le premier prospect
   }
 
   // Frise d'une cadence : J0, J+3, J+7… (cumul des délais).
@@ -370,6 +371,7 @@
     scripts: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     chiffres: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="13" height="4" fill="currentColor"/><rect x="3" y="16" width="7" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['aujourdhui', 'Aujourd\'hui'], ['pipeline', 'Pipeline'], ['prospects', 'Prospects'], ['scripts', 'Scripts'], ['chiffres', 'Chiffres']];
@@ -385,12 +387,13 @@
         <span class="titre-produit">Pipeline<br>de prospection</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1034,6 +1037,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <p class="mention">Aucune automatisation : l'application n'envoie aucun message et ne se connecte à aucun réseau. Repères RGPD : onglet Prospects.</p>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du pipeline, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1050,7 +1055,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.prospects)) throw new Error();
         if (!confirm(`Remplacer ton pipeline actuel par cette copie (${pluriel(d.prospects.length, 'prospect')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; if (vu) E.tutorielVu = true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du pipeline.'); }
     });
@@ -1063,6 +1068,41 @@
     a.download = `pipeline-prospection-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const nomCadence = (id) => E.cadences.find((c) => c.id === id)?.nom;
+    const suivi = nomCadence('suivi');
+    const blocs = [
+      ['rose', 'Une cadence par prospect', `Chaque nouveau prospect suit une cadence de relance, par défaut «&nbsp;${esc(nomCadence(r.cadenceDefaut) || '')}&nbsp;»&nbsp;: une suite de messages, chacun prévu un nombre de jours fixé après le précédent. Tu choisis la date du premier message. Les cadences se modifient dans l'onglet <b>Scripts</b>.`],
+      ['beurre', 'Relance le jour venu', `<b>Aujourd'hui</b> liste les relances dues, y compris celles en retard. <b>Préparer</b> remplit le script avec la fiche du prospect&nbsp;: tu le copies et tu l'envoies toi-même, l'application n'envoie rien. Touche ensuite <b>Envoyé</b>&nbsp;: la relance suivante se calcule. Tu peux aussi reporter à demain ou à une date.`],
+      ['ciel', 'Les étapes pilotent les relances', `<b>A répondu</b> fait passer en échange un prospect qui n'avait pas encore répondu, avec une prochaine action 2&nbsp;jours plus tard. En échange ou en rendez-vous, la cadence s'arrête&nbsp;: la prochaine action tombe ${r.delaiAction}&nbsp;jour${r.delaiAction > 1 ? 's' : ''} après le changement d'étape. ${suivi ? `Une proposition démarre la cadence «&nbsp;${esc(suivi)}&nbsp;». ` : ''}Gagné et Perdu arrêtent tout. Une cadence finie sans réponse remonte dans Aujourd'hui&nbsp;: recontacte plus tard ou classe en perdu.`],
+      ['sable', 'Des données sous contrôle', `Note seulement des informations professionnelles utiles. Le bouton <b>Opposition</b> d'une fiche arrête toute relance et ne garde que le nom, l'organisation et la date, pour ne pas recontacter la personne. Un prospect sans contact venant de lui depuis ${r.conservationMois}&nbsp;mois est signalé <b>À revoir</b> dans l'onglet Prospects.`],
+    ];
+    const corps = `
+      <p>Le pipeline calcule pour toi la date de chaque relance et prépare le message. Ton rôle&nbsp;: ajouter tes prospects, envoyer toi-même les messages, puis noter ce qui s'est passé.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Pipeline</b> range tes prospects par étape, <b>Chiffres</b> montre les taux de réponse, de rendez-vous et de gain, par étape et par canal. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.prospects.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="prospect">Ajouter mon premier prospect</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'prospect') setTimeout(() => modaleProspect(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1182,12 +1222,13 @@
     const fermer = () => { if (modale().open) modale().close(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': fermer(); deconnecter(); break;
       case 'acc-cadence': accueil.cadence = id; document.querySelectorAll('[data-action="acc-cadence"]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === id))); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

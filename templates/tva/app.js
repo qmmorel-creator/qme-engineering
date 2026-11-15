@@ -48,7 +48,7 @@
   let annulation = null;
   let BL = [], ECH = [], CTL = [], CTL_OP = new Map(); // recalculés à chaque rendu
 
-  const etatVide = () => R.etatVide(B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const trouverOp = (id) => E.operations.find((o) => o.id === id);
   function sauverPref() { stock.ecrire(CLE_PREF, { echeances: filtre.echeances }); }
@@ -93,7 +93,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -400,6 +402,7 @@
     controles: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 21H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['synthese', 'Synthèse'], ['operations', 'Opérations'], ['periodes', 'Périodes'], ['echeances', 'Échéances'], ['controles', 'Contrôles']];
   const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><rect x="0" y="40" width="26" height="56" rx="6" fill="#1D4E89"/><rect x="34" y="16" width="26" height="80" rx="6" fill="#F5B400"/><circle cx="80" cy="22" r="16" fill="#D9302A"/></svg>';
@@ -419,13 +422,14 @@
         <span class="titre-produit">Suivi<br>de TVA</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>
       <footer class="pied-app"><p><b>Outil d'aide au suivi de la TVA</b>, pas un conseil fiscal : il ne remplace ni ton expert-comptable ni les déclarations officielles. Taux et échéances vérifiés le ${dC(B.verifieLe)}, modifiables dans les réglages.</p></footer>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function calculer() {
@@ -922,6 +926,8 @@
         <div class="rang-champs"><label class="champ">Retirer les opérations avant le<input id="purge" type="date"></label><button class="btn petit" type="button" data-action="purger" style="align-self:flex-end">Retirer</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi de TVA, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le suivi de TVA à ton écran d'accueil pour l'ouvrir comme une application, et saisir un ticket ou une facture sur le moment.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données</h3><p class="mention">Le suivi est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. Il contient des montants et des libellés : n'y mets pas de données personnelles de tes clients au-delà de leur nom commercial.</p></div>
@@ -939,7 +945,9 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.operations) || !donnees.reglages) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.operations.length, 'opération')}) ?`)) return;
+        const vu = E.tutorielVu;
         E = normaliser(donnees); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi de TVA.'); }
     });
@@ -999,6 +1007,43 @@
   const CSV = 'text/csv;charset=utf-8';
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `suivi-tva-${auj()}.json`);
   const MODELE_CSV = R.versCsv([['Date', 'Type', 'Libellé', 'Pièce', 'Montant HT', 'Taux (%)', 'TVA', 'Montant TTC'], ['2026-11-03', 'Vente', 'Prestation client', 'F-0001', 1000, 20, 200, 1200], ['2026-11-05', 'Achat', 'Fournitures', 'A-001', '', 20, '', 60], ['2026-11-10', 'Immobilisation', 'Ordinateur', 'A-002', 900, 20, '', '']]);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const simp = r.regime === 'simplifie';
+    const echeances = simp
+      ? `Au réel simplifié, deux acomptes (${pct(r.acompte1Pct).replace(' ', '&nbsp;')} et ${pct(r.acompte2Pct).replace(' ', '&nbsp;')} de la TVA de référence) puis une déclaration annuelle CA12.`
+      : `${r.regime === 'mensuel' ? 'Chaque mois' : 'Chaque trimestre'}, une déclaration CA3 à déposer et payer le ${r.jourEcheance} du mois qui suit la période.`;
+    const blocs = [
+      ['rose', 'Saisis tes opérations', `Une <b>vente</b> porte de la TVA collectée&nbsp;; un <b>achat</b>, des <b>frais</b> ou une <b>immobilisation</b>, de la TVA déductible. Saisis le montant HT ou TTC&nbsp;: la TVA est calculée au centime avec le taux choisi. Tu peux la corriger pour suivre la facture, l'écart reste alors signalé.`],
+      ['beurre', 'Chaque période fait son bilan', `TVA collectée, moins TVA déductible, moins le crédit reporté de la période précédente${simp ? ', moins les acomptes versés' : ''}&nbsp;: c'est ce qui reste à payer. Si la déductible l'emporte, la différence devient un crédit reporté sur la période suivante. Ton régime actuel&nbsp;: <b>${esc(NOM_REGIME[r.regime])}</b>.`],
+      ['ciel', 'Pointe tes échéances', `${echeances} Une date qui tombe un week-end ou un jour férié passe au jour ouvrable suivant. Dans <b>Échéances</b>, marque chaque déclaration <b>Déclarée</b> puis <b>Payée</b>&nbsp;: une échéance passée sans pointage passe <b>En retard</b>.`],
+      ['sable', 'Contrôle avant de déclarer', `L'onglet <b>Contrôles</b> signale une TVA différente de HT × taux (au-delà de ${eur(r.tolerance).replace(' ', '&nbsp;')} d'écart), un taux absent de ta liste, une opération saisie après la déclaration de sa période, une déclaration non pointée ou un crédit qui dure. Les points <b>À corriger</b> s'affichent en nombre sur l'onglet.`],
+    ];
+    const corps = `
+      <p>Le suivi calcule pour toi la TVA de chaque période et ce qui reste à payer, et rappelle tes échéances. Ton rôle&nbsp;: saisir tes opérations, puis pointer chaque déclaration une fois faite.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Synthèse</b> résume la période en cours et la prochaine échéance, <b>Périodes</b> donne le détail par taux. Régime, taux et échéances se modifient dans les réglages. C'est un outil d'aide au suivi&nbsp;: il ne transmet rien à l'administration. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton suivi est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.operations.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="operation">Ajouter ma première opération</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'operation') setTimeout(() => modaleOperation(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1077,13 +1122,14 @@
     const fermer = () => { if (modale().open) modale().close(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': fermer(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'regime': fermer(); modaleRegime(); break;
       case 'defauts': valeursParDefaut(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;

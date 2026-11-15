@@ -53,7 +53,7 @@
   const reglagesDefaut = () => ({ alerteJours: B.alerteJours, alerteKm: B.alerteKm, releveAncienJours: B.releveAncienJours,
     ctPremierMois: B.ct.premierMois, ctPeriodiqueMois: B.ct.periodiqueMois, ctPollutionMois: B.ct.pollutionMois, designationJours: B.designation.jours });
   const COLLECTIONS = ['vehicules', 'conducteurs', 'releves', 'entretiens', 'controles', 'reservations', 'sinistres', 'amendes', 'depenses'];
-  const etatVide = () => ({ version: 1, structure: '', reglages: reglagesDefaut(), ...Object.fromEntries(COLLECTIONS.map((c) => [c, []])) });
+  const etatVide = () => ({ version: 1, structure: '', tutorielVu: false, reglages: reglagesDefaut(), ...Object.fromEntries(COLLECTIONS.map((c) => [c, []])) });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -446,6 +446,7 @@
     couts: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 3h16v18H4z" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="7" width="8" height="2" fill="currentColor"/><rect x="8" y="11" width="8" height="2" fill="currentColor"/><circle cx="12" cy="17" r="1.6" fill="#D9302A"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bord', 'Alertes'], ['vehicules', 'Véhicules'], ['reservations', 'Réservations'], ['incidents', 'Incidents'], ['couts', 'Coûts']];
@@ -465,12 +466,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et sources" title="Guide et sources">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1216,6 +1218,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="csv-vehicules">Synthèse véhicules (CSV)</button><button class="btn petit" type="button" data-action="csv-couts">Journal des coûts (CSV)</button><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la gestion de flotte, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, PIED_NOUVEAU('Enregistrer'), (f) => {
@@ -1231,7 +1235,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.vehicules)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.vehicules.length, 'véhicule')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = E.tutorielVu || vu;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1246,6 +1251,40 @@
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  const duree = (m) => (m % 12 === 0 ? pluriel(m / 12, 'an') : `${m}&nbsp;mois`);
+
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const pollution = r.ctPollutionMois > 0 ? ` Pour un utilitaire (N1) qui n'en est pas exempté, un contrôle pollution s'ajoute ${duree(r.ctPollutionMois)} après chaque contrôle périodique.` : '';
+    const blocs = [
+      ['rose', 'Le kilométrage pilote tout', `Note un <b>Relevé km</b> de temps en temps&nbsp;: les entretiens et les retours de réservation comptent aussi. Le rythme des 12 derniers mois sert à estimer quand une échéance en km sera atteinte. Sans relevé depuis ${pluriel(r.releveAncienJours, 'jour')}, une alerte te le rappelle.`],
+      ['beurre', 'Entretien&nbsp;: km ou date, le premier atteint', `Chaque véhicule reçoit un plan d'entretien indicatif selon son énergie&nbsp;: adapte-le au carnet du constructeur, qui fait foi. Chaque opération revient après un nombre de km ou de mois depuis la dernière fois où elle a été faite. Quand c'est fait, touche <b>Entretien fait</b> et coche les opérations.`],
+      ['ciel', 'Contrôle technique calculé', `Premier contrôle au plus tard ${duree(r.ctPremierMois)} après la 1re mise en circulation, puis tous les ${duree(r.ctPeriodiqueMois)} après le dernier contrôle périodique.${pollution} Une contre-visite reste suivie jusqu'à sa date limite.`],
+      ['sable', 'Les alertes d\'abord', `<b>Alertes</b> montre les retards, puis ce qui arrive dans les ${pluriel(r.alerteJours, 'jour')} ou ${km(r.alerteKm).replace(' km', '&nbsp;km')}. On y trouve aussi les amendes dont le conducteur est à désigner (dans les ${r.designationJours}&nbsp;jours suivant l'avis), les sinistres en cours, les locations qui dépassent leur kilométrage et les retours à saisir. Touche une ligne pour ouvrir le dossier.`],
+      ['rose', 'Réserver sans conflit', `Une réservation qui chevauche une autre sur le même véhicule, ou pour le même conducteur, est refusée. Au retour, saisis le kilométrage&nbsp;: il met à jour les échéances. Pour une amende, le conducteur est proposé d'après le planning.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi les échéances de chaque véhicule et son coût. Ton rôle&nbsp;: tenir le kilométrage à jour et noter ce qui se passe (entretiens, contrôles, sorties, incidents, dépenses).</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Incidents</b> regroupe amendes et sinistres, <b>Coûts</b> le coût total et le coût au km de chaque véhicule (amendes hors total), <b>Guide</b> les sources officielles. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const pied = `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1333,7 +1372,7 @@
     const ferme = () => { if (modale().open) modale().close(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); ficheId = null; rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); ficheId = null; rendre(); } break;
       case 'deconnexion': ferme(); deconnecter(); break;
       case 'vue': ferme(); if (el.dataset.vue === 'vehicules') ficheId = null; changerVue(el.dataset.vue); break;
       case 'aller-vehicules': changerVue('vehicules'); break;
@@ -1341,6 +1380,7 @@
       case 'fiche': ferme(); ouvrirFiche(id); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `gestion-flotte-${auj()}.json`, 'application/json'); break;
       case 'csv-vehicules': telecharger(R.csvVehicules(E, B, auj()), `flotte-vehicules-${auj()}.csv`, 'text/csv;charset=utf-8'); toast('Synthèse exportée (CSV, point-virgule).'); break;

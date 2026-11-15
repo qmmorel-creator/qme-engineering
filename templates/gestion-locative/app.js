@@ -43,8 +43,9 @@
   let anneeVue = null;
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
-  const normaliser = (d) => R.normaliser(d, auj(), DEFAUTS);
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
+  // R.normaliser ne garde que les champs connus : on y réinjecte tutorielVu (guide « Comment ça marche » déjà vu).
+  const normaliser = (d) => ({ ...R.normaliser(d, auj(), DEFAUTS), tutorielVu: d?.tutorielVu === true });
   const bien = (id) => E.biens.find((b) => b.id === id);
   const bail = (id) => E.baux.find((b) => b.id === id);
   const locataire = (id) => E.locataires.find((l) => l.id === id);
@@ -421,6 +422,7 @@
     biens: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 11 12 3l10 8Z" fill="currentColor"/><rect x="5" y="11" width="14" height="10" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="5" height="9" fill="currentColor"/><rect x="10" y="7" width="5" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Tableau de bord'], ['loyers', 'Loyers'], ['revisions', 'Révisions'], ['biens', 'Biens'], ['bilan', 'Charges et bilan']];
@@ -443,12 +445,13 @@
         <span class="titre-produit">Gestion<br>locative</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${estTel() && ONGLETS_TEL[id] ? ONGLETS_TEL[id] : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1148,6 +1151,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la gestion locative, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ta gestion est enregistrée en ligne, liée à ta clé, et n'est ni lue ni partagée par QME. Tu es responsable des données de tes locataires : garde le minimum, aucune pièce justificative ici, et efface ou supprime un locataire depuis sa fiche quand rien ne t'oblige à conserver ses données.</p></div>
@@ -1171,7 +1176,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.biens) || !Array.isArray(donnees.baux)) throw new Error();
         if (!confirm(`Remplacer ta gestion actuelle par cette copie (${pluriel(donnees.biens.length, 'bien')}, ${pluriel(donnees.baux.length, 'bail', 'baux')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = vu || E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de la gestion locative.'); }
     });
@@ -1241,6 +1247,41 @@
     }
     l.push(`TOTAL : loyers ${euros(rec.loyers)} · charges encaissées ${euros(rec.charges)} · dépenses ${euros(rec.depenses)}`, '', B.fiscal, `Édité le ${R.dateTexte(auj())} à partir de ta saisie.`);
     return l.filter((x, i) => x || i > 1).join('\n');
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const [p1, p2, p3] = r.paliers;
+    const blocs = [
+      ['rose', 'Un bien, un bail', `Dans <b>Biens</b>, crée le logement puis son bail&nbsp;: locataire, loyer hors charges, provisions ou forfait de charges, dépôt de garantie, trimestre de référence de l'IRL. Chaque mois, le loyer et les charges dus s'ajoutent au compte du bail.`],
+      ['beurre', 'Note chaque loyer reçu', `<b>Encaisser un loyer</b> enregistre un paiement&nbsp;: il solde les échéances les plus anciennes d'abord. Depuis <b>Loyers</b>, un mois payé donne une quittance, un paiement partiel un reçu.`],
+      ['ciel', 'Relance les retards', `Un loyer non soldé plus de ${pluriel(r.tolerance, 'jour')} après son échéance passe en retard et remonte dans le <b>Tableau de bord</b>. Selon les jours écoulés depuis l'échéance, l'outil prépare un ${esc(B.relances[0].titre.toLowerCase())} (${p1}&nbsp;jours), une ${esc(B.relances[1].titre.toLowerCase())} (${p2}&nbsp;jours), puis une ${esc(B.relances[2].titre.toLowerCase())} (${p3}&nbsp;jours).`],
+      ['sable', 'Révise le loyer une fois par an', `À la date anniversaire du bail, <b>Révisions</b> calcule le nouveau loyer&nbsp;: loyer × IRL du trimestre de référence ÷ IRL du même trimestre un an plus tôt. Aucun indice n'est fourni&nbsp;: recopie celui publié par l'Insee. La révision n'est pas automatique&nbsp;: tu la demandes au locataire, puis tu l'appliques.`],
+      ['rose', 'Charges et bilan', `Note tes dépenses par bien dans <b>Charges et bilan</b>. Chaque année, les provisions appelées sont comparées aux charges récupérables réelles&nbsp;: tu vois le complément à demander ou le trop-perçu à rembourser. Le récapitulatif de l'année aide à préparer ta déclaration, sans calcul d'impôt.`],
+    ];
+    const corps = `
+      <p>L'outil calcule chaque mois ce que te doit chaque locataire, repère les retards et prépare quittances, relances et révisions. Ton rôle&nbsp;: créer tes baux, puis noter chaque loyer reçu.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Rien n'est envoyé à tes locataires&nbsp;: tu copies ou imprimes chaque document. Le <b>Tableau de bord</b> annonce aussi les dépôts de garantie à rendre et les fins de bail. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ta gestion est enregistrée en ligne avec ta clé&nbsp;: tu la retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.biens.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="bien">Ajouter mon premier bien</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'bien') setTimeout(() => modaleBien(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1320,13 +1361,14 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': fermerSiOuverte(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': fermerSiOuverte(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

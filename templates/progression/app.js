@@ -44,8 +44,9 @@
   const filtre = { prog: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, B);
+  // « Guide déjà vu » (tutorielVu) : ajouté ici, la normalisation champ par champ de regles.js ne le connaît pas.
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, B), tutorielVu: !!d?.tutorielVu });
   const annee = () => E.annees.find((a) => a.id === E.anneeId) || null;
   const progsAnnee = () => E.progressions.filter((p) => p.anneeId === E.anneeId);
   const prog = (id) => E.progressions.find((p) => p.id === id);
@@ -445,6 +446,7 @@
     frise: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bord', 'Tableau de bord'], ['seances', 'Séances'], ['sequences', 'Séquences'], ['frise', 'Frise'], ['calendrier', 'Calendrier']];
@@ -471,12 +473,13 @@
         <span class="titre-produit">Progression<br>pédagogique</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}${id === 'bord' ? '<span class="long">Tableau de bord</span><span class="court">Accueil</span>' : `<span>${nom}</span>`}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1156,6 +1159,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la progression, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute la progression à ton écran d'accueil pour l'ouvrir comme une application et consigner tes séances à la sortie du cours.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">${esc(B.sources.feries)} ${esc(B.sources.vacances)} ${esc(B.sources.bloom)} Modèles de structure, déroulé de séquence et banque de verbes : rédigés pour QME (version ${B.version}), à adapter. Aucun programme officiel intégré. Aucune connexion à un logiciel de l'établissement ni à une autre application.</p></div>`;
@@ -1175,7 +1180,8 @@
         if (!Array.isArray(donnees.progressions) || !Array.isArray(donnees.sequences)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.progressions.length, 'classe')}, ${pluriel(donnees.sequences.length, 'séquence')}) ?`)) return;
         retenir();
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = vu || E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.', { libelle: 'Annuler', faire: annuler });
       } catch { toast('Ce fichier n\'est pas une copie valide de la progression pédagogique.'); }
     });
@@ -1193,6 +1199,40 @@
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `progression-${auj()}.json`);
   const exporterSeances = () => { if (annee()) telecharger(R.csvSeances(E, E.anneeId), 'text/csv;charset=utf-8', `seances-${fichier(annee().nom)}.csv`); };
   const exporterSequences = () => { const pid = progChoisie(); if (pid) telecharger(R.csvSequences(E, bilanDe(pid)), 'text/csv;charset=utf-8', `sequences-${fichier(prog(pid).nom)}.csv`); };
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Ton vrai calendrier', `Les jours fériés sont déjà calculés. Saisis les vacances de ta zone dans <b>Calendrier</b>&nbsp;: tant qu'il n'y en a pas, les heures de cours disponibles sont surestimées. Chaque classe a ses créneaux de la semaine, éventuellement en semaine A ou B${r.sauteVacances ? '&nbsp;; l\'alternance ne compte que les semaines avec des cours' : ''}.`],
+      ['beurre', 'Pose tes séquences', `Dans <b>Séquences</b>, donne à chacune une durée en heures&nbsp;: elles s'enchaînent sur tes créneaux depuis le début des cours. Tu peux partir d'un modèle, qui garde ${r.reserve}&nbsp;% des heures pour les imprévus. Les verbes de tes objectifs sont situés sur la taxonomie de Bloom.`],
+      ['ciel', 'Consigne chaque séance', `Après chaque cours, note la séance&nbsp;: <b>Faite</b>, ses heures comptent pour sa séquence&nbsp;; <b>Annulée</b>, le créneau est perdu&nbsp;; <b>Reportée</b>, son contenu peut être replacé au prochain créneau libre. Un créneau passé sans séance reste <b>à renseigner</b>.`],
+      ['sable', 'Retard et marge', `Le retard compare les heures de cours déjà passées aux heures réellement avancées (une séquence terminée compte pour sa durée prévue). La marge compare les heures de cours restantes à celles qui restent à faire&nbsp;: si elle est négative, le programme ne tient pas d'ici la fin des cours.`],
+    ];
+    const corps = `
+      <p>L'outil pose tes séquences sur ton calendrier réel et te dit, après chaque cours, où tu en es et si le programme tiendra jusqu'à la fin de l'année. Ton rôle&nbsp;: saisir tes vacances et tes séquences, puis consigner chaque séance.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Tableau de bord</b> rassemble tes classes et ce qui est à regarder, la <b>Frise</b> montre le prévu et le réalisé de chaque séquence sur l'année, et <b>Séances</b> imprime le cahier de textes. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const p = E.progressions.find((x) => x.anneeId === E.anneeId) || E.progressions[0];
+    const premiere = auto && p && !E.sequences.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="sequence">Ajouter ma première séquence</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'sequence') setTimeout(() => modaleSequence(null, p.id), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1273,7 +1313,7 @@
     if (LISTES.some((p) => action.startsWith(p))) { if (editionListe && modale().open) editionListe(action, el.dataset.i); return; }
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); oublier(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); oublier(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1281,6 +1321,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-seances': exporterSeances(); break;

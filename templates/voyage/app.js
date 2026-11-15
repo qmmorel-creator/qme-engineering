@@ -45,7 +45,9 @@
   let filtrePoste = '';
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d, B.postes);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, B.postes), tutorielVu: Boolean(d?.tutorielVu) });
   const voyageur = (id) => E.voyageurs.find((v) => v.id === id);
   const nomVoyageur = (id) => voyageur(id)?.nom || 'Voyageur retiré';
   const COLL = { etape: 'etapes', nuit: 'nuits', transport: 'transports', activite: 'activites', depense: 'depenses', virement: 'virements', bagage: 'bagages', document: 'documents', voyageur: 'voyageurs' };
@@ -108,7 +110,9 @@
       if (statut === 409) {
         // Un autre appareil (un autre voyageur) a écrit entre-temps : on fusionne, rien n'est perdu.
         const f = R.fusionner(E, corps.donnees);
+        const vu = E.tutorielVu || corps.donnees?.tutorielVu; // guide déjà vu sur l'un des deux appareils
         E = normaliser(f.etat);
+        E.tutorielVu = Boolean(vu);
         session.base = corps.donnees.majLe;
         cache(true);
         if (!modale().open) rendre();
@@ -214,7 +218,7 @@
   // (nuit sans toit, hébergement et train à réserver, reste à payer sur place, poste dépassé, dépense
   // partagée à parts inégales, remboursement déjà fait, bagages en partie cochés, un voyage archivé).
   function donneesDemo() {
-    const e = R.etatVide();
+    const e = etatVide();
     const t = auj();
     const j = (n) => ajout(t, n);
     e.voyage = { nom: 'Lacs et villes d\'Italie du Nord', destination: 'Italie du Nord (exemple fictif)', debut: j(-3), fin: j(6), note: 'Voyage entre amis, données inventées pour la démonstration.', modifLe: '' };
@@ -397,7 +401,7 @@
   }
 
   function terminerAccueil() {
-    E = R.etatVide();
+    E = etatVide();
     const t = maintenant();
     E.voyage = { nom: accueil.nom.trim() || accueil.destination.trim(), destination: accueil.destination.trim(), debut: accueil.debut, fin: accueil.fin, note: '', modifLe: t };
     E.voyageurs = accueil.voyageurs.filter((v) => v.trim()).map((nom) => R.normaliserVoyageur({ nom: nom.trim(), modifLe: t }));
@@ -418,6 +422,7 @@
     budget: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="9" width="4" height="12" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     preparer: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="13" fill="currentColor"/><rect x="9" y="3" width="6" height="4" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['apercu', 'Aperçu'], ['itineraire', 'Itinéraire'], ['jours', 'Jour par jour'], ['budget', 'Budget'], ['preparer', 'Préparer']];
@@ -436,12 +441,13 @@
         <span class="titre-produit">Planificateur<br>de voyage</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, voyageurs et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1038,6 +1044,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planificateur, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, même sans réseau une fois chargé.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ton voyage (lieux, adresses, prénoms, dépenses) est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. N'y mets ni numéro de passeport ni code de carte bancaire.</p></div>
@@ -1050,7 +1058,7 @@
         const d = JSON.parse(await fichier.text());
         if (!d.voyage || !Array.isArray(d.etapes) || !Array.isArray(d.depenses)) throw new Error();
         if (!confirm(`Remplacer ton voyage actuel par cette copie (« ${d.voyage.nom || 'sans nom'} », ${pluriel(d.etapes.length, 'étape')}, ${pluriel(d.depenses.length, 'dépense')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de ton voyage.'); }
     });
@@ -1071,6 +1079,38 @@
     try { await navigator.clipboard.writeText(txt); toast('Itinéraire copié : colle-le dans un message ou une note.'); } catch {
       ouvrirModale('Itinéraire en texte', `<p class="aide">Sélectionne le texte et copie-le.</p><label class="champ"><span class="sr-only">Itinéraire</span><textarea rows="14" readonly>${esc(txt)}</textarea></label>`, '<button class="btn primaire" value="ok">Fermer</button>', () => {});
     }
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Des étapes et des nuits', `Ajoute tes étapes (où tu dors, combien de nuits), puis un hébergement pour chaque nuit et les transports entre deux étapes. L'outil vérifie chaque nuit du voyage&nbsp;: une nuit sans hébergement, ou avec deux, est signalée dans l'<b>Aperçu</b>.`],
+      ['beurre', 'À réserver, puis réservé', `Hébergements, transports et activités passent de <b>À réserver</b> à <b>Réservé</b>. Ce qui reste à réserver est listé du plus proche au plus lointain, marqué urgent à ${R.URGENT_JOURS}&nbsp;jours ou moins de sa date. Rien n'est réservé à ta place&nbsp;: aucune plateforme n'est connectée.`],
+      ['ciel', 'Le budget se construit seul', `Les prix de tes hébergements, transports et activités forment le prévu de leurs postes&nbsp;; ajoute à la main le prévu des repas, courses et autres postes. Chaque dépense saisie compte dans le réel, poste par poste.`],
+      ['sable', 'Les comptes entre voyageurs', `Chaque dépense a un payeur et se partage entre les voyageurs choisis&nbsp;: parts égales, en parts ou montants précis. <b>Qui doit quoi</b> calcule les remboursements, en nombre minimal&nbsp;; touche <b>Marquer remboursé</b> une fois l'argent rendu.`],
+    ];
+    const corps = `
+      <p>L'outil assemble ton programme jour par jour, ton budget et les comptes entre voyageurs à partir de ce que tu saisis. Ton rôle&nbsp;: noter les étapes, les réservations et les dépenses au fil du voyage.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Jour par jour</b> montre le programme de chaque journée, <b>Préparer</b> les bagages et les documents à cocher. Une fois le voyage fini, archive-le dans les réglages pour en préparer un autre. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: partage-la avec tes compagnons de route pour voir les mêmes données.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.etapes.length && !E.nuits.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="etape">Ajouter ma première étape</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'etape') setTimeout(() => modaleEtape(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1150,7 +1190,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-voyageur': if (accueil.voyageurs.length < R.MAX_VOYAGEURS) { accueil.voyageurs.push(''); ecranAccueil(); } break;
       case 'accueil-suivant': accueilSuivant(); break;
@@ -1159,6 +1199,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;
@@ -1230,6 +1271,7 @@
         const t = maintenant();
         const ancien = E;
         E = R.archiver(E, B.postes, t);
+        E.tutorielVu = Boolean(ancien.tutorielVu); // le guide ne revient pas pour le voyage suivant
         E.supprimes = { ...ancien.supprimes };
         for (const c of ['etapes', 'nuits', 'transports', 'activites', 'depenses', 'virements']) for (const x of ancien[c]) E.supprimes[x.id] = t;
         E.voyage.modifLe = t; E.budget.modifLe = t;

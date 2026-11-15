@@ -43,7 +43,7 @@
   const filtre = { classe: '', periode: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const annee = () => E.annees.find((a) => a.id === E.anneeId) || null;
   const classesAnnee = () => E.classes.filter((c) => c.anneeId === E.anneeId); // dans l'ordre de création
@@ -104,7 +104,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -435,6 +437,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     bord: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
     notes: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="13" width="4" height="8" fill="currentColor"/><rect x="10" y="7" width="4" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     competences: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
@@ -462,12 +465,13 @@
         <span class="titre-produit">Gestion de<br>classe</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}${id === 'bord' ? '<span class="long">Tableau de bord</span><span class="court">Accueil</span>' : `<span>${nom}</span>`}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1204,6 +1208,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la gestion de classe, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute la gestion de classe à ton écran d'accueil pour l'ouvrir comme une application et saisir les notes en salle.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Domaines du socle commun et échelle à quatre échelons : ${esc(src.titre)}, ${esc(src.editeur)} (${esc(src.url)}), ${esc(src.vigueur)}, consultés le ${esc(src.consulte)}. Banque de phrases, exemple de référentiel et dates de périodes proposées : rédigés pour QME (version ${B.version}), à adapter. Aucun calendrier scolaire intégré. Aucune connexion au logiciel de vie scolaire ni à une autre application.</p></div>`;
@@ -1224,7 +1230,9 @@
         if (!Array.isArray(donnees.classes) || !Array.isArray(donnees.eleves)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(donnees.classes.length, 'classe')}, ${pluriel(donnees.eleves.length, 'élève')}) ?`)) return;
         retenir();
+        const vu = E.tutorielVu;
         E = normaliser(donnees); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.', { libelle: 'Annuler', faire: annuler });
       } catch { toast('Ce fichier n\'est pas une copie valide de la gestion de classe.'); }
     });
@@ -1249,6 +1257,44 @@
     const pids = pid === 'annee' ? R.bornes(a).map((p) => p.id) : [pid];
     const contenu = pids.map((p) => R.csvClasse(E, cid, a, p)).map((x, i) => (i ? x.replace(/^﻿/, `\r\n${periode(pids[i]).nom}\r\n`) : pid === 'annee' ? x.replace(/^﻿/, `﻿${periode(pids[0]).nom}\r\n`) : x)).join('');
     telecharger(contenu, 'text/csv;charset=utf-8', `notes-${fichier(classe(cid).nom)}-${pid === 'annee' ? fichier(a.nom) : fichier(periode(pid).nom)}.csv`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Prépare ton année', `Dans <b>Classes</b>, l'année est découpée en périodes dont tu ajustes les dates à celles de ton établissement. Ajoute tes classes et tes groupes, puis leurs élèves&nbsp;: un prénom et l'initiale du nom, ou un pseudonyme, rien de plus.`],
+      ['beurre', 'Note tes évaluations', `Chaque évaluation a son barème (sur 10, 20, 40…) et son coefficient. Chaque note est ramenée sur 20, puis pondérée. <b>ABS</b>, <b>NN</b> et dispensé ne comptent pas&nbsp;; une évaluation bonus ne compte que si elle fait monter la moyenne. Moyennes, médiane et répartition se calculent seules.`],
+      ['ciel', 'Positionne les compétences', `Associe des compétences du référentiel à une évaluation, puis place chaque élève sur l'un des quatre échelons. Le bilan de la période est la moyenne de ses positionnements, arrondie. Le référentiel se modifie librement.`],
+      ['sable', 'Rédige les bulletins', `Dans <b>Bulletins</b>, compose chaque appréciation à partir de la banque de phrases, puis retouche-la (${r.longueurAppreciation}&nbsp;caractères conseillés). Le <b>Tableau de bord</b> te rappelle les notes à saisir, les évaluations des 14 prochains jours et les appréciations à rédiger, dès ${pluriel(r.alerteJours, 'jour')} avant la fin de la période.`],
+    ];
+    const corps = `
+      <p>Les moyennes, les statistiques, le bilan des compétences et les bulletins se calculent tout seuls. Ton rôle&nbsp;: créer tes évaluations, saisir les notes et les positionnements, puis rédiger les appréciations.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Avant de saisir de vraies données d'élèves, vérifie avec ton établissement que cet usage est possible. En fin d'année, exporte puis efface élèves et notes (onglet <b>Classes</b>). ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes classes sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Classe tout juste créée : pas encore d'évaluation (ni, parfois, d'élève).
+    const c = auto && !E.evaluations.length && E.classes[0];
+    const sansEleve = c && !R.elevesDe(E, c.id).length;
+    const pied = !c
+      ? `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`
+      : `<button class="btn primaire" value="${sansEleve ? 'eleves' : 'evaluation'}">${sansEleve ? 'Ajouter mes élèves' : 'Créer ma première évaluation'}</button><button class="btn" value="ok">Fermer</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'eleves') setTimeout(() => modaleEleves(c.id), 0);
+      if (choix === 'evaluation') setTimeout(() => modaleEvaluation(null, c.id), 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1330,13 +1376,14 @@
     if (LISTES.some((p) => action.startsWith(p))) { if (editionListe && modale().open) editionListe(action, el.dataset.i); return; }
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': if (!accueil.lu) { ecranAccueil('Coche la case pour confirmer que tu as lu l\'avertissement sur les données d\'élèves.'); break; } accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

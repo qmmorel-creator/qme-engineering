@@ -1,8 +1,8 @@
 // Service worker des notes de frais : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'notes-de-frais-20261113';
-const COQUILLE = ['./', 'app.css?v=20261113', 'donnees.js?v=20261113', 'regles.js?v=20261113', 'app.js?v=20261113', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'notes-de-frais-20261115t';
+const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

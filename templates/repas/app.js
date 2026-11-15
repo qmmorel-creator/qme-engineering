@@ -44,8 +44,9 @@
   const filtre = { q: '', cat: '', etiq: '', saison: false };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  // R.normaliser ne garde que les champs connus : on y réinjecte tutorielVu (guide « Comment ça marche » déjà vu).
+  const normaliser = (d) => ({ ...R.normaliser(d, B), tutorielVu: d?.tutorielVu === true });
   const recettes = () => R.recettesDe(E, B);
   const recette = (id) => recettes().find((r) => r.id === id);
   const lundi = () => lundiVu || R.lundiDe(auj());
@@ -394,6 +395,7 @@
     recettes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     historique: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="18" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['semaine', 'Semaine'], ['courses', 'Courses'], ['recettes', 'Recettes'], ['historique', 'Historique']];
@@ -410,12 +412,13 @@
         <span class="titre-produit">Repas et<br>courses</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -989,6 +992,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planning, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, en magasin par exemple.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ton planning est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. Il ne contient que ce que tu saisis : repas, recettes, articles et prix. Aucune donnée de santé n'est demandée.</p></div>
@@ -1014,7 +1019,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!donnees || typeof donnees.semaines !== 'object' || !Array.isArray(donnees.recettes)) throw new Error();
         if (!confirm(`Remplacer ton planning actuel par cette copie (${pluriel(Object.keys(donnees.semaines).length, 'semaine')}, ${pluriel(donnees.recettes.length, 'recette perso', 'recettes perso')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = vu || E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du planning.'); }
     });
@@ -1043,6 +1049,40 @@
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `repas-courses-${auj()}.json`);
   const exporterCsv = () => telecharger(R.versCsv(R.listeCourses(E, B, lundi()), B), 'text/csv;charset=utf-8', `courses-${lundi()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Remplis ta semaine', `Dans <b>Semaine</b>, touche un repas pour y mettre une recette, des restes, une sortie ou une simple note. <b>Proposer des repas</b> remplit les repas vides, en évitant les recettes servies depuis moins de ${pluriel(r.eviterJours, 'jour')}. <b>Semaine type</b> remet d'un geste une semaine habituelle.`],
+      ['beurre', 'Les portions et les restes', `Chaque repas a son nombre de personnes (${r.personnes} par défaut). Un repas <b>Restes</b> renvoie à un plat prévu plus tôt dans la semaine&nbsp;: ses portions s'ajoutent à ce plat, que tu cuisines en plus grande quantité.`],
+      ['ciel', 'La liste de courses se fait seule', `<b>Courses</b> additionne les ingrédients de la semaine selon les portions, les range par rayon et retire ce que tu as déjà&nbsp;: ton placard, et ce que tu indiques en touchant un article. Ajoute tes autres articles à la main, coche-les au magasin, puis copie ou imprime la liste.`],
+      ['sable', 'Tes recettes', `${B.recettes.length} recettes de base sont prêtes&nbsp;; modifie-les ou ajoute les tiennes. Les quantités sont recalculées pour le nombre de personnes de chaque repas. Les allergènes affichés sont indicatifs&nbsp;: vérifie toujours les étiquettes.`],
+      ['rose', 'Varie les menus', `<b>Historique</b> montre les plats les plus servis sur 12 semaines et ceux à refaire, pas servis depuis plus de 6 semaines. Saisis le prix d'un article dans la liste&nbsp;: le budget de la semaine s'estime avec tes prix.`],
+    ];
+    const corps = `
+      <p>Le planning calcule pour toi la liste de courses de la semaine, rangée par rayon. Ton rôle&nbsp;: placer des recettes sur les repas, midi et soir, avec le bon nombre de personnes.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Les flèches au-dessus de la semaine passent d'une semaine à l'autre&nbsp;; ton placard et l'ordre des rayons se règlent dans les réglages. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton planning est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !Object.values(E.semaines).some((s) => Object.keys(s.cases).length);
+    const pied = premier
+      ? '<button class="btn primaire" value="proposer">Proposer mes premiers repas</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'proposer') setTimeout(() => modaleProposer(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1120,13 +1160,14 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); lundiVu = null; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; lundiVu = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': { const p = Number(accueil.personnes); if (!(p >= 1 && p <= 20)) { toast('Indique entre 1 et 20 personnes.'); break; } accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break; }
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

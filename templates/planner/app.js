@@ -48,7 +48,7 @@
   let annulation = null;
   let defilerAuRendu = true;
 
-  const etatVide = () => ({ version: 1, prenom: '', profil: null, reglages: { debut: 7 * 60, fin: 21 * 60, weekend: true }, categories: [], series: [], blocs: [], modeles: [] });
+  const etatVide = () => ({ version: 1, prenom: '', profil: null, tutorielVu: false, reglages: { debut: 7 * 60, fin: 21 * 60, weekend: true }, categories: [], series: [], blocs: [], modeles: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -404,6 +404,7 @@
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="14" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="9" height="4" fill="currentColor"/></svg>',
     modeles: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     droite: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -421,13 +422,14 @@
         <span class="titre-produit">Planner<br>horaire</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     defilerAuRendu = true;
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1152,6 +1154,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planner, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1181,6 +1185,40 @@
     a.download = `planner-horaire-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Pose tes blocs sur la grille', `La semaine est découpée en cases de 30&nbsp;minutes. Clique sur une case vide (ou touche-la sur téléphone) pour créer un bloc, glisse-le pour le déplacer, tire sa poignée du bas pour changer sa durée. Sur téléphone, un appui long saisit le bloc. Coche <b>Répéter chaque semaine</b> pour un bloc qui revient&nbsp;: le déplacer sur la grille ne change que cette semaine.`],
+      ['beurre', 'Marque chaque bloc commencé', `Dans <b>Aujourd'hui</b>, chaque bloc commencé propose <b>Fait</b>, <b>Raccourci</b> (le temps réellement passé, par quarts d'heure), <b>Déplacé</b> ou <b>Pas fait</b>. Un bloc déplacé reste visible, barré, et une copie est posée au nouveau créneau. Les blocs passés de la semaine encore sans marque sont listés à part.`],
+      ['ciel', 'Le bilan compare prévu et réalisé', `Le réalisé compte les blocs faits et le temps réel des blocs raccourcis. Le taux de réalisation divise ce réalisé par le prévu des blocs déjà commencés&nbsp;; un bloc sans marque compte dans le prévu, pas dans le réalisé. Un bloc déplacé compte à sa nouvelle place. Tout est détaillé par catégorie, avec la tendance des 6&nbsp;dernières semaines.`],
+      ['sable', 'Réutilise tes semaines', `L'onglet <b>Modèles</b> pose une semaine type en un geste, pour une semaine ou chaque semaine, et garde la semaine affichée comme modèle. <b>Copier / modèle</b> recopie les blocs ponctuels de la semaine précédente. Les blocs récurrents s'y modifient pour toutes les semaines à venir. Chaque catégorie a sa couleur, ${B.couleurs.length}&nbsp;au maximum.`],
+    ];
+    const corps = `
+      <p>Le planner te montre où passe ton temps&nbsp;: ce que tu avais prévu, ce que tu as vraiment fait. Ton rôle&nbsp;: poser tes blocs sur la semaine, puis marquer chacun une fois commencé.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Aujourd'hui</b> montre aussi le bloc en cours et le suivant. Les heures de la grille et l'affichage du week-end se règlent dans les réglages. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.blocs.length && !E.series.length && E.categories.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="bloc">Poser mon premier bloc</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'bloc') setTimeout(() => modaleBloc(null, { date: auj(), debut: Math.min(20 * 60, Math.ceil(maintenant().min / 30) * 30) }), 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1287,6 +1325,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

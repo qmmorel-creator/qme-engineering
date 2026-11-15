@@ -44,8 +44,9 @@
   const filtre = { nc: 'ouvertes', lot: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
-  const normaliser = (d) => R.normaliser(d, DEFAUTS);
+  // tutorielVu (guide « Comment ça marche » déjà vu) : réinjecté, la normalisation de regles.js ne le garde pas.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, DEFAUTS), tutorielVu: !!d?.tutorielVu });
   const op = () => E.operations.find((o) => o.id === E.actif) || E.operations[0];
   const lot = (id) => R.lotDe(op(), id);
   const nomLot = (id) => { const l = lot(id); return l ? `${l.code} · ${l.nom}` : 'Toute l\'opération'; };
@@ -487,6 +488,7 @@
     planning: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     registres: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V11A10 10 0 0 1 13 21Z" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Tableau de bord'], ['lots', 'Lots'], ['finances', 'Finances'], ['planning', 'Planning'], ['registres', 'Registres']];
@@ -512,12 +514,13 @@
         <button class="op-courante" data-action="operations" aria-label="Changer d'opération"><span></span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6"/></svg></button>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1369,6 +1372,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, sur le chantier.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Repères</h3><dl class="reperes">${B.reperes.map(([t2, d]) => `<dt>${esc(t2)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></div>
@@ -1400,6 +1405,35 @@
   const slugOp = () => (op().reference || op().nom).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'operation';
   async function copier(texte, message) {
     try { await navigator.clipboard.writeText(texte); toast(message); } catch { toast('Copie impossible : sélectionne le texte et copie-le à la main.'); }
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = op().reglages;
+    const blocs = [
+      ['rose', 'Un marché par lot', `Dans <b>Lots</b>, complète chaque lot&nbsp;: entreprise, montant du marché, dates. Seuls les avenants <b>signés</b> changent le marché actualisé&nbsp;; ceux en projet restent à arbitrer. Plusieurs chantiers&nbsp;? Change d'opération avec son nom, en haut de l'écran.`],
+      ['beurre', 'Les situations en cumul', `Chaque mois, saisis le montant <b>cumulé</b> des travaux exécutés&nbsp;: les travaux du mois, la révision (coefficient K), la retenue de garantie (${R.pct(r.rg)}) et le net à payer en découlent. Le paiement est attendu ${r.delaiPaiement}&nbsp;jours après la réception de la situation&nbsp;; au-delà, il passe en retard.`],
+      ['ciel', 'Des jalons recalés', `Dans <b>Planning</b>, chaque jalon est recalé&nbsp;: date contractuelle + délais des avenants signés + journées d'intempérie retenues. Il est signalé proche ${r.alerteJours}&nbsp;jours avant, puis en retard&nbsp;; avec un montant de pénalité par jour, les pénalités sont estimées.`],
+      ['sable', 'Tout remonte au tableau de bord', `Non-conformités, risques, courriers et ordres de service se notent dans <b>Registres</b>. Ce qui demande une action remonte dans <b>À traiter</b> du tableau de bord, et la <b>Revue de projet</b> prépare un compte rendu à copier.`],
+    ];
+    const corps = `
+      <p>Le suivi calcule pour toi le marché actualisé de chaque lot, ce qui est dû, les dates recalées et les alertes. Ton rôle&nbsp;: noter au fil du chantier les avenants, situations, jalons et événements, chacun rattaché à son lot.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Rien de réglementaire n'est calculé&nbsp;: taux, délais et pénalités viennent de ton marché et se règlent dans la fiche de l'opération. <b>Finances</b> réunit les situations, l'échéancier prévisionnel et la synthèse par lot. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes opérations sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1511,6 +1545,7 @@
       case 'choisir-op': E.actif = id; modale().close(); sauver(); filtre.lot = ''; rendre(); toast(`Opération ouverte : ${op().nom}.`); break;
       case 'fiche-operation': modaleOperation(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-synthese': telecharger(R.versCsvSynthese(op(), auj()), 'text/csv;charset=utf-8', `synthese-financiere-${slugOp()}-${auj()}.csv`); break;

@@ -43,7 +43,7 @@
   let annulation = null;
   const filtreEnt = { texte: '', etat: '' };
 
-  const etatVide = () => R.etatVide(B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const op = (id) => E.operations.find((o) => o.id === id);
   const ent = (id) => E.entreprises.find((e) => e.id === id);
@@ -93,7 +93,9 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
+        const vu = E.tutorielVu;
         E = normaliser(corps.donnees);
+        if (vu) E.tutorielVu = true;
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -376,7 +378,9 @@
       const f = new FormData(e.target);
       const nom = texte(f, 'nom');
       if (!nom) { e.target.querySelector('.erreur').textContent = 'Indique le nom de l\'opération.'; return; }
+      const vu = !!E?.tutorielVu;
       E = etatVide();
+      E.tutorielVu = vu;
       E.structure = texte(f, 'structure');
       const o = { id: uid(), nom, maitreOuvrage: texte(f, 'maitreOuvrage'), reference: texte(f, 'reference'), ville: '', debut: '', fin: '', marchePublic: !!f.get('marchePublic'), close: false, notes: '' };
       E.operations.push(o);
@@ -389,6 +393,7 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     bord: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
     operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     entreprises: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l6-4v4l6-4v16Z" fill="currentColor"/><rect x="16" y="3" width="5" height="18" fill="currentColor"/></svg>',
@@ -415,12 +420,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et sources" title="Guide et sources">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, pièces suivies et export" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1126,6 +1132,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import-json" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des sous-traitants, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, PIED_NOUVEAU('Enregistrer'), (f) => {
@@ -1142,7 +1150,9 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.operations) || !Array.isArray(d.entreprises)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.operations.length, 'opération')}, ${pluriel(d.entreprises.length, 'entreprise')}) ?`)) return;
+        const vu = E.tutorielVu;
         E = normaliser(d); delete E.majLe;
+        E.tutorielVu = vu;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1172,6 +1182,40 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const CSV = 'text/csv;charset=utf-8';
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const rg = E.reglages;
+    const blocs = [
+      ['rose', 'Décris la chaîne de chaque opération', `Une <b>opération</b> par chantier ou par marché. Ajoute le titulaire de chaque lot, puis chaque sous-traitant sous son donneur d'ordre&nbsp;: son rang se calcule seul. Le montant HT de chaque contrat décide des pièces exigées (vigilance à partir de ${esc(eur(rg.seuil)).replace(/ €/, '&nbsp;€')} HT).`],
+      ['beurre', 'Note les pièces reçues', `Pour chaque pièce, note sa date de délivrance, ou sa fin de validité quand elle y est écrite. L'échéance vient de là, sinon de la durée du type de pièce (réglable). Une pièce reçue vaut pour toutes les opérations de l'entreprise. L'outil ne garde que les dates, jamais les documents.`],
+      ['ciel', 'Suis les alertes', `L'onglet <b>Alertes</b> montre d'abord ce qui bloque&nbsp;: pièce manquante ou expirée, sous-traitant refusé ou qui intervient sans être accepté. Puis les pièces qui expirent à J-${rg.j15} et J-${rg.j30}, et les acceptations en cours. Chaque intervention est <b>Conforme</b>, <b>À surveiller</b> ou <b>Non conforme</b>.`],
+      ['sable', 'Relance les retardataires', `Une entreprise est proposée dans <b>Relances</b> quand une de ses pièces manque, a expiré ou expire bientôt, et qu'elle n'a pas été relancée depuis ${pluriel(rg.relanceJours, 'jour')}. Le message part d'un modèle que tu adaptes dans les réglages.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi quelles pièces chaque entreprise doit fournir, quand elles expirent et qui n'est pas en règle. Ton rôle&nbsp;: décrire tes opérations et leurs entreprises, puis noter chaque pièce reçue.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Registre</b> donne le tableau de conformité à imprimer. Le bouton <b>Guide et sources</b> détaille les règles retenues et leurs sources officielles&nbsp;: c'est un outil d'aide au suivi, pas un conseil juridique. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton registre est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Première opération tout juste créée, sans entreprise.
+    const premiere = auto && E.operations.length && !E.intervenants.length && !E.entreprises.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="entreprise">Ajouter la première entreprise</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'entreprise') setTimeout(() => modaleIntervenant(null, {}), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1268,7 +1312,7 @@
     const nomFichier = (q) => `sous-traitants-${q}-${t}.csv`;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); opOuverte = null; entOuverte = null; rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { const vu = E.tutorielVu; stock.suppr(CLE_DEMO); E = donneesDemo(); E.tutorielVu = vu; cache(); opOuverte = null; entOuverte = null; rendre(); } break;
       case 'deconnexion': ferme(); deconnecter(); break;
       case 'vue': ferme(); if (el.dataset.vue === 'operations') opOuverte = null; if (el.dataset.vue === 'entreprises') entOuverte = null; changerVue(el.dataset.vue); break;
       case 'aller-operations': changerVue('operations'); break;
@@ -1279,6 +1323,7 @@
       case 'registre-op': registreOp = id; changerVue('registre'); break;
       case 'filtres-raz': filtreEnt.texte = ''; filtreEnt.etat = ''; rendre(); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'types': modaleTypes(); break;
       case 'types-defaut': if (confirm('Revenir aux pièces d\'origine ? Tes changements de durée et de portée, et les pièces ajoutées, seront perdus (les pièces saisies sont conservées).')) { ferme(); modifier(() => { E.reglages.types = R.typesDefaut(B); }, 'Pièces d\'origine rétablies.'); } break;
       case 'modele': modaleModele(); break;

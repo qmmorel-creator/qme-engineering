@@ -54,7 +54,7 @@
   const filtre = { q: '', phaseBanque: 'ouverture', ongletBanque: 'questions', qBanque: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, auj());
   const appel = (id) => E.appels.find((a) => a.id === id);
   const courant = () => (courantId ? appel(courantId) : null);
@@ -428,6 +428,7 @@
     synthese: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="13" width="4" height="8" fill="currentColor"/><rect x="10" y="8" width="4" height="13" fill="currentColor"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     banque: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     haut: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m4 15 8-8 8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     bas: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m4 9 8 8 8-8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -446,12 +447,13 @@
         <span class="titre-produit">Appel<br>découverte</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function lireHash() {
@@ -988,6 +990,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'outil, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application, juste avant un appel.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Base intégrée (version ${B.version}) : ${B.phases.length} phases, ${BANQUE.length} questions, ${B.objections.length} objections types avec pistes de réponse, rédigées pour QME. Aucun envoi automatique, aucun lien vers un service externe : compte rendu à copier et résumé à imprimer.</p></div>`;
@@ -1003,7 +1007,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.appels)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.appels.length, 'appel')}) ?`)) return;
-        E = normaliser(d); delete E.majLe; courantId = null;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu; courantId = null;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du préparateur.'); }
     });
@@ -1054,6 +1059,38 @@
       ${R.parPhase(a.questions, B.phases).map((g) => `<section><h2>${esc(g.phase.nom)} <small>${lignes.get(g.phase.id) ? `${lignes.get(g.phase.id).debut}–${lignes.get(g.phase.id).fin} min` : ''}</small></h2><ol class="imp-questions">${g.questions.map((x) => `<li><span>${esc(x.texte)}</span><i></i></li>`).join('')}</ol></section>`).join('')}
       <section><h2>Signaux</h2><table><tbody>${B.signaux.map((s) => `<tr><th>${s.nom}</th><td>□ Non  □ Partiel  □ Oui</td><td class="imp-ligne"></td></tr>`).join('')}</tbody></table></section>
       <section><h2>Prochaine étape</h2><p class="imp-ligne">Quoi :</p><p class="imp-ligne">Quand :</p></section>`;
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Prépare chaque appel', `Crée l'appel avec l'organisation, la fonction de ton interlocuteur, la date et la durée. Dans <b>Préparer</b>, écris l'objectif, tes hypothèses, puis choisis tes questions dans la banque (${BANQUE.length} questions en ${B.phases.length} phases). L'appel est <b>Prêt</b> quand l'objectif est écrit, la fonction connue et au moins 3 questions retenues.`],
+      ['beurre', 'Suis le plan minuté', `La durée de l'appel se répartit entre les phases qui ont au moins une question. Compte environ ${R.MIN_PAR_QUESTION} minutes par question&nbsp;: au-delà, l'outil te prévient. Dans <b>En appel</b>, démarre le chrono&nbsp;: il indique la phase prévue. Coche chaque question posée et note la réponse. Le bouton <b>Objection&nbsp;?</b> propose une piste et une question de relance.`],
+      ['ciel', 'Note les quatre signaux', `Besoin, budget, décideur, échéance&nbsp;: oui vaut 2 points, partiel 1, non ou inconnu 0, sur 8 au total. <b>Qualifié</b>&nbsp;: 6 points ou plus avec un besoin «&nbsp;oui&nbsp;». <b>À creuser</b>&nbsp;: 3 points ou plus sinon. <b>Froid</b>&nbsp;: moins de 3. <b>Hors cible</b>&nbsp;: besoin «&nbsp;non&nbsp;», quel que soit le reste.`],
+      ['sable', 'Fixe la prochaine étape', `<b>Terminer</b> marque l'appel fait et te demande la prochaine étape, datée par défaut une semaine plus tard. Une étape non faite dont la date est passée remonte dans <b>Appels</b>, en retard. Un appel passé que tu n'as pas terminé reste <b>À clôturer</b>. La <b>Synthèse</b> donne un compte rendu prêt à copier.`],
+    ];
+    const corps = `
+      <p>L'outil prépare pour toi le déroulé de chaque appel découverte&nbsp;: plan minuté, score de qualification et compte rendu. Ton rôle&nbsp;: écrire l'objectif, choisir tes questions, puis noter les réponses pendant l'appel.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Banque</b> rassemble les questions, les ${B.objections.length} objections types et tes propres questions. Les réglages proposent d'effacer les appels clos depuis plus de 3 ans. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes appels sont enregistrés en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premierAppel = auto && !E.appels.length;
+    const pied = premierAppel
+      ? '<button class="btn primaire" value="appel">Créer mon premier appel</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'appel') setTimeout(() => modaleFiche(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1143,7 +1180,7 @@
     const a = id ? appel(id) : courant();
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); courantId = null; cache(); changerVue('appels'); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; courantId = null; cache(); changerVue('appels'); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1153,6 +1190,7 @@
       case 'aller': if (modale().open) modale().close(); changerVue(el.dataset.vue, id); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'copier': copierRecap(); break;
