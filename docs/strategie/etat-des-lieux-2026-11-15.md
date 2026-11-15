@@ -52,6 +52,16 @@ Lecture :
 - Search Console et Bing : inscription **non confirmée**. Trafic organique : non mesuré.
 - Guides éditoriaux (`docs/seo/guides.md`) : aucun publié.
 
+## 5 bis. Site (GoatCounter, 16/10 → 15/11/2026, relevé par l'API le 15/11)
+
+- **570 pages vues**, 101 événements. Accueil 245, `/templates` 44, pages « concept » de prospects sur mesure
+  environ 96 (Antarès 27, horlogerie 25, école de musique 16, hypermarché 15, Charpennes 13), `/methode` 11,
+  `/packs` 5. Les pages produit `/catalogue/…` n'apparaissent pas dans les 15 premières.
+- Provenance : aucune (lien direct, e-mail) 272, Google environ 160, navigation interne 83, Instagram 8,
+  Bing quelques-unes.
+- Lecture : le site vit surtout de la prospection sur mesure et de Google ; les réseaux sociaux n'y amènent
+  presque personne et le catalogue est peu vu.
+
 ## 6. Ce qui manque pour piloter
 
 1. Statistiques LinkedIn et Instagram (abonnés, impressions par post, clics).
