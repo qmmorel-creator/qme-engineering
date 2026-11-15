@@ -67,7 +67,7 @@ export async function jouer(v) {
   await S('touche', 'N'); son('touche'); await page.keyboard.press('n');
   await pause(250);
   if (!(await v.appli.$('#modale[open]'))) throw new Error('La touche N n\'a pas ouvert la saisie rapide');
-  son('zoom'); await S('cadrer', MODALE, { max: 2.0, marge: 30 });
+  son('zoom'); await S('cadrer', '#form-saisie-modale', { max: 2.6, marge: 24 });
   await S('legende', 'Une phrase, <b>en français courant</b>.');
 
   // Frappe réelle ; l'application reconnaît chaque élément au fil de la frappe
@@ -75,6 +75,9 @@ export async function jouer(v) {
   const puces = await v.appli.$$eval(`${PUCES} .puce`, (es) => es.map((e) => e.textContent.trim()));
   if (puces.length < 6 || puces[0] !== TITRE) throw new Error(`Pastilles inattendues : ${JSON.stringify(puces)}`);
   v.puces = puces;
+  // Le curseur s'écarte des pastilles pour les laisser lisibles.
+  const loin = await S('pointeur', '#form-saisie-modale label.case', 0.85, 0.5);
+  await S('curseurVers', loin.x, loin.y, 400);
   await v.temps();
   await S('flash', PUCES, 'var(--jaune)');
   await S('legende', `<b>${puces.length - 1} informations</b> reconnues.`);
@@ -86,18 +89,19 @@ export async function jouer(v) {
   await S('retirer');
 
   // Entrée : la tâche part dans la boîte
+  await S('legende', '<b>Entrée</b> : la tâche part dans la boîte.');
   await v.temps(); await v.valider();
   await pause(300);
   await v.temps(); await S('touche', 'Échap'); son('touche'); await page.keyboard.press('Escape');
   await pause(200);
-  son('dezoom'); await S('cadrer', ONGLET_BOITE, { max: 2.4, marge: 220 });
+  son('dezoom'); await S('cadrer', ONGLET_BOITE, { max: 2.8, marge: 130 });
   const boite1 = await v.lire(COMPTEUR);
   if (Number(boite1) !== Number(v.boite0) + 1) throw new Error(`Compteur de la boîte : ${v.boite0} → ${boite1}`);
   v.boite1 = boite1;
   await v.temps();
   await S('flash', ONGLET_BOITE, 'var(--ciel)');
   son('pop'); await S('avantApres', 'c', COMPTEUR, v.boite0, boite1, { couleur: 'var(--bleu)', cote: 'dessous', note: 'une tâche de plus' });
-  await temps(1.5);
+  await temps(2.5);
   await S('retirer', 'c');
 
   // Ouvrir la boîte : la tâche est rangée, tout est rempli
@@ -108,7 +112,7 @@ export async function jouer(v) {
   if (!(await v.appli.$(NOUVELLE))) throw new Error('Tâche absente de la boîte après la saisie');
   const meta = await v.appli.$$eval(`${NOUVELLE} .tache-meta > span`, (es) => es.map((e) => e.textContent.trim()));
   v.meta = meta;
-  son('zoom'); await S('cadrer', NOUVELLE, { max: 2.3, marge: 40 });
+  son('zoom'); await S('cadrer', [`${NOUVELLE} .tache-corps b`, `${NOUVELLE} .tache-meta`], { max: 2.8, marge: 70 });
   await v.temps();
   await S('flash', NOUVELLE, 'var(--vert)');
   const resume = meta.filter((m) => !m.startsWith('saisie')).join(' · ');
