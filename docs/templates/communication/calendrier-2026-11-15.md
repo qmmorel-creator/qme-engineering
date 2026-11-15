@@ -138,3 +138,52 @@ chaque réseau. Le post Instagram d'un sujet sort en principe le lendemain de so
   ID Drive 1Ck88iyL1nFA8eOoJvsYK6OV3cEffh5QP) ; IG-06 (TJM) reporté au **sam. 19/12 18:30**.
 - Raison : produit d'appel prioritaire (`docs/strategie/classement-produits.md`) ; les anciens textes et la
   vue 5 affichaient 12 €.
+
+## Intégration du 15/11/2026 : 5 templates en vente
+
+Cinq templates en vente sur Gumroad (prix vérifiés le 15/11/2026) n'avaient ni post LinkedIn ni carrousel
+Instagram programmé. Textes repris de `<slug>/linkedin.md` et `<slug>/instagram.md` ; premier commentaire LinkedIn
+avec la démo et le lien d'achat tracé (`?utm_source=linkedin&utm_medium=commentaire&utm_campaign=li-<n>`) ;
+Instagram : lien en bio. Statut « Programmé », thème « Template QME ». Docs au format Instinct (texte, « ——— »,
+PREMIER COMMENTAIRE pour LinkedIn, « ——— », NOTES), relus après création.
+
+### Nouvelles lignes
+
+| ID | Date | Template (prix) | Doc (ID) | Image(s) (ID Drive) |
+|---|---|---|---|---|
+| LI-138 | sam. 02/01 12:15 | Tableau de bord annuel et roue de vie (15 €) | `1fKzqljoszEQe0dhwty_IJ-Hte1ZHzTDJ7HmzCwoHlQI` | `LI-138-tableau-annuel.png` (`1nZLnx0Bcw7FVJlY787QkZw17OwsMDftw`), couverture 1280 × 720, format Image |
+| IG-134 | dim. 03/01 18:30 | Tableau de bord annuel et roue de vie (15 €), carrousel, LinkedIn associé LI-138 | `1lLaknOzFSNxdZgm58Q8OTpJh92Oa6c-bfkDeu3bg79g` | `IG-134-tableau-annuel-1.png` … `-5.png` (`1FPtULG7RR-DwJSY8wiGi21DirBQ7BfEs`, `1whIGYA3ZIdFAnIFVX0hAT0E5e0d2N0cZ`, `1EAL9MhPB6GD8z2pLO2kWAFtIOawzq9M3`, `1oRU1cT9mxSUWWd80cqmvIhFHlXelO_2j`, `1m-HssKjnuyd6wdSAei_93w5AX-FitD4W`) |
+| LI-139 | mar. 05/01 12:15 | État des lieux d'entrée et de sortie (19 €) | `1b4KmKn1F9jx2Kn-o917UuqzXV9beQ1BoeQTto3ITVqI` | `LI-139-etat-des-lieux.png` (`165w6h8AYTiobp8uCSBQYzxZcz5i7uJ1q`), couverture 1280 × 720, format Image |
+| IG-135 | mer. 06/01 18:30 | État des lieux d'entrée et de sortie (19 €), carrousel, LinkedIn associé LI-139 | `1Biv_38qiqE4BX5YZsI_XSC0n1CS2L-HpmpYUVg-zr-c` | `IG-135-etat-des-lieux-1.png` … `-5.png` (`17QB-HgXyg6hxcdCm4y0Xxozo9cxUdyHj`, `1PHA2u9oHW9wtvQzgkWP5UD6tkdYAocu8`, `1EI983_VT8Kv4_WCccu4nGL7uNwfqDDcg`, `1f2quqWfQfLM52BCGmH0me4ySueGB4G4Y`, `1IWw8OTWl2ANCnVVRySdpBpS0mX6DyoPn`) |
+| LI-140 | mer. 06/01 12:15 | Rentabilité d'un investissement locatif (15 €) | `1sI3Z8IoWvbgLiYWx6rBT-Tbnunixj2YlWiIOTPjpKC0` | `LI-140-investissement-locatif.png` (`1MCz-mg6VtmDUywY98sA29QCDTDEqDHIE`), couverture 1280 × 720, format Image |
+| IG-136 | jeu. 07/01 18:30 | Rentabilité d'un investissement locatif (15 €), carrousel, LinkedIn associé LI-140 | `139yfgRb0HvVKhn3CWdMXh9zuEmxm-dyRybwvcnxVHw4` | `IG-136-investissement-locatif-1.png` … `-5.png` (`1EvowvNtoboiLA-pbTSiTnnK3XEuzcVHl`, `1Y0wADiQ1ZMxmb0L9pz5dfzB3N1BkVLRM`, `1Tj-mnLz7SsXEFSHjucvVvJ0ESyyhWEQE`, `1WZb_hiQ5KTNwdaA-Ns-5CstFulcH-_Ey`, `15KYcm7Lg5zy7m5bLO0sIA7kpTNPY6mkF`) |
+| LI-141 | jeu. 07/01 12:15 | Document unique d'évaluation des risques (29 €) | `1UvRR_e0gmQS7RCf9Ovf7qhEPN_38-9jQMx3UieCnf9M` | `LI-141-document-unique.png` (`1A8KFoLxUsbQF2P2PgdBu6c01S2ZID6QB`), couverture 1280 × 720, format Image |
+| IG-137 | ven. 08/01 18:30 | Document unique d'évaluation des risques (29 €), carrousel, LinkedIn associé LI-141 | `1DNh8OIMtWSQ47H9kIOkbbR-qdE0qVMw1YV53T-iiFxU` | `IG-137-document-unique-1.png` … `-5.png` (`1pGZATt_dRXJycWTL4dhnbWdxC7FFmIGv`, `1BZsIcGViqvwoSddMTJ-o7MlIvUoyvnSF`, `1Hl857Q8c2KDEonTixqdXwzG7tzYhds_R`, `1bq1Bj5F9KYE984vIx1udaHunj9pzM3Wf`, `19GammbJi1Nu9k5BF0fYt7pPb1hZYy-m_`) |
+| LI-142 | ven. 08/01 12:15 | Planning d'équipe et staffing (35 €) | `1u9Wf-RCDYSXPakxE_0R_B0g6nBzI7kf3TJ3fXkk3dvA` | `LI-142-planning-equipe.png` (`11K-cY_5sob2bTRcVTXnbht4Xj8OX4Fva`), couverture 1280 × 720, format Image |
+| IG-138 | sam. 09/01 18:30 | Planning d'équipe et staffing (35 €), carrousel, LinkedIn associé LI-142 | `1_Vv9hyK3MPiXjjWj5g_3TWQAnhJuI1tWcqXG7oHmuko` | `IG-138-planning-equipe-1.png` … `-5.png` (`1dQvjwLjcWPBvW_h1PH1TYkwnT9zNEvxX`, `1SfhPJ-2acj1haMf-3Oh5qUvC1SgvfM_5`, `12EZZcL2mbajtouLjy5lnL9yZQAG8er5C`, `1xAEVeQt7TCITfonABNfSEOcuPGimUWdm`, `1v39Wp2w16fHfPFQbxaW06dqv04n-Ppjx`) |
+
+Lignes 139 à 143 du Sheet LinkedIn (images dans le dossier Images LinkedIn `1QTuTihvIcKxLpFSU7xfACyVeXxYA9N_j`) et
+132 à 136 du Sheet Instagram (images dans `1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`).
+
+### Reports (un par jour après la dernière date du Sheet, même heure qu'avant)
+
+| ID | Ancienne date | Nouvelle date | Remplacé par |
+|---|---|---|---|
+| LI-111 Dossier sinistre habitation | sam. 02/01 12:15 | jeu. 18/03 12:15 | LI-138 |
+| LI-44 11 enfants, 3 adultes | mar. 05/01 08:30 | ven. 19/03 08:30 | LI-139 |
+| LI-23 Une opération, deux dates | mer. 06/01 08:30 | sam. 20/03 08:30 | LI-140 |
+| LI-25 Voir où part chaque euro | jeu. 07/01 08:30 | dim. 21/03 08:30 | LI-141 |
+| LI-26 Une ligne, une chose | ven. 08/01 08:30 | lun. 22/03 08:30 | LI-142 |
+| IG-66 T69 · Dossier sinistre habitation | dim. 03/01 18:30 | ven. 19/03 18:30 | IG-134 |
+| IG-95 11 enfants, 3 adultes | mer. 06/01 18:30 | sam. 20/03 18:30 | IG-135 |
+| IG-96 Une opération, deux dates | jeu. 07/01 18:30 | dim. 21/03 18:30 | IG-136 |
+| IG-97 Où part chaque euro | ven. 08/01 18:30 | lun. 22/03 18:30 | IG-137 |
+| IG-98 Une ligne, une chose | sam. 09/01 18:30 | mar. 23/03 18:30 | IG-138 |
+
+Chaque report porte en colonne M « reporté le 15/11/2026 (intégration de <nouvel ID>) ». Chaque post reporté garde
+son post Instagram associé le lendemain. LI-105 (vidéo, statut « Annulé », 02/01) n'a pas été touché.
+
+Points ouverts : la colonne H (lien du Doc) des nouvelles lignes est vide (formule par ligne, non recopiée ;
+la colonne G fait foi pour Instinct) ; les posts LinkedIn sont au format « Image » avec la couverture, car les
+carrousels Instagram affichent « Lien en bio » ; hashtags d'État des lieux (#Propriétaires, #GestionLocative) à
+valider. Le tableau principal ci-dessus n'a pas été réécrit : les jours concernés suivent cette section.
