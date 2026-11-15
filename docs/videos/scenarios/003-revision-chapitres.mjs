@@ -88,15 +88,13 @@ export async function jouer(v) {
   const saisi = await v.lire(TITRE);
   if (saisi.split('\n').length !== CHAPITRES.length) throw new Error(`Saisie incomplète : ${saisi}`);
   await v.temps();
-  son('zoom', 0.6); await S('suivre', 2.2);
+  son('zoom', 0.6); await S('suivre', 1.6);
   await v.cliquer(AJOUTER, { ms: 520 });
-  await pause(300);
+  // Résultat : demain au maximum, le reste glisse au lendemain (la caméra part dès la fermeture de la fenêtre)
+  await S('cacherCurseur');
+  son('dezoom'); await S('cadrer', [C1, C2], { max: 2.6, marge: 120 });
   const toast = await v.lire('.toast');
   if (!toast.includes(`${CHAPITRES.length} chapitres ajoutés`)) throw new Error(`Ajout non confirmé : ${toast}`);
-  await S('cacherCurseur');
-
-  // Résultat : demain au maximum, le reste glisse au lendemain
-  son('dezoom'); await S('cadrer', [C1, C2], { max: 2.6, marge: 120 });
   const b1 = await etiquette(v, v.j1), b2 = await etiquette(v, v.j2);
   const decales = b2.n - v.a2.n;
   if (b1.n !== v.max || decales !== v.a1.n + CHAPITRES.length - v.max) throw new Error(`Résultat inattendu : ${b1.texte}, ${b2.texte}`);

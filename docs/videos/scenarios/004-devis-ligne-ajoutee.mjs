@@ -123,7 +123,7 @@ export async function jouer(v) {
   if (montant2 === montant1) throw new Error('Le montant de la ligne n\'a pas changé.');
   son('dezoom', 0.6); await S('cadrer', DERNIERE, { max: 2.2, marge: 40 });
   await S('flash', DERNIERE, 'var(--ciel)');
-  son('pop'); await S('avantApres', 'l', MONTANT, montant1, montant2, { couleur: 'var(--bleu)', cote: 'dessus', note: 'total de la ligne' });
+  son('pop'); await S('avantApres', 'l', MONTANT, montant1, montant2, { couleur: 'var(--bleu)', cote: 'dessous', note: 'total de la ligne' });
   await temps(2);
   await S('retirer', 'l');
 

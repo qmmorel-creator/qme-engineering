@@ -36,7 +36,8 @@ process.on('exit', fin);
 for (let i = 0; i < 50; i++) { try { await fetch(`http://localhost:${PORT}/`); break; } catch { await new Promise((r) => setTimeout(r, 100)); } }
 
 // 2. Navigateur et studio.
-const navigateur = await chromium.launch();
+// Chromium en français : sans LANG, certains champs natifs (mois, date) s'affichent en anglais.
+const navigateur = await chromium.launch({ args: ['--lang=fr-FR'], env: { ...process.env, LANG: 'fr_FR.UTF-8', LANGUAGE: 'fr' } });
 const contexte = await navigateur.newContext({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1, locale: 'fr-FR', timezoneId: 'Europe/Paris' });
 const page = await contexte.newPage();
 page.on('pageerror', (e) => console.error('Erreur page :', e.message));

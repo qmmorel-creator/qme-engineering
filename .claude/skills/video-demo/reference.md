@@ -103,7 +103,9 @@ quand l'élément sort du champ.
 5. Le guide « Comment ça marche » s'ouvre au premier lancement : `v.fermerDialogues()` dans `preparer`.
 6. `attendreCamera` a un seuil de 6 px : ne pas exiger une précision au pixel (vidéo trop lente).
 7. Limite Drive du connecteur ≈ 3,1 Mo par fichier : ne pas monter la résolution sans réduire ailleurs.
-8. Le « aujourd'hui » de l'application est la date réelle du tournage : des états (« retard 2 j ») peuvent
+8. Langue : le moteur lance Chromium en français (`--lang=fr-FR`, `LANG=fr_FR.UTF-8`) ; sans cela les champs natifs
+   de mois et de date s'affichent en anglais (« April 2027 »). Contrôler ces champs dans `preparer`.
+9. Le « aujourd'hui » de l'application est la date réelle du tournage : des états (« retard 2 j ») peuvent
    changer d'un jour à l'autre ; `preparer` doit contrôler les données attendues.
 
 ## Programmation
