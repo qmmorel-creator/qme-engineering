@@ -60,11 +60,11 @@ export async function jouer(v) {
   await S('accroche', ['Partiels de décembre :', `*${CHAPITRES.length}_chapitres* ajoutés d'un coup.`, '!Tout tombe *le_même_jour ?*'], T / 2);
   await v.temps();
   son('whoosh'); await S('accrocheSortie');
-  await S('question', `Où vont *${CHAPITRES.length} chapitres* ajoutés d'un coup ?`);
+  await S('question', `*${CHAPITRES.length} chapitres* : quel jour ?`);
   await v.temps(); son('whoosh', 0.7); await S('fenetre', true);
 
   // Le planning de départ : demain
-  await v.temps(); son('zoom'); await S('cadrer', [C1, C2], { max: 2.4, marge: 220 });
+  await v.temps(); son('zoom'); await S('cadrer', [C1, C2], { max: 2.6, marge: 120 });
   await v.temps(); son('pop');
   await S('anneau', 'j1', C1, { etiquette: `${v.a1.jour} : ${v.a1.n} révision${v.a1.n > 1 ? 's' : ''}`, cote: 'dessus', marge: 4 });
   await S('legende', `Demain, <b>${v.a1.n} révision${v.a1.n > 1 ? 's' : ''}</b> déjà prévue${v.a1.n > 1 ? 's' : ''}.`);
@@ -82,7 +82,7 @@ export async function jouer(v) {
   son('zoom', 0.6); await S('cadrer', 'dialog[open] .modale-corps', { max: 1.9, marge: 40 });
   const texte = CHAPITRES.join('\n');
   for (const c of texte) {
-    await S('touche', c === '\n' ? 'Entrée ⏎' : c);
+    if (c === '\n') await S('touche', 'Entrée ⏎'); // seules les fins de ligne sont affichées (frappe rapide)
     son('touche', 0.8); await page.keyboard.type(c); await pause(c === '\n' ? 90 : 55);
   }
   const saisi = await v.lire(TITRE);
@@ -96,7 +96,7 @@ export async function jouer(v) {
   await S('cacherCurseur');
 
   // Résultat : demain au maximum, le reste glisse au lendemain
-  son('dezoom'); await S('cadrer', [C1, C2], { max: 2.4, marge: 220 });
+  son('dezoom'); await S('cadrer', [C1, C2], { max: 2.6, marge: 120 });
   const b1 = await etiquette(v, v.j1), b2 = await etiquette(v, v.j2);
   const decales = b2.n - v.a2.n;
   if (b1.n !== v.max || decales !== v.a1.n + CHAPITRES.length - v.max) throw new Error(`Résultat inattendu : ${b1.texte}, ${b2.texte}`);
@@ -118,14 +118,16 @@ export async function jouer(v) {
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer(C2, { ms: 520 });
   await pause(250);
-  son('zoom'); await S('cadrer', DETAIL, { max: 2.2, marge: 80 });
+  const r = await S('rectApp', DETAIL);
+  son('zoom'); await S('cadrer', { x: r.x, y: r.y, w: 600, h: r.h }, { max: 2.2, marge: 40 });
   const titres = await v.appli.$$eval(`${DETAIL} .ligne b`, (bs) => bs.map((b) => b.textContent.trim()));
   const resume = await v.lire(`${DETAIL} h2 span`);
   if (titres.join() !== CHAPITRES.slice(-decales).join()) throw new Error(`Détail inattendu : ${titres.join(', ')}`);
   await v.temps();
   await S('flash', DETAIL, 'var(--ciel)');
-  son('pop'); await S('anneau', 'd', `${DETAIL} h2`, { couleur: 'var(--vert)', etiquette: `${b2.jour} : ${resume}`, cote: 'dessus', pulse: false, marge: 4 });
-  son('trait', 0.6); await S('souligner', 's2', `${DETAIL} .ligne:last-of-type b`, 'var(--vert)');
+  son('pop'); await S('anneau', 'd', `${DETAIL} .ligne:nth-of-type(1) b`, { couleur: 'var(--vert)', etiquette: `${b2.jour} : ${resume}`, cote: 'dessus', pulse: false, marge: 6 });
+  son('trait', 0.6);
+  for (let i = 1; i <= titres.length; i++) await S('souligner', `t${i}`, `${DETAIL} .ligne:nth-of-type(${i}) b`, 'var(--vert)');
   await S('legende', `<b>${titres.join('</b> et <b>')}</b> : première révision ${b2.jour.toLowerCase()}.`);
   await temps(3);
   await S('retirer'); await S('cacherCurseur');

@@ -65,7 +65,7 @@ export async function jouer(v) {
   await v.temps(); son('pop');
   await S('anneau', 'j', `${TITRE} mark`, { etiquette: `${nbRelances} · dont ${enRetard}`, cote: 'dessous', marge: 6 });
   await S('legende', `L'écran <b>Aujourd'hui</b> liste qui relancer.`);
-  await temps(2);
+  await temps(2.5);
   await S('retirer', 'j');
   await v.temps(); son('zoom', 0.7); await S('cadrer', [`${CARTE1} .carte-meta-haut`, `${CARTE1} h3`], { max: 2.5, marge: 60 });
   const retard = await v.lire(RETARD1);
@@ -99,15 +99,16 @@ export async function jouer(v) {
   await v.temps(); await S('legende', `Et ce client pèse combien ? <b>Chiffres</b>.`);
   son('dezoom'); await S('suivre', 1.5, 0.15);
   await v.cliquer(ONGLET('chiffres'), { ms: 520 });
-  son('zoom'); await S('cadrer', ['table.clients thead th:nth-child(4)', `${CLIENT1} td:nth-child(4)`, `${CLIENT1} td:last-child`], { max: 2.3, marge: 40 });
+  son('zoom'); await S('cadrer', ['table.clients thead th:first-child', `${CLIENT1} td:first-child b`, `${CLIENT1} td:nth-child(4)`], { max: 2.3, marge: 30 });
   const part = await v.lire(`${CLIENT1} td:last-child small`);
   const reste = await v.lire(`${CLIENT1} td:nth-child(4)`);
   await v.temps();
   await S('flash', CLIENT1, 'var(--ciel)');
-  son('pop'); await S('anneau', 'p', `${CLIENT1} td:last-child`, { couleur: 'var(--bleu)', etiquette: `1er client : ${part} du facturé`, cote: 'dessous', pulse: false, marge: 6 });
-  son('trait', 0.6); await S('souligner', 's', `${CLIENT1} td:nth-child(4)`, 'var(--rouge)');
+  son('pop'); await S('anneau', 'p', `${CLIENT1} td:first-child b`, { couleur: 'var(--bleu)', etiquette: `1er client : ${part} du facturé`, cote: 'dessous', pulse: false, marge: 6 });
+  await v.temps(2);
+  son('pop'); await S('anneau', 'm', `${CLIENT1} td:nth-child(4)`, { couleur: 'var(--rouge)', etiquette: `${reste} dus`, cote: 'dessous', pulse: false, marge: 2 });
   await v.temps(); son('tampon'); son('ding', 0.7);
-  await S('tampon', 'Priorité du jour', `${v.entreprise} · ${reste} dus`, 'var(--rouge)');
+  await S('tampon', 'Priorité du jour', v.entreprise, 'var(--rouge)');
   await temps(2.6);
   await S('tamponFin'); await S('retirer'); await S('cacherCurseur');
 
