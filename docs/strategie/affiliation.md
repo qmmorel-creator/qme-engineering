@@ -61,3 +61,13 @@ illisibles sans connexion). Non publié (`/docs/*` en 404).
 2. Vérifier l'expéditeur des brouillons (adresse QME plutôt que Gmail personnel si possible).
 3. À chaque « oui » : code d'accès gratuit (`npm run code -- <PRODUIT> 1`, inscrit dans `codes-gratuits.md`) et
    invitation d'affilié dans Gumroad.
+
+## Mise à jour du 15/11/2026 (soir)
+
+- Pack Argent du quotidien en vente : lien tracé ajouté aux brouillons n° 1, 2 et 3 :
+  `https://qm-engineering.fr/packs/argent-du-quotidien/?utm_source=gmail&utm_medium=email&utm_campaign=affiliation`
+- **Problème** : l'outil Gmail utilisé par Claude enregistre tous les liens sous forme de redirection
+  `https://www.google.com/url?q=…` (y compris en HTML). Avant l'envoi, Quentin remplace dans chaque brouillon
+  les liens par l'adresse ci-dessus (et `qm-engineering.fr` dans la signature), ou supprime le lien
+  `google.com/url` et recolle l'adresse.
+- Brouillons n° 4 (Pack Bien démarrer) : en attente de la mise en vente du pack (fiche créée dans la nuit).
