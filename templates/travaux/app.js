@@ -46,7 +46,7 @@
   let annulation = null;
   const filtre = { pieceId: '' };
 
-  const etatVide = () => ({ version: 1, chantier: { nom: '', debut: null }, reglages: { imprevus: B.imprevusDefaut },
+  const etatVide = () => ({ version: 1, tutorielVu: false, chantier: { nom: '', debut: null }, reglages: { imprevus: B.imprevusDefaut },
     pieces: [], artisans: [], postes: [], devis: [], paiements: [], imprevus: [], interventions: [], reserves: [] });
   const normaliser = (d) => {
     const v = etatVide();
@@ -387,7 +387,7 @@
       sauver();
       demarrer();
       toast(m ? `Chantier créé avec ${pluriel(E.postes.length, 'poste')}. Ajoute tes premiers devis.` : 'Chantier créé. Ajoute ton premier poste.');
-      if (!m) setTimeout(() => modalePoste(), 250);
+      // Sans modèle : le guide « Comment ça marche » s'ouvre, puis propose d'ajouter le premier poste.
     });
   }
 
@@ -399,6 +399,7 @@
     reserves: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 12l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>',
     guide: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['devis', 'Devis'], ['budget', 'Budget'], ['planning', 'Planning'], ['reserves', 'Réserves'], ['guide', 'Guide']];
 
@@ -414,12 +415,13 @@
         <span class="titre-produit">Pilote<br>de travaux</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1082,6 +1084,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du pilote, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1113,6 +1117,38 @@
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Un poste, plusieurs devis', `Un poste, c'est un corps de métier dans une pièce, comme le carrelage de la salle de bains. Ajoute au moins deux devis par poste, avec leurs montants HT et TTC et ce qui est inclus : ils sont classés du moins cher au plus cher, avec l'écart. Des alertes signalent une assurance non déclarée ou un taux de TVA à vérifier.`],
+      ['beurre', 'Retenu, engagé, payé', `<b>Retiens</b> un devis quand il est signé : son montant TTC devient l'engagé du poste, avec les imprévus. Note chaque acompte et chaque solde dans <b>Budget</b> : le reste à payer se calcule seul.`],
+      ['ciel', 'Une provision pour imprévus', `Ton enveloppe, c'est le budget prévu de tes postes plus ${pct(E.reglages.imprevus).replace(' ', '&nbsp;')} pour les imprévus. Chaque imprévu noté consomme cette provision, et <b>Budget</b> te prévient si l'engagé dépasse l'enveloppe.`],
+      ['sable', 'Planning et réserves', `Le <b>Planning</b> signale deux interventions qui se chevauchent dans la même pièce ou avec le même artisan, et un ordre inhabituel, comme la peinture avant la plâtrerie. En fin de travaux, note chaque défaut dans <b>Réserves</b> et la date de réception : la garantie de parfait achèvement court un an.`],
+    ];
+    const corps = `
+      <p>Le pilote compare tes devis, tient ton budget et repère les conflits de planning. Ton rôle : noter les devis reçus, ceux que tu retiens et ce que tu paies.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Guide</b> rassemble l'ordre habituel des travaux, la TVA et les aides publiques, avec les sources officielles. Les montants sont ceux que tu saisis : le devis signé et les factures font foi. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton chantier est enregistré en ligne avec ta clé : tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.postes.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="poste">Ajouter mon premier poste</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'poste') setTimeout(() => modalePoste(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   function telecharger(contenu, nom, typeMime) {
@@ -1223,6 +1259,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `pilote-travaux-${auj()}.json`, 'application/json'); break;
       case 'fermer': modale().close(); break;

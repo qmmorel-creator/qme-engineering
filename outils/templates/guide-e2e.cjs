@@ -27,7 +27,7 @@ const GUIDE = 'Comment ça marche';
     const larg = await p.evaluate(() => document.documentElement.scrollWidth);
     ok(larg <= (opts.viewport?.width || 1280), `${nom} : largeur ${larg} px`);
     await p.screenshot({ path: `${dossier}/${slug}-${nom}-guide.png` });
-    await p.evaluate(() => document.querySelector('dialog[open]')?.scrollTo(0, 99999));
+    await p.evaluate(() => { const d = document.querySelector('dialog[open]'); d?.scrollTo(0, 99999); d?.querySelector('.modale-corps')?.scrollTo(0, 99999); });
     await p.waitForTimeout(150);
     await p.screenshot({ path: `${dossier}/${slug}-${nom}-guide-bas.png` });
     await p.click('dialog[open] .modale-pied button.primaire, dialog[open] .modale-pied button >> nth=0');

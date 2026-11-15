@@ -46,7 +46,7 @@
   let moisVu = R.premierDuMois(auj());
   let annulation = null;
 
-  const etatVide = () => R.normaliserEtat(null, auj(), COULEURS);
+  const etatVide = () => ({ ...R.normaliserEtat(null, auj(), COULEURS), tutorielVu: false });
   const normaliser = (d) => R.normaliserEtat(d, auj(), COULEURS);
 
   function retenir() { annulation = structuredClone(E); }
@@ -375,6 +375,7 @@
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="7" width="4" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     habitudes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     moins: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -395,12 +396,13 @@
         <span class="titre-produit">Suivi<br>d'habitudes</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -890,6 +892,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie (JSON)</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label><button class="btn petit" type="button" data-action="csv">Journal en CSV</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">Rien n'est coché automatiquement : aucune connexion à une montre, une application de sport ou de santé. Les réglages types sont indicatifs (sources dans la base d'habitudes). ${AVERTISSEMENT_SANTE}</p></div>`;
@@ -923,6 +927,39 @@
     const t = auj();
     const debut = Object.keys(E.journal).sort()[0] || E.habitudes.map((h) => h.depuis).sort()[0] || t;
     telecharger('﻿' + R.versCsv(E, debut, t, t), 'text/csv;charset=utf-8', `journal-habitudes-${t}.csv`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Choisis tes habitudes', `Prends-les dans la base de 50 habitudes types ou crée les tiennes, rangées par thèmes colorés. Une habitude se coche, ou se chiffre avec un minimum, un maximum ou les deux : eau au moins 8 verres, café au plus 3 tasses. Pour chacune, choisis ses jours prévus : les autres jours ne comptent pas.`],
+      ['beurre', 'Coche ta journée', `Dans <b>Aujourd'hui</b>, touche une habitude pour la marquer faite, touche encore pour «&nbsp;pas fait&nbsp;». Les boutons <b>+</b> et <b>−</b> ajustent un chiffre ; touche la valeur pour la saisir. Un oubli&nbsp;? Les flèches en haut de l'écran ramènent aux jours passés.`],
+      ['ciel', 'Les jours sans', `Malade, en congés&nbsp;? Le bouton <b>···</b> marque l'habitude «&nbsp;non applicable&nbsp;» : le jour ne compte pas et ne casse pas la série. Un jour passé laissé vide compte comme manqué ; un chiffre hors de l'objectif ne compte pas comme réussi. Aujourd'hui, rien n'est perdu tant que la journée n'est pas finie.`],
+      ['sable', 'Séries et taux', `La série compte les jours réussis d'affilée jusqu'à aujourd'hui. Le taux de réussite rapporte les jours réussis aux jours comptés, sans les jours non prévus ni les jours non applicables. Une journée parfaite, c'est tout ce qui était prévu, réussi.`],
+      ['rose', 'Une seule réponse par jour', `Un thème «&nbsp;une seule par jour&nbsp;» sert aux choix exclusifs, comme le lieu de travail : bureau, télétravail ou déplacement. Tu choisis une réponse par jour, sans série ni taux : le <b>Bilan</b> montre la répartition des réponses.`],
+    ];
+    const corps = `
+      <p>Le suivi compte pour toi tes séries et ton taux de réussite. Ton rôle : cocher chaque jour ce que tu as fait, en quelques secondes. Rien n'est coché automatiquement.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Mois</b> montre la grille du mois, à imprimer ou à exporter en CSV, <b>Bilan</b> tes séries et taux des 30 derniers jours. Dans <b>Habitudes</b>, archive ce que tu ne suis plus : son historique reste. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.habitudes.some((h) => !h.archive);
+    const pied = premiere
+      ? '<button class="btn primaire" value="base">Ajouter ma première habitude</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'base') setTimeout(() => modaleBase(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1017,6 +1054,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;
