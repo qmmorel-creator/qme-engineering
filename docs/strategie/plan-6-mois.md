@@ -213,3 +213,12 @@ Réponses de Quentin du 15/11/2026 :
    à 9 €) ; prix Gumroad passé à 9 € le même jour ; pages en ligne vérifiées (200, prix affichés).
 4. Repris de l'analyse ChatGPT : GoatCounter (déjà installé) à brancher au tableau de bord, convention UTM,
    classement noté des 28 produits, check-list gratuite de réception de chantier (guide).
+
+## 10. Mises en ligne du 15/11/2026 (soir)
+
+- Secret Santa (gratuit) et Pack Argent du quotidien (43 € / 54 €) publiés sur Gumroad et en vente sur le site
+  (PR #115, #116). Pack Bien démarrer l'année : fiche à créer dans la nuit (limite Gumroad), puis clé et versions.
+- Reels IG-131 à IG-133 programmés (Instagram et TikTok) ; 5 templates intégrés au calendrier de janvier.
+- Guides lot 1 en ligne (PR #118) : /guides/facture-impayee/, /guides/levee-des-reserves/,
+  /guides/budget-couple-50-50-ou-prorata/ (calculateur gratuit). Lot 2 possible : document unique, état des
+  lieux, coût des abonnements.
