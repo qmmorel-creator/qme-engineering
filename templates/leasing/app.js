@@ -36,8 +36,8 @@
   let vue = 'comparaison';
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
-  const normaliser = (d) => R.normaliser(d, B.defauts);
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ tutorielVu: false, ...R.normaliser(d, B.defauts) });
   const P = () => E.projets.find((p) => p.id === E.actif) || E.projets[0];
   const scenario = (id) => P().scenarios.find((s) => s.id === id);
 
@@ -378,6 +378,7 @@
     hypotheses: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="18" height="4" fill="currentColor"/></svg>',
     questions: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['comparaison', 'Comparaison'], ['scenarios', 'Offres'], ['hypotheses', 'Hypothèses'], ['questions', 'Questions']];
@@ -397,12 +398,13 @@
         <span class="titre-produit">Leasing<br>ou achat</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -994,6 +996,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du simulateur, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données</h3><p class="mention">Tes comparaisons sont enregistrées en ligne, liées à ta clé, et ne sont ni lues ni partagées par QME. Aucune connexion à une banque, un vendeur ou un loueur : tu saisis toi-même les montants de tes offres.</p></div>
@@ -1006,7 +1010,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.projets)) throw new Error();
         if (!confirm(`Remplacer tes comparaisons actuelles par cette copie (${pluriel(d.projets.length, 'comparaison')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || E.tutorielVu === true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du simulateur.'); }
     });
@@ -1023,6 +1028,35 @@
   const aujIso = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `leasing-ou-achat-${aujIso()}.json`);
   const exporterCsv = () => telecharger(R.versCsv(P()), 'text/csv;charset=utf-8', `comparaison-${P().nom.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'voiture'}-${aujIso()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Une comparaison par voiture', `Une comparaison réunit un véhicule, une durée de détention et ton kilométrage par an. Tu peux en créer plusieurs&nbsp;: une autre voiture, ou la même sur une autre durée. Passe de l'une à l'autre avec les boutons en haut de chaque onglet.`],
+      ['beurre', 'Reporte chaque offre', `Dans <b>Offres</b>, ajoute jusqu'à ${R.MAX_SCENARIOS} offres (comptant, crédit, LOA ou LLD) avec les montants de l'offre écrite. Tant qu'il manque un montant, l'offre reste <b>à compléter</b> et n'entre pas dans la comparaison.`],
+      ['ciel', 'Le coût total net', `Pour chaque offre, le simulateur additionne tout ce que tu verses sur la période&nbsp;: départ, frais, mensualités ou loyers, assurance, entretien s'il n'est pas inclus, option, kilomètres en trop. Si la voiture est à toi à la fin, sa valeur de revente estimée est déduite. <b>Comparaison</b> classe les offres, avec le coût par mois et par kilomètre.`],
+      ['sable', 'Tes hypothèses décident', `Décote, entretien, assurance et coût d'opportunité de l'apport (si tu l'actives) sont communs à toutes les offres, dans <b>Hypothèses</b>&nbsp;: change-les pour voir si le classement tient. <b>Selon ton kilométrage</b>, dans Comparaison, montre à partir de combien de kilomètres par an une autre offre passe devant.`],
+      ['rose', 'Pose les bonnes questions', `<b>Questions</b> liste ce qu'il faut demander au vendeur avant de signer, selon tes offres. Coche celles qui ont reçu une réponse écrite, puis copie les questions restantes.`],
+    ];
+    const corps = `
+      <p>Le simulateur calcule ce que chaque offre te coûtera vraiment sur la durée où tu gardes la voiture. Ton rôle&nbsp;: reporter les montants de tes devis, puis vérifier que le classement tient avec tes hypothèses.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">La fiscalité des indépendants (déductibilité, TVA, avantage en nature) n'est pas calculée&nbsp;: c'est une simulation, pas un conseil financier. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes comparaisons sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1100,7 +1134,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1112,6 +1146,7 @@
       case 'supprimer-projet': supprimerProjet(id); break;
       case 'hypotheses': modaleHypotheses(); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

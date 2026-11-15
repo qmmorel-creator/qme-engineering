@@ -1,8 +1,8 @@
 // Service worker du template séminaire / offsite : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'seminaire-20261114';
-const COQUILLE = ['./', 'app.css?v=20261114', 'donnees.js?v=20261114', 'regles.js?v=20261114', 'app.js?v=20261114', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'seminaire-20261115t';
+const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest'];
 const FAMILLE = VERSION.slice(0, VERSION.lastIndexOf('-'));
 
 self.addEventListener('install', (e) => {

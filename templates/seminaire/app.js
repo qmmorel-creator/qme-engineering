@@ -55,7 +55,7 @@
   const ui = Object.assign({ semId: null, volet: 'transports', rep: '', svc: '', q: '', jour: 1 }, stock.lire(CLE_UI) || {});
   const memoUi = () => stock.ecrire(CLE_UI, { semId: ui.semId, volet: ui.volet });
 
-  const etatVide = () => ({ version: 1, structure: '', reglages: { convention: 'TTC' },
+  const etatVide = () => ({ version: 1, structure: '', tutorielVu: false, reglages: { convention: 'TTC' },
     seminaires: [], participants: [], trajets: [], chambres: [], sessions: [], postes: [], depenses: [] });
   const normaliser = (d) => {
     const v = etatVide();
@@ -491,6 +491,7 @@
     programme: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="10" height="4" fill="currentColor"/><rect x="7" y="10" width="10" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="16" width="10" height="4" fill="currentColor"/></svg>',
     budget: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     coche: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
   };
@@ -508,13 +509,14 @@
         <span class="titre-produit">Séminaire<br>et offsite</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span data-court="${COURTS[id]}">${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>
       <div id="impression" aria-hidden="true"></div>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1347,6 +1349,8 @@
       <div class="groupe"><h3>Base intégrée</h3><p class="aide">Programmes types, postes de budget, types de chambre et de session rédigés pour ce template : horaires indicatifs, aucun prix de référence, aucun horaire de transporteur.</p></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'outil, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1362,13 +1366,47 @@
         if (!Array.isArray(d.seminaires) || !Array.isArray(d.participants)) throw new Error();
         if (!confirm(`Remplacer toutes tes données par cette copie (${pluriel(d.seminaires.length, 'séminaire')}) ?`)) return;
         memo();
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || E.tutorielVu === true;
         modale().close(); fait('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du template séminaire.'); }
     });
   }
   function exporter() {
     telecharger(new Blob([JSON.stringify(E, null, 2)], { type: 'application/json' }), `seminaire-offsite-${auj()}.json`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Un séminaire, ses participants', `Chaque séminaire a sa date, son nombre de jours et sa date limite de réponse. Dans <b>Participants</b>, note la réponse de chacun&nbsp;: ${REP.oui.toLowerCase()}, ${REP.attente.toLowerCase()} ou ${REP.non.toLowerCase()}. Les réponses en attente remontent dans le <b>Tableau de bord</b> 7&nbsp;jours avant la date limite, puis en urgence une fois celle-ci passée.`],
+      ['beurre', 'Transports et chambres', `Dans <b>Transports et chambres</b>, crée les trajets aller et retour et les chambres, puis affecte chaque participant. L'outil signale qui n'a pas de trajet ou reste à loger, les trajets et chambres trop pleins, et un trajet qui arrive après le début du programme ou part avant la fin. La répartition automatique loge les confirmés en regroupant les collègues d'un même service.`],
+      ['ciel', 'Le programme', `<b>Programme</b> place les sessions jour par jour, chacune dans sa salle&nbsp;: plusieurs sessions peuvent avoir lieu en même temps dans des salles différentes. Deux sessions qui se chevauchent dans la même salle sont signalées.`],
+      ['sable', 'Le budget', `<b>Budget</b> compare, poste par poste, le prévu aux dépenses engagées et payées, en ${esc(E.reglages.convention)} comme choisi dans les réglages. Le coût par participant divise le total par le nombre de confirmés. Un poste dépassé, le budget cible dépassé et les paiements à régler dans les 14&nbsp;jours sont signalés.`],
+      ['rose', 'Le traiteur et les données sensibles', `La <b>Fiche traiteur</b> ne donne que des nombres&nbsp;: couverts (confirmés et en attente), régimes et allergies, sans aucun nom. Une fois le séminaire terminé, l'outil te rappelle d'effacer régimes, allergies et besoins d'accessibilité.`],
+    ];
+    const corps = `
+      <p>L'outil réunit l'organisation de ton séminaire&nbsp;: participants, transports, chambres, programme et budget, et te signale ce qui reste à régler. Ton rôle&nbsp;: saisir les participants et leurs réponses, puis la logistique et les dépenses.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Tableau de bord</b> liste ce qui est à traiter, le plus urgent d'abord. Le menu en haut de chaque onglet passe d'un séminaire à l'autre. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.seminaires.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="seminaire">Créer mon premier séminaire</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'seminaire') setTimeout(() => modaleSeminaire(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1447,7 +1485,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1460,6 +1498,7 @@
       }
       case 'ouvrir-sem': ui.semId = id; ui.jour = 1; memoUi(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

@@ -65,7 +65,7 @@
 
   const profilVide = () => ({ type: 'salarie', revenuMensuel: null, revenuAnnuel: null, moisTravailles: null, heuresSemaine: null, joursSemaine: null, conges: null, nonTravailles: null, trajetMinutes: null, fraisPro: null, inclureTransport: true });
   const scenarioVide = (i) => ({ id: uid(), nom: `Scénario ${LETTRES[i] || i + 1}`, lignes: [] });
-  const etatVide = () => ({ version: 1, profil: profilVide(), convention: 'effectif', depenses: [], categoriesPerso: [], sousPerso: {}, scenarios: [], achats: [],
+  const etatVide = () => ({ version: 1, tutorielVu: false, profil: profilVide(), convention: 'effectif', depenses: [], categoriesPerso: [], sousPerso: {}, scenarios: [], achats: [],
     calcul: { montant: null, periode: 'unique', libelle: '' }, partage: { modeDeVie: true, categorie: true, logement: true, economies: true, horaire: false } });
   function normaliser(d) {
     const v = etatVide();
@@ -350,7 +350,7 @@
   }
   function reprendreEssai() {
     const essai = normaliser(stock.lire(CLE_DECOUVERTE));
-    E = { ...etatVide(), profil: essai.profil, convention: essai.convention, depenses: essai.depenses.map((d) => ({ ...d, id: uid() })), calcul: essai.calcul };
+    E = { ...etatVide(), tutorielVu: !!E?.tutorielVu, profil: essai.profil, convention: essai.convention, depenses: essai.depenses.map((d) => ({ ...d, id: uid() })), calcul: essai.calcul };
     stock.suppr(CLE_DECOUVERTE);
     vue = 'bilan'; history.replaceState(null, '', '#bilan');
     sauver(); demarrer();
@@ -365,6 +365,7 @@
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" rx="1" fill="currentColor"/><rect x="10" y="6" width="4" height="15" rx="1" fill="currentColor"/><rect x="17" y="2" width="4" height="19" rx="1" fill="currentColor"/></svg>',
     simuler: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10 17 18.5H7Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" rx="1" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" rx="1" fill="#F5B400" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="9" width="4" height="6.5" rx="1" fill="#D9302A" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="15" width="4" height="6.5" rx="1" fill="#1D4E89" stroke="currentColor" stroke-width="1.5"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     cadenas: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
   const ONGLETS = [['profil', 'Profil'], ['calculer', 'Calculer'], ['depenses', 'Dépenses'], ['bilan', 'Bilan'], ['simuler', 'Simuler']];
@@ -383,12 +384,13 @@
         <span class="titre-produit">Temps<br>de vie</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, export et confidentialité" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : session.decouverte ? 'decouverte' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
   const VUES = { profil: () => vueProfil(), calculer: () => vueCalculer(), depenses: () => vueDepenses(), bilan: () => vueBilan(), simuler: () => vueSimuler() };
   function rendre() {
@@ -874,6 +876,8 @@
         <div class="rang"><button class="btn petit danger" type="button" data-action="tout-effacer">Effacer toutes mes données</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Exemple complet (données fictives).</p>' : session.decouverte ? `<p>Découverte gratuite. <a href="${PAGE_OFFRE}">Application complète · ${PRIX}</a></p>` : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter l\'exemple' : session.decouverte ? 'Quitter la découverte' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calculateur, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <p class="mention">Outil d'aide à la réflexion : il ne constitue pas un conseil financier, fiscal ou professionnel.</p>`,
@@ -886,7 +890,8 @@
         if (!d.profil || !Array.isArray(d.depenses)) throw new Error();
         if (session.decouverte && d.depenses.length > B.decouverte.maxDepenses) { toast(`La découverte garde ${B.decouverte.maxDepenses} dépenses au plus : cette copie en contient ${d.depenses.length}.`); return; }
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.depenses.length, 'dépense')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || E.tutorielVu === true;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du calculateur.'); }
     });
@@ -895,13 +900,48 @@
     if (!confirm(session.decouverte || session.demo ? 'Effacer toutes les données de ce navigateur ?' : 'Effacer ton profil et toutes tes dépenses, en ligne et sur cet appareil ? Pense à télécharger une copie avant : cette action est définitive.')) return;
     if (session.demo) { stock.suppr(CLE_DEMO); modale().close(); deconnecter(); return; }
     if (session.decouverte) { stock.suppr(CLE_DECOUVERTE); modale().close(); deconnecter(); return; }
-    E = etatVide();
+    const vu = E.tutorielVu;
+    E = etatVide(); E.tutorielVu = vu;
     modale().close(); sauver();
     toast('Toutes tes données ont été effacées.');
     ecranAccueil();
   }
   function exporter() { telecharger(`temps-de-vie-${auj()}.json`, JSON.stringify(E, null, 2), 'application/json'); toast('Copie téléchargée.'); }
   function exporterCSV() { telecharger(`temps-de-vie-depenses-${auj()}.csv`, C.csv(E.depenses, taux(), { categories: bibliotheque(), periodicites: B.periodicites }, auj()), 'text/csv;charset=utf-8'); toast('Fichier CSV téléchargé (séparateur point-virgule).'); }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const d = B.defauts;
+    const [c1, c2, c3] = ['contrat', 'reel', 'effectif'].map((id) => conv(id));
+    const blocs = [
+      ['rose', 'Ton revenu net par heure', `Dans <b>Profil</b>, ton revenu net et ton temps de travail donnent ce que tu gagnes par heure. Un champ laissé vide prend une valeur par défaut (${d.heuresSemaine}&nbsp;h par semaine, ${d.joursSemaine} jours, ${d.conges} jours de congés…), signalée comme hypothèse. Un revenu annuel saisi passe avant le revenu mensuel × 12.`],
+      ['beurre', 'Choisis ta façon de compter', `<b>${esc(c1.nom)}</b> (convention&nbsp;${c1.num})&nbsp;: heures par semaine × 52, congés payés compris. <b>${esc(c2.nom)}</b> (${c2.num})&nbsp;: trajet compris si tu le coches, dépenses professionnelles retirées du revenu. <b>${esc(c3.nom)}</b> (${c3.num})&nbsp;: les jours vraiment travaillés dans l'année. Tu utilises la convention ${conv().num}, rappelée en haut de chaque calcul.`],
+      ['ciel', 'Convertis une dépense', `<b>Calculer</b> traduit un montant en heures, jours et semaines de travail. Pour une dépense récurrente, il donne aussi le cumul sur un mois, un an, cinq et dix ans. C'est une équivalence&nbsp;: combien d'heures de revenu net, pas le temps réellement passé à travailler pour elle.`],
+      ['sable', 'Fais le bilan de ton mode de vie', `Note tes dépenses récurrentes et tes achats dans <b>Dépenses</b>. <b>Bilan</b> additionne les dépenses récurrentes en cours et les achats des douze derniers mois&nbsp;: tu vois combien d'heures de travail par semaine ton train de vie représente, et quelle part de ton temps de travail il absorbe.`],
+      ['rose', 'Simule tes choix', `<b>Simuler</b> compare jusqu'à ${MAX_SCENARIOS} scénarios, avant et après, en euros et en heures de travail sur 1, 3, 5 et 10 ans. Un achat unique est réparti sur sa durée d'utilisation. Le coût réel d'un achat ajoute frais, entretien et utilisation, puis déduit la revente.`],
+    ];
+    const lieu = session.demo ? 'Dans l\'exemple, les données fictives restent dans ce navigateur.'
+      : session.decouverte ? `En découverte gratuite, tes données restent dans ce navigateur, avec ${B.decouverte.maxDepenses} dépenses au plus&nbsp;; le simulateur et le détail du bilan sont réservés à l'application complète.`
+        : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.';
+    const corps = `
+      <p>Le calculateur traduit chaque dépense en temps de travail&nbsp;: combien d'heures de ton revenu net elle représente. Ton rôle&nbsp;: renseigner ton revenu et ton temps de travail, puis tes dépenses.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Partager le résultat</b>, dans Bilan, ne montre que ce que tu coches&nbsp;: ton revenu n'apparaît pas si tu ne le choisis pas. ${lieu} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   const appareil = () => {
@@ -980,13 +1020,14 @@
       case 'demo': ouvrirDemo(); break;
       case 'demo-voir': if (confirm('Ouvrir l\'exemple complet ? Tes données de découverte restent enregistrées dans ce navigateur.')) ouvrirDemo(); break;
       case 'decouverte': ouvrirDecouverte(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de l\'exemple et repartir de zéro ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de l\'exemple et repartir de zéro ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': deconnecter(); break;
       case 'a-type': accueil.type = id; document.querySelectorAll('[data-action="a-type"]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === id))); break;
       case 'accueil-fin': terminerAccueil(); break;
       case 'reprendre-essai': reprendreEssai(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;

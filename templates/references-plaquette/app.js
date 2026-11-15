@@ -48,7 +48,8 @@
   let annulation = null;
   let filtresOuverts = false;   // filtres dépliés sur téléphone
 
-  const normaliser = (d) => R.normaliser(d);
+  // R.normaliser ne garde que les champs connus : on y réinjecte tutorielVu (guide « Comment ça marche » déjà vu).
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: d?.tutorielVu === true });
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
     if (!annulation) return;
@@ -409,7 +410,7 @@
 
   function terminerAccueil(vide) {
     const a = accueil;
-    E = R.etatVide();
+    E = { ...R.etatVide(), tutorielVu: false };
     E.profil = R.normaliserProfil({ nom: a.nom.trim(), accroche: a.accroche.trim(), metier: a.metier });
     const m = B.metiers.find((x) => x.id === a.metier) || B.metiers[0];
     if (!vide && a.titre.trim()) {
@@ -431,6 +432,7 @@
     plaquette: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="2" width="14" height="20" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="5" width="8" height="6" fill="currentColor"/><rect x="8" y="14" width="8" height="2" fill="currentColor"/><rect x="8" y="18" width="5" height="2" fill="currentColor"/></svg>',
     profil: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     imprimer: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="6" y="3" width="12" height="5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="9" width="18" height="8" fill="currentColor"/><rect x="7" y="14" width="10" height="7" fill="#fff" stroke="currentColor" stroke-width="2"/></svg>',
     copier: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
@@ -467,12 +469,13 @@
         <span class="titre-produit">Références<br>et plaquette</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span><span class="court">${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const saisieEnCours = () => document.activeElement?.matches?.('input:not([type=checkbox]):not([type=radio]),textarea');
@@ -964,6 +967,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du kit, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application et montrer une référence en rendez-vous.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Modèles de fiches de ${B.metiers.length} métiers, trame et mises en page rédigées pour QME. Aucune connexion à un réseau social, une messagerie ou un autre logiciel : rien n'est envoyé, la plaquette s'imprime et les textes se copient. Bonne pratique : demande l'accord écrit du client avant de citer son nom, son logo ou ses propos, et n'utilise que des visuels dont tu détiens les droits.</p></div>`;
@@ -975,7 +980,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.projets)) throw new Error();
         if (!confirm(`Remplacer tes références actuelles par cette copie (${pluriel(d.projets.length, 'référence')}, ${pluriel((d.selections || []).length, 'sélection')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || E.tutorielVu;
         detail = null; selOuverte = null; selPlaquette = '';
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du kit de références.'); }
@@ -1002,6 +1008,40 @@
     t.remove();
     if (ok) toast(message);
     else ouvrirModale('Texte à copier', `<label class="champ"><span class="sr-only">Texte</span><textarea rows="12" readonly>${esc(texte)}</textarea></label>`, '<button class="btn primaire" value="ok">Fermer</button>', () => {});
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const N = R.NIVEAUX;
+    const modeles = B.modeles.map((m) => m.nom.toLowerCase());
+    const blocs = [
+      ['rose', 'Une fiche par réalisation', `Dans <b>Références</b>, chaque fiche décrit le client, le contexte, ta mission, un résultat chiffré et, si tu l'as, un témoignage. Un score sur 100 la classe <b>${esc(N.pret)}</b> (80 et plus), <b>${esc(N.correct)}</b> (50 et plus) ou <b>${esc(N.brouillon)}</b>, avec la liste de ce qui manque. La mission et le résultat chiffré pèsent le plus.`],
+      ['beurre', 'L\'accord du client d\'abord', `Le nom d'un client n'est imprimé que si son accord est noté&nbsp;; sinon, il est décrit par son secteur et sa taille. Un témoignage sans accord de citation n'est pas imprimé. Une adresse e-mail ou un numéro de téléphone dans une fiche est signalé.`],
+      ['ciel', 'Une sélection par prospect', `Dans <b>Sélections</b>, indique le secteur du prospect, le type de mission et les mots-clés de son projet&nbsp;: tes références sont proposées par pertinence (même secteur, mots-clés communs, résultat chiffré, témoignage, récence). Choisis-en trois à cinq et ajoute un mot d'introduction.`],
+      ['sable', 'La plaquette', `<b>Plaquette</b> met la sélection en page au format A4&nbsp;: ${modeles.slice(0, -1).join(', ')} ou ${modeles.at(-1)}. <b>Imprimer ou PDF</b> ouvre l'impression du navigateur&nbsp;: choisis «&nbsp;Enregistrer au format PDF&nbsp;» pour l'envoyer. Sans sélection, elle reprend tes références marquées d'une étoile.`],
+    ];
+    const corps = `
+      <p>Le kit range tes réalisations en fiches et les met en page pour chaque prospect. Ton rôle&nbsp;: remplir une fiche par projet, puis composer une sélection quand un prospect se présente.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Profil</b> règle ce qui figure sur la couverture (nom, accroche, chiffres clés, couleur) et ton métier, qui propose types de mission et résultats à mesurer. Rien n'est envoyé à personne. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes références sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.projets.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="ref">Ajouter ma première référence</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'ref') setTimeout(() => modaleReference(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1120,7 +1160,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); detail = null; selOuverte = null; selPlaquette = ''; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; detail = null; selOuverte = null; selPlaquette = ''; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1160,6 +1200,7 @@
       case 'imprimer': window.print(); break;
       case 'csv': telecharger(R.versCsv(E, B), 'text/csv;charset=utf-8', `references-${aujIso()}.csv`); break;
       case 'reglages': modaleReglages(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
