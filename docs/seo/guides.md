@@ -1,8 +1,23 @@
-# Propositions de guides (non publiés)
+# Guides : propositions et suivi
 
 Établi le 14/11/2026. Huit guides qui répondent à une question réelle (vue dans l'autocomplétion Google, voir
-`mots-cles.md`) et mènent au template concerné. **Aucun n'est rédigé ni publié** : chaque guide demande l'accord de
-Quentin, puis une relecture des faits juridiques à la date de publication.
+`mots-cles.md`) et mènent au template concerné. Chaque guide demande l'accord de Quentin, puis une relecture des faits
+juridiques à la date de publication.
+
+## Suivi
+
+| Guide | Statut |
+|---|---|
+| 2. Facture impayée → `/guides/facture-impayee/` | Rédigé, PR #PR_GUIDES (non fusionnée), sources revérifiées le 15/11/2026 |
+| 3. Levée des réserves → `/guides/levee-des-reserves/` | Rédigé, PR #PR_GUIDES (non fusionnée), sources revérifiées le 15/11/2026 |
+| Budget à deux, 50/50 ou prorata → `/guides/budget-couple-50-50-ou-prorata/` (décidé le 15/11/2026, hors liste initiale) | Rédigé, PR #PR_GUIDES (non fusionnée), calculateur sur le moteur de `templates/budget-commun/regles.js` |
+| 1, 4, 5, 6, 7, 8 | Proposés, non rédigés |
+
+Rubrique `/guides/` (lot 1, 15/11/2026) : page d'index, `assets/guides.css` et `assets/guides.js`, JSON-LD `Article`
+généré par `outils/seo/donnees-structurees.mjs` (date tirée de la mention « à jour au JJ/MM/AAAA »), tests
+`outils/templates/guides.test.mjs`, lien « Guides » dans le pied de page (pas dans le menu), lien « Lire le guide »
+sur les pages catalogue concernées. Pour un nouveau guide : même squelette, mention datée, sources datées, puis
+`node outils/seo/donnees-structurees.mjs` et `node outils/sitemap/generer.mjs`.
 
 Règles de rédaction communes :
 - Répondre à la question en premier, complètement, même sans acheter : le template n'arrive qu'à la fin, comme une
@@ -53,6 +68,15 @@ Règles de rédaction communes :
   - service-public.gouv.fr/particuliers/vosdroits/F1746, vérifiée le 01/09/2026 : injonction de payer (CPC 1405 à 1422),
     frais au tribunal de commerce, procédure simplifiée.
 - À vérifier : la procédure annoncée pour les créances entre commerçants « au plus tard le 31/12/2026 » (F38586).
+- **Revérifié le 15/11/2026 (rédaction)** : F23211, F38586 et F1746 disent toujours la même chose (mêmes dates de
+  vérification affichées) ; L441-10 (version du 26/04/2019) et D441-5 (27/02/2021) inchangés sur Légifrance ; Banque de
+  France : 2,15 % au 01/01/2026, 2,40 % au 01/07/2026, puis 2,65 % depuis le 16/09/2026 (sans effet sur le 2nd
+  semestre 2026). F23211 donne le plancher de 3 fois le taux légal : 8,25 %. F1746 : frais de greffe 33,47 €,
+  procédure simplifiée 14,92 € + 30,06 € TTC. Procédure entre commerçants : loi n° 2026-307 du 23/04/2026 confirmée
+  par l'actualité service-public A18889 (27/04/2026) ; F38586 la dit « opérationnelle après parution d'un arrêté et au
+  plus tard le 31 décembre 2026 » ; la presse juridique cite un décret du 20/10/2026, **aucune source officielle
+  consultée ne confirme la date d'entrée en vigueur** : le guide le dit et renvoie vers un commissaire de justice.
+  F23211 précise qu'elle ne concerne pas les micro-entrepreneurs : le guide le signale.
 
 ## 3. Lever les réserves après la réception des travaux
 
@@ -70,6 +94,12 @@ Règles de rédaction communes :
     commun accord ; à défaut, mise en demeure, puis travaux aux frais et risques de l'entrepreneur défaillant.
 - À vérifier : la retenue de garantie (5 %) et les règles des marchés publics (CCAG Travaux) si le guide les aborde ;
   la fiche DGCCRF sur les malfaçons n'a pas pu être ouverte (erreur 403).
+- **Revérifié le 15/11/2026 (rédaction)** : F2958 (titre « Garanties après la réception des travaux », vérifiée le
+  25/09/2026) et l'article 1792-6 (LEGIARTI000006443552, en vigueur depuis le 01/01/1979) disent toujours la même chose.
+  F2958 ne parle ni de levée des réserves ni de retenue de garantie. **Retenue de garantie (5 %, loi 71-584) : texte
+  officiel non retrouvé sur Légifrance pendant la session, point retiré du guide.** CCAG Travaux : non abordé (le
+  guide se limite aux travaux de droit privé et le dit). Le délai de 8 jours du maître d'ouvrage non assisté (CCMI)
+  n'est pas abordé non plus.
 
 ## 4. État des lieux d'entrée et de sortie : mentions, vétusté et restitution du dépôt de garantie
 
