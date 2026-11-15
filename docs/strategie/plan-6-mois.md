@@ -140,3 +140,60 @@ Revue `devils-advocate` du plan ci-dessus : 6 failles retenues. Ces corrections 
 8. Produit d'appel à 9 € en décembre (lequel : Suivi des abonnements ou Calculateur de TJM) ?
 9. Calculateur gratuit « 50/50 ou au prorata » comme produit gratuit principal (développement avec le skill
    `nouveau-template`) ?
+
+## 8. Réponses de Quentin et arbitrages (15/11/2026)
+
+| # | Réponse | Arbitrage retenu |
+|---|---|---|
+| 1 | Pas de visage, pas de tournage | **Vidéos sans visage** produites par Claude (motion design comme les 22 Reels, captures de l'application, texte à l'écran, musique libre de droits). Le budget-temps de Quentin tombe à ≈ 3 h par semaine. Voix off de Quentin : à confirmer |
+| 2 | Secret Santa sur Gumroad : fait par Quentin | — |
+| 3 | TikTok : confiance | Test de 6 semaines (`tiktok-opportunite.md`) |
+| 4 | Affiliation : à détailler | Détail ci-dessous, décision en attente |
+| 5 | Bundles : à détailler | Détail ci-dessous, décision en attente |
+| 6 | Chiffres réels en public : confiance | **Oui**, sur LinkedIn, sans visage : captures du tableau de bord Gumroad et récit chiffré |
+| 7 | Calendrier LinkedIn : confiance | Calendrier conservé ; **1 post par semaine** de la série « construction de QME » remplace un post B2B « sur mesure » |
+| 8 | Produit d'appel : abonnements, habitudes ou tâches | **Suivi des abonnements à 9 €** (12 € aujourd'hui) : sujet « argent », promesse « il se rembourse dès le premier abonnement résilié » ; publication du prix après feu vert |
+| 9 | Produit gratuit : confiance | **Calculateur « 50/50 ou au prorata » en page gratuite du site** (sans licence), qui sert aussi le référencement et renvoie vers Budget commun |
+
+### Bundles (décision 5) : ce qui existe et ce qui est proposé
+
+- Le site a déjà le mécanisme : une clé de pack ouvre plusieurs templates (`netlify/lib/packs.mjs`), remise
+  de 10 à 25 % selon le nombre de templates, et la page `/packs/composer/` (pack sur mesure à prix libre).
+  **Aucun pack n'a encore de produit Gumroad** (`PACKS` vide d'identifiants, `ACHAT_SUR_MESURE.gumroad`
+  non défini) : aujourd'hui, aucun pack ne peut être acheté.
+- Les 21 packs affichés mêlent des templates en vente et « bientôt ». Proposition : 3 packs de lancement
+  composés **uniquement de templates en vente**, au barème existant :
+
+| Pack proposé | Templates (prix unitaire) | Valeur | Remise | Prix |
+|---|---|---|---|---|
+| Argent du quotidien | Budget du foyer 15, Budget commun 15, Suivi des abonnements 9, Tableau annuel et roue de vie 15 | 54 € | 20 % | **43 €** |
+| Bien démarrer l'année | Gestionnaire de tâches 19, Suivi d'habitudes 12, Tableau annuel et roue de vie 15 | 46 € | 15 % | **39 €** |
+| Freelance : chiffrer et encaisser | Calculateur de TJM 12, Livre recettes-dépenses 25, CRM freelance 25, Générateur de devis 29, Relance des impayés 19 | 110 € | 25 % | **82 €** |
+
+- Plus le **Pack sur mesure** (déjà développé) : un seul produit Gumroad à prix libre.
+- Mise en œuvre : Claude ajoute les 3 packs dans `packs.mjs` et régénère les pages ; Quentin crée les 4 fiches
+  Gumroad (ou Claude via le connecteur), **active la clé de licence** dans l'éditeur Gumroad, puis feu vert de
+  fusion (un seul déploiement, avec le prix à 9 €).
+
+### Affiliation (décision 4) : fonctionnement et rentabilité
+
+- Gumroad : l'affilié reçoit un lien ; la commission est réglable par produit ; l'affilié supporte sa part des
+  frais (aide Gumroad, consultée le 12/11/2026).
+- Rentabilité, avec cotisations calculées sur le prix entier (cas le plus prudent : l'assiette n'est pas
+  tranchée) :
+
+| Vente | Sans affilié | Affilié à 35 % | Affilié à 50 % |
+|---|---|---|---|
+| Template à 15 € | 8,89 € | 4,56 € | 2,71 € |
+| Pack à 43 € | 26,79 € | 13,92 € | 8,41 € |
+
+- **Arbitrage proposé : 35 %, sur les packs seulement** (50 % rend la vente presque nulle si l'URSSAF compte
+  le prix entier). Cibles : 20 micro-créateurs francophones (1 000 à 10 000 abonnés) en finances
+  personnelles, organisation, études, freelance ; accès gratuit au pack ; kit (vidéos, visuels, textes).
+  Claude repère les créateurs et rédige les messages ; Quentin les envoie depuis ses comptes.
+
+### Questions encore ouvertes
+
+1. Catégorie URSSAF de l'activité : ligne de la déclaration de CA (vente, prestation BIC, BNC) ou code APE.
+2. Voix off de Quentin sur les vidéos (sans visage) : oui ou non ?
+3. Gestion TikTok par Claude : conditions ci-dessous (§ 9, à rédiger après réponse).
