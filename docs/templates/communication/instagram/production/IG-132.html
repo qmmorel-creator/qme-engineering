@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- IG-132 · Reel « Facture en retard de 45 jours : vous relancez comment ? » (Relance des impayés, 19 €), motion design sans voix ni musique.
+     Paliers par défaut et calcul repris de templates/impayes/ (donnees.js, regles.js : penalites, indemnite), vérifiés avec regles.js :
+     2 400 € TTC, échéance 01/10/2026, au 15/11/2026 = 45 jours, BCE 2,40 % (2nd semestre 2026) + 10 points = 12,40 %, 36,69 € + 40 €.
+     Captures de la démo (?demo), données fictives : captures/IG-132-*.webp.
+     Animations CSS en pause, pilotées image par image par video.mjs (window.placer(ms)) ; durée 28.6 s,
+     1080 × 1920, 30 i/s, sans son. Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas.
+     Rendu, depuis la racine du dépôt :
+       node docs/templates/communication/instagram/video.mjs production/IG-132-impayes.html 28.6 2500
+     (copie temporaire de IG-132.html sous ce nom), sortie png/IG-132-impayes.mp4 et png/IG-132-impayes-couverture.png. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-132</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--discret:#5E5A52;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.f{position:absolute}
+.sourcil{font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+.acc .sourcil{position:absolute;left:96px;right:96px;top:620px;color:var(--rouge)}
+.acc h1{position:absolute;left:96px;right:96px;top:690px;font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.acc .sous{position:absolute;left:96px;right:96px;font-weight:600;font-size:46px;line-height:1.25;color:var(--texte-2)}
+.ecr .tete{position:absolute;left:96px;right:96px;top:300px}
+.ecr .tete b{display:block;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge)}
+.ecr .tete span{display:block;font-weight:800;font-size:80px;letter-spacing:-.025em;line-height:1.02;margin-top:16px}
+.carte{position:absolute;left:50%;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--encre);background:var(--surface);overflow:hidden}
+.carte img{display:block;width:100%}
+.fictif{position:absolute;font-weight:700;font-size:28px;background:var(--encre);color:var(--papier);padding:8px 18px;letter-spacing:.02em}
+.ecr .leg{position:absolute;left:96px;right:96px;font-weight:600;font-size:44px;line-height:1.22;letter-spacing:-.015em}
+.ecr .leg b{font-weight:800}
+.chu{background:var(--bleu);color:#fff}
+.chu p{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.14}
+.chu .petit{font-weight:600;font-size:46px;line-height:1.25;letter-spacing:-.01em;opacity:.92}
+.app{background:var(--jaune)}
+.app h1{position:absolute;left:96px;right:96px;top:470px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.app .liste{position:absolute;left:96px;right:96px;font-weight:600;font-size:44px;line-height:1.5}
+.app .liste div:before{content:'';display:inline-block;width:22px;height:22px;background:var(--encre);margin-right:22px;vertical-align:4px}
+.app .bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:64px;padding:30px 44px;box-shadow:16px 16px 0 var(--surface)}
+.app .bouton span{font-weight:600;font-size:38px;color:var(--jaune);margin-left:34px}
+.app .signe{position:absolute;left:96px;bottom:400px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px}
+.app .signe .m{color:var(--bleu)}.app .signe .e{color:var(--surface)}
+.app .signe svg{width:80px;height:80px}
+.app .site{position:absolute;right:96px;bottom:412px;font-weight:700;font-size:34px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes glisse-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes tourne{from{transform:rotate(-90deg) scale(0)}to{transform:none}}
+@keyframes tape{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes carte{from{opacity:0;transform:translateX(-50%) translateY(90px)}to{opacity:1;transform:translateX(-50%)}}
+@keyframes defile{from{transform:translateY(0)}to{transform:translateY(var(--dy))}}
+.ligne{position:absolute;left:96px;right:96px;display:flex;gap:40px;align-items:center}
+.ligne .n{flex:none;width:200px;height:130px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:60px;letter-spacing:-.02em}
+.ligne p{font-weight:700;font-size:58px;line-height:1.1;letter-spacing:-.02em}
+.txt{background:var(--encre);color:var(--papier)}
+.txt .titre{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.calc{position:absolute;left:96px;right:96px;display:flex;justify-content:space-between;align-items:baseline;font-size:50px;letter-spacing:-.015em}
+.calc span{font-weight:600}.calc b{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calc.total{border-top:6px solid var(--jaune);padding-top:28px;font-size:60px}.calc.total span{font-weight:800}
+.formule{position:absolute;left:96px;right:96px;font-weight:600;font-size:36px;color:var(--jaune)}
+.note{position:absolute;left:96px;right:96px;font-weight:600;font-size:34px;line-height:1.3;opacity:.85}
+</style>
+
+</head>
+<body>
+<div class="s acc" id="s1" style="animation:sortie 300ms 3400ms">
+<div class="f" style="right:-140px;top:250px;width:420px;height:420px;border-radius:50%;background:var(--rouge);animation:pop 600ms 100ms"></div>
+<div class="f" style="right:240px;top:450px;width:110px;height:110px;background:var(--jaune);border:6px solid var(--encre);animation:tourne 600ms 250ms"></div>
+<div class="f" style="left:-1px;bottom:340px;width:300px;height:300px;border-radius:0 300px 0 0;background:var(--bleu);animation:glisse-g 700ms 200ms"></div>
+<p class="sourcil" style="animation:monte 350ms 0ms">Relance des impayés</p>
+<h1 style="font-size:100px;animation:monte 400ms 100ms">Facture en retard de <mark>45&nbsp;jours</mark>&nbsp;: vous relancez comment&nbsp;?</h1>
+<p class="sous" style="top:1090px;animation:monte 450ms 900ms">Le bon palier, puis ce que vous pouvez réclamer.</p>
+</div>
+<div class="s ecr" id="s2" style="animation:entree-fond 350ms 3700ms,sortie 300ms 8300ms">
+<div class="tete" style="animation:monte 450ms 3850ms"><b>Les paliers de relance</b><span>Quatre, par défaut.</span></div>
+<div class="ligne" style="top:600px;animation:monte 400ms 4150ms"><span class="n" style="background:var(--surface);border:6px solid var(--encre)">J+3</span><p>Rappel courtois</p></div>
+<div class="ligne" style="top:780px;animation:monte 400ms 4600ms"><span class="n" style="background:var(--jaune)">J+15</span><p>Relance ferme</p></div>
+<div class="ligne" style="top:960px;animation:monte 400ms 5050ms"><span class="n" style="background:var(--rouge);color:#fff">J+30</span><p>Mise en demeure</p></div>
+<div class="ligne" style="top:1140px;animation:monte 400ms 5500ms"><span class="n" style="background:var(--encre);color:var(--papier)">J+45</span><p>Dernier avis</p></div>
+<p class="leg" style="top:1360px;animation:monte 450ms 6100ms">Jours après l'échéance. <b>Délais et messages paramétrables.</b></p>
+</div>
+<div class="s txt" id="s3" style="animation:entree-fond 350ms 8600ms,sortie 300ms 14600ms">
+<p class="sourcil" style="position:absolute;left:96px;right:96px;top:300px;color:var(--jaune);animation:monte 400ms 8750ms">Exemple fictif · entre professionnels</p>
+<p class="titre" style="top:360px;font-size:80px;animation:monte 450ms 8850ms">Ce que vous pouvez réclamer</p>
+<div class="calc" style="top:600px;animation:monte 400ms 9300ms"><span>Facture TTC</span><b>2 400,00 €</b></div>
+<div class="calc" style="top:720px;animation:monte 400ms 10000ms"><span>Pénalités, 45 jours</span><b>36,69 €</b></div>
+<p class="formule" style="top:800px;animation:monte 400ms 10300ms">2 400 € × 12,40 % × 45 / 365</p>
+<div class="calc" style="top:900px;animation:monte 400ms 11000ms"><span>Indemnité forfaitaire</span><b>40,00 €</b></div>
+<div class="calc total" style="top:1030px;animation:monte 400ms 11800ms"><span>À réclamer</span><b><mark>2 476,69 €</mark></b></div>
+<p class="note" style="top:1220px;animation:monte 400ms 12400ms">Taux de la BCE du 2<sup>nd</sup> semestre 2026 (2,40 %) + 10 points, paramétrable. Taux datés : à mettre à jour chaque semestre.</p>
+<div class="f" style="right:-170px;top:1420px;width:340px;height:340px;border-radius:50%;background:var(--rouge);animation:pop 600ms 9000ms"></div>
+</div>
+<div class="s ecr" id="s4" style="animation:entree-fond 350ms 14900ms,sortie 300ms 18300ms">
+<div class="tete" style="animation:monte 450ms 15050ms"><b>Relance des impayés</b><span>Ce qui vous est dû.</span></div>
+<div class="carte" style="top:590px;width:760px;height:760px;animation:carte 600ms 15200ms"><img src="captures/IG-132-tableau.webp" alt="" style="--dy:-700px;animation:defile 2200ms 15900ms"></div>
+<div class="fictif" style="right:146px;top:568px;animation:pop 400ms 15650ms">Données fictives</div>
+<p class="leg" style="top:1420px;animation:monte 450ms 15750ms">Encours, échu et <b>relances à faire</b> selon vos paliers.</p>
+</div>
+<div class="s ecr" id="s5" style="animation:entree-fond 350ms 18600ms,sortie 300ms 22000ms">
+<div class="tete" style="animation:monte 450ms 18750ms"><b>Pénalités</b><span>Calculées jour par jour.</span></div>
+<div class="carte" style="top:590px;width:760px;height:760px;animation:carte 600ms 18900ms"><img src="captures/IG-132-facture.webp" alt="" style="--dy:-380px;animation:defile 2000ms 19600ms"></div>
+<div class="fictif" style="right:146px;top:568px;animation:pop 400ms 19350ms">Données fictives</div>
+<p class="leg" style="top:1420px;animation:monte 450ms 19450ms">Paiements partiels compris, <b>indemnité de 40&nbsp;€</b> ajoutée.</p>
+</div>
+<div class="s chu" id="s6" style="animation:entree-fond 350ms 22300ms,sortie 300ms 24800ms">
+<div class="f" style="right:-160px;bottom:340px;width:480px;height:480px;border-radius:50%;background:var(--rouge);animation:pop 600ms 22400ms"></div>
+<p style="top:480px;font-size:96px;animation:monte 450ms 22450ms">Le message du bon palier, <mark>prêt à copier</mark>.</p>
+<p class="petit" style="top:950px;animation:monte 450ms 23000ms">Rien n'est envoyé à votre place. Outil d'aide, pas un conseil juridique.</p>
+</div>
+<div class="s app" id="s7" style="animation:entree-fond 350ms 25100ms">
+<h1 style="font-size:100px;animation:monte 450ms 25250ms">Relance des impayés · 19&nbsp;€</h1>
+<div class="liste" style="top:820px;animation:monte 400ms 25550ms"><div>Démo gratuite, entreprise fictive</div><div>Achat unique</div></div>
+<div class="bouton" style="top:1080px;animation:pop 450ms 25850ms">qm-engineering.fr<span>Démo gratuite</span></div>
+<div class="signe" style="animation:monte 400ms 26000ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+<p class="site" style="animation:monte 400ms 26100ms">qm-engineering.fr</p>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+window.placer(0);
+</script>
+</body>
+</html>
