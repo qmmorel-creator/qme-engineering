@@ -904,17 +904,17 @@
   function modaleTutoriel(auto = false) {
     const I = E.reglages.intervalles;
     const premiere = I[0] === 1 ? 'le lendemain' : `${I[0]} jours après`;
-    const suite = I.length > 1 ? `, puis de plus en plus espacées : ${joursListe(I.slice(1))} jours après la précédente` : '';
+    const suite = I.length > 1 ? `, puis de plus en plus espacées&nbsp;: ${joursListe(I.slice(1))} jours après la précédente` : '';
     const blocs = [
       ['rose', 'Range tes cours', `Une matière par cours, avec sa date d'examen si tu la connais. Dès qu'un chapitre est vu en classe, ajoute-le avec <b>J'ai appris un chapitre</b>.`],
-      ['beurre', 'Révise ce qui est proposé', `L'onglet <b>Aujourd'hui</b> liste les chapitres à revoir, avec une méthode conseillée. Première révision ${premiere}${suite}. C'est la répétition espacée : tu revois un cours juste avant de l'oublier.`],
-      ['ciel', 'Dis comment ça s\'est passé', `<b>Difficile</b> : le chapitre revient plus tôt. <b>Moyen</b> : il passe à l'étape suivante. <b>Facile</b> : il saute une étape. Chaque bouton affiche la date qui en découle, et tu peux annuler juste après. Au bout de ${I.length} étapes, le chapitre est maîtrisé.`],
+      ['beurre', 'Révise ce qui est proposé', `L'onglet <b>Aujourd'hui</b> liste les chapitres à revoir, avec une méthode conseillée. Première révision ${premiere}${suite}. C'est la répétition espacée&nbsp;: tu revois un cours juste avant de l'oublier.`],
+      ['ciel', 'Dis comment ça s\'est passé', `<b>Difficile</b>&nbsp;: le chapitre revient plus tôt. <b>Moyen</b>&nbsp;: il passe à l'étape suivante. <b>Facile</b>&nbsp;: il saute une étape. Chaque bouton affiche la date qui en découle, et tu peux annuler juste après. Au bout de ${I.length} étapes, le chapitre est maîtrisé.`],
       ['sable', 'L\'examen fixe la limite', `Aucune révision le jour de l'examen ni après, et chaque chapitre maîtrisé a une révision finale deux jours avant. Au-delà de ${E.reglages.chargeMax} révisions par jour, les suivantes sont décalées d'un ou deux jours. Une révision manquée reste dans Aujourd'hui, en retard, jusqu'à ce que tu la fasses.`],
     ];
     const corps = `
-      <p>Le planning décide pour toi <b>quand</b> revoir chaque chapitre. Ton rôle : ajouter ce que tu apprends, réviser ce qui est proposé, puis dire comment ça s'est passé.</p>
+      <p>Le planning décide pour toi <b>quand</b> revoir chaque chapitre. Ton rôle&nbsp;: ajouter ce que tu apprends, réviser ce qui est proposé, puis dire comment ça s'est passé.</p>
       <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
-      <p class="aide"><b>Planning</b> montre les 4 prochaines semaines, <b>Bilan</b> ta régularité. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+      <p class="aide"><b>Planning</b> montre les 4 prochaines semaines, <b>Bilan</b> ta régularité. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
     const premierChapitre = auto && E.matieres.length && !E.chapitres.length;
     const pied = premierChapitre
       ? '<button class="btn primaire" value="chapitre">Ajouter mon premier chapitre</button><button class="btn" value="ok">Fermer</button>'
