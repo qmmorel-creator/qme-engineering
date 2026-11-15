@@ -18,7 +18,8 @@ Nouvelle routine « Publications TikTok depuis Drive » (version 1, 15/11/2026).
 
 4. VIDÉO
 - Colonne P : « <ID vidéo> | couverture : <ID image> ». Publie la vidéo (1080 × 1920). Si ton outil permet de choisir une image de couverture, utilise l'ID après « couverture : » ; sinon laisse TikTok choisir.
-- Les vidéos sont muettes, sauf TT-13 (Secret Santa, musique libre de droits déjà intégrée). Si ton outil permet d'ajouter un son de la bibliothèque musicale commerciale de TikTok (« Commercial Music Library », seule autorisée pour un compte professionnel), ajoute un fond instrumental discret ; sinon publie la vidéo telle quelle. N'ajoute jamais un son tendance hors de cette bibliothèque.
+- Compte classique (décision de Quentin) : pas de lien en bio pour l'instant ; les légendes renvoient vers qm-engineering.fr en texte. N'ajoute aucun lien.
+- Les vidéos sont muettes, sauf TT-13 (Secret Santa, musique libre de droits déjà intégrée). Si ton outil permet d'ajouter un son de la bibliothèque musicale commerciale de TikTok (« Commercial Music Library » : les vidéos font la promotion de produits, donc on s'y tient même avec un compte classique), ajoute un fond instrumental discret ; sinon publie la vidéo telle quelle. N'ajoute jamais un son tendance hors de cette bibliothèque.
 - Visibilité : publique. Commentaires, Duo et Collage : autorisés.
 
 5. CAS PARTICULIERS

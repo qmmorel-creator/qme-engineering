@@ -203,3 +203,13 @@ Réponses de Quentin du 15/11/2026 :
 4. Packs : « Pack Freelance » proposé abandonné (le pack existant « Freelance : chiffrer, facturer,
    encaisser » sera complet quand le Suivi du temps sera en vente) ; Argent du quotidien et Bien démarrer
    l'année en développement (PR à venir), avec le Suivi des abonnements à 9 €.
+
+## 9. Décisions de Quentin (15/11/2026, après l'analyse ChatGPT)
+
+1. **LinkedIn** : aucune publication depuis le profil personnel ; tout reste sur la page QME.
+2. **TikTok** : test maintenu, avec un **compte classique** (pas de compte Business) : pas de lien en bio avant
+   1 000 abonnés ; légendes v2 renvoyant vers « qm-engineering.fr » en texte (Sheet mis à jour).
+3. **PR #114 fusionnée** (packs Argent du quotidien 43 € et Bien démarrer l'année 39 €, Suivi des abonnements
+   à 9 €) ; prix Gumroad passé à 9 € le même jour ; pages en ligne vérifiées (200, prix affichés).
+4. Repris de l'analyse ChatGPT : GoatCounter (déjà installé) à brancher au tableau de bord, convention UTM,
+   classement noté des 28 produits, check-list gratuite de réception de chantier (guide).

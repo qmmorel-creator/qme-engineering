@@ -5,19 +5,20 @@ comme Instagram et LinkedIn : Sheet + Docs de légendes + vidéos dans Drive. No
 
 ## Ce que Quentin fait une fois
 
-1. Créer le compte (nom `@qmengineering` si libre), puis Paramètres → Compte → **Passer à un compte
-   professionnel** → catégorie « Logiciel » ou « Services aux entreprises » (*à vérifier dans l'app*). Le
-   lien en bio demande 1 000 abonnés **ou** un compte Business enregistré (aide TikTok, consultée le
-   15/11/2026) : suivre l'enregistrement proposé par l'app.
+Décision de Quentin du 15/11/2026 : **compte classique** (personnel), pas de compte Business. Conséquence :
+pas de lien cliquable en bio avant 1 000 abonnés (aide TikTok, consultée le 15/11/2026). Les légendes v2
+renvoient donc vers « qm-engineering.fr » en texte.
+
+1. Créer le compte (nom `@qmengineering` si libre), en compte classique.
 2. Photo : `docs/templates/communication/instagram/png/ig-avatar.png` (même symbole qu'Instagram).
 3. Nom affiché : `QME · Outils du quotidien`.
-4. Bio (80 caractères, la limite) :
+4. Bio (79 caractères, limite 80) :
 
    ```
-   Budget, révisions, tâches : des outils prêts, sans abonnement. Démos gratuites ↓
+   Budget, révisions, tâches : outils sans abonnement. Démos sur qm-engineering.fr
    ```
 
-5. Lien : `https://qm-engineering.fr/templates/?utm_source=tiktok&utm_medium=bio`
+5. À 1 000 abonnés : ajouter le lien `https://qm-engineering.fr/templates/?utm_source=tiktok&utm_medium=bio`.
 6. Connecter le compte à Instinct et lui donner `PROMPT-INSTINCT-TIKTOK.md`.
 
 ## Adresses
