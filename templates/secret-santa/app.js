@@ -1,6 +1,6 @@
 // Secret Santa QME : l'organisateur crée ses échanges, les participants s'inscrivent par un lien,
 // le tirage est fait par le serveur et l'organisateur ne le voit jamais. Aucun e-mail n'est envoyé.
-import { LIMITES, tirer, MESSAGES_TIRAGE, emailValide } from './regles.js';
+import { LIMITES, tirer, MESSAGES_TIRAGE, emailValide, RETENTION } from './regles.js';
 import { traiterSecretSanta } from './moteur.js';
 
 const B = window.BASE;
@@ -12,6 +12,7 @@ const CLE_CACHE = 'qme-snt-cache';
 const CLE_DEMO = 'qme-snt-demo';
 const CLE_PARTICIPATIONS = 'qme-snt-participations';
 const CLE_ACCUEIL = 'qme-snt-ecran-accueil';
+const CLE_GUIDE = 'qme-snt-guide';
 const CODE_DEMO = 'DEMO';
 const JETON_DEMO = 'DEMO-ORGANISATEUR';
 
@@ -56,6 +57,7 @@ const FLOCON = '<svg class="flocon" viewBox="0 0 60 60" width="56" height="56" a
 const CADEAU = '<svg class="cadeau" viewBox="0 0 120 120" width="120" height="120" aria-hidden="true"><rect x="14" y="44" width="92" height="70" rx="10" fill="#E58C74"/><rect x="8" y="30" width="104" height="22" rx="8" fill="#B84A34"/><rect x="52" y="30" width="16" height="84" fill="#E8B93A"/><circle cx="46" cy="22" r="13" fill="none" stroke="#E8B93A" stroke-width="7"/><circle cx="74" cy="22" r="13" fill="none" stroke="#E8B93A" stroke-width="7"/></svg>';
 const NEIGE = `<div class="neige" aria-hidden="true">${Array.from({ length: 14 }, (_, i) => `<i style="--x:${(i * 37) % 100}%;--d:${6 + (i % 5)}s;--r:${(i * 0.7) % 5}s;--t:${4 + (i % 3) * 2}px"></i>`).join('')}</div>`;
 const ICONES = {
+  aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
   reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
   plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   retour: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M10 5 3 12l7 7 1.4-1.4L6.8 13H21v-2H6.8l4.6-4.6Z" fill="currentColor"/></svg>',
@@ -276,11 +278,12 @@ async function demarrer() {
       <span class="marque">${MARQUE}</span>
       <span class="titre-produit">Secret Santa<small>Édition Noël</small></span>
       <span class="sync" data-etat="${session.demo ? 'demo' : 'ok'}" role="status"><i></i><b>${session.demo ? 'Démo locale' : 'En ligne'}</b></span>
+      <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
       <button class="btn-icone" data-action="reglages" aria-label="Réglages" title="Réglages">${ICONES.reglages}</button>
     </div>${GUIRLANDE}</header>
     <main class="vue" id="vue" tabindex="-1"><p class="chargement">Chargement…</p></main>`;
   await route();
-  proposerEcranAccueil();
+  premiersPas();
 }
 
 function majReseau(etat) {
@@ -498,6 +501,8 @@ function modaleReglages() {
     <div class="groupe"><h3>Sauvegarde</h3><p class="aide">Tes échanges sont enregistrés en ligne. Tu peux télécharger la liste des échanges et des inscrits (jamais le tirage, que personne ne peut exporter).</p>
       <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger la liste</button></div></div>
     <div class="groupe"><h3>Données des participants</h3><p class="aide">Prénom, e-mail, liste d'idées et code personnel (enregistré sous forme d'empreinte irréversible, jamais en clair, illisible même pour QME). Hébergées en Europe, utilisées seulement pour l'échange et effacées automatiquement 60 jours après sa date (180 jours sans date). Aucun e-mail n'est envoyé. Tu peux tout effacer plus tôt en supprimant l'échange. Préviens les participants que tu utilises cet outil.</p></div>
+    <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du Secret Santa, en une page.</p>
+      <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
     <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
       <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`,
   '<button class="btn primaire" value="ok">Fermer</button>');
@@ -781,6 +786,44 @@ document.addEventListener('keydown', (ev) => {
 });
 document.addEventListener('pointerdown', () => { if (ctxBorne && !['liste', 'resultat'].includes(ctxBorne.etape)) borneVeille(); });
 
+// ---------- Comment ça marche ----------
+// Guide des grands principes : s'ouvre seul une fois par compte, puis reste accessible par le bouton « ? »
+// de l'en-tête et par les réglages. Les échanges vivent sur le serveur (aucun état synchronisé propre au
+// compte) : « déjà vu » est gardé dans ce navigateur, par compte (empreinte de la clé, ou démo).
+const compteGuide = () => (session.demo ? CODE_DEMO : hash(String(session.code || '')));
+const guideVu = () => [].concat(stock.lire(CLE_GUIDE) || []).includes(compteGuide());
+function marquerGuideVu() { stock.ecrire(CLE_GUIDE, [...new Set([...[].concat(stock.lire(CLE_GUIDE) || []), compteGuide()])].slice(-20)); }
+
+function modaleTutoriel(auto = false) {
+  const R = RETENTION;
+  const blocs = [
+    ['rose', 'Crée un échange par groupe', `La famille, les amis, le bureau&nbsp;: chaque échange a son nom, sa date, son budget et un message pour les participants. Un modèle propose le message et un budget, tout reste modifiable. Les participants s'inscrivent par un lien avec leur e-mail, ou sur un ordinateur commun si tu saisis toi-même leurs prénoms.`],
+    ['beurre', 'Invite le groupe', `Copie le lien ou le message d'invitation et envoie-le toi-même&nbsp;: l'outil n'envoie aucun e-mail. Chacun s'inscrit avec son e-mail, un code personnel et ses idées de cadeaux. Tu participes aussi&nbsp;? Inscris-toi par le lien, comme les autres.`],
+    ['ciel', 'Lance le tirage', `Il faut au moins 3 participants. Ajoute des exclusions pour que deux personnes (un couple, par exemple) ne se tirent pas l'une l'autre. Le serveur tire au sort et garde le résultatLe serveur tire au sort et garde le résultat&nbsp;: <b>personne ne peut voir qui a tiré qui</b>, pas même toi.nbsp;: chacun ne voit que le sien, sur sa page. <b>Toi non plus, tu ne vois pas qui a tiré qui.</b>`],
+    ['sable', 'Chacun découvre son tirage', `Sur sa page, chacun voit à qui il offre, les idées de cette personne, le budget et la date. Tu vois seulement combien l'ont découvert, et tu peux copier un message de rappel. Tout est effacé ${R.apresDate}&nbsp;jours après la date de l'échange (${R.sansDate}&nbsp;jours après sa création s'il n'a pas de date).`],
+  ];
+  const corps = `
+    <p>Le serveur tire au sort et chacun découvre seul à qui il offre un cadeau. Ton rôle&nbsp;: créer l'échange, inviter le groupe, puis lancer le tirage.</p>
+    <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+    <p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur, et le bouton <b>Voir sa page</b> montre ce que voit chaque participant.' : 'Tes échanges sont enregistrés en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+  const premier = auto && !echanges.length && !courant;
+  const pied = premier
+    ? '<button class="btn primaire" value="nouveau">Créer mon premier échange</button><button class="btn" value="ok">Fermer</button>'
+    : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+  ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'nouveau') setTimeout(() => modaleEchange(), 0); });
+}
+
+// Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+function premiersPas() {
+  if (guideVu()) return proposerEcranAccueil();
+  setTimeout(() => {
+    if (!document.body.classList.contains('app') || guideVu() || modale().open) return;
+    marquerGuideVu();
+    modaleTutoriel(true);
+    modale().addEventListener('close', proposerEcranAccueil, { once: true });
+  }, 300);
+}
+
 // ---------- Ajout à l'écran d'accueil (socle commun) ----------
 const appareil = () => {
   const ua = navigator.userAgent;
@@ -842,6 +885,7 @@ document.addEventListener('click', async (ev) => {
     case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
     case 'fermer': modale().close(); break;
     case 'reglages': modaleReglages(); break;
+    case 'tutoriel': modaleTutoriel(); break;
     case 'ecran-accueil': modaleEcranAccueil(); break;
     case 'installer': installer(); break;
     case 'exporter': exporter(); break;
