@@ -19,7 +19,7 @@ noté complet dans `packs/gumroad-packs.md`, **n'est pas publié** sur Gumroad.
 portent `utm_source=<créateur>&utm_medium=email&utm_campaign=affiliation-2026-11`, lus par GoatCounter ;
 les 81 liens ont répondu 200 le 15/11/2026. La démo reste active (`has('demo')`).
 
-## 1. Brouillons Gmail créés (19, non envoyés)
+## 1. Mails envoyés le 15/11/2026 (19)
 
 Créateurs vérifiés, adresse professionnelle publique, au moins un produit en vente. Un seul mail par
 créateur, avec 1 à 3 templates et le pack quand il est pertinent.
@@ -46,7 +46,7 @@ créateur, avec 1 à 3 templates et le pack quand il est pertinent.
 | Tribu Indé (Alexis Minchella) | alexis@tribuinde.com | T28, T40, T37 | Bootcamp et mentoring |
 | Entreprendre.ch (Romain Prieur, Suisse) | info@entreprendre.ch | T42, T37 | A son outil de facturation : pas de T36 ni T43 |
 
-## 2. À contacter par message privé, formulaire ou LinkedIn (produits en vente)
+## 2. À contacter par message privé, formulaire ou LinkedIn (produits en vente) · messages prêts dans `affiliation-messages.md`
 
 Pas de brouillon possible. Message court à adapter de la trame (accroche, produits, 30 %, accès
 gratuit sur réponse).
