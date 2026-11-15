@@ -18,7 +18,7 @@ Avant publication : Quentin active la clé de licence (Content → Insert → Li
 | T53 | inscriptions | ASC | 5XuVWuitD2ZzpVkwQFHlVw== | /l/inscriptions-associatives | oui | fait |
 | T67 | travaux | TRV | leplToyYwMtXCmdXZa9T4Q== | /l/pilote-travaux | oui | fait |
 | T12 | dettes | DTT | à créer (limite : après le 14/11 13:25 PST) | | | |
-| T68 | secret-santa | SNT | à créer (prix libre 0 €, fiche `secret-santa/gumroad.md`) | | | |
+| T68 | secret-santa | SNT | brouillon créé le 15/11/2026 (prix libre 0 €), `fCyii9wIVdIfFc1YQdbZzQ==`, clé de licence à activer | | | |
 
 T24 visa : 2 couvertures (doublon à supprimer dans l'éditeur Gumroad).
 
