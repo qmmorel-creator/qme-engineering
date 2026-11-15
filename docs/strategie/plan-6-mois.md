@@ -194,6 +194,12 @@ Revue `devils-advocate` du plan ci-dessus : 6 failles retenues. Ces corrections 
 
 ### Questions encore ouvertes
 
-1. Catégorie URSSAF de l'activité : ligne de la déclaration de CA (vente, prestation BIC, BNC) ou code APE.
-2. Voix off de Quentin sur les vidéos (sans visage) : oui ou non ?
-3. Gestion TikTok par Claude : conditions ci-dessous (§ 9, à rédiger après réponse).
+Réponses de Quentin du 15/11/2026 :
+1. URSSAF : **prestation de services** (BIC, 21,2 %). Hypothèse retenue : **70 ventes par mois** (14,23 € net
+   par vente au prix moyen actuel, versement libératoire compris).
+2. Vidéos : **texte à l'écran uniquement**, ni visage ni voix.
+3. TikTok : Quentin crée le compte ; publication par **Instinct** (et non Posty), sur le même modèle
+   qu'Instagram et LinkedIn : `docs/templates/communication/tiktok/`.
+4. Packs : « Pack Freelance » proposé abandonné (le pack existant « Freelance : chiffrer, facturer,
+   encaisser » sera complet quand le Suivi du temps sera en vente) ; Argent du quotidien et Bien démarrer
+   l'année en développement (PR à venir), avec le Suivi des abonnements à 9 €.
