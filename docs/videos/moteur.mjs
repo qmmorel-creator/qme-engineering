@@ -44,7 +44,7 @@ const q = new URLSearchParams({ app: cfg.app, w: cfg.largeur || 1280, h: cfg.hau
 await page.goto(`http://localhost:${PORT}/docs/videos/studio/?${q}`);
 await page.evaluate(() => S.pret());
 await page.waitForTimeout(800);
-const appli = page.frames().find((f) => f !== page.mainFrame());
+const cadreApp = () => page.frames().find((f) => f !== page.mainFrame());
 
 // 3. Outils du scénario.
 const sons = [];
@@ -54,7 +54,7 @@ const PERIODE = musiqueCfg ? 60 / musiqueCfg.bpm : 0.5;
 let t0 = null;
 const maintenant = () => (t0 == null ? 0 : Date.now() / 1000 - t0);
 const v = {
-  page, appli, pause: (ms) => page.waitForTimeout(ms),
+  page, appli: cadreApp(), pause: (ms) => page.waitForTimeout(ms),
   S: (nomFn, ...args) => page.evaluate(([n, a]) => S[n](...a), [nomFn, args]),
   son: (type, volume = 1) => { if (t0 != null) sons.push({ t: maintenant(), type, volume }); },
   // Le curseur va sur l'élément (la caméra le suit), puis la vraie souris clique au point exact une fois la caméra posée.
@@ -82,6 +82,17 @@ const v = {
       v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(150);
     }
   },
+  // Ouvre un autre template dans la fenêtre (vidéo d'un pack) ; à faire derrière S('volet').
+  async ouvrir(url, barre) { await v.S('changerApp', url, { url: barre }); v.appli = cadreApp(); await page.waitForTimeout(300); await v.fermerDialogues(); },
+  // Ferme les fenêtres ouvertes au premier lancement (guide « Comment ça marche », etc.).
+  async fermerDialogues() {
+    for (let i = 0; i < 3; i++) {
+      const ouvert = await v.appli.$('dialog[open]'); if (!ouvert) return;
+      const bouton = await v.appli.$('dialog[open] button[aria-label="Fermer"], dialog[open] button.fermer, dialog[open] [data-action="fermer"]');
+      if (bouton) await bouton.click().catch(() => {}); else await v.appli.evaluate(() => document.querySelector('dialog[open]')?.close());
+      await page.waitForTimeout(250);
+    }
+  },
   async valider() { await v.S('touche', 'Entrée ⏎'); v.son('touche'); await page.keyboard.press('Enter'); await page.waitForTimeout(200); },
   // Attend le prochain temps de la musique (sub = 2 : demi-temps). Les actions tombent ainsi sur le rythme.
   async temps(sub = 1) {
@@ -89,7 +100,7 @@ const v = {
     const suivant = Math.ceil((t + 0.02) / p) * p;
     await page.waitForTimeout(Math.max(0, (suivant - t) * 1000));
   },
-  lire: (sel) => appli.$eval(sel, (e) => (e.value ?? e.textContent).trim()),
+  lire: (sel) => v.appli.$eval(sel, (e) => (e.value ?? e.textContent).trim()),
 };
 
 // 4. Préparation hors caméra (fermer le guide d'accueil, etc.), puis enregistrement.
@@ -166,6 +177,12 @@ if (n) {
 }
 const final = join(SORTIE, `${nom}.mp4`);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', video, ...(n ? ['-i', audio, '-c:a', 'aac', '-b:a', `${AUDIO_KBPS}k`, '-shortest'] : []), '-c:v', 'copy', '-movflags', '+faststart', final]);
-execFileSync('ffmpeg', ['-y', '-v', 'error', '-ss', String(cfg.affiche ?? 1.5), '-i', final, '-frames:v', '1', '-q:v', '3', join(SORTIE, `${nom}-affiche.jpg`)]);
+// Couverture du reel : image capturée en 1080 × 1920 la plus proche de cfg.affiche (s).
+const tAffiche = cfg.affiche ?? 1.5;
+const imgAffiche = images.reduce((a, b) => (Math.abs(b.t - tAffiche) < Math.abs(a.t - tAffiche) ? b : a));
+const couverture = join(SORTIE, `${nom}-couverture.png`);
+execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', imgAffiche.f, couverture]);
+writeFileSync(join(SORTIE, `${nom}.json`), JSON.stringify({ nom, video: final, couverture, duree: Number(duree.toFixed(1)),
+  taille: statSync(final).size, produit: cfg.produit || null, type: cfg.type || null, titre: cfg.titre || null }, null, 2));
 if (!options.includes('--garder')) rmSync(TMP, { recursive: true, force: true });
 console.log(`Vidéo : ${final} (${duree.toFixed(1)} s, ${(statSync(final).size / 1e6).toFixed(2)} Mo)`);

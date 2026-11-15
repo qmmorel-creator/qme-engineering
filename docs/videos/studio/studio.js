@@ -247,9 +247,13 @@
     o.classList.add('vu');
   }
   const pret = new Promise((r) => app.addEventListener('load', r, { once: true }));
+  // Changer de template en cours de vidéo (vidéo d'un pack) : à masquer derrière un volet.
+  function changerApp(url, { url: barre } = {}) {
+    return new Promise((r) => { app.addEventListener('load', () => setTimeout(r, 500), { once: true }); app.src = url; if (barre) $('#url').textContent = barre; });
+  }
   app.src = params.get('app') || '/templates/gantt/?demo';
 
-  window.S = { pret: () => pret, rythme, rectApp, versToile, pointeur, cadrer, suivre, attendreCamera, coup,
+  window.S = { pret: () => pret, rythme, changerApp, rectApp, versToile, pointeur, cadrer, suivre, attendreCamera, coup,
     curseurVers, placerCurseur, appui, cacherCurseur, touche,
     anneau, couleurRepere, avantApres, flash, souligner, eclat, secouer, retirer,
     accroche, accrocheSortie, question, legende, tampon, tamponFin, fenetre, volet, outro, pause };

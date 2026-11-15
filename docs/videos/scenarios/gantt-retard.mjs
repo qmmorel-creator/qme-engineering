@@ -4,6 +4,7 @@
 
 export const config = {
   nom: 'gantt-retard',
+  produit: 'GNT', type: 'question', titre: 'Un retard décale-t-il la fin du chantier ?',
   app: '/templates/gantt/?demo',
   largeur: 1280, hauteur: 1600,
   marque: 'QME · Planning Gantt',
@@ -31,9 +32,7 @@ function ecartOuvres(de, a, annee = 2026) {
 
 export async function preparer(v) {
   const { appli, page } = v;
-  // Fermer le guide d'accueil (premier lancement), hors caméra.
-  await appli.locator('dialog[open] button', { hasText: '×' }).first().click().catch(() => page.keyboard.press('Escape'));
-  await page.waitForTimeout(300);
+  await v.fermerDialogues(); // guide d'accueil du premier lancement, hors caméra
   // Marges réelles, lues dans l'onglet « Chemin critique », puis retour au Gantt.
   await appli.click('button[data-vue="critique"]'); await page.waitForTimeout(300);
   v.marges = await appli.$$eval('table tbody tr', (rs) => Object.fromEntries(rs.map((r) => {
