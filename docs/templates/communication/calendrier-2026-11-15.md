@@ -187,3 +187,16 @@ Points ouverts : la colonne H (lien du Doc) des nouvelles lignes est vide (formu
 la colonne G fait foi pour Instinct) ; les posts LinkedIn sont au format « Image » avec la couverture, car les
 carrousels Instagram affichent « Lien en bio » ; hashtags d'État des lieux (#Propriétaires, #GestionLocative) à
 valider. Le tableau principal ci-dessus n'a pas été réécrit : les jours concernés suivent cette section.
+
+## Reels prioritaires (15/11/2026)
+
+| Reel | Instagram | TikTok | Remplace |
+|---|---|---|---|
+| IG-131 · Suivi des abonnements | 01/12 18:30 | TT-15 · 01/12 19:30 | IG-43 → 24/03/2027 |
+| IG-132 · Relance des impayés | 08/12 18:30 | TT-16 · 03/12 19:30 | IG-48 → 25/03/2027 |
+| IG-133 · Pack Argent du quotidien (si en vente) | 12/12 18:30 | TT-17 · 05/12 19:30 | IG-54 → 26/03/2027 |
+| IG-51 · Joyeux Noël (Secret Santa, si en ligne) | (déjà le 25/12) | TT-18 · 25/12 19:30 | — |
+
+Vidéos et couvertures dans le dossier Images Instagram ; légendes Instagram (dossier Textes Instagram) et TikTok
+(dossier Textes TikTok). Complément de consignes pour Instinct : `tiktok/PROMPT-INSTINCT-COMPLEMENT-15-11.md`.
+TikTok après le 05/12 : à compléter après le premier bilan des vues (formats gagnants), pas à l'aveugle.
