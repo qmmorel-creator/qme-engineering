@@ -52,7 +52,7 @@
   let eleveChoisi = null;
   let vehiculeChoisi = null;
 
-  const etatVide = () => ({ version: 1, ecole: '', reglages: { ...B.reglagesDefaut, joursOuverts: [...B.reglagesDefaut.joursOuverts], competences: [...B.competences] },
+  const etatVide = () => ({ version: 1, ecole: '', tutorielVu: false, reglages: { ...B.reglagesDefaut, joursOuverts: [...B.reglagesDefaut.joursOuverts], competences: [...B.competences] },
     eleves: [], moniteurs: [], vehicules: [], achats: [], paiements: [], lecons: [], releves: [], interventionsV: [] });
   const normaliser = (d) => {
     const v = etatVide();
@@ -431,8 +431,7 @@
       veh.forEach((nom) => E.vehicules.push({ id: uid(), nom, immat: '', boite: 'manuelle', dateEntree: auj(), kmEntree: 0, coutMensuel: 0, entretienKm: null, entretienMois: null, ctProchain: null, actif: true, notes: '' }));
       sauver();
       vue = 'eleves';
-      demarrer();
-      setTimeout(() => modaleEleve(), 250);
+      demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter le premier élève
     });
   }
 
@@ -444,6 +443,7 @@
     moniteurs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['planning', 'Planning'], ['eleves', 'Élèves'], ['vehicules', 'Véhicules'], ['moniteurs', 'Moniteurs'], ['bilan', 'Bilan']];
@@ -461,12 +461,13 @@
         <span class="titre-produit">Gestion<br>d'auto-école</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1171,6 +1172,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="csv-eleves">Élèves (CSV)</button><button class="btn petit" type="button" data-action="csv-lecons">Leçons (CSV)</button><button class="btn petit" type="button" data-action="csv-vehicules">Véhicules (CSV)</button><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la gestion d'auto-école, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1197,7 +1200,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.eleves) || !Array.isArray(d.lecons)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.eleves.length, 'élève')}, ${pluriel(d.lecons.length, 'leçon')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1212,6 +1216,40 @@
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const absence = r.decompteAbsence ? 'Une absence de l\'élève est décomptée de ses heures' : 'Une absence de l\'élève n\'est pas décomptée de ses heures';
+    const blocs = [
+      ['rose', 'Décris ton équipe', `Dans l'onglet <b>Moniteurs</b>, chaque moniteur a ses disponibilités pour une semaine type et ses absences. Dans <b>Véhicules</b>, chaque voiture a sa boîte, manuelle ou automatique&nbsp;: à la création d'une leçon, l'outil propose un véhicule de la même boîte que l'élève.`],
+      ['beurre', 'Planifie sans double réservation', `Une leçon qui chevauche une autre leçon du même moniteur, du même véhicule ou du même élève est refusée. Hors des disponibilités du moniteur, pendant son absence ou hors des jours et horaires d'ouverture, elle est refusée aussi, sauf si tu coches <b>Forcer</b>. Une leçon dure ${r.duree}&nbsp;min par défaut.`],
+      ['ciel', 'Pointe chaque leçon', `Une fois passée, une leçon se pointe <b>Faite</b>, <b>Absent</b> ou <b>Annuler</b>&nbsp;; tant que ce n'est pas fait, elle reste <b>À pointer</b>. Les heures restantes d'un élève sont ses heures achetées moins ses heures faites. ${absence} (réglage). Le reste dû est le total de ses achats d'heures moins ses paiements.`],
+      ['sable', 'Suis tes véhicules', `Note les relevés de kilométrage et les interventions. Le contrôle technique suit la date limite que tu saisis d'après le procès-verbal. L'entretien, réglé en kilomètres et en mois, est dû à la première échéance atteinte. Une échéance passe <b>Bientôt</b> ${pluriel(r.alerteJours, 'jour')} avant${r.alerteKm ? ` ou à ${nb(r.alerteKm, 0)}&nbsp;km de l'entretien` : ''}, puis <b>Dépassé</b>.`],
+    ];
+    const corps = `
+      <p>L'outil tient pour toi le planning des leçons sans double réservation, et le solde d'heures et de paiements de chaque élève. Ton rôle&nbsp;: planifier les leçons, les pointer une fois passées, et noter les heures achetées et les paiements.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Élèves</b> montre le forfait, les paiements et les compétences de chacun, <b>Bilan</b> les alertes, les heures vendues et faites et le coût par heure de conduite&nbsp;; son bouton <b>Guide et règles</b> détaille les calculs. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premierEleve = auto && !E.eleves.length;
+    const pied = premierEleve
+      ? '<button class="btn primaire" value="eleve">Ajouter mon premier élève</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'eleve') setTimeout(() => modaleEleve(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1306,11 +1344,12 @@
     const t = auj();
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); eleveChoisi = null; vehiculeChoisi = null; rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); eleveChoisi = null; vehiculeChoisi = null; rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `auto-ecole-${t}.json`, 'application/json'); break;
       case 'csv-eleves': telecharger(R.csvEleves(E, t), `eleves-${t}.csv`, 'text/csv;charset=utf-8'); toast(`${pluriel(E.eleves.length, 'élève')} exporté${E.eleves.length > 1 ? 's' : ''} (CSV).`); break;

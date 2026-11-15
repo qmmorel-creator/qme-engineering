@@ -45,7 +45,7 @@
   const filtre = { animal: '', periode: '12m', categorie: '', tout: false };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, B);
   const animal = (id) => E.animaux.find((a) => a.id === id);
   const presents = () => E.animaux.filter((a) => a.actif !== false);
@@ -404,6 +404,7 @@
     frais: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="13" width="4" height="8" fill="currentColor"/><rect x="10" y="7" width="4" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     animaux: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#E8B93A" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#B84A34" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#2E5A88" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bord', 'Tableau de bord'], ['soins', 'Soins'], ['suivi', 'Poids et visites'], ['frais', 'Frais'], ['animaux', 'Animaux']];
@@ -424,12 +425,13 @@
         <span class="titre-produit">Suivi de<br>l'animal</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1051,6 +1053,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le suivi à ton écran d'accueil pour l'ouvrir comme une application, chez le vétérinaire ou au moment de la pesée.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Santé de ton animal</h3><p class="mention">${AVERTISSEMENT_TEXTE}</p></div>
@@ -1072,7 +1076,8 @@
         const donnees = JSON.parse(await fichier.text());
         if (!Array.isArray(donnees.animaux) || !Array.isArray(donnees.soins)) throw new Error();
         if (!confirm(`Remplacer ton suivi actuel par cette copie (${pluriel(donnees.animaux.length, 'animal', 'animaux')}) ?`)) return;
-        E = normaliser(donnees); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(donnees); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi.'); }
     });
@@ -1089,6 +1094,40 @@
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `suivi-animal-${auj()}.json`);
   const exporterCsv = () => telecharger(R.csvFrais(E, B), 'text/csv;charset=utf-8', `frais-animal-${auj()}.csv`);
   const exporterCsvPoids = () => telecharger(R.csvPoids(E), 'text/csv;charset=utf-8', `pesees-animal-${auj()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Note les soins à suivre', `Vaccin, antiparasitaire, vermifuge, toilettage&nbsp;: pour chaque soin, saisis l'intervalle que ton vétérinaire t'a indiqué. L'outil n'en propose aucun. Tant qu'il manque l'intervalle ou une dernière date, le soin reste <b>À compléter</b>.`],
+      ['beurre', 'Touche «&nbsp;C\'est fait&nbsp;»', `Après chaque soin, note la date. La prochaine échéance est la date inscrite par le vétérinaire si tu la saisis, sinon la date du soin plus l'intervalle. Un soin passe <b>Bientôt</b> ${pluriel(r.alerteJours, 'jour')} avant son échéance, puis <b>En retard</b> une fois la date passée.`],
+      ['ciel', 'Pèse et note les visites', `<b>Poids et visites</b> trace la courbe de poids et montre l'écart avec la pesée précédente, sans l'interpréter. ${r.peseeJours ? `Un rappel de pesée revient tous les ${r.peseeJours}&nbsp;jours après la dernière.` : 'Aucun rappel de pesée n\'est réglé.'} Note aussi chaque visite, avec le traitement prescrit et sa date de fin.`],
+      ['sable', 'Suis les frais', `Le coût des soins et des visites s'ajoute tout seul aux dépenses que tu notes (alimentation, assurance, garde…). <b>Frais</b> les montre par catégorie, par mois et par an, avec le coût des 12 derniers mois.`],
+    ];
+    const corps = `
+      <p>L'outil calcule les prochaines échéances de soins de ton animal et tient son carnet&nbsp;: poids, visites et frais. Ton rôle&nbsp;: saisir les intervalles donnés par ton vétérinaire, puis noter chaque soin fait, chaque pesée et chaque visite. Il ne remplace pas l'avis de ton vétérinaire.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Tableau de bord</b> rassemble les soins en retard ou proches et les pesées à faire, <b>Animaux</b> imprime le carnet de chacun. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const a = presents()[0];
+    const premier = auto && a && !E.soins.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="soin">Ajouter mon premier soin</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'soin') setTimeout(() => modaleSoin(null, a.id), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1167,7 +1206,7 @@
     const dansModale = !!el.closest('#modale');
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1175,6 +1214,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

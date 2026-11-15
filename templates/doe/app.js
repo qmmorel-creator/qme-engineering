@@ -45,7 +45,7 @@
   const filtre = { operationId: '', lotId: '', entrepriseId: '', famille: '', statut: 'a-traiter', texte: '' };
   const docChoix = { type: 'bordereau', operationId: '', entrepriseId: '', lotId: '', avecRecues: false, destinataire: '' };
 
-  const etatVide = () => ({ version: 1, structure: '', reglages: { delaiRemise: B.delaiRemise, delaiReprise: B.delaiReprise, intervalle: B.intervalleRelance, alerte: 7 },
+  const etatVide = () => ({ version: 1, structure: '', tutorielVu: false, reglages: { delaiRemise: B.delaiRemise, delaiReprise: B.delaiReprise, intervalle: B.intervalleRelance, alerte: 7 },
     modeles: {}, operations: [], lots: [], entreprises: [], pieces: [], relances: [] });
   const normaliser = (d) => {
     const v = etatVide();
@@ -391,6 +391,7 @@
     documents: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="6" width="10" height="2" fill="currentColor"/><rect x="7" y="10" width="10" height="2" fill="currentColor"/><rect x="7" y="16" width="5" height="3" fill="currentColor"/></svg>',
     operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['pieces', 'Pièces'], ['bilan', 'Complétude'], ['relances', 'Relances'], ['documents', 'Documents'], ['operations', 'Opérations']];
@@ -408,12 +409,13 @@
         <span class="titre-produit">Registre<br>du DOE</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1095,6 +1097,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="csv-tout">Toutes les pièces (CSV)</button><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi des DOE, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1112,7 +1116,8 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.operations) || !Array.isArray(d.pieces)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.operations.length, 'opération')}, ${pluriel(d.pieces.length, 'pièce')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu;
+        E = normaliser(d); delete E.majLe; E.tutorielVu = vu || !!E.tutorielVu;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1132,6 +1137,44 @@
     const liste = tout ? E.pieces : listeFiltree();
     telecharger(R.csv(E, auj(), liste, B.familles), `registre-doe-${auj()}.csv`, 'text/csv;charset=utf-8');
     toast(`${pluriel(liste.length, 'pièce')} exportée${liste.length > 1 ? 's' : ''} (CSV, point-virgule).`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Une liste de pièces par lot', `Chaque lot coché reçoit sa liste de pièces types (plans, notices, PV d'essais, fiches techniques, garanties), numérotées P-001, P-002… Ajuste-la selon ton marché et attribue une entreprise à chaque lot dans <b>Opérations</b>. Une pièce sans date propre suit la date limite de remise du DOE de l'opération.`],
+      ['beurre', 'Reçue, puis vérifiée', `Quand une pièce arrive, touche <b>Reçue</b>&nbsp;: elle attend ta vérification. Ensuite, <b>Valider</b> si elle est conforme, ou <b>À reprendre</b> avec le motif&nbsp;: elle a alors une nouvelle date limite, ${pluriel(r.delaiReprise, 'jour')} plus tard par défaut. Chaque changement reste dans l'historique de la pièce.`],
+      ['ciel', 'Les retards sautent aux yeux', `Une pièce attendue ou à reprendre passe <b>En retard</b> dès que sa date limite est dépassée. La <b>Complétude</b> compte les pièces validées sur toutes les pièces attendues, par entreprise, par lot et par famille.`],
+      ['sable', 'Relance, puis transmets', `Une entreprise est à relancer quand elle a des pièces en retard et qu'elle n'a pas été relancée depuis ${pluriel(r.intervalle, 'jour')}. <b>Préparer la relance</b> rédige un courrier à relire et à envoyer toi-même&nbsp;: l'outil n'envoie rien. <b>Documents</b> imprime le bordereau de transmission des pièces validées.`],
+    ];
+    const corps = `
+      <p>Le registre suit chaque pièce du DOE, de la demande à la validation, et repère celles qui manquent. Ton rôle&nbsp;: noter les pièces reçues, les vérifier, puis relancer les entreprises en retard.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Pièces</b> liste d'abord les retards, puis les pièces reçues à vérifier. Les délais proposés (date limite, reprise, relance) se règlent dans les réglages&nbsp;; ton marché fait foi. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    // Opération créée sans lot ni pièce : le bouton principal propose la première saisie utile.
+    const op = E.operations[0];
+    const premiere = auto && op && !E.pieces.length ? (E.lots.length ? 'piece' : 'lot') : '';
+    const pied = premiere
+      ? `<button class="btn primaire" value="${premiere}">${premiere === 'lot' ? 'Ajouter mon premier lot' : 'Ajouter ma première pièce'}</button><button class="btn" value="ok">Fermer</button>`
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix === 'lot') setTimeout(() => modaleLot(null, op.id), 0);
+      if (choix === 'piece') setTimeout(() => modalePiece(null), 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1236,11 +1279,12 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `registre-doe-${auj()}.json`, 'application/json'); break;
       case 'csv': exporterCsv(false); break;
