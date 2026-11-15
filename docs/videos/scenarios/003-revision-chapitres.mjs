@@ -117,18 +117,18 @@ export async function jouer(v) {
   await v.temps(); await S('legende', `Le détail du <b>${b2.jour.toLowerCase()}</b>, en un clic.`);
   son('zoom', 0.7); await S('suivre', 2.2);
   await v.cliquer(C2, { ms: 520 });
-  await pause(250);
-  const r = await S('rectApp', DETAIL);
-  son('zoom'); await S('cadrer', { x: r.x, y: r.y, w: 600, h: r.h }, { max: 2.2, marge: 40 });
+  // Le clic fait défiler l'application jusqu'au détail (défilement doux) : mesurer une fois la page immobile.
+  let r = await S('rectApp', DETAIL);
+  for (let i = 0; i < 12; i++) { await pause(120); const q = await S('rectApp', DETAIL); if (Math.abs(q.y - r.y) < 1) break; r = q; }
+  son('zoom'); await S('cadrer', { x: r.x, y: r.y, w: 560, h: r.h }, { max: 2.2, marge: 40 });
   const titres = await v.appli.$$eval(`${DETAIL} .ligne b`, (bs) => bs.map((b) => b.textContent.trim()));
   const resume = await v.lire(`${DETAIL} h2 span`);
   if (titres.join() !== CHAPITRES.slice(-decales).join()) throw new Error(`Détail inattendu : ${titres.join(', ')}`);
   await v.temps();
   await S('flash', DETAIL, 'var(--ciel)');
-  son('pop'); await S('anneau', 'd', `${DETAIL} .ligne:nth-of-type(1) b`, { couleur: 'var(--vert)', etiquette: `${b2.jour} : ${resume}`, cote: 'dessus', pulse: false, marge: 6 });
   son('trait', 0.6);
-  for (let i = 1; i <= titres.length; i++) await S('souligner', `t${i}`, `${DETAIL} .ligne:nth-of-type(${i}) b`, 'var(--vert)');
-  await S('legende', `<b>${titres.join('</b> et <b>')}</b> : première révision ${b2.jour.toLowerCase()}.`);
+  for (let i = 1; i <= titres.length; i++) await S('souligner', `t${i}`, `${DETAIL} .ligne:nth-of-type(${i}) span`, 'var(--vert)');
+  await S('legende', `${b2.jour} : ${resume}, <b>${titres.join('</b> et <b>')}</b>.`);
   await temps(3);
   await S('retirer'); await S('cacherCurseur');
 

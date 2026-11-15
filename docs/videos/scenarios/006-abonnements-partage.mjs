@@ -98,7 +98,7 @@ export async function jouer(v) {
   if (apres === avant) throw new Error(`Le coût de la box n'a pas changé (${avant})`);
   const etiquette = await v.lire(`${LIGNE} .ligne-etiquettes`);
   if (!/2 parts/i.test(etiquette)) throw new Error(`Étiquette de partage absente : ${etiquette}`);
-  son('dezoom', 0.6); await S('cadrer', LIGNE, { max: 2.4, marge: 40 });
+  son('zoom', 0.6); await S('cadrer', [`${LIGNE} .ligne-info b`, `${LIGNE} .ligne-etiquettes`], { max: 2.2, marge: 70 });
   await S('flash', LIGNE, 'var(--ciel)');
   await v.temps(); await temps(0.5);
   son('zoom'); await S('cadrer', `${LIGNE} .ligne-droite`, { max: 2.2, marge: 230 });

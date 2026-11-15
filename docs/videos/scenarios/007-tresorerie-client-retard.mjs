@@ -103,13 +103,13 @@ export async function jouer(v) {
   await v.saisir(MOIS, frappe(v.cibleEcole), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
-  await v.temps();
+  son('zoom', 0.6); await S('cadrer', v.ECOLE, { max: 2.4, marge: 40 });
   const quand1 = await QUAND(v.ECOLE)(v);
   if (!quand1.startsWith(nomMois(v.cibleEcole))) throw new Error(`Le mois n'a pas changé : ${quand1}`);
-  son('zoom', 0.6); await S('cadrer', v.ECOLE, { max: 2.4, marge: 40 });
+  await v.temps();
   await S('flash', v.ECOLE, 'var(--ciel)');
   son('pop'); await S('avantApres', 'e', `${v.ECOLE} small`, quand0, quand1, { couleur: 'var(--bleu)', cote: 'dessous' });
-  await temps(1.2);
+  await temps(2);
   await S('retirer', 'e');
 
   // La synthèse signale le découvert
@@ -143,13 +143,13 @@ export async function jouer(v) {
   await v.saisir(MOIS, frappe(v.cibleMachine), { ms: 520 });
   await v.temps(2);
   await v.cliquer(ENREGISTRER, { ms: 480 });
-  await v.temps();
+  son('zoom', 0.6); await S('cadrer', v.MACHINE, { max: 2.4, marge: 40 });
   const quand3 = await QUAND(v.MACHINE)(v);
   if (!quand3.startsWith(nomMois(v.cibleMachine))) throw new Error(`Le mois n'a pas changé : ${quand3}`);
-  son('zoom', 0.6); await S('cadrer', v.MACHINE, { max: 2.4, marge: 40 });
+  await v.temps();
   await S('flash', v.MACHINE, 'var(--ciel)');
   son('pop'); await S('avantApres', 'm', `${v.MACHINE} small`, quand2, quand3, { couleur: 'var(--bleu)', cote: 'dessous' });
-  await temps(1.2);
+  await temps(2);
   await S('retirer', 'm');
 
   // Verdict
