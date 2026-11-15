@@ -57,4 +57,5 @@ Lecture :
 1. Statistiques LinkedIn et Instagram (abonnés, impressions par post, clics).
 2. Search Console (requêtes, pages indexées).
 3. Liens tracés (UTM) par canal vers Gumroad.
-4. Visites du site (Netlify Analytics n'est pas activé, à vérifier).
+4. Visites du site : **GoatCounter est installé** (qme-engineering.goatcounter.com, environ 700 clics suivis par `goatcounter-click`) ; ses chiffres ne sont pas encore relevés (accès à demander). Correction du 15/11/2026, signalée par l'analyse ChatGPT.
+5. LinkedIn : les 7 posts publiés l'ont été **depuis la page QME** (identifiant d'entreprise dans les adresses du Sheet), aucun depuis le profil personnel de Quentin.
