@@ -91,12 +91,52 @@ existants, sauf le produit gratuit et les bundles.
 | 8 | Préparer la campagne du 1er janvier (résolutions) | Claude | — |
 | 9 | Statistiques LinkedIn et Instagram : relevé initial | Quentin | 15 min |
 
-## 6. Décisions demandées à Quentin
+## 6. Corrections après revue critique (15/11/2026)
+
+Revue `devils-advocate` du plan ci-dessus : 6 failles retenues. Ces corrections priment sur les § 3 à 5.
+
+1. **Temps** : le plan initial dépassait 9 h par semaine. Budget plafonné à **7 h, 2 h de marge** :
+
+   | Poste | h / semaine |
+   |---|---|
+   | Tournage de 4 vidéos (une séance) | 1,5 |
+   | Montage simple (texte à l'écran, sans motion design) | 1,5 |
+   | Publication TikTok + Reels (Shorts et Pinterest : seulement quand un format marche) | 1 |
+   | Réponses aux commentaires et messages | 1 |
+   | Relecture de ce que Claude prépare, décisions | 1,5 |
+   | Relevé du lundi (tableau de bord) | 0,5 |
+   | **Total** | **7** |
+
+   Les autres jours, les Reels déjà produits (22) comblent : 1 publication par jour sans tournage quotidien.
+2. **Un seul moteur pour le temps de Quentin** : le B2C « argent du quotidien ». Le calendrier LinkedIn et
+   Instagram déjà programmé continue (publication automatique, aucun temps de Quentin) et sert le B2B.
+   **Point d'étape global le 15/01/2027** : moins de 50 clics par semaine vers Gumroad, tous canaux
+   confondus, → bascule du temps de Quentin vers le B2B en direct (prospection LinkedIn sur DUERP, levée de
+   réserves, Gantt, à 29-45 € : environ 30 ventes par mois suffisent).
+3. **Prix testé dès décembre**, pas fin janvier : un produit d'appel à 9 € (net ≈ 5 € par vente) suivi d'une
+   offre de bundle à 35 € juste après l'achat. Les jalons se recalculent sur le **panier moyen réel**, relevé
+   chaque mois.
+4. **Parcours d'achat avant la première vidéo** : test sur iPhone émulé fait le 15/11 (page produit, démo,
+   fiche Gumroad : affichage correct, aucune erreur). Reste à tester l'achat et l'activation de la clé :
+   5 proches, sur leur téléphone, avec un code à 100 % (à inscrire dans `codes-gratuits.md`).
+5. **Suite des contacts** : suite de 3 e-mails Gumroad après tout téléchargement gratuit (J+1, J+3, J+7,
+   offre limitée dans le temps ; fonction « Workflows » de Gumroad, à vérifier). Le produit gratuit
+   principal devient un **calculateur « 50/50 ou au prorata »** (lié au Budget commun) ; le Secret Santa
+   reste le coup de Noël. Pas de « commente BUDGET » en message privé : « lien en bio, tape QME » à l'écran.
+6. **Critères plus durs** : TikTok continue si au moins **5 ventes attribuables ou des clics qui doublent
+   toutes les 2 semaines** (`tiktok-opportunite.md` mis à jour). Affiliés : micro-créateurs (1 000 à
+   10 000 abonnés), accès gratuit au produit et **50 %** de commission. Les jalons du § 4 sont une cible,
+   pas une prévision : la progression réelle sera relevée chaque semaine.
+
+## 7. Décisions demandées à Quentin
 
 1. Se filmer : une séance d'1 h 30 par semaine ?
 2. Secret Santa gratuit sur Gumroad cette semaine ?
 3. Test TikTok de 6 semaines ?
-4. Affiliation : 30 ou 40 % ? Démarchage de créateurs ?
+4. Affiliation à 50 % auprès de micro-créateurs, avec accès gratuit au produit ?
 5. 3 bundles sur Gumroad ?
 6. Raconter publiquement les vrais chiffres (dont « 0 vente ») ?
 7. Calendrier LinkedIn : remplacer un post produit sur deux par la série « construction de QME » ?
+8. Produit d'appel à 9 € en décembre (lequel : Suivi des abonnements ou Calculateur de TJM) ?
+9. Calculateur gratuit « 50/50 ou au prorata » comme produit gratuit principal (développement avec le skill
+   `nouveau-template`) ?

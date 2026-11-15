@@ -39,7 +39,8 @@ design existent déjà et la même vidéo verticale sert à TikTok, Reels et Sho
 
 **Critères fixés à l'avance, au bout de 6 semaines :**
 - **On arrête** si moins de 10 clics vers Gumroad au total, ou aucune vidéo au-dessus de 1 000 vues.
-- **On continue** si au moins 1 vente attribuable, ou au moins 50 clics.
+- **On continue** si au moins 5 ventes attribuables, ou si les clics doublent toutes les 2 semaines
+  (critère durci après revue critique du 15/11/2026).
 - Entre les deux : 4 semaines de plus avec les 2 meilleurs formats seulement.
 
 ## Sources (consultées le 15/11/2026)
