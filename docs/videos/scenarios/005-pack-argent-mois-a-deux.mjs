@@ -43,12 +43,19 @@ export async function preparer(v) {
   await v.S('fenetre', false);
 }
 
-// Changement de template derrière le volet. Le guide du premier lancement s'ouvre ~350 ms après le chargement :
-// sur une machine chargée il peut arriver après le fermerDialogues de v.ouvrir, on le surveille donc encore un peu.
-async function changer(v, slug) {
-  await v.S('volet');
+// Changement de template derrière le volet. La fenêtre sort pendant le volet, le template suivant se charge hors
+// champ ; son guide du premier lancement s'ouvre ~300 ms après l'initialisation (plus tard si la machine est chargée) :
+// on attend qu'il apparaisse, on le ferme, on cadre, puis la fenêtre revient.
+async function changer(v, slug, question, cible, cadrage) {
+  v.son('whoosh');
+  await Promise.all([v.S('volet'), v.S('fenetre', false)]);
   await v.ouvrir(`/templates/${slug}/?demo`, `qm-engineering.fr/templates/${slug}`);
-  for (let i = 0; i < 7; i++) { if (await v.appli.$('dialog[open]')) await v.fermerDialogues(); await v.pause(100); }
+  for (let i = 0; i < 40 && !(await v.appli.$('dialog[open]')); i++) await v.pause(100);
+  await v.fermerDialogues();
+  if (await v.appli.$('dialog[open]')) throw new Error(`Guide de ${slug} resté ouvert`);
+  await v.S('question', question);
+  await v.S('cadrer', cible, cadrage);
+  v.son('whoosh', 0.7); await v.S('fenetre', true);
 }
 async function formulaireOuvert(v) {
   const titre = await v.appli.$eval('dialog[open] h2', (e) => e.textContent).catch(() => null);
@@ -98,10 +105,8 @@ export async function jouer(v) {
   await S('retirer');
 
   // 2. Budget du foyer : les courses
-  await v.temps(); son('whoosh'); await changer(v, 'budget');
+  await v.temps(); await changer(v, 'budget', '2 · Votre *budget* du mois', RESTE, { max: 2.2, marge: 120 });
   await verifierBudget(v);
-  await S('question', '2 · Votre *budget* du mois');
-  await S('cadrer', RESTE, { max: 2.2, marge: 120 });
   const reste0 = euros(await v.lire(RESTE));
   await S('legende', `Les courses : <b>${MONTANT} €</b>.`, '2/3');
   son('zoom', 0.7); await S('suivre', 2.2);
@@ -126,10 +131,8 @@ export async function jouer(v) {
   await S('retirer');
 
   // 3. Budget commun : qui a payé les courses
-  await v.temps(); son('whoosh'); await changer(v, 'budget-commun');
+  await v.temps(); await changer(v, 'budget-commun', '3 · Vos comptes *à deux*', DOIT, { max: 2.2, marge: 120 });
   await verifierCommun(v);
-  await S('question', '3 · Vos comptes *à deux*');
-  await S('cadrer', DOIT, { max: 2.2, marge: 120 });
   const doit0 = euros(await v.lire(DOIT));
   await S('legende', `Sami a payé les courses.`, '3/3');
   son('zoom', 0.7); await S('suivre', 2.2);

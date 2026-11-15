@@ -246,6 +246,9 @@
     o.innerHTML = `<img src="/assets/qme-symbole.svg" alt=""><h2>${titre}</h2><p>${sous}</p><div class="url">${url}</div>`;
     o.classList.add('vu');
   }
+  // Un scrollIntoView de l'application fait aussi défiler les conteneurs du studio (overflow hidden) : on les bloque.
+  for (const n of [document.documentElement, document.body, toile, $('#fenetre'), vue]) n.addEventListener('scroll', () => { n.scrollTop = 0; n.scrollLeft = 0; });
+  window.addEventListener('scroll', () => window.scrollTo(0, 0));
   const pret = new Promise((r) => app.addEventListener('load', r, { once: true }));
   // Changer de template en cours de vidéo (vidéo d'un pack) : à masquer derrière un volet.
   function changerApp(url, { url: barre } = {}) {
