@@ -53,7 +53,7 @@
 
   const capaciteDefaut = () => ({ annee: new Date().getFullYear(), joursSemaine: [1, 2, 3, 4, 5], alsaceMoselle: false, pentecoteTravaillee: false, conges: 25, absences: 5, partNonFacturable: 30, heuresJour: 7, personnes: 1 });
   const etatVide = () => ({
-    version: 1, activite: '', structure: null,
+    version: 1, activite: '', structure: null, tutorielVu: false,
     charges: [], remuneration: { montant: 0, periode: 'an' }, cotisations: { mode: 'pourcentage', valeur: 0, periode: 'an' },
     capacite: capaciteDefaut(), margeCible: 20, periode: '12m', clients: [], saisies: [],
   });
@@ -429,8 +429,7 @@
     accueil = { etape: 1, activite: '', structure: null, montants: {}, remuneration: '', cotisation: '' };
     vue = 'bord';
     sauver();
-    demarrer();
-    setTimeout(() => modaleClient(), 250);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter le premier client
   }
 
   // ---------- Rendu : application ----------
@@ -441,6 +440,7 @@
     capacite: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 12V4A8 8 0 0 1 20 12Z" fill="currentColor"/></svg>',
     charges: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="12" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bord', 'Synthèse'], ['clients', 'Clients'], ['prix', 'Prix'], ['capacite', 'Capacité'], ['charges', 'Charges']];
@@ -457,12 +457,13 @@
         <span class="titre-produit">Coût de revient<br>et prix</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -968,6 +969,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="aide">${AVERTISSEMENT} Jours fériés calculés (métropole, option Alsace-Moselle) ; aucun taux de cotisations intégré.</p></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calcul, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -994,6 +997,41 @@
     a.download = `cout-revient-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const p = E.capacite;
+    const nbJours = (n) => `${NF1.format(n)} jour${n >= 2 ? 's' : ''}`;
+    const m = NF0.format(E.margeCible);
+    const blocs = [
+      ['rose', 'Ce que ton activité doit couvrir', `Dans <b>Charges</b>, indique tes charges fixes, la rémunération que tu veux te verser et tes cotisations sociales, en % ou en montant : aucun taux n'est intégré, il dépend de ton statut. Ce qui est saisi au mois est ramené à l'année.`],
+      ['beurre', 'Le temps vraiment facturable', `<b>Capacité</b> part des jours de l'année ${p.annee}, retire les jours où tu ne travailles pas et les jours fériés (calculés pour l'année), puis ${nbJours(p.conges)} de congés et ${nbJours(p.absences)} d'autres absences. Sur le reste, ${NF0.format(p.partNonFacturable)} % du temps part en prospection, gestion et devis. Chaque jour facturable compte ${NF1.format(p.heuresJour)} h${p.personnes > 1 ? `, pour ${p.personnes} personnes qui facturent` : ''}.`],
+      ['ciel', 'Ton prix plancher', `Coût de revient = total annuel à couvrir ÷ heures facturables. C'est ton <b>prix plancher</b> : en dessous, une mission te coûte plus qu'elle ne te rapporte. Le <b>prix conseillé</b> ajoute ta marge cible de ${m} % du prix : coût ÷ (1 − ${m} %).`],
+      ['sable', 'Ce que rapporte chaque client', `Pour chaque client, saisis au fil de l'eau le temps passé, les frais directs et les factures hors taxes. Taux horaire réel = (facturé − frais) ÷ heures. Sous le plancher, le client passe en rouge&nbsp;; entre le plancher et le prix conseillé, en jaune&nbsp;; au-dessus, en bleu.`],
+    ];
+    const corps = `
+      <p>L'outil calcule ce que te coûte une heure de travail et ce que chaque client te rapporte vraiment. Ton rôle : saisir tes charges et ton temps de travail, puis, au fil de l'eau, tes heures, tes frais et tes factures par client.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Synthèse</b> classe tes clients sur la période choisie (${libellePeriode()}), <b>Prix</b> chiffre une mission en jours. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premierClient = auto && !E.clients.length;
+    const pied = premierClient
+      ? '<button class="btn primaire" value="client">Ajouter mon premier client</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'client') setTimeout(() => modaleClient(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1099,6 +1137,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

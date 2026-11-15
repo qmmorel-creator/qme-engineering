@@ -45,7 +45,7 @@
   const filtre = { operationId: '', lotId: '', entrepriseId: '', statut: 'en-cours', texte: '' };
   const pvChoix = { operationId: '', entrepriseId: '', type: 'liste' };
 
-  const etatVide = () => ({ version: 1, structure: '', reglages: { delai: B.delaiDefaut, alerte: B.alerteDefaut, delaiRefus: B.delaiRefus }, operations: [], lots: [], entreprises: [], reserves: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, structure: '', reglages: { delai: B.delaiDefaut, alerte: B.alerteDefaut, delaiRefus: B.delaiRefus }, operations: [], lots: [], entreprises: [], reserves: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -366,8 +366,7 @@
       E.operations.push(op);
       f.getAll('lot').forEach((code) => { const b = B.lots.find((x) => x.code === code); E.lots.push({ id: uid(), operationId: op.id, code, nom: b.nom, entrepriseId: null }); });
       sauver();
-      demarrer();
-      setTimeout(() => modaleReserve(), 250);
+      demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose de saisir la première réserve
     });
   }
 
@@ -379,6 +378,7 @@
     operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     guide: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['reserves', 'Réserves'], ['bord', 'Tableau de bord'], ['pv', 'PV'], ['operations', 'Opérations'], ['guide', 'Guide']];
@@ -396,12 +396,13 @@
         <span class="titre-produit">Levée<br>de réserves</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1015,6 +1016,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="csv-tout">Toutes les réserves (CSV)</button><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de la levée de réserves, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1054,6 +1057,39 @@
     if (!tout) { const f = filtreEffectif(); liste = R.filtrer(E.reserves, f, auj(), nomsRecherche); if (f.lots) liste = liste.filter((r) => f.lots.has(r.lotId)); }
     telecharger(R.csv(E, auj(), liste), `reserves-${auj()}.csv`, 'text/csv;charset=utf-8');
     toast(`${pluriel(liste.length, 'réserve')} exportée${liste.length > 1 ? 's' : ''} (CSV, point-virgule).`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Une réserve par défaut', `Pendant la visite, saisis chaque réserve&nbsp;: localisation, lot, entreprise, description, référence de la photo. L'entreprise titulaire du lot est proposée d'office. L'échéance se calcule seule&nbsp;: date du constat + ${pluriel(r.delai, 'jour')}, modifiable.`],
+      ['beurre', 'Levée, puis contrôle', `Quand l'entreprise annonce la reprise, touche <b>Levée par l'entreprise</b>&nbsp;: la réserve passe à contrôler. Sur place, <b>Accepter</b> si la reprise est conforme&nbsp;: la réserve est soldée. Sinon, <b>Refuser</b> avec un motif et une nouvelle échéance (${pluriel(r.delaiRefus, 'jour')} par défaut).`],
+      ['ciel', 'Les retards remontent seuls', `Une réserve ouverte ou refusée dont l'échéance est dépassée passe <b>En retard</b> et s'affiche en tête de liste, suivie des réserves à contrôler. Une échéance à ${pluriel(r.alerte, 'jour')} ou moins est signalée. <b>Tableau de bord</b> montre où en est chaque entreprise et chaque lot.`],
+      ['sable', 'Les PV sont prêts', `L'onglet <b>PV</b> prépare, pour chaque entreprise, la liste des réserves à lever ou le procès-verbal de levée, à imprimer ou enregistrer en PDF, puis à signer. Les délais sont des propositions&nbsp;: le contrat de l'opération fait foi.`],
+    ];
+    const corps = `
+      <p>L'outil suit chaque réserve jusqu'à sa levée et te montre lesquelles relancer. Ton rôle&nbsp;: saisir les réserves pendant la visite, puis noter les levées annoncées et tes contrôles.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Opérations</b> regroupe tes chantiers, leurs lots et les entreprises&nbsp;; <b>Guide</b> détaille le cycle d'une réserve et les règles de rédaction. Les photos ne sont pas stockées ici&nbsp;: note leur référence. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes réserves sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.reserves.length && E.operations.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="reserve">Saisir ma première réserve</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'reserve') setTimeout(() => modaleReserve(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1163,6 +1199,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `levee-reserves-${auj()}.json`, 'application/json'); break;
       case 'csv': exporterCsv(false); break;

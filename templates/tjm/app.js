@@ -46,7 +46,7 @@
   let annulation = null;
 
   const tauxDefaut = () => structuredClone(B.taux);
-  const etatVide = () => ({ version: 1, prenom: '', actif: null, scenarios: [], taux: tauxDefaut() });
+  const etatVide = () => ({ version: 1, prenom: '', tutorielVu: false, actif: null, scenarios: [], taux: tauxDefaut() });
   function scenarioVide(nom, couleurId) {
     return { id: uid(), nom, couleur: couleurId, annee: anneeCourante(), objectif: { montant: null, periode: 'mois' }, frais: [], marge: 10,
       conges: 25, nonFacturables: 0, statut: 'bnc', activite: 'commercant', vl: false, tauxSociete: null, tauxFictif: false };
@@ -363,6 +363,7 @@
     resultat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3h2v16h16v2Z" fill="currentColor"/><path d="M3 21 A18 18 0 0 1 21 3 V21Z" fill="currentColor" opacity=".35"/></svg>',
     scenarios: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['objectif', 'Objectif'], ['temps', 'Temps'], ['statut', 'Statut'], ['resultat', 'Résultat'], ['scenarios', 'Scénarios']];
@@ -378,12 +379,13 @@
         <span class="titre-produit">Calculateur<br>de TJM</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, taux et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const VUES = { objectif: () => vueObjectif(), temps: () => vueTemps(), statut: () => vueStatut(), resultat: () => vueResultat(), scenarios: () => vueScenarios() };
@@ -898,6 +900,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <p class="mention">Outil d'aide au calcul : il ne remplace pas un expert-comptable.</p>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calcul, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -936,6 +940,38 @@
     a.download = `calculateur-tjm-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const sc = actif();
+    const t = E.taux;
+    const blocs = [
+      ['rose', 'Ton objectif', `Dans <b>Objectif</b>, indique le revenu net que tu veux te verser, tes frais professionnels et une marge de sécurité (${pct(sc.marge || 0)} dans ce scénario) pour les impayés et les mois sans mission.`],
+      ['beurre', 'Tes vrais jours facturables', `<b>Temps</b> compte les jours du lundi au vendredi de l'année choisie, retire les jours fériés nationaux, puis tes congés et tes jours sans client : prospection, gestion, formation, intercontrats.`],
+      ['ciel', 'Ton statut fixe les prélèvements', `En micro-entreprise (BIC, BNC ou Cipav), les cotisations, la formation professionnelle et, si tu le coches, le versement libératoire sont un pourcentage du chiffre d'affaires. Les taux ${esc(B.taux.enVigueur)} sont intégrés et modifiables dans les réglages. En société (SASU ou EURL), aucun taux n'est intégré : tu saisis le tien.`],
+      ['sable', 'Le calcul du TJM', `Chiffre d'affaires nécessaire : (revenu net + frais) ÷ (1 − taux) en micro&nbsp;; revenu net ÷ (1 − taux), plus les frais, en société. Divisé par tes jours facturables et arrondi à l'euro supérieur, il donne le <b>TJM minimum</b>. Le <b>TJM conseillé</b> ajoute ta marge. Les deux sont hors taxes.`],
+      ['rose', 'Les seuils surveillés', `Au TJM conseillé, l'outil vérifie, en micro, le plafond des prestations de services (${euros(t.plafondServices)}) et, pour tous les statuts, la franchise de TVA (${euros(t.tvaBase)}, seuil majoré ${euros(t.tvaMajore)}). Il prévient aussi dès 90 % du plafond ou du premier seuil de TVA.`],
+    ];
+    const corps = `
+      <p>Le calculateur transforme le revenu que tu vises en tarif journalier : un TJM minimum et un TJM conseillé. Ton rôle : renseigner ton objectif, ton temps et ton statut, puis comparer tes hypothèses.</p>
+      <ol class="tuto">${blocs.map(([c, titre, texte]) => `<li style="--f:var(--${c});--t:var(--${c === 'sable' ? 'encre' : `${c}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Résultat</b> détaille où va ton chiffre d'affaires, <b>Scénarios</b> compare jusqu'à ${MAX_SCENARIOS} hypothèses côte à côte, avec la courbe du TJM selon les jours facturables. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const pied = `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1031,6 +1067,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'taux-defaut': {

@@ -41,6 +41,11 @@
   const filtre = { unite: '', prio: 'toutes', q: '', act: 'ouvertes', qa: '', version: '', annee: null };
   let annulation = null;
 
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  // Ajouté ici : la normalisation des règles ne connaît pas ce champ et le supprimerait.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: Boolean(d?.tutorielVu) });
+
   const unite = (id) => E.unites.find((u) => u.id === id);
   const risque = (id) => E.risques.find((r) => r.id === id);
   const action = (id) => E.actions.find((a) => a.id === id);
@@ -86,7 +91,7 @@
     try {
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         cache(false);
         rendre();
@@ -114,7 +119,7 @@
     try {
       const { statut, corps } = await appel('/donnees');
       if (statut === 200 && corps.donnees && corps.donnees.majLe !== session.base) {
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         session.base = corps.donnees.majLe;
         cache(false);
         if (!modale().open) rendre();
@@ -161,11 +166,11 @@
   function chargerDepuisServeur(donnees) {
     const c = stock.lire(CLE_CACHE);
     if (c && c.code === session.code && c.nonEnvoye && (!donnees || c.base === donnees.majLe)) {
-      E = R.normaliser(c.etat); session.base = donnees?.majLe ?? null;
+      E = normaliser(c.etat); session.base = donnees?.majLe ?? null;
       demarrer(); envoyer();
       return;
     }
-    E = donnees ? R.normaliser(donnees) : null;
+    E = donnees ? normaliser(donnees) : null;
     session.base = donnees?.majLe ?? null;
     if (E && E.unites.length) { cache(false); demarrer(); } else ecranAccueil();
   }
@@ -173,7 +178,7 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? R.normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
   }
@@ -193,7 +198,7 @@
   // actions faites, en cours, en retard, abandonnée, risque de priorité 1 sans action, risque à coter,
   // unité de travail sans risque évalué, risque résiduel réduit après une action.
   function donneesDemo() {
-    const e = R.etatVide();
+    const e = etatVide();
     const t = auj();
     const j = (n) => ajout(t, n);
     const m = (n, dj = 0) => ajout(ajoutMois(t, n), dj);
@@ -269,7 +274,7 @@
     e.evenements.push(R.normaliserEvenement({ id: uid(), date: j(-20), type: 'amenagement', texte: 'Mise en service du nouveau bâtiment de stockage du bois' }));
     e.risques.push(R.normaliserRisque({ id: uid(), unite: U.atelier, famille: 'ELECTRIQUE', danger: 'Rallonges utilisées pour les machines portatives près de l\'établi', consequences: 'Électrisation', exposes: 5, evalueLe: j(-5) }, e.grille));
     e.unites.push(R.normaliserUnite({ id: uid(), nom: 'Stockage du bois', type: 'lieu', description: 'Racks de panneaux et de bois massif (nouveau bâtiment)', effectif: 3 }));
-    return R.normaliser(e);
+    return normaliser(e);
   }
 
   // ---------- Rendu : connexion ----------
@@ -388,7 +393,7 @@
 
   function terminerAccueil() {
     const a = accueil;
-    E = R.etatVide();
+    E = etatVide();
     const eff = lireEffectif(a.effectif);
     E.entreprise = R.normaliserEntreprise({ nom: a.nom, effectif: Number.isNaN(eff) ? null : eff, secteur: a.secteur });
     const n = R.creerDepuisSecteur(E, a.secteur, a.unites ?? secteur(a.secteur).unites.map((u) => u.nom), uid);
@@ -409,6 +414,7 @@
     versions: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V11A10 10 0 0 1 13 21Z" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 3h16v18H4z" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="7" width="8" height="2" fill="currentColor"/><rect x="8" y="11" width="8" height="2" fill="currentColor"/><circle cx="12" cy="17" r="1.6" fill="#B84A34"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#E8B93A" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#B84A34" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#2E5A88" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Bord'], ['evaluation', 'Évaluation'], ['actions', 'Actions'], ['document', 'Document'], ['versions', 'Versions']];
@@ -437,12 +443,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Obligations et sources" title="Obligations et sources">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1216,6 +1223,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du document unique, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application pendant la visite des postes de travail.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Obligations : ${esc(sp.court)} (${esc(sp.maj)}) et ${esc(inrs.court)} (${esc(inrs.maj)}), consultés le ${esc(sp.consulte)} ; à revérifier chaque année. Familles de risques inspirées de ${esc(ed.court)} (${esc(ed.maj)}), reformulées. Outil d'aide : il ne remplace ni un préventeur ni un conseil juridique.</p></div>`;
@@ -1237,7 +1246,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.unites) || !Array.isArray(d.risques)) throw new Error();
         if (!confirm(`Remplacer ton document actuel par cette copie (${pluriel(d.unites.length, 'unité')}, ${pluriel(d.risques.length, 'risque')}, ${pluriel((d.versions || []).length, 'version')}) ?`)) return;
-        E = R.normaliser(d); delete E.majLe;
+        E = normaliser(d); delete E.majLe;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du document unique.'); }
     });
@@ -1252,6 +1261,36 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `document-unique-${auj()}.json`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const g = E.grille, rg = E.reglages;
+    const blocs = [
+      ['rose', 'Découpe en unités de travail', `Une unité regroupe les personnes exposées aux mêmes risques&nbsp;: un poste, un lieu ou une activité. Pour chacune, note les situations dangereuses observées dans le travail réel, leurs conséquences et les mesures déjà en place. Les risques proposés au départ ne sont que des pistes&nbsp;: garde-les, modifie-les ou supprime-les.`],
+      ['beurre', 'Cote chaque risque', `Gravité × probabilité, de 1 à ${g.gravite.length} et de 1 à ${g.probabilite.length}. Le score initial ne tient pas compte des mesures, le résiduel les prend en compte (sans saisie, il reprend l'initial). La priorité vient du résiduel&nbsp;: <b>priorité 1</b> à partir de ${g.seuils.p1}, <b>priorité 2</b> à partir de ${g.seuils.p2}, priorité 3 en dessous. La grille se règle dans les réglages.`],
+      ['ciel', 'Planifie les actions', `Chaque action se rattache à un risque, avec un responsable, une échéance et un coût estimé. Elle est signalée ${pluriel(rg.alerteJours, 'jour')} avant son échéance, puis <b>en retard</b> une fois l'échéance passée. Un risque de priorité 1 sans action à mener est signalé aussi. Quand tu marques une action faite, l'outil te propose de recoter le risque résiduel.`],
+      ['sable', 'Archive chaque mise à jour', `Archiver crée une version datée et figée du document, à conserver 40 ans. Dès ${B.seuils.annuel} salariés, la mise à jour est due un an après la dernière version&nbsp;; en dessous, une revue est conseillée tous les ${rg.revueMois} mois. Un événement noté après la dernière version (accident, aménagement important, information nouvelle sur un risque…) appelle aussi une mise à jour.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi les priorités, tient le plan d'actions et te rappelle quand mettre le document à jour. Ton rôle&nbsp;: décrire les risques réels de chaque unité de travail, les coter, décider des actions et archiver une version à chaque mise à jour.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Bord</b> rassemble les alertes, <b>Document</b> met en page le document complet à imprimer, et <b>Obligations et sources</b> (en haut de l'écran) résume ce que demande le Code du travail selon ton effectif. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton document est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const pied = `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1347,6 +1386,7 @@
       case 'unites': modaleUnites(); break;
       case 'unite': modaleUnite(id); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-risques': telecharger(R.versCsvRisques(E), 'text/csv;charset=utf-8', `document-unique-risques-${auj()}.csv`); break;
@@ -1396,7 +1436,7 @@
     } catch {
       const c = stock.lire(CLE_CACHE);
       if (c && c.code === code && c.etat && c.jeton) {
-        E = R.normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
+        E = normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
         demarrer(); majSync('horsligne');
       } else ecranConnexion('Pas de connexion internet. Réessaie une fois en ligne.');
     }

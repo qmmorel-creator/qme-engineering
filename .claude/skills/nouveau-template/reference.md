@@ -59,6 +59,30 @@ l'écran d'accueil d'un téléphone pour l'utiliser comme une application. Réf�
 - Le manifeste doit rester `display: standalone` avec les icônes 192 et 512 px.
 - Aucune application externe : seule l'invite native du navigateur est utilisée.
 
+## Guide « Comment ça marche » (obligatoire, chaque template)
+
+Décision de Quentin (15/11/2026) : chaque template explique ses grands principes dans une fenêtre
+« Comment ça marche ». Référence : `templates/revision/app.js`, bloc « Comment ça marche » (pilote).
+
+- **Contenu** : une phrase d'intro (ce que l'outil fait pour l'utilisateur, ce qui reste à faire), puis
+  3 à 5 principes numérotés (`<ol class="tuto">`, titre court + 2 à 4 phrases), puis un encadré `.aide`
+  (autres onglets, où sont les données, comment rouvrir le guide). Chaque affirmation est **vérifiée
+  dans le code** (règles, seuils, délais) ; les valeurs réglables sont lues dans l'état, jamais écrites en dur.
+- **Au premier lancement** : `premiersPas()` à la fin de `demarrer()` (à la place de
+  `proposerEcranAccueil()`) ouvre le guide une fois par compte (`E.tutorielVu`, synchronisé, `false`
+  dans `etatVide()`), y compris en démo ; la fenêtre « Comme une application » est proposée à sa fermeture.
+  Si l'état est vide, le bouton principal lance la première saisie (« Ajouter mon premier … »).
+- **Ensuite** : bouton `?` dans l'en-tête, à gauche des réglages (`data-action="tutoriel"`), et groupe
+  « Comment ça marche » > « Revoir le guide » dans les réglages.
+- **`tutorielVu` doit survivre** au chargement serveur, au cache local, à la démo, à la fusion de conflit,
+  à l'import JSON et à « recommencer à zéro » : une normalisation champ par champ (souvent dans `regles.js`)
+  le supprime, et le guide reviendrait à chaque ouverture.
+- **Typographie** : `&nbsp;` avant « : ; ! ? » et « », après « et dans « 50&nbsp;% », « 6&nbsp;h »
+  (sinon un signe isolé en début de ligne sur téléphone). Jamais de remplacement automatique sur le
+  code : les ternaires `? :` du JavaScript seraient cassés.
+- Si l'écran de bienvenue crée déjà des données, seulement « C'est parti » ; sinon le bouton principal
+  lance la première saisie et remplace toute ouverture automatique d'une saisie après la bienvenue.
+
 ## Charte (application) : Bauhaus « Pastel »
 
 Décision de Quentin (13/11/2026) : site et templates passent à la variante « Pastel » (maquette

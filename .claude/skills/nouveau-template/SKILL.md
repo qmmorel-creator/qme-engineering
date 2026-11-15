@@ -39,6 +39,10 @@ réglages (export / import JSON, déconnexion), manifeste et service worker, ic�
 template** : voir `reference.md` § Ajout à l'écran d'accueil. Elle est déjà dans le socle copié ; la
 vérifier à chaque fois (clé `qme-<pre>-ecran-accueil`, entrée « Sur téléphone » des réglages).
 
+Écrire le **guide « Comment ça marche »** (grands principes, ouvert seul au premier lancement puis
+par le bouton `?` et les réglages), **obligatoire dans chaque template** : voir `reference.md` § Guide
+« Comment ça marche ».
+
 Remplacer le métier :
 - `donnees.js` : la **base intégrée** (`window.BASE`), sans logique ;
 - `app.js` : état (`etatVide`, `normaliser` tolérant aux anciennes versions), règles métier en
@@ -67,6 +71,11 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
   s'ouvre seule en démo avec les bonnes étapes (Safari / Chrome) ; « Ne plus afficher » tient après
   rechargement ; « Réglages > Sur téléphone > Voir comment faire » la rouvre ; à 1280 px elle ne s'ouvre
   pas seule. Regarder la capture.
+- **Guide « Comment ça marche »** : il s'ouvre seul au premier lancement (vrai code et démo), pas au
+  rechargement ni sur un second appareil avec le même code ; `?` et « Revoir le guide » le rouvrent ;
+  sur téléphone, « Comme une application » suit sa fermeture. Relire chaque phrase contre le code.
+  Script : `node outils/templates/guide-e2e.cjs <slug> <dossier-captures>` (démo, ordinateur, iPhone,
+  Pixel), serveur local lancé ; le premier lancement avec un vrai code se teste à part.
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad

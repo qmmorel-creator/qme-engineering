@@ -55,7 +55,7 @@
   let annulation = null;
 
   const reglagesVides = () => ({ libelleZone: 'Lot', libelleLieu: 'Chantier', zones: [], delais: { 1: 30, 2: 15, 3: 7, 4: 2 }, delaiVerif: B.delaiVerification });
-  const etatVide = () => ({ version: 1, entreprise: '', profil: null, reglages: reglagesVides(), ncs: [] });
+  const etatVide = () => ({ version: 1, tutorielVu: false, entreprise: '', profil: null, reglages: reglagesVides(), ncs: [] });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -413,8 +413,7 @@
     E.reglages.zones = [...accueil.choisies];
     accueil = { etape: 1, entreprise: '', profil: null, choisies: new Set(), libres: [] };
     sauver();
-    demarrer();
-    setTimeout(() => modaleConstat(), 250);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'enregistrer la première non-conformité
   }
 
   // ---------- Rendu : application ----------
@@ -424,6 +423,7 @@
     indicateurs: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     methode: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['registre', 'Registre'], ['actions', 'Actions'], ['indicateurs', 'Indicateurs'], ['methode', 'Méthode']];
@@ -445,12 +445,13 @@
         <span class="titre-produit">Registre des<br>non-conformités</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -988,6 +989,8 @@
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <p class="mention">Base intégrée (grille de gravité, typologie, 5 pourquoi, 6M) : repères de méthode rédigés par QME, sans référence normative ni donnée datée. Outil d'aide au suivi, il ne remplace pas ton système de management de la qualité.</p>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du registre, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1058,6 +1061,42 @@
       <div class="visas"><div><b>Clôturée le</b>${n.cloture ? R.dateFr(n.cloture.date) : ''}</div><div><b>Par</b>${n.cloture ? esc(n.cloture.par) : ''}</div><div><b>Visa</b></div></div>
       <footer>Fiche imprimée le ${R.dateLongue(t)}.</footer>`;
     window.print();
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  const listeEt = (L) => (L.length > 1 ? `${L.slice(0, -1).join(', ')} et ${L.at(-1)}` : String(L[0]));
+
+  function modaleTutoriel(auto = false) {
+    const r = reg();
+    const delais = listeEt(B.gravites.map((g) => `${g.nom.toLowerCase()} ${R.delaiGravite(r, g.id)} j`));
+    const blocs = [
+      ['rose', 'Note le constat', `Une non-conformité, c'est un écart constaté&nbsp;: date, ${esc(r.libelleZone.toLowerCase())}, type, gravité, sans chercher de coupable. Son échéance de traitement découle de la gravité (${delais}), sauf si tu fixes une date. Note aussi le traitement immédiat&nbsp;: reprise, rebut, dérogation…`],
+      ['beurre', 'Cherche la cause', `Les <b>5 pourquoi</b> remontent du symptôme à la cause racine&nbsp;: chaque réponse explique la précédente. Range-la dans une famille de causes (6M) pour voir les tendances dans <b>Indicateurs</b>. L'onglet <b>Méthode</b> détaille la démarche, avec des exemples.`],
+      ['ciel', 'Agis sur la cause', `Ajoute des actions correctives (supprimer la cause ici) ou préventives (éviter l'écart ailleurs), chacune avec un responsable et une échéance. L'onglet <b>Actions</b> les classe&nbsp;: en retard, cette semaine, plus tard. Tant qu'il reste des actions, la non-conformité passe <b>En retard</b> dès qu'une échéance est dépassée.`],
+      ['sable', 'Vérifie avant de clôturer', `Une fois toutes les actions faites, la vérification d'efficacité est prévue ${r.delaiVerif} jours après la dernière. <b>Efficace</b>&nbsp;: la non-conformité est clôturée. <b>Inefficace</b>&nbsp;: retour à l'analyse, avec une nouvelle action à définir. Trop tôt pour juger&nbsp;: reporte la vérification.`],
+    ];
+    const corps = `
+      <p>Le registre suit chaque écart du constat à la clôture&nbsp;: il calcule les échéances et t'indique l'étape suivante. Ton rôle&nbsp;: noter le constat, trouver la cause, décider des actions, puis vérifier qu'elles ont marché.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Registre</b> met les retards et les vérifications dues en tête&nbsp;; chaque fiche s'imprime, et le registre comme les actions s'exportent en CSV. <b>Indicateurs</b> prépare la revue de direction. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton registre est enregistré en ligne avec ta clé&nbsp;: tu le retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.ncs.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="constat">Enregistrer ma première non-conformité</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'constat') setTimeout(() => modaleConstat(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1166,6 +1205,7 @@
       case 'ouvrir': changerVue('nc', id); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(id); break;

@@ -47,7 +47,7 @@
   const filtre = { statut: 'encours', q: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide();
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, auj());
   const abonnement = (id) => E.abonnements.find((a) => a.id === id);
 
@@ -347,6 +347,7 @@
     calendrier: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     economies: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     droite: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -365,12 +366,13 @@
         <span class="titre-produit">Suivi des<br>abonnements</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -823,6 +825,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À propos</h3><p class="mention">Base intégrée : ${B.categories.length} catégories, ${B.categories.reduce((s, c) => s + c.types.length, 0)} abonnements courants sans marque ni prix (version ${B.version}). ${esc(B.sourceReperes)} Aucune connexion bancaire, aucun lien de résiliation : tu gardes la main.</p></div>`;
@@ -844,6 +848,38 @@
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi.'); }
     });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Saisis tes abonnements', `Choisis chacun dans la liste des abonnements courants (aucun prix n'est proposé), puis indique ton montant, sa périodicité et la date d'un prélèvement : les suivants sont calculés. Abonnement partagé&nbsp;? Seule ta part compte dans les totaux.`],
+      ['beurre', 'Tout ramené au mois et à l\'année', `Hebdomadaire, trimestriel ou annuel, chaque abonnement est ramené à un coût par mois et par an pour comparer. Le <b>Calendrier</b> montre ce qui est réellement prélevé chaque jour, et l'<b>Aperçu</b> les pics des abonnements annuels sur 12 mois. Un abonnement sans prix ne compte pas dans les totaux.`],
+      ['ciel', 'À décider avant le…', `Note la fin d'un essai gratuit, la fin d'un engagement et le préavis. L'<b>Aperçu</b> te prévient ${pluriel(E.reglages.alerteJours, 'jour')} avant chaque date limite : fin de l'essai, fin d'engagement moins le préavis, ou renouvellement annuel ou semestriel moins le préavis. Une date limite passée s'affiche «&nbsp;Préavis dépassé&nbsp;».`],
+      ['sable', 'Résilier, puis compter', `Marque «&nbsp;À résilier&nbsp;» ce que tu veux arrêter : il reste dans tes dépenses jusqu'à ce que tu confirmes «&nbsp;C'est résilié&nbsp;». <b>Économies</b> additionne le coût annuel de ta part, déjà économisé ou encore possible. Le suivi ne résilie rien à ta place : la démarche se fait auprès de chaque prestataire.`],
+    ];
+    const corps = `
+      <p>Le suivi calcule tes prochains prélèvements et ce que tu paies par mois et par an, et te prévient avant chaque date qui t'engage. Ton rôle : saisir tes abonnements, puis décider à temps.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Économies</b> donne aussi des repères pour résilier ; les réglages, un récapitulatif à copier et l'export en CSV. Aucune connexion à ta banque. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.abonnements.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="nouveau">Ajouter mon premier abonnement</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'nouveau') setTimeout(() => modaleAbonnement(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   function telecharger(contenu, type, nom) {
@@ -942,6 +978,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

@@ -38,7 +38,9 @@
   let vue = 'comparatif';
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => { const e = R.normaliser(d, B); e.tutorielVu = Boolean(e.tutorielVu); return e; };
   const bien = (id) => E.biens.find((b) => b.id === id);
   const actif = () => bien(E.actif) || E.biens[0];
 
@@ -335,7 +337,9 @@
       if (sais && nuits === null) throw new Error('Nuits louées par an : de 0 à 366.');
       const taxe = lire(a.taxe, 'la taxe foncière');
       const apport = lire(a.apport, 'l\'apport') ?? 0;
+      const vu = Boolean(E?.tutorielVu); // « Recommencer à zéro » ne fait pas revenir le guide
       E = normaliser({
+        tutorielVu: vu,
         biens: [{ nom: a.nom.trim() || 'Mon premier bien', location: a.location, prix, notaireMode: 'estime', notairePct: B.notaire.ancien, lots: [{ libelle: a.location === 'colocation' ? 'Toutes les chambres' : 'Logement', loyer }], prixNuit, nuits, taxeFonciere: taxe, financement: { mode: a.mode, apport, dureeMois: 240 } }],
       });
     } catch (x) { return ecranAccueil(x.message); }
@@ -353,6 +357,7 @@
     sensibilite: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 2 4h20Z" fill="currentColor"/></svg>',
     fiche: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['comparatif', 'Comparatif'], ['analyse', 'Analyse'], ['sensibilite', 'Sensibilité'], ['fiche', 'Fiche']];
@@ -374,12 +379,13 @@
         <span class="titre-produit">Investissement<br>locatif</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -952,6 +958,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button><button class="btn petit danger" type="button" data-action="tout-effacer">Recommencer à zéro</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calcul, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données</h3><p class="mention">Ton étude est enregistrée en ligne, liée à ta clé, et n'est ni lue ni partagée par QME. Aucune connexion à une banque, une agence ni une plateforme : tu saisis toi-même prix, loyers, charges et crédit.</p></div>
@@ -973,7 +981,7 @@
   function toutEffacer() {
     if (!confirm('Effacer tous les biens étudiés et recommencer ?')) return;
     if (modale().open) modale().close();
-    E = R.etatVide();
+    E = { ...etatVide(), tutorielVu: Boolean(E.tutorielVu) };
     if (session.demo) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); return; }
     sauver();
     ecranAccueil();
@@ -990,6 +998,34 @@
   const aujIso = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `investissement-locatif-${aujIso()}.json`);
   const exporterCsv = () => telecharger(R.csvComparaison(E.biens, B), 'text/csv;charset=utf-8', `comparatif-biens-${aujIso()}.csv`);
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Saisis le coût complet', `Le coût total additionne le prix, les frais de notaire et d'agence, les travaux, le mobilier et les frais bancaires. Les frais de notaire proposés (${B.notaire.ancien}&nbsp;% du prix dans l'ancien, ${B.notaire.neuf}&nbsp;% dans le neuf) sont une hypothèse&nbsp;: remplace-la par le montant du notaire. Tant que le prix, le loyer, la taxe foncière ou les conditions du crédit manquent, rien n'est calculé.`],
+      ['beurre', 'Deux rendements', `Le <b>rendement brut</b> divise les loyers de l'année, sans vacance, par le prix d'achat&nbsp;: c'est le chiffre des annonces. Le <b>rendement net de charges</b> divise les loyers encaissés (vacance déduite), moins tes charges, par le coût total. Les deux sont calculés hors crédit et avant impôt.`],
+      ['ciel', 'Le cash-flow', `Chaque mois&nbsp;: loyers encaissés, moins charges, moins mensualité du crédit assurance comprise. Négatif, c'est ton <b>effort d'épargne</b>&nbsp;: ce qu'il faut ajouter de ta poche. L'impôt sur les loyers n'est pas calculé&nbsp;: fais-le estimer à part.`],
+      ['sable', 'Compare et teste', `<b>Comparatif</b> met jusqu'à ${R.MAX_BIENS} biens côte à côte. Indique le rendement que tu vises&nbsp;: l'outil donne, pour chaque bien, le prix maximal à proposer. <b>Sensibilité</b> montre ce que devient un bien si le loyer baisse de 10&nbsp;%, s'il reste vide un mois de plus ou si le taux du crédit monte d'un point.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi le coût total, les rendements et le cash-flow de chaque bien, avant impôt. Ton rôle&nbsp;: saisir les vrais chiffres (prix, frais, loyers, charges, crédit), car aucun prix ni loyer du marché n'est intégré.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Analyse</b> détaille le calcul d'un bien et ce qu'il faut vérifier avant d'acheter&nbsp;; <b>Fiche</b> le résume sur une page à imprimer. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton étude est enregistrée en ligne avec ta clé&nbsp;: tu la retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1078,6 +1114,7 @@
       case 'ouvrir-analyse': E.actif = id; sauver(); changerVue('analyse'); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

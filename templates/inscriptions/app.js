@@ -45,7 +45,7 @@
   let ajoutModale = null; // « Ajouter un créneau / une tranche » de la modale ouverte
 
   const etatVide = () => ({
-    version: 1,
+    version: 1, tutorielVu: false,
     association: { nom: '', contact: '', adhesion: { montant: 0, par: 'famille' }, conservation: B.rgpd.conservationDefaut },
     saison: { ...R.saisonProposee(auj()), fermetures: [] },
     tranches: [], tranchesExemple: false, activites: [], familles: [], membres: [], inscriptions: [], paiements: [], compteur: 0,
@@ -427,7 +427,7 @@
     familles: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="currentColor"/><circle cx="17" cy="10" r="3" fill="currentColor"/><path d="M1 21a7 7 0 0 1 14 0Z" fill="currentColor"/><path d="M12 21a5 5 0 0 1 10 0Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     paiements: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>',
     appel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
-    guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#1D4E89"/><path d="M9.2 9.2a2.9 2.9 0 1 1 4.2 2.6c-.9.5-1.4 1.1-1.4 2.2" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="10.8" y="16.4" width="2.4" height="2.4" fill="#fff"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
@@ -445,19 +445,18 @@
         <span class="titre-produit">Inscriptions<br>associatives</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
-        <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide et RGPD" title="Guide et RGPD">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
     if (!E || !$('#vue')) return;
     document.querySelectorAll('.onglet').forEach((b) => { if (b.dataset.vue === vue) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-    document.querySelector('[data-vue="guide"].btn-icone')?.setAttribute('aria-pressed', String(vue === 'guide'));
     document.title = `${TITRES[vue]} · ${NOM_PRODUIT}`;
     $('#vue').innerHTML = { bord: vueBord, activites: vueActivites, familles: vueFamilles, paiements: vuePaiements, appel: vueAppel, guide: vueGuide }[vue]();
     if (vue === 'familles') brancherRecherche();
@@ -1046,6 +1045,8 @@
       <div class="groupe"><h3>Nouvelle saison</h3><p class="aide">Garde activités, tranches et familles ; vide les inscriptions et les paiements. Exporte avant.</p><div class="rang"><button class="btn petit" type="button" data-action="nouvelle-saison">Commencer une nouvelle saison</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes en une page, et le guide complet avec le rappel RGPD.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button><button class="btn petit" type="button" data-action="vue" data-vue="guide">Guide complet et RGPD</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1092,6 +1093,41 @@
       E = R.nouvelleSaison(E, { nom: String(f.get('nom') || '').trim() || `${debut.slice(0, 4)}-${fin.slice(0, 4)}`, debut, fin });
       sauver(); rendre(); toast(`Saison ${E.saison.nom} commencée.`, { libelle: 'Annuler', faire: annuler });
     });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages. Le guide
+  // complet (vue « Guide », rappel RGPD, familles à supprimer) s'ouvre depuis ce guide.
+  function modaleTutoriel(auto = false) {
+    const adh = E.association.adhesion;
+    const du = adh.montant ? `l'adhésion (${euros(adh.montant)} ${adh.par === 'personne' ? 'par personne inscrite' : 'par famille'}) et les activités` : 'les activités';
+    const blocs = [
+      ['rose', 'Activités et tarifs', `Chaque activité a ses créneaux (jour, horaires, places) et un tarif annuel par tranche de quotient familial. Aucun barème officiel n'est fourni : saisis la grille votée par ton association. Sans quotient renseigné, une famille paie le tarif de la dernière tranche.`],
+      ['beurre', 'Inscris, la file se gère seule', `Crée la famille (responsables, contacts d'urgence, quotient), ses membres, puis inscris-les à un créneau. S'il reste une place, le membre est inscrit ; sinon, il rejoint la liste d'attente, dans l'ordre des dates d'inscription, et rien n'est dû tant qu'il attend. Dès qu'une place se libère, les premiers de la file passent inscrits automatiquement.`],
+      ['ciel', 'Échéances et retards', `Ce que doit chaque famille, ${du} au tarif de sa tranche, est réparti en 1 à 10 échéances mensuelles, à partir de sa première inscription ou de la date choisie dans sa fiche. Une échéance passée que les paiements ne couvrent pas est en retard : elle apparaît dans <b>Bord</b> et dans <b>Paiements</b>, où tu encaisses chaque règlement.`],
+      ['sable', 'Données personnelles', `Ne saisis aucune donnée de santé et remets les mentions d'information à chaque famille. <b>Bord</b> signale les fiches à compléter, comme un mineur sans responsable légal ou sans contact d'urgence. Une famille sans inscription est à supprimer ${pluriel(E.association.conservation, 'an')} après sa dernière saison : le guide complet en donne la liste.`],
+    ];
+    const corps = `
+      <p>L'outil tient pour toi les places, la liste d'attente et ce que doit chaque famille. Ton rôle : créer les familles, inscrire leurs membres et encaisser les paiements.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Appel</b> imprime une liste par créneau et par mois, jours de fermeture exclus. Une saison à la fois : «&nbsp;Nouvelle saison&nbsp;», dans les réglages, vide les inscriptions et les paiements. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages. <button class="btn lien" type="button" data-action="vue" data-vue="guide">Guide complet et RGPD</button></p>`;
+    const premiere = auto && !E.activites.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="activite">Créer ma première activité</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'activite') setTimeout(() => modaleActivite(), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Fichiers ----------
@@ -1197,6 +1233,7 @@
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `${nomFichier('inscriptions-copie')}.json`, 'application/json'); break;
       case 'csv-inscriptions': telecharger(R.csvInscriptions(E, auj()), `${nomFichier('inscriptions')}.csv`, 'text/csv;charset=utf-8'); toast(`${pluriel(E.inscriptions.length, 'inscription')} exportée${E.inscriptions.length > 1 ? 's' : ''} (CSV).`); break;
