@@ -52,7 +52,8 @@
   let periodeStats = 90;
   let annulation = null;
 
-  const normaliser = (d) => R.normaliserEtat(d, auj(), B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const normaliser = (d) => ({ ...R.normaliserEtat(d, auj(), B), tutorielVu: Boolean(d?.tutorielVu) });
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -291,7 +292,7 @@
     R.ajouterSujets(e, libres.slice(6), t);
     e.contenus.filter((c) => c.statut === 'idee').forEach((c, i) => { c.creeLe = ajout(t, -i * 3); });
     e.reglages.depuis = debut;
-    return R.normaliserEtat(e, t, B);
+    return { ...R.normaliserEtat(e, t, B), tutorielVu: false };
   }
 
   // ---------- Rendu : connexion ----------
@@ -420,6 +421,7 @@
     if (!a.piliers.size) { $('#erreur-accueil').textContent = 'Choisis au moins un pilier.'; return; }
     const t = auj();
     E = R.etatInitial(B, t, { prenom: a.prenom.trim(), metier: a.metier, objectifSemaine: a.objectif, jours: a.jours, piliers: [...a.piliers], canal: a.canal.trim() || 'Réseau professionnel' });
+    E.tutorielVu = false;
     // Piliers sans part type (points de vue, parcours) choisis : 10 % chacun.
     E.piliers.forEach((p) => { if (!p.part) p.part = 10; });
     const n = a.sujets ? R.ajouterSujets(E, R.sujetsPour(B, a.metier), t) : 0;
@@ -438,6 +440,7 @@
     stats: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="7" width="4" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
     ligne: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     droite: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -463,12 +466,13 @@
         <span class="titre-produit">Calendrier<br>éditorial</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1013,6 +1017,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie (JSON)</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label><button class="btn petit" type="button" data-action="csv">Contenus en CSV</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du calendrier, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">Aucune connexion à un réseau social : l'outil ne publie rien, ne lit aucune statistique et n'envoie aucun message. Les limites de caractères sont celles que tu saisis. Les sujets, trames, durées de préparation et la longueur d'accroche sont des repères QME, à adapter.</p></div>`;
@@ -1028,7 +1034,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.piliers) || !Array.isArray(d.contenus)) throw new Error();
         if (!confirm(`Remplacer ton calendrier actuel par cette copie (${pluriel(d.contenus.length, 'contenu')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du calendrier éditorial.'); }
     });
@@ -1067,6 +1073,39 @@
         el.addEventListener('blur', cacher);
       });
     });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const g = E.reglages;
+    const blocs = [
+      ['rose', 'D\'une idée à la publication', `Chaque contenu avance d'un statut à l'autre&nbsp;: idée, brouillon, programmé, publié. Le bouton de chaque ligne fait passer à l'étape suivante (<b>Rédiger</b>, <b>Programmer</b>, <b>Marquer publié</b>). Rien n'est publié à ta place&nbsp;: tu publies toi-même, puis tu le marques.`],
+      ['beurre', 'Un rythme par semaine', `Ton objectif&nbsp;: ${pluriel(R.objectif(E), 'publication')} par semaine. Une semaine est tenue quand ce nombre de contenus est publié&nbsp;; les semaines tenues d'affilée forment ta série. Une semaine de pause ne compte pas et ne casse pas la série.`],
+      ['ciel', 'Des piliers équilibrés', `Chaque contenu appartient à un pilier, une grande famille de sujets avec une part visée. Le <b>Tableau</b> signale le pilier le plus en retard sur sa part, propose des idées de ce pilier et les prochains jours libres parmi tes jours préférés.`],
+      ['sable', 'Mesure, puis recycle', `${pluriel(g.delaiStats, 'jour')} après la publication, l'outil te demande les statistiques (vues, réactions, contacts…). Les meilleurs contenus publiés depuis au moins ${pluriel(g.delaiRecyclage, 'jour')} sont proposés à recycler&nbsp;: une reprise, avec une nouvelle forme.`],
+    ];
+    const corps = `
+      <p>Le calendrier te dit quoi publier et quand, suit ta régularité et repère ce qui marche. Ton rôle&nbsp;: noter tes idées, programmer, publier, puis saisir les résultats.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Calendrier</b> montre le mois ou la semaine, <b>Idées</b> tous tes contenus, <b>Statistiques</b> les résultats et <b>Ligne</b> tes piliers, canaux et formats. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.contenus.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="contenu">Ajouter ma première idée</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'contenu') setTimeout(() => modaleContenu(null, {}), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1146,7 +1185,7 @@
     const c = id && E ? contenu(id) : null;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'metier': accueil.metier = id; ecranAccueil(); break;
       case 'pilier-accueil': if (el.checked) accueil.piliers.add(el.value); else accueil.piliers.delete(el.value); break;
@@ -1156,6 +1195,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

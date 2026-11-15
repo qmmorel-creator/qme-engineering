@@ -51,8 +51,9 @@
   let filtreHisto = '';
   let annulation = null;
 
-  const etatVide = R.etatVide;
-  const normaliser = R.normaliser;
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: Boolean(d?.tutorielVu) });
   const objDe = (id) => E.objectifs.find((o) => o.id === id);
   const actifs = () => E.objectifs.filter((o) => !o.archive);
   // Couleur fixe de l'objectif (attribuée à la création, jamais selon son rang).
@@ -380,6 +381,7 @@
     historique: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="13" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="8" height="4" fill="currentColor"/></svg>',
     guide: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     alerte: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2 23 21H1Z" fill="currentColor"/><path d="M11 9h2v6h-2zM11 16.5h2v2h-2z" fill="#fff"/></svg>',
@@ -397,12 +399,13 @@
         <span class="titre-produit">Objectif<br>d'épargne</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1109,6 +1112,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label><button class="btn petit" type="button" data-action="csv">Historique (CSV)</button><button class="btn petit" type="button" data-action="copier">Copier le résumé</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'outil, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(B.avertissement)}</p><p class="discret">${esc(B.sources)}</p></div>`;
@@ -1126,7 +1131,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.objectifs) || !Array.isArray(d.mouvements)) throw new Error();
         if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.objectifs.length, 'objectif')}, ${pluriel(d.mouvements.length, 'mouvement')}) ?`)) return;
-        E = normaliser(d); delete E.majLe;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu);
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide de ton épargne.'); }
     });
@@ -1151,6 +1156,38 @@
     try { await navigator.clipboard.writeText(texte); toast('Résumé copié : colle-le où tu veux.'); } catch {
       ouvrirModale('Résumé', `<label class="champ">Sélectionne et copie ce texte<textarea rows="10" readonly>${esc(texte)}</textarea></label>`, '<button class="btn primaire" value="ok">Fermer</button>');
     }
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Un montant, une date, un versement', `Chaque objectif a un montant visé (ou des postes de budget à chiffrer), ce que tu as déjà de côté, un versement mensuel et, si tu veux, une date visée. Le fonds d'urgence se compte en mois de dépenses essentielles&nbsp;: c'est le premier objectif conseillé.`],
+      ['beurre', 'Note tes versements', `Le <b>Tableau</b> liste les versements prévus ce mois-ci&nbsp;: touche <b>Fait</b> quand l'argent est mis de côté. Retraits, intérêts reçus et versements en plus s'ajoutent avec <b>Autre mouvement</b>. Le solde réel, c'est le départ plus tous ces mouvements.`],
+      ['ciel', 'La date d\'atteinte est calculée', `Au rythme de ton versement et avec le taux que tu saisis (zéro par défaut), l'outil projette le solde mois par mois et donne la date d'atteinte. Si elle dépasse la date visée, l'objectif passe <b>En retard</b> et l'outil propose le versement mensuel nécessaire. Une fois la cible atteinte, les versements s'arrêtent.`],
+      ['sable', 'Ton budget reste la limite', `${E.capacite > 0 ? `Ta capacité d'épargne est de ${eurR(E.capacite)} par mois&nbsp;: au-delà,` : 'Si tu indiques ta capacité d\'épargne (bouton <b>Capacité d\'épargne</b> de l\'onglet <b>Objectifs</b>), au-delà de ce montant'} le total des versements prévus est signalé. <b>Scénarios</b> compare jusqu'à trois hypothèses (versement, taux, apport) avant de changer ton plan. Les résultats restent des estimations.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour chaque objectif quand tu l'atteindras et combien verser pour tenir ta date. Ton rôle&nbsp;: fixer tes objectifs, puis noter chaque mois ce que tu mets de côté.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Historique</b> garde tous tes mouvements, <b>Guide</b> les objectifs types, des conseils et le détail des calculs. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.objectifs.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="objectif">Créer mon premier objectif</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'objectif') setTimeout(() => modaleObjectif(null, { type: 'autre' }), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1236,7 +1273,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); selection = null; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; selection = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': suivantAccueil(); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1246,6 +1283,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;

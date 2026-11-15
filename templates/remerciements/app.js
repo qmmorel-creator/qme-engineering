@@ -49,7 +49,9 @@
   const filtre = { cadeaux: 'tous', q: '', ton: null, modeleType: null, modeleTon: 'tous', selection: 'poste', depart: 1, envoyes: false };
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d), tutorielVu: Boolean(d?.tutorielVu) });
   const ev = () => R.evenement(E, E.courant);
   const personne = (id) => E.personnes.find((p) => p.id === id);
   const cadeau = (id) => E.cadeaux.find((c) => c.id === id);
@@ -205,7 +207,7 @@
   // de Léo il y a 7 mois (presque terminée), des obsèques il y a un mois (ton sobre). Villes et adresses inventées.
   function donneesDemo() {
     const t = auj();
-    const e = R.etatVide();
+    const e = etatVide();
     const EV = (x) => { const v = R.normaliserEvenement(x); e.evenements.push(v); return v.id; };
     const mar = EV({ id: 'mariage', type: 'mariage', nom: 'Mariage de Camille et Hugo', date: ajout(t, -45), signature: 'Camille et Hugo', projet: 'notre voyage de noces en Écosse', ton: 'chaleureux' });
     const nai = EV({ id: 'naissance', type: 'naissance', nom: 'Naissance de Léo', date: ajout(t, -212), concerne: 'Léo', signature: 'Camille, Hugo et Léo', projet: 'son premier livret d\'épargne', ton: 'chaleureux' });
@@ -371,7 +373,7 @@
 
   function terminerAccueil() {
     const a = accueil;
-    E = R.etatVide();
+    E = etatVide();
     const v = R.normaliserEvenement({ type: a.type, nom: a.nom.trim() || exempleNom(a.type), date: a.date, signature: a.signature, concerne: a.concerne, projet: typeEv(a.type).festif ? a.projet : '', ton: typeEv(a.type).tons[0] });
     E.evenements.push(v); E.courant = v.id;
     accueil = { etape: 1, type: 'mariage', nom: '', date: '', signature: '', concerne: '', projet: '' };
@@ -389,6 +391,7 @@
     modeles: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     etiquettes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     coche: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m5 12 5 5 9-10" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -407,12 +410,13 @@
         <span class="titre-produit">Cadeaux et<br>remerciements</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1009,6 +1013,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Les foyers sont des tiers : tu es responsable de ce que tu saisis. L'outil ne demande qu'un nom d'usage et, si tu envoies par la poste, une adresse ; ni téléphone, ni e-mail, ni information sensible. Les montants sont facultatifs. Efface les adresses une fois les cartes parties, et l'événement quand tu n'en as plus besoin.</p></div>
@@ -1024,7 +1030,7 @@
         const d = JSON.parse(await fichier.text());
         if (!Array.isArray(d.evenements) || !Array.isArray(d.personnes)) throw new Error();
         if (!confirm(`Remplacer ton suivi actuel par cette copie (${pluriel(d.evenements.length, 'événement')}, ${pluriel(d.personnes.length, 'foyer')}) ?`)) return;
-        E = normaliser(d); delete E.majLe; fiche = null;
+        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; E.tutorielVu = Boolean(E.tutorielVu || vu); fiche = null;
         modale().close(); sauver(); rendre(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide du suivi.'); }
     });
@@ -1050,6 +1056,39 @@
     if (modale().open) modale().close();
     sauver(); rendre();
     toast(`${pluriel(r.n, 'adresse effacée', 'adresses effacées')}.`, { libelle: 'Annuler', faire: annuler });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const d = E.reglages.delaiSemaines;
+    const blocs = [
+      ['rose', 'Note qui a offert quoi', `Chaque ${esc(mot(true))} est rattaché à un foyer&nbsp;: une personne, un couple, une famille. Objet, argent, cagnotte, attention&nbsp;: note-le dès qu'il arrive. Une liste déjà tapée ailleurs se colle d'un coup avec <b>Coller une liste</b>.`],
+      ['beurre', 'Un message prêt par foyer', `Choisis un ton et un modèle&nbsp;: le texte se remplit avec les ${esc(mot())} du foyer, sa formule d'appel et ta signature. Retouche-le à ta guise, puis copie-le. L'outil n'envoie rien&nbsp;: c'est toi qui écris ou envoies la carte.`],
+      ['ciel', 'À écrire, écrit, envoyé', `Chaque foyer avance d'un statut à l'autre. Le remerciement devrait partir ${pluriel(d, 'semaine')} après l'événement (ou après le premier ${esc(mot(true))}, s'il arrive plus tard)&nbsp;: au-delà, le foyer est signalé en retard. Ce délai se règle dans les réglages.`],
+      ['sable', 'Les cartes par la poste', `Pour une carte envoyée par la poste, ajoute l'adresse du foyer&nbsp;: l'onglet <b>Étiquettes</b> imprime les étiquettes sur planches A4. Une fois les remerciements envoyés, efface les adresses qui ne servent plus.`],
+    ];
+    const corps = `
+      <p>L'outil prépare un message de remerciement pour chaque foyer et compte ce qu'il reste à envoyer. Ton rôle&nbsp;: noter chaque ${esc(mot(true))} reçu, puis marquer chaque remerciement écrit et envoyé.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">L'<b>Aperçu</b> montre l'avancement et le reste à remercier, <b>Merci</b> la file des foyers à remercier, <b>Modèles</b> tous les modèles et les tiens. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && ev() && !E.cadeaux.length;
+    const pied = premier
+      ? `<button class="btn primaire" value="cadeau">Noter mon premier ${esc(mot(true))}</button><button class="btn" value="ok">Fermer</button>`
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'cadeau') setTimeout(() => modaleCadeau(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1128,7 +1167,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); fiche = null; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; fiche = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1144,6 +1183,7 @@
       case 'effacer-adresses': effacerAdresses(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;
