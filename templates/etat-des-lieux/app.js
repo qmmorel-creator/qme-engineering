@@ -49,8 +49,10 @@
   const sel = { dossier: pref.dossier || '', phase: pref.phase === 'sortie' ? 'sortie' : 'entree', doc: ['entree', 'sortie', 'complet'].includes(pref.doc) ? pref.doc : 'complet', identiques: false };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B);
-  const normaliser = (d) => R.normaliser(d, B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  // Ajouté ici : la normalisation des règles ne connaît pas ce champ et le supprimerait.
+  const etatVide = () => ({ ...R.etatVide(B), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, B), tutorielVu: Boolean(d?.tutorielVu) });
   function sauverPref() { stock.ecrire(CLE_PREF, { dossier: sel.dossier, phase: sel.phase, doc: sel.doc }); }
   const actifs = () => E.dossiers.filter((d) => !d.archive);
   // Dossier affiché : celui choisi s'il existe encore, sinon le premier dossier en cours.
@@ -497,6 +499,7 @@
     comparaison: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2" fill="currentColor"/><rect x="14" y="4" width="7" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 12h7" stroke="currentColor" stroke-width="2"/></svg>',
     document: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l4 4v16H5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="8" y="10" width="8" height="2" fill="currentColor"/><rect x="8" y="14" width="8" height="2" fill="currentColor"/><path d="M8 19h3" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     photo: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3v13H4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
@@ -522,12 +525,13 @@
         <span class="titre-produit">État<br>des lieux</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1122,6 +1126,8 @@
         <p class="mention">Taille : ${N(Math.round(t / 1000))} Ko sur 900 Ko permis (${pct} %)${pct >= 70 ? ' : exporte une copie, puis supprime les dossiers terminés ou des photos.' : '.'}</p></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes de l'état des lieux, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute l'état des lieux à ton écran d'accueil pour le remplir pièce par pièce le jour de la visite, photos comprises.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Les noms, adresses et photos que tu saisis sont enregistrés en ligne, liés à ta clé, et ne sont ni lus ni partagés par QME. Ne photographie ni personnes ni papiers d'identité ; informe le locataire que l'état des lieux est tenu avec cet outil. Supprime les dossiers dont tu n'as plus besoin.</p></div>
@@ -1160,6 +1166,36 @@
   const CSV = 'text/csv;charset=utf-8';
   const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `etat-des-lieux-${auj()}.json`);
   const nomFichier = (d) => R.plat(R.titreDossier(d)).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'dossier';
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const nomEtat = (c) => ETAT[c].nom.toLowerCase();
+    const blocs = [
+      ['rose', 'Un dossier par bail', `Il réunit le logement, les parties, le bail et le dépôt de garantie. Les pièces arrivent avec leurs éléments types, mobilier compris en location meublée&nbsp;: renomme, ajoute ou retire ce qui ne correspond pas. Pour le locataire suivant, l'état d'entrée peut reprendre l'état constaté à la sortie.`],
+      ['beurre', 'Note chaque élément', `Dans <b>Pièces</b>, choisis <b>Entrée</b> ou <b>Sortie</b>, puis touche l'état de chaque élément, de «&nbsp;${nomEtat('neuf')}&nbsp;» à «&nbsp;${nomEtat('hs')}&nbsp;», avec un commentaire et une photo si besoin. «&nbsp;Le reste en bon état&nbsp;» (entrée) ou «&nbsp;Le reste comme à l'entrée&nbsp;» (sortie) complète une pièce d'un geste. Chaque photo est réduite en vignette, ${pluriel(r.photosMax, 'photo')} au plus sur ton compte.`],
+      ['ciel', 'La sortie comparée à l\'entrée', `Un élément moins bon qu'à l'entrée est une <b>usure normale</b> tant qu'il reste neuf, en bon état ou d'usage normal, et une <b>dégradation</b> s'il devient dégradé ou hors service. Seules les dégradations imputables au locataire donnent une retenue&nbsp;: leur coût de remise en état, diminué de la vétusté si une grille a été convenue dans le bail. Sans grille, le coût entier est proposé.`],
+      ['sable', 'Le dépôt de garantie', `Il est à rendre au plus tard ${pluriel(r.restitutionConforme, 'mois', 'mois')} après la date de sortie si la sortie est conforme à l'entrée, ${pluriel(r.restitutionNonConforme, 'mois', 'mois')} sinon. La sortie est conforme d'office sans dégradation ni clé manquante&nbsp;; les parties peuvent en décider autrement. Le locataire peut demander à compléter l'état des lieux d'entrée pendant les ${pluriel(r.rectificationJours, 'jour')} qui suivent.`],
+    ];
+    const corps = `
+      <p>L'outil compare pour toi la sortie à l'entrée, propose les retenues et calcule la date limite pour rendre le dépôt de garantie. Ton rôle&nbsp;: noter l'état de chaque élément à l'entrée puis à la sortie, et faire signer le document.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Document</b> met en page l'état des lieux à signer et liste ce qui manque avant d'imprimer. <b>Compteurs</b> garde les relevés et les clés remises puis rendues. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes dossiers sont enregistrés en ligne avec ta clé, photos comprises&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1246,6 +1282,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': fermerPuis(() => modaleEcranAccueil()); break;
+      case 'tutoriel': fermerPuis(() => modaleTutoriel()); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': { const d = dossier(); if (d) telecharger(R.csvDossier(d, B), CSV, `etat-des-lieux-${nomFichier(d)}-${auj()}.csv`); break; }

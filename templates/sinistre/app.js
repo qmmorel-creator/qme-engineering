@@ -55,6 +55,9 @@
   let docChoix = 'rapport';
   let courrierChoix = 'declaration';
 
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => { const e = R.normaliser(d); e.tutorielVu = Boolean(e.tutorielVu); return e; };
   const dossier = () => E.dossiers.find((d) => d.id === E.actif) || E.dossiers[0] || null;
   const dommage = (id) => dossier()?.dommages.find((x) => x.id === id);
   const preuve = (id) => dossier()?.preuves.find((x) => x.id === id);
@@ -159,7 +162,7 @@
       const { statut, corps } = await appel('/donnees', { method: 'PUT', body: JSON.stringify({ donnees: E, base: session.base }) });
       if (statut === 409) {
         const actif = E.actif;
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         if (E.dossiers.some((d) => d.id === actif)) E.actif = actif;
         session.base = corps.donnees.majLe;
         cache(false);
@@ -193,7 +196,7 @@
       const { statut, corps } = await appel('/donnees');
       if (statut === 200 && corps.donnees && corps.donnees.majLe !== session.base) {
         const actif = E.actif;
-        E = R.normaliser(corps.donnees);
+        E = normaliser(corps.donnees);
         if (E.dossiers.some((d) => d.id === actif)) E.actif = actif;
         session.base = corps.donnees.majLe;
         cache(false);
@@ -238,11 +241,11 @@
   function chargerDepuisServeur(donnees) {
     const c = stock.lire(CLE_CACHE);
     if (c && c.code === session.code && c.nonEnvoye && (!donnees || c.base === donnees.majLe)) {
-      E = R.normaliser(c.etat); session.base = donnees?.majLe ?? null;
+      E = normaliser(c.etat); session.base = donnees?.majLe ?? null;
       if (E.dossiers.length) { demarrer(); envoyer(); } else assistant();
       return;
     }
-    E = R.normaliser(donnees);
+    E = normaliser(donnees);
     session.base = donnees?.majLe ?? null;
     if (E.dossiers.length) { cache(false); demarrer(); } else assistant(true);
   }
@@ -250,7 +253,7 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? R.normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
     photosDemo();
@@ -271,7 +274,7 @@
 
   // ---------- Données de démonstration (fictives, relatives à aujourd'hui) ----------
   function donneesDemo() {
-    E = R.etatVide();
+    E = etatVide();
     const t = auj();
     E.reglages.vetuste = { mobilier: 10, electromenager: 12, informatique: 20, electronique: 15, revetements: 8 };
     E.reglages.plafondVetuste = 70;
@@ -541,7 +544,7 @@
   }
 
   function creerDossier() {
-    if (!E) E = R.etatVide();
+    if (!E) E = etatVide();
     const t = R.typeDe(A.type);
     const piece = A.pieces.length === 1 ? A.pieces[0] : '';
     const d = R.normaliserDossier({
@@ -571,6 +574,7 @@
     suivi: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     documents: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['dossier', 'Dossier'], ['dommages', 'Dommages'], ['preuves', 'Preuves'], ['suivi', 'Suivi'], ['documents', 'Documents']];
@@ -589,12 +593,13 @@
         <span class="titre-produit">Dossier<br>sinistre</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1291,6 +1296,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="photos-orphelines">Libérer la place (fichiers non rattachés)</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du dossier sinistre, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1329,7 +1336,7 @@
           await Photos.ajouter(blob, p.nom, id);
         }
         delete d.photos;
-        E = R.normaliser(d); delete E.majLe;
+        E = normaliser(d); delete E.majLe;
         modale().close(); sauver(); demarrer(); toast('Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
@@ -1376,6 +1383,35 @@
     const f = { dommages: R.csvDommages, preuves: R.csvPreuves, chronologie: R.csvChronologie }[quoi];
     telecharger(f(d, E.reglages), `sinistre-${quoi}-${auj()}.csv`, 'text/csv;charset=utf-8');
     toast('Export CSV téléchargé (séparateur point-virgule).');
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const D = B.delais, al = E.reglages.alerte;
+    const blocs = [
+      ['rose', 'Déclare dans les délais', `Le délai de déclaration se calcule depuis la découverte&nbsp;: au moins ${D.declaration.jours} jours ouvrés, ${D.vol.jours} pour un vol, ${D.catnat.jours} jours après la publication de l'arrêté pour une catastrophe naturelle. Ce sont des minimums légaux&nbsp;: ton contrat peut prévoir plus long. ${al > 0 ? `Chaque échéance est mise en avant ${pluriel(al, 'jour')} avant, puis signalée une fois dépassée.` : 'Chaque échéance est signalée une fois dépassée.'} Le bouton <b>J'ai déclaré</b> note la date dans la chronologie.`],
+      ['beurre', 'Chiffre chaque bien', `Chaque bien a sa ligne, chiffrée par son coût de réparation, son coût de remplacement moins la vétusté, ou sa valeur actuelle. La vétusté est le taux saisi sur le bien, sinon le taux annuel de sa catégorie (dans les réglages) multiplié par son âge&nbsp;; sans taux, aucune vétusté. Les montants estimé, déclaré et reconnu par l'assureur restent séparés.`],
+      ['ciel', 'Réunis les preuves', `La liste des justificatifs à réunir est préparée selon le type de sinistre. Fais passer chacun de «&nbsp;À fournir&nbsp;» à «&nbsp;Reçu&nbsp;» ou «&nbsp;Vérifié par moi&nbsp;», et rattache-le à un bien ou à une étape. Les photos et PDF restent sur cet appareil&nbsp;: ils ne sont pas envoyés en ligne.`],
+      ['sable', 'Suis chaque étape', `Note dans <b>Suivi</b> la déclaration, l'expertise, la proposition, les versements… : le statut du dossier en découle. Saisis la proposition de l'assureur et la franchise&nbsp;: le reste à recevoir se calcule. Le délai de ${D.prescription.mois / 12} ans pour agir contre l'assureur est suivi aussi.`],
+    ];
+    const corps = `
+      <p>Le dossier calcule pour toi les délais, chiffre tes dommages et tient la liste des preuves. Ton rôle&nbsp;: décrire ce qui s'est passé, inventorier tes biens, réunir les justificatifs et noter chaque étape avec l'assureur.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Documents</b> prépare le dossier complet à imprimer pour ton assureur ou ton expert, des courriers prêts à adapter et les sources des délais. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton dossier est enregistré en ligne avec ta clé, sauf les photos et PDF, gardés sur l\'appareil qui les a ajoutés.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1477,6 +1513,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(false); break;
       case 'exporter-photos': exporter(true); break;
@@ -1560,7 +1597,7 @@
     } catch {
       const c = stock.lire(CLE_CACHE);
       if (c && c.code === code && c.etat && c.jeton) {
-        E = R.normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
+        E = normaliser(c.etat); session.base = c.base; session.jeton = c.jeton;
         demarrer(); majSync('horsligne');
       } else ecranConnexion('Pas de connexion internet. Réessaie une fois en ligne.');
     }

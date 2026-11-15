@@ -50,8 +50,9 @@
   const fp = { statut: 'actifs', q: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
-  const normaliser = (d) => R.normaliser(d, DEFAUTS);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
+  const normaliser = (d) => { const e = R.normaliser(d, DEFAUTS); e.tutorielVu = Boolean(e.tutorielVu); return e; };
   const personne = (id) => E.personnes.find((p) => p.id === id);
   const projet = (id) => E.projets.find((p) => p.id === id);
   const affectation = (id) => E.affectations.find((a) => a.id === id);
@@ -103,7 +104,9 @@
   // Fusion avec la version d'un autre appareil : ce qui a été ajouté, modifié ou supprimé ici l'emporte.
   function fusionnerAvec(donnees) {
     const serveur = normaliser(donnees);
+    const vu = E.tutorielVu || serveur.tutorielVu; // guide déjà vu sur l'un des deux appareils
     E = normaliser(R.fusionner(session.baseEtat || serveur, E, serveur));
+    E.tutorielVu = vu;
     E.majLe = donnees.majLe;
     session.base = donnees.majLe;
     session.baseEtat = serveur;
@@ -408,6 +411,7 @@
     projets: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     equipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="currentColor"/><circle cx="17" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 21a6 6 0 0 1 12 0Z" fill="currentColor"/><path d="M14 21a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['tableau', 'Tableau de bord'], ['planning', 'Planning'], ['dispos', 'Disponibles'], ['projets', 'Projets'], ['equipe', 'Équipe']];
@@ -424,12 +428,13 @@
         <span class="titre-produit">Planning<br>d'équipe</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1093,6 +1098,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="mention">Les managers qui partagent cette clé voient le même planning. Si deux personnes modifient en même temps, leurs changements sont réunis.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planning, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Le planning est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. Tu es responsable des données de ton équipe : garde le minimum, aucune donnée de santé, et efface ou supprime une personne depuis sa fiche quand rien ne t'oblige à conserver ses données.</p></div>
@@ -1151,6 +1158,40 @@
     E = R.supprimerPersonne(E, id);
     sauver(); rendre(); modale().close();
     toast(`${p.prenom} supprimé.`, { libelle: 'Annuler', faire: annuler });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const plafonds = [r.plafondSemaine > 0 && `${h(r.plafondSemaine)} planifiées sur une semaine`, r.plafondMoyen > 0 && `${h(r.plafondMoyen)} en moyenne sur 12 semaines`].filter(Boolean);
+    const blocs = [
+      ['rose', 'Décris ton équipe', `Chaque personne a ses heures par semaine (${h(r.capaciteDefaut)} par défaut, moins pour un temps partiel) et ses jours travaillés. La capacité d'une semaine retire ses absences et les jours fériés chômés. Ses compétences servent à trouver un renfort.`],
+      ['beurre', 'Affecte des heures par semaine', `Une affectation donne à une personne un nombre d'heures par semaine sur un projet ou un poste à couvrir, d'une date à une autre. Ces heures se répartissent sur ses jours travaillés. Avant d'enregistrer, un aperçu montre sa charge semaine par semaine. Un projet en pause ou terminé ne compte plus dans la charge.`],
+      ['ciel', 'Lis le taux de charge', `C'est la charge planifiée divisée par la capacité de la semaine&nbsp;: <b>surcharge</b> au-delà de ${nombre(r.seuilSurcharge)}&nbsp;%, <b>disponible</b> en dessous de ${nombre(r.seuilDisponible)}&nbsp;%, <b>plein</b> entre les deux. L'onglet <b>Disponibles</b> classe l'équipe par heures libres, avec un filtre par compétence pour trouver un renfort.`],
+      ['sable', 'Règle ce qui coince', `Le tableau de bord signale, sur les 4 prochaines semaines, les surcharges, les affectations pendant une absence, les besoins en heures non couverts des projets et des postes, et une personne affectée sans aucune des compétences demandées.${plafonds.length ? ` Il prévient aussi au-delà de ${plafonds.join(' ou de ')}.` : ''}`],
+    ];
+    const corps = `
+      <p>Le planning calcule pour toi la charge de chacun, repère ce qui coince et trouve qui peut prendre. Ton rôle&nbsp;: décrire ton équipe, tes projets et tes postes à couvrir, puis affecter des heures par semaine.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Planning</b> montre qui fait quoi, par personne ou par projet, sur une semaine ou un mois. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Le planning est enregistré en ligne avec ta clé&nbsp;: les managers qui la partagent voient le même, et leurs saisies faites en même temps sont réunies.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.personnes.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="personne">Ajouter ma première personne</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'personne') setTimeout(() => modalePersonne(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1237,6 +1278,7 @@
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), 'application/json', `planning-equipe-${auj()}.json`); break;
       case 'csv': telecharger(R.affectationsCsv(E), 'text/csv;charset=utf-8', `affectations-${auj()}.csv`); break;

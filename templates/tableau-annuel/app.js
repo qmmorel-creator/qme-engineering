@@ -50,8 +50,9 @@
   let trimVue = { annee: R.anneeDe(auj()), trimestre: R.trimestreDe(auj()) };
   let annulation = null;
 
-  const etatVide = () => R.normaliserEtat(null, auj(), B);
-  const normaliser = (d) => R.normaliserEtat(d, auj(), B);
+  // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
+  const etatVide = () => ({ ...R.normaliserEtat(null, auj(), B), tutorielVu: false });
+  const normaliser = (d) => { const e = R.normaliserEtat(d, auj(), B); e.tutorielVu = Boolean(e.tutorielVu); return e; };
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -378,6 +379,7 @@
     trimestre: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     evolution: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18 9 11l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M3 21h18" stroke="currentColor" stroke-width="2"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     droite: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -399,12 +401,13 @@
         <span class="titre-produit">Tableau<br>annuel</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1017,6 +1020,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie (JSON)</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label><button class="btn petit" type="button" data-action="csv">Notes en CSV</button></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du tableau de bord, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(B.methode.roue)} Outil de réflexion personnelle : il ne remplace pas l'accompagnement d'un professionnel (coach, médecin, psychologue) si tu traverses une période difficile.</p></div>`;
@@ -1078,6 +1083,42 @@
         el.addEventListener('blur', cacher);
       });
     });
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Note ta roue de vie', `Chaque domaine se note avec trois questions, de 0 à 10&nbsp;: sa note est la moyenne de tes réponses, et l'équilibre de la roue la moyenne des domaines. Ton point de départ dessine ta première roue. Ensuite, chaque revue trace la nouvelle roue, avec la précédente en pointillés.`],
+      ['beurre', 'Fais le point chaque trimestre', `La revue est proposée sur le tableau de bord dans les ${R.FENETRE_REVUE} derniers jours du trimestre, puis signalée en retard une fois le trimestre terminé. Tu y notes chaque domaine (les notes de ta dernière revue sont reprises, tu les ajustes), tu mets à jour tes résultats clés et tu écris un court bilan. Celle du 4e trimestre est le bilan de ton année.`],
+      ['ciel', 'Des objectifs mesurables', `Chaque objectif a jusqu'à trois résultats clés&nbsp;: un chiffre à faire passer d'un départ à une cible (une cible plus basse se lit «&nbsp;réduire à&nbsp;»), ou un fait à cocher. Son avancement, la moyenne de ses résultats clés, est comparé à la part de l'année écoulée&nbsp;: au-dessus, il est <b>dans les temps</b>&nbsp;; jusqu'à 15 points en dessous, <b>à surveiller</b>&nbsp;; au-delà, <b>en retard</b>. Un objectif non atteint peut être repris l'année suivante, depuis la valeur atteinte.`],
+      ['sable', 'Avance par actions', `À la fin de chaque revue, choisis 1 à 3 domaines prioritaires (les plus bas de ta roue sont suggérés) et ajoute quelques actions concrètes. Dans <b>Trimestre</b>, touche une action pour la passer de «&nbsp;à faire&nbsp;» à «&nbsp;en cours&nbsp;» puis «&nbsp;fait&nbsp;». Une action restée ouverte dans un trimestre passé remonte dans le trimestre en cours&nbsp;: reporte-la ou abandonne-la.`],
+    ];
+    const corps = `
+      <p>Le tableau calcule pour toi tes notes, l'avancement de tes objectifs et le moment de faire le point. Ton rôle&nbsp;: noter ta roue chaque trimestre, mettre à jour tes résultats clés et faire avancer tes actions.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Objectifs</b> rassemble tes objectifs année par année, <b>Évolution</b> trace ta roue revue après revue et permet de copier ton bilan. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiereRoue = auto && !E.revues.length;
+    const pied = premiereRoue
+      ? '<button class="btn primaire" value="roue">Noter ma roue</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix !== 'roue') return;
+      if (!E.brouillon) { commencerRevue(); sauver(); }
+      if (vue !== 'revue') setTimeout(() => changerVue('revue'), 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1180,6 +1221,7 @@
       case 'vue': if (modale().open) modale().close(); if (vue === 'revue') lireChampsRevue(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv': exporterCsv(); break;
