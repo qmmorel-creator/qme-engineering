@@ -55,7 +55,7 @@
 
   const reglagesDefaut = () => ({ alerteJours: B.alerteJours, arretJours: B.arretJours, visiteMois: B.visiteMois, periodeJours: B.periodeJours });
   const COLLECTIONS = ['sites', 'equipements', 'interventions'];
-  const etatVide = () => ({ version: 1, structure: '', reglages: reglagesDefaut(), ...Object.fromEntries(COLLECTIONS.map((c) => [c, []])) });
+  const etatVide = () => ({ version: 1, structure: '', tutorielVu: false, reglages: reglagesDefaut(), ...Object.fromEntries(COLLECTIONS.map((c) => [c, []])) });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -454,6 +454,7 @@
     indicateurs: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="6" width="4" height="15" fill="currentColor"/><rect x="17" y="2" width="4" height="19" fill="currentColor"/></svg>',
     guide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 3h16v18H4z" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="7" width="8" height="2" fill="currentColor"/><rect x="8" y="11" width="8" height="2" fill="currentColor"/><circle cx="12" cy="17" r="1.6" fill="#D9302A"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['bord', 'Alertes'], ['sites', 'Sites'], ['equipements', 'Équipements'], ['interventions', 'Interventions'], ['indicateurs', 'Indicateurs']];
@@ -473,12 +474,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="vue" data-vue="guide" aria-label="Guide" title="Guide">${ICONES.guide}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages, import et export" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1171,6 +1173,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import-json" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du pilotage, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, PIED_NOUVEAU('Enregistrer'), (f) => {
@@ -1203,6 +1207,35 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const CSV = 'text/csv;charset=utf-8';
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const rg = E.reglages;
+    const blocs = [
+      ['rose', 'Tes sites et leurs équipements', `Crée chaque site (type, ville, région, responsable), puis ses équipements avec leur criticité et la <b>périodicité du préventif</b> prévue par ton contrat ou ta réglementation. Ta liste est dans un tableur&nbsp;? Importe-la en CSV depuis <b>Sites</b> ou <b>Équipements</b>, avec le modèle fourni.`],
+      ['beurre', 'Note chaque intervention', `Un préventif fait, une panne (signalée, puis résolue, à l'arrêt ou non), une simple visite de site&nbsp;: c'est tout ce que tu saisis. Un équipement est <b>à l'arrêt</b> tant qu'une panne notée à l'arrêt est ouverte, <b>dégradé</b> si une autre panne est ouverte, sinon en service.`],
+      ['ciel', 'Les alertes se calculent', `Échéance du préventif&nbsp;: dernier préventif fait (ou mise en service) + périodicité. Il passe <b>à prévoir</b> ${rg.alerteJours}&nbsp;jours avant, puis en retard. Un équipement à l'arrêt devient une alerte en retard au bout de ${rg.arretJours}&nbsp;jours, un site sans visite depuis plus de ${rg.visiteMois}&nbsp;mois aussi. Tout se retrouve dans <b>Alertes</b>.`],
+      ['sable', 'Les chiffres du parc', `L'onglet <b>Indicateurs</b> donne la disponibilité, le délai de résolution des pannes, la part des préventifs faits à temps et les coûts saisis, sur les ${periodeTexte().replace(' ', '&nbsp;')}, pour tout le parc et site par site. La carte place les sites d'après leurs coordonnées, sans service en ligne.`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi les échéances de préventif, l'état de chaque équipement, les alertes et les indicateurs de tout le parc. Ton rôle&nbsp;: décrire tes sites et leurs équipements, puis noter chaque intervention.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Guide</b> (icône livre, en haut de l'écran) détaille chaque calcul et l'échange avec ton tableur&nbsp;; les seuils d'alerte se règlent dans les réglages. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    ouvrirModale('Comment ça marche', corps, `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`);
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1303,6 +1336,7 @@
       case 'filtres-eq-raz': affichage.eq = { site: '', categorie: '', etat: '' }; rendre(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), `parcs-multi-sites-${auj()}.json`, 'application/json'); break;
       case 'csv-sites': telecharger(R.csvSites(E, B, auj()), nomFichier('sites'), CSV); toast('Sites exportés (CSV, point-virgule).'); break;

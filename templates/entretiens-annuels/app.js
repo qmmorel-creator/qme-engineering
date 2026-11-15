@@ -58,7 +58,9 @@
   const filtre = { salaries: 'presents', q: '', entretiens: 'avenir', trame: 'annuel', objectifs: 'en-cours', salarieObj: 'tous', formations: 'attente' };
   let annulation = null;
 
-  const normaliser = (d) => R.normaliser(d, auj());
+  // tutorielVu (guide « Comment ça marche » déjà vu) : réinjecté, la normalisation de regles.js ne le garde pas.
+  const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, auj()), tutorielVu: !!d?.tutorielVu });
   const salarie = (id) => E.salaries.find((s) => s.id === id);
   const entretien = (id) => E.entretiens.find((e) => e.id === id);
   const objectif = (id) => E.objectifs.find((o) => o.id === id);
@@ -213,7 +215,7 @@
   function donneesDemo() {
     const t = auj();
     const an = Number(t.slice(0, 4));
-    const e = R.etatVide();
+    const e = etatVide();
     e.entreprise = 'Atelier Exemple (fictif)';
     e.effectif50 = true;
     const S = (id, prenom, poste, service, manager, entree, extra = {}) => { e.salaries.push(R.normaliserSalarie({ id, prenom, poste, service, manager, entree, ...extra }, t)); };
@@ -400,7 +402,7 @@
   }
 
   function terminerAccueil() {
-    E = R.etatVide();
+    E = etatVide();
     E.entreprise = accueil.entreprise.trim();
     E.effectif50 = accueil.effectif50;
     E.reglages = R.normaliserReglages({ ...E.reglages, annuelActif: accueil.annuelActif, eppMois: accueil.eppMois });
@@ -419,6 +421,7 @@
     objectifs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     formations: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     coche: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m5 12 5 5 9-10" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -438,12 +441,13 @@
         <span class="titre-produit">Entretiens<br>annuels et pro</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1307,6 +1311,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Tu es responsable des données que tu saisis sur tes salariés. Cet outil est conçu pour le minimum : prénom et initiale, poste, service, manager, dates. N'y mets ni donnée de santé (seulement la date d'une visite), ni salaire, ni motif personnel. Chaque fiche s'exporte (droit d'accès) et s'efface ; informe les salariés selon tes règles internes. ${esc(B.reperes.rgpd.source)}</p></div>
@@ -1352,6 +1358,42 @@
   }
   function csvFormations() {
     telecharger(R.versCsv(['Salarié', 'Formation', 'Nature', 'Non obligatoire', 'Dispositif', 'Origine', 'Statut', 'Demandée le', 'Prévue le', 'Réalisée le', 'Commentaire'], E.formations.filter((f) => salarie(f.salarie)).map((f) => [prenom(f.salarie), f.intitule, nature(f.nature).nom, nature(f.nature).nonObligatoire ? 'oui' : 'non', f.dispositif, nomOrigine(f.origine), nomStatutF(f.statut), f.demandeLe, f.datePrevue || '', f.dateRealisee || '', f.commentaire])), CSV, `entretiens-formations-${auj()}.csv`);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  const dureeMois = (m) => (m % 12 ? `${m}&nbsp;mois` : m === 12 ? 'un an' : `${m / 12}&nbsp;ans`);
+  const tousLes = (m) => (m === 12 ? 'tous les ans' : `tous les ${dureeMois(m)}`);
+
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const blocs = [
+      ['rose', 'Les échéances se calculent', `Pour chaque salarié, à partir de sa date d'entrée et de ses derniers entretiens&nbsp;: ${r.annuelActif ? `l'entretien annuel ${tousLes(r.annuelMois)}, ` : ''}l'entretien de parcours professionnel ${tousLes(r.eppMois)} (le premier ${dureeMois(r.premierEppMois)} après l'entrée, plus tôt au retour de certaines absences, à mi-carrière ou avant 60&nbsp;ans), et l'état des lieux tous les ${r.bilanAns}&nbsp;ans.`],
+      ['beurre', 'Planifie avant l\'échéance', `Une échéance passe <b>À venir</b> ${r.fenetreJours}&nbsp;jours avant, puis <b>En retard</b> si aucun entretien n'est prévu. <b>Planifier</b> fixe la date et prépare la trame. Copie le questionnaire de préparation pour le salarié&nbsp;: c'est toi qui l'envoies, l'outil n'envoie rien.`],
+      ['ciel', 'Mène l\'entretien avec la trame', `Note les réponses, fixe les objectifs (le contrôle SMART signale ce qui reste flou) et les demandes de formation. Un entretien passé reste <b>À finaliser</b> jusqu'à <b>Marquer comme réalisé</b>. Imprime le compte rendu et, pour un entretien de parcours, note la date de remise de la copie.`],
+      ['sable', 'L\'état des lieux se prépare', `À l'approche de l'état des lieux, l'outil vérifie que les entretiens de parcours se sont suivis sans trou et qu'une formation non obligatoire a été suivie sur la période. ${E.effectif50 ? 'Comme l\'entreprise compte au moins 50&nbsp;salariés, il signale le risque d\'abondement du CPF.' : 'Dans une entreprise d\'au moins 50&nbsp;salariés, il signale aussi le risque d\'abondement du CPF.'}`],
+    ];
+    const corps = `
+      <p>L'outil calcule pour toi quand tenir chaque entretien et te prévient avant que l'échéance passe. Ton rôle&nbsp;: ajouter tes salariés avec leurs derniers entretiens, puis planifier et mener chaque entretien.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Objectifs</b> et <b>Formations</b> se suivent toute l'année. Les périodicités se changent dans les réglages&nbsp;; ta convention collective et les textes font foi. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.salaries.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="salarie">Ajouter mon premier salarié</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'salarie') setTimeout(() => modaleSalarie(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1444,6 +1486,7 @@
       case 'reglages': modaleReglages(); break;
       case 'defauts': { const d = modale(); for (const [k, v] of Object.entries(R.DEFAUTS)) { const c = d.querySelector(`[name=${k}]`); if (!c) continue; if (c.type === 'checkbox') c.checked = v; else c.value = v; } toast('Valeurs légales remises : enregistre pour les appliquer.'); break; }
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-echeances': csvEcheances(); break;

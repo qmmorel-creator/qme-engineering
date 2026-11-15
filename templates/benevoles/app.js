@@ -49,7 +49,7 @@
   const bi = { periode: '' };
   let annulation = null;
 
-  const etatVide = () => R.etatVide(DEFAUTS);
+  const etatVide = () => ({ ...R.etatVide(DEFAUTS), tutorielVu: false });
   const normaliser = (d) => R.normaliser(d, DEFAUTS);
   const tr = (coll, id) => R.trouver(E, coll, id);
   const benevole = (id) => tr('benevoles', id);
@@ -113,7 +113,9 @@
   // Fusion avec la version d'un autre appareil : ce qui a été ajouté, modifié ou supprimé ici l'emporte.
   function fusionnerAvec(donnees) {
     const serveur = normaliser(donnees);
+    const guideVu = !!E?.tutorielVu || !!serveur.tutorielVu; // le guide déjà vu ici ou ailleurs ne revient pas
     E = normaliser(R.fusionner(session.baseEtat || serveur, E, serveur));
+    E.tutorielVu = guideVu;
     E.majLe = donnees.majLe;
     session.base = donnees.majLe;
     session.baseEtat = serveur;
@@ -478,6 +480,7 @@
     evenements: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 21H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['evenement', 'Événement'], ['planning', 'Planning'], ['benevoles', 'Bénévoles'], ['evenements', 'Événements'], ['bilan', 'Bilan']];
@@ -494,12 +497,13 @@
         <span class="titre-produit">Bénévoles<br>et créneaux</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1170,6 +1174,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="mention">Les responsables qui partagent cette clé voient le même planning. Si deux personnes modifient en même temps, leurs changements sont réunis ; une même personne affectée deux fois apparaît en conflit.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planning, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Le planning est enregistré en ligne, lié à ta clé, et n'est ni lu ni partagé par QME. Ton association est responsable des données de ses bénévoles : garde le minimum (art. 5.1.c), informe-les (art. 13), réponds à leurs demandes d'accès (art. 15) et d'effacement (art. 17) depuis leur fiche. Pas de donnée de santé. Pour un bénévole mineur, l'accord de ses parents se gère hors de l'outil.</p></div>
@@ -1254,6 +1260,44 @@
     const fin = () => { document.body.classList.remove('impression'); window.removeEventListener('afterprint', fin); };
     window.addEventListener('afterprint', fin);
     setTimeout(() => { window.print(); setTimeout(fin, 500); }, 50);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const r = E.reglages;
+    const h = (x) => `${String(x).replace('.', ',')}&nbsp;h`;
+    const reperes = [
+      r.maxContinu > 0 ? `plus de ${h(r.maxContinu)} d'affilée sans pause d'au moins ${r.reposMin}&nbsp;min` : '',
+      r.maxJour > 0 ? `plus de ${h(r.maxJour)} dans la journée` : '',
+    ].filter(Boolean);
+    const blocs = [
+      ['rose', 'Un événement, ses créneaux', `Chaque événement a ses créneaux&nbsp;: un poste (accueil, buvette, montage…), un horaire et le nombre de personnes à trouver. Les postes servent à tous tes événements, certains demandent une compétence. <b>Dupliquer</b> un événement prépare l'édition suivante avec tous ses créneaux.`],
+      ['beurre', 'Note la réponse de chacun', `Ton annuaire garde le minimum&nbsp;: prénom, nom, coordonnées, compétences, postes préférés ou à éviter. Pour chaque événement, note la réponse de chaque bénévole&nbsp;: disponible, en partie (avec ses plages horaires) ou indisponible, et son maximum d'heures s'il en donne un.`],
+      ['ciel', 'Affecte, l\'outil vérifie', `Sur un créneau, les bénévoles sont classés&nbsp;: ceux sans réserve d'abord, puis poste préféré, compétence, et le moins d'heures déjà données. Un conflit est signalé tout de suite&nbsp;: double affectation, indisponibilité, compétence manquante, maximum dépassé${reperes.length ? `, ${reperes.join(', ')}` : ''}. <b>Remplir les trous</b> propose des affectations sans conflit, à valider.`],
+      ['sable', 'Préviens, imprime, remercie', `Pour chaque bénévole, un <b>Message</b> prêt à copier liste ses créneaux&nbsp;: c'est toi qui l'envoies, l'outil n'envoie rien. Le planning s'imprime par poste ou par personne, et le <b>Bilan</b> compte les heures données par chacun.`],
+    ];
+    const corps = `
+      <p>L'outil te montre les places à pourvoir et les conflits de ton planning, et propose qui mettre où. Ton rôle&nbsp;: créer les créneaux de l'événement, noter qui est disponible, puis affecter.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">L'onglet <b>Événement</b> résume les places à pourvoir, les conflits et les réponses. Les repères de pause et d'heures sont des choix de l'association, à régler dans les réglages. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils, et plusieurs responsables peuvent saisir en même temps.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && !E.benevoles.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="benevole">Ajouter mon premier bénévole</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'benevole') setTimeout(() => modaleBenevole(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1342,6 +1386,7 @@
       case 'vue': fermer(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': telecharger(JSON.stringify(E, null, 2), 'application/json', `benevoles-${auj()}.json`); break;
       case 'csv-planning': if (ev) csv(R.planningCsv(E, ev.id), `planning-${slug(ev.nom)}-${ev.debut}.csv`); break;

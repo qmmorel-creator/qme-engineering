@@ -47,8 +47,9 @@
   let qDocs = '';
   let annulation = null;
 
-  const etatVide = () => R.etatVide(B.reglages);
-  const normaliser = (d) => R.normaliser(d, auj(), B);
+  // tutorielVu (guide « Comment ça marche » déjà vu) : réinjecté, la normalisation de regles.js ne le garde pas.
+  const etatVide = () => ({ ...R.etatVide(B.reglages), tutorielVu: false });
+  const normaliser = (d) => ({ ...R.normaliser(d, auj(), B), tutorielVu: !!d?.tutorielVu });
   const C = () => E.copros.find((c) => c.id === E.actif) || E.copros[0];
   const ex = (a) => R.libelleExercice(a, C().debutExercice);
   const exCourant = () => R.exercice(auj(), C().debutExercice);
@@ -402,6 +403,7 @@
     ag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     documents: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3a18 18 0 0 1 18 18Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const COURTS = { tableau: 'Accueil', appels: 'Appels', ag: 'AG', documents: 'Documents' };
@@ -418,12 +420,13 @@
         <span class="titre-produit" id="titre-produit">Copropriété</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span class="long">${nom}</span>${COURTS[id] ? `<span class="court">${COURTS[id]}</span>` : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   const ONGLET_DE = { assemblee: 'ag' };
@@ -1159,6 +1162,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span>.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du suivi, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application : pratique pour cocher un appel payé ou noter ton vote pendant l'AG.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Sources et à propos</h3><p class="mention">Outil d'aide : le règlement de copropriété, les décisions d'assemblée et les documents du syndic font foi ; il ne remplace pas un conseil juridique. Aucune règle de majorité n'est intégrée (saisie depuis la convocation). Repères repris de ${B.sources.map((s) => `la fiche « ${esc(s.titre)} » de ${esc(s.editeur)}, vérifiée par l'administration le ${esc(s.verifiePar)}, consultée par QME le ${dateLongue(s.consulte)} : <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url.replace('https://', ''))}</a>`).join(' ; ')}. Postes de charges types et types de documents : listes indicatives. Base intégrée version ${B.version}.</p></div>`;
@@ -1206,6 +1211,39 @@
   document.addEventListener('pointermove', (e) => { const el = e.target.closest?.('[data-info]'); if (el) montrerBulle(el, e.clientX, e.clientY); else cacherBulle(); });
   document.addEventListener('focusin', (e) => { const el = e.target.closest?.('[data-info]'); if (el) { const r = el.getBoundingClientRect(); montrerBulle(el, r.left + r.width / 2, r.top); } else cacherBulle(); });
   window.addEventListener('scroll', cacherBulle, { passive: true });
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const g = E.reglages;
+    const blocs = [
+      ['rose', 'Recopie chaque appel de fonds', `Note ta quote-part telle qu'écrite sur l'appel du syndic&nbsp;: provisions, fonds de travaux, travaux votés. Ou génère d'un coup les 4&nbsp;appels trimestriels de l'exercice à partir du budget. Un appel est signalé ${g.alerte}&nbsp;jours avant son échéance, puis en retard tant que tu ne l'as pas coché <b>Payé</b>.`],
+      ['beurre', 'Le décompte fait la régularisation', `Dans <b>Charges</b>, recopie le décompte annuel poste par poste&nbsp;: la régularisation (charges réelles − provisions appelées) dit si tu dois un complément ou si tu as trop versé. Si ton lot est loué, la part récupérable sur le locataire se calcule avec les pourcentages que tu fixes par poste.`],
+      ['ciel', 'Prépare chaque assemblée', `Pour chaque résolution, note la majorité lue dans la convocation (l'outil n'en calcule aucune), ton vote ou ton intention, puis le résultat. Une AG non préparée est signalée ${g.alerteAG}&nbsp;jours avant&nbsp;; après la séance, les résultats restent à noter.`],
+      ['sable', 'Suis les travaux votés', `Chaque chantier voté garde ta quote-part et son échéancier. Rattache chaque échéance à l'appel qui la demande&nbsp;: une échéance proche sans appel noté est signalée. L'onglet <b>Documents</b> dit où se trouve chaque papier, sans stocker de fichier.`],
+    ];
+    const corps = `
+      <p>L'outil te dit quoi payer et quand, calcule ta régularisation de charges et t'aide à préparer tes votes. Ton rôle&nbsp;: recopier ce que t'envoie le syndic, puis noter ce que tu paies et ce qui est voté.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Le <b>Tableau de bord</b> réunit ce qui est urgent. Les délais d'alerte se règlent dans les réglages, où tu peux aussi ajouter une autre copropriété. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premier = auto && C() && !C().appels.length;
+    const pied = premier
+      ? '<button class="btn primaire" value="appel">Noter mon premier appel de fonds</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'appel') setTimeout(() => modaleAppel(null), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
+  }
 
   // ---------- Ajout à l'écran d'accueil ----------
   // Explique comment enregistrer le template comme une application sur téléphone ou tablette.
@@ -1292,6 +1330,7 @@
       case 'assemblee': ferme(); changerVue('assemblee', id); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'csv-appels': telecharger(R.versCsvAppels(C()), 'text/csv;charset=utf-8', nomFichier('appels')); break;
