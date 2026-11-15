@@ -6,7 +6,7 @@ Non publié (chemin `/docs/*` bloqué en 404).
 
 ## État de la routine de publication
 
-- **Routine Instinct v4 transmise : non.** Tant que Quentin n'a pas transmis
+- **Routine Instinct v4 transmise : oui (confirmé par Quentin le 15/11/2026).** Tant que Quentin n'a pas transmis
   `docs/templates/communication/instagram/PROMPT-INSTINCT-v4.md` à Instinct (deuxième publication par jour,
   vidéos LinkedIn), les lignes vidéo sont créées au statut **« Prêt »**, pas « Programmé ». Quand Quentin
   confirme la transmission, passer cette ligne à « oui » et les lignes « Prêt » des vidéos à « Programmé ».
@@ -25,4 +25,4 @@ Types : `démonstration`, `problème`, `question`, `paramétrage`, `interface`, 
 
 | N° | Date | Produit | Type | Titre | Scénario | Durée | Drive | LinkedIn | Instagram | Statut |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 001 | 2026-11-15 | GNT | question | Un retard décale-t-il la fin du chantier ? | `scenarios/gantt-retard.mjs` | 32,2 s | [v4](https://drive.google.com/file/d/1LSaJ5EYicetQzLSkGH35cbueV8rFQqYP/view) | — | — | prototype validé, à programmer |
+| 001 | 2026-11-15 | GNT | question | Un retard décale-t-il la fin du chantier ? | `scenarios/gantt-retard.mjs` | 32,2 s | [v4](https://drive.google.com/file/d/1LSaJ5EYicetQzLSkGH35cbueV8rFQqYP/view) | LI-143 · 2026-11-15 15:20 | IG-139 · 2026-11-15 15:20 | Programmé (test, publication immédiate demandée par Quentin) |
