@@ -47,7 +47,7 @@
   let filtre = 'ouvertes';
   let annulation = null;
 
-  const etatVide = () => ({ version: 1, moi: null, personnes: [], series: [], reunions: [], actions: [] });
+  const etatVide = () => ({ version: 1, moi: null, tutorielVu: false, personnes: [], series: [], reunions: [], actions: [] });
   const tableau = (x) => (Array.isArray(x) ? x : []);
   const normaliser = (d) => {
     const v = etatVide();
@@ -440,6 +440,7 @@
     personnes: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4.5" fill="currentColor"/><path d="M3 22a9 9 0 0 1 18 0Z" fill="currentColor"/></svg>',
     modeles: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['reunions', 'Réunions'], ['compte-rendu', 'Compte rendu'], ['actions', 'Actions'], ['personnes', 'Personnes'], ['modeles', 'Modèles']];
@@ -455,12 +456,13 @@
         <span class="titre-produit">Compte rendu<br>et plan d'actions</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -964,6 +966,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes des comptes rendus, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -1021,6 +1025,49 @@
       ${acts.length ? `<h2>Actions</h2>${tab(acts, true)}` : ''}
       <footer>Compte rendu établi le ${esc(dateLongue(t))}</footer>`;
     window.print();
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  let saisieDemandee = false;
+
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Une série par réunion qui revient', `Point d'équipe, comité de pilotage, point client : chaque <b>Réunion suivante</b> d'une série reprend l'ordre du jour de son modèle (ou celui de la réunion précédente), ses participants et son lieu. Une réunion ponctuelle reste hors série.`],
+      ['beurre', 'Note les actions en une ligne', `Dans le compte rendu, tape «&nbsp;Marie : envoyer le devis avant vendredi&nbsp;» puis Entrée : l'action est créée avec son responsable et son échéance. L'aperçu montre ce qui a été compris. «&nbsp;Marie et Paul : …&nbsp;» crée une action pour chacun, et un nom inconnu rejoint les <b>Personnes</b>.`],
+      ['ciel', 'Fais avancer le statut', `Un clic sur la case d'une action fait avancer son statut : à faire, en cours, puis fait. Une action ouverte dont l'échéance est passée est signalée en retard. <b>Modifier</b> sert à changer la date, le responsable, ou à abandonner l'action.`],
+      ['sable', 'Les actions ouvertes repartent', `À la réunion suivante de la série, les actions encore à faire ou en cours sont reprises dans <b>Suivi des actions</b>. Elles reviennent ainsi de réunion en réunion, jusqu'à ce qu'elles soient faites ou abandonnées.`],
+    ];
+    const corps = `
+      <p>L'outil date tes actions, les range par personne et les reprend d'une réunion à l'autre. Ton rôle : prendre tes notes, noter les décisions et les actions, puis indiquer ce qui est fait.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Actions</b> rassemble les actions de toutes les réunions, par personne, avec le filtre «&nbsp;Mes actions&nbsp;». <b>Copier le texte</b> et <b>Imprimer</b> servent à diffuser le compte rendu. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiereAction = auto && !E.actions.length && Boolean(reunion(reunionId) || reunionParDefaut());
+    const pied = premiereAction
+      ? '<button class="btn primaire" value="action">Noter ma première action</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix !== 'action') return;
+      saisieDemandee = true;
+      setTimeout(() => {
+        if (vue !== 'compte-rendu') changerVue('compte-rendu');
+        const champ = $('#saisie-action');
+        if (champ) { champ.scrollIntoView({ block: 'center' }); champ.focus({ preventScroll: true }); }
+      }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application »,
+  // sauf si l'utilisateur part noter sa première action (elle sera proposée à la prochaine ouverture).
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', () => { if (!saisieDemandee) proposerEcranAccueil(); }, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1130,6 +1177,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

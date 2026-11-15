@@ -45,7 +45,7 @@
   let planningCritique = null;
   const historique = [];
 
-  const etatVide = () => ({ version: 1, plannings: [], taches: [], reperes: [], periodes: [], planningActif: null, enchainer: true });
+  const etatVide = () => ({ version: 1, tutorielVu: false, plannings: [], taches: [], reperes: [], periodes: [], planningActif: null, enchainer: true });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -408,8 +408,7 @@
       accueil = { modele: null, nom: '', debut: null, ouvres: true };
       sauver();
       vue = 'gantt';
-      demarrer();
-      setTimeout(() => $('#saisie')?.focus(), 200);
+      demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter la première tâche
     });
   }
 
@@ -420,6 +419,7 @@
     critique: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     suivi: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4 A8 8 0 0 1 20 12 H12Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     chevron: '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 2 9 6 3 10Z" fill="currentColor"/></svg>',
   };
@@ -436,13 +436,14 @@
         <span class="titre-produit">Planning<br>Gantt</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     premierAffichage = true;
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1559,6 +1560,8 @@
     const code = session.code ? `${session.code.slice(0, 9)}…${session.code.slice(-4)}` : '';
     const corps = `
       <div class="groupe" style="border:0;padding:0"><h3>Jours fériés</h3><p class="aide">${esc(B.sources.feries.texte)} Source : <a href="${B.sources.feries.lien}" target="_blank" rel="noopener">service-public.gouv.fr</a> (consulté le ${B.sources.feries.consulteLe}). Le calendrier (jours ouvrés, Alsace-Moselle) se règle dans chaque planning. Ponts et fermetures propres à ton entreprise : ajoute-les en période.</p></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du planning, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le planning à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes plannings sont enregistrés en ligne avec ton code. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
@@ -1587,6 +1590,48 @@
     a.download = `planning-gantt-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  let saisieDemandee = false;
+
+  function modaleTutoriel(auto = false) {
+    const blocs = [
+      ['rose', 'Une ligne par tâche', `Dans <b>Gantt</b>, tape par exemple «&nbsp;Maquette accueil 12/11 5j 40% après 2&nbsp;» puis Entrée : nom, date de début, durée, avancement et lien vers la tâche n° 2. «&nbsp;jalon&nbsp;» crée un jalon, «&nbsp;_Lot_1&nbsp;» ouvre une section. Le lien <b>Syntaxe</b> donne tous les exemples.`],
+      ['beurre', 'Les liens calculent les dates', `Une tâche liée commence au plus tôt après ses prédécesseurs : fin&nbsp;→&nbsp;début par défaut, ou DD, FF, DF avec un décalage («&nbsp;après 3FF+2&nbsp;»). Une date saisie veut dire «&nbsp;pas avant le&nbsp;». ${E.enchainer ? 'L\'option <b>Enchaîner</b> est cochée : une tâche sans date ni lien suit la précédente.' : 'Coche <b>Enchaîner</b> pour qu\'une tâche sans date ni lien suive la précédente.'}`],
+      ['ciel', 'Le chemin critique', `Les tâches sans marge forment le chemin critique : un jour de retard sur l'une d'elles décale la fin du planning. L'onglet <b>Chemin critique</b> donne, pour chaque tâche, ses dates au plus tôt et au plus tard et sa marge.`],
+      ['sable', 'Suis l\'avancement', `Indique le pourcentage fait de chaque tâche. Une tâche est en retard quand son avancement est inférieur à la part de sa durée déjà écoulée ; un jalon, dès que sa date est passée sans qu'il soit terminé. Dans <b>Suivi</b>, fige une référence pour mesurer ensuite l'écart avec les dates prévues au départ.`],
+    ];
+    const corps = `
+      <p>Le planning calcule les dates de chaque tâche à partir de sa durée et de ses liens, et montre celles qui ne peuvent pas glisser. Ton rôle : saisir tes tâches et leurs liens, puis indiquer leur avancement.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide">Chaque planning compte en jours ouvrés (week-ends et jours fériés sautés) ou en jours calendaires. <b>Plannings</b> regroupe tes plannings, les modèles, les repères et les périodes (vacances, fermetures). ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes plannings sont enregistrés en ligne avec ton code : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiereTache = auto && E.plannings.length > 0 && !E.taches.length;
+    const pied = premiereTache
+      ? '<button class="btn primaire" value="tache">Ajouter ma première tâche</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix !== 'tache') return;
+      saisieDemandee = true;
+      setTimeout(() => {
+        if (vue !== 'gantt') changerVue('gantt');
+        $('#saisie')?.focus();
+      }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application »,
+  // sauf si l'utilisateur part saisir sa première tâche (elle sera proposée à la prochaine ouverture).
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', () => { if (!saisieDemandee) proposerEcranAccueil(); }, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1672,6 +1717,7 @@
       case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;

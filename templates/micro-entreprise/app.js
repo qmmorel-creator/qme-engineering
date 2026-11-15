@@ -57,7 +57,7 @@
     nom: '', debut: null, activites: [], caisseBnc: 'ssi', statutFormation: 'commercant', versementLiberatoire: false, periodicite: 'trimestrielle',
     acre: { fin: '', taux: { vente: null, bic: null, bnc: null } },
   });
-  const etatVide = () => ({ version: 1, profil: profilVide(), taux: structuredClone(B.taux), tauxMillesime: B.millesime, recettes: [], achats: [], depenses: [], declarees: {} });
+  const etatVide = () => ({ version: 1, tutorielVu: false, profil: profilVide(), taux: structuredClone(B.taux), tauxMillesime: B.millesime, recettes: [], achats: [], depenses: [], declarees: {} });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
@@ -404,8 +404,7 @@
     Object.assign(E.profil, { nom: a.nom.trim(), debut: a.debut || null, activites: R.CATEGORIES.filter((c) => a.activites.includes(c)), caisseBnc: a.caisseBnc, statutFormation: a.statutFormation, versementLiberatoire: a.versementLiberatoire, periodicite: a.periodicite });
     accueil = null;
     sauver();
-    demarrer();
-    setTimeout(() => modaleEcriture('recettes'), 250);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter la première recette
   }
 
   // ---------- Rendu : application ----------
@@ -416,6 +415,7 @@
     seuils: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     export: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="4" fill="currentColor"/><rect x="3" y="10" width="18" height="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="12" height="4" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
   const ONGLETS = [['recettes', 'Recettes'], ['depenses', 'Dépenses'], ['declarations', 'Déclarations'], ['seuils', 'Seuils'], ['export', 'Export']];
@@ -433,13 +433,14 @@
         <span class="titre-produit">Livre<br>recettes-dépenses</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>
       <footer class="pied-app"><p><b>Outil d'aide</b> à la tenue de ton livre des recettes : ce n'est pas un logiciel comptable certifié ni un conseil fiscal ou social. Les montants à payer sont des estimations ; seule ta déclaration sur autoentrepreneur.urssaf.fr fait foi.</p></footer>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -895,6 +896,8 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du livre, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
@@ -962,6 +965,39 @@
 
   function exporterJson() {
     telecharger(`livre-recettes-depenses-${auj()}.json`, JSON.stringify(E, null, 2), 'application/json');
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  function modaleTutoriel(auto = false) {
+    const p = E.profil;
+    const blocs = [
+      ['rose', 'Note chaque encaissement', `Dans <b>Recettes</b>, inscris chaque somme le jour où tu la reçois : date, client, nature, montant, mode de règlement et pièce justificative. Le numéro de pièce suivant est proposé tout seul, et une recette ne peut pas être datée dans le futur.`],
+      ['beurre', 'Les dépenses, pour ta gestion', `En micro-entreprise, les dépenses ne réduisent ni tes cotisations ni ton impôt : tout se calcule sur le chiffre d'affaires encaissé. <b>Dépenses</b> les suit quand même, pour savoir ce qui te reste.${aVente() ? ' Le registre des achats y est tenu pour ton activité de vente.' : ''}`],
+      ['ciel', 'Ce que tu déclares et paies', `<b>Déclarations</b> découpe l'année en ${p.periodicite === 'mensuelle' ? 'mois' : 'trimestres'} : pour chacun, le chiffre d'affaires à reporter sur autoentrepreneur.urssaf.fr et une estimation des cotisations, de la formation professionnelle${p.versementLiberatoire ? ' et du versement libératoire' : ''}. Une période terminée reste «&nbsp;À déclarer&nbsp;» tant que tu ne l'as pas marquée déclarée.`],
+      ['sable', 'Les seuils sous surveillance', `<b>Seuils</b> compare ton chiffre d'affaires de l'année aux plafonds du régime et à la franchise de TVA, et t'alerte dès 80 % d'un seuil. L'année où ton activité démarre, les plafonds sont proratisés selon ta date de début, si tu l'as indiquée.`],
+    ];
+    const corps = `
+      <p>Le livre tient ton chiffre d'affaires à jour, estime ce que tu paieras et surveille les seuils. Ton rôle : noter chaque recette encaissée, puis reporter les montants sur tes déclarations.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Export</b> produit les fichiers CSV et l'impression du livre. Les taux ${B.millesime} sont intégrés et modifiables dans les réglages&nbsp;; les montants à payer restent des estimations, seule ta déclaration fait foi. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiereRecette = auto && !E.recettes.length;
+    const pied = premiereRecette
+      ? '<button class="btn primaire" value="recette">Ajouter ma première recette</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'recette') setTimeout(() => modaleEcriture('recettes'), 0); });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', proposerEcranAccueil, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1066,6 +1102,7 @@
       case 'sous-vue': sousVue = id; rendre(); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'taux': modaleTaux(); break;
       case 'exporter': exporterJson(); break;

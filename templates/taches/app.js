@@ -50,7 +50,7 @@
   const typesDe = (j) => j.types.map((nom) => ({ id: R.sansAccent(nom).replace(/[^a-z0-9]+/g, ''), nom }));
   const etatVide = (jeuId = 'kanban') => {
     const j = jeu(jeuId);
-    return { version: 1, prenom: '', jeu: j.id, statuts: structuredClone(j.statuts), types: typesDe(j), dossiers: [], projets: [], taches: [], journal: {},
+    return { version: 1, prenom: '', tutorielVu: false, jeu: j.id, statuts: structuredClone(j.statuts), types: typesDe(j), dossiers: [], projets: [], taches: [], journal: {},
       reglages: { focusMax: 5, capacite: 360, feries: true, alsace: false } };
   };
   const normaliser = (d) => {
@@ -450,8 +450,7 @@
     accueil = { etape: 1, prenom: '', jeu: 'kanban', modeles: new Set() };
     sauver();
     vue = 'boite';
-    demarrer();
-    setTimeout(() => $('#saisie-boite')?.focus(), 200);
+    demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose de noter la première tâche
   }
 
   function creerDepuisModele(m, depart, nom = m.nom, dossierNom = m.dossier) {
@@ -476,6 +475,7 @@
     semaine: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>',
     projets: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     rec: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.6M13 2v3h-3" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
     focus: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>',
@@ -494,12 +494,13 @@
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span>${id === 'boite' ? '<em class="compteur" hidden></em>' : ''}</button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone ajout" data-action="saisie-rapide" aria-label="Saisie rapide" title="Saisie rapide (touche N)">${ICONES.plus}</button>
+        <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
-    proposerEcranAccueil();
+    premiersPas();
   }
 
   function rendre() {
@@ -1286,6 +1287,8 @@
         <p class="source">Fêtes légales du Code du travail (art. L3133-1), liste de service-public.gouv.fr (fiche « Jours fériés et ponts dans le secteur privé », vérifiée le 12 novembre 2026). Les dates mobiles (Pâques, Ascension, Pentecôte) sont calculées. Non gérés : jours fériés propres aux départements et régions d'outre-mer. Prochains : ${prochains.map(([d, nom]) => `${esc(nom)} ${fmt(d, { day: 'numeric', month: 'short', year: 'numeric' })}`).join(', ')}.</p>
       </div>
       <p class="erreur" role="alert"></p>
+      <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du gestionnaire, en une page.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute le gestionnaire de tâches à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
@@ -1345,6 +1348,50 @@
     a.download = `taches-${auj()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  // ---------- Comment ça marche ----------
+  // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
+  // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
+  let saisieDemandee = false;
+
+  function modaleTutoriel(auto = false) {
+    const max = E.reglages.focusMax;
+    const cap = E.reglages.capacite;
+    const blocs = [
+      ['rose', 'Note tout, vite', `Une idée arrive : tape-la dans la <b>Boîte</b>, ou avec le bouton <b>+</b> en haut de l'écran. «&nbsp;Appeler la banque demain 14h !haute #Perso 30min&nbsp;» donne la date, l'heure, la criticité, le projet et la durée. «&nbsp;chaque lundi&nbsp;» ou «&nbsp;chaque fin de mois&nbsp;» en fait une tâche qui revient.`],
+      ['beurre', 'Trie la boîte', `Pour chaque élément : urgent ou pas, important ou pas, un projet, une échéance. La tâche se range alors dans la matrice : faire, planifier, expédier ou déléguer, abandonner. Une échéance dans moins de 3 jours présélectionne «&nbsp;urgent&nbsp;», et ce qui prend moins de 2 minutes se fait tout de suite.`],
+      ['ciel', 'Choisis ton focus', `Le <b>rituel du matin</b> passe d'abord les retards en revue, puis propose les tâches les plus pressantes : en retard, dues aujourd'hui, de criticité haute ou critique, ou classées «&nbsp;Faire&nbsp;» au triage. Garde-en ${max > 3 ? `3 à ${max}` : max}. Le compteur te prévient au-delà de ${pluriel(max, 'tâche')}${cap ? ` ou de ${R.dureeTexte(cap)} de travail estimé` : ''}.`],
+      ['sable', 'Clos la journée', `Le soir, la <b>clôture</b> fait le bilan, reporte ce qui reste (demain, lundi, sans date ou archive) et archive les tâches terminées, que tu peux restaurer. Une tâche répétée, une fois cochée, revient d'elle-même à sa prochaine date.`],
+    ];
+    const corps = `
+      <p>Le gestionnaire classe tes tâches par échéance et par priorité, et te propose chaque matin celles qui comptent. Ton rôle : tout noter dans la boîte de réception, trier, puis choisir ton focus du jour.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Tâches</b> affiche tout en liste, en kanban ou en matrice&nbsp;; <b>Semaine</b> montre la charge de chaque jour face à ton temps disponible. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé : tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiereTache = auto && !E.taches.length;
+    const pied = premiereTache
+      ? '<button class="btn primaire" value="tache">Noter ma première tâche</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => {
+      if (choix !== 'tache') return;
+      saisieDemandee = true;
+      setTimeout(() => {
+        if (vue !== 'boite') changerVue('boite');
+        $('#saisie-boite')?.focus();
+      }, 0);
+    });
+  }
+
+  // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application »,
+  // sauf si l'utilisateur part noter sa première tâche (elle sera proposée à la prochaine ouverture).
+  function premiersPas() {
+    if (E.tutorielVu) return proposerEcranAccueil();
+    setTimeout(() => {
+      if (!E || E.tutorielVu || modale().open) return;
+      E.tutorielVu = true; sauver();
+      modaleTutoriel(true);
+      modale().addEventListener('close', () => { if (!saisieDemandee) proposerEcranAccueil(); }, { once: true });
+    }, 300);
   }
 
   // ---------- Ajout à l'écran d'accueil ----------
@@ -1451,6 +1498,7 @@
       case 'voir-projet': Object.assign(filtres, { projet: id }); mode = 'liste'; changerVue('taches'); break;
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
+      case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
       case 'exporter': exporter(); break;
       case 'fermer': modale().close(); break;
