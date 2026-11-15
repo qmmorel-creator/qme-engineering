@@ -125,16 +125,16 @@ test('achat Gumroad du pack sur mesure : composition lue dans l’achat, montant
   ACHAT_SUR_MESURE.gumroad = 'pack-smp';
   try {
     const achat = (price, custom_fields = ['Templates: BDG,ABN,DTT']) => async (produit) => produit === 'pack-smp' ? { ok: true, achat: { price, currency: 'eur', custom_fields } } : { ok: false, raison: 'inconnue' };
-    // BDG 15 + ABN 12 + DTT 12 = 39 € ; −15 % → 33,15 → 33 €.
-    const ok = await connexion(LICENCE, { verifierLicence: achat(3300) });
+    // BDG 15 + ABN 9 + DTT 12 = 36 € ; −15 % → 30,60 → 30 €.
+    const ok = await connexion(LICENCE, { verifierLicence: achat(3000) });
     assert.equal(ok.status, 200);
     const j = await ok.json();
     assert.equal(j.pack, SUR_MESURE);
     assert.deepEqual(j.templates.map((t) => t.produit), ['BDG', 'ABN', 'DTT']);
-    const j2 = await (await connexion(LICENCE, { verifierLicence: achat(3300) })).json();
+    const j2 = await (await connexion(LICENCE, { verifierLicence: achat(3000) })).json();
     assert.equal(j2.code, j.code);
-    assert.equal((await connexion(LICENCE, { verifierLicence: achat(3200) })).status, 403);
-    assert.equal((await connexion(LICENCE, { verifierLicence: achat(3300, ['Templates: BDG']) })).status, 422);
+    assert.equal((await connexion(LICENCE, { verifierLicence: achat(2900) })).status, 403);
+    assert.equal((await connexion(LICENCE, { verifierLicence: achat(3000, ['Templates: BDG']) })).status, 422);
   } finally { delete ACHAT_SUR_MESURE.gumroad; }
 });
 

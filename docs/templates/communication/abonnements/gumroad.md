@@ -18,7 +18,7 @@ Suivi des abonnements
 
 ## Prix
 
-12 € (achat unique)
+9 € (achat unique ; 12 € jusqu’au 15/11/2026)
 
 ## Permalien
 
