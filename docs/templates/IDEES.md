@@ -89,8 +89,8 @@ déjà).
 | T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
-| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
-| T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -146,9 +146,9 @@ déjà).
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | prêt | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en vente | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
-| T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | prêt | 19 € | M | P1 | Quentin 13/11/2026 |
-| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
+| T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
+| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
