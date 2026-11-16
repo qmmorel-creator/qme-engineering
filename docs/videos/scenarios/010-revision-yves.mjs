@@ -116,7 +116,7 @@ export async function jouer(v) {
   if (liste.length < 4) throw new Error(`Mots-clés insuffisants pour « ${chapitre} » : ${cles}`);
   const souvenir = liste.slice(0, 3);
   son('zoom', 0.6); await S('cadrer', ['.session-chapitre h2', FEUILLE], { max: 1.9, marge: 40 });
-  await v.saisir(FEUILLE, `${souvenir.join(', ')}…`, { ms: 480 });
+  await v.saisir(FEUILLE, `${souvenir.join(', ')}…`, { ms: 480, rapide: true });
   await v.cliquer(COMPARER, { ms: 480 });
   await pause(250);
   const score = (await v.lire(`${COMPARAISON} p b`)).trim();
