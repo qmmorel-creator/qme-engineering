@@ -1138,3 +1138,11 @@
   for = "/templates/voyage/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Lien court de démo personnalisée (partenariat Optimind, 16/11/2026) : sans « & », que certaines
+# messageries coupent. Redirection temporaire vers la démo PASS au prénom de la destinataire.
+[[redirects]]
+  from = "/demo/laurine"
+  to = "/templates/revision/?demo=pass&prenom=Laurine"
+  status = 302
+  force = true
