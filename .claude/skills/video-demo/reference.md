@@ -133,5 +133,11 @@ Sheets (outils `mcp__Google_Sheets__*`, onglet `Planning`, `sheetId` à lire si 
   Interdits dans le texte : « ===== », « TEXTE DE LA PUBLICATION », « À VÉRIFIER », « Prévu le »,
   « [à compléter] ». Hashtags `#Mot`, 3 à 5. Instagram : « Lien en bio » au lieu d'une URL.
 - Texte alternatif (colonne J) : description de ce que montre la vidéo, mention « données fictives ».
+- YouTube `1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE`, colonnes A–O : ID (`YT-nn`) · Date · Heure · Statut ·
+  Thème (slug) · Titre YouTube · Description · Fichier vidéo · ID Drive vidéo · Instagram associé · LinkedIn associé ·
+  Publié le · URL publication · Remarque · Format (`Short`). Vidéo démo : 12:00. Description : titre, phrase du
+  produit (`outils/packs/donnees.mjs`), lien de démo `?demo&utm_source=youtube&utm_medium=description&utm_campaign=yt-nn`,
+  page catalogue, « Données fictives. QME · Quentin Morel Engineering », `#Shorts` + 2 hashtags. Détail :
+  `docs/templates/communication/youtube/README.md`.
 - La routine (Instinct) publie : jamais nous. Statuts : `Prêt` (attente) → `Programmé` → `Publié`/`Erreur`
   (écrits par Instinct) ; `Annulé`.
