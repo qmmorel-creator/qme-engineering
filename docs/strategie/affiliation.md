@@ -84,7 +84,7 @@ Le premier e-mail propose de répondre pour recevoir l'accès gratuit, les démo
 | 2 | helene@faminimaliste.com | Pack Argent du quotidien | 16/11 | — | 23/11 |
 | 3 | contact@valeriefayolle.com | Pack Argent du quotidien | 16/11 | — | 23/11 |
 | 4 | geraldine@paulettesimparfaites.com | Pack Bien démarrer l'année | 16/11 | — | 23/11 |
-| 5 | contact@optimind-formation.fr | Planning de révision | 16/11 | — | 23/11 |
+| 5 | contact@optimind-formation.fr | Planning de révision | 16/11 | **16/11 : réponse de Laurine, proposition Pack Étudiant envoyée par Quentin** | gérée par la session partenariat (pas de relance ici) |
 | 6 | contact@leboard.media | Outils freelance | 16/11 | — | 23/11 |
 | 7 | contact@kaleidoscopehorizons.com | Outils freelance | 16/11 | — | 23/11 |
 | 8 | hello@lefreelance.fr | Outils freelance | 16/11 | — | 23/11 |
