@@ -71,3 +71,25 @@ illisibles sans connexion). Non publié (`/docs/*` en 404).
   les liens par l'adresse ci-dessus (et `qm-engineering.fr` dans la signature), ou supprime le lien
   `google.com/url` et recolle l'adresse.
 - Brouillons n° 4 (Pack Bien démarrer) : en attente de la mise en vente du pack (fiche créée dans la nuit).
+
+## Envoi du 16/11/2026 (≈ 09:16, heure de Paris)
+
+Les 8 e-mails sont partis depuis quentin.morel@qm-engineering.fr, **sans aucun lien** : l'outil Gmail
+réécrivait les liens en redirections `google.com/url` dans le message stocké (vérifié dans le MIME brut).
+Le premier e-mail propose de répondre pour recevoir l'accès gratuit, les démos et le lien d'affiliation.
+
+| # | Destinataire | Produit | Envoyé | Réponse | Relance |
+|---|---|---|---|---|---|
+| 1 | connect@coquillagesoretargent.com | Pack Argent du quotidien | 16/11 | — | 23/11 |
+| 2 | helene@faminimaliste.com | Pack Argent du quotidien | 16/11 | — | 23/11 |
+| 3 | contact@valeriefayolle.com | Pack Argent du quotidien | 16/11 | — | 23/11 |
+| 4 | geraldine@paulettesimparfaites.com | Pack Bien démarrer l'année | 16/11 | — | 23/11 |
+| 5 | contact@optimind-formation.fr | Planning de révision | 16/11 | — | 23/11 |
+| 6 | contact@leboard.media | Outils freelance | 16/11 | — | 23/11 |
+| 7 | contact@kaleidoscopehorizons.com | Outils freelance | 16/11 | — | 23/11 |
+| 8 | hello@lefreelance.fr | Outils freelance | 16/11 | — | 23/11 |
+
+**À chaque réponse positive** : code d'accès gratuit (`npm run code -- <PRODUIT> 1`, inscrit dans
+`docs/templates/codes-gratuits.md`) ; invitation d'affilié dans Gumroad à 35 % sur le produit (par Quentin,
+tableau de bord Gumroad → Affiliates) ; réponse avec l'accès, la démo et le lien d'affiliation tapé à la main
+par Quentin (pour éviter la réécriture des liens).
