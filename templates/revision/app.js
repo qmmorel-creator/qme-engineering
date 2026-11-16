@@ -251,13 +251,15 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
-  let demoDemandee = { profil: 'terminale', prenom: '' };
+  // Démo demandée par l'adresse (?demo, ?demo=pass&prenom=…) ; null = bouton de démo : on garde la démo déjà sur l'appareil.
+  let demoDemandee = null;
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     const garde = stock.lire(CLE_DEMO);
-    const memeDemo = garde && (garde.demoProfil || 'terminale') === demoDemandee.profil && (!demoDemandee.prenom || garde.prenom === demoDemandee.prenom);
-    E = memeDemo ? normaliser(garde) : donneesDemo(demoDemandee.profil, demoDemandee.prenom);
+    const voulue = demoDemandee || { profil: garde?.demoProfil || 'terminale', prenom: '' };
+    const memeDemo = garde && (garde.demoProfil || 'terminale') === voulue.profil && (!voulue.prenom || garde.prenom === voulue.prenom);
+    E = memeDemo ? normaliser(garde) : donneesDemo(voulue.profil, voulue.prenom);
     cache();
     demarrer();
   }
@@ -1593,7 +1595,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(E?.demoProfil || 'terminale', E?.demoProfil === demoDemandee.profil ? demoDemandee.prenom : ''); E.tutorielVu = true; cache(); lirePack(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(E?.demoProfil || 'terminale', E?.demoProfil === 'pass' ? E.prenom : ''); E.tutorielVu = true; cache(); lirePack(); rendre(); } break;
       case 'deconnexion': modale().open && modale().close(); deconnecter(); break;
       case 'filiere': {
         accueil.filiere = id;
@@ -1654,7 +1656,8 @@
     const params = new URLSearchParams(location.search);
     if (params.has('demo')) {
       demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40) };
-      history.replaceState(null, '', location.pathname + location.hash);
+      // Démo personnalisée : l'adresse garde ses paramètres, pour qu'un rechargement rouvre la même démo.
+      if (demoDemandee.profil === 'terminale' && !demoDemandee.prenom) history.replaceState(null, '', location.pathname + location.hash);
       if (!code) return ouvrirDemo(false);
     }
     if (!code) return ecranConnexion();
