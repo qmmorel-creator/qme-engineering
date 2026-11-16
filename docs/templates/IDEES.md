@@ -78,7 +78,7 @@ déjà).
 
 | N° | Template | Catégorie | Cible | Statut | Prix | Taille | Priorité | Origine |
 |----|----------|-----------|-------|--------|-----------|--------|----------|---------|
-| T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 ; version 2 (16/11/2026, partenariat Optimind) : jauge jour J, rattrapage, session guidée, import de programme, examens blancs, agenda, partage, Pack Étudiant connecté |
+| T01 | Planning de révision | Études | Lycéens, étudiants, candidats aux concours | en vente | 14,90 € | M | — | Liste initiale 12/11/2026 ; version 2 (16/11/2026, partenariat Optimind) : jauge jour J, rattrapage, session guidée, import de programme, examens blancs, agenda, partage, Pack Étudiant connecté ; démo `?demo=concours` (concours d'attaché territorial, lien `/demo/yves`, proposition de partenariat Yves Gautier, 16/11/2026) |
 | T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en vente | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
