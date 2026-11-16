@@ -11,7 +11,7 @@ Non publié (chemin `/docs/*` bloqué en 404).
   vidéos LinkedIn), les lignes vidéo sont créées au statut **« Prêt »**, pas « Programmé ». Quand Quentin
   confirme la transmission, passer cette ligne à « oui » et les lignes « Prêt » des vidéos à « Programmé ».
 
-- **Routine Instinct YouTube transmise : non.** Tant que Quentin n'a pas transmis
+- **Routine Instinct YouTube transmise : oui (test YT-01 réussi le 16/11/2026 à 22:21, https://youtube.com/shorts/drvtpjP64oM ; YT-02 à YT-37 passés à « Programmé »).** Tant que Quentin n'a pas transmis
   `docs/templates/communication/youtube/PROMPT-INSTINCT-YOUTUBE.md` (et confirmé la réponse d'Instinct), les lignes
   du planning YouTube sont au statut **« Prêt »**. Après confirmation : passer cette ligne à « oui » et les lignes
   « Prêt » à « Programmé ». TikTok est abandonné (16/11/2026).
@@ -29,7 +29,7 @@ Non publié (chemin `/docs/*` bloqué en 404).
 Types : `démonstration`, `problème`, `question`, `paramétrage`, `interface`, `réglage`, `service rendu`,
 `avant-après`, `astuce`, `pack`.
 
-Correspondance YouTube Shorts (16/11/2026) : 001 YT-01 (16/11 22:30, test), 002 YT-03, 003 YT-07, 004 YT-08, 005 YT-09,
+Correspondance YouTube Shorts (16/11/2026) : 001 YT-01 (publié le 16/11 à 22:21, test), 002 YT-03, 003 YT-07, 004 YT-08, 005 YT-09,
 006 YT-10, 007 YT-13, 008 YT-14, 010 planning d'équipe YT-16, 011 budget YT-20 (planning YouTube, statut « Prêt »).
 
 | N° | Date | Produit | Type | Titre | Scénario | Durée | Drive | LinkedIn | Instagram | Statut |
