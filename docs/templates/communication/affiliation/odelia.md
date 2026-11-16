@@ -53,6 +53,15 @@
 5. **Calendrier** : publication début janvier (partiels) ou mai (bac), pas en novembre.
 6. **Sortie propre** si Yuzu refuse sous 400 € : remercier, garder le contact pour janvier.
 
+## Réponse préparée (brouillon Gmail du 16/11/2026, non envoyé)
+
+À Eva, Odélia en copie, Floriane Jolliot en copie cachée. Contenu : lancement de QME, Odélia parmi les premiers
+partenaires ; outil sur mesure offert (cadré par un cahier d'expression des besoins, valeur moyenne 2 000 €, hébergé
+par QME, accès par son lien) ; fixe de 200 € maximum pour des stories Instagram avec lien ; part variable sur les
+ventes réelles, à définir ensemble, pouvant varier selon la plateforme (Instagram ou TikTok) ; lien vers le Pack
+Étudiant ; publication visée début janvier ; demande des vues moyennes de stories, de la part d'audience France et
+d'un retour de partenariat passé.
+
 ## Statut
 
 En négociation. Rien n'est envoyé sans le feu vert de Quentin.
