@@ -16,3 +16,4 @@ contrôle de réserve sans production. Non publié (`/docs/*` en 404).
 
 | Date de création | Réseau | ID | Date de publication | Famille | Sujet / produit | Style | Format | Accroche | Doc | Statut |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-16 | LinkedIn + Instagram | — | — | — | contrôle, réserve OK (LinkedIn jusqu'au 22/03/2027, Instagram jusqu'au 26/03/2027 ; référence commune 23/03/2027, à 127 jours) | — | — | — | — | aucune production |
