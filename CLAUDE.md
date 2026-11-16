@@ -18,6 +18,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Développement d'un template** : appliquer le skill `.claude/skills/nouveau-template/`, à chaque fois.
 - Référence d'architecture : `templates/revision/` (planning de révision).
 
+## Affiliation
+
+- **Retour d'un influenceur intéressé** : skill `.claude/skills/retour-affiliation/` (analyse de la niche, démo
+  personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
+  puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
+  n'est fusionné ni envoyé sans son feu vert. Fiches : `docs/templates/communication/affiliation/`.
+
 ## Vidéos de démonstration (Reels LinkedIn / Instagram)
 
 - **Idée du jour** : skill `.claude/skills/idee-video/` (un seul produit en vente, angles en rotation), qui
