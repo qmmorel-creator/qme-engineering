@@ -1,8 +1,8 @@
 // Service worker du planning de révision : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'revision-20261116';
-const COQUILLE = ['./', 'app.css?v=20261116', 'donnees.js?v=20261116', 'regles.js?v=20261116', 'app.js?v=20261116', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'revision-20261116b';
+const COQUILLE = ['./', 'app.css?v=20261116b', 'donnees.js?v=20261116b', 'regles.js?v=20261116b', 'app.js?v=20261116b', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
