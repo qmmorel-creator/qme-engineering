@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const B = window.BASE;
+  const R = window.REVR;
   const API = '/api/templates';
   const PRODUIT = 'REV';
   const CLE_CODE = 'qme-rev-code';
@@ -50,59 +51,26 @@
   let jourChoisi = null;
   let annulation = null;
 
-  const etatVide = () => ({ version: 1, prenom: '', filiere: null, tutorielVu: false, reglages: { intervalles: [...B.intervalles], chargeMax: 8 }, matieres: [], chapitres: [] });
+  // blancs : examens blancs faits ou passés ({ 'matiere|date': 'fait' | 'passe' }) ; focus : minutes de session guidée par jour.
+  const reglagesVides = () => ({ intervalles: [...B.intervalles], chargeMax: 8, examensBlancs: true, lecture: false, heureAgenda: '18:00', pomodoro: 25 });
+  const etatVide = () => ({ version: 2, prenom: '', filiere: null, tutorielVu: false, reglages: reglagesVides(), matieres: [], chapitres: [], blancs: {}, focus: {} });
+  const objet = (x) => (x && typeof x === 'object' && !Array.isArray(x) ? x : {});
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
-    return { ...v, ...d, reglages: { ...v.reglages, ...(d.reglages || {}) }, matieres: Array.isArray(d.matieres) ? d.matieres : [], chapitres: Array.isArray(d.chapitres) ? d.chapitres : [] };
+    const chapitres = (Array.isArray(d.chapitres) ? d.chapitres : []).map((c) => ({ motsCles: '', historique: [], ...c, appris: c.appris || null }));
+    return { ...v, ...d, version: 2, reglages: { ...v.reglages, ...objet(d.reglages) }, matieres: Array.isArray(d.matieres) ? d.matieres : [], chapitres, blancs: objet(d.blancs), focus: objet(d.focus) };
   };
   const matiere = (id) => E.matieres.find((m) => m.id === id);
   const chapitre = (id) => E.chapitres.find((c) => c.id === id);
   const examenFutur = (m, depuis = auj()) => (m?.examen && m.examen > depuis ? m.examen : null);
 
   // ---------- Planification ----------
-  // etape = nombre de révisions réussies ; l'intervalle suivant est intervalles[etape].
-  // Après la dernière étape, le chapitre est « maîtrisé » ; s'il a un examen, une révision
-  // finale est placée 2 jours avant. Aucune révision n'est placée le jour de l'examen ou après.
-  function chargeDu(date, sauf) {
-    return E.chapitres.reduce((n, c) => n + (c.id !== sauf && c.prochaine === date ? 1 : 0), 0);
-  }
-
-  function placer(date, depuis, exam, sauf) {
-    // Décale d'un ou deux jours si la journée dépasse la charge maximale.
-    let d = date;
-    for (let i = 0; i < 2 && chargeDu(d, sauf) >= E.reglages.chargeMax; i++) {
-      const suivant = ajout(d, 1);
-      if (exam && suivant >= exam) break;
-      d = suivant;
-    }
-    return d;
-  }
-
-  function planifier(ch, depuis, etape) {
-    const I = E.reglages.intervalles;
-    const exam = examenFutur(matiere(ch.matiereId), depuis);
-    ch.finale = false;
-    if (etape >= I.length) {
-      ch.etape = I.length;
-      const fin = exam ? ajout(exam, -2) : null;
-      if (fin && fin > depuis && !ch.finaleFaite) { ch.prochaine = placer(fin, depuis, exam, ch.id); ch.finale = true; } else ch.prochaine = null;
-      return;
-    }
-    ch.etape = etape;
-    let date = ajout(depuis, I[etape]);
-    if (exam && date >= exam) date = ajout(exam, -1);
-    if (date <= depuis) date = exam && ajout(depuis, 1) >= exam ? null : ajout(depuis, 1);
-    ch.prochaine = date ? placer(date, depuis, exam, ch.id) : null;
-  }
-
-  const ETAPE_SUIVANTE = { difficile: (e) => Math.max(0, e - 1), moyen: (e) => e + 1, facile: (e) => e + 2 };
-
-  function appliquerEvaluation(ch, ev, date = auj()) {
-    ch.historique.push({ date, eval: ev, etape: ch.finale ? 'finale' : ch.etape });
-    if (ch.finale) { ch.finaleFaite = true; ch.finale = false; ch.prochaine = null; return; }
-    planifier(ch, date, ETAPE_SUIVANTE[ev](ch.etape));
-  }
+  // Règles pures dans regles.js (window.REVR), testées par outils/templates/revision.test.mjs.
+  const chargeDu = (date, sauf) => R.chargeDu(E, date, sauf);
+  const planifier = (ch, depuis, etape) => R.planifier(E, ch, depuis, etape);
+  const appliquerEvaluation = (ch, ev, date = auj()) => R.appliquerEvaluation(E, ch, ev, date);
+  const replanifier = (filtre) => R.replanifier(E, auj(), filtre);
 
   function apercu(ch, ev) {
     if (ch.finale) return 'terminé';
@@ -112,34 +80,61 @@
     return `dans ${ecart(auj(), copie.prochaine)} j`;
   }
 
-  function nouveauChapitre(matiereId, titre, appris) {
-    const ch = { id: uid(), matiereId, titre, appris, etape: 0, prochaine: null, finale: false, finaleFaite: false, historique: [] };
-    planifier(ch, appris, 0);
+  // appris = null : chapitre « à venir » (programme importé, pas encore vu en cours).
+  function nouveauChapitre(matiereId, titre, appris, motsCles = '') {
+    const ch = { id: uid(), matiereId, titre, appris: appris || null, etape: 0, prochaine: null, finale: false, finaleFaite: false, historique: [], motsCles };
+    if (appris) planifier(ch, appris, 0);
     E.chapitres.push(ch);
     return ch;
   }
 
-  // Replanifie les révisions à venir après un changement d'examen ou de réglages.
-  function replanifier(filtre = () => true) {
-    const t = auj();
-    for (const ch of E.chapitres.filter(filtre)) {
-      if (ch.prochaine && ch.prochaine < t) continue; // les retards restent visibles
-      const derniere = ch.historique.at(-1)?.date || ch.appris;
-      const depuis = derniere > t ? t : derniere;
-      planifier(ch, depuis, ch.etape);
-      if (ch.prochaine && ch.prochaine < t) ch.prochaine = t;
-    }
-  }
-
+  // À réviser aujourd'hui : retards d'abord ; à date égale, les matières prioritaires selon les notes (pack).
   const aReviser = () => {
     const t = auj();
+    const rang = new Map(prioritesPack().map((p, i) => [p.matiereId, i]));
+    const r = (c) => (rang.has(c.matiereId) ? rang.get(c.matiereId) : 99);
     return E.chapitres.filter((c) => c.prochaine && c.prochaine <= t)
-      .sort((a, b) => a.prochaine.localeCompare(b.prochaine) || (matiere(a.matiereId)?.nom || '').localeCompare(matiere(b.matiereId)?.nom || ''));
+      .sort((a, b) => a.prochaine.localeCompare(b.prochaine) || r(a) - r(b) || (matiere(a.matiereId)?.nom || '').localeCompare(matiere(b.matiereId)?.nom || ''));
   };
   const faitsAujourdhui = () => {
     const t = auj();
     return E.chapitres.flatMap((c) => c.historique.filter((h) => h.date === t).map((h) => ({ c, h })));
   };
+
+  // ---------- Pack Étudiant ----------
+  // Les autres templates du pack ouverts sur cet appareil partagent le domaine : le planning lit leur
+  // dernière copie locale (puis la version en ligne, avec leur propre jeton). Lecture seule : rien n'est écrit chez eux.
+  const PACK = [
+    { cle: 'notes', pre: 'nts', nom: 'Notes et moyennes', url: '/templates/notes/' },
+    { cle: 'planner', pre: 'phr', nom: 'Planner horaire', url: '/templates/planner/' },
+    { cle: 'habitudes', pre: 'hbt', nom: 'Suivi d\'habitudes', url: '/templates/habitudes/' },
+  ];
+  let pack = {};
+  let packEnLigne = false;
+  function lirePack() {
+    pack = {};
+    if (session.demo) { Object.assign(pack, E?.demoPack || {}); return; }
+    for (const p of PACK) {
+      const c = stock.lire(`qme-${p.pre}-cache`);
+      if (c?.etat && c.jeton) pack[p.cle] = c.etat;
+    }
+  }
+  async function rafraichirPack() {
+    if (session.demo || packEnLigne) return;
+    packEnLigne = true;
+    let change = false;
+    await Promise.all(PACK.map(async (p) => {
+      const c = stock.lire(`qme-${p.pre}-cache`);
+      if (!c?.jeton) return;
+      try {
+        const r = await fetch(`${API}/donnees`, { headers: { 'x-code': c.jeton } });
+        const j = r.ok ? await r.json() : null;
+        if (j?.donnees) { pack[p.cle] = j.donnees; change = true; }
+      } catch { /* hors ligne : la copie locale suffit */ }
+    }));
+    if (change && E) rendre();
+  }
+  const prioritesPack = () => (pack.notes ? R.prioritesNotes(E, pack.notes) : []);
 
   // ---------- Stockage et synchronisation ----------
   let minuterie = null, envoiEnCours = false, aRenvoyer = false, etatSync = 'ok';
@@ -256,10 +251,13 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
+  let demoDemandee = { profil: 'terminale', prenom: '' };
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    const garde = stock.lire(CLE_DEMO);
+    const memeDemo = garde && (garde.demoProfil || 'terminale') === demoDemandee.profil && (!demoDemandee.prenom || garde.prenom === demoDemandee.prenom);
+    E = memeDemo ? normaliser(garde) : donneesDemo(demoDemandee.profil, demoDemandee.prenom);
     cache();
     demarrer();
   }
@@ -268,36 +266,115 @@
     stock.suppr(CLE_CODE);
     if (!session.demo) stock.suppr(CLE_CACHE);
     session.code = null; session.jeton = null; session.demo = false; session.base = null; E = null;
-    document.body.classList.remove('app');
+    document.body.classList.remove('app', 'lecture');
     ecranConnexion(message);
   }
 
-  // Données de démonstration : une Terminale avec un historique simulé.
-  function donneesDemo() {
+  // ---------- Démonstration ----------
+  // Deux profils simulés jour par jour depuis la rentrée (dates relatives à aujourd'hui) : `?demo` (Terminale)
+  // et `?demo=pass` (première année de santé). `&prenom=` personnalise l'accueil. Tirages pseudo-aléatoires
+  // à graine fixe : la même démo à chaque ouverture. Couvre tous les états : retards, révisions du jour,
+  // faites ce matin, chapitres à venir, examen blanc dû, série en cours, données du Pack Étudiant.
+  const DEMOS = {
+    terminale: {
+      prenom: 'Léa', filiere: 'terminale', debut: -70, pauses: [-31, -30, -45], retards: 2,
+      matieres: [
+        ['Philosophie', 'rouge', 38, 4, ['La conscience|-60|conscience, réflexivité, Descartes, cogito, Husserl', 'L\'inconscient|-48|Freud, refoulement, lapsus, rêve, ça moi surmoi', 'Le devoir|-30|Kant, impératif catégorique, autonomie, morale', 'La justice|-12|Platon, Rawls, équité, égalité, loi', 'L\'art|']],
+        ['Mathématiques', 'bleu', 52, 16, ['Suites numériques|-62|récurrence, suite géométrique, limite, monotone', 'Limites de fonctions|-50|asymptote, croissance comparée, forme indéterminée', 'Dérivation et convexité|-35|dérivée seconde, point d\'inflexion, convexe, tangente', 'Logarithme népérien|-14|ln, propriétés algébriques, dérivée 1/x, croissance comparée', 'Fonction exponentielle|-3|exp, e^x, dérivée, équation différentielle', 'Intégration|', 'Probabilités conditionnelles|']],
+        ['SES', 'jaune', 52, 16, ['Croissance économique|-58|PGF, progrès technique, capital, institutions', 'Commerce international|-44|avantage comparatif, Ricardo, dotations factorielles, firmes multinationales', 'Chômage|-25|chômage structurel, conjoncturel, salaire minimum, appariement', 'Inégalités et justice sociale|-4|']],
+        ['Histoire-géographie', 'encre', 61, 6, ['Guerre froide|-55|bipolarisation, Berlin, Cuba, détente, dissuasion', 'La Ve République|-33|Constitution 1958, de Gaulle, cohabitation, référendum', 'La décolonisation|-9|Algérie, Indochine, Bandung, tiers-monde']],
+        ['Anglais', 'vert', null, 0, ['Irregular verbs|-50|', 'Essay writing|-20|thesis, linking words, conclusion']],
+      ],
+      notes: { 'Philosophie': [9, 11.5], 'Mathématiques': [12, 13.5], 'SES': [10.5], 'Histoire-géographie': [14], 'Anglais': [15] },
+      planner: { cours: [[0, 8 * 60, 9 * 60], [1, 8 * 60, 9 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 8 * 60]], autres: [[2, 14 * 60, 120, 'Sport']] },
+    },
+    pass: {
+      prenom: 'Inès', filiere: 'pass', debut: -75, pauses: [-24, -41, -42, -57], retards: 3, manquees: 9,
+      matieres: [
+        ['Biochimie', 'rouge', 29, 4, ['Acides aminés et protéines|-70|acide aminé, liaison peptidique, structure primaire, hélice alpha, feuillet bêta', 'Enzymologie|-56|site actif, énergie d\'activation, Michaelis-Menten, Km, Vmax, inhibition compétitive', 'Glucides|-45|aldose, cétose, forme cyclique, liaison osidique, glycogène', 'Lipides|-33|acide gras, triglycéride, phospholipide, cholestérol, bicouche', 'Glycolyse|-19|hexokinase, phosphofructokinase, ATP, NADH, pyruvate', 'Cycle de Krebs|-6|acétyl-CoA, citrate, NADH, FADH2, GTP', 'Chaîne respiratoire|', 'Néoglucogenèse|']],
+        ['Biologie cellulaire', 'bleu', 29, 4, ['Membrane plasmique|-71|bicouche lipidique, protéines membranaires, fluidité, glycocalyx', 'Transports membranaires|-58|diffusion facilitée, transport actif, pompe Na/K, canal, gradient', 'Cytosquelette|-42|actine, microtubules, filaments intermédiaires, kinésine, dynéine', 'Noyau et chromatine|-28|enveloppe nucléaire, pore nucléaire, euchromatine, hétérochromatine, nucléole', 'Cycle cellulaire et mitose|-12|phase G1, phase S, prophase, métaphase, anaphase, télophase', 'Méiose|-2|', 'Mort cellulaire|']],
+        ['Anatomie', 'jaune', 30, 3, ['Généralités et plans anatomiques|-72|plan sagittal, plan frontal, plan transversal, proximal, distal', 'Ostéologie du membre supérieur|-60|scapula, clavicule, humérus, radius, ulna', 'Myologie du membre supérieur|-46|deltoïde, biceps brachial, triceps, coiffe des rotateurs', 'Ostéologie du membre inférieur|-30|os coxal, fémur, tibia, fibula, patella', 'Arthrologie de la hanche|-13|acétabulum, tête fémorale, labrum, ligament ilio-fémoral', 'Cœur : configuration externe|']],
+        ['Physiologie', 'vert', 30, 3, ['Compartiments liquidiens|-66|secteur intracellulaire, secteur extracellulaire, osmolarité, pression oncotique', 'Potentiel de membrane|-52|potentiel de repos, Nernst, potassium, pompe Na/K', 'Potentiel d\'action|-38|dépolarisation, canaux sodiques, seuil, repolarisation, période réfractaire', 'Transmission synaptique|-17|neurotransmetteur, exocytose, récepteur, potentiel post-synaptique', 'Physiologie cardiaque|']],
+        ['Biophysique', 'encre', 31, 3, ['États de la matière et solutions|-68|molarité, osmolalité, pression osmotique, Van\'t Hoff', 'Thermodynamique|-50|enthalpie, entropie, enthalpie libre, premier principe', 'Radioactivité|-35|désintégration, période radioactive, activité, becquerel', 'Rayonnements ionisants|-21|effet photoélectrique, effet Compton, dose absorbée, gray']],
+        ['Biostatistiques', 'ciel', 10, 2, ['Probabilités|-64|événement, probabilité conditionnelle, indépendance, Bayes', 'Variables aléatoires|-49|espérance, variance, loi binomiale, loi de Poisson', 'Loi normale|-31|centrée réduite, écart-type, table, 1,96', 'Estimation et intervalles de confiance|-15|estimateur, intervalle de confiance, risque alpha', 'Tests d\'hypothèse|-4|']],
+        ['Chimie', 'orange', 31, 3, ['Atomistique|-69|orbitale, nombres quantiques, configuration électronique, Klechkowski', 'Liaisons chimiques|-54|liaison covalente, électronégativité, VSEPR, hybridation', 'Stéréochimie|-37|chiralité, énantiomère, Cahn-Ingold-Prelog, configuration R S', 'Acides et bases|-20|pKa, pH, Henderson-Hasselbalch, solution tampon', 'Cinétique chimique|-8|']],
+        ['Sciences humaines et sociales', 'prune', 32, 2, ['Histoire de la médecine|-62|Hippocrate, Vésale, Pasteur, méthode anatomo-clinique', 'Éthique et bioéthique|-27|autonomie, bienfaisance, non-malfaisance, justice, consentement', 'Santé publique|']],
+      ],
+      notes: { 'Biochimie': [9.5, 11], 'Biologie cellulaire': [13], 'Anatomie': [14.5], 'Physiologie': [10], 'Biophysique': [8.5], 'Biostatistiques': [12], 'Chimie': [11.5], 'Sciences humaines et sociales': [13] },
+      planner: { cours: [[0, 8 * 60, 8 * 60 + 30], [1, 8 * 60, 9 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 8 * 60]], autres: [[1, 18 * 60, 120, 'Tutorat'], [3, 18 * 60, 120, 'Tutorat'], [2, 17 * 60 + 30, 90, 'Natation']] },
+    },
+  };
+
+  function aleatoire(graine) {
+    let a = graine >>> 0;
+    return () => { a = (a + 0x6D2B79F5) >>> 0; let x = Math.imul(a ^ (a >>> 15), 1 | a); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
+  }
+
+  function donneesDemo(profil = 'terminale', prenom = '') {
+    const def = DEMOS[profil] || DEMOS.terminale;
+    const hasard = aleatoire(profil === 'pass' ? 2027 : 2026);
     E = etatVide();
-    E.prenom = 'Léa'; E.filiere = 'terminale';
+    E.prenom = prenom || def.prenom; E.filiere = def.filiere; E.demoProfil = profil;
+    E.tutorielVu = false;
     const t = auj();
-    const m = [
-      ['Philosophie', 'rouge', 38], ['Mathématiques', 'bleu', 52], ['SES', 'jaune', 52], ['Histoire-géographie', 'encre', 61], ['Anglais', 'vert', null],
-    ].map(([nom, c, j]) => { const x = { id: uid(), nom, couleur: c, examen: j ? ajout(t, j) : null }; E.matieres.push(x); return x; });
-    const chapitres = [
-      [0, 'La conscience', 26], [0, 'L\'inconscient', 19], [0, 'Le devoir', 9], [0, 'La justice', 2],
-      [1, 'Suites numériques', 30], [1, 'Limites de fonctions', 21], [1, 'Dérivation et convexité', 12], [1, 'Logarithme népérien', 4],
-      [2, 'Croissance économique', 27], [2, 'Commerce international', 16], [2, 'Chômage', 7],
-      [3, 'Guerre froide', 24], [3, 'La Ve République', 11], [4, 'Irregular verbs', 18], [4, 'Essay writing', 3],
-      [1, 'Fonction exponentielle', 1], [2, 'Inégalités et justice sociale', 1], [3, 'La décolonisation', 6],
-    ];
-    const evals = ['moyen', 'facile', 'moyen', 'difficile', 'moyen', 'facile'];
-    chapitres.forEach(([i, titre, il], k) => {
-      const ch = nouveauChapitre(m[i].id, titre, ajout(t, -il));
-      let n = 0;
-      // Arrête la simulation à des dates différentes : retards, révisions du jour, révisions déjà faites ce matin.
-      const limite = [ajout(t, -2), t, ajout(t, 1), t, ajout(t, -1)][k % 5];
-      while (ch.prochaine && ch.prochaine < limite && ch.prochaine <= t && n < 8) { appliquerEvaluation(ch, evals[(k + n) % evals.length], ch.prochaine); n++; }
-      if (k % 5 === 1 && ch.prochaine) ch.prochaine = t; // à réviser aujourd'hui
-      if (k % 5 === 2 && ch.prochaine) appliquerEvaluation(ch, evals[k % evals.length], t); // déjà fait ce matin
+    // Sommeil simulé (pack Habitudes), qui influence légèrement la réussite des révisions du lendemain.
+    const sommeil = {};
+    for (let i = def.debut; i <= 0; i++) sommeil[ajout(t, i)] = Math.round((5.5 + hasard() * 3) * 2) / 2;
+    const prevus = []; // [matiereId, titre, jourAppris, motsCles]
+    def.matieres.forEach(([nom, c, examen, , chapitres]) => {
+      const m = { id: uid(), nom, couleur: c, examen: examen === null ? null : ajout(t, examen) };
+      E.matieres.push(m);
+      chapitres.forEach((ligne) => {
+        const [titre, jour, cles] = ligne.split('|');
+        if (jour === '' || jour === undefined) nouveauChapitre(m.id, titre, null);
+        else prevus.push([m.id, titre, Number(jour), cles || '']);
+      });
     });
+    const avenir = E.chapitres.splice(0);
+    for (let i = def.debut; i < 0; i++) {
+      const d = ajout(t, i);
+      prevus.filter((x) => x[2] === i).forEach(([mid, titre, , cles]) => nouveauChapitre(mid, titre, d, cles));
+      if (def.pauses.includes(i)) continue;
+      let dus = E.chapitres.filter((c) => c.prochaine && c.prochaine <= d);
+      if (i >= -3) dus = dus.slice(0, Math.max(1, dus.length - def.retards)); // quelques révisions laissées en retard
+      // Jour sans révision prévue : l'élève avance la suivante (bouton « Réviser aujourd'hui »).
+      if (!dus.length) dus = E.chapitres.filter((c) => c.prochaine && c.prochaine > d).sort((x, y) => x.prochaine.localeCompare(y.prochaine)).slice(0, 1);
+      if (!dus.length) continue;
+      const fatigue = sommeil[d] < 7 ? 0.15 : 0;
+      dus.forEach((c) => {
+        const r = hasard();
+        appliquerEvaluation(c, r < 0.1 + fatigue ? 'difficile' : r < 0.62 + fatigue / 2 ? 'moyen' : 'facile', d);
+      });
+      if (i > -35 && hasard() < 0.7) E.focus[d] = Math.round(dus.length * (10 + hasard() * 8));
+    }
+    // Un week-end chargé : quelques révisions des jours suivants n'ont pas été faites samedi et dimanche.
+    E.chapitres.filter((c) => c.prochaine && c.prochaine > t && c.prochaine <= ajout(t, 14)).slice(0, def.manquees || 0)
+      .forEach((c, k) => { c.prochaine = ajout(t, k % 2 ? -1 : -2); });
+    // Aujourd'hui : deux révisions faites ce matin, en session guidée.
+    E.chapitres.filter((c) => c.prochaine && c.prochaine === t).slice(-2).forEach((c) => appliquerEvaluation(c, 'facile', t));
+    if (E.chapitres.some((c) => c.historique.some((h) => h.date === t))) E.focus[t] = 24;
+    E.chapitres.push(...avenir);
+    E.demoPack = demoPack(def, E, sommeil, t, hasard);
     return E;
+  }
+
+  // Données d'exemple des autres templates du Pack Étudiant (format réduit de leurs états).
+  function demoPack(def, etat, sommeil, t, hasard) {
+    const notes = { matieres: [], notes: [] };
+    def.matieres.forEach(([nom, , examen, coef]) => {
+      const id = uid();
+      notes.matieres.push({ id, nom, coef: coef || 1 });
+      (def.notes[nom] || []).forEach((v, k) => notes.notes.push({ id: uid(), matiere: id, valeur: v, sur: 20, coef: 1, date: ajout(t, -40 + k * 18), prevue: false }));
+      if (examen && examen < 15) notes.notes.push({ id: uid(), matiere: id, sur: 20, coef: 1, date: ajout(etat.matieres.find((m) => m.nom === nom).examen, 0), prevue: true });
+    });
+    const depuis = ajout(t, -120);
+    const series = [
+      ...def.planner.cours.map(([j, debut, duree]) => ({ id: uid(), titre: 'Cours', jours: [j], debut, duree, depuis, jusqua: null, exceptions: {} })),
+      ...def.planner.autres.map(([j, debut, duree, titre]) => ({ id: uid(), titre, jours: [j], debut, duree, depuis, jusqua: null, exceptions: {} })),
+    ];
+    const journal = {};
+    Object.entries(sommeil).forEach(([d, h]) => { if (d >= ajout(t, -40) && hasard() < 0.85) journal[d] = { 'sommeil-heures': h }; });
+    return { notes, planner: { reglages: { debut: 7 * 60, fin: 22 * 60 }, blocs: [], series }, habitudes: { journal } };
   }
 
   // ---------- Rendu : connexion ----------
@@ -432,6 +509,10 @@
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
     aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
+    lecture: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>',
+    horloge: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    agenda: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2"/></svg>',
+    partage: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13v7h14v-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
   const ONGLETS = [['aujourdhui', 'Aujourd\'hui'], ['planning', 'Planning'], ['matieres', 'Matières'], ['methodes', 'Méthodes'], ['bilan', 'Bilan']];
 
@@ -451,7 +532,10 @@
       </div></header>
       <main class="vue" id="vue" tabindex="-1"></main>`;
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
+    document.body.classList.toggle('lecture', !!E.reglages.lecture);
+    lirePack();
     rendre();
+    rafraichirPack();
     premiersPas();
   }
 
@@ -479,12 +563,37 @@
     return E.matieres.filter((m) => m.examen && m.examen >= t).sort((a, b) => a.examen.localeCompare(b.examen))[0];
   }
 
+  // Durée indicative d'une révision en minutes (« 10 à 20 min » → 10, « 25 + 5 min » → 25), plafonnée à
+  // 30 min : un sujet d'annales complet relève de l'examen blanc, pas de la révision d'un chapitre.
+  function dureeMethode(m) {
+    const x = /(\d+)\s*(?:à\s*\d+\s*)?(h|min)/.exec(m?.duree || '');
+    return x ? Math.min(30, Number(x[1]) * (x[2] === 'h' ? 60 : 1)) : 15;
+  }
+  const methodeDe = (c) => methode(c.finale ? 'fiche' : B.methodeParEtape[Math.min(c.etape, B.methodeParEtape.length - 1)]);
+  const dureeSession = (liste) => liste.reduce((s, c) => s + dureeMethode(methodeDe(c)), 0);
+  const heureTexte = (min) => `${Math.floor(min / 60)} h${min % 60 ? ` ${deux(min % 60)}` : ''}`;
+  const dureeTexte = (min) => (min < 60 ? `${min} min` : heureTexte(min).replace(/ h$/, ' h'));
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+
+  // Jauge « Prêt pour le jour J » (carte d'examen et matières).
+  function blocJauge(m, compact = false) {
+    const j = R.jauge(E, m.id, auj());
+    if (j.solidesJourJ === null || !j.total) return '';
+    const vus = j.total;
+    return `<div class="jauge ${compact ? 'compacte' : ''}">
+      <div class="jauge-barre" role="img" aria-label="${j.solidesAujourdhui} chapitres solides aujourd'hui, ${j.solidesJourJ} projetés le jour de l'examen, sur ${vus}"><i style="width:${pct(j.solidesAujourdhui, vus)}%"></i><i class="projete" style="width:${pct(j.solidesJourJ - j.solidesAujourdhui, vus)}%"></i></div>
+      <p><b>${j.solidesJourJ}/${vus}</b> chapitres solides le jour J si tu suis le planning <span>(${j.solidesAujourdhui} aujourd'hui${j.aVenir ? `, ${j.aVenir} pas encore vu${j.aVenir > 1 ? 's' : ''}` : ''})</span></p>
+      ${compact ? '' : '<button type="button" class="jauge-info" data-action="jauge-info">Comment c\'est calculé</button>'}
+    </div>`;
+  }
+
   // Aujourd'hui
   function vueAujourdhui() {
     const t = auj();
     const liste = aReviser();
     const faits = faitsAujourdhui();
     const retards = liste.filter((c) => c.prochaine < t).length;
+    const blancs = R.examensBlancs(E, t).filter((b) => b.du);
     const total = liste.length + faits.length;
     const ex = prochainExamen();
     const jours = ex ? ecart(t, ex.examen) : null;
@@ -494,14 +603,38 @@
         : faits.length ? `${salut}<mark>Tout est fait</mark> pour aujourd'hui.` : `${salut}Rien à réviser aujourd'hui.`;
 
     const carteExamen = ex
-      ? `<aside class="examen-carte ${jours > 30 ? 'calme' : ''}"><p class="surtitre">Prochain examen</p><div class="compte">${jours === 0 ? 'Jour J' : `J-${jours}`}</div><p>${esc(ex.nom)} · ${fmt(ex.examen, { weekday: 'long', day: 'numeric', month: 'long' })}</p></aside>`
+      ? `<aside class="examen-carte ${jours > 30 ? 'calme' : ''}"><p class="surtitre">Prochain examen</p><div class="compte">${jours === 0 ? 'Jour J' : `J-${jours}`}</div><p>${esc(ex.nom)} · ${fmt(ex.examen, { weekday: 'long', day: 'numeric', month: 'long' })}</p>${jours > 0 ? blocJauge(ex) : ''}</aside>`
       : `<aside class="examen-carte vide"><p class="surtitre">Prochain examen</p><p>Aucune date d'examen. Ajoute-la dans une matière : les révisions se termineront la veille.</p><button class="btn petit" data-action="vue" data-vue="matieres">Ajouter une date</button></aside>`;
+
+    // Plan de rattrapage : proposé dès que les retards ne tiennent plus dans la journée.
+    const plan = retards ? R.planRattrapage(E, t) : null;
+    const alerteRattrapage = plan && plan.jours.length > 1
+      ? `<div class="alerte rattrapage"><div><b>${pluriel(retards, 'révision')} en retard.</b> Inutile de tout faire aujourd'hui : je peux les répartir sur ${pluriel(plan.jours.length, 'jour')}, sans dépasser ${E.reglages.chargeMax} par jour, en commençant par l'examen le plus proche.</div><button class="btn petit primaire" data-action="rattrapage">Voir le plan</button></div>` : '';
+
+    // Créneau libre d'après le Planner horaire du pack.
+    let creneau = '';
+    if (pack.planner && liste.length) {
+      const maintenant = new Date();
+      const besoin = Math.min(90, Math.max(30, dureeSession(liste)));
+      const libre = R.creneauxLibres(pack.planner, t, { minimum: besoin, depuis: maintenant.getHours() * 60 + maintenant.getMinutes() })[0]
+        || R.creneauxLibres(pack.planner, t, { minimum: 30, depuis: maintenant.getHours() * 60 + maintenant.getMinutes() })[0];
+      creneau = libre ? `<p class="creneau">${ICONES.horloge}<span>Créneau libre aujourd'hui dans ton planner&nbsp;: <b>${heureTexte(libre.debut)} – ${heureTexte(libre.fin)}</b></span></p>` : '';
+    }
+
+    const cartesBlancs = blancs.map((b) => {
+      const m = matiere(b.matiereId);
+      return `<li class="carte blanc" style="--c:${couleur(m?.couleur)}"><div class="carte-bande"></div><div class="carte-corps">
+        <p class="carte-matiere">${esc(m?.nom)}<span class="etiquette jaune">Examen blanc · J-${b.jMoins}</span></p>
+        <h3>Un sujet complet, en conditions réelles</h3>
+        <p class="carte-texte">Sujet des années précédentes, durée réelle, téléphone éteint. Corrige-le avec le barème, puis avance la révision des chapitres qui ont coincé.</p>
+      </div><div class="carte-eval deux" role="group" aria-label="Examen blanc de ${esc(m?.nom)}"><button class="ev facile" data-action="blanc" data-cle="${esc(b.cle)}" data-etat="fait">C'est fait<small>bien joué</small></button><button class="ev" data-action="blanc" data-cle="${esc(b.cle)}" data-etat="passe">Passer<small>pas cette fois</small></button></div></li>`;
+    }).join('');
 
     const cartes = liste.map((c) => carteRevision(c, t)).join('');
     const vide = !E.matieres.length
-      ? `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune matière pour l'instant</h3><p>Crée au moins une matière pour y ranger tes chapitres.</p><div class="actions"><button class="btn primaire" data-action="matiere-nouvelle">Créer une matière</button></div></div></div>`
+      ? `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune matière pour l'instant</h3><p>Crée au moins une matière pour y ranger tes chapitres, ou colle directement ton programme.</p><div class="actions"><button class="btn primaire" data-action="matiere-nouvelle">Créer une matière</button><button class="btn" data-action="importer">Coller mon programme</button></div></div></div>`
       : !E.chapitres.length
-        ? `<div class="vide-etat">${FORME_VIDE}<div><h3>Ajoute ton premier chapitre</h3><p>Dès qu'un chapitre est vu en cours, ajoute-le ici : sa première révision tombera demain, puis à J+3, J+7, J+14 et J+30.</p><div class="actions"><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}J'ai appris un chapitre</button></div></div></div>`
+        ? `<div class="vide-etat">${FORME_VIDE}<div><h3>Ajoute ton premier chapitre</h3><p>Dès qu'un chapitre est vu en cours, ajoute-le ici : sa première révision tombera demain, puis à J+3, J+7, J+14 et J+30.</p><div class="actions"><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}J'ai appris un chapitre</button><button class="btn" data-action="importer">Coller mon programme</button></div></div></div>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>${faits.length ? 'Journée terminée.' : 'Journée libre.'}</h3><p>${prochaineRevision()}</p><div class="actions"><button class="btn" data-action="vue" data-vue="planning">Voir le planning</button></div></div></div>`;
 
     return `
@@ -509,15 +642,19 @@
         <div class="jour-titre">
           <p class="surtitre">${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
           <h1>${titre}</h1>
-          ${total ? `<p class="sous">${pluriel(faits.length, 'faite')} sur ${total}${retards ? ` · <b style="color:var(--rouge)">${retards} en retard</b>` : ''}</p>
+          ${total ? `<p class="sous">${pluriel(faits.length, 'faite')} sur ${total}${retards ? ` · <b style="color:var(--rouge)">${retards} en retard</b>` : ''}${liste.length ? ` · environ ${dureeTexte(dureeSession(liste))}` : ''}</p>
           <div class="progression" aria-hidden="true">${Array.from({ length: Math.min(total, 24) }, (_, i) => `<span class="${i < faits.length ? 'fait' : i < faits.length + retards ? 'retard' : ''}"></span>`).join('')}</div>` : ''}
           <div class="actions">
-            <button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}J'ai appris un chapitre</button>
+            ${liste.length ? `<button class="btn primaire" data-action="session">${ICONES.lecture}Lancer ma session</button><button class="btn" data-action="chapitre-nouveau">${ICONES.plus}J'ai appris un chapitre</button>`
+              : `<button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}J'ai appris un chapitre</button>`}
           </div>
+          ${creneau}
         </div>
         ${carteExamen}
       </section>
-      <h2 class="titre-section">À réviser <span>${liste.length ? 'Révise, puis indique comment ça s\'est passé : la date suivante s\'ajuste.' : ''}</span></h2>
+      ${alerteRattrapage}
+      ${blancs.length ? `<h2 class="titre-section">Examen blanc <span>Prévu automatiquement à J-10 et J-4 de chaque examen (désactivable dans les réglages).</span></h2><ul class="cartes">${cartesBlancs}</ul>` : ''}
+      <h2 class="titre-section">À réviser <span>${liste.length ? 'Lance la session guidée, ou révise carte par carte puis indique comment ça s\'est passé.' : ''}</span></h2>
       ${liste.length ? `<ul class="cartes">${cartes}</ul>` : vide}
       ${faits.length ? `<details class="faites"><summary>Faites aujourd'hui (${faits.length})</summary>${faits.map(({ c, h }) => {
         const m = matiere(c.matiereId);
@@ -539,15 +676,17 @@
   function carteRevision(c, t) {
     const m = matiere(c.matiereId);
     const retard = ecart(c.prochaine, t);
-    const meth = methode(c.finale ? 'fiche' : B.methodeParEtape[Math.min(c.etape, B.methodeParEtape.length - 1)]);
+    const meth = methodeDe(c);
     const n = c.historique.length + 1;
+    const souvenir = R.forceSouvenir(E, c, t);
+    const prio = prioritesPack().slice(0, 2).find((p) => p.matiereId === c.matiereId);
     return `
       <li class="carte" style="--c:${couleur(m?.couleur)}" data-carte="${c.id}">
         <div class="carte-bande"></div>
         <div class="carte-corps">
-          <p class="carte-matiere">${esc(m?.nom || 'Sans matière')}${retard > 0 ? `<span class="etiquette rouge">En retard · ${retard} j</span>` : ''}${c.finale ? '<span class="etiquette">Révision finale</span>' : ''}</p>
+          <p class="carte-matiere">${esc(m?.nom || 'Sans matière')}${retard > 0 ? `<span class="etiquette rouge">En retard · ${retard} j</span>` : ''}${c.finale ? '<span class="etiquette">Révision finale</span>' : ''}${prio ? '<span class="etiquette bleu" title="D\'après tes notes : coefficient élevé et marge de progression">Priorité notes</span>' : ''}</p>
           <h3>${esc(c.titre)}</h3>
-          <p class="carte-meta">${points(c.etape)}<span>Révision n° ${n} · appris ${quand(c.appris)}</span></p>
+          <p class="carte-meta">${points(c.etape)}<span>Révision n° ${n} · appris ${quand(c.appris)}${souvenir !== null ? ` · souvenir estimé ${souvenir}&nbsp;%` : ''}</span></p>
           <button class="methode-puce" data-action="methode" data-id="${meth.id}"><span>Méthode conseillée : <b>${esc(meth.nom)}</b> · ${esc(meth.duree)}</span></button>
         </div>
         <div class="carte-eval" role="group" aria-label="Comment s'est passée la révision de ${esc(c.titre)} ?">
@@ -569,14 +708,16 @@
     const max = E.reglages.chargeMax;
     const parJour = (j) => E.chapitres.filter((c) => c.prochaine && (j === t ? c.prochaine <= t : c.prochaine === j));
     const examens = (j) => E.matieres.filter((m) => m.examen === j);
+    const blancsTous = R.examensBlancs(E, t);
+    const blancsDu = (j) => blancsTous.filter((b) => b.date === j && b.etat !== 'passe');
     const cellules = jours.map((j) => {
       const liste = parJour(j);
       const ex = examens(j);
       const passe = j < t;
-      const etiquette = `${fmt(j, { weekday: 'long', day: 'numeric', month: 'long' })} : ${pluriel(liste.length, 'révision')}${ex.length ? `, examen de ${ex.map((m) => m.nom).join(', ')}` : ''}`;
+      const etiquette = `${fmt(j, { weekday: 'long', day: 'numeric', month: 'long' })} : ${pluriel(liste.length, 'révision')}${ex.length ? `, examen de ${ex.map((m) => m.nom).join(', ')}` : ''}${blancsDu(j).length ? `, examen blanc de ${blancsDu(j).map((b) => matiere(b.matiereId)?.nom).join(', ')}` : ''}`;
       return `<button class="cellule ${j === t ? 'aujourdhui' : ''} ${passe ? 'passe' : ''} ${liste.length >= max ? 'charge' : ''}" data-action="jour" data-jour="${j}" aria-pressed="${j === jourChoisi}" aria-label="${esc(etiquette)}">
         <span class="num">${versDate(j).getDate()}${versDate(j).getDate() === 1 || j === lundi ? ` ${fmt(j, { month: 'short' })}` : ''}</span>
-        ${ex.length ? '<span class="exam">Examen</span>' : ''}
+        ${ex.length ? '<span class="exam">Examen</span>' : blancsDu(j).length ? '<span class="exam blanc">Blanc</span>' : ''}
         ${!passe && liste.length ? `<span class="nb">${liste.length}<small>rév.</small></span>` : ''}
         ${!passe ? `<span class="carres">${liste.slice(0, 12).map((c) => `<i style="--c:${couleur(matiere(c.matiereId)?.couleur)}"></i>`).join('')}</span>` : ''}
       </button>`;
@@ -585,18 +726,19 @@
     const ex = examens(jourChoisi);
     const passe = jourChoisi < t;
     const faitsCeJour = passe ? E.chapitres.flatMap((c) => c.historique.filter((h) => h.date === jourChoisi).map(() => c)) : [];
+    const lignesBlancs = blancsDu(jourChoisi).map((b) => `<div class="ligne" style="--c:${couleur(matiere(b.matiereId)?.couleur)}"><i></i><div><b>Examen blanc · ${esc(matiere(b.matiereId)?.nom)}</b><span>Sujet complet en conditions réelles · J-${b.jMoins}${b.etat === 'fait' ? ' · fait' : ''}</span></div><span></span></div>`).join('');
     const lignes = passe
       ? (faitsCeJour.length ? faitsCeJour.map((c) => ligneChapitre(c, 'Révisé ce jour-là')).join('') : '<p class="ligne"><span class="vide">Aucune révision faite ce jour-là.</span></p>')
       : detail.length ? detail.map((c) => ligneChapitre(c, `${c.finale ? 'Révision finale' : `Étape ${c.etape + 1} sur ${E.reglages.intervalles.length}`}${c.prochaine < t ? ` · en retard depuis ${quand(c.prochaine)}` : ''}`, true)).join('')
         : '<p class="ligne"><span class="vide">Aucune révision ce jour-là.</span></p>';
     return `
       <div class="vue-tete"><div><h1>Planning</h1><p>Les 4 prochaines semaines. Au-delà de ${max} révisions par jour, les suivantes sont décalées au lendemain (réglable).</p></div>
-        <div class="actions"><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}Chapitre</button></div></div>
-      <div class="legende-planning"><span><i style="background:var(--jaune)"></i>Aujourd'hui (retards compris)</span><span><i style="background:var(--rouge)"></i>Examen</span><span>Un carré = une révision, à la couleur de la matière</span></div>
+        <div class="actions"><button class="btn" data-action="agenda">${ICONES.agenda}Ajouter à mon agenda</button><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}Chapitre</button></div></div>
+      <div class="legende-planning"><span><i style="background:var(--jaune)"></i>Aujourd'hui (retards compris)</span><span><i style="background:var(--rouge)"></i>Examen</span><span><i style="background:var(--beurre);border:1px solid var(--jaune)"></i>Examen blanc</span><span>Un carré = une révision, à la couleur de la matière</span></div>
       <div class="calendrier" role="grid" aria-label="Calendrier des révisions">${['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((j) => `<span class="jsem">${j}</span>`).join('')}${cellules}</div>
       <section class="jour-detail" aria-live="polite">
         <h2>${fmt(jourChoisi, { weekday: 'long', day: 'numeric', month: 'long' })}<span>${passe ? pluriel(faitsCeJour.length, 'révision faite', 'révisions faites') : pluriel(detail.length, 'révision')}${ex.length ? ` · examen : ${esc(ex.map((m) => m.nom).join(', '))}` : ''}</span></h2>
-        ${lignes}
+        ${lignesBlancs}${lignes}
       </section>`;
   }
 
@@ -612,7 +754,8 @@
     const t = auj();
     const I = E.reglages.intervalles.length;
     const cartes = E.matieres.map((m) => {
-      const chs = E.chapitres.filter((c) => c.matiereId === m.id).sort((a, b) => a.appris.localeCompare(b.appris));
+      const chs = E.chapitres.filter((c) => c.matiereId === m.id).sort((a, b) => (a.appris || '9999').localeCompare(b.appris || '9999'));
+      const aVenir = chs.filter((c) => !c.appris).length;
       const maitrises = chs.filter((c) => c.etape >= I).length;
       const dus = chs.filter((c) => c.prochaine && c.prochaine <= t).length;
       const j = m.examen ? ecart(t, m.examen) : null;
@@ -620,15 +763,21 @@
       return `
       <article class="matiere" style="--c:${couleur(m.couleur)};--t:${texteSur(m.couleur)}">
         <div class="matiere-tete"><div><h2>${esc(m.nom)}</h2><p>${examen}</p></div><button data-action="matiere-modifier" data-id="${m.id}">Modifier</button></div>
-        <div class="matiere-chiffres"><div><b>${chs.length}</b><span>chapitres</span></div><div><b>${maitrises}</b><span>maîtrisés</span></div><div><b style="${dus ? 'color:var(--rouge)' : ''}">${dus}</b><span>à réviser</span></div></div>
+        ${m.examen && m.examen > t ? blocJauge(m, true) : ''}
+        <div class="matiere-chiffres"><div><b>${chs.length}</b><span>chapitres${aVenir ? ` dont ${aVenir} à venir` : ''}</span></div><div><b>${maitrises}</b><span>maîtrisés</span></div><div><b style="${dus ? 'color:var(--rouge)' : ''}">${dus}</b><span>à réviser</span></div></div>
         <div class="maitrise" role="img" aria-label="Maîtrise : ${chs.length ? Math.round((chs.reduce((s, c) => s + Math.min(c.etape, I), 0) / (chs.length * I)) * 100) : 0} %"><i style="width:${chs.length ? (chs.reduce((s, c) => s + Math.min(c.etape, I), 0) / (chs.length * I)) * 100 : 0}%"></i></div>
-        <div class="chapitres">${chs.length ? chs.map((c) => `<button class="chapitre" data-action="chapitre-modifier" data-id="${c.id}"><b>${esc(c.titre)}</b>${points(c.etape)}<span class="${c.prochaine && c.prochaine < t ? 'retard' : ''}">${c.prochaine ? `${c.finale ? 'Révision finale' : 'Prochaine révision'} ${quand(c.prochaine)}${c.prochaine < t ? ' (en retard)' : ''}` : c.etape >= I ? 'Maîtrisé' : 'Plus de révision avant l\'examen'}</span></button>`).join('') : '<p class="matiere-vide">Aucun chapitre. Ajoute-le dès qu\'il est vu en cours.</p>'}</div>
+        <div class="chapitres">${chs.length ? chs.map((c) => {
+          const souvenir = R.forceSouvenir(E, c, t);
+          const etat = !c.appris ? 'Pas encore vu en cours'
+            : c.prochaine ? `${c.finale ? 'Révision finale' : 'Prochaine révision'} ${quand(c.prochaine)}${c.prochaine < t ? ' (en retard)' : ''}` : c.etape >= I ? 'Maîtrisé' : 'Plus de révision avant l\'examen';
+          return `<button class="chapitre ${c.appris ? '' : 'a-venir'}" data-action="chapitre-modifier" data-id="${c.id}"><b>${esc(c.titre)}</b>${c.appris ? points(c.etape) : '<span class="etiquette">À venir</span>'}<span class="${c.prochaine && c.prochaine < t ? 'retard' : ''}">${etat}${souvenir !== null && c.prochaine ? ` · souvenir ${souvenir}&nbsp;%` : ''}</span></button>`;
+        }).join('') : '<p class="matiere-vide">Aucun chapitre. Ajoute-le dès qu\'il est vu en cours.</p>'}</div>
         <div class="matiere-pied"><button class="btn petit" data-action="chapitre-nouveau" data-matiere="${m.id}">${ICONES.plus}Chapitre</button></div>
       </article>`;
     }).join('');
     return `
       <div class="vue-tete"><div><h1>Matières</h1><p>Indique la date d'examen de chaque matière : aucune révision n'est programmée après, et chaque chapitre maîtrisé a une révision finale deux jours avant.</p></div>
-        <div class="actions"><button class="btn" data-action="matiere-nouvelle">${ICONES.plus}Matière</button><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}Chapitre</button></div></div>
+        <div class="actions"><button class="btn" data-action="importer">Coller un programme</button><button class="btn" data-action="matiere-nouvelle">${ICONES.plus}Matière</button><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}Chapitre</button></div></div>
       ${E.matieres.length ? `<div class="matieres">${cartes}</div>` : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune matière</h3><p>Crée tes matières une par une, ou choisis-les dans le catalogue de ta formation.</p><div class="actions"><button class="btn primaire" data-action="matiere-nouvelle">Créer une matière</button></div></div></div>`}`;
   }
 
@@ -712,9 +861,19 @@
       const j = m.examen && m.examen >= t ? ecart(t, m.examen) : null;
       return `<tr style="--c:${couleur(m.couleur)}"><td><span class="nom-matiere"><i></i>${esc(m.nom)}</span></td><td class="nb">${chs.length}</td><td class="nb">${chs.filter((c) => c.etape >= I).length}</td><td class="nb">${chs.filter((c) => c.prochaine && c.prochaine <= t).length}</td><td class="nb">${j === null ? '–' : j === 0 ? 'Aujourd\'hui' : `J-${j}`}</td></tr>`;
     }).join('');
+    const meilleure = R.meilleureSerie(E);
+    const pal = R.paliers(meilleure, s.serie);
+    const minutes30 = Object.entries(E.focus).filter(([d]) => d > ajout(t, -30)).reduce((x, [, n]) => x + n, 0);
     return `
-      <div class="vue-tete"><div><h1>Bilan</h1><p>Ta régularité et l'avancement de chaque matière.</p></div></div>
+      <div class="vue-tete"><div><h1>Bilan</h1><p>Ta régularité et l'avancement de chaque matière.</p></div>
+        <div class="actions"><button class="btn primaire" data-action="partager">${ICONES.partage}Partager ma semaine</button></div></div>
       <div class="tuiles">${tuiles}</div>
+      <h2 class="titre-section">Régularité <span>${minutes30 ? `${dureeTexte(minutes30)} de session guidée sur 30 jours · ` : ''}meilleure série : ${pluriel(meilleure, 'jour')}</span></h2>
+      <div class="regularite">
+        ${carteRegularite()}
+        <div class="paliers" aria-label="Paliers de série">${R.PALIERS.map((p) => `<span class="palier ${pal.atteints.includes(p) ? 'atteint' : ''} ${pal.prochain === p ? 'prochain' : ''}" title="${pal.atteints.includes(p) ? 'Atteint' : 'Pas encore atteint'}"><b>${p}</b><small>jours</small></span>`).join('')}
+          <p>${pal.prochain ? `Prochain palier : <b>${pal.prochain} jours</b> d'affilée, encore ${pluriel(pal.prochain - s.serie, 'jour')}.` : 'Tous les paliers sont atteints.'}</p></div>
+      </div>
       <h2 class="titre-section">30 derniers jours</h2>
       <figure class="graphique" id="graphique">
         <div class="graphique-tete"><h2>Révisions par jour</h2><div class="legende">${EVALS.map(([, l, c]) => `<span><i style="background:${c}"></i>${l}</span>`).join('')}</div></div>
@@ -723,7 +882,114 @@
         <table class="sr-only"><caption>Révisions par jour</caption><thead><tr><th>Jour</th><th>Facile</th><th>Moyen</th><th>Difficile</th></tr></thead><tbody>${s.jours30.map((j) => `<tr><td>${fmt(j.d)}</td><td>${j.facile}</td><td>${j.moyen}</td><td>${j.difficile}</td></tr>`).join('')}</tbody></table>
       </figure>
       <h2 class="titre-section">Par matière</h2>
-      ${E.matieres.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Chapitres</th><th class="nb">Maîtrisés</th><th class="nb">À réviser</th><th class="nb">Examen</th></tr></thead><tbody>${lignes}</tbody></table></div>` : '<p>Aucune matière.</p>'}`;
+      ${E.matieres.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Chapitres</th><th class="nb">Maîtrisés</th><th class="nb">À réviser</th><th class="nb">Examen</th></tr></thead><tbody>${lignes}</tbody></table></div>` : '<p>Aucune matière.</p>'}
+      ${sectionPack()}`;
+  }
+
+  // Carte de régularité : une case par jour sur 20 semaines, du lundi au dimanche.
+  function carteRegularite() {
+    const t = auj();
+    const parJour = R.joursRevises(E);
+    const lundi = ajout(t, -((versDate(t).getDay() + 6) % 7));
+    // De la première semaine active (8 semaines au moins, 20 au plus) à aujourd'hui.
+    const premier = Object.keys(parJour).sort()[0] || t;
+    const semaines = Math.min(20, Math.max(8, Math.ceil((ecart(premier, lundi) + 1) / 7) + 1));
+    const debut = ajout(lundi, -7 * (semaines - 1));
+    const niveau = (n) => (!n ? 0 : n < 1 ? 1 : n <= 3 ? 2 : n <= 7 ? 3 : 4);
+    const colonnes = Array.from({ length: semaines }, (_, sem) => `<div class="col">${Array.from({ length: 7 }, (_, j) => {
+      const d = ajout(debut, sem * 7 + j);
+      if (d > t) return '<i class="futur"></i>';
+      const n = parJour[d] || 0;
+      return `<i class="n${niveau(n)}" title="${fmt(d, { weekday: 'long', day: 'numeric', month: 'long' })} : ${n >= 1 ? pluriel(n, 'révision') : n ? 'session guidée' : 'rien'}"></i>`;
+    }).join('')}</div>`).join('');
+    const actifs = Object.keys(parJour).filter((d) => d >= debut && d <= t).length;
+    return `<figure class="carte-regu"><div class="grille-regu" style="--n:${semaines}" role="img" aria-label="${actifs} jours de révision sur les ${semaines} dernières semaines">${colonnes}</div>
+      <figcaption><span>${semaines} dernières semaines</span><span class="echelle">Moins <i class="n0"></i><i class="n1"></i><i class="n2"></i><i class="n3"></i><i class="n4"></i> Plus</span></figcaption></figure>`;
+  }
+
+  // Pack Étudiant : ce que les autres templates ouverts sur cet appareil apportent au planning.
+  function sectionPack() {
+    const t = auj();
+    const etat = (cle) => (pack[cle] ? '<span class="etiquette bleu">Relié</span>' : '<span class="etiquette">Non trouvé sur cet appareil</span>');
+    const lien = (p) => `<a class="btn petit" href="${p.url}">Ouvrir ${esc(p.nom)}</a>`;
+    // Notes
+    const prio = prioritesPack();
+    const blocNotes = pack.notes
+      ? (prio.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Moy.</th><th class="nb" title="Effet d'un point de plus dans la matière sur la moyenne générale">+1 pt</th></tr></thead><tbody>${prio.map((p, i) => {
+        const m = matiere(p.matiereId);
+        return `<tr style="--c:${couleur(m?.couleur)}"><td><span class="nom-matiere"><i></i>${esc(m?.nom)}${i < 2 ? ' <span class="etiquette bleu">Priorité</span>' : ''}</span></td><td class="nb">${p.moyenne === null ? '–' : p.moyenne.toFixed(1).replace('.', ',')}</td><td class="nb">+${p.poids.toFixed(2).replace('.', ',')}</td></tr>`;
+      }).join('')}</tbody></table></div>${(() => { const n = prio.filter((p) => p.prochaine).sort((a, b) => a.prochaine.localeCompare(b.prochaine))[0]; return n ? `<p>Prochaine note prévue&nbsp;: <b>${esc(matiere(n.matiereId)?.nom)}</b>, ${fmt(n.prochaine, { weekday: 'long', day: 'numeric', month: 'long' })}.</p>` : ''; })()}<p class="aide">« +1 pt »&nbsp;: ce que gagne ta moyenne générale avec un point de plus dans la matière. Priorité = coefficient élevé et marge de progression&nbsp;: ces chapitres passent en tête dans Aujourd'hui, à date égale.</p>`
+        : '<p class="aide">Aucune matière commune trouvée : donne le même nom à tes matières dans les deux outils.</p>')
+      : `<p>Tes moyennes et tes coefficients indiquent quelles matières rapportent le plus de points. Les révisions de ces matières passent alors en tête.</p>${lien(PACK[0])}`;
+    // Planner
+    let blocPlanner;
+    if (pack.planner) {
+      const jours = [t, ajout(t, 1)].map((d) => ({ d, l: R.creneauxLibres(pack.planner, d, { minimum: 45 }).slice(0, 3) }));
+      blocPlanner = jours.map(({ d, l }) => `<p><b>${quand(d).replace(/^./, (x) => x.toUpperCase())}</b> : ${l.length ? l.map((c) => `${heureTexte(c.debut)} – ${heureTexte(c.fin)}`).join(' · ') : 'aucun créneau de 45 min'}</p>`).join('') + '<p class="aide">Créneaux d\'au moins 45 minutes sans bloc dans ton planner. Le créneau du jour s\'affiche aussi dans Aujourd\'hui.</p>';
+    } else blocPlanner = `<p>Ton emploi du temps montre où placer la session du jour : le planning t'indique le premier créneau libre assez long.</p>${lien(PACK[1])}`;
+    // Habitudes
+    let blocHabitudes;
+    const so = pack.habitudes ? R.sommeilEtReussite(E, pack.habitudes) : null;
+    if (so?.suffisant) {
+      blocHabitudes = `<div class="comparaison-sommeil"><div><span>Moins de ${so.seuil} h de sommeil</span><b>${so.court.taux}&nbsp;%</b><small>bien sues · ${pluriel(so.court.jours, 'jour')}</small></div><div><span>${so.seuil} h ou plus</span><b>${so.long.taux}&nbsp;%</b><small>bien sues · ${pluriel(so.long.jours, 'jour')}</small></div></div>
+        <p class="aide">Révisions « Moyen » ou « Facile », selon les heures de sommeil notées ce jour-là. C'est une observation sur tes propres données, pas une preuve&nbsp;: d'autres choses changent d'un jour à l'autre.</p>`;
+    } else if (pack.habitudes) blocHabitudes = `<p>Il faut au moins 10 jours avec révisions et heures de sommeil notées (et 3 de chaque côté de ${so?.seuil ?? 7} h) pour comparer. Pour l'instant : ${pluriel(so?.total || 0, 'jour')}.</p>`;
+    else blocHabitudes = `<p>Note tes heures de sommeil : le bilan compare ta réussite après une nuit courte et après une vraie nuit.</p>${lien(PACK[2])}`;
+    return `<h2 class="titre-section">Pack Étudiant <span>${session.demo ? 'Démo : données d\'exemple des autres outils du pack.' : 'Lecture des autres outils du pack ouverts sur cet appareil, rien n\'est modifié chez eux.'}</span></h2>
+      <div class="pack">
+        <article class="pack-carte"><div class="pack-tete"><h3>Notes et moyennes</h3>${etat('notes')}</div>${blocNotes}</article>
+        <article class="pack-carte"><div class="pack-tete"><h3>Planner horaire</h3>${etat('planner')}</div>${blocPlanner}</article>
+        <article class="pack-carte"><div class="pack-tete"><h3>Sommeil et réussite</h3>${etat('habitudes')}</div>${blocHabitudes}</article>
+      </div>`;
+  }
+
+  // Image de la semaine (format story 1080 × 1920), partagée ou téléchargée.
+  async function partagerSemaine() {
+    const t = auj();
+    const b = R.bilanSemaine(E, t);
+    const serieNow = R.serie(E, t);
+    try { await document.fonts?.ready; } catch { /* police système */ }
+    const c = document.createElement('canvas');
+    c.width = 1080; c.height = 1920;
+    const x = c.getContext('2d');
+    const F = (poids, taille) => `${poids} ${taille}px Outfit, system-ui, sans-serif`;
+    x.fillStyle = '#FBF7F1'; x.fillRect(0, 0, 1080, 1920);
+    // Formes Bauhaus
+    x.fillStyle = '#D8E4F0'; x.fillRect(0, 0, 1080, 700);
+    x.fillStyle = '#2E5A88'; x.fillRect(620, 160, 360, 360);
+    x.fillStyle = '#E8B93A'; x.beginPath(); x.moveTo(620, 520); x.arc(980, 520, 360, Math.PI, Math.PI * 1.5); x.closePath(); x.fill();
+    x.fillStyle = '#E58C74'; x.beginPath(); x.arc(300, 360, 190, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#24221F'; x.beginPath(); x.arc(300, 360, 70, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#24221F';
+    x.font = F(700, 34); x.fillText('MA SEMAINE DE RÉVISION', 90, 800);
+    x.font = F(700, 96); x.fillText(E.prenom ? `${E.prenom},` : 'Cette semaine,', 90, 910);
+    x.fillText(serieNow > 1 ? `${serieNow} jours d'affilée.` : `${b.revisions} révisions.`, 90, 1015);
+    const chiffres = [[b.revisions, 'révisions'], [`${b.jours}/7`, 'jours actifs'], [b.taux === null ? '–' : `${b.taux} %`, 'bien sues'], [b.minutes ? dureeTexte(b.minutes) : '–', 'de concentration']];
+    chiffres.forEach(([v, l], i) => {
+      const cx = 90 + (i % 2) * 460, cy = 1110 + Math.floor(i / 2) * 230;
+      x.fillStyle = '#FFFFFF'; x.strokeStyle = '#E4DCCE'; x.lineWidth = 2;
+      x.beginPath(); x.roundRect(cx, cy, 430, 200, 28); x.fill(); x.stroke();
+      x.fillStyle = ['#B84A34', '#E8B93A', '#2E5A88', '#24221F'][i]; x.beginPath(); x.arc(cx + 390, cy + 40, 16, 0, Math.PI * 2); x.fill();
+      x.fillStyle = '#24221F'; x.font = F(800, 76); x.fillText(String(v), cx + 30, cy + 110);
+      x.fillStyle = '#514C44'; x.font = F(500, 32); x.fillText(l, cx + 30, cy + 162);
+    });
+    // Barres des 7 jours
+    const max = Math.max(1, ...b.parJour.map((j) => j.n));
+    b.parJour.forEach((j, i) => {
+      const bx = 90 + i * 132, h = Math.round((j.n / max) * 150);
+      x.fillStyle = j.n ? '#2E5A88' : '#E4DCCE';
+      x.beginPath(); x.roundRect(bx, 1720 - Math.max(10, h), 100, Math.max(10, h), 14); x.fill();
+      x.fillStyle = '#6E685F'; x.font = F(600, 26); x.textAlign = 'center';
+      x.fillText(versDate(j.d).toLocaleDateString('fr-FR', { weekday: 'short' }).replace('.', ''), bx + 50, 1765); x.textAlign = 'left';
+    });
+    x.fillStyle = '#6E685F'; x.font = F(500, 28); x.fillText('Planning de révision · qm-engineering.fr', 90, 1850);
+    const blob = await new Promise((ok) => c.toBlob(ok, 'image/png'));
+    const fichier = new File([blob], `ma-semaine-${t}.png`, { type: 'image/png' });
+    if (navigator.canShare?.({ files: [fichier] })) {
+      try { await navigator.share({ files: [fichier], title: 'Ma semaine de révision' }); return; } catch (e) { if (e?.name === 'AbortError') return; }
+    }
+    telecharger(blob, fichier.name);
+    toast('Image de ta semaine téléchargée : partage-la en story.');
   }
 
   function brancherGraphique() {
@@ -771,12 +1037,20 @@
     const c = id ? chapitre(id) : null;
     const choix = c?.matiereId || matiereId || E.matieres[0].id;
     const t = auj();
+    // Chapitres « à venir » (programme collé) de la matière : on les coche au lieu de les retaper.
+    const listeProgramme = (mid) => {
+      const l = E.chapitres.filter((x) => x.matiereId === mid && !x.appris);
+      return l.length ? `<fieldset class="programme"><legend>Dans ton programme <small>Coche ce qui a été vu en cours.</small></legend>${l.map((x) => `<label class="case"><input type="checkbox" name="vus" value="${x.id}"> ${esc(x.titre)}</label>`).join('')}</fieldset>` : '';
+    };
+    const aVenir = c && !c.appris;
     const corps = `
       <label class="champ">Matière<select name="matiere">${E.matieres.map((m) => `<option value="${m.id}" ${m.id === choix ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>
       ${c ? `<label class="champ">Titre du chapitre<input name="titre" required maxlength="120" value="${esc(c.titre)}"></label>`
-        : '<label class="champ">Titre du chapitre<small>Plusieurs chapitres d\'un coup : un par ligne.</small><textarea name="titre" required maxlength="2000" placeholder="Ex. : Les fonctions exponentielles"></textarea></label>'}
-      <label class="champ">Appris le<input type="date" name="appris" value="${c?.appris || t}" max="${t}" required></label>
-      ${c ? `<p class="aide">${c.historique.length ? `${pluriel(c.historique.length, 'révision faite')}. ` : ''}${c.prochaine ? `Prochaine révision ${quand(c.prochaine)}.` : 'Aucune révision programmée.'}</p>` : `<p class="aide">Première révision le lendemain de la date indiquée, puis à J+${E.reglages.intervalles.slice(1).join(', J+')}.</p>`}
+        : `<div id="programme">${listeProgramme(choix)}</div><label class="champ">Nouveau chapitre<small>Plusieurs chapitres d'un coup : un par ligne.</small><textarea name="titre" maxlength="2000" placeholder="Ex. : Les fonctions exponentielles"></textarea></label>`}
+      <label class="champ">${aVenir ? 'Vu en cours le<small>Laisse vide tant que le chapitre n\'a pas été vu : il attend dans ton programme.</small>' : 'Appris le'}<input type="date" name="appris" value="${c ? (c.appris || '') : t}" max="${t}" ${aVenir ? '' : 'required'}></label>
+      ${c ? `<label class="champ">Mots-clés<small>Les notions à retrouver de mémoire, séparées par des virgules. La session guidée compare ta feuille blanche à cette liste.</small><textarea name="motsCles" maxlength="1000" rows="2" placeholder="Ex. : enzyme, énergie d'activation, Michaelis-Menten">${esc(c.motsCles || '')}</textarea></label>` : ''}
+      ${c ? `<p class="aide">${aVenir ? 'Pas encore vu en cours : aucune révision programmée.' : `${c.historique.length ? `${pluriel(c.historique.length, 'révision faite')}. ` : ''}${c.prochaine ? `Prochaine révision ${quand(c.prochaine)}.` : 'Aucune révision programmée.'}${R.forceSouvenir(E, c, t) !== null ? ` Souvenir estimé aujourd'hui&nbsp;: ${R.forceSouvenir(E, c, t)}&nbsp;% (modèle simple&nbsp;: 90&nbsp;% le jour prévu de la révision).` : ''}`}</p>`
+        : `<p class="aide">Première révision le lendemain de la date indiquée, puis à J+${E.reglages.intervalles.slice(1).join(', J+')}.</p>`}
       <p class="erreur" role="alert"></p>`;
     const pied = c
       ? `<button class="btn primaire" value="ok">Enregistrer</button>${c.etape > 0 || c.historique.length ? '<button class="btn" value="recommencer">Recommencer à zéro</button>' : ''}<button class="btn danger gauche" value="supprimer">Supprimer</button>`
@@ -788,22 +1062,83 @@
         sauver(); rendre(); toast(`« ${c.titre} » supprimé.`);
         return;
       }
-      const titres = String(f.get('titre') || '').split('\n').map((s) => s.trim()).filter(Boolean);
-      const appris = f.get('appris');
-      if (!titres.length) return 'Indique le titre du chapitre.';
-      if (!appris || appris > t) return 'La date ne peut pas être dans le futur.';
+      const titres = String(f.get('titre') || '').split('\n').map((x) => x.trim()).filter(Boolean);
+      const appris = f.get('appris') || null;
+      if (appris && appris > t) return 'La date ne peut pas être dans le futur.';
       if (c) {
+        if (!titres.length) return 'Indique le titre du chapitre.';
+        if (!appris && c.appris && c.historique.length) return 'Indique la date à laquelle le chapitre a été appris.';
         const changeDate = c.appris !== appris;
-        c.titre = titres.join(' '); c.matiereId = f.get('matiere'); c.appris = appris;
-        if (action === 'recommencer') { c.historique = []; c.finaleFaite = false; planifier(c, t, 0); c.prochaine = ajout(t, E.reglages.intervalles[0]); }
-        else if (changeDate && !c.historique.length) { planifier(c, appris, 0); if (c.prochaine < t) c.prochaine = t; }
+        c.titre = titres.join(' '); c.matiereId = f.get('matiere'); c.motsCles = String(f.get('motsCles') || '').trim();
+        if (!appris) { Object.assign(c, { appris: null, prochaine: null, etape: 0, finale: false, finaleFaite: false, historique: [] }); }
+        else if (!c.appris) R.marquerVu(E, c, appris, t);
+        else {
+          c.appris = appris;
+          if (action === 'recommencer') { c.historique = []; c.finaleFaite = false; planifier(c, t, 0); c.prochaine = ajout(t, E.reglages.intervalles[0]); }
+          else if (changeDate && !c.historique.length) { planifier(c, appris, 0); if (c.prochaine < t) c.prochaine = t; }
+        }
         sauver(); rendre(); toast('Chapitre enregistré.');
         return;
       }
+      const vus = f.getAll('vus').map(chapitre).filter(Boolean);
+      if (!titres.length && !vus.length) return 'Coche un chapitre du programme ou indique un titre.';
+      if (!appris) return 'Indique la date à laquelle tu as vu ce chapitre.';
+      vus.forEach((x) => R.marquerVu(E, x, appris, t));
       const ajoutes = titres.map((ti) => { const ch = nouveauChapitre(f.get('matiere'), ti.slice(0, 120), appris); if (ch.prochaine && ch.prochaine < t) ch.prochaine = t; return ch; });
+      const tous = [...vus, ...ajoutes];
       sauver(); rendre();
-      toast(ajoutes.length > 1 ? `${ajoutes.length} chapitres ajoutés.` : `Ajouté. Première révision ${quand(ajoutes[0].prochaine)}.`);
+      toast(tous.length > 1 ? `${tous.length} chapitres ajoutés au planning.` : `Ajouté. Première révision ${quand(tous[0].prochaine)}.`);
     });
+    if (!c) modale().querySelector('select[name=matiere]').addEventListener('change', (e) => { $('#programme').innerHTML = listeProgramme(e.target.value); });
+  }
+
+  // Coller un programme : matières et chapitres « à venir », planifiés au fur et à mesure qu'ils sont vus.
+  function modaleImport() {
+    const t = auj();
+    const corps = `
+      <p>Colle le plan de ton cours, ton syllabus ou le sommaire du polycopié. <b>Une ligne = un chapitre.</b> Une ligne en MAJUSCULES, qui commence par «&nbsp;#&nbsp;» ou qui finit par «&nbsp;:&nbsp;» ouvre une nouvelle matière. Puces et numéros sont retirés.</p>
+      <label class="champ">Ton programme<textarea name="texte" rows="9" maxlength="20000" placeholder="BIOCHIMIE&#10;1. Les glucides&#10;2. Les lipides&#10;3. Enzymologie&#10;&#10;ANATOMIE&#10;- Ostéologie du membre supérieur"></textarea></label>
+      <label class="champ">Sans titre de matière, ranger dans<select name="defaut">${E.matieres.map((m) => `<option value="${m.id}">${esc(m.nom)}</option>`).join('')}<option value="">Une nouvelle matière « Programme »</option></select></label>
+      <fieldset class="champ" style="border:0;padding:0;margin:0"><legend style="padding:0;margin-bottom:6px">Ces chapitres sont</legend>
+        <label class="case"><input type="radio" name="statut" value="avenir" checked> Pas encore vus : ils attendent dans ton programme</label>
+        <label class="case"><input type="radio" name="statut" value="vus"> Déjà vus en cours, le <input type="date" name="appris" value="${t}" max="${t}" style="min-height:40px;width:auto"></label>
+      </fieldset>
+      <div class="apercu-import" aria-live="polite"><p class="aide">L'aperçu s'affiche ici.</p></div>
+      <p class="erreur" role="alert"></p>`;
+    const analyse = () => R.analyserProgramme(modale().querySelector('[name=texte]').value);
+    const cible = (g, defaut) => (g.matiere ? E.matieres.find((m) => R.memeMatiere(m.nom, g.matiere)) : matiere(defaut)) || null;
+    ouvrirModale('Coller un programme', corps, '<button class="btn primaire" value="ok">Importer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+      const groupes = analyse();
+      if (!groupes.length) return 'Aucun chapitre trouvé : colle au moins une ligne.';
+      const vus = f.get('statut') === 'vus';
+      const appris = vus ? f.get('appris') : null;
+      if (vus && (!appris || appris > t)) return 'Indique une date passée ou aujourd\'hui.';
+      let n = 0, nouvelles = 0;
+      for (const g of groupes) {
+        let m = cible(g, f.get('defaut'));
+        if (!m) {
+          const utilisees = new Set(E.matieres.map((x) => x.couleur));
+          m = { id: uid(), nom: g.matiere || 'Programme', couleur: (B.couleurs.find((x) => !utilisees.has(x.id)) || B.couleurs[E.matieres.length % B.couleurs.length]).id, examen: null };
+          E.matieres.push(m); nouvelles++;
+        }
+        for (const titre of g.chapitres) {
+          if (E.chapitres.some((x) => x.matiereId === m.id && x.titre.toLowerCase() === titre.toLowerCase())) continue;
+          const ch = nouveauChapitre(m.id, titre, appris);
+          if (ch.prochaine && ch.prochaine < t) ch.prochaine = t;
+          n++;
+        }
+      }
+      sauver(); rendre();
+      toast(`${pluriel(n, 'chapitre importé', 'chapitres importés')}${nouvelles ? `, ${pluriel(nouvelles, 'matière créée', 'matières créées')}` : ''}.`);
+    });
+    const zone = modale().querySelector('.apercu-import');
+    const maj = () => {
+      const g = analyse();
+      const defaut = modale().querySelector('[name=defaut]').value;
+      zone.innerHTML = g.length ? `<p class="surtitre">Aperçu</p><ul>${g.map((x) => { const m = cible(x, defaut); return `<li><b>${esc(m ? m.nom : (x.matiere || 'Programme'))}</b> ${m ? '' : '<span class="etiquette jaune">nouvelle</span>'} · ${pluriel(x.chapitres.length, 'chapitre')}<span>${esc(x.chapitres.slice(0, 4).join(' · '))}${x.chapitres.length > 4 ? ' …' : ''}</span></li>`; }).join('')}</ul>` : '<p class="aide">L\'aperçu s\'affiche ici.</p>';
+    };
+    modale().querySelector('[name=texte]').addEventListener('input', maj);
+    modale().querySelector('[name=defaut]').addEventListener('change', maj);
   }
 
   function modaleMatiere(id) {
@@ -854,7 +1189,12 @@
       <label class="champ">Prénom<input name="prenom" maxlength="40" value="${esc(E.prenom)}"></label>
       <label class="champ">Intervalles entre les révisions (jours)<small>Séparés par des virgules, croissants. Par défaut : ${B.intervalles.join(', ')}.</small><input name="intervalles" value="${r.intervalles.join(', ')}" inputmode="numeric"></label>
       <label class="champ">Révisions maximum par jour<small>Au-delà, les révisions sont décalées d'un ou deux jours.</small><input type="number" name="chargeMax" min="2" max="40" value="${r.chargeMax}"></label>
+      <label class="champ">Minuteur de la session guidée<select name="pomodoro">${[[25, 'Pomodoro : 25 min de travail, 5 min de pause'], [50, '50 min de travail, 5 min de pause'], [0, 'Sans minuteur (chronomètre)']].map(([v, l]) => `<option value="${v}" ${Number(r.pomodoro) === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <label class="case"><input type="checkbox" name="examensBlancs" ${r.examensBlancs !== false ? 'checked' : ''}> Examens blancs automatiques à J-10 et J-4 de chaque examen</label>
+      <label class="case"><input type="checkbox" name="lecture" ${r.lecture ? 'checked' : ''}> Lecture facilitée (texte plus grand et plus espacé, utile en cas de dyslexie)</label>
       <p class="erreur" role="alert"></p>
+      <div class="groupe"><h3>Rappels</h3><p class="aide">Ajoute tes séances de révision à l'agenda de ton téléphone : il te prévient chaque jour de révision, à l'heure choisie.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="agenda">Ajouter à mon agenda</button></div></div>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
@@ -871,6 +1211,10 @@
       const changeI = I.join() !== r.intervalles.join();
       E.prenom = String(f.get('prenom') || '').trim();
       r.intervalles = I; r.chargeMax = charge;
+      r.pomodoro = Number(f.get('pomodoro')) || 0;
+      r.examensBlancs = f.get('examensBlancs') === 'on';
+      r.lecture = f.get('lecture') === 'on';
+      document.body.classList.toggle('lecture', r.lecture);
       if (changeI) { E.chapitres.forEach((c) => { c.etape = Math.min(c.etape, I.length); }); replanifier(); }
       sauver(); rendre(); toast('Réglages enregistrés.');
     });
@@ -888,11 +1232,221 @@
   }
 
   function exporter() {
-    const blob = new Blob([JSON.stringify(E, null, 2)], { type: 'application/json' });
+    telecharger(new Blob([JSON.stringify(E, null, 2)], { type: 'application/json' }), `planning-revision-${auj()}.json`);
+  }
+
+  // ---------- Session guidée ----------
+  // Enchaîne les révisions du jour : méthode conseillée, minuteur Pomodoro, feuille blanche comparée aux
+  // mots-clés du chapitre, puis évaluation. Le temps de travail compte dans le bilan (E.focus, minutes par jour).
+  let S = null;
+  const mmss = (sec) => `${deux(Math.floor(sec / 60))}:${deux(sec % 60)}`;
+
+  function lancerSession() {
+    const ids = aReviser().map((c) => c.id);
+    if (!ids.length) return;
+    S = { ids, i: -1, faits: [], travail: 0, mode: 'travail', restant: (E.reglages.pomodoro || 0) * 60, tic: null, verrou: null, texte: '', comparaison: null, jour: auj() };
+    const d = modale();
+    d.classList.add('session');
+    rendreSession();
+    if (!d.open) d.showModal();
+    d.addEventListener('close', fermerSession, { once: true });
+  }
+
+  function demarrerMinuteur() {
+    clearInterval(S.tic);
+    S.tic = setInterval(() => {
+      if (!S) return;
+      if (S.mode === 'travail') S.travail++;
+      if (E.reglages.pomodoro) {
+        S.restant = Math.max(0, S.restant - 1);
+        if (S.restant === 0) {
+          sonnerie();
+          if (S.mode === 'travail') { S.mode = 'pause'; S.restant = 5 * 60; } else { S.mode = 'travail'; S.restant = E.reglages.pomodoro * 60; }
+          rendreSession();
+          return;
+        }
+      }
+      const el = $('#session-temps');
+      if (el) el.textContent = E.reglages.pomodoro ? mmss(S.restant) : mmss(S.travail);
+    }, 1000);
+    navigator.wakeLock?.request('screen').then((v) => { if (S) S.verrou = v; }).catch(() => {});
+  }
+
+  function sonnerie() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [0, 0.25, 0.5].forEach((t, i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.frequency.value = [660, 880, 990][i]; g.gain.value = 0.08;
+        o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + 0.18);
+      });
+    } catch { /* son indisponible */ }
+    navigator.vibrate?.([120, 80, 120]);
+  }
+
+  function fermerSession() {
+    const d = modale();
+    d.classList.remove('session');
+    if (!S) return;
+    clearInterval(S.tic);
+    S.verrou?.release?.().catch?.(() => {});
+    const minutes = Math.round(S.travail / 60);
+    if (minutes > 0) { E.focus[S.jour] = (E.focus[S.jour] || 0) + minutes; sauver(); }
+    S = null;
+    rendre();
+  }
+
+  function rendreSession() {
+    const d = modale();
+    const total = S.ids.length;
+    const chrono = E.reglages.pomodoro ? mmss(S.restant) : mmss(S.travail);
+    const tete = (titre) => `<div class="session-tete"><div><p class="surtitre">${titre}</p>${S.i >= 0 && S.i < total ? `<div class="session-points" aria-label="Chapitre ${S.i + 1} sur ${total}">${S.ids.map((_, k) => `<i class="${k < S.i ? 'fait' : k === S.i ? 'actif' : ''}"></i>`).join('')}</div>` : ''}</div>
+      ${S.i >= 0 && S.i < total ? `<div class="session-chrono ${S.mode}"><span>${S.mode === 'pause' ? 'Pause' : E.reglages.pomodoro ? 'Concentration' : 'Temps'}</span><b id="session-temps" role="timer">${chrono}</b></div>` : ''}
+      <button type="button" class="session-fermer" data-action="session-fermer" aria-label="Terminer la session">×</button></div>`;
+    let corps;
+    if (S.i < 0) {
+      const liste = S.ids.map(chapitre);
+      corps = `${tete('Session guidée')}
+        <div class="session-corps">
+          <h2>${pluriel(total, 'chapitre')} · environ ${dureeTexte(dureeSession(liste))}</h2>
+          <div class="session-conseils">
+            <p><b>Téléphone en mode avion</b> ou « Ne pas déranger », notifications coupées.</p>
+            <p><b>Une seule chose à la fois</b> : le chapitre affiché, rien d'autre.</p>
+            <p><b>Feuille blanche d'abord</b> : écris ce dont tu te souviens avant de rouvrir le cours.</p>
+          </div>
+          <label class="champ session-pomodoro">Minuteur<select data-action="session-pomodoro">${[[25, 'Pomodoro : 25 min de travail, 5 min de pause'], [50, '50 min de travail, 5 min de pause'], [0, 'Sans minuteur (chronomètre)']].map(([v, l]) => `<option value="${v}" ${Number(E.reglages.pomodoro) === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+          <button type="button" class="btn primaire grand" data-action="session-suivant">${ICONES.lecture}Commencer</button>
+          <ul class="session-liste" aria-label="Au programme">${liste.map((c) => `<li style="--c:${couleur(matiere(c.matiereId)?.couleur)}"><i></i><b>${esc(c.titre)}</b><span>${esc(matiere(c.matiereId)?.nom)} · ${esc(methodeDe(c).nom)}</span></li>`).join('')}</ul>
+        </div>`;
+    } else if (S.mode === 'pause') {
+      corps = `${tete('Pause')}
+        <div class="session-corps session-pause">
+          <svg width="120" height="120" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="46" fill="#D8E4F0"/><path d="M48 2 A46 46 0 0 1 94 48 H48Z" fill="#E8B93A"/></svg>
+          <h2>Pause : ${mmss(S.restant)}</h2>
+          <p>Lève-toi, bois un verre d'eau, regarde au loin. Pas d'écran : ton cerveau consolide pendant la pause.</p>
+          <button type="button" class="btn primaire grand" data-action="session-reprendre">Reprendre maintenant</button>
+        </div>`;
+    } else if (S.i >= total) {
+      const minutes = Math.round(S.travail / 60);
+      const n = S.faits.length;
+      const serieMaintenant = R.serie(E, auj());
+      corps = `${tete('Session terminée')}
+        <div class="session-corps session-fin">
+          <svg width="120" height="120" viewBox="0 0 96 96" aria-hidden="true"><rect x="0" y="40" width="56" height="56" fill="#1D4E89"/><circle cx="62" cy="34" r="34" fill="#F5B400"/><path d="M56 96 96 96 96 56Z" fill="#D9302A"/></svg>
+          <h2>${n ? 'Bien joué.' : 'Session terminée.'}</h2>
+          <div class="session-chiffres"><div><b>${n}</b><span>${n > 1 ? 'chapitres révisés' : 'chapitre révisé'}</span></div><div><b>${dureeTexte(Math.max(1, minutes))}</b><span>de concentration</span></div><div><b>${serieMaintenant}</b><span>${serieMaintenant > 1 ? 'jours de suite' : 'jour de suite'}</span></div></div>
+          <div class="rang"><button type="button" class="btn" data-action="partager">${ICONES.partage}Partager ma semaine</button><button type="button" class="btn primaire" data-action="session-fermer">Terminer</button></div>
+        </div>`;
+    } else {
+      const c = chapitre(S.ids[S.i]);
+      const m = matiere(c.matiereId);
+      const meth = methodeDe(c);
+      const cles = R.listeMotsCles(c.motsCles);
+      const cmp = S.comparaison;
+      corps = `${tete(`Chapitre ${S.i + 1} sur ${total}`)}
+        <div class="session-corps session-chapitre" style="--c:${couleur(m?.couleur)}">
+          <p class="carte-matiere">${esc(m?.nom)}${c.prochaine < auj() ? '<span class="etiquette rouge">En retard</span>' : ''}${c.finale ? '<span class="etiquette">Révision finale</span>' : ''}</p>
+          <h2>${esc(c.titre)}</h2>
+          <details class="session-methode"><summary>Méthode : <b>${esc(meth.nom)}</b> · ${esc(meth.duree)}</summary><p>${esc(meth.principe)}</p><ol>${meth.etapes.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></details>
+          <label class="champ feuille">Feuille blanche<small>Cours fermé : écris tout ce dont tu te souviens (plan, définitions, formules). Rien n'est envoyé ailleurs.</small><textarea id="feuille" rows="6" placeholder="Ce dont je me souviens…">${esc(S.texte)}</textarea></label>
+          ${cles.length ? `<button type="button" class="btn petit" data-action="session-comparer">Comparer avec mes ${cles.length} mots-clés</button>`
+            : `<label class="champ">Mots-clés du chapitre<small>Facultatif. Note les notions à retrouver (séparées par des virgules) : la prochaine fois, ta feuille blanche sera comparée à cette liste.</small><input id="session-cles" maxlength="1000" placeholder="Ex. : enzyme, site actif, Michaelis-Menten"></label>`}
+          ${cmp ? `<div class="comparaison"><p><b>${cmp.trouves.length}/${cles.length}</b> mots-clés retrouvés de mémoire.</p>${cmp.trouves.length ? `<p class="mots">${cmp.trouves.map((x) => `<span class="mot ok">${esc(x)}</span>`).join('')}</p>` : ''}${cmp.manques.length ? `<p class="mots">${cmp.manques.map((x) => `<span class="mot manque">${esc(x)}</span>`).join('')}</p><p class="aide">Rouvre le cours sur les mots en rouge : ce sont eux qui feront la différence le jour J.</p>` : ''}</div>` : ''}
+          <p class="session-question">Comment ça s'est passé ?${cmp?.suggestion ? ' <span>Suggestion d\'après tes mots-clés en surbrillance.</span>' : ''}</p>
+          <div class="carte-eval session-eval" role="group" aria-label="Comment s'est passée la révision de ${esc(c.titre)} ?">
+            ${['difficile', 'moyen', 'facile'].map((ev) => `<button type="button" class="ev ${ev} ${cmp?.suggestion === ev ? 'suggere' : ''}" data-action="session-evaluer" data-eval="${ev}">${{ difficile: 'Difficile', moyen: 'Moyen', facile: 'Facile' }[ev]}<small>${apercu(c, ev)}</small></button>`).join('')}
+          </div>
+          <button type="button" class="btn lien" data-action="session-passer">Passer ce chapitre</button>
+        </div>`;
+    }
+    d.innerHTML = `<div class="session-cadre">${corps}</div>`;
+    d.querySelector('[data-action="session-pomodoro"]')?.addEventListener('change', (e) => actionSession('session-pomodoro', e.target));
+    const zone = $('#feuille');
+    if (zone) zone.addEventListener('input', () => { S.texte = zone.value; });
+    const champCles = $('#session-cles');
+    if (champCles) champCles.addEventListener('change', () => { const c = chapitre(S.ids[S.i]); c.motsCles = champCles.value.trim(); sauver(); });
+  }
+
+  function actionSession(action, el) {
+    if (!S) return;
+    switch (action) {
+      case 'session-pomodoro': E.reglages.pomodoro = Number(el.value); S.restant = E.reglages.pomodoro * 60; sauver(); break;
+      case 'session-suivant': S.i = 0; S.mode = 'travail'; S.restant = (E.reglages.pomodoro || 0) * 60; demarrerMinuteur(); rendreSession(); break;
+      case 'session-reprendre': S.mode = 'travail'; S.restant = (E.reglages.pomodoro || 0) * 60; rendreSession(); break;
+      case 'session-comparer': { const c = chapitre(S.ids[S.i]); S.comparaison = R.comparerRappel(S.texte, c.motsCles); rendreSession(); break; }
+      case 'session-evaluer': {
+        const c = chapitre(S.ids[S.i]);
+        if (c) { appliquerEvaluation(c, el.dataset.eval); S.faits.push(c.id); sauver(); }
+        S.i++; S.texte = ''; S.comparaison = null; rendreSession(); modale().scrollTop = 0; break;
+      }
+      case 'session-passer': S.i++; S.texte = ''; S.comparaison = null; rendreSession(); modale().scrollTop = 0; break;
+      case 'session-fermer': modale().close(); break;
+      default: break;
+    }
+  }
+
+  // ---------- Rattrapage, jauge, examens blancs, agenda ----------
+  function modaleRattrapage() {
+    const t = auj();
+    const plan = R.planRattrapage(E, t);
+    if (!plan.affectations.length) return;
+    const lignes = plan.jours.map((j) => {
+      const noms = plan.affectations.filter((a) => a.date === j.date).map((a) => chapitre(a.id));
+      return `<div class="ligne"><i style="background:var(--jaune)"></i><div><b>${quand(j.date).replace(/^./, (x) => x.toUpperCase())} · ${pluriel(j.n, 'révision')} rattrapée${j.n > 1 ? 's' : ''}</b><span>${esc(noms.slice(0, 4).map((c) => c.titre).join(' · '))}${noms.length > 4 ? ' …' : ''}</span></div><span></span></div>`;
+    }).join('');
+    ouvrirModale('Plan de rattrapage', `
+      <p>Tes ${pluriel(plan.affectations.length, 'révision')} en retard sont réparties à partir d'aujourd'hui, sans dépasser <b>${E.reglages.chargeMax} révisions par jour</b> (en comptant celles déjà prévues). Les matières dont l'examen approche passent en premier, et rien ne tombe le jour d'un examen.</p>
+      <div class="jour-detail" style="padding:0;border:0;background:none">${lignes}</div>
+      <p class="aide">Tu pourras annuler juste après.</p>`,
+    '<button class="btn primaire" value="ok">Répartir</button><button class="btn" value="annuler">Annuler</button>', () => {
+      annulation = { chapitres: structuredClone(E.chapitres) };
+      R.appliquerRattrapage(E, plan);
+      sauver(); rendre();
+      toast(`Retards répartis sur ${pluriel(plan.jours.length, 'jour')}.`, { libelle: 'Annuler', faire: annuler });
+    });
+  }
+
+  function modaleJauge() {
+    const I = E.reglages.intervalles;
+    const n = R.seuilSolide(E);
+    ouvrirModale('Prêt pour le jour J', `
+      <p>Un chapitre est <b>solide</b> quand il a passé au moins ${n} étapes de révision (J+${I.slice(0, n).join(', J+')}) ou qu'il est maîtrisé.</p>
+      <p>La jauge foncée compte les chapitres solides aujourd'hui. La partie claire montre ce que donnera le planning le jour de l'examen <b>si tu fais chaque révision prévue</b>, avec la réponse « Moyen » à chaque fois. Le calcul rejoue jour par jour tout ton planning, avec la limite de ${E.reglages.chargeMax} révisions par jour.</p>
+      <p class="aide">C'est une projection de ton avancement, pas une note ni une probabilité de réussite. Un chapitre pas encore vu en cours ne peut pas être solide&nbsp;: ajoute vite ceux que tu as vus.</p>`,
+    '<button class="btn primaire" value="ok">Compris</button>');
+  }
+
+  function marquerBlanc(cle, etatBlanc) {
+    annulation = { blancs: { ...E.blancs } };
+    E.blancs[cle] = etatBlanc;
+    sauver(); rendre();
+    toast(etatBlanc === 'fait' ? 'Examen blanc noté. Avance la révision des chapitres qui ont coincé.' : 'Examen blanc passé.', { libelle: 'Annuler', faire: annuler });
+  }
+
+  function modaleAgenda() {
+    const t = auj();
+    const nb = new Set(E.chapitres.filter((c) => c.prochaine && c.prochaine <= ajout(t, 27)).map((c) => (c.prochaine < t ? t : c.prochaine))).size;
+    ouvrirModale('Ajouter à mon agenda', `
+      <p>Un fichier agenda (.ics) avec <b>une séance par jour de révision</b> sur les 4 prochaines semaines (${pluriel(nb, 'jour')}), la liste des chapitres dans la description et <b>un rappel à l'heure choisie</b>, plus tes dates d'examen.</p>
+      <label class="champ">Heure de la séance et du rappel<input type="time" name="heure" value="${esc(E.reglages.heureAgenda || '18:00')}" required></label>
+      <p class="aide">Sur iPhone, ouvre le fichier puis « Ajouter tout ». Sur Android ou ordinateur, importe-le dans Google Agenda (Paramètres &gt; Importer). C'est une photo de ton planning à cette date&nbsp;: refais l'export quand il change beaucoup.</p>
+      <p class="erreur" role="alert"></p>`,
+    '<button class="btn primaire" value="ok">Télécharger le fichier</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+      const heure = String(f.get('heure') || '');
+      if (!/^\d{2}:\d{2}$/.test(heure)) return 'Choisis une heure.';
+      E.reglages.heureAgenda = heure; sauver();
+      const maintenant = new Date();
+      const horodatage = `${maintenant.getUTCFullYear()}${deux(maintenant.getUTCMonth() + 1)}${deux(maintenant.getUTCDate())}T${deux(maintenant.getUTCHours())}${deux(maintenant.getUTCMinutes())}00Z`;
+      telecharger(new Blob([R.exportIcs(E, t, { heure, horodatage })], { type: 'text/calendar;charset=utf-8' }), `revisions-${t}.ics`);
+      toast('Fichier agenda téléchargé.');
+    });
+  }
+
+  function telecharger(blob, nom) {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `planning-revision-${auj()}.json`;
-    a.click();
+    a.download = nom;
+    document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
 
@@ -906,15 +1460,16 @@
     const premiere = I[0] === 1 ? 'le lendemain' : `${I[0]} jours après`;
     const suite = I.length > 1 ? `, puis de plus en plus espacées&nbsp;: ${joursListe(I.slice(1))} jours après la précédente` : '';
     const blocs = [
-      ['rose', 'Range tes cours', `Une matière par cours, avec sa date d'examen si tu la connais. Dès qu'un chapitre est vu en classe, ajoute-le avec <b>J'ai appris un chapitre</b>.`],
-      ['beurre', 'Révise ce qui est proposé', `L'onglet <b>Aujourd'hui</b> liste les chapitres à revoir, avec une méthode conseillée. Première révision ${premiere}${suite}. C'est la répétition espacée&nbsp;: tu revois un cours juste avant de l'oublier.`],
+      ['rose', 'Range tes cours', `Une matière par cours, avec sa date d'examen si tu la connais. Tu peux <b>coller tout ton programme</b>&nbsp;: les chapitres attendent, et tu les coches avec <b>J'ai appris un chapitre</b> dès qu'ils sont vus en classe.`],
+      ['beurre', 'Révise ce qui est proposé', `L'onglet <b>Aujourd'hui</b> liste les chapitres à revoir. Première révision ${premiere}${suite}. <b>Lancer ma session</b> les enchaîne avec un minuteur, la méthode conseillée et une feuille blanche comparée aux mots-clés du chapitre.`],
       ['ciel', 'Dis comment ça s\'est passé', `<b>Difficile</b>&nbsp;: le chapitre revient plus tôt. <b>Moyen</b>&nbsp;: il passe à l'étape suivante. <b>Facile</b>&nbsp;: il saute une étape. Chaque bouton affiche la date qui en découle, et tu peux annuler juste après. Au bout de ${I.length} étapes, le chapitre est maîtrisé.`],
-      ['sable', 'L\'examen fixe la limite', `Aucune révision le jour de l'examen ni après, et chaque chapitre maîtrisé a une révision finale deux jours avant. Au-delà de ${E.reglages.chargeMax} révisions par jour, les suivantes sont décalées d'un ou deux jours. Une révision manquée reste dans Aujourd'hui, en retard, jusqu'à ce que tu la fasses.`],
+      ['sable', 'L\'examen fixe la limite', `Aucune révision le jour de l'examen ni après, une révision finale deux jours avant pour chaque chapitre maîtrisé${E.reglages.examensBlancs !== false ? ', et un examen blanc à J-10 et J-4' : ''}. La jauge <b>Prêt pour le jour J</b> montre combien de chapitres seront solides si tu suis le planning.`],
+      ['rose', 'Un jour sans&nbsp;? Pas de panique', `Au-delà de ${E.reglages.chargeMax} révisions par jour, les suivantes sont décalées d'un ou deux jours. Une révision manquée reste dans Aujourd'hui, en retard, et le <b>plan de rattrapage</b> répartit les retards sur les jours suivants en un geste.`],
     ];
     const corps = `
       <p>Le planning décide pour toi <b>quand</b> revoir chaque chapitre. Ton rôle&nbsp;: ajouter ce que tu apprends, réviser ce qui est proposé, puis dire comment ça s'est passé.</p>
       <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
-      <p class="aide"><b>Planning</b> montre les 4 prochaines semaines, <b>Bilan</b> ta régularité. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
+      <p class="aide"><b>Planning</b> montre les 4 prochaines semaines et s'ajoute à ton agenda, <b>Bilan</b> ta régularité et ta semaine à partager. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton&nbsp;<b>?</b> en haut de l'écran et dans les réglages.</p>`;
     const premierChapitre = auto && E.matieres.length && !E.chapitres.length;
     const pied = premierChapitre
       ? '<button class="btn primaire" value="chapitre">Ajouter mon premier chapitre</button><button class="btn" value="ok">Fermer</button>'
@@ -1022,8 +1577,12 @@
 
   function annuler() {
     if (!annulation) return;
-    const i = E.chapitres.findIndex((c) => c.id === annulation.id);
-    if (i >= 0) E.chapitres[i] = annulation.avant;
+    if (annulation.chapitres) E.chapitres = annulation.chapitres;
+    else if (annulation.blancs) E.blancs = annulation.blancs;
+    else {
+      const i = E.chapitres.findIndex((c) => c.id === annulation.id);
+      if (i >= 0) E.chapitres[i] = annulation.avant;
+    }
     annulation = null;
     sauver(); rendre();
   }
@@ -1034,7 +1593,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(E?.demoProfil || 'terminale', E?.demoProfil === demoDemandee.profil ? demoDemandee.prenom : ''); E.tutorielVu = true; cache(); lirePack(); rendre(); } break;
       case 'deconnexion': modale().open && modale().close(); deconnecter(); break;
       case 'filiere': {
         accueil.filiere = id;
@@ -1064,13 +1623,21 @@
       case 'evaluer': evaluer(id, el.dataset.eval, el); break;
       case 'reporter': { const c = chapitre(id); annulation = { id, avant: structuredClone(c) }; c.prochaine = ajout(auj(), 1); sauver(); rendre(); toast(`« ${c.titre} » reporté à demain.`, { libelle: 'Annuler', faire: annuler }); break; }
       case 'avancer': { const c = chapitre(id); annulation = { id, avant: structuredClone(c) }; c.prochaine = auj(); sauver(); rendre(); toast(`« ${c.titre} » ajouté aux révisions du jour.`, { libelle: 'Annuler', faire: annuler }); break; }
+      case 'session': lancerSession(); break;
+      case 'session-suivant': case 'session-reprendre': case 'session-comparer': case 'session-evaluer': case 'session-passer': case 'session-fermer': actionSession(action, el); break;
+      case 'rattrapage': modaleRattrapage(); break;
+      case 'jauge-info': modaleJauge(); break;
+      case 'blanc': marquerBlanc(el.dataset.cle, el.dataset.etat); break;
+      case 'agenda': modaleAgenda(); break;
+      case 'importer': modaleImport(); break;
+      case 'partager': partagerSemaine(); break;
       case 'jour': jourChoisi = el.dataset.jour; rendre(); $('.jour-detail')?.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); break;
       default: break;
     }
   });
 
   // Fermer la modale en cliquant sur le fond.
-  document.addEventListener('click', (e) => { if (e.target === modale()) modale().close(); });
+  document.addEventListener('click', (e) => { if (e.target === modale() && !S) modale().close(); });
 
   window.addEventListener('online', () => { if (etatSync === 'horsligne' || etatSync === 'attente') envoyer(); });
   document.addEventListener('visibilitychange', () => {
@@ -1084,8 +1651,12 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    const params = new URLSearchParams(location.search);
+    if (params.has('demo')) {
+      demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40) };
+      history.replaceState(null, '', location.pathname + location.hash);
+      if (!code) return ouvrirDemo(false);
+    }
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;

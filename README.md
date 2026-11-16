@@ -139,7 +139,15 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   ajustés selon la réponse « difficile / moyen / facile », bornés par la date d'examen, révision finale
   2 jours avant). Base intégrée dans `donnees.js` : 12 formations avec leurs matières, 12 méthodes de
   révision. Installable sur téléphone (manifeste + service worker). Mode démo sans code (données
-  d'exemple, locales).
+  d'exemple, locales) : `?demo` (Terminale) ou `?demo=pass` (première année de santé), `&prenom=…` pour
+  une démo personnalisée. Depuis le 16/11/2026, règles métier pures dans `regles.js` (tests
+  `outils/templates/revision.test.mjs`) : jauge « Prêt pour le jour J » (projection du planning jusqu'à
+  l'examen), plan de rattrapage des retards, session guidée (minuteur Pomodoro, feuille blanche comparée
+  aux mots-clés, temps de concentration), import d'un programme par copier-coller (chapitres « à venir »),
+  force du souvenir estimée, examens blancs à J-10 et J-4, export agenda `.ics` avec rappels, carte de
+  régularité et paliers, image de la semaine à partager, lecture facilitée. **Pack Étudiant** : lecture
+  seule des templates Notes et moyennes, Planner horaire et Habitudes ouverts sur le même appareil
+  (priorités selon les coefficients, créneau libre du jour, sommeil et réussite).
 - Première vague (même socle : clé de licence, démo, synchronisation, hors ligne ; règles métier en
   fonctions pures testées dans `outils/templates/<slug>.test.mjs`) :
   - `templates/compte-rendu/` (CRA) : **compte rendu et plan d'actions**, saisie d'action en une ligne,

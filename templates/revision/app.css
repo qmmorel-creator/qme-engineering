@@ -413,3 +413,169 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* ===================== Évolutions du 16/11/2026 =====================
+   Jauge du jour J, rattrapage, examens blancs, session guidée, import de programme,
+   régularité, Pack Étudiant, lecture facilitée. */
+.btn.grand{min-height:56px;font-size:17px;padding:0 26px}
+
+/* Jauge « Prêt pour le jour J » */
+.jauge{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.35)}
+.jauge p{font-size:14px;font-weight:500;line-height:1.35}
+.jauge p b{font-size:20px;font-weight:800}
+.jauge p span{opacity:.85}
+.jauge-barre{display:flex;height:12px;border-radius:999px;background:rgba(255,255,255,.28);overflow:hidden}
+.jauge-barre i{display:block;background:#fff}
+.jauge-barre i.projete{background:rgba(255,255,255,.6)}
+.jauge-info{align-self:flex-start;background:none;border:0;padding:4px 0;color:inherit;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.jauge.compacte{padding:12px 16px;border-top:0;border-bottom:1px solid var(--trait);background:var(--sable)}
+.jauge.compacte .jauge-barre{background:var(--trait)}
+.jauge.compacte .jauge-barre i{background:var(--c,var(--bleu))}
+.jauge.compacte .jauge-barre i.projete{background:var(--c,var(--bleu));opacity:.35}
+.jauge.compacte p{color:var(--texte-2)}
+.jauge.compacte p b{color:var(--encre);font-size:17px}
+
+/* Rattrapage et créneau libre */
+.alerte{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:24px;padding:16px 18px;border:1px solid var(--trait);background:var(--rose);color:var(--rose-texte)}
+.alerte div{flex:1 1 360px;font-size:15px}
+.alerte b{color:var(--encre)}
+.creneau{display:flex;align-items:center;gap:10px;margin-top:16px;padding:10px 14px;background:var(--ciel);color:var(--ciel-texte);border-radius:12px;font-size:15px;width:fit-content;max-width:100%}
+.creneau b{color:var(--encre)}
+.creneau svg{flex:none}
+
+/* Examens blancs */
+.carte-texte{font-size:14px;color:var(--texte-2);line-height:1.45}
+.carte-eval.deux{grid-template-columns:repeat(2,110px)}
+.carte.blanc{background:linear-gradient(90deg,var(--surface),var(--beurre))}
+.cellule .exam.blanc{background:var(--beurre);color:var(--beurre-texte)}
+
+/* Programme : chapitres à venir et import */
+.chapitre.a-venir b{color:var(--discret);font-weight:500}
+.chapitre .etiquette{grid-column:auto;font-size:10px;color:var(--papier)}
+.programme{border:1px solid var(--trait);border-radius:12px;padding:8px 12px 10px;margin:0;max-height:220px;overflow:auto;background:var(--surface)}
+.programme legend{font-size:14px;font-weight:700;padding:0 4px}
+.programme legend small{font-weight:400;color:var(--discret);margin-left:4px}
+.programme .case{min-height:40px;font-size:15px}
+.apercu-import ul{display:flex;flex-direction:column;gap:6px}
+.apercu-import li{padding:8px 12px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);font-size:14px}
+.apercu-import li span:not(.etiquette){display:block;color:var(--discret);font-size:13px;margin-top:2px}
+.apercu-import .surtitre{margin-bottom:6px}
+
+/* Session guidée (fenêtre plein écran) */
+.modale.session{max-width:none;width:100%;height:100%;max-height:none;margin:0;border:0;border-radius:0;background:var(--papier)}
+.session-cadre{min-height:100%;display:flex;flex-direction:column}
+.session-tete{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:16px;padding:14px max(16px,4vw);background:var(--ciel);border-bottom:1px solid var(--trait)}
+.session-tete>div:first-child{flex:1;min-width:0}
+.session-tete .surtitre{margin:0 0 6px;color:var(--ciel-texte)}
+.session-points{display:flex;gap:4px;max-width:420px}
+.session-points i{flex:1 1 0;min-width:4px;max-width:28px;height:6px;border-radius:999px;background:rgba(36,34,31,.15)}
+.session-points i.fait{background:var(--bleu)}
+.session-points i.actif{background:var(--encre)}
+.session-chrono{display:flex;flex-direction:column;align-items:flex-end;line-height:1}
+.session-chrono span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ciel-texte)}
+.session-chrono b{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.session-chrono.pause b{color:var(--rouge)}
+.session-fermer{width:44px;height:44px;border-radius:12px;border:1px solid rgba(36,34,31,.25);background:none;font-size:26px;line-height:1;flex:none}
+.session-fermer:hover{background:var(--surface)}
+.session-corps{width:100%;max-width:760px;margin:0 auto;padding:28px 16px 48px;display:flex;flex-direction:column;gap:18px}
+.session-corps h2{font-size:clamp(28px,4.4vw,44px)}
+.session-liste{display:flex;flex-direction:column;border:1px solid var(--trait);border-radius:16px;background:var(--surface);overflow:hidden}
+.session-liste li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:2px 12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--trait)}
+.session-liste li:last-child{border-bottom:0}
+.session-liste i{width:12px;height:12px;border-radius:3px;background:var(--c);grid-row:span 2}
+.session-liste span{font-size:13px;color:var(--discret)}
+.session-conseils{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.session-conseils p{padding:12px 14px;border-radius:14px;background:var(--beurre);color:var(--beurre-texte);font-size:14px;line-height:1.4}
+.session-conseils b{display:block;color:var(--encre);font-size:15px;margin-bottom:2px}
+.session-pomodoro select{max-width:420px}
+.session-corps>.btn.grand{align-self:flex-start}
+.session-chapitre{position:relative}
+.session-chapitre::before{content:"";position:absolute;left:16px;right:16px;top:0;height:6px;border-radius:0 0 6px 6px;background:var(--c)}
+.session-methode{border:1px solid var(--trait);border-radius:14px;background:var(--surface);padding:12px 14px}
+.session-methode summary{cursor:pointer;font-size:15px}
+.session-methode p{margin:10px 0 6px;color:var(--texte-2);font-size:15px}
+.session-methode ol{list-style:decimal;padding-left:20px;font-size:15px;display:flex;flex-direction:column;gap:4px}
+.feuille textarea{min-height:170px;font-size:17px;line-height:1.55;background:var(--surface)}
+.comparaison{padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--trait);display:flex;flex-direction:column;gap:10px}
+.comparaison p b{font-size:20px}
+.mots{display:flex;flex-wrap:wrap;gap:6px}
+.mot{padding:4px 10px;border-radius:999px;font-size:14px;font-weight:600}
+.mot.ok{background:var(--ciel);color:var(--ciel-texte)}
+.mot.manque{background:var(--rose);color:var(--rose-texte)}
+.session-question{font-weight:700;font-size:17px}
+.session-question span{font-weight:400;font-size:14px;color:var(--discret)}
+.session-eval{border:1px solid var(--trait);border-radius:16px;overflow:hidden;grid-template-columns:repeat(3,1fr)}
+.session-eval .ev{min-height:78px;font-size:17px}
+.ev.suggere{box-shadow:inset 0 0 0 3px var(--encre);position:relative}
+.ev.suggere::after{content:"Suggéré";position:absolute;top:6px;right:8px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+.session-pause,.session-fin{align-items:center;text-align:center;padding-top:56px}
+.session-pause p{max-width:440px;color:var(--texte-2);font-size:17px}
+.session-chiffres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
+.session-chiffres div{padding:16px 10px;border:1px solid var(--trait);border-radius:16px;background:var(--surface)}
+.session-chiffres b{display:block;font-size:34px;font-weight:800;line-height:1.1}
+.session-chiffres span{font-size:13px;color:var(--discret)}
+.session-fin .rang{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+
+/* Régularité */
+.regularite{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}
+.carte-regu{border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:16px;overflow-x:auto}
+.grille-regu{display:grid;grid-template-columns:repeat(var(--n,20),minmax(12px,1fr));gap:4px;max-width:calc(var(--n,20) * 40px)}
+.vue:focus{outline:none}
+.grille-regu .col{display:grid;grid-template-rows:repeat(7,1fr);gap:4px}
+.grille-regu i,.echelle i{display:block;aspect-ratio:1;border-radius:4px;background:var(--sable)}
+.grille-regu i.futur{background:none}
+.n0{background:var(--sable)!important}
+.n1{background:var(--ciel)!important}
+.n2{background:#9DB8D6!important}
+.n3{background:#5E86B2!important}
+.n4{background:var(--bleu)!important}
+.carte-regu figcaption{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:12px;color:var(--discret)}
+.echelle{display:flex;align-items:center;gap:4px}
+.echelle i{width:12px}
+.paliers{border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.palier{width:54px;height:54px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--sable);color:var(--discret);line-height:1}
+.palier b{font-size:17px}
+.palier small{font-size:9px;text-transform:uppercase;letter-spacing:.06em}
+.palier.atteint{background:var(--jaune);color:var(--encre)}
+.palier.prochain{outline:2px dashed var(--jaune);outline-offset:2px}
+.paliers p{flex-basis:100%;font-size:14px;color:var(--texte-2);margin-top:4px}
+
+/* Pack Étudiant */
+.pack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pack-carte{border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pack-tete{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px}
+.pack-tete h3{font-size:18px}
+.pack-carte p{font-size:14px;color:var(--texte-2)}
+.pack-carte p b{color:var(--encre)}
+.pack-carte .tableau{font-size:13px}
+.pack-carte .btn{align-self:flex-start}
+.pack-carte .defile,.pack-carte table{width:100%}
+.comparaison-sommeil{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.comparaison-sommeil div{padding:12px;border-radius:12px;background:var(--sable);display:flex;flex-direction:column;gap:2px}
+.comparaison-sommeil div:last-child{background:var(--ciel)}
+.comparaison-sommeil span{font-size:12px;font-weight:600;color:var(--texte-2)}
+.comparaison-sommeil b{font-size:30px;font-weight:800;line-height:1.1}
+.comparaison-sommeil small{font-size:12px;color:var(--discret)}
+
+/* Lecture facilitée : plus grand, plus espacé, sans justification ni majuscules espacées serrées */
+body.lecture{font-size:18px;line-height:1.7;letter-spacing:.02em;word-spacing:.12em}
+body.lecture .carte h3,body.lecture .chapitre b,body.lecture .ligne b{letter-spacing:.01em}
+body.lecture p,body.lecture li,body.lecture span{line-height:1.6}
+body.lecture .surtitre,body.lecture .carte-matiere,body.lecture .etiquette{letter-spacing:.06em}
+body.lecture .feuille textarea{font-size:19px;line-height:1.8}
+
+@media (max-width:1020px){
+  .regularite{grid-template-columns:1fr}
+  .pack{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .carte-eval.deux{grid-template-columns:1fr 1fr}
+  .session-conseils{grid-template-columns:1fr}
+  .session-chrono b{font-size:24px}
+  .session-tete{padding:10px 12px;gap:10px}
+  .session-corps{padding:20px 14px 40px}
+  .session-chiffres b{font-size:26px}
+  .grille-regu{gap:3px}
+  .grille-regu .col{gap:3px}
+  .modale.session{border-radius:0}
+}
