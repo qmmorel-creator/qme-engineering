@@ -158,9 +158,9 @@ déjà).
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
-| T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
+| T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
