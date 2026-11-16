@@ -17,7 +17,7 @@ Avant publication : Quentin active la clé de licence (Content → Insert → Li
 | T24 | visa | VSA | zJsheWedmR4QFEZA1e15mA== | /l/circuit-visa | oui | fait |
 | T53 | inscriptions | ASC | 5XuVWuitD2ZzpVkwQFHlVw== | /l/inscriptions-associatives | oui | fait |
 | T67 | travaux | TRV | leplToyYwMtXCmdXZa9T4Q== | /l/pilote-travaux | oui | fait |
-| T12 | dettes | DTT | à créer (limite : après le 14/11 13:25 PST) | | | |
+| T12 | dettes | DTT | brouillon créé le 16/11/2026 (voir lot du 16/11), `-5-cTF1xpPORIx5P_zGn7w==`, clé à activer | | | |
 | T68 | secret-santa | SNT | brouillon créé le 15/11/2026 (prix libre 0 €), `fCyii9wIVdIfFc1YQdbZzQ==`, clé de licence à activer | | | |
 
 T24 visa : 2 couvertures (doublon à supprimer dans l'éditeur Gumroad).
@@ -44,3 +44,32 @@ inséré par Quentin dans l'éditeur Gumroad).
 Écarts avec les `gumroad.json` (limites Gumroad : tag de 2 à 20 caractères, bouton de 26 caractères au plus) :
 tags `evaluation-risques` (T80), `developpement-perso` (T22), `invest-locatif` (T95) ; bouton du reçu de T47
 « Ouvrir mon planning ». T12 et T68 restent à créer.
+
+## Lot du 16/11/2026, 08 h 45 UTC (demande de Quentin : « les 10 prochains produits, pour que je mette les clés »)
+
+Brouillons **non publiés**, fiches remplies (permalien, résumé, catégorie, tags, détails, reçu, bouton, lien
+vers `/connexion/`, couverture). Identifiants **non ajoutés** à `PRODUITS` (`netlify/lib/templates-acces.mjs`) :
+l'ajout ferait passer le template « en vente » sur le site avant la publication. À faire pour chacun : activer
+la clé de licence (Content → Insert → License key), publier, puis appliquer `reference.md` § « À chaque
+publication Gumroad » (dont l'ajout de `gumroad: '<id>'` dans `PRODUITS`).
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| TMP | suivi-temps | u-ySqLkS21aA1mhfeG9EFQ== | /l/suivi-temps-rentabilite | 19 € | clé à activer |
+| DTT | dettes | -5-cTF1xpPORIx5P_zGn7w== | /l/remboursement-dettes | 12 € | clé à activer |
+| TDV | temps-de-vie | sz94ceBG8cN4BLBpImKYxQ== | /l/temps-de-vie | 19 € | clé à activer |
+| PTM | patrimoine | A8JdI_BV8_BHRmFHWK4r3A== | /l/inventaire-valorise | 19 € | clé à activer |
+| EPG | epargne | sEO7sJxS14azsCZ761I-yQ== | /l/objectif-epargne | 12 € | clé à activer |
+| DCS | papiers | uJxPWSYtiXp3nixYfudDoQ== | /l/papiers-du-foyer | 15 € | clé à activer |
+| CPT | emprunt | -yAS1RKHFCUmacHWd-lOAw== | /l/capacite-emprunt-comparateur-prets | 15 € | clé à activer |
+
+Prix identiques dans IDEES.md, la fiche et `outils/packs/donnees.mjs` (les pages catalogue affichent « Mise en
+vente prochaine », sans prix). Écarts avec les `gumroad.json` : tag `finances-perso` au lieu de
+`finances-personnelles` (TDV, EPG), `amortissement` au lieu de `tableau-amortissement` (CPT) ; catégorie
+« Gigs & Side Projects » pour TMP et « Real Estate » pour CPT (plus proches que les fiches). Gumroad accentue
+certains tags (« rentabilité », « dépenses », « économies », « épargne »).
+
+**Limite Gumroad atteinte** au 8e : création refusée à 08 h 45 UTC, prochaine possible après le 16/11 à
+02:41 PST (10 h 41 UTC, 11 h 41 à Paris). Restent à créer, dans l'ordre : VYG voyage (complète le Pack
+Voyage), puis VTR leasing et CAR voiture (complètent le Pack Ma voiture). RBS remboursements-sante sauté
+(point **bloquant** de `QUESTIONS.md` : données de santé).
