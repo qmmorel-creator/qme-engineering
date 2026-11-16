@@ -13,8 +13,7 @@ n'est pas lu est « non relevé ».
   BIC 21,2 % + CFP + versement libératoire ; 1 $ ≈ 0,86 €, hypothèse). Montants Gumroad en cents de dollar.
 - Point d'étape du 15/01/2027 : moins de 50 vues Gumroad par semaine, tous canaux → le temps de Quentin
   bascule vers la prospection B2B directe.
-- Test TikTok (17/11 → 28/12) : on continue si au moins 5 ventes attribuables ou des clics qui doublent
-  toutes les 2 semaines ; on arrête si moins de 10 clics vers Gumroad en tout.
+- TikTok abandonné le 16/11/2026 (décision de Quentin) au profit de YouTube Shorts.
 
 ## Étapes
 
@@ -26,12 +25,13 @@ n'est pas lu est « non relevé ».
    `/stats/hits?limit=20` et `/stats/toprefs?limit=10`, avec `start` = J-7 et `end` = J-1. La clé est injectée
    par le proxy de l'environnement : n'ajouter aucun en-tête. Relever les pages vues, `/templates`, les pages
    `/catalogue/` et les provenances.
-3. **TikTok** : Sheet `1ZyM20se9GnwdN77kgk4vzvr6OtvEGabdZWq6Jz6Od58`, onglet Planning (statuts, erreurs,
-   vidéos publiées) et onglet Mesures s'il existe.
+3. **YouTube Shorts** : planning `1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE`, onglet Planning (géré par le skill
+   video-demo, ne pas le modifier) : nombre de lignes « Publié » sur les 7 derniers jours. Vues : « non relevé »
+   tant que YouTube n'est pas connecté.
 4. **Bilan** : une ligne à la fin de la Sheet « Bilan hebdomadaire QME »
    (`1YItwICcnHITVD_pdzfhAPJw81hdvltziOWrwixmX-xg`, onglet Bilans), colonnes A à N comme l'en-tête : semaine,
    ventes payantes 7 j, CA 7 j, ventes du mois, jalon, net estimé du mois, vues Gumroad 7 j, pages vues site
-   7 j, vues /templates 7 j, vidéos TikTok publiées, vues TikTok, provenance principale des ventes, 3 actions,
+   7 j, vues /templates 7 j, Shorts YouTube publiés, vues YouTube Shorts, provenance principale des ventes, 3 actions,
    remarques. Ne modifier aucune ligne existante.
 5. **Compte rendu** : une PushNotification (première ligne < 200 caractères : ventes, % du jalon, vues
    Gumroad), puis les 3 actions de la semaine.

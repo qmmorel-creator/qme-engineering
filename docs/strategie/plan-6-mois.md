@@ -222,3 +222,11 @@ Réponses de Quentin du 15/11/2026 :
 - Guides lot 1 en ligne (PR #118) : /guides/facture-impayee/, /guides/levee-des-reserves/,
   /guides/budget-couple-50-50-ou-prorata/ (calculateur gratuit). Lot 2 possible : document unique, état des
   lieux, coût des abonnements.
+
+## 11. Changement du 16/11/2026 (soir) : TikTok abandonné
+
+Décision de Quentin : TikTok est abandonné au profit de **YouTube Shorts** (planning « Planning publications
+YouTube », 1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE, géré par le skill video-demo). Dossier Drive TikTok à la
+corbeille, routine TikTok d'Instinct supprimée, colonnes J/K du bilan renommées (Shorts YouTube). Les sections
+TikTok ci-dessus (étude, test de 6 semaines, critères) ne s'appliquent plus ; le moteur grand public sans visage
+passe par Instagram Reels et YouTube Shorts. Mesure : `utm_source=youtube&utm_medium=description`.

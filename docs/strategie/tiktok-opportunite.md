@@ -1,5 +1,8 @@
 # TikTok · étude d'opportunité · 15/11/2026
 
+> **Abandonné le 16/11/2026** (décision de Quentin) : TikTok est remplacé par **YouTube Shorts** (planning
+> « Planning publications YouTube », skill video-demo). Ce document est conservé pour mémoire.
+
 Statut : **recommandation, à valider par Quentin.** Sources consultées le 15/11/2026, listées en fin de
 document. Ce qui n'a pas de source officielle est marqué « non vérifié ».
 
