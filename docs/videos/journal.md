@@ -29,7 +29,7 @@ Non publié (chemin `/docs/*` bloqué en 404).
 Types : `démonstration`, `problème`, `question`, `paramétrage`, `interface`, `réglage`, `service rendu`,
 `avant-après`, `astuce`, `pack`.
 
-Correspondance YouTube Shorts (16/11/2026) : 001 YT-01 (17/11), 002 YT-03, 003 YT-07, 004 YT-08, 005 YT-09,
+Correspondance YouTube Shorts (16/11/2026) : 001 YT-01 (16/11 22:30, test), 002 YT-03, 003 YT-07, 004 YT-08, 005 YT-09,
 006 YT-10, 007 YT-13, 008 YT-14, 010 planning d'équipe YT-16, 011 budget YT-20 (planning YouTube, statut « Prêt »).
 
 | N° | Date | Produit | Type | Titre | Scénario | Durée | Drive | LinkedIn | Instagram | Statut |

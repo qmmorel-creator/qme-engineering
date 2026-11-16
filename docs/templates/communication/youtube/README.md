@@ -21,8 +21,11 @@ Chaîne : `https://www.youtube.com/channel/UCZTdaekWbJG8_RekBbaecvA`.
   **pas cliquables** dans un Short (seulement dans la description complète sur ordinateur) : le lien utile est
   celui de la chaîne (bannière, section Liens).
 - État au 16/11/2026 : YT-01 à YT-37 créés au statut `Prêt` à partir des 37 reels Instagram (vidéos démo 001 à
-  011 et reels IG-27 à IG-148). Les trois déjà publiés sur Instagram (IG-139, IG-37, IG-27) sont placés les
-  17, 18 et 19/11.
+  011 et reels IG-27 à IG-148). Les trois déjà publiés sur Instagram : YT-01 (IG-139) le 16/11 à 22:30, au
+  statut `Programmé`, pour le test d'Instinct demandé par Quentin ; YT-04 (IG-37) le 17/11 à 12:00 ; YT-05 (IG-27) le
+  18/11 à 20:00.
+- Instinct (16/11, 22:00) : routine TikTok supprimée ; connexion YouTube et mise en ligne « à essayer ». Les
+  autres lignes restent `Prêt` jusqu'au succès du test.
 - Routine : `PROMPT-INSTINCT-YOUTUBE.md` (à transmettre par Quentin).
 
 ## Bannière
