@@ -32,7 +32,9 @@ td:first-child{font-weight:600;width:47mm}
 td.qme{background:#EEF3F9}
 td.pack{background:#FBEFEB}
 tr.groupe td{background:var(--sable);font-size:7.2px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--texte-2);padding:.9mm 2.2mm}
-.ok,.non,.ni,.part{display:inline-flex;align-items:center;gap:4px}
+.ok,.non,.ni,.part,.dev{display:inline-flex;align-items:center;gap:4px}
+.dev{color:var(--ciel-texte)}
+.dev::before{content:"+";flex:none;width:10px;height:10px;border-radius:50%;background:var(--ciel);color:var(--ciel-texte);font-size:9px;font-weight:800;line-height:10px;text-align:center}
 .ok::before,.non::before,.ni::before,.part::before{content:"";flex:none;width:10px;height:10px;border-radius:50%}
 .ok::before{background:var(--vert)}
 .part::before{background:linear-gradient(90deg,var(--jaune) 50%,var(--trait) 50%)}
@@ -93,7 +95,7 @@ tr.groupe td{background:var(--sable);font-size:7.2px;font-weight:700;letter-spac
       <tr><td>Feuille blanche comparée aux mots-clés</td><td class="qme"><span class="ok">notions oubliées affichées</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
       <tr><td>Méthodes de travail expliquées</td><td class="qme"><span class="ok">12, une conseillée par révision</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
       <tr><td>Examens blancs programmés</td><td class="qme"><span class="ok">J-10 et J-4</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">colles (élèves de la prépa)</span></td></tr>
-      <tr><td>Contenus fournis (cours, QCM)</td><td class="qme"><span class="non">non : l'élève révise ses cours</span></td><td class="pack"><span class="non">non</span></td><td><span class="ok">QCM, cours audio</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">élèves de la prépa</span></td></tr>
+      <tr><td>Contenus fournis (cours, QCM)</td><td class="qme"><span class="dev">à développer au besoin</span></td><td class="pack"><span class="dev">à développer au besoin</span></td><td><span class="ok">QCM, cours audio</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">élèves de la prépa</span></td></tr>
       <tr class="groupe"><td colspan="6">Tenir dans la durée</td></tr>
       <tr><td>Rappels</td><td class="qme"><span class="ok">séances dans l'agenda du téléphone</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ok">notifications chaque matin</span></td></tr>
       <tr><td>Statistiques, série, paliers</td><td class="qme"><span class="ok">série, paliers, temps de concentration</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="part">statistiques par cours</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
@@ -105,7 +107,7 @@ tr.groupe td{background:var(--sable);font-size:7.2px;font-weight:700;letter-spac
       <tr><td>Lecture facilitée (dyslexie)</td><td class="qme"><span class="ok">réglage dédié</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
     </tbody>
   </table>
-  <div class="legende"><span class="ok">proposé</span><span class="part">en partie, ou réservé à certains</span><span class="ni">non indiqué sur les pages publiques de l'éditeur</span><span class="non">non proposé</span></div>
+  <div class="legende"><span class="ok">proposé</span><span class="part">en partie, ou réservé à certains</span><span class="ni">non indiqué sur les pages publiques de l'éditeur</span><span class="dev">à développer au besoin</span></div>
   <div class="pied"><span><b>Méthode</b> : relevé fait sur les pages publiques des éditeurs (sites, fiche App Store, campagne de financement), sources en page 2. « Non indiqué » signifie que la fonction n'est pas décrite, pas qu'elle est forcément absente.</span><span>qm-engineering.fr</span></div>
 </section>
 
@@ -136,7 +138,7 @@ tr.groupe td{background:var(--sable);font-size:7.2px;font-weight:700;letter-spac
       <p><b>Emploi du temps → révision.</b> Le planning indique le premier créneau libre assez long pour la session du jour.</p>
       <p><b>Sommeil → bilan.</b> La réussite des révisions après une nuit courte et après une vraie nuit, sur les données de l'élève (observation, pas diagnostic).</p>
       <p><b>Rien ne quitte l'appareil pour ces liens.</b> Les outils se lisent entre eux, sans rien modifier chez les autres.</p>
-      <div class="equite"><b>Pour être juste</b> : HipHipHip fournit des QCM et des cours audio, ce que nos outils ne font pas (l'élève révise ses propres cours). SEGMO envoie des notifications chaque matin. Puissance J est une application native pour iPhone et Mac.</div>
+      <div class="equite"><b>Pour être juste</b> : HipHipHip fournit des QCM et des cours audio, ce que nos outils ne proposent pas aujourd'hui (à développer au besoin). SEGMO envoie des notifications chaque matin. Puissance J est une application native pour iPhone et Mac.</div>
     </div>
   </div>
 
