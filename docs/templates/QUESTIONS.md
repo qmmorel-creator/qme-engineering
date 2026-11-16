@@ -270,5 +270,5 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - 14/11 : noms et prix du lot 2 (T26 15 €, T38 12 €, T43 19 €, T46 19 €), LI-113 maintenue, points « à
   vérifier » du lot 2 laissés en l'état (« ok pour tout »).
 - 14/11 : packs créés sur Gumroad après les templates ; un pack n'est créé qu'une fois tous ses templates en
-  vente ; une seule session gère la file Gumroad.
+  vente ; une seule session gère la file Gumroad. Ordre de priorité : `communication/gumroad-priorite.md` (16/11).
 - 14/11 : publication sans demander quand la clé de licence est active (`is_licensed`).

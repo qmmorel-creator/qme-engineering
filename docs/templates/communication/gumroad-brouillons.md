@@ -1,5 +1,8 @@
 # Brouillons Gumroad (14/11/2026)
 
+> **Priorité de la file Gumroad** : voir `gumroad-priorite.md` (liste unique, Pack Étudiant en tête depuis le 16/11/2026).
+
+
 **Mise à jour 14/11, 23 h 30** : les 8 produits créés sont publiés (en vente) et le site est passé à « en
 vente » pour chacun. T12 et T68 restent à créer.
 
