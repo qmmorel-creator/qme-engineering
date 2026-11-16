@@ -1,6 +1,6 @@
 ---
 name: video-demo
-description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s, vertical) qui montre une interaction RÉELLE avec un template ou un pack QME en vente (navigation, UI, UX), habillée en motion design (caméra qui suit la souris, zooms, emphases du résultat, bruitages, musique QME calée sur le tempo), puis la déposer dans Google Drive et la programmer sur LinkedIn et Instagram. À utiliser quand Quentin demande une vidéo de démonstration d'un template, de tourner / rendre / programmer un scénario de `docs/videos/scenarios/`, ou quand le skill `idee-video` l'appelle.
+description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s, vertical) qui montre une interaction RÉELLE avec un template ou un pack QME en vente (navigation, UI, UX), habillée en motion design (caméra qui suit la souris, zooms, emphases du résultat, bruitages, musique QME calée sur le tempo), puis la déposer dans Google Drive et la programmer sur LinkedIn, Instagram et YouTube Shorts. À utiliser quand Quentin demande une vidéo de démonstration d'un template, de tourner / rendre / programmer un scénario de `docs/videos/scenarios/`, ou quand le skill `idee-video` l'appelle.
 ---
 
 # Vidéo de démonstration d'un template QME
@@ -70,12 +70,12 @@ Envoi par `mcp__Google_Drive__create_file` avec `base64Content` = `sha256:<empre
 locale à ce nom avant l'envoi, supprimée après). Limite du connecteur : environ 3,1 Mo par fichier (d'où
 la sortie < 2,9 Mo). Déposer aussi la couverture (`…-couverture.png`).
 
-## 4. Programmer sur LinkedIn et Instagram
+## 4. Programmer sur LinkedIn, Instagram et YouTube Shorts
 
 Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé :
 
-1. Relire **juste avant d'écrire** les deux onglets `Planning` (LinkedIn `A1:N`, Instagram `A1:P`) : d'autres
-   sessions les modifient.
+1. Relire **juste avant d'écrire** les trois onglets `Planning` (LinkedIn `A1:N`, Instagram `A1:P`, YouTube
+   `A1:O`) : d'autres sessions les modifient.
 2. **Date** : la plus proche, à partir de demain, où **aucun des deux plannings** n'a déjà une vidéo
    (LinkedIn format « Vidéo », Instagram format « Reel », statut ≠ « Annulé »). Même date sur les deux.
 3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 08:30 ou 12:15) ;
@@ -91,12 +91,17 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
 7. **Statut** : « Programmé » si `journal.md` indique « Routine Instinct v4 transmise : oui » (instruction
    de Quentin du 15/11/2026 : les vidéos sont programmées sans relecture intermédiaire) ; sinon « Prêt »,
    et rappeler à Quentin de transmettre `PROMPT-INSTINCT-v4.md`.
-8. Relire les plages écrites (ordre des dates, IDs Drive). Ne jamais publier soi-même ni écrire « Publié ».
+8. **YouTube Shorts** (pas de TikTok : décision de Quentin du 16/11/2026) : une ligne `YT-nn` dans le planning
+   YouTube, même date, heure **12:00**, à sa place chronologique ; titre (100 caractères au plus) et description
+   complète dans la ligne (modèle : `docs/templates/communication/youtube/README.md`), ID Drive = la vidéo
+   Instagram, colonnes J/K = IDs Instagram et LinkedIn. Statut « Programmé » si `journal.md` indique « Routine
+   Instinct YouTube transmise : oui », sinon « Prêt ».
+9. Relire les plages écrites (ordre des dates, IDs Drive). Ne jamais publier soi-même ni écrire « Publié ».
 
 ## 5. Clore
 
 1. Ajouter la ligne de la vidéo dans `docs/videos/journal.md` (n°, date, produit, type, titre, scénario,
-   durée, lien Drive, ID LinkedIn + date, ID Instagram + date, statut).
+   durée, lien Drive, ID LinkedIn + date, ID Instagram + date, ID YouTube + date, statut).
 2. Commit sur la branche de travail (scénario, journal ; `sortie/` est ignoré par git), push. **Aucune
    fusion dans `main`** sans feu vert de Quentin.
-3. Résumé à Quentin : sujet, durée, ce qui est vérifié, lien Drive, dates et heures programmées, statut.
+3. Résumé à Quentin : sujet, durée, ce qui est vérifié, lien Drive, dates et heures programmées (LinkedIn, Instagram, YouTube), statut.
