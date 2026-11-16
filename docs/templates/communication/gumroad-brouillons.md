@@ -55,13 +55,13 @@ publication Gumroad » (dont l'ajout de `gumroad: '<id>'` dans `PRODUITS`).
 
 | Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
 |---------|------|---------------------|-----------|------|--------|
-| TMP | suivi-temps | u-ySqLkS21aA1mhfeG9EFQ== | /l/suivi-temps-rentabilite | 19 € | clé à activer |
-| DTT | dettes | -5-cTF1xpPORIx5P_zGn7w== | /l/remboursement-dettes | 12 € | clé à activer |
-| TDV | temps-de-vie | sz94ceBG8cN4BLBpImKYxQ== | /l/temps-de-vie | 19 € | clé à activer |
-| PTM | patrimoine | A8JdI_BV8_BHRmFHWK4r3A== | /l/inventaire-valorise | 19 € | clé à activer |
-| EPG | epargne | sEO7sJxS14azsCZ761I-yQ== | /l/objectif-epargne | 12 € | clé à activer |
-| DCS | papiers | uJxPWSYtiXp3nixYfudDoQ== | /l/papiers-du-foyer | 15 € | clé à activer |
-| CPT | emprunt | -yAS1RKHFCUmacHWd-lOAw== | /l/capacite-emprunt-comparateur-prets | 15 € | clé à activer |
+| TMP | suivi-temps | u-ySqLkS21aA1mhfeG9EFQ== | /l/suivi-temps-rentabilite | 19 € | **en vente** (publié le 16/11/2026) |
+| DTT | dettes | -5-cTF1xpPORIx5P_zGn7w== | /l/remboursement-dettes | 12 € | **en vente** (publié le 16/11/2026) |
+| TDV | temps-de-vie | sz94ceBG8cN4BLBpImKYxQ== | /l/temps-de-vie | 19 € | **en vente** (publié le 16/11/2026) |
+| PTM | patrimoine | A8JdI_BV8_BHRmFHWK4r3A== | /l/inventaire-valorise | 19 € | **en vente** (publié le 16/11/2026) |
+| EPG | epargne | sEO7sJxS14azsCZ761I-yQ== | /l/objectif-epargne | 12 € | **en vente** (publié le 16/11/2026) |
+| DCS | papiers | uJxPWSYtiXp3nixYfudDoQ== | /l/papiers-du-foyer | 15 € | clé non détectée le 16/11 (`is_licensed` false) |
+| CPT | emprunt | -yAS1RKHFCUmacHWd-lOAw== | /l/capacite-emprunt-comparateur-prets | 15 € | clé non détectée le 16/11 (`is_licensed` false) |
 
 Prix identiques dans IDEES.md, la fiche et `outils/packs/donnees.mjs` (les pages catalogue affichent « Mise en
 vente prochaine », sans prix). Écarts avec les `gumroad.json` : tag `finances-perso` au lieu de
