@@ -273,8 +273,8 @@
   }
 
   // ---------- Démonstration ----------
-  // Deux profils simulés jour par jour depuis la rentrée (dates relatives à aujourd'hui) : `?demo` (Terminale)
-  // et `?demo=pass` (première année de santé). `&prenom=` personnalise l'accueil. Tirages pseudo-aléatoires
+  // Trois profils simulés jour par jour depuis la rentrée (dates relatives à aujourd'hui) : `?demo` (Terminale),
+  // `?demo=pass` (première année de santé) et `?demo=concours` (concours d'attaché territorial). `&prenom=` personnalise l'accueil. Tirages pseudo-aléatoires
   // à graine fixe : la même démo à chaque ouverture. Couvre tous les états : retards, révisions du jour,
   // faites ce matin, chapitres à venir, examen blanc dû, série en cours, données du Pack Étudiant.
   const DEMOS = {
@@ -305,6 +305,20 @@
       notes: { 'Biochimie': [9.5, 11], 'Biologie cellulaire': [13], 'Anatomie': [14.5], 'Physiologie': [10], 'Biophysique': [8.5], 'Biostatistiques': [12], 'Chimie': [11.5], 'Sciences humaines et sociales': [13] },
       planner: { cours: [[0, 8 * 60, 8 * 60 + 30], [1, 8 * 60, 9 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 8 * 60]], autres: [[1, 18 * 60, 120, 'Tutorat'], [3, 18 * 60, 120, 'Tutorat'], [2, 17 * 60 + 30, 90, 'Natation']] },
     },
+    // Candidate au concours externe d'attaché territorial, en poste : écrits dans sept semaines, oral ensuite.
+    concours: {
+      prenom: 'Claire', filiere: 'concours', graine: 2028, debut: -75, pauses: [-27, -28, -48, -62], retards: 3, manquees: 7,
+      matieres: [
+        ['Note de synthèse', 'rouge', 51, 4, ['Méthode : lecture du dossier|-70|tri des documents, idées clés, grille de lecture, documents secondaires', 'Plan et problématique|-56|problématique, plan en deux parties, titres apparents, annonce de plan', 'Rédaction en temps limité|-41|gestion du temps, citation des documents, neutralité, introduction courte', 'Dossier : politique de la ville|-25|quartiers prioritaires, contrat de ville, rénovation urbaine, mixité sociale', 'Dossier : accueil de la petite enfance|-9|crèche, CAF, schéma départemental, assistantes maternelles', 'Dossier : mobilités du quotidien|']],
+        ['Culture générale', 'bleu', 52, 4, ['Méthode de la composition|-72|problématique, plan, transitions, exemples, conclusion ouverte', 'État et décentralisation|-58|actes de décentralisation, libre administration, déconcentration, subsidiarité', 'Laïcité|-44|loi de 1905, neutralité du service public, liberté de conscience, Conseil d\'État', 'Transition écologique|-29|neutralité carbone, sobriété, adaptation, accord de Paris', 'Numérique et services publics|-13|dématérialisation, fracture numérique, inclusion, données personnelles', 'Santé et territoires|']],
+        ['Droit public', 'encre', 52, 3, ['Sources du droit administratif|-69|hiérarchie des normes, bloc de constitutionnalité, loi, règlement, jurisprudence', 'Actes administratifs unilatéraux|-54|décision, règlement, retrait, abrogation, motivation', 'Contrats administratifs|-39|marché public, concession, clauses exorbitantes, commande publique', 'Responsabilité administrative|-23|faute de service, faute personnelle, responsabilité sans faute, arrêt Blanco', 'Collectivités territoriales|-7|commune, département, région, contrôle de légalité, compétences', 'Contentieux administratif|']],
+        ['Finances publiques', 'jaune', 52, 3, ['Principes budgétaires|-66|annualité, unité, universalité, spécialité, sincérité', 'La LOLF|-50|mission, programme, action, performance, fongibilité asymétrique', 'Budget des collectivités|-34|section de fonctionnement, section d\'investissement, équilibre réel, débat d\'orientation budgétaire', 'Fiscalité et dotations locales|-17|taxe foncière, CFE, dotation globale de fonctionnement, péréquation', 'Dette publique et règles européennes|']],
+        ['Questions sociales', 'vert', 52, 2, ['Protection sociale|-63|sécurité sociale, branches, assurance, assistance, solidarité', 'Action sociale du département|-37|RSA, APA, aide sociale à l\'enfance, PCH', 'Emploi et insertion|-14|France Travail, insertion par l\'activité économique, contrat d\'engagement jeune']],
+        ['Oral d\'entretien', 'prune', 115, 5, ['Présentation de parcours (3 min)|-31|parcours, fil conducteur, compétences, motivation, conclusion', 'Motivation et projection dans le poste|-18|métier d\'attaché, encadrement, service public, projet professionnel', 'Environnement territorial|-4|intercommunalité, élus, directeur général des services, budget de la collectivité', 'Mises en situation|']],
+      ],
+      notes: { 'Note de synthèse': [9, 11.5], 'Culture générale': [10, 12], 'Droit public': [13], 'Finances publiques': [11], 'Questions sociales': [12.5] },
+      planner: { titre: 'Travail', cours: [[0, 9 * 60, 8 * 60], [1, 9 * 60, 8 * 60], [2, 9 * 60, 5 * 60], [3, 9 * 60, 8 * 60], [4, 9 * 60, 7 * 60]], autres: [[2, 18 * 60, 90, 'Coaching oral (visio)'], [5, 9 * 60, 240, 'Concours blanc']] },
+    },
   };
 
   function aleatoire(graine) {
@@ -314,7 +328,7 @@
 
   function donneesDemo(profil = 'terminale', prenom = '') {
     const def = DEMOS[profil] || DEMOS.terminale;
-    const hasard = aleatoire(profil === 'pass' ? 2027 : 2026);
+    const hasard = aleatoire(def.graine || (profil === 'pass' ? 2027 : 2026));
     E = etatVide();
     E.prenom = prenom || def.prenom; E.filiere = def.filiere; E.demoProfil = profil;
     E.tutorielVu = false;
@@ -371,7 +385,7 @@
     });
     const depuis = ajout(t, -120);
     const series = [
-      ...def.planner.cours.map(([j, debut, duree]) => ({ id: uid(), titre: 'Cours', jours: [j], debut, duree, depuis, jusqua: null, exceptions: {} })),
+      ...def.planner.cours.map(([j, debut, duree]) => ({ id: uid(), titre: def.planner.titre || 'Cours', jours: [j], debut, duree, depuis, jusqua: null, exceptions: {} })),
       ...def.planner.autres.map(([j, debut, duree, titre]) => ({ id: uid(), titre, jours: [j], debut, duree, depuis, jusqua: null, exceptions: {} })),
     ];
     const journal = {};
@@ -1595,7 +1609,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(E?.demoProfil || 'terminale', E?.demoProfil === 'pass' ? E.prenom : ''); E.tutorielVu = true; cache(); lirePack(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(E?.demoProfil || 'terminale', E?.demoProfil && E.demoProfil !== 'terminale' ? E.prenom : ''); E.tutorielVu = true; cache(); lirePack(); rendre(); } break;
       case 'deconnexion': modale().open && modale().close(); deconnecter(); break;
       case 'filiere': {
         accueil.filiere = id;
