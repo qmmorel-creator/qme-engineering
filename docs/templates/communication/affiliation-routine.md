@@ -1,12 +1,12 @@
 # Routine d'envoi et de surveillance · affiliation vague 2
 
-Mise en place le 16/11/2026 à la demande de Quentin : **envoi autonome, sans validation**, 20 mails par
+Mise en place le 16/11/2026 à la demande de Quentin : **envoi autonome, sans validation**, 30 mails par
 jour ouvré, et surveillance quotidienne. Deux tâches planifiées se déclenchent dans la session Claude
 qui les a créées (elle seule a accès à Gmail et Google Sheets) :
 
 | Tâche | Quand (heure de Paris) | Id |
 |---|---|---|
-| Affiliation QME · envoi (20/jour) | lundi–vendredi, 9 h 07 à 17 h 07, toutes les heures | `trig_01KqME2ZeqiJUAzJUosvu49x` |
+| Affiliation QME · envoi (30/jour) | lundi–vendredi, 9 h 07 à 17 h 07, toutes les heures | `trig_01KqME2ZeqiJUAzJUosvu49x` |
 | Affiliation QME · surveillance quotidienne | lundi–vendredi, 18 h 13 | `trig_01XvvqPhSnTNyvgprvGZgKgo` |
 
 **Tableur** (source unique) : « QME · Affiliation · file d'envoi »,
@@ -14,7 +14,7 @@ id `1WL_lNTRSAUuCug93kgxNhLe6CSQI5icky75IrYlkpiQ`, onglet `Untitled`.
 Colonnes : A ordre, B statut (`à envoyer`, `envoyé`, `rebond`, `désinscrit`, `erreur : …`),
 C draftId, D destinataire, E créateur, F segment, G objet, H à vérifier, I date envoi
 (`AAAA-MM-JJ HH:MM`, Paris), J messageId, K threadId, L réponse, M rebond.
-Pilotage : **O2 PAUSE** (`oui`/`non`, Quentin peut l'écrire à tout moment), **P2 quota par jour** (20),
+Pilotage : **O2 PAUSE** (`oui`/`non`, Quentin peut l'écrire à tout moment), **P2 quota par jour** (30 depuis le 16/11 au soir),
 Q2 dernier bilan, R2 motif de pause.
 
 **Tableau de bord** : https://claude.ai/artifact/U3uQzabo3hRRKoBegRGEQ2 (lit le tableur en direct,
