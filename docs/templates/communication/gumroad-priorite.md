@@ -5,6 +5,19 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 écrite ailleurs (consignes d'une tâche planifiée comprises). Décision de Quentin du 16/11/2026. Non publié
 (`/docs/*` en 404).
 
+## Qui gère la file (16/11/2026)
+
+- **Une seule session** : la session de pilotage stratégique QME (claude.ai/code, session_0183EW51qk2gGvogKDTrV6Qz),
+  par la tâche planifiée « File Gumroad quotidienne QME », **chaque jour à 8 h 45** (Paris) : publication des
+  brouillons dont la clé est active, mise en vente sur le site, création des brouillons suivants, insertion des
+  publications en attente dans les plannings, compte rendu à Quentin. L'ancienne routine « Point d'étape quotidien
+  templates » (23 h 47) est supprimée par Quentin.
+- **Feu vert permanent de Quentin (16/11/2026)** pour fusionner dans `main` les PR **de mise en vente** :
+  identifiants Gumroad dans `PRODUITS` ou `PACKS`, pages catalogue passées en vente, packs et JSON-LD régénérés,
+  registres. Toute autre fusion reste soumise à son accord (CLAUDE.md).
+- Reste à Quentin : activer la clé de licence de chaque brouillon, et ajouter les versions « Pack » et
+  « Pack évolutif » de chaque pack.
+
 ## Règles
 
 1. `list_products` d'abord (toutes les pages, brouillons compris) : ne jamais recréer un produit du même nom.
