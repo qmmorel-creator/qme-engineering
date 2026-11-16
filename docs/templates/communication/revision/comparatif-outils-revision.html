@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Comparatif · outils de révision · QME</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+2113}
+@page{size:A4 landscape;margin:0}
+:root{--papier:#FBF7F1;--surface:#fff;--encre:#24221F;--texte-2:#514C44;--discret:#6E685F;--trait:#E4DCCE;--rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;--rose:#F8DCD3;--beurre:#FBEBC2;--ciel:#D8E4F0;--sable:#F3EDE3;--ciel-texte:#22476E;--rose-texte:#8A3322}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--encre);background:var(--papier);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:297mm;height:210mm;padding:8.5mm 13mm 7mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+.formes{position:absolute;right:-8mm;top:-10mm;width:70mm;height:40mm}
+.tete{display:flex;align-items:flex-end;justify-content:space-between;gap:10mm;margin-bottom:3.5mm;position:relative}
+.marque{display:flex;align-items:center;gap:7px;font-weight:800;font-size:13px;letter-spacing:-.02em}
+.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
+.marque small{font-size:8px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--discret);margin-left:4px}
+.surtitre{font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ciel-texte);margin:4mm 0 1.5mm}
+h1{font-size:23px;font-weight:700;letter-spacing:-.025em;line-height:1.05}
+h1 mark{background:var(--beurre);border-radius:8px;padding:0 6px}
+.intro{font-size:10px;color:var(--texte-2);max-width:150mm;margin-top:2mm;line-height:1.4}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:8.3px;line-height:1.25;background:var(--surface);border:1px solid var(--trait);border-radius:12px;overflow:hidden}
+th,td{padding:1.42mm 2.2mm;border-bottom:1px solid var(--trait);text-align:left;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+thead th{background:var(--encre);color:var(--papier);font-size:8.6px;font-weight:700;vertical-align:bottom}
+thead th small{display:block;font-weight:400;opacity:.75;font-size:7.4px;margin-top:1px}
+thead th.qme{background:var(--bleu)}
+thead th.pack{background:var(--rouge)}
+td:first-child{font-weight:600;width:47mm}
+td.qme{background:#EEF3F9}
+td.pack{background:#FBEFEB}
+tr.groupe td{background:var(--sable);font-size:7.2px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--texte-2);padding:.9mm 2.2mm}
+.ok,.non,.ni,.part,.dev{display:inline-flex;align-items:center;gap:4px}
+.dev{color:var(--ciel-texte)}
+.dev::before{content:"+";flex:none;width:10px;height:10px;border-radius:50%;background:var(--ciel);color:var(--ciel-texte);font-size:9px;font-weight:800;line-height:10px;text-align:center}
+.ok::before,.non::before,.ni::before,.part::before{content:"";flex:none;width:10px;height:10px;border-radius:50%}
+.ok::before{background:var(--vert)}
+.part::before{background:linear-gradient(90deg,var(--jaune) 50%,var(--trait) 50%)}
+.ni::before{background:none;border:1.5px solid #B9B1A4;width:7px;height:7px}
+.non::before{background:none;border:1.5px solid var(--rouge);width:7px;height:7px;border-radius:2px}
+.ni{color:var(--discret)}
+.legende{display:flex;flex-wrap:wrap;gap:4mm;font-size:8px;color:var(--texte-2);margin-top:2.5mm}
+.pied{margin-top:auto;padding-top:2.5mm;display:flex;justify-content:space-between;gap:8mm;font-size:7.4px;color:var(--discret);line-height:1.35}
+.pied b{color:var(--encre)}
+.colonnes{display:grid;grid-template-columns:1.15fr 1fr;gap:7mm;margin-top:1mm}
+.bloc{background:var(--surface);border:1px solid var(--trait);border-radius:14px;padding:4.5mm 5mm}
+.bloc h2{font-size:14px;font-weight:700;letter-spacing:-.02em;margin-bottom:2.5mm}
+.outils{display:grid;grid-template-columns:1fr 1fr;gap:2.4mm}
+.outil{border-radius:10px;padding:2.6mm 3mm;background:var(--sable);font-size:8.8px;line-height:1.35;color:var(--texte-2)}
+.outil b{display:block;font-size:10px;color:var(--encre);margin-bottom:.6mm}
+.outil.rev{background:var(--ciel)}
+.liens p{font-size:9px;line-height:1.4;color:var(--texte-2);margin-bottom:2.2mm}
+.liens p b{color:var(--encre)}
+.equite{background:var(--beurre);border-radius:12px;padding:3.5mm 4mm;font-size:8.8px;line-height:1.45;color:#5A4410;margin-top:4mm}
+.equite b{color:var(--encre)}
+.sources{font-size:7.3px;line-height:1.45;color:var(--discret);margin-top:4mm;word-break:break-all}
+.sources b{color:var(--texte-2)}
+.demo{display:flex;align-items:center;gap:4mm;margin-top:4mm;background:var(--encre);color:var(--papier);border-radius:12px;padding:3.5mm 5mm;font-size:10px}
+.demo b{color:var(--jaune);font-size:11px}
+</style>
+</head>
+<body>
+
+<section class="page">
+  <svg class="formes" viewBox="0 0 280 160" aria-hidden="true"><circle cx="70" cy="80" r="62" fill="#E58C74"/><circle cx="70" cy="80" r="22" fill="#24221F"/><rect x="150" y="18" width="124" height="124" fill="#2E5A88"/><path d="M150 142 A124 124 0 0 1 274 18 V142 Z" fill="#E8B93A"/></svg>
+  <div class="tete"><div>
+    <div class="marque"><svg viewBox="0 0 80 80" width="20" height="20" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#24221F"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span><small>Comparatif</small></div>
+    <p class="surtitre">Outils de révision · relevé du 16 novembre 2026</p>
+    <h1>Au-delà de la <mark>méthode des J</mark></h1>
+    <p class="intro">Les quatre outils appliquent la répétition espacée. La différence se joue sur ce qui l'entoure : l'examen, les jours sans révision, la façon de réviser, et le reste de la vie d'étudiant.</p>
+  </div></div>
+
+  <table>
+    <thead><tr>
+      <th>Fonction</th>
+      <th class="qme">Planning de révision<small>QME</small></th>
+      <th class="pack">Pack Étudiant<small>QME · 7 outils reliés</small></th>
+      <th>HipHipHip<small>Hippocast · web</small></th>
+      <th>Puissance J<small>iPhone, iPad, Mac</small></th>
+      <th>SEGMO App<small>prépa SEGMO · web</small></th>
+    </tr></thead>
+    <tbody>
+      <tr class="groupe"><td colspan="6">Planifier</td></tr>
+      <tr><td>Répétition espacée (méthode des J)</td><td class="qme"><span class="ok">J+1 à J+30, réglables</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ok">personnalisable, + blocs et tours</span></td><td><span class="ok">intervalles au choix</span></td><td><span class="ok">J ou rythme personnalisé</span></td></tr>
+      <tr><td>Calée sur la date d'examen</td><td class="qme"><span class="ok">rien après, révision finale à J-2</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">sprint final par blocs</span></td></tr>
+      <tr><td>Projection « prêt pour le jour J »</td><td class="qme"><span class="ok">chapitres solides à l'examen</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Retards rattrapés automatiquement</td><td class="qme"><span class="ok">répartis en un geste</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="part">déplacement à la main</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">notification de retard</span></td></tr>
+      <tr><td>Charge maximale par jour</td><td class="qme"><span class="ok">réglable</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Programme importé d'un coup</td><td class="qme"><span class="ok">copier-coller du syllabus</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="part">sous réserve du programme</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr class="groupe"><td colspan="6">Réviser</td></tr>
+      <tr><td>Auto-évaluation qui ajuste le rythme</td><td class="qme"><span class="ok">3 niveaux, date suivante affichée</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ok">après chaque séance</span></td><td><span class="ni">non indiqué</span></td><td><span class="ok">3 niveaux</span></td></tr>
+      <tr><td>Session guidée, minuteur Pomodoro</td><td class="qme"><span class="ok">mode concentration</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Feuille blanche comparée aux mots-clés</td><td class="qme"><span class="ok">notions oubliées affichées</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Méthodes de travail expliquées</td><td class="qme"><span class="ok">12, une conseillée par révision</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Examens blancs programmés</td><td class="qme"><span class="ok">J-10 et J-4</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">colles (élèves de la prépa)</span></td></tr>
+      <tr><td>Contenus fournis (cours, QCM)</td><td class="qme"><span class="dev">à développer au besoin</span></td><td class="pack"><span class="dev">à développer au besoin</span></td><td><span class="ok">QCM, cours audio</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">élèves de la prépa</span></td></tr>
+      <tr class="groupe"><td colspan="6">Tenir dans la durée</td></tr>
+      <tr><td>Rappels</td><td class="qme"><span class="ok">séances dans l'agenda du téléphone</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ok">notifications chaque matin</span></td></tr>
+      <tr><td>Statistiques, série, paliers</td><td class="qme"><span class="ok">série, paliers, temps de concentration</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="part">statistiques par cours</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Notes, coefficients, matières prioritaires</td><td class="qme"><span class="ni">avec le pack</span></td><td class="pack"><span class="ok">Notes et moyennes</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="part">résultats (élèves de la prépa)</span></td></tr>
+      <tr><td>Emploi du temps, créneau libre du jour</td><td class="qme"><span class="ni">avec le pack</span></td><td class="pack"><span class="ok">Planner horaire</span></td><td><span class="part">calendrier des séances</span></td><td><span class="part">calendrier des séances</span></td><td><span class="part">synchro fac (élèves de la prépa)</span></td></tr>
+      <tr><td>Sommeil et habitudes</td><td class="qme"><span class="ni">avec le pack</span></td><td class="pack"><span class="ok">Suivi d'habitudes</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Lecture, candidatures, mémoire</td><td class="qme"><span class="ni">avec le pack</span></td><td class="pack"><span class="ok">3 outils dédiés</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+      <tr><td>Plateformes</td><td class="qme"><span class="ok">téléphone, tablette, ordinateur, synchronisés</span></td><td class="pack"><span class="ok">idem</span></td><td><span class="part">web, plutôt ordinateur</span></td><td><span class="part">Apple uniquement</span></td><td><span class="part">web</span></td></tr>
+      <tr><td>Lecture facilitée (dyslexie)</td><td class="qme"><span class="ok">réglage dédié</span></td><td class="pack"><span class="ok">inclus</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td><td><span class="ni">non indiqué</span></td></tr>
+    </tbody>
+  </table>
+  <div class="legende"><span class="ok">proposé</span><span class="part">en partie, ou réservé à certains</span><span class="ni">non indiqué sur les pages publiques de l'éditeur</span><span class="dev">à développer au besoin</span></div>
+  <div class="pied"><span><b>Méthode</b> : relevé fait sur les pages publiques des éditeurs (sites, fiche App Store, campagne de financement), sources en page 2. « Non indiqué » signifie que la fonction n'est pas décrite, pas qu'elle est forcément absente.</span><span>qm-engineering.fr</span></div>
+</section>
+
+<section class="page">
+  <div class="tete"><div>
+    <div class="marque"><svg viewBox="0 0 80 80" width="20" height="20" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#24221F"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span><small>Comparatif</small></div>
+    <p class="surtitre">Pack Étudiant</p>
+    <h1>Sept outils qui <mark>se parlent</mark></h1>
+    <p class="intro">De la 3e au mémoire. Chaque outil s'utilise seul ; ensemble, ils s'échangent leurs données sur l'appareil de l'élève.</p>
+  </div></div>
+
+  <div class="colonnes">
+    <div class="bloc">
+      <h2>Les outils du pack</h2>
+      <div class="outils">
+        <div class="outil rev"><b>Planning de révision</b>Répétition espacée calée sur l'examen, rattrapage, session guidée.</div>
+        <div class="outil"><b>Planner horaire</b>La semaine heure par heure, entre cours, tutorat et sport.</div>
+        <div class="outil"><b>Suivi d'habitudes</b>Sommeil, sport, temps d'écran, séries à ne pas casser.</div>
+        <div class="outil"><b>Notes et moyennes</b>Coefficients, ECTS, note à viser au prochain partiel.</div>
+        <div class="outil"><b>Suivi de lecture</b>Le rythme de lecture des œuvres au programme.</div>
+        <div class="outil"><b>Candidatures</b>Études, stages, alternance : pièces, dates limites, relances.</div>
+        <div class="outil"><b>Planning de mémoire</b>Du plan au rendu : jalons, rythme d'écriture, rendez-vous.</div>
+      </div>
+    </div>
+    <div class="bloc liens">
+      <h2>Ce que les liens changent</h2>
+      <p><b>Notes → révision.</b> Les matières à fort coefficient où la marge de progression est grande passent en premier dans la liste du jour.</p>
+      <p><b>Emploi du temps → révision.</b> Le planning indique le premier créneau libre assez long pour la session du jour.</p>
+      <p><b>Sommeil → bilan.</b> La réussite des révisions après une nuit courte et après une vraie nuit, sur les données de l'élève (observation, pas diagnostic).</p>
+      <p><b>Rien ne quitte l'appareil pour ces liens.</b> Les outils se lisent entre eux, sans rien modifier chez les autres.</p>
+      <div class="equite"><b>Pour être juste</b> : HipHipHip fournit des QCM et des cours audio, ce que nos outils ne proposent pas aujourd'hui (à développer au besoin). SEGMO envoie des notifications chaque matin. Puissance J est une application native pour iPhone et Mac.</div>
+    </div>
+  </div>
+
+  <div class="demo"><span>Démo sans inscription, au nom d'une étudiante de PASS :</span><b>qm-engineering.fr/demo/laurine</b></div>
+
+  <p class="sources"><b>Sources (consultées le 16/11/2026)</b> · HipHipHip : blog.hiphiphip.app ; kisskissbankbank.com/en/projects/hiphiphip · Puissance J : apps.apple.com/fr/app/puissance-j-m%C3%A9thode-des-js/id6698867070 · SEGMO App : segmoapp.fr ; segmo.fr/pedagogie/outils · QME : qm-engineering.fr/catalogue/revision et qm-engineering.fr/packs/etudiant. Les marques citées appartiennent à leurs éditeurs.</p>
+  <div class="pied"><span>QME · Quentin Morel Engineering</span><span>qm-engineering.fr</span></div>
+</section>
+</body>
+</html>
