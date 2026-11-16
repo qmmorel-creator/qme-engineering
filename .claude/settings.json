@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run code *)",
+      "Bash(npm run -s code *)",
+      "Bash(node outils/templates/generer-code.mjs *)",
+      "Bash(TEMPLATES_SECRET=* npm run code *)",
+      "Bash(TEMPLATES_SECRET=* npm run -s code *)",
+      "Bash(TEMPLATES_SECRET=* node outils/templates/generer-code.mjs *)"
+    ]
+  }
+}

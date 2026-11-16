@@ -11,3 +11,5 @@ Dossier `docs/` non servi par Netlify (404).
 | Date | Produit | Code | Id (révocation) | Destinataire | Statut |
 |---|---|---|---|---|---|
 | 13/11/2026 | HBT | `HBT-QK5A-C4M8-HYQE-WV5X` | `QK5AC4M8` | Floriane Jolliot | actif |
+| 16/11/2026 | BDG | `BDG-KC8Z-MTR1-RET7-N5JM` | `KC8ZMTR1` | Sabrina | actif |
+| 16/11/2026 | NTR | `NTR-3Y74-JSVS-K0B1-GT2H` | `3Y74JSVS` | Sabrina | actif |
