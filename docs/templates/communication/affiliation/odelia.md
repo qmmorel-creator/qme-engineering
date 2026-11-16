@@ -53,9 +53,12 @@
 5. **Calendrier** : publication début janvier (partiels) ou mai (bac), pas en novembre.
 6. **Sortie propre** si Yuzu refuse sous 400 € : remercier, garder le contact pour janvier.
 
-## Réponse préparée (brouillon Gmail du 16/11/2026, non envoyé)
+## Réponse envoyée le 16/11/2026 à 23:14
 
-À Eva, Odélia en copie, Floriane Jolliot en copie cachée. Contenu : lancement de QME, Odélia parmi les premiers
+Depuis quentin.morel@qm-engineering.fr, dans le fil d'origine (message `1a1e66ca463cb8f5`). À Eva, Odélia en
+copie, Floriane Jolliot en copie cachée. Suivi : ligne 9 du tableur « QME · Affiliation · file d'envoi », colonne L.
+Prochaine étape : attendre les chiffres d'Eva (vues de stories, audience France), puis fixer avec Quentin le taux
+de la part variable (par plateforme) et le périmètre du cahier d'expression des besoins. Contenu : lancement de QME, Odélia parmi les premiers
 partenaires ; outil sur mesure offert (cadré par un cahier d'expression des besoins, valeur moyenne 2 000 €, hébergé
 par QME, accès par son lien) ; fixe de 200 € maximum pour des stories Instagram avec lien ; part variable sur les
 ventes réelles, à définir ensemble, pouvant varier selon la plateforme (Instagram ou TikTok) ; lien vers le Pack
@@ -64,4 +67,4 @@ d'un retour de partenariat passé.
 
 ## Statut
 
-En négociation. Rien n'est envoyé sans le feu vert de Quentin.
+En négociation : contre-proposition envoyée le 16/11/2026, réponse de Yuzu attendue.
