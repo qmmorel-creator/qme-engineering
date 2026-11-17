@@ -173,6 +173,7 @@ déjà).
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | fiche | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -2355,3 +2356,33 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   (`netlify/lib/packs.mjs`, pages des packs régénérées ; CRS retiré des prévus dans `outils/packs/donnees.mjs`, et la
   phrase « Le plan de course à pied à venir » des arguments de PFM à revoir), carte anglaise, plannings, passage en
   vente.
+
+## Fiche T98 (idée de Quentin, 17/11/2026)
+
+### T98 · Vivre sans voiture (`templates/sans-voiture/`, préfixe SVT, 9 €)
+- Fiche détaillée : [`fiches/sans-voiture.md`](fiches/sans-voiture.md). Permalien prévu
+  `simulateur-vivre-sans-voiture`. Prix de **9 €** demandé explicitement par Quentin le 17/11/2026, en dérogation
+  à la règle du prix minimum de 12 € (13/11/2026). Candidat au pack « Ma voiture » (PVT) : à trancher par
+  Quentin.
+- Promesse : « Ta voiture te coûte combien, vraiment ? Et sans elle, tu gagnes combien ? » Public : particuliers et
+  familles qui envisagent de vendre leur voiture et de vivre avec le vélo, les transports, le train et une
+  location de temps en temps.
+- Questionnaire qui n'ouvre que les champs utiles : vélo (électrique ou non, déjà utilisé, équipement enfant et
+  courses), transports en commun (abonnement, part employeur, tickets, enfants), travail, école, santé, usages
+  actuels de la voiture, entourage.
+- Tout est saisi et paramétrable : voiture (mode de détention achat, crédit, LOA ou LLD, perte de valeur,
+  assurance, entretien, carburant en € par an ou km × consommation × prix, stationnement, péages), sortie (vente,
+  rachat anticipé de LOA au barème saisi, restitution, indemnité de LLD, délai avant sortie), remplacement
+  (location à la journée et à la semaine, franchise, autopartage, taxis, train, livraisons, vélo, rehausseur),
+  temps perdu facultatif, horizon.
+- Résultat : **gain annuel ou perte** de se passer de voiture, gain mensuel, gain cumulé coût de sortie compris,
+  meilleur moment de sortie, sensibilité (location + 30 %, jours de location en plus possibles), amortissement
+  implicite d'une LOA, score de faisabilité avec verdict bloquant.
+- **Urgences et parades mises en avant** : urgence médicale de nuit (15, 112), enfant malade à l'école, siège
+  auto, panne ou vol du vélo, grève, retour tardif, météo, gros achats, vacances, disponibilité et caution des
+  locations, siège vélo trop petit, bonus d'assurance, contrat en cours, évolution de la famille. Organisation
+  proposée et phase de test avant de vendre.
+- Origine : simulateur personnel de Quentin (17/11/2026) ; **seule la mécanique est reprise**, aucun montant,
+  lieu, contrat, réseau ni marque. Aucune donnée datée intégrée (tarifs saisis). Argent : avertissement.
+- Statut : **fiche** le 17/11/2026 ; développement lancé le 17/11/2026 dans une session dédiée (skill
+  `nouveau-template`), sur la branche `claude/car-free-lifestyle-eval-n586ko`.
