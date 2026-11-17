@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin-ext.woff2) format("woff2");font-weight:100 900;unicode-range:U+0100-024F}
+:root{--papier:#F0EDE6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:var(--encre);font-family:Outfit,sans-serif;color:var(--papier)}
+.f{position:absolute}
+.rond{right:-90px;top:-90px;width:330px;height:330px;border-radius:50%;background:var(--jaune)}
+.carre{right:600px;bottom:-70px;width:150px;height:150px;background:var(--rouge)}
+.capture{right:40px;top:190px;width:530px;transform:rotate(-3deg);border:8px solid var(--papier);box-shadow:18px 18px 0 var(--bleu)}
+.capture img{display:block;width:100%}
+.mention{right:52px;bottom:30px;font-size:20px;font-weight:600;color:#bdb7ab}
+h1{position:absolute;left:64px;top:170px;font-weight:800;font-size:96px;line-height:1.04;letter-spacing:-.03em}
+h1 .s{background:var(--jaune);color:var(--encre);padding:0 14px;display:inline-block;margin-top:14px}
+.marque{position:absolute;left:64px;bottom:56px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:46px;letter-spacing:-.02em}
+.marque svg{width:70px;height:70px}
+.m{color:#6e9bd6}.e{color:var(--jaune)}
+</style></head><body>
+<div class="f rond"></div><div class="f carre"></div>
+<div class="f capture"><img src="../../../../assets/bikepulse-atelier.webp" alt=""></div>
+<h1>Votre métier.<br><span class="s">Votre outil.</span></h1>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+<div class="f mention">Données fictives</div>
+</body></html>

@@ -16,7 +16,7 @@ naturel pour les prescripteurs et les créateurs de contenu.
 |---|---|---|---|---|
 | Coachs scolaires et d'orientation indépendants | Enseignent la méthode de travail, cherchent des outils à recommander | LinkedIn (« coach scolaire », « coach orientation »), annuaires de coachs | Le coach lui-même | Accès offert pour tester + lien d'affiliation |
 | Professeurs particuliers et petites structures de cours à domicile | Leurs élèves préparent des examens précis | LinkedIn, sites de cours particuliers | Gérant, professeur | Code offert pour leurs élèves pendant une période d'essai |
-| Créateurs de contenu « méthodologie » et « études » (YouTube, TikTok, Instagram) | Audience exacte, contenus de rentrée et de révisions | Recherches sur les plateformes (« méthode de révision », « réviser le bac ») | Adresse professionnelle publique de la chaîne | Affiliation Gumroad + accès gratuit |
+| Créateurs de contenu « méthodologie » et « études » (YouTube, Instagram) | Audience exacte, contenus de rentrée et de révisions | Recherches sur les plateformes (« méthode de révision », « réviser le bac ») | Adresse professionnelle publique de la chaîne | Affiliation Gumroad + accès gratuit |
 | Professeurs documentalistes et CPE | Accompagnent la méthodologie au lycée | Réseaux professionnels, groupes d'enseignants | Fonction (pas de démarchage des élèves) | Présentation de la démo, pas de vente directe en établissement |
 
 ## Priorité 2 · Partenaires

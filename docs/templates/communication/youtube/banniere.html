@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin-ext.woff2) format("woff2");font-weight:100 900;unicode-range:U+0100-024F}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;--texte2:#45413A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:2048px;height:1152px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+#b{position:relative;width:2048px;height:1152px;overflow:hidden}
+.f{position:absolute}
+/* formes Bauhaus hors zone sûre (visibles sur ordinateur et TV) */
+.c-rouge{left:-120px;top:260px;width:520px;height:520px;border-radius:50%;background:var(--rouge)}
+.carre-bleu{left:90px;top:540px;width:260px;height:260px;background:var(--bleu);border:8px solid var(--encre);box-shadow:16px 16px 0 var(--encre)}
+.quart{right:-40px;top:300px;width:420px;height:420px;background:var(--jaune);border-top-left-radius:100%;border:8px solid var(--encre)}
+.rond-encre{right:260px;top:200px;width:150px;height:150px;border-radius:50%;background:var(--encre)}
+.tri{left:1720px;top:690px;width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:190px solid var(--rouge)}
+.barre{left:0;right:0;bottom:0;height:40px;background:var(--encre)}
+.barre2{left:0;right:0;top:0;height:40px;background:var(--encre)}
+/* zone sûre 1235 x 338, centrée : x 406-1641, y 407-745 */
+#sur{position:absolute;left:406px;top:407px;width:1235px;height:338px;display:flex;align-items:center;gap:52px;padding:0 28px}
+#sur svg{width:220px;height:220px;flex:none}
+.txt{display:flex;flex-direction:column;gap:14px}
+.sur-titre{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase;color:var(--texte2)}
+.sur-titre b{color:var(--encre)}
+h1{font-weight:800;font-size:76px;line-height:1.02;letter-spacing:-.025em}
+h1 .s{background:var(--jaune);padding:0 12px;box-decoration-break:clone}
+.pied{font-weight:600;font-size:32px;color:var(--texte2)}
+.pied b{color:var(--bleu);font-weight:800}
+#guide{position:absolute;left:406px;top:407px;width:1235px;height:338px;outline:4px dashed magenta;display:none}
+body.guide #guide{display:block}
+</style></head>
+<body><div id="b">
+<div class="f barre2"></div>
+<div class="f c-rouge"></div><div class="f carre-bleu"></div>
+<div class="f quart"></div><div class="f rond-encre"></div><div class="f tri"></div>
+<div id="sur">
+  <svg viewBox="0 0 80 80" role="img" aria-label="QME"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+  <div class="txt">
+    <div class="sur-titre"><b>QME</b> · Quentin Morel Engineering</div>
+    <h1>Templates prêts à l’emploi<br><span class="s">et outils sur mesure</span></h1>
+    <div class="pied">Démos gratuites, sans inscription · <b>qm-engineering.fr</b></div>
+  </div>
+</div>
+<div class="f barre"></div>
+<div id="guide"></div>
+</div></body></html>

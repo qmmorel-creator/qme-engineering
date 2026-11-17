@@ -18,7 +18,7 @@ l'outil naturel pour les prescripteurs et les créateurs de contenu.
 | Traiteurs de mariage | Le décompte des couverts, régimes et allergies leur revient ; une liste propre leur évite des erreurs | Annuaires professionnels, salons du mariage | Gérant, responsable commercial | Mettre en avant l'export des régimes et le comptage des couverts ; affiliation | E-mail, salons |
 | Photographes et vidéastes de mariage indépendants | Très présents en ligne, audience exacte, nombreux contenus « conseils aux futurs mariés » | Instagram, sites personnels, LinkedIn | Le photographe | Accès offert pour tester + lien d'affiliation à partager dans leurs conseils | E-mail professionnel public |
 | Boutiques de robes et costumes de mariage | Voient les futurs mariés tôt (8 à 12 mois avant) | Annuaires, centres-villes, salons | Gérant | Carte avec QR code vers la démo en boutique ; affiliation | Visite, e-mail |
-| Créateurs de contenu « mariage » (blogs, YouTube, Instagram, TikTok) | Audience exacte, contenus « rétroplanning » et « budget mariage » | Recherches sur les plateformes | Adresse professionnelle publique | Affiliation Gumroad + accès gratuit | E-mail professionnel |
+| Créateurs de contenu « mariage » (blogs, YouTube, Instagram) | Audience exacte, contenus « rétroplanning » et « budget mariage » | Recherches sur les plateformes | Adresse professionnelle publique | Affiliation Gumroad + accès gratuit | E-mail professionnel |
 
 ## Priorité 2 · Partenaires
 
