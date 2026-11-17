@@ -39,16 +39,15 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 
 | Rang | Produit | Code | Slug | Prix | Pourquoi |
 |---|---|---|---|---|---|
-| **1** | **Planner horaire** | PHR | planner | 15 € | **Pack Étudiant**, présenté à un partenaire (Optimind) le 16/11 |
-| **2** | **Suivi de lecture** | PGS | lecture | 12 € | Pack Étudiant |
-| **3** | **Notes et moyennes** | NTS | notes | 12 € | Pack Étudiant |
-| **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | Pack Étudiant |
-| **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | Pack Étudiant |
-| **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | Dès que ses 7 templates sont en vente |
-| 7 | Carnet de voiture | CAR | voiture | 13 € | Complète le Pack Ma voiture |
-| 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | 7 templates en vente depuis le 16/11 |
-| 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | 2 templates en vente depuis le 16/11 |
-| 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | Après le Carnet de voiture |
+| **2** | **Suivi de lecture** | PGS | lecture | 12 € | **En vente depuis le 17/11** |
+| **3** | **Notes et moyennes** | NTS | notes | 12 € | **En vente depuis le 17/11** |
+| **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | **En vente depuis le 17/11** |
+| **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | **En vente depuis le 17/11** |
+| **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | **En vente depuis le 17/11** |
+| 7 | Carnet de voiture | CAR | voiture | 13 € | **En vente depuis le 17/11** |
+| 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | **En vente depuis le 17/11** |
+| 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | **En vente depuis le 17/11** |
+| 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | **En vente depuis le 17/11** |
 | 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | Pack Commerçant et artisan |
 | 12 | Compétition | CMP | competition | 49 € | |
 | 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | Pack Forme |
@@ -64,5 +63,8 @@ Publiés et en vente : Secret Santa, Pack Argent du quotidien, Pack Bien démarr
 Remboursement de dettes, Temps de vie, Inventaire valorisé, Objectif d'épargne, Papiers du foyer, Capacité
 d'emprunt, Planificateur de voyage, Simulateur leasing ou achat (38 templates en vente). Prochaine création
 possible : 17/11 à 08:39 (Paris).
+
+17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; PGS, NTS, CAN, MMR, CAR publiés et en vente (44 templates en vente) ;
+Pack Étudiant et Pack Freelance publiés et en vente ; Pack Voyage et Pack Ma voiture publiés et en vente ; limite atteinte, prochaine création le 18/11 à 08:48 (Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).

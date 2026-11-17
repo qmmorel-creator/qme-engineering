@@ -87,7 +87,7 @@ déjà).
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
+| T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -97,7 +97,7 @@ déjà).
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T17 | Suivi de lecture | Loisirs | Lecteurs | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -107,7 +107,7 @@ déjà).
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
-| T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | prêt | 15 € | M | P1 | Backlog Quentin n° 02 |
+| T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
@@ -163,9 +163,9 @@ déjà).
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
-| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -274,7 +274,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
-| Ma voiture | PVT | T66, T10, T98 | — | 34 € | 15 % | 28 € | 9 € |
+| Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -2393,12 +2393,14 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
 - Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
 - Communication (non publiée, non inscrite aux plannings) : `communication/sans-voiture/` (`gumroad.md`,
   `gumroad.json`, `linkedin.md`, `instagram.md` + carrousel de 5 vues, `prospects.md`). **Aucune fiche Gumroad créée.**
-- Pack Ma voiture (PVT), décision de Quentin du 17/11/2026 : SVT ajouté à `produits` de PVT
-  (`netlify/lib/packs.mjs`, comme CRS dans PFM ; pack non encore vendu, donc aucune date dans `ajouts`), textes du pack
-  revus (« garder, changer ou se passer de la voiture »). Prix du pack : 12 + 13 + 9 = 34 €, −15 % (3 templates),
-  arrondi à l'euro inférieur = **28 €** (au lieu de 22 €), option évolutif 25 % = 7 €, relevée au minimum = **9 €**.
-  À la création de la fiche Gumroad du pack : ces prix. Si le pack est déjà en vente quand T98 sort : date d'ajout
-  de SVT dans `ajouts`.
+- Pack Ma voiture (PVT), décision de Quentin du 17/11/2026. Le pack étant déjà en vente sur Gumroad (22 €, PR #145),
+  SVT est **annoncé** (`prevus: ['SVT']` dans `outils/packs/donnees.mjs`, « À venir » sur la page du pack, inclus avec
+  l'option Pack évolutif) mais **pas encore dans `produits`** : le contenu vendu et le prix ne changent pas avant la
+  sortie de T98. Le générateur des packs accepte désormais un template existant annoncé hors de `produits`.
+  **À la mise en vente de T98** (feu vert de Quentin) : SVT dans `produits` de PVT avec sa date dans `ajouts`
+  (`netlify/lib/packs.mjs`), `prevus` vidé, pages régénérées, et prix du pack sur Gumroad passé à **28 €**
+  (12 + 13 + 9 = 34 €, −15 % pour 3 templates, arrondi à l'euro inférieur), option évolutif **9 €** (25 % = 7 €,
+  relevé au minimum de 9 €).
 - Site publié le 17/11/2026 avec le feu vert de Quentin (fusion de la PR #146) : T98 en « Mise en vente prochaine »,
   démo libre.
 - À décider par Quentin : nom définitif (avant toute fiche Gumroad), création de la fiche Gumroad, inscription aux
