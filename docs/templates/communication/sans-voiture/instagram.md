@@ -1,8 +1,9 @@
 # Publication Instagram · Vivre sans voiture
 
-Selon le kit `../instagram/README.md`. À relire par Quentin. **Non inscrite au planning Instagram** (consigne du
-17/11/2026) ; à l'inscription : ligne `IG-nn` le lendemain de la date LinkedIn, 18:30, statut `Prêt`, puis
-`Programmé` seulement avec l'accord de Quentin. Et, selon `CLAUDE.md`, tout format vidéo ajouté reçoit sa ligne `YT-nn`
+Selon le kit `../instagram/README.md`. **Programmée** : IG-151, mercredi
+25/11/2026 à 18:30, statut « Programmé » (demande de Quentin du 17/11/2026), LinkedIn associé LI-155. Légende : doc
+`1QNxM0K2PhRrVj37eWNMC9InRI0pFB1WHDrx8efYYUBQ` (variante A, légende seule) ; carrousel `IG-151-sans-voiture-1.png` à
+`-5.png` dans Images (IDs en colonne P). Publication par Instinct. Et, selon `CLAUDE.md`, tout format vidéo ajouté reçoit sa ligne `YT-nn`
 le même jour (un carrousel n'est pas une vidéo : pas de ligne YouTube pour lui).
 
 ## Carrousel (5 vues, 1080 × 1350)

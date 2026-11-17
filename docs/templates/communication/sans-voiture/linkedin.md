@@ -1,7 +1,8 @@
 # Publication LinkedIn · Vivre sans voiture
 
-À relire par Quentin. **Non inscrite au planning LinkedIn** (consigne du 17/11/2026 : textes préparés, inscription
-au planning seulement après feu vert). Template pas encore en vente : publier avec le lien de la démo, et le lien
+**Programmée** : LI-155, mardi 24/11/2026 à 12:15, statut « Programmé » (demande de Quentin du 17/11/2026). Doc texte
+`1iYVKhUQwCPCkvOnrZ03c_5-BeYYSHW4GkEAooUhgL_s` (variante 1, démo et lien d'achat en premier commentaire, lien tracé
+`utm_campaign=li-155`), image `LI-155-sans-voiture.png` (couverture). Template pas encore en vente : publier avec le lien de la démo, et le lien
 d'achat en premier commentaire seulement une fois la fiche Gumroad publiée.
 Confidentialité : aucune ville, aucun réseau, loueur, financeur, marque ni montant réel ; ne pas évoquer de situation
 personnelle.
