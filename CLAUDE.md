@@ -33,6 +33,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   chaîne YouTube : `docs/templates/communication/youtube/`. Outils et journal : `docs/videos/`.
 - **Tout format vidéo** ajouté à un planning (Reel Instagram, vidéo LinkedIn) reçoit aussi sa ligne `YT-nn` dans le
   planning YouTube, le même jour (12:00 pour une vidéo démo, 20:00 pour un reel du soir).
+- **Reels du soir** : skill `.claude/skills/reel-du-soir/` (motion design muet à partir des démos), lundi, mercredi et
+  vendredi, Instagram 18:45 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
+  `docs/templates/communication/instagram/production/journal-reels.md`.
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
   lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
