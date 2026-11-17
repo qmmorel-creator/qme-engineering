@@ -1,0 +1,38 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../../assets/fonts/outfit.css">
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../assets/fonts/outfit-latin.woff2') format('woff2')}
+:root{--papier:#FBF7F1;--encre:#24221F;--texte-2:#514C44;--rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--rose:#F8DCD3;--beurre:#FBEBC2;--ciel:#D8E4F0;--trait:#E4DCCE}
+*{box-sizing:border-box;margin:0}
+body{width:1640px;height:624px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);position:relative}
+.f{position:absolute}
+/* formes Bauhaus décoratives, hors zone utile mobile */
+.c1{left:-120px;top:-150px;width:420px;height:420px;border-radius:50%;background:var(--ciel)}
+.s1{left:120px;top:360px;width:150px;height:150px;background:var(--beurre);border-radius:18px}
+.d1{right:-90px;top:-90px;width:380px;height:380px;background:var(--rose);border-radius:0 0 0 100%}
+.c2{right:130px;bottom:70px;width:120px;height:120px;border-radius:50%;background:var(--jaune)}
+.q1{right:-40px;bottom:-40px;width:200px;height:200px;background:var(--bleu);border-radius:100% 0 0 0}
+.line{right:300px;top:80px;width:3px;height:140px;background:var(--encre)}
+/* contenu : zone sûre mobile x 280–1360 */
+.box{position:absolute;left:0;right:0;top:0;align-items:center;text-align:center;height:624px;display:flex;flex-direction:column;justify-content:center;gap:30px}
+.brand{display:flex;text-align:left;align-items:center;gap:16px}
+.wm{font-size:58px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.wm .m{color:var(--bleu)}.wm .e{color:var(--jaune)}
+.tag{font-size:16px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--texte-2);line-height:1.3}
+h1{font-size:68px;font-weight:700;letter-spacing:-.03em;line-height:1.06}
+mark{background:var(--beurre);border-radius:14px;padding:0 12px;color:inherit}
+.puces{display:flex;gap:12px;font-size:22px;font-weight:600}
+.puces span{padding:9px 20px;border-radius:999px;background:#fff;border:1px solid var(--trait)}
+.puces .url{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+</style></head><body>
+<div class="f c1"></div><div class="f s1"></div><div class="f d1"></div><div class="f c2"></div><div class="f q1"></div>
+<div class="box">
+  <div class="brand">
+    <svg viewBox="0 0 80 80" width="62" height="62"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
+    <span class="wm">Q<span class="m">M</span><span class="e">E</span></span>
+    <span class="tag">Quentin Morel<br>Engineering</span>
+  </div>
+  <h1>Votre métier a ses process.<br><mark>Je construis l’outil qui va avec.</mark></h1>
+  <div class="puces"><span>Outils sur mesure</span><span>Templates prêts à l’emploi</span><span class="url">qm-engineering.fr</span></div>
+</div>
+</body></html>
