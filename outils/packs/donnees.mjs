@@ -101,6 +101,7 @@ export const TEMPLATES = {
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
   QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
   SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
+  SVT: { slug: 'sans-voiture', prix: 900, phrase: 'Le gain annuel de vivre sans voiture, sortie comprise, et une parade à chaque urgence.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans

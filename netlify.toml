@@ -865,6 +865,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/sans-voiture/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/sans-voiture/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/seminaire/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
