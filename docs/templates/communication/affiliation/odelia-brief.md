@@ -1,7 +1,14 @@
-# Brief Odélia · Pack Étudiant (stories Instagram)
+# Brief Odélia · Pack Étudiant (Reel Instagram dédié)
 
-Document de travail, à envoyer à Yuzu Agency après validation de Quentin. Rien d'imposé : ton, mots et montage
-restent ceux d'Odélia.
+Document de travail, à envoyer à Yuzu Agency après validation de Quentin. Ce ne sont que des idées : ton, mots,
+montage et présentation restent ceux d'Odélia, à qui on fait confiance sur ce qui est le plus opportun.
+
+## Deux grands principes
+
+1. **Odélia fait elle-même le parcours** en enregistrant l'écran de son téléphone ou de son ordinateur (démo et
+   parcours guidé ci-dessous).
+2. **On lui simplifie la vie** : nous fournissons des vidéos types d'utilisation, sans texte ni son, qu'elle intègre
+   à son montage. Dans ce cas, demande d'un dernier geste commercial à Yuzu.
 
 ## Ce qui est fourni
 
@@ -14,10 +21,8 @@ restent ceux d'Odélia.
    3. **Planner horaire** : semaine de CM, TD, BU, révisions et sport ; « Bilan » : heures de révision faites sur
       les heures prévues.
    4. **Suivi d'habitudes** : routine de révision ; cocher la session du jour fait gagner un jour à la série.
-2. **Des clips verticaux à intercaler** (1080 × 1920 de toile, rendu 720 × 1280), une interaction réelle filmée
-   dans l'outil, en deux versions :
-   - **brute** : sans texte ni son, pour sa voix et ses propres titres ;
-   - **habillée** : accroche, légendes, musique QME, fin « qm-engineering.fr/demo/odelia ».
+2. **Principe 2 · vidéos types d'utilisation**, verticales, sans texte ni son : une interaction réelle filmée dans
+   chaque outil, à intégrer à son montage avec sa voix.
 
 | Clip | Outil | Vue | Ce qu'on voit |
 |---|---|---|---|
@@ -28,18 +33,20 @@ restent ceux d'Odélia.
 
 Les chiffres cités sont ceux du tournage du 17/11/2026 ; la démo calcule les siens à la date où on l'ouvre.
 
-## Proposition de déroulé : 3 stories, environ 40 s
+## Proposition de déroulé : 1 Reel de 30 à 40 s
 
-| Story | Durée | Image | Idée de texte ou de voix |
-|---|---|---|---|
-| 1 · Accroche | ~10 s | Odélia face caméra, BU ou bureau | « Partiels dans X semaines. Mon problème, c'est pas d'apprendre : c'est savoir *quoi* réviser et *quelle note* il me faut. » |
-| 2 · Démo | ~20 s | clips 014 → 015 → 016 (brut ou habillé) | « Je mets mes notes de TD : il me dit la note à viser pour valider. Et il répartit mes chapitres jusqu'au jour J. » |
-| 3 · Lien | ~10 s | clip 017 + sticker lien | « Tout est dans le Pack Étudiant, sur téléphone et ordi, sans abonnement. Le lien est là. » |
+| Temps | Image | Idée de texte ou de voix |
+|---|---|---|
+| 0–4 s · Accroche | Odélia face caméra | « Comment j'évite de redoubler ma L1 : je sais exactement quelle note il me faut. » |
+| 4–9 s · Le problème | Odélia, fiches, BU | « Partiels dans quelques semaines, plein de chapitres, et aucune idée de la note à viser. » |
+| 9–30 s · La démo | clips 014 → 015 → 017, avec sa voix | « Je mets mes notes de TD : il me dit la note à viser pour valider. Il me sort les chapitres du jour. Et je coche ma session : la série tient. » |
+| 30–36 s · La fin | Odélia face caméra | « Tout est dans le Pack Étudiant, sur téléphone et ordi, sans abonnement. Lien dans ma bio. » |
 
 Angle : son sujet « comment éviter de redoubler sa L1 ». Ses fiches et son carnet organisent le cours ; les outils
 font le calcul (note à viser) et le planning. Les deux se complètent.
 
-Lien du sticker : lien personnel suivi (`utm_source=odelia`), fourni à l'accord.
+Lien : un Reel n'a pas de lien cliquable. Demande faite à Yuzu : lien personnel suivi (`utm_source=odelia`) dans la
+bio pendant une semaine, et une story de relais avec sticker lien.
 
 ## À respecter dans la publication
 
