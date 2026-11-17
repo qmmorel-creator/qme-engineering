@@ -274,7 +274,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
-| Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
+| Ma voiture | PVT | T66, T10, T98 | — | 34 € | 15 % | 28 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -2362,8 +2362,7 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
 ### T98 · Vivre sans voiture (`templates/sans-voiture/`, préfixe SVT, 9 €)
 - Fiche détaillée : [`fiches/sans-voiture.md`](fiches/sans-voiture.md). Permalien prévu
   `simulateur-vivre-sans-voiture`. Prix de **9 €** demandé explicitement par Quentin le 17/11/2026, en dérogation
-  à la règle du prix minimum de 12 € (13/11/2026). Candidat au pack « Ma voiture » (PVT) : à trancher par
-  Quentin.
+  à la règle du prix minimum de 12 € (13/11/2026). **Pack Ma voiture (PVT), décision de Quentin du 17/11/2026.**
 - Promesse : « Ta voiture te coûte combien, vraiment ? Et sans elle, tu gagnes combien ? » Public : particuliers et
   familles qui envisagent de vendre leur voiture et de vivre avec le vélo, les transports, le train et une
   location de temps en temps.
@@ -2394,5 +2393,13 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
 - Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
 - Communication (non publiée, non inscrite aux plannings) : `communication/sans-voiture/` (`gumroad.md`,
   `gumroad.json`, `linkedin.md`, `instagram.md` + carrousel de 5 vues, `prospects.md`). **Aucune fiche Gumroad créée.**
-- À décider par Quentin : nom définitif (avant toute fiche Gumroad), rattachement au pack « Ma voiture » (PVT),
-  création de la fiche Gumroad, inscription aux plannings LinkedIn et Instagram, fusion dans `main`.
+- Pack Ma voiture (PVT), décision de Quentin du 17/11/2026 : SVT ajouté à `produits` de PVT
+  (`netlify/lib/packs.mjs`, comme CRS dans PFM ; pack non encore vendu, donc aucune date dans `ajouts`), textes du pack
+  revus (« garder, changer ou se passer de la voiture »). Prix du pack : 12 + 13 + 9 = 34 €, −15 % (3 templates),
+  arrondi à l'euro inférieur = **28 €** (au lieu de 22 €), option évolutif 25 % = 7 €, relevée au minimum = **9 €**.
+  À la création de la fiche Gumroad du pack : ces prix. Si le pack est déjà en vente quand T98 sort : date d'ajout
+  de SVT dans `ajouts`.
+- Site publié le 17/11/2026 avec le feu vert de Quentin (fusion de la PR #146) : T98 en « Mise en vente prochaine »,
+  démo libre.
+- À décider par Quentin : nom définitif (avant toute fiche Gumroad), création de la fiche Gumroad, inscription aux
+  plannings LinkedIn et Instagram.

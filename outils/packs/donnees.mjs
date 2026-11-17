@@ -415,13 +415,14 @@ export const PAGES = {
   PVT: {
     couleur: 'bleu', cibles: ['automobilistes', 'particuliers'],
     accroche: 'Ce que votre voiture vous coûte vraiment.',
-    resume: 'Choisir entre achat, crédit et location, puis suivre entretiens, kilomètres et dépenses.',
-    pourQui: 'Vous changez de voiture ou vous voulez enfin savoir ce qu’elle coûte. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
+    resume: 'Choisir entre achat, crédit et location, suivre entretiens et dépenses, ou décider de s’en passer, gain annuel et urgences compris.',
+    pourQui: 'Vous changez de voiture, vous voulez enfin savoir ce qu’elle coûte, ou vous vous demandez si vous pourriez vivre sans. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
     parcours: [
+      ['SVT', 'Décidez si vous pouvez vous passer de voiture, gain annuel et urgences compris.'],
       ['VTR', 'Comparez comptant, crédit, LOA et LLD sur le coût total.'],
       ['CAR', 'Suivez entretiens, kilométrage, dépenses et coût au kilomètre.'],
     ],
-    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture et le simulateur se complètent'],
+    arguments: ['Garder, changer ou se passer de la voiture : les trois décisions chiffrées', 'Aucune donnée de marque ni de prix figée', 'Le simulateur, le comparateur et le carnet se complètent'],
     prevus: [],
   },
   PAQ: {

@@ -11,8 +11,8 @@ saisi. Pas de modèle tableur : application web.
 
 Lien avec les templates existants : **Simulateur leasing ou achat** (T66, VTR) compare des façons de payer une
 voiture ; **Carnet de voiture** (T10, CAR) suit une voiture qu'on garde. T98 répond à la question d'avant :
-faut-il une voiture du tout ? Candidat naturel au pack « Ma voiture » (PVT, T66 + T10) : **à trancher par
-Quentin**, rien n'est changé dans les packs sans son accord.
+faut-il une voiture du tout ? **Pack Ma voiture (PVT), décision de Quentin du
+17/11/2026** (T66 + T10 + T98 : 34 €, −15 %, 28 € ; option évolutif 9 €).
 
 ## Pour qui
 
