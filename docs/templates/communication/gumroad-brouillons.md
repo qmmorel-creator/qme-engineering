@@ -105,8 +105,8 @@ versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Qu
 
 | Code | Pack | Identifiant Gumroad | Permalien | Pack | Pack évolutif | Statut |
 |------|------|---------------------|-----------|------|---------------|--------|
-| PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | clé et versions à ajouter (https://gumroad.com/products/oeykda/edit) |
-| PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | clé et versions à ajouter (https://gumroad.com/products/qzscs/edit) |
+| PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | **en vente** (clé, versions et publication le 17/11/2026) |
+| PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | **en vente** (clé, versions et publication le 17/11/2026) |
 
 **Limite Gumroad atteinte** sur le Pack Voyage : prochaine création le 17/11 à 02:52 PST (11:52 à Paris). Reprise
 programmée à 11:53 : PVY, PVT, puis rang 11 (STK, TVA).

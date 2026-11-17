@@ -43,9 +43,9 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | **3** | **Notes et moyennes** | NTS | notes | 12 € | **En vente depuis le 17/11** |
 | **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | **En vente depuis le 17/11** |
 | **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | **En vente depuis le 17/11** |
-| **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | **Brouillon créé le 17/11**, clé et versions à ajouter |
+| **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | **En vente depuis le 17/11** |
 | 7 | Carnet de voiture | CAR | voiture | 13 € | **En vente depuis le 17/11** |
-| 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | Brouillon créé le 17/11, clé et versions à ajouter |
+| 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | **En vente depuis le 17/11** |
 | 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | 2 templates en vente depuis le 16/11 |
 | 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | Après le Carnet de voiture |
 | 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | Pack Commerçant et artisan |
@@ -65,6 +65,6 @@ d'emprunt, Planificateur de voyage, Simulateur leasing ou achat (38 templates en
 possible : 17/11 à 08:39 (Paris).
 
 17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; PGS, NTS, CAN, MMR, CAR publiés et en vente (44 templates en vente) ;
-fiches PET et PFG créées ; PVY et PVT en attente de la limite (prochaine création le 17/11 à 11:52, Paris).
+Pack Étudiant et Pack Freelance publiés et en vente ; PVY et PVT en attente de la limite (prochaine création le 17/11 à 11:52, Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).
