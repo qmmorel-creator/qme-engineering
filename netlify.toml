@@ -1165,3 +1165,17 @@
   to = "/templates/revision/?demo=concours&prenom=Yves"
   status = 302
   force = true
+
+# Liens courts de démo personnalisée (affiliation BosseTesMaths et ines.maths, 17/11/2026) : même démo
+# « première, spécialité maths » (profil `maths`), au prénom de chaque destinataire.
+[[redirects]]
+  from = "/demo/corinne"
+  to = "/templates/revision/?demo=maths&prenom=Corinne"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/demo/ines"
+  to = "/templates/revision/?demo=maths&prenom=In%C3%A8s"
+  status = 302
+  force = true
