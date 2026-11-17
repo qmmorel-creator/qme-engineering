@@ -23,13 +23,15 @@ rien à mettre à jour à la main).
 ## Envoi (à chaque déclenchement)
 
 1. Lire O2:P2. Si O2 = « oui » : ne rien envoyer.
-2. Lire A2:M400. Compter les lignes « envoyé » dont I commence par la date du jour (Paris).
+2. Lire A2:M400. Compter les lignes dont I commence par la date du jour (Paris), **quel que soit le
+   statut** (Quentin peut passer une ligne envoyée en « retiré »).
    reste = P2 − ce compte ; si ≤ 0, s'arrêter.
 3. n = min(3, reste) ; à 17 h ou plus, n = reste.
 4. Pour les n premières lignes « à envoyer » (ordre A croissant) : Gmail `send_message` avec
    **uniquement** `draftId` = C. Succès : B « envoyé », I date-heure, J id du message, K threadId.
    Échec (après un nouvel essai) : B « erreur : motif ».
-5. Interdits : tout autre envoi, toute réponse, toute création, modification ou suppression de
+5. Ne jamais modifier une ligne qui n'est pas « à envoyer », ni les colonnes L et suivantes écrites par
+   Quentin. Interdits : tout autre envoi, toute réponse, toute création, modification ou suppression de
    brouillon, toute modification de O2:R2.
 
 ## Surveillance (chaque jour ouvré à 18 h 13)
