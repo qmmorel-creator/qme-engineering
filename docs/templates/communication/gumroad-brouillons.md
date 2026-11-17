@@ -97,3 +97,16 @@ Catégorie « Self Improvement » (la fiche `planner/gumroad.md` n'en donne pas)
 raccourcis à 26 caractères au plus (limite Gumroad) : « Ouvrir mon suivi » (PGS), « Ouvrir mon carnet » (CAR).
 Nouvelle limite atteinte sur la fiche du Pack Freelance : prochaine création à 09:38 (Paris), reprise programmée
 pour PFG puis PVY.
+
+### Fiches de packs du 17/11/2026, 08 h 40 UTC
+
+Brouillons **non publiés** ; identifiants **non ajoutés** à `PACKS`. Avant publication : clé de licence **et**
+versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Quentin.
+
+| Code | Pack | Identifiant Gumroad | Permalien | Pack | Pack évolutif | Statut |
+|------|------|---------------------|-----------|------|---------------|--------|
+| PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | clé et versions à ajouter (https://gumroad.com/products/oeykda/edit) |
+| PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | clé et versions à ajouter (https://gumroad.com/products/qzscs/edit) |
+
+**Limite Gumroad atteinte** sur le Pack Voyage : prochaine création le 17/11 à 02:52 PST (11:52 à Paris). Reprise
+programmée à 11:53 : PVY, PVT, puis rang 11 (STK, TVA).
