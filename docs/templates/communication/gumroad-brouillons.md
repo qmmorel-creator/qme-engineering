@@ -76,3 +76,16 @@ certains tags (« rentabilité », « dépenses », « économies », « épargn
 02:41 PST (10 h 41 UTC, 11 h 41 à Paris). Restent à créer, dans l'ordre : VYG voyage (complète le Pack
 Voyage), puis VTR leasing et CAR voiture (complètent le Pack Ma voiture). RBS remboursements-sante sauté
 (point **bloquant** de `QUESTIONS.md` : données de santé).
+
+## Lot du 17/11/2026, 07 h 47 UTC (file `gumroad-priorite.md`, Pack Étudiant en tête)
+
+Brouillons **non publiés**, fiches remplies (permalien, résumé, catégorie, tags, détails, reçu, bouton, lien
+vers `/connexion/`, couverture). Identifiants **non ajoutés** à `PRODUITS`.
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| PHR | planner | 6uyeEBR91feI1tM2Wbij8Q== | /l/planner-horaire | 15 € | clé à activer (https://gumroad.com/products/usyozmz/edit) |
+
+Catégorie « Self Improvement » (la fiche `planner/gumroad.md` n'en donne pas) ; détail « Pour » ajouté :
+étudiants, cadres, freelances. **Limite Gumroad atteinte** à la 2e création : prochaine possible le 17/11 à
+00:15 PST (09:15 à Paris). Reprise programmée à 09:16 : PGS, NTS, CAN, MMR.
