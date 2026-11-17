@@ -34,8 +34,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
 - **Clés de licence à activer (17/11/2026)** (Content → Insert → License key, sans multi-postes) :
-  - PVY Pack Voyage (clé + versions « Pack » 25 € et « Pack évolutif » 34 €) : https://gumroad.com/products/kkuhbs/edit
-  - PVT Pack Ma voiture (clé + versions « Pack » 22 € et « Pack évolutif » 31 €) : https://gumroad.com/products/rqxvke/edit
+  - aucune pour l'instant (packs Étudiant, Freelance, Voyage et Ma voiture publiés le 17/11).
 - T44 Suivi de TVA (rang 11 de la file) : publication suspendue à ton accord sur les valeurs « à vérifier » (§ T44
   plus bas). Le brouillon peut être créé, il ne sera pas publié avant.
   La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).

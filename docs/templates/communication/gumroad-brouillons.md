@@ -108,8 +108,8 @@ versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Qu
 | PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | **en vente** (clé, versions et publication le 17/11/2026) |
 | PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | **en vente** (clé, versions et publication le 17/11/2026) |
 
-| PVY | Pack Voyage | Kwfo3TDSuJWfngx4ZTJ4xQ== | /l/pack-voyage | 25 € | 34 € | clé et versions à ajouter (https://gumroad.com/products/kkuhbs/edit) |
-| PVT | Pack Ma voiture | nVivzNvD6qcdSi5wf1UqXQ== | /l/pack-voiture | 22 € | 31 € | clé et versions à ajouter (https://gumroad.com/products/rqxvke/edit) |
+| PVY | Pack Voyage | Kwfo3TDSuJWfngx4ZTJ4xQ== | /l/pack-voyage | 25 € | 34 € | **en vente** (clé, versions et publication le 17/11/2026) |
+| PVT | Pack Ma voiture | nVivzNvD6qcdSi5wf1UqXQ== | /l/pack-voiture | 22 € | 31 € | **en vente** (clé, versions et publication le 17/11/2026) |
 
 PVY et PVT créés à 10 h 54 UTC. **Limite Gumroad atteinte** sur Stocks et inventaire (STK) : prochaine création
 le 17/11 à 23:48 PST (18/11 à 08:48, Paris). Reprise programmée le 18/11 à 08:50 : STK, TVA (publication après
