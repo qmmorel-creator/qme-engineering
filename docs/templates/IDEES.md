@@ -173,6 +173,7 @@ déjà).
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | prêt | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -273,7 +274,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
-| Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
+| Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -2355,3 +2356,52 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   (`netlify/lib/packs.mjs`, pages des packs régénérées ; CRS retiré des prévus dans `outils/packs/donnees.mjs`, et la
   phrase « Le plan de course à pied à venir » des arguments de PFM à revoir), carte anglaise, plannings, passage en
   vente.
+
+## Fiche T98 (idée de Quentin, 17/11/2026)
+
+### T98 · Vivre sans voiture (`templates/sans-voiture/`, préfixe SVT, 9 €)
+- Fiche détaillée : [`fiches/sans-voiture.md`](fiches/sans-voiture.md). Permalien prévu
+  `simulateur-vivre-sans-voiture`. Prix de **9 €** demandé explicitement par Quentin le 17/11/2026, en dérogation
+  à la règle du prix minimum de 12 € (13/11/2026). **Pack Ma voiture (PVT), décision de Quentin du 17/11/2026.**
+- Promesse : « Ta voiture te coûte combien, vraiment ? Et sans elle, tu gagnes combien ? » Public : particuliers et
+  familles qui envisagent de vendre leur voiture et de vivre avec le vélo, les transports, le train et une
+  location de temps en temps.
+- Questionnaire qui n'ouvre que les champs utiles : vélo (électrique ou non, déjà utilisé, équipement enfant et
+  courses), transports en commun (abonnement, part employeur, tickets, enfants), travail, école, santé, usages
+  actuels de la voiture, entourage.
+- Tout est saisi et paramétrable : voiture (mode de détention achat, crédit, LOA ou LLD, perte de valeur,
+  assurance, entretien, carburant en € par an ou km × consommation × prix, stationnement, péages), sortie (vente,
+  rachat anticipé de LOA au barème saisi, restitution, indemnité de LLD, délai avant sortie), remplacement
+  (location à la journée et à la semaine, franchise, autopartage, taxis, train, livraisons, vélo, rehausseur),
+  temps perdu facultatif, horizon.
+- Résultat : **gain annuel ou perte** de se passer de voiture, gain mensuel, gain cumulé coût de sortie compris,
+  meilleur moment de sortie, sensibilité (location + 30 %, jours de location en plus possibles), amortissement
+  implicite d'une LOA, score de faisabilité avec verdict bloquant.
+- **Urgences et parades mises en avant** : urgence médicale de nuit (15, 112), enfant malade à l'école, siège
+  auto, panne ou vol du vélo, grève, retour tardif, météo, gros achats, vacances, disponibilité et caution des
+  locations, siège vélo trop petit, bonus d'assurance, contrat en cours, évolution de la famille. Organisation
+  proposée et phase de test avant de vendre.
+- Origine : simulateur personnel de Quentin (17/11/2026) ; **seule la mécanique est reprise**, aucun montant,
+  lieu, contrat, réseau ni marque. Aucune donnée datée intégrée (tarifs saisis). Argent : avertissement.
+- Statut : **fiche** le 17/11/2026 ; **en cours** puis **prêt** le 17/11/2026 (skill `nouveau-template`, branche
+  `claude/car-free-lifestyle-eval-n586ko`). Application `templates/sans-voiture/` (SVT dans `PRODUITS`, démo fictive),
+  tests `outils/templates/sans-voiture.test.mjs` (15), page `catalogue/sans-voiture/` « Mise en vente prochaine »,
+  cartes FR (Argent) et EN, connexion, fiche courte dans `outils/packs/donnees.mjs` (**aucun pack modifié**).
+- Sources vérifiées le 17/11/2026 : numéros d'urgence (service-public.gouv.fr F33954 : 15, 17, 18, 112, 114 ;
+  116 117 « ou 15 selon la région ») ; siège enfant jusqu'à 10 ans et dispense des taxis (code de la route R412-2,
+  F628) ; **VTC : dispense non prévue par le texte, écrit « à vérifier »** ; casque à vélo avant 12 ans (F34169).
+- Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
+- Communication (non publiée, non inscrite aux plannings) : `communication/sans-voiture/` (`gumroad.md`,
+  `gumroad.json`, `linkedin.md`, `instagram.md` + carrousel de 5 vues, `prospects.md`). **Aucune fiche Gumroad créée.**
+- Pack Ma voiture (PVT), décision de Quentin du 17/11/2026. Le pack étant déjà en vente sur Gumroad (22 €, PR #145),
+  SVT est **annoncé** (`prevus: ['SVT']` dans `outils/packs/donnees.mjs`, « À venir » sur la page du pack, inclus avec
+  l'option Pack évolutif) mais **pas encore dans `produits`** : le contenu vendu et le prix ne changent pas avant la
+  sortie de T98. Le générateur des packs accepte désormais un template existant annoncé hors de `produits`.
+  **À la mise en vente de T98** (feu vert de Quentin) : SVT dans `produits` de PVT avec sa date dans `ajouts`
+  (`netlify/lib/packs.mjs`), `prevus` vidé, pages régénérées, et prix du pack sur Gumroad passé à **28 €**
+  (12 + 13 + 9 = 34 €, −15 % pour 3 templates, arrondi à l'euro inférieur), option évolutif **9 €** (25 % = 7 €,
+  relevé au minimum de 9 €).
+- Site publié le 17/11/2026 avec le feu vert de Quentin (fusion de la PR #146) : T98 en « Mise en vente prochaine »,
+  démo libre.
+- À décider par Quentin : nom définitif (avant toute fiche Gumroad), création de la fiche Gumroad, inscription aux
+  plannings LinkedIn et Instagram.

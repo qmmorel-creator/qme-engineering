@@ -31,8 +31,11 @@ export function calculerPack(code) {
   const pack = PACKS[code], page = PAGES[code];
   if (!page) throw new Error(`Pack ${code} : textes absents de outils/packs/donnees.mjs`);
   const templates = pack.produits.filter((p) => PRODUITS[p]).map(infoTemplate);
+  // À venir : templates pas encore construits (PREVUS), ou déjà en ligne mais pas encore dans le pack (annoncés dans
+  // `prevus` de la page, ex. un template « bientôt » destiné à un pack déjà vendu : ni le prix ni les accès ne changent).
   const prevus = [...(page.prevus || []), ...pack.produits.filter((p) => !PRODUITS[p])]
-    .filter((p, i, t) => t.indexOf(p) === i && !PRODUITS[p]).map((p) => ({ pre: p, ...PREVUS[p] }));
+    .filter((p, i, t) => t.indexOf(p) === i && !(PRODUITS[p] && pack.produits.includes(p)))
+    .map((p) => (PRODUITS[p] ? { ...infoTemplate(p), statut: 'prevu' } : { pre: p, ...PREVUS[p] }));
   // Moins de deux templates prêts : prix prévu, calculé sur le pack complet (templates prêts et à venir).
   const indicatif = templates.length < 2;
   const prix = prixPack([...templates, ...(indicatif ? prevus : [])].map((t) => t.prix));
@@ -132,7 +135,8 @@ function pagePack(p) {
     <p>${p.indicatif ? 'Ces templates sont en cours de développement. Le pack sera mis en vente quand ils seront prêts ; cliquez sur « Je suis intéressé(e) » pour être prévenu.' : `Ces templates sont en préparation et rejoindront le pack à leur sortie. Avec l’option ${OPTION.nom} (+${euros(p.option)}), ils s’ouvriront avec votre clé, sans rien payer de plus.`}</p>
     <ul>${p.prevus.map((t) => `<li><b>${esc(t.nom)}</b><span>${esc(t.phrase)}</span>${p.indicatif ? `<em>${euros(t.prix)}</em>` : ''}</li>`).join('')}</ul>
   </div>` : '';
-  const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${PRODUITS[pre] ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
+  const dansPack = (pre) => p.templates.some((t) => t.pre === pre);
+  const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${dansPack(pre) ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
   return tete({
     titre: `${p.nom} · QME`,
     description: `${p.accroche} ${p.resume} ${p.nombre} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
