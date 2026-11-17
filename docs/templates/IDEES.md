@@ -173,7 +173,7 @@ déjà).
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
-| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en cours | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
+| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | prêt | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -2384,5 +2384,15 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   proposée et phase de test avant de vendre.
 - Origine : simulateur personnel de Quentin (17/11/2026) ; **seule la mécanique est reprise**, aucun montant,
   lieu, contrat, réseau ni marque. Aucune donnée datée intégrée (tarifs saisis). Argent : avertissement.
-- Statut : **fiche** le 17/11/2026 ; développement lancé le 17/11/2026 dans une session dédiée (skill
-  `nouveau-template`), sur la branche `claude/car-free-lifestyle-eval-n586ko`.
+- Statut : **fiche** le 17/11/2026 ; **en cours** puis **prêt** le 17/11/2026 (skill `nouveau-template`, branche
+  `claude/car-free-lifestyle-eval-n586ko`). Application `templates/sans-voiture/` (SVT dans `PRODUITS`, démo fictive),
+  tests `outils/templates/sans-voiture.test.mjs` (15), page `catalogue/sans-voiture/` « Mise en vente prochaine »,
+  cartes FR (Argent) et EN, connexion, fiche courte dans `outils/packs/donnees.mjs` (**aucun pack modifié**).
+- Sources vérifiées le 17/11/2026 : numéros d'urgence (service-public.gouv.fr F33954 : 15, 17, 18, 112, 114 ;
+  116 117 « ou 15 selon la région ») ; siège enfant jusqu'à 10 ans et dispense des taxis (code de la route R412-2,
+  F628) ; **VTC : dispense non prévue par le texte, écrit « à vérifier »** ; casque à vélo avant 12 ans (F34169).
+- Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
+- Communication (non publiée, non inscrite aux plannings) : `communication/sans-voiture/` (`gumroad.md`,
+  `gumroad.json`, `linkedin.md`, `instagram.md` + carrousel de 5 vues, `prospects.md`). **Aucune fiche Gumroad créée.**
+- À décider par Quentin : nom définitif (avant toute fiche Gumroad), rattachement au pack « Ma voiture » (PVT),
+  création de la fiche Gumroad, inscription aux plannings LinkedIn et Instagram, fusion dans `main`.
