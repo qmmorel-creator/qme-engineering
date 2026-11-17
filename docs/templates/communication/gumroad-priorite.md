@@ -39,12 +39,12 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 
 | Rang | Produit | Code | Slug | Prix | Pourquoi |
 |---|---|---|---|---|---|
-| **2** | **Suivi de lecture** | PGS | lecture | 12 € | Pack Étudiant |
-| **3** | **Notes et moyennes** | NTS | notes | 12 € | Pack Étudiant |
-| **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | Pack Étudiant |
-| **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | Pack Étudiant |
+| **2** | **Suivi de lecture** | PGS | lecture | 12 € | Brouillon créé le 17/11, clé à activer |
+| **3** | **Notes et moyennes** | NTS | notes | 12 € | Brouillon créé le 17/11, clé à activer |
+| **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | Brouillon créé le 17/11, clé à activer |
+| **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | Brouillon créé le 17/11, clé à activer |
 | **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | Dès que ses 7 templates sont en vente |
-| 7 | Carnet de voiture | CAR | voiture | 13 € | Complète le Pack Ma voiture |
+| 7 | Carnet de voiture | CAR | voiture | 13 € | Brouillon créé le 17/11, clé à activer |
 | 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | 7 templates en vente depuis le 16/11 |
 | 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | 2 templates en vente depuis le 16/11 |
 | 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | Après le Carnet de voiture |
@@ -64,7 +64,7 @@ Remboursement de dettes, Temps de vie, Inventaire valorisé, Objectif d'épargne
 d'emprunt, Planificateur de voyage, Simulateur leasing ou achat (38 templates en vente). Prochaine création
 possible : 17/11 à 08:39 (Paris).
 
-17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; limite atteinte, prochaine
-création possible le 17/11 à 09:15 (Paris).
+17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; brouillons PGS, NTS, CAN, MMR, CAR créés ;
+fiches PFG et PVY en attente de la limite (prochaine création possible le 17/11 à 09:38, Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).

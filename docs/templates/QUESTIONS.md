@@ -34,7 +34,11 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
 - **Clés de licence à activer (17/11/2026)** (Content → Insert → License key, sans multi-postes) :
-  - aucune pour l'instant (Planner horaire activé et publié le 17/11).
+  - PGS Suivi de lecture : https://gumroad.com/products/dsnkum/edit
+  - NTS Notes et moyennes : https://gumroad.com/products/mazrjx/edit
+  - CAN Candidatures : https://gumroad.com/products/rdavdl/edit
+  - MMR Planning de mémoire : https://gumroad.com/products/qmbdps/edit
+  - CAR Carnet de voiture : https://gumroad.com/products/osmqrt/edit
   La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
