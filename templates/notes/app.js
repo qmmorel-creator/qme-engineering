@@ -192,10 +192,32 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
+  // Démo personnalisée demandée par l'adresse : `?demo=droit-l1&prenom=…` (étudiante fictive en L1 de droit, page
+  // /demo/odelia). `?demo` seul rouvre la démo par défaut. Le profil choisi est mémorisé avec les données de démo.
+  const CLE_DEMO_PROFIL = CLE_DEMO + '-profil';
+  let demoDemandee = null;
+  function lireDemoDemandee() {
+    const p = new URLSearchParams(location.search);
+    if (!p.has('demo')) return;
+    demoDemandee = { profil: PROFILS_DEMO[p.get('demo')] ? p.get('demo') : null, prenom: String(p.get('prenom') || '').trim().slice(0, 40) };
+  }
+  function nouvelleDemo() {
+    const p = stock.lire(CLE_DEMO_PROFIL);
+    return p && PROFILS_DEMO[p.profil] ? PROFILS_DEMO[p.profil](p.prenom) : donneesDemo();
+  }
+
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    if (demoDemandee) {
+      const voulu = demoDemandee.profil ? { profil: demoDemandee.profil, prenom: demoDemandee.prenom } : null;
+      if (JSON.stringify(stock.lire(CLE_DEMO_PROFIL)) !== JSON.stringify(voulu)) {
+        stock.suppr(CLE_DEMO);
+        if (voulu) stock.ecrire(CLE_DEMO_PROFIL, voulu); else stock.suppr(CLE_DEMO_PROFIL);
+      }
+      demoDemandee = null;
+    }
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : nouvelleDemo();
     cache();
     demarrer();
   }
@@ -291,6 +313,53 @@
     M(s4, u44, 'Projet professionnel', 1, [['projet', 27, 1, 20, null, 'Rapport']]);
     return normaliser(e);
   }
+
+  // Étudiante fictive en L1 de droit (établissement inventé), semestre 1 en cours, dates relatives à aujourd'hui :
+  // notes de TD et de contrôle continu obtenues, partiels à venir mi-janvier pour le calcul de la note nécessaire.
+  // Moyenne provisoire un peu sous 10 : la note nécessaire aux partiels pour valider le semestre est le cas montré.
+  function donneesDemoDroit(prenom = '') {
+    const t = auj();
+    let graine = 23;
+    const alea = () => { graine = (graine * 16807) % 2147483647; return graine / 2147483647; };
+    const ouvre = (d) => { const j = R.versDate(d).getDay(); return j === 6 ? R.ajout(d, 2) : j === 0 ? R.ajout(d, 1) : d; };
+    // Partiels : lundi de la deuxième semaine de janvier qui suit (mêmes dates que la démo du Planning de révision).
+    let lundiPartiels = `${Number(t.slice(0, 4)) + (Number(t.slice(5, 7)) >= 8 ? 1 : 0)}-01-05`;
+    while (R.versDate(lundiPartiels).getDay() !== 1) lundiPartiels = R.ajout(lundiPartiels, 1);
+    if (lundiPartiels <= R.ajout(t, 14)) lundiPartiels = ouvre(R.ajout(t, 41));
+    const e = etatVide();
+    e.reglages = R.normaliserReglages({ identite: { nom: `${prenom || 'Jade'} (exemple)`, formation: 'Licence Droit · L1 (exemple)', etablissement: 'Université de démonstration' } }, B);
+    const m0 = Number(t.slice(5, 7)), a0 = Number(t.slice(0, 4));
+    const debutAn = m0 >= 8 ? a0 : a0 - 1;
+    const L1 = R.normaliserAnnee({ id: uid(), nom: `L1 · ${debutAn}-${debutAn + 1}`, ordre: 0, compensation: 'periodes' });
+    e.annees.push(L1);
+    const s1 = R.normaliserPeriode({ id: uid(), annee: L1.id, nom: 'Semestre 1', ordre: 0, systeme: 'sur20', poids: 'credits', mode: 'totale', seuil: 10, objectif: 10, eliminatoire: null, rattrapage: 'meilleure' }, B);
+    e.periodes.push(s1);
+    let ordreM = 0, coul = 0;
+    const U = (nom) => { const u = R.normaliserUe({ id: uid(), periode: s1.id, nom, credits: 0, ordre: e.ues.length }); e.ues.push(u); return u; };
+    // Épreuves : [type, jours depuis aujourd'hui (depuis le lundi des partiels si prévue), coef, note sur 20 visée ou null (prévue), intitulé].
+    const M = (u, nom, credits, epreuves) => {
+      const m = R.normaliserMatiere({ id: uid(), periode: s1.id, ue: u.id, nom, credits, coef: 1, ordre: ordreM++, couleur: coul++ % 8 });
+      e.matieres.push(m);
+      for (const [type, j, c, v20, intitule] of epreuves) {
+        const n = { id: uid(), matiere: m.id, type, date: v20 === null ? ouvre(R.ajout(lundiPartiels, j)) : R.ajout(t, j), coef: c, sur: 20, intitule };
+        if (v20 === null) n.prevue = true;
+        else n.valeur = Math.min(20, Math.max(0, Math.round((v20 + (alea() - 0.5)) * 2) / 2));
+        e.notes.push(R.normaliserNote(n));
+      }
+    };
+    const prive = U('UE1 Droit privé');
+    M(prive, 'Introduction au droit', 8, [['cc', -50, 1, 8.5, 'TD : commentaire d\'arrêt'], ['cc', -22, 1, 8, 'TD : cas pratique'], ['partiel', 0, 2, null, 'Partiel']]);
+    const public_ = U('UE2 Droit public');
+    M(public_, 'Droit constitutionnel', 8, [['cc', -46, 1, 10, 'TD : dissertation'], ['cc', -18, 1, 9, 'TD : commentaire de texte'], ['partiel', 2, 2, null, 'Partiel']]);
+    const histoire = U('UE3 Histoire et institutions');
+    M(histoire, 'Histoire du droit', 6, [['cc', -35, 1, 10.5, 'Interrogation écrite'], ['partiel', 4, 2, null, 'Partiel']]);
+    const ouverture = U('UE4 Ouverture et méthodes');
+    M(ouverture, 'Économie politique', 4, [['cc', -28, 1, 9.5, 'QCM'], ['partiel', 7, 1, null, 'Examen']]);
+    M(ouverture, 'Anglais juridique', 2, [['oral', -14, 1, 12, 'Présentation'], ['cc', -6, 1, 12, 'Compréhension']]);
+    M(ouverture, 'Méthodologie juridique', 2, [['projet', -10, 1, 11, 'Fiche de jurisprudence']]);
+    return normaliser(e);
+  }
+  const PROFILS_DEMO = { 'droit-l1': donneesDemoDroit };
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -456,7 +525,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/notes/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Étudiante fictive, notes inventées, données gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Étudiante fictive, notes inventées, données gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Notes<br>et moyennes</span>
@@ -1242,7 +1311,7 @@
     const fermerPuis = (f) => { if (modale().open) { modale().close(); d2(f); } else f(); };
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; sel.periode = ''; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = nouvelleDemo(); E.tutorielVu = vu; sel.periode = ''; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
@@ -1283,6 +1352,7 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
+    lireDemoDemandee();
     if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();

@@ -172,10 +172,32 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
+  // Démo personnalisée demandée par l'adresse : `?demo=droit-l1&prenom=…` (étudiante fictive en L1 de droit, page
+  // /demo/odelia). `?demo` seul rouvre la démo par défaut. Le profil choisi est mémorisé avec les données de démo.
+  const CLE_DEMO_PROFIL = CLE_DEMO + '-profil';
+  let demoDemandee = null;
+  function lireDemoDemandee() {
+    const p = new URLSearchParams(location.search);
+    if (!p.has('demo')) return;
+    demoDemandee = { profil: PROFILS_DEMO[p.get('demo')] ? p.get('demo') : null, prenom: String(p.get('prenom') || '').trim().slice(0, 40) };
+  }
+  function nouvelleDemo() {
+    const p = stock.lire(CLE_DEMO_PROFIL);
+    return p && PROFILS_DEMO[p.profil] ? PROFILS_DEMO[p.profil](p.prenom) : donneesDemo();
+  }
+
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    if (demoDemandee) {
+      const voulu = demoDemandee.profil ? { profil: demoDemandee.profil, prenom: demoDemandee.prenom } : null;
+      if (JSON.stringify(stock.lire(CLE_DEMO_PROFIL)) !== JSON.stringify(voulu)) {
+        stock.suppr(CLE_DEMO);
+        if (voulu) stock.ecrire(CLE_DEMO_PROFIL, voulu); else stock.suppr(CLE_DEMO_PROFIL);
+      }
+      demoDemandee = null;
+    }
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : nouvelleDemo();
     cache();
     demarrer();
   }
@@ -247,6 +269,42 @@
     R.regler(e, t, h('lit'), true);
     return e;
   }
+
+  // Étudiante fictive en L1 de droit : routine de révision suivie depuis 7 semaines ; la session du jour reste à
+  // cocher (série en cours de 12 jours), sommeil et écrans suivis, une habitude ajoutée il y a un mois.
+  function donneesDemoDroit(prenom = '') {
+    const e = etatVide();
+    e.prenom = prenom || 'Jade';
+    const t = auj();
+    const debut = ajout(R.lundiDe(t), -49);
+    R.ajouterDepuisBase(e, ['sommeil-heures', 'coucher-23h', 'ecran-lit', 'eau', 'petit-dej', 'seance', 'concentration', 'planifier', 'matin-sans-reseaux', 'lecture', 'lit'], B, debut);
+    const perso = (nom, theme, jours, depuis) => { const x = R.normaliserHabitude({ id: R.nouvelId(), theme, nom, type: 'case', jours, depuis }, t); e.habitudes.push(x); return x; };
+    const session = perso('Session de révision (feuille blanche)', 'travail', R.TOUS, debut);
+    const fiches = perso('Fiches du jour relues', 'travail', [0, 1, 2, 3, 4], debut);
+    const silence = perso('Téléphone en « ne pas déranger » pendant les révisions', 'esprit', R.TOUS, ajout(t, -30));
+    const alea = (d, k) => { let x = 0; for (const ch of d + k) x = (x * 31 + ch.charCodeAt(0)) % 100003; return ((x * 9301 + 49297) % 233280) / 233280; };
+    for (let d = debut; d <= t; d = ajout(d, 1)) {
+      const recent = R.ecart(d, t);
+      for (const x of e.habitudes) {
+        if (!R.prevue(x, d) || R.estUnique(e, x)) continue;
+        if (d === t && !['lit', 'eau', 'sommeil-heures', 'coucher-23h', 'petit-dej', 'matin-sans-reseaux'].includes(x.modele)) continue;
+        const r = alea(d, x.modele || x.nom);
+        if (x === session) { R.regler(e, d, x, recent <= 12 ? true : recent === 13 ? false : r > 0.3); continue; }
+        if (x === fiches) { if (r > 0.2) R.regler(e, d, x, true); else if (r > 0.1) R.regler(e, d, x, false); continue; }
+        if (x === silence) { R.regler(e, d, x, r > 0.25); continue; }
+        switch (x.modele) {
+          case 'eau': R.regler(e, d, x, d === t ? 3 : Math.round(5 + r * 5)); break;
+          case 'sommeil-heures': R.regler(e, d, x, Math.round((6 + r * 2.8) * 2) / 2); break;
+          case 'concentration': R.regler(e, d, x, Math.round(1 + r * 3)); break;
+          case 'lecture': if (r > 0.3) R.regler(e, d, x, 10 + Math.round(r * 4) * 5); break;
+          case 'seance': R.regler(e, d, x, r > 0.25); break;
+          default: if (r > 0.22) R.regler(e, d, x, true); else if (r > 0.12) R.regler(e, d, x, false);
+        }
+      }
+    }
+    return e;
+  }
+  const PROFILS_DEMO = { 'droit-l1': donneesDemoDroit };
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -1040,7 +1098,7 @@
     const d = el.dataset.date;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = nouvelleDemo(); cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'routine': {
         const r = B.routines.find((x) => x.id === id);
@@ -1103,6 +1161,7 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
+    lireDemoDemandee();
     if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
     if (!code) return ecranConnexion();
