@@ -4,8 +4,10 @@
 // Principe : l'application RÉELLE du template tourne dans le studio (docs/videos/studio/), servie par le serveur
 // local des templates. Playwright y déplace la vraie souris, clique et tape au clavier ; l'application calcule
 // elle-même. Le studio ajoute par-dessus la mise en scène (caméra, curseur, repères, tampons, légendes).
-// La capture se fait image par image (screencast Chromium horodaté), puis ffmpeg assemble la vidéo à 30 i/s
-// et mixe les bruitages (synthétisés, aucune ressource externe) et, en option, une musique fournie.
+// Capture image par image en TEMPS VIRTUEL : l'horloge de la page (Date, minuteurs, requestAnimationFrame, celle de
+// l'application comprise) et les animations CSS avancent d'exactement 1/30 s entre deux captures. Chaque image tombe
+// donc pile sur sa date : mouvement régulier, sans image perdue ni rééchantillonnage, quelle que soit la charge de la
+// machine. ffmpeg assemble ensuite la vidéo à 30 i/s et mixe les bruitages (synthétisés) et, en option, la musique.
 import { createRequire } from 'node:module';
 import { spawn, execFileSync } from 'node:child_process';
 import { mkdirSync, rmSync, writeFileSync, existsSync, statSync } from 'node:fs';
@@ -35,30 +37,73 @@ const fin = () => { try { serveur.kill(); } catch {} };
 process.on('exit', fin);
 for (let i = 0; i < 50; i++) { try { await fetch(`http://localhost:${PORT}/`); break; } catch { await new Promise((r) => setTimeout(r, 100)); } }
 
-// 2. Navigateur et studio.
+// 2. Navigateur et studio. L'horloge simulée de Playwright est installée avant le chargement : elle s'écoule
+// normalement pendant la préparation, puis elle est figée et avancée image par image pendant l'enregistrement.
 // Chromium en français : sans LANG, certains champs natifs (mois, date) s'affichent en anglais.
 const navigateur = await chromium.launch({ args: ['--lang=fr-FR'], env: { ...process.env, LANG: 'fr_FR.UTF-8', LANGUAGE: 'fr' } });
 const contexte = await navigateur.newContext({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1, locale: 'fr-FR', timezoneId: 'Europe/Paris' });
-const page = await contexte.newPage();
-page.on('pageerror', (e) => console.error('Erreur page :', e.message));
+await contexte.clock.install();
+const pageBrute = await contexte.newPage();
+pageBrute.on('pageerror', (e) => console.error('Erreur page :', e.message));
 const q = new URLSearchParams({ app: cfg.app, w: cfg.largeur || 1280, h: cfg.hauteur || 1600, marque: cfg.marque || 'QME', url: cfg.url || 'qm-engineering.fr' });
-await page.goto(`http://localhost:${PORT}/docs/videos/studio/?${q}`);
-await page.evaluate(() => S.pret());
-await page.waitForTimeout(800);
-const cadreApp = () => page.frames().find((f) => f !== page.mainFrame());
+await pageBrute.goto(`http://localhost:${PORT}/docs/videos/studio/?${q}`);
+await pageBrute.evaluate(() => S.pret());
+await pageBrute.waitForTimeout(800);
+const cadreApp = () => pageBrute.frames().find((f) => f !== pageBrute.mainFrame());
 
-// 3. Outils du scénario.
+// 3. Horloge du tournage. Avant l'enregistrement : temps réel. Pendant : temps virtuel, une image tous les PAS ms.
+const PAS = 1000 / FPS;
+const cdp = await contexte.newCDPSession(pageBrute);
+let fige = false, nImages = 0;
+const IMAGES = join(TMP, 'images');
+// Animations CSS (transitions, keyframes) de la page et de l'application : mises en pause à leur création puis
+// avancées du même pas que l'horloge, sinon elles tourneraient en temps réel pendant que l'image se calcule.
+const PAS_ANIM = (pas) => {
+  for (const a of document.getAnimations()) {
+    if (!a.__qme) { a.__qme = true; a.pause(); a.currentTime = 0; continue; }
+    a.currentTime = (a.currentTime || 0) + pas;
+    const t = a.effect?.getComputedTiming?.();
+    if (t && Number.isFinite(t.endTime) && a.currentTime >= t.endTime) a.finish();
+  }
+};
+async function image() {
+  await contexte.clock.runFor(PAS);
+  await Promise.all(pageBrute.frames().map((f) => f.evaluate(PAS_ANIM, PAS).catch(() => {})));
+  const { data } = await cdp.send('Page.captureScreenshot', { format: 'jpeg', quality: brouillon ? 70 : 92, captureBeyondViewport: false });
+  writeFileSync(join(IMAGES, `${String(nImages).padStart(5, '0')}.jpg`), Buffer.from(data, 'base64'));
+  nImages++;
+}
+// Attente : réelle avant l'enregistrement ; pendant, autant d'images que de pas (le temps passe dans la vidéo).
+async function attendre(ms) {
+  if (!fige) return pageBrute.waitForTimeout(ms);
+  for (let i = 0, n = Math.max(1, Math.round(ms / PAS)); i < n; i++) await image();
+}
+// Une promesse de la page (caméra qui se pose, curseur qui arrive) ne se résout que si l'horloge avance : on filme
+// image par image jusqu'à sa résolution.
+async function filmerJusqua(promesse) {
+  if (!fige) return promesse;
+  let fini = false, res, err;
+  promesse.then((r) => { fini = true; res = r; }, (e) => { fini = true; err = e; });
+  await new Promise((r) => setTimeout(r, 0));
+  for (let i = 0; !fini && i < FPS * 30; i++) await image();
+  if (!fini) throw new Error('Promesse de la page non résolue après 30 s de vidéo');
+  if (err) throw err;
+  return res;
+}
+// Les scénarios reçoivent une page dont waitForTimeout suit l'horloge du tournage.
+const page = new Proxy(pageBrute, { get: (t, k) => (k === 'waitForTimeout' ? attendre : typeof t[k] === 'function' ? t[k].bind(t) : t[k]) });
+
+// 4. Outils du scénario.
 const sons = [];
 // Musique : { fichier, bpm, premierTemps (s), debut (s, calé sur un temps) }. Les temps tombent alors à k × période depuis 0.
 const musiqueCfg = cfg.musique || null;
 const PERIODE = musiqueCfg ? 60 / musiqueCfg.bpm : 0.5;
-let t0 = null;
-const maintenant = () => (t0 == null ? 0 : Date.now() / 1000 - t0);
+const maintenant = () => nImages / FPS;
 const v = {
-  page, appli: cadreApp(), pause: (ms) => page.waitForTimeout(ms),
-  S: (nomFn, ...args) => page.evaluate(([n, a]) => S[n](...a), [nomFn, args]),
-  son: (type, volume = 1) => { if (t0 != null) sons.push({ t: maintenant(), type, volume }); },
-  // Le curseur va sur l'élément (la caméra le suit), puis la vraie souris clique au point exact une fois la caméra posée.
+  page, appli: cadreApp(), pause: (ms) => attendre(ms),
+  S: (nom, ...args) => filmerJusqua(pageBrute.evaluate(([n, a]) => S[n](...a), [nom, args])),
+  son: (type, volume = 1) => { if (fige) sons.push({ t: maintenant(), type, volume }); },
+  // Le curseur va sur l'élément (la caméra l'accompagne), puis la vraie souris clique au point exact une fois la caméra posée.
   async viser(sel, { ms = 700, fx = 0.5, fy = 0.5, glisse = true } = {}) {
     const p = await v.S('pointeur', sel, fx, fy);
     if (glisse) v.son('glisse', 0.35);
@@ -69,30 +114,34 @@ const v = {
   async cliquer(sel, options = {}) {
     const p = await v.viser(sel, options);
     const t = await v.S('versToile', p.x, p.y);
-    await page.mouse.move(t.x, t.y, { steps: 3 });
-    await page.waitForTimeout(80);
+    await pageBrute.mouse.move(t.x, t.y, { steps: 3 });
+    await attendre(66);
     v.son(options.son || 'clic'); await v.S('appui');
-    await page.mouse.down(); await page.waitForTimeout(70); await page.mouse.up();
-    await page.waitForTimeout(160);
+    await pageBrute.mouse.down(); await attendre(66); await pageBrute.mouse.up();
+    await attendre(166);
   },
-  // `rapide` : frappe réelle mais quasi instantanée (12 ms par caractère), sans touches affichées, un seul son.
+  // `rapide` : texte tapé d'un coup (une image), un seul son ; sinon frappe caractère par caractère, touches affichées.
   async saisir(sel, texte, { touches = true, ms, rapide = false } = {}) {
     await v.cliquer(sel, ms ? { ms } : {});
-    await page.keyboard.press('Control+A'); await page.waitForTimeout(120);
-    if (rapide) { v.son('touche'); await page.keyboard.type(texte, { delay: 12 }); await page.waitForTimeout(200); return; }
+    await pageBrute.keyboard.press('Control+A'); await attendre(100);
+    if (rapide) { v.son('touche'); await pageBrute.keyboard.type(texte); await attendre(200); return; }
     for (const c of texte) {
       if (touches) await v.S('touche', c);
-      v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(150);
+      v.son('touche'); await pageBrute.keyboard.type(c); await attendre(150);
     }
   },
   // Ouvre un autre template dans la fenêtre (vidéo d'un pack) ; à faire derrière S('volet') et S('fenetre', false).
   async ouvrir(url, barre) {
     await v.S('changerApp', url, { url: barre }); v.appli = cadreApp();
-    await v.appli.waitForSelector('dialog[open]', { timeout: 1500 }).catch(() => {}); // le guide s'ouvre ~300 ms après le chargement
+    // Le guide du premier lancement s'ouvre ~300 ms après le chargement (minuteur de l'application) : on laisse
+    // passer jusqu'à 1,5 s de temps, image par image, puis on le ferme.
+    for (let i = 0; i < FPS * 1.5; i++) {
+      if (await v.appli.$('dialog[open]').catch(() => null)) break;
+      if (fige) await image(); else await pageBrute.waitForTimeout(PAS);
+    }
     await v.fermerDialogues();
   },
   // Ferme les fenêtres ouvertes au premier lancement (guide « Comment ça marche », etc.), hors caméra.
-  // Clic déclenché dans la page : un clic Playwright attendrait 30 s si le bouton est hors du cadre zoomé.
   async fermerDialogues() {
     for (let i = 0; i < 3; i++) {
       const reste = await v.appli.evaluate(() => {
@@ -102,60 +151,47 @@ const v = {
         return true;
       });
       if (!reste) return;
-      await page.waitForTimeout(250);
+      await attendre(250);
     }
   },
-  async valider() { await v.S('touche', 'Entrée ⏎'); v.son('touche'); await page.keyboard.press('Enter'); await page.waitForTimeout(200); },
+  async valider() { await v.S('touche', 'Entrée ⏎'); v.son('touche'); await pageBrute.keyboard.press('Enter'); await attendre(200); },
   // Attend le prochain temps de la musique (sub = 2 : demi-temps). Les actions tombent ainsi sur le rythme.
   async temps(sub = 1) {
     const p = PERIODE / sub, t = maintenant();
     const suivant = Math.ceil((t + 0.02) / p) * p;
-    await page.waitForTimeout(Math.max(0, (suivant - t) * 1000));
+    await attendre(Math.max(0, (suivant - t) * 1000));
   },
   lire: (sel) => v.appli.$eval(sel, (e) => (e.value ?? e.textContent).trim()),
 };
 
-// 4. Préparation hors caméra (fermer le guide d'accueil, etc.), puis enregistrement.
+// 5. Préparation hors caméra (temps réel), puis horloge figée et enregistrement image par image.
 if (scenario.preparer) await scenario.preparer(v);
-const cdp = await contexte.newCDPSession(page);
-const images = [];
-cdp.on('Page.screencastFrame', async ({ data, metadata, sessionId }) => {
-  const ts = metadata.timestamp;
-  if (t0 == null) t0 = ts;
-  const f = join(TMP, 'images', `${String(images.length).padStart(5, '0')}.jpg`);
-  writeFileSync(f, Buffer.from(data, 'base64'));
-  images.push({ f, t: ts - t0 });
-  cdp.send('Page.screencastFrameAck', { sessionId }).catch(() => {});
-});
-await cdp.send('Page.startScreencast', { format: 'jpeg', quality: brouillon ? 70 : 93, maxWidth: 1080, maxHeight: 1920, everyNthFrame: 1 });
-while (t0 == null) await page.waitForTimeout(20);
-const debut = Date.now();
-await v.S('rythme', PERIODE * 1000, (maintenant() * 1000) % (PERIODE * 1000));
+const tPage = await pageBrute.evaluate(() => Date.now());
+await contexte.clock.pauseAt(tPage + 250); // marge : le temps réel continue de s’écouler jusqu’à cet appel
+fige = true;
+await v.S('rythme', PERIODE * 1000, 0);
 try { await scenario.jouer(v); } catch (e) {
-  await page.screenshot({ path: join(SORTIE, `${nom}-erreur.png`) });
+  await pageBrute.screenshot({ path: join(SORTIE, `${nom}-erreur.png`) });
   console.error(`Échec du scénario (capture : ${join(SORTIE, `${nom}-erreur.png`)})`); await navigateur.close(); fin(); throw e;
 }
-await page.waitForTimeout(400);
-await cdp.send('Page.stopScreencast');
-const duree = (Date.now() - debut) / 1000;
+await attendre(400);
+const duree = nImages / FPS;
 await navigateur.close(); fin();
-console.log(`Capture : ${images.length} images en ${duree.toFixed(1)} s (${(images.length / duree).toFixed(1)} i/s moyennes)`);
+console.log(`Capture : ${nImages} images (${duree.toFixed(1)} s de vidéo à ${FPS} i/s, temps virtuel)`);
 
-// 5. Vidéo : chaque image dure jusqu'à la suivante (rythme réel), rééchantillonnée à 30 i/s.
-const liste = images.map((im, i) => `file '${im.f}'\nduration ${((images[i + 1]?.t ?? duree) - im.t).toFixed(4)}`).join('\n') + `\nfile '${images.at(-1).f}'\n`;
-writeFileSync(join(TMP, 'images.txt'), liste);
+// 6. Vidéo : une image tous les 1/30 s, dans l'ordre.
 // Diffusion Reels Instagram / LinkedIn : 720 × 1280, encodage en deux passes avec un débit calculé pour tenir
 // sous TAILLE_MAX (limite d'envoi automatique vers Google Drive). Capture faite en 1080 × 1920 puis réduite.
 const TAILLE_MAX = (cfg.tailleMaxMo ?? 2.9) * 1e6, AUDIO_KBPS = 96;
 const debitVideo = Math.floor((TAILLE_MAX * 8 / duree) / 1000 - AUDIO_KBPS - 40); // 40 kbit/s de marge (conteneur)
 const video = join(TMP, 'video.mp4');
-const encodage = ['-f', 'concat', '-safe', '0', '-i', join(TMP, 'images.txt'), '-vf', `fps=${FPS},scale=720:1280:flags=lanczos,format=yuv420p`,
+const encodage = ['-framerate', String(FPS), '-i', join(IMAGES, '%05d.jpg'), '-vf', 'scale=720:1280:flags=lanczos,format=yuv420p', '-r', String(FPS),
   '-c:v', 'libx264', '-preset', brouillon ? 'veryfast' : 'slow', '-b:v', `${debitVideo}k`, '-passlogfile', join(TMP, 'passe'), '-t', duree.toFixed(3)];
 execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '1', '-an', '-f', 'null', '/dev/null']);
 execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '2', video]);
 if (duree > (cfg.dureeMax ?? 40)) console.error(`Attention : ${duree.toFixed(1)} s, au-delà de la durée maximale (${cfg.dureeMax ?? 40} s).`);
 
-// 6. Bruitages synthétisés (ffmpeg), placés aux instants réels des actions.
+// 7. Bruitages synthétisés (ffmpeg), placés aux instants des actions dans la vidéo.
 const SONS = {
   // Clic de souris : appui puis relâchement 75 ms plus tard ; transitoire bref, résonance du plastique (1,8 et 4 kHz) et petit corps grave.
   clic: "aevalsrc='(0.55*(random(0)*2-1)*exp(-t*2600)+0.7*sin(2*PI*4000*t)*exp(-t*1400)+0.45*sin(2*PI*1800*t)*exp(-t*800)+0.3*sin(2*PI*260*t)*exp(-t*300))*lt(t,0.07)+0.6*(0.5*(random(0)*2-1)*exp(-(t-0.075)*3000)+0.6*sin(2*PI*4600*t)*exp(-(t-0.075)*1600)+0.35*sin(2*PI*2100*t)*exp(-(t-0.075)*900))*gte(t,0.075)':d=0.16,highpass=f=120",
@@ -191,9 +227,9 @@ const final = join(SORTIE, `${nom}.mp4`);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', video, ...(n ? ['-i', audio, '-c:a', 'aac', '-b:a', `${AUDIO_KBPS}k`, '-shortest'] : []), '-c:v', 'copy', '-movflags', '+faststart', final]);
 // Couverture du reel : image capturée en 1080 × 1920 la plus proche de cfg.affiche (s).
 const tAffiche = cfg.affiche ?? 1.5;
-const imgAffiche = images.reduce((a, b) => (Math.abs(b.t - tAffiche) < Math.abs(a.t - tAffiche) ? b : a));
+const imgAffiche = join(IMAGES, `${String(Math.min(nImages - 1, Math.round(tAffiche * FPS))).padStart(5, '0')}.jpg`);
 const couverture = join(SORTIE, `${nom}-couverture.png`);
-execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', imgAffiche.f, couverture]);
+execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', imgAffiche, couverture]);
 writeFileSync(join(SORTIE, `${nom}.json`), JSON.stringify({ nom, video: final, couverture, duree: Number(duree.toFixed(1)),
   taille: statSync(final).size, produit: cfg.produit || null, type: cfg.type || null, titre: cfg.titre || null }, null, 2));
 if (!options.includes('--garder')) rmSync(TMP, { recursive: true, force: true });
