@@ -1,0 +1,42 @@
+# Brief Odélia · Pack Étudiant (stories Instagram)
+
+Document de travail, à envoyer à Yuzu Agency après validation de Quentin. Rien d'imposé : ton, mots et montage
+restent ceux d'Odélia.
+
+## Ce qui est fourni
+
+1. **La démo à son nom** : <https://qm-engineering.fr/demo/odelia/> (page privée, non référencée). Profil fictif
+   d'étudiante en L1 de droit, partiels mi-janvier, dans 4 outils du pack, avec un parcours guidé en 4 gestes :
+   1. **Notes et moyennes** : notes de TD saisies, moyenne provisoire sous 10 ; « Simuler en détail » donne la note à
+      viser à chacun des 4 partiels pour valider le semestre.
+   2. **Planning de révision** : compte à rebours jusqu'au premier partiel ; « Lancer ma session » : chapitres du
+      jour, minuteur Pomodoro, « Ne pas déranger », feuille blanche comparée aux mots-clés du chapitre.
+   3. **Planner horaire** : semaine de CM, TD, BU, révisions et sport ; « Bilan » : heures de révision faites sur
+      les heures prévues.
+   4. **Suivi d'habitudes** : routine de révision ; cocher la session du jour fait gagner un jour à la série.
+2. **Des clips verticaux à intercaler** (1080 × 1920 de toile, rendu 720 × 1280), une interaction réelle filmée
+   dans l'outil, en deux versions :
+   - **brute** : sans texte ni son, pour sa voix et ses propres titres ;
+   - **habillée** : accroche, légendes, musique QME, fin « qm-engineering.fr/demo/odelia ».
+
+| Clip | Outil | Vue | Ce qu'on voit |
+|---|---|---|---|
+| 014 | Notes et moyennes | ordinateur | moyenne 9,42 sous 10, puis la note à viser à chaque partiel (10,47) et « avec 12 partout » |
+| 015 | Planning de révision | téléphone | J-55 avant le premier partiel, session guidée, feuille blanche, mots-clés retrouvés |
+| 016 | Planner horaire | ordinateur | la semaine de L1, puis le bilan : heures de révision faites / prévues |
+| 017 | Suivi d'habitudes | téléphone | « Session de révision » cochée : la série passe de 12 à 13 jours |
+
+Les chiffres cités sont ceux du tournage du 17/11/2026 ; la démo calcule les siens à la date où on l'ouvre.
+
+## Proposition de déroulé : 3 stories, environ 40 s
+
+| Story | Durée | Image | Idée de texte ou de voix |
+|---|---|---|---|
+| 1 · Accroche | ~10 s | Odélia face caméra, BU ou bureau | « Partiels dans X semaines. Mon problème, c'est pas d'apprendre : c'est savoir *quoi* réviser et *quelle note* il me faut. » |
+| 2 · Démo | ~20 s | clips 014 → 015 → 016 (brut ou habillé) | « Je mets mes notes de TD : il me dit la note à viser pour valider. Et il répartit mes chapitres jusqu'au jour J. » |
+| 3 · Lien | ~10 s | clip 017 + sticker lien | « Tout est dans le Pack Étudiant, sur téléphone et ordi, sans abonnement. Le lien est là. » |
+
+Angle : son sujet « comment éviter de redoubler sa L1 ». Ses fiches et son carnet organisent le cours ; les outils
+font le calcul (note à viser) et le planning. Les deux se complètent.
+
+Lien du sticker : lien personnel suivi (`utm_source=odelia`), fourni à l'accord.
