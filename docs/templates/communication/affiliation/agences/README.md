@@ -123,6 +123,6 @@ Pour retirer une agence : passer son statut en `retiré`.
 - L'Agence des Mots représente aussi Elise Books, contactée en vague 1 (liste DM).
 - En cas de réponse : skill `retour-affiliation` pour chaque talent proposé par l'agence ; taux de commission
   à demander à Quentin.
-- Wonderwomath est représentée en exclusivité par LoopIn (ordre 45) et reçoit aussi un mail direct de la
-  vague 2 (ordre 77, wonderwomath.contact@gmail.com). Passer l'une des deux lignes en `retiré` pour éviter
-  la double sollicitation.
+- Wonderwomath est représentée en exclusivité par LoopIn. Décision de Quentin (17/11/2026) : contact en
+  direct d'abord (vague 2, ordre 77) ; la ligne LoopIn (ordre 45) est passée en `retiré` avant tout envoi.
+  Le brouillon LoopIn reste dans Gmail (`r-8711093380738611372`).
