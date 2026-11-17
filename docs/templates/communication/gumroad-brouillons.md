@@ -84,7 +84,7 @@ vers `/connexion/`, couverture). Identifiants **non ajoutés** à `PRODUITS`.
 
 | Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
 |---------|------|---------------------|-----------|------|--------|
-| PHR | planner | 6uyeEBR91feI1tM2Wbij8Q== | /l/planner-horaire | 15 € | clé à activer (https://gumroad.com/products/usyozmz/edit) |
+| PHR | planner | 6uyeEBR91feI1tM2Wbij8Q== | /l/planner-horaire | 15 € | **en vente** (clé activée et publié le 17/11/2026, 08 h 00 UTC) |
 
 Catégorie « Self Improvement » (la fiche `planner/gumroad.md` n'en donne pas) ; détail « Pour » ajouté :
 étudiants, cadres, freelances. **Limite Gumroad atteinte** à la 2e création : prochaine possible le 17/11 à

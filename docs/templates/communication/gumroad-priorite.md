@@ -39,7 +39,6 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 
 | Rang | Produit | Code | Slug | Prix | Pourquoi |
 |---|---|---|---|---|---|
-| **1** | **Planner horaire** | PHR | planner | 15 € | **Brouillon créé le 17/11** (`6uyeEBR91feI1tM2Wbij8Q==`), clé à activer |
 | **2** | **Suivi de lecture** | PGS | lecture | 12 € | Pack Étudiant |
 | **3** | **Notes et moyennes** | NTS | notes | 12 € | Pack Étudiant |
 | **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | Pack Étudiant |
@@ -65,7 +64,7 @@ Remboursement de dettes, Temps de vie, Inventaire valorisé, Objectif d'épargne
 d'emprunt, Planificateur de voyage, Simulateur leasing ou achat (38 templates en vente). Prochaine création
 possible : 17/11 à 08:39 (Paris).
 
-17/11, 07 h 47 UTC : aucun brouillon en attente de publication ; brouillon PHR créé ; limite atteinte, prochaine
+17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; limite atteinte, prochaine
 création possible le 17/11 à 09:15 (Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).

@@ -29,7 +29,7 @@ export const PRODUITS = {
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
   CRM: { nom: 'CRM freelance', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/' },
-  PHR: { nom: 'Planner horaire', url: '/templates/planner/' },
+  PHR: { nom: 'Planner horaire', url: '/templates/planner/', gumroad: '6uyeEBR91feI1tM2Wbij8Q==' },
   RSV: { nom: 'Levée de réserves', url: '/templates/reserves/', gumroad: '1xyF3Lz36TxDCOz4KnVB4A==' },
   PRS: { nom: 'Pipeline de prospection B2B', url: '/templates/prospection/' },
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
