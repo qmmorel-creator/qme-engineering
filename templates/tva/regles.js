@@ -124,8 +124,12 @@
   // Échéances légales d'une période (dates reportées au jour ouvrable suivant).
   function echeancesPeriode(r, p) {
     if (r.regime !== 'simplifie') return { declaration: reporter(jourDansMois(ajoutMois(p.fin, 1), r.jourEcheance)) };
-    const a1 = reporter(jourDansMois(ajoutMois(p.debut, 6), r.jourAcompte));
-    const a2 = reporter(jourDansMois(ajoutMois(p.debut, 11), r.jourAcompte));
+    // Acomptes en juillet (1er) et en décembre (2e) de l'année civile, quelle que soit la clôture :
+    // impots.gouv.fr, page « TVA » (« 2 acomptes en juillet et décembre »). Exercice décalé : le juillet et
+    // le décembre compris dans l'exercice.
+    const moisDe = (mm) => { for (let i = 0; i < 12; i++) { const m = ajoutMois(p.debut, i); if (m.slice(5, 7) === mm) return m; } return ajoutMois(p.debut, 0); };
+    const a1 = reporter(jourDansMois(moisDe('07'), r.jourAcompte));
+    const a2 = reporter(jourDansMois(moisDe('12'), r.jourAcompte));
     const ca12 = r.clotureMois === 12
       ? (r.ca12Jour ? reporter(jourDansMois(`${Number(p.fin.slice(0, 4)) + 1}-${deux(r.ca12Mois)}-01`, r.ca12Jour)) : deuxiemeJourOuvreMai(Number(p.fin.slice(0, 4)) + 1))
       : reporter(finMois(ajoutMois(p.fin, r.ca12Delai)));
@@ -202,7 +206,7 @@
     for (const b of bilans(etat, aujourdhui)) {
       for (const a of b.acomptes || []) {
         if (!a.calcule && !Number.isFinite(suivi[a.cle]?.montant)) continue;
-        l.push({ cle: a.cle, type: 'acompte', periode: b.cle, libelle: `${a.numero === 1 ? '1er' : '2e'} acompte · ${b.libelle}`, date: a.date, montant: a.calcule, finie: true });
+        l.push({ cle: a.cle, type: 'acompte', periode: b.cle, libelle: `Acompte de ${a.numero === 1 ? 'juillet' : 'décembre'} · ${b.libelle}`, date: a.date, montant: a.calcule, finie: true });
       }
       l.push({ cle: b.cle, type: etat.reglages.regime === 'simplifie' ? 'ca12' : 'ca3', periode: b.cle, libelle: `${etat.reglages.regime === 'simplifie' ? 'CA12' : 'CA3'} · ${b.libelle}`, date: b.echeances.declaration, montant: b.aPayer, credit: b.creditFin, finie: b.fin < aujourdhui });
     }
@@ -237,6 +241,7 @@
     creditDurable: { nom: 'Crédit reporté depuis plusieurs périodes', gravite: 'info' },
     deductible: { nom: 'Déductible supérieure à la collectée', gravite: 'jaune' },
     seuil: { nom: 'Seuil du trimestriel dépassé', gravite: 'jaune' },
+    trimestrielPossible: { nom: 'Déclaration trimestrielle possible', gravite: 'info' },
     reforme: { nom: 'Régime simplifié : fin annoncée', gravite: 'jaune' },
     acompteBase: { nom: 'TVA de référence des acomptes à saisir', gravite: 'info' },
   };
@@ -285,14 +290,27 @@
       if (suiteCredit >= r.periodesCredit && !annonceCredit) { annonceCredit = true; add('creditDurable', `Crédit de TVA reporté depuis ${suiteCredit} périodes (${fmtE(b.creditReporte)} à fin ${b.libelle}). Un remboursement peut être demandé sous conditions de montant et de délai : à vérifier avec ton expert-comptable.`, { periode: b.cle, date: b.fin }); }
       if (suiteCredit < r.periodesCredit) annonceCredit = false;
     }
-    if (r.regime === 'trimestriel') {
+    // Périodicité des CA3. Jusqu'au 31/12/2026 : trimestrielle si la TVA exigible annuelle est inférieure à
+    // 4 000 €. À partir du 01/01/2027 (CGI art. 287, 3, loi n° 2025-127 art. 38) : trimestrielle si le chiffre
+    // d'affaires majoré des acquisitions taxables n'excède pas 1 000 000 € l'année civile précédente et
+    // 1 100 000 € l'année en cours ; mensuelle par option. L'outil ne connaît que les ventes HT saisies.
+    const regle2027 = aujourdhui >= r.dateSeuilCa;
+    const an = Number(aujourdhui.slice(0, 4));
+    const caAnnee = (a) => (etat.operations || []).filter((o) => o.type === 'vente' && Number(o.date.slice(0, 4)) === a && o.date <= aujourdhui).reduce((x, o) => x + cts(o.ht), 0);
+    const ventesAnnee = (a) => (etat.operations || []).some((o) => o.type === 'vente' && Number(o.date.slice(0, 4)) === a);
+    if (r.regime === 'trimestriel' && regle2027) {
+      const caN1 = caAnnee(an - 1), caN = caAnnee(an);
+      if (caN1 > cts(r.seuilCaN1)) add('seuil', `Ventes HT de ${an - 1} : ${fmtE(eur(caN1))}, au-delà de ${fmtE(r.seuilCaN1)}. Depuis 2027, la CA3 est mensuelle au-delà de ce seuil (CGI art. 287). Ajoute tes acquisitions taxables, que l'outil ne compte pas, puis vérifie ta périodicité.`, { date: `${an - 1}-12-31` });
+      else if (caN > cts(r.seuilCaN)) add('seuil', `Ventes HT de ${an} à ce jour : ${fmtE(eur(caN))}, au-delà de ${fmtE(r.seuilCaN)}. La CA3 devient mensuelle à compter du mois du dépassement (CGI art. 287). Passe en mensuel dans les réglages.`, { date: aujourdhui });
+    } else if (r.regime === 'trimestriel') {
       const clos = bl.filter((b) => b.fin < aujourdhui).slice(-4);
       const exigible = clos.reduce((x, b) => x + Math.max(0, cts(b.collectee) - cts(b.deductible)), 0);
       if (clos.length && exigible >= cts(r.seuilTrimestriel)) add('seuil', `TVA nette des ${clos.length} derniers trimestres : ${fmtE(eur(exigible))}, au-delà du seuil de ${fmtE(r.seuilTrimestriel)} pour déclarer par trimestre. En principe, la CA3 devient mensuelle : à vérifier.`, { date: clos[clos.length - 1].fin });
     }
+    if (r.regime === 'mensuel' && regle2027 && ventesAnnee(an - 1) && caAnnee(an - 1) <= cts(r.seuilCaN1)) add('trimestrielPossible', `Ventes HT de ${an - 1} : ${fmtE(eur(caAnnee(an - 1)))}, sous ${fmtE(r.seuilCaN1)}. Depuis 2027, la CA3 est en principe trimestrielle sous ce seuil, sauf option pour le mensuel (au moins quatre trimestres). Vérifie ta périodicité dans ton espace professionnel.`, { date: aujourdhui });
     if (r.regime === 'simplifie') {
       const apres = bl.find((b) => b.debut >= r.finSimplifie);
-      if (apres) add('reforme', `${apres.libelle} commence après le ${dateCourte(r.finSimplifie)} : la loi de finances pour 2025 supprime le régime simplifié de TVA à cette date (déclarations mensuelles ou trimestrielles). À vérifier, puis change de régime dans les réglages.`, { periode: apres.cle, date: apres.debut });
+      if (apres) add('reforme', `${apres.libelle} commence après le ${dateCourte(r.finSimplifie)} : la loi de finances pour 2025 (art. 38) supprime le régime simplifié de TVA. Tu passes au réel normal : CA3 trimestrielle si ton chiffre d'affaires de l'année précédente ne dépasse pas ${fmtE(r.seuilCaN1)}, mensuelle sinon. Change de régime dans les réglages.`, { periode: apres.cle, date: apres.debut });
       for (const b of bl) if (b.baseAcomptes === null && b.debut <= aujourdhui) add('acompteBase', `${b.libelle} : indique la TVA due l'exercice précédent (avant TVA sur immobilisations) pour calculer les acomptes.`, { periode: b.cle, date: b.debut });
     }
     return l.sort((a, b) => ORDRE[a.gravite] - ORDRE[b.gravite] || String(b.date || '').localeCompare(String(a.date || '')));
@@ -442,6 +460,9 @@
       ca12Delai: ent(d.ca12Delai, 1, 12, B.ca12Delai),
       finSimplifie: estDate(d.finSimplifie) ? d.finSimplifie : B.finSimplifie,
       seuilTrimestriel: reel(d.seuilTrimestriel, 0, 1e8, B.seuilTrimestriel),
+      seuilCaN1: reel(d.seuilCaN1, 0, 1e10, B.seuilCaN1),
+      seuilCaN: reel(d.seuilCaN, 0, 1e10, B.seuilCaN),
+      dateSeuilCa: estDate(d.dateSeuilCa) ? d.dateSeuilCa : B.dateSeuilCa,
       tolerance: reel(d.tolerance, 0, 100, B.tolerance),
       periodesDeductible: ent(d.periodesDeductible, 1, 24, B.periodesDeductible),
       periodesCredit: ent(d.periodesCredit, 1, 24, B.periodesCredit),
