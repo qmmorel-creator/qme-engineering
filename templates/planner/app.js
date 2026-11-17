@@ -137,6 +137,7 @@
   }
 
   function majSync(etat) {
+    if (etat === 'demo' && demoDiscrete()) etat = 'ok';
     etatSync = etat;
     const el = $('.sync');
     if (!el) return;
@@ -184,10 +185,36 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
+  // Démo personnalisée demandée par l'adresse : `?demo=droit-l1&prenom=…` (étudiante fictive en L1 de droit, page
+  // /demo/odelia). `?demo` seul rouvre la démo par défaut. Le profil choisi est mémorisé avec les données de démo.
+  // `&reinit` repart des données de départ. Profils « discrets » (démo d'un partenaire, filmée comme son propre
+  // espace) : ni bandeau « Mode démo », ni indicateur « Démo locale ».
+  const CLE_DEMO_PROFIL = CLE_DEMO + '-profil';
+  const PROFILS_DISCRETS = new Set(['droit-l1']);
+  const demoDiscrete = () => session.demo && PROFILS_DISCRETS.has(stock.lire(CLE_DEMO_PROFIL)?.profil);
+  let demoDemandee = null;
+  function lireDemoDemandee() {
+    const p = new URLSearchParams(location.search);
+    if (!p.has('demo')) return;
+    demoDemandee = { profil: PROFILS_DEMO[p.get('demo')] ? p.get('demo') : null, prenom: String(p.get('prenom') || '').trim().slice(0, 40), reinit: p.has('reinit') };
+  }
+  function nouvelleDemo() {
+    const p = stock.lire(CLE_DEMO_PROFIL);
+    return p && PROFILS_DEMO[p.profil] ? PROFILS_DEMO[p.profil](p.prenom) : donneesDemo();
+  }
+
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    if (demoDemandee) {
+      const voulu = demoDemandee.profil ? { profil: demoDemandee.profil, prenom: demoDemandee.prenom } : null;
+      if (demoDemandee.reinit || JSON.stringify(stock.lire(CLE_DEMO_PROFIL)) !== JSON.stringify(voulu)) {
+        stock.suppr(CLE_DEMO);
+        if (voulu) stock.ecrire(CLE_DEMO_PROFIL, voulu); else stock.suppr(CLE_DEMO_PROFIL);
+      }
+      demoDemandee = null;
+    }
+    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : nouvelleDemo();
     cache();
     demarrer();
   }
@@ -263,6 +290,63 @@
     ] });
     return e;
   }
+
+  // Étudiante fictive en L1 de droit : semaine type de CM et de TD, révisions à la BU, sport ; historique
+  // de 5 semaines marqué comme la démo par défaut, partiel blanc et groupe de révision à venir.
+  function donneesDemoDroit(prenom = '') {
+    const e = etatVide();
+    e.prenom = prenom || 'Jade';
+    const t = auj();
+    const n = maintenant();
+    const lundi = lundiDe(t);
+    const SEM = [0, 1, 2, 3, 4];
+    const h = (x) => { const [a, m] = x.split('h'); return Number(a) * 60 + Number(m || 0); };
+    const b = (titre, cat, jours, debut, fin) => ({ titre, cat, jours, debut: h(debut), duree: h(fin) - h(debut) });
+    const type = B.semainesTypes.find((x) => x.id === 'etudiant');
+    creerDepuisType(e, { ...type, blocs: [
+      b('CM Introduction au droit', 'cours', [0, 2], '8h30', '10h30'),
+      b('CM Droit constitutionnel', 'cours', [1, 3], '8h30', '10h30'),
+      b('CM Histoire du droit', 'cours', [0, 4], '10h45', '12h15'),
+      b('CM Économie politique', 'cours', [2], '10h45', '12h15'),
+      b('Déjeuner', 'pauses', SEM, '12h15', '13h15'),
+      b('TD Introduction au droit', 'cours', [1], '13h30', '15h'),
+      b('TD Droit constitutionnel', 'cours', [3], '13h30', '15h'),
+      b('BU · fiches et révisions', 'revisions', [0, 2, 4], '14h', '17h'),
+      b('Préparation des TD', 'projets', [1, 3], '15h30', '17h30'),
+      b('Révisions', 'revisions', [0, 1, 2, 3], '18h', '19h30'),
+      b('Sport', 'sport', [1, 3], '19h45', '20h45'),
+      b('Sortie, loisirs', 'loisirs', [5], '15h', '19h'),
+      b('Révisions', 'revisions', [6], '14h', '17h'),
+    ] }, ajout(lundi, -35));
+    const ponctuel = (date, debut, fin, titre, cat) => { const x = { id: uid(), date, debut, duree: fin - debut, titre, cat, note: '', statut: 'prevu' }; e.blocs.push(x); return x; };
+    ponctuel(ajout(t, -6), 17 * 60 + 30, 18 * 60, 'Rendu TD : fiche d\'arrêt', 'projets');
+    ponctuel(ajout(lundi, 5), 10 * 60, 12 * 60, 'Groupe de révision · histoire du droit', 'revisions');
+    ponctuel(ajout(lundi, 12), 9 * 60, 12 * 60, 'Partiel blanc · droit constitutionnel', 'revisions');
+    let k = 0;
+    for (const o of R.occurrences(e, ajout(lundi, -35), t)) {
+      if (!R.commence(o, n)) continue;
+      k++;
+      const recent = o.date >= ajout(t, -3);
+      if (o.date >= lundi && o.date < t && k % 9 === 0) continue;
+      if (o.date === t && o.debut + o.duree > n.min) continue;
+      if (o.date === t && k % 4 === 1) continue;
+      const x = R.materialiser(e, o.id);
+      if (!x) continue;
+      const r = (k * 7 + o.debut / 30) % 13;
+      if (x.cat === 'sport' && r < 4) R.marquer(x, 'pasfait');
+      else if (x.cat === 'revisions' && r < 3) R.marquer(x, 'pasfait');
+      else if (x.duree >= 90 && r < 4 && !recent) R.marquer(x, 'raccourci', Math.max(15, Math.round(x.duree * 0.6 / 15) * 15));
+      else R.marquer(x, 'fait');
+    }
+    e.modeles.push({ id: uid(), nom: 'Semaine de partiels', blocs: [
+      { titre: 'Révisions', cat: 'revisions', jours: SEM, debut: 8 * 60 + 30, duree: 210 },
+      { titre: 'Déjeuner', cat: 'pauses', jours: SEM, debut: 12 * 60, duree: 60 },
+      { titre: 'Annales en conditions réelles', cat: 'revisions', jours: SEM, debut: 14 * 60, duree: 180 },
+      { titre: 'Sport', cat: 'sport', jours: [2], debut: 18 * 60 + 30, duree: 60 },
+    ] });
+    return e;
+  }
+  const PROFILS_DEMO = { 'droit-l1': donneesDemoDroit };
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -416,7 +500,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/planner/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo && !demoDiscrete() ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Planner<br>horaire</span>
@@ -1308,7 +1392,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = nouvelleDemo(); cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'type': {
         accueil.type = id;
@@ -1380,6 +1464,7 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
+    lireDemoDemandee();
     if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
     if (!code) return ecranConnexion();
