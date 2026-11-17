@@ -16,10 +16,17 @@ docs/videos/
 ```
 
 Le moteur lance son propre serveur local (`outils/templates/serveur-local.mjs`, port 8897, stockage en
-mémoire), ouvre le studio dans Chromium (1080 × 1920), exécute `preparer` hors caméra, puis enregistre
-(screencast CDP horodaté, ~45 i/s) pendant `jouer`. Montage : images à leur rythme réel → 30 i/s,
-720 × 1280, H.264 deux passes au débit calculé pour < 2,9 Mo ; bruitages synthétisés placés aux instants
-réels ; musique (`-ss debut`) ; `loudnorm` -14 LUFS.
+mémoire), ouvre le studio dans Chromium (1080 × 1920) avec l'horloge simulée de Playwright, exécute `preparer`
+hors caméra **en temps réel**, puis fige l'horloge et enregistre `jouer` **image par image en temps virtuel**
+(depuis le 17/11/2026) : entre deux captures, l'horloge de la page et de l'application (Date, minuteurs,
+requestAnimationFrame) et les animations CSS avancent d'exactement 1/30 s. Chaque image tombe pile sur sa date :
+aucune image perdue, aucun rééchantillonnage, quelle que soit la charge de la machine (l'ancien screencast temps
+réel ramené à 30 i/s donnait des saccades). Montage : 30 i/s, 720 × 1280, H.264 deux passes au débit calculé pour
+< 2,9 Mo ; bruitages synthétisés placés à l'instant de l'image ; musique (`-ss debut`) ; `loudnorm` -14 LUFS.
+
+Caméra : ressort à amortissement critique (départ et arrivée en douceur, sans dépassement). En `suivre`, pendant un
+trajet du curseur, elle vise directement sa destination : elle avance avec lui au lieu de le poursuivre. Plus
+d'à-coup de zoom sur les temps de la musique ; l'à-coup du clic est très léger.
 
 ## config du scénario
 
@@ -33,6 +40,7 @@ export const config = {
   affiche: 1.8,                        // instant (s) de l'image de couverture
   musique: { fichier: 'docs/videos/musique/corporate-litesaturation.m4a', bpm: 110, premierTemps: 0.534, debut: 20.170, volume: 0.6 },
   // dureeMax: 40, tailleMaxMo: 2.9
+  // muet: true                       // aucune piste audio (clip remis à un tiers pour son montage)
 };
 ```
 
@@ -110,6 +118,9 @@ quand l'élément sort du champ.
    (un clic Playwright sur un bouton hors du cadre zoomé attendait 30 s et figeait la vidéo).
 10. Le « aujourd'hui » de l'application est la date réelle du tournage : des états (« retard 2 j ») peuvent
    changer d'un jour à l'autre ; `preparer` doit contrôler les données attendues.
+11. Pendant `jouer`, le temps ne passe que par les outils du moteur (`v.pause`, `v.temps`, `v.S`, `v.cliquer`,
+   `page.waitForTimeout`, qui suit l'horloge du tournage) : une promesse de la page (caméra, curseur) est filmée
+   image par image jusqu'à sa résolution. Un `setTimeout` côté Node ne fait pas avancer la vidéo.
 
 ## Programmation
 

@@ -29,6 +29,7 @@
   // ---------- Caméra ----------
   const PLAN_LARGE = VUE.l / LARGEUR;
   const cam = { cx: LARGEUR / 2, cy: VUE.h / 2 / PLAN_LARGE, s: PLAN_LARGE };
+  const vit = { cx: 0, cy: 0, s: 0 }; // vitesses de la caméra (ressort amorti)
   const cible = { ...cam };
   let mode = 'fixe', zoomSuivi = 2.2, decalSuivi = 0, tau = 0.3, punch = { t0: -1e9, a: 0 };
   let applique = { x: 0, y: 0, s: cam.s };
@@ -61,20 +62,19 @@
     return new Promise((fin) => {
       const test = () => {
         const c = centreBorne(cible.cx, cible.cy, cible.s), a = centreBorne(cam.cx, cam.cy, cam.s);
-        const ok = Math.hypot(c.cx - a.cx, c.cy - a.cy) * cam.s < 6 && Math.abs(cible.s - cam.s) < 0.02;
+        const ok = Math.hypot(c.cx - a.cx, c.cy - a.cy) * cam.s < 6 && Math.abs(cible.s - cam.s) < 0.02 && Math.hypot(vit.cx, vit.cy) * cam.s < 40;
         ok || performance.now() - t0 > max ? fin() : requestAnimationFrame(test);
       };
       requestAnimationFrame(test);
     });
   }
-  function coup(a = 0.07) { punch = { t0: performance.now(), a }; }
+  function coup(a = 0.015) { punch = { t0: performance.now(), a }; } // à-coup de zoom, volontairement très léger
 
   // ---------- Rythme : un battement visuel sur chaque temps de la musique ----------
   let rythmeP = 0, rythmeT0 = 0, dernierTemps = -1;
   function rythme(periodeMs, ecouleMs) { rythmeP = periodeMs; rythmeT0 = performance.now() - ecouleMs; }
   function battement(k) {
     for (const n of [$('#marque')]) { n.classList.remove('bat'); void n.offsetWidth; n.classList.add('bat'); }
-    if (k % 2 === 0 && performance.now() - punch.t0 > 500) punch = { t0: performance.now(), a: 0.012 };
   }
 
   // ---------- Curseur (coordonnées de l'application) ----------
@@ -91,7 +91,7 @@
     const p = versToile(cur.x, cur.y);
     const o = document.createElement('div'); o.className = 'onde'; o.style.left = `${p.x}px`; o.style.top = `${p.y}px`;
     toile.append(o); setTimeout(() => o.remove(), 700);
-    coup(0.06);
+    coup(0.015);
   }
   function cacherCurseur() { curseur.classList.remove('vu'); }
   function touche(texte) {
@@ -176,11 +176,18 @@
       cur.x = trajet.de.x + (trajet.a.x - trajet.de.x) * e; cur.y = trajet.de.y + (trajet.a.y - trajet.de.y) * e;
       if (k >= 1) { const f = trajet.fin; trajet = null; f(); }
     }
-    if (mode === 'suivre') Object.assign(cible, { cx: cur.x + decalSuivi, cy: cur.y, s: zoomSuivi });
+    // Suivi : pendant un trajet, la caméra vise directement la destination du curseur ; elle avance avec lui au lieu
+    // de le poursuivre (le curseur reste dans le champ).
+    if (mode === 'suivre') { const p = trajet ? trajet.a : cur; Object.assign(cible, { cx: p.x + decalSuivi, cy: p.y, s: zoomSuivi }); }
+    // Caméra : ressort à amortissement critique, résolu exactement (départ et arrivée en douceur, sans dépassement
+    // ni à-coup, quel que soit le pas de temps). tau 0,17 s : la caméra se pose en un peu plus d'une demi-seconde.
+    const w = 1.6 / tau, ws = 1.6 / (tau * 1.15);
+    const ressort = (x, v, e, om) => { const c0 = x - e, d = v + om * c0, k = Math.exp(-om * dt); return [e + (c0 + d * dt) * k, (v - om * d * dt) * k]; };
+    [cam.s, vit.s] = ressort(cam.s, vit.s, cible.s, ws);
     const c = centreBorne(cible.cx, cible.cy, cible.s);
-    const kp = 1 - Math.exp(-dt / tau), ks = 1 - Math.exp(-dt / (tau * 1.15));
-    cam.s += (cible.s - cam.s) * ks;
-    const a = centreBorne(cam.cx, cam.cy, cam.s); cam.cx = a.cx + (c.cx - a.cx) * kp; cam.cy = a.cy + (c.cy - a.cy) * kp;
+    const a = centreBorne(cam.cx, cam.cy, cam.s);
+    [cam.cx, vit.cx] = ressort(a.cx, vit.cx, c.cx, w);
+    [cam.cy, vit.cy] = ressort(a.cy, vit.cy, c.cy, w);
     const kpu = Math.min(1, (performance.now() - punch.t0) / 320), s = cam.s * (1 + punch.a * Math.sin(Math.PI * kpu));
     const tr = translation(cam.cx, cam.cy, s);
     applique = { ...tr, s };
