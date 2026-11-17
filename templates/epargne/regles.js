@@ -133,11 +133,14 @@
 
   // Versement mensuel minimal (arrondi à l'euro supérieur) pour atteindre la cible au plus tard en `fin`.
   // 0 si déjà atteinte ; null si `fin` est avant le premier mois du plan.
+  // `dejaVerse` : ce qui a déjà été versé pendant le premier mois ; comme dans projectionObjectif, il est
+  // déduit du versement de ce mois-là (sinon le montant conseillé, une fois appliqué, ne suffit pas).
   function versementPour(p, fin) {
     const cible = p.cible || 0;
     if (cible <= 0 || (p.solde || 0) >= cible) return 0;
     if (!estMois(fin) || fin < p.debut) return null;
-    const ok = (v) => { const r = projeter({ ...p, versement: v, horizon: 0 }); return r.atteint !== null && r.atteint <= fin; };
+    const deja = Math.max(0, p.dejaVerse | 0);
+    const ok = (v) => { const r = projeter({ ...p, versement: v, premier: Math.max(0, v - deja), horizon: 0 }); return r.atteint !== null && r.atteint <= fin; };
     let lo = 0, hi = Math.max(100, cible - (p.solde || 0));
     if (ok(0)) return 0;
     while (!ok(hi)) hi *= 2;
@@ -198,9 +201,9 @@
     const base = { cible, solde, reste: Math.max(0, cible - solde), part: cible > 0 ? Math.min(1, solde / cible) : 0, atteint: proj.atteint, proj };
     if (cible <= 0) return { ...base, statut: 'sans-cible' };
     if (solde >= cible) return { ...base, statut: 'atteint' };
-    if (proj.jamais) return { ...base, statut: (o.versement | 0) > 0 ? 'jamais' : 'pause', necessaire: o.dateCible ? versementPour({ solde, taux: o.taux, capitalisation: o.capitalisation, cible, debut: courant, extras: extrasDe(o, prevus) }, o.dateCible) : null };
+    if (proj.jamais) return { ...base, statut: (o.versement | 0) > 0 ? 'jamais' : 'pause', necessaire: o.dateCible ? versementPour({ solde, taux: o.taux, capitalisation: o.capitalisation, cible, debut: courant, extras: extrasDe(o, prevus), dejaVerse: verseDuMois(o, mouvements, courant) }, o.dateCible) : null };
     if (!o.dateCible) return { ...base, statut: 'sans-date' };
-    const necessaire = versementPour({ solde, taux: o.taux, capitalisation: o.capitalisation, cible, debut: courant, extras: extrasDe(o, prevus) }, o.dateCible);
+    const necessaire = versementPour({ solde, taux: o.taux, capitalisation: o.capitalisation, cible, debut: courant, extras: extrasDe(o, prevus), dejaVerse: verseDuMois(o, mouvements, courant) }, o.dateCible);
     if (proj.atteint <= o.dateCible) return { ...base, statut: 'dans-les-temps', avance: ecartMois(proj.atteint, o.dateCible), necessaire };
     return { ...base, statut: 'en-retard', retard: ecartMois(o.dateCible, proj.atteint), necessaire };
   }
