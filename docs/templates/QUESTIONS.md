@@ -184,12 +184,13 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   en pages ; livre noté lu sans sessions compté à sa date de fin ; périmètre V1 sans relecture, séries de livres,
   prêt ni import ; titres et auteurs fictifs de la démo non vérifiés contre de vrais livres.
 - **T20 Animal** : pas de calendrier vaccinal intégré, traitements en texte libre ; un seul accès par foyer.
-- **T44 TVA** : valeurs « à vérifier » (CA3 au 15, acomptes 55 % et 40 %, dispense sous 1 000 €, CA12 au
-  2e jour ouvré après le 1er mai, fin du réel simplifié au 01/01/2027) ; base des acomptes, seuil de 4 000 €
-  sur 4 trimestres, contrôles à 3 périodes et 0,01 € ; garder un modèle tableur en plus ?
-  Sources secondaires seulement pour les acomptes, la CA12 et la réforme 2027 (pages officielles illisibles
-  ou en 403) ; non lus : ce qui remplace le réel simplifié en 2027, la recodification du CGI, le calendrier de
-  la facturation électronique. À trancher avant la mise en vente (outil fiscal daté).
+- **T44 TVA** : **tranché le 17/11/2026** (recherche sur les pages officielles demandée par Quentin, voir
+  `communication/tva/verification-2026-11-17.md`). Confirmés : acomptes de 55 % (juillet) et 40 % (décembre), dispense
+  sous 1 000 €, CA12 au 2e jour ouvré après le 1er mai ou dans les 3 mois de la clôture, suppression du réel simplifié
+  au 01/01/2027 (dernière CA12 le 4 mai 2027), trimestriel 2027 selon le chiffre d'affaires (1 000 000 € / 1 100 000 €,
+  CGI art. 287 version 2027). Corrigé dans l'application : acomptes en juillet et décembre aussi pour un exercice décalé
+  (ils tombaient au 7e et au 12e mois), règle 2027 du trimestriel. Restent « à vérifier » et réglables : jour limite des
+  acomptes et des CA3 (propre à chaque entreprise), report des week-ends et jours fériés. Pas de modèle tableur en plus.
 - **T49 Compétences** : référentiel CNIL RH non vérifié ; choix de calcul dans `IDEES.md` (bloc du lot 9).
   Application web au lieu du « tableur seul » du backlog (modèle tableur non fait : en faire un ?) ; référentiel de
   44 compétences, 9 postes et choix des 8 compétences critiques à relire ; seuil de couverture à 2 personnes et
