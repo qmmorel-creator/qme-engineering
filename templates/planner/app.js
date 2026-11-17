@@ -137,6 +137,7 @@
   }
 
   function majSync(etat) {
+    if (etat === 'demo' && demoDiscrete()) etat = 'ok';
     etatSync = etat;
     const el = $('.sync');
     if (!el) return;
@@ -186,12 +187,16 @@
 
   // Démo personnalisée demandée par l'adresse : `?demo=droit-l1&prenom=…` (étudiante fictive en L1 de droit, page
   // /demo/odelia). `?demo` seul rouvre la démo par défaut. Le profil choisi est mémorisé avec les données de démo.
+  // `&reinit` repart des données de départ. Profils « discrets » (démo d'un partenaire, filmée comme son propre
+  // espace) : ni bandeau « Mode démo », ni indicateur « Démo locale ».
   const CLE_DEMO_PROFIL = CLE_DEMO + '-profil';
+  const PROFILS_DISCRETS = new Set(['droit-l1']);
+  const demoDiscrete = () => session.demo && PROFILS_DISCRETS.has(stock.lire(CLE_DEMO_PROFIL)?.profil);
   let demoDemandee = null;
   function lireDemoDemandee() {
     const p = new URLSearchParams(location.search);
     if (!p.has('demo')) return;
-    demoDemandee = { profil: PROFILS_DEMO[p.get('demo')] ? p.get('demo') : null, prenom: String(p.get('prenom') || '').trim().slice(0, 40) };
+    demoDemandee = { profil: PROFILS_DEMO[p.get('demo')] ? p.get('demo') : null, prenom: String(p.get('prenom') || '').trim().slice(0, 40), reinit: p.has('reinit') };
   }
   function nouvelleDemo() {
     const p = stock.lire(CLE_DEMO_PROFIL);
@@ -203,7 +208,7 @@
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     if (demoDemandee) {
       const voulu = demoDemandee.profil ? { profil: demoDemandee.profil, prenom: demoDemandee.prenom } : null;
-      if (JSON.stringify(stock.lire(CLE_DEMO_PROFIL)) !== JSON.stringify(voulu)) {
+      if (demoDemandee.reinit || JSON.stringify(stock.lire(CLE_DEMO_PROFIL)) !== JSON.stringify(voulu)) {
         stock.suppr(CLE_DEMO);
         if (voulu) stock.ecrire(CLE_DEMO_PROFIL, voulu); else stock.suppr(CLE_DEMO_PROFIL);
       }
@@ -495,7 +500,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo && !demoDiscrete() ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Planner<br>horaire</span>

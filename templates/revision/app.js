@@ -205,6 +205,7 @@
   }
 
   function majSync(etat) {
+    if (etat === 'demo' && demoDiscrete()) etat = 'ok';
     etatSync = etat;
     const el = $('.sync');
     if (!el) return;
@@ -252,13 +253,17 @@
   }
 
   // Démo demandée par l'adresse (?demo, ?demo=pass&prenom=…) ; null = bouton de démo : on garde la démo déjà sur l'appareil.
+  // `&reinit` repart des données de départ. Profils « discrets » (démo d'un partenaire, filmée comme son propre
+  // espace) : ni bandeau « Mode démo », ni indicateur « Démo locale ».
   let demoDemandee = null;
+  const PROFILS_DISCRETS = new Set(['droit-l1']);
+  const demoDiscrete = () => session.demo && PROFILS_DISCRETS.has(E?.demoProfil);
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     const garde = stock.lire(CLE_DEMO);
     const voulue = demoDemandee || { profil: garde?.demoProfil || 'terminale', prenom: '' };
-    const memeDemo = garde && (garde.demoProfil || 'terminale') === voulue.profil && (!voulue.prenom || garde.prenom === voulue.prenom);
+    const memeDemo = garde && !voulue.reinit && (garde.demoProfil || 'terminale') === voulue.profil && (!voulue.prenom || garde.prenom === voulue.prenom);
     E = memeDemo ? normaliser(garde) : donneesDemo(voulue.profil, voulue.prenom);
     cache();
     demarrer();
@@ -559,7 +564,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo && !demoDiscrete() ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Planning<br>de révision</span>
@@ -1691,7 +1696,7 @@
     const code = stock.lire(CLE_CODE);
     const params = new URLSearchParams(location.search);
     if (params.has('demo')) {
-      demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40) };
+      demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40), reinit: params.has('reinit') };
       // Démo personnalisée : l'adresse garde ses paramètres, pour qu'un rechargement rouvre la même démo.
       if (demoDemandee.profil === 'terminale' && !demoDemandee.prenom) history.replaceState(null, '', location.pathname + location.hash);
       if (!code) return ouvrirDemo(false);

@@ -5,7 +5,7 @@ restent ceux d'Odélia.
 
 ## Ce qui est fourni
 
-1. **La démo à son nom** : <https://qm-engineering.fr/demo/odelia/> (page privée, non référencée). Profil fictif
+1. **La démo à son nom** : <https://qm-engineering.fr/demo/odelia/> (page privée, non référencée), sans bandeau « démo » dans les outils. Profil fictif
    d'étudiante en L1 de droit, partiels mi-janvier, dans 4 outils du pack, avec un parcours guidé en 4 gestes :
    1. **Notes et moyennes** : notes de TD saisies, moyenne provisoire sous 10 ; « Simuler en détail » donne la note à
       viser à chacun des 4 partiels pour valider le semestre.
@@ -40,3 +40,12 @@ Angle : son sujet « comment éviter de redoubler sa L1 ». Ses fiches et son ca
 font le calcul (note à viser) et le planning. Les deux se complètent.
 
 Lien du sticker : lien personnel suivi (`utm_source=odelia`), fourni à l'accord.
+
+## À respecter dans la publication
+
+- **Mention obligatoire** : la publication est rémunérée. La loi du 9 juin 2023 sur l'influence commerciale impose
+  la mention « Publicité » ou « Collaboration commerciale », claire et visible pendant toute la durée du contenu
+  (outil « partenariat rémunéré » d'Instagram, ou texte à l'écran).
+- **Données fictives** : à l'écran, les outils s'ouvrent au prénom d'Odélia, sans bandeau « démo », comme son propre
+  espace. Les notes, chapitres et séries sont inventés : elle peut dire « je mets mes notes », pas présenter la
+  moyenne affichée comme sa vraie moyenne.
