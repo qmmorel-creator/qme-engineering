@@ -80,4 +80,6 @@ surtout mode et lifestyle, quelques épisodes « avoir de meilleures notes ».
 
 ## Statut
 
-En négociation : option stories à 200 € proposée par Yuzu, réponse de Quentin à préparer.
+En négociation. 17/11/2026 : démo /demo/odelia en ligne (PR #144) ; vidéos types muettes dans le dossier Drive
+partagé par lien (`1N6px3TCX3zU2Mxo0pYG1qlonlWA1OeGw`) ; brouillon de la réponse « 3 stories à 200 € » déposé dans
+le fil Gmail, à relire et envoyer par Quentin. Variante Reel à 400 € : branche `claude/tmp-affiliation-odelia-reel`.

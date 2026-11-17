@@ -3,6 +3,8 @@
 Brouillon de travail, à valider par Quentin. Réponse dans le fil « Partenariat : Planning de révision et 1 autre
 outil », à contact@agency-yuzu.com, Odélia en copie, Floriane Jolliot en copie cachée. Pas d'outil sur mesure ni de
 commission (Eva n'en a pas parlé). La démo https://qm-engineering.fr/demo/odelia/ est en ligne depuis le 17/11/2026.
+Brouillon Gmail déposé le 17/11/2026 (non envoyé). Vidéos : dossier Drive « Odélia × QME · vidéos types Pack
+Étudiant », partagé en lecture par lien (ouvert par Quentin).
 
 ---
 
@@ -27,7 +29,8 @@ Pour montrer les outils, je vois deux grands principes :
 1. **Odélia fait elle-même le parcours**, en enregistrant l'écran de son téléphone ou de son ordinateur, pour montrer
    comment ça fonctionne, avec ses mots.
 2. **Nous lui simplifions la vie au maximum** : nous réalisons des vidéos types d'utilisation de chaque outil,
-   courtes et sans texte, qu'elle n'a plus qu'à intégrer à son montage.
+   courtes et sans texte, qu'elle n'a plus qu'à intégrer à son montage. Un premier jeu est déjà prêt, pour vous en
+   faire une idée : https://drive.google.com/drive/folders/1N6px3TCX3zU2Mxo0pYG1qlonlWA1OeGw
 
 Dans ce second cas, puisque la préparation lui demanderait moins de temps, pourriez-vous envisager un dernier geste
 commercial ?
