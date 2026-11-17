@@ -26,7 +26,7 @@ montage et présentation restent ceux d'Odélia, à qui on fait confiance sur ce
 
 | Clip | Outil | Vue | Ce qu'on voit |
 |---|---|---|---|
-| 014 | Notes et moyennes | ordinateur | moyenne 9,42 sous 10, puis la note à viser à chaque partiel (10,47) et « avec 12 partout » |
+| 014 | Notes et moyennes | ordinateur | moyenne 9,42 sous 10, puis la note à viser à chaque partiel (10,47) |
 | 015 | Planning de révision | téléphone | J-55 avant le premier partiel, session guidée, feuille blanche, mots-clés retrouvés |
 | 016 | Planner horaire | ordinateur | la semaine de L1, puis le bilan : heures de révision faites / prévues |
 | 017 | Suivi d'habitudes | téléphone | « Session de révision » cochée : la série passe de 12 à 13 jours |

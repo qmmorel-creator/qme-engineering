@@ -207,6 +207,8 @@ const SONS = {
   eclat: "aevalsrc='0.28*(sin(2*PI*1568*t)*lt(t,0.09)+sin(2*PI*2093*t)*gt(t,0.07)*lt(t,0.17)+sin(2*PI*2637*t)*gt(t,0.15))*exp(-5*t)':d=0.7",
   trait: 'anoisesrc=d=0.4:c=brown:a=0.6,highpass=f=900,bandpass=f=2600:w=2000,afade=t=in:d=0.05,afade=t=out:st=0.15:d=0.25',
 };
+// `muet: true` (clip à intégrer au montage d'un tiers) : aucune piste audio, ni bruitage ni musique.
+if (cfg.muet) sons.length = 0;
 const types = [...new Set(sons.map((s) => s.type))];
 for (const t of types) execFileSync('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', SONS[t], '-ar', '48000', '-ac', '1', join(TMP, `son-${t}.wav`)]);
 const entrees = [], filtres = [];
@@ -214,7 +216,7 @@ sons.forEach((s, i) => {
   entrees.push('-i', join(TMP, `son-${s.type}.wav`));
   filtres.push(`[${i}]adelay=${Math.round(s.t * 1000)}:all=1,volume=${s.volume}[s${i}]`);
 });
-const musique = musiqueCfg && existsSync(resolve(RACINE, musiqueCfg.fichier)) ? resolve(RACINE, musiqueCfg.fichier) : null;
+const musique = !cfg.muet && musiqueCfg && existsSync(resolve(RACINE, musiqueCfg.fichier)) ? resolve(RACINE, musiqueCfg.fichier) : null;
 if (musiqueCfg && !musique) console.error(`Musique introuvable : ${musiqueCfg.fichier}`);
 if (musique) { entrees.push('-ss', String(musiqueCfg.debut || 0), '-i', musique); filtres.push(`[${sons.length}]atrim=0:${duree},asetpts=PTS-STARTPTS,volume=${musiqueCfg.volume ?? 0.55},afade=t=in:d=0.15,afade=t=out:st=${Math.max(0, duree - 1.8)}:d=1.8[m]`); }
 const n = sons.length + (musique ? 1 : 0);
