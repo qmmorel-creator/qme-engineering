@@ -1176,6 +1176,6 @@
 
 [[redirects]]
   from = "/demo/ines"
-  to = "/templates/revision/?demo=maths&prenom=In%C3%A8s"
+  to = "/templates/revision/?demo=maths&prenom=Ines"
   status = 302
   force = true
