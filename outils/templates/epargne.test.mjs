@@ -170,6 +170,21 @@ test('statut : atteint, dans les temps, en retard, sans date, en pause', () => {
   assert.equal(R.statutObjectif(obj({ cible: 0 }), [], [], c).statut, 'sans-cible');
 });
 
+test('versement nécessaire : un versement déjà fait ce mois-ci est déduit, le montant conseillé suffit', () => {
+  // Cas de la démo (apport immobilier) : un versement est déjà passé ce mois-ci. Appliquer le montant
+  // conseillé doit remettre l'objectif dans les temps (avant correction : un mois de retard restait).
+  const c = '2026-11';
+  const o = obj({ soldeInitial: 0, cible: 300000, versement: 20000, dateCible: '2027-08' });
+  const mvts = [{ id: 'm1', objectifId: o.id, type: 'versement', date: '2026-11-03', montant: 20000 }];
+  const ko = R.statutObjectif(o, mvts, [], c);
+  assert.equal(ko.statut, 'en-retard');
+  const applique = R.statutObjectif({ ...o, versement: ko.necessaire }, mvts, [], c);
+  assert.equal(applique.statut, 'dans-les-temps');
+  assert.ok(applique.proj.atteint <= '2027-08');
+  // Et c'est bien le plus petit : un euro de moins ne suffit plus.
+  assert.equal(R.statutObjectif({ ...o, versement: ko.necessaire - 100 }, mvts, [], c).statut, 'en-retard');
+});
+
 test('jalons : paliers, mois couverts du fonds d\'urgence, réel puis prévu', () => {
   const o = obj({ soldeInitial: 0, cible: 100000, debut: '2026-01' });
   assert.deepEqual(simple(R.jalons(o).map((j) => j.montant)), [10000, 25000, 50000, 75000, 100000]);

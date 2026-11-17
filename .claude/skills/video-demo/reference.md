@@ -48,7 +48,7 @@ la piste fait 60 s avec un fondu final à 57 s : `debut + durée` ≤ 56 s).
 | `await v.temps(sub)` | attend le prochain temps (sub = 2 : demi-temps) |
 | `await v.viser(sel, {ms})` | curseur jusqu'à l'élément (la caméra suit), attend que la caméra se pose |
 | `await v.cliquer(sel, {ms, fx, fy})` | viser + vrai clic souris au point exact, onde + à-coup de zoom + son |
-| `await v.saisir(sel, texte, {ms})` | clic, Ctrl+A, frappe réelle caractère par caractère, touches affichées |
+| `await v.saisir(sel, texte, {ms, rapide})` | clic, Ctrl+A, frappe réelle caractère par caractère, touches affichées ; `rapide: true` = texte qui apparaît en une fraction de seconde, sans touches affichées (à préférer pour tout texte de plus de quelques mots) |
 | `await v.valider()` | touche Entrée (affichée) |
 | `await v.lire(sel)` | valeur ou texte d'un élément de l'application |
 | `await v.ouvrir(url, barre)` | change de template (vidéo de pack) ; à faire derrière `S('volet')` |
@@ -133,5 +133,11 @@ Sheets (outils `mcp__Google_Sheets__*`, onglet `Planning`, `sheetId` à lire si 
   Interdits dans le texte : « ===== », « TEXTE DE LA PUBLICATION », « À VÉRIFIER », « Prévu le »,
   « [à compléter] ». Hashtags `#Mot`, 3 à 5. Instagram : « Lien en bio » au lieu d'une URL.
 - Texte alternatif (colonne J) : description de ce que montre la vidéo, mention « données fictives ».
+- YouTube `1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE`, colonnes A–O : ID (`YT-nn`) · Date · Heure · Statut ·
+  Thème (slug) · Titre YouTube · Description · Fichier vidéo · ID Drive vidéo · Instagram associé · LinkedIn associé ·
+  Publié le · URL publication · Remarque · Format (`Short`). Vidéo démo : 12:00. Description : titre, phrase du
+  produit (`outils/packs/donnees.mjs`), lien de démo `?demo&utm_source=youtube&utm_medium=description&utm_campaign=yt-nn`,
+  page catalogue, « Données fictives. QME · Quentin Morel Engineering », `#Shorts` + 2 hashtags. Détail :
+  `docs/templates/communication/youtube/README.md`.
 - La routine (Instinct) publie : jamais nous. Statuts : `Prêt` (attente) → `Programmé` → `Publié`/`Erreur`
   (écrits par Instinct) ; `Annulé`.

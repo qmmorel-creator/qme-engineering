@@ -1,5 +1,8 @@
 # Brouillons Gumroad (14/11/2026)
 
+> **Priorité de la file Gumroad** : voir `gumroad-priorite.md` (liste unique, Pack Étudiant en tête depuis le 16/11/2026).
+
+
 **Mise à jour 14/11, 23 h 30** : les 8 produits créés sont publiés (en vente) et le site est passé à « en
 vente » pour chacun. T12 et T68 restent à créer.
 
@@ -73,3 +76,37 @@ certains tags (« rentabilité », « dépenses », « économies », « épargn
 02:41 PST (10 h 41 UTC, 11 h 41 à Paris). Restent à créer, dans l'ordre : VYG voyage (complète le Pack
 Voyage), puis VTR leasing et CAR voiture (complètent le Pack Ma voiture). RBS remboursements-sante sauté
 (point **bloquant** de `QUESTIONS.md` : données de santé).
+
+## Lot du 17/11/2026, 07 h 47 UTC (file `gumroad-priorite.md`, Pack Étudiant en tête)
+
+Brouillons **non publiés**, fiches remplies (permalien, résumé, catégorie, tags, détails, reçu, bouton, lien
+vers `/connexion/`, couverture). Identifiants **non ajoutés** à `PRODUITS`.
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| PHR | planner | 6uyeEBR91feI1tM2Wbij8Q== | /l/planner-horaire | 15 € | **en vente** (clé activée et publié le 17/11/2026, 08 h 00 UTC) |
+| PGS | lecture | cfXnYcVohgvMwrn0ONglsQ== | /l/suivi-lecture | 12 € | **en vente** (clé activée et publié le 17/11/2026) |
+| NTS | notes | mfJW49fm4F0bQ7rUSdY8Kw== | /l/notes-moyennes | 12 € | **en vente** (clé activée et publié le 17/11/2026) |
+| CAN | candidatures | 3hYVauouIDMw3cQ-RA5gCQ== | /l/candidatures-etudes-stages-alternance | 12 € | **en vente** (clé activée et publié le 17/11/2026) |
+| MMR | memoire | -JA7LGCBFecmAERfqUDnZQ== | /l/planning-memoire | 15 € | **en vente** (clé activée et publié le 17/11/2026) |
+| CAR | voiture | -cFP8vq3TQIStzfF1gSA-w== | /l/carnet-voiture | 13 € | **en vente** (clé activée et publié le 17/11/2026) |
+
+Catégorie « Self Improvement » (la fiche `planner/gumroad.md` n'en donne pas) ; détail « Pour » ajouté :
+étudiants, cadres, freelances. **Limite Gumroad atteinte** à la 2e création : prochaine possible le 17/11 à
+00:15 PST (09:15 à Paris). Reprise à 09:16 : PGS, NTS, CAN, MMR et CAR créés (08 h 16-08 h 22 UTC). Boutons du reçu
+raccourcis à 26 caractères au plus (limite Gumroad) : « Ouvrir mon suivi » (PGS), « Ouvrir mon carnet » (CAR).
+Nouvelle limite atteinte sur la fiche du Pack Freelance : prochaine création à 09:38 (Paris), reprise programmée
+pour PFG puis PVY.
+
+### Fiches de packs du 17/11/2026, 08 h 40 UTC
+
+Brouillons **non publiés** ; identifiants **non ajoutés** à `PACKS`. Avant publication : clé de licence **et**
+versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Quentin.
+
+| Code | Pack | Identifiant Gumroad | Permalien | Pack | Pack évolutif | Statut |
+|------|------|---------------------|-----------|------|---------------|--------|
+| PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | **en vente** (clé, versions et publication le 17/11/2026) |
+| PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | **en vente** (clé, versions et publication le 17/11/2026) |
+
+**Limite Gumroad atteinte** sur le Pack Voyage : prochaine création le 17/11 à 02:52 PST (11:52 à Paris). Reprise
+programmée à 11:53 : PVY, PVT, puis rang 11 (STK, TVA).

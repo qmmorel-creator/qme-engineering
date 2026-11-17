@@ -75,9 +75,11 @@ const v = {
     await page.mouse.down(); await page.waitForTimeout(70); await page.mouse.up();
     await page.waitForTimeout(160);
   },
-  async saisir(sel, texte, { touches = true, ms } = {}) {
+  // `rapide` : frappe réelle mais quasi instantanée (12 ms par caractère), sans touches affichées, un seul son.
+  async saisir(sel, texte, { touches = true, ms, rapide = false } = {}) {
     await v.cliquer(sel, ms ? { ms } : {});
     await page.keyboard.press('Control+A'); await page.waitForTimeout(120);
+    if (rapide) { v.son('touche'); await page.keyboard.type(texte, { delay: 12 }); await page.waitForTimeout(200); return; }
     for (const c of texte) {
       if (touches) await v.S('touche', c);
       v.son('touche'); await page.keyboard.type(c); await page.waitForTimeout(150);

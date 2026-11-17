@@ -18,7 +18,7 @@ ajuster par Quentin avant tournage.
   naturel.
 - **Plateformes** (décisions de Quentin, 13/11/2026) : **Instagram** (Reels) et **YouTube Shorts**, la
   même vidéo verticale pour les deux, plus **LinkedIn** en vidéo native les jours où son planning est vide
-  (§ 4). Pas de TikTok.
+  (§ 4). TikTok abandonné (décision de Quentin du 16/11/2026).
 
 ## 1. Analyse : ce qui fonctionne actuellement
 
@@ -84,8 +84,8 @@ l'argent et la santé.
 - **Chutes habituelles** : « La démo est ouverte à tous, sans inscription », « Si vous connaissez
   quelqu'un qui…, n'hésitez pas à lui transmettre », « Je serais curieux d'avoir votre avis ».
 - **Jamais d'URL prononcée.** Sur Instagram, les liens ne sont cliquables ni dans la légende ni dans les
-  commentaires : la démo se met **dans la bio** (« lien dans la bio »). Sur YouTube Shorts, utiliser le
-  lien vers une vidéo associée ou la page de la chaîne (fonctions de YouTube à vérifier au moment de
+  commentaires : la démo se met **dans la bio** (« lien dans la bio »). Sur YouTube Shorts, les liens de la
+  description ne sont pas cliquables : utiliser le lien vers une vidéo associée ou la page de la chaîne (fonctions de YouTube à vérifier au moment de
   publier).
 
 ## 3. Structure commune des scripts
@@ -104,7 +104,8 @@ pendant l'accroche, qui doit se comprendre sans le son.
 - **LinkedIn** : une publication par jour jusqu'au 19/12 (planning existant) ; les jours vides de fin
   d'année reçoivent la même vidéo que le Reel du jour, en vidéo native (LI-100 à LI-106). Restent sans
   publication le 20/12, le 23/12 et le 01/01 : jamais deux jours d'affilée.
-- **YouTube Shorts** : chaque vidéo filmée y est publiée le même jour (pas de planning dédié).
+- **YouTube Shorts** : chaque vidéo est publiée le même jour, planning dédié depuis le 16/11/2026
+  (Sheet « Planning publications YouTube », voir `youtube/README.md`).
 - **Choix des sujets** : jamais le même template à moins de trois jours d'écart sur Instagram ; quand
   c'est possible, la vidéo reprend le sujet LinkedIn du jour.
 - **Templates « prêt »** : vidéo de démo seulement si la fiche Gumroad est en ligne ce jour-là ; sinon,

@@ -670,3 +670,15 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 @media (max-width:980px){footer{padding-right:76px}body:has(.composer-barre) .reseaux{bottom:84px}}
 @media (prefers-reduced-motion:reduce){.reseaux a{transition:none}.reseaux a:hover{transform:none}}
 @media print{.reseaux{display:none}}
+
+/* En-tête : libellés sur une ligne ; mode compact entre la tablette et le grand écran */
+.topbar nav a{white-space:nowrap}
+@media (min-width:981px) and (max-width:1279px){
+  .topbar{gap:16px}
+  .topbar nav{gap:2px;font-size:14.5px}
+  .topbar nav a{padding:9px 10px}
+  .topbar nav a.login{padding:9px 12px}
+  .topbar nav a.cta{padding:10px 14px}
+  .lang{gap:0}.lang a{min-width:40px}
+}
+@media (min-width:981px) and (max-width:1139px){.tagline{display:none}}

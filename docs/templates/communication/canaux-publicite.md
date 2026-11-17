@@ -45,7 +45,6 @@ sont les idées tirées des projets Coda, le backlog commence à T30.
 | LinkedIn, CPC / CPM en France | CPC ≈ 4,90 € ; CPM ≈ 6,15 € (mars 2025) | La Poste Pro, citant Sortlist |
 | LinkedIn, budget minimum | 10 $ par jour ; 100 $ à vie pour une nouvelle campagne | LinkedIn Marketing Solutions |
 | Pinterest, CPC / CPM en Europe | CPC 0,45 à 1,30 € ; CPM 3 à 8 € | Trackbee, guide 2026 (tiers) |
-| TikTok, budget minimum | plus de 50 $ par jour et par campagne, plus de 20 $ par groupe d'annonces | Aide TikTok Ads |
 
 **Conséquence** : pour T01 à 14,90 €, il reste environ 13 € par vente directe après les frais
 Gumroad (calcul sur le barème ci-dessus, avant frais de paiement et taxes). À 0,50 € le clic, il faut
@@ -55,8 +54,6 @@ numérique vendu à des inconnus). La publicité payante sert donc d'abord à **
 à amorcer, pas à vendre à perte ; les produits à 25–49 € (B2B) supportent mieux le CPC.
 
 **Canaux écartés presque partout** :
-- **TikTok Ads** : minimum de plus de 50 $ par jour et par campagne, incompatible avec un budget
-  modeste. Le TikTok **organique** (vidéos de démonstration) et les créateurs restent possibles.
 - **YouTube Ads** : production vidéo et budget de test élevés pour des paniers de 8 à 49 €. Préférer
   les créateurs YouTube en affiliation.
 - **Reddit Ads** : peu d'audience francophone ciblable ; la communauté francophone la plus
@@ -103,7 +100,7 @@ numérique vendu à des inconnus). La publicité payante sert donc d'abord à **
      tutorats, sur invitation ou autorisation des administrateurs.
    - SEO : « planning de révision partiels », « répétition espacée révision », « comment organiser
      ses révisions », « planning révision bac de français ».
-   - Créateurs « méthodologie » YouTube, TikTok, Instagram en **affiliation Gumroad** (30 à 40 %
+   - Créateurs « méthodologie » YouTube et Instagram en **affiliation Gumroad** (30 à 40 %
      proposés, à décider) ; tutorats et BDE (codes de réduction).
    - Gumroad Discover : catégorie éducation (frais 30 % sur ces ventes).
    - Salon : **Educatech Expo**, Paris Expo Porte de Versailles, 2–4 décembre 2026 (salon des
@@ -112,7 +109,7 @@ numérique vendu à des inconnus). La publicité payante sert donc d'abord à **
 4. **Budget de départ** : 100 à 150 € sur un mois de partiels (Google surtout). Métriques : taux
    démo → achat, coût par vente (plafond 13 €).
 5. **À éviter** : tout ciblage des moins de 18 ans (DSA, Meta) ; démarchage dans les établissements
-   ou auprès des élèves ; promesse de note ; publicité TikTok (budget minimum).
+   ou auprès des élèves ; promesse de note.
 
 ## 2. Productivité personnelle
 
@@ -622,7 +619,6 @@ Consultées le 12/11/2026, sauf mention.
 - CPM Facebook France (médiane, nov. 2025–oct. 2026) : https://www.superads.ai/facebook-ads-costs/cpm/france
 - Budget minimum LinkedIn : https://business.linkedin.com/marketing-solutions/success/best-practices/maximize-your-budget
 - CPC et CPM Pinterest Europe (guide 2026, source tierce) : https://trackbee.io/blog/pinterest-ads-cost
-- Budget minimum TikTok : https://ads.tiktok.com/help/article/budget
 - Ciblage des mineurs par Meta (février 2023) : https://searchengineland.com/meta-introduces-new-ad-targeting-limits-for-teens-391259
 - DSA, article 28 : https://digital-strategy.ec.europa.eu/fr/policies/dsa-impact-platforms
 - Vérification des annonceurs de services financiers (Google, France) : https://support.google.com/adspolicy/answer/12491622

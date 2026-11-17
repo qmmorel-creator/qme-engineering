@@ -1146,3 +1146,11 @@
   to = "/templates/revision/?demo=pass&prenom=Laurine"
   status = 302
   force = true
+
+# Lien court de démo personnalisée (proposition de partenariat Yves Gautier, coach oral de concours, 16/11/2026) :
+# démo « concours d'attaché territorial » au prénom du destinataire.
+[[redirects]]
+  from = "/demo/yves"
+  to = "/templates/revision/?demo=concours&prenom=Yves"
+  status = 302
+  force = true

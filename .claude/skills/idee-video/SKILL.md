@@ -68,13 +68,13 @@ Ne jamais reprendre le type de la vidéo précédente ; prendre le type le moins
    (modèle : `scenarios/gantt-retard.mjs`) : `config` avec `produit`, `type`, `titre` ; `preparer` qui
    contrôle que la démo contient le cas ; `jouer` sur le tempo. Pour un pack : un template par séquence,
    changement par `S('volet')` puis `v.ouvrir(url)`.
-3. Rédiger les textes des publications (LinkedIn et Instagram), au vouvoiement, dans le style des
+3. Rédiger les textes des publications (LinkedIn, Instagram et YouTube Shorts), au vouvoiement, dans le style des
    `*/linkedin.md` existants : constat, ce que montre la vidéo, lien de la démo en premier commentaire.
 
 ## 6. Tourner, déposer, programmer
 
 Appeler le skill **`video-demo`** à partir de son étape 2 (rendu, vérification image par image, Drive,
-programmation LinkedIn 17:30 / Instagram 08:30 à la date la plus proche sans vidéo, journal, commit).
+programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00 à la date la plus proche sans vidéo, journal, commit).
 
 ## Tâche quotidienne
 

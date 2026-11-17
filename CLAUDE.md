@@ -18,11 +18,24 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Développement d'un template** : appliquer le skill `.claude/skills/nouveau-template/`, à chaque fois.
 - Référence d'architecture : `templates/revision/` (planning de révision).
 
-## Vidéos de démonstration (Reels LinkedIn / Instagram)
+## Affiliation
+
+- **Retour d'un influenceur intéressé** : skill `.claude/skills/retour-affiliation/` (analyse de la niche, démo
+  personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
+  puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
+  n'est fusionné ni envoyé sans son feu vert. Fiches : `docs/templates/communication/affiliation/`.
+
+## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts)
 
 - **Idée du jour** : skill `.claude/skills/idee-video/` (un seul produit en vente, angles en rotation), qui
   appelle **`.claude/skills/video-demo/`** (interaction réelle avec le template, rendu, Google Drive,
-  programmation LinkedIn 17:30 / Instagram 08:30). Outils et journal : `docs/videos/`.
+  programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00). Pas de TikTok (abandonné le 16/11/2026) ;
+  chaîne YouTube : `docs/templates/communication/youtube/`. Outils et journal : `docs/videos/`.
+- **Tout format vidéo** ajouté à un planning (Reel Instagram, vidéo LinkedIn) reçoit aussi sa ligne `YT-nn` dans le
+  planning YouTube, le même jour (12:00 pour une vidéo démo, 20:00 pour un reel du soir).
+- **Reels du soir** : skill `.claude/skills/reel-du-soir/` (motion design muet à partir des démos), lundi, mercredi et
+  vendredi, Instagram 18:45 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
+  `docs/templates/communication/instagram/production/journal-reels.md`.
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
   lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
