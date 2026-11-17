@@ -100,10 +100,21 @@ Before Sunset (100 % voyage : Samfaitvoyager, French Wanderers), Just GO Agency 
 Dulcedo (Québec, fitness), Versacom (running : Pauliane Racine, RunningAddict ; téléphone et LinkedIn
 seulement). Non vérifiées (site injoignable ou entièrement en JavaScript) : Yo Mama, Haleiwa, Spark Influence.
 
-## Avant envoi
+## Envoi (file automatique, depuis le 17/11/2026)
 
-- Feu vert de Quentin, brouillon par brouillon ou par priorité. Ces 28 mails ne sont pas dans la file
-  d'envoi automatique ; ils peuvent y être ajoutés (statut « à envoyer ») ou envoyés depuis Gmail.
+Sur demande de Quentin (17/11/2026), les 28 brouillons ont été ajoutés à la file d'envoi automatique
+(`../../affiliation-routine.md`, tableur « QME · Affiliation · file d'envoi »), **intercalés** dans la file
+des influenceurs sans attendre sa fin : 1 agence puis 6 influenceurs, par ordre de priorité A, B, C. Avec le
+quota de 30 mails par jour, cela fait environ 4 agences par jour ; la dernière (Hiving) a l'ordre 234.
+Segment « Agences · priorité X », colonne « À vérifier » remplie avec les remarques ci-dessus.
+
+Manipulation : pause O2 de 16 h 12 à 16 h 16 (entre deux passages), réécriture des colonnes A à H des
+lignes en attente (46 à 317, puis 320 à 347 ; les lignes 318-319, envoyées à la main, n'ont pas bougé),
+relecture complète (300 « à envoyer », aucun doublon de draftId, ordre strictement croissant), pause levée.
+
+Pour retirer une agence : passer son statut en `retiré`.
+
+## Points d'attention
 - LoopIn : l'adresse n'est publiée que dans le code source du site (données structurées).
 - Sharewoods et Baghera : vérifier la liste noire AMF pour les profils investissement.
 - Talent Squad : site piraté (spam injecté), adresse probablement valide.
@@ -112,3 +123,6 @@ seulement). Non vérifiées (site injoignable ou entièrement en JavaScript) : Y
 - L'Agence des Mots représente aussi Elise Books, contactée en vague 1 (liste DM).
 - En cas de réponse : skill `retour-affiliation` pour chaque talent proposé par l'agence ; taux de commission
   à demander à Quentin.
+- Wonderwomath est représentée en exclusivité par LoopIn (ordre 45) et reçoit aussi un mail direct de la
+  vague 2 (ordre 77, wonderwomath.contact@gmail.com). Passer l'une des deux lignes en `retiré` pour éviter
+  la double sollicitation.
