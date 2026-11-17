@@ -33,12 +33,10 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- Clé de licence : à activer sur chaque nouveau brouillon (liste donnée par le point d'étape de 23 h 47).
+- **Clés de licence à activer (17/11/2026)** (Content → Insert → License key, sans multi-postes) :
+  - aucune pour l'instant (Planner horaire activé et publié le 17/11).
+  La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
-- T12 Remboursement de dettes et T68 Secret Santa : pas encore créés sur Gumroad (limite de 10 créations par
-  24 h). La reprise automatique prévue le 14/11 à 22 h 30 a été désactivée à 17 h 48 sans s'exécuter (sans
-  doute par la session qui gère la file Gumroad) : qui les crée, et quand ? Les 8 autres de ton choix du 13/11
-  sont publiés et en vente sur le site (vérifié le 14/11 à 23 h 30).
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?
 
