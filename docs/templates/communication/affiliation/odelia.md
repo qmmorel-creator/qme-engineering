@@ -65,6 +65,19 @@ ventes réelles, à définir ensemble, pouvant varier selon la plateforme (Insta
 Étudiant ; publication visée début janvier ; demande des vues moyennes de stories, de la part d'audience France et
 d'un retour de partenariat passé.
 
+## Réponse d'Eva du 17/11/2026, 10:41
+
+Deux options : 3 stories Instagram avec lien vers le site pour 200 €, ou un Reel dédié à 400 € (au lieu de 600 €).
+Demande un brief ou des exemples de contenus. Rien sur la part variable ni sur l'outil sur mesure. Odélia, en copie,
+n'a pas écrit elle-même.
+
+Statistiques Instagram fournies (captures du 21/08/2026, période du 21/07 au 19/08/2026, donc vieilles de 3 mois) :
+25 979 abonnés ; 1,23 M de vues sur 30 jours, dont 83,7 % de non-abonnés ; Reels du top 9 entre 28,7 k et 88,1 k
+vues ; stories du top 9 entre 3,3 k et 5,2 k vues (196 k vues de stories sur 30 jours) ; 22 519 visites du profil et
+231 clics sur le lien en bio (environ 1 %) ; France 70,4 % ; 18–24 ans 35,9 %, 25–34 ans 27,3 %, 13–17 ans 15,7 % ;
+54,5 % de femmes. Vues quotidiennes en baisse sur la période (environ 70 k vers 15 k par jour). Contenu Instagram
+surtout mode et lifestyle, quelques épisodes « avoir de meilleures notes ».
+
 ## Statut
 
-En négociation : contre-proposition envoyée le 16/11/2026, réponse de Yuzu attendue.
+En négociation : option stories à 200 € proposée par Yuzu, réponse de Quentin à préparer.
