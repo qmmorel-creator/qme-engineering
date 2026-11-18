@@ -1,4 +1,6 @@
-# Réponse à Eva (Yuzu Agency) · variante A : 3 stories Instagram à 200 €
+# Réponse à Eva (Yuzu Agency) · variante A : 3 stories Instagram à 200 € (NON ENVOYÉE)
+
+> Variante non retenue : Quentin a finalement décliné le 17/11/2026 (voir `odelia-historique.md`).
 
 Brouillon de travail, à valider par Quentin. Réponse dans le fil « Partenariat : Planning de révision et 1 autre
 outil », à contact@agency-yuzu.com, Odélia en copie, Floriane Jolliot en copie cachée. Pas d'outil sur mesure ni de

@@ -1,5 +1,7 @@
 # Odélia (@odelllia) · Yuzu Agency
 
+> Historique complet des échanges et texte des mails envoyés : `odelia-historique.md`.
+
 ## Historique
 
 - **16/11/2026, 17:08** : mail de la vague 2 d'affiliation (n° 265 dans `affiliation-vague2.md`, branche

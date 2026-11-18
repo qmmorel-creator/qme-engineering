@@ -1,4 +1,4 @@
-# Brief Odélia · Pack Étudiant (stories Instagram)
+# Brief Odélia · Pack Étudiant (variante 3 stories Instagram, non retenue)
 
 Document de travail, à envoyer à Yuzu Agency après validation de Quentin. Ce ne sont que des idées : ton, mots,
 montage et présentation restent ceux d'Odélia, à qui on fait confiance sur ce qui est le plus opportun.
