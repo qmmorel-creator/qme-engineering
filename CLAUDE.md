@@ -51,9 +51,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Campagne X (anglais, sur mesure)
 
 - **Publication quotidienne sur X** (décision du 18/11/2026) : skill `.claude/skills/campagne-x/`, en anglais uniquement, volet
-  sur mesure uniquement, une publication par jour (post, image ou vidéo en rotation, accroches et thèmes variés), produite une semaine
+  sur mesure uniquement, une publication par jour, toujours en image ou en vidéo, jamais de texte seul (accroches et thèmes variés), produite une semaine
   d'avance par la tâche planifiée « Campagne X · contenu J+7 », à 10:00 heure de Californie (19:00 à Paris), publié par Instinct (Sheet « Planning
-  publications X », routine `PROMPT-INSTINCT-X.md`). Dossier :
+  publications X », routine `PROMPT-INSTINCT-X.md` ; audience relevée par Instinct dans « Mesures réseaux QME », consigne
+  `PROMPT-INSTINCT-X-MESURES.md`, carte X du tableau de bord « Compteur réseaux QME »). Dossier :
   `docs/templates/communication/x/` (journal `journal-x.md`, bannière du profil `banniere.html`). Lien de toutes les
   publications : `qm-engineering.fr/x` → `/en/english-version/`, générée par `node outils/x/generer.mjs` (bouton
   « I'd like it in English » : modules `en-<slug>` du compteur `/api/interets`).
