@@ -60,7 +60,8 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
    `disableConversionToGoogleType: true`) dans le dossier **Images Instagram** : la vidéo (`video/mp4`) et la
    couverture (`image/png`).
 2. Doc de légende dans le dossier **Textes Instagram**, titre `IG-nn · <titre interne> · légende`, format strict de la
-   routine : texte (accroche, 3 ou 4 lignes utiles, « Démo gratuite avec des données fictives : lien en bio. »,
+   routine : texte (accroche, 3 ou 4 lignes utiles, « Démo gratuite avec des données fictives : lien en bio. » ou,
+   pour un template vie personnelle, « 14 jours d'essai gratuit, sans carte : lien en bio. » (`REGLES-CONTENU.md` § 7),
    3 à 5 hashtags `#Mot`), rien d'autre ; argent / santé : « ne remplace pas un avis professionnel » si utile.
 3. Ligne **Instagram** à sa place chronologique : ID `IG-` + plus grand numéro + 1, date choisie, heure **21:00**,
    statut « Programmé », Thème « Reel du soir », Titre interne `Reel · <titre>`, Doc (ID et lien), fichiers

@@ -682,3 +682,26 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
   .lang{gap:0}.lang a{min-width:40px}
 }
 @media (min-width:981px) and (max-width:1139px){.tagline{display:none}}
+
+/* Essai gratuit (/essai/, 19/11/2026) : sur le fond clair du bloc .contact (thème pastel) */
+.essai .essai-surtitre{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ciel-texte);margin:0 0 10px}
+.essai .contact-copy p{color:var(--texte-2)}
+.essai .contact-copy b{color:var(--encre)}
+.essai-etapes{list-style:none;counter-reset:etape;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.essai-etapes li{counter-increment:etape;display:grid;grid-template-columns:38px 1fr;column-gap:12px;align-items:start}
+.essai-etapes li::before{content:counter(etape);grid-row:span 2;width:38px;height:38px;border-radius:50%;background:var(--jaune);color:var(--encre);font-weight:800;display:grid;place-items:center}
+.essai-etapes li:nth-child(2)::before{background:var(--rouge);color:#fff}
+.essai-etapes li:nth-child(3)::before{background:var(--bleu);color:#fff}
+.essai-etapes b{font-size:17px;color:var(--encre)}
+.essai-etapes span{color:var(--texte-2);font-size:15px}
+.contact label.essai-accord{flex-direction:row;align-items:flex-start;gap:10px;font-weight:500;line-height:1.45}
+.contact label.essai-accord input{width:20px;height:20px;flex:none;margin:2px 0 0;accent-color:var(--encre)}
+.contact label small{font-weight:500;color:var(--texte-2)}
+#essai-note{color:var(--texte-2)}
+#essai-note.erreur{color:var(--rose-texte);font-weight:700}
+#essai-note a{color:var(--ciel-texte)}
+.essai-pret{display:grid;gap:12px;align-content:start}
+.essai-pret h2{font-size:clamp(28px,3vw,38px);margin:0}
+.essai-pret p{margin:0;color:var(--texte-2)}
+.essai-code{font:700 clamp(20px,2.6vw,28px)/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--encre)!important;background:var(--surface);border:2px dashed var(--ciel-texte);border-radius:14px;padding:14px 16px;letter-spacing:.04em;word-break:break-all}
+.essai-pret:focus{outline:none}

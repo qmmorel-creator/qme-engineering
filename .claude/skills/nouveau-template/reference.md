@@ -172,6 +172,10 @@ statut « bientôt » de ce template, dans la même session, par une PR dédiée
 Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que son `id` est celui de `PRODUITS`.
 
 - [ ] **`PRODUITS`** (`netlify/lib/templates-acces.mjs`) : champ `gumroad` = identifiant du produit.
+- [ ] **Essai (template vie personnelle)** : `permalien` ajouté à l'entrée de `outils/packs/donnees.mjs`, script
+      `/assets/essai.js` dans `templates/<slug>/index.html`, puis `node outils/essai/generer.mjs` (bouton
+      « Essai gratuit 14 jours » en premier, « Acheter » en second), nombre attendu de `essai.test.mjs` mis à jour,
+      `node outils/essai/e2e.cjs <slug>` (§ « Essai gratuit »).
 - [ ] **Page `catalogue/<slug>/`** : bloc `prix prochaine` « Mise en vente prochaine » remplacé par le prix
       et « Achat unique · accès à vie · tous vos appareils » ; bouton « Acheter » (lien
       `https://qmengineering.gumroad.com/l/<permalien>`, `data-goatcounter-click="achat-<slug>"`) en bouton
@@ -196,6 +200,28 @@ Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que 
       `docs/seo/mots-cles.md` ; fiche Gumroad (nom, résumé, tags, catégorie) selon § « Référencement ».
 - [ ] **Vérification après déploiement** : `grep` du slug sans « prochaine » ni « Bientôt » restant sur
       les pages publiques, bouton Acheter en 200, page catalogue et démo en 200 (ordinateur et iPhone 13).
+
+## Essai gratuit (templates vie personnelle, depuis le 18/11/2026)
+
+Décision de Quentin : 14 jours d'essai gratuit sans carte, puis 30 jours en lecture seule, puis effacement ; données
+reprises à l'achat ; e-mails (merci, J-3, fin, avant effacement) envoyés depuis la boîte de Quentin. Document de
+référence : `docs/templates/essai-gratuit.md`. Pour chaque template vie personnelle mis en vente :
+
+- [ ] `outils/packs/donnees.mjs` : `pour: 'perso'`, `prix`, `permalien` (Gumroad). Le template entre alors dans
+      `PRODUITS_ESSAI` (`netlify/lib/essais.mjs`) dès que `PRODUITS` porte son identifiant `gumroad`.
+- [ ] `templates/<slug>/index.html` : `<script src="/assets/essai.js?v=…" data-produit="PRE" data-slug="<slug>"></script>`
+      avant `donnees.js` et `app.js`.
+- [ ] Socle intact : clés `qme-<pre>-code` / `qme-<pre>-cache`, appels `/api/templates/connexion` et `/donnees`,
+      `.formulaire-acces` sur l'écran de connexion, données de démo dans `qme-<pre>-demo` (le test de bout en bout
+      les reprend).
+- [ ] Lecture seule : toute action `data-action` absente de `PERMIS` (`assets/essai.js`) est bloquée après l'essai. Une
+      nouvelle action **qui ne modifie rien** (navigation, filtre, période, export, impression) y est ajoutée ; tout
+      ce qui modifie reste hors de la liste. Le serveur refuse de toute façon l'écriture (403).
+- [ ] `node outils/essai/generer.mjs`, puis `node outils/seo/donnees-structurees.mjs` et `node outils/sitemap/generer.mjs`.
+- [ ] `outils/templates/essai.test.mjs` : nombre de templates ouverts à l'essai mis à jour ; `npm test`.
+- [ ] `QME_LICENCES_TEST=1 PORT=8899 node outils/templates/serveur-local.mjs` puis
+      `node outils/essai/e2e.cjs <slug> <dossier>` : aucune erreur, captures regardées.
+- [ ] Communication : appel à l'action principal = essai gratuit (`docs/templates/communication/REGLES-CONTENU.md` § 7).
 
 ## Référencement (chaque page catalogue, depuis le 15/11/2026)
 
