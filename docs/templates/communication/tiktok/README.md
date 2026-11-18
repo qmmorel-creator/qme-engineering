@@ -26,3 +26,7 @@ Non publié (dossier `docs/`).
 - IG-02, vers 18h40 (variante : tout importer puis retirer les doublons) : 1, 3, 5, 7, 9 photos après les imports 1
   à 5 (chaque fichier ajouté par « + » arrive en double) ; doublons retirés sans erreur, mais aperçus vides (image 3,
   puis images 2 à 4) ; 2 essais, arrêt. Conclusion : plus de carrousel photo sur TikTok, diaporama vidéo à la place.
+- IG-02 et IG-39 en vidéo, 19h–19h14 (v2) : import vidéo réussi (une vidéo, aperçu lisible, son présent). Échec sur
+  la légende : texte collé visible mais compteur à 0/4000 et aperçu vide ; nom de fichier prérempli mal effacé ;
+  saisie au clavier par morceaux avec début du texte déplacé. Aucun « Something went wrong ». Version 3 : légende
+  d'une seule ligne sans hashtag, saisie en une seule action, contrôle par le compteur de caractères.
