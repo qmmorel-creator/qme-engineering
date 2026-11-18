@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- Bannière du profil X (1500 × 500). Rendu : node docs/templates/communication/x/rendre.mjs -->
+<style>
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin.woff2) format("woff2");font-weight:100 900}
+:root{--papier:#F0EDE6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;--texte2:#45413A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1500px;height:500px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+#b{position:relative;width:1500px;height:500px;overflow:hidden}
+.f{position:absolute}
+/* Bas gauche : sous la photo de profil, formes seulement */
+.c-rouge{left:-90px;top:150px;width:380px;height:380px;border-radius:50%;background:var(--rouge)}
+.carre-bleu{left:150px;top:40px;width:150px;height:150px;background:var(--bleu);border:6px solid var(--encre);box-shadow:10px 10px 0 var(--encre)}
+.barre{left:0;right:0;bottom:0;height:22px;background:var(--encre)}
+/* Captures réelles à droite */
+.cap{position:absolute;width:430px;border:6px solid var(--encre);border-radius:14px;box-shadow:12px 12px 0 var(--encre);background:#fff}
+.cap1{right:40px;top:40px;transform:rotate(-4deg)}
+.cap2{right:-150px;top:200px;transform:rotate(5deg)}
+.quart{right:-30px;top:-30px;width:170px;height:170px;background:var(--jaune);border-bottom-left-radius:100%;border:6px solid var(--encre)}
+/* Zone sûre du texte : x 360-1000, y 60-420 */
+#t{position:absolute;left:360px;top:60px;width:640px;height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.sur{font-weight:700;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--texte2)}
+.sur b{color:var(--encre)}
+h1{font-weight:800;font-size:54px;line-height:1.02;letter-spacing:-.025em}
+h1 .s{background:var(--jaune);padding:0 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pied{font-weight:600;font-size:24px;color:var(--texte2)}
+.pied b{color:var(--bleu);font-weight:800}
+#guide{position:absolute;left:360px;top:60px;width:640px;height:360px;outline:3px dashed magenta;display:none}
+#avatar{position:absolute;left:18px;top:330px;width:200px;height:200px;border-radius:50%;outline:3px dashed magenta;display:none}
+body.guide #guide,body.guide #avatar{display:block}
+</style></head>
+<body><div id="b">
+<div class="f c-rouge"></div><div class="f carre-bleu"></div>
+<img class="cap cap1" src="../../../../assets/templates-gantt-gantt.webp" alt="">
+<img class="cap cap2" src="../../../../assets/templates-crm-jour.webp" alt="">
+<div class="f quart"></div>
+<div id="t">
+  <div class="sur"><b>QME</b> · Quentin Morel Engineering</div>
+  <h1>Custom tools<br><span class="s">built for your business</span></h1>
+  <div class="pied">Web apps by an engineer · 97 live examples<br><b>qm-engineering.fr/x</b></div>
+</div>
+<div class="f barre"></div>
+<div id="guide"></div><div id="avatar"></div>
+</div></body></html>
