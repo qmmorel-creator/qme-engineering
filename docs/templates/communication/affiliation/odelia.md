@@ -1,5 +1,7 @@
 # Odélia (@odelllia) · Yuzu Agency
 
+> Historique complet des échanges et texte des mails envoyés : `odelia-historique.md`.
+
 ## Historique
 
 - **16/11/2026, 17:08** : mail de la vague 2 d'affiliation (n° 265 dans `affiliation-vague2.md`, branche
@@ -80,4 +82,14 @@ surtout mode et lifestyle, quelques épisodes « avoir de meilleures notes ».
 
 ## Statut
 
-En négociation : option stories à 200 € proposée par Yuzu, réponse de Quentin à préparer.
+**Décliné par Quentin le 17/11/2026 à 15:57 (heure de Paris)**, en réponse aux options « 3 stories à 200 € » et
+« Reel à 400 € » : audience Instagram surtout lifestyle et mode (Reels les plus vus), stories de 3 000 à 5 000 vues,
+231 clics sur le lien de la bio pour 22 500 visites du profil (environ 1 %), volet études surtout sur TikTok,
+hors budget. Démo /demo/odelia offerte (« Odélia peut s'en servir librement »), porte ouverte à une piste plus
+adaptée, sans demande explicite. Vidéos types non fournies.
+
+Mail séparé à Eva le même jour à 16:00 (contact@agency-yuzu.com, Floriane Jolliot en copie cachée) : pages Templates
+et Packs, invitation à proposer d'autres talents de Yuzu sur ces niches, démo à leur nom possible.
+
+Suite : rien à relancer. En cas de réponse d'Eva (contre-proposition TikTok, autre talent), traiter avec le skill
+retour-affiliation.
