@@ -33,10 +33,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- **Clés de licence à activer (18/11/2026)** (Content → Insert → License key, sans multi-postes) :
-  - MSC Carnet de musculation : https://gumroad.com/products/ttzjjr/edit
-  - APD Préparateur d'appel découverte : https://gumroad.com/products/pjimd/edit
-  La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
+- **Clés de licence à activer** : aucune pour l'instant (tous les brouillons publiés le 18/11).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?

@@ -320,6 +320,7 @@ I built a tool for each of these (in French). Reply with yours, I'll tell you ho
 qm-engineering.fr/x
 ```
 
+<<<<<<< HEAD
 ### X-15 · 20/11 · Image · coulisses · associations et clubs
 
 ```
@@ -332,6 +333,8 @@ Spot that before they burn out.
 qm-engineering.fr/x
 ```
 
+=======
+>>>>>>> origin/main
 ### Vidéos : scénarios
 
 Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de démo réels, sous-titres anglais, carton final
