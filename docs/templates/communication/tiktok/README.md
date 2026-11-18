@@ -10,7 +10,7 @@ Non publié (dossier `docs/`).
   diaporama vidéo (`docs/videos/diaporama.mjs`, 1080 × 1920, ~4,2 s par image, musique QME), déposé dans le dossier
   Drive Images Instagram sous le nom `IG-nn-<slug>-tiktok.mp4` ; un Reel est repris tel quel. Instinct n'importe
   qu'un fichier, par la zone initiale. Production : skill `publication-classique` (nouveaux carrousels) et tâche
-  planifiée « TikTok · diaporamas J+14 » (carrousels déjà programmés).
+  planifiée « TikTok · diaporamas J+14 » (carrousels déjà programmés ; à créer par Quentin, `ROUTINE-DIAPORAMAS.md`).
 
 ## Incidents du 18/11/2026 (relevé Instinct, 17h48)
 
