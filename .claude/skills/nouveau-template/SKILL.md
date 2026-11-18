@@ -97,6 +97,15 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,
    bouton « Ouvrir mon … » ; nom, résumé, tags et catégorie selon `reference.md` § « Référencement »), `add_content_link` vers `https://qm-engineering.fr/connexion/`,
    `add_cover` une fois l'image en ligne. Reporter l'identifiant produit dans `PRODUITS`.
+   **Texte du reçu** (décision de Quentin du 18/11/2026, appliquée aux 57 produits en vente) : message
+   chaleureux avec émojis, même modèle pour tous, seule l'étape 3 (le premier geste dans l'outil) et, si la clé
+   se partage, la ligne 👥 sont propres au produit. Source unique : `docs/templates/communication/recus-gumroad.mjs`.
+   Ajouter l'entrée du produit (identifiant Gumroad, nom, `geste`, `partage` éventuel ; `pack: <nombre de
+   templates>` pour un pack), lancer `node docs/templates/communication/recus-gumroad.mjs` (contrôle : 500
+   caractères au plus), puis passer la sortie de `node docs/templates/communication/recus-gumroad.mjs
+   <identifiant>` telle quelle dans `custom_receipt_text`. Les champs `receipt` de `gumroad-a-creer.json`,
+   `gumroad-vague2.json` et des `gumroad.json` / « Texte du reçu » des fiches sont l'ancien format : ils ne servent
+   qu'à écrire le `geste`. Même règle pour chaque nouveau pack créé sur Gumroad.
    **Quentin active la clé de licence dans l'éditeur Gumroad** (aucun outil ne le fait) : onglet Content →
    Insert → License key, sans multi-postes. Sans ce bloc, l'acheteur ne reçoit aucune clé. Le bloc affiche le
    `product_id` : il doit être identique à `gumroad` dans `PRODUITS`. Ne publier la fiche qu'avec son accord explicite.

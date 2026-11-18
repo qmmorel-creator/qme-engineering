@@ -619,6 +619,9 @@ l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie au
 (`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
 convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :
 accès refusé à la connexion suivante. Prérequis Gumroad : clés de licence activées sur le produit.
+Message du reçu Gumroad (`custom_receipt_text`) de chaque produit et pack : source unique
+`docs/templates/communication/recus-gumroad.mjs` (modèle commun avec émojis, premier geste propre au produit,
+contrôle des 500 caractères), appliqué aux 57 produits en vente le 18/11/2026.
 
 **Codes d'accès (hors Gumroad).** Format `REV-XXXX-XXXX-XXXX-XXXX` : 40 bits aléatoires + 40 bits de signature HMAC.
 Aucun code n'est stocké, la signature suffit à le valider.
