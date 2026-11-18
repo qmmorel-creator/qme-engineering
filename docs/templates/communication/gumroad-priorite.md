@@ -48,9 +48,9 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | **En vente depuis le 17/11** |
 | 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | **En vente depuis le 17/11** |
 | 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | **En vente depuis le 17/11** |
-| 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK **en vente depuis le 18/11** ; TVA vérifiée (PR #149), à créer |
-| 12 | Compétition | CMP | competition | 49 € | |
-| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | Pack Forme |
+| 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
+| 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
+| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS **en vente depuis le 18/11** ; MSC brouillon, clé à activer |
 | 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
