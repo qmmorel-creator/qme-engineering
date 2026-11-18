@@ -52,14 +52,23 @@ Après un ajout de template en vente : ajouter sa ligne à `outils/x/templates-e
 
 ## Profil X
 
+Compte existant : **@qmengineering** (créé en avril 2022 ; ancien profil orienté Coda). Identifiant conservé.
+
 - **Bannière** : `png/banniere-x.png` (1500 × 500), source `banniere.html`, rendu `node docs/templates/communication/x/rendre.mjs`
-  (produit aussi `assets/x-english-version.png`, image de partage de la page). Contrôle : `png/banniere-x-zone-sure.png`
-  (cadre magenta = texte, cercle = photo de profil ; ne pas importer).
-- **Nom** : `Quentin Morel · QME`
+  (produit aussi `assets/x-english-version.png`, image de partage de la page). Contrôles, à ne pas importer :
+  `png/banniere-x-zone-sure.png` (cadre magenta = texte, cercle = photo de profil sur ordinateur) et
+  `png/banniere-x-controle-iphone.png` (cadrage de l'app iPhone relevé le 18/11/2026 : bannière rognée d'environ 8 % de
+  chaque côté, boutons ronds et photo de profil posés sur l'image ; texte et adresse entièrement lisibles).
+- **Photo** : logo QME actuel, inchangé.
+- **Nom** (50 caractères au plus) : `Quentin Morel · QME` (les posts parlent à la première personne : « I'm Quentin »).
 - **Bio** (160 caractères au plus, 140 ici) :
   `Engineer in France. I build custom web apps for small businesses and freelancers. 97 tools built so far, all in French. Want one in English?`
-- **Lien** : `qm-engineering.fr/x` · **Localisation** : `France`
-- **Post épinglé** : X-01.
+- **Site web** : `qm-engineering.fr/x` (remplace `qm-engineering.fr/en`) : **seulement après la fusion** de la PR qui crée la
+  redirection `/x`, sinon le lien mène à une page 404.
+- **Localisation** : `France`. **Catégorie professionnelle** : `Application logicielle`, conservée.
+- Pas de second lien dans la bio : un seul chemin, mesuré (`utm_campaign=x-custom`).
+- **Post épinglé** : X-01 (19/11) remplace l'ancien post Coda épinglé du 31/07/2023 (Instinct l'épingle, remarque
+  « Épingler ce post » du planning).
 
 ## Planning des 14 premiers jours
 
