@@ -31,9 +31,10 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui a é
    promesse ; « ne remplace pas un avis professionnel » dans le texte de la publication si utile.
 6. **Ton** : vouvoiement dans les textes à l'écran et les publications, phrases courtes, constat → geste →
    résultat. Pas d'émoji, pas de superlatif.
-7. **Son** : musique de la présentation QME (`musique/corporate-litesaturation.m4a`, « Corporate » de
-   litesaturation, licence Pixabay, usage commercial sans attribution) calée sur 110 BPM ; bruitages
-   synthétisés sur les gestes. **Pas** de bruitage à chaque mot de l'accroche (un seul son d'entrée).
+7. **Son** : jamais muet. `musique: 'auto'` dans le scénario : le moteur choisit un morceau de la bibliothèque QME
+   (`docs/videos/musique/README.md` : « Corporate » et les quatre morceaux fournis par Quentin le 18/11/2026), varié
+   d'une vidéo à l'autre et calé sur son tempo. Les quatre nouveaux font 30 s : avec `dureeMax: 29`, les cinq morceaux
+   sont candidats ; au-delà, « Corporate ». Bruitages synthétisés sur les gestes. **Pas** de bruitage à chaque mot de l'accroche (un seul son d'entrée).
 8. **Formes du fond calmes** : elles flottent lentement ; aucun battement ni clignotement sur elles.
 
 ## 1. Écrire le scénario

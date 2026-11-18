@@ -11,7 +11,7 @@ docs/videos/
   studio/studio.js      API window.S (caméra, curseur, emphases, textes)
   studio/studio.css     charte Bauhaus « Pastel » (papier, encre, rouge, jaune, bleu, vert ; Outfit)
   scenarios/*.mjs       une vidéo par fichier : export config, preparer(v), jouer(v)
-  musique/              corporate-litesaturation.m4a (110 BPM, 1er temps 0,534 s)
+  musique/              bibliothèque QME, 5 morceaux (README.md) ; choix automatique par choisirMusique()
   catalogue.mjs         produits en vente + historique du journal
   journal.md            mémoire des vidéos, état de la routine, créneaux
   sortie/               rendus (ignoré par git)
@@ -40,7 +40,7 @@ export const config = {
   largeur: 1280, hauteur: 1600,        // taille CSS de l'iframe (vue bureau ; la caméra zoome)
   marque: 'QME · Planning Gantt', url: 'qm-engineering.fr/templates/gantt',
   affiche: 1.8,                        // instant (s) de l'image de couverture
-  musique: { fichier: 'docs/videos/musique/corporate-litesaturation.m4a', bpm: 110, premierTemps: 0.534, debut: 20.170, volume: 0.6 },
+  musique: 'auto',                    // morceau varié de la bibliothèque QME, calé sur son tempo (jamais muet)
   // dureeMax: 40, tailleMaxMo: 2.9
   // muet: true                       // aucune piste audio (clip remis à un tiers pour son montage)
 };

@@ -1,6 +1,7 @@
 // Ajoute la musique QME à une vidéo existante sans réencoder l'image (Reel déjà rendu, rattrapage).
 // Raccourci vers le moteur vidéo unique `docs/videos/rendu.mjs` (mêmes réglages pour toutes les vidéos QME : extrait à
-// partir de 20,17 s, fondu d'entrée 0,15 s, de sortie 1,8 s, -14 LUFS, AAC 96 kb/s, 48 kHz stéréo).
+// morceau choisi dans la bibliothèque QME selon le nom et la durée, fondu d'entrée 0,15 s, de sortie 1,8 s, -14 LUFS,
+// AAC 96 kb/s, 48 kHz stéréo).
 // Décision de Quentin du 18/11/2026 : plus aucun Reel ni Short muet. `video.mjs` l'applique déjà d'office.
 //
 // Usage : node sonoriser.mjs <entrée.mp4> [sortie.mp4]   (sans sortie : le fichier d'entrée est remplacé)
