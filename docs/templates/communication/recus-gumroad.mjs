@@ -42,7 +42,7 @@ export const RECUS = [
   { id: 'no1AEwLFPlXydqFGU7vRzg==', nom: 'Trésorerie prévisionnelle 12 mois', geste: "Saisis ton solde de départ et tes encaissements prévus : l'alerte se déclenche si le solde passe sous ton seuil." },
   { id: '5XuVWuitD2ZzpVkwQFHlVw==', nom: 'Inscriptions associatives', geste: "Nomme ta saison, choisis tes activités, saisis tes tarifs, puis inscris les familles." },
   { id: 'leplToyYwMtXCmdXZa9T4Q==', nom: 'Pilote de travaux maison', geste: "Choisis un modèle (cuisine, salle de bains…), ajoute tes devis et retiens ceux que tu signes : budget et planning suivent. 🔨" },
-  { id: 'fCyii9wIVdIfFc1YQdbZzQ==', nom: 'Secret Santa', geste: "Crée un échange et envoie le lien d'invitation au groupe. Lance le tirage quand tout le monde est inscrit : même toi, tu ne sauras pas qui offre à qui. 🎅" },
+  { id: 'fCyii9wIVdIfFc1YQdbZzQ==', nom: 'Secret Santa', merci: '🎉 Merci, ton Secret Santa est prêt !', geste: "Crée un échange et envoie le lien d'invitation au groupe. Lance le tirage quand tout le monde est inscrit : même toi, tu ne sauras pas qui offre à qui. 🎅" },
   { id: 'DvjP1MxGl7bGDZiHfGgcfQ==', nom: "Suivi d'habitudes et routines", geste: "Choisis une routine type et coche tes habitudes du jour : tes séries démarrent. 🔥" },
   { id: '-5-cTF1xpPORIx5P_zGn7w==', nom: 'Remboursement de dettes', geste: "Ajoute tes dettes et ton budget : la date où tout est soldé se calcule." },
   { id: '5wUF3mCVqbG3yAF-coM12A==', nom: 'Suivi des abonnements', geste: "Coche tes abonnements dans la liste et saisis tes prix : les totaux et les alertes se calculent." },
@@ -82,10 +82,13 @@ export const RECUS = [
   { id: 'wZiO_GtwtRZgFPEI6TO0Gw==', nom: 'Pack Bien démarrer l’année', pack: 3, geste: "Ton tableau de bord s'ouvre : tâches, habitudes et roue de vie, chacun d'un clic. 🎯" },
 ];
 
-export function texteRecu({ geste, partage, pack }) {
-  const entete = pack
-    ? [ENTETE[0], `🔑 Ta clé de licence (ci-dessus) ouvre les ${pack} templates du pack.`, ...ENTETE.slice(2)]
-    : ENTETE;
+// merci : première ligne propre au produit (produit gratuit, par exemple), sinon « Merci pour ton achat ».
+export function texteRecu({ geste, partage, pack, merci }) {
+  const entete = [
+    merci ?? ENTETE[0],
+    pack ? `🔑 Ta clé de licence (ci-dessus) ouvre les ${pack} templates du pack.` : ENTETE[1],
+    ...ENTETE.slice(2),
+  ];
   return [...entete, `3️⃣ ${geste}`, ...(partage ? [`👥 ${partage}`] : []), ...PIED].join('\n');
 }
 

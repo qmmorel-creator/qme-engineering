@@ -100,7 +100,7 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    **Texte du reçu** (décision de Quentin du 18/11/2026, appliquée aux 57 produits en vente) : message
    chaleureux avec émojis, même modèle pour tous, seule l'étape 3 (le premier geste dans l'outil) et, si la clé
    se partage, la ligne 👥 sont propres au produit. Source unique : `docs/templates/communication/recus-gumroad.mjs`.
-   Ajouter l'entrée du produit (identifiant Gumroad, nom, `geste`, `partage` éventuel ; `pack: <nombre de
+   Ajouter l'entrée du produit (identifiant Gumroad, nom, `geste`, `partage` éventuel, `merci` pour un produit gratuit ; `pack: <nombre de
    templates>` pour un pack), lancer `node docs/templates/communication/recus-gumroad.mjs` (contrôle : 500
    caractères au plus), puis passer la sortie de `node docs/templates/communication/recus-gumroad.mjs
    <identifiant>` telle quelle dans `custom_receipt_text`. Les champs `receipt` de `gumroad-a-creer.json`,
