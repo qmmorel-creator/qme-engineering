@@ -7,6 +7,7 @@ PUBLICATIONS X : NOUVELLE ROUTINE
 - Texte = colonne F, tel quel, retours à la ligne compris (280 caractères au plus, déjà vérifié). Ne lis aucun Doc : tout est dans la ligne. Le lien qm-engineering.fr/x reste écrit tel quel.
 - Type (colonne E) :
   - « Post » : publie le texte seul, sans image.
+  - « Image » : télécharge l'image par son ID Drive en colonne H ; la colonne G sert seulement à vérifier le nom. Publie l'image avec le texte de la colonne F.
   - « Vidéo » : télécharge la vidéo par son ID Drive en colonne H (à défaut https://drive.google.com/uc?export=download&id=<ID>) ; la colonne G sert seulement à vérifier que c'est le bon fichier. Publie la vidéo avec le texte de la colonne F.
 - Si la Remarque (K) contient « Épingler ce post », épingle la publication sur le profil après l'avoir publiée.
 - Après publication : D = « Publié », I = date et heure de publication (AAAA-MM-JJ HH:MM), J = adresse de la publication. Écritures limitées aux colonnes D, I, J et à la fin de K.

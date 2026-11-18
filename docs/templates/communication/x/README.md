@@ -7,7 +7,7 @@ Production quotidienne : skill `.claude/skills/campagne-x/`. Journal : `journal-
 **Publication par Instinct**, comme LinkedIn, Instagram et YouTube (décision du 18/11/2026) :
 - Sheet **« Planning publications X »** `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM`, onglet `Planning`, dossier Drive
   « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`.
-- Colonnes A–K : ID (`X-nn`) · Date · Heure (Europe/Paris) · Statut · Type (`Post` / `Vidéo`) · Texte de la publication
+- Colonnes A–K : ID (`X-nn`) · Date · Heure (Europe/Paris) · Statut · Type (`Post` / `Image` / `Vidéo`) · Texte de la publication
   (tel quel, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive vidéo · Publié le · URL publication · Remarque.
 - Statuts : `À produire` (vidéo pas encore rendue) → `Prêt` → `Programmé` (une fois la routine Instinct confirmée) →
   `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
@@ -45,6 +45,10 @@ Après un ajout de template en vente : ajouter sa ligne à `outils/x/templates-e
 - Post : **280 caractères au plus** (compte gratuit ; une URL compte 23), lien `qm-engineering.fr/x` en fin.
 - Captures : l'interface reste en français ; choisir l'écran le plus parlant visuellement (graphique, planning
   coloré, grand chiffre en titre), jamais une fenêtre modale grisée ni une liste dense.
+- Image : 1600 × 900, `production/gabarit-image.html` copié en `production/X-nn.html`, rendu
+  `node docs/templates/communication/x/image.mjs production/X-nn.html`.
+- Production quotidienne avec une semaine d'avance : tâche planifiée « Campagne X · contenu J+7 » (skill `campagne-x`),
+  formats, accroches et thèmes en rotation.
 - Vidéo : moteur unique `docs/videos/` (`rendu.mjs`, page HTML animée), 1080 × 1920, 20 à 30 s, **musique QME**,
   captures réelles des démos, sous-titres anglais sur l'interface française, mention « French interface · sample data »
   sur chaque capture, carton final « qm-engineering.fr/x ». Texte d'accompagnement ≤ 280 caractères.
@@ -214,7 +218,7 @@ produire par le skill `campagne-x` la veille au plus tard.
 | ID | Date | Type | Sujet | Template montré |
 |---|---|---|---|---|
 | X-01 | 19/11/2026 | Post | Présentation : 97 outils en français | — |
-| X-02 | 20/11/2026 | Vidéo | « 97 tools. All in French. » : montage de 8 captures, une par thème | plusieurs |
+| X-02 | 18/11/2026 12:00 (avancée) | Vidéo | « 97 tools. All in French. » : montage de 8 captures, une par thème | plusieurs |
 | X-03 | 21/11/2026 | Post | Le tableur que seule une personne comprend | — |
 | X-04 | 22/11/2026 | Vidéo | « Who should I follow up today? » | CRM freelance |
 | X-05 | 23/11/2026 | Post | Le plus simple qui suffit (existant, no-code ou sur mesure) | — |
