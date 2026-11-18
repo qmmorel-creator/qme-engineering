@@ -7,7 +7,7 @@ Production quotidienne : skill `.claude/skills/campagne-x/`. Journal : `journal-
 **Publication par Instinct**, comme LinkedIn, Instagram et YouTube (décision du 18/11/2026) :
 - Sheet **« Planning publications X »** `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM`, onglet `Planning`, dossier Drive
   « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`.
-- Colonnes A–K : ID (`X-nn`) · Date · Heure (Europe/Paris) · Statut · Type (`Post` / `Image` / `Vidéo`) · Texte de la publication
+- Colonnes A–K : ID (`X-nn`) · Date · Heure (Europe/Paris) · Statut · Type (`Image` / `Vidéo` ; plus de `Post` en texte seul depuis le 18/11/2026) · Texte de la publication
   (tel quel, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive vidéo · Publié le · URL publication · Remarque.
 - Statuts : `À produire` (vidéo pas encore rendue) → `Prêt` → `Programmé` (une fois la routine Instinct confirmée) →
   `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
@@ -34,6 +34,9 @@ Après un ajout de template en vente : ajouter sa ligne à `outils/x/templates-e
 (il échoue si une page catalogue manque de capture).
 
 ## Règles éditoriales
+
+- **Jamais de texte seul** (décision de Quentin du 18/11/2026) : chaque publication est une image (1600 × 900) ou une
+  vidéo. Les 17 posts déjà programmés ont reçu leur image le 18/11 (`production/X-L01.png` … `X-13.png`).
 
 - Anglais uniquement, phrases courtes, ton direct. Pas d'émoji, pas de superlatif, pas de hashtag en rafale (0 à 2).
 - Sujet : **le sur-mesure** (outil construit pour une entreprise, un indépendant, une association). Un template n'est

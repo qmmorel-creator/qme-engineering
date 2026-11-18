@@ -1,6 +1,6 @@
 ---
 name: campagne-x
-description: Produire et programmer les publications de la campagne X de QME (en anglais, uniquement sur le volet sur mesure), une par jour, avec une semaine d'avance, en variant les formats (post texte, image, vidéo), les accroches et les thèmes, pour alimenter la publication automatique par Instinct. À utiliser quand la tâche planifiée « Campagne X · contenu J+7 » se déclenche, ou quand Quentin demande « le post X du jour », « la vidéo X », « campagne X », « remplis X ».
+description: Produire et programmer les publications de la campagne X de QME (en anglais, uniquement sur le volet sur mesure), une par jour, avec une semaine d'avance, toujours en image ou en vidéo (jamais de texte seul), les accroches et les thèmes, pour alimenter la publication automatique par Instinct. À utiliser quand la tâche planifiée « Campagne X · contenu J+7 » se déclenche, ou quand Quentin demande « le post X du jour », « la vidéo X », « campagne X », « remplis X ».
 ---
 
 # Campagne X quotidienne (anglais, sur mesure, une semaine d'avance)
@@ -10,6 +10,9 @@ Référence : `docs/templates/communication/x/README.md` (règles éditoriales, 
 vérifié et ce qui ne l'a pas été.
 
 ## Règles non négociables
+
+0. **Jamais de post en texte seul** (décision de Quentin du 18/11/2026) : chaque publication est une **Image** ou une
+   **Vidéo**, avec son fichier sur Drive (colonnes G et H du Sheet). Le type « Post » n'est plus utilisé.
 
 1. **Anglais uniquement**, **sur mesure uniquement** : un template n'est qu'une preuve de savoir-faire. Jamais de prix
    de template, jamais de lien Gumroad.
@@ -53,8 +56,10 @@ Relire tout l'onglet `Planning` du Sheet « Planning publications X » `1lri4kqQ
 
 Lire les 14 dernières lignes du journal (colonnes Format, Accroche, Thème) avant de choisir.
 
-- **Format** : `Post` (texte seul), `Image`, `Vidéo`. Jamais le même format deux jours de suite ; sur 7 jours : 2 ou 3
-  posts, 2 ou 3 images, 1 ou 2 vidéos.
+- **Format** : `Image` ou `Vidéo`. Jamais deux vidéos de suite ; sur 7 jours : 1 ou 2 vidéos, le reste en images.
+  Varier aussi les images entre elles : capture d'un template, capture d'une référence sur mesure
+  (`assets/` des projets de `/en/references/` : `thalvego-*`, `taverne-des-des`, `bikepulse-atelier`,
+  `bricabulle-tablette`, `visas-pilotage`, `box-abcd`, `nozze-maestria`, `nexora-gantt`, `devis-artisan`).
 - **Accroche** (type, jamais le même dans les 4 derniers jours) : question directe · chiffre vrai · idée à contre-courant
   · avant / après · mini-histoire d'un projet · erreur fréquente · liste courte · coulisses (comment je l'ai construit)
   · conseil honnête (quand ne PAS faire de sur-mesure) · appel à réponse (« reply with… »).
@@ -71,7 +76,7 @@ Lire les 14 dernières lignes du journal (colonnes Format, Accroche, Thème) ava
 
 ID = `X-nn` suivant (le plus grand numéro du Sheet + 1). Pour chaque publication :
 1. Texte au README (`### X-nn · JJ/MM · <format> · <accroche> · <thème>` + bloc ```), puis `longueurs.mjs`.
-2. Image : page `production/X-nn.html`, rendu, relecture de l'image (accroche lisible, capture nette, mention
+2. Image (toujours, sauf vidéo) : page `production/X-nn.html`, rendu, relecture de l'image (accroche lisible, capture nette, mention
    « French interface · sample data », rien de coupé).
 3. Vidéo : page `production/X-nn.html`, `node docs/videos/rendu.mjs docs/templates/communication/x/production/X-nn.html
    <durée> <ms couverture> --sortie docs/templates/communication/x/production/X-nn-<sujet>.mp4`, puis `ffprobe`
@@ -80,11 +85,11 @@ ID = `X-nn` suivant (le plus grand numéro du Sheet + 1). Pour chaque publicatio
 
 ## 4. Déposer et programmer (Instinct)
 
-1. Image ou vidéo : dépôt dans le dossier Drive « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`
+1. Image ou vidéo (toujours) : dépôt dans le dossier Drive « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`
    (`mcp__Google_Drive__create_file`, `base64Content` = `sha256:<empreinte>:<chemin absolu>`,
    `disableConversionToGoogleType: true`, `contentMimeType` `image/png` ou `video/mp4`), nom `X-nn-<sujet>.png|mp4` ;
    contrôler que la taille renvoyée égale celle du fichier.
-2. Ligne du Sheet (colonnes A–K) : ID, date, heure quotidienne, statut, Type (`Post`, `Image` ou `Vidéo`), texte exact
+2. Ligne du Sheet (colonnes A–K) : ID, date, heure quotidienne, statut, Type (`Image` ou `Vidéo`), texte exact
    (identique au README), nom du fichier (G), ID Drive (H), I et J vides, remarque (K).
 3. Statut `Programmé` si `journal-x.md` indique « Routine Instinct X transmise : oui » ; sinon `Prêt`. Ne jamais écrire
    `Publié` : c'est Instinct qui l'écrit (colonnes D, I, J). Ne déplacer ni supprimer aucune ligne existante.

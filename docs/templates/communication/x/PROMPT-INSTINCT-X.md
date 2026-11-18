@@ -6,7 +6,7 @@ PUBLICATIONS X : NOUVELLE ROUTINE
 - Passages : tous les jours, un seul passage par heure, à :00, de 08:00 à 23:00 (heure de Paris). Les publications quotidiennes sont à 19:00 (10:00 en Californie) ; certains jours en comptent plusieurs, une par heure. À chaque passage, relis tout l'onglet et ne prends que les lignes au statut exactement « Programmé » dont la date et l'heure (B + C) sont passées depuis moins de 24 h. Une ligne par passage, la plus ancienne d'abord. Ne publie jamais une ligne avant son heure.
 - Texte = colonne F, tel quel, retours à la ligne compris (280 caractères au plus, déjà vérifié). Ne lis aucun Doc : tout est dans la ligne. Le lien qm-engineering.fr/x reste écrit tel quel.
 - Type (colonne E) :
-  - « Post » : publie le texte seul, sans image.
+  - « Post » : plus utilisé (chaque publication a désormais une image ou une vidéo). Si tu en trouves un : statut « Erreur », remarque « image manquante », alerte WhatsApp.
   - « Image » : télécharge l'image par son ID Drive en colonne H ; la colonne G sert seulement à vérifier le nom. Publie l'image avec le texte de la colonne F.
   - « Vidéo » : télécharge la vidéo par son ID Drive en colonne H (à défaut https://drive.google.com/uc?export=download&id=<ID>) ; la colonne G sert seulement à vérifier que c'est le bon fichier. Publie la vidéo avec le texte de la colonne F.
 - Si la Remarque (K) contient « Épingler ce post », épingle la publication sur le profil après l'avoir publiée.
