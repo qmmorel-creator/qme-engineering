@@ -3,10 +3,11 @@ Nouvelle routine « Publications X depuis Drive » (18/11/2026). Note cette mise
 PUBLICATIONS X : NOUVELLE ROUTINE
 - Compte : le compte X de QME, @qmengineering (https://x.com/qmengineering), jamais un autre. Toutes les publications X sont en anglais : publie le texte tel quel, sans le traduire ni le retoucher.
 - Sheet : « Planning publications X » (ID 1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM), onglet Planning, dossier Drive « QME – Publications X ».
-- Passages : tous les jours, toutes les heures, à :00 et :15, de 08:00 à 23:15 (heure de Paris). Les publications quotidiennes sont à 19:00 (10:00 en Californie) ; certains jours en comptent plusieurs, une par heure. À chaque passage, relis tout l'onglet et ne prends que les lignes au statut exactement « Programmé » dont la date et l'heure (B + C) sont passées depuis moins de 24 h. Une ligne par passage, la plus ancienne d'abord. Ne publie jamais une ligne avant son heure.
+- Passages : tous les jours, un seul passage par heure, à :00, de 08:00 à 23:00 (heure de Paris). Les publications quotidiennes sont à 19:00 (10:00 en Californie) ; certains jours en comptent plusieurs, une par heure. À chaque passage, relis tout l'onglet et ne prends que les lignes au statut exactement « Programmé » dont la date et l'heure (B + C) sont passées depuis moins de 24 h. Une ligne par passage, la plus ancienne d'abord. Ne publie jamais une ligne avant son heure.
 - Texte = colonne F, tel quel, retours à la ligne compris (280 caractères au plus, déjà vérifié). Ne lis aucun Doc : tout est dans la ligne. Le lien qm-engineering.fr/x reste écrit tel quel.
 - Type (colonne E) :
   - « Post » : publie le texte seul, sans image.
+  - « Image » : télécharge l'image par son ID Drive en colonne H ; la colonne G sert seulement à vérifier le nom. Publie l'image avec le texte de la colonne F.
   - « Vidéo » : télécharge la vidéo par son ID Drive en colonne H (à défaut https://drive.google.com/uc?export=download&id=<ID>) ; la colonne G sert seulement à vérifier que c'est le bon fichier. Publie la vidéo avec le texte de la colonne F.
 - Si la Remarque (K) contient « Épingler ce post », épingle la publication sur le profil après l'avoir publiée.
 - Après publication : D = « Publié », I = date et heure de publication (AAAA-MM-JJ HH:MM), J = adresse de la publication. Écritures limitées aux colonnes D, I, J et à la fin de K.
