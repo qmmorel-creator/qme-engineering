@@ -7,7 +7,7 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
 
 - **Routine Instinct X transmise : oui, confirmation partielle (18/11/2026, 11:16).** Instinct « sait faire » la connexion à
   @qmengineering (vérifiée à 11:10) ; publication d'un texte, d'une vidéo Drive et épinglage : « je dois essayer ». Test
-  réel : X-L01 le 18/11 à 14:00 (texte + épinglage), puis X-02 le 18/11 à 12:00 (première vidéo, avancée du 20/11 à la demande de Quentin). Lignes « Prêt » X-01 à X-13
+  réel : X-L01 le 18/11 à 14:00 (texte + épinglage), puis X-02, première vidéo, publiée le 18/11 à 11:34 (avancée du 20/11 à la demande de Quentin) : publication de vidéo depuis Drive réussie. Lignes « Prêt » X-01 à X-13
   passées à « Programmé » à la demande de Quentin. Passages : un par heure à :00 (recommandation d'Instinct, risque de
   restriction du compte si les accès sont trop fréquents). Publication par Instinct, comme LinkedIn, Instagram et YouTube (décision de
   Quentin du 18/11/2026 ; Posty abandonné). Sheet « Planning publications X »
