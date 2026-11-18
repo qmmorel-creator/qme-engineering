@@ -1,0 +1,7 @@
+Vivre sans voiture
+Et sans elle, tu gagnes combien ?
+Coût complet · sortie de contrat · gain par an · parade à chaque urgence
+
+Ligne de la table T de outils/templates/couvertures-gumroad.cjs (ajoutée le 17/11/2026) :
+  'sans-voiture': ['Vivre sans voiture', 'Et sans elle, tu gagnes combien ?', 'Coût complet · sortie de contrat · gain par an · parade à chaque urgence'],
+Couverture : assets/templates-sans-voiture-couverture.png (SEUL=sans-voiture, serveur local du dépôt sur le port 8899).

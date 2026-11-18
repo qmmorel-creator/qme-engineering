@@ -583,6 +583,17 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   allégée proposée, volume hebdomadaire prévu et fait, impression, exports CSV et iCalendar. Aucune donnée de santé ;
   pas un programme médical. Règles dans `regles.js`, tests `outils/templates/course-a-pied.test.mjs`. Version anglaise
   en attente.
+- `templates/sans-voiture/` (SVT) : **vivre sans voiture** (T98), prêt, « Mise en vente prochaine » (9 €, dérogation de
+  Quentin à la règle des 12 €, démo libre, fiche Gumroad à créer après confirmation du nom :
+  `docs/templates/communication/sans-voiture/gumroad.json`). Questionnaire (foyer, vélo, transports, travail, école) qui
+  ouvre les champs utiles et calcule un score de faisabilité avec verdict bloquant ; coût annuel complet de la voiture
+  (achat, crédit au taux implicite, LOA, LLD ; carburant en € ou km × consommation × prix) ; sortie (vente, rachat de
+  LOA au barème saisi puis revente, option finale, restitution, indemnité de LLD) ; coût sans voiture (transports avec
+  part employeur, vélo, location, autopartage, taxis, train, livraisons, équipement) ; gain annuel, mensuel et cumulé
+  sur 1 à 15 ans coût de sortie compris, 5 scénarios, meilleur moment de sortie, sensibilité ; 14 cas d'urgence avec
+  parade et plan B, cas du quotidien, semaine type, phase de test. Aucun tarif intégré (valeurs d'exemple signalées) ;
+  numéros d'urgence et siège enfant vérifiés sur service-public.gouv.fr et Légifrance (17/11/2026). SVT est annoncé
+  dans le pack Ma voiture (PVT), qu'il rejoindra à sa mise en vente (pack alors à 28 €). Règles dans `regles.js`, tests `outils/templates/sans-voiture.test.mjs`.
 - `templates/patrimoine/` (PTM) : **inventaire valorisé**, prêt, mise en vente prochaine (19 €). Base de 15
   catégories, sous-catégories et exemples d'objets sans prix, moteur de décote paramétrable par famille
   (âge, état, prix, ancienneté à l'achat), trois valeurs distinctes (achat, actuelle estimée, revente),

@@ -324,6 +324,19 @@
       notes: { 'Note de synthèse': [9, 11.5], 'Culture générale': [10, 12], 'Droit public': [13], 'Finances publiques': [11], 'Questions sociales': [12.5] },
       planner: { titre: 'Travail', cours: [[0, 9 * 60, 8 * 60], [1, 9 * 60, 8 * 60], [2, 9 * 60, 5 * 60], [3, 9 * 60, 8 * 60], [4, 9 * 60, 7 * 60]], autres: [[2, 18 * 60, 90, 'Coaching oral (visio)'], [5, 9 * 60, 240, 'Concours blanc']] },
     },
+    // Élève de première, spécialité maths (pages /demo/corinne et /demo/ines) : bac blanc de maths la deuxième
+    // semaine de janvier, automatismes de l'épreuve anticipée le lundi, spécialité le mercredi.
+    maths: {
+      prenom: 'Sarah', filiere: 'premiere', graine: 2032, partiels: true, debut: -72, pauses: [-22, -23, -40], retards: 2, manquees: 4,
+      matieres: [
+        ['Automatismes', 'rouge', 0, 2, ['Calcul fractionnaire|-68|somme de fractions, produit, inverse, simplification', 'Puissances et racines carrées|-58|puissance d\'un produit, exposant négatif, notation scientifique, racine carrée', 'Pourcentages et évolutions|-47|coefficient multiplicateur, taux d\'évolution, évolutions successives, évolution réciproque', 'Équations et inéquations|-34|équation produit nul, inéquation, changement de sens, ensemble de solutions', 'Lecture graphique|-20|image, antécédent, signe d\'une fonction, coefficient directeur', 'Proportionnalité et conversions|-7|produit en croix, échelle, vitesse, unités', 'Statistiques descriptives|']],
+        ['Analyse', 'bleu', 2, 6, ['Second degré|-70|discriminant, racines, forme canonique, signe du trinôme', 'Suites numériques|-55|suite arithmétique, suite géométrique, terme général, somme des termes', 'Dérivation|-41|nombre dérivé, tangente, dérivée d\'un produit, dérivée d\'un quotient', 'Variations et extremums|-26|signe de la dérivée, tableau de variations, maximum, minimum', 'Fonction exponentielle|-9|exp, e^x, dérivée de e^x, croissance, e^(a+b)', 'Trigonométrie|', 'Algorithmique et Python|']],
+        ['Géométrie', 'jaune', 2, 3, ['Produit scalaire|-49|projeté orthogonal, cosinus, norme, orthogonalité', 'Géométrie repérée|-29|équation cartésienne, vecteur normal, équation de cercle', 'Applications du produit scalaire|-3|Al-Kashi, formule de la médiane, ensemble de points']],
+        ['Probabilités', 'vert', 2, 3, ['Probabilités conditionnelles|-44|arbre pondéré, probabilité de B sachant A, probabilités totales, indépendance', 'Variables aléatoires|-15|loi de probabilité, espérance, variance, écart-type', 'Répétition d\'épreuves indépendantes|']],
+      ],
+      notes: { 'Automatismes': [14, 15.5], 'Analyse': [9.5, 11], 'Géométrie': [12], 'Probabilités': [13.5] },
+      planner: { cours: [[0, 8 * 60, 9 * 60], [1, 8 * 60, 8 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 7 * 60]], autres: [[2, 14 * 60, 90, 'Défi maths de la semaine'], [5, 10 * 60, 120, 'Annales d\'automatismes']] },
+    },
     // Étudiante en L1 de droit (page /demo/odelia) : partiels du semestre 1 la deuxième semaine de janvier
     // (`partiels` : examens en jours décalés depuis le lundi des partiels, voir datePartiels).
     'droit-l1': {

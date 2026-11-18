@@ -102,6 +102,7 @@ const T = {
   'course-a-pied': ['Plan d’entraînement course à pied', 'Tes allures et tes semaines, jusqu’au jour J.', 'Allures calculées · plan du 10 km au marathon · séances cochées'],
   seminaire: ['Séminaire / offsite', 'Tout le monde au bon endroit, au bon moment.', 'Réponses · qui voyage avec qui · chambres · coût par personne'],
   quiz: ['Banque de questions et quiz', 'Tes questions, tes quiz, tes résultats.', 'Questions taguées · quiz et corrigé · statistiques'],
+  'sans-voiture': ['Vivre sans voiture', 'Et sans elle, tu gagnes combien ?', 'Coût complet · sortie de contrat · gain par an · parade à chaque urgence'],
 };
 // Trois ambiances qui alternent : [fond du bloc capture, grande forme, petite forme, pastille]
 const AMB = [

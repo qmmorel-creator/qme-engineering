@@ -28,11 +28,12 @@ test('les packs sont cohérents : préfixes uniques, sans I L O U, slugs uniques
   assert.equal(new Set(tous).size, tous.length, 'préfixes en double');
   const slugs = Object.values(PACKS).map((p) => p.slug);
   assert.equal(new Set(slugs).size, slugs.length);
-  const { PAGES } = await import('../packs/donnees.mjs');
+  const { PAGES, TEMPLATES } = await import('../packs/donnees.mjs');
   for (const [code, p] of Object.entries(PACKS)) {
     const prevus = PAGES[code]?.prevus || [];
     assert.ok(p.produits.length + prevus.length >= 2, p.slug);
-    for (const x of prevus) assert.ok(PREVUS[x]?.prix >= 1200, `${x} : fiche et prix (12 € minimum)`);
+    // Un template déjà en ligne peut être annoncé dans un pack (prevus) avant d'y entrer : sa fiche courte suffit.
+    for (const x of prevus) assert.ok(PREVUS[x]?.prix >= 1200 || (PRODUITS[x] && TEMPLATES[x] && !p.produits.includes(x)), `${x} : fiche et prix (12 € minimum), ou template existant annoncé hors de produits`);
     for (const x of p.produits) assert.ok(PRODUITS[x], `${x} du pack ${p.slug} : seulement des templates existants (les autres dans prevus)`);
   }
 });
