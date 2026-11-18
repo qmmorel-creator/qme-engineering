@@ -1,6 +1,7 @@
 # Chaîne YouTube QME · Shorts
 
-Décision de Quentin du 16/11/2026 : **TikTok est abandonné** ; tout ce qui est vidéo verticale (vidéos démo
+Décision de Quentin du 16/11/2026 : **TikTok est abandonné** (levée le 18/11/2026 : TikTok est repris, voir
+`docs/templates/communication/tiktok/`) ; tout ce qui est vidéo verticale (vidéos démo
 LinkedIn 17:30, reels Instagram) part aussi en **YouTube Shorts**, le même jour. Non publié (dossier `docs/`).
 
 Chaîne : `https://www.youtube.com/channel/UCZTdaekWbJG8_RekBbaecvA`.

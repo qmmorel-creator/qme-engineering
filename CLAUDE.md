@@ -29,7 +29,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 - **Idée du jour** : skill `.claude/skills/idee-video/` (un seul produit en vente, angles en rotation), qui
   appelle **`.claude/skills/video-demo/`** (interaction réelle avec le template, rendu, Google Drive,
-  programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00). Pas de TikTok (abandonné le 16/11/2026) ;
+  programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00). TikTok repris le 18/11/2026 (abandon du 16/11 levé) : Instinct reprend chaque
+  publication Instagram sur TikTok (@qme.qm.engineering), procédure `docs/templates/communication/tiktok/` ;
   chaîne YouTube : `docs/templates/communication/youtube/`. Outils et journal : `docs/videos/`.
 - **Tout format vidéo** ajouté à un planning (Reel Instagram, vidéo LinkedIn) reçoit aussi sa ligne `YT-nn` dans le
   planning YouTube, le même jour (12:00 pour une vidéo démo, 20:00 pour un reel du soir).
