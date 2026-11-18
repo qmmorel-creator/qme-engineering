@@ -7,6 +7,7 @@ import { dirname, join, basename } from 'node:path';
 import { mkdirSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
+import { sonoriser } from './sonoriser.mjs';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
 const ici = dirname(fileURLToPath(import.meta.url));
@@ -17,6 +18,8 @@ const nom = basename(fichier, '.html');
 const ips = 30;
 const images = join(tmpdir(), `qme-${nom}-images`);
 rmSync(images, { recursive: true, force: true });
+// Plus aucun Reel muet (décision de Quentin du 18/11/2026) : musique QME ajoutée d'office.
+sonoriser(join(ici, 'png', `${nom}.mp4`));
 mkdirSync(images, { recursive: true });
 
 const navigateur = await chromium.launch();
