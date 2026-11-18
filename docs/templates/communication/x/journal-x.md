@@ -6,7 +6,11 @@ l'autre (post, vidéo). Horaire quotidien : 10:00 en Californie, soit 19:00 à P
 
 ## État de la publication
 
-- **Routine Instinct X transmise : oui (confirmé par Quentin le 18/11/2026 ; lignes « Prêt » X-01 à X-13 passées à « Programmé »).** Publication par Instinct, comme LinkedIn, Instagram et YouTube (décision de
+- **Routine Instinct X transmise : oui, confirmation partielle (18/11/2026, 11:16).** Instinct « sait faire » la connexion à
+  @qmengineering (vérifiée à 11:10) ; publication d'un texte, d'une vidéo Drive et épinglage : « je dois essayer ». Test
+  réel : X-L01 le 18/11 à 14:00 (texte + épinglage), puis X-02 le 20/11 (première vidéo). Lignes « Prêt » X-01 à X-13
+  passées à « Programmé » à la demande de Quentin. Passages : un par heure à :00 (recommandation d'Instinct, risque de
+  restriction du compte si les accès sont trop fréquents). Publication par Instinct, comme LinkedIn, Instagram et YouTube (décision de
   Quentin du 18/11/2026 ; Posty abandonné). Sheet « Planning publications X »
   `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM` (onglet `Planning`), dossier Drive « QME – Publications X »
   `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`. Routine : `PROMPT-INSTINCT-X.md` (à transmettre par Quentin). Tant que cette

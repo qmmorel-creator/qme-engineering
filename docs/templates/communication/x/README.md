@@ -11,7 +11,8 @@ Production quotidienne : skill `.claude/skills/campagne-x/`. Journal : `journal-
   (tel quel, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive vidéo · Publié le · URL publication · Remarque.
 - Statuts : `À produire` (vidéo pas encore rendue) → `Prêt` → `Programmé` (une fois la routine Instinct confirmée) →
   `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
-- Routine : `PROMPT-INSTINCT-X.md`, transmise et confirmée par Instinct le 18/11/2026. Passages toutes les heures, à :00 et :15, de 08:00 à 23:15.
+- Routine : `PROMPT-INSTINCT-X.md`, transmise le 18/11/2026 (connexion vérifiée ; publication, vidéo et épinglage testés
+  en réel avec X-L01 et X-02). Un passage par heure, à :00, de 08:00 à 23:00.
 
 ## Principe
 
