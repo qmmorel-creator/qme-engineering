@@ -235,9 +235,9 @@ produire par le skill `campagne-x` la veille au plus tard.
 ### X-01 · 19/11 · post
 
 ```
-I'm Quentin, an engineer in France. I build custom web apps for small businesses and freelancers.
+Yesterday I said I build custom tools. Here is the proof: 97 of them, for freelancers, small businesses and associations.
 
-To show what that looks like, I built 97 ready-made tools. All in French for now.
+All in French for now.
 
 Pick the ones you'd want in English. The most requested go first.
 
