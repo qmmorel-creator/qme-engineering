@@ -31,7 +31,7 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
 | X-L09 | 2026-11-18 | 22:00 | Image | erreur fréquente | références par métier | référence · visas de plans en bureau d'études | — | README § X-L09 | Programmé |  |
 | X-L10 | 2026-11-18 | 23:00 | Image | chiffre vrai | les 97 templates comme preuve | les 97 templates en teaser (annonce X-01) | — | README § X-L10 | Programmé |  |
 | X-01 | 2026-11-19 | 19:00 | Image | chiffre vrai | les 97 templates comme preuve | 97 outils en français | — | README § X-01 | Programmé |  |
-| X-02 | 2026-11-18 | 12:00 | Vidéo | chiffre vrai | les 97 templates comme preuve | 97 tools. All in French. | plusieurs | [X-02-97-tools.mp4](https://drive.google.com/file/d/19dQDiblHfCZMzJNSZPHrko50svVJfk-V/view) · avancée du 20/11 | Programmé |  |
+| X-02 | 2026-11-18 | 11:34 | Vidéo | chiffre vrai | les 97 templates comme preuve | 97 tools. All in French. | plusieurs | [X-02-97-tools.mp4](https://drive.google.com/file/d/19dQDiblHfCZMzJNSZPHrko50svVJfk-V/view) · avancée du 20/11 | Publié | [post](https://x.com/qmengineering/status/2123002000572825931) |
 | X-03 | 2026-11-21 | 19:00 | Image | erreur fréquente | tableur qui déborde | Le tableur que seule une personne comprend | — | README § X-03 | Programmé |  |
 | X-04 | 2026-11-22 | 19:00 | Vidéo | question directe | facturation et relances | Who should I follow up today? | crm | à produire | À produire |  |
 | X-05 | 2026-11-23 | 19:00 | Image | conseil honnête | méthode et délais | Le plus simple qui suffit | — | README § X-05 | Programmé |  |
