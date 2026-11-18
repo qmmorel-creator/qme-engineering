@@ -123,3 +123,14 @@ accord de Quentin sur les valeurs « à vérifier », `QUESTIONS.md` § T44), CM
 
 Suivi de TVA refusé à 07 h 51 UTC (limite Gumroad) : prochaine création à 09:17 (Paris), reprise programmée à 09:18
 pour TVA, CMP, RPS, MSC.
+
+Reprise du 18/11/2026 (session « Sans voiture à Tassin », demande de Quentin « publie tout ce qui a une clé ») :
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| SVT | sans-voiture | 1DfML3czjZu5bg95z3KuRg== | /l/simulateur-vivre-sans-voiture | 9 € | **en vente** (clé vérifiée, publié le 18/11/2026) ; pack Ma voiture passé à 28 € |
+| TVA | tva | aGMrUCFVZ9yzLWfaNIWQ1w== | /l/suivi-tva | 19 € | **en vente** (clé vérifiée, publié le 18/11/2026) ; tags « gestión » et « comptabilité » : Gumroad garde les accents malgré la mise à jour (à corriger dans l'éditeur) |
+| CMP | competition | 1evFhHOrqZyrgIdg9T483A== | /l/odhsh | 49 € | brouillon **non publié** : clé active mais fiche inachevée (ni couverture, ni résumé, ni catégorie, ni tags, ni reçu, permalien par défaut) |
+
+Doublon `Xw7qeUhC65CrQW-X8XjqVQ==` (« DOUBLON À SUPPRIMER – Vivre sans voiture », /l/wdipoh) créé par erreur le 18/11 :
+absent de la liste des produits à 09 h 40, supprimé par Quentin.
