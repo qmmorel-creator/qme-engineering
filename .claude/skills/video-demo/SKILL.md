@@ -91,7 +91,9 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
    `IG-nn-<slug>-couverture.png`.
 5. Créer les Google Docs de texte (LinkedIn : dossier Textes LinkedIn ; Instagram : dossier Textes Instagram)
    au format strict de la routine : texte à publier, puis ligne `———`, puis `PREMIER COMMENTAIRE` avec le
-   lien de la démo (et du produit), rien d'autre. Jamais « [à compléter] ».
+   lien de la démo (et du produit), rien d'autre. Jamais « [à compléter] ». Template vie personnelle : le lien
+   principal est l'essai gratuit (`qm-engineering.fr/essai/?t=<slug>`, « 14 jours d'essai gratuit, sans carte »),
+   la démo en second (`REGLES-CONTENU.md` § 7).
 6. Insérer chaque ligne **à sa place chronologique** (`insert_dimension` puis `update_values`), ID suivant
    (`LI-` / `IG-` + plus grand numéro + 1), colonne O d'Instagram = l'ID LinkedIn.
 7. **Statut** : « Programmé » si `journal.md` indique « Routine Instinct v4 transmise : oui » (instruction

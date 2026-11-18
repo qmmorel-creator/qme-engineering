@@ -9,6 +9,7 @@
 // listant son identifiant (les 8 caractères aléatoires) dans TEMPLATES_CODES_REVOQUES.
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { PACKS, SUR_MESURE, ACHAT_SUR_MESURE, compositionDepuisAchat, prixComposition, produitsAccessibles } from './packs.mjs';
+import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 export { PACKS, SUR_MESURE, ACHAT_SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
@@ -162,6 +163,96 @@ export function genererCode(secret, produit) {
   return formater(produit, id, signature(secret, produit, id));
 }
 
+// --- Essai gratuit (décision de Quentin, 18/11/2026) ----------------------------------------------
+// Templates « vie personnelle » en vente : 14 jours d'essai sans carte, puis 30 jours en lecture seule,
+// puis effacement. Le code d'essai a la forme d'un code de template (PRODUIT-AAAA-AAAA-SSSS-SSSS), mais :
+//  - AAA (3 premiers caractères de l'identifiant) = jour de début, compté depuis le 01/01/2026 ;
+//  - la signature est calculée dans le contexte « essai », distinct des codes achetés.
+// La date de début ne peut donc pas être modifiée sans invalider le code : la durée maximale est garantie
+// sans rien stocker. Le registre des essais (store « templates-essais ») ne sert qu'aux e-mails, au report
+// des données à l'achat et à l'effacement.
+export const ESSAI = { jours: 14, conservation: 30 };
+const JOUR0 = Date.UTC(2026, 0, 1);
+const MS_JOUR = 86_400_000;
+
+// Date du jour à Paris (AAAA-MM-JJ) : la fin d'un essai tombe à minuit heure de Paris.
+export const jourParis = (date = new Date()) => date.toLocaleDateString('sv-SE', { timeZone: 'Europe/Paris' });
+export const decalerJour = (jour, n) => new Date(Date.parse(`${jour}T00:00:00Z`) + n * MS_JOUR).toISOString().slice(0, 10);
+const numeroJour = (jour) => Math.round((Date.parse(`${jour}T00:00:00Z`) - JOUR0) / MS_JOUR);
+
+const signerEssai = (secret, produit, id) => signature(secret, `essai:${produit}`, id);
+
+export function genererCodeEssai(secret, produit, date = new Date()) {
+  if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
+  if (!PRODUITS[produit]) throw new Error(`Produit inconnu : ${produit}`);
+  const n = numeroJour(jourParis(date));
+  const jour = [n >> 10, (n >> 5) & 31, n & 31].map((v) => ALPHABET[v]).join('');
+  const id = jour + base32(randomBytes(4)).slice(0, 5);
+  return formater(produit, id, signerEssai(secret, produit, id));
+}
+
+// Renvoie { produit, id, code, debut, fin, effacement } si le code d'essai est authentique, sinon null.
+export function verifierCodeEssai(secret, saisie, revoques = []) {
+  if (!secret) return null;
+  const n = normaliser(saisie);
+  const produit = Object.keys(PRODUITS).find((p) => n.startsWith(p) && n.length === p.length + 16);
+  if (!produit) return null;
+  const id = n.slice(produit.length, produit.length + 8), sig = n.slice(produit.length + 8);
+  if (!timingSafeEqual(Buffer.from(sig), Buffer.from(signerEssai(secret, produit, id)))) return null;
+  if (revoques.map(normaliser).includes(id)) return null;
+  const v = [...id.slice(0, 3)].map((c) => ALPHABET.indexOf(c));
+  const debut = new Date(JOUR0 + ((v[0] << 10) | (v[1] << 5) | v[2]) * MS_JOUR).toISOString().slice(0, 10);
+  const fin = decalerJour(debut, ESSAI.jours);
+  return { produit, id, code: formater(produit, id, sig), debut, fin, effacement: decalerJour(fin, ESSAI.conservation) };
+}
+
+// État d'un essai à une date : actif jusqu'au jour `fin` inclus, lecture seule jusqu'à `effacement` inclus.
+export function etatEssai(essai, aujourdhui = jourParis()) {
+  const restants = Math.round((Date.parse(`${essai.fin}T00:00:00Z`) - Date.parse(`${aujourdhui}T00:00:00Z`)) / MS_JOUR);
+  return {
+    debut: essai.debut, fin: essai.fin, effacement: essai.effacement,
+    joursRestants: Math.max(0, restants), termine: aujourdhui > essai.fin, efface: aujourdhui > essai.effacement,
+  };
+}
+
+export const cleDonneesEssai = (secret, produit, id) => `essai/${produit}/${createHmac('sha256', secret).update(`essai-donnees:${produit}:${id}`).digest('hex').slice(0, 32)}`;
+export const cleEmail = (secret, email) => createHmac('sha256', secret).update(`essai-email:${String(email || '').trim().toLowerCase()}`).digest('hex').slice(0, 32);
+
+// Informations d'essai renvoyées à l'application (bandeau, lecture seule, bouton d'achat).
+function infoEssai(essai, aujourdhui) {
+  const t = TEMPLATES[essai.produit] || {};
+  return { ...etatEssai(essai, aujourdhui), prix: t.prix ?? null, achat: t.permalien ? `https://qmengineering.gumroad.com/l/${t.permalien}` : null };
+}
+
+// Report des données d'essai dans l'espace acheté (même template). Candidats : le code d'essai envoyé par
+// l'application, puis l'essai enregistré avec l'e-mail de l'achat Gumroad. Rien n'est écrasé : si l'espace
+// acheté contient déjà des données, il les garde. L'essai est ensuite marqué acheté (plus aucun rappel).
+async function reporterEssai({ secret, produit, cible, codeEssai, email, stockage, essais, revoques, maintenant }) {
+  if (!essais) return false;
+  const candidats = [];
+  const parCode = codeEssai ? verifierCodeEssai(secret, codeEssai, revoques) : null;
+  if (parCode && parCode.produit === produit) candidats.push(parCode.id);
+  if (email) {
+    const ref = await essais.get(`email/${cleEmail(secret, email)}/${produit}`);
+    if (ref?.id && !candidats.includes(ref.id)) candidats.push(ref.id);
+  }
+  for (const id of candidats) {
+    const reg = await essais.get(`essai/${id}`);
+    if (!reg || reg.achete) continue;
+    const source = cleDonneesEssai(secret, produit, id);
+    const donnees = await stockage.get(source);
+    let reporte = false;
+    if (donnees && (await stockage.get(cible)) == null) {
+      await stockage.set(cible, { ...donnees, majLe: new Date(maintenant()).toISOString() });
+      reporte = true;
+    }
+    await essais.set(`essai/${id}`, { ...reg, achete: new Date(maintenant()).toISOString(), reporte });
+    if (reporte && stockage.supprimer) await stockage.supprimer(source);
+    return reporte;
+  }
+  return false;
+}
+
 // Clé de licence Gumroad : 4 blocs de 8 caractères hexadécimaux.
 export function estLicence(saisie) {
   return /^[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(String(saisie || '').trim().toUpperCase());
@@ -186,7 +277,7 @@ export async function verifierLicenceGumroad(produitGumroad, licence, fetchImpl 
   if (!r.ok || !corps.purchase) throw new Error(`Gumroad ${r.status}`);
   const a = corps.purchase;
   if (a.refunded || a.chargebacked || a.disputed) return { ok: false, raison: 'rembourse' };
-  return { ok: true, achat: { price: a.price, currency: a.currency, custom_fields: a.custom_fields, variants: a.variants, sale_timestamp: a.sale_timestamp } };
+  return { ok: true, achat: { price: a.price, currency: a.currency, custom_fields: a.custom_fields, variants: a.variants, sale_timestamp: a.sale_timestamp, ...(a.email ? { email: a.email } : {}) } };
 }
 
 // --- Packs -----------------------------------------------------------------------------------------
@@ -285,7 +376,7 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
 //  GET  /donnees     (en-tête X-Code)    → { donnees }
 //  PUT  /donnees     { donnees, base }   → { ok, majLe } ou 409 { donnees } si une version plus récente existe
 // Le stockage expose get(cle) → objet|null et set(cle, objet).
-export async function traiter(requete, { secret, revoques = [], stockage, verifierLicence = verifierLicenceGumroad }) {
+export async function traiter(requete, { secret, revoques = [], stockage, essais = null, maintenant = Date.now, verifierLicence = verifierLicenceGumroad }) {
   if (!secret) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/templates/, '').replace(/\/$/, '');
 
@@ -297,6 +388,17 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   }
 
   let code = requete.method === 'POST' ? corps?.code : requete.headers.get('x-code');
+  // Achat vérifié auprès de Gumroad : sert au report des données d'un essai gratuit dans l'espace acheté.
+  let achatVerifie = null;
+  const reporter = (produit, cible) => reporterEssai({ secret, produit, cible, codeEssai: corps?.essai, email: achatVerifie?.email, stockage, essais, revoques, maintenant })
+    .catch((e) => { console.error('Report d\'essai impossible', e); return false; });
+  // Pack acheté : chaque template du pack peut recevoir les données d'un essai du même template.
+  const reporterPack = async (pack) => {
+    for (const p of pack.produits) {
+      const a = verifierCode(secret, codePackProduit(secret, pack.pack, pack.id, p), revoques);
+      if (a) await reporter(p, cleDonnees(secret, p, a.id));
+    }
+  };
 
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
@@ -307,6 +409,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
     if (trouve >= 0) {
       const [cle] = candidats[trouve];
+      achatVerifie = reponses[trouve].value.achat || {};
       if (cle === SUR_MESURE) {
         // Pack sur mesure : composition lue dans l'achat, montant payé contrôlé contre le barème.
         const achat = reponses[trouve].value.achat;
@@ -323,6 +426,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
         const option = /volutif/i.test(String(achat.variants || ''));
         const acces = verifierCodePack(secret, codePackDepuisLicence(secret, cle, code), revoques);
         if (!acces) return json(401, { erreur: 'Clé de licence inconnue.' });
+        await reporterPack(acces);
         return reponsePack(secret, { ...acces, option, produits: produitsAccessibles(cle, { option, date: achat.sale_timestamp }, PRODUITS) }, code.trim().toUpperCase());
       } else code = codeDepuisLicence(secret, cle, code);
     }
@@ -343,21 +447,40 @@ export async function traiter(requete, { secret, revoques = [], stockage, verifi
   // Pack : renvoie la liste de ses templates, chacun avec son code (tableau de bord /packs/espace/).
   if (chemin === '/connexion' && requete.method === 'POST') {
     const pack = verifierCodePack(secret, code, revoques);
-    if (pack) return reponsePack(secret, pack, code);
+    if (pack) {
+      if (achatVerifie) await reporterPack(pack);
+      return reponsePack(secret, pack, code);
+    }
   }
 
-  const acces = verifierCode(secret, code, revoques);
+  let acces = verifierCode(secret, code, revoques);
+  // Code d'essai gratuit : accès complet jusqu'à la fin de l'essai, lecture seule ensuite, refusé une fois effacé.
+  let essai = null;
+  if (!acces) {
+    const e = verifierCodeEssai(secret, code, revoques);
+    if (e) {
+      const aujourdhui = jourParis(new Date(maintenant()));
+      const reg = essais ? await essais.get(`essai/${e.id}`) : { id: e.id };
+      if (reg?.achete) return json(401, { erreur: 'Vous avez acheté ce template : ouvrez-le avec votre clé de licence Gumroad. Vos données d\'essai y ont été reportées.' });
+      if (!reg || etatEssai(e, aujourdhui).efface) return json(401, { erreur: 'Cet essai gratuit est terminé et ses données ont été effacées. Le template reste disponible à l\'achat.' });
+      essai = { ...e, info: infoEssai(e, aujourdhui) };
+      acces = { produit: e.produit, id: e.id };
+    }
+  }
   if (!acces) return json(401, { erreur: 'Code d\'accès invalide' });
-  const cle = cleDonnees(secret, acces.produit, acces.id);
+  const cle = essai ? cleDonneesEssai(secret, acces.produit, acces.id) : cleDonnees(secret, acces.produit, acces.id);
+  const extra = essai ? { essai: essai.info } : {};
 
   if (chemin === '/connexion' && requete.method === 'POST') {
-    const jeton = formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
-    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null });
+    if (achatVerifie && !essai) await reporter(acces.produit, cle);
+    const jeton = essai ? essai.code : formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
+    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra });
   }
   if (chemin === '/donnees' && requete.method === 'GET') {
-    return json(200, { donnees: (await stockage.get(cle)) ?? null });
+    return json(200, { donnees: (await stockage.get(cle)) ?? null, ...extra });
   }
   if (chemin === '/donnees' && requete.method === 'PUT') {
+    if (essai?.info.termine) return json(403, { erreur: 'Votre essai gratuit est terminé : vos données restent consultables, mais plus modifiables. Achetez le template pour continuer avec elles.', essaiTermine: true, ...extra });
     const donnees = corps?.donnees;
     if (!donnees || typeof donnees !== 'object' || Array.isArray(donnees)) return json(400, { erreur: 'Données manquantes' });
     const actuelles = await stockage.get(cle);
@@ -387,6 +510,7 @@ export function stockageMigrant(nouveau, ancien) {
       return anciennes;
     },
     set: (cle, valeur) => nouveau.set(cle, valeur),
+    ...(nouveau.supprimer ? { supprimer: (cle) => nouveau.supprimer(cle) } : {}),
   };
 }
 
