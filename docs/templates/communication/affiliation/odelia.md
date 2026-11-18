@@ -83,5 +83,5 @@ surtout mode et lifestyle, quelques épisodes « avoir de meilleures notes ».
 ## Statut
 
 **Relancé par Eva le 18/11** (TikTok). Contre-proposition envoyée le 18/11 à 12:55 : 200 € fixe + commission +
-accès à vie (241,90 €) ou outil sur mesure (2 000 € minimum). En attente de réponse. Taux de commission à fixer par
+accès à vie (241,90 €) ou outil sur mesure (2 000 € minimum). Eva en discute avec Odélia (18/11 13:48) : en attente. Si Odélia refuse, les 200 € peuvent être réaffectés à un autre talent de Yuzu (mail du 18/11 14:14). Taux de commission à fixer par
 Quentin. Détail : `odelia-historique.md`.

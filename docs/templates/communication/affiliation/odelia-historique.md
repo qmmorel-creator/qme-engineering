@@ -27,6 +27,9 @@ Mémoire du dossier, à relire avant toute reprise de contact. Fiche : `odelia.m
 | 18/11 11:45 | Eva → Quentin (fil séparé) | Propose Estelle (@estellesbn, étudiante en dentaire) et Anusha (@anusha.drg, étudiante à Londres), partage le kit média de Yuzu. |
 | 18/11 12:55 | Quentin → Eva (Odélia en copie) | 200 € de fixe maximum (autres enveloppes engagées) + commission sur chaque vente + au choix : accès gratuit à vie à 17 outils (241,90 €) ou tout autre template, ou, probablement plus pertinent, un outil sur mesure (2 000 € minimum). Taux de commission non donné. |
 | 18/11 13:00 | Quentin → Eva (fil séparé) | Estelle et Anusha : plus d'enveloppe en numéraire ; commission + outil sur mesure ; démo à leur nom possible ; demande d'autres talents pour ces conditions. |
+| 18/11 13:44 | Eva → Quentin (fil séparé, tutoiement) | Estelle et Anusha : pas de collaboration à la commission seule ; « reviens vers moi si un budget plus conséquent venait à être disponible ». |
+| 18/11 13:48 | Eva → Quentin (Odélia en copie) | Va discuter de la contre-proposition avec Odélia et revenir rapidement. |
+| 18/11 14:14 | Quentin → Eva (fil séparé) | « Selon la réponse d'Odélia, mon enveloppe pourra être réaffectée à une discussion équivalente avec l'un de vos talents, en attendant de dégager de nouveaux fonds » ; question : un outil sur mesure pour l'agence elle-même ? |
 
 ## Statistiques Instagram transmises par Eva (21/07–19/08/2026)
 
