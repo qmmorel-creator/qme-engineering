@@ -1,3 +1,6 @@
+> **Périmé pour TikTok (18/11/2026)** : la section 1 (arrêt de TikTok) est annulée par
+> `../tiktok/PROMPT-INSTINCT-TIKTOK.md`. Ne pas renvoyer ce texte tel quel à Instinct ; la section 2 (YouTube) reste valable.
+
 Nouvelle routine « Publications YouTube Shorts depuis Drive » et arrêt de TikTok (16/11/2026). Note cette mise à jour dans ton Journal et dans ton registre des routines.
 
 1. TIKTOK : ARRÊT DÉFINITIF

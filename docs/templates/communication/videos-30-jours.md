@@ -18,7 +18,8 @@ ajuster par Quentin avant tournage.
   naturel.
 - **Plateformes** (décisions de Quentin, 13/11/2026) : **Instagram** (Reels) et **YouTube Shorts**, la
   même vidéo verticale pour les deux, plus **LinkedIn** en vidéo native les jours où son planning est vide
-  (§ 4). TikTok abandonné (décision de Quentin du 16/11/2026).
+  (§ 4). **TikTok** : abandonné le 16/11/2026, repris le 18/11/2026 ; Instinct y reprend chaque publication
+  Instagram (`tiktok/`).
 
 ## 1. Analyse : ce qui fonctionne actuellement
 

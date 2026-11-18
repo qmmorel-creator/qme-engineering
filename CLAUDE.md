@@ -25,7 +25,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
   n'est fusionné ni envoyé sans son feu vert. Fiches : `docs/templates/communication/affiliation/`.
 
-## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts)
+## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts, TikTok)
 
 - **Idée du jour** : skill `.claude/skills/idee-video/` (un seul produit en vente, angles en rotation), qui
   appelle **`.claude/skills/video-demo/`** (interaction réelle avec le template, rendu, Google Drive,
