@@ -142,8 +142,8 @@ absent de la liste des produits à 09 h 40, supprimé par Quentin.
 | TVA | tva | aGMrUCFVZ9yzLWfaNIWQ1w== | /l/suivi-tva | 19 € | **en vente** (créé ici, publié et mis en vente par une autre session, PR #157) |
 | CMP | competition | 1evFhHOrqZyrgIdg9T483A== | /l/gestion-competition | 49 € | **en vente** (18/11/2026) |
 | RPS | repas | EnpmgktOylLJZJST9_Tfhg== | /l/repas-liste-de-courses | 13 € | **en vente** (18/11/2026) |
-| MSC | musculation | 1T1zE6319ZF9qexKr8Kzzw== | /l/carnet-musculation-cross-training | 19 € | clé à activer (https://gumroad.com/products/ttzjjr/edit) |
-| APD | appel-decouverte | NOhwt805chMWKwJGEDhgJQ== | /l/pjimd (permalien à poser : preparateur-appel-decouverte) | 12 € | fiche à compléter (update_product interrompu), clé à activer (https://gumroad.com/products/pjimd/edit) |
+| MSC | musculation | 1T1zE6319ZF9qexKr8Kzzw== | /l/carnet-musculation-cross-training | 19 € | **en vente** (18/11/2026) |
+| APD | appel-decouverte | NOhwt805chMWKwJGEDhgJQ== | /l/preparateur-appel-decouverte | 12 € | **en vente** (18/11/2026) |
 
 Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/11 par une autre session ; l'un est publié
 (`1DfML3czjZu5bg95z3KuRg==`), l'autre a disparu. Pack Ma voiture passé à 28 € (3 templates) sur Gumroad.

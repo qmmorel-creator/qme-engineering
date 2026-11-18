@@ -84,7 +84,7 @@ déjà).
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 |
-| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
+| T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | en vente | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
@@ -115,7 +115,7 @@ déjà).
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
-| T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | prêt | 12 € | S | P2 | Backlog Quentin n° 13 |
+| T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | en vente | 12 € | S | P2 | Backlog Quentin n° 13 |
 | T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | prêt | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |

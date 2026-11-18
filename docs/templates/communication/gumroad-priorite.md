@@ -50,7 +50,7 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | **En vente depuis le 17/11** |
 | 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
 | 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
-| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS **en vente depuis le 18/11** ; MSC brouillon, clé à activer |
+| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS et MSC **en vente depuis le 18/11** |
 | 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
@@ -66,5 +66,7 @@ possible : 17/11 à 08:39 (Paris).
 
 17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; PGS, NTS, CAN, MMR, CAR publiés et en vente (44 templates en vente) ;
 Pack Étudiant et Pack Freelance publiés et en vente ; Pack Voyage et Pack Ma voiture publiés et en vente ; limite atteinte, prochaine création le 18/11 à 08:48 (Paris).
+
+18/11 : STK, TVA, CMP, RPS, MSC et APD (rang 14, Pack Freelance : trouver ses clients) en vente.
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).
