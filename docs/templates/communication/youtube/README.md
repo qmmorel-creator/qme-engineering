@@ -1,6 +1,7 @@
 # Chaîne YouTube QME · Shorts
 
-Décision de Quentin du 16/11/2026 : **TikTok est abandonné** ; tout ce qui est vidéo verticale (vidéos démo
+Décision de Quentin du 16/11/2026 : **TikTok est abandonné** (levée le 18/11/2026 : TikTok est repris, voir
+`docs/templates/communication/tiktok/`) ; tout ce qui est vidéo verticale (vidéos démo
 LinkedIn 17:30, reels Instagram) part aussi en **YouTube Shorts**, le même jour. Non publié (dossier `docs/`).
 
 Chaîne : `https://www.youtube.com/channel/UCZTdaekWbJG8_RekBbaecvA`.
@@ -25,7 +26,7 @@ Chaîne : `https://www.youtube.com/channel/UCZTdaekWbJG8_RekBbaecvA`.
   011 et reels IG-27 à IG-148). Les trois déjà publiés sur Instagram : YT-01 (IG-139) le 16/11 à 22:30, au
   statut `Programmé`, pour le test d'Instinct demandé par Quentin ; YT-04 (IG-37) le 17/11 à 12:00 ; YT-05 (IG-27) le
   18/11 à 20:00.
-- Instinct (16/11) : routine TikTok supprimée ; test YouTube réussi (YT-01 publié à 22:21, Short vertical, titre et
+- Instinct (16/11) : routine TikTok supprimée (reprise le 18/11, `../tiktok/`) ; test YouTube réussi (YT-01 publié à 22:21, Short vertical, titre et
   description conformes, aucun problème de droits d'auteur). YT-02 à YT-37 passés à `Programmé`. Réglage de langue non
   proposé par l'interface (valeur par défaut de la chaîne). Liens cliquables : validation de la chaîne à faire par Quentin.
 - Routine : `PROMPT-INSTINCT-YOUTUBE.md` (à transmettre par Quentin).
