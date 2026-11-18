@@ -92,7 +92,7 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
 7. **Statut** : « Programmé » si `journal.md` indique « Routine Instinct v4 transmise : oui » (instruction
    de Quentin du 15/11/2026 : les vidéos sont programmées sans relecture intermédiaire) ; sinon « Prêt »,
    et rappeler à Quentin de transmettre `PROMPT-INSTINCT-v4.md`.
-8. **YouTube Shorts** (pas de TikTok : décision de Quentin du 16/11/2026) : une ligne `YT-nn` dans le planning
+8. **YouTube Shorts** (TikTok, repris le 18/11/2026, suit Instagram tout seul : colonnes U à Y du planning Instagram, rien à créer) : une ligne `YT-nn` dans le planning
    YouTube, même date, heure **12:00**, à sa place chronologique ; titre (100 caractères au plus) et description
    complète dans la ligne (modèle : `docs/templates/communication/youtube/README.md`), ID Drive = la vidéo
    Instagram, colonnes J/K = IDs Instagram et LinkedIn. Statut « Programmé » si `journal.md` indique « Routine
