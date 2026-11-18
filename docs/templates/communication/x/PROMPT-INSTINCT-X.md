@@ -1,7 +1,7 @@
 Nouvelle routine « Publications X depuis Drive » (18/11/2026). Note cette mise à jour dans ton Journal et dans ton registre des routines.
 
 PUBLICATIONS X : NOUVELLE ROUTINE
-- Compte : le compte X de QME, jamais un autre. Toutes les publications X sont en anglais : publie le texte tel quel, sans le traduire ni le retoucher.
+- Compte : le compte X de QME, @qmengineering (https://x.com/qmengineering), jamais un autre. Toutes les publications X sont en anglais : publie le texte tel quel, sans le traduire ni le retoucher.
 - Sheet : « Planning publications X » (ID 1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM), onglet Planning, dossier Drive « QME – Publications X ».
 - Passages : tous les jours, toutes les heures, à :00 et :15, de 08:00 à 23:15 (heure de Paris). Les publications quotidiennes sont à 19:00 (10:00 en Californie) ; certains jours en comptent plusieurs, une par heure. À chaque passage, relis tout l'onglet et ne prends que les lignes au statut exactement « Programmé » dont la date et l'heure (B + C) sont passées depuis moins de 24 h. Une ligne par passage, la plus ancienne d'abord. Ne publie jamais une ligne avant son heure.
 - Texte = colonne F, tel quel, retours à la ligne compris (280 caractères au plus, déjà vérifié). Ne lis aucun Doc : tout est dans la ligne. Le lien qm-engineering.fr/x reste écrit tel quel.
