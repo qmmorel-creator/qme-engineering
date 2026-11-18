@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- Image de partage (og:image) de /en/english-version/ : 1200 × 630 → assets/x-english-version.png -->
+<style>
+@font-face{font-family:Outfit;src:url(../../../../assets/fonts/outfit-latin.woff2) format("woff2");font-weight:100 900}
+:root{--papier:#F0EDE6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;--texte2:#45413A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+#b{position:relative;width:1200px;height:630px;overflow:hidden}
+.f{position:absolute}
+.c-rouge{right:-120px;bottom:-140px;width:420px;height:420px;border-radius:50%;background:var(--rouge)}
+.barre{left:0;right:0;top:0;height:20px;background:var(--encre)}
+.grille{position:absolute;left:640px;top:70px;display:grid;grid-template-columns:repeat(2,250px);gap:18px;transform:rotate(-4deg)}
+.grille img{width:250px;height:156px;object-fit:cover;object-position:top left;border:5px solid var(--encre);border-radius:10px;box-shadow:8px 8px 0 var(--encre);background:#fff}
+#t{position:absolute;left:64px;top:70px;width:560px;height:500px;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.sur{font-weight:700;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--texte2)}
+.sur b{color:var(--encre)}
+h1{font-weight:800;font-size:50px;line-height:1.02;letter-spacing:-.025em}
+h1 .s{background:var(--jaune);padding:0 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pied{font-weight:600;font-size:24px;color:var(--texte2)}
+.pied b{color:var(--bleu);font-weight:800}
+</style></head>
+<body><div id="b">
+<div class="f barre"></div><div class="f c-rouge"></div>
+<div class="grille">
+  <img src="../../../../assets/templates-gantt-gantt.webp" alt=""><img src="../../../../assets/templates-crm-jour.webp" alt="">
+  <img src="../../../../assets/templates-budget-commun-soldes.webp" alt=""><img src="../../../../assets/templates-stocks-tableau.webp" alt="">
+  <img src="../../../../assets/templates-reserves-bord.webp" alt=""><img src="../../../../assets/templates-habitudes-aujourdhui.webp" alt="">
+</div>
+<div id="t">
+  <div class="sur"><b>QME</b> · Quentin Morel Engineering</div>
+  <h1>97 tools I built in French.<br><span class="s">Want one in English?</span></h1>
+  <div class="pied">Vote for a tool, or get one built for your business<br><b>qm-engineering.fr/x</b></div>
+</div>
+</div></body></html>

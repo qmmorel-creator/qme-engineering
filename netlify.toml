@@ -1179,3 +1179,11 @@
   to = "/templates/revision/?demo=maths&prenom=Ines"
   status = 302
   force = true
+
+# Campagne X en anglais (volet sur mesure, 18/11/2026) : lien court du profil X et des publications,
+# vers la page /en/english-version/ (générée par outils/x/generer.mjs). Sans « & » dans le lien affiché.
+[[redirects]]
+  from = "/x"
+  to = "/en/english-version/?utm_source=x&utm_medium=social&utm_campaign=x-custom"
+  status = 302
+  force = true
