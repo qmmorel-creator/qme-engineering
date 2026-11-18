@@ -297,6 +297,13 @@ de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si aban
    dans l'ordre (reel : `x.mp4 | couverture : y.png`). Colonne J = un texte alternatif par image,
    numérotés et séparés par « | ». Colonne P = les IDs Drive de ces fichiers, dans le même ordre :
    Instinct prend les fichiers par ID. Un fichier remplacé est renommé `OBSOLETE-…`, jamais réutilisé.
+   **TikTok (décision de Quentin du 18/11/2026)** : Instinct reprend chaque publication Instagram sur TikTok
+   en **vidéo seule, sans légende** (Quentin colle lui-même le texte ensuite), procédure
+   `docs/templates/communication/tiktok/`. Un **Reel** est repris tel quel : rien à produire. Un **Carrousel** ou une
+   **Image** demande une vidéo : `node docs/videos/diaporama.mjs <PNG dans l'ordre de la colonne I> --sortie
+   docs/videos/sortie/IG-nn-<slug>-tiktok.mp4`, vérifier la piste audio (`ffprobe`), puis la déposer dans le dossier
+   Images Instagram sous le nom exact `IG-nn-<slug>-tiktok.mp4` (premier fichier de la colonne I, « -1.png » ou
+   « .png » remplacé par « -tiktok.mp4 ») : Instinct la cherche par ce nom. Rien à écrire dans le planning.
 5. Statut `Prêt` ; donner à Quentin l'ID, la date, les liens du doc et des visuels pour relecture.
 6. **Seulement après l'accord explicite de Quentin** : statut `Programmé`. Instinct publie à l'heure.
 7. Ne jamais publier soi-même ni écrire `Publié` : c'est Instinct qui le fait.
