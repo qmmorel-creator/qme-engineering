@@ -7,6 +7,7 @@
 // puis effacé de l'ancien stockage (stockageMigrant). Retirer l'ancien stockage une fois vide.
 import { getStore } from '@netlify/blobs';
 import { traiter, revoquesDepuis, stockageMigrant } from '../lib/templates-acces.mjs';
+import { storeEssais } from '../lib/essais-store.mjs';
 
 const NOM = 'templates-donnees';
 
@@ -17,9 +18,11 @@ export default async (requete) => {
     secret: process.env.TEMPLATES_SECRET,
     revoques: revoquesDepuis(process.env.TEMPLATES_CODES_REVOQUES),
     stockage: stockageMigrant(
-      { get: (cle) => europe.get(cle, { type: 'json' }), set: (cle, valeur) => europe.setJSON(cle, valeur) },
+      { get: (cle) => europe.get(cle, { type: 'json' }), set: (cle, valeur) => europe.setJSON(cle, valeur), supprimer: (cle) => europe.delete(cle) },
       { get: (cle) => ancien.get(cle, { type: 'json' }), supprimer: (cle) => ancien.delete(cle) },
     ),
+    // Registre des essais gratuits : codes d'essai déjà achetés ou effacés, report des données à l'achat.
+    essais: storeEssais(getStore),
   });
 };
 

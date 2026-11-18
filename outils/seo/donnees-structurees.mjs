@@ -55,7 +55,7 @@ function faq(html, canonique) {
 // Prix affiché (« 29 € », « 14,90 € ») et lien Acheter Gumroad du bloc produit.
 export function offreVisible(html) {
   const prix = html.match(/<div class="prix"><b>([\d\s]+(?:,\d{2})?)\s*€<\/b>/);
-  const achat = html.match(/<a class="btn primary" href="(https:\/\/qmengineering\.gumroad\.com\/l\/[^"]+)"/);
+  const achat = html.match(/<a class="btn(?: primary)?" href="(https:\/\/qmengineering\.gumroad\.com\/l\/[^"]+)"/);
   if (!prix || !achat) return null;
   return { prix: Number(prix[1].replace(/\s/g, '').replace(',', '.')).toFixed(2), url: achat[1] };
 }

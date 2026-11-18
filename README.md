@@ -30,6 +30,13 @@ Site promotionnel de Quentin Morel Engineering (QME).
   l'e-mail de mise en vente, au plus tard 12 mois, cf. politique de confidentialité). Suivi en temps réel et export CSV sur `/admin/interets/`
   (non indexée), avec le code administrateur donné par `outils/templates/code-admin-interets.bat`
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
+- Essai gratuit (depuis le 18/11/2026) : templates vie personnelle en vente, **14 jours sans carte**, puis 30 jours en
+  lecture seule, puis effacement ; données reprises à l'achat (clé saisie dans « J'ai acheté »). Page `/essai/` et pages
+  catalogue générées par `node outils/essai/generer.mjs` ; API `POST /api/essai` (`netlify/functions/essai.mjs`,
+  logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
+  `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, J-3, fin, avant
+  effacement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.

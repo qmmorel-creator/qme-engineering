@@ -16,6 +16,12 @@ template en reprend l'architecture, la charte et le niveau de finition. Avant de
 Langue : français partout (interface, commits, messages à Quentin). Tutoiement dans l'application,
 vouvoiement sur le site QME.
 
+> **Essai gratuit (décision de Quentin, 18/11/2026)** : tout template **vie personnelle** (`pour: 'perso'`) vendu
+> payant s'ouvre à **14 jours d'essai gratuit sans carte**, puis 30 jours en lecture seule, avec reprise des données
+> à l'achat et e-mails depuis la boîte de Quentin. Il entre dans l'essai **à sa mise en vente**, à chaque fois :
+> étapes marquées « Essai » ci-dessous, détail dans `reference.md` § « Essai gratuit » et
+> `docs/templates/essai-gratuit.md`. Templates professionnels : pas d'essai (démo seulement).
+
 ## 0. Cadrer
 
 1. Lire la fiche de l'idée dans `docs/templates/IDEES.md`. Si elle n'est qu'au statut `idée`, rédiger
@@ -56,7 +62,16 @@ Remplacer le métier :
 
 Côté serveur, une seule ligne : ajouter le produit dans `PRODUITS` de
 `netlify/lib/templates-acces.mjs` (`nom`, `url`, `gumroad` une fois la fiche créée). Rien d'autre à écrire :
-connexion, licences Gumroad, stockage et conflits sont communs.
+connexion, licences Gumroad, stockage, conflits et essai gratuit sont communs.
+
+**Essai (template vie personnelle)** : dans `templates/<slug>/index.html`, charger le module commun **avant**
+`donnees.js` et `app.js` :
+`<script src="/assets/essai.js?v=…" data-produit="PRE" data-slug="<slug>"></script>`. Le socle copié
+(`qme-<pre>-code`, `qme-<pre>-cache`, `/api/templates`, `.formulaire-acces`) doit rester intact : le module s'y
+appuie (bandeau, lecture seule, « J'ai acheté », lien d'essai sur l'écran de connexion). Une action qui ne modifie
+rien (navigation, filtre, export) et dont le nom n'est pas dans la liste `PERMIS` de `assets/essai.js` y est ajoutée,
+sinon elle serait bloquée en lecture seule. Dans `outils/packs/donnees.mjs`, l'entrée du template porte
+`pour: 'perso'`, son `prix` et, à la mise en vente, son `permalien` Gumroad (lien d'achat du bandeau et des e-mails).
 
 Charte : **Bauhaus « Pastel »** (filets de 1 px, grands arrondis, fonds teintés, aucune ombre dure),
 jetons et composants dans `reference.md` § Charte ; partir du socle copié, qui l'applique déjà. Graphiques : charger le skill `dataviz`,
@@ -80,6 +95,11 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
   sur téléphone, « Comme une application » suit sa fermeture. Relire chaque phrase contre le code.
   Script : `node outils/templates/guide-e2e.cjs <slug> <dossier-captures>` (démo, ordinateur, iPhone,
   Pixel), serveur local lancé ; le premier lancement avec un vrai code se teste à part.
+- **Essai (template vie personnelle)** : `QME_LICENCES_TEST=1 PORT=8899 node outils/templates/serveur-local.mjs`, puis
+  `node outils/essai/e2e.cjs <slug> <dossier-captures>` : essai lancé depuis `/essai/`, bandeau, données, lecture
+  seule 15 jours plus tard (onglets libres, modifications bloquées, aucun enregistrement envoyé), « J'ai acheté »,
+  données reprises ; téléphone sans débordement. Regarder les captures. `npm test` couvre le serveur
+  (`essai.test.mjs` compte les templates ouverts à l'essai : mettre à jour le nombre attendu).
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad
@@ -113,7 +133,10 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
    change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
-6. **Référencement de la page catalogue** (`reference.md` § « Référencement », obligatoire) : title et
+6. **Essai (template vie personnelle, à la mise en vente)** : `node outils/essai/generer.mjs` (ajoute le template au
+   formulaire `/essai/` et l'essai à sa page catalogue : premier bouton « Essai gratuit 14 jours », « Acheter » en
+   second, mention sous le prix, question « Y a-t-il un essai gratuit ? », rappel), puis les deux commandes du point 7.
+7. **Référencement de la page catalogue** (`reference.md` § « Référencement », obligatoire) : title et
    description construits sur la requête principale, FAQ dans `div.faq`, puis
    `node outils/seo/donnees-structurees.mjs` et `node outils/sitemap/generer.mjs` ;
    `outils/templates/seo.test.mjs` et `sitemap.test.mjs` échouent sinon.
@@ -132,7 +155,9 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
 2. **`linkedin.md`** : une publication de présentation (environ 1 200 à 1 500 caractères), à la première
    personne de Quentin, ton direct et sobre, sans superlatifs ni promesses chiffrées non vérifiées :
    accroche sur le problème, ce que fait le template (3 points), ce qui le distingue (base intégrée, tous
-   appareils, achat unique), lien vers la démo, lien d'achat. Proposer 2 variantes d'accroche, l'image à
+   appareils, achat unique), lien vers la démo, lien d'achat. **Template vie personnelle** : l'appel à l'action
+   principal est l'essai (« 14 jours d'essai gratuit, sans carte : vos données sont reprises si vous achetez »,
+   `qm-engineering.fr/essai/`), l'achat en second (`REGLES-CONTENU.md` § 7). Proposer 2 variantes d'accroche, l'image à
    joindre (couverture ou capture téléphone) et 3 à 5 hashtags. Prévoir aussi une version courte
    (3 lignes) pour un commentaire ou une story.
 3. **`instagram.md`** : la publication Instagram du template, selon le kit
@@ -140,7 +165,8 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    - **carrousel de 5 vues en 1080 × 1350** générées en copiant les gabarits `car-1`, `car-2`, `car-3` de
      `docs/templates/communication/instagram/gabarits.html` (vraies captures du template, « Données
      fictives »), rendues en PNG (`rendre.mjs`) et **regardées** avant usage ;
-   - légende au vouvoiement : accroche en première ligne (2 variantes), 3 à 6 phrases, une phrase de
+   - légende au vouvoiement : accroche en première ligne (2 variantes), 3 à 6 phrases (template vie
+     personnelle : « 14 jours d'essai gratuit, sans carte » dans l'appel à l'action), une phrase de
      pont vers le sur mesure (« Besoin de plus ? … je construis la version sur mesure »), « Démo libre et
      contact : lien en bio », 5 hashtags au plus (jeux du kit) ; aucun lien dans la légende ;
    - texte alternatif de chaque vue ; story d'annonce (gabarit `story`, autocollant lien vers la démo).
@@ -175,4 +201,6 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
   connexion, `PRODUITS`), sans attendre le prochain lot. Liste à cocher : `reference.md`
   § « À chaque publication Gumroad ». Un template publié sur Gumroad ne doit jamais rester affiché
   « Bientôt » sur le site, et inversement aucun bouton Acheter n'apparaît avant la publication.
+- **Essai (template vie personnelle)** : après la fusion, lancer un essai réel sur `/essai/` avec une adresse de
+  Quentin (e-mail « Merci d'essayer… » reçu, expéditeur correct), puis vérifier le bandeau dans l'application.
 - Statut `prêt` puis `en vente` dans `docs/templates/IDEES.md`.
