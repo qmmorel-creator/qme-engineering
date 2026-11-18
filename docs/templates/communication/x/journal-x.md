@@ -6,7 +6,7 @@ l'autre (post, vidéo). Horaire quotidien : 10:00 en Californie, soit 19:00 à P
 
 ## État de la publication
 
-- **Routine Instinct X transmise : non.** Publication par Instinct, comme LinkedIn, Instagram et YouTube (décision de
+- **Routine Instinct X transmise : oui (confirmé par Quentin le 18/11/2026 ; lignes « Prêt » X-01 à X-13 passées à « Programmé »).** Publication par Instinct, comme LinkedIn, Instagram et YouTube (décision de
   Quentin du 18/11/2026 ; Posty abandonné). Sheet « Planning publications X »
   `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM` (onglet `Planning`), dossier Drive « QME – Publications X »
   `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`. Routine : `PROMPT-INSTINCT-X.md` (à transmettre par Quentin). Tant que cette
@@ -27,17 +27,17 @@ l'autre (post, vidéo). Horaire quotidien : 10:00 en Californie, soit 19:00 à P
 | X-L08 | 2026-11-18 | 21:00 | Post | référence · facturation d'une crèche | — | README § X-L08 | Programmé | |
 | X-L09 | 2026-11-18 | 22:00 | Post | référence · visas de plans en bureau d'études | — | README § X-L09 | Programmé | |
 | X-L10 | 2026-11-18 | 23:00 | Post | les 97 templates en teaser (annonce X-01) | — | README § X-L10 | Programmé | |
-| X-01 | 2026-11-19 | 19:00 | Post | 97 outils en français | — | README § X-01 | Prêt | |
+| X-01 | 2026-11-19 | 19:00 | Post | 97 outils en français | — | README § X-01 | Programmé | |
 | X-02 | 2026-11-20 | 19:00 | Vidéo | 97 tools. All in French. | plusieurs | à produire | À produire | |
-| X-03 | 2026-11-21 | 19:00 | Post | Le tableur que seule une personne comprend | — | README § X-03 | Prêt | |
+| X-03 | 2026-11-21 | 19:00 | Post | Le tableur que seule une personne comprend | — | README § X-03 | Programmé | |
 | X-04 | 2026-11-22 | 19:00 | Vidéo | Who should I follow up today? | crm | à produire | À produire | |
-| X-05 | 2026-11-23 | 19:00 | Post | Le plus simple qui suffit | — | README § X-05 | Prêt | |
+| X-05 | 2026-11-23 | 19:00 | Post | Le plus simple qui suffit | — | README § X-05 | Programmé | |
 | X-06 | 2026-11-24 | 19:00 | Vidéo | One task slips | gantt | à produire | À produire | |
-| X-07 | 2026-11-25 | 19:00 | Post | 11 outils bâtiment et exploitation | — | README § X-07 | Prêt | |
+| X-07 | 2026-11-25 | 19:00 | Post | 11 outils bâtiment et exploitation | — | README § X-07 | Programmé | |
 | X-08 | 2026-11-26 | 19:00 | Vidéo | Who owes what? | budget-commun | à produire | À produire | |
-| X-09 | 2026-11-27 | 19:00 | Post | Règles françaises : traduire ne suffit pas | — | README § X-09 | Prêt | |
+| X-09 | 2026-11-27 | 19:00 | Post | Règles françaises : traduire ne suffit pas | — | README § X-09 | Programmé | |
 | X-10 | 2026-11-28 | 19:00 | Vidéo | Your spreadsheet, as an app | stocks | à produire | À produire | |
-| X-11 | 2026-11-29 | 19:00 | Post | La méthode en 4 étapes | — | README § X-11 | Prêt | |
+| X-11 | 2026-11-29 | 19:00 | Post | La méthode en 4 étapes | — | README § X-11 | Programmé | |
 | X-12 | 2026-11-30 | 19:00 | Vidéo | Snags by contractor | reserves | à produire | À produire | |
-| X-13 | 2026-12-01 | 19:00 | Post | Question aux freelances | — | README § X-13 | Prêt | |
+| X-13 | 2026-12-01 | 19:00 | Post | Question aux freelances | — | README § X-13 | Programmé | |
 | X-14 | 2026-12-02 | 19:00 | Vidéo | How a custom tool starts | — | à produire | À produire | |
