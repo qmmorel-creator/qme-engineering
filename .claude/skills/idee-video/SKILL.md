@@ -5,6 +5,10 @@ description: Générer l'idée de la prochaine vidéo de démonstration QME (Ree
 
 # Générateur d'idées de vidéos QME
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 But : une vidéo par jour, en complément des publications déjà prévues, qui donne envie d'ouvrir la démo.
 Chaque idée porte sur **un seul produit en vente au moment de la génération** et montre une **interaction
 réelle** avec lui. Ensuite, le skill `video-demo` fait tout le reste (lire `.claude/skills/video-demo/`).
@@ -74,7 +78,7 @@ Ne jamais reprendre le type de la vidéo précédente ; prendre le type le moins
 ## 6. Tourner, déposer, programmer
 
 Appeler le skill **`video-demo`** à partir de son étape 2 (rendu, vérification image par image, Drive,
-programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00 à la date la plus proche sans vidéo, journal, commit).
+programmation LinkedIn 17:30 / Instagram 12:30 / YouTube Shorts 12:00 à la date la plus proche sans vidéo, journal, commit).
 
 ## Tâche quotidienne
 

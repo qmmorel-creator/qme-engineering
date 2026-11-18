@@ -26,7 +26,34 @@ export const PAS = 1000 / FPS;
 export const TAILLE_MAX_MO = 2.9; // limite d'envoi automatique vers Google Drive
 export const AUDIO_KBPS = 96;
 // « Corporate », litesaturation (licence Pixabay, usage commercial sans attribution), 110 BPM, premier temps 0,534 s.
-export const MUSIQUE = { fichier: join(RACINE, 'docs/videos/musique/corporate-litesaturation.m4a'), bpm: 110, premierTemps: 0.534, debut: 20.17, volume: 0.6 };
+export const MUSIQUE = { fichier: join(RACINE, 'docs/videos/musique/corporate-litesaturation.m4a'), bpm: 110, premierTemps: 0.534, debut: 20.17, volume: 0.6, longueur: 60 };
+
+// Bibliothèque musicale QME (décision de Quentin du 18/11/2026 : aucune vidéo muette, musiques variées). Les quatre
+// morceaux de 30 s ont été fournis par Quentin le 18/11/2026 ; tempo et premier temps mesurés (docs/videos/musique/README.md).
+// `debut` est calé sur un temps : les temps tombent alors à k × (60 / bpm) depuis le début de la vidéo.
+const M = (fichier, bpm, premierTemps, longueur) => ({ fichier: join(RACINE, 'docs/videos/musique', fichier), bpm, premierTemps, debut: premierTemps, volume: 0.6, longueur });
+export const MUSIQUES = [
+  MUSIQUE,
+  M('product-launch.m4a', 120, 0.017, 30.04),
+  M('productive-flow.m4a', 96, 0.308, 30.04),
+  M('professional-momentum.m4a', 118, 0.505, 30.04),
+  M('product-motion.m4a', 100, 0.592, 30.04),
+];
+
+// Choisit une musique pour une vidéo de `duree` secondes, de façon variée mais stable : même clé (nom de la vidéo),
+// même musique. Seuls les morceaux assez longs depuis leur `debut` sont candidats ; à défaut, « Corporate » démarre
+// sur un temps plus tôt pour couvrir toute la durée.
+export function choisirMusique(cle, duree) {
+  const marge = 0.3;
+  const candidats = MUSIQUES.filter((m) => m.longueur - m.debut >= duree + marge);
+  if (candidats.length) {
+    let h = 0; for (const c of String(cle)) h = (h * 31 + c.codePointAt(0)) >>> 0;
+    return candidats[h % candidats.length];
+  }
+  const periode = 60 / MUSIQUE.bpm;
+  const k = Math.max(0, Math.floor((MUSIQUE.longueur - duree - marge - MUSIQUE.premierTemps) / periode));
+  return { ...MUSIQUE, debut: +(MUSIQUE.premierTemps + k * periode).toFixed(3) };
+}
 
 // Animations CSS (transitions, keyframes) d'un document : mises en pause à leur création puis avancées de `pas` ms à
 // chaque image, sinon elles tourneraient en temps réel pendant que l'image se calcule. Évaluée dans la page.
@@ -51,8 +78,9 @@ export function encoder({ dossier, ext = 'jpg', duree, sortie, largeur = 1080, h
 }
 
 // Ajoute la musique QME à une vidéo sans réencoder l'image (fondu d'entrée 0,15 s, de sortie 1,8 s, -14 LUFS, AAC).
-export function ajouterMusique(entree, sortie = entree, musique = MUSIQUE) {
+export function ajouterMusique(entree, sortie = entree, musique = null) {
   const duree = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', entree]).toString());
+  musique = musique || choisirMusique(basename(sortie, '.mp4'), duree);
   const tmp = `${sortie}.tmp.mp4`;
   const filtre = `[1:a]atrim=0:${duree},asetpts=PTS-STARTPTS,volume=${musique.volume},afade=t=in:d=0.15,`
     + `afade=t=out:st=${Math.max(0, duree - 1.8)}:d=1.8,apad,atrim=0:${duree},loudnorm=I=-14:TP=-1.5:LRA=11[a]`;
@@ -66,7 +94,7 @@ export function ajouterMusique(entree, sortie = entree, musique = MUSIQUE) {
 }
 
 // Rend une page HTML animée en MP4 1080 × 1920 (Reel, Short, motion design), image par image en temps virtuel.
-export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = MUSIQUE, rapide = false }) {
+export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = null, rapide = false }) {
   const nom = basename(sortie, '.mp4');
   const tmp = join(tmpdir(), `qme-rendu-${nom}-${process.pid}`);
   const images = join(tmp, 'images');

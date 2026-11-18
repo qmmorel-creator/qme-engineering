@@ -1,9 +1,13 @@
 ---
 name: reel-du-soir
-description: Produire et programmer un « Reel du soir » QME (motion design en musique de 20 à 30 s, 1080 × 1920, à partir de captures réelles d'une démo de template en vente), publié sur Instagram à 18:45 et en YouTube Short à 20:00 le même jour, les lundis, mercredis et vendredis. À utiliser quand la tâche planifiée « Reel du soir » se déclenche, ou quand Quentin demande « un reel du soir », « un Short du soir », « remplis les soirées YouTube ».
+description: Produire et programmer un « Reel du soir » QME (motion design en musique de 20 à 29 s, 1080 × 1920, à partir de captures réelles d'une démo de template en vente), publié sur Instagram à 21:00 et en YouTube Short à 20:00 le même jour, les lundis, mercredis et vendredis. À utiliser quand la tâche planifiée « Reel du soir » se déclenche, ou quand Quentin demande « un reel du soir », « un Short du soir », « remplis les soirées YouTube ».
 ---
 
-# Reel du soir (Instagram 18:45 + YouTube Short 20:00)
+# Reel du soir (Instagram 21:00 + YouTube Short 20:00)
+
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
 
 Décision de Quentin du 16/11/2026 : en plus des vidéos démo du matin (skill `video-demo`), trois Reels du soir par
 semaine, pour garder deux Shorts par jour sur YouTube les lundis, mercredis et vendredis. Explique chaque étape en
@@ -22,7 +26,7 @@ français, sans flatterie ; dis ce qui a été vérifié et ce qui ne l'a pas é
    « Données fictives », aucune marque tierce, aucun client ou projet réel, pas l'outil personnel de Quentin ;
    argent / santé : pas de promesse. Vouvoiement, pas d'émoji, pas de superlatif.
 5. **Format** : 1080 × 1920, 30 i/s, H.264, **avec la musique QME** (jamais muet, décision de Quentin du 18/11/2026),
-   20 à 30 s, fichier < 2,9 Mo (limite du connecteur Drive). **Moteur vidéo unique** : `video.mjs` est un raccourci vers
+   20 à 29 s, fichier < 2,9 Mo (limite du connecteur Drive). **Moteur vidéo unique** : `video.mjs` est un raccourci vers
    `docs/videos/rendu.mjs` (capture image par image en temps virtuel, encodage en deux passes sous 2,9 Mo, musique
    ajoutée après l'encodage). Ne pas écrire d'autre outil de rendu : faire évoluer `rendu.mjs`. Accroche
    lisible dès la première seconde ; rien d'important dans les 250 px du haut ni les 340 px du bas.
@@ -32,7 +36,7 @@ français, sans flatterie ; dis ce qui a été vérifié et ce qui ne l'a pas é
 Relire **juste avant d'écrire** les plannings Instagram (`A1:P`) et YouTube (`A1:O`) (IDs dans
 `.claude/skills/video-demo/reference.md` § Programmation et `docs/templates/communication/youtube/README.md`).
 Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a **ni Short à 20:00** sur YouTube
-**ni Reel en soirée** (18:30 ou 18:45, statut ≠ « Annulé ») sur Instagram. Aucune date libre : ne rien produire.
+**ni Reel en soirée** (19:00 ou plus tard ; avant le 18/11/2026 : 18:30 ou 18:45 ; statut ≠ « Annulé ») sur Instagram. Aucune date libre : ne rien produire.
 
 ## 2. Fabriquer
 
@@ -58,7 +62,7 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
 2. Doc de légende dans le dossier **Textes Instagram**, titre `IG-nn · <titre interne> · légende`, format strict de la
    routine : texte (accroche, 3 ou 4 lignes utiles, « Démo gratuite avec des données fictives : lien en bio. »,
    3 à 5 hashtags `#Mot`), rien d'autre ; argent / santé : « ne remplace pas un avis professionnel » si utile.
-3. Ligne **Instagram** à sa place chronologique : ID `IG-` + plus grand numéro + 1, date choisie, heure **18:45**,
+3. Ligne **Instagram** à sa place chronologique : ID `IG-` + plus grand numéro + 1, date choisie, heure **21:00**,
    statut « Programmé », Thème « Reel du soir », Titre interne `Reel · <titre>`, Doc (ID et lien), fichiers
    `IG-nn-<slug>.mp4 | couverture : IG-nn-<slug>-couverture.png`, texte alternatif (ce que montre la vidéo, « données
    fictives »), Format `Reel`, P = `<ID vidéo> | couverture : <ID image>`. TikTok : rien à produire, Instinct
@@ -68,7 +72,7 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
    `docs/templates/communication/youtube/README.md` (lien `?demo&utm_source=youtube&utm_medium=description&utm_campaign=yt-nn`,
    `#Shorts`), H = nom du fichier, I = ID Drive de la vidéo, J = ID Instagram, Format `Short`.
 5. Relire les plages écrites. Ne jamais publier soi-même ni écrire « Publié » (Instinct publie ; son passage de
-   18:45 sert déjà une deuxième publication Instagram du jour).
+   21:00 sert une deuxième publication Instagram du jour).
 
 ## 4. Clore
 

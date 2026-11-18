@@ -14,7 +14,7 @@ import { join, resolve, basename, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 // Briques communes à toutes les vidéos QME (navigateur, temps virtuel des animations CSS, encodage) : rendu.mjs.
-import { chromium, PAS_ANIM, encoder, FPS, AUDIO_KBPS } from './rendu.mjs';
+import { chromium, PAS_ANIM, encoder, FPS, AUDIO_KBPS, choisirMusique } from './rendu.mjs';
 const ICI = dirname(fileURLToPath(import.meta.url));
 const RACINE = resolve(ICI, '../..');
 const PORT = Number(process.env.PORT_VIDEO || 8897);
@@ -84,7 +84,9 @@ const page = new Proxy(pageBrute, { get: (t, k) => (k === 'waitForTimeout' ? att
 // 4. Outils du scénario.
 const sons = [];
 // Musique : { fichier, bpm, premierTemps (s), debut (s, calé sur un temps) }. Les temps tombent alors à k × période depuis 0.
-const musiqueCfg = cfg.musique || null;
+// `musique: 'auto'` (recommandé, décision du 18/11/2026) : morceau choisi dans la bibliothèque QME selon le nom du
+// scénario, parmi ceux qui couvrent la durée maximale (`dureeMax`, 40 s par défaut ; 29 s ou moins ouvre les 5 morceaux).
+const musiqueCfg = cfg.musique === 'auto' ? choisirMusique(nom, cfg.dureeMax ?? 40) : (cfg.musique || null);
 const PERIODE = musiqueCfg ? 60 / musiqueCfg.bpm : 0.5;
 const maintenant = () => nImages / FPS;
 const v = {

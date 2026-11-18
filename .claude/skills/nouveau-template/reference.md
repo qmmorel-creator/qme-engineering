@@ -255,7 +255,7 @@ Remarque · Format. Lignes triées par date ; une publication environ tous les d
    2 jours, et entre lesquelles aucune ligne n'est déjà intercalée. Date de l'article = le jour du milieu
    (pour un écart de 3 jours ou plus, le lendemain de la première). Ne jamais toucher une ligne
    « Publié », « Erreur » ou déjà passée. Chaque template suivant prend donc le créneau suivant.
-3. **Heure** : celle des créneaux voisins la plus fréquente (08:30 ou 12:15) ; à défaut 12:15.
+3. **Heure** : celle des créneaux voisins la plus fréquente (10:00 ou 12:15) ; à défaut 12:15.
 4. **ID** : `LI-` + (plus grand numéro existant + 1), sur deux chiffres au moins.
 5. **Texte** : créer un Google Doc nommé `LI-nn · <titre interne>` dans le même dossier Drive que les
    autres docs du planning (le retrouver par les métadonnées d'un doc existant, colonne G), avec le texte
@@ -288,7 +288,7 @@ de Quentin) → `Publié` ou `Erreur` (écrits par Instinct) ; `Annulé` si aban
 1. **Relire tout l'onglet** (`get_values Planning!A1:P`) juste avant d'écrire.
 2. **Ligne** : compléter la ligne `À préparer` du template (colonne F `Tnn · …`) ; sinon en insérer une à
    sa place chronologique (`insert_dimension` puis `update_values`), le lendemain de la date LinkedIn du
-   template, à 18:30, ID `IG-` + (plus grand numéro + 1), colonne O = ID LinkedIn.
+   template, à 19:00, ID `IG-` + (plus grand numéro + 1), colonne O = ID LinkedIn.
 3. **Légende** : Google Doc `IG-nn · <titre interne> · légende` dans Textes, contenant **uniquement** le
    texte à publier (accroche, légende, hashtags) : Instinct publie le doc entier. Les notes (variantes,
    remarques) vont dans `instagram.md` ou la colonne M, jamais dans ce doc.

@@ -14,8 +14,8 @@ Chaîne : `https://www.youtube.com/channel/UCZTdaekWbJG8_RekBbaecvA`.
   au plus) · Description (texte complet, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive
   vidéo · Instagram associé · LinkedIn associé · Publié le · URL publication · Remarque · Format (`Short`).
 - La vidéo est **la même que celle d'Instagram** (colonne P du planning Instagram, premier ID) : rien à copier.
-- Créneaux : **12:00** pour les vidéos démo (Instagram 08:30, LinkedIn 17:30), une par jour (tâche « Vidéo démo du
-  jour ») ; **20:00** pour les Reels du soir (Instagram 18:30 jusqu'au 01/01/2027, puis 18:45), les lundis, mercredis
+- Créneaux : **12:00** pour les vidéos démo (Instagram 12:30, LinkedIn 17:30), une par jour (tâche « Vidéo démo du
+  jour ») ; **20:00** pour les Reels du soir (Instagram 21:00 depuis le 18/11/2026), les lundis, mercredis
   et vendredis (tâche « Reel du soir », skill `reel-du-soir`). Deux Shorts le même jour sont normaux.
 - Statuts : `Prêt` tant que la routine Instinct YouTube n'est pas confirmée (`docs/videos/journal.md`), puis
   `Programmé` → `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
