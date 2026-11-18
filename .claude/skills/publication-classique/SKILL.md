@@ -106,6 +106,12 @@ lien de la démo et de la page catalogue ou du site), ligne `———`, `NOTES`
    `1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`, légendes dans `1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`
    (`IG-nn · <titre interne> · légende`). Envoi par `mcp__Google_Drive__create_file` avec
    `base64Content: sha256:<empreinte>:<chemin absolu>` (≈ 3,1 Mo max par fichier). Relire chaque Doc créé.
+   **TikTok (décision de Quentin du 18/11/2026)** : chaque carrousel Instagram part aussi sur TikTok en vidéo,
+   car l'import photo par photo de TikTok Studio crée des doublons (`docs/templates/communication/tiktok/`).
+   Rendre `node docs/videos/diaporama.mjs <PNG du carrousel, dans l'ordre de la colonne I> --sortie
+   docs/videos/sortie/IG-nn-<slug>-tiktok.mp4`, vérifier la piste audio (`ffprobe`), puis déposer la vidéo dans le
+   même dossier Images sous le nom exact `IG-nn-<slug>-tiktok.mp4` (premier fichier de la colonne I, « -1.png »
+   remplacé par « -tiktok.mp4 ») : Instinct la cherche par ce nom. Rien à écrire dans le planning.
 2. Lignes : relire l'onglet juste avant d'écrire ; ID = plus grand numéro + 1 ; insérer à la place
    chronologique (`insert_dimension` puis `update_values`). LinkedIn : **08:30** (méthode, B2B) ou **12:15**
    (template) ; Instagram **18:30** ; colonne O d'Instagram = ID LinkedIn associé ; colonne P = IDs Drive dans

@@ -96,8 +96,15 @@ export async function rendrePage({ page: chemin, duree, couverture = null, sorti
       else execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(images, `${String(Math.min(total - 1, Math.round(couverture / PAS))).padStart(5, '0')}.jpg`), png]);
     }
     await navigateur.close();
-    encoder({ dossier: images, duree, sortie, audio: !muet, rapide, tmp });
-    if (!muet) ajouterMusique(sortie, sortie, musique); // après l'encodage : jamais de Reel muet par erreur
+    // Si l'encodage dépasse la limite Drive (le débit visé est parfois dépassé de quelques %), on réencode au
+    // prorata du dépassement, deux fois au plus.
+    for (let essai = 0, max = TAILLE_MAX_MO; essai < 3; essai++) {
+      encoder({ dossier: images, duree, sortie, audio: !muet, rapide, tmp, tailleMaxMo: max });
+      if (!muet) ajouterMusique(sortie, sortie, musique); // après l'encodage : jamais de Reel muet par erreur
+      const mo = statSync(sortie).size / 1e6;
+      if (mo <= TAILLE_MAX_MO) break;
+      max *= (TAILLE_MAX_MO / mo) * 0.97;
+    }
     return { sortie, images: total, duree, taille: statSync(sortie).size, placer };
   } finally {
     await navigateur.close().catch(() => {});
