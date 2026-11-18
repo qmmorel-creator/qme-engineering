@@ -415,15 +415,14 @@ export const PAGES = {
   PVT: {
     couleur: 'bleu', cibles: ['automobilistes', 'particuliers'],
     accroche: 'Ce que votre voiture vous coûte vraiment.',
-    resume: 'Comparer les offres, suivre entretiens et dépenses ; bientôt, décider de s’en passer.',
+    resume: 'Comparer les offres, suivre entretiens et dépenses, ou décider de s’en passer.',
     pourQui: 'Vous changez de voiture, vous voulez enfin savoir ce qu’elle coûte, ou vous vous demandez si vous pourriez vivre sans. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
     parcours: [
       ['VTR', 'Comparez comptant, crédit, LOA et LLD sur le coût total.'],
       ['CAR', 'Suivez entretiens, kilométrage, dépenses et coût au kilomètre.'],
       ['SVT', 'Décidez si vous pouvez vous passer de voiture, gain annuel et urgences compris.'],
     ],
-    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Bientôt : le simulateur « Vivre sans voiture », inclus avec l’option Pack évolutif'],
-    prevus: ['SVT'], // Vivre sans voiture : annoncé ; entre dans produits (netlify/lib/packs.mjs) avec sa date dans ajouts à sa mise en vente.
+    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture et les deux simulateurs se complètent'],
   },
   PAQ: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],

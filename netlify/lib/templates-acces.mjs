@@ -89,7 +89,7 @@ export const PRODUITS = {
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
-  TVA: { nom: 'Suivi de TVA', url: '/templates/tva/' },
+  TVA: { nom: 'Suivi de TVA', url: '/templates/tva/', gumroad: 'aGMrUCFVZ9yzLWfaNIWQ1w==' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/', gumroad: 'uJxPWSYtiXp3nixYfudDoQ==' },
   RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
   ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/' },
@@ -110,7 +110,7 @@ export const PRODUITS = {
   CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/' },
   SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
-  SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/' },
+  SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête

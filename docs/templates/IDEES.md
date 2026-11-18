@@ -121,7 +121,7 @@ déjà).
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | en vente | 19 € | S | P2 | Backlog Quentin n° 18 |
-| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | prêt | 19 € | S | P3 | Backlog Quentin n° 20 |
+| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | en vente | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
@@ -173,7 +173,7 @@ déjà).
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
-| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | prêt | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
+| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -2391,8 +2391,10 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   116 117 « ou 15 selon la région ») ; siège enfant jusqu'à 10 ans et dispense des taxis (code de la route R412-2,
   F628) ; **VTC : dispense non prévue par le texte, écrit « à vérifier »** ; casque à vélo avant 12 ans (F34169).
 - Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
-- Communication (non publiée, non inscrite aux plannings) : `communication/sans-voiture/` (`gumroad.md`,
-  `gumroad.json`, `linkedin.md`, `instagram.md` + carrousel de 5 vues, `prospects.md`). **Aucune fiche Gumroad créée.**
+- Communication : `communication/sans-voiture/` (`gumroad.md`, `gumroad.json`, `linkedin.md`, `instagram.md` +
+  carrousel de 5 vues, `prospects.md`). Programmée le 17/11/2026 à la demande de Quentin : **LinkedIn LI-155** le
+  24/11/2026 à 12:15 et **Instagram IG-151** (carrousel) le 25/11/2026 à 18:30. Fiche Gumroad : création du brouillon
+  prévue le 18/11/2026 (quota Gumroad de 10 produits par jour atteint le 17/11).
 - Pack Ma voiture (PVT), décision de Quentin du 17/11/2026. Le pack étant déjà en vente sur Gumroad (22 €, PR #145),
   SVT est **annoncé** (`prevus: ['SVT']` dans `outils/packs/donnees.mjs`, « À venir » sur la page du pack, inclus avec
   l'option Pack évolutif) mais **pas encore dans `produits`** : le contenu vendu et le prix ne changent pas avant la
@@ -2403,5 +2405,8 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   relevé au minimum de 9 €).
 - Site publié le 17/11/2026 avec le feu vert de Quentin (fusion de la PR #146) : T98 en « Mise en vente prochaine »,
   démo libre.
-- À décider par Quentin : nom définitif (avant toute fiche Gumroad), création de la fiche Gumroad, inscription aux
-  plannings LinkedIn et Instagram.
+- Décidé par Quentin le 17/11/2026 : accueil « dès 9 € » (PR #148). **En vente le 18/11/2026** (« publie tout ce qui a
+  une clé ») : fiche Gumroad `1DfML3czjZu5bg95z3KuRg==` (/l/simulateur-vivre-sans-voiture), clé de licence vérifiée
+  (`is_licensed` true), SVT dans `produits` du pack Ma voiture avec `ajouts: { SVT: '2026-11-18' }`, pack à 28 € (34 €,
+  −15 %). Option Pack évolutif : 9 €, soit la version « Pack évolutif » à 37 € à régler par Quentin dans l'éditeur
+  Gumroad (versions non modifiables par les outils).
