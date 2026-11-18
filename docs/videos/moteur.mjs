@@ -8,18 +8,16 @@
 // l'application comprise) et les animations CSS avancent d'exactement 1/30 s entre deux captures. Chaque image tombe
 // donc pile sur sa date : mouvement régulier, sans image perdue ni rééchantillonnage, quelle que soit la charge de la
 // machine. ffmpeg assemble ensuite la vidéo à 30 i/s et mixe les bruitages (synthétisés) et, en option, la musique.
-import { createRequire } from 'node:module';
 import { spawn, execFileSync } from 'node:child_process';
 import { mkdirSync, rmSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join, resolve, basename, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const require = createRequire(import.meta.url);
-const { chromium } = (() => { try { return require('playwright'); } catch { return require('/opt/node-tools/node_modules/playwright'); } })();
+// Briques communes à toutes les vidéos QME (navigateur, temps virtuel des animations CSS, encodage) : rendu.mjs.
+import { chromium, PAS_ANIM, encoder, FPS, AUDIO_KBPS } from './rendu.mjs';
 const ICI = dirname(fileURLToPath(import.meta.url));
 const RACINE = resolve(ICI, '../..');
 const PORT = Number(process.env.PORT_VIDEO || 8897);
-const FPS = 30;
 
 const [cheminScenario, ...options] = process.argv.slice(2);
 if (!cheminScenario) { console.error('Usage : node docs/videos/moteur.mjs <scenario.mjs> [--brouillon]'); process.exit(1); }
@@ -56,16 +54,6 @@ const PAS = 1000 / FPS;
 const cdp = await contexte.newCDPSession(pageBrute);
 let fige = false, nImages = 0;
 const IMAGES = join(TMP, 'images');
-// Animations CSS (transitions, keyframes) de la page et de l'application : mises en pause à leur création puis
-// avancées du même pas que l'horloge, sinon elles tourneraient en temps réel pendant que l'image se calcule.
-const PAS_ANIM = (pas) => {
-  for (const a of document.getAnimations()) {
-    if (!a.__qme) { a.__qme = true; a.pause(); a.currentTime = 0; continue; }
-    a.currentTime = (a.currentTime || 0) + pas;
-    const t = a.effect?.getComputedTiming?.();
-    if (t && Number.isFinite(t.endTime) && a.currentTime >= t.endTime) a.finish();
-  }
-};
 async function image() {
   await contexte.clock.runFor(PAS);
   await Promise.all(pageBrute.frames().map((f) => f.evaluate(PAS_ANIM, PAS).catch(() => {})));
@@ -182,13 +170,8 @@ console.log(`Capture : ${nImages} images (${duree.toFixed(1)} s de vidéo à ${F
 // 6. Vidéo : une image tous les 1/30 s, dans l'ordre.
 // Diffusion Reels Instagram / LinkedIn : 720 × 1280, encodage en deux passes avec un débit calculé pour tenir
 // sous TAILLE_MAX (limite d'envoi automatique vers Google Drive). Capture faite en 1080 × 1920 puis réduite.
-const TAILLE_MAX = (cfg.tailleMaxMo ?? 2.9) * 1e6, AUDIO_KBPS = 96;
-const debitVideo = Math.floor((TAILLE_MAX * 8 / duree) / 1000 - AUDIO_KBPS - 40); // 40 kbit/s de marge (conteneur)
 const video = join(TMP, 'video.mp4');
-const encodage = ['-framerate', String(FPS), '-i', join(IMAGES, '%05d.jpg'), '-vf', 'scale=720:1280:flags=lanczos,format=yuv420p', '-r', String(FPS),
-  '-c:v', 'libx264', '-preset', brouillon ? 'veryfast' : 'slow', '-b:v', `${debitVideo}k`, '-passlogfile', join(TMP, 'passe'), '-t', duree.toFixed(3)];
-execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '1', '-an', '-f', 'null', '/dev/null']);
-execFileSync('ffmpeg', ['-y', '-v', 'error', ...encodage, '-pass', '2', video]);
+encoder({ dossier: IMAGES, duree, sortie: video, largeur: 720, hauteur: 1280, tailleMaxMo: cfg.tailleMaxMo ?? 2.9, audio: !cfg.muet, rapide: brouillon, tmp: TMP });
 if (duree > (cfg.dureeMax ?? 40)) console.error(`Attention : ${duree.toFixed(1)} s, au-delà de la durée maximale (${cfg.dureeMax ?? 40} s).`);
 
 // 7. Bruitages synthétisés (ffmpeg), placés aux instants des actions dans la vidéo.

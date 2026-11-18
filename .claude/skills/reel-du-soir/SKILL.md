@@ -21,8 +21,10 @@ français, sans flatterie ; dis ce qui a été vérifié et ce qui ne l'a pas é
 4. **Charte et confidentialité** (`docs/templates/IDEES.md`, `instagram/README.md`) : données fictives marquées
    « Données fictives », aucune marque tierce, aucun client ou projet réel, pas l'outil personnel de Quentin ;
    argent / santé : pas de promesse. Vouvoiement, pas d'émoji, pas de superlatif.
-5. **Format** : 1080 × 1920, 30 i/s, H.264, **avec la musique QME** (jamais muet, décision de Quentin du 18/11/2026 ;
-   `video.mjs` l'ajoute d'office via `sonoriser.mjs`), 20 à 30 s, fichier < 2,9 Mo (limite du connecteur Drive). Accroche
+5. **Format** : 1080 × 1920, 30 i/s, H.264, **avec la musique QME** (jamais muet, décision de Quentin du 18/11/2026),
+   20 à 30 s, fichier < 2,9 Mo (limite du connecteur Drive). **Moteur vidéo unique** : `video.mjs` est un raccourci vers
+   `docs/videos/rendu.mjs` (capture image par image en temps virtuel, encodage en deux passes sous 2,9 Mo, musique
+   ajoutée après l'encodage). Ne pas écrire d'autre outil de rendu : faire évoluer `rendu.mjs`. Accroche
    lisible dès la première seconde ; rien d'important dans les 250 px du haut ni les 340 px du bas.
 
 ## 1. Choisir la date
@@ -42,9 +44,9 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
 3. Page animée `docs/templates/communication/instagram/production/IG-nn.html` sur le modèle de `IG-46.html` (en-tête
    commentaire : titre, script, durée, commande de rendu ; animations CSS en pause, `window.placer(ms)`).
 4. Rendu depuis `docs/templates/communication/instagram` : `node video.mjs production/IG-nn.html <durée> <ms couverture>`,
-   (la musique QME est ajoutée d'office par `sonoriser.mjs`), puis renommer en `png/IG-nn-<slug>.mp4` et `png/IG-nn-<slug>-couverture.png`.
+   (moteur unique `docs/videos/rendu.mjs` : musique QME ajoutée d'office, taille tenue sous 2,9 Mo), puis renommer en `png/IG-nn-<slug>.mp4` et `png/IG-nn-<slug>-couverture.png`.
 5. **Vérifier** : `ffprobe` (1080 × 1920, durée, **piste audio AAC présente sur toute la durée** — un Reel sans son
-   n'est jamais déposé —, taille < 2,9 Mo ; sinon réencoder `-crf` plus haut) ; planche
+   n'est jamais déposé —, taille < 2,9 Mo, garantie par le moteur) ; planche
    `ffmpeg -vf "fps=1,scale=180:-1,tile=10x3"` relue image par image (accroche lisible, zones sûres, rien de coupé,
    chiffres identiques à l'application, mention « Données fictives » sur chaque capture).
 
