@@ -11,7 +11,10 @@ test('modules : un par template, slug → nom', () => {
   assert.equal(MODULES.flotte, 'Gestion de flotte de véhicules');
   assert.equal(MODULES.revision, 'Planning de révision');
   assert.equal(MODULES['secret-santa'], 'Secret Santa');
-  assert.equal(Object.keys(MODULES).length, Object.keys(PRODUITS).length + Object.keys(PACKS).length + 1);
+  // + pack sur mesure ; puis campagne X : une version anglaise par template + sur mesure en anglais.
+  assert.equal(Object.keys(MODULES).length, 2 * Object.keys(PRODUITS).length + Object.keys(PACKS).length + 2);
+  assert.equal(MODULES['en-flotte'], 'Gestion de flotte de véhicules · version anglaise');
+  assert.equal(MODULES['en-sur-mesure'], 'Outil sur mesure en anglais');
   assert.equal(MODULES['pack-argent'], PACKS.PAR.nom);
   assert.equal(MODULES['pack-sur-mesure'], 'Pack sur mesure');
   assert.equal(MODULES.patrimoine, 'Inventaire valorisé');

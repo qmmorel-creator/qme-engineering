@@ -47,3 +47,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
   lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
+
+## Campagne X (anglais, sur mesure)
+
+- **Publication quotidienne sur X** (décision du 18/11/2026) : skill `.claude/skills/campagne-x/`, en anglais uniquement, volet
+  sur mesure uniquement, un post ou une vidéo par jour en alternance, 15:30. Dossier et planning :
+  `docs/templates/communication/x/` (journal `journal-x.md`, bannière du profil `banniere.html`). Lien de toutes les
+  publications : `qm-engineering.fr/x` → `/en/english-version/`, générée par `node outils/x/generer.mjs` (bouton
+  « I'd like it in English » : modules `en-<slug>` du compteur `/api/interets`).

@@ -18,6 +18,9 @@ export const MODULES = Object.fromEntries([
   ...Object.values(PRODUITS).map((p) => [p.url.split('/')[2], p.nom]),
   ...Object.values(PACKS).map((p) => [`pack-${p.slug}`, p.nom]),
   ['pack-sur-mesure', 'Pack sur mesure'],
+  // Campagne X en anglais (page /en/english-version/) : « je veux une version anglaise de ce template ».
+  ...Object.values(PRODUITS).map((p) => [`en-${p.url.split('/')[2]}`, `${p.nom} · version anglaise`]),
+  ['en-sur-mesure', 'Outil sur mesure en anglais'],
 ]);
 
 const egal = (a, b) => a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b));

@@ -43,6 +43,11 @@ Site promotionnel de Quentin Morel Engineering (QME).
   03/11/2026 (nexora#1488), musique « Corporate » de litesaturation (Pixabay, licence Pixabay : usage
   commercial sans attribution), normalisée à -16 LUFS, fondu de sortie de 3 s ; image inchangée. Les
   musiques des vidéos tournent sur 4 pistes, décrites dans le dépôt Nexora, `docs/qme/musiques/`
+- `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
+  `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
+  interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail
+  facultatif). Lien court `/x` (302, `utm_campaign=x-custom`). Image de partage `assets/x-english-version.png`
+  (source `docs/templates/communication/x/partage.html`).
 - `assets/site.css` : styles
 - `assets/site.js` : interactions du menu et soumission du formulaire (Netlify Forms)
 - `assets/*.png` : identité visuelle QME
