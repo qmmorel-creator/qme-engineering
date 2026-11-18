@@ -26,6 +26,13 @@ vérifié et ce qui ne l'a pas été.
 7. **Captures** : interface en français acceptée ; prendre l'écran le plus parlant visuellement (graphique, planning
    coloré, grand chiffre en titre), jamais une fenêtre modale grisée ni une liste dense.
 
+## Horaire
+
+Publication quotidienne à **10:00 heure de Californie** (décision de Quentin du 18/11/2026) : colonne Heure du planning
+= **19:00** (heure de Paris), **18:00** du 14 au 27/03/2027 et du 31/10 au 06/11/2027. Pour les années suivantes,
+recalculer les deux périodes décalées (changement d'heure américain le 2e dimanche de mars et le 1er dimanche de
+novembre, européen le dernier dimanche de mars et d'octobre).
+
 ## 1. Choisir la date et le type
 
 Lire `journal-x.md`. Date = le premier jour sans ligne au statut `Prêt`, `Programmé` ou `Publié`, entre demain et J+14.

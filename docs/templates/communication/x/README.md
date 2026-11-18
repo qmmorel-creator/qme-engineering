@@ -11,7 +11,7 @@ Production quotidienne : skill `.claude/skills/campagne-x/`. Journal : `journal-
   (tel quel, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive vidéo · Publié le · URL publication · Remarque.
 - Statuts : `À produire` (vidéo pas encore rendue) → `Prêt` → `Programmé` (une fois la routine Instinct confirmée) →
   `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
-- Routine : `PROMPT-INSTINCT-X.md` (à transmettre par Quentin). Passages 15:30 et 15:45.
+- Routine : `PROMPT-INSTINCT-X.md` (à transmettre par Quentin). Passages toutes les heures, à :00 et :15, de 08:00 à 23:15.
 
 ## Principe
 
@@ -47,7 +47,7 @@ Après un ajout de template en vente : ajouter sa ligne à `outils/x/templates-e
 - Vidéo : moteur unique `docs/videos/` (`rendu.mjs`, page HTML animée), 1080 × 1920, 20 à 30 s, **musique QME**,
   captures réelles des démos, sous-titres anglais sur l'interface française, mention « French interface · sample data »
   sur chaque capture, carton final « qm-engineering.fr/x ». Texte d'accompagnement ≤ 280 caractères.
-- Horaire : **15:30 (Europe/Paris)** = 9:30 à New York, 14:30 à Londres.
+- Horaire des publications quotidiennes : **10:00 heure de Californie** (America/Los_Angeles), décision de Quentin du 18/11/2026, soit **19:00 à Paris** (colonne Heure du planning, toujours en heure de Paris), sauf du 14 au 27/03/2027 et du 31/10 au 06/11/2027 : **18:00** (changements d'heure décalés entre États-Unis et Europe ; vérifier chaque année avec `Intl`).
 - Rotation : jamais le même template deux fois en 7 jours sur X ; alterner les thèmes de la page.
 
 ## Profil X
@@ -67,17 +67,152 @@ Compte existant : **@qmengineering** (créé en avril 2022 ; ancien profil orien
   redirection `/x`, sinon le lien mène à une page 404.
 - **Localisation** : `France`. **Catégorie professionnelle** : `Application logicielle`, conservée.
 - Pas de second lien dans la bio : un seul chemin, mesuré (`utm_campaign=x-custom`).
-- **Post épinglé** : X-01 (19/11) remplace l'ancien post Coda épinglé du 31/07/2023 (Instinct l'épingle, remarque
-  « Épingler ce post » du planning).
+- **Post épinglé** : X-L01 (18/11, 14:00, présentation de QME) remplace l'ancien post Coda épinglé du 31/07/2023
+  (Instinct l'épingle, remarque « Épingler ce post » du planning).
+
+## Lancement · 18/11/2026 : 10 posts, un par heure de 14:00 à 23:00 (Paris)
+
+Demande de Quentin du 18/11 : présentation générale de QME, reprises d'anciens posts sur le sur-mesure (adaptés en
+anglais, seuls leurs faits sont repris), références publiques de `/en/references/` (sans nom de client). Le lien `/x`
+n'étant pas encore en ligne, ces posts renvoient vers des pages anglaises déjà publiées. X-L01 est épinglé (il
+remplace l'ancien post Coda de 2023) ; X-L10 annonce X-01.
+
+### X-L01 · 18/11 14:00 · post épinglé · présentation de QME
+
+```
+I'm Quentin Morel, an engineer in France. QME is my studio.
+
+I build custom tools for small businesses: web apps, sites, no-code setups, automation and AI.
+
+15 years in engineering and project management. One rule: the simplest tool that does the job.
+
+qm-engineering.fr/en
+```
+
+### X-L02 · 18/11 15:00 · référence · exploitation hydroélectrique
+
+```
+A project I'm proud of: a hydropower valley on one screen.
+
+Structures, worksites, incidents and reservoirs on the real terrain. Each worksite opens in 3D with its team, safety and progress.
+
+Custom software doesn't have to look like a spreadsheet.
+
+qm-engineering.fr/en/references/
+```
+
+### X-L03 · 18/11 16:00 · reprise IG-31 / LI-46 · le tableur n'est pas le problème
+
+```
+I build custom tools. Yet I never say "stop using your spreadsheet."
+
+Spreadsheets are great. Trouble starts when you ask one to:
+- be shared by 10 people who shouldn't all see everything
+- keep a change history
+- send reminders
+- work on a phone
+
+qm-engineering.fr/en/custom/
+```
+
+### X-L04 · 18/11 17:00 · reprise IG-28 / LI-01 · un outil, trois rôles
+
+```
+One tool, three doors.
+
+For a game shop, I built one app with three profiles:
+- the manager sees sales, margins, VAT
+- staff use the till, never see margins
+- game-night hosts run events, no till, no prices
+
+Decide early who must NOT do what.
+
+qm-engineering.fr/en/references/
+```
+
+### X-L05 · 18/11 18:00 · reprise IG-29 / LI-03 · la fiche d'arrivée de l'atelier vélo
+
+```
+"I left the charger with the bike."
+"You should have called before replacing the cassette."
+
+In a bike workshop tool I designed, both are settled at drop-off: items left are ticked, and "go ahead without calling up to €150".
+
+Your trade has rules too.
+
+qm-engineering.fr/en
+```
+
+### X-L06 · 18/11 19:00 · reprise IG-30 / LI-24 · maintenance au compteur
+
+```
+"Service the press every six months."
+Except it ran 200 hours in the first half, 900 in the second.
+
+Calendar maintenance is simple, but often too early or too late. I'd rather build it on the counter: hours, cycles or km, with a date as backup.
+
+qm-engineering.fr/en/custom/
+```
+
+### X-L07 · 18/11 20:00 · ce que QME construit · quatre familles
+
+```
+What I build, depending on the need:
+
+1. Custom web apps, when no software fits your trade
+2. Websites with a demo video and contact form
+3. No-code setups in tools your team already uses (Notion, Coda, M365)
+4. Automation and AI for what repeats
+
+qm-engineering.fr/en/custom/
+```
+
+### X-L08 · 18/11 21:00 · référence · facturation d'une crèche
+
+```
+A nursery bills parents on the hours booked, then adjusts to the hours actually attended.
+
+Done by hand, it is slow and easy to get wrong.
+
+I built a tool that goes from the booked schedule to attendance to the invoice, with nothing retyped.
+
+qm-engineering.fr/en/references/
+```
+
+### X-L09 · 18/11 22:00 · référence · visas de plans en bureau d'études
+
+```
+On a construction project, one late drawing approval can hold up the whole site.
+
+For an engineering firm, I built a register that follows each drawing until it is approved, so delays show up before they stop the works.
+
+I spent 7 years in one.
+
+qm-engineering.fr/en/references/
+```
+
+### X-L10 · 18/11 23:00 · les 97 templates en teaser (annonce X-01)
+
+```
+To show what custom work looks like, I also built 97 ready-made tools: CRM, Gantt, cash flow, stock, snag lists, budgets.
+
+All in French for now. Tomorrow: how to ask for the ones you'd want in English.
+
+Good night from France.
+
+qm-engineering.fr/en/templates/
+```
 
 ## Planning des 14 premiers jours
+
+Tous à 19:00 heure de Paris (10:00 en Californie).
 
 Posts rédigés ci-dessous (longueurs contrôlées : `node docs/templates/communication/x/longueurs.mjs`). Vidéos : scénario à
 produire par le skill `campagne-x` la veille au plus tard.
 
 | ID | Date | Type | Sujet | Template montré |
 |---|---|---|---|---|
-| X-01 | 19/11/2026 | Post (épinglé) | Présentation : 97 outils en français | — |
+| X-01 | 19/11/2026 | Post | Présentation : 97 outils en français | — |
 | X-02 | 20/11/2026 | Vidéo | « 97 tools. All in French. » : montage de 8 captures, une par thème | plusieurs |
 | X-03 | 21/11/2026 | Post | Le tableur que seule une personne comprend | — |
 | X-04 | 22/11/2026 | Vidéo | « Who should I follow up today? » | CRM freelance |
@@ -92,7 +227,7 @@ produire par le skill `campagne-x` la veille au plus tard.
 | X-13 | 01/12/2026 | Post | Question aux freelances : que suivez-vous dans un tableur ? | — |
 | X-14 | 02/12/2026 | Vidéo | « How a custom tool starts » : la méthode en motion design | — |
 
-### X-01 · 19/11 · post épinglé
+### X-01 · 19/11 · post
 
 ```
 I'm Quentin, an engineer in France. I build custom web apps for small businesses and freelancers.

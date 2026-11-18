@@ -51,7 +51,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Campagne X (anglais, sur mesure)
 
 - **Publication quotidienne sur X** (décision du 18/11/2026) : skill `.claude/skills/campagne-x/`, en anglais uniquement, volet
-  sur mesure uniquement, un post ou une vidéo par jour en alternance, 15:30, publié par Instinct (Sheet « Planning
+  sur mesure uniquement, un post ou une vidéo par jour en alternance, à 10:00 heure de Californie (19:00 à Paris), publié par Instinct (Sheet « Planning
   publications X », routine `PROMPT-INSTINCT-X.md`). Dossier :
   `docs/templates/communication/x/` (journal `journal-x.md`, bannière du profil `banniere.html`). Lien de toutes les
   publications : `qm-engineering.fr/x` → `/en/english-version/`, générée par `node outils/x/generer.mjs` (bouton
