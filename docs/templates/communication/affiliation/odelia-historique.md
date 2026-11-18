@@ -23,6 +23,10 @@ Mémoire du dossier, à relire avant toute reprise de contact. Fiche : `odelia.m
 | 17/11 | Quentin (interne) | Démo `/demo/odelia` mise en ligne (PR #144), vidéos types muettes (dossier Drive « Odélia × QME · vidéos types Pack Étudiant », partagé par lien), réponses « stories » et « Reel » préparées, non envoyées. |
 | 17/11 15:57 | Quentin → Eva (Odélia en copie) | **Décline** (texte ci-dessous). |
 | 17/11 16:00 | Quentin → Eva (seule) | Autres talents de Yuzu (texte ci-dessous). |
+| 18/11 11:42 | Eva → Quentin (Odélia en copie) | D'accord sur TikTok, remercie pour la démo, demande le budget maximum pour une vidéo TikTok. |
+| 18/11 11:45 | Eva → Quentin (fil séparé) | Propose Estelle (@estellesbn, étudiante en dentaire) et Anusha (@anusha.drg, étudiante à Londres), partage le kit média de Yuzu. |
+| 18/11 12:55 | Quentin → Eva (Odélia en copie) | 200 € de fixe maximum (autres enveloppes engagées) + commission sur chaque vente + au choix : accès gratuit à vie à 17 outils (241,90 €) ou tout autre template, ou, probablement plus pertinent, un outil sur mesure (2 000 € minimum). Taux de commission non donné. |
+| 18/11 13:00 | Quentin → Eva (fil séparé) | Estelle et Anusha : plus d'enveloppe en numéraire ; commission + outil sur mesure ; démo à leur nom possible ; demande d'autres talents pour ces conditions. |
 
 ## Statistiques Instagram transmises par Eva (21/07–19/08/2026)
 
@@ -100,6 +104,14 @@ plus léger) sans la demander. Vidéos types volontairement non fournies.
 > Belle journée,
 >
 > Quentin Morel
+
+## Accès gratuit proposé le 18/11 (17 outils, 241,90 € au prix public)
+
+Pack Étudiant (Planning de révision, Planner horaire, Suivi d'habitudes, Suivi de lecture, Notes et moyennes,
+Candidatures, Planning de mémoire : 92,90 €), Budget du foyer (15), Suivi des abonnements (9), Objectif d'épargne (12),
+État des lieux (19), Papiers du foyer (15), Gestionnaire de tâches (19), Tableau de bord annuel (15), Repas et
+courses (13), Nutrition (19), Planificateur de voyage (13). Prix lus sur Gumroad le 18/11/2026. En cas d'accord :
+code gratuit (`npm run code`), à inscrire dans `docs/templates/codes-gratuits.md`.
 
 ## Ce qui existe et peut resservir
 
