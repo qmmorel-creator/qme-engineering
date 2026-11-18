@@ -51,7 +51,7 @@ export const PRODUITS = {
   RCV: { nom: 'Relance des impayés', url: '/templates/impayes/', gumroad: 'xbHURXS0w79P1ap-nFBbWQ==' },
   ARD: { nom: 'Onboarding et offboarding salarié', url: '/templates/onboarding/' },
   CNG: { nom: 'Suivi des congés et absences', url: '/templates/conges/' },
-  STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/' },
+  STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/', gumroad: '4yl9UwCwQPGWahkhI0oJUA==' },
   SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/', gumroad: 'VP_lDEeIUWMGQ8bSAZ12tQ==' },
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/', gumroad: 'XMvZIWF4YueA-fSR5lunEg==' },
