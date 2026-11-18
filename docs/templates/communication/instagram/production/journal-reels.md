@@ -15,3 +15,4 @@ versions renommées `…-ANCIEN-muet.mp4` (non supprimées). `video.mjs` ajoute 
 
 | Date | Instagram | YouTube | Produit | Angle | Titre | Durée | Fichier | Statut |
 |---|---|---|---|---|---|---|---|---|
+| 2026-11-20 | IG-152 (18:45) | YT-39 (20:00) | Planning de mémoire ou de thèse (`memoire`) | chiffre vérifiable | Combien de mots par jour pour finir votre mémoire ? | 25 s | `production/IG-152.html` → `png/IG-152-memoire.mp4` (2,77 Mo, AAC, Drive `1-SEGkCXPDYjzSUpPRH-73H3m5_ScaHJ4`) | Programmé |

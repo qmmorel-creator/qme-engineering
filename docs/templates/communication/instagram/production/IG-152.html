@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- Reel du soir IG-152 / YT-39 · « Combien de mots par jour pour finir votre mémoire ? » (Planning de mémoire ou de thèse).
+     Angle : chiffre vérifiable. Script : accroche (combien de mots par jour ?), calcul de la démo (20 000 − 10 600 = 9 400,
+     ÷ 33 jours de travail = 285/j), écran Avancement (rythme réel 194/j, 24 jours après l'échéance), rétroplanning,
+     fin « Planning de mémoire · démo gratuite · qm-engineering.fr ».
+     Chiffres lus dans la démo (?demo, 18/11/2026) et calculés par R.rythme (regles.js) ; données fictives.
+     Motion design avec musique QME, 1080 × 1920, 30 i/s, 25 s. Rendu, depuis docs/templates/communication/instagram :
+       node video.mjs production/IG-152.html 25 8800
+       puis png/IG-152.mp4 → png/IG-152-memoire.mp4 et png/IG-152-couverture.png → png/IG-152-memoire-couverture.png
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-152</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+.f{position:absolute}
+.bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:60px;padding:28px 44px;box-shadow:16px 16px 0 var(--surface);letter-spacing:-.025em}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--surface)}
+.site{position:absolute;right:96px;font-weight:700;font-size:34px}
+.carte{position:absolute;left:84px;right:84px;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--encre);background:var(--surface)}
+.carte img{width:100%;display:block}
+.note{position:absolute;left:96px;right:96px;font-size:28px;font-weight:600;color:var(--texte-2)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes glisse-d{from{transform:translateX(900px)}to{transform:none}}
+
+.ligne{position:absolute;left:96px;right:96px;display:grid;grid-template-columns:380px 1fr;align-items:center;gap:20px}
+.ligne b{font-size:120px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.ligne span{font-size:40px;font-weight:600;line-height:1.2;color:#D9D4C8}
+
+@keyframes defile{from{transform:translateY(0)}to{transform:translateY(-1060px)}}
+</style>
+</head>
+<body>
+<div class="s" id="s1" style="animation:sortie 300ms 3300ms;">
+  <div class="f" style="right:-110px;top:110px;width:400px;height:400px;border-radius:50%;background:var(--bleu);animation:pop 600ms 0ms"></div>
+  <div class="f" style="right:210px;top:400px;width:120px;height:120px;background:var(--jaune);border:6px solid var(--encre);animation:pop 500ms 250ms"></div>
+  <div class="f" style="left:0;bottom:0;width:420px;height:420px;background:var(--rouge);border-top-right-radius:420px;animation:glisse-g 700ms 100ms"></div>
+  <p class="sourcil" style="top:600px;color:var(--rouge);animation:monte 500ms 150ms">Mémoire de master</p>
+  <p class="x" style="top:670px;font-size:112px;animation:monte 550ms 300ms">Combien de mots <mark>par jour</mark> ?</p>
+  <p class="x" style="top:1000px;font-size:68px;color:var(--texte-2);animation:monte 500ms 1100ms">Pour finir le premier jet à temps.</p>
+</div>
+
+<div class="s" id="s2" style="animation:entree-fond 350ms 3600ms,sortie 300ms 9800ms;background:var(--encre);color:var(--papier)">
+  <p class="sourcil" style="top:330px;color:var(--jaune);animation:monte 500ms 3700ms">Le calcul · exemple fictif</p>
+  <div class="ligne" style="top:440px;animation:monte 500ms 3900ms"><b style="color:var(--papier)">20 000</b><span>mots visés</span></div>
+  <div class="ligne" style="top:620px;animation:monte 500ms 4900ms"><b style="color:var(--papier)">10 600</b><span>déjà écrits</span></div>
+  <div class="ligne" style="top:800px;animation:monte 500ms 5900ms"><b style="color:var(--papier)">9 400</b><span>restent à écrire</span></div>
+  <div class="ligne" style="top:980px;animation:monte 500ms 6900ms"><b style="color:var(--papier)">÷ 33</b><span>jours de travail jusqu'au premier jet</span></div>
+  <div class="f" style="left:96px;top:1180px;width:888px;height:8px;background:var(--rouge);transform-origin:left;animation:largeur 500ms 7900ms"></div>
+  <p class="x" style="top:1230px;font-size:92px;animation:monte 500ms 8100ms">= <mark>285 mots</mark> par jour.</p>
+</div>
+
+<div class="s" id="s3" style="animation:entree-fond 350ms 10100ms,sortie 300ms 15800ms;">
+  <p class="sourcil" style="top:270px;color:var(--bleu);animation:monte 500ms 10200ms">Planning de mémoire ou de thèse</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 10300ms">Votre rythme réel, comparé.</p>
+  <div class="carte" style="top:430px;left:160px;right:160px;height:900px;animation:monte 500ms 10600ms"><img src="captures/memoire-rythme.webp" alt=""></div>
+  <p class="note" style="top:1350px;animation:monte 500ms 10800ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1400px;font-size:48px;font-weight:700;line-height:1.25;animation:monte 500ms 12300ms">Rythme sur 14 jours : 194 mots par jour.</p>
+  <p class="x" style="top:1470px;font-size:48px;font-weight:700;line-height:1.25;animation:monte 500ms 13800ms">= <span style="background:var(--rouge);color:var(--surface);padding:0 10px">24 jours de retard</span> sur l'échéance.</p>
+</div>
+
+<div class="s" id="s4" style="animation:entree-fond 350ms 16000ms,sortie 300ms 20800ms;">
+  <p class="sourcil" style="top:270px;color:var(--rouge);animation:monte 500ms 16100ms">Rétroplanning</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 16200ms">Tout part de la date de rendu.</p>
+  <div class="carte" style="top:430px;height:1000px;animation:monte 500ms 16400ms"><img src="captures/memoire-retroplanning.webp" alt="" style="animation:defile 3200ms 17400ms"></div>
+  <p class="note" style="top:1470px;animation:monte 500ms 16600ms">Capture de la démo · données fictives · repères indicatifs</p>
+</div>
+
+<div class="s" id="s5" style="animation:entree-fond 350ms 21100ms;background:var(--jaune)">
+  <p class="x" style="top:420px;font-size:96px;animation:monte 500ms 21200ms">Un chiffre par jour, pas une angoisse.</p>
+  <p class="x" style="top:820px;font-size:54px;font-weight:600;line-height:1.2;animation:monte 500ms 21700ms">Planning de mémoire · <b>démo gratuite</b> · qm-engineering.fr</p>
+  <div class="bouton" style="top:1060px;animation:pop 450ms 22300ms">Lien en bio</div>
+  <div class="signe" style="top:1400px;animation:monte 400ms 22500ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site" style="top:1424px;animation:monte 400ms 22600ms">qm-engineering.fr</p>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>
