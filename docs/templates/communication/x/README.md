@@ -320,6 +320,18 @@ I built a tool for each of these (in French). Reply with yours, I'll tell you ho
 qm-engineering.fr/x
 ```
 
+### X-15 · 20/11 · Image · coulisses · associations et clubs
+
+```
+When I built a volunteer tool for associations, the screen I cared most about was not the rota.
+
+It was this one: hours given per volunteer and per post. In the sample data, 6 of 22 volunteers give 38% of the hours.
+
+Spot that before they burn out.
+
+qm-engineering.fr/x
+```
+
 ### Vidéos : scénarios
 
 Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de démo réels, sous-titres anglais, carton final
