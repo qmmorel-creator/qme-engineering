@@ -153,6 +153,7 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
 6. **Planifier le post Instagram** le lendemain de l'article LinkedIn, à 18:30 : procédure dans
    `reference.md` § « Planning Instagram » (publication par Instinct, comme LinkedIn). Motion design
    possible : reel 1080 × 1920 animé en HTML, rendu en MP4 par `docs/templates/communication/instagram/video.mjs`.
+   TikTok : un carrousel reçoit aussi sa vidéo `IG-nn-<slug>-tiktok.mp4` (`reference.md` § « Planning Instagram »).
 7. Mettre à jour la ligne du template dans `docs/templates/IDEES.md` (liens vers ces livrables, dates et ID
    des publications LinkedIn et Instagram).
 

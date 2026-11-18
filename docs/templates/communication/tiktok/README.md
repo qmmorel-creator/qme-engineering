@@ -5,7 +5,12 @@ Non publié (dossier `docs/`).
 
 - 16/11/2026 : TikTok abandonné (`../youtube/PROMPT-INSTINCT-YOUTUBE.md`).
 - **18/11/2026 : TikTok repris** (décision de Quentin). Instinct reprend chaque publication Instagram sur TikTok
-  (mêmes médias, même texte, même ordre), le jour même. Procédure : `PROMPT-INSTINCT-TIKTOK.md`.
+  le jour même, en vidéo seule sans légende (texte envoyé à Quentin). Procédure : `PROMPT-INSTINCT-TIKTOK.md` (version finale).
+- **18/11/2026, 19h : carrousels en vidéo** (décision de Quentin). Sur TikTok, un carrousel Instagram est publié en
+  diaporama vidéo (`docs/videos/diaporama.mjs`, 1080 × 1920, ~4,2 s par image, musique QME), déposé dans le dossier
+  Drive Images Instagram sous le nom `IG-nn-<slug>-tiktok.mp4` ; un Reel est repris tel quel. Instinct n'importe
+  qu'un fichier, par la zone initiale. Production : skill `publication-classique` (nouveaux carrousels) et tâche
+  planifiée « TikTok · diaporamas J+14 » (carrousels déjà programmés ; à créer par Quentin, `ROUTINE-DIAPORAMAS.md`).
 
 ## Incidents du 18/11/2026 (relevé Instinct, 17h48)
 
@@ -17,3 +22,17 @@ Non publié (dossier `docs/`).
 - Causes probables (non établies) : correction du texte dans l'éditeur Studio, suggestion automatique des hashtags,
   import en plusieurs fois. Parade : jamais de correction sur place (Discard et recommencer), import en une seule
   sélection, hashtags tapés un par un à la fin.
+- IG-02, 18h22–18h23 (photo par photo, autorisé par Quentin) : au 2e fichier, 3 photos au lieu de 2 ; 2 essais, arrêt.
+- IG-02, vers 18h40 (variante : tout importer puis retirer les doublons) : 1, 3, 5, 7, 9 photos après les imports 1
+  à 5 (chaque fichier ajouté par « + » arrive en double) ; doublons retirés sans erreur, mais aperçus vides (image 3,
+  puis images 2 à 4) ; 2 essais, arrêt. Conclusion : plus de carrousel photo sur TikTok, diaporama vidéo à la place.
+- IG-02 et IG-39 en vidéo, 19h–19h14 (v2) : import vidéo réussi (une vidéo, aperçu lisible, son présent). Échec sur
+  la légende : texte collé visible mais compteur à 0/4000 et aperçu vide ; nom de fichier prérempli mal effacé ;
+  saisie au clavier par morceaux avec début du texte déplacé. Aucun « Something went wrong ». Version 3 : légende
+  d'une seule ligne sans hashtag, saisie en une seule action, contrôle par le compteur de caractères.
+- IG-02, test « légende = nom du fichier » (19h30) : description préremplie « 1-<nom> » (préfixe d'origine inconnue),
+  75 caractères au lieu de 73 ; Instinct ne dispose pas de Ctrl+A ni de Suppr. Abandon.
+- **IG-02 et IG-39, 19h44–19h47 : publiés, vidéo seule sans légende** (description vidée au Retour arrière jusqu'à
+  0/4000). IG-02 visible par tous à 19h47, IG-39 en modération. **Méthode retenue (version finale)** : vidéo seule,
+  description vide ; Instinct envoie à Quentin le texte du Document de légende, que Quentin colle lui-même s'il le
+  souhaite.
