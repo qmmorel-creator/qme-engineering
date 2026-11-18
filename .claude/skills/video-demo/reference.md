@@ -4,6 +4,8 @@
 
 ```
 docs/videos/
+  rendu.mjs             moteur vidéo UNIQUE de QME : temps virtuel, encodage < 2,9 Mo, musique ; rend aussi une page
+                        HTML animée : node docs/videos/rendu.mjs <page.html> <durée s> [couverture ms]
   moteur.mjs            node docs/videos/moteur.mjs <scenario.mjs> [--brouillon] [--garder]
   studio/index.html     toile 1080 × 1920 : en-tête (marque + question), fenêtre navigateur + iframe, calques
   studio/studio.js      API window.S (caméra, curseur, emphases, textes)

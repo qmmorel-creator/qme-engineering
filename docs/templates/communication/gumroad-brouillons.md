@@ -114,3 +114,12 @@ versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Qu
 PVY et PVT créés à 10 h 54 UTC. **Limite Gumroad atteinte** sur Stocks et inventaire (STK) : prochaine création
 le 17/11 à 23:48 PST (18/11 à 08:48, Paris). Reprise programmée le 18/11 à 08:50 : STK, TVA (publication après
 accord de Quentin sur les valeurs « à vérifier », `QUESTIONS.md` § T44), CMP, RPS, MSC.
+
+## Lot du 18/11/2026
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| STK | stocks | 4yl9UwCwQPGWahkhI0oJUA== | /l/stocks-inventaire | 25 € | **en vente** (créé à 07 h 51 UTC, clé activée et publié le 18/11/2026) |
+
+Suivi de TVA refusé à 07 h 51 UTC (limite Gumroad) : prochaine création à 09:17 (Paris), reprise programmée à 09:18
+pour TVA, CMP, RPS, MSC.

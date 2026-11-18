@@ -35,8 +35,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
 - **Clés de licence à activer (17/11/2026)** (Content → Insert → License key, sans multi-postes) :
   - aucune pour l'instant (packs Étudiant, Freelance, Voyage et Ma voiture publiés le 17/11).
-- T44 Suivi de TVA (rang 11 de la file) : publication suspendue à ton accord sur les valeurs « à vérifier » (§ T44
-  plus bas). Le brouillon peut être créé, il ne sera pas publié avant.
+- T44 Suivi de TVA : règles vérifiées et corrigées (PR #149, 17/11), plus de suspension.
   La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
