@@ -29,7 +29,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 - **Idée du jour** : skill `.claude/skills/idee-video/` (un seul produit en vente, angles en rotation), qui
   appelle **`.claude/skills/video-demo/`** (interaction réelle avec le template, rendu, Google Drive,
-  programmation LinkedIn 17:30 / Instagram 08:30 / YouTube Shorts 12:00). TikTok repris le 18/11/2026 (abandon du 16/11 levé) : Instinct reprend chaque
+  programmation LinkedIn 17:30 / Instagram 12:30 / YouTube Shorts 12:00 ; heures recalées le 18/11/2026 :
+  `docs/templates/communication/HEURES.md`). TikTok repris le 18/11/2026 (abandon du 16/11 levé) : Instinct reprend chaque
   publication Instagram sur TikTok (@qme.qm.engineering), en vidéo seule sans légende (Quentin colle le texte) ; un carrousel y part en diaporama vidéo
   (`docs/videos/diaporama.mjs`, fichier Drive `IG-nn-<slug>-tiktok.mp4`), procédure `docs/templates/communication/tiktok/` ;
   chaîne YouTube : `docs/templates/communication/youtube/`. Outils et journal : `docs/videos/`.
@@ -44,7 +45,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`docs/videos/musique/`) ; vérifier la piste audio avec `ffprobe` avant tout dépôt Drive. Seules les vidéos privées
   remises à un partenaire pour son propre montage restent muettes.
 - **Reels du soir** : skill `.claude/skills/reel-du-soir/` (motion design en musique à partir des démos), lundi, mercredi et
-  vendredi, Instagram 18:45 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
+  vendredi, Instagram 21:00 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
   `docs/templates/communication/instagram/production/journal-reels.md`.
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
   lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :

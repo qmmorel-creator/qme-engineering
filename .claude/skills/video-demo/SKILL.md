@@ -5,6 +5,10 @@ description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s,
 
 # Vidéo de démonstration d'un template QME
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 Outillage dans `docs/videos/` (privé, 404 sur le site) : `studio/` (toile 1080 × 1920 + habillage),
 `moteur.mjs` (pilotage Playwright, capture, montage ffmpeg ; s'appuie sur `rendu.mjs`, le moteur vidéo unique de QME :
 temps virtuel, encodage, musique), `scenarios/*.mjs` (une vidéo = un fichier),
@@ -31,9 +35,10 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui a é
    promesse ; « ne remplace pas un avis professionnel » dans le texte de la publication si utile.
 6. **Ton** : vouvoiement dans les textes à l'écran et les publications, phrases courtes, constat → geste →
    résultat. Pas d'émoji, pas de superlatif.
-7. **Son** : musique de la présentation QME (`musique/corporate-litesaturation.m4a`, « Corporate » de
-   litesaturation, licence Pixabay, usage commercial sans attribution) calée sur 110 BPM ; bruitages
-   synthétisés sur les gestes. **Pas** de bruitage à chaque mot de l'accroche (un seul son d'entrée).
+7. **Son** : jamais muet. `musique: 'auto'` dans le scénario : le moteur choisit un morceau de la bibliothèque QME
+   (`docs/videos/musique/README.md` : « Corporate » et les quatre morceaux fournis par Quentin le 18/11/2026), varié
+   d'une vidéo à l'autre et calé sur son tempo. Les quatre nouveaux font 30 s : avec `dureeMax: 29`, les cinq morceaux
+   sont candidats ; au-delà, « Corporate ». Bruitages synthétisés sur les gestes. **Pas** de bruitage à chaque mot de l'accroche (un seul son d'entrée).
 8. **Formes du fond calmes** : elles flottent lentement ; aucun battement ni clignotement sur elles.
 
 ## 1. Écrire le scénario
@@ -79,8 +84,8 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
    `A1:O`) : d'autres sessions les modifient.
 2. **Date** : la plus proche, à partir de demain, où **aucun des deux plannings** n'a déjà une vidéo
    (LinkedIn format « Vidéo », Instagram format « Reel », statut ≠ « Annulé »). Même date sur les deux.
-3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 08:30 ou 12:15) ;
-   Instagram **08:30** (matin ; les autres sont à 18:30). Deux publications par jour et par réseau.
+3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 10:00 ou 12:15) ;
+   Instagram **12:30** (pause déjeuner ; les autres sont à 19:00). Deux publications par jour et par réseau.
 4. Copier la vidéo (et la couverture pour Instagram) dans les dossiers Images de chaque réseau
    (`mcp__Google_Drive__copy_file`), aux noms `LI-nn-<slug>-video.mp4`, `IG-nn-<slug>.mp4`,
    `IG-nn-<slug>-couverture.png`.

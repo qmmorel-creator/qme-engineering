@@ -5,6 +5,10 @@ description: Produire et programmer les publications de la campagne X de QME (en
 
 # Campagne X quotidienne (anglais, sur mesure, une semaine d'avance)
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 Référence : `docs/templates/communication/x/README.md` (règles éditoriales, profil, planning). Journal :
 `docs/templates/communication/x/journal-x.md`. Explique chaque étape en français, sans flatterie ; dis ce qui a été
 vérifié et ce qui ne l'a pas été.
