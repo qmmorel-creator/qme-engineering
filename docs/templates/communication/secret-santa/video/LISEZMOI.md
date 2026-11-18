@@ -1,3 +1,6 @@
+> Depuis le 18/11/2026, toute nouvelle vidéo QME passe par le moteur unique `docs/videos/rendu.mjs` (page HTML
+> animée) ou `docs/videos/moteur.mjs` (démo interactive). Les commandes ci-dessous documentent la version d'origine.
+
 # Vidéo Secret Santa · motion design de Noël (version 2, 13/11/2026)
 
 `assets/secret-santa-noel.mp4` : 46 s, 1080 × 1920 (9:16), 30 i/s, H.264 + AAC, ≈ 7,7 Mo. Une seule

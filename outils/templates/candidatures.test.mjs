@@ -54,7 +54,12 @@ test('base : aucune date, aucun calendrier officiel, aucune plateforme nommée',
   assert.ok(!/\b\d{1,2}\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\b/i.test(sansVersion), 'aucune date du calendrier');
   assert.ok(!MARQUES.test(texte), 'donnees.js sans marque');
   for (const f of ['app.js', 'index.html', 'manifest.webmanifest']) assert.ok(!MARQUES.test(readFileSync(new URL(f, dossier), 'utf8')), `${f} sans marque`);
-  assert.ok(!MARQUES.test(readFileSync(new URL('../../catalogue/candidatures/index.html', import.meta.url), 'utf8')), 'page catalogue sans marque');
+  // Le bloc <nav class="reseaux"> du site (liens de QME vers ses propres comptes LinkedIn et Instagram) est exclu :
+  // la règle porte sur le produit et le texte de sa page, pas sur ces liens communs à toutes les pages.
+  const page = readFileSync(new URL('../../catalogue/candidatures/index.html', import.meta.url), 'utf8');
+  const pageSansReseaux = page.replace(/<nav class="reseaux"[^>]*>[\s\S]*?<\/nav>/g, '');
+  assert.ok(pageSansReseaux.length < page.length, 'bloc <nav class="reseaux"> trouvé et retiré');
+  assert.ok(!MARQUES.test(pageSansReseaux), 'page catalogue sans marque');
 });
 
 test('normalisation tolérante', () => {

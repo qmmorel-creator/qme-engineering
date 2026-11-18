@@ -108,5 +108,42 @@ versions « Pack » et « Pack évolutif » (prix ci-dessous), à ajouter par Qu
 | PET | Pack Étudiant | YtS6AIhqXdCedt-AqQtjmw== | /l/pack-etudiant | 69 € | 87 € | **en vente** (clé, versions et publication le 17/11/2026) |
 | PFG | Pack Freelance : chiffrer, facturer, encaisser | TdGXvyeaHjN_iKZ4zHr9gw== | /l/pack-freelance-gestion | 118 € | 148 € | **en vente** (clé, versions et publication le 17/11/2026) |
 
-**Limite Gumroad atteinte** sur le Pack Voyage : prochaine création le 17/11 à 02:52 PST (11:52 à Paris). Reprise
-programmée à 11:53 : PVY, PVT, puis rang 11 (STK, TVA).
+| PVY | Pack Voyage | Kwfo3TDSuJWfngx4ZTJ4xQ== | /l/pack-voyage | 25 € | 34 € | **en vente** (clé, versions et publication le 17/11/2026) |
+| PVT | Pack Ma voiture | nVivzNvD6qcdSi5wf1UqXQ== | /l/pack-voiture | 22 € | 31 € | **en vente** (clé, versions et publication le 17/11/2026) |
+
+PVY et PVT créés à 10 h 54 UTC. **Limite Gumroad atteinte** sur Stocks et inventaire (STK) : prochaine création
+le 17/11 à 23:48 PST (18/11 à 08:48, Paris). Reprise programmée le 18/11 à 08:50 : STK, TVA (publication après
+accord de Quentin sur les valeurs « à vérifier », `QUESTIONS.md` § T44), CMP, RPS, MSC.
+
+## Lot du 18/11/2026
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| STK | stocks | 4yl9UwCwQPGWahkhI0oJUA== | /l/stocks-inventaire | 25 € | **en vente** (créé à 07 h 51 UTC, clé activée et publié le 18/11/2026) |
+
+Suivi de TVA refusé à 07 h 51 UTC (limite Gumroad) : prochaine création à 09:17 (Paris), reprise programmée à 09:18
+pour TVA, CMP, RPS, MSC.
+
+Reprise du 18/11/2026 (session « Sans voiture à Tassin », demande de Quentin « publie tout ce qui a une clé ») :
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| SVT | sans-voiture | 1DfML3czjZu5bg95z3KuRg== | /l/simulateur-vivre-sans-voiture | 9 € | **en vente** (clé vérifiée, publié le 18/11/2026) ; pack Ma voiture passé à 28 € |
+| TVA | tva | aGMrUCFVZ9yzLWfaNIWQ1w== | /l/suivi-tva | 19 € | **en vente** (clé vérifiée, publié le 18/11/2026) ; tags « gestión » et « comptabilité » : Gumroad garde les accents malgré la mise à jour (à corriger dans l'éditeur) |
+| CMP | competition | 1evFhHOrqZyrgIdg9T483A== | /l/odhsh | 49 € | brouillon **non publié** : clé active mais fiche inachevée (ni couverture, ni résumé, ni catégorie, ni tags, ni reçu, permalien par défaut) |
+
+Doublon `Xw7qeUhC65CrQW-X8XjqVQ==` (« DOUBLON À SUPPRIMER – Vivre sans voiture », /l/wdipoh) créé par erreur le 18/11 :
+absent de la liste des produits à 09 h 40, supprimé par Quentin.
+
+### Suite du 18/11/2026
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| TVA | tva | aGMrUCFVZ9yzLWfaNIWQ1w== | /l/suivi-tva | 19 € | **en vente** (créé ici, publié et mis en vente par une autre session, PR #157) |
+| CMP | competition | 1evFhHOrqZyrgIdg9T483A== | /l/gestion-competition | 49 € | **en vente** (18/11/2026) |
+| RPS | repas | EnpmgktOylLJZJST9_Tfhg== | /l/repas-liste-de-courses | 13 € | **en vente** (18/11/2026) |
+| MSC | musculation | 1T1zE6319ZF9qexKr8Kzzw== | /l/carnet-musculation-cross-training | 19 € | clé à activer (https://gumroad.com/products/ttzjjr/edit) |
+| APD | appel-decouverte | NOhwt805chMWKwJGEDhgJQ== | /l/pjimd (permalien à poser : preparateur-appel-decouverte) | 12 € | fiche à compléter (update_product interrompu), clé à activer (https://gumroad.com/products/pjimd/edit) |
+
+Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/11 par une autre session ; l'un est publié
+(`1DfML3czjZu5bg95z3KuRg==`), l'autre a disparu. Pack Ma voiture passé à 28 € (3 templates) sur Gumroad.

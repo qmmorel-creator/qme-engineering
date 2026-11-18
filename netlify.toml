@@ -865,6 +865,17 @@
     Cache-Control = "no-cache"
 
 [[headers]]
+  for = "/templates/sans-voiture/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/templates/sans-voiture/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
   for = "/templates/seminaire/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -1152,5 +1163,19 @@
 [[redirects]]
   from = "/demo/yves"
   to = "/templates/revision/?demo=concours&prenom=Yves"
+  status = 302
+  force = true
+
+# Liens courts de démo personnalisée (affiliation BosseTesMaths et ines.maths, 17/11/2026) : même démo
+# « première, spécialité maths » (profil `maths`), au prénom de chaque destinataire.
+[[redirects]]
+  from = "/demo/corinne"
+  to = "/templates/revision/?demo=maths&prenom=Corinne"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/demo/ines"
+  to = "/templates/revision/?demo=maths&prenom=Ines"
   status = 302
   force = true

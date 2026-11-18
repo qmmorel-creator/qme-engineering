@@ -205,6 +205,7 @@
   }
 
   function majSync(etat) {
+    if (etat === 'demo' && demoDiscrete()) etat = 'ok';
     etatSync = etat;
     const el = $('.sync');
     if (!el) return;
@@ -252,13 +253,17 @@
   }
 
   // Démo demandée par l'adresse (?demo, ?demo=pass&prenom=…) ; null = bouton de démo : on garde la démo déjà sur l'appareil.
+  // `&reinit` repart des données de départ. Profils « discrets » (démo d'un partenaire, filmée comme son propre
+  // espace) : ni bandeau « Mode démo », ni indicateur « Démo locale ».
   let demoDemandee = null;
+  const PROFILS_DISCRETS = new Set(['droit-l1']);
+  const demoDiscrete = () => session.demo && PROFILS_DISCRETS.has(E?.demoProfil);
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     const garde = stock.lire(CLE_DEMO);
     const voulue = demoDemandee || { profil: garde?.demoProfil || 'terminale', prenom: '' };
-    const memeDemo = garde && (garde.demoProfil || 'terminale') === voulue.profil && (!voulue.prenom || garde.prenom === voulue.prenom);
+    const memeDemo = garde && !voulue.reinit && (garde.demoProfil || 'terminale') === voulue.profil && (!voulue.prenom || garde.prenom === voulue.prenom);
     E = memeDemo ? normaliser(garde) : donneesDemo(voulue.profil, voulue.prenom);
     cache();
     demarrer();
@@ -319,7 +324,41 @@
       notes: { 'Note de synthèse': [9, 11.5], 'Culture générale': [10, 12], 'Droit public': [13], 'Finances publiques': [11], 'Questions sociales': [12.5] },
       planner: { titre: 'Travail', cours: [[0, 9 * 60, 8 * 60], [1, 9 * 60, 8 * 60], [2, 9 * 60, 5 * 60], [3, 9 * 60, 8 * 60], [4, 9 * 60, 7 * 60]], autres: [[2, 18 * 60, 90, 'Coaching oral (visio)'], [5, 9 * 60, 240, 'Concours blanc']] },
     },
+    // Élève de première, spécialité maths (pages /demo/corinne et /demo/ines) : bac blanc de maths la deuxième
+    // semaine de janvier, automatismes de l'épreuve anticipée le lundi, spécialité le mercredi.
+    maths: {
+      prenom: 'Sarah', filiere: 'premiere', graine: 2032, partiels: true, debut: -72, pauses: [-22, -23, -40], retards: 2, manquees: 4,
+      matieres: [
+        ['Automatismes', 'rouge', 0, 2, ['Calcul fractionnaire|-68|somme de fractions, produit, inverse, simplification', 'Puissances et racines carrées|-58|puissance d\'un produit, exposant négatif, notation scientifique, racine carrée', 'Pourcentages et évolutions|-47|coefficient multiplicateur, taux d\'évolution, évolutions successives, évolution réciproque', 'Équations et inéquations|-34|équation produit nul, inéquation, changement de sens, ensemble de solutions', 'Lecture graphique|-20|image, antécédent, signe d\'une fonction, coefficient directeur', 'Proportionnalité et conversions|-7|produit en croix, échelle, vitesse, unités', 'Statistiques descriptives|']],
+        ['Analyse', 'bleu', 2, 6, ['Second degré|-70|discriminant, racines, forme canonique, signe du trinôme', 'Suites numériques|-55|suite arithmétique, suite géométrique, terme général, somme des termes', 'Dérivation|-41|nombre dérivé, tangente, dérivée d\'un produit, dérivée d\'un quotient', 'Variations et extremums|-26|signe de la dérivée, tableau de variations, maximum, minimum', 'Fonction exponentielle|-9|exp, e^x, dérivée de e^x, croissance, e^(a+b)', 'Trigonométrie|', 'Algorithmique et Python|']],
+        ['Géométrie', 'jaune', 2, 3, ['Produit scalaire|-49|projeté orthogonal, cosinus, norme, orthogonalité', 'Géométrie repérée|-29|équation cartésienne, vecteur normal, équation de cercle', 'Applications du produit scalaire|-3|Al-Kashi, formule de la médiane, ensemble de points']],
+        ['Probabilités', 'vert', 2, 3, ['Probabilités conditionnelles|-44|arbre pondéré, probabilité de B sachant A, probabilités totales, indépendance', 'Variables aléatoires|-15|loi de probabilité, espérance, variance, écart-type', 'Répétition d\'épreuves indépendantes|']],
+      ],
+      notes: { 'Automatismes': [14, 15.5], 'Analyse': [9.5, 11], 'Géométrie': [12], 'Probabilités': [13.5] },
+      planner: { cours: [[0, 8 * 60, 9 * 60], [1, 8 * 60, 8 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 7 * 60]], autres: [[2, 14 * 60, 90, 'Défi maths de la semaine'], [5, 10 * 60, 120, 'Annales d\'automatismes']] },
+    },
+    // Étudiante en L1 de droit (page /demo/odelia) : partiels du semestre 1 la deuxième semaine de janvier
+    // (`partiels` : examens en jours décalés depuis le lundi des partiels, voir datePartiels).
+    'droit-l1': {
+      prenom: 'Jade', filiere: 'droit', graine: 2030, partiels: true, debut: -72, pauses: [-23, -24, -44], retards: 2, manquees: 4,
+      matieres: [
+        ['Introduction au droit', 'rouge', 0, 4, ['La notion de droit|-70|règle de droit, caractères, sanction, droit objectif, droits subjectifs', 'Les sources du droit|-58|loi, règlement, hiérarchie des normes, Constitution, traités', 'La jurisprudence|-44|Cour de cassation, arrêt, revirement, article 5 du Code civil', 'La coutume et la doctrine|-30|usage, opinio necessitatis, doctrine, autorité', 'Application de la loi dans le temps|-16|non-rétroactivité, article 2 du Code civil, effet immédiat, survie de la loi ancienne', 'La preuve des droits|-5|charge de la preuve, article 1353, acte authentique, acte sous signature privée', 'Les personnes juridiques|', 'Le patrimoine|']],
+        ['Droit constitutionnel', 'bleu', 2, 4, ['L\'État|-68|territoire, population, souveraineté, État unitaire, État fédéral', 'La Constitution|-55|constitution souple, constitution rigide, pouvoir constituant, révision', 'La séparation des pouvoirs|-41|Montesquieu, régime parlementaire, régime présidentiel, responsabilité politique', 'Le contrôle de constitutionnalité|-27|Conseil constitutionnel, bloc de constitutionnalité, QPC, contrôle a priori', 'Le régime britannique|-12|Parlement, Premier ministre, cabinet, bipartisme', 'Le régime américain|', 'Les modes de scrutin|']],
+        ['Histoire du droit', 'jaune', 4, 3, ['Le droit romain|-66|Loi des XII Tables, Justinien, Corpus juris civilis, ius civile', 'Le droit franc|-50|personnalité des lois, loi salique, capitulaires', 'La féodalité|-36|seigneurie, vassalité, fief, hommage', 'La renaissance du droit romain|-20|Bologne, glossateurs, droit savant, commentateurs', 'L\'affirmation du pouvoir royal|-6|', 'La rédaction des coutumes|']],
+        ['Économie politique', 'vert', 7, 2, ['Les grands courants|-62|Smith, Ricardo, Marx, Keynes', 'Le marché|-40|offre, demande, prix d\'équilibre, élasticité', 'La monnaie|-18|fonctions de la monnaie, création monétaire, banque centrale', 'La croissance|']],
+      ],
+      notes: { 'Introduction au droit': [8.5, 8], 'Droit constitutionnel': [10, 9], 'Histoire du droit': [10.5], 'Économie politique': [9.5] },
+      planner: { cours: [[0, 8 * 60 + 30, 4 * 60], [1, 8 * 60 + 30, 6 * 60 + 30], [2, 8 * 60 + 30, 4 * 60], [3, 8 * 60 + 30, 6 * 60 + 30], [4, 10 * 60 + 45, 90]], autres: [[0, 14 * 60, 180, 'BU · fiches'], [2, 14 * 60, 180, 'BU · fiches'], [1, 19 * 60 + 45, 60, 'Sport'], [3, 19 * 60 + 45, 60, 'Sport']] },
+    },
   };
+  // Profil `partiels` : lundi de la deuxième semaine de janvier qui suit (ni pendant les fêtes, ni un week-end) ;
+  // à défaut (moins de deux semaines avant), dans six semaines.
+  const jourOuvre = (s) => { const j = versDate(s).getDay(); return j === 6 ? ajout(s, 2) : j === 0 ? ajout(s, 1) : s; };
+  function datePartiels(t) {
+    let d = `${Number(t.slice(0, 4)) + (Number(t.slice(5, 7)) >= 8 ? 1 : 0)}-01-05`;
+    while (versDate(d).getDay() !== 1) d = ajout(d, 1);
+    return d > ajout(t, 14) ? d : jourOuvre(ajout(t, 41));
+  }
 
   function aleatoire(graine) {
     let a = graine >>> 0;
@@ -338,7 +377,8 @@
     for (let i = def.debut; i <= 0; i++) sommeil[ajout(t, i)] = Math.round((5.5 + hasard() * 3) * 2) / 2;
     const prevus = []; // [matiereId, titre, jourAppris, motsCles]
     def.matieres.forEach(([nom, c, examen, , chapitres]) => {
-      const m = { id: uid(), nom, couleur: c, examen: examen === null ? null : ajout(t, examen) };
+      const date = examen === null ? null : def.partiels ? jourOuvre(ajout(datePartiels(t), examen)) : ajout(t, examen);
+      const m = { id: uid(), nom, couleur: c, examen: date };
       E.matieres.push(m);
       chapitres.forEach((ligne) => {
         const [titre, jour, cles] = ligne.split('|');
@@ -537,7 +577,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo && !demoDiscrete() ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Planning<br>de révision</span>
@@ -1669,7 +1709,7 @@
     const code = stock.lire(CLE_CODE);
     const params = new URLSearchParams(location.search);
     if (params.has('demo')) {
-      demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40) };
+      demoDemandee = { profil: DEMOS[params.get('demo')] ? params.get('demo') : 'terminale', prenom: String(params.get('prenom') || '').trim().slice(0, 40), reinit: params.has('reinit') };
       // Démo personnalisée : l'adresse garde ses paramètres, pour qu'un rechargement rouvre la même démo.
       if (demoDemandee.profil === 'terminale' && !demoDemandee.prenom) history.replaceState(null, '', location.pathname + location.hash);
       if (!code) return ouvrirDemo(false);

@@ -83,7 +83,7 @@ déjà).
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
 | T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
-| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | prêt | 13 € | M | P2 | Liste initiale 12/11/2026 |
+| T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | prêt | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -121,7 +121,7 @@ déjà).
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | en vente | 19 € | S | P2 | Backlog Quentin n° 18 |
-| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | prêt | 19 € | S | P3 | Backlog Quentin n° 20 |
+| T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | en vente | 19 € | S | P3 | Backlog Quentin n° 20 |
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
@@ -129,7 +129,7 @@ déjà).
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
-| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | prêt | 49 € | L | P2 | Backlog Quentin n° 29 |
+| T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en vente | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | prêt | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
@@ -139,7 +139,7 @@ déjà).
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
-| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | prêt | 25 € | S | P2 | Backlog Quentin n° 40 |
+| T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | prêt | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
@@ -173,6 +173,7 @@ déjà).
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -273,7 +274,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
-| Ma voiture | PVT | T66, T10 | — | 25 € | 10 % | 22 € | 9 € |
+| Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -2355,3 +2356,57 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   (`netlify/lib/packs.mjs`, pages des packs régénérées ; CRS retiré des prévus dans `outils/packs/donnees.mjs`, et la
   phrase « Le plan de course à pied à venir » des arguments de PFM à revoir), carte anglaise, plannings, passage en
   vente.
+
+## Fiche T98 (idée de Quentin, 17/11/2026)
+
+### T98 · Vivre sans voiture (`templates/sans-voiture/`, préfixe SVT, 9 €)
+- Fiche détaillée : [`fiches/sans-voiture.md`](fiches/sans-voiture.md). Permalien prévu
+  `simulateur-vivre-sans-voiture`. Prix de **9 €** demandé explicitement par Quentin le 17/11/2026, en dérogation
+  à la règle du prix minimum de 12 € (13/11/2026). **Pack Ma voiture (PVT), décision de Quentin du 17/11/2026.**
+- Promesse : « Ta voiture te coûte combien, vraiment ? Et sans elle, tu gagnes combien ? » Public : particuliers et
+  familles qui envisagent de vendre leur voiture et de vivre avec le vélo, les transports, le train et une
+  location de temps en temps.
+- Questionnaire qui n'ouvre que les champs utiles : vélo (électrique ou non, déjà utilisé, équipement enfant et
+  courses), transports en commun (abonnement, part employeur, tickets, enfants), travail, école, santé, usages
+  actuels de la voiture, entourage.
+- Tout est saisi et paramétrable : voiture (mode de détention achat, crédit, LOA ou LLD, perte de valeur,
+  assurance, entretien, carburant en € par an ou km × consommation × prix, stationnement, péages), sortie (vente,
+  rachat anticipé de LOA au barème saisi, restitution, indemnité de LLD, délai avant sortie), remplacement
+  (location à la journée et à la semaine, franchise, autopartage, taxis, train, livraisons, vélo, rehausseur),
+  temps perdu facultatif, horizon.
+- Résultat : **gain annuel ou perte** de se passer de voiture, gain mensuel, gain cumulé coût de sortie compris,
+  meilleur moment de sortie, sensibilité (location + 30 %, jours de location en plus possibles), amortissement
+  implicite d'une LOA, score de faisabilité avec verdict bloquant.
+- **Urgences et parades mises en avant** : urgence médicale de nuit (15, 112), enfant malade à l'école, siège
+  auto, panne ou vol du vélo, grève, retour tardif, météo, gros achats, vacances, disponibilité et caution des
+  locations, siège vélo trop petit, bonus d'assurance, contrat en cours, évolution de la famille. Organisation
+  proposée et phase de test avant de vendre.
+- Origine : simulateur personnel de Quentin (17/11/2026) ; **seule la mécanique est reprise**, aucun montant,
+  lieu, contrat, réseau ni marque. Aucune donnée datée intégrée (tarifs saisis). Argent : avertissement.
+- Statut : **fiche** le 17/11/2026 ; **en cours** puis **prêt** le 17/11/2026 (skill `nouveau-template`, branche
+  `claude/car-free-lifestyle-eval-n586ko`). Application `templates/sans-voiture/` (SVT dans `PRODUITS`, démo fictive),
+  tests `outils/templates/sans-voiture.test.mjs` (15), page `catalogue/sans-voiture/` « Mise en vente prochaine »,
+  cartes FR (Argent) et EN, connexion, fiche courte dans `outils/packs/donnees.mjs` (**aucun pack modifié**).
+- Sources vérifiées le 17/11/2026 : numéros d'urgence (service-public.gouv.fr F33954 : 15, 17, 18, 112, 114 ;
+  116 117 « ou 15 selon la région ») ; siège enfant jusqu'à 10 ans et dispense des taxis (code de la route R412-2,
+  F628) ; **VTC : dispense non prévue par le texte, écrit « à vérifier »** ; casque à vélo avant 12 ans (F34169).
+- Requête principale : « vivre sans voiture » (autocomplétion du 17/11/2026, ligne dans `docs/seo/mots-cles.md`).
+- Communication : `communication/sans-voiture/` (`gumroad.md`, `gumroad.json`, `linkedin.md`, `instagram.md` +
+  carrousel de 5 vues, `prospects.md`). Programmée le 17/11/2026 à la demande de Quentin : **LinkedIn LI-155** le
+  24/11/2026 à 12:15 et **Instagram IG-151** (carrousel) le 25/11/2026 à 18:30. Fiche Gumroad : création du brouillon
+  prévue le 18/11/2026 (quota Gumroad de 10 produits par jour atteint le 17/11).
+- Pack Ma voiture (PVT), décision de Quentin du 17/11/2026. Le pack étant déjà en vente sur Gumroad (22 €, PR #145),
+  SVT est **annoncé** (`prevus: ['SVT']` dans `outils/packs/donnees.mjs`, « À venir » sur la page du pack, inclus avec
+  l'option Pack évolutif) mais **pas encore dans `produits`** : le contenu vendu et le prix ne changent pas avant la
+  sortie de T98. Le générateur des packs accepte désormais un template existant annoncé hors de `produits`.
+  **À la mise en vente de T98** (feu vert de Quentin) : SVT dans `produits` de PVT avec sa date dans `ajouts`
+  (`netlify/lib/packs.mjs`), `prevus` vidé, pages régénérées, et prix du pack sur Gumroad passé à **28 €**
+  (12 + 13 + 9 = 34 €, −15 % pour 3 templates, arrondi à l'euro inférieur), option évolutif **9 €** (25 % = 7 €,
+  relevé au minimum de 9 €).
+- Site publié le 17/11/2026 avec le feu vert de Quentin (fusion de la PR #146) : T98 en « Mise en vente prochaine »,
+  démo libre.
+- Décidé par Quentin le 17/11/2026 : accueil « dès 9 € » (PR #148). **En vente le 18/11/2026** (« publie tout ce qui a
+  une clé ») : fiche Gumroad `1DfML3czjZu5bg95z3KuRg==` (/l/simulateur-vivre-sans-voiture), clé de licence vérifiée
+  (`is_licensed` true), SVT dans `produits` du pack Ma voiture avec `ajouts: { SVT: '2026-11-18' }`, pack à 28 € (34 €,
+  −15 %). Option Pack évolutif : 9 €, soit la version « Pack évolutif » à 37 € à régler par Quentin dans l'éditeur
+  Gumroad (versions non modifiables par les outils).

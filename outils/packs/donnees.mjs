@@ -101,6 +101,7 @@ export const TEMPLATES = {
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
   QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
   SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
+  SVT: { slug: 'sans-voiture', prix: 900, phrase: 'Le gain annuel de vivre sans voiture, sortie comprise, et une parade à chaque urgence.', pour: 'perso' },
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
@@ -414,14 +415,14 @@ export const PAGES = {
   PVT: {
     couleur: 'bleu', cibles: ['automobilistes', 'particuliers'],
     accroche: 'Ce que votre voiture vous coûte vraiment.',
-    resume: 'Choisir entre achat, crédit et location, puis suivre entretiens, kilomètres et dépenses.',
-    pourQui: 'Vous changez de voiture ou vous voulez enfin savoir ce qu’elle coûte. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
+    resume: 'Comparer les offres, suivre entretiens et dépenses, ou décider de s’en passer.',
+    pourQui: 'Vous changez de voiture, vous voulez enfin savoir ce qu’elle coûte, ou vous vous demandez si vous pourriez vivre sans. Les offres de location et de crédit sont difficiles à comparer, et le carnet d’entretien dort dans la boîte à gants.',
     parcours: [
       ['VTR', 'Comparez comptant, crédit, LOA et LLD sur le coût total.'],
       ['CAR', 'Suivez entretiens, kilométrage, dépenses et coût au kilomètre.'],
+      ['SVT', 'Décidez si vous pouvez vous passer de voiture, gain annuel et urgences compris.'],
     ],
-    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture et le simulateur se complètent'],
-    prevus: [],
+    arguments: ['Avant l’achat, puis pendant toute la vie de la voiture', 'Aucune donnée de marque ni de prix figée', 'Le carnet de voiture et les deux simulateurs se complètent'],
   },
   PAQ: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],

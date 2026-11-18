@@ -21,7 +21,7 @@ const types = (l) => simple(l.map((c) => c.type).sort());
 
 test('base : taux par défaut, sources datées, régimes et types', () => {
   assert.deepEqual(simple(B.reglages.taux.map((t) => t.taux)), [20, 10, 5.5, 2.1, 0]);
-  assert.equal(B.verifieLe, '2026-11-14');
+  assert.equal(B.verifieLe, '2026-11-17');
   assert.ok(B.sources.length >= 5 && B.sources.every((s) => s.sujet && s.texte && s.statut));
   assert.ok(B.sources.some((s) => s.statut === 'à vérifier'));
   assert.deepEqual(simple(B.regimes.map((r) => r.id)), ['mensuel', 'trimestriel', 'simplifie']);
@@ -96,10 +96,16 @@ test('échéances : jour paramétrable, report au jour ouvrable, acomptes et CA1
   // Jour fixe saisi à la place du calcul.
   const sf = R.normaliserReglages({ regime: 'simplifie', ca12Jour: 5, ca12Mois: 5 }, B);
   assert.equal(R.echeancesPeriode(sf, R.periodeDe(sf, '2026-03-01')).declaration, '2027-05-05');
-  // Exercice clos le 31 mars : acomptes au 7e et au 12e mois, CA12 dans les 3 mois.
+  // Exercice clos le 31 mars : acomptes en juillet et en décembre de l'exercice (impots.gouv.fr, page « TVA »),
+  // pas au 7e et au 12e mois ; CA12 dans les 3 mois de la clôture.
   const sm = R.normaliserReglages({ regime: 'simplifie', clotureMois: 3 }, B);
   const em = R.echeancesPeriode(sm, R.periodeDe(sm, '2026-02-01'));
-  assert.deepEqual(simple(em), { acompte1: '2025-10-15', acompte2: '2026-03-16', declaration: '2026-06-30' });
+  assert.deepEqual(simple(em), { acompte1: '2025-07-15', acompte2: '2025-12-15', declaration: '2026-06-30' });
+  // Exercice clos le 30 septembre 2027 (décalé, compris dans la réforme) : seul le juillet 2027 tombe dans l'exercice
+  // après le 31/12/2026, aucun décembre 2027.
+  const ss = R.normaliserReglages({ regime: 'simplifie', clotureMois: 9 }, B);
+  const es = R.echeancesPeriode(ss, R.periodeDe(ss, '2027-03-01'));
+  assert.deepEqual(simple(es), { acompte1: '2027-07-15', acompte2: '2026-12-15', declaration: '2027-12-31' });
 });
 
 test('bilans : collectée, déductible (biens et services, immobilisations), crédit reporté et remboursement', () => {
@@ -259,4 +265,25 @@ test('normalisation : valeurs absurdes, anciennes données, suivi filtré', () =
   assert.deepEqual(simple(R.normaliser(null, B)), simple(R.etatVide(B)));
   assert.equal(R.validerOperation(R.normaliserOperation({ date: '2026-01-01', libelle: '', ht: 10 })), 'Indique un libellé (client, fournisseur ou nature).');
   assert.equal(R.validerOperation(R.normaliserOperation({ date: '2026-01-01', libelle: 'x', ht: 10 })), '');
+});
+
+test('périodicité 2027 : critère du chiffre d\'affaires (CGI art. 287), plus de seuil de 4 000 € de TVA', () => {
+  const types = (l) => l.map((x) => x.type);
+  // TVA nette élevée mais chiffre d'affaires modeste : plus d'alerte en 2027.
+  const tri = etat({ regime: 'trimestriel' }, [op('2026-01-10', 'vente', 10000), op('2027-02-10', 'vente', 10000)]);
+  assert.ok(!types(R.controles(tri, '2027-05-01')).includes('seuil'));
+  // Ventes 2026 au-delà de 1 000 000 € HT : alerte en 2027.
+  const gros = etat({ regime: 'trimestriel' }, [op('2026-06-10', 'vente', 1000001)]);
+  assert.ok(types(R.controles(gros, '2027-02-01')).includes('seuil'));
+  // Année en cours au-delà de 1 100 000 € : alerte.
+  const cours = etat({ regime: 'trimestriel' }, [op('2026-06-10', 'vente', 500000), op('2027-03-10', 'vente', 1100001)]);
+  assert.ok(types(R.controles(cours, '2027-04-01')).includes('seuil'));
+  // Au réel mensuel avec un chiffre d'affaires 2026 sous le seuil : information, pas d'alerte.
+  const men = etat({ regime: 'mensuel' }, [op('2026-06-10', 'vente', 50000)]);
+  const c = R.controles(men, '2027-02-01');
+  assert.ok(types(c).includes('trimestrielPossible'));
+  assert.equal(c.find((x) => x.type === 'trimestrielPossible').gravite, 'info');
+  // En 2026, la règle des 4 000 € s'applique encore, et la date du critère est réglable.
+  assert.ok(!types(R.controles(men, '2026-12-01')).includes('trimestrielPossible'));
+  assert.ok(!types(R.controles(etat({ regime: 'mensuel', dateSeuilCa: '2028-01-01' }, men.operations), '2027-02-01')).includes('trimestrielPossible'));
 });

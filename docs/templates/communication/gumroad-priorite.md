@@ -46,11 +46,11 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | **En vente depuis le 17/11** |
 | 7 | Carnet de voiture | CAR | voiture | 13 € | **En vente depuis le 17/11** |
 | 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | **En vente depuis le 17/11** |
-| 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | 2 templates en vente depuis le 16/11 |
-| 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | Après le Carnet de voiture |
-| 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | Pack Commerçant et artisan |
-| 12 | Compétition | CMP | competition | 49 € | |
-| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | Pack Forme |
+| 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | **En vente depuis le 17/11** |
+| 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | **En vente depuis le 17/11** |
+| 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
+| 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
+| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS **en vente depuis le 18/11** ; MSC brouillon, clé à activer |
 | 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
@@ -65,6 +65,6 @@ d'emprunt, Planificateur de voyage, Simulateur leasing ou achat (38 templates en
 possible : 17/11 à 08:39 (Paris).
 
 17/11 : **Planner horaire publié et en vente** (39 templates en vente) ; PGS, NTS, CAN, MMR, CAR publiés et en vente (44 templates en vente) ;
-Pack Étudiant et Pack Freelance publiés et en vente ; PVY et PVT en attente de la limite (prochaine création le 17/11 à 11:52, Paris).
+Pack Étudiant et Pack Freelance publiés et en vente ; Pack Voyage et Pack Ma voiture publiés et en vente ; limite atteinte, prochaine création le 18/11 à 08:48 (Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).

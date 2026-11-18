@@ -1,0 +1,43 @@
+{
+  "slug": "sans-voiture",
+  "name": "Vivre sans voiture",
+  "price_cents": 900,
+  "permalink": "simulateur-vivre-sans-voiture",
+  "category": "business-and-money/personal-finance",
+  "button": "Ouvrir mon simulateur",
+  "summary": "Vivre sans voiture : ce que ta voiture te coûte vraiment, ce que coûteraient le vélo, les transports et la location, et ce que tu gagnes par an à t'en passer, sortie de contrat comprise, avec une parade à chaque urgence.",
+  "description": "<h2>Et sans elle, tu gagnes combien ?</h2><p>On compte le carburant, rarement le reste : perte de valeur ou loyers, intérêts, assurance, entretien, stationnement. Et quand la voiture est en LOA ou en LLD, en sortir a un prix. Vivre sans voiture calcule, avec tes chiffres, ce que ta voiture te coûte vraiment, ce que coûteraient les solutions de remplacement, et ce que tu gagnes (ou perds) chaque année à t'en passer, coût de sortie compris.</p><h3>Ce que tu obtiens</h3><ul><li><strong>Le coût complet de ta voiture</strong> : perte de valeur ou loyers, intérêts d'un crédit, assurance, entretien, contrôle technique, carburant (en euros par an, ou kilomètres × consommation × prix), stationnement, péages.</li><li><strong>La sortie chiffrée</strong> : vente, rachat anticipé d'une LOA au barème de ton contrat puis revente le même jour, option finale, restitution, indemnité de LLD. Tant que le contrat court, le gain ne commence pas.</li><li><strong>Le coût sans voiture</strong> : transports (part employeur déduite), vélo électrique ou non, location à la journée ou à la semaine avec la franchise, autopartage, taxis, train, livraisons, équipement acheté une fois.</li><li><strong>Le gain par an, ou la perte</strong> : par mois, cumulé sur 1 à 15 ans, jusqu'à 5 scénarios comparés, meilleur moment de sortie, gain si la location coûte 30 % plus cher, jours de location possibles en plus.</li><li><strong>Un score de faisabilité</strong> : un questionnaire (travail, école, transports, personne de recours…) qui n'ouvre que les champs utiles et bloque le verdict si le trajet du travail ou de l'école n'est pas réglé.</li><li><strong>Une parade pour chaque urgence</strong> : 14 situations (urgence de nuit, enfant malade à l'école, siège auto, panne du vélo, grève, vacances…), un plan B pour chacune, une semaine type, une liste d'équipement et une phase de test avant de vendre.</li></ul><h3>Comment ça marche</h3><ol><li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li><li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la.</li><li>Réponds au questionnaire, puis remplace les valeurs d'exemple par tes chiffres. Ta simulation est enregistrée en ligne et te suit sur ordinateur, tablette et téléphone avec la même clé.</li></ol><p>Rien à installer. Achat unique, sans abonnement.</p><p><em>Simulation à partir de ta saisie, pas un conseil financier : ton contrat et ton financeur font foi. Aucun tarif, prix du carburant ni cote intégrés. Les repères d'urgence sont des pistes d'organisation, pas un avis médical : en cas d'urgence vitale, appelle le 15 ou le 112. Démo disponible sur qm-engineering.fr/templates.</em></p>",
+  "tags": [
+    "sans-voiture",
+    "cout-voiture",
+    "budget",
+    "velo",
+    "mobilite",
+    "loa",
+    "simulateur",
+    "francais"
+  ],
+  "receipt": "Ta clé de licence (ci-dessus) est ton code d'accès. Ouvre qm-engineering.fr/connexion, colle-la, et ton simulateur s'ouvre. Réponds au questionnaire, puis remplace les valeurs d'exemple par tes chiffres. Garde cet e-mail : la même clé fonctionne sur tous tes appareils.",
+  "details": [
+    {
+      "name": "Format",
+      "value": "Application web (ordinateur, tablette, téléphone)"
+    },
+    {
+      "name": "Accès",
+      "value": "Clé de licence envoyée par e-mail"
+    },
+    {
+      "name": "Langue",
+      "value": "Français"
+    },
+    {
+      "name": "Paiement",
+      "value": "Achat unique, sans abonnement"
+    },
+    {
+      "name": "Pour",
+      "value": "Particuliers, familles"
+    }
+  ]
+}
