@@ -6,6 +6,10 @@ développement. Développement : skill `.claude/skills/nouveau-template/` (lanc�
 
 Non publié sur le site (chemin bloqué dans `netlify.toml`).
 
+**Pas de version anglaise des templates ni des packs (décision de Quentin du 18/11/2026).** Les mentions « version
+anglaise en attente » ci-dessous sont caduques. La « carte anglaise » (présentation du template français sur
+`/en/templates/`, mention « in French ») reste à faire : la partie anglaise du site est conservée.
+
 Sources fusionnées ici : la liste initiale (T01–T22, 12/11/2026), les idées tirées des documents de
 travail de Quentin (T23–T29, 12/11/2026) et le backlog de Quentin « 50 outils prêts à l'emploi à vendre
 sur Gumroad » (n° 01–50, 12/11/2026 ; T30 et suivants, sauf fusions). Chaque ligne indique son origine.
