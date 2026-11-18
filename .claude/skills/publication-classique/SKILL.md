@@ -5,6 +5,10 @@ description: Créer et programmer les publications « classiques » LinkedIn et 
 
 # Publications classiques LinkedIn et Instagram
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 But : qu'il y ait **toujours au moins 7 jours** de publications programmées sur chaque réseau (une par jour,
 en plus des vidéos démo). Chaque publication reprend la manière de QME déjà publiée : constat concret,
 geste du concepteur, outil montré avec des données fictives, accroche forte, aucune promesse inventée.
@@ -114,8 +118,8 @@ lien de la démo et de la page catalogue ou du site), ligne `———`, `NOTES`
    Images Instagram sous le nom exact `IG-nn-<slug>-tiktok.mp4` (premier fichier de la colonne I, « -1.png » ou
    « .png » remplacé par « -tiktok.mp4 ») : Instinct la cherche par ce nom. Rien à écrire dans le planning.
 2. Lignes : relire l'onglet juste avant d'écrire ; ID = plus grand numéro + 1 ; insérer à la place
-   chronologique (`insert_dimension` puis `update_values`). LinkedIn : **08:30** (méthode, B2B) ou **12:15**
-   (template) ; Instagram **18:30** ; colonne O d'Instagram = ID LinkedIn associé ; colonne P = IDs Drive dans
+   chronologique (`insert_dimension` puis `update_values`). LinkedIn : **10:00** (méthode, B2B) ou **12:15**
+   (template) ; Instagram **19:00** (heures : `docs/templates/communication/HEURES.md`) ; colonne O d'Instagram = ID LinkedIn associé ; colonne P = IDs Drive dans
    l'ordre ; Thème = famille du sujet ; Format = format choisi.
 3. **Statut « Programmé »** (publication autonome demandée par Quentin le 15/11/2026). Si Quentin demande une
    relecture, mettre « Prêt » à la place. Ne jamais toucher une ligne « Publié », « Erreur », « Annulé » ou déjà

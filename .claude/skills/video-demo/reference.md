@@ -136,7 +136,7 @@ Sheets (outils `mcp__Google_Sheets__*`, onglet `Planning`, `sheetId` à lire si 
   Dossiers : Textes `19-LC3WoXSV6njvAiwUuoArup-5jpa12K`, Images `1QTuTihvIcKxLpFSU7xfACyVeXxYA9N_j`.
   Titre du doc : `LI-nn – <titre interne>`.
 - Instagram `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`, colonnes A–P : … · Format (`Reel`) ·
-  LinkedIn associé · IDs Drive des médias. Ligne vidéo : Heure 08:30, Fichier(s)
+  LinkedIn associé · IDs Drive des médias. Ligne vidéo : Heure 12:30, Fichier(s)
   `IG-nn-<slug>.mp4 | couverture : IG-nn-<slug>-couverture.png`, P `<ID vidéo> | couverture : <ID image>`,
   O = ID LinkedIn, Thème « Vidéo démo ».
   Dossiers : Textes `1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`, Images `1ALPahoZEKdYjG5iUnPfa5aYubsOPWN3m`.

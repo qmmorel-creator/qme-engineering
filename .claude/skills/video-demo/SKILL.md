@@ -5,6 +5,10 @@ description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s,
 
 # Vidéo de démonstration d'un template QME
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 Outillage dans `docs/videos/` (privé, 404 sur le site) : `studio/` (toile 1080 × 1920 + habillage),
 `moteur.mjs` (pilotage Playwright, capture, montage ffmpeg ; s'appuie sur `rendu.mjs`, le moteur vidéo unique de QME :
 temps virtuel, encodage, musique), `scenarios/*.mjs` (une vidéo = un fichier),
@@ -80,8 +84,8 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
    `A1:O`) : d'autres sessions les modifient.
 2. **Date** : la plus proche, à partir de demain, où **aucun des deux plannings** n'a déjà une vidéo
    (LinkedIn format « Vidéo », Instagram format « Reel », statut ≠ « Annulé »). Même date sur les deux.
-3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 08:30 ou 12:15) ;
-   Instagram **08:30** (matin ; les autres sont à 18:30). Deux publications par jour et par réseau.
+3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 10:00 ou 12:15) ;
+   Instagram **12:30** (pause déjeuner ; les autres sont à 19:00). Deux publications par jour et par réseau.
 4. Copier la vidéo (et la couverture pour Instagram) dans les dossiers Images de chaque réseau
    (`mcp__Google_Drive__copy_file`), aux noms `LI-nn-<slug>-video.mp4`, `IG-nn-<slug>.mp4`,
    `IG-nn-<slug>-couverture.png`.

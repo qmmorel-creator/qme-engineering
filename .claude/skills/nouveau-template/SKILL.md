@@ -5,6 +5,10 @@ description: Développer un nouveau template QME vendu sur Gumroad (application 
 
 # Nouveau template QME
 
+> **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
+> 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
+> aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
+
 Référence vivante : le **planning de révision** (`templates/revision/`, préfixe `REV`). Tout nouveau
 template en reprend l'architecture, la charte et le niveau de finition. Avant de coder, lire
 `reference.md` (architecture, contrats, pièges déjà rencontrés) dans ce dossier.
@@ -150,7 +154,7 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
 5. **Planifier l'article LinkedIn** dès que le template est prêt (règle de Quentin, 12/11/2026) : l'intercaler
    **entre deux publications déjà prévues**, en partant du début du planning. Procédure détaillée dans
    `reference.md` § « Planning LinkedIn ».
-6. **Planifier le post Instagram** le lendemain de l'article LinkedIn, à 18:30 : procédure dans
+6. **Planifier le post Instagram** le lendemain de l'article LinkedIn, à 19:00 : procédure dans
    `reference.md` § « Planning Instagram » (publication par Instinct, comme LinkedIn). Motion design
    possible : reel 1080 × 1920 animé en HTML, rendu en MP4 par `docs/templates/communication/instagram/video.mjs`.
    TikTok : un carrousel reçoit aussi sa vidéo `IG-nn-<slug>-tiktok.mp4` (`reference.md` § « Planning Instagram »).
