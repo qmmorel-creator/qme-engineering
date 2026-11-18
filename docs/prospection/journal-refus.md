@@ -9,3 +9,4 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-18 | Moovinbike | `contact@moovinbike.com` | refus poli (solution interne) | oui |
 | 2026-11-18 | GEG (Guillaume Mirabel) | `g.mirabel@geg.fr` | refus, contact personnel (tutoiement) | non, laissé à Quentin |
 | 2026-11-18 | Alpes Premium (Laurent Poiron) | `laurent@alpes-premium.com` | report à mai-juin 2027 | non, laissé à Quentin |
+| 2026-11-18 | Les Makers (Matthieu Verne) | `hey@lesmakers.fr` | refus poli, contre-offre d'articles sponsorisés payants (Paper Club), non retenue | oui |
