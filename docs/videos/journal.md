@@ -14,7 +14,8 @@ Non publié (chemin `/docs/*` bloqué en 404).
 - **Routine Instinct YouTube transmise : oui (test YT-01 réussi le 16/11/2026 à 22:21, https://youtube.com/shorts/drvtpjP64oM ; YT-02 à YT-37 passés à « Programmé »).** Tant que Quentin n'a pas transmis
   `docs/templates/communication/youtube/PROMPT-INSTINCT-YOUTUBE.md` (et confirmé la réponse d'Instinct), les lignes
   du planning YouTube sont au statut **« Prêt »**. Après confirmation : passer cette ligne à « oui » et les lignes
-  « Prêt » à « Programmé ». TikTok est abandonné (16/11/2026).
+  « Prêt » à « Programmé ». TikTok abandonné le 16/11/2026, **repris le 18/11/2026** : Instinct reprend chaque
+  publication Instagram sur TikTok (@qme.qm.engineering), voir `docs/templates/communication/tiktok/`.
 
 ## Créneaux
 
