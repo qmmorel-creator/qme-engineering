@@ -23,11 +23,13 @@ vérifié et ce qui ne l'a pas été.
    20 à 30 s, **musique QME** (piste audio vérifiée avec `ffprobe`, jamais de vidéo muette), captures réelles de la démo
    (`?demo`, serveur local, Playwright), sous-titres anglais, mention « French interface · sample data » sur chaque
    capture, carton final « qm-engineering.fr/x ». Ne jamais écrire un autre outil de capture.
+7. **Captures** : interface en français acceptée ; prendre l'écran le plus parlant visuellement (graphique, planning
+   coloré, grand chiffre en titre), jamais une fenêtre modale grisée ni une liste dense.
 
 ## 1. Choisir la date et le type
 
 Lire `journal-x.md`. Date = le premier jour sans ligne au statut `Prêt`, `Programmé` ou `Publié`, entre demain et J+14.
-Une ligne `Idée` déjà prévue à cette date est produite telle quelle (sujet du README) ; sinon, créer la ligne suivante
+Une ligne `À produire` déjà prévue à cette date est produite telle quelle (sujet du README) ; sinon, créer la ligne suivante
 (ID `X-nn` suivant, type alterné, sujet nouveau). Aucune date libre : ne rien produire, le dire.
 
 ## 2. Produire
@@ -43,14 +45,19 @@ Une ligne `Idée` déjà prévue à cette date est produite telle quelle (sujet 
 - Si un template a été mis en vente depuis la dernière génération : ajouter sa ligne à `outils/x/templates-en.json` et
   relancer `node outils/x/generer.mjs` (PR vers `main`, aucune fusion sans le feu vert de Quentin).
 
-## 3. Déposer et programmer
+## 3. Déposer et programmer (Instinct)
 
-1. Vidéo : dépôt Drive comme dans `video-demo` § 3 (`mcp__Google_Drive__create_file`, `base64Content` =
-   `sha256:<empreinte>:<chemin absolu>`, `disableConversionToGoogleType: true`), sous le nom `X-nn-<slug>.mp4`.
-2. Si `journal-x.md` indique « Programmation automatique sur X : oui » : programmer à **15:30 Europe/Paris** avec le
-   skill `posty:posty` (compte X de QME uniquement), statut `Programmé`. Sinon : statut `Prêt`, rien n'est publié.
-3. Ne jamais publier soi-même immédiatement ni écrire « Publié » : c'est constaté sur X (lien de la publication).
-4. Les vidéos X sont en anglais : elles ne vont **pas** dans le planning YouTube (chaîne en français), sauf décision
+Planning : Sheet « Planning publications X » `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM`, onglet `Planning`
+(colonnes A–K, détail dans le README). Relire tout l'onglet **juste avant d'écrire**.
+
+1. Vidéo : dépôt dans le dossier Drive « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA` comme dans
+   `video-demo` § 3 (`mcp__Google_Drive__create_file`, `base64Content` = `sha256:<empreinte>:<chemin absolu>`,
+   `disableConversionToGoogleType: true`), sous le nom `X-nn-<slug>.mp4` ; noter le nom en G et l'ID Drive en H.
+2. Écrire ou compléter la ligne : A à F (texte exact, identique au README), K (remarque utile, « Épingler ce post »
+   pour un post à épingler).
+3. Statut D : « Programmé » si `journal-x.md` indique « Routine Instinct X transmise : oui » ; sinon « Prêt ».
+4. Ne jamais publier soi-même ni écrire « Publié » : c'est Instinct qui l'écrit (colonnes D, I, J).
+5. Les vidéos X sont en anglais : elles ne vont **pas** dans le planning YouTube (chaîne en français), sauf décision
    contraire de Quentin.
 
 ## 4. Journal et compte rendu

@@ -17,10 +17,12 @@ for (const slug of Object.keys(donnees).filter((k) => !k.startsWith('_'))) {
   const [theme, nom, accroche, reglesFr] = donnees[slug];
   if (!THEMES[theme]) throw new Error(`Thème inconnu pour ${slug} : ${theme}`);
   const html = fs.readFileSync(path.join(racine, 'catalogue', slug, 'index.html'), 'utf8');
-  // Première capture ordinateur de la page catalogue (les captures téléphone finissent par -tel…).
+  // Capture choisie dans _captures, telle que la page catalogue l'affiche (même version ?v=, mêmes dimensions).
+  const choisie = donnees._captures[slug];
+  if (!choisie) throw new Error(`Pas de capture choisie pour ${slug} dans _captures`);
   const img = [...html.matchAll(/<img[^>]*src="(\/assets\/templates-[^"]+\.webp[^"]*)"[^>]*>/g)]
-    .find((m) => !/-tel[-.]/.test(m[1]));
-  if (!img) throw new Error(`Aucune capture ordinateur dans catalogue/${slug}/`);
+    .find((m) => m[1].split('?')[0] === `/assets/${choisie}`);
+  if (!img) throw new Error(`La capture ${choisie} n'est pas sur catalogue/${slug}/`);
   const larg = /width="(\d+)"/.exec(img[0])?.[1] || '1600';
   const haut = /height="(\d+)"/.exec(img[0])?.[1] || '1000';
   const fichier = path.join(racine, img[1].split('?')[0]);

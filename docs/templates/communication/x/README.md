@@ -4,6 +4,15 @@ Décision de Quentin du 18/11/2026 : une campagne quotidienne sur X, **uniquemen
 volet sur mesure**. Une publication par jour, en alternant **post** et **vidéo**. Non publié (dossier `docs/`).
 Production quotidienne : skill `.claude/skills/campagne-x/`. Journal : `journal-x.md`.
 
+**Publication par Instinct**, comme LinkedIn, Instagram et YouTube (décision du 18/11/2026) :
+- Sheet **« Planning publications X »** `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM`, onglet `Planning`, dossier Drive
+  « QME – Publications X » `1W6TwJQC7BqoGBuoYJeLy62EOaXXroqyA`.
+- Colonnes A–K : ID (`X-nn`) · Date · Heure (Europe/Paris) · Statut · Type (`Post` / `Vidéo`) · Texte de la publication
+  (tel quel, rien d'autre à lire) · Fichier vidéo (contrôle du nom) · ID Drive vidéo · Publié le · URL publication · Remarque.
+- Statuts : `À produire` (vidéo pas encore rendue) → `Prêt` → `Programmé` (une fois la routine Instinct confirmée) →
+  `Publié` / `Erreur` (écrits par Instinct) ; `Annulé`.
+- Routine : `PROMPT-INSTINCT-X.md` (à transmettre par Quentin). Passages 15:30 et 15:45.
+
 ## Principe
 
 Les 97 templates (interface en français) servent de **preuve** : « j'en ai construit 97, je peux construire le vôtre ».
@@ -33,6 +42,8 @@ Après un ajout de template en vente : ajouter sa ligne à `outils/x/templates-e
   l'outil (existant, no-code ou sur mesure), prototype utilisable en quelques jours, automatisation ciblée en 2 à 3 jours,
   outil complet en 5 à 10 jours, Quentin ingénieur et chef de projet depuis 15 ans (dont 7 en bureau d'études).
 - Post : **280 caractères au plus** (compte gratuit ; une URL compte 23), lien `qm-engineering.fr/x` en fin.
+- Captures : l'interface reste en français ; choisir l'écran le plus parlant visuellement (graphique, planning
+  coloré, grand chiffre en titre), jamais une fenêtre modale grisée ni une liste dense.
 - Vidéo : moteur unique `docs/videos/` (`rendu.mjs`, page HTML animée), 1080 × 1920, 20 à 30 s, **musique QME**,
   captures réelles des démos, sous-titres anglais sur l'interface française, mention « French interface · sample data »
   sur chaque capture, carton final « qm-engineering.fr/x ». Texte d'accompagnement ≤ 280 caractères.
