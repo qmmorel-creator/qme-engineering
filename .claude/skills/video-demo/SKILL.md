@@ -6,7 +6,8 @@ description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s,
 # Vidéo de démonstration d'un template QME
 
 Outillage dans `docs/videos/` (privé, 404 sur le site) : `studio/` (toile 1080 × 1920 + habillage),
-`moteur.mjs` (pilotage Playwright, capture, montage ffmpeg), `scenarios/*.mjs` (une vidéo = un fichier),
+`moteur.mjs` (pilotage Playwright, capture, montage ffmpeg ; s'appuie sur `rendu.mjs`, le moteur vidéo unique de QME :
+temps virtuel, encodage, musique), `scenarios/*.mjs` (une vidéo = un fichier),
 `musique/` (piste de la présentation QME), `journal.md` (mémoire), `catalogue.mjs` (produits en vente).
 Lire `reference.md` (API du studio et du moteur, règles de mise en scène) avant d'écrire un scénario.
 Modèle complet : `docs/videos/scenarios/gantt-retard.mjs` (prototype validé par Quentin le 15/11/2026).
