@@ -8,6 +8,7 @@
 //
 // Usage :
 //   node docs/videos/diaporama.mjs <image1.png> … <imageN.png> --sortie <fichier.mp4> [--par-image <s>] [--brouillon]
+// Une image seule (format Instagram « Image ») donne une vidéo fixe de 5 s, en musique.
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join, resolve, dirname, extname } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -63,7 +64,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const opt = (n) => { const i = args.indexOf(n); return i >= 0 ? args.splice(i, 2)[1] : null; };
   const sortie = opt('--sortie'); const par = opt('--par-image'); const rapide = args.includes('--brouillon');
   const images = args.filter((a) => !a.startsWith('--'));
-  if (!sortie || images.length < 2) { console.error('Usage : node docs/videos/diaporama.mjs <img1> … <imgN> --sortie f.mp4 [--par-image s] [--brouillon]'); process.exit(1); }
+  if (!sortie || images.length < 1) { console.error('Usage : node docs/videos/diaporama.mjs <img1> … <imgN> --sortie f.mp4 [--par-image s] [--brouillon]'); process.exit(1); }
   mkdirSync(dirname(resolve(sortie)), { recursive: true });
   const r = await rendreDiaporama({ images, sortie: resolve(sortie), parImage: par ? Number(par) : PAR_IMAGE, rapide });
   console.log(`${r.sortie} : ${images.length} images, ${r.duree.toFixed(1)} s, ${(r.taille / 1e6).toFixed(2)} Mo, musique QME`);

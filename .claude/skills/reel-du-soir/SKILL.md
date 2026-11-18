@@ -61,7 +61,8 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
 3. Ligne **Instagram** à sa place chronologique : ID `IG-` + plus grand numéro + 1, date choisie, heure **18:45**,
    statut « Programmé », Thème « Reel du soir », Titre interne `Reel · <titre>`, Doc (ID et lien), fichiers
    `IG-nn-<slug>.mp4 | couverture : IG-nn-<slug>-couverture.png`, texte alternatif (ce que montre la vidéo, « données
-   fictives »), Format `Reel`, P = `<ID vidéo> | couverture : <ID image>`.
+   fictives »), Format `Reel`, P = `<ID vidéo> | couverture : <ID image>`. TikTok : rien à produire, Instinct
+   reprend cette vidéo telle quelle, sans légende (`docs/templates/communication/tiktok/`).
 4. Ligne **YouTube** à sa place chronologique : ID `YT-` + plus grand numéro + 1, même date, **20:00**,
    « Programmé », Thème = slug, titre (100 caractères au plus), description au modèle de
    `docs/templates/communication/youtube/README.md` (lien `?demo&utm_source=youtube&utm_medium=description&utm_campaign=yt-nn`,
