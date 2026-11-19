@@ -10,6 +10,8 @@ export default async (requete, contexte) => traiterEssai(requete, {
   secret: process.env.TEMPLATES_SECRET,
   essais: storeEssais(getStore),
   envoyer: envoyeurDepuisEnv(),
+  // Notification de chaque essai lancé : ESSAI_NOTIFICATION, sinon l'adresse d'expédition (boîte de Quentin).
+  notifier: process.env.ESSAI_NOTIFICATION || process.env.ESSAI_EXPEDITEUR || '',
   admin: process.env.INTERETS_ADMIN, // code administrateur facultatif, comme /api/interets (sinon le code ADM-… dérivé du secret)
   ip: contexte?.ip || requete.headers.get('x-nf-client-connection-ip') || '',
 });

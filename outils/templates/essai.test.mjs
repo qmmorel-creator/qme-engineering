@@ -322,3 +322,42 @@ test('nouveautés : contact effacé 3 ans après le dernier échange', async () 
   assert.equal(bilan.contactsEffaces, 1);
   assert.deepEqual(await w.essais.lister('contact/'), []);
 });
+
+// ---------- Suivi des essais par Quentin : notification et /admin/essais/ (19/11/2026) ----------
+test('notification à Quentin à chaque essai lancé, jamais bloquante', async () => {
+  const w = monde();
+  const appelCreer = (corps, notifier, envoyer = envoyeur(w)) => traiterEssai(new Request('http://t/api/essai', { method: 'POST', body: JSON.stringify({ consentement: true, ...corps }) }),
+    { secret: SECRET, essais: w.essais, envoyer, maintenant: () => w.horloge.t, notifier });
+  await appelCreer({ produit: 'budget', email: 'camille@b.fr', prenom: 'Camille', nouveautes: true }, 'quentin@qme.fr');
+  const notif = w.mails.find((m) => m.a === 'quentin@qme.fr');
+  assert.equal(notif.objet, 'Nouvel essai : Budget du foyer · Camille');
+  assert.ok(notif.texte.includes('camille@b.fr') && notif.texte.includes('oui, inscrit(e)') && notif.texte.includes('/admin/essais/'));
+  // Sans adresse de notification : aucun e-mail à Quentin.
+  w.mails.length = 0;
+  await appelCreer({ produit: 'habitudes', email: 'x@b.fr' }, '');
+  assert.deepEqual(w.mails.map((m) => m.a), ['x@b.fr']);
+  // Notification en échec : l'essai est quand même créé.
+  const capricieux = async (m) => { if (m.a === 'quentin@qme.fr') throw new Error('SMTP'); w.mails.push(m); };
+  const r = await appelCreer({ produit: 'repas', email: 'y@b.fr' }, 'quentin@qme.fr', capricieux);
+  assert.equal(r.status, 200);
+});
+
+test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () => {
+  const w = monde();
+  const { corps: { code } } = await creer(w, { produit: 'budget', email: 'achete@b.fr', prenom: 'Ana' });
+  await creer(w, { produit: 'habitudes', email: 'cours@b.fr', nouveautes: true });
+  await api(w, 'PUT', '/donnees', { code, corps: { donnees: { mois: 1 } } });
+  await api(w, 'POST', '/connexion', { corps: { code: LICENCE, produit: 'BDG', essai: code }, licence: licenceDe('BDG', 'achete@b.fr') });
+  assert.equal((await adminApi(w, 'GET', '/essais', null)).status, 401);
+  const d = await (await adminApi(w, 'GET', '/essais')).json();
+  assert.deepEqual([d.total, d.enCours, d.termines, d.achetes], [2, 1, 0, 1]);
+  const achete = d.essais.find((e) => e.email === 'achete@b.fr');
+  assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Budget du foyer']);
+  assert.equal(d.essais.find((e) => e.email === 'cours@b.fr').joursRestants, 14);
+  w.horloge.t = T0 + 15 * JOUR;
+  assert.equal((await (await adminApi(w, 'GET', '/essais')).json()).termines, 1);
+  const octets = new Uint8Array(await (await adminApi(w, 'GET', '/essais?format=csv')).arrayBuffer());
+  const csv = new TextDecoder().decode(octets);
+  assert.ok(csv.startsWith('email;prenom;template;statut;debut;fin;jours_restants;achete_le;donnees_reprises;nouveautes;emails_envoyes'));
+  assert.ok(csv.includes('achete@b.fr;Ana;Budget du foyer;acheté;'));
+});
