@@ -155,7 +155,10 @@ Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/1
 | PRS | prospection | 7Ie2c3Qgcxkl1coobiiNXg== | /l/pipeline-prospection | 25 € | clé à activer (https://gumroad.com/products/qyumgc/edit) |
 | PCM | propositions | N9GYtihcDeqRncRUYwVwew== | /l/propositions-commerciales | 19 € | clé à activer (https://gumroad.com/products/phjupy/edit) |
 | KRF | references-plaquette | Y_zjhtlT4nxXqSdqeT_mEA== | /l/kit-references-plaquette | 19 € | clé à activer (https://gumroad.com/products/rmwtgfp/edit) |
+| CED | calendrier-editorial | qUwb0nm4TaFmXgiSoc2aJA== | /l/calendrier-editorial | 15 € | clé à activer (https://gumroad.com/products/zflymh/edit) |
 
 Ajustements Gumroad : tag « proposition-commerciale » (23 caractères) ramené à « proposition » ; bouton du reçu KRF
 « Ouvrir mon kit » (limite de 26 caractères) ; catégorie PCM « Marketing & Sales » (la fiche indiquait
 `business-and-money/sales`, absente de Gumroad).
+
+Limite Gumroad atteinte sur CND (Suivi des appels d'offres) : prochaine création le 19/11 à 09:19 (Paris), reprise programmée à 09:20.

@@ -37,6 +37,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   - PRS Pipeline de prospection B2B : https://gumroad.com/products/qyumgc/edit
   - PCM Propositions commerciales : https://gumroad.com/products/phjupy/edit
   - KRF Kit références et plaquette : https://gumroad.com/products/rmwtgfp/edit
+  - CED Calendrier éditorial : https://gumroad.com/products/zflymh/edit
   La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
