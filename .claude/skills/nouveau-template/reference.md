@@ -221,6 +221,13 @@ référence : `docs/templates/essai-gratuit.md`. Pour chaque template vie person
 - [ ] `outils/templates/essai.test.mjs` : nombre de templates ouverts à l'essai mis à jour ; `npm test`.
 - [ ] `QME_LICENCES_TEST=1 PORT=8899 node outils/templates/serveur-local.mjs` puis
       `node outils/essai/e2e.cjs <slug> <dossier>` : aucune erreur, captures regardées.
+- [ ] **Fiche Gumroad** (décision de Quentin, 19/11/2026), comme les 29 fiches mises à jour ce jour-là :
+      description : paragraphe « <strong>Essai gratuit de 14 jours, sans carte bancaire</strong> : essaie-le avec tes propres
+      données sur <a href="https://qm-engineering.fr/essai/?t=<slug>">qm-engineering.fr/essai</a>. Si tu l'achètes ensuite,
+      saisis ta clé dans le template (bouton « J'ai acheté ») : tout ce que tu as saisi pendant l'essai est repris. » juste
+      avant la première `<h3>` ; détails : ligne « Essai : 14 jours gratuits, sans carte » ; reçu : ligne « 🧪 Après l'essai
+      gratuit : dans le template, bouton « J'ai acheté », colle ta clé, tes données sont reprises. » avant la ligne « ❓ »
+      (500 caractères au plus).
 - [ ] Communication : appel à l'action principal = essai gratuit (`docs/templates/communication/REGLES-CONTENU.md` § 7).
 
 ## Référencement (chaque page catalogue, depuis le 15/11/2026)
