@@ -38,6 +38,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
   - PCM Propositions commerciales : https://gumroad.com/products/phjupy/edit
   - KRF Kit références et plaquette : https://gumroad.com/products/rmwtgfp/edit
   - CED Calendrier éditorial : https://gumroad.com/products/zflymh/edit
+  - CND Suivi des appels d'offres : https://gumroad.com/products/ipdwmx/edit
+  - CHT Suivi de chantier par lot : https://gumroad.com/products/bheow/edit
+  - RDE Registre du DOE : https://gumroad.com/products/nwwsee/edit
+  - STR Conformité des sous-traitants : https://gumroad.com/products/jsvuc/edit
+  - CNG Suivi des congés et absences : https://gumroad.com/products/flkvtw/edit
+  - NDF Notes de frais : https://gumroad.com/products/qqttde/edit
   La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
