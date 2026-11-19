@@ -65,7 +65,7 @@ createServer(async (req, res) => {
     const morceaux = [];
     for await (const m of req) morceaux.push(m);
     const corps = req.method === 'POST' ? Buffer.concat(morceaux) : undefined;
-    const reponse = await traiterEssai(new Request(url, { method: req.method, headers: req.headers, body: corps }), { secret: SECRET, essais, envoyer: envoyerMailLocal, maintenant: () => Date.now() });
+    const reponse = await traiterEssai(new Request(url, { method: req.method, headers: req.headers, body: corps }), { secret: SECRET, essais, envoyer: envoyerMailLocal, maintenant: () => Date.now(), admin: process.env.INTERETS_ADMIN });
     res.writeHead(reponse.status, Object.fromEntries(reponse.headers));
     return res.end(await reponse.text());
   }

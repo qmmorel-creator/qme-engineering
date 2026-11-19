@@ -248,3 +248,77 @@ test('e-mails : chaque type se construit pour chaque template, sans texte vide',
     }
   }
 });
+
+// ---------- Base de contacts « Nouveautés QME » (case facultative, 19/11/2026) ----------
+import { lienDesinscription } from '../../netlify/lib/essais.mjs';
+import { codeAdmin } from '../../netlify/lib/interets.mjs';
+
+const adminApi = (w, methode, chemin, code = codeAdmin(SECRET)) => traiterEssai(new Request(`http://t/api/essai${chemin}`, {
+  method: methode, headers: code ? { 'x-admin': code } : {},
+}), { secret: SECRET, essais: w.essais, maintenant: () => w.horloge.t });
+
+test('nouveautés : case non cochée, aucun contact ; cochée, contact enregistré une seule fois', async () => {
+  const w = monde();
+  await creer(w, { produit: 'budget', email: 'sans@b.fr' });
+  await creer(w, { produit: 'budget', email: 'faux@b.fr', nouveautes: 'oui' }); // seule la valeur true compte
+  assert.deepEqual(await w.essais.lister('contact/'), []);
+  await creer(w, { produit: 'budget', email: 'Avec@B.fr', prenom: 'Lou', nouveautes: true });
+  await creer(w, { produit: 'habitudes', email: 'avec@b.fr', nouveautes: true });
+  const cles = await w.essais.lister('contact/');
+  assert.equal(cles.length, 1);
+  const c = await w.essais.get(cles[0]);
+  assert.deepEqual([c.email, c.prenom, c.templates], ['avec@b.fr', 'Lou', ['budget', 'habitudes']]);
+  assert.match(c.texte, /nouveautés QME/);
+});
+
+test('nouveautés : export réservé à l\'administrateur, CSV avec lien de désinscription, effacement', async () => {
+  const w = monde();
+  await creer(w, { produit: 'budget', email: 'a@b.fr', prenom: 'Ana; Lou', nouveautes: true });
+  assert.equal((await adminApi(w, 'GET', '/contacts', null)).status, 401);
+  assert.equal((await adminApi(w, 'GET', '/contacts', 'ADM-FAUX-FAUX-FAUX-FAUX')).status, 401);
+  const j = await (await adminApi(w, 'GET', '/contacts')).json();
+  assert.deepEqual([j.total, j.trenteJours, j.contacts[0].email], [1, 1, 'a@b.fr']);
+  const octets = new Uint8Array(await (await adminApi(w, 'GET', '/contacts?format=csv')).arrayBuffer());
+  assert.deepEqual([...octets.slice(0, 3)], [0xef, 0xbb, 0xbf], 'BOM UTF-8 : accents lus correctement par Excel');
+  const csv = new TextDecoder().decode(octets);
+  assert.ok(csv.startsWith('email;prenom;templates_essayes;consentement_le;dernier_echange;lien_desinscription'));
+  assert.ok(csv.includes(';"Ana; Lou";'), 'cellule contenant un point-virgule mise entre guillemets');
+  assert.ok(csv.includes(lienDesinscription(SECRET, 'a@b.fr')));
+  const eff = await (await adminApi(w, 'DELETE', '/contacts?email=A@b.fr')).json();
+  assert.equal(eff.effaces, 1);
+  assert.deepEqual(await w.essais.lister('contact/'), []);
+});
+
+test('nouveautés : désinscription en un clic par lien signé', async () => {
+  const w = monde();
+  await creer(w, { produit: 'budget', email: 'a@b.fr', nouveautes: true });
+  const lien = new URL(lienDesinscription(SECRET, 'a@b.fr'));
+  const faux = await traiterEssai(new Request(`http://t${lien.pathname}${lien.search.replace(/s=[0-9a-f]+/, 's=' + '0'.repeat(24))}`), { secret: SECRET, essais: w.essais });
+  assert.equal(faux.status, 400);
+  assert.equal((await w.essais.lister('contact/')).length, 1);
+  const ok = await traiterEssai(new Request(`http://t${lien.pathname}${lien.search}`), { secret: SECRET, essais: w.essais });
+  assert.equal(ok.status, 200);
+  assert.deepEqual(await w.essais.lister('contact/'), []);
+});
+
+test('nouveautés : lien de désinscription dans les e-mails d\'essai des seuls inscrits', async () => {
+  const w = monde();
+  await creer(w, { produit: 'budget', email: 'oui@b.fr', nouveautes: true });
+  await creer(w, { produit: 'budget', email: 'non@b.fr' });
+  const [oui, non] = w.mails;
+  assert.ok(oui.texte.includes(lienDesinscription(SECRET, 'oui@b.fr')) && oui.html.includes('se désinscrire'));
+  assert.ok(!non.texte.includes('/api/essai/desinscription') && !non.html.includes('se désinscrire'));
+});
+
+test('nouveautés : contact effacé 3 ans après le dernier échange', async () => {
+  const w = monde();
+  await creer(w, { produit: 'budget', email: 'a@b.fr', nouveautes: true });
+  const tourner = () => tournerEssais({ secret: SECRET, essais: w.essais, stockage: w.stockage, envoyer: envoyeur(w), maintenant: () => w.horloge.t });
+  w.horloge.t = T0 + 364 * 3 * JOUR;
+  await tourner();
+  assert.equal((await w.essais.lister('contact/')).length, 1);
+  w.horloge.t = T0 + (365 * 3 + 1) * JOUR;
+  const bilan = await tourner();
+  assert.equal(bilan.contactsEffaces, 1);
+  assert.deepEqual(await w.essais.lister('contact/'), []);
+});
