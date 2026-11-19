@@ -50,6 +50,16 @@ les réponses arrivent dans la boîte.
 Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). Limite Gmail :
 environ 500 envois par jour, large pour ce volume.
 
+## Suivi des essais par Quentin (19/11/2026)
+
+- **Notification** : à chaque essai lancé, un e-mail « Nouvel essai : <template> · <prénom> » part de la boîte d'envoi vers
+  `ESSAI_NOTIFICATION` (variable Netlify facultative), à défaut vers l'adresse de `ESSAI_EXPEDITEUR`. Il donne le template,
+  le prénom, l'e-mail, l'inscription aux nouveautés, la date de fin et le lien de `/admin/essais/`. Un échec d'envoi
+  n'empêche jamais l'essai.
+- **`/admin/essais/`** (code administrateur `ADM-…`) : tous les essais conservés (en cours, terminés, achetés, données reprises
+  ou non), jours restants, inscription aux nouveautés ; export CSV. Un essai disparaît à l'effacement de ses données.
+  Ces adresses ne servent qu'aux e-mails de l'essai : la prospection passe par `/admin/contacts/`.
+
 ## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
 
 L'e-mail est obligatoire pour l'essai, mais il ne sert qu'aux e-mails de l'essai et il est effacé avec lui. Pour constituer une

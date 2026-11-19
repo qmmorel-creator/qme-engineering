@@ -51,6 +51,47 @@ export function csvContacts(contacts, secret) {
   for (const c of contacts) lignes.push([c.email, c.prenom, c.templates.join(' '), c.consenti.slice(0, 10), c.maj.slice(0, 10), lienDesinscription(secret, c.email)]);
   return '\ufeff' + lignes.map((l) => l.map(csvCellule).join(';')).join('\r\n') + '\r\n';
 }
+// ---------- Suivi des essais par Quentin (demande du 19/11/2026) ----------
+// Notification à chaque essai lancé (adresse ESSAI_NOTIFICATION, sinon l'expéditeur) et page /admin/essais/.
+export function mailNotification(reg) {
+  const f = ficheEssai(reg.produit);
+  const dateFr = (j) => new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+  const objet = `Nouvel essai : ${f.nom}${reg.prenom ? ` · ${reg.prenom}` : ''}`;
+  const texte = `Nouvel essai gratuit lancé sur qm-engineering.fr.
+
+Template : ${f.nom} (${(f.prix / 100).toLocaleString('fr-FR')} €)
+Prénom : ${reg.prenom || '(non donné)'}
+E-mail : ${reg.email}
+Nouveautés QME : ${reg.nouveautes ? 'oui, inscrit(e) à la liste' : 'non'}
+Fin de l'essai : ${dateFr(reg.fin)} · effacement des données : ${dateFr(reg.effacement)}
+E-mail de remerciement : ${reg.mails?.merci ? 'envoyé' : 'non envoyé'}
+
+Tous les essais : ${SITE}/admin/essais/`;
+  return { objet, texte };
+}
+
+function vueEssai(reg, aujourdhui) {
+  const etat = etatEssai(reg, aujourdhui);
+  const f = ficheEssai(reg.produit);
+  return {
+    id: reg.id, template: f.nom, slug: f.slug, prenom: reg.prenom || '', email: reg.email, cree: reg.cree,
+    debut: reg.debut, fin: reg.fin, effacement: reg.effacement, joursRestants: etat.joursRestants,
+    statut: reg.achete ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
+    achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
+    mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
+  };
+}
+export function csvEssais(vues) {
+  const lignes = [['email', 'prenom', 'template', 'statut', 'debut', 'fin', 'jours_restants', 'achete_le', 'donnees_reprises', 'nouveautes', 'emails_envoyes']];
+  for (const v of vues) lignes.push([v.email, v.prenom, v.template, v.statut, v.debut, v.fin, v.joursRestants, v.achete ? v.achete.slice(0, 10) : '', v.reporte ? 'oui' : 'non', v.nouveautes ? 'oui' : 'non', v.mails.join(' ')]);
+  return '\ufeff' + lignes.map((l) => l.map(csvCellule).join(';')).join('\r\n') + '\r\n';
+}
+async function lireEssais(essais, aujourdhui) {
+  const vues = [];
+  for (const cle of await essais.lister('essai/')) { const r = await essais.get(cle); if (r) vues.push(vueEssai(r, aujourdhui)); }
+  return vues.sort((a, b) => String(b.cree).localeCompare(String(a.cree)));
+}
+
 async function lireContacts(essais) {
   const contacts = [];
   for (const cle of await essais.lister('contact/')) { const c = await essais.get(cle); if (c) contacts.push(c); }
@@ -184,7 +225,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -212,6 +253,19 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   }
 
   // Contacts « nouveautés » : lecture, export CSV et effacement réservés à l'administrateur (code ADM-…).
+  // Tous les essais (administrateur) : liste JSON ou CSV.
+  if (chemin === '/essais') {
+    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise' });
+    const vues = await lireEssais(essais, jourParis(new Date(maintenant())));
+    if (url.searchParams.get('format') === 'csv') {
+      return new Response(csvEssais(vues), { status: 200, headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store',
+        'content-disposition': `attachment; filename="essais-qme-${new Date(maintenant()).toISOString().slice(0, 10)}.csv"` } });
+    }
+    const compte = (s) => vues.filter((v) => v.statut === s).length;
+    return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues });
+  }
+
   if (chemin === '/contacts') {
     if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
     if (requete.method === 'DELETE') {
@@ -284,6 +338,10 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     debut: e.debut, fin: e.fin, effacement: e.effacement, mails: {}, stop: false, achete: null, nouveautes,
   };
   try { if (await envoyerMail('merci', reg, { secret, envoyer })) reg.mails.merci = date.toISOString(); } catch (x) { console.error('E-mail de remerciement impossible', x); }
+  // Notification à Quentin : un échec n'empêche jamais l'essai.
+  if (envoyer && notifier) {
+    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte }); } catch (x) { console.error('Notification d\'essai impossible', x); }
+  }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });
   return json(200, { ok: true, code, produit, url: PRODUITS[produit].url, fin: e.fin, jours: ESSAI.jours, mail: Boolean(reg.mails.merci) });
