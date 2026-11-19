@@ -96,14 +96,14 @@ déjà).
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
-| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | prêt | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
+| T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | en vente | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
-| T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | prêt | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
+| T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
@@ -112,11 +112,11 @@ déjà).
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | prêt | 39 € | M | P2 | Backlog Quentin n° 08 |
-| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | prêt | 25 € | M | P1 | Backlog Quentin n° 10 |
+| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | en vente | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | en vente | 12 € | S | P2 | Backlog Quentin n° 13 |
-| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | prêt | 19 € | S | P3 | Backlog Quentin n° 14 |
+| T39 | Kit références et plaquette | Marketing | Indépendants, petites agences | en vente | 19 € | S | P3 | Backlog Quentin n° 14 |
 | T40 | Calculateur TJM freelance | Finance pro | Freelances débutants | en vente | 12 € | S | P1 | Backlog Quentin n° 15 |
 | T41 | Livre recettes-dépenses micro-entreprise | Comptabilité | Micro-entrepreneurs | en vente | 25 € | S | P1 | Backlog Quentin n° 16 |
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
@@ -125,7 +125,7 @@ déjà).
 | T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | prêt | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
-| T48 | Suivi congés et absences | RH | TPE sans SIRH | prêt | 19 € | S | P2 | Backlog Quentin n° 24 |
+| T48 | Suivi congés et absences | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
@@ -149,11 +149,11 @@ déjà).
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
 | T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
-| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | prêt | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
-| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | prêt | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
+| T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |

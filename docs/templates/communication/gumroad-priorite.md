@@ -69,4 +69,7 @@ Pack Étudiant et Pack Freelance publiés et en vente ; Pack Voyage et Pack Ma v
 
 18/11 : STK, TVA, CMP, RPS, MSC et APD (rang 14, Pack Freelance : trouver ses clients) en vente.
 
+19/11 : rang 14, Pack Freelance « trouver ses clients » (PRS, PCM, KRF, CED, CND), Pack Chef de projet BTP (CHT, RDE, STR),
+CNG et NDF en vente ; fiches des packs PFC et PBT à créer.
+
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).
