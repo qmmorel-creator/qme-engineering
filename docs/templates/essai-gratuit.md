@@ -50,6 +50,19 @@ les réponses arrivent dans la boîte.
 Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). Limite Gmail :
 environ 500 envois par jour, large pour ce volume.
 
+## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
+
+L'e-mail est obligatoire pour l'essai, mais il ne sert qu'aux e-mails de l'essai et il est effacé avec lui. Pour constituer une
+base de contacts, le formulaire `/essai/` porte une **seconde case, facultative et non cochée** : « recevoir aussi les nouveautés
+QME (nouveaux templates, offres) ». Le RGPD et la CNIL exigent un consentement libre et distinct pour la prospection par
+e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance.
+
+- Registre `contact/<empreinte>` (store `templates-essais`) : e-mail, prénom, templates essayés, date d'accord, dernier échange.
+- Page **`/admin/contacts/`** (code administrateur `ADM-…`, le même que `/admin/interets/`) : liste, export CSV, effacement.
+- Chaque e-mail envoyé à ces contacts doit contenir leur **lien de désinscription** (colonne `lien_desinscription` du CSV) ;
+  les e-mails de l'essai l'ajoutent d'eux-mêmes pour les inscrits. Le lien efface l'adresse de la liste.
+- Effacement automatique 3 ans après le dernier échange (tâche quotidienne). Politique de confidentialité : § « Nouveautés QME ».
+
 ## Technique
 
 - **Code d'essai** `PRE-AAAA-AAAA-SSSS-SSSS` (`genererCodeEssai`, `netlify/lib/templates-acces.mjs`) : les 3 premiers

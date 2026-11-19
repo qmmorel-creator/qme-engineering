@@ -22,7 +22,7 @@
     try {
       const r = await fetch('/api/essai', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ produit: select.value, email, prenom: form.prenom.value.trim(), consentement: true, site_web: form.site_web.value }),
+        body: JSON.stringify({ produit: select.value, email, prenom: form.prenom.value.trim(), consentement: true, nouveautes: form.nouveautes.checked, site_web: form.site_web.value }),
       });
       const corps = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(corps.erreur || 'Le service ne répond pas. Réessayez dans un instant.');

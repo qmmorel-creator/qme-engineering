@@ -9,7 +9,7 @@ import { PRODUITS_ESSAI, ficheEssai } from '../../netlify/lib/essais.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V_CSS = '2026111901';
+const V_CSS = '2026111902';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const euros = (c) => `${(c / 100).toLocaleString('fr-FR', { minimumFractionDigits: c % 100 ? 2 : 0 })} €`;
 
@@ -18,7 +18,7 @@ export const FAQ_ESSAI = [
   ['Que se passe-t-il à la fin des 14 jours ?', `Rien n'est facturé. Vos données restent consultables (sans modification) pendant ${ESSAI.conservation} jours, puis elles sont effacées. Vous pouvez en télécharger une copie depuis les réglages du template.`],
   ['Si j\'achète, est-ce que je garde mes données ?', 'Oui. Après l\'achat sur Gumroad, saisissez la clé reçue par e-mail dans le template (bouton « J\'ai acheté ») : tout ce que vous avez saisi pendant l\'essai est repris, rien à refaire. Si vous achetez avec la même adresse e-mail que celle de l\'essai, la reprise se fait aussi sur un autre appareil.'],
   ['L\'essai est-il complet ?', 'Oui : toutes les fonctions, vos données enregistrées en ligne et synchronisées sur vos appareils (ordinateur, téléphone), comme après l\'achat.'],
-  ['Quels e-mails vais-je recevoir ?', 'Quatre au plus, écrits par Quentin : votre code au démarrage, un rappel 3 jours avant la fin, un message à la fin de l\'essai et un dernier avant l\'effacement des données. Un lien en bas de chaque e-mail les arrête, et aucun n\'est envoyé après un achat.'],
+  ['Quels e-mails vais-je recevoir ?', 'Quatre au plus, écrits par Quentin : votre code au démarrage, un rappel 3 jours avant la fin, un message à la fin de l\'essai et un dernier avant l\'effacement des données. Un lien en bas de chaque e-mail les arrête, et aucun n\'est envoyé après un achat. Les nouveautés QME (nouveaux templates, offres) ne vous sont envoyées que si vous cochez la case facultative prévue pour cela.'],
   ['Puis-je essayer plusieurs templates ?', 'Oui, un essai par template et par adresse e-mail. Pour plusieurs templates d\'un coup, regardez aussi les packs.'],
 ];
 
@@ -102,11 +102,12 @@ ${options}
     <label>Prénom <small>(facultatif)</small><input name="prenom" autocomplete="given-name" maxlength="40" placeholder="Votre prénom"></label>
     <label>E-mail<input required type="email" name="email" autocomplete="email" inputmode="email" placeholder="vous@exemple.fr"></label>
     <label class="full essai-accord"><input type="checkbox" name="consentement" required> <span>J'accepte de recevoir les e-mails liés à mon essai (mon code, un rappel avant la fin, la fin de l'essai, l'effacement des données) : quatre au plus, arrêtables à tout moment.</span></label>
+    <label class="full essai-accord"><input type="checkbox" name="nouveautes"> <span><b>Facultatif</b> : recevoir aussi les nouveautés QME (nouveaux templates, offres). Désinscription en un clic dans chaque e-mail.</span></label>
     <label class="hp-field" aria-hidden="true">Votre site web<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label>
     <div class="form-end full">
       <button class="btn primary" type="submit" data-goatcounter-click="essai-lancer">Lancer mon essai gratuit</button>
     </div>
-    <p id="essai-note" class="full" role="status" aria-live="polite">Votre adresse sert uniquement à ces e-mails ; elle est effacée avec les données de l'essai. <a href="/confidentialite/#essai">Confidentialité</a></p>
+    <p id="essai-note" class="full" role="status" aria-live="polite">Sans la seconde case, votre adresse sert uniquement aux e-mails de l'essai et elle est effacée avec ses données. <a href="/confidentialite/#essai">Confidentialité</a></p>
   </form>
   <div id="essai-pret" class="essai-pret" hidden tabindex="-1">
     <h2>Votre essai est prêt.</h2>
