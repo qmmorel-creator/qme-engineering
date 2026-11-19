@@ -33,11 +33,11 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
 | X-01 | 2026-11-19 | 19:00 | Image | chiffre vrai | les 97 templates comme preuve | 97 outils en français | — | README § X-01 | Programmé |  |
 | X-02 | 2026-11-18 | 12:00 | Vidéo | chiffre vrai | les 97 templates comme preuve | 97 tools. All in French. | plusieurs | [X-02-97-tools.mp4](https://drive.google.com/file/d/19dQDiblHfCZMzJNSZPHrko50svVJfk-V/view) · avancée du 20/11 | Publié (18/11 11:34) | https://x.com/qmengineering/status/2123002000572825931 |
 | X-03 | 2026-11-21 | 19:00 | Image | erreur fréquente | tableur qui déborde | Le tableur que seule une personne comprend | — | README § X-03 | Programmé |  |
-| X-04 | 2026-11-22 | 19:00 | Vidéo | question directe | facturation et relances | Who should I follow up today? | crm | à produire | À produire |  |
+| X-04 | 2026-11-22 | 19:00 | Vidéo (24 s, accent bleu) | question directe | facturation et relances | Who do I follow up today? (vues Aujourd'hui et Chiffres : 5 relances, 4 416 € à encaisser, données de démo) | crm | [X-04-follow-up.mp4](https://drive.google.com/file/d/1NrKqBwAibiR1X-NPUEqECxC-4LLZbgEk/view) | Programmé |  |
 | X-05 | 2026-11-23 | 19:00 | Image | conseil honnête | méthode et délais | Le plus simple qui suffit | — | README § X-05 | Programmé |  |
-| X-06 | 2026-11-24 | 19:00 | Vidéo | question directe | planning et charge d'équipe | One task slips | gantt | à produire | À produire |  |
+| X-06 | 2026-11-24 | 19:00 | Image (prévue en vidéo, accent jaune) | idée à contre-courant | planning et charge d'équipe | Which task moves your end date? (Chemin critique : 9 tâches sur 14 sans marge, données de démo) | gantt | [X-06-critical-path.png](https://drive.google.com/file/d/1Jk3aBBVzHgSiaSZghmaTzVm7-9lHkLpU/view) | Programmé |  |
 | X-07 | 2026-11-25 | 19:00 | Image | chiffre vrai | maintenance et conformité | 11 outils bâtiment et exploitation | — | README § X-07 | Programmé |  |
-| X-08 | 2026-11-26 | 19:00 | Vidéo | question directe | facturation et relances | Who owes what? | budget-commun | à produire | À produire |  |
+| X-08 | 2026-11-26 | 19:00 | Image (prévue en vidéo, accent bleu) | avant / après | facturation et relances | Who owes what? One sentence. (Soldes : « Sami doit 309,89 € à Camille », données de démo) | budget-commun | [X-08-who-owes-what.png](https://drive.google.com/file/d/1_4b1RED0hqMwZNk8k-RNKVf_kTPy6pwz/view) | Programmé |  |
 | X-09 | 2026-11-27 | 19:00 | Image | idée à contre-courant | règles d'un pays | Règles françaises : traduire ne suffit pas | — | README § X-09 | Programmé |  |
 | X-10 | 2026-11-28 | 19:00 | Vidéo | avant / après | tableur qui déborde | Your spreadsheet, as an app | stocks | à produire | À produire |  |
 | X-11 | 2026-11-29 | 19:00 | Image | liste courte | méthode et délais | La méthode en 4 étapes | — | README § X-11 | Programmé |  |
@@ -54,3 +54,12 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
   par l'exécution du 19/11. Attention : le planning initial alterne vidéo un jour sur deux (22, 24, 26, 28, 30/11, 02/12),
   soit 3 à 4 vidéos sur 7 jours, au-delà de la règle « 1 ou 2 vidéos sur 7 jours » ; lignes laissées en place (aucune
   ligne existante ne se déplace), arbitrage de Quentin nécessaire.
+- **19/11/2026 (tâche « Campagne X · contenu J+7 »)** : Sheet relu ; fenêtre 20/11 → 26/11 : 22, 24 et 26/11 en « À produire »
+  (aucune publication programmée ces jours-là). Traités : X-04 en vidéo (CRM, 24 s, musique QME vérifiée par ffprobe, 2,75 Mo),
+  X-06 et X-08 passés en **image** (règle « 1 ou 2 vidéos sur 7 jours, jamais deux de suite »), accroches changées pour
+  ne pas répéter « question directe » dans les 4 jours. Réserve : avant, premier jour non programmé le 22/11 ; après,
+  20/11 → 27/11 tous « Programmé » (27/11 = J+8), premier jour non programmé le 28/11 (X-10, « À produire »).
+  Couleurs : les images X-03, X-05, X-07 (produites avant la règle de rotation) n'ont pas été relues ; d'après le gabarit,
+  leur couleur dominante est probablement le rouge, d'où bleu (X-04), jaune (X-06), bleu (X-08). Restent « À produire »
+  hors fenêtre : X-10 (28/11), X-12 (30/11), X-14 (02/12), encore une vidéo sur deux : à arbitrer aux prochains passages
+  (images de remplacement). Marqueurs de conflit git retirés du README (section X-15, branche claude/routines-contenu).

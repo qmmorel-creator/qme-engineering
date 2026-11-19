@@ -320,7 +320,6 @@ I built a tool for each of these (in French). Reply with yours, I'll tell you ho
 qm-engineering.fr/x
 ```
 
-<<<<<<< HEAD
 ### X-15 · 20/11 · Image · coulisses · associations et clubs
 
 ```
@@ -333,8 +332,42 @@ Spot that before they burn out.
 qm-engineering.fr/x
 ```
 
-=======
->>>>>>> origin/main
+### X-04 · 22/11 · Vidéo · question directe · facturation et relances
+
+```
+Freelancers: who do you follow up today?
+
+If the answer lives in your inbox, invoices wait.
+
+I built a CRM that opens on today's follow-ups and what's left to collect. In the sample data: 5 follow-ups, €4,416 to collect.
+
+Want one built for your clients? qm-engineering.fr/x
+```
+
+### X-06 · 24/11 · Image (prévue en vidéo) · idée à contre-courant · planning et charge d'équipe
+
+```
+Most project plans watch the end date. The useful question is which tasks can move it.
+
+In my Gantt tool's sample plan, 9 of 14 tasks have no slack: one day late on any of them and the project slips.
+
+I build planning tools around how your team works.
+
+qm-engineering.fr/x
+```
+
+### X-08 · 26/11 · Image (prévue en vidéo) · avant / après · facturation et relances
+
+```
+Before: a shared spreadsheet and the same monthly question. Who owes what?
+
+After: one sentence. In my shared-expenses tool's sample data: "Sami owes Camille €309.89." One transfer settles it.
+
+Co-founders, partners, teams: what do you split by hand?
+
+qm-engineering.fr/x
+```
+
 ### Vidéos : scénarios
 
 Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de démo réels, sous-titres anglais, carton final
