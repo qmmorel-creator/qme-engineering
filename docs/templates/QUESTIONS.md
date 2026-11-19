@@ -33,7 +33,11 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- **Clés de licence à activer** : aucune pour l'instant (tous les brouillons publiés le 18/11).
+- **Clés de licence à activer (19/11/2026)** (Content → Insert → License key, sans multi-postes) :
+  - PRS Pipeline de prospection B2B : https://gumroad.com/products/qyumgc/edit
+  - PCM Propositions commerciales : https://gumroad.com/products/phjupy/edit
+  - KRF Kit références et plaquette : https://gumroad.com/products/rmwtgfp/edit
+  La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?

@@ -147,3 +147,15 @@ absent de la liste des produits à 09 h 40, supprimé par Quentin.
 
 Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/11 par une autre session ; l'un est publié
 (`1DfML3czjZu5bg95z3KuRg==`), l'autre a disparu. Pack Ma voiture passé à 28 € (3 templates) sur Gumroad.
+
+## Lot du 19/11/2026 (rang 14 de la file : Pack Freelance « trouver ses clients »)
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| PRS | prospection | 7Ie2c3Qgcxkl1coobiiNXg== | /l/pipeline-prospection | 25 € | clé à activer (https://gumroad.com/products/qyumgc/edit) |
+| PCM | propositions | N9GYtihcDeqRncRUYwVwew== | /l/propositions-commerciales | 19 € | clé à activer (https://gumroad.com/products/phjupy/edit) |
+| KRF | references-plaquette | Y_zjhtlT4nxXqSdqeT_mEA== | /l/kit-references-plaquette | 19 € | clé à activer (https://gumroad.com/products/rmwtgfp/edit) |
+
+Ajustements Gumroad : tag « proposition-commerciale » (23 caractères) ramené à « proposition » ; bouton du reçu KRF
+« Ouvrir mon kit » (limite de 26 caractères) ; catégorie PCM « Marketing & Sales » (la fiche indiquait
+`business-and-money/sales`, absente de Gumroad).
