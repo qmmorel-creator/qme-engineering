@@ -147,3 +147,27 @@ absent de la liste des produits à 09 h 40, supprimé par Quentin.
 
 Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/11 par une autre session ; l'un est publié
 (`1DfML3czjZu5bg95z3KuRg==`), l'autre a disparu. Pack Ma voiture passé à 28 € (3 templates) sur Gumroad.
+
+## Lot du 19/11/2026 (rang 14 de la file : Pack Freelance « trouver ses clients »)
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| PRS | prospection | 7Ie2c3Qgcxkl1coobiiNXg== | /l/pipeline-prospection | 25 € | clé à activer (https://gumroad.com/products/qyumgc/edit) |
+| PCM | propositions | N9GYtihcDeqRncRUYwVwew== | /l/propositions-commerciales | 19 € | clé à activer (https://gumroad.com/products/phjupy/edit) |
+| KRF | references-plaquette | Y_zjhtlT4nxXqSdqeT_mEA== | /l/kit-references-plaquette | 19 € | clé à activer (https://gumroad.com/products/rmwtgfp/edit) |
+| CED | calendrier-editorial | qUwb0nm4TaFmXgiSoc2aJA== | /l/calendrier-editorial | 15 € | clé à activer (https://gumroad.com/products/zflymh/edit) |
+| CND | appels-offres | q9_HDtnCNGmEe4PrNEOQyA== | /l/suivi-appels-offres | 15 € | clé à activer (https://gumroad.com/products/ipdwmx/edit) |
+| CHT | suivi-chantier | 78_8FuKW6L-Dk5kT50W8-Q== | /l/suivi-chantier-lot | 40 € | clé à activer (https://gumroad.com/products/bheow/edit) |
+| RDE | doe | rusN6tG2fwT6JE_JZMEZIA== | /l/registre-doe | 29 € | clé à activer (https://gumroad.com/products/nwwsee/edit) |
+| STR | sous-traitants | 6skYhUNcKgwFwua1a56TVw== | /l/conformite-sous-traitants | 29 € | clé à activer (https://gumroad.com/products/jsvuc/edit) |
+| CNG | conges | gJVooOi5p2lDuVx2azvvtA== | /l/suivi-conges-absences | 19 € | clé à activer (https://gumroad.com/products/flkvtw/edit) |
+| NDF | notes-de-frais | vI2luLWgaztzc9s7FcujWQ== | /l/notes-de-frais | 15 € | clé à activer (https://gumroad.com/products/qqttde/edit) |
+
+Ajustements Gumroad : tag « proposition-commerciale » (23 caractères) ramené à « proposition » ; bouton du reçu KRF
+« Ouvrir mon kit » (limite de 26 caractères) ; catégorie PCM « Marketing & Sales » (la fiche indiquait
+`business-and-money/sales`, absente de Gumroad).
+
+Limite Gumroad atteinte sur CND à 07:58 UTC, reprise à 09:20 (Paris) : CND, CHT, RDE, STR, CNG, NDF créés. Nouvelle limite sur ARD
+(Onboarding) : prochaine création le 20/11 à 08:48 (Paris), reprise programmée à 08:50. Tags raccourcis à 20 caractères :
+« situations-travaux » (CHT), « vigilance » (STR), « indemnites-km » (NDF) ; boutons du reçu « Ouvrir mon chantier » (CHT),
+« Ouvrir mes congés » (CNG).
