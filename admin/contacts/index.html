@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contacts nouveautés · Admin QME</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026111902">
+</head>
+<body>
+<main class="admin-interets">
+  <p class="eyebrow">Administration QME · privé</p>
+  <h1>Contacts « Nouveautés QME »</h1>
+  <p class="admin-etat">Adresses des personnes qui ont lancé un essai gratuit <b>et coché la case facultative</b> « recevoir aussi les nouveautés QME ». Elles ont accepté de recevoir tes nouveaux templates et offres. Chaque e-mail que tu leur envoies doit contenir leur lien de désinscription (colonne du CSV). Une adresse est effacée automatiquement 3 ans après le dernier échange ; efface-la tout de suite si la personne le demande.</p>
+  <form class="admin-acces" id="acces">
+    <label>Code administrateur<input id="code" autocomplete="off" spellcheck="false" placeholder="ADM-XXXX-XXXX-XXXX-XXXX" required></label>
+    <button class="btn primary" type="submit">Afficher</button>
+    <button class="btn" type="button" id="oublier" hidden>Oublier le code sur cet appareil</button>
+  </form>
+  <p class="admin-etat" id="etat" role="status" aria-live="polite"></p>
+  <section id="resultats" hidden>
+    <div class="admin-tuiles">
+      <div><b id="total">0</b><span>contacts</span></div>
+      <div><b id="trente">0</b><span>inscrits sur les 30 derniers jours</span></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
+      <button class="btn primary" type="button" id="csv">Télécharger les contacts (CSV)</button>
+      <button class="btn" type="button" id="maj">Actualiser</button>
+      <a class="btn" href="/admin/interets/">Intérêts par template</a>
+    </div>
+    <div class="admin-boite">
+      <table class="admin-table">
+        <thead><tr><th>E-mail</th><th>Prénom</th><th>Templates essayés</th><th>Inscrit le</th><th>Dernier échange</th></tr></thead>
+        <tbody id="lignes"></tbody>
+      </table>
+    </div>
+    <form class="admin-acces" id="effacer" style="margin-top:28px">
+      <label>Effacer une adresse (demande de la personne)<input id="email-effacer" type="email" autocomplete="off" placeholder="adresse@exemple.fr" required></label>
+      <button class="btn" type="submit">Effacer</button>
+    </form>
+  </section>
+</main>
+<script>
+(() => {
+  // Même clé que /admin/interets/ : le code administrateur déjà saisi sur cet appareil est repris.
+  const CLE = 'qme-admin-interets';
+  const $ = (s) => document.querySelector(s);
+  const lire = () => { try { return localStorage.getItem(CLE) || ''; } catch { return ''; } };
+  const garder = (c) => { try { c ? localStorage.setItem(CLE, c) : localStorage.removeItem(CLE); } catch { /* indisponible */ } };
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const jour = (iso) => iso ? new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+  async function charger() {
+    const code = lire(); if (!code) return;
+    $('#etat').textContent = 'Chargement…';
+    try {
+      const r = await fetch('/api/essai/contacts', { headers: { 'x-admin': code }, cache: 'no-store' });
+      if (r.status === 401) { garder(''); $('#resultats').hidden = true; $('#oublier').hidden = true; $('#etat').textContent = 'Code administrateur refusé.'; return; }
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      $('#total').textContent = d.total;
+      $('#trente').textContent = d.trenteJours;
+      $('#lignes').innerHTML = d.contacts.length
+        ? d.contacts.map((c) => `<tr><td>${esc(c.email)}</td><td>${esc(c.prenom) || '—'}</td><td>${c.templates.map((t) => `<a href="/catalogue/${esc(t)}/">${esc(t)}</a>`).join(', ')}</td><td>${jour(c.consenti)}</td><td>${jour(c.maj)}</td></tr>`).join('')
+        : '<tr><td colspan="5">Aucun contact pour l\'instant.</td></tr>';
+      $('#resultats').hidden = false; $('#oublier').hidden = false;
+      $('#etat').textContent = `Mis à jour à ${new Date().toLocaleTimeString('fr-FR')}.`;
+    } catch { $('#etat').textContent = 'Chargement impossible (connexion ?).'; }
+  }
+  $('#acces').addEventListener('submit', (e) => { e.preventDefault(); garder($('#code').value.trim()); charger(); });
+  $('#oublier').addEventListener('click', () => { garder(''); location.reload(); });
+  $('#maj').addEventListener('click', charger);
+  $('#csv').addEventListener('click', async () => {
+    const r = await fetch('/api/essai/contacts?format=csv', { headers: { 'x-admin': lire() }, cache: 'no-store' });
+    if (!r.ok) { $('#etat').textContent = 'Téléchargement refusé.'; return; }
+    const url = URL.createObjectURL(await r.blob());
+    const a = Object.assign(document.createElement('a'), { href: url, download: `contacts-qme-${new Date().toISOString().slice(0, 10)}.csv` });
+    document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+  $('#effacer').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = $('#email-effacer').value.trim();
+    if (!email || !confirm(`Effacer ${email} de la liste des contacts ?`)) return;
+    const r = await fetch(`/api/essai/contacts?email=${encodeURIComponent(email)}`, { method: 'DELETE', headers: { 'x-admin': lire() } });
+    const d = await r.json().catch(() => ({}));
+    $('#etat').textContent = r.ok ? `${d.effaces} adresse effacée.` : 'Effacement refusé.';
+    if (r.ok) { $('#email-effacer').value = ''; charger(); }
+  });
+  if (lire()) { $('#code').value = lire(); charger(); }
+})();
+</script>
+</body>
+</html>

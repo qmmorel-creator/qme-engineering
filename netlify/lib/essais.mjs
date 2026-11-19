@@ -18,8 +18,44 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
+import { estAdmin } from './interets.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
+
+// Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026) : case FACULTATIVE du formulaire d'essai,
+// non cochée par défaut (consentement libre, distinct de l'essai, exigé par le RGPD pour la prospection par e-mail).
+// Registre : contact/<empreinte e-mail> → { email, prenom, templates, consenti, maj, texte }. Conservation : 3 ans après
+// le dernier échange (recommandation CNIL pour les prospects), effacement par la tâche quotidienne. Désinscription en un
+// clic (lien signé, colonne du CSV et pied des e-mails d'essai). Export : /admin/contacts/ (code administrateur).
+export const CONSENTEMENT_NOUVEAUTES = 'Recevoir aussi les nouveautés QME (nouveaux templates, offres). Désinscription en un clic dans chaque e-mail.';
+export const CONSERVATION_CONTACTS_JOURS = 3 * 365;
+export const signerDesinscription = (secret, cle) => createHmac('sha256', secret).update(`contact-stop:${cle}`).digest('hex').slice(0, 24);
+export const lienDesinscription = (secret, email) => {
+  const e = cleEmail(secret, email);
+  return `https://qm-engineering.fr/api/essai/desinscription?e=${e}&s=${signerDesinscription(secret, e)}`;
+};
+
+async function enregistrerContact(essais, secret, { email, prenom, slug, date }) {
+  const cle = `contact/${cleEmail(secret, email)}`;
+  const c = await essais.get(cle);
+  const templates = [...new Set([...(c?.templates || []), slug])];
+  await essais.set(cle, {
+    email, prenom: prenom || c?.prenom || '', templates, source: 'essai gratuit',
+    consenti: c?.consenti || date.toISOString(), maj: date.toISOString(), texte: CONSENTEMENT_NOUVEAUTES,
+  });
+}
+
+const csvCellule = (v) => { const t = String(v ?? ''); return /[;"\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+export function csvContacts(contacts, secret) {
+  const lignes = [['email', 'prenom', 'templates_essayes', 'consentement_le', 'dernier_echange', 'lien_desinscription']];
+  for (const c of contacts) lignes.push([c.email, c.prenom, c.templates.join(' '), c.consenti.slice(0, 10), c.maj.slice(0, 10), lienDesinscription(secret, c.email)]);
+  return '\ufeff' + lignes.map((l) => l.map(csvCellule).join(';')).join('\r\n') + '\r\n';
+}
+async function lireContacts(essais) {
+  const contacts = [];
+  for (const cle of await essais.lister('contact/')) { const c = await essais.get(cle); if (c) contacts.push(c); }
+  return contacts.sort((a, b) => b.maj.localeCompare(a.maj));
+}
 export const CREATIONS_PAR_IP_ET_PAR_JOUR = 5;
 const TAILLE_MAX = 4000;
 
@@ -60,13 +96,14 @@ const euros = (c) => `${(c / 100).toLocaleString('fr-FR', { minimumFractionDigit
 // Ton : Quentin écrit lui-même, vouvoiement, phrases courtes, aucune pression commerciale.
 const SIGNATURE = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
 
-function habiller(texte, { secret, id }) {
-  const pied = `\n\n—\nVous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. Plus aucun rappel : ${lienStop(secret, id)}`;
+function habiller(texte, { secret, id, email = null }) {
+  const nouv = email ? `\nVous êtes aussi inscrit(e) aux nouveautés QME. Se désinscrire : ${lienDesinscription(secret, email)}` : '';
+  const pied = `\n\n—\nVous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. Plus aucun rappel : ${lienStop(secret, id)}${nouv}`;
   const brut = texte + pied;
   const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const html = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${
     echapper(texte).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/(https:\/\/[^\s<]+)/g, '<a href="$1" style="color:#1D4E89">$1</a>')}</p>`).join('')
-  }<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.</p></div>`;
+  }<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p></div>`;
   return { texte: brut, html };
 }
 
@@ -134,7 +171,7 @@ Sans action de votre part, elles seront supprimées, comme prévu. C'est mon der
 
 ${SIGNATURE}`;
   } else throw new Error(`E-mail inconnu : ${type}`);
-  return { objet, ...habiller(texte, { secret, id: reg.id }) };
+  return { objet, ...habiller(texte, { secret, id: reg.id, email: reg.nouveautes ? reg.email : null }) };
 }
 
 async function envoyerMail(type, reg, { secret, envoyer }) {
@@ -147,7 +184,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -161,6 +198,39 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     const message = reg ? 'C\'est noté : vous ne recevrez plus aucun rappel pour cet essai.' : 'Lien invalide ou essai déjà effacé.';
     return new Response(`<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Rappels d'essai · QME</title><body style="font-family:Arial,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:22px">Rappels d'essai</h1><p>${message}</p><p><a href="/templates/" style="color:#1D4E89">Retour aux templates</a></p></body></html>`,
       { status: reg ? 200 : 400, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+  }
+
+  // Désinscription des nouveautés (lien signé) : le contact est effacé.
+  if (chemin === '/desinscription' && requete.method === 'GET') {
+    const e = String(url.searchParams.get('e') || ''), s = String(url.searchParams.get('s') || '');
+    const attendu = signerDesinscription(secret, e);
+    const ok = /^[0-9a-f]{32}$/.test(e) && s.length === attendu.length && timingSafeEqual(Buffer.from(s), Buffer.from(attendu));
+    if (ok) await essais.supprimer(`contact/${e}`);
+    const message = ok ? 'C\'est fait : vous ne recevrez plus les nouveautés QME, et votre adresse a été effacée de la liste.' : 'Lien invalide.';
+    return new Response(`<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Désinscription · QME</title><body style="font-family:Arial,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:22px">Nouveautés QME</h1><p>${message}</p><p><a href="/templates/" style="color:#1D4E89">Retour aux templates</a></p></body></html>`,
+      { status: ok ? 200 : 400, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+  }
+
+  // Contacts « nouveautés » : lecture, export CSV et effacement réservés à l'administrateur (code ADM-…).
+  if (chemin === '/contacts') {
+    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (requete.method === 'DELETE') {
+      const email = String(url.searchParams.get('email') || '').trim().toLowerCase();
+      if (!emailValide(email)) return json(400, { erreur: 'Adresse e-mail invalide.' });
+      const cle = `contact/${cleEmail(secret, email)}`;
+      const existe = Boolean(await essais.get(cle));
+      if (existe) await essais.supprimer(cle);
+      return json(200, { ok: true, effaces: existe ? 1 : 0 });
+    }
+    if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise' });
+    const contacts = await lireContacts(essais);
+    if (url.searchParams.get('format') === 'csv') {
+      return new Response(csvContacts(contacts, secret), { status: 200, headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store',
+        'content-disposition': `attachment; filename="contacts-qme-${new Date(maintenant()).toISOString().slice(0, 10)}.csv"` } });
+    }
+    const depuis = new Date(maintenant() - 30 * 86_400_000).toISOString();
+    return json(200, { total: contacts.length, trenteJours: contacts.filter((c) => c.consenti >= depuis).length,
+      contacts: contacts.map((c) => ({ email: c.email, prenom: c.prenom, templates: c.templates, consenti: c.consenti, maj: c.maj })) });
   }
 
   if (chemin !== '' || requete.method !== 'POST') return json(404, { erreur: 'Route inconnue' });
@@ -178,6 +248,9 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
 
   const date = new Date(maintenant());
   const aujourdhui = jourParis(date);
+  // Case facultative « nouveautés » : seule une case cochée (true) inscrit l'adresse dans la base de contacts.
+  const nouveautes = corps.nouveautes === true;
+  if (nouveautes) await enregistrerContact(essais, secret, { email, prenom: nettoyerPrenom(corps.prenom), slug: TEMPLATES[produit].slug, date });
 
   // Un essai par adresse et par template : on renvoie le code par e-mail, jamais dans la réponse
   // (sinon n'importe qui pourrait ouvrir les données d'un autre en tapant son adresse).
@@ -208,7 +281,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   const e = verifierCodeEssai(secret, code);
   const reg = {
     id: e.id, produit, code, email, prenom: nettoyerPrenom(corps.prenom), cree: date.toISOString(),
-    debut: e.debut, fin: e.fin, effacement: e.effacement, mails: {}, stop: false, achete: null,
+    debut: e.debut, fin: e.fin, effacement: e.effacement, mails: {}, stop: false, achete: null, nouveautes,
   };
   try { if (await envoyerMail('merci', reg, { secret, envoyer })) reg.mails.merci = date.toISOString(); } catch (x) { console.error('E-mail de remerciement impossible', x); }
   await essais.set(`essai/${e.id}`, reg);
@@ -224,6 +297,13 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
   // Anciennes limites par IP : inutiles au-delà du jour même.
   for (const cle of await essais.lister('ip/')) {
     if (cle.slice(-10) < aujourdhui) await essais.supprimer(cle);
+  }
+  // Contacts « nouveautés » : effacés 3 ans après le dernier échange.
+  const limite = new Date(maintenant() - CONSERVATION_CONTACTS_JOURS * 86_400_000).toISOString();
+  bilan.contactsEffaces = 0;
+  for (const cle of await essais.lister('contact/')) {
+    const c = await essais.get(cle);
+    if (c && c.maj < limite) { await essais.supprimer(cle); bilan.contactsEffaces++; }
   }
   for (const cle of await essais.lister('essai/')) {
     const reg = await essais.get(cle);
