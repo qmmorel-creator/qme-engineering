@@ -152,16 +152,16 @@ Hors de cette session : deux brouillons « Vivre sans voiture » créés le 18/1
 
 | Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
 |---------|------|---------------------|-----------|------|--------|
-| PRS | prospection | 7Ie2c3Qgcxkl1coobiiNXg== | /l/pipeline-prospection | 25 € | clé à activer (https://gumroad.com/products/qyumgc/edit) |
-| PCM | propositions | N9GYtihcDeqRncRUYwVwew== | /l/propositions-commerciales | 19 € | clé à activer (https://gumroad.com/products/phjupy/edit) |
-| KRF | references-plaquette | Y_zjhtlT4nxXqSdqeT_mEA== | /l/kit-references-plaquette | 19 € | clé à activer (https://gumroad.com/products/rmwtgfp/edit) |
-| CED | calendrier-editorial | qUwb0nm4TaFmXgiSoc2aJA== | /l/calendrier-editorial | 15 € | clé à activer (https://gumroad.com/products/zflymh/edit) |
-| CND | appels-offres | q9_HDtnCNGmEe4PrNEOQyA== | /l/suivi-appels-offres | 15 € | clé à activer (https://gumroad.com/products/ipdwmx/edit) |
-| CHT | suivi-chantier | 78_8FuKW6L-Dk5kT50W8-Q== | /l/suivi-chantier-lot | 40 € | clé à activer (https://gumroad.com/products/bheow/edit) |
-| RDE | doe | rusN6tG2fwT6JE_JZMEZIA== | /l/registre-doe | 29 € | clé à activer (https://gumroad.com/products/nwwsee/edit) |
-| STR | sous-traitants | 6skYhUNcKgwFwua1a56TVw== | /l/conformite-sous-traitants | 29 € | clé à activer (https://gumroad.com/products/jsvuc/edit) |
-| CNG | conges | gJVooOi5p2lDuVx2azvvtA== | /l/suivi-conges-absences | 19 € | clé à activer (https://gumroad.com/products/flkvtw/edit) |
-| NDF | notes-de-frais | vI2luLWgaztzc9s7FcujWQ== | /l/notes-de-frais | 15 € | clé à activer (https://gumroad.com/products/qqttde/edit) |
+| PRS | prospection | 7Ie2c3Qgcxkl1coobiiNXg== | /l/pipeline-prospection | 25 € | **en vente** (19/11/2026) |
+| PCM | propositions | N9GYtihcDeqRncRUYwVwew== | /l/propositions-commerciales | 19 € | **en vente** (19/11/2026) |
+| KRF | references-plaquette | Y_zjhtlT4nxXqSdqeT_mEA== | /l/kit-references-plaquette | 19 € | **en vente** (19/11/2026) |
+| CED | calendrier-editorial | qUwb0nm4TaFmXgiSoc2aJA== | /l/calendrier-editorial | 15 € | **en vente** (19/11/2026) |
+| CND | appels-offres | q9_HDtnCNGmEe4PrNEOQyA== | /l/suivi-appels-offres | 15 € | **en vente** (19/11/2026) |
+| CHT | suivi-chantier | 78_8FuKW6L-Dk5kT50W8-Q== | /l/suivi-chantier-lot | 40 € | **en vente** (19/11/2026) |
+| RDE | doe | rusN6tG2fwT6JE_JZMEZIA== | /l/registre-doe | 29 € | **en vente** (19/11/2026) |
+| STR | sous-traitants | 6skYhUNcKgwFwua1a56TVw== | /l/conformite-sous-traitants | 29 € | **en vente** (19/11/2026) |
+| CNG | conges | gJVooOi5p2lDuVx2azvvtA== | /l/suivi-conges-absences | 19 € | **en vente** (19/11/2026) |
+| NDF | notes-de-frais | vI2luLWgaztzc9s7FcujWQ== | /l/notes-de-frais | 15 € | **en vente** (19/11/2026) |
 
 Ajustements Gumroad : tag « proposition-commerciale » (23 caractères) ramené à « proposition » ; bouton du reçu KRF
 « Ouvrir mon kit » (limite de 26 caractères) ; catégorie PCM « Marketing & Sales » (la fiche indiquait
