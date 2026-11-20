@@ -170,7 +170,7 @@
   "budget-commun": [
     "money",
     "Shared budget",
-    "For couples, flatmates or families: everyone logs what they pay, the split is computed (equal or by income) and who owes what.",
+    "For couples, flatmates or families: who owes whom, or how much each person pays into the joint account every month (equal split, by income or by shares).",
     0
   ],
   "budget": [
