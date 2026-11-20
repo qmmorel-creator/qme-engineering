@@ -170,8 +170,10 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     modifiables, alertes de plafond et de franchise de TVA, 3 scénarios ;
   - `templates/micro-entreprise/` (MCE) : **livre recettes-dépenses micro-entreprise**, registres,
     déclarations, seuils, export CSV ;
-  - `templates/budget-commun/` (BCM) : **budget commun**, répartitions au centime, équilibrage en un
-    minimum de virements, fusion des saisies de plusieurs appareils.
+  - `templates/budget-commun/` (BCM) : **budget commun**, deux fonctionnements au choix : avances et
+    remboursements (répartitions au centime, équilibrage en un minimum de virements) ou compte commun
+    (versement mensuel de chacun : charges prévues − solde, selon une clé égale, prorata ou parts, plus les
+    charges personnelles ; versements notés, solde estimé) ; fusion des saisies de plusieurs appareils.
 - Deuxième vague, en vente : `templates/gantt/` (GNT) **planning Gantt rapide** (chemin critique,
     jours ouvrés, jalons à plage) ; `templates/taches/` (TCH) **gestionnaire de tâches** (boîte de
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).

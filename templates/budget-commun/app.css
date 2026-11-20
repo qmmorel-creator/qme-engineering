@@ -16,6 +16,7 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
 mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+table.sr-only{display:block}
 .chargement{padding:48px 16px;text-align:center;color:var(--discret)}
 [hidden]{display:none!important}
 
@@ -577,3 +578,42 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* ---------- Fonctionnement « compte commun » (onglet Compte, réglages) ---------- */
+.segments.fonctionnements label{flex:1 1 220px}
+.segments.fonctionnements span{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 14px;text-align:left;min-height:64px}
+.segments.fonctionnements span b{font-size:15px}
+.segments.fonctionnements span small{font-size:13px;font-weight:500;opacity:.85;line-height:1.35}
+.fonctionnements label:first-child span{border-right:1px solid var(--trait)}
+.calcul-ligne{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,150px);gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--trait)}
+.calcul-ligne>span{display:flex;flex-direction:column;font-weight:600;min-width:0}
+.calcul-ligne small{font-size:13px;font-weight:500;color:var(--discret)}
+.calcul-ligne>b{text-align:right;font-size:18px;white-space:nowrap}
+.calcul-ligne input{width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--trait);background:var(--papier);text-align:right;font-size:16px;font-weight:700;border-radius:12px}
+.calcul-ligne input:focus-visible{outline:3px solid var(--bleu);outline-offset:1px}
+.calcul-ligne.total{border-bottom:2px solid var(--encre)}
+.calcul-ligne.total>b{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.calcul-ligne .neg{color:var(--rouge)}
+.calcul-ligne .btn.lien{min-height:0;padding:0;font-size:13px}
+.calcul .erreur:empty{display:none}
+.detail-charges{margin-top:12px}
+.detail-charges summary{cursor:pointer;font-weight:700;padding:6px 0}
+.detail-charges ul{display:grid;gap:4px;margin-top:6px}
+.detail-charges li{display:flex;justify-content:space-between;gap:12px;font-size:14px;border-bottom:1px dotted var(--trait);padding:3px 0}
+.detail-charges li small{color:var(--discret)}
+.sous-titre{font-size:16px;margin:18px 0 8px}
+.jauge.versee::after{display:none}
+.jauge.versee span{background:var(--vert)}
+.virement-prevu .fait{font-size:20px;color:var(--vert)}
+.titre-section .btn.lien{min-height:0;padding:0;font-size:14px}
+.bloc.fonctionnement{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:20px;border-left:8px solid var(--bleu)}
+.bloc.fonctionnement h2{font-size:22px;margin:2px 0 4px}
+.bloc.fonctionnement p{color:var(--texte-2);max-width:640px}
+.bloc.fonctionnement .actions{display:flex;flex-wrap:wrap;gap:8px}
+@media (max-width:720px){
+  .calcul-ligne{grid-template-columns:minmax(0,1fr) 120px}
+  .calcul-ligne.total>b{font-size:20px}
+  .segments.fonctionnements label{flex-basis:100%}
+  .fonctionnements label:first-child span{border-right:0;border-bottom:1px solid var(--trait)}
+}
+.segments.fonctionnements input:checked+span small{color:var(--papier);opacity:1}

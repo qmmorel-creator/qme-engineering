@@ -57,7 +57,7 @@ export const TEMPLATES = {
   PRX: { slug: 'cout-revient', prix: 2500, phrase: 'Vos coûts réels et le prix juste pour chaque client.', permalien: 'cout-de-revient', pour: 'pro' },
   MCE: { slug: 'micro-entreprise', prix: 2500, phrase: 'Le livre de la micro-entreprise, cotisations estimées.', permalien: 'livre-recettes-micro', pour: 'pro' },
   BDG: { slug: 'budget', prix: 1500, phrase: 'Dépenses, enveloppes et écart au budget, mois par mois.', permalien: 'budget-foyer', pour: 'perso' },
-  BCM: { slug: 'budget-commun', prix: 1500, phrase: 'À deux ou en colocation : qui a payé, qui doit quoi.', permalien: 'budget-commun', pour: 'perso' },
+  BCM: { slug: 'budget-commun', prix: 1500, phrase: 'À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun.', permalien: 'budget-commun', pour: 'perso' },
   REV: { slug: 'revision', prix: 1490, phrase: 'Chaque chapitre revient au bon moment jusqu’à l’examen.', permalien: 'planning-revision', pour: 'perso' },
   NTR: { slug: 'nutrition', prix: 1900, phrase: 'Repas, calories, macros et dépense du jour.', permalien: 'nutrition', pour: 'perso' },
   VSA: { slug: 'visa', prix: 3900, phrase: 'Indices, avis des viseurs et échéances, lot par lot.', permalien: 'circuit-visa', pour: 'pro' },
@@ -250,7 +250,7 @@ export const PAGES = {
     pourQui: 'Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?',
     parcours: [
       ['MRG', 'Pilotez le rétroplanning, les prestataires, les invités et le budget du mariage.'],
-      ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus.'],
+      ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus, ou calculez ce que chacun verse sur le compte joint.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
       ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],
       ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
@@ -365,7 +365,7 @@ export const PAGES = {
     pourQui: 'Vous partez en famille, en couple ou entre amis. Les réservations sont dans dix e-mails, le budget dans une note, et au retour personne ne sait qui doit quoi.',
     parcours: [
       ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
-      ['BCM', 'Partagez les dépenses et voyez en un coup d’œil qui doit quoi.'],
+      ['BCM', 'Partagez les dépenses et voyez en un coup d’œil qui doit quoi, ou ce que chacun verse sur le compte commun.'],
     ],
     arguments: ['Aucune réservation ni publicité : vous gardez la main', 'Toute la troupe sur la même clé', 'Le planificateur de voyage arrive bientôt'],
     prevus: [],
@@ -432,7 +432,7 @@ export const PAGES = {
     parcours: [
       ['BDG', 'Fixez vos enveloppes et voyez l’écart au budget, mois par mois.'],
       ['ABN', 'Ramenez chaque abonnement à son coût réel et décidez avant la fin des essais.'],
-      ['BCM', 'Partagez les dépenses communes et voyez qui doit quoi, à deux ou en colocation.'],
+      ['BCM', 'Partagez les dépenses communes et voyez qui doit quoi, ou combien chacun verse sur le compte joint.'],
       ['RDV', 'Fixez vos objectifs de l’année, argent compris, et faites le bilan chaque trimestre.'],
     ],
     arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],

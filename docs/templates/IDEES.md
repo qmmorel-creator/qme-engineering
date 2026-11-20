@@ -1018,6 +1018,18 @@ famille), règles de répartition expliquées.
 **Partage** : une seule clé ; chaque membre ouvre l'application sur son appareil avec la même clé (mêmes
 données). Le dire clairement : partager la clé donne un accès complet.
 
+**Deux fonctionnements** (demande de Quentin du 20/11/2026, d'après son artefact « Budget commun ») : choix au
+premier lancement, modifiable dans les réglages sans rien supprimer (`reglages.fonctionnement`) :
+- **Avances et remboursements** (comportement d'origine, valeur des données d'avant l'option) : chacun paie, soldes
+  et équilibrage ;
+- **Compte commun** : un compte joint paie les dépenses et les récurrentes (payeur `compte`, « pour » le foyer ou une
+  personne). Onglet **Compte**, mois par mois : à couvrir = récurrentes communes du compte + dépenses courantes
+  prévues + autres sorties (débit différé…) − solde avant les versements ; réparti selon la clé du foyer (égale,
+  prorata des revenus, parts), puis chacun ajoute ses charges personnelles (non diminuées par le solde) ;
+  versements notés (« C'est fait ») ; solde estimé = solde + versements − dépenses du compte. Démo :
+  `?demo=compte`. Règles pures `chargesPrevues`, `alimentation`, `soldeEstime`, `verses` (`regles.js`), testées
+  dans `outils/templates/budget-commun.test.mjs`.
+
 **Risques** : argent : avertissement ; données du foyer seulement. Taille S.
 
 ---
