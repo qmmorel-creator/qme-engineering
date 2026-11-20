@@ -178,11 +178,11 @@ Brouillons **non publiés** ; identifiants **non ajoutés** à `PRODUITS` ni `PA
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PFC | Pack Freelance : trouver ses clients | jE3iyCKKK07ALZrBhP7j_w== | /l/pack-freelance-clients | 97 € (évolutif 122 €) | clé et versions à ajouter (https://gumroad.com/products/qfxdwo/edit) |
-| PBT | Pack Chef de projet BTP | Oi7gqrAFzTtGi5bCk205ZA== | /l/pack-chef-de-projet-btp | 192 € (évolutif 240 €) | clé et versions à ajouter (https://gumroad.com/products/ncbrvn/edit) |
-| ARD | Onboarding et offboarding salarié | u_RxsaNkRuszAnjeMFxKZw== | /l/onboarding-offboarding | 19 € | clé à activer (https://gumroad.com/products/stuqcpz/edit) |
-| TDB | Tableau de bord de pilotage PME | qzhJTzOWF59ZJo1a1Xbetg== | /l/tableau-de-bord-pme | 39 € | clé à activer (https://gumroad.com/products/soymmz/edit) |
-| ENP | Entretiens annuels et professionnels | iOZ0cB8ONCrvvkxMdbL7BQ== | /l/entretiens-annuels-professionnels | 19 € | clé à activer (https://gumroad.com/products/agwttd/edit) |
+| PFC | Pack Freelance : trouver ses clients | jE3iyCKKK07ALZrBhP7j_w== | /l/pack-freelance-clients | 97 € (évolutif 122 €) | **en vente** (20/11/2026) |
+| PBT | Pack Chef de projet BTP | Oi7gqrAFzTtGi5bCk205ZA== | /l/pack-chef-de-projet-btp | 192 € (évolutif 240 €) | **en vente** (20/11/2026) |
+| ARD | Onboarding et offboarding salarié | u_RxsaNkRuszAnjeMFxKZw== | /l/onboarding-offboarding | 19 € | **en vente** (20/11/2026) |
+| TDB | Tableau de bord de pilotage PME | qzhJTzOWF59ZJo1a1Xbetg== | /l/tableau-de-bord-pme | 39 € | **en vente** (20/11/2026) |
+| ENP | Entretiens annuels et professionnels | iOZ0cB8ONCrvvkxMdbL7BQ== | /l/entretiens-annuels-professionnels | 19 € | **en vente** (20/11/2026) |
 
 Tag « entretien-professionnel » (23 caractères) ramené à « entretien-pro » ; bouton du reçu ENP « Ouvrir mes entretiens ».
 **Limite Gumroad atteinte** sur PRC (Gestion de parc informatique) : prochaine création le 20/11 à 09:45 (Paris), reprise
