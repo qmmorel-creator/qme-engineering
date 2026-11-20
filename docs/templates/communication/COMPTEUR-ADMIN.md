@@ -8,7 +8,7 @@ provenance), cartes par réseau, classement et détail des publications.
 ## Fonctionnement
 
 - **Données** : uniquement le Google Sheet « Mesures réseaux QME » (`1578z4XTYuN-_85VdCrjJYLX9hEDlRpnmZZP5gTfNMik`).
-  - `Publications`, `Historique` : remplis chaque jour par Instinct (`PROMPT-INSTINCT-MESURES*.md`).
+  - `Publications`, `Historique`, `Abonnés` : remplis chaque jour par Instinct (`PROMPT-INSTINCT-MESURES*.md`, abonnés depuis la v4).
   - `Gumroad produits`, `Gumroad sources`, `Gumroad jours`, `Gumroad ventes` : copiés chaque matin de Gumroad par la
     tâche planifiée « Compteur QME · copie Gumroad vers Sheet » (06:47, Paris). Aucune adresse e-mail d'acheteur.
 - **Lecture** : `netlify/functions/compteur.mjs` (`/api/compteur`, logique `netlify/lib/compteur.mjs`, tests

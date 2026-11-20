@@ -62,6 +62,16 @@
 .rq-mini-n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
 .rq-mini-d { margin: 0; font-size: 12px; color: var(--discret); }
 
+/* Abonnés */
+.rq-abo-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.rq-abo-liste li { background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; padding: 14px 16px; display: grid; gap: 2px; min-width: 0; }
+.rq-abo-liste .rq-abo-r { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--texte-2); }
+.rq-abo-liste .rq-abo-n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
+.rq-abo-liste .rq-abo-v { font-size: 12px; color: var(--discret); }
+.rq-abo-liste .rq-abo-v.hausse { color: var(--vert); font-weight: 600; }
+.rq-abo-liste .rq-abo-v.baisse { color: var(--rouge); font-weight: 600; }
+.rq-abo-liste .rq-abo-vide { grid-column: 1 / -1; color: var(--discret); font-size: 14px; }
+
 /* Gumroad */
 .rq-gtiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
 .rq-gtile { border-radius: 16px; padding: 18px 20px; display: grid; gap: 4px; align-content: start; min-width: 0; }
@@ -225,6 +235,19 @@ html, body { margin: 0; background: #FBF7F1; }
         <div class="rq-chart rq-area" data-draw="cumul" data-champ="Clics" data-source="cumuls" role="img" aria-label="Aires empilées : clics cumulés par jour, par réseau."></div>
       </figure>
     </div>
+  </section>
+
+  <section class="rq-section" id="abonnes">
+    <div class="rq-section-head">
+      <h2>Abonnés</h2>
+      <p class="rq-sub">Abonnés de chaque compte QME, relevés chaque matin par Instinct (onglet Abonnés). Un jour sans relevé reprend la valeur précédente.</p>
+    </div>
+    <ul class="rq-abo-liste" data-draw="abonnes-liste" data-source="abonnes_derniers"></ul>
+    <figure class="rq-mini" id="abonnes-courbe">
+      <figcaption><span class="rq-mini-t">Évolution des abonnés</span></figcaption>
+      <p class="rq-mini-d">Page LinkedIn, Instagram @qmengineering, chaîne YouTube, TikTok @qme.qm.engineering, X @qmengineering</p>
+      <div class="rq-chart rq-area" data-draw="abonnes" data-source="abonnes_jour" role="img" aria-label="Courbes : nombre d'abonnés par réseau, jour par jour."></div>
+    </figure>
   </section>
 
   <section class="rq-section" id="gumroad">
@@ -414,8 +437,8 @@ html, body { margin: 0; background: #FBF7F1; }
 </div>
 </main>
 <script src="d3-7.9.0.min.js"></script>
-<script src="moteur.js?v=2026112001"></script>
-<script src="compteur.js?v=2026112001"></script>
-<script src="connexion.js?v=2026112001"></script>
+<script src="moteur.js?v=2026112101"></script>
+<script src="compteur.js?v=2026112101"></script>
+<script src="connexion.js?v=2026112101"></script>
 </body>
 </html>

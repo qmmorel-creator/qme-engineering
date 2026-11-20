@@ -11,6 +11,7 @@ import { timingSafeEqual, createHash } from 'node:crypto';
 export const ONGLETS = {
   publications: 1450548824,
   historique: 783077974,
+  abonnes: 540567426,
   gumroad_produits: 1412341743,
   gumroad_sources: 375719535,
   gumroad_jours: 1531113938,
