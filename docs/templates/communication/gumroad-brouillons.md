@@ -187,3 +187,12 @@ Brouillons **non publiés** ; identifiants **non ajoutés** à `PRODUITS` ni `PA
 Tag « entretien-professionnel » (23 caractères) ramené à « entretien-pro » ; bouton du reçu ENP « Ouvrir mes entretiens ».
 **Limite Gumroad atteinte** sur PRC (Gestion de parc informatique) : prochaine création le 20/11 à 09:45 (Paris), reprise
 programmée à 09:46 pour le pack Moyens généraux.
+
+### Suite du 20/11/2026 (pack Moyens généraux)
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| PRC | Gestion de parc informatique | gykL5ZVrrICGHSLM0V3xlQ== | /l/parc-informatique | 35 € | **en vente** (20/11/2026) |
+| VHC | Gestion de flotte de véhicules | a212qy8CvDD90dc-7gV5NQ== | /l/gestion-flotte | 39 € | **en vente** (20/11/2026) |
+
+Limite Gumroad atteinte sur GMA (Maintenance préventive) : prochaine création à 10:01 (Paris), reprise programmée à 10:02.
