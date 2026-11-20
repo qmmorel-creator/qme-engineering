@@ -26,8 +26,11 @@ Site promotionnel de Quentin Morel Engineering (QME).
     (`netlify.toml`), pour les liens déjà publiés ;
   - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
     puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
-    tuile affiche les outils du thème (`?theme=…`), « Tous les thèmes » ramène aux tuiles ; une recherche affiche
-    directement les outils trouvés. Templates en préparation masqués par défaut (« Afficher aussi les N en
+    tuile affiche les outils du thème (`?theme=…`), chacun avec sa vignette, « Tous les thèmes » ramène aux tuiles ;
+    une recherche affiche directement les outils trouvés. Vignettes : `assets/vignettes/<slug>.webp` (480 × 300,
+    12 Ko en moyenne, chargées seulement à l'ouverture d'un thème), tirées de la capture choisie dans
+    `outils/x/templates-en.json` (`_captures`) par `node outils/templates/vignettes.mjs`, qui écrit aussi l'attribut
+    `data-vignette` des cartes. Templates en préparation masqués par défaut (« Afficher aussi les N en
     préparation », `?avenir=1`), toujours montrés pendant une recherche. Les anciennes vues « Disponibles maintenant »,
     accordéon et « Sommaire » sont supprimées (`?vue=sommaire` est ignoré). Les tuiles et la liste sont construites par
     `assets/site.js` à partir des cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour

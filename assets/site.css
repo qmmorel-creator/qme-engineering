@@ -407,6 +407,8 @@ footer a{font-weight:600;color:var(--encre)}
 .outil{display:flex;min-width:0}
 .outil>a{flex:1;display:flex;flex-direction:column;gap:6px;padding:16px;background:var(--surface);border-top:5px solid var(--c,var(--trait));border-radius:16px;text-decoration:none;color:var(--encre);transition:transform .15s,box-shadow .15s}
 .outil>a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,34,31,.10)}
+.outil img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:10px;border:1px solid var(--trait);background:var(--sable);margin-bottom:6px}
+.outil.prochaine img{opacity:.6}
 .outil b{font-size:17px;line-height:1.25}
 .outil .phrase{font-size:14px;color:var(--texte-2);line-height:1.4}
 .outil em{margin-top:auto;padding-top:6px;font-style:normal;font-size:16px;font-weight:800}
