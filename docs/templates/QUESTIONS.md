@@ -33,7 +33,13 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- **Clés de licence à activer** : aucune pour l'instant (10 brouillons du 19/11 publiés).
+- **Clés de licence à activer (20/11/2026)** (Content → Insert → License key, sans multi-postes) :
+  - PFC Pack Freelance : trouver ses clients (clé + versions « Pack » 97 € et « Pack évolutif » 122 €) : https://gumroad.com/products/qfxdwo/edit
+  - PBT Pack Chef de projet BTP (clé + versions « Pack » 192 € et « Pack évolutif » 240 €) : https://gumroad.com/products/ncbrvn/edit
+  - ARD Onboarding et offboarding : https://gumroad.com/products/stuqcpz/edit
+  - TDB Tableau de bord PME : https://gumroad.com/products/soymmz/edit
+  - ENP Entretiens annuels : https://gumroad.com/products/agwttd/edit
+  La session de pilotage publie dès que la clé est détectée (tâche quotidienne de 8 h 45).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?
