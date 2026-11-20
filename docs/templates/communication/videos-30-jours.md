@@ -257,7 +257,7 @@ du planning) : J17, J18 (visa), J19 (non-conformités), J22 (CRM), J24 (flotte).
 - **Chute** : « Quinze ans de projets m'ont appris ça : ce n'est pas le retard qui pose problème, c'est
   le découvrir trop tard. Je serais curieux d'avoir votre méthode. »
 
-### J10 · C · 35 s · T65 Budget commun
+### J10 · C · 35 s · T65 Gestion Dépenses Communes
 - **Publication** : IG-60 le jeu. 07/01 ; Instagram 18:30, YouTube Shorts le même jour.
 - **Accroche** : « À deux, partager les dépenses à 50/50 n'est pas forcément juste. »
   [À l'écran : « 50/50 ou au prorata ? »]
@@ -385,7 +385,7 @@ du planning) : J17, J18 (visa), J19 (non-conformités), J22 (CRM), J24 (flotte).
 - **Démonstration** : fiche véhicule fictive → échéances → alertes → coûts par véhicule.
 - **Chute** : « Démo : lien dans la bio. » *(Seulement si la fiche Gumroad est en ligne.)*
 
-### J25 · C · 30 s · T65 Budget commun
+### J25 · C · 30 s · T65 Gestion Dépenses Communes
 - **Publication** : IG-49 + LI-100 le mar. 22/12 ; Instagram 18:30, YouTube Shorts le même jour, LinkedIn 12:15.
 - **Accroche** : « Noël à deux : les cadeaux de sa famille, c'est commun ou c'est à lui ? »
   [À l'écran : « Noël à deux : qui paie quoi ? »]

@@ -38,7 +38,7 @@ officielles**. Aucun gain de temps ni aucune économie chiffrés.
 | Partenaire | Intérêt | À vérifier |
 |---|---|---|
 | Associations étudiantes (voyages de promo, échanges) | Voyages de groupe, budgets serrés, comptes partagés | Règles de partenariat des bureaux des élèves ; achat groupé possible ? |
-| Pack « Voyage » et pack « Mariage et installation à deux » du site | Vente groupée avec le Budget commun | Composition des packs mise à jour à la fusion |
+| Pack « Voyage » et pack « Mariage et installation à deux » du site | Vente groupée avec Gestion Dépenses Communes | Composition des packs mise à jour à la fusion |
 | Écoles de langue et organismes de séjours linguistiques | Familles qui préparent un séjour | Pertinence (le séjour est souvent organisé par l'organisme) ; à tester |
 
 ## À éviter

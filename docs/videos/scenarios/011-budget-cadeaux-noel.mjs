@@ -1,4 +1,4 @@
-// Vidéo 011 · Budget du foyer · « 380 € de cadeaux de Noël sur un mois déjà plein ? »
+// Vidéo 011 · Mon Budget · « 380 € de cadeaux de Noël sur un mois déjà plein ? »
 // Type : problème (angle « problème vécu », sur le modèle du Reel du 13/11/2026 : douleur concrète puis récit).
 // Données : démo intégrée du template (foyer fictif « Camille et Sami »). L'enveloppe « Cadeaux et fêtes »
 // reçoit 80 € par mois avec report du reste : au mois en cours, elle contient l'enveloppe + le report.
@@ -11,7 +11,7 @@ export const config = {
   produit: 'BDG', type: 'problème', titre: '380 € de cadeaux de Noël sur un mois déjà plein ?',
   app: '/templates/budget/?demo',
   largeur: 1280, hauteur: 1600,
-  marque: 'QME · Budget du foyer',
+  marque: 'QME · Mon Budget',
   url: 'qm-engineering.fr/templates/budget',
   affiche: 3.1,
   // Musique de la vidéo de présentation QME (« Corporate », litesaturation, licence Pixabay : usage commercial sans attribution).
@@ -171,7 +171,7 @@ export async function jouer(v) {
   // Fin
   await v.temps(); son('whoosh'); await S('volet');
   await S('legende', null);
-  await S('outro', { titre: 'Budget du foyer', sous: 'Les grosses dépenses de l\'année,<br>mises de côté mois après mois.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
+  await S('outro', { titre: 'Mon Budget', sous: 'Les grosses dépenses de l\'année,<br>mises de côté mois après mois.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
   await temps(3);
 }

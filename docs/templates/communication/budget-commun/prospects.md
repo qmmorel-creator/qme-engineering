@@ -1,4 +1,4 @@
-# Prospects · Budget commun
+# Prospects · Gestion Dépenses Communes
 
 Segments et organisations à démarcher. Aucune donnée personnelle collectée : on cible des fonctions
 et des structures, on écrit à des adresses professionnelles publiques ou via LinkedIn. Les organismes

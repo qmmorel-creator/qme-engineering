@@ -86,13 +86,13 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 
 #MicroEntreprise #AutoEntrepreneur #Indépendant #Freelance #OutilsSurMesure"""),
 
- dict(id='IG-08', slug='budget-commun', dossier='budget-commun', nom='Budget commun',
-  titre='T65 · Budget commun couple / colocation', date='26/11/2026', li='LI-79', li_date='25/11',
+ dict(id='IG-08', slug='budget-commun', dossier='budget-commun', nom='Gestion Dépenses Communes',
+  titre='T65 · Gestion Dépenses Communes couple / colocation', date='26/11/2026', li='LI-79', li_date='25/11',
   prix=15, gumroad=True, couleur='Maison', prix_txt='15 € · tout le foyer',
   h1='Qui doit <mark>combien</mark> à qui ?', sous='Partager les dépenses à deux, à trois ou en famille.',
   p2=("« Je t'ai fait un virement pour les courses… ou c'était pour l'électricité ? »",
       "Les comptes communs tiennent souvent dans une note de téléphone."),
-  v3=('Budget commun', "Chacun note ce qu'il paie.", 'budget-commun-depenses', [
+  v3=('Gestion Dépenses Communes', "Chacun note ce qu'il paie.", 'budget-commun-depenses', [
       "<b>Parts égales, prorata des revenus, parts ou montants exacts</b>, au centime près.",
       "<b>Loyer, énergie, abonnements</b> ajoutés chaque mois avec la bonne répartition.",
       "<b>Une clé pour le foyer</b> : chacun l'ouvre sur son téléphone."], 'Données fictives'),
@@ -106,7 +106,7 @@ Démo libre avec un atelier fictif, et contact : lien en bio.
 
 Partager à parts égales, c'est simple. Dès qu'on tient compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient vite une source de discussions.
 
-Le Budget commun :
+Gestion Dépenses Communes :
 ▪ répartit chaque dépense à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près ;
 ▪ tient les soldes à jour et calcule le nombre minimal de virements pour remettre les comptes à zéro ;
 ▪ ajoute chaque mois le loyer, l'énergie et les abonnements avec la bonne répartition.
@@ -182,12 +182,12 @@ Démo libre avec des tâches fictives, et contact : lien en bio.
 
 #Organisation #Productivité #GestionDuTemps #Freelance #OutilsSurMesure"""),
 
- dict(id='IG-11', slug='budget', dossier='budget', nom='Budget du foyer', titre='T05 · Budget du foyer',
+ dict(id='IG-11', slug='budget', dossier='budget', nom='Mon Budget', titre='T05 · Mon Budget',
   date='02/12/2026', li='LI-82', li_date='01/12', prix=15, gumroad=True, couleur='Maison',
   h1="Où est passé <mark>l'argent</mark> ce mois-ci ?", sous='Le prévu face au réel, et le trajet de chaque euro.',
   p2=("Un relevé bancaire liste les dépenses une par une.",
       "Il ne dit pas si vous restez dans ce que vous aviez prévu."),
-  v3=('Budget du foyer', 'Des enveloppes par catégorie.', 'budget-enveloppes', [
+  v3=('Mon Budget', 'Des enveloppes par catégorie.', 'budget-enveloppes', [
       "<b>Une enveloppe par catégorie</b>, reste reporté d'un mois sur l'autre.",
       "<b>Prévu face au réel</b> : les enveloppes dépassées sont signalées.",
       "<b>22 catégories, 75 sous-catégories</b>, quatre modèles de foyer."], 'Données fictives'),
@@ -201,7 +201,7 @@ Démo libre avec des tâches fictives, et contact : lien en bio.
 
 Un relevé bancaire liste les dépenses une par une. Il ne dit ni si vous restez dans ce que vous aviez prévu, ni quelle part de ce qui rentre part en loyer, en courses ou en épargne.
 
-Le Budget du foyer :
+Mon Budget :
 ▪ des enveloppes par catégorie, avec report du reste d'un mois sur l'autre ;
 ▪ le prévu face au réel, avec les enveloppes dépassées signalées dès qu'elles le sont ;
 ▪ un diagramme des flux : chaque mois, le trajet de l'argent des revenus vers chaque catégorie.

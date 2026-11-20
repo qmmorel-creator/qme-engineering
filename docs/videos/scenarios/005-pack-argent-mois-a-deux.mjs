@@ -1,8 +1,8 @@
 // Vidéo 005 · Pack Argent du quotidien · « Un essai devient payant, des courses à noter, et qui doit quoi ? »
 // Type : pack. Fil conducteur : le mois de Camille et Sami, en trois templates du pack et trois gestes réels.
 //   1. Suivi des abonnements : l'essai gratuit qui finit bientôt est marqué « À résilier » → tuile Économies.
-//   2. Budget du foyer : une dépense de courses de 84 € → « Il reste … dans tes enveloppes ».
-//   3. Budget commun : les mêmes courses, payées par Sami → « Sami doit … à Camille ».
+//   2. Mon Budget : une dépense de courses de 84 € → « Il reste … dans tes enveloppes ».
+//   3. Gestion Dépenses Communes : les mêmes courses, payées par Sami → « Sami doit … à Camille ».
 // Données : démos intégrées des templates (foyer fictif). Toutes les valeurs de l'habillage sont LUES dans l'application.
 
 export const config = {
@@ -22,10 +22,10 @@ const T = 60000 / 110; // un temps en ms
 const ESSAI_NOM = 'Application de coaching sportif';
 const ESSAI = '.decisions > article:nth-of-type(2)';            // contrôlé dans preparer (nom et étiquette)
 const ECO = '.tuiles > .tuile:last-child';                        // tuile « Économies »
-// 2. Budget du foyer
+// 2. Mon Budget
 const RESTE = 'h1 mark';
 const ALIM = '[data-action="enveloppe"][data-id="alimentation"]';
-// 3. Budget commun
+// 3. Gestion Dépenses Communes
 const DOIT = 'h1 mark';
 const MONTANT = '84';
 
@@ -112,7 +112,7 @@ export async function jouer(v) {
   await temps(1.5);
   await S('retirer');
 
-  // 2. Budget du foyer : les courses
+  // 2. Mon Budget : les courses
   await v.temps(); await changer(v, 'budget', '2 · Votre *budget* du mois');
   await verifierBudget(v);
   const reste0 = euros(await v.lire(RESTE));
@@ -137,7 +137,7 @@ export async function jouer(v) {
   await temps(1.5);
   await S('retirer');
 
-  // 3. Budget commun : qui a payé les courses
+  // 3. Gestion Dépenses Communes : qui a payé les courses
   await v.temps(); await changer(v, 'budget-commun', '3 · Vos comptes *à deux*');
   await verifierCommun(v);
   const doit0 = euros(await v.lire(DOIT));

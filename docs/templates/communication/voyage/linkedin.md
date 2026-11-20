@@ -76,7 +76,7 @@ Présentation complète : https://qm-engineering.fr/catalogue/voyage/
 
 - Nuits sans hébergement et nuits réservées deux fois signalées : `couverture()` de `templates/voyage/regles.js`,
   testée dans `outils/templates/voyage.test.mjs`.
-- Partage au centime et nombre minimal de remboursements : moteur du template Budget commun
+- Partage au centime et nombre minimal de remboursements : moteur du template Gestion Dépenses Communes
   (`templates/budget-commun/regles.js`), mêmes résultats vérifiés par test.
 - Consultable sans réseau : service worker (`templates/voyage/sw.js`), saisies gardées et renvoyées au
   retour du réseau.

@@ -48,8 +48,8 @@ Pour toutes : **règles à vérifier avant de poster**.
 | r/productivite | T03 Gestionnaire de tâches | inconnue (à lire) | à vérifier, sinon sans lien | N · existence et règles à vérifier | fin décembre - janvier (bonnes résolutions) |
 | r/productivity (anglophone) | T03 Gestionnaire de tâches | inconnue (à lire) | à vérifier, sinon sans lien | E (≈ 4,3 M membres) · règles à vérifier | janvier ; préciser « interface en français » |
 | r/musculation | T04 Nutrition | inconnue (à lire) | à vérifier, sinon sans lien | N · existence et règles à vérifier | janvier ou septembre |
-| r/vosfinances | T05 Budget du foyer | inconnue (à lire) | à vérifier, sinon sans lien | E (≈ 436 000 membres) · règles à vérifier | début de mois ou janvier |
-| r/france | T65 Budget commun | inconnue (à lire) | à vérifier, sinon sans lien | E (≈ 2 M membres fin 2024) · règles à vérifier | week-end ; vérifier s'il existe un fil dédié |
+| r/vosfinances | T05 Mon Budget | inconnue (à lire) | à vérifier, sinon sans lien | E (≈ 436 000 membres) · règles à vérifier | début de mois ou janvier |
+| r/france | T65 Gestion Dépenses Communes | inconnue (à lire) | à vérifier, sinon sans lien | E (≈ 2 M membres fin 2024) · règles à vérifier | week-end ; vérifier s'il existe un fil dédié |
 | r/gestiondeprojet | T31 Compte rendu | inconnue (à lire) | à vérifier, sinon sans lien | N · existence et règles à vérifier | au moins deux semaines après le message T02 |
 | r/Freelance_FR | T37 Coût de revient | inconnue (à lire) | à vérifier, sinon sans lien | N · existence et règles à vérifier | semaine ouvrée |
 | r/AutoEntrepreneur | T40 Calculateur de TJM | inconnue (à lire) | à vérifier, sinon sans lien | N · existence et règles à vérifier | janvier (révision des tarifs) |
@@ -209,7 +209,7 @@ https://qm-engineering.fr/templates/nutrition/?demo
 
 ---
 
-## T05 · Budget du foyer
+## T05 · Mon Budget
 
 Démo : https://qm-engineering.fr/templates/budget/?demo
 Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-foyer
@@ -237,7 +237,7 @@ https://qm-engineering.fr/templates/budget/?demo
 
 ---
 
-## T65 · Budget commun
+## T65 · Gestion Dépenses Communes
 
 Démo : https://qm-engineering.fr/templates/budget-commun/?demo
 Achat (seulement si les règles l'autorisent) : https://qmengineering.gumroad.com/l/budget-commun

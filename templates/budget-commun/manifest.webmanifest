@@ -1,6 +1,6 @@
 {
-  "name": "Budget commun · QME",
-  "short_name": "Budget commun",
+  "name": "Gestion Dépenses Communes · QME",
+  "short_name": "Dépenses communes",
   "description": "Dépenses partagées du foyer, soldes et équilibrage.",
   "lang": "fr",
   "start_url": "./",

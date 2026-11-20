@@ -1,4 +1,4 @@
-# Publication Instagram · Budget du foyer (IG-11)
+# Publication Instagram · Mon Budget (IG-11)
 
 02/12/2026 à 18:30, lendemain de LI-82 (01/12). Carrousel 5 vues au gabarit des posts
 template (IG-04, IG-05), vue 5 avec renvoi au sur mesure. Kit : `../instagram/README.md`. Visuels :
@@ -16,14 +16,14 @@ template (IG-04, IG-05), vue 5 avec renvoi au sur mesure. Kit : `../instagram/RE
 4. Des revenus à chaque catégorie. (bandeau jaune, capture `templates-budget-flux.webp`).
 5. Appel à l'action (fond jaune), 15 €, renvoi au sur mesure : Une association, un petit commerce, vos propres catégories.
 
-## Légende (Google Doc « IG-11 · T05 · Budget du foyer · légende », publié tel quel)
+## Légende (Google Doc « IG-11 · T05 · Mon Budget · légende », publié tel quel)
 
 ```
 Où est passé l'argent ce mois-ci ?
 
 Un relevé bancaire liste les dépenses une par une. Il ne dit ni si vous restez dans ce que vous aviez prévu, ni quelle part de ce qui rentre part en loyer, en courses ou en épargne.
 
-Le Budget du foyer :
+Mon Budget :
 ▪ des enveloppes par catégorie, avec report du reste d'un mois sur l'autre ;
 ▪ le prévu face au réel, avec les enveloppes dépassées signalées dès qu'elles le sont ;
 ▪ un diagramme des flux : chaque mois, le trajet de l'argent des revenus vers chaque catégorie.
@@ -41,7 +41,7 @@ Démo libre avec un foyer fictif, et contact : lien en bio.
 
 1. Titre « Où est passé l'argent ce mois-ci ? » Le prévu face au réel, et le trajet de chaque euro.
 2. Fond noir : Un relevé bancaire liste les dépenses une par une. Il ne dit pas si vous restez dans ce que vous aviez prévu.
-3. Le template Budget du foyer : Des enveloppes par catégorie. Une enveloppe par catégorie, reste reporté d'un mois sur l'autre. Prévu face au réel : les enveloppes dépassées sont signalées. 22 catégories, 75 sous-catégories, quatre modèles de foyer. Capture, données fictives.
+3. Le template Mon Budget : Des enveloppes par catégorie. Une enveloppe par catégorie, reste reporté d'un mois sur l'autre. Prévu face au réel : les enveloppes dépassées sont signalées. 22 catégories, 75 sous-catégories, quatre modèles de foyer. Capture, données fictives.
 4. Le trajet de l'argent : Des revenus à chaque catégorie. Diagramme des flux : besoins, envies, épargne, puis chaque catégorie. Repère 50/30/20 affiché pour comparer, pas comme une règle. Capture, données fictives.
 5. Fond jaune : essayez-le avec un foyer fictif, démo libre, achat unique à 15 €. Besoin de plus ? Une association, un petit commerce, vos propres catégories : version sur mesure. Lien en bio.
 
@@ -65,7 +65,7 @@ Où est passé l'argent ce mois-ci ? Le relevé bancaire ne répond qu'à moiti�
 
 Il liste les dépenses une par une. Il ne dit ni si vous restez dans ce que vous aviez prévu, ni quelle part de ce qui rentre part en loyer, en courses ou en épargne.
 
-Le Budget du foyer :
+Mon Budget :
 ▪ des enveloppes par catégorie, avec report du reste d'un mois sur l'autre ;
 ▪ le prévu face au réel, avec les enveloppes dépassées signalées dès qu'elles le sont ;
 ▪ un diagramme des flux : chaque mois, le trajet de l'argent des revenus vers chaque catégorie.
@@ -89,7 +89,7 @@ Doc : https://docs.google.com/document/d/1MLGDQ0W9XJGGoLuJq7CF8EOWg6rBFdLTj6agUM
 
 Le relevé bancaire dit ce que vous avez dépensé. Pas si c'était prévu.
 
-C'est toute l'idée du Budget du foyer : une enveloppe par catégorie, le prévu face au réel, et chaque enveloppe dépassée signalée dès qu'elle l'est. Un diagramme des flux montre où part chaque euro.
+C'est toute l'idée de Mon Budget : une enveloppe par catégorie, le prévu face au réel, et chaque enveloppe dépassée signalée dès qu'elle l'est. Un diagramme des flux montre où part chaque euro.
 
 Vous saisissez vos montants, sans connexion à la banque. Achat unique, 15 €. Une association, un petit commerce, vos propres catégories ? Je construis la version sur mesure.
 

@@ -1,4 +1,4 @@
-// Vidéo 012 · Budget commun · « Les cadeaux de Noël à deux : moitié-moitié ? »
+// Vidéo 012 · Gestion Dépenses Communes · « Les cadeaux de Noël à deux : moitié-moitié ? »
 // Type : paramétrage. Données : démo intégrée du template (couple fictif « Camille et Sami », revenus
 // renseignés, répartition par défaut au prorata des revenus).
 // Geste réel : nouvelle dépense « Cadeaux de Noël de la famille », 240 €, payée par Sami ; la répartition
@@ -11,7 +11,7 @@ export const config = {
   produit: 'BCM', type: 'paramétrage', titre: 'Les cadeaux de Noël à deux : moitié-moitié ?',
   app: '/templates/budget-commun/?demo',
   largeur: 1280, hauteur: 1600,
-  marque: 'QME · Budget commun',
+  marque: 'QME · Gestion Dépenses Communes',
   url: 'qm-engineering.fr/templates/budget-commun',
   affiche: 2.4,
   // Musique de la vidéo de présentation QME (« Corporate », litesaturation, licence Pixabay : usage commercial sans attribution).
@@ -140,7 +140,7 @@ export async function jouer(v) {
   // Fin
   await v.temps(); son('whoosh'); await S('volet');
   await S('legende', null);
-  await S('outro', { titre: 'Budget commun', sous: 'À parts égales, au prorata, en parts :<br>une règle par dépense.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
+  await S('outro', { titre: 'Gestion Dépenses Communes', sous: 'À parts égales, au prorata, en parts :<br>une règle par dépense.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
   await temps(3);
 }

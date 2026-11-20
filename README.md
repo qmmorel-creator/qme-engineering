@@ -152,9 +152,12 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
-  (`/packs/espace/`, non indexé). La page `/packs/` présente une ligne dépliable par pack (contenu, jauge de
-  disponibilité, prix, actions), filtrée par « Je suis… » sur les publics présents dans au moins deux packs ;
-  `/packs/#<slug>` ouvre le pack. Pages générées : `node outils/packs/generer.mjs` (données dans
+  (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
+  des vignettes de ses templates, nom, nombre de templates, remise, prix ; un clic ouvre `/packs/<slug>/`, où sont
+  le contenu détaillé, l'achat ou « Je suis intéressé(e) »), filtrée par « Je suis… » sur les publics présents
+  dans au moins deux packs ; les anciens liens `/packs/#<slug>` mènent à la page du pack. Les cartes de templates
+  des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
+  lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
@@ -640,7 +643,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
-**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Budget commun » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
+**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Gestion Dépenses Communes » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
 l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie auprès de l'API Gumroad
 (`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
 convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :

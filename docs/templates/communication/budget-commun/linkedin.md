@@ -1,4 +1,4 @@
-# Publication LinkedIn · Budget commun
+# Publication LinkedIn · Gestion Dépenses Communes
 
 À publier une fois la fiche Gumroad en vente et le site à jour. Relue et ajustée par Quentin avant
 publication. Liens à vérifier au moment de publier (le permalien Gumroad n'existe pas encore).
@@ -113,7 +113,7 @@ Personne n'a tort, personne n'est sûr. Les comptes communs tenaient dans une no
 
 Tant que tout se partage à parts égales, ça passe encore. Le jour où l'on veut tenir compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient une source de discussions de plus.
 
-C'est pour cette soirée-là que j'ai construit le Budget commun. Chacun note ce qu'il paie, et la dépense est répartie à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près. Les soldes se tiennent à jour : qui doit combien à qui, et le nombre minimal de virements pour remettre les comptes à zéro. Le loyer, l'énergie et les abonnements reviennent chaque mois avec la bonne répartition.
+C'est pour cette soirée-là que j'ai construit Gestion Dépenses Communes. Chacun note ce qu'il paie, et la dépense est répartie à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près. Les soldes se tiennent à jour : qui doit combien à qui, et le nombre minimal de virements pour remettre les comptes à zéro. Le loyer, l'énergie et les abonnements reviennent chaque mois avec la bonne répartition.
 
 Une seule clé pour le foyer : chacun l'ouvre sur son téléphone et voit les mêmes comptes. Si deux personnes saisissent en même temps, les deux dépenses sont gardées. Pas de connexion bancaire, pas d'abonnement.
 
@@ -126,7 +126,7 @@ Chez vous, les dépenses communes se partagent à parts égales ou selon les rev
 
 Premier commentaire :
 
-Le Budget commun (15 €, achat unique, une clé pour tout le foyer) :
+Gestion Dépenses Communes (15 €, achat unique, une clé pour tout le foyer) :
 https://qmengineering.gumroad.com/l/budget-commun
 
 

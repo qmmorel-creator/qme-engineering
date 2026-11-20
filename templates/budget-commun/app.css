@@ -1,4 +1,4 @@
-/* Budget commun · charte QME Bauhaus « Pastel » : voir le bloc « Thème Pastel » en fin de fichier. */
+/* Gestion Dépenses Communes · charte QME Bauhaus « Pastel » : voir le bloc « Thème Pastel » en fin de fichier. */
 :root{
   --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--texte-2:#514C44;--discret:#6E685F;--trait:#E4DCCE;
   --rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;--max:1180px;
@@ -364,7 +364,7 @@ table.sr-only{display:block}
 }
 @media (max-width:380px){.tuiles{grid-template-columns:1fr}.carte h3{font-size:19px}}
 
-/* ============ Budget commun ============ */
+/* ============ Gestion Dépenses Communes ============ */
 .neg{color:var(--rouge)}
 .montant{font-weight:800;font-size:17px;white-space:nowrap;letter-spacing:-.01em}
 .petit-texte{font-size:13px;color:var(--discret);margin-top:10px}
