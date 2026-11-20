@@ -38,3 +38,14 @@ ffmpeg -framerate 30 -i images/%05d.jpg -i musique.wav -c:v libx264 -preset slow
 
 `scene.html` charge la police Outfit depuis `/home/user/qme-engineering/assets/fonts/` (chemin absolu à
 adapter). Les repères de temps sont en tête du script (`T.drop`, `T.e2`… `T.cymbale`).
+
+## Version TikTok (20/11/2026)
+
+La première publication TikTok (musique « Christmas is coming ») a été supprimée par TikTok le 20/11 (« Règles de la
+communauté », raison exacte non consultée). Version TikTok : `scene-tiktok.html`, même scène recalée sur la musique QME
+« Corporate » (110 BPM, seul morceau de la bibliothèque assez long), crédit musical retiré, 49 s :
+
+    node docs/videos/rendu.mjs docs/templates/communication/secret-santa/video/scene-tiktok.html 49 33500 --sortie IG-36-secret-santa-tiktok.mp4
+
+Drive : `IG-36-secret-santa-tiktok.mp4` (ID `1GpfM8GlrwuIf6HFElTny51m8mDvRwM-A`, 2,66 Mo, AAC, -14 LUFS). Reprise par
+Instinct : `../PROMPT-INSTINCT-TIKTOK-REPRISE.md`.
