@@ -177,7 +177,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
-- `templates/secret-santa/` (SNT) : **Secret Santa**, prêt, mise à disposition prochaine, **gratuit**
+- `templates/secret-santa/` (SNT) : **Secret Santa**, **en vente** (Gumroad, prix libre, 0 €), **gratuit**
   (prix libre sur Gumroad). L'organisateur (clé de licence) crée ses échanges et partage un lien
   d'invitation ; les participants s'inscrivent sans compte (prénom, e-mail, code personnel, idées) ;
   exclusions ; tirage fait par le serveur, jamais montré à l'organisateur ; aucun e-mail envoyé. API
