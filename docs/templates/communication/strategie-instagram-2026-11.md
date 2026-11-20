@@ -187,11 +187,11 @@ Reel (problème + résultat chiffré)
 - **Rassurer en 3 phrases**, sur une vue de carrousel épinglée et dans la rubrique Achat unique :
   - « Un paiement, pas d'abonnement » ;
   - « Ordinateur, tablette, téléphone, même hors connexion » ;
-  - « Vos données ne sont ni vendues ni partagées ; démo sans inscription ».
+  - « Démo libre, sans inscription » (vérifier pour chaque template ce que la démo stocke avant d'en dire plus).
   
   Toutes ces affirmations sont vérifiables dans le site et la FAQ.
 - **Démonstration convaincante** = une seule action réelle et son effet chiffré, en moins de 10 s. Exemples :
-  « 240 € de cadeaux, au prorata : 138,67 € / 101,33 € » ; « une date bouge, 14 tâches se recalent ». Le moteur
+  « 240 € de cadeaux, au prorata : 138,67 € / 101,33 € » ; « une date bouge, les tâches qui en dépendent se recalent ». Le moteur
   `docs/videos/moteur.mjs` le fait déjà ; c'est l'accroche et l'ordre qu'il faut changer.
 - **Secret Santa (gratuit) comme aimant** : un téléchargement gratuit sur Gumroad donne une adresse e-mail. [H] À
   vérifier dans les réglages Gumroad : l'acheteur accepte-t-il de recevoir des nouvelles ? Si oui, c'est le premier
@@ -369,7 +369,7 @@ Règles communes :
 - **Accroche** : « Une date bouge sur le chantier… et il faut tout recaler à la main ? »
 - **Déroulé** :
   - une tâche glissée de 3 jours ;
-  - 14 tâches recalées en jours ouvrés, fériés compris ;
+  - les tâches liées recalées en jours ouvrés, fériés compris ;
   - le chemin critique en rouge.
 - **Action** : démo libre, lien en bio.
 - **Objectif** : 1 clic `achat-gantt`.
@@ -381,7 +381,7 @@ Règles communes :
   2. l'essai 14 jours sans carte ;
   3. l'achat et la clé ;
   4. tous les appareils ;
-  5. vos données ;
+  5. la démo, libre et sans inscription ;
   6. « Quel outil essayer en premier ? » (renvoi aux 6 héros).
 - **Message** : aucun risque à essayer. À épingler.
 - **Objectif** : 5 enregistrements.
@@ -410,7 +410,7 @@ Règles communes :
 - **Action** : enregistrer et envoyer.
 - **Objectif** : 5 enregistrements, 3 envois.
 
-**L18 · ven. 11/12 · Instagram · Reel 20 s · sur-mesure (1 sur 5) · Pilier 2 (Nouveau, captures de BikePulse Gear si Quentin l'accepte)**
+**L18 · ven. 11/12 · Instagram · Reel 20 s · sur-mesure (1 sur 5) · Pilier 2 (Existe : cas réel d'IG-29, sans donnée du client)**
 - **Accroche** : « "Je vous avais laissé le chargeur." Une phrase qui coûte cher à un atelier. »
 - **Déroulé** :
   - la fiche d'arrivée case par case ;
