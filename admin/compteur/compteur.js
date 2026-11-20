@@ -757,3 +757,135 @@ dash.draw('abonnes', (el) => {
     })
     .on('pointerleave', () => { tip.hidden = true; guide.style('display', 'none'); });
 });
+
+/* Essais gratuits (page d'administration uniquement : données de la base du site, via /api/compteur). */
+dash.calc('essais_total', {
+  inputs: ['essais'],
+  title: 'Essais gratuits : totaux',
+  description: "Essais hors tests, achats après essai, conversion = achats ÷ essais × 100, nombre de templates essayés, essais de test exclus.",
+  fn: (essais) => {
+    const vrais = essais.filter((e) => !e.Test);
+    const achats = vrais.filter((e) => e['Acheté le']).length;
+    return [{
+      Essais: vrais.length, Achats: achats,
+      'Conversion %': vrais.length ? Math.round((achats / vrais.length) * 1000) / 10 : null,
+      Templates: new Set(vrais.map((e) => e.Produit)).size,
+      Tests: essais.length - vrais.length,
+    }];
+  }
+});
+
+dash.calc('essais_jour', {
+  inputs: ['essais'],
+  title: 'Essais gratuits cumulés par jour',
+  description: "Pour chaque jour, du premier essai à aujourd'hui : essais lancés et achats après essai cumulés (hors tests), au jour de création et au jour d'achat.",
+  fn: (essais) => {
+    const vrais = essais.filter((e) => !e.Test && e['Créé le']);
+    if (!vrais.length) return [];
+    const jour = (d) => String(d).slice(0, 10);
+    const crees = {}, achetes = {};
+    vrais.forEach((e) => { crees[jour(e['Créé le'])] = (crees[jour(e['Créé le'])] || 0) + 1; if (e['Acheté le']) achetes[jour(e['Acheté le'])] = (achetes[jour(e['Acheté le'])] || 0) + 1; });
+    const debut = Object.keys(crees).sort()[0];
+    const aujourdhui = new Date().toISOString().slice(0, 10);
+    const sortie = [];
+    let ne = 0, na = 0;
+    for (let t = Date.parse(debut + 'T00:00:00Z'); t <= Date.parse(aujourdhui + 'T00:00:00Z'); t += 86400000) {
+      const j = new Date(t).toISOString().slice(0, 10);
+      ne += crees[j] || 0; na += achetes[j] || 0;
+      sortie.push({Jour: j, Essais: ne, Achats: na});
+    }
+    return sortie;
+  }
+});
+
+dash.calc('essais_templates', {
+  inputs: ['essais'],
+  title: 'Essais gratuits par template',
+  description: "Nombre d'essais (hors tests) et d'achats après essai par template.",
+  fn: (essais) => {
+    const parT = {};
+    essais.filter((e) => !e.Test).forEach((e) => {
+      const t = parT[e.Template] || (parT[e.Template] = {Template: e.Template, Essais: 0, Achats: 0});
+      t.Essais += 1; if (e['Acheté le']) t.Achats += 1;
+    });
+    return Object.values(parT).sort((a, b) => (b.Essais - a.Essais) || (b.Achats - a.Achats));
+  }
+});
+
+dash.draw('essais-courbe', (el) => {
+  const d = dash.data('essais_jour');
+  el.replaceChildren();
+  const message = (texte) => { const p = document.createElement('p'); p.className = 'rq-empty'; p.textContent = texte; el.append(p); };
+  if (d.status === 'error') { message('Échec du chargement des essais.'); return; }
+  if (d.status !== 'ok') { el.textContent = '—'; return; }
+  const rows = Array.isArray(d.data) ? d.data : [];
+  if (!rows.length) { message("Aucun essai gratuit (hors tests) pour l'instant."); return; }
+  const W = Math.max(240, el.clientWidth || 320);
+  const H = 190, top = 10, bottom = 24, right = 12;
+  const max = d3.max(rows, (r) => r.Essais) || 1;
+  const y = d3.scaleLinear().domain([0, max]).nice(4).range([H - bottom, top]);
+  const ticks = y.ticks(Math.min(4, max)).filter((v) => Number.isInteger(v));
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('role', 'img').attr('aria-label', el.getAttribute('aria-label') || 'Essais');
+  const probe = svg.append('g');
+  let left = 0;
+  ticks.forEach((v) => { const t = probe.append('text').attr('class', 'rq-lbl').text(window.rqFmt(v)); left = Math.max(left, t.node().getComputedTextLength()); });
+  probe.remove();
+  left = Math.ceil(left) + 10;
+  const parse = (j) => new Date(j + 'T00:00:00Z');
+  const x = d3.scaleUtc().domain([parse(rows[0].Jour), parse(rows[rows.length - 1].Jour)]).range([left + 4, W - right - 4]);
+  svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(ticks).tickSize(-(W - left - right)).tickFormat((v) => window.rqFmt(v)));
+  svg.append('g').attr('transform', `translate(0,${H - bottom})`)
+    .call(d3.axisBottom(x).ticks(Math.max(2, Math.min(rows.length, Math.floor((W - left - right) / 60)))).tickSize(0).tickPadding(8).tickFormat(d3.utcFormat('%d/%m')));
+  [['Essais', '#2E5A88'], ['Achats', '#B84A34']].forEach(([champ, c]) => {
+    svg.append('path').datum(rows).attr('d', d3.area().x((r) => x(parse(r.Jour))).y0(y(0)).y1((r) => y(r[champ])).curve(d3.curveStepAfter)).style('fill', c).style('fill-opacity', 0.15);
+    svg.append('path').datum(rows).attr('d', d3.line().x((r) => x(parse(r.Jour))).y((r) => y(r[champ])).curve(d3.curveStepAfter)).style('fill', 'none').style('stroke', c).style('stroke-width', 2.5);
+    const der = rows[rows.length - 1];
+    svg.append('circle').attr('cx', x(parse(der.Jour))).attr('cy', y(der[champ])).attr('r', 4.5).style('fill', c).style('stroke', 'var(--surface)').style('stroke-width', 2);
+  });
+  const guide = svg.append('line').attr('class', 'rq-guide').attr('y1', top).attr('y2', H - bottom).style('display', 'none');
+  const tip = document.createElement('div'); tip.className = 'rq-tip'; tip.hidden = true; el.append(tip);
+  svg.append('rect').attr('x', left).attr('y', 0).attr('width', W - left).attr('height', H).style('fill', 'transparent')
+    .on('pointerenter pointermove', (ev) => {
+      const box = el.getBoundingClientRect();
+      const px = (ev.clientX - box.left) * (W / box.width);
+      let r = rows[0], dist = Infinity;
+      rows.forEach((k) => { const dd = Math.abs(x(parse(k.Jour)) - px); if (dd < dist) { dist = dd; r = k; } });
+      guide.attr('x1', x(parse(r.Jour))).attr('x2', x(parse(r.Jour))).style('display', null);
+      tip.replaceChildren();
+      const s = document.createElement('strong'); s.textContent = 'Au ' + r.Jour.slice(8, 10) + '/' + r.Jour.slice(5, 7); tip.append(s);
+      [['Essais', '#2E5A88'], ['Achats', '#B84A34']].forEach(([champ, c]) => {
+        const sp = document.createElement('span'); const p = document.createElement('i'); p.style.background = c;
+        const v = document.createElement('em'); v.textContent = window.rqFmt(r[champ]);
+        sp.append(p, document.createTextNode(champ === 'Essais' ? 'Essais lancés' : 'Achats après essai'), v); tip.append(sp);
+      });
+      tip.hidden = false;
+      const tw = tip.offsetWidth, th = tip.offsetHeight, cx = ev.clientX - box.left, cy = ev.clientY - box.top;
+      tip.style.left = Math.max(0, Math.min(cx + 14, box.width - tw)) + 'px';
+      tip.style.top = Math.max(0, Math.min(cy - th - 10, box.height - th)) + 'px';
+    })
+    .on('pointerleave', () => { tip.hidden = true; guide.style('display', 'none'); });
+});
+
+dash.draw('essais-templates', (el) => {
+  const d = dash.data('essais_templates');
+  el.replaceChildren();
+  const message = (texte) => { const p = document.createElement('p'); p.className = 'rq-empty'; p.textContent = texte; el.append(p); };
+  if (d.status === 'error') { message('Échec du chargement des essais.'); return; }
+  if (d.status !== 'ok') { el.textContent = '—'; return; }
+  const rows = (Array.isArray(d.data) ? d.data : []).slice(0, 12);
+  if (!rows.length) { message("Aucun essai gratuit (hors tests) pour l'instant."); return; }
+  const W = Math.max(240, el.clientWidth || 320), pas = 40, H = 2 + rows.length * pas;
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', el.getAttribute('aria-label') || 'Essais par template');
+  const etiquette = (r) => r.Essais + ' essai' + (r.Essais > 1 ? 's' : '') + (r.Achats ? ' · ' + r.Achats + ' achat' + (r.Achats > 1 ? 's' : '') : '');
+  const probe = svg.append('g'); let valW = 0;
+  rows.forEach((r) => { const t = probe.append('text').attr('class', 'rq-lbl').text(etiquette(r)); valW = Math.max(valW, t.node().getComputedTextLength()); });
+  probe.remove();
+  const x = d3.scaleLinear().domain([0, d3.max(rows, (r) => r.Essais) || 1]).range([0, Math.max(40, W - Math.ceil(valW) - 26)]);
+  const g = svg.selectAll('g.rq-ge').data(rows).join('g').attr('class', 'rq-ge').attr('transform', (r, i) => `translate(0,${2 + i * pas})`);
+  g.append('text').attr('class', 'rq-lbl').attr('x', 0).attr('y', 12).style('fill', 'var(--encre)').style('font-weight', 500).text((r) => r.Template)
+    .each(function () { let t = this.textContent; while (this.getComputedTextLength() > W - 4 && t.length > 4) { t = t.slice(0, -2); this.textContent = t + '…'; } });
+  g.append('rect').attr('x', 0).attr('y', 18).attr('height', 12).attr('rx', 6).attr('width', (r) => Math.max(4, x(r.Essais))).style('fill', '#2E5A88');
+  g.append('circle').attr('cx', (r) => Math.max(4, x(r.Essais)) + 10).attr('cy', 24).attr('r', 5).style('fill', '#B84A34').style('display', (r) => (r.Achats > 0 ? null : 'none'));
+  g.append('text').attr('class', 'rq-lbl').attr('x', (r) => Math.max(4, x(r.Essais)) + (r.Achats > 0 ? 20 : 8)).attr('y', 24).attr('dy', '0.35em').text(etiquette);
+});

@@ -6,6 +6,7 @@
 // - COMPTEUR_SHEET_PUB : adresse de publication web du Sheet, de la forme
 //   https://docs.google.com/spreadsheets/d/e/2PACX-…/pub (Fichier > Partager > Publier sur le Web).
 import { timingSafeEqual, createHash } from 'node:crypto';
+import { PRODUITS, statEssai } from './templates-acces.mjs';
 
 // Onglets du Sheet 1578z4XTYuN-_85VdCrjJYLX9hEDlRpnmZZP5gTfNMik (identifiants « gid »).
 export const ONGLETS = {
@@ -64,7 +65,19 @@ export function adressePublication(texte) {
   return { ok: false, erreur: "COMPTEUR_SHEET_PUB n'est pas une adresse de publication Google Sheets (elle doit contenir « docs.google.com/spreadsheets/d/e/ »)." };
 }
 
-export async function traiterCompteur(requete, { motDePasse, base, recuperer = fetch, attendre = (ms) => new Promise((r) => setTimeout(r, ms)), maintenant = () => new Date() }) {
+// Essais gratuits, anonymes : traces stat/<id> (permanentes) et essais en cours sans trace. Tableau façon CSV,
+// sans e-mail ni prénom : Template, Code produit, Créé le, Acheté le, Test.
+export async function lireEssaisAnonymes(essais) {
+  const traces = [];
+  const vus = new Set();
+  for (const cle of await essais.lister('stat/')) { const s = await essais.get(cle); if (s?.id) { traces.push(s); vus.add(s.id); } }
+  for (const cle of await essais.lister('essai/')) { const r = await essais.get(cle); if (r?.id && !vus.has(r.id)) traces.push(statEssai(r)); }
+  traces.sort((a, b) => String(a.cree).localeCompare(String(b.cree)));
+  return [['Template', 'Produit', 'Créé le', 'Acheté le', 'Test'],
+    ...traces.map((t) => [PRODUITS[t.produit]?.nom || String(t.produit || ''), String(t.produit || ''), String(t.cree || ''), t.achete ? String(t.achete) : '', t.test ? 'TRUE' : 'FALSE'])];
+}
+
+export async function traiterCompteur(requete, { motDePasse, base, essais = null, recuperer = fetch, attendre = (ms) => new Promise((r) => setTimeout(r, ms)), maintenant = () => new Date() }) {
   if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise.' });
   if (!motDePasse || String(motDePasse).length < 6 || !base) return json(503, { erreur: 'Compteur non configuré sur Netlify (mot de passe ou adresse du Sheet).' });
   if (!motDePasseValide(requete.headers.get('x-mot-de-passe'), motDePasse)) {
@@ -86,5 +99,9 @@ export async function traiterCompteur(requete, { motDePasse, base, recuperer = f
       erreurs[nom] = String(e.message || e);
     }
   }));
+  if (essais) {
+    try { onglets.essais = await lireEssaisAnonymes(essais); }
+    catch (e) { erreurs.essais = String(e.message || e); }
+  }
   return json(200, { lu: maintenant().toISOString(), onglets, erreurs });
 }
