@@ -192,7 +192,7 @@ programmée à 09:46 pour le pack Moyens généraux.
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PRC | Gestion de parc informatique | gykL5ZVrrICGHSLM0V3xlQ== | /l/parc-informatique | 35 € | clé à activer (https://gumroad.com/products/uujmcw/edit) |
-| VHC | Gestion de flotte de véhicules | a212qy8CvDD90dc-7gV5NQ== | /l/gestion-flotte | 39 € | clé à activer (https://gumroad.com/products/jqpdzc/edit) |
+| PRC | Gestion de parc informatique | gykL5ZVrrICGHSLM0V3xlQ== | /l/parc-informatique | 35 € | **en vente** (20/11/2026) |
+| VHC | Gestion de flotte de véhicules | a212qy8CvDD90dc-7gV5NQ== | /l/gestion-flotte | 39 € | **en vente** (20/11/2026) |
 
 Limite Gumroad atteinte sur GMA (Maintenance préventive) : prochaine création à 10:01 (Paris), reprise programmée à 10:02.
