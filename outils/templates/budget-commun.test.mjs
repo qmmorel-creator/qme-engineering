@@ -201,3 +201,80 @@ test('fusion : objets simples (foyer, réglages) selon la date de modification',
   assert.equal(r.etat.foyer.nom, 'A');
   assert.equal(R.fusionner(null, { x: 1 }).etat.x, 1);
 });
+
+// ---------- Mode « compte commun » ----------
+const M2 = [{ id: 'a', revenu: 260000 }, { id: 'b', revenu: 190000 }];
+const rec = (id, montant, pour, extra = {}) => ({ id, libelle: id, montant, payeur: 'compte', pour, jour: 5, debut: '2026-09', fin: null, actif: true, ...extra });
+
+test('compte : charges prévues du mois, communes et personnelles, selon les dates', () => {
+  const r = [
+    rec('loyer', 98000, 'foyer'), rec('tel', 1599, 'b'), rec('vieux', 5000, 'foyer', { fin: '2026-10' }),
+    rec('futur', 7000, 'foyer', { debut: '2026-12' }), rec('pause', 3000, 'foyer', { actif: false }),
+    { ...rec('perso', 4000, 'foyer'), payeur: 'a' }, rec('orphelin', 1000, 'zzz'),
+  ];
+  const c = R.chargesPrevues(r, '2026-11', M2);
+  assert.equal(c.communes, 98000 + 1000, 'récurrente d\'une personne retirée : comptée pour le foyer');
+  assert.deepEqual(simple(c.perso), { a: 0, b: 1599 });
+  assert.equal(c.lignes.length, 3);
+  assert.equal(R.chargesPrevues(r, '2026-10', M2).communes, 98000 + 5000 + 1000);
+});
+
+test('compte : versement de chacun au prorata, charges personnelles ajoutées, au centime', () => {
+  const a = R.alimentation({ membres: M2, cle: { mode: 'prorata' }, communes: 98000, perso: { b: 1599 }, courantes: 70000, autres: 2000, solde: 20000 });
+  assert.equal(a.charges, 170000);
+  assert.equal(a.aCouvrir, 150000);
+  assert.equal(somme(a.parts), 150000);
+  assert.equal(a.parts.a, Math.round(150000 * 26 / 45));
+  assert.equal(a.versements.b, a.parts.b + 1599);
+  assert.equal(a.total, 150000 + 1599);
+});
+
+test('compte : excédent sur le compte, seules les charges personnelles restent à verser', () => {
+  const a = R.alimentation({ membres: M2, cle: { mode: 'egale' }, communes: 50000, perso: { a: 1000 }, solde: 80000 });
+  assert.equal(a.aCouvrir, -30000);
+  assert.equal(a.base, 0);
+  assert.deepEqual(simple(a.versements), { a: 1000, b: 0 });
+});
+
+test('compte : clé en parts (pourcentages), revenu manquant ramené à parts égales', () => {
+  const p = R.alimentation({ membres: M2, cle: { mode: 'parts', parts: { a: 60, b: 40 } }, communes: 100001 });
+  assert.deepEqual(simple(p.parts), { a: 60001, b: 40000 });
+  const r = R.alimentation({ membres: [{ id: 'a', revenu: 200000 }, { id: 'b', revenu: null }], cle: { mode: 'prorata' }, communes: 1001 });
+  assert.equal(r.mode, 'egale');
+  assert.match(r.note, /parts égales/);
+  assert.equal(somme(r.parts), 1001);
+  const z = R.alimentation({ membres: M2, cle: { mode: 'parts', parts: { a: 0, b: 0 } }, communes: 1000 });
+  assert.equal(z.mode, 'egale');
+  assert.equal(somme(z.parts), 1000);
+});
+
+test('compte : solde estimé et déjà versé, par mois alimenté', () => {
+  const vs = [
+    { de: 'a', montant: 80000, date: '2026-10-30', mois: '2026-11' },
+    { de: 'b', montant: 60000, date: '2026-11-02', mois: '2026-11' },
+    { de: 'a', montant: 1000, date: '2026-10-05', mois: '2026-10' },
+  ];
+  const ds = [
+    { payeur: 'compte', montant: 98000, date: '2026-11-05' }, { payeur: 'compte', montant: 5000, date: '2026-11-20' },
+    { payeur: 'a', montant: 7000, date: '2026-11-06' },
+  ];
+  assert.deepEqual(simple(R.verses(vs, '2026-11', M2)), { a: 80000, b: 60000 });
+  assert.equal(R.soldeEstime(10000, vs, ds, '2026-11', '2026-11-10'), 10000 + 80000 + 60000 - 98000);
+  assert.equal(R.soldeEstime(10000, vs, ds, '2026-11'), 10000 + 140000 - 103000);
+});
+
+test('compte : une récurrente propre à une personne garde son destinataire', () => {
+  const g = R.genererRecurrentes([rec('tel', 1599, 'b', { repartition: { mode: 'egale', participants: ['b'] } })], [], {}, '2026-10-31', M2);
+  assert.equal(g.length, 2);
+  assert.equal(g[0].pour, 'b');
+  assert.equal(g[0].payeur, 'compte');
+  assert.deepEqual(simple(g[0].quotes), { b: 1599 });
+});
+
+test('fusion : versements et mois du compte réunis sans perte', () => {
+  const l = { versements: [{ id: 'v1', montant: 1, modifLe: '1' }], alimentations: [{ id: 'a-2026-11', solde: 5, modifLe: '2' }] };
+  const s = { versements: [{ id: 'v2', montant: 2, modifLe: '1' }], alimentations: [{ id: 'a-2026-11', solde: 9, modifLe: '1' }] };
+  const r = R.fusionner(l, s);
+  assert.equal(r.etat.versements.length, 2);
+  assert.equal(r.etat.alimentations[0].solde, 5);
+});
