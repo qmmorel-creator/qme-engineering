@@ -152,9 +152,12 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
-  (`/packs/espace/`, non indexé). La page `/packs/` présente une ligne dépliable par pack (contenu, jauge de
-  disponibilité, prix, actions), filtrée par « Je suis… » sur les publics présents dans au moins deux packs ;
-  `/packs/#<slug>` ouvre le pack. Pages générées : `node outils/packs/generer.mjs` (données dans
+  (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
+  des vignettes de ses templates, nom, nombre de templates, remise, prix ; un clic ouvre `/packs/<slug>/`, où sont
+  le contenu détaillé, l'achat ou « Je suis intéressé(e) »), filtrée par « Je suis… » sur les publics présents
+  dans au moins deux packs ; les anciens liens `/packs/#<slug>` mènent à la page du pack. Les cartes de templates
+  des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
+  lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
