@@ -104,8 +104,11 @@ stabilité 30 à 40 %, une pause entre chaque phrase.
 ## 6. Mixer la voix reçue
 
 ```
-node docs/videos/voix.mjs mixer docs/videos/scenarios/<scenario>.mjs <voix.mp3> [--ambiance bureau|ville|aucune|<fichier>] [--micro telephone|propre] [--ecart 6]
+node docs/videos/voix.mjs mixer docs/videos/scenarios/<scenario>.mjs <voix.mp3> [--ambiance bureau|ville|aucune|<fichier>] [--micro telephone|propre] [--ecart 6] [--debut-ambiance <s>]
 ```
+
+Ambiance fournie par Quentin (pluie, rue…) : relever son profil (`volumedetect` par tranches de 3 s) et choisir avec
+`--debut-ambiance` un passage régulier, sans pic (tonnerre, klaxon) sous la voix.
 
 La voix est découpée à ses silences, regroupée en autant de morceaux que de phrases, et chaque morceau démarre sur son
 repère (ElevenLabs ne respecte pas toutes les pauses : c'est prévu). Le tableau de calage s'affiche : l'associer aux

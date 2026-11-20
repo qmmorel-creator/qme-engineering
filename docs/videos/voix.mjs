@@ -4,7 +4,7 @@
 //   node docs/videos/voix.mjs texte <scenario.mjs>
 //       → tableau minuté + texte à coller dans ElevenLabs (balises <break>), écrit dans sortie/<nom>-voix.md
 //   node docs/videos/voix.mjs mixer <scenario.mjs> <voix.mp3> [--ambiance ville|bureau|aucune|<fichier>]
-//                                   [--micro telephone|propre] [--ecart 6]
+//                                   [--micro telephone|propre] [--ecart 6] [--debut-ambiance 0]
 //       → sortie/<nom>-voix.mp4 (vidéo + voix calée + ambiance, -14 LUFS)
 //
 // Le scénario exporte `voix = [{ a: '<repère>', decalage: 0.1, texte: '…' }, …]` (une ligne par phrase, dans l'ordre) ;
@@ -22,7 +22,7 @@ const SORTIE = join(ICI, 'sortie');
 const [commande, cheminScenario, ...reste] = process.argv.slice(2);
 const opt = (nom, def) => { const i = reste.indexOf(`--${nom}`); return i >= 0 ? reste[i + 1] : def; };
 if (!['texte', 'mixer'].includes(commande) || !cheminScenario) {
-  console.error('Usage : node docs/videos/voix.mjs texte <scenario.mjs>\n        node docs/videos/voix.mjs mixer <scenario.mjs> <voix.mp3> [--ambiance ville|bureau|aucune|<fichier>] [--micro telephone|propre] [--ecart 6]');
+  console.error('Usage : node docs/videos/voix.mjs texte <scenario.mjs>\n        node docs/videos/voix.mjs mixer <scenario.mjs> <voix.mp3> [--ambiance ville|bureau|aucune|<fichier>] [--micro telephone|propre] [--ecart 6] [--debut-ambiance 0]');
   process.exit(1);
 }
 const scenario = await import(pathToFileURL(resolve(cheminScenario)));
@@ -80,9 +80,22 @@ let morceaux = [], t0 = 0;
 for (const [k, t] of sil) { if (k === 'start') { if (t - t0 > 0.05) morceaux.push([t0, t]); } else t0 = t; }
 if ((!sil.length || sil.at(-1)[0] === 'end') && dv - t0 > 0.05) morceaux.push([t0, dv]); // voix qui finit sans silence
 if (morceaux.length < lignes.length) throw new Error(`La voix a ${morceaux.length} morceau(x) séparés par un silence, pour ${lignes.length} phrases : la régénérer avec des pauses (<break>) entre les phrases.`);
-while (morceaux.length > lignes.length) {
-  let k = 0; for (let i = 1; i < morceaux.length - 1; i++) if (morceaux[i + 1][0] - morceaux[i][1] < morceaux[k + 1][0] - morceaux[k][1]) k = i;
-  morceaux.splice(k, 2, [morceaux[k][0], morceaux[k + 1][1]]);
+// Regroupement : découpage dont les durées collent le mieux aux durées estimées des phrases (écart relatif au carré),
+// un silence long à la coupure étant favorisé. Une pause interne (« euros. Ah oui… ») peut être plus longue qu'une pause
+// entre deux phrases : la seule longueur des silences ne suffit pas (cas du 20/11/2026).
+{
+  const m = morceaux.length, N = lignes.length, est = lignes.map((l) => estimer(l.texte));
+  const cout = Array.from({ length: N + 1 }, () => Array(m + 1).fill(Infinity)), prec = Array.from({ length: N + 1 }, () => Array(m + 1).fill(-1));
+  cout[0][0] = 0;
+  for (let i = 1; i <= N; i++) for (let j = i; j <= m - (N - i); j++) for (let k = i - 1; k < j; k++) {
+    if (cout[i - 1][k] === Infinity) continue;
+    const duree = morceaux[j - 1][1] - morceaux[k][0], ecartRel = (duree - est[i - 1]) / est[i - 1];
+    const silence = j < m ? morceaux[j][0] - morceaux[j - 1][1] : 0.5;
+    const c = cout[i - 1][k] + ecartRel * ecartRel - 0.6 * Math.min(silence, 0.8);
+    if (c < cout[i][j]) { cout[i][j] = c; prec[i][j] = k; }
+  }
+  const groupes = []; for (let i = N, j = m; i > 0; j = prec[i][j], i--) groupes.unshift([morceaux[prec[i][j]][0], morceaux[j - 1][1]]);
+  morceaux = groupes;
 }
 // 2. Placement : chaque morceau sur son repère, jamais avant la fin du précédent.
 let fin = 0;
@@ -110,7 +123,8 @@ if (ambiance === 'ville') villeSynthetique(ambWav, D, blancs);
 else if (ambiance !== 'aucune') {
   const f = ambiance === 'bureau' ? join(ICI, 'ambiances/bureau.mp3') : resolve(ambiance);
   if (!existsSync(f)) throw new Error(`Ambiance introuvable : ${f}`);
-  ff(['-stream_loop', '-1', '-i', f, '-af', `atrim=0:${D},asetpts=PTS-STARTPTS,aresample=48000,afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, D - 1)}:d=1`, '-ac', '2', '-t', String(D), ambWav]);
+  // `--debut-ambiance` (s) : point de départ dans le fichier (choisir un passage régulier, sans coup de tonnerre sous la voix).
+  ff(['-stream_loop', '-1', '-ss', String(opt('debut-ambiance', cfg.debutAmbiance ?? 0)), '-i', f, '-af', `atrim=0:${D},asetpts=PTS-STARTPTS,aresample=48000,afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, D - 1)}:d=1`, '-ac', '2', '-t', String(D), ambWav]);
 }
 
 // 5. Mixage : ambiance `ecart` LU sous la voix, baissée sous la voix (compression par la voix), gain fixe vers -14 LUFS
