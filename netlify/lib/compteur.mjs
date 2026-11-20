@@ -51,6 +51,18 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
   headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' },
 });
 
+// Adresse de publication web, sous l'une des formes données par Google (…/pub, …/pubhtml, …/pub?output=csv,
+// …/pubhtml?gid=…&single=true, avec ou sans espaces) → https://docs.google.com/spreadsheets/d/e/<id>/pub.
+export function adressePublication(texte) {
+  const t = String(texte || '').trim();
+  const m = /docs\.google\.com\/spreadsheets\/d\/e\/([A-Za-z0-9_-]{20,})/.exec(t);
+  if (m) return { ok: true, base: `https://docs.google.com/spreadsheets/d/e/${m[1]}/pub` };
+  if (/docs\.google\.com\/spreadsheets\/d\/[A-Za-z0-9_-]+/.test(t)) {
+    return { ok: false, erreur: "COMPTEUR_SHEET_PUB contient l'adresse d'édition du Sheet. Publie-le (Fichier > Partager > Publier sur le Web) et colle l'adresse donnée par Google, qui contient « /d/e/ »." };
+  }
+  return { ok: false, erreur: "COMPTEUR_SHEET_PUB n'est pas une adresse de publication Google Sheets (elle doit contenir « docs.google.com/spreadsheets/d/e/ »)." };
+}
+
 export async function traiterCompteur(requete, { motDePasse, base, recuperer = fetch, attendre = (ms) => new Promise((r) => setTimeout(r, ms)), maintenant = () => new Date() }) {
   if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise.' });
   if (!motDePasse || String(motDePasse).length < 6 || !base) return json(503, { erreur: 'Compteur non configuré sur Netlify (mot de passe ou adresse du Sheet).' });
@@ -58,9 +70,9 @@ export async function traiterCompteur(requete, { motDePasse, base, recuperer = f
     await attendre(700); // freine les essais en série
     return json(401, { erreur: 'Mot de passe incorrect.' });
   }
-  if (!/^https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/[A-Za-z0-9_-]+\/pub$/.test(String(base))) {
-    return json(503, { erreur: 'Adresse de publication du Sheet invalide : attendu https://docs.google.com/spreadsheets/d/e/…/pub' });
-  }
+  const adresse = adressePublication(base);
+  if (!adresse.ok) return json(503, { erreur: adresse.erreur });
+  base = adresse.base;
   const onglets = {}, erreurs = {};
   await Promise.all(Object.entries(ONGLETS).map(async ([nom, gid]) => {
     try {
