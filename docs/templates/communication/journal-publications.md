@@ -16,3 +16,12 @@ contrôle de réserve sans production. Non publié (`/docs/*` en 404).
 
 | Date de création | Réseau | ID | Date de publication | Famille | Sujet / produit | Style | Format | Accroche | Doc | Statut |
 |---|---|---|---|---|---|---|---|---|---|---|
+
+**20/11/2026 · Renommage (« Mon Budget », « Gestion Dépenses Communes »)** : visuels programmés refaits et remplacés dans
+Drive (anciens fichiers renommés `…-ANCIEN-nom`) : IG-08 vues 3 et 4 (vue 1 : couverture retravaillée du 20/11 conservée),
+IG-159 vue 6, IG-160 vues 2 et 6, diaporamas TikTok `IG-08-budget-commun-tiktok.mp4`, `IG-159-mode-emploi-tiktok.mp4`,
+`IG-160-partage-tiktok.mp4`, images `LI-79-budget-commun.png` et `LI-82-budget.png` (couvertures des templates). Textes : 10 Docs
+remplacés (LI-79, LI-150, LI-153, LI-158, LI-63, IG-08, IG-149, IG-156, IG-160, IG-122), cellules F/J et description YT-09.
+Les sources `production/IG-159.html` et `IG-160.html` de la branche `claude/instagram-results-analysis-h6o7km` gardent
+l'ancien nom : à corriger avant sa fusion (« Budget commun » → « Gestion Dépenses Communes », « du Budget commun » → « de
+Gestion Dépenses Communes »).
