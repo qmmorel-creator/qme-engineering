@@ -2,7 +2,7 @@ Publication immédiate · Secret Santa disponible gratuitement (20/11/2026). Mis
 
 CONTEXTE
 Le Secret Santa QME est en ligne et gratuit sur Gumroad (prix libre, 0 € possible) : https://qmengineering.gumroad.com/l/secret-santa
-On avance sa sortie : publie MAINTENANT sur LinkedIn, Instagram, YouTube Shorts, TikTok et X, avec la vidéo de Noël.
+On avance sa sortie : publie MAINTENANT sur LinkedIn, Instagram, YouTube Shorts et TikTok, avec la vidéo de Noël.
 
 VIDÉO (la même partout)
 - ID Drive : 1L--5Fu4WeAfiZAsfiDWOCXwiPAawc0Vm (LI-99-secret-santa.mp4, 46 s, 1080 × 1920). Copie identique : 1T93ZY-UfT6mGnmsFpgA7EHc3U6Wv2bYG (IG-36-secret-santa.mp4).
@@ -70,18 +70,7 @@ Musique : Christmas is coming, Alex-Productions (CC BY 3.0)
 ---
 - Rappelle-moi aussi de mettre https://qmengineering.gumroad.com/l/secret-santa dans la bio TikTok.
 
-5. X (en anglais, vidéo + texte)
----
-A Secret Santa where even the organiser doesn't know who drew whom.
-
-One link to invite the group, everyone adds gift ideas, the server draws in secret (exclusions included), and each person sees only their own match.
-
-Free, our Christmas gift (app in French): https://qmengineering.gumroad.com/l/secret-santa
-
-Music: "Christmas is coming" by Alex-Productions, CC BY 3.0
----
-
-6. APRÈS PUBLICATION
+5. APRÈS PUBLICATION
 - Plannings : LI-99 (LinkedIn, prévu le 01/12 12:15) et IG-36 (Instagram, prévu le 01/12) passent au statut « Publié » avec la date et l'heure d'aujourd'hui et le lien de la publication, pour qu'ils ne repartent pas le 01/12. Fais de même pour toute ligne YouTube ou TikTok qui reprend IG-36 ou LI-99. Les reprises du 25/12 (IG-51, LI-102) restent programmées.
-- N'ajoute aucune ligne dans le planning X (campagne sur mesure) : cette publication X est ponctuelle.
+- Rien sur X : la campagne X reste réservée au sur-mesure.
 - Envoie-moi sur WhatsApp un récapitulatif : réseau, heure, lien de chaque publication, piste audio vérifiée oui/non, bios mises à jour oui/non.
