@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { traiter, genererCodeEssai, verifierCodeEssai, verifierCode, etatEssai, codeDepuisLicence, ESSAI, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { traiterEssai, tournerEssais, PRODUITS_ESSAI, contenuMail, produitEssai, lienStop } from '../../netlify/lib/essais.mjs';
+import { PRISE_EN_MAIN } from '../../netlify/lib/essais-prise-en-main.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 
 const SECRET = 'x'.repeat(40);
@@ -214,6 +215,8 @@ test('tâche quotidienne : rappel J-3, fin, avant effacement, effacement ; rien 
 
   const types = async (jours) => { w.horloge.t = T0 + jours * JOUR; w.mails.length = 0; await tourner(); return w.mails.map((m) => m.objet); };
   assert.deepEqual(await types(1), []);
+  assert.deepEqual(await types(2), ['Mon Budget : par où commencer']);
+  assert.deepEqual(await types(3), [], 'prise en main envoyée une seule fois');
   assert.deepEqual(await types(11), ['Plus que 3 jours d\'essai : Mon Budget']);
   assert.deepEqual(await types(12), [], 'pas deux fois');
   assert.deepEqual(await types(15), ['Votre essai gratuit est terminé : Mon Budget']);
@@ -241,12 +244,47 @@ test('tâche quotidienne : rattrapage d\'une journée manquée, un seul e-mail p
 test('e-mails : chaque type se construit pour chaque template, sans texte vide', () => {
   for (const produit of PRODUITS_ESSAI) {
     const reg = { id: 'ABC', produit, code: `${produit}-AAAA-AAAA-AAAA-AAAA`, prenom: '', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
-    for (const type of ['merci', 'renvoi', 'rappel', 'fin', 'effacement']) {
+    for (const type of ['merci', 'renvoi', 'prise-en-main', 'rappel', 'fin', 'effacement']) {
       const m = contenuMail(type, reg, SECRET);
       assert.ok(m.objet && m.texte.length > 200 && !/undefined|NaN|null/.test(m.texte + m.objet), `${produit} ${type}`);
       assert.ok(m.texte.includes('https://qmengineering.gumroad.com/l/'), `${produit} ${type} : lien d'achat`);
     }
   }
+});
+
+test('prise en main : une fiche complète et propre à chaque template ouvert à l\'essai', () => {
+  const vus = new Set();
+  for (const produit of PRODUITS_ESSAI) {
+    const g = PRISE_EN_MAIN[produit];
+    assert.ok(g, `${produit} : fiche de prise en main manquante (netlify/lib/essais-prise-en-main.mjs)`);
+    assert.ok(g.commencer.length > 40 && g.astuces.length === 2 && g.astuces.every((a) => a.length > 30) && /\?$/.test(g.aide), produit);
+    assert.ok(!vus.has(g.commencer), `${produit} : texte copié d'un autre template`);
+    vus.add(g.commencer);
+    const reg = { id: 'ABC', produit, code: `${produit}-AAAA-AAAA-AAAA-AAAA`, prenom: 'Léa', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
+    const m = contenuMail('prise-en-main', reg, SECRET);
+    assert.ok(m.texte.startsWith('Bonjour Léa,') && m.texte.includes(g.astuces[1]) && m.texte.includes('?essai='), produit);
+  }
+});
+
+test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async () => {
+  const w = monde();
+  const tourner = () => tournerEssais({ secret: SECRET, essais: w.essais, stockage: w.stockage, envoyer: envoyeur(w), maintenant: () => w.horloge.t });
+  await creer(w, { produit: 'lecture', email: 'a@b.fr' });
+  w.horloge.t = T0 + 5 * JOUR; w.mails.length = 0;
+  await tourner();
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi de lecture : par où commencer']);
+  const w2 = monde();
+  await creer(w2, { produit: 'lecture', email: 'a@b.fr' });
+  w2.horloge.t = T0 + 6 * JOUR; w2.mails.length = 0;
+  await tournerEssais({ secret: SECRET, essais: w2.essais, stockage: w2.stockage, envoyer: envoyeur(w2), maintenant: () => w2.horloge.t });
+  assert.deepEqual(w2.mails, [], 'trop tard : pas de prise en main à J+6');
+  const w3 = monde();
+  await creer(w3, { produit: 'lecture', email: 'a@b.fr' });
+  const [cle] = await w3.essais.lister('essai/');
+  await w3.essais.set(cle, { ...(await w3.essais.get(cle)), achete: '2026-11-20T09:00:00Z' });
+  w3.horloge.t = T0 + 2 * JOUR; w3.mails.length = 0;
+  await tournerEssais({ secret: SECRET, essais: w3.essais, stockage: w3.stockage, envoyer: envoyeur(w3), maintenant: () => w3.horloge.t });
+  assert.deepEqual(w3.mails, [], 'déjà acheté : aucun e-mail');
 });
 
 // ---------- Base de contacts « Nouveautés QME » (case facultative, 19/11/2026) ----------
