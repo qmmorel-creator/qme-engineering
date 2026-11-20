@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://qm-engineering.fr/catalogue/suivi-chantier/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111601">
+<link rel="stylesheet" href="/assets/site.css?v=2026112003">
 <script type="application/ld+json" id="donnees-structurees">
 {"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://qm-engineering.fr/catalogue/suivi-chantier/#produit","name":"Suivi de chantier par lot","description":"Suivi de chantier par lot : marchés et avenants, situations de travaux calculées, avancement, jalons, risques et revue de projet.","url":"https://qm-engineering.fr/catalogue/suivi-chantier/","image":["https://qm-engineering.fr/assets/templates-suivi-chantier-tableau.webp?v=20261114","https://qm-engineering.fr/assets/templates-suivi-chantier-tel.webp?v=20261114"],"category":"Application web (template)","brand":{"@id":"https://qm-engineering.fr/#organisation"},"offers":{"@type":"Offer","price":"40.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://qmengineering.gumroad.com/l/suivi-chantier-lot","seller":{"@id":"https://qm-engineering.fr/#organisation"}}},{"@type":"BreadcrumbList","@id":"https://qm-engineering.fr/catalogue/suivi-chantier/#fil","itemListElement":[{"@type":"ListItem","position":1,"name":"Templates","item":"https://qm-engineering.fr/templates/"},{"@type":"ListItem","position":2,"name":"Professionnel","item":"https://qm-engineering.fr/templates/?pour=pro"},{"@type":"ListItem","position":3,"name":"Suivi de chantier par lot","item":"https://qm-engineering.fr/catalogue/suivi-chantier/"}]},{"@type":"FAQPage","@id":"https://qm-engineering.fr/catalogue/suivi-chantier/#faq","mainEntity":[{"@type":"Question","name":"Quelle différence avec la Levée de réserves et le Registre des non-conformités ?","acceptedAnswer":{"@type":"Answer","text":"Le Suivi de chantier pilote l'opération lot par lot : marché, avenants, situations, délais, risques et courriers. Il contient un registre de non-conformités simplifié (constat, gravité, action, échéance). Pour l'analyse des causes et la vérification des actions correctives, le Registre des non-conformités va plus loin ; pour les réserves de réception et le PV de levée, la Levée de réserves."}},{"@type":"Question","name":"Comment la révision de prix est-elle calculée ?","acceptedAnswer":{"@type":"Answer","text":"L'outil n'intègre aucun indice. Vous calculez le coefficient K avec la formule de révision de votre marché et les indices publiés, puis vous le saisissez dans la situation : la révision du mois vaut travaux du mois × (K − 1). Le coefficient précédent est repris par défaut."}},{"@type":"Question","name":"La retenue de garantie, le délai de paiement et les pénalités sont-ils réglementaires ?","acceptedAnswer":{"@type":"Answer","text":"Ce sont des réglages de l'opération, à reprendre de votre marché : taux de retenue (5 % proposé, 0 si une caution la remplace), délai de paiement à compter de la réception d'une situation, pénalité par jour de retard et plafond pour chaque jalon contractuel. Les pénalités affichées sont une estimation : elles ne sont déduites que si vous les saisissez dans une situation. L'outil ne remplace pas un conseil juridique."}},{"@type":"Question","name":"Comment les intempéries décalent-elles les dates ?","acceptedAnswer":{"@type":"Answer","text":"Dans le journal de chantier, une journée d'intempérie se note avec sa nature, sa durée (journée ou demi-journée) et le lot concerné. Seules celles que vous marquez « retenues » décalent les jalons, avec les délais des avenants signés. Une intempérie postérieure à un jalon ne le décale pas. Ce qui ouvre droit à prolongation reste défini par votre marché."}},{"@type":"Question","name":"Les données de mes intervenants et de mes chantiers sont-elles protégées ?","acceptedAnswer":{"@type":"Answer","text":"Vos opérations sont enregistrées en ligne avec votre clé (hébergement dans l'Union européenne) et ne sont visibles que par vous. Notez seulement des coordonnées professionnelles utiles au chantier. Rien n'est envoyé à personne : pas d'e-mail, pas de connecteur ; la revue de projet se copie ou s'imprime, les tableaux s'exportent en CSV."}},{"@type":"Question","name":"Puis-je l'essayer avant d'acheter ?","acceptedAnswer":{"@type":"Answer","text":"Oui : la démo ouvre une opération fictive de 32 logements en 8 lots, avec huit mois de situations, des avenants signés et en projet, un lot au-delà de son marché, un paiement en retard, des intempéries, des non-conformités, des risques et des ordres de service. Elle reste dans votre navigateur et n'envoie rien."}}]}]}
 </script>
@@ -26,8 +26,6 @@
     <a href="/sur-mesure/">Sur mesure</a>
     <a href="/templates/">Templates</a>
     <a href="/packs/">Packs</a>
-    <a href="/references/">Références</a>
-    <a href="/methode/">Méthode</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -92,10 +90,10 @@
 
 <footer>
   <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
-  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026111308" defer></script>
+<script src="/assets/site.js?v=2026112003" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026112001';
+const V = '2026112002';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -55,7 +55,7 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111601">
+<link rel="stylesheet" href="/assets/site.css?v=2026112003">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
 <body>
@@ -70,8 +70,6 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
     <a href="/sur-mesure/">Sur mesure</a>
     <a href="/templates/">Templates</a>
     <a href="/packs/" aria-current="page">Packs</a>
-    <a href="/references/">Références</a>
-    <a href="/methode/">Méthode</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -89,10 +87,10 @@ const pied = (scripts = '') => `</main>
 
 <footer>
   <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
-  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/guides/">Guides</a> · <a href="/packs/">Packs</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026111308" defer></script>
+<script src="/assets/site.js?v=2026112003" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -187,18 +185,6 @@ function pagePack(p) {
 <section class="rappel-templates"><p><b>Il vous faut une autre combinaison ?</b> Composez votre pack sur mesure : cochez les templates qui vous servent, la remise monte avec leur nombre, jusqu’à −25 %.</p><a class="btn" href="/packs/composer/">Composer mon pack</a></section>
 <nav class="pager" aria-label="Pages"><a class="prec" href="/packs/"><span>Page précédente</span><b>Tous les packs</b></a><a class="suiv" href="/packs/composer/"><span>Page suivante</span><b>Pack sur mesure</b></a></nav>
 ` + pied();
-}
-
-// --- Carte des prix (section « Packs » du catalogue /templates/) ------------------------------------
-// Deux colonnes, Professionnel et Vie personnelle : nom, points de conduite, prix ; en dessous le nombre de
-// templates, la remise et le nombre déjà disponibles. Chaque ligne ouvre le pack sur la page /packs/.
-function cartePrix(packs) {
-  const ligne = (p) => `<li><a href="/packs/#${p.slug}"><span class="nm">${esc(p.nom.replace(/^Pack /, ''))}${badgeBientot(p)}</span><span class="pts" aria-hidden="true"></span><b>${euros(p.prix)}</b><small>${p.nombre} templates${p.indicatif ? ' prévus' : ''}${p.pct ? ` · −${p.pct} %` : ''} · ${disponibles(p)}</small></a></li>`;
-  const colonne = (pour, titre) => `<div><h3>${titre}</h3><ul>${packs.filter((p) => pourPack(p) === pour).map(ligne).join('')}</ul></div>`;
-  return `${noteBientot()}<div class="carte-prix">
-    ${colonne('pro', 'Professionnel')}
-    ${colonne('perso', 'Vie personnelle')}
-  </div>`;
 }
 
 const bareme = () => `<ul class="bareme" aria-label="Remise selon le nombre de templates">${[...REMISES].reverse().map(([n, pct]) => `<li><b>−${pct} %</b><span>${n === 5 ? '5 templates et plus' : `${n} templates`}</span></li>`).join('')}</ul>`;
@@ -390,15 +376,20 @@ function pageEspace() {
 }
 
 // --- Section « Packs » du catalogue /templates/ -----------------------------------------------------
+// Depuis la réorganisation du 20/11/2026, un bandeau compact : la carte des prix complète vit sur /packs/ seulement.
 function sectionCatalogue(packs) {
+  const enVente = packs.filter((p) => p.enVente).length;
+  const remiseMax = Math.max(...packs.map((p) => p.pct || 0));
   return `<!-- packs:debut (généré par outils/packs/generer.mjs, ne pas modifier à la main) -->
-<section class="section packs-catalogue" id="packs" aria-labelledby="packs-titre">
-  <div class="section-head">
-    <h2 id="packs-titre">Les packs : jusqu’à −25 %</h2>
-    <p>Les templates qui vont ensemble, réunis par métier ou par situation, ouverts avec une seule clé. <a href="/packs/">Tous les packs</a> · <a href="/packs/composer/">composer le vôtre</a>.</p>
+<section class="section packs-bandeau" id="packs" aria-labelledby="packs-titre">
+  <div>
+    <h2 id="packs-titre">Les packs : jusqu’à −${remiseMax} %</h2>
+    <p>Les templates qui vont ensemble, réunis par métier ou par situation, ouverts avec une seule clé. ${enVente} pack${enVente > 1 ? 's' : ''} en vente, ou le vôtre à composer.</p>
   </div>
-  ${cartePrix(packs)}
-  <p class="carte-prix-pied"><a href="/packs/composer/">Pack sur mesure</a> : cochez vos templates, −10 % dès deux, jusqu’à −25 % à partir de cinq.</p>
+  <div class="actions">
+    <a class="btn primary" href="/packs/">Voir les packs</a>
+    <a class="btn" href="/packs/composer/">Composer mon pack</a>
+  </div>
 </section>
 <!-- packs:fin -->`;
 }
@@ -423,7 +414,7 @@ export async function generer() {
   const section = sectionCatalogue(packs);
   const re = /<!-- packs:debut[\s\S]*?<!-- packs:fin -->/;
   const nouveau = re.test(cat) ? cat.replace(re, section)
-    : cat.replace('<section class="idee-bandeau"', `${section}\n\n<section class="idee-bandeau"`);
+    : cat.replace('<section class="section" id="fonctionnement"', `${section}\n\n<section class="section" id="fonctionnement"`);
   if (!nouveau.includes('packs:debut')) throw new Error('Section packs : point d’insertion introuvable dans templates/index.html');
   // La section des packs a besoin de sa feuille de style sur le catalogue.
   const avecStyle = nouveau.includes('/assets/packs.css') ? nouveau.replace(/\/assets\/packs\.css\?v=[0-9]+/, `/assets/packs.css?v=${V}`)
