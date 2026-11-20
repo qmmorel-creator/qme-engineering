@@ -1,4 +1,4 @@
-# Fiche Gumroad · Budget du foyer
+# Fiche Gumroad · Mon Budget
 
 Texte à reprendre dans `create_draft_product` / `update_product` (nom et prix du tableau de bord valent
 accord, décision de Quentin du 12/11/2026). Penser au bloc « License key » de l'onglet Content (activé à
@@ -7,7 +7,7 @@ sans l'accord de Quentin.
 
 ## Nom
 
-Budget du foyer · enveloppes et flux
+Mon Budget · enveloppes et flux
 
 ## Prix
 
@@ -25,7 +25,7 @@ Un budget par enveloppes pour tout le foyer : revenus, prévu et réel, report d
 
 ```html
 <h2>Chaque euro a une place.</h2>
-<p>Savoir combien on gagne, c'est facile. Savoir où part l'argent, mois après mois, beaucoup moins. Le Budget du foyer répartit vos revenus en enveloppes, compare chaque dépense au prévu et dessine le trajet de votre argent, du salaire jusqu'aux courses.</p>
+<p>Savoir combien on gagne, c'est facile. Savoir où part l'argent, mois après mois, beaucoup moins. Mon Budget répartit vos revenus en enveloppes, compare chaque dépense au prévu et dessine le trajet de votre argent, du salaire jusqu'aux courses.</p>
 
 <h2>Ce que vous obtenez</h2>
 <ul>

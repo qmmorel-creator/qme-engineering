@@ -1,4 +1,4 @@
-// Vidéo 020 · Budget commun · « Compte joint : combien chacun doit-il verser ? »
+// Vidéo 020 · Gestion Dépenses Communes · « Compte joint : combien chacun doit-il verser ? »
 // Type : mode de fonctionnement (mode « compte commun », ajouté le 20/11/2026). Données : démo intégrée
 // `?demo=compte` (couple fictif « Camille et Sami », clé au prorata des revenus, forfait téléphone de Sami
 // payé par le compte : charge personnelle ; ce mois-ci Camille a versé, Sami pas encore).
@@ -12,7 +12,7 @@ export const config = {
   produit: 'BCM', type: 'fonctionnement', titre: 'Compte joint : combien chacun doit-il verser ?',
   app: '/templates/budget-commun/?demo=compte',
   largeur: 1280, hauteur: 1600,
-  marque: 'QME · Budget commun',
+  marque: 'QME · Gestion Dépenses Communes',
   url: 'qm-engineering.fr/templates/budget-commun',
   affiche: 2.2,
   musique: 'auto',
@@ -104,7 +104,7 @@ export async function jouer(v) {
   // Fin
   await v.temps(); son('whoosh'); await S('volet');
   await S('legende', null);
-  await S('outro', { titre: 'Budget commun', sous: 'Compte joint : le versement<br>de chacun, chaque mois.', url: 'Essai gratuit · <b>qm-engineering.fr</b>' });
+  await S('outro', { titre: 'Gestion Dépenses Communes', sous: 'Compte joint : le versement<br>de chacun, chaque mois.', url: 'Essai gratuit · <b>qm-engineering.fr</b>' });
   son('ding', 0.6);
   await temps(2.5);
 }

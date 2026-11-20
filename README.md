@@ -643,7 +643,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
-**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Budget commun » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
+**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Gestion Dépenses Communes » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
 l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie auprès de l'API Gumroad
 (`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
 convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :

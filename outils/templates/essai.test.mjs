@@ -74,7 +74,7 @@ test('création : code, e-mail de remerciement, un essai par adresse et par temp
   assert.equal(r.corps.mail, true);
   assert.equal(w.mails.length, 1);
   assert.equal(w.mails[0].a, 'marie@exemple.fr');
-  assert.match(w.mails[0].objet, /Merci d'essayer « Budget du foyer »/);
+  assert.match(w.mails[0].objet, /Merci d'essayer « Mon Budget »/);
   assert.ok(w.mails[0].texte.includes(r.corps.code));
   assert.ok(w.mails[0].texte.includes('Bonjour Marie,'));
   assert.ok(w.mails[0].texte.includes('jeudi 3 décembre'));
@@ -214,9 +214,9 @@ test('tâche quotidienne : rappel J-3, fin, avant effacement, effacement ; rien 
 
   const types = async (jours) => { w.horloge.t = T0 + jours * JOUR; w.mails.length = 0; await tourner(); return w.mails.map((m) => m.objet); };
   assert.deepEqual(await types(1), []);
-  assert.deepEqual(await types(11), ['Plus que 3 jours d\'essai : Budget du foyer']);
+  assert.deepEqual(await types(11), ['Plus que 3 jours d\'essai : Mon Budget']);
   assert.deepEqual(await types(12), [], 'pas deux fois');
-  assert.deepEqual(await types(15), ['Votre essai gratuit est terminé : Budget du foyer']);
+  assert.deepEqual(await types(15), ['Votre essai gratuit est terminé : Mon Budget']);
   assert.deepEqual(await types(37), ['Vos données d\'essai seront effacées le 2 janvier']);
   assert.deepEqual(await types(44), []);
   assert.ok(w.stockage.m.size === 1);
@@ -235,7 +235,7 @@ test('tâche quotidienne : rattrapage d\'une journée manquée, un seul e-mail p
   w.mails.length = 0;
   w.horloge.t = T0 + 16 * JOUR; // rappel J-3 jamais parti (tâche en panne) puis fin d'essai
   await tournerEssais({ secret: SECRET, essais: w.essais, stockage: w.stockage, envoyer: envoyeur(w), maintenant: () => w.horloge.t });
-  assert.deepEqual(w.mails.map((m) => m.objet), ['Votre essai gratuit est terminé : Budget du foyer']);
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Votre essai gratuit est terminé : Mon Budget']);
 });
 
 test('e-mails : chaque type se construit pour chaque template, sans texte vide', () => {
@@ -330,7 +330,7 @@ test('notification à Quentin à chaque essai lancé, jamais bloquante', async (
     { secret: SECRET, essais: w.essais, envoyer, maintenant: () => w.horloge.t, notifier });
   await appelCreer({ produit: 'budget', email: 'camille@b.fr', prenom: 'Camille', nouveautes: true }, 'quentin@qme.fr');
   const notif = w.mails.find((m) => m.a === 'quentin@qme.fr');
-  assert.equal(notif.objet, 'Nouvel essai : Budget du foyer · Camille');
+  assert.equal(notif.objet, 'Nouvel essai : Mon Budget · Camille');
   assert.ok(notif.texte.includes('camille@b.fr') && notif.texte.includes('oui, inscrit(e)') && notif.texte.includes('/admin/essais/'));
   // Sans adresse de notification : aucun e-mail à Quentin.
   w.mails.length = 0;
@@ -352,12 +352,12 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   const d = await (await adminApi(w, 'GET', '/essais')).json();
   assert.deepEqual([d.total, d.enCours, d.termines, d.achetes], [2, 1, 0, 1]);
   const achete = d.essais.find((e) => e.email === 'achete@b.fr');
-  assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Budget du foyer']);
+  assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Mon Budget']);
   assert.equal(d.essais.find((e) => e.email === 'cours@b.fr').joursRestants, 14);
   w.horloge.t = T0 + 15 * JOUR;
   assert.equal((await (await adminApi(w, 'GET', '/essais')).json()).termines, 1);
   const octets = new Uint8Array(await (await adminApi(w, 'GET', '/essais?format=csv')).arrayBuffer());
   const csv = new TextDecoder().decode(octets);
   assert.ok(csv.startsWith('email;prenom;template;statut;debut;fin;jours_restants;achete_le;donnees_reprises;nouveautes;emails_envoyes'));
-  assert.ok(csv.includes('achete@b.fr;Ana;Budget du foyer;acheté;'));
+  assert.ok(csv.includes('achete@b.fr;Ana;Mon Budget;acheté;'));
 });

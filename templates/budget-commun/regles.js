@@ -1,4 +1,4 @@
-// Budget commun QME · règles métier pures (aucun accès au DOM ni au stockage).
+// Gestion Dépenses Communes QME · règles métier pures (aucun accès au DOM ni au stockage).
 // Chargé tel quel par le navigateur (window.BCM) et par les tests Node (vm).
 // Tous les montants sont des centimes entiers : aucune erreur d'arrondi dans les calculs.
 // Moteur commun : aussi chargé par le planificateur de voyage (templates/voyage/) ; après toute modification,

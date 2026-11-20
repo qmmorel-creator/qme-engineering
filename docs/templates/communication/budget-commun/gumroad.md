@@ -1,4 +1,4 @@
-# Fiche Gumroad · Budget commun
+# Fiche Gumroad · Gestion Dépenses Communes
 
 Texte à reprendre dans `create_draft_product` / `update_product` une fois **nom et prix confirmés par
 Quentin**. Ne rien publier sans son accord. Penser au bloc « License key » dans l'onglet Content
@@ -6,7 +6,7 @@ Quentin**. Ne rien publier sans son accord. Penser au bloc « License key » dan
 
 ## Nom
 
-Budget commun · couple, colocation, famille
+Gestion Dépenses Communes · couple, colocation, famille
 
 ## Prix
 
@@ -137,5 +137,5 @@ Fonctionnement : Avances et remboursements, ou compte commun
 <p><em>Les montants sont calculés à partir de vos saisies : vérifie-les avant un virement. Ce n'est pas un conseil financier. Démos sur qm-engineering.fr/catalogue/budget-commun.</em></p>
 ```
 
-Packs contenant le Budget commun (Argent du quotidien, Voyage, Mariage et installation à deux) : reprendre leur
+Packs contenant Gestion Dépenses Communes (Argent du quotidien, Voyage, Mariage et installation à deux) : reprendre leur
 `description_html` régénérée dans `docs/templates/communication/packs/gumroad-packs.json` au même moment.

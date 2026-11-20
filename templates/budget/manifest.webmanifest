@@ -1,7 +1,7 @@
 {
-  "name": "Budget du foyer · QME",
-  "short_name": "Budget",
-  "description": "Budget du foyer par enveloppes, prévu et réel, diagramme des flux.",
+  "name": "Mon Budget · QME",
+  "short_name": "Mon Budget",
+  "description": "Mon Budget par enveloppes, prévu et réel, diagramme des flux.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

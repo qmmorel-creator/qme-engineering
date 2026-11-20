@@ -64,7 +64,7 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 - Résumé : « Votre budget et celui de la famille, enfin d'équerre : budget du foyer, budget commun, abonnements,
   épargne et dettes, 47 € au lieu de 63 €. »
 - Tags : budget, pack, francais, famille, couple, économies, épargne, finances-perso.
-- Détails : Contenu « 5 templates : Budget du foyer, Budget commun, Suivi des abonnements, Objectif d'épargne,
+- Détails : Contenu « 5 templates : Mon Budget, Gestion Dépenses Communes, Suivi des abonnements, Objectif d'épargne,
   Remboursement de dettes » ; Format « Applications web (ordinateur, tablette, téléphone) » ; Accès « Une clé de
   licence pour les 5 » ; Paiement « Achat unique, sans abonnement » ; Langue « Français ».
 - Reçu : celui du Pack Argent du quotidien, « 4 templates » remplacé par « 5 templates », plus la ligne

@@ -11,7 +11,7 @@ santé des membres du foyer). Aucune donnée datée intégrée : aucun taux, auc
 
 Particuliers et familles qui avancent des frais de santé (optique, dentaire, kiné, consultations, pharmacie,
 analyses) et oublient de vérifier que la Sécurité sociale puis la mutuelle ont bien remboursé. Distinct du
-**Budget du foyer** (T05, toutes les dépenses) et du **Suivi des abonnements** (T14, où la cotisation de la
+**Mon Budget** (T05, toutes les dépenses) et du **Suivi des abonnements** (T14, où la cotisation de la
 complémentaire est une ligne parmi d'autres) : ici, soin par soin, ce qui a été payé, ce qui doit revenir et ce
 qui reste à charge.
 

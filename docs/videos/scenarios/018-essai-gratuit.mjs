@@ -2,7 +2,7 @@
 // Type : processus (publication exceptionnelle du 19/11/2026, lancement de l'essai gratuit).
 // Parcours RÉEL, servi par le serveur local (site + API + application) :
 //   1. page /essai/ : prénom, e-mail, accord, « Lancer mon essai gratuit » → code d'essai affiché ;
-//   2. « Ouvrir mon template » → Budget du foyer, bandeau « Essai gratuit · encore 14 jours » ;
+//   2. « Ouvrir mon template » → Mon Budget, bandeau « Essai gratuit · encore 14 jours » ;
 //   3. 14 jours plus tard (hors caméra : données d'exemple de la démo enregistrées dans l'essai, horloge du serveur
 //      local avancée de 15 jours) → bandeau « Essai terminé », un clic sur « + Dépense » ouvre « Lecture seule » ;
 //   4. « J'ai acheté » → clé de licence (clé de TEST du serveur local, QME_LICENCES_TEST=1) → données reprises.
@@ -62,7 +62,7 @@ export async function preparer(v) {
   await decaler(0);
   const { PRODUITS } = await import('../../../netlify/lib/templates-acces.mjs');
   if (Object.keys(PRODUITS).indexOf('BDG') !== BDG) throw new Error('Rang de BDG changé : mettre à jour la clé de test');
-  // Données d'exemple du Budget du foyer (démo intégrée, foyer fictif), lues dans une page à part puis effacées.
+  // Données d'exemple de Mon Budget (démo intégrée, foyer fictif), lues dans une page à part puis effacées.
   const p = await v.page.context().newPage();
   await p.goto(`http://localhost:${PORT}/templates/budget/?demo`);
   for (let i = 0; i < 30 && !donneesDemo; i++) {
@@ -72,9 +72,9 @@ export async function preparer(v) {
   await p.evaluate(() => { for (const k of Object.keys(localStorage)) if (k.startsWith('qme-bdg-')) localStorage.removeItem(k); });
   await p.close();
   if (!donneesDemo) throw new Error('Démo du budget introuvable');
-  // Page /essai/ : formulaire présent, Budget du foyer présélectionné.
+  // Page /essai/ : formulaire présent, Mon Budget présélectionné.
   const choisi = await v.appli.$eval('select[name="produit"]', (s) => s.selectedOptions[0].textContent);
-  if (!/Budget du foyer/.test(choisi)) throw new Error(`Template présélectionné inattendu : ${choisi}`);
+  if (!/Mon Budget/.test(choisi)) throw new Error(`Template présélectionné inattendu : ${choisi}`);
   await v.S('cadrer', null);
   await v.S('fenetre', false);
 }

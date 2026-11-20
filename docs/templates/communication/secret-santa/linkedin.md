@@ -3,7 +3,7 @@
 **Validée par Quentin le 13/11/2026** (texte et vidéo), LinkedIn et Instagram, publication le 01/12/2026.
 
 Prévue le **mardi 1er décembre 2026 à 12:15** (Google Sheet « Planning publications LinkedIn », LI-98 ;
-LI-82 Budget du foyer décalée au lundi 21 décembre, décision de Quentin du 13/11/2026). À ne publier que si
+LI-82 Mon Budget décalée au lundi 21 décembre, décision de Quentin du 13/11/2026). À ne publier que si
 la fiche Gumroad est en ligne avec la clé de licence activée ; sinon, publier quand même avec la démo seule
 et retirer le premier commentaire. Relue et ajustée par Quentin avant publication.
 

@@ -68,5 +68,5 @@ fonctionne sur tous tes appareils, et tes compagnons de route peuvent l'utiliser
 
 - La phrase « tes compagnons de route peuvent l'utiliser aussi » : une clé Gumroad sans multi-postes reste
   utilisable sur plusieurs appareils (la vérification de licence n'incrémente pas le compteur,
-  `increment_uses_count=false`), comme pour le Budget commun. À confirmer par Quentin pour l'usage à
+  `increment_uses_count=false`), comme pour Gestion Dépenses Communes. À confirmer par Quentin pour l'usage à
   plusieurs personnes.

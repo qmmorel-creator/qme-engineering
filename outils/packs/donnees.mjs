@@ -427,7 +427,7 @@ export const PAGES = {
   PAQ: {
     couleur: 'jaune', cibles: ['particuliers', 'couples'],
     accroche: 'L’argent du mois tenu, sans y passer vos soirées.',
-    resume: 'Budget du foyer, dépenses partagées, abonnements et objectifs de l’année : l’essentiel pour tenir l’argent du quotidien.',
+    resume: 'Mon Budget, dépenses partagées, abonnements et objectifs de l’année : l’essentiel pour tenir l’argent du quotidien.',
     pourQui: 'Vous voulez savoir où va l’argent du mois sans tenir une comptabilité complète. Les prélèvements s’empilent, les dépenses communes se règlent au jugé et les bonnes résolutions de janvier s’oublient en mars. Ce pack couvre le quotidien, en quatre outils.',
     parcours: [
       ['BDG', 'Fixez vos enveloppes et voyez l’écart au budget, mois par mois.'],

@@ -43,8 +43,8 @@ créateurs de contenu.
 | Segment | Moment | Canal |
 |---|---|---|
 | Jeunes actifs avec un prêt auto, un prêt étudiant et un découvert | Janvier (résolutions), rentrée de septembre | Publication LinkedIn, créateurs de contenu |
-| Couples qui veulent assainir leurs finances avant un projet (logement, enfant) | Toute l'année | Bouche-à-oreille, LinkedIn, renvoi depuis le template Budget du foyer |
-| Acheteurs du Budget du foyer et du Budget commun (templates QME) | Après l'achat | Mention dans la page catalogue et la communication (pas d'e-mail automatique) |
+| Couples qui veulent assainir leurs finances avant un projet (logement, enfant) | Toute l'année | Bouche-à-oreille, LinkedIn, renvoi depuis le template Mon Budget |
+| Acheteurs de Mon Budget et de Gestion Dépenses Communes (templates QME) | Après l'achat | Mention dans la page catalogue et la communication (pas d'e-mail automatique) |
 
 ## Calendrier conseillé
 

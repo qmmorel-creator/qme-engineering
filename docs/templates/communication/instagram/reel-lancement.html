@@ -111,7 +111,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
 
 <script>
 // Dix templates en vente (prix Gumroad du 13/11/2026), 560 ms chacun à partir de 5,5 s.
-const T=[['gantt','Planning Gantt','45 €'],['compte-rendu','Compte rendu','15 €'],['taches','Tâches','19 €'],['tjm','Calcul du TJM','12 €'],['cout-revient','Coût de revient','25 €'],['micro-entreprise','Recettes-dépenses','25 €'],['budget','Budget du foyer','15 €'],['budget-commun','Budget commun','15 €'],['revision','Révisions','14,90 €'],['nutrition','Nutrition','19 €']];
+const T=[['gantt','Planning Gantt','45 €'],['compte-rendu','Compte rendu','15 €'],['taches','Tâches','19 €'],['tjm','Calcul du TJM','12 €'],['cout-revient','Coût de revient','25 €'],['micro-entreprise','Recettes-dépenses','25 €'],['budget','Mon Budget','15 €'],['budget-commun','Gestion Dépenses Communes','15 €'],['revision','Révisions','14,90 €'],['nutrition','Nutrition','19 €']];
 const box=document.getElementById('cartes');
 T.forEach(([slug,nom,prix],i)=>{
   const d=document.createElement('div');d.className='carte'+(i===T.length-1?' der':'');
