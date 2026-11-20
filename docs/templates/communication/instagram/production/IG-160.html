@@ -1,0 +1,72 @@
+<!-- Carrousel IG-160 (10/12/2026) · partager les dépenses à deux, 4 règles. Montants des vues 2 et 3 lus dans la démo (vidéo 012) ; vues 4 et 5 : exemples fictifs calculés (240 € = 3 parts de 80 € ; 150 + 90). Rendu : node docs/templates/communication/instagram/rendre.mjs production/IG-160.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-160</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+</style></head><body>
+<section class="cadre" id="IG-160-partage-1" style="background:var(--bleu);color:#fff">
+<span class="compteur">1 / 6</span>
+<p class="sourcil" style="top:200px;opacity:.85">Budget à deux</p>
+<h1 style="top:260px;font-size:100px">Qui doit combien à qui&nbsp;? La discussion <mark>revient chaque mois</mark>.</h1>
+<p class="p" style="top:780px">4 règles de partage. Une seule est juste chez vous.</p>
+<div class="f" style="left:0;right:0;bottom:180px;height:200px;display:grid;grid-template-columns:repeat(4,1fr)"><div style="background:var(--rouge)"></div><div style="background:var(--papier)"></div><div style="background:var(--encre)"></div><div style="background:var(--jaune)"></div></div>
+<p class="glisser">Faites glisser <span></span></p></section>
+<section class="cadre" id="IG-160-partage-2" style="background:var(--papier)">
+<span class="compteur">2 / 6</span>
+<div class="num" style="background:var(--encre)">1</div>
+<h2 style="top:420px;font-size:88px">À parts égales</h2>
+<div class="duo" style="top:600px"><div><small>Camille</small><b>120 €</b></div><div><small>Sami</small><b>120 €</b></div></div>
+<p class="p" style="top:900px">Simple. Mais si l'un gagne moins, il paie la même chose.</p>
+<p class="note">Démo du Budget commun : 240 € de cadeaux. Données fictives.</p></section>
+<section class="cadre" id="IG-160-partage-3" style="background:var(--papier)">
+<span class="compteur">3 / 6</span>
+<div class="num" style="background:var(--encre)">2</div>
+<h2 style="top:420px;font-size:88px">Au prorata des revenus</h2>
+<div class="duo" style="top:600px"><div><small>Camille</small><b>138,67 €</b></div><div><small>Sami</small><b>101,33 €</b></div></div>
+<p class="p" style="top:900px">Chacun selon ce qu'il gagne, calculé au centime.</p>
+<p class="note">Démo du Budget commun : mêmes 240 €. Données fictives.</p></section>
+<section class="cadre" id="IG-160-partage-4" style="background:var(--papier)">
+<span class="compteur">4 / 6</span>
+<div class="num" style="background:var(--encre)">3</div>
+<h2 style="top:420px;font-size:88px">En parts</h2>
+<div class="duo" style="top:600px"><div><small>Couple</small><b>160 €</b></div><div><small>Ami</small><b>80 €</b></div></div>
+<p class="p" style="top:900px">Un week-end à trois : 2 parts pour le couple, 1 pour l'ami.</p>
+<p class="note">Exemple fictif : 240 €, 3 parts de 80 €. Données fictives.</p></section>
+<section class="cadre" id="IG-160-partage-5" style="background:var(--papier)">
+<span class="compteur">5 / 6</span>
+<div class="num" style="background:var(--encre)">4</div>
+<h2 style="top:420px;font-size:88px">En montants exacts</h2>
+<div class="duo" style="top:600px"><div><small>Camille</small><b>150 €</b></div><div><small>Sami</small><b>90 €</b></div></div>
+<p class="p" style="top:900px">Chacun paie ce qu'il a pris.</p>
+<p class="note">Exemple fictif : 240 € au total. Données fictives.</p></section>
+<section class="cadre" id="IG-160-partage-6" style="background:var(--jaune)">
+<span class="compteur">6 / 6</span>
+<div class="f" style="right:0;bottom:0;width:300px;height:300px;background:var(--bleu);border-top-left-radius:300px"></div>
+<h2 style="top:300px;font-size:92px">Laquelle est juste chez vous&nbsp;?</h2>
+<p class="p" style="top:620px;font-weight:600">Le Budget commun choisit la règle <b>dépense par dépense</b> et tient le solde au centime.</p>
+<div class="bouton" style="top:900px">Essai 14 jours : lien en bio</div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>
