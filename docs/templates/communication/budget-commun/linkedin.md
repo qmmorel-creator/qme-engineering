@@ -139,3 +139,7 @@ Vidéo démo 020 programmée au statut **Prêt** le 05/12/2026 : LinkedIn **LI-1
 fusion de la PR qui met le mode en production. Appel à l'action : essai gratuit (`/essai/?t=budget-commun`), démo
 `?demo=compte` en second. LI-63 et IG-122 (février 2027, volet sur mesure) décrivent le même calcul : texte inchangé,
 renvoi éventuel au template à décider par Quentin.
+
+**Mise à jour du 20/11/2026 (après fusion de la PR #179)** : LI-158, IG-156 et YT-44 passés à « Programmé ». Décision de
+Quentin : LI-63 et IG-122 renvoient aussi au template (textes v2 : LI-63 `1dUilbrOM4LSwnZQOMSHThn7U2YNu2TUQcg8e7l35NmE`,
+IG-122 `1OMZ_1KXsw03tjNGlMFaIS1cIQAz6swaC0VaxVnEQN_Q` ; visuels du carrousel inchangés ; anciens docs conservés).

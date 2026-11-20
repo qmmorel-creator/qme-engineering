@@ -79,7 +79,7 @@ Ouvrir mon budget commun
 
 ---
 
-## Mise à jour « compte commun » (préparée le 20/11/2026, à appliquer à la fusion)
+## Mise à jour « compte commun » (appliquée le 20/11/2026 après la fusion de la PR #179)
 
 Partir de la fiche en ligne (relue le 20/11/2026 : tutoiement, essai gratuit), produit `FK_HeZlqRLdZO8o7Y1Bccw==`.
 À appliquer par `update_product` **une fois le mode compte commun en production** (sinon la fiche annonce une
@@ -139,3 +139,7 @@ Fonctionnement : Avances et remboursements, ou compte commun
 
 Packs contenant le Budget commun (Argent du quotidien, Voyage, Mariage et installation à deux) : reprendre leur
 `description_html` régénérée dans `docs/templates/communication/packs/gumroad-packs.json` au même moment.
+
+**Appliqué le 20/11/2026** : fiche Budget commun (description, résumé, tags avec « compte joint », ligne
+« Fonctionnement »), packs Argent du quotidien et Voyage (seule la ligne du Budget commun changée). Le pack Mariage et
+installation à deux n'existe pas encore sur Gumroad : reprendre la phrase à sa création.
