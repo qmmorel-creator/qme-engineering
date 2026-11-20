@@ -174,6 +174,7 @@ déjà).
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
+| T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | idée | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026 (fiche en fin de fichier) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -2423,3 +2424,31 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   (`is_licensed` true), SVT dans `produits` du pack Ma voiture avec `ajouts: { SVT: '2026-11-18' }`, pack à 28 € (34 €,
   −15 %). Option Pack évolutif : 9 €, soit la version « Pack évolutif » à 37 € à régler par Quentin dans l'éditeur
   Gumroad (versions non modifiables par les outils).
+
+## T99 · Liaison Mon Budget ↔ Gestion Dépenses Communes (idée de Quentin, 20/11/2026)
+
+**Besoin** : chacun tient son budget privé (Mon Budget, T05) et partage les dépenses du foyer (Gestion Dépenses
+Communes, T65). Aujourd'hui, la part de chacun dans le commun se recopie à la main dans le budget perso.
+
+**Principe** :
+- Dans Mon Budget, réglage « Lier à Gestion Dépenses Communes » : coller le code de partage du commun, choisir qui on
+  est parmi les membres, et la catégorie qui reçoit la dépense (par défaut « Dépenses communes »).
+- Chaque mois, Mon Budget lit le commun **en lecture seule** et ajoute une opération « Ma part du commun » :
+  mode avances = ma quote-part des dépenses du mois (pas ce que j'ai avancé) ; mode compte commun = mon versement du mois.
+  Remboursements et virements d'équilibrage : à trancher (voir plus bas).
+- La liaison est **à sens unique** : les autres membres du commun ne voient rien du budget perso, et le commun ne lit
+  jamais Mon Budget.
+
+**Confidentialité** : le code du commun est enregistré dans les données de Mon Budget ; qui a la clé de Mon Budget
+peut donc ouvrir le commun (même personne en pratique, à écrire dans l'aide). Rien ne change pour le commun.
+
+**Technique** : lecture du commun avec son propre code via `/api/templates/donnees` (aujourd'hui l'application refuse
+le code d'un autre template, à ouvrir pour ce seul usage, en lecture) ; calcul par les règles existantes de
+`templates/budget-commun/regles.js` (`quotesDepense`, `alimentation`) ; opération marquée « importée » (non modifiable,
+remplacée à chaque mise à jour du mois, jamais en double).
+
+**Questions pour Quentin** :
+- Mode avances : compter ma quote-part (coût réel pour moi) ou les sommes réellement versées (avances et virements) ?
+- Réservé aux acheteurs des deux templates (ou d'un pack qui les contient) ou ouvert à tout code de partage ?
+- Mise à jour automatique à l'ouverture, ou bouton « Mettre à jour » ?
+
