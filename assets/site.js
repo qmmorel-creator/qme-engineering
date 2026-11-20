@@ -159,7 +159,9 @@ if(fallbackLink&&form){
    vente, .liste-bientot pour ceux en préparation) et les puces de thème restent la source : sans JS, elles
    s'affichent telles quelles. Avec JS, une seule façon de parcourir :
    - par défaut, une tuile par thème (nombre d'outils, prix d'entrée, exemples), groupées Pro / Perso ;
-   - un clic sur une tuile affiche les outils de ce thème (?theme=…), « Tous les thèmes » ramène aux tuiles ;
+   - un clic sur une tuile affiche les outils de ce thème (?theme=…), avec la vignette de chacun (data-vignette des
+     cartes, écrit par outils/templates/vignettes.mjs ; chargée seulement quand le thème est ouvert),
+     « Tous les thèmes » ramène aux tuiles ;
    - une recherche affiche directement les outils trouvés, tous thèmes confondus.
    Filtre Pro / Perso sur les deux. Templates en préparation masqués par défaut (?avenir=1 les affiche),
    toujours montrés pendant une recherche. Jamais d'état dans le # (le script de tête redirige les # inconnus). */
@@ -172,7 +174,7 @@ if(fallbackLink&&form){
  const texte=(el,sel)=>el.querySelector(sel)?.textContent.trim()||'';
  const themes=$$('.puce').map(b=>({id:b.dataset.theme,pour:b.dataset.pour,nom:b.firstChild.textContent.trim(),c:b.style.getPropertyValue('--c')}));
  const items=$$('.carte').map(c=>{const a=c.querySelector('a'),prochaine=c.classList.contains('prochaine');
-  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em')};
+  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em'),vignette:c.dataset.vignette||''};
   it.euros=parseFloat(it.prix.replace(',','.'));it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
  const total=items.length,enVente=items.filter(t=>t.vente).length;
  const s={pour:'',q:'',theme:'',avenir:false};
@@ -188,7 +190,7 @@ if(fallbackLink&&form){
  const groupes=[['pro','Professionnel'],['perso','Vie personnelle']];
  const couleur=id=>themes.find(x=>x.id===id)?.c||'var(--trait)';
  const tuile=t=>`<button type="button" class="tuile" data-tuile="${t.id}" style="--c:${t.c}"><b>${esc(t.nom)}</b><span class="tuile-cpt" data-cpt></span><span class="tuile-ex" data-ex></span></button>`;
- const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}"><b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
+ const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
  vues.innerHTML=`<div class="tuiles" data-tuiles>`+groupes.map(([g,nom])=>`<div class="groupe-tuiles" data-groupe="${g}"><h3>${nom}</h3><div class="grille-tuiles">${themes.filter(t=>t.pour===g).map(tuile).join('')}</div></div>`).join('')+`</div>`
   +`<div class="liste-outils" data-liste><div class="liste-tete"><button type="button" class="retour" data-retour>← Tous les thèmes</button><h3 data-liste-titre tabindex="-1"></h3></div><ul class="grille-outils">${[...items].sort((a,b)=>b.vente-a.vente).map(outil).join('')}</ul></div>`;
  $$('.vitrine,.a-venir-catalogue,.puces').forEach(el=>el.hidden=true);
