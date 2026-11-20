@@ -78,7 +78,7 @@ Compte existant : **@qmengineering** (créé en avril 2022 ; ancien profil orien
 ## Lancement · 18/11/2026 : 10 posts, un par heure de 14:00 à 23:00 (Paris)
 
 Demande de Quentin du 18/11 : présentation générale de QME, reprises d'anciens posts sur le sur-mesure (adaptés en
-anglais, seuls leurs faits sont repris), références publiques de `/en/references/` (sans nom de client). Le lien `/x`
+anglais, seuls leurs faits sont repris), références publiques de `/en/custom/#references` (sans nom de client). Le lien `/x`
 n'étant pas encore en ligne, ces posts renvoient vers des pages anglaises déjà publiées. X-L01 est épinglé (il
 remplace l'ancien post Coda de 2023) ; X-L10 annonce X-01.
 

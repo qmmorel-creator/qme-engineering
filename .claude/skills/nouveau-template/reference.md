@@ -181,6 +181,11 @@ Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que 
       `https://qmengineering.gumroad.com/l/<permalien>`, `data-goatcounter-click="achat-<slug>"`) en bouton
       principal, démo en second ; bouton « Je suis intéressé(e) » et sa note retirés ; bandeau final
       « Bientôt en vente » remplacé par le rappel standard (modèle : `docs/templates/communication/<slug>/section-site.html`).
+- [ ] **Vignette du catalogue** (20/11/2026) : capture choisie pour le template dans `outils/x/templates-en.json`
+      (`_captures`, une image `assets/templates-<slug>-*.webp` de sa page catalogue), puis
+      `node outils/templates/vignettes.mjs` : écrit `assets/vignettes/<slug>.webp` (480 × 300) et l'attribut
+      `data-vignette` de la carte dans `templates/index.html`. Le script s'arrête si une carte n'a pas de capture
+      choisie. À relancer si la capture choisie change.
 - [ ] **Catalogue `templates/index.html`** : `<li class="carte prochaine">` retirée de `.liste-bientot`,
       `<li class="carte">` (prix, « Voir le détail ») ajoutée dans `.vitrine-piste` ; compteurs et
       sous-titre « N templates · achat unique » mis à jour.
@@ -294,6 +299,7 @@ Remarque · Format. Lignes triées par date ; une publication environ tous les d
    autres docs du planning (le retrouver par les métadonnées d'un doc existant, colonne G), avec le texte
    de `docs/templates/communication/<slug>/linkedin.md` (accroche retenue, texte, hashtags ; le lien
    d'achat en premier commentaire, noté en fin de doc). Renseigner l'ID et le lien du doc.
+   **Liens LinkedIn suivis** : tout lien `qm-engineering.fr` ou `qmengineering.gumroad.com/l/` d'un texte ou d'un premier commentaire LinkedIn porte `utm_source=linkedin&utm_medium=social&utm_campaign=li-nn` (ID en minuscules ; `?demo&utm_…` après un `?demo`). Le site transmet ces UTM à Gumroad (`assets/site.js`) : chaque vente est rattachée à son post.
 6. **Image** : la couverture `assets/templates-<slug>-couverture.png`, déposée dans le dossier « Images »
    du planning sous le nom `LI-nn-<slug>.png` ; texte alternatif descriptif, mention « données fictives ».
 7. **Insérer la ligne à sa place chronologique** (`insert_dimension` puis `update_values`), jamais en bas
