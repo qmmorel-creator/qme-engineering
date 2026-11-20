@@ -257,8 +257,10 @@ LinkedIn (cas réel, coulisses, avant / après d'un processus)
 >   - IG-50 → 09/12 à 12:30 (L16) ;
 >   - IG-46 → 14/12 (L20).
 > - **Créés en « À produire »** : Instinct ne les publie pas et vous alerte sur WhatsApp le jour même s'ils ne sont
->   pas prêts. Ce sont IG-157 (L4), IG-158 (L13), IG-159 (L14), IG-160 (L17), IG-161 (L18), IG-162 (L22),
+>   pas prêts. Ce sont IG-158 (L13), IG-159 (L14), IG-160 (L17), IG-161 (L18), IG-162 (L22),
 >   IG-163 (L23), IG-164 (L25) et IG-165 (L26).
+>   IG-157 (L4, Secret Santa) a été annulé le même jour : le Reel Secret Santa IG-36 est déjà publié (20/11). Le
+>   créneau du mercredi 25/11 reste vide ; la story du 15/12 (L21) renvoie vers IG-36.
 > - **Annulés** (contenus conservés, réutilisables) : IG-144, IG-154, IG-148, IG-142, IG-141, IG-147, IG-41,
 >   IG-44, IG-45, IG-132, IG-53, IG-55, IG-57, IG-47, IG-49, IG-19, IG-20, IG-06, IG-11, IG-24.
 >   Annulés pour de bon : IG-52 (contenu faux), IG-133 (Reel catalogue), IG-51 (vœux).

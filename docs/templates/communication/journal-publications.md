@@ -18,3 +18,4 @@ contrôle de réserve sans production. Non publié (`/docs/*` en 404).
 |---|---|---|---|---|---|---|---|---|---|---|
 
 - **20/11/2026 · tri du planning Instagram (Quentin)** : période du 23/11 au 22/12 alignée sur `strategie-instagram-2026-11.md` § 6 ; 7 Reels déplacés à 12:30 (IG-156, IG-155, IG-131, IG-56, IG-50, IG-46 ; IG-149 inchangé), 9 emplacements « À produire » créés (IG-157 à IG-165), 23 publications annulées (dont IG-51, IG-52, IG-133 pour de bon). Prix du Suivi des abonnements maintenu à 9 €.
+- **20/11/2026** : IG-157 (Reel Secret Santa, 25/11) annulé, doublon d'IG-36 publié le 20/11.
