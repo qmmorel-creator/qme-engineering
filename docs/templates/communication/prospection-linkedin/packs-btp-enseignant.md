@@ -75,10 +75,22 @@ mois est aussi limité, à vérifier dans le compte de Quentin). Sans note si le
 
 ### BTP
 
-**Invitation (≤ 200 caractères)**
+**Invitation, version du 20/11/2026 (Quentin : lien du pack et de la page QME dans la note)**
 
-> Bonjour {Prénom}, ingénieur et chef de projet, je construis des outils de suivi de chantier pour les petites
-> structures du BTP. Je serais ravi d'échanger avec vous.
+Compte gratuit, 178 caractères avec un prénom de 10 lettres (limite 200) :
+
+> Bonjour {Prénom}, situations, réserves, DOE, Gantt : 8 outils de chantier, sans abonnement.
+> qm-engineering.fr/packs/chef-de-projet-btp · linkedin.com/company/qme-qm-engineering
+
+Compte Premium, 287 caractères (limite 300) :
+
+> Bonjour {Prénom}, ingénieur chef de projet, j'ai réuni 8 outils de chantier dans un pack : situations et
+> avenants par lot, Gantt, visas, réserves, DOE, sous-traitants. Achat unique, démo libre :
+> qm-engineering.fr/packs/chef-de-projet-btp · QME : linkedin.com/company/qme-qm-engineering
+
+Liens sans paramètres de suivi, faute de place : une vente issue de l'invitation n'est pas attribuée à
+`prosp-btp`. Les liens du message 1 gardent leurs paramètres. Mesurer le taux d'acceptation dès la première
+semaine : une note avec des liens peut le faire baisser ; sous 25 %, repasser à une note sans lien.
 
 **Message 1, à l'acceptation**
 
