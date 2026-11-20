@@ -12,6 +12,18 @@ Sheet privé), pas ici.
 | Chef de projet BTP (8 templates, 192 € au lieu de 256 €) | publié | https://qm-engineering.fr/packs/chef-de-projet-btp/ | Prospection **vente** possible tout de suite |
 | Enseignant et formateur (4 templates, 83 € au lieu de 104 €) | **aucun des 4 templates publié** (Progression, Quiz, Gestion de classe, Emploi du temps) | https://qm-engineering.fr/packs/enseignant/ (« bientôt ») | Rien à vendre : prospection **testeurs** (accès gratuit contre un retour), ou publication Gumroad d'abord. **Décision de Quentin.** |
 
+## Décisions de Quentin (20/11/2026)
+
+- **BTP : lancé.** Envoi depuis le profil personnel de Quentin (une page entreprise LinkedIn ne peut ni inviter
+  ni écrire la première à un membre ; elle répond seulement aux messages reçus).
+- **Enseignant : testeurs à moitié prix contre un retour d'utilisation** (et non plus un accès gratuit). Ce choix
+  suppose une vente : il faut que les produits soient publiés sur Gumroad, puis un code de réduction de 50 % à
+  nombre d'utilisations limité. Prérequis en attente :
+  1. décision RGPD sur T55 Gestion de classe (`docs/templates/QUESTIONS.md`, données d'élèves mineurs) ;
+  2. fiches Gumroad des 4 templates et du pack, clé de licence activée à la main par Quentin, publication
+     (`docs/templates/communication/gumroad-priorite.md`), PR et fusion avec son feu vert.
+  Tant que ces prérequis ne sont pas remplis, aucun message n'est envoyé aux enseignants.
+
 ## Liens à mettre dans les messages (suivi de provenance)
 
 Convention : `utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp` (ou `prosp-ens`). `dm` distingue les
@@ -95,10 +107,12 @@ besoin dépasse le pack (plusieurs utilisateurs, rôles), basculer vers le sur-m
 **Message 1**
 
 > Merci {Prénom}. Je termine quatre outils pour enseignants et formateurs : progression pédagogique, banque de
-> questions et quiz, gestion de classe, emploi du temps d'établissement. Je cherche quelques testeurs : accès
-> complet offert, en échange de 10 minutes de retour. Aperçu : {lien démo gestion de classe}. Cela vous tente ?
+> questions et quiz, gestion de classe, emploi du temps d'établissement. Je cherche quelques testeurs : le pack
+> à moitié prix, en échange d'un retour d'utilisation après quelques semaines. Aperçu : {lien démo gestion de
+> classe}. Cela vous tente ?
 
-Code offert : `npm run code -- <PRODUIT> 1`, à inscrire dans `docs/templates/codes-gratuits.md` (règle du dépôt).
+Code : réduction Gumroad de 50 % sur le pack, nombre d'utilisations limité (20 par exemple), créé une fois le pack
+publié et noté ici. Le retour attendu est à cadrer avec le testeur (10 minutes d'appel ou un court questionnaire).
 
 ### Enseignant et formateur, variante vente (une fois les 4 templates publiés)
 
