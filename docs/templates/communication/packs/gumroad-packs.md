@@ -8,6 +8,7 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 |---|---|---|---|---|---|
 | Pack Argent du quotidien | pack-argent-du-quotidien | 43 € | 54 € | 4/4 | — |
 | Pack Bien démarrer l’année | pack-bien-demarrer | 39 € | 49 € | 3/3 | — |
+| Pack Budget perso et famille | pack-budget-perso-famille | 47 € | 59 € | 5/5 | — |
 | Pack Chef de projet BTP | pack-chef-de-projet-btp | 192 € | 240 € | 8/8 | — |
 | Pack Commerçant et artisan | pack-commercant-artisan | 95 € | 119 € | 5/5 | — |
 | Pack Étudiant | pack-etudiant | 69 € | 87 € | 7/7 | — |

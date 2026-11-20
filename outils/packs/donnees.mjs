@@ -440,6 +440,22 @@ export const PAGES = {
     avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
     prevus: [],
   },
+  PBF: {
+    couleur: 'rouge', cibles: ['particuliers', 'couples'],
+    accroche: 'Votre budget et celui de la famille, enfin d’équerre.',
+    resume: 'Le budget du mois, les dépenses partagées à la maison, les abonnements, l’épargne et les dettes : l’argent perso et l’argent de la famille, tenus ensemble.',
+    pourQui: 'Vous gérez votre propre argent et celui du foyer. Il y a vos dépenses, celles qu’on partage à deux ou à plusieurs, les prélèvements qui s’empilent, l’épargne qu’on repousse et un crédit qui traîne. Ce pack range tout cela en cinq outils qui se complètent.',
+    parcours: [
+      ['BDG', 'Fixez vos enveloppes et voyez l’écart au budget, mois par mois.'],
+      ['BCM', 'Partagez les dépenses du foyer : qui a payé, qui doit quoi, au prorata des revenus si vous le voulez.'],
+      ['ABN', 'Ramenez chaque abonnement à son coût réel et décidez avant la fin des essais.'],
+      ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
+      ['DTT', 'Soldez vos dettes une à une avec une date de fin.'],
+    ],
+    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Une clé que vous partagez en famille : les mêmes données sur tous vos téléphones', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
+    prevus: [],
+  },
   PBD: {
     couleur: 'rouge', cibles: ['particuliers', 'independants'],
     accroche: 'Des résolutions qui tiennent après janvier.',
