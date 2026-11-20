@@ -1,7 +1,7 @@
 // Service worker du Secret Santa : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'secret-santa-20261115t';
+const VERSION = 'secret-santa-20261120a';
 const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'app.js?v=20261115t', 'regles.js', 'moteur.js', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {

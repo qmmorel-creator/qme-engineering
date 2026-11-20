@@ -273,7 +273,7 @@ function ecranConnexion(message = '') {
 async function demarrer() {
   document.body.classList.add('app');
   $('#racine').innerHTML = `
-    ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/secret-santa/"><strong>Bientôt disponible, gratuit</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil. Le tirage et les pages participants fonctionnent comme en vrai.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai une clé</button></div></div>' : ''}
+    ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="https://qmengineering.gumroad.com/l/secret-santa" target="_blank" rel="noopener"><strong>Gratuit</strong><span>Obtenir ma clé</span></a><span>Données d\'exemple, gardées sur cet appareil. Le tirage et les pages participants fonctionnent comme en vrai.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai une clé</button></div></div>' : ''}
     <header class="barre"><div class="barre-int">
       <span class="marque">${MARQUE}</span>
       <span class="titre-produit">Secret Santa<small>Édition Noël</small></span>
@@ -799,7 +799,7 @@ function modaleTutoriel(auto = false) {
   const blocs = [
     ['rose', 'Crée un échange par groupe', `La famille, les amis, le bureau&nbsp;: chaque échange a son nom, sa date, son budget et un message pour les participants. Un modèle propose le message et un budget, tout reste modifiable. Les participants s'inscrivent par un lien avec leur e-mail, ou sur un ordinateur commun si tu saisis toi-même leurs prénoms.`],
     ['beurre', 'Invite le groupe', `Copie le lien ou le message d'invitation et envoie-le toi-même&nbsp;: l'outil n'envoie aucun e-mail. Chacun s'inscrit avec son e-mail, un code personnel et ses idées de cadeaux. Tu participes aussi&nbsp;? Inscris-toi par le lien, comme les autres.`],
-    ['ciel', 'Lance le tirage', `Il faut au moins 3 participants. Ajoute des exclusions pour que deux personnes (un couple, par exemple) ne se tirent pas l'une l'autre. Le serveur tire au sort et garde le résultatLe serveur tire au sort et garde le résultat&nbsp;: <b>personne ne peut voir qui a tiré qui</b>, pas même toi.nbsp;: chacun ne voit que le sien, sur sa page. <b>Toi non plus, tu ne vois pas qui a tiré qui.</b>`],
+    ['ciel', 'Lance le tirage', `Il faut au moins 3 participants. Ajoute des exclusions pour que deux personnes (un couple, par exemple) ne se tirent pas l'une l'autre. Le serveur tire au sort et garde le résultat&nbsp;: chacun ne voit que le sien, sur sa page. <b>Toi non plus, tu ne vois pas qui a tiré qui.</b>`],
     ['sable', 'Chacun découvre son tirage', `Sur sa page, chacun voit à qui il offre, les idées de cette personne, le budget et la date. Tu vois seulement combien l'ont découvert, et tu peux copier un message de rappel. Tout est effacé ${R.apresDate}&nbsp;jours après la date de l'échange (${R.sansDate}&nbsp;jours après sa création s'il n'a pas de date).`],
   ];
   const corps = `
