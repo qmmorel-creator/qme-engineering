@@ -16,8 +16,8 @@ chaque réseau. Le post Instagram d'un sujet sort en principe le lendemain de so
 | dim. 22/11 | LI-78 Livre recettes-dépenses de la micro-entreprise | IG-06 T40 · Calculateur TJM freelance (carrousel existant) |
 | lun. 23/11 | LI-36 Réception : des créneaux de quai, pas une file d'attente | IG-07 T41 · Livre recettes-dépenses micro-entreprise (carrousel existant) |
 | mar. 24/11 | LI-07 Un télésiège ne tourne pas avec une personne de moins | IG-41 Reel · J+1, J+3, J+7 : le calendrier qui fait retenir (Reel produit) |
-| mer. 25/11 | LI-79 Budget commun : qui doit combien à qui | IG-42 Reel · Le tableur trouvé en ligne : avant / après (Reel produit) |
-| jeu. 26/11 | LI-08 83 % du budget à 66 % du mois | IG-08 T65 · Budget commun couple / colocation (carrousel existant) |
+| mer. 25/11 | LI-79 Gestion Dépenses Communes : qui doit combien à qui | IG-42 Reel · Le tableur trouvé en ligne : avant / après (Reel produit) |
+| jeu. 26/11 | LI-08 83 % du budget à 66 % du mois | IG-08 T65 · Gestion Dépenses Communes couple / colocation (carrousel existant) |
 | ven. 27/11 | LI-80 Planning Gantt : une ligne par tâche | IG-30 Sur mesure · Maintenance : au compteur, pas au calendrier (carrousel existant) |
 | sam. 28/11 | LI-99 Secret Santa : un tirage que même l'organisateur ne voit pas | IG-09 T02 · Planning Gantt rapide (carrousel existant) |
 | dim. 29/11 | LI-81 Gestionnaire de tâches : quelques tâches au focus chaque jour | IG-36 Reel · T68 Secret Santa, notre cadeau de Noël (carrousel existant) |
@@ -39,9 +39,9 @@ chaque réseau. Le post Instagram d'un sujet sort en principe le lendemain de so
 | mar. 15/12 | LI-16 Écrire dans un agenda partagé sans jamais rien écraser | IG-55 Reel · Une réunion sans « qui, quoi, quand » (Reel produit) |
 | mer. 16/12 | LI-15 Combien coûtent vraiment vos abonnements par mois ? | IG-56 Reel · Votre liste de tâches est une boîte de réception (Reel produit) |
 | jeu. 17/12 | LI-107 Suivi des abonnements : ce que coûtent vraiment tous vos abonnements | IG-57 Reel · Il est à jour, votre livre des recettes ? (Reel produit) |
-| ven. 18/12 | LI-82 Budget du foyer : où part chaque euro | IG-47 Reel · Décembre, le mois où le budget déraille (Reel produit) |
+| ven. 18/12 | LI-82 Mon Budget : où part chaque euro | IG-47 Reel · Décembre, le mois où le budget déraille (Reel produit) |
 | sam. 19/12 | LI-95 Inscriptions associatives : places et liste d'attente | IG-62 T14 · Suivi des abonnements (carrousel existant) |
-| dim. 20/12 | LI-92 Organisateur de mariage : tout le projet au même endroit | IG-11 T05 · Budget du foyer (carrousel existant) |
+| dim. 20/12 | LI-92 Organisateur de mariage : tout le projet au même endroit | IG-11 T05 · Mon Budget (carrousel existant) |
 | lun. 21/12 | LI-28 La caméra thermique des dossiers oubliés | IG-24 T53 · Inscriptions associatives (carrousel produit) |
 | mar. 22/12 | LI-18 Le TRS d'une ligne, sans tableur ni ressaisie | IG-49 Reel · Noël à deux : qui paie quoi ? (Reel produit) |
 | mer. 23/12 | LI-41 5 secondes pour changer d'avis | IG-21 T15 · Organisateur de mariage (carrousel existant) |

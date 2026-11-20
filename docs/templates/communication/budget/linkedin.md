@@ -1,4 +1,4 @@
-# Publication LinkedIn · Budget du foyer
+# Publication LinkedIn · Mon Budget
 
 À publier une fois la fiche Gumroad en vente et le site à jour. Relue et ajustée par Quentin avant
 publication. Liens à vérifier au moment de publier.
@@ -9,7 +9,7 @@ publication. Liens à vérifier au moment de publier.
 
 **Image à joindre** : `assets/templates-budget-couverture.png` (1280 × 720), ou en carrousel :
 couverture, capture téléphone du diagramme (`templates-budget-tel.webp`), capture Enveloppes. Texte
-alternatif : « Budget du foyer : diagramme des flux d'un mois, des revenus vers les catégories de
+alternatif : « Mon Budget : diagramme des flux d'un mois, des revenus vers les catégories de
 dépenses (données fictives) ».
 
 ---

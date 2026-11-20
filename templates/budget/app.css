@@ -1,4 +1,4 @@
-/* Budget du foyer · charte QME Bauhaus « Pastel » : voir le bloc « Thème Pastel » en fin de fichier. */
+/* Mon Budget · charte QME Bauhaus « Pastel » : voir le bloc « Thème Pastel » en fin de fichier. */
 :root{
   --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--texte-2:#514C44;--discret:#6E685F;--trait:#E4DCCE;
   --rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;--max:1180px;
@@ -268,7 +268,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 
-/* ============ Budget du foyer ============ */
+/* ============ Mon Budget ============ */
 #vue:focus{outline:none}
 .tuile b,mark,.a-affecter b,.nav-mois b{word-spacing:.12em}
 .tuile b.moins{color:var(--rouge)}

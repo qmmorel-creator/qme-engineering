@@ -1,4 +1,4 @@
-// Budget commun QME : dépenses partagées d'un foyer, soldes et équilibrage, synchronisés par clé.
+// Gestion Dépenses Communes QME : dépenses partagées d'un foyer, soldes et équilibrage, synchronisés par clé.
 (() => {
   'use strict';
   const B = window.BASE;
@@ -410,7 +410,7 @@
   const MARQUE = `${SYMBOLE}<span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>`;
 
   function ecranConnexion(message = '') {
-    document.title = 'Budget commun · QME';
+    document.title = 'Gestion Dépenses Communes · QME';
     $('#racine').innerHTML = `
     <div class="connexion">
       <section class="composition" aria-label="Présentation">
@@ -423,7 +423,7 @@
           <rect x="390" y="140" width="160" height="20" fill="#F0EDE6"/>
         </svg>
         <div class="accroche">
-          <p class="surtitre">Budget commun · couple, colocation, famille</p>
+          <p class="surtitre">Gestion Dépenses Communes · couple, colocation, famille</p>
           <h1>Qui doit combien à qui, sans calculette.</h1>
           <p>Chacun note ce qu'il paie, à parts égales, au prorata des revenus ou en parts. Les soldes se tiennent à jour et l'équilibrage tient en un virement.</p>
         </div>
@@ -618,7 +618,7 @@
     const bascule = $('#bascule-demo');
     if (bascule) { bascule.dataset.action = modeCompte() ? 'demo-avances' : 'demo-compte'; bascule.textContent = modeCompte() ? 'Voir le mode avances' : 'Voir le mode compte commun'; }
     document.querySelectorAll('.onglet').forEach((b) => { if (b.dataset.vue === vue) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-    document.title = `${Object.fromEntries(onglets())[vue]} · Budget commun`;
+    document.title = `${Object.fromEntries(onglets())[vue]} · Gestion Dépenses Communes`;
     $('#vue').innerHTML = { soldes: vueSoldes, compte: vueCompte, depenses: vueDepenses, mois: vueMois, recurrentes: vueRecurrentes, foyer: vueFoyer }[vue]();
     if (vue === 'mois') brancherGraphique();
   }
@@ -663,7 +663,7 @@
     return `
       <section class="jour">
         <div class="jour-titre">
-          <p class="surtitre">${esc(E.foyer.nom || 'Budget commun')} · ${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+          <p class="surtitre">${esc(E.foyer.nom || 'Gestion Dépenses Communes')} · ${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
           <h1>${titre}</h1>
           <p class="sous">Ce mois-ci : ${eur(mc.total)} de dépenses communes (${pluriel(mc.nb, 'dépense')}).</p>
           <div class="actions">
@@ -730,7 +730,7 @@
     return `
       <section class="jour">
         <div class="jour-titre">
-          <p class="surtitre">${esc(E.foyer.nom || 'Budget commun')} · compte commun · ${nomMois(m)}</p>
+          <p class="surtitre">${esc(E.foyer.nom || 'Gestion Dépenses Communes')} · compte commun · ${nomMois(m)}</p>
           <h1>${titre}</h1>
           <p class="sous">${c.aCouvrir >= 0 ? `À couvrir : ${eur(c.aCouvrir)}` : `Excédent sur le compte : ${eur(-c.aCouvrir)}`} (charges prévues ${eur(c.charges)}${c.solde !== null ? `, solde ${eur(c.solde)}` : ', solde non saisi'})${total(c.perso) ? `, plus ${eur(total(c.perso))} de charges personnelles` : ''}.</p>
           <div class="actions">

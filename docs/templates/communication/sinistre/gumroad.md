@@ -6,7 +6,7 @@
   `PRODUITS`, préfixe SNH), non publié. Permalien, catégorie, résumé, détails, tags, reçu, bouton et lien
   « Ouvrir mon dossier » → /connexion/ renseignés.
 - **Prix** : 29 € (validé par Quentin le 13/11/2026), achat unique
-- **Catégorie** : `business-and-money/personal-finance` (comme le Budget du foyer)
+- **Catégorie** : `business-and-money/personal-finance` (comme Mon Budget)
 - **Préfixe des codes** : `SNH`
 - **Couverture** : `assets/templates-sinistre-couverture.png` (1280 × 720), à ajouter avec `add_cover`
   une fois le site déployé (l'outil demande une URL publique) :

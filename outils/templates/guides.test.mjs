@@ -1,4 +1,4 @@
-// Rubrique /guides/ : calculateur du guide « budget à deux » (moteur de Budget commun), conventions des pages
+// Rubrique /guides/ : calculateur du guide « budget à deux » (moteur de Gestion Dépenses Communes), conventions des pages
 // (mention datée, Article JSON-LD, lien vers le catalogue suivi par GoatCounter) et maillage (pied de page,
 // liens « Lire le guide » des pages catalogue).
 import { test } from 'node:test';
