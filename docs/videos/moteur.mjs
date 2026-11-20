@@ -25,6 +25,12 @@ const brouillon = options.includes('--brouillon');
 const scenario = await import(pathToFileURL(resolve(cheminScenario)));
 const cfg = scenario.config;
 const nom = cfg.nom || basename(cheminScenario, '.mjs');
+// Mode « écran » (enregistrement d'écran de téléphone ou d'ordinateur, sans habillage QME) : ecran.mjs.
+if (cfg.ecran) {
+  const { tournerEcran } = await import('./ecran.mjs');
+  await tournerEcran({ scenario, cfg, nom, brouillon, garder: options.includes('--garder') });
+  process.exit(0);
+}
 const SORTIE = join(ICI, 'sortie');
 const TMP = join(SORTIE, `.tmp-${nom}`);
 rmSync(TMP, { recursive: true, force: true }); mkdirSync(join(TMP, 'images'), { recursive: true });

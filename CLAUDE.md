@@ -41,6 +41,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   `docs/videos/scenarios/`), `rendu.mjs` pour une page HTML animée (`instagram/video.mjs` et `sonoriser.mjs` n'en sont
   que des raccourcis). Capture image par image en temps virtuel à 30 i/s, encodage sous 2,9 Mo, musique QME. Ne jamais
   écrire un autre outil de capture (screencast, `recordVideo`, enregistrement d'écran) : faire évoluer ce moteur.
+- **Vidéo « capture d'écran »** (décision du 20/11/2026) : skill `.claude/skills/video-ecran/` (enregistrement d'écran
+  crédible d'une personne qui utilise l'application, sur iPhone ou PC Windows, voix ElevenLabs à la première personne).
+  Mode `config.ecran` du moteur (`docs/videos/ecran.mjs`), texte minuté et mixage de la voix par `docs/videos/voix.mjs`
+  (micro de téléphone, ambiances `docs/videos/ambiances/`).
 - **Aucune vidéo muette** (décision du 18/11/2026) : tout Reel, Short ou vidéo programmé porte la musique QME
   (`docs/videos/musique/`) ; vérifier la piste audio avec `ffprobe` avant tout dépôt Drive. Seules les vidéos privées
   remises à un partenaire pour son propre montage restent muettes.
