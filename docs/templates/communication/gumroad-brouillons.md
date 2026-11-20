@@ -194,5 +194,9 @@ programmée à 09:46 pour le pack Moyens généraux.
 |------|---------|---------------------|-----------|------|--------|
 | PRC | Gestion de parc informatique | gykL5ZVrrICGHSLM0V3xlQ== | /l/parc-informatique | 35 € | **en vente** (20/11/2026) |
 | VHC | Gestion de flotte de véhicules | a212qy8CvDD90dc-7gV5NQ== | /l/gestion-flotte | 39 € | **en vente** (20/11/2026) |
+| GMA | Maintenance préventive (GMAO légère) | MAPRhk5_um6ZexYxe09jFw== | /l/maintenance-preventive | 39 € | **en vente** (20/11/2026) |
+| VRF | Vérifications réglementaires | Psy92JPZ8s82uwzImkxZZg== | /l/verifications-reglementaires | 35 € | **en vente** (20/11/2026) |
+| SDR | Réservation de salles et bureaux | JfjqpZBC0Qk1T2ouOdMcNQ== | /l/reservation-salles | 19 € | **en vente** (20/11/2026) |
 
-Limite Gumroad atteinte sur GMA (Maintenance préventive) : prochaine création à 10:01 (Paris), reprise programmée à 10:02.
+Tags raccourcis : « maintenance-prev » (GMA), « verifications », « registre-securite » (VRF) ; boutons du reçu « Ouvrir le planning »
+(SDR). **Limite Gumroad atteinte** sur BSC (Bascule) : prochaine création le 21/11 à 08:51 (Paris), reprise programmée à 08:53.
