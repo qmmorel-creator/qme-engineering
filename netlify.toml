@@ -1214,3 +1214,11 @@
   to = "/en/english-version/?utm_source=x&utm_medium=social&utm_campaign=x-custom"
   status = 302
   force = true
+
+# Prospection LinkedIn BTP (20/11/2026) : lien court des invitations et messages, vers le pack Chef de projet BTP.
+# Fiche : docs/templates/communication/prospection-linkedin/packs-btp-enseignant.md
+[[redirects]]
+  from = "/btp"
+  to = "/packs/chef-de-projet-btp/?utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp"
+  status = 302
+  force = true

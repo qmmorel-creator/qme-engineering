@@ -29,7 +29,7 @@ Sheet privé), pas ici.
 Convention : `utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp` (ou `prosp-ens`). `dm` distingue les
 messages privés des publications (`social`).
 
-- Pack BTP : `https://qm-engineering.fr/packs/chef-de-projet-btp/?utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp`
+- Pack BTP : `qm-engineering.fr/btp` (lien court, redirige vers `/packs/chef-de-projet-btp/?utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp`)
 - Démo suivi de chantier : `https://qm-engineering.fr/templates/suivi-chantier/?demo&utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp`
 - Démo Gantt : `https://qm-engineering.fr/templates/gantt/?demo&utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp`
 - Pack Enseignant : `https://qm-engineering.fr/packs/enseignant/?utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-ens`
@@ -69,42 +69,34 @@ Les enseignants du public sont peu présents et peu réactifs sur LinkedIn : vis
 
 ## Séquences de messages
 
-Vouvoiement. Personnaliser la première phrase à partir du profil (poste, chantier ou formation récents).
-Notes d'invitation : 200 caractères au plus (limite des comptes gratuits ; le nombre de notes personnalisées par
-mois est aussi limité, à vérifier dans le compte de Quentin). Sans note si le quota est atteint.
+Vouvoiement, aucun prénom ni phrase propre au profil (décision de Quentin, 20/11/2026) : le même texte part à
+tout le monde, il doit donc sonner comme un message écrit à la main, sans formule commerciale. Notes d'invitation :
+200 caractères au plus sur un compte gratuit (le nombre de notes par mois y est aussi limité, à vérifier dans le
+compte de Quentin). Sans note si le quota est atteint.
 
 ### BTP
 
-**Invitation, version du 20/11/2026 (Quentin : lien du pack et de la page QME dans la note)**
+Lien court `qm-engineering.fr/btp` → page du pack, avec `utm_campaign=prosp-btp` (redirection dans `netlify.toml`).
 
-Compte gratuit, 178 caractères avec un prénom de 10 lettres (limite 200) :
+**Invitation (200 caractères, limite 200)**
 
-> Bonjour {Prénom}, situations, réserves, DOE, Gantt : 8 outils de chantier, sans abonnement.
-> qm-engineering.fr/packs/chef-de-projet-btp · linkedin.com/company/qme-qm-engineering
-
-Compte Premium, 287 caractères (limite 300) :
-
-> Bonjour {Prénom}, ingénieur chef de projet, j'ai réuni 8 outils de chantier dans un pack : situations et
-> avenants par lot, Gantt, visas, réserves, DOE, sous-traitants. Achat unique, démo libre :
-> qm-engineering.fr/packs/chef-de-projet-btp · QME : linkedin.com/company/qme-qm-engineering
-
-Liens sans paramètres de suivi, faute de place : une vente issue de l'invitation n'est pas attribuée à
-`prosp-btp`. Les liens du message 1 gardent leurs paramètres. Mesurer le taux d'acceptation dès la première
-semaine : une note avec des liens peut le faire baisser ; sous 25 %, repasser à une note sans lien.
+> Bonjour, ingénieur chef de projet, j'ai conçu des outils pour suivre un chantier : situations, réserves, DOE, planning. À voir : qm-engineering.fr/btp
+> Ma page : linkedin.com/company/qme-qm-engineering
 
 **Message 1, à l'acceptation**
 
-> Merci {Prénom}. J'ai conçu un pack d'outils pour piloter un chantier sans logiciel lourd : suivi par lot
-> (marché, avenants, situations), Gantt, circuit de visa, levée de réserves, non-conformités, DOE et sous-traitants.
-> La démo tourne avec une opération fictive, sans inscription : {lien démo suivi de chantier}
-> Qu'utilisez-vous aujourd'hui pour suivre vos situations et vos réserves ?
+> Merci d'avoir accepté. Pour vous donner une idée de ce qu'il y a dedans : le suivi par lot (marché, avenants,
+> situations), un Gantt, le circuit de visa, la levée de réserves, les non-conformités, le DOE et les
+> sous-traitants. Tout s'essaie en démo, sans créer de compte : qm-engineering.fr/btp
+>
+> Par curiosité, vous suivez tout ça comment aujourd'hui ?
 
 **Relance, J+5 sans réponse**
 
-> Je me permets une relance courte : le pack complet (8 outils) est à 192 € au lieu de 256 €, achat unique,
-> sans abonnement : {lien pack BTP}. Si un seul outil vous suffit, je vous indique lequel.
+> Je reviens vers vous une seule fois, promis. Le pack est à 192 € au lieu de 256 €, en achat unique, sans
+> abonnement. Et si un seul outil vous parle, dites-moi lequel, je vous oriente.
 
-**Dernier message, J+12** : aucun. On s'arrête après une relance.
+Après la relance : plus rien.
 
 **Si réponse intéressée** : proposer un appel de 15 min (template « Préparateur d'appel découverte ») ; si le
 besoin dépasse le pack (plusieurs utilisateurs, rôles), basculer vers le sur-mesure (`/sur-mesure/`).
@@ -136,8 +128,7 @@ prix du pack (83 € au lieu de 104 €).
 - **20 invitations par jour ouvré au plus**, environ 100 par semaine (au-delà, LinkedIn restreint les
   invitations des comptes gratuits). Répartition conseillée : 15 BTP + 5 enseignement.
 - Retirer chaque semaine les invitations en attente depuis plus de 3 semaines.
-- Un seul message de relance. Un « non » ou l'absence de réponse clôt le contact. Pas de copier-coller visible :
-  la première phrase est toujours propre au profil.
+- Un seul message de relance. Un « non » ou l'absence de réponse clôt le contact.
 - Pas de promesse chiffrée (gain de temps, économies), pas de conseil juridique ou réglementaire.
 - Publications du moment à aligner : un post BTP dans la semaine augmente l'acceptation (le profil est visité).
 
