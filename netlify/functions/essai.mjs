@@ -13,6 +13,7 @@ export default async (requete, contexte) => traiterEssai(requete, {
   // Notification de chaque essai lancé : ESSAI_NOTIFICATION, sinon l'adresse d'expédition (boîte de Quentin).
   notifier: process.env.ESSAI_NOTIFICATION || process.env.ESSAI_EXPEDITEUR || '',
   admin: process.env.INTERETS_ADMIN, // code administrateur facultatif, comme /api/interets (sinon le code ADM-… dérivé du secret)
+  testeurs: process.env.ESSAI_TESTEURS || '', // adresses de test, exclues du compteur
   ip: contexte?.ip || requete.headers.get('x-nf-client-connection-ip') || '',
 });
 

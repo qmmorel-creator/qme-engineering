@@ -227,6 +227,19 @@ function infoEssai(essai, aujourdhui) {
 // Report des données d'essai dans l'espace acheté (même template). Candidats : le code d'essai envoyé par
 // l'application, puis l'essai enregistré avec l'e-mail de l'achat Gumroad. Rien n'est écrasé : si l'espace
 // acheté contient déjà des données, il les garde. L'essai est ensuite marqué acheté (plus aucun rappel).
+// Statistique anonyme et permanente d'un essai (clé stat/<id> du stockage des essais) : template, dates, test ou non.
+// Ni e-mail ni prénom ; gardée après l'effacement de l'essai, pour le compteur (/api/compteur).
+// Test : adresse @example.(com|org|net), @qm-engineering.fr, ou listée dans ESSAI_TESTEURS (séparées par des virgules).
+export function estEssaiTest(email, testeurs = '') {
+  const e = String(email || '').trim().toLowerCase();
+  if (!e) return false;
+  if (/@example\.(com|org|net)$/.test(e) || /@qm-engineering\.fr$/.test(e)) return true;
+  return String(testeurs || '').toLowerCase().split(',').map((x) => x.trim()).filter(Boolean).includes(e);
+}
+export const statEssai = (reg, testeurs = '') => ({
+  id: reg.id, produit: reg.produit, cree: reg.cree, achete: reg.achete || null, test: estEssaiTest(reg.email, testeurs),
+});
+
 async function reporterEssai({ secret, produit, cible, codeEssai, email, stockage, essais, revoques, maintenant }) {
   if (!essais) return false;
   const candidats = [];
@@ -246,7 +259,10 @@ async function reporterEssai({ secret, produit, cible, codeEssai, email, stockag
       await stockage.set(cible, { ...donnees, majLe: new Date(maintenant()).toISOString() });
       reporte = true;
     }
-    await essais.set(`essai/${id}`, { ...reg, achete: new Date(maintenant()).toISOString(), reporte });
+    const acheteLe = new Date(maintenant()).toISOString();
+    await essais.set(`essai/${id}`, { ...reg, achete: acheteLe, reporte });
+    const stat = (await essais.get(`stat/${id}`)) || statEssai(reg);
+    await essais.set(`stat/${id}`, { ...stat, achete: acheteLe });
     if (reporte && stockage.supprimer) await stockage.supprimer(source);
     return reporte;
   }

@@ -76,7 +76,9 @@ window.dash = (() => {
       const sources = {
         publications: async () => chargeurs.publications({answer: {values: onglets.publications}}),
         historique: async () => chargeurs.historique({answer: {values: onglets.historique}}),
+        abonnes: async () => chargeurs.abonnes({answer: {values: onglets.abonnes}}),
         gumroad_produits: async () => objets(onglets.gumroad_produits, ['views', 'sales', 'revenue_cents']),
+        essais: async () => objets(onglets.essais, []),
         gumroad_sources: async () => objets(onglets.gumroad_sources, ['views', 'sales', 'revenue_cents']),
         gumroad_jours: async () => objets(onglets.gumroad_jours, ['units', 'revenue_cents']),
         gumroad_ventes: async () => chargeurs.gumroad_ventes({

@@ -62,6 +62,16 @@
 .rq-mini-n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
 .rq-mini-d { margin: 0; font-size: 12px; color: var(--discret); }
 
+/* Abonnés */
+.rq-abo-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.rq-abo-liste li { background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; padding: 14px 16px; display: grid; gap: 2px; min-width: 0; }
+.rq-abo-liste .rq-abo-r { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--texte-2); }
+.rq-abo-liste .rq-abo-n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
+.rq-abo-liste .rq-abo-v { font-size: 12px; color: var(--discret); }
+.rq-abo-liste .rq-abo-v.hausse { color: var(--vert); font-weight: 600; }
+.rq-abo-liste .rq-abo-v.baisse { color: var(--rouge); font-weight: 600; }
+.rq-abo-liste .rq-abo-vide { grid-column: 1 / -1; color: var(--discret); font-size: 14px; }
+
 /* Gumroad */
 .rq-gtiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
 .rq-gtile { border-radius: 16px; padding: 18px 20px; display: grid; gap: 4px; align-content: start; min-width: 0; }
@@ -227,6 +237,19 @@ html, body { margin: 0; background: #FBF7F1; }
     </div>
   </section>
 
+  <section class="rq-section" id="abonnes">
+    <div class="rq-section-head">
+      <h2>Abonnés</h2>
+      <p class="rq-sub">Abonnés de chaque compte QME, relevés chaque matin par Instinct (onglet Abonnés). Un jour sans relevé reprend la valeur précédente.</p>
+    </div>
+    <ul class="rq-abo-liste" data-draw="abonnes-liste" data-source="abonnes_derniers"></ul>
+    <figure class="rq-mini" id="abonnes-courbe">
+      <figcaption><span class="rq-mini-t">Évolution des abonnés</span></figcaption>
+      <p class="rq-mini-d">Page LinkedIn, Instagram @qmengineering, chaîne YouTube, TikTok @qme.qm.engineering, X @qmengineering</p>
+      <div class="rq-chart rq-area" data-draw="abonnes" data-source="abonnes_jour" role="img" aria-label="Courbes : nombre d'abonnés par réseau, jour par jour."></div>
+    </figure>
+  </section>
+
   <section class="rq-section" id="gumroad">
     <div class="rq-section-head">
       <h2>Gumroad</h2>
@@ -299,6 +322,47 @@ html, body { margin: 0; background: #FBF7F1; }
       </div>
     </figure>
     <p class="rq-note" data-read lang="fr">Gumroad ne donne pas les vues jour par jour, seulement le total par produit : seules les ventes et le revenu ont une courbe cumulée. Une vente à 0 $ est un téléchargement gratuit (code offert ou produit gratuit).</p>
+  </section>
+
+  <section class="rq-section" id="essais">
+    <div class="rq-section-head">
+      <h2>Essais gratuits</h2>
+      <p class="rq-sub">Essais de 14 jours lancés sur qm-engineering.fr, lus dans la base du site. Statistique anonyme : ni e-mail ni prénom. Les essais de test (tes adresses, adresses fictives) sont exclus des chiffres.</p>
+    </div>
+    <div class="rq-gtiles">
+      <div class="rq-gtile rq-gt-ciel">
+        <p class="rq-biglabel">Essais lancés</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Essais" data-row="0">—</p>
+        <p class="rq-mini-d"><span data-draw="n" data-source="essais_total" data-field="Templates" data-row="0">—</span> templates essayés</p>
+      </div>
+      <div class="rq-gtile rq-gt-rose">
+        <p class="rq-biglabel">Achats après essai</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Achats" data-row="0">—</p>
+        <p class="rq-mini-d">licence achetée pendant ou après l'essai</p>
+      </div>
+      <div class="rq-gtile rq-gt-beurre">
+        <p class="rq-biglabel">Conversion</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Conversion %" data-row="0">—</p>
+        <p class="rq-mini-d">achats ÷ essais</p>
+      </div>
+      <div class="rq-gtile rq-gt-sable">
+        <p class="rq-biglabel">Essais de test</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Tests" data-row="0">—</p>
+        <p class="rq-mini-d">exclus des chiffres</p>
+      </div>
+    </div>
+    <div class="rq-multiples">
+      <figure class="rq-mini" id="essais-courbe">
+        <figcaption><span class="rq-mini-t">Essais cumulés</span></figcaption>
+        <p class="rq-mini-d">Essais lancés (bleu) et achats après essai (rouge), jour par jour</p>
+        <div class="rq-chart rq-area" data-draw="essais-courbe" data-source="essais_jour" role="img" aria-label="Courbes en escalier : essais gratuits lancés et achats après essai, cumulés jour par jour."></div>
+      </figure>
+      <figure class="rq-mini" id="essais-templates">
+        <figcaption><span class="rq-mini-t">Par template</span></figcaption>
+        <p class="rq-mini-d">Essais lancés ; le point rouge signale au moins un achat</p>
+        <div class="rq-chart" data-draw="essais-templates" data-source="essais_templates" role="img" aria-label="Barres horizontales : essais gratuits par template, avec achats."></div>
+      </figure>
+    </div>
   </section>
 
   <div class="rq-cards" id="reseaux">
@@ -414,8 +478,8 @@ html, body { margin: 0; background: #FBF7F1; }
 </div>
 </main>
 <script src="d3-7.9.0.min.js"></script>
-<script src="moteur.js?v=2026112001"></script>
-<script src="compteur.js?v=2026112001"></script>
-<script src="connexion.js?v=2026112001"></script>
+<script src="moteur.js?v=2026112102"></script>
+<script src="compteur.js?v=2026112102"></script>
+<script src="connexion.js?v=2026112102"></script>
 </body>
 </html>
