@@ -143,6 +143,7 @@ Sheets (outils `mcp__Google_Sheets__*`, onglet `Planning`, `sheetId` à lire si 
   Titre du doc : `IG-nn · <titre interne> · légende`.
 - Doc de texte (règle stricte de la routine, PROMPT-INSTINCT v3 § 3) : texte à publier, ligne `———`,
   `PREMIER COMMENTAIRE`, le commentaire (lien `https://qm-engineering.fr<url>?demo` et page catalogue).
+  **Liens LinkedIn suivis** : tout lien `qm-engineering.fr` ou `qmengineering.gumroad.com/l/` d'un texte ou d'un premier commentaire LinkedIn porte `utm_source=linkedin&utm_medium=social&utm_campaign=li-nn` (ID en minuscules ; `?demo&utm_…` après un `?demo`). Le site transmet ces UTM à Gumroad (`assets/site.js`) : chaque vente est rattachée à son post.
   Interdits dans le texte : « ===== », « TEXTE DE LA PUBLICATION », « À VÉRIFIER », « Prévu le »,
   « [à compléter] ». Hashtags `#Mot`, 3 à 5. Instagram : « Lien en bio » au lieu d'une URL.
 - Texte alternatif (colonne J) : description de ce que montre la vidéo, mention « données fictives ».
