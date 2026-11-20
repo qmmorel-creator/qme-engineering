@@ -137,21 +137,9 @@
 .option-pack{display:flex;flex-direction:column;gap:2px;margin-top:10px;padding:10px 12px;border:1px dashed var(--discret);border-radius:12px;font-size:14px}
 .option-pack span{color:var(--texte-2);line-height:1.4}
 
-/* Carte des prix (section « Packs » du catalogue /templates/) : deux colonnes, nom … prix */
-.carte-prix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}
-.carte-prix h3{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);padding-bottom:8px;border-bottom:2px solid var(--encre)}
-.carte-prix ul{list-style:none;margin:0;padding:0}
-.carte-prix a{display:grid;grid-template-columns:auto minmax(16px,1fr) auto;align-items:baseline;gap:0 8px;padding:10px 4px;border-bottom:1px solid var(--trait);text-decoration:none;color:var(--encre)}
-.carte-prix a:hover .nm{text-decoration:underline;text-underline-offset:3px}
-.carte-prix .nm{font-weight:700;font-size:16px;min-width:0}
-.carte-prix .pts{border-bottom:2px dotted var(--trait);transform:translateY(-4px)}
-.carte-prix b{font-size:17px;font-weight:800;white-space:nowrap}
-.carte-prix small{grid-column:1/-1;font-size:13px;color:var(--discret)}
+/* Note et badge « Bientôt » des packs pas encore en vente */
 .note-packs{margin:0 0 14px;padding:10px 14px;border-radius:14px;background:var(--beurre);color:var(--beurre-texte);font-size:15px}
 .bientot-pack{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;margin-left:6px;border-radius:999px;background:var(--beurre);color:var(--beurre-texte);vertical-align:2px}
-.carte-prix-pied{margin-top:16px;font-size:15px;color:var(--texte-2)}
-.carte-prix-pied a{font-weight:700;color:var(--encre)}
-@media (max-width:720px){.carte-prix{grid-template-columns:minmax(0,1fr)}}
 
 /* Page /packs/ : filtre « Je suis… », une ligne dépliable par pack (décision de Quentin, 14/11/2026) */
 .filtre-packs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 8px}

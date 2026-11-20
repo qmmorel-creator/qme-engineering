@@ -453,26 +453,14 @@ main>.section:first-child,main>.docs-band+.section{border-top:0}
 .pager .prec b::before{content:"← "}
 .pager .suiv{text-align:right;grid-column:2}
 .pager .suiv b::after{content:" →"}
-.suite-pages{max-width:var(--max);margin:0 auto;padding:16px 16px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.suite-pages a{display:flex;flex-direction:column;gap:8px;padding:20px;border:2px solid var(--encre);background:var(--surface);text-decoration:none}
-.suite-pages a:nth-child(1){border-top:8px solid var(--bleu)}.suite-pages a:nth-child(2){border-top:8px solid var(--rouge)}.suite-pages a:nth-child(3){border-top:8px solid var(--jaune)}
-.suite-pages a:hover{background:#fff}
-.suite-pages .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
-.suite-pages b{font-size:22px;line-height:1.15;letter-spacing:-.02em}
-.suite-pages .fleche{margin-top:auto;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start}
 .fil{max-width:var(--max);margin:0 auto;padding:20px 16px 0;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:var(--discret)}
 .fil a{color:var(--encre);font-weight:600}
 .fil b{color:var(--encre)}
 .fil+.section{border-top:0;padding-top:24px}
 .rappel-templates{max-width:var(--max);margin:0 auto 8px;padding:20px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-top:2px solid var(--encre)}
 .rappel-templates p{max-width:760px;color:var(--texte-2)}
-/* Soumettre une idée */
+/* Proposer une idée (lien en tête du catalogue, formulaire en fenêtre) */
 .catalogue-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.btn.idee{min-height:48px;background:var(--jaune)}
-.btn.idee:hover{background:var(--encre);color:var(--papier)}
-.idee-bandeau{max-width:var(--max);margin:40px auto 0;padding:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--jaune);border:2px solid var(--encre);box-shadow:6px 6px 0 var(--encre)}
-.idee-bandeau h2{font-size:28px}
-.idee-bandeau p{margin-top:6px}
 .modale-idee{border:2px solid var(--encre);padding:0;max-width:560px;width:calc(100% - 24px);background:var(--papier);color:var(--encre);box-shadow:8px 8px 0 var(--encre);max-height:calc(100dvh - 32px)}
 .modale-idee::backdrop{background:rgba(20,20,20,.55)}
 .modale-idee form{display:flex;flex-direction:column;gap:14px;padding:0 18px 18px}
@@ -487,9 +475,7 @@ main>.section:first-child,main>.docs-band+.section{border-top:0}
 .modale-idee-pied{display:flex;flex-direction:row-reverse;flex-wrap:wrap;gap:10px}
 @media (max-width:720px){
   .pager{grid-template-columns:1fr}.pager .suiv{grid-column:1}
-  .suite-pages{grid-template-columns:1fr}
-  .idee-bandeau{margin:32px 16px 0;box-shadow:none}
-  .catalogue-actions{width:100%}.catalogue-actions .btn.idee{width:100%}
+  .catalogue-actions{width:100%}
 }
 
 /* ===================== Thème Pastel ===================== */
@@ -611,17 +597,9 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 
 .pager a{border:1px solid var(--trait);border-radius:18px;box-shadow:none}
 .pager a:hover{background:var(--beurre)}
-.suite-pages a{border:0;border-radius:22px}
-.suite-pages a:nth-child(1){border-top:0;background:var(--ciel)}
-.suite-pages a:nth-child(2){border-top:0;background:var(--rose)}
-.suite-pages a:nth-child(3){border-top:0;background:var(--beurre)}
-.suite-pages a:hover{background:var(--surface)}
 .rappel-templates{border-top:1px solid var(--trait)}
 .separateur h2{border-bottom:1px solid var(--trait)}
 
-.btn.idee{background:var(--rose);border-color:var(--rose)}
-.btn.idee:hover{background:var(--encre);color:var(--papier);border-color:var(--encre)}
-.idee-bandeau{background:var(--beurre);border:0;border-radius:24px;box-shadow:none}
 .modale-idee{border:0;border-radius:24px;box-shadow:0 24px 60px rgba(36,34,31,.25)}
 .modale-idee-tete{background:var(--ciel);color:var(--encre)}
 .modale-idee-tete button{border:1px solid rgba(36,34,31,.25);border-radius:12px;color:var(--encre)}
@@ -705,3 +683,18 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .essai-pret p{margin:0;color:var(--texte-2)}
 .essai-code{font:700 clamp(20px,2.6vw,28px)/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--encre)!important;background:var(--surface);border:2px dashed var(--ciel-texte);border-radius:14px;padding:14px 16px;letter-spacing:.04em;word-break:break-all}
 .essai-pret:focus{outline:none}
+
+/* Réorganisation du 20/11/2026 : menu allégé, Sur mesure en une page, catalogue recentré sur les templates en vente */
+.topbar nav a.login{border:0;padding:9px 10px;font-size:15px;color:var(--texte-2)}
+.topbar nav a.login:hover,.topbar nav a.login[aria-current="page"]{background:var(--beurre);color:var(--encre)}
+.ancres{margin-top:14px;font-size:15px;font-weight:600;color:var(--texte-2)}
+.ancres a{color:var(--encre);text-underline-offset:3px}
+.section[id]{scroll-margin-top:88px}
+.lien-idee{border:0;background:none;padding:8px 0;font:600 15px Outfit,sans-serif;color:var(--encre);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.lien-idee:hover{color:var(--bleu)}
+.catalogue-compte button[data-avenir]{border:0;background:none;padding:0;font:inherit;font-weight:700;color:var(--encre);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.packs-bandeau{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;background:var(--ciel);border-radius:24px;padding:24px;margin-top:40px}
+.packs-bandeau h2{font-size:28px}
+.packs-bandeau p{margin-top:6px;max-width:640px;color:var(--texte-2)}
+.packs-bandeau .actions{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:720px){.packs-bandeau{margin:32px 16px 0}.packs-bandeau .actions,.packs-bandeau .btn{width:100%}}

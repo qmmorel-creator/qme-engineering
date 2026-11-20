@@ -13,16 +13,29 @@ Site promotionnel de Quentin Morel Engineering (QME).
   pour les packs par `outils/packs/generer.mjs`, contrôlées par `outils/templates/seo.test.mjs` (à relancer après
   tout changement de prix, de FAQ ou de fil d'Ariane). Audit statique : `node outils/seo/audit.mjs`. Dossier de
   référencement (audit, mots-clés, guides proposés, Gumroad, plan d'action) : `docs/seo/`.
-- Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
-  puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
-  templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. État dans l'adresse
-  `?pour=…&q=…&vue=sommaire`, `?theme=…` ouvre un volet. Les vues sont construites par `assets/site.js` à partir des
-  cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour ceux en préparation, dont la démo
-  affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles quelles sans JS. En bas, la carte des
-  prix des packs (générée) ; bouton « Soumettre une idée » relié au formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
-  `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
-  `/templates/#gantt`…) redirigent vers la bonne page.
+- Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler ; réorganisé le 20/11/2026 pour séparer
+  nettement les deux offres) :
+  - menu : Sur mesure · Templates · Packs · Connexion (lien discret) · « Parler de votre projet » ; pied de page identique
+    sur toutes les pages (Accueil, Sur mesure, Templates, Packs, Guides, Contact, Connexion, Confidentialité). Plus
+    d'enchaînement « page précédente / suivante » entre les pages principales (seuls restent les retours au catalogue
+    ou aux packs en bas des fiches) ;
+  - `index.html` (accueil) : aiguillage entre les deux offres, puis le film ;
+  - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
+    `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
+    `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
+    (`netlify.toml`), pour les liens déjà publiés ;
+  - `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
+    puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
+    templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. Depuis le 20/11/2026, les templates en
+    préparation sont masqués par défaut : bouton « Afficher aussi les N en préparation » (`?avenir=1`), et toujours
+    montrés pendant une recherche. État dans l'adresse `?pour=…&q=…&vue=sommaire&avenir=1`, `?theme=…` ouvre un volet.
+    Les vues sont construites par `assets/site.js` à partir des cartes du HTML (`.vitrine-piste` pour les templates en
+    vente, `.liste-bientot` pour ceux en préparation, dont la démo affiche un bandeau « Bientôt en vente ») et des puces
+    de thème, affichées telles quelles sans JS. En bas, un bandeau compact vers les packs (généré par
+    `outils/packs/generer.mjs` ; la carte des prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de
+    template » en tête du catalogue, relié au formulaire Netlify `idee`) ;
+  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
+    (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
   Blobs à Francfort ; le clic n'enregistre aucune donnée personnelle). Après le clic, e-mail facultatif
@@ -40,8 +53,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
-- `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
-  `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
+- `en/` : version anglaise, mêmes rubriques (`en/custom/` avec `#references`, `#videos` et `#method`, `en/templates/`,
+  `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
 - `assets/QME-brochure-en.pdf`, `assets/QME-references-en.pdf`, `assets/qme-presentation-en.mp4` (et son
   affiche) : plaquette, références et vidéo en anglais. Sources et scripts de génération dans le dépôt

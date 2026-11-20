@@ -161,7 +161,9 @@ if(fallbackLink&&form){
    - « Par thème » : accordéon, « Disponibles maintenant » ouvert, puis un volet par thème (groupés Pro /
      Perso), templates en vente en tête de chaque volet ;
    - « Sommaire » : tout le catalogue en colonnes, un bloc par thème.
-   Recherche et filtre Pro / Perso s'appliquent aux deux. État dans l'adresse (?pour=pro&q=…&vue=sommaire ;
+   Recherche et filtre Pro / Perso s'appliquent aux deux. Templates en préparation masqués par défaut
+   (réorganisation du 20/11/2026), affichés au clic (?avenir=1) ou dès qu'une recherche est saisie.
+   État dans l'adresse (?pour=pro&q=…&vue=sommaire&avenir=1 ;
    ?theme=… ouvre un volet) ; jamais dans le # (le script de tête redirige les # inconnus vers /catalogue/). */
 (()=>{const cat=document.querySelector('[data-catalogue]');if(!cat)return;
  const $=(sel,el=cat)=>el.querySelector(sel),$$=(sel,el=cat)=>[...el.querySelectorAll(sel)];
@@ -176,14 +178,15 @@ if(fallbackLink&&form){
   it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
  const dispoDabord=l=>[...l].sort((a,b)=>b.vente-a.vente);
  const total=items.length,enVente=items.filter(t=>t.vente).length;
- const s={pour:'',q:'',vue:'themes',theme:''};
+ const s={pour:'',q:'',vue:'themes',theme:'',avenir:false};
  const p=new URLSearchParams(location.search),h=location.hash.slice(1);
  if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
  if(themes.some(t=>t.id===p.get('theme')))s.theme=p.get('theme');
  if(p.get('vue')==='sommaire')s.vue='sommaire';
+ if(p.get('avenir')==='1')s.avenir=true;
  s.q=(p.get('q')||'').slice(0,80);champ.value=s.q;
  const compter=(chemin,titre)=>{try{window.goatcounter?.count?.({path:chemin,title:titre,event:true});}catch(e){}};
- function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.vue!=='themes')q.set('vue',s.vue);
+ function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.vue!=='themes')q.set('vue',s.vue);if(s.avenir)q.set('avenir','1');
   const qs=q.toString();history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+(qs||h==='tous'?'#tous':''));}
  /* Construction des deux vues, une seule fois */
  const etat=t=>t.vente?`<em class="tarif">${esc(t.prix)}</em>`:'<em class="bientot">Bientôt</em>';
@@ -201,21 +204,23 @@ if(fallbackLink&&form){
  const volets=$$('.volet',vues),blocs=$$('.bloc-sommaire',vues);
  volets.forEach(v=>v.addEventListener('toggle',()=>{if(v.open&&!s.q&&v.dataset.volet!=='dispo')compter('catalogue-theme-'+v.dataset.volet,'Catalogue : thème '+texte(v,'summary b'));}));
  function rendre(){
-  const actif=!!(s.pour||s.q),mots=norm(s.q).split(/\s+/).filter(Boolean);
-  const ok=t=>(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
+  const actif=!!(s.pour||s.q),mots=norm(s.q).split(/\s+/).filter(Boolean),avenir=s.avenir||mots.length>0;
+  const ok=t=>(avenir||t.vente)&&(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
   segs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pour===s.pour)));
   boutonsVue.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vue===s.vue)));
   $$('[data-vue-panneau]',vues).forEach(el=>el.hidden=el.dataset.vuePanneau!==s.vue);
   $$('li[data-slug]',vues).forEach(li=>li.hidden=!ok(parSlug[li.dataset.slug]));
   for(const v of volets){const lis=$$('li[data-slug]',v),vis=lis.filter(li=>!li.hidden),n=vis.length,nv=vis.filter(li=>!li.classList.contains('prochaine')).length;
    v.hidden=!n;
-   v.querySelector('[data-cpt]').textContent=v.dataset.volet==='dispo'?`${n} template${n>1?'s':''} · achat unique`:`${mots.length?`${n} sur ${lis.length}`:`${n} templates`} · ${nv} disponible${nv>1?'s':''}`;
+   v.querySelector('[data-cpt]').textContent=v.dataset.volet==='dispo'?`${n} template${n>1?'s':''} · achat unique`:!avenir?`${nv} disponible${nv>1?'s':''}`:`${mots.length?`${n} sur ${lis.length}`:`${n} templates`} · ${nv} disponible${nv>1?'s':''}`;
    if(mots.length)v.open=true;}
   for(const b of blocs)b.hidden=!$$('li[data-slug]',b).some(li=>!li.hidden);
   for(const g of $$('.groupe-volets,.groupe-sommaire',vues))g.hidden=!$$('.volet,.bloc-sommaire',g).some(x=>!x.hidden);
   let nVente=0,nBientot=0;items.forEach(t=>{if(ok(t))t.vente?nVente++:nBientot++;});
   cat.classList.toggle('filtre',actif);vide.hidden=nVente+nBientot>0;vues.hidden=!(nVente+nBientot);
-  compte.innerHTML=actif?`<b>${nVente+nBientot}</b> sur ${total} · ${nVente} en vente, ${nBientot} en préparation · <button type="button" data-effacer>Effacer les filtres</button>`:`${total} templates · ${enVente} en vente, ${total-enVente} en préparation`;
+  const bascule=mots.length?'':` · <button type="button" data-avenir>${s.avenir?'Masquer les templates en préparation':`Afficher aussi les ${total-enVente} en préparation`}</button>`;
+  compte.innerHTML=actif?`<b>${nVente+nBientot}</b> sur ${total} · ${nVente} en vente${avenir?`, ${nBientot} en préparation`:''}${bascule} · <button type="button" data-effacer>Effacer les filtres</button>`
+   :`<b>${enVente}</b> templates en vente${s.avenir?`, ${total-enVente} en préparation`:''}${bascule}`;
  }
  /* Fin d'une recherche : retour à l'état de départ (« Disponibles maintenant » seul ouvert). */
  let qPrec=s.q;
@@ -224,7 +229,8 @@ if(fallbackLink&&form){
  segs.forEach(b=>b.addEventListener('click',()=>{s.pour=b.dataset.pour;rendre();adresse();if(s.pour)compter('catalogue-filtre-'+s.pour,'Catalogue : filtre '+b.textContent);}));
  boutonsVue.forEach(b=>b.addEventListener('click',()=>{if(s.vue===b.dataset.vue)return;s.vue=b.dataset.vue;rendre();adresse();compter('catalogue-vue-'+s.vue,'Catalogue : vue '+b.textContent);}));
  let attente;champ.addEventListener('input',()=>{s.q=champ.value.slice(0,80);finRecherche();rendre();clearTimeout(attente);attente=setTimeout(adresse,400);});
- cat.addEventListener('click',e=>{if(e.target.closest('[data-effacer]')){effacer();champ.focus();}});
+ cat.addEventListener('click',e=>{if(e.target.closest('[data-effacer]')){effacer();champ.focus();}
+  else if(e.target.closest('[data-avenir]')){s.avenir=!s.avenir;rendre();adresse();$('[data-avenir]')?.focus();if(s.avenir)compter('catalogue-avenir','Catalogue : templates en préparation affichés');}});
  filtres.hidden=false;rendre();
  const cible=s.theme&&volets.find(x=>x.dataset.volet===s.theme&&!x.hidden);
  if(cible)requestAnimationFrame(()=>cible.scrollIntoView({block:'start'}));
