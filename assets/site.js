@@ -230,3 +230,30 @@ if(fallbackLink&&form){
  if(cible)requestAnimationFrame(()=>cible.scrollIntoView({block:'start'}));
  else if(s.pour||s.q||s.vue!=='themes')requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
 })();
+
+/* Attribution des achats Gumroad (20/11/2026) : les UTM d'arrivée sur le site (lien d'une publication, d'un Short…)
+   sont gardés pour toute la visite dans l'onglet, puis ajoutés à chaque lien Gumroad au moment du clic, avec la page
+   de départ en utm_content. Sans UTM, la source est le site référent, sinon « qm-engineering.fr ». Gumroad les
+   restitue sur chaque vente (compteur réseaux : ventes par source). */
+(()=>{
+ const CLES=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'],MEMO='qme-utm';
+ let m={};try{m=JSON.parse(sessionStorage.getItem(MEMO)||'{}')||{};}catch(e){m={};}
+ const garder=()=>{try{sessionStorage.setItem(MEMO,JSON.stringify(m));}catch(e){}};
+ const p=new URLSearchParams(location.search);
+ if(CLES.some(k=>p.get(k))){m={};CLES.forEach(k=>{const v=p.get(k);if(v)m[k]=v.slice(0,100);});garder();}
+ else if(!m.utm_source&&document.referrer){
+  try{const r=new URL(document.referrer);if(r.hostname&&r.hostname!==location.hostname){m={utm_source:r.hostname.replace(/^www\./,'').slice(0,100),utm_medium:'referral'};garder();}}catch(e){}
+ }
+ const marquer=a=>{
+  try{
+   const u=new URL(a.href);
+   if(!/(^|\.)gumroad\.com$/.test(u.hostname)||!u.pathname.startsWith('/l/'))return;
+   const v=m.utm_source?{...m}:{utm_source:'qm-engineering.fr',utm_medium:'site'};
+   if(!v.utm_content)v.utm_content=(location.pathname.replace(/\/+$/,'')||'/').slice(0,100);
+   Object.entries(v).forEach(([k,x])=>{if(!u.searchParams.has(k))u.searchParams.set(k,x);});
+   a.href=u.toString();
+  }catch(e){}
+ };
+ const surLien=e=>{const a=e.target.closest?.('a[href*="gumroad.com/l/"]');if(a)marquer(a);};
+ ['pointerdown','click','auxclick','contextmenu','keydown'].forEach(t=>document.addEventListener(t,surLien,true));
+})();
