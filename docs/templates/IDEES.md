@@ -106,7 +106,7 @@ déjà).
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
-| T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | prêt | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
+| T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
@@ -122,7 +122,7 @@ déjà).
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | en vente | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | en vente | 19 € | S | P3 | Backlog Quentin n° 20 |
-| T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | prêt | 35 € | M | P1 | Backlog Quentin n° 21 |
+| T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | en vente | 35 € | M | P1 | Backlog Quentin n° 21 |
 | T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | en vente | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
