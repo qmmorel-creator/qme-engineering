@@ -24,16 +24,17 @@ Site promotionnel de Quentin Morel Engineering (QME).
     `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
     `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
     (`netlify.toml`), pour les liens déjà publiés ;
-  - `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
-    puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
-    templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. Depuis le 20/11/2026, les templates en
-    préparation sont masqués par défaut : bouton « Afficher aussi les N en préparation » (`?avenir=1`), et toujours
-    montrés pendant une recherche. État dans l'adresse `?pour=…&q=…&vue=sommaire&avenir=1`, `?theme=…` ouvre un volet.
-    Les vues sont construites par `assets/site.js` à partir des cartes du HTML (`.vitrine-piste` pour les templates en
-    vente, `.liste-bientot` pour ceux en préparation, dont la démo affiche un bandeau « Bientôt en vente ») et des puces
-    de thème, affichées telles quelles sans JS. En bas, un bandeau compact vers les packs (généré par
-    `outils/packs/generer.mjs` ; la carte des prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de
-    template » en tête du catalogue, relié au formulaire Netlify `idee`) ;
+  - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
+    puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
+    tuile affiche les outils du thème (`?theme=…`), « Tous les thèmes » ramène aux tuiles ; une recherche affiche
+    directement les outils trouvés. Templates en préparation masqués par défaut (« Afficher aussi les N en
+    préparation », `?avenir=1`), toujours montrés pendant une recherche. Les anciennes vues « Disponibles maintenant »,
+    accordéon et « Sommaire » sont supprimées (`?vue=sommaire` est ignoré). Les tuiles et la liste sont construites par
+    `assets/site.js` à partir des cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour
+    ceux en préparation, dont la démo affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles
+    quelles sans JS. En bas, un bandeau compact vers les packs (généré par `outils/packs/generer.mjs` ; la carte des
+    prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de template » en tête du catalogue, relié au
+    formulaire Netlify `idee` ;
   - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
     (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
