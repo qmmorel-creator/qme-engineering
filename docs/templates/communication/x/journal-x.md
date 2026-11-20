@@ -63,3 +63,7 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
   leur couleur dominante est probablement le rouge, d'où bleu (X-04), jaune (X-06), bleu (X-08). Restent « À produire »
   hors fenêtre : X-10 (28/11), X-12 (30/11), X-14 (02/12), encore une vidéo sur deux : à arbitrer aux prochains passages
   (images de remplacement). Marqueurs de conflit git retirés du README (section X-15, branche claude/routines-contenu).
+- **20/11/2026 (tâche « Campagne X · contenu J+7 »)** : Sheet relu ; fenêtre 21/11 → 27/11 entièrement « Programmé » (X-03, X-04,
+  X-05, X-06, X-07, X-08, X-09), aucune ligne « À produire » dans la fenêtre, aucune ligne « Post » sans image. Rien produit.
+  Réserve : premier jour non programmé le 28/11 (X-10, vidéo Stocks « À produire », J+8) ; à traiter au passage du 21/11
+  (J+7). X-15 (20/11) programmé ce soir.
