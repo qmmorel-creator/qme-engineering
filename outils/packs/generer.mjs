@@ -10,7 +10,7 @@ import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026111404';
+const V = '2026112001';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
