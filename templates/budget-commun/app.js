@@ -597,7 +597,7 @@
       ${session.demo ? `<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d'exemple, gardées sur cet appareil uniquement.</span><button id="bascule-demo" data-action="${autreDemo[0]}">${autreDemo[1]}</button><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J'ai un code d'accès</button></div></div>` : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
-        <span class="titre-produit">Budget<br>commun</span>
+        <span class="titre-produit">Gestion dépenses<br>communes</span>
         <nav class="onglets" aria-label="Sections">${navOnglets()}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
