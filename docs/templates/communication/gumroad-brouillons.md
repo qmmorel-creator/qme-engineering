@@ -194,7 +194,6 @@ programmée à 09:46 pour le pack Moyens généraux.
 |------|---------|---------------------|-----------|------|--------|
 | PRC | Gestion de parc informatique | gykL5ZVrrICGHSLM0V3xlQ== | /l/parc-informatique | 35 € | **en vente** (20/11/2026) |
 | VHC | Gestion de flotte de véhicules | a212qy8CvDD90dc-7gV5NQ== | /l/gestion-flotte | 39 € | **en vente** (20/11/2026) |
-
 | GMA | Maintenance préventive (GMAO légère) | MAPRhk5_um6ZexYxe09jFw== | /l/maintenance-preventive | 39 € | clé à activer (https://gumroad.com/products/qsrwbx/edit) |
 | VRF | Vérifications réglementaires | Psy92JPZ8s82uwzImkxZZg== | /l/verifications-reglementaires | 35 € | clé à activer (https://gumroad.com/products/xgnlcm/edit) |
 | SDR | Réservation de salles et bureaux | JfjqpZBC0Qk1T2ouOdMcNQ== | /l/reservation-salles | 19 € | clé à activer (https://gumroad.com/products/dbijhs/edit) |
