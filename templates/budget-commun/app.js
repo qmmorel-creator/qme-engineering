@@ -433,7 +433,7 @@
           <p class="surtitre">Accès acheteur</p>
           <h2>Ouvre ton budget commun</h2>
         </div>
-        <p>Saisis la clé de licence reçue par e-mail après l'achat. Chaque membre du foyer peut l'ouvrir sur son téléphone avec la même clé : tout le foyer voit les mêmes comptes.</p>
+        <p>Saisis la clé de licence reçue par e-mail après l'achat. Pour y faire entrer les autres membres, tu leur donneras ensuite le code de partage de l'onglet Foyer : tout le foyer verra les mêmes comptes.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
           <label class="champ code-saisie">Clé de licence ou code d'accès
             <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
@@ -1048,10 +1048,11 @@
         <div class="actions">${compte ? '<button class="btn" data-action="cle-modifier">Modifier la clé</button>' : ''}<button class="btn" data-action="reglages">Changer de fonctionnement</button></div></section>
       <section class="partage">
         <div><p class="surtitre">Partager avec ton foyer</p>
-        <h2>Une clé, les mêmes comptes pour tous.</h2>
-        <p>Chaque membre ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et saisit la même clé de licence : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
-        <p><b>Attention :</b> partager la clé donne un accès complet (ajouter, modifier, supprimer). Ne la donne qu'aux personnes du foyer.</p></div>
-        ${session.demo ? '' : `<button class="btn jaune" data-action="copier-cle">Copier la clé</button>`}
+        <h2>Un code, les mêmes comptes pour tous.</h2>
+        <p>Copie le code de partage et envoie-le aux membres du foyer. Chacun ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et le saisit : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
+        <p><b>Ce code n'ouvre que ce budget commun.</b> Si tu as acheté un pack, ton budget perso et tes autres templates restent privés. Ne donne jamais la clé de licence d'un pack : elle ouvre tous ses templates.</p>
+        <p><b>Attention :</b> le code donne un accès complet (ajouter, modifier, supprimer). Ne le donne qu'aux personnes du foyer.</p></div>
+        ${session.demo ? '' : `<button class="btn jaune" data-action="copier-cle">Copier le code de partage</button>`}
       </section>
       <h2 class="titre-section">Catégories <span>${pluriel(E.categories.length, 'catégorie')}</span></h2>
       <div class="puces">${E.categories.map((c) => `<button class="puce" data-action="categorie-modifier" data-id="${c.id}">${esc(c.nom)}</button>`).join('')}<button class="puce ajout" data-action="categorie-nouvelle">+ Catégorie</button></div>
@@ -1599,7 +1600,7 @@
       case 'versement-suppr': { const v = E.versements.find((x) => x.id === id); if (!v) break; annulable(() => supprimer('versements', id)); sauver(); rendre(); toast(`Versement de ${eur(v.montant)} supprimé.`, { libelle: 'Annuler', faire: annuler }); break; }
       case 'cle-modifier': modaleCle(); break;
       case 'solde-estime': { const f = $('#form-alim'); if (!f) break; f.elements.solde.value = versSaisie(Number(el.dataset.montant)); majAlimentation(f); break; }
-      case 'copier-cle': navigator.clipboard?.writeText(session.code || '').then(() => toast('Clé copiée : envoie-la seulement aux membres du foyer.'), () => toast(`Ta clé : ${session.code}`)); break;
+      case 'copier-cle': navigator.clipboard?.writeText(session.code || '').then(() => toast('Code copié : envoie-le seulement aux membres du foyer.'), () => toast(`Code de partage : ${session.code}`)); break;
       default: break;
     }
   });

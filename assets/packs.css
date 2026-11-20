@@ -100,7 +100,11 @@
 .pack-espace-tete h2{font-size:22px}
 .pack-espace ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
 .pack-espace li button,.pack-espace li a{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;padding:10px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--papier);font:600 16px Outfit,sans-serif;color:var(--encre);cursor:pointer;text-align:left;text-decoration:none}
+.pack-espace li{display:grid;gap:6px;justify-items:start}
 .pack-espace li button:hover{border-color:var(--encre);background:var(--beurre)}
+.pack-espace li .lien-discret{width:auto;min-height:24px;padding:0 4px;border:0;border-radius:0;background:none;font:inherit;font-size:14px;color:var(--discret);text-decoration:underline}
+.pack-espace li .lien-discret:hover{background:none;color:var(--encre)}
+.pack-espace-note{margin:12px 0 0;font-size:14px;color:var(--discret)}
 .espace-form{max-width:520px}
 .lien-discret{background:none;border:0;padding:0;font:inherit;font-size:14px;color:var(--discret);text-decoration:underline;cursor:pointer}
 

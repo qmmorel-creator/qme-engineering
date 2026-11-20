@@ -48,6 +48,30 @@
     "templates_a_mettre_en_vente": []
   },
   {
+    "code": "PBF",
+    "slug": "budget-perso-famille",
+    "nom": "Pack Budget perso et famille",
+    "permalien": "pack-budget-perso-famille",
+    "prix_cents": 4700,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 4700
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 5900
+      }
+    ],
+    "resume": "Votre budget et celui de la famille, enfin d’équerre.",
+    "description_html": "<p><strong>Votre budget et celui de la famille, enfin d’équerre.</strong></p>\n<p>Le budget du mois, les dépenses partagées à la maison, les abonnements, l’épargne et les dettes : l’argent perso et l’argent de la famille, tenus ensemble.</p>\n<p><strong>Pour qui ?</strong> Vous gérez votre propre argent et celui du foyer. Il y a vos dépenses, celles qu’on partage à deux ou à plusieurs, les prélèvements qui s’empilent, l’épargne qu’on repousse et un crédit qui traîne. Ce pack range tout cela en cinq outils qui se complètent.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Budget du foyer</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Budget commun</strong> : À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun. (15 € seul)</li><li><strong>Suivi des abonnements</strong> : Coût réel par mois et par an, essais et engagements. (9 € seul)</li><li><strong>Objectif d'épargne et fonds d'urgence</strong> : Fonds d’urgence et projets : combien, jusqu’à quand. (12 € seul)</li><li><strong>Remboursement de dettes</strong> : Vos dettes soldées une à une, avec une date de fin. (12 € seul)</li></ul>\n<p>63 € à l’achat séparé, 47 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (47 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (59 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "5/5",
+    "templates_a_mettre_en_vente": []
+  },
+  {
     "code": "PBT",
     "slug": "chef-de-projet-btp",
     "nom": "Pack Chef de projet BTP",

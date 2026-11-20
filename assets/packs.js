@@ -83,7 +83,8 @@
     function rendre(packs) {
       zone.innerHTML = packs.map((p, i) => `<div class="pack-espace">
         <div class="pack-espace-tete"><h2>${esc(p.nom)}</h2><button class="lien-discret" type="button" data-oublier="${i}">Oublier ce pack sur cet appareil</button></div>
-        <ul>${p.templates.map((t) => `<li><button type="button" data-ouvrir="${esc(t.produit)}" data-code="${esc(t.code)}" data-url="${esc(t.url)}">${esc(t.nom)}<span aria-hidden="true">→</span></button></li>`).join('')}</ul>
+        <ul>${p.templates.map((t) => `<li><button type="button" data-ouvrir="${esc(t.produit)}" data-code="${esc(t.code)}" data-url="${esc(t.url)}">${esc(t.nom)}<span aria-hidden="true">→</span></button><button class="lien-discret" type="button" data-copier="${esc(t.code)}" aria-label="Copier le code de partage : ${esc(t.nom)}">Copier le code de partage</button></li>`).join('')}</ul>
+        <p class="pack-espace-note">Pour partager un seul template (un budget commun, par exemple), envoyez son code de partage : il n’ouvre que ce template. La clé du pack ouvre tous vos templates : gardez-la pour vous.</p>
       </div>`).join('');
       form.querySelector('button').textContent = packs.length ? 'Ajouter un autre pack' : 'Ouvrir mon pack';
     }
@@ -93,6 +94,14 @@
         // Le template lit son code dans qme-<préfixe>-code : il s'ouvre comme après une connexion normale.
         try { localStorage.setItem(`qme-${b.dataset.ouvrir.toLowerCase()}-code`, JSON.stringify(b.dataset.code)); } catch {}
         location.href = b.dataset.url;
+        return;
+      }
+      const c = e.target.closest('[data-copier]');
+      if (c) {
+        const code = c.dataset.copier;
+        const fait = () => { c.textContent = 'Code copié'; setTimeout(() => { c.textContent = 'Copier le code de partage'; }, 2500); };
+        if (navigator.clipboard) navigator.clipboard.writeText(code).then(fait, () => { c.textContent = code; });
+        else c.textContent = code;
         return;
       }
       const o = e.target.closest('[data-oublier]');
