@@ -294,6 +294,7 @@ Remarque · Format. Lignes triées par date ; une publication environ tous les d
    autres docs du planning (le retrouver par les métadonnées d'un doc existant, colonne G), avec le texte
    de `docs/templates/communication/<slug>/linkedin.md` (accroche retenue, texte, hashtags ; le lien
    d'achat en premier commentaire, noté en fin de doc). Renseigner l'ID et le lien du doc.
+   **Liens LinkedIn suivis** : tout lien `qm-engineering.fr` ou `qmengineering.gumroad.com/l/` d'un texte ou d'un premier commentaire LinkedIn porte `utm_source=linkedin&utm_medium=social&utm_campaign=li-nn` (ID en minuscules ; `?demo&utm_…` après un `?demo`). Le site transmet ces UTM à Gumroad (`assets/site.js`) : chaque vente est rattachée à son post.
 6. **Image** : la couverture `assets/templates-<slug>-couverture.png`, déposée dans le dossier « Images »
    du planning sous le nom `LI-nn-<slug>.png` ; texte alternatif descriptif, mention « données fictives ».
 7. **Insérer la ligne à sa place chronologique** (`insert_dimension` puis `update_values`), jamais en bas

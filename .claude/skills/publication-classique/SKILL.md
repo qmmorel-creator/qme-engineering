@@ -91,6 +91,7 @@ gratuit, sans carte : lien en bio » (LinkedIn : `qm-engineering.fr/essai/`), l'
 **Doc** (format strict lu par la routine) : texte à publier, ligne `———`, `PREMIER COMMENTAIRE` (LinkedIn :
 lien de la démo et de la page catalogue ou du site), ligne `———`, `NOTES` (accroches B et C, sources). Jamais
 « ===== », « TEXTE DE LA PUBLICATION », « À VÉRIFIER », « Prévu le », « [à compléter] » dans la partie publiée.
+**Liens LinkedIn suivis** : tout lien `qm-engineering.fr` ou `qmengineering.gumroad.com/l/` d'un texte ou d'un premier commentaire LinkedIn porte `utm_source=linkedin&utm_medium=social&utm_campaign=li-nn` (ID en minuscules ; `?demo&utm_…` après un `?demo`). Le site transmet ces UTM à Gumroad (`assets/site.js`) : chaque vente est rattachée à son post.
 
 ## 5. Visuels
 
