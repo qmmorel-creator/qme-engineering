@@ -51,8 +51,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   lecture seule, puis effacement ; données reprises à l'achat (clé saisie dans « J'ai acheté »). Page `/essai/` et pages
   catalogue générées par `node outils/essai/generer.mjs` ; API `POST /api/essai` (`netlify/functions/essai.mjs`,
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
-  `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, J-3, fin, avant
-  effacement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, prise en main J+2
+  propre à chaque template, J-3, fin, avant effacement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template

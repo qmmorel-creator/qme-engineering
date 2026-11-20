@@ -25,13 +25,15 @@ sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quen
 | Quand | Objet | Contenu |
 |---|---|---|
 | Au lancement | Merci d'essayer le <template> | Remerciement, code, lien d'ouverture, date de fin, achat et reprise, « répondez-moi » |
+| Début + 2 jours (rattrapage jusqu'à + 5) | <template> : par où commencer | Prise en main **propre à chaque template** : premier pas en quelques minutes, deux fonctions peu visibles, aide proposée (`netlify/lib/essais-prise-en-main.mjs`, 20/11/2026) |
 | Fin − 3 jours | Plus que 3 jours d'essai : <template> | Rappel, prix, reprise des données, demande de retour |
 | Lendemain de la fin | Votre essai du <template> est terminé | Lecture seule jusqu'à la date d'effacement, achat, « pourquoi pas ? » |
 | Effacement − 7 jours | Vos données d'essai seront effacées le … | Dernier e-mail : acheter ou exporter |
 | Nouvelle demande, même adresse | Votre code d'essai : <template> | Code renvoyé (jamais affiché à l'écran) |
 
 Aucun e-mail après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
-essai. Textes : `contenuMail` dans `netlify/lib/essais.mjs` (vouvoiement, Quentin à la première personne).
+essai. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
+template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
 
 ### Configuration de l'envoi (une fois, par Quentin)
 

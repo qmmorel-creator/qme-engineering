@@ -6,6 +6,8 @@
 //
 // E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
 //  - merci : tout de suite, avec le code ;
+//  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
+//    (essais-prise-en-main.mjs) ;
 //  - rappel : 3 jours avant la fin ;
 //  - fin : le lendemain de la fin (lecture seule, données gardées 30 jours) ;
 //  - effacement : 7 jours avant l'effacement.
@@ -20,6 +22,7 @@ import { statEssai } from './templates-acces.mjs';
 import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
+import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
 
@@ -174,6 +177,27 @@ Si vous ne continuez pas : vous n'avez rien à faire, aucun prélèvement. Vos d
 Une question, un manque, une idée ? Répondez simplement à cet e-mail : c'est moi qui le lis, et le template évolue avec vos retours.
 
 Bon essai,
+${SIGNATURE}`;
+  } else if (type === 'prise-en-main') {
+    const g = PRISE_EN_MAIN[reg.produit];
+    if (!g) throw new Error(`Prise en main absente pour ${reg.produit}`);
+    objet = `${f.nom} : par où commencer`;
+    texte = `${bonjour}
+
+Vous avez lancé l'essai du template ${nom} le ${dateFr(reg.debut)}. Si vous n'avez pas encore trouvé par où commencer, voici ce que je ferais à votre place.
+
+Pour démarrer, en quelques minutes : ${g.commencer}
+
+Deux choses qu'on ne remarque pas toujours au premier coup d'œil :
+– ${g.astuces[0]}
+– ${g.astuces[1]}
+
+Ouvrir le template : ${ouvrir}
+
+${g.aide} Répondez simplement à cet e-mail : je regarde avec vous comment le régler.
+
+Votre essai continue jusqu'au ${dateFr(reg.fin)} inclus. Si vous décidez de garder le template (${euros(f.prix)}, achat unique, sur ${f.achat}), tout ce que vous aurez saisi est repris.
+
 ${SIGNATURE}`;
   } else if (type === 'rappel') {
     objet = `Plus que 3 jours d'essai : ${f.nom}`;
@@ -386,6 +410,7 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
     const mails = { ...(reg.mails || {}) };
     const dus = [];
     if (!mails.merci && aujourdhui <= decalerJour(reg.debut, 1)) dus.push('merci');
+    if (!mails['prise-en-main'] && aujourdhui >= decalerJour(reg.debut, 2) && aujourdhui <= decalerJour(reg.debut, 5)) dus.push('prise-en-main');
     if (!mails.rappel && aujourdhui >= decalerJour(reg.fin, -3) && aujourdhui <= reg.fin) dus.push('rappel');
     if (!mails.fin && etat.termine && aujourdhui <= decalerJour(reg.fin, 7)) dus.push('fin');
     if (!mails.effacement && aujourdhui >= decalerJour(reg.effacement, -7)) dus.push('effacement');
