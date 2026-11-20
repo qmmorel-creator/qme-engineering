@@ -127,7 +127,7 @@ déjà).
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi congés et absences | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
-| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | prêt | 19 € | M | P3 | Backlog Quentin n° 26 |
+| T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en vente | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en vente | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
@@ -138,9 +138,9 @@ déjà).
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | prêt | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en vente | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
-| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | prêt | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
+| T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | en vente | 12 € | S | P2 | Backlog Quentin n° 45 |
