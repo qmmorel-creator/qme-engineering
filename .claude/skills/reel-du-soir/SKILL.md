@@ -41,7 +41,9 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
 ## 2. Fabriquer
 
 1. Choisir le produit (règle 3) et un **angle** en rotation avec les Reels précédents : problème concret, chiffre
-   vérifiable, avant / après, méthode, question. Écrire le script : accroche (3 lignes au plus), 2 ou 3 plans de
+   vérifiable, avant / après, méthode, question. **Référence (20/11/2026) : les 7 Reels de `REGLES-CONTENU.md` § 3 bis**
+   (vrai problème avec tension → bascule → solution ; texte de la scène 1 sans animation d'entrée ni rideau, lisible
+   dès la première image). Écrire le script : accroche (3 lignes au plus), 2 ou 3 plans de
    démo, fin « <Produit> · démo gratuite · qm-engineering.fr ».
 2. `npm run dev:templates`, puis captures Playwright de `http://localhost:8888/templates/<slug>/?demo` (viewport 430 px,
    dpr 2, bandeau démo et barre d'onglets masqués) dans `docs/templates/communication/instagram/production/captures/`.
