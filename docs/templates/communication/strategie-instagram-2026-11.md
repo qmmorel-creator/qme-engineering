@@ -243,9 +243,32 @@ LinkedIn (cas réel, coulisses, avant / après d'un processus)
 
 ## 6. Calendrier éditorial · 23/11 → 22/12/2026
 
+
+> **Mise en œuvre du 20/11/2026 (accord de Quentin).** Planning Instagram trié pour le 23/11 → 22/12 :
+>
+> - **Reels publiés à 12:30, et non à 19:00** : 19:00 reste aux carrousels du test des fonds, pour ne pas publier
+>   deux contenus à la même minute. Les heures citées ci-dessous pour les Reels sont donc 12:30.
+> - **Déplacés (statut inchangé, « Programmé »)** :
+>   - IG-156 → 23/11 (L1) ;
+>   - IG-155 → 27/11 (L5) ;
+>   - IG-131 → 30/11 (L7) ;
+>   - IG-56 → 02/12 (L10) ;
+>   - IG-149, conservé le 04/12 (L11) ;
+>   - IG-50 → 09/12 à 12:30 (L16) ;
+>   - IG-46 → 14/12 (L20).
+> - **Créés en « À produire »** : Instinct ne les publie pas et vous alerte sur WhatsApp le jour même s'ils ne sont
+>   pas prêts. Ce sont IG-157 (L4), IG-158 (L13), IG-159 (L14), IG-160 (L17), IG-161 (L18), IG-162 (L22),
+>   IG-163 (L23), IG-164 (L25) et IG-165 (L26).
+> - **Annulés** (contenus conservés, réutilisables) : IG-144, IG-154, IG-148, IG-142, IG-141, IG-147, IG-41,
+>   IG-44, IG-45, IG-132, IG-53, IG-55, IG-57, IG-47, IG-49, IG-19, IG-20, IG-06, IG-11, IG-24.
+>   Annulés pour de bon : IG-52 (contenu faux), IG-133 (Reel catalogue), IG-51 (vœux).
+> - **Prix du Suivi des abonnements : 9 €** (confirmé par Quentin ; Gumroad, site et visuels concordent ; la
+>   remarque « passé à 12 € » du planning a été corrigée).
+> - **Non modifiés** : les plannings YouTube et LinkedIn. Les lignes YT et LI jumelles des Reels déplacés ou
+>   annulés restent à leur date d'origine.
 Règles communes :
-- **Horaires** : Reels Instagram à 19:00 (aucune donnée ne permet d'identifier un meilleur horaire, on n'en change pas
-  pour ne pas ajouter de variable) ; LinkedIn à 10:00 (sur-mesure) ou 12:15 (template), comme aujourd'hui.
+- **Horaires** : Reels Instagram à 12:30 (voir la mise en œuvre ci-dessus ; aucune donnée ne permet d'identifier un
+  meilleur horaire) ; LinkedIn à 10:00 (sur-mesure) ou 12:15 (template), comme aujourd'hui.
 - **Carrousels Instagram** : jusqu'au 07/12, ce sont les 12 du test des fonds (déjà programmés, voir
   `instagram/tests-fonds/`). Ensuite, deux par semaine.
 - **Origine** : « Existe » = vidéo ou démo déjà produite, à réhabiller (accroche, première image) ; « Nouveau » = à
