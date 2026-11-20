@@ -33,7 +33,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- **Clés de licence à activer** : aucune pour l'instant (10 brouillons du 19/11 publiés).
+- **Clés de licence à activer** : aucune pour l'instant (packs PFC, PBT et templates ARD, TDB, ENP publiés le 20/11).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?
