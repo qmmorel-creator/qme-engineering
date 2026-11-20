@@ -16,6 +16,7 @@
 //  email/<hmac e-mail>/<produit>   → { id }   (un essai par adresse et par template)
 //  ip/<hmac ip>/<jour>             → { n }    (limite de créations par jour et par adresse IP)
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { statEssai } from './templates-acces.mjs';
 import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
@@ -225,7 +226,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -344,12 +345,13 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });
+  await essais.set(`stat/${e.id}`, statEssai(reg, testeurs)); // compteur : trace anonyme, jamais effacée
   return json(200, { ok: true, code, produit, url: PRODUITS[produit].url, fin: e.fin, jours: ESSAI.jours, mail: Boolean(reg.mails.merci) });
 }
 
 // ---------- Tâche quotidienne : rappels et effacement ----------
 // Renvoie le bilan { essais, envoyes: { type: n }, effaces }.
-export async function tournerEssais({ secret, essais, stockage, envoyer = null, maintenant = Date.now }) {
+export async function tournerEssais({ secret, essais, stockage, envoyer = null, maintenant = Date.now, testeurs = '' }) {
   const aujourdhui = jourParis(new Date(maintenant()));
   const bilan = { essais: 0, envoyes: {}, effaces: 0, erreurs: 0 };
   // Anciennes limites par IP : inutiles au-delà du jour même.
@@ -367,6 +369,8 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
     const reg = await essais.get(cle);
     if (!reg) continue;
     bilan.essais++;
+    // Essais créés avant la statistique anonyme : trace ajoutée avant tout effacement.
+    if (!(await essais.get(`stat/${reg.id}`))) await essais.set(`stat/${reg.id}`, statEssai(reg, testeurs));
     const etat = etatEssai(reg, aujourdhui);
     if (etat.efface) {
       await stockage.supprimer(cleDonneesEssai(secret, reg.produit, reg.id));

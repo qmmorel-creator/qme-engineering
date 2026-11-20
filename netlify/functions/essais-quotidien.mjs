@@ -11,6 +11,7 @@ export default async () => {
     essais: storeEssais(getStore),
     stockage: storeDonnees(getStore),
     envoyer: envoyeurDepuisEnv(),
+    testeurs: process.env.ESSAI_TESTEURS || '',
   });
   console.log('Essais gratuits :', JSON.stringify(bilan));
 };

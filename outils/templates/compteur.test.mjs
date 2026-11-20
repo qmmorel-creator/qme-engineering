@@ -1,7 +1,7 @@
 // Compteur réseaux QME (/api/compteur) : mot de passe, lecture CSV, onglets en erreur.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { traiterCompteur, lireCsv, motDePasseValide, adressePublication, ONGLETS } from '../../netlify/lib/compteur.mjs';
+import { traiterCompteur, lireCsv, motDePasseValide, adressePublication, lireEssaisAnonymes, ONGLETS } from '../../netlify/lib/compteur.mjs';
 
 const BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-essai_123456789012345/pub';
 const req = (mdp) => new Request('https://qm-engineering.fr/api/compteur', { headers: mdp ? { 'x-mot-de-passe': mdp } : {} });
@@ -71,4 +71,31 @@ test('adresse en pubhtml : les onglets sont lus à partir de /pub', async () => 
   const r = await traiterCompteur(req('soleil42'), { motDePasse: 'soleil42', base: BASE.replace('/pub', '/pubhtml') + '?gid=0&single=true', recuperer: async (u) => { appels.push(u); return new Response('a,b\n1,2\n'); }, ...sansAttente });
   assert.equal(r.status, 200);
   assert.ok(appels.every((u) => u.startsWith(BASE + '?gid=')));
+});
+
+const magasin = (donnees) => ({
+  get: async (cle) => donnees[cle] ?? null,
+  lister: async (prefixe) => Object.keys(donnees).filter((k) => k.startsWith(prefixe)),
+});
+
+test('essais anonymes : traces gardées, essais sans trace ajoutés, ni e-mail ni prénom', async () => {
+  const lignes = await lireEssaisAnonymes(magasin({
+    'stat/A': { id: 'A', produit: 'REV', cree: '2026-11-19T10:00:00Z', achete: '2026-11-25T09:00:00Z', test: false },
+    'stat/B': { id: 'B', produit: 'CRA', cree: '2026-11-18T09:00:00Z', achete: null, test: true },
+    'essai/A': { id: 'A', produit: 'REV', email: 'client@exemple.fr', prenom: 'Léa', cree: '2026-11-19T10:00:00Z' },
+    'essai/C': { id: 'C', produit: 'PRX', email: 'autre@exemple.fr', prenom: 'Max', cree: '2026-11-20T08:00:00Z', achete: null },
+    'essai/D': { id: 'D', produit: 'REV', email: 'test@example.com', cree: '2026-11-21T08:00:00Z' },
+  }));
+  assert.deepEqual(lignes[0], ['Template', 'Produit', 'Créé le', 'Acheté le', 'Test']);
+  assert.equal(lignes.length, 5);
+  assert.deepEqual(lignes.slice(1).map((l) => [l[1], l[3] !== '', l[4]]), [['CRA', false, 'TRUE'], ['REV', true, 'FALSE'], ['PRX', false, 'FALSE'], ['REV', false, 'TRUE']]);
+  assert.equal(lignes[2][0], 'Planning de révision');
+  const texte = JSON.stringify(lignes);
+  assert.ok(!texte.includes('@') && !texte.includes('Léa') && !texte.includes('Max'));
+});
+
+test('compteur : onglet essais ajouté quand le stockage est fourni', async () => {
+  const r = await traiterCompteur(req('soleil42'), { motDePasse: 'soleil42', base: BASE, essais: magasin({ 'stat/A': { id: 'A', produit: 'REV', cree: '2026-11-19T10:00:00Z', test: false } }), recuperer: async () => new Response('a\n1\n'), ...sansAttente });
+  const corps = await r.json();
+  assert.equal(corps.onglets.essais.length, 2);
 });
