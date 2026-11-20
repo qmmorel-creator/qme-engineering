@@ -13,7 +13,7 @@ export const config = {
   largeur: 1280, hauteur: 1600,
   marque: 'QME · Budget commun',
   url: 'qm-engineering.fr/templates/budget-commun',
-  affiche: 2.4,
+  affiche: 1.0,
   // Musique de la vidéo de présentation QME (« Corporate », litesaturation, licence Pixabay : usage commercial sans attribution).
   musique: { fichier: 'docs/videos/musique/corporate-litesaturation.m4a', bpm: 110, premierTemps: 0.534, debut: 20.170, volume: 0.6 },
 };
@@ -56,10 +56,14 @@ export async function preparer(v) {
   await appli.click(MODE('prorata')); await page.waitForTimeout(150);
   const prorata = [await v.lire(QUOTE('cam')), await v.lire(QUOTE('sam'))];
   if (mode0 !== 'prorata' || egale[0] !== egale[1] || prorata[0] === prorata[1]) throw new Error(`Répartition inattendue : ${JSON.stringify({ mode0, egale, prorata })}`);
+  // Accroche « l'un gagne moins » : vérifiée sur les parts réelles au prorata (celle du payeur, Sami, est la plus faible).
+  const n = (s) => Number(s.replace(/[^\d,]/g, '').replace(',', '.'));
+  if (!(n(prorata[1]) < n(prorata[0]))) throw new Error(`Accroche fausse : Sami ne gagne pas moins (${prorata.join(' / ')})`);
   await appli.click(`${D} button[value="annuler"]`); await page.waitForTimeout(300);
   await v.fermerDialogues();
   await v.S('cadrer', null);
   await v.S('fenetre', false);
+  await page.waitForTimeout(1500); // fenêtre masquée avant la première image : accroche seule à l'écran
 }
 
 export async function jouer(v) {
@@ -68,9 +72,10 @@ export async function jouer(v) {
   const court = (s) => s.replace(/,00\s*€/, ' €');
 
   // Accroche (un seul son d'entrée)
+  // Accroche retravaillée le 20/11/2026 : le vrai problème (une règle injuste), visible dès la première image.
   son('whoosh', 0.6);
-  await S('accroche', ['Les cadeaux de Noël', 'à deux :', '!*moitié-moitié* ?'], T / 2);
-  await v.temps();
+  await S('accroche', ['240_€ de cadeaux,', 'moitié-moitié…', '!alors que l\'un', '!gagne *moins* ?'], 0);
+  await pause(2600);
   son('whoosh'); await S('accrocheSortie');
   await S('question', 'Chaque dépense, *sa règle* de partage.');
   await v.temps(); son('whoosh', 0.7); await S('fenetre', true);
