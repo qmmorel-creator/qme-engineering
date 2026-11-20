@@ -51,7 +51,27 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
 | 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
 | 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS et MSC **en vente depuis le 18/11** |
+| **1** | **Fiche du Pack Budget perso et famille** (demande de Quentin, 20/11) | PBF | budget-perso-famille | 47 € (évolutif 59 €) | **Prioritaire.** Les 5 templates sont en vente. Création refusée le 20/11 (limite des 10 par 24 h), possible à partir du 21/11 à 08:51 (Paris). Voir « Pack Budget perso et famille » ci-dessous |
 | 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
+
+### Pack Budget perso et famille (PBF) : réglages de la fiche
+
+- Nom « Pack Budget perso et famille », 47 €, permalien `pack-budget-perso-famille`, catégorie
+  `business-and-money/personal-finance`.
+- Description : celle de `packs/gumroad-packs.json` (code PBF), avec ce paragraphe ajouté avant « Après l'achat » :
+  « **Votre budget perso reste privé :** pour partager le budget commun avec votre foyer, vous envoyez son code de
+  partage, qui n'ouvre que lui. La clé du pack reste pour vous. »
+- Résumé : « Votre budget et celui de la famille, enfin d'équerre : budget du foyer, budget commun, abonnements,
+  épargne et dettes, 47 € au lieu de 63 €. »
+- Tags : budget, pack, francais, famille, couple, économies, épargne, finances-perso.
+- Détails : Contenu « 5 templates : Budget du foyer, Budget commun, Suivi des abonnements, Objectif d'épargne,
+  Remboursement de dettes » ; Format « Applications web (ordinateur, tablette, téléphone) » ; Accès « Une clé de
+  licence pour les 5 » ; Paiement « Achat unique, sans abonnement » ; Langue « Français ».
+- Reçu : celui du Pack Argent du quotidien, « 4 templates » remplacé par « 5 templates », plus la ligne
+  « 🔒 Pour partager le budget commun, envoie son code de partage (onglet Foyer), jamais la clé du pack. » ;
+  bouton « Ouvrir mon pack » ; lien de contenu `https://qm-engineering.fr/connexion/` (« Ouvrir mon pack »).
+- Puis Quentin : clé de licence et versions « Pack » (47 €) et « Pack évolutif » (59 €) ; à la publication,
+  `gumroad` et `permalien` dans `PACKS.PBF` (`netlify/lib/packs.mjs`), `node outils/packs/generer.mjs`, tests, PR.
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
 `docs/templates/communication/<slug>/gumroad.json` ou `gumroad.md`, et celles des packs dans
