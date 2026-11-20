@@ -97,3 +97,12 @@ Une association, un club, vos propres règles de partage ? Je construis la versi
 Démo libre avec un couple fictif : lien en bio. À envoyer à la personne avec qui vous partagez les comptes.
 
 #BudgetCommun #Colocation #BudgetFamilial #VieDeCouple
+
+
+---
+
+## Mode « compte commun » (20/11/2026)
+
+Reel **IG-156** (vidéo démo 020, 20 s, musique QME), 05/12/2026 12:30, statut **Prêt** tant que le mode n'est pas en
+production ; repris sur TikTok par Instinct et en Short **YT-44**. Légende : accroche « Compte joint : combien chacun
+doit-il verser ce mois-ci ? », essai gratuit, pont vers le sur mesure, « Lien en bio ».

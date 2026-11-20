@@ -76,3 +76,66 @@ appareil. Une question : quentin.morel@qm-engineering.fr
 ## Bouton
 
 Ouvrir mon budget commun
+
+---
+
+## Mise à jour « compte commun » (préparée le 20/11/2026, à appliquer à la fusion)
+
+Partir de la fiche en ligne (relue le 20/11/2026 : tutoiement, essai gratuit), produit `FK_HeZlqRLdZO8o7Y1Bccw==`.
+À appliquer par `update_product` **une fois le mode compte commun en production** (sinon la fiche annonce une
+fonction absente de l'application). Champs changés : `description`, `summary`, `tags`, `additional_details`.
+
+### Résumé
+
+Qui doit combien à qui, ou combien chacun verse sur le compte commun : répartition au centime, au prorata des revenus ou en parts.
+
+### Tags
+
+budget, francais, couple, famille, colocation, compte joint, partage
+
+### Détails (ajout d'une ligne après « Foyer »)
+
+Fonctionnement : Avances et remboursements, ou compte commun
+
+### Description (HTML)
+
+```html
+<h2>Partager les dépenses sans se disputer sur les calculs.</h2>
+<p>À deux, en colocation ou en famille, deux façons de faire, au choix :</p>
+<ul>
+<li><strong>Chacun paie de son côté</strong> : l'application répartit chaque dépense au centime près et indique qui doit combien à qui.</li>
+<li><strong>Vous avez un compte joint</strong> : l'application calcule chaque mois combien chacun y verse.</li>
+</ul>
+<p><strong>Essai gratuit de 14 jours, sans carte bancaire</strong> : essaie-le avec tes propres données sur <a href="https://qm-engineering.fr/essai/?t=budget-commun">qm-engineering.fr/essai</a>. Si tu l'achètes ensuite, saisis ta clé dans le template (bouton « J'ai acheté ») : tout ce que tu as saisi pendant l'essai est repris.</p>
+<h3>Mode « avances et remboursements »</h3>
+<ul>
+<li><strong>Soldes toujours à jour</strong> après chaque dépense.</li>
+<li><strong>Quatre façons de répartir</strong> : parts égales, prorata des revenus, parts (2 pour un adulte, 1 pour un enfant…) ou montants exacts ; la somme tombe toujours juste.</li>
+<li><strong>Équilibrage</strong> : le nombre minimal de virements pour remettre les comptes à zéro.</li>
+</ul>
+<h3>Mode « compte commun »</h3>
+<ul>
+<li><strong>Le versement de chacun, chaque mois</strong> : charges récurrentes + budget de dépenses courantes + sorties à prévoir (débit différé…), moins le solde du compte.</li>
+<li><strong>Ta clé de répartition</strong> : parts égales, prorata des revenus ou parts (60/40…), au centime près.</li>
+<li><strong>Charges personnelles</strong> : le forfait ou l'assurance d'une seule personne s'ajoute à son seul versement.</li>
+<li><strong>Suivi du compte</strong> : versements notés d'un geste, solde estimé du compte.</li>
+</ul>
+<h3>Dans les deux modes</h3>
+<ul>
+<li><strong>Dépenses récurrentes</strong> : loyer, énergie, abonnements ajoutés chaque mois.</li>
+<li><strong>Bilan du mois</strong> par catégorie et par personne, évolution sur 6 mois.</li>
+<li><strong>Pour tout le foyer</strong> : de 2 à 6 personnes, chacune sur son téléphone avec la même clé ; deux saisies simultanées sont réunies, aucune dépense perdue.</li>
+<li>Tu changes de mode quand tu veux dans les réglages, sans rien perdre.</li>
+</ul>
+<h3>Comment ça marche</h3>
+<ol>
+<li>Après l'achat, tu reçois ta <strong>clé de licence</strong> par e-mail.</li>
+<li>Ouvre <strong>qm-engineering.fr/connexion</strong> et saisis-la ; partage la clé avec les membres du foyer (elle donne un accès complet).</li>
+<li>Choisis ton modèle de foyer et ton fonctionnement, puis ajoute tes premières dépenses.</li>
+</ol>
+<p>Rien à installer, aucune connexion bancaire. Achat unique, sans abonnement.</p>
+<p><em>Les montants sont calculés à partir de vos saisies : vérifie-les avant un virement. Ce n'est pas un conseil financier. Démos sur qm-engineering.fr/catalogue/budget-commun.</em></p>
+```
+
+Packs contenant le Budget commun (Argent du quotidien, Voyage, Mariage et installation à deux) : reprendre leur
+`description_html` régénérée dans `docs/templates/communication/packs/gumroad-packs.json` au même moment.
