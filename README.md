@@ -47,7 +47,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   l'e-mail de mise en vente, au plus tard 12 mois, cf. politique de confidentialité). Suivi en temps réel et export CSV sur `/admin/interets/`
   (non indexée), avec le code administrateur donné par `outils/templates/code-admin-interets.bat`
   (ou `npm run code-admin` avec `TEMPLATES_SECRET`), ou la variable Netlify `INTERETS_ADMIN`.
-- Essai gratuit (depuis le 18/11/2026) : templates vie personnelle en vente, **14 jours sans carte**, puis 30 jours en
+- Essai gratuit (depuis le 18/11/2026 ; pro depuis le 21/11/2026) : templates vie personnelle et pro en vente, **14 jours sans carte**, puis 30 jours en
   lecture seule, puis effacement ; données reprises à l'achat (clé saisie dans « J'ai acheté »). Page `/essai/` et pages
   catalogue générées par `node outils/essai/generer.mjs` ; API `POST /api/essai` (`netlify/functions/essai.mjs`,
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun

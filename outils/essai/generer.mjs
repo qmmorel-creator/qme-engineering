@@ -1,11 +1,12 @@
 // Essai gratuit (décision de Quentin, 18/11/2026) : génère la page /essai/ et ajoute l'essai aux pages
-// catalogue des templates ouverts à l'essai (PRODUITS_ESSAI : « vie personnelle », en vente, payants).
+// catalogue des templates ouverts à l'essai (PRODUITS_ESSAI : vie personnelle et professionnels, en vente, payants).
 // Idempotent : une page déjà traitée n'est pas modifiée deux fois.
 // Après : node outils/seo/donnees-structurees.mjs (FAQ des pages catalogue) puis node outils/sitemap/generer.mjs.
 // Usage : node outils/essai/generer.mjs
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PRODUITS_ESSAI, ficheEssai } from '../../netlify/lib/essais.mjs';
+import { TEMPLATES } from '../packs/donnees.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
@@ -77,12 +78,16 @@ const pied = `</main>
 
 export function pageEssai() {
   const fiches = PRODUITS_ESSAI.map(ficheEssai).sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
-  const options = fiches.map((f) => `        <option value="${f.slug}" data-prix="${f.prix}">${esc(f.nom)} · ${euros(f.prix)}</option>`).join('\n');
+  const groupe = (pour, titre) => {
+    const liste = fiches.filter((f) => TEMPLATES[f.produit].pour === pour);
+    return liste.length ? `        <optgroup label="${titre}">\n${liste.map((f) => `          <option value="${f.slug}" data-prix="${f.prix}">${esc(f.nom)} · ${euros(f.prix)}</option>`).join('\n')}\n        </optgroup>` : '';
+  };
+  const options = [groupe('perso', 'Vie personnelle'), groupe('pro', 'Professionnel')].filter(Boolean).join('\n');
   const faq = FAQ_ESSAI.map(([q, r]) => `    <details><summary>${esc(q)}</summary><p>${esc(r)}</p></details>`).join('\n');
   return `${tete}<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><b>Essai gratuit</b></nav>
 <section class="contact essai" id="essai">
   <div class="contact-copy">
-    <p class="essai-surtitre">Templates vie personnelle</p>
+    <p class="essai-surtitre">Templates vie personnelle et professionnels</p>
     <h1 class="h-section">Essayez gratuitement pendant ${ESSAI.jours}&nbsp;jours.</h1>
     <p>Sans carte bancaire. Toutes les fonctions, vos données synchronisées sur vos appareils. Si le template vous rend service, vous l'achetez et <b>vous gardez tout ce que vous avez saisi</b>. Sinon, vous n'avez rien à faire.</p>
     <ol class="essai-etapes">
@@ -99,7 +104,7 @@ ${options}
     </label>
     <label>Prénom <small>(facultatif)</small><input name="prenom" autocomplete="given-name" maxlength="40" placeholder="Votre prénom"></label>
     <label>E-mail<input required type="email" name="email" autocomplete="email" inputmode="email" placeholder="vous@exemple.fr"></label>
-    <label class="full essai-accord"><input type="checkbox" name="consentement" required> <span>J'accepte de recevoir les e-mails liés à mon essai (mon code, un rappel avant la fin, la fin de l'essai, l'effacement des données) : quatre au plus, arrêtables à tout moment.</span></label>
+    <label class="full essai-accord"><input type="checkbox" name="consentement" required> <span>J'accepte de recevoir les e-mails liés à mon essai (mon code, des conseils de prise en main, un rappel avant la fin, la fin de l'essai, l'effacement des données) : cinq au plus, arrêtables à tout moment.</span></label>
     <label class="full essai-accord"><input type="checkbox" name="nouveautes"> <span><b>Facultatif</b> : recevoir aussi les nouveautés QME (nouveaux templates, offres). Désinscription en un clic dans chaque e-mail.</span></label>
     <label class="hp-field" aria-hidden="true">Votre site web<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label>
     <div class="form-end full">
