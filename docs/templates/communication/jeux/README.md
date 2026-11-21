@@ -13,7 +13,7 @@ Décisions du même jour :
 |---|---|---|---|
 | A | 9 stories quiz Instagram (à la main) + 8 Reels quiz « devine la réponse » (IG-168 à IG-175, repris sur TikTok) | **programmé** | du 23/11 au 01/12/2026 |
 | B | Test « Combien te coûte ta désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **en ligne** (PR #200 fusionnée le 21/11/2026) | lien en bio |
-| C | Défi entre potes, avec un vrai enjeu | **à repenser** (première version retirée le 21/11/2026) | à décider |
+| C | Défi 7 jours entre potes (`/defi/`) : une habitude chacun, tableau commun, le perdant paie | **prêt, PR #203** (fusion sur feu vert) | dès la fusion |
 | E | Quiz de profil « Quel organisateur es-tu ? » (profils → révision, budget, tâches, habitudes, pack) | idée | prêt le 28/12, lancé le 02/01/2027 |
 
 Règles : `../REGLES-CONTENU.md` (problème chiffré, bascule, solution ; aucun chiffre inventé ; exemples fictifs ;
@@ -112,12 +112,29 @@ Le thème qui fait le plus réagir passe en tête du test B et oriente C et E.
 - Mesure GoatCounter (sans cookie) : `diagnostic-debut`, `diagnostic-passer`, `diagnostic-resultat`,
   `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<budget|temps-de-vie|taches|papiers|habitudes>`.
 
-## C · Défi entre potes : à repenser
+## C · Défi 7 jours entre potes (`/defi/`)
 
-Première version (quiz de 8 questions + lien avec le score) écrite le 21/11/2026 puis **retirée avant mise en ligne** :
-Quentin la juge sans intérêt, « exactement la même chose que les stories, aucun enjeu ». Le code reste dans
-l'historique git (commit « Jeux : quiz révisés… et défi »). Une nouvelle approche doit apporter un vrai enjeu :
-voir les concepts proposés à Quentin le 21/11/2026.
+Première version (quiz + score) retirée le 21/11/2026 : « aucun enjeu ». Concept retenu par Quentin le même jour :
+**défi 7 jours**, un vrai engagement entre potes, et le Suivi d'habitudes en miniature.
+
+- Parcours : je lance (pseudo, habitude, pari facultatif, idées en un clic) → j'envoie l'invitation
+  (`qm-engineering.fr/defi/?d=<id>`, partage natif ou copie) → mes potes la rejoignent jusqu'au premier jour inclus
+  (6 participants au plus) → le défi commence le lendemain de la création et dure 7 jours (heure de Paris) → chaque
+  jour : « J'ai tenu aujourd'hui », rattrapage de la veille possible → tableau commun (✓, ✗, total, série) → verdict :
+  « Léa gagne ! Hugo paie le café » ; égalité gérée → essai du Suivi d'habitudes (« garde ta série au-delà de
+  7 jours ») et « Lancer un nouveau défi ».
+- Technique : API `/api/defi` (`netlify/functions/defi.mjs`), logique pure `netlify/lib/defi.mjs` (testée par
+  `outils/templates/defi.test.mjs`), stockage `netlify/lib/defi-store.mjs` (Netlify Blobs, Francfort ; un fichier par
+  participant, aucune écriture concurrente), jetons personnels signés `<id>.<pid>.<hmac>` (rien à stocker), purge
+  quotidienne `netlify/functions/defi-purge.mjs` 30 jours après la fin. Page `defi/index.html`, `assets/defi.js`,
+  `assets/defi.css`, aperçu du lien `assets/defi-partage.png`. Section dédiée dans `confidentialite/`.
+- Données : pseudo, habitude, pari, jours cochés ; ni compte, ni e-mail, ni IP. Avertissement « pas d'information
+  sensible » sur les formulaires.
+- Mesure GoatCounter : `defi-creer`, `defi-cree`, `defi-invite`, `defi-recu`, `defi-rejoindre`, `defi-rejoint`,
+  `defi-coche`, `defi-essai-habitudes`. Les chiffres qui comptent : invitations envoyées → défis rejoints (viralité),
+  et jours cochés par participant (rétention : on revient chaque jour).
+- Limites connues : pas de rappel quotidien (aucun e-mail ni notification) ; un participant peut cocher sans avoir tenu
+  (c'est un jeu d'honneur entre potes).
 
 ## E · à faire
 

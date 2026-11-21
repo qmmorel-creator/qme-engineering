@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Défi 7 jours : qui tient le plus longtemps ? · QME</title>
+<meta name="description" content="Choisis une habitude, défie tes potes. Pendant 7 jours, chacun coche ses journées tenues. Le perdant paie le pari.">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="canonical" href="https://qm-engineering.fr/defi/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Défi 7 jours : qui tient le plus longtemps ?">
+<meta property="og:description" content="Une habitude chacun, 7 jours, un tableau commun. Le perdant paie.">
+<meta property="og:url" content="https://qm-engineering.fr/defi/">
+<meta property="og:image" content="https://qm-engineering.fr/assets/defi-partage.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/guides.css?v=2026111501">
+<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112104">
+<link rel="stylesheet" href="/assets/defi.css?v=2026112102">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="QME, accueil">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
+    <span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>
+    <span class="tagline">Quentin Morel<br>Engineering</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="/sur-mesure/">Sur mesure</a>
+    <a href="/templates/">Templates</a>
+    <a href="/packs/">Packs</a>
+    <a class="login" href="/connexion/">Connexion</a>
+    <a class="cta" href="/contact/">Parler de votre projet</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main>
+<article class="guide diag">
+<div class="guide-corps" data-defi>
+  <p class="diag-sourcil">Défi 7 jours · entre potes</p>
+  <h1 data-titre>Qui tient le plus longtemps ?</h1>
+  <p class="erreur" data-erreur role="alert" hidden></p>
+  <p class="defi-chargement" data-chargement hidden>Chargement du défi…</p>
+
+  <!-- Créer -->
+  <section data-ecran="creer" hidden>
+    <p class="chapeau">Choisis une habitude et défie tes potes. Pendant 7 jours, chacun coche les journées où il a tenu. Le tableau est commun : tout le monde voit qui lâche. À la fin, le perdant paie le pari.</p>
+    <form class="calculateur defi-form" data-form-creer novalidate>
+      <div class="champs">
+        <label>Ton pseudo<input name="pseudo" maxlength="20" autocomplete="nickname" placeholder="ex. Léa" required></label>
+        <label>Ton habitude pour 7 jours<input name="habitude" maxlength="40" autocomplete="off" placeholder="ex. 20 min de sport" required></label>
+        <label>Le pari (facultatif)<input name="pari" maxlength="40" autocomplete="off" placeholder="ex. le café"><small>ce que paie le perdant</small></label>
+      </div>
+      <p class="defi-idees" data-idees="habitude"><span>Idées :</span> <button type="button">20 min de sport</button> <button type="button">Pas d'écran après 23 h</button> <button type="button">Lire 10 pages</button> <button type="button">2 L d'eau</button> <button type="button">Zéro livraison de repas</button></p>
+      <p class="defi-idees" data-idees="pari"><span>Paris :</span> <button type="button">le café</button> <button type="button">le resto</button> <button type="button">le kebab</button> <button type="button">la prochaine tournée</button></p>
+      <p class="defi-note">Ton pseudo et ton habitude sont visibles des participants. Pas d'information sensible (santé, adresse…).</p>
+      <div class="diag-actions"><button class="btn primary" type="submit" data-goatcounter-click="defi-creer" data-goatcounter-title="Défi : création">Lancer le défi</button></div>
+    </form>
+  </section>
+
+  <!-- Rejoindre -->
+  <section data-ecran="rejoindre" hidden>
+    <p class="defi-invitation" data-invitation></p>
+    <form class="calculateur defi-form" data-form-rejoindre novalidate>
+      <div class="champs">
+        <label>Ton pseudo<input name="pseudo" maxlength="20" autocomplete="nickname" placeholder="ex. Hugo" required></label>
+        <label>Ton habitude pour 7 jours<input name="habitude" maxlength="40" autocomplete="off" placeholder="ex. lire 10 pages" required></label>
+      </div>
+      <p class="defi-idees" data-idees="habitude"><span>Idées :</span> <button type="button">20 min de sport</button> <button type="button">Pas d'écran après 23 h</button> <button type="button">Lire 10 pages</button> <button type="button">2 L d'eau</button> <button type="button">Zéro livraison de repas</button></p>
+      <p class="defi-note">Ton pseudo et ton habitude sont visibles des participants. Pas d'information sensible (santé, adresse…).</p>
+      <div class="diag-actions"><button class="btn primary" type="submit" data-goatcounter-click="defi-rejoindre" data-goatcounter-title="Défi : un pote rejoint">Relever le défi</button></div>
+    </form>
+  </section>
+
+  <!-- Tableau -->
+  <section data-ecran="tableau" hidden>
+    <p class="defi-etat" data-etat></p>
+    <div class="defi-moi" data-moi hidden>
+      <button class="btn primary defi-gros" type="button" data-cocher="aujourdhui"></button>
+      <button class="btn" type="button" data-cocher="hier" hidden></button>
+    </div>
+    <div class="defi-tableau" data-tableau></div>
+    <div class="defi-inviter" data-inviter hidden>
+      <p><b>Invite tes potes</b> avant le premier jour : <span data-places></span></p>
+      <div class="diag-actions"><button class="btn primary" type="button" data-partager-invitation>Envoyer l'invitation</button></div>
+      <p class="diag-note" data-copie-invitation hidden></p>
+    </div>
+    <div class="defi-fin" data-fin hidden>
+      <p>Garde ta série au-delà de 7 jours : <a href="/essai/?t=habitudes" data-goatcounter-click="defi-essai-habitudes" data-goatcounter-title="Défi : essai Suivi d'habitudes">Suivi d'habitudes, 14 jours d'essai gratuit</a>, sans carte.</p>
+      <div class="diag-actions"><a class="btn primary" href="/defi/">Lancer un nouveau défi</a></div>
+    </div>
+    <details class="defi-perso" data-perso hidden>
+      <summary>Ton lien perso (pour cocher depuis un autre appareil)</summary>
+      <p>Garde-le pour toi : il permet de cocher à ta place.</p>
+      <p class="defi-lien" data-lien-perso></p>
+      <div class="diag-actions"><button class="btn" type="button" data-copier-perso>Copier mon lien perso</button> <button class="btn" type="button" data-quitter>Quitter le défi et effacer mes données</button></div>
+    </details>
+  </section>
+
+  <noscript><p class="erreur">Le défi a besoin de JavaScript.</p></noscript>
+  <p class="confidentialite">Seuls ton pseudo, ton habitude, le pari et les jours cochés sont enregistrés (hébergement dans l'Union européenne), sans compte ni e-mail. Le défi est effacé 30 jours après sa fin ; tu peux le quitter à tout moment. Détails : <a href="/confidentialite/">confidentialité</a>.</p>
+</div>
+</article>
+</main>
+
+<footer>
+  <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+</footer>
+
+<script src="/assets/site.js?v=2026112004" defer></script>
+<script src="/assets/defi.js?v=2026112102" defer></script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

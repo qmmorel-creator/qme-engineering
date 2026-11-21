@@ -1,0 +1,33 @@
+/* Défi 7 jours entre potes (/defi/). Complète guides.css et diagnostic.css. */
+.defi-form{padding:20px}
+.defi-idees{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.defi-idees span{color:var(--discret)}
+.defi-idees button{border:1px solid var(--trait);background:var(--papier);border-radius:999px;padding:6px 12px;font:500 14px Outfit,sans-serif;color:var(--encre);cursor:pointer}
+.defi-idees button:hover{background:var(--beurre)}
+.defi-note{margin-top:12px;font-size:14px;color:var(--discret)}
+.defi-invitation{margin:0 0 16px;padding:16px 18px;border-radius:16px;background:var(--encre);font-weight:700;font-size:19px}
+.guide .defi-invitation{color:var(--papier)}
+.defi-etat{margin:0 0 16px;padding:14px 18px;border-radius:16px;background:var(--beurre);font-weight:800;font-size:19px}
+.defi-moi{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.defi-gros{font-size:18px;padding:14px 22px}
+.defi-gros.fait{background:var(--bleu)}
+.defi-tableau{display:grid;gap:6px;margin-bottom:18px}
+.defi-ligne{display:grid;grid-template-columns:minmax(0,2fr) repeat(7,minmax(0,1fr)) minmax(0,.9fr);gap:4px;align-items:center}
+.defi-tete span{font-size:12px;font-weight:700;color:var(--discret);text-align:center}
+.defi-tete span.auj{color:var(--rouge)}
+.defi-nom{display:flex;flex-direction:column;min-width:0;padding-right:4px}
+.defi-nom b,.defi-nom small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.defi-nom small{font-size:12px;color:var(--texte-2)}
+.defi-ligne .case{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;background:var(--sable);font-weight:800;font-size:15px}
+.defi-ligne .case.fait{background:var(--encre);color:var(--papier)}
+.defi-ligne .case.rate{background:var(--rose);color:var(--rouge)}
+.defi-ligne .case.auj{outline:2px solid var(--rouge);outline-offset:1px}
+.defi-ligne .total{text-align:center;font-weight:800}
+.defi-ligne.moi .defi-nom b{color:var(--bleu)}
+.defi-ligne.gagnant .total{background:var(--jaune);border-radius:8px;padding:4px 0}
+.defi-inviter,.defi-fin{padding:16px 0;border-top:1px solid var(--trait)}
+.defi-inviter .diag-actions,.defi-fin .diag-actions,.defi-perso .diag-actions{justify-content:flex-start}
+.defi-perso{margin-top:8px;padding:12px 0;border-top:1px solid var(--trait);font-size:15px}
+.defi-perso summary{cursor:pointer;font-weight:700}
+.defi-lien{word-break:break-all;font-size:13px;padding:8px 10px;background:var(--sable);border-radius:10px}
+.defi-chargement{color:var(--discret)}

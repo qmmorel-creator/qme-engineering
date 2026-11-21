@@ -76,6 +76,12 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `/jeu`. Script `assets/diagnostic.js` (calcul testé par `outils/templates/diagnostic.test.mjs`), styles
   `assets/diagnostic.css`. Plan des jeux et quiz d'acquisition (stories quiz, vidéos TikTok, suites) :
   `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
+- `defi/` : défi 7 jours entre potes (décision de Quentin du 21/11/2026) : chacun choisit une habitude, invite ses potes
+  par lien (jusqu'à 6), coche ses journées tenues pendant 7 jours (le jour même, ou la veille en rattrapage), tableau
+  commun, le perdant paie le pari. API `/api/defi` (`netlify/functions/defi.mjs`, logique `netlify/lib/defi.mjs`,
+  stockage `netlify/lib/defi-store.mjs` : Netlify Blobs à Francfort, un fichier par participant), jetons personnels
+  signés (HMAC de `TEMPLATES_SECRET`), aucune donnée hors pseudo, habitude, pari et jours cochés ; effacement 30 jours
+  après la fin (`defi-purge.mjs`, quotidien) ; mention dans `confidentialite/`. Tests : `outils/templates/defi.test.mjs`.
 - `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
   `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
   interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail

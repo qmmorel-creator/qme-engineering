@@ -1,7 +1,7 @@
 // Rend les stories quiz (question et réponse) et l'image d'aperçu du lien /jeu.
 // Usage, depuis la racine du dépôt : node docs/templates/communication/jeux/rendre.mjs [--videos]
-// Sorties : docs/templates/communication/jeux/png/quiz-<n>-<question|reponse>.png ; assets/diagnostic-partage.png
-// (aperçu du lien /jeu) ;
+// Sorties : docs/templates/communication/jeux/png/quiz-<n>-<question|reponse>.png ; assets/diagnostic-partage.png et
+// assets/defi-partage.png (aperçus des liens /jeu et /defi) ;
 // avec --videos : png/quiz-<n>-<slug>.mp4 (13 s, musique QME, moteur unique docs/videos/rendu.mjs) pour TikTok et Reels.
 import { createRequire } from 'node:module';
 import { mkdirSync } from 'node:fs';
@@ -30,6 +30,9 @@ await page.setViewportSize({ width: 1200, height: 630 });
 await page.goto(`${page0}?partage`);
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: join(racine, 'assets/diagnostic-partage.png') });
+await page.goto(`${page0}?partage=defi`);
+await page.evaluate(() => document.fonts.ready);
+await page.screenshot({ path: join(racine, 'assets/defi-partage.png') });
 const quiz = await page.evaluate(() => window.QUIZ.map((q) => ({ slug: q.slug, bonne: q.bonne })));
 await navigateur.close();
 console.log(`${nb * 2} stories et l'aperçu du lien rendus.`);
