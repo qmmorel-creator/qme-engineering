@@ -1,6 +1,7 @@
 // Rend les stories quiz (question et réponse) et l'image d'aperçu du lien /jeu.
-// Usage, depuis la racine du dépôt : node docs/templates/communication/jeux/rendre.mjs
-// Sorties : docs/templates/communication/jeux/png/quiz-<n>-<question|reponse>.png ; assets/diagnostic-partage.png
+// Usage, depuis la racine du dépôt : node docs/templates/communication/jeux/rendre.mjs [--videos]
+// Sorties : docs/templates/communication/jeux/png/quiz-<n>-<question|reponse>.png ; assets/diagnostic-partage.png ;
+// avec --videos : png/quiz-<n>-<slug>.mp4 (13 s, musique QME, moteur unique docs/videos/rendu.mjs) pour TikTok et Reels.
 import { createRequire } from 'node:module';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -28,5 +29,16 @@ await page.setViewportSize({ width: 1200, height: 630 });
 await page.goto(`${page0}?partage`);
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: join(racine, 'assets/diagnostic-partage.png') });
+const quiz = await page.evaluate(() => window.QUIZ.map((q) => ({ slug: q.slug, bonne: q.bonne })));
 await navigateur.close();
 console.log(`${nb * 2} stories et l'aperçu du lien rendus.`);
+
+if (process.argv.includes('--videos')) {
+  const { rendrePage } = await import('../../../videos/rendu.mjs');
+  for (const [k, q] of quiz.entries()) {
+    if (q.bonne === null) continue; // le sondage n'a pas de vidéo
+    const sortie = join(ici, 'png', `quiz-${k + 1}-${q.slug}.mp4`);
+    const r = await rendrePage({ page: `${page0}?q=${k + 1}&v=video`, duree: 13, couverture: 1500, sortie });
+    console.log(`${r.sortie} : ${(r.taille / 1e6).toFixed(2)} Mo`);
+  }
+}

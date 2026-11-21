@@ -1,14 +1,17 @@
 <!doctype html>
-<!-- Stories quiz de la semaine du 23/11/2026 (format A, docs/templates/communication/jeux/README.md).
-     1080 × 1920. ?q=1..7&v=question|reponse ; ?partage → image d'aperçu du lien (1200 × 630).
-     Rendu : node docs/templates/communication/jeux/rendre.mjs (PNG dans jeux/png/).
+<!-- Quiz Instagram et TikTok de la semaine du 23/11/2026 (format A, docs/templates/communication/jeux/README.md).
+     Public : étudiants et jeunes adultes ; thèmes : budget, tâches, habitudes (décision de Quentin du 21/11/2026).
+     1080 × 1920. ?q=1..7&v=question|reponse : stories Instagram (autocollant Quiz posé à la main) ;
+     ?q=1..6&v=video : vidéo « devinez la réponse » de 13 s (TikTok et Reel), rendue par docs/videos/rendu.mjs ;
+     ?partage : image d'aperçu du lien /jeu (1200 × 630).
+     Rendu : node docs/templates/communication/jeux/rendre.mjs [--videos]
      Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas.
-     La zone « autocollant » (pointillés, invisible au rendu) est laissée libre pour l'autocollant Quiz ou Sondage
-     d'Instagram, posé à la main par Quentin. Tous les chiffres viennent des Reels et du guide cités dans « source ». -->
+     Chiffres : calculs arithmétiques sur des exemples fictifs, ou repris des Reels et des templates cités dans « source ».
+     Vidéo : l'accroche (la question) est entière dès la première image, sans animation d'entrée (REGLES-CONTENU § 3 bis). -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Stories quiz</title>
+<title>Quiz Instagram et TikTok</title>
 <style>
 @font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
 @font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
@@ -19,16 +22,49 @@ html,body{width:1080px;height:1920px;overflow:hidden;font-family:Outfit,sans-ser
 .carre{position:absolute;left:0;top:0;width:100%;height:760px;background:var(--fond)}
 .sourcil{position:absolute;left:96px;top:280px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase;color:var(--sur)}
 .question{position:absolute;left:96px;right:96px;top:350px;font-weight:800;font-size:76px;line-height:1.04;letter-spacing:-.025em;color:var(--sur)}
-.zone{position:absolute;left:96px;right:96px;top:900px;height:520px}
 .pied{position:absolute;left:96px;right:96px;bottom:360px;display:flex;justify-content:space-between;align-items:flex-end;font-weight:700;font-size:36px}
 .signe{display:flex;align-items:center;gap:18px;font-weight:800;font-size:52px;letter-spacing:-.03em}
 .signe svg{width:66px;height:66px}
 .reponse{position:absolute;left:96px;right:96px;top:820px;display:grid;gap:26px}
-.reponse .grand{display:inline-block;white-space:nowrap;justify-self:start;background:var(--encre);color:var(--papier);font-weight:800;font-size:150px;letter-spacing:-.03em;line-height:1;padding:24px 36px}
+.reponse .grand{display:inline-block;justify-self:start;white-space:nowrap;background:var(--encre);color:var(--papier);font-weight:800;font-size:150px;letter-spacing:-.03em;line-height:1;padding:24px 36px}
 .reponse p{font-size:40px;font-weight:600;line-height:1.3}
 .reponse .calc{font-size:36px;font-weight:500;color:#45413A}
 .lien{position:absolute;left:96px;right:96px;bottom:400px;font-weight:800;font-size:46px}
 .lien small{display:block;font-weight:600;font-size:30px;color:#45413A;margin-top:8px}
+/* Vidéo « devinez la réponse » */
+.v .choix{position:absolute;left:96px;right:96px;top:860px;display:grid;gap:22px}
+.v .choix div{display:flex;align-items:center;gap:26px;background:var(--papier);color:var(--encre);font-weight:800;font-size:54px;padding:22px 30px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre)}
+.v .choix b{display:inline-grid;place-items:center;width:70px;height:70px;background:var(--encre);color:var(--papier);font-size:40px;flex:none}
+.v .choix div{animation:monte 300ms both}
+.v .choix div.faux{animation:monte 300ms both,efface 300ms 5600ms both}
+.v .choix div.bon{animation:monte 300ms both,bon 300ms 5600ms both}
+.v .compte{position:absolute;right:96px;top:1500px;width:150px;height:150px;border-radius:50%;background:var(--encre);color:var(--papier);display:grid;place-items:center;font-weight:800;font-size:90px}
+.v .compte span{position:absolute;opacity:0}
+.v .compte::before{content:'?';animation:efface-tout 1ms 2600ms both}
+@keyframes efface-tout{to{opacity:0}}
+.v .compte span:nth-child(1){animation:flash 1000ms 2600ms both}
+.v .compte span:nth-child(2){animation:flash 1000ms 3600ms both}
+.v .compte span:nth-child(3){animation:flash 1000ms 4600ms both}
+.v .compte{animation:efface 200ms 5600ms both}
+.v .devine{position:absolute;left:96px;top:1530px;font-weight:800;font-size:60px;color:var(--sur);animation:efface 200ms 5600ms both}
+.v .s2{position:absolute;inset:0;background:var(--papier);animation:entre 400ms 7000ms both}
+.v .s2 .reponse{top:560px}
+.v .s2 .reponse p{font-size:48px}
+.v .s2 .reponse .calc{font-size:40px}
+.v .s2 .bandeau{position:absolute;left:0;right:0;top:0;height:330px;background:var(--fond)}
+.v .s2 .sourcil{top:250px}
+.v .s3{position:absolute;inset:0;background:var(--bleu);color:var(--papier);animation:entre 400ms 11000ms both}
+.v .s3 .t{position:absolute;left:96px;right:96px;top:520px;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-.03em}
+.v .s3 .t mark{background:var(--jaune);color:var(--encre);padding:0 14px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.v .s3 .u{position:absolute;left:96px;right:96px;top:1080px;font-weight:700;font-size:48px}
+.v .s3 .signe{position:absolute;left:96px;bottom:400px;color:var(--papier)}
+@keyframes monte{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes efface{to{opacity:.25}}
+@keyframes bon{to{background:var(--encre);color:var(--papier);transform:scale(1.04)}}
+@keyframes badge{to{background:var(--jaune);color:var(--encre)}}
+.v .choix div.bon b{animation:badge 300ms 5600ms both}
+@keyframes flash{0%{opacity:0;transform:scale(1.6)}15%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
+@keyframes entre{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
 /* Aperçu du lien (1200 × 630) */
 body.partage{width:1200px;height:630px}
 .partage .p-g{position:absolute;left:70px;top:70px;right:420px;font-weight:800;font-size:76px;line-height:1.02;letter-spacing:-.03em}
@@ -41,76 +77,89 @@ body.partage{width:1200px;height:630px}
 <body>
 <script>
 const QUIZ = [
-  { jour: 'lundi 23/11', couleur: 'rouge', theme: 'TJM freelance · 2027',
-    question: 'En 2027, combien de jours un freelance facture-t-il vraiment ?',
-    choix: ['261', '254', '229', 'environ 183'], bonne: 3,
-    grand: '≈ 183 jours', texte: 'Diviser son objectif par 254 jours ouvrés donne un TJM trop bas.',
-    calcul: '261 jours du lundi au vendredi − 7 fériés = 254 − 25 jours de congés = 229 − un jour par semaine (prospection, administratif) ≈ 183. Exemple fictif.',
-    source: 'Reel IG-46 ; templates/tjm/calculs.js', produit: 'Calculateur de TJM freelance' },
-  { jour: 'mardi 24/11', couleur: 'jaune', theme: 'Abonnements',
-    question: '7 petits abonnements : 88,34 € par mois. Combien par an ?',
-    choix: ['530 €', '880 €', '1 060 €', '1 400 €'], bonne: 2,
-    grand: '1 060 €', texte: '88 € par mois, ça passe. Rapporté à l\'année, beaucoup moins.',
-    calcul: '88,34 € × 12 = 1 060,08 €. Exemple fictif : 7 abonnements génériques, aucune marque.',
-    source: 'Reel IG-131', produit: 'Suivi des abonnements' },
-  { jour: 'mercredi 25/11', couleur: 'bleu', theme: 'Budget à deux',
-    question: '2 400 € et 1 600 € de revenus, 1 500 € de dépenses communes. Au prorata, la personne à 1 600 € paie… ?',
-    choix: ['750 €', '640 €', '600 €', '500 €'], bonne: 2,
-    grand: '600 €', texte: 'À 50/50, elle paierait 750 € : 1 800 € de plus par an.',
-    calcul: '1 500 × 1 600 ÷ 4 000 = 600 € (et 900 € pour l\'autre). Chacun consacre 37,5 % de son revenu au commun.',
-    source: 'guides/budget-couple-50-50-ou-prorata', produit: 'Gestion Dépenses Communes' },
-  { jour: 'jeudi 26/11', couleur: 'rouge', theme: 'Factures en retard',
-    question: 'Un client professionnel vous paie en retard. Vous avez droit à… ?',
-    choix: ['rien', '40 € par facture', '40 € par mois', '10 % du montant'], bonne: 1,
-    grand: '40 €', texte: 'Par facture payée en retard : l\'indemnité forfaitaire pour frais de recouvrement, en plus des pénalités de retard.',
-    calcul: 'Entre professionnels, articles L441-10 et D441-5 du Code de commerce.',
-    source: 'templates/impayes/donnees.js ; guides/facture-impayee', produit: 'Relance des impayés' },
-  { jour: 'vendredi 27/11', couleur: 'jaune', theme: 'Indemnités kilométriques · 5 CV',
-    question: '10 002 km pro, comptés à 0,636 € le km toute l\'année. Combien en trop ?',
-    choix: ['0 €', 'environ 400 €', 'environ 1 395 €', 'environ 3 000 €'], bonne: 2,
-    grand: '1 395 €', texte: 'Au-delà de 5 000 km, le barème change : il s\'applique au total de l\'année.',
-    calcul: '10 002 × 0,636 = 6 361,27 € ; au barème : 10 002 × 0,357 + 1 395 = 4 965,71 €. Écart : 1 395,56 €. Barème fiscal 2025, exemple fictif.',
-    source: 'Reel IG-155', produit: 'Notes de frais' },
-  { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Liste de tâches',
+  { jour: 'lundi 23/11', couleur: 'rouge', theme: 'Budget', slug: 'budget-snack',
+    question: '5 € de snack ou de café, du lundi au vendredi. Combien par an ?',
+    choix: ['260 €', '650 €', '1 300 €', '1 825 €'], bonne: 2,
+    grand: '1 300 €', texte: 'Ce n\'est pas le café, le problème. C\'est de ne pas le voir passer.',
+    calcul: '5 € × 5 jours × 52 semaines = 1 300 €. Exemple fictif.',
+    source: 'calcul', produit: 'Mon Budget' },
+  { jour: 'mardi 24/11', couleur: 'jaune', theme: 'Tâches', slug: 'taches-80-lignes',
+    question: 'Votre liste fait 80 lignes et vous ne savez pas par où commencer. Le vrai problème ?',
+    choix: ['la liste est trop longue', 'le tri', 'le manque de temps', 'la motivation'], bonne: 1,
+    grand: 'Le tri', texte: 'On note tout d\'abord, sans réfléchir. Puis on trie une fois : faire, planifier, déléguer, abandonner.',
+    calcul: 'Ensuite, 3 à 5 tâches au focus pour la journée.',
+    source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
+  { jour: 'mercredi 25/11', couleur: 'bleu', theme: 'Habitudes', slug: 'habitudes-seances',
+    question: 'Objectif : 3 séances de sport par semaine. Vous en faites 2. Combien de ratées sur un an ?',
+    choix: ['12', '26', '52', '104'], bonne: 2,
+    grand: '52 séances', texte: 'Une seule par semaine. Mais sur un an, c\'est un tiers de l\'objectif.',
+    calcul: '1 séance × 52 semaines = 52, sur 156 prévues. Exemple fictif.',
+    source: 'calcul', produit: 'Suivi d\'habitudes' },
+  { jour: 'jeudi 26/11', couleur: 'rouge', theme: 'Budget', slug: 'budget-50-30-20',
+    question: 'Règle 50/30/20 : sur 1 200 € par mois, combien pour vos envies ?',
+    choix: ['240 €', '360 €', '400 €', '600 €'], bonne: 1,
+    grand: '360 €', texte: '50 % pour les besoins, 30 % pour les envies, 20 % pour l\'épargne. Un repère, pas une loi.',
+    calcul: '600 € de besoins, 360 € d\'envies, 240 € d\'épargne. Exemple fictif.',
+    source: 'templates/budget/regles.js (repère 50/30/20)', produit: 'Mon Budget' },
+  { jour: 'vendredi 27/11', couleur: 'jaune', theme: 'Tâches', slug: 'taches-urgent',
     question: 'Une tâche urgente, mais pas importante. Vous… ?',
-    choix: ['la faites tout de suite', 'la planifiez', 'la déléguez', 'l\'abandonnez'], bonne: 2,
-    grand: 'Déléguer', texte: 'Ou l\'expédier très vite. Le problème n\'est pas la liste, c\'est le tri.',
+    choix: ['la faites tout de suite', 'la planifiez', 'l\'expédiez ou la déléguez', 'l\'abandonnez'], bonne: 2,
+    grand: 'Vite fait', texte: 'L\'expédier en quelques minutes, ou la déléguer. Le temps va d\'abord à ce qui est important.',
     calcul: 'Urgent et important : faire. Important : planifier. Urgent seulement : expédier ou déléguer. Ni l\'un ni l\'autre : abandonner.',
     source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
-  { jour: 'dimanche 29/11', couleur: 'rouge', theme: 'Budget',
-    question: 'Votre budget, vous le tenez où ?',
-    choix: ['un tableur', 'une appli', 'sur papier', 'nulle part'], bonne: null,
-    grand: '4 questions', texte: 'Combien vous coûte votre désorganisation ? 4 questions, 2 minutes, un résultat en euros par an.',
+  { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Habitudes', slug: 'habitudes-lecture',
+    question: '10 minutes de lecture par jour. Combien d\'heures sur un an ?',
+    choix: ['12 h', '30 h', 'environ 61 h', '120 h'], bonne: 2,
+    grand: '≈ 61 h', texte: 'Dix minutes, chaque jour. Le plus dur, c\'est de tenir la série.',
+    calcul: '10 min × 365 jours = 3 650 min ≈ 61 heures.',
+    source: 'calcul', produit: 'Suivi d\'habitudes' },
+  { jour: 'dimanche 29/11', couleur: 'rouge', theme: 'Sondage', slug: 'sondage',
+    question: 'Ce que vous lâchez en premier ?',
+    choix: ['le budget', 'le sport', 'la to-do list', 'le sommeil'], bonne: null,
+    grand: '1 minute', texte: 'Combien vous coûte votre désorganisation ? 3 questions : vos euros, vos heures et vos séances perdues par an.',
     calcul: '', source: 'diagnostic/', produit: '' },
 ];
-const insec = (t) => t.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/(\d) (?=€|%|km|jours)/g, '$1\u00a0');
+const insec = (t) => t.replace(/(\d) (?=\d)/g, '$1 ').replace(/(\d) (?=€|%|km|jours|h\b|min|séances|semaines)/g, '$1 ');
 for (const q of QUIZ) for (const k of ['question', 'grand', 'texte', 'calcul']) q[k] = insec(q[k]);
 window.QUIZ = QUIZ;
 const prm = new URLSearchParams(location.search);
 const COUL = { rouge: ['#D9302A', '#fff'], jaune: ['#F5B400', '#141414'], bleu: ['#1D4E89', '#fff'] };
-const signe = (c) => `<span class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>QME</span></span>`;
+const signe = () => `<span class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>QME</span></span>`;
 if (prm.has('partage')) {
   document.body.className = 'partage';
   document.body.innerHTML = `<div class="rond"></div><div class="bloc"></div><div class="tri"></div>
     <div class="p-g">Combien vous coûte votre désorganisation ?</div>
-    <div class="p-s">Le test en 2 minutes · qm-engineering.fr/jeu</div>`;
+    <div class="p-s">Le test en 1 minute · qm-engineering.fr/jeu</div>`;
 } else {
   const n = Math.max(1, Math.min(QUIZ.length, Number(prm.get('q')) || 1));
   const q = QUIZ[n - 1];
   const [fond, sur] = COUL[q.couleur];
   document.documentElement.style.setProperty('--fond', fond);
   document.documentElement.style.setProperty('--sur', sur);
-  if (prm.get('v') === 'reponse') {
+  const v = prm.get('v');
+  if (v === 'video') {
+    document.body.className = 'v';
+    const lettres = 'ABCD';
+    document.body.innerHTML = `<div class="fond"></div>
+      <div class="sourcil">Quiz · ${q.theme}</div>
+      <div class="question">${q.question}</div>
+      <div class="choix">${q.choix.map((c, k) => `<div class="${k === q.bonne ? 'bon' : 'faux'}" style="animation-delay:${400 + k * 250}ms${k === q.bonne ? ',5600ms' : ',5600ms'}"><b>${lettres[k]}</b>${c}</div>`).join('')}</div>
+      <div class="devine">Votre réponse ?</div>
+      <div class="compte"><span>3</span><span>2</span><span>1</span></div>
+      <div class="s2"><div class="bandeau"></div><div class="sourcil">Réponse · ${q.theme}</div>
+        <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div></div>
+      <div class="s3"><div class="t">Combien vous coûte <mark>votre désorganisation</mark> ?</div>
+        <div class="u">Le test en 1 minute · lien en bio</div>${signe()}</div>`;
+  } else if (v === 'reponse') {
     document.body.innerHTML = `<div class="carre"></div>
       <div class="sourcil">${q.bonne === null ? 'Merci pour vos réponses' : 'Réponse · ' + q.theme}</div>
       <div class="question" style="font-size:60px">${q.question}</div>
       <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div>
-      <div class="lien">Et vous, combien vous échappe ?<small>Le test en 2 minutes · lien ci-dessous</small></div>`;
+      <div class="lien">Et vous, combien vous échappe ?<small>Le test en 1 minute · lien ci-dessous</small></div>`;
   } else {
     document.body.innerHTML = `<div class="fond"></div>
-      <div class="sourcil">${q.bonne === null ? 'Sondage' : 'Quiz ' + n + '/6'} · ${q.theme}</div>
+      <div class="sourcil">${q.bonne === null ? 'Sondage' : 'Quiz ' + n + '/6 · ' + q.theme}</div>
       <div class="question">${q.question}</div>
-      <div class="zone"></div>
       <div class="pied" style="color:${sur}">${signe()}<span>${q.bonne === null ? 'Votre réponse ?' : 'Réponse demain'}</span></div>`;
   }
 }

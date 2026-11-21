@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Combien vous coûte votre désorganisation ? Le test en 2 minutes · QME</title>
-<meta name="description" content="Test gratuit en 4 questions : abonnements oubliés, TJM mal calculé, indemnités de retard non réclamées, budget de couple. Le résultat en euros par an, calculé dans votre navigateur.">
+<title>Combien vous coûte votre désorganisation ? Le test en 1 minute · QME</title>
+<meta name="description" content="Test gratuit en 3 questions : petits achats, temps perdu sur vos tâches, habitudes qui lâchent. Le résultat en euros, en heures et en séances par an, calculé dans votre navigateur.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/diagnostic/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Combien vous coûte votre désorganisation ?">
-<meta property="og:description" content="4 questions, 2 minutes, un résultat en euros par an. Et vous ?">
+<meta property="og:description" content="3 questions, 1 minute : vos euros, vos heures et vos séances perdues par an. Et vous ?">
 <meta property="og:url" content="https://qm-engineering.fr/diagnostic/">
 <meta property="og:image" content="https://qm-engineering.fr/assets/diagnostic-partage.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -17,7 +17,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
 <link rel="stylesheet" href="/assets/guides.css?v=2026111501">
-<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112101">
+<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112102">
 </head>
 <body>
 
@@ -40,68 +40,42 @@
 <main>
 <article class="guide diag">
 <div class="guide-corps">
-  <p class="diag-sourcil">Le test · 4 questions · 2 minutes</p>
+  <p class="diag-sourcil">Le test · 3 questions · 1 minute</p>
   <h1>Combien vous coûte votre désorganisation ?</h1>
-  <p class="chapeau">Abonnements oubliés, TJM calculé sur les mauvais jours, indemnités de retard jamais réclamées. Répondez avec vos chiffres, même approximatifs : le résultat sort en euros par an. Passez les questions qui ne vous concernent pas.</p>
+  <p class="chapeau">Petits achats qui s'envolent, temps perdu à savoir par quoi commencer, bonnes résolutions qui lâchent au bout de deux semaines. Répondez avec vos chiffres, même approximatifs : le résultat sort en euros, en heures et en séances par an.</p>
 
   <form class="calculateur diag-jeu" data-diag novalidate>
     <div class="diag-progression" aria-hidden="true"><span data-barre></span></div>
-    <p class="diag-compte" data-compte aria-live="polite">Question 1 sur 4</p>
+    <p class="diag-compte" data-compte aria-live="polite">Question 1 sur 3</p>
 
-    <!-- 1. Abonnements -->
-    <fieldset class="diag-etape" data-etape="abonnements">
-      <legend>Vos abonnements</legend>
-      <p class="diag-question">Combien payez-vous chaque mois pour des abonnements que vous n'avez <b>pas utilisés le mois dernier</b> ?</p>
-      <p class="diag-aide">Streaming, salle de sport, applis, stockage, presse, essai gratuit devenu payant… Additionnez de tête.</p>
-      <div class="champs un">
-        <label>Montant (€ par mois)<input name="abonnements" inputmode="decimal" autocomplete="off" placeholder="ex. 25"></label>
-      </div>
-    </fieldset>
-
-    <!-- 2. TJM -->
-    <fieldset class="diag-etape" data-etape="tjm" hidden>
-      <legend>Votre TJM (indépendants)</legend>
-      <p class="diag-question">Pour fixer votre tarif journalier, vous divisez votre chiffre d'affaires visé par…</p>
-      <div class="diag-choix" role="radiogroup">
-        <label><input type="radio" name="methode" value="ouvres"> les jours ouvrés de l'année (<span data-ouvres>254</span> en 2027)</label>
-        <label><input type="radio" name="methode" value="facturables"> les jours que je facture vraiment</label>
-        <label><input type="radio" name="methode" value="aucune"> je n'ai pas de méthode</label>
-      </div>
+    <!-- 1. Budget -->
+    <fieldset class="diag-etape" data-etape="budget">
+      <legend>Votre budget</legend>
+      <p class="diag-question">Combien dépensez-vous <b>par semaine</b> en petits achats non prévus ?</p>
+      <p class="diag-aide">Snack, café, livraison, achat en ligne « juste comme ça »… De tête, à peu près.</p>
       <div class="champs">
-        <label>Chiffre d'affaires visé (€ HT par an)<input name="ca" inputmode="decimal" autocomplete="off" placeholder="ex. 60 000"></label>
-        <label>Jours de congés par an<input name="conges" inputmode="decimal" autocomplete="off" value="25"></label>
-        <label>Jours non facturables par semaine<input name="nonfact" inputmode="decimal" autocomplete="off" value="1"><small>prospection, administratif</small></label>
+        <label>Petits achats (€ par semaine)<input name="petits" inputmode="decimal" autocomplete="off" placeholder="ex. 20"></label>
+        <label>Abonnements pas utilisés le mois dernier (€ par mois)<input name="abonnements" inputmode="decimal" autocomplete="off" placeholder="ex. 10"><small>streaming, salle, applis…</small></label>
       </div>
     </fieldset>
 
-    <!-- 3. Retards de paiement -->
-    <fieldset class="diag-etape" data-etape="retards" hidden>
-      <legend>Vos factures payées en retard (clients professionnels)</legend>
-      <p class="diag-question">Combien de vos factures à des clients professionnels sont payées <b>après l'échéance</b>, sur un an ?</p>
+    <!-- 2. Tâches -->
+    <fieldset class="diag-etape" data-etape="taches" hidden>
+      <legend>Vos tâches</legend>
+      <p class="diag-question">Combien de minutes <b>par jour</b> perdez-vous à chercher par quoi commencer, refaire votre liste ou rattraper un oubli ?</p>
       <div class="champs un">
-        <label>Nombre de factures par an<input name="retards" inputmode="decimal" autocomplete="off" placeholder="ex. 8"></label>
-      </div>
-      <p class="diag-question petite">Réclamez-vous l'indemnité forfaitaire de 40 € pour frais de recouvrement ?</p>
-      <div class="diag-choix" role="radiogroup">
-        <label><input type="radio" name="indemnite" value="oui"> oui, à chaque fois</label>
-        <label><input type="radio" name="indemnite" value="non"> non</label>
-        <label><input type="radio" name="indemnite" value="inconnue"> je ne savais pas qu'elle existait</label>
+        <label>Minutes par jour<input name="minutes" inputmode="decimal" autocomplete="off" placeholder="ex. 15"></label>
       </div>
     </fieldset>
 
-    <!-- 4. Budget à deux -->
-    <fieldset class="diag-etape" data-etape="couple" hidden>
-      <legend>Votre budget à deux</legend>
-      <p class="diag-question">Vous partagez les dépenses communes…</p>
-      <div class="diag-choix" role="radiogroup">
-        <label><input type="radio" name="regle" value="egale"> à 50/50</label>
-        <label><input type="radio" name="regle" value="prorata"> au prorata des revenus</label>
-        <label><input type="radio" name="regle" value="autre"> autrement, ou pas de règle</label>
-      </div>
+    <!-- 3. Habitudes -->
+    <fieldset class="diag-etape" data-etape="habitudes" hidden>
+      <legend>Vos habitudes</legend>
+      <p class="diag-question">Une habitude que vous voulez tenir (sport, lecture, révisions, sommeil…) : combien de fois par semaine <b>visez-vous</b>, et combien en <b>tenez-vous vraiment</b> ?</p>
       <div class="champs">
-        <label>Revenu de la personne 1 (€/mois)<input name="revenu1" inputmode="decimal" autocomplete="off" placeholder="ex. 2 400"></label>
-        <label>Revenu de la personne 2 (€/mois)<input name="revenu2" inputmode="decimal" autocomplete="off" placeholder="ex. 1 600"></label>
-        <label>Dépenses communes (€/mois)<input name="depenses" inputmode="decimal" autocomplete="off" placeholder="ex. 1 500"></label>
+        <label>Laquelle ?<input name="habitude" maxlength="24" autocomplete="off" placeholder="ex. sport"></label>
+        <label>Objectif (fois par semaine)<input name="objectif" inputmode="decimal" autocomplete="off" placeholder="ex. 3"></label>
+        <label>Tenu en vrai (fois par semaine)<input name="reel" inputmode="decimal" autocomplete="off" placeholder="ex. 1"></label>
       </div>
     </fieldset>
 
@@ -115,13 +89,13 @@
     <!-- Résultat -->
     <section class="diag-resultat" data-resultat aria-live="polite" hidden>
       <p class="diag-sourcil">Votre résultat</p>
-      <p class="diag-total"><span data-total>0 €</span><small>par an qui vous échappent, d'après vos réponses</small></p>
+      <p class="diag-total"><span data-total>0 €</span><small data-total-sous>par an qui vous échappent, d'après vos réponses</small></p>
       <ul class="diag-lignes" data-lignes></ul>
       <div class="diag-couple" data-couple hidden></div>
       <p class="diag-rien" data-rien hidden>Rien ne vous échappe d'après vos réponses : bravo. Vous pouvez quand même essayer les outils ci-dessous.</p>
 
       <div class="diag-partage">
-        <p><b>Et autour de vous ?</b> Comparez avec un ami, un associé, votre conjoint.</p>
+        <p><b>Et vos amis ?</b> Envoyez-leur le test, ou postez votre résultat en story.</p>
         <div class="diag-actions">
           <button class="btn primary" type="button" data-partager>Partager mon résultat</button>
           <button class="btn" type="button" data-image>Télécharger l'image (story)</button>
@@ -137,12 +111,12 @@
 
   <h2 id="calculs">Comment c'est calculé</h2>
   <ul>
-    <li><b>Abonnements</b> : le montant mensuel des abonnements non utilisés, multiplié par 12.</li>
-    <li><b>TJM</b> : en 2027, il y a 261 jours du lundi au vendredi, moins 7 jours fériés tombant en semaine, soit 254 jours ouvrés. On retire vos congés, puis vos jours non facturables (par semaine travaillée). Si vous divisez votre objectif par 254, vous facturez en réalité moins de jours : l'écart avec votre objectif est le manque à gagner. Exemple : 254 − 25 jours de congés = 229, moins un jour par semaine = environ 183 jours facturables.</li>
-    <li><b>Retards de paiement</b> : entre professionnels, tout retard ouvre droit à une indemnité forfaitaire de 40 € pour frais de recouvrement, par facture (articles L441-10 et D441-5 du Code de commerce). Les pénalités de retard s'y ajoutent ; elles ne sont pas comptées ici.</li>
-    <li><b>Budget à deux</b> : ce n'est pas une perte pour le foyer, donc ce n'est pas compté dans le total. Le test montre ce que la personne au revenu le plus bas verse en plus chaque année à 50/50, par rapport au partage au prorata des revenus. Le choix de la règle vous appartient (voir le <a href="/guides/budget-couple-50-50-ou-prorata/">guide 50/50 ou prorata</a>).</li>
+    <li><b>Budget</b> : les petits achats d'une semaine × 52, plus les abonnements non utilisés × 12.</li>
+    <li><b>Tâches</b> : les minutes perdues par jour × 365, converties en heures.</li>
+    <li><b>Habitudes</b> : (objectif − ce que vous tenez vraiment) par semaine × 52 semaines.</li>
   </ul>
-  <p class="guide-mention">Estimation à partir de vos réponses, à titre d'information. Ce n'est pas un conseil financier ou juridique et il ne remplace pas un avis professionnel.</p>
+  <p>Aucune moyenne, aucune statistique extérieure : seulement vos réponses, multipliées sur un an.</p>
+  <p class="guide-mention">Estimation à partir de vos réponses, à titre d'information. Ce n'est pas un conseil financier et il ne remplace pas un avis professionnel.</p>
 </div>
 </article>
 </main>
@@ -153,8 +127,7 @@
 </footer>
 
 <script src="/assets/site.js?v=2026112004" defer></script>
-<script src="/templates/tjm/calculs.js" defer></script>
-<script src="/assets/diagnostic.js?v=2026112101" defer></script>
+<script src="/assets/diagnostic.js?v=2026112102" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -1,95 +1,88 @@
-# Jeux et quiz d'acquisition · plan et calendrier
+# Jeux et quiz d'acquisition · Instagram et TikTok
 
-Demande de Quentin du 21/11/2026 : accrocher sur les réseaux avec un jeu ou un quiz ludique, qui montre ce que font les
-templates. Recommandation retenue, en trois temps :
+Demande de Quentin du 21/11/2026 : accrocher avec un jeu ou un quiz ludique qui montre ce que font les templates.
+Précisions du même jour : **Instagram et TikTok uniquement** (pas de LinkedIn ni de X), public **étudiants et jeunes
+adultes** (18 ans et plus : pas de ciblage des mineurs, cf. `../canaux-publicite.md`), produits mis en avant :
+**Gestionnaire de tâches (19 €), Mon Budget (15 €), Suivi d'habitudes (12 €)**. Ton : vouvoiement, comme toute légende
+Instagram (`../instagram/README.md`).
 
-| # | Format | Statut | Date visée |
+| # | Format | Statut | Date |
 |---|---|---|---|
-| A | Quiz natifs (stories Instagram, sondages LinkedIn), zéro développement | **prêt** (visuels et textes ci-dessous) | semaine du 23/11/2026 |
-| B | Test « Combien vous coûte votre désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **prêt, sur branche** : à fusionner (feu vert de Quentin) | en ligne dès la fusion ; relais à partir du 30/11 |
-| C | « 50/50 ou prorata ? » à envoyer à son/sa partenaire (le partage fait partie du jeu) | idée | mi-décembre 2026 |
-| E | Quiz de profil « Quel organisateur êtes-vous ? » (4 profils → 4 packs) | idée | prêt le 28/12, lancé le 02/01/2027 |
+| A | 7 stories quiz Instagram + 6 vidéos quiz « devinez la réponse » (TikTok, et Reel si voulu) | **prêt**, dans Drive | semaine du 23/11/2026 |
+| B | Test « Combien vous coûte votre désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **prêt, PR ouverte** (fusion sur feu vert) | dès la fusion ; lien en bio |
+| C | Défi à envoyer à un ami (« Qui tient le mieux ses habitudes ? », duel de scores) | idée | mi-décembre 2026 |
+| E | Quiz de profil « Quel organisateur êtes-vous ? » (profils → tâches, budget, habitudes, pack) | idée | prêt le 28/12, lancé le 02/01/2027 |
 
-Règles communes : `../REGLES-CONTENU.md` (problème chiffré, bascule, solution ; aucun chiffre inventé ; données fictives) ;
-appel à l'action = essai gratuit 14 jours (§ 7).
+Règles : `../REGLES-CONTENU.md` (problème chiffré, bascule, solution ; aucun chiffre inventé ; exemples fictifs ;
+accroche entière dès la première image) ; appel à l'action : essai gratuit 14 jours, sans carte (§ 7).
 
-## Mesure
+## Fichiers
 
-- GoatCounter (sans cookie) : événements `diagnostic-debut`, `diagnostic-passer`, `diagnostic-resultat`,
-  `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<abonnements|tjm|retards|couple>` ; visites de
-  `/diagnostic/` avec `utm_campaign=diagnostic` (lien `/jeu`).
-- Le chiffre qui compte : **résultats affichés → clics « Essayer »**, puis essais ouverts (`/admin/` essais) et achats.
-  Relevé hebdomadaire, le lundi. Rien ne garantit à l'avance qu'un jeu convertisse : on décide C et E sur ces chiffres.
-- Stories et sondages : réponses par option (statistiques Instagram et LinkedIn), à noter ci-dessous chaque soir.
+- Drive : dossier « Quiz Instagram et TikTok · semaine du 23-11 (stories et vidéos) »
+  (`1-ykOzLMJmspY3HRfCSr85f_iDU3zdIwy`), 7 stories question, 7 stories réponse, 6 vidéos.
+- Sources : `stories.html` (données des quiz, stories, vidéos, aperçu du lien) ; rendu
+  `node docs/templates/communication/jeux/rendre.mjs --videos` (vidéos par le moteur unique `docs/videos/rendu.mjs`,
+  13 s, 1080 × 1920, musique QME vérifiée par `ffprobe`). PNG et MP4 dans `png/`.
 
-## A · Semaine du 23/11/2026 : quiz en story et sondages
+## A · Semaine du 23/11/2026
 
-À ma connaissance, l'API de publication d'Instagram ne pose pas d'autocollant Quiz ou Sondage : ces stories se publient
-**à la main depuis le téléphone**, pas par Instinct. Visuels : `png/quiz-<n>-question.png` et `png/quiz-<n>-reponse.png`
-(1080 × 1920, `node docs/templates/communication/jeux/rendre.mjs`). La zone vide au milieu de la story question
-accueille l'autocollant.
+**Instagram, stories, à la main, chaque soir à 19:30** (après la publication de 19:00) : la story réponse de la veille
+(autocollant Lien), puis la story question du jour (autocollant **Quiz**, bonne réponse cochée, posé sur la zone vide).
+À ma connaissance l'API Instagram ne pose pas d'autocollant interactif : Instinct ne peut pas les publier.
 
-**Chaque soir à 19:30** (après la publication de 19:00) : la story **réponse** de la veille (avec un autocollant Lien),
-puis la story **question** du jour (avec l'autocollant Quiz, bonne réponse cochée). Tant que `/diagnostic/` n'est pas
-en ligne, le lien de la story réponse pointe vers la page catalogue du template (colonne « Lien en attendant »).
+**TikTok, vidéo, à la main, chaque jour à 18:00** (créneau libre, avant la reprise TikTok d'Instagram) : la vidéo quiz
+du jour (la question s'affiche entière, 4 choix, compte à rebours, réponse, appel « le test en 1 minute · lien en
+bio »). Légende courte : la question, puis « Réponse en commentaire si vous l'avez trouvée avant la fin ». Ces vidéos
+peuvent aussi partir en Reel Instagram ; je ne les ai pas ajoutées aux plannings Sheets (voir « À décider »).
 
-| Jour | Story question (autocollant Quiz : 4 choix, **bonne réponse en gras**) | Lien en attendant `/jeu` | Source du chiffre |
-|---|---|---|---|
-| lun. 23/11 | En 2027, combien de jours un freelance facture-t-il vraiment ? 261 / 254 / 229 / **environ 183** | `/catalogue/tjm/` | Reel IG-46, `templates/tjm/calculs.js` |
-| mar. 24/11 | 7 petits abonnements : 88,34 € par mois. Combien par an ? 530 € / 880 € / **1 060 €** / 1 400 € | `/catalogue/abonnements/` | Reel IG-131 |
-| mer. 25/11 | 2 400 € et 1 600 € de revenus, 1 500 € de dépenses communes. Au prorata, la personne à 1 600 € paie… ? 750 € / 640 € / **600 €** / 500 € | `/guides/budget-couple-50-50-ou-prorata/` | guide 50/50 ou prorata |
-| jeu. 26/11 | Un client professionnel vous paie en retard. Vous avez droit à… ? rien / **40 € par facture** / 40 € par mois / 10 % du montant | `/guides/facture-impayee/` | art. L441-10 et D441-5 C. com. |
-| ven. 27/11 | Voiture 5 CV, 10 002 km pro, comptés à 0,636 € le km toute l'année. Combien en trop ? 0 € / environ 400 € / **environ 1 395 €** / environ 3 000 € | `/catalogue/notes-de-frais/` | Reel IG-155 (barème fiscal 2025) |
-| sam. 28/11 | Une tâche urgente, mais pas importante. Vous… ? la faites tout de suite / la planifiez / **la déléguez** / l'abandonnez | `/catalogue/taches/` | Reel IG-56 (matrice urgent / important) |
-| dim. 29/11 | Sondage : Votre budget, vous le tenez où ? un tableur / une appli / sur papier / nulle part | — | — |
-| lun. 30/11 | Story « Merci pour vos réponses » (`quiz-7-reponse.png`) + lien `/jeu` | `/jeu` si en ligne | — |
-
-### Sondages LinkedIn (page QME, à la main, durée 3 jours, 14:00 pour ne pas croiser 10:00, 12:15 et 17:30)
-
-- **mar. 24/11, 14:00** : « Freelances : pour fixer votre TJM, vous divisez votre objectif par… » 254 jours ouvrés /
-  220 jours / environ 183 jours / je n'ai pas de méthode. Premier commentaire à la clôture : le calcul d'IG-46
-  (261 − 7 fériés = 254 − 25 congés = 229 − un jour par semaine ≈ 183), puis le lien du test.
-- **jeu. 26/11, 14:00** : « Un client professionnel paie en retard. Réclamez-vous l'indemnité de 40 € ? » toujours /
-  parfois / jamais / je ne savais pas. Premier commentaire à la clôture : articles L441-10 et D441-5, lien du guide
-  `/guides/facture-impayee/`.
-
-### Relevé des réponses (à remplir)
-
-| Jour | Vues | Réponses | Bonne réponse (%) | Clics sur le lien |
+| Jour | Thème | Question (bonne réponse en gras) | Produit | Source du chiffre |
 |---|---|---|---|---|
-| 23/11 | | | | |
-| 24/11 | | | | |
-| 25/11 | | | | |
-| 26/11 | | | | |
-| 27/11 | | | | |
-| 28/11 | | | | |
-| 29/11 | | | — | |
+| lun. 23/11 | Budget | 5 € de snack ou de café, du lundi au vendredi. Combien par an ? 260 € / 650 € / **1 300 €** / 1 825 € | Mon Budget | 5 × 5 × 52, exemple fictif |
+| mar. 24/11 | Tâches | Votre liste fait 80 lignes et vous ne savez pas par où commencer. Le vrai problème ? la liste est trop longue / **le tri** / le manque de temps / la motivation | Gestionnaire de tâches | Reel IG-56 |
+| mer. 25/11 | Habitudes | Objectif : 3 séances de sport par semaine. Vous en faites 2. Combien de ratées sur un an ? 12 / 26 / **52** / 104 | Suivi d'habitudes | 1 × 52, exemple fictif |
+| jeu. 26/11 | Budget | Règle 50/30/20 : sur 1 200 € par mois, combien pour vos envies ? 240 € / **360 €** / 400 € / 600 € | Mon Budget | repère 50/30/20 de `templates/budget/regles.js` |
+| ven. 27/11 | Tâches | Une tâche urgente, mais pas importante. Vous… ? la faites tout de suite / la planifiez / **l'expédiez ou la déléguez** / l'abandonnez | Gestionnaire de tâches | Reel IG-56 (tri urgent / important) |
+| sam. 28/11 | Habitudes | 10 minutes de lecture par jour. Combien d'heures sur un an ? 12 h / 30 h / **environ 61 h** / 120 h | Suivi d'habitudes | 10 × 365 / 60 |
+| dim. 29/11 | Sondage | Ce que vous lâchez en premier ? le budget / le sport / la to-do list / le sommeil | — | — |
+| lun. 30/11 | — | Story « Merci pour vos réponses » + lien `/jeu` | — | — |
 
-Les questions qui font le plus réagir orientent la suite : ordre des questions du test B, accroches des Reels.
+Tant que `/diagnostic/` n'est pas en ligne, le lien des stories réponse pointe vers `/catalogue/budget/`,
+`/catalogue/taches/` ou `/catalogue/habitudes/` (le premier bouton y est l'essai gratuit).
+
+### Relevé (à remplir chaque soir)
+
+| Jour | Story : vues / réponses / bonne réponse (%) / clics | TikTok : vues / taux de visionnage complet / commentaires |
+|---|---|---|
+| 23/11 | | |
+| 24/11 | | |
+| 25/11 | | |
+| 26/11 | | |
+| 27/11 | | |
+| 28/11 | | |
+| 29/11 | | — |
+
+Le thème qui fait le plus réagir (budget, tâches ou habitudes) passe en tête du test B et oriente C et E.
 
 ## B · Le test `/diagnostic/`
 
-- Page : `diagnostic/index.html`, `assets/diagnostic.js` (calcul pur `DIAG.calculer`, testé par
-  `outils/templates/diagnostic.test.mjs`), `assets/diagnostic.css`. Lien court `/jeu` (`netlify.toml`).
-- 4 questions, chacune peut être passée : abonnements non utilisés (× 12) ; TJM divisé par les jours ouvrés 2027 (254,
-  calculés par le module du template TJM) au lieu des jours facturables (manque à gagner par rapport à l'objectif) ;
-  factures payées en retard × 40 € d'indemnité non réclamée ; budget à deux (écart 50/50 contre prorata, **hors total**,
-  car ce n'est pas une perte pour le foyer).
-- Résultat : total en euros par an, détail ligne par ligne, chaque ligne renvoie à l'essai gratuit du template
-  (Suivi des abonnements, Calculateur de TJM, Relance des impayés, Gestion Dépenses Communes).
-- Partage : image story 1080 × 1920 générée dans le navigateur (« Ma désorganisation me coûte X € par an. Et vous ? »),
-  partage natif sur mobile, sinon copie du lien. Aperçu du lien : `assets/diagnostic-partage.png`.
-- Confidentialité : calcul dans le navigateur, rien n'est envoyé ; seuls les événements GoatCounter sont comptés.
+- Page `diagnostic/index.html`, script `assets/diagnostic.js` (calcul pur `DIAG.calculer`, testé par
+  `outils/templates/diagnostic.test.mjs`), styles `assets/diagnostic.css`, lien court `/jeu` (`netlify.toml`).
+- 3 questions, chacune peut être passée ; aucune statistique extérieure, seulement les réponses multipliées sur un an :
+  - **budget** : petits achats non prévus par semaine × 52 + abonnements non utilisés par mois × 12 → euros par an
+    (Mon Budget) ;
+  - **tâches** : minutes perdues par jour à chercher par quoi commencer × 365 → heures par an (Gestionnaire de tâches) ;
+  - **habitudes** : (objectif − ce qui est tenu) par semaine × 52 → séances ratées par an (Suivi d'habitudes).
+- Résultat : « 1 160 € · 91 h perdues · 104 séances ratées par an », détail ligne par ligne, chaque ligne mène à
+  l'essai gratuit du template. Image story à partager (« Ma désorganisation me coûte, par an : … Et vous ? »).
+- Mesure GoatCounter (sans cookie) : `diagnostic-debut`, `diagnostic-passer`, `diagnostic-resultat`,
+  `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<budget|taches|habitudes>`. Le chiffre qui compte :
+  résultats affichés → clics « Essayer », puis essais ouverts et achats ; relevé le lundi.
 
-Relais à prévoir une fois en ligne (à intégrer aux plannings par les skills de publication) : lien `/jeu` en bio
-Instagram et TikTok ; un Reel « J'ai fait le test : X € par an » à partir d'un exemple fictif rendu par
-`docs/videos/` ; un post LinkedIn « erreur courante » renvoyant au test ; publication dans les communautés qui
-acceptent un outil gratuit (lire leur règlement d'abord, cf. `../canaux-publicite.md`) ; test Meta de 50 € vers
-`/jeu`, à décider par Quentin.
+## À décider par Quentin
 
-## C et E · à faire
-
-- **C** (mi-décembre) : variante du calculateur du guide 50/50 avec un bouton « Envoyer à mon/ma partenaire » qui
-  transmet les montants dans le lien (aucune donnée stockée), puis l'essai de Gestion Dépenses Communes.
-- **E** (prêt le 28/12, lancé le 02/01/2027, saison des résolutions) : 8 questions, 4 profils reliés chacun à un pack
-  existant (`/packs/`), carte de profil partageable sur le modèle de B.
+1. Fusion de la PR (mise en ligne de `/diagnostic/` et `/jeu`).
+2. Vidéos quiz aussi en **Reel Instagram** ? Si oui, elles entrent au planning Instagram, et la règle du dépôt veut
+   alors aussi une ligne `YT-nn` (CLAUDE.md, « tout format vidéo ajouté à un planning ») : à lever explicitement pour
+   cette campagne, puisqu'elle est réservée à Instagram et TikTok.
+3. **Planning de révision** (14,90 €), seul template conçu pour les étudiants, en pleine période de partiels : l'ajouter
+   aux thèmes (quiz et quatrième question du test) ?

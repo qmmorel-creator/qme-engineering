@@ -1,17 +1,14 @@
-// Test « Combien vous coûte votre désorganisation ? » (/diagnostic/, lien court /jeu).
+// Test « Combien vous coûte votre désorganisation ? » (/diagnostic/, lien court /jeu), pour Instagram et TikTok
+// (étudiants et jeunes adultes ; décision de Quentin du 21/11/2026). Trois thèmes : budget, tâches, habitudes.
 // Calcul pur (DIAG.calculer) testé par outils/templates/diagnostic.test.mjs ; interface en bas du fichier.
-// Aucun chiffre inventé : chaque montant vient des réponses saisies, des jours ouvrés du template TJM
-// (TJM_CALCUL, templates/tjm/calculs.js) et de l'indemnité légale de 40 € (art. L441-10 et D441-5 C. com.).
+// Aucun chiffre extérieur : chaque résultat est une réponse saisie multipliée sur un an.
 (function (racine) {
   'use strict';
 
-  const ANNEE = 2027;
-  const INDEMNITE = 40;
   const PRODUITS = {
-    abonnements: { nom: 'Suivi des abonnements', prix: '9 €', slug: 'abonnements' },
-    tjm: { nom: 'Calculateur de TJM freelance', prix: '12 €', slug: 'tjm' },
-    retards: { nom: 'Relance des impayés', prix: '19 €', slug: 'impayes' },
-    couple: { nom: 'Gestion Dépenses Communes', prix: '15 €', slug: 'budget-commun' },
+    budget: { nom: 'Mon Budget', prix: '15 €', slug: 'budget' },
+    taches: { nom: 'Gestionnaire de tâches', prix: '19 €', slug: 'taches' },
+    habitudes: { nom: "Suivi d'habitudes", prix: '12 €', slug: 'habitudes' },
   };
 
   function nombre(saisie) {
@@ -21,74 +18,62 @@
     const n = Number(t);
     return Number.isFinite(n) ? n : NaN;
   }
+  const invalide = (n) => n === null || Number.isNaN(n) || n < 0;
 
-  function joursOuvres(annee) {
-    const c = racine.TJM_CALCUL;
-    return c ? c.joursOuvres(annee).ouvres : null;
-  }
+  // r : réponses brutes ; passees : étapes passées. Renvoie { erreur, etape } ou le résultat.
+  function calculer(r, passees = new Set()) {
+    const res = { euros: 0, heures: 0, seances: 0, lignes: [], produits: PRODUITS };
 
-  // Jours facturables : ouvrés − congés − jours non facturables par semaine travaillée.
-  function joursFacturables(ouvres, conges, nonFactSemaine) {
-    const travailles = Math.max(0, ouvres - conges);
-    return Math.max(0, travailles - Math.round((travailles / 5) * nonFactSemaine));
-  }
-
-  // r : réponses brutes ; passees : ensemble des étapes passées. Renvoie { erreur } ou le résultat.
-  function calculer(r, passees = new Set(), ouvres = joursOuvres(ANNEE)) {
-    const lignes = [];
-    let couple = null;
-
-    if (!passees.has('abonnements')) {
-      const m = nombre(r.abonnements);
-      if (m === null || Number.isNaN(m) || m < 0) return { erreur: 'Indiquez un montant mensuel (0 si aucun), ou passez la question.', etape: 'abonnements' };
-      lignes.push({ cle: 'abonnements', montant: m * 12, detail: `${euros(m)} par mois × 12` });
+    if (!passees.has('budget')) {
+      const p = nombre(r.petits), a = nombre(r.abonnements);
+      if (p === null && a === null) return { erreur: 'Indiquez au moins un montant (0 si rien), ou passez la question.', etape: 'budget' };
+      if ((p !== null && invalide(p)) || (a !== null && invalide(a))) return { erreur: 'Indiquez des montants en euros, positifs.', etape: 'budget' };
+      const an = (p || 0) * 52 + (a || 0) * 12;
+      const parts = [];
+      if (p) parts.push(`${euros(p)} par semaine × 52`);
+      if (a) parts.push(`${euros(a)} d'abonnements par mois × 12`);
+      res.euros = an;
+      res.lignes.push({ cle: 'budget', valeur: an, texte: `${euros(an)} par an`, detail: parts.join(' + ') || 'Rien ne s\'envole : bravo.' });
     }
 
-    if (!passees.has('tjm')) {
-      if (!r.methode) return { erreur: 'Choisissez votre méthode, ou passez la question.', etape: 'tjm' };
-      const ca = nombre(r.ca), conges = nombre(r.conges), nf = nombre(r.nonfact);
-      if (ca === null || Number.isNaN(ca) || ca <= 0) return { erreur: "Indiquez le chiffre d'affaires visé, en euros HT par an.", etape: 'tjm' };
-      if (conges === null || Number.isNaN(conges) || conges < 0 || conges > ouvres) return { erreur: 'Indiquez un nombre de jours de congés valide.', etape: 'tjm' };
-      if (nf === null || Number.isNaN(nf) || nf < 0 || nf > 5) return { erreur: 'Indiquez entre 0 et 5 jours non facturables par semaine.', etape: 'tjm' };
-      const fact = joursFacturables(ouvres, conges, nf);
-      const tjmJuste = fact > 0 ? ca / fact : null;
-      if (r.methode === 'ouvres') {
-        const tjmPratique = ca / ouvres;
-        lignes.push({ cle: 'tjm', montant: ca - tjmPratique * fact, detail: `TJM de ${euros(tjmPratique)} (÷ ${ouvres} jours) × ${fact} jours vraiment facturables, au lieu de ${euros(ca)} visés`, tjmJuste, fact });
-      } else if (r.methode === 'aucune') {
-        lignes.push({ cle: 'tjm', montant: 0, info: true, detail: `Pour atteindre ${euros(ca)}, il faut au moins ${tjmJuste ? euros(tjmJuste) : '–'} par jour sur ${fact} jours facturables.`, tjmJuste, fact });
-      } else {
-        lignes.push({ cle: 'tjm', montant: 0, detail: `Vous divisez par les bons jours : ${fact} jours facturables, ${tjmJuste ? euros(tjmJuste) : '–'} par jour.`, tjmJuste, fact });
-      }
+    if (!passees.has('taches')) {
+      const m = nombre(r.minutes);
+      if (invalide(m) || m > 600) return { erreur: 'Indiquez un nombre de minutes par jour (0 si aucune), ou passez la question.', etape: 'taches' };
+      const h = (m * 365) / 60;
+      res.heures = h;
+      res.lignes.push({ cle: 'taches', valeur: h, texte: `${heures(h)} par an`, detail: m ? `${m} min par jour × 365, soit ${jours(h)}` : 'Aucune minute perdue : bravo.' });
     }
 
-    if (!passees.has('retards')) {
-      const n = nombre(r.retards);
-      if (n === null || Number.isNaN(n) || n < 0 || !Number.isInteger(n)) return { erreur: 'Indiquez un nombre entier de factures (0 si aucune), ou passez la question.', etape: 'retards' };
-      if (n > 0 && !r.indemnite) return { erreur: "Dites si vous réclamez l'indemnité de 40 €.", etape: 'retards' };
-      const due = n > 0 && r.indemnite !== 'oui';
-      lignes.push({ cle: 'retards', montant: due ? n * INDEMNITE : 0, detail: due ? `${n} facture${n > 1 ? 's' : ''} × ${INDEMNITE} € d'indemnité non réclamée, pénalités de retard en plus` : (n === 0 ? 'Aucune facture payée en retard.' : 'Vous réclamez déjà l\'indemnité : bien joué.') });
+    if (!passees.has('habitudes')) {
+      const o = nombre(r.objectif), v = nombre(r.reel);
+      if (invalide(o) || o > 7 || o === 0) return { erreur: 'Indiquez un objectif entre 1 et 7 fois par semaine, ou passez la question.', etape: 'habitudes' };
+      if (invalide(v) || v > 7) return { erreur: 'Indiquez combien de fois vous la tenez vraiment (entre 0 et 7).', etape: 'habitudes' };
+      const nomHab = String(r.habitude || '').trim().slice(0, 24) || 'votre habitude';
+      const manquees = Math.max(0, o - v) * 52;
+      res.seances = manquees;
+      res.habitude = nomHab;
+      res.lignes.push({ cle: 'habitudes', valeur: manquees, texte: `${entier(manquees)} séance${manquees > 1 ? 's' : ''} ratée${manquees > 1 ? 's' : ''} par an`, detail: manquees ? `${nomHab} : ${entier(o - v)} de moins que prévu chaque semaine × 52` : `${nomHab} : objectif tenu, bravo.` });
     }
 
-    if (!passees.has('couple')) {
-      if (!r.regle) return { erreur: 'Choisissez votre façon de partager, ou passez la question.', etape: 'couple' };
-      const r1 = nombre(r.revenu1), r2 = nombre(r.revenu2), d = nombre(r.depenses);
-      if ([r1, r2, d].some((x) => x === null || Number.isNaN(x) || x < 0) || r1 + r2 <= 0) return { erreur: 'Indiquez les deux revenus et les dépenses communes, par mois.', etape: 'couple' };
-      const p1 = (d * r1) / (r1 + r2), p2 = d - p1;
-      const bas = Math.min(r1, r2), partBasProrata = (d * bas) / (r1 + r2);
-      couple = { regle: r.regle, egale: d / 2, prorata1: p1, prorata2: p2, ecartAn: (d / 2 - partBasProrata) * 12, egaux: r1 === r2 };
-    }
-
-    const total = lignes.reduce((s, l) => s + l.montant, 0);
-    return { total, lignes, couple, produits: PRODUITS };
+    return res;
   }
 
-  function euros(n) {
-    const arrondi = Math.round(n);
-    return arrondi.toLocaleString('fr-FR').replace(/ | /g, ' ') + ' €';
+  const fmt = (n) => Math.round(n).toLocaleString('fr-FR').replace(/ | /g, ' ');
+  function euros(n) { return `${fmt(n)} €`; }
+  function entier(n) { return fmt(n); }
+  function heures(h) { return `${fmt(h)} h`; }
+  function jours(h) { const j = h / 8; return j >= 1 ? `${fmt(j)} journée${Math.round(j) > 1 ? 's' : ''} de 8 h` : 'moins d\'une journée de 8 h'; }
+
+  // Phrase de synthèse du résultat (page et image de partage).
+  function synthese(res) {
+    const morceaux = [];
+    if (res.euros > 0) morceaux.push(euros(res.euros));
+    if (res.heures > 0) morceaux.push(`${heures(res.heures)} perdues`);
+    if (res.seances > 0) morceaux.push(`${entier(res.seances)} séance${res.seances > 1 ? 's' : ''} ratée${res.seances > 1 ? 's' : ''}`);
+    return morceaux;
   }
 
-  racine.DIAG = { calculer, joursFacturables, nombre, euros, PRODUITS, ANNEE, INDEMNITE };
+  racine.DIAG = { calculer, nombre, euros, heures, synthese, PRODUITS };
 
   // ---------- Interface ----------
   if (typeof document === 'undefined') return;
@@ -96,6 +81,7 @@
   function compter(chemin, titre) {
     try { if (racine.goatcounter && racine.goatcounter.count) racine.goatcounter.count({ path: chemin, title: titre, event: true }); } catch (e) { /* mesure facultative */ }
   }
+  const echapper = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   function demarrer() {
     const form = document.querySelector('[data-diag]');
@@ -107,15 +93,9 @@
     const actions = form.querySelector('[data-actions]');
     const resultat = form.querySelector('[data-resultat]');
     const btnSuivant = form.querySelector('[data-suivant]');
-    const ouvres = joursOuvres(ANNEE);
-    if (ouvres) form.querySelector('[data-ouvres]').textContent = ouvres;
     let i = 0, debut = false, dernier = null;
     const passees = new Set();
-
-    function lire() {
-      const fd = new FormData(form);
-      return Object.fromEntries(fd.entries());
-    }
+    const lire = () => Object.fromEntries(new FormData(form).entries());
 
     function afficher() {
       etapes.forEach((e, k) => { e.hidden = k !== i; });
@@ -125,58 +105,34 @@
       erreur.hidden = true;
     }
 
-    function verifierEtape(cle) {
-      // Ne valide que l'étape affichée : les suivantes sont marquées passées le temps du contrôle.
-      const tmp = new Set(passees);
-      etapes.forEach((e) => { if (e.dataset.etape !== cle) tmp.add(e.dataset.etape); });
-      tmp.delete(cle);
-      return calculer(lire(), tmp, ouvres);
-    }
-
     function avancer(passer) {
       const cle = etapes[i].dataset.etape;
       if (!debut) { debut = true; compter('diagnostic-debut', 'Diagnostic : début'); }
       if (passer) passees.add(cle);
       else {
         passees.delete(cle);
-        const v = verifierEtape(cle);
+        const autres = new Set(etapes.map((e) => e.dataset.etape).filter((c) => c !== cle));
+        const v = calculer(lire(), autres);
         if (v.erreur) { erreur.textContent = v.erreur; erreur.hidden = false; return; }
       }
       if (i < etapes.length - 1) { i += 1; afficher(); etapes[i].querySelector('input')?.focus(); return; }
       terminer();
     }
 
-    function lienProduit(p, cle) {
-      return `<a href="/essai/?t=${p.slug}" data-goatcounter-click="diagnostic-essai-${cle}" data-goatcounter-title="Diagnostic : essai ${p.nom}">Essayer ${p.nom} 14 jours, sans carte</a> · <a href="/catalogue/${p.slug}/">${p.prix}, achat unique</a>`;
-    }
-
-    const titres = { abonnements: 'Abonnements oubliés', tjm: 'TJM calculé sur 254 jours', retards: 'Indemnités de retard non réclamées' };
+    const titres = { budget: 'Budget : ce qui s\'envole', taches: 'Tâches : le temps perdu', habitudes: 'Habitudes : les séances ratées' };
+    const lienProduit = (p, cle) => `<a href="/essai/?t=${p.slug}" data-goatcounter-click="diagnostic-essai-${cle}" data-goatcounter-title="Diagnostic : essai ${p.nom}">Essayer ${p.nom} 14 jours, sans carte</a> · <a href="/catalogue/${p.slug}/">${p.prix}, achat unique</a>`;
 
     function terminer() {
-      const res = calculer(lire(), passees, ouvres);
+      const res = calculer(lire(), passees);
       if (res.erreur) { i = etapes.findIndex((e) => e.dataset.etape === res.etape); afficher(); erreur.textContent = res.erreur; erreur.hidden = false; return; }
       dernier = res;
       etapes.forEach((e) => { e.hidden = true; });
       actions.hidden = true; compte.hidden = true; form.querySelector('.diag-progression').hidden = true;
-      form.querySelector('[data-total]').textContent = euros(res.total);
-      const ul = form.querySelector('[data-lignes]');
-      ul.innerHTML = res.lignes.map((l) => {
-        const p = PRODUITS[l.cle];
-        const titre = l.cle === 'tjm' && l.info ? 'TJM sans méthode' : (l.cle === 'tjm' && !l.montant ? 'TJM bien calculé' : titres[l.cle]);
-        return `<li class="${l.montant ? '' : 'nul'}"><span>${titre}</span><b>${l.info ? 'à calculer' : euros(l.montant) + ' par an'}</b><span>${l.detail}</span><span>${lienProduit(p, l.cle)}</span></li>`;
-      }).join('');
-      const bloc = form.querySelector('[data-couple]');
-      if (res.couple) {
-        const c = res.couple, p = PRODUITS.couple;
-        let texte;
-        if (c.egaux) texte = 'Revenus égaux : 50/50 et prorata donnent la même chose.';
-        else if (c.regle === 'egale') texte = `À 50/50, la personne qui gagne le moins verse <b>${euros(c.ecartAn)} de plus par an</b> qu'au prorata des revenus (${euros(c.egale)} par mois chacun, contre ${euros(c.prorata1)} et ${euros(c.prorata2)}). Ce n'est pas une perte pour le foyer, donc ce n'est pas compté dans le total : c'est une question d'équilibre, à décider à deux.`;
-        else if (c.regle === 'prorata') texte = `Au prorata, chacun consacre la même part de son revenu : ${euros(c.prorata1)} et ${euros(c.prorata2)} par mois.`;
-        else texte = `Pour comparer : 50/50 = ${euros(c.egale)} chacun ; prorata = ${euros(c.prorata1)} et ${euros(c.prorata2)} par mois.`;
-        bloc.innerHTML = `<p><b>Budget à deux</b> · ${texte}</p><p>${lienProduit(p, 'couple')}</p>`;
-        bloc.hidden = false;
-      } else bloc.hidden = true;
-      form.querySelector('[data-rien]').hidden = res.total > 0 || res.lignes.some((l) => l.info);
+      const m = synthese(res);
+      form.querySelector('[data-total]').textContent = m.length ? m[0] : '0 €';
+      form.querySelector('[data-total-sous]').textContent = m.length > 1 ? `et ${m.slice(1).join(' et ')} par an, d'après vos réponses` : 'par an, d\'après vos réponses';
+      form.querySelector('[data-lignes]').innerHTML = res.lignes.map((l) => `<li class="${l.valeur ? '' : 'nul'}"><span>${titres[l.cle]}</span><b>${echapper(l.texte)}</b><span>${echapper(l.detail)}</span><span>${lienProduit(PRODUITS[l.cle], l.cle)}</span></li>`).join('');
+      form.querySelector('[data-rien]').hidden = m.length > 0;
       resultat.hidden = false;
       resultat.scrollIntoView({ block: 'start' });
       compter('diagnostic-resultat', 'Diagnostic : résultat affiché');
@@ -190,30 +146,29 @@
       const g = cv.getContext('2d');
       try { await document.fonts.load('800 100px Outfit'); } catch (e) { /* police par défaut */ }
       const C = { papier: '#F0EDE6', encre: '#141414', rouge: '#D9302A', jaune: '#F5B400', bleu: '#1D4E89' };
+      const f = (poids, taille) => `${poids} ${taille}px Outfit, sans-serif`;
       g.fillStyle = C.papier; g.fillRect(0, 0, W, H);
-      // Formes Bauhaus
       g.fillStyle = C.jaune; g.beginPath(); g.arc(W - 90, 110, 190, 0, Math.PI * 2); g.fill();
       g.fillStyle = C.bleu; g.fillRect(0, H - 420, 300, 300);
       g.fillStyle = C.rouge; g.beginPath(); g.moveTo(W, H - 420); g.lineTo(W, H - 120); g.lineTo(W - 300, H - 120); g.closePath(); g.fill();
-      const f = (poids, taille) => `${poids} ${taille}px Outfit, sans-serif`;
-      g.fillStyle = C.encre; g.textBaseline = 'alphabetic';
+      g.fillStyle = C.encre;
       g.font = f(700, 34); g.fillText('MON TEST QME', 96, 330);
       g.font = f(800, 84);
-      ['Ma désorganisation', 'me coûte'].forEach((t, k) => g.fillText(t, 96, 450 + k * 96));
-      // Bandeau du total
-      const total = euros(res.total);
-      g.font = f(800, 190);
-      const larg = Math.min(W - 192, g.measureText(total).width + 72);
-      g.fillStyle = C.encre; g.fillRect(96, 640, larg, 250);
-      g.fillStyle = C.papier; g.fillText(total, 132, 830, W - 264);
-      g.fillStyle = C.encre; g.font = f(800, 84); g.fillText('par an.', 96, 1010);
-      // Détail
-      g.font = f(600, 40);
-      let y = 1120;
-      res.lignes.filter((l) => l.montant > 0).forEach((l) => { g.fillText(`${titres[l.cle]} : ${euros(l.montant)}`, 96, y, W - 192); y += 62; });
-      // Appel
+      ['Ma désorganisation', 'me coûte, par an :'].forEach((t, k) => g.fillText(t, 96, 450 + k * 96));
+      const m = synthese(res);
+      let y = 640;
+      const couleurs = [C.encre, C.rouge, C.bleu];
+      (m.length ? m : ['0 €']).forEach((txt, k) => {
+        g.font = f(800, txt.length > 12 ? 104 : 130);
+        const larg = Math.min(W - 192, g.measureText(txt).width + 64);
+        g.fillStyle = couleurs[k]; g.fillRect(96, y, larg, 170);
+        g.fillStyle = C.papier; g.fillText(txt, 128, y + 132, W - 256);
+        y += 200;
+      });
+      g.fillStyle = C.encre; g.font = f(600, 40);
+      if (res.seances > 0) { g.fillText(`de ${res.habitude}`, 96, y + 20, W - 192); y += 60; }
       g.font = f(800, 72); g.fillText('Et vous ?', 96, H - 520);
-      g.font = f(700, 40); g.fillText('Le test en 2 minutes : qm-engineering.fr/jeu', 96, H - 460, W - 192);
+      g.font = f(700, 40); g.fillText('Le test en 1 minute : qm-engineering.fr/jeu', 96, H - 460, W - 192);
       return new Promise((ok) => cv.toBlob(ok, 'image/png'));
     }
 
@@ -228,7 +183,8 @@
 
     async function partager() {
       const url = 'https://qm-engineering.fr/jeu';
-      const texte = `Ma désorganisation me coûte environ ${euros(dernier.total)} par an. Et vous ? Le test en 2 minutes :`;
+      const m = synthese(dernier);
+      const texte = `Ma désorganisation me coûte ${m.length ? m.join(', ') : 'presque rien'} par an. Et vous ? Le test en 1 minute :`;
       compter('diagnostic-partage', 'Diagnostic : partage');
       try {
         const blob = await image();
