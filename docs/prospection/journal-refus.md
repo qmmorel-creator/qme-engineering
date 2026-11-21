@@ -25,3 +25,4 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-21 | Ferme Angevine | `contact@lafermeangevine.com` | réponse auto | non |
 | 2026-11-21 | La Conciergerie Avignon | `bonjour@laconciergerieavignon.com` | réponse auto | non |
 | 2026-11-21 | Les Copywriters (support) | `support@les-copywriters.com` | autre (accusé du support : « nous reviendrons vers vous ») | non |
+| 2026-11-21 | Tot de Casa, Oloron (Margaux Dalbavie) | `magasin.totdecasa@gmail.com` | refus poli (outil de caisse et de facturation déjà en place) | oui |
