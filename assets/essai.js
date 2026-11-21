@@ -1,5 +1,5 @@
 // Essai gratuit des templates QME (décision de Quentin, 18/11/2026) : module commun, chargé par chaque
-// application « vie personnelle » AVANT son app.js :
+// application ouverte à l'essai (vie personnelle et pro) AVANT son app.js :
 //   <script src="/assets/essai.js?v=…" data-produit="BDG" data-slug="budget"></script>
 //
 // Le module ne touche pas au code de l'application. Il s'appuie sur le socle commun (clés qme-<pre>-code et

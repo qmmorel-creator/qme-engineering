@@ -284,9 +284,35 @@
     });
   }
 
+  // ---------- Liaison avec Gestion Dépenses Communes (T99) ----------
+  // Une opération « importée » par mois (id commun-AAAA-MM, origine 'commun') porte la part du commun calculée par
+  // BCM.partDuMois. Elle est remplacée à chaque mise à jour, jamais doublée, et retirée si la part tombe à zéro.
+  // Les mois sans part calculée (absents de `parts`) gardent leur opération telle quelle.
+  const ID_COMMUN = (mois) => `commun-${mois}`;
+  function libelleCommun(mode) { return mode === 'compte' ? 'Versement au compte commun' : 'Ma part des dépenses communes'; }
+  function appliquerPartsCommun(operations, parts, { categorieId, sousId = null } = {}) {
+    const parMois = new Map(parts.map((p) => [p.mois, p]));
+    const garde = operations.filter((o) => o.origine !== 'commun' || !parMois.has(moisDe(o.date)));
+    const ajout = [];
+    for (const p of parts) {
+      if (!Number.isInteger(p.montant) || p.montant <= 0) continue;
+      ajout.push({ id: ID_COMMUN(p.mois), type: 'depense', montant: p.montant, categorieId, sousId, sourceId: null,
+        libelle: libelleCommun(p.mode), date: `${p.mois}-01`, origine: 'commun' });
+    }
+    return [...garde, ...ajout].sort((a, b) => a.date.localeCompare(b.date));
+  }
+  // Mois à recalculer : depuis la liaison (au plus 12 mois en arrière) jusqu'au mois courant.
+  function moisALier(depuis, courant) {
+    const debut = depuis && depuis <= courant ? (ecartMois(depuis, courant) > 11 ? ajoutMois(courant, -11) : depuis) : courant;
+    const liste = [];
+    for (let m = debut; m <= courant; m = ajoutMois(m, 1)) liste.push(m);
+    return liste;
+  }
+
   racine.BDG = {
     GROUPES, versCentimes, euros, eurosRonds, moisDe, ajoutMois, joursDansMois, ecartMois, repartirPoids,
     enveloppeDu, indexDepenses, depensesDuMois, revenusDuMois, revenusPrevus, statutEnveloppe, etatEnveloppes,
     parGroupe, repere503020, fluxSankey, dispositionSankey, genererFixes, serieMois, ecartsCategories,
+    appliquerPartsCommun, moisALier, libelleCommun,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

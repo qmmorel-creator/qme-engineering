@@ -51,7 +51,7 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 | 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
 | 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
 | 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS et MSC **en vente depuis le 18/11** |
-| **1** | **Fiche du Pack Budget perso et famille** (demande de Quentin, 20/11) | PBF | budget-perso-famille | 47 € (évolutif 59 €) | **Prioritaire.** Les 5 templates sont en vente. Création refusée le 20/11 (limite des 10 par 24 h), possible à partir du 21/11 à 08:51 (Paris). Voir « Pack Budget perso et famille » ci-dessous |
+| **1** | **Fiche du Pack Budget perso et famille** (demande de Quentin, 20/11) | PBF | budget-perso-famille | 47 € (évolutif 59 €) | **Brouillon créé le 21/11** (`FbVA2eJXNqKeGcjM5sA1aQ==`, voir `gumroad-brouillons.md`) : reste la clé de licence et les deux versions (Quentin), puis publication |
 | 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
 
 ### Pack Budget perso et famille (PBF) : réglages de la fiche

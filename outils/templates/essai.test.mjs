@@ -1,4 +1,4 @@
-// Essai gratuit des templates « vie personnelle » : codes datés, lecture seule, report à l'achat, e-mails, effacement.
+// Essai gratuit des templates (vie personnelle et pro) : codes datés, lecture seule, report à l'achat, e-mails, effacement.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { traiter, genererCodeEssai, verifierCodeEssai, verifierCode, etatEssai, codeDepuisLicence, ESSAI, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
@@ -27,17 +27,27 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
   return { statut: r.status, corps: await r.json() };
 };
 
-test('templates ouverts à l\'essai : les 29 « vie personnelle » en vente, payants', () => {
-  assert.equal(PRODUITS_ESSAI.length, 29);
-  for (const p of PRODUITS_ESSAI) {
-    assert.equal(TEMPLATES[p].pour, 'perso');
-    assert.ok(PRODUITS[p].gumroad && TEMPLATES[p].prix > 0 && TEMPLATES[p].permalien, p);
-  }
+test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
+  const attendus = Object.keys(PRODUITS).filter((p) => ['perso', 'pro'].includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
+  assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
+  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'perso').length, 29);
+  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'pro').length, 39);
+  for (const p of PRODUITS_ESSAI) assert.ok(PRODUITS[p].gumroad && TEMPLATES[p].prix > 0 && TEMPLATES[p].permalien, p);
   assert.ok(!PRODUITS_ESSAI.includes('SNT'), 'Secret Santa est gratuit');
-  assert.ok(!PRODUITS_ESSAI.includes('GNT'), 'Gantt est professionnel');
   assert.equal(produitEssai('budget'), 'BDG');
   assert.equal(produitEssai('bdg'), 'BDG');
-  assert.equal(produitEssai('gantt'), null);
+  assert.equal(produitEssai('gantt'), 'GNT');
+  assert.equal(produitEssai('inconnu'), null);
+});
+
+test('chaque application ouverte à l\'essai charge le module essai.js avant son code', async () => {
+  const { readFileSync } = await import('node:fs');
+  for (const p of PRODUITS_ESSAI) {
+    const html = readFileSync(new URL(`../..${PRODUITS[p].url}index.html`, import.meta.url), 'utf8');
+    const i = html.search(new RegExp(`essai\\.js[^>]*data-produit="${p}" data-slug="${TEMPLATES[p].slug}"`));
+    assert.ok(i > 0, `${p} : essai.js absent`);
+    assert.ok(i < html.search(/<script src="(donnees|regles|app)\.js/), `${p} : essai.js doit précéder le code de l'application`);
+  }
 });
 
 test('code d\'essai : date inscrite dans le code, signature distincte des codes achetés', () => {
@@ -93,7 +103,7 @@ test('création : code, e-mail de remerciement, un essai par adresse et par temp
 
 test('création refusée : template non ouvert, e-mail invalide, sans accord, robot, trop d\'essais par IP', async () => {
   const w = monde();
-  assert.equal((await creer(w, { produit: 'gantt', email: 'a@b.fr' })).statut, 400);
+  assert.equal((await creer(w, { produit: 'potager', email: 'a@b.fr' })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'pas-une-adresse' })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', consentement: false })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', site_web: 'http://spam' })).statut, 400);

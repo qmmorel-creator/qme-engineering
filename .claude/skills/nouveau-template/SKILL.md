@@ -16,11 +16,11 @@ template en reprend l'architecture, la charte et le niveau de finition. Avant de
 Langue : français partout (interface, commits, messages à Quentin). Tutoiement dans l'application,
 vouvoiement sur le site QME.
 
-> **Essai gratuit (décision de Quentin, 18/11/2026)** : tout template **vie personnelle** (`pour: 'perso'`) vendu
-> payant s'ouvre à **14 jours d'essai gratuit sans carte**, puis 30 jours en lecture seule, avec reprise des données
+> **Essai gratuit (décision de Quentin, 18/11/2026, étendu aux templates pro le 21/11/2026)** : tout template
+> **vie personnelle ou professionnel** (`pour: 'perso'` ou `'pro'`) vendu payant s'ouvre à **14 jours d'essai gratuit sans carte**, puis 30 jours en lecture seule, avec reprise des données
 > à l'achat et e-mails depuis la boîte de Quentin. Il entre dans l'essai **à sa mise en vente**, à chaque fois :
 > étapes marquées « Essai » ci-dessous, détail dans `reference.md` § « Essai gratuit » et
-> `docs/templates/essai-gratuit.md`. Templates professionnels : pas d'essai (démo seulement).
+> `docs/templates/essai-gratuit.md`.
 
 ## 0. Cadrer
 
@@ -64,14 +64,17 @@ Côté serveur, une seule ligne : ajouter le produit dans `PRODUITS` de
 `netlify/lib/templates-acces.mjs` (`nom`, `url`, `gumroad` une fois la fiche créée). Rien d'autre à écrire :
 connexion, licences Gumroad, stockage, conflits et essai gratuit sont communs.
 
-**Essai (template vie personnelle)** : dans `templates/<slug>/index.html`, charger le module commun **avant**
+**Essai (tout template payant)** : dans `templates/<slug>/index.html`, charger le module commun **avant**
 `donnees.js` et `app.js` :
 `<script src="/assets/essai.js?v=…" data-produit="PRE" data-slug="<slug>"></script>`. Le socle copié
 (`qme-<pre>-code`, `qme-<pre>-cache`, `/api/templates`, `.formulaire-acces`) doit rester intact : le module s'y
 appuie (bandeau, lecture seule, « J'ai acheté », lien d'essai sur l'écran de connexion). Une action qui ne modifie
 rien (navigation, filtre, export) et dont le nom n'est pas dans la liste `PERMIS` de `assets/essai.js` y est ajoutée,
 sinon elle serait bloquée en lecture seule. Dans `outils/packs/donnees.mjs`, l'entrée du template porte
-`pour: 'perso'`, son `prix` et, à la mise en vente, son `permalien` Gumroad (lien d'achat du bandeau et des e-mails).
+`pour`, son `prix` et, à la mise en vente, son `permalien` Gumroad (lien d'achat du bandeau et des e-mails : sans lui,
+le template n'entre pas dans l'essai). Ajouter sa fiche dans `netlify/lib/essais-prise-en-main.mjs` (premier pas, deux
+fonctions peu visibles, question d'aide ; tirées de la page catalogue, sans libellé de bouton non vérifié) : elle nourrit
+l'e-mail J+2 et l'e-mail d'achat direct ; sans elle, `npm test` échoue.
 
 Charte : **Bauhaus « Pastel »** (filets de 1 px, grands arrondis, fonds teintés, aucune ombre dure),
 jetons et composants dans `reference.md` § Charte ; partir du socle copié, qui l'applique déjà. Graphiques : charger le skill `dataviz`,
@@ -95,11 +98,11 @@ valider la palette avec son script et compenser ce qui échoue (contours, légen
   sur téléphone, « Comme une application » suit sa fermeture. Relire chaque phrase contre le code.
   Script : `node outils/templates/guide-e2e.cjs <slug> <dossier-captures>` (démo, ordinateur, iPhone,
   Pixel), serveur local lancé ; le premier lancement avec un vrai code se teste à part.
-- **Essai (template vie personnelle)** : `QME_LICENCES_TEST=1 PORT=8899 node outils/templates/serveur-local.mjs`, puis
+- **Essai** : `QME_LICENCES_TEST=1 PORT=8899 node outils/templates/serveur-local.mjs`, puis
   `node outils/essai/e2e.cjs <slug> <dossier-captures>` : essai lancé depuis `/essai/`, bandeau, données, lecture
   seule 15 jours plus tard (onglets libres, modifications bloquées, aucun enregistrement envoyé), « J'ai acheté »,
   données reprises ; téléphone sans débordement. Regarder les captures. `npm test` couvre le serveur
-  (`essai.test.mjs` compte les templates ouverts à l'essai : mettre à jour le nombre attendu).
+  (`essai.test.mjs` compte les templates ouverts à l'essai par public : mettre à jour le nombre attendu).
 - Relire la liste des pièges de `reference.md` et vérifier chacun.
 
 ## 3. Intégrer au site et à Gumroad
@@ -133,7 +136,7 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
    change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
-6. **Essai (template vie personnelle, à la mise en vente)** : `node outils/essai/generer.mjs` (ajoute le template au
+6. **Essai (tout template payant, à la mise en vente)** : `node outils/essai/generer.mjs` (ajoute le template au
    formulaire `/essai/` et l'essai à sa page catalogue : premier bouton « Essai gratuit 14 jours », « Acheter » en
    second, mention sous le prix, question « Y a-t-il un essai gratuit ? », rappel), puis les deux commandes du point 7.
 7. **Référencement de la page catalogue** (`reference.md` § « Référencement », obligatoire) : title et
@@ -201,6 +204,6 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
   connexion, `PRODUITS`), sans attendre le prochain lot. Liste à cocher : `reference.md`
   § « À chaque publication Gumroad ». Un template publié sur Gumroad ne doit jamais rester affiché
   « Bientôt » sur le site, et inversement aucun bouton Acheter n'apparaît avant la publication.
-- **Essai (template vie personnelle)** : après la fusion, lancer un essai réel sur `/essai/` avec une adresse de
+- **Essai** : après la fusion, lancer un essai réel sur `/essai/` avec une adresse de
   Quentin (e-mail « Merci d'essayer… » reçu, expéditeur correct), puis vérifier le bandeau dans l'application.
 - Statut `prêt` puis `en vente` dans `docs/templates/IDEES.md`.

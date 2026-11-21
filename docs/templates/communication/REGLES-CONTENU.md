@@ -47,13 +47,13 @@ Noter la couleur dominante dans le journal de la tâche pour tenir la rotation.
 Aucune vidéo muette : musique choisie automatiquement dans la bibliothèque QME (`docs/videos/musique/README.md`),
 piste vérifiée par `ffprobe` avant tout dépôt.
 
-## 7. Appel à l'action : l'essai gratuit (templates vie personnelle)
+## 7. Appel à l'action : l'essai gratuit (tous les templates en vente)
 
 Décision de Quentin du 18/11/2026. Pour toute publication **en français** (LinkedIn, Instagram, TikTok, YouTube Shorts)
-qui montre un template **vie personnelle en vente** (liste : `PRODUITS_ESSAI`, `netlify/lib/essais.mjs`), l'appel à
+qui montre un template **en vente, vie personnelle ou professionnel** (étendu aux templates pro le 21/11/2026 ; liste : `PRODUITS_ESSAI`, `netlify/lib/essais.mjs`), l'appel à
 l'action principal devient l'essai : « 14 jours d'essai gratuit, sans carte bancaire » ; vos données sont reprises si
 vous achetez. Lien : `qm-engineering.fr/essai/` (ou la page catalogue du template, dont le premier bouton est l'essai).
-Le prix et l'achat unique restent mentionnés en second. Templates professionnels, packs et sur mesure : inchangés.
+Le prix et l'achat unique restent mentionnés en second. Packs et sur mesure : inchangés (l'essai se fait template par template).
 **X n'est pas concerné** (campagne en anglais, sur mesure uniquement).
 Fonctionnement et parcours : `docs/templates/essai-gratuit.md`. À appliquer dès que la page `/essai/` est en ligne
 (fusion de la PR de l'essai gratuit).

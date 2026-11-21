@@ -1,4 +1,4 @@
-// Essai gratuit des templates « vie personnelle » (décision de Quentin, 18/11/2026).
+// Essai gratuit des templates (vie personnelle le 18/11/2026, professionnels le 21/11/2026 ; décisions de Quentin).
 //
 // Parcours : formulaire /essai/ → POST /api/essai → code d'essai (14 jours, sans carte) → l'application
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
@@ -105,8 +105,10 @@ async function lireContacts(essais) {
 export const CREATIONS_PAR_IP_ET_PAR_JOUR = 5;
 const TAILLE_MAX = 4000;
 
-// Templates ouverts à l'essai : « vie personnelle », en vente (identifiant Gumroad), payants.
-export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => TEMPLATES[p]?.pour === 'perso' && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
+// Templates ouverts à l'essai : vie personnelle (18/11/2026) et professionnels (extension préparée le 21/11/2026),
+// en vente (identifiant Gumroad et lien d'achat), payants.
+export const POUR_ESSAI = ['perso', 'pro'];
+export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => POUR_ESSAI.includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
 
 export function ficheEssai(produit) {
   const t = TEMPLATES[produit], p = PRODUITS[produit];

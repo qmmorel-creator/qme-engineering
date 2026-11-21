@@ -1,7 +1,7 @@
 # Essai gratuit des templates « vie personnelle »
 
 Décision de Quentin du 18/11/2026 : **14 jours d'essai gratuit, sans carte bancaire**, pour chaque template vie
-personnelle en vente ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
+personnelle en vente, **étendue aux templates professionnels le 21/11/2026** (`POUR_ESSAI` dans `netlify/lib/essais.mjs`) ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
 sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quentin**.
 
 ## Parcours du client
@@ -108,8 +108,8 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
   l'API des templates (`/api/templates/*`) accepte le code d'essai et renvoie `essai` (jours restants, fin, prix,
   lien d'achat) ; `PUT` refusé après la fin ; report à la connexion par clé de licence (`reporterEssai`).
 - **Tâche quotidienne** `netlify/functions/essais-quotidien.mjs` (8:10 UTC) : rappels, effacement.
-- **Templates ouverts** : `PRODUITS_ESSAI` = `pour: 'perso'` dans `outils/packs/donnees.mjs`, identifiant Gumroad
-  dans `PRODUITS`, prix > 0 (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
+- **Templates ouverts** : `PRODUITS_ESSAI` = `pour` dans `POUR_ESSAI` (perso et pro), identifiant Gumroad dans `PRODUITS`,
+  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
 - **Application** : module commun `assets/essai.js`, chargé avant `app.js` (`data-produit`, `data-slug`). Il ne
   modifie pas le code des templates : il lit les réponses de l'API, affiche le bandeau, bloque les modifications
   (actions permises : liste `PERMIS`), joint le code d'essai à la connexion par clé.

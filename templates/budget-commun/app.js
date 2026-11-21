@@ -112,20 +112,8 @@
   // ---------- Compte commun : calcul d'un mois ----------
   const idAlim = (m) => `a-${m}`;
   const alim = (m) => E.alimentations.find((x) => x.id === idAlim(m)) || null;
-  // Dépenses courantes prévues : celles du mois, sinon celles du dernier mois renseigné avant lui.
-  function courantesDe(m) {
-    const a = alim(m);
-    if (Number.isInteger(a?.courantes)) return a.courantes;
-    const avant = E.alimentations.filter((x) => x.mois < m && Number.isInteger(x.courantes)).sort((x, y) => y.mois.localeCompare(x.mois))[0];
-    return avant ? avant.courantes : 0;
-  }
   function calculCompte(m) {
-    const a = alim(m);
-    const ch = R.chargesPrevues(E.recurrentes, m, E.membres);
-    const courantes = courantesDe(m);
-    const autres = Number.isInteger(a?.autres) ? a.autres : 0;
-    const solde = Number.isInteger(a?.solde) ? a.solde : null;
-    const res = R.alimentation({ membres: E.membres, cle: E.reglages.cle, communes: ch.communes, perso: ch.perso, courantes, autres, solde: solde ?? 0 });
+    const { ch, courantes, autres, solde, ...res } = R.besoinCompte(E, m);
     const deja = R.verses(E.versements, m, E.membres);
     const reste = Object.fromEntries(E.membres.map((mb) => [mb.id, Math.max(0, res.versements[mb.id] - deja[mb.id])]));
     // Estimation de fin du mois précédent, proposée comme solde de départ.
@@ -1051,6 +1039,7 @@
         <h2>Un code, les mêmes comptes pour tous.</h2>
         <p>Copie le code de partage et envoie-le aux membres du foyer. Chacun ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et le saisit : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
         <p><b>Ce code n'ouvre que ce budget commun.</b> Si tu as acheté un pack, ton budget perso et tes autres templates restent privés. Ne donne jamais la clé de licence d'un pack : elle ouvre tous ses templates.</p>
+        <p><b>Et ton budget perso ?</b> Colle ce même code dans Mon Budget (Réglages, Gestion Dépenses Communes) : ta part du mois s'y ajoute, sans que le foyer voie ton budget.</p>
         <p><b>Attention :</b> le code donne un accès complet (ajouter, modifier, supprimer). Ne le donne qu'aux personnes du foyer.</p></div>
         ${session.demo ? '' : `<button class="btn jaune" data-action="copier-cle">Copier le code de partage</button>`}
       </section>
