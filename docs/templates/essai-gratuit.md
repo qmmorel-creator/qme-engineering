@@ -32,7 +32,8 @@ sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quen
 | Nouvelle demande, même adresse | Votre code d'essai : <template> | Code renvoyé (jamais affiché à l'écran) |
 
 Aucun e-mail après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
-essai. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
+essai. Signature graphique (variante C, 21/11/2026) dans la version HTML : `netlify/lib/signature.mjs`,
+voir `docs/templates/communication/signature/`. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
 template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
 
 ### Configuration de l'envoi (une fois, par Quentin)
