@@ -84,6 +84,9 @@ function vueEssai(reg, aujourdhui) {
     statut: reg.achete || reg.paye ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
     achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
     mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
+    // Pour /admin/suivi/ (21/11/2026) : date de chaque e-mail parti (« saute » : rattrapé par un e-mail plus avancé
+    // le même jour), date du paiement notifié par Gumroad, code produit et prix.
+    envois: { ...(reg.mails || {}) }, paye: reg.paye || null, produit: reg.produit, prix: f.prix,
   };
 }
 export function csvEssais(vues) {

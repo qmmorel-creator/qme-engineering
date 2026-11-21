@@ -415,6 +415,9 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   assert.deepEqual([d.total, d.enCours, d.termines, d.achetes], [2, 1, 0, 1]);
   const achete = d.essais.find((e) => e.email === 'achete@b.fr');
   assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Mon Budget']);
+  // Champs du suivi (/admin/suivi/) : date de l'e-mail de remerciement, produit, prix, paiement.
+  assert.match(achete.envois.merci, /^\d{4}-\d{2}-\d{2}T/);
+  assert.deepEqual([achete.produit, typeof achete.prix, achete.paye], ['BDG', 'number', null]);
   assert.equal(d.essais.find((e) => e.email === 'cours@b.fr').joursRestants, 14);
   w.horloge.t = T0 + 15 * JOUR;
   assert.equal((await (await adminApi(w, 'GET', '/essais')).json()).termines, 1);
