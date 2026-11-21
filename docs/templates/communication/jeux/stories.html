@@ -78,7 +78,7 @@ body.partage{width:1200px;height:630px}
 <body>
 <script src="../../../../assets/quiz-qme.js"></script>
 <script>
-const QUIZ = window.QUIZ_QME; // source unique : assets/quiz-qme.js (aussi utilisée par /defi/)
+const QUIZ = window.QUIZ_QME; // source unique : assets/quiz-qme.js
 window.QUIZ = QUIZ;
 const prm = new URLSearchParams(location.search);
 const COUL = { rouge: ['#D9302A', '#fff'], jaune: ['#F5B400', '#141414'], bleu: ['#1D4E89', '#fff'] };
@@ -86,8 +86,8 @@ const signe = () => `<span class="signe"><svg viewBox="0 0 80 80"><path d="M40,0
 if (prm.has('partage')) {
   document.body.className = 'partage';
   document.body.innerHTML = `<div class="rond"></div><div class="bloc"></div><div class="tri"></div>
-    <div class="p-g">${prm.get('partage') === 'defi' ? 'T\'es plus organisé que ton pote ?' : 'Combien te coûte ta désorganisation ?'}</div>
-    <div class="p-s">${prm.get('partage') === 'defi' ? 'Le défi QME · 8 questions · qm-engineering.fr/defi' : 'Le test en 1 minute · qm-engineering.fr/jeu'}</div>`;
+    <div class="p-g">${prm.get('partage') === 'defi' ? 'Défi 7 jours : qui tient le plus longtemps ?' : 'Combien te coûte ta désorganisation ?'}</div>
+    <div class="p-s">${prm.get('partage') === 'defi' ? 'Une habitude chacun · le perdant paie · qm-engineering.fr/defi' : 'Le test en 1 minute · qm-engineering.fr/jeu'}</div>`;
 } else {
   const n = Math.max(1, Math.min(QUIZ.length, Number(prm.get('q')) || 1));
   const q = QUIZ[n - 1];

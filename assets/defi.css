@@ -1,30 +1,33 @@
-/* Défi à envoyer à un pote (/defi/). Complète guides.css et diagnostic.css. */
-.defi-recu{margin:0 0 14px;padding:14px 18px;border-radius:16px;background:var(--encre);color:var(--papier)}
-.guide .defi-recu b{color:var(--papier);font-size:19px}
-.defi-depart{padding:20px}
-.defi-jeu{padding:24px}
-.defi-question{font-size:clamp(22px,4.6vw,28px);margin:4px 0 16px}
-.defi-liste{display:grid;gap:10px}
-.defi-choix{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px 16px;border:2px solid var(--encre);border-radius:14px;background:var(--surface);color:var(--encre);font:600 17px/1.3 Outfit,sans-serif;cursor:pointer;transition:transform .15s cubic-bezier(.2,.8,.2,1),background .15s}
-.defi-choix b{display:inline-grid;place-items:center;flex:none;width:34px;height:34px;border-radius:8px;background:var(--encre);color:var(--papier)}
-.defi-choix:hover:not(:disabled){background:var(--beurre)}
-.defi-choix:active:not(:disabled){transform:scale(.98)}
-.defi-choix:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
-.defi-choix:disabled{cursor:default;opacity:.55}
-.defi-choix.bon{opacity:1;background:var(--encre);color:var(--papier)}
-.defi-choix.bon b{background:var(--jaune);color:var(--encre)}
-.defi-choix.faux{opacity:1;background:var(--rose);border-color:var(--rouge)}
-@media (prefers-reduced-motion:reduce){.defi-choix{transition:none}}
-.defi-correction{margin-top:16px;padding:16px 18px;border-radius:16px;background:var(--rose)}
-.defi-correction.juste{background:var(--ciel)}
-.defi-verdict{font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
-.defi-grand{font-size:clamp(30px,7vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:4px 0 6px}
-.guide .defi-correction p{color:var(--encre)}
-.defi-duel{margin:0 0 16px;padding:14px 18px;border-radius:16px;background:var(--beurre);font-weight:800;font-size:20px}
-.defi-duel[data-issue="gagne"]{background:var(--ciel)}
-.defi-duel[data-issue="perdu"]{background:var(--rose)}
-.defi-envoi{padding:16px 0;border-top:1px solid var(--trait)}
-.defi-envoi .diag-actions{justify-content:flex-start}
-.defi-outils{padding-top:8px}
-.defi-outils h2{font-size:22px;margin:8px 0 10px}
-.defi-outils a{font-weight:700}
+/* Défi 7 jours entre potes (/defi/). Complète guides.css et diagnostic.css. */
+.defi-form{padding:20px}
+.defi-idees{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.defi-idees span{color:var(--discret)}
+.defi-idees button{border:1px solid var(--trait);background:var(--papier);border-radius:999px;padding:6px 12px;font:500 14px Outfit,sans-serif;color:var(--encre);cursor:pointer}
+.defi-idees button:hover{background:var(--beurre)}
+.defi-note{margin-top:12px;font-size:14px;color:var(--discret)}
+.defi-invitation{margin:0 0 16px;padding:16px 18px;border-radius:16px;background:var(--encre);font-weight:700;font-size:19px}
+.guide .defi-invitation{color:var(--papier)}
+.defi-etat{margin:0 0 16px;padding:14px 18px;border-radius:16px;background:var(--beurre);font-weight:800;font-size:19px}
+.defi-moi{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.defi-gros{font-size:18px;padding:14px 22px}
+.defi-gros.fait{background:var(--bleu)}
+.defi-tableau{display:grid;gap:6px;margin-bottom:18px}
+.defi-ligne{display:grid;grid-template-columns:minmax(0,2fr) repeat(7,minmax(0,1fr)) minmax(0,.9fr);gap:4px;align-items:center}
+.defi-tete span{font-size:12px;font-weight:700;color:var(--discret);text-align:center}
+.defi-tete span.auj{color:var(--rouge)}
+.defi-nom{display:flex;flex-direction:column;min-width:0;padding-right:4px}
+.defi-nom b,.defi-nom small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.defi-nom small{font-size:12px;color:var(--texte-2)}
+.defi-ligne .case{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;background:var(--sable);font-weight:800;font-size:15px}
+.defi-ligne .case.fait{background:var(--encre);color:var(--papier)}
+.defi-ligne .case.rate{background:var(--rose);color:var(--rouge)}
+.defi-ligne .case.auj{outline:2px solid var(--rouge);outline-offset:1px}
+.defi-ligne .total{text-align:center;font-weight:800}
+.defi-ligne.moi .defi-nom b{color:var(--bleu)}
+.defi-ligne.gagnant .total{background:var(--jaune);border-radius:8px;padding:4px 0}
+.defi-inviter,.defi-fin{padding:16px 0;border-top:1px solid var(--trait)}
+.defi-inviter .diag-actions,.defi-fin .diag-actions,.defi-perso .diag-actions{justify-content:flex-start}
+.defi-perso{margin-top:8px;padding:12px 0;border-top:1px solid var(--trait);font-size:15px}
+.defi-perso summary{cursor:pointer;font-weight:700}
+.defi-lien{word-break:break-all;font-size:13px;padding:8px 10px;background:var(--sable);border-radius:10px}
+.defi-chargement{color:var(--discret)}

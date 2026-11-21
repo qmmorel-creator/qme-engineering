@@ -5,9 +5,10 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const ctx = vm.createContext({});
-vm.runInContext(readFileSync('assets/diagnostic.js', 'utf8'), ctx);
-const { calculer, synthese } = ctx.DIAG;
-const ETAPES = ['revisions', 'budget', 'taches', 'habitudes'];
+ctx.window = ctx;
+for (const f of ['templates/temps-de-vie/donnees.js', 'templates/temps-de-vie/calculs.js', 'assets/diagnostic.js']) vm.runInContext(readFileSync(f, 'utf8'), ctx);
+const { calculer, synthese, tauxHoraire } = ctx.DIAG;
+const ETAPES = ['budget', 'taches', 'papiers', 'habitudes'];
 const seul = (cle) => new Set(ETAPES.filter((c) => c !== cle));
 
 test('budget : petits achats × 52 + abonnements non utilisés × 12', () => {
@@ -18,11 +19,31 @@ test('budget : petits achats × 52 + abonnements non utilisés × 12', () => {
   assert.ok(calculer({ petits: '-3' }, seul('budget')).erreur);
 });
 
+test('budget : conversion facultative en heures de travail, méthode Temps de vie (35 h × 52 semaines)', () => {
+  const horaire = tauxHoraire(1820, 35); // 1 820 € × 12 / (35 × 52) = 12 €/h
+  assert.ok(Math.abs(horaire - 12) < 1e-9);
+  const t = ctx.TDV_CALCUL.taux({ revenuMensuel: 1820, heuresSemaine: 35 }, 'contrat', ctx.BASE.defauts);
+  assert.equal(horaire, t.horaire, 'même résultat que le template');
+  const r = calculer({ petits: '20', abonnements: '10', revenu: '1 820' }, seul('budget'));
+  assert.ok(Math.abs(r.heuresTravail - 1160 / 12) < 1e-9);
+  assert.equal(calculer({ petits: '20' }, seul('budget')).heuresTravail, undefined, 'sans revenu, pas de conversion');
+  assert.ok(calculer({ petits: '20', revenu: 'abc' }, seul('budget')).erreur);
+});
+
 test('tâches : minutes par jour × 365 / 60', () => {
   assert.equal(calculer({ minutes: '15' }, seul('taches')).heures, (15 * 365) / 60);
   assert.equal(calculer({ minutes: '0' }, seul('taches')).heures, 0);
   assert.ok(calculer({ minutes: '' }, seul('taches')).erreur);
   assert.ok(calculer({ minutes: 'abc' }, seul('taches')).erreur);
+});
+
+test('papiers : recherches par an × minutes, ajoutées aux heures des tâches', () => {
+  assert.equal(calculer({ recherches: '6', minutesPapier: '20' }, seul('papiers')).heures, 2);
+  assert.equal(calculer({ recherches: '0' }, seul('papiers')).heures, 0);
+  assert.ok(calculer({ recherches: '6' }, seul('papiers')).erreur, 'minutes manquantes');
+  assert.ok(calculer({ recherches: '2,5', minutesPapier: '10' }, seul('papiers')).erreur);
+  const r = calculer({ minutes: '15', recherches: '6', minutesPapier: '20' }, new Set(['budget', 'habitudes']));
+  assert.equal(r.heures, (15 * 365) / 60 + 2);
 });
 
 test('habitudes : (objectif − réel) × 52, jamais négatif', () => {
@@ -35,23 +56,7 @@ test('habitudes : (objectif − réel) × 52, jamais négatif', () => {
 });
 
 test('synthèse : seuls les montants non nuls, dans l\'ordre euros, heures, séances', () => {
-  const r = calculer({ petits: '5', minutes: '0', objectif: '3', reel: '1' }, new Set(['revisions']));
+  const r = calculer({ petits: '5', minutes: '0', recherches: '0', objectif: '3', reel: '1' });
   assert.deepEqual([...synthese(r)], ['260 €', '104 séances ratées']);
-  const vide = calculer({}, new Set(ETAPES));
-  assert.deepEqual([...synthese(vide)], []);
-});
-
-test('révisions : passages avant l\'examen selon la logique du Planning de révision (écarts 1, 3, 7, 14, 30 jours)', () => {
-  const { passagesAvantExamen, INTERVALLES } = ctx.DIAG;
-  const donnees = readFileSync('templates/revision/donnees.js', 'utf8');
-  assert.match(donnees, new RegExp(`intervalles: \\[${[...INTERVALLES].join(', ')}\\]`), 'intervalles alignés sur le template');
-  assert.equal(passagesAvantExamen(2), 1); // J+1, puis plus rien avant l'examen
-  assert.equal(passagesAvantExamen(10), 3); // J+1, J+4, puis ramené à la veille (J+9)
-  assert.equal(passagesAvantExamen(30), 5); // J+1, J+4, J+11, J+25, puis la veille (J+29)
-  assert.equal(passagesAvantExamen(90), 6); // J+1, J+4, J+11, J+25, J+55, finale à J+88
-  const r = calculer({ chapitres: '40', jours: '30' }, seul('revisions'));
-  assert.equal(r.revisions.total, 200);
-  assert.equal(r.euros + r.heures + r.seances, 0, 'hors total');
-  assert.ok(calculer({ chapitres: '0', jours: '30' }, seul('revisions')).erreur);
-  assert.ok(calculer({ chapitres: '40', jours: '1' }, seul('revisions')).erreur);
+  assert.deepEqual([...synthese(calculer({}, new Set(ETAPES)))], []);
 });

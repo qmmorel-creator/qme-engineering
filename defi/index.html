@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Le défi QME : t'es plus organisé que ton pote ? · QME</title>
-<meta name="description" content="8 questions sur les révisions, le budget, les tâches et les habitudes. Fais ton score, envoie le défi à un pote, et vois qui gagne.">
+<title>Défi 7 jours : qui tient le plus longtemps ? · QME</title>
+<meta name="description" content="Choisis une habitude, défie tes potes. Pendant 7 jours, chacun coche ses journées tenues. Le perdant paie le pari.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/defi/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Le défi QME : t'es plus organisé que ton pote ?">
-<meta property="og:description" content="8 questions, 1 minute. Fais mieux que ton pote.">
+<meta property="og:title" content="Défi 7 jours : qui tient le plus longtemps ?">
+<meta property="og:description" content="Une habitude chacun, 7 jours, un tableau commun. Le perdant paie.">
 <meta property="og:url" content="https://qm-engineering.fr/defi/">
 <meta property="og:image" content="https://qm-engineering.fr/assets/defi-partage.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -17,8 +17,8 @@
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
 <link rel="stylesheet" href="/assets/guides.css?v=2026111501">
-<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112103">
-<link rel="stylesheet" href="/assets/defi.css?v=2026112101">
+<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112104">
+<link rel="stylesheet" href="/assets/defi.css?v=2026112102">
 </head>
 <body>
 
@@ -41,60 +41,68 @@
 <main>
 <article class="guide diag">
 <div class="guide-corps" data-defi>
+  <p class="diag-sourcil">Défi 7 jours · entre potes</p>
+  <h1 data-titre>Qui tient le plus longtemps ?</h1>
+  <p class="erreur" data-erreur role="alert" hidden></p>
+  <p class="defi-chargement" data-chargement hidden>Chargement du défi…</p>
 
-  <!-- Accueil -->
-  <section data-accueil>
-    <p class="diag-sourcil">Le défi · 8 questions · 1 minute</p>
-    <h1>T'es plus organisé que ton pote ?</h1>
-    <p class="defi-recu" data-recu hidden><b data-recu-texte></b></p>
-    <p class="chapeau">Révisions, budget, tâches, habitudes : 8 questions, une réponse juste à chaque fois. Fais ton score, puis envoie le défi à un pote. Le meilleur gagne.</p>
-    <form class="calculateur defi-depart" data-prenom-form novalidate>
-      <div class="champs un">
-        <label>Ton prénom (facultatif)<input name="prenom" maxlength="20" autocomplete="given-name" placeholder="ex. Léa"><small>Il apparaît seulement dans le lien que tu envoies.</small></label>
+  <!-- Créer -->
+  <section data-ecran="creer" hidden>
+    <p class="chapeau">Choisis une habitude et défie tes potes. Pendant 7 jours, chacun coche les journées où il a tenu. Le tableau est commun : tout le monde voit qui lâche. À la fin, le perdant paie le pari.</p>
+    <form class="calculateur defi-form" data-form-creer novalidate>
+      <div class="champs">
+        <label>Ton pseudo<input name="pseudo" maxlength="20" autocomplete="nickname" placeholder="ex. Léa" required></label>
+        <label>Ton habitude pour 7 jours<input name="habitude" maxlength="40" autocomplete="off" placeholder="ex. 20 min de sport" required></label>
+        <label>Le pari (facultatif)<input name="pari" maxlength="40" autocomplete="off" placeholder="ex. le café"><small>ce que paie le perdant</small></label>
       </div>
-      <div class="diag-actions">
-        <button class="btn primary" type="button" data-commencer>Commencer le défi</button>
-      </div>
+      <p class="defi-idees" data-idees="habitude"><span>Idées :</span> <button type="button">20 min de sport</button> <button type="button">Pas d'écran après 23 h</button> <button type="button">Lire 10 pages</button> <button type="button">2 L d'eau</button> <button type="button">Zéro livraison de repas</button></p>
+      <p class="defi-idees" data-idees="pari"><span>Paris :</span> <button type="button">le café</button> <button type="button">le resto</button> <button type="button">le kebab</button> <button type="button">la prochaine tournée</button></p>
+      <p class="defi-note">Ton pseudo et ton habitude sont visibles des participants. Pas d'information sensible (santé, adresse…).</p>
+      <div class="diag-actions"><button class="btn primary" type="submit" data-goatcounter-click="defi-creer" data-goatcounter-title="Défi : création">Lancer le défi</button></div>
     </form>
   </section>
 
-  <!-- Jeu -->
-  <section class="calculateur defi-jeu" data-jeu hidden aria-live="polite">
-    <div class="diag-progression" aria-hidden="true"><span data-barre></span></div>
-    <p class="diag-compte" data-compte></p>
-    <h2 class="defi-question" data-question></h2>
-    <div class="defi-liste" data-choix></div>
-    <div class="defi-correction" data-correction hidden>
-      <p class="defi-verdict" data-verdict></p>
-      <p class="defi-grand" data-grand></p>
-      <p data-explication></p>
-      <div class="diag-actions"><button class="btn primary" type="button" data-suivante>Question suivante</button></div>
-    </div>
+  <!-- Rejoindre -->
+  <section data-ecran="rejoindre" hidden>
+    <p class="defi-invitation" data-invitation></p>
+    <form class="calculateur defi-form" data-form-rejoindre novalidate>
+      <div class="champs">
+        <label>Ton pseudo<input name="pseudo" maxlength="20" autocomplete="nickname" placeholder="ex. Hugo" required></label>
+        <label>Ton habitude pour 7 jours<input name="habitude" maxlength="40" autocomplete="off" placeholder="ex. lire 10 pages" required></label>
+      </div>
+      <p class="defi-idees" data-idees="habitude"><span>Idées :</span> <button type="button">20 min de sport</button> <button type="button">Pas d'écran après 23 h</button> <button type="button">Lire 10 pages</button> <button type="button">2 L d'eau</button> <button type="button">Zéro livraison de repas</button></p>
+      <p class="defi-note">Ton pseudo et ton habitude sont visibles des participants. Pas d'information sensible (santé, adresse…).</p>
+      <div class="diag-actions"><button class="btn primary" type="submit" data-goatcounter-click="defi-rejoindre" data-goatcounter-title="Défi : un pote rejoint">Relever le défi</button></div>
+    </form>
   </section>
 
-  <!-- Fin -->
-  <section class="defi-fin" data-fin hidden>
-    <p class="diag-sourcil">Ton score</p>
-    <p class="diag-total"><span data-score>0/8</span><small data-score-verdict></small></p>
-    <p class="defi-duel" data-duel hidden></p>
-    <div class="defi-envoi">
-      <p><b>Envoie le défi à un pote.</b> Il voit ton score et doit faire mieux.</p>
-      <div class="diag-actions">
-        <button class="btn primary" type="button" data-envoyer>Défier un pote</button>
-        <button class="btn" type="button" data-rejouer>Rejouer</button>
-      </div>
-      <p class="diag-note" data-copie hidden></p>
+  <!-- Tableau -->
+  <section data-ecran="tableau" hidden>
+    <p class="defi-etat" data-etat></p>
+    <div class="defi-moi" data-moi hidden>
+      <button class="btn primary defi-gros" type="button" data-cocher="aujourdhui"></button>
+      <button class="btn" type="button" data-cocher="hier" hidden></button>
     </div>
-    <div class="defi-outils">
-      <h2>Les outils derrière les réponses</h2>
-      <ul data-produits></ul>
-      <p>Et combien te coûte ta désorganisation, en euros et en heures ? <a href="/jeu">Le test en 1 minute</a>.</p>
+    <div class="defi-tableau" data-tableau></div>
+    <div class="defi-inviter" data-inviter hidden>
+      <p><b>Invite tes potes</b> avant le premier jour : <span data-places></span></p>
+      <div class="diag-actions"><button class="btn primary" type="button" data-partager-invitation>Envoyer l'invitation</button></div>
+      <p class="diag-note" data-copie-invitation hidden></p>
     </div>
+    <div class="defi-fin" data-fin hidden>
+      <p>Garde ta série au-delà de 7 jours : <a href="/essai/?t=habitudes" data-goatcounter-click="defi-essai-habitudes" data-goatcounter-title="Défi : essai Suivi d'habitudes">Suivi d'habitudes, 14 jours d'essai gratuit</a>, sans carte.</p>
+      <div class="diag-actions"><a class="btn primary" href="/defi/">Lancer un nouveau défi</a></div>
+    </div>
+    <details class="defi-perso" data-perso hidden>
+      <summary>Ton lien perso (pour cocher depuis un autre appareil)</summary>
+      <p>Garde-le pour toi : il permet de cocher à ta place.</p>
+      <p class="defi-lien" data-lien-perso></p>
+      <div class="diag-actions"><button class="btn" type="button" data-copier-perso>Copier mon lien perso</button> <button class="btn" type="button" data-quitter>Quitter le défi et effacer mes données</button></div>
+    </details>
   </section>
 
   <noscript><p class="erreur">Le défi a besoin de JavaScript.</p></noscript>
-  <p class="confidentialite">Rien n'est enregistré : ton prénom et ton score ne voyagent que dans le lien que tu choisis d'envoyer. Seuls le début, la fin et l'envoi du défi sont comptés, sans donnée personnelle (GoatCounter, sans cookie).</p>
-  <p class="guide-mention">Les sources des réponses : l'étude de Lally et al. (European Journal of Social Psychology, 2010) pour les 66 jours ; les méthodes et calculs des templates QME ; des exemples fictifs pour les montants. Ce n'est pas un conseil médical ou financier.</p>
+  <p class="confidentialite">Seuls ton pseudo, ton habitude, le pari et les jours cochés sont enregistrés (hébergement dans l'Union européenne), sans compte ni e-mail. Le défi est effacé 30 jours après sa fin ; tu peux le quitter à tout moment. Détails : <a href="/confidentialite/">confidentialité</a>.</p>
 </div>
 </article>
 </main>
@@ -105,8 +113,7 @@
 </footer>
 
 <script src="/assets/site.js?v=2026112004" defer></script>
-<script src="/assets/quiz-qme.js?v=2026112101" defer></script>
-<script src="/assets/defi.js?v=2026112101" defer></script>
+<script src="/assets/defi.js?v=2026112102" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

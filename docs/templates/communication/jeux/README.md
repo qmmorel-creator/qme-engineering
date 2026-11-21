@@ -13,7 +13,7 @@ Décisions du même jour :
 |---|---|---|---|
 | A | 9 stories quiz Instagram (à la main) + 8 Reels quiz « devine la réponse » (IG-168 à IG-175, repris sur TikTok) | **programmé** | du 23/11 au 01/12/2026 |
 | B | Test « Combien te coûte ta désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **en ligne** (PR #200 fusionnée le 21/11/2026) | lien en bio |
-| C | Défi « T'es plus organisé que ton pote ? » (`/defi/`) : les 8 questions du quiz, un score, un lien à envoyer, duel | **prêt, PR ouverte** (fusion sur feu vert) | dès la fusion |
+| C | Défi 7 jours entre potes (`/defi/`) : une habitude chacun, tableau commun, le perdant paie | **prêt, PR #203** (fusion sur feu vert) | dès la fusion |
 | E | Quiz de profil « Quel organisateur es-tu ? » (profils → révision, budget, tâches, habitudes, pack) | idée | prêt le 28/12, lancé le 02/01/2027 |
 
 Règles : `../REGLES-CONTENU.md` (problème chiffré, bascule, solution ; aucun chiffre inventé ; exemples fictifs ;
@@ -33,7 +33,7 @@ templates sont dans `PRODUITS_ESSAI` (vérifié le 21/11/2026).
 
 **Instagram, stories, à la main, chaque soir à 19:30** (après la publication de 19:00) : la story question (autocollant
 **Quiz**, bonne réponse cochée, posé sur la zone vide) **puis, juste après, la story réponse** du même quiz (autocollant
-Lien vers `/jeu` ou `/defi`) : décision de Quentin du 21/11/2026, plus de « réponse demain ».
+Lien vers `/jeu`) : décision de Quentin du 21/11/2026, plus de « réponse demain ».
 À ma connaissance l'API Instagram ne pose pas d'autocollant interactif : Instinct ne peut pas les publier.
 
 **Reels Instagram, programmés, 21:00** (décision de Quentin du 21/11/2026) : IG-168 à IG-175, du 23/11 au 30/11, un
@@ -72,7 +72,7 @@ programme qu'un soir sans Reel à 19:00 ou plus tard.
 Retours de Quentin du 21/11/2026 intégrés : quiz 1 (révision, sans intérêt) remplacé par les 66 jours ; quiz 4 (séances,
 trop trivial) remplacé par le traitement du matin ; quiz 5 simplifié ; quiz 7 reformulé (« Tu… ? Vite fait » ne voulait
 rien dire) ; quiz 8 (lecture) remplacé par « relire ou réciter ». Données : `assets/quiz-qme.js` (source unique, aussi
-utilisée par le défi `/defi/`).
+réutilisable par un futur jeu du site).
 
 Le lien des stories réponse (autocollant Lien) : `qm-engineering.fr/jeu`, en ligne depuis le 21/11/2026.
 
@@ -99,35 +99,42 @@ Le thème qui fait le plus réagir passe en tête du test B et oriente C et E.
 
 - Page `diagnostic/index.html`, script `assets/diagnostic.js` (calcul pur `DIAG.calculer`, testé par
   `outils/templates/diagnostic.test.mjs`), styles `assets/diagnostic.css`, lien court `/jeu` (`netlify.toml`).
-- 4 questions, chacune peut être passée ; aucune statistique extérieure :
-  - **révisions** : chapitres à revoir et jours avant l'examen → révisions à caser et nombre par jour, selon la logique
-    du Planning de révision (chaque révision faite le jour prévu avec « Moyen », hypothèse de la jauge du template) ;
-    c'est une charge, pas une perte : hors total ;
-  - **budget** : petits achats non prévus par semaine × 52 + abonnements non utilisés par mois × 12 → euros par an ;
-  - **tâches** : minutes perdues par jour × 365 → heures par an ;
-  - **habitudes** : (objectif − ce qui est tenu) par semaine × 52 → séances ratées par an.
-- Résultat : par exemple « 200 révisions à caser (≈ 6,7 par jour) » puis « 1 160 € · 91 h perdues · 104 séances ratées
-  par an » ; chaque ligne mène à l'essai gratuit du template. Image story à partager (« Ma désorganisation me coûte,
-  par an : … Et toi ? »).
+- 4 questions **universelles** (décision de Quentin du 21/11/2026 : les révisions, trop ciblées, sont retirées), chacune
+  peut être passée ; aucune statistique extérieure :
+  - **budget** : petits achats non prévus par semaine × 52 + abonnements non utilisés par mois × 12 → euros par an
+    (Mon Budget) ; revenu net facultatif → ces euros en **heures de travail**, méthode du template Temps de vie
+    (`TDV_CALCUL.taux`, convention « temps contractuel », 35 h × 52 semaines) ;
+  - **tâches** : minutes perdues par jour × 365 → heures par an (Gestionnaire de tâches) ;
+  - **papiers** : recherches d'un papier important par an × minutes → heures par an (Papiers du foyer) ;
+  - **habitudes** : (objectif − ce qui est tenu) par semaine × 52 → séances ratées par an (Suivi d'habitudes).
+- Résultat : par exemple « 1 160 €, soit 97 h de travail, et 93 h perdues et 104 séances ratées par an » ; chaque ligne
+  mène à l'essai gratuit du template. Image story à partager.
 - Mesure GoatCounter (sans cookie) : `diagnostic-debut`, `diagnostic-passer`, `diagnostic-resultat`,
-  `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<revisions|budget|taches|habitudes>`. Le chiffre qui
-  compte : résultats affichés → clics « Essayer », puis essais ouverts et achats ; relevé le lundi.
+  `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<budget|temps-de-vie|taches|papiers|habitudes>`.
 
-## C · Le défi `/defi/`
+## C · Défi 7 jours entre potes (`/defi/`)
 
-- Page `defi/index.html`, logique `assets/defi.js` (fonctions pures `DEFI.*`, testées par `outils/templates/defi.test.mjs`),
-  styles `assets/defi.css`, questions `assets/quiz-qme.js` (les 8 quiz avec bonne réponse ; le sondage est exclu).
-- Parcours : prénom facultatif → 8 questions, correction après chaque réponse (bonne réponse, explication) → score et
-  verdict → « Défier un pote » : partage natif, sinon copie de
-  `qm-engineering.fr/defi/?de=<prénom>&s=<score>&utm_source=defi&utm_medium=partage&utm_campaign=defi`.
-  À l'ouverture du lien : « Léa a fait 6/8. À toi de faire mieux », puis le duel (« Tu bats Léa : 8 contre 6 »,
-  « Égalité », « Léa gagne… Revanche ? »), et les 4 templates en essai gratuit + le test `/jeu`.
-- Rien n'est stocké : le prénom (nettoyé, 20 caractères, affiché en texte) et le score ne voyagent que dans le lien.
-  Un lien modifié à la main peut afficher un faux score : c'est un jeu, sans enjeu.
-- Mesure GoatCounter : `defi-debut`, `defi-fin` (avec le score), `defi-partage`, `defi-recu`, `defi-essai-<produit>`.
-  Le chiffre qui compte : défis envoyés → défis reçus ouverts (`defi-recu`) = viralité réelle.
-- Diffusion (une fois en ligne) : story après le dernier quiz (« Tu as eu combien ? Défie un pote »), autocollant Lien
-  `qm-engineering.fr/defi` ; à alterner avec `/jeu` en bio.
+Première version (quiz + score) retirée le 21/11/2026 : « aucun enjeu ». Concept retenu par Quentin le même jour :
+**défi 7 jours**, un vrai engagement entre potes, et le Suivi d'habitudes en miniature.
+
+- Parcours : je lance (pseudo, habitude, pari facultatif, idées en un clic) → j'envoie l'invitation
+  (`qm-engineering.fr/defi/?d=<id>`, partage natif ou copie) → mes potes la rejoignent jusqu'au premier jour inclus
+  (6 participants au plus) → le défi commence le lendemain de la création et dure 7 jours (heure de Paris) → chaque
+  jour : « J'ai tenu aujourd'hui », rattrapage de la veille possible → tableau commun (✓, ✗, total, série) → verdict :
+  « Léa gagne ! Hugo paie le café » ; égalité gérée → essai du Suivi d'habitudes (« garde ta série au-delà de
+  7 jours ») et « Lancer un nouveau défi ».
+- Technique : API `/api/defi` (`netlify/functions/defi.mjs`), logique pure `netlify/lib/defi.mjs` (testée par
+  `outils/templates/defi.test.mjs`), stockage `netlify/lib/defi-store.mjs` (Netlify Blobs, Francfort ; un fichier par
+  participant, aucune écriture concurrente), jetons personnels signés `<id>.<pid>.<hmac>` (rien à stocker), purge
+  quotidienne `netlify/functions/defi-purge.mjs` 30 jours après la fin. Page `defi/index.html`, `assets/defi.js`,
+  `assets/defi.css`, aperçu du lien `assets/defi-partage.png`. Section dédiée dans `confidentialite/`.
+- Données : pseudo, habitude, pari, jours cochés ; ni compte, ni e-mail, ni IP. Avertissement « pas d'information
+  sensible » sur les formulaires.
+- Mesure GoatCounter : `defi-creer`, `defi-cree`, `defi-invite`, `defi-recu`, `defi-rejoindre`, `defi-rejoint`,
+  `defi-coche`, `defi-essai-habitudes`. Les chiffres qui comptent : invitations envoyées → défis rejoints (viralité),
+  et jours cochés par participant (rétention : on revient chaque jour).
+- Limites connues : pas de rappel quotidien (aucun e-mail ni notification) ; un participant peut cocher sans avoir tenu
+  (c'est un jeu d'honneur entre potes).
 
 ## E · à faire
 

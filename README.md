@@ -69,16 +69,19 @@ Site promotionnel de Quentin Morel Engineering (QME).
   commercial sans attribution), normalisée à -16 LUFS, fondu de sortie de 3 s ; image inchangée. Les
   musiques des vidéos tournent sur 4 pistes, décrites dans le dépôt Nexora, `docs/qme/musiques/`
 - `diagnostic/` : test « Combien te coûte ta désorganisation ? » pour Instagram et TikTok (étudiants et jeunes adultes,
-  en tutoiement ; 4 questions : révisions, budget, tâches, habitudes ; résultat en euros, heures et séances par an, plus
-  la charge de révision avant l'examen, calculée comme le Planning de révision ; renvoi à l'essai du Planning de
-  révision, de Mon Budget, du Gestionnaire de tâches et du Suivi d'habitudes ; image story partageable), lien court
+  en tutoiement ; 4 questions universelles : budget, tâches, papiers, habitudes ; résultat en euros, heures et séances
+  par an, euros convertis en heures de travail si le revenu est donné (méthode du template Temps de vie) ; renvoi à
+  l'essai de Mon Budget, Temps de vie, Gestionnaire de tâches, Papiers du foyer et Suivi d'habitudes ; image story
+  partageable ; questions des quiz : `assets/quiz-qme.js`), lien court
   `/jeu`. Script `assets/diagnostic.js` (calcul testé par `outils/templates/diagnostic.test.mjs`), styles
   `assets/diagnostic.css`. Plan des jeux et quiz d'acquisition (stories quiz, vidéos TikTok, suites) :
   `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
-- `defi/` : défi « T'es plus organisé que ton pote ? » (8 questions, score, lien à envoyer qui ne porte que le prénom
-  facultatif et le score, duel à l'ouverture du lien, renvoi à l'essai des 4 templates). Questions communes aux stories
-  et Reels quiz : `assets/quiz-qme.js` (source unique) ; logique `assets/defi.js` (testée par
-  `outils/templates/defi.test.mjs`), styles `assets/defi.css`, aperçu du lien `assets/defi-partage.png`.
+- `defi/` : défi 7 jours entre potes (décision de Quentin du 21/11/2026) : chacun choisit une habitude, invite ses potes
+  par lien (jusqu'à 6), coche ses journées tenues pendant 7 jours (le jour même, ou la veille en rattrapage), tableau
+  commun, le perdant paie le pari. API `/api/defi` (`netlify/functions/defi.mjs`, logique `netlify/lib/defi.mjs`,
+  stockage `netlify/lib/defi-store.mjs` : Netlify Blobs à Francfort, un fichier par participant), jetons personnels
+  signés (HMAC de `TEMPLATES_SECRET`), aucune donnée hors pseudo, habitude, pari et jours cochés ; effacement 30 jours
+  après la fin (`defi-purge.mjs`, quotidien) ; mention dans `confidentialite/`. Tests : `outils/templates/defi.test.mjs`.
 - `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
   `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
   interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail

@@ -1,5 +1,5 @@
 // Quiz QME pour étudiants et jeunes adultes (tutoiement) : source unique des stories et Reels quiz
-// (docs/templates/communication/jeux/stories.html) et du défi à envoyer à un pote (/defi/).
+// (docs/templates/communication/jeux/stories.html), réutilisable par un futur jeu du site.
 // Chaque chiffre est un calcul sur un exemple fictif, ou vient d'un template ou d'une source citée dans `source`.
 (function (racine) {
   'use strict';
@@ -34,7 +34,7 @@
       choix: ['45', '80', '200', '400'], bonne: 2,
       grand: '200', texte: 'Sur 30 jours, c\'est environ 7 révisions par jour. Impossible à suivre de tête.',
       calcul: 'Le Planning de révision fait revenir chaque chapitre au bon moment et te donne la liste du jour.',
-      source: 'calcul ; 5 passages en 30 jours selon R.planifier (templates/revision/regles.js), vérifié par outils/templates/diagnostic.test.mjs', produit: 'Planning de révision', slugProduit: 'revision' },
+      source: 'calcul (40 × 5, donné dans la question)', produit: 'Planning de révision', slugProduit: 'revision' },
     { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Budget', slug: 'budget-50-30-20',
       question: 'Règle 50/30/20 : sur 1 200 € par mois, combien pour tes envies ?',
       choix: ['240 €', '360 €', '400 €', '600 €'], bonne: 1,
@@ -56,7 +56,7 @@
     { jour: 'mardi 01/12', couleur: 'bleu', theme: 'Sondage', slug: 'sondage',
       question: 'Ce que tu lâches en premier ?',
       choix: ['les révisions', 'le budget', 'le sport', 'la to-do list'], bonne: null,
-      grand: '1 minute', texte: 'Combien te coûte ta désorganisation ? 4 questions : tes révisions, tes euros, tes heures et tes séances perdues.',
+      grand: '1 minute', texte: 'Combien te coûte ta désorganisation ? 4 questions : tes euros, tes heures et tes séances perdues, sur un an.',
       calcul: '', source: 'diagnostic/', produit: '', slugProduit: '' },
   ];
 
