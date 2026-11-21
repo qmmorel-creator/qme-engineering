@@ -54,8 +54,8 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui a é
    zoom sur l'élément clé → geste(s) suivis par la caméra (`S('suivre')`) → emphase du résultat sur la
    ligne (`avantApres`, `flash`) → panoramique vers le résultat global (`cadrer`) → verdict (`tampon`,
    `eclat` si bonne nouvelle, `secouer` si mauvaise) → éventuel deuxième cas ou navigation vers un autre
-   écran → outro (`volet`, `outro` : nom du produit, bénéfice en une ligne, « Démo gratuite ·
-   qm-engineering.fr »).
+   écran → outro (`volet`, `outro` : nom du produit, bénéfice en une ligne, « Essai gratuit 14 jours ·
+   qm-engineering.fr/essai » pour un template en vente, sinon « Démo gratuite · qm-engineering.fr »).
 
 ## 2. Rendre et vérifier
 

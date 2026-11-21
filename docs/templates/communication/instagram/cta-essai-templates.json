@@ -1,0 +1,177 @@
+{
+ "ABN": {
+  "slug": "abonnements",
+  "prix": 900,
+  "nom": "Suivi des abonnements"
+ },
+ "MCE": {
+  "slug": "micro-entreprise",
+  "prix": 2500,
+  "nom": "Livre recettes-dépenses micro-entreprise"
+ },
+ "BCM": {
+  "slug": "budget-commun",
+  "prix": 1500,
+  "nom": "Gestion Dépenses Communes"
+ },
+ "GNT": {
+  "slug": "gantt",
+  "prix": 4500,
+  "nom": "Planning Gantt rapide"
+ },
+ "TCH": {
+  "slug": "taches",
+  "prix": 1900,
+  "nom": "Gestionnaire de tâches"
+ },
+ "VSA": {
+  "slug": "visa",
+  "prix": 3900,
+  "nom": "Circuit de visa des documents"
+ },
+ "NCF": {
+  "slug": "non-conformites",
+  "prix": 2000,
+  "nom": "Registre des non-conformités"
+ },
+ "CRM": {
+  "slug": "crm",
+  "prix": 2500,
+  "nom": "CRM freelance"
+ },
+ "RSV": {
+  "slug": "reserves",
+  "prix": 3900,
+  "nom": "Levée de réserves"
+ },
+ "MRG": {
+  "slug": "mariage",
+  "prix": 2900,
+  "nom": "Organisateur de mariage"
+ },
+ "HBT": {
+  "slug": "habitudes",
+  "prix": 1200,
+  "nom": "Suivi d'habitudes et routines"
+ },
+ "TRV": {
+  "slug": "travaux",
+  "prix": 2500,
+  "nom": "Pilote de travaux maison"
+ },
+ "RDV": {
+  "slug": "tableau-annuel",
+  "prix": 1500,
+  "nom": "Tableau de bord annuel et roue de vie"
+ },
+ "RCV": {
+  "slug": "impayes",
+  "prix": 1900,
+  "nom": "Relance des impayés"
+ },
+ "ETD": {
+  "slug": "etat-des-lieux",
+  "prix": 1900,
+  "nom": "État des lieux d’entrée et de sortie"
+ },
+ "RNT": {
+  "slug": "investissement-locatif",
+  "prix": 1500,
+  "nom": "Rentabilité d'un investissement locatif"
+ },
+ "DRP": {
+  "slug": "document-unique",
+  "prix": 2900,
+  "nom": "Document unique d'évaluation des risques"
+ },
+ "EQP": {
+  "slug": "planning-equipe",
+  "prix": 3500,
+  "nom": "Planning d'équipe et staffing"
+ },
+ "VHC": {
+  "slug": "flotte",
+  "prix": 3900,
+  "nom": "Gestion de flotte de véhicules"
+ },
+ "PHR": {
+  "slug": "planner",
+  "prix": 1500,
+  "nom": "Planner horaire"
+ },
+ "PRS": {
+  "slug": "prospection",
+  "prix": 2500,
+  "nom": "Pipeline de prospection B2B"
+ },
+ "PRC": {
+  "slug": "parc-informatique",
+  "prix": 3500,
+  "nom": "Gestion de parc informatique"
+ },
+ "DTT": {
+  "slug": "dettes",
+  "prix": 1200,
+  "nom": "Remboursement de dettes"
+ },
+ "NDF": {
+  "slug": "notes-de-frais",
+  "prix": 1500,
+  "nom": "Notes de frais et indemnités kilométriques"
+ },
+ "APD": {
+  "slug": "appel-decouverte",
+  "prix": 1200,
+  "nom": "Préparateur d'appel découverte"
+ },
+ "ARD": {
+  "slug": "onboarding",
+  "prix": 1900,
+  "nom": "Onboarding et offboarding salarié"
+ },
+ "CNG": {
+  "slug": "conges",
+  "prix": 1900,
+  "nom": "Suivi des congés et absences"
+ },
+ "STK": {
+  "slug": "stocks",
+  "prix": 2500,
+  "nom": "Stocks et inventaire"
+ },
+ "VTR": {
+  "slug": "leasing",
+  "prix": 1200,
+  "nom": "Simulateur leasing ou achat"
+ },
+ "RPS": {
+  "slug": "repas",
+  "prix": 1300,
+  "nom": "Repas de la semaine et liste de courses"
+ },
+ "MSC": {
+  "slug": "musculation",
+  "prix": 1900,
+  "nom": "Carnet de musculation et cross-training"
+ },
+ "CAR": {
+  "slug": "voiture",
+  "prix": 1300,
+  "nom": "Carnet de voiture"
+ },
+ "PGS": {
+  "slug": "lecture",
+  "prix": 1200,
+  "nom": "Suivi de lecture"
+ },
+ "TVA": {
+  "slug": "tva",
+  "prix": 1900,
+  "nom": "Suivi de TVA"
+ },
+ "SNH": {
+  "slug": "sinistre",
+  "prix": 2900,
+  "nom": "Dossier sinistre habitation"
+ }
+}
