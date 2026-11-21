@@ -1,3 +1,6 @@
+> **ANNULÉ le 21/11/2026** : la version musique QME a aussi été supprimée par TikTok. Ne pas lancer ce prompt ; ne plus
+> republier le Secret Santa sur TikTok. Voir `../tiktok/README.md`, section Secret Santa.
+
 Reprise TikTok · Secret Santa (à lancer le dimanche 22/11/2026, pas avant). Mission ponctuelle, hors planning. Note-la dans ton Journal.
 
 CONTEXTE
