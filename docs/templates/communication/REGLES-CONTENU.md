@@ -25,6 +25,38 @@ lisibles sans le son et sans ouvrir la publication. Une seule idée, 12 mots au 
 - avant / après, situation vécue (« Hugo à 120 %, un geste, plus personne en surcharge »).
 Interdits : « Découvrez… », « Saviez-vous… » sans chiffre, superlatifs, emoji en tête, chiffre inventé.
 
+### 3 bis. Référence vidéo : les 7 Reels du 20/11/2026 (choix de Quentin)
+
+Quentin préfère **largement** le dynamisme de ces vidéos : elles sont la **référence** pour tout Reel, Short ou vidéo
+démo. Dossier Drive de visualisation « Reels retravaillés · accroches 20-11 (à visualiser) »
+(`1ULlzfT_xuMVOwm_XW93C6TDgrPF8BccQ`).
+
+| Reel | Accroche (problème → bascule) | Source |
+|---|---|---|
+| IG-156 | « Compte joint : **−383,13 €** à la fin du mois. » → « Qui doit verser combien ? » | `docs/videos/scenarios/020-budget-commun-compte-joint.mjs` |
+| IG-155 | « **1 395 €** comptés en trop. » → « L'erreur : 0,636 € le km toute l'année. Au-delà de 5 000 km, le barème change. » | `instagram/production/IG-155.html` |
+| IG-131 | « 88 € par mois, ça passe… jusqu'à **1 060 €/an**. » → « 7 petits abonnements. Faisons le compte. » | `instagram/production/IG-131.html` |
+| IG-56 | « Votre liste fait **80 lignes**… et vous ne savez toujours pas par quoi commencer. » → « Le problème n'est pas la liste. C'est le tri. » | `instagram/production/IG-56.html` |
+| IG-149 | « 240 € de cadeaux, moitié-moitié… alors que l'un gagne **moins** ? » → « Chaque dépense, sa règle de partage. » | `docs/videos/scenarios/012-budget-commun-regle-par-depense.mjs` |
+| IG-50 | « Le tableur dépanne… jusqu'au jour où une formule **casse**. » (grille d'erreurs au-dessus) | `instagram/production/IG-50.html` |
+| IG-46 | « Vous divisez par **254 jours** ? » → « Vous n'en facturerez qu'environ 183. Votre TJM est trop bas. » | `instagram/production/IG-46.html` |
+
+Règles tirées de ces vidéos, obligatoires :
+1. **Un vrai problème, avec de la tension**, dans la première phrase : un chiffre qui fait mal (perte, découvert,
+   surcoût), une injustice ou une situation bloquante. Le chiffre est **lu dans la démo** ou dans l'exemple fictif
+   montré ensuite, jamais inventé ; quand il vient de la démo, le scénario le vérifie et échoue sinon (IG-149).
+2. **Puis une bascule** (« Qui doit verser combien ? », « Le problème n'est pas la liste ») qui annonce la solution.
+3. **Puis la solution montrée** : la preuve (calcul, démo), le résultat chiffré, l'outil. Le chiffre de l'accroche
+   revient dans la suite (l'accroche est une promesse que la vidéo tient).
+4. **Accroche entière dès la première image** (au plus 1 image vide) : aucune animation d'entrée sur le texte de
+   l'accroche, aucun rideau (`clip-path`) ni fondu sur la première scène. Démo : `S('accroche', lignes, 0)` (le
+   `pas = 0` du studio affiche tout d'un coup) et, dans `preparer`, `await page.waitForTimeout(1500)` après
+   `S('fenetre', false)`. Page animée : texte de la scène 1 sans `animation:` d'entrée ; seules les formes bougent.
+5. Lisible : surlignage insécable (`white-space:nowrap` ou `_` du studio), aucun chevauchement ; contrôle de
+   l'image à 0,05 s avant tout dépôt.
+6. Formes qui marchent : le **récit avec rupture** (« … jusqu'au jour où … », seul Reel organique fort : 697 vues) et
+   le **chiffre-choc suivi de sa cause**.
+
 ## 4. La rétention
 
 - **Boucle ouverte** : l'accroche promet une réponse donnée plus loin (« … la réponse en vue 4 », « … voici le calcul »).

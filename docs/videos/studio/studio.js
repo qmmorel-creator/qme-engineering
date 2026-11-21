@@ -216,7 +216,9 @@
       const rouge = ligne.startsWith('!');
       for (const m of mots(ligne.replace(/^!/, ''))) {
         const s = document.createElement('span'); s.className = 'mot' + (rouge && m.fort ? ' rouge' : '');
-        s.innerHTML = m.html; s.style.animationDelay = `${d}ms`; d += pas; l.append(s);
+        s.innerHTML = m.html; l.append(s);
+        // pas = 0 : accroche affichée entière dès la première image (aucune animation d'entrée).
+        if (pas === 0) { s.style.animation = 'none'; s.style.opacity = '1'; s.style.transform = 'none'; } else { s.style.animationDelay = `${d}ms`; d += pas; }
       }
       a.append(l);
     }

@@ -23,12 +23,13 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
 
 /* Scène 1 · 0 à 4,2 s : l'accroche, une grille de tableur qui se fissure */
 #s1{animation:sortie 350ms 3900ms}
-#grille{position:absolute;left:96px;top:300px;display:grid;grid-template-columns:repeat(4,222px);grid-auto-rows:84px;border:6px solid var(--encre);background:var(--surface);animation:pop 500ms 0ms}
+#grille{position:absolute;left:96px;top:300px;display:grid;grid-template-columns:repeat(4,222px);grid-auto-rows:84px;border:6px solid var(--encre);background:var(--surface)}
 #grille div{border-right:3px solid var(--encre);border-bottom:3px solid var(--encre);font-weight:700;font-size:30px;display:flex;align-items:center;padding-left:16px;color:var(--texte-2)}
 #grille div:nth-child(4n){border-right:0}#grille div:nth-last-child(-n+4){border-bottom:0}
-#grille .err{background:var(--rouge);color:#fff;animation:clignote 900ms 900ms}
-#s1 .sourcil{position:absolute;left:96px;top:760px;color:var(--rouge);animation:monte 400ms 600ms}
-#s1 h1{position:absolute;left:96px;right:96px;top:830px;font-weight:800;font-size:124px;letter-spacing:-.03em;line-height:1.08;animation:monte 500ms 900ms}
+#grille .err{background:var(--rouge);color:#fff;animation:clignote 900ms 300ms}
+#s1 .sourcil{position:absolute;left:96px;top:760px;color:var(--rouge)}
+/* Accroche retravaillée le 20/11/2026 : visible dès la première image (sans animation d'entrée). */
+#s1 h1{position:absolute;left:96px;right:96px;top:830px;font-weight:800;font-size:100px;letter-spacing:-.03em;line-height:1.08}
 #s1 h1 mark{background:var(--jaune);color:inherit;padding:0 12px}
 #s1 .quart{position:absolute;right:0;bottom:0;width:360px;height:360px;background:var(--bleu);border-top-left-radius:360px;animation:arrivee-d 600ms 400ms}
 
@@ -89,7 +90,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
   </div>
   <div class="quart"></div>
   <p class="sourcil">Vu sur le terrain</p>
-  <h1>Le tableur que <mark>personne</mark> n'ose toucher.</h1>
+  <h1>Le tableur dépanne… jusqu'au jour où une formule <mark>casse</mark>.</h1>
 </div>
 
 <div class="s" id="s2">

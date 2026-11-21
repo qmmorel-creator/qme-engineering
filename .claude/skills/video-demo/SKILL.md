@@ -50,12 +50,14 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui a é
 2. Créer `docs/videos/scenarios/<nnn>-<slug>-<sujet>.mjs` en partant du modèle : `config` (nom, produit,
    type, titre, app, musique, affiche), `preparer(v)` hors caméra (fermer les dialogues, lire les données
    de référence, contrôler que la démo contient bien le cas — sinon lever une erreur), `jouer(v)`.
-3. Trame type (sur le tempo, `v.temps()`) : accroche plein écran (mots sur les demi-temps) → fenêtre →
+3. **Référence (20/11/2026) : les 7 Reels de `REGLES-CONTENU.md` § 3 bis** (vrai problème chiffré lu dans la démo → bascule →
+   solution ; accroche entière dès la première image : `S('accroche', lignes, 0)` et `waitForTimeout(1500)` après
+   `S('fenetre', false)` dans `preparer`). Trame type (sur le tempo, `v.temps()`) : accroche plein écran → fenêtre →
    zoom sur l'élément clé → geste(s) suivis par la caméra (`S('suivre')`) → emphase du résultat sur la
    ligne (`avantApres`, `flash`) → panoramique vers le résultat global (`cadrer`) → verdict (`tampon`,
    `eclat` si bonne nouvelle, `secouer` si mauvaise) → éventuel deuxième cas ou navigation vers un autre
-   écran → outro (`volet`, `outro` : nom du produit, bénéfice en une ligne, « Démo gratuite ·
-   qm-engineering.fr »).
+   écran → outro (`volet`, `outro` : nom du produit, bénéfice en une ligne, « Essai gratuit 14 jours ·
+   qm-engineering.fr/essai » pour un template en vente, sinon « Démo gratuite · qm-engineering.fr »).
 
 ## 2. Rendre et vérifier
 
