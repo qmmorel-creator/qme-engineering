@@ -368,6 +368,18 @@ Co-founders, partners, teams: what do you split by hand?
 qm-engineering.fr/x
 ```
 
+### X-10 · 28/11 · Vidéo · erreur fréquente · tableur qui déborde
+
+```
+Out of stock? Often, a customer tells you first.
+
+A spreadsheet stores numbers. It doesn't warn you.
+
+I built a stock tool that opens on what's missing. Sample data: 5 alerts, 5 items to reorder for €540, grouped by supplier.
+
+Want one for your stock? qm-engineering.fr/x
+```
+
 ### Vidéos : scénarios
 
 Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de démo réels, sous-titres anglais, carton final

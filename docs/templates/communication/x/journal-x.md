@@ -39,7 +39,7 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
 | X-07 | 2026-11-25 | 19:00 | Image | chiffre vrai | maintenance et conformité | 11 outils bâtiment et exploitation | — | README § X-07 | Programmé |  |
 | X-08 | 2026-11-26 | 19:00 | Image (prévue en vidéo, accent bleu) | avant / après | facturation et relances | Who owes what? One sentence. (Soldes : « Sami doit 309,89 € à Camille », données de démo) | budget-commun | [X-08-who-owes-what.png](https://drive.google.com/file/d/1_4b1RED0hqMwZNk8k-RNKVf_kTPy6pwz/view) | Programmé |  |
 | X-09 | 2026-11-27 | 19:00 | Image | idée à contre-courant | règles d'un pays | Règles françaises : traduire ne suffit pas | — | README § X-09 | Programmé |  |
-| X-10 | 2026-11-28 | 19:00 | Vidéo | avant / après | tableur qui déborde | Your spreadsheet, as an app | stocks | à produire | À produire |  |
+| X-10 | 2026-11-28 | 19:00 | Vidéo (25 s, accent jaune) | erreur fréquente | tableur qui déborde | Out of stock? A customer tells you first. (avant : tableur dessiné ; après : Tableau de bord 5 alertes, 540 € à commander, 101 € dormant ; À commander 5 articles, 4 fournisseurs, données de démo) | stocks | [X-10-stock.mp4](https://drive.google.com/file/d/1cdsHiPMPg1BH7bXrrESossKnEElfGOVD/view) | Programmé |  |
 | X-11 | 2026-11-29 | 19:00 | Image | liste courte | méthode et délais | La méthode en 4 étapes | — | README § X-11 | Programmé |  |
 | X-12 | 2026-11-30 | 19:00 | Vidéo | avant / après | maintenance et conformité | Snags by contractor | reserves | à produire | À produire |  |
 | X-13 | 2026-12-01 | 19:00 | Image | appel à réponse | facturation et relances | Question aux freelances | — | README § X-13 | Programmé |  |
@@ -67,3 +67,11 @@ Mémoire du skill `campagne-x` : une ligne par publication, dans l'ordre des dat
   X-05, X-06, X-07, X-08, X-09), aucune ligne « À produire » dans la fenêtre, aucune ligne « Post » sans image. Rien produit.
   Réserve : premier jour non programmé le 28/11 (X-10, vidéo Stocks « À produire », J+8) ; à traiter au passage du 21/11
   (J+7). X-15 (20/11) programmé ce soir.
+- **21/11/2026 (tâche « Campagne X · contenu J+7 »)** : Sheet relu ; fenêtre 22/11 → 28/11 : seul le 28/11 non programmé (X-10, vidéo
+  Stocks « À produire », J+7). Produite en vidéo (2e vidéo sur 22-28/11, voisines X-09 et X-11 en image) : 25 s, 1080 × 1920,
+  piste AAC de 25 s vérifiée par ffprobe, 2,72 Mo, texte 275/280. Accroche passée de « avant / après » (déjà X-08 le 26/11)
+  à « erreur fréquente » ; accent jaune (X-09 supposé rouge, non relu). Incident corrigé : la ligne X-10 a d'abord été écrite
+  sur la ligne 22 (X-11) ; X-11 rétablie aussitôt avec ses valeurs relues en début de passage (A–H, I–K vides), contrôlée.
+  Réserve : avant, premier jour non programmé le 28/11 ; après, 22/11 → 29/11 « Programmé », premier jour non programmé le
+  30/11 (X-12, vidéo Réserves « À produire », J+9 : vidéo possible, X-10 le 28 et X-11 image le 29). Restent X-12 (30/11) et
+  X-14 (02/12) en vidéo : au plus une des deux en vidéo pour tenir 1-2 vidéos sur 7 jours.
