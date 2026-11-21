@@ -132,3 +132,5 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
 Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
+Circuit technique (client, Gumroad, site, données, e-mails) : `docs/templates/communication/essai/workflow-essai-achat.png`
+(source `workflow.mjs`).
