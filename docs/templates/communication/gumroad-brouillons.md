@@ -200,3 +200,12 @@ programmée à 09:46 pour le pack Moyens généraux.
 
 Tags raccourcis : « maintenance-prev » (GMA), « verifications », « registre-securite » (VRF) ; boutons du reçu « Ouvrir le planning »
 (SDR). **Limite Gumroad atteinte** sur BSC (Bascule) : prochaine création le 21/11 à 08:51 (Paris), reprise programmée à 08:53.
+
+## Pack Budget perso et famille (PBF) · brouillon créé le 21/11/2026, 08 h 05 UTC
+
+| Code | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|------|---------------------|-----------|------|--------|
+| PBF | budget-perso-famille | FbVA2eJXNqKeGcjM5sA1aQ== | /l/pack-budget-perso-famille | 47 € (évolutif 59 €) | brouillon non publié : fiche remplie (catégorie Personal Finance, résumé, tags, détails, reçu, bouton et lien vers `/connexion/`) ; à faire par Quentin : clé de licence et versions « Pack » 47 € / « Pack évolutif » 59 € |
+
+À la publication : `gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ=='` et `permalien: 'pack-budget-perso-famille'` dans `PACKS.PBF`
+(`netlify/lib/packs.mjs`), `node outils/packs/generer.mjs`, tests, PR de mise en vente.
