@@ -1215,6 +1215,14 @@
   status = 302
   force = true
 
+# Test « Combien te coûte ta désorganisation ? » (21/11/2026) : lien court des réseaux et des partages,
+# vers /diagnostic/. Plan et calendrier : docs/templates/communication/jeux/README.md
+[[redirects]]
+  from = "/jeu"
+  to = "/diagnostic/?utm_source=social&utm_medium=jeu&utm_campaign=diagnostic"
+  status = 302
+  force = true
+
 # Prospection LinkedIn BTP (20/11/2026) : lien court des invitations et messages, vers le pack Chef de projet BTP.
 # Fiche : docs/templates/communication/prospection-linkedin/packs-btp-enseignant.md
 [[redirects]]

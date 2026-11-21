@@ -1,0 +1,181 @@
+<!doctype html>
+<!-- Quiz Instagram et TikTok du 23/11 au 02/12/2026 (format A, docs/templates/communication/jeux/README.md).
+     Public : étudiants et jeunes adultes, en tutoiement ; thèmes : révisions, budget, tâches, habitudes
+     (décisions de Quentin du 21/11/2026).
+     1080 × 1920. ?q=1..9&v=question|reponse : stories Instagram (autocollant Quiz posé à la main) ;
+     ?q=1..8&v=video : vidéo « devinez la réponse » de 13 s (TikTok et Reel), rendue par docs/videos/rendu.mjs ;
+     ?partage : image d'aperçu du lien /jeu (1200 × 630).
+     Rendu : node docs/templates/communication/jeux/rendre.mjs [--videos]
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas.
+     Chiffres : calculs arithmétiques sur des exemples fictifs, ou repris des Reels et des templates cités dans « source ».
+     Vidéo : l'accroche (la question) est entière dès la première image, sans animation d'entrée (REGLES-CONTENU § 3 bis). -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Quiz Instagram et TikTok</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;--fond:var(--rouge);--sur:#fff}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Outfit,sans-serif;background:var(--papier);color:var(--encre)}
+.fond{position:absolute;inset:0;background:var(--fond)}
+.carre{position:absolute;left:0;top:0;width:100%;height:760px;background:var(--fond)}
+.sourcil{position:absolute;left:96px;top:280px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase;color:var(--sur)}
+.question{position:absolute;left:96px;right:96px;top:350px;font-weight:800;font-size:76px;line-height:1.04;letter-spacing:-.025em;color:var(--sur)}
+.pied{position:absolute;left:96px;right:96px;bottom:360px;display:flex;justify-content:space-between;align-items:flex-end;font-weight:700;font-size:36px}
+.signe{display:flex;align-items:center;gap:18px;font-weight:800;font-size:52px;letter-spacing:-.03em}
+.signe svg{width:66px;height:66px}
+.reponse{position:absolute;left:96px;right:96px;top:820px;display:grid;gap:26px}
+.reponse .grand{display:inline-block;justify-self:start;white-space:nowrap;background:var(--encre);color:var(--papier);font-weight:800;font-size:150px;letter-spacing:-.03em;line-height:1;padding:24px 36px}
+.reponse p{font-size:40px;font-weight:600;line-height:1.3}
+.reponse .calc{font-size:36px;font-weight:500;color:#45413A}
+.lien{position:absolute;left:96px;right:96px;bottom:400px;font-weight:800;font-size:46px}
+.lien small{display:block;font-weight:600;font-size:30px;color:#45413A;margin-top:8px}
+/* Vidéo « devinez la réponse » */
+.v .choix{position:absolute;left:96px;right:96px;top:860px;display:grid;gap:22px}
+.v .choix div{display:flex;align-items:center;gap:26px;background:var(--papier);color:var(--encre);font-weight:800;font-size:54px;padding:22px 30px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre)}
+.v .choix b{display:inline-grid;place-items:center;width:70px;height:70px;background:var(--encre);color:var(--papier);font-size:40px;flex:none}
+.v .choix div{animation:monte 300ms both}
+.v .choix div.faux{animation:monte 300ms both,efface 300ms 5600ms both}
+.v .choix div.bon{animation:monte 300ms both,bon 300ms 5600ms both}
+.v .compte{position:absolute;right:96px;top:1500px;width:150px;height:150px;border-radius:50%;background:var(--encre);color:var(--papier);display:grid;place-items:center;font-weight:800;font-size:90px}
+.v .compte span{position:absolute;opacity:0}
+.v .compte::before{content:'?';animation:efface-tout 1ms 2600ms both}
+@keyframes efface-tout{to{opacity:0}}
+.v .compte span:nth-child(1){animation:flash 1000ms 2600ms both}
+.v .compte span:nth-child(2){animation:flash 1000ms 3600ms both}
+.v .compte span:nth-child(3){animation:flash 1000ms 4600ms both}
+.v .compte{animation:efface 200ms 5600ms both}
+.v .devine{position:absolute;left:96px;top:1530px;font-weight:800;font-size:60px;color:var(--sur);animation:efface 200ms 5600ms both}
+.v .s2{position:absolute;inset:0;background:var(--papier);animation:entre 400ms 7000ms both}
+.v .s2 .reponse{top:560px}
+.v .s2 .reponse p{font-size:48px}
+.v .s2 .reponse .calc{font-size:40px}
+.v .s2 .bandeau{position:absolute;left:0;right:0;top:0;height:330px;background:var(--fond)}
+.v .s2 .sourcil{top:250px}
+.v .s3{position:absolute;inset:0;background:var(--bleu);color:var(--papier);animation:entre 400ms 11000ms both}
+.v .s3 .t{position:absolute;left:96px;right:96px;top:520px;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-.03em}
+.v .s3 .t mark{background:var(--jaune);color:var(--encre);padding:0 14px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.v .s3 .u{position:absolute;left:96px;right:96px;top:1080px;font-weight:700;font-size:48px}
+.v .s3 .signe{position:absolute;left:96px;bottom:400px;color:var(--papier)}
+@keyframes monte{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes efface{to{opacity:.25}}
+@keyframes bon{to{background:var(--encre);color:var(--papier);transform:scale(1.04)}}
+@keyframes badge{to{background:var(--jaune);color:var(--encre)}}
+.v .choix div.bon b{animation:badge 300ms 5600ms both}
+@keyframes flash{0%{opacity:0;transform:scale(1.6)}15%{opacity:1;transform:scale(1)}85%{opacity:1}100%{opacity:0}}
+@keyframes entre{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* Aperçu du lien (1200 × 630) */
+body.partage{width:1200px;height:630px}
+.partage .p-g{position:absolute;left:70px;top:70px;right:420px;font-weight:800;font-size:76px;line-height:1.02;letter-spacing:-.03em}
+.partage .p-s{position:absolute;left:70px;bottom:70px;font-weight:700;font-size:34px}
+.partage .rond{position:absolute;right:-60px;top:-60px;width:420px;height:420px;border-radius:50%;background:var(--jaune)}
+.partage .tri{position:absolute;right:0;bottom:0;width:0;height:0;border-left:300px solid transparent;border-bottom:300px solid var(--rouge)}
+.partage .bloc{position:absolute;right:300px;bottom:0;width:150px;height:150px;background:var(--bleu)}
+</style>
+</head>
+<body>
+<script>
+const QUIZ = [
+  { jour: 'lundi 23/11', couleur: 'rouge', theme: 'Révisions', slug: 'revision-quand',
+    question: 'Tu as vu un chapitre en cours aujourd\'hui. Tu le revois quand ?',
+    choix: ['la veille de l\'examen', 'tous les soirs', 'demain, puis de plus en plus espacé', 'quand j\'ai le temps'], bonne: 2,
+    grand: 'Demain', texte: 'Puis 3, 7, 14 et 30 jours après chaque révision : c\'est la répétition espacée.',
+    calcul: 'Le Planning de révision le fait pour toi : chaque jour, la liste exacte des chapitres à revoir.',
+    source: 'templates/revision/donnees.js (intervalles 1, 3, 7, 14, 30)', produit: 'Planning de révision' },
+  { jour: 'mardi 24/11', couleur: 'jaune', theme: 'Budget', slug: 'budget-snack',
+    question: '5 € de snack ou de café, du lundi au vendredi. Combien par an ?',
+    choix: ['260 €', '650 €', '1 300 €', '1 825 €'], bonne: 2,
+    grand: '1 300 €', texte: 'Ce n\'est pas le café, le problème. C\'est de ne pas le voir passer.',
+    calcul: '5 € × 5 jours × 52 semaines = 1 300 €. Exemple fictif.',
+    source: 'calcul', produit: 'Mon Budget' },
+  { jour: 'mercredi 25/11', couleur: 'bleu', theme: 'Tâches', slug: 'taches-80-lignes',
+    question: 'Ta liste fait 80 lignes et tu ne sais pas par où commencer. Le vrai problème ?',
+    choix: ['la liste est trop longue', 'le tri', 'le manque de temps', 'la motivation'], bonne: 1,
+    grand: 'Le tri', texte: 'Tu notes tout d\'abord, sans réfléchir. Puis tu tries une fois : faire, planifier, déléguer, abandonner.',
+    calcul: 'Ensuite, 3 à 5 tâches au focus pour la journée.',
+    source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
+  { jour: 'jeudi 26/11', couleur: 'rouge', theme: 'Habitudes', slug: 'habitudes-seances',
+    question: 'Objectif : 3 séances de sport par semaine. Tu en fais 2. Combien de ratées sur un an ?',
+    choix: ['12', '26', '52', '104'], bonne: 2,
+    grand: '52 séances', texte: 'Une seule par semaine. Mais sur un an, c\'est un tiers de l\'objectif.',
+    calcul: '1 séance × 52 semaines = 52, sur 156 prévues. Exemple fictif.',
+    source: 'calcul', produit: 'Suivi d\'habitudes' },
+  { jour: 'vendredi 27/11', couleur: 'jaune', theme: 'Révisions', slug: 'revision-charge',
+    question: 'Partiels dans 30 jours, 40 chapitres. En répétition espacée, combien de révisions à caser ?',
+    choix: ['40', '80', '200', '1 200'], bonne: 2,
+    grand: '200', texte: '5 passages par chapitre avant l\'examen : environ 7 révisions par jour. Impossible à suivre de tête.',
+    calcul: 'Écarts de 1, 3, 7, 14 et 30 jours : J+1, J+4, J+11, J+25, puis la veille de l\'examen. 40 × 5 = 200.',
+    source: 'templates/revision/regles.js (planifier), vérifié par outils/templates/diagnostic.test.mjs', produit: 'Planning de révision' },
+  { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Budget', slug: 'budget-50-30-20',
+    question: 'Règle 50/30/20 : sur 1 200 € par mois, combien pour tes envies ?',
+    choix: ['240 €', '360 €', '400 €', '600 €'], bonne: 1,
+    grand: '360 €', texte: '50 % pour les besoins, 30 % pour les envies, 20 % pour l\'épargne. Un repère, pas une loi.',
+    calcul: '600 € de besoins, 360 € d\'envies, 240 € d\'épargne. Exemple fictif.',
+    source: 'templates/budget/regles.js (repère 50/30/20)', produit: 'Mon Budget' },
+  { jour: 'dimanche 29/11', couleur: 'rouge', theme: 'Tâches', slug: 'taches-urgent',
+    question: 'Une tâche urgente, mais pas importante. Tu… ?',
+    choix: ['la fais tout de suite', 'la planifies', 'l\'expédies ou la délègues', 'l\'abandonnes'], bonne: 2,
+    grand: 'Vite fait', texte: 'Tu l\'expédies en quelques minutes, ou tu la délègues. Ton temps va d\'abord à ce qui est important.',
+    calcul: 'Urgent et important : faire. Important : planifier. Urgent seulement : expédier ou déléguer. Ni l\'un ni l\'autre : abandonner.',
+    source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
+  { jour: 'lundi 30/11', couleur: 'jaune', theme: 'Habitudes', slug: 'habitudes-lecture',
+    question: '10 minutes de lecture par jour. Combien d\'heures sur un an ?',
+    choix: ['12 h', '30 h', 'environ 61 h', '120 h'], bonne: 2,
+    grand: '≈ 61 h', texte: 'Dix minutes, chaque jour. Le plus dur, c\'est de tenir la série.',
+    calcul: '10 min × 365 jours = 3 650 min ≈ 61 heures.',
+    source: 'calcul', produit: 'Suivi d\'habitudes' },
+  { jour: 'mardi 01/12', couleur: 'bleu', theme: 'Sondage', slug: 'sondage',
+    question: 'Ce que tu lâches en premier ?',
+    choix: ['les révisions', 'le budget', 'le sport', 'la to-do list'], bonne: null,
+    grand: '1 minute', texte: 'Combien te coûte ta désorganisation ? 4 questions : tes révisions, tes euros, tes heures et tes séances perdues.',
+    calcul: '', source: 'diagnostic/', produit: '' },
+];
+const insec = (t) => t.replace(/(\d) (?=\d)/g, '$1 ').replace(/(\d) (?=€|%|km|jours|h\b|min|séances|semaines)/g, '$1 ');
+for (const q of QUIZ) for (const k of ['question', 'grand', 'texte', 'calcul']) q[k] = insec(q[k]);
+window.QUIZ = QUIZ;
+const prm = new URLSearchParams(location.search);
+const COUL = { rouge: ['#D9302A', '#fff'], jaune: ['#F5B400', '#141414'], bleu: ['#1D4E89', '#fff'] };
+const signe = () => `<span class="signe"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>QME</span></span>`;
+if (prm.has('partage')) {
+  document.body.className = 'partage';
+  document.body.innerHTML = `<div class="rond"></div><div class="bloc"></div><div class="tri"></div>
+    <div class="p-g">Combien te coûte ta désorganisation ?</div>
+    <div class="p-s">Le test en 1 minute · qm-engineering.fr/jeu</div>`;
+} else {
+  const n = Math.max(1, Math.min(QUIZ.length, Number(prm.get('q')) || 1));
+  const q = QUIZ[n - 1];
+  const [fond, sur] = COUL[q.couleur];
+  document.documentElement.style.setProperty('--fond', fond);
+  document.documentElement.style.setProperty('--sur', sur);
+  const v = prm.get('v');
+  if (v === 'video') {
+    document.body.className = 'v';
+    const lettres = 'ABCD';
+    document.body.innerHTML = `<div class="fond"></div>
+      <div class="sourcil">Quiz · ${q.theme}</div>
+      <div class="question">${q.question}</div>
+      <div class="choix">${q.choix.map((c, k) => `<div class="${k === q.bonne ? 'bon' : 'faux'}" style="animation-delay:${400 + k * 250}ms${k === q.bonne ? ',5600ms' : ',5600ms'}"><b>${lettres[k]}</b>${c}</div>`).join('')}</div>
+      <div class="devine">Ta réponse ?</div>
+      <div class="compte"><span>3</span><span>2</span><span>1</span></div>
+      <div class="s2"><div class="bandeau"></div><div class="sourcil">Réponse · ${q.theme}</div>
+        <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div></div>
+      <div class="s3"><div class="t">Combien te coûte <mark>ta désorganisation</mark> ?</div>
+        <div class="u">Le test en 1 minute · lien en bio</div>${signe()}</div>`;
+  } else if (v === 'reponse') {
+    document.body.innerHTML = `<div class="carre"></div>
+      <div class="sourcil">${q.bonne === null ? 'Merci pour tes réponses' : 'Réponse · ' + q.theme}</div>
+      <div class="question" style="font-size:60px">${q.question}</div>
+      <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div>
+      <div class="lien">Et toi, combien t'échappe ?<small>Le test en 1 minute · lien ci-dessous</small></div>`;
+  } else {
+    document.body.innerHTML = `<div class="fond"></div>
+      <div class="sourcil">${q.bonne === null ? 'Sondage' : 'Quiz ' + n + '/8 · ' + q.theme}</div>
+      <div class="question">${q.question}</div>
+      <div class="pied" style="color:${sur}">${signe()}<span>${q.bonne === null ? 'Ta réponse ?' : 'Réponse demain'}</span></div>`;
+  }
+}
+</script>
+</body>
+</html>

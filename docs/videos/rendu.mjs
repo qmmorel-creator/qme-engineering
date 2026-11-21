@@ -105,7 +105,7 @@ export async function rendrePage({ page: chemin, duree, couverture = null, sorti
     await contexte.clock.install();
     const page = await contexte.newPage();
     page.on('pageerror', (e) => console.error('Erreur page :', e.message));
-    await page.goto(/^https?:/.test(chemin) ? chemin : pathToFileURL(resolve(chemin)).href);
+    await page.goto(/^(https?|file):/.test(chemin) ? chemin : pathToFileURL(resolve(chemin)).href); // file: : page avec paramètres (?q=…)
     await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map((i) => i.decode().catch(() => {}))); });
     const placer = await page.evaluate(() => typeof window.placer === 'function');
     // Horloge figée : seule la boucle ci-dessous fait avancer le temps de la page.
