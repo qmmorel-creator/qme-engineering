@@ -1,6 +1,6 @@
 """IG-54 · Carrousel « Méthode » d'après le script J29 de videos-30-jours.md (Ils n'ont pas dit non), à la
 place du Reel filmé prévu. Faits repris de J29 et de docs/templates/communication/prospection/linkedin.md.
-Le Pipeline de prospection (T35) n'est pas en vente : vue 5 « bientôt en vente », sans prix ni achat.
+Le Pipeline de prospection (T35) est en vente : vue 5 « essai gratuit 14 jours » (mise en conformité du 21/11/2026).
 Gabarit sur mesure de construire_ig_06_33.py (vues 1 à 4), vue 5 propre à ce post.
 
 Usage, depuis la racine du dépôt :
@@ -45,9 +45,9 @@ VUE5 = f'''<section class="cadre cta rouge" id="IG-54-relances-5">
     <h2 style="font-size:84px">{ig.e("Combien de vos prospects n'ont pas de prochaine action ?")}</h2>
     <div class="liste"><div><i></i>Une étape par prospect</div><div><i></i>Une prochaine action datée</div></div>
   </div>
-  <div class="plus" style="color:var(--encre);top:720px"><b>Pipeline de prospection QME</b> {ig.e(": il applique cette règle. Bientôt en vente, démo déjà ouverte.")}</div>
-  <div class="bouton"><b>Lien en bio</b><span>{ig.e("« Templates et démos »")}</span></div>
-  {ig.MARQUE.format(s='symbole-clair', ms=' style="color:#fff"', es='', url='qm-engineering.fr/templates')}
+  <div class="plus" style="color:var(--encre);top:720px"><b>Pipeline de prospection QME</b> {ig.e(": il applique cette règle. 14 jours d'essai gratuit, sans carte.")}</div>
+  <div class="bouton"><b>Lien en bio</b><span>{ig.e("Essai gratuit · puis 25 €")}</span></div>
+  {ig.MARQUE.format(s='symbole-clair', ms=' style="color:#fff"', es='', url='qm-engineering.fr/essai')}
 </section>'''
 
 ALT = [
@@ -55,7 +55,7 @@ ALT = [
     "Fond noir : le premier message est rarement celui qui obtient la réponse. C'est souvent la relance qu'on n'a pas envoyée. Quand on prospecte seul, tout tient dans un tableur et dans sa tête.",
     "La règle, pas de date, pas de relance : une étape par prospect, de « À contacter » à « Gagné » ; une prochaine action datée pour chacun ; une cadence choisie qui fixe la date de la relance suivante.",
     "Chaque matin, une seule liste : les relances du jour, retards en tête ; le message préparé avec le prénom, envoyé par vous ; les personnes qui ne veulent plus être contactées mises de côté.",
-    "Fond rouge : combien de vos prospects n'ont pas de prochaine action ? Le Pipeline de prospection QME applique cette règle : bientôt en vente, démo déjà ouverte. Lien en bio.",
+    "Fond rouge : combien de vos prospects n'ont pas de prochaine action ? Le Pipeline de prospection QME applique cette règle : 14 jours d'essai gratuit, sans carte, puis 25 €. Lien en bio.",
 ]
 
 if __name__ == '__main__':
