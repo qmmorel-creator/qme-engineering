@@ -136,7 +136,7 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    (accueil FR et EN, catalogue, connexion, références de l'accueil, README). La plaquette PDF ne
    change pas à chaque template ; les références PDF seulement sur demande de Quentin.
 5. README : section « Templates payants » à compléter.
-6. **Essai (template vie personnelle, à la mise en vente)** : `node outils/essai/generer.mjs` (ajoute le template au
+6. **Essai (tout template payant, à la mise en vente)** : `node outils/essai/generer.mjs` (ajoute le template au
    formulaire `/essai/` et l'essai à sa page catalogue : premier bouton « Essai gratuit 14 jours », « Acheter » en
    second, mention sous le prix, question « Y a-t-il un essai gratuit ? », rappel), puis les deux commandes du point 7.
 7. **Référencement de la page catalogue** (`reference.md` § « Référencement », obligatoire) : title et
@@ -204,6 +204,6 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
   connexion, `PRODUITS`), sans attendre le prochain lot. Liste à cocher : `reference.md`
   § « À chaque publication Gumroad ». Un template publié sur Gumroad ne doit jamais rester affiché
   « Bientôt » sur le site, et inversement aucun bouton Acheter n'apparaît avant la publication.
-- **Essai (template vie personnelle)** : après la fusion, lancer un essai réel sur `/essai/` avec une adresse de
+- **Essai** : après la fusion, lancer un essai réel sur `/essai/` avec une adresse de
   Quentin (e-mail « Merci d'essayer… » reçu, expéditeur correct), puis vérifier le bandeau dans l'application.
 - Statut `prêt` puis `en vente` dans `docs/templates/IDEES.md`.

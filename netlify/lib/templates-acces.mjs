@@ -164,7 +164,7 @@ export function genererCode(secret, produit) {
 }
 
 // --- Essai gratuit (décision de Quentin, 18/11/2026) ----------------------------------------------
-// Templates « vie personnelle » en vente : 14 jours d'essai sans carte, puis 30 jours en lecture seule,
+// Templates en vente (vie personnelle, et pro depuis le 21/11/2026) : 14 jours d'essai sans carte, puis 30 jours en lecture seule,
 // puis effacement. Le code d'essai a la forme d'un code de template (PRODUIT-AAAA-AAAA-SSSS-SSSS), mais :
 //  - AAA (3 premiers caractères de l'identifiant) = jour de début, compté depuis le 01/01/2026 ;
 //  - la signature est calculée dans le contexte « essai », distinct des codes achetés.

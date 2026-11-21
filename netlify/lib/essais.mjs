@@ -1,4 +1,4 @@
-// Essai gratuit des templates « vie personnelle » (décision de Quentin, 18/11/2026).
+// Essai gratuit des templates (vie personnelle le 18/11/2026, professionnels le 21/11/2026 ; décisions de Quentin).
 //
 // Parcours : formulaire /essai/ → POST /api/essai → code d'essai (14 jours, sans carte) → l'application
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie

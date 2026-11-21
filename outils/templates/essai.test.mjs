@@ -1,4 +1,4 @@
-// Essai gratuit des templates « vie personnelle » : codes datés, lecture seule, report à l'achat, e-mails, effacement.
+// Essai gratuit des templates (vie personnelle et pro) : codes datés, lecture seule, report à l'achat, e-mails, effacement.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { traiter, genererCodeEssai, verifierCodeEssai, verifierCode, etatEssai, codeDepuisLicence, ESSAI, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';

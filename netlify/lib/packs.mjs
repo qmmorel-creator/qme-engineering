@@ -66,8 +66,8 @@ export const PACKS = {
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
   PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' },
   PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer' },
-  // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad à créer.
-  PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'] },
+  // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad reliée le 21/11/2026.
+  PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'], gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ==', permalien: 'pack-budget-perso-famille' },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.
