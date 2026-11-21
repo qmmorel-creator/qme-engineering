@@ -23,6 +23,7 @@ import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourPa
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
 
@@ -80,7 +81,7 @@ function vueEssai(reg, aujourdhui) {
   return {
     id: reg.id, template: f.nom, slug: f.slug, prenom: reg.prenom || '', email: reg.email, cree: reg.cree,
     debut: reg.debut, fin: reg.fin, effacement: reg.effacement, joursRestants: etat.joursRestants,
-    statut: reg.achete ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
+    statut: reg.achete || reg.paye ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
     achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
     mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
   };
@@ -139,17 +140,24 @@ const euros = (c) => `${(c / 100).toLocaleString('fr-FR', { minimumFractionDigit
 
 // ---------- E-mails ----------
 // Ton : Quentin écrit lui-même, vouvoiement, phrases courtes, aucune pression commerciale.
-const SIGNATURE = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
+export const SIGNATURE = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
+
+// Mise en forme HTML commune (e-mails d'essai et d'achat) : paragraphes, liens cliquables (ponctuation finale
+// exclue) et, si le texte se termine par la signature texte, signature graphique à sa place (signature.mjs).
+export function corpsHtml(texte) {
+  const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const avecSignature = texte.endsWith(SIGNATURE);
+  const corps = avecSignature ? texte.slice(0, -SIGNATURE.length).trimEnd() : texte;
+  return echapper(corps).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/https:\/\/[^\s<]*[^\s<.,;:!?)»]/g, (u) => `<a href="${u}" style="color:#1D4E89">${u}</a>`)}</p>`).join('')
+    + (avecSignature ? `<div style="margin:18px 0 0">${SIGNATURE_HTML}</div>` : '');
+}
+export const enveloppeHtml = (interieur) => `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${interieur}</div>`;
 
 function habiller(texte, { secret, id, email = null }) {
   const nouv = email ? `\nVous êtes aussi inscrit(e) aux nouveautés QME. Se désinscrire : ${lienDesinscription(secret, email)}` : '';
   const pied = `\n\n—\nVous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. Plus aucun rappel : ${lienStop(secret, id)}${nouv}`;
-  const brut = texte + pied;
-  const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const html = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${
-    echapper(texte).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/(https:\/\/[^\s<]+)/g, '<a href="$1" style="color:#1D4E89">$1</a>')}</p>`).join('')
-  }<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p></div>`;
-  return { texte: brut, html };
+  const html = enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p>`);
+  return { texte: texte + pied, html };
 }
 
 export function contenuMail(type, reg, secret) {
@@ -406,7 +414,7 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
       bilan.effaces++;
       continue;
     }
-    if (reg.stop || reg.achete || !envoyer) continue;
+    if (reg.stop || reg.achete || reg.paye || !envoyer) continue; // paye : vente notifiée par Gumroad (achats.mjs)
     const mails = { ...(reg.mails || {}) };
     const dus = [];
     if (!mails.merci && aujourdhui <= decalerJour(reg.debut, 1)) dus.push('merci');
