@@ -1,8 +1,8 @@
 // Service worker du budget commun : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données du foyer, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'budget-commun-20261115t';
-const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest'];
+const VERSION = 'budget-commun-20261120r';
+const COQUILLE = ['./', 'app.css?v=20261120r', 'donnees.js?v=20261120r', 'regles.js?v=20261120r', 'app.js?v=20261120r', 'icone.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

@@ -6,6 +6,8 @@
 //
 // E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
 //  - merci : tout de suite, avec le code ;
+//  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
+//    (essais-prise-en-main.mjs) ;
 //  - rappel : 3 jours avant la fin ;
 //  - fin : le lendemain de la fin (lecture seule, données gardées 30 jours) ;
 //  - effacement : 7 jours avant l'effacement.
@@ -16,9 +18,12 @@
 //  email/<hmac e-mail>/<produit>   → { id }   (un essai par adresse et par template)
 //  ip/<hmac ip>/<jour>             → { n }    (limite de créations par jour et par adresse IP)
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { statEssai } from './templates-acces.mjs';
 import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
+import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
 
@@ -76,7 +81,7 @@ function vueEssai(reg, aujourdhui) {
   return {
     id: reg.id, template: f.nom, slug: f.slug, prenom: reg.prenom || '', email: reg.email, cree: reg.cree,
     debut: reg.debut, fin: reg.fin, effacement: reg.effacement, joursRestants: etat.joursRestants,
-    statut: reg.achete ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
+    statut: reg.achete || reg.paye ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
     achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
     mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
   };
@@ -135,17 +140,24 @@ const euros = (c) => `${(c / 100).toLocaleString('fr-FR', { minimumFractionDigit
 
 // ---------- E-mails ----------
 // Ton : Quentin écrit lui-même, vouvoiement, phrases courtes, aucune pression commerciale.
-const SIGNATURE = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
+export const SIGNATURE = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
+
+// Mise en forme HTML commune (e-mails d'essai et d'achat) : paragraphes, liens cliquables (ponctuation finale
+// exclue) et, si le texte se termine par la signature texte, signature graphique à sa place (signature.mjs).
+export function corpsHtml(texte) {
+  const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const avecSignature = texte.endsWith(SIGNATURE);
+  const corps = avecSignature ? texte.slice(0, -SIGNATURE.length).trimEnd() : texte;
+  return echapper(corps).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/https:\/\/[^\s<]*[^\s<.,;:!?)»]/g, (u) => `<a href="${u}" style="color:#1D4E89">${u}</a>`)}</p>`).join('')
+    + (avecSignature ? `<div style="margin:18px 0 0">${SIGNATURE_HTML}</div>` : '');
+}
+export const enveloppeHtml = (interieur) => `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${interieur}</div>`;
 
 function habiller(texte, { secret, id, email = null }) {
   const nouv = email ? `\nVous êtes aussi inscrit(e) aux nouveautés QME. Se désinscrire : ${lienDesinscription(secret, email)}` : '';
   const pied = `\n\n—\nVous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. Plus aucun rappel : ${lienStop(secret, id)}${nouv}`;
-  const brut = texte + pied;
-  const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const html = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${
-    echapper(texte).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/(https:\/\/[^\s<]+)/g, '<a href="$1" style="color:#1D4E89">$1</a>')}</p>`).join('')
-  }<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p></div>`;
-  return { texte: brut, html };
+  const html = enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p>`);
+  return { texte: texte + pied, html };
 }
 
 export function contenuMail(type, reg, secret) {
@@ -173,6 +185,27 @@ Si vous ne continuez pas : vous n'avez rien à faire, aucun prélèvement. Vos d
 Une question, un manque, une idée ? Répondez simplement à cet e-mail : c'est moi qui le lis, et le template évolue avec vos retours.
 
 Bon essai,
+${SIGNATURE}`;
+  } else if (type === 'prise-en-main') {
+    const g = PRISE_EN_MAIN[reg.produit];
+    if (!g) throw new Error(`Prise en main absente pour ${reg.produit}`);
+    objet = `${f.nom} : par où commencer`;
+    texte = `${bonjour}
+
+Vous avez lancé l'essai du template ${nom} le ${dateFr(reg.debut)}. Si vous n'avez pas encore trouvé par où commencer, voici ce que je ferais à votre place.
+
+Pour démarrer, en quelques minutes : ${g.commencer}
+
+Deux choses qu'on ne remarque pas toujours au premier coup d'œil :
+– ${g.astuces[0]}
+– ${g.astuces[1]}
+
+Ouvrir le template : ${ouvrir}
+
+${g.aide} Répondez simplement à cet e-mail : je regarde avec vous comment le régler.
+
+Votre essai continue jusqu'au ${dateFr(reg.fin)} inclus. Si vous décidez de garder le template (${euros(f.prix)}, achat unique, sur ${f.achat}), tout ce que vous aurez saisi est repris.
+
 ${SIGNATURE}`;
   } else if (type === 'rappel') {
     objet = `Plus que 3 jours d'essai : ${f.nom}`;
@@ -225,7 +258,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -344,12 +377,13 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });
+  await essais.set(`stat/${e.id}`, statEssai(reg, testeurs)); // compteur : trace anonyme, jamais effacée
   return json(200, { ok: true, code, produit, url: PRODUITS[produit].url, fin: e.fin, jours: ESSAI.jours, mail: Boolean(reg.mails.merci) });
 }
 
 // ---------- Tâche quotidienne : rappels et effacement ----------
 // Renvoie le bilan { essais, envoyes: { type: n }, effaces }.
-export async function tournerEssais({ secret, essais, stockage, envoyer = null, maintenant = Date.now }) {
+export async function tournerEssais({ secret, essais, stockage, envoyer = null, maintenant = Date.now, testeurs = '' }) {
   const aujourdhui = jourParis(new Date(maintenant()));
   const bilan = { essais: 0, envoyes: {}, effaces: 0, erreurs: 0 };
   // Anciennes limites par IP : inutiles au-delà du jour même.
@@ -367,6 +401,8 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
     const reg = await essais.get(cle);
     if (!reg) continue;
     bilan.essais++;
+    // Essais créés avant la statistique anonyme : trace ajoutée avant tout effacement.
+    if (!(await essais.get(`stat/${reg.id}`))) await essais.set(`stat/${reg.id}`, statEssai(reg, testeurs));
     const etat = etatEssai(reg, aujourdhui);
     if (etat.efface) {
       await stockage.supprimer(cleDonneesEssai(secret, reg.produit, reg.id));
@@ -378,10 +414,11 @@ export async function tournerEssais({ secret, essais, stockage, envoyer = null, 
       bilan.effaces++;
       continue;
     }
-    if (reg.stop || reg.achete || !envoyer) continue;
+    if (reg.stop || reg.achete || reg.paye || !envoyer) continue; // paye : vente notifiée par Gumroad (achats.mjs)
     const mails = { ...(reg.mails || {}) };
     const dus = [];
     if (!mails.merci && aujourdhui <= decalerJour(reg.debut, 1)) dus.push('merci');
+    if (!mails['prise-en-main'] && aujourdhui >= decalerJour(reg.debut, 2) && aujourdhui <= decalerJour(reg.debut, 5)) dus.push('prise-en-main');
     if (!mails.rappel && aujourdhui >= decalerJour(reg.fin, -3) && aujourdhui <= reg.fin) dus.push('rappel');
     if (!mails.fin && etat.termine && aujourdhui <= decalerJour(reg.fin, 7)) dus.push('fin');
     if (!mails.effacement && aujourdhui >= decalerJour(reg.effacement, -7)) dus.push('effacement');

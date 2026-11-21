@@ -13,16 +13,33 @@ Site promotionnel de Quentin Morel Engineering (QME).
   pour les packs par `outils/packs/generer.mjs`, contrôlées par `outils/templates/seo.test.mjs` (à relancer après
   tout changement de prix, de FAQ ou de fil d'Ariane). Audit statique : `node outils/seo/audit.mjs`. Dossier de
   référencement (audit, mots-clés, guides proposés, Gumroad, plan d'action) : `docs/seo/`.
-- Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler) : `index.html` (accueil),
-  `sur-mesure/`, `templates/` (catalogue, depuis le 14/11/2026 : recherche et filtre Professionnel / Vie personnelle en tête,
-  puis deux vues au choix. « Par thème » : accordéon, « Disponibles maintenant » ouvert, un volet par thème avec les
-  templates en vente en tête. « Sommaire » : tout le catalogue en colonnes. État dans l'adresse
-  `?pour=…&q=…&vue=sommaire`, `?theme=…` ouvre un volet. Les vues sont construites par `assets/site.js` à partir des
-  cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour ceux en préparation, dont la démo
-  affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles quelles sans JS. En bas, la carte des
-  prix des packs (générée) ; bouton « Soumettre une idée » relié au formulaire Netlify `idee`), `catalogue/<slug>/` (une page par template en vente), `references/`,
-  `methode/`, `contact/` (formulaire Netlify `contact`). Les anciennes ancres (`/#contact`,
-  `/templates/#gantt`…) redirigent vers la bonne page.
+- Site en pages (depuis le 13/11/2026, plus de page unique à faire défiler ; réorganisé le 20/11/2026 pour séparer
+  nettement les deux offres) :
+  - menu : Sur mesure · Templates · Packs · Connexion (lien discret) · « Parler de votre projet » ; pied de page identique
+    sur toutes les pages (Accueil, Sur mesure, Templates, Packs, Guides, Contact, Connexion, Confidentialité). Plus
+    d'enchaînement « page précédente / suivante » entre les pages principales (seuls restent les retours au catalogue
+    ou aux packs en bas des fiches) ;
+  - `index.html` (accueil) : aiguillage entre les deux offres, puis le film ;
+  - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
+    `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
+    `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
+    (`netlify.toml`), pour les liens déjà publiés ;
+  - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
+    puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
+    tuile affiche les outils du thème (`?theme=…`), chacun avec sa vignette, « Tous les thèmes » ramène aux tuiles ;
+    une recherche affiche directement les outils trouvés. Vignettes : `assets/vignettes/<slug>.webp` (480 × 300,
+    12 Ko en moyenne, chargées seulement à l'ouverture d'un thème), tirées de la capture choisie dans
+    `outils/x/templates-en.json` (`_captures`) par `node outils/templates/vignettes.mjs`, qui écrit aussi l'attribut
+    `data-vignette` des cartes. Templates en préparation masqués par défaut (« Afficher aussi les N en
+    préparation », `?avenir=1`), toujours montrés pendant une recherche. Les anciennes vues « Disponibles maintenant »,
+    accordéon et « Sommaire » sont supprimées (`?vue=sommaire` est ignoré). Les tuiles et la liste sont construites par
+    `assets/site.js` à partir des cartes du HTML (`.vitrine-piste` pour les templates en vente, `.liste-bientot` pour
+    ceux en préparation, dont la démo affiche un bandeau « Bientôt en vente ») et des puces de thème, affichées telles
+    quelles sans JS. En bas, un bandeau compact vers les packs (généré par `outils/packs/generer.mjs` ; la carte des
+    prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de template » en tête du catalogue, relié au
+    formulaire Netlify `idee` ;
+  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
+    (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
   Blobs à Francfort ; le clic n'enregistre aucune donnée personnelle). Après le clic, e-mail facultatif
@@ -34,14 +51,15 @@ Site promotionnel de Quentin Morel Engineering (QME).
   lecture seule, puis effacement ; données reprises à l'achat (clé saisie dans « J'ai acheté »). Page `/essai/` et pages
   catalogue générées par `node outils/essai/generer.mjs` ; API `POST /api/essai` (`netlify/functions/essai.mjs`,
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
-  `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, J-3, fin, avant
-  effacement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, prise en main J+2
+  propre à chaque template, J-3, fin, avant effacement ; remerciement à l'achat via le ping Gumroad
+  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
-- `en/` : version anglaise, mêmes rubriques (`en/custom/`, `en/templates/`, `en/references/`,
-  `en/method/`, `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
+- `en/` : version anglaise, mêmes rubriques (`en/custom/` avec `#references`, `#videos` et `#method`, `en/templates/`,
+  `en/contact/`) ; drapeaux français / anglais en tête de page, balises `hreflang` entre
   pages jumelles
 - `assets/QME-brochure-en.pdf`, `assets/QME-references-en.pdf`, `assets/qme-presentation-en.mp4` (et son
   affiche) : plaquette, références et vidéo en anglais. Sources et scripts de génération dans le dépôt
@@ -135,9 +153,12 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
-  (`/packs/espace/`, non indexé). La page `/packs/` présente une ligne dépliable par pack (contenu, jauge de
-  disponibilité, prix, actions), filtrée par « Je suis… » sur les publics présents dans au moins deux packs ;
-  `/packs/#<slug>` ouvre le pack. Pages générées : `node outils/packs/generer.mjs` (données dans
+  (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
+  des vignettes de ses templates, nom, nombre de templates, remise, prix ; un clic ouvre `/packs/<slug>/`, où sont
+  le contenu détaillé, l'achat ou « Je suis intéressé(e) »), filtrée par « Je suis… » sur les publics présents
+  dans au moins deux packs ; les anciens liens `/packs/#<slug>` mènent à la page du pack. Les cartes de templates
+  des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
+  lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
@@ -170,14 +191,16 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     modifiables, alertes de plafond et de franchise de TVA, 3 scénarios ;
   - `templates/micro-entreprise/` (MCE) : **livre recettes-dépenses micro-entreprise**, registres,
     déclarations, seuils, export CSV ;
-  - `templates/budget-commun/` (BCM) : **budget commun**, répartitions au centime, équilibrage en un
-    minimum de virements, fusion des saisies de plusieurs appareils.
+  - `templates/budget-commun/` (BCM) : **budget commun**, deux fonctionnements au choix : avances et
+    remboursements (répartitions au centime, équilibrage en un minimum de virements) ou compte commun
+    (versement mensuel de chacun : charges prévues − solde, selon une clé égale, prorata ou parts, plus les
+    charges personnelles ; versements notés, solde estimé) ; fusion des saisies de plusieurs appareils.
 - Deuxième vague, en vente : `templates/gantt/` (GNT) **planning Gantt rapide** (chemin critique,
     jours ouvrés, jalons à plage) ; `templates/taches/` (TCH) **gestionnaire de tâches** (boîte de
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
-- `templates/secret-santa/` (SNT) : **Secret Santa**, prêt, mise à disposition prochaine, **gratuit**
+- `templates/secret-santa/` (SNT) : **Secret Santa**, **en vente** (Gumroad, prix libre, 0 €), **gratuit**
   (prix libre sur Gumroad). L'organisateur (clé de licence) crée ses échanges et partage un lien
   d'invitation ; les participants s'inscrivent sans compte (prénom, e-mail, code personnel, idées) ;
   exclusions ; tirage fait par le serveur, jamais montré à l'organisateur ; aucun e-mail envoyé. API
@@ -621,7 +644,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
 - `netlify/functions/templates.mjs` : API `/api/templates/*` (connexion, lecture, enregistrement, conflit
   entre appareils en 409). Logique testable dans `netlify/lib/templates-acces.mjs`.
 
-**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Budget commun » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
+**Vente (Gumroad).** Fiche « Planning de révision » sur la boutique Gumroad QME (14,90 €). Première vague : « Compte rendu et plan d'actions » (15 €, `/l/compte-rendu-actions`), « Coût de revient et prix par client » (25 €, `/l/cout-de-revient`), « Calculateur de TJM freelance » (12 €, `/l/calculateur-tjm`), « Livre recettes-dépenses micro-entreprise » (25 €, `/l/livre-recettes-micro`), « Gestion Dépenses Communes » (15 €, `/l/budget-commun`). Les templates en développement sont bloqués en 404 dans `netlify.toml` jusqu'à leur mise en vente. Gumroad envoie à
 l'acheteur une **clé de licence** ; à la connexion, la fonction la vérifie auprès de l'API Gumroad
 (`/v2/licenses/verify`, identifiant produit dans `PRODUITS` de `netlify/lib/templates-acces.mjs`) puis la
 convertit en code interne stable : mêmes données sur tous les appareils. Achat remboursé ou contesté :

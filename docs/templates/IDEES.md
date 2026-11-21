@@ -82,7 +82,7 @@ déjà).
 | T02 | Planning Gantt rapide (chemin critique, jalons à plage) | Gestion de projet | Artisans, PME, chefs de projet, BTP, ingénierie | en vente | 45 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 03 |
 | T03 | Gestionnaire de tâches (inbox et triage) | Tâches | Indépendants, cadres, étudiants | en vente | 19 € | M | P1 | Quentin 12/11/2026 + Backlog Quentin n° 01 |
 | T04 | Nutrition et dépense énergétique | Santé | Personnes qui gèrent leur poids, sportifs amateurs | en vente | 19 € | L | P1 | Quentin 12/11/2026 + Backlog Quentin n° 47 |
-| T05 | Budget du foyer | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
+| T05 | Mon Budget | Budget perso | Particuliers | en vente | 15 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 43 |
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | en vente | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
@@ -142,7 +142,7 @@ déjà).
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
-| T65 | Budget commun couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
+| T65 | Gestion Dépenses Communes couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | en vente | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en vente | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
@@ -223,7 +223,7 @@ détail reprend les apports du backlog.
   moteur d'échéances, mais cible professionnelle.
 - Demandes du 13/11/2026 : « planificateur de voyage » = T21 (périmètre élargi : nuits, activités, prix) ;
   « gestionnaire de voitures » = T10 (élargi : kilométrage, dépenses, coût au km). Pas de nouveau numéro.
-- 44 Budget commun (T65) : distinct de T05 (répartition entre personnes) ; proche du partage de dépenses
+- 44 Gestion Dépenses Communes (T65) : distinct de T05 (répartition entre personnes) ; proche du partage de dépenses
   de T21.
 
 ## Packs
@@ -275,6 +275,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
+| Budget perso et famille (Quentin, 20/11/2026) | PBF | T05, T65, T14, T13, T12 | — | 63 € | 25 % | 47 € | 12 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
@@ -868,7 +869,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T37 | `cout-revient` | PRX | Coût de revient et prix par client | 25 € |
 | T40 | `tjm` | TJM | Calculateur de TJM freelance | 12 € |
 | T41 | `micro-entreprise` | MCE | Livre recettes-dépenses micro-entreprise | 25 € |
-| T65 | `budget-commun` | BCM | Budget commun | 15 € |
+| T65 | `budget-commun` | BCM | Gestion Dépenses Communes | 15 € |
 | T16 | `demenagement` | DMN | demenagement (prévu) |
 | T21 | `voyage` | VYG | planificateur-voyage (prévu) |
 | T22 | `tableau-annuel` | RDV | tableau-annuel-roue-de-vie |
@@ -999,7 +1000,7 @@ Cipav, à revérifier) ; versement libératoire 1,7 % (BIC services), 2,2 % (BNC
 
 **Risques** : **daté**, **comptable** (pas un logiciel certifié), **fiscal**. Taille S.
 
-### T65 · Budget commun
+### T65 · Gestion Dépenses Communes
 
 **Pour qui** : couples, colocataires, familles recomposées qui partagent des dépenses.
 
@@ -1017,6 +1018,18 @@ famille), règles de répartition expliquées.
 
 **Partage** : une seule clé ; chaque membre ouvre l'application sur son appareil avec la même clé (mêmes
 données). Le dire clairement : partager la clé donne un accès complet.
+
+**Deux fonctionnements** (demande de Quentin du 20/11/2026, d'après son artefact « Gestion Dépenses Communes ») : choix au
+premier lancement, modifiable dans les réglages sans rien supprimer (`reglages.fonctionnement`) :
+- **Avances et remboursements** (comportement d'origine, valeur des données d'avant l'option) : chacun paie, soldes
+  et équilibrage ;
+- **Compte commun** : un compte joint paie les dépenses et les récurrentes (payeur `compte`, « pour » le foyer ou une
+  personne). Onglet **Compte**, mois par mois : à couvrir = récurrentes communes du compte + dépenses courantes
+  prévues + autres sorties (débit différé…) − solde avant les versements ; réparti selon la clé du foyer (égale,
+  prorata des revenus, parts), puis chacun ajoute ses charges personnelles (non diminuées par le solde) ;
+  versements notés (« C'est fait ») ; solde estimé = solde + versements − dépenses du compte. Démo :
+  `?demo=compte`. Règles pures `chargesPrevues`, `alimentation`, `soldeEstime`, `verses` (`regles.js`), testées
+  dans `outils/templates/budget-commun.test.mjs`.
 
 **Risques** : argent : avertissement ; données du foyer seulement. Taille S.
 
@@ -1089,7 +1102,7 @@ ils diffèrent ou complètent le tableau de bord. Marques : **confidentiel**, **
 | T62 | Articles, entrées et sorties, seuils d'alerte, valorisation, inventaire | à définir | — | Backlog : tableur seul. |
 | T63 | Registre des contrôles, périodicités, échéances, preuves, alertes | Types de contrôles (électricité, extincteurs…) sans périodicité légale non sourcée | Registre des visas | **daté** : périodicités réglementaires, paramétrables ou sourcées. Preuves : stockage de fichiers à prévoir. Format : application + modèle tableur. Décision (14/11/2026) : application seule, base sourcée INRS ED 828 datée, preuves en référence et lien (pas de fichiers). |
 | T64 | Calendrier, réservations, ménage, taxe de séjour, revenus par plateforme | à définir | Location saisonnière (artefact client) | **daté** : taxe de séjour, paramétrable ; **fiscal**. **RGPD** (voyageurs). Backlog : tableur seul. Aucune donnée de l'artefact. |
-| T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Budget commun, Budget commun partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
+| T65 | Dépenses communes, répartition au prorata des revenus, soldes, équilibrage | Méthodes de répartition (égale, prorata, personnalisée) | Gestion Dépenses Communes, Gestion Dépenses Communes partagé | Usage à deux : désormais possible (mêmes données), accès par deux personnes à concevoir. Argent : avertissement. |
 | T66 | LOA, LLD, crédit, comptant : coût total, valeur résiduelle, kilométrage | à définir | Ma voiture en leasing | Produit d'appel. Argent : avertissement. **fiscal** pour les indépendants (déductibilité, TVA) : hors calcul ou signalé. |
 | T67 | Comparateur de devis d'artisans, budget, planning, réserves de fin de travaux | Postes de travaux types, modèles de planning de rénovation (T02) | Devis artisan, Levée réserves, Chemin critique | Réutilise T32, T36 et T02. **confidentiel** : « Chemin critique » = mécanique seulement. |
 | T73 | Saisie du temps par mission et par tâche (chronomètre ou saisie), temps facturable ou non, taux horaire réel, comparaison au TJM et au devis, alerte de dépassement | Catégories de tâches types, seuils d'alerte | — | Argent : avertissement. Complète T37 et T40. |
@@ -1357,7 +1370,7 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   activités jour par jour, le budget prévu puis réel et, au retour, qui doit quoi à qui.
 - **Pour qui** : voyageurs, familles et groupes d'amis (usage `perso`, catalogue « Vie personnelle » ·
   thème « Projets de vie ») ; un voyage à la fois, plusieurs voyageurs sur la même clé (1 à 20). Packs visés :
-  « Voyage » (PVY, avec le Budget commun) et « Mariage et installation à deux » (PMR, lune de miel).
+  « Voyage » (PVY, avec Gestion Dépenses Communes) et « Mariage et installation à deux » (PMR, lune de miel).
 - **Écrans** (5 onglets + réglages) : **Aperçu** (J−n, « jour k sur n » ou « terminé » ; chemin des étapes en
   une ligne ; tuiles nuits réservées, à réserver, dépensé sur prévu, préparation ; alertes : nuit sans
   hébergement, deux hébergements la même nuit, hébergement hors dates, étapes qui se chevauchent ;

@@ -155,78 +155,100 @@ if(fallbackLink&&form){
   }catch{b.disabled=false;if(note)note.textContent='L’envoi a échoué. Réessayez dans un instant.';}
  });});})();
 
-/* Catalogue des templates (décision de Quentin, 14/11/2026). Les cartes du HTML (.vitrine-piste pour les
-   templates en vente, .liste-bientot pour ceux en préparation) et les puces de thème restent la source : sans
-   JS, elles s'affichent telles quelles. Avec JS, elles sont relues pour construire deux vues :
-   - « Par thème » : accordéon, « Disponibles maintenant » ouvert, puis un volet par thème (groupés Pro /
-     Perso), templates en vente en tête de chaque volet ;
-   - « Sommaire » : tout le catalogue en colonnes, un bloc par thème.
-   Recherche et filtre Pro / Perso s'appliquent aux deux. État dans l'adresse (?pour=pro&q=…&vue=sommaire ;
-   ?theme=… ouvre un volet) ; jamais dans le # (le script de tête redirige les # inconnus vers /catalogue/). */
+/* Catalogue des templates (simplifié le 20/11/2026). Les cartes du HTML (.vitrine-piste pour les templates en
+   vente, .liste-bientot pour ceux en préparation) et les puces de thème restent la source : sans JS, elles
+   s'affichent telles quelles. Avec JS, une seule façon de parcourir :
+   - par défaut, une tuile par thème (nombre d'outils, prix d'entrée, exemples), groupées Pro / Perso ;
+   - un clic sur une tuile affiche les outils de ce thème (?theme=…), avec la vignette de chacun (data-vignette des
+     cartes, écrit par outils/templates/vignettes.mjs ; chargée seulement quand le thème est ouvert),
+     « Tous les thèmes » ramène aux tuiles ;
+   - une recherche affiche directement les outils trouvés, tous thèmes confondus.
+   Filtre Pro / Perso sur les deux. Templates en préparation masqués par défaut (?avenir=1 les affiche),
+   toujours montrés pendant une recherche. Jamais d'état dans le # (le script de tête redirige les # inconnus). */
 (()=>{const cat=document.querySelector('[data-catalogue]');if(!cat)return;
  const $=(sel,el=cat)=>el.querySelector(sel),$$=(sel,el=cat)=>[...el.querySelectorAll(sel)];
  const filtres=$('[data-filtres]'),champ=$('#catalogue-recherche'),compte=$('[data-compte]'),vues=$('[data-vues]'),vide=$('[data-vide]');
- const segs=$$('.segment:not(.vues) button'),boutonsVue=$$('.segment.vues button');
+ const segs=$$('.segment button');
  const norm=t=>t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const texte=(el,sel)=>el.querySelector(sel)?.textContent.trim()||'';
  const themes=$$('.puce').map(b=>({id:b.dataset.theme,pour:b.dataset.pour,nom:b.firstChild.textContent.trim(),c:b.style.getPropertyValue('--c')}));
  const items=$$('.carte').map(c=>{const a=c.querySelector('a'),prochaine=c.classList.contains('prochaine');
-  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em')};
-  it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
- const dispoDabord=l=>[...l].sort((a,b)=>b.vente-a.vente);
+  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em'),vignette:c.dataset.vignette||''};
+  it.euros=parseFloat(it.prix.replace(',','.'));it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
  const total=items.length,enVente=items.filter(t=>t.vente).length;
- const s={pour:'',q:'',vue:'themes',theme:''};
+ const s={pour:'',q:'',theme:'',avenir:false};
  const p=new URLSearchParams(location.search),h=location.hash.slice(1);
  if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
  if(themes.some(t=>t.id===p.get('theme')))s.theme=p.get('theme');
- if(p.get('vue')==='sommaire')s.vue='sommaire';
+ if(p.get('avenir')==='1')s.avenir=true;
  s.q=(p.get('q')||'').slice(0,80);champ.value=s.q;
  const compter=(chemin,titre)=>{try{window.goatcounter?.count?.({path:chemin,title:titre,event:true});}catch(e){}};
- function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.vue!=='themes')q.set('vue',s.vue);
+ function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.theme&&!s.q)q.set('theme',s.theme);if(s.avenir)q.set('avenir','1');
   const qs=q.toString();history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+(qs||h==='tous'?'#tous':''));}
- /* Construction des deux vues, une seule fois */
- const etat=t=>t.vente?`<em class="tarif">${esc(t.prix)}</em>`:'<em class="bientot">Bientôt</em>';
- const ligne=t=>`<li class="${t.vente?'':'prochaine'}" data-slug="${esc(t.slug)}"><a href="${esc(t.href)}"><b>${esc(t.nom)}</b>${etat(t)}<span class="phrase">${esc(t.phrase)}</span></a></li>`;
- const volet=(cle,titre,c,liste,ouvert)=>`<details class="volet" data-volet="${cle}" style="--c:${c}"${ouvert?' open':''}><summary><span class="titre"><b>${titre}</b><span class="cpt" data-cpt></span></span><span class="apercu" aria-hidden="true">${liste.slice(0,4).map(t=>esc(t.nom)).join(' · ')}…</span><span class="chevron" aria-hidden="true"></span></summary><ul class="lignes">${liste.map(ligne).join('')}</ul></details>`;
+ /* Construction, une seule fois : tuiles des thèmes, puis la liste de tous les outils (filtrée à l'affichage) */
  const groupes=[['pro','Professionnel'],['perso','Vie personnelle']];
- const parTheme=id=>dispoDabord(items.filter(t=>t.theme===id));
- const blocSommaire=t=>`<section class="bloc-sommaire" data-volet="${t.id}" style="--c:${t.c}"><h4>${esc(t.nom)}</h4><ul>${parTheme(t.id).map(x=>`<li class="${x.vente?'':'prochaine'}" data-slug="${esc(x.slug)}"><a href="${esc(x.href)}"><span>${esc(x.nom)}</span><span>${x.vente?esc(x.prix):'bientôt'}</span></a></li>`).join('')}</ul></section>`;
- vues.innerHTML=`<div class="vue-themes" data-vue-panneau="themes">${volet('dispo','Disponibles maintenant','var(--jaune)',items.filter(t=>t.vente),true)}`
-  +groupes.map(([g,nom])=>`<div class="groupe-volets" data-groupe="${g}"><h3>${nom}</h3>${themes.filter(t=>t.pour===g).map(t=>volet(t.id,esc(t.nom),t.c,parTheme(t.id),t.id===s.theme)).join('')}</div>`).join('')
-  +`</div><div class="vue-sommaire" data-vue-panneau="sommaire"><p class="legende-sommaire"><b>En gras</b> : disponibles, avec leur prix. En gris : en préparation.</p>`
-  +groupes.map(([g,nom])=>`<div class="groupe-sommaire" data-groupe="${g}"><h3>${nom}</h3><div class="colonnes-sommaire">${themes.filter(t=>t.pour===g).map(blocSommaire).join('')}</div></div>`).join('')+`</div>`;
+ const couleur=id=>themes.find(x=>x.id===id)?.c||'var(--trait)';
+ const tuile=t=>`<button type="button" class="tuile" data-tuile="${t.id}" style="--c:${t.c}"><b>${esc(t.nom)}</b><span class="tuile-cpt" data-cpt></span><span class="tuile-ex" data-ex></span></button>`;
+ const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
+ vues.innerHTML=`<div class="tuiles" data-tuiles>`+groupes.map(([g,nom])=>`<div class="groupe-tuiles" data-groupe="${g}"><h3>${nom}</h3><div class="grille-tuiles">${themes.filter(t=>t.pour===g).map(tuile).join('')}</div></div>`).join('')+`</div>`
+  +`<div class="liste-outils" data-liste><div class="liste-tete"><button type="button" class="retour" data-retour>← Tous les thèmes</button><h3 data-liste-titre tabindex="-1"></h3></div><ul class="grille-outils">${[...items].sort((a,b)=>b.vente-a.vente).map(outil).join('')}</ul></div>`;
  $$('.vitrine,.a-venir-catalogue,.puces').forEach(el=>el.hidden=true);
  const parSlug={};items.forEach(t=>parSlug[t.slug]=t);
- const volets=$$('.volet',vues),blocs=$$('.bloc-sommaire',vues);
- volets.forEach(v=>v.addEventListener('toggle',()=>{if(v.open&&!s.q&&v.dataset.volet!=='dispo')compter('catalogue-theme-'+v.dataset.volet,'Catalogue : thème '+texte(v,'summary b'));}));
+ const tuiles=$$('.tuile',vues),lis=$$('.outil',vues),liste=$('[data-liste]',vues),blocTuiles=$('[data-tuiles]',vues),titre=$('[data-liste-titre]',vues);
  function rendre(){
-  const actif=!!(s.pour||s.q),mots=norm(s.q).split(/\s+/).filter(Boolean);
-  const ok=t=>(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
+  const mots=norm(s.q).split(/\s+/).filter(Boolean),avenir=s.avenir||mots.length>0,actif=!!(s.pour||mots.length);
+  const ok=t=>(avenir||t.vente)&&(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
   segs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pour===s.pour)));
-  boutonsVue.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vue===s.vue)));
-  $$('[data-vue-panneau]',vues).forEach(el=>el.hidden=el.dataset.vuePanneau!==s.vue);
-  $$('li[data-slug]',vues).forEach(li=>li.hidden=!ok(parSlug[li.dataset.slug]));
-  for(const v of volets){const lis=$$('li[data-slug]',v),vis=lis.filter(li=>!li.hidden),n=vis.length,nv=vis.filter(li=>!li.classList.contains('prochaine')).length;
-   v.hidden=!n;
-   v.querySelector('[data-cpt]').textContent=v.dataset.volet==='dispo'?`${n} template${n>1?'s':''} · achat unique`:`${mots.length?`${n} sur ${lis.length}`:`${n} templates`} · ${nv} disponible${nv>1?'s':''}`;
-   if(mots.length)v.open=true;}
-  for(const b of blocs)b.hidden=!$$('li[data-slug]',b).some(li=>!li.hidden);
-  for(const g of $$('.groupe-volets,.groupe-sommaire',vues))g.hidden=!$$('.volet,.bloc-sommaire',g).some(x=>!x.hidden);
-  let nVente=0,nBientot=0;items.forEach(t=>{if(ok(t))t.vente?nVente++:nBientot++;});
-  cat.classList.toggle('filtre',actif);vide.hidden=nVente+nBientot>0;vues.hidden=!(nVente+nBientot);
-  compte.innerHTML=actif?`<b>${nVente+nBientot}</b> sur ${total} · ${nVente} en vente, ${nBientot} en préparation · <button type="button" data-effacer>Effacer les filtres</button>`:`${total} templates · ${enVente} en vente, ${total-enVente} en préparation`;
+  const enListe=!!(s.theme||mots.length);
+  blocTuiles.hidden=enListe;liste.hidden=!enListe;
+  let n=0;
+  if(enListe){for(const li of lis){const t=parSlug[li.dataset.slug],v=ok(t)&&(mots.length>0||t.theme===s.theme);li.hidden=!v;if(v)n++;}
+   titre.textContent=mots.length?`Résultats pour « ${s.q.trim()} »`:themes.find(t=>t.id===s.theme).nom;}
+  else{for(const b of tuiles){const l=items.filter(t=>t.theme===b.dataset.tuile&&ok(t)),prix=l.filter(t=>t.vente).map(t=>t.euros).filter(x=>x>0);
+    b.hidden=!l.length;n+=l.length;
+    b.querySelector('[data-cpt]').textContent=`${l.length} outil${l.length>1?'s':''}${prix.length?` · dès ${Math.min(...prix).toLocaleString('fr-FR')} €`:''}`;
+    b.querySelector('[data-ex]').textContent=l.slice(0,3).map(t=>t.nom).join(' · ');}
+   for(const g of $$('.groupe-tuiles',vues))g.hidden=!$$('.tuile',g).some(x=>!x.hidden);}
+  vide.hidden=n>0;vues.hidden=!n;
+  const bascule=mots.length?'':` · <button type="button" data-avenir>${s.avenir?'Masquer les templates en préparation':`Afficher aussi les ${total-enVente} en préparation`}</button>`;
+  const effacer=actif?' · <button type="button" data-effacer>Effacer les filtres</button>':'';
+  compte.innerHTML=`<b>${enVente}</b> templates en vente${s.avenir?`, ${total-enVente} en préparation`:''}${bascule}${effacer}`;
  }
- /* Fin d'une recherche : retour à l'état de départ (« Disponibles maintenant » seul ouvert). */
- let qPrec=s.q;
- function finRecherche(){if(qPrec&&!s.q)volets.forEach(v=>v.open=v.dataset.volet==='dispo');qPrec=s.q;}
- function effacer(){s.pour='';s.q='';champ.value='';finRecherche();rendre();adresse();}
  segs.forEach(b=>b.addEventListener('click',()=>{s.pour=b.dataset.pour;rendre();adresse();if(s.pour)compter('catalogue-filtre-'+s.pour,'Catalogue : filtre '+b.textContent);}));
- boutonsVue.forEach(b=>b.addEventListener('click',()=>{if(s.vue===b.dataset.vue)return;s.vue=b.dataset.vue;rendre();adresse();compter('catalogue-vue-'+s.vue,'Catalogue : vue '+b.textContent);}));
- let attente;champ.addEventListener('input',()=>{s.q=champ.value.slice(0,80);finRecherche();rendre();clearTimeout(attente);attente=setTimeout(adresse,400);});
- cat.addEventListener('click',e=>{if(e.target.closest('[data-effacer]')){effacer();champ.focus();}});
+ let attente;champ.addEventListener('input',()=>{s.q=champ.value.slice(0,80);rendre();clearTimeout(attente);attente=setTimeout(adresse,400);});
+ cat.addEventListener('click',e=>{const t=e.target.closest('[data-tuile]');
+  if(t){s.theme=t.dataset.tuile;rendre();adresse();cat.scrollIntoView({block:'start'});titre.focus({preventScroll:true});compter('catalogue-theme-'+s.theme,'Catalogue : thème '+texte(t,'b'));}
+  else if(e.target.closest('[data-retour]')){const id=s.theme;s.theme='';s.q='';champ.value='';rendre();adresse();$(`[data-tuile="${id}"]`,vues)?.focus();}
+  else if(e.target.closest('[data-effacer]')){s.pour='';s.q='';champ.value='';rendre();adresse();champ.focus();}
+  else if(e.target.closest('[data-avenir]')){s.avenir=!s.avenir;rendre();adresse();$('[data-avenir]')?.focus();if(s.avenir)compter('catalogue-avenir','Catalogue : templates en préparation affichés');}});
  filtres.hidden=false;rendre();
- const cible=s.theme&&volets.find(x=>x.dataset.volet===s.theme&&!x.hidden);
- if(cible)requestAnimationFrame(()=>cible.scrollIntoView({block:'start'}));
- else if(s.pour||s.q||s.vue!=='themes')requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
+ if(s.theme||s.pour||s.q)requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
+})();
+
+/* Attribution des achats Gumroad (20/11/2026) : les UTM d'arrivée sur le site (lien d'une publication, d'un Short…)
+   sont gardés pour toute la visite dans l'onglet, puis ajoutés à chaque lien Gumroad au moment du clic, avec la page
+   de départ en utm_content. Sans UTM, la source est le site référent, sinon « qm-engineering.fr ». Gumroad les
+   restitue sur chaque vente (compteur réseaux : ventes par source). */
+(()=>{
+ const CLES=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'],MEMO='qme-utm';
+ let m={};try{m=JSON.parse(sessionStorage.getItem(MEMO)||'{}')||{};}catch(e){m={};}
+ const garder=()=>{try{sessionStorage.setItem(MEMO,JSON.stringify(m));}catch(e){}};
+ const p=new URLSearchParams(location.search);
+ if(CLES.some(k=>p.get(k))){m={};CLES.forEach(k=>{const v=p.get(k);if(v)m[k]=v.slice(0,100);});garder();}
+ else if(!m.utm_source&&document.referrer){
+  try{const r=new URL(document.referrer);if(r.hostname&&r.hostname!==location.hostname){m={utm_source:r.hostname.replace(/^www\./,'').slice(0,100),utm_medium:'referral'};garder();}}catch(e){}
+ }
+ const marquer=a=>{
+  try{
+   const u=new URL(a.href);
+   if(!/(^|\.)gumroad\.com$/.test(u.hostname)||!u.pathname.startsWith('/l/'))return;
+   const v=m.utm_source?{...m}:{utm_source:'qm-engineering.fr',utm_medium:'site'};
+   if(!v.utm_content)v.utm_content=(location.pathname.replace(/\/+$/,'')||'/').slice(0,100);
+   Object.entries(v).forEach(([k,x])=>{if(!u.searchParams.has(k))u.searchParams.set(k,x);});
+   a.href=u.toString();
+  }catch(e){}
+ };
+ const surLien=e=>{const a=e.target.closest?.('a[href*="gumroad.com/l/"]');if(a)marquer(a);};
+ ['pointerdown','click','auxclick','contextmenu','keydown'].forEach(t=>document.addEventListener(t,surLien,true));
 })();

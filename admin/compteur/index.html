@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Compteur réseaux · Admin QME</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+/* Charte QME Bauhaus « Pastel » : papier, filets de 1 px, grands arrondis, couleurs vives pour les données seulement. Volontairement en thème clair. */
+#dash-root { --dash-gutter: 0; }
+.rq {
+  --papier: #FBF7F1; --surface: #FFFFFF; --encre: #24221F; --texte-2: #514C44; --discret: #6E685F; --trait: #E4DCCE;
+  --rouge: #B84A34; --jaune: #E8B93A; --bleu: #2E5A88; --vert: #2E7D4F;
+  --rose: #F8DCD3; --beurre: #FBEBC2; --ciel: #D8E4F0; --sable: #F3EDE3; --ciel-texte: #22476E; --beurre-texte: #6E5310;
+  --police: Outfit, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+  display: grid; gap: 40px;
+  background: var(--papier); color: var(--encre);
+  font: 400 16px/1.55 var(--police); font-variant-numeric: tabular-nums;
+  padding-block: 24px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.rq h1, .rq h2, .rq h3 { font-family: var(--police); font-weight: 700; letter-spacing: -.025em; line-height: 1.08; margin: 0; text-wrap: balance; color: var(--encre); }
+.rq h1 { font-size: clamp(30px, 4.6vw, 48px); }
+.rq h2 { font-size: 24px; }
+.rq a { color: inherit; }
+.rq :focus-visible { outline: 3px solid var(--bleu); outline-offset: 2px; }
+
+/* Bandeau titre : aplat ciel et formes Bauhaus */
+.rq-hero { position: relative; overflow: hidden; background: var(--ciel); border-radius: 22px; padding: 28px clamp(20px, 4vw, 40px) 30px; display: grid; gap: 14px; }
+.rq-eyebrow { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ciel-texte); }
+.rq-hero h1 { max-width: 15ch; position: relative; }
+.rq-lede { margin: 0; max-width: 62ch; font-size: 17px; line-height: 1.55; color: var(--encre); position: relative; }
+.rq-lede b { font-weight: 700; }
+.rq-mode { display: flex; flex-wrap: wrap; gap: 6px; position: relative; }
+.rq-mode-b { font: 600 14px/1 var(--police); min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--ciel-texte); background: var(--surface); color: var(--encre); cursor: pointer; }
+.rq-mode-b:hover { background: var(--beurre); }
+.rq-mode-b[aria-pressed="true"] { background: var(--encre); border-color: var(--encre); color: var(--papier); }
+.rq-mode-note { margin: 0; max-width: 70ch; font-size: 13px; color: var(--ciel-texte); position: relative; }
+.rq-formes { position: absolute; right: clamp(12px, 3vw, 36px); top: 50%; transform: translateY(-50%); display: flex; align-items: flex-end; gap: 10px; pointer-events: none; }
+.rq-formes i { display: block; }
+.rq-formes .c { width: 64px; height: 64px; border-radius: 50%; background: var(--jaune); }
+.rq-formes .s { width: 52px; height: 52px; background: var(--rouge); }
+.rq-formes .q { width: 72px; height: 72px; background: var(--bleu); border-top-left-radius: 100%; }
+@media (max-width: 720px) { .rq-formes { top: 18px; transform: none; opacity: .9; } .rq-formes .c { width: 34px; height: 34px; } .rq-formes .s { width: 28px; height: 28px; } .rq-formes .q { width: 38px; height: 38px; } .rq-hero h1 { max-width: none; padding-right: 0; } .rq-eyebrow { padding-right: 130px; } }
+
+/* Sections */
+.rq-section { display: grid; gap: 18px; min-width: 0; }
+.rq-section-head { display: grid; gap: 6px; }
+.rq-sub { margin: 0; color: var(--texte-2); font-size: 14px; }
+.rq-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.rq-legend li { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--trait); border-radius: 999px; background: var(--surface); font-size: 13px; font-weight: 500; color: var(--encre); }
+.rq-dot { width: 12px; height: 12px; border-radius: 50%; flex: none; background: var(--discret); }
+
+/* Petits multiples : compteurs cumulés */
+.rq-multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.rq-mini { margin: 0; background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; padding: 18px 18px 12px; display: grid; gap: 6px; min-width: 0; }
+.rq-mini figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.rq-mini-t { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texte-2); }
+.rq-mini-n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
+.rq-mini-d { margin: 0; font-size: 12px; color: var(--discret); }
+
+/* Abonnés */
+.rq-abo-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.rq-abo-liste li { background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; padding: 14px 16px; display: grid; gap: 2px; min-width: 0; }
+.rq-abo-liste .rq-abo-r { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--texte-2); }
+.rq-abo-liste .rq-abo-n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--encre); }
+.rq-abo-liste .rq-abo-v { font-size: 12px; color: var(--discret); }
+.rq-abo-liste .rq-abo-v.hausse { color: var(--vert); font-weight: 600; }
+.rq-abo-liste .rq-abo-v.baisse { color: var(--rouge); font-weight: 600; }
+.rq-abo-liste .rq-abo-vide { grid-column: 1 / -1; color: var(--discret); font-size: 14px; }
+
+/* Gumroad */
+.rq-gtiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.rq-gtile { border-radius: 16px; padding: 18px 20px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.rq-gtile .rq-biglabel { margin: 0; }
+.rq-gt-ciel { background: var(--ciel); } .rq-gt-ciel .rq-biglabel, .rq-gt-ciel .rq-mini-d { color: var(--ciel-texte); }
+.rq-gt-rose { background: var(--rose); } .rq-gt-rose .rq-biglabel, .rq-gt-rose .rq-mini-d { color: #8A3322; }
+.rq-gt-beurre { background: var(--beurre); } .rq-gt-beurre .rq-biglabel, .rq-gt-beurre .rq-mini-d { color: var(--beurre-texte); }
+.rq-gt-sable { background: var(--sable); } .rq-gt-sable .rq-biglabel, .rq-gt-sable .rq-mini-d { color: var(--texte-2); }
+
+/* Cartes par réseau */
+.rq-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.rq-card { background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.rq-card header { display: flex; align-items: center; gap: 10px; }
+.rq-card h2 { font-size: 20px; }
+.rq-card .rq-sub { font-size: 13px; color: var(--discret); }
+.rq-biglabel { margin: 6px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--discret); }
+.rq-big { margin: 0; font-size: 42px; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; color: var(--encre); }
+.rq-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; margin: 8px 0 0; padding-top: 12px; border-top: 1px solid var(--trait); }
+.rq-kpis div { display: grid; gap: 1px; }
+.rq-kpis dt { color: var(--discret); font-size: 12px; }
+.rq-kpis dd { margin: 0; font-size: 19px; font-weight: 600; color: var(--encre); }
+
+/* Graphiques */
+.rq-chart { position: relative; min-height: 120px; }
+.rq-area { min-height: 190px; }
+.rq-chart svg { display: block; overflow: visible; }
+.rq-chart .tick text, .rq-chart .rq-lbl { fill: var(--texte-2); font-family: var(--police); font-size: 12px; }
+.rq-chart .domain { display: none; }
+.rq-chart .tick line { stroke: var(--trait); }
+.rq-chart .rq-guide { stroke: var(--encre); stroke-width: 1; stroke-dasharray: 3 3; }
+.rq-empty { color: var(--discret); margin: 0; padding: 16px 0; font-size: 14px; }
+.rq-tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--trait); box-shadow: 0 12px 32px rgba(36,34,31,.10); border-radius: 12px; padding: 10px 12px; font-size: 13px; min-width: 150px; max-width: 260px; z-index: 2; color: var(--encre); }
+.rq-tip strong { display: block; margin-bottom: 6px; font-weight: 700; }
+.rq-tip span { display: flex; align-items: center; gap: 8px; color: var(--texte-2); }
+.rq-tip span em { font-style: normal; margin-left: auto; color: var(--encre); font-weight: 600; }
+.rq-tip span.tot { border-top: 1px solid var(--trait); margin-top: 4px; padding-top: 4px; color: var(--encre); font-weight: 600; }
+.rq-tip i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+
+/* Tableau */
+.rq-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--trait); border-radius: 16px; }
+.rq-table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.rq-table th, .rq-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--trait); white-space: nowrap; }
+.rq-table tbody tr:last-child td { border-bottom: 0; }
+.rq-table th { color: var(--texte-2); font-weight: 600; background: var(--sable); }
+.rq-table td.rq-num, .rq-table th.rq-num { text-align: right; }
+.rq-table td.rq-title { white-space: normal; min-width: 220px; max-width: 360px; }
+.rq-table td.rq-nil { color: var(--discret); }
+.rq-table tbody tr:hover td { background: var(--papier); }
+.rq-note { margin: 0; color: var(--texte-2); font-size: 13px; line-height: 1.55; max-width: 80ch; background: var(--beurre); border-radius: 16px; padding: 14px 18px; }
+.rq-note a { color: var(--encre); font-weight: 600; }
+
+/* Page d'administration */
+[hidden] { display: none !important; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: #FBF7F1; }
+.dash-skeleton { color: transparent !important; background: #F3EDE3; border-radius: 6px; }
+.rq-page { max-width: 1240px; margin: 0 auto; }
+.rq-acces { --jaune: #E8B93A; --rouge: #B84A34; --bleu: #2E5A88; min-height: 100vh; display: grid; place-items: center; padding: 24px max(16px, env(safe-area-inset-left, 0px)); box-sizing: border-box; background: #FBF7F1; font-family: Outfit, system-ui, sans-serif; color: #24221F; }
+.rq-acces-carte { position: relative; overflow: hidden; width: min(440px, 100%); background: #D8E4F0; border-radius: 22px; padding: 32px 28px; display: grid; gap: 14px; box-sizing: border-box; }
+.rq-acces-carte h1 { margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -.025em; line-height: 1.08; max-width: 12ch; }
+.rq-acces-carte .rq-eyebrow { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #22476E; }
+.rq-formes-acces { top: 22px; transform: none; }
+.rq-formes-acces .c { width: 34px; height: 34px; } .rq-formes-acces .s { width: 28px; height: 28px; } .rq-formes-acces .q { width: 38px; height: 38px; }
+.rq-acces-form { display: grid; gap: 10px; }
+.rq-acces-form label[for="mdp"] { font-weight: 600; font-size: 14px; }
+.rq-acces-form input[type="password"] { font: 400 17px/1.4 Outfit, system-ui, sans-serif; padding: 12px 14px; border: 1px solid #E4DCCE; border-radius: 12px; background: #fff; color: #24221F; min-height: 48px; box-sizing: border-box; width: 100%; }
+.rq-acces-form input:focus-visible, .rq-acces button:focus-visible, .rq-barre button:focus-visible { outline: 3px solid #2E5A88; outline-offset: 2px; }
+.rq-souvenir { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #514C44; }
+.rq-souvenir input { width: 18px; height: 18px; }
+.rq-ouvrir { font: 600 15px/1 Outfit, system-ui, sans-serif; border-radius: 999px; border: 1px solid; cursor: pointer; padding: 0 18px; min-height: 48px; background: #24221F; color: #FBF7F1; border-color: #24221F; }
+.rq-ouvrir:hover { background: #2E5A88; border-color: #2E5A88; }
+.rq-ouvrir:disabled { opacity: .6; cursor: progress; }
+.rq-acces-msg { margin: 0; color: #8A3322; background: #F8DCD3; border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+.rq-barre { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: flex-end; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); font: 400 13px/1.4 Outfit, system-ui, sans-serif; color: #6E685F; background: #FBF7F1; }
+.rq-barre #lu { margin-right: auto; }
+.rq-barre .rq-btn { font: 600 13px/1 Outfit, system-ui, sans-serif; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #E4DCCE; background: #fff; color: #24221F; cursor: pointer; }
+.rq-barre .rq-btn:hover { background: #FBEBC2; }
+</style>
+</head>
+<body>
+<main class="rq-page">
+<div class="rq-acces" id="acces-bloc">
+  <div class="rq-acces-carte">
+    <div class="rq-formes rq-formes-acces" aria-hidden="true"><i class="c"></i><i class="s"></i><i class="q"></i></div>
+    <p class="rq-eyebrow">QME · administration</p>
+    <h1>Compteur réseaux QME</h1>
+    <form id="acces" class="rq-acces-form" autocomplete="off">
+      <label for="mdp">Mot de passe</label>
+      <input id="mdp" name="mdp" type="password" required autocomplete="current-password" spellcheck="false">
+      <label class="rq-souvenir"><input id="souvenir" type="checkbox" checked> Rester connecté sur cet appareil</label>
+      <button class="rq-btn rq-ouvrir" type="submit" id="ouvrir">Ouvrir le compteur</button>
+      <p class="rq-acces-msg" id="acces-msg" role="alert" hidden></p>
+    </form>
+  </div>
+</div>
+<div class="rq-barre" id="barre" hidden>
+  <span id="lu">—</span>
+  <button class="rq-btn" type="button" id="actualiser">Actualiser</button>
+  <button class="rq-btn" type="button" id="deconnexion">Se déconnecter</button>
+</div>
+<div id="tableau" hidden>
+
+<div class="rq">
+  <header class="rq-hero" id="titre">
+    <div class="rq-formes" aria-hidden="true"><i class="c"></i><i class="s"></i><i class="q"></i></div>
+    <p class="rq-eyebrow">QME · LinkedIn, Instagram, YouTube, TikTok, X, Gumroad</p>
+    <h1>Compteur réseaux QME</h1>
+    <p class="rq-lede" id="resume" data-read lang="fr">
+      <span class="rq-s0">Aucun chiffre saisi pour l'instant : remplis les colonnes jaunes du Sheet « Mesures réseaux QME » et le compteur se mettra à jour.</span>
+      <span class="rq-s1"><b data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=Total">—</b> publications relevées sur <b data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=Total">—</b>, pour <b data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=Total">—</b> vues au total. La plus vue : <b data-draw="top-id">—</b>, avec <b data-draw="top-vues" data-source="publications" data-field="Vues">—</b> vues.</span>
+      <span data-draw="resume-switch"></span>
+    </p>
+    <div class="rq-mode" role="group" aria-label="Mes propres j'aime et commentaires">
+      <button type="button" class="rq-mode-b" id="mode-net" data-mode="net" aria-pressed="true">Sans mes j'aime ni commentaires</button>
+      <button type="button" class="rq-mode-b" id="mode-brut" data-mode="brut" aria-pressed="false">Chiffres bruts</button>
+    </div>
+    <p class="rq-mode-note" data-read lang="fr">« Sans moi » retire les j'aime et commentaires de tes comptes : page QME et profil Quentin Morel sur LinkedIn, @qmengineering sur Instagram et X, ta chaîne YouTube, @qme.qm.engineering sur TikTok. YouTube ne dit pas qui a aimé une vidéo : tes j'aime YouTube restent comptés.</p>
+  </header>
+
+  <section class="rq-section" id="cumuls">
+    <div class="rq-section-head">
+      <h2>Compteurs cumulés</h2>
+      <p class="rq-sub">Chaque jour, le dernier relevé de chaque publication, additionné et empilé par réseau. Source : onglet Historique, rempli par Instinct.</p>
+    </div>
+    <ul class="rq-legend">
+      <li><span class="rq-dot" data-net="LinkedIn"></span>LinkedIn</li>
+      <li><span class="rq-dot" data-net="Instagram"></span>Instagram</li>
+      <li><span class="rq-dot" data-net="YouTube"></span>YouTube</li>
+      <li><span class="rq-dot" data-net="TikTok"></span>TikTok</li>
+      <li><span class="rq-dot" data-net="X"></span>X</li>
+    </ul>
+    <div class="rq-multiples">
+      <figure class="rq-mini" id="cumul-vues">
+        <figcaption><span class="rq-mini-t">Vues</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="Vues" data-source="cumuls" data-field="Vues">—</b></figcaption>
+        <p class="rq-mini-d">Impressions sur LinkedIn et X, vues ailleurs</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="Vues" data-source="cumuls" role="img" aria-label="Aires empilées : vues cumulées par jour, par réseau."></div>
+      </figure>
+      <figure class="rq-mini" id="cumul-jaime">
+        <figcaption><span class="rq-mini-t">J'aime</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="J'aime" data-source="cumuls" data-field="J'aime">—</b></figcaption>
+        <p class="rq-mini-d">Réactions sur LinkedIn</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="J'aime" data-source="cumuls" role="img" aria-label="Aires empilées : j'aime cumulés par jour, par réseau."></div>
+      </figure>
+      <figure class="rq-mini" id="cumul-commentaires">
+        <figcaption><span class="rq-mini-t">Commentaires</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="Commentaires" data-source="cumuls" data-field="Commentaires">—</b></figcaption>
+        <p class="rq-mini-d">Réponses sur X</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="Commentaires" data-source="cumuls" role="img" aria-label="Aires empilées : commentaires cumulés par jour, par réseau."></div>
+      </figure>
+      <figure class="rq-mini" id="cumul-partages">
+        <figcaption><span class="rq-mini-t">Partages</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="Partages" data-source="cumuls" data-field="Partages">—</b></figcaption>
+        <p class="rq-mini-d">Republications sur LinkedIn, reposts sur X</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="Partages" data-source="cumuls" role="img" aria-label="Aires empilées : partages cumulés par jour, par réseau."></div>
+      </figure>
+      <figure class="rq-mini" id="cumul-enregistrements">
+        <figcaption><span class="rq-mini-t">Enregistrements</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="Enregistrements" data-source="cumuls" data-field="Enregistrements">—</b></figcaption>
+        <p class="rq-mini-d">Favoris sur TikTok, signets sur X</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="Enregistrements" data-source="cumuls" role="img" aria-label="Aires empilées : enregistrements cumulés par jour, par réseau."></div>
+      </figure>
+      <figure class="rq-mini" id="cumul-clics">
+        <figcaption><span class="rq-mini-t">Clics</span><b class="rq-mini-n" data-draw="cumul-total" data-champ="Clics" data-source="cumuls" data-field="Clics">—</b></figcaption>
+        <p class="rq-mini-d">Relevés sur LinkedIn et X seulement</p>
+        <div class="rq-chart rq-area" data-draw="cumul" data-champ="Clics" data-source="cumuls" role="img" aria-label="Aires empilées : clics cumulés par jour, par réseau."></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="rq-section" id="abonnes">
+    <div class="rq-section-head">
+      <h2>Abonnés</h2>
+      <p class="rq-sub">Abonnés de chaque compte QME, relevés chaque matin par Instinct (onglet Abonnés). Un jour sans relevé reprend la valeur précédente.</p>
+    </div>
+    <ul class="rq-abo-liste" data-draw="abonnes-liste" data-source="abonnes_derniers"></ul>
+    <figure class="rq-mini" id="abonnes-courbe">
+      <figcaption><span class="rq-mini-t">Évolution des abonnés</span></figcaption>
+      <p class="rq-mini-d">Page LinkedIn, Instagram @qmengineering, chaîne YouTube, TikTok @qme.qm.engineering, X @qmengineering</p>
+      <div class="rq-chart rq-area" data-draw="abonnes" data-source="abonnes_jour" role="img" aria-label="Courbes : nombre d'abonnés par réseau, jour par jour."></div>
+    </figure>
+  </section>
+
+  <section class="rq-section" id="gumroad">
+    <div class="rq-section-head">
+      <h2>Gumroad</h2>
+      <p class="rq-sub">Pages produit vues et ventes depuis le 01/11/2026, copiées chaque matin de Gumroad dans le Sheet (heure du Pacifique). Les ventes comprennent les téléchargements gratuits ; le revenu est le prix moins les remboursements, avant frais, en dollars.</p>
+    </div>
+    <div class="rq-gtiles">
+      <div class="rq-gtile rq-gt-ciel">
+        <p class="rq-biglabel">Vues des pages</p>
+        <p class="rq-big" data-draw="n" data-source="gumroad_total" data-field="Vues" data-row="0">—</p>
+        <p class="rq-mini-d"><span data-draw="n" data-source="gumroad_total" data-field="Produits vus" data-row="0">—</span> produits vus sur <span data-draw="n" data-source="gumroad_total" data-field="Produits" data-row="0">—</span></p>
+      </div>
+      <div class="rq-gtile rq-gt-rose">
+        <p class="rq-biglabel">Ventes</p>
+        <p class="rq-big" data-draw="n" data-source="gumroad_total" data-field="Ventes" data-row="0">—</p>
+        <p class="rq-mini-d">téléchargements gratuits compris</p>
+      </div>
+      <div class="rq-gtile rq-gt-beurre">
+        <p class="rq-biglabel">Revenu</p>
+        <p class="rq-big" data-draw="n" data-source="gumroad_total" data-field="Revenu $" data-row="0">—</p>
+        <p class="rq-mini-d">avant frais Gumroad</p>
+      </div>
+      <div class="rq-gtile rq-gt-sable">
+        <p class="rq-biglabel">Conversion</p>
+        <p class="rq-big" data-draw="n" data-source="gumroad_total" data-field="Conversion %" data-row="0">—</p>
+        <p class="rq-mini-d">ventes ÷ vues des pages</p>
+      </div>
+    </div>
+    <div class="rq-multiples">
+      <figure class="rq-mini" id="gumroad-ventes">
+        <figcaption><span class="rq-mini-t">Ventes cumulées</span></figcaption>
+        <p class="rq-mini-d">Nombre de ventes depuis le 01/11, jour par jour</p>
+        <div class="rq-chart rq-area" data-draw="gcumul" data-champ="Ventes" data-source="gumroad_cumul" role="img" aria-label="Courbe en escalier : ventes Gumroad cumulées par jour depuis le 1er novembre."></div>
+      </figure>
+      <figure class="rq-mini" id="gumroad-revenu">
+        <figcaption><span class="rq-mini-t">Revenu cumulé</span></figcaption>
+        <p class="rq-mini-d">En dollars, avant frais, jour par jour</p>
+        <div class="rq-chart rq-area" data-draw="gcumul" data-champ="Revenu $" data-source="gumroad_cumul" role="img" aria-label="Courbe en escalier : revenu Gumroad cumulé par jour depuis le 1er novembre, en dollars."></div>
+      </figure>
+    </div>
+    <figure class="rq-mini" id="gumroad-produits">
+      <figcaption><span class="rq-mini-t">Pages les plus vues</span></figcaption>
+      <p class="rq-mini-d">Les 12 produits aux pages les plus vues ; le point rouge signale au moins une vente</p>
+      <div class="rq-chart" data-draw="gtop" data-source="gumroad_produits" role="img" aria-label="Barres horizontales : les douze produits Gumroad dont la page a été la plus vue, avec leurs ventes."></div>
+    </figure>
+    <figure class="rq-mini" id="gumroad-sources">
+      <figcaption><span class="rq-mini-t">Sources de trafic</span></figcaption>
+      <p class="rq-mini-d">D'où viennent les visiteurs des pages produit, depuis le 01/11 ; le point rouge signale au moins une vente</p>
+      <div class="rq-chart" data-draw="gsources" data-source="gumroad_sources" role="img" aria-label="Barres horizontales : vues des pages Gumroad par source de trafic, avec ventes et revenu."></div>
+      <p class="rq-mini-d">« Accès direct » : lien ouvert sans provenance transmise, cas fréquent des liens ouverts depuis les applications Instagram, LinkedIn, TikTok ou une messagerie. Le navigateur intégré d'Instagram apparaît souvent comme Facebook.</p>
+    </figure>
+    <figure class="rq-mini" id="gumroad-ventes-detail">
+      <figcaption><span class="rq-mini-t">Ventes et provenance</span></figcaption>
+      <p class="rq-mini-d">Chaque vente depuis le 01/11 : la source (paramètre utm_source, sinon le site d'où venait l'acheteur), la campagne (l'ID de la publication) et la page du site d'où il a cliqué « Acheter ». Les UTM sont transmis par le site depuis le 20/11 : les ventes antérieures n'en ont pas.</p>
+      <div class="rq-scroll">
+        <table class="rq-table" data-source="gumroad_ventes" data-row-key="Vente">
+          <thead>
+            <tr>
+              <th data-field="Date">Date</th>
+              <th data-field="Produit">Produit</th>
+              <th data-field="Prix $" class="rq-num">Prix</th>
+              <th data-field="Source">Source</th>
+              <th data-field="Support">Support</th>
+              <th data-field="Campagne">Campagne</th>
+              <th data-field="Page">Page de départ</th>
+              <th data-field="Nature">Nature</th>
+            </tr>
+          </thead>
+          <tbody data-draw="gventes"></tbody>
+        </table>
+      </div>
+    </figure>
+    <p class="rq-note" data-read lang="fr">Gumroad ne donne pas les vues jour par jour, seulement le total par produit : seules les ventes et le revenu ont une courbe cumulée. Une vente à 0 $ est un téléchargement gratuit (code offert ou produit gratuit).</p>
+  </section>
+
+  <section class="rq-section" id="essais">
+    <div class="rq-section-head">
+      <h2>Essais gratuits</h2>
+      <p class="rq-sub">Essais de 14 jours lancés sur qm-engineering.fr, lus dans la base du site. Statistique anonyme : ni e-mail ni prénom. Les essais de test (tes adresses, adresses fictives) sont exclus des chiffres.</p>
+    </div>
+    <div class="rq-gtiles">
+      <div class="rq-gtile rq-gt-ciel">
+        <p class="rq-biglabel">Essais lancés</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Essais" data-row="0">—</p>
+        <p class="rq-mini-d"><span data-draw="n" data-source="essais_total" data-field="Templates" data-row="0">—</span> templates essayés</p>
+      </div>
+      <div class="rq-gtile rq-gt-rose">
+        <p class="rq-biglabel">Achats après essai</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Achats" data-row="0">—</p>
+        <p class="rq-mini-d">licence achetée pendant ou après l'essai</p>
+      </div>
+      <div class="rq-gtile rq-gt-beurre">
+        <p class="rq-biglabel">Conversion</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Conversion %" data-row="0">—</p>
+        <p class="rq-mini-d">achats ÷ essais</p>
+      </div>
+      <div class="rq-gtile rq-gt-sable">
+        <p class="rq-biglabel">Essais de test</p>
+        <p class="rq-big" data-draw="n" data-source="essais_total" data-field="Tests" data-row="0">—</p>
+        <p class="rq-mini-d">exclus des chiffres</p>
+      </div>
+    </div>
+    <div class="rq-multiples">
+      <figure class="rq-mini" id="essais-courbe">
+        <figcaption><span class="rq-mini-t">Essais cumulés</span></figcaption>
+        <p class="rq-mini-d">Essais lancés (bleu) et achats après essai (rouge), jour par jour</p>
+        <div class="rq-chart rq-area" data-draw="essais-courbe" data-source="essais_jour" role="img" aria-label="Courbes en escalier : essais gratuits lancés et achats après essai, cumulés jour par jour."></div>
+      </figure>
+      <figure class="rq-mini" id="essais-templates">
+        <figcaption><span class="rq-mini-t">Par template</span></figcaption>
+        <p class="rq-mini-d">Essais lancés ; le point rouge signale au moins un achat</p>
+        <div class="rq-chart" data-draw="essais-templates" data-source="essais_templates" role="img" aria-label="Barres horizontales : essais gratuits par template, avec achats."></div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="rq-cards" id="reseaux">
+    <article class="rq-card" id="linkedin">
+      <header><span class="rq-dot" data-net="LinkedIn"></span><h2>LinkedIn</h2></header>
+      <p class="rq-sub"><span data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=LinkedIn">—</span> relevées sur <span data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=LinkedIn">—</span> publications</p>
+      <p class="rq-biglabel">Impressions</p>
+      <p class="rq-big" data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=LinkedIn">—</p>
+      <dl class="rq-kpis">
+        <div><dt>Réactions</dt><dd data-draw="n" data-source="totaux" data-field="J'aime" data-where="Réseau=LinkedIn">—</dd></div>
+        <div><dt>Commentaires</dt><dd data-draw="n" data-source="totaux" data-field="Commentaires" data-where="Réseau=LinkedIn">—</dd></div>
+        <div><dt>Republications</dt><dd data-draw="n" data-source="totaux" data-field="Partages" data-where="Réseau=LinkedIn">—</dd></div>
+        <div><dt>Clics</dt><dd data-draw="n" data-source="totaux" data-field="Clics" data-where="Réseau=LinkedIn">—</dd></div>
+        <div><dt>Engagement</dt><dd data-draw="n" data-source="totaux" data-field="Engagement %" data-where="Réseau=LinkedIn">—</dd></div>
+      </dl>
+    </article>
+    <article class="rq-card" id="instagram">
+      <header><span class="rq-dot" data-net="Instagram"></span><h2>Instagram</h2></header>
+      <p class="rq-sub"><span data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=Instagram">—</span> relevées sur <span data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=Instagram">—</span> publications</p>
+      <p class="rq-biglabel">Vues</p>
+      <p class="rq-big" data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=Instagram">—</p>
+      <dl class="rq-kpis">
+        <div><dt>J'aime</dt><dd data-draw="n" data-source="totaux" data-field="J'aime" data-where="Réseau=Instagram">—</dd></div>
+        <div><dt>Commentaires</dt><dd data-draw="n" data-source="totaux" data-field="Commentaires" data-where="Réseau=Instagram">—</dd></div>
+        <div><dt>Partages</dt><dd data-draw="n" data-source="totaux" data-field="Partages" data-where="Réseau=Instagram">—</dd></div>
+        <div><dt>Enregistrements</dt><dd data-draw="n" data-source="totaux" data-field="Enregistrements" data-where="Réseau=Instagram">—</dd></div>
+        <div><dt>Engagement</dt><dd data-draw="n" data-source="totaux" data-field="Engagement %" data-where="Réseau=Instagram">—</dd></div>
+      </dl>
+    </article>
+    <article class="rq-card" id="youtube">
+      <header><span class="rq-dot" data-net="YouTube"></span><h2>YouTube</h2></header>
+      <p class="rq-sub"><span data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=YouTube">—</span> relevées sur <span data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=YouTube">—</span> publications</p>
+      <p class="rq-biglabel">Vues</p>
+      <p class="rq-big" data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=YouTube">—</p>
+      <dl class="rq-kpis">
+        <div><dt>J'aime</dt><dd data-draw="n" data-source="totaux" data-field="J'aime" data-where="Réseau=YouTube">—</dd></div>
+        <div><dt>Commentaires</dt><dd data-draw="n" data-source="totaux" data-field="Commentaires" data-where="Réseau=YouTube">—</dd></div>
+        <div><dt>Partages</dt><dd data-draw="n" data-source="totaux" data-field="Partages" data-where="Réseau=YouTube">—</dd></div>
+        <div><dt>Engagement</dt><dd data-draw="n" data-source="totaux" data-field="Engagement %" data-where="Réseau=YouTube">—</dd></div>
+      </dl>
+    </article>
+    <article class="rq-card" id="tiktok">
+      <header><span class="rq-dot" data-net="TikTok"></span><h2>TikTok</h2></header>
+      <p class="rq-sub"><span data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=TikTok">—</span> relevées sur <span data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=TikTok">—</span> publications</p>
+      <p class="rq-biglabel">Vues</p>
+      <p class="rq-big" data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=TikTok">—</p>
+      <dl class="rq-kpis">
+        <div><dt>J'aime</dt><dd data-draw="n" data-source="totaux" data-field="J'aime" data-where="Réseau=TikTok">—</dd></div>
+        <div><dt>Commentaires</dt><dd data-draw="n" data-source="totaux" data-field="Commentaires" data-where="Réseau=TikTok">—</dd></div>
+        <div><dt>Partages</dt><dd data-draw="n" data-source="totaux" data-field="Partages" data-where="Réseau=TikTok">—</dd></div>
+        <div><dt>Favoris</dt><dd data-draw="n" data-source="totaux" data-field="Enregistrements" data-where="Réseau=TikTok">—</dd></div>
+        <div><dt>Engagement</dt><dd data-draw="n" data-source="totaux" data-field="Engagement %" data-where="Réseau=TikTok">—</dd></div>
+      </dl>
+    </article>
+    <article class="rq-card" id="x">
+      <header><span class="rq-dot" data-net="X"></span><h2>X</h2></header>
+      <p class="rq-sub"><span data-draw="n" data-source="totaux" data-field="Relevées" data-where="Réseau=X">—</span> relevées sur <span data-draw="n" data-source="totaux" data-field="Publications" data-where="Réseau=X">—</span> publications</p>
+      <p class="rq-biglabel">Impressions</p>
+      <p class="rq-big" data-draw="n" data-source="totaux" data-field="Vues" data-where="Réseau=X">—</p>
+      <dl class="rq-kpis">
+        <div><dt>J'aime</dt><dd data-draw="n" data-source="totaux" data-field="J'aime" data-where="Réseau=X">—</dd></div>
+        <div><dt>Réponses</dt><dd data-draw="n" data-source="totaux" data-field="Commentaires" data-where="Réseau=X">—</dd></div>
+        <div><dt>Reposts</dt><dd data-draw="n" data-source="totaux" data-field="Partages" data-where="Réseau=X">—</dd></div>
+        <div><dt>Signets</dt><dd data-draw="n" data-source="totaux" data-field="Enregistrements" data-where="Réseau=X">—</dd></div>
+        <div><dt>Clics</dt><dd data-draw="n" data-source="totaux" data-field="Clics" data-where="Réseau=X">—</dd></div>
+        <div><dt>Engagement</dt><dd data-draw="n" data-source="totaux" data-field="Engagement %" data-where="Réseau=X">—</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <section class="rq-section" id="classement">
+    <h2>Vues par publication</h2>
+    <ul class="rq-legend">
+      <li><span class="rq-dot" data-net="LinkedIn"></span>LinkedIn (impressions)</li>
+      <li><span class="rq-dot" data-net="Instagram"></span>Instagram</li>
+      <li><span class="rq-dot" data-net="YouTube"></span>YouTube</li>
+      <li><span class="rq-dot" data-net="TikTok"></span>TikTok</li>
+      <li><span class="rq-dot" data-net="X"></span>X (impressions)</li>
+    </ul>
+    <div class="rq-chart" data-draw="bars" data-source="publications" role="img" aria-label="Barres horizontales : vues de chaque publication relevée, de la plus vue à la moins vue, colorées par réseau."></div>
+  </section>
+
+  <section class="rq-section" id="detail">
+    <h2>Détail des publications</h2>
+    <div class="rq-scroll">
+      <table class="rq-table" data-source="publications" data-row-key="ID">
+        <thead>
+          <tr>
+            <th data-field="ID">ID</th>
+            <th data-field="Réseau">Réseau</th>
+            <th data-field="Publié le">Publié le</th>
+            <th data-field="Format">Format</th>
+            <th data-field="Titre">Titre</th>
+            <th data-field="Vues" class="rq-num">Vues</th>
+            <th data-field="J'aime" class="rq-num">J'aime</th>
+            <th data-field="Commentaires" class="rq-num">Comm.</th>
+            <th data-field="Partages" class="rq-num">Partages</th>
+            <th data-field="Enregistrements" class="rq-num">Enreg.</th>
+            <th data-field="Clics" class="rq-num">Clics</th>
+            <th data-field="Dont moi : J'aime" class="rq-num">Dont moi : j'aime</th>
+            <th data-field="Dont moi : commentaires" class="rq-num">Dont moi : comm.</th>
+            <th data-field="Relevé le">Relevé le</th>
+          </tr>
+        </thead>
+        <tbody data-draw="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="rq-note" id="saisie" data-read lang="fr">Les chiffres se saisissent dans le Sheet <a href="https://docs.google.com/spreadsheets/d/1578z4XTYuN-_85VdCrjJYLX9hEDlRpnmZZP5gTfNMik/edit" target="_blank" rel="noopener">Mesures réseaux QME</a>, onglet Publications : une ligne par publication, colonnes jaunes, date du relevé en colonne M. Sur LinkedIn, « Vues » correspond aux impressions et « J'aime » aux réactions. Sur X (relevé par Instinct dans X Analytics), « Vues » correspond aux impressions, « Commentaires » aux réponses, « Partages » aux reposts et citations, « Enregistrements » aux signets. Sur TikTok (relevé par Instinct dans TikTok Studio), l'ID est celui de la publication Instagram précédé de « TT- » (TT-IG-42), et « Enregistrements » correspond aux favoris. L'engagement vaut (J'aime + commentaires + partages + enregistrements) ÷ vues, sur les publications où vues et interactions sont saisies.</p>
+</div>
+
+</div>
+</main>
+<script src="d3-7.9.0.min.js"></script>
+<script src="moteur.js?v=2026112102"></script>
+<script src="compteur.js?v=2026112102"></script>
+<script src="connexion.js?v=2026112102"></script>
+</body>
+</html>

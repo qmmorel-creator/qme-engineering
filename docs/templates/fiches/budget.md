@@ -1,4 +1,4 @@
-# T05 · Budget du foyer
+# T05 · Mon Budget
 
 Slug `budget`, préfixe `BDG`, prix 15 €, permalien Gumroad `budget-foyer`, taille M, priorité P1.
 Origine : liste initiale (12/11/2026) et backlog de Quentin n° 43 « Budget personnel mensuel »
@@ -10,7 +10,7 @@ Particuliers et foyers (personne seule, couple, famille, étudiant) qui veulent 
 chaque mois et tenir un budget par enveloppes, sans application bancaire à abonnement, sans connexion à
 leur banque et sans publicité. Un seul foyer, un seul budget : **revenus → enveloppes → dépenses**.
 
-**Distinct de T65 « Budget commun »** (`templates/budget-commun/`) : T65 répartit des dépenses entre
+**Distinct de T65 « Gestion Dépenses Communes »** (`templates/budget-commun/`) : T65 répartit des dépenses entre
 plusieurs personnes (qui doit combien à qui). T05 ne s'occupe pas de qui paie : il suit le budget d'un
 foyer entier, prévu contre réel.
 

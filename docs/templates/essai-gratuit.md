@@ -25,13 +25,33 @@ sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quen
 | Quand | Objet | Contenu |
 |---|---|---|
 | Au lancement | Merci d'essayer le <template> | Remerciement, code, lien d'ouverture, date de fin, achat et reprise, « répondez-moi » |
+| Début + 2 jours (rattrapage jusqu'à + 5) | <template> : par où commencer | Prise en main **propre à chaque template** : premier pas en quelques minutes, deux fonctions peu visibles, aide proposée (`netlify/lib/essais-prise-en-main.mjs`, 20/11/2026) |
 | Fin − 3 jours | Plus que 3 jours d'essai : <template> | Rappel, prix, reprise des données, demande de retour |
 | Lendemain de la fin | Votre essai du <template> est terminé | Lecture seule jusqu'à la date d'effacement, achat, « pourquoi pas ? » |
 | Effacement − 7 jours | Vos données d'essai seront effacées le … | Dernier e-mail : acheter ou exporter |
 | Nouvelle demande, même adresse | Votre code d'essai : <template> | Code renvoyé (jamais affiché à l'écran) |
 
 Aucun e-mail après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
-essai. Textes : `contenuMail` dans `netlify/lib/essais.mjs` (vouvoiement, Quentin à la première personne).
+essai. Signature graphique (variante C, 21/11/2026) dans la version HTML : `netlify/lib/signature.mjs`,
+voir `docs/templates/communication/signature/`. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
+template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
+
+### E-mails d'achat (21/11/2026)
+
+À chaque vente, Gumroad prévient le site (`POST /api/achat`, `netlify/functions/achat.mjs`, logique
+`netlify/lib/achats.mjs`). La vente est vérifiée auprès de Gumroad avec sa clé de licence, puis :
+
+| Cas | Objet | Contenu |
+|---|---|---|
+| Achat sans essai (ou essai déjà effacé, ou autre adresse) | Merci pour votre achat : <produit> | Connexion avec la clé, premier pas du template (ou liste des templates du pack) |
+| Achat avec un essai de la même adresse | Merci : « <template> » est à vous | Saisir la clé dans « J'ai acheté » : données reprises ; date limite si l'essai est terminé ; « qu'est-ce qui vous a décidé ? » |
+
+L'essai est marqué `paye` : **la séquence d'essai s'arrête dès le paiement** (avant, elle ne s'arrêtait qu'à la
+saisie de la clé). Les données restent reprises à la saisie de la clé. Une vente n'est traitée qu'une fois.
+Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai ».
+
+**Réglage Gumroad (une fois, par Quentin)** : Gumroad → Settings → Advanced → Ping endpoint
+= `https://qm-engineering.fr/api/achat`. Sans ce réglage, aucun e-mail d'achat ne part.
 
 ### Configuration de l'envoi (une fois, par Quentin)
 
@@ -111,3 +131,4 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
+Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).

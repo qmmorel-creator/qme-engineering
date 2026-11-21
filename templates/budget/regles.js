@@ -1,4 +1,4 @@
-// Budget du foyer QME · règles métier pures (aucun accès au DOM ni au stockage).
+// Mon Budget QME · règles métier pures (aucun accès au DOM ni au stockage).
 // Chargé tel quel par le navigateur (window.BDG) et par les tests Node (vm).
 // Tous les montants sont des centimes entiers : aucune erreur d'arrondi dans les calculs.
 (function (racine) {

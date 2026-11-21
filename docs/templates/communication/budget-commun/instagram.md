@@ -1,4 +1,4 @@
-# Publication Instagram · Budget commun (IG-08)
+# Publication Instagram · Gestion Dépenses Communes (IG-08)
 
 26/11/2026 à 18:30, lendemain de LI-79 (25/11). Carrousel 5 vues au gabarit des posts
 template (IG-04, IG-05), vue 5 avec renvoi au sur mesure. Kit : `../instagram/README.md`. Visuels :
@@ -16,14 +16,14 @@ template (IG-04, IG-05), vue 5 avec renvoi au sur mesure. Kit : `../instagram/RE
 4. Le moins de virements possible. (bandeau jaune, capture `templates-budget-commun-soldes.webp`).
 5. Appel à l'action (fond jaune), 15 €, renvoi au sur mesure : Une association, un club, vos propres règles de partage.
 
-## Légende (Google Doc « IG-08 · T65 · Budget commun couple / colocation · légende », publié tel quel)
+## Légende (Google Doc « IG-08 · T65 · Gestion Dépenses Communes couple / colocation · légende », publié tel quel)
 
 ```
 Qui doit combien à qui ? Sans tableur ni discussion.
 
 Partager à parts égales, c'est simple. Dès qu'on tient compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient vite une source de discussions.
 
-Le Budget commun :
+Gestion Dépenses Communes :
 ▪ répartit chaque dépense à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près ;
 ▪ tient les soldes à jour et calcule le nombre minimal de virements pour remettre les comptes à zéro ;
 ▪ ajoute chaque mois le loyer, l'énergie et les abonnements avec la bonne répartition.
@@ -41,7 +41,7 @@ Démo libre avec un couple fictif, et contact : lien en bio.
 
 1. Titre « Qui doit combien à qui ? » Partager les dépenses à deux, à trois ou en famille.
 2. Fond noir : « Je t'ai fait un virement pour les courses… ou c'était pour l'électricité ? » Les comptes communs tiennent souvent dans une note de téléphone.
-3. Le template Budget commun : Chacun note ce qu'il paie. Parts égales, prorata des revenus, parts ou montants exacts, au centime près. Loyer, énergie, abonnements ajoutés chaque mois avec la bonne répartition. Une clé pour le foyer : chacun l'ouvre sur son téléphone. Capture, données fictives.
+3. Le template Gestion Dépenses Communes : Chacun note ce qu'il paie. Parts égales, prorata des revenus, parts ou montants exacts, au centime près. Loyer, énergie, abonnements ajoutés chaque mois avec la bonne répartition. Une clé pour le foyer : chacun l'ouvre sur son téléphone. Capture, données fictives.
 4. Les soldes : Le moins de virements possible. Soldes à jour : qui doit combien à qui. Nombre minimal de virements pour remettre les comptes à zéro. Capture, données fictives.
 5. Fond jaune : essayez-le avec un couple fictif, démo libre, achat unique à 15 €. Besoin de plus ? Une association, un club, vos propres règles de partage : version sur mesure. Lien en bio.
 
@@ -65,7 +65,7 @@ Qui doit combien à qui ? Sans tableur ni discussion.
 
 « Je t'ai fait un virement pour les courses… ou c'était pour l'électricité ? » Partager à parts égales, c'est simple. Dès qu'on tient compte des revenus de chacun, d'un enfant ou d'une chambre plus grande, le tableur devient vite une source de discussions.
 
-Le Budget commun :
+Gestion Dépenses Communes :
 ▪ répartit chaque dépense à parts égales, au prorata des revenus, en parts ou en montants exacts, au centime près ;
 ▪ tient les soldes à jour et calcule le nombre minimal de virements pour remettre les comptes à zéro ;
 ▪ ajoute chaque mois le loyer, l'énergie et les abonnements avec la bonne répartition.
@@ -88,7 +88,7 @@ Plus votre partage est juste, plus le calcul se complique. Sauf si ce n'est pas 
 
 Moitié-moitié, ça se compte de tête. Au prorata des revenus, avec un enfant ou une chambre plus grande, la note de téléphone ne suit plus.
 
-Le Budget commun fait le calcul : chacun note ce qu'il paie, la dépense est répartie comme vous l'avez décidé, au centime près, et les soldes donnent le nombre minimal de virements pour revenir à zéro. Loyer, énergie et abonnements reviennent chaque mois avec la bonne répartition.
+Gestion Dépenses Communes fait le calcul : chacun note ce qu'il paie, la dépense est répartie comme vous l'avez décidé, au centime près, et les soldes donnent le nombre minimal de virements pour revenir à zéro. Loyer, énergie et abonnements reviennent chaque mois avec la bonne répartition.
 
 Une clé pour le foyer, chacun sur son téléphone. Pas de connexion bancaire, achat unique à 15 €.
 
@@ -97,3 +97,12 @@ Une association, un club, vos propres règles de partage ? Je construis la versi
 Démo libre avec un couple fictif : lien en bio. À envoyer à la personne avec qui vous partagez les comptes.
 
 #BudgetCommun #Colocation #BudgetFamilial #VieDeCouple
+
+
+---
+
+## Mode « compte commun » (20/11/2026)
+
+Reel **IG-156** (vidéo démo 020, 20 s, musique QME), 05/12/2026 12:30, statut **Prêt** tant que le mode n'est pas en
+production ; repris sur TikTok par Instinct et en Short **YT-44**. Légende : accroche « Compte joint : combien chacun
+doit-il verser ce mois-ci ? », essai gratuit, pont vers le sur mesure, « Lien en bio ».

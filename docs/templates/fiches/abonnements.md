@@ -11,8 +11,8 @@ base : abonnements courants sans prix figés). Fiche rédigée le 13/11/2026. Ma
 
 Particuliers et foyers qui accumulent des abonnements (vidéo, musique, presse, téléphone, box, assurances,
 sport, logiciels, stockage, livraison, jeux…) et ne savent plus ce qu'ils paient au total, ni quand un
-essai gratuit devient payant ou quand ils peuvent sortir d'un engagement. Distinct du **Budget du foyer**
-(T05, `templates/budget/`, toutes les dépenses du mois) et du **Budget commun** (T65, qui doit quoi à qui) :
+essai gratuit devient payant ou quand ils peuvent sortir d'un engagement. Distinct du **Mon Budget**
+(T05, `templates/budget/`, toutes les dépenses du mois) et du **Gestion Dépenses Communes** (T65, qui doit quoi à qui) :
 ici, uniquement les dépenses récurrentes, avec leurs dates qui engagent.
 
 ## Promesse

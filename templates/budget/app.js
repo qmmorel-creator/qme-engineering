@@ -1,4 +1,4 @@
-// Budget du foyer QME : revenus → enveloppes → dépenses, données synchronisées par clé d'accès.
+// Mon Budget QME : revenus → enveloppes → dépenses, données synchronisées par clé d'accès.
 (() => {
   'use strict';
   const B = window.BASE;
@@ -262,7 +262,7 @@
   const MARQUE = `${SYMBOLE}<span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>`;
 
   function ecranConnexion(message = '') {
-    document.title = 'Budget du foyer · QME';
+    document.title = 'Mon Budget · QME';
     $('#racine').innerHTML = `
     <div class="connexion">
       <section class="composition" aria-label="Présentation">
@@ -279,7 +279,7 @@
           <path d="M386 280 A96 96 0 0 1 482 184 V280 Z" fill="#F0EDE6"/>
         </svg>
         <div class="accroche">
-          <p class="surtitre">Budget du foyer · enveloppes et flux</p>
+          <p class="surtitre">Mon Budget · enveloppes et flux</p>
           <h1>Chaque euro a une place.</h1>
           <p>Tes revenus répartis en enveloppes, tes dépenses comparées au prévu, et un diagramme qui montre où part l'argent chaque mois.</p>
         </div>
@@ -415,7 +415,7 @@
       ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Foyer fictif, données gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
-        <span class="titre-produit">Budget<br>du foyer</span>
+        <span class="titre-produit">Mon<br>budget</span>
         <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
@@ -431,7 +431,7 @@
     if (!E || !$('#vue')) return;
     document.querySelectorAll('.onglet').forEach((b) => { if (b.dataset.vue === vue) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     const titres = Object.fromEntries(ONGLETS);
-    document.title = `${titres[vue]} · Budget du foyer`;
+    document.title = `${titres[vue]} · Mon Budget`;
     $('#vue').innerHTML = { mois: vueMois, enveloppes: vueEnveloppes, operations: vueOperations, bilan: vueBilan, categories: vueCategories }[vue]();
     brancherInfobulles();
     if (vue === 'operations') brancherFiltres();
@@ -1016,7 +1016,7 @@
       <p class="erreur" role="alert"></p>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Ton budget est enregistré en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
-      <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a ta clé voit et modifie ce budget.</p>`}
+      <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a ce code voit et modifie ce budget. Pour qu'il reste privé, ne le donne à personne. Pour partager des dépenses avec ton foyer, utilise Gestion Dépenses Communes : il a son propre code, qui n'ouvre pas ce budget.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(AVERTISSEMENT)}</p><p class="aide">${esc(B.repere.titre)} : ${esc(B.repere.source)}</p></div>
       <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du budget, en une page.</p>

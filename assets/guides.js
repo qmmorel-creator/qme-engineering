@@ -1,5 +1,5 @@
 // Guides QME (/guides/) : calculateur « budget à deux » et impression de la check-list de réception.
-// Le calculateur reprend le moteur de répartition de l'application Budget commun
+// Le calculateur reprend le moteur de répartition de l'application Gestion Dépenses Communes
 // (templates/budget-commun/regles.js, window.BCM, chargé avant ce fichier) : montants en centimes entiers,
 // méthode du plus fort reste, la somme des parts vaut exactement le montant saisi.
 // Aucune donnée n'est envoyée ni enregistrée : tout se calcule dans la page.

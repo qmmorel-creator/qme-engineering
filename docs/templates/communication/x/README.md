@@ -78,7 +78,7 @@ Compte existant : **@qmengineering** (créé en avril 2022 ; ancien profil orien
 ## Lancement · 18/11/2026 : 10 posts, un par heure de 14:00 à 23:00 (Paris)
 
 Demande de Quentin du 18/11 : présentation générale de QME, reprises d'anciens posts sur le sur-mesure (adaptés en
-anglais, seuls leurs faits sont repris), références publiques de `/en/references/` (sans nom de client). Le lien `/x`
+anglais, seuls leurs faits sont repris), références publiques de `/en/custom/#references` (sans nom de client). Le lien `/x`
 n'étant pas encore en ligne, ces posts renvoient vers des pages anglaises déjà publiées. X-L01 est épinglé (il
 remplace l'ancien post Coda de 2023) ; X-L10 annonce X-01.
 
@@ -224,7 +224,7 @@ produire par le skill `campagne-x` la veille au plus tard.
 | X-05 | 23/11/2026 | Post | Le plus simple qui suffit (existant, no-code ou sur mesure) | — |
 | X-06 | 24/11/2026 | Vidéo | « One task slips. What happens to the end date? » | Gantt |
 | X-07 | 25/11/2026 | Post | 11 outils pour le bâtiment et l'exploitation | — |
-| X-08 | 26/11/2026 | Vidéo | « Who owes what? » | Budget commun |
+| X-08 | 26/11/2026 | Vidéo | « Who owes what? » | Gestion Dépenses Communes |
 | X-09 | 27/11/2026 | Post | Traduire ne suffit pas : 34 outils suivent des règles françaises | — |
 | X-10 | 28/11/2026 | Vidéo | « Your spreadsheet, as an app » : avant / après | Stocks |
 | X-11 | 29/11/2026 | Post | La méthode en 4 étapes | — |
@@ -380,7 +380,7 @@ Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de dém
   montant restant à encaisser lu dans l'application) → fiche contact → carton.
 - **X-06** · Gantt (25 s) : réutiliser les captures du scénario `docs/videos/scenarios/gantt-retard.mjs` ; « One task
   slips 3 days. » → la barre bouge, le chemin critique se recalcule, la date de fin change (valeurs lues dans la démo).
-- **X-08** · Budget commun (22 s) : « Who owes what? » → dépenses saisies → soldes calculés (valeurs de la démo).
+- **X-08** · Gestion Dépenses Communes (22 s) : « Who owes what? » → dépenses saisies → soldes calculés (valeurs de la démo).
 - **X-10** · Stocks (25 s) : avant (tableur figé, dessiné en HTML, sans marque) / après (tableau de bord, alertes, liste à
   commander de la démo).
 - **X-12** · Levée de réserves (25 s) : réserves par entreprise, retards calculés, PV prêt à imprimer.

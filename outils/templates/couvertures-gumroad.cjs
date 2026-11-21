@@ -7,8 +7,8 @@ const R = process.cwd();
 const OUT = process.argv[2] || `${R}/assets`;
 const T = {
   'auto-ecole': ["Gestion d'auto-école", 'Chaque leçon à sa place, chaque heure comptée.', 'Planning · élèves · véhicules · coût par heure'],
-  budget: ['Budget du foyer', 'Chaque euro a une place.', 'Enveloppes · prévu et réel · flux du mois'],
-  'budget-commun': ['Budget commun', 'Qui doit combien à qui.', 'Prorata des revenus · parts · un virement pour équilibrer'],
+  budget: ['Mon Budget', 'Chaque euro a une place.', 'Enveloppes · prévu et réel · flux du mois'],
+  'budget-commun': ['Gestion Dépenses Communes', 'Qui doit combien à qui.', 'Prorata des revenus · parts · un virement pour équilibrer'],
   'compte-rendu': ["Compte rendu · plan d'actions", "Chaque action suivie jusqu'au bout.", 'Décisions, actions datées, reprises à la réunion suivante'],
   'cout-revient': ['Coût de revient · prix par client', 'Sais-tu ce que te coûte une heure ?', 'Prix plancher, prix conseillé, rentabilité par client'],
   crm: ['CRM freelance', "Personne à relancer n'est oublié.", 'Relances du jour · affaires · factures suivies'],

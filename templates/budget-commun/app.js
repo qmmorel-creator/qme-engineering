@@ -1,4 +1,4 @@
-// Budget commun QME : dépenses partagées d'un foyer, soldes et équilibrage, synchronisés par clé.
+// Gestion Dépenses Communes QME : dépenses partagées d'un foyer, soldes et équilibrage, synchronisés par clé.
 (() => {
   'use strict';
   const B = window.BASE;
@@ -20,7 +20,8 @@
   const maintenant = () => new Date().toISOString();
   const eur = (c, o) => R.euros(c, o);
   // Valeur d'un champ montant : 1234,5 (sans symbole), pour la saisie.
-  const versSaisie = (c) => (Number.isInteger(c) ? `${Math.floor(c / 100)},${String(c % 100).padStart(2, '0')}` : '');
+  // Montant négatif (compte à découvert) : « -12,50 ».
+  const versSaisie = (c) => (Number.isInteger(c) ? `${c < 0 ? '-' : ''}${Math.floor(Math.abs(c) / 100)},${String(Math.abs(c) % 100).padStart(2, '0')}` : '');
   const stock = {
     lire(cle) { try { const v = localStorage.getItem(cle) ?? sessionStorage.getItem(cle); return v ? JSON.parse(v) : null; } catch { return null; } },
     ecrire(cle, v, session = false) { try { (session ? sessionStorage : localStorage).setItem(cle, JSON.stringify(v)); } catch { /* stockage indisponible */ } },
@@ -42,7 +43,8 @@
     return fmt(s, { weekday: 'short', day: 'numeric', month: 'short' });
   };
 
-  const hex = (id) => (B.couleurs.find((c) => c.id === id) || B.couleurs[6]).hex;
+  // « compte » : couleur neutre du compte commun dans les graphiques (distincte des six couleurs des membres).
+  const hex = (id) => (id === 'compte' ? '#8C857A' : (B.couleurs.find((c) => c.id === id) || B.couleurs[6]).hex);
   const texteSur = (id) => (id === 'jaune' ? 'var(--encre)' : '#fff');
   const modeInfo = (id) => B.modes.find((m) => m.id === id) || B.modes[0];
 
@@ -55,23 +57,39 @@
   let filtres = { mois: null, payeur: '', categorie: '' };
   let annulation = null;
 
+  // Deux fonctionnements (réglage du foyer) :
+  // - « avances » : chacun paie de son côté, l'outil calcule qui rembourse qui (soldes, équilibrage) ;
+  // - « compte » : un compte commun paie les dépenses, l'outil calcule combien chacun y verse chaque mois.
+  // Les données d'avant cette option n'ont pas de réglage : elles restent en « avances ».
+  const COMPTE = R.COMPTE;
+  const CLES = ['egale', 'prorata', 'parts'];
   const etatVide = () => ({
-    version: 1, tutorielVu: false, foyer: { nom: '', modele: null, modifLe: '' }, reglages: { modeDefaut: 'egale', modifLe: '' },
-    membres: [], categories: [], depenses: [], recurrentes: [], virements: [], supprimes: {},
+    version: 1, tutorielVu: false, foyer: { nom: '', modele: null, modifLe: '' },
+    reglages: { modeDefaut: 'egale', fonctionnement: 'avances', cle: { mode: 'prorata', parts: {} }, modifLe: '' },
+    membres: [], categories: [], depenses: [], recurrentes: [], virements: [], versements: [], alimentations: [], supprimes: {},
   });
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
     const tab = (x) => (Array.isArray(x) ? x : []);
+    const reglages = { ...v.reglages, ...(d.reglages || {}) };
+    if (!['avances', 'compte'].includes(reglages.fonctionnement)) reglages.fonctionnement = 'avances';
+    if (!reglages.cle || typeof reglages.cle !== 'object' || !CLES.includes(reglages.cle.mode)) {
+      reglages.cle = { mode: CLES.includes(reglages.modeDefaut) ? reglages.modeDefaut : 'egale', parts: {} };
+    }
     return {
       ...v, ...d,
-      foyer: { ...v.foyer, ...(d.foyer || {}) }, reglages: { ...v.reglages, ...(d.reglages || {}) },
+      foyer: { ...v.foyer, ...(d.foyer || {}) }, reglages,
       membres: tab(d.membres), categories: tab(d.categories), depenses: tab(d.depenses).filter((x) => Number.isInteger(x?.montant)),
-      recurrentes: tab(d.recurrentes), virements: tab(d.virements), supprimes: d.supprimes && typeof d.supprimes === 'object' ? d.supprimes : {},
+      recurrentes: tab(d.recurrentes), virements: tab(d.virements),
+      versements: tab(d.versements).filter((x) => Number.isInteger(x?.montant)), alimentations: tab(d.alimentations),
+      supprimes: d.supprimes && typeof d.supprimes === 'object' ? d.supprimes : {},
     };
   };
+  const modeCompte = () => E?.reglages.fonctionnement === 'compte';
   const membre = (id) => E.membres.find((m) => m.id === id);
-  const nom = (id) => membre(id)?.nom || 'Ancien membre';
+  const nom = (id) => (id === COMPTE ? 'Compte commun' : membre(id)?.nom || 'Ancien membre');
+  const pourQui = (x) => (x.pour && x.pour !== 'foyer' ? `pour ${nom(x.pour)}` : 'pour le foyer');
   const categorie = (id) => E.categories.find((c) => c.id === id);
   const nomCat = (id) => categorie(id)?.nom || 'Sans catégorie';
   const toucher = (x) => { x.modifLe = maintenant(); return x; };
@@ -88,7 +106,35 @@
     return n.length;
   }
 
-  const soldesActuels = () => R.soldes(E.membres, E.depenses, E.virements);
+  // Les dépenses payées par le compte commun n'entrent pas dans les soldes entre personnes.
+  const soldesActuels = () => R.soldes(E.membres, E.depenses.filter((d) => d.payeur !== COMPTE), E.virements);
+
+  // ---------- Compte commun : calcul d'un mois ----------
+  const idAlim = (m) => `a-${m}`;
+  const alim = (m) => E.alimentations.find((x) => x.id === idAlim(m)) || null;
+  // Dépenses courantes prévues : celles du mois, sinon celles du dernier mois renseigné avant lui.
+  function courantesDe(m) {
+    const a = alim(m);
+    if (Number.isInteger(a?.courantes)) return a.courantes;
+    const avant = E.alimentations.filter((x) => x.mois < m && Number.isInteger(x.courantes)).sort((x, y) => y.mois.localeCompare(x.mois))[0];
+    return avant ? avant.courantes : 0;
+  }
+  function calculCompte(m) {
+    const a = alim(m);
+    const ch = R.chargesPrevues(E.recurrentes, m, E.membres);
+    const courantes = courantesDe(m);
+    const autres = Number.isInteger(a?.autres) ? a.autres : 0;
+    const solde = Number.isInteger(a?.solde) ? a.solde : null;
+    const res = R.alimentation({ membres: E.membres, cle: E.reglages.cle, communes: ch.communes, perso: ch.perso, courantes, autres, solde: solde ?? 0 });
+    const deja = R.verses(E.versements, m, E.membres);
+    const reste = Object.fromEntries(E.membres.map((mb) => [mb.id, Math.max(0, res.versements[mb.id] - deja[mb.id])]));
+    // Estimation de fin du mois précédent, proposée comme solde de départ.
+    const p = alim(R.ajoutMois(m, -1));
+    const estimePrec = Number.isInteger(p?.solde) ? R.soldeEstime(p.solde, E.versements, E.depenses, p.mois) : null;
+    const estime = solde === null ? null : R.soldeEstime(solde, E.versements, E.depenses, m, m === moisCourant() ? auj() : `${m}-31`);
+    const depCompte = E.depenses.filter((d) => d.payeur === COMPTE && R.moisDe(d.date) === m).reduce((s, d) => s + d.montant, 0);
+    return { ...res, ch, courantes, autres, solde, deja, reste, estimePrec, estime, depCompte };
+  }
   const moisAvecDonnees = () => [...new Set([...E.depenses.map((d) => R.moisDe(d.date)), moisCourant()])].sort().reverse();
 
   // ---------- Stockage et synchronisation ----------
@@ -230,10 +276,12 @@
     } else ecranAccueil();
   }
 
-  function ouvrirDemo(memoriser = true) {
+  // variante : 'compte' ou 'avances' force des données neuves de ce fonctionnement.
+  function ouvrirDemo(memoriser = true, variante = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    if (variante) E = variante === 'compte' ? donneesDemoCompte() : donneesDemo();
+    else E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     generer();
     cache();
     demarrer();
@@ -303,12 +351,66 @@
     return E;
   }
 
+  // Démo du fonctionnement « compte commun » : le même couple alimente un compte joint au prorata
+  // des revenus. Récurrentes payées par le compte depuis 3 mois, dont le forfait de Sami (charge
+  // personnelle) ; mois passés renseignés et alimentés ; ce mois-ci, Camille a versé, pas Sami.
+  function donneesDemoCompte() {
+    E = etatVide();
+    const t = auj(), m0 = moisCourant();
+    const m = (n) => R.ajoutMois(m0, n);
+    const jour = (mois, j) => `${mois}-${deux(Math.min(j, R.joursDansMois(mois)))}`;
+    E.foyer = { nom: 'Camille et Sami', modele: 'couple', modifLe: '' };
+    E.reglages = { modeDefaut: 'prorata', fonctionnement: 'compte', cle: { mode: 'prorata', parts: {} }, modifLe: '' };
+    E.tutorielVu = false;
+    E.membres = [
+      { id: 'cam', nom: 'Camille', couleur: 'bleu', revenu: 260000, modifLe: '' },
+      { id: 'sam', nom: 'Sami', couleur: 'jaune', revenu: 190000, modifLe: '' },
+    ];
+    E.categories = B.modeles[0].categories.map((id) => ({ id, nom: B.categories.find((c) => c.id === id).nom, modifLe: '' }));
+    const tous = ['cam', 'sam'];
+    const rep = (pour) => ({ mode: 'egale', participants: pour === 'foyer' ? tous : [pour] });
+    const r = (id, libelle, montant, categorie, j, pour = 'foyer') => ({ id, libelle, montant, payeur: COMPTE, pour, categorie, jour: j, debut: m(-3), fin: null, actif: true, repartition: rep(pour), modifLe: '' });
+    E.recurrentes = [
+      r('loyer', 'Loyer et charges', 98000, 'logement', 5), r('elec', 'Électricité', 7400, 'energie', 10),
+      r('box', 'Internet', 2999, 'abonnements', 8), r('assu', 'Assurance habitation', 1840, 'assurances', 15),
+      r('tel-sam', 'Forfait téléphone de Sami', 1599, 'abonnements', 12, 'sam'),
+    ];
+    const ajouter = (date, libelle, montant, cat, pour = 'foyer') => {
+      if (date > t) return;
+      const repartition = rep(pour);
+      E.depenses.push({ id: uid(), date, libelle, montant, payeur: COMPTE, pour, categorie: cat, repartition, quotes: R.repartir(montant, E.membres.filter((x) => repartition.participants.includes(x.id)), 'egale').quotes, modifLe: '' });
+    };
+    const courses = [8420, 6315, 10290, 4785, 9160, 7340, 5590, 11205, 6880, 8045, 7710, 9930, 5240, 10480];
+    let k = 0;
+    for (let i = -3; i <= 0; i++) for (const j of [3, 11, 19, 26]) ajouter(jour(m(i), j), k % 3 === 2 ? 'Marché' : 'Courses de la semaine', courses[k++ % courses.length], 'courses');
+    ajouter(jour(m(-2), 14), 'Week-end à la mer', 32000, 'sorties');
+    ajouter(jour(m(-1), 21), 'Restaurant', 6400, 'sorties');
+    ajouter(jour(m(-1), 9), 'Pharmacie', 2360, 'sante');
+    ajouter(jour(m(0), 2), 'Cinéma', 2380, 'sorties');
+    E.depenses.push(...R.genererRecurrentes(E.recurrentes, E.depenses, {}, t, E.membres));
+    E.depenses.sort((a, b) => a.date.localeCompare(b.date));
+    // Mois passés : solde saisi en début de mois (estimation du mois d'avant), versements faits la veille du 1er.
+    let solde = 15000;
+    for (let i = -3; i <= 0; i++) {
+      const mm = m(i);
+      E.alimentations.push({ id: idAlim(mm), mois: mm, solde, courantes: 50000, autres: i === -1 ? 9000 : 0, modifLe: '' });
+      const c = calculCompte(mm);
+      const veille = `${R.ajoutMois(mm, -1)}-${deux(R.joursDansMois(R.ajoutMois(mm, -1)))}`;
+      for (const mb of E.membres) {
+        if (i === 0 && mb.id === 'sam') continue; // ce mois-ci, Sami n'a pas encore versé
+        if (c.versements[mb.id] > 0) E.versements.push({ id: uid(), date: veille, mois: mm, de: mb.id, montant: c.versements[mb.id], note: '', modifLe: '' });
+      }
+      solde = R.soldeEstime(solde, E.versements, E.depenses, mm);
+    }
+    return E;
+  }
+
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
   const MARQUE = `${SYMBOLE}<span><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>`;
 
   function ecranConnexion(message = '') {
-    document.title = 'Budget commun · QME';
+    document.title = 'Gestion Dépenses Communes · QME';
     $('#racine').innerHTML = `
     <div class="connexion">
       <section class="composition" aria-label="Présentation">
@@ -321,7 +423,7 @@
           <rect x="390" y="140" width="160" height="20" fill="#F0EDE6"/>
         </svg>
         <div class="accroche">
-          <p class="surtitre">Budget commun · couple, colocation, famille</p>
+          <p class="surtitre">Gestion Dépenses Communes · couple, colocation, famille</p>
           <h1>Qui doit combien à qui, sans calculette.</h1>
           <p>Chacun note ce qu'il paie, à parts égales, au prorata des revenus ou en parts. Les soldes se tiennent à jour et l'équilibrage tient en un virement.</p>
         </div>
@@ -331,7 +433,7 @@
           <p class="surtitre">Accès acheteur</p>
           <h2>Ouvre ton budget commun</h2>
         </div>
-        <p>Saisis la clé de licence reçue par e-mail après l'achat. Chaque membre du foyer peut l'ouvrir sur son téléphone avec la même clé : tout le foyer voit les mêmes comptes.</p>
+        <p>Saisis la clé de licence reçue par e-mail après l'achat. Pour y faire entrer les autres membres, tu leur donneras ensuite le code de partage de l'onglet Foyer : tout le foyer verra les mêmes comptes.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
           <label class="champ code-saisie">Clé de licence ou code d'accès
             <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
@@ -366,7 +468,13 @@
   }
 
   // ---------- Rendu : premier lancement ----------
-  let accueil = { etape: 1, modele: null, nomFoyer: '', membres: [], mode: 'egale' };
+  let accueil = { etape: 1, modele: null, nomFoyer: '', membres: [], mode: 'egale', fonctionnement: 'avances' };
+  const FONCTIONNEMENTS = [
+    { id: 'avances', nom: 'Avances et remboursements', detail: 'Chacun paie de son côté ; l\'outil calcule qui rembourse qui.' },
+    { id: 'compte', nom: 'Compte commun', detail: 'Un compte joint paie les dépenses ; l\'outil calcule combien chacun y verse chaque mois.' },
+  ];
+  const fonctionnementInfo = (id) => FONCTIONNEMENTS.find((f) => f.id === id) || FONCTIONNEMENTS[0];
+  const segmentsFonctionnement = (choisi) => `<div class="segments fonctionnements">${FONCTIONNEMENTS.map((f) => `<label><input type="radio" name="fonctionnement" value="${f.id}" ${choisi === f.id ? 'checked' : ''}><span><b>${esc(f.nom)}</b><small>${esc(f.detail)}</small></span></label>`).join('')}</div>`;
 
   function choisirModele(id) {
     const mo = B.modeles.find((x) => x.id === id);
@@ -408,9 +516,13 @@
               </div>`).join('')}
           </div>
           ${a.membres.length < MAX_MEMBRES ? '<button type="button" class="btn petit" data-action="accueil-ajouter">+ Ajouter une personne</button>' : ''}
-          <fieldset class="champ choix-mode"><legend>Répartition par défaut des nouvelles dépenses</legend>
+          <fieldset class="champ choix-mode"><legend>Comment le foyer paie-t-il ?</legend>
+            ${segmentsFonctionnement(a.fonctionnement)}
+            <small>Modifiable à tout moment dans les réglages, sans rien perdre.</small>
+          </fieldset>
+          <fieldset class="champ choix-mode"><legend>${a.fonctionnement === 'compte' ? 'Répartition des versements sur le compte' : 'Répartition par défaut des nouvelles dépenses'}</legend>
             <div class="segments">${B.modes.filter((x) => x.id !== 'montants').map((x) => `<label><input type="radio" name="mode" value="${x.id}" ${a.mode === x.id ? 'checked' : ''}><span>${esc(x.nom)}</span></label>`).join('')}</div>
-            <small>Modifiable pour chaque dépense, et à tout moment dans l'onglet Foyer.</small>
+            <small>${a.fonctionnement === 'compte' ? 'Les parts se règlent ensuite dans l\'onglet Foyer.' : 'Modifiable pour chaque dépense, et à tout moment dans l\'onglet Foyer.'}</small>
           </fieldset>
           <p class="erreur" id="erreur-accueil" role="alert"></p>
         </form>
@@ -423,7 +535,14 @@
     $('#form-accueil')?.addEventListener('input', (e) => {
       const el = e.target;
       if (el.name === 'mode') accueil.mode = el.value;
-      else if (el.dataset.champ) accueil.membres[Number(el.dataset.i)][el.dataset.champ] = el.value;
+      else if (el.name === 'fonctionnement') {
+        accueil.fonctionnement = el.value;
+        const bloc = el.form.querySelectorAll('.choix-mode')[1];
+        if (bloc) {
+          bloc.querySelector('legend').textContent = el.value === 'compte' ? 'Répartition des versements sur le compte' : 'Répartition par défaut des nouvelles dépenses';
+          bloc.querySelector('small').textContent = el.value === 'compte' ? 'Les parts se règlent ensuite dans l\'onglet Foyer.' : 'Modifiable pour chaque dépense, et à tout moment dans l\'onglet Foyer.';
+        }
+      } else if (el.dataset.champ) accueil.membres[Number(el.dataset.i)][el.dataset.champ] = el.value;
     });
     $('#form-accueil')?.addEventListener('submit', (e) => { e.preventDefault(); terminerAccueil(); });
   }
@@ -442,10 +561,11 @@
     const mo = B.modeles.find((x) => x.id === a.modele);
     E = etatVide();
     E.foyer = { nom: '', modele: a.modele, modifLe: maintenant() };
-    E.reglages = { modeDefaut: a.mode, modifLe: maintenant() };
+    E.reglages = { modeDefaut: a.mode, fonctionnement: a.fonctionnement, cle: { mode: CLES.includes(a.mode) ? a.mode : 'egale', parts: {} }, modifLe: maintenant() };
     E.membres = membres;
     E.categories = (mo ? mo.categories : B.categories.map((c) => c.id)).map((id) => ({ id, nom: B.categories.find((c) => c.id === id).nom, modifLe: maintenant() }));
-    accueil = { etape: 1, modele: null, nomFoyer: '', membres: [], mode: 'egale' };
+    accueil = { etape: 1, modele: null, nomFoyer: '', membres: [], mode: 'egale', fonctionnement: 'avances' };
+    vue = premierOnglet();
     sauver();
     demarrer(); // le guide « Comment ça marche » s'ouvre, puis propose d'ajouter la première dépense
   }
@@ -461,19 +581,24 @@
     aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
   };
-  const ONGLETS = [['soldes', 'Soldes'], ['depenses', 'Dépenses'], ['mois', 'Mois'], ['recurrentes', 'Récurrentes'], ['foyer', 'Foyer']];
+  ICONES.compte = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="9" width="20" height="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2 22 8H2Z" fill="currentColor"/><rect x="6" y="12" width="3" height="6" fill="currentColor"/><rect x="15" y="12" width="3" height="6" fill="currentColor"/></svg>';
+  // Le premier onglet dépend du fonctionnement : Soldes (avances) ou Compte (compte commun).
+  const onglets = () => [modeCompte() ? ['compte', 'Compte'] : ['soldes', 'Soldes'], ['depenses', 'Dépenses'], ['mois', 'Mois'], ['recurrentes', 'Récurrentes'], ['foyer', 'Foyer']];
+  const premierOnglet = () => onglets()[0][0];
+  const navOnglets = () => onglets().map(([id, n]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${n}</span></button>`).join('');
   const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><circle cx="30" cy="48" r="30" fill="#1D4E89"/><circle cx="62" cy="48" r="30" fill="#F5B400"/><path d="M46 22.6a30 30 0 0 1 0 50.8a30 30 0 0 1 0-50.8Z" fill="#141414"/></svg>';
 
   function demarrer() {
     document.body.classList.add('app');
     const depuisUrl = location.hash.slice(1);
-    if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
+    if (onglets().some(([id]) => id === depuisUrl)) vue = depuisUrl;
+    const autreDemo = modeCompte() ? ['demo-avances', 'Voir le mode avances'] : ['demo-compte', 'Voir le mode compte commun'];
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? `<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d'exemple, gardées sur cet appareil uniquement.</span><button id="bascule-demo" data-action="${autreDemo[0]}">${autreDemo[1]}</button><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J'ai un code d'accès</button></div></div>` : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
-        <span class="titre-produit">Budget<br>commun</span>
-        <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, n]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${n}</span></button>`).join('')}</nav>
+        <span class="titre-produit">Gestion dépenses<br>communes</span>
+        <nav class="onglets" aria-label="Sections">${navOnglets()}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
@@ -486,9 +611,15 @@
 
   function rendre() {
     if (!E || !$('#vue')) return;
+    // Fonctionnement changé (ici ou sur un autre appareil) : onglets et vue suivent.
+    const ids = onglets().map(([id]) => id);
+    if ([...document.querySelectorAll('.onglet')].map((b) => b.dataset.vue).join() !== ids.join()) $('.onglets').innerHTML = navOnglets();
+    if (!ids.includes(vue)) vue = premierOnglet();
+    const bascule = $('#bascule-demo');
+    if (bascule) { bascule.dataset.action = modeCompte() ? 'demo-avances' : 'demo-compte'; bascule.textContent = modeCompte() ? 'Voir le mode avances' : 'Voir le mode compte commun'; }
     document.querySelectorAll('.onglet').forEach((b) => { if (b.dataset.vue === vue) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-    document.title = `${Object.fromEntries(ONGLETS)[vue]} · Budget commun`;
-    $('#vue').innerHTML = { soldes: vueSoldes, depenses: vueDepenses, mois: vueMois, recurrentes: vueRecurrentes, foyer: vueFoyer }[vue]();
+    document.title = `${Object.fromEntries(onglets())[vue]} · Gestion Dépenses Communes`;
+    $('#vue').innerHTML = { soldes: vueSoldes, compte: vueCompte, depenses: vueDepenses, mois: vueMois, recurrentes: vueRecurrentes, foyer: vueFoyer }[vue]();
     if (vue === 'mois') brancherGraphique();
   }
 
@@ -532,7 +663,7 @@
     return `
       <section class="jour">
         <div class="jour-titre">
-          <p class="surtitre">${esc(E.foyer.nom || 'Budget commun')} · ${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+          <p class="surtitre">${esc(E.foyer.nom || 'Gestion Dépenses Communes')} · ${fmt(t, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
           <h1>${titre}</h1>
           <p class="sous">Ce mois-ci : ${eur(mc.total)} de dépenses communes (${pluriel(mc.nb, 'dépense')}).</p>
           <div class="actions">
@@ -555,6 +686,180 @@
       ${AVERTISSEMENT}`;
   }
 
+  // Compte commun : combien chacun verse ce mois-ci.
+  const AVERTISSEMENT_COMPTE = '<p class="avertissement"><b>À savoir.</b> Les montants à verser sont calculés uniquement à partir de ce que le foyer saisit (charges prévues, solde du compte) : vérifie-les avant tout virement. Cet outil ne se connecte à aucune banque et ne donne pas de conseil financier.</p>';
+  // Nom de la clé ; en minuscule au milieu d'une phrase (les prénoms gardent leur majuscule).
+  const libelleCle = (minuscule = false) => {
+    const c = E.reglages.cle;
+    const n = minuscule ? modeInfo(c.mode).nom.toLowerCase() : modeInfo(c.mode).nom;
+    if (c.mode === 'parts') return `${esc(n)} (${E.membres.map((m) => `${esc(m.nom)} ${String(c.parts?.[m.id] ?? 1).replace('.', ',')}`).join(', ')})`;
+    return esc(n);
+  };
+
+  function vueCompte() {
+    const m = moisVue || moisCourant();
+    const c = calculCompte(m);
+    const restants = E.membres.filter((mb) => c.reste[mb.id] > 0);
+    const totalReste = restants.reduce((s, mb) => s + c.reste[mb.id], 0);
+    const titre = !c.total ? `Rien à verser en ${nomMois(m)}.`
+      : !restants.length ? `<mark>Versements de ${nomMois(m)} faits.</mark>`
+        : restants.length === 1 ? `${esc(nom(restants[0].id))} verse <mark>${eur(c.reste[restants[0].id])}</mark> sur le compte.`
+          : `<mark>${eur(totalReste)}</mark> à verser sur le compte.`;
+    const nav = `<div class="nav-mois"><button class="btn-icone" data-action="mois-prec" aria-label="Mois précédent">‹</button><h2>${nomMois(m)}</h2><button class="btn-icone" data-action="mois-suiv" aria-label="Mois suivant" ${m >= R.ajoutMois(moisCourant(), 1) ? 'disabled' : ''}>›</button></div>`;
+    const aVerser = E.membres.map((mb) => {
+      const r = c.reste[mb.id];
+      return `<li class="virement-prevu">
+        <span class="de">${pastille(mb.id)}${esc(mb.nom)}</span><span class="fleche" aria-label="verse sur">→</span><span class="a">Compte</span>
+        <b>${r ? eur(r) : '<span class="fait">Fait</span>'}</b>
+        ${r ? `<button class="btn petit" data-action="versement-fait" data-id="${mb.id}">C'est fait</button>` : `<span class="petit-texte">${eur(c.deja[mb.id])} versés</span>`}</li>`;
+    }).join('');
+    const total = (x) => Object.values(x).reduce((s, v) => s + v, 0);
+    const cartes = E.membres.map((mb) => {
+      const v = c.versements[mb.id], d = c.deja[mb.id];
+      const partCle = c.base ? Math.round((c.parts[mb.id] / c.base) * 1000) / 10 : 0;
+      return `<li class="solde ${v && d >= v ? 'credit' : ''}" style="--c:${hex(mb.couleur)}">
+        <div class="solde-nom"><i></i><b>${esc(mb.nom)}</b></div>
+        <div class="solde-montant">${eur(v)}</div>
+        <p>${eur(c.parts[mb.id])} de part commune${c.base ? ` (${String(partCle).replace('.', ',')} %)` : ''}${c.perso[mb.id] ? ` + ${eur(c.perso[mb.id])} de charges personnelles` : ''}. Déjà versé : ${eur(d)}.</p>
+        <div class="jauge versee" aria-hidden="true"><span style="left:0;width:${v ? Math.min(100, (d / v) * 100) : (d ? 100 : 0)}%"></span></div>
+      </li>`;
+    }).join('');
+    const lignesCh = c.ch.lignes.map((l) => `<li><span>${esc(l.libelle)}${l.pour !== 'foyer' ? ` <small>· ${esc(nom(l.pour))}</small>` : ''}</span><b>${eur(l.montant)}</b></li>`).join('');
+    const v = (x) => (Number.isInteger(x) ? versSaisie(x) : '');
+    const versementsMois = E.versements.filter((x) => (x.mois || R.moisDe(x.date)) === m).sort((a, b) => b.date.localeCompare(a.date));
+    return `
+      <section class="jour">
+        <div class="jour-titre">
+          <p class="surtitre">${esc(E.foyer.nom || 'Gestion Dépenses Communes')} · compte commun · ${nomMois(m)}</p>
+          <h1>${titre}</h1>
+          <p class="sous">${c.aCouvrir >= 0 ? `À couvrir : ${eur(c.aCouvrir)}` : `Excédent sur le compte : ${eur(-c.aCouvrir)}`} (charges prévues ${eur(c.charges)}${c.solde !== null ? `, solde ${eur(c.solde)}` : ', solde non saisi'})${total(c.perso) ? `, plus ${eur(total(c.perso))} de charges personnelles` : ''}.</p>
+          <div class="actions">
+            <button class="btn primaire" data-action="depense-nouvelle">${ICONES.plus}Ajouter une dépense</button>
+            <button class="btn" data-action="versement-nouveau">Noter un versement</button>
+          </div>
+        </div>
+        <aside class="equilibre-carte ${restants.length ? '' : 'calme'}">
+          <p class="surtitre">À verser en ${versDate(`${m}-01`).toLocaleDateString('fr-FR', { month: 'long' })}</p>
+          ${E.membres.length ? `<ul>${aVerser}</ul>` : ''}
+          <p class="petit-texte">${restants.length ? '« C\'est fait » note le versement et met le compte à jour.' : 'Chacun a versé sa part du mois.'}</p>
+        </aside>
+      </section>
+      ${nav}
+      <h2 class="titre-section">Versement de chacun <span>Clé : ${libelleCle()} · <button class="btn lien" data-action="cle-modifier">Modifier la clé</button></span></h2>
+      ${c.note ? `<p class="aide">${esc(c.note)}</p>` : ''}
+      <ul class="soldes">${cartes}</ul>
+      <div class="deux-colonnes">
+        <section class="bloc calcul"><h2 class="bloc-titre">Calcul du mois</h2>
+          <form id="form-alim" data-mois="${m}" novalidate>
+            <div class="calcul-ligne"><span>Charges récurrentes communes<small>${c.ch.lignes.length ? `${pluriel(c.ch.lignes.filter((l) => l.pour === 'foyer').length, 'récurrente')} pour le foyer · détail ci-dessous` : 'À ajouter dans Récurrentes'}</small></span><b>${eur(c.ch.communes)}</b></div>
+            <label class="calcul-ligne"><span>Dépenses courantes prévues<small>Courses, sorties… : un budget pour le mois</small></span><input name="courantes" inputmode="decimal" value="${v(c.courantes)}" placeholder="0,00" autocomplete="off"></label>
+            <label class="calcul-ligne"><span>Autres sorties à prévoir<small>Débit différé de carte, facture annuelle…</small></span><input name="autres" inputmode="decimal" value="${v(c.autres || null)}" placeholder="0,00" autocomplete="off"></label>
+            <label class="calcul-ligne"><span>Solde du compte avant les versements<small>${c.estimePrec !== null && c.solde === null ? `Estimation de fin ${nomMois(R.ajoutMois(m, -1), true).replace('.', '')} : <button type="button" class="btn lien" data-action="solde-estime" data-montant="${c.estimePrec}">${eur(c.estimePrec)}</button>` : 'Lu sur l\'appli de la banque'}</small></span><input name="solde" inputmode="decimal" value="${v(c.solde)}" placeholder="0,00" autocomplete="off"></label>
+            <div class="calcul-ligne total"><span>${c.aCouvrir >= 0 ? 'À couvrir par les versements' : 'Excédent sur le compte'}<small>Charges communes + courantes + autres − solde</small></span><b>${eur(Math.abs(c.aCouvrir))}</b></div>
+            ${total(c.perso) ? `<div class="calcul-ligne"><span>Charges personnelles<small>Ajoutées au versement de la personne concernée</small></span><b>${eur(total(c.perso))}</b></div>` : ''}
+            <p class="erreur" role="alert"></p>
+          </form>
+          ${c.ch.lignes.length ? `<details class="detail-charges"><summary>Détail des charges récurrentes</summary><ul>${lignesCh}</ul></details>` : ''}
+          <details class="detail-charges"><summary>Comment c'est calculé</summary><p class="aide">À couvrir = charges récurrentes communes payées par le compte + dépenses courantes prévues + autres sorties − solde du compte avant les versements du mois. Ce montant est réparti selon la clé du foyer (${libelleCle(true)}), au centime près. Chacun y ajoute ses charges personnelles (une récurrente du compte faite pour lui seul), que le solde ne diminue pas. Si le solde dépasse les charges, il ne reste à verser que les charges personnelles.</p></details>
+        </section>
+        <section class="bloc"><h2 class="bloc-titre">Suivi du compte</h2>
+          <div class="calcul-ligne"><span>Solde avant les versements</span><b>${c.solde !== null ? eur(c.solde) : '–'}</b></div>
+          <div class="calcul-ligne"><span>Versements du mois</span><b>+ ${eur(total(c.deja))}</b></div>
+          <div class="calcul-ligne"><span>Dépenses payées par le compte<small>Notées dans Dépenses${m === moisCourant() ? ', jusqu\'à aujourd\'hui' : ''}</small></span><b>− ${eur(c.depCompte)}</b></div>
+          <div class="calcul-ligne total"><span>Solde estimé${m === moisCourant() ? ' aujourd\'hui' : ' en fin de mois'}<small>${c.solde === null ? 'Saisis le solde du compte pour l\'estimer' : 'À comparer avec la banque'}</small></span><b class="${c.estime < 0 ? 'neg' : ''}">${c.estime !== null ? eur(c.estime) : '–'}</b></div>
+          ${c.estime !== null && totalReste ? `<div class="calcul-ligne"><span>Après les versements restants<small>${eur(totalReste)} encore à verser ce mois-ci</small></span><b class="${c.estime + totalReste < 0 ? 'neg' : ''}">${eur(c.estime + totalReste)}</b></div>` : ''}
+          <h3 class="sous-titre">Versements notés</h3>
+          ${versementsMois.length ? `<div class="liste">${versementsMois.map((x) => `
+            <div class="ligne"><i style="--c:${hex(membre(x.de)?.couleur)}"></i><div><b>${esc(nom(x.de))}</b><span>${quand(x.date)}${x.note ? ` · ${esc(x.note)}` : ''}</span></div>
+            <div class="ligne-droite"><b class="montant">${eur(x.montant)}</b><button class="btn lien" data-action="versement-suppr" data-id="${x.id}" aria-label="Supprimer ce versement">Supprimer</button></div></div>`).join('')}</div>`
+            : '<p class="vide-texte">Aucun versement noté pour ce mois.</p>'}
+        </section>
+      </div>
+      ${AVERTISSEMENT_COMPTE}`;
+  }
+
+  // Saisie du calcul du mois (enregistrée à chaque changement de champ).
+  function majAlimentation(form) {
+    const m = form.dataset.mois;
+    const err = form.querySelector('.erreur');
+    const lire = (n) => { const s = String(form.elements[n].value || '').trim(); return s ? R.versCentimes(s) : null; };
+    const champs = { courantes: lire('courantes'), autres: lire('autres'), solde: lire('solde') };
+    for (const [k, x] of Object.entries(champs)) {
+      const brut = String(form.elements[k].value || '').trim();
+      if (brut && x === null) { err.textContent = 'Montant illisible : écris par exemple 1 250,00.'; return; }
+      if (k !== 'solde' && x !== null && x < 0) { err.textContent = 'Les charges prévues ne peuvent pas être négatives.'; return; }
+    }
+    const a = alim(m);
+    const rec = { id: idAlim(m), mois: m, courantes: champs.courantes ?? 0, autres: champs.autres ?? 0, solde: champs.solde, modifLe: maintenant() };
+    if (a) Object.assign(a, rec); else E.alimentations.push(rec);
+    delete E.supprimes[rec.id];
+    sauver(); rendre();
+  }
+
+  function modaleVersement(de, montant) {
+    if (!E.membres.length) return;
+    const m = moisVue || moisCourant();
+    const corps = `
+      <div class="rang-champs">
+        <label class="champ">Versé par<select name="de">${E.membres.map((mb) => `<option value="${mb.id}" ${mb.id === (de || E.membres[0].id) ? 'selected' : ''}>${esc(mb.nom)}</option>`).join('')}</select></label>
+        <label class="champ">Montant (€)<input name="montant" inputmode="decimal" value="${versSaisie(montant)}" placeholder="0,00" required autocomplete="off"></label>
+      </div>
+      <div class="rang-champs">
+        <label class="champ">Date<input type="date" name="date" value="${auj()}" required></label>
+        <label class="champ">Pour le mois de<input type="month" name="mois" value="${m}" required></label>
+      </div>
+      <label class="champ">Note<small>Facultative</small><input name="note" maxlength="80" autocomplete="off"></label>
+      <p class="aide">Un virement d'une personne vers le compte commun. Il compte dans le mois choisi : un versement fait le 30 pour le mois suivant compte pour le mois suivant.</p>
+      <p class="erreur" role="alert"></p>`;
+    ouvrirModale('Noter un versement', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
+      const c = R.versCentimes(fd.get('montant'));
+      if (!c || c <= 0) return 'Montant illisible : écris par exemple 842,50.';
+      const date = fd.get('date'), mois = fd.get('mois');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) return 'Indique la date.';
+      if (!/^\d{4}-\d{2}$/.test(mois || '')) return 'Indique le mois alimenté.';
+      annulable(() => E.versements.push({ id: uid(), date, mois, de: fd.get('de'), montant: c, note: String(fd.get('note') || '').trim().slice(0, 80), modifLe: maintenant() }));
+      sauver(); rendre(); toast(`Versement de ${eur(c)} enregistré.`, { libelle: 'Annuler', faire: annuler });
+    });
+  }
+
+  // Clé de répartition des versements (égale, prorata des revenus, parts).
+  function modaleCle() {
+    const c = E.reglages.cle;
+    const corps = `
+      <fieldset class="champ repartition"><legend>Répartition de ce qui reste à couvrir</legend>
+        <div class="segments">${B.modes.filter((x) => CLES.includes(x.id)).map((x) => `<label><input type="radio" name="mode" value="${x.id}" ${c.mode === x.id ? 'checked' : ''}><span>${esc(x.court)}</span></label>`).join('')}</div>
+        <p class="mode-explication">${esc(modeInfo(c.mode).principe)}</p>
+        <div class="participants">${E.membres.map((mb) => `
+          <div class="participant" style="--c:${hex(mb.couleur)}">
+            <span class="case"><i class="pastille"></i>${esc(mb.nom)}</span>
+            <label class="si-parts" ${c.mode === 'parts' ? '' : 'hidden'}><input name="parts-${mb.id}" inputmode="decimal" value="${esc(String(c.parts?.[mb.id] ?? 1).replace('.', ','))}" aria-label="Parts de ${esc(mb.nom)}"><small>part(s)</small></label>
+            <output class="quote">${c.mode === 'prorata' ? (mb.revenu ? eur(mb.revenu) : 'revenu ?') : ''}</output>
+          </div>`).join('')}</div>
+      </fieldset>
+      <p class="aide">Des parts 60 et 40 font une répartition en pourcentages. Les revenus se règlent dans l'onglet Foyer ; s'il en manque un, la répartition se fait à parts égales. Les versements déjà notés ne changent pas.</p>
+      <p class="erreur" role="alert"></p>`;
+    const form = ouvrirModale('Clé de répartition', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
+      const mode = fd.get('mode');
+      const parts = {};
+      if (mode === 'parts') {
+        for (const mb of E.membres) {
+          const p = Number(String(fd.get(`parts-${mb.id}`) || '').replace(',', '.'));
+          if (!Number.isFinite(p) || p < 0) return `Parts illisibles pour ${mb.nom}.`;
+          parts[mb.id] = p;
+        }
+        if (!Object.values(parts).some((p) => p > 0)) return 'Indique au moins une part.';
+      }
+      E.reglages = { ...E.reglages, cle: { mode, parts: mode === 'parts' ? parts : (c.parts || {}) }, modifLe: maintenant() };
+      sauver(); rendre(); toast('Clé de répartition enregistrée.');
+    });
+    form.addEventListener('change', () => {
+      const mode = new FormData(form).get('mode');
+      form.querySelectorAll('.si-parts').forEach((x) => { x.hidden = mode !== 'parts'; });
+      form.querySelector('.mode-explication').textContent = modeInfo(mode).principe;
+      form.querySelectorAll('.quote').forEach((o, i) => { const mb = E.membres[i]; o.textContent = mode === 'prorata' ? (mb.revenu ? eur(mb.revenu) : 'revenu ?') : ''; });
+    });
+  }
+
   // Dépenses
   function vueDepenses() {
     const mois = moisAvecDonnees();
@@ -568,15 +873,15 @@
     const lignes = Object.entries(parJour).map(([j, ds]) => `
       <h3 class="jour-groupe">${quand(j)}</h3>
       ${ds.map((d) => `<button class="ligne depense" data-action="depense-modifier" data-id="${d.id}">
-        <i style="--c:${hex(membre(d.payeur)?.couleur)}"></i>
-        <div><b>${esc(d.libelle)}</b><span>${esc(nomCat(d.categorie))} · payé par ${esc(nom(d.payeur))} · ${esc(modeInfo(d.repartition?.mode).court)}${d.recurrente ? ' · récurrente' : ''}</span></div>
+        <i style="--c:${hex(d.payeur === COMPTE ? 'compte' : membre(d.payeur)?.couleur)}"></i>
+        <div><b>${esc(d.libelle)}</b><span>${esc(nomCat(d.categorie))} · ${d.payeur === COMPTE ? `compte commun · ${esc(pourQui(d))}` : `payé par ${esc(nom(d.payeur))} · ${esc(modeInfo(d.repartition?.mode).court)}`}${d.recurrente ? ' · récurrente' : ''}</span></div>
         <b class="montant">${eur(d.montant)}</b></button>`).join('')}`).join('');
     return `
-      <div class="vue-tete"><div><h1>Dépenses</h1><p>Tout ce qui est payé pour le foyer. Touche une dépense pour la modifier ou changer sa répartition.</p></div>
+      <div class="vue-tete"><div><h1>Dépenses</h1><p>${modeCompte() ? 'Tout ce que le compte commun paie. Touche une dépense pour la modifier.' : 'Tout ce qui est payé pour le foyer. Touche une dépense pour la modifier ou changer sa répartition.'}</p></div>
         <div class="actions"><button class="btn primaire" data-action="depense-nouvelle">${ICONES.plus}Dépense</button></div></div>
       <form class="filtres" id="filtres" aria-label="Filtres">
         <label class="champ">Mois<select name="mois"><option value="tout" ${filtres.mois === 'tout' ? 'selected' : ''}>Tous les mois</option>${mois.map((m) => `<option value="${m}" ${filtres.mois === m ? 'selected' : ''}>${nomMois(m)}</option>`).join('')}</select></label>
-        <label class="champ">Payé par<select name="payeur"><option value="">Tout le monde</option>${E.membres.map((m) => `<option value="${m.id}" ${filtres.payeur === m.id ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>
+        <label class="champ">Payé par<select name="payeur"><option value="">Tout le monde</option>${modeCompte() || E.depenses.some((d) => d.payeur === COMPTE) ? `<option value="${COMPTE}" ${filtres.payeur === COMPTE ? 'selected' : ''}>Compte commun</option>` : ''}${E.membres.map((m) => `<option value="${m.id}" ${filtres.payeur === m.id ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>
         <label class="champ">Catégorie<select name="categorie"><option value="">Toutes</option>${E.categories.map((c) => `<option value="${c.id}" ${filtres.categorie === c.id ? 'selected' : ''}>${esc(c.nom)}</option>`).join('')}</select></label>
       </form>
       <p class="total-filtre"><b>${eur(total)}</b> · ${pluriel(liste.length, 'dépense')}</p>
@@ -588,23 +893,28 @@
     const m = moisVue || moisCourant();
     const b = R.bilanMois(E.depenses, m, E.membres);
     const cats = Object.entries(b.parCategorie).sort((x, y) => y[1] - x[1]);
+    const verseMois = E.versements.filter((v) => (v.mois || R.moisDe(v.date)) === m);
+    const deja = R.verses(E.versements, m, E.membres);
     const maxCat = Math.max(1, ...cats.map(([, v]) => v));
     const nav = `<div class="nav-mois"><button class="btn-icone" data-action="mois-prec" aria-label="Mois précédent">‹</button><h2>${nomMois(m)}</h2><button class="btn-icone" data-action="mois-suiv" aria-label="Mois suivant" ${m >= moisCourant() ? 'disabled' : ''}>›</button></div>`;
     const tuiles = [
       ['Dépensé ensemble', eur(b.total), `${pluriel(b.nb, 'dépense')}`, 'var(--rouge)', 'rond'],
       ['Première catégorie', cats[0] ? esc(nomCat(cats[0][0])) : '–', cats[0] ? `${eur(cats[0][1])} · ${Math.round((cats[0][1] / b.total) * 100)} %` : 'Aucune dépense', 'var(--jaune)', ''],
-      ['Virements du mois', eur(E.virements.filter((v) => R.moisDe(v.date) === m).reduce((s, v) => s + v.montant, 0)), pluriel(E.virements.filter((v) => R.moisDe(v.date) === m).length, 'virement'), 'var(--bleu)', ''],
+      modeCompte()
+        ? ['Versements du mois', eur(verseMois.reduce((s, v) => s + v.montant, 0)), pluriel(verseMois.length, 'versement'), 'var(--bleu)', '']
+        : ['Virements du mois', eur(E.virements.filter((v) => R.moisDe(v.date) === m).reduce((s, v) => s + v.montant, 0)), pluriel(E.virements.filter((v) => R.moisDe(v.date) === m).length, 'virement'), 'var(--bleu)', ''],
     ].map(([lib, v, d, c, f]) => `<div class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><span>${d}</span></div>`).join('');
     const parPersonne = E.membres.map((mb) => {
       const p = b.parMembre[mb.id] || { paye: 0, part: 0 };
-      const ecart = p.paye - p.part;
-      return `<tr><td><span class="nom-matiere" style="--c:${hex(mb.couleur)}"><i></i>${esc(mb.nom)}</span></td><td class="nb">${eur(p.paye)}</td><td class="nb">${eur(p.part)}</td><td class="nb ${ecart < 0 ? 'neg' : ''}">${ecart === 0 ? '0,00 €' : eur(ecart, { signe: true })}</td></tr>`;
+      const apporte = modeCompte() ? deja[mb.id] : p.paye;
+      const ecart = apporte - p.part;
+      return `<tr><td><span class="nom-matiere" style="--c:${hex(mb.couleur)}"><i></i>${esc(mb.nom)}</span></td><td class="nb">${eur(apporte)}</td><td class="nb">${eur(p.part)}</td><td class="nb ${ecart < 0 ? 'neg' : ''}">${ecart === 0 ? '0,00 €' : eur(ecart, { signe: true })}</td></tr>`;
     }).join('');
     const corps = b.nb ? `
       <div class="deux-colonnes">
         <section class="bloc"><h2 class="bloc-titre">Par personne</h2>
-          <div class="defile"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">A payé</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
-          <p class="petit-texte">Écart positif : a avancé plus que sa part ce mois-ci. Le solde global, virements compris, est dans l'onglet Soldes.</p>
+          <div class="defile"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">${modeCompte() ? 'A versé' : 'A payé'}</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
+          <p class="petit-texte">${modeCompte() ? 'Sa part : les dépenses du compte faites pour le foyer (partagées à parts égales) ou pour lui seul. Écart positif : a versé plus que sa part des dépenses du mois. Les versements dus sont dans l\'onglet Compte.' : 'Écart positif : a avancé plus que sa part ce mois-ci. Le solde global, virements compris, est dans l\'onglet Soldes.'}</p>
         </section>
         <section class="bloc"><h2 class="bloc-titre">Par catégorie</h2>
           <ul class="barres-cat">${cats.map(([id, v]) => `<li><span class="cat-nom">${esc(nomCat(id))}</span><span class="cat-barre" aria-hidden="true"><i style="width:${(v / maxCat) * 100}%"></i></span><b>${eur(v)}</b></li>`).join('')}</ul>
@@ -616,15 +926,20 @@
       ${nav}
       <div class="tuiles trois">${tuiles}</div>
       ${corps}
-      <h2 class="titre-section">6 derniers mois <span>Dépenses communes, par personne qui a payé</span></h2>
+      <h2 class="titre-section">6 derniers mois <span>${modeCompte() ? 'Dépenses payées par le compte commun' : 'Dépenses communes, par personne qui a payé'}</span></h2>
       ${graphique(m)}`;
   }
+
+  // Séries du graphique : le compte commun (s'il a payé quelque chose), puis chaque membre.
+  // En mode compte, seuls les membres qui ont eux-mêmes payé quelque chose (anciennes avances) apparaissent.
+  const payeursGraph = () => [...(E.depenses.some((d) => d.payeur === COMPTE) ? [{ id: COMPTE, nom: 'Compte commun', couleur: 'compte' }] : []),
+    ...E.membres.filter((m) => !modeCompte() || E.depenses.some((d) => d.payeur === m.id))];
 
   function serieMois(fin) {
     return Array.from({ length: 6 }, (_, i) => {
       const m = R.ajoutMois(fin, i - 5);
       const parPayeur = {};
-      E.membres.forEach((mb) => { parPayeur[mb.id] = 0; });
+      payeursGraph().forEach((mb) => { parPayeur[mb.id] = 0; });
       E.depenses.filter((d) => R.moisDe(d.date) === m).forEach((d) => { parPayeur[d.payeur] = (parPayeur[d.payeur] || 0) + d.montant; });
       return { m, parPayeur, total: Object.values(parPayeur).reduce((s, c) => s + c, 0) };
     });
@@ -649,7 +964,7 @@
     const cols = serie.map((s, i) => {
       const x = g + i * larg + (larg - w) / 2;
       let cumul = 0;
-      const rects = E.membres.map((mb) => {
+      const rects = payeursGraph().map((mb) => {
         const v = s.parPayeur[mb.id];
         if (!v) return '';
         const y1 = y(cumul + v), h = y(cumul) - y1 - (cumul ? 2 : 0);
@@ -660,10 +975,10 @@
       return `<rect class="zone" data-i="${i}" x="${g + i * larg}" y="0" width="${larg}" height="${H - b}"/><g class="colonne ${s.m === fin ? 'courante' : ''}" data-i="${i}">${rects}</g>${vide}<text class="axe ${s.m === fin ? 'fort' : ''}" x="${x + w / 2}" y="${H - 8}" text-anchor="middle">${nomMois(s.m, true).replace('.', '')}</text>`;
     }).join('');
     return `<figure class="graphique" id="graphique">
-      <div class="graphique-tete"><h2>Dépenses par mois</h2><div class="legende">${E.membres.map((mb) => `<span><i style="background:${hex(mb.couleur)}"></i>Payé par ${esc(mb.nom)}</span>`).join('')}</div></div>
+      <div class="graphique-tete"><h2>Dépenses par mois</h2><div class="legende">${payeursGraph().map((mb) => `<span><i style="background:${hex(mb.couleur)}"></i>${mb.id === COMPTE ? 'Payé par le compte commun' : `Payé par ${esc(mb.nom)}`}</span>`).join('')}</div></div>
       <svg viewBox="0 0 ${L} ${H}" role="img" aria-label="Dépenses communes par mois sur 6 mois, détail dans le tableau ci-dessous">${grilles}${cols}</svg>
       <div class="infobulle" hidden></div>
-      <table class="sr-only"><caption>Dépenses par mois et par personne qui a payé</caption><thead><tr><th>Mois</th>${E.membres.map((mb) => `<th>${esc(mb.nom)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${serie.map((s) => `<tr><td>${nomMois(s.m)}</td>${E.membres.map((mb) => `<td>${eur(s.parPayeur[mb.id] || 0)}</td>`).join('')}<td>${eur(s.total)}</td></tr>`).join('')}</tbody></table>
+      <table class="sr-only"><caption>Dépenses par mois et par personne qui a payé</caption><thead><tr><th>Mois</th>${payeursGraph().map((mb) => `<th>${esc(mb.nom)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${serie.map((s) => `<tr><td>${nomMois(s.m)}</td>${payeursGraph().map((mb) => `<td>${eur(s.parPayeur[mb.id] || 0)}</td>`).join('')}<td>${eur(s.total)}</td></tr>`).join('')}</tbody></table>
     </figure>`;
   }
 
@@ -675,7 +990,7 @@
     const montrer = (zone) => {
       const i = Number(zone.dataset.i), s = serie[i];
       fig.querySelectorAll('.colonne').forEach((g) => g.classList.toggle('active', g.dataset.i === String(i)));
-      bulle.innerHTML = `<b>${nomMois(s.m)} · ${eur(s.total)}</b>${s.total ? E.membres.map((mb) => `<div><i style="background:${hex(mb.couleur)}"></i>${esc(mb.nom)} : ${eur(s.parPayeur[mb.id] || 0)}</div>`).join('') : 'Aucune dépense'}`;
+      bulle.innerHTML = `<b>${nomMois(s.m)} · ${eur(s.total)}</b>${s.total ? payeursGraph().map((mb) => `<div><i style="background:${hex(mb.couleur)}"></i>${esc(mb.nom)} : ${eur(s.parPayeur[mb.id] || 0)}</div>`).join('') : 'Aucune dépense'}`;
       bulle.hidden = false;
       const rz = zone.getBoundingClientRect(), rf = fig.getBoundingClientRect();
       let x = rz.left - rf.left + rz.width / 2 + 12;
@@ -695,14 +1010,15 @@
     const total = E.recurrentes.filter((r) => r.actif !== false).reduce((s, r) => s + r.montant, 0);
     const cartes = E.recurrentes.map((r) => {
       const derniere = E.depenses.filter((d) => d.recurrente === r.id).sort((a, b) => b.date.localeCompare(a.date))[0];
-      return `<button class="recurrente ${r.actif === false ? 'pause' : ''}" data-action="recurrente-modifier" data-id="${r.id}" style="--c:${hex(membre(r.payeur)?.couleur)}">
+      const qui = r.payeur === COMPTE ? `compte commun · ${esc(pourQui(r))}` : `payé par ${esc(nom(r.payeur))} · ${esc(modeInfo(r.repartition?.mode).nom.toLowerCase())}`;
+      return `<button class="recurrente ${r.actif === false ? 'pause' : ''}" data-action="recurrente-modifier" data-id="${r.id}" style="--c:${hex(r.payeur === COMPTE ? 'compte' : membre(r.payeur)?.couleur)}">
         <span class="rec-jour"><b>${r.jour}</b><small>du mois</small></span>
-        <span class="rec-texte"><b>${esc(r.libelle)}</b><span>${esc(nomCat(r.categorie))} · payé par ${esc(nom(r.payeur))} · ${esc(modeInfo(r.repartition?.mode).nom.toLowerCase())}</span>
+        <span class="rec-texte"><b>${esc(r.libelle)}</b><span>${esc(nomCat(r.categorie))} · ${qui}</span>
         <span>${r.actif === false ? 'En pause' : `Depuis ${nomMois(r.debut)}${r.fin ? ` jusqu'à ${nomMois(r.fin)}` : ''}`}${derniere ? ` · dernière le ${fmt(derniere.date)}` : ''}</span></span>
         <b class="montant">${eur(r.montant)}</b></button>`;
     }).join('');
     return `
-      <div class="vue-tete"><div><h1>Récurrentes</h1><p>Loyer, énergie, abonnements : chaque dépense récurrente est ajoutée d'elle-même à sa date, chaque mois. Tu peux ensuite corriger le montant d'un mois dans Dépenses.</p></div>
+      <div class="vue-tete"><div><h1>Récurrentes</h1><p>Loyer, énergie, abonnements : chaque dépense récurrente est ajoutée d'elle-même à sa date, chaque mois. Tu peux ensuite corriger le montant d'un mois dans Dépenses.${modeCompte() ? ' Celles du compte commun forment les charges prévues de l\'onglet Compte.' : ''}</p></div>
         <div class="actions"><button class="btn primaire" data-action="recurrente-nouvelle">${ICONES.plus}Récurrente</button></div></div>
       ${E.recurrentes.length ? `<p class="total-filtre"><b>${eur(total)}</b> par mois · ${pluriel(E.recurrentes.filter((r) => r.actif !== false).length, 'récurrente active', 'récurrentes actives')}</p><div class="recurrentes">${cartes}</div>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune dépense récurrente</h3><p>Ajoute le loyer ou les factures une fois : ils seront notés chaque mois à leur date, avec la bonne répartition.</p><div class="actions"><button class="btn primaire" data-action="recurrente-nouvelle">${ICONES.plus}Ajouter une récurrente</button></div></div></div>`}`;
@@ -712,32 +1028,41 @@
   function vueFoyer() {
     const revTotal = E.membres.reduce((s, m) => s + (m.revenu || 0), 0);
     const tousRevenus = E.membres.every((m) => m.revenu > 0);
+    const compte = modeCompte();
+    // Part de chacun selon la clé du compte (calculée sur 100 000 € pour la précision).
+    const partsCle = compte && E.membres.length ? R.alimentation({ membres: E.membres, cle: E.reglages.cle, communes: 10000000 }).parts : {};
+    const pct = (x) => `${Math.round(x * 1000) / 10} %`.replace('.', ',');
     const cartes = E.membres.map((m) => `
       <article class="matiere" style="--c:${hex(m.couleur)};--t:${texteSur(m.couleur)}">
         <div class="matiere-tete"><div><h2>${esc(m.nom)}</h2><p>${m.revenu ? `Revenu : ${eur(m.revenu)} par mois` : 'Revenu non renseigné'}</p></div><button data-action="membre-modifier" data-id="${m.id}">Modifier</button></div>
-        <div class="matiere-chiffres"><div><b>${tousRevenus ? `${Math.round((m.revenu / revTotal) * 1000) / 10} %`.replace('.', ',') : '–'}</b><span>part au prorata</span></div><div><b>${E.depenses.filter((d) => d.payeur === m.id).length}</b><span>dépenses payées</span></div></div>
+        <div class="matiere-chiffres">${compte
+          ? `<div><b>${pct((partsCle[m.id] || 0) / 10000000)}</b><span>part des versements</span></div><div><b>${E.versements.filter((v) => v.de === m.id).length}</b><span>versements notés</span></div>`
+          : `<div><b>${tousRevenus ? pct(m.revenu / revTotal) : '–'}</b><span>part au prorata</span></div><div><b>${E.depenses.filter((d) => d.payeur === m.id).length}</b><span>dépenses payées</span></div>`}</div>
       </article>`).join('');
     return `
-      <div class="vue-tete"><div><h1>Foyer</h1><p>Les personnes qui partagent les dépenses, leurs revenus (pour le prorata) et les catégories.</p></div>
+      <div class="vue-tete"><div><h1>Foyer</h1><p>Les personnes qui partagent les dépenses, leurs revenus (pour le prorata), le fonctionnement et les catégories.</p></div>
         <div class="actions">${E.membres.length < MAX_MEMBRES ? `<button class="btn" data-action="membre-nouveau">${ICONES.plus}Personne</button>` : ''}<button class="btn" data-action="reglages">Réglages</button></div></div>
       <div class="matieres">${cartes}</div>
-      ${!tousRevenus && E.membres.length ? '<p class="aide" style="margin-top:16px">Il manque au moins un revenu : les dépenses « au prorata » sont partagées à parts égales tant qu\'il n\'est pas renseigné.</p>' : ''}
+      ${!tousRevenus && E.membres.length && (!compte || E.reglages.cle.mode === 'prorata') ? `<p class="aide" style="margin-top:16px">Il manque au moins un revenu : ${compte ? 'les versements sont répartis' : 'les dépenses « au prorata » sont partagées'} à parts égales tant qu'il n'est pas renseigné.</p>` : ''}
+      <section class="bloc fonctionnement"><div><p class="surtitre">Fonctionnement</p><h2>${esc(fonctionnementInfo(E.reglages.fonctionnement).nom)}</h2><p>${esc(fonctionnementInfo(E.reglages.fonctionnement).detail)}${compte ? ` Clé des versements : ${libelleCle(true)}.` : ''}</p></div>
+        <div class="actions">${compte ? '<button class="btn" data-action="cle-modifier">Modifier la clé</button>' : ''}<button class="btn" data-action="reglages">Changer de fonctionnement</button></div></section>
       <section class="partage">
         <div><p class="surtitre">Partager avec ton foyer</p>
-        <h2>Une clé, les mêmes comptes pour tous.</h2>
-        <p>Chaque membre ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et saisit la même clé de licence : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
-        <p><b>Attention :</b> partager la clé donne un accès complet (ajouter, modifier, supprimer). Ne la donne qu'aux personnes du foyer.</p></div>
-        ${session.demo ? '' : `<button class="btn jaune" data-action="copier-cle">Copier la clé</button>`}
+        <h2>Un code, les mêmes comptes pour tous.</h2>
+        <p>Copie le code de partage et envoie-le aux membres du foyer. Chacun ouvre <b>qm-engineering.fr/connexion</b> sur son téléphone et le saisit : tout le monde voit et modifie les mêmes dépenses. Si deux personnes enregistrent en même temps, les deux versions sont réunies.</p>
+        <p><b>Ce code n'ouvre que ce budget commun.</b> Si tu as acheté un pack, ton budget perso et tes autres templates restent privés. Ne donne jamais la clé de licence d'un pack : elle ouvre tous ses templates.</p>
+        <p><b>Attention :</b> le code donne un accès complet (ajouter, modifier, supprimer). Ne le donne qu'aux personnes du foyer.</p></div>
+        ${session.demo ? '' : `<button class="btn jaune" data-action="copier-cle">Copier le code de partage</button>`}
       </section>
       <h2 class="titre-section">Catégories <span>${pluriel(E.categories.length, 'catégorie')}</span></h2>
       <div class="puces">${E.categories.map((c) => `<button class="puce" data-action="categorie-modifier" data-id="${c.id}">${esc(c.nom)}</button>`).join('')}<button class="puce ajout" data-action="categorie-nouvelle">+ Catégorie</button></div>
-      <h2 class="titre-section">Règles de répartition <span>Par défaut : ${esc(modeInfo(E.reglages.modeDefaut).nom.toLowerCase())}</span></h2>
-      <div class="methodes">${B.modes.map((x, i) => `
+      <h2 class="titre-section">Règles de répartition <span>${compte ? `Versements : ${libelleCle(true)}` : `Par défaut : ${esc(modeInfo(E.reglages.modeDefaut).nom.toLowerCase())}`}</span></h2>
+      <div class="methodes">${B.modes.filter((x) => !compte || CLES.includes(x.id)).map((x, i) => `
         <article class="methode" style="--c:${['#1D4E89', '#F5B400', '#D9302A', '#141414'][i]};--t:${i === 1 ? 'var(--encre)' : '#fff'}">
-          <div class="methode-tete"><h2>${esc(x.nom)}</h2>${E.reglages.modeDefaut === x.id ? '<span>Par défaut</span>' : ''}</div>
+          <div class="methode-tete"><h2>${esc(x.nom)}</h2>${(compte ? E.reglages.cle.mode : E.reglages.modeDefaut) === x.id ? `<span>${compte ? 'Clé du compte' : 'Par défaut'}</span>` : ''}</div>
           <p>${esc(x.principe)}</p><p class="exemple">${esc(x.exemple)}</p>
         </article>`).join('')}</div>
-      ${AVERTISSEMENT}`;
+      ${compte ? AVERTISSEMENT_COMPTE : AVERTISSEMENT}`;
   }
 
   // ---------- Modales ----------
@@ -820,7 +1145,10 @@
     maj();
   }
 
-  function champsCommuns(x, avecDate) {
+  // Dépense ou récurrente du compte commun : nouvelle en mode compte, ou déjà payée par le compte.
+  const estCompte = (x) => (x ? x.payeur === COMPTE : modeCompte());
+
+  function champsCommuns(x, avecDate, compte = false) {
     const t = auj();
     return `
       <label class="champ">Libellé<input name="libelle" required maxlength="80" value="${esc(x?.libelle || '')}" placeholder="Ex. : Courses de la semaine" autocomplete="off"></label>
@@ -830,17 +1158,25 @@
           : `<label class="champ">Jour du mois<input type="number" name="jour" min="1" max="31" value="${x?.jour || 1}" required></label>`}
       </div>
       <div class="rang-champs">
-        <label class="champ">Payé par<select name="payeur">${E.membres.map((m) => `<option value="${m.id}" ${(x?.payeur || E.membres[0].id) === m.id ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>
+        ${compte ? `<label class="champ">Pour<select name="pour"><option value="foyer">Tout le foyer</option>${E.membres.map((m) => `<option value="${m.id}" ${x?.pour === m.id ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>`
+          : `<label class="champ">Payé par<select name="payeur">${E.membres.map((m) => `<option value="${m.id}" ${(x?.payeur || E.membres[0].id) === m.id ? 'selected' : ''}>${esc(m.nom)}</option>`).join('')}</select></label>`}
         <label class="champ">Catégorie<select name="categorie">${E.categories.map((c) => `<option value="${c.id}" ${(x?.categorie || E.categories[0]?.id) === c.id ? 'selected' : ''}>${esc(c.nom)}</option>`).join('')}</select></label>
-      </div>`;
+      </div>
+      ${compte ? '<p class="aide">Payée par le compte commun. « Pour le foyer » : elle entre dans les charges communes. Pour une seule personne : elle s\'ajoute à son versement.</p>' : ''}`;
   }
 
-  function lireCommuns(fd, form) {
+  function lireCommuns(fd, form, compte = false) {
     const libelle = String(fd.get('libelle') || '').trim();
     const montant = R.versCentimes(fd.get('montant'));
     if (!libelle) return 'Indique un libellé.';
     if (!montant || montant <= 0) return 'Montant illisible : écris par exemple 42,50.';
     if (montant > 100000000) return 'Montant trop élevé.';
+    if (compte) {
+      const pour = E.membres.some((m) => m.id === fd.get('pour')) ? fd.get('pour') : 'foyer';
+      const repartition = { mode: 'egale', participants: pour === 'foyer' ? E.membres.map((m) => m.id) : [pour] };
+      const res = R.repartir(montant, E.membres.filter((m) => repartition.participants.includes(m.id)), 'egale');
+      return { libelle: libelle.slice(0, 80), montant, payeur: COMPTE, pour, categorie: fd.get('categorie'), repartition, quotes: res.quotes };
+    }
     const { rep, res } = calculer(form, montant);
     if (res.erreur) return res.erreur;
     return { libelle: libelle.slice(0, 80), montant, payeur: fd.get('payeur'), categorie: fd.get('categorie'), repartition: rep, quotes: res.quotes };
@@ -849,7 +1185,8 @@
   function modaleDepense(id) {
     if (!E.membres.length) return;
     const d = id ? E.depenses.find((x) => x.id === id) : null;
-    const corps = `${champsCommuns(d, true)}${champsRepartition(d?.repartition)}
+    const compte = estCompte(d);
+    const corps = `${champsCommuns(d, true, compte)}${compte ? '' : champsRepartition(d?.repartition)}
       ${d?.recurrente ? '<p class="aide">Générée par une dépense récurrente : la modifier ici ne change que ce mois-ci.</p>' : ''}
       <p class="erreur" role="alert"></p>`;
     const pied = d ? '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn danger gauche" value="supprimer">Supprimer</button>'
@@ -860,7 +1197,7 @@
         sauver(); rendre(); toast(`« ${d.libelle} » supprimée.`, { libelle: 'Annuler', faire: annuler });
         return;
       }
-      const v = lireCommuns(fd, form);
+      const v = lireCommuns(fd, form, compte);
       if (typeof v === 'string') return v;
       const date = fd.get('date');
       if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) return 'Indique la date.';
@@ -869,20 +1206,21 @@
         else E.depenses.push({ id: uid(), date, ...v, modifLe: maintenant() });
       });
       sauver(); rendre();
-      toast(d ? 'Dépense enregistrée.' : `Ajoutée : ${eur(v.montant)} payés par ${nom(v.payeur)}.`, { libelle: 'Annuler', faire: annuler });
+      toast(d ? 'Dépense enregistrée.' : `Ajoutée : ${eur(v.montant)} payés par ${compte ? 'le compte commun' : nom(v.payeur)}.`, { libelle: 'Annuler', faire: annuler });
     });
-    brancherRepartition(form);
+    if (!compte) brancherRepartition(form);
   }
 
   function modaleRecurrente(id) {
     const r = id ? E.recurrentes.find((x) => x.id === id) : null;
+    const compte = estCompte(r);
     const m0 = moisCourant();
-    const corps = `${champsCommuns(r, false)}
+    const corps = `${champsCommuns(r, false, compte)}
       <div class="rang-champs">
         <label class="champ">À partir de<input type="month" name="debut" value="${r?.debut || m0}" required></label>
         <label class="champ">Jusqu'à<small>Facultatif</small><input type="month" name="fin" value="${r?.fin || ''}"></label>
       </div>
-      ${champsRepartition(r?.repartition)}
+      ${compte ? '' : champsRepartition(r?.repartition)}
       ${r ? `<label class="case"><input type="checkbox" name="actif" ${r.actif !== false ? 'checked' : ''}> Active (décoche pour la mettre en pause)</label>` : ''}
       <p class="aide">Les mois passés depuis la date de début sont ajoutés aussitôt ; ensuite, une dépense par mois à sa date. Les mois déjà notés ne sont pas modifiés.</p>
       <p class="erreur" role="alert"></p>`;
@@ -894,7 +1232,7 @@
         sauver(); rendre(); toast(`« ${r.libelle} » ne sera plus ajoutée. Les mois déjà notés restent.`, { libelle: 'Annuler', faire: annuler });
         return;
       }
-      const v = lireCommuns(fd, form);
+      const v = lireCommuns(fd, form, compte);
       if (typeof v === 'string') return v;
       const jour = Number(fd.get('jour'));
       if (!Number.isInteger(jour) || jour < 1 || jour > 31) return 'Jour du mois : entre 1 et 31.';
@@ -910,7 +1248,7 @@
       });
       sauver(); rendre(); toast(r ? 'Récurrente enregistrée.' : 'Récurrente ajoutée.', { libelle: 'Annuler', faire: annuler });
     });
-    brancherRepartition(form);
+    if (!compte) brancherRepartition(form);
   }
 
   function modaleVirement(prevu) {
@@ -943,10 +1281,11 @@
     const m = id ? membre(id) : null;
     const utilisees = new Set(E.membres.map((x) => x.couleur));
     const defaut = m?.couleur || (B.couleurs.find((c) => !utilisees.has(c.id)) || B.couleurs[0]).id;
-    const lie = m && (E.depenses.some((d) => d.payeur === m.id || d.quotes?.[m.id]) || E.virements.some((v) => v.de === m.id || v.a === m.id) || E.recurrentes.some((r) => r.payeur === m.id));
+    const lie = m && (E.depenses.some((d) => d.payeur === m.id || d.quotes?.[m.id] || d.pour === m.id) || E.virements.some((v) => v.de === m.id || v.a === m.id)
+      || E.versements.some((v) => v.de === m.id) || E.recurrentes.some((r) => r.payeur === m.id || r.pour === m.id));
     const corps = `
       <label class="champ">Prénom<input name="nom" required maxlength="30" value="${esc(m?.nom || '')}" autocomplete="off"></label>
-      <label class="champ">Revenu mensuel net (€)<small>Facultatif. Sert seulement à la répartition au prorata ; visible par tout le foyer.</small><input name="revenu" inputmode="decimal" value="${versSaisie(m?.revenu)}" placeholder="Ex. : 2 100" autocomplete="off"></label>
+      <label class="champ">Revenu mensuel net (€)<small>Facultatif. Sert seulement à la répartition au prorata (dépenses ou versements sur le compte) ; visible par tout le foyer.</small><input name="revenu" inputmode="decimal" value="${versSaisie(m?.revenu)}" placeholder="Ex. : 2 100" autocomplete="off"></label>
       <fieldset class="champ" style="border:0;padding:0;margin:0"><legend style="padding:0;margin-bottom:6px">Couleur</legend><div class="pastilles">${B.couleurs.map((c) => `<label title="${c.nom}"><input type="radio" name="couleur" value="${c.id}" ${c.id === defaut ? 'checked' : ''} aria-label="${c.nom}"><span style="--c:${c.hex}"></span></label>`).join('')}</div></fieldset>
       ${m ? '<p class="aide">Changer un revenu ne modifie pas les dépenses déjà notées : seules les nouvelles (et les récurrentes à venir) suivent le nouveau prorata.</p>' : ''}
       <p class="erreur" role="alert"></p>`;
@@ -954,7 +1293,7 @@
       : '<button class="btn primaire" value="ok">Ajouter</button><button class="btn" value="annuler">Annuler</button>';
     ouvrirModale(m ? `Modifier ${esc(m.nom)}` : 'Nouvelle personne', corps, pied, (fd, action) => {
       if (action === 'supprimer') {
-        if (lie) return `${m.nom} apparaît dans des dépenses, des récurrentes ou des virements : impossible de le retirer sans fausser les soldes.`;
+        if (lie) return `${m.nom} apparaît dans des dépenses, des récurrentes, des virements ou des versements : impossible de retirer cette personne sans fausser les comptes.`;
         annulable(() => supprimer('membres', m.id));
         sauver(); rendre(); toast(`${m.nom} retiré du foyer.`, { libelle: 'Annuler', faire: annuler });
         return;
@@ -998,11 +1337,25 @@
     });
   }
 
+  // Ce que change le passage d'un fonctionnement à l'autre (rien n'est supprimé).
+  function avisFonctionnement(choisi) {
+    if (choisi === E.reglages.fonctionnement) return 'Changer de fonctionnement ne supprime rien : dépenses, récurrentes, virements et versements restent enregistrés.';
+    if (choisi === 'compte') {
+      const plan = R.equilibrer(soldesActuels());
+      return `Les nouvelles dépenses et récurrentes seront payées par le compte commun ; l'onglet Compte calcule le versement de chacun.${plan.length ? ` Il reste ${pluriel(plan.length, 'remboursement')} en attente (onglet Soldes) : fais-${plan.length > 1 ? 'les' : 'le'} avant, ils réapparaîtront si tu reviens au mode avances.` : ''}`;
+    }
+    return 'Les nouvelles dépenses seront avancées par une personne et partagées ; l\'onglet Soldes calcule qui rembourse qui. Les dépenses déjà payées par le compte commun n\'entrent pas dans les soldes.';
+  }
+
   function modaleReglages() {
     const code = session.code ? `${session.code.slice(0, 9)}…${session.code.slice(-4)}` : '';
     const corps = `
       <label class="champ">Nom du foyer<small>Facultatif, affiché en haut des soldes.</small><input name="nomFoyer" maxlength="40" value="${esc(E.foyer.nom)}" placeholder="Ex. : Appartement rue des Lilas" autocomplete="off"></label>
-      <label class="champ">Répartition par défaut<select name="modeDefaut">${B.modes.filter((x) => x.id !== 'montants').map((x) => `<option value="${x.id}" ${E.reglages.modeDefaut === x.id ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>
+      <fieldset class="champ choix-mode"><legend>Fonctionnement du foyer</legend>
+        ${segmentsFonctionnement(E.reglages.fonctionnement)}
+        <small class="avis-fonctionnement">${avisFonctionnement(E.reglages.fonctionnement)}</small>
+      </fieldset>
+      <label class="champ">Répartition par défaut<small>Mode avances : pour chaque nouvelle dépense.</small><select name="modeDefaut">${B.modes.filter((x) => x.id !== 'montants').map((x) => `<option value="${x.id}" ${E.reglages.modeDefaut === x.id ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>
       <p class="erreur" role="alert"></p>
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Les données du foyer sont enregistrées en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
@@ -1012,10 +1365,17 @@
         <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour l'ouvrir comme une application.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>`;
-    ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+    const formReg = ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+      const avant = E.reglages.fonctionnement;
+      const fonctionnement = f.get('fonctionnement') === 'compte' ? 'compte' : 'avances';
       E.foyer = { ...E.foyer, nom: String(f.get('nomFoyer') || '').trim().slice(0, 40), modifLe: maintenant() };
-      E.reglages = { ...E.reglages, modeDefaut: f.get('modeDefaut'), modifLe: maintenant() };
-      sauver(); rendre(); toast('Réglages enregistrés.');
+      E.reglages = { ...E.reglages, modeDefaut: f.get('modeDefaut'), fonctionnement, modifLe: maintenant() };
+      if (fonctionnement !== avant) { vue = premierOnglet(); moisVue = null; history.replaceState(null, '', `#${vue}`); }
+      sauver(); rendre();
+      toast(fonctionnement !== avant ? `Fonctionnement : ${fonctionnementInfo(fonctionnement).nom.toLowerCase()}. Rien n'a été supprimé.` : 'Réglages enregistrés.');
+    });
+    formReg.addEventListener('change', (e) => {
+      if (e.target.name === 'fonctionnement') formReg.querySelector('.avis-fonctionnement').textContent = avisFonctionnement(e.target.value);
     });
     $('#import').addEventListener('change', async (e) => {
       const fichier = e.target.files[0];
@@ -1043,6 +1403,7 @@
   // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
   // données), puis reste accessible par le bouton « ? » de l'en-tête et par les réglages.
   function modaleTutoriel(auto = false) {
+    if (modeCompte()) return modaleTutorielCompte(auto);
     const blocs = [
       ['rose', 'Note qui a payé', `Chaque dépense commune s'ajoute avec son montant, sa catégorie et la personne qui l'a payée. Elle est partagée entre les personnes concernées selon la répartition par défaut (${esc(modeInfo(E.reglages.modeDefaut).nom.toLowerCase())}), que tu peux changer pour chaque dépense.`],
       ['beurre', 'Quatre façons de partager', `À parts égales, au prorata des revenus (renseignés dans <b>Foyer</b>&nbsp;; s'il en manque un, la dépense est partagée à parts égales), en parts (2 pour un adulte, 1 pour un enfant…) ou en montants précis. Les centimes tombent juste : la somme des parts vaut exactement la dépense.`],
@@ -1059,6 +1420,25 @@
       ? '<button class="btn primaire" value="depense">Ajouter ma première dépense</button><button class="btn" value="ok">Fermer</button>'
       : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
     ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'depense') setTimeout(() => modaleDepense(), 0); });
+  }
+
+  function modaleTutorielCompte(auto) {
+    const blocs = [
+      ['rose', 'Le compte commun paie', `Loyer, factures, courses : les dépenses du foyer sont payées par le compte commun. Note-les dans <b>Dépenses</b>, pour tout le foyer ou pour une seule personne. Les charges fixes s'ajoutent une fois dans <b>Récurrentes</b> et reviennent seules chaque mois.`],
+      ['beurre', 'Ce qu\'il faut couvrir', `Dans <b>Compte</b>, chaque mois : charges récurrentes communes + dépenses courantes prévues (un budget courses et sorties) + autres sorties (débit différé…) − solde du compte avant les versements. Le résultat est ce que les versements doivent apporter.`],
+      ['ciel', 'La part de chacun', `Ce montant est réparti selon la clé du foyer (${libelleCle(true)}), au centime près. Une récurrente faite pour une seule personne (son forfait, son assurance) s'ajoute entièrement à son versement.`],
+      ['sable', 'Verser et suivre', `Quand quelqu'un a fait son virement, touche <b>C'est fait</b> : le versement est noté pour le mois et le solde estimé du compte se met à jour (solde + versements − dépenses notées).`],
+      ['rose', 'Deux fonctionnements', `Si chacun préfère payer de son côté et se rembourser, choisis <b>Avances et remboursements</b> dans les réglages. Rien n'est supprimé en changeant.`],
+    ];
+    const corps = `
+      <p>L'outil calcule combien chacun verse sur le compte commun ce mois-ci. Ton rôle : renseigner les charges et le solde du compte, noter les dépenses, puis faire les versements proposés.</p>
+      <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
+      <p class="aide"><b>Mois</b> fait le bilan de chaque mois : ce que chacun a versé et les dépenses par catégorie. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Les données du foyer sont enregistrées en ligne avec ta clé : chaque membre qui la saisit voit et modifie les mêmes comptes.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+    const premiere = auto && !E.recurrentes.length;
+    const pied = premiere
+      ? '<button class="btn primaire" value="recurrente">Ajouter le loyer ou une facture</button><button class="btn" value="ok">Fermer</button>'
+      : `<button class="btn primaire" value="ok">${auto ? 'C\'est parti' : 'Compris'}</button>`;
+    ouvrirModale('Comment ça marche', corps, pied, (_, choix) => { if (choix === 'recurrente') setTimeout(() => modaleRecurrente(), 0); });
   }
 
   // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
@@ -1152,7 +1532,7 @@
     const avant = annulation;
     annulation = null;
     const t = maintenant();
-    for (const cle of ['membres', 'categories', 'depenses', 'recurrentes', 'virements']) {
+    for (const cle of ['membres', 'categories', 'depenses', 'recurrentes', 'virements', 'versements', 'alimentations']) {
       const actuels = new Map(E[cle].map((x) => [x.id, x]));
       avant[cle].forEach((x) => { const y = actuels.get(x.id); if (!y || JSON.stringify(x) !== JSON.stringify(y)) { x.modifLe = t; delete avant.supprimes[x.id]; } });
     }
@@ -1168,7 +1548,8 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = donneesDemo(); cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = modeCompte() ? donneesDemoCompte() : donneesDemo(); E.tutorielVu = true; cache(); rendre(); } break;
+      case 'demo-compte': case 'demo-avances': if (modale().open) modale().close(); moisVue = null; vue = action === 'demo-compte' ? 'compte' : 'soldes'; history.replaceState(null, '', `#${vue}`); ouvrirDemo(true, action === 'demo-compte' ? 'compte' : 'avances'); break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'modele': choisirModele(id); ecranAccueil(); break;
       case 'accueil-suivant': if (!accueil.membres.length) choisirModele(accueil.modele); accueil.etape = 2; ecranAccueil(); window.scrollTo({ top: 0 }); break;
@@ -1201,13 +1582,31 @@
       case 'categorie-nouvelle': modaleCategorie(); break;
       case 'categorie-modifier': modaleCategorie(id); break;
       case 'mois-prec': moisVue = R.ajoutMois(moisVue || moisCourant(), -1); rendre(); break;
-      case 'mois-suiv': moisVue = R.ajoutMois(moisVue || moisCourant(), 1); if (moisVue > moisCourant()) moisVue = moisCourant(); rendre(); break;
-      case 'copier-cle': navigator.clipboard?.writeText(session.code || '').then(() => toast('Clé copiée : envoie-la seulement aux membres du foyer.'), () => toast(`Ta clé : ${session.code}`)); break;
+      case 'mois-suiv': {
+        // L'onglet Compte peut préparer le mois prochain ; le bilan s'arrête au mois en cours.
+        const limite = vue === 'compte' ? R.ajoutMois(moisCourant(), 1) : moisCourant();
+        moisVue = R.ajoutMois(moisVue || moisCourant(), 1); if (moisVue > limite) moisVue = limite; rendre(); break;
+      }
+      case 'versement-nouveau': modaleVersement(); break;
+      case 'versement-fait': {
+        const m = moisVue || moisCourant();
+        const c = calculCompte(m);
+        const montant = c.reste[id];
+        if (!montant) break;
+        annulable(() => E.versements.push({ id: uid(), date: auj(), mois: m, de: id, montant, note: '', modifLe: maintenant() }));
+        sauver(); rendre(); toast(`${nom(id)} → compte commun : ${eur(montant)} enregistré.`, { libelle: 'Annuler', faire: annuler });
+        break;
+      }
+      case 'versement-suppr': { const v = E.versements.find((x) => x.id === id); if (!v) break; annulable(() => supprimer('versements', id)); sauver(); rendre(); toast(`Versement de ${eur(v.montant)} supprimé.`, { libelle: 'Annuler', faire: annuler }); break; }
+      case 'cle-modifier': modaleCle(); break;
+      case 'solde-estime': { const f = $('#form-alim'); if (!f) break; f.elements.solde.value = versSaisie(Number(el.dataset.montant)); majAlimentation(f); break; }
+      case 'copier-cle': navigator.clipboard?.writeText(session.code || '').then(() => toast('Code copié : envoie-le seulement aux membres du foyer.'), () => toast(`Code de partage : ${session.code}`)); break;
       default: break;
     }
   });
 
   document.addEventListener('change', (e) => {
+    if (e.target.closest('#form-alim')) { majAlimentation(e.target.closest('#form-alim')); return; }
     if (e.target.closest('#filtres')) {
       const f = new FormData($('#filtres'));
       filtres = { mois: f.get('mois'), payeur: f.get('payeur'), categorie: f.get('categorie') };
@@ -1232,10 +1631,11 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
+    const demandeDemo = new URLSearchParams(location.search).get('demo');
+    if (demandeDemo !== null && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false, demandeDemo === 'compte' ? 'compte' : null); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo();
+    if (code === CODE_DEMO) return ouvrirDemo(true, demandeDemo === 'compte' ? 'compte' : null);
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {

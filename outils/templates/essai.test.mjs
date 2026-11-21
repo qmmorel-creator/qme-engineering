@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { traiter, genererCodeEssai, verifierCodeEssai, verifierCode, etatEssai, codeDepuisLicence, ESSAI, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { traiterEssai, tournerEssais, PRODUITS_ESSAI, contenuMail, produitEssai, lienStop } from '../../netlify/lib/essais.mjs';
+import { PRISE_EN_MAIN } from '../../netlify/lib/essais-prise-en-main.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 
 const SECRET = 'x'.repeat(40);
@@ -74,7 +75,7 @@ test('création : code, e-mail de remerciement, un essai par adresse et par temp
   assert.equal(r.corps.mail, true);
   assert.equal(w.mails.length, 1);
   assert.equal(w.mails[0].a, 'marie@exemple.fr');
-  assert.match(w.mails[0].objet, /Merci d'essayer « Budget du foyer »/);
+  assert.match(w.mails[0].objet, /Merci d'essayer « Mon Budget »/);
   assert.ok(w.mails[0].texte.includes(r.corps.code));
   assert.ok(w.mails[0].texte.includes('Bonjour Marie,'));
   assert.ok(w.mails[0].texte.includes('jeudi 3 décembre'));
@@ -214,9 +215,11 @@ test('tâche quotidienne : rappel J-3, fin, avant effacement, effacement ; rien 
 
   const types = async (jours) => { w.horloge.t = T0 + jours * JOUR; w.mails.length = 0; await tourner(); return w.mails.map((m) => m.objet); };
   assert.deepEqual(await types(1), []);
-  assert.deepEqual(await types(11), ['Plus que 3 jours d\'essai : Budget du foyer']);
+  assert.deepEqual(await types(2), ['Mon Budget : par où commencer']);
+  assert.deepEqual(await types(3), [], 'prise en main envoyée une seule fois');
+  assert.deepEqual(await types(11), ['Plus que 3 jours d\'essai : Mon Budget']);
   assert.deepEqual(await types(12), [], 'pas deux fois');
-  assert.deepEqual(await types(15), ['Votre essai gratuit est terminé : Budget du foyer']);
+  assert.deepEqual(await types(15), ['Votre essai gratuit est terminé : Mon Budget']);
   assert.deepEqual(await types(37), ['Vos données d\'essai seront effacées le 2 janvier']);
   assert.deepEqual(await types(44), []);
   assert.ok(w.stockage.m.size === 1);
@@ -235,17 +238,66 @@ test('tâche quotidienne : rattrapage d\'une journée manquée, un seul e-mail p
   w.mails.length = 0;
   w.horloge.t = T0 + 16 * JOUR; // rappel J-3 jamais parti (tâche en panne) puis fin d'essai
   await tournerEssais({ secret: SECRET, essais: w.essais, stockage: w.stockage, envoyer: envoyeur(w), maintenant: () => w.horloge.t });
-  assert.deepEqual(w.mails.map((m) => m.objet), ['Votre essai gratuit est terminé : Budget du foyer']);
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Votre essai gratuit est terminé : Mon Budget']);
 });
 
 test('e-mails : chaque type se construit pour chaque template, sans texte vide', () => {
   for (const produit of PRODUITS_ESSAI) {
     const reg = { id: 'ABC', produit, code: `${produit}-AAAA-AAAA-AAAA-AAAA`, prenom: '', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
-    for (const type of ['merci', 'renvoi', 'rappel', 'fin', 'effacement']) {
+    for (const type of ['merci', 'renvoi', 'prise-en-main', 'rappel', 'fin', 'effacement']) {
       const m = contenuMail(type, reg, SECRET);
       assert.ok(m.objet && m.texte.length > 200 && !/undefined|NaN|null/.test(m.texte + m.objet), `${produit} ${type}`);
       assert.ok(m.texte.includes('https://qmengineering.gumroad.com/l/'), `${produit} ${type} : lien d'achat`);
     }
+  }
+});
+
+test('prise en main : une fiche complète et propre à chaque template ouvert à l\'essai', () => {
+  const vus = new Set();
+  for (const produit of PRODUITS_ESSAI) {
+    const g = PRISE_EN_MAIN[produit];
+    assert.ok(g, `${produit} : fiche de prise en main manquante (netlify/lib/essais-prise-en-main.mjs)`);
+    assert.ok(g.commencer.length > 40 && g.astuces.length === 2 && g.astuces.every((a) => a.length > 30) && /\?$/.test(g.aide), produit);
+    assert.ok(!vus.has(g.commencer), `${produit} : texte copié d'un autre template`);
+    vus.add(g.commencer);
+    const reg = { id: 'ABC', produit, code: `${produit}-AAAA-AAAA-AAAA-AAAA`, prenom: 'Léa', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
+    const m = contenuMail('prise-en-main', reg, SECRET);
+    assert.ok(m.texte.startsWith('Bonjour Léa,') && m.texte.includes(g.astuces[1]) && m.texte.includes('?essai='), produit);
+  }
+});
+
+test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async () => {
+  const w = monde();
+  const tourner = () => tournerEssais({ secret: SECRET, essais: w.essais, stockage: w.stockage, envoyer: envoyeur(w), maintenant: () => w.horloge.t });
+  await creer(w, { produit: 'lecture', email: 'a@b.fr' });
+  w.horloge.t = T0 + 5 * JOUR; w.mails.length = 0;
+  await tourner();
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi de lecture : par où commencer']);
+  const w2 = monde();
+  await creer(w2, { produit: 'lecture', email: 'a@b.fr' });
+  w2.horloge.t = T0 + 6 * JOUR; w2.mails.length = 0;
+  await tournerEssais({ secret: SECRET, essais: w2.essais, stockage: w2.stockage, envoyer: envoyeur(w2), maintenant: () => w2.horloge.t });
+  assert.deepEqual(w2.mails, [], 'trop tard : pas de prise en main à J+6');
+  const w3 = monde();
+  await creer(w3, { produit: 'lecture', email: 'a@b.fr' });
+  const [cle] = await w3.essais.lister('essai/');
+  await w3.essais.set(cle, { ...(await w3.essais.get(cle)), achete: '2026-11-20T09:00:00Z' });
+  w3.horloge.t = T0 + 2 * JOUR; w3.mails.length = 0;
+  await tournerEssais({ secret: SECRET, essais: w3.essais, stockage: w3.stockage, envoyer: envoyeur(w3), maintenant: () => w3.horloge.t });
+  assert.deepEqual(w3.mails, [], 'déjà acheté : aucun e-mail');
+});
+
+test('signature graphique (variante C) dans le HTML de chaque e-mail, signature texte gardée en texte brut', async () => {
+  const { existsSync } = await import('node:fs');
+  const { RESEAUX } = await import('../../netlify/lib/signature.mjs');
+  for (const f of ['qme-logo', 'filet', ...RESEAUX.map(([c]) => c)]) assert.ok(existsSync(new URL(`../../assets/signature/${f}.png`, import.meta.url)), `assets/signature/${f}.png`);
+  const reg = { id: 'ABC', produit: 'BDG', code: 'BDG-AAAA-AAAA-AAAA-AAAA', prenom: '', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
+  for (const type of ['merci', 'renvoi', 'prise-en-main', 'rappel', 'fin', 'effacement']) {
+    const m = contenuMail(type, reg, SECRET);
+    assert.ok(m.html.includes('https://qm-engineering.fr/assets/signature/qme-logo.png') && m.html.includes('alt="Instagram"'), type);
+    assert.ok(m.texte.includes('Quentin Morel\nQM Engineering · qm-engineering.fr'), `${type} : texte brut`);
+    assert.equal((m.html.match(/Quentin Morel/g) || []).length, 1, `${type} : une seule signature`);
+    for (const [, href] of m.html.matchAll(/href="([^"]+)"/g)) assert.ok(!/[.,;:!?)]$/.test(href), `${type} : lien coupé ${href}`);
   }
 });
 
@@ -330,7 +382,7 @@ test('notification à Quentin à chaque essai lancé, jamais bloquante', async (
     { secret: SECRET, essais: w.essais, envoyer, maintenant: () => w.horloge.t, notifier });
   await appelCreer({ produit: 'budget', email: 'camille@b.fr', prenom: 'Camille', nouveautes: true }, 'quentin@qme.fr');
   const notif = w.mails.find((m) => m.a === 'quentin@qme.fr');
-  assert.equal(notif.objet, 'Nouvel essai : Budget du foyer · Camille');
+  assert.equal(notif.objet, 'Nouvel essai : Mon Budget · Camille');
   assert.ok(notif.texte.includes('camille@b.fr') && notif.texte.includes('oui, inscrit(e)') && notif.texte.includes('/admin/essais/'));
   // Sans adresse de notification : aucun e-mail à Quentin.
   w.mails.length = 0;
@@ -352,12 +404,12 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   const d = await (await adminApi(w, 'GET', '/essais')).json();
   assert.deepEqual([d.total, d.enCours, d.termines, d.achetes], [2, 1, 0, 1]);
   const achete = d.essais.find((e) => e.email === 'achete@b.fr');
-  assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Budget du foyer']);
+  assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Mon Budget']);
   assert.equal(d.essais.find((e) => e.email === 'cours@b.fr').joursRestants, 14);
   w.horloge.t = T0 + 15 * JOUR;
   assert.equal((await (await adminApi(w, 'GET', '/essais')).json()).termines, 1);
   const octets = new Uint8Array(await (await adminApi(w, 'GET', '/essais?format=csv')).arrayBuffer());
   const csv = new TextDecoder().decode(octets);
   assert.ok(csv.startsWith('email;prenom;template;statut;debut;fin;jours_restants;achete_le;donnees_reprises;nouveautes;emails_envoyes'));
-  assert.ok(csv.includes('achete@b.fr;Ana;Budget du foyer;acheté;'));
+  assert.ok(csv.includes('achete@b.fr;Ana;Mon Budget;acheté;'));
 });

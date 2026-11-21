@@ -1,4 +1,4 @@
-// Budget commun QME · règles métier pures (aucun accès au DOM ni au stockage).
+// Gestion Dépenses Communes QME · règles métier pures (aucun accès au DOM ni au stockage).
 // Chargé tel quel par le navigateur (window.BCM) et par les tests Node (vm).
 // Tous les montants sont des centimes entiers : aucune erreur d'arrondi dans les calculs.
 // Moteur commun : aussi chargé par le planificateur de voyage (templates/voyage/) ; après toute modification,
@@ -184,6 +184,7 @@
           payeur: r.payeur, categorie: r.categorie, repartition: structuredCloneSimple(r.repartition || { mode: 'egale' }),
           modifLe: horodatage,
         };
+        if (r.pour) d.pour = r.pour;
         d.quotes = quotesDepense({ ...d, quotes: null }, membres);
         nouvelles.push(d);
         existants.add(id);
@@ -208,12 +209,81 @@
     return { mois, total, nb: liste.length, parCategorie, parMembre };
   }
 
+  // ---------- Mode « compte commun » ----------
+  // Le foyer alimente un compte joint qui paie les dépenses (payeur COMPTE). Une dépense ou une
+  // récurrente du compte est « pour » tout le foyer ('foyer') ou pour une seule personne (son id).
+  const COMPTE = 'compte';
+  const actifLeMois = (r, mois) => r.actif !== false && !!r.debut && r.debut <= mois && (!r.fin || r.fin >= mois)
+    && Number.isInteger(r.montant) && r.montant > 0;
+
+  // Charges prévues d'un mois : récurrentes payées par le compte et actives ce mois-là (qu'elles
+  // aient déjà été ajoutées ou non). Communes d'un côté, propres à une personne de l'autre.
+  function chargesPrevues(recurrentes, mois, membres) {
+    const ids = new Set(membres.map((m) => m.id));
+    const perso = {};
+    membres.forEach((m) => { perso[m.id] = 0; });
+    let communes = 0;
+    const lignes = [];
+    for (const r of recurrentes) {
+      if (r.payeur !== COMPTE || !actifLeMois(r, mois)) continue;
+      const pour = r.pour && ids.has(r.pour) ? r.pour : 'foyer';
+      if (pour === 'foyer') communes += r.montant; else perso[pour] += r.montant;
+      lignes.push({ id: r.id, libelle: r.libelle, montant: r.montant, pour, jour: r.jour || 1 });
+    }
+    lignes.sort((a, b) => a.jour - b.jour || a.libelle.localeCompare(b.libelle));
+    return { communes, perso, lignes };
+  }
+
+  // Versement de chacun pour un mois.
+  // À couvrir = charges communes + dépenses courantes prévues + autres sorties − solde du compte
+  // avant les versements du mois. Ce montant (s'il est positif) est réparti selon la clé du foyer
+  // (égale, prorata des revenus, parts) ; chacun y ajoute ses charges personnelles, que le solde ne
+  // diminue pas. Excédent (à couvrir négatif) : seules les charges personnelles restent à verser.
+  function alimentation({ membres, cle = {}, communes = 0, perso = {}, courantes = 0, autres = 0, solde = 0 }) {
+    const n = (c) => (Number.isInteger(c) ? c : 0);
+    const charges = n(communes) + n(courantes) + n(autres);
+    const aCouvrir = charges - n(solde);
+    const base = Math.max(0, aCouvrir);
+    const ids = membres.map((m) => m.id);
+    let parts = Object.fromEntries(ids.map((id) => [id, 0]));
+    let mode = ['egale', 'prorata', 'parts'].includes(cle.mode) ? cle.mode : 'egale';
+    let note = '';
+    if (base > 0 && ids.length) {
+      const res = repartir(base, membres, mode, { parts: cle.parts });
+      if (res.erreur) {
+        const eg = repartir(base, membres, 'egale');
+        parts = eg.quotes; note = `${res.erreur} Partage à parts égales.`; mode = 'egale';
+      } else { parts = res.quotes; mode = res.mode; note = res.note || ''; }
+    }
+    const versements = {};
+    for (const id of ids) versements[id] = parts[id] + n(perso[id]);
+    const total = ids.reduce((s, id) => s + versements[id], 0);
+    return { charges, aCouvrir, base, parts, perso: Object.fromEntries(ids.map((id) => [id, n(perso[id])])), versements, total, mode, note };
+  }
+
+  // Solde estimé du compte : solde saisi (avant les versements du mois) + versements du mois
+  // − dépenses payées par le compte ce mois-ci, jusqu'au jour donné inclus (« AAAA-MM-JJ »).
+  function soldeEstime(solde, versements, depenses, mois, jusqua = `${mois}-31`) {
+    let s = Number.isInteger(solde) ? solde : 0;
+    for (const v of versements) if (moisDe(v.mois || v.date) === mois && (v.date || '') <= jusqua) s += v.montant;
+    for (const d of depenses) if (d.payeur === COMPTE && moisDe(d.date) === mois && d.date <= jusqua) s -= d.montant;
+    return s;
+  }
+
+  // Déjà versé par chacun pour un mois (un versement compte pour le mois qu'il alimente).
+  function verses(versements, mois, membres) {
+    const r = {};
+    membres.forEach((m) => { r[m.id] = 0; });
+    for (const v of versements) if ((v.mois || moisDe(v.date)) === mois && v.de in r) r[v.de] += v.montant;
+    return r;
+  }
+
   // ---------- Fusion (conflit entre deux appareils) ----------
   // Chaque élément porte un id et modifLe (ISO) ; les suppressions laissent une trace dans
   // « supprimes » {id: date}. Union des deux versions : la modification la plus récente l'emporte,
   // une suppression ne l'emporte que si elle est postérieure à la dernière modification.
   // Aucune dépense ajoutée d'un côté n'est perdue.
-  const COLLECTIONS = ['membres', 'categories', 'depenses', 'recurrentes', 'virements'];
+  const COLLECTIONS = ['membres', 'categories', 'depenses', 'recurrentes', 'virements', 'versements', 'alimentations'];
   const OBJETS = ['foyer', 'reglages'];
 
   function fusionner(local, serveur) {
@@ -254,5 +324,6 @@
   racine.BCM = {
     versCentimes, euros, repartirPoids, repartir, quotesDepense, MODES,
     soldes, equilibrer, moisDe, ajoutMois, joursDansMois, genererRecurrentes, bilanMois, fusionner,
+    COMPTE, chargesPrevues, alimentation, soldeEstime, verses, COLLECTIONS,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

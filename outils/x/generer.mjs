@@ -65,7 +65,7 @@ const page = `<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026111601">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
 <style>
 .x-hero{display:grid;gap:18px;max-width:860px}
 .x-hero .lead{font-size:clamp(18px,2.2vw,21px)}
@@ -90,8 +90,6 @@ const page = `<!doctype html>
   <nav aria-label="Main navigation">
     <a href="/en/custom/">Custom tools</a>
     <a href="/en/templates/">Templates</a>
-    <a href="/en/references/">References</a>
-    <a href="/en/method/">Method</a>
     <a class="cta" href="/en/contact/" data-goatcounter-click="x-contact-entete" data-goatcounter-title="X campaign: contact (header)">Discuss your project</a>
   </nav>
   <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
@@ -160,7 +158,7 @@ ${cartes.map(carte).join('\n')}
  });
 })();
 </script>
-<script src="/assets/site.js?v=2026111308" defer></script>
+<script src="/assets/site.js?v=2026112004" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

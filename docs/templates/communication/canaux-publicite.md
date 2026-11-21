@@ -140,8 +140,8 @@ roue de vie, T30 Time-blocking, T17 Suivi de lecture. Pack « Productivité pers
 
 ## 3. Budget et finances personnelles
 
-**Templates** : T05 Budget du foyer, T12 Remboursement de dettes, T13 Objectif d'épargne, T14 Suivi des
-abonnements, T65 Budget commun couple / colocation, T66 Simulateur leasing vs achat.
+**Templates** : T05 Mon Budget, T12 Remboursement de dettes, T13 Objectif d'épargne, T14 Suivi des
+abonnements, T65 Gestion Dépenses Communes couple / colocation, T66 Simulateur leasing vs achat.
 
 1. **Cible et saisons** : B2C (foyers, couples, colocataires, jeunes actifs). Pics : janvier
    (résolutions, soldes de fin d'année), rentrée de septembre, installation en couple ou en

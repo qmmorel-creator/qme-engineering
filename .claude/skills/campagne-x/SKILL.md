@@ -19,13 +19,13 @@ vérifié et ce qui ne l'a pas été.
    de template, jamais de lien Gumroad.
 2. **Honnêteté** : interface en français, toujours dite (« French interface · sample data » sur chaque capture) ;
    aucune version anglaise annoncée comme existante ; aucun client nommé (références décrites par leur métier, comme
-   sur `/en/references/`) ; aucun chiffre inventé (valeurs lues dans les démos ou les captures, faits de `/en/method/` :
+   sur `/en/custom/#references`) ; aucun chiffre inventé (valeurs lues dans les démos ou les captures, faits de `/en/custom/#method` :
    appel de 30 min, prototype en quelques jours, automatisation 2-3 jours, outil 5-10 jours, 15 ans d'expérience dont 7
    en bureau d'études ; 97 templates, 34 sur règles françaises, nombre par thème de `/en/english-version/`).
 3. **Texte** : 280 caractères au plus (une URL compte 23), contrôlé par
    `node docs/templates/communication/x/longueurs.mjs` après ajout au README sous `### X-nn · <date> · <format>` (bloc
    ```). Pas d'émoji, pas de superlatif, 0 à 2 hashtags. Lien en fin : `qm-engineering.fr/x` le plus souvent ;
-   `/en/references/`, `/en/custom/` ou `/en/method/` quand le sujet s'y prête.
+   `/en/custom/#references`, `/en/custom/` ou `/en/custom/#method` quand le sujet s'y prête.
 4. **Captures** : réelles (assets `templates-<slug>-<vue>.webp` des pages catalogue, ou démo `?demo` capturée avec
    Playwright), interface française acceptée ; l'écran le plus parlant visuellement (graphique, planning coloré, grand
    chiffre en titre ; `outils/x/templates-en.json` → `_captures`), jamais une fenêtre modale grisée ni une liste dense.
@@ -64,7 +64,7 @@ Lire les 14 dernières lignes du journal (colonnes Format, Accroche, Thème) ava
   · conseil honnête (quand ne PAS faire de sur-mesure) · appel à réponse (« reply with… »).
 - **Thème** (jamais le même dans les 3 derniers jours) : tableur qui déborde · rôles et droits d'accès · automatisation
   et IA · terrain et téléphone (chantier, atelier, entrepôt) · facturation et relances · planning et charge d'équipe ·
-  maintenance et conformité · associations et clubs · méthode et délais · références par métier (`/en/references/`)
+  maintenance et conformité · associations et clubs · méthode et délais · références par métier (`/en/custom/#references`)
   · les 97 templates comme preuve (page `/en/english-version/`, demande de version anglaise) · règles d'un pays
   (pourquoi traduire ne suffit pas).
 - **Template montré** (image ou vidéo) : jamais le même deux fois en 14 jours sur X.

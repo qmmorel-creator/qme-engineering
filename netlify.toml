@@ -710,6 +710,33 @@
   status = 301
   force = true
 
+# Réorganisation du 20/11/2026 : Références et Méthode fusionnées dans la page Sur mesure (FR et EN).
+# Redirections permanentes pour les liens déjà publiés (réseaux, e-mails, PDF, moteurs de recherche) ;
+# les paramètres de l'adresse (utm_…) sont transmis tels quels.
+[[redirects]]
+  from = "/references"
+  to = "/sur-mesure/#references"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/methode"
+  to = "/sur-mesure/#methode"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/references"
+  to = "/en/custom/#references"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/method"
+  to = "/en/custom/#method"
+  status = 301
+  force = true
+
 # Documents internes (idées de templates, skills, consignes des assistants) : jamais servis
 [[redirects]]
   from = "/docs/*"
@@ -1185,5 +1212,13 @@
 [[redirects]]
   from = "/x"
   to = "/en/english-version/?utm_source=x&utm_medium=social&utm_campaign=x-custom"
+  status = 302
+  force = true
+
+# Prospection LinkedIn BTP (20/11/2026) : lien court des invitations et messages, vers le pack Chef de projet BTP.
+# Fiche : docs/templates/communication/prospection-linkedin/packs-btp-enseignant.md
+[[redirects]]
+  from = "/btp"
+  to = "/packs/chef-de-projet-btp/?utm_source=linkedin&utm_medium=dm&utm_campaign=prosp-btp"
   status = 302
   force = true

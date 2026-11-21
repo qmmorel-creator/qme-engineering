@@ -16,7 +16,7 @@ par l'utilisateur).
 - **Indépendants et dirigeants** (gérant de SASU, de SARL, entrepreneur) qui se font rembourser par leur
   structure ou suivent leurs frais et leurs kilomètres pour leur comptable.
 
-Distinct du **Budget du foyer** (T05) et de la **Micro-entreprise** (T44, chiffre d'affaires et
+Distinct du **Mon Budget** (T05) et de la **Micro-entreprise** (T44, chiffre d'affaires et
 cotisations) : ici, uniquement les dépenses avancées à rembourser et les indemnités kilométriques.
 
 ## Promesse
