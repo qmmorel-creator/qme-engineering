@@ -206,7 +206,7 @@ Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que 
 - [ ] **Vérification après déploiement** : `grep` du slug sans « prochaine » ni « Bientôt » restant sur
       les pages publiques, bouton Acheter en 200, page catalogue et démo en 200 (ordinateur et iPhone 13).
 
-## Essai gratuit (templates vie personnelle, depuis le 18/11/2026)
+## Essai gratuit (templates vie personnelle depuis le 18/11/2026, professionnels depuis le 21/11/2026)
 
 Décision de Quentin : 14 jours d'essai gratuit sans carte, puis 30 jours en lecture seule, puis effacement ; données
 reprises à l'achat ; e-mails (merci, J-3, fin, avant effacement) envoyés depuis la boîte de Quentin. Document de
