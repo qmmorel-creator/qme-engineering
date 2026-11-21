@@ -23,6 +23,7 @@ import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourPa
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
 
@@ -146,9 +147,12 @@ function habiller(texte, { secret, id, email = null }) {
   const pied = `\n\n—\nVous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. Plus aucun rappel : ${lienStop(secret, id)}${nouv}`;
   const brut = texte + pied;
   const echapper = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Version HTML : la signature texte finale est remplacée par la signature graphique (signature.mjs).
+  const avecSignature = texte.endsWith(SIGNATURE);
+  const corps = avecSignature ? texte.slice(0, -SIGNATURE.length).trimEnd() : texte;
   const html = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#141414;max-width:560px">${
-    echapper(texte).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/(https:\/\/[^\s<]+)/g, '<a href="$1" style="color:#1D4E89">$1</a>')}</p>`).join('')
-  }<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p></div>`;
+    echapper(corps).split('\n\n').map((b) => `<p style="margin:0 0 14px">${b.replace(/\n/g, '<br>').replace(/https:\/\/[^\s<]*[^\s<.,;:!?)»]/g, (u) => `<a href="${u}" style="color:#1D4E89">${u}</a>`)}</p>`).join('')
+  }${avecSignature ? `<div style="margin:18px 0 0">${SIGNATURE_HTML}</div>` : ''}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez lancé un essai gratuit sur qm-engineering.fr. <a href="${lienStop(secret, id)}" style="color:#6b6660">Ne plus recevoir de rappel</a>.${email ? ` Vous êtes aussi inscrit(e) aux nouveautés QME : <a href="${lienDesinscription(secret, email)}" style="color:#6b6660">se désinscrire</a>.` : ''}</p></div>`;
   return { texte: brut, html };
 }
 

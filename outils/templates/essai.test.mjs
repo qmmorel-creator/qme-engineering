@@ -287,6 +287,20 @@ test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async (
   assert.deepEqual(w3.mails, [], 'déjà acheté : aucun e-mail');
 });
 
+test('signature graphique (variante C) dans le HTML de chaque e-mail, signature texte gardée en texte brut', async () => {
+  const { existsSync } = await import('node:fs');
+  const { RESEAUX } = await import('../../netlify/lib/signature.mjs');
+  for (const f of ['qme-logo', 'filet', ...RESEAUX.map(([c]) => c)]) assert.ok(existsSync(new URL(`../../assets/signature/${f}.png`, import.meta.url)), `assets/signature/${f}.png`);
+  const reg = { id: 'ABC', produit: 'BDG', code: 'BDG-AAAA-AAAA-AAAA-AAAA', prenom: '', debut: '2026-11-19', fin: '2026-12-03', effacement: '2027-01-02' };
+  for (const type of ['merci', 'renvoi', 'prise-en-main', 'rappel', 'fin', 'effacement']) {
+    const m = contenuMail(type, reg, SECRET);
+    assert.ok(m.html.includes('https://qm-engineering.fr/assets/signature/qme-logo.png') && m.html.includes('alt="Instagram"'), type);
+    assert.ok(m.texte.includes('Quentin Morel\nQM Engineering · qm-engineering.fr'), `${type} : texte brut`);
+    assert.equal((m.html.match(/Quentin Morel/g) || []).length, 1, `${type} : une seule signature`);
+    for (const [, href] of m.html.matchAll(/href="([^"]+)"/g)) assert.ok(!/[.,;:!?)]$/.test(href), `${type} : lien coupé ${href}`);
+  }
+});
+
 // ---------- Base de contacts « Nouveautés QME » (case facultative, 19/11/2026) ----------
 import { lienDesinscription } from '../../netlify/lib/essais.mjs';
 import { codeAdmin } from '../../netlify/lib/interets.mjs';
