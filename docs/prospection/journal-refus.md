@@ -26,3 +26,5 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-21 | La Conciergerie Avignon | `bonjour@laconciergerieavignon.com` | réponse auto | non |
 | 2026-11-21 | Les Copywriters (support) | `support@les-copywriters.com` | autre (accusé du support : « nous reviendrons vers vous ») | non |
 | 2026-11-21 | Tot de Casa, Oloron (Margaux Dalbavie) | `magasin.totdecasa@gmail.com` | refus poli (outil de caisse et de facturation déjà en place) | oui |
+| 2026-11-21 | Comité départemental de tir à l'arc de la Loire (CD42) | `cd42tiralarc@gmail.com` | refus poli (« pas intéressés pour l'instant ») | oui |
+| 2026-11-21 | Tot de Casa (Margaux), 2e message | `magasin.totdecasa@gmail.com` | déjà traité (« Je n'y manquerais pas ! ») | non (déjà répondu) |
