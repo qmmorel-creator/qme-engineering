@@ -75,6 +75,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `/jeu`. Script `assets/diagnostic.js` (calcul testé par `outils/templates/diagnostic.test.mjs`), styles
   `assets/diagnostic.css`. Plan des jeux et quiz d'acquisition (stories quiz, vidéos TikTok, suites) :
   `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
+- `defi/` : défi « T'es plus organisé que ton pote ? » (8 questions, score, lien à envoyer qui ne porte que le prénom
+  facultatif et le score, duel à l'ouverture du lien, renvoi à l'essai des 4 templates). Questions communes aux stories
+  et Reels quiz : `assets/quiz-qme.js` (source unique) ; logique `assets/defi.js` (testée par
+  `outils/templates/defi.test.mjs`), styles `assets/defi.css`, aperçu du lien `assets/defi-partage.png`.
 - `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
   `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
   interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail
