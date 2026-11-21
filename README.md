@@ -68,11 +68,13 @@ Site promotionnel de Quentin Morel Engineering (QME).
   03/11/2026 (nexora#1488), musique « Corporate » de litesaturation (Pixabay, licence Pixabay : usage
   commercial sans attribution), normalisée à -16 LUFS, fondu de sortie de 3 s ; image inchangée. Les
   musiques des vidéos tournent sur 4 pistes, décrites dans le dépôt Nexora, `docs/qme/musiques/`
-- `diagnostic/` : test « Combien vous coûte votre désorganisation ? » pour Instagram et TikTok (étudiants et jeunes
-  adultes ; 3 questions : budget, tâches, habitudes ; résultat en euros, heures et séances par an, renvoi à l'essai de Mon
-  Budget, du Gestionnaire de tâches et du Suivi d'habitudes, image story partageable), lien court `/jeu`. Script `assets/diagnostic.js` (calcul
-  testé par `outils/templates/diagnostic.test.mjs`), styles `assets/diagnostic.css`. Plan des jeux et quiz
-  d'acquisition (stories quiz, vidéos TikTok, suites) : `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
+- `diagnostic/` : test « Combien te coûte ta désorganisation ? » pour Instagram et TikTok (étudiants et jeunes adultes,
+  en tutoiement ; 4 questions : révisions, budget, tâches, habitudes ; résultat en euros, heures et séances par an, plus
+  la charge de révision avant l'examen, calculée comme le Planning de révision ; renvoi à l'essai du Planning de
+  révision, de Mon Budget, du Gestionnaire de tâches et du Suivi d'habitudes ; image story partageable), lien court
+  `/jeu`. Script `assets/diagnostic.js` (calcul testé par `outils/templates/diagnostic.test.mjs`), styles
+  `assets/diagnostic.css`. Plan des jeux et quiz d'acquisition (stories quiz, vidéos TikTok, suites) :
+  `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
 - `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
   `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
   interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail

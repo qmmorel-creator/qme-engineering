@@ -1,4 +1,4 @@
-// Calcul du test « Combien vous coûte votre désorganisation ? » (assets/diagnostic.js).
+// Calcul du test « Combien te coûte ta désorganisation ? » (assets/diagnostic.js).
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,7 +7,7 @@ import vm from 'node:vm';
 const ctx = vm.createContext({});
 vm.runInContext(readFileSync('assets/diagnostic.js', 'utf8'), ctx);
 const { calculer, synthese } = ctx.DIAG;
-const ETAPES = ['budget', 'taches', 'habitudes'];
+const ETAPES = ['revisions', 'budget', 'taches', 'habitudes'];
 const seul = (cle) => new Set(ETAPES.filter((c) => c !== cle));
 
 test('budget : petits achats × 52 + abonnements non utilisés × 12', () => {
@@ -35,8 +35,23 @@ test('habitudes : (objectif − réel) × 52, jamais négatif', () => {
 });
 
 test('synthèse : seuls les montants non nuls, dans l\'ordre euros, heures, séances', () => {
-  const r = calculer({ petits: '5', minutes: '0', objectif: '3', reel: '1' });
+  const r = calculer({ petits: '5', minutes: '0', objectif: '3', reel: '1' }, new Set(['revisions']));
   assert.deepEqual([...synthese(r)], ['260 €', '104 séances ratées']);
   const vide = calculer({}, new Set(ETAPES));
   assert.deepEqual([...synthese(vide)], []);
+});
+
+test('révisions : passages avant l\'examen selon la logique du Planning de révision (écarts 1, 3, 7, 14, 30 jours)', () => {
+  const { passagesAvantExamen, INTERVALLES } = ctx.DIAG;
+  const donnees = readFileSync('templates/revision/donnees.js', 'utf8');
+  assert.match(donnees, new RegExp(`intervalles: \\[${[...INTERVALLES].join(', ')}\\]`), 'intervalles alignés sur le template');
+  assert.equal(passagesAvantExamen(2), 1); // J+1, puis plus rien avant l'examen
+  assert.equal(passagesAvantExamen(10), 3); // J+1, J+4, puis ramené à la veille (J+9)
+  assert.equal(passagesAvantExamen(30), 5); // J+1, J+4, J+11, J+25, puis la veille (J+29)
+  assert.equal(passagesAvantExamen(90), 6); // J+1, J+4, J+11, J+25, J+55, finale à J+88
+  const r = calculer({ chapitres: '40', jours: '30' }, seul('revisions'));
+  assert.equal(r.revisions.total, 200);
+  assert.equal(r.euros + r.heures + r.seances, 0, 'hors total');
+  assert.ok(calculer({ chapitres: '0', jours: '30' }, seul('revisions')).erreur);
+  assert.ok(calculer({ chapitres: '40', jours: '1' }, seul('revisions')).erreur);
 });

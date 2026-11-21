@@ -1215,7 +1215,7 @@
   status = 302
   force = true
 
-# Test « Combien vous coûte votre désorganisation ? » (21/11/2026) : lien court des réseaux et des partages,
+# Test « Combien te coûte ta désorganisation ? » (21/11/2026) : lien court des réseaux et des partages,
 # vers /diagnostic/. Plan et calendrier : docs/templates/communication/jeux/README.md
 [[redirects]]
   from = "/jeu"

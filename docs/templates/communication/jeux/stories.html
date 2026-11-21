@@ -1,8 +1,9 @@
 <!doctype html>
-<!-- Quiz Instagram et TikTok de la semaine du 23/11/2026 (format A, docs/templates/communication/jeux/README.md).
-     Public : étudiants et jeunes adultes ; thèmes : budget, tâches, habitudes (décision de Quentin du 21/11/2026).
-     1080 × 1920. ?q=1..7&v=question|reponse : stories Instagram (autocollant Quiz posé à la main) ;
-     ?q=1..6&v=video : vidéo « devinez la réponse » de 13 s (TikTok et Reel), rendue par docs/videos/rendu.mjs ;
+<!-- Quiz Instagram et TikTok du 23/11 au 02/12/2026 (format A, docs/templates/communication/jeux/README.md).
+     Public : étudiants et jeunes adultes, en tutoiement ; thèmes : révisions, budget, tâches, habitudes
+     (décisions de Quentin du 21/11/2026).
+     1080 × 1920. ?q=1..9&v=question|reponse : stories Instagram (autocollant Quiz posé à la main) ;
+     ?q=1..8&v=video : vidéo « devinez la réponse » de 13 s (TikTok et Reel), rendue par docs/videos/rendu.mjs ;
      ?partage : image d'aperçu du lien /jeu (1200 × 630).
      Rendu : node docs/templates/communication/jeux/rendre.mjs [--videos]
      Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas.
@@ -77,46 +78,58 @@ body.partage{width:1200px;height:630px}
 <body>
 <script>
 const QUIZ = [
-  { jour: 'lundi 23/11', couleur: 'rouge', theme: 'Budget', slug: 'budget-snack',
+  { jour: 'lundi 23/11', couleur: 'rouge', theme: 'Révisions', slug: 'revision-quand',
+    question: 'Tu as vu un chapitre en cours aujourd\'hui. Tu le revois quand ?',
+    choix: ['la veille de l\'examen', 'tous les soirs', 'demain, puis de plus en plus espacé', 'quand j\'ai le temps'], bonne: 2,
+    grand: 'Demain', texte: 'Puis 3, 7, 14 et 30 jours après chaque révision : c\'est la répétition espacée.',
+    calcul: 'Le Planning de révision le fait pour toi : chaque jour, la liste exacte des chapitres à revoir.',
+    source: 'templates/revision/donnees.js (intervalles 1, 3, 7, 14, 30)', produit: 'Planning de révision' },
+  { jour: 'mardi 24/11', couleur: 'jaune', theme: 'Budget', slug: 'budget-snack',
     question: '5 € de snack ou de café, du lundi au vendredi. Combien par an ?',
     choix: ['260 €', '650 €', '1 300 €', '1 825 €'], bonne: 2,
     grand: '1 300 €', texte: 'Ce n\'est pas le café, le problème. C\'est de ne pas le voir passer.',
     calcul: '5 € × 5 jours × 52 semaines = 1 300 €. Exemple fictif.',
     source: 'calcul', produit: 'Mon Budget' },
-  { jour: 'mardi 24/11', couleur: 'jaune', theme: 'Tâches', slug: 'taches-80-lignes',
-    question: 'Votre liste fait 80 lignes et vous ne savez pas par où commencer. Le vrai problème ?',
+  { jour: 'mercredi 25/11', couleur: 'bleu', theme: 'Tâches', slug: 'taches-80-lignes',
+    question: 'Ta liste fait 80 lignes et tu ne sais pas par où commencer. Le vrai problème ?',
     choix: ['la liste est trop longue', 'le tri', 'le manque de temps', 'la motivation'], bonne: 1,
-    grand: 'Le tri', texte: 'On note tout d\'abord, sans réfléchir. Puis on trie une fois : faire, planifier, déléguer, abandonner.',
+    grand: 'Le tri', texte: 'Tu notes tout d\'abord, sans réfléchir. Puis tu tries une fois : faire, planifier, déléguer, abandonner.',
     calcul: 'Ensuite, 3 à 5 tâches au focus pour la journée.',
     source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
-  { jour: 'mercredi 25/11', couleur: 'bleu', theme: 'Habitudes', slug: 'habitudes-seances',
-    question: 'Objectif : 3 séances de sport par semaine. Vous en faites 2. Combien de ratées sur un an ?',
+  { jour: 'jeudi 26/11', couleur: 'rouge', theme: 'Habitudes', slug: 'habitudes-seances',
+    question: 'Objectif : 3 séances de sport par semaine. Tu en fais 2. Combien de ratées sur un an ?',
     choix: ['12', '26', '52', '104'], bonne: 2,
     grand: '52 séances', texte: 'Une seule par semaine. Mais sur un an, c\'est un tiers de l\'objectif.',
     calcul: '1 séance × 52 semaines = 52, sur 156 prévues. Exemple fictif.',
     source: 'calcul', produit: 'Suivi d\'habitudes' },
-  { jour: 'jeudi 26/11', couleur: 'rouge', theme: 'Budget', slug: 'budget-50-30-20',
-    question: 'Règle 50/30/20 : sur 1 200 € par mois, combien pour vos envies ?',
+  { jour: 'vendredi 27/11', couleur: 'jaune', theme: 'Révisions', slug: 'revision-charge',
+    question: 'Partiels dans 30 jours, 40 chapitres. En répétition espacée, combien de révisions à caser ?',
+    choix: ['40', '80', '200', '1 200'], bonne: 2,
+    grand: '200', texte: '5 passages par chapitre avant l\'examen : environ 7 révisions par jour. Impossible à suivre de tête.',
+    calcul: 'Écarts de 1, 3, 7, 14 et 30 jours : J+1, J+4, J+11, J+25, puis la veille de l\'examen. 40 × 5 = 200.',
+    source: 'templates/revision/regles.js (planifier), vérifié par outils/templates/diagnostic.test.mjs', produit: 'Planning de révision' },
+  { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Budget', slug: 'budget-50-30-20',
+    question: 'Règle 50/30/20 : sur 1 200 € par mois, combien pour tes envies ?',
     choix: ['240 €', '360 €', '400 €', '600 €'], bonne: 1,
     grand: '360 €', texte: '50 % pour les besoins, 30 % pour les envies, 20 % pour l\'épargne. Un repère, pas une loi.',
     calcul: '600 € de besoins, 360 € d\'envies, 240 € d\'épargne. Exemple fictif.',
     source: 'templates/budget/regles.js (repère 50/30/20)', produit: 'Mon Budget' },
-  { jour: 'vendredi 27/11', couleur: 'jaune', theme: 'Tâches', slug: 'taches-urgent',
-    question: 'Une tâche urgente, mais pas importante. Vous… ?',
-    choix: ['la faites tout de suite', 'la planifiez', 'l\'expédiez ou la déléguez', 'l\'abandonnez'], bonne: 2,
-    grand: 'Vite fait', texte: 'L\'expédier en quelques minutes, ou la déléguer. Le temps va d\'abord à ce qui est important.',
+  { jour: 'dimanche 29/11', couleur: 'rouge', theme: 'Tâches', slug: 'taches-urgent',
+    question: 'Une tâche urgente, mais pas importante. Tu… ?',
+    choix: ['la fais tout de suite', 'la planifies', 'l\'expédies ou la délègues', 'l\'abandonnes'], bonne: 2,
+    grand: 'Vite fait', texte: 'Tu l\'expédies en quelques minutes, ou tu la délègues. Ton temps va d\'abord à ce qui est important.',
     calcul: 'Urgent et important : faire. Important : planifier. Urgent seulement : expédier ou déléguer. Ni l\'un ni l\'autre : abandonner.',
     source: 'Reel IG-56', produit: 'Gestionnaire de tâches' },
-  { jour: 'samedi 28/11', couleur: 'bleu', theme: 'Habitudes', slug: 'habitudes-lecture',
+  { jour: 'lundi 30/11', couleur: 'jaune', theme: 'Habitudes', slug: 'habitudes-lecture',
     question: '10 minutes de lecture par jour. Combien d\'heures sur un an ?',
     choix: ['12 h', '30 h', 'environ 61 h', '120 h'], bonne: 2,
     grand: '≈ 61 h', texte: 'Dix minutes, chaque jour. Le plus dur, c\'est de tenir la série.',
     calcul: '10 min × 365 jours = 3 650 min ≈ 61 heures.',
     source: 'calcul', produit: 'Suivi d\'habitudes' },
-  { jour: 'dimanche 29/11', couleur: 'rouge', theme: 'Sondage', slug: 'sondage',
-    question: 'Ce que vous lâchez en premier ?',
-    choix: ['le budget', 'le sport', 'la to-do list', 'le sommeil'], bonne: null,
-    grand: '1 minute', texte: 'Combien vous coûte votre désorganisation ? 3 questions : vos euros, vos heures et vos séances perdues par an.',
+  { jour: 'mardi 01/12', couleur: 'bleu', theme: 'Sondage', slug: 'sondage',
+    question: 'Ce que tu lâches en premier ?',
+    choix: ['les révisions', 'le budget', 'le sport', 'la to-do list'], bonne: null,
+    grand: '1 minute', texte: 'Combien te coûte ta désorganisation ? 4 questions : tes révisions, tes euros, tes heures et tes séances perdues.',
     calcul: '', source: 'diagnostic/', produit: '' },
 ];
 const insec = (t) => t.replace(/(\d) (?=\d)/g, '$1 ').replace(/(\d) (?=€|%|km|jours|h\b|min|séances|semaines)/g, '$1 ');
@@ -128,7 +141,7 @@ const signe = () => `<span class="signe"><svg viewBox="0 0 80 80"><path d="M40,0
 if (prm.has('partage')) {
   document.body.className = 'partage';
   document.body.innerHTML = `<div class="rond"></div><div class="bloc"></div><div class="tri"></div>
-    <div class="p-g">Combien vous coûte votre désorganisation ?</div>
+    <div class="p-g">Combien te coûte ta désorganisation ?</div>
     <div class="p-s">Le test en 1 minute · qm-engineering.fr/jeu</div>`;
 } else {
   const n = Math.max(1, Math.min(QUIZ.length, Number(prm.get('q')) || 1));
@@ -144,23 +157,23 @@ if (prm.has('partage')) {
       <div class="sourcil">Quiz · ${q.theme}</div>
       <div class="question">${q.question}</div>
       <div class="choix">${q.choix.map((c, k) => `<div class="${k === q.bonne ? 'bon' : 'faux'}" style="animation-delay:${400 + k * 250}ms${k === q.bonne ? ',5600ms' : ',5600ms'}"><b>${lettres[k]}</b>${c}</div>`).join('')}</div>
-      <div class="devine">Votre réponse ?</div>
+      <div class="devine">Ta réponse ?</div>
       <div class="compte"><span>3</span><span>2</span><span>1</span></div>
       <div class="s2"><div class="bandeau"></div><div class="sourcil">Réponse · ${q.theme}</div>
         <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div></div>
-      <div class="s3"><div class="t">Combien vous coûte <mark>votre désorganisation</mark> ?</div>
+      <div class="s3"><div class="t">Combien te coûte <mark>ta désorganisation</mark> ?</div>
         <div class="u">Le test en 1 minute · lien en bio</div>${signe()}</div>`;
   } else if (v === 'reponse') {
     document.body.innerHTML = `<div class="carre"></div>
-      <div class="sourcil">${q.bonne === null ? 'Merci pour vos réponses' : 'Réponse · ' + q.theme}</div>
+      <div class="sourcil">${q.bonne === null ? 'Merci pour tes réponses' : 'Réponse · ' + q.theme}</div>
       <div class="question" style="font-size:60px">${q.question}</div>
       <div class="reponse"><span class="grand">${q.grand}</span><p>${q.texte}</p>${q.calcul ? `<p class="calc">${q.calcul}</p>` : ''}</div>
-      <div class="lien">Et vous, combien vous échappe ?<small>Le test en 1 minute · lien ci-dessous</small></div>`;
+      <div class="lien">Et toi, combien t'échappe ?<small>Le test en 1 minute · lien ci-dessous</small></div>`;
   } else {
     document.body.innerHTML = `<div class="fond"></div>
-      <div class="sourcil">${q.bonne === null ? 'Sondage' : 'Quiz ' + n + '/6 · ' + q.theme}</div>
+      <div class="sourcil">${q.bonne === null ? 'Sondage' : 'Quiz ' + n + '/8 · ' + q.theme}</div>
       <div class="question">${q.question}</div>
-      <div class="pied" style="color:${sur}">${signe()}<span>${q.bonne === null ? 'Votre réponse ?' : 'Réponse demain'}</span></div>`;
+      <div class="pied" style="color:${sur}">${signe()}<span>${q.bonne === null ? 'Ta réponse ?' : 'Réponse demain'}</span></div>`;
   }
 }
 </script>

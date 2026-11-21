@@ -1,11 +1,13 @@
-// Test « Combien vous coûte votre désorganisation ? » (/diagnostic/, lien court /jeu), pour Instagram et TikTok
-// (étudiants et jeunes adultes ; décision de Quentin du 21/11/2026). Trois thèmes : budget, tâches, habitudes.
+// Test « Combien te coûte ta désorganisation ? » (/diagnostic/, lien court /jeu), pour Instagram et TikTok
+// (étudiants et jeunes adultes, en tutoiement ; décisions de Quentin du 21/11/2026). Quatre thèmes : révisions, budget,
+// tâches, habitudes.
 // Calcul pur (DIAG.calculer) testé par outils/templates/diagnostic.test.mjs ; interface en bas du fichier.
 // Aucun chiffre extérieur : chaque résultat est une réponse saisie multipliée sur un an.
 (function (racine) {
   'use strict';
 
   const PRODUITS = {
+    revisions: { nom: 'Planning de révision', prix: '14,90 €', slug: 'revision' },
     budget: { nom: 'Mon Budget', prix: '15 €', slug: 'budget' },
     taches: { nom: 'Gestionnaire de tâches', prix: '19 €', slug: 'taches' },
     habitudes: { nom: "Suivi d'habitudes", prix: '12 €', slug: 'habitudes' },
@@ -20,14 +22,43 @@
   }
   const invalide = (n) => n === null || Number.isNaN(n) || n < 0;
 
+  // Intervalles par défaut du Planning de révision (templates/revision/donnees.js) : écarts, en jours, entre deux
+  // révisions successives d'un chapitre.
+  const INTERVALLES = [1, 3, 7, 14, 30];
+
+  // Nombre de révisions d'un chapitre vu aujourd'hui, avant un examen dans `j` jours. Même logique que
+  // R.planifier (templates/revision/regles.js), chaque révision étant faite le jour prévu avec « Moyen » (étape + 1),
+  // hypothèse de la jauge du template : une date au-delà de l'examen est ramenée à la veille ; après la dernière
+  // étape, une révision finale deux jours avant l'examen. La répartition de la charge (placer) n'est pas simulée.
+  function passagesAvantExamen(j) {
+    let depuis = 0, etape = 0, n = 0;
+    for (;;) {
+      if (etape >= INTERVALLES.length) { if (j - 2 > depuis) n += 1; return n; }
+      let date = depuis + INTERVALLES[etape];
+      if (date >= j) date = j - 1;
+      if (date <= depuis) { if (depuis + 1 >= j) return n; date = depuis + 1; }
+      n += 1; depuis = date; etape += 1;
+    }
+  }
+
   // r : réponses brutes ; passees : étapes passées. Renvoie { erreur, etape } ou le résultat.
   function calculer(r, passees = new Set()) {
     const res = { euros: 0, heures: 0, seances: 0, lignes: [], produits: PRODUITS };
 
+    if (!passees.has('revisions')) {
+      const c = nombre(r.chapitres), j = nombre(r.jours);
+      if (invalide(c) || c === 0 || !Number.isInteger(c) || c > 1000) return { erreur: 'Indique un nombre entier de chapitres, ou passe la question.', etape: 'revisions' };
+      if (invalide(j) || !Number.isInteger(j) || j < 2 || j > 365) return { erreur: "Indique dans combien de jours commence l'examen (entre 2 et 365).", etape: 'revisions' };
+      const parChapitre = passagesAvantExamen(j);
+      const total = c * parChapitre;
+      res.revisions = { chapitres: c, jours: j, parChapitre, total, parJour: total / j };
+      res.lignes.push({ cle: 'revisions', valeur: total, info: true, texte: `${entier(total)} révisions à caser`, detail: `${entier(c)} chapitre${c > 1 ? 's' : ''} × ${parChapitre} passage${parChapitre > 1 ? 's' : ''} espacé${parChapitre > 1 ? 's' : ''} avant l'examen, soit environ ${dec(total / j)} par jour pendant ${j} jours. Impossible à suivre de tête : le planning te donne la liste du jour.` });
+    }
+
     if (!passees.has('budget')) {
       const p = nombre(r.petits), a = nombre(r.abonnements);
-      if (p === null && a === null) return { erreur: 'Indiquez au moins un montant (0 si rien), ou passez la question.', etape: 'budget' };
-      if ((p !== null && invalide(p)) || (a !== null && invalide(a))) return { erreur: 'Indiquez des montants en euros, positifs.', etape: 'budget' };
+      if (p === null && a === null) return { erreur: 'Indique au moins un montant (0 si rien), ou passe la question.', etape: 'budget' };
+      if ((p !== null && invalide(p)) || (a !== null && invalide(a))) return { erreur: 'Indique des montants en euros, positifs.', etape: 'budget' };
       const an = (p || 0) * 52 + (a || 0) * 12;
       const parts = [];
       if (p) parts.push(`${euros(p)} par semaine × 52`);
@@ -38,7 +69,7 @@
 
     if (!passees.has('taches')) {
       const m = nombre(r.minutes);
-      if (invalide(m) || m > 600) return { erreur: 'Indiquez un nombre de minutes par jour (0 si aucune), ou passez la question.', etape: 'taches' };
+      if (invalide(m) || m > 600) return { erreur: 'Indique un nombre de minutes par jour (0 si aucune), ou passe la question.', etape: 'taches' };
       const h = (m * 365) / 60;
       res.heures = h;
       res.lignes.push({ cle: 'taches', valeur: h, texte: `${heures(h)} par an`, detail: m ? `${m} min par jour × 365, soit ${jours(h)}` : 'Aucune minute perdue : bravo.' });
@@ -46,9 +77,9 @@
 
     if (!passees.has('habitudes')) {
       const o = nombre(r.objectif), v = nombre(r.reel);
-      if (invalide(o) || o > 7 || o === 0) return { erreur: 'Indiquez un objectif entre 1 et 7 fois par semaine, ou passez la question.', etape: 'habitudes' };
-      if (invalide(v) || v > 7) return { erreur: 'Indiquez combien de fois vous la tenez vraiment (entre 0 et 7).', etape: 'habitudes' };
-      const nomHab = String(r.habitude || '').trim().slice(0, 24) || 'votre habitude';
+      if (invalide(o) || o > 7 || o === 0) return { erreur: 'Indique un objectif entre 1 et 7 fois par semaine, ou passe la question.', etape: 'habitudes' };
+      if (invalide(v) || v > 7) return { erreur: 'Indique combien de fois tu la tiens vraiment (entre 0 et 7).', etape: 'habitudes' };
+      const nomHab = String(r.habitude || '').trim().slice(0, 24) || 'ton habitude';
       const manquees = Math.max(0, o - v) * 52;
       res.seances = manquees;
       res.habitude = nomHab;
@@ -61,6 +92,7 @@
   const fmt = (n) => Math.round(n).toLocaleString('fr-FR').replace(/ | /g, ' ');
   function euros(n) { return `${fmt(n)} €`; }
   function entier(n) { return fmt(n); }
+  function dec(n) { return (Math.round(n * 10) / 10).toLocaleString('fr-FR'); }
   function heures(h) { return `${fmt(h)} h`; }
   function jours(h) { const j = h / 8; return j >= 1 ? `${fmt(j)} journée${Math.round(j) > 1 ? 's' : ''} de 8 h` : 'moins d\'une journée de 8 h'; }
 
@@ -73,7 +105,7 @@
     return morceaux;
   }
 
-  racine.DIAG = { calculer, nombre, euros, heures, synthese, PRODUITS };
+  racine.DIAG = { calculer, nombre, euros, heures, synthese, passagesAvantExamen, PRODUITS, INTERVALLES };
 
   // ---------- Interface ----------
   if (typeof document === 'undefined') return;
@@ -119,7 +151,7 @@
       terminer();
     }
 
-    const titres = { budget: 'Budget : ce qui s\'envole', taches: 'Tâches : le temps perdu', habitudes: 'Habitudes : les séances ratées' };
+    const titres = { revisions: 'Révisions : la charge avant l\'examen', budget: 'Budget : ce qui s\'envole', taches: 'Tâches : le temps perdu', habitudes: 'Habitudes : les séances ratées' };
     const lienProduit = (p, cle) => `<a href="/essai/?t=${p.slug}" data-goatcounter-click="diagnostic-essai-${cle}" data-goatcounter-title="Diagnostic : essai ${p.nom}">Essayer ${p.nom} 14 jours, sans carte</a> · <a href="/catalogue/${p.slug}/">${p.prix}, achat unique</a>`;
 
     function terminer() {
@@ -130,9 +162,9 @@
       actions.hidden = true; compte.hidden = true; form.querySelector('.diag-progression').hidden = true;
       const m = synthese(res);
       form.querySelector('[data-total]').textContent = m.length ? m[0] : '0 €';
-      form.querySelector('[data-total-sous]').textContent = m.length > 1 ? `et ${m.slice(1).join(' et ')} par an, d'après vos réponses` : 'par an, d\'après vos réponses';
-      form.querySelector('[data-lignes]').innerHTML = res.lignes.map((l) => `<li class="${l.valeur ? '' : 'nul'}"><span>${titres[l.cle]}</span><b>${echapper(l.texte)}</b><span>${echapper(l.detail)}</span><span>${lienProduit(PRODUITS[l.cle], l.cle)}</span></li>`).join('');
-      form.querySelector('[data-rien]').hidden = m.length > 0;
+      form.querySelector('[data-total-sous]').textContent = m.length > 1 ? `et ${m.slice(1).join(' et ')} par an, d'après tes réponses` : 'par an, d\'après tes réponses';
+      form.querySelector('[data-lignes]').innerHTML = res.lignes.map((l) => `<li class="${l.info ? 'info' : (l.valeur ? '' : 'nul')}"><span>${titres[l.cle]}</span><b>${echapper(l.texte)}</b><span>${echapper(l.detail)}</span><span>${lienProduit(PRODUITS[l.cle], l.cle)}</span></li>`).join('');
+      form.querySelector('[data-rien]').hidden = m.length > 0 || Boolean(res.revisions);
       resultat.hidden = false;
       resultat.scrollIntoView({ block: 'start' });
       compter('diagnostic-resultat', 'Diagnostic : résultat affiché');
@@ -167,7 +199,7 @@
       });
       g.fillStyle = C.encre; g.font = f(600, 40);
       if (res.seances > 0) { g.fillText(`de ${res.habitude}`, 96, y + 20, W - 192); y += 60; }
-      g.font = f(800, 72); g.fillText('Et vous ?', 96, H - 520);
+      g.font = f(800, 72); g.fillText('Et toi ?', 96, H - 520);
       g.font = f(700, 40); g.fillText('Le test en 1 minute : qm-engineering.fr/jeu', 96, H - 460, W - 192);
       return new Promise((ok) => cv.toBlob(ok, 'image/png'));
     }
@@ -184,7 +216,7 @@
     async function partager() {
       const url = 'https://qm-engineering.fr/jeu';
       const m = synthese(dernier);
-      const texte = `Ma désorganisation me coûte ${m.length ? m.join(', ') : 'presque rien'} par an. Et vous ? Le test en 1 minute :`;
+      const texte = `Ma désorganisation me coûte ${m.length ? m.join(', ') : 'presque rien'} par an. Et toi ? Le test en 1 minute :`;
       compter('diagnostic-partage', 'Diagnostic : partage');
       try {
         const blob = await image();

@@ -27,6 +27,7 @@
 .diag-lignes{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:10px}
 .diag-lignes li{padding:14px 16px;border-radius:16px;background:var(--ciel);display:grid;gap:4px}
 .diag-lignes li.nul{background:var(--sable)}
+.diag-lignes li.info{background:var(--beurre)}
 .diag-lignes b{font-size:22px}
 .diag-lignes a{font-weight:700}
 .diag-couple{padding:14px 16px;border-radius:16px;background:var(--rose);margin-bottom:16px}
