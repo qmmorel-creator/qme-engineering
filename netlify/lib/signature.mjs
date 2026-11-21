@@ -1,4 +1,5 @@
 // Signature e-mail de Quentin, variante C « Bandeau » validée le 21/11/2026.
+// Le filet tricolore est une image : certaines messageries mobiles suppriment les cellules vides colorées (test du 21/11).
 // HTML pour e-mail : tableaux, styles en ligne, images PNG absolues (assets/signature/, 3× la taille affichée),
 // chacune avec un texte de remplacement. Le site reste lisible en texte quand les images sont bloquées.
 // Utilisée par les e-mails de l'essai (essais.mjs) ; le même bloc se colle dans Gmail
@@ -21,7 +22,7 @@ export const SIGNATURE_HTML = `<table cellpadding="0" cellspacing="0" border="0"
 <td style="padding:0 0 10px;vertical-align:middle"><div style="font-size:16px;font-weight:bold;color:#141414">Quentin Morel</div><div style="font-size:13px;color:#45413A;margin-top:2px">Outils sur mesure · templates</div></td>
 <td style="padding:0 0 10px;vertical-align:middle;text-align:right"><a href="${SITE}" style="text-decoration:none"><img src="${IMG}/qme-logo.png" width="48" height="48" alt="QME" style="display:inline-block;border:0"></a></td>
 </tr>
-<tr><td colspan="2" style="padding:0"><table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse"><tr><td style="height:4px;line-height:4px;font-size:0;background:#141414;width:55%">&nbsp;</td><td style="height:4px;line-height:4px;font-size:0;background:#D9302A;width:20%">&nbsp;</td><td style="height:4px;line-height:4px;font-size:0;background:#F5B400;width:15%">&nbsp;</td><td style="height:4px;line-height:4px;font-size:0;background:#1D4E89;width:10%">&nbsp;</td></tr></table></td></tr>
+<tr><td colspan="2" style="padding:0;line-height:4px;font-size:0"><img src="${IMG}/filet.png" width="380" height="4" alt="" style="display:block;width:100%;max-width:380px;height:4px;border:0"></td></tr>
 <tr>
 <td style="padding:10px 0 0;font-size:13px;vertical-align:middle"><a href="${SITE}" style="color:#141414;font-weight:bold;text-decoration:none">qm-engineering.fr</a></td>
 <td style="padding:10px 0 0;vertical-align:middle" align="right"><table cellpadding="0" cellspacing="0" border="0" align="right"><tr>${RESEAUX.map(icone).join('')}</tr></table></td>
