@@ -36,6 +36,23 @@ essai. Signature graphique (variante C, 21/11/2026) dans la version HTML : `netl
 voir `docs/templates/communication/signature/`. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
 template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
 
+### E-mails d'achat (21/11/2026)
+
+À chaque vente, Gumroad prévient le site (`POST /api/achat`, `netlify/functions/achat.mjs`, logique
+`netlify/lib/achats.mjs`). La vente est vérifiée auprès de Gumroad avec sa clé de licence, puis :
+
+| Cas | Objet | Contenu |
+|---|---|---|
+| Achat sans essai (ou essai déjà effacé, ou autre adresse) | Merci pour votre achat : <produit> | Connexion avec la clé, premier pas du template (ou liste des templates du pack) |
+| Achat avec un essai de la même adresse | Merci : « <template> » est à vous | Saisir la clé dans « J'ai acheté » : données reprises ; date limite si l'essai est terminé ; « qu'est-ce qui vous a décidé ? » |
+
+L'essai est marqué `paye` : **la séquence d'essai s'arrête dès le paiement** (avant, elle ne s'arrêtait qu'à la
+saisie de la clé). Les données restent reprises à la saisie de la clé. Une vente n'est traitée qu'une fois.
+Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai ».
+
+**Réglage Gumroad (une fois, par Quentin)** : Gumroad → Settings → Advanced → Ping endpoint
+= `https://qm-engineering.fr/api/achat`. Sans ce réglage, aucun e-mail d'achat ne part.
+
 ### Configuration de l'envoi (une fois, par Quentin)
 
 Les e-mails partent en SMTP authentifié depuis le Gmail de Quentin, avec l'adresse « Envoyer en tant que »
@@ -114,3 +131,4 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
+Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
