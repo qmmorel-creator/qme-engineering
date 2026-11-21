@@ -14,7 +14,7 @@ export const config = {
   largeur: 1280, hauteur: 1600,
   marque: 'QME · Gestion Dépenses Communes',
   url: 'qm-engineering.fr/templates/budget-commun',
-  affiche: 2.2,
+  affiche: 1.0,
   musique: 'auto',
   dureeMax: 29,
 };
@@ -48,6 +48,7 @@ export async function preparer(v) {
   if (!/charges personnelles/.test(v.pSam)) throw new Error('Charge personnelle de Sami absente.');
   await v.S('cadrer', null);
   await v.S('fenetre', false);
+  await page.waitForTimeout(1500); // fenêtre entièrement masquée avant la première image (accroche seule à l'écran)
 }
 
 export async function jouer(v) {
@@ -55,12 +56,13 @@ export async function jouer(v) {
   const temps = (n = 1) => pause(n * T);
   const pct = (p) => (p.match(/\(([\d,]+ %)\)/) || [])[1] || '';
 
-  // Accroche (un seul son d'entrée)
+  // Accroche (retravaillée le 20/11/2026) : le vrai problème, chiffre lu dans la démo, visible dès la première image.
+  // Tension : le compte joint finit le mois dans le rouge ; la suite montre la solution (part de chacun au prorata).
   son('whoosh', 0.6);
-  await S('accroche', ['Compte joint :', 'combien chacun', '!doit *verser* ?'], T / 2);
-  await v.temps();
+  await S('accroche', ['Compte joint :', `!*${v.estime0.replace(/\s/g, "_")}*`, 'à la fin du mois.'], 0);
+  await pause(2400);
   son('whoosh'); await S('accrocheSortie');
-  await S('question', 'Charges − solde, *au prorata*.');
+  await S('question', 'Qui doit verser *combien* ?');
   await v.temps(); son('whoosh', 0.7); await S('fenetre', true);
 
   // Ce qu'il faut couvrir, puis la part de chacun
