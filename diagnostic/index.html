@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Combien te coûte ta désorganisation ? Le test en 1 minute · QME</title>
-<meta name="description" content="Test gratuit en 4 questions : révisions, petits achats, temps perdu sur tes tâches, habitudes qui lâchent. Le résultat en euros, en heures et en séances par an, calculé dans ton navigateur.">
+<meta name="description" content="Test gratuit en 4 questions : petits achats, temps perdu sur tes tâches, papiers introuvables, habitudes qui lâchent. Le résultat en euros, en heures et en séances par an, calculé dans ton navigateur.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/diagnostic/">
 <meta property="og:type" content="website">
@@ -42,39 +42,40 @@
 <div class="guide-corps">
   <p class="diag-sourcil">Le test · 4 questions · 1 minute</p>
   <h1>Combien te coûte ta désorganisation ?</h1>
-  <p class="chapeau">Révisions qui s'empilent, petits achats qui s'envolent, temps perdu à savoir par quoi commencer, bonnes résolutions qui lâchent au bout de deux semaines. Réponds avec tes chiffres, même approximatifs : le résultat sort en euros, en heures et en séances par an.</p>
+  <p class="chapeau">Petits achats qui s'envolent, temps perdu à savoir par quoi commencer, papier introuvable le jour où on te le demande, bonnes résolutions qui lâchent au bout de deux semaines. Réponds avec tes chiffres, même approximatifs : le résultat sort en euros, en heures et en séances par an.</p>
 
   <form class="calculateur diag-jeu" data-diag novalidate>
     <div class="diag-progression" aria-hidden="true"><span data-barre></span></div>
     <p class="diag-compte" data-compte aria-live="polite">Question 1 sur 4</p>
 
-    <!-- 1. Révisions -->
-    <fieldset class="diag-etape" data-etape="revisions">
-      <legend>Tes révisions</legend>
-      <p class="diag-question">Des examens ou des partiels qui arrivent ? Combien de <b>chapitres</b> as-tu à revoir, et dans combien de <b>jours</b> commence le premier examen ?</p>
-      <div class="champs">
-        <label>Chapitres à revoir<input name="chapitres" inputmode="decimal" autocomplete="off" placeholder="ex. 40"><small>toutes matières confondues</small></label>
-        <label>Jours avant l'examen<input name="jours" inputmode="decimal" autocomplete="off" placeholder="ex. 30"></label>
-      </div>
-    </fieldset>
-
-    <!-- 2. Budget -->
-    <fieldset class="diag-etape" data-etape="budget" hidden>
+    <!-- 1. Budget -->
+    <fieldset class="diag-etape" data-etape="budget">
       <legend>Ton budget</legend>
       <p class="diag-question">Combien dépenses-tu <b>par semaine</b> en petits achats non prévus ?</p>
       <p class="diag-aide">Snack, café, livraison, achat en ligne « juste comme ça »… De tête, à peu près.</p>
       <div class="champs">
         <label>Petits achats (€ par semaine)<input name="petits" inputmode="decimal" autocomplete="off" placeholder="ex. 20"></label>
         <label>Abonnements pas utilisés le mois dernier (€ par mois)<input name="abonnements" inputmode="decimal" autocomplete="off" placeholder="ex. 10"><small>streaming, salle, applis…</small></label>
+        <label>Ton revenu net par mois (facultatif)<input name="revenu" inputmode="decimal" autocomplete="off" placeholder="ex. 1 600"><small>pour convertir en heures de travail</small></label>
       </div>
     </fieldset>
 
-    <!-- 3. Tâches -->
+    <!-- 2. Tâches -->
     <fieldset class="diag-etape" data-etape="taches" hidden>
       <legend>Tes tâches</legend>
       <p class="diag-question">Combien de minutes <b>par jour</b> perds-tu à chercher par quoi commencer, refaire ta liste ou rattraper un oubli ?</p>
       <div class="champs un">
         <label>Minutes par jour<input name="minutes" inputmode="decimal" autocomplete="off" placeholder="ex. 15"></label>
+      </div>
+    </fieldset>
+
+    <!-- 3. Papiers -->
+    <fieldset class="diag-etape" data-etape="papiers" hidden>
+      <legend>Tes papiers</legend>
+      <p class="diag-question">Combien de fois par an dois-tu <b>chercher</b> un papier important (attestation, facture, contrat, avis d'imposition…), et combien de temps à chaque fois ?</p>
+      <div class="champs">
+        <label>Recherches par an<input name="recherches" inputmode="decimal" autocomplete="off" placeholder="ex. 6"></label>
+        <label>Minutes à chaque fois<input name="minutesPapier" inputmode="decimal" autocomplete="off" placeholder="ex. 20"></label>
       </div>
     </fieldset>
 
@@ -120,9 +121,9 @@
 
   <h2 id="calculs">Comment c'est calculé</h2>
   <ul>
-    <li><b>Révisions</b> : avec la répétition espacée du Planning de révision, un chapitre vu aujourd'hui revient le lendemain, puis 3, 7, 14 et 30 jours après la révision précédente ; une révision qui tomberait après l'examen est ramenée à la veille, et une révision finale s'ajoute deux jours avant quand toutes les étapes sont passées. On compte les passages avant ton examen pour chaque chapitre, puis on les répartit sur les jours qui restent. C'est la charge à caser, pas une perte : elle n'entre pas dans le total.</li>
-    <li><b>Budget</b> : les petits achats d'une semaine × 52, plus les abonnements non utilisés × 12.</li>
+    <li><b>Budget</b> : les petits achats d'une semaine × 52, plus les abonnements non utilisés × 12. Si tu donnes ton revenu, on le convertit en heures de travail comme le template Temps de vie : revenu net annuel ÷ (35 h × 52 semaines).</li>
     <li><b>Tâches</b> : les minutes perdues par jour × 365, converties en heures.</li>
+    <li><b>Papiers</b> : recherches par an × minutes par recherche, converties en heures.</li>
     <li><b>Habitudes</b> : (objectif − ce que tu tiens vraiment) par semaine × 52 semaines.</li>
   </ul>
   <p>Aucune moyenne, aucune statistique extérieure : seulement tes réponses, multipliées sur un an.</p>
@@ -137,7 +138,9 @@
 </footer>
 
 <script src="/assets/site.js?v=2026112004" defer></script>
-<script src="/assets/diagnostic.js?v=2026112103" defer></script>
+<script src="/templates/temps-de-vie/donnees.js" defer></script>
+<script src="/templates/temps-de-vie/calculs.js" defer></script>
+<script src="/assets/diagnostic.js?v=2026112104" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
