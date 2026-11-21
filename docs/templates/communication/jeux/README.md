@@ -11,8 +11,8 @@ Décisions du même jour :
 
 | # | Format | Statut | Date |
 |---|---|---|---|
-| A | 9 stories quiz Instagram + 8 vidéos quiz « devine la réponse » (TikTok, et Reel si voulu) | **prêt**, dans Drive | du 23/11 au 02/12/2026 |
-| B | Test « Combien te coûte ta désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **prêt, PR #200** (fusion sur feu vert) | dès la fusion ; lien en bio |
+| A | 9 stories quiz Instagram (à la main) + 8 Reels quiz « devine la réponse » (IG-168 à IG-175, repris sur TikTok) | **programmé** | du 23/11 au 02/12/2026 |
+| B | Test « Combien te coûte ta désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **en ligne** (PR #200 fusionnée le 21/11/2026) | lien en bio |
 | C | Défi à envoyer à un pote (« Qui tient le mieux ses habitudes ? », duel de scores) | idée | mi-décembre 2026 |
 | E | Quiz de profil « Quel organisateur es-tu ? » (profils → révision, budget, tâches, habitudes, pack) | idée | prêt le 28/12, lancé le 02/01/2027 |
 
@@ -34,10 +34,26 @@ templates sont dans `PRODUITS_ESSAI` (vérifié le 21/11/2026).
 (autocollant Lien), puis la story question du jour (autocollant **Quiz**, bonne réponse cochée, posé sur la zone vide).
 À ma connaissance l'API Instagram ne pose pas d'autocollant interactif : Instinct ne peut pas les publier.
 
-**TikTok, vidéo, à la main, chaque jour à 18:00** (créneau libre, avant la reprise TikTok d'Instagram) : la vidéo quiz
-du jour (question entière dès la première image, 4 choix, compte à rebours, réponse, « Le test en 1 minute · lien en
-bio »). Légende courte : la question, puis « T'as trouvé avant la fin ? Dis-le en commentaire ». Ces vidéos peuvent aussi
-partir en Reel Instagram ; elles ne sont pas dans les plannings Sheets (voir « À décider »).
+**Reels Instagram, programmés, 21:00** (décision de Quentin du 21/11/2026) : IG-168 à IG-175, du 23/11 au 30/11, un
+par jour, dans le planning Instagram (statut « Programmé », Thème « Quiz étudiants », légendes en tutoiement dans le
+dossier Textes Instagram, vidéos et couvertures dans Images Instagram). Instinct les publie au passage de 21:00.
+**TikTok** : rien à faire à la main, Instinct reprend chaque Reel publié sur TikTok dans l'heure, vidéo seule
+(`../tiktok/PROMPT-INSTINCT-TIKTOK.md`). **YouTube** : pas de ligne `YT-nn`, la campagne étant réservée à Instagram et
+TikTok (exception à la règle de CLAUDE.md « tout format vidéo… », décidée par Quentin le 21/11/2026).
+
+| Reel | Date | Vidéo | Doc légende |
+|---|---|---|---|
+| IG-168 | lun. 23/11 | `IG-168-quiz-revision-quand.mp4` | `1AkFwTUuOHlIpq2AaUsdTuTd4xdxETkCrFcMiidfGGjc` |
+| IG-169 | mar. 24/11 | `IG-169-quiz-budget-snack.mp4` | `12RFy81Klg9hI5_sHq3J-90Qxgeiq4IxBDHVRJJanUlQ` |
+| IG-170 | mer. 25/11 | `IG-170-quiz-taches-80-lignes.mp4` | `1Pz-EUdST6xhAEmLPhAC_Te_QOqolo5SijlPVq4Mts6M` |
+| IG-171 | jeu. 26/11 | `IG-171-quiz-habitudes-seances.mp4` | `1iyciYK0hLTSQtqVr8zSCsWe0xwwBtxHUJ_SCjHPhcQc` |
+| IG-172 | ven. 27/11 | `IG-172-quiz-revision-charge.mp4` | `1eTotofzEwUBkb__24GDLypJfuS-nYP8z12BXywZxQfg` |
+| IG-173 | sam. 28/11 | `IG-173-quiz-budget-50-30-20.mp4` | `1GtahX4vxRTf_dgv8wqW4xuEyLEgvvXlGywDW60LcETQ` |
+| IG-174 | dim. 29/11 | `IG-174-quiz-taches-urgent.mp4` | `1xqPLVhnPoTSYusiJ5bGzvabs3qAJnAt8fZ1qVzRZ-wM` |
+| IG-175 | lun. 30/11 | `IG-175-quiz-habitudes-lecture.mp4` | `1jlnD27bsP6OKczftCiW8kEYxjQj2isJJSCgWTu3ZEJc` |
+
+Les Reels du soir automatiques (lundi, mercredi, vendredi, 21:00) ne prendront pas ces dates : leur skill ne
+programme qu'un soir sans Reel à 19:00 ou plus tard.
 
 | Jour | Thème | Question (bonne réponse en gras) | Produit | Source du chiffre |
 |---|---|---|---|---|
@@ -52,8 +68,7 @@ partir en Reel Instagram ; elles ne sont pas dans les plannings Sheets (voir « 
 | mar. 01/12 | Sondage | Ce que tu lâches en premier ? les révisions / le budget / le sport / la to-do list | — | — |
 | mer. 02/12 | — | Story « Merci pour tes réponses » + lien `/jeu` | — | — |
 
-Tant que `/diagnostic/` n'est pas en ligne, le lien des stories réponse pointe vers `/catalogue/revision/`,
-`/catalogue/budget/`, `/catalogue/taches/` ou `/catalogue/habitudes/` (le premier bouton y est l'essai gratuit).
+Le lien des stories réponse (autocollant Lien) : `qm-engineering.fr/jeu`, en ligne depuis le 21/11/2026.
 
 Note sur la répétition espacée : les intervalles du template sont des **écarts entre deux révisions** (1, 3, 7, 14,
 30 jours), pas des jours comptés depuis le cours ; les textes des quiz le disent ainsi (« demain, puis 3, 7, 14 et
@@ -93,9 +108,8 @@ Le thème qui fait le plus réagir passe en tête du test B et oriente C et E.
   `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<revisions|budget|taches|habitudes>`. Le chiffre qui
   compte : résultats affichés → clics « Essayer », puis essais ouverts et achats ; relevé le lundi.
 
-## À décider par Quentin
+## À faire par Quentin
 
-1. Fusion de la PR #200 (mise en ligne de `/diagnostic/` et `/jeu`).
-2. Vidéos quiz aussi en **Reel Instagram** ? Si oui, elles entrent au planning Instagram, et la règle du dépôt veut
-   alors une ligne `YT-nn` (CLAUDE.md, « tout format vidéo ajouté à un planning ») : à lever explicitement pour cette
-   campagne, réservée à Instagram et TikTok.
+1. Mettre `qm-engineering.fr/jeu` en lien de bio Instagram (et TikTok), puisque les Reels et le test y renvoient.
+2. Stories quiz du 23/11 au 02/12 à 19:30 (à la main, visuels dans le dossier Drive « Quiz Instagram et TikTok ·
+   23-11 au 02-12 (tutoiement) »).
