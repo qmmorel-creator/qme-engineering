@@ -174,7 +174,7 @@ déjà).
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
-| T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | idée | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026 (fiche en fin de fichier) |
+| T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | prêt | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026, développée le 21/11/2026 (fiche en fin de fichier) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -2447,8 +2447,16 @@ le code d'un autre template, à ouvrir pour ce seul usage, en lecture) ; calcul 
 `templates/budget-commun/regles.js` (`quotesDepense`, `alimentation`) ; opération marquée « importée » (non modifiable,
 remplacée à chaque mise à jour du mois, jamais en double).
 
-**Questions pour Quentin** :
-- Mode avances : compter ma quote-part (coût réel pour moi) ou les sommes réellement versées (avances et virements) ?
-- Réservé aux acheteurs des deux templates (ou d'un pack qui les contient) ou ouvert à tout code de partage ?
-- Mise à jour automatique à l'ouverture, ou bouton « Mettre à jour » ?
+**Décisions de Quentin (21/11/2026)** : mode avances = **ma quote-part** des dépenses du mois (coût réel, pas les avances) ;
+mode compte commun = **mon versement du mois** (calcul de l'application, charges personnelles comprises) ; **tout code de
+partage** valide de Gestion Dépenses Communes ; mise à jour **à chaque ouverture** de Mon Budget, plus un bouton.
+
+**Réalisé (21/11/2026)** : `BCM.besoinCompte` et `BCM.partDuMois` (`templates/budget-commun/regles.js`, l'application
+utilise le même calcul du versement) ; `BDG.appliquerPartsCommun` et `BDG.moisALier` (`templates/budget/regles.js`) ;
+Mon Budget charge le moteur du commun, Réglages > « Gestion Dépenses Communes » (lier, mettre à jour, modifier, délier),
+opération « Ma part des dépenses communes » ou « Versement au compte commun » datée du 1er du mois, non modifiable
+(fiche « Part du commun »), au plus 12 mois depuis la liaison. Lecture du commun par `XMLHttpRequest` (le module d'essai
+intercepte `fetch`) ; clé de pack refusée ; pas de lecture en démo ni en essai terminé. Guide (carte 6), aide de l'onglet
+Foyer du commun et FAQ des deux pages catalogue. Tests : `budget.test.mjs`, `budget-commun.test.mjs` ; parcours complet
+vérifié en local (avances, nouvelle dépense, passage en compte commun, ordinateur et iPhone, aucune erreur).
 

@@ -278,6 +278,45 @@
     return r;
   }
 
+  // Besoin d'un mois en mode « compte commun » : charges récurrentes du compte, dépenses courantes prévues (celles du
+  // mois, sinon celles du dernier mois renseigné avant lui), autres sorties et solde de départ saisis. Partagé par
+  // l'application et par la liaison avec Mon Budget, pour un seul calcul du versement de chacun.
+  function besoinCompte(etat, mois) {
+    const membres = etat.membres || [], alims = etat.alimentations || [];
+    const a = alims.find((x) => x.mois === mois) || null;
+    const ch = chargesPrevues(etat.recurrentes || [], mois, membres);
+    let courantes = 0;
+    if (Number.isInteger(a?.courantes)) courantes = a.courantes;
+    else {
+      const avant = alims.filter((x) => x.mois < mois && Number.isInteger(x.courantes)).sort((x, y) => y.mois.localeCompare(x.mois))[0];
+      if (avant) courantes = avant.courantes;
+    }
+    const autres = Number.isInteger(a?.autres) ? a.autres : 0;
+    const solde = Number.isInteger(a?.solde) ? a.solde : null;
+    const res = alimentation({ membres, cle: etat.reglages?.cle, communes: ch.communes, perso: ch.perso, courantes, autres, solde: solde ?? 0 });
+    return { ...res, ch, courantes, autres, solde };
+  }
+
+  // ---------- Liaison avec Mon Budget (T99) ----------
+  // Ce que la dépense commune coûte à une personne pour un mois, à reporter dans son budget perso :
+  // mode « avances » : sa quote-part des dépenses du mois, quel que soit qui a payé ;
+  // mode « compte commun » : son versement du mois sur le compte joint (charges personnelles comprises).
+  // null si la personne n'est plus membre du foyer.
+  function partDuMois(etat, membreId, mois) {
+    const membres = etat?.membres || [];
+    if (!membres.some((m) => m.id === membreId)) return null;
+    if (etat.reglages?.fonctionnement === 'compte') {
+      return { mode: 'compte', montant: besoinCompte(etat, mois).versements[membreId] || 0 };
+    }
+    let montant = 0, nb = 0;
+    for (const d of etat.depenses || []) {
+      if (d.payeur === COMPTE || moisDe(d.date) !== mois || !Number.isInteger(d.montant)) continue;
+      const q = quotesDepense(d, membres)[membreId] || 0;
+      if (q) { montant += q; nb++; }
+    }
+    return { mode: 'avances', montant, nb };
+  }
+
   // ---------- Fusion (conflit entre deux appareils) ----------
   // Chaque élément porte un id et modifLe (ISO) ; les suppressions laissent une trace dans
   // « supprimes » {id: date}. Union des deux versions : la modification la plus récente l'emporte,
@@ -324,6 +363,6 @@
   racine.BCM = {
     versCentimes, euros, repartirPoids, repartir, quotesDepense, MODES,
     soldes, equilibrer, moisDe, ajoutMois, joursDansMois, genererRecurrentes, bilanMois, fusionner,
-    COMPTE, chargesPrevues, alimentation, soldeEstime, verses, COLLECTIONS,
+    COMPTE, chargesPrevues, alimentation, soldeEstime, verses, COLLECTIONS, besoinCompte, partDuMois,
   };
 })(typeof window !== 'undefined' ? window : globalThis);
