@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rappel NEO BT PRO · démonstration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D41318; --red2:#ff3b3f; --red-soft:#fde9e9; --ink:#1b1b1b; --ink2:#232323; --muted:#6f6f6f; --line:#e7e5e2; --line2:#f1efec;
+  --bg:#f6f5f3; --panel:#fff; --ok:#14804a; --ok-bg:#e3f5ea; --warn:#b54708; --warn-bg:#fdf0dc; --info:#1f5fbf; --info-bg:#e6effc; --idle:#55595f; --idle-bg:#eeefef;
+  --r:14px; --sh:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.45 "Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.mont{font-family:"Montserrat",system-ui,sans-serif}
+button,input,textarea{font:inherit}
+.tnum{font-variant-numeric:tabular-nums}
+.fict{position:fixed;right:24px;top:20px;z-index:50;background:#111;color:#fff;font:700 10.5px/1 "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border-radius:999px}
+.chipf{display:inline-block;background:rgba(0,0,0,.55);color:#fff;font:700 9px/1 "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px}
+
+/* structure */
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.side{background:#121212;color:#cfcfcf;padding:22px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{padding:2px 10px 22px}
+.brand .wm{font:900 26px/1 "Montserrat",sans-serif;letter-spacing:.06em;color:#fff}
+.brand .wm span{color:var(--red2)}
+.brand small{display:block;margin-top:6px;color:#9a9a9a;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;color:#cfcfcf;text-decoration:none;font-weight:500}
+.nav a svg{width:18px;height:18px;flex:none;opacity:.8}
+.nav a:hover{background:#1e1e1e}
+.nav a.on{background:#232323;color:#fff;box-shadow:inset 3px 0 0 var(--red)}
+.nav .n{margin-left:auto;background:var(--red);color:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:2px 8px}
+.nav .sec{font:700 10.5px "Montserrat",sans-serif;letter-spacing:.1em;color:#6d6d6d;text-transform:uppercase;padding:16px 12px 6px}
+.side .foot{margin-top:auto;padding:14px 10px 0;border-top:1px solid #222;font-size:12px;color:#8a8a8a;line-height:1.5}
+.side .foot b{color:#ddd;font-weight:600}
+.main{min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:18px 30px;background:rgba(246,245,243,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.top h1{font-size:20px;margin:0;font-weight:800;letter-spacing:-.01em}
+.top .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.search{margin-left:auto;margin-right:250px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;width:280px;color:var(--muted);font-size:13px}
+.content{padding:24px 30px 60px;display:flex;flex-direction:column;gap:20px}
+section[data-view]{display:none}
+section[data-view].on{display:contents}
+
+/* composants */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line2)}
+.card>header h2{font-size:14.5px;margin:0;font-weight:800;letter-spacing:-.005em}
+.card>header .sp{flex:1}
+.body{padding:16px 18px}
+.muted{color:var(--muted)} .sm{font-size:12.5px}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 13px;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.btn.dark{background:#1b1b1b;border-color:#1b1b1b;color:#fff}
+.b{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.b::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b.ok{color:var(--ok);background:var(--ok-bg)} .b.warn{color:var(--warn);background:var(--warn-bg)} .b.late{color:var(--red);background:var(--red-soft)} .b.info{color:var(--info);background:var(--info-bg)} .b.idle{color:var(--idle);background:var(--idle-bg)}
+.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600;color:#444;background:#fff;white-space:nowrap}
+.tag i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:20px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{border:0;background:none;padding:7px 12px;font-weight:600;color:var(--muted);cursor:pointer;font-size:12.5px}
+.seg button.on{background:#1b1b1b;color:#fff}
+table.t{width:100%;border-collapse:collapse}
+.t th{text-align:left;font:700 10.5px "Montserrat",sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:#fbfaf9}
+.t td{padding:11px 14px;border-bottom:1px solid var(--line2);vertical-align:middle}
+.t tr:last-child td{border-bottom:0}
+.t .r{text-align:right}
+.bar{flex:1;min-width:60px;height:8px;border-radius:99px;background:var(--line2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);border-radius:99px}
+.bar.ok i{background:#1b1b1b}
+
+/* héros pilotage */
+.hero{position:relative;border-radius:18px;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#3a1214 0%,#191919 45%,#111 100%);color:#fff;padding:28px 32px 30px;display:grid;grid-template-columns:1.25fr 1fr;gap:26px;min-height:268px}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;opacity:.9;pointer-events:none}
+.hero .eb{font:700 11px "Montserrat",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ff8a8c}
+.hero .big{font:900 64px/1 "Montserrat",sans-serif;letter-spacing:-.02em;margin:14px 0 4px}
+.hero .big span{color:var(--red2)}
+.hero .lead{font:700 20px/1.2 "Montserrat",sans-serif;margin:0 0 12px}
+.hero p{color:#c9c9c9;max-width:52ch;margin:0;position:relative}
+.hero .side2{position:relative;display:flex;gap:22px;align-items:center;justify-content:flex-end}
+.ring{position:relative;width:170px;height:170px;flex:none}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .lbl b{font:900 38px/1 "Montserrat",sans-serif}
+.ring .lbl small{display:block;color:#bdbdbd;font-size:12px;margin-top:4px}
+.minis{display:flex;flex-direction:column;gap:10px;min-width:190px}
+.mini{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px}
+.mini b{font:800 22px "Montserrat",sans-serif}
+.mini span{display:block;font-size:12px;color:#c4c4c4}
+
+/* parcours */
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:0;padding:18px 14px 20px}
+.stage{position:relative;padding:0 8px}
+.stage .v{font:800 24px "Montserrat",sans-serif;letter-spacing:-.01em}
+.stage .l{font-size:12px;color:var(--muted);font-weight:600;min-height:36px}
+.stage .col{height:84px;display:flex;align-items:flex-end;margin:8px 0 8px}
+.stage .col i{display:block;width:100%;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#2a2a2a,#121212)}
+.stage.hot .col i{background:linear-gradient(180deg,var(--red2),var(--red))}
+.stage .gap{font-size:11.5px;color:var(--muted)}
+.stage .gap b{color:var(--ink)}
+.stage+.stage::before{content:"›";position:absolute;left:-6px;top:4px;color:#bbb;font:700 20px "Montserrat"}
+
+/* fiche appareil */
+.dev{display:grid;grid-template-columns:220px 1fr auto;gap:28px;align-items:center;padding:22px 26px;background:linear-gradient(135deg,#fff 0%,#fff 55%,#fbeeee 100%)}
+.dev h2{font:900 30px "Montserrat",sans-serif;margin:6px 0 10px;letter-spacing:-.01em}
+.facts{display:grid;grid-template-columns:repeat(3,auto);gap:10px 34px;margin-top:14px}
+.facts div{font-size:12px;color:var(--muted)} .facts b{display:block;color:var(--ink);font-size:14px;font-weight:600}
+.tl{padding:6px 18px 10px}
+.st{display:grid;grid-template-columns:54px 26px 1fr auto;gap:10px;align-items:start;padding:12px 0;position:relative}
+.st .d{font-size:12px;color:var(--muted);padding-top:3px}
+.st .k{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;position:relative;z-index:1}
+.st:not(:last-child)::after{content:"";position:absolute;left:76px;top:38px;bottom:-12px;width:2px;background:var(--line)}
+.st b{display:block}
+.reply{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;line-height:1.5;background:#fcfbfa;min-height:96px}
+
+/* relances */
+.seq{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px}
+.step{border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;background:#fff}
+.step.now{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+.step .j{font:900 13px "Montserrat",sans-serif;color:var(--red);letter-spacing:.04em}
+.step h3{font-size:14px;margin:6px 0 4px}
+.step .n{font:800 22px "Montserrat",sans-serif;margin-top:10px}
+.step .cv{font-size:12px;color:var(--ok);font-weight:600}
+.mail{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:16px 18px 18px;background:#fff}
+.mail .mh{background:#111;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.mail .mh .wm{font:900 20px "Montserrat",sans-serif;letter-spacing:.06em}
+.mail .mb{padding:18px 20px}
+.mail .tt{font:900 17px/1.2 "Montserrat",sans-serif;color:var(--red);text-transform:uppercase;letter-spacing:.01em}
+.mail .cta{display:inline-block;background:var(--red);color:#fff;font:700 13px "Montserrat",sans-serif;padding:11px 16px;border-radius:6px;margin-top:12px;text-transform:uppercase;letter-spacing:.04em}
+.lang{display:flex;gap:6px}
+.lang button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:4px 9px;font-weight:700;font-size:11.5px;color:var(--muted);cursor:pointer}
+.lang button.on{background:#1b1b1b;border-color:#1b1b1b;color:#fff}
+
+/* écrans téléphone */
+.pwrap{display:grid;grid-template-columns:1fr 410px;gap:40px;align-items:center;max-width:1100px}
+.pwrap .ex h2{font:900 30px/1.1 "Montserrat",sans-serif;margin:0 0 12px;letter-spacing:-.01em}
+.pwrap .ex p{color:#444;font-size:15px;max-width:48ch}
+.pwrap .ex ul{padding:0;margin:18px 0 0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pwrap .ex li{display:flex;gap:10px;font-size:14px}
+.pwrap .ex li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--red);margin-top:7px;flex:none}
+.phone{width:390px;height:740px;border-radius:46px;background:#0b0b0b;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.screen{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#f6f5f3;display:flex;flex-direction:column}
+.scr-body{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.scr-body>*{flex:none}
+.sh{padding:44px 18px 16px}
+.sh h3{margin:0;font:800 19px "Montserrat",sans-serif}
+.sh .s{font-size:12px;opacity:.75;margin-top:3px}
+.dark .sh{background:#111;color:#fff}
+.viewf{position:relative;height:210px;border-radius:18px;background:radial-gradient(circle at 50% 40%,#3b3b3b,#151515);overflow:hidden;display:grid;place-items:center}
+.viewf .lab{background:#f4f1ea;border-radius:6px;width:210px;padding:10px 12px;transform:rotate(-3deg);box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.viewf .lab .bc{height:44px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 7px,transparent 7px 8px,#111 8px 9px,transparent 9px 12px);margin:6px 0}
+.viewf .cor{position:absolute;inset:26px 40px;border:3px solid transparent;border-image:linear-gradient(var(--red2),var(--red2)) 1;clip-path:polygon(0 0,22% 0,22% 3px,3px 3px,3px 22%,0 22%,0 78%,3px 78%,3px calc(100% - 3px),22% calc(100% - 3px),22% 100%,0 100%,0 0,100% 0,100% 22%,calc(100% - 3px) 22%,calc(100% - 3px) 3px,78% 3px,78% 0,100% 0,100% 100%,78% 100%,78% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 78%,100% 78%)}
+.viewf .scan{position:absolute;left:40px;right:40px;top:52%;height:2px;background:var(--red2);box-shadow:0 0 14px var(--red2)}
+.pc{background:#fff;border-radius:14px;border:1px solid var(--line);padding:14px}
+.pc h4{margin:0 0 8px;font:800 13.5px "Montserrat",sans-serif}
+.ck{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:14px}
+.ck:last-child{border-bottom:0}
+.ck input{width:20px;height:20px;accent-color:var(--red)}
+.tabs{display:flex;background:#fff;border-top:1px solid var(--line);padding:8px 6px 22px}
+.tabs a{flex:1;text-align:center;font-size:10.5px;font-weight:600;color:var(--muted);text-decoration:none}
+.tabs a.on{color:var(--red)}
+.tabs svg{display:block;margin:0 auto 3px;width:20px;height:20px}
+.owner .sh{background:#111;color:#fff;padding-top:40px}
+.owner .wm{font:900 22px "Montserrat",sans-serif;letter-spacing:.06em}
+.ostep{display:grid;grid-template-columns:28px 1fr;gap:12px;position:relative;padding-bottom:16px}
+.ostep:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:2px;width:2px;background:var(--line)}
+.ostep.done:not(:last-child)::after{background:var(--ok)}
+.ostep .k{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+
+/* téléphone : écran réel */
+.mtop{display:none}
+@media (max-width:600px){
+  .app{grid-template-columns:1fr}
+  .side,.top,.fict{display:none}
+  .mtop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:#111;color:#fff;position:sticky;top:0;z-index:5}
+  .mtop b{font:900 18px "Montserrat",sans-serif;letter-spacing:.06em}
+  .content{padding:14px 12px 40px;gap:14px}
+  .grid2,.hero,.dev{grid-template-columns:1fr}
+  .flow,.seq{grid-template-columns:repeat(2,1fr);row-gap:16px}
+  .stage+.stage::before{display:none}
+  .hero .big{font-size:46px}
+  .hero .side2{justify-content:flex-start;flex-wrap:wrap}
+  .facts{grid-template-columns:1fr 1fr}
+  .card{overflow-x:auto}
+  .pwrap{display:block}
+  .pwrap .ex{display:none}
+  .phone{width:auto;height:auto;border-radius:0;padding:0;background:none;box-shadow:none}
+  .screen{border-radius:0;min-height:100vh;height:auto}
+  .sh{padding-top:18px}
+  .owner .sh{padding-top:18px}
+  body.phone-view .mtop{display:none}
+  body.phone-view .content{padding:0}
+  .tabs{position:sticky;bottom:0}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="wm">ARVA<span>.</span></div><small>Rappel NEO BT PRO 2026</small></div>
+    <nav class="nav" id="nav">
+      <div class="sec">Campagne</div>
+      <a href="#pilotage" data-v="pilotage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h4l3-8 4 14 3-6h4"/></svg>Pilotage <span class="n">1 055</span></a>
+      <a href="#appareil" data-v="appareil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="4"/><path d="M9 7h6"/><circle cx="12" cy="15" r="2.5"/></svg>Appareils</a>
+      <a href="#relances" data-v="relances"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v12H8l-4 4z"/></svg>Relances et revendeurs</a>
+      <div class="sec">Sur le téléphone</div>
+      <a href="#atelier" data-v="atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 12h8"/></svg>Atelier du Cairn</a>
+      <a href="#suivi" data-v="suivi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Page du propriétaire</a>
+    </nav>
+    <div class="foot"><b>SAV &amp; Logistique</b><br>Atelier du Cairn · Annecy-le-Vieux<br><span style="color:#666">Données synchronisées à 8 h 00</span></div>
+  </aside>
+  <div class="main">
+    <div class="top"><div><h1 id="title"></h1><div class="sub" id="subtitle"></div></div>
+      <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>N° de série, nom, revendeur…</div></div>
+    <div class="mtop"><b>ARVA.</b><span class="chipf">Exemple de données fictives</span></div>
+    <div class="content">
+
+      <!-- ============ PILOTAGE ============ -->
+      <section data-view="pilotage" data-title="Pilotage du rappel" data-sub="Contrôle de sécurité obligatoire NEO BT PRO · situation au lundi 23 novembre 2026, 8 h">
+        <div class="hero">
+          <svg class="ridge" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 120 L0 92 L90 60 L150 78 L250 22 L330 70 L400 48 L470 84 L560 30 L640 74 L720 52 L800 88 L880 40 L960 72 L1040 34 L1120 70 L1200 50 L1200 120Z" fill="rgba(255,255,255,.06)"/><path d="M0 120 L0 104 L120 80 L210 98 L320 66 L420 96 L520 72 L640 102 L760 76 L860 100 L980 70 L1100 96 L1200 82 L1200 120Z" fill="rgba(255,255,255,.08)"/></svg>
+          <div style="position:relative">
+            <div class="eb">Contrôle de sécurité obligatoire · NEO BT PRO</div>
+            <div class="big tnum"><span>1 055</span></div>
+            <div class="lead">appareils n'ont pas encore été contrôlés</div>
+            <p>La saison de ski de randonnée commence. Chaque propriétaire sans nouvelles est relancé automatiquement, dans sa langue ; ceux qui ne répondent pas sont appelés par le SAV, aujourd'hui pour les 74 premiers.</p>
+          </div>
+          <div class="side2">
+            <div class="ring" id="ring"></div>
+            <div class="minis">
+              <div class="mini"><b class="tnum">412</b><span>non conformes à échanger</span></div>
+              <div class="mini"><b class="tnum">286</b><span>échanges déjà expédiés</span></div>
+              <div class="mini"><b class="tnum">9 j</b><span>du contrôle à l'échange (médiane)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card"><header><h2>Du contrôle à l'échange, appareil par appareil</h2><span class="sp"></span><span class="muted sm">tous pays · 2 740 numéros de série concernés</span></header>
+          <div class="flow" id="flow"></div></div>
+
+        <div class="grid2">
+          <div class="card"><header><h2>Contrôles faits chaque jour</h2><span class="sp"></span><span class="tag"><i style="background:var(--red)"></i>e-mail de campagne et rappels</span></header><div class="body" id="chart" style="padding-top:10px"></div></div>
+          <div class="card"><header><h2>Par pays</h2><span class="sp"></span><span class="muted sm">contrôlés / concernés</span></header><div class="body" id="pays" style="padding-top:8px"></div></div>
+        </div>
+
+        <div class="grid2">
+          <div class="card"><header><h2>À traiter aujourd'hui</h2><span class="b late">4 sujets</span></header><div id="todo"></div></div>
+          <div class="card"><header><h2>Ce qui alimente le registre</h2><span class="sp"></span><span class="b ok">à jour</span></header><div class="body" id="src"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ APPAREIL ============ -->
+      <section data-view="appareil" data-title="Fiche appareil" data-sub="Tout l'historique d'un numéro de série, quelle que soit la source">
+        <div class="card dev">
+          <div id="devsvg"></div>
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="b late">Non conforme</span><span class="b info">Échange en préparation</span><span class="tag">Europe · France</span></div>
+            <h2 class="tnum">N° 24B-031482</h2>
+            <div class="muted">NEO BT PRO · propriétaire : Camille R., Annecy (74)</div>
+            <div class="facts">
+              <div>Enregistré<b>14/12/2024 · site ARVA</b></div>
+              <div>Acheté chez<b>un revendeur, Chamonix</b></div>
+              <div>Contrôle<b>09/11 · application</b></div>
+              <div>Demande de retour<b>DR-2026-04187</b></div>
+              <div>Reçu à l'atelier<b>19/11</b></div>
+              <div>Durée du dossier<b class="tnum">14 jours</b></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;align-self:start">
+            <button class="btn pri">Expédier l'échange</button><button class="btn">Écrire au propriétaire</button></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>Parcours de l'appareil</h2><span class="sp"></span><span class="muted sm">chaque étape indique sa source</span></header><div class="tl" id="tl"></div></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>Messages au propriétaire</h2><span class="sp"></span><span class="tag">FR · e-mail</span></header><div id="msgs"></div></div>
+            <div class="card"><header><h2>Réponse rapide</h2><span class="sp"></span><span class="muted sm">modèle « échange en route »</span></header><div class="body">
+              <div class="reply">Bonjour Camille,<br>votre NEO BT PRO a bien été reçu à notre atelier d'Annecy. Votre appareil neuf part mardi 24 novembre ; vous recevrez son numéro de suivi le jour même.<br>L'équipe SAV ARVA</div>
+              <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn dark">Envoyer</button></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELANCES ============ -->
+      <section data-view="relances" data-title="Relances et revendeurs" data-sub="Les propriétaires sans nouvelles sont relancés tout seuls, dans leur langue ; les stocks revendeurs sont suivis à part">
+        <div class="card"><header><h2>Séquence de relance des propriétaires</h2><span class="sp"></span><span class="b ok">active · 5 langues</span></header><div class="seq" id="seq"></div></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Revendeurs, loueurs et professionnels du secours</h2><span class="sp"></span><button class="btn pri">Relancer les 3 en retard</button></header><table class="t" id="rev"></table></div>
+          <div class="card"><header><h2>Rappel J+21 · aperçu</h2><span class="sp"></span><div class="lang" id="lang"></div></header><div id="mail"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ATELIER (téléphone) ============ -->
+      <section data-view="atelier" data-title="Atelier du Cairn" data-sub="La réception des colis, sur un téléphone">
+        <div class="pwrap">
+          <div class="ex"><h2>À l'atelier, un scan suffit</h2><p>Le colis arrive : on scanne l'étiquette, l'appareil est rapproché de sa demande et du résultat de son contrôle. Le dossier avance tout seul, et le propriétaire est prévenu.</p>
+            <ul><li>Contrôle à réception : piles, holster et leash retirés</li><li>Scan du nouvel appareil : son numéro de série est associé au propriétaire</li><li>Étiquette transporteur et e-mail d'expédition générés en un geste</li></ul></div>
+          <div class="phone"><div class="screen dark">
+            <div class="sh"><span class="chipf" style="background:#D41318">Exemple de données fictives</span><h3 style="margin-top:8px">Réception</h3><div class="s">Atelier du Cairn · lundi 23 novembre · 12 colis</div></div>
+            <div class="scr-body">
+              <div class="viewf"><div class="cor"></div><div class="lab"><div style="font:800 10px Montserrat;letter-spacing:.08em">ARVA · RETOUR NEO BT PRO</div><div class="bc"></div><div style="font:700 12px Inter" class="tnum">DR-2026-04187 · 24B-031482</div></div><div class="scan"></div></div>
+              <div class="pc" style="border-color:#bfe5cd;background:#f2fbf5"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="sm muted">Rapproché de sa demande</div><div style="font:800 20px Montserrat" class="tnum">24B-031482</div></div><span class="b ok">Non conforme confirmé</span></div><div class="sm" style="margin-top:6px">Camille R. · Annecy · contrôle du 09/11 dans l'application</div></div>
+              <div class="pc"><h4>Contrôle à réception</h4><div id="chk"></div></div>
+              <div class="pc"><h4>Appareil de remplacement</h4><div class="sm muted">Scanner le numéro de série du NEO BT PRO neuf</div>
+                <div style="display:flex;gap:8px;margin-top:10px"><div style="flex:1;border:2px dashed var(--line);border-radius:10px;padding:12px;text-align:center;color:var(--muted);font-weight:600">Scanner</div><button class="btn pri" style="flex:1.4;justify-content:center">Expédier l'échange</button></div></div>
+            </div>
+            <div class="tabs"><a class="on" href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 12h8"/></svg>Scanner</a><a href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM3 7l3-4h12l3 4"/></svg>Colis du jour</a><a href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>Historique</a></div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- ============ PROPRIÉTAIRE (téléphone) ============ -->
+      <section data-view="suivi" data-title="Page du propriétaire" data-sub="Ce que voit Camille en cliquant sur le lien de son e-mail">
+        <div class="pwrap">
+          <div class="ex"><h2>Le propriétaire sait où en est son appareil</h2><p>Un lien personnel dans chaque e-mail, dans sa langue. Il voit chaque étape de son échange et le suivi transporteur : moins d'e-mails et d'appels « où en est mon appareil ? » au SAV.</p>
+            <ul><li>Français, anglais, allemand, italien, espagnol</li><li>Étapes mises à jour par l'atelier, sans ressaisie</li><li>Une question ? Elle arrive directement dans la fiche de l'appareil</li></ul></div>
+          <div class="phone"><div class="screen owner">
+            <div class="sh"><div style="display:flex;justify-content:space-between;align-items:center"><span class="wm">ARVA</span><span class="chipf" style="background:#D41318">Données fictives</span></div><div class="s" style="margin-top:6px;opacity:.8">Contrôle de sécurité obligatoire · NEO BT PRO</div></div>
+            <div class="scr-body">
+              <div class="lang" style="justify-content:flex-end"><button class="on">FR</button><button>EN</button><button>DE</button><button>IT</button><button>ES</button></div>
+              <div class="pc" style="display:flex;gap:14px;align-items:center"><div id="devsmall"></div><div><div class="sm muted">Bonjour Camille,</div><div style="font:800 18px/1.2 Montserrat">Votre NEO BT PRO neuf part mardi.</div><div class="sm muted tnum" style="margin-top:4px">Appareil n° 24B-031482</div></div></div>
+              <div class="pc" id="osteps"></div>
+              <div class="pc"><h4>Une question ?</h4><div class="sm">Répondez simplement à l'e-mail reçu : votre message arrive au SAV avec tout l'historique de votre appareil.</div></div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<div class="fict">Exemple de données fictives</div>
+
+<script>
+// ===== Données fictives (une seule source) =====
+const PAYS = [['France',1180,790],['États-Unis',290,150],['Suisse',310,205],['Autriche',260,150],['Italie',240,140],['Allemagne',190,110],['Espagne',120,62],['Canada',80,38],['Autres pays',70,40]];
+const FLOW = [
+  ['Appareils concernés',2740,'',0],
+  ['Propriétaires joints',2310,'<b>430</b> sans coordonnées · via revendeur',0],
+  ['Contrôle fait',1685,'<b>625</b> joints, pas encore contrôlés',1],
+  ['Non conformes',412,'<b>1 273</b> conformes',1],
+  ['Étiquette ou demande',383,'<b>29</b> demandes hors Europe à traiter',0],
+  ["Reçus à l'atelier",324,'<b>59</b> colis en route',0],
+  ['Échanges expédiés',286,"<b>38</b> à l'atelier",1],
+];
+// contrôles par jour depuis le lancement (19/10), avant normalisation
+const RAW = [52,40,28,20,15,12,10,8,7,6,30,24,17,13,10,8,7,6,5,5,4,22,18,14,11,9,8,7,6,5,5,4,4,3,3];
+const REL = [[0,'E-mail de campagne'],[10,'Rappel J+10'],[21,'Rappel J+21 + SMS']];
+
+// ===== Outils =====
+const $ = (s) => document.querySelector(s);
+const n = (x) => x.toLocaleString('fr-FR');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+const badge = (c, t) => `<span class="b ${c}">${esc(t)}</span>`;
+function device(w) {
+  return `<svg width="${w}" viewBox="0 0 200 300" aria-hidden="true">
+    <defs><linearGradient id="g${w}" x1="0" x2="1"><stop offset="0" stop-color="#2b2b2b"/><stop offset="1" stop-color="#111"/></linearGradient></defs>
+    <rect x="30" y="10" width="140" height="280" rx="42" fill="url(#g${w})"/>
+    <rect x="30" y="10" width="140" height="70" rx="42" fill="#D41318"/><rect x="30" y="50" width="140" height="30" fill="#D41318"/>
+    <rect x="50" y="96" width="100" height="86" rx="14" fill="#cfd8cf"/>
+    <path d="M100 112 l16 26 h-10 v22 h-12 v-22 h-10z" fill="#1b1b1b"/><text x="100" y="176" font-family="Montserrat" font-weight="800" font-size="15" text-anchor="middle" fill="#1b1b1b">2.4 m</text>
+    <circle cx="100" cy="232" r="28" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="4"/><circle cx="100" cy="232" r="12" fill="#D41318"/>
+    <text x="100" y="50" font-family="Montserrat" font-weight="900" font-size="15" text-anchor="middle" fill="#fff" letter-spacing="1">NEO BT PRO</text></svg>`;
+}
+
+// ===== Pilotage =====
+function renderPilotage() {
+  const p = 1685 / 2740, R = 70, C = 2 * Math.PI * R;
+  $('#ring').innerHTML = `<svg width="170" height="170" viewBox="0 0 170 170"><circle cx="85" cy="85" r="${R}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="14"/><circle cx="85" cy="85" r="${R}" fill="none" stroke="#ff3b3f" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C * p} ${C}" transform="rotate(-90 85 85)"/></svg><div class="lbl"><div><b class="tnum">61 %</b><small>contrôlés<br>1 685 / 2 740</small></div></div>`;
+  $('#flow').innerHTML = FLOW.map(([l, v, g, hot]) => `<div class="stage${hot ? ' hot' : ''}"><div class="l">${l}</div><div class="v tnum">${n(v)}</div><div class="col"><i style="height:${Math.max(6, (v / 2740) * 100)}%"></i></div><div class="gap">${g || '&nbsp;'}</div></div>`).join('');
+  // courbe
+  const tot = RAW.reduce((a, b) => a + b, 0), vals = RAW.map((x) => x * 1685 / tot), W = 700, H = 190, max = Math.max(...vals) * 1.15, dx = W / (vals.length - 1);
+  const pts = vals.map((v, i) => [i * dx, H - 22 - (v / max) * (H - 40)]);
+  const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;overflow:visible"><defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D41318" stop-opacity=".28"/><stop offset="1" stop-color="#D41318" stop-opacity="0"/></linearGradient></defs>`;
+  [0.33, 0.66].forEach((f) => { s += `<line x1="0" x2="${W}" y1="${(H - 22) * f}" y2="${(H - 22) * f}" stroke="#eee"/>`; });
+  REL.forEach(([d, t]) => { const x = d * dx; s += `<line x1="${x}" x2="${x}" y1="6" y2="${H - 22}" stroke="#D41318" stroke-dasharray="3 4" opacity=".6"/><text x="${x + 6}" y="16" font-size="11.5" font-weight="700" fill="#D41318" font-family="Inter">${t}</text>`; });
+  s += `<path d="${line} L${W} ${H - 22} L0 ${H - 22}Z" fill="url(#ar)"/><path d="${line}" fill="none" stroke="#D41318" stroke-width="2.5" stroke-linejoin="round"/>`;
+  const lx = pts[pts.length - 1]; s += `<circle cx="${lx[0]}" cy="${lx[1]}" r="4.5" fill="#fff" stroke="#D41318" stroke-width="2.5"/>`;
+  [['19/10', 0], ['26/10', 7], ['02/11', 14], ['09/11', 21], ['16/11', 28], ['22/11', 34]].forEach(([t, i]) => { s += `<text x="${i * dx}" y="${H - 4}" font-size="11" fill="#8a8a8a" text-anchor="${i === 0 ? 'start' : i === 34 ? 'end' : 'middle'}" font-family="Inter">${t}</text>`; });
+  $('#chart').innerHTML = s + '</svg><div class="sm muted" style="margin-top:8px">Chaque rappel relance la courbe : <b style="color:var(--ink)">+31 %</b> de contrôles dans les 3 jours qui suivent un rappel. Prochaine étape : les appels du SAV, à partir d\'aujourd\'hui.</div>';
+  $('#pays').innerHTML = PAYS.map(([p, a, c]) => { const r = c / a; return `<div style="display:grid;grid-template-columns:96px 1fr 70px;gap:10px;align-items:center;margin:9px 0"><span class="sm" style="font-weight:600">${p}</span><div class="bar${r >= 0.6 ? ' ok' : ''}"><i style="width:${r * 100}%"></i></div><span class="sm tnum" style="text-align:right"><b>${Math.round(r * 100)} %</b> <span class="muted">${n(a)}</span></span></div>`; }).join('') + '<div class="sm muted" style="margin-top:10px">En rouge : sous 60 %. Les relances y partent en priorité.</div>';
+  $('#todo').innerHTML = [
+    ['var(--red)', '74 propriétaires à appeler', 'Sans réponse après trois messages · liste triée par pays et par langue', 'Ouvrir la liste'],
+    ['var(--warn)', '29 demandes hors Europe à traiter', 'États-Unis, Canada, Suisse, Norvège… · étiquette à créer', 'Traiter'],
+    ['var(--warn)', '3 revendeurs ou loueurs en retard', 'Val Thorens, Verbier, Vielha · 41 appareils non contrôlés', 'Relancer'],
+    ['var(--info)', "12 colis attendus aujourd'hui à l'atelier", 'Suivi transporteur relié à chaque demande', 'Voir'],
+  ].map(([c, t, d, b]) => `<div style="display:flex;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line2)"><span style="width:10px;height:10px;border-radius:3px;background:${c};flex:none"></span><div style="flex:1"><b>${t}</b><div class="muted sm">${d}</div></div><button class="btn">${b}</button></div>`).join('');
+  $('#src').innerHTML = [
+    ['#D41318', 'Application ARVA', 'résultat du contrôle, par numéro de série', '1 685'],
+    ['#1b1b1b', 'Enregistrement produit', 'coordonnées et langue du propriétaire', '2 310'],
+    ['#b54708', 'Formulaire de retour', 'demandes et étiquettes générées', '383'],
+    ['#1f5fbf', 'Transporteur', 'colis en route et livrés', '383'],
+    ['#14804a', 'Atelier du Cairn', 'réceptions et échanges scannés', '324'],
+  ].map(([c, t, d, v]) => `<div style="display:flex;align-items:center;gap:12px;padding:7px 0"><span style="width:30px;height:30px;border-radius:8px;background:${c};flex:none;display:grid;place-items:center;color:#fff;font:800 12px Montserrat">${t[0]}</span><div style="flex:1"><b>${t}</b><div class="muted sm">${d}</div></div><b class="tnum">${v}</b></div>`).join('');
+}
+
+// ===== Appareil =====
+function renderAppareil() {
+  $('#devsvg').innerHTML = `<div style="display:grid;place-items:center">${device(150)}</div>`;
+  const tl = [
+    ['ok', '19/10', 'E-mail de campagne envoyé', 'en français, avec le lien vers le contrôle', 'Campagne'],
+    ['ok', '29/10', 'Rappel J+10', 'ouvert, pas encore de contrôle', 'Campagne'],
+    ['ok', '09/11', "Contrôle fait dans l'application : non conforme", 'résultat reçu avec le numéro de série', 'Application ARVA'],
+    ['ok', '10/11', 'Formulaire de retour · étiquette générée', 'demande DR-2026-04187', 'Formulaire de retour'],
+    ['ok', '16/11', 'Colis remis au transporteur', 'livré à Annecy-le-Vieux le 19/11', 'Transporteur'],
+    ['ok', '19/11', "Reçu à l'Atelier du Cairn", 'contrôle à réception complet', 'Atelier'],
+    ['cur', '24/11', 'Échange à neuf expédié', 'nouveau numéro de série associé à Camille', 'Atelier'],
+    ['todo', '', 'Réception confirmée · dossier clos', '', ''],
+  ];
+  const col = { ok: 'var(--ok)', cur: 'var(--red)', todo: '#d7d4cf' };
+  $('#tl').innerHTML = tl.map(([s, d, t, x, src]) => `<div class="st"><div class="d tnum">${d}</div><div class="k" style="background:${col[s]}">${s === 'ok' ? '✓' : s === 'cur' ? '•' : ''}</div><div><b style="${s === 'todo' ? 'color:var(--muted)' : ''}">${t}</b>${x ? `<span class="muted sm">${x}</span>` : ''}</div><div>${src ? `<span class="tag">${src}</span>` : ''}</div></div>`).join('');
+  $('#msgs').innerHTML = [
+    ['19/10', 'Contrôle de sécurité obligatoire', 'Ouvert'], ['29/10', 'Rappel : votre NEO BT PRO', 'Ouvert'], ['10/11', 'Votre étiquette de retour', 'Ouvert'], ['19/11', 'Nous avons bien reçu votre appareil', 'Ouvert'], ['24/11', 'Votre appareil neuf est en route', 'Programmé'],
+  ].map(([d, t, s]) => `<div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line2)"><span class="sm muted tnum" style="width:40px">${d}</span><b class="sm" style="flex:1">${t}</b>${badge(s === 'Ouvert' ? 'ok' : 'idle', s)}</div>`).join('');
+}
+
+// ===== Relances =====
+const MAILS = {
+  FR: ['Votre NEO BT PRO doit être contrôlé', "Bonjour Camille, votre ARVA NEO BT PRO n° 24B-031482 n'a pas encore fait l'objet du contrôle de sécurité obligatoire. Cessez de l'utiliser et faites le contrôle dans l'application ARVA : cela prend quelques minutes.", "Faire le contrôle"],
+  EN: ['Your NEO BT PRO must be checked', "Hello Ryan, your ARVA NEO BT PRO no. 24B-030122 has not yet been through the mandatory safety check. Stop using it and run the check in the ARVA app: it only takes a few minutes.", 'Run the check'],
+  DE: ['Ihr NEO BT PRO muss geprüft werden', "Hallo Lukas, Ihr ARVA NEO BT PRO Nr. 24B-028815 wurde noch nicht der verpflichtenden Sicherheitsprüfung unterzogen. Bitte verwenden Sie es nicht mehr und führen Sie die Prüfung in der ARVA-App durch.", 'Prüfung starten'],
+  IT: ['Il tuo NEO BT PRO deve essere controllato', "Ciao Marco, il tuo ARVA NEO BT PRO n. 24B-033967 non è ancora stato sottoposto al controllo di sicurezza obbligatorio. Smetti di usarlo ed esegui il controllo nell'app ARVA.", 'Esegui il controllo'],
+  ES: ['Su NEO BT PRO debe ser revisado', "Hola Pau, su ARVA NEO BT PRO n.º 24B-029941 aún no ha pasado el control de seguridad obligatorio. Deje de utilizarlo y realice el control en la aplicación ARVA.", 'Hacer el control'],
+};
+function renderMail(k) {
+  document.querySelectorAll('#lang button').forEach((b) => b.classList.toggle('on', b.textContent === k));
+  const [t, x, c] = MAILS[k];
+  $('#mail').innerHTML = `<div class="mail"><div class="mh"><span class="wm">ARVA</span><span style="font-size:11px;opacity:.7">Contrôle de sécurité · NEO BT PRO</span></div><div class="mb"><div class="tt">${t}</div><p style="margin:10px 0 0;color:#333">${x.replace(/(\d{2}[AB]-\d{6})/g,'<span style="white-space:nowrap">$1</span>')}</p><span class="cta">${c}</span><p class="sm muted" style="margin:14px 0 0">Lien personnel : le résultat est rattaché automatiquement à ce numéro de série.</p></div></div>`;
+}
+function renderRelances() {
+  $('#seq').innerHTML = [
+    ['J0', 'E-mail de campagne', 'tous les propriétaires enregistrés, dans leur langue', '2 310', 'envoyés', '47 % ont fait le contrôle', 0],
+    ['J+10', 'Rappel e-mail', 'si le contrôle n\'est pas fait', '1 224', 'envoyés', '31 % ont fait le contrôle', 0],
+    ['J+21', 'Rappel e-mail + SMS', 'avec le lien direct vers le contrôle', '845', 'envoyés', '19 % ont fait le contrôle', 0],
+    ['J+35', 'Appel du SAV', 'liste du jour, triée par pays et par langue', '74', "à appeler aujourd'hui", 'commence aujourd\'hui', 1],
+  ].map(([j, t, d, v, u, cv, now]) => `<div class="step${now ? ' now' : ''}"><div class="j">${j}</div><h3>${t}</h3><div class="muted sm">${d}</div><div class="n tnum">${v} <span class="sm muted" style="font:500 12px Inter">${u}</span></div><div class="cv" style="${now ? 'color:var(--red)' : ''}">${cv}</div></div>`).join('');
+  const rev = [
+    ['Revendeur · Chamonix (74)', 'stock', 46, 41], ['École de ski · Val Thorens (73)', 'parc pro', 12, 0], ['Revendeur · Innsbruck', 'stock', 31, 22], ['Revendeur · Salt Lake City', 'stock', 58, 37],
+    ['Loueur · Verbier', 'location', 24, 8], ['Secours en montagne · Hautes-Alpes', 'parc pro', 18, 18], ['Revendeur · Bourg-Saint-Maurice (73)', 'stock', 27, 25], ['Revendeur · Vielha', 'stock', 19, 6],
+  ];
+  $('#rev').innerHTML = '<tr><th>Revendeur ou parc</th><th class="r">Appareils</th><th>Contrôlés</th><th>État</th></tr>' + rev.map(([nm, ty, a, c]) => { const r = c / a, st = r >= 0.85 ? ['ok', 'À jour'] : r >= 0.5 ? ['warn', 'En cours'] : ['late', 'En retard']; return `<tr><td><b>${esc(nm)}</b><div class="muted sm">${ty}</div></td><td class="r tnum">${a}</td><td><div style="display:flex;align-items:center;gap:10px"><div class="bar${st[0] === 'ok' ? ' ok' : ''}"><i style="width:${Math.max(3, r * 100)}%"></i></div><span class="tnum sm">${c}</span></div></td><td>${badge(...st)}</td></tr>`; }).join('');
+  $('#lang').innerHTML = Object.keys(MAILS).map((k) => `<button>${k}</button>`).join('');
+  document.querySelectorAll('#lang button').forEach((b) => b.addEventListener('click', () => renderMail(b.textContent)));
+  renderMail('FR');
+}
+
+// ===== Téléphone =====
+function renderPhones() {
+  $('#chk').innerHTML = [['Piles retirées', 1], ['Holster et leash retirés', 1], ['Numéro de série lisible', 1], ["Photo de l'appareil", 0]].map(([t, c]) => `<label class="ck"><input type="checkbox" ${c ? 'checked' : ''}>${t}</label>`).join('');
+  $('#devsmall').innerHTML = device(58);
+  const s = [['Contrôle fait', '9 novembre', 1], ['Étiquette de retour', '10 novembre', 1], ['Appareil reçu chez ARVA', '19 novembre · Annecy', 1], ['Appareil neuf expédié', 'mardi 24 novembre', 2], ['Reçu chez vous', 'livraison estimée jeudi 26', 0]];
+  $('#osteps').innerHTML = '<h4>Votre échange</h4>' + s.map(([t, d, k]) => `<div class="ostep${k === 1 ? ' done' : ''}"><div class="k" style="background:${k === 1 ? 'var(--ok)' : k === 2 ? 'var(--red)' : '#d7d4cf'}">${k === 1 ? '✓' : k === 2 ? '4' : '5'}</div><div><b style="${k ? '' : 'color:var(--muted)'}">${t}</b><div class="muted sm">${d}</div></div></div>`).join('');
+}
+
+// ===== Navigation =====
+function show() {
+  const v = location.hash.slice(1) || 'pilotage';
+  document.querySelectorAll('section[data-view]').forEach((s) => s.classList.toggle('on', s.dataset.view === v));
+  document.querySelectorAll('#nav [data-v]').forEach((a) => a.classList.toggle('on', a.dataset.v === v));
+  document.body.classList.toggle('phone-view', v === 'atelier' || v === 'suivi');
+  const s = document.querySelector(`section[data-view="${v}"]`);
+  if (s) { $('#title').textContent = s.dataset.title; $('#subtitle').textContent = s.dataset.sub; }
+  window.scrollTo(0, 0);
+}
+renderPilotage(); renderAppareil(); renderRelances(); renderPhones();
+addEventListener('hashchange', show);
+show();
+</script>
+</body>
+</html>
