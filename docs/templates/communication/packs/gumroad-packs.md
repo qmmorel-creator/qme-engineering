@@ -17,6 +17,7 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 | Pack Ma voiture | pack-voiture | 28 € | 37 € | 3/3 | — |
 | Pack Petite entreprise | pack-petite-entreprise | 164 € | 205 € | 9/9 | — |
 | Pack Voyage | pack-voyage | 25 € | 34 € | 2/2 | — |
+| Pack Cuisine | pack-cuisine | 22 € | 31 € | 1/2 | Garde-manger et dates de péremption |
 | Pack Forme | pack-forme | 58 € | 73 € | 4/5 | Plan d'entraînement course à pied |
 | Pack Productivité perso | pack-productivite | 54 € | 68 € | 4/5 | Revue hebdomadaire et journal de bord |
 | Pack Reprendre la main sur son argent | pack-argent | 96 € | 120 € | 8/9 | Remboursements santé |

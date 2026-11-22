@@ -104,7 +104,7 @@ const PRODUITS={"REV":{"nom":"Planning de révision","url":"/templates/revision/
 const THEMES=[{"id":"projets-et-chantiers","nom":"Projets et chantiers","pour":"pro","c":"bleu"},{"id":"organisation-et-reunions","nom":"Organisation et réunions","pour":"pro","c":"rouge"},{"id":"independants","nom":"Indépendants","pour":"pro","c":"jaune"},{"id":"clients-et-prospection","nom":"Clients et prospection","pour":"pro","c":"encre"},{"id":"equipements-et-vehicules","nom":"Équipements et véhicules","pour":"pro","c":"bleu"},{"id":"associations-formation-et-evenements","nom":"Associations, formation et événements","pour":"pro","c":"rouge"},{"id":"argent","nom":"Argent","pour":"perso","c":"jaune"},{"id":"organisation-et-etudes","nom":"Organisation et études","pour":"perso","c":"encre"},{"id":"sante-et-forme","nom":"Santé et forme","pour":"perso","c":"rouge"},{"id":"projets-de-vie","nom":"Projets de vie","pour":"perso","c":"bleu"}];
 /* ESPACE-FIN */
 // Packs (netlify/lib/packs.mjs) : une clé de pack ouvre le tableau de bord /packs/espace/. SMP : pack sur mesure.
-const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM','PFA','PVY','PNS','PXP','PCA','PVT','PAQ','PBD','PBF'];
+const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM','PFA','PVY','PNS','PXP','PCA','PVT','PAQ','PBD','PBF','PCS'];
 const PREFIXES=[...Object.keys(PRODUITS),...PACKS,'ADM'],prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
 const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
 const {lire,noterOuverture}=QMEEspace;
