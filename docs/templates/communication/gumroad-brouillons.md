@@ -205,7 +205,7 @@ Tags raccourcis : « maintenance-prev » (GMA), « verifications », « registre
 
 | Code | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|------|---------------------|-----------|------|--------|
-| PBF | budget-perso-famille | FbVA2eJXNqKeGcjM5sA1aQ== | /l/pack-budget-perso-famille | 47 € (évolutif 59 €) | brouillon non publié : fiche remplie (catégorie Personal Finance, résumé, tags, détails, reçu, bouton et lien vers `/connexion/`) ; à faire par Quentin : clé de licence et versions « Pack » 47 € / « Pack évolutif » 59 € |
+| PBF | budget-perso-famille | FbVA2eJXNqKeGcjM5sA1aQ== | /l/pack-budget-perso-famille | 47 € (évolutif 59 €) | **publié le 22/11/2026** (clé de licence vérifiée, `is_licensed` true ; versions « Pack » et « Pack évolutif » activées par Quentin) ; site déjà en vente (`PACKS.PBF`) |
 
 À la publication : `gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ=='` et `permalien: 'pack-budget-perso-famille'` dans `PACKS.PBF`
 (`netlify/lib/packs.mjs`), `node outils/packs/generer.mjs`, tests, PR de mise en vente.
