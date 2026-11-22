@@ -54,10 +54,18 @@ test('lien de connexion : e-mail envoyé, usage unique, 15 minutes, compte cré�
 test('lien : réponse identique pour une adresse inconnue, envois limités', async () => {
   const w = monde();
   assert.deepEqual(await (await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).json(), { ok: true });
-  assert.equal((await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).status, 429, 'deux envois à moins de 30 s');
-  for (let i = 0; i < 4; i++) { w.t += 60_000; assert.equal((await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).status, 200); }
-  w.t += 60_000;
-  assert.equal((await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).status, 429, '5 envois par heure au plus');
+  const r1 = await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } });
+  assert.equal(r1.status, 429, 'deux envois à moins de 30 s');
+  const j1 = await r1.json();
+  assert.equal(j1.codeValable, true, 'le code du dernier e-mail sert encore');
+  assert.equal(j1.reessayerA, new Date(T0 + 30_000).toISOString());
+  for (let i = 0; i < 9; i++) { w.t += 60_000; assert.equal((await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).status, 200); }
+  w.t += 20 * 60_000;
+  const r2 = await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } });
+  assert.equal(r2.status, 429, '10 envois par heure au plus');
+  const j2 = await r2.json();
+  assert.equal(j2.codeValable, false, 'dernier code expiré (plus de 15 min)');
+  assert.equal(j2.reessayerA, new Date(T0 + 3_600_000).toISOString(), 'reprise une heure après le premier envoi');
   w.t += 3_600_000;
   assert.equal((await appel(w, '/lien', { methode: 'POST', corps: { email: 'inconnu@exemple.fr' } })).status, 200);
 });

@@ -47,7 +47,7 @@ import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.
 export const DUREE_LIEN = 15 * 60_000;
 const ESSAIS_CODE = 5; // codes à 6 chiffres faux tolérés par demande
 export const DUREE_SESSION = 90 * 86_400_000;
-const LIMITE = { parHeure: 5, intervalle: 30_000 };
+const LIMITE = { parHeure: 10, intervalle: 30_000 };
 const MAX_CLES = 300;
 
 const json = (statut, corps) => new Response(JSON.stringify(corps), {
@@ -325,7 +325,10 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     const cleLimite = `limite/${cleEmail(secret, email)}`;
     const envois = ((await store.get(cleLimite))?.t || []).filter((x) => t - x < 3_600_000);
     if (envois.length >= LIMITE.parHeure || (envois.length && t - Math.max(...envois) < LIMITE.intervalle)) {
-      return json(429, { erreur: 'Un lien vient déjà de partir vers cette adresse. Regardez vos e-mails (et les indésirables), ou réessayez dans quelques minutes.' });
+      // codeValable : le code du dernier e-mail sert encore (moins de 15 min) ; reessayerA : prochain envoi possible.
+      const dernier = Math.max(...envois), codeValable = t - dernier < DUREE_LIEN;
+      const reessayerA = new Date(envois.length >= LIMITE.parHeure ? Math.min(...envois) + 3_600_000 : dernier + LIMITE.intervalle).toISOString();
+      return json(429, { erreur: 'Un lien vient déjà de partir vers cette adresse. Regardez vos e-mails (et les indésirables), ou réessayez dans quelques minutes.', codeValable, reessayerA });
     }
     if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
     const compte = await store.get(cleCompte(secret, email));

@@ -25,7 +25,7 @@
     const j = await r.json().catch(() => ({}));
     // Session refusée : seulement sur les routes qui l'exigent (un vieux lien refusé ne déconnecte pas).
     if (r.status === 401 && s && chemin !== '/session' && chemin !== '/lien') { garder(CLE, null); compte = null; signaler(); }
-    if (!r.ok) { const x = new Error(j.erreur || 'Le service ne répond pas. Réessayez dans un instant.'); x.statut = r.status; throw x; }
+    if (!r.ok) { const x = new Error(j.erreur || 'Le service ne répond pas. Réessayez dans un instant.'); x.statut = r.status; x.details = j; throw x; }
     return j;
   }
   const signaler = () => window.dispatchEvent(new CustomEvent('qme-compte', { detail: { compte } }));
