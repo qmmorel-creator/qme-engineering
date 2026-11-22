@@ -2,7 +2,7 @@
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
 const VERSION = 'secret-santa-20261120a';
-const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'app.js?v=20261115t', 'regles.js', 'moteur.js', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122c'];
+const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'app.js?v=20261115t', 'regles.js', 'moteur.js', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123a'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
