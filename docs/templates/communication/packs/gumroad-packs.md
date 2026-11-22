@@ -13,7 +13,7 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 | Pack Exploitation et maintenance | pack-exploitation | 95 € | 119 € | 4/4 | — |
 | Pack Forme | pack-forme | 58 € | 73 € | 5/5 | — |
 | Pack Freelance : chiffrer, facturer, encaisser | pack-freelance-gestion | 118 € | 148 € | 7/7 | — |
-| Pack Freelance : trouver ses clients | pack-freelance-clients | 97 € | 122 € | 7/7 | — |
+| Pack Freelance : trouver ses clients | pack-freelance-clients | 78 € | 98 € | 6/6 | — |
 | Pack Ma voiture | pack-voiture | 28 € | 37 € | 3/3 | — |
 | Pack Petite entreprise | pack-petite-entreprise | 164 € | 205 € | 9/9 | — |
 | Pack Productivité perso | pack-productivite | 54 € | 68 € | 5/5 | — |

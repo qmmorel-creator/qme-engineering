@@ -28,11 +28,12 @@ export const PRODUITS = {
   MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
-  CRM: { nom: 'CRM freelance', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
+  // CRM et prospection : CRM freelance et Pipeline de prospection B2B (PRS) fusionnés le 22/11/2026 (rationalisation F2).
+  // PRS retiré : aucune vente, aucun code offert ; /templates/prospection/ redirigé ici (netlify.toml).
+  CRM: { nom: 'CRM et prospection', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/', gumroad: 'a212qy8CvDD90dc-7gV5NQ==' },
   PHR: { nom: 'Planner horaire', url: '/templates/planner/', gumroad: '6uyeEBR91feI1tM2Wbij8Q==' },
   RSV: { nom: 'Levée de réserves', url: '/templates/reserves/', gumroad: '1xyF3Lz36TxDCOz4KnVB4A==' },
-  PRS: { nom: 'Pipeline de prospection B2B', url: '/templates/prospection/', gumroad: '7Ie2c3Qgcxkl1coobiiNXg==' },
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
   TRS: { nom: 'Trésorerie prévisionnelle 12 mois', url: '/templates/tresorerie/', gumroad: 'no1AEwLFPlXydqFGU7vRzg==' },
   PRC: { nom: 'Gestion de parc informatique', url: '/templates/parc-informatique/', gumroad: 'gykL5ZVrrICGHSLM0V3xlQ==' },

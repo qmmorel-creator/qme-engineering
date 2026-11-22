@@ -223,17 +223,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/templates/prospection/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/prospection/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
   for = "/templates/devis/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -710,6 +699,20 @@
 [[redirects]]
   from = "/packs/mariage-installation/*"
   to = "/packs/vie-a-deux/"
+  status = 301
+  force = true
+
+# Pipeline de prospection B2B fusionné dans « CRM et prospection » le 22/11/2026 (rationalisation F2) :
+# l'application et sa page catalogue renvoient vers celles du CRM (paramètres comme ?demo transmis).
+[[redirects]]
+  from = "/templates/prospection/*"
+  to = "/templates/crm/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/prospection/*"
+  to = "/catalogue/crm/"
   status = 301
   force = true
 

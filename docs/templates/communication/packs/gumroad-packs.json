@@ -172,23 +172,23 @@
     "slug": "freelance-clients",
     "nom": "Pack Freelance : trouver ses clients",
     "permalien": "pack-freelance-clients",
-    "prix_cents": 9700,
+    "prix_cents": 7800,
     "versions": [
       {
         "nom": "Pack",
-        "prix_cents": 9700
+        "prix_cents": 7800
       },
       {
         "nom": "Pack évolutif",
-        "prix_cents": 12200
+        "prix_cents": 9800
       }
     ],
     "resume": "Moins de prospects perdus, plus de rendez-vous qui aboutissent.",
-    "description_html": "<p><strong>Moins de prospects perdus, plus de rendez-vous qui aboutissent.</strong></p>\n<p>Préparer l’appel, suivre chaque prospect, ne plus oublier une relance : la chaîne commerciale de l’indépendant B2B.</p>\n<p><strong>Pour qui ?</strong> Vous vendez vos services à des entreprises. Vos prospects sont dans un carnet, vos relances dans votre tête et vos appels se préparent sur le trajet. Ce pack met de l’ordre sans vous imposer un CRM d’entreprise.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Préparateur d'appel découverte</strong> : Questions par phase, objections et prochaine étape datée. (12 € seul)</li><li><strong>Pipeline de prospection B2B</strong> : Prospects par étape et relances selon votre cadence. (25 € seul)</li><li><strong>CRM freelance</strong> : Clients, prochaine action datée et relances du jour. (25 € seul)</li><li><strong>Propositions commerciales</strong> : Contexte, options comparées et planning : une proposition claire. (19 € seul)</li><li><strong>Kit références et plaquette</strong> : Vos réalisations mises en valeur, plaquette imprimable par prospect. (19 € seul)</li><li><strong>Calendrier éditorial</strong> : Sujets, formats et régularité de vos publications. (15 € seul)</li><li><strong>Suivi des appels d'offres et candidatures</strong> : Consultations, pièces, dates limites et résultats. (15 € seul)</li></ul>\n<p>130 € à l’achat séparé, 97 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (97 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (122 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "description_html": "<p><strong>Moins de prospects perdus, plus de rendez-vous qui aboutissent.</strong></p>\n<p>Préparer l’appel, suivre chaque prospect, ne plus oublier une relance : la chaîne commerciale de l’indépendant B2B.</p>\n<p><strong>Pour qui ?</strong> Vous vendez vos services à des entreprises. Vos prospects sont dans un carnet, vos relances dans votre tête et vos appels se préparent sur le trajet. Ce pack met de l’ordre sans vous imposer un CRM d’entreprise.</p>\n<p><strong>Le contenu du pack (6 templates) :</strong></p>\n<ul><li><strong>Préparateur d'appel découverte</strong> : Questions par phase, objections et prochaine étape datée. (12 € seul)</li><li><strong>CRM et prospection</strong> : Prospects et clients, relances selon votre cadence, pipeline et factures suivies. (25 € seul)</li><li><strong>Propositions commerciales</strong> : Contexte, options comparées et planning : une proposition claire. (19 € seul)</li><li><strong>Kit références et plaquette</strong> : Vos réalisations mises en valeur, plaquette imprimable par prospect. (19 € seul)</li><li><strong>Calendrier éditorial</strong> : Sujets, formats et régularité de vos publications. (15 € seul)</li><li><strong>Suivi des appels d'offres et candidatures</strong> : Consultations, pièces, dates limites et résultats. (15 € seul)</li></ul>\n<p>105 € à l’achat séparé, 78 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (78 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (98 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "7/7",
+    "templates_en_vente": "6/6",
     "templates_a_mettre_en_vente": []
   },
   {

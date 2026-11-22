@@ -491,20 +491,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Un article vendu en lot ou au détail qui se suit mal ?',
   },
   CRM: {
-    commencer: 'ajoutez un prospect avec sa prochaine action datée : il apparaît le jour venu dans la liste des personnes à relancer, retards en tête.',
+    commencer: 'ajoutez un prospect avec sa cadence de relance (ou une prochaine action datée) : il apparaît le jour venu dans la liste des personnes à relancer, retards en tête, avec le message prêt à copier.',
     astuces: [
-      'quand vous notez un échange comme fait, l\'outil propose l\'action suivante ;',
-      'les contacts sans échange depuis 3 ans sont signalés, pour que vous les archiviez ou les supprimiez.',
-    ],
-    aide: 'Un cycle de vente ou une étape propre à votre activité ?',
-  },
-  PRS: {
-    commencer: 'ajoutez un prospect et choisissez sa cadence de relance : la date de la prochaine relance se calcule, avec le message prêt à copier.',
-    astuces: [
-      'les scripts se remplissent avec le prénom, l\'organisation et la fonction du prospect ;',
+      'les scripts se remplissent avec le prénom, l\'organisation et la fonction du contact ; quand il répond, la cadence s\'arrête et l\'affaire passe « En échange » ;',
       'une personne qui s\'oppose est arrêtée d\'un geste : plus aucune relance, et seul le minimum est gardé pour ne pas la recontacter.',
     ],
-    aide: 'Un canal ou un rythme de prospection que les cadences types ne couvrent pas ?',
+    aide: 'Un cycle de vente, un canal ou un rythme de relance propre à votre activité ?',
   },
   RCV: {
     commencer: 'saisissez une facture impayée avec son montant et son échéance : le retard en jours, les pénalités et l\'indemnité forfaitaire entre professionnels se calculent.',
