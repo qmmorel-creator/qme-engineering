@@ -285,6 +285,14 @@ Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de lic
 par e-mail, code `SMP` généré à la main). Packs abandonnés : « Flotte » (T57 contient déjà la flotte) et
 « Organisateur d'événements » (mélangeait mariage grand public et agences).
 
+
+**Rationalisation du 22/11/2026 (décision de Quentin, `docs/templates/RATIONALISATION.md`)** : packs Voyage, Bien démarrer
+l'année et Cuisine retirés (entièrement contenus dans Vie à deux, Productivité perso, Maison et famille ; Voyage et
+Bien démarrer dépubliés sur Gumroad, adresses redirigées) ; Reprendre la main sur son argent devient **Papiers et
+décisions d'argent** (TDV, PTM, DCS, RBS, CPT) ; Mariage et installation à deux devient **Vie à deux** (`/packs/vie-a-deux/`) ;
+Enseignant et formateur devient **Écoles et formateurs** (+ auto-école) ; Exploitation et maintenance : GMA, VRF, NCF, STK ;
+Maison et famille + potager ; Moyens généraux + séminaire ; Petite entreprise : matrice des compétences annoncée (à
+venir, entre dans le pack à sa mise en vente). Les lignes du tableau ci-dessus sont antérieures à cette date.
 ## Ordre de production conseillé
 
 1. T01 : fait (en vente).
