@@ -83,7 +83,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   publications), comptes et préférences, intérêts, **données saisies dans les applications** (espaces de données d'achat et
   d'essai par application, modifiés sur la période, nombre d'éléments, dernière modification ; espaces administrateur et
   essais de test exclus ; contenu jamais transmis, un espace d'achat n'est relié à aucune personne). API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
-  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », à créer),
+  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », créé par Quentin et ajouté sur Netlify le 23/11/2026 ; profil GoatCounter → API, `/user/api`),
   `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
   via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
 - Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
