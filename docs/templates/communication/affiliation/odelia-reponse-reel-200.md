@@ -29,7 +29,8 @@ Objectif d'épargne 12 € ; Repas de la semaine et liste de courses 13 €.
 
 ## Mise en avant retenue
 
-- **Un seul message dans le Reel** : réussir ses partiels de janvier. Accroche « je sais exactement quelle note il me
+- **Produit d'appel du Reel laissé au choix d'Odélia** (demande de Quentin, 22/11) : révisions et habitudes, budget
+  étudiant, ou autre combinaison. Ancienne proposition : réussir ses partiels de janvier. Accroche « je sais exactement quelle note il me
   faut », démo `/demo/odelia/` (note à viser, chapitres du jour, série de révisions). Prix d'appel : Planning de
   révision à 14,90 € ; offre complète : Pack Étudiant à 69 €.
 - **Story de relais** avec sticker lien `qm-engineering.fr/odelia` (lien court de `netlify.toml`, vers
@@ -76,11 +77,15 @@ Pour le budget étudiant :
 
 Tout se fait sur le téléphone : l'outil s'ouvre dans le navigateur, s'ajoute à l'écran d'accueil comme une application, sans rien télécharger sur un store, et les données suivent sur l'ordinateur. Chaque outil se teste gratuitement avant l'achat, sans inscription.
 
-Pour le Reel, je propose de garder un seul message, celui qui parle le plus à son public en janvier : réussir ses partiels. Le point d'entrée serait le Planning de révision à 14,90 €, et le pack pour celles et ceux qui veulent tout. La démo à son nom est prête : https://qm-engineering.fr/demo/odelia/
-Le budget étudiant pourrait faire l'objet d'un second temps, à la rentrée par exemple, si l'idée lui plaît.
+Pour le Reel, je préfère laisser Odélia choisir le produit d'appel : c'est elle qui connaît le mieux sa communauté. Pourriez-vous voir avec elle ce qui lui semble le plus pertinent ?
+- les révisions et les habitudes (Planning de révision et Suivi d'habitudes), pour préparer les partiels de janvier ;
+- le budget étudiant (Mon Budget, abonnements, colocation), pour reprendre ses dépenses en main en début d'année ;
+- ou une autre combinaison parmi les outils ci-dessus.
+La démo à son nom est déjà prête pour les révisions : https://qm-engineering.fr/demo/odelia/
+Je peux en préparer une pour le budget si elle choisit cette piste.
 
 Concrètement, le lien à mettre est : qm-engineering.fr/odelia
-Il mène à la page des outils étudiants, où chacun est présenté avec son prix à l'unité, sa démo et le pack. Il me permet aussi de mesurer les visites venues de sa publication.
+Il mène pour l'instant à la page des outils étudiants, où chacun est présenté avec son prix à l'unité, sa démo et le pack ; je le ferai pointer vers le produit qu'elle aura choisi. Il me permet aussi de mesurer les visites venues de sa publication.
 
 Pour qu'Odélia montre les outils avec ses propres données, je lui offre l'accès gratuit à vie aux outils études et budget ci-dessus.
 
