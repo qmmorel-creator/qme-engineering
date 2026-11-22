@@ -1223,6 +1223,15 @@
   status = 302
   force = true
 
+# Partenariat Odélia (Yuzu Agency, Reel Instagram + story, 22/11/2026) : lien court du sticker de la story et de
+# la bio, vers la page du Pack Étudiant (chaque outil y est aussi vendu à l'unité, avec sa démo).
+# Fiche : docs/templates/communication/affiliation/odelia.md
+[[redirects]]
+  from = "/odelia"
+  to = "/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia"
+  status = 302
+  force = true
+
 # Prospection LinkedIn BTP (20/11/2026) : lien court des invitations et messages, vers le pack Chef de projet BTP.
 # Fiche : docs/templates/communication/prospection-linkedin/packs-btp-enseignant.md
 [[redirects]]

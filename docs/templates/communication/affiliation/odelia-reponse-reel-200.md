@@ -10,7 +10,7 @@ Eva n'a pas mis Odélia en copie de ce dernier mail : on ne la remet pas.
 |---|---|---|
 | Format | 1 vidéo TikTok | 1 Reel Instagram dédié + story de relais avec sticker lien (demandée, non exigée) |
 | Fixe | 200 € | 200 € (proposé par Eva) |
-| Commission | sur chaque vente par son lien | maintenue (taux à fixer par Quentin, absent du mail) |
+| Commission | sur chaque vente par son lien | retirée pour l'instant (Eva n'en parle pas ; décision de Quentin, 22/11) |
 | Contrepartie en nature | au choix : 17 outils (241,90 €) ou sur-mesure (2 000 € minimum) | accès gratuit à vie aux outils étudiants et budget (12 outils, 156,90 € au prix public) ; le sur-mesure n'est plus proposé |
 
 Raison : le Reel vaut moins qu'un TikTok pour nous (pas de lien cliquable, audience Instagram surtout lifestyle), et
@@ -32,7 +32,10 @@ Objectif d'épargne 12 € ; Repas de la semaine et liste de courses 13 €.
 - **Un seul message dans le Reel** : réussir ses partiels de janvier. Accroche « je sais exactement quelle note il me
   faut », démo `/demo/odelia/` (note à viser, chapitres du jour, série de révisions). Prix d'appel : Planning de
   révision à 14,90 € ; offre complète : Pack Étudiant à 69 €.
-- **Story de relais** avec sticker lien vers la page du Pack Étudiant (lien personnel suivi), le jour du Reel.
+- **Story de relais** avec sticker lien `qm-engineering.fr/odelia` (lien court de `netlify.toml`, vers
+  `/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia`), le jour du Reel. Actif seulement
+  après fusion dans `main` et publication.
+- **À l'unité** : la page du pack montre chaque outil avec son prix seul et sa démo ; c'est un argument du mail.
 - **Budget** : pas dans le Reel (deux messages diluent l'appel à l'action). Proposé comme second temps possible
   (rentrée de septembre ou budget de début d'année), sans engagement.
 - **Calendrier** : fin décembre ou tout début janvier, avant les partiels.
@@ -47,13 +50,15 @@ Bonjour Eva,
 
 Merci pour votre retour et pour cet effort sur le tarif.
 
-C'est d'accord pour un Reel Instagram dédié, avec un fixe de 200 €. Je maintiens en plus la commission sur chaque vente réalisée par le lien personnel d'Odélia, versée directement par Gumroad.
+C'est d'accord pour un Reel Instagram dédié, avec un fixe de 200 €.
 
 Vous avez bien fait de poser la question des 2 000 €, je n'ai pas été assez clair. Ce montant concerne uniquement mon activité de développement sur mesure, pour des professionnels (entreprises, indépendants) qui me commandent un outil conçu pour eux. Il n'a rien à voir avec les templates : ce sont des outils prêts à l'emploi, vendus en achat unique, sans abonnement, à des prix pensés pour un budget étudiant.
 
+Il existe un Pack Étudiant, mais l'un des intérêts est justement de pouvoir prendre les outils un par un : un étudiant achète seulement celui dont il a besoin, à partir de 9 €, et peut en ajouter un autre plus tard.
+
 Pour la communauté d'Odélia, voici les plus utiles.
 
-Pour les études, le Pack Étudiant réunit 7 outils pour 69 € (au lieu de 92,90 € à l'unité) :
+Pour les études (7 outils, 69 € en pack au lieu de 92,90 € à l'unité) :
 - Planning de révision : 14,90 €
 - Notes et moyennes (note à viser pour valider le semestre) : 12 €
 - Planner horaire (emploi du temps de la semaine) : 15 €
@@ -69,21 +74,24 @@ Pour le budget étudiant :
 - Objectif d'épargne : 12 €
 - Repas de la semaine et liste de courses : 13 €
 
-Chaque outil fonctionne sur téléphone et sur ordinateur, et se teste gratuitement avant l'achat, sans inscription.
+Tout se fait sur le téléphone : l'outil s'ouvre dans le navigateur, s'ajoute à l'écran d'accueil comme une application, sans rien télécharger sur un store, et les données suivent sur l'ordinateur. Chaque outil se teste gratuitement avant l'achat, sans inscription.
 
-Pour le Reel, je propose de garder un seul message, celui qui parle le plus à son public en janvier : réussir ses partiels. Le point d'entrée serait le Planning de révision à 14,90 €, et le Pack Étudiant pour celles et ceux qui veulent tout. La démo à son nom est prête : https://qm-engineering.fr/demo/odelia/
+Pour le Reel, je propose de garder un seul message, celui qui parle le plus à son public en janvier : réussir ses partiels. Le point d'entrée serait le Planning de révision à 14,90 €, et le pack pour celles et ceux qui veulent tout. La démo à son nom est prête : https://qm-engineering.fr/demo/odelia/
 Le budget étudiant pourrait faire l'objet d'un second temps, à la rentrée par exemple, si l'idée lui plaît.
 
-Pour qu'Odélia montre les outils avec ses propres données, je lui offre l'accès gratuit à vie au Pack Étudiant et aux cinq outils budget ci-dessus.
+Concrètement, le lien à mettre est : qm-engineering.fr/odelia
+Il mène à la page des outils étudiants, où chacun est présenté avec son prix à l'unité, sa démo et le pack. Il me permet aussi de mesurer les visites venues de sa publication.
+
+Pour qu'Odélia montre les outils avec ses propres données, je lui offre l'accès gratuit à vie aux outils études et budget ci-dessus.
 
 Quelques points pour caler les choses :
 1. Date : fin décembre ou tout début janvier, avant les partiels. Quelles dates lui conviendraient ?
-2. Lien : un Reel n'ayant pas de lien cliquable, serait-il possible de relayer le Reel le jour même en story, avec le sticker lien vers son lien personnel ?
+2. Lien : un Reel n'ayant pas de lien cliquable, serait-il possible de relayer le Reel le jour même en story, avec le sticker lien qm-engineering.fr/odelia, et de le mettre dans sa bio pendant quelques jours ?
 3. Mention : le Reel portera la mention « Collaboration commerciale ».
-4. Retour : après publication, pourriez-vous me transmettre les vues du Reel et les clics sur le lien ?
+4. Retour : après publication, pourriez-vous me transmettre les vues du Reel et de la story ?
 5. Facturation : quelles sont vos modalités (facture de l'agence, échéance) ?
 
-Je vous envoie à votre retour le lien personnel d'Odélia, ses accès et un court brief, qu'elle reste libre d'adapter.
+Je vous envoie à votre retour ses accès et un court brief, qu'elle reste libre d'adapter.
 
 Merci encore, et à très vite,
 
