@@ -116,6 +116,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
   à `qme-<pre>-essai`, écrit par `essai.js`) ou **Admin** (code `ADM-…`), le template ouvert en tête, puis
   « Mon espace : tout voir » (`/connexion/`) et « Site QME ». Données chargées à la première ouverture :
   `assets/espace-donnees.js` (généré par `node outils/connexion/generer.mjs`). Mêmes badges sur `/connexion/`.
+  Code administrateur (22/11/2026) : dès qu'un code `ADM-…` est enregistré sur l'appareil pour une application,
+  `/connexion/` et ce panneau le recopient (`etendreAdmin`) pour toutes les applications du catalogue sans code,
+  y compris celles ajoutées après sa saisie ; un achat ou un essai présent n'est jamais remplacé.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
