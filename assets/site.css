@@ -628,6 +628,9 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 @media (prefers-reduced-motion:reduce){.reseaux a{transition:none}.reseaux a:hover{transform:none}}
 /* Téléphone (audit étudiants du 22/11/2026) : les liens réseaux ne flottent plus sur le texte et les boutons, ils
    passent dans le flux, au-dessus du pied de page. */
+/* Téléphone : prix et boutons (essai, achat, démo) remontés sous la capture, avant la liste des fonctions, pour les voir
+   sans faire défiler deux écrans (audit étudiants du 22/11/2026). L'ordre de lecture du code reste inchangé. */
+@media (max-width:640px){.produit-texte>.prix{order:-2;margin-top:0;padding-top:0;border-top:0}.produit-texte>.actions{order:-1;margin:0 0 10px}}
 @media (max-width:600px){.reseaux{position:static;flex-direction:row;justify-content:center;padding:20px 16px 0}footer{padding-right:16px}}
 @media print{.reseaux{display:none}}
 
