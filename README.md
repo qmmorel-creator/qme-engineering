@@ -23,7 +23,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
     `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
     `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
-    (`netlify.toml`), pour les liens déjà publiés ;
+    (`netlify.toml`), pour les liens déjà publiés. Depuis le 22/11/2026, références en cartes compactes (Thalvego en
+    carte de tête sur deux colonnes, puis une carte par référence ; cartes horizontales sur mobile) et vidéos côte à
+    côte. Images : vignettes `assets/vignettes/ref-*.webp` tirées de la capture d'origine (`data-source` de chaque
+    `<img>`) par `node outils/references/vignettes.mjs` (FR et EN), qui réécrit `src`, `width` et `height` ;
   - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
     puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
     tuile affiche les outils du thème (`?theme=…`), chacun avec sa vignette, « Tous les thèmes » ramène aux tuiles ;
