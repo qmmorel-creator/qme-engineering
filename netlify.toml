@@ -1232,6 +1232,13 @@
   status = 302
   force = true
 
+# Même lien saisi avec une majuscule (sticker, bio) : les chemins Netlify sont sensibles à la casse (/Odelia → 404).
+[[redirects]]
+  from = "/Odelia"
+  to = "/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia"
+  status = 302
+  force = true
+
 # Prospection LinkedIn BTP (20/11/2026) : lien court des invitations et messages, vers le pack Chef de projet BTP.
 # Fiche : docs/templates/communication/prospection-linkedin/packs-btp-enseignant.md
 [[redirects]]
