@@ -8,7 +8,7 @@
 (() => {
   'use strict';
   if (window.QMEMesTemplates) return;
-  const V = '20261123a';
+  const V = '20261123b';
   const lire = (c) => { try { const v = localStorage.getItem(c) ?? sessionStorage.getItem(c); return v ? JSON.parse(v) : null; } catch { return null; } };
   const garder = (c, v) => { try { localStorage.setItem(c, JSON.stringify(v)); } catch { /* stockage indisponible */ } };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -21,6 +21,23 @@
     if (norm(code).startsWith('ADM')) return 'admin';
     const essai = lire(`qme-${p}-essai`);
     return essai && norm(essai) === norm(code) ? 'essai' : 'achete';
+  }
+  // Code administrateur : étendu à toutes les applications du catalogue (même règle que QMEEspace.etendreAdmin dans
+  // assets/espace.js) ; un achat ou un essai déjà présent n'est jamais remplacé.
+  function etendreAdmin(produits) {
+    let code = null, stock = null;
+    for (const p of Object.values(produits || {})) {
+      for (const st of [localStorage, sessionStorage]) {
+        try { const v = JSON.parse(st.getItem(p.cle) || 'null'); if (typeof v === 'string' && norm(v).startsWith('ADM')) { code = v; stock = st; break; } } catch { /* illisible */ }
+      }
+      if (code) break;
+    }
+    if (!code) return;
+    for (const p of Object.values(produits)) {
+      const v = lire(p.cle);
+      if (v && v !== 'DEMO') continue;
+      try { stock.setItem(p.cle, JSON.stringify(code)); } catch { /* stockage indisponible */ }
+    }
   }
   const BADGE = { achete: ['Acheté', 'achete'], essai: ['Essai', 'essai'], admin: ['Admin', 'admin'] };
   const badge = (s) => (BADGE[s] ? `<span class="qme-mt-badge qme-mt-${BADGE[s][1]}">${BADGE[s][0]}</span>` : '');
@@ -120,6 +137,7 @@
   }
   function remplir(filtre = '') {
     const { produits } = donnees, ici = produitCourant(produits);
+    etendreAdmin(produits);
     const recents = Object.fromEntries((lire('qme-espace-recents') || []).map((r) => [r.p, r.t]));
     const epingles = lire('qme-espace-epingles') || [], noms = lire('qme-espace-noms') || {}, masques = lire('qme-espace-masques') || [];
     const nom = (k) => noms[k] || produits[k].nom;

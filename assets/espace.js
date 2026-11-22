@@ -29,6 +29,26 @@
     return essai && norm(essai) === norm(code) ? 'essai' : 'achete';
   }
   const BADGES = { achete: 'Acheté', essai: 'Essai', admin: 'Admin' };
+  // Code administrateur (ADM-…) : il donne accès à toutes les applications, y compris celles ajoutées au catalogue
+  // après sa saisie. Recopié dans le même stockage (local ou session) pour chaque application sans code (ou en démo) ;
+  // un achat ou un essai déjà présent n'est jamais remplacé. Renvoie le nombre d'applications complétées.
+  function etendreAdmin(produits) {
+    let code = null, stock = null;
+    for (const p of Object.values(produits || {})) {
+      for (const st of [localStorage, sessionStorage]) {
+        try { const v = JSON.parse(st.getItem(p.cle) || 'null'); if (typeof v === 'string' && norm(v).startsWith('ADM')) { code = v; stock = st; break; } } catch { /* illisible */ }
+      }
+      if (code) break;
+    }
+    if (!code) return 0;
+    let n = 0;
+    for (const p of Object.values(produits)) {
+      const v = lire(p.cle);
+      if (v && v !== 'DEMO') continue;
+      try { stock.setItem(p.cle, JSON.stringify(code)); n++; } catch { /* stockage indisponible */ }
+    }
+    return n;
+  }
   const badgeStatut = (k) => { const s = statut(k); return s ? `<span class="esp-badge esp-${s}">${BADGES[s]}</span>` : ''; };
   function noterOuverture(k) { const l = (lire(CLE_RECENTS) || []).filter((r) => r.p !== k); l.unshift({ p: k, t: Date.now() }); garder(CLE_RECENTS, l.slice(0, 12)); }
 
@@ -233,5 +253,5 @@
   };
   for (const t of ['pointerover', 'focusin', 'touchstart']) document.addEventListener(t, orienter, { passive: true });
 
-  window.QMEEspace = { creer, noterOuverture, lire, garder, esc, statut, badgeStatut, prefs, prenom, changerPrefs, CLE_MAJ };
+  window.QMEEspace = { creer, noterOuverture, lire, garder, esc, statut, badgeStatut, etendreAdmin, prefs, prenom, changerPrefs, CLE_MAJ };
 })();
