@@ -1314,6 +1314,8 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
+    // `?demo&reinit` : la démo repart des données d'exemple, même si une démo modifiée est gardée sur l'appareil.
+    if (new URLSearchParams(location.search).has('demo') && new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
     if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();
