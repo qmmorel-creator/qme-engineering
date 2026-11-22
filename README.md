@@ -23,7 +23,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
     `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
     `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
-    (`netlify.toml`), pour les liens déjà publiés ;
+    (`netlify.toml`), pour les liens déjà publiés. Depuis le 22/11/2026, références en cartes compactes (Thalvego en
+    carte de tête sur deux colonnes, puis une carte par référence ; cartes horizontales sur mobile) et vidéos côte à
+    côte. Images : vignettes `assets/vignettes/ref-*.webp` tirées de la capture d'origine (`data-source` de chaque
+    `<img>`) par `node outils/references/vignettes.mjs` (FR et EN), qui réécrit `src`, `width` et `height` ;
   - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
     puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
     tuile affiche les outils du thème (`?theme=…`), chacun avec sa vignette, « Tous les thèmes » ramène aux tuiles ;
@@ -91,7 +94,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
   `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
   (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
-  `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+  `POST /api/compte/opposition/verifier` (code administrateur, ou en lecture seule l'en-tête `X-Opposition-Token` avec la
+  variable Netlify `OPPOSITION_TOKEN`, 32 caractères au moins) ; registre `/admin/registre/` (CSV). Conservation 3 ans.
 - Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
   d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
   (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;

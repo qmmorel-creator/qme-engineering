@@ -130,3 +130,13 @@ test('tableau : données saisies (achats, essais), administrateur et tests exclu
   const sans = await tableau({ secret: SECRET, store, recuperer: async () => { throw new Error('x'); }, jours: 7, maintenant: () => T0 });
   assert.equal(sans.donnees.configure, false);
 });
+
+test('tableau : erreur GoatCounter détaillée (route et réponse, sans le jeton)', async () => {
+  const store = { get: async () => null, set: async () => {}, supprimer: async () => {}, lister: async () => [] };
+  const recuperer = async (url) => (new URL(url).hostname.includes('goatcounter')
+    ? { ok: false, status: 404, text: async () => '{"error":"not found"}' }
+    : { ok: false, status: 503, text: async () => '', json: async () => ({}) });
+  const t = await tableau({ secret: 't'.repeat(40), store, goatcounter: { token: 'jeton-secret' }, recuperer, jours: 7, maintenant: () => Date.parse('2026-11-22T12:00:00Z') });
+  assert.match(t.audience.erreur, /^GoatCounter 404 sur \/stats\/[a-z]+ : \{"error":"not found"\}$/);
+  assert.ok(!t.audience.erreur.includes('jeton-secret'));
+});

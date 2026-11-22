@@ -48,7 +48,8 @@
   // seuil (nombre d'applications à partir duquel recherche, thèmes et récents s'affichent), avantOuverture(k),
   // actions(k) → HTML d'un bouton supplémentaire par application, badge(k) → HTML d'un badge.
   // grille : lanceur d'icônes (espace personnel) ; thèmes en filtres, favoris en tête, sans « récemment ouverts ».
-  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge, grille = false } = {}) {
+  // marque(k) : badge visuel posé dans le coin haut-droit de l'icône (mode grille) ; badge(k) : pastille de texte (listes).
+  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge, marque, grille = false } = {}) {
     racine.classList.add('esp');
     racine.innerHTML = `<div class="espace-outils" data-outils>
         <label class="esp-recherche"><span class="vh">Rechercher dans mes applications</span>
@@ -82,8 +83,8 @@
     function icone(k, ep) {
       const p = P(k), t = theme(p.theme), estEp = ep.includes(k);
       return `<li class="app" style="--c:var(--${t.c})"><a href="${esc(p.url)}" data-pre="${esc(k)}" title="${esc(p.nom)}">`
-        + `<span class="app-icone">${p.icone ? `<img src="${esc(p.icone)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}</span>`
-        + `<span class="app-nom">${esc(nom(k))}</span>${badge ? badge(k) || '' : ''}</a>`
+        + `<span class="app-icone">${p.icone ? `<img src="${esc(p.icone)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}${marque ? marque(k) || '' : ''}</span>`
+        + `<span class="app-nom">${esc(nom(k))}</span>${marque ? '' : badge ? badge(k) || '' : ''}</a>`
         + `<button type="button" class="epingle app-etoile" data-epingle="${esc(k)}" aria-pressed="${estEp}" aria-label="${estEp ? 'Retirer des favoris' : 'Ajouter aux favoris'} : ${esc(nom(k))}" title="${estEp ? 'Retirer des favoris' : 'Ajouter aux favoris'}">${ETOILE}</button></li>`;
     }
     function tuile(k, ep, zone = '') {
@@ -225,5 +226,12 @@
       get visibles() { return mes.slice(); },
     };
   }
+  // Info-bulle du badge (coin de l'icône) : ouverte vers la droite quand le badge est dans la moitié gauche de l'écran.
+  const orienter = (e) => {
+    const zone = e.target?.closest?.('a, .carte-app, .app'), m = zone?.querySelector?.('.app-marque');
+    if (m) m.classList.toggle('vers-droite', m.getBoundingClientRect().left < innerWidth / 2);
+  };
+  for (const t of ['pointerover', 'focusin', 'touchstart']) document.addEventListener(t, orienter, { passive: true });
+
   window.QMEEspace = { creer, noterOuverture, lire, garder, esc, statut, badgeStatut, prefs, prenom, changerPrefs, CLE_MAJ };
 })();
