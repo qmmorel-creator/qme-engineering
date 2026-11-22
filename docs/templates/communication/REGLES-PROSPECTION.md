@@ -19,6 +19,9 @@ Adresse ou domaine opposé : **ne jamais écrire**, ni relance, ni affiliation, 
 
 ## 2. Dans l'e-mail : la mention, toujours, en dernier paragraphe
 
+La mention vient après la signature graphique QME (version HTML, obligatoire depuis le 22/11/2026 :
+`docs/templates/communication/signature/README.md`).
+
 Lien personnel : `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse du destinataire, encodée>` (page publique :
 l'adresse est préremplie, la personne confirme d'un clic ; elle rejoint la liste d'opposition). Encoder l'adresse
 (`@` → `%40`, `+` → `%2B`).
