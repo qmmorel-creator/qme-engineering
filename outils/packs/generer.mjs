@@ -346,7 +346,7 @@ function pageComposer(packs) {
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
 // Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
 // Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
-const VE = '2026112301'; // version de assets/espace.js et espace.css
+const VE = '2026112303'; // version de assets/espace.js et espace.css
 async function pageEspace() {
   const { produits, themes } = await donneesEspace();
   return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
