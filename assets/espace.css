@@ -14,6 +14,8 @@
 .sauts{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
 .sauts::-webkit-scrollbar{display:none}
 .sauts:empty{display:none}
+/* Souris : pas de défilement latéral possible à la molette, les filtres passent à la ligne. */
+@media (hover:hover) and (pointer:fine){.sauts{flex-wrap:wrap;overflow-x:visible;margin:0;padding:0}}
 .sauts a{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap;color:var(--encre)}
 .sauts a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
 .sauts a:hover{border-color:var(--encre)}
