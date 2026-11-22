@@ -220,6 +220,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- `/pro/` et `/perso/` (22/11/2026, `docs/templates/RATIONALISATION.md`) : le catalogue filtré sur une partie (pros ou
+  vie perso), son accroche et ses packs ; générées par `outils/parties/generer.mjs`, appelé à la fin de
+  `node outils/packs/generer.mjs`, contrôlées par `outils/templates/parties.test.mjs`. Menu de toutes les pages :
+  « Pros · Vie perso · Packs · Sur mesure » ; accueil : deux portes et le sur mesure en dessous.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
