@@ -41,6 +41,7 @@
 .pack-hero-achat .detail{font-size:14px;color:var(--texte-2);margin-top:6px}
 .prochaine-note{font-size:14px;margin-top:8px;padding:8px 12px;border-radius:12px;background:var(--pf);color:var(--pt)}
 .pack-hero-achat .actions{display:flex;flex-wrap:wrap;gap:10px}
+.parcours p a:not(.btn){display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
 .essai-pack{margin-top:12px;font-size:15px;line-height:1.45;color:var(--texte-2)}
 .essai-pack a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--encre);text-underline-offset:3px}
 .pack-section .section-head p{max-width:760px}
