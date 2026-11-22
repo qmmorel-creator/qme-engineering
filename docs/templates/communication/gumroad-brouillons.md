@@ -221,16 +221,16 @@ transformé `rituel` en `ritüel`. Couvertures non ajoutées (comme les précéd
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PPE | Pack Petite entreprise | hHV1OaACgMmSJW0Vkv0SXQ== | /l/pack-petite-entreprise | 164 € (évolutif 205 €) | brouillon ; Quentin : clé + versions « Pack » et « Pack évolutif » |
-| PCA | Pack Commerçant et artisan | YqkUp-9uupBcFHTAAjlkQg== | /l/pack-commercant-artisan | 95 € (évolutif 119 €) | brouillon ; Quentin : clé + versions « Pack » et « Pack évolutif » |
-| RVH | Revue hebdomadaire et journal de bord | 4avh-xwvvFj0eRmC4rqDcg== | /l/revue-hebdomadaire | 12 € | brouillon ; Quentin : clé |
-| CRS | Plan d'entraînement course à pied | AGzHi8ozc6S4vQwmvGmOPA== | /l/plan-entrainement-course-a-pied | 15 € | brouillon ; Quentin : clé |
-| DMN | Déménagement | eeYVGKI0XJJMFQGwKEMl1Q== | /l/demenagement | 12 € | brouillon ; Quentin : clé |
-| CDX | Cadeaux reçus et remerciements | MCs3LoKvVl7DtQhtn_dWTA== | /l/cadeaux-remerciements | 12 € | brouillon ; Quentin : clé |
-| CTR | Contrats fournisseurs et échéances | AcRfb_xMr-mqRGpwNLgotw== | /l/contrats-fournisseurs | 25 € | brouillon ; Quentin : clé |
-| PRK | Pilotage de parcs multi-sites | hOn6wGUScmPpb--BuJTl-g== | /l/pilotage-parcs-multi-sites | 49 € | brouillon ; Quentin : clé |
-| BSC | Pilotage d'une journée de bascule | xH5b6U76Zzjy5ADJBYu03g== | /l/pilotage-bascule | 29 € | brouillon ; Quentin : clé |
-| ACH | Demandes d'achat et fournitures | qdpoGVR4hsFttsxDiKTSyw== | /l/demandes-achat-fournitures | 19 € | brouillon ; Quentin : clé |
+| PPE | Pack Petite entreprise | hHV1OaACgMmSJW0Vkv0SXQ== | /l/pack-petite-entreprise | 164 € (évolutif 205 €) | **en vente** (22/11/2026, sans versions « Pack » / « Pack évolutif » sur Gumroad) |
+| PCA | Pack Commerçant et artisan | YqkUp-9uupBcFHTAAjlkQg== | /l/pack-commercant-artisan | 95 € (évolutif 119 €) | **en vente** (22/11/2026, sans versions « Pack » / « Pack évolutif » sur Gumroad) |
+| RVH | Revue hebdomadaire et journal de bord | 4avh-xwvvFj0eRmC4rqDcg== | /l/revue-hebdomadaire | 12 € | **en vente** (22/11/2026) |
+| CRS | Plan d'entraînement course à pied | AGzHi8ozc6S4vQwmvGmOPA== | /l/plan-entrainement-course-a-pied | 15 € | **en vente** (22/11/2026) |
+| DMN | Déménagement | eeYVGKI0XJJMFQGwKEMl1Q== | /l/demenagement | 12 € | **en vente** (22/11/2026) |
+| CDX | Cadeaux reçus et remerciements | MCs3LoKvVl7DtQhtn_dWTA== | /l/cadeaux-remerciements | 12 € | **en vente** (22/11/2026) |
+| CTR | Contrats fournisseurs et échéances | AcRfb_xMr-mqRGpwNLgotw== | /l/contrats-fournisseurs | 25 € | **en vente** (22/11/2026) |
+| PRK | Pilotage de parcs multi-sites | hOn6wGUScmPpb--BuJTl-g== | /l/pilotage-parcs-multi-sites | 49 € | **en vente** (22/11/2026) |
+| BSC | Pilotage d'une journée de bascule | xH5b6U76Zzjy5ADJBYu03g== | /l/pilotage-bascule | 29 € | **en vente** (22/11/2026) |
+| ACH | Demandes d'achat et fournitures | qdpoGVR4hsFttsxDiKTSyw== | /l/demandes-achat-fournitures | 19 € | **en vente** (22/11/2026) |
 
 À la publication (règle 7 de `gumroad-priorite.md`) : identifiants dans `PRODUITS` (templates) ou `PACKS` (PPE, PCA),
 `mettre-en-vente.py`, fiche de prise en main de l'essai pour chaque template (`netlify/lib/essais-prise-en-main.mjs`,

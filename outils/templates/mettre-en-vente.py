@@ -26,10 +26,10 @@ for sl,prix,perma,num in items:
     t=t.replace('<a href="/catalogue/gantt/" hreflang="fr"',f'<a href="/catalogue/{sl}/" hreflang="fr"')
     ecrire(p,t)
     # Carte : retirée de « Bientôt », ajoutée en fin de vitrine
-    m=re.search(rf'\n\s*<li class="carte prochaine" data-slug="{sl}" data-pour="(\w+)" data-theme="([\w-]+)" style="([^"]*)"><a href="[^"]*"><b>(.*?)</b><span class="phrase">(.*?)</span><span class="theme">(.*?)</span><em>Bientôt[^<]*</em></a></li>',tpl); assert m,(sl,'carte')
-    pour,theme,style,b,phrase,th=m.groups()
+    m=re.search(rf'\n\s*<li class="carte prochaine" data-slug="{sl}"((?: data-vignette="[^"]*")?) data-pour="(\w+)" data-theme="([\w-]+)" style="([^"]*)"><a href="[^"]*"><b>(.*?)</b><span class="phrase">(.*?)</span><span class="theme">(.*?)</span><em>Bientôt[^<]*</em></a></li>',tpl); assert m,(sl,'carte')
+    vignette,pour,theme,style,b,phrase,th=m.groups()
     tpl=tpl.replace(m.group(0),'',1)
-    carte=f'\n      <li class="carte" data-slug="{sl}" data-pour="{pour}" data-theme="{theme}" style="{style}"><a href="/catalogue/{sl}/"><span class="theme">{th}</span><b>{b}</b><span class="phrase">{phrase}</span><span class="pied"><em>{prix}</em><span>Voir le détail</span></span></a></li>'
+    carte=f'\n      <li class="carte" data-slug="{sl}"{vignette} data-pour="{pour}" data-theme="{theme}" style="{style}"><a href="/catalogue/{sl}/"><span class="theme">{th}</span><b>{b}</b><span class="phrase">{phrase}</span><span class="pied"><em>{prix}</em><span>Voir le détail</span></span></a></li>'
     a=tpl.index('<ul class="vitrine-piste"'); f=tpl.index('\n    </ul>',a)
     tpl=tpl[:f]+carte+tpl[f:]
     # IDEES

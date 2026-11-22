@@ -93,7 +93,7 @@ déjà).
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | en vente | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
@@ -110,7 +110,7 @@ déjà).
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
+| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | en vente | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en vente | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | en vente | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
@@ -137,7 +137,7 @@ déjà).
 | T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | en vente | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en vente | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
@@ -156,13 +156,13 @@ déjà).
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
-| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | en vente | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | en vente | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
-| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
-| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
@@ -172,7 +172,7 @@ déjà).
 | T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | prêt | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026, développée le 21/11/2026 (fiche en fin de fichier) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
