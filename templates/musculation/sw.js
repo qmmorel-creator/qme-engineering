@@ -2,7 +2,7 @@
 // Les appels à l'API ne sont jamais mis en cache (données du carnet, toujours fraîches) ; le minuteur, entièrement dans la page, marche hors ligne.
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
 const VERSION = 'musculation-20261122a';
-const COQUILLE = ['./', 'app.css?v=20261122a', 'donnees.js?v=20261122a', 'regles.js?v=20261122a', 'app.js?v=20261122a', 'icone.svg', 'manifest.webmanifest'];
+const COQUILLE = ['./', 'app.css?v=20261122a', 'donnees.js?v=20261122a', 'regles.js?v=20261122a', 'app.js?v=20261122a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122a'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

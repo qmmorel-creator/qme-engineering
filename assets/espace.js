@@ -9,12 +9,24 @@
   const plat = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ');
   const CLE_EPINGLES = 'qme-espace-epingles', CLE_RECENTS = 'qme-espace-recents', CLE_OUVERTS = 'qme-espace-themes-ouverts';
   const ETOILE = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
+  // Statut d'un template sur cet appareil (même règle que assets/mes-templates.js) : null, 'achete', 'essai'
+  // (code égal à qme-<pre>-essai, écrit par essai.js) ou 'admin' (code ADM-…).
+  const norm = (s) => String(s || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
+  function statut(pre) {
+    const p = pre.toLowerCase(), code = lire(`qme-${p}-code`);
+    if (!code || code === 'DEMO' || typeof code !== 'string') return null;
+    if (norm(code).startsWith('ADM')) return 'admin';
+    const essai = lire(`qme-${p}-essai`);
+    return essai && norm(essai) === norm(code) ? 'essai' : 'achete';
+  }
+  const BADGES = { achete: 'Acheté', essai: 'Essai', admin: 'Admin' };
+  const badgeStatut = (k) => { const s = statut(k); return s ? `<span class="esp-badge esp-${s}">${BADGES[s]}</span>` : ''; };
   function noterOuverture(k) { const l = (lire(CLE_RECENTS) || []).filter((r) => r.p !== k); l.unshift({ p: k, t: Date.now() }); garder(CLE_RECENTS, l.slice(0, 12)); }
 
   // racine : élément vide à remplir. options : produits {PRE: {nom, url, theme, phrase, img}}, themes [{id, nom, c}],
   // seuil (nombre de templates à partir duquel recherche, thèmes et récents s'affichent), avantOuverture(k),
-  // actions(k) → HTML de boutons supplémentaires par template (au plus un).
-  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions } = {}) {
+  // actions(k) → HTML de boutons supplémentaires par template (au plus un), badge(k) → HTML d'un badge.
+  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge } = {}) {
     racine.classList.add('esp');
     racine.innerHTML = `<div class="espace-outils" data-outils>
         <label class="esp-recherche"><span class="vh">Rechercher dans mes templates</span>
@@ -42,7 +54,7 @@
       const p = P(k), t = theme(p.theme), extra = actions ? actions(k) || '' : '';
       return `<li class="esp-tuile${extra ? ' a-action' : ''}" style="--c:var(--${t.c})"><a href="${esc(p.url)}" data-pre="${esc(k)}">` +
         (p.img ? `<img src="${esc(p.img)}" alt="" width="96" height="60" loading="lazy" decoding="async">` : '<span class="vign-vide" aria-hidden="true"></span>') +
-        `<span class="t-txt"><b>${esc(p.nom)}</b><small>${esc(p.phrase || t.nom)}</small></span></a><span class="t-actions">${extra}` +
+        `<span class="t-txt"><b>${esc(p.nom)}</b><small>${esc(p.phrase || t.nom)}</small>${badge ? badge(k) || '' : ''}</span></a><span class="t-actions">${extra}` +
         `<button type="button" class="epingle" data-epingle="${esc(k)}" aria-pressed="${ep.includes(k)}" aria-label="Épingler ${esc(p.nom)}" title="${ep.includes(k) ? 'Retirer des épinglés' : 'Épingler'}">${ETOILE}</button></span></li>`;
     }
     function rendre() {
@@ -108,5 +120,5 @@
     E.themes.addEventListener('toggle', () => { garder(CLE_OUVERTS, [...E.themes.querySelectorAll('details[open]')].map((d) => d.id.slice(2))); }, true);
     return { maj(liste) { mes = [...new Set(liste)].filter((k) => P(k)); rendre(); }, get nombre() { return mes.length; } };
   }
-  window.QMEEspace = { creer, noterOuverture, lire, garder, esc };
+  window.QMEEspace = { creer, noterOuverture, lire, garder, esc, statut, badgeStatut };
 })();

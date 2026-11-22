@@ -28,3 +28,23 @@ test('espace pack : mêmes données générées que /connexion/ (node outils/pac
   assert.deepEqual(JSON.parse(bloc[2]), themes, 'relancer node outils/packs/generer.mjs');
   assert.ok(page.includes('/assets/espace.js?v=') && page.includes('/assets/espace.css?v='), 'composant commun chargé');
 });
+
+test('applications : panneau « Mes templates » chargé partout, données à jour', async () => {
+  const { readdir } = await import('node:fs/promises');
+  const { donneesJs } = await import('../connexion/generer.mjs');
+  const racine = new URL('../../', import.meta.url);
+  const dossiers = (await readdir(new URL('templates/', racine), { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name);
+  assert.ok(dossiers.length >= 90);
+  for (const d of dossiers) {
+    const page = await readFile(new URL(`templates/${d}/index.html`, racine), 'utf8');
+    assert.match(page, /<script src="\/assets\/mes-templates\.js\?v=[^"]+" defer><\/script>/, `templates/${d}/index.html charge mes-templates.js`);
+    const sw = await readFile(new URL(`templates/${d}/sw.js`, racine), 'utf8');
+    const v = page.match(/mes-templates\.js\?v=([^"]+)"/)[1];
+    assert.ok(sw.match(/const COQUILLE = \[(.*)\];/)[1].includes(`'/assets/mes-templates.js?v=${v}'`), `templates/${d}/sw.js : mes-templates.js dans la coquille`);
+    const app = await readFile(new URL(`templates/${d}/app.js`, racine), 'utf8');
+    assert.match(app, /class="barre/, `templates/${d}/app.js : en-tête .barre (cible du panneau)`);
+    assert.match(app, /class="marque"/, `templates/${d}/app.js : logo .marque`);
+  }
+  const fichier = await readFile(new URL('assets/espace-donnees.js', racine), 'utf8');
+  assert.equal(fichier, donneesJs(await donneesEspace()), 'relancer node outils/connexion/generer.mjs');
+});

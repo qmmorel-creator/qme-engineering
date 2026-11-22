@@ -3,7 +3,7 @@
 // À l'activation, seuls les anciens caches de CE template (préfixe « inscriptions- ») sont supprimés.
 const PREFIXE = 'inscriptions-';
 const VERSION = PREFIXE + '20261115t';
-const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest'];
+const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122a'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

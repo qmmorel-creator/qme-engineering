@@ -66,6 +66,12 @@ Site promotionnel de Quentin Morel Engineering (QME).
   tableau de bord des packs `/packs/espace/` (généré par `outils/packs/generer.mjs`, données de thèmes comprises) :
   templates de tous les packs de l'appareil réunis, même recherche, épinglés, récents et thèmes ; bouton « copier le
   code de partage » sur chaque tuile ; « Gérer mes packs » (oublier un pack) et « Ajouter un pack » en dessous.
+- Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
+  `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
+  panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal
+  à `qme-<pre>-essai`, écrit par `essai.js`) ou **Admin** (code `ADM-…`), le template ouvert en tête, puis
+  « Mon espace : tout voir » (`/connexion/`) et « Site QME ». Données chargées à la première ouverture :
+  `assets/espace-donnees.js` (généré par `node outils/connexion/generer.mjs`). Mêmes badges sur `/connexion/`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.

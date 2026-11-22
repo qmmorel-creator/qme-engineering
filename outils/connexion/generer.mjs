@@ -1,7 +1,8 @@
 // Données de l'espace acheteurs (/connexion/) : un objet par template de PRODUITS (nom, url, clé de stockage,
 // thème, phrase, vignette), et la liste des thèmes dans l'ordre du catalogue.
 // Sources : netlify/lib/templates-acces.mjs (PRODUITS) et templates/index.html (puces de thème et cartes).
-// Écrit entre les marqueurs /* ESPACE-DEBUT */ et /* ESPACE-FIN */ de connexion/index.html.
+// Écrit entre les marqueurs /* ESPACE-DEBUT */ et /* ESPACE-FIN */ de connexion/index.html, et dans
+// assets/espace-donnees.js (panneau « Mes templates » des applications).
 // À relancer après l'ajout d'un template ou un changement de thème : node outils/connexion/generer.mjs
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +34,9 @@ export async function donneesEspace() {
   return { produits, themes };
 }
 
+// Fichier assets/espace-donnees.js : mêmes données que le bloc ESPACE, en global window.QME_ESPACE.
+export const donneesJs = ({ produits, themes }) => `// Généré par node outils/connexion/generer.mjs : ne pas modifier à la main.\nwindow.QME_ESPACE=${JSON.stringify({ produits, themes })};\n`;
+
 export async function generer() {
   const { produits, themes } = await donneesEspace();
   const fichier = new URL('connexion/index.html', racine);
@@ -41,6 +45,8 @@ export async function generer() {
   if (!/\/\* ESPACE-DEBUT \*\/[\s\S]*?\/\* ESPACE-FIN \*\//.test(page)) throw new Error('Marqueurs ESPACE absents de connexion/index.html');
   const neuve = page.replace(/\/\* ESPACE-DEBUT \*\/[\s\S]*?\/\* ESPACE-FIN \*\//, () => bloc);
   if (neuve !== page) await writeFile(fichier, neuve);
+  // Données chargées à la demande par le panneau « Mes templates » des applications (assets/mes-templates.js).
+  await writeFile(new URL('assets/espace-donnees.js', racine), donneesJs({ produits, themes }));
   return { produits: Object.keys(produits).length, themes: themes.length, sansTheme: Object.entries(produits).filter(([, p]) => p.theme === 'autres').map(([k]) => k) };
 }
 

@@ -30,6 +30,10 @@
 .esp-tuile img,.vign-vide{flex:none;width:96px;height:60px;object-fit:cover;border-radius:8px;background:var(--sable)}
 .t-txt{min-width:0;display:flex;flex-direction:column;gap:2px}
 .t-txt b{font-size:17px;line-height:1.25}
+.esp-badge{align-self:flex-start;margin-top:3px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.esp-achete{background:#D9EBDD;color:#1F5130}
+.esp-essai{background:var(--ciel);color:var(--ciel-texte)}
+.esp-admin{background:var(--sable);color:var(--texte-2)}
 .t-txt small{font-size:14px;line-height:1.3;color:var(--texte-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .t-actions{position:absolute;top:50%;right:6px;transform:translateY(-50%);display:flex}
 .t-actions button{width:44px;height:44px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--discret)}
