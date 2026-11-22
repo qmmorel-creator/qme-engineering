@@ -60,10 +60,11 @@ domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué 
 | 9 | Pilotage d'une journée de bascule | BSC | 29 € | Pack Moyens généraux (PMG) |
 | 10 | Demandes d'achat et fournitures | ACH | 19 € | dernier template du Pack Moyens généraux (PMG) |
 
-À faire par Quentin : clé de licence des 10, versions « Pack » et « Pack évolutif » de PPE et PCA. Puis publication
-et mise en vente (règle 7).
+**Les 10 sont publiés et en vente depuis le 22/11** (clés activées par Quentin, site passé en vente le même jour).
+Les fiches PPE et PCA n'ont pas de versions « Pack » / « Pack évolutif » sur Gumroad (pas plus que PBT) : l'option
+évolutif n'est donc pas achetable sur ces packs.
 
-### Vague suivante (dès que la limite le permet et que la vague du 22/11 est publiée)
+### Vague suivante (dès que la limite le permet : prochaine création le 23/11 à 12 h 47, Paris)
 
 | Rang | Produit | Code | Prix | Pourquoi |
 |---|---|---|---|---|
@@ -72,7 +73,7 @@ et mise en vente (règle 7).
 | 13 | Fiche du Pack Mariage et installation à deux | PMR | 72 € | complet une fois DMN et CDX en vente |
 | 14 | Fiche du Pack Exploitation et maintenance | PXP | 118 € | complet une fois CTR et PRK en vente |
 | 15 | Fiche du Pack Moyens généraux | PMG | 194 € | complet une fois CTR, BSC et ACH en vente |
-| 16 | Garde-manger et dates de péremption | GRD | 12 € | dernier template manquant du Pack Cuisine (PCS) ; sert aussi au Pack Famille |
+| 16 | Garde-manger et dates de péremption (création refusée le 22/11 par la limite ; reprise programmée le 23/11 à 12 h 50) | GRD | 12 € | dernier template manquant du Pack Cuisine (PCS) ; sert aussi au Pack Famille |
 | 17 | Fiche du Pack Cuisine (demande de Quentin, 22/11) | PCS | 22 € (évolutif 9 €) | complet une fois GRD en vente (RPS déjà en vente) |
 | 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
 | 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
