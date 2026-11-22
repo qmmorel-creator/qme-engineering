@@ -11,7 +11,7 @@ const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const euros = (c) => (c % 100 ? (c / 100).toFixed(2).replace('.', ',') : String(c / 100)) + ' €';
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
-const fiches = Object.keys(PACKS).map(calculerPack).map((p) => {
+const fiches = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack).map((p) => {
   const enVente = p.templates.filter((t) => t.statut === 'vente').length;
   const description = [
     `<p><strong>${esc(p.accroche)}</strong></p>`,

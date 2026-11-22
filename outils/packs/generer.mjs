@@ -418,7 +418,7 @@ async function ecrire(chemin, contenu) {
 
 export async function generer() {
   VIGNETTES = lireVignettes(await readFile(RACINE + 'templates/index.html', 'utf8'));
-  const packs = Object.keys(PACKS).map(calculerPack);
+  const packs = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack);
   aucunEnVente = !packs.some((p) => p.enVente);
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));

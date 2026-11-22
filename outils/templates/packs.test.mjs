@@ -108,6 +108,14 @@ test('le site connaît tous les packs : connexion, pages générées, textes', a
   const { calculerPack } = await import('../packs/generer.mjs');
   for (const [code, pack] of Object.entries(PACKS)) {
     assert.ok(PAGES[code], `textes du pack ${code}`);
+    // Pack retiré : plus de page publique, son adresse redirige vers un autre pack (netlify.toml).
+    if (pack.retire) {
+      const { existsSync } = await import('node:fs');
+      assert.ok(!existsSync(new URL(`packs/${pack.slug}/index.html`, racine)), `page du pack retiré ${pack.slug} supprimée`);
+      const toml = await readFile(new URL('netlify.toml', racine), 'utf8');
+      assert.ok(toml.includes(`from = "/packs/${pack.slug}/*"`), `redirection du pack retiré ${pack.slug}`);
+      continue;
+    }
     const p = calculerPack(code);
     // Le prix publié est celui du barème ; la page générée l'affiche.
     const page = await readFile(new URL(`packs/${pack.slug}/index.html`, racine), 'utf8');
@@ -197,7 +205,7 @@ test('le menu de chaque page en français mène aux packs', async () => {
 test('pages de pack en vente : essai gratuit annoncé sous l’achat et proposé sur chaque outil ouvert à l’essai', async () => {
   const { readFileSync } = await import('node:fs');
   const { PRODUITS_ESSAI } = await import('../../netlify/lib/essais.mjs');
-  for (const slug of ['etudiant', 'argent-du-quotidien']) {
+  for (const slug of ['etudiant', 'budget-perso-famille']) {
     const html = readFileSync(new URL(`../../packs/${slug}/index.html`, import.meta.url), 'utf8');
     const k = Object.keys(PACKS).find((c) => PACKS[c].slug === slug);
     assert.match(html, /<p class="essai-pack">[^<]*14 jours gratuitement, sans carte bancaire/, slug);

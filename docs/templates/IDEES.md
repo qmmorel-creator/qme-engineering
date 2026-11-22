@@ -270,13 +270,14 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07, T97 | — | 78 € | 25 % | 58 € | 15 € |
-| Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
+| Maison et famille (renommé le 22/11/2026) | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 | Budget perso et famille (Quentin, 20/11/2026) | PBF | T05, T65, T14, T13, T12 | — | 63 € | 25 % | 47 € | 12 € |
+| ~~Argent du quotidien~~ (retiré le 22/11/2026 : doublon de Budget perso et famille, aucune vente) | PAQ | — | — | — | — | — | — |
 | Cuisine (Quentin, 22/11/2026) | PCS | T06 | T09 | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers

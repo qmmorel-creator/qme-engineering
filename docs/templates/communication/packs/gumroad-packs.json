@@ -1,29 +1,5 @@
 [
   {
-    "code": "PAQ",
-    "slug": "argent-du-quotidien",
-    "nom": "Pack Argent du quotidien",
-    "permalien": "pack-argent-du-quotidien",
-    "prix_cents": 4300,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 4300
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 5400
-      }
-    ],
-    "resume": "L’argent du mois tenu, sans y passer vos soirées.",
-    "description_html": "<p><strong>L’argent du mois tenu, sans y passer vos soirées.</strong></p>\n<p>Mon Budget, dépenses partagées, abonnements et objectifs de l’année : l’essentiel pour tenir l’argent du quotidien.</p>\n<p><strong>Pour qui ?</strong> Vous voulez savoir où va l’argent du mois sans tenir une comptabilité complète. Les prélèvements s’empilent, les dépenses communes se règlent au jugé et les bonnes résolutions de janvier s’oublient en mars. Ce pack couvre le quotidien, en quatre outils.</p>\n<p><strong>Le contenu du pack (4 templates) :</strong></p>\n<ul><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Gestion Dépenses Communes</strong> : À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun. (15 € seul)</li><li><strong>Suivi des abonnements</strong> : Coût réel par mois et par an, essais et engagements. (9 € seul)</li><li><strong>Tableau de bord annuel et roue de vie</strong> : Vos domaines de vie notés, objectifs et bilan trimestriel. (15 € seul)</li></ul>\n<p>54 € à l’achat séparé, 43 € en pack (−20 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (43 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (54 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "4/4",
-    "templates_a_mettre_en_vente": []
-  },
-  {
     "code": "PBD",
     "slug": "bien-demarrer",
     "nom": "Pack Bien démarrer l’année",
@@ -496,7 +472,7 @@
   {
     "code": "PFA",
     "slug": "famille",
-    "nom": "Pack Famille",
+    "nom": "Pack Maison et famille",
     "permalien": "pack-famille",
     "prix_cents": 5700,
     "versions": [

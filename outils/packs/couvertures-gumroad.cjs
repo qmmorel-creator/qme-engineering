@@ -1,7 +1,7 @@
 // Couvertures Gumroad des packs (1280 × 720), même charte Pastel que outils/templates/couvertures-gumroad.cjs :
 // texte à gauche (nom, nombre d'outils, accroche, prix), mosaïque des vignettes des templates à droite.
 // Prérequis : serveur local sur le port 8899 (npm run dev:templates avec PORT=8899) et vignettes à jour
-// (node outils/templates/vignettes.mjs). Usage : node outils/packs/couvertures-gumroad.cjs etudiant argent-du-quotidien
+// (node outils/templates/vignettes.mjs). Usage : node outils/packs/couvertures-gumroad.cjs etudiant budget-perso-famille
 // Sortie : assets/packs-<slug>-couverture.png (publiée par Netlify, puis ajoutée sur Gumroad par son adresse).
 const { chromium } = require('playwright');
 const fs = require('fs');

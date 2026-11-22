@@ -6,7 +6,6 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 
 | Pack | Permalien | Pack | Pack évolutif | Templates en vente | Manquent |
 |---|---|---|---|---|---|
-| Pack Argent du quotidien | pack-argent-du-quotidien | 43 € | 54 € | 4/4 | — |
 | Pack Bien démarrer l’année | pack-bien-demarrer | 39 € | 49 € | 3/3 | — |
 | Pack Budget perso et famille | pack-budget-perso-famille | 47 € | 59 € | 5/5 | — |
 | Pack Chef de projet BTP | pack-chef-de-projet-btp | 192 € | 240 € | 8/8 | — |
@@ -26,5 +25,5 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux
 | Pack Reprendre la main sur son argent | pack-argent | 96 € | 120 € | 8/9 | Remboursements santé |
 | Pack Associations et clubs | pack-associations | 164 € | 205 € | 3/7 | Pilote événementiel, Subventions, Bénévoles et planning des créneaux, Assemblée générale et vie statutaire |
 | Pack Enseignant et formateur | pack-enseignant | 83 € | 104 € | 0/4 | Progression pédagogique, Banque de questions et quiz, Gestion de classe, Emploi du temps d'établissement |
-| Pack Famille | pack-famille | 57 € | 72 € | 2/6 | Entretien de la maison, Garde-manger et dates de péremption, Suivi du bébé, Suivi d'un animal de compagnie |
+| Pack Maison et famille | pack-famille | 57 € | 72 € | 2/6 | Entretien de la maison, Garde-manger et dates de péremption, Suivi du bébé, Suivi d'un animal de compagnie |
 | Pack Propriétaire | pack-proprietaire | 131 € | 164 € | 5/9 | Location saisonnière, Entretien de la maison, Gestion locative, Charges et AG de copropriété |
