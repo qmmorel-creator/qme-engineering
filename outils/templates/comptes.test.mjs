@@ -290,6 +290,31 @@ test('opposition des prospects : page publique, ajout groupé admin (adresses et
   assert.equal((await (await admin(w, '/annonce', {})).json()).total, 0, 'domaine exclu des annonces');
 });
 
+test('opposition des prospects : jeton de lecture seule (X-Opposition-Token)', async () => {
+  const w = monde();
+  const JETON = 'j'.repeat(40);
+  const req = (chemin, { methode = 'GET', corps, entetes = {}, jetonOpposition = JETON } = {}) => traiterCompte(new Request(`http://t/api/compte${chemin}`, {
+    method: methode, headers: entetes, body: corps ? JSON.stringify(corps) : undefined,
+  }), { secret: SECRET, store: w.store, maintenant: () => w.t, jetonOpposition }).then(async (r) => ({ statut: r.status, j: await r.json() }));
+  await req('/opposition', { methode: 'POST', entetes: { 'x-admin': ADMIN }, corps: { emails: ['stop@exemple.fr'], domaines: ['hostile.fr'] } });
+  const t = { 'x-opposition-token': JETON };
+  // Lecture : acceptée avec le jeton
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: t })).j.opposition.par, 'adresse');
+  assert.equal((await req('/opposition?email=dg@hostile.fr', { entetes: t })).j.opposition.par, 'domaine');
+  assert.equal((await req('/opposition?email=libre@exemple.fr', { entetes: t })).j.opposition, null);
+  const v = await req('/opposition/verifier', { methode: 'POST', entetes: t, corps: { emails: ['libre@exemple.fr', 'x@hostile.fr'] } });
+  assert.deepEqual(v.j.resultats.map((r) => [r.email, r.opposition?.par || null]), [['libre@exemple.fr', null], ['x@hostile.fr', 'domaine']]);
+  // Refus : mauvais jeton, jeton non configuré ou trop court
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: { 'x-opposition-token': 'k'.repeat(40) } })).statut, 401);
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: t, jetonOpposition: '' })).statut, 401);
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: { 'x-opposition-token': 'court' }, jetonOpposition: 'court' })).statut, 401);
+  // Le jeton ne donne ni l'ajout groupé, ni le registre, ni l'annonce
+  assert.equal((await req('/opposition', { methode: 'POST', entetes: t, corps: { emails: ['a@b.fr'], domaines: ['autre.fr'] } })).statut, 400);
+  assert.equal((await req('/opposition?email=a@b.fr', { entetes: t })).j.opposition, null, 'rien n\'a été ajouté');
+  assert.equal((await req('/registre', { entetes: t })).statut, 401);
+  assert.equal((await req('/annonce', { methode: 'POST', entetes: t, corps: {} })).statut, 401);
+});
+
 test('règle de prospection : mention d\'opposition dans les modèles, la règle et chaque fichier prospects', async () => {
   const { readdir } = await import('node:fs/promises');
   const racine = new URL('../../', import.meta.url);

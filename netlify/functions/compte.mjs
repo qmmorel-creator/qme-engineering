@@ -14,6 +14,7 @@ export default async (requete) => traiterCompte(requete, {
   revoques: revoquesDepuis(process.env.TEMPLATES_CODES_REVOQUES),
   admin: process.env.INTERETS_ADMIN, // code administrateur facultatif (sinon le code ADM-… dérivé du secret)
   testeurs: process.env.ESSAI_TESTEURS || '', // adresses de test, exclues de l'annonce
+  jetonOpposition: process.env.OPPOSITION_TOKEN || '', // lecture seule de la liste d'opposition (en-tête X-Opposition-Token)
 });
 
 // Francfort : adresses e-mail et comptes restent dans l'UE.
