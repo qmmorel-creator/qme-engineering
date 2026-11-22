@@ -554,4 +554,68 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un canal ou un format de publication que le calendrier gère mal ?',
   },
+  RVH: {
+    commencer: 'choisissez le jour de votre revue de la semaine, puis écrivez une ligne de journal pour aujourd\'hui, avec votre humeur si vous le souhaitez.',
+    astuces: [
+      'la revue guidée tient en 7 étapes et propose chaque semaine une autre question par étape, parmi 55 que vous pouvez masquer ou compléter ;',
+      'l\'historique se cherche sans souci des accents, et la tendance montre la série de semaines tenues et la part des priorités réalisées.',
+    ],
+    aide: 'Un rituel de fin de semaine qui ne rentre pas dans les 7 étapes ?',
+  },
+  CRS: {
+    commencer: 'entrez un chrono récent, la course visée et vos jours de course : vos allures et le plan semaine par semaine s\'affichent.',
+    astuces: [
+      'une séance manquée se note ou se déplace dans la semaine, et une semaine allégée vous est proposée quand les séances deviennent trop dures ;',
+      'le plan s\'imprime et s\'ajoute à votre agenda en fichier .ics.',
+    ],
+    aide: 'Une course ou un rythme d\'entraînement que le plan type gère mal ?',
+  },
+  DMN: {
+    commencer: 'indiquez la date du déménagement et votre situation (location ou achat, déménageur ou utilitaire, enfants, animal) : le rétroplanning se crée, semaine par semaine.',
+    astuces: [
+      'chaque carton reçoit un numéro, une pièce d\'arrivée et un contenu : une recherche retrouve en quel carton est rangé un objet ;',
+      'les devis de déménageurs se comparent au prix du m³, et celui que vous retenez entre au budget.',
+    ],
+    aide: 'Une démarche propre à votre situation qui manque à la liste ?',
+  },
+  CDX: {
+    commencer: 'créez l\'événement (mariage, naissance, anniversaire, retraite ou obsèques) et notez trois cadeaux reçus : un message de remerciement est prêt pour chaque foyer.',
+    astuces: [
+      'le ton des messages se choisit (chaleureux, sobre, bref ou léger), et le texte se retouche avant d\'être copié ;',
+      'les étiquettes d\'adresses s\'impriment sur une planche A4 entamée, en commençant à la bonne case.',
+    ],
+    aide: 'Une liste de cadeaux tenue ailleurs que vous voudriez reprendre ?',
+  },
+  CTR: {
+    commencer: 'saisissez un contrat avec sa date de fin et son préavis : la date limite de résiliation et la prochaine alerte se calculent.',
+    astuces: [
+      'les reconductions tacites déjà passées font avancer l\'échéance d\'elles-mêmes, sans rien ressaisir ;',
+      'une lettre de résiliation préremplie (fournisseur, numéro de contrat, échéance) se copie ou s\'imprime, à adapter à votre contrat.',
+    ],
+    aide: 'Un contrat dont l\'échéance ou le préavis se calcule autrement ?',
+  },
+  PRK: {
+    commencer: 'créez un site (ou importez votre liste avec le modèle tableur), ajoutez un équipement et sa périodicité de préventif : la prochaine échéance s\'affiche.',
+    astuces: [
+      'les alertes signalent un préventif dépassé, un équipement à l\'arrêt depuis N jours ou un site sans visite depuis N mois, seuils réglables ;',
+      'la carte schématique place les sites par leurs coordonnées, sans fond de carte ni service en ligne.',
+    ],
+    aide: 'Un parc ou un type d\'équipement qui se range mal dans les sites et catégories ?',
+  },
+  BSC: {
+    commencer: 'partez d\'une des 5 séquences types, nommez l\'équipe et adaptez les durées : le déroulé horaire et la fin estimée se calculent.',
+    astuces: [
+      'l\'heure limite du retour arrière (fin de fenêtre moins durée du repli) est calculée, avec une alerte avant qu\'il soit trop tard ;',
+      'une répétition se duplique pour préparer la vraie bascule avec les durées réellement mesurées.',
+    ],
+    aide: 'Une bascule dont l\'enchaînement des étapes ne rentre pas dans le déroulé ?',
+  },
+  ACH: {
+    commencer: 'indiquez vos services, leur budget annuel et votre seuil de validation, puis saisissez une demande à partir du catalogue de fournitures.',
+    astuces: [
+      'sous le seuil fixé, une demande chiffrée qui tient dans le budget du service est validée tout de suite ;',
+      'les demandes validées se regroupent en un bon de commande par fournisseur, et la réception peut être partielle.',
+    ],
+    aide: 'Un circuit de validation à plusieurs niveaux que le seuil unique ne couvre pas ?',
+  },
 };

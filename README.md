@@ -62,7 +62,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   de 5 templates ; en dessous, simple liste. Le formulaire de clé passe dessous (« Ajouter un template »). Épinglés,
   récents et thèmes ouverts restent sur l'appareil (`qme-espace-*` dans `localStorage`). Liste générée par
   `node outils/connexion/generer.mjs` (PRODUITS + cartes de `templates/index.html`), contrôlée par
-  `outils/templates/connexion.test.mjs`.
+  `outils/templates/connexion.test.mjs`. Composant commun `assets/espace.js` / `espace.css`, aussi utilisé par le
+  tableau de bord des packs `/packs/espace/` (généré par `outils/packs/generer.mjs`, données de thèmes comprises) :
+  templates de tous les packs de l'appareil réunis, même recherche, épinglés, récents et thèmes ; bouton « copier le
+  code de partage » sur chaque tuile ; « Gérer mes packs » (oublier un pack) et « Ajouter un pack » en dessous.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.

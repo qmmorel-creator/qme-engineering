@@ -10,6 +10,7 @@ import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
 import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
+import { donneesEspace } from '../connexion/generer.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const V = '2026112201';
@@ -341,24 +342,50 @@ function pageComposer(packs) {
 }
 
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
-function pageEspace() {
+// Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
+// Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
+const VE = '2026112201'; // version de assets/espace.js et espace.css
+async function pageEspace() {
+  const { produits, themes } = await donneesEspace();
   return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des templates de votre pack QME.', noindex: true })
-    + `<section class="section espace-pack" data-espace>
-  <div class="composer-tete">
-    <p class="eyebrow">Espace acheteurs · packs</p>
-    <h1>Mes packs</h1>
-    <p class="lead">Chaque template de votre pack s’ouvre d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+      .replace('</head>', `<link rel="stylesheet" href="/assets/espace.css?v=${VE}">\n</head>`)
+    + `<section class="espace espace-pack" data-espace>
+  <div class="espace-tete">
+    <div>
+      <p class="eyebrow">Espace acheteurs · packs</p>
+      <h1>Mes packs</h1>
+      <p class="espace-nb" data-nb></p>
+    </div>
+    <a class="btn ajouter" href="#ajout-pack" data-ajouter hidden>+ Ajouter<span class="pc">&nbsp;un pack</span></a>
   </div>
-  <div data-mes-packs></div>
-  <form class="acces espace-form" id="espace-form" novalidate>
-    <label>Clé de licence du pack ou code de pack
-      <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
-    </label>
-    <p class="erreur" id="espace-erreur" role="alert"></p>
-    <button class="btn primary" type="submit">Ouvrir mon pack</button>
-  </form>
+  <p class="lead pack-intro" data-intro>Collez la clé de licence de votre pack : chacun de ses templates s’ouvre ensuite d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+  <p class="erreur pack-alerte" data-alerte role="alert"></p>
+  <div data-espace-corps hidden></div>
+  <p class="vh" role="status" data-copie></p>
+  <section class="gerer-packs" data-gerer hidden aria-labelledby="h-gerer">
+    <h2 id="h-gerer">Gérer mes packs</h2>
+    <div data-mes-packs></div>
+    <p class="pack-espace-note">Pour partager un seul template (un budget commun, par exemple), envoyez son code de partage : bouton <span aria-hidden="true">⧉</span> à côté de l’étoile. Il n’ouvre que ce template. La clé du pack ouvre tous vos templates : gardez-la pour vous.</p>
+  </section>
+  <div class="ajout-pack" id="ajout-pack">
+    <h2 data-titre-ajout hidden>Ajouter un pack</h2>
+    <form class="acces espace-form" id="espace-form" novalidate>
+      <label>Clé de licence du pack ou code de pack
+        <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
+      </label>
+      <p class="erreur" id="espace-erreur" role="alert"></p>
+      <button class="btn primary" type="submit">Ouvrir mon pack</button>
+    </form>
+  </div>
 </section>
-` + pied(`<script src="/assets/packs.js?v=${V}" defer></script>\n`);
+` + pied(`<script>
+/* ESPACE-DEBUT */
+const PRODUITS=${JSON.stringify(produits)};
+const THEMES=${JSON.stringify(themes)};
+/* ESPACE-FIN */
+</script>
+<script src="/assets/espace.js?v=${VE}" defer></script>
+<script src="/assets/packs.js?v=${V}" defer></script>\n`);
 }
 
 // --- Section « Packs » du catalogue /templates/ -----------------------------------------------------
@@ -396,7 +423,7 @@ export async function generer() {
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));
   await ecrire('packs/composer/index.html', pageComposer(packs));
-  await ecrire('packs/espace/index.html', pageEspace());
+  await ecrire('packs/espace/index.html', await pageEspace());
   const cat = await readFile(RACINE + 'templates/index.html', 'utf8');
   const section = sectionCatalogue(packs);
   const re = /<!-- packs:debut[\s\S]*?<!-- packs:fin -->/;

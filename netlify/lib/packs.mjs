@@ -47,7 +47,7 @@ export const PACKS = {
   PFG: { slug: 'freelance-gestion', nom: 'Pack Freelance : chiffrer, facturer, encaisser', produits: ['TJM', 'PRX', 'DVS', 'MCE', 'RCV', 'TRS', 'TMP'], gumroad: 'TdGXvyeaHjN_iKZ4zHr9gw==', permalien: 'pack-freelance-gestion' },
   PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'PRS', 'CRM', 'PCM', 'KRF', 'CED', 'CND'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
   PBT: { slug: 'chef-de-projet-btp', nom: 'Pack Chef de projet BTP', produits: ['GNT', 'VSA', 'RSV', 'NCF', 'CRA', 'CHT', 'RDE', 'STR'], gumroad: 'Oi7gqrAFzTtGi5bCk205ZA==', permalien: 'pack-chef-de-projet-btp' },
-  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'] },
+  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'], gumroad: 'hHV1OaACgMmSJW0Vkv0SXQ==', permalien: 'pack-petite-entreprise' },
   PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH'] },
   PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS', 'RBS', 'CPT'] },
   PMR: { slug: 'mariage-installation', nom: 'Pack Mariage et installation à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'] },
@@ -61,13 +61,15 @@ export const PACKS = {
   PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage' },
   PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: ['PRG', 'QZZ', 'CSE', 'EDT'] },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'PRK', 'CTR'] },
-  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'] },
+  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'], gumroad: 'YqkUp-9uupBcFHTAAjlkQg==', permalien: 'pack-commercant-artisan' },
   PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], ajouts: { SVT: '2026-11-18' }, gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
   PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' },
   PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer' },
   // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad reliée le 21/11/2026.
   PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'], gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ==', permalien: 'pack-budget-perso-famille' },
+  // Pack Cuisine (demande de Quentin, 22/11/2026) : fiche Gumroad à créer une fois Garde-manger en vente.
+  PCS: { slug: 'cuisine', nom: 'Pack Cuisine', produits: ['RPS', 'GRD'] },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.
