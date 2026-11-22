@@ -24,6 +24,8 @@
 .ok-lien:empty{display:none}
 .bloc-code{display:grid;gap:10px;padding:14px;border:2px solid #1F5130;border-radius:14px;background:#fff}
 .bloc-code[hidden]{display:none}
+.deja-code{background:none;border:0;padding:6px 0;font:600 15px Outfit,system-ui,sans-serif;color:var(--encre);text-decoration:underline;text-underline-offset:3px;cursor:pointer;justify-self:center;align-self:center}
+.deja-code[hidden]{display:none}
 .bloc-code input{font-size:24px;letter-spacing:.2em;text-align:center;font-variant-numeric:tabular-nums}
 .etat-lien{max-width:var(--max);margin:16px auto 0;padding:12px 16px;background:var(--beurre);border-radius:12px;font-weight:600}
 .lien-discret{background:none;border:0;padding:0;font:inherit;font-size:15px;color:var(--texte-2);text-decoration:underline;cursor:pointer}
@@ -285,6 +287,7 @@
           <button class="btn primary" type="button" id="valider-code">Me connecter avec ce code</button>
         </div>
         <button class="btn primary" type="submit" id="envoyer-lien">Recevoir mon lien de connexion</button>
+        <button class="deja-code" type="button" id="deja-code">J’ai déjà reçu un code</button>
       </form>
       <p class="ou"><span>ou avec une clé de licence</span></p>
     </div>
@@ -575,9 +578,13 @@ formLien.addEventListener('submit',async(e)=>{
   try{
     await QMECompte.demanderLien(email);emailCode=email;
     okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien, ou saisissez ci-dessous le code à 6 chiffres qu’il contient (valable 15 minutes). Pensez à regarder dans les indésirables.`;
-    blocCode.hidden=false;erreurCode.textContent='';champCode.value='';b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;champCode.focus();return;
+    montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;
   }
-  catch(x){erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
+  catch(x){
+    // Lien déjà envoyé il y a peu : le code de cet e-mail reste valable, le champ s'affiche quand même.
+    if(x.statut===429){emailCode=email;okLien.innerHTML=`Un e-mail vient déjà de partir à <b>${esc(email)}</b> : saisissez ci-dessous le code à 6 chiffres qu’il contient, ou touchez son lien. Pas reçu ? Regardez dans les indésirables, ou réessayez dans quelques minutes.`;montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;}
+    erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;
+  }
   b.disabled=false;b.textContent=blocCode.hidden?'Recevoir mon lien de connexion':'Renvoyer un lien';
 });
 // Code de l'e-mail : utile quand le lien s'ouvre dans un autre navigateur (fenêtre ouverte depuis Gmail, Instagram…).
@@ -587,10 +594,18 @@ async function validerCode(){
   const code=champCode.value.replace(/\D/g,'');erreurCode.textContent='';
   if(code.length!==6){erreurCode.textContent='Le code compte 6 chiffres.';champCode.focus();return;}
   boutonCode.disabled=true;boutonCode.textContent='Connexion…';
-  try{await QMECompte.ouvrirCode(emailCode||champEmail.value.trim(),code);blocCode.hidden=true;okLien.textContent='';rendre();scrollTo(0,0);}
+  try{await QMECompte.ouvrirCode(champEmail.value.trim()||emailCode,code);blocCode.hidden=true;okLien.textContent='';rendre();scrollTo(0,0);}
   catch(x){erreurCode.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
   boutonCode.disabled=false;boutonCode.textContent='Me connecter avec ce code';
 }
+function montrerCode(){blocCode.hidden=false;$('deja-code').hidden=true;erreurCode.textContent='';champCode.value='';champCode.focus();}
+// Code déjà reçu (demandé depuis une autre fenêtre ou une autre application) : saisie directe, sans nouvel envoi.
+$('deja-code').addEventListener('click',()=>{
+  const email=champEmail.value.trim();erreurLien.textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Indiquez d’abord l’adresse e-mail qui a reçu le code.';champEmail.focus();return;}
+  emailCode=email;okLien.textContent='';montrerCode();
+});
+champEmail.addEventListener('input',()=>{emailCode='';});
 boutonCode.addEventListener('click',validerCode);
 champCode.addEventListener('keydown',(e)=>{if(e.key==='Enter'){e.preventDefault();validerCode();}});
 champCode.addEventListener('input',()=>{if(champCode.value.replace(/\D/g,'').length===6)validerCode();});
