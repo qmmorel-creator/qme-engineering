@@ -1,0 +1,18 @@
+// Comptes acheteurs (connexion par lien e-mail) : POST /api/compte/lien, /session, /cles, /deconnexion ;
+// GET et DELETE /api/compte ; PUT /api/compte/prefs. Logique dans netlify/lib/comptes.mjs ; ici, seulement
+// le branchement sur Netlify Blobs (store des essais, Francfort) et l'envoi d'e-mails.
+import { getStore } from '@netlify/blobs';
+import { traiterCompte } from '../lib/comptes.mjs';
+import { revoquesDepuis } from '../lib/templates-acces.mjs';
+import { envoyeurDepuisEnv } from '../lib/mail.mjs';
+import { storeEssais } from '../lib/essais-store.mjs';
+
+export default async (requete) => traiterCompte(requete, {
+  secret: process.env.TEMPLATES_SECRET,
+  store: storeEssais(getStore),
+  envoyer: envoyeurDepuisEnv(),
+  revoques: revoquesDepuis(process.env.TEMPLATES_CODES_REVOQUES),
+});
+
+// Francfort : adresses e-mail et comptes restent dans l'UE.
+export const config = { path: ['/api/compte', '/api/compte/*'], region: 'fra' };

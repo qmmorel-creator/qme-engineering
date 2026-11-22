@@ -66,6 +66,20 @@ Site promotionnel de Quentin Morel Engineering (QME).
   tableau de bord des packs `/packs/espace/` (généré par `outils/packs/generer.mjs`, données de thèmes comprises) :
   templates de tous les packs de l'appareil réunis, même recherche, épinglés, récents et thèmes ; bouton « copier le
   code de partage » sur chaque tuile ; « Gérer mes packs » (oublier un pack) et « Ajouter un pack » en dessous.
+- Comptes acheteurs (22/11/2026, décision de Quentin) : connexion **par lien envoyé par e-mail, sans mot de passe**
+  (`netlify/lib/comptes.mjs`, fonction `/api/compte`, store des essais à Francfort, préfixes `compte/`, `lien/`,
+  `limite/`). Un compte est un trousseau : les clés (licences, codes QME, packs, essais) et les préférences de
+  l'espace (prénom, noms donnés, masquées, épinglées) ; les applications vérifient toujours leur clé à l'ouverture.
+  Chaque achat vérifié par le ping Gumroad (`achats.mjs`) est rangé sous l'adresse de l'acheteur (compte créé au
+  besoin) ; les essais sont lus dans l'index des essais par adresse. Lien valable 15 min, à usage unique ; 5 liens par
+  heure et par adresse ; session de 90 jours, « déconnecter tous mes appareils », suppression du compte par
+  l'acheteur. Client : `assets/compte.js` (synchronisation appareil ↔ compte). Purge quotidienne des traces
+  anti-abus (`purgerComptes`, dans `essais-quotidien.mjs`). Tests : `outils/templates/comptes.test.mjs`.
+  Politique de confidentialité : section « Compte acheteur ».
+- Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
+  bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
+  (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
+  espaces acheteurs ; le catalogue garde « template ».
 - Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
   `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
   panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal

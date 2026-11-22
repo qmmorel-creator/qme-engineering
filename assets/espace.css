@@ -78,3 +78,15 @@
 .gerer-packs .pack-espace-note{margin:12px 0 0;font-size:14px;color:var(--discret);max-width:720px}
 .ajout-pack{margin-top:36px;padding-bottom:40px;scroll-margin-top:88px}
 .ajout-pack .acces{margin-top:0}
+/* Mode « Personnaliser » (edition) : nom modifiable, masquer, ordre des épinglés */
+.esp-tuile.en-edition{flex-direction:column;gap:6px;padding:8px;background:var(--surface);border:1px dashed var(--encre);border-left:5px solid var(--c);border-radius:14px}
+.en-edition .t-corps{display:flex;align-items:center;gap:12px;min-width:0}
+.en-edition .t-txt{flex:1}
+.t-nom{width:100%;min-width:0;font:700 17px/1.25 Outfit,system-ui,sans-serif;color:var(--encre);padding:8px 10px;min-height:44px;border:1px solid var(--trait);border-radius:10px;background:var(--papier)}
+.t-nom:focus{outline:3px solid var(--jaune);outline-offset:0;border-color:var(--encre)}
+.t-nom::placeholder{color:var(--encre);opacity:1}
+.en-edition .t-actions{position:static;transform:none;justify-content:flex-end;gap:2px}
+.t-actions button:disabled{opacity:.3;cursor:default;background:none}
+.t-actions [data-masquer][aria-pressed="true"]{color:var(--rouge)}
+.esp [data-z="masques"] summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+.esp [data-z="masques"] .esp-tuile:not(.en-edition)>a{opacity:.7}

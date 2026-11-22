@@ -8,7 +8,7 @@
 (() => {
   'use strict';
   if (window.QMEMesTemplates) return;
-  const V = '20261122b';
+  const V = '20261122c';
   const lire = (c) => { try { const v = localStorage.getItem(c) ?? sessionStorage.getItem(c); return v ? JSON.parse(v) : null; } catch { return null; } };
   const garder = (c, v) => { try { localStorage.setItem(c, JSON.stringify(v)); } catch { /* stockage indisponible */ } };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -107,18 +107,20 @@
   function remplir(filtre = '') {
     const { produits } = donnees, ici = produitCourant(produits);
     const recents = Object.fromEntries((lire('qme-espace-recents') || []).map((r) => [r.p, r.t]));
-    const epingles = lire('qme-espace-epingles') || [];
-    const mes = Object.keys(produits).filter((k) => k !== ici && statut(k));
+    const epingles = lire('qme-espace-epingles') || [], noms = lire('qme-espace-noms') || {}, masques = lire('qme-espace-masques') || [];
+    const nom = (k) => noms[k] || produits[k].nom;
+    // Applications masquées dans l'espace : absentes du panneau (sauf celle ouverte).
+    const mes = Object.keys(produits).filter((k) => k !== ici && statut(k) && !masques.includes(k));
     const total = mes.length + (ici && statut(ici) ? 1 : 0);
     const mots = plat(filtre).trim().split(/\s+/).filter(Boolean);
-    const trouve = (k) => { const p = produits[k], t = plat(`${p.nom} ${p.phrase} ${p.url}`); return mots.every((m) => t.includes(m)); };
+    const trouve = (k) => { const p = produits[k], t = plat(`${nom(k)} ${p.nom} ${p.phrase} ${p.url}`); return mots.every((m) => t.includes(m)); };
     // Épinglés d'abord, puis les plus récemment ouverts, puis par nom.
     const rang = (k) => (epingles.includes(k) ? 2e13 : 0) + (recents[k] || 0);
-    const liste = mes.filter(trouve).sort((a, b) => rang(b) - rang(a) || produits[a].nom.localeCompare(produits[b].nom, 'fr'));
+    const liste = mes.filter(trouve).sort((a, b) => rang(b) - rang(a) || nom(a).localeCompare(nom(b), 'fr'));
     dialogue.querySelector('[data-mt-sous]').textContent = total ? `${total} application${total > 1 ? 's' : ''} sur cet appareil` : 'Aucune application enregistrée sur cet appareil';
     dialogue.querySelector('[data-mt-cherche]').hidden = mes.length < 8;
     const tuile = (k, cible) => { const p = produits[k];
-      const corps = `${p.img ? `<img src="${esc(p.img)}" alt="" width="72" height="45" loading="lazy">` : '<span class="qme-mt-vide-img"></span>'}<span class="qme-mt-txt"><b>${esc(p.nom)}</b>${cible ? '' : '<small>Ouverte en ce moment</small>'}</span>${badge(statut(k))}`;
+      const corps = `${p.img ? `<img src="${esc(p.img)}" alt="" width="72" height="45" loading="lazy">` : '<span class="qme-mt-vide-img"></span>'}<span class="qme-mt-txt"><b>${esc(nom(k))}</b>${cible ? '' : '<small>Ouverte en ce moment</small>'}</span>${badge(statut(k))}`;
       return cible ? `<li><a href="${esc(p.url)}" data-mt-pre="${esc(k)}">${corps}</a></li>` : `<li><div class="qme-mt-ici" aria-current="page">${corps}</div></li>`; };
     let html = ici && produits[ici] && !mots.length ? tuile(ici, false) : '';
     html += liste.map((k) => tuile(k, true)).join('');
