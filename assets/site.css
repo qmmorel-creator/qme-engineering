@@ -683,3 +683,6 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .packs-bandeau p{margin-top:6px;max-width:640px;color:var(--texte-2)}
 .packs-bandeau .actions{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:720px){.packs-bandeau{margin:32px 16px 0}.packs-bandeau .actions,.packs-bandeau .btn{width:100%}}
+/* « Mon espace » dans le menu (compte connecté, menuMonEspace de site.js) */
+.topbar a.login.mon-espace{display:inline-flex;align-items:center;gap:8px}
+.topbar a.login .ini{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--encre);color:var(--papier);font:700 12px/1 Outfit,sans-serif;flex:none}

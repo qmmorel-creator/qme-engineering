@@ -252,3 +252,18 @@ if(fallbackLink&&form){
  const surLien=e=>{const a=e.target.closest?.('a[href*="gumroad.com/l/"]');if(a)marquer(a);};
  ['pointerdown','click','auxclick','contextmenu','keydown'].forEach(t=>document.addEventListener(t,surLien,true));
 })();
+
+// « Mon espace » dans le menu dès qu'un compte est connecté sur l'appareil (session qme-compte, assets/compte.js) :
+// initiale du prénom (ou de l'adresse) et libellé. Rien ne change pour un visiteur non connecté.
+function menuMonEspace(){try{
+  const s=JSON.parse(localStorage.getItem('qme-compte')||'null'),en=document.documentElement.lang==='en';
+  for(const a of document.querySelectorAll('.topbar a.login')){
+    if(!a.dataset.libelle)a.dataset.libelle=a.textContent;
+    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');continue;}
+    const p=JSON.parse(localStorage.getItem('qme-espace-prenom')||'""')||'';
+    const ini=String(p||s.email||'?').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}?]/gu,'');
+    a.classList.add('mon-espace');a.title=s.email||'';
+    a.innerHTML=`<span class="ini" aria-hidden="true">${ini}</span>${en?'My space':'Mon espace'}`;
+  }
+}catch{/* stockage indisponible : menu inchangé */}}
+menuMonEspace();
