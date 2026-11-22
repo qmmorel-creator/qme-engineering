@@ -10,12 +10,15 @@
 
   // ---------- Montants ----------
   // « 1 234,56 », « 12.5 », « 12 € » → centimes entiers ; null si illisible ou négatif.
+  // Au-delà de MAX_CENTIMES (10 millions d'euros), la saisie est refusée : les calculs restent exacts en dessous.
+  const MAX_CENTIMES = 1e9;
   function versCentimes(saisie) {
-    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 ? Math.round(saisie * 100) : null;
+    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 && saisie * 100 <= MAX_CENTIMES ? Math.round(saisie * 100) : null;
     const s = String(saisie ?? '').replace(/[\s\u00a0\u202f€]/g, '').replace(/^\+/, '');
     if (!/^\d+(?:[.,]\d{0,2})?$/.test(s)) return null;
     const [ent, dec = ''] = s.split(/[.,]/);
-    return Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    const c = Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    return c <= MAX_CENTIMES ? c : null;
   }
   const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f');
   function euros(c, { signe = false } = {}) {
@@ -103,12 +106,13 @@
       // `premier` : versement du premier mois s'il diffère (reste à verser du mois en cours).
       const prevuMois = i === 0 && Number.isFinite(premier) ? Math.max(0, premier) : versement;
       let verse = prevuMois > 0 && !(arretAtteint && atteint) ? prevuMois : 0;
-      if (arretAtteint && !atteint && cible > 0 && verse > 0) {
-        // Dernier versement ajusté : juste ce qui manque (les intérêts annuels non crédités ne comptent pas).
-        verse = Math.min(verse, Math.max(0, cible - solde));
-      }
       let ponctuel = 0;
       for (const x of ext) if (x.mois === mois && !(arretAtteint && atteint && x.montant > 0)) ponctuel += x.montant;
+      if (arretAtteint && !atteint && cible > 0 && verse > 0) {
+        // Dernier versement ajusté : juste ce qui manque (les intérêts annuels non crédités ne comptent pas),
+        // retrait prévu le même mois compris (sinon la cible n'est jamais atteinte ce mois-là).
+        verse = Math.min(verse, Math.max(0, cible - solde - Math.min(0, ponctuel)));
+      }
       solde += verse;
       if (ponctuel < 0) ponctuel = -Math.min(-ponctuel, solde);
       solde += ponctuel;
@@ -143,7 +147,8 @@
     const ok = (v) => { const r = projeter({ ...p, versement: v, premier: Math.max(0, v - deja), horizon: 0 }); return r.atteint !== null && r.atteint <= fin; };
     let lo = 0, hi = Math.max(100, cible - (p.solde || 0));
     if (ok(0)) return 0;
-    while (!ok(hi)) hi *= 2;
+    // Recherche bornée : jamais de boucle sans fin, même avec des données inattendues.
+    for (let n = 0; !ok(hi); n++) { if (n >= 40) return null; hi *= 2; }
     while (hi - lo > 1) { const mid = Math.floor((lo + hi) / 2); if (ok(mid)) hi = mid; else lo = mid; }
     return Math.ceil(hi / 100) * 100;
   }
@@ -357,7 +362,7 @@
   }
 
   racine.EPG = {
-    CAPITALISATIONS, MAX_MOIS, TYPES_MVT,
+    CAPITALISATIONS, MAX_MOIS, MAX_CENTIMES, TYPES_MVT,
     versCentimes, euros, eurosRonds, versSaisie, lireTaux, tauxTexte,
     moisDe, jourDe, ajoutMois, ecartMois, estMois, estDate, dureeTexte,
     interetsMois, projeter, soldeAu, versementPour,

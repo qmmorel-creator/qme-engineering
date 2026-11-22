@@ -1,5 +1,7 @@
 # Prospects · Inventaire valorisé
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations, **aucune donnée personnelle collectée** : on cible des fonctions et des
 structures, contactées par adresse professionnelle publique ou LinkedIn. Les organismes nommés sont
 connus ; leur intérêt pour un partenariat est **à vérifier** au premier contact. Produit B2C : LinkedIn et

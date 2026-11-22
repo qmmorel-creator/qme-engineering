@@ -209,3 +209,29 @@ Tags raccourcis : « maintenance-prev » (GMA), « verifications », « registre
 
 À la publication : `gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ=='` et `permalien: 'pack-budget-perso-famille'` dans `PACKS.PBF`
 (`netlify/lib/packs.mjs`), `node outils/packs/generer.mjs`, tests, PR de mise en vente.
+
+## Vague du 22/11/2026 (10 brouillons, vers 11 h 45 UTC)
+
+Créés depuis `<slug>/gumroad.json` et `packs/gumroad-packs.json`, sans publication. Ajouts par rapport aux fiches :
+paragraphe et ligne « Essai : 14 jours gratuits, sans carte », et ligne d'essai dans le reçu (modèle de la fiche SDR) ;
+lien de contenu `https://qm-engineering.fr/connexion/`. Libellés de bouton raccourcis à 26 caractères au plus (PRK
+« Ouvrir mes parcs », BSC « Ouvrir ma bascule », ACH « Ouvrir les achats », CDX « Ouvrir mes remerciements ») ;
+tag `maintenance-preventive` remplacé par `maintenance-prev` (PRK) et `rituel` par `routine` (RVH), Gumroad ayant
+transformé `rituel` en `ritüel`. Couvertures non ajoutées (comme les précédents brouillons).
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| PPE | Pack Petite entreprise | hHV1OaACgMmSJW0Vkv0SXQ== | /l/pack-petite-entreprise | 164 € (évolutif 205 €) | **en vente** (22/11/2026, sans versions « Pack » / « Pack évolutif » sur Gumroad) |
+| PCA | Pack Commerçant et artisan | YqkUp-9uupBcFHTAAjlkQg== | /l/pack-commercant-artisan | 95 € (évolutif 119 €) | **en vente** (22/11/2026, sans versions « Pack » / « Pack évolutif » sur Gumroad) |
+| RVH | Revue hebdomadaire et journal de bord | 4avh-xwvvFj0eRmC4rqDcg== | /l/revue-hebdomadaire | 12 € | **en vente** (22/11/2026) |
+| CRS | Plan d'entraînement course à pied | AGzHi8ozc6S4vQwmvGmOPA== | /l/plan-entrainement-course-a-pied | 15 € | **en vente** (22/11/2026) |
+| DMN | Déménagement | eeYVGKI0XJJMFQGwKEMl1Q== | /l/demenagement | 12 € | **en vente** (22/11/2026) |
+| CDX | Cadeaux reçus et remerciements | MCs3LoKvVl7DtQhtn_dWTA== | /l/cadeaux-remerciements | 12 € | **en vente** (22/11/2026) |
+| CTR | Contrats fournisseurs et échéances | AcRfb_xMr-mqRGpwNLgotw== | /l/contrats-fournisseurs | 25 € | **en vente** (22/11/2026) |
+| PRK | Pilotage de parcs multi-sites | hOn6wGUScmPpb--BuJTl-g== | /l/pilotage-parcs-multi-sites | 49 € | **en vente** (22/11/2026) |
+| BSC | Pilotage d'une journée de bascule | xH5b6U76Zzjy5ADJBYu03g== | /l/pilotage-bascule | 29 € | **en vente** (22/11/2026) |
+| ACH | Demandes d'achat et fournitures | qdpoGVR4hsFttsxDiKTSyw== | /l/demandes-achat-fournitures | 19 € | **en vente** (22/11/2026) |
+
+À la publication (règle 7 de `gumroad-priorite.md`) : identifiants dans `PRODUITS` (templates) ou `PACKS` (PPE, PCA),
+`mettre-en-vente.py`, fiche de prise en main de l'essai pour chaque template (`netlify/lib/essais-prise-en-main.mjs`,
+sinon `npm test` échoue), pages des packs régénérées, tests, PR de mise en vente.

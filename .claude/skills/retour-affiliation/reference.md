@@ -44,6 +44,14 @@ https://qm-engineering.fr/
 https://www.linkedin.com/company/qme-qm-engineering
 ```
 
+13. **Mention d'opposition, toujours en dernier** (règle absolue, `docs/templates/communication/REGLES-PROSPECTION.md`),
+    avec l'adresse du destinataire encodée :
+
+```
+—
+Vous ne souhaitez plus recevoir d'informations de QME ? Ne plus recevoir les informations : https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse> (ou répondez simplement « stop »).
+```
+
 Envoi en `htmlBody` : `<br>` pour les retours à la ligne, `<strong>` pour les intitulés, liens en clair
 (`<a href="https://…">qm-engineering.fr/demo/…</a>`). Expéditeur : `quentin.morel@qm-engineering.fr`.
 

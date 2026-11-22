@@ -1,0 +1,68 @@
+
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.titre{position:absolute;left:84px;right:84px;top:200px;z-index:2}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:120px;font-weight:800;line-height:.98;letter-spacing:-.025em;margin-top:30px}
+h1 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.sous{font-size:38px;line-height:1.3;letter-spacing:-.01em;margin-top:44px;max-width:780px}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.f{position:absolute}
+
+/* A · Papier, formes en coin (référence actuelle) */
+.v-A .sourcil{color:var(--rouge)}
+.v-A .sous{color:var(--texte-2)}
+.v-A .compteur{background:var(--surface)}
+.v-A .f1{right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+.v-A .f2{right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+
+/* B · Encre, grand cercle jaune sortant du cadre */
+.v-B{background:var(--encre);color:var(--papier)}
+.v-B .sourcil{color:var(--jaune)}
+.v-B .sous{color:#D9D4C8}
+.v-B .f1{right:-260px;bottom:-260px;width:760px;height:760px;border-radius:50%;background:var(--jaune)}
+.v-B .f2{right:420px;bottom:300px;width:120px;height:120px;background:var(--rouge)}
+
+/* C · Bleu, frise Bauhaus de quatre modules en pied */
+.v-C{background:var(--bleu);color:#fff}
+.v-C .sourcil{color:#fff;opacity:.85}
+.v-C .sous{color:#fff;opacity:.9}
+.v-C .frise{position:absolute;left:0;right:0;bottom:180px;height:270px;display:grid;grid-template-columns:repeat(4,1fr)}
+.v-C .frise div{position:relative;overflow:hidden}
+.v-C .m1{background:var(--rouge)}
+.v-C .m2{background:var(--papier)}
+.v-C .m2::after{content:"";position:absolute;left:0;bottom:0;width:270px;height:270px;background:var(--jaune);border-top-right-radius:270px}
+.v-C .m3{background:var(--encre)}
+.v-C .m3::after{content:"";position:absolute;left:30px;top:30px;width:210px;height:210px;border-radius:50%;background:var(--papier)}
+.v-C .m4{background:var(--jaune)}
+.v-C .m4::after{content:"";position:absolute;left:0;bottom:0;border-left:270px solid var(--encre);border-top:270px solid transparent}
+
+/* D · Jaune, demi-cercle encre pleine largeur */
+.v-D{background:var(--jaune);color:var(--encre)}
+.v-D h1 mark{background:var(--encre);color:var(--jaune)}
+.v-D .sous{color:var(--encre)}
+.v-D .f1{left:-60px;right:-60px;bottom:-450px;height:900px;border-radius:50%;background:var(--encre)}
+.v-D .f2{right:84px;bottom:300px;width:140px;height:140px;background:var(--rouge);border:6px solid var(--encre)}
+.v-D .glisser{color:var(--papier)}
+
+/* E · Rouge, grand triangle encre et cercle bleu */
+.v-E{background:var(--rouge);color:#fff}
+.v-E .sourcil{color:#fff;opacity:.9}
+.v-E .sous{color:#fff}
+.v-E .f1{right:0;bottom:0;border-right:620px solid var(--encre);border-top:620px solid transparent;width:0;height:0}
+.v-E .f2{right:330px;bottom:340px;width:200px;height:200px;border-radius:50%;background:var(--bleu);border:6px solid var(--encre)}
+
+/* F · Deux plans : bandeau bleu en haut, papier en bas, cercle rouge à cheval */
+.v-F .plan{position:absolute;left:0;right:0;top:0;height:820px;background:var(--bleu)}
+.v-F .titre{color:#fff}
+.v-F .sourcil{opacity:.85}
+.v-F .compteur{color:#fff}
+.v-F .f1{left:84px;top:690px;width:260px;height:260px;border-radius:50%;background:var(--rouge);border:6px solid var(--encre)}
+.v-F .f2{right:0;bottom:0;width:300px;height:300px;background:var(--jaune);border-top-left-radius:300px}

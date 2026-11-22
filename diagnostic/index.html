@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Combien te coûte ta désorganisation ? Le test en 1 minute · QME</title>
+<meta name="description" content="Test gratuit en 4 questions : petits achats, temps perdu sur tes tâches, papiers introuvables, habitudes qui lâchent. Le résultat en euros, en heures et en séances par an, calculé dans ton navigateur.">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="canonical" href="https://qm-engineering.fr/diagnostic/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Combien te coûte ta désorganisation ?">
+<meta property="og:description" content="4 questions, 1 minute : tes euros, tes heures et tes séances perdues par an. Et toi ?">
+<meta property="og:url" content="https://qm-engineering.fr/diagnostic/">
+<meta property="og:image" content="https://qm-engineering.fr/assets/diagnostic-partage.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/guides.css?v=2026111501">
+<link rel="stylesheet" href="/assets/diagnostic.css?v=2026112103">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="QME, accueil">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
+    <span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>
+    <span class="tagline">Quentin Morel<br>Engineering</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="/sur-mesure/">Sur mesure</a>
+    <a href="/templates/">Templates</a>
+    <a href="/packs/">Packs</a>
+    <a class="login" href="/connexion/">Connexion</a>
+    <a class="cta" href="/contact/">Parler de votre projet</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main>
+<article class="guide diag">
+<div class="guide-corps">
+  <p class="diag-sourcil">Le test · 4 questions · 1 minute</p>
+  <h1>Combien te coûte ta désorganisation ?</h1>
+  <p class="chapeau">Petits achats qui s'envolent, temps perdu à savoir par quoi commencer, papier introuvable le jour où on te le demande, bonnes résolutions qui lâchent au bout de deux semaines. Réponds avec tes chiffres, même approximatifs : le résultat sort en euros, en heures et en séances par an.</p>
+
+  <form class="calculateur diag-jeu" data-diag novalidate>
+    <div class="diag-progression" aria-hidden="true"><span data-barre></span></div>
+    <p class="diag-compte" data-compte aria-live="polite">Question 1 sur 4</p>
+
+    <!-- 1. Budget -->
+    <fieldset class="diag-etape" data-etape="budget">
+      <legend>Ton budget</legend>
+      <p class="diag-question">Combien dépenses-tu <b>par semaine</b> en petits achats non prévus ?</p>
+      <p class="diag-aide">Snack, café, livraison, achat en ligne « juste comme ça »… De tête, à peu près.</p>
+      <div class="champs">
+        <label>Petits achats (€ par semaine)<input name="petits" inputmode="decimal" autocomplete="off" placeholder="ex. 20"></label>
+        <label>Abonnements pas utilisés le mois dernier (€ par mois)<input name="abonnements" inputmode="decimal" autocomplete="off" placeholder="ex. 10"><small>streaming, salle, applis…</small></label>
+        <label>Ton revenu net par mois (facultatif)<input name="revenu" inputmode="decimal" autocomplete="off" placeholder="ex. 1 600"><small>pour convertir en heures de travail</small></label>
+      </div>
+    </fieldset>
+
+    <!-- 2. Tâches -->
+    <fieldset class="diag-etape" data-etape="taches" hidden>
+      <legend>Tes tâches</legend>
+      <p class="diag-question">Combien de minutes <b>par jour</b> perds-tu à chercher par quoi commencer, refaire ta liste ou rattraper un oubli ?</p>
+      <div class="champs un">
+        <label>Minutes par jour<input name="minutes" inputmode="decimal" autocomplete="off" placeholder="ex. 15"></label>
+      </div>
+    </fieldset>
+
+    <!-- 3. Papiers -->
+    <fieldset class="diag-etape" data-etape="papiers" hidden>
+      <legend>Tes papiers</legend>
+      <p class="diag-question">Combien de fois par an dois-tu <b>chercher</b> un papier important (attestation, facture, contrat, avis d'imposition…), et combien de temps à chaque fois ?</p>
+      <div class="champs">
+        <label>Recherches par an<input name="recherches" inputmode="decimal" autocomplete="off" placeholder="ex. 6"></label>
+        <label>Minutes à chaque fois<input name="minutesPapier" inputmode="decimal" autocomplete="off" placeholder="ex. 20"></label>
+      </div>
+    </fieldset>
+
+    <!-- 4. Habitudes -->
+    <fieldset class="diag-etape" data-etape="habitudes" hidden>
+      <legend>Tes habitudes</legend>
+      <p class="diag-question">Une habitude que tu veux tenir (sport, lecture, sommeil…) : combien de fois par semaine <b>vises-tu</b>, et combien en <b>tiens-tu vraiment</b> ?</p>
+      <div class="champs">
+        <label>Laquelle ?<input name="habitude" maxlength="24" autocomplete="off" placeholder="ex. sport"></label>
+        <label>Objectif (fois par semaine)<input name="objectif" inputmode="decimal" autocomplete="off" placeholder="ex. 3"></label>
+        <label>Tenu en vrai (fois par semaine)<input name="reel" inputmode="decimal" autocomplete="off" placeholder="ex. 1"></label>
+      </div>
+    </fieldset>
+
+    <p class="erreur" data-erreur role="alert" hidden></p>
+
+    <div class="diag-actions" data-actions>
+      <button class="btn" type="button" data-passer data-goatcounter-click="diagnostic-passer" data-goatcounter-title="Diagnostic : question passée">Pas concerné(e)</button>
+      <button class="btn primary" type="button" data-suivant>Suivant</button>
+    </div>
+
+    <!-- Résultat -->
+    <section class="diag-resultat" data-resultat aria-live="polite" hidden>
+      <p class="diag-sourcil">Ton résultat</p>
+      <p class="diag-total"><span data-total>0 €</span><small data-total-sous>par an qui t'échappent, d'après tes réponses</small></p>
+      <ul class="diag-lignes" data-lignes></ul>
+      <p class="diag-rien" data-rien hidden>Rien ne t'échappe d'après tes réponses : bravo. Tu peux quand même essayer les outils ci-dessous.</p>
+
+      <div class="diag-partage">
+        <p><b>Et tes potes ?</b> Envoie-leur le test, ou poste ton résultat en story.</p>
+        <div class="diag-actions">
+          <button class="btn primary" type="button" data-partager>Partager mon résultat</button>
+          <button class="btn" type="button" data-image>Télécharger l'image (story)</button>
+          <button class="btn" type="button" data-recommencer>Refaire le test</button>
+        </div>
+        <p class="diag-note" data-copie hidden>Lien copié : qm-engineering.fr/jeu</p>
+      </div>
+    </section>
+
+    <noscript><p class="erreur">Le test a besoin de JavaScript.</p></noscript>
+    <p class="confidentialite">Le calcul se fait dans ton navigateur : rien n'est envoyé ni enregistré. Seul le passage d'une étape est compté, sans donnée personnelle (GoatCounter, sans cookie).</p>
+  </form>
+
+  <h2 id="calculs">Comment c'est calculé</h2>
+  <ul>
+    <li><b>Budget</b> : les petits achats d'une semaine × 52, plus les abonnements non utilisés × 12. Si tu donnes ton revenu, on le convertit en heures de travail comme le template Temps de vie : revenu net annuel ÷ (35 h × 52 semaines).</li>
+    <li><b>Tâches</b> : les minutes perdues par jour × 365, converties en heures.</li>
+    <li><b>Papiers</b> : recherches par an × minutes par recherche, converties en heures.</li>
+    <li><b>Habitudes</b> : (objectif − ce que tu tiens vraiment) par semaine × 52 semaines.</li>
+  </ul>
+  <p>Aucune moyenne, aucune statistique extérieure : seulement tes réponses, multipliées sur un an.</p>
+  <p class="guide-mention">Estimation à partir de tes réponses, à titre d'information. Ce n'est pas un conseil financier et il ne remplace pas un avis professionnel.</p>
+</div>
+</article>
+</main>
+
+<footer>
+  <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+</footer>
+
+<script src="/assets/site.js?v=2026112004" defer></script>
+<script src="/templates/temps-de-vie/donnees.js" defer></script>
+<script src="/templates/temps-de-vie/calculs.js" defer></script>
+<script src="/assets/diagnostic.js?v=2026112104" defer></script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

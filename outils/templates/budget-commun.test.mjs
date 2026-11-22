@@ -62,6 +62,15 @@ test('répartition en parts, décimales admises', () => {
   assert.ok(R.repartir(1000, [A, B], 'parts', { parts: { a: 0, b: 0 } }).erreur);
 });
 
+test('parts illisibles ou négatives (saisie « abc », « -2 ») : erreur explicite, jamais une part nulle en silence', () => {
+  // L'application transmet NaN pour une part illisible ou négative (avant : elle la comptait 0 sans rien dire).
+  const r = R.repartir(10001, [A, B], 'parts', { parts: { a: NaN, b: 1 } });
+  assert.match(r.erreur, /Parts invalides : écris un nombre positif/);
+  assert.equal(r.quotes, undefined);
+  const ok = R.repartir(10001, [A, B], 'parts', { parts: { a: 1.5, b: 1 } });
+  assert.deepEqual(simple(ok.quotes), { a: 6001, b: 4000 });
+});
+
 test('répartition en montants personnalisés : refus si la somme ne tombe pas juste', () => {
   const ok = R.repartir(5000, [A, B], 'montants', { montants: { a: 3000, b: 2000 } });
   assert.deepEqual(simple(ok.quotes), { a: 3000, b: 2000 });

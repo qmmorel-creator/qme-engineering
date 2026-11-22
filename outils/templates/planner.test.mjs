@@ -253,3 +253,58 @@ test('base : semaines types cohérentes (catégories connues, couleurs distincte
   }
   assert.equal(BASE.couleurs.length, 8);
 });
+
+test('nettoyerEtat : copie restaurée piégée (identifiants, heures illisibles, dates invalides) neutralisée', () => {
+  const piege = 'x" onmouseover="alert(1)" data-x="';
+  const d = {
+    reglages: { debut: 'abc', fin: 99999, weekend: false },
+    categories: [{ id: piege, nom: '<b>Cours</b>', couleur: 'bleu' }, { id: 'b', nom: 'B', couleur: 'rouge' }],
+    series: [
+      { id: 's" data-x="1', titre: 'Série', cat: 'b', jours: [0, '2', 9, -1, 2], debut: 600, duree: 60, depuis: '2026-11-01', exceptions: { '2026-11-02': true, nimporte: true } },
+      { id: 'sans-jour', titre: 'X', cat: 'b', jours: [], debut: 600, duree: 60, depuis: '2026-11-01' },
+      { id: 'sans-date', titre: 'X', cat: 'b', jours: [1], debut: 600, duree: 60, depuis: '2026-02-30' },
+    ],
+    blocs: [
+      { id: piege, date: '2026-11-22', debut: 545, duree: 60, titre: 'Piégé', cat: piege, statut: 'fait' },
+      { id: 'y', date: '2026-11-22', debut: 'abc', duree: 'zz', titre: 'Illisible', cat: 'b', statut: 'fait' },
+      { id: 'z', date: '22/11/2026', debut: 540, duree: 60, titre: 'Mauvaise date', cat: 'b' },
+      { id: 'r', date: '2026-11-21', debut: 540, duree: 60, titre: { o: 1 }, cat: 'b', statut: 'raccourci', dureeReelle: 'NaN' },
+      { id: 'q', date: '2026-11-20', debut: 540, duree: 60, titre: 'Inconnu', cat: 'b', statut: 'termine' },
+      null, 'texte',
+    ],
+    modeles: [{ id: 'm', nom: 'M', blocs: [{ titre: 'A', cat: 'b', jours: [0], debut: 540, duree: 60 }, { titre: 'B', cat: 'b', jours: [0], debut: 'x', duree: 60 }] }],
+  };
+  const e = simple(R.nettoyerEtat(d));
+  const ID = /^[\w-]+$/;
+  assert.ok(e.categories.every((c) => ID.test(c.id)));
+  assert.ok(e.blocs.every((b) => ID.test(b.id) && ID.test(b.cat || 'x')));
+  assert.ok(e.series.every((s) => ID.test(s.id)));
+  // La référence à la catégorie suit son nouvel identifiant.
+  assert.equal(e.blocs[0].cat, e.categories[0].id);
+  assert.deepEqual(e.blocs.map((b) => b.titre), ['Piégé', 'Sans titre', 'Inconnu']);
+  assert.equal(e.blocs[0].debut, 540); // ramené sur la grille de 30 min
+  assert.equal(e.blocs[1].statut, 'fait'); // raccourci sans durée réelle lisible
+  assert.equal(e.blocs[2].statut, 'prevu');
+  assert.equal(e.series.length, 1);
+  assert.deepEqual(e.series[0].jours, [0, 2]);
+  assert.deepEqual(e.series[0].exceptions, { '2026-11-02': true });
+  assert.equal(e.modeles[0].blocs.length, 1);
+  assert.deepEqual(e.reglages, { debut: 420, fin: 1440, weekend: false }); // début illisible : 7 h ; fin bornée à minuit
+  // Le bilan d'une semaine restaurée ne contient aucun NaN.
+  const bil = R.bilan({ ...e }, '2026-11-16', { date: '2026-11-22', min: 1200 });
+  assert.ok(Number.isFinite(bil.total.prevu) && Number.isFinite(bil.total.realise));
+});
+
+test('nettoyerEtat : des données saines passent sans perte', () => {
+  const e = etat();
+  e.series.push({ id: 's1', titre: 'Fond', cat: 'a', jours: [0, 2], debut: 540, duree: 120, depuis: '2026-11-02', jusqua: '2026-12-31', exceptions: { '2026-11-04': true }, note: 'n' });
+  e.blocs.push(bloc('b1', '2026-11-10', 600, 90, 'a', 'raccourci', { dureeReelle: 45, serieId: 's1' }), bloc('b2', '2026-02-28', 0, 1440, 'b', 'deplace', { versId: 'b3' }), bloc('b3', '2028-02-29', 1410, 30, 'b', 'prevu', { deId: 'b2' }));
+  e.modeles.push({ id: 'm1', nom: 'Semaine', blocs: [{ titre: 'A', cat: 'a', jours: [0, 4], debut: 480, duree: 60 }] });
+  e.reglages = { debut: 450, fin: 1290, weekend: true };
+  const n = simple(R.nettoyerEtat(simple(e)));
+  assert.deepEqual(n.blocs, simple(e.blocs));
+  assert.deepEqual(n.series, simple(e.series));
+  assert.deepEqual(n.categories, simple(e.categories));
+  assert.deepEqual(n.modeles, simple(e.modeles));
+  assert.deepEqual(n.reglages, e.reglages);
+});

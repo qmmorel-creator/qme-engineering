@@ -1,5 +1,7 @@
 # Prospects · Registre du DOE
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations seulement, aucune donnée personnelle collectée. Les organismes cités sont des
 structures connues du secteur ; leurs canaux (groupes, annuaires, événements) et conditions de partenariat sont
 **à vérifier** avant toute prise de contact. Template pas encore en vente au 14/11/2026 : les messages renvoient

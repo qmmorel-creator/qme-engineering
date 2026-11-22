@@ -1,5 +1,7 @@
 # Prospects · Rentabilité d'un investissement locatif
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations, jamais de données personnelles collectées sur des particuliers. Les organismes nationaux
 cités existent (réseaux connus) ; leurs règles de partenariat, implantations et contacts sont **à vérifier** avant tout
 envoi. Sujet d'argent : aucune promesse de rendement, aucun conseil d'achat ; le template calcule, il ne recommande pas.

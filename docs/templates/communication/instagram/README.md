@@ -86,6 +86,8 @@ l'action (fond jaune : « Lien en bio », prix, « Démo libre »). Compteur « 
 
 - **Vouvoiement** dans les légendes, comme sur le site et LinkedIn. Les titres repris des couvertures des
   templates gardent leur tutoiement (voix de l'application).
+  **Exception** (décision de Quentin du 21/11/2026) : la campagne de jeux et quiz pour étudiants et jeunes adultes
+  (stories quiz, vidéos TikTok, test `/jeu`) est en **tutoiement** : `docs/templates/communication/jeux/README.md`.
 - Légende : accroche dans la **première ligne** (le reste est replié dans le fil) ; 3 à 6 phrases courtes ;
   « Démo libre et achat : lien en bio » ; **5 hashtags au plus**. Les liens ne sont pas cliquables dans
   une légende : renvoyer au lien en bio (ou à l'autocollant lien d'une story).

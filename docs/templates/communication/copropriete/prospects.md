@@ -1,5 +1,7 @@
 # Prospects · Charges et AG de copropriété
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations seulement : aucune donnée personnelle collectée sur des particuliers. Les organismes cités
 existent (connus au 14/11/2026) ; les points marqués **à vérifier** le sont avant toute prise de contact (existence
 d'un programme partenaire, conditions, interlocuteur).

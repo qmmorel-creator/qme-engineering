@@ -115,13 +115,14 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
   lien d'achat) ; `PUT` refusé après la fin ; report à la connexion par clé de licence (`reporterEssai`).
 - **Tâche quotidienne** `netlify/functions/essais-quotidien.mjs` (8:10 UTC) : rappels, effacement.
 - **Templates ouverts** : `PRODUITS_ESSAI` = `pour` dans `POUR_ESSAI` (perso et pro), identifiant Gumroad dans `PRODUITS`,
-  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
+  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (33 perso et 43 pro au 22/11/2026 ; 29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
 - **Application** : module commun `assets/essai.js`, chargé avant `app.js` (`data-produit`, `data-slug`). Il ne
   modifie pas le code des templates : il lit les réponses de l'API, affiche le bandeau, bloque les modifications
   (actions permises : liste `PERMIS`), joint le code d'essai à la connexion par clé.
 - **Site** : `node outils/essai/generer.mjs` génère `/essai/` et ajoute l'essai aux pages catalogue (bouton, prix,
   question « Y a-t-il un essai gratuit ? », rappel) ; puis `node outils/seo/donnees-structurees.mjs` et
-  `node outils/sitemap/generer.mjs`.
+  `node outils/sitemap/generer.mjs`. Les pages de pack (`node outils/packs/generer.mjs`) annoncent aussi l'essai sous les boutons
+  d'achat et proposent « Essai gratuit » sur chaque outil (22/11/2026), comme la fiche Gumroad du Pack Étudiant.
 
 ## Vérifier
 
@@ -135,7 +136,7 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 ## Mesure (GoatCounter)
 
-Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
+Clics `essai-<slug>` (bouton de la page catalogue), `essai-pack-<pack>-<slug>` (carte d'un outil sur une page de pack), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
 Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
 Circuit technique (client, Gumroad, site, données, e-mails) : `docs/templates/communication/essai/workflow-essai-achat.png`

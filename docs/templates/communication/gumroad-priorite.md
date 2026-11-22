@@ -35,43 +35,62 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
    "slug:prix:permalien:Txx"`, meta description de la page catalogue ≤ 160 caractères, `node outils/packs/generer.mjs`,
    `node outils/seo/donnees-structurees.mjs`, `npm test`, PR, vérification en ligne.
 
-## Ordre
+## Ordre (revu le 22/11/2026, demande de Quentin)
 
-| Rang | Produit | Code | Slug | Prix | Pourquoi |
-|---|---|---|---|---|---|
-| **2** | **Suivi de lecture** | PGS | lecture | 12 € | **En vente depuis le 17/11** |
-| **3** | **Notes et moyennes** | NTS | notes | 12 € | **En vente depuis le 17/11** |
-| **4** | **Candidatures études, stages, alternance** | CAN | candidatures | 12 € | **En vente depuis le 17/11** |
-| **5** | **Planning de mémoire ou de thèse** | MMR | memoire | 15 € | **En vente depuis le 17/11** |
-| **6** | **Fiche du Pack Étudiant** | PET | etudiant | 69 € | **En vente depuis le 17/11** |
-| 7 | Carnet de voiture | CAR | voiture | 13 € | **En vente depuis le 17/11** |
-| 8 | Fiche du Pack Freelance : chiffrer, facturer, encaisser | PFG | freelance-gestion | 118 € | **En vente depuis le 17/11** |
-| 9 | Fiche du Pack Voyage | PVY | voyage | 25 € | **En vente depuis le 17/11** |
-| 10 | Fiche du Pack Ma voiture | PVT | voiture | 22 € | **En vente depuis le 17/11** |
-| 11 | Stocks et inventaire, puis Suivi de TVA | STK, TVA | stocks, tva | 25 €, 19 € | STK et TVA **en vente depuis le 18/11** |
-| 12 | Compétition | CMP | competition | 49 € | **En vente depuis le 18/11** |
-| 13 | Repas de la semaine, puis Carnet de musculation | RPS, MSC | repas, musculation | 13 €, 19 € | RPS et MSC **en vente depuis le 18/11** |
-| **1** | **Fiche du Pack Budget perso et famille** (demande de Quentin, 20/11) | PBF | budget-perso-famille | 47 € (évolutif 59 €) | **Brouillon créé le 21/11** (`FbVA2eJXNqKeGcjM5sA1aQ==`, voir `gumroad-brouillons.md`) : reste la clé de licence et les deux versions (Quentin), puis publication |
-| 14 | Les autres templates « prêt » | | | | Dans l'ordre des packs de `packs/gumroad-packs.json`, puis P1, P2, P3 d'`IDEES.md` |
+Critère : finir les packs. Chaque création débloque le plus de chiffre d'affaires possible (une fiche de pack complet,
+puis les templates qui manquent à un pack). Rappel de la règle 5 : une fiche de pack n'est créée que lorsque tous ses
+templates sont en vente.
 
-### Pack Budget perso et famille (PBF) : réglages de la fiche
+**Études** (vérifié le 22/11 contre la boutique) : le Pack Étudiant (PET) est complet et en vente, ainsi que les
+5 outils budget proposés à Odélia (BDG, ABN, BCM, EPG, RPS). Rien à créer pour ce partenariat. Le seul pack du
+domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué par T55 (voir plus bas).
 
-- Nom « Pack Budget perso et famille », 47 €, permalien `pack-budget-perso-famille`, catégorie
-  `business-and-money/personal-finance`.
-- Description : celle de `packs/gumroad-packs.json` (code PBF), avec ce paragraphe ajouté avant « Après l'achat » :
-  « **Votre budget perso reste privé :** pour partager le budget commun avec votre foyer, vous envoyez son code de
-  partage, qui n'ouvre que lui. La clé du pack reste pour vous. »
-- Résumé : « Votre budget et celui de la famille, enfin d'équerre : budget du foyer, budget commun, abonnements,
-  épargne et dettes, 47 € au lieu de 63 €. »
-- Tags : budget, pack, francais, famille, couple, économies, épargne, finances-perso.
-- Détails : Contenu « 5 templates : Mon Budget, Gestion Dépenses Communes, Suivi des abonnements, Objectif d'épargne,
-  Remboursement de dettes » ; Format « Applications web (ordinateur, tablette, téléphone) » ; Accès « Une clé de
-  licence pour les 5 » ; Paiement « Achat unique, sans abonnement » ; Langue « Français ».
-- Reçu : celui du Pack Argent du quotidien, « 4 templates » remplacé par « 5 templates », plus la ligne
-  « 🔒 Pour partager le budget commun, envoie son code de partage (onglet Foyer), jamais la clé du pack. » ;
-  bouton « Ouvrir mon pack » ; lien de contenu `https://qm-engineering.fr/connexion/` (« Ouvrir mon pack »).
-- Puis Quentin : clé de licence et versions « Pack » (47 €) et « Pack évolutif » (59 €) ; à la publication,
-  `gumroad` et `permalien` dans `PACKS.PBF` (`netlify/lib/packs.mjs`), `node outils/packs/generer.mjs`, tests, PR.
+### Vague du 22/11 : 10 brouillons créés (détail dans `gumroad-brouillons.md`)
+
+| Rang | Produit | Code | Prix | Débloque |
+|---|---|---|---|---|
+| 1 | Fiche du Pack Petite entreprise | PPE | 164 € (évolutif 205 €) | pack complet (9/9 en vente) |
+| 2 | Fiche du Pack Commerçant et artisan | PCA | 95 € (évolutif 119 €) | pack complet (5/5 en vente) |
+| 3 | Revue hebdomadaire | RVH | 12 € | dernier template du Pack Productivité perso (PPR) |
+| 4 | Plan d'entraînement course à pied | CRS | 15 € | dernier template du Pack Forme (PFM) |
+| 5 | Déménagement | DMN | 12 € | Pack Mariage et installation (PMR) |
+| 6 | Cadeaux reçus et remerciements | CDX | 12 € | dernier template du Pack Mariage et installation (PMR) |
+| 7 | Contrats fournisseurs | CTR | 25 € | packs Exploitation (PXP) et Moyens généraux (PMG) |
+| 8 | Pilotage de parcs multi-sites | PRK | 49 € | dernier template du Pack Exploitation et maintenance (PXP) |
+| 9 | Pilotage d'une journée de bascule | BSC | 29 € | Pack Moyens généraux (PMG) |
+| 10 | Demandes d'achat et fournitures | ACH | 19 € | dernier template du Pack Moyens généraux (PMG) |
+
+**Les 10 sont publiés et en vente depuis le 22/11** (clés activées par Quentin, site passé en vente le même jour).
+Les fiches PPE et PCA n'ont pas de versions « Pack » / « Pack évolutif » sur Gumroad (pas plus que PBT) : l'option
+évolutif n'est donc pas achetable sur ces packs.
+
+### Vague suivante (dès que la limite le permet : prochaine création le 23/11 à 12 h 47, Paris)
+
+| Rang | Produit | Code | Prix | Pourquoi |
+|---|---|---|---|---|
+| 11 | Fiche du Pack Productivité perso | PPR | 54 € | complet une fois RVH en vente |
+| 12 | Fiche du Pack Forme | PFM | 58 € | complet une fois CRS en vente |
+| 13 | Fiche du Pack Mariage et installation à deux | PMR | 72 € | complet une fois DMN et CDX en vente |
+| 14 | Fiche du Pack Exploitation et maintenance | PXP | 118 € | complet une fois CTR et PRK en vente |
+| 15 | Fiche du Pack Moyens généraux | PMG | 194 € | complet une fois CTR, BSC et ACH en vente |
+| 16 | Garde-manger et dates de péremption (création refusée le 22/11 par la limite ; reprise programmée le 23/11 à 12 h 50) | GRD | 12 € | dernier template manquant du Pack Cuisine (PCS) ; sert aussi au Pack Famille |
+| 17 | Fiche du Pack Cuisine (demande de Quentin, 22/11) | PCS | 22 € (évolutif 9 €) | complet une fois GRD en vente (RPS déjà en vente) |
+| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
+| 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
+| 20 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
+| 21 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 20 |
+| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | Pack Enseignant (PNS), vendus seuls en attendant T55 |
+| 23 | Suivi d'un animal | ANM | 12 € | Pack Famille (PFA), qui attend aussi T19 |
+| 24 | Hors pack : Compétences, Potager, Auto-école, Séminaire | FRM, PTG, AEC, SMN | 25, 13, 45, 35 € | aucun pack à finir |
+
+**Pack Cuisine (PCS, décision de Quentin du 22/11/2026)** : Repas de la semaine et liste de courses (RPS, 13 €, en
+vente) + Garde-manger et dates de péremption (GRD, 12 €, prêt). Valeur 25 €, remise 10 %, prix 22 €, option évolutif
+9 € (minimum). Accroche proposée : « Le menu de la semaine, la liste de courses, et rien ne se perd au frigo. » Déclaré
+sur le site le 22/11 (« Bientôt », page `/packs/cuisine/`, `PCS` dans `PACKS` et `PAGES`) ; fiche prête dans
+`packs/gumroad-packs.json`, à créer sur Gumroad une fois GRD en vente.
+
+**Bloqués par une décision de Quentin** (règle 6) : Remboursements santé (RBS, seul manquant du Pack Reprendre la main
+sur son argent, PAR), Suivi du bébé (BBE, Pack Famille), Gestion de classe (CSE, Pack Enseignant).
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
 `docs/templates/communication/<slug>/gumroad.json` ou `gumroad.md`, et celles des packs dans
@@ -93,5 +112,8 @@ Pack Étudiant et Pack Freelance publiés et en vente ; Pack Voyage et Pack Ma v
 CNG et NDF en vente ; fiches des packs PFC et PBT à créer.
 
 20/11 : Pack Freelance « trouver ses clients », Pack Chef de projet BTP, ARD, TDB, ENP en vente.
+
+22/11 : Pack Budget perso et famille publié et en vente. Vague de 10 brouillons créée vers 12 h 45 (Paris) :
+PPE, PCA, RVH, CRS, DMN, CDX, CTR, PRK, BSC, ACH ; prochaine création possible le 23/11 après 13 h (Paris).
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).

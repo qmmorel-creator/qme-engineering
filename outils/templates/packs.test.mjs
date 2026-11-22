@@ -193,3 +193,19 @@ test('le menu de chaque page en français mène aux packs', async () => {
     if (nav.includes('href="/templates/"')) assert.ok(nav.includes('href="/packs/"'), `${f} : lien Packs absent du menu`);
   }
 });
+
+test('pages de pack en vente : essai gratuit annoncé sous l’achat et proposé sur chaque outil ouvert à l’essai', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { PRODUITS_ESSAI } = await import('../../netlify/lib/essais.mjs');
+  for (const slug of ['etudiant', 'argent-du-quotidien']) {
+    const html = readFileSync(new URL(`../../packs/${slug}/index.html`, import.meta.url), 'utf8');
+    const k = Object.keys(PACKS).find((c) => PACKS[c].slug === slug);
+    assert.match(html, /<p class="essai-pack">[^<]*14 jours gratuitement, sans carte bancaire/, slug);
+    for (const p of PACKS[k].produits.filter((x) => PRODUITS_ESSAI.includes(x))) {
+      const s = PRODUITS[p].url.split('/')[2];
+      assert.ok(html.includes(`<a href="/essai/?t=${s}" data-goatcounter-click="essai-pack-${slug}-${s}">Essai gratuit</a>`), `${slug} : essai de ${s}`);
+    }
+  }
+  const css = readFileSync(new URL('../../assets/packs.css', import.meta.url), 'utf8');
+  assert.match(css, /\.t-pied a\{[^}]*min-height:44px/, 'liens des cartes : 44 px au doigt');
+});

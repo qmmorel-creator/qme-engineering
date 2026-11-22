@@ -41,7 +41,9 @@
   function lireMontant(saisie) {
     const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(',', '.');
     if (!s || !/^\d+(\.\d{0,2})?$/.test(s)) return null;
-    return Math.round(Number(s) * 100);
+    const c = Math.round(Number(s) * 100);
+    // Au-delà d'un milliard d'euros : faute de frappe probable (et entiers exacts garantis).
+    return c <= 100000000000 ? c : null;
   }
   // 1299 → « 12,99 € » ; 120000 → « 1 200,00 € » (espace fine insécable) ; options : sans centimes.
   function euros(c, { centimes = true, signe = false } = {}) {
@@ -148,8 +150,12 @@
       const c = t.parCat.get(a.cat); c.annuel += an; c.nb++;
     }
     t.mensuel = Math.round(t.annuel / 12);
-    const parCat = [...t.parCat.values()].map((c) => ({ ...c, mensuel: Math.round(c.annuel / 12) })).sort((x, y) => y.annuel - x.annuel || x.cat.localeCompare(y.cat));
-    return { ...t, parCat };
+    const parCat = [...t.parCat.values()].sort((x, y) => y.annuel - x.annuel || x.cat.localeCompare(y.cat));
+    // Équivalent mensuel par catégorie au plus fort reste : la colonne « Par mois » tombe juste sur le total.
+    const base = parCat.map((c) => Math.floor(c.annuel / 12));
+    let manque = t.mensuel - base.reduce((s, b) => s + b, 0);
+    parCat.map((c, i) => ({ i, r: c.annuel % 12 })).sort((x, y) => y.r - x.r || x.i - y.i).forEach(({ i }) => { if (manque > 0) { base[i]++; manque--; } });
+    return { ...t, parCat: parCat.map((c, i) => ({ ...c, mensuel: base[i] })) };
   }
 
   // Économie annuelle : potentielle (à résilier) et obtenue (résiliés).

@@ -23,6 +23,7 @@ import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourPa
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { enregistrerOpposition, leverOpposition } from './preferences.mjs';
 import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
@@ -41,6 +42,8 @@ export const lienDesinscription = (secret, email) => {
 };
 
 async function enregistrerContact(essais, secret, { email, prenom, slug, date }) {
+  // Nouveau consentement explicite (case cochée) : une désinscription passée est levée (preferences.mjs).
+  await leverOpposition(essais, cleEmail(secret, email));
   const cle = `contact/${cleEmail(secret, email)}`;
   const c = await essais.get(cle);
   const templates = [...new Set([...(c?.templates || []), slug])];
@@ -284,8 +287,9 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     const e = String(url.searchParams.get('e') || ''), s = String(url.searchParams.get('s') || '');
     const attendu = signerDesinscription(secret, e);
     const ok = /^[0-9a-f]{32}$/.test(e) && s.length === attendu.length && timingSafeEqual(Buffer.from(s), Buffer.from(attendu));
-    if (ok) await essais.supprimer(`contact/${e}`);
-    const message = ok ? 'C\'est fait : vous ne recevrez plus les nouveautés QME, et votre adresse a été effacée de la liste.' : 'Lien invalide.';
+    // Liste d'opposition (preferences.mjs) : fiche « nouveautés » effacée, plus aucune annonce QME.
+    if (ok) await enregistrerOpposition(essais, e, { source: 'lien des e-mails d\'essai', date: new Date(maintenant()).toISOString() });
+    const message = ok ? 'C\'est fait : vous ne recevrez plus les informations QME (nouveautés, annonces), et votre adresse a été retirée de la liste.' : 'Lien invalide.';
     return new Response(`<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Désinscription · QME</title><body style="font-family:Arial,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:22px">Nouveautés QME</h1><p>${message}</p><p><a href="/templates/" style="color:#1D4E89">Retour aux templates</a></p></body></html>`,
       { status: ok ? 200 : 400, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
   }

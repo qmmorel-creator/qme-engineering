@@ -30,8 +30,8 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
 test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
   const attendus = Object.keys(PRODUITS).filter((p) => ['perso', 'pro'].includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
-  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'perso').length, 29);
-  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'pro').length, 39);
+  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'perso').length, 33);
+  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'pro').length, 43);
   for (const p of PRODUITS_ESSAI) assert.ok(PRODUITS[p].gumroad && TEMPLATES[p].prix > 0 && TEMPLATES[p].permalien, p);
   assert.ok(!PRODUITS_ESSAI.includes('SNT'), 'Secret Santa est gratuit');
   assert.equal(produitEssai('budget'), 'BDG');

@@ -1,0 +1,37 @@
+/* Test « Combien vous coûte votre désorganisation ? » (/diagnostic/). Complète guides.css (.calculateur). */
+.diag-sourcil{font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rouge);margin-bottom:10px}
+.diag-jeu{position:relative;padding:24px}
+.diag-progression{height:8px;border-radius:8px;background:var(--sable);overflow:hidden;margin-bottom:10px}
+.diag-progression span{display:block;height:100%;width:25%;background:var(--rouge);transition:width .3s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){.diag-progression span{transition:none}}
+.diag-compte{font-size:14px;color:var(--discret);margin-bottom:14px}
+.diag-etape{border:0;padding:0;margin:0;min-width:0}
+.diag-etape legend{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;padding:0}
+.diag-question{font-size:18px;margin-bottom:8px}
+.diag-question.petite{font-size:17px;margin-top:16px}
+.diag-aide{font-size:15px;color:var(--texte-2);margin-bottom:14px}
+.diag-choix{display:grid;gap:8px;margin:6px 0 16px}
+.diag-choix label{display:flex;flex-direction:row;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--papier);font-weight:500;cursor:pointer}
+.diag-choix label:has(input:checked){border-color:var(--encre);background:var(--beurre)}
+.diag-choix input{width:auto;accent-color:var(--rouge);margin:0}
+.calculateur .champs.un{grid-template-columns:minmax(0,320px)}
+.calculateur label small{font-weight:400;color:var(--discret);font-size:13px}
+.diag-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:18px}
+.diag-actions .btn{cursor:pointer}
+.diag-resultat{margin-top:4px}
+.diag-total{display:flex;flex-direction:column;gap:4px;padding:22px;border-radius:18px;background:var(--encre);color:var(--papier);margin-bottom:16px}
+.guide .diag-total,.guide .diag-total span,.guide .diag-total small{color:var(--papier)}
+.diag-total span{font-size:clamp(44px,9vw,72px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.diag-total small{font-size:16px;color:var(--papier);opacity:.85}
+.guide .diag-lignes{padding:0}
+.diag-lignes{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:10px}
+.diag-lignes li{padding:14px 16px;border-radius:16px;background:var(--ciel);display:grid;gap:4px}
+.diag-lignes li.nul{background:var(--sable)}
+.diag-lignes li.info{background:var(--beurre)}
+.diag-lignes b{font-size:22px}
+.diag-lignes a{font-weight:700}
+.diag-couple{padding:14px 16px;border-radius:16px;background:var(--rose);margin-bottom:16px}
+.diag-rien{padding:14px 16px;border-radius:16px;background:var(--beurre);margin-bottom:16px}
+.diag-partage{border-top:1px solid var(--trait);padding-top:16px}
+.diag-partage .diag-actions{justify-content:flex-start}
+.diag-note{margin-top:10px;font-size:14px;color:var(--discret)}

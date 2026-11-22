@@ -467,7 +467,7 @@
     if (VUES.includes(depuisUrl)) vue = depuisUrl;
     if (siteOuvert && !site(siteOuvert)) siteOuvert = null;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/parcs-multi-sites/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Sites et chiffres fictifs, gardés sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Sites et chiffres fictifs, gardés sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Parcs<br>multi-sites</span>

@@ -343,7 +343,18 @@
   // Calendrier iCalendar (RFC 5545) des échéances : événements « journée » (date limite, réponse, relance)
   // ou à l'heure saisie (entretien, 1 h), heure locale flottante. Aucune donnée envoyée : fichier à importer.
   const echapIcs = (s) => String(s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
-  const plie = (ligne) => { const out = []; let l = ligne; while (l.length > 74) { out.push(l.slice(0, 74)); l = ' ' + l.slice(74); } out.push(l); return out.join('\r\n'); };
+  // Pliage à 75 octets UTF-8 au plus par ligne (RFC 5545), sans couper un caractère (accent, emoji).
+  const octets = (car) => { const c = car.codePointAt(0); return c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4; };
+  const plie = (ligne) => {
+    const out = []; let cur = '', n = 0;
+    for (const car of ligne) {
+      const o = octets(car);
+      if (n + o > 75) { out.push(cur); cur = ' '; n = 1; }
+      cur += car; n += o;
+    }
+    out.push(cur);
+    return out.join('\r\n');
+  };
   function versIcs(evs, ctx, horodatage) {
     const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//QME//Candidatures//FR', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:Candidatures'];
     for (const e of evs) {

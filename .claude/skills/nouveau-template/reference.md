@@ -146,7 +146,9 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
       (sans toucher aux étapes `parcours`) ; rattachement au(x) pack(s) dans `netlify/lib/packs.mjs` (`produits`, et
       `ajouts` avec la date si le pack est déjà en vente), puis `node outils/packs/generer.mjs`. La page catalogue
       garde le lien « Packs » dans son menu (après « Templates »). `outils/templates/packs.test.mjs` vérifie tout cela.
-- [ ] **Connexion `connexion/index.html`** : produit dans `PRODUITS` (nom, url, clé de stockage) ; textes
+- [ ] **Panneau « Mes templates »** : `<script src="/assets/mes-templates.js?v=…" defer></script>` avant `</body>`
+      de l'application, logo d'en-tête en `.barre .marque` (contrôlé par `outils/templates/connexion.test.mjs`).
+- [ ] **Connexion `connexion/index.html`** : `node outils/connexion/generer.mjs` (liste générée depuis `PRODUITS` et le catalogue) ; textes
       d'aide qui nomment un template (« Ouvrir mon planning »).
 - [ ] **Références de l'accueil** (`#references`) : ajouter le template aux « Autres outils construits »
       si c'est pertinent.

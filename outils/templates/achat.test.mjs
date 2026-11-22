@@ -124,3 +124,16 @@ test('e-mails d\'achat : construits pour chaque template et pack en vente, sans 
     assert.ok(m.objet && m.texte.length > 300 && !/undefined|NaN|null/.test(m.texte + m.objet), vente.code);
   }
 });
+
+test('e-mail d\'achat direct : « Pour les ouvrir » (pack) et « Pour l\'ouvrir » (template), espaces justes', () => {
+  const pack = contenuMailAchat({ vente: produitVendu(PACKS.PET.gumroad), aujourdhui: '2026-12-28' });
+  assert.match(pack.texte, /Pour les ouvrir : /);
+  assert.doesNotMatch(pack.texte, /lesouvrir/);
+  const seul = contenuMailAchat({ vente: produitVendu(PRODUITS.NTS.gumroad), aujourdhui: '2026-12-28' });
+  assert.match(seul.texte, /Pour l'ouvrir : /);
+  // Aucun mot collé à un autre par une interpolation, pour tous les produits en vente.
+  for (const vente of [...Object.keys(PRODUITS).filter((p) => PRODUITS[p].gumroad).map((p) => produitVendu(PRODUITS[p].gumroad)),
+    ...Object.keys(PACKS).filter((k) => PACKS[k].gumroad).map((k) => produitVendu(PACKS[k].gumroad))]) {
+    assert.doesNotMatch(contenuMailAchat({ vente, aujourdhui: '2026-12-28' }).texte, /\b(les|des|ses)(ouvrir|templates?)\b/, vente.code);
+  }
+});

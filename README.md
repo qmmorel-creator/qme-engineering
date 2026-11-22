@@ -55,6 +55,43 @@ Site promotionnel de Quentin Morel Engineering (QME).
   propre à chaque template, J-3, fin, avant effacement ; remerciement à l'achat via le ping Gumroad
   `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
+- Espace acheteurs `/connexion/` (refait le 22/11/2026) : dès qu'un template est enregistré sur l'appareil, la page
+  devient « Mes templates » : épinglés (étoile), récemment ouverts depuis la page, puis regroupement par thème du
+  catalogue (repliable, état retenu) avec puces de saut ; recherche instantanée sur le nom, la phrase et le thème
+  (Entrée ouvre le premier résultat ; sans résultat, lien vers le catalogue). Recherche, thèmes et récents à partir
+  de 5 templates ; en dessous, simple liste. Le formulaire de clé passe dessous (« Ajouter un template »). Épinglés,
+  récents et thèmes ouverts restent sur l'appareil (`qme-espace-*` dans `localStorage`). Liste générée par
+  `node outils/connexion/generer.mjs` (PRODUITS + cartes de `templates/index.html`), contrôlée par
+  `outils/templates/connexion.test.mjs`. Composant commun `assets/espace.js` / `espace.css`, aussi utilisé par le
+  tableau de bord des packs `/packs/espace/` (généré par `outils/packs/generer.mjs`, données de thèmes comprises) :
+  templates de tous les packs de l'appareil réunis, même recherche, épinglés, récents et thèmes ; bouton « copier le
+  code de partage » sur chaque tuile ; « Gérer mes packs » (oublier un pack) et « Ajouter un pack » en dessous.
+- Comptes acheteurs (22/11/2026, décision de Quentin) : connexion **par lien envoyé par e-mail, sans mot de passe**
+  (`netlify/lib/comptes.mjs`, fonction `/api/compte`, store des essais à Francfort, préfixes `compte/`, `lien/`,
+  `limite/`). Un compte est un trousseau : les clés (licences, codes QME, packs, essais) et les préférences de
+  l'espace (prénom, noms donnés, masquées, épinglées) ; les applications vérifient toujours leur clé à l'ouverture.
+  Chaque achat vérifié par le ping Gumroad (`achats.mjs`) est rangé sous l'adresse de l'acheteur (compte créé au
+  besoin) ; les essais sont lus dans l'index des essais par adresse. Lien valable 15 min, à usage unique ; 5 liens par
+  heure et par adresse ; session de 90 jours, « déconnecter tous mes appareils », suppression du compte par
+  l'acheteur. Client : `assets/compte.js` (synchronisation appareil ↔ compte). Purge quotidienne des traces
+  anti-abus (`purgerComptes`, dans `essais-quotidien.mjs`). Tests : `outils/templates/comptes.test.mjs`.
+  Politique de confidentialité : section « Compte acheteur ».
+- Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
+  alimentée par le lien « Ne plus recevoir les informations » des annonces (`/api/compte/stop`), la page publique
+  `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
+  `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
+  (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
+  `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+- Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
+  bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
+  (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
+  espaces acheteurs ; le catalogue garde « template ».
+- Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
+  `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
+  panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal
+  à `qme-<pre>-essai`, écrit par `essai.js`) ou **Admin** (code `ADM-…`), le template ouvert en tête, puis
+  « Mon espace : tout voir » (`/connexion/`) et « Site QME ». Données chargées à la première ouverture :
+  `assets/espace-donnees.js` (généré par `node outils/connexion/generer.mjs`). Mêmes badges sur `/connexion/`.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
@@ -68,6 +105,20 @@ Site promotionnel de Quentin Morel Engineering (QME).
   03/11/2026 (nexora#1488), musique « Corporate » de litesaturation (Pixabay, licence Pixabay : usage
   commercial sans attribution), normalisée à -16 LUFS, fondu de sortie de 3 s ; image inchangée. Les
   musiques des vidéos tournent sur 4 pistes, décrites dans le dépôt Nexora, `docs/qme/musiques/`
+- `diagnostic/` : test « Combien te coûte ta désorganisation ? » pour Instagram et TikTok (étudiants et jeunes adultes,
+  en tutoiement ; 4 questions universelles : budget, tâches, papiers, habitudes ; résultat en euros, heures et séances
+  par an, euros convertis en heures de travail si le revenu est donné (méthode du template Temps de vie) ; renvoi à
+  l'essai de Mon Budget, Temps de vie, Gestionnaire de tâches, Papiers du foyer et Suivi d'habitudes ; image story
+  partageable ; questions des quiz : `assets/quiz-qme.js`), lien court
+  `/jeu`. Script `assets/diagnostic.js` (calcul testé par `outils/templates/diagnostic.test.mjs`), styles
+  `assets/diagnostic.css`. Plan des jeux et quiz d'acquisition (stories quiz, vidéos TikTok, suites) :
+  `docs/templates/communication/jeux/README.md` (depuis le 21/11/2026).
+- `defi/` : défi 7 jours entre potes (décision de Quentin du 21/11/2026) : chacun choisit une habitude, invite ses potes
+  par lien (jusqu'à 6), coche ses journées tenues pendant 7 jours (le jour même, ou la veille en rattrapage), tableau
+  commun, le perdant paie le pari. API `/api/defi` (`netlify/functions/defi.mjs`, logique `netlify/lib/defi.mjs`,
+  stockage `netlify/lib/defi-store.mjs` : Netlify Blobs à Francfort, un fichier par participant), jetons personnels
+  signés (HMAC de `TEMPLATES_SECRET`), aucune donnée hors pseudo, habitude, pari et jours cochés ; effacement 30 jours
+  après la fin (`defi-purge.mjs`, quotidien) ; mention dans `confidentialite/`. Tests : `outils/templates/defi.test.mjs`.
 - `en/english-version/` : page de la campagne X (anglais, sur mesure), générée par `node outils/x/generer.mjs` depuis
   `outils/x/templates-en.json` et les pages `catalogue/` : les 97 templates avec une capture, la mention « French
   interface » et un bouton « I'd like it in English » (compteur `/api/interets`, modules `en-<slug>`, e-mail
@@ -160,6 +211,14 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
   lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
+  Depuis le 22/11/2026, une page de pack en vente annonce l'essai gratuit sous les boutons d'achat et propose « Essai gratuit »
+  sur chaque outil ouvert à l'essai. Fiches Gumroad des packs (même source) : `node outils/packs/fiches-gumroad.mjs` ; couvertures
+  Gumroad des packs (1280 × 720, mosaïque des vignettes) : `node outils/packs/couvertures-gumroad.cjs <slug>…` →
+  `assets/packs-<slug>-couverture.png` (serveur local sur le port 8899).
+- Téléphone (audit du 22/11/2026, rapport `docs/templates/audit-etudiants-2026-11-22.md`) : sous 640 px, le prix et les boutons
+  d'une page catalogue passent avant la liste des fonctions ; sous 600 px, les liens LinkedIn et Instagram sont dans le flux au-dessus
+  du pied de page (`assets/site.css`). Aucune démo d'un template en vente n'affiche « Bientôt en vente »
+  (`outils/templates/audit-etudiants.test.mjs`).
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
 ## Templates payants (`/templates/`)
