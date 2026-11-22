@@ -185,6 +185,14 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
   lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
+  Depuis le 22/11/2026, une page de pack en vente annonce l'essai gratuit sous les boutons d'achat et propose « Essai gratuit »
+  sur chaque outil ouvert à l'essai. Fiches Gumroad des packs (même source) : `node outils/packs/fiches-gumroad.mjs` ; couvertures
+  Gumroad des packs (1280 × 720, mosaïque des vignettes) : `node outils/packs/couvertures-gumroad.cjs <slug>…` →
+  `assets/packs-<slug>-couverture.png` (serveur local sur le port 8899).
+- Téléphone (audit du 22/11/2026, rapport `docs/templates/audit-etudiants-2026-11-22.md`) : sous 640 px, le prix et les boutons
+  d'une page catalogue passent avant la liste des fonctions ; sous 600 px, les liens LinkedIn et Instagram sont dans le flux au-dessus
+  du pied de page (`assets/site.css`). Aucune démo d'un template en vente n'affiche « Bientôt en vente »
+  (`outils/templates/audit-etudiants.test.mjs`).
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
 ## Templates payants (`/templates/`)

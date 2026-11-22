@@ -277,7 +277,7 @@ export const PAGES = {
   PET: {
     couleur: 'bleu', cibles: ['etudiants'],
     accroche: 'Réviser au bon moment, chaque jour, jusqu’à l’examen.',
-    resume: 'Le planning de révision par répétition espacée, l’emploi du temps de la semaine, les routines et le suivi de lecture.',
+    resume: 'Révisions par répétition espacée, notes et moyennes, emploi du temps de la semaine, routines, lectures, candidatures et mémoire : les sept outils de l’année d’études.',
     pourQui: 'Bac, partiels, concours : vous avez beaucoup à retenir et peu de temps. Ce pack dit quoi réviser aujourd’hui, quand le placer dans la semaine et comment tenir le rythme.',
     parcours: [
       ['REV', 'Chaque chapitre revient au bon moment, selon la répétition espacée.'],

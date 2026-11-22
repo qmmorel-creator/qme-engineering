@@ -245,12 +245,22 @@ des titres et les contrastes sont corrigés.
 - **Calculs justes** : quantités selon les portions (50 g pour 2 personnes → 130 g pour 5, arrondi de courses),
   regroupement g/kg et ml/cl/l.
 
+## Suite donnée le 22/11/2026 (« mets tout en cohérence partout et publie »)
+
+- **37 démos** de templates en vente (les 29 listées plus bas, et 8 mis en vente le 22/11) n'affichent plus « Bientôt en vente ».
+  Versions de cache changées. Un test couvre désormais tous les templates en vente.
+- **Pack Étudiant** : le chapeau cite les 7 outils (`outils/packs/donnees.mjs`). La fiche Gumroad est générée avec l'essai gratuit
+  (`outils/packs/fiches-gumroad.mjs`) et la description du produit Gumroad a été mise à jour avec ce texte.
+- **Couvertures Gumroad** des packs Étudiant et Argent du quotidien : `node outils/packs/couvertures-gumroad.cjs`, publiées dans
+  `assets/packs-<slug>-couverture.png`, puis ajoutées sur Gumroad.
+- README et `docs/templates/essai-gratuit.md` à jour. Points 1, 2 et 17 ci-dessous : **traités**.
+
 ## À décider par Quentin
 
-1. **Gumroad** : les produits « Pack Étudiant » et « Pack Argent du quotidien » n'ont **aucune image de couverture**
+1. **Traité** · **Gumroad** : les produits « Pack Étudiant » et « Pack Argent du quotidien » n'ont **aucune image de couverture**
    (`covers: []`). Les étudiants qui cliqueront « Acheter le pack » arriveront sur une page Gumroad sans visuel.
    Je n'ai rien modifié sur Gumroad.
-2. **Texte du Pack Étudiant** : le chapeau de la page et de Gumroad (« Le planning de révision…, l'emploi du temps…, les
+2. **Traité** · **Texte du Pack Étudiant** : le chapeau de la page et de Gumroad (« Le planning de révision…, l'emploi du temps…, les
    routines et le suivi de lecture ») ne cite que 4 des 7 outils (ni notes, ni candidatures, ni mémoire). Il faudrait le
    modifier dans `outils/packs/donnees.mjs` et sur Gumroad.
 3. **Vignette du Planner** sur la page du pack : elle montre une semaine de freelance (« Production client »,
@@ -280,7 +290,7 @@ des titres et les contrastes sont corrigés.
     séparée serait préférable.
 16. **Démos partenaire (`droit-l1`)** : chaque outil s'ouvre d'abord sur la fenêtre « Comment ça marche ». C'est utile
     pour un visiteur, mais c'est un geste de plus à l'écran pendant le tournage.
-17. **Hors périmètre** : 29 autres templates en vente affichent encore « Bientôt en vente » dans le bandeau de leur démo :
+17. **Traité** · **Hors périmètre** : 29 autres templates en vente affichent encore « Bientôt en vente » dans le bandeau de leur démo :
     appel-decouverte, appels-offres, calendrier-editorial, competition, conges, dettes, doe, emprunt, entretiens-annuels,
     flotte, maintenance, musculation, notes-de-frais, onboarding, papiers, parc-informatique, patrimoine, pilotage-pme,
     propositions, prospection, references-plaquette, salles, sous-traitants, stocks, suivi-chantier, suivi-temps,
