@@ -143,8 +143,8 @@ test('purge quotidienne : traces de demandes et liens expirés effacés, compte 
   await connecter(w, 'eva@exemple.fr');
   const avant = [...w.store.m.keys()];
   assert.ok(avant.some((k) => k.startsWith('limite/')) && avant.some((k) => k.startsWith('lien/')));
-  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 60_000 }), { limites: 0, liens: 0 }, 'encore utiles');
-  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 3_600_001 }), { limites: 1, liens: 1 });
+  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 60_000 }), { limites: 0, liens: 0, oppositions: 0 }, 'encore utiles');
+  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 3_600_001 }), { limites: 1, liens: 1, oppositions: 0 });
   assert.deepEqual([...w.store.m.keys()].filter((k) => !k.startsWith('compte/')), []);
   assert.ok(await w.store.get(cleCompte(SECRET, 'eva@exemple.fr')));
 });
@@ -195,8 +195,8 @@ test('annonce : testeurs inscrits et acheteurs, une fois par adresse, par lots ;
   assert.equal(l2.envoyes, 1); assert.equal(l2.restants, 0);
   assert.equal((await (await admin(w, '/annonce', { simulation: false })).json()).envoyes, 0, 'une seule fois par adresse');
   const acheteuse = w.mails.find((m) => m.a === 'camille@exemple.fr'), testeuse = w.mails.find((m) => m.a === 'lea@exemple.fr');
-  assert.ok(acheteuse.texte.startsWith('Bonjour Camille,') && acheteuse.texte.includes('Ne plus recevoir ces annonces : https://qm-engineering.fr/api/compte/stop?e='));
-  assert.ok(testeuse.texte.startsWith('Bonjour Léa,') && testeuse.texte.includes('/api/essai/desinscription?e='));
+  assert.ok(acheteuse.texte.startsWith('Bonjour Camille,') && acheteuse.texte.includes('Ne plus recevoir les informations : https://qm-engineering.fr/api/compte/stop?e='));
+  assert.ok(testeuse.texte.startsWith('Bonjour Léa,') && testeuse.texte.includes('Ne plus recevoir les informations : https://qm-engineering.fr/api/compte/stop?e='));
   assert.ok(acheteuse.html.includes('utm_campaign=nouveautes-2026-11'));
   // Désinscription de l'acheteuse : lien signé, puis plus d'annonce
   const stop = acheteuse.texte.match(/(https:\/\/qm-engineering\.fr\/api\/compte\/stop\?\S+)/)[1].replace('https://qm-engineering.fr', 'http://t');
@@ -205,4 +205,53 @@ test('annonce : testeurs inscrits et acheteurs, une fois par adresse, par lots ;
   assert.ok((await (await traiterCompte(new Request(stop), { secret: SECRET, store: w.store })).text()).includes('C’est noté'));
   assert.ok((await w.store.get(cleCompte(SECRET, 'camille@exemple.fr'))).sansAnnonces);
   assert.equal((await (await admin(w, '/annonce', {})).json()).acheteurs, 0);
+});
+
+test('liste d\'opposition et registre : désinscription (annonce ou essai), nouveau consentement, export', async () => {
+  const w = monde();
+  const essai = (email, produit, nouveautes) => traiterEssai(new Request('http://t/api/essai', { method: 'POST', body: JSON.stringify({ consentement: true, email, prenom: 'Léa', produit, nouveautes }) }),
+    { secret: SECRET, essais: w.store, envoyer: null, maintenant: () => w.t, ip: '1.2.3.4' });
+  await essai('lea@exemple.fr', 'BDG', true);
+  await essai('max@exemple.fr', 'TCH', false);
+  await ajouterAchat({ secret: SECRET, store: w.store, email: 'lea@exemple.fr', vente: { type: 'template', code: 'TCH' }, licence: LICENCE, maintenant: () => w.t });
+  await ajouterAchat({ secret: SECRET, store: w.store, email: 'nina@exemple.fr', vente: { type: 'template', code: 'GNT' }, licence: LICENCE, nomComplet: 'Nina R', maintenant: () => w.t });
+  const reg = async () => (await (await traiterCompte(new Request('http://t/api/compte/registre', { headers: { 'x-admin': ADMIN } }), { secret: SECRET, store: w.store })).json());
+  assert.equal((await traiterCompte(new Request('http://t/api/compte/registre'), { secret: SECRET, store: w.store })).status, 401);
+  let r = await reg();
+  assert.deepEqual(r.lignes.map((l) => [l.email, l.profil, l.informations, l.achats.join(), l.essais.join()]), [
+    ['lea@exemple.fr', 'acheteur et testeur', 'abonné', 'TCH', 'BDG'],
+    ['max@exemple.fr', 'testeur', 'non inscrit', '', 'TCH'],
+    ['nina@exemple.fr', 'acheteur', 'abonné', 'GNT', ''],
+  ]);
+  assert.ok(r.lignes[0].nouveautes);
+  // Nina se désinscrit depuis une annonce ; Léa depuis un e-mail d'essai
+  const { lienStopAnnonces } = await import('../../netlify/lib/comptes.mjs');
+  const { lienDesinscription } = await import('../../netlify/lib/essais.mjs');
+  await traiterCompte(new Request(lienStopAnnonces(SECRET, 'nina@exemple.fr').replace('https://qm-engineering.fr', 'http://t')), { secret: SECRET, store: w.store, maintenant: () => w.t });
+  await traiterEssai(new Request(lienDesinscription(SECRET, 'lea@exemple.fr').replace('https://qm-engineering.fr', 'http://t')), { secret: SECRET, essais: w.store, maintenant: () => w.t });
+  r = await reg();
+  assert.deepEqual(r.lignes.map((l) => [l.email, l.informations, l.sourceDesinscription]), [
+    ['lea@exemple.fr', 'désinscrit', 'lien des e-mails d\'essai'],
+    ['max@exemple.fr', 'non inscrit', null],
+    ['nina@exemple.fr', 'désinscrit', 'lien « Ne plus recevoir les informations »'],
+  ]);
+  assert.equal(r.desinscrits, 2);
+  assert.equal(await w.store.get('contact/' + (await import('../../netlify/lib/templates-acces.mjs')).cleEmail(SECRET, 'lea@exemple.fr')), null, 'fiche nouveautés effacée');
+  assert.equal((await (await admin(w, '/annonce', {})).json()).total, 0, 'aucune annonce aux opposants');
+  // Nouveau consentement explicite : l'opposition de Léa est levée
+  w.t += 86_400_000;
+  await essai('lea@exemple.fr', 'RPS', true);
+  r = await reg();
+  assert.equal(r.lignes[0].informations, 'abonné');
+  assert.equal((await (await admin(w, '/annonce', {})).json()).total, 1);
+  // Export CSV
+  const brut = new Uint8Array(await (await traiterCompte(new Request('http://t/api/compte/registre?format=csv', { headers: { 'x-admin': ADMIN } }), { secret: SECRET, store: w.store })).arrayBuffer());
+  assert.deepEqual([...brut.slice(0, 3)], [0xef, 0xbb, 0xbf], 'BOM UTF-8 (accents lisibles dans Excel)');
+  const csv = new TextDecoder().decode(brut);
+  assert.ok(csv.startsWith('email;prenom;profil;applications_achetees;essais;nouveautes_depuis;informations;desinscrit_le'));
+  assert.ok(csv.includes('nina@exemple.fr;Nina;acheteur;GNT;;;désinscrit;'));
+  // Purge : opposition gardée 3 ans
+  const { purgerComptes: purge } = await import('../../netlify/lib/comptes.mjs');
+  assert.equal((await purge({ store: w.store, maintenant: () => w.t + 365 * 86_400_000 })).oppositions, 0);
+  assert.equal((await purge({ store: w.store, maintenant: () => w.t + 3 * 366 * 86_400_000 })).oppositions, 1);
 });

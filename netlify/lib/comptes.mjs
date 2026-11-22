@@ -26,12 +26,14 @@
 //  POST   /annonce   { simulation = true, test?, prenom?, limite = 8 } → annonce nouveautes.mjs aux testeurs inscrits
 //                    et aux acheteurs, une fois par adresse ; test : les deux versions à cette seule adresse
 // Public :
-//  GET    /stop?e=&s=                          → plus d'annonce pour ce compte (lien signé du pied de l'annonce)
+//  GET    /registre  (?format=csv)            → registre des préférences d'information (preferences.mjs)
+//  GET    /stop?e=&s=                          → « Ne plus recevoir les informations » (lien signé du pied de l'annonce,
+//                                                 acheteurs et testeurs) : liste d'opposition (preferences.mjs)
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
 import { estAdmin } from './interets.mjs';
-import { lienDesinscription } from './essais.mjs';
 import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
+import { enregistrerOpposition, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 
 export const DUREE_LIEN = 15 * 60_000;
@@ -188,15 +190,17 @@ async function destinataires({ secret, store, exclure = [] }) {
   const parEmail = new Map();
   for (const cle of await store.lister('contact/')) {
     const c = await store.get(cle);
-    if (c?.email) parEmail.set(normEmail(c.email), { email: normEmail(c.email), prenom: c.prenom || '', type: 'testeur', stop: lienDesinscription(secret, c.email) });
+    if (c?.email) parEmail.set(normEmail(c.email), { email: normEmail(c.email), prenom: c.prenom || '', type: 'testeur', stop: lienStopAnnonces(secret, c.email) });
   }
   for (const cle of await store.lister('compte/')) {
     const c = await store.get(cle);
     if (!c?.email || c.sansAnnonces || !c.cles?.some((k) => k.source === 'achat')) continue;
     parEmail.set(c.email, { email: c.email, prenom: c.prenom || parEmail.get(c.email)?.prenom || '', type: 'acheteur', stop: lienStopAnnonces(secret, c.email) });
   }
+  // Liste d'opposition : jamais d'annonce.
+  const opposes = new Set((await store.lister('opposition/')).map((k) => k.slice('opposition/'.length)));
   const ex = exclure.map(normEmail);
-  return [...parEmail.values()].filter((d) => !ex.includes(d.email));
+  return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)));
 }
 
 export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad }) {
@@ -215,12 +219,24 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
   if (chemin === '/stop' && methode === 'GET') {
     const u = new URL(requete.url), h = u.searchParams.get('e') || '', sig = u.searchParams.get('s') || '';
     if (!/^[0-9a-f]{8,64}$/.test(h) || !egal(sig.padEnd(24).slice(0, 24), signerStop(secret, h))) return page('Lien invalide', 'Ce lien de désinscription est incomplet. Répondez à l’e-mail reçu : je vous retire à la main.');
-    const c = await store.get(`compte/${h}`);
-    if (c && !c.sansAnnonces) await store.set(`compte/${h}`, { ...c, sansAnnonces: date });
-    return page('C’est noté', 'Vous ne recevrez plus d’annonces de nouveautés QME. Vos applications et votre compte restent inchangés.');
+    await enregistrerOpposition(store, h, { source: 'lien « Ne plus recevoir les informations »', date });
+    return page('C’est noté', 'Vous ne recevrez plus d’informations de QME (nouveautés, annonces). Vos applications, vos essais et votre compte restent inchangés.');
   }
 
   // Administration : import des ventes passées, annonce des nouveautés.
+  // Registre des préférences d'information (administrateur).
+  if (chemin === '/registre' && methode === 'GET') {
+    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    const lignes = await lireRegistre({ secret, store });
+    if (new URL(requete.url).searchParams.get('format') === 'csv') {
+      return new Response(csvRegistre(lignes), { status: 200, headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store',
+        'content-disposition': `attachment; filename="registre-preferences-qme-${date.slice(0, 10)}.csv"` } });
+    }
+    const n = (f) => lignes.filter(f).length;
+    return json(200, { total: lignes.length, acheteurs: n((l) => l.profil !== 'testeur'), testeurs: n((l) => l.profil !== 'acheteur'),
+      abonnes: n((l) => l.informations === 'abonné'), desinscrits: n((l) => l.informations === 'désinscrit'), lignes });
+  }
+
   if ((chemin === '/import' || chemin === '/annonce') && methode === 'POST') {
     if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
     const simulation = corps.simulation !== false;
@@ -230,7 +246,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
       if (!emailValide(email)) return json(400, { erreur: 'Adresse de test invalide.' });
       if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
       for (const type of ['acheteur', 'testeur']) {
-        const m = contenuAnnonce({ type, prenom: nettoyerPrenom(corps.prenom), stop: type === 'acheteur' ? lienStopAnnonces(secret, email) : lienDesinscription(secret, email) });
+        const m = contenuAnnonce({ type, prenom: nettoyerPrenom(corps.prenom), stop: lienStopAnnonces(secret, email) });
         await envoyer({ a: email, objet: `[Test ${type}] ${m.objet}`, texte: m.texte, html: m.html });
       }
       return json(200, { ok: true, test: email, envoyes: 2 });
@@ -346,6 +362,13 @@ export async function purgerComptes({ store, maintenant = Date.now }) {
   for (const cle of await store.lister('lien/')) {
     const l = await store.get(cle);
     if (!l || l.x <= t) { await store.supprimer(cle); bilan.liens++; }
+  }
+  // Liste d'opposition : gardée 3 ans après la désinscription.
+  bilan.oppositions = 0;
+  const limite = new Date(t - CONSERVATION_OPPOSITION_JOURS * 86_400_000).toISOString();
+  for (const cle of await store.lister('opposition/')) {
+    const o = await store.get(cle);
+    if (!o || String(o.date) < limite) { await store.supprimer(cle); bilan.oppositions++; }
   }
   return bilan;
 }
