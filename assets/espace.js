@@ -226,5 +226,12 @@
       get visibles() { return mes.slice(); },
     };
   }
+  // Info-bulle du badge (coin de l'icône) : ouverte vers la droite quand le badge est dans la moitié gauche de l'écran.
+  const orienter = (e) => {
+    const zone = e.target?.closest?.('a, .carte-app, .app'), m = zone?.querySelector?.('.app-marque');
+    if (m) m.classList.toggle('vers-droite', m.getBoundingClientRect().left < innerWidth / 2);
+  };
+  for (const t of ['pointerover', 'focusin', 'touchstart']) document.addEventListener(t, orienter, { passive: true });
+
   window.QMEEspace = { creer, noterOuverture, lire, garder, esc, statut, badgeStatut, prefs, prenom, changerPrefs, CLE_MAJ };
 })();
