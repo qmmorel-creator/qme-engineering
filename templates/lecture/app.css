@@ -632,3 +632,5 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .btn.petit,.btn.lien{min-height:44px}
 .modale-tete button{width:44px;height:44px}
 .bandeau-demo button{min-height:44px;padding:0 4px}
+.btn-suppr,.deplacer .btn-suppr{width:44px;height:44px}
+.liste-genres .champ input{min-height:44px}

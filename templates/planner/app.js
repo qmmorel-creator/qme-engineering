@@ -567,7 +567,7 @@
       const blocsJour = liste.filter((b) => b.date === d);
       const place = R.disposer(blocsJour);
       const ligneMaintenant = d === t && n.min >= gDe && n.min <= gA ? `<div class="maintenant" style="top:${((n.min - gDe) / 30) * H}px" aria-hidden="true"></div>` : '';
-      return `<div class="g-col ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''}" data-date="${d}" style="height:${lignes * H}px" aria-label="${esc(fmt(d, { weekday: 'long', day: 'numeric', month: 'long' }))}">${blocsJour.map((b) => blocHtml(b, place[b.id], gDe, H, n)).join('')}${ligneMaintenant}</div>`;
+      return `<div class="g-col ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''}" data-date="${d}" style="height:${lignes * H}px" role="group" aria-label="${esc(fmt(d, { weekday: 'long', day: 'numeric', month: 'long' }))}">${blocsJour.map((b) => blocHtml(b, place[b.id], gDe, H, n)).join('')}${ligneMaintenant}</div>`;
     }).join('');
     const tetes = jours.map((d) => `<div class="g-jour ${d === t ? 'auj' : ''}"><b>${JOURS_COURTS[jourIndex(d)]} ${versDate(d).getDate()}</b><span>${totalJour(d) ? R.duree(totalJour(d)) : '–'}</span></div>`).join('');
     const bandeJours = estTel() ? `<div class="bande-jours" role="group" aria-label="Jour affiché">${R.joursSemaine(lundiVu).map((d) => `<button class="${d === t ? 'auj' : ''}" data-action="jour" data-jour="${d}" aria-pressed="${d === jourVu}"><span>${JOURS_LETTRE[jourIndex(d)]}</span><b>${versDate(d).getDate()}</b><small>${totalJour(d) ? R.duree(totalJour(d)).replace(' ', '') : ''}</small></button>`).join('')}</div>` : '';
@@ -607,7 +607,7 @@
     const marque = { fait: '✓', raccourci: '½', deplace: '→', pasfait: '✕' }[b.statut] || (aMarquer ? '•' : '');
     return `<button class="bloc st-${b.statut} ${aMarquer ? 'a-marquer' : ''} ${enCours ? 'en-cours' : ''} ${b.duree <= 30 ? 'court' : b.duree <= 60 ? 'moyen' : ''}" data-id="${b.id}" style="${styleCat(b.cat)};top:${top}px;height:${haut}px;left:calc(${(couloir / couloirs) * 100}% + 2px);width:calc(${100 / couloirs}% - 4px)" aria-label="${esc(libelle)}">
       ${reste ? `<i class="reste" style="height:${reste}%"></i>` : ''}
-      <b>${esc(b.titre)}</b><span class="heure">${plage(b)}</span>${marque ? `<span class="marque-bloc" aria-hidden="true" data-m="${marque}"></span>` : ''}${b.serieId ? '<span class="serie" aria-hidden="true" data-m="↻"></span>' : ''}
+      <b>${esc(b.titre)}</b> <span class="heure">${plage(b)}</span>${marque ? `<span class="marque-bloc" aria-hidden="true" data-m="${marque}"></span>` : ''}${b.serieId ? '<span class="serie" aria-hidden="true" data-m="↻"></span>' : ''}
       ${b.statut === 'deplace' ? '' : '<span class="poignee" aria-hidden="true"></span>'}
     </button>`;
   }
