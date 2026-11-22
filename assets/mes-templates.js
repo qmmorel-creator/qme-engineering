@@ -101,7 +101,7 @@
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
         <input type="search" placeholder="Rechercher une application" autocomplete="off" enterkeyhint="go"></label>
       <ul class="qme-mt-liste" data-mt-liste></ul>
-      <div class="qme-mt-pied"><a class="principal" href="/connexion/">Mon espace : tout voir</a><a href="/">Site QME</a></div>`;
+      <div class="qme-mt-pied"><a class="principal" href="${ESPACE}">Mon espace : tout voir</a><a href="/">Site QME</a></div>`;
     document.body.appendChild(dialogue);
     dialogue.addEventListener('click', (e) => {
       if (e.target === dialogue || e.target.closest('[data-mt-fermer]')) { dialogue.close(); return; }
@@ -142,7 +142,7 @@
     dialogue.querySelector('[data-mt-liste]').innerHTML = html;
   }
   async function ouvrir() {
-    try { await charger(); } catch { location.href = '/connexion/'; return; }
+    try { await charger(); } catch { location.href = ESPACE; return; }
     construire();
     const champ = dialogue.querySelector('input'); champ.value = '';
     remplir();
@@ -150,6 +150,8 @@
     dialogue.querySelector('[data-mt-fermer]').focus();
   }
 
+  // Application lancée depuis l'écran d'accueil : sa mémoire est séparée du navigateur ; la page Mon espace le signale.
+  const ESPACE = (navigator.standalone === true || matchMedia('(display-mode: standalone)').matches) ? '/connexion/?depuis=ecran' : '/connexion/';
   const style = document.createElement('style'); style.textContent = CSS; document.head.appendChild(style);
   // Bandeau QME (demande de Quentin, 23/11/2026) : depuis une application, retour direct à son espace et au site.
   function bandeau() {
@@ -159,7 +161,7 @@
     const ini = session?.jeton ? String(prenom || session.email || '').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}]/gu, '') : '';
     const n = document.createElement('nav');
     n.className = 'qme-bandeau'; n.setAttribute('aria-label', 'QME : mon espace et le site');
-    n.innerHTML = `<a class="qme-b-espace" href="/connexion/">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
+    n.innerHTML = `<a class="qme-b-espace" href="${ESPACE}">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
       + '<span class="qme-b-sep" aria-hidden="true"></span><a href="/">Site QME</a><a href="/templates/">Templates</a><a href="/packs/">Packs</a><a href="/sur-mesure/">Sur mesure</a>';
     document.body.prepend(n);
   }

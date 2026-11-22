@@ -51,6 +51,8 @@
 .profil-connexion{background:var(--beurre);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .profil-connexion[hidden]{display:none}
 .profil-connexion p{margin:0;font-size:14px;color:var(--texte-2)}
+.profil-connexion .ecran-accueil{background:var(--surface);border-left:4px solid var(--encre);border-radius:10px;padding:10px 12px;color:var(--encre)}
+.profil-connexion .ecran-accueil[hidden]{display:none}
 .profil-connexion .acces{margin:4px 0 0;padding:0;border:0;box-shadow:none;background:none;gap:10px}
 .profil-connexion .acces input[type=email]{font-size:16px;padding:12px}
 .perso-corps{display:flex;flex-direction:column;gap:22px;min-width:0}
@@ -199,6 +201,7 @@
     <div class="profil-connexion" id="profil-connexion" hidden>
       <b>Retrouvez-les sur tous vos appareils</b>
       <p>Connectez-vous avec l’adresse e-mail de votre achat : vos applications et vos réglages vous suivront partout.</p>
+      <p class="ecran-accueil" id="ecran-accueil" hidden><b>Ouverte depuis votre écran d’accueil ?</b> Cette application garde sa propre mémoire, séparée de votre navigateur : connectez-vous une fois ici, puis saisissez le code à 6 chiffres reçu par e-mail. Toutes vos applications apparaîtront.</p>
     </div>
   </aside>
   <div class="perso-corps">
@@ -357,6 +360,14 @@ const euros=(c)=>(c%100?(c/100).toFixed(2).replace('.',','):String(c/100))+' €
 const dateCourte=(j)=>new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR',{day:'numeric',month:'long'}).replace(/^1 /,'1er ');
 
 // ===== Espace personnel (assets/espace.js, assets/compte.js) : profil, accueil, lanceur, achats, préférences.
+// Page ouverte depuis une application de l'écran d'accueil (bandeau ?depuis=ecran, ou page elle-même installée) :
+// sa mémoire est séparée de celle du navigateur, un message invite à s'y connecter une fois.
+const depuisEcran=(()=>{
+  const p=new URLSearchParams(location.search),arg=p.get('depuis')==='ecran';let v=arg;
+  try{if(arg)sessionStorage.setItem('qme-depuis-ecran','1');v=v||sessionStorage.getItem('qme-depuis-ecran')==='1';}catch{/* indisponible */}
+  if(p.has('depuis')){p.delete('depuis');history.replaceState(null,'',location.pathname+(p.toString()?`?${p}`:'')+location.hash);}
+  return v||navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+})();
 const E={espace:$('espace'),nb:$('espace-nb'),packs:$('espace-packs'),salut:$('salut'),accroche:$('accroche'),reprendre:$('reprendre'),alertes:$('alertes'),
   edition:$('edition-panneau'),perso:$('personnaliser'),prenom:$('prenom'),vide:$('espace-vide'),sugg:$('suggestions'),suggIntro:$('sugg-intro'),suggListe:$('sugg-liste'),
   avatar:$('avatar'),nom:$('profil-nom'),email:$('profil-email'),depuis:$('profil-depuis'),sync:$('profil-sync'),navNb:$('nav-nb'),connexion:$('profil-connexion'),
@@ -418,6 +429,7 @@ function profil(mes,s,compte){
   E.sync.querySelector('span').textContent=s?(derniereSynchro?`Synchronisé ${ilya(derniereSynchro)} · tous vos appareils`:'Synchronisation…'):'Sur cet appareil uniquement';
   E.navNb.textContent=mes.length||'';
   E.connexion.hidden=Boolean(s)||!mes.length;
+  $('ecran-accueil').hidden=!depuisEcran;
 }
 
 function accueil(mes){
