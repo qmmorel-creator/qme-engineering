@@ -534,3 +534,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .modale-tete button{width:44px;height:44px}
 .bandeau-demo button{min-height:44px;padding:0 4px}
 .nom-habitude{min-height:44px}
+/* Nom de thème très long (mot sans espace) : il passe à la ligne au lieu d'élargir la page. */
+.carte-theme{min-width:0}
+.carte-theme-tete h2{overflow-wrap:anywhere}
+.choix-theme .case{min-height:44px}
+.pastilles span{width:44px;height:44px}

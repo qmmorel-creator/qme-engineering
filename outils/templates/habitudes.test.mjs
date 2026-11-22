@@ -332,3 +332,15 @@ test('série : un chiffre encore sous le minimum aujourd\'hui ne casse pas la s�
   R.regler(e, '2026-11-21', eau, 3);
   assert.equal(R.serie(e, eau, t), 1);
 });
+
+test('export CSV : formules neutralisées (=, +, -, @ en tête de cellule)', () => {
+  const e = etat();
+  const f = hab('=HYPERLINK("http://x";"clic")', { depuis: '2026-11-12' });
+  const g = hab('@somme', { depuis: '2026-11-12' });
+  e.habitudes.push(f, g);
+  R.regler(e, '2026-11-12', f, true);
+  R.regler(e, '2026-11-12', g, true);
+  const csv = R.versCsv(e, '2026-11-12', '2026-11-12', AUJ).split('\r\n');
+  assert.ok(csv.includes('2026-11-12;A;"\'=HYPERLINK(""http://x"";""clic"")";oui;;réussi'), csv.join('\n'));
+  assert.ok(csv.includes("2026-11-12;A;'@somme;oui;;réussi"));
+});

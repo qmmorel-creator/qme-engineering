@@ -308,7 +308,8 @@
 
   // ---------- Export ----------
   const LIB = { reussi: 'réussi', partiel: 'partiel', manque: 'manqué', na: 'non applicable', choisi: 'choisi', autre: '', attente: 'en attente', libre: '', bonus: 'en plus', futur: '' };
-  const champCsv = (x) => { const s = String(x ?? ''); return /[;"\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  // Point-virgule ; formules neutralisées (une cellule qui commence par = + - @ est préfixée d'une apostrophe).
+  const champCsv = (x) => { let s = String(x ?? ''); if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`; return /[;"\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
   function versCsv(etat, de, a, aujourdhui) {
     const lignes = [['date', 'theme', 'habitude', 'valeur', 'unite', 'statut']];
     for (let d = de; d <= a && d <= aujourdhui; d = ajout(d, 1)) {

@@ -675,7 +675,8 @@
     const d = R.arrondi(R.valeur(moy, sys) - objectif);
     return d >= 0 ? `${N(d, 2, true)} au-dessus de l'objectif` : `il manque ${N(-d, 2, true)}`;
   };
-  function resultatTexte(r, sys, notes, objectif, nomCible) {
+  function resultatTexte(r, sys, notes, objectif, nomCible, nbPrevues = 0) {
+    if (r.statut === 'aucune' && nbPrevues) return '<p>Coche au moins une épreuve à venir ci-dessus pour calculer la note qu\'il te faut.</p>';
     if (r.statut === 'aucune') return `<p>Aucune épreuve prévue : ajoute tes prochains partiels sans note pour savoir ce qu'il te faut.</p>`;
     if (r.statut === 'acquis') return `<p class="resultat ok"><b>Objectif assuré</b> : même avec 0 ${notes.length > 1 ? 'à chaque épreuve' : 'à cette épreuve'}, ${nomCible} resterait à ${noteTexte(r.min, sys)}.</p>`;
     if (r.statut === 'impossible') return `<p class="resultat ko"><b>Hors de portée</b> : avec la note maximale ${notes.length > 1 ? 'à chaque épreuve' : 'à cette épreuve'}, ${nomCible} monterait au mieux à ${noteTexte(r.max, sys)} (objectif ${N(objectif, 2)}).</p>`;
@@ -779,7 +780,7 @@
     // Scénarios : même note à chaque épreuve cochée.
     const pas = [0.4, 0.5, 0.6, 0.7, 0.8];
     const scen = s.ids.length ? `<h2 class="titre-cat">Et si tu avais… <span>la même note à chaque épreuve cochée</span></h2><div class="defile" tabindex="0" role="region" aria-label="Et si tu avais…, tableau défilant"><table class="tableau petit"><thead><tr><th>Note obtenue</th>${pas.map((f) => `<th class="nb">${s.sys.code === 'lettres' ? R.lettreDe(f * s.sys.max, s.sys.lettres) : N(f * s.sys.max, 2)}</th>`).join('')}</tr></thead><tbody><tr><th>${esc(MAJ(nomCible))}</th>${pas.map((f) => { const v = R.simuler(E, s.cible, s.ids, f); return `<td class="nb ${v !== null && R.valeur(v, s.sys) + 1e-9 >= s.objectif ? 'ok' : ''}">${noteTexte(v, s.sys)}</td>`; }).join('')}</tr></tbody></table></div>` : '';
-    return `<p class="mention">Aujourd'hui : ${esc(nomCible)} est à <b>${noteTexte(actuelle, s.sys)}</b>${actuelle !== null ? ` (${ecartTexte(actuelle, s.objectif, s.sys)})` : ''}.</p>${resultatTexte(r, s.sys, notes, s.objectif, nomCible)}${scen}`;
+    return `<p class="mention">Aujourd'hui : ${esc(nomCible)} est à <b>${noteTexte(actuelle, s.sys)}</b>${actuelle !== null ? ` (${ecartTexte(actuelle, s.objectif, s.sys)})` : ''}.</p>${resultatTexte(r, s.sys, notes, s.objectif, nomCible, s.prevues.length)}${scen}`;
   }
   function majSimulation() { const s = etatSimulation(); const el = $('#sim-resultat'); if (el) el.innerHTML = blocResultat(s); }
 

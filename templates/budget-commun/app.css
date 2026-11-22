@@ -630,3 +630,5 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .detail-charges summary{min-height:44px;padding-top:11px;padding-bottom:11px;box-sizing:border-box}
 .matiere-tete button{min-height:44px}
 .puce{min-height:44px}
+.pastilles span{width:44px;height:44px}
+.segments.fonctionnements span small{opacity:1}

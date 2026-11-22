@@ -519,7 +519,7 @@
         <span class="cp-zone"><span class="cp-barre" style="height:${vals[i] ? Math.max(2, (vals[i] / max) * 100) : 0}%"></span>${repere ? `<span class="cp-repere" style="bottom:${(repere(p) / max) * 100}%"></span>` : ''}</span>
         <span class="cp-mois">${etiquette(p, i)}</span></div>`).join('')}</div>
       <div class="infobulle" hidden></div>
-      <div class="sr-only"><table><caption>${esc(titre)}</caption><tbody>${points.map((p, i) => `<tr><th>${etiquette(p, i)}</th><td>${N(vals[i])}</td></tr>`).join('')}</tbody></table></div>
+      <div class="sr-only"><table><caption>${esc(titre)}</caption><tbody>${points.map((p, i) => `<tr><th>${info(p).match(/<b>(.*?)<\/b>/)?.[1] || etiquette(p, i)}</th><td>${N(vals[i])}</td></tr>`).join('')}</tbody></table></div>
     </figure>`;
   }
   // Barres horizontales à une série : une ligne par catégorie (genre, format).

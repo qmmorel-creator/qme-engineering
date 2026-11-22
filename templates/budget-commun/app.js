@@ -270,8 +270,8 @@
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
     // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
     if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
-    if (variante) E = variante === 'compte' ? donneesDemoCompte() : donneesDemo();
-    else E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    if (variante) E = normaliser(variante === 'compte' ? donneesDemoCompte() : donneesDemo());
+    else E = normaliser(stock.lire(CLE_DEMO) || donneesDemo());
     generer();
     cache();
     demarrer();
@@ -295,7 +295,8 @@
     const m = (n) => R.ajoutMois(m0, n);
     const jour = (mois, j) => `${mois}-${deux(Math.min(j, R.joursDansMois(mois)))}`;
     E.foyer = { nom: 'Camille et Sami', modele: 'couple', modifLe: '' };
-    E.reglages = { modeDefaut: 'prorata', modifLe: '' };
+    // Réglages complets (fonctionnement et clé) : sans eux, « Changer de fonctionnement » vers le compte commun plantait la démo.
+    E.reglages = { modeDefaut: 'prorata', fonctionnement: 'avances', cle: { mode: 'prorata', parts: {} }, modifLe: '' };
     E.membres = [
       { id: 'cam', nom: 'Camille', couleur: 'bleu', revenu: 260000, modifLe: '' },
       { id: 'sam', nom: 'Sami', couleur: 'jaune', revenu: 190000, modifLe: '' },
@@ -1542,7 +1543,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = modeCompte() ? donneesDemoCompte() : donneesDemo(); E.tutorielVu = true; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = normaliser(modeCompte() ? donneesDemoCompte() : donneesDemo()); E.tutorielVu = true; cache(); rendre(); } break;
       case 'demo-compte': case 'demo-avances': if (modale().open) modale().close(); moisVue = null; vue = action === 'demo-compte' ? 'compte' : 'soldes'; history.replaceState(null, '', `#${vue}`); ouvrirDemo(true, action === 'demo-compte' ? 'compte' : 'avances'); break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'modele': choisirModele(id); ecranAccueil(); break;

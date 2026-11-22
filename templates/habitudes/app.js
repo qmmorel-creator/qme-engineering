@@ -534,7 +534,7 @@
     const v = R.valeur(E, d, h);
     const serie = R.serie(E, h, t);
     const sous = [h.type === 'nombre' ? R.objectifTexte(h) : '', serie ? `série ${pluriel(serie, 'jour')}` : '', s === 'na' ? 'non applicable' : '', s === 'bonus' ? 'en plus' : ''].filter(Boolean).join(' · ');
-    const nom = `<span class="ligne-nom"><b>${esc(h.nom)}</b>${sous ? `<span>${esc(sous)}</span>` : ''}</span>`;
+    const nom = `<span class="ligne-nom"><b>${esc(h.nom)}</b>${sous ? ` <span>${esc(sous)}</span>` : ''}</span>`;
     const plus = `<button class="btn-icone petit" data-action="saisie" data-id="${h.id}" data-date="${d}" aria-label="Autres choix pour ${esc(h.nom)}">${ICONES.points}</button>`;
     if (h.type === 'nombre') {
       const val = typeof v === 'number' ? R.nombreTexte(v) : s === 'na' ? '–' : '0';
@@ -547,7 +547,7 @@
     }
     const etiquette = { reussi: 'Fait', manque: d === t ? 'Pas fait' : 'Manqué', na: 'Non applicable', attente: 'À faire', bonus: 'Fait', libre: 'À faire' }[s] || '';
     return `<li class="ligne st-${s}" style="${styleTheme(h.theme)}">
-      <button class="cocher" data-action="basculer" data-id="${h.id}" data-date="${d}" aria-pressed="${v === true}" aria-label="${esc(h.nom)} : ${etiquette}"><span class="pastille-etat" aria-hidden="true">${v === true ? ICONES.coche : v === false ? '✕' : v === R.NA ? '–' : ''}</span>${nom}<span class="etat-texte">${etiquette}</span></button>${plus}</li>`;
+      <button class="cocher" data-action="basculer" data-id="${h.id}" data-date="${d}" aria-pressed="${v === true}" aria-label="${esc(h.nom)}${sous ? ` ${esc(sous)}` : ''} : ${etiquette}"><span class="pastille-etat" aria-hidden="true">${v === true ? ICONES.coche : v === false ? '✕' : v === R.NA ? '–' : ''}</span>${nom}<span class="etat-texte">${etiquette}</span></button>${plus}</li>`;
   }
 
   function choixUnique(th, liste, d) {
@@ -644,7 +644,7 @@
           const s = h.depuis > d || (h.archive && d >= h.archive) ? 'hors' : R.statut(E, h, d, t);
           const v = R.valeur(E, d, h);
           const texte = h.type === 'nombre' && typeof v === 'number' ? court(v) : SYMBOLES[s] || '';
-          const etiquette = `${h.nom}, ${fmt(d, { weekday: 'long', day: 'numeric' })} : ${s === 'hors' ? 'pas encore suivie' : LIB_STATUT[s]}${typeof v === 'number' ? ` (${R.nombreTexte(v)} ${h.unite})` : ''}`;
+          const etiquette = `${h.nom}, ${fmt(d, { weekday: 'long', day: 'numeric' })} : ${s === 'hors' ? 'pas encore suivie' : LIB_STATUT[s]}${typeof v === 'number' ? `, ${R.nombreTexte(v)} ${h.unite}` : ''}`;
           const cliquable = s !== 'futur' && s !== 'hors';
           return `<td class="c st-${s} ${d === t ? 'auj' : ''}">${cliquable ? `<button data-action="cellule" data-id="${h.id}" data-date="${d}" aria-label="${esc(etiquette)}" title="${esc(etiquette)}">${texte}</button>` : `<span title="${esc(etiquette)}">${texte}</span>`}</td>`;
         }).join('');
