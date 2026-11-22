@@ -541,7 +541,7 @@
       return `<li class="ligne st-${s}" style="${styleTheme(h.theme)}"><span class="pastille-etat" aria-hidden="true">${s === 'reussi' || s === 'bonus' ? ICONES.coche : ''}</span>${nom}
         <div class="compteur" role="group" aria-label="${esc(h.nom)}">
           <button class="btn-icone petit" data-action="moins" data-id="${h.id}" data-date="${d}" aria-label="Retirer ${R.nombreTexte(h.pas)} ${esc(h.unite)}">${ICONES.moins}</button>
-          <button class="valeur" data-action="saisie" data-id="${h.id}" data-date="${d}" aria-label="Saisir la valeur : ${val} ${esc(h.unite)}"><b>${val}</b><small>${esc(h.unite)}</small></button>
+          <button class="valeur" data-action="saisie" data-id="${h.id}" data-date="${d}" aria-label="Saisir la valeur : ${val} ${esc(h.unite)}"><b>${val}</b> <small>${esc(h.unite)}</small></button>
           <button class="btn-icone petit" data-action="plus" data-id="${h.id}" data-date="${d}" aria-label="Ajouter ${R.nombreTexte(h.pas)} ${esc(h.unite)}">${ICONES.plus}</button>
         </div>${plus}</li>`;
     }

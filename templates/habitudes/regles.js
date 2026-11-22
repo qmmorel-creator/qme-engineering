@@ -180,7 +180,7 @@
   // ---------- Séries et taux ----------
   // Série en cours : jours réussis consécutifs jusqu'à aujourd'hui. Les jours non prévus et « non
   // applicables » ne cassent pas la série (ils ne comptent pas non plus) ; aujourd'hui, tant que rien
-  // n'est saisi, ne casse pas la série. Thème « une seule par jour » : pas de série (null).
+  // n'est saisi (ou qu'un chiffre reste sous le minimum), ne casse pas la série. Thème « une seule par jour » : pas de série (null).
   function serie(etat, h, aujourdhui) {
     if (estUnique(etat, h)) return null;
     let n = 0;
@@ -188,6 +188,9 @@
       const s = statut(etat, h, d, aujourdhui);
       if (s === 'reussi') n++;
       else if (s === 'libre' || s === 'na' || s === 'attente' || s === 'bonus') continue;
+      // Aujourd'hui, un chiffre encore sous le minimum (2 verres d'eau sur 8 à midi) ne casse pas la série :
+      // la journée n'est pas finie. Un maximum déjà dépassé, lui, la casse.
+      else if (d === aujourdhui && s === 'partiel' && h.min !== null && valeur(etat, d, h) < h.min) continue;
       else break;
     }
     return n;
@@ -324,24 +327,30 @@
   function normaliserEtat(d, aujourdhui, couleurs = []) {
     const v = { version: 1, prenom: '', themes: [], habitudes: [], journal: {}, reglages: { debutSemaine: 0 } };
     if (!d || typeof d !== 'object') return v;
+    // Identifiants sûrs : une copie restaurée vient d'un fichier, ses identifiants finissent dans des attributs HTML.
+    // Un identifiant illisible reçoit un nouvel identifiant, et toutes ses références (thème, journal) suivent.
+    const nouveaux = new Map();
+    const sur = (id) => { const s = String(id); if (/^[\w-]{1,60}$/.test(s)) return s; if (!nouveaux.has(s)) nouveaux.set(s, nouvelId()); return nouveaux.get(s); };
     const themes = (Array.isArray(d.themes) ? d.themes : []).filter((t) => t && t.id).map((t) => ({
-      id: String(t.id), nom: String(t.nom || 'Thème').slice(0, 40),
+      id: sur(t.id), nom: String(t.nom || 'Thème').slice(0, 40),
       couleur: couleurs.length && !couleurs.includes(t.couleur) ? couleurs[0] : String(t.couleur || couleurs[0] || 'bleu'),
       mode: t.mode === 'unique' ? 'unique' : 'independant',
     }));
-    const habitudes = (Array.isArray(d.habitudes) ? d.habitudes : []).filter((h) => h && typeof h === 'object').map((h) => ({ ...normaliserHabitude(h, aujourdhui), ...(h.modele ? { modele: String(h.modele) } : {}) }));
+    const habitudes = (Array.isArray(d.habitudes) ? d.habitudes : []).filter((h) => h && typeof h === 'object').map((h) => { const n = normaliserHabitude(h, aujourdhui); return { ...n, id: sur(n.id), theme: n.theme ? sur(n.theme) : '', ...(h.modele ? { modele: String(h.modele) } : {}) }; });
     const journal = {};
     if (d.journal && typeof d.journal === 'object') {
       for (const [date, jour] of Object.entries(d.journal)) {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !jour || typeof jour !== 'object') continue;
         const propre = {};
         for (const [cle, val] of Object.entries(jour)) {
-          if (val === true || val === false || val === NA || (typeof val === 'number' && Number.isFinite(val) && val >= 0) || (cle.startsWith('@') && typeof val === 'string')) propre[cle] = val;
+          const c = cle.startsWith('@') ? cleTheme(sur(cle.slice(1))) : sur(cle);
+          if (cle.startsWith('@')) { if (typeof val === 'string' && val) propre[c] = val === NA ? NA : sur(val); continue; }
+          if (val === true || val === false || val === NA || (typeof val === 'number' && Number.isFinite(val) && val >= 0)) propre[c] = val;
         }
         if (Object.keys(propre).length) journal[date] = propre;
       }
     }
-    return { ...v, ...d, prenom: String(d.prenom || ''), themes, habitudes, journal, reglages: { ...v.reglages, ...(d.reglages || {}) } };
+    return { ...v, ...d, prenom: String(d.prenom || ''), themes, habitudes, journal, reglages: { ...v.reglages, ...(d.reglages && typeof d.reglages === 'object' ? d.reglages : {}) } };
   }
 
   racine.HBT = {

@@ -704,7 +704,7 @@
     return `${tete}
       <div class="outils-liste outils-preparer">
         <label class="champ choix-cand">Candidature<select data-action="choisir-cand">${actives.map((x) => `<option value="${x.id}" ${x.id === c.id ? 'selected' : ''}>${esc(`${x.intitule || 'Sans intitulé'} · ${x.organisme || '—'}`)}${R.estActive(x) ? '' : ` (${esc(statutDe(x.statut).court.toLowerCase())})`}</option>`).join('')}</select></label>
-        <div class="filtres" role="tablist" aria-label="Préparer">${[['lettre', 'Lettre de motivation'], ['entretien', 'Entretien']].map(([id, lib]) => `<button class="filtre" role="tab" data-action="sous-vue" data-sous="${id}" aria-selected="${sousVue === id}" aria-pressed="${sousVue === id}">${lib}</button>`).join('')}</div>
+        <div class="filtres" role="tablist" aria-label="Préparer">${[['lettre', 'Lettre de motivation'], ['entretien', 'Entretien']].map(([id, lib]) => `<button class="filtre" role="tab" data-action="sous-vue" data-sous="${id}" aria-selected="${sousVue === id}">${lib}</button>`).join('')}</div>
       </div>
       ${sousVue === 'lettre' ? blocLettre(c) : blocEntretien(c)}`;
   }

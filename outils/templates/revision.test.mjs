@@ -103,6 +103,22 @@ Physiologie :
   assert.deepEqual([...g[2].chapitres], ['Le cœur', 'La respiration']);
 });
 
+test('import : un mot qui commence comme un préfixe (Chimie, Leçon, Partie civile) garde toutes ses lettres', () => {
+  assert.equal(R.nettoyerLigne('Chimie organique'), 'Chimie organique');
+  assert.equal(R.nettoyerLigne('Choisir sa question'), 'Choisir sa question');
+  assert.equal(R.nettoyerLigne('Leçon inaugurale'), 'Leçon inaugurale');
+  assert.equal(R.nettoyerLigne('Partie civile'), 'Partie civile');
+  assert.equal(R.nettoyerLigne('Chromosomes et méiose'), 'Chromosomes et méiose');
+  assert.equal(R.nettoyerLigne('1789 : la Révolution'), '1789 : la Révolution');
+  // Les vrais préfixes restent retirés.
+  assert.equal(R.nettoyerLigne('Ch. 4 - Ondes'), 'Ondes');
+  assert.equal(R.nettoyerLigne('UE1 Biochimie'), 'Biochimie');
+  assert.equal(R.nettoyerLigne('Chapitre IV – Optique'), 'Optique');
+  assert.equal(R.nettoyerLigne('Thème : Mondialisation'), 'Mondialisation');
+  const g = R.analyserProgramme('CHIMIE\n1. Atomistique\nCHRONOLOGIE :\nLa guerre froide');
+  assert.deepEqual([...g.map((x) => x.matiere)], ['Chimie', 'Chronologie']);
+});
+
 test('import : sans titre de matière, un seul groupe sans matière', () => {
   const g = R.analyserProgramme('La conscience\nL\'inconscient\n\nLe devoir');
   assert.equal(g.length, 1);

@@ -277,7 +277,55 @@
   // Total prévu d'un modèle (minutes par semaine), pour l'aperçu.
   const totalModele = (modele) => modele.blocs.reduce((s, b) => s + b.duree * b.jours.length, 0);
 
+  // ---------- Données chargées (copie restaurée, anciennes versions) ----------
+  // Une copie restaurée vient d'un fichier : identifiants, dates et nombres sont vérifiés avant tout rendu
+  // (identifiant illisible → nouvel identifiant, bloc sans date ou sans heure lisible → écarté, texte → chaîne bornée).
+  const ID = /^[\w-]{1,60}$/;
+  const estDate = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && iso(versDate(s)) === s;
+  const nombre = (x) => (x === '' || x === null || x === undefined || typeof x === 'boolean' ? NaN : Number(x));
+  const texte = (x, max) => (x === null || x === undefined || typeof x === 'object' ? '' : String(x)).slice(0, max);
+  const joursValides = (l) => (Array.isArray(l) ? [...new Set(l.map(Number).filter((j) => Number.isInteger(j) && j >= 0 && j <= 6))].sort() : []);
+  function nettoyerEtat(d) {
+    const tab = (x) => (Array.isArray(x) ? x.filter((y) => y && typeof y === 'object') : []);
+    const ids = new Map(); // identifiant d'origine → identifiant sûr (les références suivent)
+    const sur = (id) => { const s = typeof id === 'number' ? String(id) : id; if (typeof s === 'string' && ID.test(s)) return s; if (!ids.has(s)) ids.set(s, nouvelId()); return ids.get(s); };
+    const ref = (id) => (id === undefined || id === null || id === '' ? undefined : sur(id));
+    const categories = tab(d.categories).map((c) => ({ id: sur(c.id), nom: texte(c.nom, 40) || 'Catégorie', couleur: texte(c.couleur, 20) }));
+    const heures = (x) => { const deb = nombre(x.debut), dur = nombre(x.duree); return Number.isFinite(deb) && Number.isFinite(dur) ? borner(deb, dur) : null; };
+    const series = [];
+    for (const s of tab(d.series)) {
+      const h = heures(s), jours = joursValides(s.jours);
+      if (!h || !jours.length || !estDate(s.depuis)) continue;
+      const exceptions = {};
+      if (s.exceptions && typeof s.exceptions === 'object') for (const k of Object.keys(s.exceptions)) if (estDate(k) && s.exceptions[k]) exceptions[k] = true;
+      series.push({ id: sur(s.id), titre: texte(s.titre, 80) || 'Sans titre', cat: ref(s.cat) ?? '', jours, ...h, depuis: s.depuis, jusqua: estDate(s.jusqua) ? s.jusqua : null, exceptions, note: texte(s.note, 200) });
+    }
+    const blocs = [];
+    for (const b of tab(d.blocs)) {
+      const h = heures(b);
+      if (!h || !estDate(b.date)) continue;
+      const x = { id: sur(b.id), date: b.date, ...h, titre: texte(b.titre, 80) || 'Sans titre', cat: ref(b.cat) ?? '', note: texte(b.note, 200), statut: STATUTS.includes(b.statut) ? b.statut : 'prevu' };
+      if (x.statut === 'raccourci') {
+        const r = nombre(b.dureeReelle);
+        if (Number.isFinite(r) && r > 0 && r < x.duree) x.dureeReelle = Math.round(r); else x.statut = 'fait';
+      }
+      for (const k of ['serieId', 'deId', 'versId']) { const v = ref(b[k]); if (v) x[k] = v; }
+      blocs.push(x);
+    }
+    const modeles = tab(d.modeles).map((m) => ({
+      id: sur(m.id), nom: texte(m.nom, 60) || 'Modèle',
+      blocs: tab(m.blocs).map((b) => ({ h: heures(b), jours: joursValides(b.jours), b })).filter((x) => x.h && x.jours.length)
+        .map(({ h, jours, b }) => ({ titre: texte(b.titre, 80) || 'Sans titre', cat: ref(b.cat) ?? '', jours, ...h })),
+    }));
+    const r = d.reglages && typeof d.reglages === 'object' ? d.reglages : {};
+    const heureGrille = (x, def) => { const n = nombre(x); return Number.isFinite(n) ? Math.min(JOUR, Math.max(0, arrondir(n))) : def; };
+    let debut = heureGrille(r.debut, 7 * 60), fin = heureGrille(r.fin, 21 * 60);
+    if (fin - debut < 120) { debut = 7 * 60; fin = 21 * 60; }
+    return { categories, series, blocs, modeles, reglages: { debut, fin, weekend: r.weekend === undefined ? true : !!r.weekend } };
+  }
+
   racine.PHR = {
+    estDate, nettoyerEtat,
     PAS, JOUR, STATUTS,
     iso, versDate, ajout, ecart, jourIndex, lundiDe, joursSemaine,
     lireHeure, hhmm, heure, duree, arrondir, borner,

@@ -123,7 +123,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
 /* Toast */
 .toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:16px;max-width:calc(100% - 24px);background:var(--encre);color:var(--papier);padding:12px 16px;font-size:15px;font-weight:500;box-shadow:0 4px 14px rgba(36,34,31,.08);animation:monte .2s ease-out}
-.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:36px;padding:0 12px;flex:none}
+.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:44px;padding:0 12px;flex:none}
 .toast button:hover{background:var(--jaune);color:var(--encre)}
 @keyframes monte{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -738,3 +738,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}

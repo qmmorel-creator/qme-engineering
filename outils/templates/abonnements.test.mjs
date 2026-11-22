@@ -145,6 +145,32 @@ test('totaux : par catégorie, résiliés exclus, prix à compléter comptés à
   assert.equal(e.total, 12000 + 11988);
 });
 
+test('totaux : la colonne « par mois » par catégorie tombe juste sur le total, au centime', () => {
+  // Avant : trois annuels de 10 € donnaient 0,83 € × 3 = 2,49 € dans le tableau, pour un total affiché de 2,50 €.
+  const abos = ['video', 'audio', 'jeux'].map((cat, i) => abo({ id: String(i), cat, montant: 1000, periodicite: 'annuel' }));
+  const t = R.totaux(abos);
+  assert.equal(t.mensuel, 250);
+  assert.equal(t.parCat.reduce((s, c) => s + c.mensuel, 0), t.mensuel);
+  assert.ok(t.parCat.every((c) => c.mensuel === 83 || c.mensuel === 84));
+  // Cas mélangé : hebdomadaire, trimestriel partagé, mensuel ; plusieurs tirages.
+  for (let n = 1; n <= 40; n++) {
+    const liste = [abo({ id: 'h', cat: 'sport', montant: 333 * n, periodicite: 'hebdo' }), abo({ id: 't', cat: 'presse', montant: 1001 + n, periodicite: 'trimestriel', parts: 3 }),
+      abo({ id: 'm', cat: 'video', montant: 899 + n }), abo({ id: 's', cat: 'cloud', montant: 2999 + 7 * n, periodicite: 'semestriel' })];
+    const x = R.totaux(liste);
+    assert.equal(x.parCat.reduce((s, c) => s + c.mensuel, 0), x.mensuel);
+    x.parCat.forEach((c) => assert.ok(Math.abs(c.mensuel - c.annuel / 12) < 1));
+  }
+});
+
+test('montants : espaces, centimes, plafond d\'un milliard (faute de frappe)', () => {
+  assert.equal(R.lireMontant(' 12,5 '), 1250);
+  assert.equal(R.lireMontant('0,1'), 10);
+  assert.equal(R.lireMontant('0,29'), 29);
+  assert.equal(R.lireMontant('1000000000'), 100000000000);
+  // Avant : « 99999999999999999 » donnait 1e19 centimes et l'abonnement était enregistré.
+  assert.equal(R.lireMontant('99999999999999999'), null);
+});
+
 test('calendrier du mois et projection sur 12 mois', () => {
   const abos = [
     abo({ id: '1', nom: 'Vidéo', montant: 1000, debut: '2026-01-15' }),

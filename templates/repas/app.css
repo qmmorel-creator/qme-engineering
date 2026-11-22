@@ -437,7 +437,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .jour-tete span{text-transform:uppercase;letter-spacing:.08em;color:var(--texte-2);font-size:12px}
 .jour-tete b{font-size:22px}
 .jour-tete em{font-style:normal;font-size:11px;font-weight:700;background:var(--ciel);color:var(--ciel-texte);border-radius:999px;padding:2px 8px;letter-spacing:.04em;text-transform:uppercase}
-.jour.passe .jour-tete{opacity:.7}
+.jour.passe .jour-tete{color:var(--texte-2)}
 .j-court{display:none}
 .jour-cases{display:grid;gap:8px}
 .creneau{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;min-height:96px;padding:8px 10px;border:1px solid var(--trait);border-radius:12px;background:var(--papier);text-align:left;font-size:14px;min-width:0}
@@ -464,7 +464,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .progression{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding:10px 14px;background:var(--ciel);color:var(--ciel-texte);border-radius:16px;margin-bottom:16px;font-size:14px}
 .progression b{color:var(--encre)}
 .progression .mention{color:var(--ciel-texte)}
-.progression .btn.lien{margin-left:auto;min-height:36px}
+.progression .btn.lien{margin-left:auto;min-height:44px}
 .rayons{columns:2 360px;column-gap:18px}
 .rayon{break-inside:avoid;margin:0 0 16px;border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px 12px 4px}
 .rayon h2{display:flex;align-items:baseline;gap:8px;font-size:17px;padding:2px 4px 6px}
@@ -580,3 +580,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}

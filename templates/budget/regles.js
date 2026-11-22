@@ -7,13 +7,16 @@
   const GROUPES = ['besoins', 'envies', 'epargne'];
 
   // ---------- Montants ----------
-  // « 1 234,56 », « 12.5 », « 12 € », « 0,05 » → centimes entiers ; null si illisible ou négatif.
+  // « 1 234,56 », « 12.5 », « 12 € », « 0,05 » → centimes entiers ; null si illisible, négatif ou au-delà
+  // d'un milliard d'euros (faute de frappe probable ; les calculs restent exacts en entiers).
+  const MAX_CENTIMES = 100000000000;
   function versCentimes(saisie) {
-    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 ? Math.round(saisie * 100) : null;
+    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 && saisie * 100 <= MAX_CENTIMES ? Math.round(saisie * 100) : null;
     const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(/^\+/, '');
     if (!/^\d+(?:[.,]\d{0,2})?$/.test(s)) return null;
     const [ent, dec = ''] = s.split(/[.,]/);
-    return Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    const c = Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    return c <= MAX_CENTIMES ? c : null;
   }
 
   const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

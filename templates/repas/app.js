@@ -406,7 +406,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/repas/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Repas et<br>courses</span>
@@ -499,7 +499,7 @@
         const c = s.cases[cle];
         return `<button class="creneau ${c ? `cr-${c.type}` : 'cr-libre'}" data-action="case" data-cle="${cle}" aria-label="${esc(`${nom} ${lib.toLowerCase()}`)}"><span class="cr-repas">${lib}</span>${contenuCase(l, cle, c, p)}</button>`;
       }).join('');
-      return `<section class="jour ${d === t ? 'aujourdhui' : ''} ${d < t ? 'passe' : ''}"><h3 class="jour-tete"><span class="j-long">${nom}</span><span class="j-court">${nom.slice(0, 3)}.</span><b>${versDate(d).getDate()}</b>${d === t ? '<em>Aujourd\'hui</em>' : ''}</h3><div class="jour-cases">${cases}</div></section>`;
+      return `<section class="jour ${d === t ? 'aujourdhui' : ''} ${d < t ? 'passe' : ''}"><h2 class="jour-tete"><span class="j-long">${nom}</span><span class="j-court">${nom.slice(0, 3)}.</span><b>${versDate(d).getDate()}</b>${d === t ? '<em>Aujourd\'hui</em>' : ''}</h2><div class="jour-cases">${cases}</div></section>`;
     }).join('');
     return `
       <div class="vue-tete"><div><h1>Repas de la semaine</h1><p>${E.foyer ? `${esc(E.foyer)} · ` : ''}${pluriel(E.reglages.personnes, 'personne')} par défaut. Touche un repas pour choisir une recette, des restes ou une sortie.</p></div>

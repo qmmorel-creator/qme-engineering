@@ -268,6 +268,8 @@
   function ouvrirDemo(memoriser = true, variante = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
+    // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
+    if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
     if (variante) E = variante === 'compte' ? donneesDemoCompte() : donneesDemo();
     else E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     generer();
@@ -859,7 +861,7 @@
     const parJour = {};
     liste.forEach((d) => { (parJour[d.date] ||= []).push(d); });
     const lignes = Object.entries(parJour).map(([j, ds]) => `
-      <h3 class="jour-groupe">${quand(j)}</h3>
+      <h2 class="jour-groupe">${quand(j)}</h2>
       ${ds.map((d) => `<button class="ligne depense" data-action="depense-modifier" data-id="${d.id}">
         <i style="--c:${hex(d.payeur === COMPTE ? 'compte' : membre(d.payeur)?.couleur)}"></i>
         <div><b>${esc(d.libelle)}</b><span>${esc(nomCat(d.categorie))} · ${d.payeur === COMPTE ? `compte commun · ${esc(pourQui(d))}` : `payé par ${esc(nom(d.payeur))} · ${esc(modeInfo(d.repartition?.mode).court)}`}${d.recurrente ? ' · récurrente' : ''}</span></div>
@@ -901,7 +903,7 @@
     const corps = b.nb ? `
       <div class="deux-colonnes">
         <section class="bloc"><h2 class="bloc-titre">Par personne</h2>
-          <div class="defile"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">${modeCompte() ? 'A versé' : 'A payé'}</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
+          <div class="defile" tabindex="0" role="region" aria-label="Payé et part de chacun"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">${modeCompte() ? 'A versé' : 'A payé'}</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
           <p class="petit-texte">${modeCompte() ? 'Sa part : les dépenses du compte faites pour le foyer (partagées à parts égales) ou pour lui seul. Écart positif : a versé plus que sa part des dépenses du mois. Les versements dus sont dans l\'onglet Compte.' : 'Écart positif : a avancé plus que sa part ce mois-ci. Le solde global, virements compris, est dans l\'onglet Soldes.'}</p>
         </section>
         <section class="bloc"><h2 class="bloc-titre">Par catégorie</h2>
@@ -1621,10 +1623,12 @@
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
     const demandeDemo = new URLSearchParams(location.search).get('demo');
-    if (demandeDemo !== null && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false, demandeDemo === 'compte' ? 'compte' : null); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    // L'adresse n'est nettoyée qu'après l'ouverture de la démo, qui lit `&reinit`.
+    const nettoyer = () => { if (demandeDemo !== null) history.replaceState(null, '', location.pathname + location.hash); };
+    if (demandeDemo !== null && !code) { ouvrirDemo(false, demandeDemo === 'compte' ? 'compte' : null); return nettoyer(); }
+    if (code === CODE_DEMO) { ouvrirDemo(true, demandeDemo === 'compte' ? 'compte' : null); return nettoyer(); }
+    nettoyer();
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo(true, demandeDemo === 'compte' ? 'compte' : null);
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {

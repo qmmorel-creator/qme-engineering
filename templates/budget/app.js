@@ -178,6 +178,8 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
+    // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
+    if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
     E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     mois = moisCourant();
     cache();
@@ -709,7 +711,7 @@
       <div class="graphique-tete"><h2>${libelleMois(mois)}</h2><div class="legende">${B.groupes.map((g) => `<span><i style="background:${g.couleur}"></i>${esc(g.nom)}</span>`).join('')}${flux.groupes.some((g) => g.id === 'reste') ? '<span><i class="hachure"></i>Non dépensé</span>' : ''}${flux.sources.some((s) => s.id === 'manque') ? '<span><i style="background:var(--rouge)"></i>Déficit : sorties supérieures aux revenus</span>' : ''}</div></div>
       <div class="sankey-cadre">${svg}</div>
       <div class="infobulle" hidden></div>
-      <details class="tableau-flux"><summary>Voir les flux en tableau</summary><div class="defile"><table class="tableau"><thead><tr><th>De</th><th>Vers</th><th class="nb">Montant</th></tr></thead><tbody>${lignes.map(([a, b, v]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td><td class="nb">${eur(v)}</td></tr>`).join('')}</tbody></table></div></details>
+      <details class="tableau-flux"><summary>Voir les flux en tableau</summary><div class="defile" tabindex="0" role="region" aria-label="Flux en tableau"><table class="tableau"><thead><tr><th>De</th><th>Vers</th><th class="nb">Montant</th></tr></thead><tbody>${lignes.map(([a, b, v]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td><td class="nb">${eur(v)}</td></tr>`).join('')}</tbody></table></div></details>
     </figure>`;
   }
 
@@ -763,7 +765,7 @@
       <div class="vue-tete"><div><h1>Enveloppes</h1>${navMois()}<p>Chaque catégorie reçoit une enveloppe. Avec le report, ce qui reste s'ajoute au mois suivant et un dépassement s'en retire.</p></div>
         <aside class="a-affecter ${aAffecter < 0 ? 'negatif' : aAffecter === 0 ? 'zero' : ''}"><p class="surtitre">Reste à affecter</p><b>${eur(aAffecter)}</b><span>${aAffecter < 0 ? 'Tes enveloppes dépassent tes revenus prévus.' : aAffecter === 0 ? 'Chaque euro prévu a une enveloppe.' : `Revenus prévus ${eurR(prevu)} − enveloppes ${eurR(totalEnv)}`}</span></aside></div>
       <h2 class="titre-section">Revenus <span>Prévu contre reçu ce mois-ci.</span></h2>
-      ${E.sources.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Source</th><th class="nb">Prévu</th><th class="nb">Reçu</th><th class="nb">Écart</th></tr></thead><tbody>${sources}</tbody><tfoot><tr><td>Total</td><td class="nb">${eur(prevu)}</td><td class="nb">${eur(rev.total)}</td><td class="nb">${eur(rev.total - prevu, { signe: true })}</td></tr></tfoot></table></div>`
+      ${E.sources.length ? `<div class="defile" tabindex="0" role="region" aria-label="Revenus prévus et reçus"><table class="tableau"><thead><tr><th>Source</th><th class="nb">Prévu</th><th class="nb">Reçu</th><th class="nb">Écart</th></tr></thead><tbody>${sources}</tbody><tfoot><tr><td>Total</td><td class="nb">${eur(prevu)}</td><td class="nb">${eur(rev.total)}</td><td class="nb">${eur(rev.total - prevu, { signe: true })}</td></tr></tfoot></table></div>`
         : vide('Aucune source de revenus', 'Ajoute tes revenus prévus pour savoir combien répartir.', '<button class="btn primaire" data-action="source">Ajouter un revenu prévu</button>')}
       ${E.categories.length ? `<div class="groupes-env">${groupes}</div>` : vide('Aucune catégorie', 'Ajoute des catégories depuis le catalogue.', '<button class="btn primaire" data-action="catalogue">Catalogue</button>')}`;
   }
@@ -775,8 +777,8 @@
     if (sansSous) sous.push(['Sans sous-catégorie', sansSous]);
     const reste = x.disponible > 0 || x.depense ? `<b class="${x.reste < 0 ? 'moins' : ''}">${x.reste < 0 ? `${eur(-x.reste)} de trop` : `${eur(x.reste)} restants`}</b>` : '<b class="discret">Pas d\'enveloppe</b>';
     return `<li class="env ${x.statut}">
-      <button class="env-tete" data-action="enveloppe" data-id="${c.id}" aria-label="Modifier l'enveloppe ${esc(c.nom)}">
-        <span class="env-nom"><b>${esc(c.nom)}</b>${etiquette(x.statut)}${c.report ? '<span class="etiquette clair">Report</span>' : ''}</span>
+      <button class="env-tete" data-action="enveloppe" data-id="${c.id}">
+        <span class="env-nom"><b><span class="sr-only">Modifier l'enveloppe </span>${esc(c.nom)}</b>${etiquette(x.statut)}${c.report ? '<span class="etiquette clair">Report</span>' : ''}</span>
         ${reste}
       </button>
       <div class="jauge" aria-hidden="true"><i style="width:${pct}%"></i></div>
@@ -802,7 +804,7 @@
     const dep = ops.filter((o) => o.type === 'depense').reduce((s, o) => s + o.montant, 0);
     const rev = ops.filter((o) => o.type === 'revenu').reduce((s, o) => s + o.montant, 0);
     return `<p class="totaux-ops">${pluriel(ops.length, 'opération')} · dépenses <b>${eur(dep)}</b> · revenus <b>${eur(rev)}</b></p>
-      ${jours.map((j) => `<section class="jour-ops"><h3>${maj(fmt(j, { weekday: 'long', day: 'numeric', month: 'long' }))}</h3>${ops.filter((o) => o.date === j).map(ligneOperation).join('')}</section>`).join('')}`;
+      ${jours.map((j) => `<section class="jour-ops"><h2>${maj(fmt(j, { weekday: 'long', day: 'numeric', month: 'long' }))}</h2>${ops.filter((o) => o.date === j).map(ligneOperation).join('')}</section>`).join('')}`;
   }
 
   function ligneOperation(o) {
@@ -889,7 +891,7 @@
         <div class="sr-only"><table><caption>Sorties et revenus par mois</caption><thead><tr><th>Mois</th><th>Besoins</th><th>Envies</th><th>Épargne</th><th>Revenus</th><th>Enveloppes</th></tr></thead><tbody>${serie.map((m) => `<tr><td>${libelleMois(m.mois)}</td><td>${eur(m.depenses.besoins)}</td><td>${eur(m.depenses.envies)}</td><td>${eur(m.depenses.epargne)}</td><td>${eur(m.revenus)}</td><td>${eur(m.enveloppes)}</td></tr>`).join('')}</tbody></table></div>
       </figure>
       <h2 class="titre-section">Écart au budget par catégorie <span>Depuis ${libelleMois(listeMois[0] || fin).toLowerCase()}, sans les reports. Positif : dépensé de plus que prévu.</span></h2>
-      ${ecarts.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Catégorie</th><th class="nb">Moyenne / mois</th><th class="nb">Dépensé</th><th class="nb">Prévu</th><th class="nb">Écart</th></tr></thead><tbody>${ecarts.map((x) => `<tr style="--c:${groupe(x.groupe).couleur}"><td><span class="nom-matiere"><i></i>${esc(categorie(x.id)?.nom)}</span></td><td class="nb">${eur(x.moyenne)}</td><td class="nb">${eur(x.total)}</td><td class="nb">${eur(x.budget)}</td><td class="nb ${x.ecart > 0 ? 'moins' : ''}">${eur(x.ecart, { signe: true })}</td></tr>`).join('')}</tbody></table></div>` : '<p class="carte-calme">Pas encore assez de données.</p>'}
+      ${ecarts.length ? `<div class="defile" tabindex="0" role="region" aria-label="Écart au budget par catégorie"><table class="tableau"><thead><tr><th>Catégorie</th><th class="nb">Moyenne / mois</th><th class="nb">Dépensé</th><th class="nb">Prévu</th><th class="nb">Écart</th></tr></thead><tbody>${ecarts.map((x) => `<tr style="--c:${groupe(x.groupe).couleur}"><td><span class="nom-matiere"><i></i>${esc(categorie(x.id)?.nom)}</span></td><td class="nb">${eur(x.moyenne)}</td><td class="nb">${eur(x.total)}</td><td class="nb">${eur(x.budget)}</td><td class="nb ${x.ecart > 0 ? 'moins' : ''}">${eur(x.ecart, { signe: true })}</td></tr>`).join('')}</tbody></table></div>` : '<p class="carte-calme">Pas encore assez de données.</p>'}
       <p class="avertissement">${esc(AVERTISSEMENT)}</p>`;
   }
 
@@ -964,8 +966,11 @@
   }
 
   function lireOperation(f) {
-    const montant = R.versCentimes(f.get('montant'));
-    if (!montant) return 'Montant illisible : écris par exemple 42,50.';
+    const brut = String(f.get('montant') || '').trim();
+    const montant = R.versCentimes(brut);
+    if (!brut) return 'Indique le montant, par exemple 42,50.';
+    if (montant === 0) return 'Le montant doit être supérieur à 0.';
+    if (!montant) return /^[-−]/.test(brut) ? 'Écris le montant sans signe moins : choisis « Dépense » ou « Revenu » au-dessus.' : 'Montant illisible : écris par exemple 42,50.';
     const type = f.get('type') === 'revenu' ? 'revenu' : 'depense';
     if (type === 'depense' && !f.get('categorie')) return 'Crée d\'abord une catégorie.';
     return { type, montant, libelle: String(f.get('libelle') || '').trim().slice(0, 80),
@@ -1371,10 +1376,13 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    // L'adresse n'est nettoyée qu'après l'ouverture de la démo, qui lit `&reinit`.
+    const demoUrl = new URLSearchParams(location.search).has('demo');
+    const nettoyer = () => { if (demoUrl) history.replaceState(null, '', location.pathname + location.hash); };
+    if (demoUrl && !code) { ouvrirDemo(false); return nettoyer(); }
+    if (code === CODE_DEMO) { ouvrirDemo(); return nettoyer(); }
+    nettoyer();
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {
