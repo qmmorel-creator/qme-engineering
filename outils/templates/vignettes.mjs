@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ouvrirRendu, empreinte } from '../lib/vignette.mjs';
+import { ouvrirRendu, empreinte, majReprises } from '../lib/vignette.mjs';
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const LARG = 480, HAUT = 300, QUALITE = 0.8;
@@ -24,6 +24,7 @@ const dossier = path.join(racine, 'assets/vignettes');
 fs.mkdirSync(dossier, { recursive: true });
 const rendu = await ouvrirRendu();
 let ecrites = 0;
+const adresses = new Map();
 for (const slug of slugs) {
   const source = path.join(racine, 'assets', captures[slug]);
   if (!fs.existsSync(source)) throw new Error(`Capture absente : assets/${captures[slug]}`);
@@ -32,6 +33,7 @@ for (const slug of slugs) {
   if (!fs.existsSync(cible) || !octets.equals(fs.readFileSync(cible))) { fs.writeFileSync(cible, octets); ecrites++; }
   // Adresse versionnée par le contenu : le cache du navigateur suit tout changement de capture.
   const adresse = `/assets/vignettes/${slug}.webp?v=${empreinte(octets)}`;
+  adresses.set(`${slug}.webp`, adresse);
   catalogue = catalogue.replace(new RegExp(`(<li class="carte[^"]*" data-slug="${slug}")( data-vignette="[^"]*")?`), `$1 data-vignette="${adresse}"`);
 }
 await rendu.fermer();
@@ -40,5 +42,6 @@ await rendu.fermer();
 // par outils/references/vignettes.mjs.
 for (const f of fs.readdirSync(dossier)) if (f.endsWith('.webp') && !f.startsWith('ref-') && !slugs.includes(f.slice(0, -5))) fs.rmSync(path.join(dossier, f));
 fs.writeFileSync(fichierCatalogue, catalogue);
+majReprises(racine, adresses);
 const total = slugs.reduce((t, slug) => t + fs.statSync(path.join(dossier, `${slug}.webp`)).size, 0);
 console.log(`${slugs.length} vignettes (${ecrites} écrite(s)), ${Math.round(total / 1024)} Ko au total, moyenne ${Math.round(total / slugs.length / 1024)} Ko`);

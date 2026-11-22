@@ -41,6 +41,8 @@ const unique = (s, a, b) => {
 export function pagePartie(pour, catalogue, packs) {
   const P = PARTIES[pour];
   let s = catalogue;
+  // Tons de la partie (site.css, body[data-partie]).
+  s = unique(s, '<body>', `<body data-partie="${pour}">`);
   s = s.replace(/<title>[^<]*<\/title>/, `<title>${P.titre}</title>`);
   s = s.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${P.description}">`);
   s = s.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="https://qm-engineering.fr/${pour}/">`);
@@ -90,6 +92,26 @@ export async function genererParties() {
     await mkdir(RACINE + pour, { recursive: true });
     await writeFile(RACINE + `${pour}/index.html`, pagePartie(pour, catalogue, packs));
   }
+  await marquerFiches();
+}
+
+// Fiches du catalogue : data-partie sur <body> quand le template n'appartient qu'à une partie (d'après les cartes
+// data-pour de templates/index.html) ; les templates communs aux deux parties restent neutres.
+export async function marquerFiches() {
+  const catalogue = await readFile(RACINE + 'templates/index.html', 'utf8');
+  const parties = {};
+  // data-pour est une liste (« pro perso » pour un template commun aux deux parties).
+  for (const [, slug, pour] of catalogue.matchAll(/<li class="carte[^"]*" data-slug="([^"]+)"[^>]*? data-pour="([a-z ]*)"/g)) for (const x of pour.split(' ').filter(Boolean)) (parties[slug] ||= new Set()).add(x);
+  let n = 0;
+  for (const [slug, ens] of Object.entries(parties)) {
+    const fichier = RACINE + `catalogue/${slug}/index.html`;
+    let html;
+    try { html = await readFile(fichier, 'utf8'); } catch { continue; }
+    const partie = ens.size === 1 && ['pro', 'perso'].includes([...ens][0]) ? [...ens][0] : '';
+    const nouveau = html.replace(/<body(?: data-partie="[a-z]*")?>/, `<body${partie ? ` data-partie="${partie}"` : ''}>`);
+    if (nouveau !== html) { await writeFile(fichier, nouveau); n++; }
+  }
+  return n;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
