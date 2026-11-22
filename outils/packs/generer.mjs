@@ -53,7 +53,7 @@ export function calculerPack(code) {
 }
 
 // --- Gabarit commun ------------------------------------------------------------------------------
-const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
+const tete = ({ titre, description, canonical, noindex, partie }) => `<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -64,10 +64,10 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112302">
+<link rel="stylesheet" href="/assets/site.css?v=2026112305">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
-<body>
+<body${partie ? ` data-partie="${partie}"` : ''}>
 
 <header class="topbar">
   <a class="brand" href="/" aria-label="QME, accueil">
@@ -100,7 +100,7 @@ const pied = (scripts = '') => `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112304" defer></script>
+<script src="/assets/site.js?v=2026112305" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -149,6 +149,7 @@ function pagePack(p) {
   const dansPack = (pre) => p.templates.some((t) => t.pre === pre);
   const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${dansPack(pre) ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
   return tete({
+    partie: pourPack(p),
     titre: `${p.nom} · QME`,
     description: `${p.accroche} ${p.resume} ${p.nombre} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
     canonical: `/packs/${p.slug}/`,

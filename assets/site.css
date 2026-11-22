@@ -686,3 +686,36 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 @media (max-width:900px){.cases{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.cases,.videos{grid-template-columns:minmax(0,1fr)}.case.une{grid-column:auto}}
 @media (max-width:600px){.cases{gap:12px}.case:not(.une){display:grid;grid-template-columns:112px minmax(0,1fr);align-items:start}.case:not(.une) img{border-bottom:0;border-right:1px solid var(--trait);height:100%;aspect-ratio:auto;min-height:100px}.case:not(.une) .case-copy{padding:10px 12px 12px;gap:4px}.case:not(.une) h3{font-size:17px}.case:not(.une) p{font-size:13px}.case:not(.une) .pill{font-size:10px}}
+
+/* Accueil (22/11/2026) : bande de 4 vignettes sur chaque porte, carte « sur mesure » sous les deux portes */
+.bande{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+.bande img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:6px;border:1px solid rgba(36,34,31,.14);background:var(--surface)}
+.carte-sur-mesure{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 28px;align-items:center;padding:20px 22px;border:1px solid var(--trait);border-radius:24px;background:var(--surface);color:var(--encre);text-decoration:none;transition:background-color .15s}
+.carte-sur-mesure:hover{background:#fff}
+.carte-sur-mesure .bande{margin-top:0}
+.csm-texte{display:flex;flex-direction:column;gap:6px}
+.csm-texte .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
+.csm-texte b{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.csm-phrase{font-size:16px;color:var(--texte-2)}
+.csm-texte .fleche{margin-top:4px;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start;padding-bottom:1px}
+@media (max-width:720px){.carte-sur-mesure{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.carte-sur-mesure{transition:none}}
+
+/* Tons des parties (23/11/2026) : pro bleuté, perso chaud, pour voir d'un coup d'œil dans quelle partie on est.
+   body[data-partie] : pages /pro/, /perso/, fiches et packs d'une seule partie (posé par outils/parties/generer.mjs
+   et outils/packs/generer.mjs). Pages mixtes (/templates/, /packs/) : groupes et cartes teintés. */
+body[data-partie="pro"]{--papier:#F2F5F9;--fond-partie:var(--ciel);--texte-partie:var(--ciel-texte);--accent-partie:var(--bleu)}
+body[data-partie="perso"]{--papier:#FCF4E5;--fond-partie:var(--beurre);--texte-partie:var(--beurre-texte);--accent-partie:var(--jaune)}
+body[data-partie] mark{background:var(--fond-partie)}
+body[data-partie] .eyebrow{color:var(--texte-partie)}
+body[data-partie] .btn.primary{background:var(--texte-partie);border-color:var(--texte-partie)}
+body[data-partie] .topbar nav a[aria-current="page"]{background:var(--fond-partie)}
+body[data-partie] .filtres-catalogue{background:var(--fond-partie)}
+body[data-partie] .tuile,body[data-partie] .outil>a{border-top-color:var(--accent-partie)}
+.groupe-tuiles[data-groupe="pro"]>h3,.groupe-packs[data-groupe="pro"]>.titre-groupe{color:var(--ciel-texte)}
+.groupe-tuiles[data-groupe="perso"]>h3,.groupe-packs[data-groupe="perso"]>.titre-groupe{color:var(--beurre-texte)}
+.groupe-tuiles[data-groupe="pro"] .tuile,.groupe-packs[data-groupe="pro"] .pack-carte,.outil[data-pour="pro"]>a{background:#F5F8FC}
+.groupe-tuiles[data-groupe="perso"] .tuile,.groupe-packs[data-groupe="perso"] .pack-carte,.outil[data-pour="perso"]>a{background:#FFF8EC}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before,.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before{background:var(--bleu)}
+.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{background:var(--jaune)}
