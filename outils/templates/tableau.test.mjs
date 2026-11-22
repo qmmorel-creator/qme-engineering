@@ -1,8 +1,8 @@
 // Tableau de bord administrateur (/api/tableau) : sources réunies, sections indépendantes, accès administrateur.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tableau, traiterTableau, nomSource, nomPays, joursDe, decaler } from '../../netlify/lib/tableau.mjs';
-import { codeAdmin } from '../../netlify/lib/templates-acces.mjs';
+import { tableau, traiterTableau, nomSource, nomPays, joursDe, decaler, elementsSaisis } from '../../netlify/lib/tableau.mjs';
+import { codeAdmin, cleDonnees, cleDonneesEssai, idAdminProduit } from '../../netlify/lib/templates-acces.mjs';
 import { ajouterAchat } from '../../netlify/lib/comptes.mjs';
 
 const SECRET = 't'.repeat(40);
@@ -102,4 +102,31 @@ test('tableau : sources absentes ou en panne sans bloquer le reste ; accès admi
   assert.equal((await req()).status, 401);
   assert.equal((await req('ADM-FAUX')).status, 401);
   assert.equal((await req(codeAdmin(SECRET))).status, 200);
+});
+
+test('tableau : données saisies (achats, essais), administrateur et tests exclus, contenu jamais renvoyé', async () => {
+  const store = memoire(), donnees = memoire();
+  await store.set('essai/r1', { id: 'r1', produit: 'TCH', email: 'lea@exemple.fr', cree: '2026-11-20T09:00:00Z', fin: '2026-12-04' });
+  await store.set('essai/t1', { id: 't1', produit: 'TCH', email: 'quentin@qm-engineering.fr', cree: '2026-11-20T09:00:00Z', fin: '2026-12-04' });
+  await store.set('stat/s1', { id: 's1', produit: 'BDG', cree: '2026-11-01T09:00:00Z', test: true });
+  await donnees.set(cleDonnees(SECRET, 'TCH', 'ACHAT001'), { taches: [{ titre: 'secret' }, { titre: 'b' }], reglages: {}, majLe: '2026-11-21T10:00:00Z' });
+  await donnees.set(cleDonnees(SECRET, 'BDG', 'ACHAT002'), { lignes: [], majLe: '2026-09-01T10:00:00Z' });
+  await donnees.set(cleDonnees(SECRET, 'TCH', idAdminProduit(SECRET, 'TCH')), { taches: [1, 2, 3], majLe: '2026-11-22T10:00:00Z' });
+  await donnees.set(cleDonneesEssai(SECRET, 'TCH', 'r1'), { taches: [1], majLe: '2026-11-20T10:00:00Z' });
+  await donnees.set(cleDonneesEssai(SECRET, 'TCH', 't1'), { taches: [1], majLe: '2026-11-20T10:00:00Z' });
+  await donnees.set(cleDonneesEssai(SECRET, 'BDG', 's1'), { lignes: [1], majLe: '2026-11-02T10:00:00Z' });
+  await donnees.set(cleDonneesEssai(SECRET, 'PGS', 'inconnu'), { x: [], majLe: '2026-11-10T10:00:00Z' });
+  const source = { lister: async () => [...(await donnees.lister('')), cleDonnees(SECRET, 'TCH', 'ACHAT001')], get: donnees.get };
+  const t = await tableau({ secret: SECRET, store, donnees: source, recuperer: async () => { throw new Error('x'); }, jours: 30, maintenant: () => T0 });
+  const d = t.donnees;
+  assert.equal(d.configure, true);
+  assert.deepEqual([d.achats, d.achatsActifs, d.essais, d.essaisActifs], [2, 1, 2, 2], 'clé en double comptée une fois');
+  assert.deepEqual(d.exclus, { admin: 1, tests: 2 });
+  assert.deepEqual(d.parTemplate.map((x) => [x.produit, x.achats, x.essais, x.actifs, x.elements]), [['TCH', 1, 1, 2, 3], ['PGS', 0, 1, 1, 0], ['BDG', 1, 0, 0, 0]]);
+  assert.equal(d.recents[0].majLe, '2026-11-21T10:00:00Z');
+  assert.equal(d.recents.find((x) => x.produit === 'PGS').connu, false);
+  assert.ok(!JSON.stringify(d).includes('secret'), 'aucun contenu saisi dans la réponse');
+  assert.equal(elementsSaisis({ a: [1, 2], b: {}, c: 'x' }), 2);
+  const sans = await tableau({ secret: SECRET, store, recuperer: async () => { throw new Error('x'); }, jours: 7, maintenant: () => T0 });
+  assert.equal(sans.donnees.configure, false);
 });
