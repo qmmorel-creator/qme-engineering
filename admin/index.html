@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tableau de bord · Admin QME</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<style>
+/* Tableau de bord administrateur : une teinte de données (bleu QME), texte en encres neutres, grilles discrètes. */
+:root{--donnee:#2E5A88;--donnee-lavis:rgba(46,90,136,.12);--grille:#EAE3D6}
+.tb{max-width:1180px;margin:0 auto;padding:32px 16px 72px;display:flex;flex-direction:column;gap:28px}
+.tb-tete{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px}
+.tb-tete h1{font-size:clamp(30px,4vw,44px);margin:0}
+.tb-filtres{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tb-periode{display:inline-flex;border:1px solid var(--trait);border-radius:999px;background:var(--surface);padding:3px}
+.tb-periode button{font:600 14px Outfit,sans-serif;border:0;background:none;padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--texte-2);min-height:36px}
+.tb-periode button[aria-pressed="true"]{background:var(--encre);color:var(--papier)}
+.tb-etat{font-size:14px;color:var(--discret);margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--trait);border-radius:16px;padding:14px 16px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi span{font-size:13px;color:var(--discret);font-weight:600}
+.kpi b{font-size:30px;line-height:1.15;font-variant-numeric:tabular-nums}
+.kpi small{font-size:12.5px;color:var(--texte-2)}
+.kpi svg{margin-top:6px;width:100%;height:30px;display:block}
+.bloc{background:var(--surface);border:1px solid var(--trait);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.bloc>header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.bloc h2{font-size:22px;margin:0}
+.bloc header a{font-size:14px;font-weight:700;color:var(--bleu)}
+.bloc .sous{margin:0;color:var(--texte-2);font-size:14px}
+.grille2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.titre-graph{font-size:14px;font-weight:700;margin:0 0 6px;color:var(--encre)}
+.graph{position:relative}
+.graph svg{width:100%;height:auto;display:block;overflow:visible}
+.graph text{font:12px Outfit,sans-serif;fill:#6E685F}
+.bulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);font-size:13px;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-115%);opacity:0;transition:opacity .08s}
+.bulle b{font-weight:700}
+.rangs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rangs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;font-size:14px}
+.rangs .nom{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rangs .val{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.rangs .piste{grid-column:1/-1;height:8px;border-radius:0 4px 4px 0;background:none}
+.rangs .piste i{display:block;height:8px;border-radius:0 4px 4px 0;background:var(--donnee);min-width:2px}
+.entonnoir{display:flex;flex-direction:column;gap:12px}
+.etape{display:grid;grid-template-columns:150px minmax(0,1fr) 90px;gap:12px;align-items:center}
+.etape .barre{height:24px;border-radius:0 4px 4px 0;background:var(--donnee);min-width:3px}
+.etape b{font-variant-numeric:tabular-nums;text-align:right}
+.etape small{grid-column:2/-1;margin-top:-8px;color:var(--texte-2);font-size:13px}
+.manque{padding:16px;border:1px dashed var(--trait);border-radius:14px;color:var(--texte-2);font-size:14px;background:var(--papier)}
+.manque code{font-size:13px}
+details.tableau summary{cursor:pointer;font-size:13px;color:var(--texte-2);font-weight:600}
+details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
+.liens{display:flex;flex-wrap:wrap;gap:8px}
+.tb .admin-tuiles{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.tb .admin-tuiles div{padding:10px 12px}
+.tb .admin-tuiles b{font-size:24px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:640px){.etape{grid-template-columns:84px minmax(0,1fr) 56px;font-size:14px}.kpis{grid-template-columns:1fr 1fr;gap:8px}.kpi{padding:12px}.bloc{padding:16px}.kpi b{font-size:26px}}
+</style>
+</head>
+<body>
+<main class="tb">
+  <div class="tb-tete">
+    <div>
+      <p class="eyebrow">Administration QME · privé</p>
+      <h1>Tableau de bord</h1>
+    </div>
+    <div class="tb-filtres" id="filtres" hidden>
+      <div class="tb-periode" role="group" aria-label="Période">
+        <button type="button" data-jours="7" aria-pressed="false">7 jours</button>
+        <button type="button" data-jours="30" aria-pressed="true">30 jours</button>
+        <button type="button" data-jours="90" aria-pressed="false">90 jours</button>
+      </div>
+      <button class="btn" type="button" id="maj">Actualiser</button>
+    </div>
+  </div>
+  <form class="admin-acces" id="acces">
+    <label>Code administrateur<input id="code" autocomplete="off" spellcheck="false" placeholder="ADM-XXXX-XXXX-XXXX-XXXX" required></label>
+    <button class="btn primary" type="submit">Afficher</button>
+    <button class="btn" type="button" id="oublier" hidden>Oublier le code sur cet appareil</button>
+  </form>
+  <p class="tb-etat" id="etat" role="status" aria-live="polite"></p>
+
+  <div id="contenu" hidden>
+    <section aria-label="Indicateurs de la période"><div class="kpis" id="kpis"></div></section>
+
+    <div class="grille2" style="margin-top:28px">
+      <section class="bloc" aria-labelledby="h-aud">
+        <header><h2 id="h-aud">Audience du site</h2><a href="https://qme-engineering.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a></header>
+        <div id="audience"></div>
+      </section>
+      <section class="bloc" aria-labelledby="h-ent">
+        <header><h2 id="h-ent">Entonnoir de la période</h2></header>
+        <div id="entonnoir"></div>
+      </section>
+    </div>
+
+    <div class="grille2" style="margin-top:28px">
+      <section class="bloc" aria-labelledby="h-ess">
+        <header><h2 id="h-ess">Essais gratuits</h2><a href="/admin/essais/">Tous les essais</a></header>
+        <div id="essais"></div>
+      </section>
+      <section class="bloc" aria-labelledby="h-ven">
+        <header><h2 id="h-ven">Ventes Gumroad</h2><a href="/admin/compteur/">Détail Gumroad</a></header>
+        <div id="ventes"></div>
+      </section>
+    </div>
+
+    <div class="grille2" style="margin-top:28px">
+      <section class="bloc" aria-labelledby="h-res">
+        <header><h2 id="h-res">Réseaux sociaux</h2><a href="/admin/compteur/">Compteur réseaux</a></header>
+        <div id="reseaux"></div>
+      </section>
+      <section class="bloc" aria-labelledby="h-cpt">
+        <header><h2 id="h-cpt">Comptes et informations</h2><a href="/admin/registre/">Registre</a></header>
+        <div id="comptes"></div>
+      </section>
+    </div>
+
+    <section class="bloc" aria-labelledby="h-don" style="margin-top:28px">
+      <header><h2 id="h-don">Données saisies dans les applications</h2></header>
+      <div id="donnees"></div>
+    </section>
+
+    <section class="bloc" aria-labelledby="h-int" style="margin-top:28px">
+      <header><h2 id="h-int">Intérêts « Je suis intéressé(e) »</h2><a href="/admin/interets/">Tous les intérêts</a></header>
+      <div id="interets"></div>
+    </section>
+
+    <nav class="liens" aria-label="Autres pages d'administration" style="margin-top:28px">
+      <a class="btn" href="/admin/registre/">Registre des préférences</a>
+      <a class="btn" href="/admin/contacts/">Contacts nouveautés</a>
+      <a class="btn" href="/admin/essais/">Essais</a>
+      <a class="btn" href="/admin/interets/">Intérêts</a>
+      <a class="btn" href="/admin/compteur/">Compteur réseaux</a>
+    </nav>
+  </div>
+</main>
+<script>
+(() => {
+  // Même clé que les autres pages d'administration : le code déjà saisi sur cet appareil est repris.
+  const CLE = 'qme-admin-interets', CLE_PERIODE = 'qme-admin-periode';
+  const $ = (s) => document.querySelector(s);
+  const lire = (c) => { try { return localStorage.getItem(c) || ''; } catch { return ''; } };
+  const garder = (c, v) => { try { v ? localStorage.setItem(c, v) : localStorage.removeItem(c); } catch { /* indisponible */ } };
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const nb = (n) => (n ?? 0).toLocaleString('fr-FR');
+  const usd = (c) => ((c || 0) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'USD', minimumFractionDigits: c % 100 ? 2 : 0 });
+  // Conversion en euros (taux BCE renvoyé par l'API) : « ≈ 18,94 € » à côté des montants en dollars.
+  const eur = (c) => ((c || 0) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: c % 100 ? 2 : 0 });
+  const pct = (a, b) => (b ? `${(100 * a / b).toLocaleString('fr-FR', { maximumFractionDigits: a / b < 0.1 ? 1 : 0 })} %` : '—');
+  const jourCourt = (j) => new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  let jours = Number(lire(CLE_PERIODE)) || 30;
+
+  // --- Graphiques en SVG : une teinte, barres ≤ 24 px à bout arrondi, grille fine, info-bulle au survol ---------
+  const PALIER = (max) => { if (max <= 4) return Math.max(1, Math.ceil(max / 4)); const p = 10 ** Math.floor(Math.log10(max / 4)); return [1, 2, 5, 10].map((k) => k * p).find((k) => max / k <= 4) || 10 * p; };
+  function colonnes(serie, { format = nb, titre }) {
+    const W = 560, H = 190, G = 34, B = 22, haut = 8, l = serie.length, max = Math.max(1, ...serie.map((d) => d.n));
+    const pas = PALIER(max), top = Math.ceil(max / pas) * pas, ix = (W - G) / l, lb = Math.min(24, Math.max(2, ix - 2));
+    const y = (v) => haut + (H - B - haut) * (1 - v / top);
+    let s = '';
+    for (let v = 0; v <= top; v += pas) s += `<line x1="${G}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grille)" stroke-width="1"/><text x="${G - 6}" y="${y(v) + 4}" text-anchor="end">${format(v)}</text>`;
+    serie.forEach((d, i) => {
+      const x = G + i * ix + (ix - lb) / 2, h = H - B - y(d.n);
+      if (d.n > 0) { const r = Math.min(4, lb / 2, h); s += `<path d="M${x},${H - B}V${y(d.n) + r}q0,-${r} ${r},-${r}h${lb - 2 * r}q${r},0 ${r},${r}V${H - B}Z" fill="var(--donnee)"/>`; }
+      s += `<rect x="${G + i * ix}" y="${haut}" width="${ix}" height="${H - B - haut}" fill="transparent" data-i="${i}"/>`;
+    });
+    const etiquettes = [0, Math.floor((l - 1) / 2), l - 1].filter((v, i, t) => t.indexOf(v) === i);
+    for (const i of etiquettes) s += `<text x="${G + i * ix + ix / 2}" y="${H - 4}" text-anchor="${i === 0 ? 'start' : i === l - 1 ? 'end' : 'middle'}">${jourCourt(serie[i].jour)}</text>`;
+    const id = 'g' + Math.random().toString(36).slice(2, 8);
+    const table = `<details class="tableau"><summary>Voir les données</summary><div class="admin-boite"><table class="admin-table"><thead><tr><th>Jour</th><th>${esc(titre)}</th></tr></thead><tbody>${serie.map((d) => `<tr><td>${jourCourt(d.jour)}</td><td class="n">${format(d.n)}</td></tr>`).join('')}</tbody></table></div></details>`;
+    return `<div class="graph" id="${id}" data-serie='${esc(JSON.stringify(serie))}'><p class="titre-graph">${esc(titre)}</p><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(titre)}, par jour">${s}</svg><div class="bulle" aria-hidden="true"></div></div>${table}`;
+  }
+  // Info-bulle : délégation sur les zones de survol des colonnes.
+  document.addEventListener('pointermove', (e) => {
+    const r = e.target.closest?.('.graph rect[data-i]');
+    for (const b of document.querySelectorAll('.graph .bulle')) if (!r || !b.parentElement.contains(r)) b.style.opacity = 0;
+    if (!r) return;
+    const g = r.closest('.graph'), serie = JSON.parse(g.dataset.serie), d = serie[Number(r.dataset.i)], bulle = g.querySelector('.bulle');
+    const box = g.getBoundingClientRect(), rb = r.getBoundingClientRect();
+    bulle.innerHTML = `${jourCourt(d.jour)} · <b>${g.dataset.format === 'usd' ? usd(d.n) : nb(d.n)}</b>`;
+    bulle.style.left = `${Math.min(Math.max(rb.left + rb.width / 2 - box.left, 60), box.width - 60)}px`; bulle.style.top = `${rb.top - box.top + 30}px`; bulle.style.opacity = 1;
+  });
+  function sparkline(serie) {
+    if (!serie?.length) return '';
+    const W = 160, H = 30, max = Math.max(1, ...serie.map((d) => d.n)), x = (i) => 2 + (W - 4) * i / Math.max(1, serie.length - 1), y = (v) => H - 3 - (H - 8) * v / max;
+    const pts = serie.map((d, i) => `${x(i).toFixed(1)},${y(d.n).toFixed(1)}`).join(' '), f = serie.at(-1);
+    return `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="var(--donnee)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/><circle cx="${x(serie.length - 1)}" cy="${y(f.n)}" r="3.5" fill="var(--donnee)" stroke="#fff" stroke-width="2"/></svg>`;
+  }
+  const rangs = (l, { format = nb } = {}) => { const max = Math.max(1, ...l.map((x) => x.n)); return l.length ? `<ul class="rangs">${l.map((x) => `<li><span class="nom" title="${esc(x.titre || x.nom)}">${esc(x.nom)}</span><span class="val">${format(x.n)}</span><span class="piste"><i style="width:${(100 * x.n / max).toFixed(1)}%"></i></span></li>`).join('')}</ul>` : '<p class="sous">Rien sur la période.</p>'; };
+  const manque = (html) => `<div class="manque">${html}</div>`;
+  const tuiles = (l) => `<div class="admin-tuiles">${l.map(([v, t]) => `<div><b>${v}</b><span>${t}</span></div>`).join('')}</div>`;
+
+  function afficher(d) {
+    const a = d.audience || {}, e = d.essais || {}, v = d.ventes || {}, r = d.reseaux || {}, c = d.comptes || {};
+    const p = `${d.periode.jours} derniers jours`;
+    // KPI
+    const k = [];
+    k.push(['Visites du site', a.configure ? nb(a.vues) : '—', a.configure ? p : 'GoatCounter à configurer', a.parJour]);
+    k.push(['Essais lancés', nb(e.lances), `${nb(e.enCours)} en cours`, e.parJour]);
+    k.push(['Ventes payées', v.configure ? nb(v.nombre) : '—', v.configure ? `${nb(v.totalDepuisDebut?.nombre)} depuis l'ouverture` : 'Sheet à configurer', v.parJour]);
+    k.push(['Revenu (brut)', v.configure ? usd(v.revenu) : '—', v.configure ? (v.eur ? `≈ ${eur(v.eur.revenu)} · net ≈ ${eur(v.eur.net)}` : `net ${usd(v.net)}`) : '', v.revenuParJour]);
+    k.push(['Abonnés réseaux', r.configure ? nb(r.total) : '—', r.configure ? `${(r.abonnes || []).reduce((s, x) => s + x.evolution, 0) >= 0 ? '+' : ''}${nb((r.abonnes || []).reduce((s, x) => s + x.evolution, 0))} sur la période` : '', null]);
+    k.push(['Abonnés aux infos', nb(c.abonnes), `${nb(c.acheteurs)} acheteur${c.acheteurs > 1 ? 's' : ''} · ${nb(c.desinscrits)} désinscrit${c.desinscrits > 1 ? 's' : ''}`, null]);
+    const dn = d.donnees || {};
+    k.push(['Données saisies', dn.configure ? nb(dn.achats + dn.essais) : '—', dn.configure ? `${nb(dn.achatsActifs + dn.essaisActifs)} modifiées sur la période` : '', null]);
+    $('#kpis').innerHTML = k.map(([t, val, sous, serie]) => `<div class="kpi"><span>${t}</span><b>${val}</b><small>${esc(sous)}</small>${serie ? sparkline(serie) : ''}</div>`).join('');
+    // Audience
+    $('#audience').innerHTML = a.erreur ? manque(`GoatCounter ne répond pas : ${esc(a.erreur)}.`)
+      : !a.configure ? manque('Pour afficher l’audience : crée un jeton d’API dans GoatCounter (<i>Settings → API → New token</i>, permission « Read statistics »), puis ajoute-le sur Netlify dans la variable <code>GOATCOUNTER_TOKEN</code> et redéploie.')
+      : colonnes(a.parJour, { titre: 'Pages vues par jour' }) + `<div class="grille2"><div><p class="titre-graph">Pages les plus vues</p>${rangs(a.pages.map((x) => ({ nom: x.chemin, titre: x.titre, n: x.n })))}</div><div><p class="titre-graph">Sources de trafic</p>${rangs(a.sources)}<p class="titre-graph" style="margin-top:16px">Pays</p>${rangs(a.pays.slice(0, 5))}</div></div>`;
+    // Entonnoir
+    const en = d.entonnoir || {}, etapes = [['Visites du site', en.visites], ['Essais lancés', en.essais], ['Ventes payées', en.ventes]];
+    const maxE = Math.max(1, ...etapes.map(([, n]) => n || 0));
+    $('#entonnoir').innerHTML = `<div class="entonnoir">${etapes.map(([t, n], i) => `<div class="etape"><span>${t}</span><span class="barre" style="width:${n == null ? 0 : Math.max(0.6, 100 * n / maxE).toFixed(1)}%"></span><b>${n == null ? '—' : nb(n)}</b>${i ? `<small>${n == null || etapes[i - 1][1] == null ? '' : `${pct(n, etapes[i - 1][1])} de l’étape précédente`}</small>` : ''}</div>`).join('')}</div>`
+      + `<p class="sous">Vues des pages Gumroad (cumul depuis l’ouverture) : <b>${v.configure ? nb(v.vuesGumroad) : '—'}</b>. Essais convertis en achat sur la période : <b>${nb(e.achetes)}</b> sur ${nb(e.lances)}.</p>`;
+    // Essais
+    $('#essais').innerHTML = colonnes(e.parJour || [], { titre: 'Essais lancés par jour' })
+      + tuiles([[nb(e.enCours), 'en cours'], [nb(e.finissentSous3Jours), 'finissent sous 3 jours'], [nb(e.achetes), 'convertis en achat'], [nb(e.totalDepuisDebut), 'depuis l’ouverture']])
+      + ((e.parTemplate || []).length ? `<div class="admin-boite"><table class="admin-table"><thead><tr><th>Template</th><th>Essais</th><th>Achetés</th><th>Conversion</th></tr></thead><tbody>${e.parTemplate.map((x) => `<tr><td>${esc(x.nom)}</td><td class="n">${nb(x.essais)}</td><td class="n">${nb(x.achetes)}</td><td class="n">${pct(x.achetes, x.essais)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="sous">Aucun essai sur la période (tests exclus).</p>')
+      + (e.tests ? `<p class="sous">${nb(e.tests)} essai${e.tests > 1 ? 's' : ''} de test exclu${e.tests > 1 ? 's' : ''}.</p>` : '');
+    // Ventes
+    $('#ventes').innerHTML = v.erreur ? manque(`Sheet illisible : ${esc(v.erreur)}.`) : !v.configure ? manque('Sheet « Mesures réseaux QME » non configuré (<code>COMPTEUR_SHEET_PUB</code>).')
+      : colonnes(v.revenuParJour, { titre: 'Revenu brut par jour (USD)', format: (c) => usd(c) }).replace('class="graph"', 'class="graph" data-format="usd"')
+      + tuiles([[nb(v.nombre), 'ventes payées'], [usd(v.revenu), v.eur ? `revenu brut · ≈ ${eur(v.eur.revenu)}` : 'revenu brut'], [v.eur ? `≈ ${eur(v.eur.net)}` : usd(v.net), v.eur ? `revenu net (${usd(v.net)})` : 'revenu net'], [nb(v.gratuites), 'gratuites (codes, tests)'], [nb(v.remboursees), 'remboursées']])
+      + `<p class="sous">${v.eur ? `Conversion au taux BCE du ${jourCourt(v.eur.date)} : 1 $US = ${v.eur.taux.toLocaleString('fr-FR', { maximumFractionDigits: 4 })} €. Depuis l’ouverture : ${usd(v.totalDepuisDebut?.revenu)} ≈ ${eur(v.eur.totalDepuisDebut)}.` : 'Taux de change indisponible : montants en dollars seulement.'}</p>`
+      + `<div class="grille2"><div><p class="titre-graph">Par produit (période)</p>${rangs((v.parProduit || []).map((x) => ({ nom: x.nom, n: x.revenu })), { format: (c) => v.eur ? `${usd(c)} · ≈ ${eur(Math.round(c * v.eur.taux))}` : usd(c) })}</div><div><p class="titre-graph">Sources Gumroad (vues, cumul)</p>${rangs((v.sourcesGumroad || []).map((x) => ({ nom: `${x.nom}${x.ventes ? ` · ${x.ventes} vente${x.ventes > 1 ? 's' : ''}` : ''}`, n: x.vues })))}</div></div>`;
+    // Réseaux
+    $('#reseaux').innerHTML = r.erreur ? manque(`Sheet illisible : ${esc(r.erreur)}.`) : !r.configure ? manque('Sheet non configuré.')
+      : `<p class="titre-graph">Abonnés (dernier relevé)</p>${rangs((r.abonnes || []).map((x) => ({ nom: `${x.reseau}${x.evolution ? ` (${x.evolution > 0 ? '+' : ''}${x.evolution})` : ''}`, n: x.n })))}`
+      + `<p class="titre-graph">Vues des publications relevées sur la période</p>${rangs(r.vuesPublications || [])}`;
+    // Comptes
+    $('#comptes').innerHTML = c.erreur ? manque(esc(c.erreur)) : tuiles([[nb(c.personnes), 'personnes connues'], [nb(c.acheteurs), 'acheteurs'], [nb(c.testeurs), 'testeurs'], [nb(c.comptesSansAchat), 'comptes sans achat'], [nb(c.abonnes), 'abonnés aux informations'], [nb(c.desinscrits), 'désinscrits'], [nb(c.annoncesEnvoyees), 'ont reçu une annonce']]);
+    // Données saisies : espaces de données des achats et des essais (contenu jamais transmis).
+    const dateHeure = (iso) => (iso ? new Date(iso).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—');
+    const ko = (o) => (o < 1024 ? `${nb(o)} o` : `${(o / 1024).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} Ko`);
+    $('#donnees').innerHTML = dn.erreur ? manque(`Données illisibles : ${esc(dn.erreur)}.`) : !dn.configure ? manque('Store des données indisponible.')
+      : tuiles([[nb(dn.achats), 'espaces d’achat avec données'], [nb(dn.achatsActifs), 'modifiés sur la période'], [nb(dn.essais), 'essais avec données'], [nb(dn.essaisActifs), 'essais modifiés sur la période']])
+      + ((dn.parTemplate || []).length ? `<div class="admin-boite" style="margin-top:12px"><table class="admin-table"><thead><tr><th>Application</th><th>Achats</th><th>Essais</th><th>Modifiés (période)</th><th>Éléments</th><th>Dernière modification</th></tr></thead><tbody>${dn.parTemplate.map((x) => `<tr><td>${esc(x.nom)}</td><td class="n">${nb(x.achats)}</td><td class="n">${nb(x.essais)}</td><td class="n">${nb(x.actifs)}</td><td class="n">${nb(x.elements)}</td><td>${dateHeure(x.derniere)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="sous">Aucune donnée saisie par un acheteur ou un testeur.</p>')
+      + ((dn.recents || []).length ? `<details class="tableau"><summary>Voir chaque espace (${nb(dn.recents.length)} plus récents)</summary><div class="admin-boite"><table class="admin-table"><thead><tr><th>Type</th><th>Application</th><th>Modifié le</th><th>Éléments</th><th>Taille</th></tr></thead><tbody>${dn.recents.map((x) => `<tr><td>${x.type === 'essai' ? `Essai${x.connu ? '' : ' (hors index)'}` : 'Achat'}</td><td>${esc(x.nom)}</td><td>${dateHeure(x.majLe)}</td><td class="n">${nb(x.elements)}</td><td class="n">${ko(x.taille)}</td></tr>`).join('')}</tbody></table></div></details>` : '')
+      + `<p class="sous">Exclus : ${nb(dn.exclus?.admin)} espace${dn.exclus?.admin > 1 ? 's' : ''} administrateur, ${nb(dn.exclus?.tests)} essai${dn.exclus?.tests > 1 ? 's' : ''} de test. Les achats regroupent licences Gumroad, packs et codes offerts : un espace n’est pas relié à une personne. « Éléments » : nombre d’entrées des listes de l’application (tâches, matières…), indicatif.</p>`;
+    // Intérêts
+    const i = d.interets;
+    $('#interets').innerHTML = !i ? manque('Compteur d’intérêts indisponible.') : i.erreur ? manque(esc(i.erreur)) : `<p class="sous">${nb(i.total)} clic${i.total > 1 ? 's' : ''} au total, ${nb(i.emails)} adresse${i.emails > 1 ? 's' : ''} laissée${i.emails > 1 ? 's' : ''}.</p>${rangs((i.top || []).map((x) => ({ nom: x.nom, n: x.n })))}`;
+  }
+
+  async function charger() {
+    const code = lire(CLE); if (!code) return;
+    $('#etat').textContent = 'Chargement…';
+    for (const b of document.querySelectorAll('[data-jours]')) b.setAttribute('aria-pressed', String(Number(b.dataset.jours) === jours));
+    try {
+      const r = await fetch(`/api/tableau?jours=${jours}`, { headers: { 'x-admin': code }, cache: 'no-store' });
+      if (r.status === 401) { garder(CLE, ''); $('#contenu').hidden = true; $('#filtres').hidden = true; $('#oublier').hidden = true; $('#acces').hidden = false; $('#etat').textContent = 'Code administrateur refusé.'; return; }
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      afficher(d);
+      $('#contenu').hidden = false; $('#filtres').hidden = false; $('#oublier').hidden = false; $('#acces').hidden = true;
+      $('#etat').textContent = `Du ${jourCourt(d.periode.debut)} au ${jourCourt(d.periode.fin)} · mis à jour à ${new Date(d.lu).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}.`;
+    } catch { $('#etat').textContent = 'Chargement impossible (connexion ?).'; }
+  }
+  $('#acces').addEventListener('submit', (e) => { e.preventDefault(); garder(CLE, $('#code').value.trim()); charger(); });
+  $('#oublier').addEventListener('click', () => { garder(CLE, ''); location.reload(); });
+  $('#maj').addEventListener('click', charger);
+  for (const b of document.querySelectorAll('[data-jours]')) b.addEventListener('click', () => { jours = Number(b.dataset.jours); garder(CLE_PERIODE, String(jours)); charger(); });
+  if (lire(CLE)) { $('#code').value = lire(CLE); charger(); }
+})();
+</script>
+</body>
+</html>

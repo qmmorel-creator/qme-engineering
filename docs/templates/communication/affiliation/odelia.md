@@ -93,3 +93,15 @@ et Packs, invitation à proposer d'autres talents de Yuzu sur ces niches, démo 
 
 Suite : rien à relancer. En cas de réponse d'Eva (contre-proposition TikTok, autre talent), traiter avec le skill
 retour-affiliation.
+
+## Reprise du 18/11 au 22/11/2026
+
+- **18/11 10:42** : Eva relance sur TikTok et demande le budget maximum. **18/11 12:55** : Quentin propose 200 € de
+  fixe pour une vidéo TikTok, plus commission, plus au choix l'accès à 17 outils (241,90 €) ou un outil sur mesure
+  (« 2 000 € minimum »). **18/11 13:48** : Eva en parle à Odélia.
+- **22/11 12:28** : Eva contre-propose un **Reel Instagram à 200 € fixe** (pas de TikTok à ce prix) et demande le prix
+  des outils pour les étudiants, en vérifiant que les 2 000 € concernent une autre prestation que le Pack Étudiant.
+  Odélia n'est plus en copie.
+- **22/11** : réponse d'accord préparée, non envoyée : `odelia-reponse-reel-200.md` (Reel 200 € + commission + accès
+  gratuit à 12 outils études et budget ; 2 000 € recadrés comme sur-mesure pour professionnels ; Reel centré sur les
+  partiels, budget en second temps). Taux de commission à fixer par Quentin.

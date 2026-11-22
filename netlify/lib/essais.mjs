@@ -1,4 +1,4 @@
-// Essai gratuit des templates « vie personnelle » (décision de Quentin, 18/11/2026).
+// Essai gratuit des templates (vie personnelle le 18/11/2026, professionnels le 21/11/2026 ; décisions de Quentin).
 //
 // Parcours : formulaire /essai/ → POST /api/essai → code d'essai (14 jours, sans carte) → l'application
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
@@ -23,6 +23,7 @@ import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourPa
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { enregistrerOpposition, leverOpposition } from './preferences.mjs';
 import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
@@ -41,6 +42,8 @@ export const lienDesinscription = (secret, email) => {
 };
 
 async function enregistrerContact(essais, secret, { email, prenom, slug, date }) {
+  // Nouveau consentement explicite (case cochée) : une désinscription passée est levée (preferences.mjs).
+  await leverOpposition(essais, cleEmail(secret, email));
   const cle = `contact/${cleEmail(secret, email)}`;
   const c = await essais.get(cle);
   const templates = [...new Set([...(c?.templates || []), slug])];
@@ -84,6 +87,9 @@ function vueEssai(reg, aujourdhui) {
     statut: reg.achete || reg.paye ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
     achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
     mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
+    // Pour /admin/suivi/ (21/11/2026) : date de chaque e-mail parti (« saute » : rattrapé par un e-mail plus avancé
+    // le même jour), date du paiement notifié par Gumroad, code produit et prix.
+    envois: { ...(reg.mails || {}) }, paye: reg.paye || null, produit: reg.produit, prix: f.prix,
   };
 }
 export function csvEssais(vues) {
@@ -105,8 +111,10 @@ async function lireContacts(essais) {
 export const CREATIONS_PAR_IP_ET_PAR_JOUR = 5;
 const TAILLE_MAX = 4000;
 
-// Templates ouverts à l'essai : « vie personnelle », en vente (identifiant Gumroad), payants.
-export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => TEMPLATES[p]?.pour === 'perso' && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
+// Templates ouverts à l'essai : vie personnelle (18/11/2026) et professionnels (extension préparée le 21/11/2026),
+// en vente (identifiant Gumroad et lien d'achat), payants.
+export const POUR_ESSAI = ['perso', 'pro'];
+export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => POUR_ESSAI.includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
 
 export function ficheEssai(produit) {
   const t = TEMPLATES[produit], p = PRODUITS[produit];
@@ -279,8 +287,9 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     const e = String(url.searchParams.get('e') || ''), s = String(url.searchParams.get('s') || '');
     const attendu = signerDesinscription(secret, e);
     const ok = /^[0-9a-f]{32}$/.test(e) && s.length === attendu.length && timingSafeEqual(Buffer.from(s), Buffer.from(attendu));
-    if (ok) await essais.supprimer(`contact/${e}`);
-    const message = ok ? 'C\'est fait : vous ne recevrez plus les nouveautés QME, et votre adresse a été effacée de la liste.' : 'Lien invalide.';
+    // Liste d'opposition (preferences.mjs) : fiche « nouveautés » effacée, plus aucune annonce QME.
+    if (ok) await enregistrerOpposition(essais, e, { source: 'lien des e-mails d\'essai', date: new Date(maintenant()).toISOString() });
+    const message = ok ? 'C\'est fait : vous ne recevrez plus les informations QME (nouveautés, annonces), et votre adresse a été retirée de la liste.' : 'Lien invalide.';
     return new Response(`<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Désinscription · QME</title><body style="font-family:Arial,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:22px">Nouveautés QME</h1><p>${message}</p><p><a href="/templates/" style="color:#1D4E89">Retour aux templates</a></p></body></html>`,
       { status: ok ? 200 : 400, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
   }

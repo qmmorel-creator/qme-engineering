@@ -126,7 +126,7 @@ export async function jouer(v) {
   // Fin
   await v.temps(); son('whoosh'); await S('volet');
   await S('legende', null);
-  await S('outro', { titre: 'Objectif d\'épargne', sous: 'La date visée,<br>et le montant pour la tenir.', url: 'Démo gratuite · <b>qm-engineering.fr</b>' });
+  await S('outro', { titre: 'Objectif d\'épargne', sous: 'La date visée,<br>et le montant pour la tenir.', url: 'Essai gratuit 14 jours<br><b>qm-engineering.fr/essai</b>' });
   son('ding', 0.6);
   await temps(3);
 }

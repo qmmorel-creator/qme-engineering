@@ -178,6 +178,8 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
+    // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
+    if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
     E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     mois = moisCourant();
     cache();
@@ -190,6 +192,140 @@
     session.code = null; session.jeton = null; session.demo = false; session.base = null; E = null;
     document.body.classList.remove('app');
     ecranConnexion(message);
+  }
+
+  // ---------- Liaison avec Gestion Dépenses Communes (T99) ----------
+  // Mon Budget lit le commun en lecture seule, avec le code de partage du commun (jamais l'inverse), et inscrit
+  // chaque mois « ma part » (mode avances : quote-part des dépenses ; mode compte commun : versement du mois).
+  // Les appels passent par XMLHttpRequest : le module d'essai (assets/essai.js) intercepte fetch et prendrait les
+  // réponses du commun (version, infos d'essai) pour celles de Mon Budget.
+  const RC = window.BCM;
+  const PRODUIT_COMMUN = 'BCM';
+  let lienEnCours = false, lienLu = null;
+  function requeteCommun(methode, chemin, { code, corps } = {}) {
+    return new Promise((ok) => {
+      const x = new XMLHttpRequest();
+      x.open(methode, API + chemin);
+      x.setRequestHeader('content-type', 'application/json');
+      if (code) x.setRequestHeader('x-code', code);
+      x.onload = () => { let c = null; try { c = JSON.parse(x.responseText); } catch { /* vide */ } ok({ statut: x.status, corps: c }); };
+      x.onerror = () => ok({ statut: 0, corps: null });
+      x.send(corps ? JSON.stringify(corps) : null);
+    });
+  }
+  const lectureSeule = () => !!window.__qmeEssai?.etat()?.termine;
+  const membresCommun = (d) => (Array.isArray(d?.membres) ? d.membres : []).filter((m) => m && m.id);
+  const nomFoyerCommun = (d) => String(d?.foyer?.nom || '').trim() || 'Foyer sans nom';
+
+  async function majLienCommun({ silencieux = true } = {}) {
+    const L = E?.lienCommun;
+    if (!L || session.demo || lienEnCours || !RC || lectureSeule()) return;
+    lienEnCours = true;
+    try {
+      const { statut, corps } = await requeteCommun('GET', '/donnees', { code: L.code });
+      if (statut === 401) { signalerLien('Le code de Gestion Dépenses Communes n\'est plus valide : lie de nouveau le commun dans les réglages.', silencieux); return; }
+      if (statut !== 200) { if (!silencieux) toast('Gestion Dépenses Communes ne répond pas. Réessaie une fois en ligne.'); return; }
+      const d = corps?.donnees;
+      if (!membresCommun(d).some((m) => m.id === L.membreId)) { signalerLien('Tu ne fais plus partie de ce foyer dans Gestion Dépenses Communes : lie de nouveau le commun dans les réglages.', silencieux); return; }
+      const parts = R.moisALier(L.depuis, moisCourant()).map((m) => ({ mois: m, ...RC.partDuMois(d, L.membreId, m) }));
+      const avant = JSON.stringify(E.operations.filter((o) => o.origine === 'commun'));
+      E.operations = R.appliquerPartsCommun(E.operations, parts, { categorieId: L.categorieId });
+      const change = avant !== JSON.stringify(E.operations.filter((o) => o.origine === 'commun'));
+      const foyer = nomFoyerCommun(d), membre = membresCommun(d).find((m) => m.id === L.membreId)?.nom || L.membreNom;
+      const infos = foyer !== L.foyerNom || membre !== L.membreNom || L.erreur;
+      Object.assign(L, { foyerNom: foyer, membreNom: membre, mode: d?.reglages?.fonctionnement === 'compte' ? 'compte' : 'avances' });
+      delete L.erreur;
+      lienLu = new Date();
+      if (change || infos) { sauver(); rendre(); }
+      if (!silencieux) toast(change ? 'Ta part du commun est à jour.' : 'Rien de nouveau dans le commun.');
+    } finally { lienEnCours = false; }
+  }
+  function signalerLien(message, silencieux) {
+    const L = E.lienCommun;
+    if (L.erreur !== message) { L.erreur = message; sauver(); rendre(); }
+    if (!silencieux) toast(message);
+  }
+
+  function categorieParDefautCommun() {
+    return (E.categories.find((c) => /commun/i.test(c.nom)) || E.categories.find((c) => c.groupe === 'besoins') || E.categories[0])?.id || '__nouvelle';
+  }
+  // Étape 1 : le code de partage du commun ; étape 2 : qui on est dans ce foyer, et la catégorie qui reçoit la part.
+  function modaleLienCommun(etape = 1, lu = null) {
+    if (etape === 1) {
+      const corps = `<p class="aide">Colle le <b>code de partage</b> de Gestion Dépenses Communes (onglet Foyer du commun, ou bouton « Copier le code de partage » de ton espace pack). Ton budget reste privé : les autres membres du foyer ne voient rien de lui.</p>
+        <label class="champ">Code de partage<input name="code" autocomplete="off" spellcheck="false" placeholder="BCM-XXXX-XXXX-XXXX-XXXX" value="${esc(E.lienCommun?.code || '')}"></label>
+        <p class="erreur" role="alert"></p>`;
+      ouvrirModale('Lier à Gestion Dépenses Communes', corps, '<button class="btn primaire" value="ok">Continuer</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+        const code = formaterCode(String(f.get('code') || ''));
+        if (!codeComplet(code)) return 'Code incomplet : copie-le en entier depuis Gestion Dépenses Communes.';
+        const err = modale().querySelector('.erreur');
+        requeteCommun('POST', '/connexion', { corps: { code, produit: PRODUIT_COMMUN } }).then(({ statut, corps: c }) => {
+          if (statut === 401) { err.textContent = 'Code inconnu. Copie le code de partage depuis l\'onglet Foyer de Gestion Dépenses Communes.'; return; }
+          if (statut !== 200) { err.textContent = c?.erreur || 'Le service ne répond pas. Réessaie dans un instant.'; return; }
+          if (c.pack) { err.textContent = 'C\'est la clé d\'un pack : colle plutôt le code de partage de Gestion Dépenses Communes (onglet Foyer), qui n\'ouvre que lui.'; return; }
+          if (c.produit !== PRODUIT_COMMUN) { err.textContent = 'Ce code ouvre un autre template QME, pas Gestion Dépenses Communes.'; return; }
+          if (!membresCommun(c.donnees).length) { err.textContent = 'Ce foyer n\'a encore personne : crée d\'abord le foyer dans Gestion Dépenses Communes.'; return; }
+          modaleLienCommun(2, { code: c.jeton, donnees: c.donnees });
+        });
+        return 'Vérification…';
+      });
+      return;
+    }
+    const membres = membresCommun(lu.donnees);
+    const L = E.lienCommun;
+    const membreDefaut = L?.membreId && membres.some((m) => m.id === L.membreId) ? L.membreId : membres[0].id;
+    const catDefaut = L?.categorieId && categorie(L.categorieId) ? L.categorieId : categorieParDefautCommun();
+    const mode = lu.donnees?.reglages?.fonctionnement === 'compte' ? 'compte' : 'avances';
+    const corps = `<p class="aide">Foyer <b>${esc(nomFoyerCommun(lu.donnees))}</b> · ${mode === 'compte' ? 'compte commun : ton <b>versement du mois</b> sur le compte joint s\'ajoutera à ton budget.' : 'avances et remboursements : ta <b>part des dépenses du mois</b> (pas ce que tu as avancé) s\'ajoutera à ton budget.'}</p>
+      <label class="champ">Qui es-tu dans ce foyer ?<select name="membre">${membres.map((m) => `<option value="${esc(m.id)}" ${m.id === membreDefaut ? 'selected' : ''}>${esc(m.nom || 'Sans nom')}</option>`).join('')}</select></label>
+      <label class="champ">Catégorie de ton budget qui reçoit cette dépense<select name="categorie">${E.categories.map((c) => `<option value="${c.id}" ${c.id === catDefaut ? 'selected' : ''}>${esc(c.nom)}</option>`).join('')}<option value="__nouvelle" ${catDefaut === '__nouvelle' ? 'selected' : ''}>Nouvelle catégorie « Dépenses communes »</option></select></label>
+      <p class="aide">Une opération par mois, à partir de ce mois-ci, mise à jour à chaque ouverture de ton budget. Si tu notais déjà ta part à la main, supprime ces saisies pour ne pas la compter deux fois. Pense à donner une enveloppe à la catégorie choisie.</p>
+      <p class="erreur" role="alert"></p>`;
+    ouvrirModale('Lier à Gestion Dépenses Communes', corps, '<button class="btn primaire" value="ok">Lier</button><button class="btn" value="annuler">Annuler</button>', (f) => {
+      const membreId = String(f.get('membre') || '');
+      const membre = membres.find((m) => m.id === membreId);
+      if (!membre) return 'Choisis qui tu es dans ce foyer.';
+      let categorieId = String(f.get('categorie') || '');
+      instantane();
+      if (categorieId === '__nouvelle' || !categorie(categorieId)) {
+        const c = { id: uid(), nom: 'Dépenses communes', groupe: 'besoins', report: false, enveloppe: 0, sous: [] };
+        E.categories.push(c); categorieId = c.id;
+      }
+      const ancien = E.lienCommun;
+      if (ancien && ancien.categorieId !== categorieId) E.operations.forEach((o) => { if (o.origine === 'commun') o.categorieId = categorieId; });
+      E.lienCommun = { code: lu.code, membreId, membreNom: membre.nom || '', foyerNom: nomFoyerCommun(lu.donnees), categorieId,
+        depuis: ancien?.depuis || moisCourant(), mode, modifLe: new Date().toISOString() };
+      sauver(); rendre();
+      toast(`Lié au foyer ${nomFoyerCommun(lu.donnees)}.`, { libelle: 'Annuler', faire: annuler });
+      majLienCommun({ silencieux: true });
+    });
+  }
+  function delierCommun() {
+    if (!E.lienCommun || !confirm('Délier Gestion Dépenses Communes ? Les opérations déjà reprises restent dans ton budget, comme des dépenses ordinaires.')) return;
+    instantane();
+    E.operations.forEach((o) => { if (o.origine === 'commun') { delete o.origine; o.id = uid(); } });
+    E.lienCommun = null;
+    sauver(); rendre(); toast('Liaison supprimée.', { libelle: 'Annuler', faire: annuler });
+  }
+  function groupeLienCommun() {
+    const L = E.lienCommun;
+    if (session.demo) return '<div class="groupe"><h3>Gestion Dépenses Communes</h3><p class="aide">Avec ton code, tu peux lier ce budget à Gestion Dépenses Communes : ta part des dépenses du foyer s\'ajoute chaque mois ici, et ton budget reste privé. Pas disponible en démo.</p></div>';
+    if (!L) return `<div class="groupe"><h3>Gestion Dépenses Communes</h3><p class="aide">Tu partages des dépenses avec ton foyer ? Lie ce budget au commun : ta part s'ajoute chaque mois ici, sans que les autres membres voient ton budget.</p>
+      <div class="rang"><button class="btn petit" type="button" data-action="lien-commun">Lier au commun</button></div></div>`;
+    const maj = lienLu ? ` · lu à ${lienLu.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}` : '';
+    return `<div class="groupe"><h3>Gestion Dépenses Communes</h3>
+      <p>Lié au foyer <b>${esc(L.foyerNom)}</b>, en tant que <b>${esc(L.membreNom || '?')}</b>.</p>
+      <p class="aide">${L.mode === 'compte' ? 'Ton versement du mois au compte commun' : 'Ta part des dépenses communes du mois'} s'ajoute dans « ${esc(categorie(L.categorieId)?.nom || 'Sans catégorie')} »${maj}.</p>
+      ${L.erreur ? `<p class="erreur">${esc(L.erreur)}</p>` : ''}
+      <div class="rang"><button class="btn petit" type="button" data-action="lien-maj">Mettre à jour</button><button class="btn petit" type="button" data-action="lien-commun">Modifier</button><button class="btn petit" type="button" data-action="lien-delier">Délier</button></div></div>`;
+  }
+  function modaleOperationCommun(o) {
+    const L = E.lienCommun;
+    const corps = `<p><b>${esc(o.libelle)}</b> · ${eur(o.montant)} · ${esc(libelleMois(o.date.slice(0, 7), { month: 'long', year: 'numeric' }))}</p>
+      <p class="aide">Reprise de Gestion Dépenses Communes${L ? ` (foyer ${esc(L.foyerNom)}, ${esc(L.membreNom)})` : ''} et mise à jour à chaque ouverture de ton budget. Pour la changer, modifie les dépenses dans le commun.</p>`;
+    ouvrirModale('Part du commun', corps, `${L && !session.demo ? '<button class="btn primaire" value="maj">Mettre à jour</button>' : ''}<button class="btn" value="annuler">Fermer</button>`, (f, action) => {
+      if (action === 'maj') majLienCommun({ silencieux: false });
+    });
   }
 
   // ---------- Données de démonstration ----------
@@ -425,6 +561,7 @@
     majSync(session.demo ? 'demo' : (stock.lire(CLE_CACHE)?.nonEnvoye ? 'attente' : 'ok'));
     rendre();
     premiersPas();
+    majLienCommun();
   }
 
   function rendre() {
@@ -574,7 +711,7 @@
       <div class="graphique-tete"><h2>${libelleMois(mois)}</h2><div class="legende">${B.groupes.map((g) => `<span><i style="background:${g.couleur}"></i>${esc(g.nom)}</span>`).join('')}${flux.groupes.some((g) => g.id === 'reste') ? '<span><i class="hachure"></i>Non dépensé</span>' : ''}${flux.sources.some((s) => s.id === 'manque') ? '<span><i style="background:var(--rouge)"></i>Déficit : sorties supérieures aux revenus</span>' : ''}</div></div>
       <div class="sankey-cadre">${svg}</div>
       <div class="infobulle" hidden></div>
-      <details class="tableau-flux"><summary>Voir les flux en tableau</summary><div class="defile"><table class="tableau"><thead><tr><th>De</th><th>Vers</th><th class="nb">Montant</th></tr></thead><tbody>${lignes.map(([a, b, v]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td><td class="nb">${eur(v)}</td></tr>`).join('')}</tbody></table></div></details>
+      <details class="tableau-flux"><summary>Voir les flux en tableau</summary><div class="defile" tabindex="0" role="region" aria-label="Flux en tableau"><table class="tableau"><thead><tr><th>De</th><th>Vers</th><th class="nb">Montant</th></tr></thead><tbody>${lignes.map(([a, b, v]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td><td class="nb">${eur(v)}</td></tr>`).join('')}</tbody></table></div></details>
     </figure>`;
   }
 
@@ -628,7 +765,7 @@
       <div class="vue-tete"><div><h1>Enveloppes</h1>${navMois()}<p>Chaque catégorie reçoit une enveloppe. Avec le report, ce qui reste s'ajoute au mois suivant et un dépassement s'en retire.</p></div>
         <aside class="a-affecter ${aAffecter < 0 ? 'negatif' : aAffecter === 0 ? 'zero' : ''}"><p class="surtitre">Reste à affecter</p><b>${eur(aAffecter)}</b><span>${aAffecter < 0 ? 'Tes enveloppes dépassent tes revenus prévus.' : aAffecter === 0 ? 'Chaque euro prévu a une enveloppe.' : `Revenus prévus ${eurR(prevu)} − enveloppes ${eurR(totalEnv)}`}</span></aside></div>
       <h2 class="titre-section">Revenus <span>Prévu contre reçu ce mois-ci.</span></h2>
-      ${E.sources.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Source</th><th class="nb">Prévu</th><th class="nb">Reçu</th><th class="nb">Écart</th></tr></thead><tbody>${sources}</tbody><tfoot><tr><td>Total</td><td class="nb">${eur(prevu)}</td><td class="nb">${eur(rev.total)}</td><td class="nb">${eur(rev.total - prevu, { signe: true })}</td></tr></tfoot></table></div>`
+      ${E.sources.length ? `<div class="defile" tabindex="0" role="region" aria-label="Revenus prévus et reçus"><table class="tableau"><thead><tr><th>Source</th><th class="nb">Prévu</th><th class="nb">Reçu</th><th class="nb">Écart</th></tr></thead><tbody>${sources}</tbody><tfoot><tr><td>Total</td><td class="nb">${eur(prevu)}</td><td class="nb">${eur(rev.total)}</td><td class="nb">${eur(rev.total - prevu, { signe: true })}</td></tr></tfoot></table></div>`
         : vide('Aucune source de revenus', 'Ajoute tes revenus prévus pour savoir combien répartir.', '<button class="btn primaire" data-action="source">Ajouter un revenu prévu</button>')}
       ${E.categories.length ? `<div class="groupes-env">${groupes}</div>` : vide('Aucune catégorie', 'Ajoute des catégories depuis le catalogue.', '<button class="btn primaire" data-action="catalogue">Catalogue</button>')}`;
   }
@@ -640,8 +777,8 @@
     if (sansSous) sous.push(['Sans sous-catégorie', sansSous]);
     const reste = x.disponible > 0 || x.depense ? `<b class="${x.reste < 0 ? 'moins' : ''}">${x.reste < 0 ? `${eur(-x.reste)} de trop` : `${eur(x.reste)} restants`}</b>` : '<b class="discret">Pas d\'enveloppe</b>';
     return `<li class="env ${x.statut}">
-      <button class="env-tete" data-action="enveloppe" data-id="${c.id}" aria-label="Modifier l'enveloppe ${esc(c.nom)}">
-        <span class="env-nom"><b>${esc(c.nom)}</b>${etiquette(x.statut)}${c.report ? '<span class="etiquette clair">Report</span>' : ''}</span>
+      <button class="env-tete" data-action="enveloppe" data-id="${c.id}">
+        <span class="env-nom"><b><span class="sr-only">Modifier l'enveloppe </span>${esc(c.nom)}</b>${etiquette(x.statut)}${c.report ? '<span class="etiquette clair">Report</span>' : ''}</span>
         ${reste}
       </button>
       <div class="jauge" aria-hidden="true"><i style="width:${pct}%"></i></div>
@@ -667,7 +804,7 @@
     const dep = ops.filter((o) => o.type === 'depense').reduce((s, o) => s + o.montant, 0);
     const rev = ops.filter((o) => o.type === 'revenu').reduce((s, o) => s + o.montant, 0);
     return `<p class="totaux-ops">${pluriel(ops.length, 'opération')} · dépenses <b>${eur(dep)}</b> · revenus <b>${eur(rev)}</b></p>
-      ${jours.map((j) => `<section class="jour-ops"><h3>${maj(fmt(j, { weekday: 'long', day: 'numeric', month: 'long' }))}</h3>${ops.filter((o) => o.date === j).map(ligneOperation).join('')}</section>`).join('')}`;
+      ${jours.map((j) => `<section class="jour-ops"><h2>${maj(fmt(j, { weekday: 'long', day: 'numeric', month: 'long' }))}</h2>${ops.filter((o) => o.date === j).map(ligneOperation).join('')}</section>`).join('')}`;
   }
 
   function ligneOperation(o) {
@@ -677,7 +814,7 @@
     const sousNom = sousCat(c, o.sousId)?.nom;
     const titre = o.libelle || sousNom || c?.nom || s?.nom || 'Revenu';
     const detail = o.type === 'revenu' ? (s?.nom || 'Autre revenu') : `${c?.nom || 'Sans catégorie'}${sousNom ? ` › ${sousNom}` : ''}`;
-    return `<button class="op ${o.type}" data-action="operation" data-id="${o.id}" style="--c:${couleur}"><i></i><span><b>${esc(titre)}</b><small>${esc(detail)}${o.fixeId ? ' · fixe' : ''}</small></span><em>${o.type === 'revenu' ? '+' : '−'}${eur(o.montant)}</em></button>`;
+    return `<button class="op ${o.type}" data-action="operation" data-id="${o.id}" style="--c:${couleur}"><i></i><span><b>${esc(titre)}</b><small>${esc(detail)}${o.fixeId ? ' · fixe' : ''}${o.origine === 'commun' ? ' · commun' : ''}</small></span><em>${o.type === 'revenu' ? '+' : '−'}${eur(o.montant)}</em></button>`;
   }
 
   function vueOperations() {
@@ -754,7 +891,7 @@
         <div class="sr-only"><table><caption>Sorties et revenus par mois</caption><thead><tr><th>Mois</th><th>Besoins</th><th>Envies</th><th>Épargne</th><th>Revenus</th><th>Enveloppes</th></tr></thead><tbody>${serie.map((m) => `<tr><td>${libelleMois(m.mois)}</td><td>${eur(m.depenses.besoins)}</td><td>${eur(m.depenses.envies)}</td><td>${eur(m.depenses.epargne)}</td><td>${eur(m.revenus)}</td><td>${eur(m.enveloppes)}</td></tr>`).join('')}</tbody></table></div>
       </figure>
       <h2 class="titre-section">Écart au budget par catégorie <span>Depuis ${libelleMois(listeMois[0] || fin).toLowerCase()}, sans les reports. Positif : dépensé de plus que prévu.</span></h2>
-      ${ecarts.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Catégorie</th><th class="nb">Moyenne / mois</th><th class="nb">Dépensé</th><th class="nb">Prévu</th><th class="nb">Écart</th></tr></thead><tbody>${ecarts.map((x) => `<tr style="--c:${groupe(x.groupe).couleur}"><td><span class="nom-matiere"><i></i>${esc(categorie(x.id)?.nom)}</span></td><td class="nb">${eur(x.moyenne)}</td><td class="nb">${eur(x.total)}</td><td class="nb">${eur(x.budget)}</td><td class="nb ${x.ecart > 0 ? 'moins' : ''}">${eur(x.ecart, { signe: true })}</td></tr>`).join('')}</tbody></table></div>` : '<p class="carte-calme">Pas encore assez de données.</p>'}
+      ${ecarts.length ? `<div class="defile" tabindex="0" role="region" aria-label="Écart au budget par catégorie"><table class="tableau"><thead><tr><th>Catégorie</th><th class="nb">Moyenne / mois</th><th class="nb">Dépensé</th><th class="nb">Prévu</th><th class="nb">Écart</th></tr></thead><tbody>${ecarts.map((x) => `<tr style="--c:${groupe(x.groupe).couleur}"><td><span class="nom-matiere"><i></i>${esc(categorie(x.id)?.nom)}</span></td><td class="nb">${eur(x.moyenne)}</td><td class="nb">${eur(x.total)}</td><td class="nb">${eur(x.budget)}</td><td class="nb ${x.ecart > 0 ? 'moins' : ''}">${eur(x.ecart, { signe: true })}</td></tr>`).join('')}</tbody></table></div>` : '<p class="carte-calme">Pas encore assez de données.</p>'}
       <p class="avertissement">${esc(AVERTISSEMENT)}</p>`;
   }
 
@@ -829,8 +966,11 @@
   }
 
   function lireOperation(f) {
-    const montant = R.versCentimes(f.get('montant'));
-    if (!montant) return 'Montant illisible : écris par exemple 42,50.';
+    const brut = String(f.get('montant') || '').trim();
+    const montant = R.versCentimes(brut);
+    if (!brut) return 'Indique le montant, par exemple 42,50.';
+    if (montant === 0) return 'Le montant doit être supérieur à 0.';
+    if (!montant) return /^[-−]/.test(brut) ? 'Écris le montant sans signe moins : choisis « Dépense » ou « Revenu » au-dessus.' : 'Montant illisible : écris par exemple 42,50.';
     const type = f.get('type') === 'revenu' ? 'revenu' : 'depense';
     if (type === 'depense' && !f.get('categorie')) return 'Crée d\'abord une catégorie.';
     return { type, montant, libelle: String(f.get('libelle') || '').trim().slice(0, 80),
@@ -841,6 +981,7 @@
   function modaleOperation(type, id) {
     if (!E.categories.length && type !== 'revenu' && !id) { toast('Crée d\'abord une catégorie.'); changerVue('categories'); return; }
     const o = id ? E.operations.find((x) => x.id === id) : null;
+    if (o?.origine === 'commun') return modaleOperationCommun(o);
     const t = auj();
     const dateDefaut = mois === moisCourant() ? t : `${mois}-01`;
     const base = o || { type, categorieId: E.categories[0]?.id, sourceId: E.sources[0]?.id || 'autre' };
@@ -1018,6 +1159,7 @@
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a ce code voit et modifie ce budget. Pour qu'il reste privé, ne le donne à personne. Pour partager des dépenses avec ton foyer, utilise Gestion Dépenses Communes : il a son propre code, qui n'ouvre pas ce budget.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
+      ${groupeLienCommun()}
       <div class="groupe"><h3>À savoir</h3><p class="aide">${esc(AVERTISSEMENT)}</p><p class="aide">${esc(B.repere.titre)} : ${esc(B.repere.source)}</p></div>
       <div class="groupe"><h3>Comment ça marche</h3><p class="aide">Les grands principes du budget, en une page.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
@@ -1063,6 +1205,7 @@
       ['ciel', 'Surveille tes enveloppes', `Une enveloppe passe <b>Presque vide</b> à 90&nbsp;% dépensés et <b>Dépassée</b> au-delà de son montant. Une dépense dans une catégorie sans enveloppe est <b>Hors budget</b>. Ces enveloppes remontent dans <b>À surveiller</b>, sur l'onglet <b>Mois</b>, qui indique aussi, pour le mois en cours, combien tu peux encore dépenser par jour.`],
       ['sable', 'Reporte ce qui reste', `Coche <b>Reporter le reste d'un mois sur l'autre</b> dans une catégorie : ce qui reste de son enveloppe s'ajoute au mois suivant et un dépassement s'en retire. Pratique pour les vacances, les impôts ou les cadeaux&nbsp;: tu mets de côté un peu chaque mois. Le report se calcule depuis le mois de départ du budget${depart}.`],
       ['rose', 'Situe-toi avec le repère 50/30/20', `Tes catégories sont rangées en besoins, envies et épargne. L'onglet <b>Mois</b> compare la part de chaque groupe dans tes revenus du mois à un repère courant&nbsp;: 50&nbsp;%, 30&nbsp;% et 20&nbsp;%. C'est un repère, pas une règle. Le diagramme <b>Où va l'argent</b> montre le trajet de tes revenus jusqu'à chaque catégorie.`],
+      ['ciel', 'Relie ta part du commun', `Tu partages des dépenses dans <b>Gestion Dépenses Communes</b>&nbsp;? Dans les <b>Réglages</b>, colle son code de partage et choisis qui tu es&nbsp;: ta part du mois s'ajoute ici toute seule (ta part des dépenses, ou ton versement au compte joint). Les autres membres du foyer ne voient rien de ton budget.`],
     ];
     const corps = `
       <p>Le budget compare chaque mois ce que tu avais prévu à ce que tu dépenses vraiment. Ton rôle&nbsp;: répartir tes revenus prévus en enveloppes, puis noter tes dépenses et tes revenus au fil du mois.</p>
@@ -1189,6 +1332,9 @@
       case 'mois': mois = R.ajoutMois(mois, Number(el.dataset.n)); rendre(); break;
       case 'mois-courant': mois = moisCourant(); rendre(); break;
       case 'reglages': modaleReglages(); break;
+      case 'lien-commun': modaleLienCommun(); break;
+      case 'lien-maj': modale().open && modale().close(); majLienCommun({ silencieux: false }); break;
+      case 'lien-delier': modale().open && modale().close(); delierCommun(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'tutoriel': modaleTutoriel(); break;
       case 'installer': installer(); break;
@@ -1213,7 +1359,7 @@
 
   document.addEventListener('click', (e) => { if (e.target === modale()) modale().close(); });
 
-  window.addEventListener('online', () => { if (etatSync === 'horsligne' || etatSync === 'attente') envoyer(); });
+  window.addEventListener('online', () => { if (etatSync === 'horsligne' || etatSync === 'attente') envoyer(); majLienCommun(); });
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible' || !E) return;
     rafraichir();
@@ -1230,10 +1376,13 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    // L'adresse n'est nettoyée qu'après l'ouverture de la démo, qui lit `&reinit`.
+    const demoUrl = new URLSearchParams(location.search).has('demo');
+    const nettoyer = () => { if (demoUrl) history.replaceState(null, '', location.pathname + location.hash); };
+    if (demoUrl && !code) { ouvrirDemo(false); return nettoyer(); }
+    if (code === CODE_DEMO) { ouvrirDemo(); return nettoyer(); }
+    nettoyer();
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {

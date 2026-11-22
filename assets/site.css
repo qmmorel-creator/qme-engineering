@@ -626,6 +626,12 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .reseaux a:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
 @media (max-width:980px){footer{padding-right:76px}body:has(.composer-barre) .reseaux{bottom:84px}}
 @media (prefers-reduced-motion:reduce){.reseaux a{transition:none}.reseaux a:hover{transform:none}}
+/* Téléphone (audit étudiants du 22/11/2026) : les liens réseaux ne flottent plus sur le texte et les boutons, ils
+   passent dans le flux, au-dessus du pied de page. */
+/* Téléphone : prix et boutons (essai, achat, démo) remontés sous la capture, avant la liste des fonctions, pour les voir
+   sans faire défiler deux écrans (audit étudiants du 22/11/2026). L'ordre de lecture du code reste inchangé. */
+@media (max-width:640px){.produit-texte>.prix{order:-2;margin-top:0;padding-top:0;border-top:0}.produit-texte>.actions{order:-1;margin:0 0 10px}}
+@media (max-width:600px){.reseaux{position:static;flex-direction:row;justify-content:center;padding:20px 16px 0}footer{padding-right:16px}}
 @media print{.reseaux{display:none}}
 
 /* En-tête : libellés sur une ligne ; mode compact entre la tablette et le grand écran */
@@ -677,3 +683,6 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .packs-bandeau p{margin-top:6px;max-width:640px;color:var(--texte-2)}
 .packs-bandeau .actions{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:720px){.packs-bandeau{margin:32px 16px 0}.packs-bandeau .actions,.packs-bandeau .btn{width:100%}}
+/* « Mon espace » dans le menu (compte connecté, menuMonEspace de site.js) */
+.topbar a.login.mon-espace{display:inline-flex;align-items:center;gap:8px}
+.topbar a.login .ini{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--encre);color:var(--papier);font:700 12px/1 Outfit,sans-serif;flex:none}

@@ -675,7 +675,8 @@
     const d = R.arrondi(R.valeur(moy, sys) - objectif);
     return d >= 0 ? `${N(d, 2, true)} au-dessus de l'objectif` : `il manque ${N(-d, 2, true)}`;
   };
-  function resultatTexte(r, sys, notes, objectif, nomCible) {
+  function resultatTexte(r, sys, notes, objectif, nomCible, nbPrevues = 0) {
+    if (r.statut === 'aucune' && nbPrevues) return '<p>Coche au moins une épreuve à venir ci-dessus pour calculer la note qu\'il te faut.</p>';
     if (r.statut === 'aucune') return `<p>Aucune épreuve prévue : ajoute tes prochains partiels sans note pour savoir ce qu'il te faut.</p>`;
     if (r.statut === 'acquis') return `<p class="resultat ok"><b>Objectif assuré</b> : même avec 0 ${notes.length > 1 ? 'à chaque épreuve' : 'à cette épreuve'}, ${nomCible} resterait à ${noteTexte(r.min, sys)}.</p>`;
     if (r.statut === 'impossible') return `<p class="resultat ko"><b>Hors de portée</b> : avec la note maximale ${notes.length > 1 ? 'à chaque épreuve' : 'à cette épreuve'}, ${nomCible} monterait au mieux à ${noteTexte(r.max, sys)} (objectif ${N(objectif, 2)}).</p>`;
@@ -717,7 +718,7 @@
       ...toutes.filter((x) => x.moy === null).map((x) => `<li>${pastilleMat(x.m)} <span>Pas encore de note${x.prevues ? ` (${pluriel(x.prevues, 'épreuve prévue', 'épreuves prévues')})` : ''}.</span></li>`),
     ];
     const blocAlertes = alertes.length ? `<h2 class="titre-section">À surveiller <span>${pluriel(alertes.length, 'matière')}</span></h2><ul class="alertes-matieres">${alertes.join('')}</ul>` : '';
-    const ues = b.ues.length ? `<h2 class="titre-section">Unités d'enseignement</h2><div class="defile"><table class="tableau"><thead><tr><th>UE</th><th class="nb tel-masque">Poids</th><th class="nb">Moyenne</th><th>Résultat</th><th class="nb">Crédits</th></tr></thead><tbody>${bp.ues.map((u) => `<tr><td>${esc(u.u.nom)}</td><td class="nb tel-masque">${N(R.poidsUe(E, p, u.u), 2)}${p.poids === 'credits' ? ' ECTS' : ''}</td><td class="nb"><b>${noteTexte(u.moy, sys)}</b></td><td>${etiquette(u.statut, b.provisoire)}</td><td class="nb">${N(u.acquis, 1)} / ${N(u.credits, 1)}</td></tr>`).join('')}</tbody></table></div>` : '';
+    const ues = b.ues.length ? `<h2 class="titre-section">Unités d'enseignement</h2><div class="defile" tabindex="0" role="region" aria-label="Unités d'enseignement, tableau défilant"><table class="tableau"><thead><tr><th>UE</th><th class="nb tel-masque">Poids</th><th class="nb">Moyenne</th><th>Résultat</th><th class="nb">Crédits</th></tr></thead><tbody>${bp.ues.map((u) => `<tr><td>${esc(u.u.nom)}</td><td class="nb tel-masque">${N(R.poidsUe(E, p, u.u), 2)}${p.poids === 'credits' ? ' ECTS' : ''}</td><td class="nb"><b>${noteTexte(u.moy, sys)}</b></td><td>${etiquette(u.statut, b.provisoire)}</td><td class="nb">${N(u.acquis, 1)} / ${N(u.credits, 1)}</td></tr>`).join('')}</tbody></table></div>` : '';
     return `${tete}${tuiles}${objectifBloc}${blocAlertes}
       <h2 class="titre-section">Moyennes par matière <span>${pluriel(toutes.length, 'matière')}</span></h2>${barresMatieres(bp)}${ues}${AVERTISSEMENT}`;
   }
@@ -778,8 +779,8 @@
     const nomCible = s.cible.type === 'matiere' ? 'la moyenne de la matière' : s.cible.type === 'ue' ? 'la moyenne de l\'UE' : s.cible.type === 'annee' ? 'la moyenne de l\'année' : 'la moyenne';
     // Scénarios : même note à chaque épreuve cochée.
     const pas = [0.4, 0.5, 0.6, 0.7, 0.8];
-    const scen = s.ids.length ? `<h3 class="titre-cat">Et si tu avais… <span>la même note à chaque épreuve cochée</span></h3><div class="defile"><table class="tableau petit"><thead><tr><th>Note obtenue</th>${pas.map((f) => `<th class="nb">${s.sys.code === 'lettres' ? R.lettreDe(f * s.sys.max, s.sys.lettres) : N(f * s.sys.max, 2)}</th>`).join('')}</tr></thead><tbody><tr><th>${esc(MAJ(nomCible))}</th>${pas.map((f) => { const v = R.simuler(E, s.cible, s.ids, f); return `<td class="nb ${v !== null && R.valeur(v, s.sys) + 1e-9 >= s.objectif ? 'ok' : ''}">${noteTexte(v, s.sys)}</td>`; }).join('')}</tr></tbody></table></div>` : '';
-    return `<p class="mention">Aujourd'hui : ${esc(nomCible)} est à <b>${noteTexte(actuelle, s.sys)}</b>${actuelle !== null ? ` (${ecartTexte(actuelle, s.objectif, s.sys)})` : ''}.</p>${resultatTexte(r, s.sys, notes, s.objectif, nomCible)}${scen}`;
+    const scen = s.ids.length ? `<h2 class="titre-cat">Et si tu avais… <span>la même note à chaque épreuve cochée</span></h2><div class="defile" tabindex="0" role="region" aria-label="Et si tu avais…, tableau défilant"><table class="tableau petit"><thead><tr><th>Note obtenue</th>${pas.map((f) => `<th class="nb">${s.sys.code === 'lettres' ? R.lettreDe(f * s.sys.max, s.sys.lettres) : N(f * s.sys.max, 2)}</th>`).join('')}</tr></thead><tbody><tr><th>${esc(MAJ(nomCible))}</th>${pas.map((f) => { const v = R.simuler(E, s.cible, s.ids, f); return `<td class="nb ${v !== null && R.valeur(v, s.sys) + 1e-9 >= s.objectif ? 'ok' : ''}">${noteTexte(v, s.sys)}</td>`; }).join('')}</tr></tbody></table></div>` : '';
+    return `<p class="mention">Aujourd'hui : ${esc(nomCible)} est à <b>${noteTexte(actuelle, s.sys)}</b>${actuelle !== null ? ` (${ecartTexte(actuelle, s.objectif, s.sys)})` : ''}.</p>${resultatTexte(r, s.sys, notes, s.objectif, nomCible, s.prevues.length)}${scen}`;
   }
   function majSimulation() { const s = etatSimulation(); const el = $('#sim-resultat'); if (el) el.innerHTML = blocResultat(s); }
 
@@ -809,7 +810,7 @@
       const txt = r.statut === 'acquis' ? '<span class="etiquette vert">Assuré</span>' : r.statut === 'impossible' ? `<span class="etiquette rose">Hors de portée</span> <small>au mieux ${noteTexte(r.max, s.sys)}</small>` : s.sys.code === 'lettres' ? `<b>${R.lettreDe(R.noteAViser(r.frac, s.sys.max), s.sys.lettres)}</b>` : [...new Set(pr.map((n) => n.sur))].map((x) => `<b>${N(R.noteAViser(r.frac, x), 2, true)}</b>/${N(x, 2)}`).join(' ou ');
       return `<tr><td>${pastilleMat(m)}</td><td class="nb">${noteTexte(moy, s.sys)}</td><td class="nb">${N(pr.length)}</td><td class="nb">${txt}</td></tr>`;
     }).filter(Boolean);
-    const parMatiere = lignes.length ? `<h2 class="titre-section">Par matière <span>la note à viser à ses épreuves prévues pour qu'elle atteigne ${N(p.objectif, 2)}</span></h2><div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Moyenne</th><th class="nb">Épreuves</th><th class="nb">À viser</th></tr></thead><tbody>${lignes.join('')}</tbody></table></div>` : '';
+    const parMatiere = lignes.length ? `<h2 class="titre-section">Par matière <span>la note à viser à ses épreuves prévues pour qu'elle atteigne ${N(p.objectif, 2)}</span></h2><div class="defile" tabindex="0" role="region" aria-label="Note à viser par matière, tableau défilant"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Moyenne</th><th class="nb">Épreuves</th><th class="nb">À viser</th></tr></thead><tbody>${lignes.join('')}</tbody></table></div>` : '';
     return `${tete}${form}${parMatiere}<p class="mention" style="margin-top:12px">Le simulateur cherche la plus petite note, la même à chaque épreuve cochée, qui donne la moyenne visée avec tes coefficients, tes crédits et ta règle de rattrapage. Il ne connaît que les épreuves saisies : ajoute celles qui manquent.</p>${AVERTISSEMENT}`;
   }
 
@@ -835,7 +836,7 @@
     ];
     const b = R.bilanPeriode(E, p, B);
     const notes = E.notes.filter((n) => !n.prevue && R.matieresDe(E, p.id).some((m) => m.id === n.matiere)).sort((x, y) => (y.date || '').localeCompare(x.date || '')).slice(0, 30);
-    const tableau = `<div class="defile"><table class="tableau"><thead><tr><th>Date</th><th>Matière</th><th class="tel-masque">Épreuve</th><th class="nb">Note</th><th class="nb tel-masque">Coef.</th><th class="nb">Sur ${N(sys.max)}</th></tr></thead><tbody>${notes.map((n) => { const f = R.fracNote(E, n); return `<tr><td class="nb" style="text-align:left">${esc(dateMoy(n.date))}</td><td>${esc(matiere(n.matiere)?.nom || '')}</td><td class="tel-masque">${esc(n.intitule || NOMS_TYPES[n.type])}</td><td class="nb">${esc(noteBrute(n))}</td><td class="nb tel-masque">${N(n.coef, 2)}</td><td class="nb">${n.neutre ? 'neutralisée' : noteTexte(f, sys)}</td></tr>`; }).join('')}</tbody></table></div>`;
+    const tableau = `<div class="defile" tabindex="0" role="region" aria-label="Dernières notes, tableau défilant"><table class="tableau"><thead><tr><th>Date</th><th>Matière</th><th class="tel-masque">Épreuve</th><th class="nb">Note</th><th class="nb tel-masque">Coef.</th><th class="nb">Sur ${N(sys.max)}</th></tr></thead><tbody>${notes.map((n) => { const f = R.fracNote(E, n); return `<tr><td class="nb" style="text-align:left">${esc(dateMoy(n.date))}</td><td>${esc(matiere(n.matiere)?.nom || '')}</td><td class="tel-masque">${esc(n.intitule || NOMS_TYPES[n.type])}</td><td class="nb">${esc(noteBrute(n))}</td><td class="nb tel-masque">${N(n.coef, 2)}</td><td class="nb">${n.neutre ? 'neutralisée' : noteTexte(f, sys)}</td></tr>`; }).join('')}</tbody></table></div>`;
     return `${tete}<h2 class="titre-section">Moyenne après chaque note <span>${esc(nom)} · objectif et seuil en pointillés</span></h2>${graph}<ul class="faits">${faits.map((x) => `<li>${x}</li>`).join('')}</ul>
       <h2 class="titre-section">Moyennes par matière <span>${esc(p.nom)}</span></h2>${barresMatieres(b, false)}<h2 class="titre-section">Dernières notes <span>${esc(p.nom)}, 30 au plus</span></h2>${tableau}${AVERTISSEMENT}`;
   }
@@ -857,7 +858,7 @@
         ...u.matieres.map((x) => `<tr><td class="retrait">${esc(x.m.nom)}</td><td class="nb">${N(R.poidsMatiere(bp.p, x.m), 2)}</td><td class="nb">${N(x.m.credits, 1)}</td><td class="nb">${v(x.moy)}</td><td>${resultat(x.statut)}</td><td class="nb"></td></tr>`),
       ]).concat(bp.libres.map((x) => `<tr><td>${esc(x.m.nom)}</td><td class="nb">${N(R.poidsMatiere(bp.p, x.m), 2)}</td><td class="nb">${N(x.m.credits, 1)}</td><td class="nb"><b>${v(x.moy)}</b></td><td>${resultat(x.statut)}</td><td class="nb">${x.statut === 'acquise' || x.statut === 'compensee' ? N(x.credits, 1) : '0'}</td></tr>`));
       return `<section class="releve-periode"><h2 class="titre-cat">${esc(bp.p.nom)} <span>${esc(bp.sys.nom)} · ${esc(B.modes.find((m) => m.code === bp.p.mode)?.nom || '')}</span></h2>
-        <div class="defile"><table class="tableau releve"><thead><tr><th>Enseignement</th><th class="nb">${bp.p.poids === 'credits' ? 'Poids' : 'Coef.'}</th><th class="nb">Crédits</th><th class="nb">Moyenne</th><th>Résultat</th><th class="nb">Acquis</th></tr></thead>
+        <div class="defile" tabindex="0" role="region" aria-label="Relevé ${esc(bp.p.nom)}, tableau défilant"><table class="tableau releve"><thead><tr><th>Enseignement</th><th class="nb">${bp.p.poids === 'credits' ? 'Poids' : 'Coef.'}</th><th class="nb">Crédits</th><th class="nb">Moyenne</th><th>Résultat</th><th class="nb">Acquis</th></tr></thead>
         <tbody>${lignes.join('') || '<tr><td colspan="6">Aucune matière.</td></tr>'}</tbody>
         <tfoot><tr><td>Moyenne de la période${bp.provisoire ? ' (provisoire)' : ''}</td><td></td><td class="nb">${N(bp.creditsTotal, 1)}</td><td class="nb"><b>${v(bp.moy)}</b></td><td>${resultat(bp.statut, true)}${bp.mention ? ` · ${esc(bp.mention)}` : ''}${bp.provisoire && bp.moy !== null ? ' (à ce stade)' : ''}</td><td class="nb">${N(bp.creditsAcquis, 1)}</td></tr></tfoot></table></div></section>`;
     }).join('');

@@ -85,7 +85,7 @@ Lister les titres internes (colonne F) des 60 derniers et des 30 prochains jours
 **Corps** : constat → principe → « J'ai donc construit… » / ce que fait l'outil (3 points ▪ au plus) → appel
 à l'action (démo libre, achat unique) → question finale si le style s'y prête. 3 à 5 hashtags `#Mot`.
 Instagram : 3 à 6 phrases, « Démo libre et achat : lien en bio », 5 hashtags au plus, pont vers le sur mesure.
-**Template vie personnelle** (`REGLES-CONTENU.md` § 7) : l'appel à l'action devient l'essai, « 14 jours d'essai
+**Template en vente, vie personnelle ou pro** (`REGLES-CONTENU.md` § 7) : l'appel à l'action devient l'essai, « 14 jours d'essai
 gratuit, sans carte : lien en bio » (LinkedIn : `qm-engineering.fr/essai/`), l'achat unique en second.
 
 **Doc** (format strict lu par la routine) : texte à publier, ligne `———`, `PREMIER COMMENTAIRE` (LinkedIn :

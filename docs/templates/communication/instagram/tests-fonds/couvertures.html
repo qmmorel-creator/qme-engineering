@@ -1,0 +1,139 @@
+<!doctype html>
+<!-- Généré par generer_couvertures.py : ne pas modifier à la main. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Couvertures du test des fonds</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.titre{position:absolute;left:84px;right:84px;top:200px;z-index:2}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:120px;font-weight:800;line-height:.98;letter-spacing:-.025em;margin-top:30px}
+h1 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.sous{font-size:38px;line-height:1.3;letter-spacing:-.01em;margin-top:44px;max-width:780px}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.f{position:absolute}
+
+/* A · Papier, formes en coin (référence actuelle) */
+.v-A .sourcil{color:var(--rouge)}
+.v-A .sous{color:var(--texte-2)}
+.v-A .compteur{background:var(--surface)}
+.v-A .f1{right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+.v-A .f2{right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+
+/* B · Encre, grand cercle jaune sortant du cadre */
+.v-B{background:var(--encre);color:var(--papier)}
+.v-B .sourcil{color:var(--jaune)}
+.v-B .sous{color:#D9D4C8}
+.v-B .f1{right:-260px;bottom:-260px;width:760px;height:760px;border-radius:50%;background:var(--jaune)}
+.v-B .f2{right:420px;bottom:300px;width:120px;height:120px;background:var(--rouge)}
+
+/* C · Bleu, frise Bauhaus de quatre modules en pied */
+.v-C{background:var(--bleu);color:#fff}
+.v-C .sourcil{color:#fff;opacity:.85}
+.v-C .sous{color:#fff;opacity:.9}
+.v-C .frise{position:absolute;left:0;right:0;bottom:180px;height:270px;display:grid;grid-template-columns:repeat(4,1fr)}
+.v-C .frise div{position:relative;overflow:hidden}
+.v-C .m1{background:var(--rouge)}
+.v-C .m2{background:var(--papier)}
+.v-C .m2::after{content:"";position:absolute;left:0;bottom:0;width:270px;height:270px;background:var(--jaune);border-top-right-radius:270px}
+.v-C .m3{background:var(--encre)}
+.v-C .m3::after{content:"";position:absolute;left:30px;top:30px;width:210px;height:210px;border-radius:50%;background:var(--papier)}
+.v-C .m4{background:var(--jaune)}
+.v-C .m4::after{content:"";position:absolute;left:0;bottom:0;border-left:270px solid var(--encre);border-top:270px solid transparent}
+
+/* D · Jaune, demi-cercle encre pleine largeur */
+.v-D{background:var(--jaune);color:var(--encre)}
+.v-D h1 mark{background:var(--encre);color:var(--jaune)}
+.v-D .sous{color:var(--encre)}
+.v-D .f1{left:-60px;right:-60px;bottom:-450px;height:900px;border-radius:50%;background:var(--encre)}
+.v-D .f2{right:84px;bottom:300px;width:140px;height:140px;background:var(--rouge);border:6px solid var(--encre)}
+.v-D .glisser{color:var(--papier)}
+
+/* E · Rouge, grand triangle encre et cercle bleu */
+.v-E{background:var(--rouge);color:#fff}
+.v-E .sourcil{color:#fff;opacity:.9}
+.v-E .sous{color:#fff}
+.v-E .f1{right:0;bottom:0;border-right:620px solid var(--encre);border-top:620px solid transparent;width:0;height:0}
+.v-E .f2{right:330px;bottom:340px;width:200px;height:200px;border-radius:50%;background:var(--bleu);border:6px solid var(--encre)}
+
+/* F · Deux plans : bandeau bleu en haut, papier en bas, cercle rouge à cheval */
+.v-F .plan{position:absolute;left:0;right:0;top:0;height:820px;background:var(--bleu)}
+.v-F .titre{color:#fff}
+.v-F .sourcil{opacity:.85}
+.v-F .compteur{color:#fff}
+.v-F .f1{left:84px;top:690px;width:260px;height:260px;border-radius:50%;background:var(--rouge);border:6px solid var(--encre)}
+.v-F .f2{right:0;bottom:0;width:300px;height:300px;background:var(--jaune);border-top-left-radius:300px}
+</style>
+</head>
+<body>
+<section class="cadre v-B" id="IG-29-fiche-arrivee-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Sur mesure · cas réel</p><h1 style="font-size:104px">La fiche d&#x27;arrivée qui évite <mark>deux</mark> litiges.</h1><p class="sous">Un outil d&#x27;atelier vélo, dès le dépôt.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-C" id="IG-62-abonnements-1">
+  <div class="frise"><div class="m1"></div><div class="m2"></div><div class="m3"></div><div class="m4"></div></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Abonnements</p><h1 style="font-size:112px">Combien vous coûtent vos <mark>abonnements</mark>&nbsp;?</h1><p class="sous">Pas par mois. Par an.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-D" id="IG-07-micro-entreprise-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Indépendants</p><h1 style="font-size:104px">Déclaration URSSAF&nbsp;: <mark>le montant</mark> est prêt.</h1><p class="sous">Le livre des recettes, tenu au fil des encaissements.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-E" id="IG-151-sans-voiture-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Budget et mobilité</p><h1 style="font-size:104px">Votre voiture vous coûte <mark>combien</mark>, vraiment&nbsp;?</h1><p class="sous">Et sans elle, vous gagneriez combien par an ?</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-F" id="IG-08-budget-commun-1">
+  <div class="plan"></div><div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Maison</p><h1 style="font-size:112px">Qui doit <mark>combien</mark> à qui&nbsp;?</h1><p class="sous">Partager les dépenses à deux, à trois ou en famille.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-F" id="IG-09-gantt-1">
+  <div class="plan"></div><div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Travail</p><h1 style="font-size:112px">Une date bouge. <mark>Tout</mark> se recale.</h1><p class="sous">Un planning Gantt qui se tape en une ligne par tâche.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-E" id="IG-10-taches-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Travail</p><h1 style="font-size:112px">Quoi faire <mark>ce matin</mark>&nbsp;?</h1><p class="sous">Noter vite, trier, choisir 3 à 5 tâches.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-D" id="IG-12-visa-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">BTP · maîtrise d&#x27;œuvre</p><h1 style="font-size:112px">Qui relancer <mark>ce matin</mark>&nbsp;?</h1><p class="sous">Le circuit de visa des documents, suivi par lot.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-C" id="IG-13-non-conformites-1">
+  <div class="frise"><div class="m1"></div><div class="m2"></div><div class="m3"></div><div class="m4"></div></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Qualité · BTP et industrie</p><h1 style="font-size:112px">Le même écart, <mark>trois fois</mark>&nbsp;?</h1><p class="sous">De la non-conformité à la vérification d&#x27;efficacité.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre v-B" id="IG-14-crm-1">
+  <div class="f f1"></div><div class="f f2"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Indépendants</p><h1 style="font-size:112px">Qui relancer <mark>aujourd&#x27;hui</mark>&nbsp;?</h1><p class="sous">Un CRM simple pour qui travaille seul.</p></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+</body>
+</html>

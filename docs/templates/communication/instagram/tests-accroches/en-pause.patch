@@ -1,0 +1,132 @@
+diff --git a/docs/templates/communication/instagram/production/IG-45.html b/docs/templates/communication/instagram/production/IG-45.html
+index d0167339..be591975 100644
+--- a/docs/templates/communication/instagram/production/IG-45.html
++++ b/docs/templates/communication/instagram/production/IG-45.html
+@@ -57,8 +57,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+ <div class="barre" style="top:470px;transform-origin:left;animation:largeur 500ms 150ms"></div>
+ <p class="sourcil" style="top:400px;color:var(--jaune);animation:monte 400ms 100ms">Méthode · révisions</p>
+ <div class="f" style="left:96px;bottom:400px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:48px;animation:monte 400ms 600ms"><svg width="64" height="64" viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span style="color:#6E9BD6">M</span><span style="color:var(--jaune)">E</span></span></div>
+-<p class="t" style="top:530px;font-size:116px;font-weight:800;animation:monte 500ms 300ms">Vos partiels sont dans dix jours.</p>
+-<p class="t" style="top:1060px;font-size:84px;font-weight:800;color:var(--jaune);animation:monte 500ms 1200ms">Voilà comment je les répartirais.</p>
++<p class="t" style="top:530px;font-size:100px;font-weight:800;animation:monte 500ms 300ms">Dix jours avant les partiels, on relit tout dans l’ordre…</p>
++<p class="t" style="top:1060px;font-size:80px;font-weight:800;color:var(--jaune);animation:monte 500ms 1200ms">jusqu’au jour où le dernier chapitre n’a jamais été ouvert.</p>
+ </div>
+ <div class="s papier " id="s2" style="animation:entree-fond 350ms 4000ms,sortie 300ms 9700ms">
+ <p class="t" style="top:330px;font-size:92px;font-weight:800;animation:monte 500ms 4150ms">On ne refait pas tout.</p>
+diff --git a/docs/templates/communication/instagram/production/IG-49.html b/docs/templates/communication/instagram/production/IG-49.html
+index 1eaed4d8..0afcf418 100644
+--- a/docs/templates/communication/instagram/production/IG-49.html
++++ b/docs/templates/communication/instagram/production/IG-49.html
+@@ -49,8 +49,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
+ <div class="s" id="s1" style="background:var(--papier);color:var(--encre);animation:entree-fond 350ms 0ms,sortie 300ms 2900ms">
+ <div class="barre" style="top:570px;animation:largeur 500ms 100ms"></div>
+ <p class="sourcil" style="top:490px;color:var(--rouge);animation:monte 450ms 150ms">Noël à deux</p>
+-<p class="gros" style="top:640px;font-size:180px;animation:monte 500ms 300ms">Qui paie</p>
+-<p class="gros" style="top:827px;font-size:180px;animation:monte 500ms 550ms"><mark>quoi</mark> ?</p>
++<p class="gros" style="top:640px;font-size:104px;animation:monte 500ms 300ms">Les cadeaux à deux, on verra bien…</p>
++<p class="gros" style="top:1070px;font-size:104px;animation:monte 500ms 550ms">jusqu’au jour où il faut <mark style="white-space:nowrap">faire les comptes</mark>.</p>
+ <div class="forme" style="right:-160px;top:180px;width:420px;height:420px;border-radius:50%;background:var(--bleu);animation:pop 600ms 0ms"></div>
+ <div class="forme" style="left:0;bottom:0;width:380px;height:380px;background:var(--rouge);border-top-right-radius:380px;animation:arrivee-g 700ms 200ms"></div>
+ <div class="forme" style="right:150px;bottom:470px;width:150px;height:150px;background:var(--jaune);border:8px solid var(--encre);animation:arrivee-d 600ms 500ms"></div>
+diff --git a/docs/templates/communication/instagram/production/IG-52.html b/docs/templates/communication/instagram/production/IG-52.html
+index d607fe3a..28e950c1 100644
+--- a/docs/templates/communication/instagram/production/IG-52.html
++++ b/docs/templates/communication/instagram/production/IG-52.html
+@@ -99,8 +99,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
+   <div class="quart"></div>
+   <p class="sourcil">Bloquez votre travail</p>
+   <div class="barre"></div>
+-  <p class="gros" id="a1">Votre agenda dit «&nbsp;réunion&nbsp;».</p>
+-  <p class="gros" id="a2">Il ne dit jamais <span>«&nbsp;travail&nbsp;»</span>.</p>
++  <p class="gros" id="a1" style="font-size:96px">Votre agenda est plein de réunions…</p>
++  <p class="gros" id="a2" style="top:1000px;font-size:96px">jusqu’au jour où il ne reste <span>aucun créneau</span> pour travailler.</p>
+ </div>
+ 
+ <div class="s" id="s2">
+diff --git a/docs/templates/communication/instagram/production/IG-56.html b/docs/templates/communication/instagram/production/IG-56.html
+index 11981d55..57245f19 100644
+--- a/docs/templates/communication/instagram/production/IG-56.html
++++ b/docs/templates/communication/instagram/production/IG-56.html
+@@ -68,7 +68,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+ <div class="f" style="right:250px;top:470px;width:110px;height:110px;background:var(--jaune);border:6px solid var(--encre);animation:tourne 600ms 350ms"></div>
+ <div class="f" style="left:-1px;bottom:340px;width:300px;height:300px;border-radius:0 300px 0 0;background:var(--rouge);animation:glisse-g 700ms 250ms"></div>
+ <p class="sourcil" style="animation:monte 450ms 300ms">Gestionnaire de tâches</p>
+-<h1 style="font-size:100px;animation:monte 500ms 500ms">Votre liste de tâches est <mark>une boîte</mark> <mark>de réception</mark>.</h1>
++<h1 style="font-size:96px;animation:monte 500ms 500ms">Une liste de tâches dépanne… jusqu’au jour où elle fait <mark>80&nbsp;lignes</mark>.</h1>
+ <p class="sous" style="top:1160px;animation:monte 450ms 1100ms">D'abord noter. Ensuite trier.</p>
+ </div>
+ <div class="s txt" id="s2" style="animation:entree-fond 350ms 3200ms,sortie 300ms 6900ms">
+diff --git a/docs/templates/communication/instagram/production/IG-58.html b/docs/templates/communication/instagram/production/IG-58.html
+index 2f4211f2..3d65887b 100644
+--- a/docs/templates/communication/instagram/production/IG-58.html
++++ b/docs/templates/communication/instagram/production/IG-58.html
+@@ -57,8 +57,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+ <div class="barre" style="top:470px;transform-origin:left;animation:largeur 500ms 150ms"></div>
+ <p class="sourcil" style="top:400px;color:var(--jaune);animation:monte 400ms 100ms">Indépendants · prix</p>
+ <div class="f" style="left:96px;bottom:400px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:48px;animation:monte 400ms 600ms"><svg width="64" height="64" viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span style="color:#6E9BD6">M</span><span style="color:var(--jaune)">E</span></span></div>
+-<p class="t" style="top:530px;font-size:104px;font-weight:800;animation:monte 500ms 300ms">Votre meilleur client vous <span style="white-space:nowrap">coûte-t-il</span> de l’argent ?</p>
+-<p class="t" style="top:1110px;font-size:64px;font-weight:800;color:var(--jaune);animation:monte 500ms 1200ms">Celui qui fait le plus de chiffre rapporte peut-être le moins.</p>
++<p class="t" style="top:530px;font-size:100px;font-weight:800;animation:monte 500ms 300ms">Votre plus gros client fait le plus de chiffre…</p>
++<p class="t" style="top:1010px;font-size:80px;font-weight:800;color:var(--jaune);animation:monte 500ms 1200ms">jusqu’au jour où vous comptez ce qu’il vous coûte.</p>
+ </div>
+ <div class="s papier " id="s2" style="animation:entree-fond 350ms 4500ms,sortie 300ms 9200ms">
+ <p class="t" style="top:330px;font-size:88px;font-weight:800;animation:monte 500ms 4650ms">Le chiffre d'affaires ne dit rien du temps passé.</p>
+diff --git a/docs/videos/rendu.mjs b/docs/videos/rendu.mjs
+index 75ea2c79..ea2eeb1f 100644
+--- a/docs/videos/rendu.mjs
++++ b/docs/videos/rendu.mjs
+@@ -7,7 +7,7 @@
+ // Drive ; musique QME aux réglages communs.
+ //
+ // Usage en ligne de commande (page HTML animée, Reel du soir, motion design) :
+-//   node docs/videos/rendu.mjs <page.html> <durée en s> [couverture en ms] [--sortie <fichier.mp4>] [--muet]
++//   node docs/videos/rendu.mjs <page.html> <durée en s> [couverture en ms] [--sortie <fichier.mp4>] [--muet] [--debut <ms>]
+ // La page peut exposer window.placer(ms) (elle place elle-même chaque image) ; sinon ses animations CSS et JS
+ // sont simplement jouées sur l'horloge virtuelle.
+ import { createRequire } from 'node:module';
+@@ -94,7 +94,9 @@ export function ajouterMusique(entree, sortie = entree, musique = null) {
+ }
+ 
+ // Rend une page HTML animée en MP4 1080 × 1920 (Reel, Short, motion design), image par image en temps virtuel.
+-export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = null, rapide = false }) {
++// `debut` (ms) : la vidéo commence à cet instant de la page (accroche déjà affichée dès la première image) ; ce qui
++// précède est joué sans être capturé. `duree` reste la durée de la vidéo produite. `couverture` reste un instant de la page.
++export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = null, rapide = false, debut = 0 }) {
+   const nom = basename(sortie, '.mp4');
+   const tmp = join(tmpdir(), `qme-rendu-${nom}-${process.pid}`);
+   const images = join(tmp, 'images');
+@@ -113,15 +115,17 @@ export async function rendrePage({ page: chemin, duree, couverture = null, sorti
+     const cdp = await contexte.newCDPSession(page);
+     const capturer = async (f) => { const { data } = await cdp.send('Page.captureScreenshot', { format: 'jpeg', quality: rapide ? 75 : 92 }); writeFileSync(f, Buffer.from(data, 'base64')); };
+     const total = Math.round(duree * FPS);
++    const saut = Math.round(debut / PAS);
++    if (!placer) for (let n = 0; n < saut; n++) { await contexte.clock.runFor(PAS); await Promise.all(page.frames().map((f) => f.evaluate(PAS_ANIM, PAS).catch(() => {}))); }
+     for (let n = 0; n < total; n++) {
+-      if (placer) await page.evaluate((ms) => window.placer(ms), n * PAS);
++      if (placer) await page.evaluate((ms) => window.placer(ms), (saut + n) * PAS);
+       else { await contexte.clock.runFor(PAS); await Promise.all(page.frames().map((f) => f.evaluate(PAS_ANIM, PAS).catch(() => {}))); }
+       await capturer(join(images, `${String(n).padStart(5, '0')}.jpg`));
+     }
+     if (couverture != null) {
+       const png = sortie.replace(/\.mp4$/, '-couverture.png');
+       if (placer) { await page.evaluate((ms) => window.placer(ms), couverture); await page.screenshot({ path: png }); }
+-      else execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(images, `${String(Math.min(total - 1, Math.round(couverture / PAS))).padStart(5, '0')}.jpg`), png]);
++      else execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(images, `${String(Math.min(total - 1, Math.max(0, Math.round(couverture / PAS) - saut))).padStart(5, '0')}.jpg`), png]);
+     }
+     await navigateur.close();
+     // Si l'encodage dépasse la limite Drive (le débit visé est parfois dépassé de quelques %), on réencode au
+@@ -145,11 +149,12 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
+   const args = process.argv.slice(2);
+   const opt = (n) => { const i = args.indexOf(n); return i >= 0 ? args.splice(i, 2)[1] : null; };
+   const sortie = opt('--sortie');
++  const debut = Number(opt('--debut') || 0);
+   const muet = args.includes('--muet'); const rapide = args.includes('--brouillon');
+   const [page, duree, couverture] = args.filter((a) => !a.startsWith('--'));
+-  if (!page || !duree) { console.error('Usage : node docs/videos/rendu.mjs <page.html> <durée s> [couverture ms] [--sortie f.mp4] [--muet] [--brouillon]'); process.exit(1); }
++  if (!page || !duree) { console.error('Usage : node docs/videos/rendu.mjs <page.html> <durée s> [couverture ms] [--sortie f.mp4] [--muet] [--brouillon] [--debut ms]'); process.exit(1); }
+   const cible = sortie || join(ICI, 'sortie', `${basename(page, '.html')}.mp4`);
+   mkdirSync(dirname(cible), { recursive: true });
+-  const r = await rendrePage({ page, duree: Number(duree), couverture: couverture != null ? Number(couverture) : null, sortie: cible, muet, rapide });
++  const r = await rendrePage({ page, duree: Number(duree), couverture: couverture != null ? Number(couverture) : null, sortie: cible, muet, rapide, debut });
+   console.log(`${r.sortie} : ${r.images} images (${r.duree} s, ${r.placer ? 'window.placer' : 'horloge virtuelle'}), ${(r.taille / 1e6).toFixed(2)} Mo${muet ? ', muet' : ', musique QME'}`);
+ }

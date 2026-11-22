@@ -10,6 +10,8 @@
 // Toutes les valeurs de l'habillage sont lues dans les pages.
 // Version 2 (19/11/2026, demande de Quentin) : « Templates vie perso » à l'écran, aucune date explicite (cadrages qui
 // s'arrêtent avant « jusqu'au … »), musique « Professional Momentum », 29 s au plus.
+// 21/11/2026 : essai étendu aux templates pro, « Tous les templates » à l'écran pour tout nouveau rendu (la v2 publiée le
+// 19/11, qui dit « Templates vie perso », n'est pas republiée).
 import { MUSIQUES } from '../rendu.mjs';
 const MUSIQUE = MUSIQUES.find((m) => /professional-momentum/.test(m.fichier));
 
@@ -94,7 +96,7 @@ export async function jouer(v) {
 
   // 1. Formulaire /essai/
   son('zoom'); await S('cadrer', '#essai-form', { max: 1.9, marge: 30 });
-  await S('legende', '<b>Templates vie perso</b> : votre e-mail suffit.', '1/4');
+  await S('legende', '<b>Tous les templates</b> : votre e-mail suffit.', '1/4');
   await S('suivre', 2.1);
   await v.saisir('input[name="email"]', 'camille@exemple.fr', { ms: 330, rapide: true });
   await v.cliquer('input[name="consentement"]', { ms: 320, fx: 0.5, fy: 0.5 });
@@ -173,7 +175,7 @@ export async function jouer(v) {
   // Fin
   await v.temps(); son('whoosh'); await S('volet');
   await S('legende', null);
-  await S('outro', { titre: 'Essai gratuit 14 jours', sous: 'Templates vie perso, sans carte.<br>Vos données vous suivent si vous achetez.', url: '<b>qm-engineering.fr/essai</b>' });
+  await S('outro', { titre: 'Essai gratuit 14 jours', sous: 'Tous les templates, sans carte.<br>Vos données vous suivent si vous achetez.', url: '<b>qm-engineering.fr/essai</b>' });
   son('ding', 0.6);
   await decaler(0);
   v.valeurs = { code, fin, bandeau, reste, reste2, titre };

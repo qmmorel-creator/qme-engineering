@@ -177,6 +177,8 @@
   function ouvrirDemo(memoriser = true) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
+    // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
+    if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
     E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
     cache();
     demarrer();
@@ -475,7 +477,7 @@
         <div class="barres-cats">${barres}</div>
         <div class="infobulle" hidden></div>
       </figure>
-      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile"><table class="tableau"><caption class="sr-only">Coût par catégorie</caption><thead><tr><th>Catégorie</th><th class="nb">Abonnements</th><th class="nb">Par mois</th><th class="nb">Par an</th></tr></thead>
+      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile" tabindex="0" role="region" aria-label="Coût par catégorie"><table class="tableau"><caption class="sr-only">Coût par catégorie</caption><thead><tr><th>Catégorie</th><th class="nb">Abonnements</th><th class="nb">Par mois</th><th class="nb">Par an</th></tr></thead>
         <tbody>${tot.parCat.map((c) => `<tr><td>${esc(nomCat(c.cat))}</td><td class="nb">${c.nb}</td><td class="nb">${euros(c.mensuel)}</td><td class="nb">${euros(c.annuel)}</td></tr>`).join('')}</tbody>
         <tfoot><tr><td>Total</td><td class="nb">${tot.parCat.reduce((s, c) => s + c.nb, 0)}</td><td class="nb">${euros(tot.mensuel)}</td><td class="nb">${euros(tot.annuel)}</td></tr></tfoot></table></div></details>`;
   }
@@ -589,7 +591,7 @@
     for (let j = 1; j <= nbJours; j++) {
       const d = `${moisVu}-${String(j).padStart(2, '0')}`;
       const x = parJour.get(d);
-      cases.push(`<div class="cal-case ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''} ${x ? 'plein' : ''}"><span class="cal-num">${j}</span>${x ? `<ul>${x.items.map((i) => `<li><button data-action="ouvrir" data-id="${i.id}"><span>${esc(i.nom)}</span><b>${i.montant === null ? '?' : euros(i.montant)}</b></button></li>`).join('')}</ul><span class="cal-total">${euros(x.total, { centimes: x.total % 100 !== 0 })}</span>` : ''}</div>`);
+      cases.push(`<div class="cal-case ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''} ${x ? 'plein' : ''}"><span class="cal-num">${j}</span>${x ? `<ul>${x.items.map((i) => `<li><button data-action="ouvrir" data-id="${i.id}"><span>${esc(i.nom)}</span><b>${i.montant === null ? '?' : euros(i.montant)}</b></button></li>`).join('')}</ul><span class="cal-total">${x.items.every((i) => i.montant === null) ? '?' : euros(x.total, { centimes: x.total % 100 !== 0 })}</span>` : ''}</div>`);
     }
     const estCourant = moisVu === t.slice(0, 7);
     const reste = m.jours.filter((j) => j.date >= t).reduce((s, j) => s + j.total, 0);
@@ -600,12 +602,12 @@
           <button class="btn petit" data-action="mois-auj" ${estCourant ? 'disabled' : ''}>Ce mois-ci</button>
           <button class="btn-icone" data-action="mois-suiv" aria-label="Mois suivant">${ICONES.droite}</button>
         </div></div>
-      <div class="calendrier" role="grid" aria-label="Prélèvements de ${nomMois(moisVu)}">
-        ${JOURS_COURTS.map((j) => `<div class="cal-tete" role="columnheader">${j}</div>`).join('')}
+      <div class="calendrier" role="group" aria-label="Prélèvements de ${nomMois(moisVu)}, détaillés jour par jour ci-dessous">
+        ${JOURS_COURTS.map((j) => `<div class="cal-tete" aria-hidden="true">${j}</div>`).join('')}
         ${cases.join('')}
       </div>
       <h2 class="titre-section">Jour par jour</h2>
-      ${m.jours.length ? `<ul class="jours-liste">${m.jours.map((j) => `<li class="${j.date < t ? 'passe' : ''}"><span class="date-pastille"><b>${versDate(j.date).getDate()}</b>${fmt(j.date, { weekday: 'short' }).replace('.', '')}</span><ul>${j.items.map((i) => `<li><button class="lien-ligne" data-action="ouvrir" data-id="${i.id}"><b>${esc(i.nom)}</b></button><span class="nb">${i.montant === null ? 'à compléter' : euros(i.montant)}</span></li>`).join('')}</ul><span class="nb total-jour">${euros(j.total)}</span></li>`).join('')}</ul>` : '<p class="aide">Aucun prélèvement ce mois-ci.</p>'}
+      ${m.jours.length ? `<ul class="jours-liste">${m.jours.map((j) => `<li class="${j.date < t ? 'passe' : ''}"><span class="date-pastille"><b>${versDate(j.date).getDate()}</b>${fmt(j.date, { weekday: 'short' }).replace('.', '')}</span><ul>${j.items.map((i) => `<li><button class="lien-ligne" data-action="ouvrir" data-id="${i.id}"><b>${esc(i.nom)}</b></button><span class="nb">${i.montant === null ? 'à compléter' : euros(i.montant)}</span></li>`).join('')}</ul><span class="nb total-jour">${j.items.every((i) => i.montant === null) ? '?' : euros(j.total)}</span></li>`).join('')}</ul>` : '<p class="aide">Aucun prélèvement ce mois-ci.</p>'}
       <p class="mention" style="margin-top:20px">Dates calculées depuis la date de prélèvement saisie et la périodicité ; un prélèvement prévu le 31 tombe le dernier jour des mois plus courts. Ta banque peut décaler un prélèvement d'un ou deux jours ouvrés.</p>`;
   }
 
@@ -1014,10 +1016,13 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    // L'adresse n'est nettoyée qu'après l'ouverture de la démo, qui lit `&reinit`.
+    const demoUrl = new URLSearchParams(location.search).has('demo');
+    const nettoyer = () => { if (demoUrl) history.replaceState(null, '', location.pathname + location.hash); };
+    if (demoUrl && !code) { ouvrirDemo(false); return nettoyer(); }
+    if (code === CODE_DEMO) { ouvrirDemo(); return nettoyer(); }
+    nettoyer();
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo();
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {

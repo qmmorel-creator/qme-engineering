@@ -47,27 +47,32 @@ export const PACKS = {
   PFG: { slug: 'freelance-gestion', nom: 'Pack Freelance : chiffrer, facturer, encaisser', produits: ['TJM', 'PRX', 'DVS', 'MCE', 'RCV', 'TRS', 'TMP'], gumroad: 'TdGXvyeaHjN_iKZ4zHr9gw==', permalien: 'pack-freelance-gestion' },
   PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'PRS', 'CRM', 'PCM', 'KRF', 'CED', 'CND'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
   PBT: { slug: 'chef-de-projet-btp', nom: 'Pack Chef de projet BTP', produits: ['GNT', 'VSA', 'RSV', 'NCF', 'CRA', 'CHT', 'RDE', 'STR'], gumroad: 'Oi7gqrAFzTtGi5bCk205ZA==', permalien: 'pack-chef-de-projet-btp' },
-  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'] },
-  PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH'] },
-  PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS', 'RBS', 'CPT'] },
-  PMR: { slug: 'mariage-installation', nom: 'Pack Mariage et installation à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'] },
+  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'], gumroad: 'hHV1OaACgMmSJW0Vkv0SXQ==', permalien: 'pack-petite-entreprise' },
+  PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH', 'SMN'] },
+  PAR: { slug: 'argent', nom: 'Pack Papiers et décisions d’argent', produits: ['TDV', 'PTM', 'DCS', 'RBS', 'CPT'] },
+  PMR: { slug: 'vie-a-deux', nom: 'Pack Vie à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'] },
   PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV', 'RVH'] },
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS', 'NTS', 'CAN', 'MMR'], gumroad: 'YtS6AIhqXdCedt-AqQtjmw==', permalien: 'pack-etudiant' },
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP', 'SBV', 'BNV', 'AGS'] },
   PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT', 'RNT', 'CPR', 'ETD'] },
   PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC', 'CRS'] },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
-  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM'] },
-  PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage' },
-  PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: ['PRG', 'QZZ', 'CSE', 'EDT'] },
-  PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'PRK', 'CTR'] },
-  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'] },
+  PFA: { slug: 'famille', nom: 'Pack Maison et famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM', 'PTG'] },
+  // Retirés le 22/11/2026 (rationalisation, décision de Quentin) : entièrement contenus dans un plus grand pack.
+  PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage', retire: '2026-11-22' },
+  PNS: { slug: 'enseignant', nom: 'Pack Écoles et formateurs', produits: ['PRG', 'QZZ', 'CSE', 'EDT', 'AEC'] },
+  PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'NCF', 'STK'] },
+  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'], gumroad: 'YqkUp-9uupBcFHTAAjlkQg==', permalien: 'pack-commercant-artisan' },
   PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], ajouts: { SVT: '2026-11-18' }, gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
-  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' },
-  PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer' },
-  // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad à créer.
-  PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'] },
+  // Retiré le 22/11/2026 (décision de Quentin) : doublon du Pack Budget perso et famille, aucune vente. Gardé ici pour
+  // qu'un éventuel code ou licence reste valable ; plus de page publique (redirection dans netlify.toml).
+  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' , retire: '2026-11-22' },
+  PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer', retire: '2026-11-22' },
+  // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad reliée le 21/11/2026.
+  PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'], gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ==', permalien: 'pack-budget-perso-famille' },
+  // Pack Cuisine (demande de Quentin, 22/11/2026) : fiche Gumroad à créer une fois Garde-manger en vente.
+  PCS: { slug: 'cuisine', nom: 'Pack Cuisine', produits: ['RPS', 'GRD'], retire: '2026-11-22' },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.

@@ -147,8 +147,11 @@
   // ---------- 5. Import d'un programme par copier-coller ----------
   // Une ligne = un chapitre. Une ligne qui finit par « : », commence par « # » ou est écrite en
   // majuscules ouvre une nouvelle matière. Puces, numéros et « Chapitre 3 : » sont retirés.
-  const PUCE = /^\s*(?:[-*•–—·▪◦>]+|\(?\d+(?:\.\d+)*[.)°]?|\(?[ivxlc]+[.)]|\(?[a-z][.)])\s+/i;
-  const PREFIXE = /^(?:chapitre|chap\.?|ch\.?|partie|thème|theme|séquence|sequence|module|leçon|lecon|ue|item)\s*[\divxlc]*\s*[:.\-–—)]?\s*/i;
+  // Numéro de liste : trois chiffres au plus (« 1789 : la Révolution » reste un titre).
+  const PUCE = /^\s*(?:[-*•–—·▪◦>]+|\(?\d{1,3}(?:\.\d+)*[.)°]?|\(?[ivxlc]+[.)]|\(?[a-z][.)])\s+/i;
+  // Le mot-clé doit être un mot entier suivi d'un numéro ou d'un séparateur : « Chimie », « Leçon inaugurale »
+  // ou « Partie civile » ne perdent pas leurs premières lettres.
+  const PREFIXE = /^(?:chapitre|chap|ch|partie|thème|theme|séquence|sequence|module|leçon|lecon|ue|item)(?!\p{L})\.?\s*(?:(?:\d+(?:\.\d+)*|[ivxlc]+)(?![\p{L}\d])\s*[:.\-–—)]?|[:.\-–—)])\s*/iu;
 
   function nettoyerLigne(l) {
     let s = String(l).replace(/\t/g, ' ').trim();

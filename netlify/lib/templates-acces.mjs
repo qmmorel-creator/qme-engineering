@@ -57,7 +57,7 @@ export const PRODUITS = {
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/', gumroad: 'VP_lDEeIUWMGQ8bSAZ12tQ==' },
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/', gumroad: 'XMvZIWF4YueA-fSR5lunEg==' },
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/', gumroad: 'sEO7sJxS14azsCZ761I-yQ==' },
-  DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
+  DMN: { nom: 'Déménagement', url: '/templates/demenagement/', gumroad: 'eeYVGKI0XJJMFQGwKEMl1Q==' },
   PCM: { nom: 'Propositions commerciales', url: '/templates/propositions/', gumroad: 'N9GYtihcDeqRncRUYwVwew==' },
   DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/', gumroad: 'KZHfWPckpGMOxeFYDPcrow==' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/', gumroad: 'qzhJTzOWF59ZJo1a1Xbetg==' },
@@ -66,7 +66,7 @@ export const PRODUITS = {
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/', gumroad: 'EnpmgktOylLJZJST9_Tfhg==' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/', gumroad: 'B0MUKsC_AHC_LeiL83xQvA==' },
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/', gumroad: 'Psy92JPZ8s82uwzImkxZZg==' },
-  CTR: { nom: 'Contrats fournisseurs et échéances', url: '/templates/contrats/' },
+  CTR: { nom: 'Contrats fournisseurs et échéances', url: '/templates/contrats/', gumroad: 'AcRfb_xMr-mqRGpwNLgotw==' },
   EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/', gumroad: 'uGMwDvkv48r4plEy5vFJNQ==' },
   CMP: { nom: 'Gestion de compétition sportive', url: '/templates/competition/', gumroad: '1evFhHOrqZyrgIdg9T483A==' },
   SNH: { nom: 'Dossier sinistre habitation', url: '/templates/sinistre/', gumroad: 'nSUWbSsPnceWsczHeshUnw==' },
@@ -74,10 +74,10 @@ export const PRODUITS = {
   CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/', gumroad: '-cFP8vq3TQIStzfF1gSA-w==' },
   GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
   SDR: { nom: 'Réservation de salles et bureaux', url: '/templates/salles/', gumroad: 'JfjqpZBC0Qk1T2ouOdMcNQ==' },
-  BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/' },
+  BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/', gumroad: 'xH5b6U76Zzjy5ADJBYu03g==' },
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
-  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/' },
+  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/', gumroad: 'hOn6wGUScmPpb--BuJTl-g==' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/', gumroad: 'u-ySqLkS21aA1mhfeG9EFQ==' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/', gumroad: 'Y_zjhtlT4nxXqSdqeT_mEA==' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/', gumroad: 'qUwb0nm4TaFmXgiSoc2aJA==' },
@@ -93,10 +93,10 @@ export const PRODUITS = {
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/', gumroad: 'aGMrUCFVZ9yzLWfaNIWQ1w==' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/', gumroad: 'uJxPWSYtiXp3nixYfudDoQ==' },
   RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
-  ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/' },
+  ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/', gumroad: 'qdpoGVR4hsFttsxDiKTSyw==' },
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/', gumroad: '-yAS1RKHFCUmacHWd-lOAw==' },
-  CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/' },
-  RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/' },
+  CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/', gumroad: 'MCs3LoKvVl7DtQhtn_dWTA==' },
+  RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/', gumroad: '4avh-xwvvFj0eRmC4rqDcg==' },
   CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
   SBV: { nom: 'Subventions', url: '/templates/subventions/' },
   BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
@@ -108,7 +108,7 @@ export const PRODUITS = {
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
-  CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/' },
+  CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
   SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
@@ -143,8 +143,9 @@ export function estCodeAdmin(secret, saisie) {
   return n.length === attendu.length && timingSafeEqual(Buffer.from(n), Buffer.from(attendu));
 }
 // Code interne personnel de l'administrateur pour un template : mêmes données sur tous ses appareils.
+export const idAdminProduit = (secret, produit) => base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
 export function codeAdminProduit(secret, produit) {
-  const id = base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
+  const id = idAdminProduit(secret, produit);
   return formater(produit, id, signature(secret, produit, id));
 }
 
@@ -164,7 +165,7 @@ export function genererCode(secret, produit) {
 }
 
 // --- Essai gratuit (décision de Quentin, 18/11/2026) ----------------------------------------------
-// Templates « vie personnelle » en vente : 14 jours d'essai sans carte, puis 30 jours en lecture seule,
+// Templates en vente (vie personnelle, et pro depuis le 21/11/2026) : 14 jours d'essai sans carte, puis 30 jours en lecture seule,
 // puis effacement. Le code d'essai a la forme d'un code de template (PRODUIT-AAAA-AAAA-SSSS-SSSS), mais :
 //  - AAA (3 premiers caractères de l'identifiant) = jour de début, compté depuis le 01/01/2026 ;
 //  - la signature est calculée dans le contexte « essai », distinct des codes achetés.
@@ -378,7 +379,7 @@ export function verifierCode(secret, saisie, revoques = []) {
   return { produit, id };
 }
 
-function cleDonnees(secret, produit, id) {
+export function cleDonnees(secret, produit, id) {
   return `${produit}/${createHmac('sha256', secret).update(`donnees:${produit}:${id}`).digest('hex').slice(0, 32)}`;
 }
 

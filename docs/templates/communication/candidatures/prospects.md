@@ -1,5 +1,7 @@
 # Prospects · Candidatures études, stages, alternance
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations, jamais de données personnelles collectées sur des particuliers. Public en partie mineur
 (lycéens) : **aucune prospection directe de mineurs** ; on s'adresse aux étudiants majeurs, aux parents et aux
 prescripteurs. Tout organisme cité existe (réseaux nationaux connus) ; les implantations et contacts locaux sont à

@@ -254,6 +254,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .ligne-proch{font-size:13px;color:var(--texte-2);font-weight:600}
 
 /* Modale : champs groupés et statut */
+fieldset.champ{min-width:0} /* écran d'accueil sur téléphone : grille de choix sans débordement (21/11/2026) */
 .modale fieldset.champ{border:0;padding:0;margin:0;min-width:0}
 .modale legend{padding:0;margin-bottom:6px;font-size:14px;font-weight:600}
 .modale legend small{display:block;font-weight:400;color:var(--discret)}

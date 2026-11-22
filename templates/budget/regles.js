@@ -7,13 +7,16 @@
   const GROUPES = ['besoins', 'envies', 'epargne'];
 
   // ---------- Montants ----------
-  // « 1 234,56 », « 12.5 », « 12 € », « 0,05 » → centimes entiers ; null si illisible ou négatif.
+  // « 1 234,56 », « 12.5 », « 12 € », « 0,05 » → centimes entiers ; null si illisible, négatif ou au-delà
+  // d'un milliard d'euros (faute de frappe probable ; les calculs restent exacts en entiers).
+  const MAX_CENTIMES = 100000000000;
   function versCentimes(saisie) {
-    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 ? Math.round(saisie * 100) : null;
+    if (typeof saisie === 'number') return Number.isFinite(saisie) && saisie >= 0 && saisie * 100 <= MAX_CENTIMES ? Math.round(saisie * 100) : null;
     const s = String(saisie ?? '').replace(/[\s  €]/g, '').replace(/^\+/, '');
     if (!/^\d+(?:[.,]\d{0,2})?$/.test(s)) return null;
     const [ent, dec = ''] = s.split(/[.,]/);
-    return Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    const c = Number(ent) * 100 + Number((dec + '00').slice(0, 2));
+    return c <= MAX_CENTIMES ? c : null;
   }
 
   const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -284,9 +287,35 @@
     });
   }
 
+  // ---------- Liaison avec Gestion Dépenses Communes (T99) ----------
+  // Une opération « importée » par mois (id commun-AAAA-MM, origine 'commun') porte la part du commun calculée par
+  // BCM.partDuMois. Elle est remplacée à chaque mise à jour, jamais doublée, et retirée si la part tombe à zéro.
+  // Les mois sans part calculée (absents de `parts`) gardent leur opération telle quelle.
+  const ID_COMMUN = (mois) => `commun-${mois}`;
+  function libelleCommun(mode) { return mode === 'compte' ? 'Versement au compte commun' : 'Ma part des dépenses communes'; }
+  function appliquerPartsCommun(operations, parts, { categorieId, sousId = null } = {}) {
+    const parMois = new Map(parts.map((p) => [p.mois, p]));
+    const garde = operations.filter((o) => o.origine !== 'commun' || !parMois.has(moisDe(o.date)));
+    const ajout = [];
+    for (const p of parts) {
+      if (!Number.isInteger(p.montant) || p.montant <= 0) continue;
+      ajout.push({ id: ID_COMMUN(p.mois), type: 'depense', montant: p.montant, categorieId, sousId, sourceId: null,
+        libelle: libelleCommun(p.mode), date: `${p.mois}-01`, origine: 'commun' });
+    }
+    return [...garde, ...ajout].sort((a, b) => a.date.localeCompare(b.date));
+  }
+  // Mois à recalculer : depuis la liaison (au plus 12 mois en arrière) jusqu'au mois courant.
+  function moisALier(depuis, courant) {
+    const debut = depuis && depuis <= courant ? (ecartMois(depuis, courant) > 11 ? ajoutMois(courant, -11) : depuis) : courant;
+    const liste = [];
+    for (let m = debut; m <= courant; m = ajoutMois(m, 1)) liste.push(m);
+    return liste;
+  }
+
   racine.BDG = {
     GROUPES, versCentimes, euros, eurosRonds, moisDe, ajoutMois, joursDansMois, ecartMois, repartirPoids,
     enveloppeDu, indexDepenses, depensesDuMois, revenusDuMois, revenusPrevus, statutEnveloppe, etatEnveloppes,
     parGroupe, repere503020, fluxSankey, dispositionSankey, genererFixes, serieMois, ecartsCategories,
+    appliquerPartsCommun, moisALier, libelleCommun,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

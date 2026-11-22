@@ -42,6 +42,18 @@ test('saisie des montants en centimes entiers', () => {
   assert.equal(R.versCentimes(''), null);
 });
 
+test('saisie des montants : espaces, centimes, plafond d\'un milliard (faute de frappe)', () => {
+  assert.equal(R.versCentimes(' 12,5 '), 1250);
+  assert.equal(R.versCentimes('0,1'), 10);
+  assert.equal(R.versCentimes(0.1 + 0.2), 30);
+  assert.equal(R.versCentimes('0'), 0);
+  assert.equal(R.versCentimes('1000000000'), 100000000000);
+  // Avant : « 99999999999999999 » donnait 1e19 centimes (au-delà des entiers exacts) et la dépense était enregistrée.
+  assert.equal(R.versCentimes('99999999999999999'), null);
+  assert.equal(R.versCentimes('1000000000,01'), null);
+  assert.equal(R.versCentimes(1e12), null);
+});
+
 test('affichage à la française', () => {
   assert.equal(R.euros(123456), '1 234,56 €');
   assert.equal(R.euros(5), '0,05 €');
@@ -201,4 +213,34 @@ test('bilan : série de 12 mois et écarts par catégorie', () => {
   assert.equal(e.courses.budget, 105000);
   assert.equal(e.courses.ecart, -105000);
   assert.equal(e.logement.moyenne, 91000);
+});
+
+// ---------- Liaison avec Gestion Dépenses Communes (T99) ----------
+test('liaison : une opération par mois, remplacée à chaque mise à jour, jamais doublée', () => {
+  const autre = { id: 'x', type: 'depense', montant: 1200, categorieId: 'courses', date: '2026-11-04' };
+  let ops = [autre];
+  ops = R.appliquerPartsCommun(ops, [{ mois: '2026-10', montant: 61000, mode: 'avances' }, { mois: '2026-11', montant: 58000, mode: 'avances' }], { categorieId: 'logement' });
+  assert.equal(ops.length, 3);
+  const nov = ops.find((o) => o.id === 'commun-2026-11');
+  assert.deepEqual(JSON.parse(JSON.stringify(nov)), { id: 'commun-2026-11', type: 'depense', montant: 58000, categorieId: 'logement', sousId: null, sourceId: null, libelle: 'Ma part des dépenses communes', date: '2026-11-01', origine: 'commun' });
+  // Nouvelle mise à jour de novembre seulement : octobre est gardé, novembre remplacé.
+  ops = R.appliquerPartsCommun(ops, [{ mois: '2026-11', montant: 60500, mode: 'compte' }], { categorieId: 'logement' });
+  assert.equal(ops.filter((o) => o.origine === 'commun').length, 2);
+  assert.equal(ops.find((o) => o.id === 'commun-2026-11').montant, 60500);
+  assert.equal(ops.find((o) => o.id === 'commun-2026-11').libelle, 'Versement au compte commun');
+  assert.equal(ops.find((o) => o.id === 'commun-2026-10').montant, 61000);
+  assert.ok(ops.includes(autre), 'les opérations saisies à la main ne sont pas touchées');
+  // Part tombée à zéro : l'opération du mois disparaît.
+  ops = R.appliquerPartsCommun(ops, [{ mois: '2026-10', montant: 0, mode: 'avances' }], { categorieId: 'logement' });
+  assert.equal(ops.some((o) => o.id === 'commun-2026-10'), false);
+});
+
+test('liaison : mois à recalculer, depuis la liaison et au plus 12', () => {
+  const J = (x) => JSON.parse(JSON.stringify(x));
+  assert.deepEqual(J(R.moisALier('2026-09', '2026-11')), ['2026-09', '2026-10', '2026-11']);
+  assert.deepEqual(J(R.moisALier('2026-11', '2026-11')), ['2026-11']);
+  assert.equal(R.moisALier('2024-01', '2026-11').length, 12);
+  assert.equal(R.moisALier('2024-01', '2026-11')[0], '2025-12');
+  assert.deepEqual(J(R.moisALier(null, '2026-11')), ['2026-11']);
+  assert.deepEqual(J(R.moisALier('2027-01', '2026-11')), ['2026-11']);
 });

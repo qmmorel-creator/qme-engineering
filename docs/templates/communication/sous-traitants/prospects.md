@@ -1,5 +1,7 @@
 # Prospects · Conformité des sous-traitants
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations seulement : aucune donnée personnelle collectée. Contacter des fonctions, par les
 canaux publics des organisations. Les organismes cités existent à notre connaissance au 14/11/2026 ; ceux
 marqués **(à vérifier)** doivent être confirmés (nom exact, existence d'une antenne, conditions de

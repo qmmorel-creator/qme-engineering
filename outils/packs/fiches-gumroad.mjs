@@ -4,12 +4,14 @@ import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PACKS, OPTION } from '../../netlify/lib/packs.mjs';
 import { calculerPack } from './generer.mjs';
+import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
+import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 const euros = (c) => (c % 100 ? (c / 100).toFixed(2).replace('.', ',') : String(c / 100)) + ' €';
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
-const fiches = Object.keys(PACKS).map(calculerPack).map((p) => {
+const fiches = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack).map((p) => {
   const enVente = p.templates.filter((t) => t.statut === 'vente').length;
   const description = [
     `<p><strong>${esc(p.accroche)}</strong></p>`,
@@ -20,6 +22,8 @@ const fiches = Object.keys(PACKS).map(calculerPack).map((p) => {
     p.prevus.length ? `<p><strong>À venir dans ce pack :</strong> ${p.prevus.map((t) => esc(t.nom)).join(', ')}.</p>` : '',
     `<p>${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.</p>`,
     `<p><strong>Deux versions :</strong> « Pack » (${euros(p.prix)}) ouvre les templates présents le jour de l’achat ; « ${OPTION.nom} » (${euros(p.prix + p.option)}) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>`,
+    // Essai gratuit des outils du pack, annoncé comme sur la page du pack (audit du 22/11/2026).
+    p.templates.length && p.templates.every((t) => PRODUITS_ESSAI.includes(t.pre)) ? `<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie ${ESSAI.jours} jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>` : '',
     `<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>`,
     p.avertissement ? `<p>${esc(p.avertissement)}</p>` : '',
     `<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>`,

@@ -4,7 +4,9 @@ Personnes et organisations qui ont demandé à ne plus être contactées, ou qui
 **Ne plus jamais leur écrire** : ni relance, ni nouvelle vague, ni affiliation, ni réponse.
 Avant tout envoi de prospection, exclure ces adresses **et leurs domaines**.
 
-Dans Gmail, ces fils portent le libellé `qme/Prospects/Énervé`. Tout nouveau cas : une ligne ici et ce libellé.
+Dans Gmail, ces fils portent le libellé `qme/Prospects/Énervé`. Tout nouveau cas : une ligne ici et ce libellé,
+**et** l'inscription des adresses et domaines sur la liste d'opposition du site (`POST /api/compte/opposition`, code
+administrateur), qui est la référence vérifiée avant tout envoi : `docs/templates/communication/REGLES-PROSPECTION.md`.
 
 | Date de la réponse | Organisation | Adresses et domaines à exclure | Réponse reçue |
 |---|---|---|---|

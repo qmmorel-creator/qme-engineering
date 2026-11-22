@@ -1,0 +1,127 @@
+<!doctype html>
+<!-- Test des fonds et de la géométrie (suivi : README.md du même dossier).
+     Six variantes de la même couverture 1080 × 1350 : seul le fond et la composition changent,
+     le texte est identique. Charte du site : papier, encre, rouge, jaune, bleu, Outfit 800,
+     angles droits, formes Bauhaus, pas de dégradé, texte blanc sur rouge et bleu, encre sur jaune.
+     Rendu : node docs/templates/communication/instagram/rendre.mjs tests-fonds/variantes.html -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Test des fonds QME</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.titre{position:absolute;left:84px;right:84px;top:200px;z-index:2}
+.sourcil{font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:120px;font-weight:800;line-height:.98;letter-spacing:-.025em;margin-top:30px}
+h1 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.sous{font-size:38px;line-height:1.3;letter-spacing:-.01em;margin-top:44px;max-width:780px}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.f{position:absolute}
+
+/* A · Papier, formes en coin (référence actuelle) */
+#test-fond-A .sourcil{color:var(--rouge)}
+#test-fond-A .sous{color:var(--texte-2)}
+#test-fond-A .compteur{background:var(--surface)}
+#test-fond-A .f1{right:0;bottom:0;width:430px;height:430px;background:var(--rouge);border-top-left-radius:430px}
+#test-fond-A .f2{right:300px;bottom:150px;width:200px;height:200px;background:var(--jaune);border:6px solid var(--encre)}
+
+/* B · Encre, grand cercle jaune sortant du cadre */
+#test-fond-B{background:var(--encre);color:var(--papier)}
+#test-fond-B .sourcil{color:var(--jaune)}
+#test-fond-B .sous{color:#D9D4C8}
+#test-fond-B .f1{right:-260px;bottom:-260px;width:760px;height:760px;border-radius:50%;background:var(--jaune)}
+#test-fond-B .f2{right:420px;bottom:300px;width:120px;height:120px;background:var(--rouge)}
+
+/* C · Bleu, frise Bauhaus de quatre modules en pied */
+#test-fond-C{background:var(--bleu);color:#fff}
+#test-fond-C .sourcil{color:#fff;opacity:.85}
+#test-fond-C .sous{color:#fff;opacity:.9}
+#test-fond-C .frise{position:absolute;left:0;right:0;bottom:180px;height:270px;display:grid;grid-template-columns:repeat(4,1fr)}
+#test-fond-C .frise div{position:relative;overflow:hidden}
+#test-fond-C .m1{background:var(--rouge)}
+#test-fond-C .m2{background:var(--papier)}
+#test-fond-C .m2::after{content:"";position:absolute;left:0;bottom:0;width:270px;height:270px;background:var(--jaune);border-top-right-radius:270px}
+#test-fond-C .m3{background:var(--encre)}
+#test-fond-C .m3::after{content:"";position:absolute;left:30px;top:30px;width:210px;height:210px;border-radius:50%;background:var(--papier)}
+#test-fond-C .m4{background:var(--jaune)}
+#test-fond-C .m4::after{content:"";position:absolute;left:0;bottom:0;border-left:270px solid var(--encre);border-top:270px solid transparent}
+
+/* D · Jaune, demi-cercle encre pleine largeur */
+#test-fond-D{background:var(--jaune);color:var(--encre)}
+#test-fond-D h1 mark{background:var(--encre);color:var(--jaune)}
+#test-fond-D .sous{color:var(--encre)}
+#test-fond-D .f1{left:-60px;right:-60px;bottom:-450px;height:900px;border-radius:50%;background:var(--encre)}
+#test-fond-D .f2{right:84px;bottom:300px;width:140px;height:140px;background:var(--rouge);border:6px solid var(--encre)}
+#test-fond-D .glisser{color:var(--papier)}
+
+/* E · Rouge, grand triangle encre et cercle bleu */
+#test-fond-E{background:var(--rouge);color:#fff}
+#test-fond-E .sourcil{color:#fff;opacity:.9}
+#test-fond-E .sous{color:#fff}
+#test-fond-E .f1{right:0;bottom:0;border-right:620px solid var(--encre);border-top:620px solid transparent;width:0;height:0}
+#test-fond-E .f2{right:330px;bottom:340px;width:200px;height:200px;border-radius:50%;background:var(--bleu);border:6px solid var(--encre)}
+
+/* F · Deux plans : bandeau bleu en haut, papier en bas, cercle rouge à cheval */
+#test-fond-F .plan{position:absolute;left:0;right:0;top:0;height:820px;background:var(--bleu)}
+#test-fond-F .titre{color:#fff}
+#test-fond-F .sourcil{opacity:.85}
+#test-fond-F .compteur{color:#fff}
+#test-fond-F .f1{left:84px;top:690px;width:260px;height:260px;border-radius:50%;background:var(--rouge);border:6px solid var(--encre)}
+#test-fond-F .f2{right:0;bottom:0;width:300px;height:300px;background:var(--jaune);border-top-left-radius:300px}
+</style>
+</head>
+<body>
+
+<section class="cadre" id="test-fond-A">
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="f f1"></div><div class="f f2"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre" id="test-fond-B">
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="f f1"></div><div class="f f2"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre" id="test-fond-C">
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="frise"><div class="m1"></div><div class="m2"></div><div class="m3"></div><div class="m4"></div></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre" id="test-fond-D">
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="f f1"></div><div class="f f2"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre" id="test-fond-E">
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="f f1"></div><div class="f f2"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+<section class="cadre" id="test-fond-F">
+  <div class="plan"></div>
+  <span class="compteur">1 / 5</span>
+  <div class="titre"><p class="sourcil">Méthode · planning</p><h1>Laquelle de vos tâches <mark>décale tout</mark> ?</h1><p class="sous">Un retard ne pèse pas pareil selon la tâche.</p></div>
+  <div class="f f1"></div><div class="f f2"></div>
+  <p class="glisser">Faites glisser <span></span></p>
+</section>
+
+</body>
+</html>

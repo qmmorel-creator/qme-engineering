@@ -353,7 +353,7 @@ mark.rouge{background:var(--rouge);color:#fff}
 .totaux-ops{font-size:15px;color:var(--texte-2);margin-bottom:12px}
 .totaux-ops b{color:var(--encre)}
 .jour-ops{border:1px solid var(--trait);background:var(--surface);margin-bottom:12px}
-.jour-ops h3{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;background:var(--encre);color:var(--papier)}
+.jour-ops h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;background:var(--encre);color:var(--papier)}
 .op{width:100%;display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border:0;border-bottom:1px solid var(--trait);background:none;text-align:left;min-height:56px}
 .op:last-child{border-bottom:0}
 .op:hover{background:#F6F1E3}
@@ -512,3 +512,11 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}
+
+/* Résumés dépliables et tableaux défilants : cibles de 44 px, défilement au clavier (audit du 22/11/2026). */
+.tableau-flux summary,.env-sous summary{min-height:44px;padding-top:11px;padding-bottom:11px;box-sizing:border-box}

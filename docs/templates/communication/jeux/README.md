@@ -1,0 +1,148 @@
+# Jeux et quiz d'acquisition · Instagram et TikTok
+
+Demande de Quentin du 21/11/2026 : accrocher avec un jeu ou un quiz ludique qui montre ce que font les templates.
+Décisions du même jour :
+
+- **Instagram et TikTok uniquement** (ni LinkedIn ni X) ;
+- public **étudiants et jeunes adultes**, 18 ans et plus (aucun ciblage des mineurs, cf. `../canaux-publicite.md`) ;
+- produits mis en avant : **Planning de révision (14,90 €), Mon Budget (15 €), Gestionnaire de tâches (19 €), Suivi
+  d'habitudes (12 €)** ;
+- **tutoiement** (exception à la règle de vouvoiement d'Instagram, notée dans `../instagram/README.md`).
+
+| # | Format | Statut | Date |
+|---|---|---|---|
+| A | 9 stories quiz Instagram (à la main) + 8 Reels quiz « devine la réponse » (IG-168 à IG-175, repris sur TikTok) | **programmé** | du 23/11 au 01/12/2026 |
+| B | Test « Combien te coûte ta désorganisation ? » (`/diagnostic/`, lien court `/jeu`) | **en ligne** (PR #200 fusionnée le 21/11/2026) | lien en bio |
+| C | Défi 7 jours entre potes (`/defi/`) : une habitude chacun, tableau commun, le perdant paie | **prêt, PR #203** (fusion sur feu vert) | dès la fusion |
+| E | Quiz de profil « Quel organisateur es-tu ? » (profils → révision, budget, tâches, habitudes, pack) | idée | prêt le 28/12, lancé le 02/01/2027 |
+
+Règles : `../REGLES-CONTENU.md` (problème chiffré, bascule, solution ; aucun chiffre inventé ; exemples fictifs ;
+accroche entière dès la première image) ; appel à l'action : essai gratuit 14 jours, sans carte (§ 7) ; les quatre
+templates sont dans `PRODUITS_ESSAI` (vérifié le 21/11/2026).
+
+## Fichiers
+
+- Drive : dossier « Stories quiz · 23-11 au 01-12 (question puis réponse, à la suite) » (`1cNKjKJiKcAhQgZPH2kszBomHEjJhV5aQ`) :
+  9 paires question / réponse ; les dossiers précédents sont renommés « (périmé…) ». Ancienne mention :
+  8 vidéos, nommées dans l'ordre de publication.
+- Sources : `stories.html` (données des quiz, stories, vidéos, aperçu du lien) ; rendu
+  `node docs/templates/communication/jeux/rendre.mjs --videos` (vidéos par le moteur unique `docs/videos/rendu.mjs`,
+  13 s, 1080 × 1920, musique QME vérifiée par `ffprobe`). PNG et MP4 dans `png/`.
+
+## A · Du 23/11 au 01/12/2026
+
+**Instagram, stories, à la main, chaque soir à 19:30** (après la publication de 19:00) : la story question (autocollant
+**Quiz**, bonne réponse cochée, posé sur la zone vide) **puis, juste après, la story réponse** du même quiz (autocollant
+Lien vers `/jeu`) : décision de Quentin du 21/11/2026, plus de « réponse demain ».
+À ma connaissance l'API Instagram ne pose pas d'autocollant interactif : Instinct ne peut pas les publier.
+
+**Reels Instagram, programmés, 21:00** (décision de Quentin du 21/11/2026) : IG-168 à IG-175, du 23/11 au 30/11, un
+par jour, dans le planning Instagram (statut « Programmé », Thème « Quiz étudiants », légendes en tutoiement dans le
+dossier Textes Instagram, vidéos et couvertures dans Images Instagram). Instinct les publie au passage de 21:00.
+**TikTok** : rien à faire à la main, Instinct reprend chaque Reel publié sur TikTok dans l'heure, vidéo seule
+(`../tiktok/PROMPT-INSTINCT-TIKTOK.md`). **YouTube** : pas de ligne `YT-nn`, la campagne étant réservée à Instagram et
+TikTok (exception à la règle de CLAUDE.md « tout format vidéo… », décidée par Quentin le 21/11/2026).
+
+| Reel | Date | Vidéo | Doc légende |
+|---|---|---|---|
+| IG-168 | lun. 23/11 | `IG-168-quiz-habitudes-66-jours.mp4` | `1XQ00cB2chFOPnUoVQ3oMedbicQGGaILnC1bPWzgSc-g` |
+| IG-169 | mar. 24/11 | `IG-169-quiz-budget-snack.mp4` | `12RFy81Klg9hI5_sHq3J-90Qxgeiq4IxBDHVRJJanUlQ` |
+| IG-170 | mer. 25/11 | `IG-170-quiz-taches-80-lignes.mp4` | `1Pz-EUdST6xhAEmLPhAC_Te_QOqolo5SijlPVq4Mts6M` |
+| IG-171 | jeu. 26/11 | `IG-171-quiz-habitudes-traitement.mp4` | `1dKOFu6y5-i-RasGrNHPPzd8-PuhT36DPslcRZWpTIrE` |
+| IG-172 | ven. 27/11 | `IG-172-quiz-revision-200.mp4` | `1Qvl6QOA6_wOigNfwkUllpumvdPXqPKZ8Mf2728YQhDQ` |
+| IG-173 | sam. 28/11 | `IG-173-quiz-budget-50-30-20.mp4` | `1GtahX4vxRTf_dgv8wqW4xuEyLEgvvXlGywDW60LcETQ` |
+| IG-174 | dim. 29/11 | `IG-174-quiz-taches-urgent.mp4` (nouvelle version) | `1RX92Ae7Dj6HZZdOUjVZ0stTzM983co_SFGbAV_crh74` |
+| IG-175 | lun. 30/11 | `IG-175-quiz-revision-feuille-blanche.mp4` | `1kzRbL76JMk9KNeTCxhZ-idb5jjQMs94R-doJXwchl0Q` |
+
+Les Reels du soir automatiques (lundi, mercredi, vendredi, 21:00) ne prendront pas ces dates : leur skill ne
+programme qu'un soir sans Reel à 19:00 ou plus tard.
+
+| Jour | Thème | Question (bonne réponse en gras) | Produit | Source |
+|---|---|---|---|---|
+| lun. 23/11 | Habitudes | Combien de jours pour qu'une habitude devienne automatique ? 7 jours / 21 jours / **66 jours** / 1 an | Suivi d'habitudes | Lally, van Jaarsveld, Potts et Wardle, European Journal of Social Psychology, 40 (6), 2010 : médiane 66 jours, de 18 à 254 ; un jour raté ne remet pas à zéro |
+| mar. 24/11 | Budget | 5 € de snack ou de café, du lundi au vendredi. Combien par an ? 260 € / 650 € / **1 300 €** / 1 825 € | Mon Budget | 5 × 5 × 52, exemple fictif |
+| mer. 25/11 | Tâches | Ta liste fait 80 lignes et tu ne sais pas par où commencer. Le vrai problème ? la liste est trop longue / **le tri** / le manque de temps / la motivation | Gestionnaire de tâches | Reel IG-56 |
+| jeu. 26/11 | Habitudes | Ton traitement du matin : pris ou pas ? Tu ne sais plus. Tu fais quoi ? j'en reprends un, au cas où / je saute, tant pis / **je regarde si je l'ai coché** / je devine | Suivi d'habitudes | habitude « Traitement du matin pris » et avertissement santé du template (pas un dispositif médical ; suivre sa prescription) |
+| ven. 27/11 | Révisions | 40 chapitres à revoir 5 fois chacun avant tes partiels. Combien de révisions ? 45 / 80 / **200** / 400 | Planning de révision | 40 × 5 ; 5 passages en 30 jours selon `R.planifier`, vérifié par `outils/templates/diagnostic.test.mjs` |
+| sam. 28/11 | Budget | Règle 50/30/20 : sur 1 200 € par mois, combien pour tes envies ? 240 € / **360 €** / 400 € / 600 € | Mon Budget | repère 50/30/20 de `templates/budget/regles.js` |
+| dim. 29/11 | Tâches | Une tâche urgente, mais pas importante. Tu en fais quoi ? je m'y mets à fond / je la planifie / **je l'expédie ou je la délègue** / je l'abandonne | Gestionnaire de tâches | Reel IG-56 (tri urgent / important) |
+| lun. 30/11 | Révisions | Pour retenir un chapitre, le plus efficace ? le relire 3 fois / le surligner / **le réciter sans regarder** / le recopier | Planning de révision | méthode « Rappel sur feuille blanche » de `templates/revision/donnees.js` |
+| mar. 01/12 | Sondage | Ce que tu lâches en premier ? les révisions / le budget / le sport / la to-do list, puis la story du test (lien `/jeu`) | — | — |
+
+Retours de Quentin du 21/11/2026 intégrés : quiz 1 (révision, sans intérêt) remplacé par les 66 jours ; quiz 4 (séances,
+trop trivial) remplacé par le traitement du matin ; quiz 5 simplifié ; quiz 7 reformulé (« Tu… ? Vite fait » ne voulait
+rien dire) ; quiz 8 (lecture) remplacé par « relire ou réciter ». Données : `assets/quiz-qme.js` (source unique, aussi
+réutilisable par un futur jeu du site).
+
+Le lien des stories réponse (autocollant Lien) : `qm-engineering.fr/jeu`, en ligne depuis le 21/11/2026.
+
+Note sur la répétition espacée : les intervalles du template sont des **écarts entre deux révisions** (1, 3, 7, 14,
+30 jours), pas des jours comptés depuis le cours.
+
+### Relevé (à remplir chaque soir)
+
+| Jour | Story : vues / réponses / bonne réponse (%) / clics | TikTok : vues / visionnage complet / commentaires |
+|---|---|---|
+| 23/11 | | |
+| 24/11 | | |
+| 25/11 | | |
+| 26/11 | | |
+| 27/11 | | |
+| 28/11 | | |
+| 29/11 | | |
+| 30/11 | | |
+| 01/12 | | — |
+
+Le thème qui fait le plus réagir passe en tête du test B et oriente C et E.
+
+## B · Le test `/diagnostic/`
+
+- Page `diagnostic/index.html`, script `assets/diagnostic.js` (calcul pur `DIAG.calculer`, testé par
+  `outils/templates/diagnostic.test.mjs`), styles `assets/diagnostic.css`, lien court `/jeu` (`netlify.toml`).
+- 4 questions **universelles** (décision de Quentin du 21/11/2026 : les révisions, trop ciblées, sont retirées), chacune
+  peut être passée ; aucune statistique extérieure :
+  - **budget** : petits achats non prévus par semaine × 52 + abonnements non utilisés par mois × 12 → euros par an
+    (Mon Budget) ; revenu net facultatif → ces euros en **heures de travail**, méthode du template Temps de vie
+    (`TDV_CALCUL.taux`, convention « temps contractuel », 35 h × 52 semaines) ;
+  - **tâches** : minutes perdues par jour × 365 → heures par an (Gestionnaire de tâches) ;
+  - **papiers** : recherches d'un papier important par an × minutes → heures par an (Papiers du foyer) ;
+  - **habitudes** : (objectif − ce qui est tenu) par semaine × 52 → séances ratées par an (Suivi d'habitudes).
+- Résultat : par exemple « 1 160 €, soit 97 h de travail, et 93 h perdues et 104 séances ratées par an » ; chaque ligne
+  mène à l'essai gratuit du template. Image story à partager.
+- Mesure GoatCounter (sans cookie) : `diagnostic-debut`, `diagnostic-passer`, `diagnostic-resultat`,
+  `diagnostic-image`, `diagnostic-partage`, `diagnostic-essai-<budget|temps-de-vie|taches|papiers|habitudes>`.
+
+## C · Défi 7 jours entre potes (`/defi/`)
+
+Première version (quiz + score) retirée le 21/11/2026 : « aucun enjeu ». Concept retenu par Quentin le même jour :
+**défi 7 jours**, un vrai engagement entre potes, et le Suivi d'habitudes en miniature.
+
+- Parcours : je lance (pseudo, habitude, pari facultatif, idées en un clic) → j'envoie l'invitation
+  (`qm-engineering.fr/defi/?d=<id>`, partage natif ou copie) → mes potes la rejoignent jusqu'au premier jour inclus
+  (6 participants au plus) → le défi commence le lendemain de la création et dure 7 jours (heure de Paris) → chaque
+  jour : « J'ai tenu aujourd'hui », rattrapage de la veille possible → tableau commun (✓, ✗, total, série) → verdict :
+  « Léa gagne ! Hugo paie le café » ; égalité gérée → essai du Suivi d'habitudes (« garde ta série au-delà de
+  7 jours ») et « Lancer un nouveau défi ».
+- Technique : API `/api/defi` (`netlify/functions/defi.mjs`), logique pure `netlify/lib/defi.mjs` (testée par
+  `outils/templates/defi.test.mjs`), stockage `netlify/lib/defi-store.mjs` (Netlify Blobs, Francfort ; un fichier par
+  participant, aucune écriture concurrente), jetons personnels signés `<id>.<pid>.<hmac>` (rien à stocker), purge
+  quotidienne `netlify/functions/defi-purge.mjs` 30 jours après la fin. Page `defi/index.html`, `assets/defi.js`,
+  `assets/defi.css`, aperçu du lien `assets/defi-partage.png`. Section dédiée dans `confidentialite/`.
+- Données : pseudo, habitude, pari, jours cochés ; ni compte, ni e-mail, ni IP. Avertissement « pas d'information
+  sensible » sur les formulaires.
+- Mesure GoatCounter : `defi-creer`, `defi-cree`, `defi-invite`, `defi-recu`, `defi-rejoindre`, `defi-rejoint`,
+  `defi-coche`, `defi-essai-habitudes`. Les chiffres qui comptent : invitations envoyées → défis rejoints (viralité),
+  et jours cochés par participant (rétention : on revient chaque jour).
+- Limites connues : pas de rappel quotidien (aucun e-mail ni notification) ; un participant peut cocher sans avoir tenu
+  (c'est un jeu d'honneur entre potes).
+
+## E · à faire
+
+- Quiz de profil « Quel organisateur es-tu ? » (profils → révision, budget, tâches, habitudes, pack) : prêt le 28/12,
+  lancé le 02/01/2027, sur le modèle de C (questions dans `assets/quiz-qme.js` ou voisin, carte de profil partageable).
+
+## À faire par Quentin
+
+1. Mettre `qm-engineering.fr/jeu` en lien de bio Instagram (et TikTok), puisque les Reels et le test y renvoient.
+2. Stories quiz du 23/11 au 02/12 à 19:30 (à la main, visuels dans le dossier Drive « Quiz Instagram et TikTok ·
+   23-11 au 02-12 (tutoiement) »).

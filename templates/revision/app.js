@@ -40,7 +40,8 @@
   };
 
   const couleur = (id) => (B.couleurs.find((c) => c.id === id) || B.couleurs[3]).hex;
-  const texteSur = (id) => (id === 'jaune' ? 'var(--encre)' : '#fff');
+  // Texte foncé sur les couleurs claires (jaune, orange, bleu ciel) : le blanc n'y atteint pas le contraste 4,5:1.
+  const texteSur = (id) => (['jaune', 'orange', 'ciel'].includes(id) ? 'var(--encre)' : '#fff');
   const methode = (id) => B.methodes.find((m) => m.id === id);
 
   // ---------- État ----------
@@ -284,7 +285,7 @@
   // faites ce matin, chapitres à venir, examen blanc dû, série en cours, données du Pack Étudiant.
   const DEMOS = {
     terminale: {
-      prenom: 'Léa', filiere: 'terminale', debut: -70, pauses: [-31, -30, -45], retards: 2,
+      prenom: 'Léa', filiere: 'terminale', debut: -70, pauses: [-31, -30, -45], retards: 2, manquees: 3,
       matieres: [
         ['Philosophie', 'rouge', 38, 4, ['La conscience|-60|conscience, réflexivité, Descartes, cogito, Husserl', 'L\'inconscient|-48|Freud, refoulement, lapsus, rêve, ça moi surmoi', 'Le devoir|-30|Kant, impératif catégorique, autonomie, morale', 'La justice|-12|Platon, Rawls, équité, égalité, loi', 'L\'art|']],
         ['Mathématiques', 'bleu', 52, 16, ['Suites numériques|-62|récurrence, suite géométrique, limite, monotone', 'Limites de fonctions|-50|asymptote, croissance comparée, forme indéterminée', 'Dérivation et convexité|-35|dérivée seconde, point d\'inflexion, convexe, tangente', 'Logarithme népérien|-14|ln, propriétés algébriques, dérivée 1/x, croissance comparée', 'Fonction exponentielle|-3|exp, e^x, dérivée, équation différentielle', 'Intégration|', 'Probabilités conditionnelles|']],
@@ -612,7 +613,7 @@
     $('#vue').focus({ preventScroll: true });
   }
 
-  const points = (etape) => `<span class="points" aria-label="Étape ${Math.min(etape, E.reglages.intervalles.length)} sur ${E.reglages.intervalles.length}">${E.reglages.intervalles.map((_, i) => `<i class="${i < etape ? 'plein' : ''}"></i>`).join('')}</span>`;
+  const points = (etape) => `<span class="points" role="img" aria-label="Étape ${Math.min(etape, E.reglages.intervalles.length)} sur ${E.reglages.intervalles.length}">${E.reglages.intervalles.map((_, i) => `<i class="${i < etape ? 'plein' : ''}"></i>`).join('')}</span>`;
 
   function prochainExamen() {
     const t = auj();
@@ -771,10 +772,10 @@
       const ex = examens(j);
       const passe = j < t;
       const etiquette = `${fmt(j, { weekday: 'long', day: 'numeric', month: 'long' })} : ${pluriel(liste.length, 'révision')}${ex.length ? `, examen de ${ex.map((m) => m.nom).join(', ')}` : ''}${blancsDu(j).length ? `, examen blanc de ${blancsDu(j).map((b) => matiere(b.matiereId)?.nom).join(', ')}` : ''}`;
-      return `<button class="cellule ${j === t ? 'aujourdhui' : ''} ${passe ? 'passe' : ''} ${liste.length >= max ? 'charge' : ''}" data-action="jour" data-jour="${j}" aria-pressed="${j === jourChoisi}" aria-label="${esc(etiquette)}">
-        <span class="num">${versDate(j).getDate()}${versDate(j).getDate() === 1 || j === lundi ? ` ${fmt(j, { month: 'short' })}` : ''}</span>
-        ${ex.length ? '<span class="exam">Examen</span>' : blancsDu(j).length ? '<span class="exam blanc">Blanc</span>' : ''}
-        ${!passe && liste.length ? `<span class="nb">${liste.length}<small>rév.</small></span>` : ''}
+      return `<button class="cellule ${j === t ? 'aujourdhui' : ''} ${passe ? 'passe' : ''} ${liste.length >= max ? 'charge' : ''}" data-action="jour" data-jour="${j}" aria-pressed="${j === jourChoisi}"><span class="sr-only">${esc(etiquette)}</span>
+        <span class="num" aria-hidden="true">${versDate(j).getDate()}${versDate(j).getDate() === 1 || j === lundi ? ` ${fmt(j, { month: 'short' })}` : ''}</span>
+        ${ex.length ? '<span class="exam" aria-hidden="true">Examen</span>' : blancsDu(j).length ? '<span class="exam blanc" aria-hidden="true">Blanc</span>' : ''}
+        ${!passe && liste.length ? `<span class="nb" aria-hidden="true">${liste.length}<small>rév.</small></span>` : ''}
         ${!passe ? `<span class="carres">${liste.slice(0, 12).map((c) => `<i style="--c:${couleur(matiere(c.matiereId)?.couleur)}"></i>`).join('')}</span>` : ''}
       </button>`;
     }).join('');
@@ -791,7 +792,7 @@
       <div class="vue-tete"><div><h1>Planning</h1><p>Les 4 prochaines semaines. Au-delà de ${max} révisions par jour, les suivantes sont décalées au lendemain (réglable).</p></div>
         <div class="actions"><button class="btn" data-action="agenda">${ICONES.agenda}Ajouter à mon agenda</button><button class="btn primaire" data-action="chapitre-nouveau">${ICONES.plus}Chapitre</button></div></div>
       <div class="legende-planning"><span><i style="background:var(--jaune)"></i>Aujourd'hui (retards compris)</span><span><i style="background:var(--rouge)"></i>Examen</span><span><i style="background:var(--beurre);border:1px solid var(--jaune)"></i>Examen blanc</span><span>Un carré = une révision, à la couleur de la matière</span></div>
-      <div class="calendrier" role="grid" aria-label="Calendrier des révisions">${['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((j) => `<span class="jsem">${j}</span>`).join('')}${cellules}</div>
+      <div class="calendrier" role="group" aria-label="Calendrier des révisions">${['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((j) => `<span class="jsem" aria-hidden="true">${j}</span>`).join('')}${cellules}</div>
       <section class="jour-detail" aria-live="polite">
         <h2>${fmt(jourChoisi, { weekday: 'long', day: 'numeric', month: 'long' })}<span>${passe ? pluriel(faitsCeJour.length, 'révision faite', 'révisions faites') : pluriel(detail.length, 'révision')}${ex.length ? ` · examen : ${esc(ex.map((m) => m.nom).join(', '))}` : ''}</span></h2>
         ${lignesBlancs}${lignes}
@@ -938,7 +939,7 @@
         <table class="sr-only"><caption>Révisions par jour</caption><thead><tr><th>Jour</th><th>Facile</th><th>Moyen</th><th>Difficile</th></tr></thead><tbody>${s.jours30.map((j) => `<tr><td>${fmt(j.d)}</td><td>${j.facile}</td><td>${j.moyen}</td><td>${j.difficile}</td></tr>`).join('')}</tbody></table>
       </figure>
       <h2 class="titre-section">Par matière</h2>
-      ${E.matieres.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Chapitres</th><th class="nb">Maîtrisés</th><th class="nb">À réviser</th><th class="nb">Examen</th></tr></thead><tbody>${lignes}</tbody></table></div>` : '<p>Aucune matière.</p>'}
+      ${E.matieres.length ? `<div class="defile" tabindex="0" role="region" aria-label="Tableau par matière, défilant"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Chapitres</th><th class="nb">Maîtrisés</th><th class="nb">À réviser</th><th class="nb">Examen</th></tr></thead><tbody>${lignes}</tbody></table></div>` : '<p>Aucune matière.</p>'}
       ${sectionPack()}`;
   }
 
@@ -971,7 +972,7 @@
     // Notes
     const prio = prioritesPack();
     const blocNotes = pack.notes
-      ? (prio.length ? `<div class="defile"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Moy.</th><th class="nb" title="Effet d'un point de plus dans la matière sur la moyenne générale">+1 pt</th></tr></thead><tbody>${prio.map((p, i) => {
+      ? (prio.length ? `<div class="defile" tabindex="0" role="region" aria-label="Priorités selon tes notes, tableau défilant"><table class="tableau"><thead><tr><th>Matière</th><th class="nb">Moy.</th><th class="nb" title="Effet d'un point de plus dans la matière sur la moyenne générale">+1 pt</th></tr></thead><tbody>${prio.map((p, i) => {
         const m = matiere(p.matiereId);
         return `<tr style="--c:${couleur(m?.couleur)}"><td><span class="nom-matiere"><i></i>${esc(m?.nom)}${i < 2 ? ' <span class="etiquette bleu">Priorité</span>' : ''}</span></td><td class="nb">${p.moyenne === null ? '–' : p.moyenne.toFixed(1).replace('.', ',')}</td><td class="nb">+${p.poids.toFixed(2).replace('.', ',')}</td></tr>`;
       }).join('')}</tbody></table></div>${(() => { const n = prio.filter((p) => p.prochaine).sort((a, b) => a.prochaine.localeCompare(b.prochaine))[0]; return n ? `<p>Prochaine note prévue&nbsp;: <b>${esc(matiere(n.matiereId)?.nom)}</b>, ${fmt(n.prochaine, { weekday: 'long', day: 'numeric', month: 'long' })}.</p>` : ''; })()}<p class="aide">« +1 pt »&nbsp;: ce que gagne ta moyenne générale avec un point de plus dans la matière. Priorité = coefficient élevé et marge de progression&nbsp;: ces chapitres passent en tête dans Aujourd'hui, à date égale.</p>`
@@ -1157,7 +1158,7 @@
       <label class="champ">Sans titre de matière, ranger dans<select name="defaut">${E.matieres.map((m) => `<option value="${m.id}">${esc(m.nom)}</option>`).join('')}<option value="">Une nouvelle matière « Programme »</option></select></label>
       <fieldset class="champ" style="border:0;padding:0;margin:0"><legend style="padding:0;margin-bottom:6px">Ces chapitres sont</legend>
         <label class="case"><input type="radio" name="statut" value="avenir" checked> Pas encore vus : ils attendent dans ton programme</label>
-        <label class="case"><input type="radio" name="statut" value="vus"> Déjà vus en cours, le <input type="date" name="appris" value="${t}" max="${t}" style="min-height:40px;width:auto"></label>
+        <label class="case"><input type="radio" name="statut" value="vus"> Déjà vus en cours, le <input type="date" name="appris" value="${t}" max="${t}" style="min-height:44px;width:auto"></label>
       </fieldset>
       <div class="apercu-import" aria-live="polite"><p class="aide">L'aperçu s'affiche ici.</p></div>
       <p class="erreur" role="alert"></p>`;

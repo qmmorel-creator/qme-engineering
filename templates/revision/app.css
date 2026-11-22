@@ -152,7 +152,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .points{display:inline-flex;gap:3px}
 .points i{width:10px;height:10px;border:1px solid var(--trait);display:block}
 .points i.plein{background:var(--encre)}
-.methode-puce{align-self:flex-start;display:block;margin-top:2px;padding:6px 10px;border:2px dashed var(--encre);background:none;font-size:13px;font-weight:600;min-height:36px;text-align:left}
+.methode-puce{align-self:flex-start;display:block;margin-top:2px;padding:6px 10px;border:2px dashed var(--encre);background:none;font-size:13px;font-weight:600;min-height:44px;text-align:left}
 .methode-puce:hover{border-style:solid;background:var(--jaune)}
 .methode-puce b{font-weight:700}
 .carte-eval{display:grid;grid-template-columns:repeat(3,92px);border-left:1px solid var(--trait)}
@@ -164,7 +164,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .ev.facile:hover,.ev.facile:focus-visible{background:var(--bleu);color:#fff}
 .ev:hover small,.ev:focus-visible small{color:inherit}
 .carte-plus{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:4px 14px;padding:0 16px 8px;margin-top:-6px}
-.carte-plus button{background:none;border:0;padding:6px 0;font-size:13px;font-weight:600;color:var(--discret);text-decoration:underline;text-underline-offset:3px;min-height:32px}
+.carte-plus button{background:none;border:0;padding:6px 0;font-size:13px;font-weight:600;color:var(--discret);text-decoration:underline;text-underline-offset:3px;min-height:44px}
 .carte-plus button:hover{color:var(--encre)}
 
 .vide-etat{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;border:1px solid var(--trait);background:var(--surface);padding:24px}
@@ -190,7 +190,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .cellule{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:104px;padding:8px 10px;border:0;border-right:1px solid var(--trait);border-bottom:1px solid var(--trait);background:var(--surface);text-align:left}
 .cellule:hover{background:#F6F1E3}
 .cellule.passe{background:repeating-linear-gradient(135deg,var(--surface) 0 6px,#EEEAE0 6px 7px);color:var(--discret)}
-.cellule.aujourdhui .num{background:var(--jaune);padding:0 6px}
+.cellule.aujourdhui .num{background:var(--jaune);color:var(--encre);padding:0 6px}
 .cellule[aria-pressed="true"]{background:var(--encre);color:var(--papier)}
 .cellule[aria-pressed="true"] .carres i{outline:2px solid var(--papier)}
 .cellule .num{font-weight:800;font-size:15px}
@@ -216,8 +216,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .matiere{border:1px solid var(--trait);background:var(--surface);display:flex;flex-direction:column}
 .matiere-tete{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--c);color:var(--t,#fff)}
 .matiere-tete h2{font-size:22px;overflow-wrap:anywhere}
-.matiere-tete p{font-size:14px;font-weight:600;margin-top:4px;opacity:.92}
-.matiere-tete button{flex:none;background:none;border:2px solid currentColor;color:inherit;min-height:36px;padding:0 10px;font-size:13px;font-weight:700}
+.matiere-tete p{font-size:14px;font-weight:600;margin-top:4px}
+.matiere-tete button{flex:none;background:none;border:2px solid currentColor;color:inherit;min-height:44px;padding:0 10px;font-size:13px;font-weight:700}
 .matiere-tete button:hover{background:var(--encre);color:var(--papier);border-color:var(--encre)}
 .matiere-chiffres{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--trait)}
 .matiere-chiffres div{padding:10px 12px;border-right:1px solid var(--trait)}
@@ -279,6 +279,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .nom-matiere{display:flex;align-items:center;gap:10px;font-weight:600}
 .nom-matiere i{width:12px;height:12px;background:var(--c);flex:none}
 .defile{overflow-x:auto}
+.defile:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
 
 /* Modale */
 .modale{border:1px solid var(--trait);padding:0;max-width:560px;width:calc(100% - 24px);background:var(--papier);color:var(--encre);box-shadow:0 12px 32px rgba(36,34,31,.10);max-height:calc(100dvh - 32px)}
@@ -305,7 +306,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
 /* Toast */
 .toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:16px;max-width:calc(100% - 24px);background:var(--encre);color:var(--papier);padding:12px 16px;font-size:15px;font-weight:500;box-shadow:0 4px 14px rgba(36,34,31,.08);animation:monte .2s ease-out}
-.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:36px;padding:0 12px;flex:none}
+.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:44px;padding:0 12px;flex:none}
 .toast button:hover{background:var(--jaune);color:var(--encre)}
 @keyframes monte{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -423,11 +424,10 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .jauge{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.35)}
 .jauge p{font-size:14px;font-weight:500;line-height:1.35}
 .jauge p b{font-size:20px;font-weight:800}
-.jauge p span{opacity:.85}
 .jauge-barre{display:flex;height:12px;border-radius:999px;background:rgba(255,255,255,.28);overflow:hidden}
 .jauge-barre i{display:block;background:#fff}
 .jauge-barre i.projete{background:rgba(255,255,255,.6)}
-.jauge-info{align-self:flex-start;background:none;border:0;padding:4px 0;color:inherit;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.jauge-info{align-self:flex-start;min-height:44px;background:none;border:0;padding:4px 0;color:inherit;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .jauge.compacte{padding:12px 16px;border-top:0;border-bottom:1px solid var(--trait);background:var(--sable)}
 .jauge.compacte .jauge-barre{background:var(--trait)}
 .jauge.compacte .jauge-barre i{background:var(--c,var(--bleu))}
@@ -455,7 +455,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .programme{border:1px solid var(--trait);border-radius:12px;padding:8px 12px 10px;margin:0;max-height:220px;overflow:auto;background:var(--surface)}
 .programme legend{font-size:14px;font-weight:700;padding:0 4px}
 .programme legend small{font-weight:400;color:var(--discret);margin-left:4px}
-.programme .case{min-height:40px;font-size:15px}
+.programme .case{min-height:44px;font-size:15px}
 .apercu-import ul{display:flex;flex-direction:column;gap:6px}
 .apercu-import li{padding:8px 12px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);font-size:14px}
 .apercu-import li span:not(.etiquette){display:block;color:var(--discret);font-size:13px;margin-top:2px}
@@ -555,7 +555,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .comparaison-sommeil div:last-child{background:var(--ciel)}
 .comparaison-sommeil span{font-size:12px;font-weight:600;color:var(--texte-2)}
 .comparaison-sommeil b{font-size:30px;font-weight:800;line-height:1.1}
-.comparaison-sommeil small{font-size:12px;color:var(--discret)}
+.comparaison-sommeil small{font-size:12px;color:var(--texte-2)}
 
 /* Lecture facilitée : plus grand, plus espacé, sans justification ni majuscules espacées serrées */
 body.lecture{font-size:18px;line-height:1.7;letter-spacing:.02em;word-spacing:.12em}
@@ -579,3 +579,8 @@ body.lecture .feuille textarea{font-size:19px;line-height:1.8}
   .grille-regu .col{gap:3px}
   .modale.session{border-radius:0}
 }
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}

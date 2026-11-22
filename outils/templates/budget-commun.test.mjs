@@ -62,6 +62,15 @@ test('répartition en parts, décimales admises', () => {
   assert.ok(R.repartir(1000, [A, B], 'parts', { parts: { a: 0, b: 0 } }).erreur);
 });
 
+test('parts illisibles ou négatives (saisie « abc », « -2 ») : erreur explicite, jamais une part nulle en silence', () => {
+  // L'application transmet NaN pour une part illisible ou négative (avant : elle la comptait 0 sans rien dire).
+  const r = R.repartir(10001, [A, B], 'parts', { parts: { a: NaN, b: 1 } });
+  assert.match(r.erreur, /Parts invalides : écris un nombre positif/);
+  assert.equal(r.quotes, undefined);
+  const ok = R.repartir(10001, [A, B], 'parts', { parts: { a: 1.5, b: 1 } });
+  assert.deepEqual(simple(ok.quotes), { a: 6001, b: 4000 });
+});
+
 test('répartition en montants personnalisés : refus si la somme ne tombe pas juste', () => {
   const ok = R.repartir(5000, [A, B], 'montants', { montants: { a: 3000, b: 2000 } });
   assert.deepEqual(simple(ok.quotes), { a: 3000, b: 2000 });
@@ -277,4 +286,58 @@ test('fusion : versements et mois du compte réunis sans perte', () => {
   const r = R.fusionner(l, s);
   assert.equal(r.etat.versements.length, 2);
   assert.equal(r.etat.alimentations[0].solde, 5);
+});
+
+// ---------- Liaison avec Mon Budget (T99) ----------
+const foyerAvances = () => ({
+  membres: [A, B],
+  reglages: { fonctionnement: 'avances' },
+  depenses: [
+    // Courses payées par a, partagées à parts égales : 50 € chacun.
+    { id: 'd1', date: '2026-11-03', montant: 10000, payeur: 'a', repartition: { mode: 'egale' } },
+    // Loyer payé par b, au prorata des revenus (2 600 / 1 900).
+    { id: 'd2', date: '2026-11-05', montant: 90000, payeur: 'b', repartition: { mode: 'prorata' } },
+    // Dépense de b seul (participants : b) : rien pour a.
+    { id: 'd3', date: '2026-11-08', montant: 3000, payeur: 'b', repartition: { mode: 'egale', participants: ['b'] } },
+    // Autre mois : ignorée.
+    { id: 'd4', date: '2026-10-28', montant: 5000, payeur: 'a', repartition: { mode: 'egale' } },
+  ],
+});
+
+test('liaison, mode avances : la part du mois est la somme des quotes-parts, quel que soit le payeur', () => {
+  const E = foyerAvances();
+  const pa = R.partDuMois(E, 'a', '2026-11'), pb = R.partDuMois(E, 'b', '2026-11');
+  const loyer = R.quotesDepense(E.depenses[1], E.membres);
+  assert.deepEqual(simple(pa), { mode: 'avances', montant: 5000 + loyer.a, nb: 2 });
+  assert.equal(pb.montant, 5000 + loyer.b + 3000);
+  // Les parts des deux personnes font exactement le total du mois, au centime.
+  assert.equal(pa.montant + pb.montant, 10000 + 90000 + 3000);
+  assert.equal(R.partDuMois(E, 'a', '2026-10').montant, 2500);
+  assert.deepEqual(simple(R.partDuMois(E, 'a', '2026-12')), { mode: 'avances', montant: 0, nb: 0 });
+});
+
+test('liaison : une personne qui n\'est plus membre du foyer n\'a pas de part (null)', () => {
+  assert.equal(R.partDuMois(foyerAvances(), 'x', '2026-11'), null);
+  assert.equal(R.partDuMois({}, 'a', '2026-11'), null);
+});
+
+test('liaison, mode compte commun : la part est le versement du mois, calculé comme dans l\'application', () => {
+  const E = {
+    membres: [A, B],
+    reglages: { fonctionnement: 'compte', cle: { mode: 'prorata' } },
+    recurrentes: [
+      { id: 'r1', libelle: 'Loyer', montant: 98000, payeur: R.COMPTE, pour: 'foyer', debut: '2026-01', jour: 5 },
+      { id: 'r2', libelle: 'Forfait de b', montant: 1599, payeur: R.COMPTE, pour: 'b', debut: '2026-01', jour: 10 },
+    ],
+    alimentations: [{ id: 'a-2026-11', mois: '2026-11', courantes: 70000, autres: 2000, solde: 20000 }],
+    depenses: [{ id: 'd1', date: '2026-11-03', montant: 10000, payeur: 'a', repartition: { mode: 'egale' } }],
+  };
+  const attendu = R.alimentation({ membres: [A, B], cle: { mode: 'prorata' }, communes: 98000, perso: { b: 1599 }, courantes: 70000, autres: 2000, solde: 20000 });
+  assert.deepEqual(simple(R.partDuMois(E, 'a', '2026-11')), { mode: 'compte', montant: attendu.versements.a });
+  assert.equal(R.partDuMois(E, 'b', '2026-11').montant, attendu.versements.b);
+  // Mois sans alimentation saisie : les dépenses courantes du dernier mois renseigné, solde 0.
+  const dec = R.besoinCompte(E, '2026-12');
+  assert.equal(dec.courantes, 70000);
+  assert.equal(dec.solde, null);
+  assert.equal(R.partDuMois(E, 'a', '2026-12').montant, R.alimentation({ membres: [A, B], cle: { mode: 'prorata' }, communes: 98000, perso: { b: 1599 }, courantes: 70000 }).versements.a);
 });

@@ -91,9 +91,9 @@ déjà).
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 |
+| T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 ; prix de 9 € maintenu par Quentin le 22/11/2026 (dérogation à la règle des 12 €, comme T98) |
 | T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
-| T16 | Déménagement | Personnel | Particuliers qui déménagent | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T16 | Déménagement | Personnel | Particuliers qui déménagent | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | en vente | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
@@ -110,7 +110,7 @@ déjà).
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
-| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | prêt | 29 € | M | P2 | Backlog Quentin n° 07 |
+| T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | en vente | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en vente | 39 € | M | P2 | Backlog Quentin n° 08 |
 | T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | en vente | 25 € | M | P1 | Backlog Quentin n° 10 |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
@@ -122,10 +122,10 @@ déjà).
 | T42 | Trésorerie prévisionnelle 12 mois | Comptabilité | TPE, indépendants | en vente | 29 € | M | P1 | Backlog Quentin n° 17 |
 | T43 | Relance des impayés | Comptabilité | TPE, freelances | en vente | 19 € | S | P2 | Backlog Quentin n° 18 |
 | T44 | Suivi de TVA | Comptabilité | Petites sociétés au réel | en vente | 19 € | S | P3 | Backlog Quentin n° 20 |
-| T45 | Gestion de parc de postes de travail | IT / moyens généraux | DSI de PME, office managers | en vente | 35 € | M | P1 | Backlog Quentin n° 21 |
-| T46 | Onboarding / offboarding salarié | RH | RH de PME, managers | en vente | 19 € | S | P2 | Backlog Quentin n° 22 |
+| T45 | Gestion de parc informatique (ancien nom : Gestion de parc de postes de travail) | IT / moyens généraux | DSI de PME, office managers | en vente | 35 € | M | P1 | Backlog Quentin n° 21 |
+| T46 | Onboarding et offboarding salarié (ancien nom : Onboarding / offboarding salarié) | RH | RH de PME, managers | en vente | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
-| T48 | Suivi congés et absences | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
+| T48 | Suivi des congés et absences (ancien nom : Suivi congés et absences) | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en vente | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
@@ -134,10 +134,10 @@ déjà).
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | prêt | 35 € | M | P3 | Backlog Quentin n° 31 |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
-| T57 | Gestion de flotte auto-école | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
+| T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | prêt | 49 € | L | P2 | Backlog Quentin n° 38 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | en vente | 49 € | L | P2 | Backlog Quentin n° 38 |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en vente | 39 € | M | P2 | Backlog Quentin n° 39 |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
@@ -148,32 +148,33 @@ déjà).
 | T68 | Secret Santa (amis, famille, collègues) | Événementiel perso | Organisateurs de Secret Santa (familles, groupes d'amis, équipes) | en vente | gratuit (prix libre) | M | P1 | Quentin 13/11/2026 |
 | T69 | Inventaire et valorisation du patrimoine matériel (inventaire valorisé) | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
 | T70 | Temps de vie : coût réel des dépenses en heures de travail | Budget perso | Particuliers | en vente | 19 € | M | P1 | Quentin 13/11/2026 |
-| T73 | Suivi du temps passé et rentabilité par mission | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
+| T73 | Suivi du temps et rentabilité par mission (ancien nom : Suivi du temps passé et rentabilité par mission) | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des candidatures aux appels d'offres et plateformes | Commercial | Freelances, PME | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
 | T80 | Document unique d'évaluation des risques | RH / sécurité | Employeurs de TPE/PME | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
-| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | prêt | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
-| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | prêt | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
+| T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | en vente | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
+| T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | en vente | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
-| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
-| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | prêt | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
+| T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
+| T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T94 | État des lieux d'entrée et de sortie | Immobilier | Propriétaires bailleurs, locataires | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T94 | État des lieux d’entrée et de sortie (ancien nom : État des lieux d'entrée et de sortie) | Immobilier | Propriétaires bailleurs, locataires | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T96 | Charges et assemblées générales de copropriété | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
+| T96 | Charges et AG de copropriété (ancien nom : Charges et assemblées générales de copropriété) | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
+| T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | prêt | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026, développée le 21/11/2026 (fiche en fin de fichier) |
 | T71 | Dossier sinistre habitation (nom de travail « SinistreFacile ») | Habitat / assurance | Particuliers sinistrés (dégât des eaux, incendie, climat, cambriolage, bris de glace) | en vente | 29 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 | T72 | Assistant administratif après décès (nom de travail « AprèsVous ») | Famille / administratif | Proches d'une personne décédée | fiche | 39 € | L | P1 | Cahier des charges de Quentin 13/11/2026 |
 
@@ -269,19 +270,29 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07, T97 | — | 78 € | 25 % | 58 € | 15 € |
-| Famille | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
+| Maison et famille (renommé le 22/11/2026) | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
 | Voyage | PVY | T65, T21 | — | 28 € | 10 % | 25 € | 9 € |
 | Enseignant et formateur | PNS | T59, T58, T55, T56 | — | 104 € | 20 % | 83 € | 21 € |
 | Exploitation et maintenance | PXP | T61, T63, T60, T81 | — | 148 € | 20 % | 118 € | 30 € |
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 | Budget perso et famille (Quentin, 20/11/2026) | PBF | T05, T65, T14, T13, T12 | — | 63 € | 25 % | 47 € | 12 € |
+| ~~Argent du quotidien~~ (retiré le 22/11/2026 : doublon de Budget perso et famille, aucune vente) | PAQ | — | — | — | — | — | — |
+| Cuisine (Quentin, 22/11/2026) | PCS | T06 | T09 | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande
 par e-mail, code `SMP` généré à la main). Packs abandonnés : « Flotte » (T57 contient déjà la flotte) et
 « Organisateur d'événements » (mélangeait mariage grand public et agences).
 
+
+**Rationalisation du 22/11/2026 (décision de Quentin, `docs/templates/RATIONALISATION.md`)** : packs Voyage, Bien démarrer
+l'année et Cuisine retirés (entièrement contenus dans Vie à deux, Productivité perso, Maison et famille ; Voyage et
+Bien démarrer dépubliés sur Gumroad, adresses redirigées) ; Reprendre la main sur son argent devient **Papiers et
+décisions d'argent** (TDV, PTM, DCS, RBS, CPT) ; Mariage et installation à deux devient **Vie à deux** (`/packs/vie-a-deux/`) ;
+Enseignant et formateur devient **Écoles et formateurs** (+ auto-école) ; Exploitation et maintenance : GMA, VRF, NCF, STK ;
+Maison et famille + potager ; Moyens généraux + séminaire ; Petite entreprise : matrice des compétences annoncée (à
+venir, entre dans le pack à sa mise en vente). Les lignes du tableau ci-dessus sont antérieures à cette date.
 ## Ordre de production conseillé
 
 1. T01 : fait (en vente).
@@ -2423,3 +2434,39 @@ planifiées**. À rattacher à `PET` dans `netlify/lib/packs.mjs` et à régén�
   (`is_licensed` true), SVT dans `produits` du pack Ma voiture avec `ajouts: { SVT: '2026-11-18' }`, pack à 28 € (34 €,
   −15 %). Option Pack évolutif : 9 €, soit la version « Pack évolutif » à 37 € à régler par Quentin dans l'éditeur
   Gumroad (versions non modifiables par les outils).
+
+## T99 · Liaison Mon Budget ↔ Gestion Dépenses Communes (idée de Quentin, 20/11/2026)
+
+**Besoin** : chacun tient son budget privé (Mon Budget, T05) et partage les dépenses du foyer (Gestion Dépenses
+Communes, T65). Aujourd'hui, la part de chacun dans le commun se recopie à la main dans le budget perso.
+
+**Principe** :
+- Dans Mon Budget, réglage « Lier à Gestion Dépenses Communes » : coller le code de partage du commun, choisir qui on
+  est parmi les membres, et la catégorie qui reçoit la dépense (par défaut « Dépenses communes »).
+- Chaque mois, Mon Budget lit le commun **en lecture seule** et ajoute une opération « Ma part du commun » :
+  mode avances = ma quote-part des dépenses du mois (pas ce que j'ai avancé) ; mode compte commun = mon versement du mois.
+  Remboursements et virements d'équilibrage : à trancher (voir plus bas).
+- La liaison est **à sens unique** : les autres membres du commun ne voient rien du budget perso, et le commun ne lit
+  jamais Mon Budget.
+
+**Confidentialité** : le code du commun est enregistré dans les données de Mon Budget ; qui a la clé de Mon Budget
+peut donc ouvrir le commun (même personne en pratique, à écrire dans l'aide). Rien ne change pour le commun.
+
+**Technique** : lecture du commun avec son propre code via `/api/templates/donnees` (aujourd'hui l'application refuse
+le code d'un autre template, à ouvrir pour ce seul usage, en lecture) ; calcul par les règles existantes de
+`templates/budget-commun/regles.js` (`quotesDepense`, `alimentation`) ; opération marquée « importée » (non modifiable,
+remplacée à chaque mise à jour du mois, jamais en double).
+
+**Décisions de Quentin (21/11/2026)** : mode avances = **ma quote-part** des dépenses du mois (coût réel, pas les avances) ;
+mode compte commun = **mon versement du mois** (calcul de l'application, charges personnelles comprises) ; **tout code de
+partage** valide de Gestion Dépenses Communes ; mise à jour **à chaque ouverture** de Mon Budget, plus un bouton.
+
+**Réalisé (21/11/2026)** : `BCM.besoinCompte` et `BCM.partDuMois` (`templates/budget-commun/regles.js`, l'application
+utilise le même calcul du versement) ; `BDG.appliquerPartsCommun` et `BDG.moisALier` (`templates/budget/regles.js`) ;
+Mon Budget charge le moteur du commun, Réglages > « Gestion Dépenses Communes » (lier, mettre à jour, modifier, délier),
+opération « Ma part des dépenses communes » ou « Versement au compte commun » datée du 1er du mois, non modifiable
+(fiche « Part du commun »), au plus 12 mois depuis la liaison. Lecture du commun par `XMLHttpRequest` (le module d'essai
+intercepte `fetch`) ; clé de pack refusée ; pas de lecture en démo ni en essai terminé. Guide (carte 6), aide de l'onglet
+Foyer du commun et FAQ des deux pages catalogue. Tests : `budget.test.mjs`, `budget-commun.test.mjs` ; parcours complet
+vérifié en local (avances, nouvelle dépense, passage en compte commun, ordinateur et iPhone, aucune erreur).
+

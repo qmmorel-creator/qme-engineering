@@ -7,6 +7,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Prospection : mention d'opposition (règle absolue)
+
+- **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
+  d'abord que l'adresse et son domaine ne sont pas sur la liste d'opposition (`GET /api/compte/opposition`), puis
+  terminer **toujours** par la mention « Ne plus recevoir les informations » avec le lien
+  `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse>` (ou « répondez stop »). Une réponse « stop » ou
+  hostile est inscrite le jour même sur la liste d'opposition. Sans exception : `docs/templates/communication/REGLES-PROSPECTION.md`.
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
@@ -44,6 +52,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Aucune vidéo muette** (décision du 18/11/2026) : tout Reel, Short ou vidéo programmé porte la musique QME
   (`docs/videos/musique/`) ; vérifier la piste audio avec `ffprobe` avant tout dépôt Drive. Seules les vidéos privées
   remises à un partenaire pour son propre montage restent muettes.
+- **Référence vidéo (décision du 20/11/2026)** : les 7 Reels retravaillés (IG-156, IG-155, IG-131, IG-56, IG-149, IG-50, IG-46),
+  dont Quentin préfère largement le dynamisme. Toute vidéo suit `docs/templates/communication/REGLES-CONTENU.md` § 3 bis :
+  vrai problème chiffré avec tension, bascule, solution montrée ; accroche entière dès la première image.
 - **Reels du soir** : skill `.claude/skills/reel-du-soir/` (motion design en musique à partir des démos), lundi, mercredi et
   vendredi, Instagram 21:00 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
   `docs/templates/communication/instagram/production/journal-reels.md`.

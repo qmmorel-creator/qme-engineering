@@ -685,6 +685,41 @@
     Cache-Control = "no-cache"
 
 # Domaine secondaire .cloud : redirection permanente vers le domaine principal
+# Voyage, contenu dans Vie à deux (22/11/2026).
+[[redirects]]
+  from = "/packs/voyage/*"
+  to = "/packs/vie-a-deux/"
+  status = 301
+  force = true
+
+# Bien démarrer l’année, contenu dans Productivité perso (22/11/2026).
+[[redirects]]
+  from = "/packs/bien-demarrer/*"
+  to = "/packs/productivite/"
+  status = 301
+  force = true
+
+# Cuisine, contenu dans Maison et famille (22/11/2026).
+[[redirects]]
+  from = "/packs/cuisine/*"
+  to = "/packs/famille/"
+  status = 301
+  force = true
+
+# Mariage et installation à deux, renommé Vie à deux (22/11/2026).
+[[redirects]]
+  from = "/packs/mariage-installation/*"
+  to = "/packs/vie-a-deux/"
+  status = 301
+  force = true
+
+# Pack Argent du quotidien retiré le 22/11/2026 (doublon du Pack Budget perso et famille).
+[[redirects]]
+  from = "/packs/argent-du-quotidien/*"
+  to = "/packs/budget-perso-famille/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "https://qm-engineering.cloud/*"
   to = "https://qm-engineering.fr/:splat"
@@ -1212,6 +1247,30 @@
 [[redirects]]
   from = "/x"
   to = "/en/english-version/?utm_source=x&utm_medium=social&utm_campaign=x-custom"
+  status = 302
+  force = true
+
+# Test « Combien te coûte ta désorganisation ? » (21/11/2026) : lien court des réseaux et des partages,
+# vers /diagnostic/. Plan et calendrier : docs/templates/communication/jeux/README.md
+[[redirects]]
+  from = "/jeu"
+  to = "/diagnostic/?utm_source=social&utm_medium=jeu&utm_campaign=diagnostic"
+  status = 302
+  force = true
+
+# Partenariat Odélia (Yuzu Agency, Reel Instagram + story, 22/11/2026) : lien court du sticker de la story et de
+# la bio, vers la page du Pack Étudiant (chaque outil y est aussi vendu à l'unité, avec sa démo).
+# Fiche : docs/templates/communication/affiliation/odelia.md
+[[redirects]]
+  from = "/odelia"
+  to = "/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia"
+  status = 302
+  force = true
+
+# Même lien saisi avec une majuscule (sticker, bio) : les chemins Netlify sont sensibles à la casse (/Odelia → 404).
+[[redirects]]
+  from = "/Odelia"
+  to = "/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia"
   status = 302
   force = true
 

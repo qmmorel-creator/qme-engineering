@@ -16,6 +16,7 @@ import { createHmac } from 'node:crypto';
 import { PRODUITS, PACKS, verifierLicenceGumroad, cleEmail, jourParis } from './templates-acces.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { ajouterAchat } from './comptes.mjs';
 
 const CONNEXION = `${SITE}/connexion/`;
 const json = (statut, corps) => new Response(JSON.stringify(corps), { status: statut, headers: { 'content-type': 'application/json; charset=utf-8' } });
@@ -55,7 +56,7 @@ Merci d'avoir acheté ${pack ? `le ${vente.nom}` : `le template ${nom}`} après 
 
 Dernière étape pour retrouver votre essai : ouvrez ${pack ? `« ${f.nom} »` : 'le template'} (${ouvrir}), cliquez sur « J'ai acheté » dans le bandeau, puis collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). Tout ce que vous avez saisi pendant l'essai est repris, rien à ressaisir.${termine ? ` Vos données d'essai sont gardées jusqu'au ${dateFr(e.effacement)} : faites-le avant cette date.` : ''}
 
-Sur un autre appareil, ouvrez ${CONNEXION} et collez la même clé${pack ? ' : le tableau de bord du pack s\'ouvre, avec tous ses templates' : ''}.
+Sur un autre appareil, ouvrez ${CONNEXION} et connectez-vous avec cette adresse e-mail : vos applications vous y attendent, sans recoller de clé.
 
 Vous ne recevrez plus de rappel d'essai.
 
@@ -71,7 +72,7 @@ ${SIGNATURE}`;
 
 Merci d'avoir acheté ${pack ? `le ${vente.nom}` : `le template ${nom}`}. C'est un achat unique : ${pack ? 'les templates du pack sont' : 'il est'} à vous, sans abonnement, sur tous vos appareils.
 
-Pour ${pack ? 'les' : 'l\''}ouvrir : allez sur ${CONNEXION} et collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). ${pack ? 'Le tableau de bord du pack s\'ouvre, avec ses templates :' : 'Le template s\'ouvre ; sur vos autres appareils, la même clé retrouve les mêmes données.'}${pack ? `\n${liste}` : ''}
+Pour ${pack ? 'les ' : 'l\''}ouvrir : allez sur ${CONNEXION} et connectez-vous avec cette adresse e-mail (vous recevez un lien de connexion), ou collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). ${pack ? 'Le tableau de bord du pack s\'ouvre, avec ses templates :' : 'Le template s\'ouvre ; sur vos autres appareils, la même clé retrouve les mêmes données.'}${pack ? `\n${liste}` : ''}
 ${g ? `
 Pour démarrer, en quelques minutes : ${g.commencer}
 ` : ''}
@@ -120,6 +121,8 @@ export async function traiterAchat(requete, { secret, essais, envoyer = null, no
     }
   }
   for (const reg of trouves) await essais.set(`essai/${reg.id}`, { ...reg, paye: date });
+  // Compte acheteur (comptes.mjs) : la licence rejoint le compte de cette adresse. Un échec n'empêche jamais le ping.
+  try { await ajouterAchat({ secret, store: essais, email, vente, licence, nomComplet: f.get('full_name'), maintenant }); } catch (x) { console.error('Ajout au compte impossible', x); }
   await essais.set(cle, { produit: vente.code, date, mail: envoyer ? m.type : null, essai: trouves.map((r) => r.id) });
   if (envoyer && notifier) {
     await envoyer({ a: notifier, objet: `Nouvelle vente : ${vente.nom} · ${trouves.length ? 'après essai' : 'directe'}`,

@@ -362,7 +362,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .filtres{display:flex;flex-wrap:wrap;gap:6px}
 .filtre{min-height:44px;padding:0 14px;border:1px solid var(--trait);background:var(--surface);border-radius:999px;font-weight:600;font-size:14px}
 .filtre small{color:var(--discret);font-weight:600;margin-left:2px}
-.filtre[aria-pressed="true"]{background:var(--beurre);border-color:transparent}
+.filtre[aria-pressed="true"],.filtre[aria-selected="true"]{background:var(--beurre);border-color:transparent}
 .filtre:hover{background:var(--sable)}
 .recherche{flex:0 1 320px}
 @media (max-width:720px){
@@ -553,7 +553,7 @@ mark.trou{background:var(--rose);color:var(--rose-texte);border-radius:6px;paddi
   .voeu{grid-template-columns:auto minmax(0,1fr) auto;padding:8px}
   .voeu>.statut{display:none}
   .voeu-boutons{gap:4px}
-  .voeu-boutons .btn-icone{width:40px;height:40px}
+  .voeu-boutons .btn-icone{width:44px;height:44px}
   .non-classees{grid-template-columns:1fr}
   .accueil-pied{flex-wrap:wrap}
   .accueil-pied .rang{flex:1 1 100%}
@@ -573,7 +573,7 @@ mark.trou{background:var(--rose);color:var(--rose-texte);border-radius:6px;paddi
   #impression.impr-lettre .lettre-impr p{margin:0 0 10pt}
   #impression.impr-liste h2{break-after:avoid}
 }
-.filtre[aria-pressed="true"]:hover{background:var(--beurre)}
+.filtre[aria-pressed="true"]:hover,.filtre[aria-selected="true"]:hover{background:var(--beurre)}
 
 /* Guide « Comment ça marche » : principes numérotés sur fonds teintés */
 .tuto{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:tuto}
@@ -582,3 +582,8 @@ mark.trou{background:var(--rose);color:var(--rose-texte);border-radius:6px;paddi
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}

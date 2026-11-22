@@ -8,9 +8,12 @@ import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
+import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
+import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
+import { donneesEspace } from '../connexion/generer.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026112101';
+const V = '2026112201';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 // Vignettes des templates (480 × 300) : adresse versionnée lue sur les cartes du catalogue templates/index.html,
 // écrite par outils/templates/vignettes.mjs (à lancer avant ce générateur après l'ajout d'un template).
@@ -126,11 +129,14 @@ function pagePack(p) {
   const actions = p.enVente
     ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=Pack" data-goatcounter-click="achat-${module}">Acheter le pack</a><a class="btn" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=${encodeURIComponent(OPTION.nom)}" data-goatcounter-click="achat-${module}-evolutif">Avec l’option (+${euros(p.option)})</a>`
     : `<button class="btn interet" type="button" data-interet="${module}">Je suis intéressé(e)</button><a class="btn" href="#contenu">Voir le contenu</a>`;
-  const note = p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce pack. Rien d'autre n'est enregistré.</p>`;
+  // Essai gratuit des templates du pack (audit étudiants du 22/11/2026) : annoncé sous les boutons d'achat.
+  const nbEssai = p.templates.filter((t) => PRODUITS_ESSAI.includes(t.pre)).length;
+  const essai = p.enVente && nbEssai ? `<p class="essai-pack">Pas encore sûr(e) ? ${nbEssai === p.templates.length ? 'Chaque outil du pack' : 'Les outils marqués « Essai gratuit »'} s’essaie ${ESSAI.jours} jours gratuitement, sans carte bancaire. Si vous prenez ensuite le pack, vos données d’essai sont reprises. <a href="#contenu">Choisir un outil à essayer</a></p>` : '';
+  const note = p.enVente ? essai : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce pack. Rien d'autre n'est enregistré.</p>`;
   const cartes = p.templates.map((t) => `<li class="t-pack">
         ${vignette(t.slug)}<div class="t-tete"><b>${esc(t.nom)}</b>${etiquetteStatut(t.statut)}</div>
         <p>${esc(t.phrase)}</p>
-        <div class="t-pied"><span>${euros(t.prix)} seul</span><a href="/catalogue/${t.slug}/">Détail</a><a href="/templates/${t.slug}/?demo">Démo</a></div>
+        <div class="t-pied"><span>${euros(t.prix)} seul</span><a href="/catalogue/${t.slug}/">Détail</a><a href="/templates/${t.slug}/?demo">Démo</a>${PRODUITS_ESSAI.includes(t.pre) ? `<a href="/essai/?t=${t.slug}" data-goatcounter-click="essai-${module}-${t.slug}">Essai gratuit</a>` : ''}</div>
       </li>`).join('\n      ');
   const prevus = p.prevus.length ? `
   <div class="prevus">
@@ -172,7 +178,7 @@ function pagePack(p) {
 </section>
 
 <section class="section pack-section" id="contenu">
-  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.indicatif ? `${p.nombre} templates prévus, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.${p.templates.length ? ' La démo du template prêt s’ouvre sans inscription.' : ''}` : `${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription.`}</p></div>
+  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.indicatif ? `${p.nombre} templates prévus, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.${p.templates.length ? ' La démo du template prêt s’ouvre sans inscription.' : ''}` : `${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription${nbEssai ? `, et ${nbEssai === p.templates.length ? 'chaque outil' : 'les outils marqués « Essai gratuit »'} s’essaie ${ESSAI.jours} jours, sans carte bancaire` : ''}.`}</p></div>
   ${cartes ? `<ul class="templates-pack">\n      ${cartes}\n  </ul>` : ''}${prevus}
 </section>
 
@@ -336,24 +342,50 @@ function pageComposer(packs) {
 }
 
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
-function pageEspace() {
-  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des templates de votre pack QME.', noindex: true })
-    + `<section class="section espace-pack" data-espace>
-  <div class="composer-tete">
-    <p class="eyebrow">Espace acheteurs · packs</p>
-    <h1>Mes packs</h1>
-    <p class="lead">Chaque template de votre pack s’ouvre d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+// Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
+// Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
+const VE = '2026112301'; // version de assets/espace.js et espace.css
+async function pageEspace() {
+  const { produits, themes } = await donneesEspace();
+  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
+      .replace('</head>', `<link rel="stylesheet" href="/assets/espace.css?v=${VE}">\n</head>`)
+    + `<section class="espace espace-pack" data-espace>
+  <div class="espace-tete">
+    <div>
+      <p class="eyebrow">Espace acheteurs · packs</p>
+      <h1>Mes packs</h1>
+      <p class="espace-nb" data-nb></p>
+    </div>
+    <a class="btn ajouter" href="#ajout-pack" data-ajouter hidden>+ Ajouter<span class="pc">&nbsp;un pack</span></a>
   </div>
-  <div data-mes-packs></div>
-  <form class="acces espace-form" id="espace-form" novalidate>
-    <label>Clé de licence du pack ou code de pack
-      <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
-    </label>
-    <p class="erreur" id="espace-erreur" role="alert"></p>
-    <button class="btn primary" type="submit">Ouvrir mon pack</button>
-  </form>
+  <p class="lead pack-intro" data-intro>Collez la clé de licence de votre pack : chacune de ses applications s’ouvre ensuite d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+  <p class="erreur pack-alerte" data-alerte role="alert"></p>
+  <div data-espace-corps hidden></div>
+  <p class="vh" role="status" data-copie></p>
+  <section class="gerer-packs" data-gerer hidden aria-labelledby="h-gerer">
+    <h2 id="h-gerer">Gérer mes packs</h2>
+    <div data-mes-packs></div>
+    <p class="pack-espace-note">Pour partager une seule application (un budget commun, par exemple), envoyez son code de partage : bouton <span aria-hidden="true">⧉</span> à côté de l’étoile. Il n’ouvre que cette application. La clé du pack ouvre toutes vos applications : gardez-la pour vous.</p>
+  </section>
+  <div class="ajout-pack" id="ajout-pack">
+    <h2 data-titre-ajout hidden>Ajouter un pack</h2>
+    <form class="acces espace-form" id="espace-form" novalidate>
+      <label>Clé de licence du pack ou code de pack
+        <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
+      </label>
+      <p class="erreur" id="espace-erreur" role="alert"></p>
+      <button class="btn primary" type="submit">Ouvrir mon pack</button>
+    </form>
+  </div>
 </section>
-` + pied(`<script src="/assets/packs.js?v=${V}" defer></script>\n`);
+` + pied(`<script>
+/* ESPACE-DEBUT */
+const PRODUITS=${JSON.stringify(produits)};
+const THEMES=${JSON.stringify(themes)};
+/* ESPACE-FIN */
+</script>
+<script src="/assets/espace.js?v=${VE}" defer></script>
+<script src="/assets/packs.js?v=${V}" defer></script>\n`);
 }
 
 // --- Section « Packs » du catalogue /templates/ -----------------------------------------------------
@@ -386,12 +418,12 @@ async function ecrire(chemin, contenu) {
 
 export async function generer() {
   VIGNETTES = lireVignettes(await readFile(RACINE + 'templates/index.html', 'utf8'));
-  const packs = Object.keys(PACKS).map(calculerPack);
+  const packs = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack);
   aucunEnVente = !packs.some((p) => p.enVente);
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));
   await ecrire('packs/composer/index.html', pageComposer(packs));
-  await ecrire('packs/espace/index.html', pageEspace());
+  await ecrire('packs/espace/index.html', await pageEspace());
   const cat = await readFile(RACINE + 'templates/index.html', 'utf8');
   const section = sectionCatalogue(packs);
   const re = /<!-- packs:debut[\s\S]*?<!-- packs:fin -->/;

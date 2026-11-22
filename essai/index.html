@@ -36,7 +36,7 @@
 <nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><b>Essai gratuit</b></nav>
 <section class="contact essai" id="essai">
   <div class="contact-copy">
-    <p class="essai-surtitre">Templates vie personnelle</p>
+    <p class="essai-surtitre">Templates vie personnelle et professionnels</p>
     <h1 class="h-section">Essayez gratuitement pendant 14&nbsp;jours.</h1>
     <p>Sans carte bancaire. Toutes les fonctions, vos données synchronisées sur vos appareils. Si le template vous rend service, vous l'achetez et <b>vous gardez tout ce que vous avez saisi</b>. Sinon, vous n'avez rien à faire.</p>
     <ol class="essai-etapes">
@@ -48,40 +48,91 @@
   <form id="essai-form" novalidate>
     <label class="full">Template à essayer
       <select name="produit" required>
-        <option value="budget-commun" data-prix="1500">Gestion Dépenses Communes · 15 €</option>
-        <option value="budget" data-prix="1500">Mon Budget · 15 €</option>
-        <option value="candidatures" data-prix="1200">Candidatures études, stages, alternance · 12 €</option>
-        <option value="emprunt" data-prix="1500">Capacité d'emprunt et comparateur de prêts · 15 €</option>
-        <option value="musculation" data-prix="1900">Carnet de musculation et cross-training · 19 €</option>
-        <option value="voiture" data-prix="1300">Carnet de voiture · 13 €</option>
-        <option value="sinistre" data-prix="2900">Dossier sinistre habitation · 29 €</option>
-        <option value="etat-des-lieux" data-prix="1900">État des lieux d’entrée et de sortie · 19 €</option>
-        <option value="patrimoine" data-prix="1900">Inventaire valorisé · 19 €</option>
-        <option value="notes" data-prix="1200">Notes et moyennes · 12 €</option>
-        <option value="nutrition" data-prix="1900">Nutrition et dépense énergétique · 19 €</option>
-        <option value="epargne" data-prix="1200">Objectif d'épargne et fonds d'urgence · 12 €</option>
-        <option value="mariage" data-prix="2900">Organisateur de mariage · 29 €</option>
-        <option value="papiers" data-prix="1500">Papiers du foyer · 15 €</option>
-        <option value="travaux" data-prix="2500">Pilote de travaux maison · 25 €</option>
-        <option value="voyage" data-prix="1300">Planificateur de voyage · 13 €</option>
-        <option value="planner" data-prix="1500">Planner horaire · 15 €</option>
-        <option value="memoire" data-prix="1500">Planning de mémoire ou de thèse · 15 €</option>
-        <option value="revision" data-prix="1490">Planning de révision · 14,90 €</option>
-        <option value="dettes" data-prix="1200">Remboursement de dettes · 12 €</option>
-        <option value="investissement-locatif" data-prix="1500">Rentabilité d'un investissement locatif · 15 €</option>
-        <option value="repas" data-prix="1300">Repas de la semaine et liste de courses · 13 €</option>
-        <option value="leasing" data-prix="1200">Simulateur leasing ou achat · 12 €</option>
-        <option value="habitudes" data-prix="1200">Suivi d'habitudes et routines · 12 €</option>
-        <option value="lecture" data-prix="1200">Suivi de lecture · 12 €</option>
-        <option value="abonnements" data-prix="900">Suivi des abonnements · 9 €</option>
-        <option value="tableau-annuel" data-prix="1500">Tableau de bord annuel et roue de vie · 15 €</option>
-        <option value="temps-de-vie" data-prix="1900">Temps de vie · 19 €</option>
-        <option value="sans-voiture" data-prix="900">Vivre sans voiture · 9 €</option>
+        <optgroup label="Vie personnelle">
+          <option value="remerciements" data-prix="1200">Cadeaux reçus et remerciements · 12 €</option>
+          <option value="candidatures" data-prix="1200">Candidatures études, stages, alternance · 12 €</option>
+          <option value="emprunt" data-prix="1500">Capacité d'emprunt et comparateur de prêts · 15 €</option>
+          <option value="musculation" data-prix="1900">Carnet de musculation et cross-training · 19 €</option>
+          <option value="voiture" data-prix="1300">Carnet de voiture · 13 €</option>
+          <option value="demenagement" data-prix="1200">Déménagement · 12 €</option>
+          <option value="sinistre" data-prix="2900">Dossier sinistre habitation · 29 €</option>
+          <option value="etat-des-lieux" data-prix="1900">État des lieux d’entrée et de sortie · 19 €</option>
+          <option value="budget-commun" data-prix="1500">Gestion Dépenses Communes · 15 €</option>
+          <option value="patrimoine" data-prix="1900">Inventaire valorisé · 19 €</option>
+          <option value="budget" data-prix="1500">Mon Budget · 15 €</option>
+          <option value="notes" data-prix="1200">Notes et moyennes · 12 €</option>
+          <option value="nutrition" data-prix="1900">Nutrition et dépense énergétique · 19 €</option>
+          <option value="epargne" data-prix="1200">Objectif d'épargne et fonds d'urgence · 12 €</option>
+          <option value="mariage" data-prix="2900">Organisateur de mariage · 29 €</option>
+          <option value="papiers" data-prix="1500">Papiers du foyer · 15 €</option>
+          <option value="travaux" data-prix="2500">Pilote de travaux maison · 25 €</option>
+          <option value="course-a-pied" data-prix="1500">Plan d'entraînement course à pied · 15 €</option>
+          <option value="voyage" data-prix="1300">Planificateur de voyage · 13 €</option>
+          <option value="planner" data-prix="1500">Planner horaire · 15 €</option>
+          <option value="memoire" data-prix="1500">Planning de mémoire ou de thèse · 15 €</option>
+          <option value="revision" data-prix="1490">Planning de révision · 14,90 €</option>
+          <option value="dettes" data-prix="1200">Remboursement de dettes · 12 €</option>
+          <option value="investissement-locatif" data-prix="1500">Rentabilité d'un investissement locatif · 15 €</option>
+          <option value="repas" data-prix="1300">Repas de la semaine et liste de courses · 13 €</option>
+          <option value="revue-hebdo" data-prix="1200">Revue hebdomadaire et journal de bord · 12 €</option>
+          <option value="leasing" data-prix="1200">Simulateur leasing ou achat · 12 €</option>
+          <option value="habitudes" data-prix="1200">Suivi d'habitudes et routines · 12 €</option>
+          <option value="lecture" data-prix="1200">Suivi de lecture · 12 €</option>
+          <option value="abonnements" data-prix="900">Suivi des abonnements · 9 €</option>
+          <option value="tableau-annuel" data-prix="1500">Tableau de bord annuel et roue de vie · 15 €</option>
+          <option value="temps-de-vie" data-prix="1900">Temps de vie · 19 €</option>
+          <option value="sans-voiture" data-prix="900">Vivre sans voiture · 9 €</option>
+        </optgroup>
+        <optgroup label="Professionnel">
+          <option value="tjm" data-prix="1200">Calculateur de TJM freelance · 12 €</option>
+          <option value="calendrier-editorial" data-prix="1500">Calendrier éditorial · 15 €</option>
+          <option value="visa" data-prix="3900">Circuit de visa des documents · 39 €</option>
+          <option value="compte-rendu" data-prix="1500">Compte rendu et plan d'actions · 15 €</option>
+          <option value="sous-traitants" data-prix="2900">Conformité des sous-traitants · 29 €</option>
+          <option value="contrats" data-prix="2500">Contrats fournisseurs et échéances · 25 €</option>
+          <option value="cout-revient" data-prix="2500">Coût de revient et prix par client · 25 €</option>
+          <option value="crm" data-prix="2500">CRM freelance · 25 €</option>
+          <option value="achats" data-prix="1900">Demandes d'achat et fournitures · 19 €</option>
+          <option value="document-unique" data-prix="2900">Document unique d'évaluation des risques · 29 €</option>
+          <option value="entretiens-annuels" data-prix="1900">Entretiens annuels et professionnels · 19 €</option>
+          <option value="devis" data-prix="2900">Générateur de devis · 29 €</option>
+          <option value="competition" data-prix="4900">Gestion de compétition sportive · 49 €</option>
+          <option value="flotte" data-prix="3900">Gestion de flotte de véhicules · 39 €</option>
+          <option value="parc-informatique" data-prix="3500">Gestion de parc informatique · 35 €</option>
+          <option value="taches" data-prix="1900">Gestionnaire de tâches · 19 €</option>
+          <option value="inscriptions" data-prix="2900">Inscriptions associatives · 29 €</option>
+          <option value="references-plaquette" data-prix="1900">Kit références et plaquette · 19 €</option>
+          <option value="reserves" data-prix="3900">Levée de réserves · 39 €</option>
+          <option value="micro-entreprise" data-prix="2500">Livre recettes-dépenses micro-entreprise · 25 €</option>
+          <option value="maintenance" data-prix="3900">Maintenance préventive · 39 €</option>
+          <option value="notes-de-frais" data-prix="1500">Notes de frais et indemnités kilométriques · 15 €</option>
+          <option value="onboarding" data-prix="1900">Onboarding et offboarding salarié · 19 €</option>
+          <option value="bascule" data-prix="2900">Pilotage d'une journée de bascule · 29 €</option>
+          <option value="parcs-multi-sites" data-prix="4900">Pilotage de parcs multi-sites · 49 €</option>
+          <option value="prospection" data-prix="2500">Pipeline de prospection B2B · 25 €</option>
+          <option value="planning-equipe" data-prix="3500">Planning d'équipe et staffing · 35 €</option>
+          <option value="gantt" data-prix="4500">Planning Gantt rapide · 45 €</option>
+          <option value="appel-decouverte" data-prix="1200">Préparateur d'appel découverte · 12 €</option>
+          <option value="propositions" data-prix="1900">Propositions commerciales · 19 €</option>
+          <option value="non-conformites" data-prix="2000">Registre des non-conformités · 20 €</option>
+          <option value="doe" data-prix="2900">Registre du DOE · 29 €</option>
+          <option value="impayes" data-prix="1900">Relance des impayés · 19 €</option>
+          <option value="salles" data-prix="1900">Réservation de salles et bureaux · 19 €</option>
+          <option value="stocks" data-prix="2500">Stocks et inventaire · 25 €</option>
+          <option value="suivi-chantier" data-prix="4000">Suivi de chantier par lot · 40 €</option>
+          <option value="tva" data-prix="1900">Suivi de TVA · 19 €</option>
+          <option value="appels-offres" data-prix="1500">Suivi des appels d'offres et candidatures · 15 €</option>
+          <option value="conges" data-prix="1900">Suivi des congés et absences · 19 €</option>
+          <option value="suivi-temps" data-prix="1900">Suivi du temps et rentabilité par mission · 19 €</option>
+          <option value="pilotage-pme" data-prix="3900">Tableau de bord de pilotage PME · 39 €</option>
+          <option value="tresorerie" data-prix="2900">Trésorerie prévisionnelle 12 mois · 29 €</option>
+          <option value="verifications" data-prix="3500">Vérifications réglementaires · 35 €</option>
+        </optgroup>
       </select>
     </label>
     <label>Prénom <small>(facultatif)</small><input name="prenom" autocomplete="given-name" maxlength="40" placeholder="Votre prénom"></label>
     <label>E-mail<input required type="email" name="email" autocomplete="email" inputmode="email" placeholder="vous@exemple.fr"></label>
-    <label class="full essai-accord"><input type="checkbox" name="consentement" required> <span>J'accepte de recevoir les e-mails liés à mon essai (mon code, un rappel avant la fin, la fin de l'essai, l'effacement des données) : quatre au plus, arrêtables à tout moment.</span></label>
+    <label class="full essai-accord"><input type="checkbox" name="consentement" required> <span>J'accepte de recevoir les e-mails liés à mon essai (mon code, des conseils de prise en main, un rappel avant la fin, la fin de l'essai, l'effacement des données) : cinq au plus, arrêtables à tout moment.</span></label>
     <label class="full essai-accord"><input type="checkbox" name="nouveautes"> <span><b>Facultatif</b> : recevoir aussi les nouveautés QME (nouveaux templates, offres). Désinscription en un clic dans chaque e-mail.</span></label>
     <label class="hp-field" aria-hidden="true">Votre site web<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label>
     <div class="form-end full">

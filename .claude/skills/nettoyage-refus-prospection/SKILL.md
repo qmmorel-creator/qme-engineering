@@ -70,6 +70,7 @@ Vérifier aussi `docs/prospection/desinscrits.md` : une adresse ou un domaine qu
 
 ```html
 <div>Bonjour {Prénom}, et merci de votre retour !<br><br>C'est bien compris.<br><br>Si vous connaissez des {confrères | collègues ou des connaissances} qui pourraient être intéressés par des solutions personnalisées, n'hésitez pas à transmettre mes coordonnées.<br><br>Bonne continuation !<br><br>Quentin</div>
+<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous ne souhaitez plus recevoir d'informations de QME&nbsp;? <a href="https://qm-engineering.fr/ne-plus-recevoir/?email={adresse encodée}" style="color:#6b6660">Ne plus recevoir les informations</a> (ou répondez simplement «&nbsp;stop&nbsp;»).</p>
 ```
 
 - `{Prénom}` : celui qui signe le refus (David, Stéphanie). S'il n'y a pas de prénom sûr :
@@ -77,7 +78,9 @@ Vérifier aussi `docs/prospection/desinscrits.md` : une adresse ou un domaine qu
 - « confrères » pour un artisan ou un professionnel d'un métier, sinon « collègues ou des connaissances ».
 - Si le prospect dit garder l'idée ou revenir plus tard, la deuxième ligne devient (variante de Quentin, 17/11/2026) :
   « C'est bien compris, et merci de garder le contact : n'hésitez pas à revenir vers moi si le besoin se présente plus tard. »
-- Aucun autre ajout (pas de lien, pas de produit, pas de relance).
+- `{adresse encodée}` : l'adresse de l'expéditeur du refus (`@` → `%40`, `+` → `%2B`).
+- Aucun autre ajout que la mention d'opposition (pas d'autre lien, pas de produit, pas de relance). La mention est
+  obligatoire (règle absolue, `docs/templates/communication/REGLES-PROSPECTION.md`).
 - L'outil `reply` envoie depuis `quentin.morel@qm-engineering.fr`, même sur un fil ouvert depuis l'adresse Gmail.
 - Une seule réponse par fil, jamais deux.
 
@@ -90,7 +93,11 @@ Pour chaque fil classé :
 3. Archiver : `unlabel_thread` avec `INBOX` (et `UNREAD`). **Exception** : `Intéressé` reste en boîte de réception.
 4. Hostile ou « stop » : ajouter une ligne à `docs/prospection/desinscrits.md` (date, organisation, adresses et
    domaines à exclure, citation courte). Refus poli qui demande le retrait de la liste : même ligne, en précisant
-   « refus poli, retrait demandé ».
+   « refus poli, retrait demandé ». **Et**, le jour même, inscrire les adresses (et les domaines d'une réponse hostile
+   d'organisation) sur la liste d'opposition du site : `POST /api/compte/opposition` (règle absolue,
+   `docs/templates/communication/REGLES-PROSPECTION.md` § 3).
+5. La réponse type aux refus polis porte, en dernier paragraphe, la mention d'opposition
+   (`REGLES-PROSPECTION.md` § 2).
 
 ## 5. Journal et compte rendu
 

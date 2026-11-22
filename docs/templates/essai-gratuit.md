@@ -1,7 +1,7 @@
 # Essai gratuit des templates « vie personnelle »
 
 Décision de Quentin du 18/11/2026 : **14 jours d'essai gratuit, sans carte bancaire**, pour chaque template vie
-personnelle en vente ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
+personnelle en vente, **étendue aux templates professionnels le 21/11/2026** (`POUR_ESSAI` dans `netlify/lib/essais.mjs`) ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
 sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quentin**.
 
 ## Parcours du client
@@ -79,6 +79,12 @@ environ 500 envois par jour, large pour ce volume.
 - **`/admin/essais/`** (code administrateur `ADM-…`) : tous les essais conservés (en cours, terminés, achetés, données reprises
   ou non), jours restants, inscription aux nouveautés ; export CSV. Un essai disparaît à l'effacement de ses données.
   Ces adresses ne servent qu'aux e-mails de l'essai : la prospection passe par `/admin/contacts/`.
+- **`/admin/suivi/`** (même code `ADM-…`, 21/11/2026) : un essai par ligne, puis sa séquence sur une ligne J0 → J+44 :
+  e-mails partis (date et heure enregistrées dans `mails`), à venir (heure de Paris de la tâche de 8 h 10 UTC), en
+  rattrapage ou non envoyés, bifurcation à l'achat (`paye` ou `achete`) ou à l'arrêt des rappels, texte de chaque e-mail.
+  L'API `/api/essai/essais` renvoie pour cela, en plus, `envois` (dates par e-mail), `paye`, `produit` et `prix`
+  (centimes). Lien « Suivi » sur chaque ligne de `/admin/essais/`. Les e-mails d'achat ne sont pas enregistrés dans
+  l'essai : ils n'apparaissent pas sur la ligne.
 
 ## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
 
@@ -108,14 +114,15 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
   l'API des templates (`/api/templates/*`) accepte le code d'essai et renvoie `essai` (jours restants, fin, prix,
   lien d'achat) ; `PUT` refusé après la fin ; report à la connexion par clé de licence (`reporterEssai`).
 - **Tâche quotidienne** `netlify/functions/essais-quotidien.mjs` (8:10 UTC) : rappels, effacement.
-- **Templates ouverts** : `PRODUITS_ESSAI` = `pour: 'perso'` dans `outils/packs/donnees.mjs`, identifiant Gumroad
-  dans `PRODUITS`, prix > 0 (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
+- **Templates ouverts** : `PRODUITS_ESSAI` = `pour` dans `POUR_ESSAI` (perso et pro), identifiant Gumroad dans `PRODUITS`,
+  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (33 perso et 43 pro au 22/11/2026 ; 29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
 - **Application** : module commun `assets/essai.js`, chargé avant `app.js` (`data-produit`, `data-slug`). Il ne
   modifie pas le code des templates : il lit les réponses de l'API, affiche le bandeau, bloque les modifications
   (actions permises : liste `PERMIS`), joint le code d'essai à la connexion par clé.
 - **Site** : `node outils/essai/generer.mjs` génère `/essai/` et ajoute l'essai aux pages catalogue (bouton, prix,
   question « Y a-t-il un essai gratuit ? », rappel) ; puis `node outils/seo/donnees-structurees.mjs` et
-  `node outils/sitemap/generer.mjs`.
+  `node outils/sitemap/generer.mjs`. Les pages de pack (`node outils/packs/generer.mjs`) annoncent aussi l'essai sous les boutons
+  d'achat et proposent « Essai gratuit » sur chaque outil (22/11/2026), comme la fiche Gumroad du Pack Étudiant.
 
 ## Vérifier
 
@@ -129,6 +136,8 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 ## Mesure (GoatCounter)
 
-Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
+Clics `essai-<slug>` (bouton de la page catalogue), `essai-pack-<pack>-<slug>` (carte d'un outil sur une page de pack), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
 Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
+Circuit technique (client, Gumroad, site, données, e-mails) : `docs/templates/communication/essai/workflow-essai-achat.png`
+(source `workflow.mjs`).

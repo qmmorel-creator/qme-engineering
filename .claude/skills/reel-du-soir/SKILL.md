@@ -41,7 +41,9 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
 ## 2. Fabriquer
 
 1. Choisir le produit (règle 3) et un **angle** en rotation avec les Reels précédents : problème concret, chiffre
-   vérifiable, avant / après, méthode, question. Écrire le script : accroche (3 lignes au plus), 2 ou 3 plans de
+   vérifiable, avant / après, méthode, question. **Référence (20/11/2026) : les 7 Reels de `REGLES-CONTENU.md` § 3 bis**
+   (vrai problème avec tension → bascule → solution ; texte de la scène 1 sans animation d'entrée ni rideau, lisible
+   dès la première image). Écrire le script : accroche (3 lignes au plus), 2 ou 3 plans de
    démo, fin « <Produit> · démo gratuite · qm-engineering.fr ».
 2. `npm run dev:templates`, puis captures Playwright de `http://localhost:8888/templates/<slug>/?demo` (viewport 430 px,
    dpr 2, bandeau démo et barre d'onglets masqués) dans `docs/templates/communication/instagram/production/captures/`.
@@ -61,7 +63,7 @@ Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a
    couverture (`image/png`).
 2. Doc de légende dans le dossier **Textes Instagram**, titre `IG-nn · <titre interne> · légende`, format strict de la
    routine : texte (accroche, 3 ou 4 lignes utiles, « Démo gratuite avec des données fictives : lien en bio. » ou,
-   pour un template vie personnelle, « 14 jours d'essai gratuit, sans carte : lien en bio. » (`REGLES-CONTENU.md` § 7),
+   pour un template en vente (vie personnelle ou pro), « 14 jours d'essai gratuit, sans carte : lien en bio. » (`REGLES-CONTENU.md` § 7),
    3 à 5 hashtags `#Mot`), rien d'autre ; argent / santé : « ne remplace pas un avis professionnel » si utile.
 3. Ligne **Instagram** à sa place chronologique : ID `IG-` + plus grand numéro + 1, date choisie, heure **21:00**,
    statut « Programmé », Thème « Reel du soir », Titre interne `Reel · <titre>`, Doc (ID et lien), fichiers

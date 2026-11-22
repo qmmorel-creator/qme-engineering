@@ -266,3 +266,13 @@ test('exports CSV et calendrier', () => {
   assert.ok(ics.trim().endsWith('END:VCALENDAR'));
   for (const ligne of ics.split('\r\n')) assert.ok(ligne.length <= 75, `ligne pliée : ${ligne}`);
 });
+
+test('export .ics : lignes pliées à 75 octets sans couper un accent ni un emoji (audit du 22/11/2026)', () => {
+  const c = C({ id: 'ics', organisme: 'École 😀 Supérieure « Data » ; Lyon, '.repeat(5), statut: 'entretien', dates: { entretien: '2026-12-01', heure: '14:00' } });
+  const ics = R.versIcs(R.evenements([c], '2026-11-22'), { nomNature: (e) => e.nature }, '20261122T000000Z');
+  for (const l of ics.split('\r\n')) assert.ok(Buffer.byteLength(l, 'utf8') <= 75, l);
+  assert.doesNotMatch(ics, /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/);
+  // Dépliée, la ligne SUMMARY redonne le texte complet.
+  const deplie = ics.replace(/\r\n /g, '');
+  assert.ok(deplie.includes('École 😀 Supérieure « Data » \\; Lyon\\, '));
+});
