@@ -53,7 +53,12 @@
     for (const k of c.cles) {
       if (k.type === 'pack') { if (!packs.some((x) => norm(x) === norm(k.code))) packs.push(k.code); continue; }
       const cle = `qme-${k.p.toLowerCase()}-code`, actuel = E.lire(cle);
-      if (actuel && actuel !== 'DEMO') continue;
+      // Un code présent n'est jamais remplacé, sauf un code d'essai quand le compte a l'achat : la clé achetée prend
+      // sa place et le code d'essai reste dans qme-<pre>-essai, qu'essai.js joint à la connexion suivante pour que
+      // le serveur reprenne les données de l'essai (même chemin que « J'ai acheté »).
+      const essaiLocal = E.lire(`qme-${k.p.toLowerCase()}-essai`);
+      const remplacerEssai = k.type === 'template' && actuel && essaiLocal && norm(actuel) === norm(essaiLocal);
+      if (actuel && actuel !== 'DEMO' && !remplacerEssai) continue;
       garder(cle, k.code);
       if (k.type === 'essai') garder(`qme-${k.p.toLowerCase()}-essai`, k.code);
     }
