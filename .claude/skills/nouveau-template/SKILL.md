@@ -177,7 +177,9 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
      pont vers le sur mesure (« Besoin de plus ? … je construis la version sur mesure »), « Démo libre et
      contact : lien en bio », 5 hashtags au plus (jeux du kit) ; aucun lien dans la légende ;
    - texte alternatif de chaque vue ; story d'annonce (gabarit `story`, autocollant lien vers la démo).
-4. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations**
+4. **`prospects.md`** : liste de prospects potentiels **sous forme de segments et d'organisations** ; tout e-mail
+   qui en découle suit la règle absolue de `docs/templates/communication/REGLES-PROSPECTION.md` (vérifier la liste
+   d'opposition, mention « Ne plus recevoir les informations » en dernier paragraphe)
    (jamais de données personnelles collectées sur des particuliers) : pour chaque segment, pourquoi il a
    le problème, où le trouver (annuaires, réseaux, salons, groupes), qui contacter (fonction, pas nom),
    message d'approche en 3 lignes, canal (LinkedIn, e-mail professionnel public, partenariat, affiliation

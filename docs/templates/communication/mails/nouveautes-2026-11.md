@@ -7,12 +7,21 @@ Gmail de Quentin (SMTP de l'essai).
 
 ## Destinataires
 
-- **Testeurs inscrits aux nouveautés** (case facultative du formulaire d'essai, `contact/…`) : version testeur, lien
-  de désinscription des nouveautés.
+- **Testeurs inscrits aux nouveautés** (case facultative du formulaire d'essai, `contact/…`) : version testeur.
 - **Acheteurs** (compte avec un achat rangé par le ping Gumroad ou l'import) : version acheteur, information sur le
-  service acheté, lien « Ne plus recevoir ces annonces » (`/api/compte/stop`, compte.sansAnnonces).
+  service acheté.
+- Un seul lien en pied pour tous : **« Ne plus recevoir les informations »** (`/api/compte/stop`) → liste
+  d'opposition `opposition/…` (`netlify/lib/preferences.mjs`) : fiche nouveautés effacée, compte marqué, plus aucune
+  annonce. Le lien de désinscription des e-mails d'essai y inscrit aussi. Un nouveau consentement (case cochée lors
+  d'un essai) lève l'opposition. Conservation : 3 ans.
 - **Exclus** : testeurs non inscrits aux nouveautés (consentement limité aux e-mails de l'essai), adresses
-  `ESSAI_TESTEURS`, comptes désinscrits. Une seule fois par adresse (`annonce/nouveautes-2026-11/…`).
+  `ESSAI_TESTEURS`, liste d'opposition. Une seule fois par adresse (`annonce/nouveautes-2026-11/…`).
+
+## Registre des préférences
+
+`/admin/registre/` (code administrateur) ou `GET /api/compte/registre` (`?format=csv`) : une ligne par adresse
+(profil acheteur / testeur, applications achetées, essais, nouveautés depuis, informations : abonné / désinscrit / non
+inscrit, date et origine de la désinscription, dernière annonce reçue). Vue calculée, aucune donnée en plus.
 
 ## Procédure (après publication)
 

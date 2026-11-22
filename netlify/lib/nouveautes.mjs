@@ -1,10 +1,9 @@
 // Annonce « Il y a du nouveau » du 22/11/2026 (demande de Quentin) : comptes acheteurs (connexion par e-mail),
 // espace « Mes applications » personnalisé, retour rapide depuis chaque application.
 // Deux publics, deux pieds de message :
-//  - testeurs inscrits aux nouveautés (case facultative du formulaire d'essai, contact/<empreinte>) : lien de
-//    désinscription des nouveautés ;
-//  - acheteurs (compte avec un achat) : information sur le service acheté, lien « ne plus recevoir ces annonces »
-//    (compte.sansAnnonces).
+//  - testeurs inscrits aux nouveautés (case facultative du formulaire d'essai, contact/<empreinte>) ;
+//  - acheteurs (compte avec un achat) : information sur le service acheté.
+// Un seul lien en pied, « Ne plus recevoir les informations » (/api/compte/stop) : liste d'opposition (preferences.mjs).
 // Les testeurs qui n'ont pas coché la case ne reçoivent rien : ils n'ont consenti qu'aux e-mails de leur essai.
 // Envoi : POST /api/compte/annonce (comptes.mjs), images servies par le site (assets/mail/nouveautes-2026-11/).
 import { SIGNATURE, SITE } from './essais.mjs';
@@ -37,7 +36,7 @@ export function contenuAnnonce({ type, prenom = '', stop }) {
   const pied = type === 'acheteur'
     ? 'Vous recevez cet e-mail parce que vous avez acheté un template QME : il présente les nouveautés du service que vous utilisez.'
     : 'Vous recevez cet e-mail parce que vous avez demandé à recevoir les nouveautés QME lors d’un essai gratuit.';
-  const libelleStop = type === 'acheteur' ? 'Ne plus recevoir ces annonces' : 'Se désinscrire des nouveautés';
+  const libelleStop = 'Ne plus recevoir les informations';
 
   const texte = `${bonjour}
 

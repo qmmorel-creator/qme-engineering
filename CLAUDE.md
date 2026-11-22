@@ -7,6 +7,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Prospection : mention d'opposition (règle absolue)
+
+- **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
+  d'abord que l'adresse et son domaine ne sont pas sur la liste d'opposition (`GET /api/compte/opposition`), puis
+  terminer **toujours** par la mention « Ne plus recevoir les informations » avec le lien
+  `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse>` (ou « répondez stop »). Une réponse « stop » ou
+  hostile est inscrite le jour même sur la liste d'opposition. Sans exception : `docs/templates/communication/REGLES-PROSPECTION.md`.
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
