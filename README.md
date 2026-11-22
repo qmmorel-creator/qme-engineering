@@ -80,7 +80,9 @@ Site promotionnel de Quentin Morel Engineering (QME).
   jours. Indicateurs (visites, essais, ventes, revenu, abonnés réseaux, abonnés aux informations), audience du site
   (GoatCounter : pages vues par jour, pages, sources, pays), entonnoir visites → essais → ventes, essais (par jour, par
   template, conversion, tests exclus), ventes Gumroad (revenu par jour, produits, sources), réseaux (abonnés, vues des
-  publications), comptes et préférences, intérêts. API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
+  publications), comptes et préférences, intérêts, **données saisies dans les applications** (espaces de données d'achat et
+  d'essai par application, modifiés sur la période, nombre d'éléments, dernière modification ; espaces administrateur et
+  essais de test exclus ; contenu jamais transmis, un espace d'achat n'est relié à aucune personne). API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
   source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », à créer),
   `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
   via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
@@ -382,7 +384,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   anonymes ou nominatives (prénom et initiale, ou pseudonyme), note automatique, réponses courtes non reconnues « à
   vérifier » ; statistiques par question et par étiquette, questions trop faciles ou trop difficiles, distracteur le plus
   choisi. **RGPD** : mention au premier lancement, export JSON et CSV, effacement d'un apprenant, d'une session ou de tous
-  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le pack Enseignant et formateur.
+  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le Pack Écoles et formateurs.
   Règles dans `regles.js`, tests `outils/templates/quiz.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
@@ -598,7 +600,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   remboursement intégré. Données de santé : consentement explicite au premier lancement et effacement, comme la
   nutrition (`/confidentialite/`). Règles dans `regles.js`, tests `outils/templates/remboursements-sante.test.mjs`.
 - `templates/emprunt/` (CPT) : **capacité d'emprunt et comparateur de prêts** (T85), prêt, mise en vente prochaine
-  (15 €, primo-accédants et investisseurs ; packs visés « Reprendre la main sur son argent » et « Propriétaire »).
+  (15 €, primo-accédants et investisseurs ; packs visés « Papiers et décisions d’argent » et « Propriétaire »).
   Profil d'un ou deux emprunteurs (revenus, loyers retenus à la part saisie, crédits en cours), mensualité maximale au
   taux d'effort saisi et montant empruntable au taux, à la durée et à l'assurance saisis, reste à vivre ; seuils de
   départ 35 % et 25 ans (décision D-HCSF-2021-7, source et date de vérification affichées, modifiables) ; budget du
@@ -685,7 +687,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   tracées **sans courbe de référence** (licences OMS et AFPA–Inserm incompatibles ou non établies), rendez-vous et
   récapitulatif imprimable, deux parents sur deux appareils ; **données de santé d'un enfant : consentement explicite avant
   tout enregistrement**, effacement complet, avertissement médical ; **RGPD à trancher par Quentin avant la vente**). BBE
-  rejoint le Pack Maison et famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
+  rejoint le Pack Maison et famille, PRG le Pack Écoles et formateurs. Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
 - `templates/course-a-pied/` (CRS) : **plan d'entraînement course à pied** (T97), prêt, « Mise en vente prochaine » (15 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/course-a-pied/gumroad.json`). Chrono de référence,
