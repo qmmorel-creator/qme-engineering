@@ -123,6 +123,8 @@
       }
       garder(CLE, null); compte = null; signaler();
     },
+    // Interrupteur « Recevoir les informations QME » (liste d'opposition côté serveur).
+    async informations(on) { compte = (await api('/prefs', { methode: 'PUT', corps: { informations: Boolean(on) } })).compte; signaler(); return compte.informations; },
     async deconnecterPartout() { await api('/deconnexion', { methode: 'POST' }); this.deconnecter(); },
     async supprimer() { await api('/', { methode: 'DELETE' }); this.deconnecter(); },
   };

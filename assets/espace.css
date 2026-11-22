@@ -91,3 +91,24 @@
 .t-actions [data-masquer][aria-pressed="true"]{color:var(--rouge)}
 .esp [data-z="masques"] summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
 .esp [data-z="masques"] .esp-tuile:not(.en-edition)>a{opacity:.7}
+/* Lanceur d'applications (espace personnel, option grille) : icônes façon écran d'accueil */
+.esp-tuiles.apps{grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:18px 12px}
+.app{position:relative;min-width:0}
+.app>a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;border-radius:18px;text-decoration:none;color:var(--encre);text-align:center;transition:background .15s}
+.app>a:hover{background:var(--surface);box-shadow:0 6px 18px rgba(36,34,31,.08)}
+.app>a:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.app-icone{width:64px;height:64px;border-radius:18px;overflow:hidden;display:grid;place-items:center;background:var(--surface);box-shadow:0 1px 0 rgba(36,34,31,.06),0 4px 12px rgba(36,34,31,.10);border:1px solid var(--trait)}
+.app-icone img{width:100%;height:100%;display:block}
+.app-nom{font-size:14px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}
+.app .esp-badge{align-self:center;margin-top:-2px;font-size:10px;padding:2px 7px}
+.app .esp-badge.esp-achete,.app .esp-badge.esp-admin{display:none}
+.app-etoile{position:absolute;top:2px;right:4px;width:34px;height:34px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--discret);opacity:0;transition:opacity .15s}
+.app-etoile svg{width:18px;height:18px}
+.app:hover .app-etoile,.app-etoile:focus-visible,.app-etoile[aria-pressed="true"]{opacity:1}
+@media (hover:none){.app-etoile{opacity:.55}}
+.esp-grille .sauts button{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);font:600 15px Outfit,sans-serif;white-space:nowrap;color:var(--encre);cursor:pointer}
+.esp-grille .sauts button[style]::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+.esp-grille .sauts button[aria-pressed="true"]{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.esp-grille .sauts button[aria-pressed="true"] small{color:inherit;opacity:.75}
+@media (max-width:640px){.esp-tuiles.apps{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 4px}.app-icone{width:56px;height:56px;border-radius:15px}.app-nom{font-size:12px}.app>a{padding:8px 2px}}
+@media (prefers-reduced-motion:reduce){.app>a,.app-etoile{transition:none}}
