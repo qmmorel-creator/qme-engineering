@@ -9,12 +9,13 @@
 // (ajouterAchat) ; en se connectant avec cette adresse, l'acheteur retrouve tout. Essais : lus dans l'index des
 // essais par adresse (email/<empreinte>/<produit>).
 //
-// Stockage (store des essais, Francfort) : compte/<empreinte de l'adresse> ; lien/<nonce> (lien déjà utilisé) ;
+// Stockage (store des essais, Francfort) : compte/<empreinte de l'adresse> ; lien/<nonce> (lien déjà utilisé) ; code/<empreinte> (code
+// à 6 chiffres du dernier lien demandé, haché, 5 essais) ;
 // limite/<empreinte> (envois de liens). Jetons signés avec une clé dérivée de TEMPLATES_SECRET.
 //
 // Routes (préfixe /api/compte) :
 //  POST   /lien      { email }              → 200 { ok } (toujours, même adresse inconnue) ; 429 si trop d'envois
-//  POST   /session   { lien }               → { ok, jeton, compte } (lien à usage unique, 15 min)
+//  POST   /session   { lien } ou { email, code } → { ok, jeton, compte } (lien ou code à usage unique, 15 min)
 //  GET    /          (Authorization: Bearer) → { compte }
 //  POST   /cles      { cles: [{ p, code }] } → { compte } (applications de l'appareil ajoutées au compte)
 //  PUT    /prefs     { prenom?, prefs }      → { compte }
@@ -29,12 +30,14 @@
 //  GET    /registre  (?format=csv)            → registre des préférences d'information (preferences.mjs)
 //  GET    /opposition?email=                   → { opposition: null | { par, date, source } } (adresse ou domaine)
 //  POST   /opposition/verifier { emails }      → [{ email, opposition }] (avant tout envoi de prospection)
+//         Ces deux lectures acceptent aussi l'en-tête X-Opposition-Token (jeton OPPOSITION_TOKEN, 32 caractères au
+//         moins) : lecture seule de la liste, pour les sessions de prospection, sans le code administrateur.
 //  POST   /opposition { emails?, domaines?, source? } → ajout groupé (réponses « stop », liste docs/prospection/)
 // Public :
 //  POST   /opposition { email }               → page /ne-plus-recevoir/ (lien de tout e-mail de prospection)
 //  GET    /stop?e=&s=                          → « Ne plus recevoir les informations » (lien signé du pied de l'annonce,
 //                                                 acheteurs et testeurs) : liste d'opposition (preferences.mjs)
-import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHmac, randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
 import { estAdmin } from './interets.mjs';
 import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
@@ -42,8 +45,9 @@ import { enregistrerOpposition, leverOpposition, enregistrerDomaine, oppositionD
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 
 export const DUREE_LIEN = 15 * 60_000;
+const ESSAIS_CODE = 5; // codes à 6 chiffres faux tolérés par demande
 export const DUREE_SESSION = 90 * 86_400_000;
-const LIMITE = { parHeure: 5, intervalle: 30_000 };
+const LIMITE = { parHeure: 10, intervalle: 30_000 };
 const MAX_CLES = 300;
 
 const json = (statut, corps) => new Response(JSON.stringify(corps), {
@@ -149,18 +153,22 @@ async function vue(secret, store, compte, aujourdhui) {
   };
 }
 
-export function contenuMailLien({ lien, prenom = '' }) {
+export function contenuMailLien({ lien, code = '', prenom = '' }) {
   const texte = `${prenom ? `Bonjour ${prenom},` : 'Bonjour,'}
 
 Voici votre lien pour ouvrir votre espace QME et retrouver toutes vos applications, sur cet appareil comme sur les autres :
 
 ${lien}
+${code ? `
+Le lien s'ouvre dans un autre navigateur que celui où vous l'avez demandé ? Saisissez plutôt ce code dans la page restée ouverte :
 
-Il est valable 15 minutes et ne sert qu'une fois. Si vous n'avez rien demandé, ignorez cet e-mail : personne ne peut se connecter sans ce lien.
+${code.slice(0, 3)} ${code.slice(3)}
+` : ''}
+Il est valable 15 minutes et ne sert qu'une fois. Si vous n'avez rien demandé, ignorez cet e-mail : personne ne peut se connecter sans ce ${code ? 'lien ni ce code' : 'lien'}.
 
 ${SIGNATURE}`;
   return {
-    objet: 'Votre lien de connexion QME',
+    objet: code ? `Votre code de connexion QME : ${code}` : 'Votre lien de connexion QME',
     texte: `${texte}\n\n—\nVous recevez cet e-mail parce que quelqu'un a demandé à se connecter à l'espace QME avec cette adresse.`,
     html: enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que quelqu'un a demandé à se connecter à l'espace QME avec cette adresse.</p>`),
   };
@@ -211,7 +219,7 @@ async function destinataires({ secret, store, exclure = [] }) {
   return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)) && !domaines.has(d.email.split('@')[1]));
 }
 
-export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad }) {
+export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '' }) {
   if (!secret || secret.length < 32 || !store) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/compte/, '').replace(/\/$/, '') || '/';
   const methode = requete.method;
@@ -235,14 +243,17 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
   // Opposition : page publique /ne-plus-recevoir/ (une adresse), ou administrateur (ajout groupé, vérification).
   if (chemin === '/opposition' || chemin === '/opposition/verifier') {
     const estAdm = estAdmin(requete.headers.get('x-admin') || '', { secret, admin });
+    // Lecture seule (vérification avant envoi) : code administrateur ou jeton dédié OPPOSITION_TOKEN.
+    const jeton = String(requete.headers.get('x-opposition-token') || '').trim();
+    const peutLire = estAdm || (String(jetonOpposition).length >= 32 && egal(jeton, String(jetonOpposition)));
     if (chemin === '/opposition' && methode === 'GET') {
-      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      if (!peutLire) return json(401, { erreur: 'Code administrateur ou jeton de lecture requis.' });
       const email = normEmail(new URL(requete.url).searchParams.get('email'));
       if (!emailValide(email)) return json(400, { erreur: 'Adresse e-mail invalide.' });
       return json(200, { email, opposition: await oppositionDe(store, secret, email) });
     }
     if (chemin === '/opposition/verifier' && methode === 'POST') {
-      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      if (!peutLire) return json(401, { erreur: 'Code administrateur ou jeton de lecture requis.' });
       const emails = (Array.isArray(corps.emails) ? corps.emails : []).slice(0, 500).map(normEmail).filter(emailValide);
       return json(200, { resultats: await Promise.all(emails.map(async (email) => ({ email, opposition: await oppositionDe(store, secret, email) }))) });
     }
@@ -314,25 +325,47 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     const cleLimite = `limite/${cleEmail(secret, email)}`;
     const envois = ((await store.get(cleLimite))?.t || []).filter((x) => t - x < 3_600_000);
     if (envois.length >= LIMITE.parHeure || (envois.length && t - Math.max(...envois) < LIMITE.intervalle)) {
-      return json(429, { erreur: 'Un lien vient déjà de partir vers cette adresse. Regardez vos e-mails (et les indésirables), ou réessayez dans quelques minutes.' });
+      // codeValable : le code du dernier e-mail sert encore (moins de 15 min) ; reessayerA : prochain envoi possible.
+      const dernier = Math.max(...envois), codeValable = t - dernier < DUREE_LIEN;
+      const reessayerA = new Date(envois.length >= LIMITE.parHeure ? Math.min(...envois) + 3_600_000 : dernier + LIMITE.intervalle).toISOString();
+      return json(429, { erreur: 'Un lien vient déjà de partir vers cette adresse. Regardez vos e-mails (et les indésirables), ou réessayez dans quelques minutes.', codeValable, reessayerA });
     }
     if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
     const compte = await store.get(cleCompte(secret, email));
-    const lien = `${SITE}/connexion/?lien=${jetonLien(secret, email, t)}`;
-    const m = contenuMailLien({ lien, prenom: compte?.prenom });
+    const jeton = jetonLien(secret, email, t), code = String(randomInt(0, 1_000_000)).padStart(6, '0');
+    const lien = `${SITE}/connexion/?lien=${jeton}`;
+    const m = contenuMailLien({ lien, code, prenom: compte?.prenom });
     try { await envoyer({ a: email, objet: m.objet, texte: m.texte, html: m.html }); } catch (x) {
       console.error('E-mail de connexion impossible', x);
       return json(502, { erreur: 'L\'e-mail n\'a pas pu partir. Réessayez dans un instant.' });
     }
     await store.set(cleLimite, { t: [...envois, t] });
+    // Code de secours (autre navigateur que celui du lien) : seul le dernier demandé vaut ; même usage unique que le lien.
+    const l = lireJeton(secret, 'lien', jeton, t);
+    await store.set(`code/${cleEmail(secret, email)}`, { c: signer(secret, 'code', `${email}.${code}`), n: l.n, x: l.x, essais: 0 });
     return json(200, { ok: true });
   }
 
   // Lien cliqué : session ouverte, compte créé au premier passage.
   if (chemin === '/session' && methode === 'POST') {
-    const l = lireJeton(secret, 'lien', corps.lien, t);
-    if (!l?.e || !l.n) return json(401, { erreur: 'Ce lien n\'est plus valable (15 minutes, une seule fois). Demandez-en un nouveau.' });
-    if (await store.get(`lien/${l.n}`)) return json(401, { erreur: 'Ce lien a déjà servi. Demandez-en un nouveau.' });
+    let l;
+    if (corps.code !== undefined) {
+      // Code à 6 chiffres saisi dans la page où le lien a été demandé.
+      const email = normEmail(corps.email), code = String(corps.code || '').replace(/\D/g, '');
+      const cleCode = `code/${cleEmail(secret, email)}`, c = emailValide(email) ? await store.get(cleCode) : null;
+      const refus = 'Ce code n\'est pas valable (15 minutes, une seule fois). Vérifiez-le ou demandez un nouveau lien.';
+      if (!c || c.x <= t || c.essais >= ESSAIS_CODE) return json(401, { erreur: refus });
+      if (code.length !== 6 || !egal(signer(secret, 'code', `${email}.${code}`), c.c)) {
+        c.essais += 1; await store.set(cleCode, c);
+        return json(401, { erreur: c.essais >= ESSAIS_CODE ? 'Trop d\'essais : demandez un nouveau lien.' : 'Code incorrect. Vérifiez les 6 chiffres de l\'e-mail.' });
+      }
+      await store.supprimer(cleCode);
+      l = { e: email, n: c.n, x: c.x };
+    } else {
+      l = lireJeton(secret, 'lien', corps.lien, t);
+      if (!l?.e || !l.n) return json(401, { erreur: 'Ce lien n\'est plus valable (15 minutes, une seule fois). Demandez-en un nouveau.' });
+    }
+    if (await store.get(`lien/${l.n}`)) return json(401, { erreur: corps.code !== undefined ? 'Ce code a déjà servi. Demandez un nouveau lien.' : 'Ce lien a déjà servi. Demandez-en un nouveau.' });
     await store.set(`lien/${l.n}`, { x: l.x });
     const cle = cleCompte(secret, l.e);
     let compte = await store.get(cle);
@@ -399,9 +432,9 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
 }
 
 // Purge quotidienne (netlify/functions/essais-quotidien.mjs) : traces de demandes de lien de plus d'une heure,
-// liens expirés (devenus inutilisables de toute façon).
+// liens et codes expirés (devenus inutilisables de toute façon).
 export async function purgerComptes({ store, maintenant = Date.now }) {
-  const t = maintenant(), bilan = { limites: 0, liens: 0 };
+  const t = maintenant(), bilan = { limites: 0, liens: 0, codes: 0 };
   for (const cle of await store.lister('limite/')) {
     const l = await store.get(cle);
     if (!l?.t?.some((x) => t - x < 3_600_000)) { await store.supprimer(cle); bilan.limites++; }
@@ -409,6 +442,10 @@ export async function purgerComptes({ store, maintenant = Date.now }) {
   for (const cle of await store.lister('lien/')) {
     const l = await store.get(cle);
     if (!l || l.x <= t) { await store.supprimer(cle); bilan.liens++; }
+  }
+  for (const cle of await store.lister('code/')) {
+    const c = await store.get(cle);
+    if (!c || c.x <= t) { await store.supprimer(cle); bilan.codes++; }
   }
   // Liste d'opposition : gardée 3 ans après la désinscription.
   bilan.oppositions = 0;

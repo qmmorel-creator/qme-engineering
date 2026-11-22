@@ -7,24 +7,97 @@
 <title>Concept pour ARVA · QME</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <style>
-:root{--ink:#141414;--red:#D9302A;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+:root{--ink:#161616;--red:#D41318;--red2:#ff3b3f;--paper:#f6f5f3;--muted:#5f5d59;--line:#e3e0db}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-header{padding:22px 0;border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;letter-spacing:.04em}
-.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
-h1{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:36px 0 10px;font-weight:700}
-.lede{max-width:62ch;color:var(--muted);margin:0 0 22px}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px}
-.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-.pages{display:grid;gap:22px;margin:32px 0 40px}
-.pages img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(20,20,20,.15);background:#fff}
-footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Montserrat",system-ui,sans-serif;letter-spacing:-.015em}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;text-decoration:none;font:700 15px "Montserrat",sans-serif;padding:14px 22px;border-radius:999px;border:2px solid var(--red);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--red2);outline-offset:3px}
+
+/* en-tête */
+.bar{position:absolute;left:0;right:0;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:#a9a9a9;font-size:13px;line-height:1.2}
+.bar a.pdf{color:#fff;font:600 14px "Inter";text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+/* héros */
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#4a1417 0%,#1a1a1a 42%,#0f0f0f 100%);color:#fff;padding:120px 0 0}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:220px;pointer-events:none}
+.eb{font:800 12px "Montserrat",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ff8a8c;margin:0 0 18px}
+.hero h1{font-size:clamp(36px,5.6vw,68px);line-height:1.02;margin:0;font-weight:900;max-width:15ch}
+.hero h1 span{color:var(--red2)}
+.hero .lede{font-size:clamp(17px,1.6vw,19px);color:#cfcfcf;max-width:58ch;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .note{margin:18px 0 0;font-size:13px;color:#9a9a9a}
+.stage{position:relative;margin-top:56px;padding-bottom:70px}
+.browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);width:86%}
+.browser .tb{height:34px;background:#eceae6;display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .tb i{width:11px;height:11px;border-radius:50%;background:#cfcac3}
+.browser .tb span{margin-left:14px;background:#fff;border-radius:6px;font-size:11.5px;color:#777;padding:3px 12px}
+.browser img{display:block;width:100%;height:auto}
+.phone{position:absolute;right:0;bottom:30px;width:23%;min-width:150px;background:#0a0a0a;border-radius:34px;padding:9px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:26px;aspect-ratio:640/1240;object-fit:cover;object-position:top}
+
+/* chiffres */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--line);background:#fff}
+.facts div{padding:30px 28px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:900 15px "Montserrat",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-bottom:6px}
+.facts p{margin:0;color:#3f3e3b;font-size:15px}
+
+/* modules */
+section.mod{padding:96px 0 0}
+.mod .head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:34px}
+.num{font:900 15px "Montserrat",sans-serif;color:var(--red);letter-spacing:.08em}
+.mod h2{font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin:10px 0 0;font-weight:900}
+.mod .head p{margin:0;color:#3f3e3b;font-size:17px}
+.mod ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.mod li{display:flex;gap:10px;font-size:15px;color:#3f3e3b}
+.mod li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--red);margin-top:8px;flex:none}
+.shot{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.14);border:1px solid var(--line);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.phones{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:linear-gradient(180deg,#1a1a1a,#0f0f0f);border-radius:22px;padding:46px 20px}
+.phones .phone{position:static;width:300px;min-width:0}
+.cap{font-size:13.5px;color:var(--muted);margin:12px 2px 0}
+
+/* comment ça se branche */
+.flow{margin-top:96px;background:#111;color:#fff;border-radius:22px;padding:52px 44px}
+.flow h2{font-size:clamp(26px,3vw,38px);margin:8px 0 10px;font-weight:900}
+.flow>p{color:#bdbdbd;max-width:62ch;margin:0 0 36px}
+.fg{display:grid;grid-template-columns:1fr 64px 1.1fr 64px 1fr;align-items:center}
+.col{display:flex;flex-direction:column;gap:10px}
+.col .it{background:#1d1d1d;border:1px solid #2c2c2c;border-radius:12px;padding:12px 14px;font-size:14px}
+.col .it b{display:block;font-family:"Montserrat";font-size:14px}
+.col .it span{color:#a3a3a3;font-size:12.5px}
+.core{background:var(--red);border-radius:18px;padding:28px 24px;text-align:center}
+.core b{display:block;font:900 22px/1.15 "Montserrat",sans-serif}
+.core span{display:block;margin-top:8px;font-size:14px;color:#ffe0e0}
+.arr{height:2px;background:repeating-linear-gradient(90deg,#666 0 6px,transparent 6px 11px);position:relative;margin:0 8px}
+.arr::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:#888}
+.lbl{font:800 11px "Montserrat";letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:4px}
+
+/* étapes */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.steps div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.steps b{font:900 32px "Montserrat";color:var(--red)}
+.steps h3{font-size:17px;margin:8px 0 6px}
+.steps p{margin:0;font-size:14.5px;color:#4a4946}
+.end{margin:96px 0 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.end h2{font-size:clamp(24px,2.8vw,34px);margin:0 0 10px;font-weight:900}
+.end p{margin:0;color:#3f3e3b}
+.end .ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+footer{padding:40px 0 50px;color:var(--muted);font-size:14px}
 footer a{color:var(--ink)}
 /* estimation */
 .est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 24px 40px;overflow:hidden}
@@ -54,27 +127,129 @@ footer a{color:var(--ink)}
 @media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
  .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
  .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
+
+@media (max-width:860px){
+  .hero{padding-top:96px}
+  .browser{width:100%}
+  .hero .phone{display:none}
+  .facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .mod .head,.duo,.end{grid-template-columns:1fr;gap:18px}
+  section.mod{padding-top:64px}
+  .flow{padding:34px 20px}
+  .fg{grid-template-columns:1fr;gap:14px}.arr{width:2px;height:28px;margin:0 auto;background:repeating-linear-gradient(180deg,#666 0 6px,transparent 6px 11px)}.arr::after{display:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .end{padding:28px 20px}
+  .bar a.pdf{display:none}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.phones .phone{width:100%;max-width:300px}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
+<header class="bar"><div class="wrap">
   <a class="brand" href="/" aria-label="Accueil QME">
-    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#fff"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg>
     <span>QME<small>Quentin Morel Engineering</small></span>
   </a>
-  <a class="btn" href="QME-concept-Arva.pdf" download data-goatcounter-click="concept-arva-pdf" data-goatcounter-title="Concept ARVA (PDF)">Télécharger le PDF (4 pages)</a>
+  <a class="pdf" href="QME-concept-Arva.pdf" download data-goatcounter-click="concept-arva-pdf" data-goatcounter-title="Concept ARVA (PDF)">Télécharger le PDF (5 pages)</a>
 </div></header>
-<main class="wrap">
-  <h1>Concept pour ARVA</h1>
-  <p class="lede">Un outil pour piloter la campagne de contrôle du NEO BT PRO : chaque appareil suivi par son numéro de série, du contrôle à l&#x27;échange, des relances qui partent seules vers les propriétaires et les revendeurs, la réception à l&#x27;atelier sur téléphone et une page de suivi pour le propriétaire. Toutes les données sont fictives. Tout peut être adapté à votre façon de travailler et construit par modules.</p>
-  <div class="pages">
-    <img src="page-1.webp" width="1638" height="1158" alt="Toute la campagne sur un seul écran">
-    <img src="page-2.webp" width="1638" height="1160" alt="Le parcours de chaque appareil, du contrôle à l&#x27;échange" loading="lazy">
-    <img src="page-3.webp" width="1638" height="1160" alt="Les relances partent seules, revendeurs compris" loading="lazy">
-    <img src="page-4.webp" width="1638" height="1158" alt="À l&#x27;atelier et chez le propriétaire" loading="lazy">
+
+<main>
+<section class="hero">
+  <svg class="ridge" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 220V150l110-60 70 34 120-94 90 70 80-36 90 62 110-88 100 70 90-40 100 74 110-70 100 48 120-90 90 56 60-24v168Z" fill="rgba(255,255,255,.04)"/><path d="M0 220v-44l140-40 110 30 130-52 120 48 120-36 140 50 140-44 120 34 160-40 160 46v48Z" fill="rgba(255,255,255,.05)"/><path d="M0 220v-16h1440v16Z" fill="#f6f5f3"/></svg>
+  <div class="wrap">
+    <p class="eb">Concept pour ARVA · rappel NEO BT PRO</p>
+    <h1>Chaque NEO BT PRO suivi, <span>du contrôle à l'échange.</span></h1>
+    <p class="lede">Un outil sur mesure pour piloter la campagne de contrôle de sécurité : où en est chaque appareil, qui relancer, ce qui arrive à l'atelier, et une page de suivi pour chaque propriétaire, dans sa langue.</p>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-arva-demo" data-goatcounter-title="Concept ARVA (démonstration)">Ouvrir la démonstration interactive</a>
+      <a class="btn ghost" href="QME-concept-Arva.pdf" download data-goatcounter-click="concept-arva-pdf" data-goatcounter-title="Concept ARVA (PDF)">Télécharger le PDF</a>
+    </div>
+    <p class="note">Concept réalisé à partir de ce qui est visible publiquement. Toutes les données affichées sont fictives.</p>
+    <div class="stage">
+      <div class="browser"><div class="tb"><i></i><i></i><i></i><span>rappel-neo-bt-pro · pilotage</span></div><img src="s-pilotage.webp" width="1600" height="1000" alt="Écran de pilotage de la campagne NEO BT PRO, données fictives"></div>
+      <div class="phone"><img src="m-suivi.webp" width="640" height="1385" alt="Page de suivi de l'échange vue par le propriétaire, données fictives"></div>
+    </div>
   </div>
-<!-- estimation -->
-  <section class="est" id="est" aria-live="polite"></section>
+</section>
+
+<div class="facts"><div class="wrap" style="display:contents">
+  <div><b>Ce que l'on voit</b><p>Un contrôle à faire dans l'application ARVA, un formulaire par numéro de série, et un échange à neuf pour les appareils non conformes.</p></div>
+  <div><b>Ce que cela demande</b><p>Savoir à tout moment quels appareils n'ont pas été contrôlés, relancer dans plusieurs pays et plusieurs langues, suivre chaque colis.</p></div>
+  <div><b>Ce que propose le concept</b><p>Un registre unique, alimenté par vos outils actuels, qui relance, trace et informe à votre place.</p></div>
+</div></div>
+
+<div class="wrap">
+  <section class="mod" id="pilotage">
+    <div class="head">
+      <div><div class="num">01 · PILOTAGE</div><h2>Toute la campagne, appareil par appareil</h2></div>
+      <div><p>Combien de NEO BT PRO restent à contrôler, dans quels pays, et où en est chaque appareil, du contrôle à l'échange expédié.</p>
+        <ul><li>Le parcours complet, des propriétaires joints aux échanges expédiés</li><li>L'effet de chaque relance, jour après jour</li><li>Chaque matin, la liste de ce qui est à traiter</li></ul></div>
+    </div>
+    <div class="duo"><div class="shot"><img src="s-pilotage.webp" width="1600" height="1000" alt="Pilotage : appareils non contrôlés et parcours du contrôle à l'échange" loading="lazy"></div><div class="shot"><img src="s-pilotage-bas.webp" width="1600" height="1000" alt="Pilotage : contrôles par jour, avancement par pays, sujets du jour" loading="lazy"></div></div>
+  </section>
+
+  <section class="mod" id="carte">
+    <div class="head">
+      <div><div class="num">02 · CARTE</div><h2>Où sont les appareils pas encore contrôlés ?</h2></div>
+      <div><p>Zone par zone, en Europe et en Amérique du Nord : les propriétaires sans nouvelles, les revendeurs et les parcs professionnels à relancer.</p>
+        <ul><li>Les zones prioritaires d'un coup d'œil, de la Haute-Savoie au Colorado</li><li>Un clic sur une zone : la liste à appeler et les revendeurs concernés</li><li>Des relances ciblées par région et par langue</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-carte.webp" width="1600" height="1000" alt="Carte des appareils pas encore contrôlés, zone par zone, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="appareil">
+    <div class="head">
+      <div><div class="num">03 · FICHE APPAREIL</div><h2>Chaque numéro de série a son histoire</h2></div>
+      <div><p>Application ARVA, enregistrement produit, formulaire de retour, transporteur, atelier : chaque étape arrive dans la fiche avec sa source.</p>
+        <ul><li>Le SAV répond à « où en est mon appareil ? » en quelques secondes</li><li>Tous les messages envoyés au propriétaire, ouverts ou non</li><li>Des réponses toutes prêtes, à relire et à envoyer</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-appareil.webp" width="1600" height="1000" alt="Fiche d'un appareil NEO BT PRO, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="relances">
+    <div class="head">
+      <div><div class="num">04 · RELANCES ET REVENDEURS</div><h2>Des relances qui partent seules, dans 5 langues</h2></div>
+      <div><p>E-mail de campagne, rappels à J+10 et J+21, puis une liste d'appels pour le SAV quand rien ne bouge. Le contrôle fait, la relance s'arrête.</p>
+        <ul><li>Français, anglais, allemand, italien, espagnol</li><li>Revendeurs, loueurs et professionnels du secours suivis à part</li><li>Chaque message porte un lien personnel, rattaché au numéro de série</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-relances.webp" width="1600" height="1000" alt="Séquence de relance et suivi des revendeurs, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="atelier">
+    <div class="head">
+      <div><div class="num">05 · ATELIER ET PROPRIÉTAIRE</div><h2>Un scan à l'atelier, une page pour le propriétaire</h2></div>
+      <div><p>À l'Atelier du Cairn, un scan rapproche le colis de sa demande ; un second associe l'appareil neuf au propriétaire. Lui suit son échange étape par étape.</p>
+        <ul><li>Contrôle à réception sur téléphone : piles, holster, leash</li><li>Le propriétaire est prévenu à chaque étape, sans ressaisie</li><li>Moins d'e-mails et d'appels de relance au SAV</li></ul></div>
+    </div>
+    <div class="phones">
+      <div class="phone"><img src="m-atelier.webp" width="640" height="1385" alt="Réception d'un colis à l'atelier, sur téléphone"></div>
+      <div class="phone"><img src="m-suivi.webp" width="640" height="1385" alt="Page de suivi de l'échange pour le propriétaire"></div>
+    </div>
+  </section>
+
+  <section class="flow">
+    <p class="eb" style="margin:0">Comment ça se branche</p>
+    <h2>Vos outils restent en place. Le registre les relie.</h2>
+    <p>Rien n'est à ressaisir : l'outil se branche sur ce qui existe déjà et supprime les doubles saisies. Le détail des branchements se vérifie ensemble, outil par outil.</p>
+    <div class="fg">
+      <div class="col"><div class="lbl">Ce qui existe</div>
+        <div class="it"><b>Application ARVA</b><span>résultat du contrôle</span></div>
+        <div class="it"><b>Enregistrement produit</b><span>propriétaire, langue, coordonnées</span></div>
+        <div class="it"><b>Formulaire de retour</b><span>demandes et étiquettes</span></div>
+        <div class="it"><b>Transporteur</b><span>colis en route et livrés</span></div></div>
+      <div class="arr"></div>
+      <div class="core"><b>Registre de la campagne NEO BT PRO</b><span>un numéro de série = une ligne, à jour en permanence</span></div>
+      <div class="arr"></div>
+      <div class="col"><div class="lbl">Ce que vous obtenez</div>
+        <div class="it"><b>Pilotage</b><span>direction, SAV, logistique</span></div>
+        <div class="it"><b>Relances automatiques</b><span>propriétaires et revendeurs</span></div>
+        <div class="it"><b>Atelier sur téléphone</b><span>réception et échange</span></div>
+        <div class="it"><b>Page du propriétaire</b><span>suivi dans sa langue</span></div></div>
+    </div>
+  </section>
+
+  <!-- estimation -->
+  <section class="est" id="est" style="margin-top:96px" aria-live="polite"></section>
   <script>
 (function(){
   var C = {"lang": "fr", "rate": 30, "rateLabel": "Coût d'une heure de SAV (charges comprises)", "period": "campagne", "rows": [["Traiter une demande hors Europe (formulaire, dossier, étiquette)", "demandes", 300, 12, 3], ["Réceptionner un appareil et le rapprocher de sa demande", "appareils", 900, 6, 2], ["Prévenir le propriétaire de l'expédition de son échange", "échanges", 900, 4, 0.5], ["Relancer un propriétaire qui n'a pas fait le contrôle", "relances", 1200, 3, 0.2], ["Répondre à « où en est mon appareil ? » (mail ou appel)", "demandes", 600, 6, 1.5], ["Relancer un revendeur ou un parc professionnel", "relances", 150, 20, 5], ["Faire le point de la campagne (tableau, export pour la direction)", "semaines", 30, 90, 10]], "txt": {"foot": "Les volumes sont des hypothèses : je ne connais ni le nombre d'appareils concernés ni le taux de non-conformité. Les minutes concernent une tâche faite une fois (une demande, un colis, une relance). Ces hypothèses seront affinées ensemble lors de notre échange."}}, T = Object.assign({}, {"eb": "Estimation", "h": "Estimation du temps gagné", "intro": "Un ordre de grandeur, pas une promesse. Les volumes et les durées ci-dessous sont des hypothèses de départ, construites à partir de ce que l'on voit de l'extérieur : remplacez-les par les vôtres, le total se met à jour.", "task": "Tâche", "vol": "Combien par {p}", "before": "Minutes aujourd'hui", "after": "Minutes avec l'outil", "saved": "Heures gagnées", "hours": "heures gagnées par {p}", "days": "journées de 7 h", "value": "valeur du temps gagné par {p}, à {rate} € de l'heure", "reset": "Revenir aux hypothèses de départ", "foot": "Les minutes indiquées concernent une tâche faite une fois (un dossier, une relance, une semaine de planning). Ces hypothèses seront affinées ensemble lors de notre échange.", "loc": "fr-FR"}, C.txt || {}), el = document.getElementById('est');
@@ -114,7 +289,26 @@ footer a{color:var(--ink)}
 })();
 </script>
   <!-- estimation -->
-  <p><a class="btn" href="QME-concept-Arva.pdf" download data-goatcounter-click="concept-arva-pdf" data-goatcounter-title="Concept ARVA (PDF)">Télécharger le PDF (4 pages)</a></p>
+
+  <section style="margin-top:96px">
+    <div class="num">CONSTRUIT PAR MODULES</div>
+    <h2 style="font-size:clamp(26px,3vw,38px);margin:10px 0 0;font-weight:900">On commence par ce qui vous fait gagner le plus de temps</h2>
+    <div class="steps">
+      <div><b>1</b><h3>Le registre</h3><p>Tous les numéros de série et leur statut, alimentés par vos fichiers et l'application.</p></div>
+      <div><b>2</b><h3>Les relances</h3><p>Les séquences par langue, arrêtées dès que le contrôle est fait.</p></div>
+      <div><b>3</b><h3>L'atelier</h3><p>La réception et l'échange sur téléphone, le propriétaire prévenu.</p></div>
+      <div><b>4</b><h3>La page propriétaire</h3><p>Le suivi de l'échange, pour moins de demandes au SAV.</p></div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div><h2>Un outil construit autour de votre campagne</h2><p>Ce concept est un point de départ : chaque écran s'adapte à votre organisation, à votre vocabulaire et à vos outils, et se teste en conditions réelles avant d'aller plus loin.</p></div>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-arva-demo" data-goatcounter-title="Concept ARVA (démonstration)">Ouvrir la démonstration</a>
+      <a class="btn line" href="QME-concept-Arva.pdf" download data-goatcounter-click="concept-arva-pdf" data-goatcounter-title="Concept ARVA (PDF)">Télécharger le PDF (5 pages)</a>
+    </div>
+  </section>
+</div>
 </main>
 <footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

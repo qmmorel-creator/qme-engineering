@@ -9,8 +9,8 @@
 <link rel="canonical" href="https://qm-engineering.fr/connexion/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
-<link rel="stylesheet" href="/assets/espace.css?v=2026112301">
+<link rel="stylesheet" href="/assets/site.css?v=2026112302">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112306">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
 /* Portail (non connecté, aucune application) */
 .a-espace .portail{display:none}
@@ -22,6 +22,11 @@
 .acces input[type=email]:focus{outline:3px solid var(--jaune);outline-offset:0}
 .ok-lien{color:#1F5130;background:#D9EBDD;padding:12px 14px;border-radius:12px;font-size:15px}
 .ok-lien:empty{display:none}
+.bloc-code{display:grid;gap:10px;padding:14px;border:2px solid #1F5130;border-radius:14px;background:#fff}
+.bloc-code[hidden]{display:none}
+.deja-code{background:none;border:0;padding:6px 0;font:600 15px Outfit,system-ui,sans-serif;color:var(--encre);text-decoration:underline;text-underline-offset:3px;cursor:pointer;justify-self:center;align-self:center}
+.deja-code[hidden]{display:none}
+.bloc-code input{font-size:24px;letter-spacing:.2em;text-align:center;font-variant-numeric:tabular-nums}
 .etat-lien{max-width:var(--max);margin:16px auto 0;padding:12px 16px;background:var(--beurre);border-radius:12px;font-weight:600}
 .lien-discret{background:none;border:0;padding:0;font:inherit;font-size:15px;color:var(--texte-2);text-decoration:underline;cursor:pointer}
 .lien-discret.danger{color:var(--rouge)}
@@ -48,6 +53,8 @@
 .profil-connexion{background:var(--beurre);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .profil-connexion[hidden]{display:none}
 .profil-connexion p{margin:0;font-size:14px;color:var(--texte-2)}
+.profil-connexion .ecran-accueil{background:var(--surface);border-left:4px solid var(--encre);border-radius:10px;padding:10px 12px;color:var(--encre)}
+.profil-connexion .ecran-accueil[hidden]{display:none}
 .profil-connexion .acces{margin:4px 0 0;padding:0;border:0;box-shadow:none;background:none;gap:10px}
 .profil-connexion .acces input[type=email]{font-size:16px;padding:12px}
 .perso-corps{display:flex;flex-direction:column;gap:22px;min-width:0}
@@ -61,12 +68,13 @@
 .carte-app{display:flex;align-items:center;gap:14px;padding:14px;background:var(--surface);border:1px solid var(--trait);border-radius:18px;text-decoration:none;color:var(--encre);transition:box-shadow .15s,transform .15s;min-width:0}
 .carte-app:hover{box-shadow:0 10px 24px rgba(36,34,31,.10);transform:translateY(-1px)}
 .carte-app:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
-.carte-app .app-icone{width:56px;height:56px;border-radius:15px;flex:none}
+.carte-app .app-icone{width:56px;height:56px;border-radius:15px;flex:none;overflow:visible}
+.carte-app .app-icone img{border-radius:inherit}
 .carte-txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
 .carte-txt b{font-size:16px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .carte-txt small{font-size:13px;color:var(--texte-2)}
 .carte-ouvrir{font-size:13px;font-weight:700;color:var(--bleu);white-space:nowrap}
-.app-icone{display:grid;place-items:center;overflow:hidden;background:var(--surface);border:1px solid var(--trait);box-shadow:0 2px 8px rgba(36,34,31,.08)}
+.app-icone{position:relative;display:grid;place-items:center;background:var(--surface);border:1px solid var(--trait);box-shadow:0 2px 8px rgba(36,34,31,.08)}
 .app-icone img{width:100%;height:100%;display:block}
 .app-icone.petite{width:40px;height:40px;border-radius:11px;flex:none}
 .alertes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
@@ -195,6 +203,7 @@
     <div class="profil-connexion" id="profil-connexion" hidden>
       <b>Retrouvez-les sur tous vos appareils</b>
       <p>Connectez-vous avec l’adresse e-mail de votre achat : vos applications et vos réglages vous suivront partout.</p>
+      <p class="ecran-accueil" id="ecran-accueil" hidden><b>Ouverte depuis votre écran d’accueil ?</b> Cette application garde sa propre mémoire, séparée de votre navigateur : connectez-vous une fois ici, puis saisissez le code à 6 chiffres reçu par e-mail. Toutes vos applications apparaîtront.</p>
     </div>
   </aside>
   <div class="perso-corps">
@@ -270,7 +279,15 @@
         </label>
         <p class="erreur" id="erreur-lien" role="alert"></p>
         <p class="ok-lien" id="ok-lien" role="status"></p>
-        <button class="btn primary" type="submit">Recevoir mon lien de connexion</button>
+        <div class="bloc-code" id="bloc-code" hidden>
+          <label>Code à 6 chiffres reçu par e-mail
+            <input type="text" id="code-lien" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]*" maxlength="7" placeholder="123 456">
+          </label>
+          <p class="erreur" id="erreur-code" role="alert"></p>
+          <button class="btn primary" type="button" id="valider-code">Me connecter avec ce code</button>
+        </div>
+        <button class="btn primary" type="submit" id="envoyer-lien">Recevoir mon lien de connexion</button>
+        <button class="deja-code" type="button" id="deja-code">J’ai déjà reçu un code</button>
       </form>
       <p class="ou"><span>ou avec une clé de licence</span></p>
     </div>
@@ -307,8 +324,8 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/espace.js?v=2026112301"></script>
-<script src="/assets/compte.js?v=2026112301"></script>
+<script src="/assets/espace.js?v=2026112306"></script>
+<script src="/assets/compte.js?v=2026112303"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
@@ -346,11 +363,38 @@ const euros=(c)=>(c%100?(c/100).toFixed(2).replace('.',','):String(c/100))+' €
 const dateCourte=(j)=>new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR',{day:'numeric',month:'long'}).replace(/^1 /,'1er ');
 
 // ===== Espace personnel (assets/espace.js, assets/compte.js) : profil, accueil, lanceur, achats, préférences.
+// Page ouverte depuis une application de l'écran d'accueil (bandeau ?depuis=ecran, ou page elle-même installée) :
+// sa mémoire est séparée de celle du navigateur, un message invite à s'y connecter une fois.
+const depuisEcran=(()=>{
+  const p=new URLSearchParams(location.search),arg=p.get('depuis')==='ecran';let v=arg;
+  try{if(arg)sessionStorage.setItem('qme-depuis-ecran','1');v=v||sessionStorage.getItem('qme-depuis-ecran')==='1';}catch{/* indisponible */}
+  if(p.has('depuis')){p.delete('depuis');history.replaceState(null,'',location.pathname+(p.toString()?`?${p}`:'')+location.hash);}
+  return v||navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+})();
 const E={espace:$('espace'),nb:$('espace-nb'),packs:$('espace-packs'),salut:$('salut'),accroche:$('accroche'),reprendre:$('reprendre'),alertes:$('alertes'),
   edition:$('edition-panneau'),perso:$('personnaliser'),prenom:$('prenom'),vide:$('espace-vide'),sugg:$('suggestions'),suggIntro:$('sugg-intro'),suggListe:$('sugg-liste'),
   avatar:$('avatar'),nom:$('profil-nom'),email:$('profil-email'),depuis:$('profil-depuis'),sync:$('profil-sync'),navNb:$('nav-nb'),connexion:$('profil-connexion'),
   achats:$('achats-liste'),achatsNote:$('achats-note'),infos:$('informations'),infosEtat:$('informations-etat'),dialogue:$('dialogue-cle'),portail:$('portail')};
-const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:QMEEspace.badgeStatut,grille:true});
+// Badge par application : Acheté, Essai (jours restants quand le compte les connaît), Essai terminé, Admin.
+function badgeEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const txt=st==='achete'?'Acheté':st==='admin'?'Admin':!e?'Essai':e.termine?'Essai terminé':`Essai · ${e.joursRestants} j`;
+  return `<span class="esp-badge esp-${st}${e?.termine?' esp-termine':''}" title="${st==='achete'?'Application achetée':st==='admin'?'Accès administrateur':'Essai gratuit'}">${txt}</span>`;
+}
+// Badge visuel (coin de l'icône) : coche « acheté », erlenmeyer « essai », info au survol et pour les lecteurs d'écran.
+const SVG_COCHE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const SVG_ERLEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6.5L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.5V3"/><path d="M7.5 15h9"/></svg>';
+const SVG_CLE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2"/></svg>';
+function marqueEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const [cls,svg,info]=st==='achete'?['achete',SVG_COCHE,'Application achetée']:st==='admin'?['admin',SVG_CLE,'Accès administrateur']
+    :e?.termine?['termine',SVG_ERLEN,`Essai terminé · lecture seule jusqu’au ${dateCourte(e.effacement)}`]
+    :['essai',SVG_ERLEN,e?`Essai gratuit · ${e.joursRestants<=1?'dernier jour':`${e.joursRestants} jours restants`}`:'Essai gratuit en cours'];
+  return `<span class="app-marque app-marque-${cls}" role="img" aria-label="${esc(info)}" data-info="${esc(info)}">${svg}</span>`;
+}
+const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:badgeEspace,marque:marqueEspace,grille:true});
 const possedes=()=>Object.keys(PRODUITS).filter((k)=>{const v=lire(PRODUITS[k].cle);return v&&v!=='DEMO';});
 const nomApp=(k)=>QMEEspace.prefs().noms[k]||PRODUITS[k].nom;
 const icone=(k,t=48)=>PRODUITS[k]?.icone?`<img src="${esc(PRODUITS[k].icone)}" alt="" width="${t}" height="${t}" loading="lazy">`:'';
@@ -388,6 +432,7 @@ function profil(mes,s,compte){
   E.sync.querySelector('span').textContent=s?(derniereSynchro?`Synchronisé ${ilya(derniereSynchro)} · tous vos appareils`:'Synchronisation…'):'Sur cet appareil uniquement';
   E.navNb.textContent=mes.length||'';
   E.connexion.hidden=Boolean(s)||!mes.length;
+  $('ecran-accueil').hidden=!depuisEcran;
 }
 
 function accueil(mes){
@@ -402,7 +447,7 @@ function accueil(mes){
   const choix=[...new Set([...rec.map((r)=>r.p),...ep,...mes])].filter((k)=>!QMEEspace.prefs().masques.includes(k)).slice(0,3);
   const quand=Object.fromEntries(rec.map((r)=>[r.p,r.t]));
   E.reprendre.innerHTML=choix.length?`<h2 class="vh">Reprendre</h2>${choix.map((k)=>`<a class="carte-app" href="${esc(PRODUITS[k].url)}" data-ouvrir="${k}" style="--c:var(--${(THEMES.find((t)=>t.id===PRODUITS[k].theme)||{c:'encre'}).c})">
-      <span class="app-icone">${icone(k,64)}</span><span class="carte-txt"><b>${esc(nomApp(k))}</b><small>${quand[k]?`Ouverte ${ilya(quand[k])}`:ep.includes(k)?'Favorite':'Pas encore ouverte d’ici'}</small></span></a>`).join('')}`:'';
+      <span class="app-icone">${icone(k,64)}${marqueEspace(k)}</span><span class="carte-txt"><b>${esc(nomApp(k))}</b><small>${quand[k]?`Ouverte ${ilya(quand[k])}`:ep.includes(k)?'Favorite':'Pas encore ouverte d’ici'}</small></span></a>`).join('')}`:'';
   E.reprendre.hidden=!choix.length||enEdition;
   alertes(mes);
 }
@@ -463,6 +508,7 @@ function preferences(s,compte){
 }
 
 function rendre(){
+  QMEEspace.etendreAdmin(PRODUITS); // code ADM-… : toutes les applications, même celles ajoutées après sa saisie
   const mes=possedes(),s=QMECompte.session(),compte=QMECompte.compte;
   menuMonEspace();
   let packs=[];try{packs=JSON.parse(localStorage.getItem('qme-packs')||'[]');}catch{}
@@ -526,14 +572,49 @@ rendre();
 // ===== Connexion par e-mail : demande de lien, puis lien cliqué (?lien=…).
 const formLien=$('form-lien'),champEmail=$('email'),erreurLien=$('erreur-lien'),okLien=$('ok-lien');
 formLien.addEventListener('submit',async(e)=>{
-  e.preventDefault();const email=champEmail.value.trim(),b=formLien.querySelector('button');
+  e.preventDefault();const email=champEmail.value.trim(),b=$('envoyer-lien');
   okLien.textContent='';erreurLien.textContent='';
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Adresse e-mail incomplète.';champEmail.focus();return;}
   b.disabled=true;b.textContent='Envoi…';
-  try{await QMECompte.demanderLien(email);okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien (valable 15 minutes). Pensez à regarder dans les indésirables.`;}
-  catch(x){erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
-  b.disabled=false;b.textContent='Recevoir mon lien de connexion';
+  try{
+    await QMECompte.demanderLien(email);emailCode=email;
+    okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien, ou saisissez ci-dessous le code à 6 chiffres qu’il contient (valable 15 minutes). Pensez à regarder dans les indésirables.`;
+    montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;
+  }
+  catch(x){
+    // Lien déjà envoyé il y a peu : le code de cet e-mail reste valable, le champ s'affiche quand même.
+    if(x.statut===429){
+      const d=x.details||{},a=d.reessayerA?new Date(d.reessayerA):null;
+      const heure=a&&!isNaN(a)?(a-Date.now()<90_000?'dans une minute':`à ${a.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}`):'dans quelques minutes';
+      if(d.codeValable!==false){emailCode=email;okLien.innerHTML=`Un e-mail vient déjà de partir à <b>${esc(email)}</b> : saisissez ci-dessous le code à 6 chiffres qu’il contient (le dernier reçu), ou touchez son lien. Pas reçu ? Regardez dans les indésirables, ou redemandez ${heure}.`;montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;}
+      erreurLien.textContent=`Trop de demandes pour cette adresse : le dernier code a expiré. Vous pourrez en redemander un ${heure}.`;b.disabled=false;b.textContent='Recevoir mon lien de connexion';return;
+    }
+    erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;
+  }
+  b.disabled=false;b.textContent=blocCode.hidden?'Recevoir mon lien de connexion':'Renvoyer un lien';
 });
+// Code de l'e-mail : utile quand le lien s'ouvre dans un autre navigateur (fenêtre ouverte depuis Gmail, Instagram…).
+const blocCode=$('bloc-code'),champCode=$('code-lien'),erreurCode=$('erreur-code'),boutonCode=$('valider-code');let emailCode='';
+async function validerCode(){
+  if(boutonCode.disabled)return;
+  const code=champCode.value.replace(/\D/g,'');erreurCode.textContent='';
+  if(code.length!==6){erreurCode.textContent='Le code compte 6 chiffres.';champCode.focus();return;}
+  boutonCode.disabled=true;boutonCode.textContent='Connexion…';
+  try{await QMECompte.ouvrirCode(champEmail.value.trim()||emailCode,code);blocCode.hidden=true;okLien.textContent='';rendre();scrollTo(0,0);}
+  catch(x){erreurCode.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
+  boutonCode.disabled=false;boutonCode.textContent='Me connecter avec ce code';
+}
+function montrerCode(){blocCode.hidden=false;$('deja-code').hidden=true;erreurCode.textContent='';champCode.value='';champCode.focus();}
+// Code déjà reçu (demandé depuis une autre fenêtre ou une autre application) : saisie directe, sans nouvel envoi.
+$('deja-code').addEventListener('click',()=>{
+  const email=champEmail.value.trim();erreurLien.textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Indiquez d’abord l’adresse e-mail qui a reçu le code.';champEmail.focus();return;}
+  emailCode=email;okLien.textContent='';montrerCode();
+});
+champEmail.addEventListener('input',()=>{emailCode='';});
+boutonCode.addEventListener('click',validerCode);
+champCode.addEventListener('keydown',(e)=>{if(e.key==='Enter'){e.preventDefault();validerCode();}});
+champCode.addEventListener('input',()=>{if(champCode.value.replace(/\D/g,'').length===6)validerCode();});
 (async()=>{
   const params=new URLSearchParams(location.search),lien=params.get('lien');
   if(lien){

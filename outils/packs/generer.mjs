@@ -64,7 +64,7 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112302">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
 <body>
@@ -100,7 +100,7 @@ const pied = (scripts = '') => `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112201" defer></script>
+<script src="/assets/site.js?v=2026112302" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -346,7 +346,7 @@ function pageComposer(packs) {
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
 // Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
 // Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
-const VE = '2026112301'; // version de assets/espace.js et espace.css
+const VE = '2026112306'; // version de assets/espace.js et espace.css
 async function pageEspace() {
   const { produits, themes } = await donneesEspace();
   return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
