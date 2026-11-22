@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suivi des essais · Admin QME</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<style>
+/* Suivi d'un essai : ligne J0 → J+44, un nœud par e-mail, bifurcation achat sous chaque étape (21/11/2026). */
+.suivi{--vert:#3E7A4E;--vert-fond:#DCEBDD}
+.suivi .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.suivi tr[data-id]{cursor:pointer}
+.suivi tr[data-id]:hover{background:var(--sable)}
+.suivi tr.choisi{background:var(--ciel)}
+.pts{display:inline-flex;gap:4px}
+.pt{width:12px;height:12px;border:2px solid var(--bleu);background:var(--surface)}
+.pt.ok{background:var(--vert);border-color:var(--vert)}.pt.retard{background:var(--rose);border-color:var(--rouge)}
+.pt.annule{background:var(--trait);border-color:var(--trait)}.pt.attente{background:var(--ciel)}
+.prochain{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;background:var(--surface);border:1px solid var(--trait);border-left:6px solid var(--bleu);padding:12px 16px}
+.prochain b{font-size:18px}.prochain .h{font-weight:700;color:var(--bleu)}.prochain span{font-size:14px;color:var(--discret)}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--discret)}
+.legende i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:2px solid var(--bleu)}
+.piste{overflow-x:auto;padding-bottom:8px}
+.ligne{position:relative;display:grid;grid-template-columns:repeat(7,minmax(140px,1fr));min-width:980px}
+.axe,.axe-fait{position:absolute;left:70px;top:58px;height:4px}
+.axe{right:70px;background:var(--trait)}.axe-fait{background:var(--vert);width:0}
+.etape{display:grid;grid-template-rows:18px 40px auto auto auto;justify-items:center;text-align:center;gap:6px;padding:0 6px}
+.etape .j{font-size:12px;color:var(--discret)}
+.noeud{position:relative;z-index:1;width:40px;height:40px;background:var(--surface);border:3px solid var(--bleu);cursor:pointer;padding:0}
+.noeud.evt{border-radius:50%;border:3px dashed var(--encre)}
+.etape.ok .noeud{border-color:var(--vert);background:var(--vert-fond)}
+.etape.ok .noeud::after{content:"";position:absolute;left:11px;top:9px;width:13px;height:7px;border-left:3px solid var(--vert);border-bottom:3px solid var(--vert);transform:rotate(-45deg)}
+.etape.retard .noeud{border-color:var(--rouge);background:var(--rose)}
+.etape.annule .noeud{border-color:var(--trait);background:var(--sable)}
+.etape.annule .nom{color:var(--discret);text-decoration:line-through}
+.etape.actif .nom{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.nom{font:600 15px/1.25 Outfit,sans-serif;background:none;border:0;color:var(--encre);cursor:pointer;padding:2px}
+.infos{display:grid;gap:3px;justify-items:center;font-size:12px;color:var(--discret)}
+.infos .heure{font-weight:700;color:var(--encre)}
+.st{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;background:var(--sable);color:var(--discret)}
+.st.ok{background:var(--vert-fond);color:var(--vert)}.st.venir{background:var(--ciel);color:var(--ciel-texte)}
+.st.retard{background:var(--rose);color:var(--rose-texte)}.st.achat{background:var(--beurre);color:var(--beurre-texte)}
+.branche{display:grid;gap:4px;justify-items:center;width:100%}
+.branche .tige{height:20px;border-left:2px dashed var(--trait)}
+.branche .q{font-size:11px;color:var(--discret)}
+.fourche{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%}
+.voie{font-size:11px;line-height:1.3;padding:5px 4px;border:1px solid var(--trait);background:var(--surface);color:var(--discret)}
+.voie b{display:block;color:var(--encre)}
+.voie.oui{border-top:3px solid var(--jaune)}.voie.non{border-top:3px solid var(--bleu)}
+.voie.prise{border-color:var(--encre);color:var(--encre);background:var(--beurre)}.voie.non.prise{background:var(--ciel)}
+.detail{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:20px;background:var(--surface);border:1px solid var(--trait);border-radius:16px;padding:20px}
+@media (max-width:760px){.detail{grid-template-columns:minmax(0,1fr)}}
+.detail dl{display:grid;gap:6px;margin:0}.detail dt{font-size:12px;color:var(--discret)}.detail dd{margin:0 0 6px;font-weight:500}
+.mail{background:var(--papier);border:1px solid var(--trait);padding:16px 18px;min-width:0}
+.mail .objet{font-weight:700;margin:0 0 4px}.mail .de{font-size:12px;color:var(--discret);margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--trait)}
+.mail pre{white-space:pre-wrap;font:15px/1.55 Outfit,sans-serif;margin:0;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main class="admin-interets suivi">
+  <p class="eyebrow">Administration QME · privé</p>
+  <h1>Suivi des essais</h1>
+  <p class="admin-etat">Pour chaque essai : les e-mails partis (date et heure enregistrées par le site), les prochains avec leur heure, et la bifurcation à l'achat. Mêmes données que <a href="/admin/essais/">la liste des essais</a>.</p>
+  <form class="admin-acces" id="acces">
+    <label>Code administrateur<input id="code" autocomplete="off" spellcheck="false" placeholder="ADM-XXXX-XXXX-XXXX-XXXX" required></label>
+    <button class="btn primary" type="submit">Afficher</button>
+    <button class="btn" type="button" id="maj" hidden>Actualiser</button>
+  </form>
+  <p class="admin-etat" id="etat" role="status" aria-live="polite"></p>
+  <section id="resultats" hidden style="display:grid;gap:20px">
+    <div class="admin-boite">
+      <table class="admin-table">
+        <thead><tr><th>Client</th><th>Template</th><th>Début</th><th>E-mails</th><th>Statut</th><th>Prochain envoi</th></tr></thead>
+        <tbody id="lignes"></tbody>
+      </table>
+    </div>
+    <h2 id="titre-client" style="font-size:22px;margin:0"></h2>
+    <div class="prochain" id="prochain"></div>
+    <div class="legende">
+      <span><i style="background:var(--vert);border-color:var(--vert)"></i>Envoyé</span>
+      <span><i></i>À venir</span>
+      <span><i style="background:var(--rose);border-color:var(--rouge)"></i>Date passée, non envoyé</span>
+      <span><i style="background:var(--jaune);border-color:var(--jaune)"></i>Bifurcation achat</span>
+      <span><i style="background:var(--trait);border-color:var(--trait)"></i>Annulé (achat ou rappels arrêtés)</span>
+    </div>
+    <div class="piste" tabindex="0" aria-label="Ligne de la séquence"><div class="ligne" id="ligne"><div class="axe"></div><div class="axe-fait" id="axe-fait"></div></div></div>
+    <section class="detail" aria-live="polite">
+      <div>
+        <p class="eyebrow" id="d-sur">E-mail</p>
+        <h2 id="d-titre" style="font-size:22px;margin:0 0 12px"></h2>
+        <dl><dt>Quand</dt><dd id="d-quand"></dd><dt>Pour ce client</dt><dd id="d-date"></dd><dt>État</dt><dd id="d-etat"></dd><dt>Déclencheur</dt><dd id="d-decl"></dd></dl>
+      </div>
+      <div class="mail"><p class="objet" id="d-objet"></p><p class="de">De : Quentin Morel · À : <span id="d-a"></span> · texte du code (champs propres au template entre crochets)</p><pre id="d-texte"></pre></div>
+    </section>
+    <p class="admin-etat">Envois par la tâche quotidienne de 8 h 10 UTC (9 h 10 à Paris en hiver, 10 h 10 en été), un e-mail au plus par jour et par essai. « Merci d'essayer » part au lancement ; les e-mails d'achat partent au paiement et ne sont pas enregistrés dans l'essai.</p>
+  </section>
+</main>
+<script>
+(() => {
+  // Même clé que les autres pages d'administration : le code déjà saisi sur cet appareil est repris.
+  const CLE = 'qme-admin-interets';
+  const $ = (s) => document.querySelector(s);
+  const lire = () => { try { return localStorage.getItem(CLE) || ''; } catch { return ''; } };
+  const garder = (c) => { try { c ? localStorage.setItem(CLE, c) : localStorage.removeItem(CLE); } catch { /* indisponible */ } };
+  const MS = 86400000;
+  const SIGN = 'Quentin Morel\nQM Engineering · qm-engineering.fr';
+  const LIEN = 'qm-engineering.fr/templates/…/?essai=<code d\'essai>';
+  const ACHAT = 'la page Gumroad du template';
+  // Délais : netlify/lib/essais.mjs (tournerEssais) et templates-acces.mjs (ESSAI). fen = fenêtre d'envoi [J début, J fin].
+  const ETAPES = [
+    { id: 'merci', cle: 'merci', j: 0, nom: "Merci d'essayer", quand: "Au lancement de l'essai", decl: 'Le client remplit le formulaire /essai/', fen: [0, 1] },
+    { id: 'prise', cle: 'prise-en-main', j: 2, nom: 'Par où commencer', quand: 'Début + 2 jours (rattrapage jusqu\'à + 5)', decl: 'Tâche quotidienne', fen: [2, 5] },
+    { id: 'rappel', cle: 'rappel', j: 11, nom: 'Plus que 3 jours', quand: 'Fin − 3 jours', decl: 'Tâche quotidienne', fen: [11, 14] },
+    { id: 'finessai', j: 14, nom: "Fin de l'essai", quand: 'Dernier jour inclus, puis lecture seule', decl: "Aucun e-mail : l'application passe en lecture seule le lendemain", evt: true },
+    { id: 'fin', cle: 'fin', j: 15, nom: 'Essai terminé', quand: 'Lendemain de la fin', decl: 'Tâche quotidienne', fen: [15, 21] },
+    { id: 'effacement', cle: 'effacement', j: 37, nom: 'Données bientôt effacées', quand: 'Effacement − 7 jours', decl: 'Tâche quotidienne · dernier e-mail', fen: [37, 44] },
+    { id: 'efface', j: 44, nom: 'Données effacées', quand: 'Fin + 30 jours', decl: 'Effacement automatique, aucun e-mail', evt: true },
+  ];
+  const fmt = (d) => d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
+  const court = (d) => d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', timeZone: 'Europe/Paris' });
+  const heure = (t) => t.toLocaleTimeString('fr-FR', { hour: 'numeric', minute: '2-digit', timeZone: 'Europe/Paris' }).replace(':', ' h ');
+  const midi = (jour) => new Date(`${jour}T12:00:00Z`);
+  const plus = (d, n) => new Date(d.getTime() + n * MS);
+  const envoi = (d) => new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 8, 10));
+  const date = (iso) => { const d = iso ? new Date(iso) : null; return d && !isNaN(d) ? d : null; };
+  const el = (tag, props = {}, ...enfants) => { const n = Object.assign(document.createElement(tag), props); n.append(...enfants.filter((x) => x != null)); return n; };
+
+  function mail(id, c){
+    switch(id){
+      case "merci": return [`Merci d'essayer ${c.nom}`, `${c.bonjour}\n\nMerci d'avoir lancé l'essai gratuit du template ${c.nom}. Je suis content que vous le testiez.\n\nVous avez accès à tout, sans carte bancaire, jusqu'au ${fmt(c.fin)} inclus.\n\nVotre code d'essai : PRE-XXXX-XXXX-XXXX-XXXX\nPour ouvrir le template : ${LIEN}\nSur un autre appareil, ouvrez le template et saisissez ce code : vos données vous suivent.\n\nSi vous continuez : achetez le template (${c.prix}, achat unique, à vie) sur ${ACHAT}, puis saisissez dans l'application la clé reçue par e-mail. Tout ce que vous aurez saisi pendant l'essai est conservé.\n\nSi vous ne continuez pas : vous n'avez rien à faire, aucun prélèvement. Vos données restent consultables 30 jours après l'essai, puis elles sont effacées.\n\nUne question, un manque, une idée ? Répondez simplement à cet e-mail : c'est moi qui le lis, et le template évolue avec vos retours.\n\nBon essai,\n${SIGN}`];
+      case "prise": return [`${c.t} : par où commencer`, `${c.bonjour}\n\nVous avez lancé l'essai du template ${c.nom} le ${fmt(c.debut)}. Si vous n'avez pas encore trouvé par où commencer, voici ce que je ferais à votre place.\n\nPour démarrer, en quelques minutes : [premier pas propre au template]\n\nDeux choses qu'on ne remarque pas toujours au premier coup d'œil :\n– [astuce 1 propre au template]\n– [astuce 2 propre au template]\n\nOuvrir le template : ${LIEN}\n\n[Aide proposée, propre au template] Répondez simplement à cet e-mail : je regarde avec vous comment le régler.\n\nVotre essai continue jusqu'au ${fmt(c.fin)} inclus. Si vous décidez de garder le template (${c.prix}, achat unique, sur ${ACHAT}), tout ce que vous aurez saisi est repris.\n\n${SIGN}`];
+      case "rappel": return [`Plus que 3 jours d'essai : ${c.t}`, `${c.bonjour}\n\nVotre essai gratuit du template ${c.nom} se termine le ${fmt(c.fin)} au soir.\n\nSi le template vous rend service, vous pouvez le garder : ${c.prix}, achat unique, sur ${ACHAT}. Saisissez ensuite la clé reçue dans l'application : vos données d'essai sont reprises telles quelles.\n\nSinon, rien à faire : aucun prélèvement. Après l'essai, vos données restent consultables (sans modification) pendant 30 jours.\n\nSi quelque chose vous a manqué ou gêné, dites-le-moi en répondant : ça m'aide vraiment.\n\n${SIGN}`];
+      case "fin": return [`Votre essai gratuit est terminé : ${c.t}`, `${c.bonjour}\n\nVotre essai gratuit du template ${c.nom} est terminé. Merci de l'avoir testé.\n\nVos données sont gardées, en lecture seule, jusqu'au ${fmt(c.eff)} : ${LIEN}\n\nPour continuer avec elles : achetez le template (${c.prix}, achat unique) sur ${ACHAT}, puis saisissez la clé reçue dans l'application (bouton « J'ai acheté »). Tout est repris, rien à ressaisir.\n\nSi vous ne continuez pas, j'aimerais savoir pourquoi : une réponse d'une ligne me suffit.\n\n${SIGN}`];
+      case "effacement": return [`Vos données d'essai seront effacées le ${c.eff.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})}`, `${c.bonjour}\n\nLes données saisies pendant votre essai du template ${c.nom} seront effacées après le ${fmt(c.eff)}.\n\nPour les garder : achetez le template (${c.prix}) sur ${ACHAT} et saisissez la clé dans l'application avant cette date. Vous pouvez aussi en télécharger une copie depuis les réglages de l'application : ${LIEN}\n\nSans action de votre part, elles seront supprimées, comme prévu. C'est mon dernier e-mail à ce sujet.\n\n${SIGN}`];
+      case "achat-essai": return [`Merci : ${c.nom} est à vous`, `${c.bonjour}\n\nMerci d'avoir acheté le template ${c.nom} après l'avoir essayé. C'est un achat unique : il est à vous, sans abonnement, sur tous vos appareils.\n\nDernière étape pour retrouver votre essai : ouvrez le template (${LIEN}), cliquez sur « J'ai acheté » dans le bandeau, puis collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). Tout ce que vous avez saisi pendant l'essai est repris, rien à ressaisir.[Si l'essai est terminé : Vos données d'essai sont gardées jusqu'au ${fmt(c.eff)} : faites-le avant cette date.]\n\nSur un autre appareil, ouvrez qm-engineering.fr/connexion et collez la même clé.\n\nVous ne recevrez plus de rappel d'essai.\n\nQu'est-ce qui vous a décidé ? Une ligne en réponse m'aide beaucoup à améliorer les templates.\n\nMerci encore,\n${SIGN}\n\n—\nVous recevez cet e-mail parce que vous avez acheté un template QME sur Gumroad.`];
+      case "achat-direct": return [`Merci pour votre achat : ${c.t}`, `${c.bonjour}\n\nMerci d'avoir acheté le template ${c.nom}. C'est un achat unique : il est à vous, sans abonnement, sur tous vos appareils.\n\nPour l'ouvrir : allez sur qm-engineering.fr/connexion et collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). Le template s'ouvre ; sur vos autres appareils, la même clé retrouve les mêmes données.\n\nPour démarrer, en quelques minutes : [premier pas propre au template]\n\nUne question, un réglage qui ne colle pas à votre cas ? Répondez simplement à cet e-mail : c'est moi qui le lis, et les templates évoluent avec vos retours.\n\nMerci encore,\n${SIGN}\n\n—\nVous recevez cet e-mail parce que vous avez acheté un template QME sur Gumroad.`];
+      default: return ["(aucun e-mail)", ""];
+    }
+  }
+
+
+  let essais = [], selection = location.hash.slice(1), active = 'merci', courant = null;
+
+  function analyser(e) {
+    const debut = midi(e.debut), now = new Date();
+    const achat = date(e.paye) || date(e.achete);
+    const etapes = ETAPES.map((x) => {
+      const d = plus(debut, x.j), prevu = x.id === 'merci' ? (date(e.cree) || envoi(d)) : envoi(d);
+      const v = x.cle ? (e.envois || {})[x.cle] : null;
+      let etat, quand = prevu;
+      if (v && v !== 'saute') { etat = 'ok'; quand = date(v) || prevu; }
+      else if (v === 'saute') etat = 'saute';
+      else if (x.evt) etat = d <= now ? 'passe' : 'evt';
+      else if (achat && prevu > achat) etat = 'annule';
+      else if (e.rappelsArretes && prevu > date(e.cree)) etat = 'stop';
+      else if (prevu > now) etat = 'venir';
+      else if (envoi(plus(debut, x.fen[1])) >= now) {
+        etat = 'attente';
+        const aujourdhui = envoi(now);
+        quand = aujourdhui > now ? aujourdhui : envoi(plus(now, 1));
+      } else etat = 'retard';
+      return { ...x, d, prevu, quand, etat };
+    });
+    const fini = achat || e.rappelsArretes;
+    const prochain = fini ? null : etapes.find((x) => x.etat === 'venir' || x.etat === 'attente');
+    return { e, debut, achat, etapes, prochain, nb: etapes.filter((x) => x.etat === 'ok').length };
+  }
+
+  const LIB = { ok: 'Envoyé', venir: 'À venir', attente: 'Rattrapage', retard: 'Non envoyé', annule: 'Annulé · achat', stop: 'Annulé · stop', saute: 'Sauté', evt: 'Étape', passe: 'Passé' };
+  const CLS = { ok: 'ok', venir: 'venir', attente: 'venir', retard: 'retard', annule: 'achat' };
+
+  async function charger() {
+    const code = lire(); if (!code) return;
+    $('#etat').textContent = 'Chargement…';
+    try {
+      const r = await fetch('/api/essai/essais', { headers: { 'x-admin': code }, cache: 'no-store' });
+      if (r.status === 401) { garder(''); $('#resultats').hidden = true; $('#etat').textContent = 'Code administrateur refusé.'; return; }
+      if (!r.ok) throw new Error();
+      essais = (await r.json()).essais || [];
+      if (!essais.find((x) => x.id === selection)) selection = essais[0] ? essais[0].id : '';
+      $('#resultats').hidden = false; $('#maj').hidden = false;
+      $('#etat').textContent = `${essais.length} essai(s) conservé(s). Mis à jour à ${new Date().toLocaleTimeString('fr-FR')}.`;
+      rendre();
+    } catch { $('#etat').textContent = 'Chargement impossible (connexion ?). Réessayez avec Actualiser.'; }
+  }
+
+  function rendre() {
+    const corps = $('#lignes'); corps.replaceChildren();
+    if (!essais.length) corps.append(el('tr', {}, el('td', { colSpan: 6, textContent: "Aucun essai pour l'instant." })));
+    const analyses = essais.map(analyser);
+    for (const a of analyses) {
+      const tr = el('tr', { tabIndex: 0, className: a.e.id === selection ? 'choisi' : '' });
+      tr.dataset.id = a.e.id;
+      const pts = el('span', { className: 'pts' });
+      for (const x of a.etapes.filter((y) => !y.evt)) pts.append(el('i', { className: `pt ${x.etat}`, title: `${x.nom} : ${LIB[x.etat]}` }));
+      const statut = a.achat ? 'acheté' : a.e.rappelsArretes ? `${a.e.statut} · rappels arrêtés` : a.e.statut;
+      tr.append(
+        el('td', {}, el('b', { textContent: a.e.prenom || '—' }), el('br'), el('small', { textContent: a.e.email })),
+        el('td', {}, a.e.template),
+        el('td', { className: 'n' }, court(a.debut)),
+        el('td', {}, pts, ` ${a.nb}/5`),
+        el('td', {}, statut + (a.e.reporte ? ' · données reprises' : '')),
+        el('td', { className: 'n' }, a.prochain ? `${court(a.prochain.quand)} · ${heure(a.prochain.quand)}` : '—'));
+      corps.append(tr);
+    }
+    rendreLigne(analyses.find((a) => a.e.id === selection) || null);
+  }
+
+  // Ligne fixe : un nœud par étape, bifurcation achat sous chacun.
+  const ligne = $('#ligne'), cols = ETAPES.map((x) => {
+    const c = el('div', { className: 'etape' });
+    c.dataset.id = x.id;
+    const noeud = el('button', { type: 'button', className: x.evt ? 'noeud evt' : 'noeud', ariaLabel: x.nom }); noeud.dataset.voir = x.id;
+    const nom = el('button', { type: 'button', className: 'nom', textContent: x.nom }); nom.dataset.voir = x.id;
+    c.append(el('span', { className: 'j mono', textContent: `J+${x.j}` }), noeud, nom,
+      el('span', { className: 'infos' }, el('span', { className: 'date' }), el('span', { className: 'heure' }), el('span', { className: 'st' })));
+    if (x.id !== 'efface') c.append(el('div', { className: 'branche' }, el('span', { className: 'tige' }), el('span', { className: 'q', textContent: 'Le client achète ?' }),
+      el('div', { className: 'fourche' }, el('span', { className: 'voie oui' }, el('b', { textContent: 'Oui' }), 'séquence arrêtée → « Merci »'), el('span', { className: 'voie non' }, el('b', { textContent: 'Non' }), 'e-mail suivant'))));
+    ligne.append(c); return c;
+  });
+
+  function rendreLigne(a) {
+    courant = a;
+    if (!a) { $('#titre-client').textContent = ''; $('#prochain').replaceChildren(); return; }
+    $('#titre-client').textContent = `${a.e.prenom || 'Client'} · ${a.e.template} · début le ${fmt(a.debut)}`;
+    let dernier = -1;
+    a.etapes.forEach((x, i) => {
+      const c = cols[i];
+      c.className = `etape ${x.etat}${x.id === active ? ' actif' : ''}`;
+      c.querySelector('.date').textContent = court(x.d);
+      c.querySelector('.heure').textContent = x.evt || ['annule', 'stop', 'saute'].includes(x.etat) ? '' : x.etat === 'ok' ? `parti ${heure(x.quand)}` : heure(x.quand);
+      const st = c.querySelector('.st'); st.textContent = LIB[x.etat]; st.className = `st ${CLS[x.etat] || ''}`;
+      if (x.etat === 'ok' || x.etat === 'passe' || x.etat === 'saute') dernier = i;
+      const br = c.querySelector('.branche');
+      if (br) {
+        const suiv = a.etapes[i + 1];
+        br.querySelector('.oui').classList.toggle('prise', Boolean(a.achat && x.prevu <= a.achat && (!suiv || suiv.prevu > a.achat)));
+        br.querySelector('.non').classList.toggle('prise', !a.achat && ['ok', 'passe', 'saute'].includes(x.etat) && suiv && ['ok', 'passe', 'saute'].includes(suiv.etat));
+      }
+    });
+    const pas = (ligne.clientWidth - 140) / (ETAPES.length - 1);
+    $('#axe-fait').style.width = dernier < 0 ? '0' : `${Math.max(0, pas * dernier)}px`;
+    const p = $('#prochain'); p.replaceChildren(el('span', { textContent: 'Prochain envoi' }));
+    if (a.achat) p.append(el('b', { textContent: 'Aucun' }), el('span', { textContent: `Acheté le ${fmt(a.achat)} à ${heure(a.achat)} : séquence arrêtée.${a.e.reporte ? ' Données de l\'essai reprises.' : ' Clé pas encore saisie : données non reprises.'}` }));
+    else if (a.e.rappelsArretes) p.append(el('b', { textContent: 'Aucun' }), el('span', { textContent: 'Le client a cliqué « Ne plus recevoir de rappel ».' }));
+    else if (a.prochain) p.append(el('b', { textContent: a.prochain.nom }), el('span', { className: 'h', textContent: `${fmt(a.prochain.quand)} à ${heure(a.prochain.quand)}` }), el('span', { textContent: '(heure de Paris, quelques minutes de décalage possibles)' }));
+    else p.append(el('b', { textContent: 'Aucun' }), el('span', { textContent: 'Séquence terminée.' }));
+    voir(active);
+  }
+
+  function voir(id) {
+    active = id; const a = courant; if (!a) return;
+    cols.forEach((c) => c.classList.toggle('actif', c.dataset.id === id));
+    const x = a.etapes.find((y) => y.id === id);
+    const c = { debut: a.debut, fin: plus(a.debut, 14), eff: plus(a.debut, 44), bonjour: a.e.prenom ? `Bonjour ${a.e.prenom},` : 'Bonjour,', nom: `« ${a.e.template} »`, t: a.e.template, prix: a.e.prix != null ? (a.e.prix / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }) : '—' };
+    const [objet, texte] = mail(id, c);
+    $('#d-sur').textContent = x.evt ? 'Étape sans e-mail' : `E-mail · J+${x.j}`;
+    $('#d-titre').textContent = x.nom; $('#d-quand').textContent = ETAPES.find((y) => y.id === id).quand; $('#d-decl').textContent = x.decl; $('#d-a').textContent = a.e.email;
+    $('#d-date').textContent = x.evt ? fmt(x.d) : x.etat === 'ok' ? `Parti le ${fmt(x.quand)} à ${heure(x.quand)}` : ['annule', 'stop', 'saute'].includes(x.etat) ? `Prévu le ${fmt(x.prevu)}` : `${fmt(x.quand)} à ${heure(x.quand)}`;
+    $('#d-etat').textContent = { ok: 'Envoyé', venir: 'À venir', attente: 'En attente : rattrapage au prochain passage', retard: 'Date passée, non envoyé', annule: 'Annulé : le client a acheté', stop: 'Annulé : rappels arrêtés par le client', saute: 'Sauté : un e-mail plus avancé est parti le même jour', evt: 'Automatique', passe: 'Automatique' }[x.etat];
+    $('#d-objet').textContent = x.evt ? 'Aucun e-mail à cette étape' : objet;
+    $('#d-texte').textContent = x.evt ? (id === 'finessai' ? "Le bandeau devient noir « Essai terminé · lecture seule » : consultation, export et impression permis, toute modification propose l'achat." : "Les données de l'essai sont supprimées. Rien n'a été prélevé.") : texte;
+  }
+
+  $('#lignes').addEventListener('click', (ev) => { const tr = ev.target.closest('tr[data-id]'); if (tr) choisir(tr.dataset.id); });
+  $('#lignes').addEventListener('keydown', (ev) => { const tr = ev.target.closest('tr[data-id]'); if (tr && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); choisir(tr.dataset.id); } });
+  function choisir(id) { selection = id; active = 'merci'; history.replaceState(null, '', `#${id}`); rendre(); }
+  document.addEventListener('click', (ev) => { const b = ev.target.closest('[data-voir]'); if (b) voir(b.dataset.voir); });
+  window.addEventListener('resize', () => courant && rendreLigne(courant));
+  $('#acces').addEventListener('submit', (ev) => { ev.preventDefault(); garder($('#code').value.trim()); charger(); });
+  $('#maj').addEventListener('click', charger);
+  if (lire()) { $('#code').value = lire(); charger(); }
+})();
+</script>
+</body>
+</html>

@@ -79,6 +79,12 @@ environ 500 envois par jour, large pour ce volume.
 - **`/admin/essais/`** (code administrateur `ADM-…`) : tous les essais conservés (en cours, terminés, achetés, données reprises
   ou non), jours restants, inscription aux nouveautés ; export CSV. Un essai disparaît à l'effacement de ses données.
   Ces adresses ne servent qu'aux e-mails de l'essai : la prospection passe par `/admin/contacts/`.
+- **`/admin/suivi/`** (même code `ADM-…`, 21/11/2026) : un essai par ligne, puis sa séquence sur une ligne J0 → J+44 :
+  e-mails partis (date et heure enregistrées dans `mails`), à venir (heure de Paris de la tâche de 8 h 10 UTC), en
+  rattrapage ou non envoyés, bifurcation à l'achat (`paye` ou `achete`) ou à l'arrêt des rappels, texte de chaque e-mail.
+  L'API `/api/essai/essais` renvoie pour cela, en plus, `envois` (dates par e-mail), `paye`, `produit` et `prix`
+  (centimes). Lien « Suivi » sur chaque ligne de `/admin/essais/`. Les e-mails d'achat ne sont pas enregistrés dans
+  l'essai : ils n'apparaissent pas sur la ligne.
 
 ## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
 
