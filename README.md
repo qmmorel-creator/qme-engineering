@@ -76,6 +76,14 @@ Site promotionnel de Quentin Morel Engineering (QME).
   l'acheteur. Client : `assets/compte.js` (synchronisation appareil ↔ compte). Purge quotidienne des traces
   anti-abus (`purgerComptes`, dans `essais-quotidien.mjs`). Tests : `outils/templates/comptes.test.mjs`.
   Politique de confidentialité : section « Compte acheteur ».
+- Tableau de bord administrateur centralisé (22/11/2026) : **`/admin/`** (code administrateur), période 7, 30 ou 90
+  jours. Indicateurs (visites, essais, ventes, revenu, abonnés réseaux, abonnés aux informations), audience du site
+  (GoatCounter : pages vues par jour, pages, sources, pays), entonnoir visites → essais → ventes, essais (par jour, par
+  template, conversion, tests exclus), ventes Gumroad (revenu par jour, produits, sources), réseaux (abonnés, vues des
+  publications), comptes et préférences, intérêts. API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
+  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », à créer),
+  `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
+  via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
 - Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
   alimentée par le lien « Ne plus recevoir les informations » des annonces (`/api/compte/stop`), la page publique
   `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
