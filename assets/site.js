@@ -262,11 +262,12 @@ function menuMonEspace(){try{
   const s=JSON.parse(localStorage.getItem('qme-compte')||'null'),en=document.documentElement.lang==='en';
   for(const a of document.querySelectorAll('.topbar a.login')){
     if(!a.dataset.libelle)a.dataset.libelle=a.textContent;
-    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');continue;}
+    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');a.style.display=a.style.alignItems=a.style.gap='';continue;}
     const p=JSON.parse(localStorage.getItem('qme-espace-prenom')||'""')||'';
     const ini=String(p||s.email||'?').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}?]/gu,'');
-    a.classList.add('mon-espace');a.title=s.email||'';
-    a.innerHTML=`<span class="ini" aria-hidden="true">${ini}</span>${en?'My space':'Mon espace'}`;
+    // Styles en ligne : la pastille s'affiche même si une ancienne feuille de style est encore en cache.
+    a.classList.add('mon-espace');a.title=s.email||'';a.style.display='inline-flex';a.style.alignItems='center';a.style.gap='8px';
+    a.innerHTML=`<span class="ini" aria-hidden="true" style="width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font:700 12px/1 Outfit,system-ui,sans-serif;flex:none">${ini}</span>${en?'My space':'Mon espace'}`;
   }
 }catch{/* stockage indisponible : menu inchangé */}}
 menuMonEspace();
