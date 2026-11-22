@@ -5,6 +5,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
+import { TEMPLATES, phrasePour } from '../packs/donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 
@@ -55,6 +56,13 @@ export function pagePartie(pour, catalogue, packs) {
   s = unique(s, '<section class="catalogue" id="tous" aria-labelledby="catalogue-titre" data-catalogue>', `<section class="catalogue" id="tous" aria-labelledby="catalogue-titre" data-catalogue data-pour-fixe="${pour}">`);
   s = unique(s, '<h2 id="catalogue-titre">Tous les templates</h2>', `<h2 id="catalogue-titre">${P.catalogue}</h2>`);
   s = s.replace(/\s*<div class="segment" role="group" aria-label="Usage">[\s\S]*?<\/div>/, '');
+  // Templates présents dans les deux parties (data-pour="pro perso") : thème et phrase propres à la partie.
+  const nomsThemes = Object.fromEntries([...s.matchAll(/<button class="puce" type="button" data-pour="(pro|perso)" data-theme="([a-z-]+)"[^>]*>([^<]+?)\s*<small>/g)].map((m) => [m[2], { pour: m[1], nom: m[3].trim() }]));
+  const parSlug = Object.fromEntries(Object.values(TEMPLATES).map((t) => [t.slug, t]));
+  s = s.replace(/<li class="carte([^"]*)" data-slug="([a-z0-9-]+)"([^>]*) data-pour="([a-z ]+ [a-z ]+)" data-theme="([a-z -]+)"([^>]*)>(<a [^>]*>)<span class="theme">[^<]*<\/span>(<b>[^<]*<\/b>)<span class="phrase">[^<]*<\/span>/g, (m, cl, slug, a1, pours, themes, a2, lien, nom) => {
+    const theme = themes.split(' ').find((id) => nomsThemes[id]?.pour === pour) || themes.split(' ')[0];
+    return `<li class="carte${cl}" data-slug="${slug}"${a1} data-pour="${pours}" data-theme="${themes}"${a2}>${lien}<span class="theme">${nomsThemes[theme]?.nom || ''}</span>${nom}<span class="phrase">${phrasePour(parSlug[slug], pour)}</span>`;
+  });
   s = s.replace(/\s*<button class="puce" type="button" data-pour="(pro|perso)"[^>]*>[\s\S]*?<\/button>/g, (m, p) => (p === pour ? m : ''));
   // Packs de la partie, repris de /packs/.
   const cartes = [...packs.matchAll(/<a class="pack-carte[^>]*data-pour="([a-z]+)">[\s\S]*?<\/a>/g)].filter((m) => m[1] === pour).map((m) => m[0]);

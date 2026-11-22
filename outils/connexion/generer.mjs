@@ -24,7 +24,8 @@ export async function donneesEspace() {
     const attr = (n) => (m[1].match(new RegExp(`${n}="([^"]*)"`)) || [])[1];
     const slug = attr('data-slug');
     if (!slug || cartes[slug]) continue;
-    cartes[slug] = { theme: attr('data-theme'), vignette: attr('data-vignette') || '', phrase: ent((m[2].match(/<span class="phrase">(.*?)<\/span>/) || [])[1] || '') };
+    // Template des deux parties (data-theme="thème-perso thème-pro") : le premier thème range la carte dans l'espace.
+    cartes[slug] = { theme: (attr('data-theme') || '').split(/\s+/)[0], vignette: attr('data-vignette') || '', phrase: ent((m[2].match(/<span class="phrase">(.*?)<\/span>/) || [])[1] || '') };
   }
   const produits = {};
   for (const [pre, p] of Object.entries(PRODUITS)) {
