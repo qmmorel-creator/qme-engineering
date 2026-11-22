@@ -443,17 +443,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/templates/parcs-multi-sites/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/parcs-multi-sites/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
   for = "/templates/papiers/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -727,6 +716,20 @@
 [[redirects]]
   from = "/catalogue/appels-offres/*"
   to = "/catalogue/candidatures/"
+  status = 301
+  force = true
+
+# Pilotage de parcs multi-sites fusionné dans « Maintenance préventive » (option plusieurs sites) le 22/11/2026
+# (rationalisation F4) : l'application et sa page catalogue renvoient vers celles de la maintenance (paramètres transmis).
+[[redirects]]
+  from = "/templates/parcs-multi-sites/*"
+  to = "/templates/maintenance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/parcs-multi-sites/*"
+  to = "/catalogue/maintenance/"
   status = 301
   force = true
 

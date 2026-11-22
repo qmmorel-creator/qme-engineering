@@ -594,3 +594,97 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* ===================== Plusieurs sites (fusion du Pilotage de parcs multi-sites, 22/11/2026) ===================== */
+button.tuile{font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:16px}
+button.tuile:hover{background:var(--sable)}
+.tuiles.tuiles-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.tuiles.tuiles-5 .tuile b{font-size:32px}
+.indicateurs.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.txt-rouge{color:var(--rouge);font-weight:700}
+.fil{margin:-12px 0 8px}
+.etat-eq{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-bottom:12px;font-size:14px;color:var(--texte-2)}
+.etat-eq .btn.lien{min-height:0;padding:0;font-size:inherit}
+.mention .btn.lien{min-height:0;padding:0;font-size:inherit;font-weight:600}
+.lien-titre{border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left;text-decoration:underline;text-decoration-color:var(--trait);text-underline-offset:4px}
+.lien-titre:hover{text-decoration-color:var(--encre)}
+.journal.alertes{margin-bottom:8px}
+.rang-bascules{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 12px}
+.vue-equipements .bascule-vue,.vue-sites>.bascule-vue{margin:4px 0 12px}
+.bascule-vue{display:inline-flex;gap:6px;padding:4px;border:1px solid var(--trait);border-radius:999px;background:var(--surface)}
+.bascule-vue .btn{border-color:transparent;min-width:96px}
+.bascule-vue .btn[aria-pressed="true"]{background:var(--beurre)}
+.filtres-grille{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:10px;margin-bottom:6px}
+.filtres-grille .tri-petit{display:none}
+.compte-filtre .btn.lien{min-height:0;padding:0;font-size:inherit}
+.seulement-petit,.cartes-sites.seulement-petit{display:none}
+.tableau.sites td{padding:10px;vertical-align:middle}
+.tableau.sites td:nth-child(2){min-width:200px}
+.tableau.sites td:nth-child(4){min-width:120px}
+.tableau.sites th{padding:0}
+.tableau.sites th:not(:has(.tri)){padding:10px}
+.tableau.sites th .tri{display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:8px 10px;border:0;background:none;color:inherit;font:inherit;text-transform:inherit;letter-spacing:inherit;text-align:left;cursor:pointer}
+.tableau.sites th.nb .tri{justify-content:flex-end}
+.tableau.sites th .tri:hover{background:var(--beurre)}
+.tableau.sites th .tri i{font-style:normal;font-size:10px;min-width:10px}
+.tableau .lien-v{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border:0;background:none;padding:0;text-align:left}
+.tableau .lien-v b{text-decoration:underline;text-decoration-color:var(--trait);text-underline-offset:3px}
+.tableau .lien-v:hover b{text-decoration-color:var(--encre)}
+.tableau .lien-v small,.tableau td small{font-size:12px;color:var(--discret)}
+.tableau .etiquette{white-space:nowrap}
+.cartes-sites{display:grid;gap:10px}
+.carte-site{display:flex;flex-direction:column;gap:6px;width:100%;padding:12px 14px 12px 18px;border:1px solid var(--trait);border-radius:16px;background:var(--surface);text-align:left;position:relative;overflow:hidden;font:inherit;color:inherit}
+.carte-site::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.carte-site>b{font-size:18px;line-height:1.2}
+.cs-tete{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.cs-tete small{font-size:13px;color:var(--discret)}
+.cs-chiffres{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--texte-2)}
+.cs-chiffres b{color:var(--encre)}
+.cs-alerte{font-size:13px;color:var(--rose-texte);font-weight:600}
+.apercu{padding:12px 14px;border:1px solid var(--trait);border-radius:12px;background:var(--beurre);font-size:14px}
+.apercu ul{margin-top:6px;padding-left:18px;list-style:disc}
+.bc-barre.dispo{background:var(--bleu);border-radius:0 4px 4px 0}
+.bc-barre.dispo.basse{background:var(--jaune)}
+/* Carte schématique */
+.carte-legende{margin:4px 0 10px}
+.carte-legende svg{display:block}
+.carte-svg{margin:0;border:1px solid var(--trait);border-radius:16px;overflow:hidden;background:var(--surface);position:relative}
+.carte-svg svg{display:block;width:100%;height:auto}
+.carte-svg .quadrillage line{stroke:#EFE8DB;stroke-width:1}
+.carte-svg text{fill:var(--encre);font-family:Outfit,system-ui,sans-serif;font-weight:600;paint-order:stroke;stroke:#FFFFFF;stroke-width:3px;stroke-linejoin:round}
+.carte-svg .boussole text{font-weight:700;stroke-width:0}
+.carte-svg .point{cursor:pointer;outline:0}
+.carte-svg .point:focus-visible circle:first-child,.carte-svg .point.survol circle:first-child{fill:rgba(46,90,136,.14)}
+.carte-svg figcaption{padding:10px 14px;border-top:1px solid var(--trait);font-size:13px;color:var(--discret)}
+.grille-regions{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.region{border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:12px 14px}
+.region h3{font-size:16px;margin-bottom:8px}
+.region ul{display:grid;gap:4px;list-style:none;margin:0;padding:0}
+.pastille-site{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:4px 6px;border:0;border-radius:10px;background:none;text-align:left;font:inherit;color:inherit}
+.pastille-site:hover{background:var(--sable)}
+.pastille-site svg{flex:none}
+.pastille-site b{display:block;font-size:15px;font-weight:600}
+.pastille-site small{font-size:12px;color:var(--discret)}
+@media (max-width:1020px){
+  .tuiles.tuiles-5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tuiles.tuiles-5 .tuile:last-child{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .seulement-grand{display:none}
+  .seulement-petit,.cartes-sites.seulement-petit{display:grid}
+  .filtres-grille{grid-template-columns:1fr 1fr}
+  .filtres-grille .recherche{grid-column:1/-1}
+  .filtres-grille .tri-petit{display:flex}
+}
+@media (max-width:720px){
+  .indicateurs.six{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tuiles.tuiles-5 .tuile b{font-size:24px}
+  .bascule-vue{display:flex}
+  .bascule-vue .btn{flex:1;min-width:0}
+  .rang-bascules{flex-direction:column;gap:8px}
+}
+@media print{.bascule-vue,.rang-bascules,.filtres-grille,.fil{display:none!important}}
+@media (min-width:1021px){.onglet{white-space:nowrap}}
+.modele-parc{border:0;padding:0;margin-inline:0;min-width:0}
+.modele-parc legend{padding:0}
+.toast{width:max-content}

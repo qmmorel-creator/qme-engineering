@@ -67,7 +67,6 @@
     "onboarding": "templates-onboarding-tableau.webp",
     "papiers": "templates-papiers-tableau.webp",
     "parc-informatique": "templates-parc-informatique-licences.webp",
-    "parcs-multi-sites": "templates-parcs-multi-sites-carte.webp",
     "patrimoine": "templates-patrimoine-bilan.webp",
     "pilotage-pme": "templates-pilotage-pme-fiche.webp",
     "planner": "templates-planner-semaine.webp",
@@ -384,7 +383,7 @@
   "maintenance": [
     "build",
     "Preventive maintenance (light CMMS)",
-    "Equipment, 16 families of standard maintenance plans, due dates and work orders.",
+    "Equipment on one site or many, 19 families of standard maintenance plans, due dates, work orders, breakdowns, availability and cost per site.",
     0
   ],
   "mariage": [
@@ -451,12 +450,6 @@
     "business",
     "IT asset management",
     "Hardware inventory with warranties, who holds what since when, software licences bought and used.",
-    0
-  ],
-  "parcs-multi-sites": [
-    "build",
-    "Multi-site equipment control",
-    "Preventive maintenance with due dates, breakdowns from report to fix, availability, resolution time and cost.",
     0
   ],
   "patrimoine": [

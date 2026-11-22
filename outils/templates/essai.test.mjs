@@ -31,7 +31,7 @@ test('templates ouverts à l\'essai : tous les templates vie personnelle et pro 
   const attendus = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => ['perso', 'pro'].includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
   assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 33);
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 42); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties) le 22/11/2026
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 41); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026
   assert.deepEqual(publics(TEMPLATES.CAN), ['pro', 'perso'], 'Suivi de candidatures dans les deux parties');
   for (const p of PRODUITS_ESSAI) assert.ok(PRODUITS[p].gumroad && TEMPLATES[p].prix > 0 && TEMPLATES[p].permalien, p);
   assert.ok(!PRODUITS_ESSAI.includes('SNT'), 'Secret Santa est gratuit');

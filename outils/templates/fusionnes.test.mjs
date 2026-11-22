@@ -24,3 +24,15 @@ test('licence du Pipeline de prospection : ouvre CRM et prospection, avec un cod
   assert.equal(a.url, PRODUITS.CRM.url);
   assert.equal(a.jeton, b.jeton);
 });
+
+test('licence du Pilotage de parcs multi-sites : ouvre Maintenance préventive (option plusieurs sites)', async () => {
+  const LICENCE = '0123ABCD-0123ABCD-0123ABCD-0123ABCD';
+  const verifierLicence = async (gumroad) => (gumroad === FUSIONNES.PRK.gumroad ? { ok: true, achat: { email: '' } } : { ok: false, raison: 'inconnue' });
+  const stockage = memoire();
+  const connexion = async () => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: LICENCE }) }), { secret: SECRET, stockage, verifierLicence })).json();
+  const a = await connexion(), b = await connexion();
+  assert.equal(FUSIONNES.PRK.vers, 'GMA');
+  assert.equal(a.produit, 'GMA');
+  assert.equal(a.url, PRODUITS.GMA.url);
+  assert.equal(a.jeton, b.jeton);
+});

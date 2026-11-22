@@ -6,7 +6,7 @@
 // réglementaires n'ont pas de périodicité en base : l'utilisateur la saisit après vérification du texte.
 (() => {
   window.BASE = {
-    version: '2026-11-14',
+    version: '2026-11-22',
     verifieLe: '2026-11-13',
 
     reglages: {
@@ -16,6 +16,8 @@
       periodeIndicateurs: 90, // jours analysés par les indicateurs
       tauxHoraire: 0,         // main-d'œuvre interne, centimes HT par heure (0 : non chiffrée)
       prefixeBon: 'BI',
+      arretJours: 7,          // plusieurs sites : alerte quand un équipement est à l'arrêt depuis N jours
+      visiteMois: 6,          // plusieurs sites : alerte quand un site n'a pas été visité depuis N mois
     },
 
     unitesCompteur: [
@@ -136,12 +138,50 @@
         { code: 'cui-froid', nom: 'Chambre froide : condenseur et joints', nature: 'entretien', p: [3, 'm'], c: null, d: 30, qui: 'interne', points: ['Condenseur dépoussiéré', 'Joints de porte', 'Température relevée'] },
         { code: 'cui-conduit', nom: 'Conduit d\'extraction : nettoyage', nature: 'reglementaire', p: null, c: null, d: 240, qui: 'prestataire', points: ['Certificat de nettoyage archivé'] },
       ] },
+      { id: 'ascenseur', nom: 'Ascenseur et monte-charge', compteur: '', plan: [
+        { code: 'asc-essai', nom: 'Essai de fonctionnement et de l\'alarme', nature: 'controle', p: [1, 'm'], c: null, d: 15, qui: 'interne', points: ['Appel et arrêt à chaque niveau', 'Alarme de cabine essayée', 'Portes palières fermées et verrouillées'] },
+        { code: 'asc-entretien', nom: 'Visite d\'entretien du contrat', nature: 'reglementaire', p: null, c: null, d: 60, qui: 'prestataire', points: ['Rapport de visite archivé', 'Carnet d\'entretien à jour'] },
+        { code: 'asc-controle', nom: 'Contrôle technique périodique', nature: 'reglementaire', p: null, c: null, d: 120, qui: 'prestataire', points: ['Rapport de l\'organisme archivé', 'Observations levées'] },
+      ] },
+      { id: 'acces', nom: 'Contrôle d\'accès et vidéo', compteur: '', plan: [
+        { code: 'acc-essai', nom: 'Essai des lecteurs, gâches et caméras', nature: 'controle', p: [3, 'm'], c: null, d: 30, qui: 'interne', points: ['Chaque lecteur de badge essayé', 'Gâches et ventouses', 'Images et enregistrement des caméras'] },
+        { code: 'acc-maintenance', nom: 'Maintenance du système (prestataire)', nature: 'entretien', p: [12, 'm'], c: null, d: 120, qui: 'prestataire', points: ['Mises à jour faites', 'Batteries de secours contrôlées', 'Rapport archivé'] },
+      ] },
+      { id: 'energie', nom: 'Production d\'énergie (solaire, bornes de recharge)', compteur: '', plan: [
+        { code: 'ene-visuel', nom: 'Inspection visuelle et relevé de production', nature: 'controle', p: [3, 'm'], c: null, d: 20, qui: 'interne', points: ['Production relevée et comparée', 'Câbles et connecteurs sans dommage', 'Voyants de l\'onduleur ou de la borne'] },
+        { code: 'ene-entretien', nom: 'Nettoyage et contrôle (prestataire)', nature: 'entretien', p: [12, 'm'], c: null, d: 120, qui: 'prestataire', points: ['Panneaux ou bornes nettoyés', 'Serrages et protections contrôlés', 'Rapport archivé'] },
+      ] },
       { id: 'batiment', nom: 'Bâtiment (toiture, menuiseries, réseaux)', compteur: '', plan: [
         { code: 'bat-toiture', nom: 'Toiture, chéneaux et descentes', nature: 'controle', p: [6, 'm'], c: null, d: 120, qui: 'prestataire', points: ['Chéneaux dégagés', 'Couverture sans désordre visible'] },
         { code: 'bat-menuiseries', nom: 'Menuiseries et ferme-portes', nature: 'controle', p: [12, 'm'], c: null, d: 90, qui: 'interne', points: ['Ferme-portes réglés', 'Portes coupe-feu fermant seules'] },
         { code: 'bat-reseaux', nom: 'Réseaux d\'eau : purge des points peu utilisés', nature: 'entretien', p: [1, 'm'], c: null, d: 20, qui: 'interne', points: ['Points d\'eau peu utilisés purgés', 'Température d\'eau chaude relevée'] },
       ] },
     ],
+
+    // Plusieurs sites (option) : types de sites, régions proposées (texte libre accepté : secteur, agence, pays…).
+    typesSites: [
+      { code: 'BUR', nom: 'Immeuble de bureaux', court: 'Bureaux' },
+      { code: 'RES', nom: 'Résidence, logements', court: 'Résidence' },
+      { code: 'COM', nom: 'Commerce, local d\'activité', court: 'Commerce' },
+      { code: 'ENT', nom: 'Entrepôt, plateforme logistique', court: 'Entrepôt' },
+      { code: 'ERP', nom: 'Établissement recevant du public', court: 'ERP' },
+      { code: 'IND', nom: 'Site industriel ou atelier', court: 'Industriel' },
+      { code: 'TEC', nom: 'Site technique (local, poste, station)', court: 'Technique' },
+      { code: 'AUT', nom: 'Autre', court: 'Autre' },
+    ],
+    regions: ['Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France',
+      'Île-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d\'Azur',
+      'Guadeloupe', 'Guyane', 'La Réunion', 'Martinique', 'Mayotte'],
+    // Catégories de l'ancien « Pilotage de parcs multi-sites » (copies restaurées, imports) → familles ci-dessus.
+    categoriesParcs: {
+      CHA: { nom: 'Chauffage, eau chaude', famille: 'chaudiere' }, CVC: { nom: 'Climatisation, ventilation', famille: 'clim' },
+      ASC: { nom: 'Ascenseur, monte-charge', famille: 'ascenseur' }, ELE: { nom: 'Électricité, éclairage', famille: 'electrique' },
+      GEN: { nom: 'Groupe électrogène, onduleur', famille: 'groupe' }, INC: { nom: 'Sécurité incendie', famille: 'incendie' },
+      ACC: { nom: 'Contrôle d\'accès, vidéo', famille: 'acces' }, POR: { nom: 'Portes et portails automatiques', famille: 'porte' },
+      PLO: { nom: 'Plomberie, pompes', famille: 'pompe' }, MAN: { nom: 'Manutention (quais, chariots)', famille: 'chariot' },
+      FRO: { nom: 'Froid (chambres froides, vitrines)', famille: 'cuisine' }, ENR: { nom: 'Production d\'énergie (solaire, borne)', famille: 'energie' },
+      AUT: { nom: 'Autre', famille: '' },
+    },
 
     motifsPanne: ['Usure', 'Casse', 'Fuite', 'Défaut électrique', 'Mauvaise utilisation', 'Encrassement', 'Cause inconnue'],
     unitesPieces: ['pièce', 'lot', 'L', 'kg', 'm', 'boîte', 'jeu'],

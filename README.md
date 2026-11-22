@@ -433,12 +433,20 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   et les intempéries retenues du journal, sous-traitants, non-conformités simplifiées, risques en matrice
   4 × 4, courriers et ordres de service, revue de projet imprimable ; plusieurs opérations par clé. Aucun
   indice ni taux réglementaire intégré. Règles dans `regles.js`, tests `outils/templates/suivi-chantier.test.mjs`.
-- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, prêt, « Mise en vente prochaine » (39 €,
-  démo libre, fiche Gumroad à créer : `docs/templates/communication/maintenance/gumroad.json`). 16 familles
-  d'équipements et leurs plans types (périodicités indicatives ; seules les chaudières 4–400 kW et climatisations 4–70 kW
-  portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
-  compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
-  Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
+- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, en vente (39 €, fiche Gumroad
+  `maintenance-preventive`). 19 familles d'équipements et leurs plans types (périodicités indicatives ; seules les
+  chaudières 4–400 kW et climatisations 4–70 kW portent une obligation sourcée, datée ; autres vérifications
+  réglementaires à paramétrer), échéances à la date, au compteur ou au premier atteint, bons d'intervention imprimables,
+  pannes (signalement, équipement à l'arrêt ou dégradé, résolution), disponibilité, pièces de rechange, coût par
+  équipement, indicateurs. Fusion du 22/11/2026 (rationalisation F4, `docs/templates/RATIONALISATION.md`) du Pilotage de
+  parcs multi-sites (PRK, retiré de `PRODUITS` ; licence reprise par `FUSIONNES` ; `/templates/parcs-multi-sites/*` et
+  `/catalogue/parcs-multi-sites/*` redirigés en 301) : **option plusieurs sites** (modèle « Un site » / « Plusieurs
+  sites » au démarrage ou case des réglages) qui range les équipements par site et ajoute la vue d'ensemble, les alertes
+  d'arrêt et de site sans visite, les visites de site, le bilan par site (disponibilité, retards, délai de résolution,
+  coût par site et par famille), la liste triable ou la carte schématique (coordonnées saisies, sans fond de carte),
+  l'import et l'export CSV des sites et des équipements. Données d'avant la fusion lues sans perte (un seul site
+  implicite) ; une copie exportée du pilotage se restaure dans les réglages (`depuisParcs`). Démo : `?demo` (un site),
+  `?demo=sites` (six sites). Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
 - `templates/voyage/` (VYG) : **planificateur de voyage**, prêt, « Mise en vente prochaine » (13 €, démo libre, fiche
   Gumroad à créer : `docs/templates/communication/voyage/gumroad.json`). Étapes, hébergement de chaque nuit (réservé
   ou à réserver, acompte, reste à payer, nuits sans toit signalées), transports, activités jour par jour, budget
@@ -501,12 +509,8 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   quota, salles avec capacité et équipements, modules avec volume prévu ; séances placées à la main sur une grille
   semaine, vues par groupe, formateur et salle ; conflits détectés à la saisie ; heures réalisées, placées et prévues ;
   semaines A/B, fermetures, jours fériés calculés ; duplication de semaine ; impression A4 paysage ; export CSV ; aucun
-  nom d'apprenant, aucune optimisation automatique) ; `templates/parcs-multi-sites/` (PRK) **pilotage de parcs
-  multi-sites** (exploitants immobilier et équipements : sites, équipements par site avec criticité et état, préventif
-  périodique à échéance calculée, correctifs avec délai de résolution, prestataires nommés par l'utilisateur, coûts ;
-  indicateurs par site et consolidés : disponibilité, retards, délai moyen, coût par site et par catégorie, préventif à
-  temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
-  export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
+  nom d'apprenant, aucune optimisation automatique) ; le pilotage de parcs multi-sites (PRK) a rejoint la maintenance
+  préventive le 22/11/2026 (option plusieurs sites, voir `templates/maintenance/`). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
 - `templates/suivi-temps/` (TMP) : **suivi du temps et rentabilité par mission** (T73), prêt, « Mise en vente
   prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/suivi-temps/gumroad.json`).

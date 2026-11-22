@@ -1,7 +1,7 @@
 {
   "name": "Maintenance préventive · QME",
   "short_name": "Maintenance",
-  "description": "Tes équipements, leurs plans de maintenance, les échéances à la date ou au compteur, les bons d'intervention et le coût de chaque machine.",
+  "description": "Tes équipements, sur un site ou plusieurs, leurs plans de maintenance, les échéances à la date ou au compteur, les bons d'intervention et le coût de chaque machine et de chaque site.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
