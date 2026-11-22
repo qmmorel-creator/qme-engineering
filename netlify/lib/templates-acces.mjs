@@ -143,8 +143,9 @@ export function estCodeAdmin(secret, saisie) {
   return n.length === attendu.length && timingSafeEqual(Buffer.from(n), Buffer.from(attendu));
 }
 // Code interne personnel de l'administrateur pour un template : mêmes données sur tous ses appareils.
+export const idAdminProduit = (secret, produit) => base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
 export function codeAdminProduit(secret, produit) {
-  const id = base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
+  const id = idAdminProduit(secret, produit);
   return formater(produit, id, signature(secret, produit, id));
 }
 
@@ -378,7 +379,7 @@ export function verifierCode(secret, saisie, revoques = []) {
   return { produit, id };
 }
 
-function cleDonnees(secret, produit, id) {
+export function cleDonnees(secret, produit, id) {
   return `${produit}/${createHmac('sha256', secret).update(`donnees:${produit}:${id}`).digest('hex').slice(0, 32)}`;
 }
 
