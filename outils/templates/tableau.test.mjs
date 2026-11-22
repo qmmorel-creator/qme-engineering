@@ -30,6 +30,7 @@ function recuperer(appels = []) {
   return async (url, options = {}) => {
     appels.push({ url, auth: options.headers?.authorization });
     const u = new URL(url);
+    if (u.hostname === 'api.frankfurter.dev') return { ok: true, status: 200, json: async () => ({ base: 'USD', date: '2026-11-20', rates: { EUR: 0.91 } }) };
     if (u.hostname === 'docs.google.com') { const t = CSV[u.searchParams.get('gid')]; return { ok: Boolean(t), status: t ? 200 : 404, text: async () => t || '<html>' }; }
     const cle = u.pathname.replace('/api/v0', '');
     return { ok: true, status: 200, json: async () => GC[cle] };
@@ -73,6 +74,9 @@ test('tableau : audience, réseaux, ventes, essais, comptes et entonnoir sur 30 
   assert.equal(t.ventes.nombre, 1); assert.equal(t.ventes.gratuites, 1); assert.equal(t.ventes.remboursees, 1);
   assert.equal(t.ventes.revenu, 2082); assert.equal(t.ventes.vuesGumroad, 34);
   assert.deepEqual(t.ventes.totalDepuisDebut, { nombre: 2, revenu: 3582 });
+  // Conversion en euros (taux BCE)
+  assert.deepEqual({ taux: t.ventes.eur.taux, date: t.ventes.eur.date, revenu: t.ventes.eur.revenu, net: t.ventes.eur.net, total: t.ventes.eur.totalDepuisDebut },
+    { taux: 0.91, date: '2026-11-20', revenu: 1895, net: 1577, total: 3260 });
   // Essais : tests exclus
   assert.equal(t.essais.lances, 2); assert.equal(t.essais.achetes, 1); assert.equal(t.essais.enCours, 1); assert.equal(t.essais.tests, 1);
   assert.deepEqual(t.essais.parTemplate.map((p) => [p.produit, p.essais, p.achetes]), [['TCH', 1, 0], ['BDG', 1, 1]]);
@@ -93,6 +97,7 @@ test('tableau : sources absentes ou en panne sans bloquer le reste ; accès admi
   assert.equal(panne.audience.erreur, 'réseau');
   assert.equal(panne.ventes.configure, true, 'Sheet configuré mais onglets illisibles');
   assert.equal(panne.periode.jours, 90);
+  assert.equal(panne.ventes.eur, undefined, 'taux indisponible : dollars seulement');
   const req = (code) => traiterTableau(new Request('http://t/api/tableau?jours=7', { headers: code ? { 'x-admin': code } : {} }), { secret: SECRET, store, recuperer: async () => { throw new Error('x'); }, maintenant: () => T0 });
   assert.equal((await req()).status, 401);
   assert.equal((await req('ADM-FAUX')).status, 401);

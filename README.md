@@ -82,7 +82,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   template, conversion, tests exclus), ventes Gumroad (revenu par jour, produits, sources), réseaux (abonnés, vues des
   publications), comptes et préférences, intérêts. API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
   source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », à créer),
-  `COMPTEUR_SHEET_PUB` (déjà en place). Tests : `outils/templates/tableau.test.mjs`.
+  `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
+  via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
 - Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
   alimentée par le lien « Ne plus recevoir les informations » des annonces (`/api/compte/stop`), la page publique
   `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :

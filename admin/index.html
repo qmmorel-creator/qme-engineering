@@ -144,6 +144,8 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const nb = (n) => (n ?? 0).toLocaleString('fr-FR');
   const usd = (c) => ((c || 0) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'USD', minimumFractionDigits: c % 100 ? 2 : 0 });
+  // Conversion en euros (taux BCE renvoyé par l'API) : « ≈ 18,94 € » à côté des montants en dollars.
+  const eur = (c) => ((c || 0) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: c % 100 ? 2 : 0 });
   const pct = (a, b) => (b ? `${(100 * a / b).toLocaleString('fr-FR', { maximumFractionDigits: a / b < 0.1 ? 1 : 0 })} %` : '—');
   const jourCourt = (j) => new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
   let jours = Number(lire(CLE_PERIODE)) || 30;
@@ -195,7 +197,7 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
     k.push(['Visites du site', a.configure ? nb(a.vues) : '—', a.configure ? p : 'GoatCounter à configurer', a.parJour]);
     k.push(['Essais lancés', nb(e.lances), `${nb(e.enCours)} en cours`, e.parJour]);
     k.push(['Ventes payées', v.configure ? nb(v.nombre) : '—', v.configure ? `${nb(v.totalDepuisDebut?.nombre)} depuis l'ouverture` : 'Sheet à configurer', v.parJour]);
-    k.push(['Revenu (brut)', v.configure ? usd(v.revenu) : '—', v.configure ? `net ${usd(v.net)}` : '', v.revenuParJour]);
+    k.push(['Revenu (brut)', v.configure ? usd(v.revenu) : '—', v.configure ? (v.eur ? `≈ ${eur(v.eur.revenu)} · net ≈ ${eur(v.eur.net)}` : `net ${usd(v.net)}`) : '', v.revenuParJour]);
     k.push(['Abonnés réseaux', r.configure ? nb(r.total) : '—', r.configure ? `${(r.abonnes || []).reduce((s, x) => s + x.evolution, 0) >= 0 ? '+' : ''}${nb((r.abonnes || []).reduce((s, x) => s + x.evolution, 0))} sur la période` : '', null]);
     k.push(['Abonnés aux infos', nb(c.abonnes), `${nb(c.acheteurs)} acheteur${c.acheteurs > 1 ? 's' : ''} · ${nb(c.desinscrits)} désinscrit${c.desinscrits > 1 ? 's' : ''}`, null]);
     $('#kpis').innerHTML = k.map(([t, val, sous, serie]) => `<div class="kpi"><span>${t}</span><b>${val}</b><small>${esc(sous)}</small>${serie ? sparkline(serie) : ''}</div>`).join('');
@@ -216,8 +218,9 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
     // Ventes
     $('#ventes').innerHTML = v.erreur ? manque(`Sheet illisible : ${esc(v.erreur)}.`) : !v.configure ? manque('Sheet « Mesures réseaux QME » non configuré (<code>COMPTEUR_SHEET_PUB</code>).')
       : colonnes(v.revenuParJour, { titre: 'Revenu brut par jour (USD)', format: (c) => usd(c) }).replace('class="graph"', 'class="graph" data-format="usd"')
-      + tuiles([[nb(v.nombre), 'ventes payées'], [usd(v.revenu), 'revenu brut'], [nb(v.gratuites), 'gratuites (codes, tests)'], [nb(v.remboursees), 'remboursées']])
-      + `<div class="grille2"><div><p class="titre-graph">Par produit (période)</p>${rangs((v.parProduit || []).map((x) => ({ nom: x.nom, n: x.revenu })), { format: usd })}</div><div><p class="titre-graph">Sources Gumroad (vues, cumul)</p>${rangs((v.sourcesGumroad || []).map((x) => ({ nom: `${x.nom}${x.ventes ? ` · ${x.ventes} vente${x.ventes > 1 ? 's' : ''}` : ''}`, n: x.vues })))}</div></div>`;
+      + tuiles([[nb(v.nombre), 'ventes payées'], [usd(v.revenu), v.eur ? `revenu brut · ≈ ${eur(v.eur.revenu)}` : 'revenu brut'], [v.eur ? `≈ ${eur(v.eur.net)}` : usd(v.net), v.eur ? `revenu net (${usd(v.net)})` : 'revenu net'], [nb(v.gratuites), 'gratuites (codes, tests)'], [nb(v.remboursees), 'remboursées']])
+      + `<p class="sous">${v.eur ? `Conversion au taux BCE du ${jourCourt(v.eur.date)} : 1 $US = ${v.eur.taux.toLocaleString('fr-FR', { maximumFractionDigits: 4 })} €. Depuis l’ouverture : ${usd(v.totalDepuisDebut?.revenu)} ≈ ${eur(v.eur.totalDepuisDebut)}.` : 'Taux de change indisponible : montants en dollars seulement.'}</p>`
+      + `<div class="grille2"><div><p class="titre-graph">Par produit (période)</p>${rangs((v.parProduit || []).map((x) => ({ nom: x.nom, n: x.revenu })), { format: (c) => v.eur ? `${usd(c)} · ≈ ${eur(Math.round(c * v.eur.taux))}` : usd(c) })}</div><div><p class="titre-graph">Sources Gumroad (vues, cumul)</p>${rangs((v.sourcesGumroad || []).map((x) => ({ nom: `${x.nom}${x.ventes ? ` · ${x.ventes} vente${x.ventes > 1 ? 's' : ''}` : ''}`, n: x.vues })))}</div></div>`;
     // Réseaux
     $('#reseaux').innerHTML = r.erreur ? manque(`Sheet illisible : ${esc(r.erreur)}.`) : !r.configure ? manque('Sheet non configuré.')
       : `<p class="titre-graph">Abonnés (dernier relevé)</p>${rangs((r.abonnes || []).map((x) => ({ nom: `${x.reseau}${x.evolution ? ` (${x.evolution > 0 ? '+' : ''}${x.evolution})` : ''}`, n: x.n })))}`

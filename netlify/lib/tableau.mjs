@@ -134,6 +134,23 @@ function ventes(onglets, jours, debut, fin) {
   };
 }
 
+// --- Taux de change USD → EUR (BCE, via Frankfurter, sans clé) : Gumroad facture en dollars -------------------
+export const TAUX_URL = 'https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR';
+async function tauxUsdEur(recuperer) {
+  const r = await recuperer(TAUX_URL);
+  if (!r.ok) throw new Error(`taux ${r.status}`);
+  const j = await r.json(), taux = Number(j?.rates?.EUR);
+  if (!(taux > 0.2 && taux < 5)) throw new Error('taux invalide');
+  return { taux, date: j.date || null, source: 'BCE (Frankfurter)' };
+}
+// Montants en euros (centimes arrondis) ajoutés à côté des montants en dollars.
+export function enEuros(v, t) {
+  if (!v?.configure || !t?.taux) return v;
+  const e = (c) => Math.round((c || 0) * t.taux);
+  return { ...v, eur: { taux: t.taux, date: t.date, source: t.source, revenu: e(v.revenu), net: e(v.net), totalDepuisDebut: e(v.totalDepuisDebut?.revenu),
+    parProduit: Object.fromEntries((v.parProduit || []).map((p) => [p.nom, e(p.revenu)])) } };
+}
+
 // --- Essais gratuits (store des essais) -------------------------------------------------------------
 async function essais({ store, jours, debut, fin, aujourdhui, testeurs }) {
   // Traces anonymes permanentes (stat/…) + essais encore présents sans trace ; tests exclus.
@@ -166,15 +183,16 @@ export async function tableau({ secret, store, interets = null, goatcounter = {}
   const n = PERIODES.includes(nbJours) ? nbJours : 30;
   const debut = decaler(aujourdhui, -(n - 1)), fin = aujourdhui, jours = joursDe(debut, fin);
   const garder = (p) => p.catch((e) => ({ erreur: String(e?.message || e) }));
-  const [aud, sh, ess, reg, int] = await Promise.all([
+  const [aud, sh, ess, reg, int, taux] = await Promise.all([
     garder(audience({ goatcounter, recuperer, debut, fin, jours })),
     garder(sheet({ base: sheetBase, recuperer })),
     garder(essais({ store, jours, debut, fin, aujourdhui, testeurs })),
     garder(lireRegistre({ secret, store })),
     interets ? garder((async () => synthese(await interets.lister('clic/'), new Date(maintenant()), await interets.lister('email/')))()) : Promise.resolve(null),
+    garder(tauxUsdEur(recuperer)),
   ]);
   const onglets = sh?.onglets || null;
-  const ven = sh?.erreur ? { erreur: sh.erreur } : ventes(onglets, jours, debut, fin);
+  const ven = sh?.erreur ? { erreur: sh.erreur } : enEuros(ventes(onglets, jours, debut, fin), taux?.erreur ? null : taux);
   const res = sh?.erreur ? { erreur: sh.erreur } : reseaux(onglets, debut);
   const lignes = Array.isArray(reg) ? reg : [];
   const comptes = reg?.erreur ? { erreur: reg.erreur } : {
