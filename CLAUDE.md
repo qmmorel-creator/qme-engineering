@@ -7,6 +7,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Signature graphique dans tous les mails (décision du 22/11/2026)
+
+- **Tout e-mail rédigé pour Quentin** (brouillon Gmail ou envoi) porte sa signature graphique « Bandeau » dans la version
+  HTML, comme les mails automatiques du site : `node docs/templates/communication/signature/brouillon-gmail.mjs --json`
+  (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
+  `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
+
 ## Prospection : mention d'opposition (règle absolue)
 
 - **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
