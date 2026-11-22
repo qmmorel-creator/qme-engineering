@@ -3,7 +3,7 @@
 // Le domaine est partagé avec les autres templates : on ne supprime que NOS anciens caches (préfixe).
 const PREFIXE = 'parc-informatique-';
 const VERSION = PREFIXE + '20261115t';
-const COQUILLE = ['./', 'app.css?v=20261122a', 'donnees.js?v=20261122a', 'regles.js?v=20261122a', 'app.js?v=20261122a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122c'];
+const COQUILLE = ['./', 'app.css?v=20261122a', 'donnees.js?v=20261122a', 'regles.js?v=20261122a', 'app.js?v=20261122a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123a'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

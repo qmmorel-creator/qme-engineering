@@ -102,6 +102,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
   (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
   espaces acheteurs ; le catalogue garde « template ».
+- Bandeau QME au-dessus de chaque application (23/11/2026, `assets/mes-templates.js`) : « Mon espace » (initiale du
+  prénom si connecté) et liens Site QME, Templates, Packs, Sur mesure ; défilant sur téléphone, masqué à l'impression.
 - Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
   `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
   panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal
