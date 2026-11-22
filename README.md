@@ -237,6 +237,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   vie perso), son accroche et ses packs ; générées par `outils/parties/generer.mjs`, appelé à la fin de
   `node outils/packs/generer.mjs`, contrôlées par `outils/templates/parties.test.mjs`. Menu de toutes les pages :
   « Pros · Vie perso · Packs · Sur mesure » ; accueil : deux portes et le sur mesure en dessous.
+  Tons propres à chaque partie (23/11/2026) : `<body data-partie="pro|perso">` sur `/pro/`, `/perso/`, les fiches
+  `catalogue/<slug>/` d'une seule partie (posé par `outils/parties/generer.mjs`, `marquerFiches`) et les pages de pack
+  (`outils/packs/generer.mjs`) ; teintes dans `assets/site.css` (pro bleuté, perso chaud), groupes teintés sur les
+  pages mixtes `/templates/` et `/packs/`.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque

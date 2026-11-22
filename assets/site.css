@@ -700,3 +700,22 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .csm-texte .fleche{margin-top:4px;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start;padding-bottom:1px}
 @media (max-width:720px){.carte-sur-mesure{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.carte-sur-mesure{transition:none}}
+
+/* Tons des parties (23/11/2026) : pro bleuté, perso chaud, pour voir d'un coup d'œil dans quelle partie on est.
+   body[data-partie] : pages /pro/, /perso/, fiches et packs d'une seule partie (posé par outils/parties/generer.mjs
+   et outils/packs/generer.mjs). Pages mixtes (/templates/, /packs/) : groupes et cartes teintés. */
+body[data-partie="pro"]{--papier:#F2F5F9;--fond-partie:var(--ciel);--texte-partie:var(--ciel-texte);--accent-partie:var(--bleu)}
+body[data-partie="perso"]{--papier:#FCF4E5;--fond-partie:var(--beurre);--texte-partie:var(--beurre-texte);--accent-partie:var(--jaune)}
+body[data-partie] mark{background:var(--fond-partie)}
+body[data-partie] .eyebrow{color:var(--texte-partie)}
+body[data-partie] .btn.primary{background:var(--texte-partie);border-color:var(--texte-partie)}
+body[data-partie] .topbar nav a[aria-current="page"]{background:var(--fond-partie)}
+body[data-partie] .filtres-catalogue{background:var(--fond-partie)}
+body[data-partie] .tuile,body[data-partie] .outil>a{border-top-color:var(--accent-partie)}
+.groupe-tuiles[data-groupe="pro"]>h3,.groupe-packs[data-groupe="pro"]>.titre-groupe{color:var(--ciel-texte)}
+.groupe-tuiles[data-groupe="perso"]>h3,.groupe-packs[data-groupe="perso"]>.titre-groupe{color:var(--beurre-texte)}
+.groupe-tuiles[data-groupe="pro"] .tuile,.groupe-packs[data-groupe="pro"] .pack-carte,.outil[data-pour="pro"]>a{background:#F5F8FC}
+.groupe-tuiles[data-groupe="perso"] .tuile,.groupe-packs[data-groupe="perso"] .pack-carte,.outil[data-pour="perso"]>a{background:#FFF8EC}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before,.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before{background:var(--bleu)}
+.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{background:var(--jaune)}

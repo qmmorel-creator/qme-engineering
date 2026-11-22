@@ -193,7 +193,7 @@ if(fallbackLink&&form){
  const groupes=[['pro','Professionnel'],['perso','Vie personnelle']].filter(g=>!fixe||g[0]===fixe);
  const couleur=id=>themes.find(x=>x.id===id)?.c||'var(--trait)';
  const tuile=t=>`<button type="button" class="tuile" data-tuile="${t.id}" style="--c:${t.c}"><b>${esc(t.nom)}</b><span class="tuile-cpt" data-cpt></span><span class="tuile-ex" data-ex></span></button>`;
- const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
+ const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" data-pour="${esc(t.pour)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
  vues.innerHTML=`<div class="tuiles" data-tuiles>`+groupes.map(([g,nom])=>`<div class="groupe-tuiles" data-groupe="${g}"><h3>${nom}</h3><div class="grille-tuiles">${themes.filter(t=>t.pour===g).map(tuile).join('')}</div></div>`).join('')+`</div>`
   +`<div class="liste-outils" data-liste><div class="liste-tete"><button type="button" class="retour" data-retour>← Tous les thèmes</button><h3 data-liste-titre tabindex="-1"></h3></div><ul class="grille-outils">${[...items].sort((a,b)=>b.vente-a.vente).map(outil).join('')}</ul></div>`;
  $$('.vitrine,.a-venir-catalogue,.puces').forEach(el=>el.hidden=true);
