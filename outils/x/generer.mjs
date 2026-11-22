@@ -158,7 +158,7 @@ ${cartes.map(carte).join('\n')}
  });
 })();
 </script>
-<script src="/assets/site.js?v=2026112201" defer></script>
+<script src="/assets/site.js?v=2026112202" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

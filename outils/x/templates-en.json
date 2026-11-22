@@ -13,7 +13,6 @@
     "achats": "templates-achats-budget.webp",
     "animal": "templates-animal-poids.webp",
     "appel-decouverte": "templates-appel-decouverte-appel.webp",
-    "appels-offres": "templates-appels-offres-echeances.webp",
     "assemblee-generale": "templates-assemblee-generale-apercu.webp",
     "auto-ecole": "templates-auto-ecole-planning.webp",
     "bascule": "templates-bascule-direct.webp",
@@ -130,12 +129,6 @@
     "Prepare each discovery call in ten minutes: context sheet, questions by phase, timed plan, objections and a qualification score.",
     0
   ],
-  "appels-offres": [
-    "freelance",
-    "Tenders and bids tracker",
-    "Decide fast where to bid, build each file piece by piece and never miss a deadline.",
-    0
-  ],
   "assemblee-generale": [
     "orgs",
     "General meeting and bylaws",
@@ -187,7 +180,7 @@
   "candidatures": [
     "life",
     "Applications tracker",
-    "All your applications in one place (studies, internships, work-study): documents, dates, ranked choices, follow-ups and interviews.",
+    "Studies, jobs or tenders in one tracker: documents, deadlines, follow-ups and answers, plus bid/no-bid scoring and win rate for tenders.",
     1
   ],
   "competences": [

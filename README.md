@@ -226,6 +226,13 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   vie perso), son accroche et ses packs ; générées par `outils/parties/generer.mjs`, appelé à la fin de
   `node outils/packs/generer.mjs`, contrôlées par `outils/templates/parties.test.mjs`. Menu de toutes les pages :
   « Pros · Vie perso · Packs · Sur mesure » ; accueil : deux portes et le sur mesure en dessous.
+  **Template présent dans les deux parties** (templates génériques, depuis la fusion F3 du 22/11/2026) : dans
+  `outils/packs/donnees.mjs`, `pour: 'pro perso'` (lu comme une liste par `publics(t)`, `pourPartie(t, partie)`) et,
+  facultatif, `phrases: { pro, perso }` (`phrasePour(t, partie)`) ; dans `templates/index.html`, la carte porte
+  `data-pour="pro perso"` et un thème par partie (`data-theme="thème-perso thème-pro"`). Le filtre du catalogue
+  (`assets/site.js`), les tuiles et compteurs, `/pro/` et `/perso/` (thème et phrase de la partie), l'essai (les deux
+  groupes de `/essai/`), le composeur de packs (une case par groupe, comptée une fois) et l'espace acheteur (premier
+  thème) lisent ces listes. Contrôle : `outils/templates/parties.test.mjs`. À reprendre pour « Organisateur d'événement ».
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
@@ -539,17 +546,6 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   citées dans le guide), alertes J-30 / J-15 / expirée, relances depuis un modèle (copie ou messagerie), tableau de
   conformité par opération, registre imprimable A4 paysage, export CSV ; aucun document stocké, outil d'aide sans
   valeur de conseil juridique. Règles dans `regles.js`, tests `outils/templates/sous-traitants.test.mjs`.
-- `templates/appels-offres/` (CND) : **suivi des appels d'offres et candidatures**, prêt, mise en vente prochaine
-  (15 €, freelances, consultants et PME ; pack visé « Freelance : trouver ses clients »). Veille avec grille go/no-go
-  (8 critères pondérés, éliminatoires, seuils réglables) ; dossier par candidature avec pièces types copiées d'un
-  modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe ; points de départ sans
-  référence réglementaire, la liste exacte est celle du règlement de chaque consultation), statut, responsable et
-  échéance à rebours depuis la date limite ; dépôt visé avec marge ; calendrier des dates limites ; relances après
-  dépôt, validité des offres ; résultat (montant, motif, classement) ; bibliothèque de pièces réutilisables
-  (emplacement et date de validité, pas de fichier) ; bilan : taux de go et de réussite par type, montants, temps
-  passé, motifs de perte ; export CSV. Aucune connexion à une plateforme ni à un profil d'acheteur. Règles dans
-  `regles.js`, tests `outils/templates/appels-offres.test.mjs`, page `catalogue/appels-offres/`, démo
-  `/templates/appels-offres/?demo`.
 - `templates/entretiens-annuels/` (ENP) : **entretiens annuels et professionnels** (T79), prêt, « Mise en vente
   prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/entretiens-annuels/gumroad.json`).
   Échéances par salarié : annuel (facultatif, 12 mois), entretien de parcours professionnel (première année puis
@@ -645,14 +641,26 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   prix maximal pour un rendement visé, sensibilité (loyer − 10 %, vacance + 1 mois, taux + 1 point), fiche d'analyse
   imprimable, export CSV. Aucun taux de marché, prix au m² ni loyer de référence intégré ; fiscalité hors calcul,
   signalée. Fiche `docs/templates/fiches/investissement-locatif.md`, tests `outils/templates/investissement-locatif.test.mjs`.
-- `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
-  prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
-  par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut
-  de chaque pièce, statut de la candidature (à préparer, envoyée, entretien, liste d'attente, acceptée, refusée, retirée)
-  et réponse ; dates saisies par l'utilisateur (**aucun calendrier officiel intégré**, aucune plateforme nommée ni
-  connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
-  motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
-  `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
+- `templates/candidatures/` (CAN) : **Suivi de candidatures**, en vente (12 €, fiche Gumroad
+  `candidatures-etudes-stages-alternance`, à renommer). Fusion du 22/11/2026 (rationalisation F3,
+  `docs/templates/RATIONALISATION.md`) de « Candidatures études, stages, alternance » et du « Suivi des appels d'offres et
+  candidatures » (CND, retiré de `PRODUITS` et des packs, remplacé par CAN dans le pack PFC ; `/templates/appels-offres/*` et
+  `/catalogue/appels-offres/*` redirigés en 301 vers CAN). Présent dans les deux parties du site (`pour: 'pro perso'`).
+  Trois modèles au démarrage (`usage` des données, changeable dans les réglages ; vocabulaire, types, statuts et onglets
+  adaptés) : **Études et stages** (formation, stage, alternance, job ; vœux classés), **Emploi** (offre d'emploi,
+  candidature spontanée ; préférences) et **Appels d'offres et plateformes** (marché public, appel d'offres privé, plateforme,
+  consultation directe, autre). Une fiche par candidature : 25 pièces types et 8 listes de départ (études, emploi) ou modèles
+  de dossiers modifiables avec délai avant la date limite (appels d'offres), statut de chaque pièce (dont « sans objet »),
+  dates saisies (**aucun calendrier officiel intégré**, aucune plateforme nommée ni connectée), relances proposées (délai du
+  type puis réglage, ou date fixée à la main) avec message à copier, 6 trames de lettre et 36 questions d'entretien (études,
+  emploi). Appels d'offres : veille et grille go/no-go (8 critères pondérés, éliminatoires, seuils réglables), go qui crée le
+  dossier, rétroplanning des pièces (échéance à rebours avancée au vendredi, responsable), dépôt visé avec marge, dépôt
+  (montant, validité de l'offre), résultat (montant obtenu, motif de perte, classement), temps passé, pièces réutilisables
+  (emplacement et validité, alerte avant expiration), bilan (taux de go et de réussite, montants, par type, par mois, motifs).
+  Échéances avec calendrier mensuel, .ics, CSV, impressions. Démo par modèle : `?demo`, `?demo=emploi`, `?demo=offres`.
+  Données de l'ancien CAN lues sans perte (`normaliser` dans `regles.js`) ; « Restaurer une copie » accepte une copie
+  exportée de l'ancien suivi des appels d'offres (`depuisAppelsOffres`). Fiches `docs/templates/fiches/candidatures.md` et
+  `appels-offres.md`, tests `outils/templates/candidatures.test.mjs`.
 - `templates/benevoles/` (BNV) : **bénévoles et planning des créneaux** (T92), prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/benevoles/gumroad.json`). Annuaire des bénévoles
   (coordonnées minimales, compétences, postes préférés), événements créés depuis 6 modèles (33 postes types, créneaux

@@ -210,12 +210,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Une offre de prêt difficile à lire ou à saisir ?',
   },
   CAN: {
-    commencer: 'créez la candidature la plus proche de sa date limite et choisissez sa liste de pièces de départ : ce qui reste à préparer apparaît.',
+    commencer: 'choisissez votre modèle (études et stages, emploi, ou appels d\'offres et plateformes), puis créez la candidature la plus proche de sa date limite : ce qui reste à préparer apparaît.',
     astuces: [
-      'une relance est proposée après le délai choisi, avec un message prêt à copier ;',
-      'les dates limites et entretiens s\'exportent vers l\'agenda de votre téléphone.',
+      'une relance est proposée après le délai choisi, avec un message prêt à copier, et les dates s\'exportent vers l\'agenda de votre téléphone ;',
+      'pour un appel d\'offres, la grille go/no-go recommande de répondre ou non, puis chaque pièce reçoit une échéance à rebours depuis la date limite.',
     ],
-    aide: 'Une procédure de candidature particulière ?',
+    aide: 'Une procédure de candidature ou un type de consultation particulier ?',
   },
   MMR: {
     commencer: 'saisissez votre date de rendu et le nombre de mots visé, puis partez du plan type : le nombre de mots à écrire par jour s\'affiche.',
@@ -289,14 +289,6 @@ export const PRISE_EN_MAIN = {
       'le temps non facturable (prospection, devis, administratif) se suit à part, avec votre semaine réelle face à votre semaine type.',
     ],
     aide: 'Un mode de facturation de vos missions que l\'outil gère mal ?',
-  },
-  CND: {
-    commencer: 'ajoutez une consultation repérée et notez-la sur les 8 critères de la grille go/no-go : la recommandation s\'affiche, et le motif de votre décision est gardé.',
-    astuces: [
-      'chaque pièce du dossier reçoit une échéance calculée à rebours depuis la date limite, avec une marge de sécurité ;',
-      'une pièce de votre bibliothèque (attestation, CV, référence) qui expire avant la date limite est signalée.',
-    ],
-    aide: 'Un type de consultation ou une pièce que les modèles de dossier ne prévoient pas ?',
   },
   RDE: {
     commencer: 'créez l\'opération et ajoutez un lot avec son entreprise : les pièces attendues du DOE arrivent listées, et la complétude du lot s\'affiche.',

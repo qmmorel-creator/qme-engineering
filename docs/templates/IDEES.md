@@ -151,7 +151,7 @@ déjà).
 | T73 | Suivi du temps et rentabilité par mission (ancien nom : Suivi du temps passé et rentabilité par mission) | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | fusionné dans T89 « Suivi de candidatures » le 22/11/2026 | — | S | P2 | Proposition validée par Quentin 14/11/2026. Rationalisation F3 : CND retiré du site et des packs (remplacé par CAN dans PFC), adresses redirigées vers `candidatures` ; fiche Gumroad `suivi-appels-offres` à dépublier |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
@@ -164,7 +164,7 @@ déjà).
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Suivi de candidatures (modèles Études et stages, Emploi, Appels d'offres et plateformes ; ex-Candidatures études, stages, alternance, T76 fusionné le 22/11/2026) | Études / emploi / commercial | Lycéens, étudiants, demandeurs d'emploi, freelances et PME | en vente | 12 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) ; rationalisation F3 du 22/11/2026 (packs Étudiant et Freelance : trouver ses clients) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -259,7 +259,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T28, T74, T39, T75, T76 (T35 fusionné dans T28 le 22/11/2026) | — | 105 € | 25 % | 78 € | 20 € |
+| Freelance : trouver ses clients | PFC | T38, T28, T74, T39, T75, T89 (T35 fusionné dans T28, T76 dans T89 le 22/11/2026) | — | 102 € | 25 % | 76 € | 19 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
@@ -893,7 +893,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T73 | `suivi-temps` | TMP | suivi-temps-rentabilite (prévu) |
 | T74 | `propositions` | PCM | propositions-commerciales (prévu) |
 | T75 | `calendrier-editorial` | CED | calendrier-editorial (prévu) |
-| T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
+| T76 | `appels-offres` (fusionné dans T89 le 22/11/2026, redirigé vers `candidatures`) | CND (retiré) | suivi-appels-offres (à dépublier) |
 | T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
 | T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
 | T80 | `document-unique` | DRP | document-unique-evaluation-risques |
@@ -905,7 +905,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T86 | `remerciements` | CDX | cadeaux-remerciements (prévu) |
 | T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
 | T88 | `notes` | NTS | notes-moyennes (prévu) |
-| T89 | `candidatures` | CAN | candidatures-etudes-stages-alternance (prévu) |
+| T89 | `candidatures` (Suivi de candidatures) | CAN | candidatures-etudes-stages-alternance (à renommer « Suivi de candidatures ») |
 | T90 | `memoire` | MMR | planning-memoire (prévu) |
 | T91 | `subventions` | SBV | subventions-association (prévu) |
 | T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
@@ -1837,6 +1837,9 @@ et à régénérer les pages des packs à la fusion.
 ## Fiche T76 (cadrage délégué par Quentin, 14/11/2026)
 
 ### T76 · Suivi des appels d'offres et candidatures (`templates/appels-offres/`, préfixe CND, 15 €)
+
+> 22/11/2026 : fusionné dans T89 « Suivi de candidatures » (modèle Appels d'offres et plateformes, toutes les fonctions
+> reprises) ; application et page retirées, adresses redirigées.
 - Fiche détaillée : `fiches/appels-offres.md`. Promesse : « Répondre aux bonnes consultations, à temps. » Catalogue
   `pro`, thème « Clients et prospection » ; pack visé « Freelance : trouver ses clients » (PFC). Permalien prévu
   `suivi-appels-offres`.
@@ -2127,6 +2130,9 @@ régénérer les pages des packs à la fusion.
 ## Fiche T89 (cadrage délégué par Quentin, 14/11/2026)
 
 ### T89 · Candidatures études, stages, alternance (`templates/candidatures/`, préfixe CAN, 12 €)
+
+> 22/11/2026 : devenu **Suivi de candidatures** (fusion F3 avec T76, `docs/templates/RATIONALISATION.md`) : modèles Études et
+> stages, Emploi, Appels d'offres et plateformes ; détail dans le README.
 - Fiche détaillée : `fiches/candidatures.md`. Promesse : « Chaque dossier, à temps. » Catalogue `perso`, thème
   « Organisation et études » ; pack visé « Étudiant » (PET). Permalien prévu `candidatures-etudes-stages-alternance`.
 - Public : lycéens (orientation après le bac), étudiants (master, écoles), candidats à un stage, une alternance ou un

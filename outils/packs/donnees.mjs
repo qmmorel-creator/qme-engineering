@@ -5,6 +5,9 @@
 // Après toute modification : node outils/packs/generer.mjs (régénère /packs/ et la section du catalogue).
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
+// pour : partie du site, 'pro' ou 'perso', ou les deux séparées par une espace ('pro perso') pour un template
+// générique présent dans les deux (lire avec publics()). phrases (facultatif) : { pro, perso }, la phrase de carte
+// propre à chaque partie (pages /pro/ et /perso/, composeur de packs) ; sinon `phrase`.
 export const TEMPLATES = {
   PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
   BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
@@ -32,7 +35,6 @@ export const TEMPLATES = {
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', permalien: 'pilotage-bascule', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
   EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
-  CND: { slug: 'appels-offres', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.', permalien: 'suivi-appels-offres', pour: 'pro' },
   PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', permalien: 'pilotage-parcs-multi-sites', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', permalien: 'registre-doe', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', permalien: 'reservation-salles', pour: 'pro' },
@@ -96,7 +98,8 @@ export const TEMPLATES = {
   VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', permalien: 'planificateur-voyage', pour: 'perso' },
   CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', permalien: 'calendrier-editorial', pour: 'pro' },
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', permalien: 'papiers-du-foyer', pour: 'perso' },
-  CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', permalien: 'candidatures-etudes-stages-alternance', pour: 'perso' },
+  // Suivi de candidatures (fusion F3 du 22/11/2026) : présent dans les deux parties du site, une phrase par public.
+  CAN: { slug: 'candidatures', prix: 1200, phrase: 'Études, emploi ou appels d’offres : pièces, dates limites, relances et réponses.', phrases: { pro: 'Appels d’offres et plateformes : go/no-go, pièces à rebours, dépôt, relances et résultats.', perso: 'Vœux, stages, alternance ou emploi : pièces, dates limites, relances et réponses.' }, permalien: 'candidatures-etudes-stages-alternance', pour: 'pro perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
   QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
   SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
@@ -161,7 +164,7 @@ export const PAGES = {
       ['PCM', 'Transformez l’appel en proposition claire : contexte, options à prix et planning.'],
       ['KRF', 'Montrez vos meilleures réalisations : une plaquette adaptée à chaque prospect.'],
       ['CED', 'Publiez régulièrement : piliers, idées, calendrier et statistiques saisies.'],
-      ['CND', 'Répondez aux appels d’offres sans rater une date limite : go/no-go, pièces et résultats.'],
+      ['CAN', 'Répondez aux appels d’offres et aux missions sur plateforme sans rater une date limite : go/no-go, pièces, dépôt et résultats.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
     prevus: [],
@@ -480,3 +483,8 @@ export const PAGES = {
     prevus: [],
   },
 };
+
+// Parties du site d'un template (« pour » lu comme une liste) et sa phrase pour une partie.
+export const publics = (t) => String(t?.pour || '').split(/\s+/).filter(Boolean);
+export const pourPartie = (t, partie) => publics(t).includes(partie);
+export const phrasePour = (t, partie) => t?.phrases?.[partie] || t?.phrase || '';
