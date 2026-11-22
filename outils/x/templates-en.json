@@ -56,7 +56,6 @@
     "lecture": "templates-lecture-stats.webp",
     "location-saisonniere": "templates-location-saisonniere-revenus.webp",
     "maintenance": "templates-maintenance-tableau.webp",
-    "mariage": "templates-mariage-apercu.webp",
     "memoire": "templates-memoire-tableau.webp",
     "micro-entreprise": "templates-micro-entreprise-declarations.webp",
     "musculation": "templates-musculation-minuteur.webp",
@@ -85,7 +84,6 @@
     "salles": "templates-salles-maintenant.webp",
     "sans-voiture": "templates-sans-voiture-cumul.webp",
     "secret-santa": "templates-secret-santa-tirage.webp",
-    "seminaire": "templates-seminaire-chambres.webp",
     "sinistre": "templates-sinistre-dossier.webp",
     "sous-traitants": "templates-sous-traitants-tableau.webp",
     "stocks": "templates-stocks-tableau.webp",
@@ -303,9 +301,9 @@
     1
   ],
   "evenementiel": [
-    "business",
-    "Event planning control room",
-    "Several events at once: countdown from each date, planned and actual budget, suppliers and tasks.",
+    "life",
+    "Event planner: wedding, offsite, company event, party",
+    "One planner for weddings, offsites, trade shows and family parties: countdown from each date, budget and suppliers, guests and seating plan, travel and rooms, the day itself minute by minute.",
     0
   ],
   "flotte": [
@@ -384,12 +382,6 @@
     "build",
     "Preventive maintenance (light CMMS)",
     "Equipment on one site or many, 19 families of standard maintenance plans, due dates, work orders, breakdowns, availability and cost per site.",
-    0
-  ],
-  "mariage": [
-    "life",
-    "Wedding planner",
-    "Countdown from the date, budget by item and suppliers, guest list and seating plan, shared by the two of you.",
     0
   ],
   "memoire": [
@@ -558,12 +550,6 @@
     "life",
     "Secret Santa",
     "One invitation link, everyone signs up without an account with their wish list, the draw is done in secret.",
-    0
-  ],
-  "seminaire": [
-    "business",
-    "Offsite and seminar planner",
-    "Participants and replies, who travels with whom, who sleeps where, parallel sessions, budget.",
     0
   ],
   "sinistre": [

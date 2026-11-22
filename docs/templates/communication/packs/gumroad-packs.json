@@ -216,6 +216,30 @@
     "templates_a_mettre_en_vente": []
   },
   {
+    "code": "PMG",
+    "slug": "moyens-generaux",
+    "nom": "Pack Moyens généraux",
+    "permalien": "pack-moyens-generaux",
+    "prix_cents": 22300,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 22300
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 27900
+      }
+    ],
+    "resume": "Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.",
+    "description_html": "<p><strong>Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.</strong></p>\n<p>Matériel informatique, véhicules, salles, maintenance, vérifications réglementaires, contrats fournisseurs, achats et journées de bascule : les moyens généraux d’une PME au même endroit.</p>\n<p><strong>Pour qui ?</strong> Office manager, responsable des services généraux ou dirigeant qui s’en occupe lui-même : vous devez savoir qui a quel ordinateur, quand la camionnette passe au contrôle technique et quoi récupérer quand quelqu’un part.</p>\n<p><strong>Le contenu du pack (10 templates) :</strong></p>\n<ul><li><strong>Gestion de parc informatique</strong> : Matériel, attributions, licences et garanties. (35 € seul)</li><li><strong>Gestion de flotte de véhicules</strong> : Réservations, entretiens et coût par véhicule. (39 € seul)</li><li><strong>Onboarding et offboarding salarié</strong> : Checklists d’arrivée et de départ, responsables, matériel. (19 € seul)</li><li><strong>Maintenance préventive</strong> : Échéances à la date ou au compteur, bons d’intervention, coûts, sur un site ou plusieurs. (39 € seul)</li><li><strong>Vérifications réglementaires</strong> : Contrôles périodiques, échéances et preuves rangées. (35 € seul)</li><li><strong>Réservation de salles et bureaux</strong> : Salles, bureaux et équipements réservés sans conflit. (19 € seul)</li><li><strong>Pilotage d'une journée de bascule</strong> : Déroulé horaire, go/no-go, retour arrière, retard en direct. (29 € seul)</li><li><strong>Contrats fournisseurs et échéances</strong> : Dates limites de résiliation calculées, plus de tacite reconduction subie. (25 € seul)</li><li><strong>Demandes d'achat et fournitures</strong> : Demandes, validation, commandes et budget par service. (19 € seul)</li><li><strong>Organisateur d'événement</strong> : Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J. (39 € seul)</li></ul>\n<p>298 € à l’achat séparé, 223 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (223 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (279 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "10/10",
+    "templates_a_mettre_en_vente": []
+  },
+  {
     "code": "PPE",
     "slug": "petite-entreprise",
     "nom": "Pack Petite entreprise",
@@ -268,50 +292,24 @@
     "slug": "vie-a-deux",
     "nom": "Pack Vie à deux",
     "permalien": "pack-vie-a-deux",
-    "prix_cents": 7200,
+    "prix_cents": 7900,
     "versions": [
       {
         "nom": "Pack",
-        "prix_cents": 7200
+        "prix_cents": 7900
       },
       {
         "nom": "Pack évolutif",
-        "prix_cents": 9000
+        "prix_cents": 9900
       }
     ],
     "resume": "S’installer à deux, sans dispute d’argent.",
-    "description_html": "<p><strong>S’installer à deux, sans dispute d’argent.</strong></p>\n<p>Le grand jour, le voyage, le déménagement, puis le budget et les dépenses partagées : tout ce qui accompagne une vie à deux.</p>\n<p><strong>Pour qui ?</strong> Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?</p>\n<p><strong>Le contenu du pack (6 templates) :</strong></p>\n<ul><li><strong>Organisateur de mariage</strong> : Rétroplanning, budget, prestataires et invités. (29 € seul)</li><li><strong>Gestion Dépenses Communes</strong> : À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun. (15 € seul)</li><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Déménagement</strong> : Rétroplanning, démarches et cartons retrouvés. (12 € seul)</li><li><strong>Planificateur de voyage</strong> : Étapes, nuits, activités, budget et qui doit quoi. (13 € seul)</li><li><strong>Cadeaux reçus et remerciements</strong> : Qui a offert quoi, et à qui il reste à dire merci. (12 € seul)</li></ul>\n<p>96 € à l’achat séparé, 72 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (72 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (90 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "description_html": "<p><strong>S’installer à deux, sans dispute d’argent.</strong></p>\n<p>Le grand jour, le voyage, le déménagement, puis le budget et les dépenses partagées : tout ce qui accompagne une vie à deux.</p>\n<p><strong>Pour qui ?</strong> Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?</p>\n<p><strong>Le contenu du pack (6 templates) :</strong></p>\n<ul><li><strong>Organisateur d'événement</strong> : Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J. (39 € seul)</li><li><strong>Gestion Dépenses Communes</strong> : À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun. (15 € seul)</li><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Déménagement</strong> : Rétroplanning, démarches et cartons retrouvés. (12 € seul)</li><li><strong>Planificateur de voyage</strong> : Étapes, nuits, activités, budget et qui doit quoi. (13 € seul)</li><li><strong>Cadeaux reçus et remerciements</strong> : Qui a offert quoi, et à qui il reste à dire merci. (12 € seul)</li></ul>\n<p>106 € à l’achat séparé, 79 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (79 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (99 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
     "templates_en_vente": "6/6",
     "templates_a_mettre_en_vente": []
-  },
-  {
-    "code": "PMG",
-    "slug": "moyens-generaux",
-    "nom": "Pack Moyens généraux",
-    "permalien": "pack-moyens-generaux",
-    "prix_cents": 22000,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 22000
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 27500
-      }
-    ],
-    "resume": "Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.",
-    "description_html": "<p><strong>Le matériel, les véhicules et les échéances de l’entreprise, enfin sous contrôle.</strong></p>\n<p>Matériel informatique, véhicules, salles, maintenance, vérifications réglementaires, contrats fournisseurs, achats et journées de bascule : les moyens généraux d’une PME au même endroit.</p>\n<p><strong>Pour qui ?</strong> Office manager, responsable des services généraux ou dirigeant qui s’en occupe lui-même : vous devez savoir qui a quel ordinateur, quand la camionnette passe au contrôle technique et quoi récupérer quand quelqu’un part.</p>\n<p><strong>Le contenu du pack (10 templates) :</strong></p>\n<ul><li><strong>Gestion de parc informatique</strong> : Matériel, attributions, licences et garanties. (35 € seul)</li><li><strong>Gestion de flotte de véhicules</strong> : Réservations, entretiens et coût par véhicule. (39 € seul)</li><li><strong>Onboarding et offboarding salarié</strong> : Checklists d’arrivée et de départ, responsables, matériel. (19 € seul)</li><li><strong>Maintenance préventive</strong> : Échéances à la date ou au compteur, bons d’intervention, coûts, sur un site ou plusieurs. (39 € seul)</li><li><strong>Vérifications réglementaires</strong> : Contrôles périodiques, échéances et preuves rangées. (35 € seul)</li><li><strong>Réservation de salles et bureaux</strong> : Salles, bureaux et équipements réservés sans conflit. (19 € seul)</li><li><strong>Pilotage d'une journée de bascule</strong> : Déroulé horaire, go/no-go, retour arrière, retard en direct. (29 € seul)</li><li><strong>Contrats fournisseurs et échéances</strong> : Dates limites de résiliation calculées, plus de tacite reconduction subie. (25 € seul)</li><li><strong>Demandes d'achat et fournitures</strong> : Demandes, validation, commandes et budget par service. (19 € seul)</li><li><strong>Séminaire / offsite</strong> : Participants, trajets, chambres, programme et coût par personne. (35 € seul)</li></ul>\n<p>294 € à l’achat séparé, 220 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (220 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (275 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "9/10",
-    "templates_a_mettre_en_vente": [
-      "Séminaire / offsite"
-    ]
   },
   {
     "code": "PAR",
@@ -344,25 +342,24 @@
     "slug": "associations",
     "nom": "Pack Associations et clubs",
     "permalien": "pack-associations",
-    "prix_cents": 16400,
+    "prix_cents": 15600,
     "versions": [
       {
         "nom": "Pack",
-        "prix_cents": 16400
+        "prix_cents": 15600
       },
       {
         "nom": "Pack évolutif",
-        "prix_cents": 20500
+        "prix_cents": 19500
       }
     ],
     "resume": "Les adhérents, les événements et la caisse du club.",
-    "description_html": "<p><strong>Les adhérents, les événements et la caisse du club.</strong></p>\n<p>Inscriptions, événements, compétitions sportives et trésorerie : ce que les bénévoles gèrent le soir et le week-end.</p>\n<p><strong>Pour qui ?</strong> Président, trésorier ou secrétaire bénévole d’une association, d’un club ou d’un centre social : vous gérez des inscriptions, un ou deux événements par an et une trésorerie à présenter en assemblée générale.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Inscriptions associatives</strong> : Créneaux, liste d’attente et tarifs par tranche. (29 € seul)</li><li><strong>Pilote événementiel</strong> : Rétroplanning, budget, prestataires et invités. (49 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Gestion de compétition sportive</strong> : Inscriptions, vagues, scores et classement en direct. (49 € seul)</li><li><strong>Subventions</strong> : Dossiers, échéances, justificatifs et bilans. (25 € seul)</li><li><strong>Bénévoles et planning des créneaux</strong> : Qui tient quel créneau, sans trou ni doublon. (19 € seul)</li><li><strong>Assemblée générale et vie statutaire</strong> : Convocations, quorum, PV et mandats du bureau. (19 € seul)</li></ul>\n<p>219 € à l’achat séparé, 164 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (164 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (205 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "description_html": "<p><strong>Les adhérents, les événements et la caisse du club.</strong></p>\n<p>Inscriptions, événements, compétitions sportives et trésorerie : ce que les bénévoles gèrent le soir et le week-end.</p>\n<p><strong>Pour qui ?</strong> Président, trésorier ou secrétaire bénévole d’une association, d’un club ou d’un centre social : vous gérez des inscriptions, un ou deux événements par an et une trésorerie à présenter en assemblée générale.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Inscriptions associatives</strong> : Créneaux, liste d’attente et tarifs par tranche. (29 € seul)</li><li><strong>Organisateur d'événement</strong> : Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J. (39 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Gestion de compétition sportive</strong> : Inscriptions, vagues, scores et classement en direct. (49 € seul)</li><li><strong>Subventions</strong> : Dossiers, échéances, justificatifs et bilans. (25 € seul)</li><li><strong>Bénévoles et planning des créneaux</strong> : Qui tient quel créneau, sans trou ni doublon. (19 € seul)</li><li><strong>Assemblée générale et vie statutaire</strong> : Convocations, quorum, PV et mandats du bureau. (19 € seul)</li></ul>\n<p>209 € à l’achat séparé, 156 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (156 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (195 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "3/7",
+    "templates_en_vente": "4/7",
     "templates_a_mettre_en_vente": [
-      "Pilote événementiel",
       "Subventions",
       "Bénévoles et planning des créneaux",
       "Assemblée générale et vie statutaire"

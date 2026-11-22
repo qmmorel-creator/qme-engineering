@@ -92,7 +92,7 @@ déjà).
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 ; prix de 9 € maintenu par Quentin le 22/11/2026 (dérogation à la règle des 12 €, comme T98) |
-| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
+| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | fusionné dans T51 le 22/11/2026 | — | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28. Rationalisation F1 : MRG retiré du site et des packs (remplacé par T51 dans Vie à deux), adresses redirigées vers `evenementiel` ; sa fiche Gumroad (`organisateur-mariage`, même identifiant) devient celle de T51, à renommer. Modèle « Mariage » de T51. |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
@@ -128,10 +128,10 @@ déjà).
 | T48 | Suivi des congés et absences (ancien nom : Suivi congés et absences) | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en vente | 19 € | M | P3 | Backlog Quentin n° 26 |
-| T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
+| T51 | Organisateur d'événement (ancien nom : Pilote événementiel complet) | Événementiel | Particuliers (mariage, fête de famille), agences, entreprises et associations (séminaire, salon, soirée, conférence) | en vente | 39 € | L | P1 | Backlog Quentin n° 27. Fusion F1 du 22/11/2026 : réunit T15 (mariage) et T54 (séminaire) ; quatre modèles, fonctions activables, présent dans les deux parties du site ; fiche Gumroad reprise de T15 (`organisateur-mariage`). Prix de 39 € décidé par Quentin. |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en vente | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
-| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | prêt | 35 € | M | P3 | Backlog Quentin n° 31 |
+| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | fusionné dans T51 le 22/11/2026 | — | M | P3 | Backlog Quentin n° 31. Rationalisation F1 : SMN retiré du site et du pack Moyens généraux (remplacé par T51), adresses redirigées vers `evenementiel` ; pas de fiche Gumroad. Modèle « Séminaire ou offsite » de T51 (transports, chambres, salles parallèles, fiche traiteur). |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
@@ -262,12 +262,12 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Freelance : trouver ses clients | PFC | T38, T28, T74, T39, T75, T89 (T35 fusionné dans T28, T76 dans T89 le 22/11/2026) | — | 102 € | 25 % | 76 € | 19 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82, T51 (T54 fusionné dans T51 le 22/11/2026) | — | 298 € | 25 % | 223 € | 75 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
-| Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
+| Mariage et installation à deux | PMR | T51 (T15 fusionné dans T51 le 22/11/2026), T65, T05, T16, T21, T86 | — | 106 € | 25 % | 79 € | 27 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
-| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 209 € | 25 % | 156 € | 53 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07, T97 | — | 78 € | 25 % | 58 € | 15 € |
 | Maison et famille (renommé le 22/11/2026) | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
@@ -503,7 +503,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T03 | `taches` | TCH | gestionnaire-taches |
 | T04 | `nutrition` | NTR | nutrition |
 | T05 | `budget` | BDG | budget-foyer |
-| T15 | `mariage` | MRG | organisateur-mariage |
+| T15 | `mariage` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | MRG (retiré) | organisateur-mariage (fiche reprise par T51, à renommer) |
 | T24 | `visa` | VSA | circuit-visa |
 | T25 | `non-conformites` | NCF | non-conformites |
 | T28 | `crm` | CRM | crm-freelance |
@@ -514,7 +514,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T36 | `devis` | DVS | generateur-devis |
 | T42 | `tresorerie` | TRS | tresorerie-previsionnelle |
 | T45 | `parc-informatique` | PRC | parc-informatique |
-| T51 | `evenementiel` | EVT | pilote-evenementiel |
+| T51 | `evenementiel` | EVT | organisateur-mariage (fiche de T15 reprise, à renommer ; ancien permalien prévu : pilote-evenementiel) |
 | T53 | `inscriptions` | ASC | inscriptions-associatives |
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
@@ -911,7 +911,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
 | T93 | `assemblee-generale` | AGS | assemblee-generale-association (prévu) |
 | T95 | `investissement-locatif` | RNT | rentabilite-investissement-locatif |
-| T54 | `seminaire` | SMN | seminaire-offsite (prévu) |
+| T54 | `seminaire` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | SMN (retiré) | — (aucune fiche créée) |
 | T58 | `quiz` | QZZ | banque-questions-quiz (prévu) |
 
 ### T31 · Compte rendu et plan d'actions

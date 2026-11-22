@@ -41,13 +41,13 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Vos catégories ne correspondent pas à votre façon de dépenser ?',
   },
-  MRG: {
-    commencer: 'saisissez la date du mariage : les 40 tâches du rétroplanning se calent sur cette date, et la prochaine échéance apparaît.',
+  EVT: {
+    commencer: 'choisissez le modèle (mariage, séminaire ou offsite, événement d\'entreprise ou d\'association, fête de famille) et saisissez la date : le rétroplanning type se cale sur cette date, et la prochaine échéance apparaît.',
     astuces: [
-      'si la date change, tout le rétroplanning se recale seul ;',
-      'les régimes et allergies notés pour chaque invité se retrouvent dans la liste à transmettre au traiteur.',
+      'si la date change, tout le rétroplanning se recale seul, et plusieurs événements se suivent depuis le même tableau de bord ;',
+      'régimes et allergies sont comptés sans nom dans une fiche traiteur à transmettre telle quelle.',
     ],
-    aide: 'Votre organisation ne colle pas au rétroplanning type ?',
+    aide: 'Votre événement ne colle pas au modèle proposé ?',
   },
   PHR: {
     commencer: 'partez de la semaine type la plus proche de vous (cadre, freelance ou étudiant) et déplacez deux ou trois blocs pour l\'adapter à votre vraie semaine.',

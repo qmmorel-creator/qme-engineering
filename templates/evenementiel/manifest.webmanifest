@@ -1,7 +1,7 @@
 {
-  "name": "Pilote événementiel · QME",
+  "name": "Organisateur d'événement · QME",
   "short_name": "Événements",
-  "description": "Rétroplanning, budget, contrats, invités et jour J de plusieurs événements.",
+  "description": "Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, plan de table, transports, jour J.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
@@ -9,8 +9,21 @@
   "background_color": "#FBF7F1",
   "theme_color": "#FBF7F1",
   "icons": [
-    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml" },
-    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "icone.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }

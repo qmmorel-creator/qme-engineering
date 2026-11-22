@@ -36,3 +36,17 @@ test('licence du Pilotage de parcs multi-sites : ouvre Maintenance préventive (
   assert.equal(a.url, PRODUITS.GMA.url);
   assert.equal(a.jeton, b.jeton);
 });
+
+test('licence de l\'Organisateur de mariage : sa fiche Gumroad est celle de l\'Organisateur d\'événement (fusion F1)', async () => {
+  const MRG = 'TmtmeDwq1OsE2Y9gL6rDag==';
+  assert.equal(PRODUITS.EVT.gumroad, MRG);
+  assert.ok(!PRODUITS.MRG && !PRODUITS.SMN && !FUSIONNES.MRG && !FUSIONNES.SMN, 'MRG et SMN retirés, sans entrée FUSIONNES');
+  const LICENCE = 'AAAA1111-BBBB2222-CCCC3333-DDDD4444';
+  const verifierLicence = async (gumroad) => (gumroad === MRG ? { ok: true, achat: { email: '' } } : { ok: false, raison: 'inconnue' });
+  const stockage = memoire();
+  const connexion = async () => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: LICENCE }) }), { secret: SECRET, stockage, verifierLicence })).json();
+  const a = await connexion(), b = await connexion();
+  assert.equal(a.produit, 'EVT');
+  assert.equal(a.url, '/templates/evenementiel/');
+  assert.equal(a.jeton, b.jeton);
+});
