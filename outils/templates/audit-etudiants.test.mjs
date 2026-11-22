@@ -68,3 +68,16 @@ test('démo Odélia : liens « Repartir des données de départ » à 44 px, sty
   assert.ok(h.includes(`/assets/packs.css?v=${v}`), 'version de packs.css');
   assert.equal((h.match(/&amp;reinit">Repartir des données de départ<\/a>/g) || []).length, 4);
 });
+
+test('hors ligne : chaque fichier chargé par index.html est dans la coquille du service worker, à la même version', () => {
+  for (const s of SLUGS) {
+    const ix = lire(`templates/${s}/index.html`), sw = lire(`templates/${s}/sw.js`);
+    const coquille = sw.match(/const COQUILLE = \[(.*)\];/)[1];
+    const charges = [...ix.matchAll(/(?:src|href)="([^"]+\?v=[^"]+)"/g)].map((m) => m[1].replace(/^\/templates\/[^/]+\/(?=[^/]+$)/, ''));
+    assert.ok(charges.length >= 5, s);
+    for (const f of charges) assert.ok(coquille.includes(`'${f}'`), `${s} : ${f} absent de la coquille`);
+    const v = sw.match(/VERSION = '([a-z-]+)-([0-9a-z]+)'/);
+    assert.equal(v[1], s);
+    assert.ok(coquille.includes(`app.js?v=${v[2]}`), `${s} : VERSION et app.js désaccordés`);
+  }
+});
