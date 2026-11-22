@@ -18,7 +18,7 @@ window.BASE = {
       mots: { invite: 'invité', invites: 'Invités', groupe: 'Groupe', jourj: 'Jour J', court: 'Invités', seq: 'séquence', lieu: 'Lieu', client: 'Pour qui' } },
     { id: 'seminaire', nom: 'Séminaire ou offsite', court: 'Séminaire', couleur: 'bleu', phrase: 'Participants, transports, chambres, programme en salles parallèles.',
       mots: { invite: 'participant', invites: 'Participants', groupe: 'Service', jourj: 'Programme', court: 'Inscrits', seq: 'session', lieu: 'Salle', client: 'Commanditaire' } },
-    { id: 'entreprise', nom: 'Événement d\'entreprise ou d\'association', court: 'Entreprise ou association', couleur: 'jaune', phrase: 'Salon, soirée, conférence ou gala : invités, badges, conducteur.',
+    { id: 'entreprise', nom: 'Événement d\'entreprise ou d\'association', court: 'Entreprise ou association', couleur: 'jaune', phrase: 'Salon, soirée, conférence ou gala\u00a0: invités, badges, déroulé.',
       mots: { invite: 'invité', invites: 'Invités', groupe: 'Catégorie', jourj: 'Jour J', court: 'Invités', seq: 'séquence', lieu: 'Lieu', client: 'Client ou commanditaire' },
       formats: [
         { id: 'salon', nom: 'Salon professionnel (exposant)' },
@@ -27,7 +27,7 @@ window.BASE = {
         { id: 'conference', nom: 'Conférence, assemblée ou matinale' },
         { id: 'autre', nom: 'Autre événement' },
       ] },
-    { id: 'fete', nom: 'Fête de famille', court: 'Fête de famille', couleur: 'vert', phrase: 'Anniversaire, baptême ou fête : invités, tables, budget, déroulé.',
+    { id: 'fete', nom: 'Fête de famille', court: 'Fête de famille', couleur: 'vert', phrase: 'Anniversaire, baptême ou fête\u00a0: invités, tables, budget, déroulé.',
       mots: { invite: 'invité', invites: 'Invités', groupe: 'Groupe', jourj: 'Jour J', court: 'Invités', seq: 'séquence', lieu: 'Lieu', client: 'Pour qui' },
       formats: [
         { id: 'anniversaire', nom: 'Anniversaire' },

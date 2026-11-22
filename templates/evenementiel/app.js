@@ -644,7 +644,11 @@
       zone.querySelector('[data-si-noms]').hidden = sel.value !== 'mariage';
       zone.querySelector('[data-libelle-client]').textContent = ty.mots.client;
       if (creation) {
-        const m = R.modulesParDefaut(sel.value, ty.formats?.[0]?.id, Number(zone.querySelector('[name=nbJours]').value) || 1);
+        // Durée par défaut du type (séminaire : 2 jours, soit une nuit sur place), puis ses fonctions.
+        const nb = zone.querySelector('[name=nbJours]');
+        if (sel.value === 'seminaire' && Number(nb.value) === 1) nb.value = 2;
+        else if (sel.value !== 'seminaire' && Number(nb.value) === 2) nb.value = 1;
+        const m = R.modulesParDefaut(sel.value, ty.formats?.[0]?.id, Number(nb.value) || 1);
         B.modules.forEach((x) => { zone.querySelector(`[name="m-${x.id}"]`).checked = m[x.id]; });
       }
       majDepart();
@@ -2035,7 +2039,7 @@
       ['beurre', 'Un rétroplanning calé sur la date', `Chaque tâche a une échéance relative à l'événement (J-45&nbsp;= 45 jours avant) ou une date fixe. Changer la date décale toutes les échéances relatives. À 7&nbsp;jours ou moins de son échéance, une tâche passe <b>Cette semaine</b>&nbsp;; une fois l'échéance dépassée, <b>En retard</b>.`],
       ['ciel', 'Prévu, engagé, payé', `Saisis ton prévu par poste. Seuls les contrats <b>Signés ou réservés</b> comptent dans l'engagé, et seules les échéances marquées payées dans le payé (montants en ${conv}). Une échéance non payée remonte dans les alertes 14&nbsp;jours avant sa date, puis passe en retard&nbsp;; un poste dépassé et la part d'un contrat «&nbsp;à planifier&nbsp;» sont signalés. Le coût par personne divise le total par les confirmés.`],
       ['sable', 'Invités et organisation', `Note les réponses&nbsp;: les couverts à prévoir comptent les oui et les en attente. Avec une date limite, les réponses en attente sont signalées 7&nbsp;jours avant, puis en urgence une fois la date passée. Selon les fonctions activées, l'onglet place chacun à table, dans un trajet ou une chambre, et signale ce qui manque ou déborde. Régimes, allergies et accessibilité sont comptés sans nom pour le traiteur&nbsp;; efface-les après l'événement.`],
-      ['rose', 'Le jour J', `Le déroulé place chaque séquence à son heure et dans son lieu&nbsp;: plusieurs lieux en même temps, c'est en parallèle&nbsp;; deux séquences qui se recouvrent au même lieu sont signalées. Le jour même, la séquence en cours s'affiche et tu pointes les arrivées. La checklist, les badges et la fiche traiteur s'impriment ou se téléchargent.`],
+      ['rose', 'Le jour J', `Le déroulé place chaque séquence à son heure et dans son lieu&nbsp;: plusieurs lieux en même temps, c'est en parallèle&nbsp;; deux séquences qui se recouvrent au même lieu sont signalées. Le jour même, la séquence en cours s'affiche et tu pointes les arrivées. Le déroulé, les badges, le plan de table et la liste des chambres s'impriment&nbsp;; la fiche traiteur se télécharge.`],
     ];
     const corps = `
       <p>L'organisateur calcule pour toi les échéances, le budget engagé, les paiements à venir et ce qui manque à chaque événement. Ton rôle&nbsp;: cocher les tâches faites, saisir tes contrats et leurs échéances, tenir la liste des invités et leurs réponses.</p>
