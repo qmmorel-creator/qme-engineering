@@ -137,8 +137,8 @@ déjà).
 | T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | en vente | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en vente | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` à dépublier |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques, exploitants multi-sites | en vente | 39 € | M | P2 | Backlog Quentin n° 39. Absorbe T60 le 22/11/2026 (option plusieurs sites) |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
@@ -540,7 +540,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T33 | `bascule` | BSC | pilotage-bascule (prévu) |
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
-| T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T60 | `parcs-multi-sites` (fusionné dans T61 le 22/11/2026, redirigé vers `maintenance`) | PRK (retiré) | pilotage-parcs-multi-sites (à dépublier) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
 | T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
@@ -1353,7 +1353,21 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   Exploitation et maintenance (`GMA` ajouté à `TEMPLATES` et retiré de `PREVUS` dans `outils/packs/donnees.mjs` ;
   ajout aux `produits` des packs laissé au coordinateur).
 - Promesse : « Chaque machine entretenue à temps. »
-- Base intégrée : 16 familles d'équipements, 54 opérations types avec points de contrôle (périodicités
+- **Fusion F4 du 22/11/2026** (`RATIONALISATION.md`) : absorbe T60 Pilotage de parcs multi-sites (PRK), au même prix
+  (39 €), à la même adresse et sous le même préfixe. **Option plusieurs sites** (modèle « Un site » / « Plusieurs
+  sites » au premier lancement, ou case des réglages ; les données d'un seul site passent sans perte dans un premier
+  site) : équipements rangés par site (onglet Sites à la place d'Équipements, sous-vue « Équipements » groupée par
+  site), vue d'ensemble (sites, retards, arrêts, disponibilité, coût, tableau par site, coût et disponibilité par
+  site), visites de site, alertes (équipement à l'arrêt depuis N jours, site sans visite ni bon clôturé depuis N mois),
+  fiche de site (disponibilité, retards, délai de résolution, coût, alertes, à faire, équipements, coût par famille,
+  historique), liste triable et filtrable ou carte schématique (projection des coordonnées saisies, sans fond de
+  carte), import et export CSV des sites et des équipements (modèles vides). Repris de PRK pour les deux modes : état
+  de l'équipement (en service, dégradé, à l'arrêt, réformé), date de signalement des pannes, disponibilité, délai de
+  résolution. Trois familles ajoutées (ascenseur, contrôle d'accès et vidéo, production d'énergie), sans périodicité
+  réglementaire. Une copie exportée de PRK se restaure (`depuisParcs` : périodicité → opération « Préventif
+  périodique », préventifs, pannes et visites → bons et visites, coûts en sous-traitance). Démos `?demo` (un site) et
+  `?demo=sites` (six sites). Captures ajoutées : `assets/templates-maintenance-ensemble|sites|carte.webp`.
+- Base intégrée : 19 familles d'équipements, 61 opérations types avec points de contrôle (avant la fusion : 16 et 54 ; périodicités
   **indicatives, non sourcées**, la notice du fabricant prime) ; **daté** : 2 obligations sourcées reprises de
   T11 (chaudières 4–400 kW, art. R224-41-4 à R224-41-9 ; thermodynamiques 4–70 kW, art. R224-44 à R224-44-5),
   vérifiées le 13/11/2026, à revoir chaque année ; 10 vérifications réglementaires **sans périodicité**
@@ -1363,8 +1377,9 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   recalage glissant ou calendaire) ; bons d'intervention imprimables ; pièces de rechange ; coût par équipement ;
   indicateurs (taux de réalisation du préventif, ponctualité, retards, pannes).
 - **Confidentiel** vérifié : aucun artefact professionnel repris, démo fictive (« Atelier Exemple »).
-- Statut : **prêt**, « Mise en vente prochaine » (page `catalogue/maintenance/`, démo libre, bouton « Je suis
-  intéressé(e) »). Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
+- Statut : **en vente** (39 €, `maintenance-preventive`) ; option plusieurs sites depuis le 22/11/2026 (fiche Gumroad à
+  compléter : description et couverture à reprendre par Quentin). Historique : prêt, « Mise en vente prochaine ».
+  Page `catalogue/maintenance/`. Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
   instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, cartes). Reste :
   fiche Gumroad (et entrée de `communication/gumroad-a-creer.json`), clé de licence (Quentin), lignes des
   plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).

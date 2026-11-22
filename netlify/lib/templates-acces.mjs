@@ -19,6 +19,7 @@ export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockf
 export const FUSIONNES = {
   PRS: { gumroad: '7Ie2c3Qgcxkl1coobiiNXg==', vers: 'CRM', depuis: '2026-11-22' }, // Pipeline de prospection → CRM et prospection
   CND: { gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==', vers: 'CAN', depuis: '2026-11-22' }, // Suivi des appels d'offres → Suivi de candidatures
+  PRK: { gumroad: 'hOn6wGUScmPpb--BuJTl-g==', vers: 'GMA', depuis: '2026-11-22' }, // Pilotage de parcs multi-sites → Maintenance préventive
 };
 
 export const PRODUITS = {
@@ -70,6 +71,8 @@ export const PRODUITS = {
   DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/', gumroad: 'KZHfWPckpGMOxeFYDPcrow==' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/', gumroad: 'qzhJTzOWF59ZJo1a1Xbetg==' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/', gumroad: '78_8FuKW6L-Dk5kT50W8-Q==' },
+  // Maintenance préventive : absorbe le Pilotage de parcs multi-sites (PRK) le 22/11/2026 (rationalisation F4), en option
+  // « plusieurs sites ». PRK retiré : aucune vente, aucun code offert ; /templates/parcs-multi-sites/ redirigé ici (netlify.toml).
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/', gumroad: 'MAPRhk5_um6ZexYxe09jFw==' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/', gumroad: 'EnpmgktOylLJZJST9_Tfhg==' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/', gumroad: 'B0MUKsC_AHC_LeiL83xQvA==' },
@@ -85,7 +88,6 @@ export const PRODUITS = {
   BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/', gumroad: 'xH5b6U76Zzjy5ADJBYu03g==' },
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
-  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/', gumroad: 'hOn6wGUScmPpb--BuJTl-g==' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/', gumroad: 'u-ySqLkS21aA1mhfeG9EFQ==' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/', gumroad: 'Y_zjhtlT4nxXqSdqeT_mEA==' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/', gumroad: 'qUwb0nm4TaFmXgiSoc2aJA==' },

@@ -35,7 +35,6 @@ export const TEMPLATES = {
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', permalien: 'pilotage-bascule', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
   EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
-  PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', permalien: 'pilotage-parcs-multi-sites', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', permalien: 'registre-doe', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', permalien: 'reservation-salles', pour: 'pro' },
   CPT: { slug: 'emprunt', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.', permalien: 'capacite-emprunt-comparateur-prets', pour: 'perso' },
@@ -51,7 +50,8 @@ export const TEMPLATES = {
   RVH: { slug: 'revue-hebdo', prix: 1200, phrase: 'Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités.', permalien: 'revue-hebdomadaire', pour: 'perso' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', permalien: 'suivi-chantier-lot', pour: 'pro' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', permalien: 'tableau-de-bord-pme', pour: 'pro' },
-  GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts.', permalien: 'maintenance-preventive', pour: 'pro' },
+  // Maintenance préventive (fusion F4 du 22/11/2026) : absorbe le Pilotage de parcs multi-sites, option plusieurs sites.
+  GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts, sur un site ou plusieurs.', permalien: 'maintenance-preventive', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
   CRA: { slug: 'compte-rendu', prix: 1500, phrase: 'Décisions et actions suivies de réunion en réunion.', permalien: 'compte-rendu-actions', pour: 'pro' },
@@ -391,7 +391,7 @@ export const PAGES = {
     resume: 'Maintenance préventive, vérifications réglementaires, non-conformités et pièces en stock : l’exploitation technique au quotidien.',
     pourQui: 'Exploitant, responsable des services techniques ou gestionnaire de patrimoine : vous suivez des équipements sur plusieurs sites, avec des contrôles obligatoires et des contrats de maintenance qui se renouvellent seuls.',
     parcours: [
-      ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
+      ['GMA', 'Planifiez la maintenance préventive de tous vos sites, à la date ou au compteur, avec ses bons d’intervention et le coût par site.'],
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
       ['NCF', 'Enregistrez chaque écart, sa cause et l’action corrective jusqu’à la vérification.'],
       ['STK', 'Gardez les pièces de rechange au bon niveau, alertes et liste à commander comprises.'],

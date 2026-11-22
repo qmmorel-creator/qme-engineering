@@ -347,12 +347,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Un indicateur propre à votre métier qui manque à la bibliothèque ?',
   },
   GMA: {
-    commencer: 'ajoutez une machine à partir de sa famille d\'équipement et relevez son compteur : les opérations du plan type et leurs échéances s\'affichent.',
+    commencer: 'choisissez un site ou plusieurs, ajoutez une machine à partir de sa famille d\'équipement et relevez son compteur : les opérations du plan type et leurs échéances s\'affichent.',
     astuces: [
-      'le rythme d\'utilisation relevé transforme une échéance au compteur en date estimée ;',
-      'à la clôture d\'un bon d\'intervention, l\'échéance suivante se recale et le coût de l\'équipement se met à jour.',
+      'le rythme d\'utilisation relevé transforme une échéance au compteur en date estimée, et la clôture d\'un bon recale l\'échéance suivante et le coût de l\'équipement ;',
+      'avec plusieurs sites, la vue d\'ensemble signale un équipement à l\'arrêt ou un site sans visite, et compare disponibilité et coût par site, en liste ou sur une carte schématique.',
     ],
-    aide: 'Une machine dont la notice impose un entretien que le plan type ne prévoit pas ?',
+    aide: 'Une machine dont la notice impose un entretien que le plan type ne prévoit pas, ou un parc qui se range mal par site ?',
   },
   GNT: {
     commencer: 'tapez quelques tâches en une ligne chacune, avec une date, une durée et la tâche qui précède (« après 1 ») : les barres, les liens et le chemin critique apparaissent.',
@@ -577,14 +577,6 @@ export const PRISE_EN_MAIN = {
       'une lettre de résiliation préremplie (fournisseur, numéro de contrat, échéance) se copie ou s\'imprime, à adapter à votre contrat.',
     ],
     aide: 'Un contrat dont l\'échéance ou le préavis se calcule autrement ?',
-  },
-  PRK: {
-    commencer: 'créez un site (ou importez votre liste avec le modèle tableur), ajoutez un équipement et sa périodicité de préventif : la prochaine échéance s\'affiche.',
-    astuces: [
-      'les alertes signalent un préventif dépassé, un équipement à l\'arrêt depuis N jours ou un site sans visite depuis N mois, seuils réglables ;',
-      'la carte schématique place les sites par leurs coordonnées, sans fond de carte ni service en ligne.',
-    ],
-    aide: 'Un parc ou un type d\'équipement qui se range mal dans les sites et catégories ?',
   },
   BSC: {
     commencer: 'partez d\'une des 5 séquences types, nommez l\'équipe et adaptez les durées : le déroulé horaire et la fin estimée se calculent.',

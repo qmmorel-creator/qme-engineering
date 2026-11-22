@@ -1,6 +1,9 @@
 // Maintenance préventive QME (GMAO légère) : équipements, plans de maintenance, échéances à la date, au
 // compteur ou au premier atteint, bons d'intervention imprimables, historique, pièces de rechange, coûts et
-// indicateurs. Données synchronisées par clé de licence ou code d'accès. Aucun capteur ni logiciel connecté.
+// indicateurs. Option « plusieurs sites » (fusion du Pilotage de parcs multi-sites, 22/11/2026) : équipements
+// rangés par site, vue d'ensemble, alertes d'arrêt et de visite, disponibilité, coût par site, liste triable,
+// carte schématique, import et export CSV. Données synchronisées par clé de licence ou code d'accès. Aucun
+// capteur, fond de carte ni logiciel connecté.
 (() => {
   'use strict';
   const B = window.BASE;
@@ -12,6 +15,7 @@
   const CLE_DEMO = 'qme-gma-demo';
   const CODE_DEMO = 'DEMO';
   const CLE_ACCUEIL = 'qme-gma-ecran-accueil';
+  const CLE_AFFICHAGE = 'qme-gma-affichage'; // liste ou carte des sites (préférence de cet appareil)
 
   // ---------- Outils ----------
   const $ = (s, r = document) => r.querySelector(s);
@@ -46,8 +50,14 @@
   let E = null;
   const session = { code: null, jeton: null, demo: false, base: null, memoriser: true };
   let vue = 'tableau';
-  const filtre = { ech: 'urgent', famille: '', q: '', eq: 'actifs', qe: '', bon: 'afaire', qb: '', piece: 'tous' };
+  const filtre = { ech: 'urgent', famille: '', q: '', eq: 'actifs', qe: '', bon: 'afaire', qb: '', piece: 'tous', site: '' };
   let annulation = null;
+  // Plusieurs sites : site ouvert dans l'onglet Sites, sous-vue (sites ou équipements), liste ou carte, tri, filtres.
+  let siteOuvert = null;
+  let sousVue = 'sites';
+  const pref = stock.lire(CLE_AFFICHAGE) || {};
+  const affichage = { mode: pref.mode === 'carte' ? 'carte' : 'liste', tri: { cle: 'etat', sens: 1 }, f: { texte: '', region: '', type: '', etat: '' } };
+  const multi = () => !!E?.multiSites;
 
   // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
   // Les règles reconstruisent l'état champ par champ : le champ est réinjecté ici.
@@ -59,6 +69,14 @@
   const piece = (id) => E.pieces.find((p) => p.id === id);
   const nomEq = (id) => { const e = equipement(id); return e ? `${e.repere ? `${e.repere} · ` : ''}${e.nom}` : 'Équipement supprimé'; };
   const famille = (id) => B.familles.find((f) => f.id === id);
+  const site = (id) => E.sites.find((x) => x.id === id);
+  const nomSite = (id) => site(id)?.nom || 'Sans site';
+  const sitesTries = () => [...E.sites].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+  const typeCourt = (c) => B.typesSites.find((t) => t.code === c)?.court || c || '';
+  // Site d'un équipement, préfixé (plusieurs sites seulement).
+  const auSite = (eqId) => (multi() ? `${esc(nomSite(equipement(eqId)?.site))} · ` : '');
+  // Équipements visibles dans les listes : tous, ou ceux du site filtré (plusieurs sites).
+  const dansFiltreSite = (eq) => !multi() || !filtre.site || eq?.site === filtre.site;
 
   function retenir() { annulation = structuredClone(E); }
   function annuler() {
@@ -178,10 +196,14 @@
     session.base = donnees?.majLe ?? null;
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
-  function ouvrirDemo(memoriser = true) {
+  // Démo : celle gardée sur cet appareil, sinon l'exemple d'un site ; multiSites (true ou false) impose le modèle.
+  function ouvrirDemo(memoriser = true, multiSites = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    const garde = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : null;
+    E = garde && (multiSites === null || garde.multiSites === multiSites) ? garde : donneesDemo(!!multiSites);
+    if (garde && E !== garde && garde.tutorielVu) E.tutorielVu = true;
+    siteOuvert = null; filtre.site = '';
     cache();
     demarrer();
   }
@@ -200,11 +222,28 @@
   // compresseur), bientôt au compteur (graissage du centre d'usinage), bon planifié (révision du chariot),
   // bon en cours (groupe électrogène), fait aujourd'hui (contrôle hebdomadaire), réglementaires à
   // paramétrer, équipement archivé, pannes avec arrêt, pièce sous le seuil, pièce en rupture.
-  function donneesDemo() {
+  // Plusieurs sites (multiSites) : le même atelier devient l'un des six sites d'un exploitant fictif (villes servant
+  // seulement de repère, coordonnées approximatives d'un centre-ville), avec un arrêt au-delà du seuil, un arrêt
+  // récent, un équipement dégradé, un site sans visite depuis plus de 6 mois, un site jamais visité et deux sites
+  // sans coordonnées.
+  function donneesDemo(multiSites = false) {
     const e = etatVide();
-    e.entreprise = 'Atelier Exemple';
+    e.entreprise = multiSites ? 'Exploitation Exemple' : 'Atelier Exemple';
     e.reglages.tauxHoraire = 4500;
-    e.familles = ['compresseur', 'usinage', 'chariot', 'levage', 'groupe', 'chaudiere', 'clim', 'porte', 'pompe', 'incendie'];
+    e.familles = ['compresseur', 'usinage', 'chariot', 'levage', 'groupe', 'chaudiere', 'clim', 'porte', 'pompe', 'incendie', ...(multiSites ? ['ascenseur', 'energie', 'electrique'] : [])];
+    const S = {};
+    if (multiSites) {
+      e.multiSites = true;
+      // [clé, nom, type, ville, région, responsable, lat, lon]
+      for (const [k, nom, type, ville, region, responsable, lat, lon, notes] of [
+        ['atelier', 'Atelier de Lyon', 'IND', 'Lyon', 'Auvergne-Rhône-Alpes', 'Responsable A', 45.76, 4.84, ''],
+        ['siege', 'Siège et bureaux', 'BUR', 'Grenoble', 'Auvergne-Rhône-Alpes', 'Responsable B', 45.19, 5.72, 'Accueil au rez-de-chaussée, badge visiteur.'],
+        ['entrepot', 'Entrepôt Nord', 'ENT', 'Lille', 'Hauts-de-France', 'Responsable C', 50.63, 3.06, ''],
+        ['agence', 'Agence Sud', 'COM', 'Marseille', 'Provence-Alpes-Côte d\'Azur', 'Responsable D', 43.3, 5.37, ''],
+        ['local', 'Local technique Est', 'TEC', '', 'Grand Est', 'Responsable B', null, null, 'Accès avec badge, prévenir 48 h avant.'],
+        ['depot', 'Dépôt Ouest', 'ENT', '', 'Bretagne', 'Responsable C', null, null, ''],
+      ]) { S[k] = R.normaliserSite({ id: uid(), nom, type, ville, region, responsable, lat, lon, notes }); e.sites.push(S[k]); }
+    }
     const t = auj();
     const j = (n) => ajout(t, n);
     let graine = 61;
@@ -223,22 +262,30 @@
     reception(huile, -120, 2); reception(graisse, -90, 8);
 
     const specs = [
-      { repere: 'CMP-01', nom: 'Compresseur à vis 15 kW', famille: 'compresseur', emplacement: 'Local compresseur', criticite: 'A', unite: 'h', initial: 8200, parJour: 9, fabricant: 'Fabricant Exemple', codes: ['cmp-hebdo', 'cmp-filtre', 'cmp-vidange', 'cmp-separateur', 'cmp-reservoir'] },
-      { repere: 'USI-01', nom: 'Centre d\'usinage vertical', famille: 'usinage', emplacement: 'Atelier, travée 1', criticite: 'A', unite: 'h', initial: 11400, parJour: 7.5, codes: ['usi-graissage', 'usi-coupe', 'usi-geometrie'] },
-      { repere: 'TOU-02', nom: 'Tour conventionnel', famille: 'usinage', emplacement: 'Atelier, travée 2', criticite: 'C', unite: 'h', initial: 21000, parJour: 2, codes: ['usi-graissage', 'usi-coupe'] },
-      { repere: 'CHA-01', nom: 'Chariot élévateur électrique 2,5 t', famille: 'chariot', emplacement: 'Quai d\'expédition', criticite: 'B', unite: 'h', initial: 3100, parJour: 3.2, codes: ['cha-batterie', 'cha-revision', 'cha-vgp'] },
-      { repere: 'PON-01', nom: 'Pont roulant 5 t', famille: 'levage', emplacement: 'Atelier, travée 1', criticite: 'A', unite: '', codes: ['lev-visuel', 'lev-graissage', 'lev-vgp'] },
-      { repere: 'GE-01', nom: 'Groupe électrogène de secours', famille: 'groupe', emplacement: 'Extérieur, abri', criticite: 'B', unite: 'h', initial: 410, parJour: 0, codes: ['gro-essai', 'gro-vidange', 'gro-charge'] },
-      { repere: 'CHD-01', nom: 'Chaudière gaz des bureaux', famille: 'chaudiere', emplacement: 'Bureaux, chaufferie', criticite: 'B', unite: '', codes: ['chd-annuel', 'chd-pression'] },
-      { repere: 'CLI-01', nom: 'Climatisation de la salle serveur', famille: 'clim', emplacement: 'Bureaux, salle serveur', criticite: 'A', unite: '', codes: ['cli-filtres', 'cli-exterieur', 'cli-legal'] },
-      { repere: 'POR-01', nom: 'Porte sectionnelle du quai', famille: 'porte', emplacement: 'Quai d\'expédition', criticite: 'B', unite: 'cycles', initial: 30500, parJour: 26, codes: ['por-securites', 'por-entretien', 'por-ressorts'] },
-      { repere: 'POM-01', nom: 'Pompe de relevage', famille: 'pompe', emplacement: 'Extérieur, regard sud', criticite: 'C', unite: 'h', initial: 5200, parJour: 1.1, codes: ['pom-controle', 'pom-nettoyage'] },
-      { repere: 'INC-01', nom: 'Extincteurs du site (12 appareils)', famille: 'incendie', emplacement: 'Tout le site', criticite: 'A', unite: '', codes: ['inc-extincteurs', 'inc-baes'] },
-      { repere: 'TOU-01', nom: 'Ancien tour (réformé)', famille: 'usinage', emplacement: 'Réserve', criticite: 'C', unite: 'h', initial: 30000, parJour: 0, codes: ['usi-graissage'], archive: true, note: 'Réformé, en attente de revente.' },
+      { site: 'atelier', repere: 'CMP-01', nom: 'Compresseur à vis 15 kW', famille: 'compresseur', emplacement: 'Local compresseur', criticite: 'A', unite: 'h', initial: 8200, parJour: 9, fabricant: 'Fabricant Exemple', codes: ['cmp-hebdo', 'cmp-filtre', 'cmp-vidange', 'cmp-separateur', 'cmp-reservoir'] },
+      { site: 'atelier', repere: 'USI-01', nom: 'Centre d\'usinage vertical', famille: 'usinage', emplacement: 'Atelier, travée 1', criticite: 'A', unite: 'h', initial: 11400, parJour: 7.5, codes: ['usi-graissage', 'usi-coupe', 'usi-geometrie'] },
+      { site: 'atelier', repere: 'TOU-02', nom: 'Tour conventionnel', famille: 'usinage', emplacement: 'Atelier, travée 2', criticite: 'C', unite: 'h', initial: 21000, parJour: 2, codes: ['usi-graissage', 'usi-coupe'] },
+      { site: 'entrepot', repere: 'CHA-01', nom: 'Chariot élévateur électrique 2,5 t', famille: 'chariot', emplacement: 'Quai d\'expédition', criticite: 'B', unite: 'h', initial: 3100, parJour: 3.2, codes: ['cha-batterie', 'cha-revision', 'cha-vgp'] },
+      { site: 'atelier', repere: 'PON-01', nom: 'Pont roulant 5 t', famille: 'levage', emplacement: 'Atelier, travée 1', criticite: 'A', unite: '', codes: ['lev-visuel', 'lev-graissage', 'lev-vgp'] },
+      { site: 'atelier', repere: 'GE-01', nom: 'Groupe électrogène de secours', famille: 'groupe', emplacement: 'Extérieur, abri', criticite: 'B', unite: 'h', initial: 410, parJour: 0, codes: ['gro-essai', 'gro-vidange', 'gro-charge'] },
+      { site: 'siege', repere: 'CHD-01', nom: 'Chaudière gaz des bureaux', famille: 'chaudiere', emplacement: 'Bureaux, chaufferie', criticite: 'B', unite: '', codes: ['chd-annuel', 'chd-pression'] },
+      { site: 'siege', repere: 'CLI-01', nom: 'Climatisation de la salle serveur', famille: 'clim', emplacement: 'Bureaux, salle serveur', criticite: 'A', unite: '', codes: ['cli-filtres', 'cli-exterieur', 'cli-legal'] },
+      { site: 'entrepot', repere: 'POR-01', nom: 'Porte sectionnelle du quai', famille: 'porte', emplacement: 'Quai d\'expédition', criticite: 'B', unite: 'cycles', initial: 30500, parJour: 26, codes: ['por-securites', 'por-entretien', 'por-ressorts'] },
+      { site: 'atelier', repere: 'POM-01', nom: 'Pompe de relevage', famille: 'pompe', emplacement: 'Extérieur, regard sud', criticite: 'C', unite: 'h', initial: 5200, parJour: 1.1, codes: ['pom-controle', 'pom-nettoyage'] },
+      { site: 'siege', repere: 'INC-01', nom: 'Extincteurs du site (12 appareils)', famille: 'incendie', emplacement: 'Tout le site', criticite: 'A', unite: '', codes: ['inc-extincteurs', 'inc-baes'] },
+      { site: 'atelier', repere: 'TOU-01', nom: 'Ancien tour (réformé)', famille: 'usinage', emplacement: 'Réserve', criticite: 'C', unite: 'h', initial: 30000, parJour: 0, codes: ['usi-graissage'], archive: true, note: 'Réformé, en attente de revente.' },
+      ...(multiSites ? [
+        { site: 'siege', repere: 'ASC-01', nom: 'Ascenseur du siège', famille: 'ascenseur', emplacement: 'Hall', criticite: 'A', unite: '', codes: ['asc-essai', 'asc-entretien'] },
+        { site: 'entrepot', repere: 'POR-02', nom: 'Porte sectionnelle quai 2', famille: 'porte', emplacement: 'Quai de réception', criticite: 'B', unite: 'cycles', initial: 18200, parJour: 19, codes: ['por-securites', 'por-ressorts'] },
+        { site: 'agence', repere: 'CLI-02', nom: 'Climatisation de la surface de vente', famille: 'clim', emplacement: 'Toiture', criticite: 'A', unite: '', codes: ['cli-filtres', 'cli-exterieur', 'cli-legal'] },
+        { site: 'agence', repere: 'BOR-01', nom: 'Bornes de recharge du parking', famille: 'energie', emplacement: 'Parking clients', criticite: 'C', unite: '', codes: ['ene-visuel', 'ene-entretien'] },
+        { site: 'local', repere: 'ELE-01', nom: 'Tableau général basse tension', famille: 'electrique', emplacement: 'Local TGBT', criticite: 'A', unite: '', codes: ['ele-verif'] },
+        { site: 'depot', repere: 'POR-03', nom: 'Portail coulissant', famille: 'porte', emplacement: 'Entrée du dépôt', criticite: 'C', unite: '', codes: ['por-entretien'] },
+      ] : []),
     ];
     const eqs = {};
     for (const s of specs) {
-      const eq = R.normaliserEquipement({ id: uid(), repere: s.repere, nom: s.nom, famille: s.famille, emplacement: s.emplacement, criticite: s.criticite, unite: s.unite, compteurInitial: s.initial ?? 0, miseEnService: j(DEBUT - 30), fabricant: s.fabricant || 'Fabricant Exemple', archive: !!s.archive, note: s.note || '' });
+      const eq = R.normaliserEquipement({ id: uid(), site: multiSites ? S[s.site].id : '', repere: s.repere, nom: s.nom, famille: s.famille, emplacement: s.emplacement, criticite: s.criticite, unite: s.unite, compteurInitial: s.initial ?? 0, miseEnService: j(DEBUT - 30), fabricant: s.fabricant || 'Fabricant Exemple', archive: !!s.archive, note: s.note || '' });
       e.equipements.push(eq);
       eqs[s.repere] = { eq, s, cpt: s.initial ?? 0 };
       const ops = R.planDepuisFamille(B, s.famille, { equipement: eq.id, depuis: j(DEBUT - 30), depuisCompteur: s.initial ?? 0, codes: s.codes, id: uid });
@@ -312,18 +359,33 @@
     bg.points[0].fait = true;
     e.interventions.push(bg);
     // Pannes (correctifs) avec arrêt.
-    const panne = (rep, d, titre, motif, duree, arret, piecesU = [], st = 0, constat = '') => {
+    // Panne résolue (fin : jours de résolution après le signalement ; arrêt en heures, équipement arrêté si > 0).
+    const panne = (rep, d, titre, motif, duree, arret, piecesU = [], st = 0, constat = '', fin = 0) => {
       const x = eqs[rep];
-      const b = R.normaliserIntervention({ id: uid(), numero: R.numeroBon(e, j(d)), equipement: x.eq.id, type: 'correctif', statut: 'fait', titre, motif, datePrevue: j(d), dateRealisee: j(d), duree, arret, intervenant: st ? 'Prestataire Exemple' : 'Technicien B', sousTraitance: st, symptome: titre, constat, pieces: piecesU.map(([p, q]) => ({ piece: p.id, quantite: q, prix: p.prix })) });
+      const b = R.normaliserIntervention({ id: uid(), numero: R.numeroBon(e, j(d + fin)), equipement: x.eq.id, type: 'correctif', statut: 'fait', titre, motif, dateSignalee: j(d), datePrevue: j(d), dateRealisee: j(d + fin), duree, arret, arretEq: arret > 0, intervenant: st ? 'Prestataire Exemple' : 'Technicien B', sousTraitance: st, symptome: titre, constat, pieces: piecesU.map(([p, q]) => ({ piece: p.id, quantite: q, prix: p.prix })) });
       if (x.eq.unite) b.compteur = R.compteurActuel(R.pointsCompteur(e, x.eq), j(d));
       e.interventions.push(b);
     };
     panne('CMP-01', -142, 'Fuite d\'air au raccord du sécheur', 'Fuite', 1.5, 2, [], 0, 'Raccord remplacé, réseau remis en pression.');
     panne('POR-01', -64, 'La porte se rouvre seule en fermeture', 'Défaut électrique', 1, 3, [[cellule, 1]], 0, 'Cellule photoélectrique remplacée, sécurités essayées.');
     panne('USI-01', -23, 'Alarme de lubrification centralisée', 'Encrassement', 2.5, 6, [[graisse, 1]], 0, 'Doseur bouché nettoyé, circuit purgé.');
-    panne('CLI-01', -200, 'Température haute en salle serveur', 'Usure', 3, 0, [], 46000, 'Ventilateur de l\'unité extérieure remplacé par le prestataire.');
-    // Bon correctif ouvert : bruit sur la pompe de relevage.
-    e.interventions.push(R.normaliserIntervention({ id: uid(), numero: R.numeroBon(e, j(-1)), equipement: eqs['POM-01'].eq.id, type: 'correctif', statut: 'planifie', titre: 'Bruit anormal au démarrage', motif: 'Cause inconnue', datePrevue: j(2), symptome: 'Bruit métallique au démarrage, signalé par l\'équipe du matin.', intervenant: 'Technicien A' }));
+    panne('CLI-01', -200, 'Température haute en salle serveur', 'Usure', 3, 0, [], 46000, 'Ventilateur de l\'unité extérieure remplacé par le prestataire.', 1);
+    // Panne ouverte qui ne l'arrête pas (pompe dégradée) et panne ouverte qui arrête le tour depuis 2 jours.
+    const ouverte = (rep, d, titre, motif, arretEq, prevue, symptome, intervenant) => e.interventions.push(R.normaliserIntervention({ id: uid(), numero: R.numeroBon(e, j(d)), equipement: eqs[rep].eq.id, type: 'correctif', statut: prevue > 0 ? 'planifie' : 'encours', titre, motif, dateSignalee: j(d), datePrevue: j(prevue), arretEq, symptome, intervenant }));
+    ouverte('POM-01', -1, 'Bruit anormal au démarrage', 'Cause inconnue', false, 2, 'Bruit métallique au démarrage, signalé par l\'équipe du matin.', 'Technicien A');
+    ouverte('TOU-02', -2, 'Broche bloquée en rotation lente', 'Défaut électrique', true, -2, 'Variateur en défaut au démarrage de la broche.', 'Technicien B');
+    if (multiSites) {
+      // Arrêt au-delà du seuil (quai 2 depuis 12 jours), arrêt récent (ascenseur), pannes résolues sur d'autres sites.
+      ouverte('POR-02', -12, 'Moteur bloqué, porte fermée', 'Casse', true, -12, 'Le moteur ne répond plus, porte bloquée en position fermée.', 'Prestataire Exemple');
+      ouverte('ASC-01', -3, 'Arrêt en défaut de porte palière', 'Défaut électrique', true, -3, 'Cabine bloquée au 2e étage, personne à bord.', 'Prestataire Exemple');
+      panne('ASC-01', -48, 'Bouton d\'appel hors service', 'Usure', 1, 48, [], 14000, 'Bouton remplacé par l\'ascensoriste.', 2);
+      panne('CLI-02', -130, 'Compresseur en panne', 'Usure', 6, 216, [], 235000, 'Compresseur remplacé, charge de fluide refaite.', 9);
+      panne('BOR-01', -25, 'Borne n° 2 hors service', 'Défaut électrique', 1, 0, [], 26000, 'Carte de charge remplacée.', 3);
+      // Visites de site (tournées) : le local technique n'a plus été visité depuis plus de 6 mois, le dépôt jamais.
+      for (const [k, d, cout, note] of [['atelier', -6, 0, 'Tournée du responsable'], ['siege', -20, 0, 'Tournée du responsable'], ['entrepot', -40, 0, 'Tournée du responsable'], ['agence', -95, 0, 'Tournée du responsable'], ['local', -230, 12000, 'Visite du prestataire électricité']]) {
+        e.visites.push(R.normaliserVisite({ id: uid(), site: S[k].id, date: j(d), intervenant: cout ? 'Prestataire Exemple' : 'Responsable', note, cout }));
+      }
+    }
     // Pièce en rupture : la cellule a été consommée ; filtre à air sous le seuil après la dernière réception.
     reception(fAir, -30, 1);
     reception(filtreCli, -100, 4);
@@ -352,7 +414,7 @@
         <div class="accroche">
           <p class="surtitre">Maintenance préventive</p>
           <h1>Chaque machine entretenue à temps.</h1>
-          <p>Tes équipements, leurs plans de maintenance, les échéances à la date ou au compteur, les bons d'intervention et le coût de chaque machine, sans tableur.</p>
+          <p>Tes équipements, leurs plans de maintenance, les échéances à la date ou au compteur, les bons d'intervention et le coût de chaque machine, sans tableur. Sur un site ou sur plusieurs.</p>
         </div>
       </section>
       <section class="formulaire-acces">
@@ -371,6 +433,7 @@
         </form>
         <div class="separateur">ou</div>
         <button class="btn" type="button" data-action="demo">Essayer avec des données d'exemple</button>
+        <button class="btn lien" type="button" data-action="demo-multi">ou l'exemple à plusieurs sites</button>
         <p class="mention">Pas encore d'accès ? <a href="/catalogue/maintenance/">Voir l'offre</a>. La démo reste sur cet appareil et n'envoie rien. Clé perdue : retrouve-la dans ton e-mail Gumroad ou écris à <b>quentin.morel@qm-engineering.fr</b>.</p>
       </section>
     </div>`;
@@ -395,7 +458,7 @@
   }
 
   // ---------- Rendu : premier lancement ----------
-  let accueil = { etape: 1, entreprise: '', taux: '', familles: [] };
+  let accueil = { etape: 1, entreprise: '', taux: '', familles: [], multi: false, site: '' };
 
   function ecranAccueil() {
     const a = accueil;
@@ -411,6 +474,11 @@
           <label class="champ">Atelier, site ou service <small>Repris sur les bons imprimés.</small><input id="entreprise" value="${esc(a.entreprise)}" autocomplete="organization" maxlength="80"></label>
           <label class="champ">Taux horaire interne HT <small>Facultatif : chiffre la main-d'œuvre.</small><input id="taux" value="${esc(a.taux)}" inputmode="decimal" placeholder="Ex. : 45"></label>
         </div>
+        <fieldset class="champ modele-parc" style="max-width:720px;margin-top:20px"><legend>Ton parc <small>Modifiable ensuite dans les réglages.</small></legend>
+          <div class="choix-statut deux"><label><input type="radio" name="modele" value="un" ${a.multi ? '' : 'checked'}><span>Un site</span></label><label><input type="radio" name="modele" value="plusieurs" ${a.multi ? 'checked' : ''}><span>Plusieurs sites</span></label></div>
+          <p class="aide" id="aide-modele">${a.multi ? 'Tes équipements seront rangés par site : vue d\'ensemble, alertes, disponibilité et coût par site, carte schématique.' : 'Tous tes équipements au même endroit. Tu pourras passer à plusieurs sites plus tard, sans rien perdre.'}</p>
+          <label class="champ" id="champ-site" ${a.multi ? '' : 'hidden'}>Nom du premier site<input id="site-1" value="${esc(a.site)}" maxlength="80" placeholder="Ex. : Atelier de Lyon"></label>
+        </fieldset>
         <ol class="conseils" style="margin-top:28px">${B.conseils.map(([t2, d]) => `<li><b>${esc(t2)}</b><span>${esc(d)}</span></li>`).join('')}</ol>
         <p class="erreur" id="erreur-accueil" role="alert"></p>
         <div class="accueil-pied"><span></span><button class="btn primaire" data-action="accueil-suivant">Continuer</button></div>`;
@@ -429,6 +497,12 @@
     $('#racine').innerHTML = `<div class="accueil">${tete}${corps}</div>`;
     $('#entreprise')?.addEventListener('input', (ev) => { accueil.entreprise = ev.target.value; });
     $('#taux')?.addEventListener('input', (ev) => { accueil.taux = ev.target.value; });
+    $('#site-1')?.addEventListener('input', (ev) => { accueil.site = ev.target.value; });
+    document.querySelectorAll('[name=modele]').forEach((el) => el.addEventListener('change', () => {
+      accueil.multi = $('[name=modele]:checked').value === 'plusieurs';
+      $('#champ-site').hidden = !accueil.multi;
+      $('#aide-modele').textContent = accueil.multi ? 'Tes équipements seront rangés par site : vue d\'ensemble, alertes, disponibilité et coût par site, carte schématique.' : 'Tous tes équipements au même endroit. Tu pourras passer à plusieurs sites plus tard, sans rien perdre.';
+    }));
     document.querySelectorAll('[name=famille]').forEach((el) => el.addEventListener('change', () => { accueil.familles = [...document.querySelectorAll('[name=famille]:checked')].map((x) => x.value); }));
   }
 
@@ -438,11 +512,13 @@
     const t = R.lireMontant(accueil.taux);
     E.reglages.tauxHoraire = Number.isFinite(t) ? t : 0;
     E.familles = accueil.familles;
-    accueil = { etape: 1, entreprise: '', taux: '', familles: [] };
-    vue = 'equipements';
+    if (accueil.multi) { E = R.activerMultiSites(E, accueil.site.trim() || E.entreprise || 'Site principal'); siteOuvert = E.sites[0].id; }
+    const plusieurs = accueil.multi;
+    accueil = { etape: 1, entreprise: '', taux: '', familles: [], multi: false, site: '' };
+    vue = plusieurs ? 'sites' : 'equipements';
     sauver();
     demarrer();
-    toast('Ta maintenance est prête. Crée ton premier équipement.');
+    toast(plusieurs ? `Ta maintenance est prête. Crée le premier équipement de « ${E.sites[0].nom} ».` : 'Ta maintenance est prête. Crée ton premier équipement.');
   }
 
   // ---------- Rendu : application ----------
@@ -455,8 +531,13 @@
     reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
     aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
+    sites: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Z" fill="currentColor"/><circle cx="12" cy="9" r="2.6" fill="var(--papier)"/></svg>',
   };
-  const ONGLETS = [['tableau', 'Tableau de bord'], ['echeancier', 'Échéancier'], ['equipements', 'Équipements'], ['interventions', 'Interventions'], ['pieces', 'Pièces']];
+  // Avec plusieurs sites, l'onglet Sites remplace Équipements (cinq onglets au plus sur téléphone) : il montre les
+  // sites (liste ou carte) et, au choix, tous les équipements rangés par site.
+  const ONGLETS_UN = [['tableau', 'Tableau de bord'], ['echeancier', 'Échéancier'], ['equipements', 'Équipements'], ['interventions', 'Interventions'], ['pieces', 'Pièces']];
+  const ONGLETS_MULTI = [['tableau', 'Vue d\'ensemble'], ['echeancier', 'Échéancier'], ['sites', 'Sites'], ['interventions', 'Interventions'], ['pieces', 'Pièces']];
+  const onglets = () => (multi() ? ONGLETS_MULTI : ONGLETS_UN);
   const COURTS = { tableau: 'Tableau', interventions: 'Bons' };
   const AVERTISSEMENT = '<p class="mention avertissement">Outil d\'organisation de la maintenance : les périodicités des plans types sont des repères indicatifs (la notice du fabricant prime) et la liste des vérifications réglementaires n\'est pas exhaustive. Leur périodicité se saisit d\'après le texte applicable ; la conformité de ton site reste de ta responsabilité.</p>';
   const COULEUR_ETAT = { retard: 'rouge', bientot: 'jaune', bon: 'ciel', avenir: 'sable', plustard: 'sable', parametrer: 'rose', suspendu: 'sable' };
@@ -466,16 +547,26 @@
   const etiquetteNature = (n) => (n === 'reglementaire' ? '<span class="etiquette rose">Réglementaire</span>' : n === 'controle' ? '<span class="etiquette sable">Contrôle</span>' : '');
   const etiquetteCrit = (c) => `<span class="crit crit-${c}" title="Criticité ${c} : ${esc(B.criticites.find((x) => x.code === c)?.nom || '')}">${c}</span>`;
 
+  // Vue cohérente avec le modèle : « equipements » devient l'onglet Sites (sous-vue Équipements) avec plusieurs sites.
+  function vueValide(v) {
+    if (multi() && v === 'equipements') { sousVue = 'equipements'; return 'sites'; }
+    if (!multi() && v === 'sites') return 'equipements';
+    return v;
+  }
   function demarrer() {
     document.body.classList.add('app');
     const depuisUrl = location.hash.slice(1);
-    if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
+    if ([...ONGLETS_UN, ...ONGLETS_MULTI].some(([id]) => id === depuisUrl)) vue = depuisUrl;
+    vue = vueValide(vue);
+    if (siteOuvert && !multi()) siteOuvert = null;
+    if (siteOuvert && !site(siteOuvert)) siteOuvert = null;
+    if (filtre.site && (!multi() || !site(filtre.site))) filtre.site = '';
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? `<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d'exemple${multi() ? ' à plusieurs sites' : ''}, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="demo-bascule">${multi() ? 'Exemple à un site' : 'Exemple à plusieurs sites'}</button><button data-action="deconnexion">J'ai un code d'accès</button></div></div>` : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Maintenance<br>préventive</span>
-        <nav class="onglets" aria-label="Sections">${ONGLETS.map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
+        <nav class="onglets" aria-label="Sections">${onglets().map(([id, nom]) => `<button class="onglet" data-action="vue" data-vue="${id}">${ICONES[id]}<span>${COURTS[id] ? `<span class="long">${nom}</span><span class="court">${COURTS[id]}</span>` : nom}</span></button>`).join('')}</nav>
         <span class="sync" data-etat="ok" role="status"><i></i><b>Enregistré</b></span>
         <button class="btn-icone" data-action="tutoriel" aria-label="Comment ça marche" title="Comment ça marche">${ICONES.aide}</button>
         <button class="btn-icone" data-action="reglages" aria-label="Réglages et sauvegarde" title="Réglages">${ICONES.reglages}</button>
@@ -488,22 +579,28 @@
 
   function rendre() {
     if (!E || !$('#vue')) return;
+    vue = vueValide(vue);
+    if (siteOuvert && !site(siteOuvert)) siteOuvert = null;
     document.querySelectorAll('.onglet').forEach((b) => { if (b.dataset.vue === vue) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-    const titres = Object.fromEntries(ONGLETS);
-    document.title = `${titres[vue]} · Maintenance préventive`;
+    const titres = Object.fromEntries(onglets());
+    document.title = `${vue === 'sites' && siteOuvert ? nomSite(siteOuvert) : vue === 'sites' && sousVue === 'equipements' ? 'Équipements' : titres[vue]} · Maintenance préventive`;
     $('#vue').className = `vue vue-${vue}`;
-    $('#vue').innerHTML = { tableau: vueTableau, echeancier: vueEcheancier, equipements: vueEquipements, interventions: vueInterventions, pieces: vuePieces }[vue]();
+    $('#vue').innerHTML = { tableau: vueTableau, echeancier: vueEcheancier, equipements: vueEquipements, interventions: vueInterventions, pieces: vuePieces,
+      sites: () => (siteOuvert ? vueSite(site(siteOuvert)) : sousVue === 'equipements' ? vueEquipements() : vueSites()) }[vue]();
     brancherInfobulles();
-    for (const [sel, cle] of [['#recherche-ech', 'q'], ['#recherche-eq', 'qe'], ['#recherche-bon', 'qb']]) {
+    brancherSites();
+    for (const [sel, cle] of [['#recherche-ech', 'q'], ['#recherche-eq', 'qe'], ['#recherche-bon', 'qb'], ['#f-texte', null]]) {
       const q = $(sel);
-      if (q) q.addEventListener('input', (ev) => { filtre[cle] = ev.target.value; const pos = ev.target.selectionStart; rendre(); const n = $(sel); n.focus(); n.setSelectionRange(pos, pos); });
+      if (q) q.addEventListener('input', (ev) => { if (cle) filtre[cle] = ev.target.value; else affichage.f.texte = ev.target.value; const pos = ev.target.selectionStart; rendre(); const n = $(sel); n.focus(); n.setSelectionRange(pos, pos); });
     }
     $('#filtre-famille')?.addEventListener('change', (ev) => { filtre.famille = ev.target.value; rendre(); });
+    document.querySelectorAll('.filtre-site-choix').forEach((el) => el.addEventListener('change', (ev) => { filtre.site = ev.target.value; rendre(); }));
   }
 
   function changerVue(v) {
-    vue = v;
-    history.replaceState(null, '', `#${v}`);
+    if (v !== 'sites') siteOuvert = null;
+    vue = vueValide(v);
+    history.replaceState(null, '', `#${vue}`);
     rendre();
     window.scrollTo({ top: 0 });
     $('#vue').focus({ preventScroll: true });
@@ -529,36 +626,67 @@
       : `<button class="btn petit" data-action="ouvrir-bon" data-id="${x.op.id}">Ouvrir un bon</button><button class="btn petit" data-action="fait-op" data-id="${x.op.id}">Fait</button>`;
     return `<li class="ligne-ech ${x.urgence === 'retard' && x.etat !== 'suspendu' ? 'alerte-depasse' : x.urgence === 'bientot' ? 'alerte-proche' : ''}">
       <span class="date-pastille ${pastille}">${dateP ? `<b>${versDate(dateP).getDate()}</b>${fmt(dateP, { month: 'short' }).replace('.', '')}` : '<b>?</b>date'}</span>
-      <button class="lien-ligne" data-action="ouvrir-eq" data-id="${x.eq?.id || ''}"><b>${esc(x.op.nom)}</b><span>${avecEq ? `${esc(nomEq(x.op.equipement))} · ` : ''}${detail.join(' · ')}</span>
+      <button class="lien-ligne" data-action="voir-eq" data-id="${x.eq?.id || ''}"><b>${esc(x.op.nom)}</b><span>${avecEq ? `${auSite(x.op.equipement)}${esc(nomEq(x.op.equipement))} · ` : ''}${detail.join(' · ')}</span>
         <span class="ligne-etiquettes">${etiquetteEtat(x.etat)}${x.etat === 'bon' && x.urgence === 'retard' ? etiquetteEtat('retard') : ''}${etiquetteNature(x.op.nature)}${dateP && x.etat !== 'parametrer' && !(x.reste !== null && x.reste <= 0 && !x.echDate) ? `<span class="quand">${quand(dateP)}</span>` : ''}</span></button>
       <span class="actions-ligne">${actions}</span></li>`;
   }
 
-  // ---------- Tableau de bord ----------
+  // ---------- Tableau de bord (vue d'ensemble avec plusieurs sites) ----------
+  const ETAT_EQ = { service: ['ciel', 'En service'], degrade: ['jaune', 'Dégradé'], arret: ['rouge', 'À l\'arrêt'], reforme: ['sable', 'Réformé'] };
+  const etiquetteEq = (code) => `<span class="etiquette ${ETAT_EQ[code][0]}">${ETAT_EQ[code][1]}</span>`;
+  const ETAT_SITE = { retard: ['rouge', 'En retard'], proche: ['jaune', 'À surveiller'], ok: ['ciel', 'À jour'] };
+  const etiquetteSite = (et) => `<span class="etiquette ${ETAT_SITE[et][0]}">${ETAT_SITE[et][1]}</span>`;
+  const pctDispo = (x, d = 1) => (x === null || x === undefined ? '–' : `${nombre(x * 100, d)} %`);
+  const nbJ = (x) => (x === null || x === undefined ? '–' : `${nombre(x, 1)} j`);
+
+  // Alerte de pilotage : équipement à l'arrêt (ouvre la panne) ou site sans visite (ouvre le site).
+  function ligneAlerte(a) {
+    const eq = a.equipement ? equipement(a.equipement) : null;
+    const pastille = a.type === 'visite'
+      ? `<span class="date-pastille ${a.etat === 'retard' ? 'retard' : 'alerte'}"><b>${a.derniere ? `${Math.max(E.reglages.visiteMois, Math.floor(ecart(a.derniere, auj()) / 30.4))}` : '0'}</b>${a.derniere ? 'mois' : 'visite'}</span>`
+      : `<span class="date-pastille ${a.etat === 'retard' ? 'retard' : 'alerte'}"><b>${a.jours}</b>${a.jours > 1 ? 'jours' : 'jour'}</span>`;
+    const act = a.type === 'arret' ? `data-action="voir-bon" data-id="${a.bon}"` : `data-action="voir-site" data-id="${a.site}"`;
+    const quoi = eq ? `${esc(nomEq(eq.id))}${multi() ? ` · ${esc(nomSite(a.site))}` : ''}` : esc(nomSite(a.site));
+    return `<li>${pastille}<button class="lien-ligne" ${act}><b>${esc(a.titre)} · ${quoi}</b><span>${esc(a.detail)}</span>
+      <span class="ligne-etiquettes">${a.type === 'arret' ? etiquetteEq('arret') : '<span class="etiquette sable">Visite</span>'}${a.etat === 'retard' ? etiquetteEtat('retard') : ''}</span></button>
+      <span class="actions-ligne">${a.type === 'visite' ? `<button class="btn petit" data-action="nouvelle-visite" data-id="${a.site}">Noter une visite</button>` : `<button class="btn petit" data-action="cloturer" data-id="${a.bon}">Résoudre</button>`}</span></li>`;
+  }
+
   function vueTableau() {
     const t = auj();
-    const titre = `<div class="vue-tete"><div><h1>Tableau de bord</h1><p>${E.entreprise ? `${esc(E.entreprise)} · ` : ''}Ce qui est en retard, ce qui arrive, et ce que coûte ta maintenance.</p></div>
-        <div class="actions"><button class="btn" data-action="nouveau-correctif">${ICONES.plus}Signaler une panne</button><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div>`;
+    const titre = `<div class="vue-tete"><div><h1>${multi() ? 'Vue d\'ensemble' : 'Tableau de bord'}</h1><p>${E.entreprise ? `${esc(E.entreprise)} · ` : ''}${multi() ? `${pluriel(E.sites.filter((x) => !x.inactif).length, 'site')} : ce qui est en retard, ce qui est arrêté, et ce que coûte chaque site.` : 'Ce qui est en retard, ce qui arrive, et ce que coûte ta maintenance.'}</p></div>
+        <div class="actions">${multi() ? `<button class="btn" data-action="nouvelle-visite">Noter une visite</button>` : ''}<button class="btn" data-action="nouveau-correctif">${ICONES.plus}Signaler une panne</button><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div>`;
     if (!E.equipements.length) {
-      return `${titre}<div class="vide-etat">${FORME_VIDE}<div><h3>Aucun équipement pour l'instant</h3><p>Crée tes équipements (repère, nom, emplacement, compteur) : le plan de maintenance type de leur famille t'est proposé, puis les échéances se calculent.</p><div class="actions"><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Créer un équipement</button></div></div></div>${AVERTISSEMENT}`;
+      return `${titre}<div class="vide-etat">${FORME_VIDE}<div><h3>Aucun équipement pour l'instant</h3><p>Crée tes équipements (repère, nom, emplacement, compteur) : le plan de maintenance type de leur famille t'est proposé, puis les échéances se calculent.${multi() ? ' Avec plusieurs sites, chaque équipement est rangé dans son site.' : ''}</p><div class="actions"><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Créer un équipement</button>${multi() ? '<button class="btn" data-action="import">Importer (CSV)</button>' : ''}</div></div></div>${AVERTISSEMENT}`;
     }
     const ind = R.indicateurs(E, t);
+    const bil = R.bilan(E, t);
     const ech = R.echeances(E, t).filter((x) => x.etat !== 'suspendu');
+    const al = R.alertes(E, t);
     const urgents = ech.filter((x) => x.urgence === 'retard' || x.urgence === 'bientot');
     const couts = R.coutsParEquipement(E, t);
-    const total12 = couts.reduce((s, x) => s + x.total, 0), corr12 = couts.reduce((s, x) => s + x.correctif, 0);
+    const total12 = couts.reduce((s2, x) => s2 + x.total, 0), corr12 = couts.reduce((s2, x) => s2 + x.correctif, 0);
     const ouverts = E.interventions.filter((i) => i.statut === 'planifie' || i.statut === 'encours').sort((a, b) => (a.datePrevue || '').localeCompare(b.datePrevue || ''));
-    const pieces = E.pieces.map((p) => R.situationPiece(E, p, t)).filter((s) => s.statut !== 'ok' && (s.equipements.length || s.piece.seuil > 0));
+    const pieces = E.pieces.map((p) => R.situationPiece(E, p, t)).filter((s2) => s2.statut !== 'ok' && (s2.equipements.length || s2.piece.seuil > 0));
     const aParam = ech.filter((x) => x.etat === 'parametrer').length;
-    const tuiles = [
+    const tuile = ([lib, v, d, c, f, act]) => `<${act ? `button type="button" data-action="${act}"` : 'div'} class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><span>${d}</span></${act ? 'button' : 'div'}>`;
+    const tuiles = multi() ? [
+      ['Sites', String(E.sites.filter((x) => !x.inactif).length), `${pluriel(bil.equipements, 'équipement')} suivi${bil.equipements > 1 ? 's' : ''}`, 'var(--encre)', 'rond', 'aller-sites'],
+      ['En retard', String(ind.retards), `${pluriel(ind.bientot, 'autre')} bientôt`, 'var(--rouge)', '', 'aller-retards'],
+      ['À l\'arrêt', String(bil.arret), bil.degrade ? `${pluriel(bil.degrade, 'autre')} dégradé${bil.degrade > 1 ? 's' : ''}` : 'Aucun équipement dégradé', 'var(--jaune)', '', 'aller-arrets'],
+      ['Disponibilité', pctDispo(bil.disponibilite), `Moyenne du parc, ${bil.jours} derniers jours`, 'var(--bleu)', 'rond', ''],
+      ['Coût sur 12 mois', euros(bil.cout, { centimes: false }), bil.cout ? `dont ${pct(bil.parType.correctif / bil.cout * 100)} en correctif` : 'Clôture des bons pour le chiffrer', 'var(--encre)', '', ''],
+    ].map(tuile).join('') : [
       ['En retard', String(ind.retards), ind.retards ? `${pluriel(ind.retards, 'opération')} dont l'échéance est passée` : 'Aucune échéance dépassée', 'var(--rouge)', 'rond'],
       ['Bientôt', String(ind.bientot), `sous ${pluriel(E.reglages.alerteJours, 'jour')} au plus, à la date ou au compteur estimé`, 'var(--jaune)', ''],
       ['Réalisation du préventif', pct(ind.taux), `${ind.jours} derniers jours · ${pluriel(ind.faits, 'bon')} fait${ind.faits > 1 ? 's' : ''}${ind.ponctualite !== null ? ` · ${pct(ind.ponctualite)} à l'heure` : ''}`, 'var(--bleu)', ''],
       ['Coût sur 12 mois', euros(total12, { centimes: false }), total12 ? `dont ${pct(corr12 / total12 * 100)} en correctif` : 'Clôture des bons pour le chiffrer', 'var(--encre)', 'rond'],
-    ].map(([lib, v, d, c, f]) => `<div class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><span>${d}</span></div>`).join('');
+    ].map(tuile).join('');
+    const parSite = multi() ? R.lignesSites(E, t) : [];
     return `${titre}
-      <div class="tuiles">${tuiles}</div>
+      <div class="tuiles ${multi() ? 'tuiles-5' : ''}">${tuiles}</div>
       ${aParam ? `<button class="bandeau-info" data-action="filtre-ech" data-ech="parametrer"><span class="etiquette rose">À paramétrer</span><b>${pluriel(aParam, 'opération')} sans périodicité</b><span>Vérifications réglementaires : saisis la périodicité de ton texte pour les suivre.</span></button>` : ''}
+      ${al.length ? `<h2 class="titre-section">Alertes <span>${multi() ? 'Équipements à l\'arrêt et sites sans visite, retards d\'abord' : 'Équipements à l\'arrêt, retards d\'abord'}</span></h2><ul class="journal alertes">${al.map(ligneAlerte).join('')}</ul>` : ''}
       <div class="colonnes-apercu">
         <section>
           <h2 class="titre-section">À faire <span>En retard, puis bientôt</span></h2>
@@ -566,42 +694,66 @@
         </section>
         <section>
           <h2 class="titre-section">Bons ouverts <span>${pluriel(ouverts.length, 'bon')}</span></h2>
-          ${ouverts.length ? `<ul class="journal">${ouverts.slice(0, 6).map(ligneBon).join('')}</ul>` : '<div class="vide-etat petit"><div><h3>Aucun bon ouvert</h3><p>Ouvre un bon depuis une échéance, ou signale une panne.</p></div></div>'}
+          ${ouverts.length ? `<ul class="journal">${ouverts.slice(0, 6).map(ligneBon).join('')}</ul>${ouverts.length > 6 ? `<button class="btn lien" data-action="filtre-bon" data-bon="afaire">Voir les ${ouverts.length} bons ouverts</button>` : ''}` : '<div class="vide-etat petit"><div><h3>Aucun bon ouvert</h3><p>Ouvre un bon depuis une échéance, ou signale une panne.</p></div></div>'}
           ${pieces.length ? `<h2 class="titre-section">Pièces à commander <span>Sous le seuil ou en rupture</span></h2><ul class="journal">${pieces.map(lignePieceCourte).join('')}</ul>` : ''}
         </section>
       </div>
-      <h2 class="titre-section">Coût de maintenance par équipement <span>12 derniers mois, préventif et correctif</span></h2>
-      ${graphiqueCouts(couts.filter((x) => x.total > 0).slice(0, 10))}
-      <h2 class="titre-section">Indicateurs <span>${ind.jours} derniers jours</span></h2>
-      <div class="indicateurs">
+      ${multi() ? `<h2 class="titre-section">Par site <span>État, disponibilité et pannes sur ${bil.jours} jours, coût sur 12 mois. Touche un site pour l'ouvrir.</span></h2>
+      ${tableauSites(parSite, true)}
+      <h2 class="titre-section">Coût de maintenance par site <span>12 derniers mois : préventif, correctif et visites</span></h2>
+      ${graphiqueCouts([...parSite].sort((a, b) => b.ind.cout - a.ind.cout).filter((x) => x.ind.cout > 0).map((x) => ({ nom: x.site.nom, sous: typeCourt(x.site.type), preventif: x.ind.parType.preventif + x.ind.parType.visite, correctif: x.ind.parType.correctif, total: x.ind.cout,
+        info: `<b>${esc(x.site.nom)}</b>Préventif ${euros(x.ind.parType.preventif)}<br>Correctif ${euros(x.ind.parType.correctif)}${x.ind.parType.visite ? `<br>Visites ${euros(x.ind.parType.visite)}` : ''}<br>${pluriel(x.ind.equipements, 'équipement')} · ${x.ind.resolus ? `${pluriel(x.ind.resolus, 'panne résolue', 'pannes résolues')}` : 'aucune panne résolue'}` })), 'Coût de maintenance par site sur 12 mois', 'Site', true)}
+      <h2 class="titre-section">Disponibilité par site <span>Du moins disponible au plus disponible · arrêts : pannes notées « à l'arrêt »</span></h2>
+      ${barresDispo(parSite.filter((x) => x.ind.disponibilite !== null).sort((a, b) => a.ind.disponibilite - b.ind.disponibilite))}` : ''}
+      <h2 class="titre-section">Coût de maintenance par équipement <span>12 derniers mois, préventif et correctif${multi() ? ', les 10 plus chers' : ''}</span></h2>
+      ${graphiqueCouts(couts.filter((x) => x.total > 0).slice(0, 10).map((x) => ({ nom: x.eq.repere || x.eq.nom, sous: x.eq.repere ? x.eq.nom : '', preventif: x.preventif, correctif: x.correctif, total: x.total, tableau: nomEq(x.eq.id) + (multi() ? ` (${nomSite(x.eq.site)})` : ''), arret: x.arret,
+        info: `<b>${esc(x.eq.nom)}</b>${multi() ? `${esc(nomSite(x.eq.site))}<br>` : ''}Préventif ${euros(x.preventif)}<br>Correctif ${euros(x.correctif)}<br>${pluriel(x.bons, 'bon')} · ${x.pannes ? `${pluriel(x.pannes, 'panne')}, ${heures(x.arret)} d'arrêt` : 'aucune panne'}` })), 'Coût de maintenance par équipement sur 12 mois', 'Équipement')}
+      <h2 class="titre-section">Indicateurs <span>${ind.jours} derniers jours${multi() ? ', tout le parc' : ''}</span></h2>
+      <div class="indicateurs six">
         <div><span>Taux de réalisation</span><b>${pct(ind.taux)}</b><small>${ind.faits} faits · ${ind.dusNonFaits} bons dus non faits · ${ind.sansBon} en retard sans bon</small></div>
         <div><span>Ponctualité</span><b>${pct(ind.ponctualite)}</b><small>Faits au plus tard à l'échéance + ${pluriel(E.reglages.toleranceJours, 'jour')}</small></div>
         <div><span>Retard moyen</span><b>${ind.retardMoyen ? `${nombre(ind.retardMoyen, 1)} j` : '0 j'}</b><small>Parmi les bons faits après l'échéance</small></div>
         <div><span>Pannes</span><b>${ind.pannes}</b><small>${heures(ind.arret)} d'arrêt · préventif ${pct(ind.partPreventif)} du coût</small></div>
+        <div><span>Disponibilité</span><b>${pctDispo(bil.disponibilite)}</b><small>${bil.arret ? `${pluriel(bil.arret, 'équipement')} à l'arrêt aujourd'hui` : 'Aucun équipement à l\'arrêt'}${bil.degrade ? ` · ${bil.degrade} dégradé${bil.degrade > 1 ? 's' : ''}` : ''}</small></div>
+        <div><span>Délai de résolution</span><b>${nbJ(bil.delaiMoyen)}</b><small>${bil.resolus ? `Moyenne sur ${pluriel(bil.resolus, 'panne résolue', 'pannes résolues')}` : 'Aucune panne résolue'} · ${pluriel(bil.correctifsOuverts, 'ouverte')}</small></div>
       </div>
       ${AVERTISSEMENT}`;
   }
 
-  // Coût par équipement : barres empilées préventif (bleu) / correctif (rouge), légende, tableau accessible.
-  function graphiqueCouts(lignes) {
+  // Barres empilées préventif (bleu) / correctif (rouge), légende, infobulle, tableau accessible.
+  // lignes : [{ nom, sous, preventif, correctif, total, info, tableau?, arret? }].
+  function graphiqueCouts(lignes, legende = 'Coût de maintenance sur 12 mois', colonne = 'Équipement', visites = false) {
     if (!lignes.length) return '<div class="vide-etat petit"><div><h3>Aucun coût sur 12 mois</h3><p>Le coût apparaît dès qu\'un bon est clôturé avec une durée, des pièces ou de la sous-traitance.</p></div></div>';
     const max = Math.max(...lignes.map((x) => x.total), 1);
-    const barres = lignes.map((x) => `<div class="barre-cat" tabindex="0" data-info="${esc(`<b>${esc(x.eq.nom)}</b>Préventif ${euros(x.preventif)}<br>Correctif ${euros(x.correctif)}<br>${pluriel(x.bons, 'bon')} · ${x.pannes ? `${pluriel(x.pannes, 'panne')}, ${heures(x.arret)} d'arrêt` : 'aucune panne'}`)}">
-        <span class="bc-nom">${esc(x.eq.repere || x.eq.nom)}<small>${esc(x.eq.repere ? x.eq.nom : '')}</small></span>
+    const barres = lignes.map((x) => `<div class="barre-cat" tabindex="0" data-info="${esc(x.info)}">
+        <span class="bc-nom">${esc(x.nom)}<small>${esc(x.sous || '')}</small></span>
         <span class="bc-piste"><span class="bc-barre" style="width:${(x.preventif / max) * 100}%"></span><span class="bc-barre corr" style="left:${(x.preventif / max) * 100}%;width:${(x.correctif / max) * 100}%"></span></span>
         <span class="bc-val"><b>${euros(x.total, { centimes: false })}</b><small>${x.correctif ? `${euros(x.correctif, { centimes: false })} correctif` : 'préventif'}</small></span>
       </div>`).join('');
     return `<figure class="graphique">
-        <div class="legende"><span><i class="pt-prev"></i>Préventif</span><span><i class="pt-corr"></i>Correctif</span></div>
+        <div class="legende"><span><i class="pt-prev"></i>Préventif${visites ? ' et visites' : ''}</span><span><i class="pt-corr"></i>Correctif</span></div>
         <div class="barres-cats">${barres}</div>
         <div class="infobulle" hidden></div>
       </figure>
-      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile"><table class="tableau"><caption class="sr-only">Coût de maintenance par équipement sur 12 mois</caption><thead><tr><th>Équipement</th><th class="nb">Préventif</th><th class="nb">Correctif</th><th class="nb">Total</th><th class="nb">Arrêt</th></tr></thead>
-        <tbody>${lignes.map((x) => `<tr><td>${esc(nomEq(x.eq.id))}</td><td class="nb">${euros(x.preventif)}</td><td class="nb">${euros(x.correctif)}</td><td class="nb">${euros(x.total)}</td><td class="nb">${heures(x.arret)}</td></tr>`).join('')}</tbody></table></div></details>`;
+      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile"><table class="tableau"><caption class="sr-only">${esc(legende)}</caption><thead><tr><th>${colonne}</th><th class="nb">Préventif${visites ? ' et visites' : ''}</th><th class="nb">Correctif</th><th class="nb">Total</th>${lignes[0].arret !== undefined ? '<th class="nb">Arrêt</th>' : ''}</tr></thead>
+        <tbody>${lignes.map((x) => `<tr><td>${esc(x.tableau || x.nom)}</td><td class="nb">${euros(x.preventif)}</td><td class="nb">${euros(x.correctif)}</td><td class="nb">${euros(x.total)}</td>${x.arret !== undefined ? `<td class="nb">${heures(x.arret)}</td>` : ''}</tr>`).join('')}</tbody></table></div></details>`;
+  }
+
+  // Disponibilité par site : barres horizontales (une série), valeur au bout, tableau accessible.
+  function barresDispo(lignes) {
+    if (!lignes.length) return '<p class="mention">Aucun équipement actif.</p>';
+    return `<figure class="graphique">
+      <div class="barres-cats">${lignes.map((x) => `<div class="barre-cat" tabindex="0" data-info="${esc(`<b>${esc(x.site.nom)}</b>Disponibilité ${pctDispo(x.ind.disponibilite)}<br>${pluriel(x.ind.equipements, 'équipement')} · ${pluriel(x.ind.arret, 'à l\'arrêt', 'à l\'arrêt')}`)}">
+        <span class="bc-nom">${esc(x.site.nom)}<small>${esc(typeCourt(x.site.type))}</small></span>
+        <span class="bc-piste"><span class="bc-barre dispo ${x.ind.disponibilite < 0.95 ? 'basse' : ''}" style="width:${x.ind.disponibilite * 100}%"></span></span>
+        <span class="bc-val"><b>${pctDispo(x.ind.disponibilite)}</b><small>${x.ind.arret ? `${x.ind.arret} à l'arrêt` : 'aucun arrêt'}</small></span></div>`).join('')}</div>
+      <div class="infobulle" hidden></div></figure>
+      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile"><table class="tableau"><caption class="sr-only">Disponibilité par site</caption><thead><tr><th>Site</th><th class="nb">Disponibilité</th><th class="nb">À l'arrêt</th></tr></thead>
+      <tbody>${lignes.map((x) => `<tr><td>${esc(x.site.nom)}</td><td class="nb">${pctDispo(x.ind.disponibilite)}</td><td class="nb">${x.ind.arret}</td></tr>`).join('')}</tbody></table></div></details>`;
   }
 
   function brancherInfobulles() {
-    document.querySelectorAll('.graphique').forEach((fig) => {
+    document.querySelectorAll('.graphique, .graphique-carte').forEach((fig) => {
       const bulle = fig.querySelector('.infobulle');
       if (!bulle) return;
       const montrer = (el) => {
@@ -625,14 +777,17 @@
     });
   }
 
+  // Choix du site dans les listes (plusieurs sites).
+  const choixSiteFiltre = () => (multi() ? `<label class="champ"><span class="sr-only">Site</span><select class="filtre-site-choix"><option value="">Tous les sites</option>${sitesTries().map((x) => `<option value="${x.id}" ${x.id === filtre.site ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>` : '');
+
   // ---------- Échéancier ----------
   const FILTRES_ECH = [['urgent', 'À faire'], ['bon', 'Bon ouvert'], ['avenir', 'À venir'], ['plustard', 'Plus tard'], ['parametrer', 'À paramétrer'], ['tous', 'Toutes']];
   const garderEch = (x, f) => (f === 'tous' ? x.etat !== 'suspendu' : f === 'urgent' ? x.etat === 'retard' || x.etat === 'bientot' : x.etat === f);
   function vueEcheancier() {
     const t = auj();
     const q = R.plat(filtre.q.trim());
-    const toutes = R.echeances(E, t).filter((x) => !filtre.famille || x.eq?.famille === filtre.famille)
-      .filter((x) => !q || R.plat(`${x.op.nom} ${x.eq?.nom} ${x.eq?.repere} ${x.eq?.emplacement}`).includes(q));
+    const toutes = R.echeances(E, t).filter((x) => (!filtre.famille || x.eq?.famille === filtre.famille) && dansFiltreSite(x.eq))
+      .filter((x) => !q || R.plat(`${x.op.nom} ${x.eq?.nom} ${x.eq?.repere} ${x.eq?.emplacement}${multi() ? ` ${nomSite(x.eq?.site)}` : ''}`).includes(q));
     const liste = toutes.filter((x) => garderEch(x, filtre.ech));
     const fams = [...new Set(E.equipements.map((e) => e.famille).filter(Boolean))];
     // Regroupement par mois de la date prévue (les échéances sans date à la fin).
@@ -648,6 +803,7 @@
       <div class="outils-liste">
         <div class="filtres" role="group" aria-label="Filtrer par état">${FILTRES_ECH.map(([id, lib]) => `<button class="filtre" data-action="filtre-ech" data-ech="${id}" aria-pressed="${filtre.ech === id}">${lib} <small>${toutes.filter((x) => garderEch(x, id)).length}</small></button>`).join('')}</div>
         <div class="rang-recherche">
+          ${choixSiteFiltre()}
           <label class="champ"><span class="sr-only">Famille</span><select id="filtre-famille"><option value="">Toutes les familles</option>${fams.map((f) => `<option value="${esc(f)}" ${f === filtre.famille ? 'selected' : ''}>${esc(famille(f)?.nom || f)}</option>`).join('')}</select></label>
           <label class="champ recherche"><span class="sr-only">Rechercher</span><input id="recherche-ech" type="search" placeholder="Opération, équipement" value="${esc(filtre.q)}"></label>
         </div>
@@ -658,37 +814,51 @@
   }
 
   // ---------- Équipements ----------
-  const FILTRES_EQ = [['actifs', 'Tous'], ['retard', 'En retard'], ['A', 'Critiques'], ['archives', 'Archivés']];
-  function vueEquipements() {
-    const t = auj();
-    const q = R.plat(filtre.qe.trim());
+  const FILTRES_EQ = [['actifs', 'Tous'], ['retard', 'En retard'], ['arret', 'Arrêtés'], ['A', 'Critiques'], ['archives', 'Archivés']];
+  function infosEquipements(t) {
     const ech = R.echeances(E, t);
-    const infos = E.equipements.map((eq) => {
+    return E.equipements.map((eq) => {
       const l = ech.filter((x) => x.eq?.id === eq.id && x.etat !== 'suspendu' && x.etat !== 'parametrer');
       const prochaine = l.filter((x) => x.prevue).sort((a, b) => a.prevue.localeCompare(b.prevue))[0];
-      return { eq, prochaine, retard: l.some((x) => x.urgence === 'retard'), bientot: l.some((x) => x.urgence === 'bientot'), compteur: R.compteurActuel(R.pointsCompteur(E, eq), t), cout: R.coutsEquipement(E, eq.id, ajout(t, -365), t).total, nbOps: E.operations.filter((o) => o.equipement === eq.id).length };
+      return { eq, prochaine, retard: l.some((x) => x.urgence === 'retard'), bientot: l.some((x) => x.urgence === 'bientot'), etat: R.etatEquipement(E, eq), compteur: R.compteurActuel(R.pointsCompteur(E, eq), t), cout: R.coutsEquipement(E, eq.id, ajout(t, -365), t).total, nbOps: E.operations.filter((o) => o.equipement === eq.id).length };
     });
-    const garder = (x, f) => (f === 'archives' ? x.eq.archive : !x.eq.archive && (f === 'actifs' || (f === 'retard' && x.retard) || (f === 'A' && x.eq.criticite === 'A')));
-    const liste = infos.filter((x) => garder(x, filtre.eq) && (!q || R.plat(`${x.eq.repere} ${x.eq.nom} ${x.eq.emplacement} ${x.eq.fabricant} ${famille(x.eq.famille)?.nom || ''}`).includes(q)))
-      .sort((a, b) => (a.eq.emplacement || '').localeCompare(b.eq.emplacement || '') || (a.eq.repere || a.eq.nom).localeCompare(b.eq.repere || b.eq.nom));
-    return `
-      <div class="vue-tete"><div><h1>Équipements</h1><p>Chaque équipement porte son plan de maintenance, ses relevés de compteur, son historique et son coût. Ouvre une fiche pour tout voir.</p></div>
-        <div class="actions"><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div>
-      <div class="outils-liste">
-        <div class="filtres" role="group" aria-label="Filtrer les équipements">${FILTRES_EQ.map(([id, lib]) => `<button class="filtre" data-action="filtre-eq" data-eq="${id}" aria-pressed="${filtre.eq === id}">${lib} <small>${infos.filter((x) => garder(x, id)).length}</small></button>`).join('')}</div>
-        <label class="champ recherche"><span class="sr-only">Rechercher</span><input id="recherche-eq" type="search" placeholder="Repère, nom, emplacement" value="${esc(filtre.qe)}"></label>
-      </div>
-      ${liste.length ? `<ul class="lignes-fac">${liste.map((x) => `<li class="ligne-fac ${x.eq.archive ? 'st-resilie' : x.retard ? 'alerte-depasse' : x.bientot ? 'alerte-proche' : ''}">
-        <button class="ligne-info" data-action="ouvrir-eq" data-id="${x.eq.id}">
+  }
+  function ligneEquipement(x, { avecSite = false } = {}) {
+    return `<li class="ligne-fac ${x.eq.archive ? 'st-resilie' : x.retard || x.etat.code === 'arret' ? 'alerte-depasse' : x.bientot || x.etat.code === 'degrade' ? 'alerte-proche' : ''}">
+        <button class="ligne-info" data-action="voir-eq" data-id="${x.eq.id}">
           <b>${etiquetteCrit(x.eq.criticite)} ${esc(x.eq.nom)}${x.eq.repere ? ` <span class="numero">${esc(x.eq.repere)}</span>` : ''}</b>
-          <span class="ligne-detail">${[famille(x.eq.famille)?.nom, x.eq.emplacement].filter(Boolean).map(esc).join(' · ') || 'Sans famille'} · ${pluriel(x.nbOps, 'opération')}</span>
-          <span class="ligne-etiquettes">${x.eq.archive ? '<span class="etiquette sable">Archivé</span>' : ''}${x.retard ? etiquetteEtat('retard') : x.bientot ? etiquetteEtat('bientot') : ''}${x.prochaine && !x.eq.archive ? `<span class="ligne-proch">Prochaine : ${esc(x.prochaine.op.nom)}, ${dateCourte(x.prochaine.prevue)}</span>` : ''}</span>
+          <span class="ligne-detail">${[avecSite ? nomSite(x.eq.site) : '', famille(x.eq.famille)?.nom, x.eq.emplacement].filter(Boolean).map(esc).join(' · ') || 'Sans famille'} · ${pluriel(x.nbOps, 'opération')}</span>
+          <span class="ligne-etiquettes">${x.eq.archive ? '<span class="etiquette sable">Archivé</span>' : ''}${x.etat.code === 'arret' || x.etat.code === 'degrade' ? `${etiquetteEq(x.etat.code)}<span class="ligne-proch">depuis le ${dateCourte(x.etat.depuis)}</span>` : ''}${x.retard ? etiquetteEtat('retard') : x.bientot ? etiquetteEtat('bientot') : ''}${x.prochaine && !x.eq.archive ? `<span class="ligne-proch">Prochaine : ${esc(x.prochaine.op.nom)}, ${dateCourte(x.prochaine.prevue)}</span>` : ''}</span>
         </button>
         <div class="ligne-droite">
           <span class="ligne-cout"><b>${x.eq.unite ? cpt(x.compteur, x.eq.unite) : '—'}</b><small>${x.cout ? `${euros(x.cout, { centimes: false })} sur 12 mois` : 'aucun coût sur 12 mois'}</small></span>
           ${x.eq.unite && !x.eq.archive ? `<button class="btn petit" data-action="releve" data-id="${x.eq.id}">Relevé</button>` : ''}
-        </div></li>`).join('')}</ul>`
-        : `<div class="vide-etat">${FORME_VIDE}<div><h3>${E.equipements.length ? 'Aucun équipement ne correspond' : 'Aucun équipement'}</h3><p>${E.equipements.length ? 'Change le filtre ou la recherche.' : 'Crée ton premier équipement : le plan type de sa famille t\'est proposé.'}</p><div class="actions"><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div></div>`}
+        </div></li>`;
+  }
+  // Bascule de l'onglet Sites : sites (liste ou carte) ou tous les équipements rangés par site.
+  const basculeSites = () => `<div class="bascule-vue" role="group" aria-label="Afficher"><button class="btn petit" data-action="sous-vue" data-sous="sites" aria-pressed="${sousVue === 'sites'}">Sites</button><button class="btn petit" data-action="sous-vue" data-sous="equipements" aria-pressed="${sousVue === 'equipements'}">Équipements</button></div>`;
+  function vueEquipements() {
+    const t = auj();
+    const q = R.plat(filtre.qe.trim());
+    const infos = infosEquipements(t).filter((x) => dansFiltreSite(x.eq));
+    const garder = (x, f) => (f === 'archives' ? x.eq.archive : !x.eq.archive && (f === 'actifs' || (f === 'retard' && x.retard) || (f === 'arret' && (x.etat.code === 'arret' || x.etat.code === 'degrade')) || (f === 'A' && x.eq.criticite === 'A')));
+    const liste = infos.filter((x) => garder(x, filtre.eq) && (!q || R.plat(`${x.eq.repere} ${x.eq.nom} ${x.eq.emplacement} ${x.eq.fabricant} ${famille(x.eq.famille)?.nom || ''}${multi() ? ` ${nomSite(x.eq.site)}` : ''}`).includes(q)))
+      .sort((a, b) => (multi() ? nomSite(a.eq.site).localeCompare(nomSite(b.eq.site), 'fr') : 0) || (a.eq.emplacement || '').localeCompare(b.eq.emplacement || '') || (a.eq.repere || a.eq.nom).localeCompare(b.eq.repere || b.eq.nom));
+    // Plusieurs sites : un groupe par site, dans l'ordre alphabétique.
+    const groupes = new Map();
+    for (const x of liste) { const k = multi() ? x.eq.site : ''; if (!groupes.has(k)) groupes.set(k, []); groupes.get(k).push(x); }
+    const contenu = liste.length
+      ? [...groupes].map(([k, l]) => `${multi() ? `<h2 class="titre-cat"><button class="lien-titre" data-action="voir-site" data-id="${k}">${esc(nomSite(k))}</button> <span>${pluriel(l.length, 'équipement')}</span></h2>` : ''}<ul class="lignes-fac">${l.map((x) => ligneEquipement(x)).join('')}</ul>`).join('')
+      : `<div class="vide-etat">${FORME_VIDE}<div><h3>${E.equipements.length ? 'Aucun équipement ne correspond' : 'Aucun équipement'}</h3><p>${E.equipements.length ? 'Change le filtre ou la recherche.' : 'Crée ton premier équipement : le plan type de sa famille t\'est proposé.'}</p><div class="actions"><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div></div>`;
+    return `
+      <div class="vue-tete"><div><h1>Équipements</h1><p>Chaque équipement porte son plan de maintenance, ses relevés de compteur, son historique et son coût${multi() ? ', rangés par site' : ''}. Ouvre une fiche pour tout voir.</p></div>
+        <div class="actions"><button class="btn" data-action="import" data-quoi="equipements">Importer (CSV)</button><button class="btn primaire" data-action="nouvel-eq">${ICONES.plus}Nouvel équipement</button></div></div>
+      ${multi() ? basculeSites() : ''}
+      <div class="outils-liste">
+        <div class="filtres" role="group" aria-label="Filtrer les équipements">${FILTRES_EQ.map(([id, lib]) => `<button class="filtre" data-action="filtre-eq" data-eq="${id}" aria-pressed="${filtre.eq === id}">${lib} <small>${infos.filter((x) => garder(x, id)).length}</small></button>`).join('')}</div>
+        <div class="rang-recherche">${choixSiteFiltre()}<label class="champ recherche"><span class="sr-only">Rechercher</span><input id="recherche-eq" type="search" placeholder="Repère, nom, emplacement" value="${esc(filtre.qe)}"></label></div>
+      </div>
+      ${contenu}
       ${AVERTISSEMENT}`;
   }
 
@@ -698,28 +868,225 @@
     const d = i.statut === 'fait' ? i.dateRealisee : i.datePrevue;
     const enRetard = (i.statut === 'planifie' || i.statut === 'encours') && d && d < auj();
     return `<li><span class="date-pastille ${enRetard ? 'retard' : ''}">${d ? `<b>${versDate(d).getDate()}</b>${fmt(d, { month: 'short' }).replace('.', '')}` : '<b>–</b>'}</span>
-      <button class="lien-ligne" data-action="voir-bon" data-id="${i.id}"><b>${esc(i.titre || 'Intervention')}</b><span>${esc(i.numero)} · ${esc(nomEq(i.equipement))}${i.intervenant ? ` · ${esc(i.intervenant)}` : ''}</span>
-        <span class="ligne-etiquettes">${etiquetteBon(i.statut)}${i.type === 'correctif' ? '<span class="etiquette rose">Correctif</span>' : ''}${enRetard ? etiquetteEtat('retard') : ''}</span></button>
+      <button class="lien-ligne" data-action="voir-bon" data-id="${i.id}"><b>${esc(i.titre || 'Intervention')}</b><span>${esc(i.numero)} · ${auSite(i.equipement)}${esc(nomEq(i.equipement))}${i.intervenant ? ` · ${esc(i.intervenant)}` : ''}</span>
+        <span class="ligne-etiquettes">${etiquetteBon(i.statut)}${i.type === 'correctif' ? '<span class="etiquette rose">Correctif</span>' : ''}${i.type === 'correctif' && i.arretEq && (i.statut === 'planifie' || i.statut === 'encours') ? etiquetteEq('arret') : ''}${enRetard ? etiquetteEtat('retard') : ''}</span></button>
       <span class="nb">${i.statut === 'fait' && c.total ? euros(c.total) : ''}</span></li>`;
   }
+  // Visite de site (plusieurs sites) : tournée sans bon, qui compte pour l'alerte « sans visite ».
+  const ligneVisite = (v) => `<li><span class="date-pastille"><b>${versDate(v.date).getDate()}</b>${fmt(v.date, { month: 'short' }).replace('.', '')}</span>
+      <button class="lien-ligne" data-action="modifier-visite" data-id="${v.id}"><b>${esc(v.note || 'Visite de site')}</b><span>${esc(nomSite(v.site))}${v.intervenant ? ` · ${esc(v.intervenant)}` : ''}</span>
+        <span class="ligne-etiquettes"><span class="etiquette sable">Visite</span></span></button>
+      <span class="nb">${v.cout ? euros(v.cout) : ''}</span></li>`;
   const FILTRES_BON = [['afaire', 'À faire'], ['encours', 'En cours'], ['fait', 'Faits'], ['correctif', 'Correctifs'], ['annule', 'Annulés'], ['tous', 'Tous']];
   const garderBon = (i, f) => (f === 'tous' ? true : f === 'afaire' ? i.statut === 'planifie' || i.statut === 'encours' : f === 'correctif' ? i.type === 'correctif' : i.statut === f);
   function vueInterventions() {
     const q = R.plat(filtre.qb.trim());
-    const tous = E.interventions.filter((i) => !q || R.plat(`${i.numero} ${i.titre} ${nomEq(i.equipement)} ${i.intervenant} ${i.constat}`).includes(q));
-    const liste = tous.filter((i) => garderBon(i, filtre.bon))
+    const filtres = multi() ? [...FILTRES_BON.slice(0, -1), ['visite', 'Visites'], FILTRES_BON.at(-1)] : FILTRES_BON;
+    const tous = E.interventions.filter((i) => dansFiltreSite(equipement(i.equipement)) && (!q || R.plat(`${i.numero} ${i.titre} ${nomEq(i.equipement)} ${i.intervenant} ${i.constat}${multi() ? ` ${nomSite(equipement(i.equipement)?.site)}` : ''}`).includes(q)));
+    const visites = multi() ? E.visites.filter((v) => (!filtre.site || v.site === filtre.site) && (!q || R.plat(`${v.note} ${v.intervenant} ${nomSite(v.site)}`).includes(q))).sort((a, b) => b.date.localeCompare(a.date)) : [];
+    const liste = filtre.bon === 'visite' ? [] : tous.filter((i) => garderBon(i, filtre.bon))
       .sort((a, b) => (filtre.bon === 'afaire' ? 1 : -1) * ((a.dateRealisee || a.datePrevue || '').localeCompare(b.dateRealisee || b.datePrevue || '')));
     const montres = liste.slice(0, 150);
+    const compte = (id) => (id === 'visite' ? visites.length : tous.filter((i) => garderBon(i, id)).length);
     return `
-      <div class="vue-tete"><div><h1>Interventions</h1><p>Les bons d'intervention : préventifs ouverts depuis l'échéancier, correctifs pour les pannes. Clôturer un bon recale l'échéance suivante, sort les pièces du stock et chiffre le coût.</p></div>
-        <div class="actions"><button class="btn primaire" data-action="nouveau-correctif">${ICONES.plus}Signaler une panne</button></div></div>
+      <div class="vue-tete"><div><h1>Interventions</h1><p>Les bons d'intervention : préventifs ouverts depuis l'échéancier, correctifs pour les pannes${multi() ? ', et les visites de site' : ''}. Clôturer un bon recale l'échéance suivante, sort les pièces du stock et chiffre le coût.</p></div>
+        <div class="actions">${multi() ? '<button class="btn" data-action="nouvelle-visite">Noter une visite</button>' : ''}<button class="btn primaire" data-action="nouveau-correctif">${ICONES.plus}Signaler une panne</button></div></div>
       <div class="outils-liste">
-        <div class="filtres" role="group" aria-label="Filtrer les bons">${FILTRES_BON.map(([id, lib]) => `<button class="filtre" data-action="filtre-bon" data-bon="${id}" aria-pressed="${filtre.bon === id}">${lib} <small>${tous.filter((i) => garderBon(i, id)).length}</small></button>`).join('')}</div>
-        <label class="champ recherche"><span class="sr-only">Rechercher</span><input id="recherche-bon" type="search" placeholder="Numéro, équipement, intervenant" value="${esc(filtre.qb)}"></label>
+        <div class="filtres" role="group" aria-label="Filtrer les bons">${filtres.map(([id, lib]) => `<button class="filtre" data-action="filtre-bon" data-bon="${id}" aria-pressed="${filtre.bon === id}">${lib} <small>${compte(id)}</small></button>`).join('')}</div>
+        <div class="rang-recherche">${choixSiteFiltre()}<label class="champ recherche"><span class="sr-only">Rechercher</span><input id="recherche-bon" type="search" placeholder="Numéro, équipement, intervenant" value="${esc(filtre.qb)}"></label></div>
       </div>
-      ${montres.length ? `<p class="resume-liste">${pluriel(liste.length, 'bon')}${liste.length > 150 ? ' · 150 affichés (export CSV complet dans les Réglages)' : ''}</p><ul class="journal">${montres.map(ligneBon).join('')}</ul>`
+      ${filtre.bon === 'visite' ? (visites.length ? `<p class="resume-liste">${pluriel(visites.length, 'visite')}</p><ul class="journal">${visites.map(ligneVisite).join('')}</ul>` : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucune visite</h3><p>Note les tournées sur tes sites : un site sans visite depuis ${pluriel(E.reglages.visiteMois, 'mois', 'mois')} passe en alerte.</p><div class="actions"><button class="btn primaire" data-action="nouvelle-visite">Noter une visite</button></div></div></div>`)
+        : montres.length ? `<p class="resume-liste">${pluriel(liste.length, 'bon')}${liste.length > 150 ? ' · 150 affichés (export CSV complet dans les Réglages)' : ''}</p><ul class="journal">${montres.map(ligneBon).join('')}</ul>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucun bon dans ce filtre</h3><p>Ouvre un bon depuis l'échéancier, ou signale une panne.</p></div></div>`}
       ${AVERTISSEMENT}`;
+  }
+
+  // ---------- Sites (plusieurs sites) : liste triable ou carte schématique, fiche de site ----------
+  const COLS_SITES = [['etat', 'État'], ['nom', 'Site'], ['ville', 'Ville'], ['region', 'Région'], ['equipements', 'Équip.'], ['disponibilite', 'Dispo.'], ['retards', 'Retards'], ['delai', 'Délai moyen'], ['cout', 'Coût 12 mois']];
+  const NB_SITES = new Set(['equipements', 'disponibilite', 'retards', 'delai', 'cout']);
+  const COUL_SITE = { retard: 'var(--rouge)', proche: 'var(--jaune)', ok: 'var(--bleu)' };
+  // Tableau des sites (écran large) et cartes de site (téléphone). tri : en-têtes triables.
+  function tableauSites(lignes, compact = false) {
+    if (!lignes.length) return `<div class="vide-etat petit">${FORME_VIDE}<div><h3>Aucun site ne correspond</h3><p>Change ou efface les filtres.</p><div class="actions"><button class="btn" data-action="filtres-effacer">Tout afficher</button></div></div></div>`;
+    const l = compact ? R.trierSites(lignes, { cle: 'etat', sens: 1 }) : lignes;
+    const th = ([k, lib]) => {
+      const cls = NB_SITES.has(k) ? 'nb' : '';
+      if (compact) return `<th class="${cls}">${lib}</th>`;
+      const actif = affichage.tri.cle === k;
+      return `<th class="${cls}" aria-sort="${actif ? (affichage.tri.sens > 0 ? 'ascending' : 'descending') : 'none'}"><button class="tri" data-action="filtre-tri" data-cle="${k}">${lib}<i aria-hidden="true">${actif ? (affichage.tri.sens > 0 ? '▲' : '▼') : ''}</i></button></th>`;
+    };
+    return `<div class="defile seulement-grand"><table class="tableau sites"><caption class="sr-only">Sites : état, équipements, disponibilité, retards, délai de résolution et coût</caption><thead><tr>${COLS_SITES.map(th).join('')}</tr></thead><tbody>
+        ${l.map(({ site: x, ind, etat }) => `<tr>
+          <td>${etiquetteSite(etat)}</td>
+          <td><button class="lien-v" data-action="voir-site" data-id="${x.id}"><b>${esc(x.nom)}</b><small>${esc(typeCourt(x.type))}${x.responsable ? ` · ${esc(x.responsable)}` : ''}${x.inactif ? ' · inactif' : ''}</small></button></td>
+          <td>${esc(x.ville || '–')}</td><td>${esc(x.region || '–')}</td>
+          <td class="nb">${ind.equipements}${ind.arret ? ` <small class="txt-rouge">${ind.arret} à l'arrêt</small>` : ''}</td>
+          <td class="nb">${pctDispo(ind.disponibilite)}</td>
+          <td class="nb">${ind.retards ? `<b class="txt-rouge">${ind.retards}</b>` : '0'}</td>
+          <td class="nb">${nbJ(ind.delaiMoyen)}</td>
+          <td class="nb">${euros(ind.cout, { centimes: false })}</td></tr>`).join('')}
+      </tbody></table></div>
+      <ul class="cartes-sites seulement-petit">${l.map(carteSite).join('')}</ul>`;
+  }
+  function carteSite({ site: x, ind, etat, alertes: al }) {
+    return `<li><button class="carte-site" data-action="voir-site" data-id="${x.id}" style="--c:${COUL_SITE[etat]}">
+      <span class="cs-tete">${etiquetteSite(etat)}<small>${esc([typeCourt(x.type), x.ville, x.region].filter(Boolean).join(' · '))}</small></span>
+      <b>${esc(x.nom)}</b>
+      <span class="cs-chiffres"><span><b>${ind.equipements}</b> équip.</span><span><b>${pctDispo(ind.disponibilite)}</b> dispo.</span>${ind.retards ? `<span><b class="txt-rouge">${ind.retards}</b> en retard</span>` : ''}<span><b>${euros(ind.cout, { centimes: false })}</b> sur 12 mois</span></span>
+      ${al.length ? `<small class="cs-alerte">${esc(al[0].titre)}${al[0].equipement ? ` · ${esc(equipement(al[0].equipement)?.nom || '')}` : ''}${al.length > 1 ? ` (+${al.length - 1})` : ''}</small>` : ''}
+    </button></li>`;
+  }
+
+  function vueSites() {
+    const t = auj();
+    const toutes = R.lignesSites(E, t);
+    const f = affichage.f;
+    const lignes = R.trierSites(R.filtrerSites(toutes, f), affichage.tri);
+    const regions = [...new Set(E.sites.map((x) => x.region).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+    const types = B.typesSites.filter((ty) => E.sites.some((x) => x.type === ty.code));
+    const filtres = `
+      <div class="filtres-grille" role="search">
+        <label class="champ recherche">Rechercher<input type="search" id="f-texte" value="${esc(f.texte)}" placeholder="Nom, ville, responsable…"></label>
+        <label class="champ">Région<select id="f-region"><option value="">Toutes</option>${regions.map((r) => `<option ${r === f.region ? 'selected' : ''}>${esc(r)}</option>`).join('')}</select></label>
+        <label class="champ">Type<select id="f-type"><option value="">Tous</option>${types.map((ty) => `<option value="${ty.code}" ${ty.code === f.type ? 'selected' : ''}>${esc(ty.court)}</option>`).join('')}</select></label>
+        <label class="champ">État<select id="f-etat"><option value="">Tous</option>${[['alerte', 'Avec alerte'], ['retard', 'En retard'], ['ok', 'À jour']].map(([k, lib]) => `<option value="${k}" ${f.etat === k ? 'selected' : ''}>${lib}</option>`).join('')}</select></label>
+        <label class="champ tri-petit">Trier par<select id="f-tri">${COLS_SITES.map(([k, lib]) => `<option value="${k}" ${k === affichage.tri.cle ? 'selected' : ''}>${lib}</option>`).join('')}</select></label>
+      </div>`;
+    const mode = `<div class="bascule-vue" role="group" aria-label="Affichage des sites"><button class="btn petit" data-action="filtre-mode" data-mode="liste" aria-pressed="${affichage.mode === 'liste'}">Liste</button><button class="btn petit" data-action="filtre-mode" data-mode="carte" aria-pressed="${affichage.mode === 'carte'}">Carte</button></div>`;
+    return `
+      <div class="vue-tete"><div><h1>Sites</h1><p>${pluriel(E.sites.length, 'site')} · état, disponibilité et pannes sur ${E.reglages.periodeIndicateurs} jours, coût sur 12 mois. Ouvre un site pour ses équipements, ses échéances et son historique.</p></div>
+        <div class="actions"><button class="btn" data-action="import" data-quoi="sites">Importer (CSV)</button><button class="btn" data-action="csv-sites">Exporter</button><button class="btn primaire" data-action="nouveau-site">${ICONES.plus}Nouveau site</button></div></div>
+      <div class="rang-bascules">${basculeSites()}${mode}</div>
+      ${filtres}
+      <p class="resume-liste compte-filtre">${lignes.length === toutes.length ? pluriel(lignes.length, 'site affiché', 'sites affichés') : `${lignes.length} sur ${toutes.length} sites (filtres actifs) · <button class="btn lien" data-action="filtres-effacer">Tout afficher</button>`}</p>
+      ${affichage.mode === 'carte' ? vueCarte(lignes) : tableauSites(lignes)}
+      ${AVERTISSEMENT}`;
+  }
+
+  // Carte schématique : points placés d'après la latitude et la longitude saisies (aucun fond de carte, rien
+  // n'est envoyé), forme et couleur selon l'état ; sites sans coordonnées en grille par région.
+  const FORME_ETAT = {
+    ok: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#2E5A88" stroke="#FFFFFF" stroke-width="2"/>`,
+    proche: (x, y, r) => `<rect x="${x - r * 0.9}" y="${y - r * 0.9}" width="${r * 1.8}" height="${r * 1.8}" fill="#E8B93A" stroke="#24221F" stroke-width="1.5"/>`,
+    retard: (x, y, r) => `<path d="M${x} ${y - r * 1.15} L${x + r * 1.1} ${y + r * 0.8} L${x - r * 1.1} ${y + r * 0.8} Z" fill="#B84A34" stroke="#FFFFFF" stroke-width="2"/>`,
+  };
+  const pictoEtat = (et) => `<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">${FORME_ETAT[et](10, 10.5, 7)}</svg>`;
+  function vueCarte(lignes) {
+    if (!lignes.length) return tableauSites(lignes);
+    const etroit = matchMedia('(max-width:640px)').matches;
+    const L = Math.round(Math.max(300, Math.min(1140, ($('#vue')?.clientWidth || innerWidth) - (etroit ? 34 : 50)))), H = Math.round(etroit ? L * 1.15 : Math.min(560, L * 0.56));
+    const p = R.projeter(lignes.map((x) => x.site), L, H, etroit ? 36 : 56);
+    const sans = lignes.filter((x) => !R.aCoordonnees(x.site));
+    let svg = '';
+    if (p) {
+      const par = Object.fromEntries(lignes.map((x) => [x.site.id, x]));
+      const k = Math.cos(((p.bornes.latMin + p.bornes.latMax) / 2) * Math.PI / 180);
+      const pts = p.points.map((q) => ({ ...q, l: par[q.id] }));
+      const ref = pts[0];
+      const lon2x = (lon) => ref.x + (lon - ref.l.site.lon) * k * p.echelle;
+      const lat2y = (lat) => ref.y - (lat - ref.l.site.lat) * p.echelle;
+      // Quadrillage discret tous les degrés (repère, pas un fond de carte).
+      const grille = [];
+      for (let lon = Math.floor(p.bornes.lonMin) - 12; lon <= Math.ceil(p.bornes.lonMax) + 12; lon++) { const x = lon2x(lon); if (x > 0 && x < L) grille.push(`<line x1="${x.toFixed(1)}" y1="0" x2="${x.toFixed(1)}" y2="${H}"/>`); }
+      for (let lat = Math.floor(p.bornes.latMin) - 8; lat <= Math.ceil(p.bornes.latMax) + 8; lat++) { const y = lat2y(lat); if (y > 0 && y < H) grille.push(`<line x1="0" y1="${y.toFixed(1)}" x2="${L}" y2="${y.toFixed(1)}"/>`); }
+      // Étiquettes : à droite du point, sinon à gauche, dessous ou dessus ; masquées si rien n'est libre (visibles au survol).
+      const pris = [];
+      const libre = (b) => b.x0 >= 2 && b.x1 <= L - 2 && b.y0 >= 2 && b.y1 <= H - 2 && !pris.some((q) => b.x0 < q.x1 && q.x0 < b.x1 && b.y0 < q.y1 && q.y0 < b.y1);
+      const tt = etroit ? 11.5 : 13;
+      pts.sort((a, b) => ({ retard: 0, proche: 1, ok: 2 }[a.l.etat] - { retard: 0, proche: 1, ok: 2 }[b.l.etat]));
+      for (const q of pts) pris.push({ x0: q.x - 10, x1: q.x + 10, y0: q.y - 10, y1: q.y + 10 });
+      const marques = pts.map((q) => {
+        const nom = q.l.site.nom;
+        const w = nom.length * tt * 0.55 + 4, h = tt + 4;
+        const droite = { x0: q.x + 12, x1: q.x + 12 + w, y0: q.y - h / 2, y1: q.y + h / 2 };
+        const gauche = { x0: q.x - 12 - w, x1: q.x - 12, y0: q.y - h / 2, y1: q.y + h / 2 };
+        const dessous = { x0: q.x - w / 2, x1: q.x + w / 2, y0: q.y + 12, y1: q.y + 12 + h };
+        const dessus = { x0: q.x - w / 2, x1: q.x + w / 2, y0: q.y - 12 - h, y1: q.y - 12 };
+        const place = [droite, gauche, dessous, dessus].find(libre);
+        if (place) pris.push(place);
+        const txt = place ? `<text x="${place === droite ? place.x0 + 2 : place === gauche ? place.x1 - 2 : q.x}" y="${(place.y0 + place.y1) / 2 + tt * 0.35}" text-anchor="${place === droite ? 'start' : place === gauche ? 'end' : 'middle'}" font-size="${tt}">${esc(nom)}</text>` : '';
+        return `<g class="point" data-action="voir-site" data-id="${q.id}" data-info="${esc(bulleSite(q.l))}" tabindex="0" role="button" aria-label="${esc(nom)}, ${ETAT_SITE[q.l.etat][1]}">
+          <circle cx="${q.x}" cy="${q.y}" r="20" fill="transparent"/>${FORME_ETAT[q.l.etat](q.x, q.y, etroit ? 9 : 11)}${txt}</g>`;
+      }).join('');
+      svg = `<figure class="carte-svg graphique-carte">
+        <svg viewBox="0 0 ${L} ${H}" role="img" aria-label="Carte schématique de ${pluriel(pts.length, 'site')} placés par leurs coordonnées">
+          <rect width="${L}" height="${H}" fill="var(--surface)"/>
+          <g class="quadrillage">${grille.join('')}</g>
+          <g class="boussole" transform="translate(${L - 30} 34)"><path d="M0 -16 L6 4 L0 0 L-6 4 Z" fill="#24221F"/><text y="16" text-anchor="middle" font-size="11">N</text></g>
+          ${marques}
+        </svg>
+        <div class="infobulle" hidden></div>
+        <figcaption>Carte schématique : chaque site est placé selon la latitude et la longitude saisies, sans fond de carte. Touche un point pour ouvrir le site.</figcaption>
+      </figure>`;
+    }
+    const regions = sans.length ? `<h2 class="titre-section">${p ? 'Sites sans coordonnées' : 'Sites par région'} <span>${p ? 'Ajoute latitude et longitude dans la fiche du site pour le placer sur la carte.' : 'Aucun site n\'a de coordonnées : ils sont regroupés par région. Ajoute latitude et longitude pour la carte.'}</span></h2>
+      <div class="grille-regions">${R.grilleRegions(sans.map((x) => x.site)).map((g) => `<section class="region"><h3>${esc(g.region)}</h3><ul>${g.sites.map((x) => { const l = sans.find((y) => y.site.id === x.id); return `<li><button class="pastille-site" data-action="voir-site" data-id="${x.id}">${pictoEtat(l.etat)}<span><b>${esc(x.nom)}</b><small>${ETAT_SITE[l.etat][1]}${x.ville ? ` · ${esc(x.ville)}` : ''}</small></span></button></li>`; }).join('')}</ul></section>`).join('')}</div>` : '';
+    return `<div class="legende carte-legende">${[['ok', 'À jour'], ['proche', 'À surveiller'], ['retard', 'En retard']].map(([k, lib]) => `<span>${pictoEtat(k)}${lib}</span>`).join('')}</div>${svg}${regions}`;
+  }
+  const bulleSite = (l) => [`<b>${esc(l.site.nom)}</b>`, `${ETAT_SITE[l.etat][1]}${l.alertes.length ? ` · ${pluriel(l.alertes.length, 'alerte')}` : ''}`, `${pluriel(l.ind.equipements, 'équipement')} · disponibilité ${pctDispo(l.ind.disponibilite)}`, `Coût sur 12 mois : ${euros(l.ind.cout, { centimes: false })}`].join('<br>');
+
+  // Barres horizontales à une série (coût par famille d'un site) : lignes [{ nom, valeur, texte }].
+  function barresSimples(lignes, legende) {
+    const max = Math.max(1, ...lignes.map((x) => x.valeur));
+    return `<figure class="graphique">
+      <div class="barres-cats">${lignes.map((x) => `<div class="barre-cat" tabindex="0" data-info="${esc(`<b>${esc(x.nom)}</b>${esc(x.texte)}`)}"><span class="bc-nom">${esc(x.nom)}</span><span class="bc-piste"><span class="bc-barre dispo" style="width:${(x.valeur / max) * 100}%"></span></span><span class="bc-val"><b>${esc(x.texte)}</b></span></div>`).join('')}</div>
+      <div class="infobulle" hidden></div></figure>
+      <details class="tableau-details"><summary>Voir le tableau</summary><div class="defile"><table class="tableau"><caption class="sr-only">${esc(legende)}</caption><tbody>${lignes.map((x) => `<tr><th>${esc(x.nom)}</th><td class="nb">${esc(x.texte)}</td></tr>`).join('')}</tbody></table></div></details>`;
+  }
+
+  function vueSite(x) {
+    if (!x) { siteOuvert = null; return vueSites(); }
+    const t = auj();
+    const ind = R.bilan(E, t, [x.id]);
+    const al = R.alertes(E, t).filter((a) => a.site === x.id);
+    const ech = R.echeances(E, t).filter((e) => e.eq?.site === x.id && e.etat !== 'suspendu' && (e.urgence === 'retard' || e.urgence === 'bientot'));
+    const infos = infosEquipements(t).filter((y) => y.eq.site === x.id).sort((a, b) => !!a.eq.archive - !!b.eq.archive || (a.eq.repere || a.eq.nom).localeCompare(b.eq.repere || b.eq.nom));
+    const ids = new Set(infos.map((y) => y.eq.id));
+    const histo = [...E.interventions.filter((i) => ids.has(i.equipement)).map((i) => ({ d: i.dateRealisee || i.datePrevue || '', html: ligneBon(i) })),
+      ...E.visites.filter((v) => v.site === x.id).map((v) => ({ d: v.date, html: ligneVisite(v) }))].sort((a, b) => b.d.localeCompare(a.d));
+    const visite = R.derniereVisite(E, x.id, t);
+    const fams = Object.entries(ind.parFamille).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+    if (ind.parType.visite) fams.push(['__visites', ind.parType.visite]);
+    const tuile = ([lib, v, d, c, f]) => `<div class="tuile ${f}" style="--c:${c}"><p class="surtitre">${lib}</p><b>${v}</b><span>${d}</span></div>`;
+    return `
+      <p class="fil"><button class="btn lien" data-action="voir-sites">← Tous les sites</button></p>
+      <div class="vue-tete"><div><p class="surtitre">${esc([typeCourt(x.type), x.ville, x.region].filter(Boolean).join(' · '))}${x.inactif ? ' · inactif' : ''}</p>
+        <h1>${esc(x.nom)}</h1>
+        <p>${[x.adresse && esc(x.adresse), x.responsable && `Responsable : <b>${esc(x.responsable)}</b>`, `Dernière visite : <b>${visite ? dateLongue(visite) : 'aucune'}</b>`, R.aCoordonnees(x) ? `GPS ${nombre(x.lat, 4)} ; ${nombre(x.lon, 4)}` : ''].filter(Boolean).join(' · ')}</p></div>
+        <div class="actions"><button class="btn" data-action="modifier-site" data-id="${x.id}">Modifier le site</button><button class="btn" data-action="nouvelle-visite" data-id="${x.id}">Noter une visite</button><button class="btn" data-action="nouveau-correctif" data-site="${x.id}">${ICONES.plus}Panne</button><button class="btn primaire" data-action="nouvel-eq" data-site="${x.id}">${ICONES.plus}Équipement</button></div></div>
+      <div class="tuiles">${[
+        ['Disponibilité', pctDispo(ind.disponibilite), `${pluriel(ind.equipements, 'équipement')} · ${ind.arret ? `${ind.arret} à l'arrêt` : 'aucun arrêt'}${ind.degrade ? `, ${ind.degrade} dégradé${ind.degrade > 1 ? 's' : ''}` : ''}`, 'var(--bleu)', 'rond'],
+        ['En retard', String(ind.retards), `${pluriel(ind.bientot, 'autre')} bientôt · réalisation ${pct(ind.taux)}`, 'var(--rouge)', ''],
+        ['Délai de résolution', nbJ(ind.delaiMoyen), `${pluriel(ind.resolus, 'panne résolue', 'pannes résolues')} · ${pluriel(ind.correctifsOuverts, 'ouverte')}`, 'var(--jaune)', ''],
+        ['Coût sur 12 mois', euros(ind.cout, { centimes: false }), `Préventif ${euros(ind.parType.preventif, { centimes: false })} · correctif ${euros(ind.parType.correctif, { centimes: false })}`, 'var(--encre)', 'rond'],
+      ].map(tuile).join('')}</div>
+      ${al.length ? `<h2 class="titre-section">Alertes du site</h2><ul class="journal alertes">${al.map(ligneAlerte).join('')}</ul>` : ''}
+      ${ech.length ? `<h2 class="titre-section">À faire <span>En retard, puis bientôt</span></h2><ul class="lignes-ech">${ech.slice(0, 8).map((e) => ligneEcheance(e)).join('')}</ul>${ech.length > 8 ? `<button class="btn lien" data-action="filtre-ech-site" data-id="${x.id}">Voir les ${ech.length} échéances du site</button>` : ''}` : ''}
+      <h2 class="titre-section">Équipements <span>${pluriel(infos.filter((y) => !y.eq.archive).length, 'actif')}${infos.some((y) => y.eq.archive) ? `, ${pluriel(infos.filter((y) => y.eq.archive).length, 'archivé')}` : ''}</span></h2>
+      ${infos.length ? `<ul class="lignes-fac">${infos.map((y) => ligneEquipement(y)).join('')}</ul>` : `<div class="vide-etat petit">${FORME_VIDE}<div><h3>Aucun équipement</h3><p>Ajoute les équipements de ce site : le plan type de leur famille t'est proposé.</p><div class="actions"><button class="btn primaire" data-action="nouvel-eq" data-site="${x.id}">${ICONES.plus}Nouvel équipement</button></div></div></div>`}
+      ${fams.length ? `<h2 class="titre-section">Coût par famille <span>12 derniers mois</span></h2>${barresSimples(fams.map(([f, v]) => ({ nom: f === '__visites' ? 'Visites de site' : famille(f)?.nom || 'Sans famille', valeur: v, texte: euros(v, { centimes: false }) })), 'Coût par famille du site sur 12 mois')}` : ''}
+      <h2 class="titre-section">Historique <span>${pluriel(histo.length, 'intervention')}, de la plus récente à la plus ancienne</span></h2>
+      ${histo.length ? `<ul class="journal">${histo.slice(0, 30).map((h) => h.html).join('')}</ul>${histo.length > 30 ? '<p class="mention">30 dernières affichées ; l\'onglet Interventions et l\'export CSV contiennent tout.</p>' : ''}` : '<p class="mention">Aucune intervention enregistrée.</p>'}
+      ${x.notes ? `<h2 class="titre-section">Notes</h2><p class="aide">${esc(x.notes)}</p>` : ''}
+      ${AVERTISSEMENT}`;
+  }
+
+  // Filtres des sites (listes déroulantes) et ouverture d'un point de la carte au clavier.
+  function brancherSites() {
+    const lier = (sel, fn) => $(sel)?.addEventListener('change', fn);
+    const f = affichage.f;
+    lier('#f-region', (ev) => { f.region = ev.target.value; rendre(); });
+    lier('#f-type', (ev) => { f.type = ev.target.value; rendre(); });
+    lier('#f-etat', (ev) => { f.etat = ev.target.value; rendre(); });
+    lier('#f-tri', (ev) => { affichage.tri = { cle: ev.target.value, sens: ['equipements', 'retards', 'cout', 'delai'].includes(ev.target.value) ? -1 : 1 }; rendre(); });
+    document.querySelectorAll('#vue .point').forEach((g) => g.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ouvrirSite(g.dataset.id); } }));
+  }
+  function ouvrirSite(id) {
+    if (!site(id)) return;
+    if (modale().open) modale().close();
+    siteOuvert = id; vue = 'sites';
+    history.replaceState(null, '', '#sites');
+    rendre(); window.scrollTo({ top: 0 }); $('#vue').focus({ preventScroll: true });
   }
 
   // ---------- Pièces ----------
@@ -767,17 +1134,19 @@
   const optionsUnites = (sel) => `<option value="" ${!sel ? 'selected' : ''}>Pas de compteur</option>${B.unitesCompteur.map((u) => `<option value="${u.code}" ${u.code === sel ? 'selected' : ''}>${esc(u.nom)}</option>`).join('')}`;
 
   // Nouvel équipement (avec son plan type) ou modification.
-  function modaleEquipement(id) {
+  function modaleEquipement(id, siteId = '') {
     const eq = id ? equipement(id) : null;
     if (id && !eq) return;
     const fam0 = E.familles[0] || B.familles[0].id;
-    const v = eq || { repere: '', nom: '', famille: fam0, emplacement: '', criticite: 'B', unite: famille(fam0)?.compteur || '', compteurInitial: 0, miseEnService: auj(), fabricant: '', modele: '', numeroSerie: '', note: '', archive: false };
+    const site0 = siteId || siteOuvert || filtre.site || sitesTries()[0]?.id || '';
+    const v = eq || { repere: '', nom: '', famille: fam0, emplacement: '', criticite: 'B', unite: famille(fam0)?.compteur || '', compteurInitial: 0, miseEnService: auj(), fabricant: '', modele: '', numeroSerie: '', note: '', archive: false, site: site0 };
     const fams = [...B.familles].sort((a, b) => (E.familles.includes(b.id) - E.familles.includes(a.id)) || a.nom.localeCompare(b.nom));
     const corps = `
       <div class="rang-champs">
         <label class="champ" style="flex:0 1 140px">Repère<input name="repere" maxlength="30" value="${esc(v.repere)}" placeholder="Ex. : CMP-01" autocapitalize="characters"></label>
         <label class="champ">Nom<input name="nom" maxlength="100" required value="${esc(v.nom)}" placeholder="Ex. : Compresseur à vis"></label>
       </div>
+      ${multi() ? `<label class="champ">Site<select name="site">${sitesTries().map((x) => `<option value="${x.id}" ${x.id === v.site ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>` : ''}
       <div class="rang-champs">
         <label class="champ">Famille<select name="famille" id="eq-famille">${fams.map((f) => `<option value="${f.id}" ${f.id === v.famille ? 'selected' : ''}>${esc(f.nom)}</option>`).join('')}<option value="" ${!v.famille ? 'selected' : ''}>Autre (sans plan type)</option></select></label>
         <label class="champ">Emplacement<input name="emplacement" list="l-emps" maxlength="60" value="${esc(v.emplacement)}" placeholder="Atelier, local technique…"></label>
@@ -813,13 +1182,14 @@
       const nom = String(fd.get('nom') || '').trim();
       if (!nom) return 'Donne un nom à l\'équipement.';
       const repere = String(fd.get('repere') || '').trim();
-      if (repere && E.equipements.some((x) => x.repere.toLowerCase() === repere.toLowerCase() && x.id !== eq?.id)) return `Le repère ${repere} est déjà utilisé.`;
+      const siteEq = multi() ? String(fd.get('site') || '') : (eq?.site || '');
+      if (repere && E.equipements.some((x) => x.repere.toLowerCase() === repere.toLowerCase() && x.id !== eq?.id && (!multi() || x.site === siteEq))) return `Le repère ${repere} est déjà utilisé${multi() ? ' sur ce site' : ''}.`;
       const c0 = R.lireNombre(fd.get('compteurInitial'));
       if (Number.isNaN(c0)) return 'Compteur illisible : écris par exemple 1250 ou 1250,5.';
       const mes = fd.get('miseEnService');
       if (!eq && !R.estDate(mes)) return 'Indique la date de départ du suivi.';
       retenir();
-      const donnees = R.normaliserEquipement({ id: eq?.id || uid(), repere, nom, famille: fd.get('famille'), emplacement: fd.get('emplacement'), criticite: fd.get('criticite'), unite: fd.get('unite'), compteurInitial: c0 ?? 0, miseEnService: mes, fabricant: fd.get('fabricant'), modele: fd.get('modele'), numeroSerie: fd.get('numeroSerie'), note: fd.get('note'), archive: !!fd.get('archive') });
+      const donnees = R.normaliserEquipement({ id: eq?.id || uid(), site: siteEq, repere, nom, famille: fd.get('famille'), emplacement: fd.get('emplacement'), criticite: fd.get('criticite'), unite: fd.get('unite'), compteurInitial: c0 ?? 0, miseEnService: mes, fabricant: fd.get('fabricant'), modele: fd.get('modele'), numeroSerie: fd.get('numeroSerie'), note: fd.get('note'), archive: !!fd.get('archive') });
       if (eq) { Object.assign(eq, donnees); sauver(); rendre(); toast(`« ${nom} » enregistré.`, { libelle: 'Annuler', faire: annuler }); return; }
       E.equipements.push(donnees);
       if (donnees.famille && !E.familles.includes(donnees.famille)) E.familles.push(donnees.famille);
@@ -855,18 +1225,21 @@
     const c12 = R.coutsEquipement(E, id, ajout(t, -365), t), tout = R.coutsEquipement(E, id, null, t);
     const bons = E.interventions.filter((i) => i.equipement === id).sort((a, b) => (b.dateRealisee || b.datePrevue || '').localeCompare(a.dateRealisee || a.datePrevue || ''));
     const releves = E.releves.filter((r) => r.equipement === id).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 8);
+    const st = R.etatEquipement(E, eq);
+    const dispo = R.disponibilite(E, eq, t, E.reglages.periodeIndicateurs);
     const corps = `
+      <p class="etat-eq">${etiquetteEq(st.code)}${st.depuis ? ` <span>${st.code === 'arret' ? 'À l\'arrêt' : 'Dégradé'} depuis le ${dateLongue(st.depuis)} · <button type="button" class="btn lien" data-action="voir-bon" data-id="${st.bon.id}">voir la panne</button></span>` : ''}${dispo !== null ? ` <span>Disponibilité ${pctDispo(dispo)} sur ${E.reglages.periodeIndicateurs} jours</span>` : ''}</p>
       <div class="resume-facture">
         <div><span>Compteur</span><b>${eq.unite ? cpt(c, eq.unite) : 'Sans compteur'}</b><small>${eq.unite ? `${ry ? `≈ ${nombre(ry * 7, 1)} ${uniteCourte(eq.unite)} par semaine` : 'Rythme inconnu : relève le compteur'}${R.dernierReleve(pts) ? ` · relevé le ${dateCourte(R.dernierReleve(pts))}` : ''}` : 'Échéances à la date uniquement'}</small></div>
         <div><span>Criticité</span><b>${eq.criticite} · ${esc(B.criticites.find((x) => x.code === eq.criticite)?.nom)}</b><small>${esc(famille(eq.famille)?.nom || 'Sans famille')}</small></div>
         <div><span>Coût sur 12 mois</span><b>${euros(c12.total)}</b><small>Préventif ${euros(c12.preventif)} · correctif ${euros(c12.correctif)}</small></div>
         <div><span>Pannes sur 12 mois</span><b>${c12.pannes}</b><small>${heures(c12.arret)} d'arrêt · ${euros(tout.total)} depuis le début</small></div>
       </div>
-      <p class="mention">${[eq.repere && `Repère ${esc(eq.repere)}`, esc(eq.emplacement), eq.fabricant && esc(eq.fabricant), eq.modele && esc(eq.modele), eq.numeroSerie && `N° ${esc(eq.numeroSerie)}`, eq.miseEnService && `suivi depuis le ${dateLongue(eq.miseEnService)}`].filter(Boolean).join(' · ')}</p>
+      <p class="mention">${[multi() && `Site <button type="button" class="btn lien" data-action="voir-site" data-id="${eq.site}">${esc(nomSite(eq.site))}</button>`, eq.repere && `Repère ${esc(eq.repere)}`, esc(eq.emplacement), eq.fabricant && esc(eq.fabricant), eq.modele && esc(eq.modele), eq.numeroSerie && `N° ${esc(eq.numeroSerie)}`, eq.miseEnService && `suivi depuis le ${dateLongue(eq.miseEnService)}`].filter(Boolean).join(' · ')}</p>
       ${eq.note ? `<p class="aide">${esc(eq.note)}</p>` : ''}
       <div class="rang">${eq.unite && !eq.archive ? `<button type="button" class="btn petit primaire" data-action="releve" data-id="${eq.id}">Relever le compteur</button>` : ''}<button type="button" class="btn petit" data-action="nouvelle-op" data-id="${eq.id}">Ajouter une opération</button><button type="button" class="btn petit" data-action="nouveau-correctif" data-id="${eq.id}">Signaler une panne</button></div>
       <section class="bloc-detail"><h3>Plan de maintenance <span>${pluriel(ech.length, 'opération')}</span></h3>
-        ${ech.length ? `<ul class="lignes-ech compact">${ech.map((x) => ligneEcheance(x, { avecEq: false }).replace('data-action="ouvrir-eq"', `data-action="modifier-op" data-id-op="${x.op.id}"`)).join('')}</ul>` : '<p class="mention">Aucune opération : ajoute celles de la notice du fabricant.</p>'}
+        ${ech.length ? `<ul class="lignes-ech compact">${ech.map((x) => ligneEcheance(x, { avecEq: false }).replace('data-action="voir-eq"', `data-action="modifier-op" data-id-op="${x.op.id}"`)).join('')}</ul>` : '<p class="mention">Aucune opération : ajoute celles de la notice du fabricant.</p>'}
       </section>
       <section class="bloc-detail"><h3>Historique <span>${pluriel(bons.length, 'bon')}</span></h3>
         ${bons.length ? `<ul class="journal">${bons.slice(0, 30).map(ligneBon).join('')}</ul>${bons.length > 30 ? '<p class="mention">30 derniers bons affichés.</p>' : ''}` : '<p class="mention">Aucune intervention pour l\'instant.</p>'}
@@ -1004,16 +1377,20 @@
   }
 
   // Bon correctif (panne) ; eqId facultatif.
-  function modaleCorrectif(eqId) {
-    const actifs = E.equipements.filter((x) => !x.archive).sort((a, b) => (a.repere || a.nom).localeCompare(b.repere || b.nom));
-    if (!actifs.length) { toast('Crée d\'abord un équipement.'); modaleEquipement(null); return; }
+  // Bon correctif (panne) ; eqId ou siteId facultatifs. Avec plusieurs sites, les équipements sont groupés par site.
+  function modaleCorrectif(eqId, siteId = '') {
+    const actifs = E.equipements.filter((x) => !x.archive && (!siteId || x.site === siteId)).sort((a, b) => (a.repere || a.nom).localeCompare(b.repere || b.nom));
+    if (!actifs.length) { toast(siteId ? 'Ce site n\'a pas encore d\'équipement actif.' : 'Crée d\'abord un équipement.'); modaleEquipement(null, siteId); return; }
+    const opt = (x) => `<option value="${x.id}" ${x.id === eqId ? 'selected' : ''}>${esc(nomEq(x.id))}</option>`;
+    const options = multi() ? sitesTries().filter((x) => actifs.some((y) => y.site === x.id)).map((x) => `<optgroup label="${esc(x.nom)}">${actifs.filter((y) => y.site === x.id).map(opt).join('')}</optgroup>`).join('') : actifs.map(opt).join('');
     const corps = `
-      <label class="champ">Équipement<select name="equipement">${actifs.map((x) => `<option value="${x.id}" ${x.id === eqId ? 'selected' : ''}>${esc(nomEq(x.id))}</option>`).join('')}</select></label>
+      <label class="champ">Équipement<select name="equipement">${options}</select></label>
       <label class="champ">Panne constatée<input name="titre" maxlength="160" required placeholder="Ex. : Fuite d'huile sous le carter"></label>
       <div class="rang-champs">
         <label class="champ">Motif<select name="motif">${B.motifsPanne.map((m) => `<option>${esc(m)}</option>`).join('')}</select></label>
-        <label class="champ">Date<input type="date" name="date" value="${auj()}" required></label>
+        <label class="champ">Signalée le<input type="date" name="date" value="${auj()}" max="${auj()}" required></label>
       </div>
+      <label class="case"><input type="checkbox" name="arretEq" checked> Équipement à l'arrêt tant que la panne est ouverte (compte dans la disponibilité)</label>
       <label class="champ">Description <small>Symptômes, conditions, qui a signalé.</small><textarea name="symptome" rows="3"></textarea></label>
       <label class="champ">Intervenant<input name="intervenant" maxlength="80" list="l-interv"></label>
       ${listeDonnees('l-interv', E.interventions.map((i) => i.intervenant))}
@@ -1023,12 +1400,13 @@
       if (!titre) return 'Décris la panne en quelques mots.';
       const date = fd.get('date');
       if (!R.estDate(date)) return 'Indique la date.';
+      if (date > auj()) return 'La date de signalement ne peut pas être dans le futur.';
       retenir();
-      const b = R.normaliserIntervention({ id: uid(), numero: R.numeroBon(E, date), equipement: fd.get('equipement'), type: 'correctif', statut: 'encours', titre, motif: fd.get('motif'), datePrevue: date, symptome: fd.get('symptome'), intervenant: fd.get('intervenant') });
+      const b = R.normaliserIntervention({ id: uid(), numero: R.numeroBon(E, date), equipement: fd.get('equipement'), type: 'correctif', statut: 'encours', titre, motif: fd.get('motif'), dateSignalee: date, datePrevue: date, arretEq: !!fd.get('arretEq'), symptome: fd.get('symptome'), intervenant: fd.get('intervenant') });
       E.interventions.push(b);
       sauver(); rendre();
       if (action === 'cloturer') { garderOuverte(); modaleCloture(b.id); return; }
-      toast(`Bon ${b.numero} créé (correctif).`, { libelle: 'Annuler', faire: annuler });
+      toast(`Bon ${b.numero} créé (correctif)${b.arretEq ? ' : équipement à l\'arrêt' : ''}.`, { libelle: 'Annuler', faire: annuler });
     });
   }
 
@@ -1042,9 +1420,11 @@
     const ouvert = i.statut === 'planifie' || i.statut === 'encours';
     const corps = `
       <div class="resume-facture">
-        <div><span>Équipement</span><b>${esc(nomEq(i.equipement))}</b><small>${esc(eq?.emplacement || '')}</small></div>
+        <div><span>Équipement</span><b>${esc(nomEq(i.equipement))}</b><small>${multi() ? `${esc(nomSite(eq?.site))}${eq?.emplacement ? ' · ' : ''}` : ''}${esc(eq?.emplacement || '')}</small></div>
         <div><span>Statut</span><b>${etiquetteBon(i.statut)} ${i.type === 'correctif' ? '<span class="etiquette rose">Correctif</span>' : '<span class="etiquette sable">Préventif</span>'}</b><small>${i.statut === 'fait' ? `Fait le ${dateLongue(i.dateRealisee)}` : i.datePrevue ? `Prévu le ${dateLongue(i.datePrevue)}` : ''}</small></div>
-        ${i.type === 'preventif' ? `<div><span>Échéance visée</span><b>${i.echeanceDate ? dateCourte(i.echeanceDate) : '–'}</b><small>${i.echeanceCompteur !== null ? `ou ${cpt(i.echeanceCompteur, eq?.unite)}` : ''}</small></div>` : `<div><span>Arrêt</span><b>${heures(i.arret)}</b><small>${esc(i.motif)}</small></div>`}
+        ${i.type === 'preventif' ? `<div><span>Échéance visée</span><b>${i.echeanceDate ? dateCourte(i.echeanceDate) : '–'}</b><small>${i.echeanceCompteur !== null ? `ou ${cpt(i.echeanceCompteur, eq?.unite)}` : ''}</small></div>`
+          : ouvert ? `<div><span>Panne</span><b>${i.arretEq ? 'À l\'arrêt' : 'Dégradé'}</b><small>Signalée le ${i.dateSignalee ? dateLongue(i.dateSignalee) : '–'}${i.dateSignalee ? `, ouverte depuis ${pluriel(Math.max(0, ecart(i.dateSignalee, auj())), 'jour')}` : ''}</small></div>`
+          : `<div><span>Arrêt</span><b>${heures(i.arret)}</b><small>${[esc(i.motif), i.dateSignalee && i.dateRealisee ? `résolue en ${pluriel(Math.max(0, ecart(i.dateSignalee, i.dateRealisee)), 'jour')}` : ''].filter(Boolean).join(' · ')}</small></div>`}
         <div><span>Coût</span><b>${i.statut === 'fait' ? euros(c.total) : '–'}</b><small>${i.statut === 'fait' ? `MO ${euros(c.mainOeuvre)} · pièces ${euros(c.pieces)} · sous-traitance ${euros(c.sousTraitance)}` : 'Chiffré à la clôture'}</small></div>
       </div>
       ${i.intervenant || i.duree || i.compteur !== null ? `<p class="mention">${[i.intervenant && `Par ${esc(i.intervenant)}`, i.duree && `durée ${heures(i.duree)}`, i.compteur !== null && `compteur ${cpt(i.compteur, eq?.unite)}`, i.reference && `rapport ${esc(i.reference)}`].filter(Boolean).join(' · ')}</p>` : ''}
@@ -1084,7 +1464,8 @@
         <label class="champ">Main-d'œuvre HT <small>${taux ? `Vide : durée × ${euros(taux)}/h` : 'Taux horaire non saisi (Réglages)'}</small><input name="mainOeuvre" inputmode="decimal" value="${R.saisieMontant(i.mainOeuvre)}" placeholder="Calculée"></label>
         <label class="champ">Sous-traitance HT<input name="sousTraitance" inputmode="decimal" value="${R.saisieMontant(i.sousTraitance || null)}" placeholder="0,00"></label>
       </div>
-      ${i.type === 'correctif' ? `<label class="champ">Arrêt de l'équipement (h)<input name="arret" inputmode="decimal" value="${R.saisieNombre(i.arret || null)}" placeholder="0"></label>` : ''}
+      ${i.type === 'correctif' ? `<div class="rang-champs"><label class="champ">Arrêt de l'équipement (h) <small>${i.arretEq ? 'Vide : jours entre signalement et résolution × 24 h.' : 'Vide : aucun arrêt.'}</small><input name="arret" inputmode="decimal" value="${R.saisieNombre(i.arret || null)}" placeholder="${i.arretEq ? 'Calculé' : '0'}"></label>
+        <label class="case"><input type="checkbox" name="arretEq" ${i.arretEq ? 'checked' : ''}> L'équipement était à l'arrêt</label></div>` : ''}
       ${i.points.length ? `<fieldset class="champ cadre-champs"><legend>Points de contrôle</legend>${i.points.map((p, k) => `<label class="case"><input type="checkbox" name="point-${k}" ${p.fait || !brouillon && i.statut !== 'fait' ? 'checked' : ''}> ${esc(p.texte)}</label>`).join('')}</fieldset>` : ''}
       ${E.pieces.length ? `<fieldset class="champ cadre-champs"><legend>Pièces consommées <small>Sorties du stock ; prix unitaire HT du jour.</small></legend>${lignes.map((x, k) => `<div class="ligne-piece trois"><select name="piece-${k}" aria-label="Pièce"><option value="">—</option>${E.pieces.map((p) => `<option value="${p.id}" ${p.id === x.piece ? 'selected' : ''}>${esc(p.nom)} (stock ${nombre(R.stockPiece(E, p.id))})</option>`).join('')}</select><input name="qte-${k}" inputmode="decimal" value="${R.saisieNombre(x.quantite)}" placeholder="Qté" aria-label="Quantité"><input name="prix-${k}" inputmode="decimal" value="${R.saisieMontant(x.prix)}" placeholder="Prix" aria-label="Prix unitaire"></div>`).join('')}</fieldset>` : ''}
       <label class="champ">Constat et travaux faits<textarea name="constat" rows="3">${esc(i.constat)}</textarea></label>
@@ -1112,8 +1493,12 @@
       const copie = structuredClone(cible);
       const err = R.cloturer(E, copie, { dateRealisee: fd.get('dateRealisee'), compteur, duree, auj: auj() });
       if (err) { annulation = null; return err; }
+      if (cible.type === 'correctif' && cible.dateSignalee && copie.dateRealisee < cible.dateSignalee) { annulation = null; return 'La résolution ne peut pas précéder le signalement.'; }
+      const arretEq = cible.type === 'correctif' && !!fd.get('arretEq');
+      // Arrêt non saisi d'une panne qui arrêtait l'équipement : jours entre signalement et résolution × 24 h.
+      const arretH = arret ?? (arretEq && cible.dateSignalee ? Math.max(0, ecart(cible.dateSignalee, copie.dateRealisee)) * 24 : 0);
       Object.assign(cible, copie, {
-        intervenant: String(fd.get('intervenant') || '').trim(), mainOeuvre: mo, sousTraitance: st ?? 0, arret: arret ?? 0, pieces,
+        intervenant: String(fd.get('intervenant') || '').trim(), mainOeuvre: mo, sousTraitance: st ?? 0, arret: arretH, arretEq, pieces,
         constat: String(fd.get('constat') || '').trim(), reference: String(fd.get('reference') || '').trim(),
         points: cible.points.map((p, k) => ({ ...p, fait: !!fd.get(`point-${k}`) })),
       });
@@ -1151,6 +1536,141 @@
     sauver(); rendre();
     if (modale().open) modale().close();
     toast(`Bon ${i.numero} supprimé.`, { libelle: 'Annuler', faire: annuler });
+  }
+
+  // ---------- Sites, visites et import (plusieurs sites) ----------
+  const optionsTypes = (sel) => B.typesSites.map((x) => `<option value="${x.code}" ${x.code === sel ? 'selected' : ''}>${esc(x.nom)}</option>`).join('');
+  const listeRegions = () => listeDonnees('l-regions', [...B.regions, ...E.sites.map((x) => x.region)].sort((a, b) => a.localeCompare(b, 'fr')));
+  const lireCoord = (v, max) => { const t = String(v ?? '').trim().replace(',', '.').replace('−', '-'); if (!t) return null; const n = Number(t); return Number.isFinite(n) && Math.abs(n) <= max ? n : undefined; };
+  const saisieCoord = (n) => (Number.isFinite(n) ? String(n).replace('.', ',') : '');
+  function modaleSite(id) {
+    const x = id ? site(id) : null;
+    if (id && !x) return;
+    const v = x || { nom: '', type: 'BUR', adresse: '', ville: '', region: '', responsable: '', lat: null, lon: null, notes: '', inactif: false };
+    const corps = `
+      <div class="rang-champs">
+        <label class="champ">Nom du site<input name="nom" required maxlength="80" value="${esc(v.nom)}" placeholder="Ex. : Entrepôt Nord"></label>
+        <label class="champ">Type<select name="type">${optionsTypes(v.type)}</select></label>
+      </div>
+      <label class="champ">Adresse <small>Texte libre, facultatif.</small><input name="adresse" maxlength="140" value="${esc(v.adresse)}"></label>
+      <div class="rang-champs">
+        <label class="champ">Ville<input name="ville" maxlength="60" value="${esc(v.ville)}"></label>
+        <label class="champ">Région <small>Ou secteur, agence.</small><input name="region" maxlength="60" list="l-regions" value="${esc(v.region)}"></label>
+        <label class="champ">Responsable<input name="responsable" maxlength="60" value="${esc(v.responsable)}"></label>
+      </div>
+      ${listeRegions()}
+      <div class="rang-champs">
+        <label class="champ">Latitude <small>Facultatif, décimal (ex. 45,76).</small><input name="lat" inputmode="decimal" value="${esc(saisieCoord(v.lat))}"></label>
+        <label class="champ">Longitude <small>Ouest : négatif (ex. −1,68).</small><input name="lon" inputmode="decimal" value="${esc(saisieCoord(v.lon))}"></label>
+      </div>
+      <p class="aide">Les coordonnées placent le site sur la carte schématique, sans fond de carte ni service en ligne : lis-les dans n'importe quelle application de cartes (appui long sur le lieu).</p>
+      <label class="champ">Notes<textarea name="notes" rows="2" maxlength="500" placeholder="Accès, horaires, gardien…">${esc(v.notes)}</textarea></label>
+      ${x ? `<label class="case"><input type="checkbox" name="inactif" ${x.inactif ? 'checked' : ''}> Site inactif (vendu, fermé) : plus d'alerte, historique gardé</label>` : ''}
+      <p class="erreur" role="alert"></p>`;
+    const pied = x
+      ? '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button><button class="btn danger gauche" value="supprimer">Supprimer</button>'
+      : '<button class="btn primaire" value="ok">Créer le site</button><button class="btn" value="annuler">Annuler</button>';
+    ouvrirModale(x ? `Modifier ${esc(x.nom)}` : 'Nouveau site', corps, pied, (fd, action) => {
+      if (action === 'supprimer') {
+        if (E.sites.length <= 1) return 'C\'est le dernier site : pour revenir à un seul site, décoche « Plusieurs sites » dans les réglages.';
+        const ne = E.equipements.filter((e) => e.site === x.id).length;
+        if (!confirm(`Supprimer « ${x.nom} »${ne ? ` avec ses ${pluriel(ne, 'équipement')}, leurs plans et leurs bons` : ''} ? Pour garder l'historique, coche plutôt « Site inactif ».`)) { garderOuverte(); return; }
+        retenir();
+        E = R.supprimerSite(E, x.id);
+        siteOuvert = null; if (filtre.site === x.id) filtre.site = '';
+        sauver(); rendre(); toast(`« ${x.nom} » supprimé.`, { libelle: 'Annuler', faire: annuler });
+        return;
+      }
+      const nom = String(fd.get('nom') || '').trim();
+      if (!nom) return 'Indique le nom du site.';
+      if (E.sites.some((y) => R.plat(y.nom) === R.plat(nom) && y.id !== x?.id)) return 'Un site porte déjà ce nom (les imports s\'appuient sur le nom).';
+      const lat = lireCoord(fd.get('lat'), 90), lon = lireCoord(fd.get('lon'), 180);
+      if (lat === undefined || lon === undefined) return 'Coordonnées : nombres décimaux (latitude −90 à 90, longitude −180 à 180).';
+      if ((lat === null) !== (lon === null)) return 'Indique la latitude et la longitude, ou aucune des deux.';
+      retenir();
+      const donnees = R.normaliserSite({ id: x?.id || uid(), nom, type: fd.get('type'), adresse: fd.get('adresse'), ville: fd.get('ville'), region: fd.get('region'), responsable: fd.get('responsable'), lat, lon, notes: fd.get('notes'), inactif: x ? !!fd.get('inactif') : false });
+      if (x) { Object.assign(x, donnees); sauver(); rendre(); toast(`« ${nom} » enregistré.`, { libelle: 'Annuler', faire: annuler }); return; }
+      E.sites.push(donnees);
+      sauver();
+      ouvrirSite(donnees.id);
+      toast(`« ${nom} » créé : ajoute ses équipements.`, { libelle: 'Annuler', faire: annuler });
+    });
+  }
+
+  // Visite de site : tournée, contrôle sans bon ; remet à zéro l'alerte « sans visite ».
+  function modaleVisite(id, siteId = '') {
+    const v = id ? E.visites.find((x) => x.id === id) : null;
+    if (id && !v) return;
+    const val = v || { site: siteId || siteOuvert || filtre.site || sitesTries()[0]?.id, date: auj(), intervenant: '', note: '', cout: 0 };
+    const corps = `
+      <div class="rang-champs">
+        <label class="champ">Site<select name="site">${sitesTries().map((x) => `<option value="${x.id}" ${x.id === val.site ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}</select></label>
+        <label class="champ">Date<input type="date" name="date" value="${val.date}" max="${auj()}" required></label>
+      </div>
+      <div class="rang-champs">
+        <label class="champ">Par<input name="intervenant" maxlength="80" value="${esc(val.intervenant)}" list="l-interv"></label>
+        <label class="champ">Coût HT <small>Facultatif (déplacement, prestataire).</small><input name="cout" inputmode="decimal" value="${R.saisieMontant(val.cout || null)}" placeholder="0,00"></label>
+      </div>
+      <label class="champ">Note<input name="note" maxlength="300" value="${esc(val.note)}" placeholder="Ex. : tournée trimestrielle, état des locaux"></label>
+      ${listeDonnees('l-interv', [...E.interventions.map((i) => i.intervenant), ...E.visites.map((x) => x.intervenant)])}
+      <p class="aide">Un site sans visite ni bon clôturé depuis plus de ${pluriel(E.reglages.visiteMois, 'mois', 'mois')} passe en alerte (réglable dans les réglages).</p>
+      <p class="erreur" role="alert"></p>`;
+    const pied = v
+      ? '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button><button class="btn danger gauche" value="supprimer">Supprimer</button>'
+      : '<button class="btn primaire" value="ok">Enregistrer la visite</button><button class="btn" value="annuler">Annuler</button>';
+    ouvrirModale(v ? 'Visite de site' : 'Noter une visite', corps, pied, (fd, action) => {
+      if (action === 'supprimer') { retenir(); E.visites = E.visites.filter((x) => x.id !== v.id); sauver(); rendre(); toast('Visite supprimée.', { libelle: 'Annuler', faire: annuler }); return; }
+      const date = fd.get('date');
+      if (!R.estDate(date)) return 'Indique la date.';
+      if (date > auj()) return 'La date ne peut pas être dans le futur.';
+      const cout = R.lireMontant(fd.get('cout'));
+      if (Number.isNaN(cout)) return 'Coût illisible : écris par exemple 80 ou 80,50.';
+      retenir();
+      const donnees = R.normaliserVisite({ id: v?.id || uid(), site: fd.get('site'), date, intervenant: fd.get('intervenant'), note: fd.get('note'), cout: cout ?? 0 });
+      if (v) Object.assign(v, donnees); else E.visites.push(donnees);
+      sauver(); rendre();
+      toast(`Visite ${v ? 'enregistrée' : `notée : ${nomSite(donnees.site)}, le ${dateLongue(date)}`}.`, { libelle: 'Annuler', faire: annuler });
+    });
+  }
+
+  // Import depuis un tableur (CSV) : sites (plusieurs sites) ou équipements ; aperçu avant tout changement.
+  function modaleImport(quoi = 'equipements') {
+    if (!multi()) quoi = 'equipements';
+    let resultat = null;
+    const corps = `
+      <p>Importe ta liste depuis un tableur : enregistre-la en <b>CSV</b> (point-virgule ou virgule), en partant du modèle. Un aperçu s'affiche avant tout changement.</p>
+      ${multi() ? `<fieldset class="champ"><legend>Contenu du fichier</legend><div class="choix-statut deux">${[['sites', 'Sites'], ['equipements', 'Équipements']].map(([k, lib]) => `<label><input type="radio" name="quoi" value="${k}" ${k === quoi ? 'checked' : ''}><span>${lib}</span></label>`).join('')}</div></fieldset>` : '<input type="hidden" name="quoi" value="equipements">'}
+      <div class="rang">${multi() ? '<button class="btn petit" type="button" data-action="csv-modele-sites">Modèle des sites</button>' : ''}<button class="btn petit" type="button" data-action="csv-modele-equipements">Modèle des équipements</button></div>
+      <label class="champ">Fichier CSV<input type="file" id="m-fichier" accept=".csv,text/csv,text/plain"></label>
+      <div id="m-apercu" class="apercu" hidden></div>
+      <p class="aide">${multi() ? 'Sites : un site de même nom est mis à jour. Équipements : la colonne « Site » nomme un site existant (importe d\'abord les sites) ; ' : 'Équipements : '}même repère (ou, sans repère, même nom) = mise à jour. Un nouvel équipement reçoit une opération « Préventif périodique » si la colonne « Périodicité préventive (mois) » est remplie, sinon le plan type de sa famille. Les bons et les relevés ne s'importent pas.</p>
+      <p class="erreur" role="alert"></p>`;
+    ouvrirModale('Importer depuis un tableur', corps, '<button class="btn primaire" value="ok">Importer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
+      if (!resultat) return 'Choisis d\'abord un fichier CSV.';
+      if (resultat.quoi !== fd.get('quoi')) return 'Le contenu a changé : choisis à nouveau le fichier.';
+      const r = resultat;
+      if (!r.ajouts && !r.majs) return 'Aucune ligne à importer.';
+      retenir();
+      if (r.quoi === 'sites') E.sites = r.sites;
+      else { E.equipements = r.equipements; E.operations.push(...r.operations); E.familles = r.familles; }
+      sauver(); rendre();
+      toast(`Import : ${pluriel(r.ajouts, 'ajout')}, ${pluriel(r.majs, 'mise à jour', 'mises à jour')}${r.erreurs.length ? `, ${pluriel(r.erreurs.length, 'remarque')}` : ''}.`, { libelle: 'Annuler', faire: annuler });
+    });
+    const d = modale();
+    const analyser = async () => {
+      const fichier = d.querySelector('#m-fichier').files[0];
+      const ap = d.querySelector('#m-apercu');
+      if (!fichier) { resultat = null; ap.hidden = true; return; }
+      const q = d.querySelector('[name=quoi]:checked, [name=quoi][type=hidden]').value;
+      const txt = await fichier.text();
+      const r = q === 'sites' ? R.importerSites(E, B, txt, uid) : R.importerEquipements(E, B, txt, uid, auj());
+      resultat = { ...r, quoi: q };
+      ap.hidden = false;
+      ap.innerHTML = `<p><b>${pluriel(r.ajouts, 'ajout')}</b>, <b>${pluriel(r.majs, 'mise à jour', 'mises à jour')}</b>${q === 'equipements' && r.operations?.length ? `, ${pluriel(r.operations.length, 'opération')} au plan` : ''}${r.erreurs.length ? `, ${pluriel(r.erreurs.length, 'remarque')}` : ''}.</p>${r.erreurs.length ? `<ul>${r.erreurs.slice(0, 8).map((x) => `<li>${esc(x)}</li>`).join('')}${r.erreurs.length > 8 ? `<li>… et ${r.erreurs.length - 8} autres.</li>` : ''}</ul>` : ''}`;
+      d.querySelector('.erreur').textContent = '';
+    };
+    d.querySelector('#m-fichier').addEventListener('change', analyser);
+    d.querySelectorAll('[name=quoi]').forEach((x) => x.addEventListener('change', analyser));
   }
 
   // ---------- Pièces : fiche et mouvements ----------
@@ -1247,7 +1767,7 @@
     imprimer(`
       <header class="imp-tete"><p>${esc(E.entreprise || 'Maintenance')} · Bon d'intervention</p><h1>${esc(i.numero)} · ${esc(i.titre)}</h1>
         <p>${i.type === 'correctif' ? 'Correctif' : 'Préventif'}${op ? ` · ${esc(B.natures[op.nature].nom)}` : ''} · ${R.STATUTS_BON[i.statut]}${i.datePrevue ? ` · prévu le ${R.dateFr(i.datePrevue)}` : ''}</p></header>
-      <table>${champ('Équipement', esc(nomEq(i.equipement)))}${champ('Emplacement', esc(eq?.emplacement))}${champ('Fabricant, modèle, n° de série', esc([eq?.fabricant, eq?.modele, eq?.numeroSerie].filter(Boolean).join(' · ')))}
+      <table>${multi() ? champ('Site', esc(nomSite(eq?.site))) : ''}${champ('Équipement', esc(nomEq(i.equipement)))}${champ('Emplacement', esc(eq?.emplacement))}${champ('Fabricant, modèle, n° de série', esc([eq?.fabricant, eq?.modele, eq?.numeroSerie].filter(Boolean).join(' · ')))}
         ${i.type === 'preventif' ? champ('Échéance visée', [i.echeanceDate && R.dateFr(i.echeanceDate), i.echeanceCompteur !== null && cpt(i.echeanceCompteur, eq?.unite)].filter(Boolean).join(' ou ')) : champ('Panne', esc([i.motif, i.symptome].filter(Boolean).join(' : ')))}
         ${op?.reference ? champ('Référence', esc(op.reference)) : ''}${champ('Intervenant', esc(i.intervenant))}</table>
       ${i.points.length ? `<h2>Points de contrôle</h2><ul class="imp-cases">${i.points.map((p) => `<li><span class="case-imp">${fait && p.fait ? '✓' : ''}</span>${esc(p.texte)}</li>`).join('')}</ul>` : ''}
@@ -1259,9 +1779,9 @@
       <p class="imp-pied">Imprimé le ${R.dateFr(auj())} · Maintenance préventive · QME</p>`);
   }
   function imprimerEcheancier() {
-    const l = R.echeances(E, auj()).filter((x) => ['retard', 'bientot', 'bon', 'avenir'].includes(x.etat));
-    imprimer(`<header class="imp-tete"><p>${esc(E.entreprise || 'Maintenance')} · Échéancier</p><h1>Échéances des 90 prochains jours</h1><p>Au ${R.dateFr(auj())} · ${pluriel(l.length, 'opération')}</p></header>
-      <table><tr><th>Équipement</th><th>Opération</th><th>Échéance</th><th>État</th></tr>${l.map((x) => `<tr><td>${esc(nomEq(x.op.equipement))}</td><td>${esc(x.op.nom)}</td><td>${esc(R.libelleEcheance(x, uniteCourte(x.eq?.unite)))}${x.dateEstimee && x.mode !== 'date' ? ` (≈ ${R.dateFr(x.dateEstimee)})` : ''}</td><td>${R.LIB_ETAT[x.etat]}${x.bon ? ` ${esc(x.bon.numero)}` : ''}</td></tr>`).join('')}</table>
+    const l = R.echeances(E, auj()).filter((x) => ['retard', 'bientot', 'bon', 'avenir'].includes(x.etat) && dansFiltreSite(x.eq));
+    imprimer(`<header class="imp-tete"><p>${esc(E.entreprise || 'Maintenance')} · Échéancier</p><h1>Échéances des 90 prochains jours${multi() && filtre.site ? ` · ${esc(nomSite(filtre.site))}` : ''}</h1><p>Au ${R.dateFr(auj())} · ${pluriel(l.length, 'opération')}</p></header>
+      <table><tr>${multi() ? '<th>Site</th>' : ''}<th>Équipement</th><th>Opération</th><th>Échéance</th><th>État</th></tr>${l.map((x) => `<tr>${multi() ? `<td>${esc(nomSite(x.eq?.site))}</td>` : ''}<td>${esc(nomEq(x.op.equipement))}</td><td>${esc(x.op.nom)}</td><td>${esc(R.libelleEcheance(x, uniteCourte(x.eq?.unite)))}${x.dateEstimee && x.mode !== 'date' ? ` (≈ ${R.dateFr(x.dateEstimee)})` : ''}</td><td>${R.LIB_ETAT[x.etat]}${x.bon ? ` ${esc(x.bon.numero)}` : ''}</td></tr>`).join('')}</table>
       <p class="imp-pied">Imprimé le ${R.dateFr(auj())} · Maintenance préventive · QME</p>`);
   }
 
@@ -1283,10 +1803,18 @@
         <label class="champ">Période des indicateurs (jours)<input type="number" name="periodeIndicateurs" min="7" max="730" value="${r.periodeIndicateurs}"></label>
         <label class="champ">Préfixe des bons<input name="prefixeBon" maxlength="6" value="${esc(r.prefixeBon)}"></label>
       </div>
+      <div class="groupe"><h3>Sites</h3>
+        <label class="case"><input type="checkbox" name="multiSites" id="choix-multi" ${multi() ? 'checked' : ''}> Plusieurs sites : équipements rangés par site, vue d'ensemble, alertes de visite, disponibilité et coût par site, carte schématique</label>
+        <p class="aide" id="aide-multi">${multi() ? `${pluriel(E.sites.length, 'site')}. Décocher garde les sites et le rangement de chaque équipement : ils reviennent si tu recoches.` : 'Tes équipements actuels iront dans un premier site (au nom de l\'atelier, modifiable), sans rien perdre.'}</p>
+        <div class="rang-champs">
+          <label class="champ">Alerte d'arrêt après (jours) <small>Équipement à l'arrêt depuis ce délai.</small><input type="number" name="arretJours" min="1" max="365" value="${r.arretJours}"></label>
+          <label class="champ" id="champ-visite" ${multi() ? '' : 'hidden'}>Site sans visite après (mois)<input type="number" name="visiteMois" min="1" max="36" value="${r.visiteMois}"></label>
+        </div></div>
       <p class="erreur" role="alert"></p>
-      <div class="groupe"><h3>Exporter</h3><p class="aide">Tableur (CSV, point-virgule) : l'échéancier, tous les bons avec leurs coûts, ou les coûts par équipement.</p>
-        <div class="rang"><button class="btn petit" type="button" data-action="csv-echeancier">Échéancier (CSV)</button><button class="btn petit" type="button" data-action="csv-bons">Interventions (CSV)</button><button class="btn petit" type="button" data-action="csv-couts">Coûts par équipement (CSV)</button></div></div>
-      <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
+      <div class="groupe"><h3>Tableur (CSV)</h3><p class="aide">Point-virgule, encodé en UTF-8 : s'ouvre dans Excel, LibreOffice ou Numbers. L'échéancier, tous les bons avec leurs coûts, les coûts par équipement, la liste des équipements${multi() ? ', les sites avec leurs indicateurs' : ''}. L'import part du modèle.</p>
+        <div class="rang"><button class="btn petit" type="button" data-action="csv-echeancier">Échéancier (CSV)</button><button class="btn petit" type="button" data-action="csv-bons">Interventions (CSV)</button><button class="btn petit" type="button" data-action="csv-couts">Coûts par équipement (CSV)</button><button class="btn petit" type="button" data-action="csv-equipements">Équipements (CSV)</button>${multi() ? '<button class="btn petit" type="button" data-action="csv-sites">Sites (CSV)</button>' : ''}</div>
+        <div class="rang"><button class="btn petit" type="button" data-action="import">Importer (CSV)</button>${multi() ? '<button class="btn petit" type="button" data-action="csv-modele-sites">Modèle des sites</button>' : ''}<button class="btn petit" type="button" data-action="csv-modele-equipements">Modèle des équipements</button></div></div>
+      <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé. Tu peux aussi garder une copie sur ton ordinateur.'} Une copie de l'ancien Pilotage de parcs multi-sites se restaure aussi : elle passe en plusieurs sites.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p><p class="aide">Toute personne qui a la clé voit et modifie les mêmes données : partage-la seulement avec ton équipe de maintenance.</p>`}
         <div class="rang"><button class="btn petit" type="button" data-action="deconnexion">${session.demo ? 'Quitter la démo' : 'Se déconnecter de cet appareil'}</button></div></div>
@@ -1294,28 +1822,49 @@
         <div class="rang"><button class="btn petit" type="button" data-action="tutoriel">Revoir le guide</button></div></div>
       <div class="groupe"><h3>Sur téléphone</h3><p class="aide">Ajoute cet outil à ton écran d'accueil pour relever un compteur ou clôturer un bon depuis l'atelier.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
-      <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Plans types : ${B.familles.length} familles, ${B.familles.reduce((s, f) => s + f.plan.length, 0)} opérations ; périodicités indicatives, la notice du fabricant prime. Obligations sourcées (vérifiées le ${R.dateFr(B.verifieLe)}, à revoir chaque année) : ${Object.values(B.regles).map((x) => `${esc(x.titre)} (${esc(x.source)})`).join(' ; ')} Les autres vérifications réglementaires n'ont pas de périodicité en base : saisis celle de ton texte. Aucun capteur, logiciel ou prestataire connecté.</p></div>`;
+      <div class="groupe"><h3>À propos</h3><p class="mention">Version ${B.version}. Plans types : ${B.familles.length} familles, ${B.familles.reduce((s, f) => s + f.plan.length, 0)} opérations ; périodicités indicatives, la notice du fabricant prime. Obligations sourcées (vérifiées le ${R.dateFr(B.verifieLe)}, à revoir chaque année) : ${Object.values(B.regles).map((x) => `${esc(x.titre)} (${esc(x.source)})`).join(' ; ')} Les autres vérifications réglementaires n'ont pas de périodicité en base : saisis celle de ton texte. Option plusieurs sites : la carte place les sites d'après les coordonnées saisies, sans fond de carte ni service en ligne. Aucun capteur, logiciel ou prestataire connecté.</p></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
       const ent = (nom, min, max) => { const n = Math.round(Number(fd.get(nom))); return String(fd.get(nom)).trim() !== '' && n >= min && n <= max ? n : null; };
-      const vals = { alerteJours: ent('alerteJours', 0, 365), alerteCompteurPct: ent('alerteCompteurPct', 0, 100), toleranceJours: ent('toleranceJours', 0, 90), periodeIndicateurs: ent('periodeIndicateurs', 7, 730) };
-      if (Object.values(vals).some((x) => x === null)) return 'Vérifie les nombres de jours et le pourcentage.';
+      const vals = { alerteJours: ent('alerteJours', 0, 365), alerteCompteurPct: ent('alerteCompteurPct', 0, 100), toleranceJours: ent('toleranceJours', 0, 90), periodeIndicateurs: ent('periodeIndicateurs', 7, 730), arretJours: ent('arretJours', 1, 365), visiteMois: ent('visiteMois', 1, 36) };
+      if (Object.values(vals).some((x) => x === null)) return 'Vérifie les nombres de jours, de mois et le pourcentage.';
       const taux = R.lireMontant(fd.get('tauxHoraire'));
       if (Number.isNaN(taux)) return 'Taux horaire illisible : écris par exemple 45.';
+      const veutMulti = !!fd.get('multiSites');
+      if (!veutMulti && multi() && E.sites.length > 1 && !confirm(`Revenir à un seul site ? Les ${pluriel(E.sites.length, 'site')} restent enregistrés, avec le rangement de chaque équipement : ils reviennent si tu réactives l'option.`)) { garderOuverte(); return; }
       retenir();
       E.entreprise = String(fd.get('entreprise') || '').trim();
       Object.assign(E.reglages, vals, { tauxHoraire: taux ?? 0, prefixeBon: String(fd.get('prefixeBon') || 'BI').toUpperCase().replace(/[^A-Z0-9]/g, '') || 'BI' });
-      sauver(); rendre();
-      toast('Réglages enregistrés.', { libelle: 'Annuler', faire: annuler });
+      const change = veutMulti !== multi();
+      if (change) {
+        const tutorielVu = E.tutorielVu;
+        if (veutMulti) E = { ...R.activerMultiSites(E, E.entreprise || 'Site principal'), tutorielVu };
+        else E.multiSites = false;
+        siteOuvert = null; filtre.site = '';
+      }
+      sauver();
+      if (change) { demarrer(); changerVue(veutMulti ? 'sites' : 'equipements'); } else rendre();
+      toast(change ? (veutMulti ? `Plusieurs sites : tes équipements sont dans « ${E.sites[0].nom} ». Renomme-le ou crée tes autres sites.` : 'Un seul site : tous tes équipements sont réunis.') : 'Réglages enregistrés.', { libelle: 'Annuler', faire: () => { annuler(); demarrer(); } });
     });
+    const choix = $('#choix-multi');
+    choix.addEventListener('change', () => { $('#champ-visite').hidden = !choix.checked; });
     $('#import').addEventListener('change', async (ev) => {
       const fichier = ev.target.files[0];
       if (!fichier) return;
       try {
         const d = JSON.parse(await fichier.text());
-        if (!Array.isArray(d.equipements) || !Array.isArray(d.operations)) throw new Error();
-        if (!confirm(`Remplacer tes données actuelles par cette copie (${pluriel(d.equipements.length, 'équipement')}, ${pluriel((d.interventions || []).length, 'bon')}) ?`)) return;
-        const vu = E.tutorielVu; E = normaliser(d); delete E.majLe; if (vu) E.tutorielVu = true;
-        modale().close(); sauver(); rendre(); toast('Copie restaurée.');
+        // Copie de l'ancien Pilotage de parcs multi-sites : convertie en maintenance à plusieurs sites.
+        const parcs = R.estCopieParcs(d);
+        if (!parcs && (!Array.isArray(d.equipements) || !Array.isArray(d.operations))) throw new Error();
+        const message = parcs
+          ? `Remplacer tes données actuelles par cette copie du Pilotage de parcs multi-sites (${pluriel(d.sites.length, 'site')}, ${pluriel(d.equipements.length, 'équipement')}, ${pluriel((d.interventions || []).length, 'intervention')}) ? Elle passe en plusieurs sites : la périodicité de chaque équipement devient une opération « Préventif périodique ».`
+          : `Remplacer tes données actuelles par cette copie (${pluriel(d.equipements.length, 'équipement')}, ${pluriel((d.interventions || []).length, 'bon')}) ?`;
+        if (!confirm(message)) return;
+        const vu = E.tutorielVu;
+        E = parcs ? normaliser(R.depuisParcs(d, B)) : normaliser(d);
+        delete E.majLe; if (vu) E.tutorielVu = true;
+        siteOuvert = null; filtre.site = '';
+        modale().close(); sauver(); demarrer();
+        toast(parcs ? `Copie convertie : ${pluriel(E.sites.length, 'site')}, ${pluriel(E.equipements.length, 'équipement')}, ${pluriel(E.interventions.length, 'bon')}${E.visites.length ? `, ${pluriel(E.visites.length, 'visite')}` : ''}.` : 'Copie restaurée.');
       } catch { toast('Ce fichier n\'est pas une copie valide.'); }
     });
   }
@@ -1339,13 +1888,14 @@
     const blocs = [
       ['rose', 'Un équipement, un plan', `Crée chaque équipement avec sa famille&nbsp;: le plan de maintenance type de cette famille t'est proposé, à ajuster selon la notice du fabricant. La plupart des vérifications réglementaires arrivent sans périodicité&nbsp;: saisis celle de ton texte, avec sa référence.`],
       ['beurre', 'À la date, au compteur, ou au premier atteint', `Chaque opération a une échéance calendaire, au compteur, ou les deux&nbsp;: la première atteinte compte. Relève les compteurs&nbsp;: la date d'une échéance au compteur est estimée d'après le rythme d'utilisation. Une échéance passe <b>Bientôt</b> jusqu'à ${jours(g.alerteJours)} avant, ou quand il reste moins de ${g.alerteCompteurPct}&nbsp;% de l'intervalle au compteur.`],
-      ['ciel', 'Un bon pour chaque intervention', `Depuis une échéance, <b>Ouvrir un bon</b> le prépare avec ses consignes et ses pièces&nbsp;; une panne se signale par un bon correctif. À la clôture, l'échéance suivante se recale, les pièces sortent du stock et le coût se chiffre&nbsp;: main-d'œuvre${g.tauxHoraire ? ` (${R.euros(g.tauxHoraire).replace(/ /g, '&nbsp;')} de l'heure)` : ''}, pièces et sous-traitance.`],
-      ['sable', 'Suis tes indicateurs', `Le <b>Tableau de bord</b> montre ce qui est en retard, le taux de réalisation du préventif sur ${jours(g.periodeIndicateurs)} et le coût par équipement sur 12&nbsp;mois, préventif et correctif. Une pièce sous son seuil ou en rupture y apparaît dans les pièces à commander.`],
+      ['ciel', 'Un bon pour chaque intervention', `Depuis une échéance, <b>Ouvrir un bon</b> le prépare avec ses consignes et ses pièces&nbsp;; une panne se signale par un bon correctif. Une panne notée <b>à l'arrêt</b> arrête l'équipement jusqu'à sa clôture&nbsp;: elle compte dans la disponibilité et passe en alerte au bout de ${jours(g.arretJours)}. À la clôture, l'échéance suivante se recale, les pièces sortent du stock et le coût se chiffre&nbsp;: main-d'œuvre${g.tauxHoraire ? ` (${R.euros(g.tauxHoraire).replace(/ /g, '&nbsp;')} de l'heure)` : ''}, pièces et sous-traitance.`],
+      ['sable', 'Suis tes indicateurs', `${multi() ? 'La <b>Vue d\'ensemble</b> montre, pour tout le parc puis site par site,' : 'Le <b>Tableau de bord</b> montre'} ce qui est en retard, ce qui est arrêté, le taux de réalisation du préventif et la disponibilité sur ${jours(g.periodeIndicateurs)}, et le coût par ${multi() ? 'site et par ' : ''}équipement sur 12&nbsp;mois, préventif et correctif. Une pièce sous son seuil ou en rupture y apparaît dans les pièces à commander.`],
     ];
+    if (multi()) blocs.splice(1, 0, ['ciel', 'Tes sites', `Chaque équipement appartient à un site. L'onglet <b>Sites</b> les montre en liste triable ou sur une carte schématique (d'après la latitude et la longitude saisies, sans fond de carte), avec leur état, leur disponibilité et leur coût&nbsp;; ouvre un site pour ses équipements, ses échéances et son historique. Un site sans visite ni bon clôturé depuis plus de ${g.visiteMois}&nbsp;mois passe en alerte&nbsp;: note tes tournées avec <b>Noter une visite</b>.`]);
     const corps = `
       <p>L'application calcule pour toi quand faire chaque opération de maintenance, et ce qu'elle coûte. Ton rôle&nbsp;: créer tes équipements, relever leurs compteurs et clôturer les bons d'intervention.</p>
       <ol class="tuto">${blocs.map(([t, titre, texte]) => `<li style="--f:var(--${t});--t:var(--${t === 'sable' ? 'encre' : `${t}-texte`})"><b>${titre}</b><span>${texte}</span></li>`).join('')}</ol>
-      <p class="aide"><b>Échéancier</b> liste toutes les opérations mois par mois, <b>Pièces</b> calcule le stock de tes pièces de rechange. Rien n'est relié à un capteur&nbsp;: tout se saisit. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
+      <p class="aide"><b>Échéancier</b> liste toutes les opérations mois par mois, <b>Pièces</b> calcule le stock de tes pièces de rechange. ${multi() ? 'Tes sites et tes équipements s\'importent depuis un tableur (CSV, modèles dans les réglages). ' : 'Plusieurs sites&nbsp;? Active l\'option dans les réglages. '}Rien n'est relié à un capteur&nbsp;: tout se saisit. ${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ta clé&nbsp;: tu les retrouves sur tous tes appareils.'} Ce guide reste accessible avec le bouton <b>?</b> en haut de l'écran et dans les réglages.</p>`;
     const premier = auto && !E.equipements.length;
     const pied = premier
       ? '<button class="btn primaire" value="equipement">Ajouter mon premier équipement</button><button class="btn" value="ok">Fermer</button>'
@@ -1437,7 +1987,9 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
+      case 'demo-multi': ouvrirDemo(true, true); break;
+      case 'demo-bascule': if (modale().open) modale().close(); ouvrirDemo(true, !multi()); break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(multi()); E.tutorielVu = vu; siteOuvert = null; cache(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-suivant': {
         const t = R.lireMontant(accueil.taux);
@@ -1446,7 +1998,7 @@
       }
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
-      case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
+      case 'vue': if (modale().open) modale().close(); if (el.dataset.vue === 'sites') sousVue = 'sites'; changerVue(el.dataset.vue); break;
       case 'reglages': modaleReglages(); break;
       case 'tutoriel': modaleTutoriel(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
@@ -1456,8 +2008,8 @@
       case 'csv-bons': telecharger(R.csvInterventions(E), 'text/csv;charset=utf-8', `interventions-${auj()}.csv`); break;
       case 'csv-couts': telecharger(R.csvCouts(E, auj()), 'text/csv;charset=utf-8', `couts-maintenance-${auj()}.csv`); break;
       case 'fermer': modale().close(); break;
-      case 'nouvel-eq': modaleEquipement(null); break;
-      case 'ouvrir-eq': if (id) modaleFiche(id); break;
+      case 'nouvel-eq': modaleEquipement(null, el.dataset.site); break;
+      case 'voir-eq': if (id) modaleFiche(id); break;
       case 'modifier-eq': modaleEquipement(id); break;
       case 'releve': modaleReleve(id); break;
       case 'suppr-releve': { retenir(); E.releves = E.releves.filter((r) => r.id !== id); sauver(); rendre(); modaleFiche(el.dataset.retour); toast('Relevé supprimé.', { libelle: 'Annuler', faire: annuler }); break; }
@@ -1472,14 +2024,34 @@
       case 'suppr-bon': supprimerBon(id); break;
       case 'imprimer-bon': imprimerBon(id); break;
       case 'imprimer-echeancier': imprimerEcheancier(); break;
-      case 'nouveau-correctif': modaleCorrectif(id); break;
+      case 'nouveau-correctif': modaleCorrectif(id, el.dataset.site); break;
+      // Plusieurs sites.
+      case 'voir-site': ouvrirSite(id); break;
+      case 'voir-sites': siteOuvert = null; sousVue = 'sites'; changerVue('sites'); break;
+      case 'sous-vue': siteOuvert = null; sousVue = el.dataset.sous; rendre(); break;
+      case 'filtre-mode': affichage.mode = el.dataset.mode; stock.ecrire(CLE_AFFICHAGE, { mode: affichage.mode }); rendre(); break;
+      case 'filtre-tri': { const k = el.dataset.cle; affichage.tri = affichage.tri.cle === k ? { cle: k, sens: -affichage.tri.sens } : { cle: k, sens: ['equipements', 'retards', 'cout', 'delai'].includes(k) ? -1 : 1 }; rendre(); break; }
+      case 'filtres-effacer': affichage.f = { texte: '', region: '', type: '', etat: '' }; rendre(); break;
+      case 'filtre-ech-site': filtre.site = id; filtre.ech = 'urgent'; changerVue('echeancier'); break;
+      case 'aller-sites': sousVue = 'sites'; changerVue('sites'); break;
+      case 'aller-retards': filtre.ech = 'urgent'; changerVue('echeancier'); break;
+      case 'aller-arrets': filtre.eq = 'arret'; sousVue = 'equipements'; changerVue('sites'); break;
+      case 'nouveau-site': modaleSite(null); break;
+      case 'modifier-site': modaleSite(id); break;
+      case 'nouvelle-visite': modaleVisite(null, id); break;
+      case 'modifier-visite': modaleVisite(id); break;
+      case 'import': modaleImport(el.dataset.quoi); break;
+      case 'csv-sites': telecharger(R.csvSites(E, B, auj()), 'text/csv;charset=utf-8', `sites-maintenance-${auj()}.csv`); break;
+      case 'csv-equipements': telecharger(R.csvEquipements(E, B, auj()), 'text/csv;charset=utf-8', `equipements-maintenance-${auj()}.csv`); break;
+      case 'csv-modele-sites': telecharger(R.csvModele('sites'), 'text/csv;charset=utf-8', 'modele-sites.csv'); toast('Modèle des sites téléchargé : remplis-le dans ton tableur, enregistre en CSV, puis importe-le.'); break;
+      case 'csv-modele-equipements': telecharger(R.csvModele('equipements'), 'text/csv;charset=utf-8', 'modele-equipements.csv'); toast(multi() ? 'Modèle des équipements téléchargé : la colonne « Site » reprend le nom exact du site.' : 'Modèle des équipements téléchargé : laisse la colonne « Site » vide.'); break;
       case 'nouvelle-piece': modalePiece(null); break;
       case 'modifier-piece': modalePiece(id); break;
       case 'mvt-piece': modaleMvtPiece(id); break;
       case 'suppr-mvt-piece': { retenir(); E.mouvementsPieces = E.mouvementsPieces.filter((m) => m.id !== id); sauver(); rendre(); modalePiece(el.dataset.retour); toast('Mouvement supprimé.', { libelle: 'Annuler', faire: annuler }); break; }
       case 'filtre-ech': if (modale().open) modale().close(); filtre.ech = el.dataset.ech; if (vue !== 'echeancier') changerVue('echeancier'); else rendre(); break;
       case 'filtre-eq': filtre.eq = el.dataset.eq; rendre(); break;
-      case 'filtre-bon': filtre.bon = el.dataset.bon; rendre(); break;
+      case 'filtre-bon': filtre.bon = el.dataset.bon; if (vue !== 'interventions') changerVue('interventions'); else rendre(); break;
       case 'filtre-piece': filtre.piece = el.dataset.piece; rendre(); break;
       default: break;
     }
@@ -1499,7 +2071,10 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false); }
+    // ?demo : l'exemple d'un site ; ?demo=sites : l'exemple à plusieurs sites.
+    const demoUrl = new URLSearchParams(location.search).get('demo');
+    if (demoUrl !== null && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false, demoUrl === 'sites'); }
+    if (demoUrl === 'sites' && code === CODE_DEMO) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(true, true); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();
@@ -1522,6 +2097,6 @@
   }
 
   // Exposé pour les tests automatisés uniquement (aucune donnée sensible).
-  window.__maintenance = { etat: () => E, regles: R, demo: () => donneesDemo() };
+  window.__maintenance = { etat: () => E, regles: R, demo: (multiSites = false) => donneesDemo(multiSites) };
   init();
 })();
