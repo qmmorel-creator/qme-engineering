@@ -10,55 +10,8 @@
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112201">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
-.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-/* Espace « Mes templates » */
-.espace{max-width:var(--max);margin:0 auto;padding:40px 16px 8px}
-.espace-tete{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
-.espace h1{font-size:clamp(34px,4.6vw,52px)}
-.espace-nb{margin:6px 0 0;color:var(--discret);font-weight:500}
-.espace .ajouter{min-height:48px}
-.espace-outils{position:sticky;top:0;z-index:5;margin:20px -16px 0;padding:12px 16px;background:var(--papier);display:flex;flex-direction:column;gap:10px}
-.esp-recherche{display:flex;align-items:center;gap:10px;padding:0 14px;min-height:54px;background:var(--surface);border:2px solid var(--encre);border-radius:14px}
-.esp-recherche:focus-within{outline:3px solid var(--jaune);outline-offset:0}
-.esp-recherche svg{flex:none;color:var(--discret)}
-.esp-recherche input{flex:1;min-width:0;border:0;background:none;font:500 18px/1.2 Outfit,system-ui,sans-serif;color:var(--encre);padding:12px 0;outline:none}
-.esp-recherche input::-webkit-search-cancel-button{cursor:pointer}
-.sauts{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
-.sauts::-webkit-scrollbar{display:none}
-.sauts:empty{display:none}
-.sauts a{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
-.sauts a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
-.sauts a:hover{border-color:var(--encre)}
-.sauts small,.groupe summary small{color:var(--discret);font-weight:600}
-.zone{margin-top:24px}
-.zone>h2{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);margin:0 0 10px}
-#resultats{margin-top:16px}
-.esp-tuiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.esp-tuile{position:relative;display:flex;min-width:0}
-.esp-tuile>a{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:76px;padding:8px 56px 8px 8px;background:var(--surface);border:1px solid var(--trait);border-left:5px solid var(--c);border-radius:14px;text-decoration:none;color:var(--encre);transition:box-shadow .15s,transform .15s}
-.esp-tuile>a:hover{box-shadow:0 8px 20px rgba(36,34,31,.10);transform:translateY(-1px)}
-.esp-tuile>a:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
-.esp-tuile img,.vign-vide{flex:none;width:96px;height:60px;object-fit:cover;border-radius:8px;background:var(--sable)}
-.t-txt{min-width:0;display:flex;flex-direction:column;gap:2px}
-.t-txt b{font-size:17px;line-height:1.25}
-.t-txt small{font-size:14px;line-height:1.3;color:var(--texte-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.epingle{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--trait)}
-.epingle svg{fill:none;stroke:var(--discret);stroke-width:1.8;stroke-linejoin:round}
-.epingle:hover svg{stroke:var(--encre)}
-.epingle[aria-pressed="true"] svg{fill:var(--jaune);stroke:var(--beurre-texte)}
-.epingle:focus-visible{outline:3px solid var(--jaune)}
-.groupe{border-top:1px solid var(--trait);scroll-margin-top:150px}
-.groupe:last-child{border-bottom:1px solid var(--trait)}
-.groupe summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:56px;font-weight:700;font-size:18px}
-.groupe summary::-webkit-details-marker{display:none}
-.groupe summary::after{content:"+";margin-left:auto;font-size:26px;font-weight:600;line-height:1}
-.groupe[open] summary::after{content:"−"}
-.groupe summary:focus-visible{outline:3px solid var(--jaune)}
-.pastille{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none}
-.groupe .esp-tuiles{padding:0 0 16px}
-.vide{padding:20px;background:var(--surface);border:1px dashed var(--trait);border-radius:14px}
-.vide a{font-weight:700;color:var(--bleu)}
 .espace-packs{margin:20px 0 0}
 .espace-packs a{font-weight:700}
 .portail .intro-ajout{display:none}
@@ -67,18 +20,6 @@
 .a-espace .portail{padding-top:32px}
 .intro-ajout h2{font-size:28px}
 .intro-ajout p{color:var(--texte-2);margin-top:6px}
-@media (max-width:640px){
-  .espace{padding-top:20px}
-  .espace .eyebrow,.espace .ajouter .pc{display:none}
-  .espace-tete{align-items:center;flex-wrap:nowrap}
-  .espace h1{font-size:34px}
-  .espace-nb{font-size:15px;margin-top:2px}
-  .espace .ajouter{flex:none;min-height:44px;padding:0 14px;font-size:15px}
-  .esp-tuiles{grid-template-columns:1fr}
-  .esp-tuile img,.vign-vide{width:72px;height:45px}
-  .esp-tuile>a{min-height:68px}
-}
-@media (prefers-reduced-motion:reduce){.esp-tuile>a{transition:none}.esp-tuile>a:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -109,24 +50,7 @@
     </div>
     <a class="btn ajouter" href="#portail">+ Ajouter<span class="pc">&nbsp;une clé</span></a>
   </div>
-  <div class="espace-outils" id="outils">
-    <label class="esp-recherche">
-      <span class="vh">Rechercher dans mes templates</span>
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
-      <input type="search" id="recherche" placeholder="Rechercher : courses, budget, devis…" autocomplete="off" spellcheck="false" enterkeyhint="go">
-    </label>
-    <nav class="sauts" id="sauts" aria-label="Aller à un thème"></nav>
-  </div>
-  <p class="vh" id="statut" role="status"></p>
-  <div id="resultats" hidden>
-    <ul class="esp-tuiles" id="liste-resultats"></ul>
-    <p class="vide" id="vide" hidden></p>
-  </div>
-  <div id="zones">
-    <section class="zone" id="z-epingles" hidden aria-labelledby="h-epingles"><h2 id="h-epingles">Épinglés</h2><ul class="esp-tuiles"></ul></section>
-    <section class="zone" id="z-recents" hidden aria-labelledby="h-recents"><h2 id="h-recents">Récemment ouverts</h2><ul class="esp-tuiles"></ul></section>
-    <section class="zone" id="z-themes" aria-labelledby="h-themes"><h2 id="h-themes">Par thème</h2><div id="themes"></div></section>
-  </div>
+  <div id="espace-corps"></div>
   <p class="espace-packs" id="espace-packs" hidden><a href="/packs/espace/">Mes packs : ouvrir le tableau de bord <span aria-hidden="true">→</span></a></p>
 </section>
 <section class="portail" id="portail">
@@ -168,6 +92,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
+<script src="/assets/espace.js?v=2026112201"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
@@ -182,86 +107,21 @@ const THEMES=[{"id":"projets-et-chantiers","nom":"Projets et chantiers","pour":"
 const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM','PFA','PVY','PNS','PXP','PCA','PVT','PAQ','PBD','PBF'];
 const PREFIXES=[...Object.keys(PRODUITS),...PACKS,'ADM'],prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
 const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
-const lire=(c)=>{try{const v=localStorage.getItem(c)??sessionStorage.getItem(c);return v?JSON.parse(v):null;}catch{return null;}};
-const garderLocal=(c,v)=>{try{localStorage.setItem(c,JSON.stringify(v));}catch{}};
-const esc=(s)=>String(s).replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const plat=(s)=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’']/g,' ');
+const {lire,noterOuverture}=QMEEspace;
 
-// ===== Espace « Mes templates » : templates enregistrés sur cet appareil, épinglés, récents, par thème, recherche.
-const E={espace:document.getElementById('espace'),nb:document.getElementById('espace-nb'),outils:document.getElementById('outils'),
-  recherche:document.getElementById('recherche'),sauts:document.getElementById('sauts'),statut:document.getElementById('statut'),
-  resultats:document.getElementById('resultats'),listeRes:document.getElementById('liste-resultats'),vide:document.getElementById('vide'),
-  zones:document.getElementById('zones'),epingles:document.getElementById('z-epingles'),recents:document.getElementById('z-recents'),
-  zThemes:document.getElementById('z-themes'),themes:document.getElementById('themes'),packs:document.getElementById('espace-packs')};
-const CLE_EPINGLES='qme-espace-epingles',CLE_RECENTS='qme-espace-recents',CLE_OUVERTS='qme-espace-themes-ouverts';
-const SEUIL=5; // à partir de 5 templates : recherche, regroupement par thème et récents
-let mes=[];
+// ===== Espace « Mes templates » (assets/espace.js) : templates enregistrés sur cet appareil.
+const E={espace:document.getElementById('espace'),nb:document.getElementById('espace-nb'),packs:document.getElementById('espace-packs')};
+const vue=QMEEspace.creer(document.getElementById('espace-corps'),{produits:PRODUITS,themes:THEMES});
 const possedes=()=>Object.keys(PRODUITS).filter((k)=>{const v=lire(PRODUITS[k].cle);return v&&v!=='DEMO';});
-const epingles=()=>(lire(CLE_EPINGLES)||[]).filter((k)=>mes.includes(k));
-const recents=()=>(lire(CLE_RECENTS)||[]).filter((r)=>mes.includes(r.p)).sort((a,b)=>b.t-a.t).map((r)=>r.p);
-const theme=(id)=>THEMES.find((t)=>t.id===id)||{id,nom:'Autres',c:'encre'};
-function noterOuverture(k){const l=(lire(CLE_RECENTS)||[]).filter((r)=>r.p!==k);l.unshift({p:k,t:Date.now()});garderLocal(CLE_RECENTS,l.slice(0,12));}
-const ETOILE='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
-function tuile(k,ep){const p=PRODUITS[k],t=theme(p.theme);
-  return `<li class="esp-tuile" style="--c:var(--${t.c})"><a href="${p.url}" data-pre="${k}">`+
-    (p.img?`<img src="${esc(p.img)}" alt="" width="96" height="60" loading="lazy" decoding="async">`:`<span class="vign-vide" aria-hidden="true"></span>`)+
-    `<span class="t-txt"><b>${esc(p.nom)}</b><small>${esc(p.phrase||t.nom)}</small></span></a>`+
-    `<button type="button" class="epingle" data-epingle="${k}" aria-pressed="${ep.includes(k)}" aria-label="Épingler ${esc(p.nom)}" title="${ep.includes(k)?'Retirer des épinglés':'Épingler'}">${ETOILE}</button></li>`;}
 function rendre(){
-  mes=possedes();
+  const mes=possedes();
   let packs=[];try{packs=JSON.parse(localStorage.getItem('qme-packs')||'[]');}catch{}
   E.packs.hidden=!packs.length;
   document.body.classList.toggle('a-espace',mes.length>0);
   E.espace.hidden=!mes.length;
-  if(!mes.length)return;
-  const ep=epingles(),beaucoup=mes.length>=SEUIL;
   E.nb.textContent=`${mes.length} template${mes.length>1?'s':''} sur cet appareil`;
-  E.outils.hidden=!beaucoup;
-  E.epingles.hidden=!ep.length;
-  E.epingles.querySelector('ul').innerHTML=ep.map((k)=>tuile(k,ep)).join('');
-  const rc=beaucoup?recents().filter((k)=>!ep.includes(k)).slice(0,4):[];
-  E.recents.hidden=!rc.length;
-  E.recents.querySelector('ul').innerHTML=rc.map((k)=>tuile(k,ep)).join('');
-  const parNom=(a,b)=>PRODUITS[a].nom.localeCompare(PRODUITS[b].nom,'fr');
-  if(!beaucoup){
-    document.getElementById('h-themes').textContent=ep.length?'Tous mes templates':'Mes templates';
-    document.getElementById('h-themes').classList.toggle('vh',!ep.length);
-    E.themes.innerHTML=`<ul class="esp-tuiles">${mes.slice().sort(parNom).map((k)=>tuile(k,ep)).join('')}</ul>`;E.sauts.innerHTML='';return;}
-  document.getElementById('h-themes').textContent='Par thème';document.getElementById('h-themes').classList.remove('vh');
-  const groupes=THEMES.map((t)=>({t,l:mes.filter((k)=>PRODUITS[k].theme===t.id).sort(parNom)})).filter((g)=>g.l.length);
-  // Thèmes repliés au-delà de 12 templates ; l'état ouvert / fermé de chaque thème est retenu.
-  const ouverts=lire(CLE_OUVERTS),tout=mes.length<=12||groupes.length===1;
-  E.themes.innerHTML=groupes.map(({t,l})=>`<details class="groupe" id="t-${t.id}" style="--c:var(--${t.c})"${tout||(ouverts||[]).includes(t.id)?' open':''}><summary><span class="pastille" aria-hidden="true"></span><span class="g-nom">${esc(t.nom)}</span><small>${l.length}</small></summary><ul class="esp-tuiles">${l.map((k)=>tuile(k,ep)).join('')}</ul></details>`).join('');
-  E.sauts.innerHTML=groupes.length>1?groupes.map(({t,l})=>`<a href="#t-${t.id}" data-saut="${t.id}" style="--c:var(--${t.c})">${esc(t.nom)} <small>${l.length}</small></a>`).join(''):'';
-  if(E.recherche.value)chercher();
+  vue.maj(mes);
 }
-function chercher(){
-  const q=plat(E.recherche.value).trim(),mots=q.split(/\s+/).filter(Boolean);
-  E.resultats.hidden=!mots.length;E.zones.hidden=!!mots.length;
-  if(!mots.length){E.statut.textContent='';return;}
-  const score=(k)=>{const p=PRODUITS[k],nom=plat(p.nom),tout=`${nom} ${plat(p.phrase)} ${plat(theme(p.theme).nom)} ${plat(p.url)} ${k.toLowerCase()}`;
-    if(!mots.every((m)=>tout.includes(m)))return -1;
-    return (nom.startsWith(q)?4:0)+(nom.includes(q)?2:0)+(mots.every((m)=>nom.includes(m))?1:0);};
-  const ep=epingles(),l=mes.map((k)=>[k,score(k)]).filter(([,s])=>s>=0).sort((a,b)=>b[1]-a[1]||PRODUITS[a[0]].nom.localeCompare(PRODUITS[b[0]].nom,'fr')).map(([k])=>k);
-  E.listeRes.innerHTML=l.map((k)=>tuile(k,ep)).join('');
-  E.vide.hidden=!!l.length;
-  if(!l.length){const brut=E.recherche.value.trim();E.vide.innerHTML=`Aucun de vos templates ne correspond à « ${esc(brut)} ». <a href="/templates/?q=${encodeURIComponent(brut)}">Le chercher dans le catalogue <span aria-hidden="true">→</span></a>`;}
-  E.statut.textContent=l.length?`${l.length} template${l.length>1?'s':''} trouvé${l.length>1?'s':''}`:'Aucun résultat';
-}
-E.recherche.addEventListener('input',chercher);
-E.recherche.addEventListener('keydown',(e)=>{
-  if(e.key==='Escape'){E.recherche.value='';chercher();}
-  if(e.key==='Enter'){const a=E.listeRes.querySelector('a');if(a&&!E.resultats.hidden){e.preventDefault();a.click();}}
-});
-E.espace.addEventListener('click',(e)=>{
-  const b=e.target.closest('[data-epingle]');
-  if(b){const k=b.dataset.epingle,l=(lire(CLE_EPINGLES)||[]).filter((x)=>x!==k);if(b.getAttribute('aria-pressed')!=='true')l.push(k);garderLocal(CLE_EPINGLES,l);
-    const zone=b.closest('.zone,#resultats,.groupe')?.id;rendre();
-    const cible=(zone&&document.getElementById(zone)?.querySelector(`[data-epingle="${k}"]`))||document.querySelector(`[data-epingle="${k}"]`);cible?.focus();return;}
-  const a=e.target.closest('a[data-pre]');if(a)noterOuverture(a.dataset.pre);
-  const s=e.target.closest('[data-saut]');if(s){const d=document.getElementById('t-'+s.dataset.saut);if(d)d.open=true;}
-});
-E.themes.addEventListener('toggle',()=>{garderLocal(CLE_OUVERTS,[...E.themes.querySelectorAll('details[open]')].map((d)=>d.id.slice(2)));},true);
 window.addEventListener('pageshow',rendre); // retour arrière depuis un template : liste et récents à jour
 rendre();
 
