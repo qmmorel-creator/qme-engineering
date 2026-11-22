@@ -170,13 +170,14 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .infobulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);padding:8px 10px;font-size:13px;line-height:1.45;min-width:170px;max-width:260px;z-index:5;box-shadow:0 4px 14px rgba(36,34,31,.08)}
 .infobulle b{display:block;margin-bottom:2px}
 .tableau-details{margin-top:10px}
-.tableau-details summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
+.tableau-details summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
 .tableau{width:100%;border-collapse:collapse;border:1px solid var(--trait);background:var(--surface);font-size:15px}
 .tableau th,.tableau td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--trait)}
 .tableau th{background:var(--sable);color:var(--encre);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .tableau tfoot td{font-weight:800;border-top:1px solid var(--trait)}
 .tableau td.nb,.tableau th.nb{text-align:right;white-space:nowrap}
 .defile{overflow-x:auto}
+.defile:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
 .nb{font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* Étiquettes, états vides, listes */
@@ -196,7 +197,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .conseils li{counter-increment:c;border:1px solid var(--trait);background:var(--surface);padding:14px 16px 14px 56px;position:relative;display:flex;flex-direction:column;gap:4px;border-radius:16px}
 .conseils li::before{content:counter(c);position:absolute;left:14px;top:14px;width:28px;height:28px;background:var(--beurre);color:var(--beurre-texte);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
 .conseils span{font-size:14px;color:var(--texte-2)}
-.lien-ligne{display:flex;flex-direction:column;gap:2px;border:0;background:none;padding:0;text-align:left;min-width:0}
+.lien-ligne{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:44px;border:0;background:none;padding:0;text-align:left;min-width:0}
 .lien-ligne b{font-size:16px;overflow-wrap:anywhere}
 .lien-ligne span{font-size:13px;color:var(--discret)}
 .lien-ligne:hover b{text-decoration:underline}
@@ -452,7 +453,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .mini-liste li>span{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .btn-suppr{width:36px;height:36px;border:1px solid var(--trait);background:var(--papier);border-radius:10px;font-size:20px;line-height:1;color:var(--texte-2)}
 .btn-suppr:hover{background:var(--rose);color:var(--rose-texte)}
-.champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
+.champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
 .champs-aide ul{display:grid;gap:6px;font-size:13px;color:var(--texte-2)}
 .groupe h3 .etiquette{vertical-align:middle;margin-left:6px}
 .feries{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 12px}
@@ -586,7 +587,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .choix-note input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
 .liste-genres{max-height:280px;overflow:auto;padding-right:4px}
 .liste-genres li{grid-template-columns:minmax(0,1fr) auto;padding:4px 6px 4px 4px}
-.liste-genres .champ input{min-height:40px;padding:6px 10px;border-color:transparent;background:transparent}
+.liste-genres .champ input{min-height:44px;padding:6px 10px;border-color:transparent;background:transparent}
 .liste-genres .champ input:focus{background:var(--surface)}
 
 @media (max-width:1020px){

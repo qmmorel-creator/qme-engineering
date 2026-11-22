@@ -1098,8 +1098,9 @@
     const participants = fd.getAll('participant');
     const parts = {}, montants = {};
     for (const id of participants) {
-      const p = Number(String(fd.get(`parts-${id}`) || '1').replace(',', '.'));
-      parts[id] = Number.isFinite(p) ? p : 0;
+      // Part illisible (« abc », « 1/2 ») ou négative : signalée comme invalide, jamais comptée 0 en silence.
+      const p = Number(String(fd.get(`parts-${id}`) || '1').replace(/\s/g, '').replace(',', '.'));
+      parts[id] = Number.isFinite(p) && p >= 0 ? p : NaN;
       const c = R.versCentimes(fd.get(`montant-${id}`) || '0');
       montants[id] = c ?? -1;
     }
@@ -1160,7 +1161,9 @@
     const libelle = String(fd.get('libelle') || '').trim();
     const montant = R.versCentimes(fd.get('montant'));
     if (!libelle) return 'Indique un libellé.';
-    if (!montant || montant <= 0) return 'Montant illisible : écris par exemple 42,50.';
+    if (montant === 0) return 'Le montant doit être supérieur à 0.';
+    if (montant !== null && montant < 0) return 'Écris le montant sans signe moins.';
+    if (!montant) return 'Montant illisible : écris par exemple 42,50.';
     if (montant > 100000000) return 'Montant trop élevé.';
     if (compte) {
       const pour = E.membres.some((m) => m.id === fd.get('pour')) ? fd.get('pour') : 'foyer';
