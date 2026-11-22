@@ -1,4 +1,4 @@
-// Retour rapide « Mes templates » dans chaque application QME (décision de Quentin, 22/11/2026).
+// Retour rapide « Mes applications » (un template acheté s'appelle une application) dans chaque application QME (décision de Quentin, 22/11/2026).
 // Chargé par toutes les applications (/templates/<slug>/index.html), sans toucher à leur app.js :
 //   <script src="/assets/mes-templates.js?v=…" defer></script>
 // Le logo QME de l'en-tête (.barre .marque dans l'application, a.marque sur l'écran de connexion) ouvre un panneau qui liste les templates enregistrés sur cet appareil
@@ -8,7 +8,7 @@
 (() => {
   'use strict';
   if (window.QMEMesTemplates) return;
-  const V = '20261122a';
+  const V = '20261122b';
   const lire = (c) => { try { const v = localStorage.getItem(c) ?? sessionStorage.getItem(c); return v ? JSON.parse(v) : null; } catch { return null; } };
   const garder = (c, v) => { try { localStorage.setItem(c, JSON.stringify(v)); } catch { /* stockage indisponible */ } };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -83,11 +83,11 @@
     dialogue = document.createElement('dialog');
     dialogue.className = 'qme-mt';
     dialogue.setAttribute('aria-labelledby', 'qme-mt-titre');
-    dialogue.innerHTML = `<div class="qme-mt-tete"><h2 id="qme-mt-titre">Mes templates</h2><button type="button" class="qme-mt-fermer" data-mt-fermer aria-label="Fermer">×</button></div>
+    dialogue.innerHTML = `<div class="qme-mt-tete"><h2 id="qme-mt-titre">Mes applications</h2><button type="button" class="qme-mt-fermer" data-mt-fermer aria-label="Fermer">×</button></div>
       <p class="qme-mt-sous" data-mt-sous></p>
       <label class="qme-mt-cherche" data-mt-cherche hidden><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Rechercher</span>
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
-        <input type="search" placeholder="Rechercher un template" autocomplete="off" enterkeyhint="go"></label>
+        <input type="search" placeholder="Rechercher une application" autocomplete="off" enterkeyhint="go"></label>
       <ul class="qme-mt-liste" data-mt-liste></ul>
       <div class="qme-mt-pied"><a class="principal" href="/connexion/">Mon espace : tout voir</a><a href="/">Site QME</a></div>`;
     document.body.appendChild(dialogue);
@@ -115,16 +115,16 @@
     // Épinglés d'abord, puis les plus récemment ouverts, puis par nom.
     const rang = (k) => (epingles.includes(k) ? 2e13 : 0) + (recents[k] || 0);
     const liste = mes.filter(trouve).sort((a, b) => rang(b) - rang(a) || produits[a].nom.localeCompare(produits[b].nom, 'fr'));
-    dialogue.querySelector('[data-mt-sous]').textContent = total ? `${total} template${total > 1 ? 's' : ''} sur cet appareil` : 'Aucun template enregistré sur cet appareil';
+    dialogue.querySelector('[data-mt-sous]').textContent = total ? `${total} application${total > 1 ? 's' : ''} sur cet appareil` : 'Aucune application enregistrée sur cet appareil';
     dialogue.querySelector('[data-mt-cherche]').hidden = mes.length < 8;
     const tuile = (k, cible) => { const p = produits[k];
-      const corps = `${p.img ? `<img src="${esc(p.img)}" alt="" width="72" height="45" loading="lazy">` : '<span class="qme-mt-vide-img"></span>'}<span class="qme-mt-txt"><b>${esc(p.nom)}</b>${cible ? '' : '<small>Ouvert en ce moment</small>'}</span>${badge(statut(k))}`;
+      const corps = `${p.img ? `<img src="${esc(p.img)}" alt="" width="72" height="45" loading="lazy">` : '<span class="qme-mt-vide-img"></span>'}<span class="qme-mt-txt"><b>${esc(p.nom)}</b>${cible ? '' : '<small>Ouverte en ce moment</small>'}</span>${badge(statut(k))}`;
       return cible ? `<li><a href="${esc(p.url)}" data-mt-pre="${esc(k)}">${corps}</a></li>` : `<li><div class="qme-mt-ici" aria-current="page">${corps}</div></li>`; };
     let html = ici && produits[ici] && !mots.length ? tuile(ici, false) : '';
     html += liste.map((k) => tuile(k, true)).join('');
     if (!liste.length) html += mots.length
-      ? `<li class="qme-mt-vide">Aucun de vos templates ne correspond. <a href="/templates/?q=${encodeURIComponent(filtre.trim())}">Chercher dans le catalogue</a></li>`
-      : `<li class="qme-mt-vide">Aucun autre template sur cet appareil. <a href="/templates/">Découvrir les templates</a> ou <a href="/essai/">essayer 14 jours gratuitement</a>.</li>`;
+      ? `<li class="qme-mt-vide">Aucune de vos applications ne correspond. <a href="/templates/?q=${encodeURIComponent(filtre.trim())}">Chercher dans le catalogue</a></li>`
+      : `<li class="qme-mt-vide">Aucune autre application sur cet appareil. <a href="/templates/">Découvrir les templates</a> ou <a href="/essai/">essayer 14 jours gratuitement</a>.</li>`;
     dialogue.querySelector('[data-mt-liste]').innerHTML = html;
   }
   async function ouvrir() {
@@ -141,7 +141,7 @@
   const CIBLE = '.barre .marque, a.marque';
   const marquer = () => {
     for (const el of document.querySelectorAll(`:is(${CIBLE}):not([data-mt])`)) {
-      el.dataset.mt = ''; el.setAttribute('aria-label', 'Mes templates'); el.setAttribute('aria-haspopup', 'dialog'); el.title = 'Mes templates';
+      el.dataset.mt = ''; el.setAttribute('aria-label', 'Mes applications'); el.setAttribute('aria-haspopup', 'dialog'); el.title = 'Mes applications';
       if (el.tagName !== 'A') { el.setAttribute('role', 'button'); el.tabIndex = 0; }
     }
   };

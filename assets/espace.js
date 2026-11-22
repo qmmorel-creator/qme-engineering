@@ -29,7 +29,7 @@
   function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge } = {}) {
     racine.classList.add('esp');
     racine.innerHTML = `<div class="espace-outils" data-outils>
-        <label class="esp-recherche"><span class="vh">Rechercher dans mes templates</span>
+        <label class="esp-recherche"><span class="vh">Rechercher dans mes applications</span>
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
           <input type="search" data-recherche placeholder="Rechercher : courses, budget, devis…" autocomplete="off" spellcheck="false" enterkeyhint="go"></label>
         <nav class="sauts" data-sauts aria-label="Aller à un thème"></nav></div>
@@ -38,7 +38,7 @@
       <div data-zones>
         <section class="zone" data-z="epingles" aria-label="Épinglés" hidden><h2>Épinglés</h2><ul class="esp-tuiles"></ul></section>
         <section class="zone" data-z="recents" aria-label="Récemment ouverts" hidden><h2>Récemment ouverts</h2><ul class="esp-tuiles"></ul></section>
-        <section class="zone" data-z="themes" aria-label="Mes templates"><h2 data-h-themes>Par thème</h2><div data-themes></div></section>
+        <section class="zone" data-z="themes" aria-label="Mes applications"><h2 data-h-themes>Par thème</h2><div data-themes></div></section>
       </div>`;
     const $ = (s) => racine.querySelector(s);
     const E = { outils: $('[data-outils]'), recherche: $('[data-recherche]'), sauts: $('[data-sauts]'), statut: $('[data-statut]'), resultats: $('[data-resultats]'),
@@ -66,7 +66,7 @@
       E.recents.hidden = !rc.length;
       E.recents.querySelector('ul').innerHTML = rc.map((k) => tuile(k, ep)).join('');
       if (!beaucoup) {
-        E.hThemes.textContent = ep.length ? 'Tous mes templates' : 'Mes templates';
+        E.hThemes.textContent = ep.length ? 'Toutes mes applications' : 'Mes applications';
         E.hThemes.classList.toggle('vh', !ep.length);
         E.themes.innerHTML = `<ul class="esp-tuiles">${mes.slice().sort(parNom).map((k) => tuile(k, ep)).join('')}</ul>`;
         E.sauts.innerHTML = '';
@@ -92,8 +92,8 @@
       const ep = epingles(), l = mes.map((k) => [k, score(k)]).filter(([, s]) => s >= 0).sort((a, b) => b[1] - a[1] || parNom(a[0], b[0])).map(([k]) => k);
       E.listeRes.innerHTML = l.map((k) => tuile(k, ep)).join('');
       E.vide.hidden = !!l.length;
-      if (!l.length) { const brut = E.recherche.value.trim(); E.vide.innerHTML = `Aucun de vos templates ne correspond à « ${esc(brut)} ». <a href="/templates/?q=${encodeURIComponent(brut)}">Le chercher dans le catalogue <span aria-hidden="true">→</span></a>`; }
-      E.statut.textContent = l.length ? `${l.length} template${l.length > 1 ? 's' : ''} trouvé${l.length > 1 ? 's' : ''}` : 'Aucun résultat';
+      if (!l.length) { const brut = E.recherche.value.trim(); E.vide.innerHTML = `Aucune de vos applications ne correspond à « ${esc(brut)} ». <a href="/templates/?q=${encodeURIComponent(brut)}">Le chercher dans le catalogue <span aria-hidden="true">→</span></a>`; }
+      E.statut.textContent = l.length ? `${l.length} application${l.length > 1 ? 's' : ''} trouvée${l.length > 1 ? 's' : ''}` : 'Aucun résultat';
     }
     E.recherche.addEventListener('input', chercher);
     E.recherche.addEventListener('keydown', (e) => {

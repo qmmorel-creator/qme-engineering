@@ -3,7 +3,7 @@
 // La base aliments (aliments.js, chargée à la demande) est mise en cache à sa première lecture.
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
 const VERSION = 'nutrition-20261115t';
-const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122a'];
+const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261122b'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

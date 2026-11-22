@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Connexion · QME</title>
-<meta name="description" content="Espace acheteurs QME : ouvrez vos templates avec la clé de licence reçue par e-mail.">
+<meta name="description" content="Espace acheteurs QME : ouvrez vos applications avec la clé de licence reçue par e-mail.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/connexion/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
-<link rel="stylesheet" href="/assets/espace.css?v=2026112202">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112203">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
 .espace-packs{margin:20px 0 0}
 .espace-packs a{font-weight:700}
@@ -45,7 +45,7 @@
   <div class="espace-tete">
     <div>
       <p class="eyebrow">Espace acheteurs</p>
-      <h1 id="espace-titre">Mes templates</h1>
+      <h1 id="espace-titre">Mes applications</h1>
       <p class="espace-nb" id="espace-nb"></p>
     </div>
     <a class="btn ajouter" href="#portail">+ Ajouter<span class="pc">&nbsp;une clé</span></a>
@@ -57,12 +57,12 @@
   <div>
     <div class="intro">
       <p class="eyebrow">Espace acheteurs</p>
-      <h1>Connexion à vos templates</h1>
-      <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). Le bon template s'ouvre automatiquement ; une clé de pack ouvre <a href="/packs/espace/">le tableau de bord du pack</a>.</p>
+      <h1>Connexion à vos applications</h1>
+      <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). La bonne application s'ouvre automatiquement ; une clé de pack ouvre <a href="/packs/espace/">le tableau de bord du pack</a>.</p>
     </div>
     <div class="intro-ajout">
-      <h2>Ajouter un template</h2>
-      <p>Collez la clé de licence d'un nouvel achat : le template rejoint « Mes templates » sur cet appareil.</p>
+      <h2>Ajouter une application</h2>
+      <p>Collez la clé de licence d'un nouvel achat : l'application rejoint « Mes applications » sur cet appareil.</p>
     </div>
     <form class="acces" id="acces" novalidate>
       <label>Clé de licence ou code d'accès
@@ -70,7 +70,7 @@
       </label>
       <label class="memo"><input type="checkbox" id="memoriser" checked> Rester connecté sur cet appareil</label>
       <p class="erreur" id="erreur" role="alert"></p>
-      <button class="btn primary" type="submit">Ouvrir mon template</button>
+      <button class="btn primary" type="submit">Ouvrir mon application</button>
     </form>
   </div>
   <aside class="aide-portail" aria-label="Aide">
@@ -92,7 +92,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/espace.js?v=2026112202"></script>
+<script src="/assets/espace.js?v=2026112203"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
@@ -119,7 +119,7 @@ function rendre(){
   E.packs.hidden=!packs.length;
   document.body.classList.toggle('a-espace',mes.length>0);
   E.espace.hidden=!mes.length;
-  E.nb.textContent=`${mes.length} template${mes.length>1?'s':''} sur cet appareil`;
+  E.nb.textContent=`${mes.length} application${mes.length>1?'s':''} sur cet appareil`;
   vue.maj(mes);
 }
 window.addEventListener('pageshow',rendre); // retour arrière depuis un template : liste et récents à jour
@@ -143,7 +143,7 @@ form.addEventListener('submit',async(e)=>{
       if(!r.ok)throw new Error(r.status===401?'Code administrateur inconnu.':'Le service ne répond pas. Réessayez dans un instant.');
       const garder=document.getElementById('memoriser').checked?localStorage:sessionStorage;
       try{for(const p of Object.values(PRODUITS)){localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);garder.setItem(p.cle,JSON.stringify(code));}}catch{}
-      champ.value='';erreur.textContent='';bouton.disabled=false;bouton.textContent='Ouvrir mon template';
+      champ.value='';erreur.textContent='';bouton.disabled=false;bouton.textContent='Ouvrir mon application';
       rendre();E.espace.scrollIntoView({behavior:'smooth',block:'start'});
       return;
     }
@@ -152,11 +152,11 @@ form.addEventListener('submit',async(e)=>{
     if(!r.ok)throw new Error(r.status===401?'Clé inconnue. Vérifiez-la dans l’e-mail reçu après l’achat.':(j.erreur||'Le service ne répond pas. Réessayez dans un instant.'));
     // Pack : le code du pack est retenu sur l'appareil, puis le tableau de bord du pack s'ouvre.
     if(j.pack){try{const l=JSON.parse(localStorage.getItem('qme-packs')||'[]').filter((c)=>c!==j.code);l.push(j.code);localStorage.setItem('qme-packs',JSON.stringify(l));}catch{}location.href='/packs/espace/';return;}
-    const p=PRODUITS[j.produit];if(!p)throw new Error('Template inconnu.');
+    const p=PRODUITS[j.produit];if(!p)throw new Error('Application inconnue.');
     try{localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);(document.getElementById('memoriser').checked?localStorage:sessionStorage).setItem(p.cle,JSON.stringify(code));}catch{}
     noterOuverture(j.produit);
     location.href=p.url;
-  }catch(x){erreur.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;bouton.disabled=false;bouton.textContent='Ouvrir mon template';champ.focus();}
+  }catch(x){erreur.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;bouton.disabled=false;bouton.textContent='Ouvrir mon application';champ.focus();}
 });
 </script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
