@@ -113,8 +113,9 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
 1. Captures pour le site (`assets/templates-<slug>-*.webp`, ordinateur 1600 px et téléphone 780 px, en
    mode démo sans bandeau) et couverture Gumroad 1280 × 720 (`assets/templates-<slug>-couverture.png`).
 2. Site : fiche dans `/templates/` (produit, galerie, FAQ si besoin), carte dans la section `#templates`
-   de `index.html` et `en/index.html` (préciser « in French »), entrée dans `PRODUITS` du script de
-   `connexion/index.html` (`nom`, `url`, clé de stockage `qme-<préfixe en minuscules>-code`).
+   de `index.html` et `en/index.html` (préciser « in French »), puis `node outils/connexion/generer.mjs`
+   (régénère la liste de l'espace acheteurs `connexion/index.html` depuis `PRODUITS` et les cartes du
+   catalogue : nom, thème, phrase, vignette ; contrôlé par `outils/templates/connexion.test.mjs`).
 3. Gumroad (outils `mcp__Gumroad__*`) : **confirmer nom et prix avec Quentin** (prix minimum 12 €, règle de
    Quentin du 13/11/2026 : aucun template vendu moins cher, hors gratuit), puis
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,
