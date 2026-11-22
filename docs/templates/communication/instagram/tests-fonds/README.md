@@ -68,7 +68,7 @@ puis déplacer `png/test-fond-*.png` dans `tests-fonds/png/` · comparaison : `p
 | 2 | 22/11 | IG-62 · Suivi des abonnements | C | | | | | | | | | |
 | 3 | 23/11 | IG-07 · Livre recettes micro-entreprise | D | | | | | | | | | |
 | 4 | 25/11 | IG-151 · Vivre sans voiture | E | | | | | | | | | |
-| 5 | 26/11 | IG-08 · Budget commun | F | | | | | | | | | |
+| 5 | 26/11 | IG-08 · Gestion Dépenses Communes | F | | | | | | | | | |
 | 6 | 27/11 | IG-30 · Sur mesure · maintenance au compteur | A | | | | | | | | | |
 | 7 | 28/11 | IG-09 · Planning Gantt | F | | | | | | | | | |
 | 8 | 30/11 | IG-10 · Gestionnaire de tâches | E | | | | | | | | | |

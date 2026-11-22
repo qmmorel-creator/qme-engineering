@@ -685,6 +685,41 @@
     Cache-Control = "no-cache"
 
 # Domaine secondaire .cloud : redirection permanente vers le domaine principal
+# Voyage, contenu dans Vie à deux (22/11/2026).
+[[redirects]]
+  from = "/packs/voyage/*"
+  to = "/packs/vie-a-deux/"
+  status = 301
+  force = true
+
+# Bien démarrer l’année, contenu dans Productivité perso (22/11/2026).
+[[redirects]]
+  from = "/packs/bien-demarrer/*"
+  to = "/packs/productivite/"
+  status = 301
+  force = true
+
+# Cuisine, contenu dans Maison et famille (22/11/2026).
+[[redirects]]
+  from = "/packs/cuisine/*"
+  to = "/packs/famille/"
+  status = 301
+  force = true
+
+# Mariage et installation à deux, renommé Vie à deux (22/11/2026).
+[[redirects]]
+  from = "/packs/mariage-installation/*"
+  to = "/packs/vie-a-deux/"
+  status = 301
+  force = true
+
+# Pack Argent du quotidien retiré le 22/11/2026 (doublon du Pack Budget perso et famille).
+[[redirects]]
+  from = "/packs/argent-du-quotidien/*"
+  to = "/packs/budget-perso-famille/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "https://qm-engineering.cloud/*"
   to = "https://qm-engineering.fr/:splat"

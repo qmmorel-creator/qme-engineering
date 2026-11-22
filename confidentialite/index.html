@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://qm-engineering.fr/confidentialite/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112201">
+<link rel="stylesheet" href="/assets/site.css?v=2026112302">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}</style>
 <style>
 .legal{max-width:820px;margin:0 auto;padding:56px 16px 72px}
@@ -34,9 +34,10 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -278,6 +279,22 @@ en haut de la page.</p>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
+// « Mon espace » dans le menu dès qu'un compte est connecté sur l'appareil (session qme-compte, assets/compte.js) :
+// initiale du prénom (ou de l'adresse) et libellé. Rien ne change pour un visiteur non connecté.
+function menuMonEspace(){try{
+  const s=JSON.parse(localStorage.getItem('qme-compte')||'null'),en=document.documentElement.lang==='en';
+  for(const a of document.querySelectorAll('.topbar a.login')){
+    if(!a.dataset.libelle)a.dataset.libelle=a.textContent;
+    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');a.style.display=a.style.alignItems=a.style.gap='';continue;}
+    const p=JSON.parse(localStorage.getItem('qme-espace-prenom')||'""')||'';
+    const ini=String(p||s.email||'?').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}?]/gu,'');
+    // Styles en ligne : la pastille s'affiche même si une ancienne feuille de style est encore en cache.
+    a.classList.add('mon-espace');a.title=s.email||'';a.style.display='inline-flex';a.style.alignItems='center';a.style.gap='8px';
+    a.innerHTML=`<span class="ini" aria-hidden="true" style="width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font:700 12px/1 Outfit,system-ui,sans-serif;flex:none">${ini}</span>${en?'My space':'Mon espace'}`;
+  }
+}catch{/* stockage indisponible : menu inchangé */}}
+menuMonEspace();
+
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

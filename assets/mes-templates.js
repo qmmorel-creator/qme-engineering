@@ -8,7 +8,7 @@
 (() => {
   'use strict';
   if (window.QMEMesTemplates) return;
-  const V = '20261122c';
+  const V = '20261123a';
   const lire = (c) => { try { const v = localStorage.getItem(c) ?? sessionStorage.getItem(c); return v ? JSON.parse(v) : null; } catch { return null; } };
   const garder = (c, v) => { try { localStorage.setItem(c, JSON.stringify(v)); } catch { /* stockage indisponible */ } };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -63,6 +63,18 @@
 .qme-mt-pied{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--mt-trait);background:var(--mt-papier)}
 .qme-mt-pied a{flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:999px;border:1px solid var(--mt-trait);background:#fff;color:inherit;font-weight:700;text-decoration:none}
 .qme-mt-pied a.principal{background:var(--mt-encre);border-color:var(--mt-encre);color:var(--mt-papier)}
+/* Bandeau QME au-dessus de chaque application : Mon espace, site, templates, packs, sur mesure */
+.qme-bandeau{display:flex;align-items:center;gap:4px;min-height:38px;padding:0 max(10px,env(safe-area-inset-left));background:#24221F;color:#FBF7F1;font:600 13.5px/1 Outfit,system-ui,sans-serif;overflow-x:auto;scrollbar-width:none;white-space:nowrap;position:relative;z-index:30}
+.qme-bandeau::-webkit-scrollbar{display:none}
+.qme-bandeau a{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:0 10px;border-radius:999px;color:inherit;text-decoration:none;flex:none}
+.qme-bandeau a:hover{background:rgba(251,247,241,.12)}
+.qme-bandeau a:focus-visible{outline:2px solid #E8B93A;outline-offset:1px}
+.qme-bandeau .qme-b-espace{background:#E8B93A;color:#24221F}
+.qme-bandeau .qme-b-espace:hover{background:#F5CF63}
+.qme-bandeau .qme-b-ini{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font-size:11px}
+.qme-bandeau .qme-b-sep{flex:1;min-width:8px}
+@media (max-width:520px){.qme-bandeau{font-size:13px}.qme-bandeau a{padding:0 8px}}
+@media print{.qme-bandeau{display:none}}
 @media (prefers-reduced-motion:no-preference){.qme-mt[open]{animation:qme-mt-entree .18s ease-out}@keyframes qme-mt-entree{from{transform:translateY(24px);opacity:.6}}}
 `;
   let donnees = null, dialogue = null;
@@ -139,6 +151,19 @@
   }
 
   const style = document.createElement('style'); style.textContent = CSS; document.head.appendChild(style);
+  // Bandeau QME (demande de Quentin, 23/11/2026) : depuis une application, retour direct à son espace et au site.
+  function bandeau() {
+    if (document.querySelector('.qme-bandeau')) return;
+    let session = null; try { session = JSON.parse(localStorage.getItem('qme-compte') || 'null'); } catch { /* indisponible */ }
+    const prenom = lire('qme-espace-prenom') || '';
+    const ini = session?.jeton ? String(prenom || session.email || '').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}]/gu, '') : '';
+    const n = document.createElement('nav');
+    n.className = 'qme-bandeau'; n.setAttribute('aria-label', 'QME : mon espace et le site');
+    n.innerHTML = `<a class="qme-b-espace" href="/connexion/">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
+      + '<span class="qme-b-sep" aria-hidden="true"></span><a href="/">Site QME</a><a href="/templates/">Templates</a><a href="/packs/">Packs</a><a href="/sur-mesure/">Sur mesure</a>';
+    document.body.prepend(n);
+  }
+  bandeau();
   // Le logo de l'en-tête (rendu et re-rendu par l'application) devient le bouton du panneau.
   const CIBLE = '.barre .marque, a.marque';
   const marquer = () => {

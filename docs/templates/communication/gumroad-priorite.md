@@ -113,6 +113,8 @@ CNG et NDF en vente ; fiches des packs PFC et PBT à créer.
 
 20/11 : Pack Freelance « trouver ses clients », Pack Chef de projet BTP, ARD, TDB, ENP en vente.
 
+22/11 : **Pack Argent du quotidien retiré** (dépublié sur Gumroad, page redirigée vers Budget perso et famille ; décision de Quentin, doublon, aucune vente).
+
 22/11 : Pack Budget perso et famille publié et en vente. Vague de 10 brouillons créée vers 12 h 45 (Paris) :
 PPE, PCA, RVH, CRS, DMN, CDX, CTR, PRK, BSC, ACH ; prochaine création possible le 23/11 après 13 h (Paris).
 

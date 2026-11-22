@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#FBF7F1">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112201">
+<link rel="stylesheet" href="/assets/site.css?v=2026112302">
 <style>
 /* Tableau de bord administrateur : une teinte de données (bleu QME), texte en encres neutres, grilles discrètes. */
 :root{--donnee:#2E5A88;--donnee-lavis:rgba(46,90,136,.12);--grille:#EAE3D6}
@@ -120,6 +120,11 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
       </section>
     </div>
 
+    <section class="bloc" aria-labelledby="h-don" style="margin-top:28px">
+      <header><h2 id="h-don">Données saisies dans les applications</h2></header>
+      <div id="donnees"></div>
+    </section>
+
     <section class="bloc" aria-labelledby="h-int" style="margin-top:28px">
       <header><h2 id="h-int">Intérêts « Je suis intéressé(e) »</h2><a href="/admin/interets/">Tous les intérêts</a></header>
       <div id="interets"></div>
@@ -200,6 +205,8 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
     k.push(['Revenu (brut)', v.configure ? usd(v.revenu) : '—', v.configure ? (v.eur ? `≈ ${eur(v.eur.revenu)} · net ≈ ${eur(v.eur.net)}` : `net ${usd(v.net)}`) : '', v.revenuParJour]);
     k.push(['Abonnés réseaux', r.configure ? nb(r.total) : '—', r.configure ? `${(r.abonnes || []).reduce((s, x) => s + x.evolution, 0) >= 0 ? '+' : ''}${nb((r.abonnes || []).reduce((s, x) => s + x.evolution, 0))} sur la période` : '', null]);
     k.push(['Abonnés aux infos', nb(c.abonnes), `${nb(c.acheteurs)} acheteur${c.acheteurs > 1 ? 's' : ''} · ${nb(c.desinscrits)} désinscrit${c.desinscrits > 1 ? 's' : ''}`, null]);
+    const dn = d.donnees || {};
+    k.push(['Données saisies', dn.configure ? nb(dn.achats + dn.essais) : '—', dn.configure ? `${nb(dn.achatsActifs + dn.essaisActifs)} modifiées sur la période` : '', null]);
     $('#kpis').innerHTML = k.map(([t, val, sous, serie]) => `<div class="kpi"><span>${t}</span><b>${val}</b><small>${esc(sous)}</small>${serie ? sparkline(serie) : ''}</div>`).join('');
     // Audience
     $('#audience').innerHTML = a.erreur ? manque(`GoatCounter ne répond pas : ${esc(a.erreur)}.`)
@@ -227,6 +234,14 @@ details.tableau .admin-boite{margin-top:8px;max-height:260px;overflow:auto}
       + `<p class="titre-graph">Vues des publications relevées sur la période</p>${rangs(r.vuesPublications || [])}`;
     // Comptes
     $('#comptes').innerHTML = c.erreur ? manque(esc(c.erreur)) : tuiles([[nb(c.personnes), 'personnes connues'], [nb(c.acheteurs), 'acheteurs'], [nb(c.testeurs), 'testeurs'], [nb(c.comptesSansAchat), 'comptes sans achat'], [nb(c.abonnes), 'abonnés aux informations'], [nb(c.desinscrits), 'désinscrits'], [nb(c.annoncesEnvoyees), 'ont reçu une annonce']]);
+    // Données saisies : espaces de données des achats et des essais (contenu jamais transmis).
+    const dateHeure = (iso) => (iso ? new Date(iso).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—');
+    const ko = (o) => (o < 1024 ? `${nb(o)} o` : `${(o / 1024).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} Ko`);
+    $('#donnees').innerHTML = dn.erreur ? manque(`Données illisibles : ${esc(dn.erreur)}.`) : !dn.configure ? manque('Store des données indisponible.')
+      : tuiles([[nb(dn.achats), 'espaces d’achat avec données'], [nb(dn.achatsActifs), 'modifiés sur la période'], [nb(dn.essais), 'essais avec données'], [nb(dn.essaisActifs), 'essais modifiés sur la période']])
+      + ((dn.parTemplate || []).length ? `<div class="admin-boite" style="margin-top:12px"><table class="admin-table"><thead><tr><th>Application</th><th>Achats</th><th>Essais</th><th>Modifiés (période)</th><th>Éléments</th><th>Dernière modification</th></tr></thead><tbody>${dn.parTemplate.map((x) => `<tr><td>${esc(x.nom)}</td><td class="n">${nb(x.achats)}</td><td class="n">${nb(x.essais)}</td><td class="n">${nb(x.actifs)}</td><td class="n">${nb(x.elements)}</td><td>${dateHeure(x.derniere)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="sous">Aucune donnée saisie par un acheteur ou un testeur.</p>')
+      + ((dn.recents || []).length ? `<details class="tableau"><summary>Voir chaque espace (${nb(dn.recents.length)} plus récents)</summary><div class="admin-boite"><table class="admin-table"><thead><tr><th>Type</th><th>Application</th><th>Modifié le</th><th>Éléments</th><th>Taille</th></tr></thead><tbody>${dn.recents.map((x) => `<tr><td>${x.type === 'essai' ? `Essai${x.connu ? '' : ' (hors index)'}` : 'Achat'}</td><td>${esc(x.nom)}</td><td>${dateHeure(x.majLe)}</td><td class="n">${nb(x.elements)}</td><td class="n">${ko(x.taille)}</td></tr>`).join('')}</tbody></table></div></details>` : '')
+      + `<p class="sous">Exclus : ${nb(dn.exclus?.admin)} espace${dn.exclus?.admin > 1 ? 's' : ''} administrateur, ${nb(dn.exclus?.tests)} essai${dn.exclus?.tests > 1 ? 's' : ''} de test. Les achats regroupent licences Gumroad, packs et codes offerts : un espace n’est pas relié à une personne. « Éléments » : nombre d’entrées des listes de l’application (tâches, matières…), indicatif.</p>`;
     // Intérêts
     const i = d.interets;
     $('#interets').innerHTML = !i ? manque('Compteur d’intérêts indisponible.') : i.erreur ? manque(esc(i.erreur)) : `<p class="sous">${nb(i.total)} clic${i.total > 1 ? 's' : ''} au total, ${nb(i.emails)} adresse${i.emails > 1 ? 's' : ''} laissée${i.emails > 1 ? 's' : ''}.</p>${rangs((i.top || []).map((x) => ({ nom: x.nom, n: x.n })))}`;

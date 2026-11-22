@@ -76,13 +76,13 @@ Pourquoi celle-ci :
 
 | Rang | Audience | Douleur démontrable | Produits héros | Réseau |
 |---|---|---|---|---|
-| 1 | Couples et colocataires | « qui doit combien à qui », cadeaux de Noël | Budget commun, Secret Santa (gratuit) | Instagram |
+| 1 | Couples et colocataires | « qui doit combien à qui », cadeaux de Noël | Gestion Dépenses Communes, Secret Santa (gratuit) | Instagram |
 | 2 | Indépendants et micro-entrepreneurs | indemnités kilométriques, TJM, jours facturables | Notes de frais et IK, Calculateur de TJM | Instagram + LinkedIn |
 | 3 | Particuliers qui veulent reprendre la main sur leurs dépenses | abonnements oubliés, fin d'année | Suivi des abonnements | Instagram |
 | 4 | Toute personne débordée | liste de tâches qui déborde | Gestionnaire de tâches (seule vente payante constatée) | Instagram |
 | 5 | Chefs de projet, PME, artisans | planning qui se décale, outil métier sur mesure | Planning Gantt, sur-mesure | LinkedIn d'abord |
 
-**Produits héros des 30 jours : 6** (Secret Santa, Budget commun, Notes de frais et IK, Suivi des abonnements,
+**Produits héros des 30 jours : 6** (Secret Santa, Gestion Dépenses Communes, Notes de frais et IK, Suivi des abonnements,
 Gestionnaire de tâches, Planning Gantt). Ils ont été choisis parce que :
 - la douleur est large ;
 - un moment visuel se montre en moins de 5 secondes ;
@@ -279,7 +279,7 @@ Règles communes :
 
 ### Semaine 1 · 23–29/11 · Secret Santa et partage à deux
 
-**L1 · lun. 23/11 · Instagram · Reel 20 s · couples, colocs · Pilier 1 · Budget commun (Existe : démo 012/020)**
+**L1 · lun. 23/11 · Instagram · Reel 20 s · couples, colocs · Pilier 1 · Gestion Dépenses Communes (Existe : démo 012/020)**
 - **Accroche (0 s)** : « On fait moitié-moitié… jusqu'au jour où l'un gagne deux fois plus que l'autre. »
 - **Déroulé** :
   - 0–3 s : la phrase sur fond papier ;
@@ -375,7 +375,7 @@ Règles communes :
 - **Action** : démo libre, lien en bio.
 - **Objectif** : plus de 40 % de spectateurs à 3 s ; 1 clic `achat-taches`.
 
-**L11 · ven. 04/12 · Instagram · Reel 20 s · couples · Pilier 1 · Budget commun, cadeaux de Noël (Existe : IG-149)**
+**L11 · ven. 04/12 · Instagram · Reel 20 s · couples · Pilier 1 · Gestion Dépenses Communes, cadeaux de Noël (Existe : IG-149)**
 - **Accroche** : « Les cadeaux de Noël à deux… jusqu'au jour où il faut faire les comptes. »
 - **Déroulé** : 240 € payés par l'un, quatre façons de partager, le solde qui se met à jour.
 - **Action** : « Envoyez-le à votre moitié avant le 24. »
@@ -496,7 +496,7 @@ Règles communes :
   régularisation). **Sinon**, nouvelle accroche : « Vos kilomètres de 2026 sont-ils comptés au bon taux ? »
 - **Objectif** : comparer les deux versions.
 
-**L26 · lun. 21/12 · Instagram · Reel 20 s · Pilier 1 · Budget commun (le Reel de la semaine 1 ou 2 ayant eu le plus d'envois, rediffusé avec une nouvelle accroche)**
+**L26 · lun. 21/12 · Instagram · Reel 20 s · Pilier 1 · Gestion Dépenses Communes (le Reel de la semaine 1 ou 2 ayant eu le plus d'envois, rediffusé avec une nouvelle accroche)**
 - **Objectif** : mesurer le recyclage.
 
 **L27 · mar. 22/12 · LinkedIn · texte · bilan**

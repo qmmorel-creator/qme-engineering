@@ -1,5 +1,6 @@
 // Tableau de bord administrateur centralisé (/admin/, demande de Quentin du 22/11/2026) : audience du site
 // (GoatCounter), réseaux (Sheet « Mesures réseaux QME »), essais gratuits, ventes Gumroad (Sheet), comptes,
+// données saisies dans les applications (store templates-donnees),
 // préférences d'information et intérêts, sur une période de 7, 30 ou 90 jours. Chaque source peut manquer ou
 // échouer seule : sa section porte alors { configure: false } ou { erreur }, le reste s'affiche.
 //
@@ -7,7 +8,7 @@
 // Variables Netlify : GOATCOUNTER_TOKEN (jeton d'API GoatCounter « lecture des statistiques »), GOATCOUNTER_SITE
 // (facultatif, https://qme-engineering.goatcounter.com par défaut), COMPTEUR_SHEET_PUB (déjà utilisée par le compteur).
 import { estAdmin, synthese } from './interets.mjs';
-import { PRODUITS, jourParis, estEssaiTest } from './templates-acces.mjs';
+import { PRODUITS, jourParis, estEssaiTest, cleDonnees, cleDonneesEssai, idAdminProduit } from './templates-acces.mjs';
 import { ONGLETS, adressePublication, lireCsv } from './compteur.mjs';
 import { lireRegistre } from './preferences.mjs';
 
@@ -178,18 +179,74 @@ async function essais({ store, jours, debut, fin, aujourdhui, testeurs }) {
   };
 }
 
-export async function tableau({ secret, store, interets = null, goatcounter = {}, sheetBase = '', recuperer = fetch, jours: nbJours = 30, maintenant = Date.now, testeurs = '' }) {
+// --- Données saisies dans les applications (store templates-donnees) ----------------------------------
+// Demande de Quentin du 22/11/2026 : savoir si acheteurs et testeurs ont réellement saisi des données. Chaque
+// enregistrement est lu côté serveur, mais seuls sont renvoyés son type, son template, sa date de modification
+// (majLe), sa taille et le nombre d'éléments de ses listes de premier niveau : jamais son contenu.
+// Les clés sont des empreintes (HMAC) du code d'accès : on ne sait pas à qui appartient un espace d'achat. On exclut
+// les espaces personnels de l'administrateur (clé recalculée par template) et les essais de test (index des essais).
+export const elementsSaisis = (d) => (d && typeof d === 'object' ? Object.values(d).reduce((n, v) => n + (Array.isArray(v) ? v.length : 0), 0) : 0);
+
+async function donneesSaisies({ secret, donnees, store, debut, fin, testeurs }) {
+  if (!donnees) return { configure: false };
+  // Clés de données des essais connus → essai de test ou non (registres en cours et traces anonymes).
+  const essaisConnus = new Map();
+  for (const prefixe of ['essai/', 'stat/']) {
+    for (const k of await store.lister(prefixe)) {
+      const r = await store.get(k);
+      if (!r?.id || !r.produit) continue;
+      const c = cleDonneesEssai(secret, r.produit, r.id);
+      if (!essaisConnus.has(c) || prefixe === 'essai/') essaisConnus.set(c, prefixe === 'essai/' ? estEssaiTest(r.email, testeurs) : Boolean(r.test));
+    }
+  }
+  const admin = new Set(Object.keys(PRODUITS).map((p) => cleDonnees(secret, p, idAdminProduit(secret, p))));
+  const cles = [...new Set(await donnees.lister())];
+  const lus = [];
+  for (let i = 0; i < cles.length; i += 10) {
+    lus.push(...await Promise.all(cles.slice(i, i + 10).map(async (cle) => ({ cle, d: await donnees.get(cle).catch(() => null) }))));
+  }
+  const exclus = { admin: 0, tests: 0 }, espaces = [];
+  for (const { cle, d } of lus) {
+    if (!d) continue;
+    const morceaux = cle.split('/'), essai = morceaux[0] === 'essai', produit = essai ? morceaux[1] : morceaux[0];
+    if (!essai && admin.has(cle)) { exclus.admin++; continue; }
+    if (essai && essaisConnus.get(cle) === true) { exclus.tests++; continue; }
+    const majLe = typeof d.majLe === 'string' ? d.majLe : null;
+    espaces.push({ type: essai ? 'essai' : 'achat', produit, nom: PRODUITS[produit]?.nom || produit, majLe,
+      jour: majLe ? jourParis(new Date(majLe)) : '', taille: JSON.stringify(d).length, elements: elementsSaisis(d), connu: !essai || essaisConnus.has(cle) });
+  }
+  espaces.sort((a, b) => String(b.majLe).localeCompare(String(a.majLe)));
+  const actif = (e) => e.jour >= debut && e.jour <= fin;
+  const parTemplate = {};
+  for (const e of espaces) {
+    const t = (parTemplate[e.produit] ||= { produit: e.produit, nom: e.nom, achats: 0, essais: 0, actifs: 0, elements: 0, derniere: null });
+    t[e.type === 'essai' ? 'essais' : 'achats']++; if (actif(e)) t.actifs++; t.elements += e.elements;
+    if (e.majLe && (!t.derniere || e.majLe > t.derniere)) t.derniere = e.majLe;
+  }
+  const achats = espaces.filter((e) => e.type === 'achat'), essais = espaces.filter((e) => e.type === 'essai');
+  return {
+    configure: true,
+    achats: achats.length, achatsActifs: achats.filter(actif).length,
+    essais: essais.length, essaisActifs: essais.filter(actif).length,
+    exclus,
+    parTemplate: Object.values(parTemplate).sort((a, b) => String(b.derniere).localeCompare(String(a.derniere))),
+    recents: espaces.slice(0, 30).map(({ type, produit, nom, majLe, taille, elements, connu }) => ({ type, produit, nom, majLe, taille, elements, connu })),
+  };
+}
+
+export async function tableau({ secret, store, donnees = null, interets = null, goatcounter = {}, sheetBase = '', recuperer = fetch, jours: nbJours = 30, maintenant = Date.now, testeurs = '' }) {
   const aujourdhui = jourParis(new Date(maintenant()));
   const n = PERIODES.includes(nbJours) ? nbJours : 30;
   const debut = decaler(aujourdhui, -(n - 1)), fin = aujourdhui, jours = joursDe(debut, fin);
   const garder = (p) => p.catch((e) => ({ erreur: String(e?.message || e) }));
-  const [aud, sh, ess, reg, int, taux] = await Promise.all([
+  const [aud, sh, ess, reg, int, taux, don] = await Promise.all([
     garder(audience({ goatcounter, recuperer, debut, fin, jours })),
     garder(sheet({ base: sheetBase, recuperer })),
     garder(essais({ store, jours, debut, fin, aujourdhui, testeurs })),
     garder(lireRegistre({ secret, store })),
     interets ? garder((async () => synthese(await interets.lister('clic/'), new Date(maintenant()), await interets.lister('email/')))()) : Promise.resolve(null),
     garder(tauxUsdEur(recuperer)),
+    garder(donneesSaisies({ secret, donnees, store, debut, fin, testeurs })),
   ]);
   const onglets = sh?.onglets || null;
   const ven = sh?.erreur ? { erreur: sh.erreur } : enEuros(ventes(onglets, jours, debut, fin), taux?.erreur ? null : taux);
@@ -207,7 +264,7 @@ export async function tableau({ secret, store, interets = null, goatcounter = {}
   return {
     lu: new Date(maintenant()).toISOString(),
     periode: { debut, fin, jours: n },
-    audience: aud, reseaux: res, essais: ess, ventes: ven, comptes,
+    audience: aud, reseaux: res, essais: ess, ventes: ven, comptes, donnees: don,
     interets: int && !int.erreur ? { total: int.total, emails: int.emails, top: (int.modules || []).slice(0, 6).map((m) => ({ nom: m.nom, n: m.total, emails: m.emails })) } : int,
     // Entonnoir de la période : visites du site → essais lancés → ventes payées (vues Gumroad : cumul, à part).
     entonnoir: { visites: aud?.vues ?? null, essais: ess?.lances ?? null, ventes: ven?.nombre ?? null },

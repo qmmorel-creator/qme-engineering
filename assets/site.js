@@ -176,18 +176,21 @@ if(fallbackLink&&form){
  const items=$$('.carte').map(c=>{const a=c.querySelector('a'),prochaine=c.classList.contains('prochaine');
   const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em'),vignette:c.dataset.vignette||''};
   it.euros=parseFloat(it.prix.replace(',','.'));it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
- const total=items.length,enVente=items.filter(t=>t.vente).length;
  const s={pour:'',q:'',theme:'',avenir:false};
+ /* Pages /pro/ et /perso/ : la partie est fixée par la page (data-pour-fixe), pas par l'adresse ; les compteurs ne comptent qu'elle. */
+ const fixe=document.querySelector('[data-catalogue]')?.dataset.pourFixe||'';
+ const partie=items.filter(t=>!fixe||t.pour===fixe);
+ const total=partie.length,enVente=partie.filter(t=>t.vente).length;
  const p=new URLSearchParams(location.search),h=location.hash.slice(1);
- if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
+ if(fixe)s.pour=fixe;else if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
  if(themes.some(t=>t.id===p.get('theme')))s.theme=p.get('theme');
  if(p.get('avenir')==='1')s.avenir=true;
  s.q=(p.get('q')||'').slice(0,80);champ.value=s.q;
  const compter=(chemin,titre)=>{try{window.goatcounter?.count?.({path:chemin,title:titre,event:true});}catch(e){}};
- function adresse(){const q=new URLSearchParams();if(s.pour)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.theme&&!s.q)q.set('theme',s.theme);if(s.avenir)q.set('avenir','1');
+ function adresse(){const q=new URLSearchParams();if(s.pour&&!fixe)q.set('pour',s.pour);if(s.q)q.set('q',s.q);if(s.theme&&!s.q)q.set('theme',s.theme);if(s.avenir)q.set('avenir','1');
   const qs=q.toString();history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+(qs||h==='tous'?'#tous':''));}
  /* Construction, une seule fois : tuiles des thèmes, puis la liste de tous les outils (filtrée à l'affichage) */
- const groupes=[['pro','Professionnel'],['perso','Vie personnelle']];
+ const groupes=[['pro','Professionnel'],['perso','Vie personnelle']].filter(g=>!fixe||g[0]===fixe);
  const couleur=id=>themes.find(x=>x.id===id)?.c||'var(--trait)';
  const tuile=t=>`<button type="button" class="tuile" data-tuile="${t.id}" style="--c:${t.c}"><b>${esc(t.nom)}</b><span class="tuile-cpt" data-cpt></span><span class="tuile-ex" data-ex></span></button>`;
  const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
@@ -220,10 +223,10 @@ if(fallbackLink&&form){
  cat.addEventListener('click',e=>{const t=e.target.closest('[data-tuile]');
   if(t){s.theme=t.dataset.tuile;rendre();adresse();cat.scrollIntoView({block:'start'});titre.focus({preventScroll:true});compter('catalogue-theme-'+s.theme,'Catalogue : thème '+texte(t,'b'));}
   else if(e.target.closest('[data-retour]')){const id=s.theme;s.theme='';s.q='';champ.value='';rendre();adresse();$(`[data-tuile="${id}"]`,vues)?.focus();}
-  else if(e.target.closest('[data-effacer]')){s.pour='';s.q='';champ.value='';rendre();adresse();champ.focus();}
+  else if(e.target.closest('[data-effacer]')){s.pour=fixe;s.q='';champ.value='';rendre();adresse();champ.focus();}
   else if(e.target.closest('[data-avenir]')){s.avenir=!s.avenir;rendre();adresse();$('[data-avenir]')?.focus();if(s.avenir)compter('catalogue-avenir','Catalogue : templates en préparation affichés');}});
  filtres.hidden=false;rendre();
- if(s.theme||s.pour||s.q)requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
+ if(s.theme||(s.pour&&!fixe)||s.q)requestAnimationFrame(()=>cat.scrollIntoView({block:'start'}));
 })();
 
 /* Attribution des achats Gumroad (20/11/2026) : les UTM d'arrivée sur le site (lien d'une publication, d'un Short…)
@@ -252,3 +255,19 @@ if(fallbackLink&&form){
  const surLien=e=>{const a=e.target.closest?.('a[href*="gumroad.com/l/"]');if(a)marquer(a);};
  ['pointerdown','click','auxclick','contextmenu','keydown'].forEach(t=>document.addEventListener(t,surLien,true));
 })();
+
+// « Mon espace » dans le menu dès qu'un compte est connecté sur l'appareil (session qme-compte, assets/compte.js) :
+// initiale du prénom (ou de l'adresse) et libellé. Rien ne change pour un visiteur non connecté.
+function menuMonEspace(){try{
+  const s=JSON.parse(localStorage.getItem('qme-compte')||'null'),en=document.documentElement.lang==='en';
+  for(const a of document.querySelectorAll('.topbar a.login')){
+    if(!a.dataset.libelle)a.dataset.libelle=a.textContent;
+    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');a.style.display=a.style.alignItems=a.style.gap='';continue;}
+    const p=JSON.parse(localStorage.getItem('qme-espace-prenom')||'""')||'';
+    const ini=String(p||s.email||'?').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}?]/gu,'');
+    // Styles en ligne : la pastille s'affiche même si une ancienne feuille de style est encore en cache.
+    a.classList.add('mon-espace');a.title=s.email||'';a.style.display='inline-flex';a.style.alignItems='center';a.style.gap='8px';
+    a.innerHTML=`<span class="ini" aria-hidden="true" style="width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font:700 12px/1 Outfit,system-ui,sans-serif;flex:none">${ini}</span>${en?'My space':'Mon espace'}`;
+  }
+}catch{/* stockage indisponible : menu inchangé */}}
+menuMonEspace();

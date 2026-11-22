@@ -83,8 +83,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   jours. Indicateurs (visites, essais, ventes, revenu, abonnés réseaux, abonnés aux informations), audience du site
   (GoatCounter : pages vues par jour, pages, sources, pays), entonnoir visites → essais → ventes, essais (par jour, par
   template, conversion, tests exclus), ventes Gumroad (revenu par jour, produits, sources), réseaux (abonnés, vues des
-  publications), comptes et préférences, intérêts. API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
-  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », à créer),
+  publications), comptes et préférences, intérêts, **données saisies dans les applications** (espaces de données d'achat et
+  d'essai par application, modifiés sur la période, nombre d'éléments, dernière modification ; espaces administrateur et
+  essais de test exclus ; contenu jamais transmis, un espace d'achat n'est relié à aucune personne). API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
+  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », créé par Quentin et ajouté sur Netlify le 23/11/2026 ; profil GoatCounter → API, `/user/api`),
   `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
   via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
 - Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
@@ -93,10 +95,20 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
   (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
   `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+- Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
+  d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
+  (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;
+  « Bonjour / Bonsoir <prénom> » et dernière application ouverte ; cartes « Reprendre » ; alertes d'essai ; lanceur
+  d'icônes (`templates/<slug>/icone.svg`, option `grille` d'`assets/espace.js`, favoris, filtres par thème) ; achats
+  datés (compte) ; préférences : prénom, interrupteur « Recevoir les informations QME » (liste d'opposition) et actions
+  du compte. La clé s'ajoute par la fenêtre « Ajouter une clé » ; l'aide aux visiteurs n'apparaît plus une fois dans
+  l'espace.
 - Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
   bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
   (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
   espaces acheteurs ; le catalogue garde « template ».
+- Bandeau QME au-dessus de chaque application (23/11/2026, `assets/mes-templates.js`) : « Mon espace » (initiale du
+  prénom si connecté) et liens Site QME, Templates, Packs, Sur mesure ; défilant sur téléphone, masqué à l'impression.
 - Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
   `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
   panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal
@@ -213,6 +225,10 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- `/pro/` et `/perso/` (22/11/2026, `docs/templates/RATIONALISATION.md`) : le catalogue filtré sur une partie (pros ou
+  vie perso), son accroche et ses packs ; générées par `outils/parties/generer.mjs`, appelé à la fin de
+  `node outils/packs/generer.mjs`, contrôlées par `outils/templates/parties.test.mjs`. Menu de toutes les pages :
+  « Pros · Vie perso · Packs · Sur mesure » ; accueil : deux portes et le sur mesure en dessous.
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
@@ -375,7 +391,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   anonymes ou nominatives (prénom et initiale, ou pseudonyme), note automatique, réponses courtes non reconnues « à
   vérifier » ; statistiques par question et par étiquette, questions trop faciles ou trop difficiles, distracteur le plus
   choisi. **RGPD** : mention au premier lancement, export JSON et CSV, effacement d'un apprenant, d'une session ou de tous
-  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le pack Enseignant et formateur.
+  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le Pack Écoles et formateurs.
   Règles dans `regles.js`, tests `outils/templates/quiz.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
@@ -591,7 +607,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   remboursement intégré. Données de santé : consentement explicite au premier lancement et effacement, comme la
   nutrition (`/confidentialite/`). Règles dans `regles.js`, tests `outils/templates/remboursements-sante.test.mjs`.
 - `templates/emprunt/` (CPT) : **capacité d'emprunt et comparateur de prêts** (T85), prêt, mise en vente prochaine
-  (15 €, primo-accédants et investisseurs ; packs visés « Reprendre la main sur son argent » et « Propriétaire »).
+  (15 €, primo-accédants et investisseurs ; packs visés « Papiers et décisions d’argent » et « Propriétaire »).
   Profil d'un ou deux emprunteurs (revenus, loyers retenus à la part saisie, crédits en cours), mensualité maximale au
   taux d'effort saisi et montant empruntable au taux, à la durée et à l'assurance saisis, reste à vivre ; seuils de
   départ 35 % et 25 ans (décision D-HCSF-2021-7, source et date de vérification affichées, modifiables) ; budget du
@@ -678,7 +694,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   tracées **sans courbe de référence** (licences OMS et AFPA–Inserm incompatibles ou non établies), rendez-vous et
   récapitulatif imprimable, deux parents sur deux appareils ; **données de santé d'un enfant : consentement explicite avant
   tout enregistrement**, effacement complet, avertissement médical ; **RGPD à trancher par Quentin avant la vente**). BBE
-  rejoint le pack Famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
+  rejoint le Pack Maison et famille, PRG le Pack Écoles et formateurs. Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
 - `templates/course-a-pied/` (CRS) : **plan d'entraînement course à pied** (T97), prêt, « Mise en vente prochaine » (15 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/course-a-pied/gumroad.json`). Chrono de référence,

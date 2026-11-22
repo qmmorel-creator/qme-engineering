@@ -38,7 +38,7 @@ import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
 import { estAdmin } from './interets.mjs';
 import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
-import { enregistrerOpposition, enregistrerDomaine, oppositionDe, domainesOpposes, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
+import { enregistrerOpposition, leverOpposition, enregistrerDomaine, oppositionDe, domainesOpposes, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 
 export const DUREE_LIEN = 15 * 60_000;
@@ -139,9 +139,11 @@ async function essaisDe(secret, store, email, aujourdhui) {
 }
 
 async function vue(secret, store, compte, aujourdhui) {
+  // Informations QME : reçues sauf refus (compte marqué, liste d'opposition par adresse ou par domaine).
+  const opposition = compte.sansAnnonces ? true : Boolean(await oppositionDe(store, secret, compte.email));
   return {
-    email: compte.email, prenom: compte.prenom || '', cree: compte.cree,
-    cles: compte.cles.map(({ type, p, code, source }) => ({ type, p, code, source })),
+    email: compte.email, prenom: compte.prenom || '', cree: compte.cree, informations: !opposition,
+    cles: compte.cles.map(({ type, p, code, source, ajoute }) => ({ type, p, code, source, ajoute: ajoute || null })),
     essais: await essaisDe(secret, store, compte.email, aujourdhui),
     prefs: compte.prefs, prefsMaj: compte.prefsMaj,
   };
@@ -371,6 +373,14 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     if (corps.prenom !== undefined) compte.prenom = nettoyerPrenom(corps.prenom);
     if (corps.prefs) { compte.prefs = nettoyerPrefs(corps.prefs); compte.prefsMaj = date; }
     await store.set(cle, compte);
+    // Interrupteur « Recevoir les informations QME » de l'espace personnel : liste d'opposition (preferences.mjs).
+    if (corps.informations === false) await enregistrerOpposition(store, s.h, { source: 'espace personnel', date, email: compte.email });
+    if (corps.informations === true) await leverOpposition(store, s.h);
+    if (typeof corps.informations === 'boolean') {
+      const frais = (await store.get(cle)) || compte;
+      for (const k of Object.keys(compte)) if (!(k in frais)) delete compte[k];
+      Object.assign(compte, frais);
+    }
     return json(200, { compte: await vue(secret, store, compte, aujourdhui) });
   }
 

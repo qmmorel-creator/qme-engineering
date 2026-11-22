@@ -4,6 +4,7 @@
 // quand un template passe en vente : le statut « Bientôt » d'un pack se recalcule à partir de PRODUITS).
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { genererParties } from '../parties/generer.mjs';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
 import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
@@ -63,7 +64,7 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112201">
+<link rel="stylesheet" href="/assets/site.css?v=2026112302">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
 <body>
@@ -75,9 +76,10 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/" aria-current="page">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -98,7 +100,7 @@ const pied = (scripts = '') => `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112201" defer></script>
+<script src="/assets/site.js?v=2026112302" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -344,7 +346,7 @@ function pageComposer(packs) {
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
 // Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
 // Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
-const VE = '2026112204'; // version de assets/espace.js et espace.css
+const VE = '2026112301'; // version de assets/espace.js et espace.css
 async function pageEspace() {
   const { produits, themes } = await donneesEspace();
   return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
@@ -418,7 +420,7 @@ async function ecrire(chemin, contenu) {
 
 export async function generer() {
   VIGNETTES = lireVignettes(await readFile(RACINE + 'templates/index.html', 'utf8'));
-  const packs = Object.keys(PACKS).map(calculerPack);
+  const packs = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack);
   aucunEnVente = !packs.some((p) => p.enVente);
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));
@@ -435,6 +437,8 @@ export async function generer() {
     : nouveau.replace(/(<link rel="stylesheet" href="\/assets\/site\.css[^>]*>)/, `$1\n<link rel="stylesheet" href="/assets/packs.css?v=${V}">`);
   if (!avecStyle.includes('/assets/packs.css')) throw new Error('packs.css : insertion impossible dans templates/index.html');
   await writeFile(RACINE + 'templates/index.html', avecStyle);
+  // Pages /pro/ et /perso/ : construites depuis le catalogue et /packs/ ci-dessus.
+  await genererParties();
   return packs;
 }
 
