@@ -91,7 +91,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
   `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
   (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
-  `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+  `POST /api/compte/opposition/verifier` (code administrateur, ou en lecture seule l'en-tête `X-Opposition-Token` avec la
+  variable Netlify `OPPOSITION_TOKEN`, 32 caractères au moins) ; registre `/admin/registre/` (CSV). Conservation 3 ans.
 - Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
   d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
   (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;

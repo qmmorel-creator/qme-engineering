@@ -29,6 +29,8 @@
 //  GET    /registre  (?format=csv)            → registre des préférences d'information (preferences.mjs)
 //  GET    /opposition?email=                   → { opposition: null | { par, date, source } } (adresse ou domaine)
 //  POST   /opposition/verifier { emails }      → [{ email, opposition }] (avant tout envoi de prospection)
+//         Ces deux lectures acceptent aussi l'en-tête X-Opposition-Token (jeton OPPOSITION_TOKEN, 32 caractères au
+//         moins) : lecture seule de la liste, pour les sessions de prospection, sans le code administrateur.
 //  POST   /opposition { emails?, domaines?, source? } → ajout groupé (réponses « stop », liste docs/prospection/)
 // Public :
 //  POST   /opposition { email }               → page /ne-plus-recevoir/ (lien de tout e-mail de prospection)
@@ -211,7 +213,7 @@ async function destinataires({ secret, store, exclure = [] }) {
   return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)) && !domaines.has(d.email.split('@')[1]));
 }
 
-export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad }) {
+export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '' }) {
   if (!secret || secret.length < 32 || !store) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/compte/, '').replace(/\/$/, '') || '/';
   const methode = requete.method;
@@ -235,14 +237,17 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
   // Opposition : page publique /ne-plus-recevoir/ (une adresse), ou administrateur (ajout groupé, vérification).
   if (chemin === '/opposition' || chemin === '/opposition/verifier') {
     const estAdm = estAdmin(requete.headers.get('x-admin') || '', { secret, admin });
+    // Lecture seule (vérification avant envoi) : code administrateur ou jeton dédié OPPOSITION_TOKEN.
+    const jeton = String(requete.headers.get('x-opposition-token') || '').trim();
+    const peutLire = estAdm || (String(jetonOpposition).length >= 32 && egal(jeton, String(jetonOpposition)));
     if (chemin === '/opposition' && methode === 'GET') {
-      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      if (!peutLire) return json(401, { erreur: 'Code administrateur ou jeton de lecture requis.' });
       const email = normEmail(new URL(requete.url).searchParams.get('email'));
       if (!emailValide(email)) return json(400, { erreur: 'Adresse e-mail invalide.' });
       return json(200, { email, opposition: await oppositionDe(store, secret, email) });
     }
     if (chemin === '/opposition/verifier' && methode === 'POST') {
-      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      if (!peutLire) return json(401, { erreur: 'Code administrateur ou jeton de lecture requis.' });
       const emails = (Array.isArray(corps.emails) ? corps.emails : []).slice(0, 500).map(normEmail).filter(emailValide);
       return json(200, { resultats: await Promise.all(emails.map(async (email) => ({ email, opposition: await oppositionDe(store, secret, email) }))) });
     }

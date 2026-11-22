@@ -11,6 +11,8 @@ L'adresse (et son domaine) ne doit pas être sur la liste d'opposition :
 - une adresse : `GET https://qm-engineering.fr/api/compte/opposition?email=<adresse>` (en-tête `X-Admin` : code
   administrateur) → `opposition: null` obligatoire ;
 - une liste : `POST /api/compte/opposition/verifier` `{ "emails": [...] }` ;
+- sans le code administrateur (sessions de prospection) : mêmes appels avec l'en-tête `X-Opposition-Token` (jeton
+  de lecture seule, variable Netlify `OPPOSITION_TOKEN`) ; il ne permet ni d'ajouter à la liste ni de lire le registre ;
 - à l'œil : `/admin/registre/` (filtre « désinscrit », lignes `*@domaine`) et `docs/prospection/desinscrits.md`.
 
 Adresse ou domaine opposé : **ne jamais écrire**, ni relance, ni affiliation, ni réponse.
