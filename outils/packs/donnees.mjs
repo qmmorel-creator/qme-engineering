@@ -66,7 +66,6 @@ export const TEMPLATES = {
   NCF: { slug: 'non-conformites', prix: 2000, phrase: 'Constat, cause, actions correctives et vérification.', permalien: 'non-conformites', pour: 'pro' },
   DVS: { slug: 'devis', prix: 2900, phrase: 'Catalogue, remises, TVA et mentions, justes au centime.', permalien: 'generateur-devis', pour: 'pro' },
   TRS: { slug: 'tresorerie', prix: 2900, phrase: 'Prévu, réalisé, scénarios et alerte de solde.', permalien: 'tresorerie-previsionnelle', pour: 'pro' },
-  MRG: { slug: 'mariage', prix: 2900, phrase: 'Rétroplanning, budget, prestataires et invités.', permalien: 'organisateur-mariage', pour: 'perso' },
   HBT: { slug: 'habitudes', prix: 1200, phrase: 'Cocher en un geste, séries et grille du mois.', permalien: 'suivi-habitudes', pour: 'perso' },
   ABN: { slug: 'abonnements', prix: 900, phrase: 'Coût réel par mois et par an, essais et engagements.', permalien: 'suivi-abonnements', pour: 'perso' },
   TRV: { slug: 'travaux', prix: 2500, phrase: 'Devis comparés, budget et planning des artisans.', permalien: 'pilote-travaux', pour: 'perso' },
@@ -82,7 +81,9 @@ export const TEMPLATES = {
   APD: { slug: 'appel-decouverte', prix: 1200, phrase: 'Questions par phase, objections et prochaine étape datée.', permalien: 'preparateur-appel-decouverte', pour: 'pro' },
   VHC: { slug: 'flotte', prix: 3900, phrase: 'Réservations, entretiens et coût par véhicule.', permalien: 'gestion-flotte', pour: 'pro' },
   PRC: { slug: 'parc-informatique', prix: 3500, phrase: 'Matériel, attributions, licences et garanties.', permalien: 'parc-informatique', pour: 'pro' },
-  EVT: { slug: 'evenementiel', prix: 4900, phrase: 'Rétroplanning, budget, prestataires et invités.', pour: 'pro' },
+  // Organisateur d'événement (fusion F1 du 22/11/2026 : mariage, séminaire, pilote événementiel) : présent dans les deux
+  // parties du site, une phrase par public ; fiche Gumroad reprise de l'organisateur de mariage.
+  EVT: { slug: 'evenementiel', prix: 3900, phrase: 'Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J.', phrases: { pro: 'Séminaires, salons, soirées, conférences : rétroplanning, budget, invités, transports, jour J.', perso: 'Mariage ou fête de famille : rétroplanning, budget, invités, plan de table, jour J.' }, permalien: 'organisateur-mariage', pour: 'pro perso' },
   AEC: { slug: 'auto-ecole', prix: 4500, phrase: 'Élèves, leçons, moniteurs et véhicules.', pour: 'pro' },
   DTT: { slug: 'dettes', prix: 1200, phrase: 'Vos dettes soldées une à une, avec une date de fin.', permalien: 'remboursement-dettes', pour: 'perso' },
   PTM: { slug: 'patrimoine', prix: 1900, phrase: 'Ce que valent vos objets, et ce que leur revente rapporterait.', permalien: 'inventaire-valorise', pour: 'perso' },
@@ -102,7 +103,6 @@ export const TEMPLATES = {
   CAN: { slug: 'candidatures', prix: 1200, phrase: 'Études, emploi ou appels d’offres : pièces, dates limites, relances et réponses.', phrases: { pro: 'Appels d’offres et plateformes : go/no-go, pièces à rebours, dépôt, relances et résultats.', perso: 'Vœux, stages, alternance ou emploi : pièces, dates limites, relances et réponses.' }, permalien: 'candidatures-etudes-stages-alternance', pour: 'pro perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
   QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
-  SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
   SVT: { slug: 'sans-voiture', prix: 900, phrase: 'Le gain annuel de vivre sans voiture, sortie comprise, et une parade à chaque urgence.', permalien: 'simulateur-vivre-sans-voiture', pour: 'perso' },
 };
 
@@ -222,7 +222,7 @@ export const PAGES = {
       ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
       ['CTR', 'Anticipez les préavis des contrats fournisseurs et ne subissez plus la tacite reconduction.'],
       ['ACH', 'Centralisez les demandes d’achat, validez-les et regroupez les commandes par fournisseur.'],
-      ['SMN', 'Organisez séminaires et offsites : participants, trajets, chambres et programme.'],
+      ['EVT', 'Organisez séminaires et événements internes : participants, trajets, chambres, programme et budget.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
     prevus: [],
@@ -248,7 +248,7 @@ export const PAGES = {
     resume: 'Le grand jour, le voyage, le déménagement, puis le budget et les dépenses partagées : tout ce qui accompagne une vie à deux.',
     pourQui: 'Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?',
     parcours: [
-      ['MRG', 'Pilotez le rétroplanning, les prestataires, les invités et le budget du mariage.'],
+      ['EVT', 'Pilotez le mariage : rétroplanning, prestataires, invités, plan de table et budget.'],
       ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus, ou calculez ce que chacun verse sur le compte joint.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
       ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],

@@ -33,7 +33,6 @@ export const PRODUITS = {
   TCH: { nom: 'Gestionnaire de tâches', url: '/templates/taches/', gumroad: 'fhPqrSBXayFL21IZWU6YIg==' },
   NTR: { nom: 'Nutrition et dépense énergétique', url: '/templates/nutrition/', gumroad: 'gPo_NgvoB4zjkqk2mFkXBQ==' },
   BDG: { nom: 'Mon Budget', url: '/templates/budget/', gumroad: 'YvGeAPDZjuqr9yflNtLhhw==' },
-  MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
   // CRM et prospection : CRM freelance et Pipeline de prospection B2B (PRS) fusionnés le 22/11/2026 (rationalisation F2).
@@ -45,7 +44,11 @@ export const PRODUITS = {
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
   TRS: { nom: 'Trésorerie prévisionnelle 12 mois', url: '/templates/tresorerie/', gumroad: 'no1AEwLFPlXydqFGU7vRzg==' },
   PRC: { nom: 'Gestion de parc informatique', url: '/templates/parc-informatique/', gumroad: 'gykL5ZVrrICGHSLM0V3xlQ==' },
-  EVT: { nom: 'Pilote événementiel', url: '/templates/evenementiel/' },
+  // Organisateur d'événement : Pilote événementiel, Organisateur de mariage (MRG) et Séminaire / offsite (SMN) fusionnés le
+  // 22/11/2026 (rationalisation F1). La fiche Gumroad de MRG devient celle d'EVT (même identifiant : les licences MRG ouvrent
+  // EVT) ; SMN n'avait pas de fiche. MRG et SMN retirés : aucune vente, aucun code offert ; /templates/mariage/ et
+  // /templates/seminaire/ redirigés ici (netlify.toml).
+  EVT: { nom: 'Organisateur d\'événement', url: '/templates/evenementiel/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   ASC: { nom: 'Inscriptions associatives', url: '/templates/inscriptions/', gumroad: '5XuVWuitD2ZzpVkwQFHlVw==' },
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/', gumroad: 'leplToyYwMtXCmdXZa9T4Q==' },
@@ -121,7 +124,6 @@ export const PRODUITS = {
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
   CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
-  SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
