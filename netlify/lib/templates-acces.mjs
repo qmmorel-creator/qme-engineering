@@ -14,6 +14,12 @@ export { PACKS, SUR_MESURE, ACHAT_SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
+// Templates fusionnés dans un autre (rationalisation du 22/11/2026) : leur fiche Gumroad peut rester achetable quelque
+// temps (dépublication en attente) ; une licence achetée pour l'ancien produit ouvre le template qui l'a absorbé.
+export const FUSIONNES = {
+  PRS: { gumroad: '7Ie2c3Qgcxkl1coobiiNXg==', vers: 'CRM', depuis: '2026-11-22' }, // Pipeline de prospection → CRM et prospection
+};
+
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
   CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/', gumroad: '29mMG1jJqiRppcqs_Mt09w==' },
@@ -28,11 +34,12 @@ export const PRODUITS = {
   MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
-  CRM: { nom: 'CRM freelance', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
+  // CRM et prospection : CRM freelance et Pipeline de prospection B2B (PRS) fusionnés le 22/11/2026 (rationalisation F2).
+  // PRS retiré : aucune vente, aucun code offert ; /templates/prospection/ redirigé ici (netlify.toml).
+  CRM: { nom: 'CRM et prospection', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/', gumroad: 'a212qy8CvDD90dc-7gV5NQ==' },
   PHR: { nom: 'Planner horaire', url: '/templates/planner/', gumroad: '6uyeEBR91feI1tM2Wbij8Q==' },
   RSV: { nom: 'Levée de réserves', url: '/templates/reserves/', gumroad: '1xyF3Lz36TxDCOz4KnVB4A==' },
-  PRS: { nom: 'Pipeline de prospection B2B', url: '/templates/prospection/', gumroad: '7Ie2c3Qgcxkl1coobiiNXg==' },
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
   TRS: { nom: 'Trésorerie prévisionnelle 12 mois', url: '/templates/tresorerie/', gumroad: 'no1AEwLFPlXydqFGU7vRzg==' },
   PRC: { nom: 'Gestion de parc informatique', url: '/templates/parc-informatique/', gumroad: 'gykL5ZVrrICGHSLM0V3xlQ==' },
@@ -420,12 +427,13 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE]].filter(([, p]) => p.gumroad);
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES)].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
     if (trouve >= 0) {
-      const [cle] = candidats[trouve];
+      let [cle] = candidats[trouve];
+      if (FUSIONNES[cle]) cle = FUSIONNES[cle].vers; // licence d'un template fusionné : ouvre celui qui l'a absorbé
       achatVerifie = reponses[trouve].value.achat || {};
       if (cle === SUR_MESURE) {
         // Pack sur mesure : composition lue dans l'achat, montant payé contrôlé contre le barème.

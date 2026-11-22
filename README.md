@@ -294,6 +294,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
+- `templates/crm/` (CRM) : **CRM et prospection**, en vente (25 €, fiche Gumroad `crm-freelance`). Fusion du 22/11/2026
+  (rationalisation F2, `docs/templates/RATIONALISATION.md`) du CRM freelance et du Pipeline de prospection B2B (PRS,
+  retiré de `PRODUITS` et des packs ; `/templates/prospection/*` et `/catalogue/prospection/*` redirigés en 301 vers le
+  CRM). Contacts avec cadence de relance (3 cadences, 19 scripts modifiables, message prêt à copier) ou prochaine
+  action datée, pipeline en 8 étapes (de « À contacter » à « Gagné ») qui démarre ou arrête les relances, opposition à
+  la prospection, devis et factures suivis, un onglet Chiffres (conversion par étape et par canal, activité,
+  chiffre d'affaires). Données du CRM freelance lues sans perte (`normaliser` dans `regles.js`) ; une copie exportée
+  du pipeline se restaure dans les réglages (`depuisPipeline`). Tests : `outils/templates/crm.test.mjs`.
 - `templates/secret-santa/` (SNT) : **Secret Santa**, **en vente** (Gumroad, prix libre, 0 €), **gratuit**
   (prix libre sur Gumroad). L'organisateur (clé de licence) crée ses échanges et partage un lien
   d'invitation ; les participants s'inscrivent sans compte (prénom, e-mail, code personnel, idées) ;

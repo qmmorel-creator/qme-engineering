@@ -76,7 +76,6 @@
     "potager": "templates-potager-calendrier.webp",
     "progression": "templates-progression-frise.webp",
     "propositions": "templates-propositions-suivi.webp",
-    "prospection": "templates-prospection-aujourdhui.webp",
     "quiz": "templates-quiz-corrections.webp",
     "references-plaquette": "templates-references-plaquette-references.webp",
     "remboursements-sante": "templates-remboursements-sante-bilan.webp",
@@ -241,8 +240,8 @@
   ],
   "crm": [
     "freelance",
-    "Freelance CRM",
-    "Every morning, the prospects to follow up, the deals in progress and what is left to collect.",
+    "CRM and prospecting",
+    "Follow-up sequences with ready-to-copy messages, a deal pipeline, and every morning the prospects to contact and what is left to collect.",
     0
   ],
   "demenagement": [
@@ -507,12 +506,6 @@
     "freelance",
     "Sales proposals",
     "Context, objectives, deliverables, good / better / premium options, schedule and terms in a clean PDF.",
-    0
-  ],
-  "prospection": [
-    "freelance",
-    "B2B prospecting pipeline",
-    "Every morning, the exact list of prospects to follow up, with the message ready to copy.",
     0
   ],
   "quiz": [
