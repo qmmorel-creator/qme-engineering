@@ -277,6 +277,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Commerçant et artisan | PCA | T62, T36, T41, T42, T44 | — | 127 € | 25 % | 95 € | 24 € |
 | Ma voiture | PVT | T66, T10 | T98 (prix à sa sortie : 34 €, −15 %, 28 €, option 9 €) | 25 € | 10 % | 22 € | 9 € |
 | Budget perso et famille (Quentin, 20/11/2026) | PBF | T05, T65, T14, T13, T12 | — | 63 € | 25 % | 47 € | 12 € |
+| Cuisine (Quentin, 22/11/2026) | PCS | T06 | T09 | 25 € | 10 % | 22 € | 9 € |
 
 Restent à faire : fiche Gumroad de chaque pack (produit simple avec clé de licence, contenu = lien vers
 `/connexion/`, identifiant reporté dans `PACKS`), paiement en ligne du pack sur mesure (en attendant : demande

@@ -72,13 +72,21 @@ et mise en vente (règle 7).
 | 13 | Fiche du Pack Mariage et installation à deux | PMR | 72 € | complet une fois DMN et CDX en vente |
 | 14 | Fiche du Pack Exploitation et maintenance | PXP | 118 € | complet une fois CTR et PRK en vente |
 | 15 | Fiche du Pack Moyens généraux | PMG | 194 € | complet une fois CTR, BSC et ACH en vente |
-| 16 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
-| 17 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 16 |
-| 18 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
-| 19 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 18 |
-| 20 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | Pack Enseignant (PNS), vendus seuls en attendant T55 |
-| 21 | Garde-manger, Suivi d'un animal | GRD, ANM | 12, 12 € | Pack Famille (PFA), qui attend aussi T19 |
-| 22 | Hors pack : Compétences, Potager, Auto-école, Séminaire | FRM, PTG, AEC, SMN | 25, 13, 45, 35 € | aucun pack à finir |
+| 16 | Garde-manger et dates de péremption | GRD | 12 € | dernier template manquant du Pack Cuisine (PCS) ; sert aussi au Pack Famille |
+| 17 | Fiche du Pack Cuisine (demande de Quentin, 22/11) | PCS | 22 € (évolutif 9 €) | complet une fois GRD en vente (RPS déjà en vente) |
+| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
+| 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
+| 20 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
+| 21 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 20 |
+| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | Pack Enseignant (PNS), vendus seuls en attendant T55 |
+| 23 | Suivi d'un animal | ANM | 12 € | Pack Famille (PFA), qui attend aussi T19 |
+| 24 | Hors pack : Compétences, Potager, Auto-école, Séminaire | FRM, PTG, AEC, SMN | 25, 13, 45, 35 € | aucun pack à finir |
+
+**Pack Cuisine (PCS, décision de Quentin du 22/11/2026)** : Repas de la semaine et liste de courses (RPS, 13 €, en
+vente) + Garde-manger et dates de péremption (GRD, 12 €, prêt). Valeur 25 €, remise 10 %, prix 22 €, option évolutif
+9 € (minimum). Accroche proposée : « Le menu de la semaine, la liste de courses, et rien ne se perd au frigo. » Avant la
+fiche Gumroad : ajouter `PCS` à `PACKS` (`netlify/lib/packs.mjs`), ses textes et sa cible dans `outils/packs/donnees.mjs`,
+régénérer les pages (`node outils/packs/generer.mjs`) et sa fiche dans `packs/gumroad-packs.json`.
 
 **Bloqués par une décision de Quentin** (règle 6) : Remboursements santé (RBS, seul manquant du Pack Reprendre la main
 sur son argent, PAR), Suivi du bébé (BBE, Pack Famille), Gestion de classe (CSE, Pack Enseignant).
