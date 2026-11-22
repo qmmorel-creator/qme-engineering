@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
-<link rel="stylesheet" href="/assets/espace.css?v=2026112301">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112302">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
 /* Portail (non connecté, aucune application) */
 .a-espace .portail{display:none}
@@ -307,7 +307,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/espace.js?v=2026112301"></script>
+<script src="/assets/espace.js?v=2026112302"></script>
 <script src="/assets/compte.js?v=2026112301"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
@@ -350,7 +350,14 @@ const E={espace:$('espace'),nb:$('espace-nb'),packs:$('espace-packs'),salut:$('s
   edition:$('edition-panneau'),perso:$('personnaliser'),prenom:$('prenom'),vide:$('espace-vide'),sugg:$('suggestions'),suggIntro:$('sugg-intro'),suggListe:$('sugg-liste'),
   avatar:$('avatar'),nom:$('profil-nom'),email:$('profil-email'),depuis:$('profil-depuis'),sync:$('profil-sync'),navNb:$('nav-nb'),connexion:$('profil-connexion'),
   achats:$('achats-liste'),achatsNote:$('achats-note'),infos:$('informations'),infosEtat:$('informations-etat'),dialogue:$('dialogue-cle'),portail:$('portail')};
-const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:QMEEspace.badgeStatut,grille:true});
+// Badge par application : Acheté, Essai (jours restants quand le compte les connaît), Essai terminé, Admin.
+function badgeEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const txt=st==='achete'?'Acheté':st==='admin'?'Admin':!e?'Essai':e.termine?'Essai terminé':`Essai · ${e.joursRestants} j`;
+  return `<span class="esp-badge esp-${st}${e?.termine?' esp-termine':''}" title="${st==='achete'?'Application achetée':st==='admin'?'Accès administrateur':'Essai gratuit'}">${txt}</span>`;
+}
+const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:badgeEspace,grille:true});
 const possedes=()=>Object.keys(PRODUITS).filter((k)=>{const v=lire(PRODUITS[k].cle);return v&&v!=='DEMO';});
 const nomApp=(k)=>QMEEspace.prefs().noms[k]||PRODUITS[k].nom;
 const icone=(k,t=48)=>PRODUITS[k]?.icone?`<img src="${esc(PRODUITS[k].icone)}" alt="" width="${t}" height="${t}" loading="lazy">`:'';

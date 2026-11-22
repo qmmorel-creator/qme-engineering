@@ -100,8 +100,8 @@
 .app-icone{width:64px;height:64px;border-radius:18px;overflow:hidden;display:grid;place-items:center;background:var(--surface);box-shadow:0 1px 0 rgba(36,34,31,.06),0 4px 12px rgba(36,34,31,.10);border:1px solid var(--trait)}
 .app-icone img{width:100%;height:100%;display:block}
 .app-nom{font-size:14px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}
-.app .esp-badge{align-self:center;margin-top:-2px;font-size:10px;padding:2px 7px}
-.app .esp-badge.esp-achete,.app .esp-badge.esp-admin{display:none}
+.app .esp-badge{align-self:center;margin-top:-3px;font-size:10.5px;letter-spacing:.04em;padding:3px 8px;white-space:nowrap}
+.esp-badge.esp-termine{background:var(--sable);color:var(--texte-2)}
 .app-etoile{position:absolute;top:2px;right:4px;width:34px;height:34px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--discret);opacity:0;transition:opacity .15s}
 .app-etoile svg{width:18px;height:18px}
 .app:hover .app-etoile,.app-etoile:focus-visible,.app-etoile[aria-pressed="true"]{opacity:1}
