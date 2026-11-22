@@ -35,6 +35,15 @@ test('les 12 templates étudiants sont ouverts à l’essai, et leur démo ne di
   }
 });
 
+test('aucun template en vente n’annonce « Bientôt en vente » dans sa démo', async () => {
+  const { existsSync } = await import('node:fs');
+  for (const p of PRODUITS_ESSAI) {
+    const s = TEMPLATES[p].slug;
+    if (!existsSync(new URL(`../../templates/${s}/app.js`, import.meta.url))) continue;
+    assert.doesNotMatch(lire(`templates/${s}/app.js`), /Bientôt en vente/, `${s} est en vente`);
+  }
+});
+
 test('cibles tactiles : petits boutons, liens-boutons, fermeture des fenêtres et bandeau démo à 44 px au moins', () => {
   for (const s of SLUGS) {
     const css = lire(`templates/${s}/app.css`);
