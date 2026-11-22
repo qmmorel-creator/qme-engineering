@@ -65,13 +65,26 @@
   }
 
   // --- Espace de l'acheteur d'un pack -----------------------------------------------------------------
+  // Les templates de tous les packs enregistrés sur l'appareil passent par le composant commun assets/espace.js
+  // (recherche, épinglés, récents, thèmes), comme /connexion/ ; chaque tuile garde son code de partage.
   const espace = document.querySelector('[data-espace]');
-  if (espace) {
+  if (espace && window.QMEEspace && typeof PRODUITS !== 'undefined') {
     const CLE = 'qme-packs';
     const lire = () => { try { return JSON.parse(localStorage.getItem(CLE) || '[]'); } catch { return []; } };
     const ecrire = (l) => { try { localStorage.setItem(CLE, JSON.stringify(l)); } catch {} };
-    const zone = espace.querySelector('[data-mes-packs]');
+    const $ = (s) => espace.querySelector(s);
+    const zone = $('[data-mes-packs]'), corps = $('[data-espace-corps]'), gerer = $('[data-gerer]'), alerte = $('[data-alerte]'), copie = $('[data-copie]');
     const form = document.getElementById('espace-form'), champ = document.getElementById('espace-cle'), erreur = document.getElementById('espace-erreur');
+    const COPIER = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>';
+    const COPIE = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    let acces = {}; // préfixe → { code, url, nom } (premier pack qui contient le template)
+    const produits = { ...PRODUITS };
+    const vue = QMEEspace.creer(corps, {
+      produits, themes: THEMES,
+      // Le template lit son code dans qme-<préfixe>-code : il s'ouvre comme après une connexion normale.
+      avantOuverture: (k) => { if (acces[k]) try { localStorage.setItem(`qme-${k.toLowerCase()}-code`, JSON.stringify(acces[k].code)); } catch {} },
+      actions: (k) => acces[k] ? `<button type="button" data-copier="${esc(acces[k].code)}" aria-label="Copier le code de partage : ${esc(produits[k].nom)}" title="Copier le code de partage">${COPIER}</button>` : '',
+    });
 
     async function ouvrirPack(code) {
       const r = await fetch('/api/templates/connexion', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code }) });
@@ -81,39 +94,43 @@
       return j;
     }
     function rendre(packs) {
-      zone.innerHTML = packs.map((p, i) => `<div class="pack-espace">
-        <div class="pack-espace-tete"><h2>${esc(p.nom)}</h2><button class="lien-discret" type="button" data-oublier="${i}">Oublier ce pack sur cet appareil</button></div>
-        <ul>${p.templates.map((t) => `<li><button type="button" data-ouvrir="${esc(t.produit)}" data-code="${esc(t.code)}" data-url="${esc(t.url)}">${esc(t.nom)}<span aria-hidden="true">→</span></button><button class="lien-discret" type="button" data-copier="${esc(t.code)}" aria-label="Copier le code de partage : ${esc(t.nom)}">Copier le code de partage</button></li>`).join('')}</ul>
-        <p class="pack-espace-note">Pour partager un seul template (un budget commun, par exemple), envoyez son code de partage : il n’ouvre que ce template. La clé du pack ouvre tous vos templates : gardez-la pour vous.</p>
-      </div>`).join('');
-      form.querySelector('button').textContent = packs.length ? 'Ajouter un autre pack' : 'Ouvrir mon pack';
+      acces = {};
+      for (const p of packs) for (const t of p.templates) {
+        if (acces[t.produit]) continue;
+        acces[t.produit] = t;
+        // Template absent des données générées (ajout récent) : affiché sous « Autres » avec le nom donné par l'API.
+        if (!produits[t.produit]) produits[t.produit] = { nom: t.nom, url: t.url, theme: 'autres', phrase: '', img: '' };
+      }
+      const n = Object.keys(acces).length;
+      $('[data-nb]').textContent = packs.length ? `${n} template${n > 1 ? 's' : ''} · ${packs.length} pack${packs.length > 1 ? 's' : ''}` : '';
+      $('[data-intro]').hidden = !!packs.length;
+      $('[data-ajouter]').hidden = !packs.length;
+      $('[data-titre-ajout]').hidden = !packs.length;
+      corps.hidden = gerer.hidden = !packs.length;
+      vue.maj(Object.keys(acces));
+      zone.innerHTML = packs.map((p, i) => `<div class="pack-gere"><div><b>${esc(p.nom)}</b><span>${p.templates.length} template${p.templates.length > 1 ? 's' : ''}</span></div><button class="lien-discret" type="button" data-oublier="${i}">Oublier ce pack sur cet appareil</button></div>`).join('');
+      form.querySelector('button').textContent = packs.length ? 'Ajouter ce pack' : 'Ouvrir mon pack';
     }
-    zone.addEventListener('click', (e) => {
-      const b = e.target.closest('[data-ouvrir]');
-      if (b) {
-        // Le template lit son code dans qme-<préfixe>-code : il s'ouvre comme après une connexion normale.
-        try { localStorage.setItem(`qme-${b.dataset.ouvrir.toLowerCase()}-code`, JSON.stringify(b.dataset.code)); } catch {}
-        location.href = b.dataset.url;
-        return;
-      }
+    corps.addEventListener('click', (e) => {
       const c = e.target.closest('[data-copier]');
-      if (c) {
-        const code = c.dataset.copier;
-        const fait = () => { c.textContent = 'Code copié'; setTimeout(() => { c.textContent = 'Copier le code de partage'; }, 2500); };
-        if (navigator.clipboard) navigator.clipboard.writeText(code).then(fait, () => { c.textContent = code; });
-        else c.textContent = code;
-        return;
-      }
+      if (!c) return;
+      const code = c.dataset.copier;
+      const fait = () => { c.innerHTML = COPIE; copie.textContent = 'Code de partage copié.'; setTimeout(() => { c.innerHTML = COPIER; copie.textContent = ''; }, 2500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(code).then(fait, () => { window.prompt('Code de partage :', code); });
+      else window.prompt('Code de partage :', code);
+    });
+    zone.addEventListener('click', (e) => {
       const o = e.target.closest('[data-oublier]');
       if (o) { const l = lire(); l.splice(Number(o.dataset.oublier), 1); ecrire(l); charger(); }
     });
     async function charger() {
       const codes = lire();
-      if (!codes.length) { zone.innerHTML = ''; rendre([]); return; }
-      zone.innerHTML = '<p>Chargement de vos packs…</p>';
+      alerte.textContent = '';
+      if (!codes.length) { rendre([]); return; }
+      $('[data-nb]').textContent = 'Chargement de vos packs…';
       const res = await Promise.allSettled(codes.map(ouvrirPack));
       rendre(res.filter((r) => r.status === 'fulfilled').map((r) => r.value));
-      if (res.some((r) => r.status === 'rejected')) erreur.textContent = 'Un pack n’a pas pu être chargé. Vérifiez votre connexion, puis rechargez la page.';
+      if (res.some((r) => r.status === 'rejected')) alerte.textContent = 'Un pack n’a pas pu être chargé. Vérifiez votre connexion, puis rechargez la page.';
     }
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -126,6 +143,7 @@
         const l = lire().filter((c) => c !== j.code);
         l.push(j.code); ecrire(l); champ.value = '';
         await charger();
+        espace.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } catch (x) { erreur.textContent = x.message === 'Failed to fetch' ? 'Pas de connexion internet. Réessayez une fois en ligne.' : x.message; }
       bouton.disabled = false;
     });
