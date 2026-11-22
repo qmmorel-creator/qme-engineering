@@ -74,7 +74,9 @@
 .qme-bandeau .qme-b-ini{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font-size:11px}
 .qme-bandeau .qme-b-sep{flex:1;min-width:8px}
 @media (max-width:520px){.qme-bandeau{font-size:13px}.qme-bandeau a{padding:0 8px}}
-@media print{.qme-bandeau{display:none}}
+.qme-relier{display:block;padding:9px max(14px,env(safe-area-inset-left));background:#E8B93A;color:#24221F;font:600 14px/1.35 Outfit,system-ui,sans-serif;text-decoration:none;position:relative;z-index:30}
+.qme-relier:hover,.qme-relier:focus-visible{background:#F5CF63}
+@media print{.qme-bandeau,.qme-relier{display:none}}
 @media (prefers-reduced-motion:no-preference){.qme-mt[open]{animation:qme-mt-entree .18s ease-out}@keyframes qme-mt-entree{from{transform:translateY(24px);opacity:.6}}}
 `;
   let donnees = null, dialogue = null;
@@ -164,6 +166,14 @@
     n.innerHTML = `<a class="qme-b-espace" href="${ESPACE}">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
       + '<span class="qme-b-sep" aria-hidden="true"></span><a href="/">Site QME</a><a href="/templates/">Templates</a><a href="/packs/">Packs</a><a href="/sur-mesure/">Sur mesure</a>';
     document.body.prepend(n);
+    // Application de l'écran d'accueil sans compte : sa mémoire est séparée du navigateur, il faut s'y connecter une
+    // fois (e-mail + code à 6 chiffres) pour y retrouver toutes ses applications, sans la réinstaller.
+    if (ESPACE !== '/connexion/' && !session?.jeton) {
+      const r = document.createElement('a');
+      r.className = 'qme-relier'; r.href = ESPACE;
+      r.textContent = 'Connectez cette application une fois pour retrouver toutes vos applications →';
+      n.after(r);
+    }
   }
   bandeau();
   // Le logo de l'en-tête (rendu et re-rendu par l'application) devient le bouton du panneau.
