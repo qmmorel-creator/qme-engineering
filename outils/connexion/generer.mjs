@@ -32,7 +32,7 @@ export async function donneesEspace() {
     const c = cartes[slug] || {};
     // prix (centimes) et vente : suggestions de l'espace ; slug : page catalogue.
     produits[pre] = { nom: p.nom, url: p.url, cle: `qme-${pre.toLowerCase()}-code`, theme: themes.some((t) => t.id === c.theme) ? c.theme : 'autres', phrase: c.phrase || '', img: c.vignette || '',
-      slug, prix: TEMPLATES[pre]?.prix ?? null, vente: Boolean(p.gumroad) };
+      slug, prix: TEMPLATES[pre]?.prix ?? null, vente: Boolean(p.gumroad), icone: `${p.url}icone.svg` };
   }
   if (Object.values(produits).some((p) => p.theme === 'autres')) themes.push({ id: 'autres', nom: 'Autres', pour: '', c: 'encre' });
   // Packs (suggestions « compléter un pack ») : templates en ligne, prix du barème, en vente si tout l'est.

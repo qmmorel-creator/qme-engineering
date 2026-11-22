@@ -90,7 +90,9 @@ test('achat Gumroad : rangé dans le compte de l\'adresse, retrouvé à la conne
   assert.ok(w.mails[0].texte.includes('connectez-vous avec cette adresse e-mail'), 'e-mail de remerciement : connexion par adresse');
   const s = await connecter(w, 'camille@exemple.fr');
   assert.equal(s.compte.prenom, 'Camille');
-  assert.deepEqual(s.compte.cles, [{ type: 'template', p: 'BDG', code: LICENCE, source: 'achat' }]);
+  assert.deepEqual(s.compte.cles.map(({ ajoute, ...k }) => k), [{ type: 'template', p: 'BDG', code: LICENCE, source: 'achat' }]);
+  assert.ok(s.compte.cles[0].ajoute, 'date d\'ajout');
+  assert.equal(s.compte.informations, true);
   // Pack : rangé comme pack ; même vente deux fois : un seul exemplaire
   const pack = Object.keys(PACKS).find((k) => PACKS[k].gumroad) || Object.keys(PACKS)[0];
   await ajouterAchat({ secret: SECRET, store: w.store, email: 'camille@exemple.fr', vente: { type: 'pack', code: pack }, licence: LICENCE.replace('A', 'B'), maintenant: () => w.t });
@@ -170,7 +172,7 @@ test('import des ventes passées : code admin, simulation, clé vérifiée, adre
   const reel = await (await admin(w, '/import', { ventes: ventes.slice(0, 1), simulation: false }, { verifierLicence: verifier })).json();
   assert.equal(reel.rapport[0].resultat, 'importée');
   const s = await connecter(w, 'floriane@exemple.fr');
-  assert.deepEqual(s.compte.cles, [{ type: 'template', p: 'TCH', code: LICENCE, source: 'achat' }]);
+  assert.deepEqual(s.compte.cles.map(({ ajoute, ...k }) => k), [{ type: 'template', p: 'TCH', code: LICENCE, source: 'achat' }]);
 });
 
 test('annonce : testeurs inscrits et acheteurs, une fois par adresse, par lots ; désinscription signée', async () => {
@@ -310,4 +312,16 @@ test('règle de prospection : mention d\'opposition dans les modèles, la règle
   assert.ok(n >= 90);
   const page = await lireF('ne-plus-recevoir/index.html');
   assert.ok(page.includes('noindex') && page.includes('/api/compte/opposition'));
+});
+
+test('espace personnel : interrupteur « Recevoir les informations QME »', async () => {
+  const w = monde();
+  const { jeton } = await connecter(w, 'ana@exemple.fr');
+  const put = async (corps) => (await (await appel(w, '/prefs', { methode: 'PUT', jeton, corps })).json()).compte;
+  assert.equal((await put({})).informations, true);
+  const off = await put({ informations: false });
+  assert.equal(off.informations, false);
+  assert.ok(await w.store.get('opposition/' + (await import('../../netlify/lib/templates-acces.mjs')).cleEmail(SECRET, 'ana@exemple.fr')));
+  assert.equal((await put({ informations: true })).informations, true);
+  assert.equal((await put({ prenom: 'Ana' })).informations, true, 'un autre réglage ne change rien');
 });

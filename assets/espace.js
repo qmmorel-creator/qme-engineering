@@ -47,7 +47,8 @@
   // racine : élément vide à remplir. options : produits {PRE: {nom, url, theme, phrase, img}}, themes [{id, nom, c}],
   // seuil (nombre d'applications à partir duquel recherche, thèmes et récents s'affichent), avantOuverture(k),
   // actions(k) → HTML d'un bouton supplémentaire par application, badge(k) → HTML d'un badge.
-  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge } = {}) {
+  // grille : lanceur d'icônes (espace personnel) ; thèmes en filtres, favoris en tête, sans « récemment ouverts ».
+  function creer(racine, { produits, themes, seuil = 5, avantOuverture, actions, badge, grille = false } = {}) {
     racine.classList.add('esp');
     racine.innerHTML = `<div class="espace-outils" data-outils>
         <label class="esp-recherche"><span class="vh">Rechercher dans mes applications</span>
@@ -66,7 +67,8 @@
     const E = { outils: $('[data-outils]'), recherche: $('[data-recherche]'), sauts: $('[data-sauts]'), statut: $('[data-statut]'), resultats: $('[data-resultats]'),
       listeRes: $('[data-liste-res]'), vide: $('[data-vide]'), zones: $('[data-zones]'), epingles: $('[data-z="epingles"]'), recents: $('[data-z="recents"]'),
       hThemes: $('[data-h-themes]'), themes: $('[data-themes]'), masques: $('[data-z="masques"]') };
-    let tous = [], mes = [], edition = false;
+    let tous = [], mes = [], edition = false, filtre = '';
+    if (grille) racine.classList.add('esp-grille');
     const P = (k) => produits[k];
     const nom = (k) => prefs().noms[k] || P(k).nom;
     const theme = (id) => themes.find((t) => t.id === id) || { id, nom: 'Autres', c: 'encre' };
@@ -76,7 +78,16 @@
     const parNom = (a, b) => nom(a).localeCompare(nom(b), 'fr');
     const vignette = (p) => (p.img ? `<img src="${esc(p.img)}" alt="" width="96" height="60" loading="lazy" decoding="async">` : '<span class="vign-vide" aria-hidden="true"></span>');
 
+    // Lanceur : icône de l'application, nom, badge ; étoile discrète.
+    function icone(k, ep) {
+      const p = P(k), t = theme(p.theme), estEp = ep.includes(k);
+      return `<li class="app" style="--c:var(--${t.c})"><a href="${esc(p.url)}" data-pre="${esc(k)}" title="${esc(p.nom)}">`
+        + `<span class="app-icone">${p.icone ? `<img src="${esc(p.icone)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}</span>`
+        + `<span class="app-nom">${esc(nom(k))}</span>${badge ? badge(k) || '' : ''}</a>`
+        + `<button type="button" class="epingle app-etoile" data-epingle="${esc(k)}" aria-pressed="${estEp}" aria-label="${estEp ? 'Retirer des favoris' : 'Ajouter aux favoris'} : ${esc(nom(k))}" title="${estEp ? 'Retirer des favoris' : 'Ajouter aux favoris'}">${ETOILE}</button></li>`;
+    }
     function tuile(k, ep, zone = '') {
+      if (grille && !edition) return icone(k, ep);
       const p = P(k), t = theme(p.theme), renomme = prefs().noms[k], masque = prefs().masques.includes(k);
       const etoile = `<button type="button" class="epingle" data-epingle="${esc(k)}" aria-pressed="${ep.includes(k)}" aria-label="Épingler ${esc(nom(k))}" title="${ep.includes(k) ? 'Retirer des épinglés' : 'Épingler'}">${ETOILE}</button>`;
       if (edition) {
@@ -98,9 +109,11 @@
       racine.classList.toggle('esp-edition', edition);
       const ep = epingles(), beaucoup = mes.length >= seuil;
       E.outils.hidden = !beaucoup || edition;
+      racine.querySelectorAll('ul.esp-tuiles').forEach((u) => u.classList.toggle('apps', grille && !edition));
+      if (grille) E.epingles.querySelector('h2').textContent = 'Favoris';
       E.epingles.hidden = !ep.length;
       E.epingles.querySelector('ul').innerHTML = ep.map((k) => tuile(k, ep, 'epingles')).join('');
-      const rc = beaucoup && !edition ? recents().filter((k) => !ep.includes(k)).slice(0, 4) : [];
+      const rc = beaucoup && !edition && !grille ? recents().filter((k) => !ep.includes(k)).slice(0, 4) : [];
       E.recents.hidden = !rc.length;
       E.recents.querySelector('ul').innerHTML = rc.map((k) => tuile(k, ep)).join('');
       E.masques.hidden = !masq.length;
@@ -112,11 +125,23 @@
         const liste = mes.filter((k) => !edition || !ep.includes(k)).sort(parNom);
         E.hThemes.classList.toggle('vh', !ep.length && !edition);
         E.themes.closest('[data-z]').hidden = !liste.length;
-        E.themes.innerHTML = `<ul class="esp-tuiles">${liste.map((k) => tuile(k, ep)).join('')}</ul>`;
+        E.themes.innerHTML = `<ul class="esp-tuiles${grille && !edition ? ' apps' : ''}">${liste.map((k) => tuile(k, ep)).join('')}</ul>`;
         E.sauts.innerHTML = '';
         return;
       }
       E.hThemes.textContent = 'Par thème'; E.hThemes.classList.remove('vh'); E.themes.closest('[data-z]').hidden = false;
+      if (grille) {
+        // Lanceur : toutes les applications (ou celles du thème choisi), thèmes en filtres.
+        const presents = themes.filter((t) => mes.some((k) => P(k).theme === t.id));
+        if (filtre && !presents.some((t) => t.id === filtre)) filtre = '';
+        const liste = mes.filter((k) => !filtre || P(k).theme === filtre).sort(parNom);
+        E.hThemes.textContent = filtre ? theme(filtre).nom : 'Toutes mes applications';
+        E.themes.innerHTML = `<ul class="esp-tuiles apps">${liste.map((k) => icone(k, ep)).join('')}</ul>`;
+        E.sauts.innerHTML = presents.length > 1 ? [`<button type="button" data-filtre="" aria-pressed="${!filtre}">Toutes <small>${mes.length}</small></button>`,
+          ...presents.map((t) => `<button type="button" data-filtre="${t.id}" aria-pressed="${filtre === t.id}" style="--c:var(--${t.c})">${esc(t.nom)} <small>${mes.filter((k) => P(k).theme === t.id).length}</small></button>`)].join('') : '';
+        if (E.recherche.value) chercher();
+        return;
+      }
       const groupes = themes.map((t) => ({ t, l: mes.filter((k) => P(k).theme === t.id).sort(parNom) })).filter((g) => g.l.length);
       // Thèmes repliés au-delà de 12 applications ; l'état ouvert / fermé de chaque thème est retenu.
       const ouverts = lire(CLE_OUVERTS) || [], tout = mes.length <= 12 || groupes.length === 1;
@@ -175,6 +200,8 @@
       }
       const a = e.target.closest('a[data-pre]');
       if (a) { if (avantOuverture) avantOuverture(a.dataset.pre); noterOuverture(a.dataset.pre); }
+      const f = e.target.closest('[data-filtre]');
+      if (f) { filtre = f.dataset.filtre; rendre(); racine.querySelector(`[data-filtre="${filtre}"]`)?.focus(); return; }
       const s = e.target.closest('[data-saut]');
       if (s) { const det = document.getElementById('t-' + s.dataset.saut); if (det) det.open = true; }
     });
