@@ -11,11 +11,16 @@ L'adresse (et son domaine) ne doit pas être sur la liste d'opposition :
 - une adresse : `GET https://qm-engineering.fr/api/compte/opposition?email=<adresse>` (en-tête `X-Admin` : code
   administrateur) → `opposition: null` obligatoire ;
 - une liste : `POST /api/compte/opposition/verifier` `{ "emails": [...] }` ;
+- sans le code administrateur (sessions de prospection) : mêmes appels avec l'en-tête `X-Opposition-Token` (jeton
+  de lecture seule, variable Netlify `OPPOSITION_TOKEN`) ; il ne permet ni d'ajouter à la liste ni de lire le registre ;
 - à l'œil : `/admin/registre/` (filtre « désinscrit », lignes `*@domaine`) et `docs/prospection/desinscrits.md`.
 
 Adresse ou domaine opposé : **ne jamais écrire**, ni relance, ni affiliation, ni réponse.
 
 ## 2. Dans l'e-mail : la mention, toujours, en dernier paragraphe
+
+La mention vient après la signature graphique QME (version HTML, obligatoire depuis le 22/11/2026 :
+`docs/templates/communication/signature/README.md`).
 
 Lien personnel : `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse du destinataire, encodée>` (page publique :
 l'adresse est préremplie, la personne confirme d'un clic ; elle rejoint la liste d'opposition). Encoder l'adresse

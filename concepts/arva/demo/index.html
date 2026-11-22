@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rappel NEO BT PRO · démonstration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D41318; --red2:#ff3b3f; --red-soft:#fde9e9; --ink:#1b1b1b; --ink2:#232323; --muted:#6f6f6f; --line:#e7e5e2; --line2:#f1efec;
+  --bg:#f6f5f3; --panel:#fff; --ok:#14804a; --ok-bg:#e3f5ea; --warn:#b54708; --warn-bg:#fdf0dc; --info:#1f5fbf; --info-bg:#e6effc; --idle:#55595f; --idle-bg:#eeefef;
+  --r:14px; --sh:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.45 "Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.mont{font-family:"Montserrat",system-ui,sans-serif}
+button,input,textarea{font:inherit}
+.tnum{font-variant-numeric:tabular-nums}
+.fict{position:fixed;right:24px;top:20px;z-index:50;background:#111;color:#fff;font:700 10.5px/1 "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border-radius:999px}
+.chipf{display:inline-block;background:rgba(0,0,0,.55);color:#fff;font:700 9px/1 "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px}
+
+/* structure */
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.side{background:#121212;color:#cfcfcf;padding:22px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{padding:2px 10px 22px}
+.brand .wm{font:900 26px/1 "Montserrat",sans-serif;letter-spacing:.06em;color:#fff}
+.brand .wm span{color:var(--red2)}
+.brand small{display:block;margin-top:6px;color:#9a9a9a;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;color:#cfcfcf;text-decoration:none;font-weight:500}
+.nav a svg{width:18px;height:18px;flex:none;opacity:.8}
+.nav a:hover{background:#1e1e1e}
+.nav a.on{background:#232323;color:#fff;box-shadow:inset 3px 0 0 var(--red)}
+.nav .n{margin-left:auto;background:var(--red);color:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:2px 8px}
+.nav .sec{font:700 10.5px "Montserrat",sans-serif;letter-spacing:.1em;color:#6d6d6d;text-transform:uppercase;padding:16px 12px 6px}
+.side .foot{margin-top:auto;padding:14px 10px 0;border-top:1px solid #222;font-size:12px;color:#8a8a8a;line-height:1.5}
+.side .foot b{color:#ddd;font-weight:600}
+.main{min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:18px 30px;background:rgba(246,245,243,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.top h1{font-size:20px;margin:0;font-weight:800;letter-spacing:-.01em}
+.top .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.search{margin-left:auto;margin-right:250px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;width:280px;color:var(--muted);font-size:13px}
+.content{padding:24px 30px 60px;display:flex;flex-direction:column;gap:20px}
+section[data-view]{display:none}
+section[data-view].on{display:contents}
+
+/* composants */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line2)}
+.card>header h2{font-size:14.5px;margin:0;font-weight:800;letter-spacing:-.005em}
+.card>header .sp{flex:1}
+.body{padding:16px 18px}
+.muted{color:var(--muted)} .sm{font-size:12.5px}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 13px;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.btn.dark{background:#1b1b1b;border-color:#1b1b1b;color:#fff}
+.b{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.b::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b.ok{color:var(--ok);background:var(--ok-bg)} .b.warn{color:var(--warn);background:var(--warn-bg)} .b.late{color:var(--red);background:var(--red-soft)} .b.info{color:var(--info);background:var(--info-bg)} .b.idle{color:var(--idle);background:var(--idle-bg)}
+.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600;color:#444;background:#fff;white-space:nowrap}
+.tag i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:20px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{border:0;background:none;padding:7px 12px;font-weight:600;color:var(--muted);cursor:pointer;font-size:12.5px}
+.seg button.on{background:#1b1b1b;color:#fff}
+table.t{width:100%;border-collapse:collapse}
+.t th{text-align:left;font:700 10.5px "Montserrat",sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:#fbfaf9}
+.t td{padding:11px 14px;border-bottom:1px solid var(--line2);vertical-align:middle}
+.t tr:last-child td{border-bottom:0}
+.t .r{text-align:right}
+.bar{flex:1;min-width:60px;height:8px;border-radius:99px;background:var(--line2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);border-radius:99px}
+.bar.ok i{background:#1b1b1b}
+
+/* héros pilotage */
+.hero{position:relative;border-radius:18px;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#3a1214 0%,#191919 45%,#111 100%);color:#fff;padding:28px 32px 30px;display:grid;grid-template-columns:1.25fr 1fr;gap:26px;min-height:268px}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;opacity:.9;pointer-events:none}
+.hero .eb{font:700 11px "Montserrat",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ff8a8c}
+.hero .big{font:900 64px/1 "Montserrat",sans-serif;letter-spacing:-.02em;margin:14px 0 4px}
+.hero .big span{color:var(--red2)}
+.hero .lead{font:700 20px/1.2 "Montserrat",sans-serif;margin:0 0 12px}
+.hero p{color:#c9c9c9;max-width:52ch;margin:0;position:relative}
+.hero .side2{position:relative;display:flex;gap:22px;align-items:center;justify-content:flex-end}
+.ring{position:relative;width:170px;height:170px;flex:none}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .lbl b{font:900 38px/1 "Montserrat",sans-serif}
+.ring .lbl small{display:block;color:#bdbdbd;font-size:12px;margin-top:4px}
+.minis{display:flex;flex-direction:column;gap:10px;min-width:190px}
+.mini{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px}
+.mini b{font:800 22px "Montserrat",sans-serif}
+.mini span{display:block;font-size:12px;color:#c4c4c4}
+
+/* parcours */
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:0;padding:18px 14px 20px}
+.stage{position:relative;padding:0 8px}
+.stage .v{font:800 24px "Montserrat",sans-serif;letter-spacing:-.01em}
+.stage .l{font-size:12px;color:var(--muted);font-weight:600;min-height:36px}
+.stage .col{height:84px;display:flex;align-items:flex-end;margin:8px 0 8px}
+.stage .col i{display:block;width:100%;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#2a2a2a,#121212)}
+.stage.hot .col i{background:linear-gradient(180deg,var(--red2),var(--red))}
+.stage .gap{font-size:11.5px;color:var(--muted)}
+.stage .gap b{color:var(--ink)}
+.stage+.stage::before{content:"›";position:absolute;left:-6px;top:4px;color:#bbb;font:700 20px "Montserrat"}
+
+/* fiche appareil */
+.dev{display:grid;grid-template-columns:220px 1fr auto;gap:28px;align-items:center;padding:22px 26px;background:linear-gradient(135deg,#fff 0%,#fff 55%,#fbeeee 100%)}
+.dev h2{font:900 30px "Montserrat",sans-serif;margin:6px 0 10px;letter-spacing:-.01em}
+.facts{display:grid;grid-template-columns:repeat(3,auto);gap:10px 34px;margin-top:14px}
+.facts div{font-size:12px;color:var(--muted)} .facts b{display:block;color:var(--ink);font-size:14px;font-weight:600}
+.tl{padding:6px 18px 10px}
+.st{display:grid;grid-template-columns:54px 26px 1fr auto;gap:10px;align-items:start;padding:12px 0;position:relative}
+.st .d{font-size:12px;color:var(--muted);padding-top:3px}
+.st .k{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;position:relative;z-index:1}
+.st:not(:last-child)::after{content:"";position:absolute;left:76px;top:38px;bottom:-12px;width:2px;background:var(--line)}
+.st b{display:block}
+.reply{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;line-height:1.5;background:#fcfbfa;min-height:96px}
+
+/* relances */
+.seq{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px}
+.step{border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;background:#fff}
+.step.now{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+.step .j{font:900 13px "Montserrat",sans-serif;color:var(--red);letter-spacing:.04em}
+.step h3{font-size:14px;margin:6px 0 4px}
+.step .n{font:800 22px "Montserrat",sans-serif;margin-top:10px}
+.step .cv{font-size:12px;color:var(--ok);font-weight:600}
+.mail{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:16px 18px 18px;background:#fff}
+.mail .mh{background:#111;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.mail .mh .wm{font:900 20px "Montserrat",sans-serif;letter-spacing:.06em}
+.mail .mb{padding:18px 20px}
+.mail .tt{font:900 17px/1.2 "Montserrat",sans-serif;color:var(--red);text-transform:uppercase;letter-spacing:.01em}
+.mail .cta{display:inline-block;background:var(--red);color:#fff;font:700 13px "Montserrat",sans-serif;padding:11px 16px;border-radius:6px;margin-top:12px;text-transform:uppercase;letter-spacing:.04em}
+.lang{display:flex;gap:6px}
+.lang button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:4px 9px;font-weight:700;font-size:11.5px;color:var(--muted);cursor:pointer}
+.lang button.on{background:#1b1b1b;border-color:#1b1b1b;color:#fff}
+
+/* écrans téléphone */
+.pwrap{display:grid;grid-template-columns:1fr 410px;gap:40px;align-items:center;max-width:1100px}
+.pwrap .ex h2{font:900 30px/1.1 "Montserrat",sans-serif;margin:0 0 12px;letter-spacing:-.01em}
+.pwrap .ex p{color:#444;font-size:15px;max-width:48ch}
+.pwrap .ex ul{padding:0;margin:18px 0 0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pwrap .ex li{display:flex;gap:10px;font-size:14px}
+.pwrap .ex li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--red);margin-top:7px;flex:none}
+.phone{width:390px;height:740px;border-radius:46px;background:#0b0b0b;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.screen{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#f6f5f3;display:flex;flex-direction:column}
+.scr-body{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.scr-body>*{flex:none}
+.sh{padding:44px 18px 16px}
+.sh h3{margin:0;font:800 19px "Montserrat",sans-serif}
+.sh .s{font-size:12px;opacity:.75;margin-top:3px}
+.dark .sh{background:#111;color:#fff}
+.viewf{position:relative;height:210px;border-radius:18px;background:radial-gradient(circle at 50% 40%,#3b3b3b,#151515);overflow:hidden;display:grid;place-items:center}
+.viewf .lab{background:#f4f1ea;border-radius:6px;width:210px;padding:10px 12px;transform:rotate(-3deg);box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.viewf .lab .bc{height:44px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 7px,transparent 7px 8px,#111 8px 9px,transparent 9px 12px);margin:6px 0}
+.viewf .cor{position:absolute;inset:26px 40px;border:3px solid transparent;border-image:linear-gradient(var(--red2),var(--red2)) 1;clip-path:polygon(0 0,22% 0,22% 3px,3px 3px,3px 22%,0 22%,0 78%,3px 78%,3px calc(100% - 3px),22% calc(100% - 3px),22% 100%,0 100%,0 0,100% 0,100% 22%,calc(100% - 3px) 22%,calc(100% - 3px) 3px,78% 3px,78% 0,100% 0,100% 100%,78% 100%,78% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 78%,100% 78%)}
+.viewf .scan{position:absolute;left:40px;right:40px;top:52%;height:2px;background:var(--red2);box-shadow:0 0 14px var(--red2)}
+.pc{background:#fff;border-radius:14px;border:1px solid var(--line);padding:14px}
+.pc h4{margin:0 0 8px;font:800 13.5px "Montserrat",sans-serif}
+.ck{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:14px}
+.ck:last-child{border-bottom:0}
+.ck input{width:20px;height:20px;accent-color:var(--red)}
+.tabs{display:flex;background:#fff;border-top:1px solid var(--line);padding:8px 6px 22px}
+.tabs a{flex:1;text-align:center;font-size:10.5px;font-weight:600;color:var(--muted);text-decoration:none}
+.tabs a.on{color:var(--red)}
+.tabs svg{display:block;margin:0 auto 3px;width:20px;height:20px}
+.owner .sh{background:#111;color:#fff;padding-top:40px}
+.owner .wm{font:900 22px "Montserrat",sans-serif;letter-spacing:.06em}
+.ostep{display:grid;grid-template-columns:28px 1fr;gap:12px;position:relative;padding-bottom:16px}
+.ostep:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:2px;width:2px;background:var(--line)}
+.ostep.done:not(:last-child)::after{background:var(--ok)}
+.ostep .k{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+
+
+/* carte */
+.mapgrid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+.mapsvg{display:block;width:100%;height:auto;background:#eef2f4}
+.mapsvg .ct{fill:#e3e1dd;stroke:#fff;stroke-width:.8}
+.mapsvg .ct.h{fill:#d3cfc8}
+.mapsvg .bub{fill:rgba(212,19,24,.78);stroke:#fff;stroke-width:1.5;cursor:pointer}
+.mapsvg .bub:hover{fill:#b80f13}
+.mapsvg .bub.dk{fill:rgba(27,27,27,.82)}
+.mapsvg .sel{fill:none;stroke:#1b1b1b;stroke-width:2.5}
+.mapsvg .lb{font:600 11px Inter,sans-serif;fill:#1b1b1b;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.mapsvg .lv{font:800 12px Montserrat,sans-serif}
+.legend{position:absolute;right:16px;bottom:14px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:11.5px;color:#444;display:flex;gap:12px;align-items:center}
+.zone h3{font:900 22px Montserrat,sans-serif;margin:2px 0}
+.zone .big{font:900 40px/1 Montserrat,sans-serif;color:var(--red);margin:10px 0 2px}
+.zone .kv{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin:14px 0;font-size:13px}
+.zone .kv b{text-align:right}
+.rank{display:grid;grid-template-columns:18px 1fr 90px 34px;gap:8px;align-items:center;padding:7px 18px;font-size:12.5px;cursor:pointer}
+.rank:hover{background:#faf9f7}
+.rank.on{background:var(--red-soft)}
+.rank .i{color:var(--muted);font-weight:700}
+
+/* téléphone : écran réel */
+.mtop{display:none}
+@media (max-width:600px){
+  .app{grid-template-columns:1fr}
+  .side,.top,.fict{display:none}
+  .mtop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:#111;color:#fff;position:sticky;top:0;z-index:5}
+  .mtop b{font:900 18px "Montserrat",sans-serif;letter-spacing:.06em}
+  .content{padding:14px 12px 40px;gap:14px}
+  .grid2,.hero,.dev,.mapgrid{grid-template-columns:1fr}
+  .flow,.seq{grid-template-columns:repeat(2,1fr);row-gap:16px}
+  .stage+.stage::before{display:none}
+  .hero .big{font-size:46px}
+  .hero .side2{justify-content:flex-start;flex-wrap:wrap}
+  .facts{grid-template-columns:1fr 1fr}
+  .card{overflow-x:auto}
+  .pwrap{display:block}
+  .pwrap .ex{display:none}
+  .phone{width:auto;height:auto;border-radius:0;padding:0;background:none;box-shadow:none}
+  .screen{border-radius:0;min-height:100vh;height:auto}
+  .sh{padding-top:18px}
+  .owner .sh{padding-top:18px}
+  body.phone-view .mtop{display:none}
+  body.phone-view .content{padding:0}
+  .tabs{position:sticky;bottom:0}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="wm">ARVA<span>.</span></div><small>Rappel NEO BT PRO 2026</small></div>
+    <nav class="nav" id="nav">
+      <div class="sec">Campagne</div>
+      <a href="#pilotage" data-v="pilotage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h4l3-8 4 14 3-6h4"/></svg>Pilotage <span class="n">1 055</span></a>
+      <a href="#carte" data-v="carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Carte</a>
+      <a href="#appareil" data-v="appareil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="4"/><path d="M9 7h6"/><circle cx="12" cy="15" r="2.5"/></svg>Appareils</a>
+      <a href="#relances" data-v="relances"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v12H8l-4 4z"/></svg>Relances et revendeurs</a>
+      <div class="sec">Sur le téléphone</div>
+      <a href="#atelier" data-v="atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 12h8"/></svg>Atelier du Cairn</a>
+      <a href="#suivi" data-v="suivi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Page du propriétaire</a>
+    </nav>
+    <div class="foot"><b>SAV &amp; Logistique</b><br>Atelier du Cairn · Annecy-le-Vieux<br><span style="color:#666">Données synchronisées à 8 h 00</span></div>
+  </aside>
+  <div class="main">
+    <div class="top"><div><h1 id="title"></h1><div class="sub" id="subtitle"></div></div>
+      <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>N° de série, nom, revendeur…</div></div>
+    <div class="mtop"><b>ARVA.</b><span class="chipf">Exemple de données fictives</span></div>
+    <div class="content">
+
+      <!-- ============ PILOTAGE ============ -->
+      <section data-view="pilotage" data-title="Pilotage du rappel" data-sub="Contrôle de sécurité obligatoire NEO BT PRO · situation au lundi 23 novembre 2026, 8 h">
+        <div class="hero">
+          <svg class="ridge" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 120 L0 92 L90 60 L150 78 L250 22 L330 70 L400 48 L470 84 L560 30 L640 74 L720 52 L800 88 L880 40 L960 72 L1040 34 L1120 70 L1200 50 L1200 120Z" fill="rgba(255,255,255,.06)"/><path d="M0 120 L0 104 L120 80 L210 98 L320 66 L420 96 L520 72 L640 102 L760 76 L860 100 L980 70 L1100 96 L1200 82 L1200 120Z" fill="rgba(255,255,255,.08)"/></svg>
+          <div style="position:relative">
+            <div class="eb">Contrôle de sécurité obligatoire · NEO BT PRO</div>
+            <div class="big tnum"><span>1 055</span></div>
+            <div class="lead">appareils n'ont pas encore été contrôlés</div>
+            <p>La saison de ski de randonnée commence. Chaque propriétaire sans nouvelles est relancé automatiquement, dans sa langue ; ceux qui ne répondent pas sont appelés par le SAV, aujourd'hui pour les 74 premiers.</p>
+          </div>
+          <div class="side2">
+            <div class="ring" id="ring"></div>
+            <div class="minis">
+              <div class="mini"><b class="tnum">412</b><span>non conformes à échanger</span></div>
+              <div class="mini"><b class="tnum">286</b><span>échanges déjà expédiés</span></div>
+              <div class="mini"><b class="tnum">9 j</b><span>du contrôle à l'échange (médiane)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card"><header><h2>Du contrôle à l'échange, appareil par appareil</h2><span class="sp"></span><span class="muted sm">tous pays · 2 740 numéros de série concernés</span></header>
+          <div class="flow" id="flow"></div></div>
+
+        <div class="grid2">
+          <div class="card"><header><h2>Contrôles faits chaque jour</h2><span class="sp"></span><span class="tag"><i style="background:var(--red)"></i>e-mail de campagne et rappels</span></header><div class="body" id="chart" style="padding-top:10px"></div></div>
+          <div class="card"><header><h2>Par pays</h2><span class="sp"></span><span class="muted sm">contrôlés / concernés</span></header><div class="body" id="pays" style="padding-top:8px"></div></div>
+        </div>
+
+        <div class="grid2">
+          <div class="card"><header><h2>À traiter aujourd'hui</h2><span class="b late">4 sujets</span></header><div id="todo"></div></div>
+          <div class="card"><header><h2>Ce qui alimente le registre</h2><span class="sp"></span><span class="b ok">à jour</span></header><div class="body" id="src"></div></div>
+        </div>
+      </section>
+
+
+      <!-- ============ CARTE ============ -->
+      <section data-view="carte" data-title="Où sont-ils ?" data-sub="Les 1 055 appareils pas encore contrôlés, zone par zone · propriétaires, revendeurs et parcs professionnels">
+        <div class="mapgrid">
+          <div class="card">
+            <header><h2>Appareils pas encore contrôlés</h2><span class="sp"></span>
+              <div class="seg" id="mseg"><button class="on" data-m="v">Propriétaires sans nouvelles</button><button data-m="r">Revendeurs et parcs pro</button></div></header>
+            <div style="position:relative"><svg class="mapsvg" id="mapeu" viewBox="0 0 900 640" role="img" aria-label="Carte de l'Europe des appareils non contrôlés, données fictives"></svg>
+              <div class="legend"><svg width="62" height="26" aria-hidden="true"><circle cx="6" cy="19" r="5" fill="rgba(212,19,24,.78)"/><circle cx="22" cy="15" r="9" fill="rgba(212,19,24,.78)"/><circle cx="46" cy="11" r="11" fill="rgba(212,19,24,.78)"/></svg><span id="mleg">10 · 50 · 130 propriétaires</span><span style="color:var(--muted)">· hors carte : Sierra Nevada 10, Norvège et Suède 30</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card zone"><div class="body" id="zone"></div></div>
+            <div class="card"><header><h2>Amérique du Nord</h2><span class="sp"></span><span class="muted sm">182 propriétaires</span></header><svg class="mapsvg" id="mapna" viewBox="0 0 420 250" role="img" aria-label="Carte de l'Amérique du Nord, données fictives"></svg></div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>Zones à traiter en priorité</h2><span class="sp"></span><span class="muted sm">cliquez une zone pour l'afficher</span></header><div id="rank" style="padding:6px 0"></div></div>
+          <div class="card"><header><h2>Ce que montre la carte</h2></header><div class="body" id="mread"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ APPAREIL ============ -->
+      <section data-view="appareil" data-title="Fiche appareil" data-sub="Tout l'historique d'un numéro de série, quelle que soit la source">
+        <div class="card dev">
+          <div id="devsvg"></div>
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="b late">Non conforme</span><span class="b info">Échange en préparation</span><span class="tag">Europe · France</span></div>
+            <h2 class="tnum">N° 24B-031482</h2>
+            <div class="muted">NEO BT PRO · propriétaire : Camille R., Annecy (74)</div>
+            <div class="facts">
+              <div>Enregistré<b>14/12/2024 · site ARVA</b></div>
+              <div>Acheté chez<b>un revendeur, Chamonix</b></div>
+              <div>Contrôle<b>09/11 · application</b></div>
+              <div>Demande de retour<b>DR-2026-04187</b></div>
+              <div>Reçu à l'atelier<b>19/11</b></div>
+              <div>Durée du dossier<b class="tnum">14 jours</b></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;align-self:start">
+            <button class="btn pri">Expédier l'échange</button><button class="btn">Écrire au propriétaire</button></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>Parcours de l'appareil</h2><span class="sp"></span><span class="muted sm">chaque étape indique sa source</span></header><div class="tl" id="tl"></div></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>Messages au propriétaire</h2><span class="sp"></span><span class="tag">FR · e-mail</span></header><div id="msgs"></div></div>
+            <div class="card"><header><h2>Réponse rapide</h2><span class="sp"></span><span class="muted sm">modèle « échange en route »</span></header><div class="body">
+              <div class="reply">Bonjour Camille,<br>votre NEO BT PRO a bien été reçu à notre atelier d'Annecy. Votre appareil neuf part mardi 24 novembre ; vous recevrez son numéro de suivi le jour même.<br>L'équipe SAV ARVA</div>
+              <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn dark">Envoyer</button></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELANCES ============ -->
+      <section data-view="relances" data-title="Relances et revendeurs" data-sub="Les propriétaires sans nouvelles sont relancés tout seuls, dans leur langue ; les stocks revendeurs sont suivis à part">
+        <div class="card"><header><h2>Séquence de relance des propriétaires</h2><span class="sp"></span><span class="b ok">active · 5 langues</span></header><div class="seq" id="seq"></div></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Revendeurs, loueurs et professionnels du secours</h2><span class="sp"></span><button class="btn pri">Relancer les 3 en retard</button></header><table class="t" id="rev"></table></div>
+          <div class="card"><header><h2>Rappel J+21 · aperçu</h2><span class="sp"></span><div class="lang" id="lang"></div></header><div id="mail"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ATELIER (téléphone) ============ -->
+      <section data-view="atelier" data-title="Atelier du Cairn" data-sub="La réception des colis, sur un téléphone">
+        <div class="pwrap">
+          <div class="ex"><h2>À l'atelier, un scan suffit</h2><p>Le colis arrive : on scanne l'étiquette, l'appareil est rapproché de sa demande et du résultat de son contrôle. Le dossier avance tout seul, et le propriétaire est prévenu.</p>
+            <ul><li>Contrôle à réception : piles, holster et leash retirés</li><li>Scan du nouvel appareil : son numéro de série est associé au propriétaire</li><li>Étiquette transporteur et e-mail d'expédition générés en un geste</li></ul></div>
+          <div class="phone"><div class="screen dark">
+            <div class="sh"><span class="chipf" style="background:#D41318">Exemple de données fictives</span><h3 style="margin-top:8px">Réception</h3><div class="s">Atelier du Cairn · lundi 23 novembre · 12 colis</div></div>
+            <div class="scr-body">
+              <div class="viewf"><div class="cor"></div><div class="lab"><div style="font:800 10px Montserrat;letter-spacing:.08em">ARVA · RETOUR NEO BT PRO</div><div class="bc"></div><div style="font:700 12px Inter" class="tnum">DR-2026-04187 · 24B-031482</div></div><div class="scan"></div></div>
+              <div class="pc" style="border-color:#bfe5cd;background:#f2fbf5"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="sm muted">Rapproché de sa demande</div><div style="font:800 20px Montserrat" class="tnum">24B-031482</div></div><span class="b ok">Non conforme confirmé</span></div><div class="sm" style="margin-top:6px">Camille R. · Annecy · contrôle du 09/11 dans l'application</div></div>
+              <div class="pc"><h4>Contrôle à réception</h4><div id="chk"></div></div>
+              <div class="pc"><h4>Appareil de remplacement</h4><div class="sm muted">Scanner le numéro de série du NEO BT PRO neuf</div>
+                <div style="display:flex;gap:8px;margin-top:10px"><div style="flex:1;border:2px dashed var(--line);border-radius:10px;padding:12px;text-align:center;color:var(--muted);font-weight:600">Scanner</div><button class="btn pri" style="flex:1.4;justify-content:center">Expédier l'échange</button></div></div>
+            </div>
+            <div class="tabs"><a class="on" href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 12h8"/></svg>Scanner</a><a href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM3 7l3-4h12l3 4"/></svg>Colis du jour</a><a href="#atelier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>Historique</a></div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- ============ PROPRIÉTAIRE (téléphone) ============ -->
+      <section data-view="suivi" data-title="Page du propriétaire" data-sub="Ce que voit Camille en cliquant sur le lien de son e-mail">
+        <div class="pwrap">
+          <div class="ex"><h2>Le propriétaire sait où en est son appareil</h2><p>Un lien personnel dans chaque e-mail, dans sa langue. Il voit chaque étape de son échange et le suivi transporteur : moins d'e-mails et d'appels « où en est mon appareil ? » au SAV.</p>
+            <ul><li>Français, anglais, allemand, italien, espagnol</li><li>Étapes mises à jour par l'atelier, sans ressaisie</li><li>Une question ? Elle arrive directement dans la fiche de l'appareil</li></ul></div>
+          <div class="phone"><div class="screen owner">
+            <div class="sh"><div style="display:flex;justify-content:space-between;align-items:center"><span class="wm">ARVA</span><span class="chipf" style="background:#D41318">Données fictives</span></div><div class="s" style="margin-top:6px;opacity:.8">Contrôle de sécurité obligatoire · NEO BT PRO</div></div>
+            <div class="scr-body">
+              <div class="lang" style="justify-content:flex-end"><button class="on">FR</button><button>EN</button><button>DE</button><button>IT</button><button>ES</button></div>
+              <div class="pc" style="display:flex;gap:14px;align-items:center"><div id="devsmall"></div><div><div class="sm muted">Bonjour Camille,</div><div style="font:800 18px/1.2 Montserrat">Votre NEO BT PRO neuf part mardi.</div><div class="sm muted tnum" style="margin-top:4px">Appareil n° 24B-031482</div></div></div>
+              <div class="pc" id="osteps"></div>
+              <div class="pc"><h4>Une question ?</h4><div class="sm">Répondez simplement à l'e-mail reçu : votre message arrive au SAV avec tout l'historique de votre appareil.</div></div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<div class="fict">Exemple de données fictives</div>
+
+<script>
+// ===== Données fictives (une seule source) =====
+const PAYS = [['France',1180,790],['États-Unis',290,150],['Suisse',310,205],['Autriche',260,150],['Italie',240,140],['Allemagne',190,110],['Espagne',120,62],['Canada',80,38],['Autres pays',70,40]];
+const FLOW = [
+  ['Appareils concernés',2740,'',0],
+  ['Propriétaires joints',2310,'<b>430</b> sans coordonnées · via revendeur',0],
+  ['Contrôle fait',1685,'<b>625</b> joints, pas encore contrôlés',1],
+  ['Non conformes',412,'<b>1 273</b> conformes',1],
+  ['Étiquette ou demande',383,'<b>29</b> demandes hors Europe à traiter',0],
+  ["Reçus à l'atelier",324,'<b>59</b> colis en route',0],
+  ['Échanges expédiés',286,"<b>38</b> à l'atelier",1],
+];
+// contrôles par jour depuis le lancement (19/10), avant normalisation
+const RAW = [52,40,28,20,15,12,10,8,7,6,30,24,17,13,10,8,7,6,5,5,4,22,18,14,11,9,8,7,6,5,5,4,4,3,3];
+const REL = [[0,'E-mail de campagne'],[10,'Rappel J+10'],[21,'Rappel J+21 + SMS']];
+
+// ===== Outils =====
+const $ = (s) => document.querySelector(s);
+const n = (x) => x.toLocaleString('fr-FR');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+const badge = (c, t) => `<span class="b ${c}">${esc(t)}</span>`;
+function device(w) {
+  return `<svg width="${w}" viewBox="0 0 200 300" aria-hidden="true">
+    <defs><linearGradient id="g${w}" x1="0" x2="1"><stop offset="0" stop-color="#2b2b2b"/><stop offset="1" stop-color="#111"/></linearGradient></defs>
+    <rect x="30" y="10" width="140" height="280" rx="42" fill="url(#g${w})"/>
+    <rect x="30" y="10" width="140" height="70" rx="42" fill="#D41318"/><rect x="30" y="50" width="140" height="30" fill="#D41318"/>
+    <rect x="50" y="96" width="100" height="86" rx="14" fill="#cfd8cf"/>
+    <path d="M100 112 l16 26 h-10 v22 h-12 v-22 h-10z" fill="#1b1b1b"/><text x="100" y="176" font-family="Montserrat" font-weight="800" font-size="15" text-anchor="middle" fill="#1b1b1b">2.4 m</text>
+    <circle cx="100" cy="232" r="28" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="4"/><circle cx="100" cy="232" r="12" fill="#D41318"/>
+    <text x="100" y="50" font-family="Montserrat" font-weight="900" font-size="15" text-anchor="middle" fill="#fff" letter-spacing="1">NEO BT PRO</text></svg>`;
+}
+
+// ===== Pilotage =====
+function renderPilotage() {
+  const p = 1685 / 2740, R = 70, C = 2 * Math.PI * R;
+  $('#ring').innerHTML = `<svg width="170" height="170" viewBox="0 0 170 170"><circle cx="85" cy="85" r="${R}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="14"/><circle cx="85" cy="85" r="${R}" fill="none" stroke="#ff3b3f" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C * p} ${C}" transform="rotate(-90 85 85)"/></svg><div class="lbl"><div><b class="tnum">61 %</b><small>contrôlés<br>1 685 / 2 740</small></div></div>`;
+  $('#flow').innerHTML = FLOW.map(([l, v, g, hot]) => `<div class="stage${hot ? ' hot' : ''}"><div class="l">${l}</div><div class="v tnum">${n(v)}</div><div class="col"><i style="height:${Math.max(6, (v / 2740) * 100)}%"></i></div><div class="gap">${g || '&nbsp;'}</div></div>`).join('');
+  // courbe
+  const tot = RAW.reduce((a, b) => a + b, 0), vals = RAW.map((x) => x * 1685 / tot), W = 700, H = 190, max = Math.max(...vals) * 1.15, dx = W / (vals.length - 1);
+  const pts = vals.map((v, i) => [i * dx, H - 22 - (v / max) * (H - 40)]);
+  const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;overflow:visible"><defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D41318" stop-opacity=".28"/><stop offset="1" stop-color="#D41318" stop-opacity="0"/></linearGradient></defs>`;
+  [0.33, 0.66].forEach((f) => { s += `<line x1="0" x2="${W}" y1="${(H - 22) * f}" y2="${(H - 22) * f}" stroke="#eee"/>`; });
+  REL.forEach(([d, t]) => { const x = d * dx; s += `<line x1="${x}" x2="${x}" y1="6" y2="${H - 22}" stroke="#D41318" stroke-dasharray="3 4" opacity=".6"/><text x="${x + 6}" y="16" font-size="11.5" font-weight="700" fill="#D41318" font-family="Inter">${t}</text>`; });
+  s += `<path d="${line} L${W} ${H - 22} L0 ${H - 22}Z" fill="url(#ar)"/><path d="${line}" fill="none" stroke="#D41318" stroke-width="2.5" stroke-linejoin="round"/>`;
+  const lx = pts[pts.length - 1]; s += `<circle cx="${lx[0]}" cy="${lx[1]}" r="4.5" fill="#fff" stroke="#D41318" stroke-width="2.5"/>`;
+  [['19/10', 0], ['26/10', 7], ['02/11', 14], ['09/11', 21], ['16/11', 28], ['22/11', 34]].forEach(([t, i]) => { s += `<text x="${i * dx}" y="${H - 4}" font-size="11" fill="#8a8a8a" text-anchor="${i === 0 ? 'start' : i === 34 ? 'end' : 'middle'}" font-family="Inter">${t}</text>`; });
+  $('#chart').innerHTML = s + '</svg><div class="sm muted" style="margin-top:8px">Chaque rappel relance la courbe : <b style="color:var(--ink)">+31 %</b> de contrôles dans les 3 jours qui suivent un rappel. Prochaine étape : les appels du SAV, à partir d\'aujourd\'hui.</div>';
+  $('#pays').innerHTML = PAYS.map(([p, a, c]) => { const r = c / a; return `<div style="display:grid;grid-template-columns:96px 1fr 70px;gap:10px;align-items:center;margin:9px 0"><span class="sm" style="font-weight:600">${p}</span><div class="bar${r >= 0.6 ? ' ok' : ''}"><i style="width:${r * 100}%"></i></div><span class="sm tnum" style="text-align:right"><b>${Math.round(r * 100)} %</b> <span class="muted">${n(a)}</span></span></div>`; }).join('') + '<div class="sm muted" style="margin-top:10px">En rouge : sous 60 %. Les relances y partent en priorité.</div>';
+  $('#todo').innerHTML = [
+    ['var(--red)', '74 propriétaires à appeler', 'Sans réponse après trois messages · liste triée par pays et par langue', 'Ouvrir la liste'],
+    ['var(--warn)', '29 demandes hors Europe à traiter', 'États-Unis, Canada, Suisse, Norvège… · étiquette à créer', 'Traiter'],
+    ['var(--warn)', '3 revendeurs ou loueurs en retard', 'Val Thorens, Verbier, Vielha · 41 appareils non contrôlés', 'Relancer'],
+    ['var(--info)', "12 colis attendus aujourd'hui à l'atelier", 'Suivi transporteur relié à chaque demande', 'Voir'],
+  ].map(([c, t, d, b]) => `<div style="display:flex;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line2)"><span style="width:10px;height:10px;border-radius:3px;background:${c};flex:none"></span><div style="flex:1"><b>${t}</b><div class="muted sm">${d}</div></div><button class="btn">${b}</button></div>`).join('');
+  $('#src').innerHTML = [
+    ['#D41318', 'Application ARVA', 'résultat du contrôle, par numéro de série', '1 685'],
+    ['#1b1b1b', 'Enregistrement produit', 'coordonnées et langue du propriétaire', '2 310'],
+    ['#b54708', 'Formulaire de retour', 'demandes et étiquettes générées', '383'],
+    ['#1f5fbf', 'Transporteur', 'colis en route et livrés', '383'],
+    ['#14804a', 'Atelier du Cairn', 'réceptions et échanges scannés', '324'],
+  ].map(([c, t, d, v]) => `<div style="display:flex;align-items:center;gap:12px;padding:7px 0"><span style="width:30px;height:30px;border-radius:8px;background:${c};flex:none;display:grid;place-items:center;color:#fff;font:800 12px Montserrat">${t[0]}</span><div style="flex:1"><b>${t}</b><div class="muted sm">${d}</div></div><b class="tnum">${v}</b></div>`).join('');
+}
+
+// ===== Appareil =====
+function renderAppareil() {
+  $('#devsvg').innerHTML = `<div style="display:grid;place-items:center">${device(150)}</div>`;
+  const tl = [
+    ['ok', '19/10', 'E-mail de campagne envoyé', 'en français, avec le lien vers le contrôle', 'Campagne'],
+    ['ok', '29/10', 'Rappel J+10', 'ouvert, pas encore de contrôle', 'Campagne'],
+    ['ok', '09/11', "Contrôle fait dans l'application : non conforme", 'résultat reçu avec le numéro de série', 'Application ARVA'],
+    ['ok', '10/11', 'Formulaire de retour · étiquette générée', 'demande DR-2026-04187', 'Formulaire de retour'],
+    ['ok', '16/11', 'Colis remis au transporteur', 'livré à Annecy-le-Vieux le 19/11', 'Transporteur'],
+    ['ok', '19/11', "Reçu à l'Atelier du Cairn", 'contrôle à réception complet', 'Atelier'],
+    ['cur', '24/11', 'Échange à neuf expédié', 'nouveau numéro de série associé à Camille', 'Atelier'],
+    ['todo', '', 'Réception confirmée · dossier clos', '', ''],
+  ];
+  const col = { ok: 'var(--ok)', cur: 'var(--red)', todo: '#d7d4cf' };
+  $('#tl').innerHTML = tl.map(([s, d, t, x, src]) => `<div class="st"><div class="d tnum">${d}</div><div class="k" style="background:${col[s]}">${s === 'ok' ? '✓' : s === 'cur' ? '•' : ''}</div><div><b style="${s === 'todo' ? 'color:var(--muted)' : ''}">${t}</b>${x ? `<span class="muted sm">${x}</span>` : ''}</div><div>${src ? `<span class="tag">${src}</span>` : ''}</div></div>`).join('');
+  $('#msgs').innerHTML = [
+    ['19/10', 'Contrôle de sécurité obligatoire', 'Ouvert'], ['29/10', 'Rappel : votre NEO BT PRO', 'Ouvert'], ['10/11', 'Votre étiquette de retour', 'Ouvert'], ['19/11', 'Nous avons bien reçu votre appareil', 'Ouvert'], ['24/11', 'Votre appareil neuf est en route', 'Programmé'],
+  ].map(([d, t, s]) => `<div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line2)"><span class="sm muted tnum" style="width:40px">${d}</span><b class="sm" style="flex:1">${t}</b>${badge(s === 'Ouvert' ? 'ok' : 'idle', s)}</div>`).join('');
+}
+
+// ===== Relances =====
+const MAILS = {
+  FR: ['Votre NEO BT PRO doit être contrôlé', "Bonjour Camille, votre ARVA NEO BT PRO n° 24B-031482 n'a pas encore fait l'objet du contrôle de sécurité obligatoire. Cessez de l'utiliser et faites le contrôle dans l'application ARVA : cela prend quelques minutes.", "Faire le contrôle"],
+  EN: ['Your NEO BT PRO must be checked', "Hello Ryan, your ARVA NEO BT PRO no. 24B-030122 has not yet been through the mandatory safety check. Stop using it and run the check in the ARVA app: it only takes a few minutes.", 'Run the check'],
+  DE: ['Ihr NEO BT PRO muss geprüft werden', "Hallo Lukas, Ihr ARVA NEO BT PRO Nr. 24B-028815 wurde noch nicht der verpflichtenden Sicherheitsprüfung unterzogen. Bitte verwenden Sie es nicht mehr und führen Sie die Prüfung in der ARVA-App durch.", 'Prüfung starten'],
+  IT: ['Il tuo NEO BT PRO deve essere controllato', "Ciao Marco, il tuo ARVA NEO BT PRO n. 24B-033967 non è ancora stato sottoposto al controllo di sicurezza obbligatorio. Smetti di usarlo ed esegui il controllo nell'app ARVA.", 'Esegui il controllo'],
+  ES: ['Su NEO BT PRO debe ser revisado', "Hola Pau, su ARVA NEO BT PRO n.º 24B-029941 aún no ha pasado el control de seguridad obligatorio. Deje de utilizarlo y realice el control en la aplicación ARVA.", 'Hacer el control'],
+};
+function renderMail(k) {
+  document.querySelectorAll('#lang button').forEach((b) => b.classList.toggle('on', b.textContent === k));
+  const [t, x, c] = MAILS[k];
+  $('#mail').innerHTML = `<div class="mail"><div class="mh"><span class="wm">ARVA</span><span style="font-size:11px;opacity:.7">Contrôle de sécurité · NEO BT PRO</span></div><div class="mb"><div class="tt">${t}</div><p style="margin:10px 0 0;color:#333">${x.replace(/(\d{2}[AB]-\d{6})/g,'<span style="white-space:nowrap">$1</span>')}</p><span class="cta">${c}</span><p class="sm muted" style="margin:14px 0 0">Lien personnel : le résultat est rattaché automatiquement à ce numéro de série.</p></div></div>`;
+}
+function renderRelances() {
+  $('#seq').innerHTML = [
+    ['J0', 'E-mail de campagne', 'tous les propriétaires enregistrés, dans leur langue', '2 310', 'envoyés', '47 % ont fait le contrôle', 0],
+    ['J+10', 'Rappel e-mail', 'si le contrôle n\'est pas fait', '1 224', 'envoyés', '31 % ont fait le contrôle', 0],
+    ['J+21', 'Rappel e-mail + SMS', 'avec le lien direct vers le contrôle', '845', 'envoyés', '19 % ont fait le contrôle', 0],
+    ['J+35', 'Appel du SAV', 'liste du jour, triée par pays et par langue', '74', "à appeler aujourd'hui", 'commence aujourd\'hui', 1],
+  ].map(([j, t, d, v, u, cv, now]) => `<div class="step${now ? ' now' : ''}"><div class="j">${j}</div><h3>${t}</h3><div class="muted sm">${d}</div><div class="n tnum">${v} <span class="sm muted" style="font:500 12px Inter">${u}</span></div><div class="cv" style="${now ? 'color:var(--red)' : ''}">${cv}</div></div>`).join('');
+  const rev = [
+    ['Revendeur · Chamonix (74)', 'stock', 46, 41], ['École de ski · Val Thorens (73)', 'parc pro', 12, 0], ['Revendeur · Innsbruck', 'stock', 31, 22], ['Revendeur · Salt Lake City', 'stock', 58, 37],
+    ['Loueur · Verbier', 'location', 24, 8], ['Secours en montagne · Hautes-Alpes', 'parc pro', 18, 18], ['Revendeur · Bourg-Saint-Maurice (73)', 'stock', 27, 25], ['Revendeur · Vielha', 'stock', 19, 6],
+  ];
+  $('#rev').innerHTML = '<tr><th>Revendeur ou parc</th><th class="r">Appareils</th><th>Contrôlés</th><th>État</th></tr>' + rev.map(([nm, ty, a, c]) => { const r = c / a, st = r >= 0.85 ? ['ok', 'À jour'] : r >= 0.5 ? ['warn', 'En cours'] : ['late', 'En retard']; return `<tr><td><b>${esc(nm)}</b><div class="muted sm">${ty}</div></td><td class="r tnum">${a}</td><td><div style="display:flex;align-items:center;gap:10px"><div class="bar${st[0] === 'ok' ? ' ok' : ''}"><i style="width:${Math.max(3, r * 100)}%"></i></div><span class="tnum sm">${c}</span></div></td><td>${badge(...st)}</td></tr>`; }).join('');
+  $('#lang').innerHTML = Object.keys(MAILS).map((k) => `<button>${k}</button>`).join('');
+  document.querySelectorAll('#lang button').forEach((b) => b.addEventListener('click', () => renderMail(b.textContent)));
+  renderMail('FR');
+}
+
+// ===== Téléphone =====
+function renderPhones() {
+  $('#chk').innerHTML = [['Piles retirées', 1], ['Holster et leash retirés', 1], ['Numéro de série lisible', 1], ["Photo de l'appareil", 0]].map(([t, c]) => `<label class="ck"><input type="checkbox" ${c ? 'checked' : ''}>${t}</label>`).join('');
+  $('#devsmall').innerHTML = device(58);
+  const s = [['Contrôle fait', '9 novembre', 1], ['Étiquette de retour', '10 novembre', 1], ['Appareil reçu chez ARVA', '19 novembre · Annecy', 1], ['Appareil neuf expédié', 'mardi 24 novembre', 2], ['Reçu chez vous', 'livraison estimée jeudi 26', 0]];
+  $('#osteps').innerHTML = '<h4>Votre échange</h4>' + s.map(([t, d, k]) => `<div class="ostep${k === 1 ? ' done' : ''}"><div class="k" style="background:${k === 1 ? 'var(--ok)' : k === 2 ? 'var(--red)' : '#d7d4cf'}">${k === 1 ? '✓' : k === 2 ? '4' : '5'}</div><div><b style="${k ? '' : 'color:var(--muted)'}">${t}</b><div class="muted sm">${d}</div></div></div>`).join('');
+}
+
+
+// ===== Carte =====
+const GEO = {"eu":{"W":900,"H":640,"c":[{"id":"336","n":"Vatican","h":0,"d":"M748.7,498.3L748.2,498.4L748.2,498.2L748.2,497.9L748.7,497.9Z"},{"id":"832","n":"Jersey","h":0,"d":"M161.4,75.8L161.4,78.8L159.7,79.4L158.4,78.2L155.5,78L152.8,78.3L153.9,73.2L159,74.3Z"},{"id":"831","n":"Guernsey","h":0,"d":"M144.1,59L142.4,62.7L139,61.1L138.8,60L142.9,58.2L143.7,58.3Z"},{"id":"826","n":"United Kingdom","h":0,"d":"M111.8,0L111.5,1.1L108.7,7L104.6,11.4L100.4,11.6L96.7,7.9L89.7,3.4L87.3,0.6L86.5,0.4L85.6,1.3L82.6,2L79.5,1.7L74.7,2.2L66.1,4.1L62.5,5.7L54.8,10.4L53.1,11.7L49.9,16.9L45.8,17.4L42.6,13.5L38.6,11.6L34.2,12.4L31.3,13.9L30.3,12.2L30.6,9.1L34.3,5.7L43.1,3.9L48.1,0L111.8,0Z"},{"id":"756","n":"Switzerland","h":1,"d":"M605.2,181.7L606.4,182.3L609.3,184.8L609,189.1L606.1,196.4L604.7,202.1L604.8,206.5L605.2,208.5L605.8,208.5L609,208.6L610.5,208.5L615.4,209.4L619.5,210.8L620.5,212.7L621,214.9L625.9,217.6L631.4,219.2L633.3,218.5L639.5,210.9L642.3,211.9L644.1,215.7L644.1,217.6L642.7,225.2L642.7,229.4L644.5,231.9L644.7,234L644.4,235.9L641.7,236.3L638.1,235.4L634.9,232.4L632.4,233L630.5,233.9L629.7,237.1L629,240.8L629.5,242.8L631,244.3L632.3,247.6L633.3,251.9L634.2,253.9L633.5,254.7L631.7,255.4L630.1,255L626.9,250L625.4,248L623.3,247.9L619.5,249.3L613.7,252.6L611.3,252.7L609.2,252.2L607.2,249.9L605.4,245.2L604.6,242.3L603.5,242.4L599.7,241.7L598,243L598.3,247.8L598.2,254L596.5,257.9L591.5,265L589.8,268L589,270.2L588.9,272L590,275.2L591.1,278.1L590.3,280L587.6,281L585.5,279.2L584.6,276L580.1,271.7L581.8,267.9L581.4,266.9L574.3,265.3L571.1,262.6L566.6,257.8L565.6,255.7L565.6,248.8L565.2,247.1L564.6,246.3L562.6,246.4L559.8,248.9L557.2,252.6L551.9,257L551.4,257.8L553.4,261.7L553.3,263.3L549.2,269.8L548.4,271.9L542.9,276L540.3,277.6L532.4,275L530.2,274.6L526.7,276.8L521.8,278.7L513.8,280.8L510.7,279.5L509.4,278.2L508.6,276.3L506.5,273.1L504.2,271.1L502.5,268.9L500.4,266.6L499.1,264.7L500.7,258.2L499.3,256L498.5,252.8L498.9,250.6L498.2,250.1L491,249L484.9,249.5L480.8,251.7L477.2,255.3L476.8,256.1L477.1,256.7L478.9,259.9L476.1,263.5L471.5,266.2L468.3,266.5L466.8,266L466.8,262.3L469.4,261L471.8,258.5L472.5,255.1L472.7,252.7L470.3,249.9L470.5,248.1L472.1,244.7L472.9,241.8L474.1,239.2L479,234.9L483.9,230.7L484.5,226.2L484.9,220.7L485.6,219.4L492.2,216L493.7,214.7L494.6,212.9L499.7,206.7L504.8,200.5L505.7,198.5L506.6,197.3L506.5,196.3L506,195.6L503.4,195.1L502.5,193.2L505.1,189.8L508.5,187.6L511.7,187.5L513,188.3L512.9,189.5L514.3,190.6L516.9,191L519.8,190.5L522.9,189.1L524.7,186L525.6,183.6L530.3,180.9L533.6,182.1L542.5,182.2L549.1,181.2L553.1,179.3L558.2,179.1L561.6,179.9L562.1,179.8L563.1,179.5L563.9,178.5L567.1,177.7L567.5,176.9L567.4,176.1L566.8,175.7L562.8,176.2L561.3,175.7L560.9,174.2L562.1,171.6L564.8,169.5L567.3,168.9L569,169.3L573.6,173L574.5,173.1L575.2,172.4L576,171.9L577.6,172.6L579.3,174.9L579.6,175.3L589.2,173.9L591.4,173.8L598.2,177.7Z"},{"id":"724","n":"Spain","h":1,"d":"M315.3,640L329,630.2L334.4,627.2L345.8,623.9L347.6,624.4L346.1,626.6L346.1,627.5L347.5,628.6L347.1,630.3L345.7,631.7L345,634.4L345,634.4L349.3,636.4L353.8,634.8L356.2,635.3L358.6,636.3L359,640L315.3,640ZM396.3,632.1L395.5,632.8L381.9,625.9L377.4,625.2L376.3,624.1L376.5,620.6L376.9,619.1L386,618.5L393.3,621L397.3,627.8L397.6,628.9ZM0,391.9L3.8,393.8L27.6,401.6L36.5,402.8L49.2,401.3L54.7,399.8L59.3,401.6L66.7,400L70.1,400.7L74.1,404.7L89.3,410.9L93.8,407.4L96.9,406.7L107.8,410.2L118.7,416.2L124.6,417L133.3,416.4L140.6,413.8L141.9,413.5L141.9,413.5L141.9,415.5L143.2,418.5L144.9,419.6L148.5,421.3L151.2,421.7L154.9,422.7L157.4,424.5L157.3,427L156.3,429.7L154.6,432.1L153.6,434L154.4,435.2L155.7,436.2L157,436.5L158.1,436.3L159,434.9L160.5,433.1L161.3,432.9L161.2,433.9L161.7,435.3L166.3,437.9L176.2,442.8L180.1,443.2L183.4,443.9L184.2,445.7L190.4,452.6L191.9,452.5L194.8,452.8L198.3,452.5L200.9,451.5L202.5,451.8L204.3,453.2L206.4,454.3L209.1,456.6L211.4,459.4L213.1,460.4L223.4,459.2L225.6,461L228.1,461.1L230.9,460.8L236.8,462L241.7,462L242.2,461.4L243,455.7L243.8,453.6L244.9,453.1L247.8,453.7L258.1,457.6L262.2,459.9L266.3,461.9L270,462.2L272.2,463.4L275.3,469.1L274.8,471.8L274.9,472.8L275.3,474.8L275,476.9L275.9,478.3L277.4,478.6L279.6,478.2L281.8,477.4L285.9,475.3L287,474.9L293.5,477.9L296.3,479.7L297.3,481.8L298.7,483.7L300.6,484.1L303.5,482.3L308,480.5L315.4,482.5L323.6,485.4L327.2,485.8L327.3,484.5L328,482.7L329.4,481.9L331.4,481.7L334.4,480.8L337.7,479.3L340.9,478.8L344.4,480L348.7,481.1L351.3,481.2L352.3,484.8L354.5,486.3L355.2,489.4L351.4,491L349.1,491.2L348.4,496.6L349.3,498.2L351.4,499.7L352,501.3L352.3,509.4L347.8,514.1L341.5,519.4L310.8,536L303.3,544.2L300.6,546L278,550.5L261.8,555.5L254.2,557.2L244.2,566.6L239.6,570.4L243.2,571.7L247,576.6L245.5,578.7L239.3,581.6L236.6,582.4L235.2,581.9L233.7,582.2L222.6,598.7L212.7,610.6L207.2,615.6L201.6,623.3L191.1,640L0,640Z"},{"id":"703","n":"Slovakia","h":0,"d":"M900,123.2L899.4,123.3L898.5,123.7L895.9,122.2L894.8,119.8L890.1,113.7L884.4,103.4L883.9,100.2L884.9,96.5L886,93.5L885.9,91.4L886,90.8L886.6,86.1L888.6,79.7L890.8,75.8L892.7,74.4L896.9,74.7L900,74.7L900,123.2Z"},{"id":"705","n":"Slovenia","h":0,"d":"M886.3,213.9L882.7,213L878.4,213L877.7,213.8L876.1,214.8L875.5,216.3L876.8,221.7L875.9,222.8L871,222.9L869.5,223.7L867.5,227.9L864.9,229.8L861.8,231.4L859.4,233.1L856.4,234.7L853.8,235.8L852.9,237.6L852.5,239.5L852.9,241.3L856.1,244.4L857,248.1L857.3,252.7L856.9,255.2L856.1,256.9L849.4,259.9L842.8,264.6L842.8,265.4L846.4,268.4L846.6,269.2L844.3,271.4L844.2,273.3L844.8,275.5L846.5,277.5L847.2,279.6L843.5,281.5L838.2,281.6L831.6,279.6L829.3,280.2L827.4,282L825.2,281.6L822.5,280.2L818.7,276.9L816.7,274.9L815.9,272.6L814.8,272.3L813.6,273.2L812.8,276.2L810.2,281.7L808,283.4L804.5,283.5L799.5,284.1L796.5,285L792.6,283.5L791.7,284L791.9,285.2L790.6,287.2L788.6,288.7L777.5,287L775.8,284.9L778.1,283.5L781.2,280.1L783.4,280.3L786.1,279.3L787.2,278L785,274.4L780.1,270.1L777.6,268.7L774.3,267.8L773.6,266.6L774.5,259.1L773.9,258L770.3,258.8L769.3,258.1L768.9,256.8L769,255.1L771.2,251.9L773.6,249.1L774.2,247.7L774,246.6L770.4,245.7L768.1,244.9L766.5,244.6L765.4,245.3L764.5,244.7L763.4,242.7L763.9,239.4L766.6,236.1L769.8,233.1L772.6,230.8L774.1,229.9L774.6,226.5L776.3,226.6L779.9,226.4L783.9,226.8L787.5,227.3L790.8,228.1L797.7,228.6L803.8,228.6L805.7,229.1L807.1,228.8L809.1,229.6L810.2,228.8L810.7,227.4L813.8,225.4L816.7,222.9L818.4,220.1L819.4,217.8L821.3,216.2L823.5,215.4L825.4,214.5L833.8,212.4L842.7,212.1L846.8,210.2L849.9,207.1L854.8,205.8L855.1,205.7L862.9,206.6L863.3,205.5L863.5,204.9L862.6,199.4L864.7,196.6L866.8,195.2L874.4,194.6L875.6,196.2L876.2,198.7L877.4,202.1L878.8,202.9L879.7,204.2L879.9,206.6L881.6,208.2L885.7,212.7Z"},{"id":"674","n":"San Marino","h":0,"d":"M740.2,382.5L737.7,383.1L736.2,380.8L737.8,378L740.5,377.3L741.1,379.4Z"},{"id":"616","n":"Poland","h":0,"d":"M900,0.1L899.6,0L900,0ZM868.4,0L866.4,1.9L864.7,4.6L863.3,5.8L861.7,5.8L860,4.8L856.3,0L868.4,0Z"},{"id":"492","n":"Monaco","h":0,"d":"M530,404L527.5,405L527.6,403.8L528.2,403.1L528.9,402.8L529.8,403.3Z"},{"id":"442","n":"Luxembourg","h":0,"d":"M469.6,35.1L469.3,36.7L469.4,40.2L470.6,43.6L473,47L475,49.5L477.6,51.5L482.1,53.4L483.8,53.7L484,56.3L483.8,59L482.3,60.5L480.9,62.7L479.8,65.3L478.8,70.4L478.8,74L476.1,72.6L474.8,71.6L472.4,71.3L470.1,72.2L468.5,74L466.1,74.5L464.2,74.1L462.9,72.8L462,72L459,71.2L457.7,69.3L458.7,68.4L459.5,66.8L460.1,64.9L461.1,63L458.2,57.9L457.5,56.3L455.1,53.5L455.1,52.1L455.6,50.7L455.5,49.6L455.8,47L457.3,44.6L458.4,41.5L460.2,37.5L464.4,32.5L467.2,33.2L468.5,33.2L469.4,34.9Z"},{"id":"438","n":"Liechtenstein","h":0,"d":"M609,208.6L605.8,208.5L605.2,208.5L604.8,206.5L604.7,202.1L606.1,196.4L606.6,197.2L606.8,198.4L607.3,199.6L607.5,201.2L608.2,202.8L609.4,204.3L609.9,205.6L609.5,207.5Z"},{"id":"380","n":"Italy","h":1,"d":"M748.7,498.3L748.7,497.9L748.2,497.9L748.2,498.2L748.2,498.4ZM740.2,382.5L741.1,379.4L740.5,377.3L737.8,378L736.2,380.8L737.7,383.1ZM900,497.5L899.9,497.6L900,499.9L900,591.2L900,591.2L897.5,589.7L888.9,590.9L884.5,590.5L868.1,582.5L866.9,581.1L866.6,578.6L868.7,574.3L866.5,569.3L864,564.5L860.6,560.6L857,558.8L850.4,561L848.2,562.2L843.9,562.3L840.8,564.6L838.9,564.9L843.2,556.8L841.6,555.3L836.1,552.8L829,553.1L827,552.9L826,555L824.6,554.1L824.4,550.7L814.5,536.6L808.3,531.1L805.5,530.3L800.7,532.1L792,530.3L786.9,530.2L784.3,531.1L780.3,533.5L778.1,532.5L777.2,530.5L769.1,524.9L759.2,522.3L739.1,504.2L732.9,497.3L720.6,490.1L712.3,478.8L706,474.9L697.1,472.1L695.1,472.6L692.6,474.1L690.6,474.5L689,473.1L690.4,471.4L692.2,470.5L691.2,466.1L680.6,454.9L674.5,451.6L672.8,449.3L671.4,446.2L670,444.3L667.2,443.2L664.9,443.6L661.6,443L661.4,437.3L661.7,432.9L661,429.3L657.3,419.8L651.4,411.9L647.1,392.5L644.2,387.2L638.1,383.3L624.6,379.5L605.7,367.8L601.8,367.8L590.5,363.4L583.7,363L575.1,367.7L564.8,380.3L556.4,393.2L553.4,395.8L542.2,400.6L532.2,402.9L532,399.7L531.6,397.3L533.2,394.5L535.9,391.3L538.4,387.2L539.3,384.3L538.8,382.4L537.5,379.7L535.9,379.5L526.5,382.1L524.2,381.6L517.1,378.1L509.5,373.7L506.6,370.5L505.5,367.4L506.2,365.2L505.5,363.2L504,360.5L505.3,357.4L507.5,353.4L508.7,350.8L510.6,350L511.4,348.4L509.8,342L508.9,341L507.5,340.2L505.5,340.2L501.9,338.9L499.2,336.8L498.5,333.8L497.1,331L494.7,328.3L494.5,325.5L497,323.9L500.7,323.8L503.2,324.3L508.8,319.5L510.9,319.1L512.7,318L514,311.7L515.3,309.7L515.6,308.6L514.4,307.3L509.7,302.9L507.4,298.3L504.1,293.3L501,291L500.3,289.2L500.2,286.9L500.8,285L506.1,281.7L509.4,278.2L509.4,278.2L510.7,279.5L513.8,280.8L521.8,278.7L526.7,276.8L530.2,274.6L532.4,275L540.3,277.6L542.9,276L548.4,271.9L549.2,269.8L553.3,263.3L553.4,261.7L551.4,257.8L551.9,257L557.2,252.6L559.8,248.9L562.6,246.4L564.6,246.3L565.2,247.1L565.6,248.8L565.6,255.7L566.6,257.8L571.1,262.6L574.3,265.3L581.4,266.9L581.8,267.9L580.1,271.7L584.6,276L585.5,279.2L587.6,281L590.3,280L591.1,278.1L590,275.2L588.9,272L589,270.2L589.8,268L591.5,265L596.5,257.9L598.2,254L598.3,247.8L598,243L599.7,241.7L603.5,242.4L604.6,242.3L605.4,245.2L607.2,249.9L609.2,252.2L611.3,252.7L613.7,252.6L619.5,249.3L623.3,247.9L625.4,248L626.9,250L630.1,255L631.7,255.4L633.5,254.7L634.2,253.9L633.3,251.9L632.3,247.6L631,244.3L629.5,242.8L629,240.8L629.7,237.1L630.5,233.9L632.4,233L634.9,232.4L638.1,235.4L641.7,236.3L644.4,235.9L644.7,234L644.5,231.9L642.7,229.4L642.7,225.2L644.1,217.6L645.1,218.1L649.1,217.9L653.6,218L656.5,221L659.3,221.8L663.3,221.8L665.8,221.2L667,220L668.3,216.3L670.7,211.6L675,209L682.3,207.9L686.1,206.8L689.9,206.6L692.8,207.1L695.8,206.8L703.2,203L710.9,199.8L712.1,200.1L712.3,201L711.1,202.9L709.9,205.6L711.1,208.4L716,213.7L718.8,217.9L721.6,221L725.3,222.4L730.1,223.1L734.1,223.1L738.5,223.9L753.1,225.6L760.5,225.7L766.1,225.3L774.6,226.5L774.1,229.9L772.6,230.8L769.8,233.1L766.6,236.1L763.9,239.4L763.4,242.7L764.5,244.7L765.4,245.3L766.5,244.6L768.1,244.9L770.4,245.7L774,246.6L774.2,247.7L773.6,249.1L771.2,251.9L769,255.1L768.9,256.8L769.3,258.1L770.3,258.8L773.9,258L774.5,259.1L773.6,266.6L774.3,267.8L777.6,268.7L780.1,270.1L785,274.4L787.2,278L786.1,279.3L783.4,280.3L781.2,280.1L783.4,277.6L776.3,270L773.5,270.3L770.1,274.2L759.3,271.7L757.4,273.4L756.3,276.3L753,280.2L748,282.2L742.6,286.5L736.9,289.8L732.4,292.3L729.7,292.2L733.6,287.4L731.7,287.5L726.4,291.1L723.4,294.1L722.8,298.6L722.4,306.1L725.1,307.8L730.4,317.1L736,320.7L735.4,324.8L734.3,328.1L731.3,331.1L728.3,329.3L726.7,329.4L726.1,336L730,352.6L734.7,364.2L738.9,369L748.2,376.3L757.6,379.7L775.1,391.7L784.4,395L786.9,397.2L793.4,407L799.4,418.6L806.5,437L811.1,446L819.6,455.7L836.7,469L851.8,478.5L865.6,483.7L876,483.6L899.6,479L900,479L900,497.5ZM657,449.7L658.5,451.8L658.8,453.1L658,454.7L658.6,458L654.8,455.4L649.5,457.1L646.3,457.1L645.2,454.7L645.9,453.1L650.9,452.5L652.6,451.7L655.6,451.8ZM820.6,560.7L818.7,561.4L817.6,560.9L816.8,560.1L817.4,557.8L821.5,558.7L821.4,559.9ZM582.7,640L582.1,636L583,634.4L584.9,635.9L586.1,635.3L585.9,633.1L586.2,629.1L583.6,625.7L579.7,624.8L579.3,621.3L579.4,617.7L581.4,615.3L581.9,612.3L581.7,602.8L578.7,599.5L577.5,594.3L575.9,591L573.3,587.7L570.3,585.1L568.3,582.5L567.7,575.6L568.4,569.7L569.3,567.3L570.2,567.5L573.2,570.3L575.6,570.8L580.2,571.4L584.8,570.3L590.2,567.4L595.4,564L602.7,554.3L607.3,552.3L609.7,549.6L610.3,546.3L612.3,545.3L614.8,548.4L617.8,548.6L622.5,551L624.5,553.5L626.4,556.4L628.1,557.6L629.9,558.3L630.2,559L628.8,559.8L627.5,563.4L628.5,564.4L631.1,566.1L631.1,566.1L633.5,569.7L639.3,584.6L640,587.8L639.2,591.3L638.1,593.7L633.6,601.6L634.7,607.9L636.7,611.8L637.3,616.1L636.6,621.6L636,640L582.7,640ZM571.7,559.8L570.4,562.5L568.3,562.4L569,560.4L570.8,556.4L573.1,555L574,556.1L573,558.4Z"},{"id":"348","n":"Hungary","h":0,"d":"M900,219.9L896.3,217.4L888.6,214.4L886.3,213.9L885.7,212.7L881.6,208.2L879.9,206.6L879.7,204.2L878.8,202.9L877.4,202.1L876.2,198.7L875.6,196.2L874.4,194.6L866.8,195.2L872.2,188.2L875,186L878.8,185.7L879.8,185.1L880,184.2L880.2,182L880.4,180L880.4,178.2L879.9,177.2L878.1,177.2L876.7,172.8L877.3,171L877.9,169.7L876.2,164.4L876.2,162.6L879,161.9L881.1,160.4L882.8,158.8L883.2,157L884.2,153.4L882.2,149.4L873.8,147.9L873.2,146.8L874.8,145.4L876.7,143.4L877.6,141.9L879.1,141.5L881.4,141.9L885.8,144.3L887.2,144.6L888.6,143.5L890.1,143.1L894.3,142.6L897.9,141.3L896.5,138.3L896.2,135.9L895.4,134.1L895.5,132L896.6,130.2L896.5,126.6L898.5,123.7L899.4,123.3L900,123.2L900,219.9Z"},{"id":"276","n":"Germany","h":1,"d":"M724.8,0L724.5,1.5L723.5,3.9L722.8,4.5L719.9,3.8L716,3.7L714,5.2L711.4,6.2L708.2,6.7L704.9,9.5L701.7,14.3L700.2,18.4L699.3,19.9L697.2,16.4L694.8,14L693.3,12.8L691.9,12.9L691.7,13.5L691.9,15.4L693.5,18.6L695.4,20.5L695.8,22.1L697.2,24.9L700,27.9L704.2,30.1L707.2,32.4L709.5,35.7L709.6,36.7L709.2,38.2L708.4,39.6L707.7,41.5L705.7,45.2L706.6,46.7L708.6,48.4L710.4,50.6L712.8,54.1L716.3,60.5L718.4,63L721.3,65.6L723.9,67.5L727.7,67L732.2,70.8L737.3,76.1L740.8,78.5L743.2,79.1L745.4,81.1L747.3,84L748.2,85.7L749.8,86.8L753.9,86.1L759.6,90.4L763.1,93.6L765.2,96.2L764.9,97.4L765,100.9L765.4,104.7L765.2,106.7L763.2,109.5L762,110.3L761.3,110.8L753.8,108.2L753.3,108.8L752.8,109.3L751.9,119.4L750.9,121.4L749,123.4L745,125.5L742.3,126.5L740,127.5L733.3,132.3L730.4,135.2L728.6,138.5L728.8,140.3L732.7,145.2L737.3,150.3L737.8,155L736.3,158.8L736,160.3L737.3,160.6L739.6,160.6L741.5,161L742.5,163.5L742.7,167.9L742.4,172.1L742,173.9L740.2,174.2L736.5,172.8L733.6,170.9L732.4,169.8L732.3,168.3L732.7,167.3L731.6,165.4L728,164L724.6,165.2L722,166.5L720.4,166.7L718.4,165.1L715.4,164.1L711.6,163.6L709.3,162.9L708.8,163.5L709.4,167.1L708.8,168.7L690.7,172.4L685.2,174.7L681.5,177.6L678.5,178.9L677.9,180.6L675.1,182.8L671.8,183.7L670.9,183.1L668.8,184.2L665.2,185.4L662.8,185.3L661.5,183.7L659.1,181.4L658,179.6L658,178.5L652.8,178.7L649.5,177.5L642.6,178.4L640.9,177.9L640.6,178.5L640,185.7L638.9,188.8L636.8,192L634.1,193.9L631.9,194.3L631.9,192.1L632.3,189.4L630.5,188.9L628.1,188.7L626.9,188L627.1,185.9L626.5,184.8L625.4,183.4L622.7,181.8L617.5,179.3L613.9,178.1L612.6,179.6L610.1,181.3L606.1,181L605.2,181.7L605.2,181.7L598.2,177.7L591.4,173.8L589.2,173.9L579.6,175.3L579.3,174.9L577.6,172.6L576,171.9L575.2,172.4L574.5,173.1L573.6,173L569,169.3L567.3,168.9L564.8,169.5L562.1,171.6L560.9,174.2L561.3,175.7L562.8,176.2L566.8,175.7L567.4,176.1L567.5,176.9L567.1,177.7L563.9,178.5L563.1,179.5L562.1,179.8L561.6,179.9L558.2,179.1L553.1,179.3L549.1,181.2L542.5,182.2L533.6,182.1L530.3,180.9L528.3,180.1L526.8,176.3L527,170.5L528.9,162.8L529.3,157.1L528.2,153.6L529.3,148.1L532.5,140.8L534.5,133.2L535.5,125.3L536.9,120L540,116.2L547.3,105.9L548,105L547.5,100L545.4,99.4L542.4,98L534.6,96.4L527.4,95.5L524.1,94.2L521.1,90.5L519.3,90.4L515.9,91.9L511.6,93L508.5,92.2L506.5,92.5L505.4,93.2L504.8,92.6L503.9,89.3L502.3,88.4L499.8,87.8L498.2,88.1L497.1,89.8L495.5,91L493.8,90.7L488.9,83.2L487.6,81.5L487.2,80L486,77.2L483,74.5L480.1,73.6L478.8,74L478.8,70.4L479.8,65.3L480.9,62.7L482.3,60.5L483.8,59L484,56.3L483.8,53.7L482.1,53.4L477.6,51.5L475,49.5L473,47L470.6,43.6L469.4,40.2L469.3,36.7L469.6,35.1L469.8,34L471.7,28.6L478.6,23.6L477.9,18.7L477.7,15.7L475.9,13.8L472.5,13L471.6,11.7L471.2,10.3L473.7,7.3L470.6,4.9L469.2,2.5L465.7,0L724.8,0Z"},{"id":"250","n":"France","h":1,"d":"M618.4,455.1L617.8,463.6L618.7,466L620.3,467.8L621.2,469.6L623.7,492.2L623.5,494L618.7,503.4L617.7,506.1L618,517.5L617.3,520.6L615.6,523.7L612.8,533.5L610,538L601.8,533.1L597,531.1L594.7,528.7L593,527L593.9,524.7L595.9,522.2L596.2,520.3L591.1,518.4L588.7,517.1L588.6,514.7L590.1,510.8L589.2,507.6L586.4,508L584.1,507.6L583.8,505.9L585.3,503.7L587.3,500.9L587,497.8L584.5,496.6L582.1,494.2L581,491L582.8,488.6L585.5,486.9L583.3,483.6L581.8,483.6L580.7,482.9L581.5,481.3L583.6,478.7L586.5,471.5L590.6,467.9L598.2,465.4L600.3,464.4L602,461.8L604.1,460L606.5,460.1L609,460.9L610.5,461.9L611.6,460.8L612.4,457.6L611.6,454.9L611.5,447.4L612.7,443.1L615,442.6L617.1,444.9L617,447L618.1,451.8ZM361.1,0L362.5,3.1L363,7.3L363.8,10.8L365.4,12.2L371.3,12.8L375.6,14.2L376.8,15.4L378.2,23.1L379,24.2L380.2,23.3L381.3,22.1L382.8,21.9L385.3,22.5L388.8,22.6L392.3,23.5L397,28L396.9,29.4L395.9,31.9L395.5,33.9L396.3,34.8L397.6,36.8L397.3,39.2L396,40.9L395.5,42.3L395.5,43.3L395.9,44L397,44.6L404.2,45.6L410.8,44.7L415,42.3L415.7,39.8L416.9,36.8L419.3,34.3L421.1,33.5L422.7,34.5L420,44.8L421.8,47.5L422.1,51.4L422.9,54.8L425.2,54.8L428.1,55.4L430.1,56.7L432.5,58.7L435.9,60.6L438.4,61.2L439.2,62.8L441.2,64.6L444.2,68.4L447,70.9L448.3,70.9L450.9,69.8L454.7,69.2L457.7,69.3L459,71.2L462,72L462.9,72.8L464.2,74.1L466.1,74.5L468.5,74L470.1,72.2L472.4,71.3L474.8,71.6L476.1,72.6L478.8,74L480.1,73.6L483,74.5L486,77.2L487.2,80L487.6,81.5L488.9,83.2L493.8,90.7L495.5,91L497.1,89.8L498.2,88.1L499.8,87.8L502.3,88.4L503.9,89.3L504.8,92.6L505.4,93.2L506.5,92.5L508.5,92.2L511.6,93L515.9,91.9L519.3,90.4L521.1,90.5L524.1,94.2L527.4,95.5L534.6,96.4L542.4,98L545.4,99.4L547.5,100L548,105L547.3,105.9L540,116.2L536.9,120L535.5,125.3L534.5,133.2L532.5,140.8L529.3,148.1L528.2,153.6L529.3,157.1L528.9,162.8L527,170.5L526.8,176.3L528.3,180.1L530.3,180.9L530.3,180.9L525.6,183.6L524.7,186L522.9,189.1L519.8,190.5L516.9,191L514.3,190.6L512.9,189.5L513,188.3L511.7,187.5L508.5,187.6L505.1,189.8L502.5,193.2L503.4,195.1L506,195.6L506.5,196.3L506.6,197.3L505.7,198.5L504.8,200.5L499.7,206.7L494.6,212.9L493.7,214.7L492.2,216L485.6,219.4L484.9,220.7L484.5,226.2L483.9,230.7L479,234.9L474.1,239.2L472.9,241.8L472.1,244.7L470.5,248.1L470.3,249.9L472.7,252.7L472.5,255.1L471.8,258.5L469.4,261L466.8,262.3L466.8,266L468.3,266.5L471.5,266.2L476.1,263.5L478.9,259.9L477.1,256.7L476.8,256.1L477.2,255.3L480.8,251.7L484.9,249.5L491,249L498.2,250.1L498.9,250.6L498.5,252.8L499.3,256L500.7,258.2L499.1,264.7L500.4,266.6L502.5,268.9L504.2,271.1L506.5,273.1L508.6,276.3L509.4,278.2L506.1,281.7L500.8,285L500.2,286.9L500.3,289.2L501,291L504.1,293.3L507.4,298.3L509.7,302.9L514.4,307.3L515.6,308.6L515.3,309.7L514,311.7L512.7,318L510.9,319.1L508.8,319.5L503.2,324.3L500.7,323.8L497,323.9L494.5,325.5L494.7,328.3L497.1,331L498.5,333.8L499.2,336.8L501.9,338.9L505.5,340.2L507.5,340.2L508.9,341L509.8,342L511.4,348.4L510.6,350L508.7,350.8L507.5,353.4L505.3,357.4L504,360.5L505.5,363.2L506.2,365.2L505.5,367.4L506.6,370.5L509.5,373.7L517.1,378.1L524.2,381.6L526.5,382.1L535.9,379.5L537.5,379.7L538.8,382.4L539.3,384.3L538.4,387.2L535.9,391.3L533.2,394.5L531.6,397.3L532,399.7L532.2,402.9L530,404L529.8,403.3L528.9,402.8L528.2,403.1L527.6,403.8L527.5,405L522.7,407.3L519.3,409.5L506.3,422.6L500.1,426.6L499,428.8L497.9,433.1L494.3,436.8L491,438.5L483.1,440.5L475,444.4L471.5,442.8L462.1,443.1L456.2,438.5L445,435.6L441.3,428.9L436.3,428.5L432.9,428.7L431,427.7L430.4,425.4L430.4,423.2L426.9,424.2L424.1,424.2L422.5,425.1L421.3,426.1L419.7,425.4L418.8,425.7L419,427L415.6,427.3L412.2,426.5L402.9,422.9L401.6,422.4L395.2,421L392.7,419.6L390.6,416L388.9,415L388,414.3L382.1,415.9L379.9,418.6L376.7,421.8L354.3,437L350,443.4L345.1,452.9L344.7,457.3L346.3,471.7L350.8,479.3L351.3,481.2L348.7,481.1L344.4,480L340.9,478.8L337.7,479.3L334.4,480.8L331.4,481.7L329.4,481.9L328,482.7L327.3,484.5L327.2,485.8L323.6,485.4L315.4,482.5L308,480.5L303.5,482.3L300.6,484.1L298.7,483.7L297.3,481.8L296.3,479.7L293.5,477.9L287,474.9L287.5,473.6L288.6,471.9L288.7,470.8L287.3,469.1L281.4,467.1L278.7,466.5L276.8,467.7L275.3,469.1L272.2,463.4L270,462.2L266.3,461.9L262.2,459.9L258.1,457.6L247.8,453.7L244.9,453.1L243.8,453.6L243,455.7L242.2,461.4L241.7,462L236.8,462L230.9,460.8L228.1,461.1L225.6,461L223.4,459.2L213.1,460.4L211.4,459.4L209.1,456.6L206.4,454.3L204.3,453.2L202.5,451.8L200.9,451.5L198.3,452.5L194.8,452.8L191.9,452.5L190.4,452.6L184.2,445.7L183.4,443.9L180.1,443.2L176.2,442.8L166.3,437.9L161.7,435.3L161.2,433.9L161.3,432.9L160.5,433.1L159,434.9L158.1,436.3L157,436.5L155.7,436.2L154.4,435.2L153.6,434L154.6,432.1L156.3,429.7L157.3,427L157.4,424.5L154.9,422.7L151.2,421.7L148.5,421.3L144.9,419.6L143.2,418.5L141.9,415.5L141.9,413.5L148.9,412.4L155.7,405.5L163.6,379.6L170.1,348.7L173.5,343.1L177.5,341.7L174.7,337.2L172.6,339.2L171.7,341.4L170.6,342.6L175,314.1L177.4,303.7L181,293L186.3,297.7L190.7,302.5L192.9,306.6L195.1,319.5L197.1,322.4L200.5,325.2L199.4,322.2L197,319.9L194.5,302.5L192.5,297.5L189.2,293.3L178.1,283.9L177.1,282.1L176.8,278.8L180.7,279.2L183.9,281.1L183.6,279.2L182.7,277.3L181.8,270.2L181.7,254L182,251.1L181.7,247.7L178,246.7L175.2,246.3L172.1,244.7L157.1,233.9L152.6,223.6L147.7,215.9L146.7,212.6L147.1,209.4L150.5,202.9L148.3,198.4L146,197.4L144,195.1L146.3,191.8L148.1,189.6L151.2,189.2L155.4,190.4L159.2,192.7L162.1,193.5L153.5,187.3L138.6,187.8L135.4,186.8L132.8,185.4L132.2,181.3L134.5,179.7L136.6,176.4L134.7,173.9L132,172.8L127.6,172.5L123.5,172.8L122.6,171.3L125.3,167.8L123.4,166.2L120.5,166.6L116.4,166.9L112.5,165.4L109.3,160.9L106.9,160.6L105.2,161L102.8,159.1L100.2,158.4L98.3,158.7L96.1,156.1L81.4,149.5L74.9,148.2L68.6,149.8L65.4,148.7L63.2,145.2L61.9,139.7L52.6,134.5L54.9,132L59.4,131.9L64.7,130.6L66.9,128.5L63.2,125.3L60.3,124.2L59.1,123.1L58.2,120.5L60.1,119.5L61.3,120.3L64.8,121.1L71.1,121.2L69.2,118.4L66.8,117.6L65.8,116.8L60.8,116L58.4,116.6L53.3,115.6L52.4,112.7L52.2,110.4L54.4,105.4L62.2,101.7L80.8,98.6L88.4,100.2L94,99.8L100.8,97.4L103.8,94.9L113.2,94.2L121.5,98L128.6,109.7L132.1,113.8L142.1,108.2L156.1,109.7L158.7,113.5L160.1,110.6L163,107.2L164.9,109L165.8,111.3L180.6,111.9L183,111.5L179.2,108.5L176.6,102L177.7,78.9L174.2,72.1L170.4,61.5L168.7,55.3L168.8,53.1L169.7,50.2L175.4,50.7L179.6,51.9L188.2,50.2L192.1,52.2L191.5,56.9L192.3,63L193.5,66L195.3,69.4L202.2,69.6L209.4,72.1L218.6,73L231.9,77.3L237.7,75.7L243.6,71.9L254.3,69.7L255.4,68.4L249.2,68.6L243.7,65.7L243.2,62.7L244,60.2L246.5,54.5L263.3,46.1L274.9,43.9L287.1,39.4L293.4,34.4L297.7,27.7L299.1,26.3L300.8,25.1L299.3,22.6L301.2,0L361.1,0ZM178.6,271.2L176.8,276.1L174.6,271.3L171.3,266.9L170.8,263.1L170.9,262.1L174.9,265.2Z"},{"id":"203","n":"Czechia","h":0,"d":"M900,74.7L896.9,74.7L892.7,74.4L890.8,75.8L888.6,79.7L886.6,86.1L886,90.8L884.9,89.6L882.4,85.1L880.4,84.7L877.8,84.7L875.7,84.3L871.1,82.1L868.8,81.6L866.3,81.7L864.1,83.7L862.6,85.8L857,86.6L850.7,86.6L841,81.4L838.8,81.6L836.3,82.2L832.3,81.2L824.3,78.1L820.6,77.6L818.5,78.4L816.7,79.6L815.2,79.9L814.2,78.6L811.3,77.4L808.4,77.5L807.7,78.6L808,87.8L807.4,91.1L803.6,91.4L802.4,93.1L799.9,97.9L799.7,102.1L794.4,101.9L791.8,101.5L789.7,102.3L787.5,104.9L780.7,105.5L775.2,104.8L772.3,99.8L769.6,98L766.4,96.5L765.2,96.2L763.1,93.6L759.6,90.4L753.9,86.1L749.8,86.8L748.2,85.7L747.3,84L745.4,81.1L743.2,79.1L740.8,78.5L737.3,76.1L732.2,70.8L727.7,67L723.9,67.5L721.3,65.6L718.4,63L716.3,60.5L712.8,54.1L710.4,50.6L708.6,48.4L706.6,46.7L705.7,45.2L707.7,41.5L708.4,39.6L709.2,38.2L709.6,36.7L709.5,35.7L707.2,32.4L704.2,30.1L700,27.9L697.2,24.9L695.8,22.1L695.4,20.5L693.5,18.6L691.9,15.4L691.7,13.5L691.9,12.9L693.3,12.8L694.8,14L697.2,16.4L699.3,19.9L700.2,18.4L701.7,14.3L704.9,9.5L708.2,6.7L711.4,6.2L714,5.2L716,3.7L719.9,3.8L722.8,4.5L723.5,3.9L724.5,1.5L724.8,0L856.3,0L856.3,0L860,4.8L861.7,5.8L863.3,5.8L864.7,4.6L866.4,1.9L868.4,0L899.6,0L899.6,0L900,0.1L900,74.7Z"},{"id":"191","n":"Croatia","h":0,"d":"M900,287.4L897.3,287.5L894.7,291L891.8,297.5L889.3,300.8L886.7,300L883.4,297.9L877.2,291.9L874.4,290.9L871.3,291L868.8,292.2L867.6,293.8L867.8,303.7L867.9,312.5L868.6,317.8L875.1,321.8L883.2,329.2L885.5,329.9L886.9,332.4L889.5,339.2L892.3,346.8L896.6,351.5L900,354.4L900,385.8L900,385.8L894.5,388L891,388.5L888.4,388L886.2,385.4L886.2,383.2L885.5,380.5L879.8,376.5L872.4,373L865.2,368.3L850.4,354.8L847.1,350.3L849.5,349.1L851.4,348.8L853.5,347.6L857.1,347.1L861.4,347.6L857.3,344.8L852.3,342.2L838.9,331L834.6,325.5L833.4,319.1L833.2,310.2L830.4,304.1L820.4,297L816.5,293.1L809.7,291.4L806.6,291.9L805.2,295.3L804.7,302.6L799.9,312.5L798.3,316.9L795.8,322.4L793.2,323.1L791.5,322.8L785.7,314.5L780.3,308.2L779.4,305.1L778.5,301.2L773.5,287.1L775.8,284.9L775.8,284.9L777.5,287L788.6,288.7L790.6,287.2L791.9,285.2L791.7,284L792.6,283.5L796.5,285L799.5,284.1L804.5,283.5L808,283.4L810.2,281.7L812.8,276.2L813.6,273.2L814.8,272.3L815.9,272.6L816.7,274.9L818.7,276.9L822.5,280.2L825.2,281.6L827.4,282L829.3,280.2L831.6,279.6L838.2,281.6L843.5,281.5L847.2,279.6L846.5,277.5L844.8,275.5L844.2,273.3L844.3,271.4L846.6,269.2L846.4,268.4L842.8,265.4L842.8,264.6L849.4,259.9L856.1,256.9L856.9,255.2L857.3,252.7L857,248.1L856.1,244.4L852.9,241.3L852.5,239.5L852.9,237.6L853.8,235.8L856.4,234.7L859.4,233.1L861.8,231.4L864.9,229.8L867.5,227.9L869.5,223.7L871,222.9L875.9,222.8L876.8,221.7L875.5,216.3L876.1,214.8L877.7,213.8L878.4,213L882.7,213L886.3,213.9L888.6,214.4L896.3,217.4L900,219.9L900,287.4ZM852.9,360.9L853.9,362.8L848.3,359.7L846,357.3L845.4,356.3ZM829.2,310.4L824.4,312.2L821.8,310.2L821,308.5L816.7,308.4L813.9,306.2L813.3,305.1L816.5,301.9L817.9,297.2L820.5,299.6L824.1,304.4L825.8,305.6ZM831.6,322.9L832.9,325.2L828.8,323.4L825.4,322.9L824.4,321.3L824.7,319.8L825.3,318.3L827.9,318.2L828.5,319.6ZM849.2,345.4L848.4,347.1L845.3,344.5L842.7,342.8L840.7,340.7L836.9,338.1L835.3,334.9L829.5,328.6L828.4,326.8L831.3,329.3L833.6,330.8L835.4,331L840.4,334.9L845.5,340L851.3,344.3L850.2,344.6ZM852.3,369.2L853,369.9L852.9,370.6L850.8,370L850.2,370.3L838.5,358.9L837.2,356.7L841.1,359.1ZM859.4,365.3L862.8,369.2L860,368.7L857,366.3L855,363.7ZM818.3,330.2L818.2,332.4L815.4,329.9L813.5,325L809.5,317.1L808.8,314.9L810.1,312.4L809.9,310.1L806.9,303.1L808.5,301.8L809.6,301.5L810.6,306.5L812,309.3L815.3,312.4L815.4,318.3L817,326.5L817.8,328.2Z"},{"id":"070","n":"Bosnia and Herz.","h":0,"d":"M900,354.4L896.6,351.5L892.3,346.8L889.5,339.2L886.9,332.4L885.5,329.9L883.2,329.2L875.1,321.8L868.6,317.8L867.9,312.5L867.8,303.7L867.6,293.8L868.8,292.2L871.3,291L874.4,290.9L877.2,291.9L883.4,297.9L886.7,300L889.3,300.8L891.8,297.5L894.7,291L897.3,287.5L900,287.4L900,354.4Z"},{"id":"056","n":"Belgium","h":0,"d":"M465.7,0L469.2,2.5L470.6,4.9L473.7,7.3L471.2,10.3L471.6,11.7L472.5,13L475.9,13.8L477.7,15.7L477.9,18.7L478.6,23.6L471.7,28.6L469.8,34L469.6,35.1L469.4,34.9L468.5,33.2L467.2,33.2L464.4,32.5L460.2,37.5L458.4,41.5L457.3,44.6L455.8,47L455.5,49.6L455.6,50.7L455.1,52.1L455.1,53.5L457.5,56.3L458.2,57.9L461.1,63L460.1,64.9L459.5,66.8L458.7,68.4L457.7,69.3L454.7,69.2L450.9,69.8L448.3,70.9L447,70.9L444.2,68.4L441.2,64.6L439.2,62.8L438.4,61.2L435.9,60.6L432.5,58.7L430.1,56.7L428.1,55.4L425.2,54.8L422.9,54.8L422.1,51.4L421.8,47.5L420,44.8L422.7,34.5L421.1,33.5L419.3,34.3L416.9,36.8L415.7,39.8L415,42.3L410.8,44.7L404.2,45.6L397,44.6L395.9,44L395.5,43.3L395.5,42.3L396,40.9L397.3,39.2L397.6,36.8L396.3,34.8L395.5,33.9L395.9,31.9L396.9,29.4L397,28L392.3,23.5L388.8,22.6L385.3,22.5L382.8,21.9L381.3,22.1L380.2,23.3L379,24.2L378.2,23.1L376.8,15.4L375.6,14.2L371.3,12.8L365.4,12.2L363.8,10.8L363,7.3L362.5,3.1L361.1,0L465.7,0Z"},{"id":"040","n":"Austria","h":1,"d":"M606.1,196.4L609,189.1L609.3,184.8L606.4,182.3L605.2,181.7L606.1,181L610.1,181.3L612.6,179.6L613.9,178.1L617.5,179.3L622.7,181.8L625.4,183.4L626.5,184.8L627.1,185.9L626.9,188L628.1,188.7L630.5,188.9L632.3,189.4L631.9,192.1L631.9,194.3L634.1,193.9L636.8,192L638.9,188.8L640,185.7L640.6,178.5L640.9,177.9L642.6,178.4L649.5,177.5L652.8,178.7L658,178.5L658,179.6L659.1,181.4L661.5,183.7L662.8,185.3L665.2,185.4L668.8,184.2L670.9,183.1L671.8,183.7L675.1,182.8L677.9,180.6L678.5,178.9L681.5,177.6L685.2,174.7L690.7,172.4L708.8,168.7L709.4,167.1L708.8,163.5L709.3,162.9L711.6,163.6L715.4,164.1L718.4,165.1L720.4,166.7L722,166.5L724.6,165.2L728,164L731.6,165.4L732.7,167.3L732.3,168.3L732.4,169.8L733.6,170.9L736.5,172.8L740.2,174.2L742,173.9L742.4,172.1L742.7,167.9L742.5,163.5L741.5,161L739.6,160.6L737.3,160.6L736,160.3L736.3,158.8L737.8,155L737.3,150.3L732.7,145.2L728.8,140.3L728.6,138.5L730.4,135.2L733.3,132.3L740,127.5L742.3,126.5L745,125.5L749,123.4L750.9,121.4L751.9,119.4L752.8,109.3L753.3,108.8L753.8,108.2L761.3,110.8L762,110.3L763.2,109.5L765.2,106.7L765.4,104.7L765,100.9L764.9,97.4L765.2,96.2L766.4,96.5L769.6,98L772.3,99.8L775.2,104.8L780.7,105.5L787.5,104.9L789.7,102.3L791.8,101.5L794.4,101.9L799.7,102.1L799.9,97.9L802.4,93.1L803.6,91.4L807.4,91.1L808,87.8L807.7,78.6L808.4,77.5L811.3,77.4L814.2,78.6L815.2,79.9L816.7,79.6L818.5,78.4L820.6,77.6L824.3,78.1L832.3,81.2L836.3,82.2L838.8,81.6L841,81.4L850.7,86.6L857,86.6L862.6,85.8L864.1,83.7L866.3,81.7L868.8,81.6L871.1,82.1L875.7,84.3L877.8,84.7L880.4,84.7L882.4,85.1L884.9,89.6L886,90.8L885.9,91.4L886,93.5L884.9,96.5L883.9,100.2L884.4,103.4L890.1,113.7L894.8,119.8L895.9,122.2L898.5,123.7L896.5,126.6L896.6,130.2L895.5,132L895.4,134.1L896.2,135.9L896.5,138.3L897.9,141.3L894.3,142.6L890.1,143.1L888.6,143.5L887.2,144.6L885.8,144.3L881.4,141.9L879.1,141.5L877.6,141.9L876.7,143.4L874.8,145.4L873.2,146.8L873.8,147.9L882.2,149.4L884.2,153.4L883.2,157L882.8,158.8L881.1,160.4L879,161.9L876.2,162.6L876.2,164.4L877.9,169.7L877.3,171L876.7,172.8L878.1,177.2L879.9,177.2L880.4,178.2L880.4,180L880.2,182L880,184.2L879.8,185.1L878.8,185.7L875,186L872.2,188.2L866.8,195.2L864.7,196.6L862.6,199.4L863.5,204.9L863.3,205.5L862.9,206.6L855.1,205.7L854.8,205.8L849.9,207.1L846.8,210.2L842.7,212.1L833.8,212.4L825.4,214.5L823.5,215.4L821.3,216.2L819.4,217.8L818.4,220.1L816.7,222.9L813.8,225.4L810.7,227.4L810.2,228.8L809.1,229.6L807.1,228.8L805.7,229.1L803.8,228.6L797.7,228.6L790.8,228.1L787.5,227.3L783.9,226.8L779.9,226.4L776.3,226.6L774.6,226.5L766.1,225.3L760.5,225.7L753.1,225.6L738.5,223.9L734.1,223.1L730.1,223.1L725.3,222.4L721.6,221L718.8,217.9L716,213.7L711.1,208.4L709.9,205.6L711.1,202.9L712.3,201L712.1,200.1L710.9,199.8L703.2,203L695.8,206.8L692.8,207.1L689.9,206.6L686.1,206.8L682.3,207.9L675,209L670.7,211.6L668.3,216.3L667,220L665.8,221.2L663.3,221.8L659.3,221.8L656.5,221L653.6,218L649.1,217.9L645.1,218.1L644.1,217.6L644.1,215.7L642.3,211.9L639.5,210.9L633.3,218.5L631.4,219.2L625.9,217.6L621,214.9L620.5,212.7L619.5,210.8L615.4,209.4L610.5,208.5L609,208.6L609.5,207.5L609.9,205.6L609.4,204.3L608.2,202.8L607.5,201.2L607.3,199.6L606.8,198.4L606.6,197.2Z"},{"id":"020","n":"Andorra","h":0,"d":"M287,474.9L285.9,475.3L281.8,477.4L279.6,478.2L277.4,478.6L275.9,478.3L275,476.9L275.3,474.8L274.9,472.8L274.8,471.8L275.3,469.1L276.8,467.7L278.7,466.5L281.4,467.1L287.3,469.1L288.7,470.8L288.6,471.9L287.5,473.6Z"}],"z":[{"nm":"Haute-Savoie","pays":"France","v":132,"x":484.2,"y":274.5,"lp":"l","dy":-4,"rev":6,"pro":3,"sel":1},{"nm":"Savoie","pays":"France","v":98,"x":490.8,"y":303.4,"lp":"l","dy":4,"rev":5,"pro":4},{"nm":"Isère","pays":"France","v":52,"x":460.6,"y":324.1,"lp":"l","rev":3,"pro":1},{"nm":"Hautes-Alpes","pays":"France","v":34,"x":481.5,"y":352.9,"lp":"l","rev":2,"pro":2},{"nm":"Pyrénées françaises","pays":"France","v":38,"x":228.4,"y":446.2,"lp":"l","dy":-6,"rev":3,"pro":1},{"nm":"Île-de-France","pays":"France","v":22,"x":326.4,"y":107.8,"lp":"r","rev":2,"pro":0},{"nm":"Rhône","pays":"France","v":14,"x":421.8,"y":289.5,"lp":"l","rev":1,"pro":0},{"nm":"Valais","pays":"Suisse","v":58,"x":532.2,"y":261.7,"lp":"r","dy":-8,"rev":4,"pro":2},{"nm":"Grisons","pays":"Suisse","v":27,"x":610.8,"y":229.3,"lp":"r","dy":-10,"rev":2,"pro":1},{"nm":"Berne","pays":"Suisse","v":20,"x":524.9,"y":218.4,"lp":"l","dy":-6,"rev":1,"pro":0},{"nm":"Tyrol","pays":"Autriche","v":74,"x":679.8,"y":191.5,"lp":"r","dy":4,"rev":4,"pro":2},{"nm":"Salzbourg","pays":"Autriche","v":36,"x":741.5,"y":155.1,"lp":"r","rev":2,"pro":1},{"nm":"Vallée d'Aoste","pays":"Italie","v":44,"x":521.7,"y":288.7,"lp":"r","dy":10,"rev":2,"pro":2},{"nm":"Trentin-Haut-Adige","pays":"Italie","v":38,"x":679.2,"y":236.3,"lp":"r","rev":3,"pro":1},{"nm":"Piémont","pays":"Italie","v":18,"x":538.4,"y":327.1,"lp":"r","dy":6,"rev":1,"pro":0},{"nm":"Bavière","pays":"Allemagne","v":64,"x":665.9,"y":164.6,"lp":"l","dy":-8,"rev":4,"pro":1},{"nm":"Bade-Wurtemberg","pays":"Allemagne","v":16,"x":581.9,"y":126.1,"lp":"r","rev":1,"pro":0},{"nm":"Val d'Aran et Catalogne","pays":"Espagne","v":34,"x":252.4,"y":476.5,"lp":"r","dy":8,"rev":2,"pro":1},{"nm":"Madrid","pays":"Espagne","v":14,"x":43.6,"y":579.5,"lp":"r","rev":1,"pro":0},{"nm":"Sierra Nevada","pays":"Espagne","v":10,"x":37.3,"y":772.1,"lp":"r","rev":1,"pro":0}],"cl":[["FRANCE",332,239],["SUISSE",568,211],["ITALIE",701,357],["AUTRICHE",794,188],["ALLEMAGNE",625,71],["ESPAGNE",98,515]]},"na":{"W":420,"H":250,"c":[{"id":"124","n":"Canada","h":1,"d":"M208.6,0L208.4,1.1L208.5,11L215,12.1L217.4,19.8L219.9,26L226.1,23.9L234.8,26.8L239.7,29.5L243.5,33L249.5,34.5L254.9,37.2L262.7,36.5L267.9,36.4L268.4,43.6L271.3,51.5L276.5,59.8L285.4,65.9L288.6,62.5L289.5,53.8L284.2,41.7L280,38.1L286.6,32.7L290.5,25.9L291.6,19.7L289.9,14.3L285.3,8.1L278.6,3.1L279.6,0L358,0L358,0L363.9,1.4L369.7,4L377.4,2.7L381.3,3.7L386.1,9.1L390,8.4L393.1,10.2L397.6,18.2L395.8,22.6L393.8,26.8L387.5,33L384.5,41.8L377,46.5L366.1,49.2L358.9,52L354.1,54.4L352,61.4L346.8,67L342.9,79.5L339.2,88.4L343.2,85.8L348.2,73L356.4,63L363.5,59.5L369.3,61.4L366.6,68.3L371.3,75.7L375.2,80.7L383.4,81.7L391.4,77L392.8,66.5L395.6,71.7L400,72.8L395.9,80.5L386.2,89.7L382.2,94.8L378.3,102.5L374,103.5L371.4,97.3L378.2,87.6L369.9,91.1L364.4,94.2L359.4,91.2L355.8,80.9L352.8,79.5L349.7,82L347.4,80.5L345.3,87.6L345.6,94L344.8,98.1L342.9,100L341.3,100.9L341.4,103L331.4,105.9L323.1,108.2L321.1,110.3L316.6,117.4L316.1,118.1L315.1,121.6L309.9,122.8L304.4,124.1L302.1,125.9L303.3,127.2L304.4,129.5L304.4,130.3L297.7,135.7L292,138.1L286,143.6L284.6,143.8L282.4,142.9L281.5,141.9L281.5,141.1L282.3,138.1L284.3,133.3L285.1,128.4L282.8,121.8L280.3,114.8L273.9,112.1L274.4,110.6L273.4,109.8L271.9,110L270.6,108.9L270.1,107.1L269.1,108.1L267.6,108.1L267.8,107.2L266.5,106.7L265.6,104.7L261,102.7L256.3,100.7L250.7,98.2L245.4,95.9L240.9,98.7L239.1,98.9L232.3,97.4L228.1,98.8L222.8,96.6L217.3,95.7L213.5,95.3L211.8,94L210.7,89.6L209,89.7L209,92.8L198.1,93.1L180,92.9L162.1,92L146.3,90.6L130.5,88.8L115.1,86.4L99.3,83.4L94.2,82.4L79,78.8L64.5,74.9L64.5,74.9L63.8,74.6L56.4,64.1L53.9,59.7L46.1,53.6L45.8,45.9L48.1,41.4L43.3,36L44.8,29.5L41.4,21.9L42.8,17.9L46.7,15.1L48.4,10.1L43,2.4L42.8,0L208.6,0ZM420,49.3L418.5,55.3L415.4,56.5L417.1,51.4L411.6,52L406.6,55.1L397,59.4L395.3,57.6L397.1,53.6L394.1,52.6L396.1,46.3L395.3,32.4L396.1,26.9L398.7,22.4L401,21.6L401.1,24L401.1,24L401,29.8L401.1,37.7L402.9,33.7L406.8,33.6L406.5,37L411.6,36.8L412.9,33.9L418.6,33.6L420,39.5L420,49.3ZM30.8,19.8L35.4,21L30.5,29.1L32.1,36.8L30.3,36L28.9,31.4L28.6,27.3L27.3,24L27.9,20.3L29.1,18ZM60,77.7L57.1,78L49.8,71.9L49.2,68.7L45.6,64.5L45.4,62L40.9,58.9L40.4,54.1L41.5,52.5L46,55.9L48.6,58.1L52.9,60.4L53.8,63.6L55.1,68L59.1,72.8ZM364.2,53.6L365.6,52.3L372.7,51.6L379,52.6L379.7,53.9L377.4,55.1L370.1,55.3ZM375.2,73.8L378.4,76.7L382.5,76.2L387.1,74L385.9,78.1L384.2,79.3L376.4,78.9L374.2,76.9Z"},{"id":"840","n":"United States of America","h":1,"d":"M302.6,250L302.8,247.2L300.1,243.2L293.6,237.4L290.7,236.6L284.3,241.3L283,241.1L279.1,237.8L274.5,236.4L266.8,238.4L260.6,238.2L255.3,239.3L252.6,240.8L254.1,242.9L254.3,246.1L255.9,247.6L254.7,248.8L251.9,247.8L249.4,249.6L244.3,249.8L238.7,245.9L232.7,247.3L227.5,245.7L223.2,246.5L217.3,248.7L216,250L173.5,250L173.5,250L173.2,249.6L168.4,246.2L162.6,246L159.5,250L153.4,250L153.4,250L152.1,249.4L148.7,246.7L147.3,242.2L145.3,237.8L141.5,233.9L138.2,231.1L136,228L124.2,226.7L123.8,230L118.4,229.4L104.9,227.6L90.4,219.5L81,213.9L81.9,212.4L73.3,211.6L65.7,210.6L65.5,206.4L62.2,201L59.4,199.3L59.2,196.9L55.7,195.7L53.9,193L48.2,190.7L46.9,189.1L47.2,184.6L43.2,175.3L41.1,163.2L41.8,161.5L39.8,158.2L37.1,150.4L38.1,144L36.3,138.9L39.5,133L41.2,126.4L41.2,120L45.6,113.5L48.4,106.7L51.1,100L53.2,89.4L53.6,82.4L53.2,78.3L54.2,77L60.9,81.9L61.6,89.9L63.5,88.3L64.4,81.7L64.5,74.9L64.5,74.9L79,78.8L94.2,82.4L99.3,83.4L115.1,86.4L130.5,88.8L146.3,90.6L162.1,92L180,92.9L198.1,93.1L209,92.8L209,89.7L210.7,89.6L211.8,94L213.5,95.3L217.3,95.7L222.8,96.6L228.1,98.8L232.3,97.4L239.1,98.9L240.9,98.7L245.4,95.9L250.7,98.2L256.3,100.7L261,102.7L265.6,104.7L266.5,106.7L267.8,107.2L267.6,108.1L269.1,108.1L270.1,107.1L270.6,108.9L271.9,110L273.4,109.8L274.4,110.6L273.9,112.1L280.3,114.8L282.8,121.8L285.1,128.4L284.3,133.3L282.3,138.1L281.5,141.1L281.5,141.9L282.4,142.9L284.6,143.8L286,143.6L292,138.1L297.7,135.7L304.4,130.3L304.4,129.5L303.3,127.2L302.1,125.9L304.4,124.1L309.9,122.8L315.1,121.6L316.1,118.1L316.6,117.4L321.1,110.3L323.1,108.2L331.4,105.9L341.4,103L341.3,100.9L342.9,100L344.8,98.1L345.6,94L345.3,87.6L347.4,80.5L349.7,82L352.8,79.5L355.8,80.9L359.4,91.2L364.4,94.2L366.2,96.3L361.8,102L357.1,106.5L352.1,110.6L350.6,116.1L350.2,118.1L351.4,122.1L354.6,125.6L357,125L355.5,122.4L357.7,123.6L358,125.9L354.6,128.3L351.8,129L348,131.7L345.6,132.8L342.4,134.1L338.2,137.7L346.3,133.8L348.4,134.8L341,139.4L337.3,140.5L337.2,139.5L336,142.1L337.8,142L338.1,147.9L335.3,154.9L334.4,153.1L333,153L330.5,151.6L332.8,155.4L334.6,156.4L335.5,159.3L334.4,162.8L332.5,169.8L331.9,169.7L332.4,163.9L328.6,161.8L326.3,155.5L325.9,159.2L328.4,163.7L324.1,163.5L328.9,165L331,172.3L332.9,172.4L334.2,174.9L337.1,182.4L334.5,189.1L328.5,193L325.3,198.6L322.2,199.8L319.5,203.4L319.2,206.2L313,212.8L310,217.3L307.7,222.6L307.7,228.4L310,233.7L313.6,240.1L317.8,245.1L318.5,248.5L319.4,250L302.6,250ZM42.8,0L43,2.4L48.4,10.1L46.7,15.1L42.8,17.9L41.5,14L38.6,10L40.1,2.8L39.2,0L42.8,0Z"},{"id":"484","n":"Mexico","h":0,"d":"M159.5,250L162.6,246L168.4,246.2L173.2,249.6L173.5,250L159.5,250ZM96.5,250L96.3,249.7L93.6,245.3L93.7,242.8L91,236.1L89.6,229.6L90.2,226.6L85.9,222.6L83.6,222.5L80.1,219.6L78.5,222.6L78.8,226.6L78.4,232.7L80.1,236.4L84.3,242.8L85.1,244.9L86,245.7L86.5,248.6L87.8,248.7L87.9,250L78.1,250L78.1,250L78.6,249.6L79.5,246.1L75.3,239.4L71.6,236.4L70.1,230.9L68.6,225.2L66.8,218.3L65.7,210.6L65.7,210.6L73.3,211.6L81.9,212.4L81,213.9L90.4,219.5L104.9,227.6L118.4,229.4L123.8,230L124.2,226.7L136,228L138.2,231.1L141.5,233.9L145.3,237.8L147.3,242.2L148.7,246.7L152.1,249.4L153.4,250L96.5,250Z"}],"z":[{"nm":"Colorado","pays":"États-Unis","v":52,"x":145,"y":166.7,"lp":"r","rev":4,"pro":2},{"nm":"Utah","pays":"États-Unis","v":48,"x":110.6,"y":152.4,"lp":"l","rev":3,"pro":1},{"nm":"État de Washington","pays":"États-Unis","v":22,"x":68.1,"y":88.4,"lp":"r","dy":6,"rev":2,"pro":0},{"nm":"Vermont et New Hampshire","pays":"États-Unis","v":18,"x":339.1,"y":111.2,"lp":"l","dy":6,"rev":1,"pro":0},{"nm":"Colombie-Britannique","pays":"Canada","v":30,"x":68.6,"y":66.8,"lp":"r","dy":-4,"rev":2,"pro":1},{"nm":"Québec","pays":"Canada","v":12,"x":338.8,"y":88.8,"lp":"l","dy":-4,"rev":1,"pro":0}]}};
+const ZONES = GEO.eu.z.map((z) => ({ ...z, map: 'eu' })).concat(GEO.na.z.map((z) => ({ ...z, map: 'na' })));
+let MODE = 'v', SEL = ZONES.find((z) => z.sel);
+const zval = (z) => MODE === 'v' ? z.v : z.rev + z.pro;
+function drawMap(id, g, k) {
+  const key = id.slice(3);
+  const zs = ZONES.filter((z) => z.map === key).sort((a, b) => zval(b) - zval(a));
+  const r = (z) => MODE === 'v' ? Math.sqrt(z.v) * 1.45 * k : Math.sqrt(z.rev + z.pro) * 5 * k;
+  let s = g.c.map((c) => `<path class="ct${c.h ? ' h' : ''}" d="${c.d}"><title>${c.n}</title></path>`).join('');
+  if (g.cl) s += g.cl.map(([n, x, y]) => `<text x="${x}" y="${y}" text-anchor="middle" style="font:800 13px Montserrat,sans-serif;letter-spacing:.22em;fill:#b7b2aa">${n}</text>`).join('');
+  s += zs.map((z) => `<circle class="bub${MODE === 'r' ? ' dk' : ''}" cx="${z.x}" cy="${z.y}" r="${r(z).toFixed(1)}" data-z="${z.nm}"><title>${z.nm} : ${zval(z)}</title></circle>`).join('');
+  if (SEL && SEL.map === key) s += `<circle class="sel" cx="${SEL.x}" cy="${SEL.y}" r="${(r(SEL) + 5).toFixed(1)}"/>`;
+  s += zs.map((z) => { const L = z.lp === 'l', x = L ? z.x - r(z) - 4 : z.x + r(z) + 4; return `<text class="lb" x="${x.toFixed(1)}" y="${(z.y + 4 + (z.dy || 0)).toFixed(1)}" text-anchor="${L ? 'end' : 'start'}" style="${k < 1 ? 'font-size:10px' : ''}">${L ? `${z.nm} <tspan class="lv">${zval(z)}</tspan>` : `<tspan class="lv">${zval(z)}</tspan> ${z.nm}`}</text>`; }).join('');
+  const el = document.getElementById(id); el.innerHTML = s;
+  el.querySelectorAll('.bub').forEach((b) => b.addEventListener('click', () => { SEL = ZONES.find((z) => z.nm === b.dataset.z); renderCarte(); }));
+}
+function renderCarte() {
+  drawMap('mapeu', GEO.eu, 1); drawMap('mapna', GEO.na, 0.62);
+  $('#mleg').textContent = MODE === 'v' ? '10 · 50 · 130 propriétaires' : 'revendeurs et parcs pro en retard';
+  const z = SEL, jamais = Math.round(z.v * 0.31), appel = Math.round(z.v * 0.21);
+  $('#zone').innerHTML = `<div class="sm muted">${z.pays} · zone sélectionnée</div><h3>${z.nm}</h3><div class="big tnum">${z.v}</div><div class="sm">propriétaires sans nouvelles</div>
+    <div class="kv"><span>dont jamais joints (achat en magasin)</span><b class="tnum">${jamais}</b><span>à appeler par le SAV</span><b class="tnum">${appel}</b><span>revendeurs à relancer</span><b class="tnum">${z.rev}</b><span>parcs pro (écoles, secours, loueurs)</span><b class="tnum">${z.pro}</b></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri">Lancer les appels (${appel})</button><button class="btn">Exporter la liste</button></div>`;
+  const all = ZONES.slice().sort((a, b) => b.v - a.v).slice(0, 9), mx = all[0].v;
+  $('#rank').innerHTML = all.map((x, i) => `<div class="rank${x === SEL ? ' on' : ''}" data-z="${x.nm}"><span class="i">${i + 1}</span><span><b>${x.nm}</b> <span class="muted">· ${x.pays}</span></span><div class="bar"><i style="width:${x.v / mx * 100}%"></i></div><b class="tnum" style="text-align:right">${x.v}</b></div>`).join('');
+  document.querySelectorAll('#rank .rank').forEach((r) => r.addEventListener('click', () => { SEL = ZONES.find((q) => q.nm === r.dataset.z); renderCarte(); }));
+}
+function initCarte() {
+  $('#mread').innerHTML = [['66 %', "des propriétaires sans nouvelles sont dans l'arc alpin : Haute-Savoie, Savoie, Valais, Tyrol, Vallée d'Aoste, Bavière."], ['182', "en Amérique du Nord, surtout au Colorado et dans l'Utah : relance en anglais, retour par le formulaire hors Europe."], ['41', 'appareils encore en stock ou en parc chez 3 revendeurs et loueurs en retard.']].map(([v, d]) => `<div style="display:flex;gap:14px;align-items:baseline;padding:6px 0"><b class="tnum" style="font:900 24px Montserrat;color:var(--red);min-width:74px">${v}</b><span class="sm">${d}</span></div>`).join('');
+  document.querySelectorAll('#mseg button').forEach((b) => b.addEventListener('click', () => { MODE = b.dataset.m; document.querySelectorAll('#mseg button').forEach((x) => x.classList.toggle('on', x === b)); renderCarte(); }));
+  renderCarte();
+}
+
+// ===== Navigation =====
+function show() {
+  const v = location.hash.slice(1) || 'pilotage';
+  document.querySelectorAll('section[data-view]').forEach((s) => s.classList.toggle('on', s.dataset.view === v));
+  document.querySelectorAll('#nav [data-v]').forEach((a) => a.classList.toggle('on', a.dataset.v === v));
+  document.body.classList.toggle('phone-view', v === 'atelier' || v === 'suivi');
+  const s = document.querySelector(`section[data-view="${v}"]`);
+  if (s) { $('#title').textContent = s.dataset.title; $('#subtitle').textContent = s.dataset.sub; }
+  window.scrollTo(0, 0);
+}
+renderPilotage(); initCarte(); renderAppareil(); renderRelances(); renderPhones();
+addEventListener('hashchange', show);
+show();
+</script>
+</body>
+</html>

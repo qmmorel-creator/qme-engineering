@@ -50,7 +50,9 @@ async function audience({ goatcounter, recuperer, debut, fin, jours }) {
   const base = `${String(goatcounter.site || 'https://qme-engineering.goatcounter.com').replace(/\/$/, '')}/api/v0`;
   const lire = async (chemin) => {
     const r = await recuperer(`${base}${chemin}${chemin.includes('?') ? '&' : '?'}start=${debut}&end=${fin}`, { headers: { authorization: `Bearer ${goatcounter.token}`, 'content-type': 'application/json' } });
-    if (!r.ok) throw new Error(`GoatCounter ${r.status}`);
+    // Erreur détaillée (route et réponse de GoatCounter, sans le jeton) pour diagnostiquer depuis le tableau de bord.
+    if (!r.ok) { let detail = ''; try { detail = String(await r.text()).replace(/\s+/g, ' ').slice(0, 160); } catch { /* corps illisible */ }
+      throw new Error(`GoatCounter ${r.status} sur ${chemin.split('?')[0]}${detail ? ` : ${detail}` : ''}`); }
     return r.json();
   };
   const [total, pages, sources, pays] = await Promise.all([lire('/stats/total'), lire('/stats/hits?limit=12'), lire('/stats/toprefs?limit=30'), lire('/stats/locations?limit=8')]);

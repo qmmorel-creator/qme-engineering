@@ -25,7 +25,7 @@
     const j = await r.json().catch(() => ({}));
     // Session refusée : seulement sur les routes qui l'exigent (un vieux lien refusé ne déconnecte pas).
     if (r.status === 401 && s && chemin !== '/session' && chemin !== '/lien') { garder(CLE, null); compte = null; signaler(); }
-    if (!r.ok) { const x = new Error(j.erreur || 'Le service ne répond pas. Réessayez dans un instant.'); x.statut = r.status; throw x; }
+    if (!r.ok) { const x = new Error(j.erreur || 'Le service ne répond pas. Réessayez dans un instant.'); x.statut = r.status; x.details = j; throw x; }
     return j;
   }
   const signaler = () => window.dispatchEvent(new CustomEvent('qme-compte', { detail: { compte } }));
@@ -102,14 +102,18 @@
   }
   window.addEventListener('qme-espace-prefs', (e) => { if (!e.detail?.depuisCompte) envoyerPrefs(); });
 
+  async function ouvrirSession(corps) {
+    const r = await api('/session', { methode: 'POST', corps });
+    garder(CLE, { jeton: r.jeton, email: r.compte.email });
+    return synchroniser(r.compte);
+  }
+
   window.QMECompte = {
     session, get compte() { return compte; },
     async demanderLien(email) { return api('/lien', { methode: 'POST', corps: { email } }); },
-    async ouvrir(lien) {
-      const r = await api('/session', { methode: 'POST', corps: { lien } });
-      garder(CLE, { jeton: r.jeton, email: r.compte.email });
-      return synchroniser(r.compte);
-    },
+    async ouvrir(lien) { return ouvrirSession({ lien }); },
+    // Code à 6 chiffres de l'e-mail, saisi dans la page où le lien a été demandé (le lien a pu s'ouvrir ailleurs).
+    async ouvrirCode(email, code) { return ouvrirSession({ email, code }); },
     async charger() { if (!session()) return null; return synchroniser((await api('/')).compte); },
     // Déconnexion de cet appareil ; « retirer » enlève aussi les applications du compte de cet appareil.
     deconnecter({ retirer = false } = {}) {
