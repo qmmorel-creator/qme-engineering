@@ -264,6 +264,32 @@
     "templates_a_mettre_en_vente": []
   },
   {
+    "code": "PCS",
+    "slug": "cuisine",
+    "nom": "Pack Cuisine",
+    "permalien": "pack-cuisine",
+    "prix_cents": 2200,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 2200
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 3100
+      }
+    ],
+    "resume": "Le menu de la semaine, les courses, et rien ne se perd au frigo.",
+    "description_html": "<p><strong>Le menu de la semaine, les courses, et rien ne se perd au frigo.</strong></p>\n<p>Les repas de la semaine, la liste de courses par rayon et les dates de péremption des placards : la cuisine du quotidien, sans gaspillage.</p>\n<p><strong>Pour qui ?</strong> Chaque soir, la même question : on mange quoi ? Les courses se font sans liste, on rachète ce qu’il y a déjà dans le placard et le reste périme au fond du frigo. Ce pack relie le menu, la liste et les placards.</p>\n<p><strong>Le contenu du pack (2 templates) :</strong></p>\n<ul><li><strong>Repas de la semaine et liste de courses</strong> : Menus de la semaine, liste de courses par rayon à cocher. (13 € seul)</li><li><strong>Garde-manger et dates de péremption</strong> : DLC et DDM, à consommer en priorité, gaspillage suivi. (12 € seul)</li></ul>\n<p>25 € à l’achat séparé, 22 € en pack (−10 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (22 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (31 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "1/2",
+    "templates_a_mettre_en_vente": [
+      "Garde-manger et dates de péremption"
+    ]
+  },
+  {
     "code": "PFM",
     "slug": "forme",
     "nom": "Pack Forme",

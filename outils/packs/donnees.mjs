@@ -456,6 +456,18 @@ export const PAGES = {
     avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
     prevus: [],
   },
+  PCS: {
+    couleur: 'jaune', cibles: ['couples', 'particuliers'],
+    accroche: 'Le menu de la semaine, les courses, et rien ne se perd au frigo.',
+    resume: 'Les repas de la semaine, la liste de courses par rayon et les dates de péremption des placards : la cuisine du quotidien, sans gaspillage.',
+    pourQui: 'Chaque soir, la même question : on mange quoi ? Les courses se font sans liste, on rachète ce qu’il y a déjà dans le placard et le reste périme au fond du frigo. Ce pack relie le menu, la liste et les placards.',
+    parcours: [
+      ['RPS', 'Planifiez les repas de la semaine et générez la liste de courses par rayon.'],
+      ['GRD', 'Sachez ce qu’il y a dans les placards et ce qui périme bientôt.'],
+    ],
+    arguments: ['Une clé partagée : l’un planifie, l’autre fait les courses', 'Les mêmes données sur tous les téléphones du foyer', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    prevus: [],
+  },
   PBD: {
     couleur: 'rouge', cibles: ['particuliers', 'independants'],
     accroche: 'Des résolutions qui tiennent après janvier.',

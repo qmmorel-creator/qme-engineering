@@ -84,9 +84,9 @@ et mise en vente (règle 7).
 
 **Pack Cuisine (PCS, décision de Quentin du 22/11/2026)** : Repas de la semaine et liste de courses (RPS, 13 €, en
 vente) + Garde-manger et dates de péremption (GRD, 12 €, prêt). Valeur 25 €, remise 10 %, prix 22 €, option évolutif
-9 € (minimum). Accroche proposée : « Le menu de la semaine, la liste de courses, et rien ne se perd au frigo. » Avant la
-fiche Gumroad : ajouter `PCS` à `PACKS` (`netlify/lib/packs.mjs`), ses textes et sa cible dans `outils/packs/donnees.mjs`,
-régénérer les pages (`node outils/packs/generer.mjs`) et sa fiche dans `packs/gumroad-packs.json`.
+9 € (minimum). Accroche proposée : « Le menu de la semaine, la liste de courses, et rien ne se perd au frigo. » Déclaré
+sur le site le 22/11 (« Bientôt », page `/packs/cuisine/`, `PCS` dans `PACKS` et `PAGES`) ; fiche prête dans
+`packs/gumroad-packs.json`, à créer sur Gumroad une fois GRD en vente.
 
 **Bloqués par une décision de Quentin** (règle 6) : Remboursements santé (RBS, seul manquant du Pack Reprendre la main
 sur son argent, PAR), Suivi du bébé (BBE, Pack Famille), Gestion de classe (CSE, Pack Enseignant).
