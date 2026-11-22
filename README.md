@@ -90,6 +90,14 @@ Site promotionnel de Quentin Morel Engineering (QME).
   `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
   (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
   `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+- Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
+  d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
+  (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;
+  « Bonjour / Bonsoir <prénom> » et dernière application ouverte ; cartes « Reprendre » ; alertes d'essai ; lanceur
+  d'icônes (`templates/<slug>/icone.svg`, option `grille` d'`assets/espace.js`, favoris, filtres par thème) ; achats
+  datés (compte) ; préférences : prénom, interrupteur « Recevoir les informations QME » (liste d'opposition) et actions
+  du compte. La clé s'ajoute par la fenêtre « Ajouter une clé » ; l'aide aux visiteurs n'apparaît plus une fois dans
+  l'espace.
 - Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
   bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
   (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
