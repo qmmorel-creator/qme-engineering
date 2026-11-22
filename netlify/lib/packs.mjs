@@ -45,7 +45,7 @@ export function produitsAccessibles(code, { option = false, date = null } = {}, 
 // `gumroad` : identifiant du produit Gumroad du pack (licence), ajouté une fois la fiche créée.
 export const PACKS = {
   PFG: { slug: 'freelance-gestion', nom: 'Pack Freelance : chiffrer, facturer, encaisser', produits: ['TJM', 'PRX', 'DVS', 'MCE', 'RCV', 'TRS', 'TMP'], gumroad: 'TdGXvyeaHjN_iKZ4zHr9gw==', permalien: 'pack-freelance-gestion' },
-  PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'PRS', 'CRM', 'PCM', 'KRF', 'CED', 'CND'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
+  PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'CRM', 'PCM', 'KRF', 'CED', 'CND'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
   PBT: { slug: 'chef-de-projet-btp', nom: 'Pack Chef de projet BTP', produits: ['GNT', 'VSA', 'RSV', 'NCF', 'CRA', 'CHT', 'RDE', 'STR'], gumroad: 'Oi7gqrAFzTtGi5bCk205ZA==', permalien: 'pack-chef-de-projet-btp' },
   PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'], gumroad: 'hHV1OaACgMmSJW0Vkv0SXQ==', permalien: 'pack-petite-entreprise' },
   PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH', 'SMN'] },

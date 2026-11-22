@@ -105,14 +105,14 @@ déjà).
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
-| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
+| T28 | CRM et prospection (contacts, cadences de relance et scripts, pipeline, devis et factures suivis ; ex-CRM freelance, T35 fusionné le 22/11/2026) | Commercial | Freelances, TPE, commerciaux B2B | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 et n° 10 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | en vente | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en vente | 39 € | M | P2 | Backlog Quentin n° 08 |
-| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | en vente | 25 € | M | P1 | Backlog Quentin n° 10 |
+| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | fusionné dans T28 le 22/11/2026 | — | M | P1 | Backlog Quentin n° 10. Rationalisation F2 : PRS retiré du site et des packs, adresses redirigées vers le CRM ; fiche Gumroad `pipeline-prospection` à dépublier |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | en vente | 12 € | S | P2 | Backlog Quentin n° 13 |
@@ -259,7 +259,7 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
+| Freelance : trouver ses clients | PFC | T38, T28, T74, T39, T75, T76 (T35 fusionné dans T28 le 22/11/2026) | — | 105 € | 25 % | 78 € | 20 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
 | Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
@@ -510,7 +510,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T29 | `flotte` | VHC | gestion-flotte |
 | T30 | `planner` | PHR | planner-horaire |
 | T32 | `reserves` | RSV | levee-reserves |
-| T35 | `prospection` | PRS | pipeline-prospection |
+| T35 | `prospection` (fusionné dans T28 le 22/11/2026, redirigé vers `crm`) | PRS (retiré) | pipeline-prospection (à dépublier) |
 | T36 | `devis` | DVS | generateur-devis |
 | T42 | `tresorerie` | TRS | tresorerie-previsionnelle |
 | T45 | `parc-informatique` | PRC | parc-informatique |
