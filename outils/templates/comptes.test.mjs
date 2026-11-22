@@ -35,7 +35,7 @@ test('lien de connexion : e-mail envoyé, usage unique, 15 minutes, compte cré�
   assert.deepEqual(await r.json(), { ok: true });
   const [m] = w.mails;
   assert.equal(m.a, 'lea@exemple.fr');
-  assert.equal(m.objet, 'Votre lien de connexion QME');
+  assert.match(m.objet, /^Votre code de connexion QME : \d{6}$/);
   assert.ok(m.texte.includes('https://qm-engineering.fr/connexion/?lien=') && m.texte.includes('15 minutes'));
   const lien = lienDe(m);
   assert.equal(await w.store.get(cleCompte(SECRET, 'lea@exemple.fr')), null, 'aucun compte avant le clic');
@@ -141,13 +141,49 @@ test('préférences : prénom et prefs nettoyés, enregistrés et renvoyés', as
   assert.deepEqual(nettoyerPrefs({}), { noms: {}, masques: [], epingles: [] });
 });
 
+const codeDe = (mail) => mail.objet.match(/(\d{6})$/)[1];
+test('code à 6 chiffres : connexion dans la page d\'origine quand le lien s\'ouvre ailleurs', async () => {
+  const w = monde();
+  await appel(w, '/lien', { methode: 'POST', corps: { email: 'Flo@Exemple.fr' } });
+  const m = w.mails.at(-1), code = codeDe(m);
+  assert.ok(m.texte.includes(`${code.slice(0, 3)} ${code.slice(3)}`), 'code lisible dans le texte');
+  assert.ok(![...w.store.m.values()].some((v) => JSON.stringify(v).includes(code)), 'code jamais stocké en clair');
+  const faux = code === '000000' ? '000001' : '000000';
+  const r1 = await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: faux } });
+  assert.equal(r1.status, 401);
+  assert.match((await r1.json()).erreur, /Code incorrect/);
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'autre@exemple.fr', code } })).status, 401, 'code lié à l\'adresse');
+  const s = await (await appel(w, '/session', { methode: 'POST', corps: { email: ' FLO@exemple.fr ', code: `${code.slice(0, 3)} ${code.slice(3)}` } })).json();
+  assert.ok(s.jeton);
+  assert.equal(s.compte.email, 'flo@exemple.fr');
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code } })).status, 401, 'code à usage unique');
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { lien: lienDe(m) } })).status, 401, 'le lien du même e-mail ne sert plus');
+});
+test('code à 6 chiffres : lien déjà utilisé, 5 essais au plus, 15 minutes, seul le dernier vaut', async () => {
+  const w = monde();
+  await appel(w, '/lien', { methode: 'POST', corps: { email: 'flo@exemple.fr' } });
+  let m = w.mails.at(-1);
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { lien: lienDe(m) } })).status, 200);
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: codeDe(m) } })).status, 401, 'lien utilisé : code refusé');
+  w.t += 60_000;
+  await appel(w, '/lien', { methode: 'POST', corps: { email: 'flo@exemple.fr' } });
+  const ancien = codeDe(m); m = w.mails.at(-1);
+  if (ancien !== codeDe(m)) assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: ancien } })).status, 401, 'ancien code');
+  const faux = codeDe(m) === '000000' ? '000001' : '000000';
+  for (let i = 0; i < 5; i++) await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: faux } });
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: codeDe(m) } })).status, 401, 'bloqué après 5 erreurs');
+  w.t += 60_000;
+  await appel(w, '/lien', { methode: 'POST', corps: { email: 'flo@exemple.fr' } });
+  m = w.mails.at(-1); w.t += DUREE_LIEN + 1;
+  assert.equal((await appel(w, '/session', { methode: 'POST', corps: { email: 'flo@exemple.fr', code: codeDe(m) } })).status, 401, 'expiré');
+});
 test('purge quotidienne : traces de demandes et liens expirés effacés, compte gardé', async () => {
   const w = monde();
   await connecter(w, 'eva@exemple.fr');
   const avant = [...w.store.m.keys()];
   assert.ok(avant.some((k) => k.startsWith('limite/')) && avant.some((k) => k.startsWith('lien/')));
-  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 60_000 }), { limites: 0, liens: 0, oppositions: 0 }, 'encore utiles');
-  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 3_600_001 }), { limites: 1, liens: 1, oppositions: 0 });
+  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 60_000 }), { limites: 0, liens: 0, codes: 0, oppositions: 0 }, 'encore utiles');
+  assert.deepEqual(await purgerComptes({ store: w.store, maintenant: () => w.t + 3_600_001 }), { limites: 1, liens: 1, codes: 1, oppositions: 0 });
   assert.deepEqual([...w.store.m.keys()].filter((k) => !k.startsWith('compte/')), []);
   assert.ok(await w.store.get(cleCompte(SECRET, 'eva@exemple.fr')));
 });

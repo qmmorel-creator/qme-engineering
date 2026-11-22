@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112302">
-<link rel="stylesheet" href="/assets/espace.css?v=2026112303">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112304">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
 /* Portail (non connecté, aucune application) */
 .a-espace .portail{display:none}
@@ -22,6 +22,9 @@
 .acces input[type=email]:focus{outline:3px solid var(--jaune);outline-offset:0}
 .ok-lien{color:#1F5130;background:#D9EBDD;padding:12px 14px;border-radius:12px;font-size:15px}
 .ok-lien:empty{display:none}
+.bloc-code{display:grid;gap:10px;padding:14px;border:2px solid #1F5130;border-radius:14px;background:#fff}
+.bloc-code[hidden]{display:none}
+.bloc-code input{font-size:24px;letter-spacing:.2em;text-align:center;font-variant-numeric:tabular-nums}
 .etat-lien{max-width:var(--max);margin:16px auto 0;padding:12px 16px;background:var(--beurre);border-radius:12px;font-weight:600}
 .lien-discret{background:none;border:0;padding:0;font:inherit;font-size:15px;color:var(--texte-2);text-decoration:underline;cursor:pointer}
 .lien-discret.danger{color:var(--rouge)}
@@ -271,7 +274,14 @@
         </label>
         <p class="erreur" id="erreur-lien" role="alert"></p>
         <p class="ok-lien" id="ok-lien" role="status"></p>
-        <button class="btn primary" type="submit">Recevoir mon lien de connexion</button>
+        <div class="bloc-code" id="bloc-code" hidden>
+          <label>Code à 6 chiffres reçu par e-mail
+            <input type="text" id="code-lien" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]*" maxlength="7" placeholder="123 456">
+          </label>
+          <p class="erreur" id="erreur-code" role="alert"></p>
+          <button class="btn primary" type="button" id="valider-code">Me connecter avec ce code</button>
+        </div>
+        <button class="btn primary" type="submit" id="envoyer-lien">Recevoir mon lien de connexion</button>
       </form>
       <p class="ou"><span>ou avec une clé de licence</span></p>
     </div>
@@ -308,8 +318,8 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/espace.js?v=2026112303"></script>
-<script src="/assets/compte.js?v=2026112301"></script>
+<script src="/assets/espace.js?v=2026112304"></script>
+<script src="/assets/compte.js?v=2026112302"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
@@ -546,14 +556,32 @@ rendre();
 // ===== Connexion par e-mail : demande de lien, puis lien cliqué (?lien=…).
 const formLien=$('form-lien'),champEmail=$('email'),erreurLien=$('erreur-lien'),okLien=$('ok-lien');
 formLien.addEventListener('submit',async(e)=>{
-  e.preventDefault();const email=champEmail.value.trim(),b=formLien.querySelector('button');
+  e.preventDefault();const email=champEmail.value.trim(),b=$('envoyer-lien');
   okLien.textContent='';erreurLien.textContent='';
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Adresse e-mail incomplète.';champEmail.focus();return;}
   b.disabled=true;b.textContent='Envoi…';
-  try{await QMECompte.demanderLien(email);okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien (valable 15 minutes). Pensez à regarder dans les indésirables.`;}
+  try{
+    await QMECompte.demanderLien(email);emailCode=email;
+    okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien, ou saisissez ci-dessous le code à 6 chiffres qu’il contient (valable 15 minutes). Pensez à regarder dans les indésirables.`;
+    blocCode.hidden=false;erreurCode.textContent='';champCode.value='';b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;champCode.focus();return;
+  }
   catch(x){erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
-  b.disabled=false;b.textContent='Recevoir mon lien de connexion';
+  b.disabled=false;b.textContent=blocCode.hidden?'Recevoir mon lien de connexion':'Renvoyer un lien';
 });
+// Code de l'e-mail : utile quand le lien s'ouvre dans un autre navigateur (fenêtre ouverte depuis Gmail, Instagram…).
+const blocCode=$('bloc-code'),champCode=$('code-lien'),erreurCode=$('erreur-code'),boutonCode=$('valider-code');let emailCode='';
+async function validerCode(){
+  if(boutonCode.disabled)return;
+  const code=champCode.value.replace(/\D/g,'');erreurCode.textContent='';
+  if(code.length!==6){erreurCode.textContent='Le code compte 6 chiffres.';champCode.focus();return;}
+  boutonCode.disabled=true;boutonCode.textContent='Connexion…';
+  try{await QMECompte.ouvrirCode(emailCode||champEmail.value.trim(),code);blocCode.hidden=true;okLien.textContent='';rendre();scrollTo(0,0);}
+  catch(x){erreurCode.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
+  boutonCode.disabled=false;boutonCode.textContent='Me connecter avec ce code';
+}
+boutonCode.addEventListener('click',validerCode);
+champCode.addEventListener('keydown',(e)=>{if(e.key==='Enter'){e.preventDefault();validerCode();}});
+champCode.addEventListener('input',()=>{if(champCode.value.replace(/\D/g,'').length===6)validerCode();});
 (async()=>{
   const params=new URLSearchParams(location.search),lien=params.get('lien');
   if(lien){
