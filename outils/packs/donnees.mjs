@@ -256,7 +256,7 @@ export const PAGES = {
       ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
       ['CDX', 'Remerciez chacun : cadeaux notés, messages prêts, étiquettes imprimées.'],
     ],
-    arguments: ['Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Du jour J au quotidien, sans changer d’outil', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Mon Budget relié à Gestion Dépenses Communes : la part du commun s’ajoute seule au budget', 'Du jour J au quotidien, sans changer d’outil', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
     prevus: [],
   },
   PPR: {
@@ -452,7 +452,7 @@ export const PAGES = {
       ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
       ['DTT', 'Soldez vos dettes une à une avec une date de fin.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Une clé que vous partagez en famille : les mêmes données sur tous vos téléphones', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Mon Budget et Gestion Dépenses Communes reliés : votre part du commun s’ajoute seule à votre budget, qui reste privé', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
     avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
     prevus: [],
   },

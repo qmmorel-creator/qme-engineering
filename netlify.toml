@@ -685,6 +685,13 @@
     Cache-Control = "no-cache"
 
 # Domaine secondaire .cloud : redirection permanente vers le domaine principal
+# Pack Argent du quotidien retiré le 22/11/2026 (doublon du Pack Budget perso et famille).
+[[redirects]]
+  from = "/packs/argent-du-quotidien/*"
+  to = "/packs/budget-perso-famille/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "https://qm-engineering.cloud/*"
   to = "https://qm-engineering.fr/:splat"

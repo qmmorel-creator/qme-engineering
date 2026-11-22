@@ -675,7 +675,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   tracées **sans courbe de référence** (licences OMS et AFPA–Inserm incompatibles ou non établies), rendez-vous et
   récapitulatif imprimable, deux parents sur deux appareils ; **données de santé d'un enfant : consentement explicite avant
   tout enregistrement**, effacement complet, avertissement médical ; **RGPD à trancher par Quentin avant la vente**). BBE
-  rejoint le pack Famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
+  rejoint le Pack Maison et famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
 - `templates/course-a-pied/` (CRS) : **plan d'entraînement course à pied** (T97), prêt, « Mise en vente prochaine » (15 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/course-a-pied/gumroad.json`). Chrono de référence,
