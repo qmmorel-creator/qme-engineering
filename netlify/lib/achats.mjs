@@ -71,7 +71,7 @@ ${SIGNATURE}`;
 
 Merci d'avoir acheté ${pack ? `le ${vente.nom}` : `le template ${nom}`}. C'est un achat unique : ${pack ? 'les templates du pack sont' : 'il est'} à vous, sans abonnement, sur tous vos appareils.
 
-Pour ${pack ? 'les' : 'l\''}ouvrir : allez sur ${CONNEXION} et collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). ${pack ? 'Le tableau de bord du pack s\'ouvre, avec ses templates :' : 'Le template s\'ouvre ; sur vos autres appareils, la même clé retrouve les mêmes données.'}${pack ? `\n${liste}` : ''}
+Pour ${pack ? 'les ' : 'l\''}ouvrir : allez sur ${CONNEXION} et collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). ${pack ? 'Le tableau de bord du pack s\'ouvre, avec ses templates :' : 'Le template s\'ouvre ; sur vos autres appareils, la même clé retrouve les mêmes données.'}${pack ? `\n${liste}` : ''}
 ${g ? `
 Pour démarrer, en quelques minutes : ${g.commencer}
 ` : ''}
