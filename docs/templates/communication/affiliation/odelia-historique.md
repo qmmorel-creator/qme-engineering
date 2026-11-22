@@ -28,7 +28,7 @@ Mémoire du dossier, à relire avant toute reprise de contact. Fiche : `odelia.m
 | 18/11 13:48 | Eva → Quentin | En parle à Odélia. |
 | 18/11 | Eva ↔ Quentin (fil « autres talents ») | Eva propose Estelle (@estellesbn) et Anusha (@anusha.drg) ; Quentin propose commission + sur-mesure sans fixe ; Eva refuse la commission seule. |
 | 22/11 12:28 | Eva → Quentin (Odélia plus en copie) | Contre-proposition : Reel Instagram à 200 € fixe. Demande le prix des outils pour les étudiants ; les 2 000 € sont-ils une autre prestation ? |
-| 22/11 | Quentin (interne) | Réponse d'accord préparée, non envoyée : `odelia-reponse-reel-200.md`. |
+| 22/11 13:10 | Quentin → Eva (Cci Floriane) | Accord Reel 200 € sans commission ; 2 000 € = sur-mesure pour professionnels ; prix des 12 outils, achat à l'unité, téléphone ; produit d'appel au choix d'Odélia ; lien `qm-engineering.fr/odelia` ; accès gratuit offert. Texte : `odelia-reponse-reel-200.md`. |
 
 ## Statistiques Instagram transmises par Eva (21/07–19/08/2026)
 

@@ -105,3 +105,13 @@ retour-affiliation.
 - **22/11** : réponse d'accord préparée, non envoyée : `odelia-reponse-reel-200.md` (Reel 200 € + commission + accès
   gratuit à 12 outils études et budget ; 2 000 € recadrés comme sur-mesure pour professionnels ; Reel centré sur les
   partiels, budget en second temps). Taux de commission à fixer par Quentin.
+- **22/11 13:10** : **réponse envoyée** par Quentin (texte final dans `odelia-reponse-reel-200.md`) : accord sur le Reel
+  à 200 € fixe, sans commission ; 2 000 € recadrés (sur-mesure pour professionnels) ; outils à l'unité dès 9 € ou en
+  pack ; usage sur téléphone ; **produit d'appel laissé au choix d'Odélia** (révisions et habitudes, budget, ou autre) ;
+  lien `qm-engineering.fr/odelia` (en ligne, PR #206, vers `/packs/etudiant/` avec UTM) ; accès gratuit à vie aux
+  12 outils études et budget ; date fin décembre ou début janvier ; story avec sticker et bio ; mention
+  « Collaboration commerciale » ; demande des vues et des modalités de facturation.
+
+**Prochaine étape** : attendre le choix d'Odélia. Si c'est le budget : démo budget à son nom et nouvelle destination
+de `/odelia` (fusion et publication avec le feu vert de Quentin). Ensuite : codes d'accès gratuits (à inscrire dans
+`docs/templates/codes-gratuits.md`), brief adapté au produit choisi.

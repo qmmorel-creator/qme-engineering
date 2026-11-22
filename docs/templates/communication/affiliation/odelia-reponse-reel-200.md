@@ -1,6 +1,6 @@
-# Réponse à Eva (Yuzu Agency) · accord Reel Instagram à 200 € (brouillon du 22/11/2026, NON ENVOYÉ)
+# Réponse à Eva (Yuzu Agency) · accord Reel Instagram à 200 € (ENVOYÉ le 22/11/2026 à 13:10)
 
-Brouillon à valider par Quentin. Réponse au mail d'Eva du 22/11/2026, 12:28 (message `1a2030456b6ac200`, fil
+Envoyé par Quentin depuis quentin.morel@qm-engineering.fr (message `1a2032a22b78cb0f`). Réponse au mail d'Eva du 22/11/2026, 12:28 (message `1a2030456b6ac200`, fil
 « Partenariat : Planning de révision et 1 autre outil »), à contact@agency-yuzu.com, Floriane Jolliot en copie cachée.
 Eva n'a pas mis Odélia en copie de ce dernier mail : on ne la remet pas.
 
