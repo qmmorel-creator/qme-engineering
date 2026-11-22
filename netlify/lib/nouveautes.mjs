@@ -57,9 +57,11 @@ ${libelleStop} : ${stop}`;
 
   const bloc = (b, i) => `<tr><td style="padding:${i ? 28 : 8}px 0 0">
       <img src="${IMG}/${b.image}" width="560" alt="${esc(b.titre)}" style="display:block;width:100%;max-width:560px;height:auto;border:0;border-radius:14px">
-      <h2 style="margin:16px 0 6px;font:700 19px/1.3 Arial,Helvetica,sans-serif;color:#141414">${esc(b.titre)}</h2>
-      <p style="margin:0;font:15px/1.55 Arial,Helvetica,sans-serif;color:#3d3a35">${esc(b.texte)}</p>
+      <h2 style="margin:16px 0 6px;font:700 19px/1.3 Arial,Helvetica,sans-serif;color:#141414">${insec(b.titre)}</h2>
+      <p style="margin:0;font:15px/1.55 Arial,Helvetica,sans-serif;color:#3d3a35">${insec(b.texte)}</p>
     </td></tr>`;
+  // Guillemets français : espaces insécables, pour qu'un guillemet ne finisse jamais seul en bout de ligne.
+  const insec = (x) => esc(x).replace(/« /g, '«&nbsp;').replace(/ »/g, '&nbsp;»').replace(/ ([:;?!])/g, '&nbsp;$1');
   const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(objet)}</title></head>
 <body style="margin:0;padding:0;background:#FBF7F1">
 <div style="display:none;max-height:0;overflow:hidden">Connexion par e-mail, espace personnalisé, retour rapide entre vos applications.</div>
@@ -73,7 +75,7 @@ ${libelleStop} : ${stop}`;
     <p style="margin:0 0 6px;font:700 12px/1.3 Arial,Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6660">Il y a du nouveau</p>
     <h1 style="margin:0 0 16px;font:700 26px/1.2 Arial,Helvetica,sans-serif;color:#141414">Vos applications QME vous suivent partout</h1>
     <p style="margin:0 0 10px;font:15px/1.55 Arial,Helvetica,sans-serif;color:#141414">${esc(bonjour)}</p>
-    <p style="margin:0;font:15px/1.55 Arial,Helvetica,sans-serif;color:#141414">${esc(intro)}</p>
+    <p style="margin:0;font:15px/1.55 Arial,Helvetica,sans-serif;color:#141414">${insec(intro)}</p>
   </td></tr>
   <tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${BLOCS.map(bloc).join('')}</table></td></tr>
   <tr><td align="center" style="padding:32px 20px 8px">
