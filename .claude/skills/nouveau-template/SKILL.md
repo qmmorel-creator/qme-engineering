@@ -114,8 +114,11 @@ complète dans `reference.md` § « Mise à jour du site » ; aucune PR de templ
    mode démo sans bandeau) et couverture Gumroad 1280 × 720 (`assets/templates-<slug>-couverture.png`).
 2. Site : fiche dans `/templates/` (produit, galerie, FAQ si besoin), carte dans la section `#templates`
    de `index.html` et `en/index.html` (préciser « in French »), puis `node outils/connexion/generer.mjs`
-   (régénère la liste de l'espace acheteurs `connexion/index.html` depuis `PRODUITS` et les cartes du
-   catalogue : nom, thème, phrase, vignette ; contrôlé par `outils/templates/connexion.test.mjs`).
+   (régénère la liste de l'espace acheteurs `connexion/index.html` et `assets/espace-donnees.js` depuis
+   `PRODUITS` et les cartes du catalogue : nom, thème, phrase, vignette ; contrôlé par
+   `outils/templates/connexion.test.mjs`). L'application charge `/assets/mes-templates.js` (balise
+   `<script src="/assets/mes-templates.js?v=…" defer></script>` avant `</body>`) : son logo d'en-tête
+   (`.barre .marque`) ouvre le panneau « Mes templates » (autres templates de l'appareil, badges Acheté / Essai).
 3. Gumroad (outils `mcp__Gumroad__*`) : **confirmer nom et prix avec Quentin** (prix minimum 12 €, règle de
    Quentin du 13/11/2026 : aucun template vendu moins cher, hors gratuit), puis
    `create_draft_product`, `update_product` (permalien, catégorie, résumé, tags, détails, texte du reçu,

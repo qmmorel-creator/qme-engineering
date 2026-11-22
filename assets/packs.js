@@ -90,7 +90,7 @@
       const r = await fetch('/api/templates/connexion', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code }) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(r.status === 401 ? 'Clé inconnue. Vérifiez-la dans l’e-mail reçu après l’achat.' : (j.erreur || 'Le service ne répond pas. Réessayez dans un instant.'));
-      if (!j.pack) throw new Error('Cette clé ouvre un seul template : utilisez la page Connexion.');
+      if (!j.pack) throw new Error('Cette clé ouvre une seule application : utilisez la page Connexion.');
       return j;
     }
     function rendre(packs) {
@@ -102,13 +102,13 @@
         if (!produits[t.produit]) produits[t.produit] = { nom: t.nom, url: t.url, theme: 'autres', phrase: '', img: '' };
       }
       const n = Object.keys(acces).length;
-      $('[data-nb]').textContent = packs.length ? `${n} template${n > 1 ? 's' : ''} · ${packs.length} pack${packs.length > 1 ? 's' : ''}` : '';
+      $('[data-nb]').textContent = packs.length ? `${n} application${n > 1 ? 's' : ''} · ${packs.length} pack${packs.length > 1 ? 's' : ''}` : '';
       $('[data-intro]').hidden = !!packs.length;
       $('[data-ajouter]').hidden = !packs.length;
       $('[data-titre-ajout]').hidden = !packs.length;
       corps.hidden = gerer.hidden = !packs.length;
       vue.maj(Object.keys(acces));
-      zone.innerHTML = packs.map((p, i) => `<div class="pack-gere"><div><b>${esc(p.nom)}</b><span>${p.templates.length} template${p.templates.length > 1 ? 's' : ''}</span></div><button class="lien-discret" type="button" data-oublier="${i}">Oublier ce pack sur cet appareil</button></div>`).join('');
+      zone.innerHTML = packs.map((p, i) => `<div class="pack-gere"><div><b>${esc(p.nom)}</b><span>${p.templates.length} application${p.templates.length > 1 ? 's' : ''}</span></div><button class="lien-discret" type="button" data-oublier="${i}">Oublier ce pack sur cet appareil</button></div>`).join('');
       form.querySelector('button').textContent = packs.length ? 'Ajouter ce pack' : 'Ouvrir mon pack';
     }
     corps.addEventListener('click', (e) => {

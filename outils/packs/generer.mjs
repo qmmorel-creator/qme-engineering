@@ -344,10 +344,10 @@ function pageComposer(packs) {
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
 // Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
 // Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
-const VE = '2026112201'; // version de assets/espace.js et espace.css
+const VE = '2026112204'; // version de assets/espace.js et espace.css
 async function pageEspace() {
   const { produits, themes } = await donneesEspace();
-  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des templates de votre pack QME.', noindex: true })
+  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
       .replace('</head>', `<link rel="stylesheet" href="/assets/espace.css?v=${VE}">\n</head>`)
     + `<section class="espace espace-pack" data-espace>
   <div class="espace-tete">
@@ -358,14 +358,14 @@ async function pageEspace() {
     </div>
     <a class="btn ajouter" href="#ajout-pack" data-ajouter hidden>+ Ajouter<span class="pc">&nbsp;un pack</span></a>
   </div>
-  <p class="lead pack-intro" data-intro>Collez la clé de licence de votre pack : chacun de ses templates s’ouvre ensuite d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+  <p class="lead pack-intro" data-intro>Collez la clé de licence de votre pack : chacune de ses applications s’ouvre ensuite d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
   <p class="erreur pack-alerte" data-alerte role="alert"></p>
   <div data-espace-corps hidden></div>
   <p class="vh" role="status" data-copie></p>
   <section class="gerer-packs" data-gerer hidden aria-labelledby="h-gerer">
     <h2 id="h-gerer">Gérer mes packs</h2>
     <div data-mes-packs></div>
-    <p class="pack-espace-note">Pour partager un seul template (un budget commun, par exemple), envoyez son code de partage : bouton <span aria-hidden="true">⧉</span> à côté de l’étoile. Il n’ouvre que ce template. La clé du pack ouvre tous vos templates : gardez-la pour vous.</p>
+    <p class="pack-espace-note">Pour partager une seule application (un budget commun, par exemple), envoyez son code de partage : bouton <span aria-hidden="true">⧉</span> à côté de l’étoile. Il n’ouvre que cette application. La clé du pack ouvre toutes vos applications : gardez-la pour vous.</p>
   </section>
   <div class="ajout-pack" id="ajout-pack">
     <h2 data-titre-ajout hidden>Ajouter un pack</h2>
