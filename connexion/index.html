@@ -25,6 +25,8 @@
 .bloc-lien{margin-bottom:8px}
 .ou{display:flex;align-items:center;gap:12px;margin:26px 0 0;color:var(--discret);font-size:14px;font-weight:600}
 .ou::before,.ou::after{content:"";flex:1;height:1px;background:var(--trait)}
+.acces input[type=email]{font:600 19px/1.2 Outfit,sans-serif;padding:14px 12px;border:1px solid var(--trait);background:#fff;border-radius:14px;width:100%;color:var(--encre)}
+.acces input[type=email]:focus{outline:3px solid var(--jaune);outline-offset:0}
 .ok-lien{color:#1F5130;background:#D9EBDD;padding:12px 14px;border-radius:12px;font-size:15px}
 .ok-lien:empty{display:none}
 .tete-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -260,7 +262,7 @@ function rendre(){
   document.body.classList.toggle('a-espace',actif);
   E.espace.hidden=!actif;
   const prenom=QMEEspace.prenom();
-  E.salut.textContent=prenom?`Bonjour ${prenom}`:'Espace acheteurs';
+  E.salut.textContent=prenom?`Bonjour ${prenom}`:'Espace acheteurs';E.salut.classList.toggle('salut-perso',Boolean(prenom));
   E.nb.textContent=mes.length?`${mes.length} application${mes.length>1?'s':''} sur cet appareil`:'';
   E.vide.hidden=mes.length>0;
   E.perso.hidden=!mes.length;

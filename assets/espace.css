@@ -55,7 +55,8 @@
 .esp .vide a{font-weight:700;color:var(--bleu)}
 @media (max-width:640px){
   .espace{padding-top:20px}
-  .espace .eyebrow,.espace .ajouter .pc{display:none}
+  .espace .eyebrow:not(.salut-perso),.espace .ajouter .pc{display:none}
+  .espace .salut-perso{margin-bottom:6px}
   .espace-tete{align-items:center;flex-wrap:nowrap}
   .espace h1{font-size:34px}
   .espace-nb{font-size:15px;margin-top:2px}

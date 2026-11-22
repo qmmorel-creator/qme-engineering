@@ -148,3 +148,61 @@ test('purge quotidienne : traces de demandes et liens expirés effacés, compte 
   assert.deepEqual([...w.store.m.keys()].filter((k) => !k.startsWith('compte/')), []);
   assert.ok(await w.store.get(cleCompte(SECRET, 'eva@exemple.fr')));
 });
+
+// --- Administration : import des ventes passées et annonce des nouveautés ---------------------------------
+const ADMIN = codeAdmin(SECRET);
+const admin = (w, chemin, corps, { code = ADMIN, verifierLicence } = {}) => traiterCompte(new Request(`http://t/api/compte${chemin}`, {
+  method: 'POST', headers: { 'x-admin': code }, body: JSON.stringify(corps),
+}), { secret: SECRET, store: w.store, envoyer: async (m) => { w.mails.push(m); }, maintenant: () => w.t, testeurs: 'moi@qme.fr', verifierLicence });
+
+test('import des ventes passées : code admin, simulation, clé vérifiée, adresse de la vente exigée', async () => {
+  const w = monde();
+  const verifier = async (gumroad, licence) => (gumroad === PRODUITS.TCH.gumroad && licence === LICENCE ? { ok: true, achat: { email: 'Floriane@Exemple.fr' } } : { ok: false, raison: 'inconnue' });
+  const ventes = [{ email: 'floriane@exemple.fr', licence: LICENCE.toLowerCase() }, { email: 'autre@exemple.fr', licence: LICENCE }, { email: 'x@exemple.fr', licence: 'ABCDEF01-00000000-ABCDEF01-00000000' }, { email: 'pas-une-adresse', licence: LICENCE }];
+  assert.equal((await admin(w, '/import', { ventes }, { code: 'ADM-FAUX', verifierLicence: verifier })).status, 401);
+  const sim = await (await admin(w, '/import', { ventes }, { verifierLicence: verifier })).json();
+  assert.equal(sim.simulation, true);
+  assert.deepEqual(sim.rapport.map((r) => r.resultat), ['à importer', 'adresse différente de celle de la vente', 'clé inconnue', 'format invalide']);
+  assert.equal(sim.rapport[0].produit, 'TCH');
+  assert.ok(!sim.rapport.some((r) => r.licence.length > 9), 'clé tronquée dans le rapport');
+  assert.equal(await w.store.get(cleCompte(SECRET, 'floriane@exemple.fr')), null, 'simulation : rien d\'écrit');
+  const reel = await (await admin(w, '/import', { ventes: ventes.slice(0, 1), simulation: false }, { verifierLicence: verifier })).json();
+  assert.equal(reel.rapport[0].resultat, 'importée');
+  const s = await connecter(w, 'floriane@exemple.fr');
+  assert.deepEqual(s.compte.cles, [{ type: 'template', p: 'TCH', code: LICENCE, source: 'achat' }]);
+});
+
+test('annonce : testeurs inscrits et acheteurs, une fois par adresse, par lots ; désinscription signée', async () => {
+  const w = monde();
+  // Testeuse inscrite aux nouveautés, testeur non inscrit, acheteuse, adresse de test exclue
+  await w.store.set('contact/aaa', { email: 'lea@exemple.fr', prenom: 'Léa' });
+  await traiterEssai(new Request('http://t/api/essai', { method: 'POST', body: JSON.stringify({ consentement: true, email: 'sansnouveautes@exemple.fr', produit: 'BDG' }) }),
+    { secret: SECRET, essais: w.store, envoyer: null, maintenant: () => w.t, ip: '1.2.3.4' });
+  await ajouterAchat({ secret: SECRET, store: w.store, email: 'camille@exemple.fr', vente: { type: 'template', code: 'BDG' }, licence: LICENCE, nomComplet: 'Camille D', maintenant: () => w.t });
+  await ajouterAchat({ secret: SECRET, store: w.store, email: 'moi@qme.fr', vente: { type: 'template', code: 'BDG' }, licence: LICENCE, maintenant: () => w.t });
+  const sim = await (await admin(w, '/annonce', {})).json();
+  assert.deepEqual({ total: sim.total, acheteurs: sim.acheteurs, testeurs: sim.testeurs, aEnvoyer: sim.aEnvoyer }, { total: 2, acheteurs: 1, testeurs: 1, aEnvoyer: 2 });
+  assert.equal(w.mails.length, 0, 'simulation : aucun envoi');
+  // Test : les deux versions à une seule adresse
+  assert.equal((await (await admin(w, '/annonce', { test: 'quentin@qme.fr', prenom: 'Quentin' })).json()).envoyes, 2);
+  assert.deepEqual(w.mails.map((m) => m.a), ['quentin@qme.fr', 'quentin@qme.fr']);
+  assert.ok(w.mails[0].objet.startsWith('[Test acheteur]') && w.mails[0].html.includes('/assets/mail/nouveautes-2026-11/espace.jpg') && w.mails[0].texte.startsWith('Bonjour Quentin,'));
+  w.mails.length = 0;
+  // Envoi par lots de 1, puis plus rien
+  const l1 = await (await admin(w, '/annonce', { simulation: false, limite: 1 })).json();
+  assert.equal(l1.envoyes, 1); assert.equal(l1.restants, 1);
+  const l2 = await (await admin(w, '/annonce', { simulation: false })).json();
+  assert.equal(l2.envoyes, 1); assert.equal(l2.restants, 0);
+  assert.equal((await (await admin(w, '/annonce', { simulation: false })).json()).envoyes, 0, 'une seule fois par adresse');
+  const acheteuse = w.mails.find((m) => m.a === 'camille@exemple.fr'), testeuse = w.mails.find((m) => m.a === 'lea@exemple.fr');
+  assert.ok(acheteuse.texte.startsWith('Bonjour Camille,') && acheteuse.texte.includes('Ne plus recevoir ces annonces : https://qm-engineering.fr/api/compte/stop?e='));
+  assert.ok(testeuse.texte.startsWith('Bonjour Léa,') && testeuse.texte.includes('/api/essai/desinscription?e='));
+  assert.ok(acheteuse.html.includes('utm_campaign=nouveautes-2026-11'));
+  // Désinscription de l'acheteuse : lien signé, puis plus d'annonce
+  const stop = acheteuse.texte.match(/(https:\/\/qm-engineering\.fr\/api\/compte\/stop\?\S+)/)[1].replace('https://qm-engineering.fr', 'http://t');
+  const faux = stop.replace(/s=.{4}/, 's=0000');
+  assert.ok((await (await traiterCompte(new Request(faux), { secret: SECRET, store: w.store })).text()).includes('Lien invalide'));
+  assert.ok((await (await traiterCompte(new Request(stop), { secret: SECRET, store: w.store })).text()).includes('C’est noté'));
+  assert.ok((await w.store.get(cleCompte(SECRET, 'camille@exemple.fr'))).sansAnnonces);
+  assert.equal((await (await admin(w, '/annonce', {})).json()).acheteurs, 0);
+});

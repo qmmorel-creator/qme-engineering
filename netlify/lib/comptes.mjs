@@ -20,8 +20,18 @@
 //  PUT    /prefs     { prenom?, prefs }      → { compte }
 //  POST   /deconnexion                       → { ok } (toutes les sessions de ce compte)
 //  DELETE /          (Authorization: Bearer) → { ok } (compte supprimé ; les achats restent valables par leur clé)
+// Administration (en-tête X-Admin : code administrateur) :
+//  POST   /import    { ventes: [{ email, licence }], simulation = true } → rapport ; ventes passées rangées dans les
+//                    comptes après vérification de chaque clé auprès de Gumroad (adresse de la vente exigée)
+//  POST   /annonce   { simulation = true, test?, prenom?, limite = 8 } → annonce nouveautes.mjs aux testeurs inscrits
+//                    et aux acheteurs, une fois par adresse ; test : les deux versions à cette seule adresse
+// Public :
+//  GET    /stop?e=&s=                          → plus d'annonce pour ce compte (lien signé du pied de l'annonce)
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
-import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser } from './templates-acces.mjs';
+import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
+import { estAdmin } from './interets.mjs';
+import { lienDesinscription } from './essais.mjs';
+import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 
 export const DUREE_LIEN = 15 * 60_000;
@@ -147,7 +157,49 @@ ${SIGNATURE}`;
   };
 }
 
-export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now }) {
+const signerStop = (secret, h) => signer(secret, 'stop', h).slice(0, 24);
+export const lienStopAnnonces = (secret, email) => { const h = cleEmail(secret, normEmail(email)); return `${SITE}/api/compte/stop?e=${h}&s=${signerStop(secret, h)}`; };
+const page = (titre, texte) => new Response(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${titre}</title></head><body style="font:17px/1.55 system-ui,sans-serif;max-width:560px;margin:60px auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:26px">${titre}</h1><p>${texte}</p><p><a href="${SITE}/connexion/" style="color:#1D4E89;font-weight:700">Mon espace QME</a></p></body></html>`,
+  { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+
+// Ventes passées → comptes. Chaque clé est vérifiée auprès de Gumroad (tous les produits interrogés) ; l'adresse
+// donnée doit être celle de la vente. Simulation par défaut : rien n'est écrit.
+async function importer({ secret, store, ventes, simulation, verifierLicence, maintenant }) {
+  const candidats = [...Object.entries(PRODUITS).map(([k, p]) => ['template', k, p.gumroad]), ...Object.entries(PACKS).map(([k, p]) => ['pack', k, p.gumroad])].filter(([, , g]) => g);
+  const rapport = [];
+  for (const v of (Array.isArray(ventes) ? ventes : []).slice(0, 200)) {
+    const email = normEmail(v?.email), licence = String(v?.licence || '').trim().toUpperCase();
+    const ligne = { email, licence: licence.slice(0, 8) + '…' };
+    if (!emailValide(email) || !estLicence(licence)) { rapport.push({ ...ligne, resultat: 'format invalide' }); continue; }
+    const rep = await Promise.allSettled(candidats.map(([, , g]) => verifierLicence(g, licence)));
+    const i = rep.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
+    if (i < 0) { rapport.push({ ...ligne, resultat: rep.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse') ? 'remboursée' : rep.some((r) => r.status === 'rejected') ? 'Gumroad injoignable' : 'clé inconnue' }); continue; }
+    const achat = rep[i].value.achat || {}, [type, code] = candidats[i];
+    if (achat.email && normEmail(achat.email) !== email) { rapport.push({ ...ligne, resultat: 'adresse différente de celle de la vente' }); continue; }
+    if (!simulation) await ajouterAchat({ secret, store, email, vente: { type, code }, licence, maintenant });
+    rapport.push({ ...ligne, produit: code, type, resultat: simulation ? 'à importer' : 'importée' });
+  }
+  return rapport;
+}
+
+// Destinataires de l'annonce : testeurs inscrits aux nouveautés (contact/…) et acheteurs (compte avec un achat,
+// sans « ne plus recevoir »). Une adresse à la fois ; un acheteur reçoit la version acheteur.
+async function destinataires({ secret, store, exclure = [] }) {
+  const parEmail = new Map();
+  for (const cle of await store.lister('contact/')) {
+    const c = await store.get(cle);
+    if (c?.email) parEmail.set(normEmail(c.email), { email: normEmail(c.email), prenom: c.prenom || '', type: 'testeur', stop: lienDesinscription(secret, c.email) });
+  }
+  for (const cle of await store.lister('compte/')) {
+    const c = await store.get(cle);
+    if (!c?.email || c.sansAnnonces || !c.cles?.some((k) => k.source === 'achat')) continue;
+    parEmail.set(c.email, { email: c.email, prenom: c.prenom || parEmail.get(c.email)?.prenom || '', type: 'acheteur', stop: lienStopAnnonces(secret, c.email) });
+  }
+  const ex = exclure.map(normEmail);
+  return [...parEmail.values()].filter((d) => !ex.includes(d.email));
+}
+
+export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad }) {
   if (!secret || secret.length < 32 || !store) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/compte/, '').replace(/\/$/, '') || '/';
   const methode = requete.method;
@@ -158,6 +210,47 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     try { corps = JSON.parse(t || '{}') || {}; } catch { return json(400, { erreur: 'JSON invalide' }); }
   }
   const t = maintenant(), date = new Date(t).toISOString(), aujourdhui = jourParis(new Date(t));
+
+  // Désinscription des annonces (acheteurs).
+  if (chemin === '/stop' && methode === 'GET') {
+    const u = new URL(requete.url), h = u.searchParams.get('e') || '', sig = u.searchParams.get('s') || '';
+    if (!/^[0-9a-f]{8,64}$/.test(h) || !egal(sig.padEnd(24).slice(0, 24), signerStop(secret, h))) return page('Lien invalide', 'Ce lien de désinscription est incomplet. Répondez à l’e-mail reçu : je vous retire à la main.');
+    const c = await store.get(`compte/${h}`);
+    if (c && !c.sansAnnonces) await store.set(`compte/${h}`, { ...c, sansAnnonces: date });
+    return page('C’est noté', 'Vous ne recevrez plus d’annonces de nouveautés QME. Vos applications et votre compte restent inchangés.');
+  }
+
+  // Administration : import des ventes passées, annonce des nouveautés.
+  if ((chemin === '/import' || chemin === '/annonce') && methode === 'POST') {
+    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    const simulation = corps.simulation !== false;
+    if (chemin === '/import') return json(200, { simulation, rapport: await importer({ secret, store, ventes: corps.ventes, simulation, verifierLicence, maintenant }) });
+    if (corps.test) {
+      const email = normEmail(corps.test);
+      if (!emailValide(email)) return json(400, { erreur: 'Adresse de test invalide.' });
+      if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
+      for (const type of ['acheteur', 'testeur']) {
+        const m = contenuAnnonce({ type, prenom: nettoyerPrenom(corps.prenom), stop: type === 'acheteur' ? lienStopAnnonces(secret, email) : lienDesinscription(secret, email) });
+        await envoyer({ a: email, objet: `[Test ${type}] ${m.objet}`, texte: m.texte, html: m.html });
+      }
+      return json(200, { ok: true, test: email, envoyes: 2 });
+    }
+    const liste = await destinataires({ secret, store, exclure: String(testeurs).split(/[\s,;]+/).filter(Boolean) });
+    const restants = [];
+    for (const d of liste) if (!(await store.get(`annonce/${CAMPAGNE}/${cleEmail(secret, d.email)}`))) restants.push(d);
+    const resume = { campagne: CAMPAGNE, total: liste.length, acheteurs: liste.filter((d) => d.type === 'acheteur').length, testeurs: liste.filter((d) => d.type === 'testeur').length, dejaEnvoyes: liste.length - restants.length };
+    if (simulation) return json(200, { simulation, ...resume, aEnvoyer: restants.length });
+    if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
+    // Par lots (temps limite d'une fonction) : relancer jusqu'à restants = 0.
+    const lot = restants.slice(0, Math.min(Math.max(Number(corps.limite) || 8, 1), 20));
+    let envoyes = 0; const erreurs = [];
+    for (const d of lot) {
+      const m = contenuAnnonce(d);
+      try { await envoyer({ a: d.email, objet: m.objet, texte: m.texte, html: m.html }); await store.set(`annonce/${CAMPAGNE}/${cleEmail(secret, d.email)}`, { date, type: d.type }); envoyes++; }
+      catch (x) { console.error('Annonce impossible', x); erreurs.push(d.type); }
+    }
+    return json(200, { simulation, ...resume, envoyes, erreurs: erreurs.length, restants: restants.length - envoyes });
+  }
 
   // Demande d'un lien de connexion.
   if (chemin === '/lien' && methode === 'POST') {
