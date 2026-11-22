@@ -19,7 +19,11 @@ Site promotionnel de Quentin Morel Engineering (QME).
     sur toutes les pages (Accueil, Sur mesure, Templates, Packs, Guides, Contact, Connexion, Confidentialité). Plus
     d'enchaînement « page précédente / suivante » entre les pages principales (seuls restent les retours au catalogue
     ou aux packs en bas des fiches) ;
-  - `index.html` (accueil) : aiguillage entre les deux offres, puis le film ;
+  - `index.html` (accueil) : deux portes « Outils pour les pros » (`/pro/`) et « Outils pour la vie perso » (`/perso/`),
+    chacune avec une bande de 4 vignettes d'outils en vente, puis une carte « Sur mesure » (4 vignettes de références),
+    puis le film (22/11/2026). `en/index.html` : portes Custom tools et Templates, avec leurs vignettes. Adresses des
+    vignettes tenues à jour sur les deux accueils par `outils/templates/vignettes.mjs` et `outils/references/vignettes.mjs`
+    (`PAGES_REPRISE` de `outils/lib/vignette.mjs`) ;
   - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
     `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
     `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
