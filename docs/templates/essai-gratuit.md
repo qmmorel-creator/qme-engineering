@@ -115,7 +115,8 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
   (actions permises : liste `PERMIS`), joint le code d'essai à la connexion par clé.
 - **Site** : `node outils/essai/generer.mjs` génère `/essai/` et ajoute l'essai aux pages catalogue (bouton, prix,
   question « Y a-t-il un essai gratuit ? », rappel) ; puis `node outils/seo/donnees-structurees.mjs` et
-  `node outils/sitemap/generer.mjs`.
+  `node outils/sitemap/generer.mjs`. Les pages de pack (`node outils/packs/generer.mjs`) annoncent aussi l'essai sous les boutons
+  d'achat et proposent « Essai gratuit » sur chaque outil (22/11/2026), comme la fiche Gumroad du Pack Étudiant.
 
 ## Vérifier
 
@@ -129,7 +130,7 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 ## Mesure (GoatCounter)
 
-Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
+Clics `essai-<slug>` (bouton de la page catalogue), `essai-pack-<pack>-<slug>` (carte d'un outil sur une page de pack), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
 Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
 Circuit technique (client, Gumroad, site, données, e-mails) : `docs/templates/communication/essai/workflow-essai-achat.png`

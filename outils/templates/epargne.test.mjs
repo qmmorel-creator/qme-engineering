@@ -273,3 +273,28 @@ test('base intégrée : types complets, aucun taux ni montant figé', () => {
   assert.ok(!/\d+(?:[,.]\d+)?\s?%/.test(texte), 'aucun taux en pourcentage dans la base');
   assert.ok(/conseil financier/.test(BASE.avertissement));
 });
+
+test('versement nécessaire : retrait prévu le mois visé, sans boucle sans fin (audit du 22/11/2026)', () => {
+  // Avant : date visée = mois en cours et retrait prévu ce mois-là → recherche sans fin (page figée).
+  const p = { solde: 50000, taux: 0, capitalisation: 'mensuelle', cible: 100000, debut: '2026-11', extras: [{ mois: '2026-11', montant: -20000 }] };
+  assert.equal(R.versementPour(p, '2026-11'), 70000);
+  // Le dernier versement couvre aussi le retrait du même mois : cible atteinte ce mois-là.
+  const r = R.projeter({ ...p, versement: 70000 });
+  assert.equal(r.atteint, '2026-11');
+  assert.equal(r.mois[0].solde, 100000);
+  // Sans retrait le même mois, le dernier versement reste ajusté à ce qui manque.
+  assert.equal(R.projeter({ ...p, extras: [], versement: 70000 }).mois[0].verse, 50000);
+});
+
+test('statut : date visée passée → aucun versement nécessaire chiffré (pas de « 0,00 € par mois »)', () => {
+  const o = obj({ cible: 240000, soldeInitial: 85000, versement: 25000, debut: '2026-08', dateCible: '2026-09' });
+  const s = R.statutObjectif(o, [], [], '2026-11');
+  assert.equal(s.statut, 'en-retard');
+  assert.equal(s.necessaire, null);
+});
+
+test('montants : au-delà de 10 millions d\'euros, saisie refusée (pas de dépassement des entiers 32 bits)', () => {
+  assert.equal(R.versCentimes('10000000'), 1e9);
+  assert.equal(R.versCentimes('50000000'), null);
+  assert.equal(R.versCentimes(50000000), null);
+});

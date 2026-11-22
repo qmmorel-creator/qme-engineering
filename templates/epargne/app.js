@@ -393,7 +393,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/epargne/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Objectif<br>d'épargne</span>
@@ -444,7 +444,7 @@
     switch (s.statut) {
       case 'atteint': return `Objectif atteint : ${eur(s.solde)} de côté pour ${eur(s.cible)} visés.`;
       case 'dans-les-temps': return `Atteint en <b>${lm(s.atteint)}</b>, ${s.avance ? `${R.dureeTexte(s.avance)} avant` : 'pile à'} la date visée (${lm(o.dateCible)}).`;
-      case 'en-retard': return `À ce rythme : <b>${lm(s.atteint)}</b>, ${R.dureeTexte(s.retard)} après la date visée. Pour ${lm(o.dateCible)}, il faut <b>${eur(s.necessaire)} par mois</b>.`;
+      case 'en-retard': return `À ce rythme : <b>${lm(s.atteint)}</b>, ${R.dureeTexte(s.retard)} après la date visée. ${s.necessaire ? `Pour ${lm(o.dateCible)}, il faut <b>${eur(s.necessaire)} par mois</b>.` : `La date visée (${lm(o.dateCible)}) est passée : choisis-en une nouvelle.`}`;
       case 'sans-date': return `À ce rythme : atteint en <b>${lm(s.atteint)}</b>, dans ${dans(s.atteint)}.`;
       case 'pause': return `Aucun versement prévu.${s.necessaire ? ` Pour ${lm(o.dateCible)}, il faudrait <b>${eur(s.necessaire)} par mois</b>.` : ''}`;
       case 'jamais': return `Avec ${eur(o.versement)} par mois, la cible n'est pas atteinte en ${R.dureeTexte(R.MAX_MOIS)}.${s.necessaire ? ` Pour ${lm(o.dateCible)} : <b>${eur(s.necessaire)} par mois</b>.` : ''}`;
@@ -466,7 +466,7 @@
     if (!actifs().some((o) => o.urgence)) liste.push(['bleu', 'Conseil', 'Pas encore de fonds d\'urgence : quelques mois de dépenses essentielles mis de côté évitent de toucher à tes projets au premier imprévu.', '<button class="btn petit" data-action="objectif-nouveau" data-type="urgence">Créer mon fonds d\'urgence</button>']);
     for (const o of actifs()) {
       const s = statutDe(o);
-      if (s.statut === 'en-retard') liste.push(['jaune', 'En retard', `<b>${esc(o.nom)}</b> : ${minuscule(phraseStatut(o, s))}`, `<button class="btn petit" data-action="appliquer-necessaire" data-id="${o.id}">Passer à ${eurR(s.necessaire)} par mois</button>`]);
+      if (s.statut === 'en-retard') liste.push(['jaune', 'En retard', `<b>${esc(o.nom)}</b> : ${minuscule(phraseStatut(o, s))}`, s.necessaire ? `<button class="btn petit" data-action="appliquer-necessaire" data-id="${o.id}">Passer à ${eurR(s.necessaire)} par mois</button>` : `<button class="btn petit" data-action="objectif-modifier" data-id="${o.id}">Changer la date</button>`]);
       if (s.statut === 'jamais') liste.push(['rouge', 'Hors d\'atteinte', `<b>${esc(o.nom)}</b> : ${phraseStatut(o, s)}`, `<button class="btn petit" data-action="objectif" data-id="${o.id}">Revoir</button>`]);
       const r = R.rythme(o, E.mouvements, t, 3);
       if (r && s.statut !== 'atteint' && r.ecart < -(o.versement / 2)) liste.push(['jaune', 'Rythme', `<b>${esc(o.nom)}</b> : ${eur(r.verse)} versés sur les ${r.mois} derniers mois, contre ${eur(r.prevu)} prévus.`, '']);
@@ -559,7 +559,7 @@
       ${E.capacite ? `<section class="budget-carte"><div><p class="surtitre">Capacité d'épargne</p><b>${eur(E.capacite)}</b><span>${total <= E.capacite ? `${eur(total)} prévus · <b>${eur(E.capacite - total)}</b> encore libres chaque mois` : `<b class="negatif">${eur(total - E.capacite)} de trop</b> : les versements prévus dépassent ta capacité`}</span></div><div class="jauge-budget" role="img" aria-label="Versements prévus ${eur(total)} sur ${eur(E.capacite)}"><i style="width:${Math.min(100, (total / E.capacite) * 100)}%"></i></div></section>` : ''}
       <ul class="cartes-dettes cartes-objectifs">${cartes}</ul>
       <h2 class="titre-section">Plan de versements <span>Les 12 prochains mois ; chaque versement s'arrête quand sa cible est atteinte</span></h2>
-      <div class="defile"><table class="tableau plan-versements">
+      <div class="defile" tabindex="0" role="region" aria-label="Plan des versements (défile sur le côté)"><table class="tableau plan-versements">
         <thead><tr><th scope="col">Mois</th>${liste.map((o) => `<th scope="col" class="nb"><span class="nom-methode"><i class="cle-ligne" style="--c:${couleurDe(o)}"></i>${esc(o.nom)}</span></th>`).join('')}<th scope="col" class="nb">Total</th></tr></thead>
         <tbody>${plan.map((m) => `<tr class="${m.mois === t ? 'courant' : ''}"><th scope="row">${lmMaj(m.mois)}</th>${liste.map((o) => { const l = m.lignes.find((x) => x.id === o.id); return `<td class="nb">${l ? `${l.montant ? eur(l.montant) : ''}${l.atteint ? ' <span class="etiquette vert">atteint</span>' : ''}` : '<span class="discret">–</span>'}</td>`; }).join('')}<td class="nb"><b>${eur(m.total)}</b></td></tr>`).join('')}</tbody>
       </table></div>
@@ -592,7 +592,7 @@
       </div>
       ${barre(s.part, c)}
       <div class="tuiles">${tuiles}</div>
-      ${s.statut === 'en-retard' || (s.statut === 'pause' && s.necessaire) ? `<div class="rang-boutons"><button class="btn primaire petit" data-action="appliquer-necessaire" data-id="${o.id}">Passer à ${eurR(s.necessaire)} par mois</button></div>` : ''}
+      ${(s.statut === 'en-retard' || s.statut === 'pause') && s.necessaire ? `<div class="rang-boutons"><button class="btn primaire petit" data-action="appliquer-necessaire" data-id="${o.id}">Passer à ${eurR(s.necessaire)} par mois</button></div>` : ''}
       <h2 class="titre-section">Trajectoire <span>Solde réel, puis projection jusqu'à la cible</span></h2>
       ${graphiqueObjectif(o, s)}
       ${o.urgence ? blocUrgence(o, s) : blocPostes(o, s)}
@@ -690,7 +690,7 @@
     }).join('');
     graphes.set(id, { mois, series, x, y, L, H, h, b });
     const legende = series.length > 1 ? `<div class="legende">${series.map((s) => `<span><i class="${s.style === 'points' ? 'cle-point' : s.style === 'tirets' ? 'cle-ligne cle-tirets' : 'cle-ligne'}" style="--c:${s.couleur}"></i>${esc(s.nom)}</span>`).join('')}</div>` : '';
-    const table = `<details class="donnees-graphique"><summary>Voir les données du graphique</summary><div class="defile"><table class="tableau"><caption class="sr-only">${esc(titreAria)}</caption><thead><tr><th scope="col">Mois</th>${series.map((s) => `<th scope="col" class="nb">${esc(s.nom)}</th>`).join('')}</tr></thead><tbody>${mois.map((m) => `<tr><th scope="row">${lmMaj(m)}</th>${series.map((s) => `<td class="nb">${s.valeurs.has(m) ? eur(s.valeurs.get(m)) : '–'}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
+    const table = `<details class="donnees-graphique"><summary>Voir les données du graphique</summary><div class="defile" tabindex="0" role="region" aria-label="Données du graphique (défile sur le côté)"><table class="tableau"><caption class="sr-only">${esc(titreAria)}</caption><thead><tr><th scope="col">Mois</th>${series.map((s) => `<th scope="col" class="nb">${esc(s.nom)}</th>`).join('')}</tr></thead><tbody>${mois.map((m) => `<tr><th scope="row">${lmMaj(m)}</th>${series.map((s) => `<td class="nb">${s.valeurs.has(m) ? eur(s.valeurs.get(m)) : '–'}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
     return `<figure class="graphique" id="${id}" tabindex="0" aria-label="${esc(titreAria)} : flèches gauche et droite pour lire chaque mois">
       ${legende}
       <svg viewBox="0 0 ${L} ${H}" role="img" aria-label="${esc(titreAria)} ; détail dans le tableau">${grilles.join('')}${traces}${etiquettes}${axeX}<line class="repere" x1="0" x2="0" y1="${h}" y2="${H - b}" visibility="hidden"/><g class="reperes-pts"></g><rect class="zone-survol" x="${g}" y="0" width="${L - g - d}" height="${H - b}"/></svg>
@@ -818,7 +818,7 @@
     const coul = [B.couleurs[0], B.couleurs[1], B.couleurs[2]];
     const meilleur = res.filter((r) => r.atteint).sort((a, b) => a.duree - b.duree)[0];
     const editeurs = sc.map((x, i) => `<section class="bloc scenario" style="--c:${coul[i]}">
-      <h3><i aria-hidden="true"></i><input class="nom-scenario" id="sc-nom-${i}" data-sc="${i}" data-champ="nom" value="${esc(x.nom)}" maxlength="30" aria-label="Nom du scénario ${'ABC'[i]}"></h3>
+      <h2><i aria-hidden="true"></i><input class="nom-scenario" id="sc-nom-${i}" data-sc="${i}" data-champ="nom" value="${esc(x.nom)}" maxlength="30" aria-label="Nom du scénario ${'ABC'[i]}"></h2>
       <div class="rang-champs">
         <label class="champ">Par mois<input id="sc-versement-${i}" data-sc="${i}" data-champ="versement" inputmode="decimal" value="${esc(R.versSaisie(x.versement))}"></label>
         <label class="champ">Taux annuel<input id="sc-taux-${i}" data-sc="${i}" data-champ="taux" inputmode="decimal" value="${String(x.taux).replace('.', ',')}"></label>
@@ -841,7 +841,7 @@
       <div class="segment choix-objectif" role="radiogroup" aria-label="Objectif comparé">${liste.map((x) => `<button type="button" role="radio" aria-checked="${x.id === o.id}" data-action="scen-objectif" data-id="${x.id}" style="--c:${couleurDe(x)}"><i></i>${esc(x.nom)}</button>`).join('')}</div>
       <div class="scenarios">${editeurs}</div>
       ${graphique('g-scenarios', mois, series, { titreAria: `Scénarios pour ${o.nom}`, note: `Intérêts composés ${o.capitalisation === 'annuelle' ? 'crédités chaque décembre' : 'chaque mois'}, au taux saisi dans chaque scénario. Les courbes continuent après l'atteinte avec les mêmes versements.` })}
-      <div class="defile"><table class="tableau comparaison">
+      <div class="defile" tabindex="0" role="region" aria-label="Comparaison des scénarios (défile sur le côté)"><table class="tableau comparaison">
         <thead><tr><th scope="col">Scénario</th><th scope="col">Atteint en</th><th scope="col" class="nb">Durée</th><th scope="col" class="nb">Total versé</th><th scope="col" class="nb">Intérêts gagnés</th>${o.dateCible ? `<th scope="col" class="nb">Solde en ${lm(o.dateCible, true)}</th>` : ''}</tr></thead>
         <tbody>${res.map((r, i) => `<tr class="${meilleur === r ? 'choisie' : ''}"><th scope="row"><span class="nom-methode"><i class="cle-ligne" style="--c:${coul[i]}"></i>${esc(sc[i].nom)}</span></th><td>${r.dejaAtteint ? 'déjà atteint' : r.jamais ? 'jamais' : lm(r.atteint)}</td><td class="nb">${r.jamais || r.dejaAtteint ? '–' : R.dureeTexte(r.duree)}</td><td class="nb">${r.jamais ? '–' : eur(r.totalVerse)}</td><td class="nb">${r.jamais ? '–' : eur(r.interets)}</td>${o.dateCible ? `<td class="nb">${eur(r.aDate)}</td>` : ''}</tr>`).join('')}</tbody>
       </table></div>
@@ -965,11 +965,13 @@
       const versement = String(f.get('versement') || '').trim() ? R.versCentimes(f.get('versement')) : 0;
       const taux = R.lireTaux(f.get('taux'));
       const mois = Number(f.get('mois'));
-      if (cible === null) return { erreur: 'Montant visé : saisis un montant, par exemple 3000.' };
+      if (cible === null) return { erreur: 'Montant visé : saisis un montant en euros (10 millions au plus), par exemple 3000.' };
       if (solde === null) return { erreur: 'Déjà de côté : saisis un montant, par exemple 500 (0 si rien).' };
       if (versement === null) return { erreur: 'Versement : saisis un montant par mois, par exemple 150.' };
       if (taux === null) return { erreur: 'Taux : saisis un pourcentage entre 0 et 30, par exemple 2,5 (0 si aucun).' };
       if (urgence && !(mois >= 1 && mois <= 24)) return { erreur: 'Nombre de mois : entre 1 et 24.' };
+      // Date visée passée refusée (sauf si c'est déjà celle de l'objectif : il reste modifiable).
+      if (R.estMois(f.get('date')) && f.get('date') < t && f.get('date') !== o?.dateCible) return { erreur: `Date visée : choisis ${lm(t)} ou un mois à venir.` };
       const postes = urgence ? [] : ls.lignes.filter((p) => p.montant > 0);
       const v = { nom: String(f.get('nom') || '').trim() || ty.nom, cible, soldeInitial: solde, versement, taux, capitalisation: f.get('capitalisation') === 'annuelle' ? 'annuelle' : 'mensuelle', dateCible: R.estMois(f.get('date')) ? f.get('date') : null, support: String(f.get('support') || '').trim(), note: String(f.get('note') || '').trim(), postes };
       if (urgence) v.urgence = { mois: Math.round(mois), depenses: ls.lignes.filter((p) => p.montant > 0), reponses: o?.urgence?.reponses || { situation: '', facteurs: [] } };

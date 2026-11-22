@@ -285,3 +285,62 @@ test('export CSV : une ligne par habitude et par jour, séparateur point-virgule
   assert.ok(csv.includes('2026-11-12;A;"Eau; filtrée";7,5;verres;partiel'));
   assert.ok(csv.includes('2026-11-12;Lieu;Bureau;oui;;choisi'));
 });
+
+test('normaliserEtat : identifiants piégés d\'une copie restaurée remplacés, références conservées', () => {
+  const piege = 'h" onmouseover="alert(1)" data-x="';
+  const th = 't" data-x="1';
+  const d = R.normaliserEtat({
+    themes: [{ id: th, nom: 'T', couleur: 'bleu' }, { id: 'u', nom: 'U', couleur: 'rouge', mode: 'unique' }],
+    habitudes: [
+      { id: piege, theme: th, nom: 'Piégée', type: 'case', depuis: '2026-11-01' },
+      { id: 'o1', theme: 'u', nom: 'Option', type: 'case', depuis: '2026-11-01' },
+      { id: 'ok-1', theme: 'u', nom: 'Option 2', type: 'case', depuis: '2026-11-01' },
+    ],
+    journal: { '2026-11-10': { [piege]: true, '@u': 'o1' }, '2026-11-11': { '@u': '<b>', [piege]: Infinity }, '2026-11-12': { '@u': 'na' } },
+  }, AUJ, ['bleu', 'rouge']);
+  const ID = /^[\w-]+$/;
+  assert.ok(d.themes.every((t) => ID.test(t.id)));
+  assert.ok(d.habitudes.every((h) => ID.test(h.id) && ID.test(h.theme)));
+  const h = d.habitudes[0];
+  assert.equal(h.theme, d.themes[0].id);
+  assert.equal(d.habitudes[1].id, 'o1'); // identifiant sain conservé
+  assert.equal(d.habitudes[2].id, 'ok-1');
+  assert.equal(d.journal['2026-11-10'][h.id], true);
+  assert.equal(d.journal['2026-11-10']['@u'], 'o1');
+  assert.equal(d.journal['2026-11-12']['@u'], 'na');
+  assert.ok(ID.test(d.journal['2026-11-11']['@u'])); // choix inconnu : aucune option ne correspond
+  assert.equal(d.journal['2026-11-11'][h.id], undefined);
+  for (const jour of Object.values(d.journal)) for (const cle of Object.keys(jour)) assert.ok(ID.test(cle.replace(/^@/, '')), cle);
+  assert.equal(R.statut(d, h, '2026-11-10', AUJ), 'reussi');
+});
+
+test('série : un chiffre encore sous le minimum aujourd\'hui ne casse pas la série, un maximum dépassé la casse', () => {
+  const t = '2026-11-22';
+  const eau = R.normaliserHabitude({ id: 'eau', theme: 'a', nom: 'Eau', type: 'nombre', min: 8, unite: 'verres', depuis: '2026-11-01' }, t);
+  const cafe = R.normaliserHabitude({ id: 'cafe', theme: 'a', nom: 'Cafés', type: 'nombre', max: 2, unite: 'tasses', depuis: '2026-11-01' }, t);
+  const e = { themes: [{ id: 'a', nom: 'A', couleur: 'bleu', mode: 'independant' }], habitudes: [eau, cafe], journal: {} };
+  for (const d of ['2026-11-19', '2026-11-20', '2026-11-21']) { R.regler(e, d, eau, 8); R.regler(e, d, cafe, 1); }
+  assert.equal(R.serie(e, eau, t), 3);
+  R.regler(e, t, eau, 3); // 3 verres à midi
+  assert.equal(R.statut(e, eau, t, t), 'partiel');
+  assert.equal(R.serie(e, eau, t), 3);
+  R.regler(e, t, eau, 8);
+  assert.equal(R.serie(e, eau, t), 4);
+  R.regler(e, t, cafe, 3); // maximum déjà dépassé : la série tombe
+  assert.equal(R.serie(e, cafe, t), 0);
+  // La veille, un chiffre sous le minimum reste un échec.
+  R.regler(e, '2026-11-21', eau, 3);
+  assert.equal(R.serie(e, eau, t), 1);
+});
+
+test('export CSV : formules neutralisées (=, +, -, @ en tête de cellule)', () => {
+  const e = etat();
+  const f = hab('=HYPERLINK("http://x";"clic")', { depuis: '2026-11-12' });
+  const g = hab('@somme', { depuis: '2026-11-12' });
+  e.habitudes.push(f, g);
+  R.regler(e, '2026-11-12', f, true);
+  R.regler(e, '2026-11-12', g, true);
+  const csv = R.versCsv(e, '2026-11-12', '2026-11-12', AUJ).split('\r\n');
+  assert.ok(csv.includes('2026-11-12;A;"\'=HYPERLINK(""http://x"";""clic"")";oui;;réussi'), csv.join('\n'));
+  assert.ok(csv.includes("2026-11-12;A;'@somme;oui;;réussi"));
+});

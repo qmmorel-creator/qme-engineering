@@ -406,7 +406,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl)) vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/repas/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Données d\'exemple, gardées sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Repas et<br>courses</span>
@@ -499,7 +499,7 @@
         const c = s.cases[cle];
         return `<button class="creneau ${c ? `cr-${c.type}` : 'cr-libre'}" data-action="case" data-cle="${cle}" aria-label="${esc(`${nom} ${lib.toLowerCase()}`)}"><span class="cr-repas">${lib}</span>${contenuCase(l, cle, c, p)}</button>`;
       }).join('');
-      return `<section class="jour ${d === t ? 'aujourdhui' : ''} ${d < t ? 'passe' : ''}"><h3 class="jour-tete"><span class="j-long">${nom}</span><span class="j-court">${nom.slice(0, 3)}.</span><b>${versDate(d).getDate()}</b>${d === t ? '<em>Aujourd\'hui</em>' : ''}</h3><div class="jour-cases">${cases}</div></section>`;
+      return `<section class="jour ${d === t ? 'aujourdhui' : ''} ${d < t ? 'passe' : ''}"><h2 class="jour-tete"><span class="j-long">${nom}</span><span class="j-court">${nom.slice(0, 3)}.</span><b>${versDate(d).getDate()}</b>${d === t ? '<em>Aujourd\'hui</em>' : ''}</h2><div class="jour-cases">${cases}</div></section>`;
     }).join('');
     return `
       <div class="vue-tete"><div><h1>Repas de la semaine</h1><p>${E.foyer ? `${esc(E.foyer)} · ` : ''}${pluriel(E.reglages.personnes, 'personne')} par défaut. Touche un repas pour choisir une recette, des restes ou une sortie.</p></div>
@@ -661,7 +661,7 @@
         <div class="actions"><button class="btn" data-action="imprimer">Imprimer</button><button class="btn primaire" data-action="copier">Copier la liste</button></div></div>
       ${navSemaine()}
       ${ajout2}
-      ${liste.aAcheter.length ? `<div class="progression"><span><b>${liste.nbCoches}</b> / ${pluriel(liste.aAcheter.length, 'article')} dans le panier</span>${bud.avecPrix ? `<span>Budget estimé : <b>${euros(bud.total)}</b> <small>(${bud.avecPrix} article${bud.avecPrix > 1 ? 's' : ''} avec ton prix sur ${liste.aAcheter.length})</small></span>` : '<span class="mention">Touche un article pour noter son prix : le budget s\'estime avec tes prix.</span>'}${liste.nbCoches ? '<button class="btn petit lien" data-action="decocher">Tout décocher</button>' : ''}</div>
+      ${liste.aAcheter.length ? `<div class="progression"><span><b>${liste.nbCoches}</b> / ${pluriel(liste.aAcheter.length, 'article')} dans le panier</span>${bud.avecPrix ? `<span>Budget estimé : <b>${euros(bud.total)}</b> <small>(${bud.avecPrix} article${bud.avecPrix > 1 ? 's' : ''} avec ton prix sur ${liste.aAcheter.length})</small></span>` : '<span class="mention">Touche un article pour noter son prix : le budget s\'estime avec tes prix.</span>'}<button class="btn petit lien" data-action="decocher" ${liste.nbCoches ? '' : 'hidden'}>Tout décocher</button></div>
         <div class="rayons">${liste.rayons.map((g) => `<section class="rayon"><h2>${esc(g.nom)} <span>${g.lignes.length}</span></h2><ul>${g.lignes.map(ligneArticle).join('')}</ul></section>`).join('')}</div>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>${liste.enStock.length ? 'Tout est déjà à la maison' : 'Rien à acheter pour l\'instant'}</h3><p>${nbRepas ? 'Les ingrédients des repas prévus sont tous en stock.' : 'Prévois des repas sur la semaine : leurs ingrédients arrivent ici, rangés par rayon.'}</p><div class="actions"><button class="btn primaire" data-action="vue" data-vue="semaine">Prévoir les repas</button></div></div></div>`}
       ${liste.enStock.length ? `<section class="deja"><h2 class="titre-section">Déjà à la maison <span>${pluriel(liste.enStock.length, 'article')} retiré${liste.enStock.length > 1 ? 's' : ''} de la liste</span></h2><ul class="deja-liste">${liste.enStock.map((x) => `<li><button class="art-info" data-action="article" data-cle="${esc(x.cle)}"><b>${esc(x.nom)}</b><small>${x.raison === 'placard' ? 'Placard' : 'En stock cette semaine'} · ${esc(R.texteQuantites(x.quantites) || 'sans quantité')}</small></button><button class="btn petit" data-action="${x.raison === 'placard' ? 'racheter' : 'remettre'}" data-cle="${esc(x.cle)}">${x.raison === 'placard' ? 'À racheter' : 'Remettre'}</button></li>`).join('')}</ul></section>` : ''}
@@ -1191,7 +1191,7 @@
       case 'vider-semaine': if (!confirm('Vider tous les repas de cette semaine ? La liste de courses se vide aussi.')) break; retenir(); semaineEcrite().cases = {}; sauver(); rendre(); toast('Semaine vidée.', { libelle: 'Annuler', faire: annuler }); break;
       case 'imprimer': window.print(); break;
       case 'copier': copierListe(); break;
-      case 'cocher': { const s = semaineEcrite(); const k = el.dataset.cle; if (el.checked) s.coches[k] = true; else delete s.coches[k]; sauver(); el.closest('.article')?.classList.toggle('fait', el.checked); const n = $('.progression b'); if (n) n.textContent = String(Object.keys(s.coches).filter((x) => R.listeCourses(E, B, lundi()).aAcheter.some((l) => l.cle === x)).length); break; }
+      case 'cocher': { const s = semaineEcrite(); const k = el.dataset.cle; if (el.checked) s.coches[k] = true; else delete s.coches[k]; sauver(); el.closest('.article')?.classList.toggle('fait', el.checked); const nb = R.listeCourses(E, B, lundi()).nbCoches; const n = $('.progression b'); if (n) n.textContent = String(nb); const tout = $('[data-action="decocher"]'); if (tout) tout.hidden = !nb; break; }
       case 'decocher': retenir(); semaineEcrite().coches = {}; sauver(); rendre(); toast('Tout est décoché.', { libelle: 'Annuler', faire: annuler }); break;
       case 'article': modaleArticle(el.dataset.cle); break;
       case 'racheter': retenir(); semaineEcrite().stock[el.dataset.cle] = 'manque'; sauver(); rendre(); toast('Remis dans la liste pour cette semaine.', { libelle: 'Annuler', faire: annuler }); break;

@@ -268,8 +268,10 @@
   function ouvrirDemo(memoriser = true, variante = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    if (variante) E = variante === 'compte' ? donneesDemoCompte() : donneesDemo();
-    else E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    // `?demo&reinit` : repartir des données d'exemple, datées d'aujourd'hui.
+    if (new URLSearchParams(location.search).has('reinit')) stock.suppr(CLE_DEMO);
+    if (variante) E = normaliser(variante === 'compte' ? donneesDemoCompte() : donneesDemo());
+    else E = normaliser(stock.lire(CLE_DEMO) || donneesDemo());
     generer();
     cache();
     demarrer();
@@ -293,7 +295,8 @@
     const m = (n) => R.ajoutMois(m0, n);
     const jour = (mois, j) => `${mois}-${deux(Math.min(j, R.joursDansMois(mois)))}`;
     E.foyer = { nom: 'Camille et Sami', modele: 'couple', modifLe: '' };
-    E.reglages = { modeDefaut: 'prorata', modifLe: '' };
+    // Réglages complets (fonctionnement et clé) : sans eux, « Changer de fonctionnement » vers le compte commun plantait la démo.
+    E.reglages = { modeDefaut: 'prorata', fonctionnement: 'avances', cle: { mode: 'prorata', parts: {} }, modifLe: '' };
     E.membres = [
       { id: 'cam', nom: 'Camille', couleur: 'bleu', revenu: 260000, modifLe: '' },
       { id: 'sam', nom: 'Sami', couleur: 'jaune', revenu: 190000, modifLe: '' },
@@ -859,7 +862,7 @@
     const parJour = {};
     liste.forEach((d) => { (parJour[d.date] ||= []).push(d); });
     const lignes = Object.entries(parJour).map(([j, ds]) => `
-      <h3 class="jour-groupe">${quand(j)}</h3>
+      <h2 class="jour-groupe">${quand(j)}</h2>
       ${ds.map((d) => `<button class="ligne depense" data-action="depense-modifier" data-id="${d.id}">
         <i style="--c:${hex(d.payeur === COMPTE ? 'compte' : membre(d.payeur)?.couleur)}"></i>
         <div><b>${esc(d.libelle)}</b><span>${esc(nomCat(d.categorie))} · ${d.payeur === COMPTE ? `compte commun · ${esc(pourQui(d))}` : `payé par ${esc(nom(d.payeur))} · ${esc(modeInfo(d.repartition?.mode).court)}`}${d.recurrente ? ' · récurrente' : ''}</span></div>
@@ -901,7 +904,7 @@
     const corps = b.nb ? `
       <div class="deux-colonnes">
         <section class="bloc"><h2 class="bloc-titre">Par personne</h2>
-          <div class="defile"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">${modeCompte() ? 'A versé' : 'A payé'}</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
+          <div class="defile" tabindex="0" role="region" aria-label="Payé et part de chacun"><table class="tableau"><thead><tr><th>Personne</th><th class="nb">${modeCompte() ? 'A versé' : 'A payé'}</th><th class="nb">Sa part</th><th class="nb">Écart</th></tr></thead><tbody>${parPersonne}</tbody></table></div>
           <p class="petit-texte">${modeCompte() ? 'Sa part : les dépenses du compte faites pour le foyer (partagées à parts égales) ou pour lui seul. Écart positif : a versé plus que sa part des dépenses du mois. Les versements dus sont dans l\'onglet Compte.' : 'Écart positif : a avancé plus que sa part ce mois-ci. Le solde global, virements compris, est dans l\'onglet Soldes.'}</p>
         </section>
         <section class="bloc"><h2 class="bloc-titre">Par catégorie</h2>
@@ -1096,8 +1099,9 @@
     const participants = fd.getAll('participant');
     const parts = {}, montants = {};
     for (const id of participants) {
-      const p = Number(String(fd.get(`parts-${id}`) || '1').replace(',', '.'));
-      parts[id] = Number.isFinite(p) ? p : 0;
+      // Part illisible (« abc », « 1/2 ») ou négative : signalée comme invalide, jamais comptée 0 en silence.
+      const p = Number(String(fd.get(`parts-${id}`) || '1').replace(/\s/g, '').replace(',', '.'));
+      parts[id] = Number.isFinite(p) && p >= 0 ? p : NaN;
       const c = R.versCentimes(fd.get(`montant-${id}`) || '0');
       montants[id] = c ?? -1;
     }
@@ -1158,7 +1162,9 @@
     const libelle = String(fd.get('libelle') || '').trim();
     const montant = R.versCentimes(fd.get('montant'));
     if (!libelle) return 'Indique un libellé.';
-    if (!montant || montant <= 0) return 'Montant illisible : écris par exemple 42,50.';
+    if (montant === 0) return 'Le montant doit être supérieur à 0.';
+    if (montant !== null && montant < 0) return 'Écris le montant sans signe moins.';
+    if (!montant) return 'Montant illisible : écris par exemple 42,50.';
     if (montant > 100000000) return 'Montant trop élevé.';
     if (compte) {
       const pour = E.membres.some((m) => m.id === fd.get('pour')) ? fd.get('pour') : 'foyer';
@@ -1537,7 +1543,7 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = modeCompte() ? donneesDemoCompte() : donneesDemo(); E.tutorielVu = true; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); E = normaliser(modeCompte() ? donneesDemoCompte() : donneesDemo()); E.tutorielVu = true; cache(); rendre(); } break;
       case 'demo-compte': case 'demo-avances': if (modale().open) modale().close(); moisVue = null; vue = action === 'demo-compte' ? 'compte' : 'soldes'; history.replaceState(null, '', `#${vue}`); ouvrirDemo(true, action === 'demo-compte' ? 'compte' : 'avances'); break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'modele': choisirModele(id); ecranAccueil(); break;
@@ -1621,10 +1627,12 @@
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
     const demandeDemo = new URLSearchParams(location.search).get('demo');
-    if (demandeDemo !== null && !code) { history.replaceState(null, '', location.pathname); return ouvrirDemo(false, demandeDemo === 'compte' ? 'compte' : null); }
-    if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname);
+    // L'adresse n'est nettoyée qu'après l'ouverture de la démo, qui lit `&reinit`.
+    const nettoyer = () => { if (demandeDemo !== null) history.replaceState(null, '', location.pathname + location.hash); };
+    if (demandeDemo !== null && !code) { ouvrirDemo(false, demandeDemo === 'compte' ? 'compte' : null); return nettoyer(); }
+    if (code === CODE_DEMO) { ouvrirDemo(true, demandeDemo === 'compte' ? 'compte' : null); return nettoyer(); }
+    nettoyer();
     if (!code) return ecranConnexion();
-    if (code === CODE_DEMO) return ouvrirDemo(true, demandeDemo === 'compte' ? 'compte' : null);
     session.code = code;
     try { session.memoriser = localStorage.getItem(CLE_CODE) !== null; } catch { session.memoriser = false; }
     try {

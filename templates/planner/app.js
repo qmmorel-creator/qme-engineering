@@ -52,13 +52,8 @@
   const normaliser = (d) => {
     const v = etatVide();
     if (!d || typeof d !== 'object') return v;
-    const tab = (x) => (Array.isArray(x) ? x : []);
-    return {
-      ...v, ...d,
-      reglages: { ...v.reglages, ...(d.reglages || {}) },
-      categories: tab(d.categories), series: tab(d.series).map((s) => ({ exceptions: {}, jusqua: null, note: '', ...s })),
-      blocs: tab(d.blocs).map((b) => ({ statut: 'prevu', note: '', ...b })), modeles: tab(d.modeles),
-    };
+    // Identifiants, dates et nombres vérifiés (copie restaurée depuis un fichier, anciennes versions).
+    return { ...v, ...d, prenom: typeof d.prenom === 'string' ? d.prenom.slice(0, 40) : '', ...R.nettoyerEtat(d) };
   };
 
   function retenir() { annulation = structuredClone(E); }
@@ -572,7 +567,7 @@
       const blocsJour = liste.filter((b) => b.date === d);
       const place = R.disposer(blocsJour);
       const ligneMaintenant = d === t && n.min >= gDe && n.min <= gA ? `<div class="maintenant" style="top:${((n.min - gDe) / 30) * H}px" aria-hidden="true"></div>` : '';
-      return `<div class="g-col ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''}" data-date="${d}" style="height:${lignes * H}px" aria-label="${esc(fmt(d, { weekday: 'long', day: 'numeric', month: 'long' }))}">${blocsJour.map((b) => blocHtml(b, place[b.id], gDe, H, n)).join('')}${ligneMaintenant}</div>`;
+      return `<div class="g-col ${d === t ? 'auj' : ''} ${d < t ? 'passe' : ''}" data-date="${d}" style="height:${lignes * H}px" role="group" aria-label="${esc(fmt(d, { weekday: 'long', day: 'numeric', month: 'long' }))}">${blocsJour.map((b) => blocHtml(b, place[b.id], gDe, H, n)).join('')}${ligneMaintenant}</div>`;
     }).join('');
     const tetes = jours.map((d) => `<div class="g-jour ${d === t ? 'auj' : ''}"><b>${JOURS_COURTS[jourIndex(d)]} ${versDate(d).getDate()}</b><span>${totalJour(d) ? R.duree(totalJour(d)) : '–'}</span></div>`).join('');
     const bandeJours = estTel() ? `<div class="bande-jours" role="group" aria-label="Jour affiché">${R.joursSemaine(lundiVu).map((d) => `<button class="${d === t ? 'auj' : ''}" data-action="jour" data-jour="${d}" aria-pressed="${d === jourVu}"><span>${JOURS_LETTRE[jourIndex(d)]}</span><b>${versDate(d).getDate()}</b><small>${totalJour(d) ? R.duree(totalJour(d)).replace(' ', '') : ''}</small></button>`).join('')}</div>` : '';
@@ -608,11 +603,11 @@
     const enCours = b.statut === 'prevu' && b.date === n.date && b.debut <= n.min && b.debut + b.duree > n.min;
     const reste = b.statut === 'raccourci' ? Math.round((1 - b.dureeReelle / b.duree) * 100) : 0;
     const etat = b.statut !== 'prevu' ? LIB_STATUT[b.statut] : aMarquer ? 'À marquer' : enCours ? 'En cours' : '';
-    const libelle = `${b.titre}, ${nomCat(b.cat)}, ${fmt(b.date, { weekday: 'long' })} ${plage(b)}${etat ? `, ${etat}` : ''}${b.serieId ? ', répété chaque semaine' : ''}`;
+    const libelle = `${b.titre} ${plage(b)}, ${nomCat(b.cat)}, ${fmt(b.date, { weekday: 'long' })}${etat ? `, ${etat}` : ''}${b.serieId ? ', répété chaque semaine' : ''}`;
     const marque = { fait: '✓', raccourci: '½', deplace: '→', pasfait: '✕' }[b.statut] || (aMarquer ? '•' : '');
     return `<button class="bloc st-${b.statut} ${aMarquer ? 'a-marquer' : ''} ${enCours ? 'en-cours' : ''} ${b.duree <= 30 ? 'court' : b.duree <= 60 ? 'moyen' : ''}" data-id="${b.id}" style="${styleCat(b.cat)};top:${top}px;height:${haut}px;left:calc(${(couloir / couloirs) * 100}% + 2px);width:calc(${100 / couloirs}% - 4px)" aria-label="${esc(libelle)}">
       ${reste ? `<i class="reste" style="height:${reste}%"></i>` : ''}
-      <b>${esc(b.titre)}</b><span class="heure">${plage(b)}</span>${marque ? `<span class="marque-bloc" aria-hidden="true">${marque}</span>` : ''}${b.serieId ? '<span class="serie" aria-hidden="true">↻</span>' : ''}
+      <b>${esc(b.titre)}</b> <span class="heure">${plage(b)}</span>${marque ? `<span class="marque-bloc" aria-hidden="true" data-m="${marque}"></span>` : ''}${b.serieId ? '<span class="serie" aria-hidden="true" data-m="↻"></span>' : ''}
       ${b.statut === 'deplace' ? '' : '<span class="poignee" aria-hidden="true"></span>'}
     </button>`;
   }
@@ -956,7 +951,7 @@
         ${cats.length ? `<div class="barres-cats">${barres}</div>` : '<p class="aide">Aucune catégorie.</p>'}
         <div class="infobulle" hidden></div>
       </figure>
-      <div class="defile" style="margin-top:16px"><table class="tableau"><caption class="sr-only">Prévu et réalisé par catégorie</caption><thead><tr><th>Catégorie</th><th class="nb">Prévu</th><th class="nb">Prévu à ce jour</th><th class="nb">Réalisé</th><th class="nb">Écart</th><th class="nb">Taux</th><th class="nb">Déplacés</th><th class="nb">Pas faits</th><th class="nb">À marquer</th></tr></thead>
+      <div class="defile" style="margin-top:16px" tabindex="0" role="region" aria-label="Tableau prévu et réalisé par catégorie (défile sur le côté)"><table class="tableau"><caption class="sr-only">Prévu et réalisé par catégorie</caption><thead><tr><th>Catégorie</th><th class="nb">Prévu</th><th class="nb">Prévu à ce jour</th><th class="nb">Réalisé</th><th class="nb">Écart</th><th class="nb">Taux</th><th class="nb">Déplacés</th><th class="nb">Pas faits</th><th class="nb">À marquer</th></tr></thead>
         <tbody>${lignes}</tbody><tfoot><tr><td>Total</td><td class="nb">${R.duree(tot.prevu)}</td><td class="nb">${R.duree(tot.prevuAJour)}</td><td class="nb">${R.duree(tot.realise)}</td><td class="nb">${tot.realise - tot.prevuAJour ? `${tot.realise < tot.prevuAJour ? '−' : '+'}${R.duree(tot.realise - tot.prevuAJour)}` : '0'}</td><td class="nb">${tot.taux === null ? '–' : `${tot.taux} %`}</td><td class="nb">${tot.deplaces}</td><td class="nb">${tot.pasFaits}</td><td class="nb">${tot.aMarquer}</td></tr></tfoot></table></div>
       <h2 class="titre-section">6 dernières semaines <span>Hauteur : heures prévues (contour) et réalisées (plein) ; chiffre : taux de réalisation.</span></h2>
       <figure class="graphique" id="graphique-tend">
@@ -1011,7 +1006,7 @@
       <h2 class="titre-section">Semaines types</h2>
       <div class="modeles">${B.semainesTypes.filter((x) => x.blocs.length).map((m) => carteModele(m, true)).join('')}${E.modeles.map((m) => carteModele(m, false)).join('')}</div>
       <h2 class="titre-section">Blocs récurrents <span>Un changement par la grille ne touche qu'une semaine ; ici, il vaut pour toutes les semaines à venir.</span></h2>
-      ${series.length ? `<div class="defile"><table class="tableau tableau-series"><thead><tr><th>Bloc</th><th>Jours</th><th>Horaire</th><th>Période</th><th class="nb"><span class="sr-only">Actions</span></th></tr></thead><tbody>${lignesSeries}</tbody></table></div>`
+      ${series.length ? `<div class="defile" tabindex="0" role="region" aria-label="Tableau des blocs récurrents (défile sur le côté)"><table class="tableau tableau-series"><thead><tr><th>Bloc</th><th>Jours</th><th>Horaire</th><th>Période</th><th class="nb"><span class="sr-only">Actions</span></th></tr></thead><tbody>${lignesSeries}</tbody></table></div>`
         : `<div class="vide-etat">${FORME_VIDE}<div><h3>Aucun bloc récurrent</h3><p>Crée un bloc et coche « Répéter chaque semaine », ou applique une semaine type en blocs récurrents.</p></div></div>`}
       <h2 class="titre-section">Catégories <span>${E.categories.length} sur ${B.couleurs.length} : une couleur fixe par catégorie.</span></h2>
       <div class="categories">${E.categories.map((c) => `<button class="categorie" data-action="cat-modifier" data-id="${c.id}" style="${styleCat(c.id)}"><i></i><b>${esc(c.nom)}</b><span>${R.duree(parCat(c.id))} cette semaine</span></button>`).join('')}
@@ -1166,7 +1161,7 @@
     const prec = ajout(lundiVu, -7);
     const nbPrec = E.blocs.filter((b) => b.date >= prec && b.date <= ajout(prec, 6) && !b.serieId && b.statut !== 'deplace').length;
     ouvrirModale('Copier ou appliquer', `
-      <div class="groupe" style="border:0;padding:0"><h3>Copier la semaine précédente</h3><p class="aide">${nbPrec ? `${pluriel(nbPrec, 'bloc ponctuel', 'blocs ponctuels')} de la semaine du ${fmt(prec, { day: 'numeric', month: 'long' })} copiés sur celle-ci, sans leurs marques. Les blocs récurrents se répètent déjà seuls.` : 'La semaine précédente n\'a pas de bloc ponctuel à copier (les blocs récurrents se répètent déjà seuls).'}</p>
+      <div class="groupe" style="border:0;padding:0"><h3>Copier la semaine précédente</h3><p class="aide">${nbPrec ? `${pluriel(nbPrec, 'bloc ponctuel', 'blocs ponctuels')} de la semaine du ${fmt(prec, { day: 'numeric', month: 'long' })} à recopier sur celle-ci, sans leurs marques. Les blocs récurrents se répètent déjà seuls.` : 'La semaine précédente n\'a pas de bloc ponctuel à copier (les blocs récurrents se répètent déjà seuls).'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="copier-semaine" ${nbPrec ? '' : 'disabled'}>Copier ${nbPrec ? pluriel(nbPrec, 'bloc') : ''}</button></div></div>
       <div class="groupe"><h3>Appliquer un modèle</h3><div class="rang">${[...B.semainesTypes.filter((x) => x.blocs.length), ...E.modeles].map((m) => `<button class="btn petit" type="button" data-action="modele-appliquer" data-id="${m.id}">${esc(m.nom)}</button>`).join('')}</div></div>
       <div class="groupe"><h3>Enregistrer comme modèle</h3><p class="aide">Garde cette semaine pour la reposer plus tard.</p><div class="rang"><button class="btn petit" type="button" data-action="modele-enregistrer">Enregistrer la semaine</button></div></div>`,
@@ -1199,7 +1194,7 @@
     const corps = `
       <label class="champ">Nom<input name="nom" required maxlength="40" value="${esc(c?.nom || '')}" placeholder="Ex. : Projets perso"></label>
       <fieldset class="champ" style="border:0;padding:0;margin:0"><legend style="padding:0;margin-bottom:6px">Couleur <small>Une couleur par catégorie.</small></legend><div class="pastilles">${B.couleurs.map((x) => `<label title="${x.nom}${prises.has(x.id) ? ' (déjà prise)' : ''}"><input type="radio" name="couleur" value="${x.id}" ${x.id === defaut ? 'checked' : ''} ${prises.has(x.id) ? 'disabled' : ''} aria-label="${x.nom}"><span style="--c:${x.hex}" class="${prises.has(x.id) ? 'prise' : ''}"></span></label>`).join('')}</div></fieldset>
-      ${c && nb && autres.length ? `<label class="champ">En cas de suppression, ses ${pluriel(nb, 'bloc')} rejoignent<select name="vers">${autres.map((x) => `<option value="${x.id}">${esc(x.nom)}</option>`).join('')}</select></label>` : ''}
+      ${c && nb && autres.length ? `<label class="champ">En cas de suppression, ${nb > 1 ? `ses ${nb} blocs rejoignent` : 'son bloc rejoint'}<select name="vers">${autres.map((x) => `<option value="${x.id}">${esc(x.nom)}</option>`).join('')}</select></label>` : ''}
       <p class="erreur" role="alert"></p>`;
     const pied = c ? `<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>${autres.length ? '<button class="btn danger gauche" value="supprimer">Supprimer</button>' : ''}`
       : '<button class="btn primaire" value="ok">Créer</button><button class="btn" value="annuler">Annuler</button>';
