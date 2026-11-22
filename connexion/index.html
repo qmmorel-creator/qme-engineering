@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/site.css?v=2026112004">
-<link rel="stylesheet" href="/assets/espace.css?v=2026112302">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112303">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
 /* Portail (non connecté, aucune application) */
 .a-espace .portail{display:none}
@@ -61,12 +61,13 @@
 .carte-app{display:flex;align-items:center;gap:14px;padding:14px;background:var(--surface);border:1px solid var(--trait);border-radius:18px;text-decoration:none;color:var(--encre);transition:box-shadow .15s,transform .15s;min-width:0}
 .carte-app:hover{box-shadow:0 10px 24px rgba(36,34,31,.10);transform:translateY(-1px)}
 .carte-app:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
-.carte-app .app-icone{width:56px;height:56px;border-radius:15px;flex:none}
+.carte-app .app-icone{width:56px;height:56px;border-radius:15px;flex:none;overflow:visible}
+.carte-app .app-icone img{border-radius:inherit}
 .carte-txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
 .carte-txt b{font-size:16px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .carte-txt small{font-size:13px;color:var(--texte-2)}
 .carte-ouvrir{font-size:13px;font-weight:700;color:var(--bleu);white-space:nowrap}
-.app-icone{display:grid;place-items:center;overflow:hidden;background:var(--surface);border:1px solid var(--trait);box-shadow:0 2px 8px rgba(36,34,31,.08)}
+.app-icone{position:relative;display:grid;place-items:center;background:var(--surface);border:1px solid var(--trait);box-shadow:0 2px 8px rgba(36,34,31,.08)}
 .app-icone img{width:100%;height:100%;display:block}
 .app-icone.petite{width:40px;height:40px;border-radius:11px;flex:none}
 .alertes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
@@ -307,7 +308,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/espace.js?v=2026112302"></script>
+<script src="/assets/espace.js?v=2026112303"></script>
 <script src="/assets/compte.js?v=2026112301"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
@@ -357,7 +358,19 @@ function badgeEspace(k){
   const txt=st==='achete'?'Acheté':st==='admin'?'Admin':!e?'Essai':e.termine?'Essai terminé':`Essai · ${e.joursRestants} j`;
   return `<span class="esp-badge esp-${st}${e?.termine?' esp-termine':''}" title="${st==='achete'?'Application achetée':st==='admin'?'Accès administrateur':'Essai gratuit'}">${txt}</span>`;
 }
-const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:badgeEspace,grille:true});
+// Badge visuel (coin de l'icône) : coche « acheté », erlenmeyer « essai », info au survol et pour les lecteurs d'écran.
+const SVG_COCHE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const SVG_ERLEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6.5L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.5V3"/><path d="M7.5 15h9"/></svg>';
+const SVG_CLE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2"/></svg>';
+function marqueEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const [cls,svg,info]=st==='achete'?['achete',SVG_COCHE,'Application achetée']:st==='admin'?['admin',SVG_CLE,'Accès administrateur']
+    :e?.termine?['termine',SVG_ERLEN,`Essai terminé · lecture seule jusqu’au ${dateCourte(e.effacement)}`]
+    :['essai',SVG_ERLEN,e?`Essai gratuit · ${e.joursRestants<=1?'dernier jour':`${e.joursRestants} jours restants`}`:'Essai gratuit en cours'];
+  return `<span class="app-marque app-marque-${cls}" role="img" aria-label="${esc(info)}" data-info="${esc(info)}">${svg}</span>`;
+}
+const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:badgeEspace,marque:marqueEspace,grille:true});
 const possedes=()=>Object.keys(PRODUITS).filter((k)=>{const v=lire(PRODUITS[k].cle);return v&&v!=='DEMO';});
 const nomApp=(k)=>QMEEspace.prefs().noms[k]||PRODUITS[k].nom;
 const icone=(k,t=48)=>PRODUITS[k]?.icone?`<img src="${esc(PRODUITS[k].icone)}" alt="" width="${t}" height="${t}" loading="lazy">`:'';
@@ -409,7 +422,7 @@ function accueil(mes){
   const choix=[...new Set([...rec.map((r)=>r.p),...ep,...mes])].filter((k)=>!QMEEspace.prefs().masques.includes(k)).slice(0,3);
   const quand=Object.fromEntries(rec.map((r)=>[r.p,r.t]));
   E.reprendre.innerHTML=choix.length?`<h2 class="vh">Reprendre</h2>${choix.map((k)=>`<a class="carte-app" href="${esc(PRODUITS[k].url)}" data-ouvrir="${k}" style="--c:var(--${(THEMES.find((t)=>t.id===PRODUITS[k].theme)||{c:'encre'}).c})">
-      <span class="app-icone">${icone(k,64)}</span><span class="carte-txt"><b>${esc(nomApp(k))}</b><small>${quand[k]?`Ouverte ${ilya(quand[k])}`:ep.includes(k)?'Favorite':'Pas encore ouverte d’ici'}</small></span></a>`).join('')}`:'';
+      <span class="app-icone">${icone(k,64)}${marqueEspace(k)}</span><span class="carte-txt"><b>${esc(nomApp(k))}</b><small>${quand[k]?`Ouverte ${ilya(quand[k])}`:ep.includes(k)?'Favorite':'Pas encore ouverte d’ici'}</small></span></a>`).join('')}`:'';
   E.reprendre.hidden=!choix.length||enEdition;
   alertes(mes);
 }
