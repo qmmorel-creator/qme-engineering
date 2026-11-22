@@ -25,3 +25,20 @@ test('pages /pro/ et /perso/ : filtre fixé, packs et thèmes de la seule partie
     assert.ok(s.includes(`<a href="/${pour}/" aria-current="page">`), `${pour} : menu`);
   }
 });
+
+test('template des deux parties (pour: \'pro perso\') : présent sur /pro/ et /perso/, thème et phrase de la partie', async () => {
+  const { TEMPLATES, publics, phrasePour } = await import('../packs/donnees.mjs');
+  const doubles = Object.values(TEMPLATES).filter((t) => publics(t).length > 1);
+  assert.ok(doubles.some((t) => t.slug === 'candidatures'), 'Suivi de candidatures dans les deux parties');
+  const catalogue = lire('templates/index.html');
+  for (const t of doubles) {
+    const carte = catalogue.match(new RegExp(`<li class="carte[^"]*" data-slug="${t.slug}"[^>]*>`))?.[0] || '';
+    assert.match(carte, /data-pour="pro perso"/, `${t.slug} : data-pour`);
+    const themes = carte.match(/data-theme="([a-z -]+)"/)[1].split(' ');
+    for (const pour of ['pro', 'perso']) {
+      const s = lire(`${pour}/index.html`);
+      assert.ok(themes.some((id) => new RegExp(`class="puce"[^>]*data-pour="${pour}" data-theme="${id}"`).test(s)), `${t.slug} : un thème de la partie ${pour}`);
+      assert.ok(s.includes(`<span class="phrase">${phrasePour(t, pour)}</span>`), `${t.slug} : phrase ${pour}`);
+    }
+  }
+});

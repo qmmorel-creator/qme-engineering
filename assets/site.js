@@ -173,13 +173,15 @@ if(fallbackLink&&form){
  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const texte=(el,sel)=>el.querySelector(sel)?.textContent.trim()||'';
  const themes=$$('.puce').map(b=>({id:b.dataset.theme,pour:b.dataset.pour,nom:b.firstChild.textContent.trim(),c:b.style.getPropertyValue('--c')}));
+ /* Un template générique peut appartenir aux deux parties : data-pour="pro perso" et un thème par partie
+    (data-theme="organisation-et-etudes clients-et-prospection"), lus comme des listes. */
  const items=$$('.carte').map(c=>{const a=c.querySelector('a'),prochaine=c.classList.contains('prochaine');
-  const it={slug:c.dataset.slug,pour:c.dataset.pour,theme:c.dataset.theme,href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em'),vignette:c.dataset.vignette||''};
-  it.euros=parseFloat(it.prix.replace(',','.'));it._t=norm(it.nom+' '+it.phrase+' '+(themes.find(t=>t.id===it.theme)?.nom||''));return it;});
+  const it={slug:c.dataset.slug,pours:(c.dataset.pour||'').split(/\s+/).filter(Boolean),themes:(c.dataset.theme||'').split(/\s+/).filter(Boolean),href:a.getAttribute('href'),nom:texte(c,'b'),phrase:texte(c,'.phrase'),vente:!prochaine,prix:prochaine?'':texte(c,'.pied em'),vignette:c.dataset.vignette||''};
+  it.euros=parseFloat(it.prix.replace(',','.'));it._t=norm(it.nom+' '+it.phrase+' '+it.themes.map(id=>themes.find(t=>t.id===id)?.nom||'').join(' '));return it;});
  const s={pour:'',q:'',theme:'',avenir:false};
  /* Pages /pro/ et /perso/ : la partie est fixée par la page (data-pour-fixe), pas par l'adresse ; les compteurs ne comptent qu'elle. */
  const fixe=document.querySelector('[data-catalogue]')?.dataset.pourFixe||'';
- const partie=items.filter(t=>!fixe||t.pour===fixe);
+ const partie=items.filter(t=>!fixe||t.pours.includes(fixe));
  const total=partie.length,enVente=partie.filter(t=>t.vente).length;
  const p=new URLSearchParams(location.search),h=location.hash.slice(1);
  if(fixe)s.pour=fixe;else if(['pro','perso'].includes(p.get('pour')))s.pour=p.get('pour');else if(h==='pro'||h==='perso')s.pour=h;
@@ -192,8 +194,10 @@ if(fallbackLink&&form){
  /* Construction, une seule fois : tuiles des thèmes, puis la liste de tous les outils (filtrée à l'affichage) */
  const groupes=[['pro','Professionnel'],['perso','Vie personnelle']].filter(g=>!fixe||g[0]===fixe);
  const couleur=id=>themes.find(x=>x.id===id)?.c||'var(--trait)';
+ /* Thème affiché d'un outil : celui de la partie fixée par la page, sinon le premier. */
+ const themeDe=t=>t.themes.find(id=>!fixe||themes.find(x=>x.id===id)?.pour===fixe)||t.themes[0];
  const tuile=t=>`<button type="button" class="tuile" data-tuile="${t.id}" style="--c:${t.c}"><b>${esc(t.nom)}</b><span class="tuile-cpt" data-cpt></span><span class="tuile-ex" data-ex></span></button>`;
- const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" data-pour="${esc(t.pour)}" style="--c:${couleur(t.theme)}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
+ const outil=t=>`<li class="outil${t.vente?'':' prochaine'}" data-slug="${esc(t.slug)}" data-pour="${esc(t.pour)}" style="--c:${couleur(themeDe(t))}"><a href="${esc(t.href)}">${t.vignette?`<img src="${esc(t.vignette)}" width="480" height="300" loading="lazy" alt="">`:''}<b>${esc(t.nom)}</b><span class="phrase">${esc(t.phrase)}</span><em>${t.vente?esc(t.prix):'Bientôt'}</em></a></li>`;
  vues.innerHTML=`<div class="tuiles" data-tuiles>`+groupes.map(([g,nom])=>`<div class="groupe-tuiles" data-groupe="${g}"><h3>${nom}</h3><div class="grille-tuiles">${themes.filter(t=>t.pour===g).map(tuile).join('')}</div></div>`).join('')+`</div>`
   +`<div class="liste-outils" data-liste><div class="liste-tete"><button type="button" class="retour" data-retour>← Tous les thèmes</button><h3 data-liste-titre tabindex="-1"></h3></div><ul class="grille-outils">${[...items].sort((a,b)=>b.vente-a.vente).map(outil).join('')}</ul></div>`;
  $$('.vitrine,.a-venir-catalogue,.puces').forEach(el=>el.hidden=true);
@@ -201,14 +205,14 @@ if(fallbackLink&&form){
  const tuiles=$$('.tuile',vues),lis=$$('.outil',vues),liste=$('[data-liste]',vues),blocTuiles=$('[data-tuiles]',vues),titre=$('[data-liste-titre]',vues);
  function rendre(){
   const mots=norm(s.q).split(/\s+/).filter(Boolean),avenir=s.avenir||mots.length>0,actif=!!(s.pour||mots.length);
-  const ok=t=>(avenir||t.vente)&&(!s.pour||t.pour===s.pour)&&mots.every(m=>t._t.includes(m));
+  const ok=t=>(avenir||t.vente)&&(!s.pour||t.pours.includes(s.pour))&&mots.every(m=>t._t.includes(m));
   segs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pour===s.pour)));
   const enListe=!!(s.theme||mots.length);
   blocTuiles.hidden=enListe;liste.hidden=!enListe;
   let n=0;
-  if(enListe){for(const li of lis){const t=parSlug[li.dataset.slug],v=ok(t)&&(mots.length>0||t.theme===s.theme);li.hidden=!v;if(v)n++;}
+  if(enListe){for(const li of lis){const t=parSlug[li.dataset.slug],v=ok(t)&&(mots.length>0||t.themes.includes(s.theme));li.hidden=!v;if(v)n++;}
    titre.textContent=mots.length?`Résultats pour « ${s.q.trim()} »`:themes.find(t=>t.id===s.theme).nom;}
-  else{for(const b of tuiles){const l=items.filter(t=>t.theme===b.dataset.tuile&&ok(t)),prix=l.filter(t=>t.vente).map(t=>t.euros).filter(x=>x>0);
+  else{for(const b of tuiles){const l=items.filter(t=>t.themes.includes(b.dataset.tuile)&&ok(t)),prix=l.filter(t=>t.vente).map(t=>t.euros).filter(x=>x>0);
     b.hidden=!l.length;n+=l.length;
     b.querySelector('[data-cpt]').textContent=`${l.length} outil${l.length>1?'s':''}${prix.length?` · dès ${Math.min(...prix).toLocaleString('fr-FR')} €`:''}`;
     b.querySelector('[data-ex]').textContent=l.slice(0,3).map(t=>t.nom).join(' · ');}

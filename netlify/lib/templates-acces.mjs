@@ -18,6 +18,7 @@ export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockf
 // temps (dépublication en attente) ; une licence achetée pour l'ancien produit ouvre le template qui l'a absorbé.
 export const FUSIONNES = {
   PRS: { gumroad: '7Ie2c3Qgcxkl1coobiiNXg==', vers: 'CRM', depuis: '2026-11-22' }, // Pipeline de prospection → CRM et prospection
+  CND: { gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==', vers: 'CAN', depuis: '2026-11-22' }, // Suivi des appels d'offres → Suivi de candidatures
 };
 
 export const PRODUITS = {
@@ -90,7 +91,6 @@ export const PRODUITS = {
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/', gumroad: 'qUwb0nm4TaFmXgiSoc2aJA==' },
   RDE: { nom: 'Registre du DOE', url: '/templates/doe/', gumroad: 'rusN6tG2fwT6JE_JZMEZIA==' },
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/', gumroad: '6skYhUNcKgwFwua1a56TVw==' },
-  CND: { nom: 'Suivi des appels d\'offres et candidatures', url: '/templates/appels-offres/', gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/', gumroad: 'iOZ0cB8ONCrvvkxMdbL7BQ==' },
   GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
@@ -104,7 +104,10 @@ export const PRODUITS = {
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/', gumroad: '-yAS1RKHFCUmacHWd-lOAw==' },
   CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/', gumroad: 'MCs3LoKvVl7DtQhtn_dWTA==' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/', gumroad: '4avh-xwvvFj0eRmC4rqDcg==' },
-  CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
+  // Suivi de candidatures : Candidatures études, stages, alternance et Suivi des appels d'offres et candidatures (CND)
+  // fusionnés le 22/11/2026 (rationalisation F3). CND retiré : aucune vente, aucun code offert ;
+  // /templates/appels-offres/ redirigé ici (netlify.toml).
+  CAN: { nom: 'Suivi de candidatures', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
   SBV: { nom: 'Subventions', url: '/templates/subventions/' },
   BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
   MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/', gumroad: '-JA7LGCBFecmAERfqUDnZQ==' },

@@ -18,7 +18,8 @@
     const $ = (s) => composer.querySelector(s);
     const commander = $('[data-commander]');
 
-    const choisis = () => cases.filter((c) => c.checked).map((c) => parPre[c.value]);
+    // Un template présent dans les deux parties (pro et perso) a une case dans chaque groupe : compté une fois.
+    const choisis = () => [...new Set(cases.filter((c) => c.checked).map((c) => c.value))].map((v) => parPre[v]);
     function majAdresse(liste) {
       const u = new URL(location.href);
       if (liste.length) u.searchParams.set('t', liste.map((t) => t.pre).join(',')); else u.searchParams.delete('t');
@@ -60,7 +61,7 @@
       majAdresse(liste);
     }
     const depart = (new URLSearchParams(location.search).get('t') || '').split(',');
-    for (const c of cases) { if (depart.includes(c.value)) c.checked = true; c.addEventListener('change', maj); }
+    for (const c of cases) { if (depart.includes(c.value)) c.checked = true; c.addEventListener('change', () => { cases.forEach((x) => { if (x.value === c.value) x.checked = c.checked; }); maj(); }); }
     maj();
   }
 

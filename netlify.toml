@@ -716,6 +716,20 @@
   status = 301
   force = true
 
+# Suivi des appels d'offres et candidatures fusionné dans « Suivi de candidatures » le 22/11/2026 (rationalisation F3) :
+# l'application et sa page catalogue renvoient vers celles du suivi de candidatures (paramètres transmis).
+[[redirects]]
+  from = "/templates/appels-offres/*"
+  to = "/templates/candidatures/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/appels-offres/*"
+  to = "/catalogue/candidatures/"
+  status = 301
+  force = true
+
 # Pack Argent du quotidien retiré le 22/11/2026 (doublon du Pack Budget perso et famille).
 [[redirects]]
   from = "/packs/argent-du-quotidien/*"
@@ -970,17 +984,6 @@
 
 [[headers]]
   for = "/templates/achats/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/templates/appels-offres/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/appels-offres/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 

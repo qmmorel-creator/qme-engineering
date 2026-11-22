@@ -1,7 +1,7 @@
 {
-  "name": "Candidatures · QME",
+  "name": "Suivi de candidatures · QME",
   "short_name": "Candidatures",
-  "description": "Candidatures études, stages, alternance : pièces, dates saisies, réponses, vœux, relances, entretiens et lettres.",
+  "description": "Suivi de candidatures : études et stages, emploi, appels d'offres et plateformes. Pièces, dates limites, relances, réponses, go/no-go et bilan.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
