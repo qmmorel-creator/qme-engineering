@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ne plus recevoir les informations · QME</title>
+<meta name="description" content="Ne plus recevoir d'e-mails d'information ou de prospection de QME.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<style>
+.npr{max-width:560px;margin:0 auto;padding:56px 16px 80px}
+.npr h1{font-size:clamp(30px,6vw,42px);margin:8px 0 14px}
+.npr p{color:var(--texte-2)}
+.npr form{margin-top:24px;display:flex;flex-direction:column;gap:12px;padding:20px;background:var(--surface);border:1px solid var(--trait);border-radius:18px}
+.npr label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
+.npr input{font:600 18px/1.2 Outfit,sans-serif;padding:14px 12px;border:1px solid var(--trait);border-radius:14px;background:#fff;color:var(--encre);width:100%}
+.npr input:focus{outline:3px solid var(--jaune);outline-offset:0}
+.npr .btn{min-height:52px}
+.npr .ok{padding:18px;border-radius:14px;background:#D9EBDD;color:#1F5130;font-weight:600}
+.npr .erreur{color:var(--rouge);font-weight:600}
+.npr .erreur:empty{display:none}
+</style>
+</head>
+<body>
+<main class="npr">
+  <a class="brand" href="/" aria-label="QME, accueil"><svg viewBox="0 0 80 80" width="40" height="40" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg></a>
+  <h1 data-t="titre">Ne plus recevoir les informations</h1>
+  <p data-t="intro">Confirmez votre adresse : QME ne vous écrira plus pour vous présenter ses outils, ses nouveautés ou un partenariat. Vos achats, vos essais et vos applications restent inchangés.</p>
+  <form id="form" novalidate>
+    <label><span data-t="label">Votre adresse e-mail</span><input type="email" id="email" autocomplete="email" required></label>
+    <p class="erreur" id="erreur" role="alert"></p>
+    <button class="btn primary" type="submit" data-t="bouton">Ne plus recevoir les informations</button>
+  </form>
+  <p class="ok" id="ok" role="status" hidden></p>
+  <p style="margin-top:24px;font-size:14px" data-t="aide">Une question ? Écrivez à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p>
+</main>
+<script>
+(() => {
+  const p = new URLSearchParams(location.search), en = p.get('lang') === 'en';
+  const T = {
+    titre: 'Stop receiving information', intro: 'Confirm your address: QME will no longer write to you about its tools, news or partnerships. Your purchases, trials and apps stay unchanged.',
+    label: 'Your e-mail address', bouton: 'Stop receiving information', aide: 'A question? Write to <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.',
+    ok: 'Done: QME will no longer send you information. Sorry for the inconvenience.', invalide: 'This e-mail address looks incomplete.', panne: 'The service is not answering. Please try again, or reply “stop” to our e-mail.',
+  };
+  if (en) { document.documentElement.lang = 'en'; document.title = 'Stop receiving information · QME'; for (const el of document.querySelectorAll('[data-t]')) el.innerHTML = T[el.dataset.t]; }
+  const champ = document.getElementById('email'), erreur = document.getElementById('erreur'), form = document.getElementById('form'), ok = document.getElementById('ok');
+  champ.value = (p.get('email') || '').trim();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = champ.value.trim(), b = form.querySelector('button');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erreur.textContent = en ? T.invalide : 'Adresse e-mail incomplète.'; champ.focus(); return; }
+    b.disabled = true; erreur.textContent = '';
+    try {
+      const r = await fetch('/api/compte/opposition', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email }) });
+      if (!r.ok) throw new Error();
+      form.hidden = true; ok.hidden = false;
+      ok.textContent = en ? T.ok : 'C’est fait : QME ne vous enverra plus d’informations. Désolé pour le dérangement.';
+    } catch { erreur.textContent = en ? T.panne : 'Le service ne répond pas. Réessayez, ou répondez « stop » à notre e-mail.'; b.disabled = false; }
+  });
+})();
+</script>
+</body>
+</html>

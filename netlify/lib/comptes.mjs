@@ -27,13 +27,18 @@
 //                    et aux acheteurs, une fois par adresse ; test : les deux versions à cette seule adresse
 // Public :
 //  GET    /registre  (?format=csv)            → registre des préférences d'information (preferences.mjs)
+//  GET    /opposition?email=                   → { opposition: null | { par, date, source } } (adresse ou domaine)
+//  POST   /opposition/verifier { emails }      → [{ email, opposition }] (avant tout envoi de prospection)
+//  POST   /opposition { emails?, domaines?, source? } → ajout groupé (réponses « stop », liste docs/prospection/)
+// Public :
+//  POST   /opposition { email }               → page /ne-plus-recevoir/ (lien de tout e-mail de prospection)
 //  GET    /stop?e=&s=                          → « Ne plus recevoir les informations » (lien signé du pied de l'annonce,
 //                                                 acheteurs et testeurs) : liste d'opposition (preferences.mjs)
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
 import { estAdmin } from './interets.mjs';
 import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
-import { enregistrerOpposition, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
+import { enregistrerOpposition, enregistrerDomaine, oppositionDe, domainesOpposes, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 
 export const DUREE_LIEN = 15 * 60_000;
@@ -199,8 +204,9 @@ async function destinataires({ secret, store, exclure = [] }) {
   }
   // Liste d'opposition : jamais d'annonce.
   const opposes = new Set((await store.lister('opposition/')).map((k) => k.slice('opposition/'.length)));
+  const domaines = await domainesOpposes(store);
   const ex = exclure.map(normEmail);
-  return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)));
+  return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)) && !domaines.has(d.email.split('@')[1]));
 }
 
 export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad }) {
@@ -224,6 +230,37 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
   }
 
   // Administration : import des ventes passées, annonce des nouveautés.
+  // Opposition : page publique /ne-plus-recevoir/ (une adresse), ou administrateur (ajout groupé, vérification).
+  if (chemin === '/opposition' || chemin === '/opposition/verifier') {
+    const estAdm = estAdmin(requete.headers.get('x-admin') || '', { secret, admin });
+    if (chemin === '/opposition' && methode === 'GET') {
+      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      const email = normEmail(new URL(requete.url).searchParams.get('email'));
+      if (!emailValide(email)) return json(400, { erreur: 'Adresse e-mail invalide.' });
+      return json(200, { email, opposition: await oppositionDe(store, secret, email) });
+    }
+    if (chemin === '/opposition/verifier' && methode === 'POST') {
+      if (!estAdm) return json(401, { erreur: 'Code administrateur requis.' });
+      const emails = (Array.isArray(corps.emails) ? corps.emails : []).slice(0, 500).map(normEmail).filter(emailValide);
+      return json(200, { resultats: await Promise.all(emails.map(async (email) => ({ email, opposition: await oppositionDe(store, secret, email) }))) });
+    }
+    if (chemin === '/opposition' && methode === 'POST') {
+      if (estAdm && (corps.emails || corps.domaines)) {
+        const source = String(corps.source || 'ajout administrateur').slice(0, 120);
+        const emails = (Array.isArray(corps.emails) ? corps.emails : []).slice(0, 500).map(normEmail).filter(emailValide);
+        for (const email of emails) await enregistrerOpposition(store, cleEmail(secret, email), { source, date, email });
+        const domaines = [];
+        for (const d of (Array.isArray(corps.domaines) ? corps.domaines : []).slice(0, 200)) { const x = await enregistrerDomaine(store, d, { source, date }); if (x) domaines.push(x); }
+        return json(200, { ok: true, emails: emails.length, domaines });
+      }
+      const email = normEmail(corps.email);
+      if (!emailValide(email)) return json(400, { erreur: 'Adresse e-mail invalide.' });
+      await enregistrerOpposition(store, cleEmail(secret, email), { source: 'page « Ne plus recevoir les informations »', date, email });
+      return json(200, { ok: true });
+    }
+    return json(405, { erreur: 'Méthode non permise' });
+  }
+
   // Registre des préférences d'information (administrateur).
   if (chemin === '/registre' && methode === 'GET') {
     if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });

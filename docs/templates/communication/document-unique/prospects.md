@@ -1,5 +1,7 @@
 # Prospects · Document unique d'évaluation des risques (T80)
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations seulement : aucune donnée personnelle collectée sur des particuliers. On contacte
 une **fonction**, jamais une personne repérée nominativement sans relation préalable. Les organismes cités
 existent (connus le 14/11/2026) ; leurs programmes, partenariats et contacts sont **à vérifier** avant toute

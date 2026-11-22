@@ -1,5 +1,7 @@
 # Prospects · Calendrier du potager
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations seulement : **aucune donnée personnelle** collectée sur des particuliers. Contacter des
 fonctions (présidence, animation, communication) par les canaux publics des structures. Organismes cités de mémoire,
 non vérifiés en ligne depuis cette session : chacun est **à vérifier** (existence, nom exact, canal) avant tout

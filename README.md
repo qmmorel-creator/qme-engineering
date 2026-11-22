@@ -76,6 +76,12 @@ Site promotionnel de Quentin Morel Engineering (QME).
   l'acheteur. Client : `assets/compte.js` (synchronisation appareil ↔ compte). Purge quotidienne des traces
   anti-abus (`purgerComptes`, dans `essais-quotidien.mjs`). Tests : `outils/templates/comptes.test.mjs`.
   Politique de confidentialité : section « Compte acheteur ».
+- Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
+  alimentée par le lien « Ne plus recevoir les informations » des annonces (`/api/compte/stop`), la page publique
+  `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
+  `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
+  (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
+  `POST /api/compte/opposition/verifier` ; registre `/admin/registre/` (CSV). Conservation 3 ans.
 - Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
   bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
   (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les

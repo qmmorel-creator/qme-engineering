@@ -2,6 +2,7 @@
 // préférences, déconnexion partout, suppression.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { genererCode, genererCodeEssai, genererCodePack, PRODUITS, PACKS, codeAdmin } from '../../netlify/lib/templates-acces.mjs';
 import { traiterCompte, ajouterAchat, cleCompte, cleValide, nettoyerPrefs, jetonLien, purgerComptes, DUREE_LIEN, DUREE_SESSION } from '../../netlify/lib/comptes.mjs';
 import { traiterAchat } from '../../netlify/lib/achats.mjs';
@@ -254,4 +255,56 @@ test('liste d\'opposition et registre : désinscription (annonce ou essai), nouv
   const { purgerComptes: purge } = await import('../../netlify/lib/comptes.mjs');
   assert.equal((await purge({ store: w.store, maintenant: () => w.t + 365 * 86_400_000 })).oppositions, 0);
   assert.equal((await purge({ store: w.store, maintenant: () => w.t + 3 * 366 * 86_400_000 })).oppositions, 1);
+});
+
+test('opposition des prospects : page publique, ajout groupé admin (adresses et domaines), vérification avant envoi', async () => {
+  const w = monde();
+  const req = (chemin, { methode = 'GET', corps, code } = {}) => traiterCompte(new Request(`http://t/api/compte${chemin}`, {
+    method: methode, headers: code ? { 'x-admin': code } : {}, body: corps ? JSON.stringify(corps) : undefined,
+  }), { secret: SECRET, store: w.store, maintenant: () => w.t }).then(async (r) => ({ statut: r.status, j: await r.json() }));
+  // Page publique : une adresse, sans code
+  assert.equal((await req('/opposition', { methode: 'POST', corps: { email: 'pas une adresse' } })).statut, 400);
+  assert.equal((await req('/opposition', { methode: 'POST', corps: { email: ' Prospect@Societe.FR ' } })).statut, 200);
+  // Ajout groupé : refusé sans code (traité comme une adresse unique absente), accepté avec
+  assert.equal((await req('/opposition', { methode: 'POST', corps: { emails: ['a@b.fr'], domaines: ['hostile.fr'] } })).statut, 400);
+  const g = await req('/opposition', { methode: 'POST', code: ADMIN, corps: { emails: ['stop@exemple.fr', 'n importe quoi'], domaines: ['@Hostile.fr', 'pas un domaine'], source: 'réponse « stop » du 2026-11-22' } });
+  assert.deepEqual(g.j, { ok: true, emails: 1, domaines: ['hostile.fr'] });
+  // Vérification avant envoi
+  assert.equal((await req('/opposition?email=prospect@societe.fr')).statut, 401);
+  assert.equal((await req('/opposition?email=prospect@societe.fr', { code: ADMIN })).j.opposition.par, 'adresse');
+  assert.equal((await req('/opposition?email=dg@hostile.fr', { code: ADMIN })).j.opposition.par, 'domaine');
+  assert.equal((await req('/opposition?email=libre@exemple.fr', { code: ADMIN })).j.opposition, null);
+  const v = await req('/opposition/verifier', { methode: 'POST', code: ADMIN, corps: { emails: ['libre@exemple.fr', 'stop@exemple.fr', 'x@hostile.fr'] } });
+  assert.deepEqual(v.j.resultats.map((r) => [r.email, r.opposition?.par || null]), [['libre@exemple.fr', null], ['stop@exemple.fr', 'adresse'], ['x@hostile.fr', 'domaine']]);
+  // Registre : prospects et domaine ; annonce : domaine exclu
+  const r = (await req('/registre', { code: ADMIN })).j;
+  assert.deepEqual(r.lignes.map((l) => [l.email, l.profil, l.informations]), [
+    ['*@hostile.fr', 'domaine', 'désinscrit'], ['prospect@societe.fr', 'prospect', 'désinscrit'], ['stop@exemple.fr', 'prospect', 'désinscrit'],
+  ]);
+  await ajouterAchat({ secret: SECRET, store: w.store, email: 'acheteur@hostile.fr', vente: { type: 'template', code: 'BDG' }, licence: LICENCE, maintenant: () => w.t });
+  assert.equal((await (await admin(w, '/annonce', {})).json()).total, 0, 'domaine exclu des annonces');
+});
+
+test('règle de prospection : mention d\'opposition dans les modèles, la règle et chaque fichier prospects', async () => {
+  const { readdir } = await import('node:fs/promises');
+  const racine = new URL('../../', import.meta.url);
+  const lireF = (f) => readFile(new URL(f, racine), 'utf8');
+  const regle = await lireF('docs/templates/communication/REGLES-PROSPECTION.md');
+  assert.ok(regle.includes('https://qm-engineering.fr/ne-plus-recevoir/?email=') && regle.includes('Ne plus recevoir les informations'));
+  assert.ok((await lireF('CLAUDE.md')).includes('REGLES-PROSPECTION.md'));
+  for (const f of ['.claude/skills/retour-affiliation/SKILL.md', '.claude/skills/retour-affiliation/reference.md', '.claude/skills/nettoyage-refus-prospection/SKILL.md']) {
+    const t = await lireF(f);
+    assert.ok(t.includes('REGLES-PROSPECTION.md'), `${f} renvoie à la règle`);
+  }
+  assert.ok((await lireF('.claude/skills/nettoyage-refus-prospection/SKILL.md')).includes('/ne-plus-recevoir/?email='), 'réponse type avec la mention');
+  assert.ok((await lireF('.claude/skills/retour-affiliation/reference.md')).includes('/ne-plus-recevoir/?email='), 'structure du mail avec la mention');
+  const dossiers = (await readdir(new URL('docs/templates/communication/', racine), { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name);
+  let n = 0;
+  for (const d of dossiers) {
+    let t; try { t = await lireF(`docs/templates/communication/${d}/prospects.md`); } catch { continue; }
+    n++; assert.ok(t.includes('REGLES-PROSPECTION.md'), `${d}/prospects.md : règle absolue`);
+  }
+  assert.ok(n >= 90);
+  const page = await lireF('ne-plus-recevoir/index.html');
+  assert.ok(page.includes('noindex') && page.includes('/api/compte/opposition'));
 });

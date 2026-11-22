@@ -27,6 +27,9 @@ Explique chaque étape à Quentin en français, sans flatterie. Dis ce qui a ét
    public, démo, pack lié, commission), puis, après un séparateur « — », le sur-mesure **pour lui**,
    pour son propre métier.
 5. **Données fictives** dans la démo et la vidéo, vouvoiement, aucune marque tierce, aucun client réel.
+6. **Mention d'opposition (règle absolue)** : vérifier que l'adresse et son domaine ne sont pas sur la liste
+   d'opposition avant d'écrire, et terminer chaque brouillon par la mention « Ne plus recevoir les informations »
+   (lien personnel `/ne-plus-recevoir/?email=…`), texte et HTML : `docs/templates/communication/REGLES-PROSPECTION.md`.
 
 ## 1. Lire et qualifier la réponse
 
@@ -112,7 +115,8 @@ Appliquer le skill `video-demo`, sections 1 et 2 seulement : pas de programmatio
    - partenariat : accès gratuit, commission sur chaque vente sans taux, aucune obligation ;
    - « — » puis le sur-mesure pour lui ;
    - invitation à voir qm-engineering.fr ;
-   - proposition de visio de 30 minutes.
+   - proposition de visio de 30 minutes ;
+   - **en dernier, toujours** : la mention d'opposition (`REGLES-PROSPECTION.md` § 2).
 2. Pièce jointe, avec la méthode qui marche :
    - copier la vidéo dans le scratchpad sous son nom final, puis `sha256sum` ;
    - `create_draft` avec `attachments: [{content: "sha256:<hex>:<chemin absolu>", filename, mimeType: "video/mp4"}]`,
