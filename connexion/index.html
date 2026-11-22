@@ -325,7 +325,7 @@
 </footer>
 
 <script src="/assets/espace.js?v=2026112306"></script>
-<script src="/assets/compte.js?v=2026112302"></script>
+<script src="/assets/compte.js?v=2026112303"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
@@ -583,7 +583,12 @@ formLien.addEventListener('submit',async(e)=>{
   }
   catch(x){
     // Lien déjà envoyé il y a peu : le code de cet e-mail reste valable, le champ s'affiche quand même.
-    if(x.statut===429){emailCode=email;okLien.innerHTML=`Un e-mail vient déjà de partir à <b>${esc(email)}</b> : saisissez ci-dessous le code à 6 chiffres qu’il contient, ou touchez son lien. Pas reçu ? Regardez dans les indésirables, ou réessayez dans quelques minutes.`;montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;}
+    if(x.statut===429){
+      const d=x.details||{},a=d.reessayerA?new Date(d.reessayerA):null;
+      const heure=a&&!isNaN(a)?(a-Date.now()<90_000?'dans une minute':`à ${a.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}`):'dans quelques minutes';
+      if(d.codeValable!==false){emailCode=email;okLien.innerHTML=`Un e-mail vient déjà de partir à <b>${esc(email)}</b> : saisissez ci-dessous le code à 6 chiffres qu’il contient (le dernier reçu), ou touchez son lien. Pas reçu ? Regardez dans les indésirables, ou redemandez ${heure}.`;montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;}
+      erreurLien.textContent=`Trop de demandes pour cette adresse : le dernier code a expiré. Vous pourrez en redemander un ${heure}.`;b.disabled=false;b.textContent='Recevoir mon lien de connexion';return;
+    }
     erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;
   }
   b.disabled=false;b.textContent=blocCode.hidden?'Recevoir mon lien de connexion':'Renvoyer un lien';
