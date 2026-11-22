@@ -41,6 +41,8 @@
 .pack-hero-achat .detail{font-size:14px;color:var(--texte-2);margin-top:6px}
 .prochaine-note{font-size:14px;margin-top:8px;padding:8px 12px;border-radius:12px;background:var(--pf);color:var(--pt)}
 .pack-hero-achat .actions{display:flex;flex-wrap:wrap;gap:10px}
+.essai-pack{margin-top:12px;font-size:15px;line-height:1.45;color:var(--texte-2)}
+.essai-pack a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--encre);text-underline-offset:3px}
 .pack-section .section-head p{max-width:760px}
 .arguments{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .arguments li{padding:16px 18px;border:1px solid var(--trait);border-radius:18px;background:var(--surface);font-weight:600;line-height:1.4}
@@ -58,7 +60,8 @@
 .t-pack p{font-size:14px;color:var(--texte-2);line-height:1.4}
 .t-pied{display:flex;gap:14px;align-items:center;margin-top:auto;padding-top:8px;border-top:1px solid var(--trait);font-size:14px}
 .t-pied span{margin-right:auto;color:var(--discret);font-weight:600}
-.t-pied a{font-weight:700;text-underline-offset:3px;min-height:32px;display:inline-flex;align-items:center}
+.t-pied{flex-wrap:wrap;row-gap:0}
+.t-pied a{font-weight:700;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .etat{flex:none;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
 .etat.vente{background:var(--ciel);color:var(--ciel-texte)}
 .etat.bientot{background:var(--beurre);color:var(--beurre-texte)}

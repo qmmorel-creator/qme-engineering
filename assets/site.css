@@ -626,6 +626,9 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .reseaux a:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
 @media (max-width:980px){footer{padding-right:76px}body:has(.composer-barre) .reseaux{bottom:84px}}
 @media (prefers-reduced-motion:reduce){.reseaux a{transition:none}.reseaux a:hover{transform:none}}
+/* Téléphone (audit étudiants du 22/11/2026) : les liens réseaux ne flottent plus sur le texte et les boutons, ils
+   passent dans le flux, au-dessus du pied de page. */
+@media (max-width:600px){.reseaux{position:static;flex-direction:row;justify-content:center;padding:20px 16px 0}footer{padding-right:16px}}
 @media print{.reseaux{display:none}}
 
 /* En-tête : libellés sur une ligne ; mode compact entre la tablette et le grand écran */
