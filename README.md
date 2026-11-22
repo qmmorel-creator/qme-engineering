@@ -247,7 +247,7 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   `data-pour="pro perso"` et un thème par partie (`data-theme="thème-perso thème-pro"`). Le filtre du catalogue
   (`assets/site.js`), les tuiles et compteurs, `/pro/` et `/perso/` (thème et phrase de la partie), l'essai (les deux
   groupes de `/essai/`), le composeur de packs (une case par groupe, comptée une fois) et l'espace acheteur (premier
-  thème) lisent ces listes. Contrôle : `outils/templates/parties.test.mjs`. À reprendre pour « Organisateur d'événement ».
+  thème) lisent ces listes. Contrôle : `outils/templates/parties.test.mjs`. Repris pour l'Organisateur d'événement (fusion F1).
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
@@ -401,16 +401,27 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   l'entrée (service-public.gouv.fr F31270, F33671, F31269, consultées le 14/11/2026), document imprimable à signer,
   export CSV. Outil d'aide, pas un document certifié. Règles dans `regles.js`, tests
   `outils/templates/etat-des-lieux.test.mjs`.
-- `templates/seminaire/` (SMN) : **séminaire / offsite** (T54), prêt, « Mise en vente prochaine » (35 €, démo libre,
-  fiche Gumroad à créer : `docs/templates/communication/seminaire/gumroad.json`). Déclinaison du pilote événementiel pour
-  les assistants de direction, RH et office managers : plusieurs séminaires par clé ; participants et réponses (saisie
-  rapide depuis un tableur, relance après la date limite, suivi par service) ; trajets aller et retour avec places et
-  passagers, horaires comparés au programme ; chambres, occupants et répartition automatique des confirmés par service,
-  liste imprimable pour l'hébergement ; programme en salles parallèles, chevauchements, décalage en cascade ; budget
-  prévu / engagé / payé, paiements en retard, coût par participant confirmé. **RGPD** : régime en liste fermée, cases
-  allergie et accessibilité sans détail, saisie facultative, fiche traiteur en nombres seulement, export CSV sans données
-  sensibles par défaut, effacement des données sensibles d'un séminaire. Rattaché à aucun pack. Règles dans `regles.js`,
-  tests `outils/templates/seminaire.test.mjs`.
+- `templates/evenementiel/` (EVT) : **Organisateur d'événement**, en vente (39 €, fiche Gumroad `organisateur-mariage` reprise de
+  l'ancien Organisateur de mariage, à renommer). Fusion du 22/11/2026 (rationalisation F1, `docs/templates/RATIONALISATION.md`)
+  du Pilote événementiel, de l'Organisateur de mariage (MRG) et du Séminaire / offsite (SMN), retirés de `PRODUITS`, des packs
+  (EVT les remplace dans Vie à deux et Moyens généraux) et de l'essai ; `/templates/mariage/*`, `/templates/seminaire/*` et leurs
+  pages catalogue redirigés en 301 ; aucune entrée `FUSIONNES` (MRG : même identifiant Gumroad, repris par EVT ; SMN : pas de
+  fiche). Présent dans les deux parties du site (`pour: 'pro perso'`). Plusieurs événements de front, chacun d'un **type**
+  (`mariage`, `seminaire`, `entreprise` avec un format salon, soirée, gala, conférence ou autre, `fete`) qui propose son
+  rétroplanning (7 modèles, dont les 40 tâches du mariage et les démarches de la fiche F930), ses postes de budget, son déroulé et
+  sa checklist, et des **fonctions** activables événement par événement (`modules` : plan de table, transports, hébergement,
+  badges et société, adultes et enfants ; valeurs par défaut dans `modulesParDefaut`). Vocabulaire selon le type (Invités ou
+  Participants, Jour J ou Programme, groupe, famille, service ou catégorie). Rétroplanning en J-n qui suit la date ; budget prévu,
+  engagé (contrats signés), payé (échéances), échéancier des acomptes, coût par invité confirmé, carnet de prestataires commun ;
+  invités (réponses, date limite et relance, groupes, enfants, présence, badges, saisie rapide, CSV), plan de table par
+  glisser-déposer ou liste, trajets aller et retour avec passagers et horaires comparés au déroulé, chambres et répartition
+  automatique par groupe ; déroulé par lieu (sessions en parallèle, chevauchements, décalage en cascade, séquence en cours),
+  checklist, impressions (badges, déroulé, chambres, plan de table). **RGPD** : régime en liste fermée, allergie et accessibilité
+  en cases avec précision facultative, fiche traiteur en nombres seulement, CSV sans données sensibles par défaut, alerte
+  d'effacement après l'événement. Données du pilote d'avant la fusion lues sans perte (`normaliser`, version 2) ; « Restaurer une
+  copie » ajoute une copie de MRG (`depuisMariage`) ou de SMN (`depuisSeminaire`) comme événements de leur type. Démo par type :
+  `?demo` (tous), `?demo=mariage`, `?demo=seminaire`, `?demo=entreprise`, `?demo=fete`. Règles dans `regles.js`, tests
+  `outils/templates/evenementiel.test.mjs`.
 - `templates/quiz/` (QZZ) : **banque de questions et quiz** (T58), prêt, « Mise en vente prochaine » (19 €, démo libre,
   fiche Gumroad à créer : `docs/templates/communication/quiz/gumroad.json`). Questions étiquetées (QCM à une ou plusieurs
   bonnes réponses, vrai ou faux, réponse courte avec variantes), difficulté, points, explication ; collage d'une liste ;
