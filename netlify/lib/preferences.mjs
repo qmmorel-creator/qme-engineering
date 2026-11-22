@@ -63,13 +63,14 @@ export async function lireRegistre({ secret, store }) {
     const e = String(email || '').trim().toLowerCase();
     if (!e) return null;
     const h = cleEmail(secret, e);
-    if (!lignes.has(h)) lignes.set(h, { h, email: e, prenom: '', achats: [], essais: [], nouveautes: null, opposition: null, annonces: [] });
+    if (!lignes.has(h)) lignes.set(h, { h, email: e, prenom: '', achats: [], essais: [], nouveautes: null, opposition: null, annonces: [], compte: false });
     return lignes.get(h);
   };
   const lire = async (prefixe) => Promise.all((await store.lister(prefixe)).map(async (k) => [k, await store.get(k)]));
   for (const [, c] of await lire('compte/')) {
     const l = ligne(c?.email); if (!l) continue;
     l.prenom ||= c.prenom || '';
+    l.compte = true;
     l.achats.push(...(c.cles || []).filter((k) => k.source === 'achat').map((k) => k.p));
     if (c.sansAnnonces && !l.opposition) l.opposition = { date: c.sansAnnonces, source: 'compte' };
   }
@@ -102,7 +103,7 @@ export async function lireRegistre({ secret, store }) {
     const derniere = l.annonces.sort((a, b) => String(b.date).localeCompare(String(a.date)))[0] || null;
     return {
       email: l.email, prenom: l.prenom,
-      profil: acheteur && testeur ? 'acheteur et testeur' : acheteur ? 'acheteur' : testeur ? 'testeur' : 'prospect',
+      profil: acheteur && testeur ? 'acheteur et testeur' : acheteur ? 'acheteur' : testeur ? 'testeur' : l.compte ? 'compte sans achat' : 'prospect',
       achats: [...new Set(l.achats)], essais: l.essais,
       nouveautes: l.nouveautes && !l.opposition ? (typeof l.nouveautes === 'string' ? l.nouveautes : 'oui') : null,
       informations, desinscritLe: l.opposition?.date || null, sourceDesinscription: l.opposition?.source || null,

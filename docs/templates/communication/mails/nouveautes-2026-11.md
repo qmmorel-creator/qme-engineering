@@ -31,3 +31,10 @@ inscrit, date et origine de la désinscription, dernière annonce reçue). Vue c
 2. Test : `POST /api/compte/annonce` `{ "test": "<adresse de Quentin>", "prenom": "Quentin" }` → les deux versions.
 3. Simulation : `POST /api/compte/annonce` `{}` → nombre d'acheteurs et de testeurs.
 4. Envoi, après feu vert de Quentin : `{ "simulation": false }`, à relancer tant que `restants` > 0 (lots de 8).
+
+## Envoi
+
+- 22/11/2026, 17:25 (heure de Paris : 18:25) : 2 envois, 0 erreur (1 acheteuse importée depuis Gumroad, 1 testeuse
+  inscrite aux nouveautés), après feu vert de Quentin. Test des deux versions envoyé à Quentin avant.
+- Avant l'envoi : les 3 entrées de `docs/prospection/desinscrits.md` inscrites sur la liste d'opposition (3 adresses,
+  domaines `helene-weddingplanner.fr`, `renfort-solutions.fr`, `renfortek.fr`).

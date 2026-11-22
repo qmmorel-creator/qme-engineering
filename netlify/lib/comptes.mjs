@@ -270,7 +270,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
         'content-disposition': `attachment; filename="registre-preferences-qme-${date.slice(0, 10)}.csv"` } });
     }
     const n = (f) => lignes.filter(f).length;
-    return json(200, { total: lignes.length, acheteurs: n((l) => l.profil !== 'testeur'), testeurs: n((l) => l.profil !== 'acheteur'),
+    return json(200, { total: lignes.length, acheteurs: n((l) => l.profil.includes('acheteur')), testeurs: n((l) => l.profil.includes('testeur')),
       abonnes: n((l) => l.informations === 'abonné'), desinscrits: n((l) => l.informations === 'désinscrit'), lignes });
   }
 

@@ -281,6 +281,9 @@ test('opposition des prospects : page publique, ajout groupé admin (adresses et
   assert.deepEqual(r.lignes.map((l) => [l.email, l.profil, l.informations]), [
     ['*@hostile.fr', 'domaine', 'désinscrit'], ['prospect@societe.fr', 'prospect', 'désinscrit'], ['stop@exemple.fr', 'prospect', 'désinscrit'],
   ]);
+  assert.deepEqual({ acheteurs: r.acheteurs, testeurs: r.testeurs, desinscrits: r.desinscrits }, { acheteurs: 0, testeurs: 0, desinscrits: 3 }, 'prospects et domaines ne comptent ni comme acheteurs ni comme testeurs');
+  await connecter(w, 'visiteur@exemple.fr');
+  assert.equal((await req('/registre', { code: ADMIN })).j.lignes.find((l) => l.email === 'visiteur@exemple.fr').profil, 'compte sans achat');
   await ajouterAchat({ secret: SECRET, store: w.store, email: 'acheteur@hostile.fr', vente: { type: 'template', code: 'BDG' }, licence: LICENCE, maintenant: () => w.t });
   assert.equal((await (await admin(w, '/annonce', {})).json()).total, 0, 'domaine exclu des annonces');
 });
