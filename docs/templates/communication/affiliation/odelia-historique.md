@@ -23,6 +23,12 @@ Mémoire du dossier, à relire avant toute reprise de contact. Fiche : `odelia.m
 | 17/11 | Quentin (interne) | Démo `/demo/odelia` mise en ligne (PR #144), vidéos types muettes (dossier Drive « Odélia × QME · vidéos types Pack Étudiant », partagé par lien), réponses « stories » et « Reel » préparées, non envoyées. |
 | 17/11 15:57 | Quentin → Eva (Odélia en copie) | **Décline** (texte ci-dessous). |
 | 17/11 16:00 | Quentin → Eva (seule) | Autres talents de Yuzu (texte ci-dessous). |
+| 18/11 10:42 | Eva → Quentin (Odélia en copie) | TikTok jugé pertinent ; demande le budget maximum pour une vidéo TikTok. |
+| 18/11 12:55 | Quentin → Eva (Odélia en copie) | 200 € de fixe maximum pour un TikTok + commission + au choix : accès à 17 outils (241,90 €) ou outil sur mesure (« 2 000 € minimum »). |
+| 18/11 13:48 | Eva → Quentin | En parle à Odélia. |
+| 18/11 | Eva ↔ Quentin (fil « autres talents ») | Eva propose Estelle (@estellesbn) et Anusha (@anusha.drg) ; Quentin propose commission + sur-mesure sans fixe ; Eva refuse la commission seule. |
+| 22/11 12:28 | Eva → Quentin (Odélia plus en copie) | Contre-proposition : Reel Instagram à 200 € fixe. Demande le prix des outils pour les étudiants ; les 2 000 € sont-ils une autre prestation ? |
+| 22/11 | Quentin (interne) | Réponse d'accord préparée, non envoyée : `odelia-reponse-reel-200.md`. |
 
 ## Statistiques Instagram transmises par Eva (21/07–19/08/2026)
 
