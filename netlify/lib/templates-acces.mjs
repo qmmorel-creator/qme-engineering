@@ -14,6 +14,14 @@ export { PACKS, SUR_MESURE, ACHAT_SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
+// Templates fusionnés dans un autre (rationalisation du 22/11/2026) : leur fiche Gumroad peut rester achetable quelque
+// temps (dépublication en attente) ; une licence achetée pour l'ancien produit ouvre le template qui l'a absorbé.
+export const FUSIONNES = {
+  PRS: { gumroad: '7Ie2c3Qgcxkl1coobiiNXg==', vers: 'CRM', depuis: '2026-11-22' }, // Pipeline de prospection → CRM et prospection
+  CND: { gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==', vers: 'CAN', depuis: '2026-11-22' }, // Suivi des appels d'offres → Suivi de candidatures
+  PRK: { gumroad: 'hOn6wGUScmPpb--BuJTl-g==', vers: 'GMA', depuis: '2026-11-22' }, // Pilotage de parcs multi-sites → Maintenance préventive
+};
+
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
   CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/', gumroad: '29mMG1jJqiRppcqs_Mt09w==' },
@@ -25,18 +33,22 @@ export const PRODUITS = {
   TCH: { nom: 'Gestionnaire de tâches', url: '/templates/taches/', gumroad: 'fhPqrSBXayFL21IZWU6YIg==' },
   NTR: { nom: 'Nutrition et dépense énergétique', url: '/templates/nutrition/', gumroad: 'gPo_NgvoB4zjkqk2mFkXBQ==' },
   BDG: { nom: 'Mon Budget', url: '/templates/budget/', gumroad: 'YvGeAPDZjuqr9yflNtLhhw==' },
-  MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
-  CRM: { nom: 'CRM freelance', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
+  // CRM et prospection : CRM freelance et Pipeline de prospection B2B (PRS) fusionnés le 22/11/2026 (rationalisation F2).
+  // PRS retiré : aucune vente, aucun code offert ; /templates/prospection/ redirigé ici (netlify.toml).
+  CRM: { nom: 'CRM et prospection', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/', gumroad: 'a212qy8CvDD90dc-7gV5NQ==' },
   PHR: { nom: 'Planner horaire', url: '/templates/planner/', gumroad: '6uyeEBR91feI1tM2Wbij8Q==' },
   RSV: { nom: 'Levée de réserves', url: '/templates/reserves/', gumroad: '1xyF3Lz36TxDCOz4KnVB4A==' },
-  PRS: { nom: 'Pipeline de prospection B2B', url: '/templates/prospection/', gumroad: '7Ie2c3Qgcxkl1coobiiNXg==' },
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
   TRS: { nom: 'Trésorerie prévisionnelle 12 mois', url: '/templates/tresorerie/', gumroad: 'no1AEwLFPlXydqFGU7vRzg==' },
   PRC: { nom: 'Gestion de parc informatique', url: '/templates/parc-informatique/', gumroad: 'gykL5ZVrrICGHSLM0V3xlQ==' },
-  EVT: { nom: 'Pilote événementiel', url: '/templates/evenementiel/' },
+  // Organisateur d'événement : Pilote événementiel, Organisateur de mariage (MRG) et Séminaire / offsite (SMN) fusionnés le
+  // 22/11/2026 (rationalisation F1). La fiche Gumroad de MRG devient celle d'EVT (même identifiant : les licences MRG ouvrent
+  // EVT) ; SMN n'avait pas de fiche. MRG et SMN retirés : aucune vente, aucun code offert ; /templates/mariage/ et
+  // /templates/seminaire/ redirigés ici (netlify.toml).
+  EVT: { nom: 'Organisateur d\'événement', url: '/templates/evenementiel/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   ASC: { nom: 'Inscriptions associatives', url: '/templates/inscriptions/', gumroad: '5XuVWuitD2ZzpVkwQFHlVw==' },
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/', gumroad: 'leplToyYwMtXCmdXZa9T4Q==' },
@@ -62,6 +74,8 @@ export const PRODUITS = {
   DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/', gumroad: 'KZHfWPckpGMOxeFYDPcrow==' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/', gumroad: 'qzhJTzOWF59ZJo1a1Xbetg==' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/', gumroad: '78_8FuKW6L-Dk5kT50W8-Q==' },
+  // Maintenance préventive : absorbe le Pilotage de parcs multi-sites (PRK) le 22/11/2026 (rationalisation F4), en option
+  // « plusieurs sites ». PRK retiré : aucune vente, aucun code offert ; /templates/parcs-multi-sites/ redirigé ici (netlify.toml).
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/', gumroad: 'MAPRhk5_um6ZexYxe09jFw==' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/', gumroad: 'EnpmgktOylLJZJST9_Tfhg==' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/', gumroad: 'B0MUKsC_AHC_LeiL83xQvA==' },
@@ -77,15 +91,13 @@ export const PRODUITS = {
   BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/', gumroad: 'xH5b6U76Zzjy5ADJBYu03g==' },
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
-  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/', gumroad: 'hOn6wGUScmPpb--BuJTl-g==' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/', gumroad: 'u-ySqLkS21aA1mhfeG9EFQ==' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/', gumroad: 'Y_zjhtlT4nxXqSdqeT_mEA==' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/', gumroad: 'qUwb0nm4TaFmXgiSoc2aJA==' },
   RDE: { nom: 'Registre du DOE', url: '/templates/doe/', gumroad: 'rusN6tG2fwT6JE_JZMEZIA==' },
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/', gumroad: '6skYhUNcKgwFwua1a56TVw==' },
-  CND: { nom: 'Suivi des appels d\'offres et candidatures', url: '/templates/appels-offres/', gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/', gumroad: 'iOZ0cB8ONCrvvkxMdbL7BQ==' },
-  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
+  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/', gumroad: 'NgehMPonwFhDQl_wIgF8XA==' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },
@@ -97,7 +109,10 @@ export const PRODUITS = {
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/', gumroad: '-yAS1RKHFCUmacHWd-lOAw==' },
   CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/', gumroad: 'MCs3LoKvVl7DtQhtn_dWTA==' },
   RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/', gumroad: '4avh-xwvvFj0eRmC4rqDcg==' },
-  CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
+  // Suivi de candidatures : Candidatures études, stages, alternance et Suivi des appels d'offres et candidatures (CND)
+  // fusionnés le 22/11/2026 (rationalisation F3). CND retiré : aucune vente, aucun code offert ;
+  // /templates/appels-offres/ redirigé ici (netlify.toml).
+  CAN: { nom: 'Suivi de candidatures', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
   SBV: { nom: 'Subventions', url: '/templates/subventions/' },
   BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
   MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/', gumroad: '-JA7LGCBFecmAERfqUDnZQ==' },
@@ -109,7 +124,6 @@ export const PRODUITS = {
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
   CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
-  SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
@@ -420,12 +434,13 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE]].filter(([, p]) => p.gumroad);
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES)].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
     if (trouve >= 0) {
-      const [cle] = candidats[trouve];
+      let [cle] = candidats[trouve];
+      if (FUSIONNES[cle]) cle = FUSIONNES[cle].vers; // licence d'un template fusionné : ouvre celui qui l'a absorbé
       achatVerifie = reponses[trouve].value.achat || {};
       if (cle === SUR_MESURE) {
         // Pack sur mesure : composition lue dans l'achat, montant payé contrôlé contre le barème.

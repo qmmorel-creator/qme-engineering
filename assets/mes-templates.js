@@ -8,7 +8,7 @@
 (() => {
   'use strict';
   if (window.QMEMesTemplates) return;
-  const V = '20261123a';
+  const V = '20261123b';
   const lire = (c) => { try { const v = localStorage.getItem(c) ?? sessionStorage.getItem(c); return v ? JSON.parse(v) : null; } catch { return null; } };
   const garder = (c, v) => { try { localStorage.setItem(c, JSON.stringify(v)); } catch { /* stockage indisponible */ } };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -21,6 +21,23 @@
     if (norm(code).startsWith('ADM')) return 'admin';
     const essai = lire(`qme-${p}-essai`);
     return essai && norm(essai) === norm(code) ? 'essai' : 'achete';
+  }
+  // Code administrateur : étendu à toutes les applications du catalogue (même règle que QMEEspace.etendreAdmin dans
+  // assets/espace.js) ; un achat ou un essai déjà présent n'est jamais remplacé.
+  function etendreAdmin(produits) {
+    let code = null, stock = null;
+    for (const p of Object.values(produits || {})) {
+      for (const st of [localStorage, sessionStorage]) {
+        try { const v = JSON.parse(st.getItem(p.cle) || 'null'); if (typeof v === 'string' && norm(v).startsWith('ADM')) { code = v; stock = st; break; } } catch { /* illisible */ }
+      }
+      if (code) break;
+    }
+    if (!code) return;
+    for (const p of Object.values(produits)) {
+      const v = lire(p.cle);
+      if (v && v !== 'DEMO') continue;
+      try { stock.setItem(p.cle, JSON.stringify(code)); } catch { /* stockage indisponible */ }
+    }
   }
   const BADGE = { achete: ['Acheté', 'achete'], essai: ['Essai', 'essai'], admin: ['Admin', 'admin'] };
   const badge = (s) => (BADGE[s] ? `<span class="qme-mt-badge qme-mt-${BADGE[s][1]}">${BADGE[s][0]}</span>` : '');
@@ -74,7 +91,9 @@
 .qme-bandeau .qme-b-ini{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font-size:11px}
 .qme-bandeau .qme-b-sep{flex:1;min-width:8px}
 @media (max-width:520px){.qme-bandeau{font-size:13px}.qme-bandeau a{padding:0 8px}}
-@media print{.qme-bandeau{display:none}}
+.qme-relier{display:block;padding:9px max(14px,env(safe-area-inset-left));background:#E8B93A;color:#24221F;font:600 14px/1.35 Outfit,system-ui,sans-serif;text-decoration:none;position:relative;z-index:30}
+.qme-relier:hover,.qme-relier:focus-visible{background:#F5CF63}
+@media print{.qme-bandeau,.qme-relier{display:none}}
 @media (prefers-reduced-motion:no-preference){.qme-mt[open]{animation:qme-mt-entree .18s ease-out}@keyframes qme-mt-entree{from{transform:translateY(24px);opacity:.6}}}
 `;
   let donnees = null, dialogue = null;
@@ -101,7 +120,7 @@
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
         <input type="search" placeholder="Rechercher une application" autocomplete="off" enterkeyhint="go"></label>
       <ul class="qme-mt-liste" data-mt-liste></ul>
-      <div class="qme-mt-pied"><a class="principal" href="/connexion/">Mon espace : tout voir</a><a href="/">Site QME</a></div>`;
+      <div class="qme-mt-pied"><a class="principal" href="${ESPACE}">Mon espace : tout voir</a><a href="/">Site QME</a></div>`;
     document.body.appendChild(dialogue);
     dialogue.addEventListener('click', (e) => {
       if (e.target === dialogue || e.target.closest('[data-mt-fermer]')) { dialogue.close(); return; }
@@ -118,6 +137,7 @@
   }
   function remplir(filtre = '') {
     const { produits } = donnees, ici = produitCourant(produits);
+    etendreAdmin(produits);
     const recents = Object.fromEntries((lire('qme-espace-recents') || []).map((r) => [r.p, r.t]));
     const epingles = lire('qme-espace-epingles') || [], noms = lire('qme-espace-noms') || {}, masques = lire('qme-espace-masques') || [];
     const nom = (k) => noms[k] || produits[k].nom;
@@ -142,7 +162,7 @@
     dialogue.querySelector('[data-mt-liste]').innerHTML = html;
   }
   async function ouvrir() {
-    try { await charger(); } catch { location.href = '/connexion/'; return; }
+    try { await charger(); } catch { location.href = ESPACE; return; }
     construire();
     const champ = dialogue.querySelector('input'); champ.value = '';
     remplir();
@@ -150,6 +170,8 @@
     dialogue.querySelector('[data-mt-fermer]').focus();
   }
 
+  // Application lancée depuis l'écran d'accueil : sa mémoire est séparée du navigateur ; la page Mon espace le signale.
+  const ESPACE = (navigator.standalone === true || matchMedia('(display-mode: standalone)').matches) ? '/connexion/?depuis=ecran' : '/connexion/';
   const style = document.createElement('style'); style.textContent = CSS; document.head.appendChild(style);
   // Bandeau QME (demande de Quentin, 23/11/2026) : depuis une application, retour direct à son espace et au site.
   function bandeau() {
@@ -159,9 +181,17 @@
     const ini = session?.jeton ? String(prenom || session.email || '').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}]/gu, '') : '';
     const n = document.createElement('nav');
     n.className = 'qme-bandeau'; n.setAttribute('aria-label', 'QME : mon espace et le site');
-    n.innerHTML = `<a class="qme-b-espace" href="/connexion/">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
+    n.innerHTML = `<a class="qme-b-espace" href="${ESPACE}">${ini ? `<span class="qme-b-ini" aria-hidden="true">${esc(ini)}</span>` : '<span aria-hidden="true">←</span>'}Mon espace</a>`
       + '<span class="qme-b-sep" aria-hidden="true"></span><a href="/">Site QME</a><a href="/templates/">Templates</a><a href="/packs/">Packs</a><a href="/sur-mesure/">Sur mesure</a>';
     document.body.prepend(n);
+    // Application de l'écran d'accueil sans compte : sa mémoire est séparée du navigateur, il faut s'y connecter une
+    // fois (e-mail + code à 6 chiffres) pour y retrouver toutes ses applications, sans la réinstaller.
+    if (ESPACE !== '/connexion/' && !session?.jeton) {
+      const r = document.createElement('a');
+      r.className = 'qme-relier'; r.href = ESPACE;
+      r.textContent = 'Connectez cette application une fois pour retrouver toutes vos applications →';
+      n.after(r);
+    }
   }
   bandeau();
   // Le logo de l'en-tête (rendu et re-rendu par l'application) devient le bouton du panneau.

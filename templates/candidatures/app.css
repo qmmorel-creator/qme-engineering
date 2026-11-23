@@ -587,3 +587,184 @@ mark.trou{background:var(--rose);color:var(--rose-texte);border-radius:6px;paddi
 .btn.petit,.btn.lien{min-height:44px}
 .modale-tete button{width:44px;height:44px}
 .bandeau-demo button{min-height:44px;padding:0 4px}
+
+/* ============ Suivi de candidatures : modèles, appels d'offres (fusion du 22/11/2026) ============ */
+.type-offre{background:#D9EEDF;color:#1F5C39}
+.type-spontanee{background:#F6E2CF;color:#7A4513}
+.type-public{background:var(--ciel);color:var(--ciel-texte)}
+.type-prive{background:var(--rose);color:var(--rose-texte)}
+.type-plateforme{background:var(--beurre);color:var(--beurre-texte)}
+.type-directe{background:var(--sable);color:var(--texte-2);border-color:var(--trait)}
+.type-autre{background:var(--surface);color:var(--texte-2);border-color:var(--trait)}
+.statut-reperee{background:var(--sable);color:var(--encre);border-color:var(--trait)}
+.statut-sanssuite{background:var(--sable);color:var(--discret);border-color:var(--trait)}
+.statut-nogo{background:var(--surface);color:var(--discret);border-color:var(--discret);border-style:dashed}
+.etiquette.vert{background:#D9EEDF;color:#1F5C39}
+.choix-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.choix-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+/* Choix du modèle au premier lancement */
+.choix-usages{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:960px}
+.choix-usage{position:relative;cursor:pointer}
+.choix-usage input{position:absolute;opacity:0;inset:0}
+.choix-usage span{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px;border:1px solid var(--trait);border-radius:16px;background:var(--surface)}
+.choix-usage b{font-size:18px}
+.choix-usage small{font-size:14px;color:var(--texte-2)}
+.choix-usage input:checked+span{background:var(--beurre);border-color:transparent;box-shadow:0 0 0 2px var(--papier),0 0 0 4px var(--encre)}
+.choix-usage input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:3px}
+/* Bandeau de démo : exemple affiché */
+.demo-modeles{display:inline-flex;flex-wrap:wrap;align-items:center;gap:0 8px;font-weight:600}
+.bandeau-demo .demo-modeles button[aria-pressed="true"]{text-decoration:none;background:var(--surface);border-radius:999px;padding:0 10px}
+/* Onglets : 5 ou 6 selon le modèle */
+@media (max-width:720px){.onglets{grid-template-columns:repeat(var(--n,5),1fr)}}
+.modale.large{max-width:780px}
+/* Veille et grille go/no-go */
+.note-veille{font-size:14px;color:var(--texte-2);margin:-8px 0 16px}
+.veille{display:grid;gap:12px}
+.veille-carte{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 18px;align-items:center;border:1px solid var(--trait);border-left:6px solid var(--c);background:var(--surface);border-radius:16px;padding:14px 16px}
+.veille-corps{display:flex;flex-direction:column;gap:6px;min-width:0}
+.veille-corps h3{font-size:19px}
+.veille-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.lien-fiche{background:none;border:0;padding:0;font:inherit;text-align:left;cursor:pointer;color:inherit;overflow-wrap:anywhere}
+.lien-fiche:hover{text-decoration:underline;text-underline-offset:4px}
+.carte-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--discret)}
+.score{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--texte-2)}
+.score b{color:var(--encre)}
+.retard{color:var(--rouge)!important;font-weight:700}
+.jauge-score{position:relative;display:block;width:180px;height:10px;border-radius:999px;background:var(--sable);border:1px solid var(--trait);flex:none}
+.jauge-score i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--bleu)}
+.jauge-score b{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--encre);opacity:.55}
+.grille-gonogo{display:grid;gap:10px}
+.critere{border:1px solid var(--trait);border-radius:14px;padding:10px 12px;margin:0;background:var(--surface);min-width:0}
+.critere legend{padding:0;float:left;width:100%}
+.critere legend b{font-size:15px}
+.critere legend small{font-size:12px;color:var(--discret);margin-left:4px}
+.critere legend>span:last-child{display:block;font-size:13.5px;color:var(--texte-2);margin:2px 0 8px;font-weight:400}
+.segment-notes{clear:both;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.segment-notes label{position:relative}
+.segment-notes input{position:absolute;opacity:0;inset:0;margin:0}
+.segment-notes span{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;border:1px solid var(--trait);border-radius:999px;font-size:13.5px;font-weight:600;background:var(--papier);text-align:center;cursor:pointer}
+.segment-notes input:checked+span{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.segment-notes input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+.resultat-grille{border:1px solid var(--trait);border-radius:14px;background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.choix-resultat{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.choix-resultat label{position:relative}
+.choix-resultat input{position:absolute;opacity:0;inset:0;margin:0}
+.choix-resultat span{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid var(--trait);border-radius:999px;font-weight:700;background:var(--surface);cursor:pointer}
+.choix-resultat input:checked+span{background:var(--encre);color:var(--papier)}
+.choix-resultat input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+.poids{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.poids .champ{font-size:12.5px}
+.poids input{min-height:40px}
+/* Pièces d'un dossier : rétroplanning */
+.lien-ligne .piece-ech{font-size:13px;font-weight:600;color:var(--texte-2)}
+.piece.etat-retard .piece-statut{box-shadow:inset 0 0 0 2px var(--rouge)}
+.piece.etat-sansobjet .lien-ligne b{color:var(--discret);text-decoration:line-through}
+.piece-sansobjet .piece-statut{color:var(--discret);border-style:dashed}
+.piece-alerte{display:block;margin-top:4px;font-size:13px;font-weight:600;color:var(--rose-texte)!important;background:var(--rose);border-radius:10px;padding:4px 8px}
+.temps{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;border-top:1px solid var(--trait);padding-top:12px}
+.temps .surtitre{margin:0}
+.temps b{font-size:22px}
+.historique{display:grid;gap:0}
+.historique li{display:grid;grid-template-columns:96px 110px minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--trait);font-size:14px;align-items:baseline}
+.historique li:first-child{border-top:0}
+.h-date{color:var(--discret);font-size:13px}
+.h-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+/* Calendrier */
+.cal{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:14px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px 20px}
+.cal-tete{grid-column:1/-1;display:flex;align-items:center;gap:10px}
+.cal-tete h3{font-size:20px;min-width:170px;text-align:center}
+.cal-tete .btn{min-width:44px;font-size:18px}
+.cal-legende{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--texte-2)}
+.cal-legende span{display:inline-flex;align-items:center;gap:6px}
+.cal-legende i{width:10px;height:10px;border-radius:50%;display:block}
+.cal-grille{display:grid;gap:4px;min-width:0;align-content:start}
+.cal-ligne{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-jour-nom{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--discret);text-align:center;padding:2px 0}
+.cal-case{display:flex;flex-direction:column;align-items:stretch;gap:2px;min-height:78px;padding:4px;border:1px solid var(--trait);border-radius:10px;background:var(--papier);text-align:left;font:inherit;color:inherit;min-width:0;overflow:hidden}
+.cal-case:hover{background:var(--sable)}
+.cal-case.hors{opacity:.45}
+.cal-case.auj{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+.cal-case.choisi{background:var(--beurre)}
+.cal-num{font-size:12px;font-weight:700}
+.cal-ev{display:flex;align-items:center;gap:4px;font-size:11px;line-height:1.2;min-width:0}
+.cal-ev i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.cal-ev em{font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-plus{font-size:11px;font-weight:700;color:var(--discret)}
+.cal-liste{min-width:0;display:flex;flex-direction:column}
+.cal-liste h4{font-size:15px;margin:0 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.cal-items{display:flex;flex-direction:column}
+.cal-item{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;border:0;border-top:1px solid var(--trait);background:none;padding:10px 4px;text-align:left}
+.cal-items li:first-child .cal-item{border-top:0}
+.cal-item:hover b{text-decoration:underline}
+.cal-item i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.cal-item span{display:flex;flex-direction:column;min-width:0}
+.cal-item b{font-size:15px;overflow-wrap:anywhere}
+.cal-item small{font-size:13px;color:var(--discret)}
+.cal-item em{font-style:normal;font-size:13px;font-weight:700;color:var(--texte-2);white-space:nowrap}
+@media (min-width:1021px){.cal-liste{max-height:600px;overflow:auto}}
+/* Pièces réutilisables : modèles de dossiers */
+.modeles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:14px}
+.modele{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.modele-tete{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.modele-tete h3{font-size:17px}
+.modele-tete p{font-size:13px;color:var(--discret);margin-top:4px}
+.modele ol{display:grid;gap:4px}
+.modele li{display:grid;grid-template-columns:46px 1fr;gap:8px;font-size:13.5px;border-top:1px solid var(--trait);padding-top:4px}
+.modele li b{font-weight:800}
+/* Bilan */
+.tuile b small{font-size:18px;margin-left:4px}
+.vue-bilan .vue-tete .filtres{align-self:flex-end}
+.entonnoir{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:16px;display:grid;gap:10px;margin:0 0 14px}
+.barre-ent{display:grid;grid-template-columns:120px minmax(0,1fr) 200px;gap:12px;align-items:center}
+.ent-nom{font-weight:700;font-size:14px}
+.ent-piste{display:flex;align-items:center;gap:8px;min-width:0}
+.ent-piste i{display:block;height:26px;background:var(--c);border:1px solid var(--trait);border-radius:6px;flex:none;max-width:calc(100% - 40px)}
+.ent-piste b{font-weight:800;font-size:16px}
+.ent-taux{font-size:14px;font-weight:700;text-align:right}
+.ent-taux small{font-weight:500;color:var(--discret)}
+.tableau{border-radius:16px;overflow:hidden;border-collapse:separate;border-spacing:0}
+.tableau th{color:var(--texte-2)}
+.tableau tr:last-child td{border-bottom:0}
+.graphique-tete{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
+.graphique-tete h3{font-size:18px}
+.legende{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--texte-2)}
+.legende span{display:inline-flex;align-items:center;gap:6px}
+.legende i{width:12px;height:12px;border:1px solid var(--trait);border-radius:3px;display:block}
+.infobulle i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.graphique svg{display:block;width:100%;height:auto;overflow:visible}
+.graphique .axe{font-size:11px;fill:var(--discret);font-family:Outfit,sans-serif}
+.graphique .grille{stroke:var(--trait);stroke-width:1}
+.graphique .base{stroke:var(--encre);stroke-width:2}
+.graphique .zone{fill:transparent;cursor:crosshair}
+.graphique .colonne-g{pointer-events:none}
+.graphique .colonne-g.active rect{stroke-width:2.5}
+.motifs{display:flex;flex-wrap:wrap;gap:10px}
+.motifs div{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:10px 14px;display:flex;align-items:baseline;gap:8px}
+.motifs b{font-size:24px;font-weight:800}
+@media (max-width:1020px){
+  .cal{grid-template-columns:1fr}
+  .choix-usages{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .choix-5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cal{padding:10px 8px}
+  .cal-case{min-height:46px;align-items:center;padding:3px 2px}
+  .cal-ev{justify-content:center}
+  .cal-ev em,.cal-plus{display:none}
+  .cal-tete h3{min-width:0;flex:1;font-size:18px}
+  .veille-carte{grid-template-columns:1fr}
+  .veille-actions{justify-content:flex-start}
+  .jauge-score{width:140px}
+  .poids{grid-template-columns:1fr 1fr}
+  .segment-notes{grid-template-columns:1fr 1fr}
+  .historique li{grid-template-columns:84px minmax(0,1fr)}
+  .historique li>span:last-child{grid-column:1/-1}
+  .barre-ent{grid-template-columns:76px minmax(0,1fr) 52px;gap:8px}
+  .ent-taux small{display:none}
+  .onglet{font-size:10.5px}
+}
+
+/* Statut choisi dans la fiche : toujours lisible (la pastille de couleur seule laissait un texte blanc sur fond blanc). */
+.choix-st[aria-pressed="true"],.choix-st[aria-pressed="true"]:hover{background:var(--encre);color:var(--papier)}
+.onglet{white-space:nowrap}
+@media (max-width:1300px){.barre .titre-produit{display:none}}

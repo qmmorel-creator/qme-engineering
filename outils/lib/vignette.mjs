@@ -1,6 +1,7 @@
 // Rendu de vignettes WebP par le Chromium de Playwright (canvas), sans autre dépendance. Partagé par
 // outils/templates/vignettes.mjs (catalogue, packs) et outils/references/vignettes.mjs (page Sur mesure).
 // Recadrage « cover » depuis le haut à gauche (là où sont le titre et les chiffres d'un écran), ou centré.
+import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
@@ -35,3 +36,20 @@ export async function ouvrirRendu() {
 
 // Empreinte courte du contenu, pour une adresse versionnée (?v=) qui suit tout changement d'image.
 export const empreinte = (octets) => crypto.createHash('sha1').update(octets).digest('hex').slice(0, 8);
+
+// Pages qui réutilisent des vignettes hors de leur page d'origine (accueils FR et EN, 22/11/2026).
+export const PAGES_REPRISE = ['index.html', 'en/index.html'];
+
+// Met à jour, dans ces pages, l'adresse versionnée de chaque vignette : adresses = Map(nom de fichier → adresse).
+export function majReprises(racine, adresses) {
+  for (const page of PAGES_REPRISE) {
+    const fichier = path.join(racine, page);
+    const avant = fs.readFileSync(fichier, 'utf8');
+    let html = avant;
+    for (const [nom, adresse] of adresses) {
+      const motif = new RegExp(`/assets/vignettes/${nom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?v=[0-9a-f]+`, 'g');
+      html = html.replace(motif, adresse);
+    }
+    if (html !== avant) fs.writeFileSync(fichier, html);
+  }
+}

@@ -41,13 +41,13 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Vos catégories ne correspondent pas à votre façon de dépenser ?',
   },
-  MRG: {
-    commencer: 'saisissez la date du mariage : les 40 tâches du rétroplanning se calent sur cette date, et la prochaine échéance apparaît.',
+  EVT: {
+    commencer: 'choisissez le modèle (mariage, séminaire ou offsite, événement d\'entreprise ou d\'association, fête de famille) et saisissez la date : le rétroplanning type se cale sur cette date, et la prochaine échéance apparaît.',
     astuces: [
-      'si la date change, tout le rétroplanning se recale seul ;',
-      'les régimes et allergies notés pour chaque invité se retrouvent dans la liste à transmettre au traiteur.',
+      'si la date change, tout le rétroplanning se recale seul, et plusieurs événements se suivent depuis le même tableau de bord ;',
+      'régimes et allergies sont comptés sans nom dans une fiche traiteur à transmettre telle quelle.',
     ],
-    aide: 'Votre organisation ne colle pas au rétroplanning type ?',
+    aide: 'Votre événement ne colle pas au modèle proposé ?',
   },
   PHR: {
     commencer: 'partez de la semaine type la plus proche de vous (cadre, freelance ou étudiant) et déplacez deux ou trois blocs pour l\'adapter à votre vraie semaine.',
@@ -210,12 +210,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Une offre de prêt difficile à lire ou à saisir ?',
   },
   CAN: {
-    commencer: 'créez la candidature la plus proche de sa date limite et choisissez sa liste de pièces de départ : ce qui reste à préparer apparaît.',
+    commencer: 'choisissez votre modèle (études et stages, emploi, ou appels d\'offres et plateformes), puis créez la candidature la plus proche de sa date limite : ce qui reste à préparer apparaît.',
     astuces: [
-      'une relance est proposée après le délai choisi, avec un message prêt à copier ;',
-      'les dates limites et entretiens s\'exportent vers l\'agenda de votre téléphone.',
+      'une relance est proposée après le délai choisi, avec un message prêt à copier, et les dates s\'exportent vers l\'agenda de votre téléphone ;',
+      'pour un appel d\'offres, la grille go/no-go recommande de répondre ou non, puis chaque pièce reçoit une échéance à rebours depuis la date limite.',
     ],
-    aide: 'Une procédure de candidature particulière ?',
+    aide: 'Une procédure de candidature ou un type de consultation particulier ?',
   },
   MMR: {
     commencer: 'saisissez votre date de rendu et le nombre de mots visé, puis partez du plan type : le nombre de mots à écrire par jour s\'affiche.',
@@ -290,14 +290,6 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un mode de facturation de vos missions que l\'outil gère mal ?',
   },
-  CND: {
-    commencer: 'ajoutez une consultation repérée et notez-la sur les 8 critères de la grille go/no-go : la recommandation s\'affiche, et le motif de votre décision est gardé.',
-    astuces: [
-      'chaque pièce du dossier reçoit une échéance calculée à rebours depuis la date limite, avec une marge de sécurité ;',
-      'une pièce de votre bibliothèque (attestation, CV, référence) qui expire avant la date limite est signalée.',
-    ],
-    aide: 'Un type de consultation ou une pièce que les modèles de dossier ne prévoient pas ?',
-  },
   RDE: {
     commencer: 'créez l\'opération et ajoutez un lot avec son entreprise : les pièces attendues du DOE arrivent listées, et la complétude du lot s\'affiche.',
     astuces: [
@@ -355,12 +347,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Un indicateur propre à votre métier qui manque à la bibliothèque ?',
   },
   GMA: {
-    commencer: 'ajoutez une machine à partir de sa famille d\'équipement et relevez son compteur : les opérations du plan type et leurs échéances s\'affichent.',
+    commencer: 'choisissez un site ou plusieurs, ajoutez une machine à partir de sa famille d\'équipement et relevez son compteur : les opérations du plan type et leurs échéances s\'affichent.',
     astuces: [
-      'le rythme d\'utilisation relevé transforme une échéance au compteur en date estimée ;',
-      'à la clôture d\'un bon d\'intervention, l\'échéance suivante se recale et le coût de l\'équipement se met à jour.',
+      'le rythme d\'utilisation relevé transforme une échéance au compteur en date estimée, et la clôture d\'un bon recale l\'échéance suivante et le coût de l\'équipement ;',
+      'avec plusieurs sites, la vue d\'ensemble signale un équipement à l\'arrêt ou un site sans visite, et compare disponibilité et coût par site, en liste ou sur une carte schématique.',
     ],
-    aide: 'Une machine dont la notice impose un entretien que le plan type ne prévoit pas ?',
+    aide: 'Une machine dont la notice impose un entretien que le plan type ne prévoit pas, ou un parc qui se range mal par site ?',
   },
   GNT: {
     commencer: 'tapez quelques tâches en une ligne chacune, avec une date, une durée et la tâche qui précède (« après 1 ») : les barres, les liens et le chemin critique apparaissent.',
@@ -491,20 +483,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Un article vendu en lot ou au détail qui se suit mal ?',
   },
   CRM: {
-    commencer: 'ajoutez un prospect avec sa prochaine action datée : il apparaît le jour venu dans la liste des personnes à relancer, retards en tête.',
+    commencer: 'ajoutez un prospect avec sa cadence de relance (ou une prochaine action datée) : il apparaît le jour venu dans la liste des personnes à relancer, retards en tête, avec le message prêt à copier.',
     astuces: [
-      'quand vous notez un échange comme fait, l\'outil propose l\'action suivante ;',
-      'les contacts sans échange depuis 3 ans sont signalés, pour que vous les archiviez ou les supprimiez.',
-    ],
-    aide: 'Un cycle de vente ou une étape propre à votre activité ?',
-  },
-  PRS: {
-    commencer: 'ajoutez un prospect et choisissez sa cadence de relance : la date de la prochaine relance se calcule, avec le message prêt à copier.',
-    astuces: [
-      'les scripts se remplissent avec le prénom, l\'organisation et la fonction du prospect ;',
+      'les scripts se remplissent avec le prénom, l\'organisation et la fonction du contact ; quand il répond, la cadence s\'arrête et l\'affaire passe « En échange » ;',
       'une personne qui s\'oppose est arrêtée d\'un geste : plus aucune relance, et seul le minimum est gardé pour ne pas la recontacter.',
     ],
-    aide: 'Un canal ou un rythme de prospection que les cadences types ne couvrent pas ?',
+    aide: 'Un cycle de vente, un canal ou un rythme de relance propre à votre activité ?',
   },
   RCV: {
     commencer: 'saisissez une facture impayée avec son montant et son échéance : le retard en jours, les pénalités et l\'indemnité forfaitaire entre professionnels se calculent.',
@@ -594,14 +578,6 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un contrat dont l\'échéance ou le préavis se calcule autrement ?',
   },
-  PRK: {
-    commencer: 'créez un site (ou importez votre liste avec le modèle tableur), ajoutez un équipement et sa périodicité de préventif : la prochaine échéance s\'affiche.',
-    astuces: [
-      'les alertes signalent un préventif dépassé, un équipement à l\'arrêt depuis N jours ou un site sans visite depuis N mois, seuils réglables ;',
-      'la carte schématique place les sites par leurs coordonnées, sans fond de carte ni service en ligne.',
-    ],
-    aide: 'Un parc ou un type d\'équipement qui se range mal dans les sites et catégories ?',
-  },
   BSC: {
     commencer: 'partez d\'une des 5 séquences types, nommez l\'équipe et adaptez les durées : le déroulé horaire et la fin estimée se calculent.',
     astuces: [
@@ -617,5 +593,13 @@ export const PRISE_EN_MAIN = {
       'les demandes validées se regroupent en un bon de commande par fournisseur, et la réception peut être partielle.',
     ],
     aide: 'Un circuit de validation à plusieurs niveaux que le seuil unique ne couvre pas ?',
+  },
+  GRD: {
+    commencer: 'choisissez vos lieux de rangement (réfrigérateur, congélateur, placard), puis ajoutez trois produits avec la date imprimée sur l\'emballage : ceux à consommer en priorité remontent en tête.',
+    astuces: [
+      'la DLC et la DDM sont distinguées : une DLC dépassée affiche « ne pas consommer », une DDM dépassée invite seulement à vérifier le produit ;',
+      'un produit noté épuisé alimente la liste de courses, à cocher et à copier.',
+    ],
+    aide: 'Un lieu de rangement ou une catégorie de produits qui manque à l\'inventaire ?',
   },
 };

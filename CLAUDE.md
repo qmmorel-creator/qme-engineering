@@ -21,6 +21,15 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   terminer **toujours** par la mention « Ne plus recevoir les informations » avec le lien
   `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse>` (ou « répondez stop »). Une réponse « stop » ou
   hostile est inscrite le jour même sur la liste d'opposition. Sans exception : `docs/templates/communication/REGLES-PROSPECTION.md`.
+- **Signature graphique obligatoire dans tout e-mail de prospection** (décision du 23/11/2026) : sur mesure, affiliation
+  avec un influenceur ou une agence d'influenceurs, partenariat, relance, réponse à un prospect. Un brouillon ou un envoi
+  sans la signature « Bandeau » (version HTML) ne part pas. Procédure : `docs/templates/communication/signature/README.md`.
+
+## Suivi des prospects sérieux et tièdes (décision du 23/11/2026)
+
+- **Source unique** : `docs/prospection/suivi-prospects.md`. À lire avant toute relance, devis, réponse ou nouveau mail à
+  un prospect ; à mettre à jour le jour même par la session qui traite un échange (étape, dernier message, balle).
+  Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans tous les fils Gmail.
 
 ## Templates
 

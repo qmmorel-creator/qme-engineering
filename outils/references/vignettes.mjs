@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ouvrirRendu, empreinte } from '../lib/vignette.mjs';
+import { ouvrirRendu, empreinte, majReprises } from '../lib/vignette.mjs';
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const PAGES = ['sur-mesure/index.html', 'en/custom/index.html'];
@@ -40,6 +40,7 @@ for (const page of PAGES) {
   fs.writeFileSync(fichier, html);
 }
 await rendu.fermer();
+majReprises(racine, faites);
 
 // Vignettes de références orphelines (référence retirée) : supprimées.
 for (const f of fs.readdirSync(dossier)) if (f.startsWith('ref-') && !faites.has(f)) fs.rmSync(path.join(dossier, f));

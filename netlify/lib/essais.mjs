@@ -4,7 +4,7 @@
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
 // dans l'application reprend les données de l'essai (templates-acces.mjs, reporterEssai).
 //
-// E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
+// E-mails envoyés depuis quentin.morel@qm-engineering.fr (SMTP OVH, voir netlify/lib/mail.mjs) :
 //  - merci : tout de suite, avec le code ;
 //  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
 //    (essais-prise-en-main.mjs) ;
@@ -20,7 +20,7 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { statEssai } from './templates-acces.mjs';
 import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
-import { TEMPLATES } from '../../outils/packs/donnees.mjs';
+import { TEMPLATES, publics } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
 import { enregistrerOpposition, leverOpposition } from './preferences.mjs';
@@ -114,7 +114,7 @@ const TAILLE_MAX = 4000;
 // Templates ouverts à l'essai : vie personnelle (18/11/2026) et professionnels (extension préparée le 21/11/2026),
 // en vente (identifiant Gumroad et lien d'achat), payants.
 export const POUR_ESSAI = ['perso', 'pro'];
-export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => POUR_ESSAI.includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
+export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => POUR_ESSAI.includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
 
 export function ficheEssai(produit) {
   const t = TEMPLATES[produit], p = PRODUITS[produit];

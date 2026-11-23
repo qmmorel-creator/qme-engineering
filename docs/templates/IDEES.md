@@ -86,13 +86,13 @@ déjà).
 | T06 | Repas de la semaine et liste de courses | Cuisine | Familles, particuliers | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 |
 | T07 | Carnet de musculation et cross-training | Sport | Pratiquants, coachs | en vente | 19 € | M | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 48 |
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
-| T09 | Garde-manger et dates de péremption | Maison | Familles | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T09 | Garde-manger et dates de péremption | Maison | Familles | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 ; prix de 9 € maintenu par Quentin le 22/11/2026 (dérogation à la règle des 12 €, comme T98) |
-| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | en vente | 29 € | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28 |
+| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | fusionné dans T51 le 22/11/2026 | — | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28. Rationalisation F1 : MRG retiré du site et des packs (remplacé par T51 dans Vie à deux), adresses redirigées vers `evenementiel` ; sa fiche Gumroad (`organisateur-mariage`, même identifiant) devient celle de T51, à renommer. Modèle « Mariage » de T51. |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
@@ -105,14 +105,14 @@ déjà).
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
 | T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
-| T28 | CRM freelance (clients, projets, factures) | Commercial | Freelances, consultants | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 |
+| T28 | CRM et prospection (contacts, cadences de relance et scripts, pipeline, devis et factures suivis ; ex-CRM freelance, T35 fusionné le 22/11/2026) | Commercial | Freelances, TPE, commerciaux B2B | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 et n° 10 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
 | T31 | Compte rendu → plan d'actions | Réunions | Managers, chefs de projet | en vente | 15 € | S | P1 | Backlog Quentin n° 04 |
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | en vente | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en vente | 39 € | M | P2 | Backlog Quentin n° 08 |
-| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | en vente | 25 € | M | P1 | Backlog Quentin n° 10 |
+| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | fusionné dans T28 le 22/11/2026 | — | M | P1 | Backlog Quentin n° 10. Rationalisation F2 : PRS retiré du site et des packs, adresses redirigées vers le CRM ; fiche Gumroad `pipeline-prospection` à dépublier |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | en vente | 12 € | S | P2 | Backlog Quentin n° 13 |
@@ -128,17 +128,17 @@ déjà).
 | T48 | Suivi des congés et absences (ancien nom : Suivi congés et absences) | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
 | T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en vente | 19 € | M | P3 | Backlog Quentin n° 26 |
-| T51 | Pilote événementiel complet | Événementiel | Agences événementielles, chargés de communication | prêt | 49 € | L | P1 | Backlog Quentin n° 27 |
+| T51 | Organisateur d'événement (ancien nom : Pilote événementiel complet) | Événementiel | Particuliers (mariage, fête de famille), agences, entreprises et associations (séminaire, salon, soirée, conférence) | en vente | 39 € | L | P1 | Backlog Quentin n° 27. Fusion F1 du 22/11/2026 : réunit T15 (mariage) et T54 (séminaire) ; quatre modèles, fonctions activables, présent dans les deux parties du site ; fiche Gumroad reprise de T15 (`organisateur-mariage`). Prix de 39 € décidé par Quentin. |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en vente | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
-| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | prêt | 35 € | M | P3 | Backlog Quentin n° 31 |
+| T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | fusionné dans T51 le 22/11/2026 | — | M | P3 | Backlog Quentin n° 31. Rationalisation F1 : SMN retiré du site et du pack Moyens généraux (remplacé par T51), adresses redirigées vers `evenementiel` ; pas de fiche Gumroad. Modèle « Séminaire ou offsite » de T51 (transports, chambres, salles parallèles, fiche traiteur). |
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | en vente | 49 € | L | P2 | Backlog Quentin n° 38 |
-| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques | en vente | 39 € | M | P2 | Backlog Quentin n° 39 |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` à dépublier |
+| T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques, exploitants multi-sites | en vente | 39 € | M | P2 | Backlog Quentin n° 39. Absorbe T60 le 22/11/2026 (option plusieurs sites) |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
 | T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
@@ -151,7 +151,7 @@ déjà).
 | T73 | Suivi du temps et rentabilité par mission (ancien nom : Suivi du temps passé et rentabilité par mission) | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
+| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | fusionné dans T89 « Suivi de candidatures » le 22/11/2026 | — | S | P2 | Proposition validée par Quentin 14/11/2026. Rationalisation F3 : CND retiré du site et des packs (remplacé par CAN dans PFC), adresses redirigées vers `candidatures` ; fiche Gumroad `suivi-appels-offres` à dépublier |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
@@ -164,7 +164,7 @@ déjà).
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T89 | Candidatures études, stages, alternance | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
+| T89 | Suivi de candidatures (modèles Études et stages, Emploi, Appels d'offres et plateformes ; ex-Candidatures études, stages, alternance, T76 fusionné le 22/11/2026) | Études / emploi / commercial | Lycéens, étudiants, demandeurs d'emploi, freelances et PME | en vente | 12 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) ; rationalisation F3 du 22/11/2026 (packs Étudiant et Freelance : trouver ses clients) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
@@ -259,15 +259,15 @@ permettent pas une remise par nombre de produits différents (minimum de quantit
 | Pack | Préfixe | Templates prêts | À venir | Valeur | Remise | Prix | Option évolutif |
 |------|---------|-------------------------|---------|--------|--------|------|-----------------|
 | Freelance : chiffrer, facturer, encaisser | PFG | T40, T37, T36, T41, T43, T42, T73 | — | 158 € | 25 % | 118 € | 30 € |
-| Freelance : trouver ses clients | PFC | T38, T35, T28, T74, T39, T75, T76 | — | 130 € | 25 % | 97 € | 25 € |
+| Freelance : trouver ses clients | PFC | T38, T28, T74, T39, T75, T89 (T35 fusionné dans T28, T76 dans T89 le 22/11/2026) | — | 102 € | 25 % | 76 € | 19 € |
 | Chef de projet BTP | PBT | T02, T24, T32, T25, T31, T23, T77, T78 | — | 256 € | 25 % | 192 € | 48 € |
 | Petite entreprise | PPE | T48, T26, T46, T42, T31, T34, T47, T79, T80 | — | 219 € | 25 % | 164 € | 41 € |
-| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82 | — | 259 € | 25 % | 194 € | 49 € |
+| Moyens généraux | PMG | T45, T29, T46, T61, T63, T50, T33, T81, T82, T51 (T54 fusionné dans T51 le 22/11/2026) | — | 298 € | 25 % | 223 € | 75 € |
 | Reprendre la main sur son argent | PAR | T05, T14, T12, T70, T69, T13, T83, T84, T85 | — | 131 € | 25 % | 98 € | 25 € |
-| Mariage et installation à deux | PMR | T15, T65, T05, T16, T21, T86 | — | 96 € | 25 % | 72 € | 18 € |
+| Mariage et installation à deux | PMR | T51 (T15 fusionné dans T51 le 22/11/2026), T65, T05, T16, T21, T86 | — | 106 € | 25 % | 79 € | 27 € |
 | Productivité perso | PPR | T03, T30, T08, T22, T87 | — | 73 € | 25 % | 54 € | 14 € |
 | Étudiant | PET | T01, T30, T08, T17, T88, T89, T90 | — | 92,90 € | 25 % | 69 € | 18 € |
-| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 219 € | 25 % | 164 € | 41 € |
+| Associations et clubs | PAS | T53, T51, T42, T52, T91, T92, T93 | — | 209 € | 25 % | 156 € | 53 € |
 | Propriétaire | PPB | T64, T67, T11, T27, T71, T85, T95, T96, T94 | — | 175 € | 25 % | 131 € | 33 € |
 | Forme | PFM | T04, T08, T06, T07, T97 | — | 78 € | 25 % | 58 € | 15 € |
 | Maison et famille (renommé le 22/11/2026) | PFA | T05, T11, T06, T09, T19, T20 | — | 77 € | 25 % | 57 € | 15 € |
@@ -503,18 +503,18 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T03 | `taches` | TCH | gestionnaire-taches |
 | T04 | `nutrition` | NTR | nutrition |
 | T05 | `budget` | BDG | budget-foyer |
-| T15 | `mariage` | MRG | organisateur-mariage |
+| T15 | `mariage` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | MRG (retiré) | organisateur-mariage (fiche reprise par T51, à renommer) |
 | T24 | `visa` | VSA | circuit-visa |
 | T25 | `non-conformites` | NCF | non-conformites |
 | T28 | `crm` | CRM | crm-freelance |
 | T29 | `flotte` | VHC | gestion-flotte |
 | T30 | `planner` | PHR | planner-horaire |
 | T32 | `reserves` | RSV | levee-reserves |
-| T35 | `prospection` | PRS | pipeline-prospection |
+| T35 | `prospection` (fusionné dans T28 le 22/11/2026, redirigé vers `crm`) | PRS (retiré) | pipeline-prospection (à dépublier) |
 | T36 | `devis` | DVS | generateur-devis |
 | T42 | `tresorerie` | TRS | tresorerie-previsionnelle |
 | T45 | `parc-informatique` | PRC | parc-informatique |
-| T51 | `evenementiel` | EVT | pilote-evenementiel |
+| T51 | `evenementiel` | EVT | organisateur-mariage (fiche de T15 reprise, à renommer ; ancien permalien prévu : pilote-evenementiel) |
 | T53 | `inscriptions` | ASC | inscriptions-associatives |
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
@@ -540,7 +540,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T33 | `bascule` | BSC | pilotage-bascule (prévu) |
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
-| T60 | `parcs-multi-sites` | PRK | pilotage-parcs-multi-sites (prévu) |
+| T60 | `parcs-multi-sites` (fusionné dans T61 le 22/11/2026, redirigé vers `maintenance`) | PRK (retiré) | pilotage-parcs-multi-sites (à dépublier) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
 | T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
@@ -893,7 +893,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T73 | `suivi-temps` | TMP | suivi-temps-rentabilite (prévu) |
 | T74 | `propositions` | PCM | propositions-commerciales (prévu) |
 | T75 | `calendrier-editorial` | CED | calendrier-editorial (prévu) |
-| T76 | `appels-offres` | CND | suivi-appels-offres (prévu) |
+| T76 | `appels-offres` (fusionné dans T89 le 22/11/2026, redirigé vers `candidatures`) | CND (retiré) | suivi-appels-offres (à dépublier) |
 | T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
 | T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
 | T80 | `document-unique` | DRP | document-unique-evaluation-risques |
@@ -905,13 +905,13 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T86 | `remerciements` | CDX | cadeaux-remerciements (prévu) |
 | T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
 | T88 | `notes` | NTS | notes-moyennes (prévu) |
-| T89 | `candidatures` | CAN | candidatures-etudes-stages-alternance (prévu) |
+| T89 | `candidatures` (Suivi de candidatures) | CAN | candidatures-etudes-stages-alternance (à renommer « Suivi de candidatures ») |
 | T90 | `memoire` | MMR | planning-memoire (prévu) |
 | T91 | `subventions` | SBV | subventions-association (prévu) |
 | T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
 | T93 | `assemblee-generale` | AGS | assemblee-generale-association (prévu) |
 | T95 | `investissement-locatif` | RNT | rentabilite-investissement-locatif |
-| T54 | `seminaire` | SMN | seminaire-offsite (prévu) |
+| T54 | `seminaire` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | SMN (retiré) | — (aucune fiche créée) |
 | T58 | `quiz` | QZZ | banque-questions-quiz (prévu) |
 
 ### T31 · Compte rendu et plan d'actions
@@ -1353,7 +1353,21 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   Exploitation et maintenance (`GMA` ajouté à `TEMPLATES` et retiré de `PREVUS` dans `outils/packs/donnees.mjs` ;
   ajout aux `produits` des packs laissé au coordinateur).
 - Promesse : « Chaque machine entretenue à temps. »
-- Base intégrée : 16 familles d'équipements, 54 opérations types avec points de contrôle (périodicités
+- **Fusion F4 du 22/11/2026** (`RATIONALISATION.md`) : absorbe T60 Pilotage de parcs multi-sites (PRK), au même prix
+  (39 €), à la même adresse et sous le même préfixe. **Option plusieurs sites** (modèle « Un site » / « Plusieurs
+  sites » au premier lancement, ou case des réglages ; les données d'un seul site passent sans perte dans un premier
+  site) : équipements rangés par site (onglet Sites à la place d'Équipements, sous-vue « Équipements » groupée par
+  site), vue d'ensemble (sites, retards, arrêts, disponibilité, coût, tableau par site, coût et disponibilité par
+  site), visites de site, alertes (équipement à l'arrêt depuis N jours, site sans visite ni bon clôturé depuis N mois),
+  fiche de site (disponibilité, retards, délai de résolution, coût, alertes, à faire, équipements, coût par famille,
+  historique), liste triable et filtrable ou carte schématique (projection des coordonnées saisies, sans fond de
+  carte), import et export CSV des sites et des équipements (modèles vides). Repris de PRK pour les deux modes : état
+  de l'équipement (en service, dégradé, à l'arrêt, réformé), date de signalement des pannes, disponibilité, délai de
+  résolution. Trois familles ajoutées (ascenseur, contrôle d'accès et vidéo, production d'énergie), sans périodicité
+  réglementaire. Une copie exportée de PRK se restaure (`depuisParcs` : périodicité → opération « Préventif
+  périodique », préventifs, pannes et visites → bons et visites, coûts en sous-traitance). Démos `?demo` (un site) et
+  `?demo=sites` (six sites). Captures ajoutées : `assets/templates-maintenance-ensemble|sites|carte.webp`.
+- Base intégrée : 19 familles d'équipements, 61 opérations types avec points de contrôle (avant la fusion : 16 et 54 ; périodicités
   **indicatives, non sourcées**, la notice du fabricant prime) ; **daté** : 2 obligations sourcées reprises de
   T11 (chaudières 4–400 kW, art. R224-41-4 à R224-41-9 ; thermodynamiques 4–70 kW, art. R224-44 à R224-44-5),
   vérifiées le 13/11/2026, à revoir chaque année ; 10 vérifications réglementaires **sans périodicité**
@@ -1363,8 +1377,9 @@ Fiche détaillée rédigée le 14/11/2026 sur délégation de Quentin : `fiches/
   recalage glissant ou calendaire) ; bons d'intervention imprimables ; pièces de rechange ; coût par équipement ;
   indicateurs (taux de réalisation du préventif, ponctualité, retards, pannes).
 - **Confidentiel** vérifié : aucun artefact professionnel repris, démo fictive (« Atelier Exemple »).
-- Statut : **prêt**, « Mise en vente prochaine » (page `catalogue/maintenance/`, démo libre, bouton « Je suis
-  intéressé(e) »). Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
+- Statut : **en vente** (39 €, `maintenance-preventive`) ; option plusieurs sites depuis le 22/11/2026 (fiche Gumroad à
+  compléter : description et couverture à reprendre par Quentin). Historique : prêt, « Mise en vente prochaine ».
+  Page `catalogue/maintenance/`. Communication : [`communication/maintenance/`](communication/maintenance/) (linkedin.md,
   instagram.md et carrousel PNG, prospects.md, gumroad.md et gumroad.json, section-site.html, cartes). Reste :
   fiche Gumroad (et entrée de `communication/gumroad-a-creer.json`), clé de licence (Quentin), lignes des
   plannings LinkedIn et Instagram, ajout aux packs, version anglaise (en attente).
@@ -1837,6 +1852,9 @@ et à régénérer les pages des packs à la fusion.
 ## Fiche T76 (cadrage délégué par Quentin, 14/11/2026)
 
 ### T76 · Suivi des appels d'offres et candidatures (`templates/appels-offres/`, préfixe CND, 15 €)
+
+> 22/11/2026 : fusionné dans T89 « Suivi de candidatures » (modèle Appels d'offres et plateformes, toutes les fonctions
+> reprises) ; application et page retirées, adresses redirigées.
 - Fiche détaillée : `fiches/appels-offres.md`. Promesse : « Répondre aux bonnes consultations, à temps. » Catalogue
   `pro`, thème « Clients et prospection » ; pack visé « Freelance : trouver ses clients » (PFC). Permalien prévu
   `suivi-appels-offres`.
@@ -2127,6 +2145,9 @@ régénérer les pages des packs à la fusion.
 ## Fiche T89 (cadrage délégué par Quentin, 14/11/2026)
 
 ### T89 · Candidatures études, stages, alternance (`templates/candidatures/`, préfixe CAN, 12 €)
+
+> 22/11/2026 : devenu **Suivi de candidatures** (fusion F3 avec T76, `docs/templates/RATIONALISATION.md`) : modèles Études et
+> stages, Emploi, Appels d'offres et plateformes ; détail dans le README.
 - Fiche détaillée : `fiches/candidatures.md`. Promesse : « Chaque dossier, à temps. » Catalogue `perso`, thème
   « Organisation et études » ; pack visé « Étudiant » (PET). Permalien prévu `candidatures-etudes-stages-alternance`.
 - Public : lycéens (orientation après le bac), étudiants (master, écoles), candidats à un stage, une alternance ou un

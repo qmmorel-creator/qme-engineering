@@ -146,17 +146,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/templates/mariage/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/mariage/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
   for = "/templates/visa/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -219,17 +208,6 @@
 
 [[headers]]
   for = "/templates/reserves/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/templates/prospection/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/prospection/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 
@@ -450,17 +428,6 @@
 
 [[headers]]
   for = "/templates/emploi-du-temps/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/templates/parcs-multi-sites/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/parcs-multi-sites/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 
@@ -713,6 +680,74 @@
   status = 301
   force = true
 
+# Pipeline de prospection B2B fusionné dans « CRM et prospection » le 22/11/2026 (rationalisation F2) :
+# l'application et sa page catalogue renvoient vers celles du CRM (paramètres comme ?demo transmis).
+[[redirects]]
+  from = "/templates/prospection/*"
+  to = "/templates/crm/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/prospection/*"
+  to = "/catalogue/crm/"
+  status = 301
+  force = true
+
+# Suivi des appels d'offres et candidatures fusionné dans « Suivi de candidatures » le 22/11/2026 (rationalisation F3) :
+# l'application et sa page catalogue renvoient vers celles du suivi de candidatures (paramètres transmis).
+[[redirects]]
+  from = "/templates/appels-offres/*"
+  to = "/templates/candidatures/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/appels-offres/*"
+  to = "/catalogue/candidatures/"
+  status = 301
+  force = true
+
+# Organisateur de mariage et Séminaire / offsite fusionnés dans « Organisateur d'événement » le 22/11/2026
+# (rationalisation F1) : les applications et leurs pages catalogue renvoient vers celles de l'organisateur (paramètres transmis).
+[[redirects]]
+  from = "/templates/mariage/*"
+  to = "/templates/evenementiel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/mariage/*"
+  to = "/catalogue/evenementiel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/templates/seminaire/*"
+  to = "/templates/evenementiel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/seminaire/*"
+  to = "/catalogue/evenementiel/"
+  status = 301
+  force = true
+
+# Pilotage de parcs multi-sites fusionné dans « Maintenance préventive » (option plusieurs sites) le 22/11/2026
+# (rationalisation F4) : l'application et sa page catalogue renvoient vers celles de la maintenance (paramètres transmis).
+[[redirects]]
+  from = "/templates/parcs-multi-sites/*"
+  to = "/templates/maintenance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/catalogue/parcs-multi-sites/*"
+  to = "/catalogue/maintenance/"
+  status = 301
+  force = true
+
 # Pack Argent du quotidien retiré le 22/11/2026 (doublon du Pack Budget perso et famille).
 [[redirects]]
   from = "/packs/argent-du-quotidien/*"
@@ -938,17 +973,6 @@
     Cache-Control = "no-cache"
 
 [[headers]]
-  for = "/templates/seminaire/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/seminaire/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
   for = "/templates/quiz/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
@@ -967,17 +991,6 @@
 
 [[headers]]
   for = "/templates/achats/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/templates/appels-offres/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/templates/appels-offres/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 

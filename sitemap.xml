@@ -5,7 +5,6 @@
   <url><loc>https://qm-engineering.fr/catalogue/achats/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/animal/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/appel-decouverte/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/catalogue/appels-offres/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/assemblee-generale/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/auto-ecole/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/bascule/</loc><lastmod>2026-11-22</lastmod></url>
@@ -49,7 +48,6 @@
   <url><loc>https://qm-engineering.fr/catalogue/lecture/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/location-saisonniere/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/maintenance/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/catalogue/mariage/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/memoire/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/micro-entreprise/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/musculation/</loc><lastmod>2026-11-22</lastmod></url>
@@ -60,7 +58,6 @@
   <url><loc>https://qm-engineering.fr/catalogue/onboarding/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/papiers/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/parc-informatique/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/catalogue/parcs-multi-sites/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/patrimoine/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/pilotage-pme/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/planner/</loc><lastmod>2026-11-22</lastmod></url>
@@ -68,7 +65,6 @@
   <url><loc>https://qm-engineering.fr/catalogue/potager/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/progression/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/propositions/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/catalogue/prospection/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/quiz/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/references-plaquette/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/remboursements-sante/</loc><lastmod>2026-11-22</lastmod></url>
@@ -80,7 +76,6 @@
   <url><loc>https://qm-engineering.fr/catalogue/salles/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/sans-voiture/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/secret-santa/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/catalogue/seminaire/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/sinistre/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/sous-traitants/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/catalogue/stocks/</loc><lastmod>2026-11-22</lastmod></url>
@@ -130,10 +125,10 @@
   <url><loc>https://qm-engineering.fr/packs/petite-entreprise/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/packs/productivite/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/packs/proprietaire/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/packs/vie-a-deux/</loc></url>
+  <url><loc>https://qm-engineering.fr/packs/vie-a-deux/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/packs/voiture/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://qm-engineering.fr/perso/</loc></url>
-  <url><loc>https://qm-engineering.fr/pro/</loc></url>
+  <url><loc>https://qm-engineering.fr/perso/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://qm-engineering.fr/pro/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/sur-mesure/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://qm-engineering.fr/templates/</loc><lastmod>2026-11-22</lastmod></url>
 </urlset>

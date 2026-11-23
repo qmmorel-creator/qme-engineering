@@ -5,6 +5,9 @@
 // Après toute modification : node outils/packs/generer.mjs (régénère /packs/ et la section du catalogue).
 
 // Templates : préfixe → slug, prix en centimes, phrase de carte, permalien Gumroad (si en vente).
+// pour : partie du site, 'pro' ou 'perso', ou les deux séparées par une espace ('pro perso') pour un template
+// générique présent dans les deux (lire avec publics()). phrases (facultatif) : { pro, perso }, la phrase de carte
+// propre à chaque partie (pages /pro/ et /perso/, composeur de packs) ; sinon `phrase`.
 export const TEMPLATES = {
   PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
   BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
@@ -12,7 +15,7 @@ export const TEMPLATES = {
   PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
   AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', permalien: 'cadeaux-remerciements', pour: 'perso' },
-  GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', pour: 'perso' },
+  GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', permalien: 'garde-manger-dates-peremption', pour: 'perso' },
   ETD: { slug: 'etat-des-lieux', prix: 1900, phrase: 'Pièce par pièce, photos, sortie comparée à l’entrée et document à signer.', permalien: 'etat-des-lieux', pour: 'perso' },
   NTS: { slug: 'notes', prix: 1200, phrase: 'Moyennes pondérées, crédits ECTS et note à viser au prochain partiel.', permalien: 'notes-moyennes', pour: 'perso' },
   PGS: { slug: 'lecture', prix: 1200, phrase: 'Rythme, date de fin du livre, objectif de l’année au jour près.', permalien: 'suivi-lecture', pour: 'perso' },
@@ -32,8 +35,6 @@ export const TEMPLATES = {
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', permalien: 'pilotage-bascule', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
   EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
-  CND: { slug: 'appels-offres', prix: 1500, phrase: 'Consultations, pièces, dates limites et résultats.', permalien: 'suivi-appels-offres', pour: 'pro' },
-  PRK: { slug: 'parcs-multi-sites', prix: 4900, phrase: 'Sites, équipements, préventif, pannes et coût par site.', permalien: 'pilotage-parcs-multi-sites', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', permalien: 'registre-doe', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', permalien: 'reservation-salles', pour: 'pro' },
   CPT: { slug: 'emprunt', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.', permalien: 'capacite-emprunt-comparateur-prets', pour: 'perso' },
@@ -49,7 +50,8 @@ export const TEMPLATES = {
   RVH: { slug: 'revue-hebdo', prix: 1200, phrase: 'Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités.', permalien: 'revue-hebdomadaire', pour: 'perso' },
   CHT: { slug: 'suivi-chantier', prix: 4000, phrase: 'Jalons, avenants, situations, journal et risques par lot.', permalien: 'suivi-chantier-lot', pour: 'pro' },
   TDB: { slug: 'pilotage-pme', prix: 3900, phrase: 'Vos indicateurs du mois, objectifs et écarts.', permalien: 'tableau-de-bord-pme', pour: 'pro' },
-  GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts.', permalien: 'maintenance-preventive', pour: 'pro' },
+  // Maintenance préventive (fusion F4 du 22/11/2026) : absorbe le Pilotage de parcs multi-sites, option plusieurs sites.
+  GMA: { slug: 'maintenance', prix: 3900, phrase: 'Échéances à la date ou au compteur, bons d’intervention, coûts, sur un site ou plusieurs.', permalien: 'maintenance-preventive', pour: 'pro' },
   GNT: { slug: 'gantt', prix: 4500, phrase: 'Une ligne par tâche, liens, jours fériés et chemin critique.', permalien: 'planning-gantt', pour: 'pro' },
   TCH: { slug: 'taches', prix: 1900, phrase: 'Boîte de réception, priorités et focus du jour.', permalien: 'gestionnaire-taches', pour: 'pro' },
   CRA: { slug: 'compte-rendu', prix: 1500, phrase: 'Décisions et actions suivies de réunion en réunion.', permalien: 'compte-rendu-actions', pour: 'pro' },
@@ -64,7 +66,6 @@ export const TEMPLATES = {
   NCF: { slug: 'non-conformites', prix: 2000, phrase: 'Constat, cause, actions correctives et vérification.', permalien: 'non-conformites', pour: 'pro' },
   DVS: { slug: 'devis', prix: 2900, phrase: 'Catalogue, remises, TVA et mentions, justes au centime.', permalien: 'generateur-devis', pour: 'pro' },
   TRS: { slug: 'tresorerie', prix: 2900, phrase: 'Prévu, réalisé, scénarios et alerte de solde.', permalien: 'tresorerie-previsionnelle', pour: 'pro' },
-  MRG: { slug: 'mariage', prix: 2900, phrase: 'Rétroplanning, budget, prestataires et invités.', permalien: 'organisateur-mariage', pour: 'perso' },
   HBT: { slug: 'habitudes', prix: 1200, phrase: 'Cocher en un geste, séries et grille du mois.', permalien: 'suivi-habitudes', pour: 'perso' },
   ABN: { slug: 'abonnements', prix: 900, phrase: 'Coût réel par mois et par an, essais et engagements.', permalien: 'suivi-abonnements', pour: 'perso' },
   TRV: { slug: 'travaux', prix: 2500, phrase: 'Devis comparés, budget et planning des artisans.', permalien: 'pilote-travaux', pour: 'perso' },
@@ -74,14 +75,15 @@ export const TEMPLATES = {
   CNG: { slug: 'conges', prix: 1900, phrase: 'Soldes calculés, demandes, calendrier et chevauchements.', permalien: 'suivi-conges-absences', pour: 'pro' },
   NDF: { slug: 'notes-de-frais', prix: 1500, phrase: 'Frais, justificatifs, kilomètres au barème, note du mois.', permalien: 'notes-de-frais', pour: 'pro' },
   STK: { slug: 'stocks', prix: 2500, phrase: 'Seuils d’alerte, liste à commander, valeur et inventaire.', permalien: 'stocks-inventaire', pour: 'pro' },
-  CRM: { slug: 'crm', prix: 2500, phrase: 'Clients, prochaine action datée et relances du jour.', permalien: 'crm-freelance', pour: 'pro' },
-  PRS: { slug: 'prospection', prix: 2500, phrase: 'Prospects par étape et relances selon votre cadence.', permalien: 'pipeline-prospection', pour: 'pro' },
+  CRM: { slug: 'crm', prix: 2500, phrase: 'Prospects et clients, relances selon votre cadence, pipeline et factures suivies.', permalien: 'crm-freelance', pour: 'pro' },
   RCV: { slug: 'impayes', prix: 1900, phrase: 'Retard en jours, pénalités et relances par palier.', permalien: 'relance-impayes', pour: 'pro' },
   PCM: { slug: 'propositions', prix: 1900, phrase: 'Contexte, options comparées et planning : une proposition claire.', permalien: 'propositions-commerciales', pour: 'pro' },
   APD: { slug: 'appel-decouverte', prix: 1200, phrase: 'Questions par phase, objections et prochaine étape datée.', permalien: 'preparateur-appel-decouverte', pour: 'pro' },
   VHC: { slug: 'flotte', prix: 3900, phrase: 'Réservations, entretiens et coût par véhicule.', permalien: 'gestion-flotte', pour: 'pro' },
   PRC: { slug: 'parc-informatique', prix: 3500, phrase: 'Matériel, attributions, licences et garanties.', permalien: 'parc-informatique', pour: 'pro' },
-  EVT: { slug: 'evenementiel', prix: 4900, phrase: 'Rétroplanning, budget, prestataires et invités.', pour: 'pro' },
+  // Organisateur d'événement (fusion F1 du 22/11/2026 : mariage, séminaire, pilote événementiel) : présent dans les deux
+  // parties du site, une phrase par public ; fiche Gumroad reprise de l'organisateur de mariage.
+  EVT: { slug: 'evenementiel', prix: 3900, phrase: 'Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J.', phrases: { pro: 'Séminaires, salons, soirées, conférences : rétroplanning, budget, invités, transports, jour J.', perso: 'Mariage ou fête de famille : rétroplanning, budget, invités, plan de table, jour J.' }, permalien: 'organisateur-mariage', pour: 'pro perso' },
   AEC: { slug: 'auto-ecole', prix: 4500, phrase: 'Élèves, leçons, moniteurs et véhicules.', pour: 'pro' },
   DTT: { slug: 'dettes', prix: 1200, phrase: 'Vos dettes soldées une à une, avec une date de fin.', permalien: 'remboursement-dettes', pour: 'perso' },
   PTM: { slug: 'patrimoine', prix: 1900, phrase: 'Ce que valent vos objets, et ce que leur revente rapporterait.', permalien: 'inventaire-valorise', pour: 'perso' },
@@ -97,10 +99,10 @@ export const TEMPLATES = {
   VYG: { slug: 'voyage', prix: 1300, phrase: 'Étapes, nuits, activités, budget et qui doit quoi.', permalien: 'planificateur-voyage', pour: 'perso' },
   CED: { slug: 'calendrier-editorial', prix: 1500, phrase: 'Sujets, formats et régularité de vos publications.', permalien: 'calendrier-editorial', pour: 'pro' },
   DCS: { slug: 'papiers', prix: 1500, phrase: 'Où est chaque document, et combien de temps le garder.', permalien: 'papiers-du-foyer', pour: 'perso' },
-  CAN: { slug: 'candidatures', prix: 1200, phrase: 'Vœux, pièces, dates et réponses au même endroit.', permalien: 'candidatures-etudes-stages-alternance', pour: 'perso' },
+  // Suivi de candidatures (fusion F3 du 22/11/2026) : présent dans les deux parties du site, une phrase par public.
+  CAN: { slug: 'candidatures', prix: 1200, phrase: 'Études, emploi ou appels d’offres : pièces, dates limites, relances et réponses.', phrases: { pro: 'Appels d’offres et plateformes : go/no-go, pièces à rebours, dépôt, relances et résultats.', perso: 'Vœux, stages, alternance ou emploi : pièces, dates limites, relances et réponses.' }, permalien: 'candidatures-etudes-stages-alternance', pour: 'pro perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
   QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
-  SMN: { slug: 'seminaire', prix: 3500, phrase: 'Participants, trajets, chambres, programme et coût par personne.', pour: 'pro' },
   SVT: { slug: 'sans-voiture', prix: 900, phrase: 'Le gain annuel de vivre sans voiture, sortie comprise, et une parade à chaque urgence.', permalien: 'simulateur-vivre-sans-voiture', pour: 'perso' },
 };
 
@@ -158,12 +160,11 @@ export const PAGES = {
     pourQui: 'Vous vendez vos services à des entreprises. Vos prospects sont dans un carnet, vos relances dans votre tête et vos appels se préparent sur le trajet. Ce pack met de l’ordre sans vous imposer un CRM d’entreprise.',
     parcours: [
       ['APD', 'Arrivez à l’appel découverte avec vos questions, les objections probables et la prochaine étape.'],
-      ['PRS', 'Faites avancer chaque prospect d’étape en étape, relances à la bonne cadence.'],
-      ['CRM', 'Gardez le fil avec vos clients : historique, prochaine action datée, chiffre d’affaires.'],
+      ['CRM', 'Faites avancer chaque prospect d’étape en étape, relances à la bonne cadence, puis gardez le fil avec vos clients : historique, devis, factures, chiffre d’affaires.'],
       ['PCM', 'Transformez l’appel en proposition claire : contexte, options à prix et planning.'],
       ['KRF', 'Montrez vos meilleures réalisations : une plaquette adaptée à chaque prospect.'],
       ['CED', 'Publiez régulièrement : piliers, idées, calendrier et statistiques saisies.'],
-      ['CND', 'Répondez aux appels d’offres sans rater une date limite : go/no-go, pièces et résultats.'],
+      ['CAN', 'Répondez aux appels d’offres et aux missions sur plateforme sans rater une date limite : go/no-go, pièces, dépôt et résultats.'],
     ],
     arguments: ['Du premier contact au client fidèle, sans ressaisie', 'Pas d’abonnement mensuel comme les CRM en ligne', 'Pensé pour une personne seule, pas pour une équipe commerciale'],
     prevus: [],
@@ -221,7 +222,7 @@ export const PAGES = {
       ['BSC', 'Pilotez une journée de bascule (déménagement de bureaux, migration) heure par heure.'],
       ['CTR', 'Anticipez les préavis des contrats fournisseurs et ne subissez plus la tacite reconduction.'],
       ['ACH', 'Centralisez les demandes d’achat, validez-les et regroupez les commandes par fournisseur.'],
-      ['SMN', 'Organisez séminaires et offsites : participants, trajets, chambres et programme.'],
+      ['EVT', 'Organisez séminaires et événements internes : participants, trajets, chambres, programme et budget.'],
     ],
     arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
     prevus: [],
@@ -247,7 +248,7 @@ export const PAGES = {
     resume: 'Le grand jour, le voyage, le déménagement, puis le budget et les dépenses partagées : tout ce qui accompagne une vie à deux.',
     pourQui: 'Vous préparez votre mariage, ou vous emménagez ensemble. Il y a les prestataires, les invités et le budget du jour J, puis vient la question qui suit tous les couples : qui paie quoi ?',
     parcours: [
-      ['MRG', 'Pilotez le rétroplanning, les prestataires, les invités et le budget du mariage.'],
+      ['EVT', 'Pilotez le mariage : rétroplanning, prestataires, invités, plan de table et budget.'],
       ['BCM', 'Partagez les dépenses communes à parts égales ou au prorata des revenus, ou calculez ce que chacun verse sur le compte joint.'],
       ['BDG', 'Tenez le budget du foyer, enveloppe par enveloppe.'],
       ['DMN', 'Emménagez sans rien oublier : démarches, cartons et devis de déménageurs.'],
@@ -390,7 +391,7 @@ export const PAGES = {
     resume: 'Maintenance préventive, vérifications réglementaires, non-conformités et pièces en stock : l’exploitation technique au quotidien.',
     pourQui: 'Exploitant, responsable des services techniques ou gestionnaire de patrimoine : vous suivez des équipements sur plusieurs sites, avec des contrôles obligatoires et des contrats de maintenance qui se renouvellent seuls.',
     parcours: [
-      ['GMA', 'Planifiez la maintenance préventive, à la date ou au compteur, et ses bons d’intervention.'],
+      ['GMA', 'Planifiez la maintenance préventive de tous vos sites, à la date ou au compteur, avec ses bons d’intervention et le coût par site.'],
       ['VRF', 'Tenez le registre des vérifications, levez les observations et rangez les preuves.'],
       ['NCF', 'Enregistrez chaque écart, sa cause et l’action corrective jusqu’à la vérification.'],
       ['STK', 'Gardez les pièces de rechange au bon niveau, alertes et liste à commander comprises.'],
@@ -482,3 +483,8 @@ export const PAGES = {
     prevus: [],
   },
 };
+
+// Parties du site d'un template (« pour » lu comme une liste) et sa phrase pour une partie.
+export const publics = (t) => String(t?.pour || '').split(/\s+/).filter(Boolean);
+export const pourPartie = (t, partie) => publics(t).includes(partie);
+export const phrasePour = (t, partie) => t?.phrases?.[partie] || t?.phrase || '';

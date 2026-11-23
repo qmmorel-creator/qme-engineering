@@ -7,14 +7,14 @@ import { fileURLToPath } from 'node:url';
 import { genererParties } from '../parties/generer.mjs';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
-import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
+import { TEMPLATES, PREVUS, CIBLES, PAGES, publics, pourPartie, phrasePour } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
 import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
 import { donneesEspace } from '../connexion/generer.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026112201';
+const V = '2026112202';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 // Vignettes des templates (480 × 300) : adresse versionnée lue sur les cartes du catalogue templates/index.html,
 // écrite par outils/templates/vignettes.mjs (à lancer avant ce générateur après l'ajout d'un template).
@@ -53,7 +53,7 @@ export function calculerPack(code) {
 }
 
 // --- Gabarit commun ------------------------------------------------------------------------------
-const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
+const tete = ({ titre, description, canonical, noindex, partie }) => `<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -64,10 +64,10 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112302">
+<link rel="stylesheet" href="/assets/site.css?v=2026112305">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
-<body>
+<body${partie ? ` data-partie="${partie}"` : ''}>
 
 <header class="topbar">
   <a class="brand" href="/" aria-label="QME, accueil">
@@ -100,7 +100,7 @@ const pied = (scripts = '') => `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112302" defer></script>
+<script src="/assets/site.js?v=2026112305" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -149,6 +149,7 @@ function pagePack(p) {
   const dansPack = (pre) => p.templates.some((t) => t.pre === pre);
   const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${dansPack(pre) ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
   return tete({
+    partie: pourPack(p),
     titre: `${p.nom} · QME`,
     description: `${p.accroche} ${p.resume} ${p.nombre} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
     canonical: `/packs/${p.slug}/`,
@@ -292,7 +293,7 @@ function pageListe(packs) {
 // --- Pack sur mesure ------------------------------------------------------------------------------
 function pageComposer(packs) {
   const liste = Object.keys(TEMPLATES).filter((p) => PRODUITS[p]).map(infoTemplate)
-    .sort((a, b) => a.pour.localeCompare(b.pour) || a.nom.localeCompare(b.nom, 'fr'));
+    .sort((a, b) => publics(a)[0].localeCompare(publics(b)[0]) || a.nom.localeCompare(b.nom, 'fr'));
   const donnees = {
     remises: REMISES,
     achat: ACHAT_SUR_MESURE.permalien ? { url: GUMROAD + ACHAT_SUR_MESURE.permalien, champ: ACHAT_SUR_MESURE.champ } : null,
@@ -301,7 +302,7 @@ function pageComposer(packs) {
   };
   const groupe = (pour, titre) => `<fieldset class="groupe-compo">
       <legend>${titre}</legend>
-      <ul>${liste.filter((t) => t.pour === pour).map((t) => `<li><label><input type="checkbox" value="${t.pre}" data-prix="${t.prix}"><span class="nom">${esc(t.nom)}</span><span class="phrase">${esc(t.phrase)}</span><span class="droite">${etiquetteStatut(t.statut)}<b>${euros(t.prix)}</b></span></label></li>`).join('')}</ul>
+      <ul>${liste.filter((t) => pourPartie(t, pour)).map((t) => `<li><label><input type="checkbox" value="${t.pre}" data-prix="${t.prix}"><span class="nom">${esc(t.nom)}</span><span class="phrase">${esc(phrasePour(t, pour))}</span><span class="droite">${etiquetteStatut(t.statut)}<b>${euros(t.prix)}</b></span></label></li>`).join('')}</ul>
     </fieldset>`;
   return tete({
     titre: 'Composer votre pack sur mesure · QME',
@@ -346,7 +347,7 @@ function pageComposer(packs) {
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
 // Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
 // Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
-const VE = '2026112305'; // version de assets/espace.js et espace.css
+const VE = '2026112306'; // version de assets/espace.js et espace.css
 async function pageEspace() {
   const { produits, themes } = await donneesEspace();
   return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })

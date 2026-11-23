@@ -5,6 +5,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
+import { TEMPLATES, phrasePour } from '../packs/donnees.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 
@@ -40,6 +41,8 @@ const unique = (s, a, b) => {
 export function pagePartie(pour, catalogue, packs) {
   const P = PARTIES[pour];
   let s = catalogue;
+  // Tons de la partie (site.css, body[data-partie]).
+  s = unique(s, '<body>', `<body data-partie="${pour}">`);
   s = s.replace(/<title>[^<]*<\/title>/, `<title>${P.titre}</title>`);
   s = s.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${P.description}">`);
   s = s.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="https://qm-engineering.fr/${pour}/">`);
@@ -55,6 +58,13 @@ export function pagePartie(pour, catalogue, packs) {
   s = unique(s, '<section class="catalogue" id="tous" aria-labelledby="catalogue-titre" data-catalogue>', `<section class="catalogue" id="tous" aria-labelledby="catalogue-titre" data-catalogue data-pour-fixe="${pour}">`);
   s = unique(s, '<h2 id="catalogue-titre">Tous les templates</h2>', `<h2 id="catalogue-titre">${P.catalogue}</h2>`);
   s = s.replace(/\s*<div class="segment" role="group" aria-label="Usage">[\s\S]*?<\/div>/, '');
+  // Templates présents dans les deux parties (data-pour="pro perso") : thème et phrase propres à la partie.
+  const nomsThemes = Object.fromEntries([...s.matchAll(/<button class="puce" type="button" data-pour="(pro|perso)" data-theme="([a-z-]+)"[^>]*>([^<]+?)\s*<small>/g)].map((m) => [m[2], { pour: m[1], nom: m[3].trim() }]));
+  const parSlug = Object.fromEntries(Object.values(TEMPLATES).map((t) => [t.slug, t]));
+  s = s.replace(/<li class="carte([^"]*)" data-slug="([a-z0-9-]+)"([^>]*) data-pour="([a-z ]+ [a-z ]+)" data-theme="([a-z -]+)"([^>]*)>(<a [^>]*>)<span class="theme">[^<]*<\/span>(<b>[^<]*<\/b>)<span class="phrase">[^<]*<\/span>/g, (m, cl, slug, a1, pours, themes, a2, lien, nom) => {
+    const theme = themes.split(' ').find((id) => nomsThemes[id]?.pour === pour) || themes.split(' ')[0];
+    return `<li class="carte${cl}" data-slug="${slug}"${a1} data-pour="${pours}" data-theme="${themes}"${a2}>${lien}<span class="theme">${nomsThemes[theme]?.nom || ''}</span>${nom}<span class="phrase">${phrasePour(parSlug[slug], pour)}</span>`;
+  });
   s = s.replace(/\s*<button class="puce" type="button" data-pour="(pro|perso)"[^>]*>[\s\S]*?<\/button>/g, (m, p) => (p === pour ? m : ''));
   // Packs de la partie, repris de /packs/.
   const cartes = [...packs.matchAll(/<a class="pack-carte[^>]*data-pour="([a-z]+)">[\s\S]*?<\/a>/g)].filter((m) => m[1] === pour).map((m) => m[0]);
@@ -82,6 +92,26 @@ export async function genererParties() {
     await mkdir(RACINE + pour, { recursive: true });
     await writeFile(RACINE + `${pour}/index.html`, pagePartie(pour, catalogue, packs));
   }
+  await marquerFiches();
+}
+
+// Fiches du catalogue : data-partie sur <body> quand le template n'appartient qu'à une partie (d'après les cartes
+// data-pour de templates/index.html) ; les templates communs aux deux parties restent neutres.
+export async function marquerFiches() {
+  const catalogue = await readFile(RACINE + 'templates/index.html', 'utf8');
+  const parties = {};
+  // data-pour est une liste (« pro perso » pour un template commun aux deux parties).
+  for (const [, slug, pour] of catalogue.matchAll(/<li class="carte[^"]*" data-slug="([^"]+)"[^>]*? data-pour="([a-z ]*)"/g)) for (const x of pour.split(' ').filter(Boolean)) (parties[slug] ||= new Set()).add(x);
+  let n = 0;
+  for (const [slug, ens] of Object.entries(parties)) {
+    const fichier = RACINE + `catalogue/${slug}/index.html`;
+    let html;
+    try { html = await readFile(fichier, 'utf8'); } catch { continue; }
+    const partie = ens.size === 1 && ['pro', 'perso'].includes([...ens][0]) ? [...ens][0] : '';
+    const nouveau = html.replace(/<body(?: data-partie="[a-z]*")?>/, `<body${partie ? ` data-partie="${partie}"` : ''}>`);
+    if (nouveau !== html) { await writeFile(fichier, nouveau); n++; }
+  }
+  return n;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

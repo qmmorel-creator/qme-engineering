@@ -2,7 +2,7 @@
 
 Décision de Quentin du 18/11/2026 : **14 jours d'essai gratuit, sans carte bancaire**, pour chaque template vie
 personnelle en vente, **étendue aux templates professionnels le 21/11/2026** (`POUR_ESSAI` dans `netlify/lib/essais.mjs`) ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
-sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quentin**.
+sont reprises dans l'espace acheté. E-mails envoyés **depuis `quentin.morel@qm-engineering.fr`** (SMTP d'OVH depuis le 23/11/2026).
 
 ## Parcours du client
 
@@ -55,20 +55,24 @@ Notification à Quentin : « Nouvelle vente : <produit> · directe / après essa
 
 ### Configuration de l'envoi (une fois, par Quentin)
 
-Les e-mails partent en SMTP authentifié depuis le Gmail de Quentin, avec l'adresse « Envoyer en tant que »
-`quentin.morel@qm-engineering.fr` (déjà utilisée pour la prospection). Ils apparaissent dans « Messages envoyés » et
-les réponses arrivent dans la boîte.
+Depuis le 23/11/2026, les e-mails partent en SMTP authentifié par **OVH** (`ssl0.ovh.net`, port 465), depuis la boîte
+`quentin.morel@qm-engineering.fr` : SPF, DKIM et DMARC sont alignés sur le domaine (test du 23/11 : trois « pass » chez
+Gmail). Avant, ils partaient du Gmail de Quentin et échouaient au SPF et au DMARC. Ils n'apparaissent pas dans
+« Messages envoyés » de Gmail ; les réponses arrivent sur la boîte OVH, redirigée vers Gmail. Détail :
+`docs/templates/communication/DELIVRABILITE.md`.
 
-1. Compte Google → Sécurité → **Validation en deux étapes** activée (prérequis).
-2. Compte Google → Sécurité → **Mots de passe des applications** → créer « QME essai » → copier les 16 caractères.
-3. Netlify → site → Site configuration → Environment variables, ajouter (portée « Functions ») :
-   - `ESSAI_SMTP_UTILISATEUR` : l'adresse Gmail de la boîte ;
-   - `ESSAI_SMTP_MOT_DE_PASSE` : le mot de passe d'application ;
-   - `ESSAI_EXPEDITEUR` : `Quentin Morel <quentin.morel@qm-engineering.fr>`.
-4. Redéployer (ou attendre la prochaine publication) : les variables sont lues au démarrage des fonctions.
+Netlify → site → Project configuration → Environment variables (portée « Functions ») :
+- `ESSAI_SMTP_HOTE` : `ssl0.ovh.net` ; `ESSAI_SMTP_PORT` : `465` (valeurs par défaut du code) ;
+- `ESSAI_SMTP_UTILISATEUR` : `quentin.morel@qm-engineering.fr` ;
+- `ESSAI_SMTP_MOT_DE_PASSE` : le mot de passe de la boîte OVH (le même que dans Gmail, « Envoyer en tant que ») ;
+- `ESSAI_EXPEDITEUR` : le nom affiché puis l'adresse `quentin.morel@qm-engineering.fr` entre chevrons (variable secrète :
+  ne jamais recopier sa valeur exacte dans le dépôt, le scan de secrets de Netlify bloquerait la publication).
 
-Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). Limite Gmail :
-environ 500 envois par jour, large pour ce volume.
+**Redéployer** après tout changement : les fonctions ne lisent les variables qu'au déploiement. Changer le mot de passe
+de la boîte OVH impose de le reporter dans Gmail et dans Netlify, puis de redéployer.
+
+Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). OVH limite le
+nombre d'envois par heure et par compte (de l'ordre de 200 sur MX Plan) : à vérifier avant tout envoi groupé.
 
 ## Suivi des essais par Quentin (19/11/2026)
 
