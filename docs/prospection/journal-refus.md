@@ -29,13 +29,13 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-21 | Comité départemental de tir à l'arc de la Loire (CD42) | `cd42tiralarc@gmail.com` | refus poli (« pas intéressés pour l'instant ») | oui |
 | 2026-11-21 | Tot de Casa (Margaux), 2e message | `magasin.totdecasa@gmail.com` | déjà traité (« Je n'y manquerais pas ! ») | non (déjà répondu) |
 | 2026-11-23 | Comité de pétanque du Morbihan (CD56, Philippe Stephant) | `cd56@petanque.fr` | hostile (« ce mail n'a pas été sollicité […] nous ne ferons pas confiance ») | non |
-| 2026-11-23 | Valorise, Roanne (Nathalie Demurger) | `contact@valorise.org` | refus poli (logiciel en place) | non, en attente : opposition non vérifiée (API 401) |
-| 2026-11-23 | Ogarun (Jean-Charles Giorgi) | `jcgiorgi@ogarun.com` | refus poli (agent IA déjà en place) | non, en attente : opposition non vérifiée |
-| 2026-11-23 | Bellidée (Cléry Auchatraire) | `contact@bellidee.fr` | refus poli (logiciel Aiga) | non, en attente : opposition non vérifiée |
-| 2026-11-23 | MJC de l'Harteloire | `direction@mjc-harteloire.fr` | refus poli (outils en place), signature en image : pas de prénom sûr | non, en attente : opposition non vérifiée |
-| 2026-11-23 | Baghera Influence (Léa Canalis) | `bonjour@influencebaghera.com` | refus poli, affiliation (« ce format ne correspond pas ») | non, en attente : opposition non vérifiée |
-| 2026-11-23 | Ressourcerie du Pays d'Issoire (Corinne Laprun) | `secretaire2.ressourcerie.issoire@gmail.com` | refus poli (le réseau propose déjà ce service) | non, en attente : opposition non vérifiée |
-| 2026-11-23 | Yves Gautier, coach | `contact@yvesgautier.com` | refus poli, affiliation après démo (« je ne souhaite pas donner suite ») | non, en attente : opposition non vérifiée |
+| 2026-11-23 | Valorise, Roanne (Nathalie Demurger) | `contact@valorise.org` | refus poli (logiciel en place) | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | Ogarun (Jean-Charles Giorgi) | `jcgiorgi@ogarun.com` | refus poli (agent IA déjà en place) | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | Bellidée (Cléry Auchatraire) | `contact@bellidee.fr` | refus poli (logiciel Aiga) | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | MJC de l'Harteloire | `direction@mjc-harteloire.fr` | refus poli (outils en place), signature en image : pas de prénom sûr | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | Baghera Influence (Léa Canalis) | `bonjour@influencebaghera.com` | refus poli, affiliation (« ce format ne correspond pas ») | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | Ressourcerie du Pays d'Issoire (Corinne Laprun) | `secretaire2.ressourcerie.issoire@gmail.com` | refus poli (le réseau propose déjà ce service) | oui (feu vert de Quentin, opposition confirmée par lui) |
+| 2026-11-23 | Yves Gautier, coach | `contact@yvesgautier.com` | refus poli, affiliation après démo (« je ne souhaite pas donner suite ») | oui (feu vert de Quentin, opposition confirmée par lui) |
 | 2026-11-23 | Camping Le Petit Lac | `contact@camping-le-petit-lac.com` | refus poli, déjà traité le 23/11 08:26 | non (déjà répondu) |
 | 2026-11-23 | RessourSucy | `contact@ressoursucy.fr` | refus poli, déjà traité le 22/11 | non (déjà répondu) |
 | 2026-11-23 | ARVEL (Murielle) | `secretariat@arvel.org` | déjà traité (« je n'y manquerai pas »), archivé | non (déjà répondu) |
