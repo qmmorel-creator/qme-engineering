@@ -65,7 +65,8 @@ Netlify → site → Project configuration → Environment variables (portée «
 - `ESSAI_SMTP_HOTE` : `ssl0.ovh.net` ; `ESSAI_SMTP_PORT` : `465` (valeurs par défaut du code) ;
 - `ESSAI_SMTP_UTILISATEUR` : `quentin.morel@qm-engineering.fr` ;
 - `ESSAI_SMTP_MOT_DE_PASSE` : le mot de passe de la boîte OVH (le même que dans Gmail, « Envoyer en tant que ») ;
-- `ESSAI_EXPEDITEUR` : `Quentin MOREL <quentin.morel@qm-engineering.fr>`.
+- `ESSAI_EXPEDITEUR` : le nom affiché puis l'adresse `quentin.morel@qm-engineering.fr` entre chevrons (variable secrète :
+  ne jamais recopier sa valeur exacte dans le dépôt, le scan de secrets de Netlify bloquerait la publication).
 
 **Redéployer** après tout changement : les fonctions ne lisent les variables qu'au déploiement. Changer le mot de passe
 de la boîte OVH impose de le reporter dans Gmail et dans Netlify, puis de redéployer.
