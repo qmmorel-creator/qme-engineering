@@ -28,3 +28,9 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-21 | Tot de Casa, Oloron (Margaux Dalbavie) | `magasin.totdecasa@gmail.com` | refus poli (outil de caisse et de facturation déjà en place) | oui |
 | 2026-11-21 | Comité départemental de tir à l'arc de la Loire (CD42) | `cd42tiralarc@gmail.com` | refus poli (« pas intéressés pour l'instant ») | oui |
 | 2026-11-21 | Tot de Casa (Margaux), 2e message | `magasin.totdecasa@gmail.com` | déjà traité (« Je n'y manquerais pas ! ») | non (déjà répondu) |
+| 2026-11-23 | Camping Le Petit Lac | `contact@camping-le-petit-lac.com` | refus poli (« pas intéressés en ce moment ») | oui (signature et mention d'opposition) |
+| 2026-11-23 | ARVEL, Roanne (Murielle) | `secretariat@arvel.org` | refus poli (« pas de besoin actuellement ») | oui (signature et mention d'opposition) |
+| 2026-11-23 | Nic Impex / ARVA (Antoine Ferrero) | `a.ferrero@nic-impex.com` | intéressé : redemande le lien de maquette, propose un appel le 1er décembre à 14h | non, laissé à Quentin |
+| 2026-11-23 | Barteau Traiteur | `barteau-traiteur@orange.fr` | intéressé (« je reviens vers vous dans la semaine ») | non, laissé à Quentin |
+| 2026-11-23 | Café du Cycliste | `service-clients@cafeducycliste.com` | réponse auto | non |
+| 2026-11-23 | Decathlon Pro | `contactpro@decathlon.com` | réponse auto | non |
