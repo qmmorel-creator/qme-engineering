@@ -24,6 +24,13 @@ Lire les identifiants avec `list_labels` à chaque passage (ils ne changent pas,
 | `qme/Prospects/Non remis` | rebond (`mailer-daemon`, adresse inexistante, boîte pleine) |
 | `qme/Prospects/Autre` | tout le reste lié à la prospection (renvoi vers un autre contact, hors sujet) |
 
+## 0. Avant tout : récupérer `main` et lire le suivi des prospects
+
+`git fetch origin main`, puis lire `docs/prospection/suivi-prospects.md` (source unique des prospects sérieux et tièdes,
+décision du 23/11/2026). Un prospect qui y figure n'est jamais traité « à l'aveugle » : sa ligne dit où en est l'échange
+et qui a la balle. Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans **tous** les fils
+Gmail : Quentin répond parfois dans un nouveau fil (cas d'Alice Bacquart, 21/11/2026).
+
 ## 1. Inventaire (le plus large possible)
 
 Les mails de prospection partent de `quentin.morel@qm-engineering.fr`. Chercher **toutes** les réponses reçues :
@@ -66,10 +73,20 @@ Vérifier aussi `docs/prospection/desinscrits.md` : une adresse ou un domaine qu
 
 ## 3. Réponse type (refus poli uniquement)
 
-`reply` sur le **dernier message du prospect** (`messageId`), à l'expéditeur seul, en `htmlBody` :
+**Signature graphique obligatoire** (décisions des 22 et 23/11/2026) : sans la signature « Bandeau », la réponse ne
+part pas. L'outil `reply` refuse les images par référence (constaté le 23/11/2026) ; la méthode qui marche :
+
+1. `node docs/templates/communication/signature/brouillon-gmail.mjs --json` (depuis la racine du dépôt) donne `html`
+   (le bloc de signature) et `attachments` (six images `inline`, par référence `sha256:…:chemin`).
+2. `create_draft` avec `replyToMessageId` = **dernier message du prospect**, `to` = son expéditeur seul, `subject` =
+   « RE: » + objet du fil, `htmlBody` ci-dessous (signature collée à la place de `{SIGNATURE}`), `body` = même texte en
+   texte brut avec la signature texte (« Quentin Morel / QME · Quentin Morel Engineering / adresse · site ») et la
+   mention, `attachments` = les six images telles quelles.
+3. `send_message({ draftId })`, puis vérifier que le message est dans le fil (`get_thread`).
 
 ```html
-<div>Bonjour {Prénom}, et merci de votre retour !<br><br>C'est bien compris.<br><br>Si vous connaissez des {confrères | collègues ou des connaissances} qui pourraient être intéressés par des solutions personnalisées, n'hésitez pas à transmettre mes coordonnées.<br><br>Bonne continuation !<br><br>Quentin</div>
+<div>Bonjour {Prénom}, et merci de votre retour !<br><br>C'est bien compris.<br><br>Si vous connaissez des {confrères | collègues ou des connaissances} qui pourraient être intéressés par des solutions personnalisées, n'hésitez pas à transmettre mes coordonnées.<br><br>Bonne continuation !<br><br>Quentin<br><br></div>
+{SIGNATURE}
 <p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous ne souhaitez plus recevoir d'informations de QME&nbsp;? <a href="https://qm-engineering.fr/ne-plus-recevoir/?email={adresse encodée}" style="color:#6b6660">Ne plus recevoir les informations</a> (ou répondez simplement «&nbsp;stop&nbsp;»).</p>
 ```
 
@@ -79,9 +96,9 @@ Vérifier aussi `docs/prospection/desinscrits.md` : une adresse ou un domaine qu
 - Si le prospect dit garder l'idée ou revenir plus tard, la deuxième ligne devient (variante de Quentin, 17/11/2026) :
   « C'est bien compris, et merci de garder le contact : n'hésitez pas à revenir vers moi si le besoin se présente plus tard. »
 - `{adresse encodée}` : l'adresse de l'expéditeur du refus (`@` → `%40`, `+` → `%2B`).
-- Aucun autre ajout que la mention d'opposition (pas d'autre lien, pas de produit, pas de relance). La mention est
-  obligatoire (règle absolue, `docs/templates/communication/REGLES-PROSPECTION.md`).
-- L'outil `reply` envoie depuis `quentin.morel@qm-engineering.fr`, même sur un fil ouvert depuis l'adresse Gmail.
+- Aucun autre ajout que la signature et la mention d'opposition (pas d'autre lien, pas de produit, pas de relance).
+  Les deux sont obligatoires (`docs/templates/communication/REGLES-PROSPECTION.md`).
+- Le brouillon part de `quentin.morel@qm-engineering.fr`, même sur un fil ouvert depuis l'adresse Gmail.
 - Une seule réponse par fil, jamais deux.
 
 ## 4. Libellés et archivage
@@ -103,6 +120,10 @@ Pour chaque fil classé :
 
 1. Ajouter les fils traités à `docs/prospection/journal-refus.md` (date de passage, organisation, adresse,
    classement, réponse envoyée oui / non). Ne jamais y recopier le contenu des mails au-delà d'une citation courte.
-2. Commit sur la branche de travail, push ; pas de fusion dans `main` sans feu vert de Quentin.
-3. Compte rendu à Quentin : nombre de fils lus, par classement ; liste des réponses envoyées ; liste des hostiles
+2. Mettre à jour `docs/prospection/suivi-prospects.md` le jour même (section « Mise à jour » du fichier) :
+   - nouvel intéressé : une ligne en « Sérieux » (rendez-vous ou devis explicites) ou en « Tièdes » ;
+   - prospect du suivi qui refuse : déplacer sa ligne en « Sortis du suivi », avec le motif et la date ;
+   - prospect du suivi qui écrit de nouveau : mettre à jour « Étape », « Dernier message » et « Balle ».
+3. Commit sur la branche de travail, push ; pas de fusion dans `main` sans feu vert de Quentin.
+4. Compte rendu à Quentin : nombre de fils lus, par classement ; liste des réponses envoyées ; liste des hostiles
    et « stop » (sans réponse) ; les intéressés laissés en boîte de réception ; les cas douteux, avec la raison du choix.
