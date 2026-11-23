@@ -246,12 +246,12 @@ par `self-improvement` (celle de Repas de la semaine). Aucune couverture.
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PMG | Pack Moyens généraux (10 templates) | 1CYQ2oN8TLxj6g8e44Kw9g== | /l/pack-moyens-generaux | 223 € (évolutif 279 €) | brouillon ; Quentin : clé (+ versions si l'option évolutive doit être achetable) |
-| PXP | Pack Exploitation et maintenance (4 templates) | 6pupGzmPEgp_aHGFUAWNxA== | /l/pack-exploitation | 95 € (évolutif 119 €) | brouillon ; Quentin : clé (+ versions) |
-| PMR | Pack Vie à deux (6 templates) | C2H9t1xP_lZgL5YglwRfbA== | /l/pack-vie-a-deux | 79 € (évolutif 99 €) | brouillon ; Quentin : clé (+ versions) |
-| PFM | Pack Forme (5 templates) | tJE8UvI9P1QAjGsqyFFe2g== | /l/pack-forme | 58 € (évolutif 73 €) | brouillon ; Quentin : clé (+ versions) |
-| PPR | Pack Productivité perso (5 templates) | DGl_v1KCgWfTxbstgh_PWw== | /l/pack-productivite | 54 € (évolutif 68 €) | brouillon ; Quentin : clé (+ versions) |
-| GRD | Garde-manger et dates de péremption | NgehMPonwFhDQl_wIgF8XA== | /l/garde-manger-dates-peremption | 12 € | brouillon ; Quentin : clé |
+| PMG | Pack Moyens généraux (10 templates) | 1CYQ2oN8TLxj6g8e44Kw9g== | /l/pack-moyens-generaux | 223 € (évolutif 279 €) | **en vente** (23/11/2026, sans versions « Pack » / « Pack évolutif ») |
+| PXP | Pack Exploitation et maintenance (4 templates) | 6pupGzmPEgp_aHGFUAWNxA== | /l/pack-exploitation | 95 € (évolutif 119 €) | **en vente** (23/11/2026, sans versions « Pack » / « Pack évolutif ») |
+| PMR | Pack Vie à deux (6 templates) | C2H9t1xP_lZgL5YglwRfbA== | /l/pack-vie-a-deux | 79 € (évolutif 99 €) | **en vente** (23/11/2026, sans versions « Pack » / « Pack évolutif ») |
+| PFM | Pack Forme (5 templates) | tJE8UvI9P1QAjGsqyFFe2g== | /l/pack-forme | 58 € (évolutif 73 €) | **en vente** (23/11/2026, sans versions « Pack » / « Pack évolutif ») |
+| PPR | Pack Productivité perso (5 templates) | DGl_v1KCgWfTxbstgh_PWw== | /l/pack-productivite | 54 € (évolutif 68 €) | **en vente** (23/11/2026, sans versions « Pack » / « Pack évolutif ») |
+| GRD | Garde-manger et dates de péremption | NgehMPonwFhDQl_wIgF8XA== | /l/garde-manger-dates-peremption | 12 € | **en vente** (23/11/2026) |
 
 À la publication : `gumroad` et `permalien` dans `PACKS` (packs) ou `PRODUITS` + permalien dans `TEMPLATES` (GRD),
 `mettre-en-vente.py "garde-manger:12 €:garde-manger-dates-peremption:T09"` (retire aussi « Bientôt en vente » de la

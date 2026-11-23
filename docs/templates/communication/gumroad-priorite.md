@@ -64,18 +64,18 @@ domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué 
 Les fiches PPE et PCA n'ont pas de versions « Pack » / « Pack évolutif » sur Gumroad (pas plus que PBT) : l'option
 évolutif n'est donc pas achetable sur ces packs.
 
-### Vague du 23/11 : 6 brouillons créés (détail dans `gumroad-brouillons.md`)
+### Vague du 23/11 : 6 produits créés et publiés (détail dans `gumroad-brouillons.md`)
 
 Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui remplacent ceux prévus le 22/11.
 
 | Rang | Produit | Code | Prix | Statut |
 |---|---|---|---|---|
-| 11 | Fiche du Pack Productivité perso | PPR | 54 € | brouillon, clé à activer |
-| 12 | Fiche du Pack Forme | PFM | 58 € | brouillon, clé à activer |
-| 13 | Fiche du Pack Vie à deux (ex-Mariage et installation) | PMR | 79 € | brouillon, clé à activer |
-| 14 | Fiche du Pack Exploitation et maintenance (4 templates) | PXP | 95 € | brouillon, clé à activer |
-| 15 | Fiche du Pack Moyens généraux (10 templates) | PMG | 223 € | brouillon, clé à activer |
-| 16 | Garde-manger et dates de péremption | GRD | 12 € | brouillon, clé à activer ; sert au Pack Maison et famille (PFA) |
+| 11 | Fiche du Pack Productivité perso | PPR | 54 € | **en vente** (23/11) |
+| 12 | Fiche du Pack Forme | PFM | 58 € | **en vente** (23/11) |
+| 13 | Fiche du Pack Vie à deux (ex-Mariage et installation) | PMR | 79 € | **en vente** (23/11) |
+| 14 | Fiche du Pack Exploitation et maintenance (4 templates) | PXP | 95 € | **en vente** (23/11) |
+| 15 | Fiche du Pack Moyens généraux (10 templates) | PMG | 223 € | **en vente** (23/11) |
+| 16 | Garde-manger et dates de péremption | GRD | 12 € | **en vente** (23/11) ; sert au Pack Maison et famille (PFA) |
 
 ### Vague suivante
 
