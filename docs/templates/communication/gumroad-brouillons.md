@@ -235,3 +235,25 @@ transformé `rituel` en `ritüel`. Couvertures non ajoutées (comme les précéd
 À la publication (règle 7 de `gumroad-priorite.md`) : identifiants dans `PRODUITS` (templates) ou `PACKS` (PPE, PCA),
 `mettre-en-vente.py`, fiche de prise en main de l'essai pour chaque template (`netlify/lib/essais-prise-en-main.mjs`,
 sinon `npm test` échoue), pages des packs régénérées, tests, PR de mise en vente.
+
+## Vague du 23/11/2026 (6 brouillons, vers 11 h 55 UTC)
+
+Créés par la reprise programmée (limite Gumroad libérée le 23/11 à 12 h 47, Paris), depuis `packs/gumroad-packs.json`
+régénéré sur `main` du 23/11 (compositions issues de la rationalisation #225 et de la fusion F1 #246) et
+`garde-manger/gumroad.json`. Fiches des packs sur le modèle de PPE et PCA ; Garde-manger avec paragraphe, ligne de
+détail et ligne de reçu de l'essai. Catégorie `food-and-cooking` de la fiche GRD inexistante sur Gumroad : remplacée
+par `self-improvement` (celle de Repas de la semaine). Aucune couverture.
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| PMG | Pack Moyens généraux (10 templates) | 1CYQ2oN8TLxj6g8e44Kw9g== | /l/pack-moyens-generaux | 223 € (évolutif 279 €) | brouillon ; Quentin : clé (+ versions si l'option évolutive doit être achetable) |
+| PXP | Pack Exploitation et maintenance (4 templates) | 6pupGzmPEgp_aHGFUAWNxA== | /l/pack-exploitation | 95 € (évolutif 119 €) | brouillon ; Quentin : clé (+ versions) |
+| PMR | Pack Vie à deux (6 templates) | C2H9t1xP_lZgL5YglwRfbA== | /l/pack-vie-a-deux | 79 € (évolutif 99 €) | brouillon ; Quentin : clé (+ versions) |
+| PFM | Pack Forme (5 templates) | tJE8UvI9P1QAjGsqyFFe2g== | /l/pack-forme | 58 € (évolutif 73 €) | brouillon ; Quentin : clé (+ versions) |
+| PPR | Pack Productivité perso (5 templates) | DGl_v1KCgWfTxbstgh_PWw== | /l/pack-productivite | 54 € (évolutif 68 €) | brouillon ; Quentin : clé (+ versions) |
+| GRD | Garde-manger et dates de péremption | NgehMPonwFhDQl_wIgF8XA== | /l/garde-manger-dates-peremption | 12 € | brouillon ; Quentin : clé |
+
+À la publication : `gumroad` et `permalien` dans `PACKS` (packs) ou `PRODUITS` + permalien dans `TEMPLATES` (GRD),
+`mettre-en-vente.py "garde-manger:12 €:garde-manger-dates-peremption:T09"` (retire aussi « Bientôt en vente » de la
+démo), fiche de prise en main GRD dans `essais-prise-en-main.mjs`, compteur perso du test d'essai, meta description
+≤ 160 caractères, générateurs (essai, connexion, packs, données structurées, sitemap), tests, PR de mise en vente.

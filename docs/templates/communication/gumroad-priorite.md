@@ -64,17 +64,24 @@ domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué 
 Les fiches PPE et PCA n'ont pas de versions « Pack » / « Pack évolutif » sur Gumroad (pas plus que PBT) : l'option
 évolutif n'est donc pas achetable sur ces packs.
 
-### Vague suivante (dès que la limite le permet : prochaine création le 23/11 à 12 h 47, Paris)
+### Vague du 23/11 : 6 brouillons créés (détail dans `gumroad-brouillons.md`)
+
+Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui remplacent ceux prévus le 22/11.
+
+| Rang | Produit | Code | Prix | Statut |
+|---|---|---|---|---|
+| 11 | Fiche du Pack Productivité perso | PPR | 54 € | brouillon, clé à activer |
+| 12 | Fiche du Pack Forme | PFM | 58 € | brouillon, clé à activer |
+| 13 | Fiche du Pack Vie à deux (ex-Mariage et installation) | PMR | 79 € | brouillon, clé à activer |
+| 14 | Fiche du Pack Exploitation et maintenance (4 templates) | PXP | 95 € | brouillon, clé à activer |
+| 15 | Fiche du Pack Moyens généraux (10 templates) | PMG | 223 € | brouillon, clé à activer |
+| 16 | Garde-manger et dates de péremption | GRD | 12 € | brouillon, clé à activer ; sert au Pack Maison et famille (PFA) |
+
+### Vague suivante
 
 | Rang | Produit | Code | Prix | Pourquoi |
 |---|---|---|---|---|
-| 11 | Fiche du Pack Productivité perso | PPR | 54 € | complet une fois RVH en vente |
-| 12 | Fiche du Pack Forme | PFM | 58 € | complet une fois CRS en vente |
-| 13 | Fiche du Pack Mariage et installation à deux | PMR | 72 € | complet une fois DMN et CDX en vente |
-| 14 | Fiche du Pack Exploitation et maintenance | PXP | 118 € | complet une fois CTR et PRK en vente |
-| 15 | Fiche du Pack Moyens généraux | PMG | 194 € | complet une fois CTR, BSC et ACH en vente |
-| 16 | Garde-manger et dates de péremption (création refusée le 22/11 par la limite ; reprise programmée le 23/11 à 12 h 50) | GRD | 12 € | dernier template manquant du Pack Cuisine (PCS) ; sert aussi au Pack Famille |
-| 17 | Fiche du Pack Cuisine (demande de Quentin, 22/11) | PCS | 22 € (évolutif 9 €) | complet une fois GRD en vente (RPS déjà en vente) |
+| 17 | ~~Fiche du Pack Cuisine~~ | PCS | — | pack retiré le 22/11 par la rationalisation (#225) : rien à créer |
 | 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
 | 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
 | 20 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
