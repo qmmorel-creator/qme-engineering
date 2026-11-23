@@ -25,23 +25,13 @@ export function prixPack(prixCentimes) {
   return { valeur, pct, prix, economie: valeur - prix };
 }
 
-// Option « Pack évolutif » (décision de Quentin, 14/11/2026) : sans elle, un pack ouvre les templates qu'il
-// contenait le jour de l'achat ; avec elle, il ouvre aussi tous les templates ajoutés au pack ensuite.
-// Prix de l'option : 25 % du prix du pack, arrondi à l'euro supérieur, 9 € au minimum.
-export const OPTION = { pct: 25, minimum: 900, nom: 'Pack évolutif' };
-export const prixOption = (prixPackCentimes) => Math.max(OPTION.minimum, Math.ceil((prixPackCentimes * OPTION.pct) / 100 / 100) * 100);
-
-// Templates accessibles avec un pack. `ajouts` d'un pack : préfixe → date (AAAA-MM-JJ) d'ajout au pack après
-// son lancement. Avec l'option, tout le pack ; sans elle, les templates d'origine et ceux ajoutés au plus tard
-// le jour de l'achat (date inconnue, code généré à la main : templates d'origine seulement).
-export function produitsAccessibles(code, { option = false, date = null } = {}, connus = {}) {
-  const pack = PACKS[code], ajouts = pack.ajouts || {};
-  const jour = date ? String(date).slice(0, 10) : null;
-  return pack.produits.filter((p) => connus[p] && (option || !ajouts[p] || (jour && ajouts[p] <= jour)));
+// Templates accessibles avec un pack (décision de Quentin du 23/11/2026 : l'option « Pack évolutif » est supprimée) :
+// un pack ouvre tous ses templates en vente, y compris ceux ajoutés au pack après l'achat, sans supplément.
+export function produitsAccessibles(code, _options = {}, connus = {}) {
+  return PACKS[code].produits.filter((p) => connus[p]);
 }
 
 // Préfixe de pack : 3 lettres sans I, L, O, U, distinct de tout préfixe de template.
-// `ajouts` : templates entrés dans le pack après son lancement, avec leur date (voir produitsAccessibles).
 // `gumroad` : identifiant du produit Gumroad du pack (licence), ajouté une fois la fiche créée.
 export const PACKS = {
   PFG: { slug: 'freelance-gestion', nom: 'Pack Freelance : chiffrer, facturer, encaisser', produits: ['TJM', 'PRX', 'DVS', 'MCE', 'RCV', 'TRS', 'TMP'], gumroad: 'TdGXvyeaHjN_iKZ4zHr9gw==', permalien: 'pack-freelance-gestion' },
@@ -63,7 +53,7 @@ export const PACKS = {
   PNS: { slug: 'enseignant', nom: 'Pack Écoles et formateurs', produits: ['PRG', 'QZZ', 'CSE', 'EDT', 'AEC'] },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'NCF', 'STK'], gumroad: '6pupGzmPEgp_aHGFUAWNxA==', permalien: 'pack-exploitation' },
   PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'], gumroad: 'YqkUp-9uupBcFHTAAjlkQg==', permalien: 'pack-commercant-artisan' },
-  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], ajouts: { SVT: '2026-11-18' }, gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
+  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
   // Retiré le 22/11/2026 (décision de Quentin) : doublon du Pack Budget perso et famille, aucune vente. Gardé ici pour
   // qu'un éventuel code ou licence reste valable ; plus de page publique (redirection dans netlify.toml).

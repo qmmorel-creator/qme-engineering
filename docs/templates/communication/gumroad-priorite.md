@@ -15,8 +15,8 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 - **Feu vert permanent de Quentin (16/11/2026)** pour fusionner dans `main` les PR **de mise en vente** :
   identifiants Gumroad dans `PRODUITS` ou `PACKS`, pages catalogue passées en vente, packs et JSON-LD régénérés,
   registres. Toute autre fusion reste soumise à son accord (CLAUDE.md).
-- Reste à Quentin : activer la clé de licence de chaque brouillon, et ajouter les versions « Pack » et
-  « Pack évolutif » de chaque pack.
+- Reste à Quentin : activer la clé de licence de chaque brouillon. Plus de versions « Pack » / « Pack évolutif » :
+  l'option est supprimée depuis le 23/11/2026 (les templates ajoutés plus tard à un pack sont inclus).
 
 ## Règles
 
@@ -24,8 +24,8 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 2. Limite Gumroad : **10 créations par 24 h glissantes**, pour tout le compte. À la première création refusée,
    s'arrêter et noter l'heure annoncée.
 3. Un brouillon n'est **jamais** publié avant que Quentin ait activé sa clé de licence (`is_licensed` à true sur
-   `https://qmengineering.gumroad.com/l/<permalien>`) ; un pack attend aussi ses deux versions (« Pack » et
-   « Pack évolutif »).
+   `https://qmengineering.gumroad.com/l/<permalien>`). Un pack n'a qu'une version (option évolutive supprimée le
+   23/11/2026).
 4. L'identifiant Gumroad n'entre dans `PRODUITS` (ou `PACKS`) **qu'à la publication** : avant, il ferait passer
    le template « en vente » sur le site. Les brouillons sont notés dans `gumroad-brouillons.md`.
 5. Un pack n'est créé que lorsque tous ses templates sont en vente.
@@ -61,8 +61,8 @@ domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué 
 | 10 | Demandes d'achat et fournitures | ACH | 19 € | dernier template du Pack Moyens généraux (PMG) |
 
 **Les 10 sont publiés et en vente depuis le 22/11** (clés activées par Quentin, site passé en vente le même jour).
-Les fiches PPE et PCA n'ont pas de versions « Pack » / « Pack évolutif » sur Gumroad (pas plus que PBT) : l'option
-évolutif n'est donc pas achetable sur ces packs.
+Option « Pack évolutif » supprimée le 23/11/2026 : les templates ajoutés plus tard à un pack sont inclus, une seule
+version par fiche.
 
 ### Vague du 23/11 : 6 produits créés et publiés (détail dans `gumroad-brouillons.md`)
 
