@@ -5,7 +5,7 @@
 // Variables Netlify (jamais dans le dépôt) :
 //  - ESSAI_SMTP_UTILISATEUR : identifiant de la boîte OVH (quentin.morel@qm-engineering.fr) ;
 //  - ESSAI_SMTP_MOT_DE_PASSE : mot de passe de cette boîte OVH ;
-//  - ESSAI_EXPEDITEUR : « Quentin MOREL <quentin.morel@qm-engineering.fr> » (même adresse que la boîte) ;
+//  - ESSAI_EXPEDITEUR : nom affiché puis l'adresse de la boîte entre chevrons (quentin.morel@qm-engineering.fr) ;
 //  - ESSAI_SMTP_HOTE / ESSAI_SMTP_PORT : ssl0.ovh.net et 465 par défaut.
 // Sans identifiant ni mot de passe, aucun e-mail ne part (l'essai fonctionne quand même) : renvoie null.
 // Ces e-mails n'apparaissent pas dans « Messages envoyés » de Gmail ; les réponses arrivent sur la boîte OVH, redirigée
