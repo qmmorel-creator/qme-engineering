@@ -2,8 +2,8 @@
 
 Contenu : `netlify/lib/nouveautes.mjs` (versions acheteur et testeur, texte et HTML). Images :
 `assets/mail/nouveautes-2026-11/` (espace, connexion, panneau, personnaliser ; captures réelles, données fictives,
-1120 × 640, JPEG). Envoi : `POST /api/compte/annonce` (code administrateur en en-tête `X-Admin`), depuis la boîte
-Gmail de Quentin (SMTP de l'essai).
+1120 × 640, JPEG). Envoi : `POST /api/compte/annonce` (code administrateur en en-tête `X-Admin`), depuis
+`quentin.morel@qm-engineering.fr` (SMTP de l'essai, OVH depuis le 23/11/2026).
 
 ## Destinataires
 

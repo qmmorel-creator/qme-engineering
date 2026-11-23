@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
 const E='#141414',R='#D9302A',J='#F5B400',B='#1D4E89',P='#F0EDE6',G='#45413A';
-const LANES=[['Client','navigateur, téléphone',E],['Gumroad','paiement, clés',R],['Site QME','fonctions Netlify',B],['Données','Netlify Blobs, Francfort',G],['E-mails','SMTP, boîte de Quentin','#9A7300']];
+const LANES=[['Client','navigateur, téléphone',E],['Gumroad','paiement, clés',R],['Site QME','fonctions Netlify',B],['Données','Netlify Blobs, Francfort',G],['E-mails','SMTP OVH, qm-engineering.fr','#9A7300']];
 const W=1640, X0=200, LW=280, BW=236;
 const lx=(i)=>X0+i*LW+LW/2;
 let s='', fond='';

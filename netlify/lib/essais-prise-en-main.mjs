@@ -594,4 +594,12 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un circuit de validation à plusieurs niveaux que le seuil unique ne couvre pas ?',
   },
+  GRD: {
+    commencer: 'choisissez vos lieux de rangement (réfrigérateur, congélateur, placard), puis ajoutez trois produits avec la date imprimée sur l\'emballage : ceux à consommer en priorité remontent en tête.',
+    astuces: [
+      'la DLC et la DDM sont distinguées : une DLC dépassée affiche « ne pas consommer », une DDM dépassée invite seulement à vérifier le produit ;',
+      'un produit noté épuisé alimente la liste de courses, à cocher et à copier.',
+    ],
+    aide: 'Un lieu de rangement ou une catégorie de produits qui manque à l\'inventaire ?',
+  },
 };

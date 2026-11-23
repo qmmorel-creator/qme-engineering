@@ -4,7 +4,7 @@
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
 // dans l'application reprend les données de l'essai (templates-acces.mjs, reporterEssai).
 //
-// E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
+// E-mails envoyés depuis quentin.morel@qm-engineering.fr (SMTP OVH, voir netlify/lib/mail.mjs) :
 //  - merci : tout de suite, avec le code ;
 //  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
 //    (essais-prise-en-main.mjs) ;

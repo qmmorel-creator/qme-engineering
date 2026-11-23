@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le carnet de passage · Conciergerie en Provence · démonstration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Poppins:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1e1a16; --ink2:#2b251f; --ink3:#3a322a; --sable:#c9a978; --or:#a8834f; --or-soft:#f3eadb;
+  --bg:#f6f1e9; --panel:#fffdf9; --muted:#7a6f62; --line:#e8dfd1; --line2:#f1ebe1;
+  --terre:#b4532a; --terre-soft:#f8e6dc; --olive:#5f7341; --olive-soft:#e8eedd; --lav:#6f5fa3; --lav-soft:#ece8f6;
+  --ok:#4f6b33; --ok-bg:#e8efdc; --warn:#a2611a; --warn-bg:#f8ecd8; --idle:#6f675e; --idle-bg:#eeeae3;
+  --r:16px; --sh:0 1px 2px rgba(60,40,20,.04),0 8px 24px rgba(60,40,20,.06);
+  --p-sonia:#b4532a; --p-melanie:#5f7341; --p-yanis:#6f5fa3; --p-kelly:#a8834f;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:13.5px/1.5 "Poppins",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.pf{font-family:"Playfair Display",Georgia,serif;font-variant-numeric:lining-nums}
+.hero .big,.ring b,.tile b,.fs .v,.tl .h{font-variant-numeric:lining-nums}
+button,input{font:inherit}
+.tnum{font-variant-numeric:tabular-nums}
+svg{display:block}
+.fict{position:fixed;right:24px;top:22px;z-index:50;background:var(--ink);color:#f3eadb;font:600 10px/1 "Poppins",sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;border-radius:999px}
+
+/* structure */
+.app{display:grid;grid-template-columns:256px 1fr;min-height:100vh}
+.side{background:var(--ink);color:#d8cfc2;padding:22px 14px;display:flex;flex-direction:column;gap:3px;position:sticky;top:0;height:100vh}
+.wm{display:flex;align-items:center;gap:12px;padding:2px 8px 24px}
+.mono{width:44px;height:44px;border-radius:50%;background:#e7d7bb;color:var(--ink);display:grid;place-items:center;font:600 19px/1 "Playfair Display";letter-spacing:-.04em;flex:none}
+.wm b{display:block;font:600 19px/1 "Playfair Display";color:#fff;letter-spacing:.01em}
+.wm em{display:block;font:400 19px/1.1 "Pinyon Script",cursive;color:var(--sable);font-style:normal;margin-top:1px}
+.tool{margin:-12px 8px 18px;padding:10px 12px;border:1px solid #3a322a;border-radius:12px;font-size:11.5px;color:#b9ad9c;line-height:1.35}
+.tool b{display:block;color:#f3eadb;font:600 14px "Playfair Display"}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;color:#d8cfc2;text-decoration:none;font-weight:500}
+.nav a svg{width:18px;height:18px;flex:none;opacity:.85}
+.nav a:hover{background:#2b251f}
+.nav a.on{background:#2f2822;color:#fff;box-shadow:inset 3px 0 0 var(--sable)}
+.nav .n{margin-left:auto;background:var(--terre);color:#fff;border-radius:999px;font-size:11px;font-weight:600;padding:1px 8px}
+.nav .sec{font:600 10px "Poppins";letter-spacing:.14em;color:#7d7265;text-transform:uppercase;padding:16px 12px 6px}
+.side .foot{margin-top:auto;display:flex;gap:10px;align-items:center;padding:14px 8px 0;border-top:1px solid #2f2822;font-size:12px;color:#9d9184;line-height:1.4}
+.side .foot b{color:#f3eadb;font-weight:600}
+.main{min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:18px 32px;background:rgba(246,241,233,.94);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.top h1{font-size:23px;margin:0;font-weight:700;letter-spacing:-.005em}
+.top .sub{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search{margin-left:auto;margin-right:260px;display:flex;align-items:center;gap:8px;background:#fffdf9;border:1px solid var(--line);border-radius:10px;padding:8px 12px;width:270px;color:var(--muted);font-size:12.5px}
+.content{padding:24px 32px 60px;display:flex;flex-direction:column;gap:20px}
+section[data-view]{display:none}
+section[data-view].on{display:contents}
+
+/* composants */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line2)}
+.card>header h2{font-size:16px;margin:0;font-weight:700}
+.card>header .sp{flex:1}
+.body{padding:16px 18px}
+.muted{color:var(--muted)} .sm{font-size:12px}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fffdf9;border-radius:10px;padding:8px 13px;font-weight:500;color:var(--ink);cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#f6efe2}
+.btn.gold{background:var(--sable);border-color:var(--sable);color:var(--ink);font-weight:600}
+.b{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:600;white-space:nowrap}
+.b::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b.ok{color:var(--ok);background:var(--ok-bg)} .b.warn{color:var(--warn);background:var(--warn-bg)} .b.late{color:var(--terre);background:var(--terre-soft)} .b.info{color:var(--lav);background:var(--lav-soft)} .b.idle{color:var(--idle);background:var(--idle-bg)}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:11.5px;color:#fff;flex:none}
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.li{display:flex;gap:12px;align-items:flex-start;padding:12px 18px;border-bottom:1px solid var(--line2)}
+.li:last-child{border-bottom:0}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;margin-top:6px}
+.chk{width:18px;height:18px;accent-color:var(--ink);flex:none;margin-top:1px}
+.ph-i{margin:0;position:relative;border-radius:10px;overflow:hidden;background:#eee}
+.ph-i svg{width:100%;height:100%}
+.ph-i figcaption{position:absolute;left:6px;bottom:6px;right:6px;display:flex;justify-content:space-between;font-size:10.5px;font-weight:600;color:#fff}
+.ph-i figcaption, .ph-i figcaption i{text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.ph-i figcaption i{font-style:normal;font-weight:500;opacity:.95}
+.ph-i::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(30,26,22,.45))}
+.ph-i figcaption{z-index:2}
+
+/* héros du jour */
+.hero{position:relative;border-radius:22px;overflow:hidden;color:#fff;background:radial-gradient(120% 140% at 80% 0%,#4a3a2a 0%,#2a221b 45%,#1a1612 100%);padding:28px 32px 30px;display:grid;grid-template-columns:1fr 220px 270px;gap:28px;align-items:center;min-height:300px}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px;pointer-events:none}
+.hero>*{position:relative}
+.hero .eb{font:600 11px "Poppins";letter-spacing:.18em;text-transform:uppercase;color:var(--sable);margin:0 0 6px}
+.hero .big{font:700 104px/0.95 "Playfair Display";color:#f3e3c3;letter-spacing:-.03em}
+.hero .big small{font:italic 500 30px "Playfair Display";color:#fff;letter-spacing:0;margin-left:10px}
+.hero p{color:#d7cbbb;max-width:52ch;margin:12px 0 0;font-size:14px}
+.ring{position:relative;width:200px;height:200px;margin:auto}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ring b{font:700 44px/1 "Playfair Display";color:#fff}
+.ring span{font-size:12px;color:#cbbfae;margin-top:5px}
+.tiles{display:flex;flex-direction:column;gap:10px}
+.tile{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 15px;backdrop-filter:blur(3px)}
+.tile b{display:block;font:700 26px/1 "Playfair Display";color:#fff}
+.tile span{font-size:12px;color:#d5c9b8}
+.tile.alert b{color:#f2a27e}
+
+/* parcours */
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:20px 22px 22px}
+.fs{padding:0 14px;position:relative}
+.fs:not(:last-child)::after{content:"›";position:absolute;right:-4px;top:2px;color:#c4b8a6;font-size:20px}
+.fs .l{font-size:12px;color:var(--muted);font-weight:500;min-height:36px}
+.fs .v{font:700 36px/1 "Playfair Display";margin:4px 0 12px}
+.fs .bar{height:58px;display:flex;align-items:flex-end}
+.fs .bar i{display:block;width:100%;border-radius:10px}
+.fs .d{font-size:11.5px;color:var(--muted);margin-top:8px}
+.fs .d b{color:var(--ink)}
+
+/* fil */
+.tl{display:flex;flex-direction:column}
+.tl .row{display:grid;grid-template-columns:54px 28px 1fr 136px 128px;gap:12px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--line2)}
+.tl .row:last-child{border-bottom:0}
+.tl .h{font:600 14px "Playfair Display";}
+.thumbs{display:flex;gap:4px}
+.thumbs .ph-i{width:34px;height:26px;border-radius:5px}
+.thumbs .ph-i::after{display:none}
+.pg{height:6px;border-radius:99px;background:var(--line2);overflow:hidden}
+.pg i{display:block;height:100%;border-radius:99px;background:var(--ink)}
+
+/* carte */
+.mapwrap{position:relative;background:#f4eee3}
+.mapwrap img{display:block;width:100%;height:auto}
+.mapwrap svg.ov{position:absolute;inset:0;width:100%;height:100%}
+.mapwrap .ign{position:absolute;right:10px;bottom:8px;font-size:10px;color:#6f6458;background:rgba(255,253,249,.8);padding:2px 7px;border-radius:6px}
+.legend{position:absolute;left:14px;top:14px;display:flex;flex-direction:column;gap:6px}
+.legend button{display:flex;align-items:center;gap:8px;background:rgba(255,253,249,.94);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;font-size:12px;font-weight:500;cursor:pointer;box-shadow:var(--sh)}
+.legend button.off{opacity:.45}
+.legend .av{width:22px;height:22px;font-size:9.5px}
+.stop{font:600 11px "Poppins"}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fffdf9}
+.seg button{border:0;background:none;padding:7px 12px;font-weight:500;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--ink);color:#f6efe2}
+
+/* planning */
+.plan{display:grid;grid-template-columns:170px repeat(6,1fr)}
+.plan .h{font-size:12px;font-weight:600;color:var(--muted);padding:10px;border-bottom:1px solid var(--line);background:#faf6ef}
+.plan .h.today{color:var(--ink);background:var(--or-soft)}
+.plan .rl{padding:10px 14px;border-bottom:1px solid var(--line2);border-right:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.plan .c{border-bottom:1px solid var(--line2);border-right:1px solid var(--line2);padding:5px;display:flex;flex-direction:column;gap:4px;min-height:58px}
+.blk{border-radius:8px;padding:6px 8px;font-size:11.5px;line-height:1.3;border-left:3px solid;background:#faf6ef}
+.blk b{display:block;font-size:12px;font-weight:600}
+.blk.alert{outline:2px solid var(--terre);outline-offset:-1px}
+.blk .st{display:block;font-size:10.5px;font-weight:600;margin-top:2px}
+
+/* passage */
+.phgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.phgrid .ph-i{aspect-ratio:4/3}
+.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 22px}
+.zh{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 4px;border-bottom:1px solid var(--line2);padding-bottom:4px}
+.zh b{font:600 14px "Playfair Display"}
+.ck{display:flex;gap:9px;align-items:flex-start;padding:3px 0;font-size:12.5px}
+.rep{background:#fbf7f0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rep .rh{background:var(--ink);color:#f3eadb;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.rep .rh .mono{width:34px;height:34px;font-size:15px}
+.rep .rh b{font:600 15px "Playfair Display";display:block}
+.rep .rh em{font:400 16px/1 "Pinyon Script";color:var(--sable);font-style:normal}
+.langs{display:flex;gap:6px}
+.langs button{border:1px solid var(--line);background:#fffdf9;border-radius:8px;padding:4px 9px;font-weight:600;font-size:11px;cursor:pointer}
+.langs button.on{background:var(--ink);color:#f6efe2;border-color:var(--ink)}
+.rep .rh .langs button{background:transparent;color:#cbbfae;border-color:#4a4038}
+.rep .rh .langs button.on{background:var(--sable);color:var(--ink);border-color:var(--sable)}
+.rep .art{overflow:hidden}.rep .art svg,.lc .pic svg{width:100%;height:100%}
+
+/* logements */
+.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.lc{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh);display:flex;flex-direction:column}
+.lc .pic{height:118px;position:relative}
+.lc .pic svg{width:100%;height:100%}
+.lc .pic .b{position:absolute;left:10px;top:10px}
+.lc .in{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.lc h3{margin:0;font-size:16px;font-weight:700}
+.lc .k{display:flex;gap:6px;flex-wrap:wrap}
+.lc .k span{font-size:10.5px;background:var(--line2);border-radius:6px;padding:2px 7px;color:#5a5047}
+.lc .nx{margin-top:auto;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line2);padding-top:9px;font-size:11.5px}
+.lc .nx .av{width:22px;height:22px;font-size:9.5px}
+
+/* mobile */
+.mtop{display:none}
+@media (max-width:600px){
+  body{font-size:14px}
+  .app{grid-template-columns:1fr}
+  .side,.top{display:none}
+  .mtop{display:flex;align-items:center;gap:11px;padding:16px 16px 14px;background:var(--ink);color:#f3eadb;position:sticky;top:0;z-index:5}
+  .mtop .mono{width:36px;height:36px;font-size:15px}
+  .mtop h1{font:600 18px/1.15 "Playfair Display";margin:0;color:#fff}
+  .mtop .sub{font-size:11.5px;color:#cbbfae}
+  .content{padding:14px 14px 30px;gap:12px}
+  .fict{top:auto;bottom:auto;top:58px;right:12px;font-size:8px;padding:5px 8px;background:var(--sable);color:var(--ink)}
+  .card>header{padding:12px 14px}
+  .li{padding:11px 14px}
+}
+.mobile-only{display:none}
+@media (max-width:600px){.mobile-only{display:block}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="wm"><span class="mono">CP</span><div><b>Conciergerie</b><em>en Provence</em></div></div>
+    <div class="tool"><b>Le carnet de passage</b>ménage · intendance · rapports clients</div>
+    <nav class="nav" id="nav">
+      <div class="sec">Au bureau</div>
+      <a href="#jour" data-v="jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Aujourd'hui <span class="n">3</span></a>
+      <a href="#carte" data-v="carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>Tournées</a>
+      <a href="#semaine" data-v="semaine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Semaine</a>
+      <a href="#passage" data-v="passage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Passages et rapports</a>
+      <a href="#logements" data-v="logements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Logements</a>
+      <div class="sec">Sur le téléphone</div>
+      <a href="#journee" data-v="journee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Prestataire</a>
+      <a href="#rapport" data-v="rapport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Page du propriétaire</a>
+    </nav>
+    <div class="foot"><span class="av" style="background:var(--p-kelly)">K</span><div><b>Kelly</b><br>Monteux · locaux et blanchisserie</div></div>
+  </aside>
+  <div class="main">
+    <div class="top"><div><h1 id="title"></h1><div class="sub" id="subtitle"></div></div>
+      <div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Logement, client, prestataire…</div></div>
+    <div class="mtop"><span class="mono">CP</span><div><h1 id="mtitle"></h1><div class="sub" id="msubtitle"></div></div></div>
+    <div class="content">
+
+      <section data-view="jour" data-title="Aujourd'hui" data-sub="Lundi 23 novembre 2026 · situation à 11 h 40">
+        <div class="hero">
+          <svg class="ridge" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 150V112 C120 104 210 96 300 92 C430 86 520 40 610 26 C640 22 652 18 664 14 L668 4 L672 14 C690 18 712 24 740 30 C840 50 960 86 1080 98 C1130 103 1170 106 1200 108V150Z" fill="rgba(255,255,255,.07)"/><path d="M666 4v-14" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+            <path d="M0 150v-26c150-10 300-16 450-14s300 10 450 8 230-6 300-8v40Z" fill="rgba(201,169,120,.07)"/>
+          </svg>
+          <div>
+            <p class="eb">Activité nettoyage · Vaucluse</p>
+            <div class="big tnum">10<small>passages aujourd'hui</small></div>
+            <p>Quatre prestataires sur la route, de Monteux à Gordes et Ménerbes. Chaque passage arrive ici avec sa check-list et ses photos ; le rapport du client se prépare tout seul, vous n'avez plus qu'à le relire.</p>
+          </div>
+          <div class="ring" id="ring"></div>
+          <div class="tiles">
+            <div class="tile"><b>2</b><span>rapports déjà chez les clients</span></div>
+            <div class="tile"><b>1</b><span>rapport prêt à relire · Villa Les Restanques</span></div>
+            <div class="tile alert"><b>2</b><span>points à traiter avant midi</span></div>
+          </div>
+        </div>
+        <div class="card"><header><h2>Du passage au rapport</h2><span class="sp"></span><span class="muted sm">les 10 passages du jour · 4 prestataires</span></header><div class="funnel" id="funnel"></div></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Le fil de la journée</h2><span class="sp"></span><span class="muted sm">photos et check-lists reçues en direct</span></header><div class="tl" id="fil"></div></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>À traiter</h2><span class="b late">2</span></header><div id="todo"></div></div>
+            <div class="card"><header><h2>Messages de l'équipe</h2></header><div id="msgs"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view="carte" data-title="Tournées du jour" data-sub="Qui est où, dans quel ordre, avec quel linge · lundi 23 novembre">
+        <div class="grid2" style="grid-template-columns:1.75fr 1fr">
+          <div class="card"><header><h2>Le Vaucluse, ce lundi</h2><span class="sp"></span><div class="seg"><button class="on">Aujourd'hui</button><button>Demain</button><button>Semaine</button></div></header>
+            <div class="mapwrap" id="map"><img src="carte-vaucluse.jpg" width="1048" height="952" alt="Fond de carte du Vaucluse"><svg class="ov" id="ov" viewBox="0 0 1048 952"></svg><div class="legend" id="legend"></div><span class="ign">© IGN · Plan IGN</span></div></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card" id="tour"></div>
+            <div class="card"><header><h2>Blanchisserie de Monteux</h2><span class="sp"></span><span class="muted sm">linge du jour</span></header><div class="body" id="linge"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view="semaine" data-title="La semaine" data-sub="Semaine 48 · du lundi 23 au samedi 28 novembre · chaque prestataire voit sa ligne sur son téléphone">
+        <div class="card"><header><h2>Planning des passages</h2><span class="sp"></span><span class="muted sm">31 passages · 17 fins de séjour · 6 visites d'intendance</span><button class="btn pri">+ Nouveau passage</button></header><div class="plan" id="plan"></div></div>
+        <div class="grid3" id="weekcards"></div>
+      </section>
+
+      <section data-view="passage" data-title="Villa Les Restanques · fin de séjour" data-sub="Ménerbes · lundi 23 novembre · Yanis B. · 10 h 05 – 11 h 31">
+        <div class="grid2" style="grid-template-columns:1.6fr 1fr">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>Photos du passage</h2><span class="muted sm">prises sur place, horodatées</span><span class="sp"></span><div class="seg" id="ba"><button class="on">Après</button><button>Avant</button></div></header><div class="body"><div class="phgrid" id="photos"></div></div></div>
+            <div class="card"><header><h2>Check-list « Fin de séjour · villa 4 chambres »</h2><span class="sp"></span><span class="b ok">22 / 22</span></header><div class="body"><div class="zones" id="cl"></div></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>Rapport pour M. et Mme Hartmann</h2><span class="sp"></span><span class="b info">Prêt à relire</span></header><div class="body" id="rapprev"></div></div>
+            <div class="card"><header><h2>Signalé sur place</h2><span class="b warn">1</span></header><div id="ano"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view="logements" data-title="Logements et consignes" data-sub="Ce que chaque prestataire doit savoir avant d'arriver, logement par logement">
+        <div class="lgrid" id="lgrid"></div>
+        <div class="grid2" style="grid-template-columns:1fr 1fr">
+          <div class="card"><header><h2>Modèles de check-list</h2><span class="sp"></span><span class="muted sm">adaptés à chaque logement</span></header><div id="modeles"></div></div>
+          <div class="card"><header><h2>Consignes modifiées cette semaine</h2><span class="sp"></span><span class="muted sm">lues par toute l'équipe</span></header><div id="consignes"></div></div>
+        </div>
+      </section>
+
+      <section data-view="journee" data-title="Bonjour Sonia" data-sub="Lundi 23 novembre · 2 passages">
+        <div class="card" id="cur"></div>
+        <div class="card"><header><h2>Check-list en cours</h2><span class="sp"></span><span class="muted sm">14 / 20</span></header><div id="mcl"></div></div>
+        <div class="card"><header><h2>Ensuite</h2></header><div id="next"></div></div>
+      </section>
+
+      <section data-view="rapport" data-title="Votre rapport" data-sub="Villa Les Restanques · Ménerbes">
+        <div id="client"></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<div class="fict">Exemple de données fictives</div>
+<script>
+// ===== Illustrations (SVG dessinés, aucune photo réelle) =====
+const ILL = (() => {
+  const S = (vb, body, bg) => `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${bg ? `<rect width="100%" height="100%" fill="${bg}"/>` : ''}${body}</svg>`;
+  const floor = (y, c1 = '#c27a50', c2 = '#b56d45') => `<rect x="0" y="${y}" width="160" height="${120 - y}" fill="${c1}"/>` +
+    Array.from({ length: 9 }, (_, i) => `<line x1="${i * 20 - 10}" y1="${y}" x2="${i * 20 - 30}" y2="120" stroke="${c2}" stroke-width="1.2"/>`).join('') +
+    `<line x1="0" y1="${y + 10}" x2="160" y2="${y + 10}" stroke="${c2}" stroke-width="1"/><line x1="0" y1="${y + 24}" x2="160" y2="${y + 24}" stroke="${c2}" stroke-width="1"/>`;
+  const win = (x, y, w, h, sh = '#8c9aa6') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#dfe9ee"/><rect x="${x}" y="${y + h * .62}" width="${w}" height="${h * .38}" fill="#c9d6b4"/><path d="M${x} ${y + h * .62} q${w * .3} -${h * .18} ${w * .55} -${h * .08} t${w * .45} -${h * .06} v${h * .14} h-${w}z" fill="#a9b98f"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#fff" stroke-width="3"/><line x1="${x + w / 2}" y1="${y}" x2="${x + w / 2}" y2="${y + h}" stroke="#fff" stroke-width="2"/><rect x="${x - w * .32}" y="${y - 2}" width="${w * .3}" height="${h + 4}" fill="${sh}" rx="1"/><rect x="${x + w + 2}" y="${y - 2}" width="${w * .3}" height="${h + 4}" fill="${sh}" rx="1"/>`;
+  const lav = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0 q-2 -14 -6 -22 M0 0 q1 -15 2 -24 M0 0 q3 -13 8 -20" stroke="#6f7f4b" stroke-width="1.2" fill="none"/><circle cx="-6" cy="-23" r="2.6" fill="#8f7cc0"/><circle cx="2" cy="-25" r="2.6" fill="#7d6ab0"/><circle cx="8" cy="-21" r="2.6" fill="#9a88c9"/><path d="M-7 0 h14 l-2 10 h-10z" fill="#f4efe6" stroke="#d9cdb8"/></g>`;
+  const R = {
+    chambre: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe5d6"/>${win(108, 18, 30, 34)}${floor(84)}
+      <rect x="22" y="40" width="70" height="30" rx="5" fill="#c8b18c"/><rect x="14" y="62" width="88" height="26" rx="4" fill="#fbf8f2"/>
+      <rect x="20" y="54" width="30" height="12" rx="5" fill="#fff" stroke="#e6dccb"/><rect x="58" y="54" width="30" height="12" rx="5" fill="#fff" stroke="#e6dccb"/>
+      <rect x="14" y="72" width="88" height="10" fill="#b99b6b"/><rect x="14" y="88" width="88" height="5" fill="#8d7352"/>
+      <rect x="112" y="70" width="18" height="16" fill="#a37b55"/><path d="M116 70 l5 -12 l5 12z" fill="#f2e3c4"/>`),
+    cuisine: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f1ebe1"/>${floor(92)}
+      <path d="M96 12 h40 l6 22 h-52z" fill="#4f6d8f"/><rect x="108" y="34" width="24" height="4" fill="#3f5a77"/>
+      <rect x="8" y="58" width="144" height="34" fill="#a7b199"/><rect x="6" y="54" width="148" height="6" fill="#c89b62"/>
+      ${[20, 52, 84, 116].map((x) => `<rect x="${x}" y="64" width="26" height="24" fill="none" stroke="#8e9a7f"/><circle cx="${x + 22}" cy="76" r="1.4" fill="#6e785f"/>`).join('')}
+      <line x1="14" y1="24" x2="70" y2="24" stroke="#8b6b47" stroke-width="1.6"/>${[22, 36, 50, 62].map((x, i) => `<line x1="${x}" y1="24" x2="${x}" y2="${30 + i % 2 * 3}" stroke="#8b6b47"/><ellipse cx="${x}" cy="${36 + i % 2 * 3}" rx="${4 + i % 2}" ry="5" fill="#b46d3d"/>`).join('')}
+      ${lav(38, 54, .7)}<rect x="60" y="46" width="14" height="8" rx="2" fill="#efe9dd" stroke="#d7cbb6"/>`),
+    sdb: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f7f4ee"/>
+      ${Array.from({ length: 8 }, (_, i) => `<line x1="0" y1="${i * 12}" x2="160" y2="${i * 12}" stroke="#e6e0d5"/>`).join('')}${Array.from({ length: 14 }, (_, i) => `<line x1="${i * 12}" y1="0" x2="${i * 12}" y2="90" stroke="#e6e0d5"/>`).join('')}
+      ${floor(90, '#d9cfc0', '#c9bead')}<circle cx="118" cy="34" r="16" fill="#e3ecef" stroke="#c7a36d" stroke-width="2.5"/>
+      <path d="M14 62 h82 v8 q0 18 -18 18 h-46 q-18 0 -18 -18z" fill="#fff" stroke="#ddd3c3"/><rect x="12" y="58" width="86" height="6" rx="3" fill="#fbfaf7" stroke="#ddd3c3"/>
+      <path d="M30 58 v-26 q0 -6 6 -6 h6" stroke="#b9a37c" stroke-width="2.4" fill="none"/>
+      <rect x="104" y="58" width="30" height="32" fill="#c7a36d"/><rect x="108" y="54" width="22" height="6" rx="2" fill="#fff"/>
+      <rect x="138" y="44" width="12" height="40" rx="2" fill="#e9dccb"/><line x1="138" y1="50" x2="150" y2="50" stroke="#d5c3a7"/>`),
+    sejour: () => S('0 0 160 120', `<rect width="160" height="120" fill="#ece3d4"/>${floor(86)}
+      <rect x="104" y="18" width="34" height="26" fill="#fff" stroke="#c9a978" stroke-width="2"/><path d="M106 40 l10 -12 l8 7 l6 -5 l6 10z" fill="#b8c49a"/><circle cx="130" cy="25" r="3" fill="#e5b66b"/>
+      <rect x="14" y="50" width="80" height="20" rx="8" fill="#e8dcc6"/><rect x="10" y="62" width="88" height="22" rx="6" fill="#f2eadb"/>
+      <rect x="12" y="56" width="10" height="26" rx="5" fill="#e0d2b8"/><rect x="86" y="56" width="10" height="26" rx="5" fill="#e0d2b8"/>
+      <rect x="22" y="56" width="18" height="12" rx="4" fill="#b4532a" opacity=".75"/><rect x="66" y="56" width="18" height="12" rx="4" fill="#7a68a8" opacity=".6"/>
+      <ellipse cx="72" cy="104" rx="56" ry="9" fill="#e9dfcf"/><rect x="50" y="88" width="46" height="5" rx="2" fill="#a87c52"/>${lav(72, 88, .65)}`),
+    terrasse: () => S('0 0 160 120', `<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0ea"/><stop offset="1" stop-color="#f3ead8"/></linearGradient></defs><rect width="160" height="120" fill="url(#sk)"/>
+      <path d="M0 64 q40 -16 78 -6 t82 -4 v26 h-160z" fill="#a9b48b"/><path d="M60 60 q30 -26 62 -4z" fill="#b9b3c9" opacity=".7"/>
+      <rect x="0" y="80" width="160" height="40" fill="#d8c5a5"/>${Array.from({ length: 8 }, (_, i) => `<line x1="${i * 22}" y1="80" x2="${i * 22 - 14}" y2="120" stroke="#c7b391"/>`).join('')}
+      <path d="M26 82 q2 -20 -2 -30" stroke="#7a5d43" stroke-width="4" fill="none"/><g fill="#8a9a67"><ellipse cx="18" cy="44" rx="16" ry="10"/><ellipse cx="34" cy="38" rx="14" ry="9"/><ellipse cx="28" cy="50" rx="13" ry="8" fill="#9caa79"/></g>
+      <path d="M96 40 l26 -12 l26 12z" fill="#f4efe6" stroke="#d8cbb3"/><line x1="122" y1="40" x2="122" y2="86" stroke="#8f7a5c" stroke-width="2"/>
+      <rect x="100" y="78" width="44" height="4" rx="2" fill="#a87c52"/><line x1="106" y1="82" x2="106" y2="96" stroke="#a87c52" stroke-width="2"/><line x1="138" y1="82" x2="138" y2="96" stroke="#a87c52" stroke-width="2"/>
+      ${lav(70, 96, .8)}${lav(84, 98, .7)}`),
+    piscine: () => S('0 0 160 120', `<rect width="160" height="120" fill="#e9eef0"/><path d="M0 50 h160 v14 h-160z" fill="#b4c09b"/>
+      ${[16, 30, 138].map((x) => `<ellipse cx="${x}" cy="34" rx="6" ry="22" fill="#4f6a42"/>`).join('')}
+      <rect x="0" y="62" width="160" height="58" fill="#e7dcc8"/><path d="M18 72 h124 l8 36 h-140z" fill="#7cc1cf"/>
+      ${[80, 88, 96].map((y) => `<path d="M${30 + y / 8} ${y} q14 -4 28 0 t28 0 t28 0" stroke="#b9e3ea" stroke-width="1.6" fill="none"/>`).join('')}
+      <path d="M112 56 l26 0 l-6 -12 h-14z" fill="#f4efe6"/><path d="M96 64 l34 -6 l4 4 l-34 6z" fill="#fbf8f1" stroke="#ccbfa6"/>`),
+    linge: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe6d8"/><rect x="0" y="92" width="160" height="28" fill="#c9a978"/>
+      ${[0, 1, 2, 3, 4].map((i) => `<rect x="${40 - i}" y="${80 - i * 13}" width="${70 + i * 2}" height="12" rx="4" fill="${i % 2 ? '#fbf8f2' : '#f1ece2'}" stroke="#ddd2bf"/>`).join('')}
+      <rect x="114" y="66" width="34" height="26" rx="3" fill="#b4532a" opacity=".85"/><text x="131" y="83" font-size="8" text-anchor="middle" fill="#fff" font-family="Poppins">4 lits</text>`),
+    verre: () => S('0 0 160 120', `<rect width="160" height="120" fill="#e9e3d8"/><rect x="0" y="70" width="160" height="50" fill="#c89b62"/>
+      <path d="M58 92 l14 -10 l6 12 z" fill="#e8f2f4" stroke="#9fb7bd"/><path d="M84 96 l10 -16 l8 8 z" fill="#e8f2f4" stroke="#9fb7bd"/><path d="M70 100 l-14 6 l4 -12z" fill="#e8f2f4" stroke="#9fb7bd"/>
+      <path d="M100 56 h20 l-3 26 h-14z" fill="#e8f2f4" stroke="#9fb7bd"/><circle cx="60" cy="40" r="14" fill="none" stroke="#b4532a" stroke-width="3" stroke-dasharray="4 3"/>`),
+    compteur: () => S('0 0 160 120', `<rect width="160" height="120" fill="#d9d2c4"/><rect x="0" y="0" width="160" height="120" fill="url(#none)"/>
+      <path d="M0 70 h160" stroke="#a89d89" stroke-width="10"/><circle cx="80" cy="60" r="30" fill="#2d6e8e"/><circle cx="80" cy="60" r="22" fill="#f6f4ee"/>
+      <rect x="64" y="52" width="32" height="10" fill="#1e1a16"/><text x="80" y="60" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">0412,7</text>
+      <path d="M80 72 l8 -6" stroke="#b4532a" stroke-width="2"/>`),
+    facade: (v = 0) => {
+      const sh = ['#8fa3b0', '#9a8fb8', '#97a58a', '#b7a27f'][v % 4];
+      return S('0 0 200 120', `<defs><linearGradient id="fs${v}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9e6ec"/><stop offset="1" stop-color="#f4ecdd"/></linearGradient></defs><rect width="200" height="120" fill="url(#fs${v})"/>
+        <path d="M0 70 q50 -18 100 -8 t100 -6 v40 h-200z" fill="#b4bf96"/>
+        <rect x="46" y="44" width="108" height="56" fill="#ead9bb"/><path d="M40 46 l60 -24 l60 24z" fill="#b8643b"/><path d="M40 46 h120" stroke="#9c522f" stroke-width="2"/>
+        ${[62, 92, 122].map((x) => `<rect x="${x}" y="56" width="14" height="14" fill="#f8f3ea"/><rect x="${x - 6}" y="55" width="5" height="16" fill="${sh}"/><rect x="${x + 15}" y="55" width="5" height="16" fill="${sh}"/>`).join('')}
+        <rect x="92" y="80" width="16" height="20" rx="8" fill="${sh}"/>${[22, 176].map((x) => `<ellipse cx="${x}" cy="66" rx="7" ry="28" fill="#4f6a42"/>`).join('')}
+        <rect x="0" y="100" width="200" height="20" fill="#a98ac9" opacity=".35"/>${Array.from({ length: 10 }, (_, i) => `<ellipse cx="${10 + i * 20}" cy="106" rx="8" ry="4" fill="#8f7cc0"/>`).join('')}`);
+    },
+    villa: (v = 0) => S('0 0 200 120', `<rect width="200" height="120" fill="#dde9ee"/><path d="M0 66 q60 -20 120 -6 t80 -2 v40 h-200z" fill="#a9b48b"/>
+        <rect x="30" y="40" width="96" height="46" fill="#f1e6d2"/><path d="M24 42 l54 -18 l54 18z" fill="#c07447"/><rect x="126" y="54" width="46" height="32" fill="#ead9bb"/><path d="M122 56 l27 -10 l27 10z" fill="#b8643b"/>
+        ${[42, 66, 90].map((x) => `<rect x="${x}" y="52" width="14" height="22" fill="#f8f3ea" stroke="#9a8fb8" stroke-width="2"/>`).join('')}
+        <rect x="20" y="92" width="150" height="16" rx="2" fill="#7cc1cf"/><ellipse cx="184" cy="62" rx="7" ry="26" fill="#4f6a42"/><rect x="0" y="108" width="200" height="12" fill="#e2d4bb"/>`),
+    appart: () => S('0 0 200 120', `<rect width="200" height="120" fill="#e3ecef"/><rect x="40" y="14" width="120" height="106" fill="#e6cfa6"/><rect x="36" y="10" width="128" height="6" fill="#c9a978"/>
+        ${[24, 54, 84].map((y) => [56, 88, 120].map((x) => `<rect x="${x}" y="${y}" width="14" height="20" fill="#f6f1e6"/><rect x="${x - 5}" y="${y}" width="4" height="20" fill="#7c8f7a"/><rect x="${x + 15}" y="${y}" width="4" height="20" fill="#7c8f7a"/>`).join('')).join('')}
+        <path d="M86 46 h30" stroke="#3d3a36" stroke-width="2"/><rect x="0" y="108" width="200" height="12" fill="#d7c7ab"/><rect x="8" y="40" width="26" height="80" fill="#d9bf92"/><rect x="166" y="30" width="30" height="90" fill="#dcc8a2"/>`),
+    bureau: () => S('0 0 200 120', `<rect width="200" height="120" fill="#e5ecef"/><rect x="36" y="30" width="128" height="90" fill="#efe9df"/><rect x="36" y="30" width="128" height="10" fill="#1e1a16"/>
+        ${[48, 74].map((y) => Array.from({ length: 6 }, (_, i) => `<rect x="${46 + i * 19}" y="${y}" width="14" height="18" fill="#b9cfd8"/>`).join('')).join('')}
+        <rect x="88" y="96" width="24" height="24" fill="#9fb7c2"/><rect x="0" y="112" width="200" height="8" fill="#cfc5b4"/>`),
+  };
+  return {
+    room: (k, v) => (R[k] || R.sejour)(v),
+    photo: (k, label, time, v) => `<figure class="ph-i">${(R[k] || R.sejour)(v)}${label ? `<figcaption>${label}${time ? `<i>${time}</i>` : ''}</figcaption>` : ''}</figure>`,
+    house: (k, v) => (R[k] || R.facade)(v),
+  };
+})();
+
+// ===== Données fictives =====
+const P = {
+  sonia: { n: 'Sonia R.', i: 'SR', c: 'var(--p-sonia)', hex: '#b4532a', role: 'Ménage' },
+  melanie: { n: 'Mélanie D.', i: 'MD', c: 'var(--p-melanie)', hex: '#5f7341', role: 'Ménage et linge' },
+  yanis: { n: 'Yanis B.', i: 'YB', c: 'var(--p-yanis)', hex: '#6f5fa3', role: 'Ménage' },
+  kelly: { n: 'Kelly', i: 'K', c: 'var(--p-kelly)', hex: '#a8834f', role: 'Intendance et contrôle' },
+};
+const T = {"Monteux": [35.56, 49.89], "Carpentras": [42.78, 45.84], "Pernes-les-Fontaines": [44.31, 57.97], "L'Isle-sur-la-Sorgue": [43.19, 74.76], "Gordes": [63.89, 76.45], "Ménerbes": [64.58, 93.22], "Bédoin": [60.97, 31.15], "Malaucène": [54.58, 20.49], "Mazan": [53.75, 45.63], "Sarrians": [32.22, 39.88], "Avignon": [9.17, 68.38], "Mont Ventoux": [74.86, 20.49], "Cavaillon": [41.39, 92.16], "Apt": [91.11, 83.88], "Vaison-la-Romaine": [46.53, 6.19]};
+const L = {
+  clos: { n: 'Copropriété Le Clos', v: 'Monteux', t: 'Parties communes', h: ['bureau'], cli: 'Syndic du Clos', off: [-14, 10] },
+  pie: { n: 'Appart. Place Pie', v: 'Avignon', t: 'Fin de séjour', h: ['appart'], cli: 'SCI Palais' },
+  bastide: { n: 'Bastide du Ventoux', v: 'Malaucène', t: 'Intendance', h: ['facade', 3], cli: 'M. Delorme' },
+  oliviers: { n: 'Mas des Oliviers', v: 'Gordes', t: 'Fin de séjour', h: ['facade', 0], cli: 'M. et Mme Ferrand' },
+  restanques: { n: 'Villa Les Restanques', v: 'Ménerbes', t: 'Fin de séjour', h: ['villa'], cli: 'M. et Mme Hartmann' },
+  veran: { n: 'Maison Saint-Véran', v: 'Monteux', t: 'Remise en état', h: ['facade', 2], cli: 'Mme Chabert', off: [12, -12] },
+  remparts: { n: 'Studio Les Remparts', v: 'Pernes-les-Fontaines', t: 'Fin de séjour', h: ['appart'], cli: 'SCI Les Remparts' },
+  cigales: { n: 'Mas des Cigales', v: 'Mazan', t: 'Intendance', h: ['facade', 1], cli: 'Mme Laurent' },
+  moulin: { n: 'Gîte du Moulin', v: "L'Isle-sur-la-Sorgue", t: 'Fin de séjour', h: ['facade', 2], cli: 'M. Giraud' },
+  durance: { n: 'Agence Durance', v: 'Carpentras', t: 'Bureaux', h: ['bureau'], cli: 'Agence Durance' },
+  lavande: { n: 'Villa Lavande', v: 'Bédoin', t: 'Fin de séjour', h: ['villa'], cli: 'Mme Roussel' },
+  vignes: { n: 'Maison des Vignes', v: 'Sarrians', t: 'Fin de séjour', h: ['facade', 3], cli: 'M. Bernard' },
+};
+// passages du jour : [heure, prestataire, logement, état, photos, check-list x/y, détail]
+const J = [
+  ['7 h', 'yanis', 'clos', 'manque', 5, [14, 14], 'Check-list validée · photo du local poubelles manquante'],
+  ['8 h', 'melanie', 'pie', 'envoye', 9, [16, 16], 'Rapport envoyé à 9 h 52 · ouvert par le client'],
+  ['9 h', 'kelly', 'bastide', 'envoye', 11, [18, 18], 'Rapport envoyé à 10 h 20 · compteur d\'eau à surveiller'],
+  ['9 h 30', 'sonia', 'oliviers', 'cours', 8, [14, 20], 'En cours · kit d\'accueil : café manquant'],
+  ['10 h', 'yanis', 'restanques', 'pret', 12, [22, 22], 'Check-list validée à 11 h 31 · rapport prêt'],
+  ['10 h 15', 'melanie', 'veran', 'cours', 6, [11, 28], 'En cours · fin prévue vers 14 h'],
+  ['14 h', 'sonia', 'remparts', 'prevu', 0, [0, 16], 'Fin de séjour · arrivée voyageurs 17 h'],
+  ['14 h', 'kelly', 'cigales', 'prevu', 0, [0, 18], 'Visite d\'intendance · relevé des compteurs'],
+  ['15 h', 'yanis', 'moulin', 'prevu', 0, [0, 20], 'Fin de séjour · linge 3 lits'],
+  ['18 h 30', 'melanie', 'durance', 'prevu', 0, [0, 12], 'Bureaux · badge à l\'accueil'],
+];
+const ST = { envoye: ['ok', 'Rapport envoyé'], pret: ['info', 'Rapport à relire'], cours: ['warn', 'En cours'], manque: ['late', 'Photo manquante'], prevu: ['idle', 'Prévu'] };
+const PH = { clos: ['bureau', 'sejour'], pie: ['chambre', 'cuisine', 'sdb'], bastide: ['compteur', 'sejour', 'terrasse'], oliviers: ['chambre', 'cuisine', 'terrasse'], restanques: ['piscine', 'chambre', 'cuisine'], veran: ['sdb', 'sejour'] };
+
+// ===== Outils =====
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const badge = (k) => `<span class="b ${ST[k][0]}">${ST[k][1]}</span>`;
+const av = (p, s = '') => `<span class="av" style="background:${P[p].c};${s}">${P[p].i}</span>`;
+
+// ===== Aujourd'hui =====
+function renderJour() {
+  const done = 4, tot = 10, r = 84, C = 2 * Math.PI * r;
+  $('#ring').innerHTML = `<svg viewBox="0 0 200 200" width="200" height="200"><circle cx="100" cy="100" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14"/><circle cx="100" cy="100" r="${r}" fill="none" stroke="#c9a978" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C * done / tot} ${C}" transform="rotate(-90 100 100)"/></svg><div class="c"><b>${done} / ${tot}</b><span>passages terminés<br>à 11 h 40</span></div>`;
+  const f = [['Passages prévus', 10, '#2a241f', '<b>31</b> sur la semaine'], ['Commencés', 6, '#2a241f', '<b>2</b> en cours'], ['Check-list validée', 4, '#c9a978', '<b>77</b> points cochés'], ['Photos complètes', 3, '#c9a978', '<b>51</b> photos reçues'], ['Rapport envoyé', 2, '#5f7341', '<b>1</b> prêt à relire']];
+  $('#funnel').innerHTML = f.map(([l, v, c, d]) => `<div class="fs"><div class="l">${l}</div><div class="v tnum">${v}</div><div class="bar"><i style="height:${Math.max(8, v * 5.6)}px;background:${c}"></i></div><div class="d">${d}</div></div>`).join('');
+  $('#fil').innerHTML = J.map(([h, p, l, s, n, [a, b], d]) => `<div class="row"><span class="h">${h}</span>${av(p, 'width:28px;height:28px;font-size:10px')}<div><b style="font-weight:600">${esc(L[l].n)}</b> <span class="muted sm">· ${esc(L[l].v)}</span><div class="muted sm">${esc(d)}</div></div>
+    <div>${n ? `<div class="thumbs">${(PH[l] || []).map((k) => ILL.photo(k)).join('')}<span class="sm muted" style="align-self:center;margin-left:2px">+${n - (PH[l] || []).length}</span></div>` : `<div class="pg"><i style="width:${b ? a / b * 100 : 0}%"></i></div>`}</div><div style="text-align:right">${badge(s)}</div></div>`).join('');
+  $('#todo').innerHTML = [
+    ['late', 'Bastide du Ventoux · compteur d\'eau', '14 m³ depuis le 9/11, maison vide : fuite possible. Photo du compteur jointe par Kelly.', 'Appeler M. Delorme'],
+    ['late', 'Copropriété Le Clos · photo manquante', 'Yanis B. est prévenu ; le rapport partira dès la photo reçue.', 'Relancer Yanis'],
+    ['info', 'Villa Les Restanques · rapport prêt', '12 photos, 22 points, un verre cassé signalé. En anglais pour M. et Mme Hartmann.', 'Relire'],
+  ].map(([c, t, d, a]) => `<div class="li"><span class="dot" style="background:var(--${c === 'late' ? 'terre' : 'lav'})"></span><div style="flex:1"><b style="font-weight:600">${esc(t)}</b><div class="muted sm">${esc(d)}</div></div><button class="btn${c === 'info' ? ' pri' : ''}" onclick="location.hash='${c === 'info' ? 'passage' : 'jour'}'">${a}</button></div>`).join('');
+  $('#msgs').innerHTML = [
+    ['yanis', '11 h 31', 'Restanques terminé. Un verre cassé dans la cuisine, photo jointe, remplacé par un verre du stock.'],
+    ['sonia', '10 h 58', 'Oliviers : il reste 2 dosettes de café, je n\'en avais plus dans la voiture.'],
+    ['kelly', '11 h 02', 'Je passe vendredi pour l\'intendance, je les apporte.'],
+  ].map(([p, h, t]) => `<div class="li">${av(p, 'width:28px;height:28px;font-size:10px')}<div style="flex:1"><div class="sm"><b>${P[p].n}</b> <span class="muted">· ${h}</span></div><div class="sm">${esc(t)}</div></div></div>`).join('');
+}
+
+// ===== Carte =====
+const ROUTES = { sonia: ['oliviers', 'remparts'], melanie: ['pie', 'veran', 'durance'], yanis: ['clos', 'restanques', 'moulin'], kelly: ['bastide', 'cigales'] };
+let SEL = 'sonia'; const OFF = new Set();
+const pt = (l) => { const t = T[L[l].v]; const o = L[l].off || [0, 0]; return [t[0] * 10.48 + o[0], t[1] * 9.52 + o[1]]; };
+function renderCarte() {
+  const base = [T.Monteux[0] * 10.48, T.Monteux[1] * 9.52];
+  const state = Object.fromEntries(J.map((j) => [j[2], j[3]]));
+  let s = '';
+  Object.entries(ROUTES).forEach(([p, ls]) => {
+    if (OFF.has(p)) return;
+    const pts = [base, ...ls.map(pt), base];
+    const w = p === SEL ? 5 : 3.2, op = p === SEL ? 1 : .55;
+    s += `<path d="M${pts.map((q) => q.join(' ')).join(' L')}" fill="none" stroke="${P[p].hex}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${p === SEL ? '0' : '9 7'}" opacity="${op}"/>`;
+  });
+  Object.entries(ROUTES).forEach(([p, ls]) => {
+    if (OFF.has(p)) return;
+    ls.forEach((l, i) => {
+      const [x, y] = pt(l), st = state[l], big = p === SEL;
+      const fill = st === 'prevu' ? '#fffdf9' : P[p].hex, tc = st === 'prevu' ? P[p].hex : '#fff';
+      s += `${st === 'cours' ? `<circle cx="${x}" cy="${y}" r="${big ? 24 : 18}" fill="${P[p].hex}" opacity=".18"/>` : ''}<circle cx="${x}" cy="${y}" r="${big ? 14 : 10}" fill="${fill}" stroke="${P[p].hex}" stroke-width="3"/><text x="${x}" y="${y + (big ? 5 : 4)}" text-anchor="middle" class="stop" fill="${tc}" font-size="${big ? 13 : 10}">${i + 1}</text>`;
+      if (big) s += `<g transform="translate(${x + 20} ${y - 14})"><rect width="${L[l].n.length * 7.6 + 18}" height="28" rx="8" fill="#fffdf9" stroke="#e8dfd1"/><text x="9" y="18.5" font-family="Poppins" font-size="12.5" font-weight="600" fill="#1e1a16">${esc(L[l].n)}</text></g>`;
+    });
+  });
+  s += `<g transform="translate(${base[0]} ${base[1]})"><rect x="-16" y="-16" width="32" height="32" rx="9" fill="#1e1a16"/><text y="5" text-anchor="middle" font-family="Playfair Display" font-weight="600" font-size="14" fill="#e7d7bb">CP</text></g><g transform="translate(${base[0] - 172} ${base[1] + 22})"><rect width="160" height="26" rx="8" fill="#1e1a16"/><text x="10" y="17" font-family="Poppins" font-size="11.5" font-weight="500" fill="#f3eadb">Locaux et blanchisserie</text></g>`;
+  $('#ov').innerHTML = s;
+  $('#legend').innerHTML = Object.keys(ROUTES).map((p) => `<button class="${OFF.has(p) ? 'off' : ''}" data-p="${p}" style="${p === SEL ? 'border-color:' + P[p].hex + ';box-shadow:0 0 0 2px ' + P[p].hex + '33' : ''}">${av(p)}${P[p].n} · ${ROUTES[p].length} passages</button>`).join('');
+  document.querySelectorAll('#legend button').forEach((b) => b.onclick = () => { SEL = b.dataset.p; OFF.delete(SEL); renderCarte(); });
+  const pj = J.filter((j) => j[1] === SEL);
+  const km = { sonia: 58, melanie: 64, yanis: 71, kelly: 49 }[SEL];
+  $('#tour').innerHTML = `<header>${av(SEL)}<div><h2>${P[SEL].n}</h2><div class="muted sm">${P[SEL].role} · ${km} km · départ de Monteux</div></div></header>` +
+    pj.map(([h, p, l, s, n, [a, b], d], i) => `<div class="li"><span class="av" style="width:26px;height:26px;font-size:11px;background:${s === 'prevu' ? '#fffdf9' : P[p].hex};color:${s === 'prevu' ? P[p].hex : '#fff'};border:2px solid ${P[p].hex}">${i + 1}</span><div style="flex:1"><b style="font-weight:600">${h} · ${esc(L[l].n)}</b><div class="muted sm">${esc(L[l].v)} · ${esc(L[l].t)}</div><div class="sm" style="margin-top:3px">${esc(d)}</div></div>${badge(s)}</div>`).join('');
+  $('#linge').innerHTML = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center">${[['14', 'parures prêtes'], ['6', 'sacs au retour'], ['1', 'drap taché à facturer']].map(([v, l]) => `<div style="background:var(--or-soft);border-radius:12px;padding:12px 6px"><b class="pf" style="font-size:26px;display:block;line-height:1">${v}</b><span class="sm muted">${l}</span></div>`).join('')}</div>
+    <div class="sm muted" style="margin-top:12px">Chaque prestataire voit au départ le linge à charger pour sa tournée : ${SEL === 'sonia' ? '3 lits et 9 serviettes pour Gordes, 1 lit pour Pernes.' : 'le détail par logement.'}</div>`;
+}
+
+// ===== Semaine =====
+function renderSemaine() {
+  const D = ['Lun 23', 'Mar 24', 'Mer 25', 'Jeu 26', 'Ven 27', 'Sam 28'];
+  const W = {
+    sonia: [[['oliviers', '9 h 30', 'cours'], ['remparts', '14 h']], [['durance', '7 h']], [], [['lavande', '10 h']], [['durance', '7 h']], [['remparts', '10 h'], ['moulin', '14 h']]],
+    melanie: [[['pie', '8 h', 'envoye'], ['veran', '10 h 15', 'cours'], ['durance', '18 h 30']], [['vignes', '10 h']], [['pie', '11 h']], [], [['vignes', '10 h']], [['pie', '11 h'], ['lavande', '15 h']]],
+    yanis: [[['clos', '7 h', 'manque'], ['restanques', '10 h', 'pret'], ['moulin', '15 h']], [['remparts', '14 h']], [['clos', '7 h']], [['bastide', '9 h', 'conf']], [['clos', '7 h']], []],
+    kelly: [[['bastide', '9 h', 'envoye'], ['cigales', '14 h']], [['cigales', '10 h']], [['lavande', '9 h'], ['veran', '14 h']], [['bastide', '9 h', 'conf']], [['oliviers', '16 h']], []],
+  };
+  let h = `<div class="h"></div>` + D.map((d, i) => `<div class="h${i ? '' : ' today'}">${d}</div>`).join('');
+  Object.entries(W).forEach(([p, days]) => {
+    h += `<div class="rl">${av(p)}<div><b style="font-weight:600">${P[p].n}</b><div class="muted sm">${P[p].role}</div></div></div>`;
+    days.forEach((d) => { h += `<div class="c">${d.map(([l, hr, s]) => `<div class="blk${s === 'conf' ? ' alert' : ''}" style="border-left-color:${P[p].hex}"><b>${esc(L[l].n)}</b><span class="muted">${hr} · ${p === 'kelly' ? 'Intendance' : esc(L[l].t)}</span>${s && s !== 'conf' ? `<span class="st" style="color:var(--${ST[s][0] === 'ok' ? 'ok' : ST[s][0] === 'late' ? 'terre' : ST[s][0] === 'info' ? 'lav' : 'warn'})">${ST[s][1]}</span>` : ''}${s === 'conf' ? `<span class="st" style="color:var(--terre)">Même matin que ${p === 'yanis' ? 'Kelly' : 'Yanis B.'}</span>` : ''}</div>`).join('')}</div>`; });
+  });
+  $('#plan').innerHTML = h;
+  $('#weekcards').innerHTML = [
+    ['Jeudi 26 · Bastide du Ventoux', 'Remise en état (Yanis B.) et visite d\'intendance (Kelly) le même matin. Proposition : Kelly passe à 11 h, une fois le ménage fini, et relève le compteur au propre.', 'Regrouper'],
+    ['Samedi 28 · journée chargée', 'Cinq fins de séjour entre 10 h et 15 h, dont l\'appartement Place Pie et la Villa Lavande. Mélanie et Sonia sont pleines, Yanis et Kelly sont libres.', 'Répartir'],
+    ['Linge de la semaine', '41 parures et 120 serviettes à préparer à Monteux. Pic mercredi et samedi.', 'Voir le détail'],
+  ].map(([t, d, a]) => `<div class="card"><div class="body"><b class="pf" style="font-size:16px">${t}</b><p class="sm muted" style="margin:6px 0 12px">${d}</p><button class="btn">${a}</button></div></div>`).join('');
+}
+
+// ===== Passage =====
+const SHOTS = [['piscine', 'Piscine', '11:22'], ['terrasse', 'Terrasse', '11:18'], ['sejour', 'Séjour', '10:41'], ['cuisine', 'Cuisine', '10:38'], ['chambre', 'Chambre 1', '10:24'], ['chambre', 'Chambre 2', '10:29'], ['sdb', 'Salle de bains', '10:55'], ['verre', 'Verre cassé', '10:36']];
+let LANG = 'en';
+function renderPassage() {
+  $('#photos').innerHTML = SHOTS.map(([k, l, t]) => ILL.photo(k, l, t)).join('');
+  const Z = [['Séjour', ['Sols aspirés et lavés', 'Poussières, étagères', 'Baie vitrée', 'Coussins et plaids']], ['Cuisine', ['Plan de travail, crédence', 'Four, micro-ondes', 'Réfrigérateur vidé', 'Vaisselle rangée', 'Kit d\'accueil complété']], ['Chambres (4)', ['Lits faits, linge hôtelier', 'Sous les lits', 'Placards (oublis)']], ['Salles de bains (2)', ['Douche, joints', 'WC', 'Serviettes, tapis', 'Produits d\'accueil']], ['Extérieur', ['Terrasse balayée', 'Piscine : épuisette', 'Volets fermés, portail']], ['Départ', ['Alarme activée', 'Photos prises', 'Clés dans la boîte']]];
+  $('#cl').innerHTML = Z.map(([z, it]) => `<div><div class="zh"><b>${z}</b><span class="muted sm">${it.length} / ${it.length}</span></div>${it.map((t) => `<label class="ck"><input type="checkbox" class="chk" checked><span>${esc(t)}</span></label>`).join('')}</div>`).join('');
+  renderRap();
+  $('#ano').innerHTML = `<div class="li"><div style="width:84px;height:62px;flex:none">${ILL.photo('verre')}</div><div style="flex:1"><b style="font-weight:600">Un verre cassé dans la cuisine</b><div class="muted sm">Remplacé par un verre du stock. Refacturable au voyageur : 4 €, à valider.</div><div style="margin-top:8px;display:flex;gap:6px"><button class="btn" style="padding:5px 10px">Refacturer</button><button class="btn" style="padding:5px 10px">Ne pas facturer</button></div></div></div>`;
+  document.querySelectorAll('#ba button').forEach((b, i) => b.onclick = () => { document.querySelectorAll('#ba button').forEach((x) => x.classList.toggle('on', x === b)); $('#photos').style.filter = i ? 'grayscale(.35) brightness(.92)' : ''; });
+}
+const TX = {
+  fr: { h: 'Villa Les Restanques est prête.', p: 'Ménage de fin de séjour effectué lundi 23 novembre, de 10 h 05 à 11 h 31.', s: ['Check-list complète · 22 points', 'Linge changé · 4 lits, 12 serviettes', 'Prête pour samedi 28 · 6 voyageurs'], a: 'Un verre cassé, remplacé (4 € refacturés au voyageur).' },
+  en: { h: 'Villa Les Restanques is ready.', p: 'End-of-stay cleaning done on Monday 23 November, 10:05 to 11:31.', s: ['Checklist complete · 22 points', 'Linen changed · 4 beds, 12 towels', 'Ready for Saturday 28 · 6 guests'], a: 'One broken glass, replaced (€4 charged to the guests).' },
+  de: { h: 'Villa Les Restanques ist bereit.', p: 'Endreinigung am Montag, 23. November, von 10:05 bis 11:31 Uhr.', s: ['Checkliste vollständig · 22 Punkte', 'Wäsche gewechselt · 4 Betten, 12 Handtücher', 'Bereit für Samstag, 28. · 6 Gäste'], a: 'Ein zerbrochenes Glas, ersetzt (4 € an die Gäste berechnet).' },
+};
+function repHTML(m) {
+  const t = TX[LANG];
+  return `<div class="rep"><div class="rh"><span class="mono">CP</span><div style="flex:1"><b>Conciergerie</b><em>en Provence</em></div><div class="langs">${['fr', 'en', 'de'].map((l) => `<button class="${l === LANG ? 'on' : ''}" data-l="${l}">${l.toUpperCase()}</button>`).join('')}</div></div>
+    <div class="art" style="height:${m ? 150 : 120}px">${ILL.house('villa')}</div>
+    <div style="padding:14px 16px"><div class="muted sm">${LANG === 'en' ? 'Dear Mr and Mrs Hartmann,' : LANG === 'de' ? 'Sehr geehrte Familie Hartmann,' : 'Bonjour Madame, Monsieur,'}</div><div class="pf" style="font-size:${m ? 22 : 19}px;font-weight:700;line-height:1.2;margin:4px 0 6px">${t.h}</div><div class="sm muted">${t.p}</div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">${t.s.map((x) => `<div style="display:flex;gap:9px;align-items:center" class="sm"><span style="width:20px;height:20px;border-radius:50%;background:var(--olive);color:#fff;display:grid;place-items:center;font-size:11px;flex:none">✓</span>${x}</div>`).join('')}</div>
+    <div class="phgrid" style="grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px">${SHOTS.slice(0, m ? 6 : 3).map(([k]) => ILL.photo(k)).join('')}</div>
+    <div class="sm" style="margin-top:12px;background:var(--warn-bg);border-radius:10px;padding:9px 11px;color:#6d4a17">${t.a}</div></div></div>`;
+}
+function bindLang(root) { root.querySelectorAll('.langs button').forEach((b) => b.onclick = () => { LANG = b.dataset.l; renderRap(); renderClient(); }); }
+function renderRap() {
+  $('#rapprev').innerHTML = repHTML(false) + `<div class="sm muted" style="margin:12px 0">Envoyé par e-mail avec un lien personnel. La langue suit la fiche du client. Les échanges internes et le stock ne sont jamais montrés.</div><div style="display:flex;gap:8px"><button class="btn">Modifier</button><button class="btn pri" style="flex:1;justify-content:center">Envoyer à M. et Mme Hartmann</button></div>`;
+  bindLang($('#rapprev'));
+}
+
+// ===== Logements =====
+function renderLogements() {
+  const nx = { oliviers: ['kelly', 'Ven. 27 · 16 h'], restanques: ['yanis', 'Sam. 5/12 · 10 h'], pie: ['melanie', 'Mer. 25 · 11 h'], bastide: ['kelly', 'Jeu. 26 · 9 h'], lavande: ['kelly', 'Mer. 25 · 9 h'], moulin: ['yanis', 'Auj. · 15 h'], cigales: ['kelly', 'Auj. · 14 h'], vignes: ['melanie', 'Mar. 24 · 10 h'] };
+  const K = { oliviers: ['Boîte à clés portail', 'Linge hôtelier', 'Chien interdit'], restanques: ['Piscine : épuisette', 'Alarme 4 chiffres', 'Rapport en anglais'], pie: ['Code immeuble', '3e sans ascenseur'], bastide: ['Relevé eau, gaz, élec.', 'Alarme à couper'], lavande: ['Local piscine fermé', 'Propriétaire le 4/12'], moulin: ['Clés chez le voisin', 'Bois pour la cheminée'], cigales: ['Arrosage oliviers', 'Courrier à réexpédier'], vignes: ['Parking dans la cour', 'Lit bébé chambre 2'] };
+  const tb = { 'Fin de séjour': 'info', 'Intendance': 'ok', 'Remise en état': 'warn' };
+  $('#modeles').innerHTML = [['Fin de séjour · maison', '20 points · 8 photos obligatoires', 9], ['Fin de séjour · villa avec piscine', '22 points · piscine et alarme', 3], ['Fin de séjour · appartement', '16 points · 6 photos', 4], ['Visite d\'intendance', '18 points · relevés de compteurs', 3], ['Remise en état', '28 points · photos avant et après', 1]].map(([t, d, n]) => `<div class="li"><span style="width:30px;height:30px;border-radius:9px;background:var(--or-soft);display:grid;place-items:center">☑</span><div style="flex:1"><b style="font-weight:600">${esc(t)}</b><div class="muted sm">${d}</div></div><span class="muted sm">${n} logements</span></div>`).join('');
+  $('#consignes').innerHTML = [['kelly', 'Villa Lavande', 'La propriétaire arrive le 4 décembre : grand ménage d\'hiver la veille.', 'Lu par 3 / 3'], ['kelly', 'Mas des Oliviers', 'Chien interdit dans le logement : vérifier les poils sur les canapés.', 'Lu par 3 / 3'], ['yanis', 'Route de Gordes', 'Barrée aux Imberts, passer par Murs (+10 min).', 'Lu par 2 / 3']].map(([p, l, t, r]) => `<div class="li">${av(p, 'width:28px;height:28px;font-size:10px')}<div style="flex:1"><b style="font-weight:600">${esc(l)}</b><div class="sm">${esc(t)}</div></div><span class="muted sm" style="white-space:nowrap">${r}</span></div>`).join('');
+  $('#lgrid').innerHTML = Object.keys(nx).map((l) => `<div class="lc"><div class="pic">${ILL.house(...L[l].h)}<span class="b ${tb[L[l].t] || 'idle'}" style="background:#fffdf9">${L[l].t}</span></div><div class="in"><h3>${esc(L[l].n)}</h3><div class="muted sm">${esc(L[l].v)} · ${esc(L[l].cli)}</div><div class="k">${K[l].map((x) => `<span>${esc(x)}</span>`).join('')}</div><div class="nx">${av(nx[l][0])}<span><b style="font-weight:600">Prochain passage</b> · ${nx[l][1]}</span></div></div></div>`).join('');
+}
+
+// ===== Mobile : prestataire =====
+function renderJournee() {
+  $('#cur').innerHTML = `<div style="height:132px;position:relative;background:url(carte-vaucluse.jpg) 69.2% 79.8%/360% auto"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--p-sonia);border:4px solid #fff;box-shadow:0 0 0 8px rgba(180,83,42,.2)"></span><span class="b warn" style="position:absolute;left:12px;top:12px;background:#fffdf9">En cours depuis 9 h 34</span></div>
+    <div style="padding:13px 14px"><div class="pf" style="font-size:20px;font-weight:700">Mas des Oliviers</div><div class="sm muted">Fin de séjour · Gordes · prochains voyageurs samedi</div></div>
+    <div class="li" style="border-top:1px solid var(--line2)"><span>🔑</span><div style="flex:1"><b style="font-weight:600">Boîte à clés du portail</b><div class="muted sm">code affiché sur place uniquement</div></div><button class="btn">Voir</button></div>
+    <div class="li"><span>🛏️</span><div style="flex:1"><b style="font-weight:600">Linge</b><div class="muted sm">3 lits · 9 serviettes · sac n° 4 au coffre</div></div></div>
+    <div class="li"><span>⚠️</span><div style="flex:1"><b style="font-weight:600">Consigne de Kelly</b><div class="muted sm">Chien interdit : vérifier les poils sur les canapés</div></div></div>`;
+  const it = [['Cuisine · plan de travail', 'cuisine', 1], ['Cuisine · four', null, 1], ['Kit d\'accueil complété', null, 0, 1], ['Chambre 2 · lit fait', 'chambre', 1], ['Chambre 2 · linge taché', 'linge', 1], ['Terrasse balayée', null, 0, 1]];
+  $('#mcl').innerHTML = `<div style="padding:10px 14px 2px"><div class="pg" style="height:8px"><i style="width:70%;background:var(--p-sonia)"></i></div></div>` + it.map(([t, ph, c, need]) => `<label class="li" style="align-items:center"><input type="checkbox" class="chk" ${c ? 'checked' : ''}><span style="flex:1">${esc(t)}</span>${ph ? `<span style="width:52px;height:40px;display:block">${ILL.photo(ph)}</span>` : need ? '<span style="width:52px;height:40px;border:2px dashed #d8cbb6;border-radius:9px;display:grid;place-items:center;color:var(--muted)">📷</span>' : ''}</label>`).join('') +
+    `<div style="padding:12px 14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">${['Casse ou dégât', 'Linge taché', 'Produit manquant', 'Objet oublié'].map((t, i) => `<button class="btn" style="justify-content:center;padding:10px 6px;${i === 2 ? 'border-color:var(--terre);color:var(--terre);background:var(--terre-soft)' : ''}">${t}</button>`).join('')}</div>`;
+  $('#next').innerHTML = `<div class="li"><b class="pf" style="width:46px">14 h</b><div style="flex:1"><b style="font-weight:600">Studio Les Remparts</b><div class="muted sm">Pernes-les-Fontaines · voyageurs à 17 h</div></div><span class="muted">›</span></div>`;
+}
+
+// ===== Mobile : page du propriétaire =====
+function renderClient() {
+  $('#client').innerHTML = repHTML(true) + `<div class="card" style="margin-top:12px"><div class="body sm">Une question ? Répondez simplement à ce message : il arrive à Kelly avec tout l'historique de votre maison.</div></div>`;
+  bindLang($('#client'));
+}
+
+// ===== Navigation =====
+function show() {
+  const mob = matchMedia('(max-width:600px)').matches;
+  const v = location.hash.slice(1) || (mob ? 'journee' : 'jour');
+  document.querySelectorAll('section[data-view]').forEach((s) => s.classList.toggle('on', s.dataset.view === v));
+  document.querySelectorAll('[data-v]').forEach((a) => a.classList.toggle('on', a.dataset.v === v));
+  const s = document.querySelector(`section[data-view="${v}"]`);
+  if (s) { $('#title').textContent = $('#mtitle').textContent = s.dataset.title; $('#subtitle').textContent = $('#msubtitle').textContent = s.dataset.sub; }
+  scrollTo(0, 0);
+}
+renderJour(); renderCarte(); renderSemaine(); renderPassage(); renderLogements(); renderJournee(); renderClient();
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
