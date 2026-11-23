@@ -60,7 +60,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
   `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, prise en main J+2
   propre à chaque template, J-3, fin, avant effacement ; remerciement à l'achat via le ping Gumroad
-  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis `quentin.morel@qm-engineering.fr` par le SMTP d'OVH (variables `ESSAI_SMTP_*`, cf. `docs/templates/communication/DELIVRABILITE.md`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Espace acheteurs `/connexion/` (refait le 22/11/2026) : dès qu'un template est enregistré sur l'appareil, la page
   devient « Mes templates » : épinglés (étoile), récemment ouverts depuis la page, puis regroupement par thème du
