@@ -158,7 +158,9 @@ Livrables dans `docs/templates/communication/<slug>/` (non publiés), relus par 
    phrase, pour qui, 3 à 5 bénéfices concrets, captures, prix, « Acheter » et « Essayer la démo »,
    questions fréquentes propres au produit. Mettre sa carte dans le catalogue de `/templates/` (liste
    « En préparation » puis vitrine « Disponibles maintenant » à la mise en vente ; voir `reference.md`
-   § « Mise à jour du site ») et ajouter sa carte sur `/en/templates/`.
+   § « Mise à jour du site ») et ajouter sa carte sur `/en/templates/` (présentation
+   du template français, mention « in French » : **aucune version anglaise du template ni du pack**, décision du
+   18/11/2026).
 2. **`linkedin.md`** : une publication de présentation (environ 1 200 à 1 500 caractères), à la première
    personne de Quentin, ton direct et sobre, sans superlatifs ni promesses chiffrées non vérifiées :
    accroche sur le problème, ce que fait le template (3 points), ce qui le distingue (base intégrée, tous

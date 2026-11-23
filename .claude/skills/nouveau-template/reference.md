@@ -118,7 +118,8 @@ Obligatoire, dans la même PR que le template (la plaquette et la vidéo ne chan
 
 - [ ] **Accueil `index.html`** : prix « dès … » de la porte « Templates » si le moins cher change.
 - [ ] **Templates en anglais `en/templates/index.html`** : carte du template dans son groupe (Professional /
-      Personal life), mention « in French » ; « In preparation » mis à jour.
+      Personal life), mention « in French » ; « In preparation » mis à jour. Le template lui-même n'est jamais
+      traduit (pas de version anglaise des templates ni des packs, décision du 18/11/2026).
 - [ ] **Avant la mise en vente** (template prêt, fiche Gumroad pas encore publiée) : démo ouverte (pas de
       blocage 404 dans `netlify.toml`), page `catalogue/<slug>/` sans bouton Acheter ni prix, avec « Mise en
       vente prochaine » et la démo en bouton principal, ligne `carte prochaine` dans la liste « En préparation » du catalogue (voir ci-dessous), bandeau

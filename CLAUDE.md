@@ -32,6 +32,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   développement (`idée`, `fiche`, `en cours`, `prêt`, `en vente`).
 - **Développement d'un template** : appliquer le skill `.claude/skills/nouveau-template/`, à chaque fois.
 - Référence d'architecture : `templates/revision/` (planning de révision).
+- **Pas de version anglaise des templates ni des packs** (décision du 18/11/2026) : interface, démo, fiche Gumroad,
+  `gumroadEn`, traductions restent en français uniquement ; les mentions « version anglaise en attente » dans
+  `README.md`, `IDEES.md` et les fiches sont caduques. La **partie anglaise du site** (`en/`) est conservée : la page
+  `/en/templates/` continue de présenter chaque template français (carte « in French »).
 
 ## Affiliation
 
