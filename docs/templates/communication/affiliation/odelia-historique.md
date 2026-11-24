@@ -30,7 +30,7 @@ Mémoire du dossier, à relire avant toute reprise de contact. Fiche : `odelia.m
 | 22/11 12:28 | Eva → Quentin (Odélia plus en copie) | Contre-proposition : Reel Instagram à 200 € fixe. Demande le prix des outils pour les étudiants ; les 2 000 € sont-ils une autre prestation ? |
 | 22/11 13:10 | Quentin → Eva (Cci Floriane) | Accord Reel 200 € sans commission ; 2 000 € = sur-mesure pour professionnels ; prix des 12 outils, achat à l'unité, téléphone ; produit d'appel au choix d'Odélia ; lien `qm-engineering.fr/odelia` ; accès gratuit offert. Texte : `odelia-reponse-reel-200.md`. |
 | 24/11 15:17 | Eva → Quentin | Tarifs jugés adaptés ; 250 € global pour Reel + story avec sticker lien + lien en bio 7 jours ; voit avec Odélia les outils à mettre en avant. |
-| 24/11 | Quentin → Eva (Cci Floriane), envoyé | Accord sur 250 € ; modalités (contenu, délais) laissées à Yuzu ; disponible pour du contenu technique. |
+| 24/11 16:26 | Quentin → Eva (Cci Floriane) | Accord sur 250 € ; modalités (contenu, délais) laissées à Yuzu ; disponible pour du contenu technique. |
 
 ## Statistiques Instagram transmises par Eva (21/07–19/08/2026)
 

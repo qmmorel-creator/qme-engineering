@@ -3,7 +3,7 @@
 ## État du dossier au 24/11/2026 (à lire en premier)
 
 - **Accord conclu** : 250 € fixe, sans commission, pour 1 Reel Instagram dédié + relais du Reel en story avec sticker
-  lien + lien en bio pendant 7 jours. Accepté par Quentin le 24/11 (mail envoyé). Contact : Eva Pellat, Yuzu Agency,
+  lien + lien en bio pendant 7 jours. Accepté par Quentin le 24/11 à 16:26 (mail envoyé). Contact : Eva Pellat, Yuzu Agency,
   contact@agency-yuzu.com ; Odélia n'est plus en copie depuis le 22/11 ; Floriane Jolliot toujours en Cci.
 - **Offert à Odélia** (mail du 22/11) : accès gratuit à vie aux 12 outils études et budget (Planning de révision,
   Notes et moyennes, Planner horaire, Suivi d'habitudes, Suivi de lecture, Candidatures, Planning de mémoire, Mon
@@ -30,6 +30,11 @@
   (@anusha.drg, étudiante à Londres), kit média
   https://drive.google.com/file/d/15nI0AafxflZ8RQ_ydbnz6e_wUW-njwWm/view ; refus de la commission seule le 18/11.
   Porte ouverte si un budget en numéraire se libère.
+
+**Suivi Nexora (source unique depuis le 24/11)** : onglet QME, fiche créateur `a-8` (étape `partenaire`, échanges datés,
+prochaine action) ; projet « Yuzu Agency-Odélia (Reel Instagram) » (`aac4f402-c4c9-4956-a85f-202f18eb724f`), tâche
+« État global du prospect » (`mcp-408d9c99-eddb-43d4-8d16-6db66ebacfa2`) au statut **Signé** depuis le 24/11. Les
+fichiers de ce dossier restent la mémoire détaillée (textes intégraux, raisonnements).
 
 **Fichiers du dossier** : `odelia-mails-integral.md` (texte intégral de tous les mails des deux fils),
 `odelia-historique.md` (chronologie), `odelia-reponse-reel-200.md` (mail du 22/11 et raisonnement),
@@ -158,7 +163,7 @@ Tarifs des outils jugés adaptés à la communauté étudiante. Story avec stick
 **tarif global de 250 €** : 1 Reel Instagram dédié, relais du Reel en story avec sticker lien, lien en bio pendant 7
 jours. Elle voit avec Odélia quels outils mettre en avant. Odélia n'est pas en copie.
 
-**24/11** : Quentin accepte les 250 €. **Mail envoyé le 24/11** (message `1a20e2a43573ca10`, depuis quentin.morel@qm-engineering.fr, Cci Floriane) : accord, modalités (contenu mis en avant,
+**24/11** : Quentin accepte les 250 €. **Mail envoyé le 24/11 à 16:26** (message `1a20e2a43573ca10`, depuis quentin.morel@qm-engineering.fr, Cci Floriane) : accord, modalités (contenu mis en avant,
 délais de diffusion) laissées à Yuzu et Odélia, disponibilité pour tout contenu technique, remerciements. Facturation
 non abordée dans ce mail (déjà demandée le 22/11, sans réponse).
 

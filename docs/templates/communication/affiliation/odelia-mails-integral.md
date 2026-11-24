@@ -535,7 +535,7 @@ Instagram : @yuzuagency_ <https://www.instagram.com/yuzuagency_/>
 Site : agency-yuzu.com
 ```
 
-### 24/11/2026 (peu après 15:17) · quentin.morel@qm-engineering.fr → contact@agency-yuzu.com
+### 24/11/2026 16:26 · quentin.morel@qm-engineering.fr → contact@agency-yuzu.com
 Cc : — · Cci : floriane.jolliot@gmail.com · message `1a20e2a43573ca10`
 
 ```text
