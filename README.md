@@ -232,6 +232,9 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   reliés depuis le pied de page et les pages catalogue concernées ; styles `assets/guides.css`, calculateur et
   impression de la check-list `assets/guides.js` (le calculateur charge `templates/budget-commun/regles.js`). Suivi et
   règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
+  Depuis le 24/11/2026, l'index présente une carte par guide avec la vignette du template lié (adresse tenue à jour par
+  les scripts de vignettes, `PAGES_REPRISE`) et les tons de sa partie (`data-partie` sur le `<li>`) ; chaque page de
+  guide porte `<body data-partie="pro|perso">`. À l'ajout d'un guide : carte, vignette et partie à reprendre.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/pro/` et `/perso/` (22/11/2026, `docs/templates/RATIONALISATION.md`) : le catalogue filtré sur une partie (pros ou
