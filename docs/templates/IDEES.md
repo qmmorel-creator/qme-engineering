@@ -92,7 +92,7 @@ déjà).
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 ; prix de 9 € maintenu par Quentin le 22/11/2026 (dérogation à la règle des 12 €, comme T98) |
-| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | fusionné dans T51 le 22/11/2026 | — | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28. Rationalisation F1 : MRG retiré du site et des packs (remplacé par T51 dans Vie à deux), adresses redirigées vers `evenementiel` ; sa fiche Gumroad (`organisateur-mariage`, même identifiant) devient celle de T51, à renommer. Modèle « Mariage » de T51. |
+| T15 | Organisateur de mariage | Événementiel perso | Futurs mariés | fusionné dans T51 le 22/11/2026 | — | M | P1 | Liste initiale 12/11/2026 + Backlog Quentin n° 28. Rationalisation F1 : MRG retiré du site et des packs (remplacé par T51 dans Vie à deux), adresses redirigées vers `evenementiel` ; sa fiche Gumroad (`organisateur-mariage`, même identifiant) est devenue celle de T51, renommée le 22-24/11. Modèle « Mariage » de T51. |
 | T16 | Déménagement | Personnel | Particuliers qui déménagent | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
@@ -112,7 +112,7 @@ déjà).
 | T32 | Levée de réserves (OPR) | BTP | Conducteurs de travaux, MOE, syndics | en vente | 39 € | M | P1 | Backlog Quentin n° 06 |
 | T33 | Pilotage d'une journée de bascule | Opérations | Responsables production, IT, logistique | en vente | 29 € | M | P2 | Backlog Quentin n° 07 |
 | T34 | Tableau de bord de pilotage PME | Direction | Dirigeants TPE/PME | en vente | 39 € | M | P2 | Backlog Quentin n° 08 |
-| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | fusionné dans T28 le 22/11/2026 | — | M | P1 | Backlog Quentin n° 10. Rationalisation F2 : PRS retiré du site et des packs, adresses redirigées vers le CRM ; fiche Gumroad `pipeline-prospection` à dépublier |
+| T35 | Pipeline de prospection B2B | Commercial | Commerciaux, indépendants B2B | fusionné dans T28 le 22/11/2026 | — | M | P1 | Backlog Quentin n° 10. Rationalisation F2 : PRS retiré du site et des packs, adresses redirigées vers le CRM ; fiche Gumroad `pipeline-prospection` dépubliée |
 | T36 | Générateur de devis | Commercial | Artisans, freelances | en vente | 29 € | M | P1 | Backlog Quentin n° 11 |
 | T37 | Coût de revient et prix par client | Finance pro | Prestataires de services | en vente | 25 € | S | P1 | Backlog Quentin n° 12 |
 | T38 | Préparateur d'appel découverte | Commercial | Consultants, commerciaux | en vente | 12 € | S | P2 | Backlog Quentin n° 13 |
@@ -137,7 +137,7 @@ déjà).
 | T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
-| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` à dépublier |
+| T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` dépubliée |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques, exploitants multi-sites | en vente | 39 € | M | P2 | Backlog Quentin n° 39. Absorbe T60 le 22/11/2026 (option plusieurs sites) |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
@@ -151,7 +151,7 @@ déjà).
 | T73 | Suivi du temps et rentabilité par mission (ancien nom : Suivi du temps passé et rentabilité par mission) | Finance pro | Freelances, consultants | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance gestion) |
 | T74 | Propositions commerciales (note de cadrage, options, planning) | Commercial | Freelances, consultants, agences | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
 | T75 | Calendrier éditorial des réseaux professionnels | Marketing | Freelances, indépendants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Freelance clients) |
-| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | fusionné dans T89 « Suivi de candidatures » le 22/11/2026 | — | S | P2 | Proposition validée par Quentin 14/11/2026. Rationalisation F3 : CND retiré du site et des packs (remplacé par CAN dans PFC), adresses redirigées vers `candidatures` ; fiche Gumroad `suivi-appels-offres` à dépublier |
+| T76 | Suivi des appels d'offres et candidatures (ancien nom : Suivi des candidatures aux appels d'offres et plateformes) | Commercial | Freelances, PME | fusionné dans T89 « Suivi de candidatures » le 22/11/2026 | — | S | P2 | Proposition validée par Quentin 14/11/2026. Rationalisation F3 : CND retiré du site et des packs (remplacé par CAN dans PFC), adresses redirigées vers `candidatures` ; fiche Gumroad `suivi-appels-offres` dépubliée |
 | T77 | Registre du DOE (pièces à remettre par lot, relances) | BTP | MOE, entreprises, OPC | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T78 | Conformité des sous-traitants (agréments, attestations) | BTP | Entreprises générales, MOE | en vente | 29 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Chef de projet BTP) |
 | T79 | Entretiens annuels et professionnels | RH | Dirigeants de TPE/PME, managers | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Petite entreprise) |
@@ -503,18 +503,18 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T03 | `taches` | TCH | gestionnaire-taches |
 | T04 | `nutrition` | NTR | nutrition |
 | T05 | `budget` | BDG | budget-foyer |
-| T15 | `mariage` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | MRG (retiré) | organisateur-mariage (fiche reprise par T51, à renommer) |
+| T15 | `mariage` (fusionné dans T51 le 22/11/2026, redirigé vers `evenementiel`) | MRG (retiré) | organisateur-mariage (fiche reprise par T51, renommée) |
 | T24 | `visa` | VSA | circuit-visa |
 | T25 | `non-conformites` | NCF | non-conformites |
 | T28 | `crm` | CRM | crm-freelance |
 | T29 | `flotte` | VHC | gestion-flotte |
 | T30 | `planner` | PHR | planner-horaire |
 | T32 | `reserves` | RSV | levee-reserves |
-| T35 | `prospection` (fusionné dans T28 le 22/11/2026, redirigé vers `crm`) | PRS (retiré) | pipeline-prospection (à dépublier) |
+| T35 | `prospection` (fusionné dans T28 le 22/11/2026, redirigé vers `crm`) | PRS (retiré) | pipeline-prospection (dépubliée) |
 | T36 | `devis` | DVS | generateur-devis |
 | T42 | `tresorerie` | TRS | tresorerie-previsionnelle |
 | T45 | `parc-informatique` | PRC | parc-informatique |
-| T51 | `evenementiel` | EVT | organisateur-mariage (fiche de T15 reprise, à renommer ; ancien permalien prévu : pilote-evenementiel) |
+| T51 | `evenementiel` | EVT | organisateur-mariage (fiche de T15 reprise et renommée « Organisateur d'événement » ; ancien permalien prévu : pilote-evenementiel) |
 | T53 | `inscriptions` | ASC | inscriptions-associatives |
 | T57 | `auto-ecole` | AEC | gestion-auto-ecole |
 | T67 | `travaux` | TRV | pilote-travaux |
@@ -540,7 +540,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T33 | `bascule` | BSC | pilotage-bascule (prévu) |
 | T55 | `gestion-classe` | CSE | gestion-classe (prévu) |
 | T56 | `emploi-du-temps` | EDT | emploi-du-temps-etablissement (prévu) |
-| T60 | `parcs-multi-sites` (fusionné dans T61 le 22/11/2026, redirigé vers `maintenance`) | PRK (retiré) | pilotage-parcs-multi-sites (à dépublier) |
+| T60 | `parcs-multi-sites` (fusionné dans T61 le 22/11/2026, redirigé vers `maintenance`) | PRK (retiré) | pilotage-parcs-multi-sites (dépubliée) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
 | T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
 | T17 | `lecture` | PGS | suivi-lecture (prévu) |
@@ -893,7 +893,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T73 | `suivi-temps` | TMP | suivi-temps-rentabilite (prévu) |
 | T74 | `propositions` | PCM | propositions-commerciales (prévu) |
 | T75 | `calendrier-editorial` | CED | calendrier-editorial (prévu) |
-| T76 | `appels-offres` (fusionné dans T89 le 22/11/2026, redirigé vers `candidatures`) | CND (retiré) | suivi-appels-offres (à dépublier) |
+| T76 | `appels-offres` (fusionné dans T89 le 22/11/2026, redirigé vers `candidatures`) | CND (retiré) | suivi-appels-offres (dépubliée) |
 | T78 | `sous-traitants` | STR | conformite-sous-traitants (prévu) |
 | T79 | `entretiens-annuels` | ENP | entretiens-annuels-professionnels (prévu) |
 | T80 | `document-unique` | DRP | document-unique-evaluation-risques |
@@ -905,7 +905,7 @@ Mis en vente le 13/11/2026 (PR #41, fiches Gumroad publiées avec couverture). C
 | T86 | `remerciements` | CDX | cadeaux-remerciements (prévu) |
 | T87 | `revue-hebdo` | RVH | revue-hebdomadaire (prévu) |
 | T88 | `notes` | NTS | notes-moyennes (prévu) |
-| T89 | `candidatures` (Suivi de candidatures) | CAN | candidatures-etudes-stages-alternance (à renommer « Suivi de candidatures ») |
+| T89 | `candidatures` (Suivi de candidatures) | CAN | candidatures-etudes-stages-alternance (renommée « Suivi de candidatures » le 24/11) |
 | T90 | `memoire` | MMR | planning-memoire (prévu) |
 | T91 | `subventions` | SBV | subventions-association (prévu) |
 | T92 | `benevoles` | BNV | benevoles-planning-creneaux (prévu) |
