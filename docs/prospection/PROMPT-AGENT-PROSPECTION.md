@@ -29,7 +29,7 @@ vers cette session : expéditeur, objet, lien du fil, nature), sans écriture da
 
 | Tâche planifiée | Id | Décision | Ce que l'agent reprend |
 |---|---|---|---|
-| Concept prospect (toutes les heures, 8 h 47 → 21 h 47) | `trig_019rPQFNtYoGR5ckWEzeuLLG` | **désactiver** (`update_trigger`, `enabled: false`) | § 3 : concepts et brouillons pour les intéressés. Elle lit encore l'ancien Pipeline claude.ai, archivé depuis le 24/11 |
+| Concept prospect (toutes les heures, 8 h 47 → 21 h 47) | `trig_019rPQFNtYoGR5ckWEzeuLLG` | **désactiver** (`update_trigger`, `enabled: false`) | repris par Master Tunnel de vente (§ 3). Elle lit encore l'ancien Pipeline claude.ai, archivé depuis le 24/11 |
 | Dernière relance vagues 25 à 33 (ponctuelle, 27/11 8 h 41) | `trig_01PfmFKQTN5Zy1qKJRfZsAip` | **désactiver** | § 2 bis : brouillons de la dernière relance, par lots. Elle dépendait de scripts du dossier temporaire de la session « Dossier commercial QME » (déconnectée) |
 | Tri Gmail horaire (7 h 21 → 23 h 21) | `trig_01Fsd3gUeCky8xtkuiYGJgkR` | **garder**, mais retirer de son prompt la section « PROSPECTION QME · PIPELINE » et les écritures dans le Pipeline (`update_trigger` `prompt`, relu en entier avant) : une réponse de prospect y reste une alerte « humain important », sans écriture | le suivi des réponses de prospects (§ 1 à § 5) |
 | Affiliation QME · envoi, Affiliation QME · surveillance quotidienne, et les anciennes relances d'affiliation (Laurine, J+7) | — | hors périmètre : session [MASTER] Suivi Influenceurs, ne pas toucher | — |
@@ -132,28 +132,32 @@ Première échéance : **vendredi 27/11/2026**, dernière relance des vagues 25 
    (échange « dernière relance », `relance` vide, prochaine action « sans réponse au JJ/MM : perdu »).
 5. Toute future campagne de relance de masse suit la même règle : lots, exemple et décompte, feu vert, envoi par lots.
 
-### 3. Réponses intéressées
+### 3. Réponses intéressées : relais au Master Tunnel de vente
 
-1. Pour chaque nouvel intéressé de l'étape 1 (et chaque fiche en `repondu` sans concept ni échange après la réponse) :
-   applique le skill `concept-prospect` (page `/concepts/<slug>/` en PR **non fusionnée**, démonstration, PDF,
-   **brouillon** de réponse) ; au plus **deux concepts par passage**, les plus anciens d'abord ; les autres au passage
-   suivant. Avant de commencer, vérifie qu'aucune autre session ne le fait déjà (étape 4) et qu'aucune branche
-   `claude/concept-<slug>` ni aucun brouillon n'existe dans le fil.
-2. Si la réponse demande seulement un créneau ou une précision simple, prépare un brouillon de réponse court (signature,
-   mention) au lieu d'un concept, et indique dans le compte rendu pourquoi.
+Depuis le 24/11/2026, un prospect intéressé est suivi par **Master Tunnel de vente** (`docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md`,
+session `session_0183EW52aSoTaYaYHgqbh564`, tâche quotidienne de 19 h 17) : concept, réponse, réunions, devis, contrat,
+factures. L'agent prospection ne fait plus ni concept ni réponse de fond.
+
+1. Pour chaque nouvel intéressé de l'étape 1 : libellé `qme/Prospects/Intéressé`, fil laissé en boîte de réception,
+   fiche QME à l'étape `repondu` avec l'échange daté (`sens: "recu"`, extrait de la réponse), `balle: "qme"` et
+   `prochaineAction` « Master Tunnel : répondre ».
+2. Prévient la session Master Tunnel de vente (`send_message`) : entreprise, id de fiche, lien du fil, ce que demande le
+   prospect en une phrase. Un message par passage, qui liste tous les intéressés du jour.
 3. Créateur ou agence d'affiliation intéressé : renvoi à la session [MASTER] Suivi Influenceurs (§ 1 bis), rien d'autre.
-4. Premier échange de fond : crée le projet Nexora, la tâche « État global », la Note Bible et le dossier Drive
-   (`NEXORA-PROSPECTS.md` § 4).
-5. Rendez-vous accepté par un prospect (invitation dans l'agenda, `read_google_calendar_events` sur 14 jours) : tâche
-   de type Réunions dans son projet, avec ses heures, et fiche en `rdv`.
+4. Si la tâche « Master Tunnel de vente QME (quotidien) » n'est plus active (`get_trigger` `trig_01XdbXRAPvxjSxsSE48gs97X`),
+   le dire en tête du compte rendu ; ne pas faire son travail à sa place.
 
 ### 4. Ce que font les autres sessions
 
 1. `list_sessions` (`mine: true`, `limit: 100`) : garde les sessions actives ou mises à jour dans les dernières 36 h dont
    le titre, les tags ou le `task_summary` touchent la prospection (prospect, concept, relance, devis, proposition,
    refus, registre, nom d'un prospect ou d'une entreprise des fiches QME ouvertes). En font
-   partie la session « Dossier commercial QME » (`session_01YFb51FriypfG8JbqzhPPhy`, historique des vagues), et, tant qu'elle n'est pas
-   désactivée, la routine « Concept prospect ».
+   partie :
+   - la session « Dossier commercial QME » (`session_01YFb51FriypfG8JbqzhPPhy`, historique des vagues) ;
+   - Master Tunnel de vente (`session_0183EW52aSoTaYaYHgqbh564`), qui suit les intéressés (§ 3) ;
+   - la session « Campagne concept du jour » (`session_0183EW54tGg2Bhkayay2aBFc`, tâche de 13 h 47 en semaine), qui
+     envoie ses propres campagnes (concepts génériques, registres) et leurs relances J+7 : ses fiches ne sont pas
+     relancées une deuxième fois ici (verrou du point 3, vérifié dans les fils Gmail).
 2. Pour chacune : `list_events` (`kinds: ["user", "assistant", "result"]`, `limit: 100`) pour savoir ce qui a été
    demandé, fait, envoyé, et ce qui reste en suspens (brouillon non envoyé, PR non fusionnée, devis prêt, question
    posée à Quentin).
@@ -162,7 +166,8 @@ Première échéance : **vendredi 27/11/2026**, dernière relance des vagues 25 
 4. **Intégration** : pour chaque action d'une autre session (mail envoyé, rendez-vous, concept publié, devis, refus) qui
    n'apparaît pas dans Nexora, reporte-la (§ 5), en vérifiant d'abord le fait dans sa source (fil Gmail, PR, agenda,
    Drive) : un transcript ne suffit pas.
-5. Ne pilote pas les autres sessions : ni `send_message`, ni interruption, ni archivage. Ce qui doit être décidé
+5. Ne pilote pas les autres sessions : ni interruption, ni archivage, ni consigne. Seuls `send_message` permis : le
+   relais des intéressés au Master Tunnel (§ 3) et des créateurs à Suivi Influenceurs (§ 1 bis). Ce qui doit être décidé
    (session bloquée, travail en double, PR oubliée) va dans le compte rendu.
 
 ### 5. Mise à jour de Nexora (après chaque action, avant de rendre la main)
