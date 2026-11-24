@@ -82,7 +82,7 @@ Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui rempla
 | Rang | Produit | Code | Prix | Pourquoi |
 |---|---|---|---|---|
 | 17 | ~~Fiche du Pack Cuisine~~ | PCS | — | pack retiré le 22/11 par la rationalisation (#225) : rien à créer |
-| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
+| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | **brouillons créés le 24/11** (clés à activer) ; Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
 | 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
 | 20 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
 | 21 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 20 |
@@ -124,5 +124,7 @@ CNG et NDF en vente ; fiches des packs PFC et PBT à créer.
 
 22/11 : Pack Budget perso et famille publié et en vente. Vague de 10 brouillons créée vers 12 h 45 (Paris) :
 PPE, PCA, RVH, CRS, DMN, CDX, CTR, PRK, BSC, ACH ; prochaine création possible le 23/11 après 13 h (Paris).
+
+24/11 : rang 18 créé en brouillons (SJR, ENT, GST, CPR), clés à activer ; limite atteinte, prochaine création le 24/11 vers 12 h 55 (Paris). Rang 20 : « Pilote événementiel » (EVT) fondu dans « Organisateur d'événement » par la fusion F1 (#246) : composition du Pack Associations à revoir avant de créer ce rang.
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).
