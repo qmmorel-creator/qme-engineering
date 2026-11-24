@@ -28,11 +28,19 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
-- Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur de mariage,
+- Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur d'événement (garder la
+  nouvelle couverture « evenementiel » ajoutée le 24/11, supprimer l'ancienne couverture mariage),
   Circuit de visa (garder la couverture Pastel).
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
+- **Clés de licence à activer** (24/11/2026 au soir, rangs 19, 20, 22) :
+  [Pack Propriétaire](https://gumroad.com/products/tocipb/edit),
+  [Subventions](https://gumroad.com/products/qnzxqs/edit),
+  [Bénévoles et planning des créneaux](https://gumroad.com/products/sfmsy/edit),
+  [Assemblée générale et vie statutaire](https://gumroad.com/products/nmqdy/edit),
+  [Progression pédagogique](https://gumroad.com/products/oekele/edit),
+  [Banque de questions et quiz](https://gumroad.com/products/hyxwes/edit).
 - ~~Fiches de packs : versions « Pack » et « Pack évolutif »~~ : sans objet, option supprimée le 23/11/2026.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?
