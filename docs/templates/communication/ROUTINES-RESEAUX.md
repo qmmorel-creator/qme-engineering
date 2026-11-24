@@ -39,3 +39,19 @@ Produire IG-164 et IG-165, et la première version du contrôle. Leur travail es
 
 Réserves au 24/11/2026 au soir : Instagram jusqu'au 21/04/2027, LinkedIn jusqu'au 02/04/2027, YouTube couvert chaque jour
 jusqu'au 10/12, X jusqu'au 02/12 ; l'agent les prolonge chaque jour.
+
+## Consignes particulières (transmises le 24/11/2026 par la session qui gérait les anciennes tâches, archivée)
+
+- **IG-164** (« À produire ») : variante de L5 / IG-155 selon ses résultats ; **IG-165** (« À produire ») : rediffusion du
+  Reel Budget commun des semaines 1-2 qui a eu le plus d'envois. À choisir d'après les mesures réelles du Sheet
+  « Mesures réseaux QME » (`1578z4XTYuN-_85VdCrjJYLX9hEDlRpnmZZP5gTfNMik`, onglet Publications), avec leur Short YouTube le
+  même jour (s'il n'y a pas d'autre Short). Repoussés aux 20 et 21/04/2027 par le calendrier du 24/11/2026.
+- **LI-170** (LinkedIn, 22/12 12:15) « 30 jours de tests sur Instagram : ce qui a marché, ce qui n'a rien donné » : chiffres
+  réels du 23/11 au 21/12 uniquement (Mesures réseaux QME, GoatCounter, Gumroad), donc rédigé **le 21/12 au plus tôt** ;
+  Doc dans le dossier Textes LinkedIn (`19-LC3WoXSV6njvAiwUuoArup-5jpa12K`) ; passage en « Programmé » **seulement après
+  accord de Quentin** sur le texte (tâche Nexora à créer le 21/12). L'agent ne le produit jamais avant.
+- **IG-21 et LI-92** réécrits pour l'Organisateur d'événement à 39 € (nouveaux Docs) : leurs images peuvent encore porter
+  l'ancien nom « Organisateur de mariage » ou 29 €. L'agent vérifie et refait les images 14 jours avant leur date.
+- Lignes passées en « Annulé » le 24/11 (produits retirés le 22/11) : LI-89, LI-94, LI-127, LI-136, IG-18, IG-23, IG-59,
+  IG-82, IG-91, YT-34. La tâche « Rédiger le bilan LI-170 » de la session archivée ne peut plus s'exécuter : l'agent la
+  remplace.
