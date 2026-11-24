@@ -45,3 +45,5 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-24 | Emeraude CrossFit, Dinard (Jeremy et Pauline) | `emeraudecrossfit35@gmail.com` | refus au tutoiement (« pas intéressés par ta prestation »), cas douteux | non, laissé à Quentin |
 | 2026-11-24 | Club des Office Managers (Lia Bazin) | `lia.bazin@clubdesofficemanagers.com` | déjà traité (réponse de Quentin le 24/11, remerciement reçu) | non (déjà répondu) |
 | 2026-11-24 | Nutrimuscle (support) | `contact@nutrimuscle.com` | autre (« ok rembourse sa derniere commnande », hors sujet) | non |
+| 2026-11-24 | Emeraude CrossFit, Dinard (Jeremy et Pauline) | `emeraudecrossfit35@gmail.com` | refus poli au tutoiement, réponse adaptée validée par Quentin (ancien brouillon r7098363430611718833 supprimé) | oui (signature et mention d'opposition) |
+| 2026-11-24 | Alpes Premium (Laurent Poiron) | `laurent@alpes-premium.com` | report à mai-juin 2027 (réponse du 28/10), variante « garder le contact » validée par Quentin ; libellé Intéressé, relance au 04/05/2027 | oui (signature et mention d'opposition) |
