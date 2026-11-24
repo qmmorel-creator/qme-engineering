@@ -13,3 +13,5 @@ administrateur), qui est la référence vérifiée avant tout envoi : `docs/temp
 | 2026-11-03 | Au Coin du Jeu (Lorient) | `aucoindujeulorient@gmail.com` | « nous évitons toute collaboration avec des organisations utilisant l'IA » |
 | 2026-11-10 | Hélène Wedding Planner | `helene.mariages@gmail.com`, domaine `helene-weddingplanner.fr` | « Je ne veux pas de vos mails » |
 | 2026-11-10 | Renfort Solutions (Arnas) | domaines `renfort-solutions.fr` et `renfortek.fr` ; `maxime.thevenet@rhea-solutions.fr` (en copie de la réponse) | « stop », réponse injurieuse |
+| 2026-11-22 | Comité départemental de pétanque du Morbihan (CD56) | `cd56@petanque.fr` (domaine `petanque.fr` non exclu : il est partagé par tous les comités, à trancher par Quentin) | **hostile** : « ce mail n'a pas été sollicité […] Nous ne ferons pas confiance à une société qui ne respecte pas la première des règle » |
+| 2026-11-24 | Your Progress (YourProgress Throwdown) | `contact@yourprogress.fr` | **STOP** : « stop » (réponse à la dernière relance) |

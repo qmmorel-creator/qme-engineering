@@ -14,7 +14,7 @@ du 23/11/2026.
 
 **Balle** : `QME` = Quentin doit agir ; `prospect` = on attend sa réponse.
 
-État au 23/11/2026 (fils Gmail lus en entier).
+État au 24/11/2026 (fils Gmail lus en entier ; passage du skill `nettoyage-refus-prospection` le 24/11 : aucun nouvel intéressé, aucun prospect du suivi n'a refusé).
 
 ## Sérieux
 
@@ -42,9 +42,9 @@ du 23/11/2026.
 | Prospect | Motif | Date |
 |---|---|---|
 | Yves Gautier (coach) | Refus explicite de l'affiliation | 23/11/2026 |
-| MJC CL2V Bordeaux | Refus : ne correspond pas aux besoins | 23/11/2026 |
-| Fixation Plum (Felisaz SAS) | Refus poli : solutions internes | 23/11/2026 |
-| Club des Office Managers | Refus de l'affiliation (neutralité) ; propose une place d'exposant à l'Office Manager Summit, a priori payante, à décider par Quentin | 23/11/2026 |
+| MJC CL2V Bordeaux | Refus : ne correspond pas aux besoins. Réponse type envoyée le 24/11 | 23/11/2026 |
+| Fixation Plum (Felisaz SAS) | Refus poli : solutions internes. Réponse type envoyée le 24/11 | 23/11/2026 |
+| Club des Office Managers | Refus de l'affiliation (neutralité) ; propose une place d'exposant à l'Office Manager Summit, a priori payante, à décider par Quentin. Réponse de Quentin le 24/11, remerciement de Lia Bazin (« Avec plaisir ! ») le 24/11 | 23/11/2026 |
 
 ## Historique des échanges
 

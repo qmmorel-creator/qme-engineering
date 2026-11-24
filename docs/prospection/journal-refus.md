@@ -34,3 +34,14 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-23 | Barteau Traiteur | `barteau-traiteur@orange.fr` | intéressé (« je reviens vers vous dans la semaine ») | non, laissé à Quentin |
 | 2026-11-23 | Café du Cycliste | `service-clients@cafeducycliste.com` | réponse auto | non |
 | 2026-11-23 | Decathlon Pro | `contactpro@decathlon.com` | réponse auto | non |
+| 2026-11-24 | Ut4M (équipe inscription) | `info@ut4m.fr` | refus poli (« Nous ne sommes pas intéressés », retrouvé dans la corbeille) | oui (signature et mention d'opposition) |
+| 2026-11-24 | La Gare de Coustellet (Sixtine) | `prog@aveclagare.org` | refus poli après la dernière relance (logiciel déjà en place) | oui (signature et mention d'opposition) |
+| 2026-11-24 | Embrunman (Anne Iacono) | `benevoles@embrunman.com` | refus poli (« je gère avec mes tableaux excels ») | oui (signature et mention d'opposition) |
+| 2026-11-24 | Rockstore, Montpellier (Antoine) | `programmationrockstore@gmail.com` | refus poli (« Nous ne sommes pas intéressés ») | oui (signature et mention d'opposition) |
+| 2026-11-24 | Plum, Felisaz SAS (Robin Bar) | `contact@fixation-plum.com` | refus poli (solutions et organisation déjà en place) | oui (signature et mention d'opposition) |
+| 2026-11-24 | MJC CL2V, Bordeaux (Malika Gourmanel) | `accueil@mjccl2v.fr` | refus poli (« ne correspond malheureusement pas à nos besoins ») | oui (signature et mention d'opposition) |
+| 2026-11-24 | Your Progress | `contact@yourprogress.fr` | **STOP** (« stop ») | non |
+| 2026-11-24 | Comité de pétanque du Morbihan (CD56) | `cd56@petanque.fr` | **hostile** (réponse du 22/11, non journalisée jusque-là) | non |
+| 2026-11-24 | Emeraude CrossFit, Dinard (Jeremy et Pauline) | `emeraudecrossfit35@gmail.com` | refus au tutoiement (« pas intéressés par ta prestation »), cas douteux | non, laissé à Quentin |
+| 2026-11-24 | Club des Office Managers (Lia Bazin) | `lia.bazin@clubdesofficemanagers.com` | déjà traité (réponse de Quentin le 24/11, remerciement reçu) | non (déjà répondu) |
+| 2026-11-24 | Nutrimuscle (support) | `contact@nutrimuscle.com` | autre (« ok rembourse sa derniere commnande », hors sujet) | non |
