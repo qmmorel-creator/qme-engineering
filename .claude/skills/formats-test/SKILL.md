@@ -33,9 +33,12 @@ finir sur l'essai ; ils finissent sur « Enregistrez-le » / « Envoyez-le à �
 
 ### Mascotte (F11)
 
-- Construite uniquement en formes Bauhaus (cercle, carré, triangle, palette du kit), en SVG dans
-  `docs/templates/communication/formats-test/mascotte/` : une **fiche personnage** (nom, caractère, 5 expressions,
-  3 poses, règles d'usage) validée par Quentin **avant** tout Reel. Animée par `window.placer(ms)` comme les autres pages.
+- **Carreau, validé par Quentin le 24/11/2026** : une cellule de tableur (« A1 ») échappée de son tableur. Fiche :
+  `docs/templates/communication/formats-test/mascotte/fiche-carreau.png` (source `fiche.html`) ; dessin réutilisable :
+  `mascotte/carreau.js`, `carreau({ expression, pose, couleur })`, expressions `neutre`, `inquiet`, `panique`,
+  `soulage`, `fier`, poses `debout`, `court`, `montre`. Toujours importer ce fichier, ne jamais redessiner le
+  personnage ; une nouvelle expression ou pose s'ajoute dans `carreau.js` et sur la fiche. Il ne parle qu'en bulles de
+  8 mots au plus. Animé par `window.placer(ms)` comme les autres pages.
 - Elle est un personnage, pas un porte-parole : elle ne parle jamais « au nom de Quentin », pas de voix clonée sur elle.
 - Aucune ressemblance avec une mascotte ou un personnage existant (marque, dessin animé, jeu).
 

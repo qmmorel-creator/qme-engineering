@@ -33,7 +33,7 @@ YT-71 est à 17:00 (12:00 et 20:00 déjà pris le 02/12) : écart volontaire à 
 ## Vague 2 (à partir du 10/12, après le relevé du 07/12)
 
 - Répétition des formats qui ressortent de la vague 1.
-- **F11 · Mascotte** (demande de Quentin du 24/11/2026) : fiche personnage d'abord, soumise à Quentin, puis 2 Reels.
+- **F11 · Mascotte Carreau** (fiche validée par Quentin le 24/11/2026, `mascotte/`) : IG-224 le 14/12 19:00 (YT-77 20:00) et IG-225 le 18/12 19:00 (YT-78 20:00).
 - **F12 · Voix de Quentin** (ElevenLabs, sa propre voix) : 2 Reels sur le même sujet, avec et sans voix (A/B).
   Préalables : voix clonée par Quentin, offre ElevenLabs autorisant l'usage commercial, clé saisie dans le formulaire
   sécurisé de l'environnement, évolution de `docs/videos/rendu.mjs` pour mixer une voix.
