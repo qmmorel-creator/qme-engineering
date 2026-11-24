@@ -28,6 +28,26 @@ finir sur l'essai ; ils finissent sur « Enregistrez-le » / « Envoyez-le à �
 | F8 | Défi chronométré : « Un outil pour un fleuriste en 60 minutes », accéléré animé (chrono à l'écran, étapes, résultat) | Reel 25–29 s | crédibilité ingénierie, sur mesure | « Votre métier, prochain défi ? Dites-le en commentaire » |
 | F9 | Réaction à l'actualité chiffrée (changement daté du 1er janvier, échéance, barème) | Carrousel ou Reel | portée sur un sujet chaud | utile d'abord, l'outil en dernière vue |
 | F10 | « Satisfaisant » : un tri, un recalcul, un planning qui se recale, 8–12 s en boucle, très peu de texte | Reel 8–12 s | taux de visionnage complet, rejeu | aucune ; nom de l'outil en pied |
+| F11 | **Mascotte** (vague 2, décision du 24/11/2026) : un personnage Bauhaus récurrent, clairement illustré, qui ne se fait **jamais** passer pour Quentin ; il vit le problème (submergé par un tableur, perdu dans ses tâches) puis le résout | Reel 15–25 s, puis déclinable en carrousel | attachement, reconnaissance d'une publication à l'autre | selon le sujet (outil, sur mesure, essai) |
+| F12 | **Voix de Quentin** (vague 2) : voix off sur une animation, enregistrée par Quentin ou clonée par lui sur ElevenLabs (voir § Voix) | Reel 20–29 s | rétention avec voix contre sans voix (même sujet, A/B) | comme le format habillé |
+
+### Mascotte (F11)
+
+- Construite uniquement en formes Bauhaus (cercle, carré, triangle, palette du kit), en SVG dans
+  `docs/templates/communication/formats-test/mascotte/` : une **fiche personnage** (nom, caractère, 5 expressions,
+  3 poses, règles d'usage) validée par Quentin **avant** tout Reel. Animée par `window.placer(ms)` comme les autres pages.
+- Elle est un personnage, pas un porte-parole : elle ne parle jamais « au nom de Quentin », pas de voix clonée sur elle.
+- Aucune ressemblance avec une mascotte ou un personnage existant (marque, dessin animé, jeu).
+
+### Voix (F12)
+
+- Source : enregistrement de Quentin (fichier fourni) ou synthèse ElevenLabs à partir de **sa propre voix, clonée par
+  lui** avec son accord. Jamais la voix d'une autre personne.
+- Transparence : quand la voix est synthétique, la légende porte « Voix de synthèse (clone de ma voix) » et l'étiquette
+  « contenu IA » de la plateforme est activée par Instinct si elle existe.
+- Mixage : la voix passe devant la musique QME (musique baissée sous la voix) ; c'est `docs/videos/rendu.mjs` qu'on fait
+  évoluer pour accepter une piste de voix, jamais un autre outil. Sous-titres incrustés : la vidéo reste lisible sans le son.
+- Clé ElevenLabs : demandée par le formulaire sécurisé de l'environnement (jamais dans le chat ni dans le dépôt).
 
 Règles propres au test :
 - **Faits vérifiés** : F3 et F9 citent une source officielle (service-public.fr, legifrance, impots.gouv, URSSAF, INSEE)

@@ -30,6 +30,14 @@ production : skill `.claude/skills/formats-test/`.
 
 YT-71 est à 17:00 (12:00 et 20:00 déjà pris le 02/12) : écart volontaire à `HEURES.md`, à juger à la mesure.
 
+## Vague 2 (à partir du 10/12, après le relevé du 07/12)
+
+- Répétition des formats qui ressortent de la vague 1.
+- **F11 · Mascotte** (demande de Quentin du 24/11/2026) : fiche personnage d'abord, soumise à Quentin, puis 2 Reels.
+- **F12 · Voix de Quentin** (ElevenLabs, sa propre voix) : 2 Reels sur le même sujet, avec et sans voix (A/B).
+  Préalables : voix clonée par Quentin, offre ElevenLabs autorisant l'usage commercial, clé saisie dans le formulaire
+  sécurisé de l'environnement, évolution de `docs/videos/rendu.mjs` pour mixer une voix.
+
 ## Mesure
 
 Ratios comparés (pas les vues brutes, trop faibles à 53 abonnés) : **envois / portée**, **enregistrements / portée**,
