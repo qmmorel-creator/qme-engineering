@@ -88,3 +88,6 @@ Proposition :
 2. **Fusions F2, F3, F4** (1 session chacune) puis **F1** (2 à 3 sessions), chacune publiée seule.
 3. **Fiches Gumroad** des packs complets (au plus 10 créations par jour), après recomposition.
 4. Publications : planning revu pour les produits fusionnés (aucune publication d'un produit retiré).
+   **Fait le 24/11/2026** : LI-89, LI-94, LI-127, LI-136, IG-18, IG-23, IG-59, IG-82, IG-91 et YT-34 annulés ;
+   LI-92 et IG-21 (mariage) réécrits pour l'Organisateur d'événement à 39 €. Fiches Gumroad PRS, CND, PRK dépubliées,
+   EVT et CAN renommées.

@@ -56,7 +56,7 @@ domaine éducation incomplet est le Pack Enseignant et formateur (PNS), bloqué 
 | 5 | Déménagement | DMN | 12 € | Pack Mariage et installation (PMR) |
 | 6 | Cadeaux reçus et remerciements | CDX | 12 € | dernier template du Pack Mariage et installation (PMR) |
 | 7 | Contrats fournisseurs | CTR | 25 € | packs Exploitation (PXP) et Moyens généraux (PMG) |
-| 8 | Pilotage de parcs multi-sites | PRK | 49 € | dernier template du Pack Exploitation et maintenance (PXP) |
+| 8 | ~~Pilotage de parcs multi-sites~~ | PRK | — | fusionné dans Maintenance préventive (F4, 22/11) ; fiche Gumroad dépubliée |
 | 9 | Pilotage d'une journée de bascule | BSC | 29 € | Pack Moyens généraux (PMG) |
 | 10 | Demandes d'achat et fournitures | ACH | 19 € | dernier template du Pack Moyens généraux (PMG) |
 
@@ -84,7 +84,7 @@ Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui rempla
 | 17 | ~~Fiche du Pack Cuisine~~ | PCS | — | pack retiré le 22/11 par la rationalisation (#225) : rien à créer |
 | 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | **brouillons créés le 24/11** (clés à activer) ; Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
 | 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
-| 20 | Pilote événementiel, Subventions, Bénévoles, Assemblée générale | EVT, SBV, BNV, AGS | 49, 25, 19, 19 € | Pack Associations et clubs (PAS) |
+| 20 | Subventions, Bénévoles, Assemblée générale | SBV, BNV, AGS | 25, 19, 19 € | Pack Associations et clubs (PAS) ; EVT déjà en vente (Organisateur d'événement, 39 €, fiche de l'Organisateur de mariage renommée le 24/11) |
 | 21 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 20 |
 | 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | Pack Enseignant (PNS), vendus seuls en attendant T55 |
 | 23 | Suivi d'un animal | ANM | 12 € | Pack Famille (PFA), qui attend aussi T19 |
@@ -128,3 +128,9 @@ PPE, PCA, RVH, CRS, DMN, CDX, CTR, PRK, BSC, ACH ; prochaine création possible 
 24/11 : rang 18 créé en brouillons (SJR, ENT, GST, CPR), clés à activer ; limite atteinte, prochaine création le 24/11 vers 12 h 55 (Paris). Rang 20 : « Pilote événementiel » (EVT) fondu dans « Organisateur d'événement » par la fusion F1 (#246) : composition du Pack Associations à revoir avant de créer ce rang.
 
 Mettre ce tableau à jour à chaque création ou publication (déplacer la ligne dans « Déjà fait »).
+
+24/11 : **cohérence avec la rationalisation (F1 à F4, packs retirés)**. Pack Voyage, Pack Bien démarrer l'année, Pack Argent du
+quotidien et Pack Cuisine : retirés le 22/11, les mentions « publiés et en vente » ci-dessus sont historiques. Fiches
+Pipeline de prospection, Suivi des appels d'offres et Pilotage de parcs multi-sites dépubliées ; Organisateur de mariage
+renommé « Organisateur d'événement » (39 €), Candidatures renommé « Suivi de candidatures ». Rang 18 : Location
+saisonnière, Entretien de la maison, Gestion locative, Charges et AG de copropriété publiés et en vente.

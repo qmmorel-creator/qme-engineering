@@ -262,15 +262,15 @@ démo), fiche de prise en main GRD dans `essais-prise-en-main.mjs`, compteur per
 
 Rang 18 de `gumroad-priorite.md` (Pack Propriétaire). Fiches depuis `docs/templates/communication/<slug>/gumroad.json` :
 permalien, catégorie, résumé, tags, détails, reçu, bouton, lien vers `/connexion/`, couverture. **Brouillons non
-publiés**, identifiants **non ajoutés** à `PRODUITS` (règle 4). À faire par Quentin : activer la clé de licence
-(Content → Insert → License key) ; la file quotidienne publie ensuite.
+publiés**, identifiants **non ajoutés** à `PRODUITS` (règle 4). Clés activées par Quentin ; **publiés le 24/11/2026** et mis en
+vente sur le site le même jour (identifiants dans `PRODUITS`, essai 14 jours).
 
 | Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
 |---------|------|---------------------|-----------|------|--------|
-| SJR | location-saisonniere | ZaouZbVb6UFX-RhQ5SoPFw== | /l/location-saisonniere | 25 € | brouillon, clé à activer |
-| ENT | entretien | zVzaMLQH4U6jK-OgqPPpeA== | /l/entretien-maison | 12 € | brouillon, clé à activer |
-| GST | gestion-locative | CkLescudHVhLiY3Az2CNsg== | /l/gestion-locative | 20 € | brouillon, clé à activer |
-| CPR | copropriete | renWMolXr2qZZPKpWtlnnA== | /l/charges-ag-copropriete | 15 € | brouillon, clé à activer |
+| SJR | location-saisonniere | ZaouZbVb6UFX-RhQ5SoPFw== | /l/location-saisonniere | 25 € | publié, en vente (24/11) |
+| ENT | entretien | zVzaMLQH4U6jK-OgqPPpeA== | /l/entretien-maison | 12 € | publié, en vente (24/11) |
+| GST | gestion-locative | CkLescudHVhLiY3Az2CNsg== | /l/gestion-locative | 20 € | publié, en vente (24/11) |
+| CPR | copropriete | renWMolXr2qZZPKpWtlnnA== | /l/charges-ag-copropriete | 15 € | publié, en vente (24/11) |
 
 Écart avec la fiche : tag `proprietaire-bailleur` (21 caractères, refusé par Gumroad) remplacé par `proprio-bailleur`
 (GST). Gumroad accentue `copropriété` et `propriétaire` (CPR). Limite atteinte (6 créations le 23/11 vers 11 h 55 UTC

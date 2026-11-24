@@ -33,11 +33,6 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.
 - T14 abonnements : tag « finances-personnelles » trop long, remplacé par « finances-perso ». OK ?
-- **Clés de licence à activer** (24/11/2026, rang 18, Pack Propriétaire) :
-  [Location saisonnière](https://gumroad.com/products/skvvgz/edit),
-  [Entretien de la maison](https://gumroad.com/products/tuhgdb/edit),
-  [Gestion locative](https://gumroad.com/products/qgalgh/edit),
-  [Charges et AG de copropriété](https://gumroad.com/products/grwyua/edit).
 - Fiches de packs : ajouter les versions « Pack » et « Pack évolutif » à chaque fiche créée.
 - T68 Secret Santa : brouillon prévu gratuit à prix libre (0 € minimum, aucun montant suggéré). Un montant
   suggéré ?
