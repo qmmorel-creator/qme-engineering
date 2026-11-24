@@ -135,6 +135,8 @@ Appliquer le skill `video-demo`, sections 1 et 2 seulement : pas de programmatio
    `etape: "interesse"`, `reponse` (date et extrait), `prochaineAction` :
    `EN COURS : retour préparé (PR #N, brouillon prêt), en attente de Quentin`.
    La routine de surveillance ignore les créateurs dont l'étape n'est plus `envoye` : pas de double traitement.
+   Créer aussi son **projet Nexora** (tâche « État global du prospect » au statut Discussion et **Note Bible** avec
+   le lien de la démo en tête) : `docs/prospection/NEXORA-PROSPECTS.md` § 3 et § 4.
 2. Compte rendu à Quentin. En mode automatique, une `PushNotification` de moins de 200 caractères, puis le
    détail :
    - résumé de la niche ;
@@ -160,7 +162,9 @@ Appliquer le skill `video-demo`, sections 1 et 2 seulement : pas de programmatio
    - `search_threads` avec `in:sent filename:<nom du fichier>` : la pièce jointe est partie.
 5. Fiche Nexora du créateur : `prochaineAction` `TRAITÉ : réponse envoyée le JJ/MM HH:MM (démo, vidéo, commission,
    sur mesure, visio) ; ne pas relancer automatiquement`, et un élément `echanges` (`sens: "envoye"`). S'il devient
-   partenaire : `etape: "partenaire"`.
+   partenaire : `etape: "partenaire"`. Mettre à jour le même jour la tâche « État global du prospect », la Note Bible
+   (vidéo privée, PDF éventuels copiés dans son dossier Drive) et les tâches du projet : liste de contrôle
+   `docs/prospection/NEXORA-PROSPECTS.md` § 2.
 6. Le taux de commission validé se configure dans Gumroad au moment de créer son lien. L'accès gratuit
    promis : `npm run code -- <PRODUIT> 1`, puis l'inscrire dans `docs/templates/codes-gratuits.md` quand il
    le demande.
