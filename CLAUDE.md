@@ -17,7 +17,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Messagerie pro (décision du 24/11/2026)
 
 - **Réception** par Google Workspace (MX Google), transférée au Gmail perso connecté aux outils, rangée sous le libellé
-  `Transfert Workspace` et archivée. **Envoi** depuis le Gmail perso (« Envoyer en tant que » par le SMTP d'OVH) : on
+  `Transfert Workspace` et archivée (anciens mails pro compris). Quentin lit ses mails pro dans Workspace. **Envoi** depuis le Gmail perso (« Envoyer en tant que » par le SMTP d'OVH) : on
   n'écrit pas depuis Workspace. La boîte OVH reste indispensable (SMTP du site et du Gmail perso). Détails :
   `docs/templates/communication/DELIVRABILITE.md`.
 
@@ -45,7 +45,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Source unique** : `docs/prospection/suivi-prospects.md`. À lire avant toute relance, devis, réponse ou nouveau mail à
   un prospect ; à mettre à jour le jour même par la session qui traite un échange (étape, dernier message, balle).
   Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans tous les fils Gmail (Gmail perso :
-  envois en `in:sent`, réponses reçues depuis le 24/11/2026 sous le libellé archivé `Transfert Workspace`).
+  envois en `in:sent`, réponses reçues sous le libellé archivé `Transfert Workspace`, jamais en boîte de réception).
 - **Un projet Nexora par prospect** (décision du 24/11/2026), dans le dossier « QM Engineering ». À sa création, il
   reçoit toujours une tâche **« État global du prospect »**, dont le statut est l'un des six statuts réservés aux
   projets prospects : Prospect, Discussion, Offre envoyée, Négociation, Refus, Signé. Ce statut suit chaque échange,
