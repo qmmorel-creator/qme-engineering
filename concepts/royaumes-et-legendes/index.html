@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour Royaumes &amp; Légendes · QME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,500;1,500;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#0e2a33;--sable:#c7a667;--or:#9c7a36;--terre:#ae133a;--olive:#2f6b55;--lav:#2d5a87;--paper:#f5efe2;--muted:#5f6b66;--line:#e6dcc6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Cinzel",Georgia,serif;letter-spacing:-.01em;font-variant-numeric:lining-nums}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--sable);color:var(--ink);text-decoration:none;font:600 15px "Poppins",sans-serif;padding:14px 22px;border-radius:999px;border:2px solid var(--sable);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.dark{background:var(--ink);color:#f3ead3;border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--terre);outline-offset:3px}
+
+.bar{position:absolute;left:0;right:0;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600;letter-spacing:.04em}
+.brand small{display:block;font-weight:400;letter-spacing:0;color:#8fa9ab;font-size:13px;line-height:1.2}
+.bar a.pdf{color:#fff;font:500 14px "Poppins";text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#1f5566 0%,#10333f 45%,#0a2128 100%);color:#fff;padding:122px 0 0}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:260px;pointer-events:none}
+.eb{font:600 12px "Poppins",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--sable);margin:0 0 18px}
+.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.04;margin:0;font-weight:700;max-width:16ch}
+.hero h1 em{color:var(--sable);font-style:italic}
+.hero .lede{font-size:clamp(16px,1.6vw,18.5px);color:#c3d3d1;max-width:60ch;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .note{margin:18px 0 0;font-size:13px;color:#8fa9ab}
+.stage{position:relative;margin-top:56px;padding-bottom:70px}
+.browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);width:86%}
+.browser .tb{height:34px;background:#e9e1cf;display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .tb i{width:11px;height:11px;border-radius:50%;background:#cdbf9f}
+.browser .tb span{margin-left:14px;background:#fff;border-radius:6px;font-size:11.5px;color:#7a6f62;padding:3px 12px}
+.browser img{display:block;width:100%;height:auto}
+.phone{position:absolute;right:0;bottom:30px;width:23%;min-width:150px;background:#081a20;border-radius:34px;padding:9px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:26px;aspect-ratio:640/1240;object-fit:cover;object-position:top}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);background:#fffdf9}
+.facts div{padding:32px 28px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:600 12.5px "Poppins",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--or);margin-bottom:8px}
+.facts p{margin:0;color:#3f3830;font-size:15px}
+.facts q{font:italic 600 17px/1.45 "Cinzel";color:var(--ink);quotes:"«\00a0" "\00a0»"}
+
+section.mod{padding:100px 0 0}
+.mod .head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:34px}
+.num{font:600 13px "Poppins",sans-serif;color:var(--or);letter-spacing:.16em}
+.mod h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:10px 0 0;font-weight:700}
+.mod h2 em{color:var(--terre);font-style:italic}
+.mod .head p{margin:0;color:#3f3830;font-size:16.5px}
+.mod ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.mod li{display:flex;gap:10px;font-size:15px;color:#3f3830}
+.mod li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sable);margin-top:9px;flex:none}
+.shot{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(20,40,45,.16);border:1px solid var(--line);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.combo{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:center}
+.combo .phone,.phones .phone{position:static;width:100%;min-width:0}
+.phones{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:linear-gradient(180deg,#10333f,#0a2128);border-radius:22px;padding:46px 20px;position:relative;overflow:hidden}
+.phones .phone{width:300px}
+.phones .tag{position:absolute;left:26px;top:22px;font:600 11px "Poppins";letter-spacing:.16em;text-transform:uppercase;color:var(--sable)}
+
+.flow{margin-top:100px;background:var(--ink);color:#fff;border-radius:22px;padding:52px 44px}
+.flow h2{font-size:clamp(28px,3.2vw,40px);margin:8px 0 10px;font-weight:700}
+.flow>p{color:#b4c6c4;max-width:64ch;margin:0 0 36px}
+.fg{display:grid;grid-template-columns:1fr 64px 1.1fr 64px 1fr;align-items:center}
+.col{display:flex;flex-direction:column;gap:10px}
+.col .it{background:#174654;border:1px solid #1f5566;border-radius:12px;padding:12px 14px;font-size:14px}
+.col .it b{display:block;font-weight:600;font-size:14px}
+.col .it span{color:#9fb5b3;font-size:12.5px}
+.core{background:var(--sable);color:var(--ink);border-radius:18px;padding:28px 24px;text-align:center}
+.core b{display:block;font:700 24px/1.15 "Cinzel",serif}
+.core span{display:block;margin-top:8px;font-size:14px;color:#3d3320}
+.arr{height:2px;background:repeating-linear-gradient(90deg,#5d7c80 0 6px,transparent 6px 11px);position:relative;margin:0 8px}
+.arr::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:#7d9aa0}
+.lbl{font:600 11px "Poppins";letter-spacing:.14em;text-transform:uppercase;color:#7d9aa0;margin-bottom:4px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.steps div{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:22px}
+.steps b{font:700 36px/1 "Cinzel";color:var(--or)}
+.steps h3{font-size:18px;margin:10px 0 6px}
+.steps p{margin:0;font-size:14.5px;color:#4a433b}
+.end{margin:100px 0 0;background:#fffdf9;border:1px solid var(--line);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.end h2{font-size:clamp(26px,3vw,36px);margin:0 0 10px;font-weight:700}
+.end p{margin:0;color:#3f3830}
+.end .ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+footer{padding:40px 0 50px;color:var(--muted);font-size:14px}
+footer a{color:var(--ink)}
+/* estimation */
+.est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 24px 40px;overflow:hidden}
+.est::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:#ae133a}
+.est::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:#141414}
+.est .eb{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.est .eb b{color:#ae133a;font-weight:800}
+.est h2{font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+.est .intro{color:#3b3b3b;max-width:72ch;margin:0 0 20px}
+.est table{width:100%;border-collapse:collapse;font-size:15px}
+.est th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding:8px 8px;border-bottom:2px solid #141414}
+.est td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.est th.n,.est td.n{text-align:right;white-space:nowrap}
+.est input{width:84px;font:inherit;font-weight:600;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:#141414}
+.est input:focus{outline:2px solid #ae133a;outline-offset:1px;background:#fff}
+.est .u{display:block;font-size:12px;color:var(--muted)}
+.est td.s{font-weight:700;color:#ae133a}
+.est .tot{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.est .tot div{background:var(--paper);border-radius:4px;padding:14px 16px;border-top:4px solid #141414}
+.est .tot b{display:block;font-size:32px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.est .tot div.main{background:#ae133a;color:#fff;border-top-color:#141414}
+.est .tot span{font-size:14px;color:#5a5a5a}
+.est .tot div.main span{color:#fde8e6}
+.est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15px;font-weight:500}
+.est .foot{color:var(--muted);font-size:13.5px;margin:14px 0 0;max-width:82ch}
+.est .reset{background:none;border:0;color:#141414;font:inherit;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:#ae133a;text-underline-offset:3px;margin-left:auto}
+@media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
+ .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
+ .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
+.est .tot div.main{background:#0e2a33;color:#fff;border-top-color:#c7a667}.est .tot div.main span{color:#c3d3d1}.est .tot b{font-family:"Cinzel",serif;font-variant-numeric:lining-nums}.est::after{background:#c7a667}.est h2{font-weight:700}
+
+@media (max-width:860px){
+  .hero{padding-top:96px}
+  .browser{width:100%}
+  .hero .phone{display:none}
+  .facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .mod .head,.duo,.end,.combo{grid-template-columns:1fr;gap:18px}
+  .combo .phone{max-width:300px;margin:0 auto}
+  section.mod{padding-top:64px}
+  .flow{padding:34px 20px}
+  .fg{grid-template-columns:1fr;gap:14px}.arr{width:2px;height:28px;margin:0 auto;background:repeating-linear-gradient(180deg,#5d7c80 0 6px,transparent 6px 11px)}.arr::after{display:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .end{padding:28px 20px}
+  .bar a.pdf{display:none}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.phones .phone{width:100%;max-width:300px}}
+
+.hero h1{font-size:clamp(34px,4.6vw,58px);line-height:1.08;max-width:18ch;color:#f3ead3}
+.hero h1 em,.mod h2 em{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-weight:600;letter-spacing:0}
+.hero h1 em{color:var(--sable)}
+.facts q{font-family:"EB Garamond",Georgia,serif;font-size:19px}
+.warnbox{margin-top:28px;border:1px solid #e1cd9c;background:#fbf3df;border-radius:16px;padding:18px 22px;color:#3f3830;font-size:15px}
+.warnbox b{color:var(--ink)}
+
+:root{--pl:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22420%22 height=%22420%22 viewBox=%220 0 420 420%22 opacity=%220.13%22%3E%3Cg transform=%22translate%289.7 28.8%29 rotate%28-28 11.9 11.9%29 scale%280.995%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%2877.0 22.7%29 rotate%2810 14.9 14.9%29 scale%281.244%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28147.4 20.5%29 rotate%28-16 11.3 11.3%29 scale%280.941%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28231.4 37.8%29 rotate%28-28 10.5 10.5%29 scale%280.879%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%28303.3 21.9%29 rotate%28-28 15.7 15.7%29 scale%281.307%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28367.9 38.2%29 rotate%28-28 13.5 13.5%29 scale%281.122%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%2843.7 88.8%29 rotate%2810 13.3 13.3%29 scale%281.112%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3Cg transform=%22translate%28121.5 107.1%29 rotate%28-16 10.7 10.7%29 scale%280.892%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 4l11 11M20 4L9 15M13.2 17.2l3.8 3.8M10.8 17.2L7 21M15.6 13.2l2.2 2.2M8.4 13.2l-2.2 2.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28202.3 81.7%29 rotate%28-28 10.6 10.6%29 scale%280.885%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%28251.2 76.1%29 rotate%28-16 13.3 13.3%29 scale%281.107%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3Cg transform=%22translate%28338.2 102.0%29 rotate%280 13.0 13.0%29 scale%281.082%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 4l11 11M20 4L9 15M13.2 17.2l3.8 3.8M10.8 17.2L7 21M15.6 13.2l2.2 2.2M8.4 13.2l-2.2 2.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28404.8 84.5%29 rotate%2830 13.5 13.5%29 scale%281.126%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%28-15.2 84.5%29 rotate%2830 13.5 13.5%29 scale%281.126%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%2835.1 147.3%29 rotate%28-8 11.1 11.1%29 scale%280.923%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3Cg transform=%22translate%28105.2 170.0%29 rotate%28-8 13.2 13.2%29 scale%281.096%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 20h17M6 20l5.2-15.5c1.3 3.3 3.2 5.6 6.3 6.5l-2.6 1.2L17 20%22/%3E%3Cpath d=%22M9.6 14.5l.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28146.5 161.8%29 rotate%28-16 13.7 13.7%29 scale%281.138%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%228.5%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225.5%22 stroke-dasharray=%221.5 1.8%22/%3E%3Cpath d=%22M12 6.5v11M8.5 9l7 6M15.5 9l-7 6%22/%3E%3C/g%3E%3Cg transform=%22translate%28219.0 160.1%29 rotate%28-28 14.5 14.5%29 scale%281.212%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3Cg transform=%22translate%28286.4 161.0%29 rotate%2830 15.8 15.8%29 scale%281.314%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 20h17M6 20l5.2-15.5c1.3 3.3 3.2 5.6 6.3 6.5l-2.6 1.2L17 20%22/%3E%3Cpath d=%22M9.6 14.5l.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28363.9 165.9%29 rotate%2810 15.3 15.3%29 scale%281.271%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%228.5%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225.5%22 stroke-dasharray=%221.5 1.8%22/%3E%3Cpath d=%22M12 6.5v11M8.5 9l7 6M15.5 9l-7 6%22/%3E%3C/g%3E%3Cg transform=%22translate%2867.7 216.5%29 rotate%28-28 13.0 13.0%29 scale%281.082%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l7.5 3v6c0 4.5-3.2 8.2-7.5 10-4.3-1.8-7.5-5.5-7.5-10v-6z%22/%3E%3Cpath d=%22M12 6v12M8 10h8%22/%3E%3C/g%3E%3Cg transform=%22translate%28123.5 234.4%29 rotate%28-28 15.7 15.7%29 scale%281.306%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 13a7 7 0 0 1 14 0v4l-3 3H8l-3-3z%22/%3E%3Cpath d=%22M7 12.5h10l-1.6 3.3H8.6zM16.5 7l2.2-3.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28189.3 233.2%29 rotate%2818 14.4 14.4%29 scale%281.199%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%223%22 width=%2212%22 height=%2217%22 rx=%222%22/%3E%3Cpath d=%22M8.5 20.5l9.5 1.5 2-14-3-.4%22/%3E%3Cpath d=%22M11 8.5l1.2 2.3 2.4.3-1.8 1.6.5 2.4-2.3-1.2-2.3 1.2.5-2.4-1.8-1.6 2.4-.3z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28258.1 226.4%29 rotate%2818 14.9 14.9%29 scale%281.244%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l7.5 3v6c0 4.5-3.2 8.2-7.5 10-4.3-1.8-7.5-5.5-7.5-10v-6z%22/%3E%3Cpath d=%22M12 6v12M8 10h8%22/%3E%3C/g%3E%3Cg transform=%22translate%28354.6 227.4%29 rotate%2810 12.1 12.1%29 scale%281.007%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 13a7 7 0 0 1 14 0v4l-3 3H8l-3-3z%22/%3E%3Cpath d=%22M7 12.5h10l-1.6 3.3H8.6zM16.5 7l2.2-3.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28391.4 245.2%29 rotate%28-16 10.7 10.7%29 scale%280.892%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%223%22 width=%2212%22 height=%2217%22 rx=%222%22/%3E%3Cpath d=%22M8.5 20.5l9.5 1.5 2-14-3-.4%22/%3E%3Cpath d=%22M11 8.5l1.2 2.3 2.4.3-1.8 1.6.5 2.4-2.3-1.2-2.3 1.2.5-2.4-1.8-1.6 2.4-.3z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%2817.2 314.4%29 rotate%280 14.4 14.4%29 scale%281.203%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a7 7 0 0 0-7 7c0 2.5 1.2 4.2 3 5.2V18h8v-2.8c1.8-1 3-2.7 3-5.2a7 7 0 0 0-7-7z%22/%3E%3Ccircle cx=%229.4%22 cy=%2210.6%22 r=%221.6%22/%3E%3Ccircle cx=%2214.6%22 cy=%2210.6%22 r=%221.6%22/%3E%3Cpath d=%22M10 18v2.5M12 18v2.5M14 18v2.5%22/%3E%3C/g%3E%3Cg transform=%22translate%2892.4 306.5%29 rotate%28-16 10.5 10.5%29 scale%280.874%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%226.2%22 stroke-dasharray=%222.3 2.2%22 stroke-width=%223%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.6%22/%3E%3C/g%3E%3Cg transform=%22translate%28171.8 293.0%29 rotate%280 14.9 14.9%29 scale%281.243%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 2.5L5.5 13.5h5.5l-1 8 7.5-11h-5.5z%22/%3E%3C/g%3E%3Cg transform=%22translate%28234.6 295.5%29 rotate%28-16 15.9 15.9%29 scale%281.327%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a7 7 0 0 0-7 7c0 2.5 1.2 4.2 3 5.2V18h8v-2.8c1.8-1 3-2.7 3-5.2a7 7 0 0 0-7-7z%22/%3E%3Ccircle cx=%229.4%22 cy=%2210.6%22 r=%221.6%22/%3E%3Ccircle cx=%2214.6%22 cy=%2210.6%22 r=%221.6%22/%3E%3Cpath d=%22M10 18v2.5M12 18v2.5M14 18v2.5%22/%3E%3C/g%3E%3Cg transform=%22translate%28291.1 293.3%29 rotate%28-16 10.9 10.9%29 scale%280.909%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%226.2%22 stroke-dasharray=%222.3 2.2%22 stroke-width=%223%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.6%22/%3E%3C/g%3E%3Cg transform=%22translate%28388.8 291.6%29 rotate%28-8 10.1 10.1%29 scale%280.839%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 2.5L5.5 13.5h5.5l-1 8 7.5-11h-5.5z%22/%3E%3C/g%3E%3Cg transform=%22translate%2856.6 369.5%29 rotate%2810 10.0 10.0%29 scale%280.835%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28113.8 386.8%29 rotate%2810 11.9 11.9%29 scale%280.993%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28204.3 369.6%29 rotate%2830 13.9 13.9%29 scale%281.161%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%28277.5 380.0%29 rotate%280 14.7 14.7%29 scale%281.223%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28333.7 371.9%29 rotate%280 12.4 12.4%29 scale%281.032%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28391.8 362.6%29 rotate%28-16 10.4 10.4%29 scale%280.864%29%22 fill=%22none%22 stroke=%22%239c7a36%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E");--pd:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22420%22 height=%22420%22 viewBox=%220 0 420 420%22 opacity=%220.08%22%3E%3Cg transform=%22translate%2825.3 18.5%29 rotate%2810 11.4 11.4%29 scale%280.952%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%2895.1 26.0%29 rotate%2830 12.8 12.8%29 scale%281.070%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28164.0 11.0%29 rotate%2818 12.8 12.8%29 scale%281.068%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28244.4 21.3%29 rotate%2818 12.8 12.8%29 scale%281.068%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%28291.3 8.8%29 rotate%2810 15.2 15.2%29 scale%281.264%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28354.6 33.0%29 rotate%28-16 12.3 12.3%29 scale%281.028%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%2858.4 83.9%29 rotate%28-28 14.5 14.5%29 scale%281.212%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3Cg transform=%22translate%28117.7 93.1%29 rotate%280 14.9 14.9%29 scale%281.245%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 4l11 11M20 4L9 15M13.2 17.2l3.8 3.8M10.8 17.2L7 21M15.6 13.2l2.2 2.2M8.4 13.2l-2.2 2.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28209.8 87.2%29 rotate%2830 14.3 14.3%29 scale%281.190%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%28282.8 78.7%29 rotate%28-8 13.5 13.5%29 scale%281.122%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3Cg transform=%22translate%28324.6 82.9%29 rotate%2818 10.6 10.6%29 scale%280.882%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 4l11 11M20 4L9 15M13.2 17.2l3.8 3.8M10.8 17.2L7 21M15.6 13.2l2.2 2.2M8.4 13.2l-2.2 2.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28412.0 85.1%29 rotate%2810 12.6 12.6%29 scale%281.051%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%28-8.0 85.1%29 rotate%2810 12.6 12.6%29 scale%281.051%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14zM5.5 20.5h13%22/%3E%3C/g%3E%3Cg transform=%22translate%2822.4 161.1%29 rotate%280 15.0 15.0%29 scale%281.250%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3Cg transform=%22translate%28105.6 167.9%29 rotate%28-28 13.5 13.5%29 scale%281.125%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 20h17M6 20l5.2-15.5c1.3 3.3 3.2 5.6 6.3 6.5l-2.6 1.2L17 20%22/%3E%3Cpath d=%22M9.6 14.5l.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28175.4 165.3%29 rotate%28-16 15.1 15.1%29 scale%281.262%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%228.5%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225.5%22 stroke-dasharray=%221.5 1.8%22/%3E%3Cpath d=%22M12 6.5v11M8.5 9l7 6M15.5 9l-7 6%22/%3E%3C/g%3E%3Cg transform=%22translate%28225.0 162.2%29 rotate%2810 14.2 14.2%29 scale%281.183%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3Cg transform=%22translate%28309.1 151.4%29 rotate%2830 13.4 13.4%29 scale%281.118%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3.5 20h17M6 20l5.2-15.5c1.3 3.3 3.2 5.6 6.3 6.5l-2.6 1.2L17 20%22/%3E%3Cpath d=%22M9.6 14.5l.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28362.1 147.8%29 rotate%280 15.9 15.9%29 scale%281.327%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%228.5%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225.5%22 stroke-dasharray=%221.5 1.8%22/%3E%3Cpath d=%22M12 6.5v11M8.5 9l7 6M15.5 9l-7 6%22/%3E%3C/g%3E%3Cg transform=%22translate%2870.4 216.8%29 rotate%2830 15.1 15.1%29 scale%281.260%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l7.5 3v6c0 4.5-3.2 8.2-7.5 10-4.3-1.8-7.5-5.5-7.5-10v-6z%22/%3E%3Cpath d=%22M12 6v12M8 10h8%22/%3E%3C/g%3E%3Cg transform=%22translate%28146.0 214.8%29 rotate%280 10.4 10.4%29 scale%280.867%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 13a7 7 0 0 1 14 0v4l-3 3H8l-3-3z%22/%3E%3Cpath d=%22M7 12.5h10l-1.6 3.3H8.6zM16.5 7l2.2-3.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28207.6 215.4%29 rotate%2810 14.6 14.6%29 scale%281.218%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%223%22 width=%2212%22 height=%2217%22 rx=%222%22/%3E%3Cpath d=%22M8.5 20.5l9.5 1.5 2-14-3-.4%22/%3E%3Cpath d=%22M11 8.5l1.2 2.3 2.4.3-1.8 1.6.5 2.4-2.3-1.2-2.3 1.2.5-2.4-1.8-1.6 2.4-.3z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%28261.4 233.3%29 rotate%2810 14.6 14.6%29 scale%281.214%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l7.5 3v6c0 4.5-3.2 8.2-7.5 10-4.3-1.8-7.5-5.5-7.5-10v-6z%22/%3E%3Cpath d=%22M12 6v12M8 10h8%22/%3E%3C/g%3E%3Cg transform=%22translate%28349.8 229.9%29 rotate%28-28 15.3 15.3%29 scale%281.274%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 13a7 7 0 0 1 14 0v4l-3 3H8l-3-3z%22/%3E%3Cpath d=%22M7 12.5h10l-1.6 3.3H8.6zM16.5 7l2.2-3.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28391.9 237.0%29 rotate%28-28 11.9 11.9%29 scale%280.988%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%223%22 width=%2212%22 height=%2217%22 rx=%222%22/%3E%3Cpath d=%22M8.5 20.5l9.5 1.5 2-14-3-.4%22/%3E%3Cpath d=%22M11 8.5l1.2 2.3 2.4.3-1.8 1.6.5 2.4-2.3-1.2-2.3 1.2.5-2.4-1.8-1.6 2.4-.3z%22 stroke-width=%221%22/%3E%3C/g%3E%3Cg transform=%22translate%2833.7 292.9%29 rotate%28-8 15.7 15.7%29 scale%281.308%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a7 7 0 0 0-7 7c0 2.5 1.2 4.2 3 5.2V18h8v-2.8c1.8-1 3-2.7 3-5.2a7 7 0 0 0-7-7z%22/%3E%3Ccircle cx=%229.4%22 cy=%2210.6%22 r=%221.6%22/%3E%3Ccircle cx=%2214.6%22 cy=%2210.6%22 r=%221.6%22/%3E%3Cpath d=%22M10 18v2.5M12 18v2.5M14 18v2.5%22/%3E%3C/g%3E%3Cg transform=%22translate%2875.7 318.8%29 rotate%28-8 10.9 10.9%29 scale%280.911%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%226.2%22 stroke-dasharray=%222.3 2.2%22 stroke-width=%223%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.6%22/%3E%3C/g%3E%3Cg transform=%22translate%28149.2 316.5%29 rotate%280 12.2 12.2%29 scale%281.013%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 2.5L5.5 13.5h5.5l-1 8 7.5-11h-5.5z%22/%3E%3C/g%3E%3Cg transform=%22translate%28233.0 307.5%29 rotate%2810 12.8 12.8%29 scale%281.064%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a7 7 0 0 0-7 7c0 2.5 1.2 4.2 3 5.2V18h8v-2.8c1.8-1 3-2.7 3-5.2a7 7 0 0 0-7-7z%22/%3E%3Ccircle cx=%229.4%22 cy=%2210.6%22 r=%221.6%22/%3E%3Ccircle cx=%2214.6%22 cy=%2210.6%22 r=%221.6%22/%3E%3Cpath d=%22M10 18v2.5M12 18v2.5M14 18v2.5%22/%3E%3C/g%3E%3Cg transform=%22translate%28287.5 316.9%29 rotate%2830 14.1 14.1%29 scale%281.174%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%226.2%22 stroke-dasharray=%222.3 2.2%22 stroke-width=%223%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.6%22/%3E%3C/g%3E%3Cg transform=%22translate%28369.5 309.9%29 rotate%28-16 13.0 13.0%29 scale%281.087%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 2.5L5.5 13.5h5.5l-1 8 7.5-11h-5.5z%22/%3E%3C/g%3E%3Cg transform=%22translate%2852.5 361.9%29 rotate%28-8 15.6 15.6%29 scale%281.302%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28109.4 368.7%29 rotate%2810 13.3 13.3%29 scale%281.108%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28193.4 376.5%29 rotate%28-16 11.9 11.9%29 scale%280.991%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3Cg transform=%22translate%28274.9 373.2%29 rotate%2818 10.4 10.4%29 scale%280.863%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 3h4M10.5 3v5.2L6 15.2a4 4 0 0 0 3.5 5.8h5a4 4 0 0 0 3.5-5.8l-4.5-7V3M7.4 14.2h9.2%22/%3E%3C/g%3E%3Cg transform=%22translate%28337.9 362.6%29 rotate%280 15.5 15.5%29 scale%281.292%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3Cg transform=%22translate%28391.5 382.2%29 rotate%28-8 10.1 10.1%29 scale%280.844%29%22 fill=%22none%22 stroke=%22%23e4c990%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E")}
+/* touche ludique */
+body{background:var(--pl) 0 0/420px 420px,var(--paper)}
+.hero{background:var(--pd) 0 0/420px 420px,radial-gradient(90% 120% at 85% 0%,#1f5566 0%,#10333f 45%,#0a2128 100%)}
+.hero .dice{position:absolute;right:4%;top:96px;width:340px;height:300px;color:var(--sable);pointer-events:none}
+.num{display:flex;align-items:center;gap:9px}
+.num::before{content:"";width:18px;height:18px;background:var(--or);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.mod li::before{width:13px;height:13px;border-radius:0;margin-top:6px;background:var(--or);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.mod li:nth-child(2)::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%224%22 y=%224%22 width=%2216%22 height=%2216%22 rx=%223.5%22/%3E%3Ccircle cx=%228.6%22 cy=%228.6%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3Ccircle cx=%2215.4%22 cy=%2215.4%22 r=%221.25%22 fill=%22currentColor%22 stroke=%22none%22/%3E%3C/g%3E%3C/svg%3E")}
+.mod li:nth-child(3)::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z%22/%3E%3C/g%3E%3C/svg%3E")}
+.facts b{display:flex;align-items:center;gap:8px}
+.facts b::before{content:"";width:18px;height:18px;flex:none;background:var(--or);-webkit-mask:var(--fi) center/contain no-repeat;mask:var(--fi) center/contain no-repeat}
+.facts div:nth-child(1){--fi:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3C/svg%3E")}.facts div:nth-child(2){--fi:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20zM9 4v13.5M15 6.5V20%22/%3E%3C/g%3E%3C/svg%3E")}.facts div:nth-child(3){--fi:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z%22/%3E%3Cpath d=%22M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10%22 stroke-width=%221.1%22/%3E%3C/g%3E%3C/svg%3E")}
+.phones,.flow{background:var(--pd) 0 0/420px 420px,linear-gradient(180deg,#10333f,#0a2128)}
+.core b::before{content:"";display:block;width:44px;height:44px;margin:0 auto 10px;background:var(--ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 21V9h14v12M5 9V4h2.5v2H10V4h4v2h2.5V4H19v5M10 21v-4a2 2 0 0 1 4 0v4M3.5 21h17%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 21V9h14v12M5 9V4h2.5v2H10V4h4v2h2.5V4H19v5M10 21v-4a2 2 0 0 1 4 0v4M3.5 21h17%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.steps b{display:grid;place-items:center;width:64px;height:64px;font-size:24px;color:#7a5b20;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 1.8l9 5.2v10L12 22.2 3 17V7z%22 fill=%22%23f3ead3%22 stroke=%22%23c7a667%22 stroke-width=%221.1%22/%3E%3Cpath d=%22M12 3.6l7.4 4.3v8.2L12 20.4l-7.4-4.3V7.9z%22 fill=%22none%22 stroke=%22%23c7a667%22 stroke-width=%22.5%22 stroke-dasharray=%221 1%22/%3E%3C/svg%3E") center/contain no-repeat}
+.steps div{position:relative;overflow:hidden}
+.steps div::after{content:"";position:absolute;right:-14px;bottom:-14px;width:84px;height:84px;background:rgba(156,122,54,.1);-webkit-mask:var(--si) center/contain no-repeat;mask:var(--si) center/contain no-repeat}
+.steps div:nth-child(1){--si:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 7h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zM15 9h2.5a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H15M5 7c0-2 1.5-3 3-3 .8-1 2.2-1 3 0 1.5 0 3.5.5 4 3M8 11v6M12 11v6%22/%3E%3C/g%3E%3C/svg%3E")}.steps div:nth-child(2){--si:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 4l11 11M20 4L9 15M13.2 17.2l3.8 3.8M10.8 17.2L7 21M15.6 13.2l2.2 2.2M8.4 13.2l-2.2 2.2%22/%3E%3C/g%3E%3C/svg%3E")}.steps div:nth-child(3){--si:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%223%22 width=%2212%22 height=%2217%22 rx=%222%22/%3E%3Cpath d=%22M8.5 20.5l9.5 1.5 2-14-3-.4%22/%3E%3Cpath d=%22M11 8.5l1.2 2.3 2.4.3-1.8 1.6.5 2.4-2.3-1.2-2.3 1.2.5-2.4-1.8-1.6 2.4-.3z%22 stroke-width=%221%22/%3E%3C/g%3E%3C/svg%3E")}.steps div:nth-child(4){--si:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5%22/%3E%3C/g%3E%3C/svg%3E")}
+.end{background:var(--pl) 0 0/420px 420px,#fffdf9}
+@media (max-width:900px){.hero .dice{display:none}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#fff"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="pdf" href="QME-concept-Royaumes-Et-Legendes.pdf" download data-goatcounter-click="concept-royaumes-et-legendes-pdf" data-goatcounter-title="Concept Royaumes &amp; Légendes (PDF)">Télécharger le PDF (4 pages)</a>
+</div></header>
+
+<main>
+<section class="hero">
+  <svg class="ridge" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 260V200h60v-22h18v22h26v-40h14v-16h10v16h14v40h40l120-8c90-6 170-30 250-34 60-3 120 8 170 14V120h22V96h14v24h22v-30h12V70h10v20h12v30h22v24h22v-24h14v24h22v66l150-6c80-4 160-18 230-20 50-1 100 6 140 10V140h18v-18h14v18h18v40h70V260Z" fill="rgba(255,255,255,.05)"/>
+    <path d="M1009 70v-22l16 6-16 6" fill="rgba(199,166,103,.35)"/>
+    <path d="M0 260v-40c200-14 420-20 640-18s420 12 800 22v36Z" fill="rgba(199,166,103,.07)"/>
+    <path d="M0 260v-14h1440v14Z" fill="#f5efe2"/>
+  </svg>
+  <svg class="dice" viewBox="0 0 340 300" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity=".22" transform="translate(150 10) rotate(14 70 70) scale(5.8)"><path d="M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z"/><path d="M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10" stroke-width="1.1"/></g>
+    <g opacity=".16" transform="translate(40 130) rotate(-18 40 40) scale(3.3)"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="8.6" cy="8.6" r="1.25" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none"/><circle cx="15.4" cy="15.4" r="1.25" fill="currentColor" stroke="none"/></g>
+    <g opacity=".13" transform="translate(250 170) rotate(10 30 30) scale(2.6)"><path d="M12 3a2.6 2.6 0 0 1 2.6 2.6c0 1-.5 1.7-1.2 2.2 2.8.4 6.6 1.6 6.6 3.4 0 1.2-2 1.4-3.8 1.3l2.3 6.5h-4.6L12 15.5 10.1 19H5.5l2.3-6.5c-1.8.1-3.8-.1-3.8-1.3 0-1.8 3.8-3 6.6-3.4-.7-.5-1.2-1.2-1.2-2.2A2.6 2.6 0 0 1 12 3z"/></g>
+  </svg>
+  <div class="wrap">
+    <p class="eb">Concept pour Royaumes &amp; Légendes · Aups</p>
+    <h1>La boutique, le bar et les soirées&nbsp;: <em>un seul comptoir.</em></h1>
+    <p class="lede">Vous m'avez demandé de vous parler de la caisse et du bar à jeux. Voici à quoi cela pourrait ressembler chez vous&nbsp;: un même ticket pour un jeu, deux sirops et le jeu sur place, les tables suivies pendant la soirée, les tournois et initiations avec leurs inscriptions, et le stock commun avec votre boutique en ligne.</p>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-royaumes-et-legendes-demo" data-goatcounter-title="Concept Royaumes &amp; Légendes (démonstration)">Ouvrir la démonstration interactive</a>
+      <a class="btn ghost" href="QME-concept-Royaumes-Et-Legendes.pdf" download data-goatcounter-click="concept-royaumes-et-legendes-pdf" data-goatcounter-title="Concept Royaumes &amp; Légendes (PDF)">Télécharger le PDF</a>
+    </div>
+    <p class="note">Concept réalisé à partir de votre message et de ce qui est visible publiquement. Toutes les données affichées sont fictives.</p>
+    <div class="stage">
+      <div class="browser"><div class="tb"><i></i><i></i><i></i><span>le-comptoir-des-legendes · ce soir</span></div><img src="s-soir.webp" width="1600" height="1000" alt="Ce soir : la salle en direct, six tables occupées, données fictives"></div>
+      <div class="phone"><img src="m-accueil.webp" width="640" height="1385" alt="La page des joueurs sur téléphone : soirée, réservation de table, données fictives"></div>
+    </div>
+  </div>
+</section>
+
+<div class="facts"><div class="wrap" style="display:contents">
+  <div><b>Ce que vous m'avez dit</b><p><q>J'aimerais que vous me parliez un peu plus de votre système de caisse et de bar à jeu.</q></p></div>
+  <div><b>Ce que l'on voit</b><p>Une boutique de jeux de société, de figurines et de peinture au cœur d'Aups, un café où l'on s'installe pour jouer, des initiations, des soirées et des tournois, et une boutique en ligne.</p></div>
+  <div><b>Ce que propose le concept</b><p>Un comptoir qui réunit les ventes de la boutique, du bar et du jeu sur place, la salle en direct, les inscriptions aux événements et un stock commun avec le site.</p></div>
+</div></div>
+
+<div class="wrap">
+  <section class="mod" id="soir">
+    <div class="head">
+      <div><div class="num">01 · CE SOIR</div><h2>La salle en direct, <em>table par table</em></h2></div>
+      <div><p>Pendant une soirée, chaque table a son ardoise, ses joueurs et le jeu sorti de la ludothèque. On encaisse au départ, sans rien retenir de tête.</p>
+        <ul><li>Les tables libres, occupées et réservées, avec l'heure d'arrivée</li><li>Le jeu en cours, et le prêt en retard qui demande une relance</li><li>Le fil de la soirée&nbsp;: consommations, jeu acheté après l'avoir essayé, carte cadeau vendue</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-soir.webp" width="1600" height="1000" alt="Ce soir : salle en direct, ardoises et ludothèque, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="caisse">
+    <div class="head">
+      <div><div class="num">02 · LE TICKET</div><h2>Boutique, bar et jeu, <em>sur le même ticket</em></h2></div>
+      <div><p>Un jeu de société, deux bières et le jeu sur place de quatre joueurs&nbsp;: un seul ticket, ventilé par activité et par taux de TVA, puis encaissé.</p>
+        <ul><li>Fidélité, cartes cadeaux et bons de séance de peinture lus au même endroit</li><li>L'addition partagée entre les joueurs d'une table</li><li>La clôture du soir prête pour la comptabilité, et le jeu vendu retiré du stock du site</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-caisse.webp" width="1600" height="1000" alt="Le ticket de la table 4 : boutique, bar et jeu sur place, données fictives" loading="lazy"></div>
+    <div class="warnbox"><b>Un point à savoir sur la caisse.</b> En France, l'enregistrement des encaissements doit passer par un logiciel de caisse certifié. Le concept ne remplace donc pas cette brique&nbsp;: on choisit ensemble une caisse certifiée adaptée (ou l'on garde la vôtre), et l'outil s'y branche pour tout le reste&nbsp;: tables, ardoises, inscriptions, fidélité, stock.</div>
+  </section>
+
+  <section class="mod" id="quetes">
+    <div class="head">
+      <div><div class="num">03 · SOIRÉES ET TOURNOIS</div><h2>Les inscriptions, <em>sans messages ni papier</em></h2></div>
+      <div><p>Soirée jeux, tournoi Warhammer, initiation peinture ou découverte Age de Sigmar&nbsp;: chaque événement a ses places, sa liste d'attente et ses rappels.</p>
+        <ul><li>Les listes d'armées reçues, les inscriptions payées ou à régler sur place</li><li>Les rondes suisses calculées, le classement mis à jour à chaque résultat</li><li>Les rappels et relances qui partent seuls, la veille</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-quetes.webp" width="1600" height="1000" alt="Soirées, tournois et initiations, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="joueurs">
+    <div class="head">
+      <div><div class="num">04 · CÔTÉ JOUEURS</div><h2>Sur le téléphone <em>des joueurs</em></h2></div>
+      <div><p>Une page à vos couleurs, sans application à installer&nbsp;: s'inscrire à une soirée, réserver une table avec son jeu, suivre sa carte de fidélité et sa précommande.</p>
+        <ul><li>Une table réservée avec le jeu mis de côté</li><li>La carte de fidélité et le solde de la carte cadeau</li><li>Un message dès que la précommande arrive en boutique</li></ul></div>
+    </div>
+    <div class="phones"><span class="tag">Sur le téléphone de vos joueurs</span>
+      <div class="phone"><img src="m-accueil.webp" width="640" height="1385" alt="Page des joueurs : soirée, réservation, événements, données fictives" loading="lazy"></div>
+      <div class="phone"><img src="m-carte.webp" width="640" height="1385" alt="Carte de fidélité, carte cadeau et précommande, données fictives" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="mod" id="registre">
+    <div class="head">
+      <div><div class="num">05 · REGISTRE ET STOCK</div><h2>Le stock et les chiffres, <em>boutique et site réunis</em></h2></div>
+      <div><p>Les recettes de la boutique, du bar, du jeu et du site en ligne, semaine après semaine, et ce qu'il faut recommander avant de manquer.</p>
+        <ul><li>Les peintures et références sous le seuil, regroupées par fournisseur</li><li>Les précommandes, avec le joueur prévenu à l'arrivée</li><li>Les cartes cadeaux de Noël vendues, utilisées et à utiliser</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-registre.webp" width="1600" height="1000" alt="Registre : recettes par semaine, stock, précommandes et cartes cadeaux, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="flow">
+    <p class="eb" style="margin:0">Comment ça se branche</p>
+    <h2>Vos outils restent en place. Le comptoir les relie.</h2>
+    <p>Rien n'est à ressaisir&nbsp;: le comptoir se branche sur ce qui existe déjà. Le détail des branchements se vérifie ensemble, outil par outil.</p>
+    <div class="fg">
+      <div class="col"><div class="lbl">Ce qui existe</div>
+        <div class="it"><b>Votre boutique en ligne</b><span>catalogue et stock, selon ce que la plateforme permet d'exporter</span></div>
+        <div class="it"><b>Une caisse certifiée</b><span>l'encaissement, obligatoire et sécurisé</span></div>
+        <div class="it"><b>Votre ludothèque</b><span>la liste des jeux, reprise une fois</span></div>
+        <div class="it"><b>Vos annonces d'événements</b><span>le lien d'inscription à partager</span></div></div>
+      <div class="arr"></div>
+      <div class="core"><b>Le Comptoir des Légendes</b><span>une table = une ardoise, un joueur = une fiche, un événement = ses inscrits</span></div>
+      <div class="arr"></div>
+      <div class="col"><div class="lbl">Ce que vous obtenez</div>
+        <div class="it"><b>Ce soir</b><span>la salle, les ardoises et les jeux sortis</span></div>
+        <div class="it"><b>Un même ticket</b><span>boutique, bar et jeu, fidélité et cartes cadeaux</span></div>
+        <div class="it"><b>Soirées et tournois</b><span>inscriptions, attente, rappels, rondes</span></div>
+        <div class="it"><b>Registre</b><span>recettes, stock et précommandes</span></div></div>
+    </div>
+  </section>
+
+<!-- estimation -->
+
+  <section class="est" id="est" style="margin-top:100px" aria-live="polite"></section>
+  <script>
+(function(){
+  var C = {"lang": "fr", "rate": 25, "rateLabel": "Valeur d'une heure de votre temps", "period": "an", "rows": [["Tenir les ardoises des tables pendant une soirée et les encaisser au départ", "soirées", 50, 20, 5], ["Gérer les inscriptions d'un événement (messages, réseaux, liste papier)", "événements", 90, 20, 5], ["Rappels, relances et liste d'attente d'un événement", "événements", 90, 10, 1], ["Reporter les ventes de la boutique dans le stock du site en ligne", "semaines", 50, 45, 10], ["Clôture du jour et ventilation boutique, bar et jeu pour la comptabilité", "jours d'ouverture", 250, 10, 3], ["Suivre une précommande et prévenir le client à l'arrivée", "précommandes", 120, 8, 2], ["Cartes cadeaux et fidélité (carnet, tampons, soldes)", "opérations", 100, 4, 1]], "txt": {"foot": "Les minutes indiquées concernent une tâche faite une fois (une soirée, un événement, une semaine). Les volumes sont supposés pour une boutique avec une soirée jeux par semaine et quelques tournois et initiations par mois : remplacez-les par les vôtres. Ces hypothèses seront affinées ensemble lors de notre échange."}}, T = Object.assign({}, {"eb": "Estimation", "h": "Estimation du temps gagné", "intro": "Un ordre de grandeur, pas une promesse. Les volumes et les durées ci-dessous sont des hypothèses de départ, construites à partir de ce que l'on voit de l'extérieur : remplacez-les par les vôtres, le total se met à jour.", "task": "Tâche", "vol": "Combien par {p}", "before": "Minutes aujourd'hui", "after": "Minutes avec l'outil", "saved": "Heures gagnées", "hours": "heures gagnées par {p}", "days": "journées de 7 h", "value": "valeur du temps gagné par {p}, à {rate} € de l'heure", "reset": "Revenir aux hypothèses de départ", "foot": "Les minutes indiquées concernent une tâche faite une fois (un dossier, une relance, une semaine de planning). Ces hypothèses seront affinées ensemble lors de notre échange.", "loc": "fr-FR"}, C.txt || {}), el = document.getElementById('est');
+  var fmt = function(n, d){ return n.toLocaleString(T.loc, {maximumFractionDigits: d || 0}); };
+  var P = function(s){ return s.replace('{p}', C.period); };
+  var rows = C.rows.map(function(r, i){
+    return '<tr><td>' + r[0] + '</td>' +
+      '<td class="n" data-l="' + P(T.vol) + '"><span><input type="number" min="0" step="1" data-k="v" data-i="' + i + '" value="' + r[2] + '"><span class="u">' + r[1] + '</span></span></td>' +
+      '<td class="n" data-l="' + T.before + '"><input type="number" min="0" step="0.5" data-k="b" data-i="' + i + '" value="' + r[3] + '"></td>' +
+      '<td class="n" data-l="' + T.after + '"><input type="number" min="0" step="0.5" data-k="a" data-i="' + i + '" value="' + r[4] + '"></td>' +
+      '<td class="n s" data-l="' + T.saved + '" id="s' + i + '"></td></tr>';
+  }).join('');
+  el.innerHTML = '<p class="eb"><b>QME</b> · ' + T.eb + '</p><h2>' + T.h + '</h2><p class="intro">' + T.intro + '</p>' +
+    '<table><thead><tr><th>' + T.task + '</th><th class="n">' + P(T.vol) + '</th><th class="n">' + T.before + '</th><th class="n">' + T.after + '</th><th class="n">' + T.saved + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">' + T.reset + '</button></div>' +
+    '<div class="tot"><div class="main"><b id="estH"></b><span>' + P(T.hours) + '</span></div><div><b id="estD"></b><span>' + T.days + '</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
+    '<p class="foot">' + T.foot + '</p>';
+  function calc(){
+    var tot = 0;
+    C.rows.forEach(function(r, i){
+      var g = function(k){ var v = parseFloat(el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value); return isNaN(v) ? 0 : v; };
+      var h = Math.max(0, g('v') * (g('b') - g('a'))) / 60; tot += h;
+      document.getElementById('s' + i).textContent = fmt(h, h < 10 ? 1 : 0) + ' h';
+    });
+    var rate = parseFloat(document.getElementById('estRate').value) || 0;
+    document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
+    document.getElementById('estD').textContent = fmt(tot / (C.dayHours || 7), 0);
+    document.getElementById('estVL').textContent = P(T.value).replace('{rate}', fmt(rate));
+    var v = fmt(Math.round(tot * rate / 10) * 10); document.getElementById('estV').textContent = T.loc === 'en-GB' ? '€' + v : v + ' €';
+  }
+  el.addEventListener('input', calc);
+  document.getElementById('estReset').addEventListener('click', function(){
+    C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
+    document.getElementById('estRate').value = C.rate; calc();
+  });
+  calc();
+})();
+</script>
+  <!-- estimation -->
+
+  <section style="margin-top:100px">
+    <div class="num">CONSTRUIT PAR MODULES</div>
+    <h2 style="font-size:clamp(28px,3.2vw,40px);margin:10px 0 0;font-weight:700">On commence par ce qui vous fait gagner le plus de temps</h2>
+    <div class="steps">
+      <div><b>1</b><h3>Ce soir et le ticket</h3><p>Les tables, les ardoises et le ticket commun, branchés sur une caisse certifiée.</p></div>
+      <div><b>2</b><h3>Soirées et tournois</h3><p>Les inscriptions en ligne, la liste d'attente, les rappels et les rondes.</p></div>
+      <div><b>3</b><h3>Côté joueurs</h3><p>La page à vos couleurs, la fidélité, les cartes cadeaux et les précommandes.</p></div>
+      <div><b>4</b><h3>Registre et stock</h3><p>Les recettes par activité et le stock commun avec le site en ligne.</p></div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div><h2>Un outil construit autour de votre façon de travailler</h2><p>Ce concept est un point de départ&nbsp;: chaque écran s'adapte à votre boutique, à votre vocabulaire et à vos outils, et se teste en conditions réelles lors d'une vraie soirée avant d'aller plus loin.</p></div>
+    <div class="ctas">
+      <a class="btn dark" href="demo/" data-goatcounter-click="concept-royaumes-et-legendes-demo" data-goatcounter-title="Concept Royaumes &amp; Légendes (démonstration)">Ouvrir la démonstration</a>
+      <a class="btn line" href="QME-concept-Royaumes-Et-Legendes.pdf" download data-goatcounter-click="concept-royaumes-et-legendes-pdf" data-goatcounter-title="Concept Royaumes &amp; Légendes (PDF)">Télécharger le PDF (4 pages)</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
