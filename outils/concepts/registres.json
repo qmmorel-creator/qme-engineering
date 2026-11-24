@@ -5170,5 +5170,2075 @@
         "L'échéance visible, sans appeler."
       ]
     ]
+  },
+  "locnacelle": {
+    "nom": "Loc'Nacelle",
+    "sujet": "VGP des machines louées",
+    "titre": "Chaque nacelle louée part avec sa VGP à jour, et le client le voit.",
+    "lede": "Un outil sur mesure pour suivre le parc de nacelles, de chariots télescopiques et de mini-grues : VGP par machine, état à la livraison et au retour, dépannages, et une fiche de vie que le client ouvre en scannant la machine.",
+    "voit": "Un loueur de nacelles, de chariots télescopiques et de mini-grues, avec ou sans opérateur, présent par ses agences de Bourg-en-Bresse à Chambéry, Annemasse, Clermont-Ferrand et Brive.",
+    "demande": "Que chaque machine louée ait sa vérification générale périodique à jour, que l'état à la livraison et au retour soit tracé, et que le client puisse le prouver sur son chantier.",
+    "propose": "Une fiche de vie par machine, partagée entre les agences et le client, qui rappelle les VGP, garde les états de livraison et de retour et chaque dépannage.",
+    "equipement": "machine",
+    "parc": {
+      "titre": "Parc · toutes agences",
+      "colonnes": [
+        "Machine",
+        "Agence",
+        "Type",
+        "VGP",
+        "Location en cours",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "N-12-045",
+          "Bourg-en-Bresse",
+          "Nacelle articulée 12 m",
+          "10/2026",
+          "BTP du Val",
+          "ok"
+        ],
+        [
+          "T-14-012",
+          "Chambéry",
+          "Télescopique 14 m",
+          "06/2026",
+          "Charpentes du Plateau",
+          "alerte"
+        ],
+        [
+          "C-08-031",
+          "Annemasse",
+          "Nacelle ciseaux 8 m",
+          "04/2026",
+          "—",
+          "retard"
+        ],
+        [
+          "G-03-004",
+          "Clermont-Ferrand",
+          "Mini-grue 3 t",
+          "09/2026",
+          "Menuiserie du Lac",
+          "ok"
+        ],
+        [
+          "N-16-008",
+          "Brive",
+          "Nacelle 16 m",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "N-12-045",
+      "titre": "Nacelle articulée 12 m · agence de Bourg-en-Bresse",
+      "infos": [
+        [
+          "Location en cours",
+          "BTP du Val, chantier du centre"
+        ],
+        [
+          "Prochaine VGP",
+          "avril 2027"
+        ],
+        [
+          "Heures",
+          "1 840 h"
+        ],
+        [
+          "Plaque",
+          "QR code sur le panier"
+        ]
+      ],
+      "historique": [
+        [
+          "18/11/2026",
+          "Livraison : état et photos, client signé"
+        ],
+        [
+          "15/10/2026",
+          "VGP conforme, rapport joint"
+        ],
+        [
+          "02/09/2026",
+          "Dépannage sur chantier : capteur remplacé"
+        ],
+        [
+          "20/04/2026",
+          "VGP conforme"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "VGP et retours · agence de Chambéry",
+      "lignes": [
+        [
+          "Lun.",
+          "T-14-012",
+          "VGP avant la prochaine location",
+          "atelier"
+        ],
+        [
+          "Mar.",
+          "C-08-031",
+          "VGP en retard : machine bloquée",
+          "atelier"
+        ],
+        [
+          "Mer.",
+          "N-10-022",
+          "retour de location : état",
+          "agence"
+        ],
+        [
+          "Jeu.",
+          "T-17-003",
+          "livraison",
+          "chauffeur"
+        ]
+      ],
+      "relances": [
+        "VGP à 30 jours : machine signalée à l'atelier",
+        "VGP dépassée : machine bloquée à la location",
+        "Retour avec dommage : photo et devis au client"
+      ]
+    },
+    "client": {
+      "titre": "Fiche · scan du panier",
+      "lignes": [
+        [
+          "Nacelle 12 m",
+          "ok",
+          "VGP à jour jusqu'en avril"
+        ],
+        [
+          "Livraison",
+          "ok",
+          "État signé le 18/11"
+        ]
+      ],
+      "pied": "Rapport de VGP PDF · notice"
+    },
+    "branchements": [
+      [
+        "Votre outil de location",
+        "contrats et réservations"
+      ],
+      [
+        "Vos agences",
+        "parc et ateliers"
+      ],
+      [
+        "Vos rapports de VGP",
+        "existants"
+      ],
+      [
+        "Les clients",
+        "accès par QR code"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc, VGP, disponibilité"
+      ],
+      [
+        "Atelier",
+        "VGP et retours à traiter"
+      ],
+      [
+        "Fiche de vie",
+        "par machine"
+      ],
+      [
+        "Preuve client",
+        "VGP visible sur le chantier"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque machine, son agence et ses VGP."
+      ],
+      [
+        "Les états",
+        "Livraison et retour, photos et signature."
+      ],
+      [
+        "Les VGP",
+        "Une machine non vérifiée ne repart pas."
+      ],
+      [
+        "La fiche client",
+        "La VGP visible en scannant la machine."
+      ]
+    ]
+  },
+  "giffard-manutention": {
+    "nom": "Giffard Manutention",
+    "sujet": "VGP des chariots chez les clients",
+    "titre": "Chaque chariot de vos clients vérifié à temps, agence par agence.",
+    "lede": "Un outil sur mesure pour les VGP et la maintenance que vos techniciens réalisent chez les clients : le parc de chaque client, les échéances, les tournées par agence, et un registre que le client consulte quand il veut.",
+    "voit": "Une entreprise familiale depuis quatre générations, plus de 140 collaborateurs dont 50 techniciens répartis dans 10 agences du Grand Ouest, qui vend, loue et entretient chariots élévateurs et matériel de manutention, avec des contrats de maintenance et des VGP toutes marques.",
+    "demande": "Que chaque chariot, gerbeur ou nacelle de vos clients ait sa VGP à jour, que les interventions soient tracées, et que le client retrouve son carnet le jour d'un contrôle.",
+    "propose": "Un registre par client, alimenté par les interventions de vos techniciens, qui planifie les VGP par agence et donne au client une preuve à jour.",
+    "equipement": "machine",
+    "parc": {
+      "titre": "Parc clients · toutes agences",
+      "colonnes": [
+        "Client",
+        "Agence",
+        "Machine",
+        "VGP",
+        "Contrat",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Logistique du Val",
+          "Carquefou",
+          "Chariot frontal 2,5 t",
+          "09/2026",
+          "maintenance",
+          "ok"
+        ],
+        [
+          "Coopérative du Plateau",
+          "Angers",
+          "Chariot 3,5 t",
+          "05/2026",
+          "VGP",
+          "alerte"
+        ],
+        [
+          "Industries du Lac",
+          "Rennes",
+          "Gerbeur",
+          "03/2026",
+          "aucun",
+          "retard"
+        ],
+        [
+          "Négoce du Bourg",
+          "La Roche-sur-Yon",
+          "Chariot 2 t",
+          "10/2026",
+          "location",
+          "ok"
+        ],
+        [
+          "Menuiserie des Pins",
+          "Vannes",
+          "Nacelle ciseaux",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "CH-2022-1187",
+      "titre": "Chariot 3,5 t · Coopérative du Plateau",
+      "infos": [
+        [
+          "Agence",
+          "Angers"
+        ],
+        [
+          "Marque",
+          "toutes marques"
+        ],
+        [
+          "Heures",
+          "6 420 h"
+        ],
+        [
+          "Plaque",
+          "QR code sur le montant"
+        ]
+      ],
+      "historique": [
+        [
+          "12/05/2026",
+          "VGP conforme, rapport joint"
+        ],
+        [
+          "03/02/2026",
+          "Maintenance : chaînes de mât graissées"
+        ],
+        [
+          "14/11/2025",
+          "VGP conforme"
+        ],
+        [
+          "08/03/2022",
+          "Livraison"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "VGP de la semaine · agence d'Angers",
+      "lignes": [
+        [
+          "Lun.",
+          "Coopérative du Plateau",
+          "4 chariots",
+          "technicien 18"
+        ],
+        [
+          "Mar.",
+          "Industries du Lac",
+          "VGP en retard",
+          "technicien 18"
+        ],
+        [
+          "Jeu.",
+          "Négoce du Val",
+          "2 gerbeurs",
+          "technicien 22"
+        ],
+        [
+          "Ven.",
+          "Menuiserie des Pins",
+          "premier passage",
+          "technicien 22"
+        ]
+      ],
+      "relances": [
+        "VGP à 30 jours : rendez-vous proposé au client",
+        "VGP dépassée : alerte au client et à l'agence",
+        "Machine sans contrat : proposition de contrat"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Coopérative du Plateau",
+      "lignes": [
+        [
+          "Chariot 3,5 t",
+          "alerte",
+          "VGP en novembre"
+        ],
+        [
+          "Gerbeur",
+          "ok",
+          "VGP le 05/2026"
+        ]
+      ],
+      "pied": "Rapports de VGP PDF · carnets de maintenance"
+    },
+    "branchements": [
+      [
+        "Vos interventions",
+        "rapports des techniciens"
+      ],
+      [
+        "Vos agences",
+        "10 secteurs"
+      ],
+      [
+        "Vos contrats",
+        "maintenance, VGP, location"
+      ],
+      [
+        "Les clients",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc clients, VGP, contrats"
+      ],
+      [
+        "Tournées",
+        "par agence et technicien"
+      ],
+      [
+        "Contrats",
+        "machines à couvrir"
+      ],
+      [
+        "Registre client",
+        "preuve à jour"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque machine chez chaque client, toutes marques."
+      ],
+      [
+        "Les VGP",
+        "Les échéances réparties entre les agences."
+      ],
+      [
+        "Les contrats",
+        "Les machines sans contrat, repérées."
+      ],
+      [
+        "Le registre client",
+        "Les rapports, à jour, en ligne."
+      ]
+    ]
+  },
+  "alix-ascenseurs": {
+    "nom": "Alix Ascenseurs",
+    "sujet": "carnet d'entretien des ascenseurs",
+    "titre": "Chaque ascenseur suivi, chaque visite visible par le syndic.",
+    "lede": "Un outil sur mesure qui prolonge votre rapport d'intervention : le carnet d'entretien de chaque appareil, les 9 visites préventives de l'année, les pannes, et un accès pour le syndic ou l'entreprise propriétaire.",
+    "voit": "Un ascensoriste local du Nord et du Pas-de-Calais qui entretient, dépanne, rénove et installe ascenseurs, monte-charges et élévateurs toutes marques, avec 9 visites préventives par an et un rapport complet à chaque intervention.",
+    "demande": "Que chaque propriétaire retrouve le carnet d'entretien de son appareil, sache quand ont eu lieu les visites et les pannes, et prépare le contrôle technique sans chercher.",
+    "propose": "Un carnet d'entretien en ligne par appareil, alimenté par vos rapports, qui suit les visites, les pannes et les travaux, et que le syndic consulte quand il veut.",
+    "equipement": "appareil",
+    "parc": {
+      "titre": "Appareils sous contrat",
+      "colonnes": [
+        "Client",
+        "Immeuble",
+        "Appareil",
+        "Dernière visite",
+        "Pannes (12 mois)",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Syndic du Val",
+          "Résidence Les Pins",
+          "Ascenseur 6 niveaux",
+          "11/2026",
+          "1",
+          "ok"
+        ],
+        [
+          "Clinique du Plateau",
+          "Bâtiment B",
+          "Monte-lits",
+          "10/2026",
+          "4",
+          "alerte"
+        ],
+        [
+          "Mairie de Valbrune",
+          "Hôtel de ville",
+          "Élévateur PMR",
+          "08/2026",
+          "2",
+          "retard"
+        ],
+        [
+          "Logistique du Lac",
+          "Entrepôt",
+          "Monte-charge",
+          "11/2026",
+          "0",
+          "ok"
+        ],
+        [
+          "Copropriété du Bourg",
+          "Bâtiment A",
+          "Ascenseur 4 niveaux",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "ASC-59-0412",
+      "titre": "Ascenseur 6 niveaux · Résidence Les Pins",
+      "infos": [
+        [
+          "Marque",
+          "toutes marques"
+        ],
+        [
+          "Contrat",
+          "maintenance, 9 visites par an"
+        ],
+        [
+          "Contrôle technique",
+          "à prévoir en 2027"
+        ],
+        [
+          "Plaque",
+          "QR code en cabine"
+        ]
+      ],
+      "historique": [
+        [
+          "14/11/2026",
+          "Visite préventive : rapport complet"
+        ],
+        [
+          "02/10/2026",
+          "Panne : porte palière réglée"
+        ],
+        [
+          "06/10/2026",
+          "Visite préventive"
+        ],
+        [
+          "15/03/2022",
+          "Reprise du contrat"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Visites de la semaine",
+      "lignes": [
+        [
+          "Lun.",
+          "Clinique du Plateau",
+          "visite préventive",
+          "technicien 2"
+        ],
+        [
+          "Mar.",
+          "Mairie de Valbrune",
+          "visite en retard",
+          "technicien 2"
+        ],
+        [
+          "Jeu.",
+          "Copropriété du Bourg",
+          "première visite",
+          "technicien 4"
+        ],
+        [
+          "Ven.",
+          "Résidence Les Pins",
+          "travaux de rénovation",
+          "équipe travaux"
+        ]
+      ],
+      "relances": [
+        "Plus de 6 semaines sans visite : alerte",
+        "Pannes répétées : proposition de rénovation",
+        "Contrôle technique à 6 mois : rappel au propriétaire"
+      ]
+    },
+    "client": {
+      "titre": "Carnet · scan en cabine",
+      "lignes": [
+        [
+          "Ascenseur",
+          "ok",
+          "Visite le 14/11"
+        ],
+        [
+          "Dernière panne",
+          "ok",
+          "Porte réglée le 02/10"
+        ]
+      ],
+      "pied": "Carnet d'entretien · rapports PDF"
+    },
+    "branchements": [
+      [
+        "Vos rapports",
+        "après chaque intervention"
+      ],
+      [
+        "Vos contrats",
+        "par appareil"
+      ],
+      [
+        "Vos techniciens",
+        "tournées"
+      ],
+      [
+        "Les syndics",
+        "accès au carnet"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "appareils, visites, pannes"
+      ],
+      [
+        "Tournées",
+        "par technicien"
+      ],
+      [
+        "Travaux",
+        "rénovations à proposer"
+      ],
+      [
+        "Carnet client",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le carnet",
+        "Chaque appareil, ses visites, ses pannes, ses travaux."
+      ],
+      [
+        "Les visites",
+        "Les 9 visites de l'année, sans trou de plus de 6 semaines."
+      ],
+      [
+        "Les pannes",
+        "Les pannes répétées repérées pour proposer une rénovation."
+      ],
+      [
+        "L'accès syndic",
+        "Le carnet visible sans demande."
+      ]
+    ]
+  },
+  "ermhes": {
+    "nom": "ERMHES",
+    "sujet": "maintenance des élévateurs PMR",
+    "titre": "Chaque élévateur ERMHES entretenu deux fois par an, partout en France.",
+    "lede": "Un outil sur mesure pour suivre les élévateurs PMR et ascenseurs de maison installés : les deux maintenances annuelles par appareil, les dépannages, et un registre que l'ERP, la collectivité ou le particulier consulte quand il veut.",
+    "voit": "Un fabricant qui assure lui-même la conception, la fabrication, l'installation et la maintenance de ses ascenseurs de maison et élévateurs PMR, avec plus de 8 000 installations en France et dans le monde.",
+    "demande": "Que chaque appareil soit entretenu à la bonne fréquence, que chaque visite soit tracée, et qu'un ERP retrouve la preuve pour son registre de sécurité.",
+    "propose": "Un registre par appareil, partagé avec le propriétaire, qui planifie les deux maintenances annuelles, garde chaque intervention et prépare la preuve pour l'ERP.",
+    "equipement": "appareil",
+    "parc": {
+      "titre": "Appareils installés",
+      "colonnes": [
+        "Propriétaire",
+        "Lieu",
+        "Appareil",
+        "Dernière maintenance",
+        "Prochaine",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Mairie de Valbrune",
+          "Mairie",
+          "Élévateur PMR",
+          "06/2026",
+          "12/2026",
+          "alerte"
+        ],
+        [
+          "Particulier, Vitré",
+          "Maison",
+          "Ascenseur de maison",
+          "09/2026",
+          "03/2027",
+          "ok"
+        ],
+        [
+          "Médiathèque du Plateau",
+          "Médiathèque",
+          "Élévateur PMR",
+          "02/2026",
+          "08/2026",
+          "retard"
+        ],
+        [
+          "Cabinet médical du Lac",
+          "Cabinet",
+          "Élévateur PMR",
+          "10/2026",
+          "04/2027",
+          "ok"
+        ],
+        [
+          "École du Bourg",
+          "École",
+          "Élévateur PMR",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "EL-2021-6631",
+      "titre": "Élévateur PMR · Mairie de Valbrune",
+      "infos": [
+        [
+          "Norme",
+          "EN 81-41"
+        ],
+        [
+          "Installation",
+          "2021"
+        ],
+        [
+          "Maintenance",
+          "2 fois par an"
+        ],
+        [
+          "Plaque",
+          "QR code sur la porte palière"
+        ]
+      ],
+      "historique": [
+        [
+          "12/06/2026",
+          "Maintenance semestrielle conforme"
+        ],
+        [
+          "18/12/2025",
+          "Maintenance semestrielle conforme"
+        ],
+        [
+          "03/09/2025",
+          "Dépannage : bouton d'appel remplacé"
+        ],
+        [
+          "15/04/2021",
+          "Installation et mise en service"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Maintenances à planifier · Bretagne",
+      "lignes": [
+        [
+          "Déc.",
+          "Mairie de Valbrune",
+          "maintenance semestrielle",
+          "technicien 3"
+        ],
+        [
+          "Déc.",
+          "Médiathèque du Plateau",
+          "en retard",
+          "technicien 3"
+        ],
+        [
+          "Janv.",
+          "École du Bourg",
+          "première maintenance",
+          "technicien 5"
+        ],
+        [
+          "Mars",
+          "Particulier, Vitré",
+          "maintenance semestrielle",
+          "technicien 5"
+        ]
+      ],
+      "relances": [
+        "Maintenance à 30 jours : rendez-vous proposé",
+        "Maintenance dépassée : alerte au propriétaire",
+        "ERP : attestation prête pour le registre de sécurité"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Mairie de Valbrune",
+      "lignes": [
+        [
+          "Élévateur PMR",
+          "alerte",
+          "Maintenance en décembre"
+        ],
+        [
+          "Attestation ERP",
+          "ok",
+          "Disponible"
+        ]
+      ],
+      "pied": "Rapports de maintenance PDF · notice"
+    },
+    "branchements": [
+      [
+        "Vos installations",
+        "plus de 8 000 appareils"
+      ],
+      [
+        "Vos techniciens",
+        "maintenances et dépannages"
+      ],
+      [
+        "Vos contrats",
+        "par appareil"
+      ],
+      [
+        "Les propriétaires",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc installé, maintenances"
+      ],
+      [
+        "Tournées",
+        "par région"
+      ],
+      [
+        "Attestations",
+        "pour les ERP"
+      ],
+      [
+        "Registre client",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque appareil installé et son propriétaire."
+      ],
+      [
+        "La maintenance",
+        "Les deux visites annuelles planifiées par région."
+      ],
+      [
+        "Les ERP",
+        "L'attestation prête pour le registre de sécurité."
+      ],
+      [
+        "Le registre client",
+        "L'historique, sans appeler."
+      ]
+    ]
+  },
+  "ads-laminaire": {
+    "nom": "ADS Laminaire",
+    "sujet": "requalification des hottes et sorbonnes",
+    "titre": "Chaque hotte, chaque PSM requalifié à temps, prêt pour l'audit.",
+    "lede": "Un outil sur mesure pour suivre les hottes à flux laminaire, postes de sécurité microbiologique et sorbonnes installés : contrôles périodiques, requalifications, rapports, et une fiche de vie prête pour un audit.",
+    "voit": "Une société familiale à taille humaine qui réunit à Aulnay-sous-Bois la conception, la production, le contrôle et la maintenance de hottes à flux laminaire, de PSM, de sorbonnes et de salles blanches.",
+    "demande": "Que chaque équipement soit contrôlé et requalifié à la fréquence que demande son usage, et que le laboratoire retrouve les rapports le jour d'un audit.",
+    "propose": "Une fiche de vie par équipement, partagée avec le laboratoire, qui rappelle les contrôles, garde les rapports de qualification et propose l'intervention avant l'échéance.",
+    "equipement": "équipement",
+    "parc": {
+      "titre": "Équipements suivis · laboratoires",
+      "colonnes": [
+        "Client",
+        "Laboratoire",
+        "Équipement",
+        "Dernier contrôle",
+        "Prochain",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Hôpital du Val",
+          "Pharmacie",
+          "PSM type II",
+          "06/2026",
+          "12/2026",
+          "alerte"
+        ],
+        [
+          "Laboratoire du Plateau",
+          "Microbiologie",
+          "Hotte à flux laminaire",
+          "09/2026",
+          "09/2027",
+          "ok"
+        ],
+        [
+          "Université du Lac",
+          "Chimie",
+          "Sorbonne",
+          "03/2025",
+          "03/2026",
+          "retard"
+        ],
+        [
+          "Cosmétiques du Bourg",
+          "Contrôle qualité",
+          "PSM type II",
+          "10/2026",
+          "04/2027",
+          "ok"
+        ],
+        [
+          "Lycée des Tilleuls",
+          "Laboratoire",
+          "Sorbonne",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "PSM-2022-0318",
+      "titre": "PSM type II · Hôpital du Val, pharmacie",
+      "infos": [
+        [
+          "Norme",
+          "NF EN 12469"
+        ],
+        [
+          "Installation",
+          "2022"
+        ],
+        [
+          "Fréquence",
+          "selon la criticité de l'usage"
+        ],
+        [
+          "Plaque",
+          "QR code sur la façade"
+        ]
+      ],
+      "historique": [
+        [
+          "10/06/2026",
+          "Contrôle périodique conforme, rapport joint"
+        ],
+        [
+          "12/12/2025",
+          "Contrôle périodique : filtre à surveiller"
+        ],
+        [
+          "15/06/2025",
+          "Contrôle périodique conforme"
+        ],
+        [
+          "20/01/2022",
+          "Installation et qualification"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Contrôles à planifier",
+      "lignes": [
+        [
+          "Déc.",
+          "Hôpital du Val",
+          "PSM type II",
+          "technicien 1"
+        ],
+        [
+          "Déc.",
+          "Université du Lac",
+          "sorbonne en retard",
+          "technicien 2"
+        ],
+        [
+          "Janv.",
+          "Lycée des Tilleuls",
+          "premier contrôle",
+          "technicien 2"
+        ],
+        [
+          "Avril",
+          "Cosmétiques du Bourg",
+          "PSM type II",
+          "technicien 1"
+        ]
+      ],
+      "relances": [
+        "Contrôle à 60 jours : proposition au laboratoire",
+        "Contrôle dépassé : alerte au responsable qualité",
+        "Filtre en fin de vie : remplacement proposé"
+      ]
+    },
+    "client": {
+      "titre": "Fiche · Hôpital du Val",
+      "lignes": [
+        [
+          "PSM type II",
+          "alerte",
+          "Contrôle en décembre"
+        ],
+        [
+          "Filtre",
+          "alerte",
+          "À surveiller"
+        ]
+      ],
+      "pied": "Rapports de qualification PDF · notice"
+    },
+    "branchements": [
+      [
+        "Vos installations",
+        "équipements par laboratoire"
+      ],
+      [
+        "Vos rapports",
+        "qualifications et contrôles"
+      ],
+      [
+        "Vos techniciens",
+        "planning"
+      ],
+      [
+        "Les laboratoires",
+        "accès à la fiche de vie"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc, contrôles, filtres"
+      ],
+      [
+        "Planning",
+        "par technicien"
+      ],
+      [
+        "Propositions",
+        "contrôles et remplacements"
+      ],
+      [
+        "Fiche de vie",
+        "prête pour l'audit"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque équipement, son laboratoire et ses contrôles."
+      ],
+      [
+        "Les contrôles",
+        "La bonne fréquence selon l'usage, rappelée à temps."
+      ],
+      [
+        "Les filtres",
+        "Les remplacements anticipés."
+      ],
+      [
+        "La fiche d'audit",
+        "Les rapports, au même endroit."
+      ]
+    ]
+  },
+  "posseme": {
+    "nom": "Possémé",
+    "sujet": "suivi des sorbonnes livrées",
+    "titre": "Chaque sorbonne Possémé suivie après la pose.",
+    "lede": "Un outil sur mesure qui garde le lien avec chaque laboratoire équipé : la fiche de chaque sorbonne, ses contrôles annuels par l'organisme agréé, et un registre que le laboratoire consulte quand il veut.",
+    "voit": "Un fabricant de mobilier de laboratoire depuis 1983 (paillasses, sorbonnes, hottes) qui assure l'assistance de la pose à la mise en route, la certification des sorbonnes étant faite par un organisme agréé.",
+    "demande": "Que chaque sorbonne soit contrôlée chaque année, que le laboratoire garde les rapports, et que vous restiez son interlocuteur après la pose.",
+    "propose": "Une fiche par sorbonne, remise à la mise en route, qui rappelle le contrôle annuel, garde les rapports de l'organisme et vous signale les laboratoires à recontacter.",
+    "equipement": "sorbonne",
+    "parc": {
+      "titre": "Sorbonnes livrées",
+      "colonnes": [
+        "Client",
+        "Laboratoire",
+        "Modèle",
+        "Pose",
+        "Contrôle annuel",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Lycée des Tilleuls",
+          "Chimie",
+          "Sorbonne 1,5 m",
+          "2023",
+          "09/2026",
+          "ok"
+        ],
+        [
+          "Université du Plateau",
+          "Biologie",
+          "Sorbonne 1,8 m",
+          "2021",
+          "01/2026",
+          "alerte"
+        ],
+        [
+          "Laboratoire du Lac",
+          "Analyses",
+          "Sorbonne 1,2 m",
+          "2020",
+          "10/2025",
+          "retard"
+        ],
+        [
+          "Collège du Bourg",
+          "Sciences",
+          "Sorbonne 1,5 m",
+          "2024",
+          "06/2026",
+          "ok"
+        ],
+        [
+          "Clinique du Val",
+          "Anatomopathologie",
+          "Sorbonne 1,8 m",
+          "2026",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "SORB-2021-0217",
+      "titre": "Sorbonne 1,8 m · Université du Plateau, biologie",
+      "infos": [
+        [
+          "Pose",
+          "2021"
+        ],
+        [
+          "Contrôle",
+          "annuel, organisme agréé"
+        ],
+        [
+          "Paillasse",
+          "assortie, même commande"
+        ],
+        [
+          "Plaque",
+          "QR code sur la façade"
+        ]
+      ],
+      "historique": [
+        [
+          "18/01/2026",
+          "Contrôle annuel conforme (organisme agréé)"
+        ],
+        [
+          "20/01/2025",
+          "Contrôle annuel conforme"
+        ],
+        [
+          "15/01/2022",
+          "Premier contrôle"
+        ],
+        [
+          "10/09/2021",
+          "Pose et mise en route"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Laboratoires à recontacter",
+      "lignes": [
+        [
+          "Déc.",
+          "Laboratoire du Lac",
+          "contrôle en retard",
+          "Possémé"
+        ],
+        [
+          "Janv.",
+          "Université du Plateau",
+          "contrôle annuel",
+          "organisme agréé"
+        ],
+        [
+          "Janv.",
+          "Clinique du Val",
+          "premier contrôle",
+          "organisme agréé"
+        ],
+        [
+          "Sept.",
+          "Lycée des Tilleuls",
+          "contrôle annuel",
+          "organisme agréé"
+        ]
+      ],
+      "relances": [
+        "Contrôle à 60 jours : rappel au laboratoire",
+        "Contrôle dépassé : Possémé recontacte le client",
+        "Équipement ancien : proposition de rénovation"
+      ]
+    },
+    "client": {
+      "titre": "Fiche · scan de la façade",
+      "lignes": [
+        [
+          "Sorbonne 1,8 m",
+          "alerte",
+          "Contrôle en janvier"
+        ],
+        [
+          "Dernier rapport",
+          "ok",
+          "Conforme le 18/01/2026"
+        ]
+      ],
+      "pied": "Rapports de contrôle PDF · notice"
+    },
+    "branchements": [
+      [
+        "Vos commandes",
+        "laboratoires équipés"
+      ],
+      [
+        "Vos poses",
+        "mises en route"
+      ],
+      [
+        "Les organismes agréés",
+        "rapports de contrôle"
+      ],
+      [
+        "Les laboratoires",
+        "accès à la fiche"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "sorbonnes livrées, contrôles"
+      ],
+      [
+        "Relation client",
+        "laboratoires à recontacter"
+      ],
+      [
+        "Fiche",
+        "par sorbonne"
+      ],
+      [
+        "Registre labo",
+        "rapports à jour"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque sorbonne livrée et son laboratoire."
+      ],
+      [
+        "Les contrôles",
+        "Le contrôle annuel rappelé au laboratoire."
+      ],
+      [
+        "Les rapports",
+        "Les rapports de l'organisme agréé, au même endroit."
+      ],
+      [
+        "Le suivi commercial",
+        "Les laboratoires à recontacter au bon moment."
+      ]
+    ]
+  },
+  "marolotest": {
+    "nom": "Marolotest",
+    "sujet": "contrôles des tables et ponts élévateurs",
+    "titre": "Chaque table élévatrice Marolotest contrôlée à temps, chez chaque garage.",
+    "lede": "Un outil sur mesure pour suivre les tables et ponts élévateurs vendus aux garages : contrôles périodiques et épreuves de charge, réparations, et un registre que le garage consulte quand il veut.",
+    "voit": "Une entreprise familiale de Cholet qui fabrique tables et ponts élévateurs et équipements d'atelier pour les garages deux-roues, la motoculture et la marine, avec ses propres techniciens et des conditions négociées avec l'APAVE pour les contrôles périodiques.",
+    "demande": "Que chaque table soit vérifiée périodiquement, que les épreuves de charge et réparations soient tracées, et que le garage retrouve son rapport le jour d'un contrôle.",
+    "propose": "Un registre par équipement vendu, qui rappelle le contrôle au garage, prépare la commande auprès de l'APAVE et garde chaque intervention de vos techniciens.",
+    "equipement": "table",
+    "parc": {
+      "titre": "Équipements vendus · garages",
+      "colonnes": [
+        "Garage",
+        "Ville",
+        "Équipement",
+        "Dernier contrôle",
+        "Prochain",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Moto Passion du Val",
+          "Nantes",
+          "Table élévatrice moto",
+          "05/2026",
+          "05/2027",
+          "ok"
+        ],
+        [
+          "Motoculture du Plateau",
+          "Angers",
+          "Pont élévateur",
+          "12/2025",
+          "12/2026",
+          "alerte"
+        ],
+        [
+          "Nautique du Lac",
+          "La Rochelle",
+          "Table marine",
+          "09/2025",
+          "09/2026",
+          "retard"
+        ],
+        [
+          "Scoot Service",
+          "Cholet",
+          "Table élévatrice",
+          "10/2026",
+          "10/2027",
+          "ok"
+        ],
+        [
+          "Garage du Bourg",
+          "Tours",
+          "Table élévatrice moto",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "TAB-2022-0841",
+      "titre": "Table élévatrice moto · Moto Passion du Val",
+      "infos": [
+        [
+          "Livraison",
+          "2022"
+        ],
+        [
+          "Contrôle",
+          "périodique, APAVE"
+        ],
+        [
+          "Réparations",
+          "techniciens Marolotest"
+        ],
+        [
+          "Plaque",
+          "QR code sur le plateau"
+        ]
+      ],
+      "historique": [
+        [
+          "12/05/2026",
+          "Contrôle périodique APAVE conforme"
+        ],
+        [
+          "03/11/2025",
+          "Réparation : vérin remplacé"
+        ],
+        [
+          "10/05/2025",
+          "Contrôle périodique conforme"
+        ],
+        [
+          "20/04/2022",
+          "Livraison"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Contrôles à proposer",
+      "lignes": [
+        [
+          "Déc.",
+          "Motoculture du Plateau",
+          "contrôle périodique",
+          "APAVE"
+        ],
+        [
+          "Déc.",
+          "Nautique du Lac",
+          "en retard",
+          "APAVE"
+        ],
+        [
+          "Janv.",
+          "Garage du Bourg",
+          "premier contrôle",
+          "APAVE"
+        ],
+        [
+          "Mai",
+          "Moto Passion du Val",
+          "contrôle périodique",
+          "APAVE"
+        ]
+      ],
+      "relances": [
+        "Contrôle à 60 jours : proposition au garage, tarif négocié",
+        "Contrôle dépassé : alerte au garage",
+        "Panne signalée : intervention d'un technicien"
+      ]
+    },
+    "client": {
+      "titre": "Registre · scan du plateau",
+      "lignes": [
+        [
+          "Table moto",
+          "ok",
+          "Contrôlée le 12/05/2026"
+        ],
+        [
+          "Vérin",
+          "ok",
+          "Remplacé le 03/11/2025"
+        ]
+      ],
+      "pied": "Rapports APAVE PDF · notice"
+    },
+    "branchements": [
+      [
+        "Vos ventes",
+        "équipements par garage"
+      ],
+      [
+        "Vos techniciens",
+        "réparations"
+      ],
+      [
+        "Votre accord APAVE",
+        "contrôles et épreuves"
+      ],
+      [
+        "Les garages",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc vendu, contrôles"
+      ],
+      [
+        "Commandes APAVE",
+        "groupées par région"
+      ],
+      [
+        "Réparations",
+        "planifiées"
+      ],
+      [
+        "Registre garage",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque équipement vendu et son garage."
+      ],
+      [
+        "Les contrôles",
+        "Le contrôle proposé au garage, au tarif négocié."
+      ],
+      [
+        "Les réparations",
+        "Chaque intervention de vos techniciens tracée."
+      ],
+      [
+        "Le registre garage",
+        "Le rapport visible en scannant la table."
+      ]
+    ]
+  },
+  "nsti": {
+    "nom": "NSTI",
+    "sujet": "vérifications des sprinklers et RIA",
+    "titre": "Chaque installation sprinkler vérifiée et tracée, sans papier.",
+    "lede": "Un outil sur mesure pour les vérifications des installations que vous posez et entretenez : sprinklers, RIA, colonnes sèches, poteaux incendie, les échéances par site, et un registre de sécurité que le client ouvre quand il veut.",
+    "voit": "Un installateur créé en 2009, d'abord sous-traitant de grands groupes, certifié APSAD depuis 2021, qui étudie, installe et entretient sprinklers, RIA, colonnes sèches et poteaux incendie sans déléguer les étapes clés.",
+    "demande": "Que chaque installation soit vérifiée aux bonnes échéances, que les rapports alimentent le registre de sécurité du client, et que l'assureur trouve la preuve le jour d'une visite.",
+    "propose": "Un registre par site, alimenté par vos vérifications, qui planifie les échéances, garde les rapports et donne au client et à son assureur une preuve à jour.",
+    "equipement": "installation",
+    "parc": {
+      "titre": "Sites sous contrat",
+      "colonnes": [
+        "Client",
+        "Site",
+        "Installations",
+        "Dernière vérification",
+        "Prochaine",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Logistique du Val",
+          "Entrepôt nord",
+          "Sprinklers + RIA",
+          "09/2026",
+          "03/2027",
+          "ok"
+        ],
+        [
+          "Industries du Plateau",
+          "Usine",
+          "Sprinklers",
+          "05/2026",
+          "11/2026",
+          "alerte"
+        ],
+        [
+          "Centre commercial du Lac",
+          "Galerie",
+          "RIA + colonnes sèches",
+          "02/2026",
+          "08/2026",
+          "retard"
+        ],
+        [
+          "Hôtel Le Belvédère",
+          "Hôtel",
+          "RIA",
+          "10/2026",
+          "10/2027",
+          "ok"
+        ],
+        [
+          "Plateforme du Bourg",
+          "Entrepôt",
+          "Poteaux incendie",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "SPK-2023-0417",
+      "titre": "Installation sprinklers · Industries du Plateau",
+      "infos": [
+        [
+          "Référentiel",
+          "APSAD R1"
+        ],
+        [
+          "Mise en service",
+          "2023"
+        ],
+        [
+          "Assureur",
+          "visite annuelle"
+        ],
+        [
+          "Plaque",
+          "QR code au poste de contrôle"
+        ]
+      ],
+      "historique": [
+        [
+          "14/05/2026",
+          "Vérification semestrielle conforme"
+        ],
+        [
+          "10/11/2025",
+          "Vérification : 2 têtes remplacées"
+        ],
+        [
+          "12/05/2025",
+          "Vérification semestrielle conforme"
+        ],
+        [
+          "15/03/2023",
+          "Mise en service, certificat"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Vérifications à planifier · Moselle",
+      "lignes": [
+        [
+          "Déc.",
+          "Industries du Plateau",
+          "vérification semestrielle",
+          "équipe 1"
+        ],
+        [
+          "Déc.",
+          "Centre commercial du Lac",
+          "en retard",
+          "équipe 2"
+        ],
+        [
+          "Janv.",
+          "Plateforme du Bourg",
+          "première vérification",
+          "équipe 1"
+        ],
+        [
+          "Mars",
+          "Logistique du Val",
+          "vérification semestrielle",
+          "équipe 2"
+        ]
+      ],
+      "relances": [
+        "Vérification à 30 jours : rendez-vous proposé",
+        "Vérification dépassée : alerte au client",
+        "Visite de l'assureur : dossier prêt"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Industries du Plateau",
+      "lignes": [
+        [
+          "Sprinklers",
+          "alerte",
+          "Vérification en novembre"
+        ],
+        [
+          "Rapports",
+          "ok",
+          "À jour"
+        ]
+      ],
+      "pied": "Rapports de vérification PDF · certificats"
+    },
+    "branchements": [
+      [
+        "Vos études",
+        "installations par site"
+      ],
+      [
+        "Vos vérifications",
+        "rapports"
+      ],
+      [
+        "Vos équipes",
+        "planning"
+      ],
+      [
+        "Les clients",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "sites, échéances, contrats"
+      ],
+      [
+        "Planning",
+        "par équipe"
+      ],
+      [
+        "Dossier assureur",
+        "prêt"
+      ],
+      [
+        "Registre client",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque site, chaque installation, chaque vérification."
+      ],
+      [
+        "Les échéances",
+        "Les vérifications planifiées par équipe."
+      ],
+      [
+        "L'assureur",
+        "Le dossier prêt pour sa visite."
+      ],
+      [
+        "Le registre client",
+        "Le registre de sécurité en ligne."
+      ]
+    ]
+  },
+  "paris-hayons": {
+    "nom": "Paris Hayons Services",
+    "sujet": "VGP des hayons élévateurs",
+    "titre": "Chaque hayon vérifié tous les 6 mois, chaque rapport retrouvé.",
+    "lede": "Un outil sur mesure qui prolonge votre rapport envoyé par mail : un registre par camion et par hayon pour les transporteurs, la VGP semestrielle rappelée, et l'historique des réparations.",
+    "voit": "Une expertise de la réparation de hayons élévateurs toutes marques depuis 2004, en Île-de-France, avec des VGP dont les constats sont consignés dans un rapport envoyé par mail.",
+    "demande": "Qu'un hayon soit contrôlé tous les 6 mois maximum, et que le transporteur retrouve, pour chaque camion, le dernier rapport sans fouiller sa boîte mail.",
+    "propose": "Un registre par flotte, alimenté par vos rapports, qui rappelle chaque VGP, garde les réparations et donne au transporteur la liste de ses camions à jour.",
+    "equipement": "hayon",
+    "parc": {
+      "titre": "Hayons suivis · Île-de-France",
+      "colonnes": [
+        "Client",
+        "Camion",
+        "Hayon",
+        "Dernière VGP",
+        "Prochaine",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Transports du Val",
+          "AB-123-CD",
+          "Hayon rabattable 1,5 t",
+          "09/2026",
+          "03/2027",
+          "ok"
+        ],
+        [
+          "Livraisons du Plateau",
+          "EF-456-GH",
+          "Hayon rétractable 1 t",
+          "06/2026",
+          "12/2026",
+          "alerte"
+        ],
+        [
+          "Messagerie du Lac",
+          "IJ-789-KL",
+          "Hayon rabattable 2 t",
+          "03/2026",
+          "09/2026",
+          "retard"
+        ],
+        [
+          "Traiteur du Bourg",
+          "MN-012-OP",
+          "Hayon 750 kg",
+          "10/2026",
+          "04/2027",
+          "ok"
+        ],
+        [
+          "Location Utilitaires",
+          "QR-345-ST",
+          "Hayon rabattable 1 t",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "HAY-EF456GH",
+      "titre": "Hayon rétractable 1 t · Livraisons du Plateau",
+      "infos": [
+        [
+          "Camion",
+          "EF-456-GH"
+        ],
+        [
+          "Marque",
+          "toutes marques"
+        ],
+        [
+          "VGP",
+          "tous les 6 mois"
+        ],
+        [
+          "Plaque",
+          "QR code sur le montant"
+        ]
+      ],
+      "historique": [
+        [
+          "10/06/2026",
+          "VGP conforme, rapport envoyé"
+        ],
+        [
+          "22/03/2026",
+          "Réparation : vérin de levage"
+        ],
+        [
+          "12/12/2025",
+          "VGP conforme"
+        ],
+        [
+          "15/06/2025",
+          "VGP : constat, réparé"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "VGP de la semaine",
+      "lignes": [
+        [
+          "Lun.",
+          "Livraisons du Plateau",
+          "3 camions",
+          "technicien 1"
+        ],
+        [
+          "Mar.",
+          "Messagerie du Lac",
+          "VGP en retard",
+          "technicien 1"
+        ],
+        [
+          "Jeu.",
+          "Location Utilitaires",
+          "première VGP",
+          "technicien 2"
+        ],
+        [
+          "Ven.",
+          "Transports du Val",
+          "réparation",
+          "atelier"
+        ]
+      ],
+      "relances": [
+        "VGP à 30 jours : rendez-vous proposé au transporteur",
+        "VGP dépassée : alerte au transporteur",
+        "Constat à la VGP : devis de réparation joint"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Livraisons du Plateau",
+      "lignes": [
+        [
+          "EF-456-GH",
+          "alerte",
+          "VGP en décembre"
+        ],
+        [
+          "Flotte",
+          "ok",
+          "8 camions sur 9 à jour"
+        ]
+      ],
+      "pied": "Rapports de VGP PDF"
+    },
+    "branchements": [
+      [
+        "Vos rapports",
+        "envoyés par mail aujourd'hui"
+      ],
+      [
+        "Votre atelier",
+        "réparations"
+      ],
+      [
+        "Vos techniciens",
+        "planning"
+      ],
+      [
+        "Les transporteurs",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "flottes, VGP, réparations"
+      ],
+      [
+        "Planning",
+        "par technicien"
+      ],
+      [
+        "Devis",
+        "réparations à proposer"
+      ],
+      [
+        "Registre flotte",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque camion, chaque hayon, chaque VGP."
+      ],
+      [
+        "Les VGP",
+        "Les 6 mois rappelés à temps."
+      ],
+      [
+        "Les réparations",
+        "Un constat devient un devis."
+      ],
+      [
+        "Le registre transporteur",
+        "Toute la flotte, à jour, en ligne."
+      ]
+    ]
+  },
+  "air-plus": {
+    "nom": "Air Plus",
+    "sujet": "suivi des compresseurs et réservoirs",
+    "titre": "Chaque compresseur et chaque réservoir suivis, à la bonne échéance.",
+    "lede": "Un outil sur mesure pour le parc d'air comprimé de vos clients : entretiens, inspections périodiques et requalifications des réservoirs, interventions, et un registre que le client consulte quand il veut.",
+    "voit": "Un spécialiste de l'air comprimé depuis 1998 près de Toulouse, qui vend, installe, entretient et loue compresseurs industriels et pompes à vide, avec des contrats d'assistance 24 h sur 24, 365 jours par an.",
+    "demande": "Que chaque client tienne à jour la liste de ses équipements sous pression avec leurs échéances d'inspection et de requalification, et que chaque intervention soit tracée.",
+    "propose": "Un registre par client, alimenté par vos interventions, qui suit chaque compresseur et chaque réservoir, rappelle les échéances et donne au client une preuve à jour.",
+    "equipement": "équipement",
+    "parc": {
+      "titre": "Parc clients · Occitanie",
+      "colonnes": [
+        "Client",
+        "Site",
+        "Équipement",
+        "Dernier entretien",
+        "Échéance",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Industries du Val",
+          "Atelier",
+          "Compresseur à vis 22 kW",
+          "09/2026",
+          "03/2027",
+          "ok"
+        ],
+        [
+          "Menuiserie du Plateau",
+          "Atelier",
+          "Réservoir 500 L",
+          "01/2026",
+          "inspection 01/2027",
+          "alerte"
+        ],
+        [
+          "Carrosserie du Lac",
+          "Atelier",
+          "Réservoir 270 L",
+          "—",
+          "requalification 2025",
+          "retard"
+        ],
+        [
+          "Agroalimentaire du Bourg",
+          "Ligne 2",
+          "Pompe à vide",
+          "10/2026",
+          "04/2027",
+          "ok"
+        ],
+        [
+          "Imprimerie des Pins",
+          "Atelier",
+          "Compresseur 11 kW",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "RES-2016-0331",
+      "titre": "Réservoir 500 L · Menuiserie du Plateau",
+      "infos": [
+        [
+          "Mise en service",
+          "2016"
+        ],
+        [
+          "Inspection périodique",
+          "janvier 2027"
+        ],
+        [
+          "Requalification",
+          "2026, à planifier"
+        ],
+        [
+          "Plaque",
+          "QR code sur le réservoir"
+        ]
+      ],
+      "historique": [
+        [
+          "15/01/2026",
+          "Entretien du compresseur, purge contrôlée"
+        ],
+        [
+          "20/01/2025",
+          "Inspection périodique conforme"
+        ],
+        [
+          "18/01/2024",
+          "Entretien"
+        ],
+        [
+          "10/03/2016",
+          "Mise en service"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Interventions à planifier",
+      "lignes": [
+        [
+          "Déc.",
+          "Carrosserie du Lac",
+          "requalification en retard",
+          "technicien 1"
+        ],
+        [
+          "Janv.",
+          "Menuiserie du Plateau",
+          "inspection périodique",
+          "technicien 1"
+        ],
+        [
+          "Janv.",
+          "Imprimerie des Pins",
+          "premier inventaire",
+          "technicien 2"
+        ],
+        [
+          "Mars",
+          "Industries du Val",
+          "entretien",
+          "technicien 2"
+        ]
+      ],
+      "relances": [
+        "Échéance à 60 jours : proposition au client",
+        "Échéance dépassée : alerte au client",
+        "Panne sous contrat : intervention 24 h sur 24 tracée"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Menuiserie du Plateau",
+      "lignes": [
+        [
+          "Réservoir 500 L",
+          "alerte",
+          "Inspection en janvier"
+        ],
+        [
+          "Compresseur",
+          "ok",
+          "Entretenu le 15/01/2026"
+        ]
+      ],
+      "pied": "Rapports d'intervention PDF · déclarations"
+    },
+    "branchements": [
+      [
+        "Vos interventions",
+        "rapports"
+      ],
+      [
+        "Vos contrats",
+        "assistance 24 h sur 24"
+      ],
+      [
+        "Votre parc de location",
+        "machines"
+      ],
+      [
+        "Les clients",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc, échéances, contrats"
+      ],
+      [
+        "Planning",
+        "par technicien"
+      ],
+      [
+        "Propositions",
+        "inspections et remplacements"
+      ],
+      [
+        "Registre client",
+        "en ligne"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque compresseur et chaque réservoir de chaque client."
+      ],
+      [
+        "Les échéances",
+        "Inspections et requalifications rappelées."
+      ],
+      [
+        "Les contrats",
+        "Les interventions 24 h sur 24 tracées."
+      ],
+      [
+        "Le registre client",
+        "La liste des équipements sous pression, à jour."
+      ]
+    ]
   }
 }
