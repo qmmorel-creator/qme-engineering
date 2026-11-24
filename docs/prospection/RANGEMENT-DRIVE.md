@@ -41,8 +41,8 @@ Racine (existante) : `13 - Entreprise QME (micro-entreprise) / 04 - Prospects & 
   4,9 Mo), Quentin le dépose à la main : le dire dans le compte rendu et le noter dans la note Bible.
 - **Documents communs** (plaquette, références) : un seul exemplaire est envoyé, puis copié côté Drive dans chaque
   dossier avec `copy_file` (pas de limite de taille). Source actuelle de la plaquette du 22/11 :
-  `1z9EeCV5DsFnGeRfcirMSn-Lgxp4epQ7x` (dossier de Kelly). Les références (4,9 Mo) : une fois déposées à la main par
-  Quentin dans un dossier, les copier de la même façon dans tous les `05 - Références`.
+  `1z9EeCV5DsFnGeRfcirMSn-Lgxp4epQ7x` (dossier de Kelly). Source des références du 22/11 (4,9 Mo, déposées à la main par Quentin) :
+  `1HOXuu_KxZdKvqnNBbM7IddzbRe6IgfTZ` (dossier de Kelly).
 - **Pièce jointe d'un mail** : ranger le fichier réellement joint (`download_gmail_attachment`), pas une version du
   dépôt.
 - **Avant de créer** : chercher dans la racine (`'1_Rv6YKFyVsZZRltxB0Ejjmwd9x08_BsR' in ancestors`) et dans Nexora
@@ -88,10 +88,9 @@ dans la racine `04 - Prospects & clients` ; note Bible dans le projet Nexora du 
 | Laurine Mebs · Optimind Formation | [dossier](https://drive.google.com/drive/folders/1sYswA4EX55gxDdTxAYr1IH9VS9vSIP7d) | comparatif des outils de révision (pièce jointe, `07 - Autres documents`) | `mcp-2b94d2fb-2a1f-4a5a-905e-122c2544e1e3` |
 | Christophe Yzet · Yuzu Agency (Odélia) | aucun (aucun PDF émis : liens seulement) | — | `mcp-f2398b09-55e2-4916-828f-256a8e8054bc` · `mcp-08bddce3-8d86-4a2b-9c46-2acfd2d18d38` |
 
-**Reste à faire**
+**Points ouverts**
 
-- `05 - Références` vide partout (sauf Optimind, qui n'en a pas reçu) : Quentin dépose `assets/QME-references.pdf`
-  (4,9 Mo) dans un dossier, puis il est copié dans les autres (`copy_file`) et lié dans chaque note.
+- Références du 22/11 déposées par Quentin le 24/11 dans le dossier de Kelly (`1HOXuu_KxZdKvqnNBbM7IddzbRe6IgfTZ`), copiées dans les 9 autres `05 - Références` et liées dans chaque note Bible.
 - **Versions** : l'historique du dépôt commence le 22/11/2026. Pour tout envoi antérieur, la version rangée est celle du
   22/11 (la plus proche retrouvable), ce que chaque note Bible indique. Versions exactes : Kelly (v2, v3), ARVA (v2),
   Royaumes & Légendes (#270), Givry v2, et le comparatif d'Optimind (pièce jointe Gmail).
