@@ -79,7 +79,7 @@ Alternante, message transmis par Yannick. Concept : `/concepts/oh-delices-paysan
 ### Conciergerie en Provence · Kelly
 
 Activité visée : nettoyage chez les professionnels, avec des prestataires indépendants. Concept : `/concepts/conciergerie-en-provence/`.
-Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (projet QME - Stratégie).
+Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (projet Kelly-ménage).
 
 | Date | Sens | Contenu | Montant |
 |---|---|---|---|
@@ -94,7 +94,39 @@ Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (proj
 
 ## Mise à jour
 
-1. Nouvelle réponse intéressée : ajouter une ligne (sérieux si besoin, rendez-vous ou devis explicites ; tiède sinon).
-2. Chaque échange : mettre à jour « Étape », « Dernier message » et « Balle ».
-3. Refus : déplacer la ligne dans « Sortis du suivi » et appliquer `REGLES-PROSPECTION.md` (§ 3).
-4. Contrat signé ou vente : déplacer en « Sortis du suivi » avec le motif « client », et le noter dans le dossier du client.
+1. Nouvelle réponse intéressée : ajouter une ligne (sérieux si besoin, rendez-vous ou devis explicites ; tiède sinon),
+   et créer son projet Nexora avec sa tâche « État global du prospect » (§ Nexora ci-dessous).
+2. Chaque échange : mettre à jour « Étape », « Dernier message » et « Balle », ainsi que le statut et la description
+   de la tâche « État global du prospect ».
+3. Refus : déplacer la ligne dans « Sortis du suivi », passer la tâche en **Refus** et appliquer
+   `REGLES-PROSPECTION.md` (§ 3).
+4. Contrat signé ou vente : déplacer en « Sortis du suivi » avec le motif « client », passer la tâche en **Signé**, et le
+   noter dans le dossier du client.
+
+## Nexora : un projet par prospect
+
+Décision de Quentin du 24/11/2026. Chaque prospect de ce fichier (sérieux ou tiède) a son **projet Nexora** dans le
+dossier **« QM Engineering »** (id `86e6e5b2-0d94-4a3a-bcd3-a0dde86143cd`), nommé « Nom-activité » (ex. « Kelly-ménage »,
+« GMT Bordeaux-horlogerie »). Les tâches propres à un prospect (réunions, actions, relances) vont dans son projet, pas
+dans « QME - Stratégie ».
+
+**À chaque création d'un projet prospect** :
+
+1. Créer le projet dans le dossier « QM Engineering » (`mutate_resource`, `projects`).
+2. Ajouter l'id du nouveau projet au champ `projectIds` de **chacun des six statuts** ci-dessous (`mutate_resource`,
+   `statuses`, relire la liste avant pour la compléter, pas la remplacer) : sans cela, le statut n'est pas proposé
+   dans le projet.
+3. Créer la tâche **« État global du prospect »** (type Tâches, responsable Quentin Morel, début et fin à la date de
+   création), avec le statut qui correspond à l'étape et une description : qui, quoi, état daté, balle, renvoi vers ce
+   fichier.
+
+**Statuts réservés aux projets prospects** (ne pas les utiliser ailleurs) :
+
+| Statut | Quand | Id Nexora |
+|---|---|---|
+| Prospect | Contact établi, intérêt exprimé, pas d'échange de fond (ou sans nouvelle) | `1cc52e21-1f09-4686-a04e-55a6cd70f8df` |
+| Discussion | Appel, visio ou échange sur le besoin en cours ; pas encore d'offre écrite envoyée | `6340313d-a2ad-4757-9670-f0ea5cda97c5` |
+| Offre envoyée | Proposition ou devis écrit envoyé, sans réaction du prospect | `01e2bc71-d360-4567-a499-abe3f1a672c4` |
+| Négociation | Le prospect discute l'offre (prix, périmètre, modalités) ou une contre-proposition est en cours | `e01ad162-4b06-4885-b8c2-3daab2bee177` |
+| Refus | Refus explicite (la ligne passe en « Sortis du suivi ») | `c6c10d10-ae33-4fa2-a996-67271e34a976` |
+| Signé | Contrat signé, devis accepté ou vente conclue | `7848d844-c300-4f3d-9f44-4ef27ef0af25` |
