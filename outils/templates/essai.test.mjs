@@ -30,7 +30,7 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
 test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
   const attendus = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => ['perso', 'pro'].includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 34);
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 38);
   assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 42); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
   assert.deepEqual(publics(TEMPLATES.CAN), ['pro', 'perso'], 'Suivi de candidatures dans les deux parties');
   assert.deepEqual(publics(TEMPLATES.EVT), ['pro', 'perso'], 'Organisateur d\'événement dans les deux parties');

@@ -81,6 +81,38 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un crédit dont les conditions ne rentrent pas dans le modèle ?',
   },
+  ENT: {
+    commencer: 'cochez les équipements de votre logement (chaudière, VMC, détecteur de fumée…) et la date de leur dernier entretien : le calendrier se calcule seul, en retard, ce mois-ci et à venir.',
+    astuces: [
+      'les fréquences d\'origine réglementaire affichent leur source et restent modifiables selon votre département ou votre bail ;',
+      'chaque intervention garde sa date, son coût et son intervenant, avec les dépenses par mois et la liste de l\'année à imprimer.',
+    ],
+    aide: 'Un équipement de votre logement absent de la liste ?',
+  },
+  SJR: {
+    commencer: 'créez votre logement, saisissez le tarif de la taxe de séjour de votre commune, puis votre prochaine réservation : le net du séjour, la taxe et le ménage à faire s\'affichent.',
+    astuces: [
+      'nommez vos canaux avec leur commission : le net se calcule par canal, par logement et par mois ;',
+      'deux réservations confirmées ne peuvent pas se chevaucher, et une rotation le jour même est repérée.',
+    ],
+    aide: 'Un canal ou un mode de taxe de séjour qui ne rentre pas dans le modèle ?',
+  },
+  GST: {
+    commencer: 'créez un bien et son bail (loyer hors charges, provisions, date d\'entrée) : les loyers dus s\'affichent mois par mois, et vous cochez ce qui est payé.',
+    astuces: [
+      'la quittance, le reçu partiel ou la relance du mois sont prêts à copier ou à imprimer ;',
+      'à la date de révision, le nouveau loyer se calcule avec l\'indice de référence des loyers que vous saisissez.',
+    ],
+    aide: 'Un bail ou une colocation qui se suit mal ?',
+  },
+  CPR: {
+    commencer: 'créez votre copropriété avec vos tantièmes et le budget voté : les 4 appels de fonds trimestriels de l\'exercice se créent d\'un coup, payés ou à payer.',
+    astuces: [
+      'recopiez le décompte annuel poste par poste : la régularisation et la part récupérable sur le locataire se calculent ;',
+      'avant l\'AG, collez l\'ordre du jour en une fois et notez votre intention de vote, puis le résultat lu dans le procès-verbal.',
+    ],
+    aide: 'Un décompte de charges difficile à recopier ?',
+  },
   ABN: {
     commencer: 'cochez dans la base les abonnements que vous payez et saisissez votre prix : le vrai total par mois et par an apparaît.',
     astuces: [

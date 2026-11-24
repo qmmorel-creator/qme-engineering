@@ -88,7 +88,7 @@ déjà).
 | T08 | Suivi d'habitudes et routines | Personnel | Particuliers | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 + Backlog Quentin n° 46 |
 | T09 | Garde-manger et dates de péremption | Maison | Familles | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T10 | Carnet de voiture : entretiens, kilométrage, dépenses | Véhicule | Particuliers, foyers à plusieurs voitures | en vente | 13 € | M | P2 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
-| T11 | Entretien de la maison | Maison | Propriétaires, locataires | prêt | 12 € | S | P2 | Liste initiale 12/11/2026 |
+| T11 | Entretien de la maison | Maison | Propriétaires, locataires | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T12 | Remboursement de dettes | Budget perso | Particuliers endettés | en vente | 12 € | S | P2 | Liste initiale 12/11/2026 |
 | T13 | Objectif d'épargne et fonds d'urgence (fiche en fin de fichier) | Budget perso | Particuliers | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T14 | Suivi des abonnements | Budget perso | Particuliers | en vente | 9 € | S | P2 | Liste initiale 12/11/2026 ; prix de 9 € maintenu par Quentin le 22/11/2026 (dérogation à la règle des 12 €, comme T98) |
@@ -104,7 +104,7 @@ déjà).
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
-| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | prêt | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
+| T27 | Gestion locative (biens, locataires, loyers) | Immobilier | Propriétaires bailleurs | en vente | 20 € | M | P2 | Documents de travail de Quentin 12/11/2026 |
 | T28 | CRM et prospection (contacts, cadences de relance et scripts, pipeline, devis et factures suivis ; ex-CRM freelance, T35 fusionné le 22/11/2026) | Commercial | Freelances, TPE, commerciaux B2B | en vente | 25 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 09 et n° 10 |
 | T29 | Gestion de flotte de véhicules | Flotte | PME, collectivités | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 37 |
 | T30 | Planner horaire time-blocking | Emploi du temps | Cadres, freelances | en vente | 15 € | M | P1 | Backlog Quentin n° 02 |
@@ -141,7 +141,7 @@ déjà).
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques, exploitants multi-sites | en vente | 39 € | M | P2 | Backlog Quentin n° 39. Absorbe T60 le 22/11/2026 (option plusieurs sites) |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
 | T63 | Vérifications réglementaires | Conformité | Responsables QHSE, gestionnaires de bâtiments | en vente | 35 € | M | P2 | Backlog Quentin n° 41 ; fiche [`fiches/verifications.md`](fiches/verifications.md) |
-| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | prêt | 25 € | S | P2 | Backlog Quentin n° 42 |
+| T64 | Location saisonnière | Immobilier | Propriétaires de meublés | en vente | 25 € | S | P2 | Backlog Quentin n° 42 |
 | T65 | Gestion Dépenses Communes couple / colocation | Budget perso | Couples, colocataires | en vente | 15 € | S | P1 | Backlog Quentin n° 44 |
 | T66 | Simulateur leasing vs achat | Budget perso | Particuliers, indépendants | en vente | 12 € | S | P2 | Backlog Quentin n° 45 |
 | T67 | Pilote de travaux maison | Habitat | Particuliers en rénovation | en vente | 25 € | M | P1 | Backlog Quentin n° 49 |
@@ -171,7 +171,7 @@ déjà).
 | T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d’entrée et de sortie (ancien nom : État des lieux d'entrée et de sortie) | Immobilier | Propriétaires bailleurs, locataires | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
-| T96 | Charges et AG de copropriété (ancien nom : Charges et assemblées générales de copropriété) | Immobilier | Copropriétaires | prêt | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
+| T96 | Charges et AG de copropriété (ancien nom : Charges et assemblées générales de copropriété) | Immobilier | Copropriétaires | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T97 | Plan d'entraînement course à pied | Sport | Coureurs amateurs | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Forme) |
 | T98 | Vivre sans voiture : simulateur du gain annuel, urgences et parades | Budget perso / mobilité | Particuliers, familles qui envisagent de vendre leur voiture | en vente | 9 € | M | P2 | Idée de Quentin 17/11/2026 (prix de 9 € demandé par Quentin, dérogation à la règle des 12 €) |
 | T99 | Liaison Mon Budget ↔ Gestion Dépenses Communes : « ma part du commun » reprise dans le budget perso (évolution de T05 et T65, pas un nouveau produit) | Budget perso | Couples, familles, colocataires qui ont un budget perso et des dépenses partagées | prêt | — (mise à jour gratuite des deux templates) | M | P2 | Idée de Quentin 20/11/2026, développée le 21/11/2026 (fiche en fin de fichier) |
