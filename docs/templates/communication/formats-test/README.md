@@ -27,6 +27,7 @@ production : skill `.claude/skills/formats-test/`.
 | IG-218 | 06/12 | 12:30 | F4 | Le test en 1 minute (`/diagnostic/`) : exemple fictif, 1 480 € et 124 h par an | Reel 23 s | YT-73 06/12 12:00 | Programmé |
 | IG-219 | 09/12 | 19:00 | F9 | Fin du régime simplifié de TVA au 01/01/2027 (impots.gouv.fr, 22/09/2026), cas fictif de Léa | Carrousel 6 vues + diaporama TikTok | — | Programmé |
 | IG-226 | 01/12 | 21:00 | F3 + F7 | Le calcul que personne ne fait n°2 : règle de 72 (« Un prix qui monte de 3 % par an. Il double quand ? ») | Carrousel 6 vues + diaporama TikTok | YT-79 01/12 12:00 (diaporama) | Programmé |
+| IG-227 | 08/12 | 12:30 | F3 + F7 | Le calcul que personne ne fait n°3 : « −20 %, puis +20 %. Vous revenez au même prix ? » (96 €) | Carrousel 6 vues + diaporama TikTok | YT-80 08/12 12:00 (diaporama) | Programmé |
 | IG-168 → 175 | 23/11 → 30/11 | 21:00 | F6 | Quiz (existant) | Reel | — | déjà programmés |
 
 YT-71 est passé de 17:00 à 20:00 le 24/11 : YouTube ne passe qu'à 12:00, 12:15, 20:00 et 20:15 ; YT-51 (20:00) part au passage de 20:00 et YT-71 à celui de 20:15.
