@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- Reel IG-214 · F10 « Satisfaisant » (test des formats, vague 1) : le planning qui se recale, en boucle.
+     Un geste : la première tâche glisse de 3 jours ouvrés, les 11 suivantes se recalent en cascade, puis tout revient
+     et la dernière image retombe sur la première (boucle). Très peu de texte, nom de l'outil en pied.
+     Données : etats.js, lu dans la démo du Planning Gantt (planning fictif « Lancement du site web ») et recalculé par
+     le moteur de l'application (REGLES.ordonnancer) ; régénérer avec extraire.mjs.
+     1080 × 1920, 30 i/s, 9 s, couleur dominante rouge (chemin critique en rouge, comme dans l'application).
+     Rendu, depuis la racine du dépôt :
+       node docs/videos/rendu.mjs docs/templates/communication/formats-test/IG-214/IG-214.html 9 4300 --sortie docs/videos/sortie/IG-214-satisfaisant-gantt.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-214</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.f{position:absolute}
+.titre{position:absolute;left:96px;right:96px;top:300px;font-weight:800;font-size:100px;letter-spacing:-.03em;line-height:1.12}
+.titre mark{background:var(--rouge);color:var(--papier);padding:0 14px;white-space:nowrap}
+.carte{position:absolute;left:84px;right:84px;top:590px;height:880px;background:var(--surface);border:6px solid var(--encre);box-shadow:20px 20px 0 var(--encre);overflow:hidden}
+#grille{position:absolute;left:0;top:0;width:100%;height:100%}
+.mois{position:absolute;top:18px;font-weight:700;font-size:26px;letter-spacing:.08em;text-transform:uppercase;color:var(--texte-2)}
+.barre{position:absolute;height:44px;border-radius:6px;background:var(--rouge);will-change:transform}
+.barre.libre{background:var(--bleu)}
+.fantome{position:absolute;height:44px;border-radius:6px;border:3px dashed var(--encre);opacity:0}
+.jalon{position:absolute;width:36px;height:36px;transform-origin:center;background:var(--encre);will-change:transform}
+.etiquette{position:absolute;font-weight:800;font-size:30px;white-space:nowrap;text-align:right}
+.doigt{position:absolute;width:76px;height:76px;border-radius:50%;background:rgba(20,20,20,.18);border:5px solid var(--encre);will-change:transform}
+.badge{position:absolute;background:var(--encre);color:var(--papier);font-weight:800;font-size:34px;padding:8px 18px;white-space:nowrap;opacity:0}
+.pied{position:absolute;left:96px;right:96px;top:1520px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:32px}
+.pied .note{font-weight:600;font-size:28px;color:var(--texte-2)}
+</style>
+</head>
+<body>
+<!-- Formes Bauhaus fixes (aucune animation d'entrée : la première image est complète). -->
+<div class="f" style="right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:var(--rouge)"></div>
+<div class="f" style="left:0;bottom:0;width:300px;height:300px;background:var(--jaune);border-top-right-radius:300px"></div>
+<div class="f" style="right:96px;bottom:150px;width:110px;height:110px;background:var(--bleu)"></div>
+
+<p class="titre">Une date bouge.<br><mark>Regardez le reste.</mark></p>
+
+<div class="carte" id="carte">
+  <svg id="grille" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="plan"></div>
+</div>
+
+<div class="pied"><span>Planning Gantt · QME</span><span class="note">Données fictives</span></div>
+
+<script src="etats.js"></script>
+<script>
+(() => {
+  const D = window.ETATS;
+  const N = D.noms.length;
+  // Échelle : jours calendaires, comme le diagramme de l'application (week-ends visibles).
+  const DEBUT = '2026-10-27', FIN = '2027-01-07';
+  const jour = (s) => Math.round((Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)) - Date.UTC(2026, 9, 27)) / 864e5);
+  const L = 900, X0 = 18, PX = (L - 2 * X0) / (jour(FIN) + 1);
+  const HAUT = 92, RANG = 64, HB = 44;
+  const plan = document.getElementById('plan');
+  const svg = document.getElementById('grille');
+  let g = '';
+  for (let d = 0; d <= jour(FIN); d++) {
+    const dt = new Date(Date.UTC(2026, 9, 27 + d)); const js = dt.getUTCDay();
+    if (js === 0 || js === 6) g += `<rect x="${X0 + d * PX}" y="${HAUT - 20}" width="${PX}" height="900" fill="#F1EEE6"/>`;
+    if (js === 1) g += `<line x1="${X0 + d * PX}" x2="${X0 + d * PX}" y1="${HAUT - 20}" y2="900" stroke="#E2DDD2" stroke-width="2"/>`;
+    if (dt.getUTCDate() === 1) g += `<line x1="${X0 + d * PX}" x2="${X0 + d * PX}" y1="0" y2="900" stroke="#141414" stroke-width="3"/>`;
+  }
+  for (let i = 0; i <= N; i++) g += `<line x1="0" x2="${L}" y1="${HAUT + i * RANG - 10}" y2="${HAUT + i * RANG - 10}" stroke="#EAE6DC" stroke-width="2"/>`;
+  svg.innerHTML = g;
+  for (const [nom, d] of [['nov.', '2026-11-01'], ['déc.', '2026-12-01'], ['janv.', '2027-01-01']]) {
+    const m = document.createElement('div'); m.className = 'mois'; m.textContent = nom; m.style.left = (X0 + jour(d) * PX + 12) + 'px'; plan.appendChild(m);
+  }
+  const xa = D.A.taches.map((t) => X0 + jour(t.debut) * PX);
+  const xb = D.B.taches.map((t) => X0 + jour(t.debut) * PX);
+  const el = [], fant = [];
+  let iJalonFin = -1;
+  D.A.taches.forEach((t, i) => {
+    const y = HAUT + i * RANG;
+    if (t.dur === 0) {
+      const j = document.createElement('div'); j.className = 'jalon';
+      j.style.left = (xa[i] + PX / 2 - 18) + 'px'; j.style.top = (y + 4) + 'px';
+      if (D.B.taches[i].critique) j.style.background = 'var(--rouge)';
+      plan.appendChild(j); el.push(j); fant.push(null);
+      if (D.noms[i] === 'Mise en ligne') iJalonFin = i;
+    } else {
+      const w = (jour(t.fin) - jour(t.debut) + 1) * PX;
+      const f = document.createElement('div'); f.className = 'fantome'; f.style.left = xa[i] + 'px'; f.style.top = y + 'px'; f.style.width = w + 'px'; plan.appendChild(f); fant.push(f);
+      const b = document.createElement('div'); b.className = 'barre' + (t.critique ? '' : ' libre');
+      b.style.left = xa[i] + 'px'; b.style.top = y + 'px'; b.style.width = w + 'px';
+      plan.appendChild(b); el.push(b);
+    }
+  });
+  // Étiquette du jalon « Mise en ligne », à gauche du losange : la date suit le jalon.
+  const etq = document.createElement('div'); etq.className = 'etiquette'; plan.appendChild(etq);
+  const fmt = (s) => { const [a, m, j] = s.split('-'); return `${+j} ${['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'][+m - 1]}`; };
+  const doigt = document.createElement('div'); doigt.className = 'doigt'; plan.appendChild(doigt);
+  const badge = document.createElement('div'); badge.className = 'badge'; plan.appendChild(badge);
+
+  // Jours ouvrés entre deux index de jour (week-ends et fériés de la période exclus : 01/11 et 11/11).
+  const feries = new Set([jour('2026-11-01'), jour('2026-11-11'), jour('2026-12-25'), jour('2027-01-01')]);
+  const ouvresEntre = (d0, d1) => { let n = 0; for (let d = d0 + 1; d <= d1; d++) { const js = new Date(Date.UTC(2026, 9, 27 + d)).getUTCDay(); if (js !== 0 && js !== 6 && !feries.has(d)) n++; } return n; };
+
+  const lisse = (u) => u <= 0 ? 0 : u >= 1 ? 1 : u * u * (3 - 2 * u);
+  const ressort = (u) => { if (u <= 0) return 0; if (u >= 1) return 1; const c = 1.5; return 1 + (c + 1) * Math.pow(u - 1, 3) + c * Math.pow(u - 1, 2); };
+  const T = 9000;
+  // Chronologie (ms) : appui, glissé aller, cascade, pause, appui, glissé retour, cascade retour, pause.
+  const ALLER = { appui: 600, debut: 800, fin: 1550, cascade: 1300 };
+  const RETOUR = { appui: 4500, debut: 4700, fin: 5450, cascade: 5200 };
+  const PAS_CASCADE = 140, DUREE_CASCADE = 650;
+
+  window.placer = (ms) => {
+    const t = ((ms % T) + T) % T;
+    // Avancement de chaque tâche de A (0) vers B (1).
+    const k = new Array(N).fill(0);
+    const kGeste = t < RETOUR.appui ? lisse((t - ALLER.debut) / (ALLER.fin - ALLER.debut)) : 1 - lisse((t - RETOUR.debut) / (RETOUR.fin - RETOUR.debut));
+    k[0] = kGeste;
+    for (let i = 1; i < N; i++) {
+      const a = ressort((t - ALLER.cascade - i * PAS_CASCADE) / DUREE_CASCADE);
+      const r = ressort((t - RETOUR.cascade - i * PAS_CASCADE) / DUREE_CASCADE);
+      k[i] = a - r;
+    }
+    for (let i = 0; i < N; i++) {
+      const dx = (xb[i] - xa[i]) * k[i];
+      const leve = i === 0 && ((t > ALLER.appui && t < ALLER.fin + 200) || (t > RETOUR.appui && t < RETOUR.fin + 200));
+      if (D.A.taches[i].dur === 0) el[i].style.transform = `translateX(${dx}px) rotate(45deg)`;
+      else { el[i].style.transform = `translateX(${dx}px)` + (leve ? ' translateY(-6px)' : ''); el[i].style.boxShadow = leve ? '6px 6px 0 #141414' : 'none'; }
+      if (fant[i]) fant[i].style.opacity = Math.min(1, Math.abs(k[i])) * 0.35;
+    }
+    // Étiquette du jalon de fin.
+    if (iJalonFin >= 0) {
+      const x = xa[iJalonFin] + (xb[iJalonFin] - xa[iJalonFin]) * k[iJalonFin];
+      etq.style.left = 'auto'; etq.style.right = (L - x + 14) + 'px'; etq.style.top = (HAUT + iJalonFin * RANG + 2) + 'px';
+      const date = k[iJalonFin] >= 0.5 ? D.B.taches[iJalonFin].debut : D.A.taches[iJalonFin].debut;
+      etq.textContent = 'Mise en ligne · ' + fmt(date);
+      etq.style.color = k[iJalonFin] >= 0.5 ? 'var(--rouge)' : 'var(--encre)';
+    }
+    // Doigt sur la première barre.
+    const x0 = xa[0] + (xb[0] - xa[0]) * k[0];
+    const appuye = (t > ALLER.appui && t < ALLER.fin + 150) || (t > RETOUR.appui && t < RETOUR.fin + 150);
+    doigt.style.transform = `translate(${x0 + 2}px, ${HAUT + 22 - 38}px) scale(${appuye ? 0.82 : 1})`;
+    // Badge « +n j ouvrés » pendant et juste après le glissé aller ; retour au départ pendant le retour.
+    const dj = Math.round(jour(D.A.taches[0].debut) + (jour(D.B.taches[0].debut) - jour(D.A.taches[0].debut)) * k[0]);
+    const n = ouvresEntre(jour(D.A.taches[0].debut), dj);
+    const visible = (t > ALLER.debut && t < 3600) || (t > RETOUR.debut && t < RETOUR.fin + 300);
+    badge.style.opacity = visible ? 1 : 0;
+    badge.textContent = `+${n} j ouvrés`;
+    badge.style.transform = `translate(${x0 + 96}px, ${HAUT - 2}px)`;
+  };
+  window.placer(0);
+})();
+</script>
+</body>
+</html>
