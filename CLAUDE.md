@@ -48,6 +48,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   « stop » ou hostile y est inscrite le jour même, ET le prospect ou créateur passe à l'étape `oppose` dans Nexora.
 - Ventes, audience, essais et plannings restent dans leurs sources (Gumroad, site, Sheets) : Nexora les lit en direct
   (`get_qme_dashboard`), sans copie. Référence : `docs/QME.md` du dépôt nexora.
+- **Un projet Nexora par prospect** (décision du 24/11/2026), dans le dossier « QM Engineering ». À sa création, il
+  reçoit toujours une tâche **« État global du prospect »**, dont le statut est l'un des six statuts réservés aux
+  projets prospects : Prospect, Discussion, Offre envoyée, Négociation, Refus, Signé. Ce statut suit chaque échange,
+  en même temps que la fiche QME du prospect. Procédure et identifiants : `docs/prospection/suivi-prospects.md`, § Nexora.
 
 ## Templates
 
