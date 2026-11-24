@@ -19,7 +19,7 @@ production : skill `.claude/skills/formats-test/`.
 
 | ID | Date | Heure | Code | Pièce | Support | YouTube | Statut |
 |---|---|---|---|---|---|---|---|
-| IG-213 | 24/11 | 19:00 | F3 + F7 | Le calcul que personne ne fait n°1 | Carrousel + diaporama TikTok | — | voir planning |
+| IG-213 | 24/11 | 19:00 | F3 + F7 | 10 minutes perdues par jour : sur un an, 38 h 10 | Carrousel 6 vues + diaporama TikTok | YT-74 24/11 20:00 (diaporama) | Programmé |
 | IG-214 | 25/11 | 12:30 | F10 | Satisfaisant : un planning qui se recale, en boucle | Reel 8–12 s | YT-69 25/11 12:00 | voir planning |
 | IG-215 | 29/11 | 19:00 | F5 | Conversation de couple (argent à deux) | Reel | YT-70 29/11 12:00 | voir planning |
 | IG-216 | 02/12 | 19:00 | F2 + F7 | Envoyez-moi votre pire tableur, épisode 1 | Reel | YT-71 02/12 17:00 | voir planning |
