@@ -70,7 +70,12 @@ Un prospect est **dans le tunnel** dès que l'une de ces conditions est remplie 
 - il a une fiche client à l'étape `concept`, `rdv`, `devis`, `signe` (jusqu'à la mise en service) ou `pause` ;
 - il a un projet Nexora dans le dossier « QM Engineering ».
 
-Les créateurs de l'affiliation en discussion y entrent aussi, avec le skill `retour-affiliation`.
+**Hors périmètre : l'affiliation** (décision de Quentin du 24/11/2026). Les créateurs, influenceurs et agences
+d'influenceurs (Nexora Optim › QME › Affiliation) sont suivis par la session **[MASTER] SUIVI INFLUENCEURS**
+(`session_0183EW53pHmtjN8ttBAEgiRL`). Toute interaction de ce périmètre repérée pendant un passage lui est transmise
+par `send_message` (expéditeur, objet, lien du fil Gmail, nature : réponse, refus, « stop », demande), sans autre
+action. Les documents déjà rangés pour l'affiliation (dossier Drive et Note Bible d'Optimind, Note Bible de Yuzu)
+restent en place.
 
 Étapes et correspondances, à tenir cohérentes partout :
 
