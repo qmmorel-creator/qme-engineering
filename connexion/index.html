@@ -4,81 +4,162 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Connexion · QME</title>
-<meta name="description" content="Espace acheteurs QME : ouvrez vos templates avec la clé de licence reçue par e-mail.">
+<meta name="description" content="Espace acheteurs QME : ouvrez vos applications avec la clé de licence reçue par e-mail.">
 <meta name="theme-color" content="#FBF7F1">
 <link rel="canonical" href="https://qm-engineering.fr/connexion/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
+<link rel="stylesheet" href="/assets/espace.css?v=2026112306">
 <style>.topbar nav a[aria-current="page"]{border-color:var(--encre)}.topbar nav a.login[aria-current="page"]{background:var(--jaune)}
-.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-/* Espace « Mes templates » */
-.espace{max-width:var(--max);margin:0 auto;padding:40px 16px 8px}
-.espace-tete{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
-.espace h1{font-size:clamp(34px,4.6vw,52px)}
-.espace-nb{margin:6px 0 0;color:var(--discret);font-weight:500}
-.espace .ajouter{min-height:48px}
-.espace-outils{position:sticky;top:0;z-index:5;margin:20px -16px 0;padding:12px 16px;background:var(--papier);display:flex;flex-direction:column;gap:10px}
-.esp-recherche{display:flex;align-items:center;gap:10px;padding:0 14px;min-height:54px;background:var(--surface);border:2px solid var(--encre);border-radius:14px}
-.esp-recherche:focus-within{outline:3px solid var(--jaune);outline-offset:0}
-.esp-recherche svg{flex:none;color:var(--discret)}
-.esp-recherche input{flex:1;min-width:0;border:0;background:none;font:500 18px/1.2 Outfit,system-ui,sans-serif;color:var(--encre);padding:12px 0;outline:none}
-.esp-recherche input::-webkit-search-cancel-button{cursor:pointer}
-.sauts{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
-.sauts::-webkit-scrollbar{display:none}
-.sauts:empty{display:none}
-.sauts a{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
-.sauts a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
-.sauts a:hover{border-color:var(--encre)}
-.sauts small,.groupe summary small{color:var(--discret);font-weight:600}
-.zone{margin-top:24px}
-.zone>h2{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--discret);margin:0 0 10px}
-#resultats{margin-top:16px}
-.esp-tuiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.esp-tuile{position:relative;display:flex;min-width:0}
-.esp-tuile>a{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:76px;padding:8px 56px 8px 8px;background:var(--surface);border:1px solid var(--trait);border-left:5px solid var(--c);border-radius:14px;text-decoration:none;color:var(--encre);transition:box-shadow .15s,transform .15s}
-.esp-tuile>a:hover{box-shadow:0 8px 20px rgba(36,34,31,.10);transform:translateY(-1px)}
-.esp-tuile>a:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
-.esp-tuile img,.vign-vide{flex:none;width:96px;height:60px;object-fit:cover;border-radius:8px;background:var(--sable)}
-.t-txt{min-width:0;display:flex;flex-direction:column;gap:2px}
-.t-txt b{font-size:17px;line-height:1.25}
-.t-txt small{font-size:14px;line-height:1.3;color:var(--texte-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.epingle{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--trait)}
-.epingle svg{fill:none;stroke:var(--discret);stroke-width:1.8;stroke-linejoin:round}
-.epingle:hover svg{stroke:var(--encre)}
-.epingle[aria-pressed="true"] svg{fill:var(--jaune);stroke:var(--beurre-texte)}
-.epingle:focus-visible{outline:3px solid var(--jaune)}
-.groupe{border-top:1px solid var(--trait);scroll-margin-top:150px}
-.groupe:last-child{border-bottom:1px solid var(--trait)}
-.groupe summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:56px;font-weight:700;font-size:18px}
-.groupe summary::-webkit-details-marker{display:none}
-.groupe summary::after{content:"+";margin-left:auto;font-size:26px;font-weight:600;line-height:1}
-.groupe[open] summary::after{content:"−"}
-.groupe summary:focus-visible{outline:3px solid var(--jaune)}
-.pastille{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none}
-.groupe .esp-tuiles{padding:0 0 16px}
-.vide{padding:20px;background:var(--surface);border:1px dashed var(--trait);border-radius:14px}
-.vide a{font-weight:700;color:var(--bleu)}
-.espace-packs{margin:20px 0 0}
-.espace-packs a{font-weight:700}
-.portail .intro-ajout{display:none}
-.a-espace .portail .intro{display:none}
-.a-espace .portail .intro-ajout{display:block}
-.a-espace .portail{padding-top:32px}
-.intro-ajout h2{font-size:28px}
-.intro-ajout p{color:var(--texte-2);margin-top:6px}
-@media (max-width:640px){
-  .espace{padding-top:20px}
-  .espace .eyebrow,.espace .ajouter .pc{display:none}
-  .espace-tete{align-items:center;flex-wrap:nowrap}
-  .espace h1{font-size:34px}
-  .espace-nb{font-size:15px;margin-top:2px}
-  .espace .ajouter{flex:none;min-height:44px;padding:0 14px;font-size:15px}
-  .esp-tuiles{grid-template-columns:1fr}
-  .esp-tuile img,.vign-vide{width:72px;height:45px}
-  .esp-tuile>a{min-height:68px}
+/* Portail (non connecté, aucune application) */
+.a-espace .portail{display:none}
+.portail .titre-ajout,.portail .titre-ajout-txt,.portail .intro-ajout{display:none}
+.bloc-lien{margin-bottom:8px}
+.ou{display:flex;align-items:center;gap:12px;margin:26px 0 0;color:var(--discret);font-size:14px;font-weight:600}
+.ou::before,.ou::after{content:"";flex:1;height:1px;background:var(--trait)}
+.acces input[type=email]{font:600 19px/1.2 Outfit,sans-serif;padding:14px 12px;border:1px solid var(--trait);background:#fff;border-radius:14px;width:100%;color:var(--encre)}
+.acces input[type=email]:focus{outline:3px solid var(--jaune);outline-offset:0}
+.ok-lien{color:#1F5130;background:#D9EBDD;padding:12px 14px;border-radius:12px;font-size:15px}
+.ok-lien:empty{display:none}
+.bloc-code{display:grid;gap:10px;padding:14px;border:2px solid #1F5130;border-radius:14px;background:#fff}
+.bloc-code[hidden]{display:none}
+.deja-code{background:none;border:0;padding:6px 0;font:600 15px Outfit,system-ui,sans-serif;color:var(--encre);text-decoration:underline;text-underline-offset:3px;cursor:pointer;justify-self:center;align-self:center}
+.deja-code[hidden]{display:none}
+.bloc-code input{font-size:24px;letter-spacing:.2em;text-align:center;font-variant-numeric:tabular-nums}
+.etat-lien{max-width:var(--max);margin:16px auto 0;padding:12px 16px;background:var(--beurre);border-radius:12px;font-weight:600}
+.lien-discret{background:none;border:0;padding:0;font:inherit;font-size:15px;color:var(--texte-2);text-decoration:underline;cursor:pointer}
+.lien-discret.danger{color:var(--rouge)}
+.si-connecte,.si-connecte-bloc{display:none}.connecte .si-connecte{display:inline}.connecte .si-connecte-bloc{display:flex}
+.sous{margin:0;color:var(--texte-2);font-size:14px}
+/* Espace personnel : profil à gauche, contenu à droite */
+.perso{max-width:var(--max);margin:0 auto;padding:32px 16px 72px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;align-items:start}
+.profil{position:sticky;top:88px;display:flex;flex-direction:column;gap:14px}
+.profil-carte{background:var(--surface);border:1px solid var(--trait);border-radius:22px;padding:20px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center}
+.avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:700 28px/1 Outfit,sans-serif;color:#fff;background:var(--bleu);grid-row:span 2}
+.avatar-rouge{background:var(--rouge)}.avatar-jaune{background:var(--jaune);color:var(--encre)}.avatar-encre{background:var(--encre)}.avatar-bleu{background:var(--bleu)}
+.profil-nom{margin:0;font-weight:700;font-size:20px;line-height:1.2;overflow:hidden;text-overflow:ellipsis}
+.profil-email{margin:0;font-size:13.5px;color:var(--texte-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.profil-depuis,.profil-sync{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--texte-2)}
+.profil-depuis[hidden]{display:none}
+.profil-sync{display:flex;align-items:center;gap:8px;margin-top:2px}
+.profil-sync i{width:9px;height:9px;border-radius:50%;background:#3E8E5B;box-shadow:0 0 0 3px #D9EBDD;flex:none}
+.profil-sync.local i{background:var(--discret);box-shadow:0 0 0 3px var(--sable)}
+.profil-nav{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--trait);border-radius:18px;padding:6px}
+.profil-nav a{display:flex;justify-content:space-between;align-items:center;min-height:44px;padding:0 14px;border-radius:12px;text-decoration:none;color:var(--encre);font-weight:600}
+.profil-nav a:hover{background:var(--sable)}
+.profil-nav a[aria-current]{background:var(--encre);color:var(--papier)}
+.profil-nav small{font-weight:600;opacity:.7}
+.profil-connexion{background:var(--beurre);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.profil-connexion[hidden]{display:none}
+.profil-connexion p{margin:0;font-size:14px;color:var(--texte-2)}
+.profil-connexion .ecran-accueil{background:var(--surface);border-left:4px solid var(--encre);border-radius:10px;padding:10px 12px;color:var(--encre)}
+.profil-connexion .ecran-accueil[hidden]{display:none}
+.profil-connexion .acces{margin:4px 0 0;padding:0;border:0;box-shadow:none;background:none;gap:10px}
+.profil-connexion .acces input[type=email]{font-size:16px;padding:12px}
+.perso-corps{display:flex;flex-direction:column;gap:22px;min-width:0}
+.perso-bloc{background:var(--surface);border:1px solid var(--trait);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;scroll-margin-top:96px;min-width:0}
+.perso-bloc>h2,.bloc-tete h2{font-size:24px;margin:0}
+.accueil{background:linear-gradient(135deg,var(--beurre) 0%,var(--surface) 62%);border:0}
+.accueil h1{font-size:clamp(34px,4.4vw,50px);margin:0;line-height:1.05}
+.accroche{margin:0;font-size:17px;color:var(--texte-2)}
+.reprendre{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:6px}
+.reprendre[hidden]{display:none}
+.carte-app{display:flex;align-items:center;gap:14px;padding:14px;background:var(--surface);border:1px solid var(--trait);border-radius:18px;text-decoration:none;color:var(--encre);transition:box-shadow .15s,transform .15s;min-width:0}
+.carte-app:hover{box-shadow:0 10px 24px rgba(36,34,31,.10);transform:translateY(-1px)}
+.carte-app:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.carte-app .app-icone{width:56px;height:56px;border-radius:15px;flex:none;overflow:visible}
+.carte-app .app-icone img{border-radius:inherit}
+.carte-txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.carte-txt b{font-size:16px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.carte-txt small{font-size:13px;color:var(--texte-2)}
+.carte-ouvrir{font-size:13px;font-weight:700;color:var(--bleu);white-space:nowrap}
+.app-icone{position:relative;display:grid;place-items:center;background:var(--surface);border:1px solid var(--trait);box-shadow:0 2px 8px rgba(36,34,31,.08)}
+.app-icone img{width:100%;height:100%;display:block}
+.app-icone.petite{width:40px;height:40px;border-radius:11px;flex:none}
+.alertes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.alertes[hidden]{display:none}
+.alertes li{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 14px;background:var(--ciel);border-radius:16px}
+.alertes li.bientot{background:var(--rose)}
+.alertes li.termine{background:var(--sable)}
+.alertes li>div{display:flex;flex-direction:column;flex:1;min-width:160px}
+.alertes li span{font-size:14px;color:var(--texte-2)}
+.essai-actions{display:flex;gap:8px;flex-wrap:wrap}
+.essai-actions .btn{min-height:44px;padding:0 16px}
+.bloc-tete{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 16px}
+.espace-nb{margin:2px 0 0;color:var(--discret);font-weight:500;font-size:15px}
+.tete-actions{display:flex;gap:8px;flex-wrap:wrap}
+.tete-actions .btn{min-height:44px}
+.tete-actions .btn[aria-pressed="true"]{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.edition-panneau{padding:14px 16px;background:var(--beurre);border-radius:14px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.edition-panneau[hidden]{display:none}
+.edition-panneau p{flex:1 1 320px;margin:0;color:var(--texte-2);font-size:15px}
+.perso .espace-outils{margin:0 -24px;padding:10px 24px;top:70px;background:var(--surface)}
+.espace-vide{margin:0;padding:18px;border:1px dashed var(--trait);border-radius:14px;color:var(--texte-2)}
+.espace-vide a,.espace-vide .lien-discret{font-weight:700;color:var(--bleu)}
+.espace-packs{margin:0}.espace-packs a{font-weight:700}
+.sugg-intro{margin:0;color:var(--texte-2)}
+.sugg-intro a{font-weight:700;color:var(--bleu)}
+.sugg-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.sugg-liste a{display:flex;align-items:center;gap:12px;min-height:68px;padding:10px 12px;background:var(--papier);border:1px dashed var(--trait);border-radius:16px;text-decoration:none;color:var(--encre)}
+.sugg-liste a:hover{border-style:solid;border-color:var(--encre)}
+.sugg-liste span:not(.app-icone){flex:1;min-width:0;display:flex;flex-direction:column}
+.sugg-liste small{font-size:13px;color:var(--texte-2)}
+.sugg-liste em{font-style:normal;font-weight:700;white-space:nowrap}
+.achats-liste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.achats-liste li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--trait)}
+.achats-liste li:first-child{border-top:0}
+.achats-liste li>div{flex:1;min-width:0;display:flex;flex-direction:column}
+.achats-liste small{font-size:13px;color:var(--texte-2)}
+.achats-liste .btn{min-height:40px;padding:0 14px}
+.achats-liste .achats-plus{justify-content:center;border-top:0;padding-top:4px}
+.pref-ligne{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:14px 0;border-top:1px solid var(--trait)}
+.pref-ligne:first-of-type{border-top:0;padding-top:0}
+.prenom-champ{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:14px}
+.prenom-champ input{font:500 17px Outfit,sans-serif;padding:10px 12px;min-height:46px;border:1px solid var(--trait);border-radius:12px;background:#fff;width:240px;max-width:100%}
+.prenom-champ input:focus{outline:3px solid var(--jaune);border-color:var(--encre)}
+.interrupteur{display:flex;align-items:flex-start;gap:12px;cursor:pointer;max-width:560px}
+.interrupteur input{position:absolute;opacity:0;width:1px;height:1px}
+.interrupteur .piste{flex:none;width:46px;height:28px;border-radius:999px;background:var(--trait);position:relative;transition:background .15s;margin-top:2px}
+.interrupteur .piste::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+.interrupteur input:checked+.piste{background:#3E8E5B}
+.interrupteur input:checked+.piste::after{transform:translateX(18px)}
+.interrupteur input:focus-visible+.piste{outline:3px solid var(--jaune);outline-offset:2px}
+.interrupteur input:disabled+.piste{opacity:.5}
+.interrupteur span:last-child{display:flex;flex-direction:column}
+.interrupteur small{font-size:13.5px;color:var(--texte-2)}
+.compte-actions{flex-direction:column;align-items:flex-start}
+.compte-actions .lien-discret{min-height:36px}
+.dialogue-cle{width:min(560px,calc(100vw - 24px));border:0;border-radius:22px;padding:22px;background:var(--papier);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.dialogue-cle::backdrop{background:rgba(20,20,20,.45)}
+.dialogue-tete{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dialogue-tete h2{font-size:24px;margin:0}
+.dialogue-fermer{width:44px;height:44px;border:0;background:none;font-size:28px;border-radius:50%;cursor:pointer}
+.dialogue-fermer:hover{background:var(--sable)}
+.dialogue-cle .acces{margin-top:14px}
+@media (max-width:980px){
+  .perso{grid-template-columns:minmax(0,1fr);padding-top:16px;gap:16px}
+  .profil,.perso-corps,.profil-carte,.profil-nav{min-width:0;max-width:100%}
+  .profil{position:static;gap:10px}
+  .profil-carte{padding:14px 16px;gap:2px 12px}
+  .avatar{width:46px;height:46px;font-size:20px}
+  .profil-nom{font-size:18px}
+  .profil-depuis,.profil-sync{font-size:12.5px;margin-top:4px}
+  .profil-nav{position:sticky;top:64px;z-index:6;flex-direction:row;overflow-x:auto;scrollbar-width:none;border-radius:999px;padding:4px;gap:2px}
+  .profil-nav::-webkit-scrollbar{display:none}
+  .profil-nav a{flex:none;min-height:40px;border-radius:999px;gap:6px;padding:0 14px;font-size:15px}
+  .perso-bloc{padding:18px;border-radius:20px}
+  .perso .espace-outils{margin:0 -18px;padding:10px 18px;top:118px}
+  .perso-bloc{scroll-margin-top:130px}
 }
-@media (prefers-reduced-motion:reduce){.esp-tuile>a{transition:none}.esp-tuile>a:hover{transform:none}}
+@media (max-width:640px){
+  .accueil h1{font-size:32px}
+  .reprendre{grid-template-columns:1fr}
+  .carte-app{padding:12px}
+  .carte-ouvrir{display:none}
+  .tete-actions{width:100%}.tete-actions .btn{flex:1;font-size:15px;padding:0 10px}
+}
+@media (prefers-reduced-motion:reduce){.carte-app,.interrupteur .piste,.interrupteur .piste::after{transition:none}}
 </style>
 </head>
 <body>
@@ -90,9 +171,10 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/" aria-current="page">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -100,45 +182,118 @@
 </header>
 
 <main>
-<section class="espace" id="espace" hidden aria-labelledby="espace-titre">
-  <div class="espace-tete">
-    <div>
-      <p class="eyebrow">Espace acheteurs</p>
-      <h1 id="espace-titre">Mes templates</h1>
-      <p class="espace-nb" id="espace-nb"></p>
+<p class="etat-lien" id="etat-lien" role="status" hidden></p>
+<section class="perso" id="espace" hidden aria-label="Mon espace QME">
+  <aside class="profil" aria-label="Mon profil">
+    <div class="profil-carte">
+      <span class="avatar" id="avatar" aria-hidden="true"></span>
+      <div class="profil-id">
+        <p class="profil-nom" id="profil-nom"></p>
+        <p class="profil-email" id="profil-email"></p>
+      </div>
+      <p class="profil-depuis" id="profil-depuis"></p>
+      <p class="profil-sync" id="profil-sync"><i aria-hidden="true"></i><span></span></p>
     </div>
-    <a class="btn ajouter" href="#portail">+ Ajouter<span class="pc">&nbsp;une clé</span></a>
+    <nav class="profil-nav" aria-label="Mon espace">
+      <a href="#accueil" data-onglet="accueil">Accueil</a>
+      <a href="#applications" data-onglet="applications">Mes applications <small id="nav-nb"></small></a>
+      <a href="#achats" data-onglet="achats">Mes achats</a>
+      <a href="#preferences" data-onglet="preferences">Préférences</a>
+    </nav>
+    <div class="profil-connexion" id="profil-connexion" hidden>
+      <b>Retrouvez-les sur tous vos appareils</b>
+      <p>Connectez-vous avec l’adresse e-mail de votre achat : vos applications et vos réglages vous suivront partout.</p>
+      <p class="ecran-accueil" id="ecran-accueil" hidden><b>Ouverte depuis votre écran d’accueil ?</b> Cette application garde sa propre mémoire, séparée de votre navigateur : connectez-vous une fois ici, puis saisissez le code à 6 chiffres reçu par e-mail. Toutes vos applications apparaîtront.</p>
+    </div>
+  </aside>
+  <div class="perso-corps">
+    <section class="perso-bloc accueil" id="accueil" aria-labelledby="salut">
+      <h1 id="salut">Bonjour</h1>
+      <p class="accroche" id="accroche"></p>
+      <div class="reprendre" id="reprendre"></div>
+      <ul class="alertes" id="alertes"></ul>
+    </section>
+    <section class="perso-bloc" id="applications" aria-labelledby="h-apps">
+      <header class="bloc-tete">
+        <div><h2 id="h-apps">Mes applications</h2><p class="espace-nb" id="espace-nb"></p></div>
+        <div class="tete-actions">
+          <button class="btn" type="button" id="personnaliser" aria-pressed="false" aria-controls="edition-panneau">Personnaliser</button>
+          <button class="btn" type="button" id="btn-cle">+ Ajouter une clé</button>
+        </div>
+      </header>
+      <div class="edition-panneau" id="edition-panneau" hidden>
+        <p>Touchez le nom d’une application pour le changer, masquez celles que vous n’utilisez plus (œil), épinglez vos favorites (étoile) et réglez leur ordre (flèches). <span id="edition-sync"></span></p>
+        <button class="btn primary" type="button" id="edition-fin">Terminé</button>
+      </div>
+      <div id="espace-corps"></div>
+      <p class="espace-vide" id="espace-vide" hidden>Aucune application n’est encore liée à ce compte. <button type="button" class="lien-discret" data-ouvrir-cle>Ajoutez une clé de licence</button>, ou <a href="/templates/">découvrez les templates</a>.</p>
+      <p class="espace-packs" id="espace-packs" hidden><a href="/packs/espace/">Mes packs : ouvrir le tableau de bord <span aria-hidden="true">→</span></a></p>
+    </section>
+    <section class="perso-bloc suggestions" id="suggestions" hidden aria-labelledby="h-sugg">
+      <h2 id="h-sugg">Pour aller plus loin</h2>
+      <p class="sugg-intro" id="sugg-intro"></p>
+      <ul class="sugg-liste" id="sugg-liste"></ul>
+    </section>
+    <section class="perso-bloc" id="achats" aria-labelledby="h-achats">
+      <h2 id="h-achats">Mes achats</h2>
+      <p class="sous" id="achats-note"></p>
+      <ul class="achats-liste" id="achats-liste"></ul>
+    </section>
+    <section class="perso-bloc" id="preferences" aria-labelledby="h-pref">
+      <h2 id="h-pref">Préférences</h2>
+      <div class="pref-ligne">
+        <label class="prenom-champ">Votre prénom <input id="prenom" maxlength="30" autocomplete="given-name" placeholder="Pour vous accueillir"></label>
+        <p class="sous">Il s’affiche dans votre espace<span class="si-connecte"> et vous suit sur tous vos appareils</span>.</p>
+      </div>
+      <div class="pref-ligne si-connecte-bloc">
+        <label class="interrupteur"><input type="checkbox" id="informations" role="switch"><span class="piste" aria-hidden="true"></span><span><b>Recevoir les informations QME</b><small>Nouveautés de vos applications, une fois de temps en temps. Désactivé : plus aucune annonce.</small></span></label>
+        <p class="sous" id="informations-etat" role="status"></p>
+      </div>
+      <div class="pref-ligne si-connecte-bloc compte-actions">
+        <b>Mon compte</b>
+        <button type="button" class="lien-discret" data-compte="deconnecter">Se déconnecter de cet appareil</button>
+        <button type="button" class="lien-discret" data-compte="partout">Déconnecter tous mes appareils</button>
+        <button type="button" class="lien-discret danger" data-compte="supprimer">Supprimer mon compte</button>
+      </div>
+    </section>
   </div>
-  <div class="espace-outils" id="outils">
-    <label class="esp-recherche">
-      <span class="vh">Rechercher dans mes templates</span>
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
-      <input type="search" id="recherche" placeholder="Rechercher : courses, budget, devis…" autocomplete="off" spellcheck="false" enterkeyhint="go">
-    </label>
-    <nav class="sauts" id="sauts" aria-label="Aller à un thème"></nav>
-  </div>
-  <p class="vh" id="statut" role="status"></p>
-  <div id="resultats" hidden>
-    <ul class="esp-tuiles" id="liste-resultats"></ul>
-    <p class="vide" id="vide" hidden></p>
-  </div>
-  <div id="zones">
-    <section class="zone" id="z-epingles" hidden aria-labelledby="h-epingles"><h2 id="h-epingles">Épinglés</h2><ul class="esp-tuiles"></ul></section>
-    <section class="zone" id="z-recents" hidden aria-labelledby="h-recents"><h2 id="h-recents">Récemment ouverts</h2><ul class="esp-tuiles"></ul></section>
-    <section class="zone" id="z-themes" aria-labelledby="h-themes"><h2 id="h-themes">Par thème</h2><div id="themes"></div></section>
-  </div>
-  <p class="espace-packs" id="espace-packs" hidden><a href="/packs/espace/">Mes packs : ouvrir le tableau de bord <span aria-hidden="true">→</span></a></p>
 </section>
+<dialog class="dialogue-cle" id="dialogue-cle" aria-labelledby="h-cle">
+  <div class="dialogue-tete"><h2 id="h-cle">Ajouter une application</h2><button type="button" class="dialogue-fermer" data-fermer aria-label="Fermer">×</button></div>
+  <p class="sous">Collez la clé de licence d’un nouvel achat (dans le reçu Gumroad) : l’application rejoint votre espace<span class="si-connecte"> et votre compte</span>.</p>
+  <div id="dialogue-cle-corps"></div>
+</dialog>
 <section class="portail" id="portail">
   <div>
     <div class="intro">
       <p class="eyebrow">Espace acheteurs</p>
-      <h1>Connexion à vos templates</h1>
-      <p class="lead">Collez la <strong>clé de licence</strong> reçue par e-mail après l'achat (ou votre code d'accès <code>REV-…</code>). Le bon template s'ouvre automatiquement ; une clé de pack ouvre <a href="/packs/espace/">le tableau de bord du pack</a>.</p>
+      <h1>Connexion à vos applications</h1>
+      <p class="lead">Connectez-vous avec l’<strong>adresse e-mail de votre achat</strong> : vous recevez un lien, et toutes vos applications vous attendent, sur chacun de vos appareils.</p>
+    </div>
+    <div class="bloc-lien" id="bloc-lien">
+      <h2 class="titre-ajout">Retrouver toutes mes applications</h2>
+      <p class="titre-ajout-txt">Connectez-vous avec votre e-mail : vos applications vous suivent sur tous vos appareils.</p>
+      <form class="acces" id="form-lien" novalidate>
+        <label>Adresse e-mail
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="vous@exemple.fr" required>
+        </label>
+        <p class="erreur" id="erreur-lien" role="alert"></p>
+        <p class="ok-lien" id="ok-lien" role="status"></p>
+        <div class="bloc-code" id="bloc-code" hidden>
+          <label>Code à 6 chiffres reçu par e-mail
+            <input type="text" id="code-lien" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]*" maxlength="7" placeholder="123 456">
+          </label>
+          <p class="erreur" id="erreur-code" role="alert"></p>
+          <button class="btn primary" type="button" id="valider-code">Me connecter avec ce code</button>
+        </div>
+        <button class="btn primary" type="submit" id="envoyer-lien">Recevoir mon lien de connexion</button>
+        <button class="deja-code" type="button" id="deja-code">J’ai déjà reçu un code</button>
+      </form>
+      <p class="ou"><span>ou avec une clé de licence</span></p>
     </div>
     <div class="intro-ajout">
-      <h2>Ajouter un template</h2>
-      <p>Collez la clé de licence d'un nouvel achat : le template rejoint « Mes templates » sur cet appareil.</p>
+      <h2>Ajouter une application</h2>
+      <p>Collez la clé de licence d'un nouvel achat : l'application rejoint « Mes applications »<span class="si-connecte"> et votre compte</span>.</p>
     </div>
     <form class="acces" id="acces" novalidate>
       <label>Clé de licence ou code d'accès
@@ -146,11 +301,12 @@
       </label>
       <label class="memo"><input type="checkbox" id="memoriser" checked> Rester connecté sur cet appareil</label>
       <p class="erreur" id="erreur" role="alert"></p>
-      <button class="btn primary" type="submit">Ouvrir mon template</button>
+      <button class="btn" type="submit">Ouvrir mon application</button>
     </form>
   </div>
   <aside class="aide-portail" aria-label="Aide">
     <div class="formes" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="bloc"><h2>Pourquoi un e-mail ?</h2><p>Chaque achat est rangé sous l'adresse utilisée sur Gumroad. Le lien reçu vous connecte sans mot de passe ; il ne sert qu'une fois et expire au bout de 15 minutes.</p></div>
     <div class="bloc"><h2>Où est ma clé ?</h2><p>Dans l'e-mail de reçu envoyé par Gumroad juste après le paiement, sous la forme de 4 blocs de 8 caractères. Le bouton « Ouvrir mon planning » de cet e-mail mène ici.</p></div>
     <div class="bloc"><h2>Pas encore de template ?</h2><p>Découvrez les <a href="/templates/">templates disponibles</a>, ou essayez <a href="/templates/revision/?demo">la démo du planning de révision</a> sans rien acheter. Templates vie personnelle : <a href="/essai/">essai gratuit de 14 jours</a>, sans carte bancaire. Vous avez un code d'essai ? Saisissez-le dans le template lui-même.</p></div>
     <div class="bloc"><h2>Un problème ?</h2><p>Écrivez à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> avec l'adresse utilisée pour l'achat.</p></div>
@@ -168,102 +324,312 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
+<script src="/assets/espace.js?v=2026112306"></script>
+<script src="/assets/compte.js?v=2026112303"></script>
 <script>
 const header=document.querySelector('.topbar'),menu=document.querySelector('.menu');
 menu.addEventListener('click',()=>{const o=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));});
+// « Mon espace » dans le menu dès qu'un compte est connecté sur l'appareil (session qme-compte, assets/compte.js) :
+// initiale du prénom (ou de l'adresse) et libellé. Rien ne change pour un visiteur non connecté.
+function menuMonEspace(){try{
+  const s=JSON.parse(localStorage.getItem('qme-compte')||'null'),en=document.documentElement.lang==='en';
+  for(const a of document.querySelectorAll('.topbar a.login')){
+    if(!a.dataset.libelle)a.dataset.libelle=a.textContent;
+    if(!s||!s.jeton){a.classList.remove('mon-espace');a.textContent=a.dataset.libelle;a.removeAttribute('title');a.style.display=a.style.alignItems=a.style.gap='';continue;}
+    const p=JSON.parse(localStorage.getItem('qme-espace-prenom')||'""')||'';
+    const ini=String(p||s.email||'?').trim().charAt(0).toUpperCase().replace(/[^\p{L}\p{N}?]/gu,'');
+    // Styles en ligne : la pastille s'affiche même si une ancienne feuille de style est encore en cache.
+    a.classList.add('mon-espace');a.title=s.email||'';a.style.display='inline-flex';a.style.alignItems='center';a.style.gap='8px';
+    a.innerHTML=`<span class="ini" aria-hidden="true" style="width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:#24221F;color:#FBF7F1;font:700 12px/1 Outfit,system-ui,sans-serif;flex:none">${ini}</span>${en?'My space':'Mon espace'}`;
+  }
+}catch{/* stockage indisponible : menu inchangé */}}
+menuMonEspace();
+
 document.getElementById('year').textContent=new Date().getFullYear();
 
 // Données générées par node outils/connexion/generer.mjs (PRODUITS du serveur + thèmes et cartes du catalogue).
 /* ESPACE-DEBUT */
-const PRODUITS={"REV":{"nom":"Planning de révision","url":"/templates/revision/","cle":"qme-rev-code","theme":"organisation-et-etudes","phrase":"Chaque chapitre revient au bon moment jusqu'à l'examen.","img":"/assets/vignettes/revision.webp?v=5edd3375"},"CRA":{"nom":"Compte rendu et plan d'actions","url":"/templates/compte-rendu/","cle":"qme-cra-code","theme":"organisation-et-reunions","phrase":"Décisions et actions suivies de réunion en réunion.","img":"/assets/vignettes/compte-rendu.webp?v=d85a3456"},"PRX":{"nom":"Coût de revient et prix par client","url":"/templates/cout-revient/","cle":"qme-prx-code","theme":"independants","phrase":"Vos coûts réels et le prix juste pour chaque client.","img":"/assets/vignettes/cout-revient.webp?v=59293a0d"},"TJM":{"nom":"Calculateur de TJM freelance","url":"/templates/tjm/","cle":"qme-tjm-code","theme":"independants","phrase":"Du revenu visé au tarif journalier minimum et conseillé.","img":"/assets/vignettes/tjm.webp?v=d3a474ff"},"MCE":{"nom":"Livre recettes-dépenses micro-entreprise","url":"/templates/micro-entreprise/","cle":"qme-mce-code","theme":"independants","phrase":"Le livre de la micro-entreprise, cotisations estimées.","img":"/assets/vignettes/micro-entreprise.webp?v=44dc8743"},"BCM":{"nom":"Gestion Dépenses Communes","url":"/templates/budget-commun/","cle":"qme-bcm-code","theme":"argent","phrase":"À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun.","img":"/assets/vignettes/budget-commun.webp?v=748d3eb0"},"GNT":{"nom":"Planning Gantt rapide","url":"/templates/gantt/","cle":"qme-gnt-code","theme":"projets-et-chantiers","phrase":"Une ligne par tâche, liens, jours fériés et chemin critique.","img":"/assets/vignettes/gantt.webp?v=3f5fff83"},"TCH":{"nom":"Gestionnaire de tâches","url":"/templates/taches/","cle":"qme-tch-code","theme":"organisation-et-reunions","phrase":"Boîte de réception, priorités et focus du jour.","img":"/assets/vignettes/taches.webp?v=252193a1"},"NTR":{"nom":"Nutrition et dépense énergétique","url":"/templates/nutrition/","cle":"qme-ntr-code","theme":"sante-et-forme","phrase":"Repas, calories, macros et dépense du jour.","img":"/assets/vignettes/nutrition.webp?v=3ec1b8b8"},"BDG":{"nom":"Mon Budget","url":"/templates/budget/","cle":"qme-bdg-code","theme":"argent","phrase":"Dépenses, enveloppes et écart au budget, mois par mois.","img":"/assets/vignettes/budget.webp?v=7285e388"},"MRG":{"nom":"Organisateur de mariage","url":"/templates/mariage/","cle":"qme-mrg-code","theme":"projets-de-vie","phrase":"Rétroplanning, budget, prestataires et invités.","img":"/assets/vignettes/mariage.webp?v=d75482b6"},"VSA":{"nom":"Circuit de visa des documents","url":"/templates/visa/","cle":"qme-vsa-code","theme":"projets-et-chantiers","phrase":"Indices, avis des viseurs et échéances, lot par lot.","img":"/assets/vignettes/visa.webp?v=8b7a2327"},"NCF":{"nom":"Registre des non-conformités","url":"/templates/non-conformites/","cle":"qme-ncf-code","theme":"projets-et-chantiers","phrase":"Constat, cause, actions correctives et vérification.","img":"/assets/vignettes/non-conformites.webp?v=d006bc1a"},"CRM":{"nom":"CRM freelance","url":"/templates/crm/","cle":"qme-crm-code","theme":"clients-et-prospection","phrase":"Clients, prochaine action datée et relances du jour.","img":"/assets/vignettes/crm.webp?v=f4201d64"},"VHC":{"nom":"Gestion de flotte de véhicules","url":"/templates/flotte/","cle":"qme-vhc-code","theme":"equipements-et-vehicules","phrase":"Réservations, entretiens et coût par véhicule.","img":"/assets/vignettes/flotte.webp?v=ac6f780c"},"PHR":{"nom":"Planner horaire","url":"/templates/planner/","cle":"qme-phr-code","theme":"organisation-et-etudes","phrase":"Votre semaine en blocs de 30 minutes, prévu et réalisé.","img":"/assets/vignettes/planner.webp?v=3799c789"},"RSV":{"nom":"Levée de réserves","url":"/templates/reserves/","cle":"qme-rsv-code","theme":"projets-et-chantiers","phrase":"Réserves par lot et entreprise, retards calculés.","img":"/assets/vignettes/reserves.webp?v=aeba6058"},"PRS":{"nom":"Pipeline de prospection B2B","url":"/templates/prospection/","cle":"qme-prs-code","theme":"clients-et-prospection","phrase":"Prospects par étape et relances selon votre cadence.","img":"/assets/vignettes/prospection.webp?v=360c1b52"},"DVS":{"nom":"Générateur de devis","url":"/templates/devis/","cle":"qme-dvs-code","theme":"independants","phrase":"Catalogue, remises, TVA et mentions, justes au centime.","img":"/assets/vignettes/devis.webp?v=1d55887a"},"TRS":{"nom":"Trésorerie prévisionnelle 12 mois","url":"/templates/tresorerie/","cle":"qme-trs-code","theme":"independants","phrase":"Prévu, réalisé, scénarios et alerte de solde.","img":"/assets/vignettes/tresorerie.webp?v=c3be4e28"},"PRC":{"nom":"Gestion de parc informatique","url":"/templates/parc-informatique/","cle":"qme-prc-code","theme":"equipements-et-vehicules","phrase":"Matériel, attributions, licences et garanties.","img":"/assets/vignettes/parc-informatique.webp?v=7ea2c171"},"EVT":{"nom":"Pilote événementiel","url":"/templates/evenementiel/","cle":"qme-evt-code","theme":"associations-formation-et-evenements","phrase":"Rétroplanning, budget, prestataires et invités.","img":"/assets/vignettes/evenementiel.webp?v=81eb8cf5"},"ASC":{"nom":"Inscriptions associatives","url":"/templates/inscriptions/","cle":"qme-asc-code","theme":"associations-formation-et-evenements","phrase":"Créneaux, liste d'attente et tarifs par tranche.","img":"/assets/vignettes/inscriptions.webp?v=b826a387"},"AEC":{"nom":"Gestion d'auto-école","url":"/templates/auto-ecole/","cle":"qme-aec-code","theme":"associations-formation-et-evenements","phrase":"Élèves, leçons, moniteurs et véhicules.","img":"/assets/vignettes/auto-ecole.webp?v=0dd237ed"},"TRV":{"nom":"Pilote de travaux maison","url":"/templates/travaux/","cle":"qme-trv-code","theme":"projets-de-vie","phrase":"Devis comparés, budget et planning des artisans.","img":"/assets/vignettes/travaux.webp?v=f07ef268"},"SNT":{"nom":"Secret Santa","url":"/templates/secret-santa/","cle":"qme-snt-code","theme":"organisation-et-etudes","phrase":"Tirage au sort secret, idées de cadeaux et exclusions.","img":"/assets/vignettes/secret-santa.webp?v=70afaac9"},"HBT":{"nom":"Suivi d'habitudes et routines","url":"/templates/habitudes/","cle":"qme-hbt-code","theme":"sante-et-forme","phrase":"Cocher en un geste, séries et grille du mois.","img":"/assets/vignettes/habitudes.webp?v=22282392"},"ENT":{"nom":"Entretien de la maison","url":"/templates/entretien/","cle":"qme-ent-code","theme":"organisation-et-etudes","phrase":"Chaudière, ramonage, VMC : échéances calculées.","img":"/assets/vignettes/entretien.webp?v=4fbb60e3"},"DTT":{"nom":"Remboursement de dettes","url":"/templates/dettes/","cle":"qme-dtt-code","theme":"argent","phrase":"Vos dettes soldées une à une, avec une date de fin.","img":"/assets/vignettes/dettes.webp?v=df64c325"},"ABN":{"nom":"Suivi des abonnements","url":"/templates/abonnements/","cle":"qme-abn-code","theme":"argent","phrase":"Coût réel par mois et par an, essais et engagements.","img":"/assets/vignettes/abonnements.webp?v=0f33f90e"},"PTM":{"nom":"Inventaire valorisé","url":"/templates/patrimoine/","cle":"qme-ptm-code","theme":"argent","phrase":"Ce que valent vos objets, et ce que leur revente rapporterait.","img":"/assets/vignettes/patrimoine.webp?v=03b50c20"},"TDV":{"nom":"Temps de vie","url":"/templates/temps-de-vie/","cle":"qme-tdv-code","theme":"argent","phrase":"Vos dépenses converties en heures de travail.","img":"/assets/vignettes/temps-de-vie.webp?v=febf4b10"},"NDF":{"nom":"Notes de frais et indemnités kilométriques","url":"/templates/notes-de-frais/","cle":"qme-ndf-code","theme":"independants","phrase":"Frais, justificatifs, kilomètres au barème, note du mois.","img":"/assets/vignettes/notes-de-frais.webp?v=f5506fa5"},"APD":{"nom":"Préparateur d'appel découverte","url":"/templates/appel-decouverte/","cle":"qme-apd-code","theme":"clients-et-prospection","phrase":"Questions par phase, objections et prochaine étape datée.","img":"/assets/vignettes/appel-decouverte.webp?v=3d0468e7"},"RCV":{"nom":"Relance des impayés","url":"/templates/impayes/","cle":"qme-rcv-code","theme":"clients-et-prospection","phrase":"Retard en jours, pénalités et relances par palier.","img":"/assets/vignettes/impayes.webp?v=f9841725"},"ARD":{"nom":"Onboarding et offboarding salarié","url":"/templates/onboarding/","cle":"qme-ard-code","theme":"organisation-et-reunions","phrase":"Checklists d'arrivée et de départ, responsables, matériel.","img":"/assets/vignettes/onboarding.webp?v=e8d9617f"},"CNG":{"nom":"Suivi des congés et absences","url":"/templates/conges/","cle":"qme-cng-code","theme":"organisation-et-reunions","phrase":"Soldes calculés, demandes, calendrier et chevauchements.","img":"/assets/vignettes/conges.webp?v=70823b27"},"STK":{"nom":"Stocks et inventaire","url":"/templates/stocks/","cle":"qme-stk-code","theme":"independants","phrase":"Seuils d'alerte, liste à commander, valeur et inventaire.","img":"/assets/vignettes/stocks.webp?v=d40e5d4d"},"SJR":{"nom":"Location saisonnière","url":"/templates/location-saisonniere/","cle":"qme-sjr-code","theme":"argent","phrase":"Calendrier, ménage, taxe de séjour et net par canal.","img":"/assets/vignettes/location-saisonniere.webp?v=42f9cc33"},"VTR":{"nom":"Simulateur leasing ou achat","url":"/templates/leasing/","cle":"qme-vtr-code","theme":"argent","phrase":"Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.","img":"/assets/vignettes/leasing.webp?v=209ab167"},"RDV":{"nom":"Tableau de bord annuel et roue de vie","url":"/templates/tableau-annuel/","cle":"qme-rdv-code","theme":"projets-de-vie","phrase":"Roue de vie, objectifs mesurables et revue chaque trimestre.","img":"/assets/vignettes/tableau-annuel.webp?v=576f2617"},"EPG":{"nom":"Objectif d'épargne et fonds d'urgence","url":"/templates/epargne/","cle":"qme-epg-code","theme":"argent","phrase":"Un montant, un versement, une date : vos objectifs atteints.","img":"/assets/vignettes/epargne.webp?v=d48cd5b4"},"DMN":{"nom":"Déménagement","url":"/templates/demenagement/","cle":"qme-dmn-code","theme":"projets-de-vie","phrase":"Rétroplanning, démarches, cartons retrouvés, devis comparés.","img":"/assets/vignettes/demenagement.webp?v=24957b23"},"PCM":{"nom":"Propositions commerciales","url":"/templates/propositions/","cle":"qme-pcm-code","theme":"clients-et-prospection","phrase":"Contexte, options comparées et planning : une proposition claire.","img":"/assets/vignettes/propositions.webp?v=15782a4b"},"DRP":{"nom":"Document unique d'évaluation des risques","url":"/templates/document-unique/","cle":"qme-drp-code","theme":"organisation-et-reunions","phrase":"Risques par unité de travail, cotation et plan d’actions.","img":"/assets/vignettes/document-unique.webp?v=da443103"},"TDB":{"nom":"Tableau de bord de pilotage PME","url":"/templates/pilotage-pme/","cle":"qme-tdb-code","theme":"independants","phrase":"Vos indicateurs du mois face à vos objectifs, revue imprimable.","img":"/assets/vignettes/pilotage-pme.webp?v=a7d2f834"},"CHT":{"nom":"Suivi de chantier par lot","url":"/templates/suivi-chantier/","cle":"qme-cht-code","theme":"projets-et-chantiers","phrase":"Avenants, situations, jalons recalés et revue de projet.","img":"/assets/vignettes/suivi-chantier.webp?v=f6063e68"},"GMA":{"nom":"Maintenance préventive","url":"/templates/maintenance/","cle":"qme-gma-code","theme":"equipements-et-vehicules","phrase":"Échéances à la date ou au compteur, bons d'intervention, coûts.","img":"/assets/vignettes/maintenance.webp?v=dbd345c2"},"RPS":{"nom":"Repas de la semaine et liste de courses","url":"/templates/repas/","cle":"qme-rps-code","theme":"organisation-et-etudes","phrase":"Midi et soir prévus, courses par rayon calculées.","img":"/assets/vignettes/repas.webp?v=4cf8aa2a"},"VYG":{"nom":"Planificateur de voyage","url":"/templates/voyage/","cle":"qme-vyg-code","theme":"projets-de-vie","phrase":"Étapes, nuits, activités, budget et qui doit quoi.","img":"/assets/vignettes/voyage.webp?v=d7b7435e"},"VRF":{"nom":"Vérifications réglementaires","url":"/templates/verifications/","cle":"qme-vrf-code","theme":"equipements-et-vehicules","phrase":"Contrôles périodiques sourcés, échéances, observations levées avec preuve.","img":"/assets/vignettes/verifications.webp?v=8fd78ab5"},"CTR":{"nom":"Contrats fournisseurs et échéances","url":"/templates/contrats/","cle":"qme-ctr-code","theme":"equipements-et-vehicules","phrase":"Dates limites de résiliation calculées, plus de tacite reconduction subie.","img":"/assets/vignettes/contrats.webp?v=8f5a8f9d"},"EQP":{"nom":"Planning d'équipe et staffing","url":"/templates/planning-equipe/","cle":"qme-eqp-code","theme":"organisation-et-reunions","phrase":"Qui fait quoi cette semaine, charge et conflits visibles.","img":"/assets/vignettes/planning-equipe.webp?v=5c07ea5e"},"CMP":{"nom":"Gestion de compétition sportive","url":"/templates/competition/","cle":"qme-cmp-code","theme":"associations-formation-et-evenements","phrase":"Inscriptions, vagues, scores et classement en direct.","img":"/assets/vignettes/competition.webp?v=030cecd9"},"SNH":{"nom":"Dossier sinistre habitation","url":"/templates/sinistre/","cle":"qme-snh-code","theme":"argent","phrase":"Déclaration guidée, dommages chiffrés, preuves et suivi.","img":"/assets/vignettes/sinistre.webp?v=db0e2542"},"MSC":{"nom":"Carnet de musculation et cross-training","url":"/templates/musculation/","cle":"qme-msc-code","theme":"sante-et-forme","phrase":"Séances, WOD, records détectés et minuteur.","img":"/assets/vignettes/musculation.webp?v=9abf337c"},"CAR":{"nom":"Carnet de voiture","url":"/templates/voiture/","cle":"qme-car-code","theme":"organisation-et-etudes","phrase":"Entretiens à la date ou au km, dépenses, consommation, coût au km.","img":"/assets/vignettes/voiture.webp?v=ab1ed3dc"},"GST":{"nom":"Gestion locative","url":"/templates/gestion-locative/","cle":"qme-gst-code","theme":"argent","phrase":"Loyers, retards, quittances, révision et charges.","img":"/assets/vignettes/gestion-locative.webp?v=2ffc9a1c"},"SDR":{"nom":"Réservation de salles et bureaux","url":"/templates/salles/","cle":"qme-sdr-code","theme":"equipements-et-vehicules","phrase":"Libre maintenant, vues jour et semaine, aucune double réservation.","img":"/assets/vignettes/salles.webp?v=54735d07"},"BSC":{"nom":"Pilotage d'une journée de bascule","url":"/templates/bascule/","cle":"qme-bsc-code","theme":"projets-et-chantiers","phrase":"Déroulé horaire, go/no-go, retour arrière, retard en direct.","img":"/assets/vignettes/bascule.webp?v=28dd1ac8"},"CSE":{"nom":"Gestion de classe","url":"/templates/gestion-classe/","cle":"qme-cse-code","theme":"associations-formation-et-evenements","phrase":"Notes, moyennes, compétences, appréciations, bulletins.","img":"/assets/vignettes/gestion-classe.webp?v=477b1df3"},"EDT":{"nom":"Emploi du temps d'établissement","url":"/templates/emploi-du-temps/","cle":"qme-edt-code","theme":"associations-formation-et-evenements","phrase":"Groupes, formateurs, salles, conflits détectés, heures suivies.","img":"/assets/vignettes/emploi-du-temps.webp?v=e2473b3a"},"PRK":{"nom":"Pilotage de parcs multi-sites","url":"/templates/parcs-multi-sites/","cle":"qme-prk-code","theme":"equipements-et-vehicules","phrase":"Sites, équipements, préventif, pannes et coût par site.","img":"/assets/vignettes/parcs-multi-sites.webp?v=dc1d79c6"},"TMP":{"nom":"Suivi du temps et rentabilité par mission","url":"/templates/suivi-temps/","cle":"qme-tmp-code","theme":"independants","phrase":"Le temps réellement passé, comparé au TJM et au devis.","img":"/assets/vignettes/suivi-temps.webp?v=a10f620f"},"KRF":{"nom":"Kit références et plaquette","url":"/templates/references-plaquette/","cle":"qme-krf-code","theme":"clients-et-prospection","phrase":"Vos réalisations en fiches, une plaquette par prospect.","img":"/assets/vignettes/references-plaquette.webp?v=7b56fdf8"},"CED":{"nom":"Calendrier éditorial","url":"/templates/calendrier-editorial/","cle":"qme-ced-code","theme":"clients-et-prospection","phrase":"Sujets, formats et régularité de vos publications professionnelles.","img":"/assets/vignettes/calendrier-editorial.webp?v=1ab01b6c"},"RDE":{"nom":"Registre du DOE","url":"/templates/doe/","cle":"qme-rde-code","theme":"projets-et-chantiers","phrase":"Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.","img":"/assets/vignettes/doe.webp?v=75cbfe42"},"STR":{"nom":"Conformité des sous-traitants","url":"/templates/sous-traitants/","cle":"qme-str-code","theme":"projets-et-chantiers","phrase":"Agréments et attestations, alertes avant expiration.","img":"/assets/vignettes/sous-traitants.webp?v=329d02a6"},"CND":{"nom":"Suivi des appels d'offres et candidatures","url":"/templates/appels-offres/","cle":"qme-cnd-code","theme":"clients-et-prospection","phrase":"Consultations, pièces, dates limites et résultats.","img":"/assets/vignettes/appels-offres.webp?v=53a6444e"},"ENP":{"nom":"Entretiens annuels et professionnels","url":"/templates/entretiens-annuels/","cle":"qme-enp-code","theme":"organisation-et-reunions","phrase":"Échéances par salarié, trames, objectifs et formations suivis.","img":"/assets/vignettes/entretiens-annuels.webp?v=5da75d9b"},"GRD":{"nom":"Garde-manger et dates de péremption","url":"/templates/garde-manger/","cle":"qme-grd-code","theme":"organisation-et-etudes","phrase":"DLC et DDM, à consommer en priorité, gaspillage suivi.","img":"/assets/vignettes/garde-manger.webp?v=3d29591f"},"PGS":{"nom":"Suivi de lecture","url":"/templates/lecture/","cle":"qme-pgs-code","theme":"organisation-et-etudes","phrase":"Rythme, date de fin du livre, objectif de l'année au jour près.","img":"/assets/vignettes/lecture.webp?v=09db318e"},"NTS":{"nom":"Notes et moyennes","url":"/templates/notes/","cle":"qme-nts-code","theme":"organisation-et-etudes","phrase":"Moyennes pondérées, crédits ECTS, note à viser au prochain partiel.","img":"/assets/vignettes/notes.webp?v=0a9bd1c8"},"ETD":{"nom":"État des lieux d’entrée et de sortie","url":"/templates/etat-des-lieux/","cle":"qme-etd-code","theme":"argent","phrase":"Pièce par pièce, photos, sortie comparée à l'entrée et document à signer.","img":"/assets/vignettes/etat-des-lieux.webp?v=85cf7be3"},"ANM":{"nom":"Suivi d'un animal de compagnie","url":"/templates/animal/","cle":"qme-anm-code","theme":"organisation-et-etudes","phrase":"Soins aux dates du vétérinaire, poids, visites, frais par an.","img":"/assets/vignettes/animal.webp?v=6203fac1"},"TVA":{"nom":"Suivi de TVA","url":"/templates/tva/","cle":"qme-tva-code","theme":"independants","phrase":"Collectée, déductible, crédit reporté, échéances et contrôles.","img":"/assets/vignettes/tva.webp?v=502f9391"},"DCS":{"nom":"Papiers du foyer","url":"/templates/papiers/","cle":"qme-dcs-code","theme":"argent","phrase":"Où est chaque document, et combien de temps le garder.","img":"/assets/vignettes/papiers.webp?v=209263fb"},"RBS":{"nom":"Remboursements santé","url":"/templates/remboursements-sante/","cle":"qme-rbs-code","theme":"argent","phrase":"Ce qui a été payé, remboursé, et ce qu'on vous doit encore.","img":"/assets/vignettes/remboursements-sante.webp?v=6fdc8f6a"},"ACH":{"nom":"Demandes d'achat et fournitures","url":"/templates/achats/","cle":"qme-ach-code","theme":"equipements-et-vehicules","phrase":"Demandes, validation, commandes et budget par service.","img":"/assets/vignettes/achats.webp?v=13db24f0"},"CPT":{"nom":"Capacité d'emprunt et comparateur de prêts","url":"/templates/emprunt/","cle":"qme-cpt-code","theme":"argent","phrase":"Ce que vous pouvez emprunter, et quelle offre coûte le moins.","img":"/assets/vignettes/emprunt.webp?v=da81e431"},"CDX":{"nom":"Cadeaux reçus et remerciements","url":"/templates/remerciements/","cle":"qme-cdx-code","theme":"projets-de-vie","phrase":"Qui a offert quoi, et à qui il reste à dire merci.","img":"/assets/vignettes/remerciements.webp?v=20e9aa26"},"RVH":{"nom":"Revue hebdomadaire et journal de bord","url":"/templates/revue-hebdo/","cle":"qme-rvh-code","theme":"organisation-et-etudes","phrase":"Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités.","img":"/assets/vignettes/revue-hebdo.webp?v=a6b188e4"},"CAN":{"nom":"Candidatures études, stages, alternance","url":"/templates/candidatures/","cle":"qme-can-code","theme":"organisation-et-etudes","phrase":"Vœux, pièces, dates et réponses au même endroit.","img":"/assets/vignettes/candidatures.webp?v=35ca27eb"},"SBV":{"nom":"Subventions","url":"/templates/subventions/","cle":"qme-sbv-code","theme":"associations-formation-et-evenements","phrase":"Dossiers, échéances, justificatifs et bilans.","img":"/assets/vignettes/subventions.webp?v=a1e00bfa"},"BNV":{"nom":"Bénévoles et planning des créneaux","url":"/templates/benevoles/","cle":"qme-bnv-code","theme":"associations-formation-et-evenements","phrase":"Qui tient quel créneau, sans trou ni doublon.","img":"/assets/vignettes/benevoles.webp?v=93e941e7"},"MMR":{"nom":"Planning de mémoire ou de thèse","url":"/templates/memoire/","cle":"qme-mmr-code","theme":"organisation-et-etudes","phrase":"Plan, rétroplanning et mots par jour jusqu'au rendu.","img":"/assets/vignettes/memoire.webp?v=4bb5d08a"},"AGS":{"nom":"Assemblée générale et vie statutaire","url":"/templates/assemblee-generale/","cle":"qme-ags-code","theme":"associations-formation-et-evenements","phrase":"Convocations, quorum, PV et mandats du bureau.","img":"/assets/vignettes/assemblee-generale.webp?v=3f869813"},"RNT":{"nom":"Rentabilité d'un investissement locatif","url":"/templates/investissement-locatif/","cle":"qme-rnt-code","theme":"argent","phrase":"Rendement brut, net et cash-flow avant d'acheter.","img":"/assets/vignettes/investissement-locatif.webp?v=bb4ec4d1"},"FRM":{"nom":"Matrice compétences et formations","url":"/templates/competences/","cle":"qme-frm-code","theme":"organisation-et-reunions","phrase":"Niveaux, écarts au poste, compétences fragiles, plan de formation.","img":"/assets/vignettes/competences.webp?v=21c13364"},"PRG":{"nom":"Progression pédagogique","url":"/templates/progression/","cle":"qme-prg-code","theme":"associations-formation-et-evenements","phrase":"Séquences et séances, prévu face au réel, fin projetée.","img":"/assets/vignettes/progression.webp?v=1a79492e"},"PTG":{"nom":"Calendrier du potager","url":"/templates/potager/","cle":"qme-ptg-code","theme":"organisation-et-etudes","phrase":"Vos semis à leur date, la rotation de vos planches suivie.","img":"/assets/vignettes/potager.webp?v=59ad814c"},"BBE":{"nom":"Suivi du bébé","url":"/templates/bebe/","cle":"qme-bbe-code","theme":"sante-et-forme","phrase":"Tétées, sommeil, couches, à deux parents, d'une main.","img":"/assets/vignettes/bebe.webp?v=e1864199"},"CPR":{"nom":"Charges et AG de copropriété","url":"/templates/copropriete/","cle":"qme-cpr-code","theme":"argent","phrase":"Appels de fonds, charges, régularisation et votes en AG.","img":"/assets/vignettes/copropriete.webp?v=bfd9b0f1"},"CRS":{"nom":"Plan d'entraînement course à pied","url":"/templates/course-a-pied/","cle":"qme-crs-code","theme":"sante-et-forme","phrase":"Vos allures et vos semaines jusqu’au jour de la course.","img":"/assets/vignettes/course-a-pied.webp?v=c6a816af"},"SMN":{"nom":"Séminaire / offsite","url":"/templates/seminaire/","cle":"qme-smn-code","theme":"associations-formation-et-evenements","phrase":"Participants, trajets, chambres, programme et coût par personne.","img":"/assets/vignettes/seminaire.webp?v=33aea1b7"},"QZZ":{"nom":"Banque de questions et quiz","url":"/templates/quiz/","cle":"qme-qzz-code","theme":"associations-formation-et-evenements","phrase":"Questions taguées, quiz générés et corrigés.","img":"/assets/vignettes/quiz.webp?v=35738052"},"SVT":{"nom":"Vivre sans voiture","url":"/templates/sans-voiture/","cle":"qme-svt-code","theme":"argent","phrase":"Le gain annuel sans voiture, sortie comprise, et une parade à chaque urgence.","img":"/assets/vignettes/sans-voiture.webp?v=f530bb67"}};
+const PRODUITS={"REV":{"nom":"Planning de révision","url":"/templates/revision/","cle":"qme-rev-code","theme":"organisation-et-etudes","phrase":"Chaque chapitre revient au bon moment jusqu'à l'examen.","img":"/assets/vignettes/revision.webp?v=5edd3375","slug":"revision","prix":1490,"vente":true,"icone":"/templates/revision/icone.svg"},"CRA":{"nom":"Compte rendu et plan d'actions","url":"/templates/compte-rendu/","cle":"qme-cra-code","theme":"organisation-et-reunions","phrase":"Décisions et actions suivies de réunion en réunion.","img":"/assets/vignettes/compte-rendu.webp?v=d85a3456","slug":"compte-rendu","prix":1500,"vente":true,"icone":"/templates/compte-rendu/icone.svg"},"PRX":{"nom":"Coût de revient et prix par client","url":"/templates/cout-revient/","cle":"qme-prx-code","theme":"independants","phrase":"Vos coûts réels et le prix juste pour chaque client.","img":"/assets/vignettes/cout-revient.webp?v=59293a0d","slug":"cout-revient","prix":2500,"vente":true,"icone":"/templates/cout-revient/icone.svg"},"TJM":{"nom":"Calculateur de TJM freelance","url":"/templates/tjm/","cle":"qme-tjm-code","theme":"independants","phrase":"Du revenu visé au tarif journalier minimum et conseillé.","img":"/assets/vignettes/tjm.webp?v=d3a474ff","slug":"tjm","prix":1200,"vente":true,"icone":"/templates/tjm/icone.svg"},"MCE":{"nom":"Livre recettes-dépenses micro-entreprise","url":"/templates/micro-entreprise/","cle":"qme-mce-code","theme":"independants","phrase":"Le livre de la micro-entreprise, cotisations estimées.","img":"/assets/vignettes/micro-entreprise.webp?v=44dc8743","slug":"micro-entreprise","prix":2500,"vente":true,"icone":"/templates/micro-entreprise/icone.svg"},"BCM":{"nom":"Gestion Dépenses Communes","url":"/templates/budget-commun/","cle":"qme-bcm-code","theme":"argent","phrase":"À deux ou en colocation : qui doit quoi, ou combien chacun verse sur le compte commun.","img":"/assets/vignettes/budget-commun.webp?v=748d3eb0","slug":"budget-commun","prix":1500,"vente":true,"icone":"/templates/budget-commun/icone.svg"},"GNT":{"nom":"Planning Gantt rapide","url":"/templates/gantt/","cle":"qme-gnt-code","theme":"projets-et-chantiers","phrase":"Une ligne par tâche, liens, jours fériés et chemin critique.","img":"/assets/vignettes/gantt.webp?v=3f5fff83","slug":"gantt","prix":4500,"vente":true,"icone":"/templates/gantt/icone.svg"},"TCH":{"nom":"Gestionnaire de tâches","url":"/templates/taches/","cle":"qme-tch-code","theme":"organisation-et-reunions","phrase":"Boîte de réception, priorités et focus du jour.","img":"/assets/vignettes/taches.webp?v=252193a1","slug":"taches","prix":1900,"vente":true,"icone":"/templates/taches/icone.svg"},"NTR":{"nom":"Nutrition et dépense énergétique","url":"/templates/nutrition/","cle":"qme-ntr-code","theme":"sante-et-forme","phrase":"Repas, calories, macros et dépense du jour.","img":"/assets/vignettes/nutrition.webp?v=3ec1b8b8","slug":"nutrition","prix":1900,"vente":true,"icone":"/templates/nutrition/icone.svg"},"BDG":{"nom":"Mon Budget","url":"/templates/budget/","cle":"qme-bdg-code","theme":"argent","phrase":"Dépenses, enveloppes et écart au budget, mois par mois.","img":"/assets/vignettes/budget.webp?v=7285e388","slug":"budget","prix":1500,"vente":true,"icone":"/templates/budget/icone.svg"},"VSA":{"nom":"Circuit de visa des documents","url":"/templates/visa/","cle":"qme-vsa-code","theme":"projets-et-chantiers","phrase":"Indices, avis des viseurs et échéances, lot par lot.","img":"/assets/vignettes/visa.webp?v=8b7a2327","slug":"visa","prix":3900,"vente":true,"icone":"/templates/visa/icone.svg"},"NCF":{"nom":"Registre des non-conformités","url":"/templates/non-conformites/","cle":"qme-ncf-code","theme":"projets-et-chantiers","phrase":"Constat, cause, actions correctives et vérification.","img":"/assets/vignettes/non-conformites.webp?v=d006bc1a","slug":"non-conformites","prix":2000,"vente":true,"icone":"/templates/non-conformites/icone.svg"},"CRM":{"nom":"CRM et prospection","url":"/templates/crm/","cle":"qme-crm-code","theme":"clients-et-prospection","phrase":"Prospects et clients, relances selon votre cadence, pipeline et factures suivies.","img":"/assets/vignettes/crm.webp?v=d0cc68dc","slug":"crm","prix":2500,"vente":true,"icone":"/templates/crm/icone.svg"},"VHC":{"nom":"Gestion de flotte de véhicules","url":"/templates/flotte/","cle":"qme-vhc-code","theme":"equipements-et-vehicules","phrase":"Réservations, entretiens et coût par véhicule.","img":"/assets/vignettes/flotte.webp?v=ac6f780c","slug":"flotte","prix":3900,"vente":true,"icone":"/templates/flotte/icone.svg"},"PHR":{"nom":"Planner horaire","url":"/templates/planner/","cle":"qme-phr-code","theme":"organisation-et-etudes","phrase":"Votre semaine en blocs de 30 minutes, prévu et réalisé.","img":"/assets/vignettes/planner.webp?v=3799c789","slug":"planner","prix":1500,"vente":true,"icone":"/templates/planner/icone.svg"},"RSV":{"nom":"Levée de réserves","url":"/templates/reserves/","cle":"qme-rsv-code","theme":"projets-et-chantiers","phrase":"Réserves par lot et entreprise, retards calculés.","img":"/assets/vignettes/reserves.webp?v=aeba6058","slug":"reserves","prix":3900,"vente":true,"icone":"/templates/reserves/icone.svg"},"DVS":{"nom":"Générateur de devis","url":"/templates/devis/","cle":"qme-dvs-code","theme":"independants","phrase":"Catalogue, remises, TVA et mentions, justes au centime.","img":"/assets/vignettes/devis.webp?v=1d55887a","slug":"devis","prix":2900,"vente":true,"icone":"/templates/devis/icone.svg"},"TRS":{"nom":"Trésorerie prévisionnelle 12 mois","url":"/templates/tresorerie/","cle":"qme-trs-code","theme":"independants","phrase":"Prévu, réalisé, scénarios et alerte de solde.","img":"/assets/vignettes/tresorerie.webp?v=c3be4e28","slug":"tresorerie","prix":2900,"vente":true,"icone":"/templates/tresorerie/icone.svg"},"PRC":{"nom":"Gestion de parc informatique","url":"/templates/parc-informatique/","cle":"qme-prc-code","theme":"equipements-et-vehicules","phrase":"Matériel, attributions, licences et garanties.","img":"/assets/vignettes/parc-informatique.webp?v=7ea2c171","slug":"parc-informatique","prix":3500,"vente":true,"icone":"/templates/parc-informatique/icone.svg"},"EVT":{"nom":"Organisateur d'événement","url":"/templates/evenementiel/","cle":"qme-evt-code","theme":"projets-de-vie","phrase":"Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J.","img":"/assets/vignettes/evenementiel.webp?v=d3dc7a5a","slug":"evenementiel","prix":3900,"vente":true,"icone":"/templates/evenementiel/icone.svg"},"ASC":{"nom":"Inscriptions associatives","url":"/templates/inscriptions/","cle":"qme-asc-code","theme":"associations-formation-et-evenements","phrase":"Créneaux, liste d'attente et tarifs par tranche.","img":"/assets/vignettes/inscriptions.webp?v=b826a387","slug":"inscriptions","prix":2900,"vente":true,"icone":"/templates/inscriptions/icone.svg"},"AEC":{"nom":"Gestion d'auto-école","url":"/templates/auto-ecole/","cle":"qme-aec-code","theme":"associations-formation-et-evenements","phrase":"Élèves, leçons, moniteurs et véhicules.","img":"/assets/vignettes/auto-ecole.webp?v=0dd237ed","slug":"auto-ecole","prix":4500,"vente":false,"icone":"/templates/auto-ecole/icone.svg"},"TRV":{"nom":"Pilote de travaux maison","url":"/templates/travaux/","cle":"qme-trv-code","theme":"projets-de-vie","phrase":"Devis comparés, budget et planning des artisans.","img":"/assets/vignettes/travaux.webp?v=f07ef268","slug":"travaux","prix":2500,"vente":true,"icone":"/templates/travaux/icone.svg"},"SNT":{"nom":"Secret Santa","url":"/templates/secret-santa/","cle":"qme-snt-code","theme":"organisation-et-etudes","phrase":"Tirage au sort secret, idées de cadeaux et exclusions.","img":"/assets/vignettes/secret-santa.webp?v=70afaac9","slug":"secret-santa","prix":null,"vente":true,"icone":"/templates/secret-santa/icone.svg"},"HBT":{"nom":"Suivi d'habitudes et routines","url":"/templates/habitudes/","cle":"qme-hbt-code","theme":"sante-et-forme","phrase":"Cocher en un geste, séries et grille du mois.","img":"/assets/vignettes/habitudes.webp?v=22282392","slug":"habitudes","prix":1200,"vente":true,"icone":"/templates/habitudes/icone.svg"},"ENT":{"nom":"Entretien de la maison","url":"/templates/entretien/","cle":"qme-ent-code","theme":"organisation-et-etudes","phrase":"Chaudière, ramonage, VMC : échéances calculées.","img":"/assets/vignettes/entretien.webp?v=4fbb60e3","slug":"entretien","prix":1200,"vente":true,"icone":"/templates/entretien/icone.svg"},"DTT":{"nom":"Remboursement de dettes","url":"/templates/dettes/","cle":"qme-dtt-code","theme":"argent","phrase":"Vos dettes soldées une à une, avec une date de fin.","img":"/assets/vignettes/dettes.webp?v=df64c325","slug":"dettes","prix":1200,"vente":true,"icone":"/templates/dettes/icone.svg"},"ABN":{"nom":"Suivi des abonnements","url":"/templates/abonnements/","cle":"qme-abn-code","theme":"argent","phrase":"Coût réel par mois et par an, essais et engagements.","img":"/assets/vignettes/abonnements.webp?v=0f33f90e","slug":"abonnements","prix":900,"vente":true,"icone":"/templates/abonnements/icone.svg"},"PTM":{"nom":"Inventaire valorisé","url":"/templates/patrimoine/","cle":"qme-ptm-code","theme":"argent","phrase":"Ce que valent vos objets, et ce que leur revente rapporterait.","img":"/assets/vignettes/patrimoine.webp?v=03b50c20","slug":"patrimoine","prix":1900,"vente":true,"icone":"/templates/patrimoine/icone.svg"},"TDV":{"nom":"Temps de vie","url":"/templates/temps-de-vie/","cle":"qme-tdv-code","theme":"argent","phrase":"Vos dépenses converties en heures de travail.","img":"/assets/vignettes/temps-de-vie.webp?v=febf4b10","slug":"temps-de-vie","prix":1900,"vente":true,"icone":"/templates/temps-de-vie/icone.svg"},"NDF":{"nom":"Notes de frais et indemnités kilométriques","url":"/templates/notes-de-frais/","cle":"qme-ndf-code","theme":"independants","phrase":"Frais, justificatifs, kilomètres au barème, note du mois.","img":"/assets/vignettes/notes-de-frais.webp?v=f5506fa5","slug":"notes-de-frais","prix":1500,"vente":true,"icone":"/templates/notes-de-frais/icone.svg"},"APD":{"nom":"Préparateur d'appel découverte","url":"/templates/appel-decouverte/","cle":"qme-apd-code","theme":"clients-et-prospection","phrase":"Questions par phase, objections et prochaine étape datée.","img":"/assets/vignettes/appel-decouverte.webp?v=3d0468e7","slug":"appel-decouverte","prix":1200,"vente":true,"icone":"/templates/appel-decouverte/icone.svg"},"RCV":{"nom":"Relance des impayés","url":"/templates/impayes/","cle":"qme-rcv-code","theme":"clients-et-prospection","phrase":"Retard en jours, pénalités et relances par palier.","img":"/assets/vignettes/impayes.webp?v=f9841725","slug":"impayes","prix":1900,"vente":true,"icone":"/templates/impayes/icone.svg"},"ARD":{"nom":"Onboarding et offboarding salarié","url":"/templates/onboarding/","cle":"qme-ard-code","theme":"organisation-et-reunions","phrase":"Checklists d'arrivée et de départ, responsables, matériel.","img":"/assets/vignettes/onboarding.webp?v=e8d9617f","slug":"onboarding","prix":1900,"vente":true,"icone":"/templates/onboarding/icone.svg"},"CNG":{"nom":"Suivi des congés et absences","url":"/templates/conges/","cle":"qme-cng-code","theme":"organisation-et-reunions","phrase":"Soldes calculés, demandes, calendrier et chevauchements.","img":"/assets/vignettes/conges.webp?v=70823b27","slug":"conges","prix":1900,"vente":true,"icone":"/templates/conges/icone.svg"},"STK":{"nom":"Stocks et inventaire","url":"/templates/stocks/","cle":"qme-stk-code","theme":"independants","phrase":"Seuils d'alerte, liste à commander, valeur et inventaire.","img":"/assets/vignettes/stocks.webp?v=d40e5d4d","slug":"stocks","prix":2500,"vente":true,"icone":"/templates/stocks/icone.svg"},"SJR":{"nom":"Location saisonnière","url":"/templates/location-saisonniere/","cle":"qme-sjr-code","theme":"argent","phrase":"Calendrier, ménage, taxe de séjour et net par canal.","img":"/assets/vignettes/location-saisonniere.webp?v=42f9cc33","slug":"location-saisonniere","prix":2500,"vente":true,"icone":"/templates/location-saisonniere/icone.svg"},"VTR":{"nom":"Simulateur leasing ou achat","url":"/templates/leasing/","cle":"qme-vtr-code","theme":"argent","phrase":"Comptant, crédit, LOA ou LLD : le vrai coût de chaque offre.","img":"/assets/vignettes/leasing.webp?v=209ab167","slug":"leasing","prix":1200,"vente":true,"icone":"/templates/leasing/icone.svg"},"RDV":{"nom":"Tableau de bord annuel et roue de vie","url":"/templates/tableau-annuel/","cle":"qme-rdv-code","theme":"projets-de-vie","phrase":"Roue de vie, objectifs mesurables et revue chaque trimestre.","img":"/assets/vignettes/tableau-annuel.webp?v=576f2617","slug":"tableau-annuel","prix":1500,"vente":true,"icone":"/templates/tableau-annuel/icone.svg"},"EPG":{"nom":"Objectif d'épargne et fonds d'urgence","url":"/templates/epargne/","cle":"qme-epg-code","theme":"argent","phrase":"Un montant, un versement, une date : vos objectifs atteints.","img":"/assets/vignettes/epargne.webp?v=d48cd5b4","slug":"epargne","prix":1200,"vente":true,"icone":"/templates/epargne/icone.svg"},"DMN":{"nom":"Déménagement","url":"/templates/demenagement/","cle":"qme-dmn-code","theme":"projets-de-vie","phrase":"Rétroplanning, démarches, cartons retrouvés, devis comparés.","img":"/assets/vignettes/demenagement.webp?v=24957b23","slug":"demenagement","prix":1200,"vente":true,"icone":"/templates/demenagement/icone.svg"},"PCM":{"nom":"Propositions commerciales","url":"/templates/propositions/","cle":"qme-pcm-code","theme":"clients-et-prospection","phrase":"Contexte, options comparées et planning : une proposition claire.","img":"/assets/vignettes/propositions.webp?v=15782a4b","slug":"propositions","prix":1900,"vente":true,"icone":"/templates/propositions/icone.svg"},"DRP":{"nom":"Document unique d'évaluation des risques","url":"/templates/document-unique/","cle":"qme-drp-code","theme":"organisation-et-reunions","phrase":"Risques par unité de travail, cotation et plan d’actions.","img":"/assets/vignettes/document-unique.webp?v=da443103","slug":"document-unique","prix":2900,"vente":true,"icone":"/templates/document-unique/icone.svg"},"TDB":{"nom":"Tableau de bord de pilotage PME","url":"/templates/pilotage-pme/","cle":"qme-tdb-code","theme":"independants","phrase":"Vos indicateurs du mois face à vos objectifs, revue imprimable.","img":"/assets/vignettes/pilotage-pme.webp?v=a7d2f834","slug":"pilotage-pme","prix":3900,"vente":true,"icone":"/templates/pilotage-pme/icone.svg"},"CHT":{"nom":"Suivi de chantier par lot","url":"/templates/suivi-chantier/","cle":"qme-cht-code","theme":"projets-et-chantiers","phrase":"Avenants, situations, jalons recalés et revue de projet.","img":"/assets/vignettes/suivi-chantier.webp?v=f6063e68","slug":"suivi-chantier","prix":4000,"vente":true,"icone":"/templates/suivi-chantier/icone.svg"},"GMA":{"nom":"Maintenance préventive","url":"/templates/maintenance/","cle":"qme-gma-code","theme":"equipements-et-vehicules","phrase":"Échéances à la date ou au compteur, bons d'intervention, coûts, sur un site ou plusieurs.","img":"/assets/vignettes/maintenance.webp?v=0f0e1d1b","slug":"maintenance","prix":3900,"vente":true,"icone":"/templates/maintenance/icone.svg"},"RPS":{"nom":"Repas de la semaine et liste de courses","url":"/templates/repas/","cle":"qme-rps-code","theme":"organisation-et-etudes","phrase":"Midi et soir prévus, courses par rayon calculées.","img":"/assets/vignettes/repas.webp?v=4cf8aa2a","slug":"repas","prix":1300,"vente":true,"icone":"/templates/repas/icone.svg"},"VYG":{"nom":"Planificateur de voyage","url":"/templates/voyage/","cle":"qme-vyg-code","theme":"projets-de-vie","phrase":"Étapes, nuits, activités, budget et qui doit quoi.","img":"/assets/vignettes/voyage.webp?v=d7b7435e","slug":"voyage","prix":1300,"vente":true,"icone":"/templates/voyage/icone.svg"},"VRF":{"nom":"Vérifications réglementaires","url":"/templates/verifications/","cle":"qme-vrf-code","theme":"equipements-et-vehicules","phrase":"Contrôles périodiques sourcés, échéances, observations levées avec preuve.","img":"/assets/vignettes/verifications.webp?v=8fd78ab5","slug":"verifications","prix":3500,"vente":true,"icone":"/templates/verifications/icone.svg"},"CTR":{"nom":"Contrats fournisseurs et échéances","url":"/templates/contrats/","cle":"qme-ctr-code","theme":"equipements-et-vehicules","phrase":"Dates limites de résiliation calculées, plus de tacite reconduction subie.","img":"/assets/vignettes/contrats.webp?v=8f5a8f9d","slug":"contrats","prix":2500,"vente":true,"icone":"/templates/contrats/icone.svg"},"EQP":{"nom":"Planning d'équipe et staffing","url":"/templates/planning-equipe/","cle":"qme-eqp-code","theme":"organisation-et-reunions","phrase":"Qui fait quoi cette semaine, charge et conflits visibles.","img":"/assets/vignettes/planning-equipe.webp?v=5c07ea5e","slug":"planning-equipe","prix":3500,"vente":true,"icone":"/templates/planning-equipe/icone.svg"},"CMP":{"nom":"Gestion de compétition sportive","url":"/templates/competition/","cle":"qme-cmp-code","theme":"associations-formation-et-evenements","phrase":"Inscriptions, vagues, scores et classement en direct.","img":"/assets/vignettes/competition.webp?v=030cecd9","slug":"competition","prix":4900,"vente":true,"icone":"/templates/competition/icone.svg"},"SNH":{"nom":"Dossier sinistre habitation","url":"/templates/sinistre/","cle":"qme-snh-code","theme":"argent","phrase":"Déclaration guidée, dommages chiffrés, preuves et suivi.","img":"/assets/vignettes/sinistre.webp?v=db0e2542","slug":"sinistre","prix":2900,"vente":true,"icone":"/templates/sinistre/icone.svg"},"MSC":{"nom":"Carnet de musculation et cross-training","url":"/templates/musculation/","cle":"qme-msc-code","theme":"sante-et-forme","phrase":"Séances, WOD, records détectés et minuteur.","img":"/assets/vignettes/musculation.webp?v=9abf337c","slug":"musculation","prix":1900,"vente":true,"icone":"/templates/musculation/icone.svg"},"CAR":{"nom":"Carnet de voiture","url":"/templates/voiture/","cle":"qme-car-code","theme":"organisation-et-etudes","phrase":"Entretiens à la date ou au km, dépenses, consommation, coût au km.","img":"/assets/vignettes/voiture.webp?v=ab1ed3dc","slug":"voiture","prix":1300,"vente":true,"icone":"/templates/voiture/icone.svg"},"GST":{"nom":"Gestion locative","url":"/templates/gestion-locative/","cle":"qme-gst-code","theme":"argent","phrase":"Loyers, retards, quittances, révision et charges.","img":"/assets/vignettes/gestion-locative.webp?v=2ffc9a1c","slug":"gestion-locative","prix":2000,"vente":true,"icone":"/templates/gestion-locative/icone.svg"},"SDR":{"nom":"Réservation de salles et bureaux","url":"/templates/salles/","cle":"qme-sdr-code","theme":"equipements-et-vehicules","phrase":"Libre maintenant, vues jour et semaine, aucune double réservation.","img":"/assets/vignettes/salles.webp?v=54735d07","slug":"salles","prix":1900,"vente":true,"icone":"/templates/salles/icone.svg"},"BSC":{"nom":"Pilotage d'une journée de bascule","url":"/templates/bascule/","cle":"qme-bsc-code","theme":"projets-et-chantiers","phrase":"Déroulé horaire, go/no-go, retour arrière, retard en direct.","img":"/assets/vignettes/bascule.webp?v=28dd1ac8","slug":"bascule","prix":2900,"vente":true,"icone":"/templates/bascule/icone.svg"},"CSE":{"nom":"Gestion de classe","url":"/templates/gestion-classe/","cle":"qme-cse-code","theme":"associations-formation-et-evenements","phrase":"Notes, moyennes, compétences, appréciations, bulletins.","img":"/assets/vignettes/gestion-classe.webp?v=477b1df3","slug":"gestion-classe","prix":2500,"vente":false,"icone":"/templates/gestion-classe/icone.svg"},"EDT":{"nom":"Emploi du temps d'établissement","url":"/templates/emploi-du-temps/","cle":"qme-edt-code","theme":"associations-formation-et-evenements","phrase":"Groupes, formateurs, salles, conflits détectés, heures suivies.","img":"/assets/vignettes/emploi-du-temps.webp?v=e2473b3a","slug":"emploi-du-temps","prix":4500,"vente":false,"icone":"/templates/emploi-du-temps/icone.svg"},"TMP":{"nom":"Suivi du temps et rentabilité par mission","url":"/templates/suivi-temps/","cle":"qme-tmp-code","theme":"independants","phrase":"Le temps réellement passé, comparé au TJM et au devis.","img":"/assets/vignettes/suivi-temps.webp?v=a10f620f","slug":"suivi-temps","prix":1900,"vente":true,"icone":"/templates/suivi-temps/icone.svg"},"KRF":{"nom":"Kit références et plaquette","url":"/templates/references-plaquette/","cle":"qme-krf-code","theme":"clients-et-prospection","phrase":"Vos réalisations en fiches, une plaquette par prospect.","img":"/assets/vignettes/references-plaquette.webp?v=7b56fdf8","slug":"references-plaquette","prix":1900,"vente":true,"icone":"/templates/references-plaquette/icone.svg"},"CED":{"nom":"Calendrier éditorial","url":"/templates/calendrier-editorial/","cle":"qme-ced-code","theme":"clients-et-prospection","phrase":"Sujets, formats et régularité de vos publications professionnelles.","img":"/assets/vignettes/calendrier-editorial.webp?v=1ab01b6c","slug":"calendrier-editorial","prix":1500,"vente":true,"icone":"/templates/calendrier-editorial/icone.svg"},"RDE":{"nom":"Registre du DOE","url":"/templates/doe/","cle":"qme-rde-code","theme":"projets-et-chantiers","phrase":"Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.","img":"/assets/vignettes/doe.webp?v=75cbfe42","slug":"doe","prix":2900,"vente":true,"icone":"/templates/doe/icone.svg"},"STR":{"nom":"Conformité des sous-traitants","url":"/templates/sous-traitants/","cle":"qme-str-code","theme":"projets-et-chantiers","phrase":"Agréments et attestations, alertes avant expiration.","img":"/assets/vignettes/sous-traitants.webp?v=329d02a6","slug":"sous-traitants","prix":2900,"vente":true,"icone":"/templates/sous-traitants/icone.svg"},"ENP":{"nom":"Entretiens annuels et professionnels","url":"/templates/entretiens-annuels/","cle":"qme-enp-code","theme":"organisation-et-reunions","phrase":"Échéances par salarié, trames, objectifs et formations suivis.","img":"/assets/vignettes/entretiens-annuels.webp?v=5da75d9b","slug":"entretiens-annuels","prix":1900,"vente":true,"icone":"/templates/entretiens-annuels/icone.svg"},"GRD":{"nom":"Garde-manger et dates de péremption","url":"/templates/garde-manger/","cle":"qme-grd-code","theme":"organisation-et-etudes","phrase":"DLC et DDM, à consommer en priorité, gaspillage suivi.","img":"/assets/vignettes/garde-manger.webp?v=3d29591f","slug":"garde-manger","prix":1200,"vente":true,"icone":"/templates/garde-manger/icone.svg"},"PGS":{"nom":"Suivi de lecture","url":"/templates/lecture/","cle":"qme-pgs-code","theme":"organisation-et-etudes","phrase":"Rythme, date de fin du livre, objectif de l'année au jour près.","img":"/assets/vignettes/lecture.webp?v=09db318e","slug":"lecture","prix":1200,"vente":true,"icone":"/templates/lecture/icone.svg"},"NTS":{"nom":"Notes et moyennes","url":"/templates/notes/","cle":"qme-nts-code","theme":"organisation-et-etudes","phrase":"Moyennes pondérées, crédits ECTS, note à viser au prochain partiel.","img":"/assets/vignettes/notes.webp?v=0a9bd1c8","slug":"notes","prix":1200,"vente":true,"icone":"/templates/notes/icone.svg"},"ETD":{"nom":"État des lieux d’entrée et de sortie","url":"/templates/etat-des-lieux/","cle":"qme-etd-code","theme":"argent","phrase":"Pièce par pièce, photos, sortie comparée à l'entrée et document à signer.","img":"/assets/vignettes/etat-des-lieux.webp?v=85cf7be3","slug":"etat-des-lieux","prix":1900,"vente":true,"icone":"/templates/etat-des-lieux/icone.svg"},"ANM":{"nom":"Suivi d'un animal de compagnie","url":"/templates/animal/","cle":"qme-anm-code","theme":"organisation-et-etudes","phrase":"Soins aux dates du vétérinaire, poids, visites, frais par an.","img":"/assets/vignettes/animal.webp?v=6203fac1","slug":"animal","prix":1200,"vente":false,"icone":"/templates/animal/icone.svg"},"TVA":{"nom":"Suivi de TVA","url":"/templates/tva/","cle":"qme-tva-code","theme":"independants","phrase":"Collectée, déductible, crédit reporté, échéances et contrôles.","img":"/assets/vignettes/tva.webp?v=502f9391","slug":"tva","prix":1900,"vente":true,"icone":"/templates/tva/icone.svg"},"DCS":{"nom":"Papiers du foyer","url":"/templates/papiers/","cle":"qme-dcs-code","theme":"argent","phrase":"Où est chaque document, et combien de temps le garder.","img":"/assets/vignettes/papiers.webp?v=209263fb","slug":"papiers","prix":1500,"vente":true,"icone":"/templates/papiers/icone.svg"},"RBS":{"nom":"Remboursements santé","url":"/templates/remboursements-sante/","cle":"qme-rbs-code","theme":"argent","phrase":"Ce qui a été payé, remboursé, et ce qu'on vous doit encore.","img":"/assets/vignettes/remboursements-sante.webp?v=6fdc8f6a","slug":"remboursements-sante","prix":1200,"vente":false,"icone":"/templates/remboursements-sante/icone.svg"},"ACH":{"nom":"Demandes d'achat et fournitures","url":"/templates/achats/","cle":"qme-ach-code","theme":"equipements-et-vehicules","phrase":"Demandes, validation, commandes et budget par service.","img":"/assets/vignettes/achats.webp?v=13db24f0","slug":"achats","prix":1900,"vente":true,"icone":"/templates/achats/icone.svg"},"CPT":{"nom":"Capacité d'emprunt et comparateur de prêts","url":"/templates/emprunt/","cle":"qme-cpt-code","theme":"argent","phrase":"Ce que vous pouvez emprunter, et quelle offre coûte le moins.","img":"/assets/vignettes/emprunt.webp?v=da81e431","slug":"emprunt","prix":1500,"vente":true,"icone":"/templates/emprunt/icone.svg"},"CDX":{"nom":"Cadeaux reçus et remerciements","url":"/templates/remerciements/","cle":"qme-cdx-code","theme":"projets-de-vie","phrase":"Qui a offert quoi, et à qui il reste à dire merci.","img":"/assets/vignettes/remerciements.webp?v=20e9aa26","slug":"remerciements","prix":1200,"vente":true,"icone":"/templates/remerciements/icone.svg"},"RVH":{"nom":"Revue hebdomadaire et journal de bord","url":"/templates/revue-hebdo/","cle":"qme-rvh-code","theme":"organisation-et-etudes","phrase":"Le rituel du vendredi : journal d’une ligne, revue guidée, 3 priorités.","img":"/assets/vignettes/revue-hebdo.webp?v=a6b188e4","slug":"revue-hebdo","prix":1200,"vente":true,"icone":"/templates/revue-hebdo/icone.svg"},"CAN":{"nom":"Suivi de candidatures","url":"/templates/candidatures/","cle":"qme-can-code","theme":"organisation-et-etudes","phrase":"Études, emploi ou appels d’offres : pièces, dates limites, relances et réponses.","img":"/assets/vignettes/candidatures.webp?v=7edaa610","slug":"candidatures","prix":1200,"vente":true,"icone":"/templates/candidatures/icone.svg"},"SBV":{"nom":"Subventions","url":"/templates/subventions/","cle":"qme-sbv-code","theme":"associations-formation-et-evenements","phrase":"Dossiers, échéances, justificatifs et bilans.","img":"/assets/vignettes/subventions.webp?v=a1e00bfa","slug":"subventions","prix":2500,"vente":false,"icone":"/templates/subventions/icone.svg"},"BNV":{"nom":"Bénévoles et planning des créneaux","url":"/templates/benevoles/","cle":"qme-bnv-code","theme":"associations-formation-et-evenements","phrase":"Qui tient quel créneau, sans trou ni doublon.","img":"/assets/vignettes/benevoles.webp?v=93e941e7","slug":"benevoles","prix":1900,"vente":false,"icone":"/templates/benevoles/icone.svg"},"MMR":{"nom":"Planning de mémoire ou de thèse","url":"/templates/memoire/","cle":"qme-mmr-code","theme":"organisation-et-etudes","phrase":"Plan, rétroplanning et mots par jour jusqu'au rendu.","img":"/assets/vignettes/memoire.webp?v=4bb5d08a","slug":"memoire","prix":1500,"vente":true,"icone":"/templates/memoire/icone.svg"},"AGS":{"nom":"Assemblée générale et vie statutaire","url":"/templates/assemblee-generale/","cle":"qme-ags-code","theme":"associations-formation-et-evenements","phrase":"Convocations, quorum, PV et mandats du bureau.","img":"/assets/vignettes/assemblee-generale.webp?v=3f869813","slug":"assemblee-generale","prix":1900,"vente":false,"icone":"/templates/assemblee-generale/icone.svg"},"RNT":{"nom":"Rentabilité d'un investissement locatif","url":"/templates/investissement-locatif/","cle":"qme-rnt-code","theme":"argent","phrase":"Rendement brut, net et cash-flow avant d'acheter.","img":"/assets/vignettes/investissement-locatif.webp?v=bb4ec4d1","slug":"investissement-locatif","prix":1500,"vente":true,"icone":"/templates/investissement-locatif/icone.svg"},"FRM":{"nom":"Matrice compétences et formations","url":"/templates/competences/","cle":"qme-frm-code","theme":"organisation-et-reunions","phrase":"Niveaux, écarts au poste, compétences fragiles, plan de formation.","img":"/assets/vignettes/competences.webp?v=21c13364","slug":"competences","prix":2500,"vente":false,"icone":"/templates/competences/icone.svg"},"PRG":{"nom":"Progression pédagogique","url":"/templates/progression/","cle":"qme-prg-code","theme":"associations-formation-et-evenements","phrase":"Séquences et séances, prévu face au réel, fin projetée.","img":"/assets/vignettes/progression.webp?v=1a79492e","slug":"progression","prix":1500,"vente":false,"icone":"/templates/progression/icone.svg"},"PTG":{"nom":"Calendrier du potager","url":"/templates/potager/","cle":"qme-ptg-code","theme":"organisation-et-etudes","phrase":"Vos semis à leur date, la rotation de vos planches suivie.","img":"/assets/vignettes/potager.webp?v=59ad814c","slug":"potager","prix":1300,"vente":false,"icone":"/templates/potager/icone.svg"},"BBE":{"nom":"Suivi du bébé","url":"/templates/bebe/","cle":"qme-bbe-code","theme":"sante-et-forme","phrase":"Tétées, sommeil, couches, à deux parents, d'une main.","img":"/assets/vignettes/bebe.webp?v=e1864199","slug":"bebe","prix":1300,"vente":false,"icone":"/templates/bebe/icone.svg"},"CPR":{"nom":"Charges et AG de copropriété","url":"/templates/copropriete/","cle":"qme-cpr-code","theme":"argent","phrase":"Appels de fonds, charges, régularisation et votes en AG.","img":"/assets/vignettes/copropriete.webp?v=bfd9b0f1","slug":"copropriete","prix":1500,"vente":true,"icone":"/templates/copropriete/icone.svg"},"CRS":{"nom":"Plan d'entraînement course à pied","url":"/templates/course-a-pied/","cle":"qme-crs-code","theme":"sante-et-forme","phrase":"Vos allures et vos semaines jusqu’au jour de la course.","img":"/assets/vignettes/course-a-pied.webp?v=c6a816af","slug":"course-a-pied","prix":1500,"vente":true,"icone":"/templates/course-a-pied/icone.svg"},"QZZ":{"nom":"Banque de questions et quiz","url":"/templates/quiz/","cle":"qme-qzz-code","theme":"associations-formation-et-evenements","phrase":"Questions taguées, quiz générés et corrigés.","img":"/assets/vignettes/quiz.webp?v=35738052","slug":"quiz","prix":1900,"vente":false,"icone":"/templates/quiz/icone.svg"},"SVT":{"nom":"Vivre sans voiture","url":"/templates/sans-voiture/","cle":"qme-svt-code","theme":"argent","phrase":"Le gain annuel sans voiture, sortie comprise, et une parade à chaque urgence.","img":"/assets/vignettes/sans-voiture.webp?v=f530bb67","slug":"sans-voiture","prix":900,"vente":true,"icone":"/templates/sans-voiture/icone.svg"}};
 const THEMES=[{"id":"projets-et-chantiers","nom":"Projets et chantiers","pour":"pro","c":"bleu"},{"id":"organisation-et-reunions","nom":"Organisation et réunions","pour":"pro","c":"rouge"},{"id":"independants","nom":"Indépendants","pour":"pro","c":"jaune"},{"id":"clients-et-prospection","nom":"Clients et prospection","pour":"pro","c":"encre"},{"id":"equipements-et-vehicules","nom":"Équipements et véhicules","pour":"pro","c":"bleu"},{"id":"associations-formation-et-evenements","nom":"Associations, formation et événements","pour":"pro","c":"rouge"},{"id":"argent","nom":"Argent","pour":"perso","c":"jaune"},{"id":"organisation-et-etudes","nom":"Organisation et études","pour":"perso","c":"encre"},{"id":"sante-et-forme","nom":"Santé et forme","pour":"perso","c":"rouge"},{"id":"projets-de-vie","nom":"Projets de vie","pour":"perso","c":"bleu"}];
+const PACKS_ESPACE={"PFG":{"nom":"Pack Freelance : chiffrer, facturer, encaisser","slug":"freelance-gestion","produits":["TJM","PRX","DVS","MCE","RCV","TRS","TMP"],"prix":11800,"vente":true},"PFC":{"nom":"Pack Freelance : trouver ses clients","slug":"freelance-clients","produits":["APD","CRM","PCM","KRF","CED","CAN"],"prix":7600,"vente":true},"PBT":{"nom":"Pack Chef de projet BTP","slug":"chef-de-projet-btp","produits":["GNT","VSA","RSV","NCF","CRA","CHT","RDE","STR"],"prix":19200,"vente":true},"PPE":{"nom":"Pack Petite entreprise","slug":"petite-entreprise","produits":["CNG","NDF","ARD","TRS","CRA","TDB","EQP","ENP","DRP"],"prix":16400,"vente":true},"PMG":{"nom":"Pack Moyens généraux","slug":"moyens-generaux","produits":["PRC","VHC","ARD","GMA","VRF","SDR","BSC","CTR","ACH","EVT"],"prix":22300,"vente":true},"PAR":{"nom":"Pack Papiers et décisions d’argent","slug":"argent","produits":["TDV","PTM","DCS","RBS","CPT"],"prix":6000,"vente":false},"PMR":{"nom":"Pack Vie à deux","slug":"vie-a-deux","produits":["EVT","BCM","BDG","DMN","VYG","CDX"],"prix":7900,"vente":true},"PPR":{"nom":"Pack Productivité perso","slug":"productivite","produits":["TCH","PHR","HBT","RDV","RVH"],"prix":5400,"vente":true},"PET":{"nom":"Pack Étudiant","slug":"etudiant","produits":["REV","PHR","HBT","PGS","NTS","CAN","MMR"],"prix":6900,"vente":true},"PAS":{"nom":"Pack Associations et clubs","slug":"associations","produits":["ASC","EVT","TRS","CMP","SBV","BNV","AGS"],"prix":15600,"vente":false},"PPB":{"nom":"Pack Propriétaire","slug":"proprietaire","produits":["SJR","TRV","ENT","GST","SNH","CPT","RNT","CPR","ETD"],"prix":13100,"vente":false},"PFM":{"nom":"Pack Forme","slug":"forme","produits":["NTR","HBT","RPS","MSC","CRS"],"prix":5800,"vente":true},"PFA":{"nom":"Pack Maison et famille","slug":"famille","produits":["BDG","ENT","RPS","GRD","BBE","ANM","PTG"],"prix":6700,"vente":false},"PVY":{"nom":"Pack Voyage","slug":"voyage","produits":["BCM","VYG"],"prix":2500,"vente":true},"PNS":{"nom":"Pack Écoles et formateurs","slug":"enseignant","produits":["PRG","QZZ","CSE","EDT","AEC"],"prix":11100,"vente":false},"PXP":{"nom":"Pack Exploitation et maintenance","slug":"exploitation","produits":["GMA","VRF","NCF","STK"],"prix":9500,"vente":true},"PCA":{"nom":"Pack Commerçant et artisan","slug":"commercant-artisan","produits":["STK","DVS","MCE","TRS","TVA"],"prix":9500,"vente":true},"PVT":{"nom":"Pack Ma voiture","slug":"voiture","produits":["VTR","CAR","SVT"],"prix":2800,"vente":true},"PAQ":{"nom":"Pack Argent du quotidien","slug":"argent-du-quotidien","produits":["BDG","BCM","ABN","RDV"],"prix":4300,"vente":true},"PBD":{"nom":"Pack Bien démarrer l’année","slug":"bien-demarrer","produits":["TCH","HBT","RDV"],"prix":3900,"vente":true},"PBF":{"nom":"Pack Budget perso et famille","slug":"budget-perso-famille","produits":["BDG","BCM","ABN","EPG","DTT"],"prix":4700,"vente":true},"PCS":{"nom":"Pack Cuisine","slug":"cuisine","produits":["RPS","GRD"],"prix":2200,"vente":false}};
 /* ESPACE-FIN */
 // Packs (netlify/lib/packs.mjs) : une clé de pack ouvre le tableau de bord /packs/espace/. SMP : pack sur mesure.
-const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM','PFA','PVY','PNS','PXP','PCA','PVT','PAQ','PBD','PBF'];
+const PACKS=['PFG','PFC','PBT','PPE','PMG','PAR','PMR','PPR','PET','PAS','PPB','PFM','PFA','PVY','PNS','PXP','PCA','PVT','PAQ','PBD','PBF','PCS'];
 const PREFIXES=[...Object.keys(PRODUITS),...PACKS,'ADM'],prefixe=(n)=>PREFIXES.find((p)=>n.startsWith(p));
 const champ=document.getElementById('cle'),erreur=document.getElementById('erreur'),form=document.getElementById('acces'),bouton=form.querySelector('button');
-const lire=(c)=>{try{const v=localStorage.getItem(c)??sessionStorage.getItem(c);return v?JSON.parse(v):null;}catch{return null;}};
-const garderLocal=(c,v)=>{try{localStorage.setItem(c,JSON.stringify(v));}catch{}};
-const esc=(s)=>String(s).replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const plat=(s)=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’']/g,' ');
+const {lire,noterOuverture,esc}=QMEEspace;
+const $=(id)=>document.getElementById(id);
+const euros=(c)=>(c%100?(c/100).toFixed(2).replace('.',','):String(c/100))+' €';
+const dateCourte=(j)=>new Date(`${j}T12:00:00Z`).toLocaleDateString('fr-FR',{day:'numeric',month:'long'}).replace(/^1 /,'1er ');
 
-// ===== Espace « Mes templates » : templates enregistrés sur cet appareil, épinglés, récents, par thème, recherche.
-const E={espace:document.getElementById('espace'),nb:document.getElementById('espace-nb'),outils:document.getElementById('outils'),
-  recherche:document.getElementById('recherche'),sauts:document.getElementById('sauts'),statut:document.getElementById('statut'),
-  resultats:document.getElementById('resultats'),listeRes:document.getElementById('liste-resultats'),vide:document.getElementById('vide'),
-  zones:document.getElementById('zones'),epingles:document.getElementById('z-epingles'),recents:document.getElementById('z-recents'),
-  zThemes:document.getElementById('z-themes'),themes:document.getElementById('themes'),packs:document.getElementById('espace-packs')};
-const CLE_EPINGLES='qme-espace-epingles',CLE_RECENTS='qme-espace-recents',CLE_OUVERTS='qme-espace-themes-ouverts';
-const SEUIL=5; // à partir de 5 templates : recherche, regroupement par thème et récents
-let mes=[];
+// ===== Espace personnel (assets/espace.js, assets/compte.js) : profil, accueil, lanceur, achats, préférences.
+// Page ouverte depuis une application de l'écran d'accueil (bandeau ?depuis=ecran, ou page elle-même installée) :
+// sa mémoire est séparée de celle du navigateur, un message invite à s'y connecter une fois.
+const depuisEcran=(()=>{
+  const p=new URLSearchParams(location.search),arg=p.get('depuis')==='ecran';let v=arg;
+  try{if(arg)sessionStorage.setItem('qme-depuis-ecran','1');v=v||sessionStorage.getItem('qme-depuis-ecran')==='1';}catch{/* indisponible */}
+  if(p.has('depuis')){p.delete('depuis');history.replaceState(null,'',location.pathname+(p.toString()?`?${p}`:'')+location.hash);}
+  return v||navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+})();
+const E={espace:$('espace'),nb:$('espace-nb'),packs:$('espace-packs'),salut:$('salut'),accroche:$('accroche'),reprendre:$('reprendre'),alertes:$('alertes'),
+  edition:$('edition-panneau'),perso:$('personnaliser'),prenom:$('prenom'),vide:$('espace-vide'),sugg:$('suggestions'),suggIntro:$('sugg-intro'),suggListe:$('sugg-liste'),
+  avatar:$('avatar'),nom:$('profil-nom'),email:$('profil-email'),depuis:$('profil-depuis'),sync:$('profil-sync'),navNb:$('nav-nb'),connexion:$('profil-connexion'),
+  achats:$('achats-liste'),achatsNote:$('achats-note'),infos:$('informations'),infosEtat:$('informations-etat'),dialogue:$('dialogue-cle'),portail:$('portail')};
+// Badge par application : Acheté, Essai (jours restants quand le compte les connaît), Essai terminé, Admin.
+function badgeEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const txt=st==='achete'?'Acheté':st==='admin'?'Admin':!e?'Essai':e.termine?'Essai terminé':`Essai · ${e.joursRestants} j`;
+  return `<span class="esp-badge esp-${st}${e?.termine?' esp-termine':''}" title="${st==='achete'?'Application achetée':st==='admin'?'Accès administrateur':'Essai gratuit'}">${txt}</span>`;
+}
+// Badge visuel (coin de l'icône) : coche « acheté », erlenmeyer « essai », info au survol et pour les lecteurs d'écran.
+const SVG_COCHE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const SVG_ERLEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6.5L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.5V3"/><path d="M7.5 15h9"/></svg>';
+const SVG_CLE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2"/></svg>';
+function marqueEspace(k){
+  const st=QMEEspace.statut(k);if(!st)return '';
+  const e=st==='essai'?(QMECompte.compte?.essais||[]).find((x)=>x.p===k):null;
+  const [cls,svg,info]=st==='achete'?['achete',SVG_COCHE,'Application achetée']:st==='admin'?['admin',SVG_CLE,'Accès administrateur']
+    :e?.termine?['termine',SVG_ERLEN,`Essai terminé · lecture seule jusqu’au ${dateCourte(e.effacement)}`]
+    :['essai',SVG_ERLEN,e?`Essai gratuit · ${e.joursRestants<=1?'dernier jour':`${e.joursRestants} jours restants`}`:'Essai gratuit en cours'];
+  return `<span class="app-marque app-marque-${cls}" role="img" aria-label="${esc(info)}" data-info="${esc(info)}">${svg}</span>`;
+}
+const vue=QMEEspace.creer($('espace-corps'),{produits:PRODUITS,themes:THEMES,badge:badgeEspace,marque:marqueEspace,grille:true});
 const possedes=()=>Object.keys(PRODUITS).filter((k)=>{const v=lire(PRODUITS[k].cle);return v&&v!=='DEMO';});
-const epingles=()=>(lire(CLE_EPINGLES)||[]).filter((k)=>mes.includes(k));
-const recents=()=>(lire(CLE_RECENTS)||[]).filter((r)=>mes.includes(r.p)).sort((a,b)=>b.t-a.t).map((r)=>r.p);
-const theme=(id)=>THEMES.find((t)=>t.id===id)||{id,nom:'Autres',c:'encre'};
-function noterOuverture(k){const l=(lire(CLE_RECENTS)||[]).filter((r)=>r.p!==k);l.unshift({p:k,t:Date.now()});garderLocal(CLE_RECENTS,l.slice(0,12));}
-const ETOILE='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
-function tuile(k,ep){const p=PRODUITS[k],t=theme(p.theme);
-  return `<li class="esp-tuile" style="--c:var(--${t.c})"><a href="${p.url}" data-pre="${k}">`+
-    (p.img?`<img src="${esc(p.img)}" alt="" width="96" height="60" loading="lazy" decoding="async">`:`<span class="vign-vide" aria-hidden="true"></span>`)+
-    `<span class="t-txt"><b>${esc(p.nom)}</b><small>${esc(p.phrase||t.nom)}</small></span></a>`+
-    `<button type="button" class="epingle" data-epingle="${k}" aria-pressed="${ep.includes(k)}" aria-label="Épingler ${esc(p.nom)}" title="${ep.includes(k)?'Retirer des épinglés':'Épingler'}">${ETOILE}</button></li>`;}
+const nomApp=(k)=>QMEEspace.prefs().noms[k]||PRODUITS[k].nom;
+const icone=(k,t=48)=>PRODUITS[k]?.icone?`<img src="${esc(PRODUITS[k].icone)}" alt="" width="${t}" height="${t}" loading="lazy">`:'';
+const dateCourteAn=(iso)=>new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});
+const dateLongue=(iso)=>new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}).replace(/^1 /,'1er ');
+const rtf=new Intl.RelativeTimeFormat('fr',{numeric:'auto'});
+function ilya(t){const s=(t-Date.now())/1000,a=Math.abs(s);
+  if(a<60)return 'à l’instant';if(a<3600)return rtf.format(Math.round(s/60),'minute');if(a<86400)return rtf.format(Math.round(s/3600),'hour');
+  if(a<86400*30)return rtf.format(Math.round(s/86400),'day');return rtf.format(Math.round(s/86400/30),'month');}
+// Couleur d'avatar stable, tirée de l'adresse ou du prénom (palette QME).
+const COULEURS=['bleu','rouge','jaune','encre'];
+const couleurDe=(t)=>COULEURS[[...String(t||'qme')].reduce((h,c)=>(h*31+c.charCodeAt(0))>>>0,7)%COULEURS.length];
+const APPAREIL='<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>';
+let enEdition=false,derniereSynchro=null;
+
+// Formulaires existants déplacés (jamais dupliqués) : e-mail dans la carte de profil, clé dans la fenêtre « Ajouter ».
+const formLienBloc=$('form-lien'),formCle=$('acces'),placeLien=formLienBloc.parentElement,placeCle=formCle.parentElement,apresCle=formCle.nextSibling;
+function placerFormulaires(actif,connecte){
+  if(actif&&!connecte){if(formLienBloc.parentElement!==E.connexion)E.connexion.append(formLienBloc);}
+  else if(formLienBloc.parentElement!==placeLien)placeLien.insertBefore(formLienBloc,placeLien.querySelector('.ou'));
+  if(actif){if(formCle.parentElement!==$('dialogue-cle-corps'))$('dialogue-cle-corps').append(formCle);}
+  else if(formCle.parentElement!==placeCle)placeCle.insertBefore(formCle,apresCle);
+}
+
+function profil(mes,s,compte){
+  const prenom=QMEEspace.prenom(),email=s?.email||'';
+  const nom=prenom||(email?email.split('@')[0]:'Cet appareil');
+  E.avatar.className=`avatar avatar-${couleurDe(email||prenom)}`;
+  E.avatar.innerHTML=prenom||email?esc((prenom||email).trim().charAt(0).toUpperCase()):APPAREIL;
+  E.nom.textContent=nom;
+  E.email.textContent=email||'Non connecté : applications de cet appareil';
+  const dates=compte?[compte.cree,...(compte.cles||[]).map((k)=>k.ajoute)].filter(Boolean).sort():[];
+  E.depuis.textContent=dates.length?`Client depuis le ${dateLongue(dates[0])}`:'';E.depuis.hidden=!dates.length;
+  E.sync.classList.toggle('local',!s);
+  E.sync.querySelector('span').textContent=s?(derniereSynchro?`Synchronisé ${ilya(derniereSynchro)} · tous vos appareils`:'Synchronisation…'):'Sur cet appareil uniquement';
+  E.navNb.textContent=mes.length||'';
+  E.connexion.hidden=Boolean(s)||!mes.length;
+  $('ecran-accueil').hidden=!depuisEcran;
+}
+
+function accueil(mes){
+  const prenom=QMEEspace.prenom(),h=new Date().getHours();
+  E.salut.textContent=`${h>=18||h<5?'Bonsoir':'Bonjour'}${prenom?` ${prenom}`:''}`;
+  const rec=(lire('qme-espace-recents')||[]).filter((r)=>mes.includes(r.p)&&!QMEEspace.prefs().masques.includes(r.p)).sort((a,b)=>b.t-a.t);
+  E.accroche.innerHTML=!mes.length?'Votre espace est prêt : ajoutez la clé de votre premier achat pour commencer.'
+    :rec.length?`Bon retour. Dernière application ouverte : <b>${esc(nomApp(rec[0].p))}</b>, ${ilya(rec[0].t)}.`
+    :`${mes.length} application${mes.length>1?'s':''} vous attend${mes.length>1?'ent':''} ici, sur ordinateur comme sur téléphone.`;
+  // Reprendre : les 3 dernières ouvertes, sinon les favoris, sinon les premières.
+  const ep=QMEEspace.prefs().epingles.filter((k)=>mes.includes(k));
+  const choix=[...new Set([...rec.map((r)=>r.p),...ep,...mes])].filter((k)=>!QMEEspace.prefs().masques.includes(k)).slice(0,3);
+  const quand=Object.fromEntries(rec.map((r)=>[r.p,r.t]));
+  E.reprendre.innerHTML=choix.length?`<h2 class="vh">Reprendre</h2>${choix.map((k)=>`<a class="carte-app" href="${esc(PRODUITS[k].url)}" data-ouvrir="${k}" style="--c:var(--${(THEMES.find((t)=>t.id===PRODUITS[k].theme)||{c:'encre'}).c})">
+      <span class="app-icone">${icone(k,64)}${marqueEspace(k)}</span><span class="carte-txt"><b>${esc(nomApp(k))}</b><small>${quand[k]?`Ouverte ${ilya(quand[k])}`:ep.includes(k)?'Favorite':'Pas encore ouverte d’ici'}</small></span></a>`).join('')}`:'';
+  E.reprendre.hidden=!choix.length||enEdition;
+  alertes(mes);
+}
+
+// Alertes : essais (jours restants et achat si connecté).
+function alertes(mes){
+  const compte=QMECompte.compte,infos=Object.fromEntries((compte?.essais||[]).map((e)=>[e.p,e]));
+  const essais=mes.filter((k)=>QMEEspace.statut(k)==='essai');
+  E.alertes.innerHTML=essais.map((k)=>{const p=PRODUITS[k],i=infos[k];
+    const etat=!i?'Essai gratuit en cours':i.termine?`Essai terminé : lecture seule jusqu’au ${dateCourte(i.effacement)}`:i.joursRestants<=1?'Dernier jour d’essai':`${i.joursRestants} jours d’essai restants`;
+    const acheter=i?.achat?`<a class="btn primary" href="${esc(i.achat)}" target="_blank" rel="noopener">Acheter${i.prix?` · ${euros(i.prix)}`:''}</a>`:`<a class="btn" href="/catalogue/${esc(p.slug)}/">Voir l’offre</a>`;
+    return `<li class="${i?.termine?'termine':''}${i&&!i.termine&&i.joursRestants<=3?' bientot':''}"><span class="app-icone petite">${icone(k,40)}</span><div><b>${esc(nomApp(k))}</b><span>${etat}</span></div><span class="essai-actions"><a class="btn" href="${esc(p.url)}" data-ouvrir="${k}">Ouvrir</a>${acheter}</span></li>`;}).join('');
+  E.alertes.hidden=!essais.length||enEdition;
+}
+
+// Suggestions : compléter le pack le plus avancé, sinon des applications du même thème (en vente, pas déjà là).
+function suggestions(mes){
+  const achetes=mes.filter((k)=>['achete','admin'].includes(QMEEspace.statut(k)));
+  if(!achetes.length||enEdition||achetes.length>=Object.keys(PRODUITS).length-2){E.sugg.hidden=true;return;}
+  const libre=(k)=>PRODUITS[k]?.vente&&!mes.includes(k);
+  let choix=[],intro='';
+  const packs=Object.entries(PACKS_ESPACE).filter(([,k])=>k.vente).map(([code,k])=>({code,k,a:k.produits.filter((x)=>achetes.includes(x)),m:k.produits.filter(libre)}))
+    .filter((x)=>x.a.length&&x.m.length).sort((x,y)=>y.a.length/y.k.produits.length-x.a.length/x.k.produits.length||y.a.length-x.a.length);
+  if(packs.length&&packs[0].a.length>=2){const b=packs[0];choix=b.m.slice(0,3);
+    intro=`Vous avez ${b.a.length} des ${b.k.produits.length} applications du <a href="/packs/${esc(b.k.slug)}/">${esc(b.k.nom)}</a>. Celles qui le complètent :`;}
+  if(!choix.length){const themes=[...new Set(achetes.map((k)=>PRODUITS[k].theme))];
+    choix=Object.keys(PRODUITS).filter((k)=>libre(k)&&themes.includes(PRODUITS[k].theme)).sort((a,b)=>themes.indexOf(PRODUITS[a].theme)-themes.indexOf(PRODUITS[b].theme)).slice(0,3);
+    intro='Dans les mêmes thèmes que vos applications :';}
+  E.sugg.hidden=!choix.length;E.suggIntro.innerHTML=intro;
+  E.suggListe.innerHTML=choix.map((k)=>{const p=PRODUITS[k];return `<li><a href="/catalogue/${esc(p.slug)}/"><span class="app-icone petite">${icone(k,40)}</span><span><b>${esc(p.nom)}</b><small>${esc(p.phrase)}</small></span>${p.prix?`<em>${euros(p.prix)}</em>`:''}</a></li>`;}).join('');
+}
+
+// Mes achats : depuis le compte (date et origine), sinon les applications achetées de cet appareil.
+function achats(mes,s,compte){
+  let lignes=[];
+  if(compte){
+    for(const k of compte.cles||[]){
+      if(k.type==='essai')continue;
+      if(k.type==='pack'){const pk=PACKS_ESPACE[k.p];lignes.push({ico:'',nom:pk?.nom||'Pack de templates',det:`${pk?`${pk.produits.length} applications · `:''}${k.ajoute?`ajouté le ${dateLongue(k.ajoute)}`:''}`,url:'/packs/espace/',t:k.ajoute||''});continue;}
+      if(!PRODUITS[k.p])continue;
+      lignes.push({k:k.p,nom:nomApp(k.p),det:k.source==='achat'?`Acheté le ${k.ajoute?dateCourteAn(k.ajoute):'—'}`:`Ajouté depuis un appareil${k.ajoute?` le ${dateCourteAn(k.ajoute)}`:''}`,url:PRODUITS[k.p].url,t:k.ajoute||''});
+    }
+    lignes.sort((a,b)=>String(b.t).localeCompare(String(a.t)));
+    E.achatsNote.textContent=lignes.length?`${lignes.length} achat${lignes.length>1?'s':''} dans votre compte : ils vous suivent sur tous vos appareils.`:'Aucun achat rangé dans votre compte pour l’instant.';
+  }else{
+    lignes=mes.filter((k)=>QMEEspace.statut(k)==='achete').map((k)=>({k,nom:nomApp(k),det:'Sur cet appareil',url:PRODUITS[k].url}));
+    E.achatsNote.textContent=s?'Chargement de votre compte…':'Connectez-vous pour voir vos achats avec leur date, sur tous vos appareils.';
+  }
+  const tout=E.achats.dataset.tout==='1',vis=tout?lignes:lignes.slice(0,5);
+  E.achats.innerHTML=vis.map((l)=>`<li><span class="app-icone petite">${l.k?icone(l.k,40):''}</span><div><b>${esc(l.nom)}</b><small>${esc(l.det)}</small></div><a class="btn" href="${esc(l.url)}"${l.k?` data-ouvrir="${l.k}"`:''}>Ouvrir</a></li>`).join('')
+    +(lignes.length>5?`<li class="achats-plus"><button type="button" class="btn" data-achats-tout>${tout?'Afficher moins':`Voir les ${lignes.length-5} autres`}</button></li>`:'');
+}
+
+function preferences(s,compte){
+  if(document.activeElement!==E.prenom)E.prenom.value=QMEEspace.prenom();
+  E.infos.disabled=!compte;E.infos.checked=Boolean(compte?.informations);
+  E.infosEtat.textContent=!s?'':compte?(compte.informations?'Vous recevez les informations QME.':'Vous ne recevez plus les informations QME.'):'Chargement…';
+}
+
 function rendre(){
-  mes=possedes();
+  QMEEspace.etendreAdmin(PRODUITS); // code ADM-… : toutes les applications, même celles ajoutées après sa saisie
+  const mes=possedes(),s=QMECompte.session(),compte=QMECompte.compte;
+  menuMonEspace();
   let packs=[];try{packs=JSON.parse(localStorage.getItem('qme-packs')||'[]');}catch{}
   E.packs.hidden=!packs.length;
-  document.body.classList.toggle('a-espace',mes.length>0);
-  E.espace.hidden=!mes.length;
-  if(!mes.length)return;
-  const ep=epingles(),beaucoup=mes.length>=SEUIL;
-  E.nb.textContent=`${mes.length} template${mes.length>1?'s':''} sur cet appareil`;
-  E.outils.hidden=!beaucoup;
-  E.epingles.hidden=!ep.length;
-  E.epingles.querySelector('ul').innerHTML=ep.map((k)=>tuile(k,ep)).join('');
-  const rc=beaucoup?recents().filter((k)=>!ep.includes(k)).slice(0,4):[];
-  E.recents.hidden=!rc.length;
-  E.recents.querySelector('ul').innerHTML=rc.map((k)=>tuile(k,ep)).join('');
-  const parNom=(a,b)=>PRODUITS[a].nom.localeCompare(PRODUITS[b].nom,'fr');
-  if(!beaucoup){
-    document.getElementById('h-themes').textContent=ep.length?'Tous mes templates':'Mes templates';
-    document.getElementById('h-themes').classList.toggle('vh',!ep.length);
-    E.themes.innerHTML=`<ul class="esp-tuiles">${mes.slice().sort(parNom).map((k)=>tuile(k,ep)).join('')}</ul>`;E.sauts.innerHTML='';return;}
-  document.getElementById('h-themes').textContent='Par thème';document.getElementById('h-themes').classList.remove('vh');
-  const groupes=THEMES.map((t)=>({t,l:mes.filter((k)=>PRODUITS[k].theme===t.id).sort(parNom)})).filter((g)=>g.l.length);
-  // Thèmes repliés au-delà de 12 templates ; l'état ouvert / fermé de chaque thème est retenu.
-  const ouverts=lire(CLE_OUVERTS),tout=mes.length<=12||groupes.length===1;
-  E.themes.innerHTML=groupes.map(({t,l})=>`<details class="groupe" id="t-${t.id}" style="--c:var(--${t.c})"${tout||(ouverts||[]).includes(t.id)?' open':''}><summary><span class="pastille" aria-hidden="true"></span><span class="g-nom">${esc(t.nom)}</span><small>${l.length}</small></summary><ul class="esp-tuiles">${l.map((k)=>tuile(k,ep)).join('')}</ul></details>`).join('');
-  E.sauts.innerHTML=groupes.length>1?groupes.map(({t,l})=>`<a href="#t-${t.id}" data-saut="${t.id}" style="--c:var(--${t.c})">${esc(t.nom)} <small>${l.length}</small></a>`).join(''):'';
-  if(E.recherche.value)chercher();
+  const actif=mes.length>0||Boolean(s);
+  document.body.classList.toggle('a-espace',actif);document.body.classList.toggle('connecte',Boolean(s));
+  E.espace.hidden=!actif;
+  placerFormulaires(actif,Boolean(s));
+  E.nb.textContent=mes.length?`${mes.length} application${mes.length>1?'s':''}${s?'':' sur cet appareil'}`:'';
+  E.vide.hidden=mes.length>0;
+  E.perso.hidden=!mes.length;
+  profil(mes,s,compte);
+  accueil(mes);
+  vue.maj(mes);
+  suggestions(mes);
+  achats(mes,s,compte);
+  preferences(s,compte);
 }
-function chercher(){
-  const q=plat(E.recherche.value).trim(),mots=q.split(/\s+/).filter(Boolean);
-  E.resultats.hidden=!mots.length;E.zones.hidden=!!mots.length;
-  if(!mots.length){E.statut.textContent='';return;}
-  const score=(k)=>{const p=PRODUITS[k],nom=plat(p.nom),tout=`${nom} ${plat(p.phrase)} ${plat(theme(p.theme).nom)} ${plat(p.url)} ${k.toLowerCase()}`;
-    if(!mots.every((m)=>tout.includes(m)))return -1;
-    return (nom.startsWith(q)?4:0)+(nom.includes(q)?2:0)+(mots.every((m)=>nom.includes(m))?1:0);};
-  const ep=epingles(),l=mes.map((k)=>[k,score(k)]).filter(([,s])=>s>=0).sort((a,b)=>b[1]-a[1]||PRODUITS[a[0]].nom.localeCompare(PRODUITS[b[0]].nom,'fr')).map(([k])=>k);
-  E.listeRes.innerHTML=l.map((k)=>tuile(k,ep)).join('');
-  E.vide.hidden=!!l.length;
-  if(!l.length){const brut=E.recherche.value.trim();E.vide.innerHTML=`Aucun de vos templates ne correspond à « ${esc(brut)} ». <a href="/templates/?q=${encodeURIComponent(brut)}">Le chercher dans le catalogue <span aria-hidden="true">→</span></a>`;}
-  E.statut.textContent=l.length?`${l.length} template${l.length>1?'s':''} trouvé${l.length>1?'s':''}`:'Aucun résultat';
+function edition(on){
+  enEdition=on;E.perso.setAttribute('aria-pressed',String(on));E.perso.textContent=on?'Terminer':'Personnaliser';
+  E.edition.hidden=!on;
+  $('edition-sync').textContent=QMECompte.session()?'Vos réglages suivent votre compte sur tous vos appareils.':'Vos réglages restent sur cet appareil ; connectez-vous pour les retrouver partout.';
+  vue.edition(on);rendre();
+  E.perso.focus();
 }
-E.recherche.addEventListener('input',chercher);
-E.recherche.addEventListener('keydown',(e)=>{
-  if(e.key==='Escape'){E.recherche.value='';chercher();}
-  if(e.key==='Enter'){const a=E.listeRes.querySelector('a');if(a&&!E.resultats.hidden){e.preventDefault();a.click();}}
+E.perso.addEventListener('click',()=>edition(!enEdition));
+$('edition-fin').addEventListener('click',()=>edition(false));
+E.prenom.addEventListener('change',()=>{const v=E.prenom.value.trim().replace(/\s+/g,' ').slice(0,30);QMEEspace.changerPrefs({prenom:/^[\p{L}][\p{L}' -]*$/u.test(v)?v:''});rendre();});
+E.infos.addEventListener('change',async()=>{
+  const on=E.infos.checked;E.infos.disabled=true;
+  try{await QMECompte.informations(on);}catch(x){E.infos.checked=!on;E.infosEtat.textContent=x.message;}
+  rendre();
 });
-E.espace.addEventListener('click',(e)=>{
-  const b=e.target.closest('[data-epingle]');
-  if(b){const k=b.dataset.epingle,l=(lire(CLE_EPINGLES)||[]).filter((x)=>x!==k);if(b.getAttribute('aria-pressed')!=='true')l.push(k);garderLocal(CLE_EPINGLES,l);
-    const zone=b.closest('.zone,#resultats,.groupe')?.id;rendre();
-    const cible=(zone&&document.getElementById(zone)?.querySelector(`[data-epingle="${k}"]`))||document.querySelector(`[data-epingle="${k}"]`);cible?.focus();return;}
-  const a=e.target.closest('a[data-pre]');if(a)noterOuverture(a.dataset.pre);
-  const s=e.target.closest('[data-saut]');if(s){const d=document.getElementById('t-'+s.dataset.saut);if(d)d.open=true;}
+E.achats.addEventListener('click',(e)=>{if(e.target.closest('[data-achats-tout]')){E.achats.dataset.tout=E.achats.dataset.tout==='1'?'':'1';achats(possedes(),QMECompte.session(),QMECompte.compte);}});
+// Fenêtre « Ajouter une clé ».
+const ouvrirCle=()=>{E.dialogue.showModal();champ.focus();};
+$('btn-cle').addEventListener('click',ouvrirCle);
+E.espace.addEventListener('click',(e)=>{if(e.target.closest('[data-ouvrir-cle]'))ouvrirCle();});
+E.dialogue.addEventListener('click',(e)=>{if(e.target===E.dialogue||e.target.closest('[data-fermer]'))E.dialogue.close();});
+// Ouvertures notées (récents) depuis l'accueil, les alertes et les achats.
+E.espace.addEventListener('click',(e)=>{const a=e.target.closest('a[data-ouvrir]');if(a)noterOuverture(a.dataset.ouvrir);});
+E.espace.addEventListener('click',async(e)=>{
+  const b=e.target.closest('[data-compte]');if(!b)return;
+  try{
+    if(b.dataset.compte==='deconnecter'){QMECompte.deconnecter({retirer:confirm('Retirer aussi vos applications de cet appareil ?\n\nOK : elles disparaissent d’ici (elles restent dans votre compte).\nAnnuler : elles restent sur cet appareil.')});}
+    else if(b.dataset.compte==='partout'){if(confirm('Déconnecter votre compte de tous vos appareils ?'))await QMECompte.deconnecterPartout();}
+    else if(b.dataset.compte==='supprimer'){if(confirm('Supprimer votre compte ?\n\nVos achats restent valables avec leur clé de licence, et vos applications restent sur cet appareil. Le compte (adresse, préférences, liste de clés) est effacé.'))await QMECompte.supprimer();}
+  }catch(x){alert(x.message);}
+  rendre();
 });
-E.themes.addEventListener('toggle',()=>{garderLocal(CLE_OUVERTS,[...E.themes.querySelectorAll('details[open]')].map((d)=>d.id.slice(2)));},true);
-window.addEventListener('pageshow',rendre); // retour arrière depuis un template : liste et récents à jour
+// Menu du profil : section visible mise en évidence.
+const liensNav=[...document.querySelectorAll('.profil-nav a')];
+const obs=new IntersectionObserver((l)=>{for(const x of l)if(x.isIntersecting){for(const a of liensNav)a.toggleAttribute('aria-current',a.dataset.onglet===x.target.id);}},{rootMargin:'-30% 0px -60% 0px'});
+for(const a of liensNav){const cible=$(a.dataset.onglet);if(cible)obs.observe(cible);}
+window.addEventListener('qme-compte',()=>{if(QMECompte.compte)derniereSynchro=Date.now();rendre();});
+window.addEventListener('qme-espace-prefs',(e)=>{if(e.detail?.depuisCompte||e.detail?.prenom)rendre();});
+window.addEventListener('pageshow',rendre); // retour arrière depuis une application : récents à jour
+setInterval(()=>{if(!E.espace.hidden)profil(possedes(),QMECompte.session(),QMECompte.compte);},60000);
 rendre();
+
+// ===== Connexion par e-mail : demande de lien, puis lien cliqué (?lien=…).
+const formLien=$('form-lien'),champEmail=$('email'),erreurLien=$('erreur-lien'),okLien=$('ok-lien');
+formLien.addEventListener('submit',async(e)=>{
+  e.preventDefault();const email=champEmail.value.trim(),b=$('envoyer-lien');
+  okLien.textContent='';erreurLien.textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Adresse e-mail incomplète.';champEmail.focus();return;}
+  b.disabled=true;b.textContent='Envoi…';
+  try{
+    await QMECompte.demanderLien(email);emailCode=email;
+    okLien.innerHTML=`C’est parti : ouvrez l’e-mail envoyé à <b>${esc(email)}</b> et touchez le lien, ou saisissez ci-dessous le code à 6 chiffres qu’il contient (valable 15 minutes). Pensez à regarder dans les indésirables.`;
+    montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;
+  }
+  catch(x){
+    // Lien déjà envoyé il y a peu : le code de cet e-mail reste valable, le champ s'affiche quand même.
+    if(x.statut===429){
+      const d=x.details||{},a=d.reessayerA?new Date(d.reessayerA):null;
+      const heure=a&&!isNaN(a)?(a-Date.now()<90_000?'dans une minute':`à ${a.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}`):'dans quelques minutes';
+      if(d.codeValable!==false){emailCode=email;okLien.innerHTML=`Un e-mail vient déjà de partir à <b>${esc(email)}</b> : saisissez ci-dessous le code à 6 chiffres qu’il contient (le dernier reçu), ou touchez son lien. Pas reçu ? Regardez dans les indésirables, ou redemandez ${heure}.`;montrerCode();b.className='btn';b.textContent='Renvoyer un lien';b.disabled=false;return;}
+      erreurLien.textContent=`Trop de demandes pour cette adresse : le dernier code a expiré. Vous pourrez en redemander un ${heure}.`;b.disabled=false;b.textContent='Recevoir mon lien de connexion';return;
+    }
+    erreurLien.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;
+  }
+  b.disabled=false;b.textContent=blocCode.hidden?'Recevoir mon lien de connexion':'Renvoyer un lien';
+});
+// Code de l'e-mail : utile quand le lien s'ouvre dans un autre navigateur (fenêtre ouverte depuis Gmail, Instagram…).
+const blocCode=$('bloc-code'),champCode=$('code-lien'),erreurCode=$('erreur-code'),boutonCode=$('valider-code');let emailCode='';
+async function validerCode(){
+  if(boutonCode.disabled)return;
+  const code=champCode.value.replace(/\D/g,'');erreurCode.textContent='';
+  if(code.length!==6){erreurCode.textContent='Le code compte 6 chiffres.';champCode.focus();return;}
+  boutonCode.disabled=true;boutonCode.textContent='Connexion…';
+  try{await QMECompte.ouvrirCode(champEmail.value.trim()||emailCode,code);blocCode.hidden=true;okLien.textContent='';rendre();scrollTo(0,0);}
+  catch(x){erreurCode.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;}
+  boutonCode.disabled=false;boutonCode.textContent='Me connecter avec ce code';
+}
+function montrerCode(){blocCode.hidden=false;$('deja-code').hidden=true;erreurCode.textContent='';champCode.value='';champCode.focus();}
+// Code déjà reçu (demandé depuis une autre fenêtre ou une autre application) : saisie directe, sans nouvel envoi.
+$('deja-code').addEventListener('click',()=>{
+  const email=champEmail.value.trim();erreurLien.textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){erreurLien.textContent='Indiquez d’abord l’adresse e-mail qui a reçu le code.';champEmail.focus();return;}
+  emailCode=email;okLien.textContent='';montrerCode();
+});
+champEmail.addEventListener('input',()=>{emailCode='';});
+boutonCode.addEventListener('click',validerCode);
+champCode.addEventListener('keydown',(e)=>{if(e.key==='Enter'){e.preventDefault();validerCode();}});
+champCode.addEventListener('input',()=>{if(champCode.value.replace(/\D/g,'').length===6)validerCode();});
+(async()=>{
+  const params=new URLSearchParams(location.search),lien=params.get('lien');
+  if(lien){
+    params.delete('lien');history.replaceState(null,'',location.pathname+(params.toString()?`?${params}`:'')+location.hash);
+    $('etat-lien').textContent='Connexion en cours…';$('etat-lien').hidden=false;
+    try{await QMECompte.ouvrir(lien);$('etat-lien').hidden=true;rendre();scrollTo(0,0);}
+    catch(x){
+      // Lien refusé : la session déjà ouverte (s'il y en a une) reste et se recharge.
+      if(QMECompte.session()){try{await QMECompte.charger();}catch{}rendre();$('etat-lien').textContent=x.message;}
+      else{$('etat-lien').hidden=true;rendre();erreurLien.textContent=x.message;formLienBloc.scrollIntoView({block:'start'});}
+    }
+  }else if(QMECompte.session()){
+    try{await QMECompte.charger();}catch{/* hors ligne : l'espace de l'appareil reste affiché */}
+  }
+})();
 
 // ===== Connexion par clé (inchangée) : vérifie la clé, l'enregistre pour le template concerné, puis ouvre celui-ci.
 function formater(v){const n=v.toUpperCase().replace(/[^0-9A-Z]/g,'');
@@ -283,8 +649,8 @@ form.addEventListener('submit',async(e)=>{
       if(!r.ok)throw new Error(r.status===401?'Code administrateur inconnu.':'Le service ne répond pas. Réessayez dans un instant.');
       const garder=document.getElementById('memoriser').checked?localStorage:sessionStorage;
       try{for(const p of Object.values(PRODUITS)){localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);garder.setItem(p.cle,JSON.stringify(code));}}catch{}
-      champ.value='';erreur.textContent='';bouton.disabled=false;bouton.textContent='Ouvrir mon template';
-      rendre();E.espace.scrollIntoView({behavior:'smooth',block:'start'});
+      champ.value='';erreur.textContent='';bouton.disabled=false;bouton.textContent='Ouvrir mon application';
+      rendre();if(E.dialogue.open)E.dialogue.close();scrollTo({top:0,behavior:'smooth'});
       return;
     }
     const r=await fetch('/api/templates/connexion',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code})});
@@ -292,11 +658,11 @@ form.addEventListener('submit',async(e)=>{
     if(!r.ok)throw new Error(r.status===401?'Clé inconnue. Vérifiez-la dans l’e-mail reçu après l’achat.':(j.erreur||'Le service ne répond pas. Réessayez dans un instant.'));
     // Pack : le code du pack est retenu sur l'appareil, puis le tableau de bord du pack s'ouvre.
     if(j.pack){try{const l=JSON.parse(localStorage.getItem('qme-packs')||'[]').filter((c)=>c!==j.code);l.push(j.code);localStorage.setItem('qme-packs',JSON.stringify(l));}catch{}location.href='/packs/espace/';return;}
-    const p=PRODUITS[j.produit];if(!p)throw new Error('Template inconnu.');
+    const p=PRODUITS[j.produit];if(!p)throw new Error('Application inconnue.');
     try{localStorage.removeItem(p.cle);sessionStorage.removeItem(p.cle);(document.getElementById('memoriser').checked?localStorage:sessionStorage).setItem(p.cle,JSON.stringify(code));}catch{}
     noterOuverture(j.produit);
     location.href=p.url;
-  }catch(x){erreur.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;bouton.disabled=false;bouton.textContent='Ouvrir mon template';champ.focus();}
+  }catch(x){erreur.textContent=x.message==='Failed to fetch'?'Pas de connexion internet. Réessayez une fois en ligne.':x.message;bouton.disabled=false;bouton.textContent='Ouvrir mon application';champ.focus();}
 });
 </script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

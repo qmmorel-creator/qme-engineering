@@ -4,7 +4,7 @@
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
 // dans l'application reprend les données de l'essai (templates-acces.mjs, reporterEssai).
 //
-// E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
+// E-mails envoyés depuis quentin.morel@qm-engineering.fr (SMTP OVH, voir netlify/lib/mail.mjs) :
 //  - merci : tout de suite, avec le code ;
 //  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
 //    (essais-prise-en-main.mjs) ;
@@ -19,10 +19,11 @@
 //  ip/<hmac ip>/<jour>             → { n }    (limite de créations par jour et par adresse IP)
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { statEssai } from './templates-acces.mjs';
-import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
-import { TEMPLATES } from '../../outils/packs/donnees.mjs';
-import { estAdmin } from './interets.mjs';
+import { PRODUITS, PACKS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
+import { TEMPLATES, publics } from '../../outils/packs/donnees.mjs';
+import { estAdmin, peutLireAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
+import { enregistrerOpposition, leverOpposition } from './preferences.mjs';
 import { SIGNATURE_HTML } from './signature.mjs';
 
 export const SITE = 'https://qm-engineering.fr';
@@ -41,6 +42,8 @@ export const lienDesinscription = (secret, email) => {
 };
 
 async function enregistrerContact(essais, secret, { email, prenom, slug, date }) {
+  // Nouveau consentement explicite (case cochée) : une désinscription passée est levée (preferences.mjs).
+  await leverOpposition(essais, cleEmail(secret, email));
   const cle = `contact/${cleEmail(secret, email)}`;
   const c = await essais.get(cle);
   const templates = [...new Set([...(c?.templates || []), slug])];
@@ -84,6 +87,9 @@ function vueEssai(reg, aujourdhui) {
     statut: reg.achete || reg.paye ? 'acheté' : etat.termine ? 'terminé (lecture seule)' : 'en cours',
     achete: reg.achete || null, reporte: Boolean(reg.reporte), nouveautes: Boolean(reg.nouveautes), rappelsArretes: Boolean(reg.stop),
     mails: Object.entries(reg.mails || {}).filter(([, v]) => v && v !== 'saute').map(([k]) => k),
+    // Pour /admin/suivi/ (21/11/2026) : date de chaque e-mail parti (« saute » : rattrapé par un e-mail plus avancé
+    // le même jour), date du paiement notifié par Gumroad, code produit et prix.
+    envois: { ...(reg.mails || {}) }, paye: reg.paye || null, produit: reg.produit, prix: f.prix,
   };
 }
 export function csvEssais(vues) {
@@ -97,6 +103,18 @@ async function lireEssais(essais, aujourdhui) {
   return vues.sort((a, b) => String(b.cree).localeCompare(String(a.cree)));
 }
 
+// Accompagnements après achat (achats.mjs, 24/11/2026) : prévus et envoyés depuis moins de 30 jours, pour /admin/suivi/.
+async function lireAccompagnements(essais) {
+  const liste = [];
+  for (const cle of await essais.lister('suivi-achat/')) {
+    const s = await essais.get(cle);
+    if (!s) continue;
+    const nom = (s.type === 'pack' ? PACKS[s.code] : PRODUITS[s.code])?.nom || s.code;
+    liste.push({ email: s.email, prenom: s.prenom || '', type: s.type, produit: nom, achat: s.achat, du: s.du, envoye: s.envoye || null, objet: s.objet || null });
+  }
+  return liste.sort((a, b) => String(b.achat).localeCompare(String(a.achat)));
+}
+
 async function lireContacts(essais) {
   const contacts = [];
   for (const cle of await essais.lister('contact/')) { const c = await essais.get(cle); if (c) contacts.push(c); }
@@ -108,7 +126,7 @@ const TAILLE_MAX = 4000;
 // Templates ouverts à l'essai : vie personnelle (18/11/2026) et professionnels (extension préparée le 21/11/2026),
 // en vente (identifiant Gumroad et lien d'achat), payants.
 export const POUR_ESSAI = ['perso', 'pro'];
-export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => POUR_ESSAI.includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
+export const PRODUITS_ESSAI = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => POUR_ESSAI.includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].permalien && TEMPLATES[p].prix > 0);
 
 export function ficheEssai(produit) {
   const t = TEMPLATES[produit], p = PRODUITS[produit];
@@ -260,7 +278,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '', lecture = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -281,8 +299,9 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     const e = String(url.searchParams.get('e') || ''), s = String(url.searchParams.get('s') || '');
     const attendu = signerDesinscription(secret, e);
     const ok = /^[0-9a-f]{32}$/.test(e) && s.length === attendu.length && timingSafeEqual(Buffer.from(s), Buffer.from(attendu));
-    if (ok) await essais.supprimer(`contact/${e}`);
-    const message = ok ? 'C\'est fait : vous ne recevrez plus les nouveautés QME, et votre adresse a été effacée de la liste.' : 'Lien invalide.';
+    // Liste d'opposition (preferences.mjs) : fiche « nouveautés » effacée, plus aucune annonce QME.
+    if (ok) await enregistrerOpposition(essais, e, { source: 'lien des e-mails d\'essai', date: new Date(maintenant()).toISOString() });
+    const message = ok ? 'C\'est fait : vous ne recevrez plus les informations QME (nouveautés, annonces), et votre adresse a été retirée de la liste.' : 'Lien invalide.';
     return new Response(`<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Désinscription · QME</title><body style="font-family:Arial,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;color:#141414;background:#FBF7F1"><h1 style="font-size:22px">Nouveautés QME</h1><p>${message}</p><p><a href="/templates/" style="color:#1D4E89">Retour aux templates</a></p></body></html>`,
       { status: ok ? 200 : 400, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
   }
@@ -290,7 +309,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   // Contacts « nouveautés » : lecture, export CSV et effacement réservés à l'administrateur (code ADM-…).
   // Tous les essais (administrateur) : liste JSON ou CSV.
   if (chemin === '/essais') {
-    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
     if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise' });
     const vues = await lireEssais(essais, jourParis(new Date(maintenant())));
     if (url.searchParams.get('format') === 'csv') {
@@ -298,7 +317,8 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
         'content-disposition': `attachment; filename="essais-qme-${new Date(maintenant()).toISOString().slice(0, 10)}.csv"` } });
     }
     const compte = (s) => vues.filter((v) => v.statut === s).length;
-    return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues });
+    return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues,
+      accompagnements: await lireAccompagnements(essais) });
   }
 
   if (chemin === '/contacts') {
@@ -375,7 +395,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   try { if (await envoyerMail('merci', reg, { secret, envoyer })) reg.mails.merci = date.toISOString(); } catch (x) { console.error('E-mail de remerciement impossible', x); }
   // Notification à Quentin : un échec n'empêche jamais l'essai.
   if (envoyer && notifier) {
-    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte }); } catch (x) { console.error('Notification d\'essai impossible', x); }
+    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte, copieCachee: false }); } catch (x) { console.error('Notification d\'essai impossible', x); }
   }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });

@@ -25,49 +25,44 @@ export function prixPack(prixCentimes) {
   return { valeur, pct, prix, economie: valeur - prix };
 }
 
-// Option « Pack évolutif » (décision de Quentin, 14/11/2026) : sans elle, un pack ouvre les templates qu'il
-// contenait le jour de l'achat ; avec elle, il ouvre aussi tous les templates ajoutés au pack ensuite.
-// Prix de l'option : 25 % du prix du pack, arrondi à l'euro supérieur, 9 € au minimum.
-export const OPTION = { pct: 25, minimum: 900, nom: 'Pack évolutif' };
-export const prixOption = (prixPackCentimes) => Math.max(OPTION.minimum, Math.ceil((prixPackCentimes * OPTION.pct) / 100 / 100) * 100);
-
-// Templates accessibles avec un pack. `ajouts` d'un pack : préfixe → date (AAAA-MM-JJ) d'ajout au pack après
-// son lancement. Avec l'option, tout le pack ; sans elle, les templates d'origine et ceux ajoutés au plus tard
-// le jour de l'achat (date inconnue, code généré à la main : templates d'origine seulement).
-export function produitsAccessibles(code, { option = false, date = null } = {}, connus = {}) {
-  const pack = PACKS[code], ajouts = pack.ajouts || {};
-  const jour = date ? String(date).slice(0, 10) : null;
-  return pack.produits.filter((p) => connus[p] && (option || !ajouts[p] || (jour && ajouts[p] <= jour)));
+// Templates accessibles avec un pack (décision de Quentin du 23/11/2026 : l'option « Pack évolutif » est supprimée) :
+// un pack ouvre tous ses templates en vente, y compris ceux ajoutés au pack après l'achat, sans supplément.
+export function produitsAccessibles(code, _options = {}, connus = {}) {
+  return PACKS[code].produits.filter((p) => connus[p]);
 }
 
 // Préfixe de pack : 3 lettres sans I, L, O, U, distinct de tout préfixe de template.
-// `ajouts` : templates entrés dans le pack après son lancement, avec leur date (voir produitsAccessibles).
 // `gumroad` : identifiant du produit Gumroad du pack (licence), ajouté une fois la fiche créée.
 export const PACKS = {
   PFG: { slug: 'freelance-gestion', nom: 'Pack Freelance : chiffrer, facturer, encaisser', produits: ['TJM', 'PRX', 'DVS', 'MCE', 'RCV', 'TRS', 'TMP'], gumroad: 'TdGXvyeaHjN_iKZ4zHr9gw==', permalien: 'pack-freelance-gestion' },
-  PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'PRS', 'CRM', 'PCM', 'KRF', 'CED', 'CND'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
+  PFC: { slug: 'freelance-clients', nom: 'Pack Freelance : trouver ses clients', produits: ['APD', 'CRM', 'PCM', 'KRF', 'CED', 'CAN'], gumroad: 'jE3iyCKKK07ALZrBhP7j_w==', permalien: 'pack-freelance-clients' },
   PBT: { slug: 'chef-de-projet-btp', nom: 'Pack Chef de projet BTP', produits: ['GNT', 'VSA', 'RSV', 'NCF', 'CRA', 'CHT', 'RDE', 'STR'], gumroad: 'Oi7gqrAFzTtGi5bCk205ZA==', permalien: 'pack-chef-de-projet-btp' },
-  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'] },
-  PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH'] },
-  PAR: { slug: 'argent', nom: 'Pack Reprendre la main sur son argent', produits: ['BDG', 'ABN', 'DTT', 'TDV', 'PTM', 'EPG', 'DCS', 'RBS', 'CPT'] },
-  PMR: { slug: 'mariage-installation', nom: 'Pack Mariage et installation à deux', produits: ['MRG', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'] },
-  PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV', 'RVH'] },
+  PPE: { slug: 'petite-entreprise', nom: 'Pack Petite entreprise', produits: ['CNG', 'NDF', 'ARD', 'TRS', 'CRA', 'TDB', 'EQP', 'ENP', 'DRP'], gumroad: 'hHV1OaACgMmSJW0Vkv0SXQ==', permalien: 'pack-petite-entreprise' },
+  PMG: { slug: 'moyens-generaux', nom: 'Pack Moyens généraux', produits: ['PRC', 'VHC', 'ARD', 'GMA', 'VRF', 'SDR', 'BSC', 'CTR', 'ACH', 'EVT'], gumroad: '1CYQ2oN8TLxj6g8e44Kw9g==', permalien: 'pack-moyens-generaux' },
+  PAR: { slug: 'argent', nom: 'Pack Papiers et décisions d’argent', produits: ['TDV', 'PTM', 'DCS', 'RBS', 'CPT'] },
+  PMR: { slug: 'vie-a-deux', nom: 'Pack Vie à deux', produits: ['EVT', 'BCM', 'BDG', 'DMN', 'VYG', 'CDX'], gumroad: 'C2H9t1xP_lZgL5YglwRfbA==', permalien: 'pack-vie-a-deux' },
+  PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV', 'RVH'], gumroad: 'DGl_v1KCgWfTxbstgh_PWw==', permalien: 'pack-productivite' },
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS', 'NTS', 'CAN', 'MMR'], gumroad: 'YtS6AIhqXdCedt-AqQtjmw==', permalien: 'pack-etudiant' },
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP', 'SBV', 'BNV', 'AGS'] },
   PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT', 'RNT', 'CPR', 'ETD'] },
-  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC', 'CRS'] },
+  PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC', 'CRS'], gumroad: 'tJE8UvI9P1QAjGsqyFFe2g==', permalien: 'pack-forme' },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
-  PFA: { slug: 'famille', nom: 'Pack Famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM'] },
-  PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage' },
-  PNS: { slug: 'enseignant', nom: 'Pack Enseignant et formateur', produits: ['PRG', 'QZZ', 'CSE', 'EDT'] },
-  PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'PRK', 'CTR'] },
-  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'] },
-  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], ajouts: { SVT: '2026-11-18' }, gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
+  PFA: { slug: 'famille', nom: 'Pack Maison et famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM', 'PTG'] },
+  // Retirés le 22/11/2026 (rationalisation, décision de Quentin) : entièrement contenus dans un plus grand pack.
+  PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage', retire: '2026-11-22' },
+  PNS: { slug: 'enseignant', nom: 'Pack Écoles et formateurs', produits: ['PRG', 'QZZ', 'CSE', 'EDT', 'AEC'] },
+  PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'NCF', 'STK'], gumroad: '6pupGzmPEgp_aHGFUAWNxA==', permalien: 'pack-exploitation' },
+  PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'], gumroad: 'YqkUp-9uupBcFHTAAjlkQg==', permalien: 'pack-commercant-artisan' },
+  PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },
   // Packs ouverts le 15/11/2026, composés de templates déjà en vente.
-  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' },
-  PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer' },
+  // Retiré le 22/11/2026 (décision de Quentin) : doublon du Pack Budget perso et famille, aucune vente. Gardé ici pour
+  // qu'un éventuel code ou licence reste valable ; plus de page publique (redirection dans netlify.toml).
+  PAQ: { slug: 'argent-du-quotidien', nom: 'Pack Argent du quotidien', produits: ['BDG', 'BCM', 'ABN', 'RDV'], gumroad: '4_R4X-TJIMmWKBpkEg3DSg==', permalien: 'pack-argent-du-quotidien' , retire: '2026-11-22' },
+  PBD: { slug: 'bien-demarrer', nom: 'Pack Bien démarrer l’année', produits: ['TCH', 'HBT', 'RDV'], gumroad: 'wZiO_GtwtRZgFPEI6TO0Gw==', permalien: 'pack-bien-demarrer', retire: '2026-11-22' },
   // Pack ouvert le 20/11/2026 (demande de Quentin), composé de templates déjà en vente ; fiche Gumroad reliée le 21/11/2026.
   PBF: { slug: 'budget-perso-famille', nom: 'Pack Budget perso et famille', produits: ['BDG', 'BCM', 'ABN', 'EPG', 'DTT'], gumroad: 'FbVA2eJXNqKeGcjM5sA1aQ==', permalien: 'pack-budget-perso-famille' },
+  // Pack Cuisine (demande de Quentin, 22/11/2026) : fiche Gumroad à créer une fois Garde-manger en vente.
+  PCS: { slug: 'cuisine', nom: 'Pack Cuisine', produits: ['RPS', 'GRD'], retire: '2026-11-22' },
 };
 
 // Pack sur mesure : le code porte lui-même la liste des templates (préfixes de 3 lettres accolés), signée.

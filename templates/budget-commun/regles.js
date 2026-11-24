@@ -61,7 +61,7 @@
     if (mode === 'parts') {
       // Parts décimales admises (1,5) : converties en centièmes entiers.
       const p = ids.map((id) => Math.round(Math.max(0, Number(options.parts?.[id] ?? 1)) * 100));
-      if (p.some((x) => !Number.isFinite(x))) return { erreur: 'Parts invalides.' };
+      if (p.some((x) => !Number.isFinite(x))) return { erreur: 'Parts invalides : écris un nombre positif, par exemple 1 ou 1,5.' };
       if (p.reduce((s, x) => s + x, 0) <= 0) return { erreur: 'Indique au moins une part.' };
       return { quotes: repartirPoids(montant, ids, p), mode };
     }

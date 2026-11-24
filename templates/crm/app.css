@@ -458,3 +458,71 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* ===================== Prospection (fusion du Pipeline de prospection B2B, 22/11/2026) =====================
+   Sous-onglets du pipeline, scripts, cadences, message préparé, conversion. */
+.sous-onglets{display:flex;flex-wrap:wrap;gap:6px;margin:-8px 0 20px}
+.puce{border-radius:999px}
+.vue-tete .periodes{margin:0}
+.titre-groupe{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font-size:18px;margin:24px 0 12px}
+.titre-groupe span{font-size:13px;font-weight:600;color:var(--discret)}
+.apercu-choix{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:16px;align-items:end;margin-bottom:8px}
+.var{background:var(--ciel);color:var(--ciel-texte);font-weight:700;padding:0 3px;border-radius:4px}
+.trou{background:var(--beurre);color:var(--beurre-texte);font-weight:600;padding:0 2px;border-radius:4px}
+.scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.script{border:1px solid var(--trait);background:var(--surface);display:flex;flex-direction:column;min-width:0;border-radius:16px;overflow:hidden}
+.script-tete{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--c);color:var(--t,#fff)}
+.script-tete h3{font-size:17px}
+.script-tete span{flex:none;font-size:11px;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:2px 8px;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}
+.script-objet{padding:10px 14px 0;font-size:14px;overflow-wrap:anywhere}
+.script-texte{padding:10px 14px;font-size:14px;color:var(--texte-2);white-space:pre-wrap;overflow-wrap:anywhere;flex:1}
+.script-pied{display:flex;gap:8px;padding:8px 14px 12px;border-top:1px solid var(--trait)}
+.cadences{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.cadence{border:1px solid var(--trait);background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:12px;border-radius:16px}
+.cadence-tete{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cadence-tete h3{font-size:18px}
+.cadence-tete p{font-size:14px;color:var(--texte-2);margin-top:4px}
+.frise-cadence{display:grid;gap:6px}
+.frise-cadence li{display:grid;grid-template-columns:56px 1fr;gap:0 10px;font-size:14px;border-left:3px solid var(--bleu);padding-left:10px}
+.frise-cadence b{grid-row:span 2;font-weight:800;font-size:16px}
+.frise-cadence small{color:var(--discret);font-size:12.5px}
+.cadence-pied{font-size:13px;color:var(--discret);margin-top:auto}
+.cadence-ajout{align-items:center;justify-content:center;flex-direction:row;font-weight:700;border-style:dashed;cursor:pointer;min-height:120px;font-size:16px;color:inherit;font-family:inherit}
+.cadence-ajout:hover{background:var(--beurre);border-style:solid}
+.frise-mini{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}
+.frise-mini li{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:4px 8px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);font-size:12px;color:var(--discret)}
+.frise-mini li b{font-size:14px;color:var(--encre)}
+.frise-mini li.fait{background:var(--sable)}
+.frise-mini li.fait b{color:var(--discret);text-decoration:line-through}
+.frise-mini li.courant{border-color:var(--encre);background:var(--beurre);color:var(--beurre-texte)}
+.aide-ligne{font-size:14px;color:var(--texte-2)}
+.fiche-opposition .aide{margin:0}
+.rang-copie{display:flex;gap:8px}
+.rang-copie input{flex:1;min-width:0}
+.relances-edition{display:grid;gap:8px}
+.relance-ligne{display:grid;grid-template-columns:24px 80px minmax(0,1fr) minmax(0,1.4fr);gap:8px;align-items:center}
+.relance-ligne .num{font-weight:800;text-align:center}
+.relance-ligne select,.relance-ligne input{min-height:44px;padding:6px 8px}
+.entonnoir{border:1px solid var(--trait);background:var(--surface);padding:16px;display:grid;gap:10px;border-radius:16px}
+.barre-ent{display:grid;grid-template-columns:120px minmax(0,1fr) 110px;gap:12px;align-items:center}
+.ent-nom{font-weight:700;font-size:14px}
+.ent-piste{display:flex;align-items:center;gap:8px;min-width:0}
+.ent-piste i{display:block;height:26px;background:var(--c);border:1px solid var(--trait);border-radius:6px;flex:none;max-width:calc(100% - 40px)}
+.ent-piste b{font-weight:800;font-size:16px}
+.ent-taux{font-size:14px;font-weight:700;text-align:right}
+.ent-taux small{font-weight:500;color:var(--discret)}
+.motifs{display:flex;flex-wrap:wrap;gap:10px}
+.motifs div{border:1px solid var(--trait);background:var(--surface);padding:10px 14px;display:flex;align-items:baseline;gap:8px;border-radius:16px}
+.motifs b{font-size:24px;font-weight:800}
+.note{font-size:13px;color:var(--discret);margin-top:8px}
+@media (max-width:720px){
+  .apercu-choix{grid-template-columns:1fr}
+  .scripts,.cadences{grid-template-columns:1fr}
+  .barre-ent{grid-template-columns:86px minmax(0,1fr) 64px;gap:8px}
+  .ent-taux small{display:none}
+  .relance-ligne{grid-template-columns:20px 64px minmax(0,1fr)}
+  .relance-ligne label:last-child{grid-column:2/-1}
+  .vue-tete .periodes{width:100%}
+  .ligne:has(.ligne-actions){grid-template-columns:12px minmax(0,1fr)}
+  .ligne .ligne-actions{grid-column:2;flex-wrap:wrap}
+}

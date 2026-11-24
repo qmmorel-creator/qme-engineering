@@ -19,11 +19,18 @@ Site promotionnel de Quentin Morel Engineering (QME).
     sur toutes les pages (Accueil, Sur mesure, Templates, Packs, Guides, Contact, Connexion, Confidentialité). Plus
     d'enchaînement « page précédente / suivante » entre les pages principales (seuls restent les retours au catalogue
     ou aux packs en bas des fiches) ;
-  - `index.html` (accueil) : aiguillage entre les deux offres, puis le film ;
+  - `index.html` (accueil) : deux portes « Outils pour les pros » (`/pro/`) et « Outils pour la vie perso » (`/perso/`),
+    chacune avec une bande de 4 vignettes d'outils en vente, puis une carte « Sur mesure » (4 vignettes de références),
+    puis le film (22/11/2026). `en/index.html` : portes Custom tools et Templates, avec leurs vignettes. Adresses des
+    vignettes tenues à jour sur les deux accueils par `outils/templates/vignettes.mjs` et `outils/references/vignettes.mjs`
+    (`PAGES_REPRISE` de `outils/lib/vignette.mjs`) ;
   - `sur-mesure/` : une seule page pour le volet entreprise, avec les PDF à télécharger, l'offre, `#references`,
     `#videos`, `#methode` (méthode, formats, présentation de Quentin) et un appel au contact. Les anciennes pages
     `/references/` et `/methode/` (et `/en/references/`, `/en/method/`) redirigent en 301 vers ces sections
-    (`netlify.toml`), pour les liens déjà publiés ;
+    (`netlify.toml`), pour les liens déjà publiés. Depuis le 22/11/2026, références en cartes compactes (Thalvego en
+    carte de tête sur deux colonnes, puis une carte par référence ; cartes horizontales sur mobile) et vidéos côte à
+    côte. Images : vignettes `assets/vignettes/ref-*.webp` tirées de la capture d'origine (`data-source` de chaque
+    `<img>`) par `node outils/references/vignettes.mjs` (FR et EN), qui réécrit `src`, `width` et `height` ;
   - `templates/` (catalogue, simplifié le 20/11/2026) : recherche et filtre Professionnel / Vie personnelle en tête,
     puis une tuile par thème (nombre d'outils, prix d'entrée, trois exemples), groupées Pro / Perso ; un clic sur une
     tuile affiche les outils du thème (`?theme=…`), chacun avec sa vignette, « Tous les thèmes » ramène aux tuiles ;
@@ -38,7 +45,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
     quelles sans JS. En bas, un bandeau compact vers les packs (généré par `outils/packs/generer.mjs` ; la carte des
     prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de template » en tête du catalogue, relié au
     formulaire Netlify `idee` ;
-  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
+  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact` ; depuis le 23/11/2026, 4 vignettes
+    de références sous le texte, lien vers `/sur-mesure/#references`, idem `en/contact/`). Les anciennes ancres
     (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
@@ -53,7 +61,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
   `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, prise en main J+2
   propre à chaque template, J-3, fin, avant effacement ; remerciement à l'achat via le ping Gumroad
-  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis `quentin.morel@qm-engineering.fr` par le SMTP d'OVH (variables `ESSAI_SMTP_*`, cf. `docs/templates/communication/DELIVRABILITE.md`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Espace acheteurs `/connexion/` (refait le 22/11/2026) : dès qu'un template est enregistré sur l'appareil, la page
   devient « Mes templates » : épinglés (étoile), récemment ouverts depuis la page, puis regroupement par thème du
@@ -62,7 +70,64 @@ Site promotionnel de Quentin Morel Engineering (QME).
   de 5 templates ; en dessous, simple liste. Le formulaire de clé passe dessous (« Ajouter un template »). Épinglés,
   récents et thèmes ouverts restent sur l'appareil (`qme-espace-*` dans `localStorage`). Liste générée par
   `node outils/connexion/generer.mjs` (PRODUITS + cartes de `templates/index.html`), contrôlée par
-  `outils/templates/connexion.test.mjs`.
+  `outils/templates/connexion.test.mjs`. Composant commun `assets/espace.js` / `espace.css`, aussi utilisé par le
+  tableau de bord des packs `/packs/espace/` (généré par `outils/packs/generer.mjs`, données de thèmes comprises) :
+  templates de tous les packs de l'appareil réunis, même recherche, épinglés, récents et thèmes ; bouton « copier le
+  code de partage » sur chaque tuile ; « Gérer mes packs » (oublier un pack) et « Ajouter un pack » en dessous.
+- Comptes acheteurs (22/11/2026, décision de Quentin) : connexion **par lien envoyé par e-mail, sans mot de passe**
+  (`netlify/lib/comptes.mjs`, fonction `/api/compte`, store des essais à Francfort, préfixes `compte/`, `lien/`,
+  `limite/`). Un compte est un trousseau : les clés (licences, codes QME, packs, essais) et les préférences de
+  l'espace (prénom, noms donnés, masquées, épinglées) ; les applications vérifient toujours leur clé à l'ouverture.
+  Chaque achat vérifié par le ping Gumroad (`achats.mjs`) est rangé sous l'adresse de l'acheteur (compte créé au
+  besoin) ; les essais sont lus dans l'index des essais par adresse. Lien valable 15 min, à usage unique ; 5 liens par
+  heure et par adresse ; session de 90 jours, « déconnecter tous mes appareils », suppression du compte par
+  l'acheteur. Client : `assets/compte.js` (synchronisation appareil ↔ compte). Purge quotidienne des traces
+  anti-abus (`purgerComptes`, dans `essais-quotidien.mjs`). Tests : `outils/templates/comptes.test.mjs`.
+  Politique de confidentialité : section « Compte acheteur ».
+- Tableau de bord administrateur centralisé (22/11/2026) : **`/admin/`** (code administrateur), période 7, 30 ou 90
+  jours. Indicateurs (visites, essais, ventes, revenu, abonnés réseaux, abonnés aux informations), audience du site
+  (GoatCounter : pages vues par jour, pages, sources, pays), entonnoir visites → essais → ventes, essais (par jour, par
+  template, conversion, tests exclus), ventes Gumroad (revenu par jour, produits, sources), réseaux (abonnés, vues des
+  publications), comptes et préférences, intérêts, **données saisies dans les applications** (espaces de données d'achat et
+  d'essai par application, modifiés sur la période, nombre d'éléments, dernière modification ; espaces administrateur et
+  essais de test exclus ; contenu jamais transmis, un espace d'achat n'est relié à aucune personne). API `GET /api/tableau?jours=` (`netlify/lib/tableau.mjs`, chaque
+  source indépendante). Variables : `GOATCOUNTER_TOKEN` (jeton GoatCounter « Read statistics », créé par Quentin et ajouté sur Netlify le 23/11/2026 ; profil GoatCounter → API, `/user/api`),
+  `COMPTEUR_SHEET_PUB` (déjà en place). Montants Gumroad en dollars avec leur équivalent en euros (taux BCE du jour,
+  via Frankfurter, sans clé ; dollars seuls si le taux est indisponible). Tests : `outils/templates/tableau.test.mjs`.
+- Préférences d'information (22/11/2026) : liste d'opposition (`netlify/lib/preferences.mjs`, adresses et domaines)
+  alimentée par le lien « Ne plus recevoir les informations » des annonces (`/api/compte/stop`), la page publique
+  `/ne-plus-recevoir/?email=…` (lien de **tout e-mail de prospection**, règle absolue :
+  `docs/templates/communication/REGLES-PROSPECTION.md`), la désinscription des e-mails d'essai et l'ajout administrateur
+  (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
+  `POST /api/compte/opposition/verifier` (code administrateur, ou en lecture seule l'en-tête `X-Opposition-Token` avec la
+  variable Netlify `OPPOSITION_TOKEN`, 32 caractères au moins) ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+- **Lecture par Nexora Optim › QME** (24/11/2026) : jeton de lecture seule `QME_LECTURE_TOKEN` (variable Netlify, 32 caractères
+  au moins, en-tête `X-Lecture`), accepté en `GET` seulement par `/api/tableau`, `/api/essai/essais`, `/api/compte/registre` et
+  `/api/interets` ; il ne permet ni écriture, ni effacement, ni annonce, ni l'accès aux templates (contrairement au code `ADM-…`).
+  Même valeur côté Nexora : `QME_SITE_LECTURE_TOKEN` (site nexora-future-optim). Tests : `outils/templates/lecture-nexora.test.mjs`.
+- Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
+  d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
+  (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;
+  « Bonjour / Bonsoir <prénom> » et dernière application ouverte ; cartes « Reprendre » ; alertes d'essai ; lanceur
+  d'icônes (`templates/<slug>/icone.svg`, option `grille` d'`assets/espace.js`, favoris, filtres par thème) ; achats
+  datés (compte) ; préférences : prénom, interrupteur « Recevoir les informations QME » (liste d'opposition) et actions
+  du compte. La clé s'ajoute par la fenêtre « Ajouter une clé » ; l'aide aux visiteurs n'apparaît plus une fois dans
+  l'espace.
+- Espace personnalisé (`/connexion/`) : « Bonjour <prénom> », situation (achetées, essais avec jours restants et
+  bouton d'achat quand connecté), mode « Personnaliser » (renommer, masquer, ordre des épinglés), suggestions
+  (compléter le pack le plus avancé, sinon même thème). Un template acheté s'appelle une **application** dans les
+  espaces acheteurs ; le catalogue garde « template ».
+- Bandeau QME au-dessus de chaque application (23/11/2026, `assets/mes-templates.js`) : « Mon espace » (initiale du
+  prénom si connecté) et liens Site QME, Templates, Packs, Sur mesure ; défilant sur téléphone, masqué à l'impression.
+- Panneau « Mes templates » dans chaque application (22/11/2026) : `assets/mes-templates.js`, chargé par les 97
+  `templates/<slug>/index.html`. Le logo QME de l'en-tête (`.barre .marque`, marqué d'une petite grille) ouvre un
+  panneau qui liste les autres templates enregistrés sur l'appareil, avec un badge **Acheté**, **Essai** (code égal
+  à `qme-<pre>-essai`, écrit par `essai.js`) ou **Admin** (code `ADM-…`), le template ouvert en tête, puis
+  « Mon espace : tout voir » (`/connexion/`) et « Site QME ». Données chargées à la première ouverture :
+  `assets/espace-donnees.js` (généré par `node outils/connexion/generer.mjs`). Mêmes badges sur `/connexion/`.
+  Code administrateur (22/11/2026) : dès qu'un code `ADM-…` est enregistré sur l'appareil pour une application,
+  `/connexion/` et ce panneau le recopient (`etendreAdmin`) pour toutes les applications du catalogue sans code,
+  y compris celles ajoutées après sa saisie ; un achat ou un essai présent n'est jamais remplacé.
 - Le même code administrateur ouvre aussi tous les templates à titre personnel : saisi dans une
   application (elle envoie son préfixe), il donne un espace de données propre à Quentin pour ce template
   (`codeAdminProduit`) ; saisi sur `/connexion/`, il est enregistré pour tous les templates de `PRODUITS`.
@@ -171,8 +236,26 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   reliés depuis le pied de page et les pages catalogue concernées ; styles `assets/guides.css`, calculateur et
   impression de la check-list `assets/guides.js` (le calculateur charge `templates/budget-commun/regles.js`). Suivi et
   règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
+  Depuis le 24/11/2026, l'index présente une carte par guide avec la vignette du template lié (adresse tenue à jour par
+  les scripts de vignettes, `PAGES_REPRISE`) et les tons de sa partie (`data-partie` sur le `<li>`) ; chaque page de
+  guide porte `<body data-partie="pro|perso">`. À l'ajout d'un guide : carte, vignette et partie à reprendre.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
+- `/pro/` et `/perso/` (22/11/2026, `docs/templates/RATIONALISATION.md`) : le catalogue filtré sur une partie (pros ou
+  vie perso), son accroche et ses packs ; générées par `outils/parties/generer.mjs`, appelé à la fin de
+  `node outils/packs/generer.mjs`, contrôlées par `outils/templates/parties.test.mjs`. Menu de toutes les pages :
+  « Pros · Vie perso · Packs · Sur mesure » ; accueil : deux portes et le sur mesure en dessous.
+  Tons propres à chaque partie (23/11/2026) : `<body data-partie="pro|perso">` sur `/pro/`, `/perso/`, les fiches
+  `catalogue/<slug>/` d'une seule partie (posé par `outils/parties/generer.mjs`, `marquerFiches`) et les pages de pack
+  (`outils/packs/generer.mjs`) ; teintes dans `assets/site.css` (pro bleuté, perso chaud), groupes teintés sur les
+  pages mixtes `/templates/` et `/packs/`.
+  **Template présent dans les deux parties** (templates génériques, depuis la fusion F3 du 22/11/2026) : dans
+  `outils/packs/donnees.mjs`, `pour: 'pro perso'` (lu comme une liste par `publics(t)`, `pourPartie(t, partie)`) et,
+  facultatif, `phrases: { pro, perso }` (`phrasePour(t, partie)`) ; dans `templates/index.html`, la carte porte
+  `data-pour="pro perso"` et un thème par partie (`data-theme="thème-perso thème-pro"`). Le filtre du catalogue
+  (`assets/site.js`), les tuiles et compteurs, `/pro/` et `/perso/` (thème et phrase de la partie), l'essai (les deux
+  groupes de `/essai/`), le composeur de packs (une case par groupe, comptée une fois) et l'espace acheteur (premier
+  thème) lisent ces listes. Contrôle : `outils/templates/parties.test.mjs`. Repris pour l'Organisateur d'événement (fusion F1).
 - `/packs/` : packs de templates (une clé, remise de 10 à 25 % selon le nombre de templates), une page par
   pack (`/packs/<slug>/`), pack sur mesure (`/packs/composer/`) et tableau de bord de l'acheteur
   (`/packs/espace/`, non indexé). La page `/packs/` présente une carte par pack (depuis le 20/11/2026 : mosaïque
@@ -182,6 +265,14 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   des pages de pack portent aussi leur vignette. Vignettes lues sur `templates/index.html` (`data-vignette`) :
   lancer `node outils/templates/vignettes.mjs` avant ce générateur. Pages générées : `node outils/packs/generer.mjs` (données dans
   `netlify/lib/packs.mjs` et `outils/packs/donnees.mjs`). Codes : `npm run code -- PFG`, `npm run code -- SMP BDG,ABN`.
+  Depuis le 22/11/2026, une page de pack en vente annonce l'essai gratuit sous les boutons d'achat et propose « Essai gratuit »
+  sur chaque outil ouvert à l'essai. Fiches Gumroad des packs (même source) : `node outils/packs/fiches-gumroad.mjs` ; couvertures
+  Gumroad des packs (1280 × 720, mosaïque des vignettes) : `node outils/packs/couvertures-gumroad.cjs <slug>…` →
+  `assets/packs-<slug>-couverture.png` (serveur local sur le port 8899).
+- Téléphone (audit du 22/11/2026, rapport `docs/templates/audit-etudiants-2026-11-22.md`) : sous 640 px, le prix et les boutons
+  d'une page catalogue passent avant la liste des fonctions ; sous 600 px, les liens LinkedIn et Instagram sont dans le flux au-dessus
+  du pied de page (`assets/site.css`). Aucune démo d'un template en vente n'affiche « Bientôt en vente »
+  (`outils/templates/audit-etudiants.test.mjs`).
 - Captures et couverture Gumroad : `assets/templates-revision-*.webp`, `assets/templates-revision-couverture.png`.
 
 ## Templates payants (`/templates/`)
@@ -222,6 +313,14 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
     réception, triage, rituels) ; `templates/budget/` (BDG) **budget du foyer** (enveloppes, Sankey).
   Chaque application refuse une clé d'un autre produit (`corps.produit`). Taux datés : mise à jour
   annuelle obligatoire (`donnees.js`).
+- `templates/crm/` (CRM) : **CRM et prospection**, en vente (25 €, fiche Gumroad `crm-freelance`). Fusion du 22/11/2026
+  (rationalisation F2, `docs/templates/RATIONALISATION.md`) du CRM freelance et du Pipeline de prospection B2B (PRS,
+  retiré de `PRODUITS` et des packs ; `/templates/prospection/*` et `/catalogue/prospection/*` redirigés en 301 vers le
+  CRM). Contacts avec cadence de relance (3 cadences, 19 scripts modifiables, message prêt à copier) ou prochaine
+  action datée, pipeline en 8 étapes (de « À contacter » à « Gagné ») qui démarre ou arrête les relances, opposition à
+  la prospection, devis et factures suivis, un onglet Chiffres (conversion par étape et par canal, activité,
+  chiffre d'affaires). Données du CRM freelance lues sans perte (`normaliser` dans `regles.js`) ; une copie exportée
+  du pipeline se restaure dans les réglages (`depuisPipeline`). Tests : `outils/templates/crm.test.mjs`.
 - `templates/secret-santa/` (SNT) : **Secret Santa**, **en vente** (Gumroad, prix libre, 0 €), **gratuit**
   (prix libre sur Gumroad). L'organisateur (clé de licence) crée ses échanges et partage un lien
   d'invitation ; les participants s'inscrivent sans compte (prénom, e-mail, code personnel, idées) ;
@@ -310,16 +409,27 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   l'entrée (service-public.gouv.fr F31270, F33671, F31269, consultées le 14/11/2026), document imprimable à signer,
   export CSV. Outil d'aide, pas un document certifié. Règles dans `regles.js`, tests
   `outils/templates/etat-des-lieux.test.mjs`.
-- `templates/seminaire/` (SMN) : **séminaire / offsite** (T54), prêt, « Mise en vente prochaine » (35 €, démo libre,
-  fiche Gumroad à créer : `docs/templates/communication/seminaire/gumroad.json`). Déclinaison du pilote événementiel pour
-  les assistants de direction, RH et office managers : plusieurs séminaires par clé ; participants et réponses (saisie
-  rapide depuis un tableur, relance après la date limite, suivi par service) ; trajets aller et retour avec places et
-  passagers, horaires comparés au programme ; chambres, occupants et répartition automatique des confirmés par service,
-  liste imprimable pour l'hébergement ; programme en salles parallèles, chevauchements, décalage en cascade ; budget
-  prévu / engagé / payé, paiements en retard, coût par participant confirmé. **RGPD** : régime en liste fermée, cases
-  allergie et accessibilité sans détail, saisie facultative, fiche traiteur en nombres seulement, export CSV sans données
-  sensibles par défaut, effacement des données sensibles d'un séminaire. Rattaché à aucun pack. Règles dans `regles.js`,
-  tests `outils/templates/seminaire.test.mjs`.
+- `templates/evenementiel/` (EVT) : **Organisateur d'événement**, en vente (39 €, fiche Gumroad `organisateur-mariage` reprise de
+  l'ancien Organisateur de mariage, à renommer). Fusion du 22/11/2026 (rationalisation F1, `docs/templates/RATIONALISATION.md`)
+  du Pilote événementiel, de l'Organisateur de mariage (MRG) et du Séminaire / offsite (SMN), retirés de `PRODUITS`, des packs
+  (EVT les remplace dans Vie à deux et Moyens généraux) et de l'essai ; `/templates/mariage/*`, `/templates/seminaire/*` et leurs
+  pages catalogue redirigés en 301 ; aucune entrée `FUSIONNES` (MRG : même identifiant Gumroad, repris par EVT ; SMN : pas de
+  fiche). Présent dans les deux parties du site (`pour: 'pro perso'`). Plusieurs événements de front, chacun d'un **type**
+  (`mariage`, `seminaire`, `entreprise` avec un format salon, soirée, gala, conférence ou autre, `fete`) qui propose son
+  rétroplanning (7 modèles, dont les 40 tâches du mariage et les démarches de la fiche F930), ses postes de budget, son déroulé et
+  sa checklist, et des **fonctions** activables événement par événement (`modules` : plan de table, transports, hébergement,
+  badges et société, adultes et enfants ; valeurs par défaut dans `modulesParDefaut`). Vocabulaire selon le type (Invités ou
+  Participants, Jour J ou Programme, groupe, famille, service ou catégorie). Rétroplanning en J-n qui suit la date ; budget prévu,
+  engagé (contrats signés), payé (échéances), échéancier des acomptes, coût par invité confirmé, carnet de prestataires commun ;
+  invités (réponses, date limite et relance, groupes, enfants, présence, badges, saisie rapide, CSV), plan de table par
+  glisser-déposer ou liste, trajets aller et retour avec passagers et horaires comparés au déroulé, chambres et répartition
+  automatique par groupe ; déroulé par lieu (sessions en parallèle, chevauchements, décalage en cascade, séquence en cours),
+  checklist, impressions (badges, déroulé, chambres, plan de table). **RGPD** : régime en liste fermée, allergie et accessibilité
+  en cases avec précision facultative, fiche traiteur en nombres seulement, CSV sans données sensibles par défaut, alerte
+  d'effacement après l'événement. Données du pilote d'avant la fusion lues sans perte (`normaliser`, version 2) ; « Restaurer une
+  copie » ajoute une copie de MRG (`depuisMariage`) ou de SMN (`depuisSeminaire`) comme événements de leur type. Démo par type :
+  `?demo` (tous), `?demo=mariage`, `?demo=seminaire`, `?demo=entreprise`, `?demo=fete`. Règles dans `regles.js`, tests
+  `outils/templates/evenementiel.test.mjs`.
 - `templates/quiz/` (QZZ) : **banque de questions et quiz** (T58), prêt, « Mise en vente prochaine » (19 €, démo libre,
   fiche Gumroad à créer : `docs/templates/communication/quiz/gumroad.json`). Questions étiquetées (QCM à une ou plusieurs
   bonnes réponses, vrai ou faux, réponse courte avec variantes), difficulté, points, explication ; collage d'une liste ;
@@ -327,7 +437,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   anonymes ou nominatives (prénom et initiale, ou pseudonyme), note automatique, réponses courtes non reconnues « à
   vérifier » ; statistiques par question et par étiquette, questions trop faciles ou trop difficiles, distracteur le plus
   choisi. **RGPD** : mention au premier lancement, export JSON et CSV, effacement d'un apprenant, d'une session ou de tous
-  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le pack Enseignant et formateur.
+  les résultats, anonymisation, rappel de conservation ; aucune question fournie. Rejoint le Pack Écoles et formateurs.
   Règles dans `regles.js`, tests `outils/templates/quiz.test.mjs`.
 - `templates/pilotage-pme/` (TDB) : **tableau de bord de pilotage PME**, prêt, « Mise en vente prochaine » (39 €, démo
   libre, fiche Gumroad à créer : `docs/templates/communication/pilotage-pme/gumroad.json`). Bibliothèque de 45 indicateurs
@@ -342,12 +452,20 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   et les intempéries retenues du journal, sous-traitants, non-conformités simplifiées, risques en matrice
   4 × 4, courriers et ordres de service, revue de projet imprimable ; plusieurs opérations par clé. Aucun
   indice ni taux réglementaire intégré. Règles dans `regles.js`, tests `outils/templates/suivi-chantier.test.mjs`.
-- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, prêt, « Mise en vente prochaine » (39 €,
-  démo libre, fiche Gumroad à créer : `docs/templates/communication/maintenance/gumroad.json`). 16 familles
-  d'équipements et leurs plans types (périodicités indicatives ; seules les chaudières 4–400 kW et climatisations 4–70 kW
-  portent une obligation sourcée, datée ; autres vérifications réglementaires à paramétrer), échéances à la date, au
-  compteur ou au premier atteint, bons d'intervention imprimables, pièces de rechange, coût par équipement, indicateurs.
-  Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
+- `templates/maintenance/` (GMA) : **maintenance préventive (GMAO légère)**, en vente (39 €, fiche Gumroad
+  `maintenance-preventive`). 19 familles d'équipements et leurs plans types (périodicités indicatives ; seules les
+  chaudières 4–400 kW et climatisations 4–70 kW portent une obligation sourcée, datée ; autres vérifications
+  réglementaires à paramétrer), échéances à la date, au compteur ou au premier atteint, bons d'intervention imprimables,
+  pannes (signalement, équipement à l'arrêt ou dégradé, résolution), disponibilité, pièces de rechange, coût par
+  équipement, indicateurs. Fusion du 22/11/2026 (rationalisation F4, `docs/templates/RATIONALISATION.md`) du Pilotage de
+  parcs multi-sites (PRK, retiré de `PRODUITS` ; licence reprise par `FUSIONNES` ; `/templates/parcs-multi-sites/*` et
+  `/catalogue/parcs-multi-sites/*` redirigés en 301) : **option plusieurs sites** (modèle « Un site » / « Plusieurs
+  sites » au démarrage ou case des réglages) qui range les équipements par site et ajoute la vue d'ensemble, les alertes
+  d'arrêt et de site sans visite, les visites de site, le bilan par site (disponibilité, retards, délai de résolution,
+  coût par site et par famille), la liste triable ou la carte schématique (coordonnées saisies, sans fond de carte),
+  l'import et l'export CSV des sites et des équipements. Données d'avant la fusion lues sans perte (un seul site
+  implicite) ; une copie exportée du pilotage se restaure dans les réglages (`depuisParcs`). Démo : `?demo` (un site),
+  `?demo=sites` (six sites). Règles dans `regles.js`, tests `outils/templates/maintenance.test.mjs`.
 - `templates/voyage/` (VYG) : **planificateur de voyage**, prêt, « Mise en vente prochaine » (13 €, démo libre, fiche
   Gumroad à créer : `docs/templates/communication/voyage/gumroad.json`). Étapes, hébergement de chaque nuit (réservé
   ou à réserver, acompte, reste à payer, nuits sans toit signalées), transports, activités jour par jour, budget
@@ -410,12 +528,8 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   quota, salles avec capacité et équipements, modules avec volume prévu ; séances placées à la main sur une grille
   semaine, vues par groupe, formateur et salle ; conflits détectés à la saisie ; heures réalisées, placées et prévues ;
   semaines A/B, fermetures, jours fériés calculés ; duplication de semaine ; impression A4 paysage ; export CSV ; aucun
-  nom d'apprenant, aucune optimisation automatique) ; `templates/parcs-multi-sites/` (PRK) **pilotage de parcs
-  multi-sites** (exploitants immobilier et équipements : sites, équipements par site avec criticité et état, préventif
-  périodique à échéance calculée, correctifs avec délai de résolution, prestataires nommés par l'utilisateur, coûts ;
-  indicateurs par site et consolidés : disponibilité, retards, délai moyen, coût par site et par catégorie, préventif à
-  temps ; alertes ; carte schématique en SVG des coordonnées saisies, sans fond de carte ni service externe ; import et
-  export CSV au format tableur, modèles vides téléchargeables ; démo entièrement fictive). Règles dans `regles.js`,
+  nom d'apprenant, aucune optimisation automatique) ; le pilotage de parcs multi-sites (PRK) a rejoint la maintenance
+  préventive le 22/11/2026 (option plusieurs sites, voir `templates/maintenance/`). Règles dans `regles.js`,
   tests `outils/templates/<slug>.test.mjs`.
 - `templates/suivi-temps/` (TMP) : **suivi du temps et rentabilité par mission** (T73), prêt, « Mise en vente
   prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/suivi-temps/gumroad.json`).
@@ -470,17 +584,6 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   citées dans le guide), alertes J-30 / J-15 / expirée, relances depuis un modèle (copie ou messagerie), tableau de
   conformité par opération, registre imprimable A4 paysage, export CSV ; aucun document stocké, outil d'aide sans
   valeur de conseil juridique. Règles dans `regles.js`, tests `outils/templates/sous-traitants.test.mjs`.
-- `templates/appels-offres/` (CND) : **suivi des appels d'offres et candidatures**, prêt, mise en vente prochaine
-  (15 €, freelances, consultants et PME ; pack visé « Freelance : trouver ses clients »). Veille avec grille go/no-go
-  (8 critères pondérés, éliminatoires, seuils réglables) ; dossier par candidature avec pièces types copiées d'un
-  modèle (marché public, appel d'offres privé, mission sur plateforme, consultation directe ; points de départ sans
-  référence réglementaire, la liste exacte est celle du règlement de chaque consultation), statut, responsable et
-  échéance à rebours depuis la date limite ; dépôt visé avec marge ; calendrier des dates limites ; relances après
-  dépôt, validité des offres ; résultat (montant, motif, classement) ; bibliothèque de pièces réutilisables
-  (emplacement et date de validité, pas de fichier) ; bilan : taux de go et de réussite par type, montants, temps
-  passé, motifs de perte ; export CSV. Aucune connexion à une plateforme ni à un profil d'acheteur. Règles dans
-  `regles.js`, tests `outils/templates/appels-offres.test.mjs`, page `catalogue/appels-offres/`, démo
-  `/templates/appels-offres/?demo`.
 - `templates/entretiens-annuels/` (ENP) : **entretiens annuels et professionnels** (T79), prêt, « Mise en vente
   prochaine » (19 €, démo libre, fiche Gumroad à créer : `docs/templates/communication/entretiens-annuels/gumroad.json`).
   Échéances par salarié : annuel (facultatif, 12 mois), entretien de parcours professionnel (première année puis
@@ -543,7 +646,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   remboursement intégré. Données de santé : consentement explicite au premier lancement et effacement, comme la
   nutrition (`/confidentialite/`). Règles dans `regles.js`, tests `outils/templates/remboursements-sante.test.mjs`.
 - `templates/emprunt/` (CPT) : **capacité d'emprunt et comparateur de prêts** (T85), prêt, mise en vente prochaine
-  (15 €, primo-accédants et investisseurs ; packs visés « Reprendre la main sur son argent » et « Propriétaire »).
+  (15 €, primo-accédants et investisseurs ; packs visés « Papiers et décisions d’argent » et « Propriétaire »).
   Profil d'un ou deux emprunteurs (revenus, loyers retenus à la part saisie, crédits en cours), mensualité maximale au
   taux d'effort saisi et montant empruntable au taux, à la durée et à l'assurance saisis, reste à vivre ; seuils de
   départ 35 % et 25 ans (décision D-HCSF-2021-7, source et date de vérification affichées, modifiables) ; budget du
@@ -576,14 +679,26 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   prix maximal pour un rendement visé, sensibilité (loyer − 10 %, vacance + 1 mois, taux + 1 point), fiche d'analyse
   imprimable, export CSV. Aucun taux de marché, prix au m² ni loyer de référence intégré ; fiscalité hors calcul,
   signalée. Fiche `docs/templates/fiches/investissement-locatif.md`, tests `outils/templates/investissement-locatif.test.mjs`.
-- `templates/candidatures/` (CAN) : **candidatures études, stages, alternance** (T89, 12 €), prêt, « Mise en vente
-  prochaine » (démo libre, fiche Gumroad à créer : `docs/templates/communication/candidatures/gumroad.json`). Une fiche
-  par candidature (formation, stage, alternance, job étudiant) : 23 pièces types et 6 listes de départ à adapter, statut
-  de chaque pièce, statut de la candidature (à préparer, envoyée, entretien, liste d'attente, acceptée, refusée, retirée)
-  et réponse ; dates saisies par l'utilisateur (**aucun calendrier officiel intégré**, aucune plateforme nommée ni
-  connectée) ; vœux classés par type ; relances proposées avec message à copier ; 5 trames originales de lettre de
-  motivation ; 32 questions d'entretien types avec notes ; échéances, export .ics et CSV, impressions. Fiche
-  `docs/templates/fiches/candidatures.md`, tests `outils/templates/candidatures.test.mjs`.
+- `templates/candidatures/` (CAN) : **Suivi de candidatures**, en vente (12 €, fiche Gumroad
+  `candidatures-etudes-stages-alternance`, à renommer). Fusion du 22/11/2026 (rationalisation F3,
+  `docs/templates/RATIONALISATION.md`) de « Candidatures études, stages, alternance » et du « Suivi des appels d'offres et
+  candidatures » (CND, retiré de `PRODUITS` et des packs, remplacé par CAN dans le pack PFC ; `/templates/appels-offres/*` et
+  `/catalogue/appels-offres/*` redirigés en 301 vers CAN). Présent dans les deux parties du site (`pour: 'pro perso'`).
+  Trois modèles au démarrage (`usage` des données, changeable dans les réglages ; vocabulaire, types, statuts et onglets
+  adaptés) : **Études et stages** (formation, stage, alternance, job ; vœux classés), **Emploi** (offre d'emploi,
+  candidature spontanée ; préférences) et **Appels d'offres et plateformes** (marché public, appel d'offres privé, plateforme,
+  consultation directe, autre). Une fiche par candidature : 25 pièces types et 8 listes de départ (études, emploi) ou modèles
+  de dossiers modifiables avec délai avant la date limite (appels d'offres), statut de chaque pièce (dont « sans objet »),
+  dates saisies (**aucun calendrier officiel intégré**, aucune plateforme nommée ni connectée), relances proposées (délai du
+  type puis réglage, ou date fixée à la main) avec message à copier, 6 trames de lettre et 36 questions d'entretien (études,
+  emploi). Appels d'offres : veille et grille go/no-go (8 critères pondérés, éliminatoires, seuils réglables), go qui crée le
+  dossier, rétroplanning des pièces (échéance à rebours avancée au vendredi, responsable), dépôt visé avec marge, dépôt
+  (montant, validité de l'offre), résultat (montant obtenu, motif de perte, classement), temps passé, pièces réutilisables
+  (emplacement et validité, alerte avant expiration), bilan (taux de go et de réussite, montants, par type, par mois, motifs).
+  Échéances avec calendrier mensuel, .ics, CSV, impressions. Démo par modèle : `?demo`, `?demo=emploi`, `?demo=offres`.
+  Données de l'ancien CAN lues sans perte (`normaliser` dans `regles.js`) ; « Restaurer une copie » accepte une copie
+  exportée de l'ancien suivi des appels d'offres (`depuisAppelsOffres`). Fiches `docs/templates/fiches/candidatures.md` et
+  `appels-offres.md`, tests `outils/templates/candidatures.test.mjs`.
 - `templates/benevoles/` (BNV) : **bénévoles et planning des créneaux** (T92), prêt, « Mise en vente prochaine » (19 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/benevoles/gumroad.json`). Annuaire des bénévoles
   (coordonnées minimales, compétences, postes préférés), événements créés depuis 6 modèles (33 postes types, créneaux
@@ -630,7 +745,7 @@ copie est gardée dans le navigateur pour le hors-ligne. Pages non indexées (`X
   tracées **sans courbe de référence** (licences OMS et AFPA–Inserm incompatibles ou non établies), rendez-vous et
   récapitulatif imprimable, deux parents sur deux appareils ; **données de santé d'un enfant : consentement explicite avant
   tout enregistrement**, effacement complet, avertissement médical ; **RGPD à trancher par Quentin avant la vente**). BBE
-  rejoint le pack Famille, PRG le pack Enseignant et formateur. Règles dans `regles.js`, tests
+  rejoint le Pack Maison et famille, PRG le Pack Écoles et formateurs. Règles dans `regles.js`, tests
   `outils/templates/<slug>.test.mjs`.
 - `templates/course-a-pied/` (CRS) : **plan d'entraînement course à pied** (T97), prêt, « Mise en vente prochaine » (15 €,
   démo libre, fiche Gumroad à créer : `docs/templates/communication/course-a-pied/gumroad.json`). Chrono de référence,

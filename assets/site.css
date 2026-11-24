@@ -88,19 +88,9 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .case.wide{grid-column:1/-1;display:grid;grid-template-columns:1.4fr 1fr}
 .case.wide img{border-bottom:0;border-right:2px solid var(--encre);height:100%}
 .case p{font-size:15px;color:var(--texte-2)}
-.case.feature{margin-bottom:24px;box-shadow:6px 6px 0 var(--encre)}
-.case.feature>img{aspect-ratio:16/9;object-position:center}
-.feature-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
-.feature-body .case-copy{border-right:2px solid var(--encre)}
-.feature-body h3{font-size:30px}
 .feature-points{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
 .feature-points li{position:relative;padding-left:20px;font-size:15px;color:var(--texte-2)}
 .feature-points li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;background:var(--bleu)}
-.feature-shots{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:12px;padding:16px}
-.feature-shots figure{margin:0;display:flex;flex-direction:column;gap:6px;min-height:0}
-.feature-shots figure:first-child{grid-row:1/3}
-.feature-shots img{flex:1;min-height:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center;border:2px solid var(--encre)}
-.feature-shots figcaption{font-size:13px;font-weight:600;color:var(--texte-2)}
 .feature-link{align-self:flex-start;margin-top:6px;font-weight:700;color:var(--bleu)}
 .videos{display:grid;gap:28px}
 .video-card{border:2px solid var(--encre);box-shadow:6px 6px 0 var(--encre)}
@@ -169,8 +159,6 @@ footer a{font-weight:600;color:var(--encre)}
 
 /* Tablette et téléphone */
 @media (max-width:980px){
-  .feature-body,.feature-film{grid-template-columns:1fr}.feature-video{border-right:0}
-  .feature-body{grid-template-columns:1fr}.feature-body .case-copy{border-right:0;border-bottom:2px solid var(--encre)}
   .topbar nav{display:none}
   .menu{display:flex}
   .topbar.open nav{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--papier);border-bottom:2px solid var(--encre);padding:8px 16px 16px}
@@ -182,7 +170,6 @@ footer a{font-weight:600;color:var(--encre)}
   .contact{grid-template-columns:1fr;gap:32px}
 }
 @media (max-width:640px){
-  .feature-shots{grid-template-columns:1fr;grid-template-rows:none;gap:16px}.feature-shots figure:first-child{grid-row:auto}.feature-shots img{aspect-ratio:2/1;height:auto}.case.feature,.video-card{box-shadow:none}
   .tagline{display:none}
   .section-head,.cases,.also,.families,.formats,.about,.contact form,.case.wide{grid-template-columns:1fr}
   .case.wide img{border-right:0;border-bottom:2px solid var(--encre)}
@@ -497,10 +484,7 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .case{border:1px solid var(--trait);border-radius:22px;overflow:hidden}
 .case img{border-bottom:1px solid var(--trait)}
 .case.wide img{border-right:1px solid var(--trait)}
-.case.feature{box-shadow:none}
-.feature-body .case-copy{border-right:1px solid var(--trait)}
 .feature-points li::before{border-radius:50%}
-.feature-shots img{border:1px solid var(--trait);border-radius:12px}
 .video-card{border:0;border-radius:22px;overflow:hidden;box-shadow:none}
 .feature-film{border-top:0}
 .feature-video{border-right:0}
@@ -626,6 +610,12 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .reseaux a:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
 @media (max-width:980px){footer{padding-right:76px}body:has(.composer-barre) .reseaux{bottom:84px}}
 @media (prefers-reduced-motion:reduce){.reseaux a{transition:none}.reseaux a:hover{transform:none}}
+/* Téléphone (audit étudiants du 22/11/2026) : les liens réseaux ne flottent plus sur le texte et les boutons, ils
+   passent dans le flux, au-dessus du pied de page. */
+/* Téléphone : prix et boutons (essai, achat, démo) remontés sous la capture, avant la liste des fonctions, pour les voir
+   sans faire défiler deux écrans (audit étudiants du 22/11/2026). L'ordre de lecture du code reste inchangé. */
+@media (max-width:640px){.produit-texte>.prix{order:-2;margin-top:0;padding-top:0;border-top:0}.produit-texte>.actions{order:-1;margin:0 0 10px}}
+@media (max-width:600px){.reseaux{position:static;flex-direction:row;justify-content:center;padding:20px 16px 0}footer{padding-right:16px}}
 @media print{.reseaux{display:none}}
 
 /* En-tête : libellés sur une ligne ; mode compact entre la tablette et le grand écran */
@@ -677,3 +667,63 @@ mark{background:var(--beurre);border-radius:12px;padding:0 10px}
 .packs-bandeau p{margin-top:6px;max-width:640px;color:var(--texte-2)}
 .packs-bandeau .actions{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:720px){.packs-bandeau{margin:32px 16px 0}.packs-bandeau .actions,.packs-bandeau .btn{width:100%}}
+/* « Mon espace » dans le menu (compte connecté, menuMonEspace de site.js) */
+.topbar a.login.mon-espace{display:inline-flex;align-items:center;gap:8px}
+.topbar a.login .ini{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--encre);color:var(--papier);font:700 12px/1 Outfit,sans-serif;flex:none}
+
+/* Page Sur mesure simplifiée (22/11/2026) : références en cartes compactes (vignettes 480 × 300, carte de tête
+   Thalvego sur deux colonnes), vidéos côte à côte */
+.cases{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.case-copy{padding:14px 16px 16px;gap:6px}
+.case h3{font-size:20px}
+.case p{font-size:14px;line-height:1.45}
+.case.une{grid-column:span 2}
+.case.une img{aspect-ratio:16/9;object-position:center}
+.case.une h3{font-size:26px}
+.case.une p{font-size:15px}
+.videos{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.videos .feature-film{grid-template-columns:1fr}
+@media (max-width:900px){.cases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.cases,.videos{grid-template-columns:minmax(0,1fr)}.case.une{grid-column:auto}}
+@media (max-width:600px){.cases{gap:12px}.case:not(.une){display:grid;grid-template-columns:112px minmax(0,1fr);align-items:start}.case:not(.une) img{border-bottom:0;border-right:1px solid var(--trait);height:100%;aspect-ratio:auto;min-height:100px}.case:not(.une) .case-copy{padding:10px 12px 12px;gap:4px}.case:not(.une) h3{font-size:17px}.case:not(.une) p{font-size:13px}.case:not(.une) .pill{font-size:10px}}
+
+/* Accueil (22/11/2026) : bande de 4 vignettes sur chaque porte, carte « sur mesure » sous les deux portes */
+.bande{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+.bande img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:6px;border:1px solid rgba(36,34,31,.14);background:var(--surface)}
+.carte-sur-mesure{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 28px;align-items:center;padding:20px 22px;border:1px solid var(--trait);border-radius:24px;background:var(--surface);color:var(--encre);text-decoration:none;transition:background-color .15s}
+.carte-sur-mesure:hover{background:#fff}
+.carte-sur-mesure .bande{margin-top:0}
+.csm-texte{display:flex;flex-direction:column;gap:6px}
+.csm-texte .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
+.csm-texte b{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.csm-phrase{font-size:16px;color:var(--texte-2)}
+.csm-texte .fleche{margin-top:4px;font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start;padding-bottom:1px}
+@media (max-width:720px){.carte-sur-mesure{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.carte-sur-mesure{transition:none}}
+
+/* Tons des parties (23/11/2026) : pro bleuté, perso chaud, pour voir d'un coup d'œil dans quelle partie on est.
+   body[data-partie] : pages /pro/, /perso/, fiches et packs d'une seule partie (posé par outils/parties/generer.mjs
+   et outils/packs/generer.mjs). Pages mixtes (/templates/, /packs/) : groupes et cartes teintés. */
+body[data-partie="pro"]{--papier:#F2F5F9;--fond-partie:var(--ciel);--texte-partie:var(--ciel-texte);--accent-partie:var(--bleu)}
+body[data-partie="perso"]{--papier:#FCF4E5;--fond-partie:var(--beurre);--texte-partie:var(--beurre-texte);--accent-partie:var(--jaune)}
+body[data-partie] mark{background:var(--fond-partie)}
+body[data-partie] .eyebrow{color:var(--texte-partie)}
+body[data-partie] .btn.primary{background:var(--texte-partie);border-color:var(--texte-partie)}
+body[data-partie] .topbar nav a[aria-current="page"]{background:var(--fond-partie)}
+body[data-partie] .filtres-catalogue{background:var(--fond-partie)}
+body[data-partie] .tuile,body[data-partie] .outil>a{border-top-color:var(--accent-partie)}
+.groupe-tuiles[data-groupe="pro"]>h3,.groupe-packs[data-groupe="pro"]>.titre-groupe{color:var(--ciel-texte)}
+.groupe-tuiles[data-groupe="perso"]>h3,.groupe-packs[data-groupe="perso"]>.titre-groupe{color:var(--beurre-texte)}
+.groupe-tuiles[data-groupe="pro"] .tuile,.groupe-packs[data-groupe="pro"] .pack-carte,.outil[data-pour="pro"]>a{background:#F5F8FC}
+.groupe-tuiles[data-groupe="perso"] .tuile,.groupe-packs[data-groupe="perso"] .pack-carte,.outil[data-pour="perso"]>a{background:#FFF8EC}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before,.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before{background:var(--bleu)}
+.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{background:var(--jaune)}
+
+/* Contact (23/11/2026) : 4 vignettes de références sous le texte, lien vers les références */
+.contact-refs{display:flex;flex-direction:column;gap:8px;margin-top:28px;padding:14px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--encre);text-decoration:none;transition:background-color .15s}
+.contact-refs:hover{background:#fff}
+.contact-refs-titre{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ciel-texte)}
+.contact-refs .bande{margin-top:0}
+.contact-refs .fleche{font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start;padding-bottom:1px}
+@media (prefers-reduced-motion:reduce){.contact-refs{transition:none}}

@@ -13,7 +13,6 @@
     "achats": "templates-achats-budget.webp",
     "animal": "templates-animal-poids.webp",
     "appel-decouverte": "templates-appel-decouverte-appel.webp",
-    "appels-offres": "templates-appels-offres-echeances.webp",
     "assemblee-generale": "templates-assemblee-generale-apercu.webp",
     "auto-ecole": "templates-auto-ecole-planning.webp",
     "bascule": "templates-bascule-direct.webp",
@@ -57,7 +56,6 @@
     "lecture": "templates-lecture-stats.webp",
     "location-saisonniere": "templates-location-saisonniere-revenus.webp",
     "maintenance": "templates-maintenance-tableau.webp",
-    "mariage": "templates-mariage-apercu.webp",
     "memoire": "templates-memoire-tableau.webp",
     "micro-entreprise": "templates-micro-entreprise-declarations.webp",
     "musculation": "templates-musculation-minuteur.webp",
@@ -68,7 +66,6 @@
     "onboarding": "templates-onboarding-tableau.webp",
     "papiers": "templates-papiers-tableau.webp",
     "parc-informatique": "templates-parc-informatique-licences.webp",
-    "parcs-multi-sites": "templates-parcs-multi-sites-carte.webp",
     "patrimoine": "templates-patrimoine-bilan.webp",
     "pilotage-pme": "templates-pilotage-pme-fiche.webp",
     "planner": "templates-planner-semaine.webp",
@@ -76,7 +73,6 @@
     "potager": "templates-potager-calendrier.webp",
     "progression": "templates-progression-frise.webp",
     "propositions": "templates-propositions-suivi.webp",
-    "prospection": "templates-prospection-aujourdhui.webp",
     "quiz": "templates-quiz-corrections.webp",
     "references-plaquette": "templates-references-plaquette-references.webp",
     "remboursements-sante": "templates-remboursements-sante-bilan.webp",
@@ -88,7 +84,6 @@
     "salles": "templates-salles-maintenant.webp",
     "sans-voiture": "templates-sans-voiture-cumul.webp",
     "secret-santa": "templates-secret-santa-tirage.webp",
-    "seminaire": "templates-seminaire-chambres.webp",
     "sinistre": "templates-sinistre-dossier.webp",
     "sous-traitants": "templates-sous-traitants-tableau.webp",
     "stocks": "templates-stocks-tableau.webp",
@@ -129,12 +124,6 @@
     "freelance",
     "Discovery call planner",
     "Prepare each discovery call in ten minutes: context sheet, questions by phase, timed plan, objections and a qualification score.",
-    0
-  ],
-  "appels-offres": [
-    "freelance",
-    "Tenders and bids tracker",
-    "Decide fast where to bid, build each file piece by piece and never miss a deadline.",
     0
   ],
   "assemblee-generale": [
@@ -188,7 +177,7 @@
   "candidatures": [
     "life",
     "Applications tracker",
-    "All your applications in one place (studies, internships, work-study): documents, dates, ranked choices, follow-ups and interviews.",
+    "Studies, jobs or tenders in one tracker: documents, deadlines, follow-ups and answers, plus bid/no-bid scoring and win rate for tenders.",
     1
   ],
   "competences": [
@@ -241,8 +230,8 @@
   ],
   "crm": [
     "freelance",
-    "Freelance CRM",
-    "Every morning, the prospects to follow up, the deals in progress and what is left to collect.",
+    "CRM and prospecting",
+    "Follow-up sequences with ready-to-copy messages, a deal pipeline, and every morning the prospects to contact and what is left to collect.",
     0
   ],
   "demenagement": [
@@ -312,9 +301,9 @@
     1
   ],
   "evenementiel": [
-    "business",
-    "Event planning control room",
-    "Several events at once: countdown from each date, planned and actual budget, suppliers and tasks.",
+    "life",
+    "Event planner: wedding, offsite, company event, party",
+    "One planner for weddings, offsites, trade shows and family parties: countdown from each date, budget and suppliers, guests and seating plan, travel and rooms, the day itself minute by minute.",
     0
   ],
   "flotte": [
@@ -392,13 +381,7 @@
   "maintenance": [
     "build",
     "Preventive maintenance (light CMMS)",
-    "Equipment, 16 families of standard maintenance plans, due dates and work orders.",
-    0
-  ],
-  "mariage": [
-    "life",
-    "Wedding planner",
-    "Countdown from the date, budget by item and suppliers, guest list and seating plan, shared by the two of you.",
+    "Equipment on one site or many, 19 families of standard maintenance plans, due dates, work orders, breakdowns, availability and cost per site.",
     0
   ],
   "memoire": [
@@ -461,12 +444,6 @@
     "Hardware inventory with warranties, who holds what since when, software licences bought and used.",
     0
   ],
-  "parcs-multi-sites": [
-    "build",
-    "Multi-site equipment control",
-    "Preventive maintenance with due dates, breakdowns from report to fix, availability, resolution time and cost.",
-    0
-  ],
   "patrimoine": [
     "money",
     "Valued home inventory",
@@ -507,12 +484,6 @@
     "freelance",
     "Sales proposals",
     "Context, objectives, deliverables, good / better / premium options, schedule and terms in a clean PDF.",
-    0
-  ],
-  "prospection": [
-    "freelance",
-    "B2B prospecting pipeline",
-    "Every morning, the exact list of prospects to follow up, with the message ready to copy.",
     0
   ],
   "quiz": [
@@ -579,12 +550,6 @@
     "life",
     "Secret Santa",
     "One invitation link, everyone signs up without an account with their wish list, the draw is done in secret.",
-    0
-  ],
-  "seminaire": [
-    "business",
-    "Offsite and seminar planner",
-    "Participants and replies, who travels with whom, who sleeps where, parallel sessions, budget.",
     0
   ],
   "sinistre": [

@@ -14,6 +14,14 @@ export { PACKS, SUR_MESURE, ACHAT_SUR_MESURE };
 
 export const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // base 32 de Crockford
 // Produits vendus : préfixe des codes, page de l'application, identifiant Gumroad (clés de licence).
+// Templates fusionnés dans un autre (rationalisation du 22/11/2026) : leur fiche Gumroad peut rester achetable quelque
+// temps (dépublication en attente) ; une licence achetée pour l'ancien produit ouvre le template qui l'a absorbé.
+export const FUSIONNES = {
+  PRS: { gumroad: '7Ie2c3Qgcxkl1coobiiNXg==', vers: 'CRM', depuis: '2026-11-22' }, // Pipeline de prospection → CRM et prospection
+  CND: { gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==', vers: 'CAN', depuis: '2026-11-22' }, // Suivi des appels d'offres → Suivi de candidatures
+  PRK: { gumroad: 'hOn6wGUScmPpb--BuJTl-g==', vers: 'GMA', depuis: '2026-11-22' }, // Pilotage de parcs multi-sites → Maintenance préventive
+};
+
 export const PRODUITS = {
   REV: { nom: 'Planning de révision', url: '/templates/revision/', gumroad: 'zjO4cm1dUdBGh1IfYqmklw==' },
   CRA: { nom: 'Compte rendu et plan d\'actions', url: '/templates/compte-rendu/', gumroad: '29mMG1jJqiRppcqs_Mt09w==' },
@@ -25,24 +33,28 @@ export const PRODUITS = {
   TCH: { nom: 'Gestionnaire de tâches', url: '/templates/taches/', gumroad: 'fhPqrSBXayFL21IZWU6YIg==' },
   NTR: { nom: 'Nutrition et dépense énergétique', url: '/templates/nutrition/', gumroad: 'gPo_NgvoB4zjkqk2mFkXBQ==' },
   BDG: { nom: 'Mon Budget', url: '/templates/budget/', gumroad: 'YvGeAPDZjuqr9yflNtLhhw==' },
-  MRG: { nom: 'Organisateur de mariage', url: '/templates/mariage/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   VSA: { nom: 'Circuit de visa des documents', url: '/templates/visa/', gumroad: 'zJsheWedmR4QFEZA1e15mA==' },
   NCF: { nom: 'Registre des non-conformités', url: '/templates/non-conformites/', gumroad: 'DzQ3gTUdCp2Eg3dECASbhA==' },
-  CRM: { nom: 'CRM freelance', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
+  // CRM et prospection : CRM freelance et Pipeline de prospection B2B (PRS) fusionnés le 22/11/2026 (rationalisation F2).
+  // PRS retiré : aucune vente, aucun code offert ; /templates/prospection/ redirigé ici (netlify.toml).
+  CRM: { nom: 'CRM et prospection', url: '/templates/crm/', gumroad: 'OGiloE9iB6oIL0UuitwyBA==' },
   VHC: { nom: 'Gestion de flotte de véhicules', url: '/templates/flotte/', gumroad: 'a212qy8CvDD90dc-7gV5NQ==' },
   PHR: { nom: 'Planner horaire', url: '/templates/planner/', gumroad: '6uyeEBR91feI1tM2Wbij8Q==' },
   RSV: { nom: 'Levée de réserves', url: '/templates/reserves/', gumroad: '1xyF3Lz36TxDCOz4KnVB4A==' },
-  PRS: { nom: 'Pipeline de prospection B2B', url: '/templates/prospection/', gumroad: '7Ie2c3Qgcxkl1coobiiNXg==' },
   DVS: { nom: 'Générateur de devis', url: '/templates/devis/', gumroad: 'RmzvzczQ7xnP2IP7yRfwBg==' },
   TRS: { nom: 'Trésorerie prévisionnelle 12 mois', url: '/templates/tresorerie/', gumroad: 'no1AEwLFPlXydqFGU7vRzg==' },
   PRC: { nom: 'Gestion de parc informatique', url: '/templates/parc-informatique/', gumroad: 'gykL5ZVrrICGHSLM0V3xlQ==' },
-  EVT: { nom: 'Pilote événementiel', url: '/templates/evenementiel/' },
+  // Organisateur d'événement : Pilote événementiel, Organisateur de mariage (MRG) et Séminaire / offsite (SMN) fusionnés le
+  // 22/11/2026 (rationalisation F1). La fiche Gumroad de MRG devient celle d'EVT (même identifiant : les licences MRG ouvrent
+  // EVT) ; SMN n'avait pas de fiche. MRG et SMN retirés : aucune vente, aucun code offert ; /templates/mariage/ et
+  // /templates/seminaire/ redirigés ici (netlify.toml).
+  EVT: { nom: 'Organisateur d\'événement', url: '/templates/evenementiel/', gumroad: 'TmtmeDwq1OsE2Y9gL6rDag==' },
   ASC: { nom: 'Inscriptions associatives', url: '/templates/inscriptions/', gumroad: '5XuVWuitD2ZzpVkwQFHlVw==' },
   AEC: { nom: 'Gestion d\'auto-école', url: '/templates/auto-ecole/' },
   TRV: { nom: 'Pilote de travaux maison', url: '/templates/travaux/', gumroad: 'leplToyYwMtXCmdXZa9T4Q==' },
   SNT: { nom: 'Secret Santa', url: '/templates/secret-santa/', gumroad: 'fCyii9wIVdIfFc1YQdbZzQ==' },
   HBT: { nom: 'Suivi d\'habitudes et routines', url: '/templates/habitudes/', gumroad: 'DvjP1MxGl7bGDZiHfGgcfQ==' },
-  ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/' },
+  ENT: { nom: 'Entretien de la maison', url: '/templates/entretien/', gumroad: 'zVzaMLQH4U6jK-OgqPPpeA==' },
   DTT: { nom: 'Remboursement de dettes', url: '/templates/dettes/', gumroad: '-5-cTF1xpPORIx5P_zGn7w==' },
   ABN: { nom: 'Suivi des abonnements', url: '/templates/abonnements/', gumroad: '5wUF3mCVqbG3yAF-coM12A==' },
   PTM: { nom: 'Inventaire valorisé', url: '/templates/patrimoine/', gumroad: 'A8JdI_BV8_BHRmFHWK4r3A==' },
@@ -53,39 +65,39 @@ export const PRODUITS = {
   ARD: { nom: 'Onboarding et offboarding salarié', url: '/templates/onboarding/', gumroad: 'u_RxsaNkRuszAnjeMFxKZw==' },
   CNG: { nom: 'Suivi des congés et absences', url: '/templates/conges/', gumroad: 'gJVooOi5p2lDuVx2azvvtA==' },
   STK: { nom: 'Stocks et inventaire', url: '/templates/stocks/', gumroad: '4yl9UwCwQPGWahkhI0oJUA==' },
-  SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/' },
+  SJR: { nom: 'Location saisonnière', url: '/templates/location-saisonniere/', gumroad: 'ZaouZbVb6UFX-RhQ5SoPFw==' },
   VTR: { nom: 'Simulateur leasing ou achat', url: '/templates/leasing/', gumroad: 'VP_lDEeIUWMGQ8bSAZ12tQ==' },
   RDV: { nom: 'Tableau de bord annuel et roue de vie', url: '/templates/tableau-annuel/', gumroad: 'XMvZIWF4YueA-fSR5lunEg==' },
   EPG: { nom: 'Objectif d\'épargne et fonds d\'urgence', url: '/templates/epargne/', gumroad: 'sEO7sJxS14azsCZ761I-yQ==' },
-  DMN: { nom: 'Déménagement', url: '/templates/demenagement/' },
+  DMN: { nom: 'Déménagement', url: '/templates/demenagement/', gumroad: 'eeYVGKI0XJJMFQGwKEMl1Q==' },
   PCM: { nom: 'Propositions commerciales', url: '/templates/propositions/', gumroad: 'N9GYtihcDeqRncRUYwVwew==' },
   DRP: { nom: 'Document unique d\'évaluation des risques', url: '/templates/document-unique/', gumroad: 'KZHfWPckpGMOxeFYDPcrow==' },
   TDB: { nom: 'Tableau de bord de pilotage PME', url: '/templates/pilotage-pme/', gumroad: 'qzhJTzOWF59ZJo1a1Xbetg==' },
   CHT: { nom: 'Suivi de chantier par lot', url: '/templates/suivi-chantier/', gumroad: '78_8FuKW6L-Dk5kT50W8-Q==' },
+  // Maintenance préventive : absorbe le Pilotage de parcs multi-sites (PRK) le 22/11/2026 (rationalisation F4), en option
+  // « plusieurs sites ». PRK retiré : aucune vente, aucun code offert ; /templates/parcs-multi-sites/ redirigé ici (netlify.toml).
   GMA: { nom: 'Maintenance préventive', url: '/templates/maintenance/', gumroad: 'MAPRhk5_um6ZexYxe09jFw==' },
   RPS: { nom: 'Repas de la semaine et liste de courses', url: '/templates/repas/', gumroad: 'EnpmgktOylLJZJST9_Tfhg==' },
   VYG: { nom: 'Planificateur de voyage', url: '/templates/voyage/', gumroad: 'B0MUKsC_AHC_LeiL83xQvA==' },
   VRF: { nom: 'Vérifications réglementaires', url: '/templates/verifications/', gumroad: 'Psy92JPZ8s82uwzImkxZZg==' },
-  CTR: { nom: 'Contrats fournisseurs et échéances', url: '/templates/contrats/' },
+  CTR: { nom: 'Contrats fournisseurs et échéances', url: '/templates/contrats/', gumroad: 'AcRfb_xMr-mqRGpwNLgotw==' },
   EQP: { nom: 'Planning d\'équipe et staffing', url: '/templates/planning-equipe/', gumroad: 'uGMwDvkv48r4plEy5vFJNQ==' },
   CMP: { nom: 'Gestion de compétition sportive', url: '/templates/competition/', gumroad: '1evFhHOrqZyrgIdg9T483A==' },
   SNH: { nom: 'Dossier sinistre habitation', url: '/templates/sinistre/', gumroad: 'nSUWbSsPnceWsczHeshUnw==' },
   MSC: { nom: 'Carnet de musculation et cross-training', url: '/templates/musculation/', gumroad: '1T1zE6319ZF9qexKr8Kzzw==' },
   CAR: { nom: 'Carnet de voiture', url: '/templates/voiture/', gumroad: '-cFP8vq3TQIStzfF1gSA-w==' },
-  GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/' },
+  GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/', gumroad: 'CkLescudHVhLiY3Az2CNsg==' },
   SDR: { nom: 'Réservation de salles et bureaux', url: '/templates/salles/', gumroad: 'JfjqpZBC0Qk1T2ouOdMcNQ==' },
-  BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/' },
+  BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/', gumroad: 'xH5b6U76Zzjy5ADJBYu03g==' },
   CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/' },
-  PRK: { nom: 'Pilotage de parcs multi-sites', url: '/templates/parcs-multi-sites/' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/', gumroad: 'u-ySqLkS21aA1mhfeG9EFQ==' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/', gumroad: 'Y_zjhtlT4nxXqSdqeT_mEA==' },
   CED: { nom: 'Calendrier éditorial', url: '/templates/calendrier-editorial/', gumroad: 'qUwb0nm4TaFmXgiSoc2aJA==' },
   RDE: { nom: 'Registre du DOE', url: '/templates/doe/', gumroad: 'rusN6tG2fwT6JE_JZMEZIA==' },
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/', gumroad: '6skYhUNcKgwFwua1a56TVw==' },
-  CND: { nom: 'Suivi des appels d\'offres et candidatures', url: '/templates/appels-offres/', gumroad: 'q9_HDtnCNGmEe4PrNEOQyA==' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/', gumroad: 'iOZ0cB8ONCrvvkxMdbL7BQ==' },
-  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
+  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/', gumroad: 'NgehMPonwFhDQl_wIgF8XA==' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },
@@ -93,11 +105,14 @@ export const PRODUITS = {
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/', gumroad: 'aGMrUCFVZ9yzLWfaNIWQ1w==' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/', gumroad: 'uJxPWSYtiXp3nixYfudDoQ==' },
   RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
-  ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/' },
+  ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/', gumroad: 'qdpoGVR4hsFttsxDiKTSyw==' },
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/', gumroad: '-yAS1RKHFCUmacHWd-lOAw==' },
-  CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/' },
-  RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/' },
-  CAN: { nom: 'Candidatures études, stages, alternance', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
+  CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/', gumroad: 'MCs3LoKvVl7DtQhtn_dWTA==' },
+  RVH: { nom: 'Revue hebdomadaire et journal de bord', url: '/templates/revue-hebdo/', gumroad: '4avh-xwvvFj0eRmC4rqDcg==' },
+  // Suivi de candidatures : Candidatures études, stages, alternance et Suivi des appels d'offres et candidatures (CND)
+  // fusionnés le 22/11/2026 (rationalisation F3). CND retiré : aucune vente, aucun code offert ;
+  // /templates/appels-offres/ redirigé ici (netlify.toml).
+  CAN: { nom: 'Suivi de candidatures', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
   SBV: { nom: 'Subventions', url: '/templates/subventions/' },
   BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
   MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/', gumroad: '-JA7LGCBFecmAERfqUDnZQ==' },
@@ -107,9 +122,8 @@ export const PRODUITS = {
   PRG: { nom: 'Progression pédagogique', url: '/templates/progression/' },
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
-  CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/' },
-  CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/' },
-  SMN: { nom: 'Séminaire / offsite', url: '/templates/seminaire/' },
+  CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/', gumroad: 'renWMolXr2qZZPKpWtlnnA==' },
+  CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
@@ -143,8 +157,9 @@ export function estCodeAdmin(secret, saisie) {
   return n.length === attendu.length && timingSafeEqual(Buffer.from(n), Buffer.from(attendu));
 }
 // Code interne personnel de l'administrateur pour un template : mêmes données sur tous ses appareils.
+export const idAdminProduit = (secret, produit) => base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
 export function codeAdminProduit(secret, produit) {
-  const id = base32(createHmac('sha256', secret).update(`admin-perso:${produit}`).digest().subarray(0, 5));
+  const id = idAdminProduit(secret, produit);
   return formater(produit, id, signature(secret, produit, id));
 }
 
@@ -301,10 +316,11 @@ export async function verifierLicenceGumroad(produitGumroad, licence, fetchImpl 
 // Code sur mesure : SMP-<préfixes accolés>-AAAA-AAAA-SSSS-SSSS ; la signature couvre la composition.
 // Chaque template du pack reçoit un code de template déterministe (codePackProduit) : mêmes données
 // d'un appareil à l'autre, et les templates n'ont rien à savoir des packs.
-// Option « Pack évolutif » : portée par la signature (contexte pack+ au lieu de pack).
+// Les codes « pack+ » générés avant le 23/11/2026 (ancienne option « Pack évolutif ») restent valides et ouvrent,
+// comme les autres, tout le pack.
 const signerPack = (secret, pack, compo, id, option = false) => signature(secret, compo ? `${pack}:${compo}` : `${option ? 'pack+' : 'pack'}:${pack}`, id);
 
-export function genererCodePack(secret, pack, composition = [], { option = false } = {}) {
+export function genererCodePack(secret, pack, composition = []) {
   if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
   const id = base32(randomBytes(5));
   if (pack === SUR_MESURE) {
@@ -314,7 +330,7 @@ export function genererCodePack(secret, pack, composition = [], { option = false
     return `${SUR_MESURE}-${compo.join('')}-${id.slice(0, 4)}-${id.slice(4)}-${sig.slice(0, 4)}-${sig.slice(4)}`;
   }
   if (!PACKS[pack]) throw new Error(`Pack inconnu : ${pack}`);
-  return formater(pack, id, signerPack(secret, pack, '', id, option));
+  return formater(pack, id, signerPack(secret, pack, '', id));
 }
 
 // Code de pack déterministe associé à une clé Gumroad de pack.
@@ -337,11 +353,10 @@ export function verifierCodePack(secret, saisie, revoques = []) {
   }
   const id = reste.slice(0, 8), sig = reste.slice(8);
   const egal = (option) => timingSafeEqual(Buffer.from(sig), Buffer.from(signerPack(secret, pack, compo, id, option)));
-  const option = pack !== SUR_MESURE && egal(true);
-  if (!option && !egal(false)) return null;
+  if (!egal(false) && !(pack !== SUR_MESURE && egal(true))) return null;
   if (revoques.map(normaliser).includes(id)) return null;
-  const produits = pack === SUR_MESURE ? compo.match(/.{3}/g).filter((p) => PRODUITS[p]) : produitsAccessibles(pack, { option }, PRODUITS);
-  return { pack, id, option, produits };
+  const produits = pack === SUR_MESURE ? compo.match(/.{3}/g).filter((p) => PRODUITS[p]) : produitsAccessibles(pack, {}, PRODUITS);
+  return { pack, id, produits };
 }
 
 // Code de pack sur mesure déterministe associé à une clé Gumroad du produit « Pack sur mesure ».
@@ -361,7 +376,7 @@ function reponsePack(secret, acces, code) {
   const nom = acces.pack === SUR_MESURE ? 'Pack sur mesure' : PACKS[acces.pack].nom;
   const slug = acces.pack === SUR_MESURE ? 'sur-mesure' : PACKS[acces.pack].slug;
   const templates = acces.produits.map((p) => ({ produit: p, nom: PRODUITS[p].nom, url: PRODUITS[p].url, code: codePackProduit(secret, acces.pack, acces.id, p) }));
-  return json(200, { ok: true, pack: acces.pack, slug, nom, option: Boolean(acces.option), code, templates });
+  return json(200, { ok: true, pack: acces.pack, slug, nom, code, templates });
 }
 
 // Renvoie { produit, id } si le code est valide, sinon null.
@@ -378,7 +393,7 @@ export function verifierCode(secret, saisie, revoques = []) {
   return { produit, id };
 }
 
-function cleDonnees(secret, produit, id) {
+export function cleDonnees(secret, produit, id) {
   return `${produit}/${createHmac('sha256', secret).update(`donnees:${produit}:${id}`).digest('hex').slice(0, 32)}`;
 }
 
@@ -419,12 +434,13 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE]].filter(([, p]) => p.gumroad);
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES)].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
     if (trouve >= 0) {
-      const [cle] = candidats[trouve];
+      let [cle] = candidats[trouve];
+      if (FUSIONNES[cle]) cle = FUSIONNES[cle].vers; // licence d'un template fusionné : ouvre celui qui l'a absorbé
       achatVerifie = reponses[trouve].value.achat || {};
       if (cle === SUR_MESURE) {
         // Pack sur mesure : composition lue dans l'achat, montant payé contrôlé contre le barème.
@@ -436,14 +452,12 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
         }
         code = codeSurMesureDepuisLicence(secret, code, compo);
       } else if (PACKS[cle]) {
-        // Pack Gumroad : option lue dans la version achetée, date d'achat pour les templates ajoutés depuis.
+        // Pack Gumroad : tout le pack est ouvert, templates ajoutés après l'achat compris.
         // La clé Gumroad elle-même est renvoyée comme code : l'espace la revérifie à chaque ouverture.
-        const achat = reponses[trouve].value.achat || {};
-        const option = /volutif/i.test(String(achat.variants || ''));
         const acces = verifierCodePack(secret, codePackDepuisLicence(secret, cle, code), revoques);
         if (!acces) return json(401, { erreur: 'Clé de licence inconnue.' });
         await reporterPack(acces);
-        return reponsePack(secret, { ...acces, option, produits: produitsAccessibles(cle, { option, date: achat.sale_timestamp }, PRODUITS) }, code.trim().toUpperCase());
+        return reponsePack(secret, acces, code.trim().toUpperCase());
       } else code = codeDepuisLicence(secret, cle, code);
     }
     else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {

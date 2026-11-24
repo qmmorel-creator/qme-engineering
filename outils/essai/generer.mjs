@@ -6,11 +6,11 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { PRODUITS_ESSAI, ficheEssai } from '../../netlify/lib/essais.mjs';
-import { TEMPLATES } from '../packs/donnees.mjs';
+import { TEMPLATES, pourPartie } from '../packs/donnees.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V_CSS = '2026112004';
+const V_CSS = '2026112401';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const euros = (c) => `${(c / 100).toLocaleString('fr-FR', { minimumFractionDigits: c % 100 ? 2 : 0 })} €`;
 
@@ -45,9 +45,10 @@ const tete = `<!doctype html>
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/" aria-current="page">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -69,7 +70,7 @@ const pied = `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112004" defer></script>
+<script src="/assets/site.js?v=2026112401" defer></script>
 <script src="/assets/essai-page.js?v=${V_CSS}" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
@@ -79,7 +80,7 @@ const pied = `</main>
 export function pageEssai() {
   const fiches = PRODUITS_ESSAI.map(ficheEssai).sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
   const groupe = (pour, titre) => {
-    const liste = fiches.filter((f) => TEMPLATES[f.produit].pour === pour);
+    const liste = fiches.filter((f) => pourPartie(TEMPLATES[f.produit], pour)); // un template des deux parties figure dans les deux groupes
     return liste.length ? `        <optgroup label="${titre}">\n${liste.map((f) => `          <option value="${f.slug}" data-prix="${f.prix}">${esc(f.nom)} · ${euros(f.prix)}</option>`).join('\n')}\n        </optgroup>` : '';
   };
   const options = [groupe('perso', 'Vie personnelle'), groupe('pro', 'Professionnel')].filter(Boolean).join('\n');

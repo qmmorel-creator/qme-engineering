@@ -507,7 +507,7 @@
     const depuisUrl = location.hash.slice(1);
     if (ONGLETS.some(([id]) => id === depuisUrl) || depuisUrl === 'revue') vue = depuisUrl;
     $('#racine').innerHTML = `
-      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><a class="bientot-demo" href="/catalogue/suivi-chantier/"><strong>Bientôt en vente</strong><span>Être prévenu de la sortie</span></a><span>Opération fictive, gardée sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
+      ${session.demo ? '<div class="bandeau-demo"><div><b>Mode démo</b><span>Opération fictive, gardée sur cet appareil uniquement.</span><button data-action="demo-reinit">Recommencer la démo</button><button data-action="deconnexion">J\'ai un code d\'accès</button></div></div>' : ''}
       <header class="barre"><div class="barre-int">
         <span class="marque">${MARQUE}</span>
         <span class="titre-produit">Suivi de<br>chantier</span>

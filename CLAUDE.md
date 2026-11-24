@@ -7,6 +7,52 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Signature graphique dans tous les mails (décision du 22/11/2026)
+
+- **Tout e-mail rédigé pour Quentin** (brouillon Gmail ou envoi) porte sa signature graphique « Bandeau » dans la version
+  HTML, comme les mails automatiques du site : `node docs/templates/communication/signature/brouillon-gmail.mjs --json`
+  (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
+  `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
+
+## Copie cachée des e-mails automatiques (décision du 24/11/2026)
+
+- **Toute séquence d'e-mails envoyée automatiquement par le site via OVH** (essai, achat, accompagnement après achat,
+  toute séquence future) met Quentin en copie cachée sur son adresse pro (`quentin.morel@qm-engineering.fr`) : c'est le
+  comportement par défaut de `netlify/lib/mail.mjs`. Seules exceptions (`copieCachee: false`) : codes et liens de
+  connexion, notifications adressées à Quentin, annonces en nombre. Où voir ces envois :
+  `docs/templates/communication/DELIVRABILITE.md`.
+
+## Prospection : mention d'opposition (règle absolue)
+
+- **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
+  d'abord que l'adresse et son domaine ne sont pas sur la liste d'opposition (`GET /api/compte/opposition`), puis
+  terminer **toujours** par la mention « Ne plus recevoir les informations » avec le lien
+  `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse>` (ou « répondez stop »). Une réponse « stop » ou
+  hostile est inscrite le jour même sur la liste d'opposition. Sans exception : `docs/templates/communication/REGLES-PROSPECTION.md`.
+- **Signature graphique obligatoire dans tout e-mail de prospection** (décision du 23/11/2026) : sur mesure, affiliation
+  avec un influenceur ou une agence d'influenceurs, partenariat, relance, réponse à un prospect. Un brouillon ou un envoi
+  sans la signature « Bandeau » (version HTML) ne part pas. Procédure : `docs/templates/communication/signature/README.md`.
+
+## Suivi des prospects, des clients et de l'affiliation : Nexora Optim › QME (décision du 24/11/2026)
+
+- **Source unique** : l'onglet **QME de Nexora Optim** (`/qme`), lu et écrit par le MCP Nexora : `get_qme`
+  (`entity: "summary"` : relances dues, balle chez QME, prospects sérieux et tièdes), `list_qme` (filtres, pagination),
+  `mutate_qme` (étape, relance, balle, prochaine action, échanges datés, clients, devis `QME-AAAA-NNN`, contrats,
+  factures, créateurs et pilotage de la file d'affiliation). À lire avant toute relance, devis, réponse ou nouveau mail
+  à un prospect ; à mettre à jour le jour même par la session qui traite un échange. Une relance = une tâche Nexora
+  (`create_task`, `optim: {qme: {type, id}}`). Avant de conclure qu'un prospect attend une réponse, chercher
+  `to:<adresse>` dans tous les fils Gmail.
+- `docs/prospection/suivi-prospects.md`, `journal-refus.md` et le Sheet « QME · Affiliation · file d'envoi » sont des
+  **archives** (état au 24/11/2026, migré dans Nexora) : ne plus les modifier.
+- La **liste d'opposition du site** reste la référence des désinscriptions (`REGLES-PROSPECTION.md`) : une réponse
+  « stop » ou hostile y est inscrite le jour même, ET le prospect ou créateur passe à l'étape `oppose` dans Nexora.
+- Ventes, audience, essais et plannings restent dans leurs sources (Gumroad, site, Sheets) : Nexora les lit en direct
+  (`get_qme_dashboard`), sans copie. Référence : `docs/QME.md` du dépôt nexora.
+- **Un projet Nexora par prospect** (décision du 24/11/2026), dans le dossier « QM Engineering ». À sa création, il
+  reçoit toujours une tâche **« État global du prospect »**, dont le statut est l'un des six statuts réservés aux
+  projets prospects : Prospect, Discussion, Offre envoyée, Négociation, Refus, Signé. Ce statut suit chaque échange,
+  en même temps que la fiche QME du prospect. Procédure et identifiants : `docs/prospection/suivi-prospects.md`, § Nexora.
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans

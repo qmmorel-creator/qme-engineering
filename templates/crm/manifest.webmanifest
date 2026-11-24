@@ -1,7 +1,7 @@
 {
-  "name": "CRM freelance · QME",
+  "name": "CRM et prospection · QME",
   "short_name": "CRM",
-  "description": "Prospects, clients, relances et suivi des factures.",
+  "description": "Prospects, clients, cadences de relance, scripts, pipeline et suivi des factures.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

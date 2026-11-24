@@ -1,0 +1,52 @@
+// Templates fusionnés : une licence Gumroad de l'ancien produit ouvre le template qui l'a absorbé.
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { traiter, FUSIONNES, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
+
+const SECRET = 'x'.repeat(40);
+const memoire = () => { const m = new Map(); return { get: async (c) => m.get(c) ?? null, set: async (c, v) => { m.set(c, v); } }; };
+
+test('chaque template fusionné pointe vers un template existant, et n’est plus vendu sur le site', () => {
+  for (const [k, f] of Object.entries(FUSIONNES)) {
+    assert.ok(PRODUITS[f.vers], `${k} → ${f.vers}`);
+    assert.ok(!PRODUITS[k], `${k} ne doit plus être dans PRODUITS`);
+    assert.match(f.gumroad, /==$/);
+  }
+});
+
+test('licence du Pipeline de prospection : ouvre CRM et prospection, avec un code stable', async () => {
+  const LICENCE = 'ABCDEF01-23456789-ABCDEF01-2345678A';
+  const verifierLicence = async (gumroad) => (gumroad === FUSIONNES.PRS.gumroad ? { ok: true, achat: { email: '' } } : { ok: false, raison: 'inconnue' });
+  const stockage = memoire();
+  const connexion = async () => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: LICENCE }) }), { secret: SECRET, stockage, verifierLicence })).json();
+  const a = await connexion(), b = await connexion();
+  assert.equal(a.produit, 'CRM');
+  assert.equal(a.url, PRODUITS.CRM.url);
+  assert.equal(a.jeton, b.jeton);
+});
+
+test('licence du Pilotage de parcs multi-sites : ouvre Maintenance préventive (option plusieurs sites)', async () => {
+  const LICENCE = '0123ABCD-0123ABCD-0123ABCD-0123ABCD';
+  const verifierLicence = async (gumroad) => (gumroad === FUSIONNES.PRK.gumroad ? { ok: true, achat: { email: '' } } : { ok: false, raison: 'inconnue' });
+  const stockage = memoire();
+  const connexion = async () => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: LICENCE }) }), { secret: SECRET, stockage, verifierLicence })).json();
+  const a = await connexion(), b = await connexion();
+  assert.equal(FUSIONNES.PRK.vers, 'GMA');
+  assert.equal(a.produit, 'GMA');
+  assert.equal(a.url, PRODUITS.GMA.url);
+  assert.equal(a.jeton, b.jeton);
+});
+
+test('licence de l\'Organisateur de mariage : sa fiche Gumroad est celle de l\'Organisateur d\'événement (fusion F1)', async () => {
+  const MRG = 'TmtmeDwq1OsE2Y9gL6rDag==';
+  assert.equal(PRODUITS.EVT.gumroad, MRG);
+  assert.ok(!PRODUITS.MRG && !PRODUITS.SMN && !FUSIONNES.MRG && !FUSIONNES.SMN, 'MRG et SMN retirés, sans entrée FUSIONNES');
+  const LICENCE = 'AAAA1111-BBBB2222-CCCC3333-DDDD4444';
+  const verifierLicence = async (gumroad) => (gumroad === MRG ? { ok: true, achat: { email: '' } } : { ok: false, raison: 'inconnue' });
+  const stockage = memoire();
+  const connexion = async () => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: LICENCE }) }), { secret: SECRET, stockage, verifierLicence })).json();
+  const a = await connexion(), b = await connexion();
+  assert.equal(a.produit, 'EVT');
+  assert.equal(a.url, '/templates/evenementiel/');
+  assert.equal(a.jeton, b.jeton);
+});

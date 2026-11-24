@@ -1,4 +1,6 @@
-// Base intégrée du CRM freelance : étapes de vente, prochaines actions types, listes de saisie.
+// Base intégrée de « CRM et prospection » : étapes de vente, prochaines actions types, canaux, cadences de relance,
+// scripts de messages, listes de saisie. Cadences et scripts sont copiés dans les données de l'utilisateur au premier
+// lancement : il peut les modifier sans toucher à cette base.
 // Aucun taux de TVA ni mention légale de facture : saisis par l'utilisateur.
 // Repères réglementaires datés et sourcés (à revérifier chaque année).
 globalThis.BASE = {
@@ -9,22 +11,30 @@ globalThis.BASE = {
     { id: 'encre', hex: '#141414', nom: 'Noir' },
     { id: 'vert', hex: '#2E7D4F', nom: 'Vert' },
     { id: 'gris', hex: '#8A857B', nom: 'Gris' },
+    { id: 'orange', hex: '#E8702A', nom: 'Orange' },
   ],
 
-  // Étapes de vente, dans l'ordre. ouverte : l'affaire est encore à gagner.
+  // Étapes de vente, dans l'ordre (prospection puis vente). ouverte : l'affaire est encore à gagner.
+  // action : prochaine action type proposée à l'entrée de l'étape. cadence : 'garder' = la cadence de relance
+  // en cours continue ; un identifiant = cette cadence démarre ; absent = la cadence s'arrête.
+  // hors : étape hors entonnoir (Perdu). Anciennes étapes du CRM : piste → cible, qualifie → rdv (voir regles.js).
   etapes: [
-    { id: 'piste', nom: 'Piste', couleur: 'gris', ouverte: true, action: 'premier-contact',
-      detail: 'Contact identifié, pas encore d\'échange sur un besoin.' },
-    { id: 'qualifie', nom: 'Qualifié', couleur: 'jaune', ouverte: true, action: 'decouverte',
-      detail: 'Besoin, budget et délai connus : il vaut la peine de faire une proposition.' },
-    { id: 'proposition', nom: 'Proposition envoyée', couleur: 'bleu', ouverte: true, action: 'relance-devis',
+    { id: 'cible', nom: 'À contacter', court: 'À contacter', couleur: 'gris', ouverte: true, action: 'premier-contact', cadence: 'garder',
+      detail: 'Contact identifié, aucun message encore envoyé.' },
+    { id: 'contacte', nom: 'Contacté', court: 'Contacté', couleur: 'bleu', ouverte: true, action: 'relance-silence', cadence: 'garder',
+      detail: 'Au moins un message envoyé, pas encore de réponse.' },
+    { id: 'echange', nom: 'En échange', court: 'Échange', couleur: 'jaune', ouverte: true, action: 'decouverte',
+      detail: 'Le contact a répondu : la conversation est engagée.' },
+    { id: 'rdv', nom: 'Rendez-vous', court: 'RDV', couleur: 'orange', ouverte: true, action: 'proposition',
+      detail: 'Rendez-vous fixé ou tenu : besoin, budget et délai se précisent.' },
+    { id: 'proposition', nom: 'Proposition envoyée', court: 'Proposition', couleur: 'rouge', ouverte: true, action: 'relance-devis', cadence: 'suivi',
       detail: 'Devis ou proposition envoyé, en attente de réponse.' },
-    { id: 'negociation', nom: 'Négociation', couleur: 'rouge', ouverte: true, action: 'point-decision',
+    { id: 'negociation', nom: 'Négociation', court: 'Négociation', couleur: 'encre', ouverte: true, action: 'point-decision',
       detail: 'Le client discute le périmètre, le prix ou le calendrier.' },
-    { id: 'gagne', nom: 'Gagné', couleur: 'vert', ouverte: false, action: 'lancement',
+    { id: 'gagne', nom: 'Gagné', court: 'Gagné', couleur: 'vert', ouverte: false, action: 'lancement',
       detail: 'Accord obtenu : le projet est à réaliser puis à facturer.' },
-    { id: 'perdu', nom: 'Perdu', couleur: 'encre', ouverte: false, action: 'raison-refus',
-      detail: 'Pas retenu ou abandonné : garde le motif pour progresser.' },
+    { id: 'perdu', nom: 'Perdu', court: 'Perdu', couleur: 'gris', ouverte: false, hors: true, action: 'raison-refus',
+      detail: 'Sans suite pour l\'instant : garde le motif pour progresser.' },
   ],
 
   avancements: [
@@ -35,6 +45,8 @@ globalThis.BASE = {
 
   // Prochaines actions types : délai par défaut (jours) et conseil. suite : action proposée une fois faite.
   actions: [
+    { id: 'repondre', nom: 'Donner suite à sa réponse', delai: 1, suite: 'decouverte',
+      conseil: 'Réponds vite et propose un créneau précis plutôt que « quand vous voulez ».' },
     { id: 'premier-contact', nom: 'Premier contact', delai: 0, suite: 'relance-silence',
       conseil: 'Présente-toi en deux phrases, dis pourquoi tu écris à cette personne précisément et pose une seule question.' },
     { id: 'relance-silence', nom: 'Relancer après un message sans réponse', delai: 5, suite: 'recontacter',
@@ -65,6 +77,106 @@ globalThis.BASE = {
       conseil: 'Le besoin a peut-être changé : reprends contact avec une raison concrète.' },
   ],
 
+  // Canaux de contact : canal principal d'un contact et canal de chaque relance d'une cadence.
+  canaux: [
+    { id: 'email', nom: 'E-mail', echange: 'email' },
+    { id: 'reseau', nom: 'Réseaux professionnels', echange: 'message' },
+    { id: 'telephone', nom: 'Téléphone', echange: 'appel' },
+    { id: 'rencontre', nom: 'Rencontre, événement', echange: 'rdv' },
+    { id: 'recommandation', nom: 'Recommandation', echange: 'email' },
+    { id: 'courrier', nom: 'Courrier', echange: 'autre' },
+  ],
+
+  // Délai en jours depuis le message précédent (ou depuis le début de la cadence pour le premier).
+  cadences: [
+    { id: 'premier', nom: 'Premier contact', description: '5 messages sur 4 semaines, en variant les canaux.',
+      relances: [
+        { delai: 0, canal: 'email', script: 'premier-email' },
+        { delai: 3, canal: 'reseau', script: 'premier-reseau' },
+        { delai: 4, canal: 'telephone', script: 'relance-telephone' },
+        { delai: 7, canal: 'email', script: 'relance-utile' },
+        { delai: 14, canal: 'email', script: 'relance-derniere' },
+      ] },
+    { id: 'douce', nom: 'Relation douce', description: 'Cycles longs, recommandation ou rencontre : 4 messages sur 7 semaines.',
+      relances: [
+        { delai: 0, canal: 'email', script: 'premier-rencontre' },
+        { delai: 7, canal: 'email', script: 'relance-premiere' },
+        { delai: 14, canal: 'reseau', script: 'relance-utile' },
+        { delai: 30, canal: 'email', script: 'relance-derniere' },
+      ] },
+    { id: 'suivi', nom: 'Suivi de proposition', description: 'Après l’envoi d’une proposition : relances à J+3, J+7, J+14 et J+28.',
+      relances: [
+        { delai: 3, canal: 'email', script: 'proposition-relance' },
+        { delai: 4, canal: 'telephone', script: 'proposition-appel' },
+        { delai: 7, canal: 'email', script: 'proposition-precision' },
+        { delai: 14, canal: 'email', script: 'relance-derniere' },
+      ] },
+  ],
+
+  variables: ['prénom', 'nom', 'organisation', 'fonction', 'mon prénom', 'mon activité'],
+
+  // Scripts : modèles sobres à personnaliser. Aucune promesse chiffrée.
+  scripts: [
+    { id: 'premier-email', etape: 'cible', canal: 'email', titre: 'Premier contact par e-mail',
+      objet: '{organisation} : une question rapide',
+      texte: 'Bonjour {prénom},\n\nJe suis {mon prénom} : {mon activité}.\n\nJe vous écris parce que votre rôle de {fonction} chez {organisation} me laisse penser que le sujet peut vous concerner. Est-ce une question que vous traitez en ce moment, ou plutôt un sujet pour plus tard ?\n\nSi ce n’est pas le bon interlocuteur, une simple réponse suffit et je ne vous relancerai pas.\n\nBonne journée,\n{mon prénom}' },
+    { id: 'premier-reseau', etape: 'cible', canal: 'reseau', titre: 'Premier message sur un réseau professionnel',
+      objet: '',
+      texte: 'Bonjour {prénom}, je travaille avec des organisations comme {organisation} : {mon activité}. J’aimerais avoir votre regard de {fonction} sur ce sujet. Seriez-vous d’accord pour en parler quelques minutes ?' },
+    { id: 'premier-telephone', etape: 'cible', canal: 'telephone', titre: 'Premier appel (trame)',
+      objet: '',
+      texte: 'Bonjour {prénom}, {mon prénom} à l’appareil. Je vous appelle parce que {mon activité}.\nAvez-vous deux minutes, ou préférez-vous que je rappelle à un meilleur moment ?\n\n— Question d’ouverture : comment gérez-vous ce sujet aujourd’hui chez {organisation} ?\n— Si intérêt : proposer un rendez-vous de 20 minutes à une date précise.\n— Si refus : remercier, demander s’il est d’accord pour recevoir un e-mail récapitulatif.' },
+    { id: 'premier-rencontre', etape: 'cible', canal: 'email', titre: 'Suite à une rencontre',
+      objet: 'Suite à notre échange',
+      texte: 'Bonjour {prénom},\n\nMerci pour notre échange. Comme convenu, je vous écris pour garder le contact : {mon activité}.\n\nSi le sujet revient dans vos priorités chez {organisation}, je serai disponible pour en reparler. Seriez-vous disponible pour un échange de 20 minutes dans les prochaines semaines ?\n\nBien à vous,\n{mon prénom}' },
+    { id: 'premier-recommandation', etape: 'cible', canal: 'email', titre: 'Sur recommandation',
+      objet: 'De la part d’une connaissance commune',
+      texte: 'Bonjour {prénom},\n\nUne personne de votre réseau m’a suggéré de vous contacter (je vous laisse vérifier avec elle). Je suis {mon prénom} : {mon activité}.\n\nJe ne sais pas si le sujet est d’actualité chez {organisation} ; si oui, un premier échange de 20 minutes permettrait de voir s’il y a matière à travailler ensemble.\n\nBien à vous,\n{mon prénom}' },
+    { id: 'relance-premiere', etape: 'contacte', canal: 'email', titre: 'Première relance',
+      objet: 'Re : {organisation}',
+      texte: 'Bonjour {prénom},\n\nJe me permets de remonter mon message, qui a pu se perdre. Le sujet vous concerne-t-il, ou dois-je plutôt m’adresser à quelqu’un d’autre chez {organisation} ?\n\nMerci d’avance,\n{mon prénom}' },
+    { id: 'relance-utile', etape: 'contacte', canal: 'email', titre: 'Relance avec un élément utile',
+      objet: 'Une ressource qui peut vous servir',
+      texte: 'Bonjour {prénom},\n\nSans nouvelles de votre part, je ne voudrais pas insister ; je vous partage simplement [une ressource, une observation ou un exemple concret] qui peut être utile à un(e) {fonction}, que nous travaillions ensemble ou non.\n\nSi le sujet devient prioritaire, je reste disponible.\n\n{mon prénom}' },
+    { id: 'relance-telephone', etape: 'contacte', canal: 'telephone', titre: 'Relance par téléphone (trame)',
+      objet: '',
+      texte: 'Bonjour {prénom}, {mon prénom}. Je vous ai écrit il y a quelques jours au sujet de : {mon activité}.\nJe voulais simplement savoir si le sujet est d’actualité pour {organisation}.\n\n— Si oui : proposer deux créneaux précis.\n— Si non : demander s’il vaut mieux revenir vers lui plus tard, et quand.\n— Messagerie : message de 20 secondes maximum, nom et numéro dits deux fois.' },
+    { id: 'relance-derniere', etape: 'contacte', canal: 'email', titre: 'Dernier message (clôture polie)',
+      objet: 'Je clos mon dossier',
+      texte: 'Bonjour {prénom},\n\nJe n’ai pas eu de retour et je comprends que le moment ne soit pas le bon. Je clos donc ce sujet de mon côté et ne vous relancerai plus.\n\nSi la question revient chez {organisation}, il vous suffira de répondre à ce message.\n\nBelle continuation,\n{mon prénom}' },
+    { id: 'echange-rdv', etape: 'echange', canal: 'email', titre: 'Réponse positive : proposer un rendez-vous',
+      objet: 'Proposition de créneau',
+      texte: 'Bonjour {prénom},\n\nMerci pour votre réponse. Je vous propose un échange de 30 minutes pour comprendre votre contexte chez {organisation} :\n— [jour] à [heure]\n— [jour] à [heure]\n\nSi aucun ne convient, indiquez-moi vos disponibilités.\n\nÀ bientôt,\n{mon prénom}' },
+    { id: 'echange-objection', etape: 'echange', canal: 'email', titre: 'Réponse « pas le moment »',
+      objet: 'Bien noté',
+      texte: 'Bonjour {prénom},\n\nMerci d’avoir pris le temps de répondre, c’est bien noté. Puis-je revenir vers vous dans quelques mois, ou préférez-vous me recontacter vous-même le moment venu ?\n\nBonne continuation,\n{mon prénom}' },
+    { id: 'rdv-confirmation', etape: 'rdv', canal: 'email', titre: 'Confirmation de rendez-vous',
+      objet: 'Confirmation : notre échange du [date]',
+      texte: 'Bonjour {prénom},\n\nJe vous confirme notre rendez-vous du [date] à [heure] ([lieu ou lien de visio]).\n\nPour en profiter au mieux, voici les points que je vous propose d’aborder :\n— votre situation actuelle ;\n— ce que vous aimeriez améliorer ;\n— la suite possible.\n\nÀ [date],\n{mon prénom}' },
+    { id: 'rdv-compte-rendu', etape: 'rdv', canal: 'email', titre: 'Compte rendu après le rendez-vous',
+      objet: 'Suite à notre rendez-vous',
+      texte: 'Bonjour {prénom},\n\nMerci pour cet échange. Ce que je retiens :\n— [besoin 1]\n— [besoin 2]\n— [contrainte : délai, budget, décideurs]\n\nProchaine étape convenue : [action] d’ici le [date].\n\nN’hésitez pas à corriger ce résumé si j’ai mal compris un point.\n\n{mon prénom}' },
+    { id: 'proposition-envoi', etape: 'proposition', canal: 'email', titre: 'Envoi de la proposition',
+      objet: 'Proposition pour {organisation}',
+      texte: 'Bonjour {prénom},\n\nComme convenu, vous trouverez ma proposition en pièce jointe. Elle reprend les points de notre échange : [rappel en une phrase].\n\nJe vous propose d’en parler [jour] pour répondre à vos questions et l’ajuster si besoin.\n\nBien à vous,\n{mon prénom}' },
+    { id: 'proposition-relance', etape: 'proposition', canal: 'email', titre: 'Relance de proposition',
+      objet: 'Re : Proposition pour {organisation}',
+      texte: 'Bonjour {prénom},\n\nAvez-vous pu parcourir ma proposition ? Je peux préciser un point ou l’adapter si quelque chose ne convient pas : le périmètre, le calendrier ou le format.\n\n{mon prénom}' },
+    { id: 'proposition-appel', etape: 'proposition', canal: 'telephone', titre: 'Appel de suivi de proposition (trame)',
+      objet: '',
+      texte: 'Bonjour {prénom}, {mon prénom}. Je vous appelle au sujet de la proposition envoyée à {organisation}.\n\n— Qu’en pensez-vous à ce stade ?\n— Y a-t-il un point qui bloque ou qui manque ?\n— Qui d’autre participe à la décision, et pour quand est-elle prévue ?\n— Convenir d’une date pour faire le point.' },
+    { id: 'proposition-precision', etape: 'proposition', canal: 'email', titre: 'Relance avec une précision',
+      objet: 'Une précision sur ma proposition',
+      texte: 'Bonjour {prénom},\n\nEn relisant ma proposition, je voulais ajouter une précision qui peut vous aider à décider : [précision concrète : option, phasage, exemple].\n\nSi le calendrier a changé de votre côté, dites-le-moi simplement : je m’adapterai.\n\n{mon prénom}' },
+    { id: 'perdu-remerciement', etape: 'perdu', canal: 'email', titre: 'Après un refus : remercier',
+      objet: 'Merci pour votre retour',
+      texte: 'Bonjour {prénom},\n\nMerci pour votre réponse, même si elle n’est pas celle que j’espérais. Si vous en avez le temps, la raison principale de votre choix m’aiderait à progresser.\n\nJe vous souhaite une belle réussite pour la suite,\n{mon prénom}' },
+    { id: 'gagne-demarrage', etape: 'gagne', canal: 'email', titre: 'Premier contrat : remercier et lancer',
+      objet: 'Merci, et prochaines étapes',
+      texte: 'Bonjour {prénom},\n\nMerci pour votre confiance. Pour bien démarrer :\n— [première action] le [date] ;\n— [document ou information à recevoir] ;\n— un point d’étape le [date].\n\nJe reste joignable pour toute question,\n{mon prénom}' },
+  ],
+
+
   typesEchange: [
     { id: 'appel', nom: 'Appel' },
     { id: 'email', nom: 'E-mail' },
@@ -74,8 +186,8 @@ globalThis.BASE = {
     { id: 'autre', nom: 'Autre' },
   ],
 
-  origines: ['Recommandation', 'Réseau professionnel', 'Site internet', 'Salon ou événement', 'Ancien client', 'Plateforme de mise en relation', 'Prospection directe', 'Autre'],
-  motifsPerte: ['Prix', 'Délai', 'Autre prestataire retenu', 'Projet abandonné ou reporté', 'Pas de réponse', 'Autre'],
+  origines: ['Recommandation', 'Réseau professionnel', 'Site internet', 'Salon ou événement', 'Annuaire', 'Ancien client', 'Plateforme de mise en relation', 'Prospection directe', 'Autre'],
+  motifsPerte: ['Pas de réponse', 'Pas de besoin', 'Pas le moment', 'Prix', 'Délai', 'Autre prestataire retenu', 'Projet abandonné ou reporté', 'Opposition à la prospection', 'Autre'],
   modesPaiement: ['Virement', 'Chèque', 'Carte bancaire', 'Espèces', 'Autre'],
 
   // Repères réglementaires : affichés dans l'aide avec leur source. Seul delaiPaiement.defaut sert au calcul,
@@ -92,6 +204,16 @@ globalThis.BASE = {
       texte: 'Toutes les entreprises doivent pouvoir recevoir des factures électroniques depuis le 1er septembre 2026. Les PME et micro-entreprises devront les émettre au format électronique au plus tard le 1er septembre 2027, via une plateforme agréée.',
       source: 'impots.gouv.fr (« Je découvre la facturation électronique »)',
       url: 'https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique',
+    },
+    prospection: {
+      texte: 'Prospection de professionnels par e-mail : possible sans consentement préalable si l\'objet du message est en rapport avec la profession de la personne. Elle doit être informée de l\'usage de ses coordonnées, pouvoir s\'y opposer simplement, et chaque message doit identifier l\'émetteur. Les adresses génériques (contact@…) relèvent de la personne morale.',
+      source: 'cnil.fr (« La prospection commerciale par courrier électronique, SMS-MMS et automate d\'appel », mise à jour le 10/06/2026)',
+      url: 'https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique-sms-mms-et-automate-dappel',
+    },
+    opposition: {
+      texte: 'L\'opposition à la prospection n\'a pas à être justifiée. La CNIL recommande une liste d\'opposition (« repoussoir ») limitée aux données nécessaires, conservée au moins 3 ans.',
+      source: 'cnil.fr (« Comment utiliser une liste repoussoir pour respecter l\'opposition à la prospection ? », mise à jour le 10/06/2026)',
+      url: 'https://www.cnil.fr/fr/comment-utiliser-une-liste-repoussoir-pour-respecter-lopposition-la-prospection',
     },
     conservation: {
       ans: 3,

@@ -2,7 +2,7 @@
 
 Décision de Quentin du 18/11/2026 : **14 jours d'essai gratuit, sans carte bancaire**, pour chaque template vie
 personnelle en vente, **étendue aux templates professionnels le 21/11/2026** (`POUR_ESSAI` dans `netlify/lib/essais.mjs`) ; ensuite **30 jours en lecture seule**, puis effacement. À l'achat, les données de l'essai
-sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quentin**.
+sont reprises dans l'espace acheté. E-mails envoyés **depuis `quentin.morel@qm-engineering.fr`** (SMTP d'OVH depuis le 23/11/2026).
 
 ## Parcours du client
 
@@ -31,7 +31,7 @@ sont reprises dans l'espace acheté. E-mails envoyés **depuis la boîte de Quen
 | Effacement − 7 jours | Vos données d'essai seront effacées le … | Dernier e-mail : acheter ou exporter |
 | Nouvelle demande, même adresse | Votre code d'essai : <template> | Code renvoyé (jamais affiché à l'écran) |
 
-Aucun e-mail après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
+Aucun e-mail d'essai après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
 essai. Signature graphique (variante C, 21/11/2026) dans la version HTML : `netlify/lib/signature.mjs`,
 voir `docs/templates/communication/signature/`. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
 template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
@@ -45,30 +45,45 @@ template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depui
 |---|---|---|
 | Achat sans essai (ou essai déjà effacé, ou autre adresse) | Merci pour votre achat : <produit> | Connexion avec la clé, premier pas du template (ou liste des templates du pack) |
 | Achat avec un essai de la même adresse | Merci : « <template> » est à vous | Saisir la clé dans « J'ai acheté » : données reprises ; date limite si l'essai est terminé ; « qu'est-ce qui vous a décidé ? » |
+| **Achat + 3 jours** (rattrapage jusqu'à + 7), template (24/11/2026) | <template> : tout se passe bien ? | Deux fonctions peu visibles et l'aide au réglage (fiche de prise en main), connexion sur un autre appareil, demande de retour |
+| **Achat + 3 jours**, pack (24/11/2026) | Par où continuer avec le <pack> | Ses templates en une ligne chacun, par lequel commencer et son premier pas, un seul compte pour tout |
 
 L'essai est marqué `paye` : **la séquence d'essai s'arrête dès le paiement** (avant, elle ne s'arrêtait qu'à la
 saisie de la clé). Les données restent reprises à la saisie de la clé. Une vente n'est traitée qu'une fois.
-Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai ».
+Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai », avec la date prévue de l'accompagnement.
+
+**Accompagnement après achat** (`contenuMailSuivi` et `tournerSuivisAchat` dans `netlify/lib/achats.mjs`) : au ping, la
+vente est mise en file (`suivi-achat/<empreinte de la clé>` : adresse, prénom, produit, date d'achat, date prévue) ; la
+tâche de 9 h 10 l'envoie à J+3 (rattrapage jusqu'à J+7, nouvel essai le lendemain en cas d'échec), un seul e-mail par
+achat, rien pour une adresse sur la liste d'opposition. L'entrée est gardée 30 jours après l'envoi pour `/admin/suivi/`,
+puis effacée.
 
 **Réglage Gumroad (une fois, par Quentin)** : Gumroad → Settings → Advanced → Ping endpoint
 = `https://qm-engineering.fr/api/achat`. Sans ce réglage, aucun e-mail d'achat ne part.
 
 ### Configuration de l'envoi (une fois, par Quentin)
 
-Les e-mails partent en SMTP authentifié depuis le Gmail de Quentin, avec l'adresse « Envoyer en tant que »
-`quentin.morel@qm-engineering.fr` (déjà utilisée pour la prospection). Ils apparaissent dans « Messages envoyés » et
-les réponses arrivent dans la boîte.
+Depuis le 23/11/2026, les e-mails partent en SMTP authentifié par **OVH** (`ssl0.ovh.net`, port 465), depuis la boîte
+`quentin.morel@qm-engineering.fr` : SPF, DKIM et DMARC sont alignés sur le domaine (test du 23/11 : trois « pass » chez
+Gmail). Avant, ils partaient du Gmail de Quentin et échouaient au SPF et au DMARC. Ils n'apparaissent pas dans
+« Messages envoyés » de Gmail ; les réponses arrivent sur la boîte OVH, redirigée vers Gmail. **Copie cachée** (24/11/2026) :
+chaque e-mail des séquences (essai, achat, accompagnement) part avec `quentin.morel@qm-engineering.fr` en copie cachée,
+sauf les codes et liens de connexion, les notifications et les annonces en nombre (`netlify/lib/mail.mjs` ; variable
+`ESSAI_COPIE_CACHEE`, « non » pour couper). Détail :
+`docs/templates/communication/DELIVRABILITE.md`.
 
-1. Compte Google → Sécurité → **Validation en deux étapes** activée (prérequis).
-2. Compte Google → Sécurité → **Mots de passe des applications** → créer « QME essai » → copier les 16 caractères.
-3. Netlify → site → Site configuration → Environment variables, ajouter (portée « Functions ») :
-   - `ESSAI_SMTP_UTILISATEUR` : l'adresse Gmail de la boîte ;
-   - `ESSAI_SMTP_MOT_DE_PASSE` : le mot de passe d'application ;
-   - `ESSAI_EXPEDITEUR` : `Quentin Morel <quentin.morel@qm-engineering.fr>`.
-4. Redéployer (ou attendre la prochaine publication) : les variables sont lues au démarrage des fonctions.
+Netlify → site → Project configuration → Environment variables (portée « Functions ») :
+- `ESSAI_SMTP_HOTE` : `ssl0.ovh.net` ; `ESSAI_SMTP_PORT` : `465` (valeurs par défaut du code) ;
+- `ESSAI_SMTP_UTILISATEUR` : `quentin.morel@qm-engineering.fr` ;
+- `ESSAI_SMTP_MOT_DE_PASSE` : le mot de passe de la boîte OVH (le même que dans Gmail, « Envoyer en tant que ») ;
+- `ESSAI_EXPEDITEUR` : le nom affiché puis l'adresse `quentin.morel@qm-engineering.fr` entre chevrons (variable secrète :
+  ne jamais recopier sa valeur exacte dans le dépôt, le scan de secrets de Netlify bloquerait la publication).
 
-Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). Limite Gmail :
-environ 500 envois par jour, large pour ce volume.
+**Redéployer** après tout changement : les fonctions ne lisent les variables qu'au déploiement. Changer le mot de passe
+de la boîte OVH impose de le reporter dans Gmail et dans Netlify, puis de redéployer.
+
+Sans ces variables, l'essai fonctionne mais **aucun e-mail ne part** (le code reste affiché à l'écran). OVH limite le
+nombre d'envois par heure et par compte (de l'ordre de 200 sur MX Plan) : à vérifier avant tout envoi groupé.
 
 ## Suivi des essais par Quentin (19/11/2026)
 
@@ -79,6 +94,13 @@ environ 500 envois par jour, large pour ce volume.
 - **`/admin/essais/`** (code administrateur `ADM-…`) : tous les essais conservés (en cours, terminés, achetés, données reprises
   ou non), jours restants, inscription aux nouveautés ; export CSV. Un essai disparaît à l'effacement de ses données.
   Ces adresses ne servent qu'aux e-mails de l'essai : la prospection passe par `/admin/contacts/`.
+- **`/admin/suivi/`** (même code `ADM-…`, 21/11/2026) : un essai par ligne, puis sa séquence sur une ligne J0 → J+44 :
+  e-mails partis (date et heure enregistrées dans `mails`), à venir (heure de Paris de la tâche de 8 h 10 UTC), en
+  rattrapage ou non envoyés, bifurcation à l'achat (`paye` ou `achete`) ou à l'arrêt des rappels, texte de chaque e-mail.
+  L'API `/api/essai/essais` renvoie pour cela, en plus, `envois` (dates par e-mail), `paye`, `produit` et `prix`
+  (centimes). Lien « Suivi » sur chaque ligne de `/admin/essais/`. Les e-mails d'achat ne sont pas enregistrés dans
+  l'essai : ils n'apparaissent pas sur la ligne. Tableau « Accompagnements après achat » (24/11/2026) : chaque achat
+  des 30 derniers jours, date prévue et date d'envoi de l'accompagnement (champ `accompagnements` de `/api/essai/essais`).
 
 ## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
 
@@ -109,13 +131,14 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
   lien d'achat) ; `PUT` refusé après la fin ; report à la connexion par clé de licence (`reporterEssai`).
 - **Tâche quotidienne** `netlify/functions/essais-quotidien.mjs` (8:10 UTC) : rappels, effacement.
 - **Templates ouverts** : `PRODUITS_ESSAI` = `pour` dans `POUR_ESSAI` (perso et pro), identifiant Gumroad dans `PRODUITS`,
-  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
+  `permalien` dans `outils/packs/donnees.mjs`, prix > 0 (33 perso et 43 pro au 22/11/2026 ; 29 perso et 39 pro au 21/11/2026) (29 au 18/11/2026 ; Secret Santa, gratuit, exclu).
 - **Application** : module commun `assets/essai.js`, chargé avant `app.js` (`data-produit`, `data-slug`). Il ne
   modifie pas le code des templates : il lit les réponses de l'API, affiche le bandeau, bloque les modifications
   (actions permises : liste `PERMIS`), joint le code d'essai à la connexion par clé.
 - **Site** : `node outils/essai/generer.mjs` génère `/essai/` et ajoute l'essai aux pages catalogue (bouton, prix,
   question « Y a-t-il un essai gratuit ? », rappel) ; puis `node outils/seo/donnees-structurees.mjs` et
-  `node outils/sitemap/generer.mjs`.
+  `node outils/sitemap/generer.mjs`. Les pages de pack (`node outils/packs/generer.mjs`) annoncent aussi l'essai sous les boutons
+  d'achat et proposent « Essai gratuit » sur chaque outil (22/11/2026), comme la fiche Gumroad du Pack Étudiant.
 
 ## Vérifier
 
@@ -129,7 +152,7 @@ e-mail : cette case ne doit jamais devenir obligatoire ni être cochée d'avance
 
 ## Mesure (GoatCounter)
 
-Clics `essai-<slug>` (bouton de la page catalogue), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
+Clics `essai-<slug>` (bouton de la page catalogue), `essai-pack-<pack>-<slug>` (carte d'un outil sur une page de pack), `essai-lancer`, événements `essai-cree-<slug>`, achats depuis
 l'application `essai-achat-<slug>` et `essai-achat-ls-<slug>` (fenêtre « Lecture seule »).
 Logigramme : `docs/templates/communication/essai/logigramme-essai.png` (source `logigramme.mjs`).
 Circuit technique (client, Gumroad, site, données, e-mails) : `docs/templates/communication/essai/workflow-essai-achat.png`

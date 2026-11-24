@@ -123,7 +123,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 
 /* Toast */
 .toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:16px;max-width:calc(100% - 24px);background:var(--encre);color:var(--papier);padding:12px 16px;font-size:15px;font-weight:500;box-shadow:0 4px 14px rgba(36,34,31,.08);animation:monte .2s ease-out}
-.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:36px;padding:0 12px;flex:none}
+.toast button{background:none;border:2px solid var(--jaune);color:var(--jaune);font-weight:700;min-height:44px;padding:0 12px;flex:none}
 .toast button:hover{background:var(--jaune);color:var(--encre)}
 @keyframes monte{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -170,7 +170,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 6px;box-decoration-bre
 .infobulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);padding:8px 10px;font-size:13px;line-height:1.45;min-width:170px;max-width:260px;z-index:5;box-shadow:0 4px 14px rgba(36,34,31,.08)}
 .infobulle b{display:block;margin-bottom:2px}
 .tableau-details{margin-top:10px}
-.tableau-details summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
+.tableau-details summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
 .tableau{width:100%;border-collapse:collapse;border:1px solid var(--trait);background:var(--surface);font-size:15px}
 .tableau th,.tableau td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--trait)}
 .tableau th{background:var(--sable);color:var(--encre);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
@@ -450,9 +450,9 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .mini-liste li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--trait);background:var(--surface);border-radius:12px;padding:6px 6px 6px 12px;font-size:14px}
 .mini-liste li:has(> :nth-child(2):last-child){grid-template-columns:minmax(0,1fr) auto}
 .mini-liste li>span{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.btn-suppr{width:36px;height:36px;border:1px solid var(--trait);background:var(--papier);border-radius:10px;font-size:20px;line-height:1;color:var(--texte-2)}
+.btn-suppr{width:44px;height:44px;border:1px solid var(--trait);background:var(--papier);border-radius:10px;font-size:20px;line-height:1;color:var(--texte-2)}
 .btn-suppr:hover{background:var(--rose);color:var(--rose-texte)}
-.champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:40px;display:flex;align-items:center}
+.champs-aide summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
 .champs-aide ul{display:grid;gap:6px;font-size:13px;color:var(--texte-2)}
 .groupe h3 .etiquette{vertical-align:middle;margin-left:6px}
 .feries{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 12px}
@@ -531,7 +531,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .ligne-livre .ligne-info b{display:flex;align-items:center;gap:8px}
 .ligne-droite{gap:6px}
 .deplacer{gap:6px;flex-wrap:nowrap}
-.deplacer .btn-suppr{width:40px;height:40px;font-size:18px}
+.deplacer .btn-suppr{width:44px;height:44px;font-size:18px}
 
 /* Journal */
 .journal{display:grid;gap:18px}
@@ -697,6 +697,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .cartes-rdv{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
 .carte-rdv{border:1px solid var(--trait);background:var(--surface);border-radius:16px;padding:16px 18px;display:grid;gap:12px;align-content:start}
 .carte-rdv.avenir{background:var(--ciel);border-color:transparent}
+.carte-rdv.avenir .cr-bloc h4{color:var(--texte-2)}
 .cr-tete{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .cr-tete h3{font-size:18px;margin-top:2px}
 .cr-bloc h4{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--discret);margin:0 0 4px}
@@ -717,7 +718,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .ligne-ref .ligne-info b{font-weight:600;font-size:15px;line-height:1.45}
 .citation-ex{font-size:13px;color:var(--texte-2);font-weight:600}
 .cases-sections{display:grid;gap:0;max-height:220px;overflow:auto;border:1px solid var(--trait);border-radius:12px;padding:4px 10px}
-.cases-sections .case{min-height:36px;font-size:14px;padding-left:calc(var(--prof) * 18px)}
+.cases-sections .case{min-height:44px;font-size:14px;padding-left:calc(var(--prof) * 18px)}
 .apercu-ref{font-size:14px}
 /* Saisie des mots, jours de travail */
 .saisie-mots{display:grid;gap:6px}
@@ -725,7 +726,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .saisie-mots li.sans-statut{grid-template-columns:minmax(0,1fr) 130px}
 .saisie-mots label{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px;align-items:center;font-size:15px}
 .saisie-mots small{color:var(--discret)}
-.saisie-mots input,.saisie-mots select{width:100%;min-height:42px;border:1px solid var(--trait);border-radius:12px;padding:6px 10px;background:var(--surface)}
+.saisie-mots input,.saisie-mots select{width:100%;min-height:44px;border:1px solid var(--trait);border-radius:12px;padding:6px 10px;background:var(--surface)}
 .jours-travail{display:flex;flex-wrap:wrap;gap:6px}
 .jours-travail label{position:relative}
 .jours-travail input{position:absolute;opacity:0;inset:0}
@@ -785,3 +786,8 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}

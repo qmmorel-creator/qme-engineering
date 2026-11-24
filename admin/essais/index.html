@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#FBF7F1">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
 </head>
 <body>
 <main class="admin-interets">
@@ -31,12 +31,13 @@
     <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
       <button class="btn primary" type="button" id="csv">Télécharger les essais (CSV)</button>
       <button class="btn" type="button" id="maj">Actualiser</button>
+      <a class="btn" href="/admin/suivi/">Suivi des e-mails</a>
       <a class="btn" href="/admin/contacts/">Contacts « Nouveautés »</a>
       <a class="btn" href="/admin/interets/">Intérêts par template</a>
     </div>
     <div class="admin-boite">
       <table class="admin-table">
-        <thead><tr><th>Lancé le</th><th>Template</th><th>Prénom</th><th>E-mail</th><th>Statut</th><th>Reste</th><th>Nouveautés</th></tr></thead>
+        <thead><tr><th>Lancé le</th><th>Template</th><th>Prénom</th><th>E-mail</th><th>Statut</th><th>Reste</th><th>Nouveautés</th><th>E-mails</th></tr></thead>
         <tbody id="lignes"></tbody>
       </table>
     </div>
@@ -62,8 +63,8 @@
       const d = await r.json();
       $('#total').textContent = d.total; $('#encours').textContent = d.enCours; $('#termines').textContent = d.termines; $('#achetes').textContent = d.achetes;
       $('#lignes').innerHTML = d.essais.length
-        ? d.essais.map((e) => `<tr><td>${jour(e.cree)}</td><td><a href="/catalogue/${esc(e.slug)}/">${esc(e.template)}</a></td><td>${esc(e.prenom) || '—'}</td><td>${esc(e.email)}</td><td>${esc(e.statut)}${e.reporte ? ' · données reprises' : ''}</td><td class="n">${e.statut === 'en cours' ? `${e.joursRestants} j` : '—'}</td><td>${e.nouveautes ? 'oui' : 'non'}</td></tr>`).join('')
-        : '<tr><td colspan="7">Aucun essai pour l\'instant.</td></tr>';
+        ? d.essais.map((e) => `<tr><td>${jour(e.cree)}</td><td><a href="/catalogue/${esc(e.slug)}/">${esc(e.template)}</a></td><td>${esc(e.prenom) || '—'}</td><td>${esc(e.email)}</td><td>${esc(e.statut)}${e.reporte ? ' · données reprises' : ''}</td><td class="n">${e.statut === 'en cours' ? `${e.joursRestants} j` : '—'}</td><td>${e.nouveautes ? 'oui' : 'non'}</td><td><a href="/admin/suivi/#${esc(e.id)}">Suivi</a></td></tr>`).join('')
+        : '<tr><td colspan="8">Aucun essai pour l\'instant.</td></tr>';
       $('#resultats').hidden = false; $('#oublier').hidden = false;
       $('#etat').textContent = `Mis à jour à ${new Date().toLocaleTimeString('fr-FR')}. Actualisation automatique toutes les minutes.`;
       clearTimeout(minuterie); minuterie = setTimeout(charger, 60000);

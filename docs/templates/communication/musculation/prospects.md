@@ -1,5 +1,7 @@
 # Prospects · Carnet de musculation et cross-training
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations à démarcher. Aucune donnée personnelle collectée : on cible des fonctions et des
 structures, on écrit à des adresses professionnelles publiques ou via LinkedIn. Les organismes nommés
 existent à notre connaissance ; leur intérêt, leurs règles de partenariat et le bon interlocuteur sont **à

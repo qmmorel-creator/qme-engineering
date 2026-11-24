@@ -4,13 +4,17 @@
 // quand un template passe en vente : le statut « Bientôt » d'un pack se recalcule à partir de PRODUITS).
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { genererParties } from '../parties/generer.mjs';
 import { PRODUITS } from '../../netlify/lib/templates-acces.mjs';
-import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE, OPTION, prixOption } from '../../netlify/lib/packs.mjs';
-import { TEMPLATES, PREVUS, CIBLES, PAGES } from './donnees.mjs';
+import { PACKS, REMISES, prixPack, ACHAT_SUR_MESURE } from '../../netlify/lib/packs.mjs';
+import { TEMPLATES, PREVUS, CIBLES, PAGES, publics, pourPartie, phrasePour } from './donnees.mjs';
 import { avecDonnees } from '../seo/donnees-structurees.mjs';
+import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
+import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
+import { donneesEspace } from '../connexion/generer.mjs';
 
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
-const V = '2026112101';
+const V = '2026112202';
 const GUMROAD = 'https://qmengineering.gumroad.com/l/';
 // Vignettes des templates (480 × 300) : adresse versionnée lue sur les cartes du catalogue templates/index.html,
 // écrite par outils/templates/vignettes.mjs (à lancer avant ce générateur après l'ajout d'un template).
@@ -45,11 +49,11 @@ export function calculerPack(code) {
   const indicatif = templates.length < 2;
   const prix = prixPack([...templates, ...(indicatif ? prevus : [])].map((t) => t.prix));
   const enVente = Boolean(pack.gumroad && pack.permalien) && templates.every((t) => t.statut === 'vente');
-  return { code, ...pack, ...page, templates, prevus, indicatif, nombre: indicatif ? templates.length + prevus.length : templates.length, ...prix, option: prixOption(prix.prix), enVente: enVente && !indicatif };
+  return { code, ...pack, ...page, templates, prevus, indicatif, nombre: indicatif ? templates.length + prevus.length : templates.length, ...prix, enVente: enVente && !indicatif };
 }
 
 // --- Gabarit commun ------------------------------------------------------------------------------
-const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
+const tete = ({ titre, description, canonical, noindex, partie }) => `<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -60,10 +64,10 @@ const tete = ({ titre, description, canonical, noindex }) => `<!doctype html>
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="https://qm-engineering.fr${canonical}">`}
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
 <link rel="stylesheet" href="/assets/packs.css?v=${V}">
 </head>
-<body>
+<body${partie ? ` data-partie="${partie}"` : ''}>
 
 <header class="topbar">
   <a class="brand" href="/" aria-label="QME, accueil">
@@ -72,9 +76,10 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/" aria-current="page">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -95,7 +100,7 @@ const pied = (scripts = '') => `</main>
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112004" defer></script>
+<script src="/assets/site.js?v=2026112401" defer></script>
 ${scripts}<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -115,7 +120,7 @@ function blocPrix(p, { court = false } = {}) {
   return `<div class="prix-pack-bloc${p.enVente ? '' : ' prochaine'}">
         <p class="prix-pack"><b>${euros(p.prix)}</b>${barre}</p>
         <p class="detail">${p.indicatif ? `Prix prévu pour les ${p.nombre} templates, calculé avec le même barème · ` : `${p.templates.length} templates · `}${p.pct ? `${p.indicatif ? 'économie prévue' : 'vous économisez'} ${euros(p.economie)} sur l’achat séparé` : 'achat unique'}</p>
-        <div class="option-pack"><b>Option ${OPTION.nom} : +${euros(p.option)}</b><span>Les templates ajoutés au pack après votre achat s’ouvrent avec la même clé${p.prevus.length && !p.indicatif ? `, à commencer par ${p.prevus.length === 1 ? 'le template annoncé' : `les ${p.prevus.length} templates annoncés`}` : ''}.</span></div>
+        <p class="detail">Les templates ajoutés au pack plus tard s’ouvrent aussi avec votre clé, sans supplément.</p>
         ${p.enVente ? '' : p.indicatif ? '<p class="prochaine-note"><b>Pack en préparation.</b> Il sera mis en vente quand ses templates seront prêts.</p>' : '<p class="prochaine-note"><b>Mise en vente prochaine.</b> Les démos sont libres dès maintenant.</p>'}
       </div>`;
 }
@@ -124,23 +129,27 @@ function blocPrix(p, { court = false } = {}) {
 function pagePack(p) {
   const module = `pack-${p.slug}`;
   const actions = p.enVente
-    ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=Pack" data-goatcounter-click="achat-${module}">Acheter le pack</a><a class="btn" href="${GUMROAD}${p.permalien}?wanted=true&amp;variant=${encodeURIComponent(OPTION.nom)}" data-goatcounter-click="achat-${module}-evolutif">Avec l’option (+${euros(p.option)})</a>`
+    ? `<a class="btn primary" href="${GUMROAD}${p.permalien}?wanted=true" data-goatcounter-click="achat-${module}">Acheter le pack</a>`
     : `<button class="btn interet" type="button" data-interet="${module}">Je suis intéressé(e)</button><a class="btn" href="#contenu">Voir le contenu</a>`;
-  const note = p.enVente ? '' : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce pack. Rien d'autre n'est enregistré.</p>`;
+  // Essai gratuit des templates du pack (audit étudiants du 22/11/2026) : annoncé sous les boutons d'achat.
+  const nbEssai = p.templates.filter((t) => PRODUITS_ESSAI.includes(t.pre)).length;
+  const essai = p.enVente && nbEssai ? `<p class="essai-pack">Pas encore sûr(e) ? ${nbEssai === p.templates.length ? 'Chaque outil du pack' : 'Les outils marqués « Essai gratuit »'} s’essaie ${ESSAI.jours} jours gratuitement, sans carte bancaire. Si vous prenez ensuite le pack, vos données d’essai sont reprises. <a href="#contenu">Choisir un outil à essayer</a></p>` : '';
+  const note = p.enVente ? essai : `<p class="interet-note" data-interet-note="${module}" role="status" aria-live="polite">Un clic pour être compté parmi les personnes qui attendent ce pack. Rien d'autre n'est enregistré.</p>`;
   const cartes = p.templates.map((t) => `<li class="t-pack">
         ${vignette(t.slug)}<div class="t-tete"><b>${esc(t.nom)}</b>${etiquetteStatut(t.statut)}</div>
         <p>${esc(t.phrase)}</p>
-        <div class="t-pied"><span>${euros(t.prix)} seul</span><a href="/catalogue/${t.slug}/">Détail</a><a href="/templates/${t.slug}/?demo">Démo</a></div>
+        <div class="t-pied"><span>${euros(t.prix)} seul</span><a href="/catalogue/${t.slug}/">Détail</a><a href="/templates/${t.slug}/?demo">Démo</a>${PRODUITS_ESSAI.includes(t.pre) ? `<a href="/essai/?t=${t.slug}" data-goatcounter-click="essai-${module}-${t.slug}">Essai gratuit</a>` : ''}</div>
       </li>`).join('\n      ');
   const prevus = p.prevus.length ? `
   <div class="prevus">
     <h3>${p.indicatif ? 'Les templates du pack, en préparation' : 'À venir dans ce pack'}</h3>
-    <p>${p.indicatif ? 'Ces templates sont en cours de développement. Le pack sera mis en vente quand ils seront prêts ; cliquez sur « Je suis intéressé(e) » pour être prévenu.' : `Ces templates sont en préparation et rejoindront le pack à leur sortie. Avec l’option ${OPTION.nom} (+${euros(p.option)}), ils s’ouvriront avec votre clé, sans rien payer de plus.`}</p>
+    <p>${p.indicatif ? 'Ces templates sont en cours de développement. Le pack sera mis en vente quand ils seront prêts ; cliquez sur « Je suis intéressé(e) » pour être prévenu.' : `Ces templates sont en préparation et rejoindront le pack à leur sortie : ils s’ouvriront avec votre clé, sans rien payer de plus.`}</p>
     <ul>${p.prevus.map((t) => `<li><b>${esc(t.nom)}</b><span>${esc(t.phrase)}</span>${p.indicatif ? `<em>${euros(t.prix)}</em>` : ''}</li>`).join('')}</ul>
   </div>` : '';
   const dansPack = (pre) => p.templates.some((t) => t.pre === pre);
   const parcours = p.parcours.filter(([pre]) => PRODUITS[pre] || PREVUS[pre]).map(([pre, texte], i) => `<li><span class="n">${i + 1}</span><div><b>${esc(PRODUITS[pre]?.nom ?? PREVUS[pre].nom)}</b>${dansPack(pre) ? '' : ' <span class="etat prevu">À venir</span>'}<p>${esc(texte)}</p></div></li>`).join('\n      ');
   return tete({
+    partie: pourPack(p),
     titre: `${p.nom} · QME`,
     description: `${p.accroche} ${p.resume} ${p.nombre} templates pour ${euros(p.prix)} au lieu de ${euros(p.valeur)}.`,
     canonical: `/packs/${p.slug}/`,
@@ -172,7 +181,7 @@ function pagePack(p) {
 </section>
 
 <section class="section pack-section" id="contenu">
-  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.indicatif ? `${p.nombre} templates prévus, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.${p.templates.length ? ' La démo du template prêt s’ouvre sans inscription.' : ''}` : `${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription.`}</p></div>
+  <div class="section-head"><h2>Le contenu du pack</h2><p>${p.indicatif ? `${p.nombre} templates prévus, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.${p.templates.length ? ' La démo du template prêt s’ouvre sans inscription.' : ''}` : `${p.templates.length} templates, ${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}. Chaque démo s’ouvre sans inscription${nbEssai ? `, et ${nbEssai === p.templates.length ? 'chaque outil' : 'les outils marqués « Essai gratuit »'} s’essaie ${ESSAI.jours} jours, sans carte bancaire` : ''}.`}</p></div>
   ${cartes ? `<ul class="templates-pack">\n      ${cartes}\n  </ul>` : ''}${prevus}
 </section>
 
@@ -181,7 +190,7 @@ function pagePack(p) {
   <div class="faq">
     <details><summary>Comment j’accède aux templates du pack ?</summary><p>Vous recevez une seule clé par e-mail après l’achat. Collez-la sur <a href="/connexion/">qm-engineering.fr/connexion</a> : votre tableau de bord du pack s’ouvre, avec un bouton par template. La même clé fonctionne sur tous vos appareils.</p></details>
     <details><summary>Les templates partagent-ils leurs données ?</summary><p>Non : chaque template garde ses propres données, synchronisées sur vos appareils. Le pack réunit les outils et l’accès, pas une base commune.</p></details>
-    <details><summary>Et les templates ajoutés plus tard ?</summary><p>Le pack ouvre les templates qu’il contient le jour de votre achat. Avec l’option ${OPTION.nom} (+${euros(p.option)}), chaque template ajouté au pack ensuite s’ouvre aussi avec votre clé, sans rien payer de plus. Le prix du pack peut augmenter pour les nouveaux acheteurs ; le vôtre est réglé une fois pour toutes.</p></details>
+    <details><summary>Et les templates ajoutés plus tard ?</summary><p>Ils sont inclus : chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans rien payer de plus. Le prix du pack peut augmenter pour les nouveaux acheteurs ; le vôtre est réglé une fois pour toutes.</p></details>
     <details><summary>J’ai déjà acheté un des templates du pack.</summary><p>Écrivez à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> avant d’acheter le pack : nous trouverons une solution pour ne pas vous le faire payer deux fois.</p></details>
     <details><summary>Est-ce un abonnement ?</summary><p>Non : un achat unique, paiement sécurisé par Gumroad, sans renouvellement.</p></details>
   </div>
@@ -227,7 +236,7 @@ function pageListe(packs) {
   const groupe = (pour) => packs.filter((p) => pourPack(p) === pour);
   return tete({
     titre: 'Packs de templates · QME',
-    description: 'Les packs de templates QME, par métier et par situation : contenu détaillé, prix, remise jusqu’à 25 % et option Pack évolutif. Ou composez votre pack sur mesure.',
+    description: 'Les packs de templates QME, par métier et par situation : contenu détaillé, prix, remise jusqu’à 25 %, templates ajoutés plus tard inclus. Ou composez votre pack sur mesure.',
     canonical: '/packs/',
   }) + `<nav class="fil" aria-label="Fil d'Ariane"><a href="/templates/">Templates</a><span>›</span><b>Packs</b></nav>
 <section class="hero packs-hero">
@@ -240,7 +249,7 @@ function pageListe(packs) {
   <div class="bareme-bloc">
     <p class="label">La remise suit le nombre de templates</p>
     ${bareme()}
-    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure. Option ${OPTION.nom} : les futurs templates du pack inclus, pour ${OPTION.pct} % du prix du pack (${euros(OPTION.minimum)} minimum).</p>
+    <p class="detail">Même barème pour les packs prêts à l’emploi et pour le pack sur mesure. Les templates ajoutés plus tard à un pack sont inclus, sans supplément.</p>
   </div>
 </section>
 
@@ -275,7 +284,7 @@ function pageListe(packs) {
     <li class="s1"><b>Vous achetez le pack</b><span>Paiement unique et sécurisé par Gumroad, sans abonnement.</span></li>
     <li class="s2"><b>Vous recevez une clé</b><span>Une seule clé, quel que soit le nombre de templates.</span></li>
     <li class="s3"><b>Votre tableau de bord s’ouvre</b><span>Sur <a href="/connexion/">la page Connexion</a>, la clé ouvre l’espace du pack : un bouton par template.</span></li>
-    <li><b>Le pack peut grandir</b><span>Avec l’option ${OPTION.nom}, les templates ajoutés plus tard s’ouvrent avec la même clé.</span></li>
+    <li><b>Le pack peut grandir</b><span>Les templates ajoutés plus tard s’ouvrent avec la même clé, sans supplément.</span></li>
   </ol>
 </section>
 ` + pied(`<script src="/assets/packs.js?v=${V}" defer></script>\n`);
@@ -284,7 +293,7 @@ function pageListe(packs) {
 // --- Pack sur mesure ------------------------------------------------------------------------------
 function pageComposer(packs) {
   const liste = Object.keys(TEMPLATES).filter((p) => PRODUITS[p]).map(infoTemplate)
-    .sort((a, b) => a.pour.localeCompare(b.pour) || a.nom.localeCompare(b.nom, 'fr'));
+    .sort((a, b) => publics(a)[0].localeCompare(publics(b)[0]) || a.nom.localeCompare(b.nom, 'fr'));
   const donnees = {
     remises: REMISES,
     achat: ACHAT_SUR_MESURE.permalien ? { url: GUMROAD + ACHAT_SUR_MESURE.permalien, champ: ACHAT_SUR_MESURE.champ } : null,
@@ -293,7 +302,7 @@ function pageComposer(packs) {
   };
   const groupe = (pour, titre) => `<fieldset class="groupe-compo">
       <legend>${titre}</legend>
-      <ul>${liste.filter((t) => t.pour === pour).map((t) => `<li><label><input type="checkbox" value="${t.pre}" data-prix="${t.prix}"><span class="nom">${esc(t.nom)}</span><span class="phrase">${esc(t.phrase)}</span><span class="droite">${etiquetteStatut(t.statut)}<b>${euros(t.prix)}</b></span></label></li>`).join('')}</ul>
+      <ul>${liste.filter((t) => pourPartie(t, pour)).map((t) => `<li><label><input type="checkbox" value="${t.pre}" data-prix="${t.prix}"><span class="nom">${esc(t.nom)}</span><span class="phrase">${esc(phrasePour(t, pour))}</span><span class="droite">${etiquetteStatut(t.statut)}<b>${euros(t.prix)}</b></span></label></li>`).join('')}</ul>
     </fieldset>`;
   return tete({
     titre: 'Composer votre pack sur mesure · QME',
@@ -336,24 +345,50 @@ function pageComposer(packs) {
 }
 
 // --- Espace de l'acheteur d'un pack ---------------------------------------------------------------
-function pageEspace() {
-  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des templates de votre pack QME.', noindex: true })
-    + `<section class="section espace-pack" data-espace>
-  <div class="composer-tete">
-    <p class="eyebrow">Espace acheteurs · packs</p>
-    <h1>Mes packs</h1>
-    <p class="lead">Chaque template de votre pack s’ouvre d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+// Même composant que /connexion/ (assets/espace.js, espace.css) : recherche, épinglés, récents, thèmes.
+// Données de thèmes : outils/connexion/generer.mjs (donneesEspace), écrites ici entre les marqueurs ESPACE.
+const VE = '2026112306'; // version de assets/espace.js et espace.css
+async function pageEspace() {
+  const { produits, themes } = await donneesEspace();
+  return tete({ titre: 'Mon pack · QME', description: 'Tableau de bord des applications de votre pack QME.', noindex: true })
+      .replace('</head>', `<link rel="stylesheet" href="/assets/espace.css?v=${VE}">\n</head>`)
+    + `<section class="espace espace-pack" data-espace>
+  <div class="espace-tete">
+    <div>
+      <p class="eyebrow">Espace acheteurs · packs</p>
+      <h1>Mes packs</h1>
+      <p class="espace-nb" data-nb></p>
+    </div>
+    <a class="btn ajouter" href="#ajout-pack" data-ajouter hidden>+ Ajouter<span class="pc">&nbsp;un pack</span></a>
   </div>
-  <div data-mes-packs></div>
-  <form class="acces espace-form" id="espace-form" novalidate>
-    <label>Clé de licence du pack ou code de pack
-      <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
-    </label>
-    <p class="erreur" id="espace-erreur" role="alert"></p>
-    <button class="btn primary" type="submit">Ouvrir mon pack</button>
-  </form>
+  <p class="lead pack-intro" data-intro>Collez la clé de licence de votre pack : chacune de ses applications s’ouvre ensuite d’un clic. Vos données restent celles de votre clé, sur tous vos appareils.</p>
+  <p class="erreur pack-alerte" data-alerte role="alert"></p>
+  <div data-espace-corps hidden></div>
+  <p class="vh" role="status" data-copie></p>
+  <section class="gerer-packs" data-gerer hidden aria-labelledby="h-gerer">
+    <h2 id="h-gerer">Gérer mes packs</h2>
+    <div data-mes-packs></div>
+    <p class="pack-espace-note">Pour partager une seule application (un budget commun, par exemple), envoyez son code de partage : bouton <span aria-hidden="true">⧉</span> à côté de l’étoile. Il n’ouvre que cette application. La clé du pack ouvre toutes vos applications : gardez-la pour vous.</p>
+  </section>
+  <div class="ajout-pack" id="ajout-pack">
+    <h2 data-titre-ajout hidden>Ajouter un pack</h2>
+    <form class="acces espace-form" id="espace-form" novalidate>
+      <label>Clé de licence du pack ou code de pack
+        <input type="text" id="espace-cle" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" required>
+      </label>
+      <p class="erreur" id="espace-erreur" role="alert"></p>
+      <button class="btn primary" type="submit">Ouvrir mon pack</button>
+    </form>
+  </div>
 </section>
-` + pied(`<script src="/assets/packs.js?v=${V}" defer></script>\n`);
+` + pied(`<script>
+/* ESPACE-DEBUT */
+const PRODUITS=${JSON.stringify(produits)};
+const THEMES=${JSON.stringify(themes)};
+/* ESPACE-FIN */
+</script>
+<script src="/assets/espace.js?v=${VE}" defer></script>
+<script src="/assets/packs.js?v=${V}" defer></script>\n`);
 }
 
 // --- Section « Packs » du catalogue /templates/ -----------------------------------------------------
@@ -386,12 +421,12 @@ async function ecrire(chemin, contenu) {
 
 export async function generer() {
   VIGNETTES = lireVignettes(await readFile(RACINE + 'templates/index.html', 'utf8'));
-  const packs = Object.keys(PACKS).map(calculerPack);
+  const packs = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPack);
   aucunEnVente = !packs.some((p) => p.enVente);
   for (const p of packs) await ecrire(`packs/${p.slug}/index.html`, pagePack(p));
   await ecrire('packs/index.html', pageListe(packs));
   await ecrire('packs/composer/index.html', pageComposer(packs));
-  await ecrire('packs/espace/index.html', pageEspace());
+  await ecrire('packs/espace/index.html', await pageEspace());
   const cat = await readFile(RACINE + 'templates/index.html', 'utf8');
   const section = sectionCatalogue(packs);
   const re = /<!-- packs:debut[\s\S]*?<!-- packs:fin -->/;
@@ -403,6 +438,8 @@ export async function generer() {
     : nouveau.replace(/(<link rel="stylesheet" href="\/assets\/site\.css[^>]*>)/, `$1\n<link rel="stylesheet" href="/assets/packs.css?v=${V}">`);
   if (!avecStyle.includes('/assets/packs.css')) throw new Error('packs.css : insertion impossible dans templates/index.html');
   await writeFile(RACINE + 'templates/index.html', avecStyle);
+  // Pages /pro/ et /perso/ : construites depuis le catalogue et /packs/ ci-dessus.
+  await genererParties();
   return packs;
 }
 

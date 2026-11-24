@@ -36,3 +36,17 @@ Non publié (dossier `docs/`).
   0/4000). IG-02 visible par tous à 19h47, IG-39 en modération. **Méthode retenue (version finale)** : vidéo seule,
   description vide ; Instinct envoie à Quentin le texte du Document de légende, que Quentin colle lui-même s'il le
   souhaite.
+
+## Secret Santa : deux suppressions (20 et 21/11/2026)
+
+- 20/11 : vidéo de Noël (musique « Christmas is coming », CC BY) supprimée, « Règles de la communauté ». Hypothèse
+  retenue alors : musique tierce. Version TikTok refaite avec la musique QME (`../secret-santa/video/scene-tiktok.html`).
+- 21/11, constaté à 12:58 : la version musique QME est supprimée à son tour, même motif générique (« Règles de la
+  communauté », détection automatisée). **L'hypothèse de la musique est donc écartée.** La règle précise n'a pas été
+  relevée (écran 1 du parcours de contestation ou détail de la notification).
+- Hypothèses restantes, non établies : contenu commercial non déclaré (promotion de son propre produit sans l'option
+  « Contenu commercial · Votre marque ») ; classement en « fraude / faux concours » (cadeaux, « gratuit », « lien en
+  bio ») ; contenu republié après suppression sur un compte récent.
+- **Décision : plus aucune republication du Secret Santa sur TikTok** (chaque suppression compte comme avertissement ;
+  le cumul peut restreindre ou bannir le compte). Seule voie : la contestation par Quentin dans l'application.
+  `../secret-santa/PROMPT-INSTINCT-TIKTOK-REPRISE.md` est annulé.

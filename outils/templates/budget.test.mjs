@@ -42,6 +42,18 @@ test('saisie des montants en centimes entiers', () => {
   assert.equal(R.versCentimes(''), null);
 });
 
+test('saisie des montants : espaces, centimes, plafond d\'un milliard (faute de frappe)', () => {
+  assert.equal(R.versCentimes(' 12,5 '), 1250);
+  assert.equal(R.versCentimes('0,1'), 10);
+  assert.equal(R.versCentimes(0.1 + 0.2), 30);
+  assert.equal(R.versCentimes('0'), 0);
+  assert.equal(R.versCentimes('1000000000'), 100000000000);
+  // Avant : « 99999999999999999 » donnait 1e19 centimes (au-delà des entiers exacts) et la dépense était enregistrée.
+  assert.equal(R.versCentimes('99999999999999999'), null);
+  assert.equal(R.versCentimes('1000000000,01'), null);
+  assert.equal(R.versCentimes(1e12), null);
+});
+
 test('affichage à la française', () => {
   assert.equal(R.euros(123456), '1 234,56 €');
   assert.equal(R.euros(5), '0,05 €');

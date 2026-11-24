@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour Kelly · nettoyage des locaux professionnels · QME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#1e1a16;--sable:#c9a978;--or:#a8834f;--terre:#b4532a;--olive:#5f7341;--lav:#6f5fa3;--paper:#f6f1e9;--muted:#6f655a;--line:#e6dccd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;letter-spacing:-.01em;font-variant-numeric:lining-nums}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--sable);color:var(--ink);text-decoration:none;font:600 15px "Poppins",sans-serif;padding:14px 22px;border-radius:999px;border:2px solid var(--sable);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.dark{background:var(--ink);color:#f6efe2;border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--terre);outline-offset:3px}
+
+.bar{position:absolute;left:0;right:0;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600;letter-spacing:.04em}
+.brand small{display:block;font-weight:400;letter-spacing:0;color:#b7ab9b;font-size:13px;line-height:1.2}
+.bar a.pdf{color:#fff;font:500 14px "Poppins";text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#5a4430 0%,#2a221b 45%,#17130f 100%);color:#fff;padding:122px 0 0}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:260px;pointer-events:none}
+.eb{font:600 12px "Poppins",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--sable);margin:0 0 18px}
+.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.04;margin:0;font-weight:700;max-width:16ch}
+.hero h1 em{color:var(--sable);font-style:italic}
+.hero .lede{font-size:clamp(16px,1.6vw,18.5px);color:#d7cbbb;max-width:60ch;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .note{margin:18px 0 0;font-size:13px;color:#a2968a}
+.stage{position:relative;margin-top:56px;padding-bottom:70px}
+.browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);width:86%}
+.browser .tb{height:34px;background:#ebe4d8;display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .tb i{width:11px;height:11px;border-radius:50%;background:#cfc4b3}
+.browser .tb span{margin-left:14px;background:#fff;border-radius:6px;font-size:11.5px;color:#7a6f62;padding:3px 12px}
+.browser img{display:block;width:100%;height:auto}
+.phone{position:absolute;right:0;bottom:30px;width:23%;min-width:150px;background:#0e0c0a;border-radius:34px;padding:9px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:26px;aspect-ratio:640/1240;object-fit:cover;object-position:top}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);background:#fffdf9}
+.facts div{padding:32px 28px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:600 12.5px "Poppins",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--or);margin-bottom:8px}
+.facts p{margin:0;color:#3f3830;font-size:15px}
+.facts q{font:italic 600 17px/1.45 "Playfair Display";color:var(--ink);quotes:"«\00a0" "\00a0»"}
+
+section.mod{padding:100px 0 0}
+.mod .head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:34px}
+.num{font:600 13px "Poppins",sans-serif;color:var(--or);letter-spacing:.16em}
+.mod h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:10px 0 0;font-weight:700}
+.mod h2 em{color:var(--terre);font-style:italic}
+.mod .head p{margin:0;color:#3f3830;font-size:16.5px}
+.mod ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.mod li{display:flex;gap:10px;font-size:15px;color:#3f3830}
+.mod li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sable);margin-top:9px;flex:none}
+.shot{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(60,40,20,.16);border:1px solid var(--line);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.combo{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:center}
+.combo .phone,.phones .phone{position:static;width:100%;min-width:0}
+.phones{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:linear-gradient(180deg,#2a221b,#17130f);border-radius:22px;padding:46px 20px;position:relative;overflow:hidden}
+.phones .phone{width:300px}
+.phones .tag{position:absolute;left:26px;top:22px;font:600 11px "Poppins";letter-spacing:.16em;text-transform:uppercase;color:var(--sable)}
+
+.flow{margin-top:100px;background:var(--ink);color:#fff;border-radius:22px;padding:52px 44px}
+.flow h2{font-size:clamp(28px,3.2vw,40px);margin:8px 0 10px;font-weight:700}
+.flow>p{color:#c9bdad;max-width:64ch;margin:0 0 36px}
+.fg{display:grid;grid-template-columns:1fr 64px 1.1fr 64px 1fr;align-items:center}
+.col{display:flex;flex-direction:column;gap:10px}
+.col .it{background:#2a241f;border:1px solid #3a322a;border-radius:12px;padding:12px 14px;font-size:14px}
+.col .it b{display:block;font-weight:600;font-size:14px}
+.col .it span{color:#b2a594;font-size:12.5px}
+.core{background:var(--sable);color:var(--ink);border-radius:18px;padding:28px 24px;text-align:center}
+.core b{display:block;font:700 24px/1.15 "Playfair Display",serif}
+.core span{display:block;margin-top:8px;font-size:14px;color:#4a3b28}
+.arr{height:2px;background:repeating-linear-gradient(90deg,#6d6255 0 6px,transparent 6px 11px);position:relative;margin:0 8px}
+.arr::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:#8d8172}
+.lbl{font:600 11px "Poppins";letter-spacing:.14em;text-transform:uppercase;color:#8d8172;margin-bottom:4px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.steps div{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:22px}
+.steps b{font:700 36px/1 "Playfair Display";color:var(--or)}
+.steps h3{font-size:18px;margin:10px 0 6px}
+.steps p{margin:0;font-size:14.5px;color:#4a433b}
+.end{margin:100px 0 0;background:#fffdf9;border:1px solid var(--line);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.end h2{font-size:clamp(26px,3vw,36px);margin:0 0 10px;font-weight:700}
+.end p{margin:0;color:#3f3830}
+.end .ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+footer{padding:40px 0 50px;color:var(--muted);font-size:14px}
+footer a{color:var(--ink)}
+/* estimation */
+.est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 24px 40px;overflow:hidden}
+.est::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:#b4532a}
+.est::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:#141414}
+.est .eb{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.est .eb b{color:#b4532a;font-weight:800}
+.est h2{font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+.est .intro{color:#3b3b3b;max-width:72ch;margin:0 0 20px}
+.est table{width:100%;border-collapse:collapse;font-size:15px}
+.est th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding:8px 8px;border-bottom:2px solid #141414}
+.est td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.est th.n,.est td.n{text-align:right;white-space:nowrap}
+.est input{width:84px;font:inherit;font-weight:600;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:#141414}
+.est input:focus{outline:2px solid #b4532a;outline-offset:1px;background:#fff}
+.est .u{display:block;font-size:12px;color:var(--muted)}
+.est td.s{font-weight:700;color:#b4532a}
+.est .tot{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.est .tot div{background:var(--paper);border-radius:4px;padding:14px 16px;border-top:4px solid #141414}
+.est .tot b{display:block;font-size:32px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.est .tot div.main{background:#b4532a;color:#fff;border-top-color:#141414}
+.est .tot span{font-size:14px;color:#5a5a5a}
+.est .tot div.main span{color:#fde8e6}
+.est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15px;font-weight:500}
+.est .foot{color:var(--muted);font-size:13.5px;margin:14px 0 0;max-width:82ch}
+.est .reset{background:none;border:0;color:#141414;font:inherit;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:#b4532a;text-underline-offset:3px;margin-left:auto}
+@media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
+ .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
+ .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
+.est .tot div.main{background:#1e1a16;color:#fff;border-top-color:#c9a978}.est .tot div.main span{color:#d7cbbb}.est .tot b{font-family:"Playfair Display",serif;font-variant-numeric:lining-nums}.est::after{background:#c9a978}.est h2{font-weight:700}
+
+@media (max-width:860px){
+  .hero{padding-top:96px}
+  .browser{width:100%}
+  .hero .phone{display:none}
+  .facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .mod .head,.duo,.end,.combo{grid-template-columns:1fr;gap:18px}
+  .combo .phone{max-width:300px;margin:0 auto}
+  section.mod{padding-top:64px}
+  .flow{padding:34px 20px}
+  .fg{grid-template-columns:1fr;gap:14px}.arr{width:2px;height:28px;margin:0 auto;background:repeating-linear-gradient(180deg,#6d6255 0 6px,transparent 6px 11px)}.arr::after{display:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .end{padding:28px 20px}
+  .bar a.pdf{display:none}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.phones .phone{width:100%;max-width:300px}}
+
+/* comparatif */
+.cmp{margin-top:100px}
+.cmp h2{font-size:clamp(28px,3.2vw,40px);margin:10px 0 10px;font-weight:700}
+.cmp .intro{color:#3f3830;max-width:72ch;margin:0 0 26px}
+.cmpw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:#fffdf9;box-shadow:0 24px 60px rgba(60,40,20,.08)}
+.cmpw table{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px;line-height:1.4}
+.cmpw th{text-align:left;font:600 13px "Poppins",sans-serif;padding:14px 14px 12px;border-bottom:2px solid var(--ink);vertical-align:bottom;background:#faf6ef}
+.cmpw th small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.cmpw th.q{background:var(--ink);color:#f6efe2}.cmpw th.q small{color:#cbbfae}
+.cmpw td{padding:10px 14px;border-bottom:1px solid #efe7da;vertical-align:top;color:#3f3830}
+.cmpw td:first-child{font-weight:600;color:var(--ink);position:sticky;left:0;background:#fffdf9;min-width:190px}
+.cmpw td.q{background:#f6eedf;color:var(--ink)}
+.cmpw tr:last-child td{border-bottom:0}
+.cmpw i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font:700 11px/1 Arial,sans-serif;font-style:normal;margin-right:6px;vertical-align:-3px}
+.cmpw i.y{background:var(--olive);color:#fff}.cmpw i.y::before{content:"✓"}
+.cmpw i.p{background:var(--sable);color:var(--ink)}.cmpw i.p::before{content:"~"}
+.cmpw i.n{background:#e3dbcf;color:#7a6f62}.cmpw i.n::before{content:"–"}
+.cmpw .lot{display:inline-block;font:600 10.5px "Poppins";letter-spacing:.06em;color:var(--terre);margin-left:4px}
+.cmp .leg{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--muted);margin:14px 0 0}
+.cmp .leg i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font:700 10px/1 Arial;font-style:normal;margin-right:6px;vertical-align:-3px}
+.cmp .read{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+.cmp .read div{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.cmp .read b{display:block;font:700 19px/1.25 "Playfair Display",serif;margin-bottom:8px}
+.cmp .read p{margin:0;color:#3f3830;font-size:15px}
+.cmp .src{font-size:12.5px;color:var(--muted);margin:18px 0 0;max-width:110ch}
+@media (max-width:720px){.cmp .read{grid-template-columns:1fr}.cmpw td:first-child{min-width:150px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#fff"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="pdf" href="QME-concept-Conciergerie-En-Provence.pdf" download data-goatcounter-click="concept-conciergerie-en-provence-pdf" data-goatcounter-title="Concept Conciergerie en Provence (PDF)">Télécharger le PDF (5 pages)</a>
+</div></header>
+
+<main>
+<section class="hero">
+  <svg class="ridge" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 260V196C160 186 300 172 420 164C560 154 690 92 790 62C824 52 842 44 858 34L864 18L870 34C894 42 924 52 960 62C1080 96 1220 150 1340 168C1380 174 1414 178 1440 180V260Z" fill="rgba(255,255,255,.05)"/>
+    <path d="M864 18v-16" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+    <path d="M0 260v-46c180-14 360-22 540-20s360 14 540 12 280-10 360-12v66Z" fill="rgba(201,169,120,.07)"/>
+        <path d="M0 260v-14h1440v14Z" fill="#f6f1e9"/>
+  </svg>
+  <div class="wrap">
+    <p class="eb">Concept pour Kelly · nettoyage des locaux professionnels</p>
+    <h1>Vos agents, vos sites, vos heures&nbsp;: <em>un seul carnet d'entretien.</em></h1>
+    <p class="lede">Kelly, vous m'avez précisé que l'outil est pour votre entreprise de nettoyage chez les professionnels&nbsp;: bureaux, cabinets médicaux, parties communes, espaces d'accueil du public. Voici à quoi il pourrait ressembler, du pointage de l'agent sur place jusqu'aux heures du mois, prêtes pour la paie et la facture.</p>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-conciergerie-en-provence-demo" data-goatcounter-title="Concept Conciergerie en Provence (démonstration)">Ouvrir la démonstration interactive</a>
+      <a class="btn ghost" href="QME-concept-Conciergerie-En-Provence.pdf" download data-goatcounter-click="concept-conciergerie-en-provence-pdf" data-goatcounter-title="Concept Conciergerie en Provence (PDF)">Télécharger le PDF</a>
+    </div>
+    <p class="note">Concept réalisé à partir de votre message. Toutes les données affichées sont fictives&nbsp;; le nom et les couleurs de votre entreprise remplaceront ceux de la démonstration.</p>
+    <div class="stage">
+      <div class="browser"><div class="tb"><i></i><i></i><i></i><span>le-carnet-d-entretien · aujourd'hui</span></div><img src="s-jour.webp" width="1600" height="1000" alt="Écran du jour : dix interventions, trois agents, données fictives"></div>
+      <div class="phone"><img src="m-journee.webp" width="640" height="1385" alt="La soirée d'une agente d'entretien sur son téléphone, données fictives"></div>
+    </div>
+  </div>
+</section>
+
+<div class="facts"><div class="wrap" style="display:contents">
+  <div><b>Ce que vous m'avez dit</b><p><q>L'outil que je recherche n'est pas forcément pour la conciergerie, mais pour mon entreprise de nettoyage chez les professionnels&nbsp;: bureaux, cabinets médicaux, parties communes, espaces d'accueil au public.</q></p></div>
+  <div><b>Ce que demande ce métier</b><p>Des contrats récurrents à heures fixes, souvent tôt le matin ou le soir, des agents seuls sur des sites différents, des absences à couvrir vite, et des clients qui veulent la preuve que le travail est fait.</p></div>
+  <div><b>Ce que propose le concept</b><p>Un carnet d'entretien partagé&nbsp;: pointage et check-list sur le téléphone de l'agent, la journée de toute l'équipe pour vous, le contrôle qualité, et les heures du mois prêtes pour la paie et la facture.</p></div>
+</div></div>
+
+<div class="wrap">
+  <section class="mod" id="jour">
+    <div class="head">
+      <div><div class="num">01 · AUJOURD'HUI</div><h2>Toute l'équipe, de 6&nbsp;h à 21&nbsp;h, <em>sur un seul écran</em></h2></div>
+      <div><p>Les interventions du jour et, en direct, ce qui arrive&nbsp;: arrivées et départs pointés, check-lists validées, photos reçues, demandes des clients.</p>
+        <ul><li>De l'intervention prévue aux heures validées, site par site</li><li>Ce qui demande votre œil&nbsp;: un départ non pointé, une réclamation, un contrôle à relire</li><li>Les messages de l'équipe au même endroit, rattachés au bon site</li></ul></div>
+    </div>
+    <div class="duo"><div class="shot"><img src="s-jour.webp" width="1600" height="1000" alt="Aujourd'hui : dix interventions et leur avancement, données fictives" loading="lazy"></div><div class="shot"><img src="s-jour-bas.webp" width="1600" height="1000" alt="Le fil de la journée, les points à traiter et les messages de l'équipe, données fictives" loading="lazy"></div></div>
+  </section>
+
+  <section class="mod" id="telephone">
+    <div class="head">
+      <div><div class="num">02 · SUR LE TÉLÉPHONE</div><h2>Pointer, cocher, <em>photographier</em></h2></div>
+      <div><p>L'agent ouvre sa soirée&nbsp;: l'accès, le réassort à poser, la consigne du client. Sur place, il pointe son arrivée, coche zone par zone et prend la photo là où vous la demandez.</p>
+        <ul><li>Une check-list par type de local&nbsp;: bureaux, cabinet médical, parties communes, accueil du public</li><li>Un bouton pour signaler un produit manquant, un dégât, un accès impossible</li><li>Le départ pointé&nbsp;: les heures réalisées remontent toutes seules</li></ul></div>
+    </div>
+    <div class="phones"><span class="tag">Sur le téléphone de Mélanie</span>
+      <div class="phone"><img src="m-journee.webp" width="640" height="1385" alt="La soirée d'une agente d'entretien, sur téléphone, données fictives" loading="lazy"></div>
+      <div class="phone"><img src="m-checklist.webp" width="640" height="1385" alt="Check-list avec photos, signalements et pointage du départ, données fictives" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="mod" id="rapport">
+    <div class="head">
+      <div><div class="num">03 · CONTRÔLE QUALITÉ</div><h2>La preuve du travail fait, <em>pour vos clients</em></h2></div>
+      <div><p>Une grille de contrôle par type de local, les photos horodatées, l'écart relevé et sa reprise. Le client reçoit sa note et retrouve dans son espace ses passages et ses heures du mois.</p>
+        <ul><li>Un écart part en priorité sur la check-list du passage suivant</li><li>Le client signale une demande avec une photo, elle arrive directement chez vous</li><li>Jamais vos échanges internes&nbsp;: seulement ce que vous choisissez de montrer</li></ul></div>
+    </div>
+    <div class="combo"><div class="shot"><img src="s-passage.webp" width="1600" height="1000" alt="Contrôle qualité d'un cabinet médical et rapport prêt à envoyer, données fictives" loading="lazy"></div>
+      <div class="phone"><img src="m-rapport.webp" width="640" height="1385" alt="L'espace client d'un cabinet médical, données fictives" loading="lazy"></div></div>
+  </section>
+
+  <section class="mod" id="semaine">
+    <div class="head">
+      <div><div class="num">04 · PLANNING ET ABSENCES</div><h2>Une absence couverte <em>en quelques minutes</em></h2></div>
+      <div><p>Chaque agent voit sa ligne sur son téléphone. Quand quelqu'un est absent, ses interventions se reportent sur un collègue ou sur vous, et les clients concernés sont prévenus.</p>
+        <ul><li>Les remplacements visibles d'un coup d'œil</li><li>Les heures planifiées comparées aux heures prévues aux contrats</li><li>Les contrôles qualité de la semaine, site par site</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-semaine.webp" width="1600" height="1000" alt="Planning de la semaine par agent, avec une absence couverte, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="logements">
+    <div class="head">
+      <div><div class="num">05 · SITES ET HEURES</div><h2>Chaque contrat a sa fiche, <em>et ses heures du mois</em></h2></div>
+      <div><p>Fréquence, heures prévues, accès, consignes du client, modèle de check-list. Les heures réalisées, issues des pointages, se comparent au contrat au fil du mois.</p>
+        <ul><li>Les codes d'accès et d'alarme ne s'affichent que sur place</li><li>Un écart d'heures se voit avant la facture, pas après</li><li>En fin de mois&nbsp;: facture par client et relevé d'heures par agent</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-logements.webp" width="1600" height="1000" alt="Fiches des sites sous contrat et heures du mois, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="tournees">
+    <div class="head">
+      <div><div class="num">06 · TOURNÉES ET CONSOMMABLES</div><h2>Qui est où, <em>avec quels produits</em></h2></div>
+      <div><p>Les tournées du jour sur la carte du Vaucluse, au départ de vos locaux&nbsp;: l'ordre des sites, les kilomètres, et le réassort à livrer.</p>
+        <ul><li>Une couleur par agent, l'intervention en cours bien visible</li><li>Un produit signalé manquant s'ajoute à la liste de réassort du lendemain</li><li>Les kilomètres de chaque tournée, pour les frais de déplacement</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-carte.webp" width="1600" height="1000" alt="Carte des tournées du jour dans le Vaucluse, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="flow">
+    <p class="eb" style="margin:0">Comment ça se branche</p>
+    <h2>Vos outils restent en place. Le carnet les relie.</h2>
+    <p>Rien n'est à ressaisir&nbsp;: le carnet se branche sur ce qui existe déjà et supprime les doubles saisies. Le détail des branchements se vérifie ensemble, outil par outil.</p>
+    <div class="fg">
+      <div class="col"><div class="lbl">Ce qui existe</div>
+        <div class="it"><b>Le téléphone de vos agents</b><span>pointage, photos, check-lists, signalements</span></div>
+        <div class="it"><b>Vos contrats clients</b><span>sites, fréquences, heures prévues</span></div>
+        <div class="it"><b>Vos fiches de poste actuelles</b><span>reprises comme modèles de check-list</span></div>
+        <div class="it"><b>Votre logiciel de facturation ou de paie</b><span>selon ce qu'il permet d'importer</span></div></div>
+      <div class="arr"></div>
+      <div class="core"><b>Le carnet d'entretien</b><span>une intervention = une fiche, avec son pointage, ses photos et sa check-list</span></div>
+      <div class="arr"></div>
+      <div class="col"><div class="lbl">Ce que vous obtenez</div>
+        <div class="it"><b>Aujourd'hui</b><span>la journée de toute l'équipe</span></div>
+        <div class="it"><b>Planning et absences</b><span>qui fait quoi, et qui remplace qui</span></div>
+        <div class="it"><b>Contrôle qualité et espace client</b><span>la preuve du travail fait</span></div>
+        <div class="it"><b>Heures du mois</b><span>prêtes pour la paie et la facture</span></div></div>
+    </div>
+  </section>
+
+  <section class="cmp" id="comparatif">
+    <div class="num">SUR MESURE OU LOGICIEL DU MARCHÉ</div>
+    <h2>Ce qui est inclus, outil par outil</h2>
+    <p class="intro">Il existe de bons logiciels pour les entreprises de nettoyage. Voici, fonction par fonction, ce que comprendrait votre outil sur mesure et ce qu'annoncent quatre logiciels courants. «&nbsp;Non annoncé&nbsp;» veut dire que la fonction n'apparaît pas sur le site de l'éditeur, pas forcément qu'elle n'existe pas.</p>
+    <div class="cmpw"><table>
+      <thead><tr><th>Fonction</th><th class="q">Votre outil sur mesure<small>proposition QME, par lots</small></th><th>PROPRET<small>logiciel dédié à la propreté</small></th><th>Organilog<small>gestion d'interventions</small></th><th>Connecteam<small>planning et pointage</small></th><th>Kizeo Forms<small>formulaires mobiles</small></th></tr></thead>
+      <tbody><tr><td>Application mobile pour les agents</td><td class="q"><i class="y"></i>Oui <span class="lot">LOT 1</span></td><td><i class="y"></i>Oui (Android, iOS)</td><td><i class="y"></i>Oui, hors ligne</td><td><i class="y"></i>Oui</td><td><i class="y"></i>Oui, hors ligne</td></tr><tr><td>Pointage arrivée et départ sur le site</td><td class="q"><i class="y"></i>QR code ou badge NFC posé sur le site, sans suivi GPS <span class="lot">LOT 1</span></td><td><i class="p"></i>Début et fin de service dans l'appli, géolocalisation ; QR et NFC non annoncés</td><td><i class="y"></i>QR code, appli, code PIN ; GPS activable</td><td><i class="y"></i>GPS avec zone autorisée, NFC</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Check-lists par type de local, avec photos</td><td class="q"><i class="y"></i>Oui, photos obligatoires là où vous les demandez <span class="lot">LOT 1</span></td><td><i class="p"></i>Cahier de consignes par site ; photos non annoncées</td><td><i class="p"></i>Photos et champs personnalisés ; check-lists non annoncées</td><td><i class="y"></i>Oui, photos avant et après</td><td><i class="y"></i>Formulaires sur mesure, photos</td></tr><tr><td>Heures prévues au contrat et réalisées</td><td class="q"><i class="y"></i>Par site et par agent, au fil du mois <span class="lot">LOT 1</span></td><td><i class="p"></i>Suivi du temps de travail ; prévu et réalisé non annoncés</td><td><i class="y"></i>Temps passé contre prévu, par contrat</td><td><i class="y"></i>Prévu contre réalisé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Relevé d'heures pour la paie</td><td class="q"><i class="y"></i>Relevé par agent, au format de votre comptable <span class="lot">LOT 1</span></td><td><i class="p"></i>Export de prépaie (source tierce)</td><td><i class="p"></i>Export CSV des pointages</td><td><i class="y"></i>Export et intégrations paie (outils surtout anglophones)</td><td><i class="p"></i>Export des données</td></tr><tr><td>Planning, absences et remplacements</td><td class="q"><i class="y"></i>Oui, client prévenu du remplacement <span class="lot">LOT 2</span></td><td><i class="y"></i>Planning ; remplacements (page dédiée)</td><td><i class="p"></i>Planning et absences ; remplacements non annoncés</td><td><i class="y"></i>Planning, remplacements, échanges</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Grille de contrôle qualité notée</td><td class="q"><i class="y"></i>Par type de local, avec note et suivi des écarts <span class="lot">LOT 3</span></td><td><i class="n"></i>Non annoncé (module « Supervision » non détaillé)</td><td><i class="p"></i>Questionnaires de satisfaction (offre supérieure)</td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>À construire soi-même en formulaire</td></tr><tr><td>Rapport au client, à votre nom</td><td class="q"><i class="y"></i>PDF à votre nom et à vos couleurs <span class="lot">LOT 3</span></td><td><i class="n"></i>Non annoncé</td><td><i class="y"></i>Rapport PDF personnalisable, avec logo</td><td><i class="p"></i>Rapports automatiques ; logo non annoncé</td><td><i class="p"></i>Rapports personnalisés</td></tr><tr><td>Espace client</td><td class="q"><i class="y"></i>Passages, heures, demandes avec photo <span class="lot">LOT 3</span></td><td><i class="y"></i>Accès client</td><td><i class="y"></i>Factures, interventions, plannings</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Devis et facturation</td><td class="q"><i class="n"></i>Non : récapitulatif par client vers votre outil de facturation</td><td><i class="y"></i>Oui, facturation électronique prévue</td><td><i class="y"></i>Oui, facturation électronique (offre supérieure)</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Consommables et stock</td><td class="q"><i class="p"></i>Liste de réassort par site <span class="lot">OPTION</span></td><td><i class="y"></i>Gestion des stocks</td><td><i class="y"></i>Stock, multi-stock</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Conciergerie dans le même outil</td><td class="q"><i class="p"></i>Passages et rapports propriétaires <span class="lot">OPTION</span></td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>Possible, outil d'interventions généraliste</td><td><i class="p"></i>Possible, outil généraliste</td><td><i class="p"></i>Possible, par formulaires</td></tr><tr><td>Adapté à votre façon de travailler</td><td class="q"><i class="y"></i>Construit pour vous, évolutif</td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>Champs, rôles, API, modules (offres supérieures)</td><td><i class="p"></i>Paramétrable</td><td><i class="p"></i>Formulaires sur mesure</td></tr><tr><td>Interface en français</td><td class="q"><i class="y"></i>Oui</td><td><i class="y"></i>Oui</td><td><i class="y"></i>Oui</td><td><i class="n"></i>Non confirmé (site en anglais)</td><td><i class="y"></i>Oui</td></tr><tr><td>Où sont vos données</td><td class="q"><i class="y"></i>Sur vos propres comptes, serveurs en Europe</td><td><i class="p"></i>Cloud, pays non précisé, RGPD annoncé</td><td><i class="y"></i>Hébergées en France</td><td><i class="p"></i>Pays non précisé, RGPD annoncé</td><td><i class="y"></i>Hébergées en France</td></tr><tr><td>Abonnement</td><td class="q"><i class="y"></i>Aucun abonnement obligatoire</td><td>Oui</td><td>Oui, par utilisateur</td><td>Oui, formules par utilisateur</td><td>Oui, par utilisateur</td></tr></tbody></table></div>
+    <p class="leg"><span><i class="y" style="background:var(--olive);color:#fff">✓</i>Inclus</span><span><i style="background:var(--sable);color:var(--ink)">~</i>Partiel, en option ou à configurer</span><span><i style="background:#e3dbcf;color:#7a6f62">–</i>Non annoncé par l'éditeur</span><span style="color:var(--terre);font-weight:600">LOT 1, 2, 3, OPTION&nbsp;: étape de votre outil qui l'inclut</span></p>
+    <div class="read">
+      <div><b>Quand un logiciel du marché suffit</b><p>Si votre façon de travailler est standard et que vous voulez surtout les devis et la facturation au même endroit, un logiciel comme Organilog ou PROPRET est un choix sérieux, et je vous le dirai franchement.</p></div>
+      <div><b>Quand le sur mesure se justifie</b><p>Si vous voulez vos check-lists et votre contrôle qualité exactement comme vous travaillez, des rapports clients à votre nom, nettoyage et conciergerie au même endroit, aucun abonnement, et vos données chez vous.</p></div>
+    </div>
+    <p class="src">Informations publiées par les éditeurs sur leurs sites (propret.fr, organilog.com, connecteam.com, kizeo-forms.com), relevées le 24 novembre 2026&nbsp;; deux points PROPRET (export de prépaie, remplacements) viennent d'un comparateur tiers. Les fonctions évoluent&nbsp;: à vérifier auprès des éditeurs. Ce tableau ne constitue pas un avis sur la qualité de ces logiciels.</p>
+  </section>
+
+<!-- estimation -->
+  <section class="est" id="est" style="margin-top:100px" aria-live="polite"></section>
+  <script>
+(function(){
+  var C = {"lang": "fr", "rate": 25, "rateLabel": "Coût d'une heure de travail (charges comprises)", "period": "an", "rows": [["Relever et recompter les heures des agents pour la paie", "relevés mensuels", 48, 60, 10], ["Préparer les heures et la facture de chaque client", "factures", 120, 20, 5], ["Couvrir une absence : trouver un remplaçant, prévenir le client", "absences", 60, 30, 10], ["Vérifier qu'une intervention a bien été faite (appels, messages)", "interventions", 2500, 1, 0.25], ["Faire un contrôle qualité et en rédiger le compte rendu", "contrôles", 120, 25, 10], ["Traiter une demande ou une réclamation d'un client", "demandes", 80, 15, 6], ["Préparer et livrer le réassort des consommables", "semaines", 48, 30, 15]], "txt": {"foot": "Les minutes indiquées concernent une tâche faite une fois (un relevé, une facture, une absence). Les volumes sont supposés pour une petite équipe de quatre agents et une dizaine de sites sous contrat : remplacez-les par les vôtres. Ces hypothèses seront affinées ensemble lors de notre échange."}}, T = Object.assign({}, {"eb": "Estimation", "h": "Estimation du temps gagné", "intro": "Un ordre de grandeur, pas une promesse. Les volumes et les durées ci-dessous sont des hypothèses de départ, construites à partir de ce que l'on voit de l'extérieur : remplacez-les par les vôtres, le total se met à jour.", "task": "Tâche", "vol": "Combien par {p}", "before": "Minutes aujourd'hui", "after": "Minutes avec l'outil", "saved": "Heures gagnées", "hours": "heures gagnées par {p}", "days": "journées de 7 h", "value": "valeur du temps gagné par {p}, à {rate} € de l'heure", "reset": "Revenir aux hypothèses de départ", "foot": "Les minutes indiquées concernent une tâche faite une fois (un dossier, une relance, une semaine de planning). Ces hypothèses seront affinées ensemble lors de notre échange.", "loc": "fr-FR"}, C.txt || {}), el = document.getElementById('est');
+  var fmt = function(n, d){ return n.toLocaleString(T.loc, {maximumFractionDigits: d || 0}); };
+  var P = function(s){ return s.replace('{p}', C.period); };
+  var rows = C.rows.map(function(r, i){
+    return '<tr><td>' + r[0] + '</td>' +
+      '<td class="n" data-l="' + P(T.vol) + '"><span><input type="number" min="0" step="1" data-k="v" data-i="' + i + '" value="' + r[2] + '"><span class="u">' + r[1] + '</span></span></td>' +
+      '<td class="n" data-l="' + T.before + '"><input type="number" min="0" step="0.5" data-k="b" data-i="' + i + '" value="' + r[3] + '"></td>' +
+      '<td class="n" data-l="' + T.after + '"><input type="number" min="0" step="0.5" data-k="a" data-i="' + i + '" value="' + r[4] + '"></td>' +
+      '<td class="n s" data-l="' + T.saved + '" id="s' + i + '"></td></tr>';
+  }).join('');
+  el.innerHTML = '<p class="eb"><b>QME</b> · ' + T.eb + '</p><h2>' + T.h + '</h2><p class="intro">' + T.intro + '</p>' +
+    '<table><thead><tr><th>' + T.task + '</th><th class="n">' + P(T.vol) + '</th><th class="n">' + T.before + '</th><th class="n">' + T.after + '</th><th class="n">' + T.saved + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">' + T.reset + '</button></div>' +
+    '<div class="tot"><div class="main"><b id="estH"></b><span>' + P(T.hours) + '</span></div><div><b id="estD"></b><span>' + T.days + '</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
+    '<p class="foot">' + T.foot + '</p>';
+  function calc(){
+    var tot = 0;
+    C.rows.forEach(function(r, i){
+      var g = function(k){ var v = parseFloat(el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value); return isNaN(v) ? 0 : v; };
+      var h = Math.max(0, g('v') * (g('b') - g('a'))) / 60; tot += h;
+      document.getElementById('s' + i).textContent = fmt(h, h < 10 ? 1 : 0) + ' h';
+    });
+    var rate = parseFloat(document.getElementById('estRate').value) || 0;
+    document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
+    document.getElementById('estD').textContent = fmt(tot / (C.dayHours || 7), 0);
+    document.getElementById('estVL').textContent = P(T.value).replace('{rate}', fmt(rate));
+    var v = fmt(Math.round(tot * rate / 10) * 10); document.getElementById('estV').textContent = T.loc === 'en-GB' ? '€' + v : v + ' €';
+  }
+  el.addEventListener('input', calc);
+  document.getElementById('estReset').addEventListener('click', function(){
+    C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
+    document.getElementById('estRate').value = C.rate; calc();
+  });
+  calc();
+})();
+</script>
+  <!-- estimation -->
+
+  <section style="margin-top:100px">
+    <div class="num">CONSTRUIT PAR MODULES</div>
+    <h2 style="font-size:clamp(28px,3.2vw,40px);margin:10px 0 0;font-weight:700">On commence par ce qui vous fait gagner le plus de temps</h2>
+    <div class="steps">
+      <div><b>1</b><h3>Le téléphone de l'agent</h3><p>Pointage, check-list photo et signalements, avec vos modèles par type de local.</p></div>
+      <div><b>2</b><h3>Les heures du mois</h3><p>Réalisé contre contrat, prêt pour la paie et la facture.</p></div>
+      <div><b>3</b><h3>Aujourd'hui, planning et absences</h3><p>La journée de l'équipe et les remplacements, sans appels.</p></div>
+      <div><b>4</b><h3>Contrôle qualité et espace client</h3><p>La grille, le rapport et l'espace où vos clients suivent leurs passages.</p></div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div><h2>Un outil construit autour de votre façon de travailler</h2><p>Ce concept est un point de départ&nbsp;: chaque écran s'adapte à votre organisation, à vos contrats et à vos outils, et se teste en conditions réelles avec vos agents avant d'aller plus loin.</p></div>
+    <div class="ctas">
+      <a class="btn dark" href="demo/" data-goatcounter-click="concept-conciergerie-en-provence-demo" data-goatcounter-title="Concept Conciergerie en Provence (démonstration)">Ouvrir la démonstration</a>
+      <a class="btn line" href="QME-concept-Conciergerie-En-Provence.pdf" download data-goatcounter-click="concept-conciergerie-en-provence-pdf" data-goatcounter-title="Concept Conciergerie en Provence (PDF)">Télécharger le PDF (5 pages)</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

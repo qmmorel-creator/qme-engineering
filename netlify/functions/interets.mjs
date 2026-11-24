@@ -8,6 +8,7 @@ export default async (requete) => {
   return traiterInterets(requete, {
     secret: process.env.TEMPLATES_SECRET,
     admin: process.env.INTERETS_ADMIN,
+    lecture: process.env.QME_LECTURE_TOKEN, // jeton de lecture seule (Nexora Optim › QME)
     stockage: {
       ajouter: (cle, valeur) => store.set(cle, valeur),
       lire: (cle) => store.get(cle),

@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { traiter, genererCodeEssai, verifierCodeEssai, verifierCode, etatEssai, codeDepuisLicence, ESSAI, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
 import { traiterEssai, tournerEssais, PRODUITS_ESSAI, contenuMail, produitEssai, lienStop } from '../../netlify/lib/essais.mjs';
 import { PRISE_EN_MAIN } from '../../netlify/lib/essais-prise-en-main.mjs';
-import { TEMPLATES } from '../../outils/packs/donnees.mjs';
+import { TEMPLATES, publics } from '../../outils/packs/donnees.mjs';
 
 const SECRET = 'x'.repeat(40);
 const JOUR = 86_400_000;
@@ -28,10 +28,13 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
 };
 
 test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
-  const attendus = Object.keys(PRODUITS).filter((p) => ['perso', 'pro'].includes(TEMPLATES[p]?.pour) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
+  const attendus = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => ['perso', 'pro'].includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
-  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'perso').length, 29);
-  assert.equal(PRODUITS_ESSAI.filter((p) => TEMPLATES[p].pour === 'pro').length, 39);
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 38);
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 42); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
+  assert.deepEqual(publics(TEMPLATES.CAN), ['pro', 'perso'], 'Suivi de candidatures dans les deux parties');
+  assert.deepEqual(publics(TEMPLATES.EVT), ['pro', 'perso'], 'Organisateur d\'événement dans les deux parties');
+  assert.ok(PRODUITS_ESSAI.includes('EVT') && !PRODUITS_ESSAI.includes('MRG'), 'Organisateur d\'événement à l\'essai');
   for (const p of PRODUITS_ESSAI) assert.ok(PRODUITS[p].gumroad && TEMPLATES[p].prix > 0 && TEMPLATES[p].permalien, p);
   assert.ok(!PRODUITS_ESSAI.includes('SNT'), 'Secret Santa est gratuit');
   assert.equal(produitEssai('budget'), 'BDG');
@@ -415,6 +418,9 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   assert.deepEqual([d.total, d.enCours, d.termines, d.achetes], [2, 1, 0, 1]);
   const achete = d.essais.find((e) => e.email === 'achete@b.fr');
   assert.deepEqual([achete.statut, achete.reporte, achete.template], ['acheté', true, 'Mon Budget']);
+  // Champs du suivi (/admin/suivi/) : date de l'e-mail de remerciement, produit, prix, paiement.
+  assert.match(achete.envois.merci, /^\d{4}-\d{2}-\d{2}T/);
+  assert.deepEqual([achete.produit, typeof achete.prix, achete.paye], ['BDG', 'number', null]);
   assert.equal(d.essais.find((e) => e.email === 'cours@b.fr').joursRestants, 14);
   w.horloge.t = T0 + 15 * JOUR;
   assert.equal((await (await adminApi(w, 'GET', '/essais')).json()).termines, 1);

@@ -519,7 +519,7 @@
         <span class="cp-zone"><span class="cp-barre" style="height:${vals[i] ? Math.max(2, (vals[i] / max) * 100) : 0}%"></span>${repere ? `<span class="cp-repere" style="bottom:${(repere(p) / max) * 100}%"></span>` : ''}</span>
         <span class="cp-mois">${etiquette(p, i)}</span></div>`).join('')}</div>
       <div class="infobulle" hidden></div>
-      <div class="sr-only"><table><caption>${esc(titre)}</caption><tbody>${points.map((p, i) => `<tr><th>${etiquette(p, i)}</th><td>${N(vals[i])}</td></tr>`).join('')}</tbody></table></div>
+      <div class="sr-only"><table><caption>${esc(titre)}</caption><tbody>${points.map((p, i) => `<tr><th>${info(p).match(/<b>(.*?)<\/b>/)?.[1] || etiquette(p, i)}</th><td>${N(vals[i])}</td></tr>`).join('')}</tbody></table></div>
     </figure>`;
   }
   // Barres horizontales à une série : une ligne par catégorie (genre, format).
@@ -651,7 +651,7 @@
   }
   function ligneLivre(l, rangAlire) {
     const p = R.progression(E, l);
-    const droite = l.statut === 'lu' ? `${etoiles(l.note) || '<span class="mention">Pas de note</span>'}<span class="ligne-proch">Fini le ${esc(dateMoy(l.fin))}</span>`
+    const droite = l.statut === 'lu' ? `${etoiles(l.note) || '<span class="mention">Pas de note</span>'}${l.fin ? `<span class="ligne-proch">Fini le ${esc(dateMoy(l.fin))}</span>` : ''}`
       : l.statut === 'encours' ? `<span class="ligne-cout"><b>${p.part === null ? qte(p.fait, p.unite) : `${Math.floor(p.part * 100)} %`}</b></span><button class="btn petit" data-action="session" data-livre="${l.id}">${ICONES.plus}Session</button>`
       : l.statut === 'abandonne' ? `<span class="ligne-proch">Arrêté ${p.total ? `à ${Math.floor((p.part || 0) * 100)} %` : ''}${l.fin ? ` le ${esc(dateMoy(l.fin))}` : ''}</span>`
       : rangAlire ? `<span class="rang deplacer"><button class="btn-suppr" data-action="monter" data-id="${l.id}" aria-label="Monter ${esc(l.titre)}">↑</button><button class="btn-suppr" data-action="descendre" data-id="${l.id}" aria-label="Descendre ${esc(l.titre)}">↓</button></span><button class="btn petit" data-action="commencer" data-id="${l.id}">Commencer</button>`
@@ -847,7 +847,7 @@
     ouvrirModale(l0 ? 'Modifier le livre' : 'Nouveau livre', corps, PIED(!!l0), (fd, choix) => {
       if (choix === 'supprimer') {
         const n = R.sessionsDe(E, l.id).length;
-        if (!confirm(`Supprimer « ${l.titre} »${n ? ` et ses ${pluriel(n, 'session')}` : ''} ?`)) return '';
+        if (!confirm(`Supprimer « ${l.titre} »${n > 1 ? ` et ses ${n} sessions` : n ? ' et sa session' : ''} ?`)) return '';
         modifier((e) => R.supprimerLivre(e, l.id), 'Livre supprimé.');
         return undefined;
       }
@@ -855,7 +855,7 @@
       if (!titre) return 'Indique le titre.';
       const format = fd.get('format');
       const total = format === 'audio' ? lireDuree(fd.get('total')) : entier(fd.get('total'));
-      if (total === null) return format === 'audio' ? 'Durée illisible : écris par exemple 9h30 ou 570.' : 'Le nombre de pages doit être un nombre entier.';
+      if (total === null) return format === 'audio' ? 'Durée illisible : écris par exemple 9h30 ou 570.' : 'Le nombre de pages doit être un nombre entier positif, par exemple 320.';
       const statut = fd.get('statut');
       const debut = String(fd.get('debut') || ''), fin = String(fd.get('fin') || '');
       if ((statut === 'lu' || statut === 'abandonne') && debut && fin && fin < debut) return 'La date de fin précède le début.';
@@ -981,7 +981,7 @@
       const texte = String(fd.get('texte') || '').trim();
       if (!texte) return 'Écris la citation.';
       const page = entier(fd.get('page'));
-      if (page === null) return 'La page doit être un nombre entier.';
+      if (page === null) return 'La page doit être un nombre entier positif, par exemple 42.';
       modifier((e) => ({ ...e, livres: e.livres.map((x) => (x.id === l.id ? R.normaliserLivre({ ...x, citations: (x.citations || []).concat([{ id: uid(), texte, page }]) }) : x)) }), 'Citation ajoutée.');
       d2(() => modaleFiche(l.id));
       return '';

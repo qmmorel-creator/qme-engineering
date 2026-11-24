@@ -1,5 +1,7 @@
 # Prospects · Vivre sans voiture
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et types d'organisations seulement : **aucune donnée personnelle collectée sur des particuliers**. Les
 organismes nommés existent ; leur intérêt pour ce template est une hypothèse **à vérifier** avant tout contact. Rien
 n'est envoyé sans Quentin. Confidentialité : ne jamais citer de ville, de réseau de transport, de loueur ni de

@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://qm-engineering.fr/essai/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
 <script type="application/ld+json" id="donnees-structurees">
 {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://qm-engineering.fr/essai/#fil","itemListElement":[{"@type":"ListItem","position":1,"name":"Templates","item":"https://qm-engineering.fr/templates/"},{"@type":"ListItem","position":2,"name":"Essai gratuit","item":"https://qm-engineering.fr/essai/"}]},{"@type":"FAQPage","@id":"https://qm-engineering.fr/essai/#faq","mainEntity":[{"@type":"Question","name":"Faut-il une carte bancaire ?","acceptedAnswer":{"@type":"Answer","text":"Non. L'essai ne demande que votre adresse e-mail : aucune carte, aucun prélèvement, ni pendant ni après les 14 jours."}},{"@type":"Question","name":"Que se passe-t-il à la fin des 14 jours ?","acceptedAnswer":{"@type":"Answer","text":"Rien n'est facturé. Vos données restent consultables (sans modification) pendant 30 jours, puis elles sont effacées. Vous pouvez en télécharger une copie depuis les réglages du template."}},{"@type":"Question","name":"Si j'achète, est-ce que je garde mes données ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Après l'achat sur Gumroad, saisissez la clé reçue par e-mail dans le template (bouton « J'ai acheté ») : tout ce que vous avez saisi pendant l'essai est repris, rien à refaire. Si vous achetez avec la même adresse e-mail que celle de l'essai, la reprise se fait aussi sur un autre appareil."}},{"@type":"Question","name":"L'essai est-il complet ?","acceptedAnswer":{"@type":"Answer","text":"Oui : toutes les fonctions, vos données enregistrées en ligne et synchronisées sur vos appareils (ordinateur, téléphone), comme après l'achat."}},{"@type":"Question","name":"Quels e-mails vais-je recevoir ?","acceptedAnswer":{"@type":"Answer","text":"Quatre au plus, écrits par Quentin : votre code au démarrage, un rappel 3 jours avant la fin, un message à la fin de l'essai et un dernier avant l'effacement des données. Un lien en bas de chaque e-mail les arrête, et aucun n'est envoyé après un achat. Les nouveautés QME (nouveaux templates, offres) ne vous sont envoyées que si vous cochez la case facultative prévue pour cela."}},{"@type":"Question","name":"Puis-je essayer plusieurs templates ?","acceptedAnswer":{"@type":"Answer","text":"Oui, un essai par template et par adresse e-mail. Pour plusieurs templates d'un coup, regardez aussi les packs."}}]}]}
 </script>
@@ -23,9 +23,10 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/" aria-current="page">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -49,21 +50,28 @@
     <label class="full">Template à essayer
       <select name="produit" required>
         <optgroup label="Vie personnelle">
-          <option value="candidatures" data-prix="1200">Candidatures études, stages, alternance · 12 €</option>
+          <option value="remerciements" data-prix="1200">Cadeaux reçus et remerciements · 12 €</option>
           <option value="emprunt" data-prix="1500">Capacité d'emprunt et comparateur de prêts · 15 €</option>
           <option value="musculation" data-prix="1900">Carnet de musculation et cross-training · 19 €</option>
           <option value="voiture" data-prix="1300">Carnet de voiture · 13 €</option>
+          <option value="copropriete" data-prix="1500">Charges et AG de copropriété · 15 €</option>
+          <option value="demenagement" data-prix="1200">Déménagement · 12 €</option>
           <option value="sinistre" data-prix="2900">Dossier sinistre habitation · 29 €</option>
+          <option value="entretien" data-prix="1200">Entretien de la maison · 12 €</option>
           <option value="etat-des-lieux" data-prix="1900">État des lieux d’entrée et de sortie · 19 €</option>
+          <option value="garde-manger" data-prix="1200">Garde-manger et dates de péremption · 12 €</option>
           <option value="budget-commun" data-prix="1500">Gestion Dépenses Communes · 15 €</option>
+          <option value="gestion-locative" data-prix="2000">Gestion locative · 20 €</option>
           <option value="patrimoine" data-prix="1900">Inventaire valorisé · 19 €</option>
+          <option value="location-saisonniere" data-prix="2500">Location saisonnière · 25 €</option>
           <option value="budget" data-prix="1500">Mon Budget · 15 €</option>
           <option value="notes" data-prix="1200">Notes et moyennes · 12 €</option>
           <option value="nutrition" data-prix="1900">Nutrition et dépense énergétique · 19 €</option>
           <option value="epargne" data-prix="1200">Objectif d'épargne et fonds d'urgence · 12 €</option>
-          <option value="mariage" data-prix="2900">Organisateur de mariage · 29 €</option>
+          <option value="evenementiel" data-prix="3900">Organisateur d'événement · 39 €</option>
           <option value="papiers" data-prix="1500">Papiers du foyer · 15 €</option>
           <option value="travaux" data-prix="2500">Pilote de travaux maison · 25 €</option>
+          <option value="course-a-pied" data-prix="1500">Plan d'entraînement course à pied · 15 €</option>
           <option value="voyage" data-prix="1300">Planificateur de voyage · 13 €</option>
           <option value="planner" data-prix="1500">Planner horaire · 15 €</option>
           <option value="memoire" data-prix="1500">Planning de mémoire ou de thèse · 15 €</option>
@@ -71,8 +79,10 @@
           <option value="dettes" data-prix="1200">Remboursement de dettes · 12 €</option>
           <option value="investissement-locatif" data-prix="1500">Rentabilité d'un investissement locatif · 15 €</option>
           <option value="repas" data-prix="1300">Repas de la semaine et liste de courses · 13 €</option>
+          <option value="revue-hebdo" data-prix="1200">Revue hebdomadaire et journal de bord · 12 €</option>
           <option value="leasing" data-prix="1200">Simulateur leasing ou achat · 12 €</option>
           <option value="habitudes" data-prix="1200">Suivi d'habitudes et routines · 12 €</option>
+          <option value="candidatures" data-prix="1200">Suivi de candidatures · 12 €</option>
           <option value="lecture" data-prix="1200">Suivi de lecture · 12 €</option>
           <option value="abonnements" data-prix="900">Suivi des abonnements · 9 €</option>
           <option value="tableau-annuel" data-prix="1500">Tableau de bord annuel et roue de vie · 15 €</option>
@@ -85,8 +95,10 @@
           <option value="visa" data-prix="3900">Circuit de visa des documents · 39 €</option>
           <option value="compte-rendu" data-prix="1500">Compte rendu et plan d'actions · 15 €</option>
           <option value="sous-traitants" data-prix="2900">Conformité des sous-traitants · 29 €</option>
+          <option value="contrats" data-prix="2500">Contrats fournisseurs et échéances · 25 €</option>
           <option value="cout-revient" data-prix="2500">Coût de revient et prix par client · 25 €</option>
-          <option value="crm" data-prix="2500">CRM freelance · 25 €</option>
+          <option value="crm" data-prix="2500">CRM et prospection · 25 €</option>
+          <option value="achats" data-prix="1900">Demandes d'achat et fournitures · 19 €</option>
           <option value="document-unique" data-prix="2900">Document unique d'évaluation des risques · 29 €</option>
           <option value="entretiens-annuels" data-prix="1900">Entretiens annuels et professionnels · 19 €</option>
           <option value="devis" data-prix="2900">Générateur de devis · 29 €</option>
@@ -101,7 +113,8 @@
           <option value="maintenance" data-prix="3900">Maintenance préventive · 39 €</option>
           <option value="notes-de-frais" data-prix="1500">Notes de frais et indemnités kilométriques · 15 €</option>
           <option value="onboarding" data-prix="1900">Onboarding et offboarding salarié · 19 €</option>
-          <option value="prospection" data-prix="2500">Pipeline de prospection B2B · 25 €</option>
+          <option value="evenementiel" data-prix="3900">Organisateur d'événement · 39 €</option>
+          <option value="bascule" data-prix="2900">Pilotage d'une journée de bascule · 29 €</option>
           <option value="planning-equipe" data-prix="3500">Planning d'équipe et staffing · 35 €</option>
           <option value="gantt" data-prix="4500">Planning Gantt rapide · 45 €</option>
           <option value="appel-decouverte" data-prix="1200">Préparateur d'appel découverte · 12 €</option>
@@ -111,9 +124,9 @@
           <option value="impayes" data-prix="1900">Relance des impayés · 19 €</option>
           <option value="salles" data-prix="1900">Réservation de salles et bureaux · 19 €</option>
           <option value="stocks" data-prix="2500">Stocks et inventaire · 25 €</option>
+          <option value="candidatures" data-prix="1200">Suivi de candidatures · 12 €</option>
           <option value="suivi-chantier" data-prix="4000">Suivi de chantier par lot · 40 €</option>
           <option value="tva" data-prix="1900">Suivi de TVA · 19 €</option>
-          <option value="appels-offres" data-prix="1500">Suivi des appels d'offres et candidatures · 15 €</option>
           <option value="conges" data-prix="1900">Suivi des congés et absences · 19 €</option>
           <option value="suivi-temps" data-prix="1900">Suivi du temps et rentabilité par mission · 19 €</option>
           <option value="pilotage-pme" data-prix="3900">Tableau de bord de pilotage PME · 39 €</option>
@@ -167,8 +180,8 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112004" defer></script>
-<script src="/assets/essai-page.js?v=2026112004" defer></script>
+<script src="/assets/site.js?v=2026112401" defer></script>
+<script src="/assets/essai-page.js?v=2026112401" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

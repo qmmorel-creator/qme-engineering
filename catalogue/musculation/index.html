@@ -9,12 +9,12 @@
 <link rel="canonical" href="https://qm-engineering.fr/catalogue/musculation/">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112004">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
 <script type="application/ld+json" id="donnees-structurees">
 {"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://qm-engineering.fr/catalogue/musculation/#produit","name":"Carnet de musculation et cross-training","description":"Carnet de musculation et cross-training : séances et WOD notés vite, volume par semaine, records détectés, minuteur hors ligne. Aucune donnée de santé.","url":"https://qm-engineering.fr/catalogue/musculation/","image":["https://qm-engineering.fr/assets/templates-musculation-seances.webp?v=20261114","https://qm-engineering.fr/assets/templates-musculation-tel.webp?v=20261114"],"category":"Application web (template)","brand":{"@id":"https://qm-engineering.fr/#organisation"},"offers":{"@type":"Offer","price":"19.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://qmengineering.gumroad.com/l/carnet-musculation-cross-training","seller":{"@id":"https://qm-engineering.fr/#organisation"}}},{"@type":"BreadcrumbList","@id":"https://qm-engineering.fr/catalogue/musculation/#fil","itemListElement":[{"@type":"ListItem","position":1,"name":"Templates","item":"https://qm-engineering.fr/templates/"},{"@type":"ListItem","position":2,"name":"Vie personnelle","item":"https://qm-engineering.fr/templates/?pour=perso"},{"@type":"ListItem","position":3,"name":"Carnet de musculation et cross-training","item":"https://qm-engineering.fr/catalogue/musculation/"}]},{"@type":"FAQPage","@id":"https://qm-engineering.fr/catalogue/musculation/#faq","mainEntity":[{"@type":"Question","name":"Y a-t-il un essai gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui : 14 jours d'essai gratuit, sans carte bancaire, avec toutes les fonctions. Si vous achetez ensuite, tout ce que vous avez saisi est repris ; sinon, rien n'est prélevé et vos données sont effacées 30 jours après l'essai."}},{"@type":"Question","name":"Quels exercices sont prévus ?","acceptedAnswer":{"@type":"Answer","text":"150 exercices aux noms génériques, rangés en 13 groupes et familles : pectoraux, dos, épaules, bras, jambes, mollets, gainage, haltérophilie, gymnastique, kettlebell et fonctionnel, cardio et machines. Chacun a sa mesure : charge et répétitions, répétitions seules, temps tenu, distance ou calories affichées par la machine. Vous ajoutez les vôtres en quelques secondes."}},{"@type":"Question","name":"Comment le 1RM est-il calculé ?","acceptedAnswer":{"@type":"Answer","text":"C'est une estimation, pas une mesure : formule d'Epley (charge × (1 + répétitions ÷ 30)) ou, au choix, de Brzycki, appliquée à vos séries de 10 répétitions au plus (réglable). Une série d'une seule répétition donne la charge elle-même. Le carnet ne vous propose jamais de tester ce maximum."}},{"@type":"Question","name":"Quels WOD sont inclus ?","acceptedAnswer":{"@type":"Answer","text":"Des formats génériques (AMRAP, EMOM, For Time, intervalles) et des modèles de séance rédigés pour ce carnet, nommés d'après leur contenu (par exemple « AMRAP 12 min · poids du corps »). Aucun WOD de référence nommé n'est fourni : vous saisissez les vôtres, et le carnet retrouve votre meilleur score quand vous refaites le même."}},{"@type":"Question","name":"Le minuteur fonctionne-t-il sans réseau ?","acceptedAnswer":{"@type":"Answer","text":"Oui : il est calculé dans la page, avec des bips synthétisés par le navigateur. Une fois le carnet ouvert (ou ajouté à l'écran d'accueil du téléphone), il fonctionne même sans connexion à la salle ; les séances notées hors ligne sont envoyées au retour du réseau."}},{"@type":"Question","name":"Pourquoi aucune donnée de santé ?","acceptedAnswer":{"@type":"Answer","text":"Le carnet garde seulement vos performances sportives : exercices, séries, charges, répétitions, temps, distances et scores. Il ne demande ni poids de corps, ni mensurations, ni fréquence cardiaque, ni blessures : ce sont des données de santé, plus sensibles, et elles ne sont pas nécessaires pour suivre une progression. Les exercices au poids du corps se mesurent en répétitions ou en temps."}},{"@type":"Question","name":"Est-ce un programme d'entraînement ?","acceptedAnswer":{"@type":"Answer","text":"Non. C'est un carnet : il enregistre et calcule, il ne prescrit rien. Ce n'est ni un programme ni un avis médical. Avant de reprendre une activité intense, ou en cas de doute sur votre santé, consultez un médecin ou un professionnel du sport."}},{"@type":"Question","name":"Puis-je l'essayer avant d'acheter ?","acceptedAnswer":{"@type":"Answer","text":"Oui : la démo ouvre le carnet d'un pratiquant fictif sur dix semaines (séances de force, WOD et leurs scores, records, volume, modèles). Elle reste dans votre navigateur et n'envoie rien."}}]}]}
 </script>
 </head>
-<body>
+<body data-partie="perso">
 
 <header class="topbar">
   <a class="brand" href="/" aria-label="QME, accueil">
@@ -23,9 +23,10 @@
     <span class="tagline">Quentin Morel<br>Engineering</span>
   </a>
   <nav aria-label="Navigation principale">
-    <a href="/sur-mesure/">Sur mesure</a>
-    <a href="/templates/">Templates</a>
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
     <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
     <a class="login" href="/connexion/">Connexion</a>
     <a class="cta" href="/contact/">Parler de votre projet</a>
   </nav>
@@ -96,7 +97,7 @@
   <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
 </footer>
 
-<script src="/assets/site.js?v=2026112004" defer></script>
+<script src="/assets/site.js?v=2026112401" defer></script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

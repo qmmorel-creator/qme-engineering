@@ -1,5 +1,7 @@
 # Prospects · Secret Santa
 
+> **Règle absolue** : tout e-mail de prospection vérifie d'abord la liste d'opposition et se termine par la mention « Ne plus recevoir les informations » ([`REGLES-PROSPECTION.md`](../REGLES-PROSPECTION.md)).
+
 Segments et organisations à toucher. Aucune donnée personnelle collectée sur des particuliers : on
 cible des fonctions et des structures, on écrit à des adresses professionnelles publiques ou via
 LinkedIn, et on publie dans des espaces où la promotion est autorisée (règles du groupe à lire

@@ -617,3 +617,18 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .fonctionnements label:first-child span{border-right:0;border-bottom:1px solid var(--trait)}
 }
 .segments.fonctionnements input:checked+span small{color:var(--papier);opacity:1}
+
+/* Cibles tactiles d'au moins 44 px sur téléphone (audit étudiants du 22/11/2026). */
+.btn.petit,.btn.lien{min-height:44px}
+.modale-tete button{width:44px;height:44px}
+.bandeau-demo button{min-height:44px;padding:0 4px}
+
+/* Cibles tactiles restantes (audit du 22/11/2026) : liens dans une ligne de texte agrandis sans décaler la mise
+   en page, résumés dépliables, boutons « Modifier » des personnes et puces des catégories. */
+.titre-section .btn.lien,.calcul-ligne .btn.lien{position:relative}
+.titre-section .btn.lien::after,.calcul-ligne .btn.lien::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+.detail-charges summary{min-height:44px;padding-top:11px;padding-bottom:11px;box-sizing:border-box}
+.matiere-tete button{min-height:44px}
+.puce{min-height:44px}
+.pastilles span{width:44px;height:44px}
+.segments.fonctionnements span small{opacity:1}

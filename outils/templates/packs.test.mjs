@@ -79,7 +79,7 @@ test('connexion avec un code de pack : liste des templates, chacun avec un code 
   const j2 = await (await connexion(code)).json();
   assert.deepEqual(j2.templates.map((t) => t.code), j.templates.map((t) => t.code));
   const v = verifierCodePack(SECRET, code);
-  assert.equal(codePackProduit(SECRET, 'PAR', v.id, 'BDG'), j.templates.find((t) => t.produit === 'BDG').code);
+  assert.equal(codePackProduit(SECRET, 'PAR', v.id, 'TDV'), j.templates.find((t) => t.produit === 'TDV').code);
 });
 
 test('licence Gumroad d’un pack : convertie en code de pack', async () => {
@@ -91,7 +91,7 @@ test('licence Gumroad d’un pack : convertie en code de pack', async () => {
     const j = await (await connexion(LICENCE, { verifierLicence })).json();
     assert.equal(j.pack, 'PFC');
     assert.equal(j.code, LICENCE);
-    assert.equal(j.option, false);
+    assert.equal(j.option, undefined, 'plus d’option « Pack évolutif »');
     assert.ok(j.templates.length >= 2);
   } finally {
     if (sauve === undefined) delete PACKS.PFC.gumroad; else PACKS.PFC.gumroad = sauve;
@@ -108,6 +108,14 @@ test('le site connaît tous les packs : connexion, pages générées, textes', a
   const { calculerPack } = await import('../packs/generer.mjs');
   for (const [code, pack] of Object.entries(PACKS)) {
     assert.ok(PAGES[code], `textes du pack ${code}`);
+    // Pack retiré : plus de page publique, son adresse redirige vers un autre pack (netlify.toml).
+    if (pack.retire) {
+      const { existsSync } = await import('node:fs');
+      assert.ok(!existsSync(new URL(`packs/${pack.slug}/index.html`, racine)), `page du pack retiré ${pack.slug} supprimée`);
+      const toml = await readFile(new URL('netlify.toml', racine), 'utf8');
+      assert.ok(toml.includes(`from = "/packs/${pack.slug}/*"`), `redirection du pack retiré ${pack.slug}`);
+      continue;
+    }
     const p = calculerPack(code);
     // Le prix publié est celui du barème ; la page générée l'affiche.
     const page = await readFile(new URL(`packs/${pack.slug}/index.html`, racine), 'utf8');
@@ -139,35 +147,34 @@ test('achat Gumroad du pack sur mesure : composition lue dans l’achat, montant
   } finally { delete ACHAT_SUR_MESURE.gumroad; }
 });
 
-test('option « Pack évolutif » : templates ajoutés après l’achat ouverts seulement avec l’option', async () => {
-  const { prixOption, produitsAccessibles } = await import('../../netlify/lib/packs.mjs');
-  assert.equal(prixOption(10400), 2600);
-  assert.equal(prixOption(5000), 1300);
-  assert.equal(prixOption(2700), 900);
-  const sauve = PACKS.PAR.ajouts;
-  PACKS.PAR.ajouts = { ABN: '2026-12-01' }; // template entré dans le pack après son lancement (simulation)
+test('sans option « Pack évolutif » (23/11/2026) : un pack ouvre tous ses templates, ajouts compris', async () => {
+  const mod = await import('../../netlify/lib/packs.mjs');
+  assert.equal(mod.OPTION, undefined);
+  assert.equal(mod.prixOption, undefined);
+  for (const code of Object.keys(PACKS)) assert.equal(PACKS[code].ajouts, undefined, `${code} : plus de dates d'ajout`);
+  const tous = PACKS.PAR.produits.filter((p) => PRODUITS[p]);
+  // Quelle que soit la date d'achat, tout le pack est ouvert.
+  assert.deepEqual(mod.produitsAccessibles('PAR', { date: '2020-01-01' }, PRODUITS), tous);
+  assert.deepEqual(verifierCodePack(SECRET, genererCodePack(SECRET, 'PAR')).produits, tous);
+  // Un ancien code « pack+ » (option évolutive, avant le 23/11/2026) reste valide et ouvre le même pack.
+  const { createHmac } = await import('node:crypto');
+  const { ALPHABET: A } = await import('../../netlify/lib/templates-acces.mjs');
+  const b32 = (o) => { let bits = 0, v = 0, out = ''; for (const x of o) { v = (v << 8) | x; bits += 8; while (bits >= 5) { out += A[(v >>> (bits - 5)) & 31]; bits -= 5; } } if (bits) out += A[(v << (5 - bits)) & 31]; return out; };
+  const id = 'ABCDEFGH';
+  const sig = b32(createHmac('sha256', SECRET).update(`pack+:PAR:${id}`).digest().subarray(0, 5));
+  const ancien = verifierCodePack(SECRET, `PAR-${id.slice(0, 4)}-${id.slice(4)}-${sig.slice(0, 4)}-${sig.slice(4)}`);
+  assert.ok(ancien, 'ancien code évolutif accepté');
+  assert.deepEqual(ancien.produits, tous);
+  // Licence Gumroad : la version achetée (ancienne « Pack évolutif » ou non) ne change rien.
+  const LICENCE = '11111111-22222222-33333333-44444444';
+  PACKS.PAR.gumroad = 'pack-par';
   try {
-    assert.ok(!produitsAccessibles('PAR', { date: '2026-11-20' }, PRODUITS).includes('ABN'));
-    assert.ok(produitsAccessibles('PAR', { date: '2026-12-02' }, PRODUITS).includes('ABN'));
-    assert.ok(produitsAccessibles('PAR', { option: true, date: '2026-11-20' }, PRODUITS).includes('ABN'));
-    // Codes générés à la main : sans option, templates d'origine ; avec option, tout le pack.
-    const sans = verifierCodePack(SECRET, genererCodePack(SECRET, 'PAR'));
-    const avec = verifierCodePack(SECRET, genererCodePack(SECRET, 'PAR', [], { option: true }));
-    assert.deepEqual([sans.option, avec.option], [false, true]);
-    assert.ok(!sans.produits.includes('ABN'));
-    assert.ok(avec.produits.includes('ABN'));
-    // Licence Gumroad : la version « Pack évolutif » donne l'option, la date d'achat fait le reste.
-    const LICENCE = '11111111-22222222-33333333-44444444';
-    PACKS.PAR.gumroad = 'pack-par';
-    const achat = (variants, date) => async (p) => p === 'pack-par' ? { ok: true, achat: { variants, sale_timestamp: date } } : { ok: false, raison: 'inconnue' };
-    const base = await (await connexion(LICENCE, { verifierLicence: achat('(Pack)', '2026-11-20T09:00:00Z') })).json();
-    const evo = await (await connexion(LICENCE, { verifierLicence: achat('(Pack évolutif)', '2026-11-20T09:00:00Z') })).json();
-    assert.ok(!base.templates.some((t) => t.produit === 'ABN'));
-    assert.ok(evo.templates.some((t) => t.produit === 'ABN'));
-    assert.equal(evo.option, true);
-    // Même clé, mêmes codes de template : les données ne changent pas si l'option est ajoutée.
-    assert.equal(base.templates[0].code, evo.templates[0].code);
-  } finally { PACKS.PAR.ajouts = sauve; delete PACKS.PAR.gumroad; }
+    const achat = (variants) => async (p) => p === 'pack-par' ? { ok: true, achat: { variants, sale_timestamp: '2026-11-20T09:00:00Z' } } : { ok: false, raison: 'inconnue' };
+    const base = await (await connexion(LICENCE, { verifierLicence: achat('(Pack)') })).json();
+    const evo = await (await connexion(LICENCE, { verifierLicence: achat('(Pack évolutif)') })).json();
+    assert.deepEqual(base.templates.map((t) => t.produit), tous);
+    assert.deepEqual(evo.templates, base.templates);
+  } finally { delete PACKS.PAR.gumroad; }
 });
 
 test('chaque étape de parcours d’un pack cite un template existant ou annoncé', async () => {
@@ -192,4 +199,20 @@ test('le menu de chaque page en français mène aux packs', async () => {
     const nav = s.slice(s.indexOf('<nav aria-label="Navigation principale">'), s.indexOf('</nav>', s.indexOf('<nav aria-label="Navigation principale">')));
     if (nav.includes('href="/templates/"')) assert.ok(nav.includes('href="/packs/"'), `${f} : lien Packs absent du menu`);
   }
+});
+
+test('pages de pack en vente : essai gratuit annoncé sous l’achat et proposé sur chaque outil ouvert à l’essai', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { PRODUITS_ESSAI } = await import('../../netlify/lib/essais.mjs');
+  for (const slug of ['etudiant', 'budget-perso-famille']) {
+    const html = readFileSync(new URL(`../../packs/${slug}/index.html`, import.meta.url), 'utf8');
+    const k = Object.keys(PACKS).find((c) => PACKS[c].slug === slug);
+    assert.match(html, /<p class="essai-pack">[^<]*14 jours gratuitement, sans carte bancaire/, slug);
+    for (const p of PACKS[k].produits.filter((x) => PRODUITS_ESSAI.includes(x))) {
+      const s = PRODUITS[p].url.split('/')[2];
+      assert.ok(html.includes(`<a href="/essai/?t=${s}" data-goatcounter-click="essai-pack-${slug}-${s}">Essai gratuit</a>`), `${slug} : essai de ${s}`);
+    }
+  }
+  const css = readFileSync(new URL('../../assets/packs.css', import.meta.url), 'utf8');
+  assert.match(css, /\.t-pied a\{[^}]*min-height:44px/, 'liens des cartes : 44 px au doigt');
 });
