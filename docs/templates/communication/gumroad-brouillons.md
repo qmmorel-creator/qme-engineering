@@ -286,16 +286,17 @@ paragraphe, la ligne de détail et la ligne de reçu de l'essai gratuit (les 9 t
 l'essai dès leur mise en vente). Boutons raccourcis à 26 caractères et tags à 20 (limites Gumroad). Pack Propriétaire :
 fiche de `packs/gumroad-packs.json` (9/9 en vente), au prix « Pack » avec le paragraphe « Templates ajoutés plus tard :
 inclus », comme PPE et PCA ; catégorie Real Estate ; pas de couverture. **Brouillons non publiés**, identifiants
-**non ajoutés** à `PRODUITS` / `PACKS` (règle 4). À faire par Quentin : activer la clé de licence.
+**non ajoutés** à `PRODUITS` / `PACKS` (règle 4). Clés activées par Quentin ; **publiés le 24/11/2026 au soir** et mis en
+vente sur le site le même jour (identifiants dans `PRODUITS` et `PACKS`, essai 14 jours pour les 5 templates).
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PPB | Pack Propriétaire (9 templates) | 6t2dFMV7m7ZFZi9WCufCbA== | /l/pack-proprietaire | 131 € | brouillon, clé à activer |
-| SBV | Subventions | G7arZe0pxGazVy5-3XgvEg== | /l/subventions-association | 25 € | brouillon, clé à activer |
-| BNV | Bénévoles et planning des créneaux | N6EbHSaltmNDn25dK6MqaQ== | /l/benevoles-planning-creneaux | 19 € | brouillon, clé à activer |
-| AGS | Assemblée générale et vie statutaire | E2646FHpnUNH_Q7KS43Ylg== | /l/assemblee-generale-association | 19 € | brouillon, clé à activer |
-| PRG | Progression pédagogique | UyQhzM7uwEOVCI-QjMJP0Q== | /l/progression-pedagogique | 15 € | brouillon, clé à activer |
-| QZZ | Banque de questions et quiz | LmF33uw6vlpiC0CrcqnQPQ== | /l/banque-questions-quiz | 19 € | brouillon, clé à activer |
+| PPB | Pack Propriétaire (9 templates) | 6t2dFMV7m7ZFZi9WCufCbA== | /l/pack-proprietaire | 131 € | publié, en vente (24/11) |
+| SBV | Subventions | G7arZe0pxGazVy5-3XgvEg== | /l/subventions-association | 25 € | publié, en vente (24/11) |
+| BNV | Bénévoles et planning des créneaux | N6EbHSaltmNDn25dK6MqaQ== | /l/benevoles-planning-creneaux | 19 € | publié, en vente (24/11) |
+| AGS | Assemblée générale et vie statutaire | E2646FHpnUNH_Q7KS43Ylg== | /l/assemblee-generale-association | 19 € | publié, en vente (24/11) |
+| PRG | Progression pédagogique | UyQhzM7uwEOVCI-QjMJP0Q== | /l/progression-pedagogique | 15 € | publié, en vente (24/11) |
+| QZZ | Banque de questions et quiz | LmF33uw6vlpiC0CrcqnQPQ== | /l/banque-questions-quiz | 19 € | publié, en vente (24/11) |
 
 Limite Gumroad atteinte à la 7e création (Emploi du temps d'établissement) : « after November 24 at 11:47 PM PST »,
 soit le 25/11 à 08:47 (Paris). Restent EDT, ANM, FRM, PTG, programmés le 25/11 à 09:15 (Paris).

@@ -1,5 +1,19 @@
 [
   {
+    "code": "PAS",
+    "slug": "associations",
+    "nom": "Pack Associations et clubs",
+    "permalien": "pack-associations",
+    "prix_cents": 15600,
+    "resume": "Les adhérents, les événements et la caisse du club.",
+    "description_html": "<p><strong>Les adhérents, les événements et la caisse du club.</strong></p>\n<p>Inscriptions, événements, compétitions sportives et trésorerie : ce que les bénévoles gèrent le soir et le week-end.</p>\n<p><strong>Pour qui ?</strong> Président, trésorier ou secrétaire bénévole d’une association, d’un club ou d’un centre social : vous gérez des inscriptions, un ou deux événements par an et une trésorerie à présenter en assemblée générale.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Inscriptions associatives</strong> : Créneaux, liste d’attente et tarifs par tranche. (29 € seul)</li><li><strong>Organisateur d'événement</strong> : Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J. (39 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Gestion de compétition sportive</strong> : Inscriptions, vagues, scores et classement en direct. (49 € seul)</li><li><strong>Subventions</strong> : Dossiers, échéances, justificatifs et bilans. (25 € seul)</li><li><strong>Bénévoles et planning des créneaux</strong> : Qui tient quel créneau, sans trou ni doublon. (19 € seul)</li><li><strong>Assemblée générale et vie statutaire</strong> : Convocations, quorum, PV et mandats du bureau. (19 € seul)</li></ul>\n<p>209 € à l’achat séparé, 156 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "7/7",
+    "templates_a_mettre_en_vente": []
+  },
+  {
     "code": "PBF",
     "slug": "budget-perso-famille",
     "nom": "Pack Budget perso et famille",
@@ -212,21 +226,21 @@
     ]
   },
   {
-    "code": "PAS",
-    "slug": "associations",
-    "nom": "Pack Associations et clubs",
-    "permalien": "pack-associations",
-    "prix_cents": 15600,
-    "resume": "Les adhérents, les événements et la caisse du club.",
-    "description_html": "<p><strong>Les adhérents, les événements et la caisse du club.</strong></p>\n<p>Inscriptions, événements, compétitions sportives et trésorerie : ce que les bénévoles gèrent le soir et le week-end.</p>\n<p><strong>Pour qui ?</strong> Président, trésorier ou secrétaire bénévole d’une association, d’un club ou d’un centre social : vous gérez des inscriptions, un ou deux événements par an et une trésorerie à présenter en assemblée générale.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Inscriptions associatives</strong> : Créneaux, liste d’attente et tarifs par tranche. (29 € seul)</li><li><strong>Organisateur d'événement</strong> : Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J. (39 € seul)</li><li><strong>Trésorerie prévisionnelle 12 mois</strong> : Prévu, réalisé, scénarios et alerte de solde. (29 € seul)</li><li><strong>Gestion de compétition sportive</strong> : Inscriptions, vagues, scores et classement en direct. (49 € seul)</li><li><strong>Subventions</strong> : Dossiers, échéances, justificatifs et bilans. (25 € seul)</li><li><strong>Bénévoles et planning des créneaux</strong> : Qui tient quel créneau, sans trou ni doublon. (19 € seul)</li><li><strong>Assemblée générale et vie statutaire</strong> : Convocations, quorum, PV et mandats du bureau. (19 € seul)</li></ul>\n<p>209 € à l’achat séparé, 156 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "code": "PNS",
+    "slug": "enseignant",
+    "nom": "Pack Écoles et formateurs",
+    "permalien": "pack-enseignant",
+    "prix_cents": 11100,
+    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
+    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique, emploi du temps et auto-école : les outils des écoles, des centres de formation et des formateurs.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Banque de questions et quiz</strong> : Questions taguées, quiz générés et corrigés. (19 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li><li><strong>Gestion d'auto-école</strong> : Élèves, leçons, moniteurs et véhicules. (45 € seul)</li></ul>\n<p>149 € à l’achat séparé, 111 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
     "lien_contenu": "https://qm-engineering.fr/connexion/",
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "4/7",
+    "templates_en_vente": "2/5",
     "templates_a_mettre_en_vente": [
-      "Subventions",
-      "Bénévoles et planning des créneaux",
-      "Assemblée générale et vie statutaire"
+      "Gestion de classe",
+      "Emploi du temps d'établissement",
+      "Gestion d'auto-école"
     ]
   },
   {
@@ -245,26 +259,6 @@
       "Suivi du bébé",
       "Suivi d'un animal de compagnie",
       "Calendrier du potager"
-    ]
-  },
-  {
-    "code": "PNS",
-    "slug": "enseignant",
-    "nom": "Pack Écoles et formateurs",
-    "permalien": "pack-enseignant",
-    "prix_cents": 11100,
-    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
-    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique, emploi du temps et auto-école : les outils des écoles, des centres de formation et des formateurs.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Banque de questions et quiz</strong> : Questions taguées, quiz générés et corrigés. (19 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li><li><strong>Gestion d'auto-école</strong> : Élèves, leçons, moniteurs et véhicules. (45 € seul)</li></ul>\n<p>149 € à l’achat séparé, 111 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "0/5",
-    "templates_a_mettre_en_vente": [
-      "Progression pédagogique",
-      "Banque de questions et quiz",
-      "Gestion de classe",
-      "Emploi du temps d'établissement",
-      "Gestion d'auto-école"
     ]
   }
 ]
