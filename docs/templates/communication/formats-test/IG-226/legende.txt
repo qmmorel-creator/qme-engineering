@@ -1,0 +1,51 @@
+Un prix qui monte de 3 % par an. Il double quand ?
+
+3 % par an pendant 10 ans, ce n'est pas 30 % : c'est 34,4 %.
+Chaque hausse s'ajoute aux hausses d'avant.
+Résultat : 100 € deviennent 200 € en 23,4 ans, pas en 33.
+De tête, la règle de 72 : 72 ÷ 3 = 24 ans.
+Elle marche dans les deux sens : un abonnement qui augmente, une épargne qui rapporte.
+Exemples fictifs, ne remplace pas un conseil financier.
+
+Enregistrez-le. Envoyez-le à quelqu'un qui dit « 3 %, c'est rien ».
+Le calcul que personne ne fait, n°3 la semaine prochaine.
+
+#Finances #Budget #CalculUtile #Épargne #Inflation
+———
+NOTES
+Format : F3 « Le calcul que personne ne fait » n°2 (suite d'IG-213), habillage série F7. Carrousel 6 vues 1080 × 1350, même gabarit qu'IG-213. Couleur dominante jaune, texte encre (n°1 bleu ; IG-200 du 01/12 à 19:00 et IG-178 du 02/12 rouges, IG-216 du 02/12 bleu ; IG-175 du 30/11 à 21:00 et IG-56 du 02/12 à 12:30 jaunes, d'où une adjacence jaune avec IG-56 le lendemain midi). Aucun produit montré. Exemples génériques et fictifs : aucun taux réel daté (ni Livret A, ni inflation officielle, ni IRL), aucune promesse de rendement.
+
+Calcul refait en code (docs/templates/communication/formats-test/IG-226/calcul.py, sortie collée, toutes les assertions passent) :
+Étape 1 · 10 ans à 3 % par an, sur 100 € (exemple fictif)
+  an  1 : + 3,00 € -> 103,00 €
+  an  2 : + 3,09 € -> 106,09 €
+  an  3 : + 3,18 € -> 109,27 €
+  an  4 : + 3,28 € -> 112,55 €
+  an  5 : + 3,38 € -> 115,93 €
+  an  6 : + 3,48 € -> 119,41 €
+  an  7 : + 3,58 € -> 122,99 €
+  an  8 : + 3,69 € -> 126,68 €
+  an  9 : + 3,80 € -> 130,48 €
+  an 10 : + 3,91 € -> 134,39 €
+  hausse cumulée sur 10 ans : 34,39 % (et non 30 %)
+Étape 2 · doublement exact : ln 2 / ln 1,03 = 23.4498 ans -> 23,4 ans
+  en additionnant 3 % par an, on croirait 33,3 ans
+  vérification : 1,03^23 = 1,9736 (< 2) ; 1,03^24 = 2,0328 (> 2) -> doublé au cours de la 24e année
+Étape 3 · règle de 72 : 72 / 3 = 24 ans (écart avec l'exact : 0,55 an)
+Règle à garder · années pour doubler ≈ 72 / taux
+  taux | règle de 72 | exact ln 2 / ln(1 + r)
+  2 %  | 36 ans      | 35.003 -> 35,0 ans
+  3 %  | 24 ans      | 23.450 -> 23,4 ans
+  4 %  | 18 ans      | 17.673 -> 17,7 ans
+  6 %  | 12 ans      | 11.896 -> 11,9 ans
+  8 %  | 9 ans      | 9.006 -> 9,0 ans
+Dans les deux sens · abonnement fictif +4 %/an : x2 en 17,7 ans (règle de 72 : 18 ans)
+Dans les deux sens · épargne fictive à 2 %/an : x2 en 35,0 ans (règle de 72 : 36 ans)
+Toutes les assertions passent.
+(« 100 ÷ 3 ≈ 33 ans » : ce qu'on croit en additionnant 3 points par an ; « moins d'un an d'écart » : 24 − 23,45 = 0,55 an.)
+
+Source de la formule : temps de doublement exact n = ln 2 / ln(1 + r) (de (1 + r)^n = 2) ; règle de 72 : approximation de 100 × ln 2 ≈ 69,3, portée à 72 (plus juste vers 8 % et divisible par 2, 3, 4, 6, 8, 9, 12) ; calcul vérifié en code ci-dessus (aucune donnée officielle utilisée, aucun taux réel cité).
+
+Accroches non retenues :
+- « 3 % par an, ce n'est rien ? Votre prix double quand même. »
+- « +3 % par an : dans combien d'années tout coûte deux fois plus ? »
