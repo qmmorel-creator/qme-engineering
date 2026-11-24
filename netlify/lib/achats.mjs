@@ -160,7 +160,7 @@ export function contenuMailSuivi({ type, code, prenom = '', achat }) {
     const produits = p.produits.filter((c) => PRODUITS[c]);
     const premier = produits.find((c) => PRISE_EN_MAIN[c]) || produits[0];
     const g = PRISE_EN_MAIN[premier];
-    const liste = produits.map((c) => `– ${PRODUITS[c].nom}${TEMPLATES[c]?.phrase ? ` : ${TEMPLATES[c].phrase}` : ''}`).join('\n');
+    const liste = produits.map((c) => `– ${PRODUITS[c].nom}${TEMPLATES[c]?.phrase ? `. ${TEMPLATES[c].phrase}` : ''}`).join('\n');
     objet = `Par où continuer avec le ${p.nom}`;
     texte = `${bonjour}
 
@@ -196,7 +196,7 @@ Et si le template vous rend service, une ligne pour me dire ce qui vous plaît, 
 
 ${SIGNATURE}`;
   }
-  const pied = 'Vous recevez cet e-mail parce que vous avez acheté un template QME sur Gumroad. C\'est le seul e-mail de suivi après votre achat.';
+  const pied = `Vous recevez cet e-mail parce que vous avez acheté ${pack ? 'un pack' : 'un template'} QME sur Gumroad. C'est le seul e-mail de suivi après votre achat.`;
   return { objet, texte: `${texte}\n\n—\n${pied}`, html: enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">${pied}</p>`) };
 }
 

@@ -185,6 +185,12 @@ test('accompagnement d\'un pack : ses templates, par lequel commencer ; aussi ap
   assert.ok(m.texte.startsWith('Bonjour Eva,'));
   for (const p of produitVendu(PACKS.PET.gumroad).produits) assert.ok(m.texte.includes(`– ${PRODUITS[p].nom}`), p);
   assert.match(m.texte, /prenez « [^»]+ »\. Pour démarrer/);
+  assert.ok(m.texte.includes('acheté un pack QME') && m.html.includes('acheté un pack QME'));
+  // Nom puis description séparés par un point : ni majuscule après « : » ni deux « : » sur une ligne.
+  for (const l of m.texte.split('\n').filter((x) => x.startsWith('– '))) {
+    assert.doesNotMatch(l, /: \p{Lu}/u, l);
+    assert.ok((l.match(/ : /g) || []).length <= 1, l);
+  }
 });
 
 test('accompagnement : rien pour une adresse sur la liste d\'opposition ; file périmée effacée sans envoi ; panne retentée', async () => {
