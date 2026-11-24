@@ -36,7 +36,7 @@ reçoit son outil sur mesure. Source de vérité pour la page `/concours/`, le r
 | Date | Heure | Réseau | ID | Pièce |
 |---|---|---|---|---|
 | 25/11 | 17:30 | LinkedIn | LI-173 | Vidéo de lancement, texte pro (premier commentaire : lien `/concours/`) |
-| 25/11 | 18:00 | YouTube | YT-75 | Short de lancement |
+| 25/11 | 20:00 | YouTube | YT-75 | Short de lancement (calé sur un passage d’Instinct) |
 | 25/11 | 20:00 | Instagram (+ TikTok par Instinct) | IG-220 | **Reel de lancement** (à booster) |
 | 29/11 | 19:00 | Instagram | IG-215 | conversation de couple : légende + « P.S. concours en cours, lien en bio » |
 | 02/12 | 19:00 | Instagram | IG-216 | pire tableur ép. 1, carton final remplacé : « Le vôtre est pire ? Concours jusqu'au 06/12, lien en bio » |

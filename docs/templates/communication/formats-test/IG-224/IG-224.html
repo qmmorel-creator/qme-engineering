@@ -1,0 +1,214 @@
+<!doctype html>
+<!-- IG-224 · Test formats F11 « Carreau, épisode 1 · Décembre : −254 € dans le tableur » (vague 2).
+     Instagram 14/12/2026 19:00, YouTube YT-77 14/12/2026 20:00. Couleur dominante : bleu. 1080 × 1920, 30 i/s, 26 s.
+     Mascotte : Carreau (formats-test/mascotte/carreau.js, importé, jamais redessiné). Il parle en bulles de 8 mots au plus.
+     Avant : tableur FICTIF fabriqué ici (aucun fichier reçu) avec les trois dépenses de fêtes saisies dans la démo.
+     Après : captures réelles de la démo Mon Budget (captures/captures.mjs, horloge du navigateur au 14/12/2026,
+     ?demo&reinit, foyer fictif « Camille et Sami ») : enveloppe Cadeaux et fêtes = 80 € + report 335 € = 415 € ;
+     334 € dépensés (160 + 135 + 39, saisis par la modale « Dépense ») ; 81 € restants ; « Il reste 1 660 € dans tes
+     enveloppes ». Le tableur, lui, compare 334 € au seul budget du mois (80 €) : écart −254 €.
+     Rendu, depuis la racine du dépôt, la page servie en HTTP (module ES) :
+       python3 -m http.server 8767 --bind 127.0.0.1
+       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-224/IG-224.html 26 3200 --sortie docs/videos/sortie/IG-224-carreau-1.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-224</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+.note{position:absolute;left:84px;right:84px;font-size:28px;font-weight:600;color:var(--texte-2)}
+.f{position:absolute}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowrap}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-d{from{transform:translateX(1100px)}to{transform:none}}
+@keyframes anneau{from{opacity:0;transform:scale(1.8)}to{opacity:1;transform:none}}
+
+#serie{position:absolute;left:84px;top:262px;z-index:50;background:var(--bleu);color:var(--surface);border:5px solid var(--encre);font-weight:800;font-size:34px;letter-spacing:.02em;padding:10px 22px;box-shadow:8px 8px 0 var(--encre)}
+
+/* Tableur fictif */
+#feuille{position:absolute;left:60px;width:560px;top:780px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:27px;color:#111}
+#feuille table{border-collapse:collapse;width:100%;table-layout:fixed}
+#feuille td{border:1px solid #b9b9b9;height:62px;padding:0 10px;white-space:nowrap;overflow:hidden}
+#feuille td.n,#feuille tr.l td{background:#e9e9e9;color:#555;text-align:center;font-size:21px}
+#feuille tr.l td{height:38px}
+#feuille td.r{text-align:right}
+.err{color:#fff;background:#e01b1b!important;font-weight:700}
+#onglets{position:absolute;left:60px;width:560px;top:1352px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:21px}
+#onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:5px 10px;white-space:nowrap}
+#onglets span.a{background:#fff;font-weight:700;border-bottom:3px solid #0a8a2a}
+.anneau{position:absolute;border:9px solid var(--rouge);border-radius:50%}
+
+.carte{position:absolute;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--bleu);background:var(--surface)}
+.carte img{width:100%;display:block}
+.calc{position:absolute;left:84px;right:84px;font-size:50px;font-weight:700;line-height:1.25}
+.calc b{font-weight:800}
+.bouton{position:absolute;left:84px;right:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:54px;line-height:1.15;padding:30px 40px;box-shadow:16px 16px 0 var(--jaune);letter-spacing:-.02em}
+.signe{position:absolute;left:84px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:40px;letter-spacing:-.01em}
+.signe svg{width:56px;height:56px}
+
+/* Carreau et sa bulle (au-dessus de tout) */
+#carreau{position:absolute;left:0;top:0;z-index:80;transform-origin:150px 180px;will-change:transform}
+#carreau svg{display:block}
+.bulle{position:absolute;z-index:90;background:#fff;border:6px solid var(--encre);font-weight:800;font-size:46px;line-height:1.12;letter-spacing:-.015em;padding:20px 28px;max-width:640px;transform-origin:var(--ox,60px) 120%;box-shadow:10px 10px 0 var(--encre)}
+.bulle::after,.bulle::before{content:'';position:absolute;left:var(--px,70px);width:0;height:0}
+.bulle::after{bottom:-40px;border-right:44px solid transparent;border-top:40px solid var(--encre)}
+.bulle::before{bottom:-26px;margin-left:6px;z-index:1;border-right:30px solid transparent;border-top:28px solid #fff}
+.bulle.d::after{left:auto;right:var(--px,70px);border-right:0;border-left:44px solid transparent}
+.bulle.d::before{left:auto;right:var(--px,70px);margin-left:0;margin-right:6px;border-right:0;border-left:30px solid transparent}
+</style>
+</head>
+<body>
+<div id="serie">Carreau · épisode&nbsp;1</div>
+
+<!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée) -->
+<div class="s" id="s1" style="animation:sortie 300ms 7400ms">
+  <p class="x" style="top:372px;font-size:66px">Cadeaux de décembre&nbsp;:</p>
+  <p class="x" style="top:438px;font-size:170px;color:var(--rouge);letter-spacing:-.04em">−254&nbsp;€</p>
+  <p class="x" style="top:622px;font-size:52px;font-weight:700">selon le tableur du foyer.</p>
+  <p class="note" style="top:708px;font-size:26px">Tableur fictif, fabriqué pour l'épisode · données fictives</p>
+  <div id="feuille"></div>
+  <div id="onglets"></div>
+  <div class="anneau" id="a-ecart" style="animation:anneau 400ms 2000ms"></div>
+</div>
+
+<!-- Scène 2 : bascule -->
+<div class="s" id="s2" style="animation:entree-fond 350ms 7400ms,sortie 300ms 11000ms;background:var(--bleu);color:var(--surface)">
+  <div class="f" style="right:-200px;top:1180px;width:520px;height:520px;border-radius:50%;background:var(--jaune);animation:pop 600ms 7700ms"></div>
+  <p class="x" style="top:520px;font-size:96px;animation:monte 400ms 7600ms">Sauf que…</p>
+  <p class="x" style="top:680px;font-size:66px;line-height:1.12;animation:monte 450ms 8000ms">le tableur a oublié les <mark>80&nbsp;€</mark> mis de côté chaque mois depuis juillet.</p>
+</div>
+
+<!-- Scène 3 : l'application (captures réelles de la démo Mon Budget) -->
+<div class="s" id="s3" style="animation:entree-fond 350ms 11000ms,sortie 300ms 20600ms">
+  <p class="sourcil" style="top:356px;color:var(--bleu);animation:monte 400ms 11100ms">Même foyer · même décembre</p>
+  <p class="x" style="top:404px;font-size:62px;line-height:1.08;animation:monte 400ms 11200ms">Dans Mon Budget, l'enveloppe garde ce qui reste.</p>
+  <div class="carte" style="left:84px;right:84px;top:574px;animation:glisse-d 500ms 11500ms"><img src="captures/bdg-cadeaux.png" alt=""></div>
+  <p class="calc" style="top:950px;animation:monte 400ms 12600ms">80&nbsp;€ + <b>335&nbsp;€ de report</b> = 415&nbsp;€</p>
+  <p class="calc" style="top:1030px;animation:monte 400ms 13300ms">415&nbsp;€ − 334&nbsp;€ = <mark>81&nbsp;€ restants</mark></p>
+
+  <div class="s" style="animation:entree-fond 350ms 16400ms;background:var(--papier)">
+    <p class="sourcil" style="top:356px;color:var(--bleu)">Et pour tout le mois</p>
+    <p class="x" style="top:404px;font-size:62px;line-height:1.08">Le vrai chiffre, au 14&nbsp;décembre.</p>
+    <div class="carte" style="left:420px;right:60px;top:540px;animation:glisse-d 500ms 16600ms"><img src="captures/bdg-mois.png" alt=""></div>
+    <p class="note" style="top:1310px;left:420px;right:60px;font-size:26px">Capture de la démo Mon Budget QME · données fictives</p>
+  </div>
+  <p class="note" style="top:886px;z-index:3;font-size:26px;animation:monte 400ms 11600ms,sortie 200ms 16400ms">Captures de la démo Mon Budget QME · données fictives</p>
+</div>
+
+<!-- Scène 4 : appel à l'essai -->
+<div class="s" id="s4" style="animation:entree-fond 350ms 20600ms;background:var(--bleu);color:var(--surface)">
+  <p class="sourcil" style="top:356px;color:var(--jaune);animation:monte 400ms 20700ms">Mon Budget · QME</p>
+  <p class="x" style="top:404px;font-size:72px;line-height:1.08;animation:monte 450ms 20800ms">Le report de chaque enveloppe, recalculé à chaque dépense.</p>
+  <div class="f" style="left:84px;top:690px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 21300ms"></div>
+  <div class="bouton" style="top:720px;animation:pop 400ms 21700ms">14 jours d'essai gratuit, sans carte&nbsp;: lien en bio.</div>
+  <div class="signe" style="top:1430px;animation:monte 400ms 22400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#1D4E89"/></svg><span>Carreau · QME</span></div>
+  <p class="note" style="top:1500px;color:var(--surface);font-size:26px;animation:monte 400ms 22500ms">Données fictives</p>
+</div>
+
+<div id="carreau"></div>
+<div class="bulle" id="bulle"></div>
+
+<script type="module">
+import { carreau } from '../mascotte/carreau.js';
+
+// Chiffres lus dans la démo (captures/chiffres.json, 14/12/2026) et contrôles : la page échoue s'ils ne tiennent pas.
+const DEPENSES = [['Cadeaux des enfants', 160], ['Cadeaux de la famille', 135], ['Sapin et décoration', 39]];
+const ENVELOPPE = 80, REPORT = 335, RESTANT = 81;
+const total = DEPENSES.reduce((s, d) => s + d[1], 0);
+if (total !== 334 || ENVELOPPE - total !== -254 || ENVELOPPE + REPORT - total !== RESTANT || 5 * ENVELOPPE - 65 !== REPORT) throw new Error('Chiffres incohérents');
+
+// Le tableur fictif.
+const fr = (n) => String(n).replace('-', '−') + ' €';
+let h = '<table><colgroup><col style="width:46px"><col style="width:345px"><col></colgroup>';
+h += '<tr class="l"><td></td><td>A</td><td>B</td></tr>';
+h += `<tr><td class="n">1</td><td colspan="2" style="background:#ff3b3b;color:#fff;font-weight:700;text-align:center">DÉCEMBRE — FÊTES !!!</td></tr>`;
+const fonds = ['#ffff00', '#ff99cc', '#99ff99'];
+DEPENSES.forEach(([l, m], i) => { h += `<tr><td class="n">${i + 2}</td><td style="background:${fonds[i]}">${l}</td><td class="r">${fr(m)}</td></tr>`; });
+h += `<tr style="font-weight:700"><td class="n">5</td><td style="background:#d9d9d9">TOTAL (=SOMME)</td><td class="r" style="background:#d9d9d9">${fr(total)}</td></tr>`;
+h += `<tr><td class="n">6</td><td style="background:#66ffff">Budget cadeaux décembre</td><td class="r">${fr(ENVELOPPE)}</td></tr>`;
+h += `<tr style="font-weight:700"><td class="n">7</td><td style="background:#ffcc66">ÉCART</td><td class="r err" id="c-ecart">${fr(ENVELOPPE - total)}</td></tr>`;
+h += '</table>';
+document.getElementById('feuille').innerHTML = h;
+document.getElementById('onglets').innerHTML = ['Budget 2026', 'Novembre', 'Décembre', 'Décembre (2)', 'Noël FINAL'].map((o, i) => `<span class="${i === 2 ? 'a' : ''}">${o}</span>`).join('');
+const rc = document.getElementById('c-ecart').getBoundingClientRect();
+Object.assign(document.getElementById('a-ecart').style, { left: rc.left - 30 + 'px', top: rc.top - 24 + 'px', width: rc.width + 60 + 'px', height: rc.height + 48 + 'px' });
+
+// Carreau : positions clés (x, y du coin haut-gauche du dessin, rotation, échelle), interpolées entre les images.
+const TAILLE = 300;
+const CLES = [
+  { t: 0, x: 740, y: 1080, r: 0, s: 1 },
+  { t: 2300, x: 740, y: 1080, r: 0, s: 1 },
+  { t: 6200, x: 740, y: 1080, r: 0, s: 1 },
+  { t: 6700, x: 790, y: 1020, r: 0, s: 1 },
+  { t: 7400, x: 1180, y: 1060, r: 0, s: 1 },
+  { t: 8600, x: -340, y: 1110, r: 0, s: 1 },
+  { t: 10800, x: 1180, y: 1110, r: 0, s: 1 },
+  { t: 11000, x: -340, y: 1110, r: 0, s: 1 },
+  { t: 12000, x: 700, y: 1200, r: 0, s: 1 },
+  { t: 16400, x: 700, y: 1200, r: 0, s: 1 },
+  { t: 17000, x: 40, y: 1150, r: 0, s: 1 },
+  { t: 20600, x: 40, y: 1150, r: 0, s: 1 },
+  { t: 21000, x: 640, y: 1100, r: 0, s: 1.05 },
+  { t: 26000, x: 640, y: 1100, r: 0, s: 1.05 },
+];
+// Expression et pose par intervalle ; clignements = passage bref à « soulage ».
+const ETATS = [
+  [0, 'inquiet', 'debout'], [2300, 'panique', 'debout'], [6200, 'panique', 'court'],
+  [11000, 'inquiet', 'court'], [12000, 'neutre', 'debout'], [13600, 'soulage', 'debout'],
+  [16400, 'neutre', 'court'], [17000, 'fier', 'montre'], [20600, 'soulage', 'court'], [21000, 'fier', 'montre'],
+];
+const CLIGNE = [[1300, 1420], [12700, 12820], [24200, 24320]];
+const BULLES = [
+  { de: 2600, a: 6200, texte: 'Moins 254&nbsp;€&nbsp;? Noël est fichu&nbsp;!', x: 640, y: 850, d: true, px: 100, w: 400 },
+  { de: 14000, a: 16300, texte: 'Ah. Il reste 81&nbsp;€, en fait.', x: 260, y: 1112, d: true, px: 120 },
+  { de: 17600, a: 20500, texte: '1&nbsp;660&nbsp;€ pour finir le mois.', x: 40, y: 930, d: false, px: 90, w: 370 },
+  { de: 22600, a: 26000, texte: 'Le tableur, je le laisse.', x: 160, y: 960, d: true, px: 110 },
+];
+const el = document.getElementById('carreau');
+const bulle = document.getElementById('bulle');
+let cle = '';
+const doux = (u) => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+function poseA(ms) {
+  let i = 0; while (i < CLES.length - 1 && CLES[i + 1].t <= ms) i++;
+  const a = CLES[i], b = CLES[Math.min(i + 1, CLES.length - 1)];
+  const u = b.t > a.t ? doux(Math.min(1, Math.max(0, (ms - a.t) / (b.t - a.t)))) : 0;
+  const m = (k) => a[k] + (b[k] - a[k]) * u;
+  return { x: m('x'), y: m('y'), r: m('r'), s: m('s') };
+}
+function etatA(ms) { let e = ETATS[0]; for (const x of ETATS) if (x[0] <= ms) e = x; return e; }
+window.placer = (ms) => {
+  document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; });
+  let [, expr, pose] = etatA(ms);
+  if (CLIGNE.some(([d, f]) => ms >= d && ms < f) && expr !== 'panique') expr = 'soulage';
+  const k = expr + pose;
+  if (k !== cle) { el.innerHTML = carreau({ expression: expr, pose, taille: TAILLE }); cle = k; }
+  const p = poseA(ms);
+  let r = p.r, dy = 0;
+  if (expr === 'panique' && pose === 'debout') r += Math.sin(ms / 28) * 4;            // secousse
+  if (pose === 'court') dy = -Math.abs(Math.sin(ms / 110)) * 26;                       // foulées
+  else dy = -Math.abs(Math.sin(ms / 270)) * 8;                                          // petit rebond
+  el.style.transform = `translate(${p.x}px, ${p.y + dy}px) rotate(${r}deg) scale(${p.s})`;
+  const b = BULLES.find((x) => ms >= x.de && ms < x.a);
+  if (b) {
+    if (bulle.dataset.t !== b.texte) { bulle.innerHTML = b.texte; bulle.dataset.t = b.texte; bulle.className = 'bulle' + (b.d ? ' d' : ''); bulle.style.setProperty('--px', b.px + 'px'); }
+    const u = Math.min(1, (ms - b.de) / 180);
+    Object.assign(bulle.style, { maxWidth: (b.w || 640) + 'px', display: 'block', left: b.x + 'px', top: b.y + 'px', transform: `scale(${0.6 + 0.4 * (1 - Math.pow(1 - u, 3))})`, opacity: String(Math.min(1, u * 2)) });
+  } else bulle.style.display = 'none';
+};
+window.placer(0);
+</script>
+</body>
+</html>

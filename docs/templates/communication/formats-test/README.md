@@ -22,13 +22,13 @@ production : skill `.claude/skills/formats-test/`.
 | IG-213 | 24/11 | 19:00 | F3 + F7 | 10 minutes perdues par jour : sur un an, 38 h 10 | Carrousel 6 vues + diaporama TikTok | YT-74 24/11 20:00 (diaporama) | Programmé |
 | IG-214 | 25/11 | 12:30 | F10 | « Une date bouge. Regardez le reste. » (Gantt, boucle) | Reel 9 s | YT-69 25/11 12:00 | Programmé |
 | IG-215 | 29/11 | 19:00 | F5 | Conversation de couple : « Tu me dois combien ? » « 50 €, à tout casser. » → 354,64 € | Reel 25 s | YT-70 29/11 12:00 | Programmé |
-| IG-216 | 02/12 | 19:00 | F2 + F7 | Envoyez-moi votre pire tableur, épisode 1 (14 onglets, Hugo en #REF!) | Reel 28 s | YT-71 02/12 17:00 | Programmé |
+| IG-216 | 02/12 | 19:00 | F2 + F7 | Envoyez-moi votre pire tableur, épisode 1 (14 onglets, Hugo en #REF!) | Reel 28 s | YT-71 02/12 20:00 | Programmé |
 | IG-217 | 03/12 | 12:30 | F8 | Défi : un outil pour un fleuriste en 60 minutes | Reel 28 s | YT-72 03/12 12:00 | Programmé |
 | IG-218 | 06/12 | 12:30 | F4 | Le test en 1 minute (`/diagnostic/`) : exemple fictif, 1 480 € et 124 h par an | Reel 23 s | YT-73 06/12 12:00 | Programmé |
 | IG-219 | 09/12 | 19:00 | F9 | Fin du régime simplifié de TVA au 01/01/2027 (impots.gouv.fr, 22/09/2026), cas fictif de Léa | Carrousel 6 vues + diaporama TikTok | — | Programmé |
 | IG-168 → 175 | 23/11 → 30/11 | 21:00 | F6 | Quiz (existant) | Reel | — | déjà programmés |
 
-YT-71 est à 17:00 (12:00 et 20:00 déjà pris le 02/12) : écart volontaire à `HEURES.md`, à juger à la mesure.
+YT-71 est passé de 17:00 à 20:00 le 24/11 : YouTube ne passe qu'à 12:00, 12:15, 20:00 et 20:15 ; YT-51 (20:00) part au passage de 20:00 et YT-71 à celui de 20:15.
 
 ## Vague 2 (à partir du 10/12, après le relevé du 07/12)
 
