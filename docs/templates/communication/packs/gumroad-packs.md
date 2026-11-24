@@ -18,9 +18,9 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc
 | Pack Moyens généraux | pack-moyens-generaux | 223 € | 10/10 | — |
 | Pack Petite entreprise | pack-petite-entreprise | 164 € | 9/9 | — |
 | Pack Productivité perso | pack-productivite | 54 € | 5/5 | — |
+| Pack Propriétaire | pack-proprietaire | 131 € | 9/9 | — |
 | Pack Vie à deux | pack-vie-a-deux | 79 € | 6/6 | — |
 | Pack Papiers et décisions d’argent | pack-argent | 60 € | 4/5 | Remboursements santé |
 | Pack Associations et clubs | pack-associations | 156 € | 4/7 | Subventions, Bénévoles et planning des créneaux, Assemblée générale et vie statutaire |
-| Pack Maison et famille | pack-famille | 67 € | 3/7 | Entretien de la maison, Suivi du bébé, Suivi d'un animal de compagnie, Calendrier du potager |
-| Pack Propriétaire | pack-proprietaire | 131 € | 5/9 | Location saisonnière, Entretien de la maison, Gestion locative, Charges et AG de copropriété |
+| Pack Maison et famille | pack-famille | 67 € | 4/7 | Suivi du bébé, Suivi d'un animal de compagnie, Calendrier du potager |
 | Pack Écoles et formateurs | pack-enseignant | 111 € | 0/5 | Progression pédagogique, Banque de questions et quiz, Gestion de classe, Emploi du temps d'établissement, Gestion d'auto-école |

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#FBF7F1">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
-<link rel="stylesheet" href="/assets/site.css?v=2026112305">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
 <style>
 /* Suivi d'un essai : ligne J0 → J+44, un nœud par e-mail, bifurcation achat sous chaque étape (21/11/2026). */
 .suivi{--vert:#3E7A4E;--vert-fond:#DCEBDD}
@@ -78,6 +78,14 @@
         <tbody id="lignes"></tbody>
       </table>
     </div>
+    <h2 style="font-size:22px;margin:0">Accompagnements après achat</h2>
+    <p class="admin-etat" style="margin:0">Un e-mail par achat (template ou pack), 3 jours après, à 9 h 10 (Paris), rattrapage jusqu'à 7 jours ; gardé ici 30 jours après l'envoi. Copie cachée dans votre boîte pro.</p>
+    <div class="admin-boite">
+      <table class="admin-table">
+        <thead><tr><th>Client</th><th>Produit</th><th>Achat</th><th>Prévu</th><th>État</th></tr></thead>
+        <tbody id="accompagnements"></tbody>
+      </table>
+    </div>
     <h2 id="titre-client" style="font-size:22px;margin:0"></h2>
     <div class="prochain" id="prochain"></div>
     <div class="legende">
@@ -143,7 +151,7 @@
   }
 
 
-  let essais = [], selection = location.hash.slice(1), active = 'merci', courant = null;
+  let essais = [], accompagnements = [], selection = location.hash.slice(1), active = 'merci', courant = null;
 
   function analyser(e) {
     const debut = midi(e.debut), now = new Date();
@@ -180,12 +188,28 @@
       const r = await fetch('/api/essai/essais', { headers: { 'x-admin': code }, cache: 'no-store' });
       if (r.status === 401) { garder(''); $('#resultats').hidden = true; $('#etat').textContent = 'Code administrateur refusé.'; return; }
       if (!r.ok) throw new Error();
-      essais = (await r.json()).essais || [];
+      const d = await r.json();
+      essais = d.essais || []; accompagnements = d.accompagnements || [];
       if (!essais.find((x) => x.id === selection)) selection = essais[0] ? essais[0].id : '';
       $('#resultats').hidden = false; $('#maj').hidden = false;
       $('#etat').textContent = `${essais.length} essai(s) conservé(s). Mis à jour à ${new Date().toLocaleTimeString('fr-FR')}.`;
       rendre();
     } catch { $('#etat').textContent = 'Chargement impossible (connexion ?). Réessayez avec Actualiser.'; }
+  }
+
+  function rendreAccompagnements() {
+    const corps = $('#accompagnements'); corps.replaceChildren();
+    if (!accompagnements.length) corps.append(el('tr', {}, el('td', { colSpan: 5, textContent: 'Aucun achat récent.' })));
+    for (const x of accompagnements) {
+      const jour = (j) => new Date(`${j}T12:00:00Z`);
+      const etat = x.envoye ? `envoyé le ${court(new Date(x.envoye))} · ${heure(new Date(x.envoye))}` : 'à venir';
+      corps.append(el('tr', {},
+        el('td', {}, el('b', { textContent: x.prenom || '—' }), el('br'), el('small', { textContent: x.email })),
+        el('td', {}, `${x.produit}${x.type === 'pack' ? ' (pack)' : ''}`),
+        el('td', { className: 'n' }, court(jour(x.achat))),
+        el('td', { className: 'n' }, court(jour(x.du))),
+        el('td', { title: x.objet || '' }, etat)));
+    }
   }
 
   function rendre() {
@@ -208,6 +232,7 @@
       corps.append(tr);
     }
     rendreLigne(analyses.find((a) => a.e.id === selection) || null);
+    rendreAccompagnements();
   }
 
   // Ligne fixe : un nœud par étape, bifurcation achat sous chacun.

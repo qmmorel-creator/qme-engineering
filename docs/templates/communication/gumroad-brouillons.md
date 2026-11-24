@@ -260,3 +260,21 @@ par `self-improvement` (celle de Repas de la semaine). Aucune couverture.
 `mettre-en-vente.py "garde-manger:12 €:garde-manger-dates-peremption:T09"` (retire aussi « Bientôt en vente » de la
 démo), fiche de prise en main GRD dans `essais-prise-en-main.mjs`, compteur perso du test d'essai, meta description
 ≤ 160 caractères, générateurs (essai, connexion, packs, données structurées, sitemap), tests, PR de mise en vente.
+
+## Vague du 24/11/2026 (4 brouillons, vers 08 h 30 UTC, file quotidienne)
+
+Rang 18 de `gumroad-priorite.md` (Pack Propriétaire). Fiches depuis `docs/templates/communication/<slug>/gumroad.json` :
+permalien, catégorie, résumé, tags, détails, reçu, bouton, lien vers `/connexion/`, couverture. **Brouillons non
+publiés**, identifiants **non ajoutés** à `PRODUITS` (règle 4). Clés activées par Quentin ; **publiés le 24/11/2026** et mis en
+vente sur le site le même jour (identifiants dans `PRODUITS`, essai 14 jours).
+
+| Préfixe | Slug | Identifiant Gumroad | Permalien | Prix | Statut |
+|---------|------|---------------------|-----------|------|--------|
+| SJR | location-saisonniere | ZaouZbVb6UFX-RhQ5SoPFw== | /l/location-saisonniere | 25 € | publié, en vente (24/11) |
+| ENT | entretien | zVzaMLQH4U6jK-OgqPPpeA== | /l/entretien-maison | 12 € | publié, en vente (24/11) |
+| GST | gestion-locative | CkLescudHVhLiY3Az2CNsg== | /l/gestion-locative | 20 € | publié, en vente (24/11) |
+| CPR | copropriete | renWMolXr2qZZPKpWtlnnA== | /l/charges-ag-copropriete | 15 € | publié, en vente (24/11) |
+
+Écart avec la fiche : tag `proprietaire-bailleur` (21 caractères, refusé par Gumroad) remplacé par `proprio-bailleur`
+(GST). Gumroad accentue `copropriété` et `propriétaire` (CPR). Limite atteinte (6 créations le 23/11 vers 11 h 55 UTC
+et 4 ce matin) : prochaine création possible le 24/11 vers 12 h 55 (Paris).

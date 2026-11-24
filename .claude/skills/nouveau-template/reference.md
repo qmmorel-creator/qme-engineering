@@ -211,8 +211,8 @@ Quentin). Vérifier d'abord avec `get_product` que la fiche est publiée et que 
 ## Essai gratuit (templates vie personnelle depuis le 18/11/2026, professionnels depuis le 21/11/2026)
 
 Décision de Quentin : 14 jours d'essai gratuit sans carte, puis 30 jours en lecture seule, puis effacement ; données
-reprises à l'achat ; e-mails (merci, prise en main J+2, J-3, fin, avant effacement ; remerciement à l'achat) envoyés depuis
-la boîte de Quentin. Document de référence : `docs/templates/essai-gratuit.md`. Pour chaque template payant mis en vente
+reprises à l'achat ; e-mails (merci, prise en main J+2, J-3, fin, avant effacement ; remerciement à l'achat ; accompagnement J+3 après
+achat, template ou pack) envoyés depuis la boîte OVH de Quentin, lui en copie cachée. Document de référence : `docs/templates/essai-gratuit.md`. Pour chaque template payant mis en vente
 (vie personnelle ou pro) :
 
 - [ ] `outils/packs/donnees.mjs` : `pour` (`'perso'` ou `'pro'`), `prix`, `permalien` (Gumroad). Le template entre alors dans

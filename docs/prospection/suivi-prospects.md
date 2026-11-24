@@ -20,12 +20,13 @@ du 23/11/2026.
 
 | Prospect | Contact | Objet | Étape | Dernier message | Balle · prochaine action |
 |---|---|---|---|---|---|
-| **Nic-Impex / ARVA** | Antoine Ferrero (responsable commercial), Hugo Stalder en copie · aferrero@nic-impex.com | Sur mesure : registre de suivi du contrôle de sécurité NEO BT PRO ; concept `/concepts/arva/demo/` | Appel proposé par le prospect, **01/12/2026 à 14:00**, confirmé | QME, 23/11 | **QME : envoyer l'invitation visio** (promise) |
-| **Optimind Formation** | Laurine Mebs (formatrice, podcast « Hack ta Méthodo ») · contact@optimind-formation.fr | Affiliation Planning de révision (démo `/demo/laurine`, Pack Étudiant) + piste sur mesure (suivi des élèves) | « J'aime beaucoup l'outil et il y a du potentiel. » Meet **jeu. 26/11, 14:30–15:30**, accepté | QME, 23/11 | Rendez-vous. Taux de commission à confirmer par Quentin |
+| **Nic-Impex / ARVA** | Antoine Ferrero (responsable commercial), Hugo Stalder en copie · a.ferrero@nic-impex.com, h.stalder@nic-impex.com | Sur mesure : registre de suivi du contrôle de sécurité NEO BT PRO ; concept `/concepts/arva/` et démo `/concepts/arva/demo/` | Réponse envoyée le 23/11 (liens concept et démo, signature, copie cachée Floriane). Invitation Meet envoyée le 23/11 à Antoine et Hugo (meet.google.com/fjr-gvuo-tmx, salle de qm.morel@gmail.com) : **appel mar. 01/12/2026, 14:00–14:30**, accepté par Antoine. Proposition et devis QME-2026-013 prêts, **non envoyés** : forfait fixe sans abonnement, 19 500 € HT (lot 1 seul 11 500 € HT) ; comparatif d'une page à n'envoyer que sur demande | Prospect, 23/11 (acceptation de l'invitation) | Rendez-vous le 01/12 (admettre les invités dans la salle Meet). Après l'appel, **QME** : ajuster puis envoyer proposition et devis, avec signature, sur feu vert de Quentin (SIRET, TVA et numéro de devis à compléter) |
+| **Optimind Formation** | Laurine Mebs (formatrice, podcast « Hack ta Méthodo ») · contact@optimind-formation.fr | Affiliation Planning de révision (démo `/demo/laurine`, Pack Étudiant) + piste sur mesure (suivi des élèves) | « J'aime beaucoup l'outil et il y a du potentiel. » Meet **jeu. 26/11, 14:30–15:30** (meet.google.com/sxa-mojd-rej), invitation acceptée par Laurine le 23/11 ; créneau bloqué aussi dans l'agenda CNR (« Point QMe ») | Laurine, 23/11 (acceptation de l'invitation) | Rendez-vous. Taux de commission à confirmer par Quentin |
 | **Oh ! Délices Paysans** | Alice Bacquart (alternante, Le Soler) · bacquartalice@gmail.com | Sur mesure sur Baserow : planning des permanences, échanges entre producteurs, reversements des ventes (caisse Osmo Vente) ; concept `/concepts/oh-delices-paysans/` | Devis demandé ; réponse du 17/11 (concept, 4 questions, fourchette 1 000–5 000 € + à partir de 100 €/mois) | QME, relance du 23/11 (fil `1a1e90962097383a`) | Prospect : réponses aux 4 questions ou créneau de 30 min |
 | **École de musique de Givry** | Sarah Villar (future trésorière) · sarahvillar@mailo.com | Sur mesure : inscriptions en ligne, administration | Appel le 09/11 ; devis QME-2026-011 v2 (23/11) : 790 € HT sans module de gestion, module en option 300 € HT, mise en service fin janvier 2027. Budget serré, compare d'autres solutions | QME, 23/11 | Prospect |
 | **Compagnie Antarès** | Nathalie Delecroix (Craponne) · cieantares@gmail.com | Sur mesure : plateforme d'inscriptions et reprise du site | Appel le 10/11 ; offre du 10/11 (890 € HT après remise + 75 € HT/mois) ; contre-proposition sans abonnement (~1 200 € HT) le 22/11 | QME, 22/11 | Prospect : réponse à la contre-proposition |
 | **Yuzu Agency · Odélia** | Eva Pellat (Talent Manager) · contact@agency-yuzu.com | Reel Instagram à 200 € fixe + accès aux outils études et budget | Prix convenu ; 5 questions de modalités posées (date, story avec lien, mention « Collaboration commerciale », statistiques, facturation). Dossier : `docs/templates/communication/affiliation/odelia*.md` | QME, 22/11 | Prospect (agence). Prestation payée, pas une affiliation pure |
+| **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram, ses mails ne passaient pas) | Sur mesure : ménage, linge et relevés d'intendance ; concept `/concepts/conciergerie-en-provence/` | Visio **mar. 24/11, 16:00–16:30**, confirmée par Kelly sur Instagram ; Meet `meet.google.com/fhb-cusi-hva` (agenda de Quentin) | QME, 23/11 | Rendez-vous. Après l'appel : noter le résultat ici |
 | **Christophe Yzet** (yzetexpertise) | Christophe Yzet (connaissance de Quentin, ARTELIA à La Réunion) · yzetexpertise@free.fr | Sur mesure pour son activité de conseil ; liens d'essai visa et packs Freelance envoyés | Rencontre souhaitée **à son retour, début 2027** | QME, 21/11 | Prospect. Long terme |
 
 ## Tièdes
@@ -45,6 +46,34 @@ du 23/11/2026.
 | MJC CL2V Bordeaux | Refus : ne correspond pas aux besoins | 23/11/2026 |
 | Fixation Plum (Felisaz SAS) | Refus poli : solutions internes | 23/11/2026 |
 | Club des Office Managers | Refus de l'affiliation (neutralité) ; propose une place d'exposant à l'Office Manager Summit, a priori payante, à décider par Quentin | 23/11/2026 |
+
+## Historique des échanges
+
+Détail daté, quand il est connu (une ligne par message, la plus récente en bas, heures de Paris). Le tableau
+ci-dessus reste la référence pour l'état courant.
+
+### École de musique de Givry · Sarah Villar
+
+Concept : `/concepts/ecole-musique-givry/` · devis n° QME-2026-011.
+
+| Date | Sens | Contenu | Montant |
+|---|---|---|---|
+| 2026-11-02 | envoyé | premier contact (à `ecole.musique.givry@gmail.com`) | |
+| 2026-11-07 | envoyé | confirmation de l'échange du 9/11 et concept de l'école | |
+| 2026-11-09 | envoyé | après l'échange visio : proposition et devis v1 (trois modules) | 696 € HT + 90 € HT/mois |
+| 2026-11-22 | envoyé | relance : variante sans abonnement (trois modules) | environ 1 200 € HT |
+| 2026-11-23 | reçu | « la question financière se pose », comparaison en cours, demande une offre sans le module de gestion | |
+| 2026-11-23 15:09 | envoyé | offre au forfait sans le module de gestion, devis et proposition v2 en ligne (PR #250) | 790 € HT, option Gestion associative 300 € HT (1 090 € HT) |
+
+### Oh ! Délices Paysans · Alice Bacquart
+
+Alternante, message transmis par Yannick. Concept : `/concepts/oh-delices-paysans/`.
+
+| Date | Sens | Contenu | Montant |
+|---|---|---|---|
+| 2026-11-17 | reçu | planning des permanences sur Baserow ; besoins : planning automatique, échange de permanences, ventes et reversements (caisse Osmo Vente) ; demande la façon de procéder et un devis | |
+| 2026-11-17 | envoyé | concept, réponse sur Baserow et Osmo Vente, quatre questions pour le devis | estimation : 1 000 à 5 000 € de mise en place + à partir de 100 €/mois |
+| 2026-11-23 15:06 | envoyé | relance : rappel du concept, éléments minimaux pour le devis, proposition de 30 min en visio | |
 
 ## Mise à jour
 

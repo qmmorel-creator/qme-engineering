@@ -74,7 +74,7 @@ sinon elle serait bloquée en lecture seule. Dans `outils/packs/donnees.mjs`, l'
 `pour`, son `prix` et, à la mise en vente, son `permalien` Gumroad (lien d'achat du bandeau et des e-mails : sans lui,
 le template n'entre pas dans l'essai). Ajouter sa fiche dans `netlify/lib/essais-prise-en-main.mjs` (premier pas, deux
 fonctions peu visibles, question d'aide ; tirées de la page catalogue, sans libellé de bouton non vérifié) : elle nourrit
-l'e-mail J+2 et l'e-mail d'achat direct ; sans elle, `npm test` échoue.
+l'e-mail J+2, l'e-mail d'achat direct et l'accompagnement J+3 après achat (24/11/2026) ; sans elle, `npm test` échoue.
 
 Charte : **Bauhaus « Pastel »** (filets de 1 px, grands arrondis, fonds teintés, aucune ombre dure),
 jetons et composants dans `reference.md` § Charte ; partir du socle copié, qui l'applique déjà. Graphiques : charger le skill `dataviz`,

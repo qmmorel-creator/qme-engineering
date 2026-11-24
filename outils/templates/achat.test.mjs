@@ -1,9 +1,11 @@
 // E-mail de remerciement après un achat Gumroad (ping /api/achat) : achat direct ou après essai, template ou pack.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { traiter, verifierCodeEssai, PACKS, PRODUITS } from '../../netlify/lib/templates-acces.mjs';
+import { traiter, verifierCodeEssai, PACKS, PRODUITS, cleEmail } from '../../netlify/lib/templates-acces.mjs';
 import { traiterEssai, tournerEssais } from '../../netlify/lib/essais.mjs';
-import { traiterAchat, contenuMailAchat, produitVendu } from '../../netlify/lib/achats.mjs';
+import { traiterAchat, contenuMailAchat, produitVendu, contenuMailSuivi, tournerSuivisAchat, SUIVI_ACHAT } from '../../netlify/lib/achats.mjs';
+import { optionsEnvoi, COPIE_CACHEE } from '../../netlify/lib/mail.mjs';
+import { codeAdmin } from '../../netlify/lib/interets.mjs';
 import { PRISE_EN_MAIN } from '../../netlify/lib/essais-prise-en-main.mjs';
 
 const SECRET = 'x'.repeat(40);
@@ -136,4 +138,105 @@ test('e-mail d\'achat direct : « Pour les ouvrir » (pack) et « Pour l\'ouvrir
     ...Object.keys(PACKS).filter((k) => PACKS[k].gumroad).map((k) => produitVendu(PACKS[k].gumroad))]) {
     assert.doesNotMatch(contenuMailAchat({ vente, aujourdhui: '2026-12-28' }).texte, /\b(les|des|ses)(ouvrir|templates?)\b/, vente.code);
   }
+});
+
+// Accompagnement après achat (24/11/2026) : un e-mail J+3, template ou pack, puis plus rien.
+const tournee = (w, j) => { w.horloge.t = T0 + j * JOUR; return tournerSuivisAchat({ secret: SECRET, essais: w.essais, envoyer: envoyeur(w), maintenant: () => w.horloge.t }); };
+
+test('accompagnement d\'un template : J+3, une seule fois, file effacée ; notification avec la date prévue', async () => {
+  const w = monde();
+  await ping(w, 'BDG', licenceDe('BDG', 'flo@b.fr'), { nom: 'Floriane J' });
+  assert.ok(w.mails.find((x) => x.a === 'quentin@qme.fr').texte.includes('Accompagnement prévu le dimanche 22 novembre'));
+  assert.equal((await w.essais.lister('suivi-achat/')).length, 1);
+  w.mails.length = 0;
+  assert.equal((await tournee(w, 2)).envoyes, 0);
+  assert.deepEqual(w.mails, [], 'pas avant J+3');
+  assert.equal((await tournee(w, SUIVI_ACHAT.jours)).envoyes, 1);
+  const [m] = w.mails;
+  assert.equal(m.a, 'flo@b.fr');
+  assert.equal(m.objet, 'Mon Budget : tout se passe bien ?');
+  assert.ok(m.texte.startsWith('Bonjour Floriane,') && m.texte.includes('le jeudi 19 novembre'));
+  assert.ok(m.texte.includes(PRISE_EN_MAIN.BDG.astuces[0]) && m.texte.includes('https://qm-engineering.fr/connexion/'));
+  assert.ok(m.html.includes('assets/signature/qme-logo.png') && m.copieCachee !== false, 'signature graphique, copie cachée gardée');
+  const [cle] = await w.essais.lister('suivi-achat/');
+  assert.ok((await w.essais.get(cle)).envoye, 'gardé pour /admin/suivi/ avec sa date d\'envoi');
+  w.mails.length = 0;
+  await tournee(w, 4);
+  assert.deepEqual(w.mails, [], 'une seule fois');
+  // Vu dans l'API du suivi, puis effacé 30 jours après l'envoi.
+  const api = await (await traiterEssai(new Request('http://t/api/essai/essais', { headers: { 'x-admin': codeAdmin(SECRET) } }),
+    { secret: SECRET, essais: w.essais, maintenant: () => w.horloge.t })).json();
+  assert.equal(api.accompagnements.length, 1);
+  assert.equal(api.accompagnements[0].produit, 'Mon Budget');
+  assert.equal(api.accompagnements[0].objet, 'Mon Budget : tout se passe bien ?');
+  assert.equal((await tournee(w, 3 + SUIVI_ACHAT.conservation)).purges, 0);
+  assert.equal((await tournee(w, 4 + SUIVI_ACHAT.conservation)).purges, 1);
+  assert.deepEqual(await w.essais.lister('suivi-achat/'), []);
+});
+
+test('accompagnement d\'un pack : ses templates, par lequel commencer ; aussi après un essai', async () => {
+  const w = monde();
+  await creer(w, { produit: 'lecture', email: 'e@b.fr', prenom: 'Eva' });
+  await ping(w, 'PET', licenceDe('PET', 'e@b.fr'));
+  w.mails.length = 0;
+  await tournee(w, 3);
+  const [m] = w.mails;
+  assert.equal(m.objet, `Par où continuer avec le ${PACKS.PET.nom}`);
+  assert.ok(m.texte.startsWith('Bonjour Eva,'));
+  for (const p of produitVendu(PACKS.PET.gumroad).produits) assert.ok(m.texte.includes(`– ${PRODUITS[p].nom}`), p);
+  assert.match(m.texte, /prenez « [^»]+ »\. Pour démarrer/);
+  assert.ok(m.texte.includes('acheté un pack QME') && m.html.includes('acheté un pack QME'));
+  // Nom puis description séparés par un point : ni majuscule après « : » ni deux « : » sur une ligne.
+  for (const l of m.texte.split('\n').filter((x) => x.startsWith('– '))) {
+    assert.doesNotMatch(l, /: \p{Lu}/u, l);
+    assert.ok((l.match(/ : /g) || []).length <= 1, l);
+  }
+});
+
+test('accompagnement : rien pour une adresse sur la liste d\'opposition ; file périmée effacée sans envoi ; panne retentée', async () => {
+  const w = monde();
+  await ping(w, 'PGS', licenceDe('PGS', 'non@b.fr'));
+  await w.essais.set(`opposition/${cleEmail(SECRET, 'non@b.fr')}`, { date: '2026-11-20', source: 'test' });
+  w.mails.length = 0;
+  assert.equal((await tournee(w, 3)).opposition, 1);
+  assert.deepEqual(w.mails, []);
+  assert.deepEqual(await w.essais.lister('suivi-achat/'), []);
+
+  const w2 = monde();
+  await ping(w2, 'PGS', licenceDe('PGS', 'tard@b.fr'));
+  w2.mails.length = 0;
+  assert.equal((await tournee(w2, SUIVI_ACHAT.jours + SUIVI_ACHAT.rattrapage + 1)).expires, 1);
+  assert.deepEqual(w2.mails, [], 'trop tard : rien');
+
+  const w3 = monde();
+  await ping(w3, 'PGS', licenceDe('PGS', 'a@b.fr'));
+  w3.horloge.t = T0 + 3 * JOUR;
+  const r = await tournerSuivisAchat({ secret: SECRET, essais: w3.essais, envoyer: async () => { throw new Error('SMTP'); }, maintenant: () => w3.horloge.t });
+  assert.equal(r.erreurs, 1);
+  assert.ok(!(await w3.essais.get((await w3.essais.lister('suivi-achat/'))[0])).envoye);
+  w3.mails.length = 0;
+  assert.equal((await tournee(w3, 4)).envoyes, 1, 'renvoyé le lendemain');
+});
+
+test('e-mails d\'accompagnement : construits pour chaque template et pack en vente, sans texte vide', () => {
+  const codes = [...Object.keys(PRODUITS).filter((p) => PRODUITS[p].gumroad).map((code) => ({ type: 'template', code })),
+    ...Object.keys(PACKS).filter((k) => PACKS[k].gumroad).map((code) => ({ type: 'pack', code }))];
+  assert.ok(codes.length > 40);
+  for (const c of codes) {
+    const m = contenuMailSuivi({ ...c, achat: '2026-11-24' });
+    assert.ok(m.objet && m.texte.length > 300 && !/undefined|NaN|null|: :|\.\./.test(m.texte + m.objet), c.code);
+  }
+});
+
+test('copie cachée : Quentin (adresse pro) sur les séquences, jamais sur un code de connexion ni en double', () => {
+  const de = 'QME <quentin.morel@qm-engineering.fr>';
+  const msg = { a: 'client@b.fr', objet: 'o', texte: 't', html: 'h' };
+  assert.equal(COPIE_CACHEE, 'quentin.morel@qm-engineering.fr');
+  assert.equal(optionsEnvoi(msg, { de, env: {} }).bcc, COPIE_CACHEE);
+  assert.equal(optionsEnvoi({ ...msg, copieCachee: false }, { de, env: {} }).bcc, undefined);
+  assert.equal(optionsEnvoi({ ...msg, a: 'Quentin.Morel@qm-engineering.fr' }, { de, env: {} }).bcc, undefined);
+  assert.equal(optionsEnvoi(msg, { de, env: { ESSAI_COPIE_CACHEE: 'non' } }).bcc, undefined);
+  assert.equal(optionsEnvoi(msg, { de, env: { ESSAI_COPIE_CACHEE: 'autre@qme.fr' } }).bcc, 'autre@qme.fr');
+  const o = optionsEnvoi(msg, { de, env: {} });
+  assert.deepEqual([o.from, o.replyTo, o.to, o.subject, o.text, o.html], [de, de, 'client@b.fr', 'o', 't', 'h']);
 });
