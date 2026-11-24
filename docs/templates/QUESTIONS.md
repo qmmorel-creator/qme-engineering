@@ -28,7 +28,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
-- Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur de mariage,
+- Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur d'événement (garder la
+  nouvelle couverture « evenementiel » ajoutée le 24/11, supprimer l'ancienne couverture mariage),
   Circuit de visa (garder la couverture Pastel).
 - Tags remplacés par Gumroad par une version accentuée : « qualité » (non-conformités), « gestión » et
   « indépendant » (trésorerie), « rétroplanning » (mariage). À corriger à la main si ça te gêne.

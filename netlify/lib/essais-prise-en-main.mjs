@@ -113,6 +113,46 @@ export const PRISE_EN_MAIN = {
     ],
     aide: 'Un décompte de charges difficile à recopier ?',
   },
+  SBV: {
+    commencer: 'créez votre projet, puis un dossier par financeur sollicité avec sa date limite : la liste des pièces à fournir se propose selon le type de financeur, et l\'alerte suit l\'échéance.',
+    astuces: [
+      'le budget du projet montre la part de chaque financeur et ce qui reste à financer ;',
+      'les dépenses rattachées au projet, avec leur justificatif, alimentent la trame du bilan à imprimer.',
+    ],
+    aide: 'Un financeur dont les étapes ne rentrent pas dans le modèle ?',
+  },
+  BNV: {
+    commencer: 'créez votre prochain événement depuis l\'un des six modèles : les postes et les créneaux types sont posés, il reste à noter qui vient et sur quelles plages.',
+    astuces: [
+      'l\'outil peut suggérer l\'affectation, en sollicitant d\'abord les bénévoles les moins pris ;',
+      'chaque bénévole a son message avec ses créneaux, prêt à copier, et les plannings s\'impriment par poste.',
+    ],
+    aide: 'Un événement dont les créneaux se planifient mal ?',
+  },
+  AGS: {
+    commencer: 'recopiez les règles de vos statuts (délai de convocation, quorum, pouvoirs, majorités), puis la date de la prochaine AG : le rétroplanning se date seul.',
+    astuces: [
+      'en séance, le quorum et le résultat de chaque résolution se calculent avec vos règles, seuil expliqué ;',
+      'le procès-verbal se construit avec la présence, les votes et vos notes, prêt à imprimer.',
+    ],
+    aide: 'Des statuts dont les règles sont difficiles à recopier ?',
+  },
+  PRG: {
+    commencer: 'indiquez les dates de votre année, une classe et ses créneaux, puis vos séquences avec leur durée en heures : la date de fin projetée s\'affiche.',
+    astuces: [
+      'une séance reportée se replace seule au prochain créneau libre, et le retard se compte en heures ;',
+      'la progression se duplique vers un autre groupe ou vers l\'année suivante.',
+    ],
+    aide: 'Un emploi du temps (semaines A et B, groupes) qui se saisit mal ?',
+  },
+  QZZ: {
+    commencer: 'collez une liste de questions rédigée ailleurs, ajoutez des étiquettes, puis tirez un premier quiz : le sujet et le corrigé s\'impriment séparément.',
+    astuces: [
+      'le tirage donne la priorité aux questions les moins posées ;',
+      'les statistiques montrent la réussite par question et la mauvaise réponse la plus choisie.',
+    ],
+    aide: 'Un format de questions qui se colle mal ?',
+  },
   ABN: {
     commencer: 'cochez dans la base les abonnements que vous payez et saisissez votre prix : le vrai total par mois et par an apparaît.',
     astuces: [
