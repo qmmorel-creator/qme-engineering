@@ -76,6 +76,15 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   `conceptUrl` de la fiche prospect. Un envoi, une réponse ou un abandon met aussi le statut du concept à jour.
   Un concept absent de Nexora est un oubli à corriger : vérifier avec `list_qme` (`domain: "concepts"`).
 
+## Gumroad : référent unique (décision du 24/11/2026)
+
+- **Toute demande ou action Gumroad** (création de fiche, publication, mise en vente sur le site, prix, description,
+  dépublication, packs) est traitée par **l'agent Gumroad**, session `session_0183EW569cgV6TXMdunVEq3r`. Les autres
+  sessions ne créent, ne publient et ne modifient rien sur Gumroad : elles renvoient Quentin vers l'agent Gumroad ou lui
+  transmettent la demande (`send_message`). Fonctionnement et tâche quotidienne :
+  `docs/templates/communication/gumroad-priorite.md` § « Qui gère Gumroad » ; écart prêt / Gumroad :
+  `node outils/gumroad/ecart.mjs`.
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
