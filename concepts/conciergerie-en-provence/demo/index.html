@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Le carnet de passage · Conciergerie en Provence · démonstration</title>
+<title>Le carnet d'entretien · nettoyage des locaux professionnels · démonstration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Poppins:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -178,6 +178,14 @@ section[data-view].on{display:contents}
 .lc .nx{margin-top:auto;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line2);padding-top:9px;font-size:11.5px}
 .lc .nx .av{width:22px;height:22px;font-size:9.5px}
 
+
+/* heures */
+.ht{width:100%;border-collapse:collapse;font-size:12.5px}
+.ht th{text-align:left;font-size:11px;font-weight:600;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:#faf6ef}
+.ht td{padding:10px 14px;border-bottom:1px solid var(--line2)}
+.ht th:not(:first-child),.ht td:not(:first-child){text-align:right;white-space:nowrap}
+.blk.abs{background:repeating-linear-gradient(135deg,#f6ece6 0 8px,#fbf4ef 8px 16px);border-left-color:var(--terre)}
+.legend button[disabled]{cursor:default}
 /* mobile */
 .mtop{display:none}
 @media (max-width:600px){
@@ -196,52 +204,51 @@ section[data-view].on{display:contents}
 .mobile-only{display:none}
 @media (max-width:600px){.mobile-only{display:block}}
 </style>
-</head>
 <body>
 <div class="app">
   <aside class="side">
-    <div class="wm"><span class="mono">CP</span><div><b>Conciergerie</b><em>en Provence</em></div></div>
-    <div class="tool"><b>Le carnet de passage</b>ménage · intendance · rapports clients</div>
+    <div class="wm"><span class="mono">K</span><div><b>Propreté</b><em>en Provence</em></div></div>
+    <div class="tool"><b>Le carnet d'entretien</b>locaux professionnels · contrats · contrôle qualité</div>
     <nav class="nav" id="nav">
       <div class="sec">Au bureau</div>
-      <a href="#jour" data-v="jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Aujourd'hui <span class="n">3</span></a>
+      <a href="#jour" data-v="jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Aujourd'hui <span class="n">2</span></a>
       <a href="#carte" data-v="carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>Tournées</a>
-      <a href="#semaine" data-v="semaine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Semaine</a>
-      <a href="#passage" data-v="passage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Passages et rapports</a>
-      <a href="#logements" data-v="logements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Logements</a>
+      <a href="#semaine" data-v="semaine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Planning et absences</a>
+      <a href="#passage" data-v="passage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Contrôle qualité</a>
+      <a href="#logements" data-v="logements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 9h4a1 1 0 0 1 1 1v11M3 21h18M8 8h3M8 12h3M8 16h3"/></svg>Sites et heures</a>
       <div class="sec">Sur le téléphone</div>
-      <a href="#journee" data-v="journee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Prestataire</a>
-      <a href="#rapport" data-v="rapport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Page du propriétaire</a>
+      <a href="#journee" data-v="journee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Agent d'entretien</a>
+      <a href="#rapport" data-v="rapport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Espace client</a>
     </nav>
-    <div class="foot"><span class="av" style="background:var(--p-kelly)">K</span><div><b>Kelly</b><br>Monteux · locaux et blanchisserie</div></div>
+    <div class="foot"><span class="av" style="background:var(--p-kelly)">K</span><div><b>Kelly</b><br>Monteux · bureau et stock</div></div>
   </aside>
   <div class="main">
     <div class="top"><div><h1 id="title"></h1><div class="sub" id="subtitle"></div></div>
-      <div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Logement, client, prestataire…</div></div>
-    <div class="mtop"><span class="mono">CP</span><div><h1 id="mtitle"></h1><div class="sub" id="msubtitle"></div></div></div>
+      <div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Site, client, agent…</div></div>
+    <div class="mtop"><span class="mono">K</span><div><h1 id="mtitle"></h1><div class="sub" id="msubtitle"></div></div></div>
     <div class="content">
 
-      <section data-view="jour" data-title="Aujourd'hui" data-sub="Lundi 23 novembre 2026 · situation à 11 h 40">
+      <section data-view="jour" data-title="Aujourd'hui" data-sub="Mardi 24 novembre 2026 · situation à 18 h 40">
         <div class="hero">
           <svg class="ridge" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0 150V112 C120 104 210 96 300 92 C430 86 520 40 610 26 C640 22 652 18 664 14 L668 4 L672 14 C690 18 712 24 740 30 C840 50 960 86 1080 98 C1130 103 1170 106 1200 108V150Z" fill="rgba(255,255,255,.07)"/><path d="M666 4v-14" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
             <path d="M0 150v-26c150-10 300-16 450-14s300 10 450 8 230-6 300-8v40Z" fill="rgba(201,169,120,.07)"/>
           </svg>
           <div>
-            <p class="eb">Activité nettoyage · Vaucluse</p>
-            <div class="big tnum">10<small>passages aujourd'hui</small></div>
-            <p>Quatre prestataires sur la route, de Monteux à Gordes et Ménerbes. Chaque passage arrive ici avec sa check-list et ses photos ; le rapport du client se prépare tout seul, vous n'avez plus qu'à le relire.</p>
+            <p class="eb">Nettoyage des locaux professionnels · Vaucluse</p>
+            <div class="big tnum">10<small>interventions aujourd'hui</small></div>
+            <p>Bureaux, cabinets médicaux, parties communes et espaces d'accueil, de 6 h à 21 h. Chaque agent pointe en arrivant, coche sa check-list et photographie ce qui compte&nbsp;; les heures réalisées remontent toutes seules pour la paie et la facture du mois.</p>
           </div>
           <div class="ring" id="ring"></div>
           <div class="tiles">
-            <div class="tile"><b>2</b><span>rapports déjà chez les clients</span></div>
-            <div class="tile"><b>1</b><span>rapport prêt à relire · Villa Les Restanques</span></div>
-            <div class="tile alert"><b>2</b><span>points à traiter avant midi</span></div>
+            <div class="tile"><b>1</b><span>absence couverte · Sonia R., 2 interventions reprises</span></div>
+            <div class="tile"><b>96 / 100</b><span>contrôle qualité · Cabinet des Platanes</span></div>
+            <div class="tile alert"><b>2</b><span>points à traiter ce soir</span></div>
           </div>
         </div>
-        <div class="card"><header><h2>Du passage au rapport</h2><span class="sp"></span><span class="muted sm">les 10 passages du jour · 4 prestataires</span></header><div class="funnel" id="funnel"></div></div>
+        <div class="card"><header><h2>De l'intervention prévue aux heures validées</h2><span class="sp"></span><span class="muted sm">les 10 interventions du jour · 3 agents et Kelly</span></header><div class="funnel" id="funnel"></div></div>
         <div class="grid2">
-          <div class="card"><header><h2>Le fil de la journée</h2><span class="sp"></span><span class="muted sm">photos et check-lists reçues en direct</span></header><div class="tl" id="fil"></div></div>
+          <div class="card"><header><h2>Le fil de la journée</h2><span class="sp"></span><span class="muted sm">pointages, check-lists et photos reçus en direct</span></header><div class="tl" id="fil"></div></div>
           <div style="display:flex;flex-direction:column;gap:20px">
             <div class="card"><header><h2>À traiter</h2><span class="b late">2</span></header><div id="todo"></div></div>
             <div class="card"><header><h2>Messages de l'équipe</h2></header><div id="msgs"></div></div>
@@ -249,50 +256,50 @@ section[data-view].on{display:contents}
         </div>
       </section>
 
-      <section data-view="carte" data-title="Tournées du jour" data-sub="Qui est où, dans quel ordre, avec quel linge · lundi 23 novembre">
+      <section data-view="carte" data-title="Tournées du jour" data-sub="Qui est sur quel site, dans quel ordre, avec quels produits · mardi 24 novembre">
         <div class="grid2" style="grid-template-columns:1.75fr 1fr">
-          <div class="card"><header><h2>Le Vaucluse, ce lundi</h2><span class="sp"></span><div class="seg"><button class="on">Aujourd'hui</button><button>Demain</button><button>Semaine</button></div></header>
+          <div class="card"><header><h2>Le Vaucluse, ce mardi</h2><span class="sp"></span><div class="seg"><button class="on">Aujourd'hui</button><button>Demain</button><button>Semaine</button></div></header>
             <div class="mapwrap" id="map"><img src="carte-vaucluse.jpg" width="1048" height="952" alt="Fond de carte du Vaucluse"><svg class="ov" id="ov" viewBox="0 0 1048 952"></svg><div class="legend" id="legend"></div><span class="ign">© IGN · Plan IGN</span></div></div>
           <div style="display:flex;flex-direction:column;gap:20px">
             <div class="card" id="tour"></div>
-            <div class="card"><header><h2>Blanchisserie de Monteux</h2><span class="sp"></span><span class="muted sm">linge du jour</span></header><div class="body" id="linge"></div></div>
+            <div class="card"><header><h2>Consommables</h2><span class="sp"></span><span class="muted sm">à livrer demain matin</span></header><div class="body" id="linge"></div></div>
           </div>
         </div>
       </section>
 
-      <section data-view="semaine" data-title="La semaine" data-sub="Semaine 48 · du lundi 23 au samedi 28 novembre · chaque prestataire voit sa ligne sur son téléphone">
-        <div class="card"><header><h2>Planning des passages</h2><span class="sp"></span><span class="muted sm">31 passages · 17 fins de séjour · 6 visites d'intendance</span><button class="btn pri">+ Nouveau passage</button></header><div class="plan" id="plan"></div></div>
+      <section data-view="semaine" data-title="Planning et absences" data-sub="Semaine 48 · du lundi 23 au samedi 28 novembre · chaque agent voit sa ligne sur son téléphone">
+        <div class="card"><header><h2>Planning des interventions</h2><span class="sp"></span><span class="muted sm">58 interventions · 10 sites · 1 absence</span><button class="btn pri">+ Remplacement</button></header><div class="plan" id="plan"></div></div>
         <div class="grid3" id="weekcards"></div>
       </section>
 
-      <section data-view="passage" data-title="Villa Les Restanques · fin de séjour" data-sub="Ménerbes · lundi 23 novembre · Yanis B. · 10 h 05 – 11 h 31">
+      <section data-view="passage" data-title="Cabinet médical des Platanes · contrôle qualité" data-sub="Pernes-les-Fontaines · mardi 24 novembre · Kelly · 7 h 45 – 8 h 20 · passage contrôlé : lundi soir, Mélanie D.">
         <div class="grid2" style="grid-template-columns:1.6fr 1fr">
           <div style="display:flex;flex-direction:column;gap:20px">
-            <div class="card"><header><h2>Photos du passage</h2><span class="muted sm">prises sur place, horodatées</span><span class="sp"></span><div class="seg" id="ba"><button class="on">Après</button><button>Avant</button></div></header><div class="body"><div class="phgrid" id="photos"></div></div></div>
-            <div class="card"><header><h2>Check-list « Fin de séjour · villa 4 chambres »</h2><span class="sp"></span><span class="b ok">22 / 22</span></header><div class="body"><div class="zones" id="cl"></div></div></div>
+            <div class="card"><header><h2>Photos du contrôle</h2><span class="muted sm">prises sur place, horodatées</span><span class="sp"></span><div class="seg" id="ba"><button class="on">Contrôle</button><button>Passage d'hier</button></div></header><div class="body"><div class="phgrid" id="photos"></div></div></div>
+            <div class="card"><header><h2>Grille « Cabinet médical · 4 salles de soins »</h2><span class="sp"></span><span class="b ok" id="clc"></span></header><div class="body"><div class="zones" id="cl"></div></div></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:20px">
-            <div class="card"><header><h2>Rapport pour M. et Mme Hartmann</h2><span class="sp"></span><span class="b info">Prêt à relire</span></header><div class="body" id="rapprev"></div></div>
-            <div class="card"><header><h2>Signalé sur place</h2><span class="b warn">1</span></header><div id="ano"></div></div>
+            <div class="card"><header><h2>Rapport pour le cabinet</h2><span class="sp"></span><span class="b info">Prêt à relire</span></header><div class="body" id="rapprev"></div></div>
+            <div class="card"><header><h2>Écart relevé</h2><span class="b warn">1</span></header><div id="ano"></div></div>
           </div>
         </div>
       </section>
 
-      <section data-view="logements" data-title="Logements et consignes" data-sub="Ce que chaque prestataire doit savoir avant d'arriver, logement par logement">
+      <section data-view="logements" data-title="Sites et heures" data-sub="Chaque contrat, ses accès, sa check-list, et les heures du mois pour la paie et la facture">
         <div class="lgrid" id="lgrid"></div>
-        <div class="grid2" style="grid-template-columns:1fr 1fr">
-          <div class="card"><header><h2>Modèles de check-list</h2><span class="sp"></span><span class="muted sm">adaptés à chaque logement</span></header><div id="modeles"></div></div>
-          <div class="card"><header><h2>Consignes modifiées cette semaine</h2><span class="sp"></span><span class="muted sm">lues par toute l'équipe</span></header><div id="consignes"></div></div>
+        <div class="grid2" style="grid-template-columns:1fr 1.25fr">
+          <div class="card"><header><h2>Modèles de check-list</h2><span class="sp"></span><span class="muted sm">un par type de local</span></header><div id="modeles"></div></div>
+          <div class="card"><header><h2>Heures de novembre</h2><span class="sp"></span><span class="muted sm">au mardi 24 · prévu au contrat et réalisé</span></header><div id="consignes"></div></div>
         </div>
       </section>
 
-      <section data-view="journee" data-title="Bonjour Sonia" data-sub="Lundi 23 novembre · 2 passages">
+      <section data-view="journee" data-title="Bonjour Mélanie" data-sub="Mardi 24 novembre · 3 interventions ce soir">
         <div class="card" id="cur"></div>
-        <div class="card"><header><h2>Check-list en cours</h2><span class="sp"></span><span class="muted sm">14 / 20</span></header><div id="mcl"></div></div>
+        <div class="card"><header><h2>Check-list en cours</h2><span class="sp"></span><span class="muted sm">4 / 6</span></header><div id="mcl"></div></div>
         <div class="card"><header><h2>Ensuite</h2></header><div id="next"></div></div>
       </section>
 
-      <section data-view="rapport" data-title="Votre rapport" data-sub="Villa Les Restanques · Ménerbes">
+      <section data-view="rapport" data-title="Votre espace client" data-sub="Cabinet médical des Platanes · Pernes-les-Fontaines">
         <div id="client"></div>
       </section>
 
@@ -303,123 +310,108 @@ section[data-view].on{display:contents}
 <script>
 // ===== Illustrations (SVG dessinés, aucune photo réelle) =====
 const ILL = (() => {
-  const S = (vb, body, bg) => `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${bg ? `<rect width="100%" height="100%" fill="${bg}"/>` : ''}${body}</svg>`;
-  const floor = (y, c1 = '#c27a50', c2 = '#b56d45') => `<rect x="0" y="${y}" width="160" height="${120 - y}" fill="${c1}"/>` +
-    Array.from({ length: 9 }, (_, i) => `<line x1="${i * 20 - 10}" y1="${y}" x2="${i * 20 - 30}" y2="120" stroke="${c2}" stroke-width="1.2"/>`).join('') +
-    `<line x1="0" y1="${y + 10}" x2="160" y2="${y + 10}" stroke="${c2}" stroke-width="1"/><line x1="0" y1="${y + 24}" x2="160" y2="${y + 24}" stroke="${c2}" stroke-width="1"/>`;
-  const win = (x, y, w, h, sh = '#8c9aa6') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#dfe9ee"/><rect x="${x}" y="${y + h * .62}" width="${w}" height="${h * .38}" fill="#c9d6b4"/><path d="M${x} ${y + h * .62} q${w * .3} -${h * .18} ${w * .55} -${h * .08} t${w * .45} -${h * .06} v${h * .14} h-${w}z" fill="#a9b98f"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#fff" stroke-width="3"/><line x1="${x + w / 2}" y1="${y}" x2="${x + w / 2}" y2="${y + h}" stroke="#fff" stroke-width="2"/><rect x="${x - w * .32}" y="${y - 2}" width="${w * .3}" height="${h + 4}" fill="${sh}" rx="1"/><rect x="${x + w + 2}" y="${y - 2}" width="${w * .3}" height="${h + 4}" fill="${sh}" rx="1"/>`;
-  const lav = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0 q-2 -14 -6 -22 M0 0 q1 -15 2 -24 M0 0 q3 -13 8 -20" stroke="#6f7f4b" stroke-width="1.2" fill="none"/><circle cx="-6" cy="-23" r="2.6" fill="#8f7cc0"/><circle cx="2" cy="-25" r="2.6" fill="#7d6ab0"/><circle cx="8" cy="-21" r="2.6" fill="#9a88c9"/><path d="M-7 0 h14 l-2 10 h-10z" fill="#f4efe6" stroke="#d9cdb8"/></g>`;
+  const S = (vb, body) => `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+  const tiles = (y, c1 = '#d9d3c8', c2 = '#c8c0b2') => `<rect x="0" y="${y}" width="160" height="${120 - y}" fill="${c1}"/>` +
+    Array.from({ length: 9 }, (_, i) => `<line x1="${i * 20 - 10}" y1="${y}" x2="${i * 20 - 30}" y2="120" stroke="${c2}" stroke-width="1"/>`).join('') +
+    `<line x1="0" y1="${y + 12}" x2="160" y2="${y + 12}" stroke="${c2}"/><line x1="0" y1="${y + 26}" x2="160" y2="${y + 26}" stroke="${c2}"/>`;
+  const plant = (x, y) => `<rect x="${x - 6}" y="${y}" width="12" height="12" rx="2" fill="#c9a978"/><ellipse cx="${x - 5}" cy="${y - 6}" rx="5" ry="9" fill="#6f8a4c"/><ellipse cx="${x + 5}" cy="${y - 7}" rx="5" ry="10" fill="#5f7341"/>`;
   const R = {
-    chambre: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe5d6"/>${win(108, 18, 30, 34)}${floor(84)}
-      <rect x="22" y="40" width="70" height="30" rx="5" fill="#c8b18c"/><rect x="14" y="62" width="88" height="26" rx="4" fill="#fbf8f2"/>
-      <rect x="20" y="54" width="30" height="12" rx="5" fill="#fff" stroke="#e6dccb"/><rect x="58" y="54" width="30" height="12" rx="5" fill="#fff" stroke="#e6dccb"/>
-      <rect x="14" y="72" width="88" height="10" fill="#b99b6b"/><rect x="14" y="88" width="88" height="5" fill="#8d7352"/>
-      <rect x="112" y="70" width="18" height="16" fill="#a37b55"/><path d="M116 70 l5 -12 l5 12z" fill="#f2e3c4"/>`),
-    cuisine: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f1ebe1"/>${floor(92)}
-      <path d="M96 12 h40 l6 22 h-52z" fill="#4f6d8f"/><rect x="108" y="34" width="24" height="4" fill="#3f5a77"/>
+    accueil: () => S('0 0 160 120', `<rect width="160" height="120" fill="#ece6dc"/>${tiles(86)}
+      <rect x="18" y="16" width="64" height="12" rx="2" fill="#1e1a16"/><text x="50" y="25" font-size="7" text-anchor="middle" fill="#e7d7bb" font-family="Poppins">ACCUEIL</text>
+      <path d="M20 58 h96 v30 h-96z" fill="#a8834f"/><rect x="16" y="54" width="104" height="6" rx="2" fill="#f4efe6" stroke="#d8cbb3"/>
+      <rect x="64" y="40" width="22" height="14" rx="1" fill="#2b251f"/><rect x="72" y="54" width="6" height="2" fill="#2b251f"/>${plant(138, 76)}`),
+    attente: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe9df"/>${tiles(84)}
+      <rect x="104" y="16" width="38" height="28" fill="#dfe9ee" stroke="#fff" stroke-width="3"/>
+      ${[14, 40, 66].map((x) => `<rect x="${x}" y="58" width="22" height="18" rx="4" fill="#6f5fa3"/><rect x="${x}" y="72" width="22" height="6" rx="2" fill="#594b87"/><line x1="${x + 3}" y1="78" x2="${x + 3}" y2="90" stroke="#3a322a" stroke-width="2"/><line x1="${x + 19}" y1="78" x2="${x + 19}" y2="90" stroke="#3a322a" stroke-width="2"/>`).join('')}
+      <rect x="100" y="76" width="34" height="5" rx="2" fill="#a87c52"/><rect x="104" y="64" width="14" height="12" fill="#f4efe6" stroke="#d8cbb3"/>${plant(146, 74)}`),
+    soins: () => S('0 0 160 120', `<rect width="160" height="120" fill="#eef1f0"/>${tiles(88, '#dfe3e0', '#cfd5d1')}
+      <rect x="16" y="62" width="76" height="12" rx="4" fill="#e7ecef" stroke="#b9c6cc"/><rect x="16" y="56" width="20" height="8" rx="3" fill="#fff" stroke="#b9c6cc"/>
+      <line x1="24" y1="74" x2="24" y2="92" stroke="#8a97a0" stroke-width="3"/><line x1="84" y1="74" x2="84" y2="92" stroke="#8a97a0" stroke-width="3"/>
+      <rect x="110" y="44" width="34" height="26" fill="#fff" stroke="#c9d2d6"/><rect x="118" y="50" width="18" height="10" rx="5" fill="#dfe9ee"/><rect x="126" y="30" width="6" height="12" fill="#c9d2d6"/>
+      <rect x="112" y="18" width="12" height="16" rx="2" fill="#f4efe6" stroke="#d8cbb3"/>`),
+    wc: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f5f3ee"/>
+      ${Array.from({ length: 8 }, (_, i) => `<line x1="0" y1="${i * 12}" x2="160" y2="${i * 12}" stroke="#e3ddd2"/>`).join('')}${Array.from({ length: 14 }, (_, i) => `<line x1="${i * 12}" y1="0" x2="${i * 12}" y2="90" stroke="#e3ddd2"/>`).join('')}
+      ${tiles(90, '#cfc8bb', '#bfb7a8')}<rect x="20" y="30" width="34" height="26" rx="3" fill="#dfe9ee" stroke="#c9a978" stroke-width="2"/>
+      <path d="M18 62 h38 v6 q0 12 -19 12 q-19 0 -19 -12z" fill="#fff" stroke="#d6cdbd"/><rect x="34" y="80" width="6" height="10" fill="#fff" stroke="#d6cdbd"/>
+      <rect x="94" y="40" width="24" height="30" rx="4" fill="#fff" stroke="#d6cdbd"/><path d="M92 70 h28 q0 18 -14 18 q-14 0 -14 -18z" fill="#fff" stroke="#d6cdbd"/>
+      <rect x="132" y="38" width="16" height="22" rx="2" fill="#e8dcc8" stroke="#cdbb9b"/><rect x="130" y="66" width="20" height="10" rx="2" fill="#6f5fa3" opacity=".75"/>`),
+    couloir: () => S('0 0 160 120', `<rect width="160" height="120" fill="#ebe4d8"/><path d="M0 0 L56 36 L56 84 L0 120z" fill="#e2d8c7"/><path d="M160 0 L104 36 L104 84 L160 120z" fill="#e2d8c7"/>
+      <rect x="56" y="36" width="48" height="48" fill="#f4efe6"/><rect x="70" y="48" width="20" height="36" fill="#a8834f"/>
+      <path d="M0 120 L56 84 H104 L160 120z" fill="#c9bfae"/><path d="M28 120 L66 84 M132 120 L94 84 M80 120 V84" stroke="#b6ab98"/>
+      <rect x="18" y="40" width="14" height="20" fill="#a8834f" transform="skewY(30)"/><circle cx="80" cy="30" r="4" fill="#fff6dc"/>`),
+    pause: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f1ebe1"/>${tiles(92)}
       <rect x="8" y="58" width="144" height="34" fill="#a7b199"/><rect x="6" y="54" width="148" height="6" fill="#c89b62"/>
       ${[20, 52, 84, 116].map((x) => `<rect x="${x}" y="64" width="26" height="24" fill="none" stroke="#8e9a7f"/><circle cx="${x + 22}" cy="76" r="1.4" fill="#6e785f"/>`).join('')}
-      <line x1="14" y1="24" x2="70" y2="24" stroke="#8b6b47" stroke-width="1.6"/>${[22, 36, 50, 62].map((x, i) => `<line x1="${x}" y1="24" x2="${x}" y2="${30 + i % 2 * 3}" stroke="#8b6b47"/><ellipse cx="${x}" cy="${36 + i % 2 * 3}" rx="${4 + i % 2}" ry="5" fill="#b46d3d"/>`).join('')}
-      ${lav(38, 54, .7)}<rect x="60" y="46" width="14" height="8" rx="2" fill="#efe9dd" stroke="#d7cbb6"/>`),
-    sdb: () => S('0 0 160 120', `<rect width="160" height="120" fill="#f7f4ee"/>
-      ${Array.from({ length: 8 }, (_, i) => `<line x1="0" y1="${i * 12}" x2="160" y2="${i * 12}" stroke="#e6e0d5"/>`).join('')}${Array.from({ length: 14 }, (_, i) => `<line x1="${i * 12}" y1="0" x2="${i * 12}" y2="90" stroke="#e6e0d5"/>`).join('')}
-      ${floor(90, '#d9cfc0', '#c9bead')}<circle cx="118" cy="34" r="16" fill="#e3ecef" stroke="#c7a36d" stroke-width="2.5"/>
-      <path d="M14 62 h82 v8 q0 18 -18 18 h-46 q-18 0 -18 -18z" fill="#fff" stroke="#ddd3c3"/><rect x="12" y="58" width="86" height="6" rx="3" fill="#fbfaf7" stroke="#ddd3c3"/>
-      <path d="M30 58 v-26 q0 -6 6 -6 h6" stroke="#b9a37c" stroke-width="2.4" fill="none"/>
-      <rect x="104" y="58" width="30" height="32" fill="#c7a36d"/><rect x="108" y="54" width="22" height="6" rx="2" fill="#fff"/>
-      <rect x="138" y="44" width="12" height="40" rx="2" fill="#e9dccb"/><line x1="138" y1="50" x2="150" y2="50" stroke="#d5c3a7"/>`),
-    sejour: () => S('0 0 160 120', `<rect width="160" height="120" fill="#ece3d4"/>${floor(86)}
-      <rect x="104" y="18" width="34" height="26" fill="#fff" stroke="#c9a978" stroke-width="2"/><path d="M106 40 l10 -12 l8 7 l6 -5 l6 10z" fill="#b8c49a"/><circle cx="130" cy="25" r="3" fill="#e5b66b"/>
-      <rect x="14" y="50" width="80" height="20" rx="8" fill="#e8dcc6"/><rect x="10" y="62" width="88" height="22" rx="6" fill="#f2eadb"/>
-      <rect x="12" y="56" width="10" height="26" rx="5" fill="#e0d2b8"/><rect x="86" y="56" width="10" height="26" rx="5" fill="#e0d2b8"/>
-      <rect x="22" y="56" width="18" height="12" rx="4" fill="#b4532a" opacity=".75"/><rect x="66" y="56" width="18" height="12" rx="4" fill="#7a68a8" opacity=".6"/>
-      <ellipse cx="72" cy="104" rx="56" ry="9" fill="#e9dfcf"/><rect x="50" y="88" width="46" height="5" rx="2" fill="#a87c52"/>${lav(72, 88, .65)}`),
-    terrasse: () => S('0 0 160 120', `<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0ea"/><stop offset="1" stop-color="#f3ead8"/></linearGradient></defs><rect width="160" height="120" fill="url(#sk)"/>
-      <path d="M0 64 q40 -16 78 -6 t82 -4 v26 h-160z" fill="#a9b48b"/><path d="M60 60 q30 -26 62 -4z" fill="#b9b3c9" opacity=".7"/>
-      <rect x="0" y="80" width="160" height="40" fill="#d8c5a5"/>${Array.from({ length: 8 }, (_, i) => `<line x1="${i * 22}" y1="80" x2="${i * 22 - 14}" y2="120" stroke="#c7b391"/>`).join('')}
-      <path d="M26 82 q2 -20 -2 -30" stroke="#7a5d43" stroke-width="4" fill="none"/><g fill="#8a9a67"><ellipse cx="18" cy="44" rx="16" ry="10"/><ellipse cx="34" cy="38" rx="14" ry="9"/><ellipse cx="28" cy="50" rx="13" ry="8" fill="#9caa79"/></g>
-      <path d="M96 40 l26 -12 l26 12z" fill="#f4efe6" stroke="#d8cbb3"/><line x1="122" y1="40" x2="122" y2="86" stroke="#8f7a5c" stroke-width="2"/>
-      <rect x="100" y="78" width="44" height="4" rx="2" fill="#a87c52"/><line x1="106" y1="82" x2="106" y2="96" stroke="#a87c52" stroke-width="2"/><line x1="138" y1="82" x2="138" y2="96" stroke="#a87c52" stroke-width="2"/>
-      ${lav(70, 96, .8)}${lav(84, 98, .7)}`),
-    piscine: () => S('0 0 160 120', `<rect width="160" height="120" fill="#e9eef0"/><path d="M0 50 h160 v14 h-160z" fill="#b4c09b"/>
-      ${[16, 30, 138].map((x) => `<ellipse cx="${x}" cy="34" rx="6" ry="22" fill="#4f6a42"/>`).join('')}
-      <rect x="0" y="62" width="160" height="58" fill="#e7dcc8"/><path d="M18 72 h124 l8 36 h-140z" fill="#7cc1cf"/>
-      ${[80, 88, 96].map((y) => `<path d="M${30 + y / 8} ${y} q14 -4 28 0 t28 0 t28 0" stroke="#b9e3ea" stroke-width="1.6" fill="none"/>`).join('')}
-      <path d="M112 56 l26 0 l-6 -12 h-14z" fill="#f4efe6"/><path d="M96 64 l34 -6 l4 4 l-34 6z" fill="#fbf8f1" stroke="#ccbfa6"/>`),
-    linge: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe6d8"/><rect x="0" y="92" width="160" height="28" fill="#c9a978"/>
-      ${[0, 1, 2, 3, 4].map((i) => `<rect x="${40 - i}" y="${80 - i * 13}" width="${70 + i * 2}" height="12" rx="4" fill="${i % 2 ? '#fbf8f2' : '#f1ece2'}" stroke="#ddd2bf"/>`).join('')}
-      <rect x="114" y="66" width="34" height="26" rx="3" fill="#b4532a" opacity=".85"/><text x="131" y="83" font-size="8" text-anchor="middle" fill="#fff" font-family="Poppins">4 lits</text>`),
-    verre: () => S('0 0 160 120', `<rect width="160" height="120" fill="#e9e3d8"/><rect x="0" y="70" width="160" height="50" fill="#c89b62"/>
-      <path d="M58 92 l14 -10 l6 12 z" fill="#e8f2f4" stroke="#9fb7bd"/><path d="M84 96 l10 -16 l8 8 z" fill="#e8f2f4" stroke="#9fb7bd"/><path d="M70 100 l-14 6 l4 -12z" fill="#e8f2f4" stroke="#9fb7bd"/>
-      <path d="M100 56 h20 l-3 26 h-14z" fill="#e8f2f4" stroke="#9fb7bd"/><circle cx="60" cy="40" r="14" fill="none" stroke="#b4532a" stroke-width="3" stroke-dasharray="4 3"/>`),
-    compteur: () => S('0 0 160 120', `<rect width="160" height="120" fill="#d9d2c4"/><rect x="0" y="0" width="160" height="120" fill="url(#none)"/>
-      <path d="M0 70 h160" stroke="#a89d89" stroke-width="10"/><circle cx="80" cy="60" r="30" fill="#2d6e8e"/><circle cx="80" cy="60" r="22" fill="#f6f4ee"/>
-      <rect x="64" y="52" width="32" height="10" fill="#1e1a16"/><text x="80" y="60" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">0412,7</text>
-      <path d="M80 72 l8 -6" stroke="#b4532a" stroke-width="2"/>`),
-    facade: (v = 0) => {
-      const sh = ['#8fa3b0', '#9a8fb8', '#97a58a', '#b7a27f'][v % 4];
-      return S('0 0 200 120', `<defs><linearGradient id="fs${v}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9e6ec"/><stop offset="1" stop-color="#f4ecdd"/></linearGradient></defs><rect width="200" height="120" fill="url(#fs${v})"/>
-        <path d="M0 70 q50 -18 100 -8 t100 -6 v40 h-200z" fill="#b4bf96"/>
-        <rect x="46" y="44" width="108" height="56" fill="#ead9bb"/><path d="M40 46 l60 -24 l60 24z" fill="#b8643b"/><path d="M40 46 h120" stroke="#9c522f" stroke-width="2"/>
-        ${[62, 92, 122].map((x) => `<rect x="${x}" y="56" width="14" height="14" fill="#f8f3ea"/><rect x="${x - 6}" y="55" width="5" height="16" fill="${sh}"/><rect x="${x + 15}" y="55" width="5" height="16" fill="${sh}"/>`).join('')}
-        <rect x="92" y="80" width="16" height="20" rx="8" fill="${sh}"/>${[22, 176].map((x) => `<ellipse cx="${x}" cy="66" rx="7" ry="28" fill="#4f6a42"/>`).join('')}
-        <rect x="0" y="100" width="200" height="20" fill="#a98ac9" opacity=".35"/>${Array.from({ length: 10 }, (_, i) => `<ellipse cx="${10 + i * 20}" cy="106" rx="8" ry="4" fill="#8f7cc0"/>`).join('')}`);
-    },
-    villa: (v = 0) => S('0 0 200 120', `<rect width="200" height="120" fill="#dde9ee"/><path d="M0 66 q60 -20 120 -6 t80 -2 v40 h-200z" fill="#a9b48b"/>
-        <rect x="30" y="40" width="96" height="46" fill="#f1e6d2"/><path d="M24 42 l54 -18 l54 18z" fill="#c07447"/><rect x="126" y="54" width="46" height="32" fill="#ead9bb"/><path d="M122 56 l27 -10 l27 10z" fill="#b8643b"/>
-        ${[42, 66, 90].map((x) => `<rect x="${x}" y="52" width="14" height="22" fill="#f8f3ea" stroke="#9a8fb8" stroke-width="2"/>`).join('')}
-        <rect x="20" y="92" width="150" height="16" rx="2" fill="#7cc1cf"/><ellipse cx="184" cy="62" rx="7" ry="26" fill="#4f6a42"/><rect x="0" y="108" width="200" height="12" fill="#e2d4bb"/>`),
-    appart: () => S('0 0 200 120', `<rect width="200" height="120" fill="#e3ecef"/><rect x="40" y="14" width="120" height="106" fill="#e6cfa6"/><rect x="36" y="10" width="128" height="6" fill="#c9a978"/>
-        ${[24, 54, 84].map((y) => [56, 88, 120].map((x) => `<rect x="${x}" y="${y}" width="14" height="20" fill="#f6f1e6"/><rect x="${x - 5}" y="${y}" width="4" height="20" fill="#7c8f7a"/><rect x="${x + 15}" y="${y}" width="4" height="20" fill="#7c8f7a"/>`).join('')).join('')}
-        <path d="M86 46 h30" stroke="#3d3a36" stroke-width="2"/><rect x="0" y="108" width="200" height="12" fill="#d7c7ab"/><rect x="8" y="40" width="26" height="80" fill="#d9bf92"/><rect x="166" y="30" width="30" height="90" fill="#dcc8a2"/>`),
+      <rect x="18" y="18" width="50" height="22" fill="#e8dcc8" stroke="#cdbb9b"/><rect x="100" y="40" width="22" height="14" rx="2" fill="#2b251f"/><rect x="128" y="36" width="10" height="18" rx="3" fill="#b4532a"/>`),
+    openspace: () => S('0 0 160 120', `<rect width="160" height="120" fill="#e9eef0"/>${tiles(86, '#cfd2cf', '#bfc3bf')}
+      <rect x="0" y="12" width="160" height="34" fill="#dfe9ee"/>${[0, 40, 80, 120].map((x) => `<rect x="${x}" y="12" width="40" height="34" fill="none" stroke="#fff" stroke-width="3"/>`).join('')}
+      ${[14, 82].map((x) => `<rect x="${x}" y="62" width="62" height="5" fill="#f4efe6" stroke="#d8cbb3"/><rect x="${x + 6}" y="50" width="18" height="12" fill="#2b251f"/><rect x="${x + 36}" y="50" width="18" height="12" fill="#2b251f"/><line x1="${x + 4}" y1="67" x2="${x + 4}" y2="86" stroke="#8a8f8c" stroke-width="2"/><line x1="${x + 58}" y1="67" x2="${x + 58}" y2="86" stroke="#8a8f8c" stroke-width="2"/>`).join('')}`),
+    vitre: () => S('0 0 160 120', `<rect width="160" height="120" fill="#ece6dc"/><rect x="20" y="14" width="120" height="78" fill="#dfe9ee" stroke="#fff" stroke-width="4"/>
+      <path d="M40 30 q20 10 34 2 M50 48 q24 8 40 -2 M36 66 q18 6 30 0" stroke="#b9c1bf" stroke-width="5" fill="none" opacity=".8" stroke-linecap="round"/>
+      <circle cx="96" cy="52" r="26" fill="none" stroke="#b4532a" stroke-width="3" stroke-dasharray="5 4"/><rect x="0" y="92" width="160" height="28" fill="#a8834f"/>`),
+    stock: () => S('0 0 160 120', `<rect width="160" height="120" fill="#efe6d8"/><rect x="0" y="96" width="160" height="24" fill="#c9a978"/>
+      ${[[18, 60, '#fbf8f2'], [18, 34, '#fbf8f2'], [62, 60, '#e8dcc8'], [106, 60, '#fbf8f2']].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="40" height="34" rx="2" fill="${c}" stroke="#d6c8b0"/><line x1="${x}" y1="${y + 10}" x2="${x + 40}" y2="${y + 10}" stroke="#d6c8b0"/>`).join('')}
+      <rect x="70" y="30" width="10" height="30" rx="3" fill="#6f5fa3"/><rect x="86" y="34" width="10" height="26" rx="3" fill="#5f7341"/>`),
+    // façades des sites
     bureau: () => S('0 0 200 120', `<rect width="200" height="120" fill="#e5ecef"/><rect x="36" y="30" width="128" height="90" fill="#efe9df"/><rect x="36" y="30" width="128" height="10" fill="#1e1a16"/>
         ${[48, 74].map((y) => Array.from({ length: 6 }, (_, i) => `<rect x="${46 + i * 19}" y="${y}" width="14" height="18" fill="#b9cfd8"/>`).join('')).join('')}
         <rect x="88" y="96" width="24" height="24" fill="#9fb7c2"/><rect x="0" y="112" width="200" height="8" fill="#cfc5b4"/>`),
+    appart: () => S('0 0 200 120', `<rect width="200" height="120" fill="#e3ecef"/><rect x="40" y="14" width="120" height="106" fill="#e6cfa6"/><rect x="36" y="10" width="128" height="6" fill="#c9a978"/>
+        ${[24, 54, 84].map((y) => [56, 88, 120].map((x) => `<rect x="${x}" y="${y}" width="14" height="20" fill="#f6f1e6"/><rect x="${x - 5}" y="${y}" width="4" height="20" fill="#7c8f7a"/><rect x="${x + 15}" y="${y}" width="4" height="20" fill="#7c8f7a"/>`).join('')).join('')}
+        <rect x="0" y="108" width="200" height="12" fill="#d7c7ab"/><rect x="8" y="40" width="26" height="80" fill="#d9bf92"/><rect x="166" y="30" width="30" height="90" fill="#dcc8a2"/>`),
+    cabinet: (v = 0) => { const sh = ['#8fa3b0', '#97a58a', '#9a8fb8'][v % 3];
+      return S('0 0 200 120', `<rect width="200" height="120" fill="#dde9ee"/><path d="M0 72 q50 -14 100 -6 t100 -4 v40 h-200z" fill="#b4bf96"/>
+        <rect x="40" y="36" width="120" height="66" fill="#efe3cc"/><path d="M34 38 l66 -20 l66 20z" fill="#b8643b"/>
+        ${[54, 84, 130].map((x) => `<rect x="${x}" y="48" width="16" height="16" fill="#f8f3ea"/><rect x="${x - 6}" y="47" width="5" height="18" fill="${sh}"/><rect x="${x + 17}" y="47" width="5" height="18" fill="${sh}"/>`).join('')}
+        <rect x="104" y="72" width="20" height="30" fill="${sh}"/><rect x="58" y="74" width="34" height="12" rx="2" fill="#fff"/><path d="M71 76 h8 v3 h3 v6 h-3 v3 h-8 v-3 h-3 v-6 h3z" transform="translate(0 -1) scale(1)" fill="#5f7341" opacity=".85"/>
+        <rect x="0" y="102" width="200" height="18" fill="#e2d4bb"/>${[16, 184].map((x) => `<ellipse cx="${x}" cy="70" rx="9" ry="26" fill="#5c7a48"/>`).join('')}`); },
+    erp: (v = 0) => S('0 0 200 120', `<rect width="200" height="120" fill="#e3ecef"/><rect x="24" y="34" width="152" height="74" fill="${v ? '#efe3cc' : '#e9dcc4'}"/><rect x="20" y="30" width="160" height="8" fill="#a8834f"/>
+        <rect x="70" y="44" width="60" height="12" rx="2" fill="#1e1a16"/><text x="100" y="53" font-size="7.5" text-anchor="middle" fill="#e7d7bb" font-family="Poppins">${v ? 'AUTO-ÉCOLE' : 'ACCUEIL'}</text>
+        <rect x="80" y="66" width="40" height="42" fill="#b9cfd8" stroke="#fff" stroke-width="2"/><line x1="100" y1="66" x2="100" y2="108" stroke="#fff" stroke-width="2"/>
+        ${[34, 140].map((x) => `<rect x="${x}" y="64" width="26" height="22" fill="#b9cfd8" stroke="#fff" stroke-width="2"/>`).join('')}<rect x="0" y="108" width="200" height="12" fill="#d7c7ab"/>`),
   };
   return {
-    room: (k, v) => (R[k] || R.sejour)(v),
-    photo: (k, label, time, v) => `<figure class="ph-i">${(R[k] || R.sejour)(v)}${label ? `<figcaption>${label}${time ? `<i>${time}</i>` : ''}</figcaption>` : ''}</figure>`,
-    house: (k, v) => (R[k] || R.facade)(v),
+    photo: (k, label, time, v) => `<figure class="ph-i">${(R[k] || R.accueil)(v)}${label ? `<figcaption>${label}${time ? `<i>${time}</i>` : ''}</figcaption>` : ''}</figure>`,
+    house: (k, v) => (R[k] || R.bureau)(v),
   };
 })();
 
 // ===== Données fictives =====
 const P = {
-  sonia: { n: 'Sonia R.', i: 'SR', c: 'var(--p-sonia)', hex: '#b4532a', role: 'Ménage' },
-  melanie: { n: 'Mélanie D.', i: 'MD', c: 'var(--p-melanie)', hex: '#5f7341', role: 'Ménage et linge' },
-  yanis: { n: 'Yanis B.', i: 'YB', c: 'var(--p-yanis)', hex: '#6f5fa3', role: 'Ménage' },
-  kelly: { n: 'Kelly', i: 'K', c: 'var(--p-kelly)', hex: '#a8834f', role: 'Intendance et contrôle' },
+  sonia: { n: 'Sonia R.', i: 'SR', c: 'var(--p-sonia)', hex: '#b4532a', role: 'Agent d\'entretien · absente' },
+  melanie: { n: 'Mélanie D.', i: 'MD', c: 'var(--p-melanie)', hex: '#5f7341', role: 'Agent d\'entretien' },
+  yanis: { n: 'Yanis B.', i: 'YB', c: 'var(--p-yanis)', hex: '#6f5fa3', role: 'Agent d\'entretien' },
+  kelly: { n: 'Kelly', i: 'K', c: 'var(--p-kelly)', hex: '#a8834f', role: 'Contrôle et remplacements' },
 };
 const T = {"Monteux": [35.56, 49.89], "Carpentras": [42.78, 45.84], "Pernes-les-Fontaines": [44.31, 57.97], "L'Isle-sur-la-Sorgue": [43.19, 74.76], "Gordes": [63.89, 76.45], "Ménerbes": [64.58, 93.22], "Bédoin": [60.97, 31.15], "Malaucène": [54.58, 20.49], "Mazan": [53.75, 45.63], "Sarrians": [32.22, 39.88], "Avignon": [9.17, 68.38], "Mont Ventoux": [74.86, 20.49], "Cavaillon": [41.39, 92.16], "Apt": [91.11, 83.88], "Vaison-la-Romaine": [46.53, 6.19]};
+// sites sous contrat : nom, ville, type, client, illustration, fréquence, heures par mois
 const L = {
-  clos: { n: 'Copropriété Le Clos', v: 'Monteux', t: 'Parties communes', h: ['bureau'], cli: 'Syndic du Clos', off: [-14, 10] },
-  pie: { n: 'Appart. Place Pie', v: 'Avignon', t: 'Fin de séjour', h: ['appart'], cli: 'SCI Palais' },
-  bastide: { n: 'Bastide du Ventoux', v: 'Malaucène', t: 'Intendance', h: ['facade', 3], cli: 'M. Delorme' },
-  oliviers: { n: 'Mas des Oliviers', v: 'Gordes', t: 'Fin de séjour', h: ['facade', 0], cli: 'M. et Mme Ferrand' },
-  restanques: { n: 'Villa Les Restanques', v: 'Ménerbes', t: 'Fin de séjour', h: ['villa'], cli: 'M. et Mme Hartmann' },
-  veran: { n: 'Maison Saint-Véran', v: 'Monteux', t: 'Remise en état', h: ['facade', 2], cli: 'Mme Chabert', off: [12, -12] },
-  remparts: { n: 'Studio Les Remparts', v: 'Pernes-les-Fontaines', t: 'Fin de séjour', h: ['appart'], cli: 'SCI Les Remparts' },
-  cigales: { n: 'Mas des Cigales', v: 'Mazan', t: 'Intendance', h: ['facade', 1], cli: 'Mme Laurent' },
-  moulin: { n: 'Gîte du Moulin', v: "L'Isle-sur-la-Sorgue", t: 'Fin de séjour', h: ['facade', 2], cli: 'M. Giraud' },
-  durance: { n: 'Agence Durance', v: 'Carpentras', t: 'Bureaux', h: ['bureau'], cli: 'Agence Durance' },
-  lavande: { n: 'Villa Lavande', v: 'Bédoin', t: 'Fin de séjour', h: ['villa'], cli: 'Mme Roussel' },
-  vignes: { n: 'Maison des Vignes', v: 'Sarrians', t: 'Fin de séjour', h: ['facade', 3], cli: 'M. Bernard' },
+  durance: { n: 'Agence Durance', v: 'Carpentras', t: 'Bureaux', cli: 'Agence Durance', h: ['bureau'], f: '5 soirs / 7', hm: 43 },
+  comtat: { n: 'Comtat Conseil', v: 'Carpentras', t: 'Bureaux', cli: 'Comtat Conseil', h: ['bureau'], f: '3 soirs / 7', hm: 18, off: [-4, 30] },
+  veran: { n: 'Bureaux Saint-Véran', v: 'Monteux', t: 'Bureaux', cli: 'SCI Saint-Véran', h: ['bureau'], f: '2 × / semaine', hm: 10, off: [14, -16] },
+  platanes: { n: 'Cabinet médical des Platanes', v: 'Pernes-les-Fontaines', t: 'Cabinet médical', cli: 'SCM des Platanes', h: ['cabinet', 0], f: '5 soirs / 7', hm: 33, off: [14, 10] },
+  kine: { n: 'Cabinet de kinésithérapie', v: 'Mazan', t: 'Cabinet médical', cli: 'SCM Kiné Mazan', h: ['cabinet', 1], f: '3 soirs / 7', hm: 15 },
+  dentaire: { n: 'Cabinet dentaire du Cours', v: 'Cavaillon', t: 'Cabinet médical', cli: 'SCM du Cours', h: ['cabinet', 2], f: '5 soirs / 7', hm: 26 },
+  clos: { n: 'Résidence Le Clos', v: 'Monteux', t: 'Parties communes', cli: 'Syndic du Clos', h: ['appart'], f: '2 × / semaine', hm: 13, off: [-16, 12] },
+  remparts: { n: 'Résidence Les Remparts', v: 'Pernes-les-Fontaines', t: 'Parties communes', cli: 'Syndic des Remparts', h: ['appart'], f: '3 × / semaine', hm: 16, off: [-14, -10] },
+  sorgues: { n: 'Espace d\'accueil Les Sorgues', v: 'L\'Isle-sur-la-Sorgue', t: 'Accueil du public', cli: 'Association Les Sorgues', h: ['erp', 0], f: '6 matins / 7', hm: 39 },
+  auto: { n: 'Auto-école du Comtat', v: 'Sarrians', t: 'Accueil du public', cli: 'Auto-école du Comtat', h: ['erp', 1], f: '3 matins / 7', hm: 9 },
 };
-// passages du jour : [heure, prestataire, logement, état, photos, check-list x/y, détail]
+// interventions du jour : [heure, agent, site, état, photos, check-list x/y, détail]
 const J = [
-  ['7 h', 'yanis', 'clos', 'manque', 5, [14, 14], 'Check-list validée · photo du local poubelles manquante'],
-  ['8 h', 'melanie', 'pie', 'envoye', 9, [16, 16], 'Rapport envoyé à 9 h 52 · ouvert par le client'],
-  ['9 h', 'kelly', 'bastide', 'envoye', 11, [18, 18], 'Rapport envoyé à 10 h 20 · compteur d\'eau à surveiller'],
-  ['9 h 30', 'sonia', 'oliviers', 'cours', 8, [14, 20], 'En cours · kit d\'accueil : café manquant'],
-  ['10 h', 'yanis', 'restanques', 'pret', 12, [22, 22], 'Check-list validée à 11 h 31 · rapport prêt'],
-  ['10 h 15', 'melanie', 'veran', 'cours', 6, [11, 28], 'En cours · fin prévue vers 14 h'],
-  ['14 h', 'sonia', 'remparts', 'prevu', 0, [0, 16], 'Fin de séjour · arrivée voyageurs 17 h'],
-  ['14 h', 'kelly', 'cigales', 'prevu', 0, [0, 18], 'Visite d\'intendance · relevé des compteurs'],
-  ['15 h', 'yanis', 'moulin', 'prevu', 0, [0, 20], 'Fin de séjour · linge 3 lits'],
-  ['18 h 30', 'melanie', 'durance', 'prevu', 0, [0, 12], 'Bureaux · badge à l\'accueil'],
+  ['6 h', 'yanis', 'sorgues', 'valide', 6, [18, 18], 'Pointé 5 h 57 → 7 h 31 · 1 h 34 pour 1 h 30 prévue'],
+  ['6 h 30', 'melanie', 'clos', 'valide', 5, [12, 12], 'Hall, escaliers, ascenseur · bacs sortis'],
+  ['7 h', 'kelly', 'remparts', 'valide', 4, [12, 12], 'Remplace Sonia R. (absente) · 1 h 20'],
+  ['7 h 45', 'kelly', 'platanes', 'ctrl', 8, [23, 23], 'Contrôle qualité · 96 / 100 · rapport prêt'],
+  ['8 h', 'yanis', 'auto', 'manque', 5, [14, 14], 'Check-list validée à 9 h 24 · départ non pointé'],
+  ['17 h 30', 'yanis', 'durance', 'cours', 7, [13, 22], 'En cours · open space fait, sanitaires à faire'],
+  ['18 h', 'melanie', 'comtat', 'cours', 3, [4, 16], 'En cours depuis 18 h 02 · pointé sur place'],
+  ['19 h 15', 'yanis', 'dentaire', 'prevu', 0, [0, 20], 'Après la dernière consultation · alarme à couper'],
+  ['19 h 30', 'melanie', 'kine', 'prevu', 0, [0, 16], 'Salle d\'attente et 4 salles de soins'],
+  ['20 h', 'kelly', 'veran', 'prevu', 0, [0, 12], 'Remplace Sonia R. · badge au bureau de Monteux'],
 ];
-const ST = { envoye: ['ok', 'Rapport envoyé'], pret: ['info', 'Rapport à relire'], cours: ['warn', 'En cours'], manque: ['late', 'Photo manquante'], prevu: ['idle', 'Prévu'] };
-const PH = { clos: ['bureau', 'sejour'], pie: ['chambre', 'cuisine', 'sdb'], bastide: ['compteur', 'sejour', 'terrasse'], oliviers: ['chambre', 'cuisine', 'terrasse'], restanques: ['piscine', 'chambre', 'cuisine'], veran: ['sdb', 'sejour'] };
+const ST = { valide: ['ok', 'Heures validées'], ctrl: ['info', 'Contrôle à relire'], cours: ['warn', 'En cours'], manque: ['late', 'Départ non pointé'], prevu: ['idle', 'Prévue'] };
+const PH = { sorgues: ['accueil', 'wc'], clos: ['couloir', 'couloir'], remparts: ['couloir', 'wc'], platanes: ['attente', 'soins', 'wc'], auto: ['accueil', 'wc'], durance: ['openspace', 'pause'], comtat: ['openspace'] };
 
 // ===== Outils =====
 const $ = (s, el = document) => el.querySelector(s);
@@ -429,32 +421,32 @@ const av = (p, s = '') => `<span class="av" style="background:${P[p].c};${s}">${
 
 // ===== Aujourd'hui =====
 function renderJour() {
-  const done = 4, tot = 10, r = 84, C = 2 * Math.PI * r;
-  $('#ring').innerHTML = `<svg viewBox="0 0 200 200" width="200" height="200"><circle cx="100" cy="100" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14"/><circle cx="100" cy="100" r="${r}" fill="none" stroke="#c9a978" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C * done / tot} ${C}" transform="rotate(-90 100 100)"/></svg><div class="c"><b>${done} / ${tot}</b><span>passages terminés<br>à 11 h 40</span></div>`;
-  const f = [['Passages prévus', 10, '#2a241f', '<b>31</b> sur la semaine'], ['Commencés', 6, '#2a241f', '<b>2</b> en cours'], ['Check-list validée', 4, '#c9a978', '<b>77</b> points cochés'], ['Photos complètes', 3, '#c9a978', '<b>51</b> photos reçues'], ['Rapport envoyé', 2, '#5f7341', '<b>1</b> prêt à relire']];
+  const done = 5, tot = 10, r = 84, C = 2 * Math.PI * r;
+  $('#ring').innerHTML = `<svg viewBox="0 0 200 200" width="200" height="200"><circle cx="100" cy="100" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14"/><circle cx="100" cy="100" r="${r}" fill="none" stroke="#c9a978" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C * done / tot} ${C}" transform="rotate(-90 100 100)"/></svg><div class="c"><b>${done} / ${tot}</b><span>interventions faites<br>à 18 h 40</span></div>`;
+  const f = [['Interventions prévues', 10, '#2a241f', '<b>58</b> sur la semaine'], ['Arrivée pointée', 7, '#2a241f', '<b>2</b> en cours'], ['Check-list validée', 5, '#c9a978', '<b>79</b> points cochés'], ['Départ pointé', 4, '#c9a978', '<b>1</b> oubli à corriger'], ['Heures validées', 4, '#5f7341', '<b>5 h 59</b> pour la paie']];
   $('#funnel').innerHTML = f.map(([l, v, c, d]) => `<div class="fs"><div class="l">${l}</div><div class="v tnum">${v}</div><div class="bar"><i style="height:${Math.max(8, v * 5.6)}px;background:${c}"></i></div><div class="d">${d}</div></div>`).join('');
   $('#fil').innerHTML = J.map(([h, p, l, s, n, [a, b], d]) => `<div class="row"><span class="h">${h}</span>${av(p, 'width:28px;height:28px;font-size:10px')}<div><b style="font-weight:600">${esc(L[l].n)}</b> <span class="muted sm">· ${esc(L[l].v)}</span><div class="muted sm">${esc(d)}</div></div>
-    <div>${n ? `<div class="thumbs">${(PH[l] || []).map((k) => ILL.photo(k)).join('')}<span class="sm muted" style="align-self:center;margin-left:2px">+${n - (PH[l] || []).length}</span></div>` : `<div class="pg"><i style="width:${b ? a / b * 100 : 0}%"></i></div>`}</div><div style="text-align:right">${badge(s)}</div></div>`).join('');
+    <div>${n && s !== 'cours' ? `<div class="thumbs">${(PH[l] || []).map((k) => ILL.photo(k)).join('')}<span class="sm muted" style="align-self:center;margin-left:2px">+${n - (PH[l] || []).length}</span></div>` : `<div class="pg"><i style="width:${b ? a / b * 100 : 0}%"></i></div>`}</div><div style="text-align:right">${badge(s)}</div></div>`).join('');
   $('#todo').innerHTML = [
-    ['late', 'Bastide du Ventoux · compteur d\'eau', '14 m³ depuis le 9/11, maison vide : fuite possible. Photo du compteur jointe par Kelly.', 'Appeler M. Delorme'],
-    ['late', 'Copropriété Le Clos · photo manquante', 'Yanis B. est prévenu ; le rapport partira dès la photo reçue.', 'Relancer Yanis'],
-    ['info', 'Villa Les Restanques · rapport prêt', '12 photos, 22 points, un verre cassé signalé. En anglais pour M. et Mme Hartmann.', 'Relire'],
+    ['late', 'Auto-école du Comtat · départ non pointé', 'Yanis B. a validé sa check-list à 9 h 24 sans pointer son départ. Heure proposée : 9 h 26.', 'Corriger'],
+    ['late', 'Agence Durance · demande du client', 'Corbeilles de la salle de réunion non vidées vendredi. Photo jointe par la cliente ; ajouté à la check-list de ce soir.', 'Répondre'],
+    ['info', 'Cabinet des Platanes · contrôle qualité', '96 / 100, 22 points conformes sur 23, un écart (traces sur la vitre de l\'accueil). Rapport prêt pour le cabinet.', 'Relire'],
   ].map(([c, t, d, a]) => `<div class="li"><span class="dot" style="background:var(--${c === 'late' ? 'terre' : 'lav'})"></span><div style="flex:1"><b style="font-weight:600">${esc(t)}</b><div class="muted sm">${esc(d)}</div></div><button class="btn${c === 'info' ? ' pri' : ''}" onclick="location.hash='${c === 'info' ? 'passage' : 'jour'}'">${a}</button></div>`).join('');
   $('#msgs').innerHTML = [
-    ['yanis', '11 h 31', 'Restanques terminé. Un verre cassé dans la cuisine, photo jointe, remplacé par un verre du stock.'],
-    ['sonia', '10 h 58', 'Oliviers : il reste 2 dosettes de café, je n\'en avais plus dans la voiture.'],
-    ['kelly', '11 h 02', 'Je passe vendredi pour l\'intendance, je les apporte.'],
+    ['yanis', '18 h 21', 'Durance : plus de sacs de 100 L dans le local, j\'ai pris ceux de la voiture.'],
+    ['melanie', '18 h 05', 'Comtat : la salle de réunion est occupée jusqu\'à 19 h, je la fais en dernier.'],
+    ['kelly', '18 h 30', 'Je dépose 2 cartons de sacs et du papier à Durance demain matin.'],
   ].map(([p, h, t]) => `<div class="li">${av(p, 'width:28px;height:28px;font-size:10px')}<div style="flex:1"><div class="sm"><b>${P[p].n}</b> <span class="muted">· ${h}</span></div><div class="sm">${esc(t)}</div></div></div>`).join('');
 }
 
 // ===== Carte =====
-const ROUTES = { sonia: ['oliviers', 'remparts'], melanie: ['pie', 'veran', 'durance'], yanis: ['clos', 'restanques', 'moulin'], kelly: ['bastide', 'cigales'] };
-let SEL = 'sonia'; const OFF = new Set();
+const ROUTES = { yanis: ['sorgues', 'auto', 'durance', 'dentaire'], melanie: ['clos', 'comtat', 'kine'], kelly: ['remparts', 'platanes', 'veran'] };
+let SEL = 'yanis'; const OFF = new Set();
 const pt = (l) => { const t = T[L[l].v]; const o = L[l].off || [0, 0]; return [t[0] * 10.48 + o[0], t[1] * 9.52 + o[1]]; };
 function renderCarte() {
   const base = [T.Monteux[0] * 10.48, T.Monteux[1] * 9.52];
   const state = Object.fromEntries(J.map((j) => [j[2], j[3]]));
-  let s = '';
+  let s = '', lab = '';
   Object.entries(ROUTES).forEach(([p, ls]) => {
     if (OFF.has(p)) return;
     const pts = [base, ...ls.map(pt), base];
@@ -467,101 +459,110 @@ function renderCarte() {
       const [x, y] = pt(l), st = state[l], big = p === SEL;
       const fill = st === 'prevu' ? '#fffdf9' : P[p].hex, tc = st === 'prevu' ? P[p].hex : '#fff';
       s += `${st === 'cours' ? `<circle cx="${x}" cy="${y}" r="${big ? 24 : 18}" fill="${P[p].hex}" opacity=".18"/>` : ''}<circle cx="${x}" cy="${y}" r="${big ? 14 : 10}" fill="${fill}" stroke="${P[p].hex}" stroke-width="3"/><text x="${x}" y="${y + (big ? 5 : 4)}" text-anchor="middle" class="stop" fill="${tc}" font-size="${big ? 13 : 10}">${i + 1}</text>`;
-      if (big) s += `<g transform="translate(${x + 20} ${y - 14})"><rect width="${L[l].n.length * 7.6 + 18}" height="28" rx="8" fill="#fffdf9" stroke="#e8dfd1"/><text x="9" y="18.5" font-family="Poppins" font-size="12.5" font-weight="600" fill="#1e1a16">${esc(L[l].n)}</text></g>`;
+      if (big) lab += `<g transform="translate(${x + 20} ${y - 14})"><rect width="${L[l].n.length * 7.4 + 18}" height="28" rx="8" fill="#fffdf9" stroke="#e8dfd1"/><text x="9" y="18.5" font-family="Poppins" font-size="12.5" font-weight="600" fill="#1e1a16">${esc(L[l].n)}</text></g>`;
     });
   });
-  s += `<g transform="translate(${base[0]} ${base[1]})"><rect x="-16" y="-16" width="32" height="32" rx="9" fill="#1e1a16"/><text y="5" text-anchor="middle" font-family="Playfair Display" font-weight="600" font-size="14" fill="#e7d7bb">CP</text></g><g transform="translate(${base[0] - 172} ${base[1] + 22})"><rect width="160" height="26" rx="8" fill="#1e1a16"/><text x="10" y="17" font-family="Poppins" font-size="11.5" font-weight="500" fill="#f3eadb">Locaux et blanchisserie</text></g>`;
-  $('#ov').innerHTML = s;
-  $('#legend').innerHTML = Object.keys(ROUTES).map((p) => `<button class="${OFF.has(p) ? 'off' : ''}" data-p="${p}" style="${p === SEL ? 'border-color:' + P[p].hex + ';box-shadow:0 0 0 2px ' + P[p].hex + '33' : ''}">${av(p)}${P[p].n} · ${ROUTES[p].length} passages</button>`).join('');
-  document.querySelectorAll('#legend button').forEach((b) => b.onclick = () => { SEL = b.dataset.p; OFF.delete(SEL); renderCarte(); });
+  s += `<g transform="translate(${base[0]} ${base[1]})"><rect x="-16" y="-16" width="32" height="32" rx="9" fill="#1e1a16"/><text y="5" text-anchor="middle" font-family="Playfair Display" font-weight="600" font-size="15" fill="#e7d7bb">K</text></g><g transform="translate(${base[0] - 152} ${base[1] + 22})"><rect width="140" height="26" rx="8" fill="#1e1a16"/><text x="10" y="17" font-family="Poppins" font-size="11.5" font-weight="500" fill="#f3eadb">Bureau et stock</text></g>`;
+  $('#ov').innerHTML = s + lab;
+  $('#legend').innerHTML = Object.keys(ROUTES).map((p) => `<button class="${OFF.has(p) ? 'off' : ''}" data-p="${p}" style="${p === SEL ? 'border-color:' + P[p].hex + ';box-shadow:0 0 0 2px ' + P[p].hex + '33' : ''}">${av(p)}${P[p].n} · ${ROUTES[p].length} sites</button>`).join('') + `<button class="off" disabled>${av('sonia')}Sonia R. · absente</button>`;
+  document.querySelectorAll('#legend button[data-p]').forEach((b) => b.onclick = () => { SEL = b.dataset.p; OFF.delete(SEL); renderCarte(); });
   const pj = J.filter((j) => j[1] === SEL);
-  const km = { sonia: 58, melanie: 64, yanis: 71, kelly: 49 }[SEL];
+  const km = { melanie: 46, yanis: 78, kelly: 39 }[SEL];
   $('#tour').innerHTML = `<header>${av(SEL)}<div><h2>${P[SEL].n}</h2><div class="muted sm">${P[SEL].role} · ${km} km · départ de Monteux</div></div></header>` +
     pj.map(([h, p, l, s, n, [a, b], d], i) => `<div class="li"><span class="av" style="width:26px;height:26px;font-size:11px;background:${s === 'prevu' ? '#fffdf9' : P[p].hex};color:${s === 'prevu' ? P[p].hex : '#fff'};border:2px solid ${P[p].hex}">${i + 1}</span><div style="flex:1"><b style="font-weight:600">${h} · ${esc(L[l].n)}</b><div class="muted sm">${esc(L[l].v)} · ${esc(L[l].t)}</div><div class="sm" style="margin-top:3px">${esc(d)}</div></div>${badge(s)}</div>`).join('');
-  $('#linge').innerHTML = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center">${[['14', 'parures prêtes'], ['6', 'sacs au retour'], ['1', 'drap taché à facturer']].map(([v, l]) => `<div style="background:var(--or-soft);border-radius:12px;padding:12px 6px"><b class="pf" style="font-size:26px;display:block;line-height:1">${v}</b><span class="sm muted">${l}</span></div>`).join('')}</div>
-    <div class="sm muted" style="margin-top:12px">Chaque prestataire voit au départ le linge à charger pour sa tournée : ${SEL === 'sonia' ? '3 lits et 9 serviettes pour Gordes, 1 lit pour Pernes.' : 'le détail par logement.'}</div>`;
+  $('#linge').innerHTML = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center">${[['3', 'sites à réassortir'], ['2', 'cartons de sacs 100 L'], ['18', 'rouleaux d\'essuie-mains']].map(([v, l]) => `<div style="background:var(--or-soft);border-radius:12px;padding:12px 6px"><b class="pf" style="font-size:26px;display:block;line-height:1">${v}</b><span class="sm muted">${l}</span></div>`).join('')}</div>
+    <div class="sm muted" style="margin-top:12px">Un agent signale un produit manquant en un geste depuis le site&nbsp;; la liste de réassort se fait toute seule, site par site, et part avec la tournée du lendemain.</div>`;
 }
 
 // ===== Semaine =====
 function renderSemaine() {
   const D = ['Lun 23', 'Mar 24', 'Mer 25', 'Jeu 26', 'Ven 27', 'Sam 28'];
+  const A = 'ABS';
   const W = {
-    sonia: [[['oliviers', '9 h 30', 'cours'], ['remparts', '14 h']], [['durance', '7 h']], [], [['lavande', '10 h']], [['durance', '7 h']], [['remparts', '10 h'], ['moulin', '14 h']]],
-    melanie: [[['pie', '8 h', 'envoye'], ['veran', '10 h 15', 'cours'], ['durance', '18 h 30']], [['vignes', '10 h']], [['pie', '11 h']], [], [['vignes', '10 h']], [['pie', '11 h'], ['lavande', '15 h']]],
-    yanis: [[['clos', '7 h', 'manque'], ['restanques', '10 h', 'pret'], ['moulin', '15 h']], [['remparts', '14 h']], [['clos', '7 h']], [['bastide', '9 h', 'conf']], [['clos', '7 h']], []],
-    kelly: [[['bastide', '9 h', 'envoye'], ['cigales', '14 h']], [['cigales', '10 h']], [['lavande', '9 h'], ['veran', '14 h']], [['bastide', '9 h', 'conf']], [['oliviers', '16 h']], []],
+    sonia: [[['remparts', '7 h', 'valide'], ['veran', '20 h', 'valide']], A, A, [['remparts', '7 h'], ['dentaire', '19 h 15']], [['remparts', '7 h'], ['veran', '20 h']], []],
+    melanie: [[['clos', '6 h 30', 'valide'], ['comtat', '18 h', 'valide'], ['platanes', '20 h 15', 'valide']], [['clos', '6 h 30', 'valide'], ['comtat', '18 h', 'cours'], ['kine', '19 h 30']], [['comtat', '18 h'], ['platanes', '20 h 15']], [['clos', '6 h 30'], ['kine', '19 h 30'], ['platanes', '20 h 15']], [['comtat', '18 h'], ['platanes', '20 h 15']], [['kine', '9 h']]],
+    yanis: [[['sorgues', '6 h', 'valide'], ['durance', '17 h 30', 'valide'], ['dentaire', '19 h 15', 'valide']], [['sorgues', '6 h', 'valide'], ['auto', '8 h', 'manque'], ['durance', '17 h 30', 'cours']], [['sorgues', '6 h'], ['durance', '17 h 30'], ['dentaire', '19 h 15']], [['sorgues', '6 h'], ['auto', '8 h'], ['durance', '17 h 30']], [['sorgues', '6 h'], ['durance', '17 h 30'], ['dentaire', '19 h 15']], [['sorgues', '7 h'], ['auto', '8 h 30']]],
+    kelly: [[['durance', '10 h', 'devis']], [['remparts', '7 h', 'rempl'], ['platanes', '7 h 45', 'ctrl'], ['veran', '20 h', 'rempl']], [['remparts', '7 h', 'rempl'], ['sorgues', '10 h', 'ctrlp'], ['dentaire', '19 h 15', 'rempl']], [], [['durance', '8 h', 'ctrlp']], []],
   };
-  let h = `<div class="h"></div>` + D.map((d, i) => `<div class="h${i ? '' : ' today'}">${d}</div>`).join('');
+  const col = (k) => ({ ok: 'ok', late: 'terre', info: 'lav', warn: 'warn' }[k] || 'muted');
+  let h = `<div class="h"></div>` + D.map((d, i) => `<div class="h${i === 1 ? ' today' : ''}">${d}</div>`).join('');
   Object.entries(W).forEach(([p, days]) => {
-    h += `<div class="rl">${av(p)}<div><b style="font-weight:600">${P[p].n}</b><div class="muted sm">${P[p].role}</div></div></div>`;
-    days.forEach((d) => { h += `<div class="c">${d.map(([l, hr, s]) => `<div class="blk${s === 'conf' ? ' alert' : ''}" style="border-left-color:${P[p].hex}"><b>${esc(L[l].n)}</b><span class="muted">${hr} · ${p === 'kelly' ? 'Intendance' : esc(L[l].t)}</span>${s && s !== 'conf' ? `<span class="st" style="color:var(--${ST[s][0] === 'ok' ? 'ok' : ST[s][0] === 'late' ? 'terre' : ST[s][0] === 'info' ? 'lav' : 'warn'})">${ST[s][1]}</span>` : ''}${s === 'conf' ? `<span class="st" style="color:var(--terre)">Même matin que ${p === 'yanis' ? 'Kelly' : 'Yanis B.'}</span>` : ''}</div>`).join('')}</div>`; });
+    h += `<div class="rl">${av(p)}<div><b style="font-weight:600">${P[p].n}</b><div class="muted sm">${p === 'sonia' ? 'Absente mar. et mer.' : P[p].role}</div></div></div>`;
+    days.forEach((d) => {
+      if (d === A) { h += `<div class="c"><div class="blk abs"><b>Absente</b><span class="muted">2 interventions reprises</span><span class="st" style="color:var(--lav)">Couverte par Kelly</span></div></div>`; return; }
+      h += `<div class="c">${d.map(([l, hr, s]) => {
+        const lab = s === 'ctrl' || s === 'ctrlp' ? 'Contrôle qualité' : s === 'devis' ? 'Visite pour avenant' : esc(L[l].t);
+        const tag = s === 'rempl' ? `<span class="st" style="color:var(--lav)">Remplace Sonia R.</span>` : s && ST[s] ? `<span class="st" style="color:var(--${col(ST[s][0])})">${ST[s][1]}</span>` : '';
+        return `<div class="blk" style="border-left-color:${P[p].hex}"><b>${esc(L[l].n)}</b><span class="muted">${hr} · ${lab}</span>${tag}</div>`;
+      }).join('')}</div>`;
+    });
   });
   $('#plan').innerHTML = h;
   $('#weekcards').innerHTML = [
-    ['Jeudi 26 · Bastide du Ventoux', 'Remise en état (Yanis B.) et visite d\'intendance (Kelly) le même matin. Proposition : Kelly passe à 11 h, une fois le ménage fini, et relève le compteur au propre.', 'Regrouper'],
-    ['Samedi 28 · journée chargée', 'Cinq fins de séjour entre 10 h et 15 h, dont l\'appartement Place Pie et la Villa Lavande. Mélanie et Sonia sont pleines, Yanis et Kelly sont libres.', 'Répartir'],
-    ['Linge de la semaine', '41 parures et 120 serviettes à préparer à Monteux. Pic mercredi et samedi.', 'Voir le détail'],
+    ['Mercredi 25 · Sonia R. encore absente', 'Ses interventions sont reprises : Résidence Les Remparts par Kelly à 7 h, Cabinet dentaire du Cours par Kelly à 19 h 15. Le cabinet a été prévenu automatiquement.', 'Voir les remplacements'],
+    ['Heures de la semaine', '58 interventions · 71 h planifiées pour 72 h prévues aux contrats. Il manque 1 h à Comtat Conseil (salle de réunion occupée lundi).', 'Rattraper l\'heure'],
+    ['Contrôles qualité', 'Trois contrôles cette semaine : Cabinet des Platanes (fait, 96 / 100), Espace Les Sorgues mercredi, Agence Durance vendredi.', 'Voir les grilles'],
   ].map(([t, d, a]) => `<div class="card"><div class="body"><b class="pf" style="font-size:16px">${t}</b><p class="sm muted" style="margin:6px 0 12px">${d}</p><button class="btn">${a}</button></div></div>`).join('');
 }
 
-// ===== Passage =====
-const SHOTS = [['piscine', 'Piscine', '11:22'], ['terrasse', 'Terrasse', '11:18'], ['sejour', 'Séjour', '10:41'], ['cuisine', 'Cuisine', '10:38'], ['chambre', 'Chambre 1', '10:24'], ['chambre', 'Chambre 2', '10:29'], ['sdb', 'Salle de bains', '10:55'], ['verre', 'Verre cassé', '10:36']];
-let LANG = 'en';
+// ===== Contrôle qualité =====
+const SHOTS = [['attente', 'Salle d\'attente', '7:48'], ['accueil', 'Accueil', '7:47'], ['soins', 'Salle de soins 1', '7:55'], ['soins', 'Salle de soins 3', '8:01'], ['wc', 'Sanitaires', '8:06'], ['couloir', 'Couloir', '8:09'], ['pause', 'Espace pause', '8:12'], ['vitre', 'Vitre de l\'accueil', '7:47']];
+const Z = [['Accueil et attente', ['Sols lavés', 'Sièges et accoudoirs', 'Poignées, interrupteurs', 'Vitre de l\'accueil', 'Corbeilles vidées']], ['Salles de soins (4)', ['Sols lavés', 'Surfaces hautes', 'Poignées, interrupteurs', 'Lavabos, distributeurs', 'Corbeilles (hors DASRI)']], ['Sanitaires', ['Cuvettes et lavabos', 'Miroirs', 'Papier et savon réassortis', 'Sol désinfecté']], ['Couloirs', ['Sols', 'Rampe d\'escalier', 'Plinthes']], ['Espace pause', ['Plan de travail', 'Évier', 'Réfrigérateur (extérieur)']], ['Départ', ['Lumières éteintes', 'Alarme activée', 'Badge rangé']]];
+const KO = 'Vitre de l\'accueil';
 function renderPassage() {
   $('#photos').innerHTML = SHOTS.map(([k, l, t]) => ILL.photo(k, l, t)).join('');
-  const Z = [['Séjour', ['Sols aspirés et lavés', 'Poussières, étagères', 'Baie vitrée', 'Coussins et plaids']], ['Cuisine', ['Plan de travail, crédence', 'Four, micro-ondes', 'Réfrigérateur vidé', 'Vaisselle rangée', 'Kit d\'accueil complété']], ['Chambres (4)', ['Lits faits, linge hôtelier', 'Sous les lits', 'Placards (oublis)']], ['Salles de bains (2)', ['Douche, joints', 'WC', 'Serviettes, tapis', 'Produits d\'accueil']], ['Extérieur', ['Terrasse balayée', 'Piscine : épuisette', 'Volets fermés, portail']], ['Départ', ['Alarme activée', 'Photos prises', 'Clés dans la boîte']]];
-  $('#cl').innerHTML = Z.map(([z, it]) => `<div><div class="zh"><b>${z}</b><span class="muted sm">${it.length} / ${it.length}</span></div>${it.map((t) => `<label class="ck"><input type="checkbox" class="chk" checked><span>${esc(t)}</span></label>`).join('')}</div>`).join('');
+  const n = Z.reduce((a, [, it]) => a + it.length, 0);
+  $('#clc').textContent = `${n - 1} / ${n} conformes`;
+  $('#cl').innerHTML = Z.map(([z, it]) => { const ko = it.includes(KO); return `<div><div class="zh"><b>${z}</b><span class="sm" style="color:var(--${ko ? 'terre' : 'muted'})">${ko ? it.length - 1 : it.length} / ${it.length}</span></div>${it.map((t) => `<label class="ck"${t === KO ? ' style="color:var(--terre);font-weight:600"' : ''}><input type="checkbox" class="chk" ${t === KO ? '' : 'checked'}><span>${esc(t)}${t === KO ? ' · écart' : ''}</span></label>`).join('')}</div>`; }).join('');
   renderRap();
-  $('#ano').innerHTML = `<div class="li"><div style="width:84px;height:62px;flex:none">${ILL.photo('verre')}</div><div style="flex:1"><b style="font-weight:600">Un verre cassé dans la cuisine</b><div class="muted sm">Remplacé par un verre du stock. Refacturable au voyageur : 4 €, à valider.</div><div style="margin-top:8px;display:flex;gap:6px"><button class="btn" style="padding:5px 10px">Refacturer</button><button class="btn" style="padding:5px 10px">Ne pas facturer</button></div></div></div>`;
+  $('#ano').innerHTML = `<div class="li"><div style="width:84px;height:62px;flex:none">${ILL.photo('vitre')}</div><div style="flex:1"><b style="font-weight:600">Traces sur la vitre de l'accueil</b><div class="muted sm">Ajouté en priorité à la check-list de ce soir (Mélanie D., 20 h 15), avec photo demandée une fois repris.</div><div style="margin-top:8px;display:flex;gap:6px"><button class="btn" style="padding:5px 10px">Voir la reprise</button><button class="btn" style="padding:5px 10px">Montrer au client</button></div></div></div>`;
   document.querySelectorAll('#ba button').forEach((b, i) => b.onclick = () => { document.querySelectorAll('#ba button').forEach((x) => x.classList.toggle('on', x === b)); $('#photos').style.filter = i ? 'grayscale(.35) brightness(.92)' : ''; });
 }
-const TX = {
-  fr: { h: 'Villa Les Restanques est prête.', p: 'Ménage de fin de séjour effectué lundi 23 novembre, de 10 h 05 à 11 h 31.', s: ['Check-list complète · 22 points', 'Linge changé · 4 lits, 12 serviettes', 'Prête pour samedi 28 · 6 voyageurs'], a: 'Un verre cassé, remplacé (4 € refacturés au voyageur).' },
-  en: { h: 'Villa Les Restanques is ready.', p: 'End-of-stay cleaning done on Monday 23 November, 10:05 to 11:31.', s: ['Checklist complete · 22 points', 'Linen changed · 4 beds, 12 towels', 'Ready for Saturday 28 · 6 guests'], a: 'One broken glass, replaced (€4 charged to the guests).' },
-  de: { h: 'Villa Les Restanques ist bereit.', p: 'Endreinigung am Montag, 23. November, von 10:05 bis 11:31 Uhr.', s: ['Checkliste vollständig · 22 Punkte', 'Wäsche gewechselt · 4 Betten, 12 Handtücher', 'Bereit für Samstag, 28. · 6 Gäste'], a: 'Ein zerbrochenes Glas, ersetzt (4 € an die Gäste berechnet).' },
-};
 function repHTML(m) {
-  const t = TX[LANG];
-  return `<div class="rep"><div class="rh"><span class="mono">CP</span><div style="flex:1"><b>Conciergerie</b><em>en Provence</em></div><div class="langs">${['fr', 'en', 'de'].map((l) => `<button class="${l === LANG ? 'on' : ''}" data-l="${l}">${l.toUpperCase()}</button>`).join('')}</div></div>
-    <div class="art" style="height:${m ? 150 : 120}px">${ILL.house('villa')}</div>
-    <div style="padding:14px 16px"><div class="muted sm">${LANG === 'en' ? 'Dear Mr and Mrs Hartmann,' : LANG === 'de' ? 'Sehr geehrte Familie Hartmann,' : 'Bonjour Madame, Monsieur,'}</div><div class="pf" style="font-size:${m ? 22 : 19}px;font-weight:700;line-height:1.2;margin:4px 0 6px">${t.h}</div><div class="sm muted">${t.p}</div>
-    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">${t.s.map((x) => `<div style="display:flex;gap:9px;align-items:center" class="sm"><span style="width:20px;height:20px;border-radius:50%;background:var(--olive);color:#fff;display:grid;place-items:center;font-size:11px;flex:none">✓</span>${x}</div>`).join('')}</div>
+  return `<div class="rep"><div class="rh"><span class="mono">K</span><div style="flex:1"><b>Propreté</b><em>en Provence</em></div><span class="sm" style="color:#cbbfae">Novembre 2026</span></div>
+    <div class="art" style="height:${m ? 150 : 110}px">${ILL.house('cabinet', 0)}</div>
+    <div style="padding:14px 16px"><div class="muted sm">Cabinet médical des Platanes · Pernes-les-Fontaines</div>
+    <div style="display:flex;align-items:baseline;gap:10px;margin:6px 0 4px"><span class="pf" style="font-size:${m ? 40 : 34}px;font-weight:700;line-height:1">96</span><span class="pf" style="font-size:${m ? 20 : 17}px;font-weight:600">/ 100 · contrôle qualité</span></div>
+    <div class="sm muted">Contrôle fait le mardi 24 novembre à 7 h 45, après le passage du lundi soir.</div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">${['22 points conformes sur 23', 'Novembre : 17 passages sur 17, 25 h 30 réalisées', 'Prochain contrôle : mardi 22 décembre'].map((x) => `<div style="display:flex;gap:9px;align-items:center" class="sm"><span style="width:20px;height:20px;border-radius:50%;background:var(--olive);color:#fff;display:grid;place-items:center;font-size:11px;flex:none">✓</span>${x}</div>`).join('')}</div>
     <div class="phgrid" style="grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px">${SHOTS.slice(0, m ? 6 : 3).map(([k]) => ILL.photo(k)).join('')}</div>
-    <div class="sm" style="margin-top:12px;background:var(--warn-bg);border-radius:10px;padding:9px 11px;color:#6d4a17">${t.a}</div></div></div>`;
+    <div class="sm" style="margin-top:12px;background:var(--warn-bg);border-radius:10px;padding:9px 11px;color:#6d4a17">Traces sur la vitre de l'accueil : reprise ce soir, photo envoyée demain matin.</div></div></div>`;
 }
-function bindLang(root) { root.querySelectorAll('.langs button').forEach((b) => b.onclick = () => { LANG = b.dataset.l; renderRap(); renderClient(); }); }
 function renderRap() {
-  $('#rapprev').innerHTML = repHTML(false) + `<div class="sm muted" style="margin:12px 0">Envoyé par e-mail avec un lien personnel. La langue suit la fiche du client. Les échanges internes et le stock ne sont jamais montrés.</div><div style="display:flex;gap:8px"><button class="btn">Modifier</button><button class="btn pri" style="flex:1;justify-content:center">Envoyer à M. et Mme Hartmann</button></div>`;
-  bindLang($('#rapprev'));
+  $('#rapprev').innerHTML = repHTML(false) + `<div class="sm muted" style="margin:12px 0">Le cabinet le reçoit par e-mail avec un lien vers son espace&nbsp;: rapports, heures du mois, demandes. Les échanges internes ne sont jamais montrés.</div><div style="display:flex;gap:8px"><button class="btn">Modifier</button><button class="btn pri" style="flex:1;justify-content:center">Envoyer au cabinet</button></div>`;
 }
 
-// ===== Logements =====
+// ===== Sites et heures =====
 function renderLogements() {
-  const nx = { oliviers: ['kelly', 'Ven. 27 · 16 h'], restanques: ['yanis', 'Sam. 5/12 · 10 h'], pie: ['melanie', 'Mer. 25 · 11 h'], bastide: ['kelly', 'Jeu. 26 · 9 h'], lavande: ['kelly', 'Mer. 25 · 9 h'], moulin: ['yanis', 'Auj. · 15 h'], cigales: ['kelly', 'Auj. · 14 h'], vignes: ['melanie', 'Mar. 24 · 10 h'] };
-  const K = { oliviers: ['Boîte à clés portail', 'Linge hôtelier', 'Chien interdit'], restanques: ['Piscine : épuisette', 'Alarme 4 chiffres', 'Rapport en anglais'], pie: ['Code immeuble', '3e sans ascenseur'], bastide: ['Relevé eau, gaz, élec.', 'Alarme à couper'], lavande: ['Local piscine fermé', 'Propriétaire le 4/12'], moulin: ['Clés chez le voisin', 'Bois pour la cheminée'], cigales: ['Arrosage oliviers', 'Courrier à réexpédier'], vignes: ['Parking dans la cour', 'Lit bébé chambre 2'] };
-  const tb = { 'Fin de séjour': 'info', 'Intendance': 'ok', 'Remise en état': 'warn' };
-  $('#modeles').innerHTML = [['Fin de séjour · maison', '20 points · 8 photos obligatoires', 9], ['Fin de séjour · villa avec piscine', '22 points · piscine et alarme', 3], ['Fin de séjour · appartement', '16 points · 6 photos', 4], ['Visite d\'intendance', '18 points · relevés de compteurs', 3], ['Remise en état', '28 points · photos avant et après', 1]].map(([t, d, n]) => `<div class="li"><span style="width:30px;height:30px;border-radius:9px;background:var(--or-soft);display:grid;place-items:center">☑</span><div style="flex:1"><b style="font-weight:600">${esc(t)}</b><div class="muted sm">${d}</div></div><span class="muted sm">${n} logements</span></div>`).join('');
-  $('#consignes').innerHTML = [['kelly', 'Villa Lavande', 'La propriétaire arrive le 4 décembre : grand ménage d\'hiver la veille.', 'Lu par 3 / 3'], ['kelly', 'Mas des Oliviers', 'Chien interdit dans le logement : vérifier les poils sur les canapés.', 'Lu par 3 / 3'], ['yanis', 'Route de Gordes', 'Barrée aux Imberts, passer par Murs (+10 min).', 'Lu par 2 / 3']].map(([p, l, t, r]) => `<div class="li">${av(p, 'width:28px;height:28px;font-size:10px')}<div style="flex:1"><b style="font-weight:600">${esc(l)}</b><div class="sm">${esc(t)}</div></div><span class="muted sm" style="white-space:nowrap">${r}</span></div>`).join('');
-  $('#lgrid').innerHTML = Object.keys(nx).map((l) => `<div class="lc"><div class="pic">${ILL.house(...L[l].h)}<span class="b ${tb[L[l].t] || 'idle'}" style="background:#fffdf9">${L[l].t}</span></div><div class="in"><h3>${esc(L[l].n)}</h3><div class="muted sm">${esc(L[l].v)} · ${esc(L[l].cli)}</div><div class="k">${K[l].map((x) => `<span>${esc(x)}</span>`).join('')}</div><div class="nx">${av(nx[l][0])}<span><b style="font-weight:600">Prochain passage</b> · ${nx[l][1]}</span></div></div></div>`).join('');
+  const nx = { durance: ['yanis', 'Auj. · 17 h 30'], platanes: ['melanie', 'Auj. · 20 h 15'], sorgues: ['yanis', 'Mer. 25 · 6 h'], clos: ['melanie', 'Jeu. 26 · 6 h 30'], dentaire: ['yanis', 'Auj. · 19 h 15'], kine: ['melanie', 'Auj. · 19 h 30'], remparts: ['kelly', 'Mer. 25 · 7 h'], comtat: ['melanie', 'Auj. · 18 h'] };
+  const K = { durance: ['Badge n° 3', 'Alarme à 21 h', 'Tri papier'], platanes: ['Après 19 h 30', 'DASRI : ne pas toucher', 'Lingettes fournies'], sorgues: ['Avant 8 h 30', 'Ouverture au public 9 h'], clos: ['Bacs mardi et vendredi', 'Vigik'], dentaire: ['Alarme 4 chiffres', 'Stérilisation : ne pas entrer'], kine: ['Tables : lingettes', 'Clés boîte à clés'], remparts: ['Ascenseur', 'Local vélos'], comtat: ['Salle de réunion en dernier', 'Badge'] };
+  const tb = { 'Bureaux': 'idle', 'Cabinet médical': 'info', 'Parties communes': 'ok', 'Accueil du public': 'warn' };
+  $('#lgrid').innerHTML = Object.keys(nx).map((l) => `<div class="lc"><div class="pic">${ILL.house(...L[l].h)}<span class="b ${tb[L[l].t] || 'idle'}" style="background:#fffdf9">${L[l].t}</span></div><div class="in"><h3>${esc(L[l].n)}</h3><div class="muted sm">${esc(L[l].v)} · ${L[l].f} · ${L[l].hm} h par mois</div><div class="k">${K[l].map((x) => `<span>${esc(x)}</span>`).join('')}</div><div class="nx">${av(nx[l][0])}<span><b style="font-weight:600">Prochaine</b> · ${nx[l][1]}</span></div></div></div>`).join('');
+  $('#modeles').innerHTML = [['Bureaux', '18 points · corbeilles, sanitaires, cuisine', 3], ['Cabinet médical', '23 points · surfaces de contact, hors DASRI', 3], ['Parties communes', '12 points · hall, escaliers, bacs', 2], ['Accueil du public', '18 points · fini avant l\'ouverture', 2], ['Remise en état · vitrerie', '26 points · photos avant et après', 0]].map(([t, d, n]) => `<div class="li"><span style="width:30px;height:30px;border-radius:9px;background:var(--or-soft);display:grid;place-items:center">☑</span><div style="flex:1"><b style="font-weight:600">${esc(t)}</b><div class="muted sm">${d}</div></div><span class="muted sm">${n ? n + ' sites' : 'à la demande'}</span></div>`).join('');
+  const H = [['durance', '43 h', '33 h', '33 h 25', '+ 0 h 25', 'ok'], ['sorgues', '39 h', '30 h', '30 h 40', '+ 0 h 40', 'ok'], ['platanes', '33 h', '25 h 30', '25 h 30', '0', 'ok'], ['dentaire', '26 h', '20 h', '20 h', '0', 'ok'], ['comtat', '18 h', '14 h', '13 h', '− 1 h', 'late'], ['clos', '13 h', '10 h', '10 h', '0', 'ok']];
+  $('#consignes').innerHTML = `<table class="ht"><thead><tr><th>Site</th><th>Contrat</th><th>Prévu à date</th><th>Réalisé</th><th>Écart</th></tr></thead><tbody>${H.map(([l, c, p, r, e, k]) => `<tr><td><b style="font-weight:600">${esc(L[l].n)}</b></td><td>${c}</td><td>${p}</td><td><b style="font-weight:600">${r}</b></td><td style="color:var(--${k === 'late' ? 'terre' : 'ok'});font-weight:600">${e}</td></tr>`).join('')}</tbody></table>
+    <div class="body sm muted" style="border-top:1px solid var(--line2)">Au 30 novembre, les heures réalisées partent en facture par client et en relevé d'heures par agent, prêts pour le cabinet comptable.</div>`;
 }
 
-// ===== Mobile : prestataire =====
+// ===== Mobile : agent =====
 function renderJournee() {
-  $('#cur').innerHTML = `<div style="height:132px;position:relative;background:url(carte-vaucluse.jpg) 69.2% 79.8%/360% auto"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--p-sonia);border:4px solid #fff;box-shadow:0 0 0 8px rgba(180,83,42,.2)"></span><span class="b warn" style="position:absolute;left:12px;top:12px;background:#fffdf9">En cours depuis 9 h 34</span></div>
-    <div style="padding:13px 14px"><div class="pf" style="font-size:20px;font-weight:700">Mas des Oliviers</div><div class="sm muted">Fin de séjour · Gordes · prochains voyageurs samedi</div></div>
-    <div class="li" style="border-top:1px solid var(--line2)"><span>🔑</span><div style="flex:1"><b style="font-weight:600">Boîte à clés du portail</b><div class="muted sm">code affiché sur place uniquement</div></div><button class="btn">Voir</button></div>
-    <div class="li"><span>🛏️</span><div style="flex:1"><b style="font-weight:600">Linge</b><div class="muted sm">3 lits · 9 serviettes · sac n° 4 au coffre</div></div></div>
-    <div class="li"><span>⚠️</span><div style="flex:1"><b style="font-weight:600">Consigne de Kelly</b><div class="muted sm">Chien interdit : vérifier les poils sur les canapés</div></div></div>`;
-  const it = [['Cuisine · plan de travail', 'cuisine', 1], ['Cuisine · four', null, 1], ['Kit d\'accueil complété', null, 0, 1], ['Chambre 2 · lit fait', 'chambre', 1], ['Chambre 2 · linge taché', 'linge', 1], ['Terrasse balayée', null, 0, 1]];
-  $('#mcl').innerHTML = `<div style="padding:10px 14px 2px"><div class="pg" style="height:8px"><i style="width:70%;background:var(--p-sonia)"></i></div></div>` + it.map(([t, ph, c, need]) => `<label class="li" style="align-items:center"><input type="checkbox" class="chk" ${c ? 'checked' : ''}><span style="flex:1">${esc(t)}</span>${ph ? `<span style="width:52px;height:40px;display:block">${ILL.photo(ph)}</span>` : need ? '<span style="width:52px;height:40px;border:2px dashed #d8cbb6;border-radius:9px;display:grid;place-items:center;color:var(--muted)">📷</span>' : ''}</label>`).join('') +
-    `<div style="padding:12px 14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">${['Casse ou dégât', 'Linge taché', 'Produit manquant', 'Objet oublié'].map((t, i) => `<button class="btn" style="justify-content:center;padding:10px 6px;${i === 2 ? 'border-color:var(--terre);color:var(--terre);background:var(--terre-soft)' : ''}">${t}</button>`).join('')}</div>`;
-  $('#next').innerHTML = `<div class="li"><b class="pf" style="width:46px">14 h</b><div style="flex:1"><b style="font-weight:600">Studio Les Remparts</b><div class="muted sm">Pernes-les-Fontaines · voyageurs à 17 h</div></div><span class="muted">›</span></div>`;
+  $('#cur').innerHTML = `<div style="height:132px;position:relative;background:url(carte-vaucluse.jpg) 40% 44.2%/360% auto"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--p-melanie);border:4px solid #fff;box-shadow:0 0 0 8px rgba(95,115,65,.22)"></span><span class="b ok" style="position:absolute;left:12px;top:12px;background:#fffdf9">Arrivée pointée à 18 h 02</span></div>
+    <div style="padding:13px 14px"><div class="pf" style="font-size:20px;font-weight:700">Comtat Conseil</div><div class="sm muted">Bureaux · Carpentras · 1 h 15 prévue</div></div>
+    <div class="li" style="border-top:1px solid var(--line2)"><span>🔑</span><div style="flex:1"><b style="font-weight:600">Badge et alarme</b><div class="muted sm">code affiché sur place uniquement</div></div><button class="btn">Voir</button></div>
+    <div class="li"><span>🧴</span><div style="flex:1"><b style="font-weight:600">Réassort</b><div class="muted sm">2 rouleaux d'essuie-mains à poser · dans la voiture</div></div></div>
+    <div class="li"><span>⚠️</span><div style="flex:1"><b style="font-weight:600">Consigne du client</b><div class="muted sm">Salle de réunion occupée jusqu'à 19 h : la faire en dernier</div></div></div>`;
+  const it = [['Accueil · sols', 'accueil', 1], ['Open space · corbeilles vidées', 'openspace', 1], ['Open space · bureaux dégagés', null, 1], ['Cuisine · évier et plan', 'pause', 1], ['Sanitaires', null, 0, 1], ['Salle de réunion', null, 0]];
+  $('#mcl').innerHTML = `<div style="padding:10px 14px 2px"><div class="pg" style="height:8px"><i style="width:66%;background:var(--p-melanie)"></i></div></div>` + it.map(([t, ph, c, need]) => `<label class="li" style="align-items:center"><input type="checkbox" class="chk" ${c ? 'checked' : ''}><span style="flex:1">${esc(t)}</span>${ph ? `<span style="width:52px;height:40px;display:block">${ILL.photo(ph)}</span>` : need ? '<span style="width:52px;height:40px;border:2px dashed #d8cbb6;border-radius:9px;display:grid;place-items:center;color:var(--muted)">📷</span>' : ''}</label>`).join('') +
+    `<div style="padding:12px 14px 6px;display:grid;grid-template-columns:1fr 1fr;gap:8px">${['Produit manquant', 'Dégât constaté', 'Accès impossible', 'Zone non faite'].map((t, i) => `<button class="btn" style="justify-content:center;padding:10px 6px;${i === 0 ? 'border-color:var(--terre);color:var(--terre);background:var(--terre-soft)' : ''}">${t}</button>`).join('')}</div>
+    <div style="padding:6px 14px 14px"><button class="btn pri" style="width:100%;justify-content:center;padding:12px">Pointer mon départ</button></div>`;
+  $('#next').innerHTML = `<div class="li"><b class="pf" style="width:52px">19 h 30</b><div style="flex:1"><b style="font-weight:600">Cabinet de kinésithérapie</b><div class="muted sm">Mazan · salle d'attente et 4 salles de soins</div></div><span class="muted">›</span></div>
+    <div class="li"><b class="pf" style="width:52px">20 h 15</b><div style="flex:1"><b style="font-weight:600">Cabinet médical des Platanes</b><div class="muted sm">Pernes · priorité : vitre de l'accueil</div></div><span class="muted">›</span></div>`;
 }
 
-// ===== Mobile : page du propriétaire =====
+// ===== Mobile : espace client =====
 function renderClient() {
-  $('#client').innerHTML = repHTML(true) + `<div class="card" style="margin-top:12px"><div class="body sm">Une question ? Répondez simplement à ce message : il arrive à Kelly avec tout l'historique de votre maison.</div></div>`;
-  bindLang($('#client'));
+  $('#client').innerHTML = repHTML(true) + `<div class="card" style="margin-top:12px"><header><h2>Vos passages de novembre</h2><span class="sp"></span><span class="b ok">17 / 17</span></header>${[['Lun. 23', '20 h 15 → 21 h 45', 'Mélanie D.'], ['Ven. 20', '20 h 10 → 21 h 40', 'Mélanie D.'], ['Jeu. 19', '20 h 20 → 21 h 50', 'Mélanie D.']].map(([d, h, a]) => `<div class="li"><b style="width:56px;font-weight:600">${d}</b><div style="flex:1" class="sm">${h}<div class="muted">${a} · check-list complète</div></div><span class="muted">›</span></div>`).join('')}</div>
+    <div class="card" style="margin-top:12px"><div class="body sm">Une demande&nbsp;? <b>Signalez-la ici</b> avec une photo&nbsp;: elle arrive à Kelly et s'ajoute à la check-list du prochain passage.</div></div>`;
 }
 
 // ===== Navigation =====
