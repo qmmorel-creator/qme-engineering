@@ -122,6 +122,10 @@ Tarifs des outils jugés adaptés à la communauté étudiante. Story avec stick
 **tarif global de 250 €** : 1 Reel Instagram dédié, relais du Reel en story avec sticker lien, lien en bio pendant 7
 jours. Elle voit avec Odélia quels outils mettre en avant. Odélia n'est pas en copie.
 
-**24/11** : Quentin accepte les 250 €. Brouillon Gmail préparé (non envoyé) : accord, modalités (contenu mis en avant,
+**24/11** : Quentin accepte les 250 €. **Mail envoyé le 24/11** (message `1a20e2a43573ca10`, depuis quentin.morel@qm-engineering.fr, Cci Floriane) : accord, modalités (contenu mis en avant,
 délais de diffusion) laissées à Yuzu et Odélia, disponibilité pour tout contenu technique, remerciements. Facturation
 non abordée dans ce mail (déjà demandée le 22/11, sans réponse).
+
+**Prochaine étape** : attendre le choix d'Odélia (outils mis en avant) et la date de diffusion. Puis : accès gratuits
+(codes inscrits dans `docs/templates/codes-gratuits.md`), destination de `/odelia` à ajuster si le produit n'est pas
+le Pack Étudiant (fusion et publication avec le feu vert de Quentin), facture de 250 € à recevoir de Yuzu.
