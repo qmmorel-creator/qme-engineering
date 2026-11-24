@@ -82,11 +82,11 @@ Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui rempla
 | Rang | Produit | Code | Prix | Pourquoi |
 |---|---|---|---|---|
 | 17 | ~~Fiche du Pack Cuisine~~ | PCS | — | pack retiré le 22/11 par la rationalisation (#225) : rien à créer |
-| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | **brouillons créés le 24/11** (clés à activer) ; Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
-| 19 | Fiche du Pack Propriétaire | PPB | 131 € | après le rang 18 |
-| 20 | Subventions, Bénévoles, Assemblée générale | SBV, BNV, AGS | 25, 19, 19 € | Pack Associations et clubs (PAS) ; EVT déjà en vente (Organisateur d'événement, 39 €, fiche de l'Organisateur de mariage renommée le 24/11) |
-| 21 | Fiche du Pack Associations et clubs | PAS | 164 € | après le rang 20 |
-| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | Pack Enseignant (PNS), vendus seuls en attendant T55 |
+| 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | **en vente le 24/11** ; Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
+| 19 | Fiche du Pack Propriétaire | PPB | 131 € | **en vente le 24/11** |
+| 20 | Subventions, Bénévoles, Assemblée générale | SBV, BNV, AGS | 25, 19, 19 € | **en vente le 24/11** ; Pack Associations et clubs (PAS) ; EVT déjà en vente (Organisateur d'événement, 39 €, fiche de l'Organisateur de mariage renommée le 24/11) |
+| 21 | Fiche du Pack Associations et clubs | PAS | 164 € | **à créer** : ses 7 templates sont en vente depuis le 24/11 |
+| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | PRG et QZZ : **en vente le 24/11**, EDT : brouillon le 25/11 ; Pack Enseignant (PNS), vendus seuls en attendant T55 |
 | 23 | Suivi d'un animal | ANM | 12 € | Pack Famille (PFA), qui attend aussi T19 |
 | 24 | Hors pack : Compétences, Potager, Auto-école, Séminaire | FRM, PTG, AEC, SMN | 25, 13, 45, 35 € | aucun pack à finir |
 

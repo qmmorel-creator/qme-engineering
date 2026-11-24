@@ -113,18 +113,18 @@ export const PRODUITS = {
   // fusionnés le 22/11/2026 (rationalisation F3). CND retiré : aucune vente, aucun code offert ;
   // /templates/appels-offres/ redirigé ici (netlify.toml).
   CAN: { nom: 'Suivi de candidatures', url: '/templates/candidatures/', gumroad: '3hYVauouIDMw3cQ-RA5gCQ==' },
-  SBV: { nom: 'Subventions', url: '/templates/subventions/' },
-  BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/' },
+  SBV: { nom: 'Subventions', url: '/templates/subventions/', gumroad: 'G7arZe0pxGazVy5-3XgvEg==' },
+  BNV: { nom: 'Bénévoles et planning des créneaux', url: '/templates/benevoles/', gumroad: 'N6EbHSaltmNDn25dK6MqaQ==' },
   MMR: { nom: 'Planning de mémoire ou de thèse', url: '/templates/memoire/', gumroad: '-JA7LGCBFecmAERfqUDnZQ==' },
-  AGS: { nom: 'Assemblée générale et vie statutaire', url: '/templates/assemblee-generale/' },
+  AGS: { nom: 'Assemblée générale et vie statutaire', url: '/templates/assemblee-generale/', gumroad: 'E2646FHpnUNH_Q7KS43Ylg==' },
   RNT: { nom: "Rentabilité d'un investissement locatif", url: '/templates/investissement-locatif/', gumroad: 'geVSrMzs3CshVaDi9IeCaQ==' },
   FRM: { nom: 'Matrice compétences et formations', url: '/templates/competences/' },
-  PRG: { nom: 'Progression pédagogique', url: '/templates/progression/' },
+  PRG: { nom: 'Progression pédagogique', url: '/templates/progression/', gumroad: 'UyQhzM7uwEOVCI-QjMJP0Q==' },
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/' },
   BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/', gumroad: 'renWMolXr2qZZPKpWtlnnA==' },
   CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
-  QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/' },
+  QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/', gumroad: 'LmF33uw6vlpiC0CrcqnQPQ==' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';

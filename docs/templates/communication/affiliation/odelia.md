@@ -1,6 +1,47 @@
 # Odélia (@odelllia) · Yuzu Agency
 
-> Historique complet des échanges et texte des mails envoyés : `odelia-historique.md`.
+## État du dossier au 24/11/2026 (à lire en premier)
+
+- **Accord conclu** : 250 € fixe, sans commission, pour 1 Reel Instagram dédié + relais du Reel en story avec sticker
+  lien + lien en bio pendant 7 jours. Accepté par Quentin le 24/11 à 16:26 (mail envoyé). Contact : Eva Pellat, Yuzu Agency,
+  contact@agency-yuzu.com ; Odélia n'est plus en copie depuis le 22/11 ; Floriane Jolliot toujours en Cci.
+- **Offert à Odélia** (mail du 22/11) : accès gratuit à vie aux 12 outils études et budget (Planning de révision,
+  Notes et moyennes, Planner horaire, Suivi d'habitudes, Suivi de lecture, Candidatures, Planning de mémoire, Mon
+  Budget, Suivi des abonnements, Dépenses communes, Objectif d'épargne, Repas et liste de courses). **Codes pas encore
+  créés.**
+- **Lien de la story et de la bio** : `qm-engineering.fr/odelia`, en ligne depuis le 22/11 (PR #206, `netlify.toml`),
+  302 vers `/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia` (mesure GoatCounter).
+- **Produit d'appel** : laissé au choix d'Odélia (révisions et habitudes, budget étudiant, ou autre). Eva doit revenir
+  avec ce choix et les délais de diffusion. Calendrier visé : fin décembre ou tout début janvier, avant les partiels.
+- **2 000 €** : clarifié le 22/11 comme prix du sur-mesure pour professionnels, sans rapport avec les templates. Le
+  sur-mesure n'est plus proposé à Odélia.
+- **À faire à la réponse d'Eva** :
+  1. créer les codes d'accès gratuits (`npm run code -- <PRODUIT> 1`) et les inscrire dans
+     `docs/templates/codes-gratuits.md` ;
+  2. si le produit choisi n'est pas le Pack Étudiant : changer la destination de `/odelia` dans `netlify.toml`
+     (fusion et publication seulement avec le feu vert de Quentin), et préparer une démo budget à son nom si besoin
+     (modèle : `/demo/odelia/`) ;
+  3. brief adapté au produit choisi (base : `odelia-brief-reel.md`), mention « Collaboration commerciale » ;
+  4. obtenir la facture de 250 € et ses modalités (demandées le 22/11, sans réponse) ;
+  5. après diffusion : vues du Reel et de la story (demandées), visites `utm_campaign=odelia` dans GoatCounter.
+- **Avant le Reel** : audit des 12 templates étudiants et budget, prompt prêt dans
+  `docs/templates/audit-etudiants-prompt.md` (pas encore lancé au 24/11).
+- **Autres talents de Yuzu** (fil séparé) : Eva a proposé Estelle (@estellesbn, étudiante en dentaire) et Anusha
+  (@anusha.drg, étudiante à Londres), kit média
+  https://drive.google.com/file/d/15nI0AafxflZ8RQ_ydbnz6e_wUW-njwWm/view ; refus de la commission seule le 18/11.
+  Porte ouverte si un budget en numéraire se libère.
+
+**Suivi Nexora (source unique depuis le 24/11)** : onglet QME, fiche créateur `a-8` (étape `partenaire`, échanges datés,
+prochaine action) ; projet « Yuzu Agency-Odélia (Reel Instagram) » (`aac4f402-c4c9-4956-a85f-202f18eb724f`), tâche
+« État global du prospect » (`mcp-408d9c99-eddb-43d4-8d16-6db66ebacfa2`) au statut **Signé** depuis le 24/11. Les
+fichiers de ce dossier restent la mémoire détaillée (textes intégraux, raisonnements).
+
+**Fichiers du dossier** : `odelia-mails-integral.md` (texte intégral de tous les mails des deux fils),
+`odelia-historique.md` (chronologie), `odelia-reponse-reel-200.md` (mail du 22/11 et raisonnement),
+`odelia-brief-reel.md` et `odelia-brief.md` (briefs), `odelia-reponse-reel.md` et `odelia-reponse-stories.md`
+(variantes du 17/11, non envoyées).
+
+> Historique : `odelia-historique.md`. Texte intégral de tous les mails : `odelia-mails-integral.md`.
 
 ## Historique
 
@@ -96,7 +137,7 @@ retour-affiliation.
 
 ## Reprise du 18/11 au 22/11/2026
 
-- **18/11 10:42** : Eva relance sur TikTok et demande le budget maximum. **18/11 12:55** : Quentin propose 200 € de
+- **18/11 11:42** : Eva relance sur TikTok et demande le budget maximum. **18/11 12:55** : Quentin propose 200 € de
   fixe pour une vidéo TikTok, plus commission, plus au choix l'accès à 17 outils (241,90 €) ou un outil sur mesure
   (« 2 000 € minimum »). **18/11 13:48** : Eva en parle à Odélia.
 - **22/11 12:28** : Eva contre-propose un **Reel Instagram à 200 € fixe** (pas de TikTok à ce prix) et demande le prix
@@ -105,3 +146,27 @@ retour-affiliation.
 - **22/11** : réponse d'accord préparée, non envoyée : `odelia-reponse-reel-200.md` (Reel 200 € + commission + accès
   gratuit à 12 outils études et budget ; 2 000 € recadrés comme sur-mesure pour professionnels ; Reel centré sur les
   partiels, budget en second temps). Taux de commission à fixer par Quentin.
+- **22/11 13:10** : **réponse envoyée** par Quentin (texte final dans `odelia-reponse-reel-200.md`) : accord sur le Reel
+  à 200 € fixe, sans commission ; 2 000 € recadrés (sur-mesure pour professionnels) ; outils à l'unité dès 9 € ou en
+  pack ; usage sur téléphone ; **produit d'appel laissé au choix d'Odélia** (révisions et habitudes, budget, ou autre) ;
+  lien `qm-engineering.fr/odelia` (en ligne, PR #206, vers `/packs/etudiant/` avec UTM) ; accès gratuit à vie aux
+  12 outils études et budget ; date fin décembre ou début janvier ; story avec sticker et bio ; mention
+  « Collaboration commerciale » ; demande des vues et des modalités de facturation.
+
+**Prochaine étape** : attendre le choix d'Odélia. Si c'est le budget : démo budget à son nom et nouvelle destination
+de `/odelia` (fusion et publication avec le feu vert de Quentin). Ensuite : codes d'accès gratuits (à inscrire dans
+`docs/templates/codes-gratuits.md`), brief adapté au produit choisi.
+
+## Réponse d'Eva du 24/11/2026, 15:17
+
+Tarifs des outils jugés adaptés à la communauté étudiante. Story avec sticker lien et lien en bio acceptés, mais pour un
+**tarif global de 250 €** : 1 Reel Instagram dédié, relais du Reel en story avec sticker lien, lien en bio pendant 7
+jours. Elle voit avec Odélia quels outils mettre en avant. Odélia n'est pas en copie.
+
+**24/11** : Quentin accepte les 250 €. **Mail envoyé le 24/11 à 16:26** (message `1a20e2a43573ca10`, depuis quentin.morel@qm-engineering.fr, Cci Floriane) : accord, modalités (contenu mis en avant,
+délais de diffusion) laissées à Yuzu et Odélia, disponibilité pour tout contenu technique, remerciements. Facturation
+non abordée dans ce mail (déjà demandée le 22/11, sans réponse).
+
+**Prochaine étape** : attendre le choix d'Odélia (outils mis en avant) et la date de diffusion. Puis : accès gratuits
+(codes inscrits dans `docs/templates/codes-gratuits.md`), destination de `/odelia` à ajuster si le produit n'est pas
+le Pack Étudiant (fusion et publication avec le feu vert de Quentin), facture de 250 € à recevoir de Yuzu.

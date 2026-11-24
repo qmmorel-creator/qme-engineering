@@ -278,3 +278,25 @@ vente sur le site le même jour (identifiants dans `PRODUITS`, essai 14 jours).
 Écart avec la fiche : tag `proprietaire-bailleur` (21 caractères, refusé par Gumroad) remplacé par `proprio-bailleur`
 (GST). Gumroad accentue `copropriété` et `propriétaire` (CPR). Limite atteinte (6 créations le 23/11 vers 11 h 55 UTC
 et 4 ce matin) : prochaine création possible le 24/11 vers 12 h 55 (Paris).
+
+## Vague du 24/11/2026, soir (6 brouillons, vers 18 h 45 UTC, demande de Quentin « crée les brouillons des 10 premiers »)
+
+Rangs 19, 20 et 22 de `gumroad-priorite.md`. Fiches depuis `docs/templates/communication/<slug>/gumroad.json`, avec en plus le
+paragraphe, la ligne de détail et la ligne de reçu de l'essai gratuit (les 9 templates sont perso ou pro, donc ouverts à
+l'essai dès leur mise en vente). Boutons raccourcis à 26 caractères et tags à 20 (limites Gumroad). Pack Propriétaire :
+fiche de `packs/gumroad-packs.json` (9/9 en vente), au prix « Pack » avec le paragraphe « Templates ajoutés plus tard :
+inclus », comme PPE et PCA ; catégorie Real Estate ; pas de couverture. **Brouillons non publiés**, identifiants
+**non ajoutés** à `PRODUITS` / `PACKS` (règle 4). Clés activées par Quentin ; **publiés le 24/11/2026 au soir** et mis en
+vente sur le site le même jour (identifiants dans `PRODUITS` et `PACKS`, essai 14 jours pour les 5 templates).
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| PPB | Pack Propriétaire (9 templates) | 6t2dFMV7m7ZFZi9WCufCbA== | /l/pack-proprietaire | 131 € | publié, en vente (24/11) |
+| SBV | Subventions | G7arZe0pxGazVy5-3XgvEg== | /l/subventions-association | 25 € | publié, en vente (24/11) |
+| BNV | Bénévoles et planning des créneaux | N6EbHSaltmNDn25dK6MqaQ== | /l/benevoles-planning-creneaux | 19 € | publié, en vente (24/11) |
+| AGS | Assemblée générale et vie statutaire | E2646FHpnUNH_Q7KS43Ylg== | /l/assemblee-generale-association | 19 € | publié, en vente (24/11) |
+| PRG | Progression pédagogique | UyQhzM7uwEOVCI-QjMJP0Q== | /l/progression-pedagogique | 15 € | publié, en vente (24/11) |
+| QZZ | Banque de questions et quiz | LmF33uw6vlpiC0CrcqnQPQ== | /l/banque-questions-quiz | 19 € | publié, en vente (24/11) |
+
+Limite Gumroad atteinte à la 7e création (Emploi du temps d'établissement) : « after November 24 at 11:47 PM PST »,
+soit le 25/11 à 08:47 (Paris). Restent EDT, ANM, FRM, PTG, programmés le 25/11 à 09:15 (Paris).
