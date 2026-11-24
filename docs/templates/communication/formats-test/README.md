@@ -1,0 +1,49 @@
+# Test des nouveaux formats (vague 1 : 24/11 → 09/12/2026)
+
+Demande de Quentin du 24/11/2026 : « je poste toujours le même type de contenu ». Il a écarté le face caméra (format 1)
+et demandé un mélange des 9 autres, **animés entièrement par Claude**, pour mesurer ce qui marche. Procédure de
+production : skill `.claude/skills/formats-test/`.
+
+## Choix de placement
+
+- Case principale : **Instagram** (TikTok reprend chaque publication, YouTube reçoit un Short jumeau pour chaque vidéo).
+  LinkedIn n'est pas touché en vague 1 : sa réserve est pleine jusqu'en mars et la mesure se fait sur Instagram.
+- **Rien n'a été décalé.** Les carrousels de 19:00 jusqu'au 07/12 (IG-151, IG-08, IG-30, IG-09, IG-10, IG-12, IG-13,
+  IG-14, IG-17…) servent au **test des fonds** en cours (`instagram/tests-fonds/README.md`) : les déplacer fausserait
+  ce test. Les 7 pièces occupent des cases libres (19:00 libres, et 12:30, case des Reels, pour les vidéos).
+- Le **quiz** (format 6) existe déjà : IG-168 à IG-175, tous les soirs à 21:00 jusqu'au 30/11. Il est mesuré, pas
+  refait.
+- La **série numérotée** (format 7) est un habillage, testé sur F3 (« n°1 ») et F2 (« épisode 1 »).
+
+## Calendrier
+
+| ID | Date | Heure | Code | Pièce | Support | YouTube | Statut |
+|---|---|---|---|---|---|---|---|
+| IG-213 | 24/11 | 19:00 | F3 + F7 | Le calcul que personne ne fait n°1 | Carrousel + diaporama TikTok | — | voir planning |
+| IG-214 | 25/11 | 12:30 | F10 | Satisfaisant : un planning qui se recale, en boucle | Reel 8–12 s | YT-69 25/11 12:00 | voir planning |
+| IG-215 | 29/11 | 19:00 | F5 | Conversation de couple (argent à deux) | Reel | YT-70 29/11 12:00 | voir planning |
+| IG-216 | 02/12 | 19:00 | F2 + F7 | Envoyez-moi votre pire tableur, épisode 1 | Reel | YT-71 02/12 17:00 | voir planning |
+| IG-217 | 03/12 | 12:30 | F8 | Défi : un outil pour un fleuriste en 60 minutes | Reel | YT-72 03/12 12:00 | voir planning |
+| IG-218 | 06/12 | 12:30 | F4 | Le test en 1 minute (`/diagnostic/`, déjà en ligne) | Reel | YT-73 06/12 12:00 | voir planning |
+| IG-219 | 09/12 | 19:00 | F9 | L'actualité chiffrée (1er janvier 2027) | Carrousel + diaporama TikTok | — | voir planning |
+| IG-168 → 175 | 23/11 → 30/11 | 21:00 | F6 | Quiz (existant) | Reel | — | déjà programmés |
+
+YT-71 est à 17:00 (12:00 et 20:00 déjà pris le 02/12) : écart volontaire à `HEURES.md`, à juger à la mesure.
+
+## Mesure
+
+Ratios comparés (pas les vues brutes, trop faibles à 53 abonnés) : **envois / portée**, **enregistrements / portée**,
+commentaires, abonnés gagnés, part de vues complètes (vidéos) ; site : visites `/diagnostic` (F4) et `/sur-mesure`,
+`/contact` (F2, F8). Témoin : la médiane des publications classiques de la même période. Limites connues : volumes
+faibles (une seule pièce par format en vague 1), heures différentes (12:30 contre 19:00) ; la vague 2 répète les
+formats qui ressortent pour confirmer.
+
+Règle de décision : au moins 2 fois la médiane des classiques sur un ratio → vague 2 ; sous la médiane deux fois de
+suite → arrêt.
+
+## Résultats
+
+(à remplir au relevé du 07/12, puis du 14/12)
+
+| ID | Code | Portée | Vues | Enregistrements | Envois | Commentaires | Abonnés | Clics site | Verdict |
+|---|---|---|---|---|---|---|---|---|---|

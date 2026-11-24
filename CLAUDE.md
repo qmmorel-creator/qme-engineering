@@ -86,6 +86,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
 
+## Test des nouveaux formats (décision du 24/11/2026)
+
+- Quentin veut sortir du contenu toujours identique : 9 formats testés (pire tableur, calcul utile sans produit, test
+  `/diagnostic/`, conversation de couple, quiz, série numérotée, défi chronométré, actualité chiffrée, satisfaisant),
+  **sans visage ni voix de Quentin**, tout animé par Claude. Skill `.claude/skills/formats-test/`, calendrier et
+  mesure : `docs/templates/communication/formats-test/README.md`. Thème « Test formats » dans le planning Instagram.
+
 ## Campagne X (anglais, sur mesure)
 
 - **Publication quotidienne sur X** (décision du 18/11/2026) : skill `.claude/skills/campagne-x/`, en anglais uniquement, volet
