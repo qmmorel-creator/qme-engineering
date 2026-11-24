@@ -1,0 +1,32 @@
+{
+  "reponses": {
+    "petits": "25",
+    "abonnements": "15",
+    "revenu": "1800",
+    "minutes": "20",
+    "recherches": "8",
+    "minutesPapier": "15",
+    "habitude": "sport",
+    "objectif": "3",
+    "reel": "1"
+  },
+  "total": "1 480 €",
+  "sous": "soit 125 h de travail, et 124 h perdues et 104 séances ratées par an, d'après tes réponses",
+  "lignes": [
+    "Budget : ce qui s'envole 1 480 € par an 25 € par semaine × 52 + 15 € d'abonnements par mois × 12, soit 125 h de travail (12 € net de l'heure, base 35 h par semaine) Essayer Mon Budget 14 jours, sans carte · 15 €, achat unique Essayer Temps de vie 14 jours, sans carte · 19 €, achat unique",
+    "Tâches : le temps perdu 122 h par an 20 min par jour × 365, soit 15 journées de 8 h Essayer Gestionnaire de tâches 14 jours, sans carte · 19 €, achat unique",
+    "Papiers : le temps à chercher 2 h par an 8 recherches × 15 min Essayer Papiers du foyer 14 jours, sans carte · 15 €, achat unique",
+    "Habitudes : les séances ratées 104 séances ratées par an sport : 2 de moins que prévu chaque semaine × 52 Essayer Suivi d'habitudes 14 jours, sans carte · 12 €, achat unique"
+  ],
+  "calcul": {
+    "euros": 1480,
+    "heures": 123.66666666666667,
+    "seances": 104,
+    "heuresTravail": 124.7037037037037,
+    "synthese": [
+      "1 480 €",
+      "124 h perdues",
+      "104 séances ratées"
+    ]
+  }
+}
