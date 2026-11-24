@@ -5,8 +5,7 @@ refus, repère les relances à faire, regarde ce que font les autres sessions en
 dans Nexora Optim › QME. Il est à la prospection ce que l'« Agent contenu réseaux sociaux QME (quotidien) » est au
 contenu.
 
-- **Quand** : tous les jours à 18 h 41 (heure de Paris), après la surveillance de l'affiliation de 18 h 13 et la
-  journée de réponses.
+- **Quand** : tous les jours à 18 h 41 (heure de Paris), après la journée de réponses.
 - **Où** : une tâche planifiée liée à une session persistante qui a le dépôt `qmmorel-creator/qme-engineering`, Gmail,
   Nexora, Google Drive, Google Agenda et les outils de sessions Claude Code (`list_sessions`, `list_events`).
 - **Texte de la tâche planifiée** (court, il renvoie à ce fichier qui fait foi) :
@@ -19,17 +18,21 @@ contenu.
 ## Routines remplacées (mise en place, une seule fois, sur feu vert de Quentin)
 
 Inventaire de toutes les tâches planifiées du compte au 24/11/2026 (`list_triggers`, 3 pages). L'agent devient la seule
-routine de **suivi** de la prospection ; seule reste à côté la routine qui **étale** les envois d'affiliation.
+routine de **suivi** de la prospection **sur mesure**.
+
+**Hors périmètre : l'affiliation** (décision de Quentin du 24/11/2026). Les influenceurs, créateurs et agences
+d'influenceurs (envoi, surveillance, rebonds, réponses, refus, « stop », pilotage, relances, retours) relèvent de la
+session **« [MASTER] Suivi Influenceurs »** (`session_0183EW53pHmtjN8ttBAEgiRL`) et de ses deux tâches planifiées
+(`trig_01KqME2ZeqiJUAzJUosvu49x` envoi, `trig_01XvvqPhSnTNyvgprvGZgKgo` surveillance), que l'agent ne lit, n'active,
+ne désactive ni ne modifie jamais. Tout ce que l'agent croise sur ce périmètre lui est **renvoyé** (`send_message`
+vers cette session : expéditeur, objet, lien du fil, nature), sans écriture dans Nexora › Affiliation.
 
 | Tâche planifiée | Id | Décision | Ce que l'agent reprend |
 |---|---|---|---|
 | Concept prospect (toutes les heures, 8 h 47 → 21 h 47) | `trig_019rPQFNtYoGR5ckWEzeuLLG` | **désactiver** (`update_trigger`, `enabled: false`) | § 3 : concepts et brouillons pour les intéressés. Elle lit encore l'ancien Pipeline claude.ai, archivé depuis le 24/11 |
-| Affiliation QME · surveillance quotidienne (lun.–ven. 18 h 13) | `trig_01XvvqPhSnTNyvgprvGZgKgo` | **désactiver** | § 1 bis : rebonds, réponses, « stop », bilan et garde-fou du pilotage de l'affiliation |
 | Dernière relance vagues 25 à 33 (ponctuelle, 27/11 8 h 41) | `trig_01PfmFKQTN5Zy1qKJRfZsAip` | **désactiver** | § 2 bis : brouillons de la dernière relance, par lots. Elle dépendait de scripts du dossier temporaire de la session « Dossier commercial QME » (déconnectée) |
-| Relance J+7 Laurine (Optimind) | `trig_01D28DAuxXXAYW5K5wMUzaV1` | déjà désactivée : **supprimer** (`delete_trigger`) | rien (Laurine est en rendez-vous) |
-| Affiliation QME : réponses et relance J+7 | `trig_01BzwyaDyePnjAs3RbmY5VhV` | déjà désactivée : **supprimer** | § 1 bis et § 2 |
 | Tri Gmail horaire (7 h 21 → 23 h 21) | `trig_01Fsd3gUeCky8xtkuiYGJgkR` | **garder**, mais retirer de son prompt la section « PROSPECTION QME · PIPELINE » et les écritures dans le Pipeline (`update_trigger` `prompt`, relu en entier avant) : une réponse de prospect y reste une alerte « humain important », sans écriture | le suivi des réponses de prospects (§ 1 à § 5) |
-| Affiliation QME · envoi (30/jour, lun.–ven. 9 h 07 → 17 h 07) | `trig_01KqME2ZeqiJUAzJUosvu49x` | **garder** : un passage quotidien ne peut pas étaler 3 envois par heure, et l'étalement protège la délivrabilité | contrôle seulement (§ 1 bis) : pause, quota, garde-fou |
+| Affiliation QME · envoi, Affiliation QME · surveillance quotidienne, et les anciennes relances d'affiliation (Laurine, J+7) | — | hors périmètre : session [MASTER] Suivi Influenceurs, ne pas toucher | — |
 | Agent contenu, File Gumroad, Bilan hebdomadaire, Compteur, banques, Drive, Strava, Whoop, Thalvego, rappels ponctuels | — | hors prospection : ne pas toucher | — |
 
 Ordre de mise en place : fusion de la PR de ce fichier, création de la tâche « Agent prospection QME (quotidien) »
@@ -68,7 +71,7 @@ Applique le skill `.claude/skills/nettoyage-refus-prospection/SKILL.md` de bout 
 - L'activation par cette tâche planifiée vaut feu vert pour **la seule réponse type aux refus polis**, comme quand
   Quentin lance le skill. Rien d'autre ne part à cette étape.
 - `journal-refus.md` et `suivi-prospects.md` sont des **archives** : ne les modifie pas. Le suivi va dans Nexora
-  (fiche prospect `perdu` + `motifSortie` + échange daté ; créateur : étape `refus` ; « stop » ou hostile : `oppose`).
+  (fiche prospect `perdu` + `motifSortie` + échange daté ; « stop » ou hostile : `oppose`).
 - Réponse « stop » ou hostile : étape `oppose` dans Nexora, ligne dans `docs/prospection/desinscrits.md`, libellé
   `qme/Prospects/Énervé`, et inscription sur la liste d'opposition du site le jour même
   (`REGLES-PROSPECTION.md` § 3). Si tu n'as pas le code administrateur, écris-le en tête du compte rendu : c'est une
@@ -76,22 +79,11 @@ Applique le skill `.claude/skills/nettoyage-refus-prospection/SKILL.md` de bout 
 - Prospect suivi qui refuse : tâche « État global du prospect » de son projet en **Refus**.
 - Intéressé : libellé `qme/Prospects/Intéressé`, laissé en boîte de réception, puis étape 3.
 
-### 1 bis. Surveillance de l'affiliation (reprend « Affiliation QME · surveillance quotidienne »)
+### 1 bis. Affiliation : renvoi seulement
 
-Applique la section « Surveillance » de `docs/templates/communication/affiliation-routine-nexora.md` (sur main), chaque
-jour du lundi au vendredi, après le dernier envoi de 17 h 07 :
-
-1. Rebonds : Gmail `from:(mailer-daemon OR postmaster) newer_than:2d`, adresse en échec retrouvée dans `list_qme`
-   `domain: "createurs"` → `etape: "rebond"`, `rebond: "oui · AAAA-MM-JJ"` ; libellé `qme/Prospects/Non remis`.
-2. Réponses : chaque créateur `envoye` sans `reponse` → lecture du fil `threadId` ; message d'un autre expéditeur →
-   `reponse: "AAAA-MM-JJ · extrait de 100 caractères"`. Le classement (refus, intéressé, « stop ») suit les étapes 1 et
-   3 ; « stop » → `etape: "oppose"` et liste d'opposition le jour même.
-3. Bilan : `mutate_qme` `entity: "pilotage"`, `dernierBilan: "AAAA-MM-JJ : X envoyés, Y rebonds (Z %), W réponses, V stop"`.
-4. Garde-fou : au moins 20 envois et plus de 3 % de rebonds → `pause: true`, `motifPause` ; dis-le en tête du compte
-   rendu.
-5. Contrôle de la routine d'envoi (`get_trigger` `trig_01KqME2ZeqiJUAzJUosvu49x`, dernier passage, et nombre de
-   créateurs à `dateEnvoi` du jour) : une journée ouvrée sans aucun envoi alors que la file n'est ni vide ni en pause
-   est signalée.
+Un mail d'un influenceur, d'un créateur ou d'une agence d'affiliation (réponse, refus, « stop », rebond) n'est ni
+libellé ni classé ni écrit dans Nexora par l'agent : il est renvoyé à la session [MASTER] Suivi Influenceurs
+(`send_message`, voir « Hors périmètre ») et cité en une ligne dans le compte rendu.
 
 ### 2. Relances dues
 
@@ -149,8 +141,7 @@ Première échéance : **vendredi 27/11/2026**, dernière relance des vagues 25 
    `claude/concept-<slug>` ni aucun brouillon n'existe dans le fil.
 2. Si la réponse demande seulement un créneau ou une précision simple, prépare un brouillon de réponse court (signature,
    mention) au lieu d'un concept, et indique dans le compte rendu pourquoi.
-3. Créateur de l'affiliation intéressé : skill `retour-affiliation` (démo, vidéo, brouillon) ; jamais de taux de
-   commission sans l'accord de Quentin.
+3. Créateur ou agence d'affiliation intéressé : renvoi à la session [MASTER] Suivi Influenceurs (§ 1 bis), rien d'autre.
 4. Premier échange de fond : crée le projet Nexora, la tâche « État global », la Note Bible et le dossier Drive
    (`NEXORA-PROSPECTS.md` § 4).
 5. Rendez-vous accepté par un prospect (invitation dans l'agenda, `read_google_calendar_events` sur 14 jours) : tâche
@@ -160,9 +151,8 @@ Première échéance : **vendredi 27/11/2026**, dernière relance des vagues 25 
 
 1. `list_sessions` (`mine: true`, `limit: 100`) : garde les sessions actives ou mises à jour dans les dernières 36 h dont
    le titre, les tags ou le `task_summary` touchent la prospection (prospect, concept, relance, devis, proposition,
-   affiliation, créateur, refus, registre, nom d'un prospect ou d'une entreprise des fiches QME ouvertes). En font
-   partie la session « Dossier commercial QME » (`session_01YFb51FriypfG8JbqzhPPhy`, historique des vagues), la
-   session de la routine « Affiliation QME · envoi » (`session_0183EW53pHmtjN8ttBAEgiRL`) et, tant qu'elle n'est pas
+   refus, registre, nom d'un prospect ou d'une entreprise des fiches QME ouvertes). En font
+   partie la session « Dossier commercial QME » (`session_01YFb51FriypfG8JbqzhPPhy`, historique des vagues), et, tant qu'elle n'est pas
    désactivée, la routine « Concept prospect ».
 2. Pour chacune : `list_events` (`kinds: ["user", "assistant", "result"]`, `limit: 100`) pour savoir ce qui a été
    demandé, fait, envoyé, et ce qui reste en suspens (brouillon non envoyé, PR non fusionnée, devis prêt, question
@@ -199,6 +189,8 @@ Gmail. Commit sur `claude/agent-prospection`, push, PR vers `main` **non fusionn
   qu'elle devrait être désactivée est signalée, pas désactivée.
 - Écrire à une adresse ou un domaine opposé ; écrire sans signature « Bandeau » ou sans mention d'opposition.
 - Modifier les archives (`suivi-prospects.md`, `journal-refus.md`, Sheet de l'affiliation, Pipeline claude.ai).
+- Agir sur l'affiliation (créateurs, agences, pilotage, file d'envoi) ou sur les tâches planifiées de la session
+  [MASTER] Suivi Influenceurs : renvoi seulement (§ 1 bis).
 - Mentionner Claude, Anthropic ou un lien claude.ai dans ce qui est destiné à un prospect ; utiliser des données de la
   CNR, des données de santé, ou citer le client du suivi des visas.
 - Inventer un fait : tout ce qui est écrit dans Nexora ou dans un mail vient d'un fil, d'une page, de l'agenda ou de
