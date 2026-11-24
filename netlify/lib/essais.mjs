@@ -21,7 +21,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { statEssai } from './templates-acces.mjs';
 import { PRODUITS, PACKS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES, publics } from '../../outils/packs/donnees.mjs';
-import { estAdmin } from './interets.mjs';
+import { estAdmin, peutLireAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
 import { enregistrerOpposition, leverOpposition } from './preferences.mjs';
 import { SIGNATURE_HTML } from './signature.mjs';
@@ -278,7 +278,7 @@ async function envoyerMail(type, reg, { secret, envoyer }) {
 // ---------- API /api/essai ----------
 //  POST /api/essai        { produit, email, prenom?, consentement, site_web (pot de miel) } → { ok, code, url, fin }
 //  GET  /api/essai/stop   ?id=&s=  → arrêt des rappels (page HTML)
-export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '' }) {
+export async function traiterEssai(requete, { secret, essais, envoyer = null, maintenant = Date.now, ip = '', admin = '', notifier = '', testeurs = '', lecture = '' }) {
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const url = new URL(requete.url);
   const chemin = url.pathname.replace(/^\/api\/essai/, '').replace(/\/$/, '');
@@ -309,7 +309,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   // Contacts « nouveautés » : lecture, export CSV et effacement réservés à l'administrateur (code ADM-…).
   // Tous les essais (administrateur) : liste JSON ou CSV.
   if (chemin === '/essais') {
-    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
     if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise' });
     const vues = await lireEssais(essais, jourParis(new Date(maintenant())));
     if (url.searchParams.get('format') === 'csv') {

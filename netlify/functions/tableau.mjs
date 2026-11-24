@@ -11,6 +11,7 @@ export default async (requete) => {
   return traiterTableau(requete, {
     secret: process.env.TEMPLATES_SECRET,
     admin: process.env.INTERETS_ADMIN,
+    lecture: process.env.QME_LECTURE_TOKEN, // jeton de lecture seule (Nexora Optim › QME)
     store: storeEssais(getStore),
     donnees: {
       lister: async () => {

@@ -1,5 +1,8 @@
 # Prospection · journal des refus
 
+> **Archive (24/11/2026).** Les refus se notent désormais sur la fiche du prospect dans Nexora Optim › QME
+> (`mutate_qme` : étape `perdu` ou `oppose`, échanges datés). Ne plus modifier ce fichier.
+
 Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par fil traité.
 
 | Passage | Organisation | Adresse | Classement | Réponse envoyée |

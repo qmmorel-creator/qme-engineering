@@ -39,7 +39,7 @@
 //                                                 acheteurs et testeurs) : liste d'opposition (preferences.mjs)
 import { createHmac, randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
 import { PRODUITS, PACKS, cleEmail, jourParis, estLicence, verifierCode, verifierCodeEssai, verifierCodePack, normaliser, verifierLicenceGumroad } from './templates-acces.mjs';
-import { estAdmin } from './interets.mjs';
+import { estAdmin, peutLireAdmin } from './interets.mjs';
 import { contenuAnnonce, CAMPAGNE } from './nouveautes.mjs';
 import { enregistrerOpposition, leverOpposition, enregistrerDomaine, oppositionDe, domainesOpposes, lireRegistre, csvRegistre, CONSERVATION_OPPOSITION_JOURS } from './preferences.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
@@ -219,7 +219,7 @@ async function destinataires({ secret, store, exclure = [] }) {
   return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)) && !domaines.has(d.email.split('@')[1]));
 }
 
-export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '' }) {
+export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '', lecture = '' }) {
   if (!secret || secret.length < 32 || !store) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/compte/, '').replace(/\/$/, '') || '/';
   const methode = requete.method;
@@ -276,7 +276,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
 
   // Registre des préférences d'information (administrateur).
   if (chemin === '/registre' && methode === 'GET') {
-    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
     const lignes = await lireRegistre({ secret, store });
     if (new URL(requete.url).searchParams.get('format') === 'csv') {
       return new Response(csvRegistre(lignes), { status: 200, headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store',

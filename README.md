@@ -101,6 +101,10 @@ Site promotionnel de Quentin Morel Engineering (QME).
   (`POST /api/compte/opposition`) ; vérification avant envoi `GET /api/compte/opposition?email=` et
   `POST /api/compte/opposition/verifier` (code administrateur, ou en lecture seule l'en-tête `X-Opposition-Token` avec la
   variable Netlify `OPPOSITION_TOKEN`, 32 caractères au moins) ; registre `/admin/registre/` (CSV). Conservation 3 ans.
+- **Lecture par Nexora Optim › QME** (24/11/2026) : jeton de lecture seule `QME_LECTURE_TOKEN` (variable Netlify, 32 caractères
+  au moins, en-tête `X-Lecture`), accepté en `GET` seulement par `/api/tableau`, `/api/essai/essais`, `/api/compte/registre` et
+  `/api/interets` ; il ne permet ni écriture, ni effacement, ni annonce, ni l'accès aux templates (contrairement au code `ADM-…`).
+  Même valeur côté Nexora : `QME_SITE_LECTURE_TOKEN` (site nexora-future-optim). Tests : `outils/templates/lecture-nexora.test.mjs`.
 - Espace personnel (refonte du 23/11/2026) : connecté (ou applications sur l'appareil), `/connexion/` devient un écran
   d'accueil : carte de profil (avatar aux initiales, prénom, e-mail, « Client depuis », synchronisation) et menu
   (Accueil, Mes applications, Mes achats, Préférences ; colonne fixe sur ordinateur, onglets sur téléphone) ;
