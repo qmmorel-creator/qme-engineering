@@ -31,7 +31,7 @@ sont reprises dans l'espace acheté. E-mails envoyés **depuis `quentin.morel@qm
 | Effacement − 7 jours | Vos données d'essai seront effacées le … | Dernier e-mail : acheter ou exporter |
 | Nouvelle demande, même adresse | Votre code d'essai : <template> | Code renvoyé (jamais affiché à l'écran) |
 
-Aucun e-mail après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
+Aucun e-mail d'essai après un achat ou un clic sur le lien d'arrêt (bas de chaque e-mail). Un seul e-mail par jour et par
 essai. Signature graphique (variante C, 21/11/2026) dans la version HTML : `netlify/lib/signature.mjs`,
 voir `docs/templates/communication/signature/`. Textes : `contenuMail` dans `netlify/lib/essais.mjs` ; fiches de prise en main dans `netlify/lib/essais-prise-en-main.mjs` (un
 template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depuis sa page catalogue, sans libellé de bouton non vérifié) (vouvoiement, Quentin à la première personne).
@@ -45,10 +45,18 @@ template ouvert à l'essai sans fiche fait échouer `npm test` : l'écrire depui
 |---|---|---|
 | Achat sans essai (ou essai déjà effacé, ou autre adresse) | Merci pour votre achat : <produit> | Connexion avec la clé, premier pas du template (ou liste des templates du pack) |
 | Achat avec un essai de la même adresse | Merci : « <template> » est à vous | Saisir la clé dans « J'ai acheté » : données reprises ; date limite si l'essai est terminé ; « qu'est-ce qui vous a décidé ? » |
+| **Achat + 3 jours** (rattrapage jusqu'à + 7), template (24/11/2026) | <template> : tout se passe bien ? | Deux fonctions peu visibles et l'aide au réglage (fiche de prise en main), connexion sur un autre appareil, demande de retour |
+| **Achat + 3 jours**, pack (24/11/2026) | Par où continuer avec le <pack> | Ses templates en une ligne chacun, par lequel commencer et son premier pas, un seul compte pour tout |
 
 L'essai est marqué `paye` : **la séquence d'essai s'arrête dès le paiement** (avant, elle ne s'arrêtait qu'à la
 saisie de la clé). Les données restent reprises à la saisie de la clé. Une vente n'est traitée qu'une fois.
-Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai ».
+Notification à Quentin : « Nouvelle vente : <produit> · directe / après essai », avec la date prévue de l'accompagnement.
+
+**Accompagnement après achat** (`contenuMailSuivi` et `tournerSuivisAchat` dans `netlify/lib/achats.mjs`) : au ping, la
+vente est mise en file (`suivi-achat/<empreinte de la clé>` : adresse, prénom, produit, date d'achat, date prévue) ; la
+tâche de 9 h 10 l'envoie à J+3 (rattrapage jusqu'à J+7, nouvel essai le lendemain en cas d'échec), un seul e-mail par
+achat, rien pour une adresse sur la liste d'opposition. L'entrée est gardée 30 jours après l'envoi pour `/admin/suivi/`,
+puis effacée.
 
 **Réglage Gumroad (une fois, par Quentin)** : Gumroad → Settings → Advanced → Ping endpoint
 = `https://qm-engineering.fr/api/achat`. Sans ce réglage, aucun e-mail d'achat ne part.
@@ -58,7 +66,10 @@ Notification à Quentin : « Nouvelle vente : <produit> · directe / après essa
 Depuis le 23/11/2026, les e-mails partent en SMTP authentifié par **OVH** (`ssl0.ovh.net`, port 465), depuis la boîte
 `quentin.morel@qm-engineering.fr` : SPF, DKIM et DMARC sont alignés sur le domaine (test du 23/11 : trois « pass » chez
 Gmail). Avant, ils partaient du Gmail de Quentin et échouaient au SPF et au DMARC. Ils n'apparaissent pas dans
-« Messages envoyés » de Gmail ; les réponses arrivent sur la boîte OVH, redirigée vers Gmail. Détail :
+« Messages envoyés » de Gmail ; les réponses arrivent sur la boîte OVH, redirigée vers Gmail. **Copie cachée** (24/11/2026) :
+chaque e-mail des séquences (essai, achat, accompagnement) part avec `quentin.morel@qm-engineering.fr` en copie cachée,
+sauf les codes et liens de connexion, les notifications et les annonces en nombre (`netlify/lib/mail.mjs` ; variable
+`ESSAI_COPIE_CACHEE`, « non » pour couper). Détail :
 `docs/templates/communication/DELIVRABILITE.md`.
 
 Netlify → site → Project configuration → Environment variables (portée « Functions ») :
@@ -88,7 +99,8 @@ nombre d'envois par heure et par compte (de l'ordre de 200 sur MX Plan) : à vé
   rattrapage ou non envoyés, bifurcation à l'achat (`paye` ou `achete`) ou à l'arrêt des rappels, texte de chaque e-mail.
   L'API `/api/essai/essais` renvoie pour cela, en plus, `envois` (dates par e-mail), `paye`, `produit` et `prix`
   (centimes). Lien « Suivi » sur chaque ligne de `/admin/essais/`. Les e-mails d'achat ne sont pas enregistrés dans
-  l'essai : ils n'apparaissent pas sur la ligne.
+  l'essai : ils n'apparaissent pas sur la ligne. Tableau « Accompagnements après achat » (24/11/2026) : chaque achat
+  des 30 derniers jours, date prévue et date d'envoi de l'accompagnement (champ `accompagnements` de `/api/essai/essais`).
 
 ## Base de contacts « Nouveautés QME » (demande de Quentin, 19/11/2026)
 

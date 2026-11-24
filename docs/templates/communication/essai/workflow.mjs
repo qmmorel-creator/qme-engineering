@@ -16,7 +16,7 @@ const boite=(lane,yc,lignes,{h=78,c=LANES[lane][2],fill='#fff',titre=true}={})=>
 const lien=(a,b,yc,lab,{c=E,both=false,dy=0}={})=>{const x1=a.d,x2=b.g;fleche(x1+2,yc+dy,x2-3,yc+dy,c,both);if(lab)t((x1+x2)/2,yc+dy-8,lab,{size:12.5,w:700,fill:c});};
 // En-tête
 t(48,58,'Essai et achat des templates · circuit technique',{size:32,w:700,anchor:'start'});
-t(48,88,'Qui fait quoi, du formulaire d’essai à l’activation de la clé achetée (état au 21/11/2026)',{size:17,fill:G,anchor:'start'});
+t(48,88,'Qui fait quoi, du formulaire d’essai à l’activation de la clé achetée (état au 24/11/2026)',{size:17,fill:G,anchor:'start'});
 s+=`<rect x="48" y="104" width="120" height="6" fill="${E}"/><rect x="168" y="104" width="44" height="6" fill="${R}"/><rect x="212" y="104" width="33" height="6" fill="${J}"/><rect x="245" y="104" width="22" height="6" fill="${B}"/>`;
 // Couloirs
 const YT=140, rows=[['1','ESSAI',178],['2','UTILISATION',150],['3','CHAQUE MATIN',170],['4','ACHAT',210],['5','ACTIVATION',190]];
@@ -34,13 +34,13 @@ const mid=(i)=>ry[i]+rows[i][2]/2;
 {const y=mid(1);const a=boite(0,y,['Template ?essai=CODE','bandeau « encore N jours »']);const b=boite(2,y,['/api/templates','écriture refusée après la fin']);
  const c=boite(3,y,['Données de l’essai','gardées 30 j après la fin']);lien(a,b,y,'lit / enregistre',{both:true});lien(b,c,y,'',{both:true});}
 // 3 CHAQUE MATIN
-{const y=mid(2);const b=boite(2,y,['Tâche 9:10 (Paris)','essais-quotidien'],{h:86});const c=boite(3,y,['Lit chaque essai','efface à fin + 30 j'],{h:86});
- const d=boite(4,y,['✉ Relances d’essai','J+2 · J−3 · fin · effacement −7 j','sauf si payé, acheté ou arrêté'],{h:96,titre:true});lien(b,c,y,'');lien(c,d,y,'');}
+{const y=mid(2);const b=boite(2,y,['Tâche 9:10 (Paris)','essais-quotidien'],{h:86});const c=boite(3,y,['Lit chaque essai','efface à fin + 30 j','et la file suivi-achat/'],{h:96});
+ const d=boite(4,y,['✉ Relances d’essai','J+2 · J−3 · fin · effacement −7 j','sauf si payé, acheté ou arrêté','✉ Accompagnement J+3 après achat'],{h:118,titre:true});lien(b,c,y,'');lien(c,d,y,'');}
 // 4 ACHAT
 {const y=mid(3);const a=boite(0,y,['Paiement','sur la fiche Gumroad']);const g=boite(1,y-34,['Reçu + clé','envoyés par Gumroad'],{h:66});
  const g2=boite(1,y+52,['licenses/verify','vente réelle ?'],{h:62});
- const b=boite(2,y-34,['POST /api/achat','ping de vente'],{h:66});const c=boite(3,y,['achat/<empreinte>','essai marqué « payé »'],{h:86});
- const d=boite(4,y,['✉ Merci pour l’achat','direct ou après essai','+ « Nouvelle vente » à Quentin'],{h:96});
+ const b=boite(2,y-34,['POST /api/achat','ping de vente'],{h:66});const c=boite(3,y,['achat/<empreinte>','essai marqué « payé »','suivi-achat/ : J+3 prévu'],{h:96});
+ const d=boite(4,y,['✉ Merci pour l’achat','direct ou après essai','+ « Nouvelle vente » à Quentin','Cci Quentin sur chaque séquence'],{h:118});
  lien(a,g,y-34,'');lien(g,b,y-34,'ping');fleche(b.g+40,y-1,g2.d+3,y+52,R);t(b.g+62,y+30,'vérifie la licence',{size:12.5,w:700,fill:R,anchor:'start'});
  fleche(b.d+2,y-34,c.g-3,y-10,E);lien(c,d,y,'');}
 // 5 ACTIVATION

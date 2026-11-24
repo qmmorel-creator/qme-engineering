@@ -33,6 +33,21 @@ l'agenda, des connecteurs et des routines, tous sur le compte Gmail).
   (`ESSAI_SMTP_MOT_DE_PASSE`), puis de redéployer.
 - Une variable Netlify modifiée ne s'applique qu'au déploiement suivant.
 
+## Voir les e-mails envoyés par le site
+
+Le SMTP d'OVH ne garde aucune copie : les e-mails du site n'apparaissent ni dans « Messages envoyés » de Gmail ni dans
+« Éléments envoyés » du webmail OVH (qui ne contient que ce qui est écrit depuis le webmail).
+
+- **Copie cachée (règle du 24/11/2026)** : chaque e-mail des séquences automatiques (essai : merci, prise en main,
+  rappel, fin, effacement ; achat : remerciement ; accompagnement J+3 après achat) part avec
+  `quentin.morel@qm-engineering.fr` en copie cachée (`netlify/lib/mail.mjs`). La copie arrive dans la boîte OVH, donc
+  dans Gmail : recherche `from:quentin.morel@qm-engineering.fr deliveredto:quentin.morel@qm-engineering.fr`.
+  Sans copie : codes et liens de connexion (ils ouvrent le compte d'un client), notifications adressées à Quentin,
+  annonces envoyées en nombre. Couper : variable Netlify `ESSAI_COPIE_CACHEE=non`, puis redéployer.
+- **Journaux Netlify** de la fonction `essais-quotidien` (chaque jour à 9:10, Paris) : nombre d'e-mails envoyés par type
+  (`Essais gratuits : …`, `Accompagnements d'achat : …`), sans adresse.
+- **Page admin des essais** (`/admin/essais/`, code administrateur) : colonne des e-mails envoyés pour chaque essai.
+
 ## Étape suivante : durcir le DMARC
 
 Rappel programmé le 07/12/2026 à 10:00.
