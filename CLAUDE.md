@@ -59,7 +59,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   facture…), en pièce jointe ou par un lien, est rangé **le jour même** dans Google Drive :
   `13 - Entreprise QME / 04 - Prospects & clients / <Prénom Nom> – <Entreprise> / <type>`, avec six sous-dossiers
   fixes (`01 - Concept`, `02 - Proposition`, `03 - Devis`, `04 - Plaquette`, `05 - Références`,
-  `06 - Contrat et factures`) et des fichiers nommés `AAAA-MM-JJ - <Type> - <Entreprise> - <version>.pdf`, dans la
+  `06 - Contrat et factures`, plus `07 - Autres documents` si besoin) et des fichiers nommés `AAAA-MM-JJ - <Type> - <Entreprise> - <version>.pdf`, dans la
   version réellement émise (retrouvée dans git).
 - **Note Bible** : chaque projet Nexora de prospect a une note « Note Bible · <Prénom> (<Entreprise>) » (type Notes),
   avec en tête l'URL de la page concept, puis le lien du dossier Drive et un lien par PDF, le type en tête du nom du
