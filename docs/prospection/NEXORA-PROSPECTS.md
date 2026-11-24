@@ -96,12 +96,14 @@ prospect et client.
 
 - Dossier du prospect : `13 - Entreprise QME / 04 - Prospects & clients` (id `1_Rv6YKFyVsZZRltxB0Ejjmwd9x08_BsR`),
   nommé « <Contact> – <Entreprise> » ; le créer s'il n'existe pas.
-- Sous-dossiers selon les besoins : `01 - Concept`, `02 - Proposition`, `03 - Devis`, `04 - Plaquette`,
-  `05 - Références`, `06 - Contrat et factures`.
-- Nom du fichier : `[Type] AAAA-MM-JJ - vN - <objet>.pdf`. Envoi en PDF brut (`disableConversionToGoogleType: true`) ;
-  vérifier que la taille dans Drive est celle de l'original.
-- Le connecteur Drive refuse les gros fichiers (un PDF de 4,9 Mo a échoué, 2,8 Mo passe) : le signaler en « Réserve »
-  dans la Note Bible plutôt que de l'omettre.
+- Six sous-dossiers fixes, créés avec le dossier même vides : `01 - Concept`, `02 - Proposition`, `03 - Devis`,
+  `04 - Plaquette`, `05 - Références`, `06 - Contrat et factures` (plus `07 - Autres documents` si besoin).
+- Nom du fichier : `AAAA-MM-JJ - <Type> - <Entreprise> - <version>.pdf` (règle de `CLAUDE.md`). Envoi en PDF brut
+  (`disableConversionToGoogleType: true`) ; vérifier que la taille dans Drive est celle de l'original.
+- Le connecteur Drive refuse les fichiers de plus d'environ 3 Mo : dépôt à la main par Quentin, signalé en « Réserve »
+  dans la Note Bible plutôt qu'omis. Plaquette et références : copie côté Drive (`copy_file`) depuis la source notée
+  dans `RANGEMENT-DRIVE.md`.
+- Procédure complète (version réellement émise, pièces jointes, sessions concurrentes) : `RANGEMENT-DRIVE.md`.
 
 ## 4. Création d'un projet prospect
 

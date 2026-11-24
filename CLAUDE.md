@@ -97,6 +97,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   avec en tête l'URL de la page concept, puis le lien du dossier Drive et un lien par PDF, le type en tête du nom du
   lien (`[Concept] …`, `[Devis] …`). Elle est complétée à chaque nouveau PDF. Procédure, identifiants et prospects déjà
   rangés : `docs/prospection/RANGEMENT-DRIVE.md`.
+- **Master Tunnel de vente** (décision du 24/11/2026) : de la première réponse intéressée à la signature, tout prospect
+  est suivi selon `docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md` (concepts, réunions et comptes rendus, devis et
+  calculs, contrats, factures), chaque interaction reportée le jour même dans Nexora Optim et Google Drive. Il prend
+  le relais de Master Prospection (`docs/prospection/PROMPT-AGENT-PROSPECTION.md`).
 
 ## Templates
 
