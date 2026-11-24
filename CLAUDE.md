@@ -51,7 +51,28 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Un projet Nexora par prospect** (décision du 24/11/2026), dans le dossier « QM Engineering ». À sa création, il
   reçoit toujours une tâche **« État global du prospect »**, dont le statut est l'un des six statuts réservés aux
   projets prospects : Prospect, Discussion, Offre envoyée, Négociation, Refus, Signé. Ce statut suit chaque échange,
-  en même temps que la fiche QME du prospect. Procédure et identifiants : `docs/prospection/suivi-prospects.md`, § Nexora.
+  en même temps que la fiche QME du prospect, et une **Note Bible** (voir plus bas). Procédure et identifiants :
+  `docs/prospection/NEXORA-PROSPECTS.md`.
+- **Mise à jour de Nexora après chaque action** (règle absolue, décision du 24/11/2026) : chaque traitement d'un
+  prospect, d'un client ou d'un créateur en discussion (mail reçu ou envoyé, réponse, relance, appel, visio, concept,
+  proposition, devis, contrat, facture, refus) est reporté **le jour même, avant de rendre la main**, dans tous les
+  endroits concernés de Nexora Optim : fiche QME (échanges, étape, balle, prochaine action, relance), fiche client et
+  devis, tâche « État global du prospect », Note Bible, tâches de relance ou de réunion du projet. Liste de contrôle :
+  `docs/prospection/NEXORA-PROSPECTS.md` § 2. Une action non reportée dans Nexora est considérée comme non faite.
+- **Note Bible par prospect** (décision du 24/11/2026) : chaque projet prospect a une tâche « Note Bible · <Prospect> »
+  (type Notes, statut Valable) qui porte **en tête le lien de la page de concept**, puis la liste de tous les PDF émis
+  (type, date, version, lien Drive). À chaque document émis : copie du PDF dans le dossier Drive du prospect
+  (`04 - Prospects & clients`), ligne ajoutée à la Note Bible, lien reporté dans la fiche QME (`conceptUrl`,
+  `conceptPdf`, `pdf` du devis). Modèle et rangement : `docs/prospection/NEXORA-PROSPECTS.md` § 3.
+
+## Gumroad : référent unique (décision du 24/11/2026)
+
+- **Toute demande ou action Gumroad** (création de fiche, publication, mise en vente sur le site, prix, description,
+  dépublication, packs) est traitée par **l'agent Gumroad**, session `session_0183EW569cgV6TXMdunVEq3r`. Les autres
+  sessions ne créent, ne publient et ne modifient rien sur Gumroad : elles renvoient Quentin vers l'agent Gumroad ou lui
+  transmettent la demande (`send_message`). Fonctionnement et tâche quotidienne :
+  `docs/templates/communication/gumroad-priorite.md` § « Qui gère Gumroad » ; écart prêt / Gumroad :
+  `node outils/gumroad/ecart.mjs`.
 
 ## PDF émis : rangement Google Drive et note Bible (décision du 24/11/2026)
 
