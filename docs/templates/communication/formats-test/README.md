@@ -24,8 +24,8 @@ production : skill `.claude/skills/formats-test/`.
 | IG-215 | 29/11 | 19:00 | F5 | Conversation de couple (argent à deux) | Reel | YT-70 29/11 12:00 | voir planning |
 | IG-216 | 02/12 | 19:00 | F2 + F7 | Envoyez-moi votre pire tableur, épisode 1 | Reel | YT-71 02/12 17:00 | voir planning |
 | IG-217 | 03/12 | 12:30 | F8 | Défi : un outil pour un fleuriste en 60 minutes | Reel 28 s | YT-72 03/12 12:00 | Programmé |
-| IG-218 | 06/12 | 12:30 | F4 | Le test en 1 minute (`/diagnostic/`, déjà en ligne) | Reel | YT-73 06/12 12:00 | voir planning |
-| IG-219 | 09/12 | 19:00 | F9 | L'actualité chiffrée (1er janvier 2027) | Carrousel + diaporama TikTok | — | voir planning |
+| IG-218 | 06/12 | 12:30 | F4 | Le test en 1 minute (`/diagnostic/`) : exemple fictif, 1 480 € et 124 h par an | Reel 23 s | YT-73 06/12 12:00 | Programmé |
+| IG-219 | 09/12 | 19:00 | F9 | Fin du régime simplifié de TVA au 01/01/2027 (impots.gouv.fr, 22/09/2026), cas fictif de Léa | Carrousel 6 vues + diaporama TikTok | — | Programmé |
 | IG-168 → 175 | 23/11 → 30/11 | 21:00 | F6 | Quiz (existant) | Reel | — | déjà programmés |
 
 YT-71 est à 17:00 (12:00 et 20:00 déjà pris le 02/12) : écart volontaire à `HEURES.md`, à juger à la mesure.

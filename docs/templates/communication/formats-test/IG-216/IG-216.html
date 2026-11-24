@@ -1,0 +1,188 @@
+<!doctype html>
+<!-- IG-216 · Test formats F2 + F7 « Envoyez-moi votre pire tableur · épisode 1 » (vague 1).
+     Instagram 02/12/2026 19:00, YouTube YT-71 17:00. Couleur dominante : bleu. 1080 × 1920, 30 i/s, 28 s.
+     Avant : tableur FICTIF fabriqué ici (aucun fichier reçu), le planning de la semaine S48 de l'équipe de la démo
+     Planning d'équipe et staffing (« Agence Exemple », 9 personnes). Heures par personne reprises de la démo
+     (captures/charges.mjs, 24/11/2026) : Camille 28, Malik 21, Sophie 21, Hugo 42, Théo 14, Inès 28, Julien 21,
+     Nora 6, Léa 35 = 216 h. Le total de Hugo est en #REF! : le « TOTAL ÉQUIPE » du tableur fait 216 − 42 = 174 h.
+     Après : captures réelles de la démo (?demo&reinit, 24/11/2026, captures/captures.mjs) : 76 %, 216 h sur 283 h,
+     1 en surcharge (Hugo, 120 %), 16 alertes sur 4 semaines, 4 disponibles et 49,5 h libres la semaine suivante.
+     14 onglets (comptés ci-dessous) → 5 écrans (onglets de l'application : Tableau de bord, Planning, Disponibles,
+     Projets, Équipe). Rendu, depuis la racine du dépôt :
+       node docs/videos/rendu.mjs docs/templates/communication/formats-test/IG-216/IG-216.html 28 1500 --sortie docs/videos/sortie/IG-216-pire-tableur-1.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-216</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+.f{position:absolute}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-d{from{transform:translateX(1100px)}to{transform:none}}
+@keyframes anneau{from{opacity:0;transform:scale(1.8)}to{opacity:1;transform:none}}
+
+/* Habillage série, visible de bout en bout */
+#serie{position:absolute;left:84px;top:262px;z-index:50;background:var(--bleu);color:var(--surface);border:5px solid var(--encre);font-weight:800;font-size:34px;letter-spacing:.04em;padding:10px 22px;box-shadow:8px 8px 0 var(--encre)}
+
+/* Tableur fictif « de l'enfer » */
+#feuille{position:absolute;left:40px;right:40px;top:650px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:25px;color:#111}
+#feuille table{border-collapse:collapse;width:100%;table-layout:fixed}
+#feuille td{border:1px solid #b9b9b9;height:56px;padding:0 6px;white-space:nowrap;overflow:hidden;position:relative}
+#feuille td.n,#feuille tr.l td{background:#e9e9e9;color:#555;text-align:center;font-size:20px}
+#feuille tr.l td{height:36px}
+#feuille td.c::after{content:'';position:absolute;right:0;top:0;border-top:14px solid #e01b1b;border-left:14px solid transparent}
+.err{color:#d00000;font-weight:700}
+#onglets{position:absolute;left:40px;right:40px;top:1438px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:20px}
+#onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:5px 10px;white-space:nowrap}
+#onglets span.a{background:#fff;font-weight:700;border-bottom:3px solid #0a8a2a}
+.bulle{position:absolute;background:#fff8b0;border:2px solid #9b8b1a;font-family:Arial,Helvetica,sans-serif;font-size:21px;padding:8px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);white-space:nowrap}
+.anneau{position:absolute;border:9px solid var(--rouge);border-radius:50%}
+.etiq{position:absolute;background:var(--rouge);color:var(--surface);font-weight:800;font-size:44px;padding:16px 26px;border:5px solid var(--encre);box-shadow:10px 10px 0 var(--encre);letter-spacing:-.01em;line-height:1.1}
+
+.carte{position:absolute;left:84px;right:84px;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--bleu);background:var(--surface)}
+.carte img{width:100%;display:block}
+.note{position:absolute;left:84px;right:84px;font-size:28px;font-weight:600;color:var(--texte-2)}
+.num{position:absolute;left:84px;width:96px;height:96px;border-radius:50%;background:var(--bleu);color:var(--surface);font-weight:800;font-size:56px;display:flex;align-items:center;justify-content:center;border:5px solid var(--encre)}
+.av{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:10px}
+.av .g{font-size:44px;font-weight:700;color:#BFC9D9;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--rouge)}
+.av .fl{font-size:60px;font-weight:800;color:var(--jaune);text-align:center}
+.av .d{font-size:52px;font-weight:800;color:var(--surface)}
+.signe{position:absolute;left:84px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--surface)}
+.site{position:absolute;right:84px;font-weight:700;font-size:34px}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:58px;padding:26px 40px;box-shadow:16px 16px 0 var(--bleu);letter-spacing:-.025em}
+</style>
+</head>
+<body>
+<div id="serie">Pire tableur · ép.&nbsp;1</div>
+
+<!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée) -->
+<div class="s" id="s1" style="animation:sortie 300ms 8400ms">
+  <p class="x" style="top:360px;font-size:70px">Le tableur de l'équipe. <span style="color:var(--rouge)">14&nbsp;onglets.</span></p>
+  <p class="x" style="top:450px;font-size:70px">Une seule personne sait s'en servir.</p>
+  <p class="note" style="top:590px;font-size:26px">Tableur fictif, fabriqué pour l'épisode</p>
+  <div id="feuille"></div>
+  <div id="onglets"></div>
+  <div class="bulle" style="left:610px;top:760px">NE PAS SUPPRIMER (formule)</div>
+  <div class="bulle" style="left:120px;top:1070px">voir avec Karine ??</div>
+  <div class="anneau" id="a-hugo" style="animation:anneau 400ms 3300ms"></div>
+  <div class="etiq" id="e-hugo" style="animation:pop 350ms 3600ms">Hugo : 42&nbsp;h prévues pour 35.<br>Personne ne le voit.</div>
+  <div class="anneau" id="a-total" style="animation:anneau 400ms 5900ms"></div>
+  <div class="etiq" id="e-total" style="animation:pop 350ms 6200ms;background:var(--encre)">174&nbsp;h&nbsp;? Il manque Hugo.</div>
+</div>
+
+<!-- Scène 2 : bascule -->
+<div class="s" id="s2" style="animation:entree-fond 350ms 8400ms,sortie 300ms 10900ms;background:var(--bleu);color:var(--surface)">
+  <div class="f" style="right:-140px;top:1180px;width:520px;height:520px;border-radius:50%;background:var(--jaune);animation:pop 600ms 8700ms"></div>
+  <p class="x" style="top:620px;font-size:110px;animation:monte 450ms 8600ms">Épisode&nbsp;1&nbsp;:</p>
+  <p class="x" style="top:760px;font-size:110px;animation:monte 450ms 8900ms">je le transforme <mark style="white-space:nowrap">en app.</mark></p>
+</div>
+
+<!-- Scène 3 : l'application (captures réelles du template le plus proche) -->
+<div class="s" id="s3" style="animation:entree-fond 350ms 10900ms,sortie 300ms 20900ms">
+  <p class="sourcil" style="top:380px;color:var(--bleu);animation:monte 400ms 11000ms">Même équipe · même semaine</p>
+  <div class="num" style="top:440px;animation:pop 350ms 11100ms">1</div>
+  <p class="x" style="top:450px;left:200px;font-size:60px;line-height:1.1;animation:monte 400ms 11200ms">Toute la charge, sur un écran</p>
+  <div class="carte" style="top:620px;animation:monte 500ms 11300ms"><img src="captures/eqp-tableau-haut.png" alt=""></div>
+
+  <div class="s" style="animation:entree-fond 350ms 14300ms;background:var(--papier)">
+    <div class="num" style="top:440px">2</div>
+    <p class="x" style="top:450px;left:200px;font-size:60px;line-height:1.1">La surcharge de Hugo, signalée seule</p>
+    <div class="carte" style="top:700px;animation:glisse-d 500ms 14500ms"><img src="captures/eqp-alerte.png" alt=""></div>
+    <p class="x" style="top:1150px;font-size:56px;font-weight:700;line-height:1.2;animation:monte 400ms 15400ms">Et <mark>16 alertes</mark> sur les 4 semaines à venir.</p>
+  </div>
+
+  <div class="s" style="animation:entree-fond 350ms 17600ms;background:var(--papier)">
+    <div class="num" style="top:440px">3</div>
+    <p class="x" style="top:450px;left:200px;font-size:60px;line-height:1.1">Qui peut prendre la semaine prochaine</p>
+    <div class="carte" style="top:640px;animation:glisse-d 500ms 17800ms"><img src="captures/eqp-dispos-haut.png" alt=""></div>
+  </div>
+  <p class="note" style="top:1500px;z-index:3;animation:monte 400ms 11400ms">Captures du template Planning d'équipe QME · données fictives</p>
+</div>
+
+<!-- Scène 4 : avant / après -->
+<div class="s" id="s4" style="animation:entree-fond 350ms 20900ms,sortie 300ms 24500ms;background:var(--bleu);color:var(--surface)">
+  <p class="sourcil" style="top:420px;color:var(--jaune);animation:monte 400ms 21000ms">Avant → après</p>
+  <div class="av" style="top:540px;animation:monte 450ms 21200ms"><span class="g">14 onglets</span><span class="fl">→</span><span class="d">5 écrans</span></div>
+  <div class="av" style="top:720px;animation:monte 450ms 22000ms"><span class="g">174 h au total</span><span class="fl">→</span><span class="d">216 h, la vraie charge</span></div>
+  <div class="av" style="top:900px;animation:monte 450ms 22800ms"><span class="g">#REF!</span><span class="fl">→</span><span class="d">Hugo à 120&nbsp;%, signalé</span></div>
+  <div class="f" style="left:84px;top:1130px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 23300ms"></div>
+  <p class="x" style="top:1180px;font-size:52px;font-weight:700;line-height:1.2;animation:monte 400ms 23500ms">Et plus besoin de la seule personne qui sait.</p>
+</div>
+
+<!-- Scène 5 : appel -->
+<div class="s" id="s5" style="animation:entree-fond 350ms 24500ms;background:var(--jaune)">
+  <p class="x" style="top:420px;font-size:100px">Envoyez-moi le vôtre en message.</p>
+  <p class="x" style="top:760px;font-size:76px;animation:monte 450ms 25100ms">Je choisis <span style="background:var(--encre);color:var(--jaune);padding:0 14px;white-space:nowrap">l'épisode&nbsp;2.</span></p>
+  <div class="bouton" style="top:1020px;animation:pop 400ms 25700ms">Sur mesure · qm-engineering.fr</div>
+  <div class="signe" style="top:1400px;animation:monte 400ms 26000ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site" style="top:1424px;animation:monte 400ms 26100ms">Données fictives</p>
+</div>
+
+<script>
+// Le tableur fictif : semaine S48, heures par personne reprises de la démo (voir en-tête).
+const C = ['#ffff00', '#ff99cc', '#99ff99', '#ffcc66', '#66ffff', '#cc99ff', '#c0c0c0', '#ff6666', '#99ccff', '#ccff33'];
+const gens = [
+  ['Camille', [6, 6, 5, 5, 6], '28', '28'],
+  ['Malik', [4, 4, 5, 4, 4], '21', '=G4*1'],
+  ['Sophie', [5, 4, 4, 4, 4], '21', '#VALEUR!'],
+  ['Hugo', [9, 9, 8, 8, 8], '#REF!', ''],
+  ['Théo', [3, 3, 3, 3, 2], '14', '14 ?'],
+  ['Inès', [7, 7, 7, 7, 0], '28', '28'],
+  ['Julien', [4, 4, 5, 4, 4], '21', '21'],
+  ['Nora', [1, 1, 2, 1, 1], '6', '#N/A'],
+  ['Léa', [7, 7, 7, 7, 7], '35', '35 (vérifier)'],
+];
+// Contrôle : les heures du jour font bien le total de la démo, et le total d'équipe du tableur exclut Hugo.
+const vrai = { Camille: 28, Malik: 21, Sophie: 21, Hugo: 42, Théo: 14, Inès: 28, Julien: 21, Nora: 6, Léa: 35 };
+for (const [n, j] of gens) if (j.reduce((a, b) => a + b, 0) !== vrai[n]) throw new Error('Heures incohérentes : ' + n);
+const totalTableur = gens.filter((g) => g[2] !== '#REF!').reduce((a, g) => a + +g[2], 0);
+if (totalTableur !== 174 || Object.values(vrai).reduce((a, b) => a + b, 0) !== 216) throw new Error('Totaux incohérents');
+const e = (v) => (/^#/.test(v) ? `<span class="err">${v}</span>` : v);
+let h = '<table><colgroup><col style="width:46px"><col style="width:170px"><col span="5" style="width:78px"><col style="width:140px"><col></colgroup>';
+h += '<tr class="l"><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>';
+h += `<tr><td class="n">1</td><td colspan="8" class="c" style="background:#ff3b3b;color:#fff;font-weight:700;text-align:center;font-size:26px">PLANNING ÉQUIPE S48 — NE PAS TOUCHER !!!</td></tr>`;
+h += `<tr style="font-weight:700"><td class="n">2</td><td style="background:#00b0f0">Personne</td><td style="background:#ffc000">Lun</td><td style="background:#92d050">Mar</td><td style="background:#ff99cc">Mer</td><td style="background:#ccff33">Jeu</td><td style="background:#cc99ff">Ven</td><td style="background:#ffff00">TOTAL</td><td class="c" style="background:#ff6600;color:#fff;font-size:21px">TOTAL2 FINAL v3</td></tr>`;
+gens.forEach(([n, j, t, t2], i) => {
+  const r = i + 3;
+  let cel = j.map((v, k) => `<td style="background:${C[(i * 3 + k * 7) % 10]};text-align:right"${k === 2 && i % 3 === 0 ? ' class="c"' : ''}>${v}</td>`);
+  if (n === 'Théo') cel = [`<td colspan="2" style="background:#66ffff;text-align:center;font-style:italic">6 (audit ?)</td>`, ...cel.slice(2)];
+  h += `<tr><td class="n">${r}</td><td style="background:${C[(i * 5 + 2) % 10]};font-weight:700"${n === 'Hugo' ? ' class="c"' : ''}>${n}</td>${cel.join('')}<td id="${n === 'Hugo' ? 'g-hugo' : ''}" style="text-align:right;background:#ffff00;font-weight:700">${e(t)}</td><td style="text-align:right;background:${i % 2 ? '#ffcc99' : '#fff'}">${e(t2)}</td></tr>`;
+});
+h += `<tr><td class="n">12</td><td colspan="8" style="background:#fff"></td></tr>`;
+h += `<tr style="font-weight:700"><td class="n">13</td><td colspan="6" style="background:#d9d9d9;text-align:right">TOTAL ÉQUIPE (=SOMME(G3:G11))</td><td id="g-total" style="background:#00ff00;text-align:right">${totalTableur}</td><td style="background:#ff99cc" class="c">à jour ? (mars)</td></tr>`;
+h += '</table>';
+document.getElementById('feuille').innerHTML = h;
+const ONGLETS = ['Planning', 'Planning (2)', 'copie de Planning', 'copie de copie de Planning', 'S48 FINAL', 'S48 FINAL v2', 'NE PAS TOUCHER', 'Feuil3', 'Congés 2024', 'Congés VRAI', 'TOTAL2', 'archives', 'Hugo', 'Brouillon'];
+if (ONGLETS.length !== 14) throw new Error('14 onglets attendus');
+document.getElementById('onglets').innerHTML = ONGLETS.map((o, i) => `<span class="${i === 5 ? 'a' : ''}">${o}</span>`).join('');
+// Anneaux et étiquettes posés sur les cellules réelles.
+function poser(idA, idE, idC, dxE, dyE) {
+  const r = document.getElementById(idC).getBoundingClientRect();
+  const a = document.getElementById(idA);
+  Object.assign(a.style, { left: r.left - 26 + 'px', top: r.top - 22 + 'px', width: r.width + 52 + 'px', height: r.height + 44 + 'px' });
+  const et = document.getElementById(idE);
+  Object.assign(et.style, { right: dxE + 'px', top: r.bottom + dyE + 'px' });
+}
+poser('a-hugo', 'e-hugo', 'g-hugo', 60, 40);
+poser('a-total', 'e-total', 'g-total', 60, 40);
+window.placer = (ms) => { document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }); };
+window.placer(0);
+</script>
+</body>
+</html>
