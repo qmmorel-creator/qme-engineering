@@ -55,6 +55,10 @@ Le SMTP d'OVH ne garde aucune copie : les e-mails du site n'apparaissent ni dans
 - **Journaux Netlify** de la fonction `essais-quotidien` (chaque jour à 9:10, Paris) : nombre d'e-mails envoyés par type
   (`Essais gratuits : …`, `Accompagnements d'achat : …`), sans adresse.
 - **Page admin des essais** (`/admin/essais/`, code administrateur) : colonne des e-mails envoyés pour chaque essai.
+- **Nexora Optim › QME › E-mails** (référence depuis le 24/11/2026) : frise de chaque essai (partis, à venir, sautés,
+  arrêtés, manqués), accompagnements J+3, remerciements d'achat (`achat/*`), bilan de chaque tournée quotidienne avec
+  ses erreurs (`tournee/<jour>`, gardé 90 jours) et formulaires reçus (idée, concours : `submission-created.mjs`),
+  lus par `GET /api/essai/essais` au jeton de lecture.
 
 ## Étape suivante : durcir le DMARC
 
