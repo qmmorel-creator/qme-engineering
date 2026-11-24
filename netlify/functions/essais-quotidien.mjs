@@ -2,7 +2,8 @@
 // accompagnement des acheteurs 3 jours après l'achat (tournerSuivisAchat, achats.mjs)
 // et effacement des essais terminés depuis plus de 30 jours ; purge des traces anti-abus des comptes (comptes.mjs). Logique : tournerEssais (netlify/lib/essais.mjs).
 import { getStore } from '@netlify/blobs';
-import { tournerEssais } from '../lib/essais.mjs';
+import { enregistrerTournee, tournerEssais } from '../lib/essais.mjs';
+import { jourParis } from '../lib/templates-acces.mjs';
 import { tournerSuivisAchat } from '../lib/achats.mjs';
 import { purgerComptes } from '../lib/comptes.mjs';
 import { envoyeurDepuisEnv } from '../lib/mail.mjs';
@@ -18,7 +19,11 @@ export default async () => {
     testeurs: process.env.ESSAI_TESTEURS || '',
   });
   console.log('Essais gratuits :', JSON.stringify(bilan));
-  console.log('Accompagnements d\'achat :', JSON.stringify(await tournerSuivisAchat({ secret: process.env.TEMPLATES_SECRET, essais: storeEssais(getStore), envoyer })));
+  const accompagnements = await tournerSuivisAchat({ secret: process.env.TEMPLATES_SECRET, essais: storeEssais(getStore), envoyer });
+  console.log('Accompagnements d\'achat :', JSON.stringify(accompagnements));
+  // Bilan gardé 90 jours pour Nexora Optim › QME › E-mails (GET /api/essai/essais, champ tournees).
+  try { await enregistrerTournee(storeEssais(getStore), jourParis(new Date()), { essais: bilan, accompagnements, envoiConfigure: Boolean(envoyer) }); }
+  catch (e) { console.error('Bilan de tournée non enregistré', e); }
   // Comptes acheteurs : traces anti-abus (demandes de lien, liens utilisés) devenues inutiles.
   console.log('Comptes :', JSON.stringify(await purgerComptes({ store: storeEssais(getStore) })));
 };

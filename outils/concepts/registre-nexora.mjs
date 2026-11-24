@@ -22,9 +22,13 @@ const dateGit = (f, premier) => {
 };
 const items = slugs.map((slug) => {
   const html = fs.readFileSync(path.join(dossier, slug, 'index.html'), 'utf8');
-  const titre = /<title>([^<]*)<\/title>/.exec(html)?.[1] || '';
-  const nom = registres[slug]?.nom || titre.replace(/^Concept pour\s+/i, '').replace(/\s*·\s*QME\s*$/, '').trim() || slug;
-  const pdf = fs.readdirSync(path.join(dossier, slug)).find((f) => f.endsWith('.pdf'));
+  const ent = (t) => t.replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  const titre = ent(/<title>([^<]*)<\/title>/.exec(html)?.[1] || '');
+  const brut = titre.replace(/^(Concept (pour|for)|Devis)\s+/i, '').replace(/\s*[·|–-]\s*QME.*$/, '').replace(/^(l'|les |la |le )/i, '').trim();
+  const deSlug = slug.split('-').map((m, i) => (i ? m : m[0].toUpperCase() + m.slice(1))).join(' ');
+  const nom = registres[slug]?.nom || (brut && !brut.includes(' · ') ? brut[0].toUpperCase() + brut.slice(1) : deSlug);
+  const pdfs = fs.readdirSync(path.join(dossier, slug)).filter((f) => f.endsWith('.pdf'));
+  const pdf = pdfs.find((f) => /concept/i.test(f)) || pdfs.find((f) => !/devis|proposition/i.test(f));
   const r = registres[slug];
   return {
     id: `cpt-${slug}`, slug, nom,
