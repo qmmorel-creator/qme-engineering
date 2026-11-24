@@ -35,6 +35,20 @@ Dates mises à jour le 24/11/2026 (règle « une publication par plateforme et p
 
 YT-71 est passé de 17:00 à 20:00 le 24/11 : YouTube ne passe qu'à 12:00, 12:15, 20:00 et 20:15 ; YT-51 (20:00) part au passage de 20:00 et YT-71 à celui de 20:15.
 
+## Série « Le calcul que personne ne fait » (chaque mardi, automatisée)
+
+Décision de Quentin du 24/11/2026 : la série est produite chaque semaine par l'agent de contenu (le lundi, pour le mardi
+de la semaine suivante), sur le modèle de `IG-228/`. Couleur en rotation bleu → jaune → rouge. Sujets déjà traités (ne
+jamais les reprendre) :
+
+| N° | ID | Date | Sujet | Couleur |
+|---|---|---|---|---|
+| 1 | IG-213 | 24/11 | 10 minutes perdues par jour : 38 h 10 par an | bleu |
+| 2 | IG-226 | 01/12 | Règle de 72 : un prix à +3 % par an double en ~24 ans | jaune |
+| 3 | IG-227 | 09/12 | −20 % puis +20 % ne s'annulent pas (96 €) | rouge |
+| 4 | IG-228 | 15/12 | Abonnement mensuel ou annuel : rentable dès 11 mois | bleu |
+| 5 | à produire | 22/12 | (agent de contenu, lundi 14/12) | jaune |
+
 ## Vague 2 (à partir du 10/12, après le relevé du 07/12)
 
 - Répétition des formats qui ressortent de la vague 1.

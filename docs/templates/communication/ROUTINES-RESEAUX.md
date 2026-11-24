@@ -14,7 +14,8 @@ doublons ni de routines inutiles. Instinct ne fait que publier les lignes « Pro
    `campagne-x`, `reel-du-soir`, `video-demo`, `formats-test` ; Short YouTube à partir d'une vidéo existante) ;
 3. crée les vidéos TikTok des carrousels des 14 prochains jours (`tiktok/ROUTINE-DIAPORAMAS.md`) ;
 4. produit les lignes « À produire » des 14 prochains jours (finalistes et gagnant du concours : après le vote) ;
-5. **le lundi**, produit 2 nouveautés audacieuses pour la semaine J+7 à J+13 (formats qui marchent d'après
+5. **le lundi**, produit le numéro suivant de « Le calcul que personne ne fait » pour le mardi de la semaine suivante
+   (série hebdomadaire, `formats-test/README.md`), puis 2 nouveautés audacieuses pour la semaine J+7 à J+13 (formats qui marchent d'après
    `formats-test/README.md` § Résultats, épisodes suivants des séries) et décale d'un jour les lignes sans date imposée ;
 6. vérifie les quatre plannings et ne prévient Quentin que s'il reste un problème (ou le lundi, pour les nouveautés).
 
