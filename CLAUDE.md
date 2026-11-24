@@ -65,6 +65,17 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`04 - Prospects & clients`), ligne ajoutée à la Note Bible, lien reporté dans la fiche QME (`conceptUrl`,
   `conceptPdf`, `pdf` du devis). Modèle et rangement : `docs/prospection/NEXORA-PROSPECTS.md` § 3.
 
+## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
+
+- **Tout agent qui crée ou modifie un concept** (page `concepts/<slug>/`, PDF, démo de concept, généré à la main ou par
+  `outils/concepts/registres.mjs`) **l'enregistre ou le met à jour le jour même dans Nexora** : MCP Nexora
+  `mutate_qme`, `entity: "concept"`, `action: "upsert_many"`, éléments donnés par
+  `node outils/concepts/registre-nexora.mjs <slug…>` (identifiant stable `cpt-<slug>` : rejouer ne crée pas de doublon).
+  Puis compléter dans le même appel ou juste après : `statut` (`brouillon`, `en-ligne`, `envoye`, `discussion`, `retenu`,
+  `abandonne`), `segment`, `vague`, `dateEnvoi`, et `prospectId` ou `clientId` (lus par `list_qme`), et mettre le
+  `conceptUrl` de la fiche prospect. Un envoi, une réponse ou un abandon met aussi le statut du concept à jour.
+  Un concept absent de Nexora est un oubli à corriger : vérifier avec `list_qme` (`domain: "concepts"`).
+
 ## Gumroad : référent unique (décision du 24/11/2026)
 
 - **Toute demande ou action Gumroad** (création de fiche, publication, mise en vente sur le site, prix, description,

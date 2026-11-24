@@ -1,5 +1,7 @@
 // node outils/concepts/registres.mjs [slug…] → concepts/<slug>/index.html
 // Concepts « registre de contrôle d'équipements » (stratégie docs/prospection/strategie-2026-12.md).
+// Après génération : enregistrer chaque concept dans Nexora (CLAUDE.md, § Concepts) avec
+// node outils/concepts/registre-nexora.mjs <slug…> puis mutate_qme (entity concept, upsert_many).
 // Données : outils/concepts/registres.json. Maquettes en HTML (données fictives), page non indexée (netlify.toml).
 import fs from 'node:fs';
 import path from 'node:path';
