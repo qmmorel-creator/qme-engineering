@@ -1,17 +1,21 @@
 <!doctype html>
 <!-- IG-225 · Test formats F11 « Carreau, épisode 2 · Semaine de Noël : 2 absents à l'atelier, pour 1 au plus » (vague 2).
      Instagram 18/12/2026 19:00, YouTube YT-78 18/12/2026 20:00. Couleur dominante : rouge. 1080 × 1920, 30 i/s, 27 s.
-     Mascotte : Carreau (formats-test/mascotte/carreau.js, importé, jamais redessiné). Il parle en bulles de 8 mots au plus.
-     Avant : tableur FICTIF fabriqué ici (aucun fichier reçu) reprenant l'équipe Atelier de la démo : Camille Martin en
-     congés payés validés du 21 au 24 déc., la demande d'Inès Petit (21 → 25 déc.) restée dans un autre onglet.
-     Après : captures réelles de la démo Suivi des congés et absences (captures/captures.mjs, ?demo&reinit du 24/11/2026,
-     « Menuiserie Exemple », 8 salariés) : Atelier = 3 salariés, 1 absent au plus ; carte de la demande d'Inès
-     « 4 jours au-delà du seuil de l'équipe (1 absent au plus) : Camille Martin du 21 déc. au 24 déc. », solde après
-     validation 0,25 j. ; calendrier de décembre, ligne « Absents » à 2 en rouge du 21 au 24 ; tableau de bord :
-     3 chevauchements dans les 60 jours, 8 jours au-delà du seuil.
+     Version motion design du 24/11/2026 (demande de Quentin) : écrasement / étirement, anticipation, dépassement,
+     traînée, règle de trois (« 1 », « 1 », puis l'onglet « Demandes » s'ouvre), pause d'une demi-seconde avant la
+     chute, gonflement en panique, cellules en dominos, onglets qui tombent, chiffres qui claquent sur les temps
+     (musique choisie par rendu.mjs pour « IG-225-carreau-2 » : product-launch, 120 BPM, début sur un temps),
+     chute finale : Carreau s'effondre de soulagement.
+     Mascotte : Carreau (formats-test/mascotte/carreau.js, importé via motion-carreau.js, jamais redessiné).
+     Avant : tableur FICTIF fabriqué ici reprenant l'équipe Atelier de la démo : Camille Martin en congés payés
+     validés du 21 au 24 déc., la demande d'Inès Petit (21 → 25 déc.) restée dans l'onglet « Demandes ».
+     Après : captures réelles de la démo Suivi des congés et absences (captures/captures.mjs, ?demo&reinit du
+     24/11/2026, « Menuiserie Exemple », 8 salariés) : Atelier = 3 salariés, 1 absent au plus ; demande d'Inès
+     « 4 jours au-delà du seuil de l'équipe (1 absent au plus) : Camille Martin du 21 déc. au 24 déc. » ; calendrier
+     de décembre, ligne « Absents » à 2 en rouge du 21 au 24 ; tableau de bord : 3 chevauchements dans les 60 jours.
      Rendu, depuis la racine du dépôt, la page servie en HTTP (module ES) :
        python3 -m http.server 8767 --bind 127.0.0.1
-       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-225/IG-225.html 27 3200 --sortie docs/videos/sortie/IG-225-carreau-2.mp4
+       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-225/IG-225.html 27 2600 --sortie docs/videos/sortie/IG-225-carreau-2.mp4
      Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
 <html lang="fr">
 <head>
@@ -29,43 +33,44 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
 .sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
 .note{position:absolute;left:84px;right:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
 .f{position:absolute}
+[data-claque]{transform-origin:left center}
 mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowrap}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
 @keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
 @keyframes sortie{from{opacity:1}to{opacity:0}}
 @keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes glisse-d{from{transform:translateX(1100px)}to{transform:none}}
-@keyframes anneau{from{opacity:0;transform:scale(1.8)}to{opacity:1;transform:none}}
+@keyframes glisse-d{0%{transform:translateX(1100px)}70%{transform:translateX(-30px)}100%{transform:none}}
 
 #serie{position:absolute;left:84px;top:262px;z-index:50;background:var(--rouge);color:var(--surface);border:5px solid var(--encre);font-weight:800;font-size:34px;letter-spacing:.02em;padding:10px 22px;box-shadow:8px 8px 0 var(--encre)}
 
-/* Tableur fictif */
-#feuille{position:absolute;left:60px;width:560px;top:790px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:26px;color:#111}
-#feuille table{border-collapse:collapse;width:100%;table-layout:fixed}
-#feuille td{border:1px solid #b9b9b9;height:62px;padding:0 6px;white-space:nowrap;overflow:hidden;text-align:center}
-#feuille td.n,#feuille tr.l td{background:#e9e9e9;color:#555;font-size:20px}
-#feuille tr.l td{height:36px}
-#feuille td.nom{text-align:left;font-weight:700}
+/* Tableur fictif, en lignes indépendantes (pour les dominos) */
+#feuille{position:absolute;left:60px;width:560px;top:800px;font-family:Arial,Helvetica,sans-serif;font-size:26px;color:#111}
+.rg{display:grid;grid-template-columns:44px 156px repeat(5,1fr);height:62px;background:#fff;border-left:3px solid #9a9a9a;border-right:3px solid #9a9a9a;transform-origin:0 100%}
+.rg>div{border:1px solid #b9b9b9;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+.rg>div:first-child{background:#e9e9e9;color:#555;font-size:20px}
+.rg .nom{justify-content:flex-start;padding-left:8px;font-weight:700}
+.rg.l{height:36px;border-top:3px solid #9a9a9a}.rg.l>div{background:#e9e9e9;color:#555;font-size:20px}
+.rg.der{border-bottom:3px solid #9a9a9a}
 .cp{background:#92d050}
-#onglets{position:absolute;left:60px;width:560px;top:1180px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:22px}
-#onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:6px 10px;white-space:nowrap}
+.fe{background:#d9d9d9;font-size:20px}
+.hach{background:repeating-linear-gradient(45deg,#ff99cc 0 8px,#fff 8px 16px);font-weight:700;color:#a0004a}
+#onglets{position:absolute;left:60px;width:560px;top:1190px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:22px}
+#onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:6px 10px;white-space:nowrap;display:inline-block}
 #onglets span.a{background:#fff;font-weight:700;border-bottom:3px solid #0a8a2a}
-.post{position:absolute;background:#fff8b0;border:2px solid #9b8b1a;font-family:Arial,Helvetica,sans-serif;font-size:22px;padding:8px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);white-space:nowrap}
-.anneau{position:absolute;border:9px solid var(--rouge);border-radius:50%}
-.etiq{position:absolute;background:var(--encre);color:var(--surface);font-weight:800;font-size:38px;padding:14px 22px;border:5px solid var(--encre);box-shadow:10px 10px 0 var(--rouge);line-height:1.15}
+.cpt{position:absolute;width:60px;height:60px;border-radius:50%;border:4px solid var(--encre);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:34px;color:#fff;background:#1f8a3b;z-index:6}
+.cpt.r{background:var(--rouge)}
+.etiq{position:absolute;background:var(--encre);color:var(--surface);font-weight:800;font-size:38px;padding:14px 22px;border:5px solid var(--encre);box-shadow:10px 10px 0 var(--rouge);line-height:1.15;transform-origin:0 100%;z-index:7}
 
 .carte{position:absolute;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--rouge);background:var(--surface)}
 .carte img{width:100%;display:block}
+.cible{position:absolute;border:7px solid var(--jaune);border-radius:14px;z-index:5}
 .calc{position:absolute;left:84px;right:84px;font-size:48px;font-weight:700;line-height:1.25}
 .bouton{position:absolute;left:84px;right:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:54px;line-height:1.15;padding:30px 40px;box-shadow:16px 16px 0 var(--jaune);letter-spacing:-.02em}
 .signe{position:absolute;left:84px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:40px;letter-spacing:-.01em}
 .signe svg{width:56px;height:56px}
 
-/* Carreau et sa bulle (au-dessus de tout) */
-#carreau{position:absolute;left:0;top:0;z-index:80;transform-origin:150px 180px;will-change:transform}
-#carreau svg{display:block}
-.bulle{position:absolute;z-index:90;background:#fff;border:6px solid var(--encre);font-weight:800;font-size:46px;line-height:1.12;letter-spacing:-.015em;padding:20px 28px;max-width:640px;transform-origin:var(--ox,60px) 120%;box-shadow:10px 10px 0 var(--encre)}
+/* Bulle de Carreau */
+.bulle{position:absolute;z-index:90;background:#fff;border:6px solid var(--encre);font-weight:800;font-size:46px;line-height:1.12;letter-spacing:-.015em;padding:20px 28px;max-width:640px;transform-origin:50% 120%;box-shadow:10px 10px 0 var(--encre)}
 .bulle::after,.bulle::before{content:'';position:absolute;left:var(--px,70px);width:0;height:0}
 .bulle::after{bottom:-40px;border-right:44px solid transparent;border-top:40px solid var(--encre)}
 .bulle::before{bottom:-26px;margin-left:6px;z-index:1;border-right:30px solid transparent;border-top:28px solid #fff}
@@ -76,149 +81,166 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
 <body>
 <div id="serie">Carreau · épisode&nbsp;2</div>
 
-<!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée) -->
-<div class="s" id="s1" style="animation:sortie 300ms 7400ms">
+<!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée ; seules les formes bougent) -->
+<div class="s" id="s1" style="animation:sortie 300ms 7000ms">
   <p class="x" style="top:372px;font-size:66px">Semaine de Noël&nbsp;:</p>
-  <p class="x" style="top:440px;font-size:150px;color:var(--rouge);letter-spacing:-.04em">2&nbsp;absents</p>
+  <p class="x" id="gros" style="top:440px;font-size:150px;color:var(--rouge);letter-spacing:-.04em;transform-origin:20% 60%">2&nbsp;absents</p>
   <p class="x" style="top:610px;font-size:52px;font-weight:700">à l'atelier, pour 1 au plus.</p>
   <p class="note" style="top:690px">Tableur fictif, fabriqué pour l'épisode · données fictives</p>
   <div id="feuille"></div>
   <div id="onglets"></div>
-  <div class="post" style="left:290px;top:1024px">voir mail Inès ??</div>
-  <div class="anneau" id="a-dem" style="animation:anneau 400ms 2000ms"></div>
-  <div class="etiq" style="left:60px;top:1300px;animation:pop 350ms 2400ms">Demande d'Inès&nbsp;: 21 → 25&nbsp;déc.,<br>dans l'onglet « Demandes ».</div>
+  <div id="compteurs"></div>
+  <div class="etiq" id="etiq" style="left:60px;top:1290px">Demande d'Inès&nbsp;: 21 → 25&nbsp;déc.,<br>dans l'onglet « Demandes ».</div>
 </div>
 
 <!-- Scène 2 : bascule -->
-<div class="s" id="s2" style="animation:entree-fond 350ms 7400ms,sortie 300ms 11000ms;background:var(--rouge);color:var(--surface)">
-  <div class="f" style="right:-200px;top:1180px;width:520px;height:520px;background:var(--jaune);animation:pop 600ms 7700ms"></div>
-  <p class="x" style="top:480px;font-size:86px;line-height:1.08;animation:monte 400ms 7600ms">Le tableur colorie des cases.</p>
-  <p class="x" style="top:700px;font-size:64px;line-height:1.12;animation:monte 450ms 8100ms">Il ne compte pas qui part <span style="background:var(--encre);color:var(--jaune);padding:0 12px;white-space:nowrap">la même semaine.</span></p>
+<div class="s" id="s2" style="animation:entree-fond 300ms 7000ms,sortie 300ms 10900ms;background:var(--rouge);color:var(--surface)">
+  <div class="f" id="carre" style="right:-200px;top:1180px;width:520px;height:520px;background:var(--jaune)"></div>
+  <p class="x" style="top:480px;font-size:86px;line-height:1.08" data-claque="7000,.4">Le tableur colorie des cases.</p>
+  <p class="x" style="top:700px;font-size:64px;line-height:1.12" data-claque="8000,.25">Il ne compte pas qui part <span style="background:var(--encre);color:var(--jaune);padding:0 12px;white-space:nowrap">la même semaine.</span></p>
 </div>
 
 <!-- Scène 3 : l'application (captures réelles de la démo Suivi des congés et absences) -->
-<div class="s" id="s3" style="animation:entree-fond 350ms 11000ms,sortie 300ms 22400ms">
+<div class="s" id="s3" style="animation:entree-fond 300ms 11000ms,sortie 300ms 22400ms">
   <p class="sourcil" style="top:356px;color:var(--rouge);animation:monte 400ms 11100ms">Même atelier · même semaine</p>
   <p class="x" style="top:404px;font-size:60px;line-height:1.08;animation:monte 400ms 11200ms">Dans Suivi des congés, la demande arrive avec l'alerte.</p>
-  <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 500ms 11500ms"><img src="captures/cng-ines.png" alt=""></div>
-  <p class="note" style="top:1084px;right:560px;animation:monte 400ms 11700ms,sortie 200ms 15200ms">Capture de la démo Suivi des congés et absences QME · données fictives</p>
+  <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 520ms 11400ms"><img src="captures/cng-ines.png" alt=""></div>
+  <div class="cible" id="cible1"></div>
+  <p class="note" style="top:1084px;right:560px;animation:monte 400ms 11700ms,sortie 200ms 15000ms">Capture de la démo Suivi des congés et absences QME · données fictives</p>
 
-  <div class="s" style="animation:entree-fond 350ms 15200ms;background:var(--papier)">
+  <div class="s" style="animation:entree-fond 300ms 15000ms;background:var(--papier)">
     <p class="sourcil" style="top:356px;color:var(--rouge)">Le calendrier de décembre</p>
     <p class="x" style="top:404px;font-size:60px;line-height:1.08">La ligne « Absents » passe au rouge.</p>
-    <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 500ms 15400ms"><img src="captures/cng-calendrier.png" alt=""></div>
-    <p class="calc" style="top:1000px;animation:monte 400ms 16200ms">Du 21 au 24&nbsp;déc.&nbsp;: <mark>2 absents</mark></p>
+    <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 520ms 15200ms"><img src="captures/cng-calendrier.png" alt=""></div>
+    <div class="cible" id="cible2"></div>
+    <p class="calc" style="top:1000px" data-claque="16000,.35">Du 21 au 24&nbsp;déc.&nbsp;: <mark>2 absents</mark></p>
     <p class="note" style="top:1080px;right:560px">Capture de la démo · données fictives</p>
   </div>
 
-  <div class="s" style="animation:entree-fond 350ms 19200ms;background:var(--papier)">
+  <div class="s" style="animation:entree-fond 300ms 19000ms;background:var(--papier)">
     <p class="sourcil" style="top:356px;color:var(--rouge)">Le tableau de bord</p>
     <p class="x" style="top:404px;font-size:60px;line-height:1.08">Tous les chevauchements des 60 prochains jours.</p>
-    <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 500ms 19400ms"><img src="captures/cng-tableau.png" alt=""></div>
+    <div class="carte" style="left:84px;width:700px;top:580px;animation:glisse-d 520ms 19200ms"><img src="captures/cng-tableau.png" alt=""></div>
+    <div class="cible" id="cible3"></div>
     <p class="note" style="top:1040px;right:560px">Capture de la démo · données fictives</p>
   </div>
 </div>
 
 <!-- Scène 4 : appel à l'essai -->
-<div class="s" id="s4" style="animation:entree-fond 350ms 22400ms;background:var(--rouge);color:var(--surface)">
+<div class="s" id="s4" style="animation:entree-fond 300ms 22400ms;background:var(--rouge);color:var(--surface)">
   <p class="sourcil" style="top:356px;color:var(--jaune);animation:monte 400ms 22500ms">Suivi des congés et absences · QME</p>
-  <p class="x" style="top:404px;font-size:72px;line-height:1.08;animation:monte 450ms 22600ms">Qui part la même semaine, vu dès la demande.</p>
-  <div class="f" style="left:84px;top:600px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 23100ms"></div>
-  <div class="bouton" style="top:650px;animation:pop 400ms 23400ms">14 jours d'essai gratuit, sans carte&nbsp;: lien en bio.</div>
-  <div class="signe" style="top:1430px;animation:monte 400ms 24000ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#141414"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></svg><span>Carreau · QME</span></div>
-  <p class="note" style="top:1500px;color:var(--surface);animation:monte 400ms 24100ms">Données fictives</p>
+  <p class="x" style="top:404px;font-size:72px;line-height:1.08" data-claque="23000,.2">Qui part la même semaine, vu dès la demande.</p>
+  <div class="f" style="left:84px;top:600px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 23300ms"></div>
+  <div class="bouton" style="top:650px" data-claque="24000,.18">14 jours d'essai gratuit, sans carte&nbsp;: lien en bio.</div>
+  <div class="signe" style="top:1430px;animation:monte 400ms 24400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#141414"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></svg><span>Carreau · QME</span></div>
+  <p class="note" style="top:1500px;color:var(--surface);animation:monte 400ms 24500ms">Données fictives</p>
 </div>
 
-<div id="carreau"></div>
+<div id="scene-carreau"></div>
 <div class="bulle" id="bulle"></div>
 
 <script type="module">
-import { carreau } from '../mascotte/carreau.js';
+import { creerCarreau, creerBulles, temps, claque, pulse, chute, envol } from './motion-carreau.js';
 
 // Données lues dans la démo (captures/chiffres.json) : Atelier 3 salariés, 1 absent au plus ; Camille Martin en CP
 // validés du lundi 21 au jeudi 24 déc. ; Inès Petit demande du 21 au 25 déc. (25 = Noël, férié chômé) ; Lucas Bernard présent.
 const SEUIL = 1, JOURS = ['L 21', 'M 22', 'M 23', 'J 24', 'V 25'];
 const CAMILLE = [1, 1, 1, 1, 0], INES = [1, 1, 1, 1, 0]; // jours ouvrés d'absence (le 25 est férié)
 const absents = JOURS.map((_, i) => CAMILLE[i] + INES[i]);
-const auDela = absents.filter((n) => n > SEUIL).length;
-if (auDela !== 4 || Math.max(...absents) !== 2) throw new Error('Chiffres incohérents avec la démo');
+if (absents.filter((n) => n > SEUIL).length !== 4 || Math.max(...absents) !== 2) throw new Error('Chiffres incohérents avec la démo');
 
-// Le tableur fictif : seuls les congés validés y sont, la demande d'Inès est ailleurs.
-let h = '<table><colgroup><col style="width:44px"><col style="width:176px"><col span="5"></colgroup>';
-h += '<tr class="l"><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>';
-h += `<tr><td class="n">1</td><td colspan="6" style="background:#ff3b3b;color:#fff;font-weight:700">CONGÉS ATELIER — NE PAS TRIER</td></tr>`;
-h += `<tr style="font-weight:700"><td class="n">2</td><td class="nom" style="background:#00b0f0">Nom</td>${JOURS.map((j) => `<td style="background:#ffc000">${j}</td>`).join('')}</tr>`;
-const ligne = (r, nom, jours, fond) => `<tr><td class="n">${r}</td><td class="nom" style="background:${fond}">${nom}</td>${jours.map((v, i) => i === 4 ? '<td style="background:#d9d9d9;font-size:20px">férié</td>' : `<td class="${v ? 'cp' : ''}">${v ? 'CP' : ''}</td>`).join('')}</tr>`;
-h += ligne(3, 'Camille', CAMILLE, '#ffff00');
-h += ligne(4, 'Inès', [0, 0, 0, 0, 0], '#ff99cc');
-h += ligne(5, 'Lucas', [0, 0, 0, 0, 0], '#99ff99');
-h += '</table>';
-document.getElementById('feuille').innerHTML = h;
-document.getElementById('onglets').innerHTML = ['Congés 2026', 'Demandes', 'Demandes (old)', 'Planning v3'].map((o, i) => `<span id="${i === 1 ? 'o-dem' : ''}" class="${i === 0 ? 'a' : ''}">${o}</span>`).join('');
-const ro = document.getElementById('o-dem').getBoundingClientRect();
-Object.assign(document.getElementById('a-dem').style, { left: ro.left - 30 + 'px', top: ro.top - 22 + 'px', width: ro.width + 60 + 'px', height: ro.height + 44 + 'px' });
+const T = temps(120); // product-launch, 120 BPM, la musique démarre sur un temps
+const L = [];
+L.push(`<div class="rg l"><div></div>${['A', 'B', 'C', 'D', 'E', 'F'].map((c) => `<div>${c}</div>`).join('')}</div>`);
+L.push('<div class="rg"><div>1</div><div style="grid-column:2/8;background:#ff3b3b;color:#fff;font-weight:700">CONGÉS ATELIER — NE PAS TRIER</div></div>');
+L.push(`<div class="rg" style="font-weight:700"><div>2</div><div class="nom" style="background:#00b0f0">Nom</div>${JOURS.map((j, i) => `<div id="j${i}" style="background:#ffc000">${j}</div>`).join('')}</div>`);
+const cellules = (jours, id) => jours.map((v, i) => (i === 4 ? '<div class="fe">férié</div>' : `<div class="${v ? 'cp' : ''}" ${id ? `data-ines="${i}"` : ''}>${v ? 'CP' : ''}</div>`)).join('');
+L.push(`<div class="rg"><div>3</div><div class="nom" style="background:#ffff00">Camille</div>${cellules(CAMILLE)}</div>`);
+L.push(`<div class="rg"><div>4</div><div class="nom" style="background:#ff99cc">Inès</div>${cellules([0, 0, 0, 0, 0], true)}</div>`);
+L.push(`<div class="rg der"><div>5</div><div class="nom" style="background:#99ff99">Lucas</div>${cellules([0, 0, 0, 0, 0])}</div>`);
+const feuille = document.getElementById('feuille'); feuille.innerHTML = L.join('');
+const lignes = [...feuille.children];
+const casesInes = [...feuille.querySelectorAll('[data-ines]')];
+document.getElementById('onglets').innerHTML = ['Congés 2026', 'Demandes', 'Demandes (old)', 'Planning v3'].map((o, i) => `<span class="${i === 0 ? 'a' : ''}">${o}</span>`).join('');
+const onglets = [...document.querySelectorAll('#onglets span')];
+// Compteurs d'absents au-dessus des jours : « 1 », « 1 », puis tout passe à « 2 ».
+const cpts = [0, 1, 2, 3].map((i) => { const r = document.getElementById('j' + i).getBoundingClientRect(); const d = document.createElement('div'); d.className = 'cpt'; Object.assign(d.style, { left: r.left + r.width / 2 - 30 + 'px', top: r.top - 150 + 'px' }); document.getElementById('compteurs').appendChild(d); return d; });
+const cadre = (id, x, y, w, h) => { const k = 688 / 860; Object.assign(document.getElementById(id).style, { left: 90 + x * k + 'px', top: 586 + y * k + 'px', width: w * k + 'px', height: h * k + 'px' }); return document.getElementById(id); };
+const cibles = [[cadre('cible1', 66, 335, 744, 126), T(25), 15000], [cadre('cible2', 212, 404, 252, 66), T(32), 19000], [cadre('cible3', 20, 266, 404, 244), T(40), 22400]];
 
-// Carreau : positions clés (coin haut-gauche du dessin, rotation, échelle), interpolées entre les images.
-const TAILLE = 300;
-const CLES = [
-  { t: 0, x: 730, y: 1080, r: 0, s: 1 },
-  { t: 6200, x: 730, y: 1080, r: 0, s: 1 },
-  { t: 6700, x: 780, y: 1020, r: 0, s: 1 },
-  { t: 7400, x: 1180, y: 1080, r: 0, s: 1 },
-  { t: 8400, x: -340, y: 1130, r: 0, s: 1 },
-  { t: 10800, x: 1180, y: 1130, r: 0, s: 1 },
-  { t: 11000, x: -340, y: 1230, r: 0, s: 0.9 },
-  { t: 12000, x: 700, y: 1230, r: 0, s: 0.9 },
-  { t: 22400, x: 700, y: 1230, r: 0, s: 0.9 },
-  { t: 22900, x: 660, y: 1080, r: 0, s: 1.05 },
-  { t: 27000, x: 660, y: 1080, r: 0, s: 1.05 },
-];
-// Expression, pose et couleur par intervalle (jaune sur fond rouge) ; clignements = passage bref à « soulage ».
 const J = '#F5B400';
-const ETATS = [
-  [0, 'inquiet', 'debout'], [2400, 'panique', 'debout'], [6200, 'panique', 'court'],
-  [7400, 'panique', 'court', J], [11000, 'inquiet', 'court'], [12000, 'inquiet', 'debout'], [13000, 'neutre', 'montre'],
-  [15200, 'neutre', 'debout'], [15800, 'fier', 'montre'], [19200, 'soulage', 'debout'],
-  [22400, 'soulage', 'court', J], [22900, 'fier', 'montre', J],
-];
-const CLIGNE = [[1300, 1420], [17400, 17520], [25600, 25720]];
-const BULLES = [
-  { de: 2800, a: 6200, texte: 'Deux absents&nbsp;? Un seul autorisé&nbsp;!', x: 640, y: 830, d: true, px: 100, w: 400 },
-  { de: 13200, a: 15100, texte: 'Le conflit, avant de valider.', x: 530, y: 1080, d: true, px: 100, w: 420 },
-  { de: 16600, a: 19100, texte: 'Quatre jours en rouge. Vus.', x: 530, y: 1080, d: true, px: 100, w: 420 },
+const placerCarreau = creerCarreau(document.getElementById('scene-carreau'), {
+  taille: 300,
+  cles: [
+    { t: 0, x: 730, y: 1080 }, { t: 5600, x: 730, y: 1080 },
+    { t: 5900, x: 690, y: 1090, e: 'doux' },
+    { t: 6250, x: 1300, y: 1060, e: 'entree' },
+    { t: 8400, x: -360, y: 1150, e: 'lin' },
+    { t: 8900, x: 390, y: 1150, e: 'back' },
+    { t: 10300, x: 390, y: 1150 }, { t: 10500, x: 350, y: 1160, e: 'doux' },
+    { t: 10800, x: 1300, y: 1140, e: 'entree' },
+    { t: 11500, x: -360, y: 1230, s: 0.9, e: 'lin' },
+    { t: 12000, x: 700, y: 1230, s: 0.9, e: 'back' },
+    { t: 22400, x: 700, y: 1230, s: 0.9 }, { t: 22600, x: 720, y: 1245, s: 0.9, e: 'doux' },
+    { t: 22950, x: 690, y: 900, s: 1, r: 10, e: 'sortie' },
+    { t: 23250, x: 660, y: 1080, s: 1.05, r: 0, e: 'entree' },
+    { t: 27000, x: 660, y: 1080, s: 1.05 },
+  ],
+  etats: [
+    [0, 'inquiet', 'debout'], [T(1) - 60, 'neutre', 'debout'], [T(4), 'panique', 'debout'],
+    [5900, 'panique', 'court'], [7000, 'panique', 'court', J], [8900, 'inquiet', 'debout', J], [9800, 'neutre', 'debout', J],
+    [10300, 'neutre', 'court', J], [11000, 'inquiet', 'court'], [12000, 'neutre', 'debout'], [12500, 'neutre', 'montre'],
+    [15000, 'neutre', 'debout'], [16000, 'fier', 'montre'], [19000, 'neutre', 'debout'], [20000, 'soulage', 'debout'],
+    [22600, 'soulage', 'court', J], [23250, 'fier', 'montre', J], [25800, 'soulage', 'debout', J],
+  ],
+  cligne: [[400, 520], [9400, 9520], [14000, 14120], [17800, 17920], [24900, 25020]],
+  evenements: [
+    { t: T(1), type: 'hop', f: 0.12, h: 36 }, { t: T(2), type: 'hop', f: 0.12, h: 36 },
+    { t: T(4), type: 'gonfle', f: 0.32, d: 300, fin: 5600 }, { t: T(4), type: 'tremble', a: 7, ar: 6, fin: 5600 },
+    { t: 5620, type: 'ecrase', f: 0.22 }, { t: 5920, type: 'etire', f: 0.3 },
+    { t: 8900, type: 'ecrase', f: 0.3 }, { t: 10320, type: 'ecrase', f: 0.18 }, { t: 10520, type: 'etire', f: 0.3 },
+    { t: 12000, type: 'ecrase', f: 0.3 }, { t: T(25), type: 'hop', f: 0.12, h: 40 }, { t: T(32), type: 'hop', f: 0.15, h: 60 },
+    { t: T(40), type: 'hop', f: 0.12, h: 40 },
+    { t: 22620, type: 'etire', f: 0.25 }, { t: 23250, type: 'ecrase', f: 0.32 },
+    { t: 25800, type: 'effondre', f: 0.42, d: 560 },
+  ],
+});
+const placerBulle = creerBulles(document.getElementById('bulle'), [
+  { de: 2800, a: 5500, texte: 'Deux absents&nbsp;? Un seul autorisé&nbsp;!', x: 640, y: 830, d: true, px: 100, w: 400 },
+  { de: 13200, a: 14950, texte: 'Le conflit, avant de valider.', x: 530, y: 1080, d: true, px: 100, w: 420 },
+  { de: 16600, a: 18950, texte: 'Quatre jours en rouge. Vus.', x: 530, y: 1080, d: true, px: 100, w: 420 },
   { de: 20400, a: 22300, texte: 'Trois repérés. Aucun à chercher.', x: 530, y: 1080, d: true, px: 100, w: 420 },
-  { de: 24300, a: 27000, texte: 'Noël à l\'atelier&nbsp;: réglé.', x: 220, y: 940, d: true, px: 110 },
-];
-const el = document.getElementById('carreau');
-const bulle = document.getElementById('bulle');
-let cle = '';
-const doux = (u) => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
-function poseA(ms) {
-  let i = 0; while (i < CLES.length - 1 && CLES[i + 1].t <= ms) i++;
-  const a = CLES[i], b = CLES[Math.min(i + 1, CLES.length - 1)];
-  const u = b.t > a.t ? doux(Math.min(1, Math.max(0, (ms - a.t) / (b.t - a.t)))) : 0;
-  const m = (k) => a[k] + (b[k] - a[k]) * u;
-  return { x: m('x'), y: m('y'), r: m('r'), s: m('s') };
-}
-function etatA(ms) { let e = ETATS[0]; for (const x of ETATS) if (x[0] <= ms) e = x; return e; }
+  { de: 24300, a: 25700, texte: 'Noël à l\'atelier&nbsp;: réglé.', x: 220, y: 940, d: true, px: 110 },
+  { de: 26100, a: 27000, texte: 'Ouf.', x: 560, y: 1010, d: true, px: 90 },
+]);
+const gros = document.getElementById('gros');
+const etiq = document.getElementById('etiq');
+const claques = [...document.querySelectorAll('[data-claque]')].map((el) => { const [t, f] = el.dataset.claque.split(','); return { el, t: +t, f: +f }; });
+
 window.placer = (ms) => {
   document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; });
-  let [, expr, pose, couleur] = etatA(ms);
-  if (CLIGNE.some(([d, f]) => ms >= d && ms < f) && expr !== 'panique') expr = 'soulage';
-  const k = expr + pose + (couleur || '');
-  if (k !== cle) { el.innerHTML = carreau({ expression: expr, pose, couleur, taille: TAILLE }); cle = k; }
-  const p = poseA(ms);
-  let r = p.r, dy = 0;
-  if (expr === 'panique' && pose === 'debout') r += Math.sin(ms / 28) * 4;            // secousse
-  if (pose === 'court') dy = -Math.abs(Math.sin(ms / 110)) * 26;                       // foulées
-  else dy = -Math.abs(Math.sin(ms / 270)) * 8;                                          // petit rebond
-  el.style.transform = `translate(${p.x}px, ${p.y + dy}px) rotate(${r}deg) scale(${p.s})`;
-  const b = BULLES.find((x) => ms >= x.de && ms < x.a);
-  if (b) {
-    if (bulle.dataset.t !== b.texte) { bulle.innerHTML = b.texte; bulle.dataset.t = b.texte; bulle.className = 'bulle' + (b.d ? ' d' : ''); bulle.style.setProperty('--px', b.px + 'px'); }
-    const u = Math.min(1, (ms - b.de) / 180);
-    Object.assign(bulle.style, { maxWidth: (b.w || 640) + 'px', display: 'block', left: b.x + 'px', top: b.y + 'px', transform: `scale(${0.6 + 0.4 * (1 - Math.pow(1 - u, 3))})`, opacity: String(Math.min(1, u * 2)) });
-  } else bulle.style.display = 'none';
+  // Règle de trois : « 1 », « 1 »… puis l'onglet « Demandes » s'ouvre et tout passe à « 2 ».
+  cpts.forEach((d, i) => {
+    const t1 = i === 0 ? T(1) : i === 1 ? T(2) : Infinity;
+    const t2 = T(4) + i * 110;
+    const rouge = ms >= t2;
+    const c = rouge ? claque(ms, t2, 0.8) : claque(ms, t1, 0.8);
+    d.textContent = rouge ? '2' : '1'; d.className = 'cpt' + (rouge ? ' r' : '');
+    d.style.opacity = ms > 5950 ? 0 : c.o; d.style.transform = `scale(${c.s})`;
+  });
+  const ouvert = ms >= T(3);
+  onglets[1].style.background = ouvert ? '#ffd6e8' : ''; onglets[1].style.fontWeight = ouvert ? '700' : '';
+  casesInes.forEach((c, i) => { const on = ms >= T(3) + i * 90; c.className = on ? 'hach' : ''; c.textContent = on ? '?' : ''; });
+  const ce = claque(ms, T(5), 0.5); etiq.style.opacity = ce.o;
+  etiq.style.transform = ms > 5950 ? chute(ms, 5950, 1) : `scale(${ce.s})`;
+  gros.style.transform = `scale(${pulse(ms, T(4), T(11), T(1), 0.07)}) translateX(${ms >= T(4) && ms < 5600 ? Math.sin(ms / 23) * 4 : 0}px)`;
+  lignes.forEach((l, i) => { l.style.transform = chute(ms, 6000 + (lignes.length - 1 - i) * 70, i % 2 ? 1 : 0.5); });
+  onglets.forEach((o, i) => { o.style.transform = envol(ms, 6050 + i * 60, i) + (i === 1 && ms >= T(3) && ms < 6050 ? ` scale(${claque(ms, T(3), 0.5).s})` : ''); });
+  document.getElementById('carre').style.transform = `scale(${ms < T(15) ? 0 : claque(ms, T(15), 0.6).s}) rotate(${ms < T(15) ? 0 : (ms - T(15)) / 40}deg)`;
+  for (const c of claques) { const q = claque(ms, c.t, c.f); c.el.style.opacity = q.o; c.el.style.transform = `scale(${q.s})`; }
+  for (const [el, t, fin] of cibles) { el.style.opacity = ms >= t && ms < fin ? 1 : 0; el.style.transform = `scale(${pulse(ms, t, fin, T(2), 0.08)})`; }
+  placerCarreau(ms);
+  placerBulle(ms);
 };
 window.placer(0);
 </script>

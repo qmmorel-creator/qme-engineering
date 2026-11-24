@@ -64,3 +64,7 @@ Lien en bio Instagram et TikTok : **à remplacer par `qm-engineering.fr/concours
 
 Participations (formulaire Netlify `concours` + commentaires), abonnés gagnés du 25/11 au 11/12, visites `/concours/`
 (GoatCounter), demandes `/contact/` venues du concours. Bilan dans `README.md` § Résultats.
+
+## Instinct
+
+Version 6 des consignes (`instagram/PROMPT-INSTINCT-v6.md`) envoyée par Quentin le 24/11/2026 à 19:01, confirmée par Instinct à 19:04 : passages Instagram de 20:00 et 20:15 ajoutés ; IG-220 part le 25/11 à 20:00 seulement si sa ligne est « Programmé » (rien ne part en « Prêt »).
