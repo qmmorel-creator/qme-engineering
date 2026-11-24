@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- IG-221 · Concours « Le pire tableur de France » · Reel de relance (clôture).
+     Instagram 05/12/2026 20:00 (+ TikTok par Instinct), YouTube YT-76 05/12 12:00. 1080 × 1920, 30 i/s, 10 s.
+     Couleur dominante : rouge (IG-13 du 05/12 19:00 : bleu ; IG-211 du 04/12 21:00 : bleu ; IG-12 du 04/12 : jaune).
+     Faits : docs/templates/communication/formats-test/concours-pire-tableur.md (clôture dimanche 06/12/2026 23:59 ;
+     lot : votre outil sur mesure, de l'ampleur d'un template QME, sans valeur en euros ; 18 ans et plus, gratuit).
+     Pas de durée restante à l'écran (elle se périmerait) : une date fixe (décision du coordinateur, 24/11/2026).
+     Rendu, depuis la racine du dépôt :
+       node docs/templates/communication/formats-test/IG-220/rendre.mjs IG-221 10 1200 concours-cloture professional-momentum.m4a
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-221</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--rouge);font-family:Outfit,sans-serif;color:var(--surface);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:40px;letter-spacing:.14em;text-transform:uppercase}
+.f{position:absolute}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes entree-g{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes tampon{0%{opacity:0;transform:scale(2.2) rotate(-6deg)}100%{opacity:1;transform:scale(1) rotate(-6deg)}}
+@keyframes bat{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+/* Page de calendrier fixe */
+.cal{position:absolute;left:190px;width:700px;background:var(--surface);color:var(--encre);border:8px solid var(--encre);box-shadow:22px 22px 0 var(--encre);text-align:center}
+.cal .haut{background:var(--encre);color:var(--surface);font-weight:800;font-size:54px;letter-spacing:.12em;padding:18px 0}
+.cal .jour{font-weight:800;font-size:250px;line-height:1;letter-spacing:-.04em;padding-top:16px}
+.cal .mois{font-weight:800;font-size:64px;letter-spacing:.06em;padding-bottom:24px}
+.heure{position:absolute;background:var(--jaune);color:var(--encre);border:7px solid var(--encre);font-weight:800;font-size:96px;padding:8px 34px;letter-spacing:-.02em;box-shadow:12px 12px 0 var(--encre)}
+.signe{position:absolute;left:84px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--surface)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--jaune);font-weight:800;font-size:56px;padding:26px 40px;box-shadow:16px 16px 0 var(--jaune);letter-spacing:-.025em;white-space:nowrap}
+.petit{position:absolute;left:84px;right:84px;font-weight:600;font-size:34px;line-height:1.3}
+</style>
+</head>
+<body>
+<!-- Scène 1 : accroche + date fixe, tout visible dès la première image -->
+<div class="s" id="s1" style="animation:sortie 250ms 3600ms">
+  <p class="x" style="top:290px;font-size:104px">Dernière ligne droite.</p>
+  <p class="x" style="top:520px;font-size:72px;color:var(--jaune)">Clôture dimanche 06/12 à&nbsp;23:59.</p>
+  <div class="cal" style="top:760px;animation:bat 500ms 1000ms,bat 500ms 2000ms"><div class="haut">DIMANCHE</div><div class="jour">06</div><div class="mois">DÉCEMBRE</div></div>
+  <div class="heure" style="left:560px;top:1300px;transform:rotate(-6deg)">23:59</div>
+  <p class="petit" style="top:1500px;font-weight:700;font-size:38px">Concours « Le pire tableur de France »</p>
+</div>
+
+<!-- Scène 2 : le lot -->
+<div class="s" id="s2" style="animation:entree-fond 280ms 3600ms,sortie 250ms 6600ms;background:var(--encre)">
+  <div class="f" style="right:-160px;top:1100px;width:520px;height:520px;border-radius:50%;background:var(--rouge);animation:pop 500ms 3800ms"></div>
+  <p class="sourcil" style="top:440px;color:var(--jaune);animation:monte 300ms 3700ms">À gagner</p>
+  <p class="x" style="top:520px;font-size:120px;color:var(--jaune);animation:monte 350ms 3900ms">Votre outil sur mesure</p>
+  <p class="x" style="top:800px;font-size:54px;font-weight:700;line-height:1.2;animation:monte 350ms 4500ms">de l'ampleur d'un template QME,<br>construit pour votre besoin.</p>
+</div>
+
+<!-- Scène 3 : appel -->
+<div class="s" id="s3" style="animation:entree-g 280ms 6600ms;background:var(--rouge)">
+  <p class="x" style="top:330px;font-size:96px">Montrez votre pire tableur.</p>
+  <p class="x" style="top:580px;font-size:120px"><span style="background:var(--encre);color:var(--jaune);padding:0 18px;white-space:nowrap">Lien en bio.</span></p>
+  <div class="bouton" style="top:820px;animation:pop 300ms 7100ms">qm-engineering.fr/concours</div>
+  <p class="petit" style="top:1050px;font-weight:700;font-size:40px;animation:monte 300ms 7500ms">Clôture dimanche 06/12, 23:59</p>
+  <p class="petit" style="top:1110px;font-weight:700;font-size:40px;animation:monte 300ms 7600ms">18 ans et plus · gratuit</p>
+  <p class="petit" style="top:1180px;animation:monte 300ms 7700ms">Règlement sur qm-engineering.fr/concours</p>
+  <div class="signe" style="top:1400px;animation:monte 300ms 7900ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#F5B400"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+</div>
+<script>
+// Contrôle : le 06/12/2026 est bien un dimanche.
+if (new Date(2026, 11, 6).getDay() !== 0) throw new Error('Le 06/12/2026 n\'est pas un dimanche');
+window.placer = (ms) => { document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }); };
+window.placer(0);
+</script>
+</body>
+</html>
