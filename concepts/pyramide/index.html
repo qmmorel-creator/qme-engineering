@@ -49,10 +49,12 @@ h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
 .kpis div{padding:10px 12px;color:var(--muted);font-size:12.5px}.kpis b{display:block;font-size:22px;color:var(--ink)}
 .kpis div:nth-child(2) b{color:#a16f00}.kpis div:nth-child(3) b{color:var(--red)}
-.tab{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:560px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.parc{list-style:none;margin:0;padding:0}
+.parc li{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,2fr) auto;gap:6px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.parc li:last-child{border-bottom:0}
+.parc .p1 b{display:block;line-height:1.25}.parc .p1 small{color:var(--muted)}
+.parc .p2{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:4px 10px;margin:0}
+.parc dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.parc dd{margin:0;font-weight:600;font-size:13.5px;overflow-wrap:anywhere}
 .st{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
 .st.ok{background:#e3f3e9;color:var(--ok)}.st.al{background:#fff1cc;color:#7a5500}.st.re{background:#fde3e1;color:#a3201b}.st.ma{background:#e6ecf7;color:var(--blue)}
 .fiche{padding:16px 18px}.fiche h4{margin:0 0 12px;font-size:16px}
@@ -88,7 +90,7 @@ h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);marg
 .fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
 @media (max-width:860px){.trio,.mods{grid-template-columns:1fr 1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:20px}.sec:nth-of-type(even) .txt{order:0}.flux{grid-template-columns:1fr}.coeur{max-width:none}}
-@media (max-width:560px){.trio,.mods{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr}.plan li{grid-template-columns:70px 1fr}.plan em{grid-column:2}.fin{padding:24px 18px}}
+@media (max-width:560px){.parc li{grid-template-columns:minmax(0,1fr) auto}.parc .p2{grid-column:1/-1;grid-row:2}.kpis div{padding:8px}.kpis b{font-size:19px}.trio,.mods{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr}.plan li{grid-template-columns:70px 1fr}.plan em{grid-column:2}.fin{padding:24px 18px}}
 </style>
 </head>
 <body>
@@ -114,8 +116,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);f
   </div>
   <section class="sec"><div class="txt"><p class="num">01 · Pilotage</p><h2>Tout le parc, mur par mur</h2><p>Ce qui est à jour, ce qui arrive à échéance, ce qui est en retard, client par client.</p><ul><li>Le parc complet en une liste, filtrable par client, secteur ou modèle</li><li>Les échéances des 30, 60 et 90 prochains jours</li><li>Chaque matin, la liste de ce qui est à traiter</li></ul></div><div><div class="fen"><div class="barre"><i></i><i></i><i></i><span>Murs installés · tous clients</span></div>
       <div class="kpis"><div><b>2</b>à jour</div><div><b>1</b>bientôt</div><div><b>1</b>en retard</div><div><b>1</b>à compléter</div></div>
-      <div class="tab" role="region" aria-label="Murs installés · tous clients" tabindex="0"><table><thead><tr><th>Établissement</th><th>Structure</th><th>EPI suivis</th><th>Contrôle principal</th><th>Anomalies</th><th>Statut</th></tr></thead>
-      <tbody><tr><td>Collège des Tilleuls</td><td>Mur à cordes, 9 m</td><td>24</td><td>09/2026</td><td>0</td><td><span class="st ok">À jour</span></td></tr><tr><td>Gymnase de Valbrune</td><td>Mur à cordes, 12 m</td><td>40</td><td>10/2025</td><td>3</td><td><span class="st re">En retard</span></td></tr><tr><td>École du Bourg</td><td>Bloc enfants</td><td>0</td><td>05/2026</td><td>1</td><td><span class="st al">Bientôt</span></td></tr><tr><td>Lycée du Plateau</td><td>Mur à cordes, 10 m</td><td>32</td><td>03/2026</td><td>0</td><td><span class="st ok">À jour</span></td></tr><tr><td>Centre de rééducation</td><td>Mur adapté</td><td>12</td><td>—</td><td>0</td><td><span class="st ma">À compléter</span></td></tr></tbody></table></div></div></div></section>
+      <ul class="parc"><li><div class="p1"><b>Collège des Tilleuls</b><small>Mur à cordes, 9 m</small></div><dl class="p2"><div><dt>EPI suivis</dt><dd>24</dd></div><div><dt>Contrôle principal</dt><dd>09/2026</dd></div><div><dt>Anomalies</dt><dd>0</dd></div></dl><div class="p3" title="Statut"><span class="st ok">À jour</span></div></li><li><div class="p1"><b>Gymnase de Valbrune</b><small>Mur à cordes, 12 m</small></div><dl class="p2"><div><dt>EPI suivis</dt><dd>40</dd></div><div><dt>Contrôle principal</dt><dd>10/2025</dd></div><div><dt>Anomalies</dt><dd>3</dd></div></dl><div class="p3" title="Statut"><span class="st re">En retard</span></div></li><li><div class="p1"><b>École du Bourg</b><small>Bloc enfants</small></div><dl class="p2"><div><dt>EPI suivis</dt><dd>0</dd></div><div><dt>Contrôle principal</dt><dd>05/2026</dd></div><div><dt>Anomalies</dt><dd>1</dd></div></dl><div class="p3" title="Statut"><span class="st al">Bientôt</span></div></li><li><div class="p1"><b>Lycée du Plateau</b><small>Mur à cordes, 10 m</small></div><dl class="p2"><div><dt>EPI suivis</dt><dd>32</dd></div><div><dt>Contrôle principal</dt><dd>03/2026</dd></div><div><dt>Anomalies</dt><dd>0</dd></div></dl><div class="p3" title="Statut"><span class="st ok">À jour</span></div></li><li><div class="p1"><b>Centre de rééducation</b><small>Mur adapté</small></div><dl class="p2"><div><dt>EPI suivis</dt><dd>12</dd></div><div><dt>Contrôle principal</dt><dd>—</dd></div><div><dt>Anomalies</dt><dd>0</dd></div></dl><div class="p3" title="Statut"><span class="st ma">À compléter</span></div></li></ul></div></div></section>
   <section class="sec"><div class="txt"><p class="num">02 · Fiche de vie</p><h2>Chaque mur a son histoire</h2><p>Pose, contrôles, réparations, documents : tout est dans la fiche, daté, avec sa source et ses photos.</p><ul><li>Répondre en quelques secondes à « où en est cet équipement ? »</li><li>Les rapports et les notices au même endroit</li><li>Un historique qui tient face à un contrôle ou à un litige</li></ul></div><div><div class="fen"><div class="barre"><i></i><i></i><i></i><span>SAE-2022-0087</span></div>
       <div class="fiche"><h4>Mur à cordes, 12 m · Gymnase de Valbrune</h4><dl><div><dt>Couloirs</dt><dd>8, dont 2 en moulinette automatique</dd></div><div><dt>Pose</dt><dd>septembre 2022</dd></div><div><dt>EPI suivis</dt><dd>40 (cordes, baudriers, systèmes d'assurage)</dd></div><div><dt>Plaque</dt><dd>QR code au pied du mur</dd></div></dl>
       <ol class="hist"><li><time>21/11/2026</time>Routine : prise desserrée couloir 4, retirée</li><li><time>03/10/2026</time>Opérationnel : 2 cordes à réformer</li><li><time>15/10/2025</time>Contrôle principal conforme, rapport joint</li><li><time>12/09/2022</time>Pose et réception</li></ol></div></div></div></section>

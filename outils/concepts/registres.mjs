@@ -16,8 +16,11 @@ function page(slug, d) {
   const lien = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Concept ${d.nom} · échange de 30 minutes`)}`;
   const parc = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.parc.titre)}</span></div>
       <div class="kpis"><div><b>${d.parc.lignes.filter((l) => l.includes('ok')).length}</b>à jour</div><div><b>${d.parc.lignes.filter((l) => l.includes('alerte')).length}</b>bientôt</div><div><b>${d.parc.lignes.filter((l) => l.includes('retard')).length}</b>en retard</div><div><b>${d.parc.lignes.filter((l) => l.includes('manque')).length}</b>à compléter</div></div>
-      <div class="tab" role="region" aria-label="${esc(d.parc.titre)}" tabindex="0"><table><thead><tr>${d.parc.colonnes.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead>
-      <tbody>${d.parc.lignes.map((l) => `<tr>${l.map((v) => `<td>${cellule(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+      <ul class="parc">${d.parc.lignes.map((l) => {
+        const c = d.parc.colonnes, n = l.length - 1;
+        const milieu = l.slice(2, n).map((v, i) => `<div><dt>${esc(c[i + 2])}</dt><dd>${cellule(v)}</dd></div>`).join('');
+        return `<li><div class="p1"><b>${esc(l[0])}</b><small>${esc(l[1])}</small></div><dl class="p2">${milieu}</dl><div class="p3" title="${esc(c[n])}">${cellule(l[n])}</div></li>`;
+      }).join('')}</ul></div>`;
   const fiche = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.fiche.id)}</span></div>
       <div class="fiche"><h4>${esc(d.fiche.titre)}</h4><dl>${d.fiche.infos.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
       <ol class="hist">${d.fiche.historique.map(([dt, t]) => `<li><time>${esc(dt)}</time>${esc(t)}</li>`).join('')}</ol></div></div>`;
@@ -85,10 +88,12 @@ h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
 .kpis div{padding:10px 12px;color:var(--muted);font-size:12.5px}.kpis b{display:block;font-size:22px;color:var(--ink)}
 .kpis div:nth-child(2) b{color:#a16f00}.kpis div:nth-child(3) b{color:var(--red)}
-.tab{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:560px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.parc{list-style:none;margin:0;padding:0}
+.parc li{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,2fr) auto;gap:6px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.parc li:last-child{border-bottom:0}
+.parc .p1 b{display:block;line-height:1.25}.parc .p1 small{color:var(--muted)}
+.parc .p2{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:4px 10px;margin:0}
+.parc dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.parc dd{margin:0;font-weight:600;font-size:13.5px;overflow-wrap:anywhere}
 .st{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
 .st.ok{background:#e3f3e9;color:var(--ok)}.st.al{background:#fff1cc;color:#7a5500}.st.re{background:#fde3e1;color:#a3201b}.st.ma{background:#e6ecf7;color:var(--blue)}
 .fiche{padding:16px 18px}.fiche h4{margin:0 0 12px;font-size:16px}
@@ -124,7 +129,7 @@ h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);marg
 .fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
 @media (max-width:860px){.trio,.mods{grid-template-columns:1fr 1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:20px}.sec:nth-of-type(even) .txt{order:0}.flux{grid-template-columns:1fr}.coeur{max-width:none}}
-@media (max-width:560px){.trio,.mods{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr}.plan li{grid-template-columns:70px 1fr}.plan em{grid-column:2}.fin{padding:24px 18px}}
+@media (max-width:560px){.parc li{grid-template-columns:minmax(0,1fr) auto}.parc .p2{grid-column:1/-1;grid-row:2}.kpis div{padding:8px}.kpis b{font-size:19px}.trio,.mods{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr}.plan li{grid-template-columns:70px 1fr}.plan em{grid-column:2}.fin{padding:24px 18px}}
 </style>
 </head>
 <body>
