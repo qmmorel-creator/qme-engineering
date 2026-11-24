@@ -97,7 +97,7 @@ export const PRODUITS = {
   RDE: { nom: 'Registre du DOE', url: '/templates/doe/', gumroad: 'rusN6tG2fwT6JE_JZMEZIA==' },
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/', gumroad: '6skYhUNcKgwFwua1a56TVw==' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/', gumroad: 'iOZ0cB8ONCrvvkxMdbL7BQ==' },
-  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/' },
+  GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/', gumroad: 'NgehMPonwFhDQl_wIgF8XA==' },
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },

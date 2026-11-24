@@ -36,6 +36,7 @@ test('lien de connexion : e-mail envoyé, usage unique, 15 minutes, compte cré�
   const [m] = w.mails;
   assert.equal(m.a, 'lea@exemple.fr');
   assert.match(m.objet, /^Votre code de connexion QME : \d{6}$/);
+  assert.equal(m.copieCachee, false, 'code de connexion : jamais en copie cachée');
   assert.ok(m.texte.includes('https://qm-engineering.fr/connexion/?lien=') && m.texte.includes('15 minutes'));
   const lien = lienDe(m);
   assert.equal(await w.store.get(cleCompte(SECRET, 'lea@exemple.fr')), null, 'aucun compte avant le clic');

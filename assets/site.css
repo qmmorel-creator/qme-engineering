@@ -719,3 +719,11 @@ body[data-partie] .tuile,body[data-partie] .outil>a{border-top-color:var(--accen
 .groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before,.groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px}
 .groupe-tuiles[data-groupe="pro"]>h3::before,.groupe-packs[data-groupe="pro"]>.titre-groupe::before{background:var(--bleu)}
 .groupe-tuiles[data-groupe="perso"]>h3::before,.groupe-packs[data-groupe="perso"]>.titre-groupe::before{background:var(--jaune)}
+
+/* Contact (23/11/2026) : 4 vignettes de références sous le texte, lien vers les références */
+.contact-refs{display:flex;flex-direction:column;gap:8px;margin-top:28px;padding:14px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--encre);text-decoration:none;transition:background-color .15s}
+.contact-refs:hover{background:#fff}
+.contact-refs-titre{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ciel-texte)}
+.contact-refs .bande{margin-top:0}
+.contact-refs .fleche{font-weight:700;font-size:15px;border-bottom:3px solid currentColor;align-self:flex-start;padding-bottom:1px}
+@media (prefers-reduced-motion:reduce){.contact-refs{transition:none}}

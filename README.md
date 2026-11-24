@@ -45,7 +45,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
     quelles sans JS. En bas, un bandeau compact vers les packs (généré par `outils/packs/generer.mjs` ; la carte des
     prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de template » en tête du catalogue, relié au
     formulaire Netlify `idee` ;
-  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
+  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact` ; depuis le 23/11/2026, 4 vignettes
+    de références sous le texte, lien vers `/sur-mesure/#references`, idem `en/contact/`). Les anciennes ancres
     (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
@@ -60,7 +61,7 @@ Site promotionnel de Quentin Morel Engineering (QME).
   logique `netlify/lib/essais.mjs`), code d'essai daté et signé accepté par `/api/templates/*` ; module commun
   `assets/essai.js` dans chaque application (bandeau, lecture seule, achat) ; e-mails (merci, prise en main J+2
   propre à chaque template, J-3, fin, avant effacement ; remerciement à l'achat via le ping Gumroad
-  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis la boîte de Quentin par SMTP (variables `ESSAI_SMTP_*`), tâche quotidienne
+  `/api/achat`, qui arrête la séquence dès le paiement) envoyés depuis `quentin.morel@qm-engineering.fr` par le SMTP d'OVH (variables `ESSAI_SMTP_*`, cf. `docs/templates/communication/DELIVRABILITE.md`), tâche quotidienne
   `essais-quotidien.mjs`. Détail, configuration et tests : `docs/templates/essai-gratuit.md`.
 - Espace acheteurs `/connexion/` (refait le 22/11/2026) : dès qu'un template est enregistré sur l'appareil, la page
   devient « Mes templates » : épinglés (étoile), récemment ouverts depuis la page, puis regroupement par thème du
@@ -231,6 +232,9 @@ Liste des idées : `docs/templates/IDEES.md`. Méthode de développement : skill
   reliés depuis le pied de page et les pages catalogue concernées ; styles `assets/guides.css`, calculateur et
   impression de la check-list `assets/guides.js` (le calculateur charge `templates/budget-commun/regles.js`). Suivi et
   règles de rédaction : `docs/seo/guides.md` ; tests `outils/templates/guides.test.mjs`.
+  Depuis le 24/11/2026, l'index présente une carte par guide avec la vignette du template lié (adresse tenue à jour par
+  les scripts de vignettes, `PAGES_REPRISE`) et les tons de sa partie (`data-partie` sur le `<li>`) ; chaque page de
+  guide porte `<body data-partie="pro|perso">`. À l'ajout d'un guide : carte, vignette et partie à reprendre.
 - `/connexion/` : espace acheteurs. Accepte une clé de licence Gumroad ou un code `REV-…`, l'enregistre
   pour le template concerné et l'ouvre ; liste les templates déjà ouverts sur l'appareil.
 - `/pro/` et `/perso/` (22/11/2026, `docs/templates/RATIONALISATION.md`) : le catalogue filtré sur une partie (pros ou

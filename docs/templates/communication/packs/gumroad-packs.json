@@ -366,6 +366,35 @@
     ]
   },
   {
+    "code": "PFA",
+    "slug": "famille",
+    "nom": "Pack Maison et famille",
+    "permalien": "pack-famille",
+    "prix_cents": 6700,
+    "versions": [
+      {
+        "nom": "Pack",
+        "prix_cents": 6700
+      },
+      {
+        "nom": "Pack évolutif",
+        "prix_cents": 8400
+      }
+    ],
+    "resume": "La maison qui tourne, sans tout garder en tête.",
+    "description_html": "<p><strong>La maison qui tourne, sans tout garder en tête.</strong></p>\n<p>Budget, entretien de la maison, repas, placards et animal : la logistique familiale au même endroit.</p>\n<p><strong>Pour qui ?</strong> Vous êtes parents. Entre le budget du mois, les menus, ce qui reste au frigo, les rendez-vous du petit et le vaccin du chien, la charge mentale déborde. Ce pack la sort de votre tête.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Entretien de la maison</strong> : Chaudière, ramonage, VMC : échéances calculées. (12 € seul)</li><li><strong>Repas de la semaine et liste de courses</strong> : Menus de la semaine, liste de courses par rayon à cocher. (13 € seul)</li><li><strong>Garde-manger et dates de péremption</strong> : DLC et DDM, à consommer en priorité, gaspillage suivi. (12 € seul)</li><li><strong>Suivi du bébé</strong> : Tétées, sommeil, couches, à deux parents, d’une main. (13 € seul)</li><li><strong>Suivi d'un animal de compagnie</strong> : Soins aux dates du vétérinaire, poids, visites, frais par an. (12 € seul)</li><li><strong>Calendrier du potager</strong> : Vos semis à leur date, la rotation de vos planches suivie. (13 € seul)</li></ul>\n<p>90 € à l’achat séparé, 67 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (67 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (84 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "3/7",
+    "templates_a_mettre_en_vente": [
+      "Entretien de la maison",
+      "Suivi du bébé",
+      "Suivi d'un animal de compagnie",
+      "Calendrier du potager"
+    ]
+  },
+  {
     "code": "PPB",
     "slug": "proprietaire",
     "nom": "Pack Propriétaire",
@@ -422,36 +451,6 @@
       "Gestion de classe",
       "Emploi du temps d'établissement",
       "Gestion d'auto-école"
-    ]
-  },
-  {
-    "code": "PFA",
-    "slug": "famille",
-    "nom": "Pack Maison et famille",
-    "permalien": "pack-famille",
-    "prix_cents": 6700,
-    "versions": [
-      {
-        "nom": "Pack",
-        "prix_cents": 6700
-      },
-      {
-        "nom": "Pack évolutif",
-        "prix_cents": 8400
-      }
-    ],
-    "resume": "La maison qui tourne, sans tout garder en tête.",
-    "description_html": "<p><strong>La maison qui tourne, sans tout garder en tête.</strong></p>\n<p>Budget, entretien de la maison, repas, placards et animal : la logistique familiale au même endroit.</p>\n<p><strong>Pour qui ?</strong> Vous êtes parents. Entre le budget du mois, les menus, ce qui reste au frigo, les rendez-vous du petit et le vaccin du chien, la charge mentale déborde. Ce pack la sort de votre tête.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Entretien de la maison</strong> : Chaudière, ramonage, VMC : échéances calculées. (12 € seul)</li><li><strong>Repas de la semaine et liste de courses</strong> : Menus de la semaine, liste de courses par rayon à cocher. (13 € seul)</li><li><strong>Garde-manger et dates de péremption</strong> : DLC et DDM, à consommer en priorité, gaspillage suivi. (12 € seul)</li><li><strong>Suivi du bébé</strong> : Tétées, sommeil, couches, à deux parents, d’une main. (13 € seul)</li><li><strong>Suivi d'un animal de compagnie</strong> : Soins aux dates du vétérinaire, poids, visites, frais par an. (12 € seul)</li><li><strong>Calendrier du potager</strong> : Vos semis à leur date, la rotation de vos planches suivie. (13 € seul)</li></ul>\n<p>90 € à l’achat séparé, 67 € en pack (−25 %).</p>\n<p><strong>Deux versions :</strong> « Pack » (67 €) ouvre les templates présents le jour de l’achat ; « Pack évolutif » (84 €) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "2/7",
-    "templates_a_mettre_en_vente": [
-      "Entretien de la maison",
-      "Garde-manger et dates de péremption",
-      "Suivi du bébé",
-      "Suivi d'un animal de compagnie",
-      "Calendrier du potager"
     ]
   }
 ]

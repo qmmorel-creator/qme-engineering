@@ -4,7 +4,7 @@
 // s'ouvre avec ce code. À la fin : lecture seule 30 jours, puis effacement. À l'achat, la clé Gumroad saisie
 // dans l'application reprend les données de l'essai (templates-acces.mjs, reporterEssai).
 //
-// E-mails envoyés depuis la boîte de Quentin (SMTP authentifié, voir netlify/functions/essai.mjs) :
+// E-mails envoyés depuis quentin.morel@qm-engineering.fr (SMTP OVH, voir netlify/lib/mail.mjs) :
 //  - merci : tout de suite, avec le code ;
 //  - prise-en-main : 2 jours après le début (jusqu'à J+5 en rattrapage), personnalisé par template
 //    (essais-prise-en-main.mjs) ;
@@ -19,7 +19,7 @@
 //  ip/<hmac ip>/<jour>             → { n }    (limite de créations par jour et par adresse IP)
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { statEssai } from './templates-acces.mjs';
-import { PRODUITS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
+import { PRODUITS, PACKS, ESSAI, genererCodeEssai, verifierCodeEssai, etatEssai, jourParis, decalerJour, cleDonneesEssai, cleEmail } from './templates-acces.mjs';
 import { TEMPLATES, publics } from '../../outils/packs/donnees.mjs';
 import { estAdmin } from './interets.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
@@ -101,6 +101,18 @@ async function lireEssais(essais, aujourdhui) {
   const vues = [];
   for (const cle of await essais.lister('essai/')) { const r = await essais.get(cle); if (r) vues.push(vueEssai(r, aujourdhui)); }
   return vues.sort((a, b) => String(b.cree).localeCompare(String(a.cree)));
+}
+
+// Accompagnements après achat (achats.mjs, 24/11/2026) : prévus et envoyés depuis moins de 30 jours, pour /admin/suivi/.
+async function lireAccompagnements(essais) {
+  const liste = [];
+  for (const cle of await essais.lister('suivi-achat/')) {
+    const s = await essais.get(cle);
+    if (!s) continue;
+    const nom = (s.type === 'pack' ? PACKS[s.code] : PRODUITS[s.code])?.nom || s.code;
+    liste.push({ email: s.email, prenom: s.prenom || '', type: s.type, produit: nom, achat: s.achat, du: s.du, envoye: s.envoye || null, objet: s.objet || null });
+  }
+  return liste.sort((a, b) => String(b.achat).localeCompare(String(a.achat)));
 }
 
 async function lireContacts(essais) {
@@ -305,7 +317,8 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
         'content-disposition': `attachment; filename="essais-qme-${new Date(maintenant()).toISOString().slice(0, 10)}.csv"` } });
     }
     const compte = (s) => vues.filter((v) => v.statut === s).length;
-    return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues });
+    return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues,
+      accompagnements: await lireAccompagnements(essais) });
   }
 
   if (chemin === '/contacts') {
@@ -382,7 +395,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   try { if (await envoyerMail('merci', reg, { secret, envoyer })) reg.mails.merci = date.toISOString(); } catch (x) { console.error('E-mail de remerciement impossible', x); }
   // Notification à Quentin : un échec n'empêche jamais l'essai.
   if (envoyer && notifier) {
-    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte }); } catch (x) { console.error('Notification d\'essai impossible', x); }
+    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte, copieCachee: false }); } catch (x) { console.error('Notification d\'essai impossible', x); }
   }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });

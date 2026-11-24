@@ -14,6 +14,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
   `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
 
+## Copie cachée des e-mails automatiques (décision du 24/11/2026)
+
+- **Toute séquence d'e-mails envoyée automatiquement par le site via OVH** (essai, achat, accompagnement après achat,
+  toute séquence future) met Quentin en copie cachée sur son adresse pro (`quentin.morel@qm-engineering.fr`) : c'est le
+  comportement par défaut de `netlify/lib/mail.mjs`. Seules exceptions (`copieCachee: false`) : codes et liens de
+  connexion, notifications adressées à Quentin, annonces en nombre. Où voir ces envois :
+  `docs/templates/communication/DELIVRABILITE.md`.
+
 ## Prospection : mention d'opposition (règle absolue)
 
 - **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
@@ -21,6 +29,15 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   terminer **toujours** par la mention « Ne plus recevoir les informations » avec le lien
   `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse>` (ou « répondez stop »). Une réponse « stop » ou
   hostile est inscrite le jour même sur la liste d'opposition. Sans exception : `docs/templates/communication/REGLES-PROSPECTION.md`.
+- **Signature graphique obligatoire dans tout e-mail de prospection** (décision du 23/11/2026) : sur mesure, affiliation
+  avec un influenceur ou une agence d'influenceurs, partenariat, relance, réponse à un prospect. Un brouillon ou un envoi
+  sans la signature « Bandeau » (version HTML) ne part pas. Procédure : `docs/templates/communication/signature/README.md`.
+
+## Suivi des prospects sérieux et tièdes (décision du 23/11/2026)
+
+- **Source unique** : `docs/prospection/suivi-prospects.md`. À lire avant toute relance, devis, réponse ou nouveau mail à
+  un prospect ; à mettre à jour le jour même par la session qui traite un échange (étape, dernier message, balle).
+  Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans tous les fils Gmail.
 
 ## Templates
 
