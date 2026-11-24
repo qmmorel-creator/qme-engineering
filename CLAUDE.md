@@ -115,6 +115,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Affiliation
 
+- **Référent unique : la session « [MASTER] Suivi Influenceurs »** (`session_0183EW53pHmtjN8ttBAEgiRL`, décision de
+  Quentin du 24/11/2026). Tout ce qui concerne les influenceurs, créateurs et agences d'influenceurs pour l'affiliation
+  (vagues 1 et 2, réponses, brouillons, relances, commissions, démos personnalisées, fiches créateurs de Nexora Optim ›
+  QME › Affiliation, y compris Laurine / Optimind et Odélia / Yuzu) est traité par cette session. Les autres sessions
+  n'y écrivent, n'y envoient et n'y modifient rien : elles renvoient Quentin vers elle ou lui transmettent l'élément
+  (`send_message`), sans rien transférer ni supprimer d'autre sans l'accord de Quentin. Routine :
+  `docs/templates/communication/affiliation-routine-nexora.md`.
 - **Retour d'un influenceur intéressé** : skill `.claude/skills/retour-affiliation/` (analyse de la niche, démo
   personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
   puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
