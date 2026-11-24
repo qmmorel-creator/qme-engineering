@@ -9,14 +9,14 @@ reçoit son outil sur mesure. Source de vérité pour la page `/concours/`, le r
 | Élément | Valeur | Statut |
 |---|---|---|
 | Nom | Le pire tableur de France | proposé |
-| Organisateur | Quentin Morel, QME · Quentin Morel Engineering, quentin.morel@qm-engineering.fr | adresse postale ou SIRET à ajouter par Quentin s'il le souhaite |
-| Participation | du **mercredi 25/11/2026 20:00** au **dimanche 06/12/2026 23:59** (heure de Paris) | proposé |
+| Organisateur | Quentin Morel, QME · Quentin Morel Engineering, quentin.morel@qm-engineering.fr | sans adresse ni SIRET (décision de Quentin du 24/11/2026) |
+| Participation | du **mercredi 25/11/2026 20:00** au **dimanche 06/12/2026 23:59** (heure de Paris) | **validé** : lancement le 25/11, fusion de `/concours/` le 25/11 au matin (feu vert de Quentin du 24/11/2026) |
 | Conditions | gratuit, sans obligation d'achat ni d'abonnement ; 18 ans et plus ; résidant en France ; une participation par personne | proposé |
 | Deux façons de participer | 1) **en commentaire** sous la publication de lancement (Instagram ou TikTok) : décrire son pire tableur en une phrase ; 2) **sur `qm-engineering.fr/concours/`** : description + capture (facultative, données personnelles masquées) + e-mail | proposé |
 | Sélection | Quentin choisit **3 finalistes** (critères : temps perdu, risque d'erreur, potentiel d'amélioration) ; finalistes prévenus par message, accord écrit demandé avant toute mise en avant | proposé |
 | Vote | publication des finalistes **mardi 08/12 20:00** (tableurs recréés en version fictive, jamais les vrais) ; vote en commentaire (« A », « B » ou « C », un vote par compte, Instagram et TikTok additionnés) jusqu'au **jeudi 10/12 23:59** ; comptes suspects (faux comptes, votes achetés) écartés | proposé |
 | Résultat | **vendredi 11/12 19:00** | proposé |
-| Lot du gagnant | **un outil sur mesure** construit pour son besoin, **valeur commerciale 1 500 € TTC maximum** (périmètre fixé ensemble, livré au plus tard le 31/03/2027) ; non échangeable contre de l'argent | **valeur à confirmer par Quentin** |
+| Lot du gagnant | **un outil sur mesure** construit pour son besoin, d'une **ampleur équivalente au template Gestionnaire de tâches QME** (taille M : une application web sur téléphone et ordinateur, données synchronisées, jusqu'à 5 écrans, adaptée à son besoin) ; périmètre fixé ensemble, livré au plus tard le 31/03/2027 ; non échangeable contre de l'argent ni contre un autre lot | **validé par Quentin le 24/11/2026** (pas de valeur en euros affichée) |
 | Lot des 2 autres finalistes | un template QME au choix (code d'accès offert, inscrit dans `docs/templates/codes-gratuits.md`) | proposé |
 | Plateformes | « Ce concours n'est ni organisé, ni parrainé, ni géré par Instagram, Meta ou TikTok. » | obligatoire |
 | Données | Netlify Forms (hébergeur) ; finalité : gérer le concours et contacter les finalistes ; conservées jusqu'au 31/03/2027 puis supprimées (gagnant : durée du projet) ; jamais de publication d'une capture réelle ; droits : quentin.morel@qm-engineering.fr | proposé |
@@ -50,12 +50,15 @@ Lien en bio Instagram et TikTok : **à remplacer par `qm-engineering.fr/concours
 ## Boost (fait par Quentin dans les applications)
 
 - Une seule publication boostée : **le Reel de lancement IG-220**, dès sa mise en ligne.
-- Instagram : 40 € sur 5 jours (8 €/jour), objectif « plus de visites du profil » ou « interactions », France, 22–55 ans,
-  centres d'intérêt : entrepreneuriat, travailleur indépendant, petites entreprises, gestion de projet, tableur.
-- TikTok (Promouvoir) : 40 € sur 5 jours, objectif « plus de visites du profil », France, 18+.
+- **Budget validé par Quentin le 24/11/2026 : 10 € sur Instagram, 10 € sur TikTok.**
+- Instagram : 10 € sur 3 jours, objectif « plus de visites du profil », France, 22–55 ans, centres d'intérêt :
+  entrepreneuriat, travailleur indépendant, petites entreprises, gestion de projet.
+- TikTok (Promouvoir) : 10 € sur 3 jours, objectif « plus de visites du profil », France, 18+.
+- À ce budget, la portée achetée reste modeste : on compare le coût par participation entre les deux réseaux pour
+  savoir où mettre le budget de la prochaine campagne.
 - Pas de boost des publications de vote (sinon le vote favorise la portée payée).
 - Mesure : coût par participation (formulaire + commentaires), coût par abonné ; arrêter un boost qui dépasse 5 € par
-  participation après 48 h.
+  participation après 48 h (avec 10 €, ça veut dire au moins 2 participations attribuables).
 
 ## Mesure
 
