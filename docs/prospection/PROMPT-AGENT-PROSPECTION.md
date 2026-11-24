@@ -189,6 +189,8 @@ Gmail. Commit sur `claude/agent-prospection`, push, PR vers `main` **non fusionn
   qu'elle devrait être désactivée est signalée, pas désactivée.
 - Écrire à une adresse ou un domaine opposé ; écrire sans signature « Bandeau » ou sans mention d'opposition.
 - Modifier les archives (`suivi-prospects.md`, `journal-refus.md`, Sheet de l'affiliation, Pipeline claude.ai).
+- Créer ou garder une fiche prospect sans adresse e-mail (étape `pas-de-mail`) : une fiche de ce type trouvée dans Nexora
+  est signalée dans le compte rendu (décision de Quentin du 24/11/2026).
 - Agir sur l'affiliation (créateurs, agences, pilotage, file d'envoi) ou sur les tâches planifiées de la session
   [MASTER] Suivi Influenceurs : renvoi seulement (§ 1 bis).
 - Mentionner Claude, Anthropic ou un lien claude.ai dans ce qui est destiné à un prospect ; utiliser des données de la
