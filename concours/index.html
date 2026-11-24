@@ -75,6 +75,55 @@
 .cc-regle .corps p{margin:0 0 10px}
 .cc-regle .corps ul{margin:0 0 10px;padding-left:22px}
 .cc-regle .vigueur{margin-top:18px;font-weight:600}
+/* --- Ludique : tableur maudit, cauchemaromètre, galerie --- */
+.cc-sticker{display:inline-block;margin:0 0 18px;padding:8px 14px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:15px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--encre);box-shadow:4px 4px 0 var(--encre);transform:rotate(-2.5deg)}
+.cc-hero h1 em{font-style:normal;background:var(--rouge);color:#fff;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cc-droite{display:grid;gap:16px}
+.cc-maudit{border:2px solid var(--encre);border-radius:14px;background:#fff;box-shadow:6px 6px 0 var(--encre);overflow:hidden;transform:rotate(1.2deg)}
+.cc-maudit .barre{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--encre);color:var(--papier);font:600 12.5px/1.2 Outfit,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-maudit .barre i{width:9px;height:9px;border-radius:50%;background:var(--rouge);flex:none}
+.cc-maudit .barre i+i{background:var(--jaune)}.cc-maudit .barre i+i+i{background:#7DB37A}
+.cc-grille{display:grid;grid-template-columns:26px repeat(5,1fr);font:500 12.5px/1 Outfit,sans-serif}
+.cc-grille span{border-right:1px solid #D9D2C4;border-bottom:1px solid #D9D2C4;padding:7px 5px;min-height:28px;white-space:nowrap;overflow:hidden;text-overflow:clip;color:var(--encre)}
+.cc-grille .t{background:#EEE9DF;color:#7a7266;text-align:center;font-weight:600}
+.cc-grille .err{color:#B00020;font-weight:800;background:#FFE3E0;animation:cc-secousse .35s}
+@keyframes cc-secousse{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.cc-onglets{display:flex;gap:4px;padding:6px;background:#EEE9DF;overflow:hidden;font:500 11.5px/1 Outfit,sans-serif;white-space:nowrap}
+.cc-onglets span{padding:5px 8px;background:#fff;border:1px solid #D9D2C4;border-radius:6px 6px 0 0}
+.cc-onglets span.rouge{background:var(--rouge);color:#fff;border-color:var(--rouge)}
+.cc-maudit .fictif{display:block;padding:5px 10px 7px;font-size:12px;color:var(--texte-2);background:#EEE9DF}
+.cc-metre{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.cc-symptomes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc-symptomes label{display:flex;gap:10px;align-items:flex-start;height:100%;padding:14px;border:2px solid var(--trait);border-radius:16px;background:var(--surface);cursor:pointer;font-size:16px;line-height:1.35;transition:transform .15s,border-color .15s,background .15s}
+.cc-symptomes input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--rouge)}
+.cc-symptomes label:has(input:checked){border-color:var(--encre);background:var(--rose);transform:rotate(-.6deg)}
+.cc-symptomes label:has(input:focus-visible){outline:3px solid var(--bleu);outline-offset:2px}
+.cc-verdict{position:sticky;top:96px;border:2px solid var(--encre);border-radius:22px;padding:24px;background:var(--surface);box-shadow:6px 6px 0 var(--encre)}
+.cc-jauge{height:22px;border:2px solid var(--encre);border-radius:999px;background:var(--sable);overflow:hidden;margin:14px 0 6px}
+.cc-jauge b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--jaune),var(--rouge));transition:width .4s cubic-bezier(.2,.8,.2,1)}
+.cc-score{font-size:clamp(44px,6vw,64px);font-weight:800;line-height:1}
+.cc-score small{font-size:20px;color:var(--texte-2);font-weight:600}
+.cc-verdict h3{font-size:24px;margin:10px 0 6px}
+.cc-verdict p{color:var(--texte-2);margin:0 0 14px}
+.cc-galerie{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cc-horreur{border:2px solid var(--encre);border-radius:18px;padding:18px;background:var(--surface);box-shadow:4px 4px 0 var(--encre)}
+.cc-horreur:nth-child(1){transform:rotate(-1.2deg);background:var(--beurre)}
+.cc-horreur:nth-child(2){transform:rotate(.8deg);background:var(--ciel)}
+.cc-horreur:nth-child(3){transform:rotate(-.6deg);background:var(--rose)}
+.cc-horreur:nth-child(4){transform:rotate(1.1deg)}
+.cc-horreur code{display:block;font:700 14px/1.3 ui-monospace,Menlo,monospace;word-break:break-all;margin-bottom:10px}
+.cc-horreur p{margin:0;font-size:15px;color:var(--texte-2)}
+.cc-horreur b{color:var(--encre)}
+.cc-sous{color:var(--texte-2);margin:-10px 0 22px;max-width:60ch}
+@media (prefers-reduced-motion:reduce){.cc-grille .err{animation:none}.cc-jauge b,.cc-symptomes label{transition:none}.cc-symptomes label:has(input:checked){transform:none}}
+@media (max-width:900px){
+  .cc-metre{grid-template-columns:1fr}
+  .cc-verdict{position:static}
+  .cc-galerie{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .cc-symptomes,.cc-galerie{grid-template-columns:1fr}
+}
 @media (max-width:900px){
   .cc-hero,.cc-form-zone,.cc-lots{grid-template-columns:1fr}
   .cc-hero{padding-top:36px;gap:28px}
@@ -106,9 +155,10 @@
 <main class="cc">
 <section class="cc-hero">
   <div>
+    <p class="cc-sticker">À gagner : votre outil sur mesure</p>
     <p class="eyebrow">Concours · Le pire tableur de France</p>
-    <h1>Votre pire tableur mérite mieux. <span>Le pire gagne son outil sur mesure.</span></h1>
-    <p class="cc-intro">Le fichier que tout le monde a peur d'ouvrir, les onglets « V2 final OK », les formules que personne ne comprend : décrivez-le. Les trois pires passent au vote, et le gagnant repart avec un outil construit pour son besoin.</p>
+    <h1>Votre tableur vous fait <em>peur</em> ? <span>Il peut enfin vous rapporter quelque chose.</span></h1>
+    <p class="cc-intro">41 onglets. Une cellule rouge que personne ne sait expliquer. Un fichier qui s'appelle « final_v3_OK_vraiment ». Si vous venez de penser au vôtre, vous êtes au bon endroit : décrivez-le. Les trois pires passent au vote, et le pire de tous repart avec un outil construit pour lui.</p>
     <ul class="cc-dates">
       <li><b>Participations</b> : du mercredi 25/11/2026 20:00 au dimanche 06/12/2026 23:59 (heure de Paris)</li>
       <li><b>Vote</b> : du mardi 08/12 20:00 au jeudi 10/12 23:59</li>
@@ -119,6 +169,13 @@
       <a class="btn" href="#reglement">Lire le règlement</a>
     </div>
   </div>
+  <div class="cc-droite">
+  <figure class="cc-maudit" aria-label="Exemple de tableur fictif plein d'erreurs" style="margin:0">
+    <div class="barre"><i></i><i></i><i></i><span>COMPTA_2019_final_v3_OK_vraiment (2)</span></div>
+    <div class="cc-grille" id="maudit" aria-hidden="true"></div>
+    <div class="cc-onglets" aria-hidden="true"><span>Feuil1</span><span>Planning (2)</span><span class="rouge">NE PAS TOUCHER</span><span>copie de copie</span><span>TOTAL2</span><span>archives</span></div>
+    <figcaption class="fictif">Tableur fictif. Toute ressemblance avec le vôtre serait parfaitement volontaire.</figcaption>
+  </figure>
   <aside class="cc-compte" aria-labelledby="compte-titre">
     <h2 id="compte-titre">Fin des participations</h2>
     <div class="cc-chiffres" id="compte" aria-hidden="true">
@@ -129,6 +186,7 @@
     </div>
     <p class="cc-etat" id="compte-etat">Dimanche 6 décembre 2026 à 23:59, heure de Paris.</p>
   </aside>
+  </div>
 </section>
 
 <section class="cc-lots" aria-label="Lots">
@@ -142,6 +200,41 @@
     <h2>Un template QME au choix</h2>
     <p>Un code d'accès offert à l'un des <a href="/templates/">templates du catalogue</a>.</p>
   </article>
+</section>
+
+<section class="cc-section" id="cauchemarometre" aria-labelledby="metre-titre">
+  <h2 id="metre-titre">Le cauchemaromètre</h2>
+  <p class="cc-sous">Avant de participer, mesurez le niveau de votre tableur. Cochez ce qui vous parle. Honnêtement.</p>
+  <div class="cc-metre">
+    <ul class="cc-symptomes" id="symptomes">
+      <li><label><input type="checkbox" value="onglets">Il a plus de 10 onglets, dont certains que personne n'a jamais ouverts.</label></li>
+      <li><label><input type="checkbox" value="nepastoucher">Un onglet ou une cellule dit « NE PAS TOUCHER ».</label></li>
+      <li><label><input type="checkbox" value="final">Le fichier s'appelle « final », « V2 », « OK » ou « vraiment ». Ou tout à la fois.</label></li>
+      <li><label><input type="checkbox" value="seul">Une seule personne sait le mettre à jour. Elle part en vacances bientôt.</label></li>
+      <li><label><input type="checkbox" value="rouge">Une cellule est en rouge et personne ne sait pourquoi.</label></li>
+      <li><label><input type="checkbox" value="erreur">Il affiche une erreur (#REF!, #N/A…) que tout le monde a appris à ignorer.</label></li>
+      <li><label><input type="checkbox" value="recopie">Vous recopiez des chiffres à la main, chaque semaine, depuis un autre fichier.</label></li>
+      <li><label><input type="checkbox" value="filtre">Il suffit d'un tri ou d'un filtre pour tout casser.</label></li>
+    </ul>
+    <div class="cc-verdict" aria-live="polite">
+      <div class="cc-score"><span id="score">0</span><small> / 8</small></div>
+      <div class="cc-jauge" aria-hidden="true"><b id="jauge"></b></div>
+      <h3 id="verdict-titre">Tableur sage</h3>
+      <p id="verdict-texte">Cochez les symptômes de votre tableur pour connaître son verdict.</p>
+      <a class="btn primary" href="#participer" id="verdict-cta">Participer</a>
+    </div>
+  </div>
+</section>
+
+<section class="cc-section" aria-labelledby="galerie-titre">
+  <h2 id="galerie-titre">La galerie des horreurs</h2>
+  <p class="cc-sous">Exemples fictifs. Pour vous donner le ton, pas pour vous décourager : le vôtre est peut-être pire.</p>
+  <div class="cc-galerie">
+    <article class="cc-horreur"><code>COMPTA_2019_final_v3_OK_vraiment</code><p><b>41 onglets.</b> Le bon chiffre est dans l'onglet 27. Personne ne se souvient pourquoi.</p></article>
+    <article class="cc-horreur"><code>Planning (2) (copie)</code><p>Cellule A1 : <b>« NE PAS TRIER »</b>. Quelqu'un a trié.</p></article>
+    <article class="cc-horreur"><code>Suivi_notes_DEF</code><p><b>Trois moyennes</b> pour le même élève. Trois résultats différents.</p></article>
+    <article class="cc-horreur"><code>Stock_à_jour_SAUF_mars</code><p>Le stock est <b>négatif depuis mars</b>. Les ventes continuent.</p></article>
+  </div>
 </section>
 
 <section class="cc-section" aria-labelledby="etapes-titre">
@@ -163,6 +256,7 @@
     <form id="concours-form" name="concours" method="POST" action="/concours/merci/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="site_internet">
       <input type="hidden" name="form-name" value="concours">
       <input type="hidden" name="source" id="concours-source" value="">
+      <input type="hidden" name="cauchemarometre" id="concours-score" value="">
       <fieldset id="concours-champs">
         <legend class="sr-only">Votre participation</legend>
         <label class="champ">Prénom ou pseudo<input type="text" name="prenom" autocomplete="given-name" maxlength="80"></label>
@@ -354,6 +448,65 @@
     capture.setCustomValidity(f && f.size > MAX ? 'Cette image dépasse 8 Mo : réduisez-la ou envoyez une autre capture.' : '');
     if (f && f.size > MAX) capture.reportValidity();
   });
+})();
+</script>
+<script>
+// Ludique : tableur maudit (erreurs qui apparaissent au hasard) et cauchemaromètre.
+(() => {
+  const calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const g = document.getElementById('maudit');
+  const lignes = [
+    ['', 'A', 'B', 'C', 'D', 'E'],
+    ['1', 'Client', 'Montant', 'TOTAL2', 'Payé ?', 'Note'],
+    ['2', 'Martin', '1 200', '1 200', 'oui ?', 'voir Karine'],
+    ['3', 'Bernard', '850', '#REF!', '???', ''],
+    ['4', 'Durand', '2 100', '4 200', 'NON', 'doublon ?'],
+    ['5', 'Petit', '-', '#N/A', 'oui', 'NE PAS TOUCHER'],
+    ['6', 'TOTAL', '4 150', '9 999', '', 'faux ?'],
+  ];
+  const fonds = ['#FFF3B0', '#D8F0D2', '#FFD6E0', '#D6E8FF', '#fff', '#fff', '#fff'];
+  const cases = [];
+  lignes.forEach((l, i) => l.forEach((v, j) => {
+    const c = document.createElement('span');
+    c.textContent = v;
+    if (i === 0 || j === 0) c.className = 't';
+    else { c.style.background = fonds[(i * 3 + j * 5) % fonds.length]; if (/^(#|\?)/.test(v)) c.classList.add('err'); cases.push(c); }
+    g.appendChild(c);
+  }));
+  const erreurs = ['#REF!', '#N/A', '#VALEUR!', '#DIV/0!', '####', '???'];
+  if (!calme) setInterval(() => {
+    const c = cases[Math.floor(Math.random() * cases.length)];
+    if (c.classList.contains('err')) return;
+    const avant = c.textContent;
+    c.textContent = erreurs[Math.floor(Math.random() * erreurs.length)];
+    c.classList.add('err');
+    setTimeout(() => { c.textContent = avant; c.classList.remove('err'); }, 1600);
+  }, 700);
+
+  const niveaux = [
+    [0, 'Tableur sage', 'Cochez les symptômes de votre tableur pour connaître son verdict.'],
+    [1, 'Tableur sage', 'Presque rien à signaler. Vous êtes sûr de nous avoir tout dit ?'],
+    [3, 'Tableur grognon', 'Il tient encore. Mais il garde des rancunes.'],
+    [5, 'Tableur hanté', 'Il se passe des choses la nuit dans ce fichier. Participez.'],
+    [7, 'Candidat au titre', 'Votre tableur a toutes ses chances. Décrivez-le, vite.'],
+  ];
+  const boites = [...document.querySelectorAll('#symptomes input')];
+  const score = document.getElementById('score');
+  const jauge = document.getElementById('jauge');
+  const titre = document.getElementById('verdict-titre');
+  const texte = document.getElementById('verdict-texte');
+  const champ = document.getElementById('concours-score');
+  const maj = () => {
+    const n = boites.filter((b) => b.checked).length;
+    const [, t, x] = niveaux.filter(([min]) => n >= min).pop();
+    score.textContent = n;
+    jauge.style.width = `${(n / boites.length) * 100}%`;
+    titre.textContent = t;
+    texte.textContent = x;
+    champ.value = n ? `${n}/8 · ${t}` : '';
+  };
+  boites.forEach((b) => b.addEventListener('change', maj));
+  maj();
 })();
 </script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
