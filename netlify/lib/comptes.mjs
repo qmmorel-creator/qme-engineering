@@ -297,7 +297,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
       if (!envoyer) return json(503, { erreur: 'Envoi d\'e-mails non configuré.' });
       for (const type of ['acheteur', 'testeur']) {
         const m = contenuAnnonce({ type, prenom: nettoyerPrenom(corps.prenom), stop: lienStopAnnonces(secret, email) });
-        await envoyer({ a: email, objet: `[Test ${type}] ${m.objet}`, texte: m.texte, html: m.html });
+        await envoyer({ a: email, objet: `[Test ${type}] ${m.objet}`, texte: m.texte, html: m.html, copieCachee: false });
       }
       return json(200, { ok: true, test: email, envoyes: 2 });
     }
@@ -312,7 +312,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     let envoyes = 0; const erreurs = [];
     for (const d of lot) {
       const m = contenuAnnonce(d);
-      try { await envoyer({ a: d.email, objet: m.objet, texte: m.texte, html: m.html }); await store.set(`annonce/${CAMPAGNE}/${cleEmail(secret, d.email)}`, { date, type: d.type }); envoyes++; }
+      try { await envoyer({ a: d.email, objet: m.objet, texte: m.texte, html: m.html, copieCachee: false }); await store.set(`annonce/${CAMPAGNE}/${cleEmail(secret, d.email)}`, { date, type: d.type }); envoyes++; }
       catch (x) { console.error('Annonce impossible', x); erreurs.push(d.type); }
     }
     return json(200, { simulation, ...resume, envoyes, erreurs: erreurs.length, restants: restants.length - envoyes });
@@ -335,7 +335,7 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
     const jeton = jetonLien(secret, email, t), code = String(randomInt(0, 1_000_000)).padStart(6, '0');
     const lien = `${SITE}/connexion/?lien=${jeton}`;
     const m = contenuMailLien({ lien, code, prenom: compte?.prenom });
-    try { await envoyer({ a: email, objet: m.objet, texte: m.texte, html: m.html }); } catch (x) {
+    try { await envoyer({ a: email, objet: m.objet, texte: m.texte, html: m.html, copieCachee: false }); } catch (x) {
       console.error('E-mail de connexion impossible', x);
       return json(502, { erreur: 'L\'e-mail n\'a pas pu partir. Réessayez dans un instant.' });
     }

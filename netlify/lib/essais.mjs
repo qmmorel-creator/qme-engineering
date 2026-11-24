@@ -382,7 +382,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
   try { if (await envoyerMail('merci', reg, { secret, envoyer })) reg.mails.merci = date.toISOString(); } catch (x) { console.error('E-mail de remerciement impossible', x); }
   // Notification à Quentin : un échec n'empêche jamais l'essai.
   if (envoyer && notifier) {
-    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte }); } catch (x) { console.error('Notification d\'essai impossible', x); }
+    try { const n = mailNotification(reg); await envoyer({ a: notifier, objet: n.objet, texte: n.texte, copieCachee: false }); } catch (x) { console.error('Notification d\'essai impossible', x); }
   }
   await essais.set(`essai/${e.id}`, reg);
   await essais.set(cleIndex, { id: e.id });

@@ -14,6 +14,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
   `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
 
+## Copie cachée des e-mails automatiques (décision du 24/11/2026)
+
+- **Toute séquence d'e-mails envoyée automatiquement par le site via OVH** (essai, achat, accompagnement après achat,
+  toute séquence future) met Quentin en copie cachée sur son adresse pro (`quentin.morel@qm-engineering.fr`) : c'est le
+  comportement par défaut de `netlify/lib/mail.mjs`. Seules exceptions (`copieCachee: false`) : codes et liens de
+  connexion, notifications adressées à Quentin, annonces en nombre. Où voir ces envois :
+  `docs/templates/communication/DELIVRABILITE.md`.
+
 ## Prospection : mention d'opposition (règle absolue)
 
 - **Tout e-mail de prospection** (entreprise, affiliation, partenariat, relance, réponse type aux refus) : vérifier
