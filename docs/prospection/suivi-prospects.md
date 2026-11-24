@@ -14,7 +14,7 @@ du 23/11/2026.
 
 **Balle** : `QME` = Quentin doit agir ; `prospect` = on attend sa réponse.
 
-État au 23/11/2026 (fils Gmail lus en entier).
+État au 24/11/2026 (fils Gmail lus en entier).
 
 ## Sérieux
 
@@ -27,6 +27,7 @@ du 23/11/2026.
 | **Compagnie Antarès** | Nathalie Delecroix (Craponne) · cieantares@gmail.com | Sur mesure : plateforme d'inscriptions et reprise du site | Appel le 10/11 ; offre du 10/11 (890 € HT après remise + 75 € HT/mois) ; contre-proposition sans abonnement (~1 200 € HT) le 22/11 | QME, 22/11 | Prospect : réponse à la contre-proposition |
 | **Yuzu Agency · Odélia** | Eva Pellat (Talent Manager) · contact@agency-yuzu.com | Reel Instagram à 200 € fixe + accès aux outils études et budget | Prix convenu ; 5 questions de modalités posées (date, story avec lien, mention « Collaboration commerciale », statistiques, facturation). Dossier : `docs/templates/communication/affiliation/odelia*.md` | QME, 22/11 | Prospect (agence). Prestation payée, pas une affiliation pure |
 | **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram, ses mails ne passaient pas) | Sur mesure : ménage, linge et relevés d'intendance ; concept `/concepts/conciergerie-en-provence/` | Visio **mar. 24/11, 16:00–16:30**, confirmée par Kelly sur Instagram ; Meet `meet.google.com/fhb-cusi-hva` (agenda de Quentin) | QME, 23/11 | Rendez-vous. Après l'appel : noter le résultat ici |
+| **Royaumes & Légendes** (Aups, Haut-Var) | gérant non nommé · royaumesetlegendes@gmail.com | Sur mesure : caisse boutique + bar à jeux, soirées et tournois, stock commun avec la boutique en ligne ; concept `/concepts/royaumes-et-legendes/` (PR à fusionner) | Réponse du 24/11 11:40 à la dernière relance : « parlez-moi de votre système de caisse et de bar à jeu. Quand pourrions-nous nous appeler ? » Concept et brouillon de réponse préparés le 24/11 (non envoyés). Point de vigilance : l'encaissement doit passer par un logiciel de caisse certifié | Prospect, 24/11 | **QME** : fusionner la PR, relire et envoyer le brouillon, proposer un appel de 30 min |
 | **Christophe Yzet** (yzetexpertise) | Christophe Yzet (connaissance de Quentin, ARTELIA à La Réunion) · yzetexpertise@free.fr | Sur mesure pour son activité de conseil ; liens d'essai visa et packs Freelance envoyés | Rencontre souhaitée **à son retour, début 2027** | QME, 21/11 | Prospect. Long terme |
 
 ## Tièdes

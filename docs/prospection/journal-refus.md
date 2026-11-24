@@ -34,3 +34,7 @@ Tenu par le skill `.claude/skills/nettoyage-refus-prospection/`. Une ligne par f
 | 2026-11-23 | Barteau Traiteur | `barteau-traiteur@orange.fr` | intéressé (« je reviens vers vous dans la semaine ») | non, laissé à Quentin |
 | 2026-11-23 | Café du Cycliste | `service-clients@cafeducycliste.com` | réponse auto | non |
 | 2026-11-23 | Decathlon Pro | `contactpro@decathlon.com` | réponse auto | non |
+| 2026-11-24 | Passion Aventure Junior (Léna Touchet, service inscriptions) | `contact@passion-aventure-junior.com` | refus poli (« pas intéressés pour le moment ») | oui (signature et mention d'opposition) |
+| 2026-11-24 | Le Ludozaure, Auray (G. Vermeire) | `le.ludozaure@gmail.com` | refus poli : plus d'animations jeux en boutique, « espère faire appel à vos services dans le futur » | oui, variante « garder le contact » |
+| 2026-11-24 | CUMA Hydraulique du Berry Nivernais | `contact@cumadrainage.com` | refus poli (« ne sommes pas intéressés ») | oui (signature et mention d'opposition) |
+| 2026-11-24 | Royaumes & Légendes, Aups | `royaumesetlegendes@gmail.com` | intéressé : veut en savoir plus sur la caisse et le bar à jeux, demande un appel | non, concept préparé et brouillon laissé à Quentin |

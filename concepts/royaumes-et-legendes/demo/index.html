@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le Comptoir des Légendes · Royaumes &amp; Légendes · démonstration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cinzel+Decorative:wght@700&family=Poppins:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit:#0e2a33; --nuit2:#10333f; --nuit3:#174654; --nuit4:#1f5566;
+  --or:#c7a667; --or2:#e4c990; --or-soft:#f3ead3; --pourpre:#ae133a; --pourpre-soft:#f7e1e6;
+  --bg:#f5efe2; --panel:#fffcf5; --ink:#1b1a17; --muted:#6f6656; --line:#e6dcc6; --line2:#efe8d8;
+  --ok:#2f6b55; --ok-bg:#e1efe7; --warn:#a2611a; --warn-bg:#f8ecd8; --idle:#6f675e; --idle-bg:#eeeae3; --info:#2d5a87; --info-bg:#e3ecf6;
+  --r:16px; --sh:0 1px 2px rgba(40,30,10,.05),0 10px 26px rgba(40,30,10,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:13.5px/1.5 "Poppins",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.cz{font-family:"Cinzel",Georgia,serif;letter-spacing:.01em}
+button,input{font:inherit}
+.tnum{font-variant-numeric:tabular-nums}
+svg{display:block}
+.fict{position:fixed;right:24px;top:22px;z-index:50;background:var(--nuit);color:var(--or2);font:600 10px/1 "Poppins",sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;border-radius:999px;border:1px solid rgba(199,166,103,.5)}
+
+/* structure */
+.app{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
+.side{background:linear-gradient(180deg,var(--nuit2),var(--nuit));color:#cfd9d6;padding:22px 14px;display:flex;flex-direction:column;gap:3px;position:sticky;top:0;height:100vh;border-right:1px solid #0a2128}
+.wm{display:flex;align-items:center;gap:12px;padding:2px 6px 22px}
+.crest{width:46px;height:52px;flex:none}
+.wm b{display:block;font:700 17px/1.15 "Cinzel",serif;color:var(--or2);letter-spacing:.02em}
+.wm small{display:block;font:500 10px/1.3 "Poppins";letter-spacing:.18em;text-transform:uppercase;color:#8fa9ab;margin-top:4px}
+.tool{margin:-8px 6px 16px;padding:11px 13px;border:1px solid rgba(199,166,103,.35);border-radius:12px;font-size:11.5px;color:#a9bcbb;line-height:1.4;background:rgba(255,255,255,.03)}
+.tool b{display:block;color:var(--or2);font:600 14px "Cinzel"}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;color:#cfd9d6;text-decoration:none;font-weight:500}
+.nav a svg{width:19px;height:19px;flex:none;opacity:.9}
+.nav a:hover{background:var(--nuit3)}
+.nav a.on{background:var(--nuit3);color:#fff;box-shadow:inset 3px 0 0 var(--or)}
+.nav .n{margin-left:auto;background:var(--pourpre);color:#fff;border-radius:999px;font-size:11px;font-weight:600;padding:1px 8px}
+.nav .sec{font:600 10px "Poppins";letter-spacing:.16em;color:#6f8f92;text-transform:uppercase;padding:16px 12px 6px}
+.side .foot{margin-top:auto;display:flex;gap:10px;align-items:center;padding:14px 8px 0;border-top:1px solid var(--nuit3);font-size:12px;color:#8fa9ab;line-height:1.4}
+.side .foot b{color:#f3ead3;font-weight:600}
+.main{min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:18px 32px;background:rgba(245,239,226,.94);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.top h1{font-size:23px;margin:0;font-weight:700}
+.top .sub{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search{margin-left:auto;margin-right:250px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;width:280px;color:var(--muted);font-size:12.5px}
+.content{padding:24px 32px 60px;display:flex;flex-direction:column;gap:20px}
+section[data-view]{display:none}
+section[data-view].on{display:contents}
+
+/* composants */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line2)}
+.card>header h2{font-size:15.5px;margin:0;font-weight:700}
+.card>header .sp{flex:1}
+.body{padding:16px 18px}
+.muted{color:var(--muted)} .sm{font-size:12px}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 13px;font-weight:500;color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--pourpre);border-color:var(--pourpre);color:#fff;font-weight:600}
+.btn.nuit{background:var(--nuit2);border-color:var(--nuit2);color:var(--or2);font-weight:600}
+.btn svg{width:16px;height:16px}
+.b{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:600;white-space:nowrap}
+.b::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b.ok{color:var(--ok);background:var(--ok-bg)} .b.warn{color:var(--warn);background:var(--warn-bg)} .b.late{color:var(--pourpre);background:var(--pourpre-soft)} .b.info{color:var(--info);background:var(--info-bg)} .b.idle{color:var(--idle);background:var(--idle-bg)} .b.gold{color:#7a5b20;background:var(--or-soft)}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:11px;color:#fff;flex:none}
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.li{display:flex;gap:12px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--line2)}
+.li:last-child{border-bottom:0}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.ico svg{width:19px;height:19px}
+table.t{width:100%;border-collapse:collapse}
+.t th{text-align:left;font:600 10.5px "Poppins";text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:#faf5e9}
+.t td{padding:11px 14px;border-bottom:1px solid var(--line2);vertical-align:middle}
+.t tr:last-child td{border-bottom:0}
+.t .r{text-align:right;white-space:nowrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:7px 12px;font-weight:500;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--nuit2);color:var(--or2)}
+
+/* héros */
+.hero{position:relative;border-radius:22px;overflow:hidden;color:#fff;background:radial-gradient(110% 150% at 85% 0%,#1f5566 0%,#10333f 45%,#0a2128 100%);padding:28px 32px 30px;display:grid;grid-template-columns:1fr 210px 280px;gap:28px;align-items:center;min-height:300px;border:1px solid #0a2128}
+.hero .orn{position:absolute;inset:0;pointer-events:none;opacity:.9}
+.hero>*{position:relative}
+.hero .eb{font:600 11px "Poppins";letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin:0 0 6px}
+.hero .big{font:700 98px/0.95 "Cinzel";color:var(--or2);letter-spacing:-.01em;display:flex;align-items:baseline;gap:14px}
+.hero .big small{font:italic 500 32px "EB Garamond";color:#fff;letter-spacing:0}
+.hero p{color:#c3d3d1;max-width:54ch;margin:12px 0 0;font-size:14px}
+.ring{position:relative;width:196px;height:196px;margin:auto}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ring b{font:700 42px/1 "Cinzel";color:#fff}
+.ring span{font-size:12px;color:#b4c6c4;margin-top:5px}
+.tiles{display:flex;flex-direction:column;gap:10px}
+.tile{background:rgba(255,255,255,.05);border:1px solid rgba(199,166,103,.28);border-radius:14px;padding:11px 15px}
+.tile b{display:block;font:700 24px/1.1 "Cinzel";color:#fff}
+.tile span{font-size:12px;color:#c3d3d1}
+.tile.alert b{color:#f09aad}
+
+/* salle */
+.salle{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px;background:
+  radial-gradient(circle at 1px 1px,rgba(120,95,50,.13) 1px,transparent 0) 0 0/18px 18px,#f8f2e4}
+.tb{position:relative;border-radius:14px;padding:13px 14px 12px;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-height:142px;box-shadow:0 2px 0 rgba(120,95,50,.08)}
+.tb.occ{border-top:4px solid var(--ok)} .tb.resa{border:1.5px dashed #9cb3c9;background:#f6f8fb} .tb.libre{opacity:.85} .tb.cpt{background:#fbf3e0;border-color:#e8d6ad}
+.tb.sel{box-shadow:0 0 0 2px var(--pourpre),0 12px 26px rgba(174,19,58,.18)}
+.tb-h{display:flex;justify-content:space-between;align-items:center}
+.tb-h b{font:700 15px "Cinzel"}
+.box{display:flex;gap:9px;align-items:center}
+.cover{width:34px;height:40px;border-radius:5px;flex:none;display:grid;place-items:center;color:#fff;font:700 10px "Cinzel";box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.tokens{display:flex;margin-top:auto}
+.tokens i{width:26px;height:26px;border-radius:50%;margin-left:-3px;border:2px solid var(--panel);display:grid;place-items:center;font:600 9.5px "Poppins";color:#fff;font-style:normal}
+.tokens i:first-child{margin-left:0}
+.tb-f{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto}
+.tb-f b{font:700 17px "Cinzel"}
+.feed .li{align-items:flex-start}
+.feed .h{font:600 13px "Cinzel";width:46px;flex:none;color:var(--muted)}
+
+/* caisse */
+.cats{display:flex;gap:8px;padding:14px 18px 0}
+.cat{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--panel);font-weight:600;cursor:pointer}
+.cat svg{width:18px;height:18px}
+.cat.on{background:var(--nuit2);color:var(--or2);border-color:var(--nuit2)}
+.items{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 18px 18px}
+.item{position:relative;border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:linear-gradient(180deg,#fffdf7,#fbf5e8);min-height:104px;display:flex;flex-direction:column;gap:6px;cursor:pointer;text-align:left}
+.item .ico{width:30px;height:30px;border-radius:9px}
+.item span{font-weight:600;font-size:13px;line-height:1.3}
+.item b{margin-top:auto;font:700 16px "Cinzel"}
+.item .q{position:absolute;right:10px;top:10px;background:var(--pourpre);color:#fff;border-radius:999px;font:600 10.5px "Poppins";padding:1px 7px}
+.receipt{background:#fffdf6;position:relative}
+.receipt .rh{text-align:center;padding:18px 18px 12px;border-bottom:1px dashed #d9caa6}
+.receipt .rh b{display:block;font:700 18px "Cinzel"}
+.receipt .rh span{font-size:12px;color:var(--muted)}
+.rl{display:grid;grid-template-columns:18px 1fr 34px 76px;gap:8px;align-items:center;padding:9px 18px;border-bottom:1px solid var(--line2);font-size:13px}
+.rl .k{width:8px;height:8px;border-radius:50%}
+.rl .r{text-align:right;font-weight:600}
+.rtot{padding:14px 18px 6px;display:flex;justify-content:space-between;align-items:baseline}
+.rtot b{font:700 34px "Cinzel"}
+.split{display:flex;height:8px;border-radius:99px;overflow:hidden;margin:6px 18px 4px}
+.splitl{display:flex;gap:14px;padding:4px 18px 12px;font-size:11.5px;color:var(--muted)}
+.splitl i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 18px 18px}
+.pay .btn{justify-content:center;padding:11px}
+.seals{display:flex;gap:4px;flex-wrap:wrap}
+.seal{width:25px;height:25px}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line2)}
+.row:last-child{border-bottom:0}
+
+.ards{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:14px 18px 16px}
+.ard{border:1px solid var(--line);border-radius:12px;padding:10px 11px;background:#fffdf7}
+.ard.sel{border-color:var(--pourpre);background:var(--pourpre-soft)}
+.ard b{display:block;font:700 15px "Cinzel"}
+/* quêtes */
+.posters{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.poster{position:relative;border-radius:16px;overflow:hidden;color:#fff;padding:16px 16px 14px;min-height:212px;display:flex;flex-direction:column;box-shadow:var(--sh)}
+.poster .art{position:absolute;inset:0;opacity:.95}
+.poster>*{position:relative}
+.poster .d{font:600 11px "Poppins";letter-spacing:.14em;text-transform:uppercase;color:var(--or2)}
+.poster h3{font:700 18px/1.2 "Cinzel";margin:6px 0 4px}
+.poster .m{font-size:12px;opacity:.85}
+.poster .f{margin-top:auto}
+.gauge{height:6px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;margin:8px 0 6px}
+.gauge i{display:block;height:100%;background:var(--or2);border-radius:99px}
+.poster.sel{box-shadow:0 0 0 3px var(--or),var(--sh)}
+.pair{display:grid;grid-template-columns:40px 1fr 56px 1fr;gap:10px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line2)}
+.pair .tbn{font:700 12px "Cinzel";color:var(--muted)}
+.pair .vs{text-align:center;font:700 11px "Cinzel";color:var(--or)}
+.pl{display:flex;align-items:center;gap:8px}
+.pl small{display:block;color:var(--muted);font-size:11px}
+
+/* registre */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.kpi .l{color:var(--muted);font-size:12px;font-weight:500}
+.kpi .v{font:700 28px "Cinzel";margin-top:3px}
+.kpi .d{font-size:12px}
+.kpi::after{content:"";position:absolute;right:-18px;top:-18px;width:64px;height:64px;border-radius:50%;background:var(--or-soft)}
+.kpi.alert::after{background:var(--pourpre-soft)}
+.chart{display:flex;align-items:flex-end;gap:34px;height:240px;padding:12px 26px 0}
+.cc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.stack{width:58%;display:flex;flex-direction:column-reverse;border-radius:8px;overflow:hidden}
+.leg{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.leg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+.lvl{height:6px;border-radius:99px;background:var(--line2);overflow:hidden;width:90px}
+.lvl i{display:block;height:100%;border-radius:99px}
+
+/* mobile */
+.mtop,.tabbar{display:none}
+@media (max-width:600px){
+  .app{grid-template-columns:1fr}
+  .side,.top{display:none}
+  body{background:#f5efe2}
+  .mtop{display:flex;align-items:center;gap:12px;padding:16px 16px 18px;background:linear-gradient(180deg,var(--nuit2),var(--nuit));color:#fff;position:sticky;top:0;z-index:5}
+  .mtop .crest{width:36px;height:41px}
+  .mtop h1{font:700 17px "Cinzel";margin:0;color:var(--or2)}
+  .mtop .sub{font-size:11.5px;color:#a9bcbb}
+  .content{padding:14px 14px 96px;gap:12px}
+  .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;background:var(--nuit);padding:9px 6px 20px;z-index:6;border-top:1px solid #0a2128}
+  .tabbar a{flex:1;text-align:center;font-size:10.5px;color:#8fa9ab;text-decoration:none;font-weight:600}
+  .tabbar a svg{width:21px;height:21px;margin:0 auto 3px}
+  .tabbar a.on{color:var(--or2)}
+  .fict{top:auto;bottom:88px;right:12px;font-size:9px;padding:7px 10px}
+}
+.mc{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--sh)}
+.mhero{border-radius:20px;overflow:hidden;position:relative;color:#fff;padding:18px 16px 16px;background:radial-gradient(120% 130% at 90% 0%,#1f5566,#10333f 55%,#0a2128)}
+.mhero>*{position:relative}
+.mhero .d{font:600 10.5px "Poppins";letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.mhero h2{font:700 21px/1.2 "Cinzel";margin:6px 0 4px;color:#fff}
+.mbtn{margin-top:14px;width:100%;display:flex;justify-content:center;align-items:center;gap:8px;background:var(--or);color:var(--nuit);border:0;border-radius:12px;padding:12px;font-weight:700}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.slot{border:1px solid var(--line);background:#fffdf7;border-radius:11px;padding:9px 4px;font-weight:600;display:flex;flex-direction:column;align-items:center}
+.slot.on{background:var(--pourpre);border-color:var(--pourpre);color:#fff}
+.slot.full{color:#a99f8e}.slot.full span{text-decoration:line-through}.slot small{font-size:10px;font-weight:500}
+.gamepick{display:flex;gap:10px;align-items:center;margin-top:12px;padding:10px;border-radius:12px;background:#faf5e9;border:1px solid var(--line2)}
+.mev{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line2)}
+.mev:last-child{border-bottom:0}
+.cal{width:46px;flex:none;text-align:center;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.cal b{display:block;background:var(--pourpre);color:#fff;font:600 9.5px "Poppins";letter-spacing:.1em;padding:2px 0}
+.cal span{display:block;font:700 18px/1.4 "Cinzel"}
+.parch{border-radius:20px;padding:18px 16px;color:var(--ink);background:linear-gradient(160deg,#fbf3df,#f1e3c0);border:1px solid #e1cd9c;box-shadow:var(--sh);position:relative;overflow:hidden}
+.parch h2{font:700 18px "Cinzel";margin:0}
+.giftcard{border-radius:18px;padding:16px;color:#fff;background:linear-gradient(135deg,#ae133a,#6e0c26);position:relative;overflow:hidden;box-shadow:var(--sh)}
+.giftcard .num{font:600 12px "Poppins";letter-spacing:.2em;opacity:.8}
+.giftcard b{display:block;font:700 30px "Cinzel";margin:10px 0 2px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-chope" viewBox="0 0 24 24"><path d="M5 7h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zM15 9h2.5a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H15M5 7c0-2 1.5-3 3-3 .8-1 2.2-1 3 0 1.5 0 3.5.5 4 3M8 11v6M12 11v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-de" viewBox="0 0 24 24"><path d="M12 2.5l8.5 5v9L12 21.5l-8.5-5v-9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 2.5L7.5 10h9zM3.5 7.5L7.5 10M20.5 7.5L16.5 10M7.5 10L12 21.5 16.5 10M3.5 16.5L7.5 10M20.5 16.5L16.5 10" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pinceau" viewBox="0 0 24 24"><path d="M14.5 4.5l5 5-7.5 7.5-5-5zM7 12l-2.5 2.5c-1 1-1 4-2 5.5 2-.2 4.3-.3 5.5-1.5L10.5 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cadeau" viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 7h18v3H3zM12 7v13M12 7C10 3 6.5 4 7.5 6.5 8 7.3 10 7 12 7zm0 0c2-4 5.5-3 4.5-.5-.5.8-2.5.5-4.5.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bouclier" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.5-3.2 8.2-7.5 10-4.3-1.8-7.5-5.5-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6v12M8 10h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-epee" viewBox="0 0 24 24"><path d="M19.5 4.5l-9 9M19.5 4.5L20 4l-.5 3.5-8.5 8.5-2.5-2.5L17 5zM7 13l4 4M5.5 14.5l4 4M8 16.5l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tour" viewBox="0 0 24 24"><path d="M5 21V9h14v12M5 9V4h2.5v2h2.5V4h4v2h2.5V4H19v5M10 21v-4a2 2 0 0 1 4 0v4M3.5 21h17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-parchemin" viewBox="0 0 24 24"><path d="M7 4h11a2 2 0 0 1 2 2v1H9M7 4a2 2 0 0 0-2 2v12a2 2 0 0 1-2 2h11a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v1M9 11h5M9 14h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-coffre" viewBox="0 0 24 24"><path d="M3.5 10a5 5 0 0 1 5-5h7a5 5 0 0 1 5 5v9h-17zM3.5 12h17M10.5 11v3h3v-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-carte" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z M9 4v13.5M15 6.5V20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-loupe" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-couronne" viewBox="0 0 24 24"><path d="M3.5 8l4 4 4.5-7 4.5 7 4-4-1.5 10h-14z M5.5 20.5h13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sceau" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#ae133a"/><circle cx="20" cy="20" r="13" fill="none" stroke="#e4c990" stroke-width="1.4" stroke-dasharray="2 2.4"/><path d="M14 23l3-7 3 4 3-4 3 7z" fill="#e4c990"/></symbol>
+    <symbol id="i-crest" viewBox="0 0 46 52"><path d="M23 1.5l20 6v15c0 13-9 23-20 28-11-5-20-15-20-28v-15z" fill="#ae133a" stroke="#e4c990" stroke-width="2"/><path d="M23 6.5l15.5 4.6v11.6c0 10.3-7 18.4-15.5 22.6-8.5-4.2-15.5-12.3-15.5-22.6V11.1z" fill="none" stroke="rgba(228,201,144,.55)" stroke-width="1"/><text x="23" y="31" text-anchor="middle" font-family="Cinzel Decorative,serif" font-weight="700" font-size="14" fill="#f3ead3">R&amp;L</text></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <aside class="side">
+    <div class="wm"><svg class="crest"><use href="#i-crest"/></svg><div><b>Le Comptoir des&nbsp;Légendes</b><small>Royaumes &amp; Légendes</small></div></div>
+    <div class="tool"><b>Boutique, bar &amp; jeu</b>un même ticket, la salle en direct, les soirées et le stock</div>
+    <nav class="nav" id="nav">
+      <div class="sec">Au comptoir</div>
+      <a href="#soir" data-v="soir"><svg><use href="#i-tour"/></svg>Ce soir<span class="n">6</span></a>
+      <a href="#caisse" data-v="caisse"><svg><use href="#i-coffre"/></svg>Caisse</a>
+      <a href="#quetes" data-v="quetes"><svg><use href="#i-epee"/></svg>Soirées et tournois</a>
+      <a href="#registre" data-v="registre"><svg><use href="#i-parchemin"/></svg>Registre et stock</a>
+      <div class="sec">Côté joueurs</div>
+      <a href="#m-accueil" data-v="m-accueil"><svg><use href="#i-de"/></svg>Page des joueurs</a>
+      <a href="#m-carte" data-v="m-carte"><svg><use href="#i-bouclier"/></svg>Carte de fidélité</a>
+    </nav>
+    <div class="foot"><span class="av" style="background:var(--pourpre)">RL</span><div><b>Le comptoir</b><br>Aups · Haut-Var<br>Site en ligne relié à 20:40</div></div>
+  </aside>
+  <div class="main">
+    <div class="top"><div><h1 id="title"></h1><div class="sub" id="subtitle"></div></div><div class="search"><svg width="15" height="15"><use href="#i-loupe"/></svg>Jeu, client, carte cadeau…</div></div>
+    <div class="mtop"><svg class="crest"><use href="#i-crest"/></svg><div><h1 id="mtitle"></h1><div class="sub" id="msubtitle"></div></div></div>
+    <div class="content">
+
+      <section data-view="soir" data-title="Ce soir" data-sub="Vendredi 27 novembre 2026 · soirée jeux · situation à 20 h 42">
+        <div class="hero">
+          <svg class="orn" viewBox="0 0 1300 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 300V236l70-6V200h22v-14h16v14h22v30l60-4V170h18v-18h12v18h18v56l90-6c80-10 160-34 240-36s170 26 260 30l80-2V150h20v-22h14v22h20v54l100-6c60-6 120-12 178-12V300Z" fill="rgba(255,255,255,.045)"/>
+            <path d="M0 300v-26c220-16 440-20 650-18s430 8 650 20v24Z" fill="rgba(199,166,103,.08)"/>
+            
+          </svg>
+          <div>
+            <p class="eb">Soirée jeux de société · Aups</p>
+            <div class="big">25 <small>aventuriers à table</small></div>
+            <p>Six tables sur sept, la table peinture et le comptoir. Chaque table a son ardoise, ses joueurs et le jeu sorti de la ludothèque&nbsp;; on encaisse au départ, sans rien retenir de tête.</p>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 200 200" width="196" height="196"><circle cx="100" cy="100" r="84" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14"/><circle cx="100" cy="100" r="84" fill="none" stroke="#c7a667" stroke-width="14" stroke-linecap="round" stroke-dasharray="452 528" transform="rotate(-90 100 100)"/></svg>
+            <div class="c"><b>6 / 7</b><span>tables occupées</span></div>
+          </div>
+          <div class="tiles">
+            <div class="tile"><b>150,90 €</b><span>sur 6 ardoises encore ouvertes</span></div>
+            <div class="tile"><b>14 / 16</b><span>inscrits au tournoi 40K de samedi</span></div>
+            <div class="tile alert"><b>1</b><span>prêt en retard · Azul, Nadia B.</span></div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>La salle en direct</h2><span class="muted sm">touchez une table pour ouvrir son ardoise</span><span class="sp"></span><button class="btn pri">+ Installer des joueurs</button></header><div class="salle" id="salle"></div></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><header><h2>Le fil de la soirée</h2></header><div class="feed" id="feed"></div></div>
+            <div class="card"><header><h2>Ludothèque</h2><span class="sp"></span><span class="b gold">5 jeux sortis sur 86</span></header><div id="ludo"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view="caisse" data-title="Caisse" data-sub="Un même ticket pour la boutique, le bar, le jeu sur place et les cartes cadeaux · encaissement par une caisse certifiée">
+        <div class="grid2" style="grid-template-columns:1.45fr 1fr">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="card"><div class="cats" id="cats"></div><div class="items" id="items"></div></div>
+            <div class="grid2" style="grid-template-columns:1fr 1fr">
+              <div class="card"><header><h2>Le client</h2><span class="sp"></span><span class="b gold">fidèle</span></header><div class="body" id="client"></div></div>
+              <div class="card"><header><h2>Clôture du soir</h2><span class="sp"></span><span class="muted sm">prête pour la comptabilité</span></header><div class="body sm" id="cloture"></div></div>
+            </div>
+            <div class="card"><header><h2>Ardoises ouvertes</h2><span class="sp"></span><span class="b warn">6 · 150,90 €</span></header><div class="ards" id="ards"></div></div>
+          </div>
+          <div class="card receipt" id="receipt"></div>
+        </div>
+      </section>
+
+      <section data-view="quetes" data-title="Soirées, tournois et initiations" data-sub="Inscriptions en ligne, liste d'attente, rappel la veille et appariements des tournois">
+        <div class="posters" id="posters"></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Tournoi Warhammer 40.000 · inscrits</h2><span class="sp"></span><span class="b ok">14 / 16</span></header><table class="t" id="inscrits"></table></div>
+          <div class="card"><header><h2>Ronde 1 · appariements</h2><span class="sp"></span><button class="btn nuit"><svg><use href="#i-de"/></svg>Tirer la ronde 2</button></header><div id="pairs"></div>
+            <div class="body sm muted" style="border-top:1px solid var(--line2)">Rondes suisses calculées par l'outil&nbsp;; les résultats saisis à la table mettent le classement à jour sur l'écran de la boutique.</div></div>
+        </div>
+        <div class="grid2" style="grid-template-columns:1fr 1fr">
+          <div class="card"><header><h2>Liste d'attente · initiation peinture</h2><span class="sp"></span><span class="b warn">3 en attente</span></header><div id="attente"></div></div>
+          <div class="card"><header><h2>Messages programmés</h2><span class="sp"></span><span class="muted sm">partent seuls, par mail et SMS</span></header><div id="msgs"></div></div>
+        </div>
+      </section>
+
+      <section data-view="registre" data-title="Registre et stock" data-sub="Novembre 2026 · boutique, bar, jeu sur place et site en ligne réunis">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Recettes de la semaine</h2><span class="sp"></span><div class="leg" id="leg"></div></header><div class="body"><div class="chart" id="chart"></div></div></div>
+          <div class="card"><header><h2>À recommander</h2><span class="sp"></span><button class="btn">Préparer la commande</button></header><div id="stock"></div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>Précommandes des joueurs</h2><span class="sp"></span><span class="muted sm">prévenus automatiquement à l'arrivée</span></header><table class="t" id="precos"></table></div>
+          <div class="card"><header><h2>Cartes cadeaux de Noël</h2></header><div class="body" id="cadeaux"></div></div>
+        </div>
+      </section>
+
+      <section data-view="m-accueil" data-title="Royaumes &amp; Légendes" data-sub="Aups · soirées, tables et tournois">
+        <div class="mhero">
+          <div class="d">Ce vendredi · 19 h</div>
+          <h2>Soirée jeux de société</h2>
+          <div class="sm" style="color:#c3d3d1">Entrée libre · 18 inscrits sur 24 places</div>
+          <button class="mbtn"><svg width="18" height="18"><use href="#i-de"/></svg>Je viens</button>
+        </div>
+        <div class="mc">
+          <div style="display:flex;justify-content:space-between;align-items:center"><b class="cz" style="font-size:15px">Réserver une table</b><span class="muted sm">samedi 28</span></div>
+          <div class="slots" id="slots"></div>
+          <div class="gamepick"><span class="cover" style="background:#b4532a">TM</span><div style="flex:1"><b class="sm">Terraforming Mars</b><div class="muted sm">mis de côté pour vous · 4 joueurs</div></div><span class="b ok">libre</span></div>
+        </div>
+        <div class="mc"><b class="cz" style="font-size:15px">Prochaines aventures</b><div id="mev" style="margin-top:4px"></div></div>
+      </section>
+
+      <section data-view="m-carte" data-title="Ma carte" data-sub="Sacha L. · joueur depuis mars 2026">
+        <div class="parch">
+          <div style="display:flex;justify-content:space-between;align-items:center"><h2>Carte de fidélité</h2><b class="cz">8 / 10</b></div>
+          <div class="seals" id="mseals" style="margin:14px 0 10px"></div>
+          <div class="sm">Encore <b>2 passages</b> : une boisson offerte au comptoir.</div>
+        </div>
+        <div class="giftcard"><div class="num">CARTE CADEAU · CG-0412</div><b>25,00 €</b><div class="sm" style="opacity:.85">restants sur 50 € · valable jusqu'au 24/12/2027</div>
+          <svg width="60" height="60" style="position:absolute;right:14px;top:14px;color:rgba(228,201,144,.5)"><use href="#i-cadeau"/></svg></div>
+        <div class="mc"><b class="cz" style="font-size:15px">Ma précommande</b>
+          <div class="gamepick" style="background:#fff"><span class="cover" style="background:#2d5a87">40K</span><div style="flex:1"><b class="sm">Codex Space Marines</b><div class="muted sm">acompte 20 € · arrivée prévue le 05/12</div></div><span class="b warn">en route</span></div>
+          <div class="sm muted" style="margin-top:10px">Vous recevrez un message dès qu'il arrive en boutique.</div></div>
+        <div class="mc"><b class="cz" style="font-size:15px">Mes inscriptions</b>
+          <div class="mev"><div class="cal"><b>SAM</b><span>28</span></div><div style="flex:1"><b class="sm">Tournoi Warhammer 40.000</b><div class="muted sm">Astra Militarum · liste reçue · à régler sur place</div></div></div></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<nav class="tabbar" id="tabbar">
+  <a href="#m-accueil" data-v="m-accueil"><svg><use href="#i-tour"/></svg>Accueil</a>
+  <a href="#m-ev"><svg><use href="#i-epee"/></svg>Soirées</a>
+  <a href="#m-resa"><svg><use href="#i-de"/></svg>Réserver</a>
+  <a href="#m-carte" data-v="m-carte"><svg><use href="#i-bouclier"/></svg>Ma carte</a>
+</nav>
+<div class="fict">Exemple de données fictives</div>
+
+<script>
+// ===== Données fictives =====
+const C = { bar: '#c7a667', jeu: '#ae133a', boutique: '#10333f', cadeau: '#2f6b55' };
+const CATS = {
+  bar: { l: 'Bar', i: 'i-chope', it: [['Café', 1.8], ['Chocolat chaud', 2.8], ['Sirop à l\'eau', 2, 2], ['Bière artisanale du Var', 4.5, 2], ['Jus de pomme', 2.5], ['Planche apéro', 9, 1], ['Part de gâteau', 3.5], ['Thé', 2]] },
+  jeu: { l: 'Jeu sur place', i: 'i-de', it: [['Jeu sur place · adulte', 3, 4], ['Jeu sur place · enfant', 2], ['Table peinture · 2 h', 6], ['Initiation figurines', 10]] },
+  boutique: { l: 'Boutique', i: 'i-bouclier', it: [['5 Minute Dungeon', 30, 1], ['7 Wonders', 48], ['Pot Citadel Base', 4.9], ['Pot Contrast', 7.9]] },
+  cadeau: { l: 'Cartes cadeaux', i: 'i-cadeau', it: [['Carte cadeau 20 €', 20], ['Carte cadeau 50 €', 50], ['Bon séance peinture', 15]] },
+};
+const TICKET = [['Jeu sur place · adulte', 4, 3, 'jeu'], ['Sirop à l\'eau', 2, 2, 'bar'], ['Bière artisanale du Var', 2, 4.5, 'bar'], ['Planche apéro', 1, 9, 'bar'], ['5 Minute Dungeon', 1, 30, 'boutique']];
+const PCOL = ['#ae133a', '#2f6b55', '#2d5a87', '#a2611a', '#6b4c8a', '#10333f'];
+const TABLES = [
+  { n: 'Table 1', e: 'occ', nom: 'Famille Roux', jeu: 'Dixit', cv: '#6b4c8a', ab: 'DX', j: ['CR', 'TR', 'LR', 'MR'], h: '19:20', a: 21.8 },
+  { n: 'Table 2', e: 'occ', nom: 'Hugo et ses amis', jeu: 'Terraforming Mars', cv: '#b4532a', ab: 'TM', j: ['HM', 'JB', 'AS'], h: '19:00', a: 17.5 },
+  { n: 'Table 3', e: 'libre', nom: '4 places', jeu: 'Libre', j: [] },
+  { n: 'Table 4', e: 'occ', sel: 1, nom: 'Les Paladins', jeu: 'Les Aventuriers du Rail', cv: '#2d5a87', ab: 'AR', j: ['SL', 'KB', 'TV', 'LP'], h: '19:05', a: 64 },
+  { n: 'Table 5', e: 'resa', nom: 'Léa · 4 pers.', jeu: 'Azul mis de côté', j: [], h: 'arrivée 21:00' },
+  { n: 'Table 6', e: 'occ', nom: 'Club du jeudi', jeu: 'Skull King', cv: '#10333f', ab: 'SK', j: ['PA', 'ID', 'NF', 'OG', 'RM'], h: '19:40', a: 26 },
+  { n: 'Peinture', e: 'occ', nom: 'Atelier libre', jeu: 'Space Marines · Contrast', cv: '#ae133a', ab: '40K', j: ['MG', 'NB', 'YC'], h: '18:30', a: 18 },
+  { n: 'Comptoir', e: 'cpt', nom: '2 habitués', jeu: 'au bar', j: ['JR', 'EV'], a: 3.6 },
+];
+const FEED = [
+  ['20:38', 'i-chope', C.bar, '<b>Table 4</b> · 2 bières artisanales et une planche apéro', ''],
+  ['20:31', 'i-bouclier', C.boutique, '<b>Table 4</b> achète <b>5 Minute Dungeon</b> après l\'avoir essayé', '<span class="b ok">vendu</span>'],
+  ['20:12', 'i-de', C.jeu, '<b>Table 6</b> rend <b>Codenames</b>, sort <b>Skull King</b>', ''],
+  ['19:55', 'i-cadeau', C.cadeau, 'Carte cadeau de <b>30 €</b> vendue pour Noël', ''],
+];
+const LUDO = [['Dixit', 'Table 1', '#6b4c8a', 'DX'], ['Terraforming Mars', 'Table 2', '#b4532a', 'TM'], ['Les Aventuriers du Rail', 'Table 4', '#2d5a87', 'AR'], ['Azul', 'Prêt · Nadia B. · rendu attendu le 24/11', '#a2611a', 'AZ', 1]];
+const EVENTS = [
+  { d: 'Ven. 27 nov. · 19 h', t: 'Soirée jeux de société', m: 'Entrée libre · jeux de la ludothèque', ins: 18, max: 24, f: 'Libre', bg: 'linear-gradient(160deg,#1f5566,#0a2128)', ic: 'i-de' },
+  { d: 'Sam. 28 nov. · 13 h 30', t: 'Tournoi Warhammer 40.000', m: '1 000 points · 3 rondes suisses', ins: 14, max: 16, f: '15 €', bg: 'linear-gradient(160deg,#8e1030,#3d0716)', ic: 'i-epee', sel: 1 },
+  { d: 'Mer. 2 déc. · 14 h', t: 'Initiation peinture · ados', m: 'Matériel fourni · 2 h', ins: 6, max: 6, att: 3, f: '10 €', bg: 'linear-gradient(160deg,#6a5328,#2b2010)', ic: 'i-pinceau' },
+  { d: 'Sam. 5 déc. · 10 h', t: 'Découverte Age de Sigmar', m: 'Armées prêtées · débutants', ins: 4, max: 8, f: 'Gratuit', bg: 'linear-gradient(160deg,#2f6b55,#10302a)', ic: 'i-couronne' },
+];
+const INSCRITS = [['Mathis G.', 'Space Marines', 'reçue', 'payé'], ['Julien R.', 'Nécrons', 'reçue', 'payé'], ['Karim B.', 'Orks', 'reçue', 'payé'], ['Thomas V.', 'T\'au', 'à envoyer', 'payé'], ['Sacha L.', 'Astra Militarum', 'reçue', 'sur place'], ['Lucas P.', 'Chaos', 'à envoyer', 'sur place']];
+const PAIRS = [['T1', 'Mathis G.', 'Space Marines', 'Karim B.', 'Orks'], ['T2', 'Julien R.', 'Nécrons', 'Sacha L.', 'Astra Militarum'], ['T3', 'Thomas V.', 'T\'au', 'Lucas P.', 'Chaos'], ['T4', 'Noé F.', 'Aeldari', 'Yanis C.', 'Tyranides']];
+const WEEKS = ['S45', 'S46', 'S47', 'S48'];
+const SERIES = [['Boutique', '#10333f', [1180, 1340, 1260, 1690]], ['Bar', '#c7a667', [310, 365, 340, 420]], ['Jeu et événements', '#ae133a', [190, 240, 225, 330]], ['Site en ligne', '#7d9aa0', [260, 210, 300, 380]]];
+const STOCK = [['Contrast · Blood Angels Red', 'Games Workshop', 1, 3], ['Sous-couche Chaos Black', 'Games Workshop', 0, 2], ['7 Wonders', 'Asmodee', 1, 2], ['Pinceau Layer M', 'Games Workshop', 2, 4]];
+const PRECOS = [['Codex Space Marines', 'Mathis G.', 'acompte 20 €', 'warn', 'attendu le 05/12'], ['Kit de démarrage Age de Sigmar', 'Nadia B.', 'réglé', 'ok', 'arrivé · prévenue'], ['Extension Skull King', 'Hugo M.', 'à régler', 'info', 'commandé le 23/11']];
+
+// ===== Outils =====
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const eur = (n, d = 2) => n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) + ' €';
+const use = (id, col) => `<svg style="color:${col || 'currentColor'}"><use href="#${id}"/></svg>`;
+const ico = (id, col) => `<span class="ico" style="background:${col}1f;color:${col}">${use(id)}</span>`;
+const seals = (n) => Array.from({ length: 10 }, (_, i) => i < n ? `<svg class="seal"><use href="#i-sceau"/></svg>` : `<svg class="seal" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#c7a667" stroke-width="1.6" stroke-dasharray="3 3"/></svg>`).join('');
+
+// ===== Ce soir =====
+function renderSoir() {
+  const st = { occ: ['ok', 'Occupée'], libre: ['idle', 'Libre'], resa: ['info', 'Réservée'], cpt: ['gold', 'Comptoir'] };
+  $('#salle').innerHTML = TABLES.map((t) => `<div class="tb ${t.e}${t.sel ? ' sel' : ''}">
+    <div class="tb-h"><b>${t.n}</b><span class="b ${st[t.e][0]}">${st[t.e][1]}</span></div>
+    <div class="box">${t.cv ? `<span class="cover" style="background:${t.cv}">${t.ab}</span>` : ''}<div><b class="sm">${esc(t.nom)}</b><div class="muted sm">${esc(t.jeu)}</div></div></div>
+    <div class="tb-f"><div class="tokens">${t.j.map((x, i) => `<i style="background:${PCOL[i % 6]}">${x}</i>`).join('')}${t.h && !t.j.length ? `<span class="muted sm">${t.h}</span>` : ''}</div>${t.a ? `<div style="text-align:right"><div class="muted" style="font-size:10.5px">${t.h ? 'depuis ' + t.h : 'ardoise'}</div><b class="tnum">${eur(t.a)}</b></div>` : ''}</div>
+  </div>`).join('');
+  $('#feed').innerHTML = FEED.map(([h, i, c, t, b]) => `<div class="li"><span class="h">${h}</span>${ico(i, c)}<div style="flex:1" class="sm">${t}</div>${b}</div>`).join('');
+  $('#ludo').innerHTML = LUDO.map(([j, o, c, ab, late]) => `<div class="li"><span class="cover" style="background:${c};width:28px;height:32px">${ab}</span><div style="flex:1"><b class="sm">${esc(j)}</b><div class="sm ${late ? '' : 'muted'}" style="${late ? 'color:var(--pourpre);font-weight:600' : ''}">${esc(o)}</div></div>${late ? '<button class="btn" style="padding:6px 10px;font-size:12px">Relancer</button>' : ''}</div>`).join('');
+}
+
+// ===== Caisse =====
+let cat = 'bar';
+function renderCaisse() {
+  $('#cats').innerHTML = Object.entries(CATS).map(([k, v]) => `<button class="cat${k === cat ? ' on' : ''}" data-cat="${k}">${use(v.i, k === cat ? '' : C[k])}${v.l}</button>`).join('');
+  $('#items').innerHTML = CATS[cat].it.map(([n, p, q]) => `<button class="item">${q ? `<span class="q">${q}</span>` : ''}${ico(CATS[cat].i, C[cat])}<span>${esc(n)}</span><b class="tnum">${eur(p)}</b></button>`).join('');
+  document.querySelectorAll('[data-cat]').forEach((b) => (b.onclick = () => { cat = b.dataset.cat; renderCaisse(); }));
+  const sums = { boutique: 0, bar: 0, jeu: 0 };
+  TICKET.forEach(([, q, p, c]) => (sums[c] += q * p));
+  const tot = sums.boutique + sums.bar + sums.jeu;
+  $('#receipt').innerHTML = `<div class="rh"><svg width="40" height="45" style="margin:0 auto 6px"><use href="#i-crest"/></svg><b>Table 4 · Les Paladins</b><span>ardoise ouverte à 19 h 05 · 4 joueurs</span></div>
+    ${TICKET.map(([n, q, p, c]) => `<div class="rl"><span class="k" style="background:${C[c]}"></span><span>${esc(n)}</span><span class="muted tnum">× ${q}</span><span class="r tnum">${eur(q * p)}</span></div>`).join('')}
+    <div class="rtot"><span class="cz" style="font-size:15px;font-weight:700">Total</span><b class="tnum">${eur(tot)}</b></div>
+    <div class="split">${['boutique', 'bar', 'jeu'].map((k) => `<i style="flex:${sums[k]};background:${C[k]}"></i>`).join('')}</div>
+    <div class="splitl"><span><i style="background:${C.boutique}"></i>Boutique ${eur(sums.boutique)}</span><span><i style="background:${C.bar}"></i>Bar ${eur(sums.bar)}</span><span><i style="background:${C.jeu}"></i>Jeu ${eur(sums.jeu)}</span></div>
+    <div class="sm muted" style="padding:0 18px 12px">Encaissé par votre caisse certifiée · TVA ventilée par taux · stock du site mis à jour</div>
+    <div class="pay"><button class="btn pri">Carte bancaire</button><button class="btn">Espèces</button><button class="btn">Carte cadeau</button><button class="btn">Partager par joueur</button></div>`;
+  $('#client').innerHTML = `<div style="display:flex;gap:10px;align-items:center"><span class="av" style="background:var(--pourpre)">SL</span><div><b>Sacha L.</b><div class="muted sm">Salernes · joueur depuis mars</div></div></div>
+    <div class="seals" style="margin:12px 0 8px">${seals(8)}</div><div class="sm">8 sceaux sur 10 · <b>boisson offerte au 10e</b></div><div class="sm muted" style="margin-top:4px">Carte cadeau CG-0412 : 25,00 € restants</div>`;
+  $('#ards').innerHTML = TABLES.filter((t) => t.a).map((t) => `<div class="ard${t.sel ? ' sel' : ''}"><div class="sm" style="font-weight:600">${t.n}</div><div class="muted" style="font-size:11px">${t.h ? 'depuis ' + t.h : 'au bar'}</div><b class="tnum">${eur(t.a)}</b></div>`).join('');
+  $('#cloture').innerHTML = [['Carte bancaire', '455,20 €'], ['Espèces', '121,80 €'], ['Cartes cadeaux utilisées', '35,00 €'], ['Total encaissé', '612,00 €'], ['Site en ligne', '2 commandes · 61,50 €']].map(([a, b], i) => `<div class="row"${i === 3 ? ' style="font-weight:700"' : ''}><span>${a}</span><b class="tnum">${b}</b></div>`).join('');
+}
+
+// ===== Soirées et tournois =====
+function renderQuetes() {
+  $('#posters').innerHTML = EVENTS.map((e) => {
+    const p = Math.round((e.ins / e.max) * 100);
+    return `<div class="poster${e.sel ? ' sel' : ''}" style="background:${e.bg}">
+      <svg class="art" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g style="color:rgba(228,201,144,.13)" transform="translate(170 62) scale(5.6)"><use href="#${e.ic}" width="24" height="24"/></g></svg>
+      <div class="d">${e.d}</div><h3>${esc(e.t)}</h3><div class="m">${esc(e.m)}</div>
+      <div class="f"><div class="gauge"><i style="width:${p}%"></i></div><div style="display:flex;justify-content:space-between;font-size:12px"><span><b>${e.ins}</b> / ${e.max} inscrits${e.att ? ` · <b style="color:var(--or2)">+${e.att} en attente</b>` : ''}</span><b>${e.f}</b></div></div></div>`;
+  }).join('');
+  $('#inscrits').innerHTML = `<tr><th>Joueur</th><th>Armée</th><th>Liste d'armée</th><th class="r">Inscription</th></tr>` + INSCRITS.map(([n, a, l, p]) => `<tr><td><b>${esc(n)}</b></td><td>${esc(a)}</td><td>${l === 'reçue' ? '<span class="b ok">reçue</span>' : '<span class="b warn">relance jeudi</span>'}</td><td class="r"><span class="b ${p === 'payé' ? 'ok' : 'idle'}">${p}</span></td></tr>`).join('') + `<tr><td colspan="4" class="muted sm">+ 8 autres joueurs · rappel la veille par mail et SMS</td></tr>`;
+  $('#attente').innerHTML = [['1', 'Inès D.', '13 ans · inscrite le 21/11', 'place proposée automatiquement si un désistement'], ['2', 'Tom V.', '12 ans · inscrit le 22/11', ''], ['3', 'Lou M.', '14 ans · inscrite le 24/11', '']].map(([r, n, d, x]) => `<div class="li"><span class="av" style="background:var(--or);color:var(--nuit)">${r}</span><div style="flex:1"><b class="sm">${n}</b><div class="muted sm">${d}</div></div>${x ? `<span class="sm muted" style="max-width:190px;text-align:right">${x}</span>` : ''}</div>`).join('');
+  $('#msgs').innerHTML = [['i-de', C.jeu, 'Jeudi 26 · 18 h', 'Rappel de la soirée jeux aux 18 inscrits'], ['i-epee', C.boutique, 'Jeudi 26 · 18 h', 'Relance des 2 listes d\'armée manquantes'], ['i-parchemin', C.bar, 'Dimanche 29 · 10 h', 'Classement final du tournoi aux 14 joueurs']].map(([i, c, h, t]) => `<div class="li">${ico(i, c)}<div style="flex:1"><b class="sm">${t}</b><div class="muted sm">${h}</div></div><span class="b info">programmé</span></div>`).join('');
+  $('#pairs').innerHTML = PAIRS.map(([t, a, aa, b, bb], i) => `<div class="pair"><span class="tbn">${t}</span><div class="pl"><span class="av" style="background:${PCOL[i]}">${a.split(' ').map((x) => x[0]).join('')}</span><div><b class="sm">${a}</b><small>${aa}</small></div></div><span class="vs">contre</span><div class="pl"><span class="av" style="background:${PCOL[(i + 3) % 6]}">${b.split(' ').map((x) => x[0]).join('')}</span><div><b class="sm">${b}</b><small>${bb}</small></div></div></div>`).join('');
+}
+
+// ===== Registre =====
+function renderRegistre() {
+  $('#kpis').innerHTML = [
+    ['Recettes du mois', '9 040 €', '<span style="color:var(--ok)">+ 12 % sur octobre</span>'],
+    ['Part du bar et du jeu', '27 %', '<span class="muted">la boutique reste le cœur</span>'],
+    ['Cartes cadeaux vendues', '23', '<span class="muted">815 € · 720 € à utiliser</span>'],
+    ['Sous le seuil', '4', '<span style="color:var(--pourpre)">commande à passer jeudi</span>', 1],
+  ].map(([l, v, d, a]) => `<div class="kpi${a ? ' alert' : ''}"><div class="l">${l}</div><div class="v tnum">${v}</div><div class="d">${d}</div></div>`).join('');
+  $('#leg').innerHTML = SERIES.map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join('');
+  const tots = WEEKS.map((_, i) => SERIES.reduce((s, x) => s + x[2][i], 0)), max = Math.max(...tots);
+  $('#chart').innerHTML = WEEKS.map((w, i) => `<div class="cc"><b class="cz tnum" style="font-size:14px">${eur(tots[i], 0)}</b><div class="stack" style="height:${Math.round((tots[i] / max) * 180)}px">${SERIES.map(([, c, v]) => `<i style="background:${c};flex:${v[i]}"></i>`).join('')}</div><span class="sm muted">${w}</span></div>`).join('');
+  $('#stock').innerHTML = STOCK.map(([n, f, q, s]) => `<div class="li"><div style="flex:1"><b class="sm">${esc(n)}</b><div class="muted sm">${f} · seuil ${s}</div></div><div class="lvl"><i style="width:${Math.max(6, (q / s) * 100)}%;background:${q === 0 ? 'var(--pourpre)' : 'var(--warn)'}"></i></div><b class="tnum sm" style="width:64px;text-align:right;color:${q === 0 ? 'var(--pourpre)' : 'var(--warn)'}">${q} en stock</b></div>`).join('');
+  $('#precos').innerHTML = `<tr><th>Article</th><th>Joueur</th><th>Acompte</th><th class="r">Statut</th></tr>` + PRECOS.map(([a, c, r, cl, s]) => `<tr><td><b>${esc(a)}</b></td><td>${c}</td><td class="sm">${r}</td><td class="r"><span class="b ${cl}">${s}</span></td></tr>`).join('');
+  $('#cadeaux').innerHTML = [['Vendues en novembre', '23 · 815 €'], ['Dont bons de séance peinture', '7'], ['Déjà utilisées', '4 · 95 €'], ['Encore à utiliser', '720 €']].map(([a, b]) => `<div class="row"><span>${a}</span><b class="tnum">${b}</b></div>`).join('') + `<div class="sm muted" style="margin-top:8px">Chaque carte a son code et son solde, lus par la caisse comme par le site.</div>`;
+}
+
+// ===== Mobile =====
+function renderMobile() {
+  $('#slots').innerHTML = ['14:00', '15:30', '17:00', '18:30', '20:00', '21:30'].map((h, i) => `<button class="slot${i === 1 ? ' on' : ''}${i === 4 ? ' full' : ''}"><span>${h}</span>${i === 4 ? '<small>complet</small>' : ''}</button>`).join('');
+  $('#mev').innerHTML = [['SAM', '28', 'Tournoi Warhammer 40.000', '2 places · 15 €'], ['MER', '2', 'Initiation peinture · ados', 'complet · liste d\'attente'], ['SAM', '5', 'Découverte Age de Sigmar', '4 places · gratuit']].map(([j, d, t, m]) => `<div class="mev"><div class="cal"><b>${j}</b><span>${d}</span></div><div style="flex:1"><b class="sm">${t}</b><div class="muted sm">${m}</div></div></div>`).join('');
+  $('#mseals').innerHTML = seals(8);
+}
+
+function show() {
+  const v = location.hash.slice(1) || 'soir';
+  document.querySelectorAll('section[data-view]').forEach((s) => s.classList.toggle('on', s.dataset.view === v));
+  document.querySelectorAll('[data-v]').forEach((a) => a.classList.toggle('on', a.dataset.v === v));
+  const s = document.querySelector(`section[data-view="${v}"]`);
+  if (s) { $('#title').textContent = $('#mtitle').textContent = s.dataset.title.replace('&amp;', '&'); $('#subtitle').textContent = $('#msubtitle').textContent = s.dataset.sub; }
+}
+renderSoir(); renderCaisse(); renderQuetes(); renderRegistre(); renderMobile();
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
