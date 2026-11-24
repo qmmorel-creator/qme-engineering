@@ -38,8 +38,8 @@ export async function ouvrirRendu() {
 export const empreinte = (octets) => crypto.createHash('sha1').update(octets).digest('hex').slice(0, 8);
 
 // Pages qui réutilisent des vignettes hors de leur page d'origine (accueils FR et EN, 22/11/2026 ; contact FR et EN,
-// 23/11/2026).
-export const PAGES_REPRISE = ['index.html', 'en/index.html', 'contact/index.html', 'en/contact/index.html'];
+// 23/11/2026 ; guides, 24/11/2026).
+export const PAGES_REPRISE = ['index.html', 'en/index.html', 'contact/index.html', 'en/contact/index.html', 'guides/index.html'];
 
 // Met à jour, dans ces pages, l'adresse versionnée de chaque vignette : adresses = Map(nom de fichier → adresse).
 export function majReprises(racine, adresses) {
