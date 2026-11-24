@@ -20,10 +20,7 @@ Vérifié le 23/11/2026 (avant Workspace) : test mail-tester 10/10 depuis Gmail 
 avec `spf=pass`, `dkim=pass` (`d=qm-engineering.fr`, `s=ovhmo-selector-1`) et `dmarc=pass`.
 
 Vérifié le 24/11/2026 : MX Google visible partout ; réception dans Workspace confirmée par un mail extérieur (18:33) ;
-SPF et clé DKIM Google publiés (RSA 2048, clé décodée) ; transfert vers le Gmail perso confirmé par Google ; filtre créé
-et appliqué aussi aux anciennes conversations (319 fils libellés et archivés, aucun resté en boîte de réception).
-Reste à vérifier sur le premier vrai mail transféré (expéditeur extérieur) : arrivée, libellé et archivage. Reste à faire
-par Quentin dans la console Google : « Démarrer l'authentification » DKIM.
+SPF et clé DKIM Google publiés. Reste à vérifier sur le premier vrai mail transféré : libellé et archivage du filtre.
 
 ### La boîte OVH reste indispensable
 
@@ -42,9 +39,7 @@ l'envoi) : tester avec un expéditeur extérieur.
 
 - Mails reçus à l'adresse pro : `label:transfert-workspace` dans le Gmail perso (archivés, donc hors boîte de réception).
 - Mails envoyés : `in:sent` du Gmail perso (expéditeur `quentin.morel@qm-engineering.fr`).
-- Le filtre a aussi été appliqué aux anciennes conversations : les mails pro reçus avant le 24/11/2026 (redirection OVH)
-  portent le même libellé et sont archivés. Quentin lit désormais ses mails pro dans Workspace ; rien de pro ne reste
-  dans la boîte de réception du Gmail perso.
+- Avant le 24/11/2026 au soir, les mails pro arrivaient par la redirection OVH, sans ce libellé (libellé `qme`).
 - Ce que Quentin écrirait directement depuis Workspace n'est pas visible : à éviter (option 1).
 
 ## Pourquoi l'envoi par OVH depuis le Gmail perso

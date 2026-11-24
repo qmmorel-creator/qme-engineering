@@ -19,7 +19,7 @@ Lire les identifiants avec `list_labels` à chaque passage (ils ne changent pas,
 |---|---|
 | `qme/Prospects/Refus` | refus poli, réponse type envoyée (ou déjà envoyée) |
 | `qme/Prospects/Énervé` | refus hostile, injurieux, agressif, ou « stop » : aucune réponse |
-| `qme/Prospects/Intéressé` | réponse positive ou question : signaler à Quentin dans le compte rendu (le fil reste archivé : depuis le 24/11/2026, Quentin lit ses mails pro dans Workspace) |
+| `qme/Prospects/Intéressé` | réponse positive ou question : **laisser en boîte de réception**, signaler à Quentin |
 | `qme/Prospects/Réponse auto` | absence, accusé de réception, ticket de support automatique |
 | `qme/Prospects/Non remis` | rebond (`mailer-daemon`, adresse inexistante, boîte pleine) |
 | `qme/Prospects/Autre` | tout le reste lié à la prospection (renvoi vers un autre contact, hors sujet) |
@@ -107,9 +107,7 @@ Pour chaque fil classé :
 
 1. S'il est dans la corbeille : `untrash_thread`. S'il est en spam : `unmark_thread_spam`.
 2. `label_thread` avec le libellé `qme/Prospects/*` voulu (après l'envoi de la réponse, pour qu'elle le porte aussi).
-3. Archiver : `unlabel_thread` avec `INBOX` (et `UNREAD`), sauf `Intéressé` (ne pas marquer comme lu). Depuis le 24/11/2026, les
-   réponses reçues à l'adresse pro arrivent déjà archivées sous le libellé `Transfert Workspace` : les chercher là
-   (`label:transfert-workspace`), en plus de la corbeille et du spam.
+3. Archiver : `unlabel_thread` avec `INBOX` (et `UNREAD`). **Exception** : `Intéressé` reste en boîte de réception.
 4. Hostile ou « stop » : ajouter une ligne à `docs/prospection/desinscrits.md` (date, organisation, adresses et
    domaines à exclure, citation courte). Refus poli qui demande le retrait de la liste : même ligne, en précisant
    « refus poli, retrait demandé ». **Et**, le jour même, inscrire les adresses (et les domaines d'une réponse hostile
@@ -128,4 +126,4 @@ Pour chaque fil classé :
    - prospect du suivi qui écrit de nouveau : mettre à jour « Étape », « Dernier message » et « Balle ».
 3. Commit sur la branche de travail, push ; pas de fusion dans `main` sans feu vert de Quentin.
 4. Compte rendu à Quentin : nombre de fils lus, par classement ; liste des réponses envoyées ; liste des hostiles
-   et « stop » (sans réponse) ; les intéressés (à lire par Quentin dans Workspace) ; les cas douteux, avec la raison du choix.
+   et « stop » (sans réponse) ; les intéressés laissés en boîte de réception ; les cas douteux, avec la raison du choix.
