@@ -5,6 +5,7 @@ import { traiter, verifierCodeEssai, PACKS, PRODUITS, cleEmail } from '../../net
 import { traiterEssai, tournerEssais } from '../../netlify/lib/essais.mjs';
 import { traiterAchat, contenuMailAchat, produitVendu, contenuMailSuivi, tournerSuivisAchat, SUIVI_ACHAT } from '../../netlify/lib/achats.mjs';
 import { optionsEnvoi, COPIE_CACHEE } from '../../netlify/lib/mail.mjs';
+import { codeAdmin } from '../../netlify/lib/interets.mjs';
 import { PRISE_EN_MAIN } from '../../netlify/lib/essais-prise-en-main.mjs';
 
 const SECRET = 'x'.repeat(40);
@@ -157,10 +158,20 @@ test('accompagnement d\'un template : J+3, une seule fois, file effacée ; notif
   assert.ok(m.texte.startsWith('Bonjour Floriane,') && m.texte.includes('le jeudi 19 novembre'));
   assert.ok(m.texte.includes(PRISE_EN_MAIN.BDG.astuces[0]) && m.texte.includes('https://qm-engineering.fr/connexion/'));
   assert.ok(m.html.includes('assets/signature/qme-logo.png') && m.copieCachee !== false, 'signature graphique, copie cachée gardée');
-  assert.deepEqual(await w.essais.lister('suivi-achat/'), [], 'adresse effacée dès l\'envoi');
+  const [cle] = await w.essais.lister('suivi-achat/');
+  assert.ok((await w.essais.get(cle)).envoye, 'gardé pour /admin/suivi/ avec sa date d\'envoi');
   w.mails.length = 0;
   await tournee(w, 4);
-  assert.deepEqual(w.mails, []);
+  assert.deepEqual(w.mails, [], 'une seule fois');
+  // Vu dans l'API du suivi, puis effacé 30 jours après l'envoi.
+  const api = await (await traiterEssai(new Request('http://t/api/essai/essais', { headers: { 'x-admin': codeAdmin(SECRET) } }),
+    { secret: SECRET, essais: w.essais, maintenant: () => w.horloge.t })).json();
+  assert.equal(api.accompagnements.length, 1);
+  assert.equal(api.accompagnements[0].produit, 'Mon Budget');
+  assert.equal(api.accompagnements[0].objet, 'Mon Budget : tout se passe bien ?');
+  assert.equal((await tournee(w, 3 + SUIVI_ACHAT.conservation)).purges, 0);
+  assert.equal((await tournee(w, 4 + SUIVI_ACHAT.conservation)).purges, 1);
+  assert.deepEqual(await w.essais.lister('suivi-achat/'), []);
 });
 
 test('accompagnement d\'un pack : ses templates, par lequel commencer ; aussi après un essai', async () => {
@@ -196,6 +207,7 @@ test('accompagnement : rien pour une adresse sur la liste d\'opposition ; file p
   w3.horloge.t = T0 + 3 * JOUR;
   const r = await tournerSuivisAchat({ secret: SECRET, essais: w3.essais, envoyer: async () => { throw new Error('SMTP'); }, maintenant: () => w3.horloge.t });
   assert.equal(r.erreurs, 1);
+  assert.ok(!(await w3.essais.get((await w3.essais.lister('suivi-achat/'))[0])).envoye);
   w3.mails.length = 0;
   assert.equal((await tournee(w3, 4)).envoyes, 1, 'renvoyé le lendemain');
 });

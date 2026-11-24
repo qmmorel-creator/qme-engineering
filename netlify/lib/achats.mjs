@@ -17,7 +17,9 @@
 // SUIVI_ACHAT.jours jours après l'achat (rattrapage jusqu'à SUIVI_ACHAT.rattrapage jours de plus), envoyé par la tournée
 // quotidienne (essais-quotidien.mjs → tournerSuivisAchat). Template : deux astuces et une aide au réglage ; pack : ses
 // templates en une ligne chacun et par lequel commencer. File : suivi-achat/<empreinte de la clé> (adresse, prénom,
-// produit, date), effacée dès l'envoi ou à la fin du rattrapage. Rien pour une adresse sur la liste d'opposition.
+// produit, date d'achat, date prévue, date d'envoi). Après l'envoi, l'entrée reste SUIVI_ACHAT.conservation jours pour
+// /admin/suivi/, puis elle est effacée ; non envoyée à la fin du rattrapage, effacée aussitôt. Rien pour une adresse sur
+// la liste d'opposition.
 import { createHmac } from 'node:crypto';
 import { PRODUITS, PACKS, verifierLicenceGumroad, cleEmail, jourParis, decalerJour } from './templates-acces.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
@@ -26,7 +28,7 @@ import { ajouterAchat } from './comptes.mjs';
 import { oppositionDe } from './preferences.mjs';
 import { TEMPLATES } from '../../outils/packs/donnees.mjs';
 
-export const SUIVI_ACHAT = { jours: 3, rattrapage: 4 };
+export const SUIVI_ACHAT = { jours: 3, rattrapage: 4, conservation: 30 };
 
 const CONNEXION = `${SITE}/connexion/`;
 const json = (statut, corps) => new Response(JSON.stringify(corps), { status: statut, headers: { 'content-type': 'application/json; charset=utf-8' } });
@@ -198,12 +200,16 @@ ${SIGNATURE}`;
   return { objet, texte: `${texte}\n\n—\n${pied}`, html: enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">${pied}</p>`) };
 }
 
-// Tournée quotidienne : envoie les accompagnements dus, efface la file. Renvoie { envoyes, expires, opposition, erreurs }.
+// Tournée quotidienne : envoie les accompagnements dus, purge la file. Renvoie { envoyes, expires, opposition, purges, erreurs }.
 export async function tournerSuivisAchat({ secret, essais, envoyer = null, maintenant = Date.now }) {
   const aujourdhui = jourParis(new Date(maintenant()));
-  const bilan = { envoyes: 0, expires: 0, opposition: 0, erreurs: 0 };
+  const bilan = { envoyes: 0, expires: 0, opposition: 0, purges: 0, erreurs: 0 };
   for (const cle of await essais.lister('suivi-achat/')) {
     const s = await essais.get(cle);
+    if (s?.envoye) {
+      if (aujourdhui > decalerJour(jourParis(new Date(s.envoye)), SUIVI_ACHAT.conservation)) { await essais.supprimer(cle); bilan.purges++; }
+      continue;
+    }
     const connu = s && (s.type === 'pack' ? PACKS[s.code] : PRODUITS[s.code]);
     if (!connu || aujourdhui > decalerJour(s.du, SUIVI_ACHAT.rattrapage)) { await essais.supprimer(cle); bilan.expires++; continue; }
     if (aujourdhui < s.du || !envoyer) continue;
@@ -211,7 +217,7 @@ export async function tournerSuivisAchat({ secret, essais, envoyer = null, maint
     const m = contenuMailSuivi(s);
     try {
       await envoyer({ a: s.email, objet: m.objet, texte: m.texte, html: m.html });
-      await essais.supprimer(cle);
+      await essais.set(cle, { ...s, envoye: new Date(maintenant()).toISOString(), objet: m.objet });
       bilan.envoyes++;
     } catch (x) {
       bilan.erreurs++; // nouvel essai le lendemain, jusqu'à la fin du rattrapage
