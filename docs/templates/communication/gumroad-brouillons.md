@@ -1,5 +1,8 @@
 # Brouillons Gumroad (14/11/2026)
 
+> **23/11/2026 : option « Pack évolutif » supprimée** (décision de Quentin). Les prix « évolutif » et les mentions de
+> versions ci-dessous sont historiques : chaque pack n'a qu'une version et inclut les templates ajoutés plus tard.
+
 > **Priorité de la file Gumroad** : voir `gumroad-priorite.md` (liste unique, Pack Étudiant en tête depuis le 16/11/2026).
 
 

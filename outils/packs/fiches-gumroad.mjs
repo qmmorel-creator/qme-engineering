@@ -2,7 +2,7 @@
 // Usage : node outils/packs/fiches-gumroad.mjs
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { PACKS, OPTION } from '../../netlify/lib/packs.mjs';
+import { PACKS } from '../../netlify/lib/packs.mjs';
 import { calculerPack } from './generer.mjs';
 import { PRODUITS_ESSAI } from '../../netlify/lib/essais.mjs';
 import { ESSAI } from '../../netlify/lib/templates-acces.mjs';
@@ -21,7 +21,7 @@ const fiches = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPa
     `<ul>${p.templates.map((t) => `<li><strong>${esc(t.nom)}</strong> : ${esc(t.phrase)} (${euros(t.prix)} seul)</li>`).join('')}</ul>`,
     p.prevus.length ? `<p><strong>À venir dans ce pack :</strong> ${p.prevus.map((t) => esc(t.nom)).join(', ')}.</p>` : '',
     `<p>${euros(p.valeur)} à l’achat séparé, ${euros(p.prix)} en pack${p.pct ? ` (−${p.pct} %)` : ''}.</p>`,
-    `<p><strong>Deux versions :</strong> « Pack » (${euros(p.prix)}) ouvre les templates présents le jour de l’achat ; « ${OPTION.nom} » (${euros(p.prix + p.option)}) ouvre aussi chaque template ajouté au pack ensuite, avec la même clé.</p>`,
+    `<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>`,
     // Essai gratuit des outils du pack, annoncé comme sur la page du pack (audit du 22/11/2026).
     p.templates.length && p.templates.every((t) => PRODUITS_ESSAI.includes(t.pre)) ? `<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie ${ESSAI.jours} jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>` : '',
     `<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>`,
@@ -30,7 +30,7 @@ const fiches = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPa
   ].filter(Boolean).join('\n');
   return {
     code: p.code, slug: p.slug, nom: p.nom, permalien: `pack-${p.slug}`,
-    prix_cents: p.prix, versions: [{ nom: 'Pack', prix_cents: p.prix }, { nom: OPTION.nom, prix_cents: p.prix + p.option }],
+    prix_cents: p.prix,
     resume: p.accroche, description_html: description,
     lien_contenu: 'https://qm-engineering.fr/connexion/', texte_bouton: 'Ouvrir mon pack',
     texte_recu: 'Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.',
@@ -40,8 +40,8 @@ const fiches = Object.keys(PACKS).filter((k) => !PACKS[k].retire).map(calculerPa
 
 await writeFile(RACINE + 'docs/templates/communication/packs/gumroad-packs.json', JSON.stringify(fiches, null, 2) + '\n');
 const md = ['# Fiches Gumroad des packs', '', 'Généré par `node outils/packs/fiches-gumroad.mjs` (même source que le site). Ordre : les packs dont il manque le moins de templates en vente d’abord.', '',
-  'Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : deux versions (« Pack » et « Pack évolutif », prix ci-dessous), bloc **License key** dans le contenu (le serveur lit la version achetée et la date d’achat), puis identifiant du produit reporté dans `PACKS` (`gumroad`, `permalien`) de `netlify/lib/packs.mjs` et `node outils/packs/generer.mjs`. Un pack n’est publié que lorsque tous ses templates sont en vente.', '',
-  '| Pack | Permalien | Pack | Pack évolutif | Templates en vente | Manquent |', '|---|---|---|---|---|---|',
-  ...fiches.map((f) => `| ${f.nom} | ${f.permalien} | ${euros(f.versions[0].prix_cents)} | ${euros(f.versions[1].prix_cents)} | ${f.templates_en_vente} | ${f.templates_a_mettre_en_vente.join(', ') || '—'} |`), ''];
+  'Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc **License key** dans le contenu (une seule version, au prix ci-dessous ; tous les templates du pack, y compris ceux ajoutés plus tard, s’ouvrent avec la clé), puis identifiant du produit reporté dans `PACKS` (`gumroad`, `permalien`) de `netlify/lib/packs.mjs` et `node outils/packs/generer.mjs`. Un pack n’est publié que lorsque tous ses templates sont en vente.', '',
+  '| Pack | Permalien | Prix | Templates en vente | Manquent |', '|---|---|---|---|---|',
+  ...fiches.map((f) => `| ${f.nom} | ${f.permalien} | ${euros(f.prix_cents)} | ${f.templates_en_vente} | ${f.templates_a_mettre_en_vente.join(', ') || '—'} |`), ''];
 await writeFile(RACINE + 'docs/templates/communication/packs/gumroad-packs.md', md.join('\n'));
 console.log(fiches.map((f) => `${f.code} ${f.templates_en_vente}`).join(' · '));

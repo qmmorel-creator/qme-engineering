@@ -244,12 +244,12 @@ se colle sur `/connexion/` et ouvre le tableau de bord `/packs/espace/` ; le ser
 (`codePackProduit`), les templates n'ont rien à changer. Pack sur mesure : code `SMP-<préfixes>-…` signé
 (`npm run code -- SMP BDG,ABN,DTT`).
 
-**Option « Pack évolutif » (décision de Quentin, 14/11/2026)** : sans option, un pack ouvre les templates qu'il
-contenait le jour de l'achat ; avec l'option, il ouvre aussi tous les templates ajoutés ensuite. Prix : 25 % du
-prix du pack, arrondi à l'euro supérieur, 9 € minimum. Sur Gumroad : deux versions du produit pack (« Pack » et
-« Pack évolutif ») ; le serveur lit la version et la date d'achat dans la licence. À l'ajout d'un template à un
-pack : préfixe dans `produits` et date dans `ajouts` (`netlify/lib/packs.mjs`). Codes à la main : `PFG+`.
-Pas d'option pour le pack sur mesure (composition fixe).
+**Templates ajoutés plus tard : inclus (décision de Quentin, 23/11/2026)**. L'option « Pack évolutif » (décision du
+14/11/2026) est supprimée partout : site, serveur, fiches Gumroad. Un pack ouvre tous ses templates en vente, y
+compris ceux ajoutés au pack après l'achat, sans supplément ; une seule version par fiche Gumroad. Ajouter un
+template à un pack : son préfixe dans `produits` (`netlify/lib/packs.mjs`), rien d'autre. Les anciens codes `PFG+`
+restent valides et ouvrent tout le pack, comme les autres. La colonne « Option évolutif » du tableau ci-dessous est
+historique.
 
 **Pack sur mesure sur Gumroad (vérifié le 14/11/2026)** : produit unique à prix libre avec clé de licence et
 champ « Templates » ; le lien pré-remplit prix et champ (`?wanted=true&price=…&Templates=…`), le serveur relit

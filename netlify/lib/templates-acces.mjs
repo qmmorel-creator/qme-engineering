@@ -316,10 +316,11 @@ export async function verifierLicenceGumroad(produitGumroad, licence, fetchImpl 
 // Code sur mesure : SMP-<préfixes accolés>-AAAA-AAAA-SSSS-SSSS ; la signature couvre la composition.
 // Chaque template du pack reçoit un code de template déterministe (codePackProduit) : mêmes données
 // d'un appareil à l'autre, et les templates n'ont rien à savoir des packs.
-// Option « Pack évolutif » : portée par la signature (contexte pack+ au lieu de pack).
+// Les codes « pack+ » générés avant le 23/11/2026 (ancienne option « Pack évolutif ») restent valides et ouvrent,
+// comme les autres, tout le pack.
 const signerPack = (secret, pack, compo, id, option = false) => signature(secret, compo ? `${pack}:${compo}` : `${option ? 'pack+' : 'pack'}:${pack}`, id);
 
-export function genererCodePack(secret, pack, composition = [], { option = false } = {}) {
+export function genererCodePack(secret, pack, composition = []) {
   if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
   const id = base32(randomBytes(5));
   if (pack === SUR_MESURE) {
@@ -329,7 +330,7 @@ export function genererCodePack(secret, pack, composition = [], { option = false
     return `${SUR_MESURE}-${compo.join('')}-${id.slice(0, 4)}-${id.slice(4)}-${sig.slice(0, 4)}-${sig.slice(4)}`;
   }
   if (!PACKS[pack]) throw new Error(`Pack inconnu : ${pack}`);
-  return formater(pack, id, signerPack(secret, pack, '', id, option));
+  return formater(pack, id, signerPack(secret, pack, '', id));
 }
 
 // Code de pack déterministe associé à une clé Gumroad de pack.
@@ -352,11 +353,10 @@ export function verifierCodePack(secret, saisie, revoques = []) {
   }
   const id = reste.slice(0, 8), sig = reste.slice(8);
   const egal = (option) => timingSafeEqual(Buffer.from(sig), Buffer.from(signerPack(secret, pack, compo, id, option)));
-  const option = pack !== SUR_MESURE && egal(true);
-  if (!option && !egal(false)) return null;
+  if (!egal(false) && !(pack !== SUR_MESURE && egal(true))) return null;
   if (revoques.map(normaliser).includes(id)) return null;
-  const produits = pack === SUR_MESURE ? compo.match(/.{3}/g).filter((p) => PRODUITS[p]) : produitsAccessibles(pack, { option }, PRODUITS);
-  return { pack, id, option, produits };
+  const produits = pack === SUR_MESURE ? compo.match(/.{3}/g).filter((p) => PRODUITS[p]) : produitsAccessibles(pack, {}, PRODUITS);
+  return { pack, id, produits };
 }
 
 // Code de pack sur mesure déterministe associé à une clé Gumroad du produit « Pack sur mesure ».
@@ -376,7 +376,7 @@ function reponsePack(secret, acces, code) {
   const nom = acces.pack === SUR_MESURE ? 'Pack sur mesure' : PACKS[acces.pack].nom;
   const slug = acces.pack === SUR_MESURE ? 'sur-mesure' : PACKS[acces.pack].slug;
   const templates = acces.produits.map((p) => ({ produit: p, nom: PRODUITS[p].nom, url: PRODUITS[p].url, code: codePackProduit(secret, acces.pack, acces.id, p) }));
-  return json(200, { ok: true, pack: acces.pack, slug, nom, option: Boolean(acces.option), code, templates });
+  return json(200, { ok: true, pack: acces.pack, slug, nom, code, templates });
 }
 
 // Renvoie { produit, id } si le code est valide, sinon null.
@@ -452,14 +452,12 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
         }
         code = codeSurMesureDepuisLicence(secret, code, compo);
       } else if (PACKS[cle]) {
-        // Pack Gumroad : option lue dans la version achetée, date d'achat pour les templates ajoutés depuis.
+        // Pack Gumroad : tout le pack est ouvert, templates ajoutés après l'achat compris.
         // La clé Gumroad elle-même est renvoyée comme code : l'espace la revérifie à chaque ouverture.
-        const achat = reponses[trouve].value.achat || {};
-        const option = /volutif/i.test(String(achat.variants || ''));
         const acces = verifierCodePack(secret, codePackDepuisLicence(secret, cle, code), revoques);
         if (!acces) return json(401, { erreur: 'Clé de licence inconnue.' });
         await reporterPack(acces);
-        return reponsePack(secret, { ...acces, option, produits: produitsAccessibles(cle, { option, date: achat.sale_timestamp }, PRODUITS) }, code.trim().toUpperCase());
+        return reponsePack(secret, acces, code.trim().toUpperCase());
       } else code = codeDepuisLicence(secret, cle, code);
     }
     else if (!rembourse && reponses.some((r) => r.status === 'rejected')) {

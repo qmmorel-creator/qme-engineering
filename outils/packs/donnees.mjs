@@ -107,7 +107,7 @@ export const TEMPLATES = {
 };
 
 // Templates en développement annoncés dans un pack. À leur sortie : ajouter leur préfixe au pack et la date dans
-// `ajouts` (netlify/lib/packs.mjs) ; ils s'ouvrent pour les acheteurs qui ont pris l'option « Pack évolutif ».
+// ils s'ouvrent pour tous les acheteurs du pack, sans supplément (décision du 23/11/2026).
 export const PREVUS = {
   // Idées déjà listées (T06–T63)
   // Nouvelles idées (T73–T97, 14/11/2026)
@@ -204,7 +204,7 @@ export const PAGES = {
       ['FRM', 'Voyez qui sait faire quoi, les compétences fragiles et le plan de formation.'],
       ['DRP', 'Tenez à jour le document unique : risques par unité de travail, cotation et plan d’actions.'],
     ],
-    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Un achat unique, pas un abonnement par salarié', 'Chaque outil se prend en main en quelques minutes', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: ['FRM'],
   },
   PMG: {
@@ -224,7 +224,7 @@ export const PAGES = {
       ['ACH', 'Centralisez les demandes d’achat, validez-les et regroupez les commandes par fournisseur.'],
       ['EVT', 'Organisez séminaires et événements internes : participants, trajets, chambres, programme et budget.'],
     ],
-    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Une seule liste d’échéances au lieu de trois tableurs', 'Des règles sourcées et modifiables (contrôle technique, garanties)', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PAR: {
@@ -239,7 +239,7 @@ export const PAGES = {
       ['RBS', 'Vérifiez chaque remboursement santé et relancez ce qui manque.'],
       ['CPT', 'Calculez votre capacité d’emprunt et comparez les offres de prêt sur leur coût total.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Aucune connexion à votre banque : vous gardez la main sur vos données', 'Ce qui sort, ce que vous devez, ce que vous possédez : rien n’est oublié', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PMR: {
@@ -255,7 +255,7 @@ export const PAGES = {
       ['VYG', 'Préparez le voyage : étapes, nuits, activités et budget, puis partagez les dépenses.'],
       ['CDX', 'Remerciez chacun : cadeaux notés, messages prêts, étiquettes imprimées.'],
     ],
-    arguments: ['Mon Budget relié à Gestion Dépenses Communes : la part du commun s’ajoute seule au budget', 'Du jour J au quotidien, sans changer d’outil', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Mon Budget relié à Gestion Dépenses Communes : la part du commun s’ajoute seule au budget', 'Du jour J au quotidien, sans changer d’outil', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PPR: {
@@ -270,7 +270,7 @@ export const PAGES = {
       ['RDV', 'Prenez du recul chaque trimestre : roue de vie, objectifs et bilan.'],
       ['RVH', 'Faites le point chaque semaine : bilan, apprentissages et trois priorités.'],
     ],
-    arguments: ['Une méthode complète : trier, planifier, tenir, prendre du recul', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Une méthode complète : trier, planifier, tenir, prendre du recul', 'Sur l’ordinateur au bureau, sur le téléphone en déplacement', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PET: {
@@ -304,7 +304,7 @@ export const PAGES = {
       ['BNV', 'Planifiez les bénévoles par créneau, sans trou ni doublon.'],
       ['AGS', 'Préparez l’assemblée générale : convocation, quorum, votes et procès-verbal.'],
     ],
-    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Une clé partagée entre les membres du bureau', 'Un achat unique, adapté au budget d’une association', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PPB: {
@@ -323,7 +323,7 @@ export const PAGES = {
       ['CPR', 'Suivez appels de fonds, charges récupérables et votes de l’assemblée générale.'],
       ['ETD', 'Faites l’état des lieux pièce par pièce, photos et comparaison entrée-sortie comprises.'],
     ],
-    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Revenus, travaux et entretien du même bien au même endroit', 'Des échéances calculées, pas des rappels à saisir', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PFM: {
@@ -338,7 +338,7 @@ export const PAGES = {
       ['MSC', 'Notez vos séances, battez vos records, chronomètre en main.'],
       ['CRS', 'Préparez votre course : allures calculées depuis votre chrono, plan semaine par semaine.'],
     ],
-    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Sans publicité ni abonnement', 'Des bases nutritionnelles intégrées', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PFA: {
@@ -396,7 +396,7 @@ export const PAGES = {
       ['NCF', 'Enregistrez chaque écart, sa cause et l’action corrective jusqu’à la vérification.'],
       ['STK', 'Gardez les pièces de rechange au bon niveau, alertes et liste à commander comprises.'],
     ],
-    arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Un moteur d’échéances commun à tous les outils', 'Des périodicités sourcées ou paramétrables', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PCA: {
@@ -436,7 +436,7 @@ export const PAGES = {
       ['BCM', 'Partagez les dépenses communes et voyez qui doit quoi, ou combien chacun verse sur le compte joint.'],
       ['RDV', 'Fixez vos objectifs de l’année, argent compris, et faites le bilan chaque trimestre.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Une clé que vous partagez à deux : les mêmes données sur vos deux téléphones', 'Les templates ajoutés plus tard inclus, sans supplément'],
     // Avertissement « argent » des fiches budget, repris dans la fiche Gumroad du pack.
     avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
     prevus: [],
@@ -453,7 +453,7 @@ export const PAGES = {
       ['EPG', 'Donnez un but à chaque euro mis de côté, fonds d’urgence en tête.'],
       ['DTT', 'Soldez vos dettes une à une avec une date de fin.'],
     ],
-    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Mon Budget et Gestion Dépenses Communes reliés : votre part du commun s’ajoute seule à votre budget, qui reste privé', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Aucune connexion à votre banque : vous saisissez vos montants', 'Mon Budget et Gestion Dépenses Communes reliés : votre part du commun s’ajoute seule à votre budget, qui reste privé', 'Les templates ajoutés plus tard inclus, sans supplément'],
     avertissement: 'Aucune connexion bancaire : vous saisissez vos montants. Outils de suivi personnel, ce n’est pas un conseil financier, bancaire ou fiscal.',
     prevus: [],
   },
@@ -466,7 +466,7 @@ export const PAGES = {
       ['RPS', 'Planifiez les repas de la semaine et générez la liste de courses par rayon.'],
       ['GRD', 'Sachez ce qu’il y a dans les placards et ce qui périme bientôt.'],
     ],
-    arguments: ['Une clé partagée : l’un planifie, l’autre fait les courses', 'Les mêmes données sur tous les téléphones du foyer', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['Une clé partagée : l’un planifie, l’autre fait les courses', 'Les mêmes données sur tous les téléphones du foyer', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
   PBD: {
@@ -479,7 +479,7 @@ export const PAGES = {
       ['HBT', 'Traduisez-les en routines à cocher d’un geste : séries et grille du mois.'],
       ['TCH', 'Videz la boîte de réception et décidez des trois priorités du jour.'],
     ],
-    arguments: ['De l’objectif de l’année à la tâche du jour, sans changer d’outil', 'Sur l’ordinateur et sur le téléphone, avec la même clé', 'Les templates ajoutés plus tard inclus avec l’option Pack évolutif'],
+    arguments: ['De l’objectif de l’année à la tâche du jour, sans changer d’outil', 'Sur l’ordinateur et sur le téléphone, avec la même clé', 'Les templates ajoutés plus tard inclus, sans supplément'],
     prevus: [],
   },
 };
