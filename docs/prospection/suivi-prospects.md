@@ -1,5 +1,9 @@
 # Suivi des prospects sérieux et tièdes
 
+> **Archive (24/11/2026).** Ce suivi est migré dans **Nexora Optim › QME**, source unique depuis la décision de
+> Quentin du 24/11/2026 (MCP Nexora : `get_qme`, `list_qme`, `mutate_qme`). Ne plus modifier ce fichier. La règle
+> « un projet Nexora par prospect » (§ Nexora ci-dessous) reste valable : son statut suit la fiche QME.
+
 **Source unique** de l'état des prospects QME (sur mesure et affiliation) qui ont répondu autrement que par un refus.
 À lire **avant** toute relance, tout devis, toute réponse ou tout nouveau mail de prospection, et à mettre à jour
 **le jour même** par la session qui traite un échange (date, dernier message, prochaine action). Décision de Quentin

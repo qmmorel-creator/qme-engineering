@@ -26,9 +26,10 @@ Lire les identifiants avec `list_labels` à chaque passage (ils ne changent pas,
 
 ## 0. Avant tout : récupérer `main` et lire le suivi des prospects
 
-`git fetch origin main`, puis lire `docs/prospection/suivi-prospects.md` (source unique des prospects sérieux et tièdes,
-décision du 23/11/2026). Un prospect qui y figure n'est jamais traité « à l'aveugle » : sa ligne dit où en est l'échange
-et qui a la balle. Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans **tous** les fils
+`git fetch origin main`, puis lire le suivi des prospects dans **Nexora Optim › QME** (source unique depuis le 24/11/2026) :
+MCP Nexora `get_qme` (`entity: "summary"`), puis `list_qme` (`domain: "prospects"`, `query` : organisation ou domaine)
+pour chaque fil. Un prospect qui y figure n'est jamais traité « à l'aveugle » : sa fiche dit où en est l'échange
+et qui a la balle (`get_qme` `entity: "prospect"` pour les échanges). Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans **tous** les fils
 Gmail : Quentin répond parfois dans un nouveau fil (cas d'Alice Bacquart, 21/11/2026).
 
 ## 1. Inventaire (le plus large possible)
@@ -69,7 +70,8 @@ Lire le **dernier message du prospect** et ce qui suit :
 - **Pas de réponse type, signaler à Quentin** : un contact personnel (tutoiement, ancien collègue), ou un report daté
   plutôt qu'un refus (« reparlons-en en mai ») ; le modèle au vouvoiement n'y convient pas.
 
-Vérifier aussi `docs/prospection/desinscrits.md` : une adresse ou un domaine qui y figure ne reçoit jamais de réponse.
+Vérifier aussi la liste d'opposition du site (`POST /api/compte/opposition/verifier`) et l'étape `oppose` dans Nexora :
+une adresse ou un domaine qui y figure ne reçoit jamais de réponse (`docs/prospection/desinscrits.md` est une archive).
 
 ## 3. Réponse type (refus poli uniquement)
 
@@ -108,8 +110,8 @@ Pour chaque fil classé :
 1. S'il est dans la corbeille : `untrash_thread`. S'il est en spam : `unmark_thread_spam`.
 2. `label_thread` avec le libellé `qme/Prospects/*` voulu (après l'envoi de la réponse, pour qu'elle le porte aussi).
 3. Archiver : `unlabel_thread` avec `INBOX` (et `UNREAD`). **Exception** : `Intéressé` reste en boîte de réception.
-4. Hostile ou « stop » : ajouter une ligne à `docs/prospection/desinscrits.md` (date, organisation, adresses et
-   domaines à exclure, citation courte). Refus poli qui demande le retrait de la liste : même ligne, en précisant
+4. Hostile ou « stop » : dans Nexora, `mutate_qme` sur le prospect (ou le créateur) : `etape: "oppose"`,
+   `motifSortie` (date, citation courte). Refus poli qui demande le retrait de la liste : même chose, motif
    « refus poli, retrait demandé ». **Et**, le jour même, inscrire les adresses (et les domaines d'une réponse hostile
    d'organisation) sur la liste d'opposition du site : `POST /api/compte/opposition` (règle absolue,
    `docs/templates/communication/REGLES-PROSPECTION.md` § 3).
@@ -118,12 +120,15 @@ Pour chaque fil classé :
 
 ## 5. Journal et compte rendu
 
-1. Ajouter les fils traités à `docs/prospection/journal-refus.md` (date de passage, organisation, adresse,
-   classement, réponse envoyée oui / non). Ne jamais y recopier le contenu des mails au-delà d'une citation courte.
-2. Mettre à jour `docs/prospection/suivi-prospects.md` le jour même (section « Mise à jour » du fichier) :
-   - nouvel intéressé : une ligne en « Sérieux » (rendez-vous ou devis explicites) ou en « Tièdes » ;
-   - prospect du suivi qui refuse : déplacer sa ligne en « Sortis du suivi », avec le motif et la date ;
-   - prospect du suivi qui écrit de nouveau : mettre à jour « Étape », « Dernier message » et « Balle ».
-3. Commit sur la branche de travail, push ; pas de fusion dans `main` sans feu vert de Quentin.
+1. Pour chaque fil traité, dans Nexora (`mutate_qme`, `entity: "prospect"` ; fiche créée avec `action: "create"`
+   si l'organisation n'y est pas) : ajouter un élément à `echanges` (date, `sens: "recu"`, classement et citation
+   courte ; puis `sens: "envoye"` si une réponse part), `gmailFil` (identifiant du fil). Ne jamais y recopier le
+   contenu des mails au-delà d'une citation courte.
+2. Mettre à jour la fiche le jour même :
+   - nouvel intéressé : `etape: "repondu"` (ou `rdv`, `devis`), `niveau: "serieux"` (rendez-vous ou devis
+     explicites) ou `"tiede"`, `balle`, `prochaineAction`, `relance` ;
+   - prospect qui refuse : `etape: "perdu"`, `motifSortie` (motif et date), `niveau: null` ;
+   - prospect qui écrit de nouveau : `etape`, `dernierMessage`, `balle`, `relance`.
+3. Aucun fichier du dépôt à modifier pour le suivi ; commit seulement si une règle ou un modèle change.
 4. Compte rendu à Quentin : nombre de fils lus, par classement ; liste des réponses envoyées ; liste des hostiles
    et « stop » (sans réponse) ; les intéressés laissés en boîte de réception ; les cas douteux, avec la raison du choix.
