@@ -29,7 +29,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
 .fantome{position:absolute;height:44px;border-radius:6px;border:3px dashed var(--encre);opacity:0}
 .jalon{position:absolute;width:36px;height:36px;transform-origin:center;background:var(--encre);will-change:transform}
 .etiquette{position:absolute;font-weight:800;font-size:30px;white-space:nowrap;text-align:right}
-.doigt{position:absolute;width:76px;height:76px;border-radius:50%;background:rgba(20,20,20,.18);border:5px solid var(--encre);will-change:transform}
+.doigt{position:absolute;width:76px;height:76px;border-radius:50%;background:rgba(20,20,20,.10);border:5px solid var(--encre);will-change:transform}
 .badge{position:absolute;background:var(--encre);color:var(--papier);font-weight:800;font-size:34px;padding:8px 18px;white-space:nowrap;opacity:0}
 .pied{position:absolute;left:96px;right:96px;top:1520px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:32px}
 .pied .note{font-weight:600;font-size:28px;color:var(--texte-2)}
@@ -142,10 +142,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);fo
     const x0 = xa[0] + (xb[0] - xa[0]) * k[0];
     const appuye = (t > ALLER.appui && t < ALLER.fin + 150) || (t > RETOUR.appui && t < RETOUR.fin + 150);
     doigt.style.transform = `translate(${x0 + 2}px, ${HAUT + 22 - 38}px) scale(${appuye ? 0.82 : 1})`;
-    // Badge « +n j ouvrés » pendant et juste après le glissé aller ; retour au départ pendant le retour.
+    // Badge « +n j ouvrés » pendant et juste après le glissé aller.
     const dj = Math.round(jour(D.A.taches[0].debut) + (jour(D.B.taches[0].debut) - jour(D.A.taches[0].debut)) * k[0]);
     const n = ouvresEntre(jour(D.A.taches[0].debut), dj);
-    const visible = (t > ALLER.debut && t < 3600) || (t > RETOUR.debut && t < RETOUR.fin + 300);
+    const visible = t > ALLER.debut && t < 3900; // seulement à l'aller (au retour, le compteur redescendrait à +0)
     badge.style.opacity = visible ? 1 : 0;
     badge.textContent = `+${n} j ouvrés`;
     badge.style.transform = `translate(${x0 + 96}px, ${HAUT - 2}px)`;

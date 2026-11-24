@@ -1,0 +1,98 @@
+<!-- Carrousel IG-219 (09/12/2026) · F9 « L'actualité chiffrée » (test des formats, vague 1) · fin du régime simplifié de TVA au 1er janvier 2027.
+     Source : impots.gouv.fr « Le régime simplifié d'imposition à la TVA est supprimé à compter du 1er janvier 2027 » (22/09/2026),
+     loi de finances pour 2025, art. 38 ; acomptes 55 % / 40 % : impots.gouv.fr/professionnel/tva. Calcul : calcul.mjs (cas fictif).
+     Rendu : node docs/templates/communication/instagram/rendre.mjs ../formats-test/IG-219/IG-219.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-219</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.cal{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:330px 230px 1fr;align-items:baseline;gap:0 20px;font-size:40px;border-top:4px solid var(--encre);padding-top:16px}
+.cal b{font-weight:800;font-size:52px;white-space:nowrap}.cal span{font-weight:600;color:var(--texte-2);font-size:32px}
+.grand{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
+</style></head><body>
+<section class="cadre" id="IG-219-tva-trimestre-1" style="background:var(--bleu);color:#fff">
+<span class="compteur">1 / 6</span>
+<div class="f" style="right:-140px;bottom:-140px;width:620px;height:620px;border-radius:50%;background:var(--jaune)"></div>
+<div class="f" style="right:330px;bottom:300px;width:150px;height:150px;background:var(--rouge);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:220px;opacity:.9">Indépendants · 1er janvier 2027</p>
+<h1 style="top:290px;font-size:96px">Votre TVA en deux acomptes par an&nbsp;? Le 1er janvier, c'est <mark>fini</mark>.</h1>
+<p class="p" style="top:760px;right:420px">Ce que ça change sur votre trésorerie, calcul à l'appui.</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+
+<section class="cadre" id="IG-219-tva-trimestre-2" style="background:var(--papier)">
+<span class="compteur">2 / 6</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">Ce qui change</p>
+<h2 style="top:260px;font-size:72px">Le régime simplifié de TVA est supprimé.</h2>
+<div class="duo" style="top:470px"><div><small>Jusqu'au 31/12/2026</small><b style="font-size:54px;white-space:normal;line-height:1.1">2 acomptes et 1 déclaration par an</b></div><div style="background:var(--jaune)"><small style="color:var(--encre)">Dès le 01/01/2027</small><b style="font-size:54px;white-space:normal;line-height:1.1">1 déclaration par trimestre</b></div></div>
+<p class="p" style="top:820px;font-size:40px">Réel normal, trimestriel si le chiffre d'affaires reste sous 1 000 000 €. La bascule est <b>automatique</b>, sans démarche.</p>
+<p class="note">Source : impots.gouv.fr, 22/09/2026 · loi de finances pour 2025, art. 38.</p>
+</section>
+
+<section class="cadre" id="IG-219-tva-trimestre-3" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">3 / 6</span>
+<p class="sourcil" style="top:200px;color:var(--jaune)">Le calcul · cas fictif</p>
+<h2 style="top:260px;font-size:72px">Léa, graphiste : 8 000 € de TVA à reverser par an.</h2>
+<p class="p" style="top:520px;color:var(--trait)">Avant : 55 % en juillet, 40 % en décembre, le solde en mai.</p>
+<div class="duo" style="top:720px;color:var(--encre)"><div><small>Avant · juillet</small><b>4 400 €</b></div><div style="background:var(--jaune)"><small style="color:var(--encre)">Après · trimestre</small><b>2 000 €</b></div></div>
+<p class="p" style="top:1010px;font-size:40px">Chaque trimestre se paie <b>le mois qui suit</b> : avril, juillet, octobre, janvier.</p>
+<p class="note" style="color:var(--trait)">Exemple fictif, TVA identique d'une année sur l'autre.</p>
+</section>
+
+<section class="cadre" id="IG-219-tva-trimestre-4" style="background:var(--papier)">
+<span class="compteur">4 / 6</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">Son calendrier de paiement</p>
+<h2 style="top:260px;font-size:72px">Six échéances à retenir.</h2>
+<div class="cal" style="top:420px"><b>Déc. 2026</b><b>3 200 €</b><span>dernier acompte, toujours dû</span></div>
+<div class="cal" style="top:540px"><b>Avril 2027</b><b>2 000 €</b><span>1er trimestre</span></div>
+<div class="cal" style="top:660px"><b>Mai 2027</b><b>400 €</b><span>solde 2026, dernière déclaration annuelle</span></div>
+<div class="cal" style="top:780px"><b>Juillet 2027</b><b>2 000 €</b><span>2e trimestre</span></div>
+<div class="cal" style="top:900px"><b>Oct. 2027</b><b>2 000 €</b><span>3e trimestre</span></div>
+<div class="cal" style="top:1020px;color:var(--rouge);border-color:var(--rouge)"><b>Janv. 2028</b><b>2 000 €</b><span style="color:var(--rouge)">4e trimestre</span></div>
+<p class="note">Plus d'acompte en juillet ni en décembre 2027 (impots.gouv.fr).</p>
+</section>
+
+<section class="cadre" id="IG-219-tva-trimestre-5" style="background:var(--bleu);color:#fff">
+<span class="compteur">5 / 6</span>
+<p class="sourcil" style="top:200px;opacity:.9">Le piège</p>
+<h2 style="top:260px;font-size:72px">En 2027, elle verse moins de TVA.</h2>
+<p class="grand" style="top:470px;font-size:190px">6 400 €</p>
+<p class="p" style="top:680px">au lieu de 8 000 € avec l'ancien régime.</p>
+<div class="f" style="left:84px;top:800px;width:912px;height:8px;background:var(--jaune)"></div>
+<p class="p" style="top:850px">Ce n'est pas une économie : <mark style="background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap">2 000 €</mark> du 4e trimestre partent en janvier 2028.</p>
+<p class="note" style="color:#fff;opacity:.8">2 000 + 400 + 2 000 + 2 000 = 6 400 € · 400 + 4 400 + 3 200 = 8 000 €</p>
+</section>
+
+<section class="cadre" id="IG-219-tva-trimestre-6" style="background:var(--jaune)">
+<span class="compteur">6 / 6</span>
+<div class="f" style="right:0;top:0;width:260px;height:260px;background:var(--bleu);border-bottom-left-radius:260px"></div>
+<p class="sourcil" style="top:200px">La règle à garder</p>
+<h2 style="top:260px;font-size:80px;right:300px">Chaque facture encaissée : mettez sa TVA de côté.</h2>
+<p class="p" style="top:590px;font-weight:600">Elle part le mois qui suit chaque trimestre : avril, juillet, octobre, janvier.</p>
+<div class="bouton" style="top:830px;box-shadow:14px 14px 0 var(--bleu)">Enregistrez-le</div>
+<p class="note" style="bottom:230px;font-size:24px">Information générale : exercice décalé ou option mensuelle changent les dates. Ne remplace pas un expert-comptable.</p>
+<p class="note" style="bottom:150px;color:var(--encre);font-weight:800;font-size:30px">L'outil QME : Suivi de TVA, 19 €, essai 14 jours · lien en bio</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>

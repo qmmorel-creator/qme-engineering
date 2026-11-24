@@ -1,0 +1,195 @@
+<!doctype html>
+<!-- Reel IG-217 · F8 « Défi chronométré : un outil pour un fleuriste en 60 minutes » (test des formats, vague 1).
+     Défi de démonstration, entièrement animé : chronomètre 00:00 → 60:00 accéléré, visible tout du long ; la question du
+     fleuriste fictif, le modèle de données, l'écran de saisie, le calcul, le résultat sur téléphone ; fin « Votre métier,
+     prochain défi ? ». Outil et données fictifs (maquette HTML, charte QME). Chiffres : calcul.js (vérifié par verifier.mjs).
+     1080 × 1920, 30 i/s, 28 s, couleur dominante bleu. Animations pilotées par window.placer(ms).
+     Rendu, depuis la racine du dépôt :
+       node docs/videos/rendu.mjs docs/templates/communication/formats-test/IG-217/IG-217.html 28 1500 --sortie docs/videos/sortie/IG-217-defi-fleuriste.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-217</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+.f{position:absolute}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.08}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:34px;letter-spacing:.12em;text-transform:uppercase}
+mark{background:var(--bleu);color:var(--papier);padding:0 12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* Chronomètre, au-dessus de toutes les scènes. */
+#chrono{position:absolute;left:96px;right:96px;top:270px;height:150px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+#chrono .lib{font-weight:800;font-size:36px;letter-spacing:.1em;text-transform:uppercase;line-height:1.15}
+#chrono .lib small{display:block;font-weight:600;font-size:28px;letter-spacing:.02em;text-transform:none;opacity:.8}
+#cadran{background:var(--bleu);color:var(--papier);font-weight:800;font-size:116px;letter-spacing:-.02em;padding:4px 34px 10px;border:6px solid var(--encre);box-shadow:12px 12px 0 var(--encre)}
+#jauge{position:absolute;left:96px;right:96px;top:452px;height:16px;background:var(--trait);z-index:5}
+#jauge i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--bleu)}
+.pied{position:absolute;left:96px;right:96px;top:1530px;font-weight:600;font-size:28px;color:var(--texte-2);z-index:5}
+.carte{position:absolute;background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre)}
+.carte h3{font-weight:800;font-size:40px;letter-spacing:.06em;text-transform:uppercase;padding:18px 26px 6px}
+.carte p{font-weight:600;font-size:32px;line-height:1.3;padding:0 26px;color:var(--texte-2)}
+.tel{position:absolute;left:250px;width:580px;background:var(--surface);border:10px solid var(--encre);border-radius:56px;box-shadow:16px 16px 0 var(--encre);overflow:hidden}
+.tel .barre{height:92px;background:var(--bleu);color:var(--papier);font-weight:800;font-size:36px;display:flex;align-items:center;padding:0 36px}
+.champ{margin:26px 32px 0}
+.champ label{display:block;font-weight:700;font-size:28px;color:var(--texte-2);margin-bottom:8px}
+.champ .val{border:4px solid var(--encre);background:#fff;font-weight:800;font-size:46px;padding:10px 20px;min-height:82px;white-space:nowrap}
+.calc{position:absolute;left:96px;right:96px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;font-size:44px;font-weight:600;color:var(--papier)}
+.calc b{font-weight:800;font-size:64px;color:var(--papier)}
+.calc small{display:block;font-size:30px;opacity:.75}
+.trait{position:absolute;background:var(--encre)}
+.bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:56px;padding:26px 40px;box-shadow:14px 14px 0 var(--bleu)}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--rouge)}
+</style>
+</head>
+<body>
+<!-- Formes fixes -->
+<div class="f" style="right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:var(--bleu)"></div>
+<div class="f" style="left:0;bottom:0;width:260px;height:260px;background:var(--jaune);border-top-right-radius:260px"></div>
+<div class="f" style="right:96px;bottom:160px;width:100px;height:100px;background:var(--rouge)"></div>
+
+<div id="chrono"><div class="lib" id="lib">Défi · 60 min<small id="etape">Top départ</small></div><div id="cadran">00:00</div></div>
+<div id="jauge"><i id="jauge-i"></i></div>
+
+<!-- S1 · accroche : entière dès la première image, sans animation d'entrée. -->
+<div class="s" data-s="0,3500">
+  <p class="x" style="top:600px;font-size:104px">Un fleuriste.<br>Un problème.</p>
+  <p class="x" style="top:860px;font-size:84px;line-height:1.22"><mark>60 minutes</mark> pour lui construire son outil.</p>
+  <p class="x" style="top:1250px;font-size:44px;font-weight:600;color:var(--texte-2)">Chrono lancé. Accéléré.</p>
+</div>
+
+<!-- S2 · la question -->
+<div class="s" data-s="3500,7500">
+  <p class="sourcil" style="top:540px;color:var(--bleu)" data-in="3550">Minute 0 · La question</p>
+  <div class="carte" style="left:96px;right:96px;top:610px;padding:34px 40px;background:var(--bleu);color:var(--papier)" data-in="3650">
+    <p style="font-weight:800;font-size:76px;line-height:1.1;letter-spacing:-.02em;color:var(--papier);padding:0">« Combien de roses commander pour samedi ? »</p>
+    <p style="font-size:32px;color:var(--papier);opacity:.85;padding:18px 0 0">Julien, fleuriste (personnage fictif)</p>
+  </div>
+  <p class="x" style="top:1080px;font-size:46px;font-weight:700" data-in="4600">Les ventes changent chaque samedi.</p>
+  <p class="x" style="top:1170px;font-size:46px;font-weight:700" data-in="5300">Les roses fanent en chambre froide.</p>
+  <p class="x" style="top:1260px;font-size:46px;font-weight:700" data-in="6000">Le grossiste livre par bottes de 25.</p>
+</div>
+
+<!-- S3 · le modèle de données -->
+<div class="s" data-s="7500,12000">
+  <p class="sourcil" style="top:540px;color:var(--bleu)" data-in="7550">Minute 8 · Le modèle de données</p>
+  <div class="carte" style="left:96px;width:410px;top:620px;height:270px" data-in="7700"><h3>Ventes</h3><p>samedi<br>tiges vendues</p></div>
+  <div class="carte" style="left:574px;width:410px;top:620px;height:270px" data-in="8300"><h3>Stock</h3><p>tiges en chambre froide<br>part fanée d'ici samedi</p></div>
+  <div class="carte" style="left:96px;width:410px;top:960px;height:270px" data-in="8900"><h3>Réservations</h3><p>client · jour<br>tiges réservées</p></div>
+  <div class="carte" style="left:574px;width:410px;top:960px;height:270px;background:var(--bleu);color:var(--papier)" data-in="9500"><h3>Commande</h3><p style="color:var(--papier)">bottes de 25<br>part de casse</p></div>
+  <div class="trait" style="left:506px;top:1090px;width:68px;height:8px" data-in="10100"></div>
+  <div class="trait" style="left:775px;top:890px;width:8px;height:70px" data-in="10300"></div>
+  <p class="x" style="top:1300px;font-size:46px;font-weight:700" data-in="10600">Quatre tables. Tout part de là.</p>
+</div>
+
+<!-- S4 · l'écran de saisie -->
+<div class="s" data-s="12000,16500">
+  <p class="sourcil" style="top:540px;color:var(--bleu)" data-in="12050">Minute 22 · L'écran de saisie</p>
+  <div class="tel" style="top:610px;height:880px" data-in="12200">
+    <div class="barre">Commande du samedi</div>
+    <div class="champ"><label>Stock en chambre froide</label><div class="val" data-tape="70 tiges" data-de="12900" data-a="13500"></div></div>
+    <div class="champ"><label>Déjà réservées pour samedi</label><div class="val" data-tape="36 tiges" data-de="13600" data-a="14200"></div></div>
+    <div class="champ"><label>Ventes des 4 derniers samedis</label><div class="val" data-tape="180 · 210 · 195 · 215" data-de="14300" data-a="15500"></div></div>
+    <div class="champ"><label>Fanées · casse</label><div class="val" data-tape="12 % · 8 %" data-de="15600" data-a="16100"></div></div>
+  </div>
+</div>
+
+<!-- S5 · le calcul (fond encre) -->
+<div class="s" data-s="16500,20500" style="background:var(--encre)">
+  <p class="sourcil" style="top:540px;color:var(--jaune)" data-in="16550">Minute 38 · Le calcul</p>
+  <div class="calc" style="top:610px" data-in="16700"><span>Prévision samedi<small>moyenne des 4 derniers samedis</small></span><b id="c-prev"></b></div>
+  <div class="calc" style="top:750px" data-in="17200"><span id="c-res-lib">+ réservées</span><b id="c-besoin"></b></div>
+  <div class="calc" style="top:850px" data-in="17700"><span>− stock utilisable<small>70 tiges, 12 % fanées</small></span><b id="c-util"></b></div>
+  <div class="calc" style="top:990px" data-in="18200"><span>= à couvrir</span><b id="c-couvrir"></b></div>
+  <div class="calc" style="top:1090px" data-in="18700"><span>÷ 0,92<small>8 % de casse à la livraison</small></span><b id="c-cmd"></b></div>
+  <div class="f" style="left:96px;right:96px;top:1240px;height:8px;background:var(--jaune)" data-in="19100"></div>
+  <div class="calc" style="top:1270px" data-in="19200"><span style="font-weight:800;color:var(--jaune)">Bottes de 25<small style="color:var(--papier)">arrondi au-dessus</small></span><b id="c-bottes" style="color:var(--jaune);font-size:88px"></b></div>
+</div>
+
+<!-- S6 · le résultat sur téléphone (fond bleu) -->
+<div class="s" data-s="20500,24800" style="background:var(--bleu)">
+  <p class="sourcil" style="top:540px;color:var(--papier)" data-in="20550">Minute 52 · Le résultat, sur téléphone</p>
+  <div class="tel" style="top:610px;height:780px" data-in="20700">
+    <div class="barre" style="background:var(--encre)">Samedi · roses</div>
+    <p style="margin:44px 36px 0;font-weight:700;font-size:34px;color:var(--texte-2)">À commander au grossiste</p>
+    <p style="margin:6px 36px 0;font-weight:800;font-size:132px;letter-spacing:-.03em;line-height:1" id="r-bottes"></p>
+    <p style="margin:10px 36px 0;font-weight:700;font-size:40px" id="r-tiges"></p>
+    <div style="margin:40px 36px 0;border-top:4px solid var(--encre);padding-top:22px;font-weight:600;font-size:32px;line-height:1.55;color:var(--texte-2)" id="r-detail"></div>
+  </div>
+</div>
+
+<!-- S7 · fin -->
+<div class="s" data-s="24800,99999">
+  <p class="x" style="top:560px;font-size:96px" data-in="24850">Votre métier, prochain défi ?</p>
+  <p class="x" style="top:810px;font-size:60px;font-weight:700;line-height:1.2" data-in="25300"><mark>Dites-le en commentaire.</mark></p>
+  <p class="x" style="top:1000px;font-size:36px;font-weight:600;color:var(--texte-2);line-height:1.3" data-in="25700">Défi de démonstration : outil et données fictifs.</p>
+  <div class="signe" style="top:1180px" data-in="26000"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="x" style="top:1300px;font-size:48px;font-weight:700" data-in="26200">Sur mesure · qm-engineering.fr</p>
+</div>
+
+<p class="pied" id="pied">Outil et données fictifs · défi de démonstration</p>
+
+<script src="calcul.js"></script>
+<script>
+(() => {
+  const r = window.calculFleuriste(window.FLEURISTE);
+  const F = window.FLEURISTE;
+  document.getElementById('c-prev').textContent = r.prevision;
+  document.getElementById('c-res-lib').textContent = `+ ${F.reservations} réservées`;
+  document.getElementById('c-besoin').textContent = '= ' + r.besoin;
+  document.getElementById('c-couvrir').textContent = r.aCouvrir;
+  document.getElementById('c-util').textContent = '− ' + r.utilisable;
+  document.getElementById('c-cmd').textContent = r.aCommander + ' tiges';
+  document.getElementById('c-bottes').textContent = r.bottes;
+  document.getElementById('r-bottes').textContent = r.bottes + ' bottes';
+  document.getElementById('r-tiges').textContent = `soit ${r.tiges} roses`;
+  document.getElementById('r-detail').innerHTML = `Prévu samedi : ${r.besoin} tiges<br>(${r.prevision} + ${F.reservations} réservées)<br>Stock utilisable : ${r.utilisable} tiges<br>Casse prévue : ${Math.round(F.casse * 100)} %`;
+
+  // Chronomètre : minutes affichées en fonction du temps de la vidéo (accéléré, linéaire par morceaux).
+  const PTS = [[0, 0], [3500, 0], [7500, 8], [12000, 22], [16500, 38], [20500, 52], [23500, 60], [99999, 60]];
+  const ETAPES = [[0, 'Top départ'], [3500, 'La question'], [7500, 'Les données'], [12000, 'La saisie'], [16500, 'Le calcul'], [20500, 'Le résultat'], [23500, 'Temps écoulé'], [24800, 'Défi terminé']];
+  const minutes = (ms) => { for (let i = 1; i < PTS.length; i++) if (ms <= PTS[i][0]) { const [a, va] = PTS[i - 1], [b, vb] = PTS[i]; return va + (vb - va) * (ms - a) / (b - a); } return 60; };
+  const cadran = document.getElementById('cadran'), jauge = document.getElementById('jauge-i'), etape = document.getElementById('etape');
+  const scenes = [...document.querySelectorAll('[data-s]')].map((e) => ({ e, ab: e.dataset.s.split(',').map(Number) }));
+  const entrees = [...document.querySelectorAll('[data-in]')].map((e) => ({ e, t: +e.dataset.in }));
+  const tapes = [...document.querySelectorAll('[data-tape]')];
+  const lisse = (u) => u <= 0 ? 0 : u >= 1 ? 1 : 1 - Math.pow(1 - u, 3);
+
+  window.placer = (ms) => {
+    const m = minutes(ms);
+    const tot = Math.min(3600, Math.floor(m * 60));
+    cadran.textContent = String(Math.floor(tot / 60)).padStart(2, '0') + ':' + String(tot % 60).padStart(2, '0');
+    const tendu = m >= 50 && ms < 23500;
+    cadran.style.background = tendu ? 'var(--rouge)' : ms >= 23500 ? 'var(--jaune)' : 'var(--bleu)';
+    cadran.style.color = ms >= 23500 ? 'var(--encre)' : 'var(--papier)';
+    jauge.style.width = (m / 60 * 100) + '%';
+    jauge.style.background = tendu ? 'var(--rouge)' : ms >= 23500 ? 'var(--jaune)' : 'var(--bleu)';
+    etape.textContent = ETAPES.filter(([t]) => ms >= t).pop()[1] + (tendu ? ' · plus que ' + Math.ceil(60 - m) + ' min' : '');
+    // Fonds foncés : textes du chrono et du pied en clair.
+    const fonce = (ms >= 16500 && ms < 24800);
+    document.getElementById('lib').style.color = fonce ? 'var(--papier)' : 'var(--encre)';
+    document.getElementById('pied').style.color = fonce ? 'rgba(240,237,230,.8)' : 'var(--texte-2)';
+    document.getElementById('jauge').style.background = fonce ? 'rgba(240,237,230,.25)' : 'var(--trait)';
+    for (const { e, ab: [a, b] } of scenes) e.style.display = ms >= a && ms < b ? 'block' : 'none';
+    for (const { e, t } of entrees) {
+      const u = lisse((ms - t) / 380);
+      e.style.opacity = u; e.style.transform = `translateY(${(1 - u) * 50}px)`;
+    }
+    for (const e of tapes) {
+      const de = +e.dataset.de, a = +e.dataset.a, txt = e.dataset.tape;
+      const n = Math.max(0, Math.min(txt.length, Math.floor((ms - de) / (a - de) * txt.length)));
+      const curseur = ms >= de && ms < a + 200 && Math.floor(ms / 250) % 2 === 0;
+      e.textContent = txt.slice(0, n) + (curseur ? '|' : '');
+    }
+  };
+  window.placer(0);
+})();
+</script>
+</body>
+</html>
