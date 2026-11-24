@@ -115,3 +115,13 @@ retour-affiliation.
 **Prochaine étape** : attendre le choix d'Odélia. Si c'est le budget : démo budget à son nom et nouvelle destination
 de `/odelia` (fusion et publication avec le feu vert de Quentin). Ensuite : codes d'accès gratuits (à inscrire dans
 `docs/templates/codes-gratuits.md`), brief adapté au produit choisi.
+
+## Réponse d'Eva du 24/11/2026, 15:17
+
+Tarifs des outils jugés adaptés à la communauté étudiante. Story avec sticker lien et lien en bio acceptés, mais pour un
+**tarif global de 250 €** : 1 Reel Instagram dédié, relais du Reel en story avec sticker lien, lien en bio pendant 7
+jours. Elle voit avec Odélia quels outils mettre en avant. Odélia n'est pas en copie.
+
+**24/11** : Quentin accepte les 250 €. Brouillon Gmail préparé (non envoyé) : accord, modalités (contenu mis en avant,
+délais de diffusion) laissées à Yuzu et Odélia, disponibilité pour tout contenu technique, remerciements. Facturation
+non abordée dans ce mail (déjà demandée le 22/11, sans réponse).
