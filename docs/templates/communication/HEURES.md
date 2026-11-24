@@ -1,5 +1,9 @@
 # Heures de publication (recalées le 18/11/2026)
 
+> **Depuis le 24/11/2026 : une seule publication par plateforme et par jour** (`REGLES-CONTENU.md` § 1). Les créneaux
+> ci-dessous sont des heures possibles selon le type de contenu, pas des publications à remplir chaque jour : un jour
+> donné n'en utilise qu'un par plateforme.
+
 Demande de Quentin (18/11/2026) : publier aux heures qui maximisent les vues. Audience française (Paris) sauf X
 (audience aux États-Unis). Les études publiques divergent et viennent surtout d'éditeurs d'outils de planification :
 on ne change que ce qu'elles soutiennent nettement, puis on vérifie avec les statistiques de chaque compte (relevé

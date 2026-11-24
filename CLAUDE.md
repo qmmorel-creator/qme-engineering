@@ -7,6 +7,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
+
+- **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
+  tous formats confondus (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
+  un jour **sans aucune ligne** sur la plateforme ; jamais deux lignes à la même date. Contenus audacieux en priorité.
+  Règle : `docs/templates/communication/REGLES-CONTENU.md` § 1 ; calendrier refait le 24/11/2026 :
+  `docs/templates/communication/CALENDRIER-UNE-PAR-JOUR.md`.
+
 ## Signature graphique dans tous les mails (décision du 22/11/2026)
 
 - **Tout e-mail rédigé pour Quentin** (brouillon Gmail ou envoi) porte sa signature graphique « Bandeau » dans la version

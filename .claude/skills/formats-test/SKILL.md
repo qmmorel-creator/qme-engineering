@@ -5,6 +5,13 @@ description: Produire et programmer les publications du test de nouveaux formats
 
 # Test des nouveaux formats (Instagram 19:00 + TikTok + YouTube Shorts)
 
+> **Règle absolue (décision de Quentin du 24/11/2026) : une seule publication par plateforme et par jour** (Instagram,
+> TikTok, YouTube, LinkedIn, X), tous formats confondus (post, carrousel, Reel, vidéo, Short). Avant de programmer, relire
+> le planning de la plateforme et prendre un jour **sans aucune ligne** (statut ≠ « Annulé ») : jamais deux lignes le
+> même jour sur une plateforme. TikTok suit Instagram. Un Short jumeau d'un Reel prend le jour du Reel (ce jour ne doit
+> avoir aucun autre Short). Les contenus audacieux (nouveaux formats, Reels de référence) vont dans les jours libres les
+> plus proches. Détails et calendrier refait le 24/11/2026 : `docs/templates/communication/REGLES-CONTENU.md` § 1.
+
 Décision de Quentin du 24/11/2026 : « je poste toujours le même type de contenu ». Tout le contenu suivait une seule
 recette (problème chiffré → bascule → capture du template → essai) en motion design Bauhaus, sans visage, et vendait à
 chaque fois. On teste 9 formats, **sans visage ni voix de Quentin** (il a refusé le face caméra) : **Claude fait toutes
