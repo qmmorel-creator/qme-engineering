@@ -1,16 +1,11 @@
-Mise à jour de tes routines de publication (version 7, 24/11/2026). Elle complète les versions précédentes : tout ce qui n'est pas modifié ici reste valable. Note-la dans ton Journal et dans ton registre des routines.
+Mise à jour de tes routines de publication (version 7, 24/11/2026). Elle complète les versions précédentes : tout ce qui n'est pas modifié ici reste valable. Note-la dans ton Journal.
 
-1. NOUVELLE RÈGLE TRÈS IMPORTANTE : UNE SEULE PUBLICATION PAR PLATEFORME ET PAR JOUR
-- Quentin a décidé que chaque plateforme (Instagram, TikTok, YouTube, LinkedIn, X) ne publie plus qu'une fois par jour au maximum, tous formats confondus (post, carrousel, Reel, vidéo, Short).
-- Les plannings ont été entièrement replanifiés ce soir (24/11) : à partir de demain, chaque Sheet n'a plus qu'une ligne par date. Beaucoup de dates et quelques heures ont changé : relis toujours le Sheet à chaque passage, ne te fie à aucune date retenue.
-- Tes passages ne changent pas (Instagram 12:30, 12:45, 19:00, 19:15, 20:00, 20:15, 21:00, 21:15 ; LinkedIn 10:00, 12:15, 17:30, 19:00 ; YouTube 12:00, 12:15, 20:00, 20:15 ; X toutes les heures ; TikTok dans l'heure qui suit Instagram).
+1. CE QUI CHANGE DANS LES PLANNINGS (rien ne change dans ta façon de publier)
+- Quentin a décidé qu'il n'y a plus qu'une seule publication par plateforme et par jour (Instagram, TikTok, YouTube, LinkedIn, X).
+- Les plannings ont été entièrement replanifiés le 24/11 au soir : beaucoup de dates ont changé. Comme toujours, relis le Sheet à chaque passage et publie les lignes « Programmé » dont la date et l'heure sont passées depuis moins de 24 h. Ne te fie à aucune date retenue.
+- Tes passages ne changent pas.
 
-2. FILET DE SÉCURITÉ
-- Avant de publier une ligne, vérifie dans le même Sheet qu'aucune autre ligne de la même date n'est déjà « Publié ». Si c'est le cas, ne publie pas la deuxième : écris « Erreur » en colonne D, « Deux publications le même jour : non publiée (règle du 24/11/2026) » à la fin de la Remarque, et préviens-moi sur WhatsApp. Je la replacerai.
-- TikTok : une seule reprise par jour, celle de la publication Instagram du jour.
+2. CE QUE TU NE FAIS PAS
+- Tu ne modifies jamais une date, une heure ou un statut pour respecter cette règle, tu ne retiens aucune publication et tu ne corriges rien dans les plannings : c'est une tâche de contrôle de Claude, chaque jour à 15:07, qui garantit une seule publication par jour et 7 jours d'avance. Tu publies ce qui est « Programmé », comme d'habitude.
 
-3. RAPPEL
-- IG-213, publié aujourd'hui, garde sa date ; IG-36 (Secret Santa) et LI-99, déjà publiés, ont une date future dans le planning : ne les republie pas (statut « Publié »).
-- Ce soir, IG-169 (quiz) et YT-74 ne partent plus : ils sont déplacés au samedi 28/11.
-
-AVANT TOUTE CHOSE : confirme-moi sur WhatsApp que tu appliques la règle « une seule publication par plateforme et par jour » et le filet de sécurité.
+Confirme-moi simplement sur WhatsApp que tu as noté que les dates ont changé.
