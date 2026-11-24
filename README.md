@@ -45,7 +45,8 @@ Site promotionnel de Quentin Morel Engineering (QME).
     quelles sans JS. En bas, un bandeau compact vers les packs (généré par `outils/packs/generer.mjs` ; la carte des
     prix complète est sur `/packs/` seulement) ; lien « Proposer une idée de template » en tête du catalogue, relié au
     formulaire Netlify `idee` ;
-  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact`). Les anciennes ancres
+  - `catalogue/<slug>/` (une page par template), `contact/` (formulaire Netlify `contact` ; depuis le 23/11/2026, 4 vignettes
+    de références sous le texte, lien vers `/sur-mesure/#references`, idem `en/contact/`). Les anciennes ancres
     (`/#contact`, `/#references`, `/templates/#gantt`…) redirigent vers la bonne page.
 - Compteur d'intérêt : bouton « Je suis intéressé(e) » des pages « Mise en vente prochaine » →
   `POST /api/interets` (`netlify/functions/interets.mjs`, logique `netlify/lib/interets.mjs`, Netlify
