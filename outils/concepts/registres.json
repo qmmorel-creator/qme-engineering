@@ -2690,5 +2690,419 @@
         "Le parc posé et les interventions à proposer, par secteur."
       ]
     ]
+  },
+  "crea-equipements": {
+    "nom": "Créa Équipements",
+    "sujet": "inspection des aires de jeux et des équipements sportifs",
+    "titre": "Chaque aire Créa inspectée à temps, pendant ses 25 ans de garantie.",
+    "lede": "Un outil sur mesure pour accompagner les communes et les écoles équipées par Créa : inspections de routine, fonctionnelles et annuelles, buts et paniers vérifiés, défauts signalés depuis un téléphone, et un registre prêt pour un contrôle.",
+    "voit": "Un fabricant d'équipements ludiques et sportifs extérieurs depuis plus de 25 ans, seul spécialiste en France des structures en inox et en polyéthylène, qui conçoit et fabrique tout au Longeron, avec une garantie de 25 ans sur l'ossature.",
+    "demande": "Que chaque gestionnaire inspecte ses aires et ses terrains (norme NF EN 1176-7, décret de 1996 sur les équipements sportifs), garde la trace des défauts et commande la bonne pièce, pendant toute la durée de vie de l'équipement.",
+    "propose": "Un registre par aire, ouvert par QR code, qui rappelle les inspections, suit chaque équipement par référence et transforme un défaut en demande de pièce chez Créa.",
+    "equipement": "aire",
+    "parc": {
+      "titre": "Aires et terrains installés",
+      "colonnes": [
+        "Client",
+        "Site",
+        "Équipements",
+        "Pose",
+        "Inspection annuelle",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Commune de Valbrune",
+          "Parc des Tilleuls",
+          "8",
+          "2021",
+          "05/2026",
+          "ok"
+        ],
+        [
+          "École du Bourg",
+          "Cour",
+          "4",
+          "2019",
+          "03/2025",
+          "retard"
+        ],
+        [
+          "Commune du Plateau",
+          "City stade",
+          "3",
+          "2023",
+          "01/2026",
+          "alerte"
+        ],
+        [
+          "Camping Les Pins",
+          "Aire familles",
+          "6",
+          "2024",
+          "06/2026",
+          "ok"
+        ],
+        [
+          "Commune du Lac",
+          "Parcours fitness",
+          "7",
+          "2026",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "CREA-2021-0314",
+      "titre": "Parc des Tilleuls · Commune de Valbrune",
+      "infos": [
+        [
+          "Équipements",
+          "8, dont une structure multifonction inox"
+        ],
+        [
+          "Pose",
+          "2021"
+        ],
+        [
+          "Garantie ossature",
+          "25 ans, jusqu'en 2046"
+        ],
+        [
+          "Plaque",
+          "QR code à l'entrée de l'aire"
+        ]
+      ],
+      "historique": [
+        [
+          "19/11/2026",
+          "Inspection de routine : RAS"
+        ],
+        [
+          "02/09/2026",
+          "Fonctionnelle : ressort usé, pièce commandée"
+        ],
+        [
+          "14/05/2026",
+          "Inspection annuelle conforme"
+        ],
+        [
+          "20/04/2021",
+          "Pose, dossier technique remis"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "À faire · Commune de Valbrune",
+      "lignes": [
+        [
+          "Lun.",
+          "Parc des Tilleuls",
+          "routine",
+          "services techniques"
+        ],
+        [
+          "Mer.",
+          "City stade",
+          "vérification des buts",
+          "services techniques"
+        ],
+        [
+          "Jeu.",
+          "Parc des Tilleuls",
+          "pièce reçue : à poser",
+          "SAV Créa"
+        ],
+        [
+          "Mai",
+          "Parc des Tilleuls",
+          "inspection annuelle",
+          "organisme"
+        ]
+      ],
+      "relances": [
+        "Inspection oubliée : rappel à l'agent, puis au responsable",
+        "Défaut grave : équipement signalé fermé, Créa prévenu",
+        "Inspection annuelle à 30 jours : rappel au gestionnaire"
+      ]
+    },
+    "client": {
+      "titre": "Registre · scan de la plaque",
+      "lignes": [
+        [
+          "Structure multifonction",
+          "ok",
+          "Inspectée le 19/11"
+        ],
+        [
+          "Jeu à ressort",
+          "alerte",
+          "Pièce reçue, à poser"
+        ]
+      ],
+      "pied": "Dossier technique · garantie · rapports PDF"
+    },
+    "branchements": [
+      [
+        "Vos chantiers",
+        "aires et terrains posés"
+      ],
+      [
+        "Vos références",
+        "pièces par équipement"
+      ],
+      [
+        "Votre garantie",
+        "ossature 25 ans"
+      ],
+      [
+        "Les gestionnaires",
+        "inspections sur téléphone"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc posé, défauts, pièces"
+      ],
+      [
+        "Inspections",
+        "sur le téléphone de l'agent"
+      ],
+      [
+        "Demandes de pièces",
+        "avec la bonne référence"
+      ],
+      [
+        "Registre",
+        "prêt pour un contrôle"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque aire, ses équipements, sa garantie et ses inspections."
+      ],
+      [
+        "Les inspections",
+        "Routine, fonctionnelle, annuelle, photos comprises."
+      ],
+      [
+        "Les pièces",
+        "Un défaut signalé devient une demande de pièce chez Créa."
+      ],
+      [
+        "Le pilotage",
+        "Le parc posé et les interventions à proposer."
+      ]
+    ]
+  },
+  "securline": {
+    "nom": "Securline",
+    "sujet": "vérification des lignes de vie et des ancrages",
+    "titre": "Chaque ligne de vie Securline vérifiée chaque année, partout où elle est posée.",
+    "lede": "Un outil sur mesure pour suivre les lignes de vie et ancrages posés par Securline et par son réseau d'installateurs : vérifications annuelles, notes de calcul, réserves levées, et une fiche de vie que le propriétaire ouvre en scannant l'ouvrage.",
+    "voit": "Des lignes de vie et des ancrages étudiés, fabriqués et testés en France depuis 2001, un bureau d'études, deux bancs d'essai et un réseau d'installateurs et de revendeurs en France et à l'étranger.",
+    "demande": "Que chaque ligne de vie et chaque ancrage soient vérifiés au moins une fois par an par une personne compétente, et que le propriétaire puisse retrouver la note de calcul, la notice et les rapports le jour d'un contrôle.",
+    "propose": "Une fiche de vie numérique par ouvrage, partagée entre Securline, l'installateur et le propriétaire, qui relance avant l'échéance et garde chaque vérification.",
+    "equipement": "ouvrage",
+    "parc": {
+      "titre": "Ouvrages posés · réseau Securline",
+      "colonnes": [
+        "Site",
+        "Installateur",
+        "Ouvrage",
+        "Pose",
+        "Vérifié le",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Entrepôt du Val",
+          "Hauteur Sud-Ouest",
+          "Ligne de vie 52 m",
+          "2023",
+          "04/2026",
+          "ok"
+        ],
+        [
+          "Lycée des Tilleuls",
+          "Toitures 16",
+          "Ancrages sur dalle",
+          "2022",
+          "06/2025",
+          "retard"
+        ],
+        [
+          "Centrale solaire du Plateau",
+          "Hauteur Sud-Ouest",
+          "Ligne de vie sur bac acier",
+          "2024",
+          "01/2026",
+          "alerte"
+        ],
+        [
+          "Chai du Domaine",
+          "Toitures 16",
+          "Ancrages sur charpente",
+          "2025",
+          "09/2026",
+          "ok"
+        ],
+        [
+          "Siège Industries du Lac",
+          "Accès Pro",
+          "Ligne de vie inox",
+          "2026",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "SL-2023-0877",
+      "titre": "Ligne de vie 52 m · Entrepôt du Val",
+      "infos": [
+        [
+          "Installateur",
+          "Hauteur Sud-Ouest"
+        ],
+        [
+          "Norme",
+          "NF EN 795 type C"
+        ],
+        [
+          "Note de calcul",
+          "bureau d'études Securline, jointe"
+        ],
+        [
+          "Plaque",
+          "QR code à l'accès toiture"
+        ]
+      ],
+      "historique": [
+        [
+          "16/04/2026",
+          "Vérification annuelle conforme, photos jointes"
+        ],
+        [
+          "16/04/2026",
+          "Absorbeur à surveiller, recontrôle à 6 mois"
+        ],
+        [
+          "11/04/2025",
+          "Vérification annuelle conforme"
+        ],
+        [
+          "03/03/2023",
+          "Pose, procès-verbal de réception"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Vérifications à planifier · Toitures 16",
+      "lignes": [
+        [
+          "Déc.",
+          "Lycée des Tilleuls",
+          "retard de 5 mois",
+          "Toitures 16"
+        ],
+        [
+          "Janv.",
+          "Centrale solaire du Plateau",
+          "vérification annuelle",
+          "Hauteur Sud-Ouest"
+        ],
+        [
+          "Janv.",
+          "Siège Industries du Lac",
+          "première vérification",
+          "Accès Pro"
+        ],
+        [
+          "Avril",
+          "Entrepôt du Val",
+          "vérification annuelle",
+          "Hauteur Sud-Ouest"
+        ]
+      ],
+      "relances": [
+        "J-60 : l'installateur reçoit la liste de ses vérifications",
+        "J-30 : le propriétaire est prévenu",
+        "Échéance passée : alerte au propriétaire et à Securline"
+      ]
+    },
+    "client": {
+      "titre": "Fiche de vie · scan de l'ouvrage",
+      "lignes": [
+        [
+          "Ligne de vie toiture",
+          "ok",
+          "Vérifiée le 16/04/2026"
+        ],
+        [
+          "Absorbeur",
+          "alerte",
+          "Recontrôle avant le 16/10"
+        ]
+      ],
+      "pied": "Note de calcul · notice · rapports PDF"
+    },
+    "branchements": [
+      [
+        "Votre bureau d'études",
+        "notes de calcul, préconisations"
+      ],
+      [
+        "Vos installateurs",
+        "réseau et chantiers"
+      ],
+      [
+        "Votre atelier",
+        "composants livrés"
+      ],
+      [
+        "Les propriétaires",
+        "accès par QR code"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc posé, retards, réseau"
+      ],
+      [
+        "Espace installateur",
+        "vérifications à faire"
+      ],
+      [
+        "Fiche de vie",
+        "par ouvrage, via QR code"
+      ],
+      [
+        "Relances",
+        "installateurs et propriétaires"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque ouvrage posé, son installateur et ses vérifications."
+      ],
+      [
+        "La fiche de vie",
+        "Ouverte par QR code, avec note de calcul et rapports."
+      ],
+      [
+        "Les relances",
+        "L'installateur et le propriétaire prévenus avant l'échéance."
+      ],
+      [
+        "Le pilotage",
+        "Le parc posé et l'activité de votre réseau."
+      ]
+    ]
   }
 }
