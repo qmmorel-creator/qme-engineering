@@ -14,7 +14,7 @@ du 23/11/2026.
 
 **Balle** : `QME` = Quentin doit agir ; `prospect` = on attend sa réponse.
 
-État au 24/11/2026 (fils Gmail lus en entier).
+État au 24/11/2026 au soir (fils Gmail lus en entier).
 
 ## Sérieux
 
@@ -26,7 +26,7 @@ du 23/11/2026.
 | **École de musique de Givry** | Sarah Villar (future trésorière) · sarahvillar@mailo.com | Sur mesure : inscriptions en ligne, administration | Appel le 09/11 ; devis QME-2026-011 v2 (23/11) : 790 € HT sans module de gestion, module en option 300 € HT, mise en service fin janvier 2027. Budget serré, compare d'autres solutions | QME, 23/11 | Prospect |
 | **Compagnie Antarès** | Nathalie Delecroix (Craponne) · cieantares@gmail.com | Sur mesure : plateforme d'inscriptions et reprise du site | Appel le 10/11 ; offre du 10/11 (890 € HT après remise + 75 € HT/mois) ; contre-proposition sans abonnement (~1 200 € HT) le 22/11 | QME, 22/11 | Prospect : réponse à la contre-proposition |
 | **Yuzu Agency · Odélia** | Eva Pellat (Talent Manager) · contact@agency-yuzu.com | Reel Instagram à 200 € fixe + accès aux outils études et budget | Prix convenu ; 5 questions de modalités posées (date, story avec lien, mention « Collaboration commerciale », statistiques, facturation). Dossier : `docs/templates/communication/affiliation/odelia*.md` | QME, 22/11 | Prospect (agence). Prestation payée, pas une affiliation pure |
-| **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram, ses mails ne passaient pas) | Sur mesure : **nettoyage de locaux professionnels** (bureaux, cabinets médicaux, parties communes, accueil du public), précisé par mail le 23/11 ; concept `/concepts/conciergerie-en-provence/` refait le 24/11 sur ce métier | Visio **mar. 24/11, 16:00–16:30**, confirmée par Kelly sur Instagram ; Meet `meet.google.com/fhb-cusi-hva` (agenda de Quentin) | QME, 23/11 | Rendez-vous. Après l'appel : noter le résultat ici |
+| **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram) | Sur mesure : **pilotage de ses prestataires de ménage** chez les professionnels (bureaux, cabinets médicaux, parties communes, accueil du public) ; elle travaille avec des **prestataires indépendants**, pas de salariés ; concept `/concepts/conciergerie-en-provence/` | Visio tenue le 24/11 : très intéressée, offre sur la base du concept (ménage uniquement). Prix annoncé : forfait ~3 000 € HT avec espace client, abonnements techniques à sa charge ; cible 2 500–2 600 € HT. 3 variantes (A espace client + PDF, B PDF seuls, C sans accès client) : compte rendu Nexora « Point avec Kelly » | QME, 24/11 18:03 (demandes d'informations) | Prospect : réponses attendues (volumes, process détaillé, choix clients, photos, pointage, marque et domaine). Relance le 01/12 si rien, puis proposition et devis |
 | **Royaumes & Légendes** (Aups, Haut-Var) | gérant non nommé · royaumesetlegendes@gmail.com | Sur mesure : caisse boutique + bar à jeux, soirées et tournois, stock commun avec la boutique en ligne ; concept `/concepts/royaumes-et-legendes/` (PR #269) | Réponse du 24/11 11:40 à la dernière relance : « parlez-moi de votre système de caisse et de bar à jeu. Quand pourrions-nous nous appeler ? » Concept et brouillon de réponse préparés le 24/11 (non envoyés). Point de vigilance : l'encaissement doit passer par un logiciel de caisse certifié | Prospect, 24/11 | **QME** : fusionner la PR, relire et envoyer le brouillon, proposer un appel de 30 min |
 | **Christophe Yzet** (yzetexpertise) | Christophe Yzet (connaissance de Quentin, ARTELIA à La Réunion) · yzetexpertise@free.fr | Sur mesure pour son activité de conseil ; liens d'essai visa et packs Freelance envoyés | Rencontre souhaitée **à son retour, début 2027** | QME, 21/11 | Prospect. Long terme |
 
@@ -75,6 +75,22 @@ Alternante, message transmis par Yannick. Concept : `/concepts/oh-delices-paysan
 | 2026-11-17 | reçu | planning des permanences sur Baserow ; besoins : planning automatique, échange de permanences, ventes et reversements (caisse Osmo Vente) ; demande la façon de procéder et un devis | |
 | 2026-11-17 | envoyé | concept, réponse sur Baserow et Osmo Vente, quatre questions pour le devis | estimation : 1 000 à 5 000 € de mise en place + à partir de 100 €/mois |
 | 2026-11-23 15:06 | envoyé | relance : rappel du concept, éléments minimaux pour le devis, proposition de 30 min en visio | |
+
+### Conciergerie en Provence · Kelly
+
+Activité visée : nettoyage chez les professionnels, avec des prestataires indépendants. Concept : `/concepts/conciergerie-en-provence/`.
+Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (projet QME - Stratégie).
+
+| Date | Sens | Contenu | Montant |
+|---|---|---|---|
+| 2026-11-06 | envoyé | premier contact (vague 30, conciergeries) | |
+| 2026-11-20 | envoyé | relance | |
+| 2026-11-23 | reçu | Instagram : intéressée, demande un appel | |
+| 2026-11-23 | envoyé | concept v2 et demande de créneaux (Instagram puis mail) | lot 1 4 300–5 200 € HT, complet 8 900 € HT (abandonné) |
+| 2026-11-23 17:01 | reçu | l'outil est pour son entreprise de nettoyage chez les professionnels | |
+| 2026-11-24 | envoyé | concept refait sur le nettoyage de locaux pros, comparatif sans prix (PR #268, #271), confirmation de la visio | |
+| 2026-11-24 16:00 | visio | très intéressée ; volet direction en temps réel, UX simple pour les prestataires, cadre premium pour ses clients | forfait annoncé ~3 000 € HT, abonnements à sa charge |
+| 2026-11-24 18:03 | envoyé | remerciements, demandes d'informations (volumes, process détaillé, choix clients, photos, pointage, marque et domaine), encadré indépendants / pointage sans géolocalisation / RGPD | |
 
 ## Mise à jour
 
