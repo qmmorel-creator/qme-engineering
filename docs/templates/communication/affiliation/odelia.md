@@ -1,6 +1,42 @@
 # Odélia (@odelllia) · Yuzu Agency
 
-> Historique complet des échanges et texte des mails envoyés : `odelia-historique.md`.
+## État du dossier au 24/11/2026 (à lire en premier)
+
+- **Accord conclu** : 250 € fixe, sans commission, pour 1 Reel Instagram dédié + relais du Reel en story avec sticker
+  lien + lien en bio pendant 7 jours. Accepté par Quentin le 24/11 (mail envoyé). Contact : Eva Pellat, Yuzu Agency,
+  contact@agency-yuzu.com ; Odélia n'est plus en copie depuis le 22/11 ; Floriane Jolliot toujours en Cci.
+- **Offert à Odélia** (mail du 22/11) : accès gratuit à vie aux 12 outils études et budget (Planning de révision,
+  Notes et moyennes, Planner horaire, Suivi d'habitudes, Suivi de lecture, Candidatures, Planning de mémoire, Mon
+  Budget, Suivi des abonnements, Dépenses communes, Objectif d'épargne, Repas et liste de courses). **Codes pas encore
+  créés.**
+- **Lien de la story et de la bio** : `qm-engineering.fr/odelia`, en ligne depuis le 22/11 (PR #206, `netlify.toml`),
+  302 vers `/packs/etudiant/?utm_source=instagram&utm_medium=influence&utm_campaign=odelia` (mesure GoatCounter).
+- **Produit d'appel** : laissé au choix d'Odélia (révisions et habitudes, budget étudiant, ou autre). Eva doit revenir
+  avec ce choix et les délais de diffusion. Calendrier visé : fin décembre ou tout début janvier, avant les partiels.
+- **2 000 €** : clarifié le 22/11 comme prix du sur-mesure pour professionnels, sans rapport avec les templates. Le
+  sur-mesure n'est plus proposé à Odélia.
+- **À faire à la réponse d'Eva** :
+  1. créer les codes d'accès gratuits (`npm run code -- <PRODUIT> 1`) et les inscrire dans
+     `docs/templates/codes-gratuits.md` ;
+  2. si le produit choisi n'est pas le Pack Étudiant : changer la destination de `/odelia` dans `netlify.toml`
+     (fusion et publication seulement avec le feu vert de Quentin), et préparer une démo budget à son nom si besoin
+     (modèle : `/demo/odelia/`) ;
+  3. brief adapté au produit choisi (base : `odelia-brief-reel.md`), mention « Collaboration commerciale » ;
+  4. obtenir la facture de 250 € et ses modalités (demandées le 22/11, sans réponse) ;
+  5. après diffusion : vues du Reel et de la story (demandées), visites `utm_campaign=odelia` dans GoatCounter.
+- **Avant le Reel** : audit des 12 templates étudiants et budget, prompt prêt dans
+  `docs/templates/audit-etudiants-prompt.md` (pas encore lancé au 24/11).
+- **Autres talents de Yuzu** (fil séparé) : Eva a proposé Estelle (@estellesbn, étudiante en dentaire) et Anusha
+  (@anusha.drg, étudiante à Londres), kit média
+  https://drive.google.com/file/d/15nI0AafxflZ8RQ_ydbnz6e_wUW-njwWm/view ; refus de la commission seule le 18/11.
+  Porte ouverte si un budget en numéraire se libère.
+
+**Fichiers du dossier** : `odelia-mails-integral.md` (texte intégral de tous les mails des deux fils),
+`odelia-historique.md` (chronologie), `odelia-reponse-reel-200.md` (mail du 22/11 et raisonnement),
+`odelia-brief-reel.md` et `odelia-brief.md` (briefs), `odelia-reponse-reel.md` et `odelia-reponse-stories.md`
+(variantes du 17/11, non envoyées).
+
+> Historique : `odelia-historique.md`. Texte intégral de tous les mails : `odelia-mails-integral.md`.
 
 ## Historique
 
@@ -96,7 +132,7 @@ retour-affiliation.
 
 ## Reprise du 18/11 au 22/11/2026
 
-- **18/11 10:42** : Eva relance sur TikTok et demande le budget maximum. **18/11 12:55** : Quentin propose 200 € de
+- **18/11 11:42** : Eva relance sur TikTok et demande le budget maximum. **18/11 12:55** : Quentin propose 200 € de
   fixe pour une vidéo TikTok, plus commission, plus au choix l'accès à 17 outils (241,90 €) ou un outil sur mesure
   (« 2 000 € minimum »). **18/11 13:48** : Eva en parle à Odélia.
 - **22/11 12:28** : Eva contre-propose un **Reel Instagram à 200 € fixe** (pas de TikTok à ce prix) et demande le prix
