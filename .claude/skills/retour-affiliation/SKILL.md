@@ -128,12 +128,13 @@ Appliquer le skill `video-demo`, sections 1 et 2 seulement : pas de programmatio
 4. Un seul brouillon par fil. Pour modifier un brouillon qui a une pièce jointe, le **recréer** puis supprimer
    l'ancien (`update_draft` retire les fichiers).
 
-## 7. Tableur et demande à Quentin
+## 7. Fiche Nexora et demande à Quentin
 
-1. Tableur « QME · Affiliation · file d'envoi » (`1WL_lNTRSAUuCug93kgxNhLe6CSQI5icky75IrYlkpiQ`, onglet
-   `Untitled`), colonne L de sa ligne :
-   `oui · AAAA-MM-JJ · « extrait » · EN COURS : retour préparé (PR #N, brouillon prêt), en attente de Quentin`.
-   La routine de surveillance ignore les lignes dont L est rempli : pas de double traitement.
+1. Fiche du créateur dans **Nexora Optim › QME** (MCP `list_qme` `domain: "createurs"`, puis `mutate_qme`
+   `entity: "createur"`, source unique depuis le 24/11/2026 ; le Sheet « file d'envoi » est une archive) :
+   `etape: "interesse"`, `reponse` (date et extrait), `prochaineAction` :
+   `EN COURS : retour préparé (PR #N, brouillon prêt), en attente de Quentin`.
+   La routine de surveillance ignore les créateurs dont l'étape n'est plus `envoye` : pas de double traitement.
 2. Compte rendu à Quentin. En mode automatique, une `PushNotification` de moins de 200 caractères, puis le
    détail :
    - résumé de la niche ;
@@ -157,16 +158,17 @@ Appliquer le skill `video-demo`, sections 1 et 2 seulement : pas de programmatio
 4. Contrôler l'envoi :
    - `get_thread` : le message est dans le fil ;
    - `search_threads` avec `in:sent filename:<nom du fichier>` : la pièce jointe est partie.
-5. Tableur, colonne L : `… · TRAITÉ : réponse envoyée le JJ/MM HH:MM (démo, vidéo, commission, sur mesure,
-   visio) ; ne pas relancer automatiquement`.
+5. Fiche Nexora du créateur : `prochaineAction` `TRAITÉ : réponse envoyée le JJ/MM HH:MM (démo, vidéo, commission,
+   sur mesure, visio) ; ne pas relancer automatiquement`, et un élément `echanges` (`sens: "envoye"`). S'il devient
+   partenaire : `etape: "partenaire"`.
 6. Le taux de commission validé se configure dans Gumroad au moment de créer son lien. L'accès gratuit
    promis : `npm run code -- <PRODUIT> 1`, puis l'inscrire dans `docs/templates/codes-gratuits.md` quand il
    le demande.
 
 ## Ce qu'il ne faut pas faire
 
-- Envoyer un message à une autre session Claude : c'est bloqué par les permissions. Passer par le tableur
-  (colonne L).
+- Envoyer un message à une autre session Claude : c'est bloqué par les permissions. Passer par la fiche
+  Nexora du créateur (`mutate_qme`).
 - Rendre un fichier Drive public pour contourner une pièce jointe.
 - Reprendre un scénario vidéo sans le relire (durée, frappe, dates).
 - Proposer un template qui n'est pas en vente, ou citer un pack dont la page ne répond pas.

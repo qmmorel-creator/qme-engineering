@@ -7,7 +7,7 @@
 // Route : GET /api/tableau?jours=30 (en-tête X-Admin : code administrateur).
 // Variables Netlify : GOATCOUNTER_TOKEN (jeton d'API GoatCounter « lecture des statistiques »), GOATCOUNTER_SITE
 // (facultatif, https://qme-engineering.goatcounter.com par défaut), COMPTEUR_SHEET_PUB (déjà utilisée par le compteur).
-import { estAdmin, synthese } from './interets.mjs';
+import { peutLireAdmin, synthese } from './interets.mjs';
 import { PRODUITS, jourParis, estEssaiTest, cleDonnees, cleDonneesEssai, idAdminProduit } from './templates-acces.mjs';
 import { ONGLETS, adressePublication, lireCsv } from './compteur.mjs';
 import { lireRegistre } from './preferences.mjs';
@@ -273,10 +273,10 @@ export async function tableau({ secret, store, donnees = null, interets = null, 
   };
 }
 
-export async function traiterTableau(requete, { secret, admin = '', ...reste }) {
+export async function traiterTableau(requete, { secret, admin = '', lecture = '', ...reste }) {
   if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise.' });
   if (!secret || secret.length < 32 || !reste.store) return json(503, { erreur: 'Service non configuré' });
-  if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+  if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
   const jours = Number(new URL(requete.url).searchParams.get('jours')) || 30;
   return json(200, await tableau({ secret, jours, ...reste }));
 }
