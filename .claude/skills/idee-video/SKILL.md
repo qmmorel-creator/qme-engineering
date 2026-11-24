@@ -89,5 +89,5 @@ programmation LinkedIn 17:30 / Instagram 12:30 / YouTube Shorts 12:00 à la date
 
 ## Tâche quotidienne
 
-Si Quentin le demande, une tâche planifiée peut lancer ce skill chaque jour (une vidéo par jour). Ne la
-créer qu'à sa demande explicite, avec l'heure qu'il choisit.
+Depuis le 24/11/2026, ce skill est lancé au besoin par la seule tâche « Agent contenu réseaux sociaux QME (quotidien) »
+(`docs/templates/communication/ROUTINES-RESEAUX.md`) : ne pas créer d'autre tâche planifiée pour lui.

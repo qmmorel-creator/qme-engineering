@@ -1,25 +1,40 @@
 # Routines des réseaux sociaux (état au 24/11/2026)
 
-Demande de Quentin du 24/11/2026 : une seule programmation par jour et par plateforme, et des routines qui tournent en
-arrière-plan pour garder **au moins 7 jours d'avance chaque jour** sur chaque réseau. Instinct ne fait que publier les
-lignes « Programmé » : il ne corrige jamais les plannings.
+Décisions de Quentin du 24/11/2026 : une seule programmation par jour et par plateforme ; au moins 7 jours d'avance chaque
+jour sur chaque réseau ; Claude devient **l'agent principal et unique** de création de contenu automatisé ; pas de
+doublons ni de routines inutiles. Instinct ne fait que publier les lignes « Programmé » : il ne corrige jamais les plannings.
 
-| Réseau | Planning (Sheet) | Qui produit (tâches planifiées quotidiennes) | Qui garantit une par jour et 7 jours d'avance |
-|---|---|---|---|
-| Instagram | `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8` | Publications du jour (10:41), Vidéo démo du jour (11:44), Reel du soir (lun., mer., ven. 14:23) | Contrôle quotidien 15:07 |
-| TikTok | suit Instagram (Instinct reprend chaque publication) | TikTok et YouTube · diaporamas J+14 (10:23) : vidéo des carrousels | Contrôle quotidien 15:07 (via Instagram) |
-| YouTube | `1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE` | diaporamas J+14 (10:23), Vidéo démo du jour, Reel du soir | Contrôle quotidien 15:07 (comble les jours vides : Reel du jour, diaporama, ou Reel jamais passé sur YouTube) |
-| LinkedIn | `1EejYs9y4AsdoAtQgHc2HzXK6LgWQHwNnZmqbesSxpWU` | Publications du jour (10:41), Vidéo démo du jour (11:44) | Contrôle quotidien 15:07 |
-| X | `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM` | Campagne X · contenu J+7 (12:37) | Contrôle quotidien 15:07 |
+## Une seule tâche de contenu
 
-**Contrôle quotidien 15:07** (« Réseaux sociaux · une par jour et 7 jours d'avance (contrôle) ») : il relit les quatre
-plannings, déplace tout doublon de demain à J+60 vers le premier jour libre, comble tout jour vide de demain à J+7
-(skills `publication-classique` et `campagne-x`, ou Short YouTube à partir d'une vidéo existante), et ne notifie Quentin
-que s'il reste un problème. Il tourne après toutes les tâches de production.
+**« Agent contenu réseaux sociaux QME (quotidien) »**, chaque jour à 10:07 (Paris), dans la session de Claude qui a accès
+à Google Sheets et Google Drive. À chaque passage :
 
-Toutes ces tâches portent en tête la règle « une seule publication par plateforme et par jour » (`REGLES-CONTENU.md` § 1).
-La tâche « TikTok et YouTube · diaporamas J+14 » appartient à une autre session : sa consigne n'a pas pu être modifiée
-d'ici, mais elle n'ajoute un Short que sur un jour qui n'en a aucun (procédure `tiktok/ROUTINE-DIAPORAMAS.md` § 6).
+1. corrige tout doublon de demain à J+60 (premier jour libre, dates imposées intactes, Short avec son Reel) ;
+2. comble tout jour vide de demain à J+7 sur Instagram, LinkedIn, YouTube et X (skills `publication-classique`,
+   `campagne-x`, `reel-du-soir`, `video-demo`, `formats-test` ; Short YouTube à partir d'une vidéo existante) ;
+3. crée les vidéos TikTok des carrousels des 14 prochains jours (`tiktok/ROUTINE-DIAPORAMAS.md`) ;
+4. produit les lignes « À produire » des 14 prochains jours (finalistes et gagnant du concours : après le vote) ;
+5. **le lundi**, produit 2 nouveautés audacieuses pour la semaine J+7 à J+13 (formats qui marchent d'après
+   `formats-test/README.md` § Résultats, épisodes suivants des séries) et décale d'un jour les lignes sans date imposée ;
+6. vérifie les quatre plannings et ne prévient Quentin que s'il reste un problème (ou le lundi, pour les nouveautés).
+
+| Réseau | Planning (Sheet) |
+|---|---|
+| Instagram (TikTok suit) | `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8` |
+| YouTube | `1LYdQZabr6B4Z_Ctu0ayYF1tOOtMIPMiqeXa9LTfNTtE` |
+| LinkedIn | `1EejYs9y4AsdoAtQgHc2HzXK6LgWQHwNnZmqbesSxpWU` |
+| X | `1lri4kqQO61Ei4s6w9za2UdudsPhdpas_zKuAIG5N8hM` |
+
+## Tâches supprimées le 24/11/2026 (ne pas recréer)
+
+Publications du jour, Vidéo démo du jour, Reel du soir, Campagne X · contenu J+7, TikTok et YouTube · diaporamas J+14,
+Produire IG-164 et IG-165, et la première version du contrôle. Leur travail est repris par la tâche ci-dessus.
+
+## Tâches gardées, hors production quotidienne
+
+- « Rédiger le bilan LI-170 » (21/12) : texte précis, soumis à Quentin avant programmation.
+- Tâches ponctuelles du concours (fusion de `/concours/` le 25/11 à 8:30, rappel du 25/11 à 9:00).
+- Mesures et bilans (Bilan hebdomadaire QME, compteur Gumroad) : ne produisent pas de contenu.
 
 Réserves au 24/11/2026 au soir : Instagram jusqu'au 21/04/2027, LinkedIn jusqu'au 02/04/2027, YouTube couvert chaque jour
-jusqu'au 10/12 (jours suivants comblés au fil de l'eau par les tâches), X jusqu'au 02/12 (prolongé chaque jour).
+jusqu'au 10/12, X jusqu'au 02/12 ; l'agent les prolonge chaque jour.

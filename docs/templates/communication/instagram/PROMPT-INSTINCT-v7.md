@@ -6,6 +6,6 @@ Mise à jour de tes routines de publication (version 7, 24/11/2026). Elle compl�
 - Tes passages ne changent pas.
 
 2. CE QUE TU NE FAIS PAS
-- Tu ne modifies jamais une date, une heure ou un statut pour respecter cette règle, tu ne retiens aucune publication et tu ne corriges rien dans les plannings : c'est une tâche de contrôle de Claude, chaque jour à 15:07, qui garantit une seule publication par jour et 7 jours d'avance. Tu publies ce qui est « Programmé », comme d'habitude.
+- Tu ne modifies jamais une date, une heure ou un statut pour respecter cette règle, tu ne retiens aucune publication et tu ne corriges rien dans les plannings : c'est l'agent de contenu de Claude, chaque jour à 10:07, qui garantit une seule publication par jour et 7 jours d'avance. Tu publies ce qui est « Programmé », comme d'habitude.
 
 Confirme-moi simplement sur WhatsApp que tu as noté que les dates ont changé.
