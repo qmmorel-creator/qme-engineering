@@ -143,6 +143,33 @@ footer a{color:var(--ink)}
   .bar a.pdf{display:none}
 }
 @media (max-width:480px){.steps{grid-template-columns:1fr}.phones .phone{width:100%;max-width:300px}}
+
+/* comparatif */
+.cmp{margin-top:100px}
+.cmp h2{font-size:clamp(28px,3.2vw,40px);margin:10px 0 10px;font-weight:700}
+.cmp .intro{color:#3f3830;max-width:72ch;margin:0 0 26px}
+.cmpw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:#fffdf9;box-shadow:0 24px 60px rgba(60,40,20,.08)}
+.cmpw table{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px;line-height:1.4}
+.cmpw th{text-align:left;font:600 13px "Poppins",sans-serif;padding:14px 14px 12px;border-bottom:2px solid var(--ink);vertical-align:bottom;background:#faf6ef}
+.cmpw th small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.cmpw th.q{background:var(--ink);color:#f6efe2}.cmpw th.q small{color:#cbbfae}
+.cmpw td{padding:10px 14px;border-bottom:1px solid #efe7da;vertical-align:top;color:#3f3830}
+.cmpw td:first-child{font-weight:600;color:var(--ink);position:sticky;left:0;background:#fffdf9;min-width:190px}
+.cmpw td.q{background:#f6eedf;color:var(--ink)}
+.cmpw tr:last-child td{border-bottom:0}
+.cmpw i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font:700 11px/1 Arial,sans-serif;font-style:normal;margin-right:6px;vertical-align:-3px}
+.cmpw i.y{background:var(--olive);color:#fff}.cmpw i.y::before{content:"✓"}
+.cmpw i.p{background:var(--sable);color:var(--ink)}.cmpw i.p::before{content:"~"}
+.cmpw i.n{background:#e3dbcf;color:#7a6f62}.cmpw i.n::before{content:"–"}
+.cmpw .lot{display:inline-block;font:600 10.5px "Poppins";letter-spacing:.06em;color:var(--terre);margin-left:4px}
+.cmp .leg{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--muted);margin:14px 0 0}
+.cmp .leg i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font:700 10px/1 Arial;font-style:normal;margin-right:6px;vertical-align:-3px}
+.cmp .read{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+.cmp .read div{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.cmp .read b{display:block;font:700 19px/1.25 "Playfair Display",serif;margin-bottom:8px}
+.cmp .read p{margin:0;color:#3f3830;font-size:15px}
+.cmp .src{font-size:12.5px;color:var(--muted);margin:18px 0 0;max-width:110ch}
+@media (max-width:720px){.cmp .read{grid-template-columns:1fr}.cmpw td:first-child{min-width:150px}}
 </style>
 </head>
 <body>
@@ -262,6 +289,21 @@ footer a{color:var(--ink)}
         <div class="it"><b>Contrôle qualité et espace client</b><span>la preuve du travail fait</span></div>
         <div class="it"><b>Heures du mois</b><span>prêtes pour la paie et la facture</span></div></div>
     </div>
+  </section>
+
+  <section class="cmp" id="comparatif">
+    <div class="num">SUR MESURE OU LOGICIEL DU MARCHÉ</div>
+    <h2>Ce qui est inclus, outil par outil</h2>
+    <p class="intro">Il existe de bons logiciels pour les entreprises de nettoyage. Voici, fonction par fonction, ce que comprendrait votre outil sur mesure et ce qu'annoncent quatre logiciels courants. «&nbsp;Non annoncé&nbsp;» veut dire que la fonction n'apparaît pas sur le site de l'éditeur, pas forcément qu'elle n'existe pas.</p>
+    <div class="cmpw"><table>
+      <thead><tr><th>Fonction</th><th class="q">Votre outil sur mesure<small>proposition QME, par lots</small></th><th>PROPRET<small>logiciel dédié à la propreté</small></th><th>Organilog<small>gestion d'interventions</small></th><th>Connecteam<small>planning et pointage</small></th><th>Kizeo Forms<small>formulaires mobiles</small></th></tr></thead>
+      <tbody><tr><td>Application mobile pour les agents</td><td class="q"><i class="y"></i>Oui <span class="lot">LOT 1</span></td><td><i class="y"></i>Oui (Android, iOS)</td><td><i class="y"></i>Oui, hors ligne</td><td><i class="y"></i>Oui</td><td><i class="y"></i>Oui, hors ligne</td></tr><tr><td>Pointage arrivée et départ sur le site</td><td class="q"><i class="y"></i>QR code ou badge NFC posé sur le site, sans suivi GPS <span class="lot">LOT 1</span></td><td><i class="p"></i>Début et fin de service dans l'appli, géolocalisation ; QR et NFC non annoncés</td><td><i class="y"></i>QR code, appli, code PIN ; GPS activable</td><td><i class="y"></i>GPS avec zone autorisée, NFC</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Check-lists par type de local, avec photos</td><td class="q"><i class="y"></i>Oui, photos obligatoires là où vous les demandez <span class="lot">LOT 1</span></td><td><i class="p"></i>Cahier de consignes par site ; photos non annoncées</td><td><i class="p"></i>Photos et champs personnalisés ; check-lists non annoncées</td><td><i class="y"></i>Oui, photos avant et après</td><td><i class="y"></i>Formulaires sur mesure, photos</td></tr><tr><td>Heures prévues au contrat et réalisées</td><td class="q"><i class="y"></i>Par site et par agent, au fil du mois <span class="lot">LOT 1</span></td><td><i class="p"></i>Suivi du temps de travail ; prévu et réalisé non annoncés</td><td><i class="y"></i>Temps passé contre prévu, par contrat</td><td><i class="y"></i>Prévu contre réalisé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Relevé d'heures pour la paie</td><td class="q"><i class="y"></i>Relevé par agent, au format de votre comptable <span class="lot">LOT 1</span></td><td><i class="p"></i>Export de prépaie (source tierce)</td><td><i class="p"></i>Export CSV des pointages</td><td><i class="y"></i>Export et intégrations paie (outils surtout anglophones)</td><td><i class="p"></i>Export des données</td></tr><tr><td>Planning, absences et remplacements</td><td class="q"><i class="y"></i>Oui, client prévenu du remplacement <span class="lot">LOT 2</span></td><td><i class="y"></i>Planning ; remplacements (page dédiée)</td><td><i class="p"></i>Planning et absences ; remplacements non annoncés</td><td><i class="y"></i>Planning, remplacements, échanges</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Grille de contrôle qualité notée</td><td class="q"><i class="y"></i>Par type de local, avec note et suivi des écarts <span class="lot">LOT 3</span></td><td><i class="n"></i>Non annoncé (module « Supervision » non détaillé)</td><td><i class="p"></i>Questionnaires de satisfaction (offre supérieure)</td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>À construire soi-même en formulaire</td></tr><tr><td>Rapport au client, à votre nom</td><td class="q"><i class="y"></i>PDF à votre nom et à vos couleurs <span class="lot">LOT 3</span></td><td><i class="n"></i>Non annoncé</td><td><i class="y"></i>Rapport PDF personnalisable, avec logo</td><td><i class="p"></i>Rapports automatiques ; logo non annoncé</td><td><i class="p"></i>Rapports personnalisés</td></tr><tr><td>Espace client</td><td class="q"><i class="y"></i>Passages, heures, demandes avec photo <span class="lot">LOT 3</span></td><td><i class="y"></i>Accès client</td><td><i class="y"></i>Factures, interventions, plannings</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Devis et facturation</td><td class="q"><i class="n"></i>Non : récapitulatif par client vers votre outil de facturation</td><td><i class="y"></i>Oui, facturation électronique prévue</td><td><i class="y"></i>Oui, facturation électronique (offre supérieure)</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Consommables et stock</td><td class="q"><i class="p"></i>Liste de réassort par site <span class="lot">OPTION</span></td><td><i class="y"></i>Gestion des stocks</td><td><i class="y"></i>Stock, multi-stock</td><td><i class="n"></i>Non annoncé</td><td><i class="n"></i>Non annoncé</td></tr><tr><td>Conciergerie dans le même outil</td><td class="q"><i class="p"></i>Passages et rapports propriétaires <span class="lot">OPTION</span></td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>Possible, outil d'interventions généraliste</td><td><i class="p"></i>Possible, outil généraliste</td><td><i class="p"></i>Possible, par formulaires</td></tr><tr><td>Adapté à votre façon de travailler</td><td class="q"><i class="y"></i>Construit pour vous, évolutif</td><td><i class="n"></i>Non annoncé</td><td><i class="p"></i>Champs, rôles, API, modules (offres supérieures)</td><td><i class="p"></i>Paramétrable</td><td><i class="p"></i>Formulaires sur mesure</td></tr><tr><td>Interface en français</td><td class="q"><i class="y"></i>Oui</td><td><i class="y"></i>Oui</td><td><i class="y"></i>Oui</td><td><i class="n"></i>Non confirmé (site en anglais)</td><td><i class="y"></i>Oui</td></tr><tr><td>Où sont vos données</td><td class="q"><i class="y"></i>Sur vos propres comptes, serveurs en Europe</td><td><i class="p"></i>Cloud, pays non précisé, RGPD annoncé</td><td><i class="y"></i>Hébergées en France</td><td><i class="p"></i>Pays non précisé, RGPD annoncé</td><td><i class="y"></i>Hébergées en France</td></tr><tr><td>Abonnement</td><td class="q"><i class="y"></i>Aucun abonnement obligatoire</td><td>Oui</td><td>Oui, par utilisateur</td><td>Oui, formules par utilisateur</td><td>Oui, par utilisateur</td></tr></tbody></table></div>
+    <p class="leg"><span><i class="y" style="background:var(--olive);color:#fff">✓</i>Inclus</span><span><i style="background:var(--sable);color:var(--ink)">~</i>Partiel, en option ou à configurer</span><span><i style="background:#e3dbcf;color:#7a6f62">–</i>Non annoncé par l'éditeur</span><span style="color:var(--terre);font-weight:600">LOT 1, 2, 3, OPTION&nbsp;: étape de votre outil qui l'inclut</span></p>
+    <div class="read">
+      <div><b>Quand un logiciel du marché suffit</b><p>Si votre façon de travailler est standard et que vous voulez surtout les devis et la facturation au même endroit, un logiciel comme Organilog ou PROPRET est un choix sérieux, et je vous le dirai franchement.</p></div>
+      <div><b>Quand le sur mesure se justifie</b><p>Si vous voulez vos check-lists et votre contrôle qualité exactement comme vous travaillez, des rapports clients à votre nom, nettoyage et conciergerie au même endroit, aucun abonnement, et vos données chez vous.</p></div>
+    </div>
+    <p class="src">Informations publiées par les éditeurs sur leurs sites (propret.fr, organilog.com, connecteam.com, kizeo-forms.com), relevées le 24 novembre 2026&nbsp;; deux points PROPRET (export de prépaie, remplacements) viennent d'un comparateur tiers. Les fonctions évoluent&nbsp;: à vérifier auprès des éditeurs. Ce tableau ne constitue pas un avis sur la qualité de ces logiciels.</p>
   </section>
 
 <!-- estimation -->
