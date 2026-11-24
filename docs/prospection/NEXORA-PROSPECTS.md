@@ -17,6 +17,8 @@ archive : la procédure à jour est ici.
 | Tâches d'action, relances, réunions | `create_task`, `complete_task`, `save_meeting_report` | une tâche par action à faire ; relance liée par `optim: {qme: {type, id}}` |
 | Dossier Google Drive du prospect | Google Drive | copie de chaque PDF émis |
 
+**Jamais de prospect sans adresse e-mail** (décision de Quentin du 24/11/2026) : une entreprise sans adresse e-mail publique (formulaire, téléphone seul) n'est pas créée dans Nexora Optim › QME ; l'étape `pas-de-mail` n'est plus utilisée, et les 410 fiches qui la portaient ont été supprimées le 24/11/2026.
+
 La liste d'opposition du site reste la référence des désinscriptions (`docs/templates/communication/REGLES-PROSPECTION.md`).
 
 ## 2. Règle absolue : mettre à jour Nexora après chaque action
