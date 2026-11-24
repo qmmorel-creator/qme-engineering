@@ -38,6 +38,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Source unique** : `docs/prospection/suivi-prospects.md`. À lire avant toute relance, devis, réponse ou nouveau mail à
   un prospect ; à mettre à jour le jour même par la session qui traite un échange (étape, dernier message, balle).
   Avant de conclure qu'un prospect attend une réponse, chercher `to:<adresse>` dans tous les fils Gmail.
+- **Un projet Nexora par prospect** (décision du 24/11/2026), dans le dossier « QM Engineering ». À sa création, il
+  reçoit toujours une tâche **« État global du prospect »**, dont le statut est l'un des six statuts réservés aux
+  projets prospects : Prospect, Discussion, Offre envoyée, Négociation, Refus, Signé. Ce statut suit chaque échange,
+  en même temps que le fichier de suivi. Procédure et identifiants : `docs/prospection/suivi-prospects.md`, § Nexora.
 
 ## Templates
 

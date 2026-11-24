@@ -14,7 +14,7 @@ du 23/11/2026.
 
 **Balle** : `QME` = Quentin doit agir ; `prospect` = on attend sa réponse.
 
-État au 24/11/2026 (fils Gmail lus en entier).
+État au 24/11/2026 au soir (fils Gmail lus en entier).
 
 ## Sérieux
 
@@ -26,8 +26,8 @@ du 23/11/2026.
 | **École de musique de Givry** | Sarah Villar (future trésorière) · sarahvillar@mailo.com | Sur mesure : inscriptions en ligne, administration | Appel le 09/11 ; devis QME-2026-011 v2 (23/11) : 790 € HT sans module de gestion, module en option 300 € HT, mise en service fin janvier 2027. Budget serré, compare d'autres solutions | QME, 23/11 | Prospect |
 | **Compagnie Antarès** | Nathalie Delecroix (Craponne) · cieantares@gmail.com | Sur mesure : plateforme d'inscriptions et reprise du site | Appel le 10/11 ; offre du 10/11 (890 € HT après remise + 75 € HT/mois) ; contre-proposition sans abonnement (~1 200 € HT) le 22/11 | QME, 22/11 | Prospect : réponse à la contre-proposition |
 | **Yuzu Agency · Odélia** | Eva Pellat (Talent Manager) · contact@agency-yuzu.com | Reel Instagram à 200 € fixe + accès aux outils études et budget | Prix convenu ; 5 questions de modalités posées (date, story avec lien, mention « Collaboration commerciale », statistiques, facturation). Dossier : `docs/templates/communication/affiliation/odelia*.md` | QME, 22/11 | Prospect (agence). Prestation payée, pas une affiliation pure |
-| **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram, ses mails ne passaient pas) | Sur mesure : **nettoyage de locaux professionnels** (bureaux, cabinets médicaux, parties communes, accueil du public), précisé par mail le 23/11 ; concept `/concepts/conciergerie-en-provence/` refait le 24/11 sur ce métier | Visio **mar. 24/11, 16:00–16:30**, confirmée par Kelly sur Instagram ; Meet `meet.google.com/fhb-cusi-hva` (agenda de Quentin) | QME, 23/11 | Rendez-vous. Après l'appel : noter le résultat ici |
-| **Royaumes & Légendes** (Aups, Haut-Var) | gérant non nommé · royaumesetlegendes@gmail.com | Sur mesure : caisse boutique + bar à jeux, soirées et tournois, stock commun avec la boutique en ligne ; concept `/concepts/royaumes-et-legendes/` (PR #269) | Réponse du 24/11 11:40 à la dernière relance : « parlez-moi de votre système de caisse et de bar à jeu. Quand pourrions-nous nous appeler ? » Concept et brouillon de réponse préparés le 24/11 (non envoyés). Point de vigilance : l'encaissement doit passer par un logiciel de caisse certifié | Prospect, 24/11 | **QME** : fusionner la PR, relire et envoyer le brouillon, proposer un appel de 30 min |
+| **Conciergerie en Provence** | Kelly · conciergerieenprovence@outlook.fr (contact passé par Instagram) | Sur mesure : **pilotage de ses prestataires de ménage** chez les professionnels (bureaux, cabinets médicaux, parties communes, accueil du public) ; elle travaille avec des **prestataires indépendants**, pas de salariés ; concept `/concepts/conciergerie-en-provence/` | Visio tenue le 24/11 : très intéressée, offre sur la base du concept (ménage uniquement). Prix annoncé : forfait ~3 000 € HT avec espace client, abonnements techniques à sa charge ; cible 2 500–2 600 € HT. 3 variantes (A espace client + PDF, B PDF seuls, C sans accès client) : compte rendu Nexora « Point avec Kelly » | QME, 24/11 18:03 (demandes d'informations) | Prospect : réponses attendues (volumes, process détaillé, choix clients, photos, pointage, marque et domaine). Relance le 01/12 si rien, puis proposition et devis |
+| **Royaumes & Légendes** (Aups, Haut-Var) | gérant non nommé · royaumesetlegendes@gmail.com | Sur mesure : caisse boutique + bar à jeux, soirées et tournois, stock commun avec la boutique en ligne ; concept `/concepts/royaumes-et-legendes/` (en ligne, PR #269 et #270) | Réponse du 24/11 11:40 : « parlez-moi de votre système de caisse et de bar à jeu. Quand pourrions-nous nous appeler ? » Réponse envoyée le 24/11 à 18:32 (lien du concept, réponse sur la caisse et le bar à jeux, rappel : l'encaissement doit passer par une caisse certifiée ; demande de 2 ou 3 créneaux pour une visio de 30 min) | QME, 24/11 | Prospect : ses créneaux. Ensuite **QME** : envoyer l'invitation visio |
 | **Christophe Yzet** (yzetexpertise) | Christophe Yzet (connaissance de Quentin, ARTELIA à La Réunion) · yzetexpertise@free.fr | Sur mesure pour son activité de conseil ; liens d'essai visa et packs Freelance envoyés | Rencontre souhaitée **à son retour, début 2027** | QME, 21/11 | Prospect. Long terme |
 
 ## Tièdes
@@ -76,9 +76,57 @@ Alternante, message transmis par Yannick. Concept : `/concepts/oh-delices-paysan
 | 2026-11-17 | envoyé | concept, réponse sur Baserow et Osmo Vente, quatre questions pour le devis | estimation : 1 000 à 5 000 € de mise en place + à partir de 100 €/mois |
 | 2026-11-23 15:06 | envoyé | relance : rappel du concept, éléments minimaux pour le devis, proposition de 30 min en visio | |
 
+### Conciergerie en Provence · Kelly
+
+Activité visée : nettoyage chez les professionnels, avec des prestataires indépendants. Concept : `/concepts/conciergerie-en-provence/`.
+Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (projet Kelly-ménage).
+
+| Date | Sens | Contenu | Montant |
+|---|---|---|---|
+| 2026-11-06 | envoyé | premier contact (vague 30, conciergeries) | |
+| 2026-11-20 | envoyé | relance | |
+| 2026-11-23 | reçu | Instagram : intéressée, demande un appel | |
+| 2026-11-23 | envoyé | concept v2 et demande de créneaux (Instagram puis mail) | lot 1 4 300–5 200 € HT, complet 8 900 € HT (abandonné) |
+| 2026-11-23 17:01 | reçu | l'outil est pour son entreprise de nettoyage chez les professionnels | |
+| 2026-11-24 | envoyé | concept refait sur le nettoyage de locaux pros, comparatif sans prix (PR #268, #271), confirmation de la visio | |
+| 2026-11-24 16:00 | visio | très intéressée ; volet direction en temps réel, UX simple pour les prestataires, cadre premium pour ses clients | forfait annoncé ~3 000 € HT, abonnements à sa charge |
+| 2026-11-24 18:03 | envoyé | remerciements, demandes d'informations (volumes, process détaillé, choix clients, photos, pointage, marque et domaine), encadré indépendants / pointage sans géolocalisation / RGPD | |
+
 ## Mise à jour
 
-1. Nouvelle réponse intéressée : ajouter une ligne (sérieux si besoin, rendez-vous ou devis explicites ; tiède sinon).
-2. Chaque échange : mettre à jour « Étape », « Dernier message » et « Balle ».
-3. Refus : déplacer la ligne dans « Sortis du suivi » et appliquer `REGLES-PROSPECTION.md` (§ 3).
-4. Contrat signé ou vente : déplacer en « Sortis du suivi » avec le motif « client », et le noter dans le dossier du client.
+1. Nouvelle réponse intéressée : ajouter une ligne (sérieux si besoin, rendez-vous ou devis explicites ; tiède sinon),
+   et créer son projet Nexora avec sa tâche « État global du prospect » (§ Nexora ci-dessous).
+2. Chaque échange : mettre à jour « Étape », « Dernier message » et « Balle », ainsi que le statut et la description
+   de la tâche « État global du prospect ».
+3. Refus : déplacer la ligne dans « Sortis du suivi », passer la tâche en **Refus** et appliquer
+   `REGLES-PROSPECTION.md` (§ 3).
+4. Contrat signé ou vente : déplacer en « Sortis du suivi » avec le motif « client », passer la tâche en **Signé**, et le
+   noter dans le dossier du client.
+
+## Nexora : un projet par prospect
+
+Décision de Quentin du 24/11/2026. Chaque prospect de ce fichier (sérieux ou tiède) a son **projet Nexora** dans le
+dossier **« QM Engineering »** (id `86e6e5b2-0d94-4a3a-bcd3-a0dde86143cd`), nommé « Nom-activité » (ex. « Kelly-ménage »,
+« GMT Bordeaux-horlogerie »). Les tâches propres à un prospect (réunions, actions, relances) vont dans son projet, pas
+dans « QME - Stratégie ».
+
+**À chaque création d'un projet prospect** :
+
+1. Créer le projet dans le dossier « QM Engineering » (`mutate_resource`, `projects`).
+2. Ajouter l'id du nouveau projet au champ `projectIds` de **chacun des six statuts** ci-dessous (`mutate_resource`,
+   `statuses`, relire la liste avant pour la compléter, pas la remplacer) : sans cela, le statut n'est pas proposé
+   dans le projet.
+3. Créer la tâche **« État global du prospect »** (type Tâches, responsable Quentin Morel, début et fin à la date de
+   création), avec le statut qui correspond à l'étape et une description : qui, quoi, état daté, balle, renvoi vers ce
+   fichier.
+
+**Statuts réservés aux projets prospects** (ne pas les utiliser ailleurs) :
+
+| Statut | Quand | Id Nexora |
+|---|---|---|
+| Prospect | Contact établi, intérêt exprimé, pas d'échange de fond (ou sans nouvelle) | `1cc52e21-1f09-4686-a04e-55a6cd70f8df` |
+| Discussion | Appel, visio ou échange sur le besoin en cours ; pas encore d'offre écrite envoyée | `6340313d-a2ad-4757-9670-f0ea5cda97c5` |
+| Offre envoyée | Proposition ou devis écrit envoyé, sans réaction du prospect | `01e2bc71-d360-4567-a499-abe3f1a672c4` |
+| Négociation | Le prospect discute l'offre (prix, périmètre, modalités) ou une contre-proposition est en cours | `e01ad162-4b06-4885-b8c2-3daab2bee177` |
+| Refus | Refus explicite (la ligne passe en « Sortis du suivi ») | `c6c10d10-ae33-4fa2-a996-67271e34a976` |
+| Signé | Contrat signé, devis accepté ou vente conclue | `7848d844-c300-4f3d-9f44-4ef27ef0af25` |
