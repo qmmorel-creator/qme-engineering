@@ -85,6 +85,19 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   `docs/templates/communication/gumroad-priorite.md` § « Qui gère Gumroad » ; écart prêt / Gumroad :
   `node outils/gumroad/ecart.mjs`.
 
+## PDF émis : rangement Google Drive et note Bible (décision du 24/11/2026)
+
+- **Tout PDF émis à un prospect ou à un client** (concept, proposition, devis, plaquette, références, contrat,
+  facture…), en pièce jointe ou par un lien, est rangé **le jour même** dans Google Drive :
+  `13 - Entreprise QME / 04 - Prospects & clients / <Prénom Nom> – <Entreprise> / <type>`, avec six sous-dossiers
+  fixes (`01 - Concept`, `02 - Proposition`, `03 - Devis`, `04 - Plaquette`, `05 - Références`,
+  `06 - Contrat et factures`, plus `07 - Autres documents` si besoin) et des fichiers nommés `AAAA-MM-JJ - <Type> - <Entreprise> - <version>.pdf`, dans la
+  version réellement émise (retrouvée dans git).
+- **Note Bible** : chaque projet Nexora de prospect a une note « Note Bible · <Prénom> (<Entreprise>) » (type Notes),
+  avec en tête l'URL de la page concept, puis le lien du dossier Drive et un lien par PDF, le type en tête du nom du
+  lien (`[Concept] …`, `[Devis] …`). Elle est complétée à chaque nouveau PDF. Procédure, identifiants et prospects déjà
+  rangés : `docs/prospection/RANGEMENT-DRIVE.md`.
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
