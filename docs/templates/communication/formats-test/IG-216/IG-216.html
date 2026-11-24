@@ -39,14 +39,14 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
 #serie{position:absolute;left:84px;top:262px;z-index:50;background:var(--bleu);color:var(--surface);border:5px solid var(--encre);font-weight:800;font-size:34px;letter-spacing:.04em;padding:10px 22px;box-shadow:8px 8px 0 var(--encre)}
 
 /* Tableur fictif « de l'enfer » */
-#feuille{position:absolute;left:40px;right:40px;top:650px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:25px;color:#111}
+#feuille{position:absolute;left:40px;right:40px;top:660px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:25px;color:#111}
 #feuille table{border-collapse:collapse;width:100%;table-layout:fixed}
-#feuille td{border:1px solid #b9b9b9;height:56px;padding:0 6px;white-space:nowrap;overflow:hidden;position:relative}
+#feuille td{border:1px solid #b9b9b9;height:52px;padding:0 6px;white-space:nowrap;overflow:hidden;position:relative}
 #feuille td.n,#feuille tr.l td{background:#e9e9e9;color:#555;text-align:center;font-size:20px}
 #feuille tr.l td{height:36px}
 #feuille td.c::after{content:'';position:absolute;right:0;top:0;border-top:14px solid #e01b1b;border-left:14px solid transparent}
 .err{color:#d00000;font-weight:700}
-#onglets{position:absolute;left:40px;right:40px;top:1438px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:20px}
+#onglets{position:absolute;left:40px;right:40px;top:1400px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:20px}
 #onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:5px 10px;white-space:nowrap}
 #onglets span.a{background:#fff;font-weight:700;border-bottom:3px solid #0a8a2a}
 .bulle{position:absolute;background:#fff8b0;border:2px solid #9b8b1a;font-family:Arial,Helvetica,sans-serif;font-size:21px;padding:8px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);white-space:nowrap}
@@ -73,13 +73,14 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
 
 <!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée) -->
 <div class="s" id="s1" style="animation:sortie 300ms 8400ms">
-  <p class="x" style="top:360px;font-size:70px">Le tableur de l'équipe. <span style="color:var(--rouge)">14&nbsp;onglets.</span></p>
-  <p class="x" style="top:450px;font-size:70px">Une seule personne sait s'en servir.</p>
-  <p class="note" style="top:590px;font-size:26px">Tableur fictif, fabriqué pour l'épisode</p>
+  <p class="x" style="top:370px;font-size:72px">Le tableur de l'équipe.</p>
+  <p class="x" style="top:450px;font-size:72px;color:var(--rouge)">14&nbsp;onglets.</p>
+  <p class="x" style="top:530px;font-size:58px">Une seule personne sait s'en servir.</p>
+  <p class="note" style="top:612px;font-size:26px">Tableur fictif, fabriqué pour l'épisode</p>
   <div id="feuille"></div>
   <div id="onglets"></div>
-  <div class="bulle" style="left:610px;top:760px">NE PAS SUPPRIMER (formule)</div>
-  <div class="bulle" style="left:120px;top:1070px">voir avec Karine ??</div>
+  <div class="bulle" style="left:610px;top:752px">NE PAS SUPPRIMER (formule)</div>
+  <div class="bulle" style="left:120px;top:1040px">voir avec Karine ??</div>
   <div class="anneau" id="a-hugo" style="animation:anneau 400ms 3300ms"></div>
   <div class="etiq" id="e-hugo" style="animation:pop 350ms 3600ms">Hugo : 42&nbsp;h prévues pour 35.<br>Personne ne le voit.</div>
   <div class="anneau" id="a-total" style="animation:anneau 400ms 5900ms"></div>
@@ -97,8 +98,8 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px}
 <div class="s" id="s3" style="animation:entree-fond 350ms 10900ms,sortie 300ms 20900ms">
   <p class="sourcil" style="top:380px;color:var(--bleu);animation:monte 400ms 11000ms">Même équipe · même semaine</p>
   <div class="num" style="top:440px;animation:pop 350ms 11100ms">1</div>
-  <p class="x" style="top:450px;left:200px;font-size:60px;line-height:1.1;animation:monte 400ms 11200ms">Toute la charge, sur un écran</p>
-  <div class="carte" style="top:620px;animation:monte 500ms 11300ms"><img src="captures/eqp-tableau-haut.png" alt=""></div>
+  <p class="x" style="top:450px;left:200px;font-size:60px;line-height:1.1;animation:monte 400ms 11200ms">Tableau de bord&nbsp;: toute la charge, sur un écran</p>
+  <div class="carte" style="top:640px;animation:monte 500ms 11300ms"><img src="captures/eqp-tableau-haut.png" alt=""></div>
 
   <div class="s" style="animation:entree-fond 350ms 14300ms;background:var(--papier)">
     <div class="num" style="top:440px">2</div>
@@ -180,7 +181,7 @@ function poser(idA, idE, idC, dxE, dyE) {
   Object.assign(et.style, { right: dxE + 'px', top: r.bottom + dyE + 'px' });
 }
 poser('a-hugo', 'e-hugo', 'g-hugo', 60, 40);
-poser('a-total', 'e-total', 'g-total', 60, 40);
+poser('a-total', 'e-total', 'g-total', 60, -190);
 window.placer = (ms) => { document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }); };
 window.placer(0);
 </script>

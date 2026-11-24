@@ -1,0 +1,14 @@
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { chromium } = (() => { try { return require('playwright'); } catch { return require('/opt/node-tools/node_modules/playwright'); } })();
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 430, height: 932 } });
+await p.goto('http://localhost:8888/templates/planning-equipe/?demo&reinit');
+await p.waitForTimeout(3000);
+await p.addStyleTag({ content: 'dialog{display:none!important}' });
+await p.$eval('.onglet[data-vue="planning"]', (e) => e.click());
+await p.waitForTimeout(800);
+const t = await p.innerText('main');
+for (const m of t.matchAll(/\n([A-ZÉ][a-zéè]+ [A-Z]\.)\n[\s\S]*?(\d+ %)\n([\d,]+ \/ [\d,]+ h)/g)) console.log(m[1], m[2], m[3]);
+console.log((await p.$$eval('.onglet', (l) => l.map((e) => e.innerText.trim()))).join(' | '));
+await b.close();
