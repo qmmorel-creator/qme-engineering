@@ -40,7 +40,7 @@ reçoit son outil sur mesure. Source de vérité pour la page `/concours/`, le r
 | 25/11 | 20:00 | Instagram (+ TikTok par Instinct) | IG-220 | **Reel de lancement** (à booster) |
 | 29/11 | 19:00 | Instagram | IG-215 | conversation de couple : légende + « P.S. concours en cours, lien en bio » |
 | 02/12 | 19:00 | Instagram | IG-216 | pire tableur ép. 1, carton final remplacé : « Le vôtre est pire ? Concours jusqu'au 06/12, lien en bio » |
-| 05/12 | 20:00 | Instagram | IG-221 | Reel de relance « Plus que 48 h » (8–12 s) ; YT-76 12:00 |
+| 05/12 | 20:00 | Instagram | IG-221 | Reel de relance « Dernière ligne droite. Clôture dimanche 06/12 à 23:59. » (8–12 s, date fixe plutôt qu’un compte en heures qui se périme) ; YT-76 12:00 |
 | 08/12 | 20:00 | Instagram | IG-222 | Carrousel des 3 finalistes (recréés en fictif) + vote — à produire après la clôture |
 | 11/12 | 19:00 | Instagram | IG-223 | Annonce du gagnant — à produire après le vote |
 | à partir du 14/12 | — | Instagram, TikTok, YouTube | — | Série « Je construis l'outil du gagnant » (avec son accord) |
