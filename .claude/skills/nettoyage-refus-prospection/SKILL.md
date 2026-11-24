@@ -129,6 +129,9 @@ Pour chaque fil classé :
      explicites) ou `"tiede"`, `balle`, `prochaineAction`, `relance` ;
    - prospect qui refuse : `etape: "perdu"`, `motifSortie` (motif et date), `niveau: null` ;
    - prospect qui écrit de nouveau : `etape`, `dernierMessage`, `balle`, `relance`.
+   - si le prospect a un projet Nexora (dossier « QM Engineering ») : tâche « État global du prospect » en
+     **Refus** (ou mise à jour de sa description), relances ouvertes terminées ou archivées ; un nouvel intéressé
+     reçoit son projet, sa tâche « État global » et sa Note Bible (`docs/prospection/NEXORA-PROSPECTS.md` § 2 à § 4).
 3. Aucun fichier du dépôt à modifier pour le suivi ; commit seulement si une règle ou un modèle change.
 4. Compte rendu à Quentin : nombre de fils lus, par classement ; liste des réponses envoyées ; liste des hostiles
    et « stop » (sans réponse) ; les intéressés laissés en boîte de réception ; les cas douteux, avec la raison du choix.
