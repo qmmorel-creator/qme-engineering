@@ -82,7 +82,7 @@ Alternante, message transmis par Yannick. Concept : `/concepts/oh-delices-paysan
 
 ### Conciergerie en Provence · Kelly
 
-Activité visée : nettoyage chez les professionnels, avec des prestataires indépendants. Concept : `/concepts/conciergerie-en-provence/`.
+Activité visée : nettoyage chez les professionnels, avec des prestataires indépendants. Nom d'expéditeur Outlook : « CASTIGLIONE - ROUVIERE Kelly - Axel » ; le fil Gmail actif est « Demande d'outil » (l'ancien « Ménage, linge et relevés d'intendance » n'a que nos envois). Concept : `/concepts/conciergerie-en-provence/`.
 Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (projet Kelly-ménage).
 
 | Date | Sens | Contenu | Montant |
@@ -93,6 +93,8 @@ Compte rendu et actions : Nexora, réunion « Point avec Kelly » du 24/11 (proj
 | 2026-11-23 | envoyé | concept v2 et demande de créneaux (Instagram puis mail) | lot 1 4 300–5 200 € HT, complet 8 900 € HT (abandonné) |
 | 2026-11-23 17:01 | reçu | l'outil est pour son entreprise de nettoyage chez les professionnels | |
 | 2026-11-24 | envoyé | concept refait sur le nettoyage de locaux pros, comparatif sans prix (PR #268, #271), confirmation de la visio | |
+| 2026-11-24 16:00 | visio | démonstration du concept ; très intéressée, offre sur la base du concept (ménage uniquement) ; prestataires indépendants ; un homme présent avec elle | annoncé : forfait ~3 000 € HT avec espace client, abonnements techniques à sa charge (cible 2 500–2 600 € HT) |
+| 2026-11-24 18:03 | envoyé | fil « Demande d'outil » (signature, mention d'opposition, copie cachée Floriane) : remerciements, 7 blocs de questions (volumes, prestation de A à Z, remontées et rémunération des prestataires, tableau de bord, choix espace client / PDF / aucun accès, durée de conservation des photos, marque, domaine, logo, date de démarrage) ; cadrage indépendants (lien de subordination, pointage QR code ou NFC sans géolocalisation, RGPD) | |
 | 2026-11-24 16:00 | visio | très intéressée ; volet direction en temps réel, UX simple pour les prestataires, cadre premium pour ses clients | forfait annoncé ~3 000 € HT, abonnements à sa charge |
 | 2026-11-24 18:03 | envoyé | remerciements, demandes d'informations (volumes, process détaillé, choix clients, photos, pointage, marque et domaine), encadré indépendants / pointage sans géolocalisation / RGPD | |
 
