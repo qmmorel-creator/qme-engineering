@@ -164,6 +164,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
   puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
   n'est fusionné ni envoyé sans son feu vert. Fiches : `docs/templates/communication/affiliation/`.
+- **Une sous-conversation par retour d'influenceur** (décision du 25/11/2026) : dès que Quentin demande de traiter le
+  retour d'un influenceur précis, la session master crée **systématiquement** une session enfant liée (`create_session`,
+  titre `[Affiliation] <Prénom Nom> · <compte>`, tags `affiliation` et `affiliation:<prénom-nom>`) qui tient ce dossier
+  jusqu'au bout et rend compte à la master. Identifiant noté dans la fiche du créateur. Détail : skill
+  `retour-affiliation`, § « Sous-conversation de suivi ».
 
 ## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts, TikTok)
 
