@@ -1445,6 +1445,23 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   entrée dans `communication/gumroad-a-creer.json`, ajout de `VYG` aux packs PVY et PMR
   (`netlify/lib/packs.mjs`, `PAGES` de `outils/packs/donnees.mjs`, pages `/packs/` régénérées), plannings,
   carte anglaise, passage en vente du site.
+- **Retour d'audit UX (25/11/2026, retour d'Angélique Benoit, « Le van à la française » : « un peu complexe à
+  comprendre niveau prise en main »)**. Fait sur la branche `claude/affiliation-angelique-benoit` (démo
+  personnalisée seulement) : démo `?demo=van&prenom=` (six semaines en van avec deux chiens), carte « Premiers
+  pas » en 3 gestes sur l'Aperçu (voir le jour, noter une dépense, cocher les bagages), sans modale à
+  l'ouverture. Pistes non faites :
+  - type d'hébergement « dans le van / camping-car » (une saisie pour toutes les nuits d'une étape, sans
+    statut « à réserver ») ; aujourd'hui une nuit en van non saisie compte comme « sans toit » ;
+  - carte « Premiers pas » pour tous les acheteurs à la première ouverture (voyage vide : créer le voyage,
+    ajouter une étape, une nuit) ;
+  - modale d'installation (« Comme une application ») reportée à une visite ultérieure, pas empilée sur le guide ;
+  - bandeaux plus légers sur mobile (environ 200 px avant le contenu) ;
+  - vocabulaire plus simple (« sans toit », « postes », « écart ») ;
+  - poste de budget « animaux ».
+  - onglet « Jour par jour » ouvert sur aujourd'hui pendant le voyage (il s'ouvre au jour 1 ; seul le bouton de
+    la carte « Premiers pas » amène à aujourd'hui) ;
+  - formulaire « Nouvelle dépense » allégé (libellé et montant visibles d'abord, répartition repliée) ;
+  - listes ajoutées (« Mes ajouts ») plus haut dans « Préparer » (aujourd'hui sous quatre listes types).
 
 ## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
 

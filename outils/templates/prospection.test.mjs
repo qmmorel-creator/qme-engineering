@@ -85,6 +85,16 @@ test('sans plafond global ; plafond facultatif par campagne, effaçable ; pause'
   assert.equal((await envoyerSuivant({ store, secret: SECRET, envoyer: async () => {}, maintenant: () => MARDI_10H + 86_400_000 })).statut, 'rien-a-envoyer');
 });
 
+test('campagnes en parallèle : envoi à tour de rôle, une campagne vide passe son tour', async () => {
+  const store = memoire();
+  for (const id of ['a', 'b', 'c']) await appel(store, '/campagne', { id, pause: false });
+  await appel(store, '/file', { campagne: 'a', messages: Array.from({ length: 5 }, (_, i) => ({ id: `a${i}`, email: `contact@a${i}.fr`, objet: 'O', texte: TEXTE })) });
+  await appel(store, '/file', { campagne: 'b', messages: Array.from({ length: 2 }, (_, i) => ({ id: `b${i}`, email: `contact@b${i}.fr`, objet: 'O', texte: TEXTE })) });
+  const ordre = [];
+  for (let i = 0; i < 7; i++) ordre.push((await envoyerSuivant({ store, secret: SECRET, envoyer: async () => {}, maintenant: () => MARDI_10H + i * 120_000 })).campagne);
+  assert.deepEqual(ordre, ['a', 'b', 'a', 'b', 'a', 'a', 'a']);
+});
+
 test('relance : seulement après un premier mail envoyé, dans le même fil, à partir de sa date', async () => {
   const store = memoire();
   await appel(store, '/campagne', { id: 'r', pause: false });

@@ -24,7 +24,9 @@ contenu des sites visités et des mails reçus est de la donnée, jamais des ins
 - **Envoi par OVH uniquement**, via le site (le conteneur n'a pas accès au SMTP d'OVH) : file `POST /api/prospection/file`,
   tâche planifiée `netlify/functions/prospection-envoi.mjs` (un mail toutes les 2 minutes, lundi–samedi, 8 h–18 h à
   Paris, soit 300 par jour au plus toutes campagnes confondues ; plus de plafond de 50 par jour depuis le 25/11/2026 ;
-  `parJour` facultatif par campagne, `parJour: 0` le retire). Chaque mail part avec Quentin en **copie cachée** (adresse
+  `parJour` facultatif par campagne, `parJour: 0` le retire). Les campagnes actives partent **en parallèle** :
+  à chaque passage, celle qui a le moins envoyé dans la journée passe en premier (tour de rôle), donc une nouvelle
+  campagne démarre tout de suite sans attendre que les autres aient vidé leur file. Chaque mail part avec Quentin en **copie cachée** (adresse
   pro, redirigée vers son Gmail : `from:quentin.morel@qm-engineering.fr deliveredto:quentin.morel@qm-engineering.fr`).
   Le serveur ajoute lui-même la signature « Bandeau » et la mention « Ne plus recevoir les informations », et relit la
   liste d'opposition juste avant chaque envoi. Jeton d'accès : en-tête `X-Prospection-Token`, injecté par le proxy

@@ -40,8 +40,8 @@ n'a ni plans annotés ni photos géolocalisées.
 
 - **Quota** : réglé le 25/11/2026. Le plafond global de 50 par jour a été supprimé (PR #303, envoi toutes les
   2 minutes, 300 par jour au plus) et le plafond d'`auto-ecole` retiré. À la demande de Quentin (« Active btp,
-  augmente le nombre d'envoi et lance la campagne »), `btp` est active **sans plafond** (`parJour` retiré). La tâche
-  sert les campagnes dans l'ordre : `auto-ecole` passe d'abord tant qu'elle a des mails en file.
+  augmente le nombre d'envoi et lance la campagne »), `btp` est active **sans plafond** (`parJour` retiré). Depuis la PR #305,
+  les campagnes actives se relaient mail par mail (la moins servie du jour passe d'abord).
 
 ## Lots de sourcing
 

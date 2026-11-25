@@ -20,7 +20,7 @@ import { TEMPLATES } from '../packs/donnees.mjs';
 const RACINE = fileURLToPath(new URL('../../', import.meta.url));
 // Templates bloqués par une décision de Quentin (docs/templates/QUESTIONS.md § Bloquant) : données de santé ou de
 // mineurs. Retirer un préfixe d'ici quand Quentin a tranché.
-export const BLOQUES = ['BBE', 'CSE', 'RBS'];
+export const BLOQUES = []; // 25/11/2026 : Quentin a décidé de vendre BBE, CSE et RBS (QUESTIONS.md § Bloquant).
 
 const enVente = (p) => Boolean(PRODUITS[p]?.gumroad) && !PRODUITS[p]?.vers;
 
