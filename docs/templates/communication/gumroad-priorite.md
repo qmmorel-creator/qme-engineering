@@ -5,18 +5,27 @@ d'étape quotidien, session de pilotage stratégique, lots de templates). Elle r
 écrite ailleurs (consignes d'une tâche planifiée comprises). Décision de Quentin du 16/11/2026. Non publié
 (`/docs/*` en 404).
 
-## Qui gère la file (16/11/2026)
+## Qui gère Gumroad (24/11/2026)
 
-- **Une seule session** : la session de pilotage stratégique QME (claude.ai/code, session_0183EW51qk2gGvogKDTrV6Qz),
-  par la tâche planifiée « File Gumroad quotidienne QME », **chaque jour à 8 h 45** (Paris) : publication des
-  brouillons dont la clé est active, mise en vente sur le site, création des brouillons suivants, insertion des
-  publications en attente dans les plannings, compte rendu à Quentin. L'ancienne routine « Point d'étape quotidien
-  templates » (23 h 47) est supprimée par Quentin.
+- **Référent unique : l'agent Gumroad**, session `session_0183EW569cgV6TXMdunVEq3r` (claude.ai/code), décision de Quentin
+  du 24/11/2026 (« fais en sorte que ce soit toi le seul référent sur le sujet »). Toute demande ou action Gumroad
+  (création, publication, mise en vente sur le site, prix, descriptions, dépublication, packs) passe par elle. Une autre
+  session qui reçoit une demande Gumroad renvoie Quentin vers l'agent Gumroad ou lui transmet la demande
+  (`send_message` vers cette session) ; elle ne crée, ne publie et ne modifie rien sur Gumroad elle-même.
+- **Tâche planifiée « Agent Gumroad · comparaison quotidienne »**, chaque jour à 8 h 45 (Paris), dans cette session :
+  1. relève ce qui a changé ailleurs (PR et commits fusionnés dans `main` depuis la veille, sessions actives qui
+     parlent de Gumroad, produits Gumroad modifiés) et le reporte dans les registres ;
+  2. compare `node outils/gumroad/ecart.mjs <produits Gumroad>` (ce qui est prêt à vendre) avec `list_products` ;
+  3. publie et passe en vente les brouillons dont la clé est active ;
+  4. crée en brouillon toutes les fiches manquantes, jusqu'à la limite de Gumroad (10 par 24 h) ;
+  5. met à jour les registres et rend compte à Quentin.
+  Les anciennes tâches « File Gumroad quotidienne QME » (session de pilotage stratégique) et « Gumroad : 4 brouillons
+  (EDT, ANM, FRM, PTG) + Pack Associations » sont supprimées.
 - **Feu vert permanent de Quentin (16/11/2026)** pour fusionner dans `main` les PR **de mise en vente** :
   identifiants Gumroad dans `PRODUITS` ou `PACKS`, pages catalogue passées en vente, packs et JSON-LD régénérés,
   registres. Toute autre fusion reste soumise à son accord (CLAUDE.md).
-- Reste à Quentin : activer la clé de licence de chaque brouillon. Plus de versions « Pack » / « Pack évolutif » :
-  l'option est supprimée depuis le 23/11/2026 (les templates ajoutés plus tard à un pack sont inclus).
+- Reste à Quentin : activer la clé de licence de chaque brouillon. Une seule version par pack (option « Pack
+  évolutif » supprimée le 23/11/2026).
 
 ## Règles
 

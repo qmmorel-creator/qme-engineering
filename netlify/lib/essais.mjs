@@ -115,6 +115,43 @@ async function lireAccompagnements(essais) {
   return liste.sort((a, b) => String(b.achat).localeCompare(String(a.achat)));
 }
 
+// Remerciements d'achat (achats.mjs) : une ligne par vente traitée (produit, date, e-mail envoyé, après un essai ou non),
+// sans adresse ni nom. Pour Nexora Optim › QME › E-mails.
+async function lireAchats(essais) {
+  const liste = [];
+  for (const cle of await essais.lister('achat/')) {
+    const a = await essais.get(cle);
+    if (!a) continue;
+    const nom = (PRODUITS[a.produit] || PACKS[a.produit])?.nom || a.produit;
+    liste.push({ produit: nom, code: a.produit, date: a.date || null, mail: a.mail || null, apresEssai: Array.isArray(a.essai) && a.essai.length > 0 });
+  }
+  return liste.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+}
+
+// Bilans de la tournée quotidienne (essais-quotidien.mjs) : e-mails partis par type, erreurs, effacements.
+export const CONSERVATION_TOURNEES_JOURS = 90;
+export async function enregistrerTournee(essais, jour, bilan) {
+  await essais.set(`tournee/${jour}`, { jour, ...bilan });
+  const limite = decalerJour(jour, -CONSERVATION_TOURNEES_JOURS);
+  for (const cle of await essais.lister('tournee/')) if (cle.slice('tournee/'.length) < limite) await essais.supprimer(cle);
+}
+async function lireTournees(essais, n = 45) {
+  const cles = (await essais.lister('tournee/')).sort().slice(-n);
+  const l = [];
+  for (const cle of cles) { const t = await essais.get(cle); if (t) l.push(t); }
+  return l.reverse();
+}
+
+// Formulaires du site reçus par Netlify (submission-created.mjs) : idées et concours. Le formulaire de contact
+// n'est pas repris (décision du retrait #1223 côté Nexora maintenue).
+export const FORMULAIRES_SUIVIS = ['idee', 'concours'];
+async function lireFormulaires(essais, n = 200) {
+  const cles = (await essais.lister('formulaire/')).sort().slice(-n);
+  const l = [];
+  for (const cle of cles) { const f = await essais.get(cle); if (f) l.push(f); }
+  return l.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+}
+
 async function lireContacts(essais) {
   const contacts = [];
   for (const cle of await essais.lister('contact/')) { const c = await essais.get(cle); if (c) contacts.push(c); }
@@ -318,7 +355,7 @@ export async function traiterEssai(requete, { secret, essais, envoyer = null, ma
     }
     const compte = (s) => vues.filter((v) => v.statut === s).length;
     return json(200, { total: vues.length, enCours: compte('en cours'), termines: compte('terminé (lecture seule)'), achetes: compte('acheté'), essais: vues,
-      accompagnements: await lireAccompagnements(essais) });
+      accompagnements: await lireAccompagnements(essais), achats: await lireAchats(essais), tournees: await lireTournees(essais), formulaires: await lireFormulaires(essais) });
   }
 
   if (chemin === '/contacts') {

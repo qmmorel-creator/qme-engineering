@@ -42,6 +42,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   à un prospect ; à mettre à jour le jour même par la session qui traite un échange. Une relance = une tâche Nexora
   (`create_task`, `optim: {qme: {type, id}}`). Avant de conclure qu'un prospect attend une réponse, chercher
   `to:<adresse>` dans tous les fils Gmail.
+- **Jamais de prospect sans adresse e-mail** (décision de Quentin du 24/11/2026) : une entreprise sans adresse e-mail publique (formulaire, téléphone seul) n'est pas créée dans Nexora Optim › QME ; l'étape `pas-de-mail` n'est plus utilisée, et les 410 fiches qui la portaient ont été supprimées le 24/11/2026.
 - `docs/prospection/suivi-prospects.md`, `journal-refus.md` et le Sheet « QME · Affiliation · file d'envoi » sont des
   **archives** (état au 24/11/2026, migré dans Nexora) : ne plus les modifier.
 - La **liste d'opposition du site** reste la référence des désinscriptions (`REGLES-PROSPECTION.md`) : une réponse
@@ -78,6 +79,43 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   pas, rien ne part. Réponses aux prospects intéressés : **toujours en brouillon**, Quentin valide. Seuls partent seuls les
   premiers mails de campagne et la relance unique à J+7.
 
+## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
+
+- **Tout agent qui crée ou modifie un concept** (page `concepts/<slug>/`, PDF, démo de concept, généré à la main ou par
+  `outils/concepts/registres.mjs`) **l'enregistre ou le met à jour le jour même dans Nexora** : MCP Nexora
+  `mutate_qme`, `entity: "concept"`, `action: "upsert_many"`, éléments donnés par
+  `node outils/concepts/registre-nexora.mjs <slug…>` (identifiant stable `cpt-<slug>` : rejouer ne crée pas de doublon).
+  Puis compléter dans le même appel ou juste après : `statut` (`brouillon`, `en-ligne`, `envoye`, `discussion`, `retenu`,
+  `abandonne`), `segment`, `vague`, `dateEnvoi`, et `prospectId` ou `clientId` (lus par `list_qme`), et mettre le
+  `conceptUrl` de la fiche prospect. Un envoi, une réponse ou un abandon met aussi le statut du concept à jour.
+  Un concept absent de Nexora est un oubli à corriger : vérifier avec `list_qme` (`domain: "concepts"`).
+
+## Gumroad : référent unique (décision du 24/11/2026)
+
+- **Toute demande ou action Gumroad** (création de fiche, publication, mise en vente sur le site, prix, description,
+  dépublication, packs) est traitée par **l'agent Gumroad**, session `session_0183EW569cgV6TXMdunVEq3r`. Les autres
+  sessions ne créent, ne publient et ne modifient rien sur Gumroad : elles renvoient Quentin vers l'agent Gumroad ou lui
+  transmettent la demande (`send_message`). Fonctionnement et tâche quotidienne :
+  `docs/templates/communication/gumroad-priorite.md` § « Qui gère Gumroad » ; écart prêt / Gumroad :
+  `node outils/gumroad/ecart.mjs`.
+
+## PDF émis : rangement Google Drive et note Bible (décision du 24/11/2026)
+
+- **Tout PDF émis à un prospect ou à un client** (concept, proposition, devis, plaquette, références, contrat,
+  facture…), en pièce jointe ou par un lien, est rangé **le jour même** dans Google Drive :
+  `13 - Entreprise QME / 04 - Prospects & clients / <Prénom Nom> – <Entreprise> / <type>`, avec six sous-dossiers
+  fixes (`01 - Concept`, `02 - Proposition`, `03 - Devis`, `04 - Plaquette`, `05 - Références`,
+  `06 - Contrat et factures`, plus `07 - Autres documents` si besoin) et des fichiers nommés `AAAA-MM-JJ - <Type> - <Entreprise> - <version>.pdf`, dans la
+  version réellement émise (retrouvée dans git).
+- **Note Bible** : chaque projet Nexora de prospect a une note « Note Bible · <Prénom> (<Entreprise>) » (type Notes),
+  avec en tête l'URL de la page concept, puis le lien du dossier Drive et un lien par PDF, le type en tête du nom du
+  lien (`[Concept] …`, `[Devis] …`). Elle est complétée à chaque nouveau PDF. Procédure, identifiants et prospects déjà
+  rangés : `docs/prospection/RANGEMENT-DRIVE.md`.
+- **Master Tunnel de vente** (décision du 24/11/2026) : de la première réponse intéressée à la signature, tout prospect
+  est suivi selon `docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md` (concepts, réunions et comptes rendus, devis et
+  calculs, contrats, factures), chaque interaction reportée le jour même dans Nexora Optim et Google Drive. Il prend
+  le relais de Master Prospection (`docs/prospection/PROMPT-AGENT-PROSPECTION.md`).
+
 ## Templates
 
 - **Codes gratuits** : tout code d'accès offert (`npm run code -- <PRODUIT> 1`) est inscrit dans
@@ -91,6 +129,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Affiliation
 
+- **Référent unique : la session « [MASTER] Suivi Influenceurs »** (`session_0183EW53pHmtjN8ttBAEgiRL`, décision de
+  Quentin du 24/11/2026). Tout ce qui concerne les influenceurs, créateurs et agences d'influenceurs pour l'affiliation
+  (vagues 1 et 2, réponses, brouillons, relances, commissions, démos personnalisées, fiches créateurs de Nexora Optim ›
+  QME › Affiliation, y compris Laurine / Optimind et Odélia / Yuzu) est traité par cette session. Les autres sessions
+  n'y écrivent, n'y envoient et n'y modifient rien : elles renvoient Quentin vers elle ou lui transmettent l'élément
+  (`send_message`), sans rien transférer ni supprimer d'autre sans l'accord de Quentin. Routine :
+  `docs/templates/communication/affiliation-routine-nexora.md`.
 - **Retour d'un influenceur intéressé** : skill `.claude/skills/retour-affiliation/` (analyse de la niche, démo
   personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
   puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
