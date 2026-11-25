@@ -24,15 +24,32 @@ const autres = (p) => `https://qm-engineering.fr/pro/?utm_campaign=${code(p)}`;
 const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 
 // « de » élidé devant une voyelle ou un h : « le site d'Alpha Formation… », « le site de La Clé… ».
-const de = (nom) => (/^[aeiouyhàâäéèêëîïôöùûü]/i.test(String(nom).trim()) ? `d'${nom}` : `de ${nom}`);
+// « Le » et « Les » se contractent : « le site du Cours Hamon », « le site des Ateliers… ».
+// Nom qui commence par un nom commun : article (« le site de l'École de Musique… », « du Centre Horizon »).
+const de = (nom) => {
+  const n = String(nom).trim();
+  if (/^(école|association|atelier|académie|institut|espace)\b/i.test(n)) return `de l'${n}`;
+  if (/^(centre|campus|théâtre|conservatoire)\b/i.test(n)) return `du ${n}`;
+  if (/^le\s/i.test(n)) return `du ${n.slice(3)}`;
+  if (/^les\s/i.test(n)) return `des ${n.slice(4)}`;
+  return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
+};
 
-export const objet = (p) => `${p.nom} : un emploi du temps sans conflit de salle ni de formateur`;
+// « à Lyon », « au Havre », « aux Sables-d'Olonne ».
+const a = (ville) => {
+  const v = String(ville || '').trim();
+  if (/^le\s/i.test(v)) return `au ${v.slice(3)}`;
+  if (/^les\s/i.test(v)) return `aux ${v.slice(4)}`;
+  return `à ${v}`;
+};
+
+export const objet =(p) => `${p.nom} : un emploi du temps sans conflit de salle ni de formateur`;
 
 export const texte = (p) => `Bonjour,
 
 Je suis Quentin Morel : je conçois des outils de gestion pour les petites structures (QME).
 
-J'ai consulté le site ${de(p.nom)}, à ${p.ville}${fait(p) ? ` : ${fait(p)}` : ''}. Quand l'emploi du temps de plusieurs groupes, formateurs et salles tient dans un tableur, les croisements se découvrent souvent tard : un formateur attendu dans deux salles à la même heure, un groupe trop nombreux pour la salle prévue, un module qui dépasse ses heures sans que personne ne le voie.
+J'ai consulté le site ${de(p.nom)}, ${a(p.ville)}${fait(p) ? ` : ${fait(p)}` : ''}. Quand l'emploi du temps de plusieurs groupes, formateurs et salles tient dans un tableur, les croisements se découvrent souvent tard : un formateur attendu dans deux salles à la même heure, un groupe trop nombreux pour la salle prévue, un module qui dépasse ses heures sans que personne ne le voie.
 
 J'ai conçu un emploi du temps d'établissement prêt à l'emploi, en ligne, sur ordinateur comme sur téléphone :
 - il signale un conflit de formateur, de salle ou de groupe au moment où vous posez la séance, avant qu'il arrive ;

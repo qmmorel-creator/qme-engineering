@@ -35,8 +35,22 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
   somme ferait 62 > 50. Conformément à la consigne, le `parJour` d'`auto-ecole` n'est pas modifié : la campagne
   `formation` n'est pas créée tant que Quentin n'a pas tranché (baisser `auto-ecole` à 38, ou autre répartition).
 
+## Premier lot (25/11/2026)
+
+- **101 adresses vérifiées** (3 lots par régions : Sud-Est et Centre-Est 34, Nord et Est 34, Ouest et Centre 33), chacune
+  relevée sur une page précise du site de l'organisme, avec un fait tiré du site. Écartés à la relecture : Capriciozo
+  (fait sur des cours individuels), Danse Passion (un studio, deux professeurs), Véronique Danse (prénom dans
+  l'adresse), Atelier 71 (même lieu que Studio Théâtre 71).
+- Contrôles : aucun recoupement avec Nexora Optim › QME (segments « Écoles privées », « Formation » et recherches par
+  mots-clés), le dépôt, `desinscrits.md`, ni Gmail (`in:anywhere`, tous dossiers) ; liste d'opposition : 0 sur 101.
+- Répartition : environ 70 écoles d'arts (musique, danse, théâtre), 16 écoles de langues, 13 organismes de formation,
+  3 CFA. Les petits organismes de formation à adresse générique sont rares (formulaire seul le plus souvent).
+- Quelques structures moins petites gardées, à confirmer : Cours Simon, IMEP, ASMM, CLCF (Paris), Altaé Langues
+  (14 villes), CSForm (5 campus), ISFAC (3 sites).
+- Fichier du lot hors dépôt (adresses) ; il sera versé dans Nexora au lancement (`etape: "a-contacter"`).
+
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, journal ; premier lot de sourcing ; brouillon de validation ; campagne non créée (quota) |
+| 2026-11-25 | 0 | 0 | 0 | Page (PR #301, aperçu Netlify), modèle de mail, 101 adresses vérifiées, brouillon Gmail de validation ; campagne non créée (quota) |
