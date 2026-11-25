@@ -5,6 +5,8 @@
   complexe à comprendre niveau prise en main... ? ». Retour préparé le 25/11/2026 (brouillon Gmail, non
   envoyé). Elle tutoie : le retour la tutoie.
 - **Commission** : aucun taux cité (à décider par Quentin).
+- **Sous-conversation de suivi** : `session_0183EW51nnS4WjUqsixs71qM` (« [Affiliation] Angélique Benoit · Le van à
+  la française »), créée le 25/11/2026. L'envoi du 25/11 à 17 h 05 reste fait par la session master.
 
 ## Niche (non vérifiée en ligne)
 
