@@ -16,6 +16,7 @@ export default async (requete) => traiterCompte(requete, {
   lecture: process.env.QME_LECTURE_TOKEN, // jeton de lecture seule (Nexora Optim › QME)
   testeurs: process.env.ESSAI_TESTEURS || '', // adresses de test, exclues de l'annonce
   jetonOpposition: process.env.OPPOSITION_TOKEN || '', // lecture seule de la liste d'opposition (en-tête X-Opposition-Token)
+  jetonProspection: process.env.PROSPECTION_TOKEN || '', // idem, en-tête X-Prospection-Token (seul secret injecté par le proxy)
 });
 
 // Francfort : adresses e-mail et comptes restent dans l'UE.

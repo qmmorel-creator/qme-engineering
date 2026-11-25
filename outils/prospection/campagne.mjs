@@ -14,6 +14,14 @@
 //
 // prospects.json : [{ id, nom, ville, email, fait, ... }] ; id = slug stable (minuscules, chiffres, tirets).
 import { readFile, writeFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+
+// Le fetch de Node ignore HTTPS_PROXY : sans le proxy, les jetons qu'il injecte (X-Opposition-Token,
+// X-Prospection-Token) manquent et l'API répond 401. On relance donc le script avec NODE_USE_ENV_PROXY=1.
+if (process.env.HTTPS_PROXY && process.env.NODE_USE_ENV_PROXY !== '1') {
+  const r = spawnSync(process.execPath, ['--no-warnings', ...process.argv.slice(1)], { stdio: 'inherit', env: { ...process.env, NODE_USE_ENV_PROXY: '1' } });
+  process.exit(r.status ?? 1);
+}
 import { composer } from '../../netlify/lib/prospection.mjs';
 
 const API = 'https://qm-engineering.fr/api';
