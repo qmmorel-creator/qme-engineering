@@ -86,6 +86,7 @@ b{font-weight:700}
 .etape svg{width:9mm;height:9mm}
 .etape b{font-size:9.6pt;line-height:1.15}
 .etape span{font-size:8.2pt;line-height:1.25;color:var(--gris)}
+.etape.fin .mini svg{width:12mm;height:auto;display:block;margin-top:-1mm}
 .etape.fin{background:var(--jaune);box-shadow:2mm 2mm 0 var(--encre)}
 .etape.fin span{color:var(--encre)}
 .fl{width:7mm;height:5mm}
@@ -173,7 +174,7 @@ b{font-weight:700}
     ${fleche()}
     <div class="etape">${picto.panier}<b>Elle achète sur Gumroad</b><span>La plateforme de vente, paiement sécurisé.</span></div>
     ${fleche()}
-    <div class="etape fin">${picto.piece}<b>${COMMISSION} % pour vous</b><span>du montant de chaque vente, reversé directement par Gumroad.</span></div>
+    <div class="etape fin"><div class="mini">${carreau({ expression: 'fier', pose: 'montre', couleur: P.blanc, taille: 60 })}</div><b>${COMMISSION} % pour vous</b><span>du montant de chaque vente, reversé directement par Gumroad.</span></div>
   </div>
   <div class="trio"><span class="tag">Facile</span><span class="tag">Direct</span><span class="tag">Automatique</span>
     <p class="calcul">Exemple : une vente à ${exemplePrix} € = <b>${gain} € pour vous</b>, sans facture ni relance.</p></div>
