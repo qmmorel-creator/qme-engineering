@@ -30,3 +30,6 @@ Détail des cibles « registres » : `cibles-registres-controle.md`.
   Froid, Bouscasse, CK Réfrigération, Global Réfrigération, Techni Froid 86).
 - Suivi la veille : aucune réponse aux 31 mails « registres » ; une réponse automatique (Dubernard, délai de deux jours
   ouvrés), reportée dans Nexora.
+- Nexora : concept `cpt-frigoristes` (statut `envoye`), 10 fiches `p-frigo-*` (étape `contacte`, relance le 02/12), et une
+  tâche de relance par prospect dans « QME - Stratégie » (41 au total : 10 au 02/12 pour les frigoristes, 31 au 01/12 pour
+  la vague « registres »), chacune liée à sa fiche (`optim.qme`).
