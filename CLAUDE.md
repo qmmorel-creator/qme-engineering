@@ -176,7 +176,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   jusqu'au bout et rend compte à la master. Identifiant noté dans la fiche du créateur. Détail : skill
   `retour-affiliation`, § « Sous-conversation de suivi ».
 - **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Carreau, commission de 25 % par vente
-  Gumroad, outil sur mesure offert. Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
+  Gumroad, outil sur mesure offert. Page : `qm-engineering.fr/partenariat/` ; Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
   `docs/templates/communication/affiliation/plaquette/`. Jointe à un mail seulement avec l'accord de Quentin.
 
 ## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts, TikTok)

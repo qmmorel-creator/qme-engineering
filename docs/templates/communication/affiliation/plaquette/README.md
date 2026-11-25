@@ -7,8 +7,11 @@ et agences : A4 ludique à la charte réseaux sociaux QME, avec la mascotte Carr
 - **Google Drive** : `13 - Entreprise QME / 03 - Marque QME & site / QME - Plaquette partenariat réseaux sociaux.pdf`
   ([ouvrir](https://drive.google.com/file/d/1Yl3t3NZohHUpvs4_AK9eAAhz0IM20Vii/view), id `1Yl3t3NZohHUpvs4_AK9eAAhz0IM20Vii`),
   à côté de `QME-plaquette.pdf` (plaquette générale). Pour un prospect : `copy_file` vers son dossier `04 - Plaquette`.
+- **Page du site** : https://qm-engineering.fr/partenariat/ (`partenariat/index.html` et le PDF
+  `partenariat/QME-plaquette-partenariat-reseaux-sociaux.pdf`, bouton « Télécharger le PDF ») ; page hors moteurs de
+  recherche (`noindex`), mise à l'échelle de l'écran, clics du PDF comptés par GoatCounter (`partenariat-pdf`).
 - **Source** : `generer.mjs` (`node docs/templates/communication/affiliation/plaquette/generer.mjs`) produit le HTML,
-  le PDF et `apercu.png`. Modifier la source, régénérer, puis remplacer le PDF dans Drive.
+  le PDF, `apercu.png` et la page `partenariat/` du site. Modifier la source, régénérer, fusionner (feu vert de Quentin), puis remplacer le PDF dans Drive.
 
 ## Contenu
 
