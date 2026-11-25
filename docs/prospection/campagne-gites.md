@@ -10,7 +10,7 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
 | Démo | `https://qm-engineering.fr/templates/location-saisonniere/?demo` |
 | Modèle de mail | `outils/prospection/campagnes/gites.mjs` (objet, texte, relance J+7) ; liens traçables `?utm_campaign=gi-<id>` |
 | Fin de mail | Pack Propriétaire (`/packs/proprietaire/`), en citant Entretien de la maison et Pilote de travaux (catalogue perso, pas `/pro/`) |
-| Envoi | OVH via le site, file `/api/prospection` (campagne `gites`, `parJour: 12`, relances J+7 comprises), lundi–samedi, 8 h–18 h |
+| Envoi | OVH via le site, file `/api/prospection` (campagne `gites`, sans plafond depuis le 25/11/2026 vers 13 h 50, campagnes en parallèle à tour de rôle), lundi–samedi, 8 h–18 h |
 | Copie | copie cachée `quentin.morel@qm-engineering.fr` |
 | Nexora | concept `cpt-gites` (brouillon) ; prospects `vague: "cible-gites"` |
 | Projets Nexora | seulement pour les retours intéressés, après accord de Quentin |
@@ -46,3 +46,4 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora (brouillon) ; lot 1 : 71 adresses vérifiées ; lancement bloqué par le quota et en attente du feu vert |
 | 2026-11-25 | 0 | 0 | 0 | Feu vert de Quentin : PR fusionnée, campagne `gites` créée (`parJour: 12`), lot 1 (71) mis en file, fiches Nexora `a-contacter` |
+| 2026-11-25 | 0 | 0 | 0 | Vers 13 h 50, à la demande de Quentin (session « Limite d'envoi mail OVH ») : plafond de `gites` retiré, envoi en parallèle des campagnes (PR #305), 30 mails par heure au total |
