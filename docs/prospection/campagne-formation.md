@@ -1,4 +1,4 @@
-# Campagne ciblée « formation » (préparée le 25/11/2026)
+# Campagne ciblée « formation » (lancée le 25/11/2026)
 
 Demande de Quentin du 25/11/2026 : campagne ciblée auprès des petits organismes de formation professionnelle, petits
 CFA indépendants et écoles privées de langues ou d'arts qui construisent l'emploi du temps de quelques groupes,
@@ -13,7 +13,7 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
 | Angle | conflits de salles ou de formateurs signalés avant qu'ils arrivent ; heures réalisées par groupe et par formateur |
 | Fin de mail | catalogue `/pro/` : Banque de questions et quiz formateur (QZZ), Progression pédagogique (PRG) |
 | Exclu | pack « Écoles et formateurs » (PNS), incomplet : CSE bloqué par Quentin |
-| Envoi | OVH via le site, file `/api/prospection` (campagne `formation`), `parJour: 12` relances comprises, lundi–samedi, 8 h–18 h |
+| Envoi | OVH via le site, file `/api/prospection` (campagne `formation`), sans plafond depuis le 25/11 à 13:45 (retiré à la demande de Quentin), en parallèle des autres campagnes, un mail toutes les 2 minutes au total, lundi–samedi, 8 h–18 h |
 | Copie | copie cachée `quentin.morel@qm-engineering.fr` |
 | Nexora | concept `cpt-formation` ; prospects `vague: "cible-formation"`, segment « Organismes de formation et écoles privées » |
 | Projets Nexora | seulement pour les retours intéressés, après accord de Quentin |
@@ -31,11 +31,10 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
 
 ## Points ouverts au lancement
 
-- **Quota** : au 25/11/2026 à 12 h, `auto-ecole` était à `parJour: 50` (somme avec `formation` : 62 > 50), d'où une
-  campagne non créée. Depuis la PR #303 (fusionnée et publiée le 25/11 à 13:30, feu vert de Quentin), plus de plafond
-  global : envoi toutes les 2 minutes, lundi–samedi, 8 h–18 h ; `auto-ecole` n'a plus de `parJour`, `btp` est à 12 (en
-  pause). Constaté par `campagne.mjs etat` le 25/11 à 13:31. À confirmer par Quentin : `formation` à `parJour: 12`
-  comme prévu, la contrainte « 50 au total » de sa demande ne s'appliquant plus.
+- **Quota** : la campagne a été créée le 25/11 à `parJour: 12` ; le plafond a été retiré le même jour vers 13:45 à la
+  demande de Quentin (session « Limite d'envoi mail OVH »), relu par `campagne.mjs etat formation` (plus de `parJour`).
+  Depuis la PR #305, les campagnes actives partent en parallèle, à tour de rôle : la moins servie du jour passe en
+  premier (30 mails par heure au total).
 
 ## Premier lot (25/11/2026)
 
@@ -56,3 +55,4 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page (PR #301, aperçu Netlify), modèle de mail, 101 adresses vérifiées, brouillon Gmail de validation ; campagne non créée (quota) |
+| 2026-11-25 | 1 | 0 | 0 | Feu vert de Quentin : PR #301 fusionnée (squash), page en production (200, noindex) ; campagne `formation` créée (`parJour: 12`), 101 mails en file, opposition revérifiée (0) ; 101 fiches Nexora (`fo-*`, `a-contacter`), concept `en-ligne` ; premier envoi 13:46 (Start Music 63). Copies cachées non visibles dans la boîte Gmail consultée (comme pour `auto-ecole`) |
