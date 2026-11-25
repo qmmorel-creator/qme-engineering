@@ -94,10 +94,10 @@ Compositions et prix du 23/11 (rationalisation #225, fusion F1 #246), qui rempla
 | 18 | Location saisonnière, Entretien de la maison, Gestion locative, Copropriété | SJR, ENT, GST, CPR | 25, 12, 20, 15 € | **en vente le 24/11** ; Pack Propriétaire (PPB) ; ENT sert aussi au Pack Famille |
 | 19 | Fiche du Pack Propriétaire | PPB | 131 € | **en vente le 24/11** |
 | 20 | Subventions, Bénévoles, Assemblée générale | SBV, BNV, AGS | 25, 19, 19 € | **en vente le 24/11** ; Pack Associations et clubs (PAS) ; EVT déjà en vente (Organisateur d'événement, 39 €, fiche de l'Organisateur de mariage renommée le 24/11) |
-| 21 | Fiche du Pack Associations et clubs | PAS | 164 € | **à créer** : ses 7 templates sont en vente depuis le 24/11 |
-| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | PRG et QZZ : **en vente le 24/11**, EDT : brouillon le 25/11 ; Pack Enseignant (PNS), vendus seuls en attendant T55 |
-| 23 | Suivi d'un animal | ANM | 12 € | Pack Famille (PFA), qui attend aussi T19 |
-| 24 | Hors pack : Compétences, Potager, Auto-école, Séminaire | FRM, PTG, AEC, SMN | 25, 13, 45, 35 € | aucun pack à finir |
+| 21 | Fiche du Pack Associations et clubs | PAS | 156 € | création refusée le 25/11 par la limite Gumroad ; reprise programmée le 25/11 à 19 h 45 |
+| 22 | Progression pédagogique, Banque de questions et quiz, Emploi du temps d'établissement | PRG, QZZ, EDT | 15, 19, 45 € | PRG et QZZ : **en vente le 24/11** ; EDT : **en vente le 25/11** |
+| 23 | Suivi d'un animal | ANM | 12 € | création refusée le 25/11 par la limite Gumroad ; reprise programmée le 25/11 à 19 h 45 ; Pack Maison et famille (PFA) |
+| 24 | Compétences, Potager, Auto-école | FRM, PTG, AEC | 25, 13, 45 € | **en vente le 25/11** (Séminaire fusionné dans l'Organisateur d'événement le 22/11) |
 
 **Pack Cuisine (PCS, décision de Quentin du 22/11/2026)** : Repas de la semaine et liste de courses (RPS, 13 €, en
 vente) + Garde-manger et dates de péremption (GRD, 12 €, prêt). Valeur 25 €, remise 10 %, prix 22 €, option évolutif

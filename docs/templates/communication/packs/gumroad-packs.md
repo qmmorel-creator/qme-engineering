@@ -21,6 +21,6 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc
 | Pack Productivité perso | pack-productivite | 54 € | 5/5 | — |
 | Pack Propriétaire | pack-proprietaire | 131 € | 9/9 | — |
 | Pack Vie à deux | pack-vie-a-deux | 79 € | 6/6 | — |
+| Pack Écoles et formateurs | pack-enseignant | 111 € | 4/5 | Gestion de classe |
 | Pack Papiers et décisions d’argent | pack-argent | 60 € | 4/5 | Remboursements santé |
-| Pack Écoles et formateurs | pack-enseignant | 111 € | 2/5 | Gestion de classe, Emploi du temps d'établissement, Gestion d'auto-école |
-| Pack Maison et famille | pack-famille | 67 € | 4/7 | Suivi du bébé, Suivi d'un animal de compagnie, Calendrier du potager |
+| Pack Maison et famille | pack-famille | 67 € | 5/7 | Suivi du bébé, Suivi d'un animal de compagnie |

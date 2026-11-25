@@ -11,8 +11,8 @@
 export const TEMPLATES = {
   PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', permalien: 'progression-pedagogique', pour: 'pro' },
   BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
-  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
-  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
+  FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', permalien: 'matrice-competences-formations', pour: 'pro' },
+  PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', permalien: 'calendrier-potager', pour: 'perso' },
   AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', permalien: 'assemblee-generale-association', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', permalien: 'cadeaux-remerciements', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', permalien: 'garde-manger-dates-peremption', pour: 'perso' },
@@ -34,7 +34,7 @@ export const TEMPLATES = {
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', permalien: 'suivi-temps-rentabilite', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', permalien: 'pilotage-bascule', pour: 'pro' },
   CSE: { slug: 'gestion-classe', prix: 2500, phrase: 'Notes, moyennes, compétences, appréciations, bulletins.', pour: 'pro' },
-  EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', pour: 'pro' },
+  EDT: { slug: 'emploi-du-temps', prix: 4500, phrase: 'Groupes, formateurs, salles, conflits détectés, heures suivies.', permalien: 'emploi-du-temps-etablissement', pour: 'pro' },
   RDE: { slug: 'doe', prix: 2900, phrase: 'Les pièces du DOE par lot et entreprise, relancées jusqu’au complet.', permalien: 'registre-doe', pour: 'pro' },
   SDR: { slug: 'salles', prix: 1900, phrase: 'Salles, bureaux et équipements réservés sans conflit.', permalien: 'reservation-salles', pour: 'pro' },
   CPT: { slug: 'emprunt', prix: 1500, phrase: 'Ce que vous pouvez emprunter, et quelle offre coûte le moins.', permalien: 'capacite-emprunt-comparateur-prets', pour: 'perso' },
@@ -84,7 +84,7 @@ export const TEMPLATES = {
   // Organisateur d'événement (fusion F1 du 22/11/2026 : mariage, séminaire, pilote événementiel) : présent dans les deux
   // parties du site, une phrase par public ; fiche Gumroad reprise de l'organisateur de mariage.
   EVT: { slug: 'evenementiel', prix: 3900, phrase: 'Mariage, séminaire, entreprise ou fête : rétroplanning, budget, invités, jour J.', phrases: { pro: 'Séminaires, salons, soirées, conférences : rétroplanning, budget, invités, transports, jour J.', perso: 'Mariage ou fête de famille : rétroplanning, budget, invités, plan de table, jour J.' }, permalien: 'organisateur-mariage', pour: 'pro perso' },
-  AEC: { slug: 'auto-ecole', prix: 4500, phrase: 'Élèves, leçons, moniteurs et véhicules.', pour: 'pro' },
+  AEC: { slug: 'auto-ecole', prix: 4500, phrase: 'Élèves, leçons, moniteurs et véhicules.', permalien: 'gestion-auto-ecole', pour: 'pro' },
   DTT: { slug: 'dettes', prix: 1200, phrase: 'Vos dettes soldées une à une, avec une date de fin.', permalien: 'remboursement-dettes', pour: 'perso' },
   PTM: { slug: 'patrimoine', prix: 1900, phrase: 'Ce que valent vos objets, et ce que leur revente rapporterait.', permalien: 'inventaire-valorise', pour: 'perso' },
   TDV: { slug: 'temps-de-vie', prix: 1900, phrase: 'Vos dépenses converties en heures de travail.', permalien: 'temps-de-vie', pour: 'perso' },

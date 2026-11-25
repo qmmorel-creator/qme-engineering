@@ -300,3 +300,20 @@ vente sur le site le même jour (identifiants dans `PRODUITS` et `PACKS`, essai 
 
 Limite Gumroad atteinte à la 7e création (Emploi du temps d'établissement) : « after November 24 at 11:47 PM PST »,
 soit le 25/11 à 08:47 (Paris). Restent EDT, ANM, FRM, PTG, programmés le 25/11 à 09:15 (Paris).
+
+## Vague du 25/11/2026 (agent Gumroad, passage quotidien)
+
+Écart du jour (`node outils/gumroad/ecart.mjs`) : AEC, EDT, ANM, FRM, PTG et le Pack Associations et clubs (PAS). Gumroad
+n'a accepté qu'une création à 08 h 57 puis trois à partir de 09 h 40 (limite glissante de 10 par 24 h) ; ANM et PAS
+sont refusés jusqu'à 19 h 38 (Paris), reprise programmée à 19 h 45. Fiches : `<slug>/gumroad.json` (AEC :
+`auto-ecole/gumroad.md`, reçu raccourci sous 500 caractères), paragraphe, ligne de détail et ligne de reçu de l'essai
+ajoutés, couverture ajoutée. Tags réécrits par Gumroad : `auto-école`.
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| AEC | Gestion d'auto-école | orao9JfHB37GPMbC8DMOZA== | /l/gestion-auto-ecole | 45 € | **en vente** (25/11/2026) |
+| EDT | Emploi du temps d'établissement | -QR6i4YdVpKiitm12RP6Ag== | /l/emploi-du-temps-etablissement | 45 € | **en vente** (25/11/2026) |
+| FRM | Matrice compétences et formations | C4nN47ATR7v4pbDgAb7xRQ== | /l/matrice-competences-formations | 25 € | **en vente** (25/11/2026) |
+| PTG | Calendrier du potager | ufjDjj77mM7DcT2U36eugw== | /l/calendrier-potager | 13 € | **en vente** (25/11/2026) |
+| ANM | Suivi d'un animal de compagnie | — | /l/suivi-animal-compagnie | 12 € | à créer le 25/11 à 19 h 45 |
+| PAS | Pack Associations et clubs | — | /l/pack-associations | 156 € | à créer le 25/11 à 19 h 45 |
