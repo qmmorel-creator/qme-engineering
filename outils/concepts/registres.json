@@ -7240,5 +7240,214 @@
         "La liste des équipements sous pression, à jour."
       ]
     ]
+  },
+  "frigoristes": {
+    "nom": "les frigoristes et climaticiens",
+    "court": "frigoristes",
+    "coeur": "Registre des fluides",
+    "sujet": "registre des fluides frigorigènes",
+    "titre": "Chaque installation suivie, chaque kilo de fluide tracé.",
+    "lede": "Un outil sur mesure pour les entreprises de froid et de climatisation : le parc de chaque client, les contrôles d'étanchéité à la bonne fréquence, les fiches d'intervention, le bilan annuel des fluides, et un registre que le client consulte quand il veut.",
+    "voit": "Des frigoristes et climaticiens qui installent et entretiennent chambres froides, vitrines, groupes, climatisations et pompes à chaleur chez des commerces, restaurants, bureaux et industriels, avec des contrats d'entretien et du dépannage.",
+    "demande": "Que chaque installation soit contrôlée à la fréquence que fixe sa charge en fluide, que chaque manipulation fasse l'objet d'une fiche d'intervention, et que le bilan annuel des fluides se fasse sans ressaisie.",
+    "propose": "Un registre par installation, alimenté par les interventions des techniciens, qui calcule les échéances, prépare les fiches et le bilan des fluides, et donne au client une preuve à jour.",
+    "equipement": "installation",
+    "parc": {
+      "titre": "Installations sous contrat",
+      "colonnes": [
+        "Client",
+        "Installation",
+        "Fluide",
+        "Charge (t éq. CO2)",
+        "Prochain contrôle",
+        "Statut"
+      ],
+      "lignes": [
+        [
+          "Supérette du Val",
+          "Vitrines et groupe positif",
+          "R449A",
+          "14,2",
+          "02/2027",
+          "ok"
+        ],
+        [
+          "Restaurant Le Belvédère",
+          "Chambre froide négative",
+          "R452A",
+          "32,5",
+          "12/2026",
+          "alerte"
+        ],
+        [
+          "Clinique du Plateau",
+          "Climatisation centrale",
+          "R410A",
+          "62,6",
+          "10/2026",
+          "retard"
+        ],
+        [
+          "Bureaux du Lac",
+          "Pompe à chaleur",
+          "R32",
+          "5,4",
+          "06/2027",
+          "ok"
+        ],
+        [
+          "Boucherie du Bourg",
+          "Chambre froide positive",
+          "R134a",
+          "—",
+          "—",
+          "manque"
+        ]
+      ]
+    },
+    "fiche": {
+      "id": "INS-2021-0412",
+      "titre": "Chambre froide négative · Restaurant Le Belvédère",
+      "infos": [
+        [
+          "Fluide",
+          "R452A, 15 kg"
+        ],
+        [
+          "Charge",
+          "32,5 t éq. CO2"
+        ],
+        [
+          "Fréquence de contrôle",
+          "selon la charge, rappelée"
+        ],
+        [
+          "Plaque",
+          "QR code sur le groupe"
+        ]
+      ],
+      "historique": [
+        [
+          "12/06/2026",
+          "Contrôle d'étanchéité conforme, fiche d'intervention signée"
+        ],
+        [
+          "03/03/2026",
+          "Fuite détectée et réparée, 1,2 kg rechargé"
+        ],
+        [
+          "10/12/2025",
+          "Contrôle d'étanchéité conforme"
+        ],
+        [
+          "15/09/2021",
+          "Mise en service"
+        ]
+      ]
+    },
+    "planning": {
+      "titre": "Contrôles d'étanchéité à planifier",
+      "lignes": [
+        [
+          "Lun.",
+          "Clinique du Plateau",
+          "en retard",
+          "technicien 2"
+        ],
+        [
+          "Mar.",
+          "Restaurant Le Belvédère",
+          "contrôle périodique",
+          "technicien 1"
+        ],
+        [
+          "Jeu.",
+          "Boucherie du Bourg",
+          "charge à renseigner",
+          "technicien 1"
+        ],
+        [
+          "Ven.",
+          "Supérette du Val",
+          "entretien",
+          "technicien 3"
+        ]
+      ],
+      "relances": [
+        "Contrôle à 30 jours : rendez-vous proposé au client",
+        "Contrôle dépassé : alerte au responsable technique",
+        "Fin d'année : bilan des fluides prérempli"
+      ]
+    },
+    "client": {
+      "titre": "Registre · Restaurant Le Belvédère",
+      "lignes": [
+        [
+          "Chambre froide négative",
+          "alerte",
+          "Contrôle en décembre"
+        ],
+        [
+          "Dernière fuite",
+          "ok",
+          "Réparée le 03/03/2026"
+        ]
+      ],
+      "pied": "Fiches d'intervention PDF · bilan des fluides"
+    },
+    "branchements": [
+      [
+        "Vos interventions",
+        "fiches des techniciens"
+      ],
+      [
+        "Vos contrats d'entretien",
+        "par client"
+      ],
+      [
+        "Vos achats de fluide",
+        "bouteilles et quantités"
+      ],
+      [
+        "Les clients",
+        "accès au registre"
+      ]
+    ],
+    "sorties": [
+      [
+        "Pilotage",
+        "parc, échéances, fuites"
+      ],
+      [
+        "Planning",
+        "par technicien"
+      ],
+      [
+        "Bilan annuel",
+        "fluides chargés et récupérés"
+      ],
+      [
+        "Registre client",
+        "preuve à jour"
+      ]
+    ],
+    "modules": [
+      [
+        "Le registre",
+        "Chaque installation, son fluide, sa charge et ses contrôles."
+      ],
+      [
+        "Les échéances",
+        "La fréquence de contrôle calculée et rappelée."
+      ],
+      [
+        "Les fiches",
+        "La fiche d'intervention préremplie sur téléphone."
+      ],
+      [
+        "Le bilan",
+        "Le bilan annuel des fluides sans ressaisie."
+      ]
+    ]
   }
 }

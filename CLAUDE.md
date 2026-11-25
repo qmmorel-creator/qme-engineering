@@ -66,6 +66,19 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`04 - Prospects & clients`), ligne ajoutée à la Note Bible, lien reporté dans la fiche QME (`conceptUrl`,
   `conceptPdf`, `pdf` du devis). Modèle et rangement : `docs/prospection/NEXORA-PROSPECTS.md` § 3.
 
+## Campagne quotidienne de prospection par concept (décision du 24/11/2026)
+
+- **Lundi–vendredi à 13 h 47 (Paris)**, tâche planifiée « Campagne concept du jour » dans la session maître des campagnes
+  ciblées : skill `.claude/skills/campagne-concept/` (suivi et relances d'abord, puis un concept nouveau, une page
+  `/concepts/<thème>/` générique, une dizaine de PME vérifiées, envoi, Nexora). Journal :
+  `docs/prospection/campagnes-concept.md`.
+- **Feu vert permanent de Quentin** pour fusionner dans `main` **une PR de campagne par jour au plus** (page concept
+  générique, données du générateur `outils/concepts/`, fichiers `docs/`), si les vérifications Netlify sont vertes. Toute
+  autre fusion reste soumise à son accord.
+- Opposition vérifiée par l'API avec le jeton de lecture injecté par le proxy (`X-Opposition-Token`) : si elle ne répond
+  pas, rien ne part. Réponses aux prospects intéressés : **toujours en brouillon**, Quentin valide. Seuls partent seuls les
+  premiers mails de campagne et la relance unique à J+7.
+
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 
 - **Tout agent qui crée ou modifie un concept** (page `concepts/<slug>/`, PDF, démo de concept, généré à la main ou par

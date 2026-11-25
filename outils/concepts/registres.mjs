@@ -2,7 +2,8 @@
 // Concepts « registre de contrôle d'équipements » (stratégie docs/prospection/strategie-2026-12.md).
 // Après génération : enregistrer chaque concept dans Nexora (CLAUDE.md, § Concepts) avec
 // node outils/concepts/registre-nexora.mjs <slug…> puis mutate_qme (entity concept, upsert_many).
-// Données : outils/concepts/registres.json. Maquettes en HTML (données fictives), page non indexée (netlify.toml).
+// Données : outils/concepts/registres.json. Page générique d'un thème : champs facultatifs « court » (objet du mail de
+// contact) et « coeur » (bandeau central), le nom pouvant alors être « les … » (ex. « les frigoristes et climaticiens »). Maquettes en HTML (données fictives), page non indexée (netlify.toml).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +16,7 @@ const pastille = (s) => { const [c, t] = STATUT[s] || ['ok', s]; return `<span c
 const cellule = (v) => (STATUT[v] ? pastille(v) : esc(v));
 
 function page(slug, d) {
-  const lien = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Concept ${d.nom} · échange de 30 minutes`)}`;
+  const lien = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Concept ${d.court || d.nom} · échange de 30 minutes`)}`;
   const parc = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.parc.titre)}</span></div>
       <div class="kpis"><div><b>${d.parc.lignes.filter((l) => l.includes('ok')).length}</b>à jour</div><div><b>${d.parc.lignes.filter((l) => l.includes('alerte')).length}</b>bientôt</div><div><b>${d.parc.lignes.filter((l) => l.includes('retard')).length}</b>en retard</div><div><b>${d.parc.lignes.filter((l) => l.includes('manque')).length}</b>à compléter</div></div>
       <ul class="parc">${d.parc.lignes.map((l) => {
@@ -160,7 +161,7 @@ ${sections.map(([n, t, p, l, m]) => `  <section class="sec"><div class="txt"><p 
   <p class="sous">Vos outils restent en place. Le registre les relie et supprime les doubles saisies ; le détail des branchements se vérifie ensemble, outil par outil.</p>
   <div class="flux">
     <div><h3>Ce qui existe</h3><ul>${d.branchements.map(([a, b]) => `<li>${esc(a)}<small>${esc(b)}</small></li>`).join('')}</ul></div>
-    <div class="coeur"><b>Registre ${esc(d.nom)}</b>une fiche par ${esc(d.equipement)}, à jour en permanence</div>
+    <div class="coeur"><b>${esc(d.coeur || `Registre ${d.nom}`)}</b>une fiche par ${esc(d.equipement)}, à jour en permanence</div>
     <div><h3>Ce que vous obtenez</h3><ul>${d.sorties.map(([a, b]) => `<li>${esc(a)}<small>${esc(b)}</small></li>`).join('')}</ul></div>
   </div>
   <h2 class="t">Construit par modules</h2>
