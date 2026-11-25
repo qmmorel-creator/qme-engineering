@@ -669,7 +669,7 @@
   // ---------- Premiers pas (démo personnalisée) ----------
   // Trois gestes, chacun coché dès qu'il est fait : voir la journée, noter une dépense, cocher un bagage.
   const GESTES = [
-    ['jours', 'Voir le programme d\'aujourd\'hui', 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit du jour, sur une seule carte.', '<button class="btn petit primaire" data-action="vue" data-vue="jours">Jour par jour</button>'],
+    ['jours', 'Voir le programme d\'aujourd\'hui', 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit du jour, sur une seule carte.', '<button class="btn petit primaire" data-action="vue" data-vue="jours" data-defiler="aujourdhui">Jour par jour</button>'],
     ['depense', 'Noter une dépense', 'Un plein, des croquettes, une aire : montant et poste, le budget se met à jour tout seul.', '<button class="btn petit primaire" data-action="nouvelle-depense">Ajouter une dépense</button>'],
     ['preparer', 'Cocher ce qui est prêt', 'Dans <b>Préparer</b>, les bagages du van et des chiens, et les papiers à emporter.', '<button class="btn petit primaire" data-action="vue" data-vue="preparer">Préparer</button>'],
   ];
@@ -1309,7 +1309,14 @@
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
-      case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
+      case 'vue': {
+        if (modale().open) modale().close();
+        changerVue(el.dataset.vue);
+        // Carte « Premiers pas » : amène directement au jour d'aujourd'hui.
+        const cible = el.dataset.defiler && document.querySelector(`.jour.${el.dataset.defiler}`);
+        if (cible) cible.scrollIntoView({ block: 'start' });
+        break;
+      }
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'tutoriel': modaleTutoriel(); break;
