@@ -15,6 +15,8 @@ export const campagne = {
 
 // Lien court et traçable par prospect (GoatCounter garde utm_campaign) : ?utm_campaign=ae-<id sans « auto-ecole- »>.
 const lien = (p) => `${campagne.concept}?utm_campaign=ae-${String(p.id).replace(/^(auto-ecole|ecole-de-conduite)-/, '')}`;
+// Catalogue des templates pour les pros (fin du mail, ajout validé par Quentin le 25/11/2026). Templates cités : en vente.
+const autres = (p) => `https://qm-engineering.fr/pro/?utm_campaign=ae-${String(p.id).replace(/^(auto-ecole|ecole-de-conduite)-/, '')}`;
 // Le fait relevé sur le site, en fin de phrase, sans point final en double.
 const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 
@@ -41,6 +43,8 @@ ${lien(p)}
 C'est un template tout prêt. Si votre organisation demande autre chose (plusieurs agences, vos forfaits et financements, vos documents), je peux aussi le faire sur mesure, en fonction de votre besoin.
 
 Si cela vous parle, répondez simplement à ce message : trente minutes d'échange suffisent pour voir ce qui vous ferait gagner le plus de temps.
+
+D'autres outils prêts à l'emploi peuvent aussi vous servir (trésorerie, TVA, planning d'équipe, gestion de flotte, document unique…) : ${autres(p)}
 
 Bien à vous,`;
 
