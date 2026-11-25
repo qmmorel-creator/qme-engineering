@@ -1,7 +1,7 @@
 // Campagnes ciblées de prospection (netlify/lib/prospection.mjs) : fenêtre, quota, opposition, fil de relance.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { composer, dansFenetre, horlogeParis, envoyerSuivant, mettreEnFile, traiterProspection, PAR_JOUR } from '../../netlify/lib/prospection.mjs';
+import { composer, dansFenetre, horlogeParis, envoyerSuivant, mettreEnFile, traiterProspection } from '../../netlify/lib/prospection.mjs';
 import { cleEmail } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'x'.repeat(40);
@@ -70,14 +70,17 @@ test('opposition inscrite après la mise en file : écarté, jamais envoyé', as
   assert.equal((await store.get('prospection/fait/c/x1')).statut, 'ecarte');
 });
 
-test('quota de 50 par jour et pause', async () => {
+test('sans plafond global ; plafond facultatif par campagne, effaçable ; pause', async () => {
   const store = memoire();
   await appel(store, '/campagne', { id: 'q', pause: false });
-  const messages = Array.from({ length: PAR_JOUR + 3 }, (_, i) => ({ id: `m${i}`, email: `contact@e${i}.fr`, objet: 'O', texte: TEXTE }));
-  assert.equal((await appel(store, '/file', { campagne: 'q', messages })).ajoutes.length, PAR_JOUR + 3);
-  let n = 0;
-  for (let i = 0; i < PAR_JOUR + 3; i++) if ((await envoyerSuivant({ store, secret: SECRET, envoyer: async () => {}, maintenant: () => MARDI_10H + i * 1000 })).statut === 'envoye') n++;
-  assert.equal(n, PAR_JOUR);
+  const messages = Array.from({ length: 80 }, (_, i) => ({ id: `m${i}`, email: `contact@e${i}.fr`, objet: 'O', texte: TEXTE }));
+  assert.equal((await appel(store, '/file', { campagne: 'q', messages })).ajoutes.length, 80);
+  const passer = async (k, depart) => { let n = 0; for (let i = 0; i < k; i++) if ((await envoyerSuivant({ store, secret: SECRET, envoyer: async () => {}, maintenant: () => depart + i * 1000 })).statut === 'envoye') n++; return n; };
+  assert.equal(await passer(60, MARDI_10H), 60, 'plus de plafond de 50 par jour');
+  assert.equal((await appel(store, '/campagne', { id: 'q', parJour: 62 })).parJour, 62);
+  assert.equal(await passer(5, MARDI_10H + 100_000), 2, 'plafond de la campagne respecté');
+  assert.equal('parJour' in (await appel(store, '/campagne', { id: 'q', parJour: 0 })), false);
+  assert.equal(await passer(5, MARDI_10H + 200_000), 5, 'plafond retiré');
   await appel(store, '/campagne', { id: 'q', pause: true });
   assert.equal((await envoyerSuivant({ store, secret: SECRET, envoyer: async () => {}, maintenant: () => MARDI_10H + 86_400_000 })).statut, 'rien-a-envoyer');
 });
