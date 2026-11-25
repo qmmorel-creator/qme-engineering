@@ -1225,6 +1225,14 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+# Lien court de démo personnalisée (Angélique Benoit, « Le van à la française », 25/11/2026) : démo
+# van + deux chiens du Planificateur de voyage, carte « Premiers pas » à son prénom.
+[[redirects]]
+  from = "/demo/angelique"
+  to = "/templates/voyage/?demo=van&prenom=Ang%C3%A9lique"
+  status = 302
+  force = true
+
 # Lien court de démo personnalisée (partenariat Optimind, 16/11/2026) : sans « & », que certaines
 # messageries coupent. Redirection temporaire vers la démo PASS au prénom de la destinataire.
 [[redirects]]
