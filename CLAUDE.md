@@ -140,6 +140,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   est suivi selon `docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md` (concepts, réunions et comptes rendus, devis et
   calculs, contrats, factures), chaque interaction reportée le jour même dans Nexora Optim et Google Drive. Il prend
   le relais de Master Prospection (`docs/prospection/PROMPT-AGENT-PROSPECTION.md`).
+- **Une conversation dédiée par client potentiel** (décision du 25/11/2026) : chaque prospect du tunnel de vente est
+  délégué **systématiquement** à une session enfant de Master Tunnel de vente (`create_session`, titre
+  `[Tunnel] <Prénom Nom> · <Entreprise>`, tags `tunnel` et `tunnel:<slug>`), qui fait tout le travail sur ce prospect et
+  rend compte au Master ; le Master lui transmet interactions et relances. Registre :
+  `docs/prospection/CONVERSATIONS-TUNNEL.md` ; détail : `PROMPT-MASTER-TUNNEL-VENTE.md` § 1 bis. Hors affiliation.
 
 ## Templates
 
