@@ -43,7 +43,7 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
   l'adresse), Atelier 71 (même lieu que Studio Théâtre 71).
 - Contrôles : aucun recoupement avec Nexora Optim › QME (segments « Écoles privées », « Formation » et recherches par
   mots-clés), le dépôt, `desinscrits.md`, ni Gmail (`in:anywhere`, tous dossiers) ; liste d'opposition : 0 sur 101.
-- Répartition : environ 70 écoles d'arts (musique, danse, théâtre), 16 écoles de langues, 13 organismes de formation,
+- Répartition : 70 écoles d'arts (musique, danse, théâtre), 16 écoles de langues, 12 organismes de formation,
   3 CFA. Les petits organismes de formation à adresse générique sont rares (formulaire seul le plus souvent).
 - Quelques structures moins petites gardées, à confirmer : Cours Simon, IMEP, ASMM, CLCF (Paris), Altaé Langues
   (14 villes), CSForm (5 campus), ISFAC (3 sites).
