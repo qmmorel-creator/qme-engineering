@@ -30,8 +30,17 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
   a 50 de quota et du stock, `gites` ne recevrait aucun créneau. Décision à prendre par Quentin (par exemple
   `auto-ecole` à 38) ; cette session ne modifie pas le `parJour` d'une autre campagne.
 
+## Lot 1 (25/11/2026)
+
+- 91 établissements sourcés (adresse relue sur la page exacte du site de l'établissement), 20 écartés : 17 adresses
+  nominatives (prénom et nom de l'exploitant), 3 établissements qui peuvent dépasser 10 logements.
+- **71 adresses prêtes** : liste d'opposition vérifiée par l'API (0 opposée), `desinscrits.md` (0), Nexora (aucune fiche
+  correspondante), Gmail `in:anywhere` (aucun échange). Fichier de lot hors dépôt (adresses : pas dans un dépôt publié).
+- Réserves : 9 établissements au nombre de logements non chiffré sur le site ; 9 adresses lues seulement dans les
+  mentions légales. Il manque environ 80 adresses pour avoir trois jours d'avance (150) ; à 12 par jour, 71 adresses couvrent six jours d'envoi.
+
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora (brouillon) ; premier lot de sourcing en cours ; lancement bloqué par le quota |
+| 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora (brouillon) ; lot 1 : 71 adresses vérifiées ; lancement bloqué par le quota et en attente du feu vert |
