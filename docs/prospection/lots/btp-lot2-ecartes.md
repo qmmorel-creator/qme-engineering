@@ -1,0 +1,143 @@
+# Lot 2 — entreprises écartées (sourcing du 25/11/2026)
+
+- G-ECO (Assat, 64) : seule une adresse nominative (initiale + nom) sur le site.
+- CIBATHERM (Colmar, 68) : quatre agences (Colmar, Entzheim, Montbéliard, Besançon), hors cible.
+- R. Lobato (64) : adresse gmail personnelle (prénom + nom).
+- CEBA (17) : adresse AOL nominative.
+- IBK Ingénierie (29) : aucune adresse e-mail sur le site.
+- Cabinet Fournigault (Alençon, 61), J-Pilote (54), Sodeba & Associés (51), AAGROUP, AEKOS (71), GBA&Co (42), Atelier Centauri (66) : aucune adresse e-mail générique trouvée sur les pages téléchargées (formulaire ou adresse nominative).
+- i2b (71/01) : adresses nominatives uniquement.
+- Cabinet Guy Vernay (42) : adresse nominative (initiale + nom).
+- Art Ingénierie : adresses nominatives / personnelles uniquement.
+- ALM Maîtrise d'œuvre : site d'une page sans adresse postale ; localisation non vérifiable.
+- GP2C 54 (Maxéville, 54) : courtier et contractant général orienté particuliers, deux sièges différents sur le site ; ambigu.
+- Economie 2 (67) : filiale du groupe EDE Ingénierie (et déjà écarté au lot 1).
+- Fabrik Construction Globale (44) : groupe avec filiales (Nantes, Rennes, Challans), hors cible.
+- ANTIS (64) : membre du Groupe DPH, hors cible.
+- Beaumont (31) : rénovation pour particuliers, siège juridique à Levallois-Perret ; ambigu.
+- Carimalo (22) : environ 80 collaborateurs et structure de groupe, hors cible petite structure.
+- Dujardin (59) : filiale du groupe ALTYN, exclu.
+- Schreiber (67) : entreprise de gros œuvre d'une soixantaine de personnes, hors cible petite EG.
+- SEBTP Construction (19) : structure de groupe (gestion, syndic), plusieurs sites.
+- R2 Agencement (75/69) : agenceur de stands et showrooms, hors cible.
+- Barraine (29) : promoteur / agence immobilière multi-agences, hors cible.
+- A+ (63), Ouest Bureau (44), ATC Bretagne (29), SAS Pino (67) : aucune adresse e-mail sur le site.
+- NormHabitat (31) : rénovation pour particuliers, hors cible.
+- Cyril Dulau (Dax, 40) : références anciennes (2008-2014) et aucune mission de suivi de chantier affichée.
+- Labatut Architecture (Mont-de-Marsan, 40) : aucune mission de direction ou de suivi de travaux affichée sur le site.
+- Marie Nedellec Architecte (12) : aucune adresse postale sur les pages téléchargées ; localisation non vérifiable.
+- Atelier RK (Montignac, 24) : suivi de chantier non trouvé sur les pages téléchargées.
+- CEEC Radicchi (Nice, 06) : rattaché à un groupe (Constructions Radicchi / Groupe Aliénor).
+- MOEX (Montpellier, 34) : département 34 déjà servi (MO2), quota d'un par département surreprésenté.
+- SICA Habitat Rural Aveyron (Rodez, 12) : structure importante (plus de 15 000 références), hors cible petite structure.
+- Batiméthode (Sainte-Maxime, 83) : clientèle de villas et sinistres de particuliers ; 83 déjà servi (EDC).
+- AZURECO (Nice, 06) : aucune adresse postale sur le site ; localisation non vérifiable.
+- François Clauzel (Nîmes, 30) : adresse wanadoo nominative.
+- ADN Architectes (34) : adresses individuelles codées par collaborateur ; 34 déjà servi.
+- Architecte Christophe Bos (12), Ostiole (33/24), ECO 66, Bati Économie (60), CoCo Architecture, Sens K (12) : aucune adresse e-mail sur les pages téléchargées.
+- Mevin Ragaven (24) : seule l'adresse de l'agence web dans le site.
+- EGSO (Vitrolles, 13), CAPMAS (Ceyreste, 13), Sud Est Construction (Marseille, 13), Modus Agencement (Marseille, 13) : département 13 déjà servi (ATEC), quota d'un par département surreprésenté.
+- S.C.E.R (Niort, 79) : entreprise de gros œuvre, pas une entreprise générale TCE.
+- Alzo Group (92/77) : adresse de contact et siège social dans deux départements différents ; ambigu.
+- Neos Bâtiment (13), Elevia (14), Rénovation MP (27) : rénovation pour particuliers (et adresses webmail pour certaines).
+- MB Bâtiment (76) : adresse outlook non affichée comme contact principal ; particuliers.
+- Alcadis Group (86) : adresses nominatives.
+- Guillemot (IdF) : adresse nominative uniquement.
+- Prestige Construction (38), DCN Aménagement, Bati Projet Sologne (45), LSGB (45) : aucune adresse e-mail sur le site.
+- B Bâti : adresse d'un autre domaine, localisation non vérifiée.
+- ACOA (Anthy-sur-Léman, 74) : adresse wanadoo aux initiales (« acoa.td@ »), possiblement nominative.
+- Marangone (Sallanches, 74) : aucune mission de suivi de travaux trouvée sur les pages téléchargées.
+- FL Économie (85), Exiom Ingénierie (85), 2-EC (50), 2EPC, I.C.S Ardèche (07), ACM SARL, Bati Économie (08), AS2E Concept (44) : aucune adresse e-mail générique sur les pages téléchargées.
+- NR Maîtrise d'œuvre (50) : seule une adresse factice (contact@contact.fr).
+- AMOPC : seule l'adresse de l'agence web ; implantation dans l'Oise non vérifiée.
+- ECO-GEST Patrimoine (74) : site sans texte exploitable (fait non vérifiable).
+- CMB (Le Mans, 72) : agences à Nantes, Rennes et Châteauroux en plus du Mans (plus de 2 agences).
+- PLURALI (83) : interlocuteurs répartis dans plusieurs communes (83, 13), structure en réseau ; ambigu.
+- ECOVIVO (Épinal, 88) : société immatriculée en juin 2026, références du portfolio peu explicites (fait non vérifiable).
+- MS Ingénierie (Gap, 05) : département 05 déjà servi ; orientée architecture d'intérieur et copropriétés.
+- Experts Bât 88 (88) : cabinet d'expertise après sinistre, hors cible.
+- Planet Construction (Val-de-Scie, 76) : maîtrise d'œuvre orientée maisons ; 76 déjà servi (ACE Ingénierie).
+- Cabinet Morelet (16) : aucune adresse e-mail générique sur les pages téléchargées.
+- Beaumeco (2A), CTBC (2B), Giannone (2A), Debost Ingénierie (03), ID Maîtrise (76), Atelier du Trait (16) : aucune adresse e-mail sur les pages téléchargées.
+- SREC (AURA) : adresses gmail dont une nominative, localisation non claire.
+- Architéa : réseau d'agences en franchise, exclu.
+- Alain Rénovation (Villeurbanne, 69), Aproplac (Saint-Genis-Laval, 69) : département 69 déjà servi (RHON'ECO).
+- PLG Patrimoine (Montpellier, 34) : département 34 déjà servi (MO2).
+- SASU EGU (Bordeaux, 33), Entreprise Neveu (Reignac, 33) : rénovation majoritairement pour particuliers.
+- SCOBAT (Trégueux, 22) : spécialiste du gros œuvre, pas une EG TCE.
+- ACBI Aménagement (33) : second œuvre (cloisons, sols), pas TCE.
+- Macoretz (44) : constructeur de maisons, hors cible.
+- CG2I : agences à Paris, Nantes, Marseille, Rouen (plus de 2 agences).
+- AM Rénovations (56) : adresse nominative uniquement.
+- Clozal (54), Montanari (54), TBS Technique (33), Batimentoo (33), Atelier Concept Travaux (33), Entreprise générale Bordeaux, SRBI, ASAP & TD (56) : aucune adresse e-mail réelle sur les pages téléchargées.
+- Entreprise Herry (34) : seule une adresse « support@ » technique ; 34 déjà servi.
+- Arkedia (68) : trois établissements (Turckheim, Hangenbieten, Heimsbrunn).
+- B.E. bâtiTECH (02) : quatre implantations (Saint-Quentin, Marcq-en-Barœul, Vaulnaveys, Nanterre).
+- Deganis (68) : entreprise de gros œuvre et génie civil, hors cible petite EG.
+- Caramel Bâtiment (Éguilles, 13) : département 13 déjà servi (ATEC).
+- QRB (Port-la-Nouvelle, 11), DO Rénovation (68), Perig'abitat (24, gmail) : rénovation surtout pour particuliers.
+- Cloisonplaf (95) : spécialiste cloisons (second œuvre), adresse wanadoo.
+- Elect'Raux (60) : électricien, hors cible.
+- CGCD Bâtiment (83) : adresse SFR nominative.
+- Babilon, MAT Rénovation (47), Caro Bat (02), Bequet Lanoote (02), SMRB (IdF) : aucune adresse e-mail exploitable sur les pages téléchargées.
+- Agence AA Architectes (Niort, 79) : bureaux à Niort, La Rochelle et Angoulême (plus de 2 agences).
+- Victor Architectes (79/44), Agaura (Bourges, 18), Colomès-Nomdedeu (10) : aucune mission de suivi de chantier affichée sur les pages téléchargées.
+- Atelier 2Ai (07/26) : 07 déjà servi deux fois (Fabre, B.L.A.C).
+- Ekilibr Architecte (27) : orienté particuliers ; 27 déjà servi (VAL Architecture).
+- Atelier NJ Architecte (Sens, 89) : adresse gmail ; 89 déjà servi (ARP).
+- Médale-Laboup Architectes (82) : adresses orange nominatives.
+- CARRE3 (10), B11 Architecture (82), LK Architecte (48), Arkedif (58), Cinq-Cinq (10), BET ACE (79) : aucune adresse e-mail sur les pages téléchargées.
+- BFC (45) : groupe d'environ 1 000 collaborateurs, hors cible.
+- METZ SA (45) : membre du groupe Acorus, exclu.
+- ERB (49) : plus de 80 collaborateurs, hors cible petite EG.
+- Chambon Construction (63), L'Arvernoise (63), ERC Harranger (17) : entreprises de gros œuvre ; 63 déjà bien servi.
+- CBR Bâtiment (76) : site édité par une agence marketing parisienne, antennes multiples ; ambigu.
+- SOFREG (76) : électricité générale et aménagement ; 76 déjà servi.
+- General Bat (63), Pardo et Fils (64), Entreprise Ducos (64) : clientèle de particuliers ou activité tertiaire non vérifiée (adresses orange).
+- EGRPB pris ; ETPO : filiale de Spie Batignolles, exclu.
+- Atelier 41, CD Construction, Euro-Pol : aucune adresse e-mail sur les pages téléchargées.
+- Wig France (Toul, 54) : appartient au groupe Cerutti, exclu.
+- Potier Bâtiment (Toul, 54) : 54 déjà servi (C2i Construction) ; deux adresses de domaines différents.
+- Orizon Construction (01) : 01 déjà servi (ADN Bâtiment), clientèle surtout résidentielle.
+- TIME (77) : génie climatique et électricité avant tout, hors cible EG.
+- JD Bâtiment (11) : maçonnerie ; 11 déjà servi (Rosala).
+- E.G. Tournier (71) : groupe Tournier, plusieurs sites (exclu).
+- Bernaud (26) : site fermé ; Adami Construction (54), Construct'Art (71), Burin Penet (77), Bâtiment Courrège (12) : aucune adresse e-mail sur les pages téléchargées.
+- Coefficient : neuf agences (Le Mans, Lyon, Bordeaux, Rouen, Châlons, Montpellier, Alençon, Rennes…), hors cible.
+- Cabinet Ghesquière Dierickx (Marcq-en-Barœul, 59) : département 59 déjà bien servi.
+- Chauveau Maître d'œuvre (Blois, 41) : réalisations récentes surtout chez des particuliers ; 41 déjà servi (ThB).
+- PB Économie (62) : métrés et chiffrage sans suivi de travaux, adresse gmail.
+- dCe (Saint-Brieuc, 22) : site d'une page, aucun suivi de travaux affiché ; 22 déjà servi (Amobat).
+- ECPP (80) : adresse nominative ; Cabinet Calliet (45) : adresses wanadoo nominatives.
+- EICB (81, déjà écarté au lot 1), Cabinet Boudier (39), Cabinet Jérémy Quercy (41), BETCC : aucune adresse e-mail sur les pages téléchargées.
+- R2M Économiste (Marseille) : déjà au lot 1.
+- Boutillet (86) : trois implantations (Chauvigny, Joué-lès-Tours, Limoges).
+- Axiolis (13) : agences à Marseille, Lyon, Paris, Nice et en Corse.
+- Morel Construction (Lisieux, 14) : rénovation surtout résidentielle, deux sites ; 14 déjà servi.
+- Tech & Work Rénovation (74), Amaral Habitat (74) : 74 déjà servi trois fois.
+- Atelier 2C (Villefranche-sur-Saône, 69) : 69 déjà servi.
+- Agence Structure (14) : aménagement et décoration, hors cible.
+- Leprovost SAS (14) : adresse gmail et rénovation pour particuliers.
+- Building Management (60), Casali Rénovation (73) : aucune adresse e-mail sur les pages téléchargées.
+- Silvex Construction (Reims, 51) : le domaine de l'adresse affichée n'a pas d'enregistrement MX.
+- Nancy Construction (54) : groupe contractant et promoteur, exclu.
+- Smart Contracting (85) : siège et agences à Rennes et Paris (trois implantations).
+- SOFT Bâtiments clé en main : groupe multi-agences.
+- Execo (Toulouse, 31) : structure plus importante ; 31 déjà servi (EXE Garonne).
+- EXEE (Lyon, 69) : 69 déjà servi.
+- AGC Contractant (Mérignac, 33) : 33 déjà servi (Artech).
+- CG BAT (57), Anthylis (67), PRISME, Edificeo (44) : aucune adresse e-mail sur les pages téléchargées.
+- ARC6 Ingénierie (Angers, 49) : 49 déjà servi (Marchand Bodin).
+- ATOME Management (49) : adresses par agence (Saumur, Vannes), pages anciennes.
+- DG Rénovation (Besançon, 25) : rénovation surtout résidentielle ; 25 déjà servi (CRRI 2000).
+- Design Tech (49), De Giorgi (25), Hoorelbeke (80) : aucune adresse e-mail sur les pages téléchargées.
+- Cobatec Ingénierie, EPR Bâtiment (21) : déjà au lot 1.
+- Avenir Bizness / Avenir Rénovations, Avoltis, Isospace, DBS, Emalec : réseaux ou multi-agences, exclus.
+
+## Notes de vérification (25/11/2026)
+
+- Chaque adresse retenue a été relue sur la page « source » téléchargée à nouveau en fin de sourcing, et chaque domaine a un enregistrement MX (requête DNS publique).
+- Aucun domaine de site, aucun domaine d'adresse (hors webmails génériques orange.fr / gmail.com) ni aucun nom du lot 1 n'est repris.
+- Départements surreprésentés au lot 1 (13, 29, 33, 34, 35, 38, 56, 69, 87) : au plus une entreprise de plus chacun.
+
+- ECIB Project (Clermont-Ferrand) : écarté au contrôle du 25/11/2026, déjà contacté par Quentin (Gmail, Nexora vague 9).
