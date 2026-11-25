@@ -28,6 +28,8 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
+- **Clés de licence à activer (25/11/2026)** : aucune pour l'instant (AEC, EDT, FRM, PTG activées et en vente le 25/11). Suivi d'un
+  animal et Pack Associations : créés ce soir après 19 h 45.
 - Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur d'événement (garder la
   nouvelle couverture « evenementiel » ajoutée le 24/11, supprimer l'ancienne couverture mariage),
   Circuit de visa (garder la couverture Pastel).
