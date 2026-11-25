@@ -2,6 +2,7 @@
 // vague auto-écoles, du lundi au samedi, espacés régulièrement entre 8 h et 18 h, heure de Paris, avec copie cachée
 // vers sa boîte pro, redirigée vers son Gmail). Plafond global de 50 par jour supprimé le 25/11/2026 à la demande de
 // Quentin : rythme d'un mail toutes les 2 minutes (300 par jour au plus) ; plafond par campagne seulement s'il est demandé.
+// Campagnes actives envoyées en parallèle, à tour de rôle (même jour) : voir envoyerSuivant.
 //
 // La session qui pilote la campagne (skill .claude/skills/campagne-ciblee-pack/) prépare, vérifie et fait valider
 // les mails, puis les met en file ; la tâche planifiée prospection-envoi.mjs (toutes les 2 minutes) en envoie UN à
@@ -114,7 +115,7 @@ export async function mettreEnFile({ store, secret, campagne, messages, maintena
   return { ajoutes, refuses };
 }
 
-// Un passage de la tâche planifiée : au plus un mail, toutes campagnes actives confondues.
+// Un passage de la tâche planifiée : au plus un mail, toutes campagnes actives confondues, à tour de rôle.
 export async function envoyerSuivant({ store, secret, envoyer, maintenant = Date.now, forcer = false }) {
   const date = new Date(maintenant());
   const h = horlogeParis(date);
@@ -122,9 +123,15 @@ export async function envoyerSuivant({ store, secret, envoyer, maintenant = Date
   if (!envoyer) return { statut: 'envoi-non-configure' };
   const cleJour = `${P}jour/${h.jour}`;
   const jour = (await store.get(cleJour)) || { envoyes: 0, journal: [] };
-  const campagnes = (await Promise.all((await store.lister(`${P}campagne/`)).map((k) => store.get(k)))).filter((c) => c && !c.pause);
+  // Campagnes en parallèle (décision de Quentin du 25/11/2026) : à chaque passage, la campagne active qui a le moins
+  // envoyé aujourd'hui passe en premier (à égalité : celle dont le dernier envoi est le plus ancien, puis l'id). Les
+  // campagnes se relaient donc mail par mail au lieu de se suivre ; chacune s'étale sur plusieurs jours si besoin.
+  const envoisDe = (id) => jour.journal.filter((j) => j.campagne === id && j.statut === 'envoye');
+  const dernierEnvoi = (id) => envoisDe(id).reduce((m, j) => (j.heure > m ? j.heure : m), '');
+  const campagnes = (await Promise.all((await store.lister(`${P}campagne/`)).map((k) => store.get(k)))).filter((c) => c && !c.pause)
+    .sort((x, y) => envoisDe(x.id).length - envoisDe(y.id).length || dernierEnvoi(x.id).localeCompare(dernierEnvoi(y.id)) || x.id.localeCompare(y.id));
   for (const c of campagnes) {
-    const envoyesCampagne = jour.journal.filter((j) => j.campagne === c.id && j.statut === 'envoye').length;
+    const envoyesCampagne = envoisDe(c.id).length;
     if (c.parJour > 0 && envoyesCampagne >= c.parJour) continue;
     const cles = (await store.lister(`${P}file/${c.id}/`)).sort();
     for (const cle of cles) {
