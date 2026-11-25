@@ -24,7 +24,19 @@ const autres = (p) => `https://qm-engineering.fr/packs/proprietaire/?utm_campaig
 const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 
 // « de » élidé devant une voyelle ou un h : « le site d'Orée du Bois », « le site de La Grange… ».
-const de = (nom) => (/^[aeiouyhàâäéèêëîïôöùûü]/i.test(String(nom).trim()) ? `d'${nom}` : `de ${nom}`);
+// Contractions : « du Mas… » (Le), « des Trégorines » (Les) ; « au Vigan », « aux Moussières » pour la ville.
+const de = (nom) => {
+  const n = String(nom).trim();
+  if (/^Le\s/.test(n)) return `du ${n.slice(3)}`;
+  if (/^Les\s/.test(n)) return `des ${n.slice(4)}`;
+  return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
+};
+const a = (ville) => {
+  const v = String(ville).trim();
+  if (/^Le\s/.test(v)) return `au ${v.slice(3)}`;
+  if (/^Les\s/.test(v)) return `aux ${v.slice(4)}`;
+  return `à ${v}`;
+};
 
 export const objet = (p) => `${p.nom} : vos réservations sans double réservation, prêt à l'emploi`;
 
@@ -32,7 +44,7 @@ export const texte = (p) => `Bonjour,
 
 Je suis Quentin Morel : je conçois des outils de gestion pour les petites entreprises (QME).
 
-J'ai consulté le site ${de(p.nom)}, à ${p.ville}${fait(p) ? ` : ${fait(p)}` : ''}. Un calendrier à tenir à jour pour chaque canal, le ménage à caler entre deux séjours, la taxe de séjour à déclarer, les commissions qui réduisent la recette : c'est souvent là que le temps se perd quand tout tient dans plusieurs agendas et un tableur.
+J'ai consulté le site ${de(p.nom)}, ${a(p.ville)}${fait(p) ? ` : ${fait(p)}` : ''}. Un calendrier à tenir à jour pour chaque canal, le ménage à caler entre deux séjours, la taxe de séjour à déclarer, les commissions qui réduisent la recette : c'est souvent là que le temps se perd quand tout tient dans plusieurs agendas et un tableur.
 
 J'ai conçu un outil de gestion de location saisonnière prêt à l'emploi, en ligne, sur ordinateur comme sur téléphone, pour 1 à 10 logements :
 - un seul calendrier pour tous vos canaux, qui refuse les doubles réservations ;
