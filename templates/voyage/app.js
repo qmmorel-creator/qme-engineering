@@ -47,7 +47,10 @@
 
   // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
   const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
-  const normaliser = (d) => ({ ...R.normaliser(d, B.postes), tutorielVu: Boolean(d?.tutorielVu) });
+  // Démo personnalisée (?demo=van&prenom=…) : profil, prénom et carte « Premiers pas », gardés sur l'appareil
+  // seulement (jamais présents dans les données d'un acheteur).
+  const champsDemo = (d) => (d?.demoProfil ? { demoProfil: String(d.demoProfil).slice(0, 20), prenom: String(d.prenom || '').slice(0, 40), premiersPas: { ...(d.premiersPas || {}) } } : {});
+  const normaliser = (d) => ({ ...R.normaliser(d, B.postes), tutorielVu: Boolean(d?.tutorielVu), ...champsDemo(d) });
   const voyageur = (id) => E.voyageurs.find((v) => v.id === id);
   const nomVoyageur = (id) => voyageur(id)?.nom || 'Voyageur retiré';
   const COLL = { etape: 'etapes', nuit: 'nuits', transport: 'transports', activite: 'activites', depense: 'depenses', virement: 'virements', bagage: 'bagages', document: 'documents', voyageur: 'voyageurs' };
@@ -197,10 +200,14 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
-  function ouvrirDemo(memoriser = true) {
+  // voulue : démo demandée par l'adresse ({ profil, prenom }) ; null = bouton de démo, on garde celle de l'appareil.
+  function ouvrirDemo(memoriser = true, voulue = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    const garde = stock.lire(CLE_DEMO);
+    const profil = voulue ? voulue.profil : (garde?.demoProfil || '');
+    const meme = garde && (garde.demoProfil || '') === profil && (!voulue?.prenom || garde.prenom === voulue.prenom);
+    E = meme ? normaliser(garde) : donneesDemo(profil, voulue?.prenom || '');
     cache();
     demarrer();
   }
@@ -217,7 +224,8 @@
   // Un voyage fictif de 10 jours entre amis, commencé il y a 3 jours : tous les états visibles
   // (nuit sans toit, hébergement et train à réserver, reste à payer sur place, poste dépassé, dépense
   // partagée à parts inégales, remboursement déjà fait, bagages en partie cochés, un voyage archivé).
-  function donneesDemo() {
+  function donneesDemo(profil = '', prenom = '') {
+    if (DEMOS[profil]) return DEMOS[profil](prenom);
     const e = etatVide();
     const t = auj();
     const j = (n) => ajout(t, n);
@@ -276,6 +284,85 @@
     e.archives = [{ id: uid(), nom: 'Week-end à la mer (exemple fictif)', debut: j(-120), fin: j(-118), voyageurs: 2, prevu: 42000, reel: 45500, modifLe: '' }];
     return e;
   }
+
+  // ---------- Démos personnalisées ----------
+  // `?demo=van&prenom=Angélique` : long voyage en van aménagé avec deux chiens, le long de la côte atlantique
+  // jusqu'au Portugal (6 semaines). Données inventées ; les nuits passées dans le van comptent comme
+  // hébergement (une aire ou un spot à 0 €), pour qu'aucune nuit ne soit signalée « sans toit ».
+  // Le guide et la fenêtre « Comme une application » ne s'ouvrent pas seuls : une carte « Premiers pas »
+  // en trois gestes les remplace en haut de l'Aperçu.
+  const DEMOS = {
+    van(prenom) {
+      const e = etatVide();
+      const t = auj();
+      const j = (n) => ajout(t, n);
+      const nom = prenom || 'Angélique';
+      e.demoProfil = 'van'; e.prenom = nom; e.premiersPas = {}; e.tutorielVu = true;
+      e.voyage = { nom: 'La côte atlantique en van, jusqu\'à Porto', destination: 'France, Espagne et Portugal (exemple fictif)', debut: j(-6), fin: j(36), note: 'Six semaines en van aménagé avec Pistache et Moka, les deux chiens. Données inventées pour la démonstration.', modifLe: '' };
+      const [moi, copilote] = [nom, 'Copilote (fictif)'].map((n) => R.normaliserVoyageur({ id: uid(), nom: n }));
+      e.voyageurs = [moi, copilote];
+      const et = (lieu, a, d, note = '') => R.normaliserEtape({ id: uid(), lieu, arrivee: j(a), depart: j(d), note });
+      e.etapes = [
+        et('Presqu\'île de Quiberon', -6, -2, 'Plages autorisées aux chiens hors saison : à vérifier sur place.'),
+        et('Île de Ré', -2, 3), et('Bassin d\'Arcachon', 3, 8), et('Pays basque', 8, 14),
+        et('Asturies', 14, 21, 'Côte et montagne, beaucoup de bivouacs possibles.'), et('Galice', 21, 29), et('Porto', 29, 36),
+      ];
+      const h = (lieuNom, adresse, a, d, statut, montant, note = '') => R.normaliserNuit({ id: uid(), nom: lieuNom, adresse, arrivee: j(a), depart: j(d), statut, montant, acompte: statut === 'reserve' ? montant : 0, solde: statut === 'reserve', note });
+      e.nuits = [
+        h('Dans le van · aire de camping-car (fictive)', 'Près du port (adresse fictive)', -6, -2, 'reserve', 4800, 'Aire sans réservation, payée à la borne : 12 € la nuit.'),
+        h('Dans le van · camping (fictif)', 'Côté nord de l\'île (fictif)', -2, 3, 'reserve', 12500, 'Chiens acceptés, électricité comprise.'),
+        h('Dans le van · spot nature (fictif)', 'Forêt au-dessus de la dune (fictif)', 3, 5, 'reserve', 0, 'Bivouac toléré : se renseigner sur les règles locales.'),
+        h('Dans le van · aire de camping-car (fictive)', 'Bord du bassin (fictif)', 5, 8, 'reserve', 3600),
+        h('Gîte avec jardin clos (fictif)', 'Village de l\'arrière-pays (fictif)', 8, 11, 'aReserver', 27000, 'Trois nuits au sec pour faire les lessives et laisser les chiens se dépenser.'),
+        h('Dans le van · aires et spots', 'Côte basque (fictif)', 11, 14, 'reserve', 3600),
+        h('Dans le van · spots et campings', 'Asturies (fictif)', 14, 21, 'reserve', 8400),
+        h('Dans le van · spots et campings', 'Galice (fictif)', 21, 29, 'reserve', 9600),
+        h('Dans le van · camping près de la ville (fictif)', 'Porto (fictif)', 29, 36, 'aReserver', 17500),
+      ];
+      const tr = (n, heure, de, vers, prix, ref = 'Van') => R.normaliserTransport({ id: uid(), date: j(n), heure, mode: 'voiture', de, vers, statut: 'reserve', prix, ref });
+      e.transports = [
+        tr(-6, '08:30', 'Maison', 'Quiberon', 6500), tr(-2, '09:00', 'Quiberon', 'Île de Ré', 7200, 'Van · pont payant'),
+        tr(3, '10:00', 'Île de Ré', 'Bassin d\'Arcachon', 5800), tr(8, '09:30', 'Arcachon', 'Pays basque', 5200),
+        tr(14, '08:00', 'Pays basque', 'Asturies', 9400), tr(21, '09:00', 'Asturies', 'Galice', 8800), tr(29, '10:00', 'Galice', 'Porto', 7400),
+        R.normaliserTransport({ id: uid(), date: j(36), heure: '07:00', mode: 'voiture', de: 'Porto', vers: 'Maison', statut: 'aReserver', prix: 24000, ref: 'Retour en deux jours' }),
+      ];
+      const ac = (n, heure, titre, lieu, statut, prix, note = '') => R.normaliserActivite({ id: uid(), date: n === null ? '' : j(n), heure, titre, lieu, statut, prix, note });
+      e.activites = [
+        ac(-5, '09:00', 'Balade sur la côte sauvage avec les chiens', 'Quiberon', 'libre', 0),
+        ac(-1, '10:00', 'Tour de l\'île à vélo', 'Île de Ré', 'libre', 2400, 'Location de deux vélos (fictive).'),
+        ac(0, '08:00', 'Plage où les chiens sont acceptés', 'Côté nord de l\'île', 'libre', 0, 'Horaires et saison à vérifier sur place.'),
+        ac(0, '18:30', 'Vidange et plein d\'eau du van', 'Borne de l\'aire', 'libre', 400),
+        ac(1, '11:00', 'Marché du village', 'Île de Ré', 'libre', 0),
+        ac(4, '07:30', 'Lever de soleil sur la dune', 'Bassin d\'Arcachon', 'libre', 0),
+        ac(6, '10:00', 'Rappel de vaccin de Moka chez le vétérinaire', 'Cabinet vétérinaire (fictif)', 'aReserver', 6500, 'Prendre le passeport européen des chiens.'),
+        ac(16, '09:00', 'Randonnée dans les Picos de Europa', 'Asturies', 'libre', 0, 'Règles d\'accès des chiens dans le parc : à vérifier.'),
+        ac(30, '15:00', 'Visite des caves au bord du fleuve', 'Porto', 'aReserver', 3000),
+        ac(null, '', 'Toilettage des chiens', '', 'libre', 0, 'À caser quand on trouve un toiletteur sur la route.'),
+      ];
+      e.budget = { prevus: { repas: 30000, courses: 90000, surplace: 15000, assurance: 9000, achats: 5000, divers: 25000 }, modifLe: '' };
+      const tous = e.voyageurs.map((v) => v.id);
+      const dep = (n, libelle, montant, posteId, payeur) => R.normaliserDepense({ id: uid(), date: j(n), libelle, montant, poste: posteId, payeur: payeur.id, repartition: { mode: 'egale', participants: tous } }, e.voyageurs, B.postes);
+      e.depenses = [
+        dep(-20, 'Assurance du van et assistance (fictive)', 9000, 'assurance', moi),
+        dep(-6, 'Plein de gazole', 8200, 'transport', copilote),
+        dep(-6, 'Croquettes pour deux chiens (stock)', 6400, 'courses', moi),
+        dep(-5, 'Courses de la semaine', 7800, 'courses', copilote),
+        dep(-4, 'Aire de camping-car', 4800, 'hebergement', moi),
+        dep(-3, 'Crêperie', 3600, 'repas', copilote),
+        dep(-2, 'Péage du pont', 1600, 'surplace', moi),
+        dep(-2, 'Camping de l\'île', 12500, 'hebergement', copilote),
+        dep(-1, 'Location de vélos', 2400, 'activites', moi),
+        dep(0, 'Bouteille de gaz', 3200, 'divers', moi),
+      ];
+      e.bagages = R.genererBagages(B.bagages, [], ['essentiels', 'camping', 'voiture', 'plage']);
+      for (const texte of ['Croquettes et gamelles des chiens', 'Laisses, harnais et longe', 'Médicaments et vermifuge des chiens', 'Gilet de sauvetage pour chien', 'Cales et rallonge électrique du van']) e.bagages.push(R.normaliserCase({ texte, liste: 'chiens' }));
+      e.bagages.forEach((b, i) => { b.fait = i % 5 !== 3; });
+      e.documents = R.genererDocuments(B.documents);
+      e.documents.push(R.normaliserCase({ texte: 'Passeports européens des chiens', detail: 'Vaccins et règles d\'entrée des animaux dans chaque pays : à vérifier sur les sources officielles avant le départ.' }));
+      e.documents.forEach((d, i) => { d.fait = ![1, 6, 8].includes(i); });
+      return e;
+    },
+  };
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -461,6 +548,7 @@
   }
 
   function changerVue(v) {
+    if (v === 'jours' || v === 'preparer') gesteFait(v);
     vue = v;
     history.replaceState(null, '', `#${v}`);
     rendre();
@@ -556,7 +644,7 @@
       <div class="tuile" style="--c:var(--bleu)"><p class="surtitre">Dépensé</p><b>${eur0(b.reel)}</b><span>sur ${eur0(b.prevu)} prévus · ${eur0(b.parPersonneReel)} / pers.</span></div>
       <div class="tuile rond" style="--c:var(--vert)"><p class="surtitre">Préparation</p><b>${pb.pct} %</b><span>des bagages · documents ${pd.fait}/${pd.total}</span></div>
     </div>`;
-    return `${enTete(esc(v.nom || 'Mon voyage'), resumeVoyage(), `<button class="btn petit" data-action="voyage">Modifier le voyage</button><button class="btn petit" data-action="copier-itineraire">Copier l'itinéraire</button>`)}
+    return `${carteDemarrage()}${enTete(esc(v.nom || 'Mon voyage'), resumeVoyage(), `<button class="btn petit" data-action="voyage">Modifier le voyage</button><button class="btn petit" data-action="copier-itineraire">Copier l'itinéraire</button>`)}
       ${bandeau}
       ${R.cheminTexte(E, B.modes) ? `<p class="chemin">${esc(R.cheminTexte(E, B.modes))}</p>` : ''}
       ${tuiles}
@@ -576,6 +664,29 @@
         </div>
       </div>
       ${AVERTISSEMENT}`;
+  }
+
+  // ---------- Premiers pas (démo personnalisée) ----------
+  // Trois gestes, chacun coché dès qu'il est fait : voir la journée, noter une dépense, cocher un bagage.
+  const GESTES = [
+    ['jours', 'Voir le programme d\'aujourd\'hui', 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit du jour, sur une seule carte.', '<button class="btn petit primaire" data-action="vue" data-vue="jours" data-defiler="aujourdhui">Jour par jour</button>'],
+    ['depense', 'Noter une dépense', 'Un plein, des croquettes, une aire : montant et poste, le budget se met à jour tout seul.', '<button class="btn petit primaire" data-action="nouvelle-depense">Ajouter une dépense</button>'],
+    ['preparer', 'Cocher ce qui est prêt', 'Dans <b>Préparer</b>, les bagages du van et des chiens, et les papiers à emporter.', '<button class="btn petit primaire" data-action="vue" data-vue="preparer">Préparer</button>'],
+  ];
+  function carteDemarrage() {
+    const pp = E.premiersPas;
+    if (!pp || pp.masque) return '';
+    const faits = GESTES.filter(([id]) => pp[id]).length;
+    return `<section class="demarrage" aria-labelledby="demarrage-titre">
+      <div class="demarrage-tete"><h2 id="demarrage-titre">Bonjour ${esc(E.prenom || '')}&nbsp;! Prise en main en 3 gestes</h2><span class="demarrage-compte">${faits}/${GESTES.length}</span></div>
+      <p>Voici un voyage d'exemple déjà rempli : six semaines en van avec deux chiens. Tout se modifie ; rien n'est envoyé nulle part.</p>
+      <ol>${GESTES.map(([id, titre, texte, action]) => `<li class="${pp[id] ? 'fait' : ''}"><span class="demarrage-num">${pp[id] ? '✓' : GESTES.findIndex(([g]) => g === id) + 1}</span><div><b>${titre}</b><span>${texte}</span>${pp[id] ? '' : `<div class="actions">${action}</div>`}</div></li>`).join('')}</ol>
+      <div class="demarrage-pied"><button class="btn petit" data-action="tutoriel">Le guide complet</button><button class="btn petit" data-action="demarrage-masquer">${faits === GESTES.length ? 'C\'est bon, j\'ai compris' : 'Masquer'}</button></div>
+    </section>`;
+  }
+  function gesteFait(id) {
+    if (!E?.premiersPas || E.premiersPas[id]) return;
+    E.premiersPas[id] = true; sauver();
   }
 
   // ---------- Itinéraire ----------
@@ -1104,6 +1215,7 @@
 
   // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
   function premiersPas() {
+    if (E.premiersPas) return; // démo personnalisée : la carte « Premiers pas » de l'Aperçu remplace les fenêtres
     if (E.tutorielVu) return proposerEcranAccueil();
     setTimeout(() => {
       if (!E || E.tutorielVu || modale().open) return;
@@ -1190,13 +1302,21 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(E.demoProfil || '', E.prenom || ''); E.tutorielVu = vu; cache(); rendre(); } break;
+      case 'demarrage-masquer': if (E.premiersPas) { E.premiersPas.masque = true; sauver(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-voyageur': if (accueil.voyageurs.length < R.MAX_VOYAGEURS) { accueil.voyageurs.push(''); ecranAccueil(); } break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
-      case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
+      case 'vue': {
+        if (modale().open) modale().close();
+        changerVue(el.dataset.vue);
+        // Carte « Premiers pas » : amène directement au jour d'aujourd'hui.
+        const cible = el.dataset.defiler && document.querySelector(`.jour.${el.dataset.defiler}`);
+        if (cible) cible.scrollIntoView({ block: 'start' });
+        break;
+      }
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'tutoriel': modaleTutoriel(); break;
@@ -1216,7 +1336,7 @@
       case 'activite': modaleActivite(id); break;
       case 'nouvelle-activite': modaleActivite(null, el.dataset.date || ''); break;
       case 'depense': modaleDepense(id); break;
-      case 'nouvelle-depense': modaleDepense(null); break;
+      case 'nouvelle-depense': gesteFait('depense'); modaleDepense(null); break;
       case 'nouveau-virement': modaleVirement(); break;
       case 'prevus': modalePrevus(); break;
       case 'listes': modaleListes(); break;
@@ -1305,7 +1425,15 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
+    const params = new URLSearchParams(location.search);
+    // Démo personnalisée (?demo=van&prenom=…) : ouverte même si une autre démo est gardée sur l'appareil,
+    // jamais à la place d'un vrai compte connecté.
+    const profil = params.get('demo') || '';
+    if (DEMOS[profil] && (!code || code === CODE_DEMO)) {
+      history.replaceState(null, '', location.pathname + location.hash);
+      return ouvrirDemo(true, { profil, prenom: (params.get('prenom') || '').trim().slice(0, 40) });
+    }
+    if (params.has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();

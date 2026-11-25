@@ -1,10 +1,12 @@
 // Campagnes ciblées de prospection envoyées par le site, via la boîte OVH (décision de Quentin du 25/11/2026 :
-// vague auto-écoles, 50 mails par jour au plus, du lundi au samedi, espacés régulièrement entre 8 h et 18 h, heure de
-// Paris, avec copie cachée vers sa boîte pro, redirigée vers son Gmail).
+// vague auto-écoles, du lundi au samedi, espacés régulièrement entre 8 h et 18 h, heure de Paris, avec copie cachée
+// vers sa boîte pro, redirigée vers son Gmail). Plafond global de 50 par jour supprimé le 25/11/2026 à la demande de
+// Quentin : rythme d'un mail toutes les 2 minutes (300 par jour au plus) ; plafond par campagne seulement s'il est demandé.
+// Campagnes actives envoyées en parallèle, à tour de rôle (même jour) : voir envoyerSuivant.
 //
 // La session qui pilote la campagne (skill .claude/skills/campagne-ciblee-pack/) prépare, vérifie et fait valider
-// les mails, puis les met en file ; la tâche planifiée prospection-envoi.mjs (toutes les 12 minutes) en envoie UN à
-// chaque passage, dans la fenêtre d'envoi, tant que le quota du jour n'est pas atteint. Les relances J+7 ne sont pas
+// les mails, puis les met en file ; la tâche planifiée prospection-envoi.mjs (toutes les 2 minutes) en envoie UN à
+// chaque passage, dans la fenêtre d'envoi (et sous le plafond de la campagne, s'il en a un). Les relances J+7 ne sont pas
 // mises en file automatiquement : la session les ajoute seulement après avoir vérifié, dans Gmail, qu'aucune réponse
 // n'est arrivée.
 //
@@ -15,7 +17,7 @@
 //  - campagne en pause : rien ne part.
 //
 // Stockage (store des essais, Francfort), préfixe prospection/ :
-//  campagne/<c>                 { id, nom, parJour, pause, cree }
+//  campagne/<c>                 { id, nom, parJour?, pause, cree }
 //  file/<c>/<rang>              message en attente ; rang = « 0-<pasAvant>-<n> » (relances, d'abord) ou « 1-<n> »
 //  fait/<c>/<id>                message traité : envoye | ecarte | erreur, messageId, envoyeLe
 //  adresse/<c>/<empreinte>      id du premier mail de cette adresse dans la campagne
@@ -25,7 +27,8 @@
 // sessions de prospection ; ou en-tête X-Admin : code administrateur), préfixe /api/prospection :
 //  GET    /                         → campagnes et compteurs
 //  GET    /campagne?c=&details=1    → file et messages traités (sans le corps des mails)
-//  POST   /campagne   { id, nom, parJour = 50, pause = true }       → crée ou modifie (pause / reprise)
+//  POST   /campagne   { id, nom, parJour?, pause = true }           → crée ou modifie (pause / reprise) ; parJour
+//                     facultatif, sans plafond global ; parJour: 0 ou null retire le plafond de la campagne
 //  POST   /file       { campagne, messages: [{ id, email, objet, texte, type?, relanceDe?, pasAvant? }] }
 //                     → { ajoutes, refuses: [{ id, raison }] } ; texte = corps sans signature ni mention
 //  POST   /apercu     { email, objet, texte }                        → { objet, texte, html } tels qu'ils partiraient
@@ -38,7 +41,6 @@ import { corpsHtml, enveloppeHtml, SIGNATURE } from './essais.mjs';
 
 export const FENETRE = { debut: 8 * 60, fin: 18 * 60 }; // minutes depuis minuit, heure de Paris
 export const JOURS_ENVOI = new Set([1, 2, 3, 4, 5, 6]); // lundi à samedi
-export const PAR_JOUR = 50;
 const SITE = 'https://qm-engineering.fr';
 const P = 'prospection/';
 
@@ -113,7 +115,7 @@ export async function mettreEnFile({ store, secret, campagne, messages, maintena
   return { ajoutes, refuses };
 }
 
-// Un passage de la tâche planifiée : au plus un mail, toutes campagnes actives confondues.
+// Un passage de la tâche planifiée : au plus un mail, toutes campagnes actives confondues, à tour de rôle.
 export async function envoyerSuivant({ store, secret, envoyer, maintenant = Date.now, forcer = false }) {
   const date = new Date(maintenant());
   const h = horlogeParis(date);
@@ -121,10 +123,16 @@ export async function envoyerSuivant({ store, secret, envoyer, maintenant = Date
   if (!envoyer) return { statut: 'envoi-non-configure' };
   const cleJour = `${P}jour/${h.jour}`;
   const jour = (await store.get(cleJour)) || { envoyes: 0, journal: [] };
-  const campagnes = (await Promise.all((await store.lister(`${P}campagne/`)).map((k) => store.get(k)))).filter((c) => c && !c.pause);
+  // Campagnes en parallèle (décision de Quentin du 25/11/2026) : à chaque passage, la campagne active qui a le moins
+  // envoyé aujourd'hui passe en premier (à égalité : celle dont le dernier envoi est le plus ancien, puis l'id). Les
+  // campagnes se relaient donc mail par mail au lieu de se suivre ; chacune s'étale sur plusieurs jours si besoin.
+  const envoisDe = (id) => jour.journal.filter((j) => j.campagne === id && j.statut === 'envoye');
+  const dernierEnvoi = (id) => envoisDe(id).reduce((m, j) => (j.heure > m ? j.heure : m), '');
+  const campagnes = (await Promise.all((await store.lister(`${P}campagne/`)).map((k) => store.get(k)))).filter((c) => c && !c.pause)
+    .sort((x, y) => envoisDe(x.id).length - envoisDe(y.id).length || dernierEnvoi(x.id).localeCompare(dernierEnvoi(y.id)) || x.id.localeCompare(y.id));
   for (const c of campagnes) {
-    const envoyesCampagne = jour.journal.filter((j) => j.campagne === c.id && j.statut === 'envoye').length;
-    if (envoyesCampagne >= Math.min(c.parJour || PAR_JOUR, PAR_JOUR)) continue;
+    const envoyesCampagne = envoisDe(c.id).length;
+    if (c.parJour > 0 && envoyesCampagne >= c.parJour) continue;
     const cles = (await store.lister(`${P}file/${c.id}/`)).sort();
     for (const cle of cles) {
       const m = await store.get(cle);
@@ -198,10 +206,11 @@ export async function traiterProspection(requete, { secret, store, admin = '', j
   if (chemin === '/campagne' && methode === 'POST') {
     if (!idValide(corps.id)) return json(400, { erreur: 'id invalide' });
     const cle = `${P}campagne/${corps.id}`;
-    const avant = (await store.get(cle)) || { id: corps.id, cree: new Date(maintenant()).toISOString(), pause: true, parJour: PAR_JOUR };
+    const avant = (await store.get(cle)) || { id: corps.id, cree: new Date(maintenant()).toISOString(), pause: true };
     const c = { ...avant, ...(corps.nom ? { nom: String(corps.nom).slice(0, 120) } : {}),
-      ...(corps.parJour ? { parJour: Math.max(1, Math.min(PAR_JOUR, Number(corps.parJour) || PAR_JOUR)) } : {}),
+      ...(Number(corps.parJour) >= 1 ? { parJour: Math.floor(Number(corps.parJour)) } : {}),
       ...(typeof corps.pause === 'boolean' ? { pause: corps.pause } : {}), modifie: new Date(maintenant()).toISOString() };
+    if ('parJour' in corps && !(Number(corps.parJour) >= 1)) delete c.parJour; // 0 ou null : plus de plafond
     await store.set(cle, c);
     return json(200, c);
   }
