@@ -105,8 +105,7 @@ vente) + Garde-manger et dates de péremption (GRD, 12 €, prêt). Valeur 25 �
 sur le site le 22/11 (« Bientôt », page `/packs/cuisine/`, `PCS` dans `PACKS` et `PAGES`) ; fiche prête dans
 `packs/gumroad-packs.json`, à créer sur Gumroad une fois GRD en vente.
 
-**Bloqués par une décision de Quentin** (règle 6) : Remboursements santé (RBS, seul manquant du Pack Reprendre la main
-sur son argent, PAR), Suivi du bébé (BBE, Pack Famille), Gestion de classe (CSE, Pack Enseignant).
+**Plus aucun template bloqué** (décision de Quentin du 25/11/2026) : Remboursements santé (RBS, 12 €), Suivi du bébé (BBE, 13 €) et Gestion de classe (CSE, 25 €) sont vendus tels quels ; fiches Gumroad créées par l'agent Gumroad dès que la limite le permet. Ils complètent les Packs Reprendre la main sur son argent (PAR), Maison et famille (PFA) et Enseignant et formateur (PNS).
 
 Les prix sont ceux de `outils/packs/donnees.mjs` (et d'`IDEES.md`) ; les fiches sont dans
 `docs/templates/communication/<slug>/gumroad.json` ou `gumroad.md`, et celles des packs dans
