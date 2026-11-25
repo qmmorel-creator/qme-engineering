@@ -34,7 +34,7 @@ Produire IG-164 et IG-165, et la première version du contrôle. Leur travail es
 ## Tâches gardées, hors production quotidienne
 
 - « Rédiger le bilan LI-170 » (21/12) : texte précis, soumis à Quentin avant programmation.
-- Tâche ponctuelle du concours : fusion de `/concours/` le 25/11 à 8:30. Les actions de Quentin sont des tâches Nexora (projet « QME - Stratégie »), pas des rappels planifiés.
+- Tâche ponctuelle du concours : fusion de `/concours/` le 25/11 à 8:30. Les actions de Quentin sont des tâches Nexora (projet « QME - Stratégie ») ; la tâche « Relances des actions de Quentin (Nexora) », chaque jour à 8:43, le relance sur celles du jour ou en retard (demande du 25/11/2026), avec un rappel 10 minutes avant celles qui ont une heure.
 - Mesures et bilans (Bilan hebdomadaire QME, compteur Gumroad) : ne produisent pas de contenu.
 
 Réserves au 24/11/2026 au soir : Instagram jusqu'au 21/04/2027, LinkedIn jusqu'au 02/04/2027, YouTube couvert chaque jour
