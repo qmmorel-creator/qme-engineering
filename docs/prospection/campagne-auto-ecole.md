@@ -9,7 +9,7 @@ sur-mesure. Skill : `.claude/skills/campagne-ciblee-pack/`.
 | Page concept | `https://qm-engineering.fr/concepts/auto-ecole/` (captures réelles de la démo, données fictives) |
 | Démo | `https://qm-engineering.fr/templates/auto-ecole/?demo` |
 | Modèle de mail | `outils/prospection/campagnes/auto-ecole.mjs` (objet, texte, relance J+7) |
-| Envoi | OVH via le site, file `/api/prospection` (campagne `auto-ecole`), 50 par jour au plus, lundi–samedi, 8 h–18 h |
+| Envoi | OVH via le site, file `/api/prospection` (campagne `auto-ecole`), un mail toutes les 2 minutes sans plafond global (25/11/2026), lundi–samedi, 8 h–18 h |
 | Copie | copie cachée `quentin.morel@qm-engineering.fr` (redirigée vers le Gmail de Quentin) |
 | Nexora | concept `cpt-auto-ecole` ; prospects `vague: "cible-auto-ecole"`, segment « Auto-écoles indépendantes » |
 | Projets Nexora | seulement pour les retours intéressés, après accord de Quentin |
@@ -22,7 +22,7 @@ sur-mesure. Skill : `.claude/skills/campagne-ciblee-pack/`.
   vente directe).
 - Variables à créer par Quentin : `PROSPECTION_TOKEN` (Netlify, 32 caractères au moins) et le même jeton en secret
   réseau de l'environnement Claude (hôte `qm-engineering.fr`, en-tête `X-Prospection-Token`).
-- La boîte OVH doit accepter 50 envois par jour en plus des mails du site (quota OVH à surveiller dans les journaux
+- La boîte OVH doit accepter jusqu'à 30 envois par heure (300 par jour) en plus des mails du site (quota OVH à surveiller dans les journaux
   de `prospection-envoi`).
 
 ## Journal

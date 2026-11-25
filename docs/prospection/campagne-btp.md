@@ -10,7 +10,7 @@ Skill : `.claude/skills/campagne-ciblee-pack/`.
 | Page concept | `https://qm-engineering.fr/concepts/btp/` : déroulé d'une opération en 8 étapes, une capture réelle de chaque démo `?demo` (données fictives) et un lien vers chaque démo, bloc « Prêt à l'emploi, ou sur mesure » |
 | Modèle de mail | `outils/prospection/campagnes/btp.mjs` : deux profils (`profil: "moe"` → réserves et DOE, entrée Levée de réserves ; `profil: "eg"` → pièces de vigilance des sous-traitants et avenants, entrée Conformité des sous-traitants), puis le pack complet ; relance J+7 |
 | Cible | maîtres d'œuvre d'exécution indépendants, petits cabinets d'architectes qui assurent la direction des travaux, économistes de la construction, OPC, petites entreprises générales ; exclus : majors, grands groupes d'ingénierie, réseaux nationaux, fiches déjà dans Nexora |
-| Envoi | OVH via le site, file `/api/prospection` (campagne `btp`, `parJour: 12`, relances J+7 comprises), lundi–samedi, 8 h–18 h |
+| Envoi | OVH via le site, file `/api/prospection` (campagne `btp`, sans plafond depuis le 25/11/2026, un mail toutes les 2 minutes toutes campagnes confondues), lundi–samedi, 8 h–18 h |
 | Nexora | concept `cpt-btp` (brouillon) ; prospects `vague: "cible-btp"` |
 | Validation | page, mail type et lot 1 complet validés par Quentin le 25/11/2026 (« Garde tout. Feu vert ») ; PR #302 fusionnée |
 
@@ -38,11 +38,10 @@ n'a ni plans annotés ni photos géolocalisées.
 
 ## Points ouverts
 
-- **Quota** : au 25/11/2026, la campagne `auto-ecole` est active avec `parJour: 50` (et `test-envoi` en pause,
-  `parJour: 1`). Avec `btp` à 12, la somme dépasserait 50 : la campagne `btp` est créée (`parJour: 12`) mais
-  **reste en pause** tant que Quentin n'a pas décidé (aucune modification du `parJour` d'une autre campagne). Par ailleurs, la tâche
-  d'envoi parcourt les campagnes dans l'ordre et en envoie une par passage : tant qu'`auto-ecole` a des mails en
-  file et n'a pas atteint son plafond, elle prend les 50 créneaux du jour.
+- **Quota** : réglé le 25/11/2026. Le plafond global de 50 par jour a été supprimé (PR #303, envoi toutes les
+  2 minutes, 300 par jour au plus) et le plafond d'`auto-ecole` retiré. À la demande de Quentin (« Active btp,
+  augmente le nombre d'envoi et lance la campagne »), `btp` est active **sans plafond** (`parJour` retiré). La tâche
+  sert les campagnes dans l'ordre : `auto-ecole` passe d'abord tant qu'elle a des mails en file.
 
 ## Lots de sourcing
 
@@ -61,3 +60,4 @@ moins ; sept adresses en webmail générique affichées sur le site ; Bloc Const
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page (PR #302, aperçu contrôlé), captures, modèle de mail, brouillon Gmail de validation, concept Nexora `cpt-btp` (brouillon), lot 1 (71 adresses vérifiées) ; en attente de validation et de décision sur le quota |
 | 2026-11-25 | 0 | 0 | 0 | Feu vert de Quentin ; PR #302 fusionnée, page en ligne (200, noindex) ; campagne `btp` créée en pause (`parJour: 12`) ; 71 mails en file (opposition revérifiée : 0) ; 71 fiches Nexora `a-contacter` ; concept `cpt-btp` en ligne. Rien ne part avant la décision sur le quota |
+| 2026-11-25 | 0 | 0 | 0 | Campagne `btp` activée sans plafond (pause levée à 13 h 33) après la suppression du plafond global (PR #303) |

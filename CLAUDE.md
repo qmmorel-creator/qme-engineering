@@ -96,8 +96,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Skill `.claude/skills/campagne-ciblee-pack/`** : un template ou un pack prêt présenté à tout un secteur (page concept
   avec captures réelles de la démo, mail personnalisé « template tout prêt, sur mesure possible »), sourcing sans
   limite d'adresses vérifiées. Première vague : auto-écoles (`docs/prospection/campagne-auto-ecole.md`).
-- **Envoi par OVH via le site** : file `/api/prospection` et tâche `prospection-envoi` (un mail toutes les 12 minutes,
-  lundi–samedi, 8 h–18 h à Paris, 50 par jour au plus), copie cachée vers la boîte pro de Quentin, signature et mention
+- **Envoi par OVH via le site** : file `/api/prospection` et tâche `prospection-envoi` (un mail toutes les 2 minutes,
+  lundi–samedi, 8 h–18 h à Paris, sans plafond global depuis le 25/11/2026, soit 300 par jour au plus), copie cachée vers la boîte pro de Quentin, signature et mention
   d'opposition ajoutées par le serveur, opposition relue avant chaque envoi.
 - **Page et brouillon validés par Quentin avant tout envoi** ; projets Nexora seulement pour les retours intéressés,
   après son accord. Prospects tenus à jour dans Nexora Optim › QME (`vague: "cible-<sujet>"`).
