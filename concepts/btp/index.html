@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour la maîtrise d'œuvre et les entreprises générales · QME</title>
+<meta name="description" content="Pack Chef de projet BTP : huit outils prêts à l'emploi qui suivent une opération de la préparation à la réception (planning, sous-traitants, visas, suivi par lot, comptes rendus, non-conformités, réserves, DOE). Adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+.sec .lien{display:inline-block;margin-top:14px;font-weight:600}
+.etapes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px;padding:0;list-style:none}
+.etapes li{background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.etapes li span{color:var(--red);margin-right:6px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/packs/chef-de-projet-btp/" data-goatcounter-click="concept-btp-pack-haut" data-goatcounter-title="Concept BTP : pack (haut)">Voir le pack</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour la maîtrise d'œuvre et les entreprises générales · pack prêt à l'emploi</p>
+    <h1>Une opération suivie de la préparation à la réception.</h1>
+    <p class="lede">Huit outils en ligne, déjà prêts, conçus par un ingénieur pour le suivi des opérations de bâtiment : le planning, les sous-traitants, les visas, le suivi par lot, les comptes rendus, les non-conformités, les réserves et le DOE. Chacun s'ouvre tout de suite en démo, sans inscription, et l'ensemble peut être adapté sur mesure à votre façon de travailler.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/reserves/?demo" data-goatcounter-click="concept-btp-demo" data-goatcounter-title="Concept BTP : démo réserves">Essayer la démo des réserves</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20BTP%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-btp-contact" data-goatcounter-title="Concept BTP : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">Chaque démo ouvre une opération fictive (entreprises, lots, documents inventés), sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Un tableur pour le planning, un autre pour les visas, les réserves dans un document par entreprise, le DOE dans la messagerie. Aucun ne parle aux autres.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Des réserves non levées des mois après la réception, un DOE incomplet qui retarde le solde, une attestation de sous-traitant périmée découverte au moment de payer.</p></div>
+    <div><h2>Ce que fait le pack</h2><p>Il tient chaque registre avec ses échéances, met les retards en tête de liste, prépare les relances et imprime les documents à transmettre.</p></div>
+  </div>
+
+  <h2 class="t">Le déroulé d'une opération, en huit outils</h2>
+  <p class="sous">Dans l'ordre où ils servent. Chaque capture vient de la démo réelle de l'outil.</p>
+  <ol class="etapes">
+    <li><span>01</span>Planning</li><li><span>02</span>Sous-traitants</li><li><span>03</span>Visas</li><li><span>04</span>Suivi par lot</li><li><span>05</span>Comptes rendus</li><li><span>06</span>Non-conformités</li><li><span>07</span>Réserves</li><li><span>08</span>DOE</li>
+  </ol>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Préparation</p><h2>Le planning de l'opération, chemin critique compris</h2><p>Les tâches s'écrivent en une ligne, les liens se calculent, le retard d'une tâche se répercute sur les suivantes.</p>
+      <ul><li>Jours ouvrés et fériés, jalons, liens fin-début et décalages</li><li>Chemin critique et marge de chaque tâche</li><li>Avancement réel comparé au planning de référence</li></ul>
+      <a class="lien" href="/templates/gantt/?demo" data-goatcounter-click="concept-btp-demo-gantt" data-goatcounter-title="Concept BTP : démo Planning Gantt">Ouvrir la démo · Planning Gantt →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Planning Gantt · démo</span></div><img src="planning.webp" width="1600" height="813" alt="Planning Gantt d'une rénovation : tâches par section, durées, avancement, liens et barres sur un calendrier"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Préparation</p><h2>Des sous-traitants acceptés et en règle</h2><p>Chaque entreprise avec ses pièces de vigilance et leur date de fin, sur toutes vos opérations.</p>
+      <ul><li>Attestations URSSAF, Kbis, assurance décennale : alerte avant expiration</li><li>Acceptation par le maître d'ouvrage suivie pour chaque intervention</li><li>Relance préparée, entreprise par entreprise</li></ul>
+      <a class="lien" href="/templates/sous-traitants/?demo" data-goatcounter-click="concept-btp-demo-sous-traitants" data-goatcounter-title="Concept BTP : démo Conformité des sous-traitants">Ouvrir la démo · Conformité des sous-traitants →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Conformité des sous-traitants · démo</span></div><img src="sous-traitants.webp" width="1600" height="813" alt="Alertes : pièces manquantes ou expirées par entreprise, intervention sans déclaration, taux de conformité" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Études d'exécution</p><h2>Le circuit de visa, avec ses délais</h2><p>Tous les documents soumis au visa, par lot et par indice, avec l'échéance contractuelle calculée.</p>
+      <ul><li>Avis VSO, VAO, REF par viseur et nouvel indice attendu</li><li>Documents en retard et viseurs à relancer en tête de liste</li><li>Export CSV et impression du registre</li></ul>
+      <a class="lien" href="/templates/visa/?demo" data-goatcounter-click="concept-btp-demo-visa" data-goatcounter-title="Concept BTP : démo Circuit de visa">Ouvrir la démo · Circuit de visa →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Circuit de visa · démo</span></div><img src="visas.webp" width="1600" height="813" alt="Registre des visas : documents par lot, indice, échéance, avis VSO, VAO ou REF et retards" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Chantier</p><h2>Chaque lot suivi, du marché au solde</h2><p>Avenants, situations de travaux, jalons recalés et points bloquants réunis par lot.</p>
+      <ul><li>Marché actualisé et travaux facturés comparés au prévisionnel</li><li>Jalons contractuels recalés et retards signalés</li><li>Revue de projet préparée à partir des données saisies</li></ul>
+      <a class="lien" href="/templates/suivi-chantier/?demo" data-goatcounter-click="concept-btp-demo-suivi-chantier" data-goatcounter-title="Concept BTP : démo Suivi de chantier par lot">Ouvrir la démo · Suivi de chantier par lot →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Suivi de chantier par lot · démo</span></div><img src="suivi-lots.webp" width="1600" height="813" alt="Tableau de bord d'une opération : marché actualisé, travaux facturés, délais, non-conformités, liste à traiter et courbe d'avancement financier" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Chantier</p><h2>Des réunions de chantier qui finissent en actions datées</h2><p>Un ordre du jour type « réunion de chantier », un compte rendu prêt à diffuser, des actions suivies d'une réunion à l'autre.</p>
+      <ul><li>Sécurité, avancement par lot, planning, qualité et réserves, points techniques</li><li>Actions ouvertes reportées automatiquement à la réunion suivante</li><li>Absents et entreprises à convoquer notés</li></ul>
+      <a class="lien" href="/templates/compte-rendu/?demo" data-goatcounter-click="concept-btp-demo-compte-rendu" data-goatcounter-title="Concept BTP : démo Compte rendu et plan d'actions">Ouvrir la démo · Compte rendu et plan d'actions →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Compte rendu et plan d'actions · démo</span></div><img src="comptes-rendus.webp" width="1600" height="813" alt="Modèles d'ordre du jour, dont la réunion de chantier : sécurité, avancement par lot, planning, qualité et réserves, points techniques" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Chantier</p><h2>Les non-conformités traitées jusqu'au bout</h2><p>Du constat à la clôture : analyse des causes, actions correctives, vérification de leur efficacité.</p>
+      <ul><li>Gravité, lot, échéance et retards en tête de liste</li><li>Méthode intégrée : 5 pourquoi, familles de causes</li><li>Indicateurs prêts pour une revue ou un audit</li></ul>
+      <a class="lien" href="/templates/non-conformites/?demo" data-goatcounter-click="concept-btp-demo-non-conformites" data-goatcounter-title="Concept BTP : démo Non-conformités">Ouvrir la démo · Non-conformités →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Non-conformités · démo</span></div><img src="non-conformites.webp" width="1600" height="813" alt="Registre des non-conformités : gravité, étape, lot et retards, avec l'action attendue" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">07 · Réception</p><h2>OPR et levée des réserves, entreprise par entreprise</h2><p>Chaque réserve localisée, attribuée, datée, levée par l'entreprise puis contrôlée.</p>
+      <ul><li>Réserves en retard, à lever, à contrôler, contrôlées</li><li>Tableau de bord par lot et par entreprise</li><li>Liste à transmettre et procès-verbal de levée prêts à imprimer</li></ul>
+      <a class="lien" href="/templates/reserves/?demo" data-goatcounter-click="concept-btp-demo-reserves" data-goatcounter-title="Concept BTP : démo Levée de réserves">Ouvrir la démo · Levée de réserves →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Levée de réserves · démo</span></div><img src="reserves.webp" width="1600" height="813" alt="Réserves en cours : retards, réserves à lever, à contrôler et contrôlées, avec localisation et entreprise" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">08 · Réception</p><h2>Un DOE complet, sans relances à la main</h2><p>Les pièces attendues par lot et par entreprise, leur état, les relances et le bordereau de transmission.</p>
+      <ul><li>Notices, plans, fiches produits, éléments du DIUO</li><li>Complétude par entreprise et pièces à reprendre</li><li>Courrier de relance prérempli et bordereau imprimable</li></ul>
+      <a class="lien" href="/templates/doe/?demo" data-goatcounter-click="concept-btp-demo-doe" data-goatcounter-title="Concept BTP : démo Registre du DOE">Ouvrir la démo · Registre du DOE →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Registre du DOE · démo</span></div><img src="doe.webp" width="1600" height="813" alt="Pièces du DOE : en retard, manquantes, à vérifier, validées, avec famille, entreprise et date limite" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, au bureau sur ordinateur comme sur téléphone au chantier, et les données sont synchronisées. Si votre organisation demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack prêt à l'emploi</h3>
+      <p class="prix">192 € au lieu de 256 €, les huit outils</p>
+      <ul><li>Planning, sous-traitants, visas, suivi par lot, comptes rendus, non-conformités, réserves, DOE</li><li>Chaque outil aussi vendu seul, de 15 € à 45 €</li><li>Démos complètes à tester avant toute décision</li></ul>
+      <div class="ctas"><a class="btn" href="/packs/chef-de-projet-btp/" data-goatcounter-click="concept-btp-achat" data-goatcounter-title="Concept BTP : fiche du pack">Voir le pack · 192 €</a><a class="btn line" href="/templates/reserves/?demo" data-goatcounter-click="concept-btp-demo-offre" data-goatcounter-title="Concept BTP : démo (offre)">Essayer une démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre cabinet ou à votre entreprise</p>
+      <ul><li>Vos lots, vos codes de visa, vos modèles de procès-verbaux</li><li>Plusieurs opérations et plusieurs intervenants, vos droits d'accès</li><li>Vos documents, vos exports, vos indicateurs</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=BTP%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-btp-sur-mesure" data-goatcounter-title="Concept BTP : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Les outils contiennent les coordonnées professionnelles des intervenants de vos opérations : il vous appartient d'en informer les personnes concernées. Aucun document n'y est stocké. Les données des démos sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez une démo, puis dites-moi comment vous suivez vos opérations aujourd'hui : je vous dis franchement si les outils prêts à l'emploi suffisent, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20BTP%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-btp-contact-bas" data-goatcounter-title="Concept BTP : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/chef-de-projet-btp/" data-goatcounter-click="concept-btp-pack-bas" data-goatcounter-title="Concept BTP : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
