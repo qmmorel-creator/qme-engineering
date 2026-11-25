@@ -51,8 +51,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`entity: "summary"` : relances dues, balle chez QME, prospects sérieux et tièdes), `list_qme` (filtres, pagination),
   `mutate_qme` (étape, relance, balle, prochaine action, échanges datés, clients, devis `QME-AAAA-NNN`, contrats,
   factures, créateurs et pilotage de la file d'affiliation). À lire avant toute relance, devis, réponse ou nouveau mail
-  à un prospect ; à mettre à jour le jour même par la session qui traite un échange. Une relance = une tâche Nexora
-  (`create_task`, `optim: {qme: {type, id}}`). Avant de conclure qu'un prospect attend une réponse, chercher
+  à un prospect ; à mettre à jour le jour même par la session qui traite un échange. **Aucune tâche Nexora pour ce que
+  Claude fait automatiquement** (décision du 25/11/2026 : relances, envois, suivis de campagne) : une relance se suit par
+  la date `relance` de la fiche QME (filtre `dueOnly`), jamais par `create_task`. Avant de conclure qu'un prospect attend une réponse, chercher
   `to:<adresse>` dans tous les fils Gmail.
 - **Jamais de prospect sans adresse e-mail** (décision de Quentin du 24/11/2026) : une entreprise sans adresse e-mail publique (formulaire, téléphone seul) n'est pas créée dans Nexora Optim › QME ; l'étape `pas-de-mail` n'est plus utilisée, et les 410 fiches qui la portaient ont été supprimées le 24/11/2026.
 - `docs/prospection/suivi-prospects.md`, `journal-refus.md` et le Sheet « QME · Affiliation · file d'envoi » sont des
@@ -70,7 +71,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   prospect, d'un client ou d'un créateur en discussion (mail reçu ou envoyé, réponse, relance, appel, visio, concept,
   proposition, devis, contrat, facture, refus) est reporté **le jour même, avant de rendre la main**, dans tous les
   endroits concernés de Nexora Optim : fiche QME (échanges, étape, balle, prochaine action, relance), fiche client et
-  devis, tâche « État global du prospect », Note Bible, tâches de relance ou de réunion du projet. Liste de contrôle :
+  devis, tâche « État global du prospect », Note Bible, tâches de réunion du projet (aucune tâche de relance). Liste de contrôle :
   `docs/prospection/NEXORA-PROSPECTS.md` § 2. Une action non reportée dans Nexora est considérée comme non faite.
 - **Note Bible par prospect** (décision du 24/11/2026) : chaque projet prospect a une tâche « Note Bible · <Prospect> »
   (type Notes, statut Valable) qui porte **en tête le lien de la page de concept**, puis la liste de tous les PDF émis
