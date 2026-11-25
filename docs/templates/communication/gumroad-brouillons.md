@@ -311,9 +311,9 @@ ajoutés, couverture ajoutée. Tags réécrits par Gumroad : `auto-école`.
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| AEC | Gestion d'auto-école | orao9JfHB37GPMbC8DMOZA== | /l/gestion-auto-ecole | 45 € | brouillon ; Quentin : clé |
-| EDT | Emploi du temps d'établissement | -QR6i4YdVpKiitm12RP6Ag== | /l/emploi-du-temps-etablissement | 45 € | brouillon ; Quentin : clé |
-| FRM | Matrice compétences et formations | C4nN47ATR7v4pbDgAb7xRQ== | /l/matrice-competences-formations | 25 € | brouillon ; Quentin : clé |
-| PTG | Calendrier du potager | ufjDjj77mM7DcT2U36eugw== | /l/calendrier-potager | 13 € | brouillon ; Quentin : clé |
+| AEC | Gestion d'auto-école | orao9JfHB37GPMbC8DMOZA== | /l/gestion-auto-ecole | 45 € | **en vente** (25/11/2026) |
+| EDT | Emploi du temps d'établissement | -QR6i4YdVpKiitm12RP6Ag== | /l/emploi-du-temps-etablissement | 45 € | **en vente** (25/11/2026) |
+| FRM | Matrice compétences et formations | C4nN47ATR7v4pbDgAb7xRQ== | /l/matrice-competences-formations | 25 € | **en vente** (25/11/2026) |
+| PTG | Calendrier du potager | ufjDjj77mM7DcT2U36eugw== | /l/calendrier-potager | 13 € | **en vente** (25/11/2026) |
 | ANM | Suivi d'un animal de compagnie | — | /l/suivi-animal-compagnie | 12 € | à créer le 25/11 à 19 h 45 |
 | PAS | Pack Associations et clubs | — | /l/pack-associations | 156 € | à créer le 25/11 à 19 h 45 |
