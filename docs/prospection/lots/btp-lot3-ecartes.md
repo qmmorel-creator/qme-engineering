@@ -1,0 +1,65 @@
+# Lot 3 — entreprises écartées (sourcing du 25/11/2026)
+
+- Agence CréHouse (Anglet, 64) : agence sœur de Chunky Architecture (mêmes dirigeants), surtout villas de particuliers ; une seule des deux retenue.
+- MM Coordination (Tarbes, 65) : site centré sur la formation de coordonnateurs SPS.
+- Origines Construction (Laval, 53), DI-MOEA (Creil, 60), H2C Construction (Lée, 64) : aucune adresse e-mail sur les pages téléchargées.
+- Bati Percheron (61) : seule une adresse d'exemple (« votre.email@exemple.fr »).
+- Sud Construction Habitat (64) : seule l'adresse de l'hébergeur du site.
+- Team Concept (Torcy, 77) : programmation et AMO, pas de direction de travaux affichée.
+- ALP Construction (Nevers, 58) : rénovation surtout pour particuliers, groupe de marques.
+- Genius Ingénierie (Châlons-en-Champagne, 51 / Nevers, 58) : bureau d'études structure ; écarté au profit d'autres structures (non contrôlé plus avant).
+- Lecomte Perez Architectes (Mouzon, 08), Archi-Nergie (Saint-Girons, 09), MAA Atelier (Dieulefit, 26), Armonie Architecture (Auch, 32), Delphine Peyre (43), Estaun Architectures (Biarritz, 64), Boulin Architecture (Pau, 64), Atelier LCA (Carcassonne, 11), Architectes Studio (71), Atelier Wow (71) : adresses nominatives uniquement.
+- Apside Architecture (Valence, 26) : aménagement d'espaces de travail (architecture intérieure).
+- BFD Architecture (Eauze, 32) : surtout villas et résidences privées, aucun suivi de travaux affiché.
+- Montal Mestiri (Cahors, 46), Suau Architecture (Lisle-sur-Tarn, 81), Archipolis (07), Atelier Diallo (Dormans, 51) : aucune mission de suivi de chantier ni réalisation précise exploitable.
+- Camborde Architectes (Bizanos, 64) : trois implantations (Pau, Bizanos, Soorts-Hossegor).
+- CCC Architecture (Lognes, 77), Mod Hus (Chessy, 77), SPM Construction (77) : département 77 déjà servi deux fois dans ce lot.
+- Esthète Conception (Biarritz, 64), Architheme (Bergerac, 24) : architecture d'intérieur.
+- Itinéraires Architecture retenu ; Patrick Lebrun Architecte (Compiègne, 60) : 60 déjà bien servi.
+- Oxarchitectures, Les Ateliers 4 (87) : département 87 déjà surreprésenté.
+- Almuneau Architecteurs (48), Léonard Architecture (11), Pro2 Architecteurs (11) : réseau national « Architecteurs ».
+- Groupe Acanthe Architectes (52/54/55) : trois implantations.
+- Chatillon Architectes (Ferney-Voltaire, 01) : agence importante (Paris et Ferney), grands projets nationaux.
+- Archibulle (01) : quatre implantations (Bourg-en-Bresse, Ferney, Lons-le-Saunier, Pantin).
+- DSA Architecture (Chalon / Dijon) : propose aussi le contractant général via sa propre société ; ambigu, non retenu.
+- Adobe Architectes (16), Lapeyre Architecture (47), Hede Architecture (01), Quantum Architecte (01) : aucune réalisation ni mission exploitable sur les pages téléchargées.
+- Mage Architecture (88), Bourgogne Maîtrise (71), Klein Constructions (81), Marche Construction (23), Sanz Constructions (58), Drom'Bati (26), AD Construction (07) : maisons individuelles de particuliers.
+- Claudem (26), Suze Bâtiments (26), Ferreira Bâtiment (26, groupe), Entreprise Juan (65), Ozer Bâtiment (70), Aube Constructions (10), Fleurent Bâtiment (16), Bochard Construction (10), Bati Bosc (12), Adamczyk (05), Borel BTP (05, groupe), DT Bâtiment (80), LV Bâtiment (16), Girard BTP (23), Loupchat (46), Robin Constructions (55) : gros œuvre / maçonnerie ou terrassement, pas entreprise générale TCE vérifiée.
+- Sane Bâtiment (93) : curage et démolition ; Energie Construction (77), Wilkrenov (77), Capital Home (06), BG Constructions (71), Jolybati (53) : rénovation de logements de particuliers.
+- Urbaneo (10) : promoteur-constructeur ; Groupe Marraud (47) : groupe.
+- Elcimai (Melun, 77) : nombreuses agences (Paris, Lyon, Nantes, Grenoble…).
+- MM Coordination (65) : formation SPS.
+- Atelier du Rouget Simon Teyssou (Le Rouget, 15) : 23 salariés au siège et 10 à Clermont-Ferrand, hors cible petite structure.
+- Construction Savoyarde (La Plagne, 73), TEC Études (73) : département 73 déjà servi deux fois dans ce lot.
+- Mathé Leite Construction (Romorantin, 41) : seule adresse au prénom d'une personne (wanadoo).
+- Entreprise Guy (24), Tulpin Bâtiment (02), MC Bâti (45), Trimarco (06), Sofrelis retenue ; Caujolle (31), AMT Construction (13), JHS Entreprise (04/13) : gros œuvre, façades ou maisons de particuliers.
+- Cohin Construction (27), Atelier Bellevue, Entreprise Drain (02), Bequet Lanoote (02, déjà écartée au lot 2) : aucune adresse e-mail exploitable.
+- Valentin SA (Genas, 69), IDEA Construction (57), Kern Groupe (56/35/44), Boisseau Bâtiment (49), Groupe Mazaud (69), Curot (Spie Batignolles), Rabot Dutilleul, Demathieu Bard : groupes ou structures importantes.
+- Exia (45) : promoteur ; Urbaneo (10) : promoteur-constructeur.
+- Batimentoo (33), Entreprise Neveu (33), Elevia (14), Chambon Construction (63), L'Arvernoise (63), MOEX (34) : déjà écartés au lot 2, non repris.
+- Agence Schneider (Caen, 14), Azema Architectes (31), Oslo Architectes (67), Archi5 (93, 40 collaborateurs), Ronald Sirio (93), NUR Architectes (34/13, trois implantations), Chatillon Architectes : structures importantes ou plus de deux agences.
+- JBA (Nantes) : DET confiée à un bureau extérieur ; KLV2D (62) : OPC confiée à la maîtrise d'ouvrage, direction de travaux non vérifiée.
+- Agence Mind (75), RN Architecture (93), Atelier MAI (76), Atelier Dinanderie (76), Esthète Conception (64) : architecture intérieure.
+- AlyoS Ingénierie (76) : groupe ; NBO-AA, Almuneau, Léonard, Pro2 : réseau « Architecteurs ».
+- Kaibily Architectes (44), Bozzi Architecture (2A) : surtout particuliers.
+- Agaram Architectes (95) : site modèle sans contenu ; Hede Architecture (01) : site en construction.
+- Tristan Brisard (Nantes, 44) : adresse au prénom et nom de l'architecte (orange).
+- ACL Construction : entreprise québécoise (Saint-Eustache, QC), hors France.
+- Gali Bati Concept (93 / Pyrénées) : localisation ambiguë (annuaire au Raincy, site à Bagnères-de-Luchon).
+- Bruno Agencements (Montpellier, 34) : aucune adresse postale sur le site ; localisation non vérifiable.
+- LV Agencement (Brive, 19) : agenceur et mobilier, pas une entreprise générale TCE vérifiée.
+- Atelier L'Esquisse (Saint-Flour, 15) : le domaine renvoie vers un site de stages de peinture.
+- M 3 A Architecture (Compiègne, 60) : le domaine renvoie vers un site suisse.
+- Atelier de l'Archi (Meuse, 55), Hennrich Architecture (54), Atelier Leclerc (45), GB Architecture (45) : adresses gmail nominatives.
+- Vivien Gimenez Architecture (Béziers, 34) : adresse d'un autre domaine (agence-vga.com), aucune réalisation livrée exploitable.
+- Skarbek Architectes (45), Kiosque Aménagement (59), ADS Aménagement (01), Alta Aménagement (49), Dubedout & Collet (64), Megard Architectes (01), Atelier Rhénan (73), Maud Nozeran (11) : département déjà servi deux fois dans ce lot.
+- Atelier 742 (56), Agence Luma (84), Atelier Devergne (93), DVA Architecture (site américain), Fragments Architecture (92), Cabinet François (57, avocats), Imhotep (site en maintenance), CF Architecture (site vide) : hors cible ou pages inexploitables.
+- Départements prioritaires sans résultat : Cantal (15), Creuse (23), Lozère (48), Haute-Marne (52), Meuse (55), Haute-Corse (2B) — sites trouvés sans adresse générique (Estival Architecture, Bessin Sebelin, Gallerand-Ribeaudeau : aucun site propre trouvé ; Atelier du Rouget : trop grand ; Studio Battistelli : aucune adresse sur les pages téléchargées).
+
+## Notes de vérification (25/11/2026)
+
+- Chaque adresse retenue a été relue en fin de sourcing sur la page « source » téléchargée à nouveau (décodage des adresses protégées compris) et chaque domaine d'adresse a un enregistrement MX (DNS public). Seule exception : Architectes Associés (Suresnes), adresse lue sur contact.html et mentions.html lors du sourcing, site injoignable à la relecture finale.
+- Aucun domaine de site ni domaine d'adresse des lots 1 et 2 (hors webmails) n'est repris ; aucune entreprise écartée aux lots 1 et 2 n'est reprise. ECIB Project et GECIBAT BET exclus.
+- Méthode : noms tirés des annuaires Obat (architecture, maîtrise d'œuvre, économie, tous corps d'état, gros œuvre, agencement), site propre identifié par son domaine puis contrôlé (adresse postale du département, adresse générique, fait lu sur le site).
+
+- Architectes Associés (Suresnes) : écarté au contrôle du 25/11/2026, site injoignable à la relecture finale (adresse non revérifiée).

@@ -49,6 +49,12 @@ n'a ni plans annotés ni photos géolocalisées.
 |---|---|---|---|---|
 | 1 | `docs/prospection/lots/btp-lot1.json` (écartés : `btp-lot1-ecartes.md`) | 71, 40 départements | 47 `moe` (22 MOE d'exécution, 10 architectes, 12 économistes, 3 OPC), 24 `eg` | adresse lue sur la page `source` du site de l'entreprise, domaine avec serveur de messagerie ; désinscrits : 0 ; opposition (API) : 0 ; Nexora : 0 doublon ; Gmail (`in:anywhere`, domaine ou adresse) : 0 échange |
 | 2 | `docs/prospection/lots/btp-lot2.json` (écartés : `btp-lot2-ecartes.md`) | 88, 64 départements | 54 `moe`, 34 `eg` (une EG retirée : ECIB Project, déjà contacté) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 doublon hors ECIB ; Gmail : ECIB seulement |
+| 3 | `docs/prospection/lots/btp-lot3.json` (écartés : `btp-lot3-ecartes.md`) | 92, 59 départements (dont 04, 08, 09, 18, 26, 32, 39, 43, 46, 53, 58, 60, 61, 64, 70, 77, 80, 81, 93) | 69 `moe` (56 architectes), 23 `eg` ; Architectes Associés retiré (site injoignable à la relecture) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 ; Gmail 0 |
+
+À surveiller dans le lot 3 : pour 14 cabinets d'architectes, la direction de travaux est déduite de leurs ouvrages, pas écrite
+sur le site ; quatre entreprises générales à forte part de gros œuvre et de maisons (Art Construction, Constructions Tedoldi,
+JBM Constructions, Chrétien Bâtiment) ; trois webmails peu explicites (Itinéraires Architecture, Miquel Coordination,
+Atelier 223).
 
 À surveiller dans le lot 1 : cinq entreprises générales travaillent surtout pour des particuliers (Aedis Rénovation,
 MB Rénovation, 4S Rénovation, Renov Maison Sud, BR Habitat Espace Harnois), l'angle « sous-traitants » leur convient
@@ -64,3 +70,4 @@ moins ; sept adresses en webmail générique affichées sur le site ; Bloc Const
 | 2026-11-25 | 0 | 0 | 0 | Campagne `btp` activée sans plafond (pause levée à 13 h 33) après la suppression du plafond global (PR #303) |
 | 2026-11-25 | 1 | 0 | 0 | Envoi en parallèle des campagnes (PR #305, autre session) : premier mail btp parti à 13 h 44. Lot 2 (88 adresses) contrôlé, mis en file et versé dans Nexora (`lot: 2`) ; pilotage quotidien planifié lun–sam 18 h 23 |
 | 2026-11-25 (bilan 18 h 23) | 34 | 0 | 0 | 34 premiers mails partis sans erreur ni écarté ; 125 en file ; 2 filtres Mailinblack (Time and Co, NJC Economie) attendent la validation d'expéditeur par Quentin ; aucune relance due ; lot 3 de sourcing lancé (file sous 150) |
+| 2026-11-25 (soir) | — | — | — | Lot 3 (92 adresses) contrôlé, mis en file et versé dans Nexora (`lot: 3`) |
