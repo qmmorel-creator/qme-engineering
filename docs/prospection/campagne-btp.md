@@ -1,4 +1,4 @@
-# Campagne ciblée « btp » (préparée le 25/11/2026)
+# Campagne ciblée « btp » (validée le 25/11/2026)
 
 Demande de Quentin du 25/11/2026 : campagne ciblée sur un **pack** et non un template seul, le **Pack Chef de projet BTP**
 (`PBT`, en vente, 192 € au lieu de 256 €), présenté comme prêt à l'emploi avec l'ouverture sur du sur-mesure.
@@ -12,7 +12,7 @@ Skill : `.claude/skills/campagne-ciblee-pack/`.
 | Cible | maîtres d'œuvre d'exécution indépendants, petits cabinets d'architectes qui assurent la direction des travaux, économistes de la construction, OPC, petites entreprises générales ; exclus : majors, grands groupes d'ingénierie, réseaux nationaux, fiches déjà dans Nexora |
 | Envoi | OVH via le site, file `/api/prospection` (campagne `btp`, `parJour: 12`, relances J+7 comprises), lundi–samedi, 8 h–18 h |
 | Nexora | concept `cpt-btp` (brouillon) ; prospects `vague: "cible-btp"` |
-| Validation | page (aperçu Netlify de la PR) et brouillon du mail type validés par Quentin avant tout envoi |
+| Validation | page, mail type et lot 1 complet validés par Quentin le 25/11/2026 (« Garde tout. Feu vert ») ; PR #302 fusionnée |
 
 ## Captures (production, 25/11/2026)
 
@@ -39,8 +39,8 @@ n'a ni plans annotés ni photos géolocalisées.
 ## Points ouverts
 
 - **Quota** : au 25/11/2026, la campagne `auto-ecole` est active avec `parJour: 50` (et `test-envoi` en pause,
-  `parJour: 1`). Avec `btp` à 12, la somme dépasserait 50 : la campagne `btp` n'est **pas créée** sur le serveur tant
-  que Quentin n'a pas décidé (aucune modification du `parJour` d'une autre campagne). Par ailleurs, la tâche
+  `parJour: 1`). Avec `btp` à 12, la somme dépasserait 50 : la campagne `btp` est créée (`parJour: 12`) mais
+  **reste en pause** tant que Quentin n'a pas décidé (aucune modification du `parJour` d'une autre campagne). Par ailleurs, la tâche
   d'envoi parcourt les campagnes dans l'ordre et en envoie une par passage : tant qu'`auto-ecole` a des mails en
   file et n'a pas atteint son plafond, elle prend les 50 créneaux du jour.
 
@@ -60,3 +60,4 @@ moins ; sept adresses en webmail générique affichées sur le site ; Bloc Const
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page (PR #302, aperçu contrôlé), captures, modèle de mail, brouillon Gmail de validation, concept Nexora `cpt-btp` (brouillon), lot 1 (71 adresses vérifiées) ; en attente de validation et de décision sur le quota |
+| 2026-11-25 | 0 | 0 | 0 | Feu vert de Quentin ; PR #302 fusionnée, page en ligne (200, noindex) ; campagne `btp` créée en pause (`parJour: 12`) ; 71 mails en file (opposition revérifiée : 0) ; 71 fiches Nexora `a-contacter` ; concept `cpt-btp` en ligne. Rien ne part avant la décision sur le quota |
