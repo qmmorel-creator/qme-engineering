@@ -44,8 +44,19 @@ n'a ni plans annotés ni photos géolocalisées.
   d'envoi parcourt les campagnes dans l'ordre et en envoie une par passage : tant qu'`auto-ecole` a des mails en
   file et n'a pas atteint son plafond, elle prend les 50 créneaux du jour.
 
+## Lots de sourcing
+
+| Lot | Fichier | Adresses | Profils | Contrôles (25/11/2026) |
+|---|---|---|---|---|
+| 1 | `docs/prospection/lots/btp-lot1.json` (écartés : `btp-lot1-ecartes.md`) | 71, 40 départements | 47 `moe` (22 MOE d'exécution, 10 architectes, 12 économistes, 3 OPC), 24 `eg` | adresse lue sur la page `source` du site de l'entreprise, domaine avec serveur de messagerie ; désinscrits : 0 ; opposition (API) : 0 ; Nexora : 0 doublon ; Gmail (`in:anywhere`, domaine ou adresse) : 0 échange |
+
+À surveiller dans le lot 1 : cinq entreprises générales travaillent surtout pour des particuliers (Aedis Rénovation,
+MB Rénovation, 4S Rénovation, Renov Maison Sud, BR Habitat Espace Harnois), l'angle « sous-traitants » leur convient
+moins ; sept adresses en webmail générique affichées sur le site ; Bloc Construction : adresse reconstituée depuis
+« contact[at]… » ; Auxilium Projets : deux domaines sur le site, seul le `.fr` reçoit du courrier.
+
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora `cpt-btp` (brouillon), premier lot de sourcing ; en attente de validation et de décision sur le quota |
+| 2026-11-25 | 0 | 0 | 0 | Page (PR #302, aperçu contrôlé), captures, modèle de mail, brouillon Gmail de validation, concept Nexora `cpt-btp` (brouillon), lot 1 (71 adresses vérifiées) ; en attente de validation et de décision sur le quota |
