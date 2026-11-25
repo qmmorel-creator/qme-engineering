@@ -38,6 +38,8 @@ n'a ni plans annotés ni photos géolocalisées.
 
 ## Points ouverts
 
+- **Parallèle** (25/11/2026) : les campagnes actives se relaient mail par mail ; `btp` n'attend plus qu'`auto-ecole`
+  ait vidé sa file.
 - **Quota** (dépassé : plafond global de 50 par jour supprimé le 25/11/2026, envoi toutes les 2 minutes ; la
   campagne `btp` peut être créée avec son propre `parJour` sans retoucher les autres) : au 25/11/2026, la campagne `auto-ecole` est active avec `parJour: 50` (et `test-envoi` en pause,
   `parJour: 1`). Avec `btp` à 12, la somme dépasserait 50 : la campagne `btp` n'est **pas créée** sur le serveur tant
