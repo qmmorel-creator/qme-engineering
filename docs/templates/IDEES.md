@@ -1458,6 +1458,10 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   - bandeaux plus légers sur mobile (environ 200 px avant le contenu) ;
   - vocabulaire plus simple (« sans toit », « postes », « écart ») ;
   - poste de budget « animaux ».
+  - onglet « Jour par jour » ouvert sur aujourd'hui pendant le voyage (il s'ouvre au jour 1 ; seul le bouton de
+    la carte « Premiers pas » amène à aujourd'hui) ;
+  - formulaire « Nouvelle dépense » allégé (libellé et montant visibles d'abord, répartition repliée) ;
+  - listes ajoutées (« Mes ajouts ») plus haut dans « Préparer » (aujourd'hui sous quatre listes types).
 
 ## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
 
