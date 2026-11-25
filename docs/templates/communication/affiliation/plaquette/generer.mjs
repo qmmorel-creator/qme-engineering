@@ -1,7 +1,7 @@
 // Plaquette A4 « Partenariat Réseaux Sociaux » (25/11/2026) : HTML autonome, PDF A4 et aperçu PNG.
 // Usage : node docs/templates/communication/affiliation/plaquette/generer.mjs
 // Charte : kit réseaux sociaux QME (papier, encre, rouge, jaune, bleu, Outfit) et mascotte Carreau.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { carreau, PALETTE as P } from '../../formats-test/mascotte/carreau.js';
@@ -247,6 +247,43 @@ b{font-weight:700}
 
 writeFileSync(join(ici, 'partenariat-reseaux-sociaux.html'), html);
 
+// Page du site : qm-engineering.fr/partenariat/ (même contenu, police du site, mise à l'échelle sur écran, PDF à télécharger)
+const PDF_SITE = 'QME-plaquette-partenariat-reseaux-sociaux.pdf';
+const dossierSite = join(racine, 'partenariat');
+const pageSite = html
+  .replace(/@font-face\{[^}]*\}\n@font-face\{[^}]*\}\n/, '')
+  .replace('<meta charset="utf-8">', `<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Le partenariat QME pour les créateurs et créatrices : 25 % de chaque vente reversé par Gumroad, et un outil sur mesure offert.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">`)
+  .replace('</style>', `@media screen{
+  body{padding:56px 0 24px}
+  .page{margin:0 auto;background:var(--papier);box-shadow:0 0 0 2px var(--encre),6px 6px 0 2px var(--encre)}
+  .barre{position:fixed;inset:0 0 auto 0;z-index:5;background:var(--encre);color:var(--papier);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 16px;font:600 15px/1.2 Outfit,sans-serif}
+  .barre a{color:var(--papier);text-decoration:none}
+  .barre .pdf{background:var(--jaune);color:var(--encre);padding:8px 14px;font-weight:800;white-space:nowrap}
+}
+@media print{.barre{display:none}}
+</style>`)
+  .replace('<body><main class="page">', `<body>
+<div class="barre"><a href="/">← qm-engineering.fr</a><a class="pdf" href="/partenariat/${PDF_SITE}" download data-goatcounter-click="partenariat-pdf" data-goatcounter-title="Plaquette partenariat : PDF">Télécharger le PDF</a></div>
+<main class="page">`)
+  .replace('</main></body></html>', `</main>
+<script>
+// Met la page A4 (794 px) à l'échelle de l'écran, sans défilement horizontal.
+(function () {
+  var page = document.querySelector('.page');
+  function ajuster() { page.style.zoom = Math.min(1, (window.innerWidth - 16) / 794); }
+  ajuster(); window.addEventListener('resize', ajuster);
+})();
+</script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body></html>`);
+mkdirSync(dossierSite, { recursive: true });
+writeFileSync(join(dossierSite, 'index.html'), pageSite);
+
 const { createRequire } = await import('node:module');
 const { chromium } = createRequire(import.meta.url)('playwright');
 const nav = await chromium.launch();
@@ -257,4 +294,5 @@ const debord = await page.evaluate(() => { const m = document.querySelector('.pa
 await page.pdf({ path: join(ici, 'QME - Plaquette partenariat réseaux sociaux.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
 await page.screenshot({ path: join(ici, 'apercu.png'), fullPage: false });
 await nav.close();
+copyFileSync(join(ici, 'QME - Plaquette partenariat réseaux sociaux.pdf'), join(dossierSite, PDF_SITE));
 console.log('débordement (px) :', debord);
