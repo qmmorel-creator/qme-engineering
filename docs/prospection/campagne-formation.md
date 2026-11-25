@@ -1,4 +1,4 @@
-# Campagne ciblée « formation » (préparée le 25/11/2026)
+# Campagne ciblée « formation » (lancée le 25/11/2026)
 
 Demande de Quentin du 25/11/2026 : campagne ciblée auprès des petits organismes de formation professionnelle, petits
 CFA indépendants et écoles privées de langues ou d'arts qui construisent l'emploi du temps de quelques groupes,
@@ -56,3 +56,4 @@ prêt à l'emploi et l'ouverture sur du sur-mesure. Skill : `.claude/skills/camp
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page (PR #301, aperçu Netlify), modèle de mail, 101 adresses vérifiées, brouillon Gmail de validation ; campagne non créée (quota) |
+| 2026-11-25 | 1 | 0 | 0 | Feu vert de Quentin : PR #301 fusionnée (squash), page en production (200, noindex) ; campagne `formation` créée (`parJour: 12`), 101 mails en file, opposition revérifiée (0) ; 101 fiches Nexora (`fo-*`, `a-contacter`), concept `en-ligne` ; premier envoi 13:46 (Start Music 63). Copies cachées non visibles dans la boîte Gmail consultée (comme pour `auto-ecole`) |
