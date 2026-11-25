@@ -70,7 +70,7 @@ if (commande === 'messages') {
 } else if (commande === 'file') {
   const [c, f] = args;
   const liste = await lireJson(f);
-  for (let i = 0; i < liste.length; i += 200) console.log(JSON.stringify(await appeler('/prospection/file', { campagne: c, messages: liste.slice(i, i + 200) })));
+  for (let i = 0; i < liste.length; i += 25) console.log(JSON.stringify(await appeler("/prospection/file", { campagne: c, messages: liste.slice(i, i + 25) })));
 } else if (commande === 'etat') {
   const [c, details] = args;
   console.log(JSON.stringify(await appeler(c ? `/prospection/campagne?c=${c}${details ? '&details=1' : ''}` : '/prospection'), null, 2));

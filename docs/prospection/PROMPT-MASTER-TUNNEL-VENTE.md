@@ -127,7 +127,8 @@ Une interaction non reportée est considérée comme **non faite**. Une interact
 6. **Drive** : copie de chaque PDF émis, dans la version réellement émise (§ 6).
 7. **Tâches du projet** :
    - une action à faire = une tâche ;
-   - une relance = une tâche liée (`optim: {qme: {type, id}}`) ;
+   - aucune tâche pour une relance ni pour ce que Claude fait automatiquement (décision du 25/11/2026) : la relance se
+     suit par la date `relance` de la fiche QME ;
    - un rendez-vous = une tâche Réunions (§ 4) ;
    - une action faite = `complete_task`.
 8. **Relis** ce qui a été écrit (`get_qme`, `get_task`, `get_file_metadata`) avant de l'annoncer.

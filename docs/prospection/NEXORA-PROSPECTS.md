@@ -14,7 +14,7 @@ archive : la procédure à jour est ici.
 | Projet Nexora du prospect | `list_projects`, `list_tasks` | dossier « QM Engineering », un projet par prospect |
 | Tâche « État global du prospect » | `update_task` | statut parmi les six statuts prospects + description datée |
 | Tâche « Note Bible · <prospect> » | `update_task` | lien de la page de concept en tête, liste de tous les documents émis |
-| Tâches d'action, relances, réunions | `create_task`, `complete_task`, `save_meeting_report` | une tâche par action à faire ; relance liée par `optim: {qme: {type, id}}` |
+| Tâches d'action et réunions | `create_task`, `complete_task`, `save_meeting_report` | une tâche par action que Quentin doit faire lui-même ; **aucune tâche pour une relance ni pour ce que Claude fait automatiquement** (décision du 25/11/2026) : la relance se suit par la date `relance` de la fiche QME |
 | Dossier Google Drive du prospect | Google Drive | copie de chaque PDF émis |
 
 **Jamais de prospect sans adresse e-mail** (décision de Quentin du 24/11/2026) : une entreprise sans adresse e-mail publique (formulaire, téléphone seul) n'est pas créée dans Nexora Optim › QME ; l'étape `pas-de-mail` n'est plus utilisée, et les 410 fiches qui la portaient ont été supprimées le 24/11/2026.
@@ -43,7 +43,8 @@ Après l'action, passer cette liste dans l'ordre :
    prochaine action.
 4. **Note Bible** : une ligne par document émis (§ 3), et le lien de la page de concept en tête dès qu'il existe.
 5. **Drive** : copie du PDF émis dans le dossier du prospect (§ 3.3).
-6. **Tâches du projet** : une relance = une tâche (`create_task`, `optim: {qme: {type, id}}`) ; un rendez-vous = une
+6. **Tâches du projet** : aucune tâche de relance (décision du 25/11/2026 : la relance se suit par la date `relance` de la
+   fiche QME) ; un rendez-vous = une
    tâche de type Réunions avec ses heures, puis son compte rendu (`save_meeting_report`) ; une action terminée =
    `complete_task`.
 7. **Relire** ce qui a été écrit (`get_qme`, `get_task`) avant d'annoncer que c'est fait.
