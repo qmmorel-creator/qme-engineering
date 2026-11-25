@@ -1,0 +1,124 @@
+<!-- Carrousel IG-226 (24/11/2026) · F3 Le calcul que personne ne fait n°2 : la règle de 72. Calcul : calcul.py. Rendu : node rendre.mjs ../formats-test/IG-226/IG-226.html (depuis docs/templates/communication/instagram/) -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-226</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+</style><style>
+.serie{position:absolute;left:84px;top:96px;font-weight:800;font-size:28px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:4px solid currentColor;max-width:640px;line-height:1.25}
+.lignes{position:absolute;left:84px;right:84px}
+.lignes div{display:flex;align-items:baseline;gap:30px;padding:22px 0;border-bottom:4px solid var(--trait)}
+.lignes b{font-size:76px;font-weight:800;letter-spacing:-.03em;min-width:260px;text-align:right;white-space:nowrap}
+.lignes span{font-size:38px;font-weight:600;line-height:1.25}
+.grand{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.tab{position:absolute;left:84px;width:760px;border-collapse:collapse;font-size:44px}
+.tab td{padding:16px 0;border-bottom:4px solid rgba(255,255,255,.35)}
+.tab td:last-child{text-align:right;font-weight:800;white-space:nowrap;padding-left:40px}
+
+#IG-226-calcul-2-2 .lignes div{padding:16px 0}
+#IG-226-calcul-2-2 .lignes b{font-size:64px;min-width:330px}
+.serie.plein{background:var(--jaune);color:var(--encre);border-color:var(--encre)}
+.tab3{position:absolute;left:84px;width:912px;border-collapse:collapse;font-size:44px}
+.tab3 th{font-size:28px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:right;padding:0 0 14px;border-bottom:6px solid var(--encre)}
+.tab3 th:first-child{text-align:left}
+.tab3 td{padding:16px 0;border-bottom:4px solid rgba(20,20,20,.25);text-align:right;font-weight:600;white-space:nowrap}
+.tab3 td:first-child{text-align:left;font-weight:800}
+.tab3 td:last-child{font-weight:800}
+.sens{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.sens div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:28px 30px}
+.sens small{display:block;font-size:28px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.sens b{display:block;font-size:72px;font-weight:800;letter-spacing:-.03em;margin-top:8px;white-space:nowrap}
+.sens span{display:block;font-size:32px;font-weight:600;line-height:1.25;margin-top:6px}
+</style></head><body>
+<section class="cadre" id="IG-226-calcul-2-1" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">1 / 6</span>
+<div class="f" style="right:-120px;bottom:-120px;width:560px;height:560px;border-radius:50%;background:var(--bleu);border:8px solid var(--encre)"></div>
+<div class="f" style="right:84px;top:300px;width:160px;height:160px;background:var(--rouge);border:6px solid var(--encre)"></div>
+<p class="serie">Le calcul que personne ne fait · n°2</p>
+<h1 style="top:330px;font-size:100px;right:280px">Un prix qui monte de 3&nbsp;% par an.</h1>
+<h1 style="top:700px;font-size:100px;right:200px">Il double <mark style="background:var(--encre);color:var(--jaune)">quand</mark>&nbsp;?</h1>
+<p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre" id="IG-226-calcul-2-2" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">2 / 6</span>
+<p class="serie plein">Étape 1 · Le piège</p>
+<p class="p" style="top:250px;font-size:42px">3&nbsp;% par an pendant 10 ans, ça fait 30&nbsp;%&nbsp;? <b>Non.</b> Chaque hausse s'ajoute aussi aux hausses d'avant.</p>
+<div class="lignes" style="top:450px">
+<div><b>100 €</b><span>au départ</span></div>
+<div><b>103 €</b><span>an 1 : + 3,00 €</span></div>
+<div><b>106,09 €</b><span>an 2 : + 3,09 €</span></div>
+<div style="border:0"><b>134,39 €</b><span>an 10 : + 3,91 €</span></div>
+</div>
+<p class="p" style="top:1010px;font-size:52px;font-weight:700">Soit <mark style="background:var(--jaune);padding:0 10px;white-space:nowrap">+ 34,4&nbsp;%</mark>, pas 30&nbsp;%.</p>
+<p class="note">Exemple fictif : un prix de 100 € qui monte de 3 % chaque année.</p>
+</section>
+<section class="cadre" id="IG-226-calcul-2-3" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">3 / 6</span>
+<p class="serie" style="color:var(--jaune)">Étape 2 · Le doublement</p>
+<p class="p" style="top:300px;font-size:52px;font-weight:700">En additionnant 3&nbsp;% par an, on croirait&nbsp;: 100 ÷ 3 ≈ 33 ans.</p>
+<div class="f" style="left:84px;top:560px;width:300px;height:12px;background:var(--jaune)"></div>
+<p class="p" style="top:620px;font-size:52px;font-weight:600">En réalité, 100 € deviennent 200 € en</p>
+<p class="grand" style="top:760px;font-size:190px;color:var(--jaune)">23,4 ans</p>
+<p class="note" style="color:var(--papier);opacity:.8">Calcul exact : ln 2 ÷ ln 1,03 = 23,4. Pas besoin de calculatrice : voyez la suite.</p>
+</section>
+<section class="cadre" id="IG-226-calcul-2-4" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">4 / 6</span>
+<div class="f" style="right:0;bottom:0;border-right:420px solid var(--jaune);border-top:420px solid transparent;width:0;height:0"></div>
+<p class="serie plein">Étape 3 · De tête</p>
+<p class="p" style="top:260px;font-size:48px">La règle de 72&nbsp;: divisez 72 par le taux.</p>
+<p class="grand" style="top:400px;font-size:170px">72 ÷ 3 = <mark style="background:var(--jaune);color:var(--encre);padding:0 14px">24</mark></p>
+<p class="p" style="top:640px;font-size:48px;right:120px">24 ans de tête, 23,4 ans au calcul exact&nbsp;: <b>moins d'un an d'écart.</b></p>
+<p class="p" style="top:880px;font-size:40px;right:440px">Une approximation, pas une formule exacte. Elle suffit pour décider.</p>
+<p class="note" style="right:460px">Exemple fictif.</p>
+</section>
+<section class="cadre" id="IG-226-calcul-2-5" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">5 / 6</span>
+<p class="serie">La règle à garder</p>
+<h2 style="top:240px;font-size:92px">Années pour doubler ≈ <mark style="background:var(--encre);color:var(--jaune)">72 ÷ taux</mark></h2>
+<table class="tab3" style="top:560px">
+<tr><th style="width:34%">Taux par an</th><th style="width:33%">Règle de 72</th><th style="width:33%">Exact</th></tr>
+<tr><td>2 %</td><td>36 ans</td><td>35,0 ans</td></tr>
+<tr><td>3 %</td><td>24 ans</td><td>23,4 ans</td></tr>
+<tr><td>4 %</td><td>18 ans</td><td>17,7 ans</td></tr>
+<tr><td>6 %</td><td>12 ans</td><td>11,9 ans</td></tr>
+<tr><td>8 %</td><td>9 ans</td><td>9,0 ans</td></tr>
+</table>
+<p class="note" style="color:var(--encre)">Exact : ln 2 ÷ ln(1 + taux), arrondi à 0,1 an. Exemples fictifs, ne remplace pas un conseil financier.</p>
+</section>
+<section class="cadre" id="IG-226-calcul-2-6" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">6 / 6</span>
+<div class="f" style="right:-170px;top:-170px;width:430px;height:430px;border-radius:50%;background:var(--jaune);border:8px solid var(--encre)"></div>
+<p class="serie plein">Dans les deux sens</p>
+<div class="sens" style="top:290px">
+<div><small>Abonnement +4&nbsp;%/an</small><b>× 2</b><span>en ≈ 18 ans</span></div>
+<div><small>Épargne à 2&nbsp;%/an</small><b>× 2</b><span>en ≈ 36 ans</span></div>
+</div>
+<h2 style="top:640px;font-size:100px">Enregistrez-le.</h2>
+<p class="p" style="top:780px;font-size:50px;font-weight:600;right:120px">Envoyez-le à quelqu'un qui dit&nbsp;: <span style="white-space:nowrap">«&nbsp;<b>3&nbsp;%</b>, c'est rien&nbsp;».</span></p>
+<div class="bouton" style="top:990px;box-shadow:14px 14px 0 var(--jaune)">n°3 la semaine prochaine</div>
+<p class="note" style="bottom:170px;left:auto;right:84px;width:360px;font-size:22px;text-align:right">Exemples fictifs, ne remplace pas un conseil financier.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+</section>
+</body></html>

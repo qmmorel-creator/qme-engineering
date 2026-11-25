@@ -1,0 +1,23 @@
+{
+  "date": "2026-12-14",
+  "avant": "Modifier l'enveloppe Cadeaux et fêtes REPORT 415,00 € restants 0,00 € dépensés sur 415,00 € (enveloppe 80,00 € + report 335,00 €)",
+  "apres": "Modifier l'enveloppe Cadeaux et fêtes REPORT 81,00 € restants 334,00 € dépensés sur 415,00 € (enveloppe 80,00 € + report 335,00 €) Détail par sous-catégorie",
+  "entete": "Il reste 1 660 € dans tes enveloppes. Soit environ 92 € par jour d'ici la fin du mois (18 jours).",
+  "decembre": [
+    [
+      "2026-12-14",
+      "Cadeaux des enfants",
+      160
+    ],
+    [
+      "2026-12-14",
+      "Cadeaux de la famille",
+      135
+    ],
+    [
+      "2026-12-14",
+      "Sapin et décoration",
+      39
+    ]
+  ]
+}

@@ -5,6 +5,13 @@ description: Réaliser une vidéo courte (Reel Instagram / LinkedIn, 30 à 40 s,
 
 # Vidéo de démonstration d'un template QME
 
+> **Règle absolue (décision de Quentin du 24/11/2026) : une seule publication par plateforme et par jour** (Instagram,
+> TikTok, YouTube, LinkedIn, X), tous formats confondus (post, carrousel, Reel, vidéo, Short). Avant de programmer, relire
+> le planning de la plateforme et prendre un jour **sans aucune ligne** (statut ≠ « Annulé ») : jamais deux lignes le
+> même jour sur une plateforme. TikTok suit Instagram. Un Short jumeau d'un Reel prend le jour du Reel (ce jour ne doit
+> avoir aucun autre Short). Les contenus audacieux (nouveaux formats, Reels de référence) vont dans les jours libres les
+> plus proches. Détails et calendrier refait le 24/11/2026 : `docs/templates/communication/REGLES-CONTENU.md` § 1.
+
 > **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
 > 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
 > aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
@@ -84,10 +91,11 @@ Détail des colonnes et des dossiers : `reference.md` § Programmation. Résumé
 
 1. Relire **juste avant d'écrire** les trois onglets `Planning` (LinkedIn `A1:N`, Instagram `A1:P`, YouTube
    `A1:O`) : d'autres sessions les modifient.
-2. **Date** : la plus proche, à partir de demain, où **aucun des deux plannings** n'a déjà une vidéo
-   (LinkedIn format « Vidéo », Instagram format « Reel », statut ≠ « Annulé »). Même date sur les deux.
+2. **Date** : la plus proche, à partir de demain, où **aucun des trois plannings** (LinkedIn, Instagram, YouTube) n'a
+   déjà **une publication, quel que soit son format** (statut ≠ « Annulé ») : règle « une seule publication par
+   plateforme et par jour » du 24/11/2026. Même date sur les trois si possible ; sinon, premier jour libre sur chacune.
 3. **Heures** : LinkedIn **17:30** (fin d'après-midi ; les autres posts sont à 10:00 ou 12:15) ;
-   Instagram **12:30** (pause déjeuner ; les autres sont à 19:00). Deux publications par jour et par réseau.
+   Instagram **12:30** (pause déjeuner) ; YouTube **12:00**. Une seule publication par jour et par réseau.
 4. Copier la vidéo (et la couverture pour Instagram) dans les dossiers Images de chaque réseau
    (`mcp__Google_Drive__copy_file`), aux noms `LI-nn-<slug>-video.mp4`, `IG-nn-<slug>.mp4`,
    `IG-nn-<slug>-couverture.png`.

@@ -1,0 +1,102 @@
+<!-- Carrousel IG-213 (24/11/2026) · F3 Le calcul que personne ne fait n°1 : 10 minutes par jour sur une année de travail. Calcul : calcul.py. Rendu : node docs/templates/communication/instagram/rendre.mjs ../formats-test/IG-213/IG-213.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-213</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+</style><style>
+.serie{position:absolute;left:84px;top:96px;font-weight:800;font-size:28px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:4px solid currentColor;max-width:640px;line-height:1.25}
+.lignes{position:absolute;left:84px;right:84px}
+.lignes div{display:flex;align-items:baseline;gap:30px;padding:22px 0;border-bottom:4px solid var(--trait)}
+.lignes b{font-size:76px;font-weight:800;letter-spacing:-.03em;min-width:260px;text-align:right;white-space:nowrap}
+.lignes span{font-size:38px;font-weight:600;line-height:1.25}
+.grand{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.tab{position:absolute;left:84px;width:760px;border-collapse:collapse;font-size:44px}
+.tab td{padding:16px 0;border-bottom:4px solid rgba(255,255,255,.35)}
+.tab td:last-child{text-align:right;font-weight:800;white-space:nowrap;padding-left:40px}
+</style></head><body>
+<section class="cadre" id="IG-213-calcul-1-1" style="background:var(--bleu);color:#fff">
+<span class="compteur">1 / 6</span>
+<div class="f" style="right:-120px;bottom:-120px;width:560px;height:560px;border-radius:50%;background:var(--jaune);border:8px solid var(--encre)"></div>
+<div class="f" style="right:84px;top:300px;width:160px;height:160px;background:var(--rouge);border:6px solid var(--encre)"></div>
+<p class="serie">Le calcul que personne ne fait · n°1</p>
+<h1 style="top:330px;font-size:100px;right:280px">10 minutes perdues par jour.</h1>
+<h1 style="top:700px;font-size:100px;right:200px">Sur un an, ça fait <mark>combien</mark>&nbsp;?</h1>
+<p class="glisser">Faites glisser <span></span></p>
+</section>
+<section class="cadre" id="IG-213-calcul-1-2" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">2 / 6</span>
+<p class="serie" style="color:var(--bleu)">Étape 1 · Les jours travaillés</p>
+<p class="p" style="top:250px;font-size:40px">Un fichier introuvable, un mot de passe, une info recopiée deux fois : <b>10 minutes par jour</b>. Mais combien de jours&nbsp;?</p>
+<div class="lignes" style="top:500px">
+<div><b>261</b><span>jours du lundi au vendredi en 2027</span></div>
+<div><b>− 7</b><span>jours fériés tombant en semaine</span></div>
+<div><b>− 25</b><span>jours de congés payés</span></div>
+<div style="border:0"><b style="color:var(--bleu)">= 229</b><span><b style="font-size:38px;min-width:0;text-align:left">jours travaillés</b></span></div>
+</div>
+<p class="note" style="bottom:84px">Exemple : temps plein, année 2027. Fériés : Code du travail, art. L3133-1. Congés payés : 5 semaines (service-public.fr).</p>
+</section>
+<section class="cadre" id="IG-213-calcul-1-3" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">3 / 6</span>
+<p class="serie" style="color:var(--jaune)">Étape 2 · Les minutes</p>
+<p class="p" style="top:330px;font-size:56px;font-weight:700">229 jours × 10 minutes</p>
+<p class="grand" style="top:460px;font-size:150px">= 2 290 min</p>
+<div class="f" style="left:84px;top:690px;width:300px;height:12px;background:var(--jaune)"></div>
+<p class="p" style="top:760px;font-size:52px;font-weight:600">Divisé par 60 :</p>
+<p class="grand" style="top:850px;font-size:190px;color:var(--jaune)">38 h 10</p>
+<p class="note" style="color:var(--papier);opacity:.8">Refaites-le avec votre nombre de jours : jours × minutes ÷ 60.</p>
+</section>
+<section class="cadre" id="IG-213-calcul-1-4" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">4 / 6</span>
+<div class="f" style="right:0;bottom:0;border-right:420px solid var(--bleu);border-top:420px solid transparent;width:0;height:0"></div>
+<p class="serie" style="color:var(--bleu)">Étape 3 · Comparer</p>
+<p class="p" style="top:270px;font-size:48px">Une semaine de travail à temps plein&nbsp;: <b style="white-space:nowrap">35 heures</b>.</p>
+<h2 style="top:450px;font-size:96px;right:120px">38 h 10, c'est <mark style="background:var(--bleu);color:#fff">plus d'une semaine</mark> entière.</h2>
+<p class="p" style="top:830px;font-size:48px;right:380px">Chaque année. Sur 10 ans : <b>382 heures</b>, près de <b style="white-space:nowrap">11 semaines</b>.</p>
+<p class="note" style="right:460px">Durée légale : Code du travail, art. L3121-27.</p>
+</section>
+<section class="cadre" id="IG-213-calcul-1-5" style="background:var(--bleu);color:#fff">
+<span class="compteur">5 / 6</span>
+<p class="serie" style="color:var(--jaune)">La règle à garder</p>
+<h2 style="top:250px;font-size:96px">1 minute par jour ≈ <mark>4 heures</mark> par an.</h2>
+<table class="tab" style="top:600px">
+<tr><td>1 min par jour</td><td>3 h 49</td></tr>
+<tr><td>5 min par jour</td><td>19 h 05</td></tr>
+<tr><td>10 min par jour</td><td>38 h 10</td></tr>
+<tr><td>15 min par jour</td><td>57 h 15</td></tr>
+<tr><td>30 min par jour</td><td>114 h 30</td></tr>
+</table>
+<p class="note" style="color:#fff;opacity:.85">Sur 229 jours travaillés (temps plein, 2027).</p>
+</section>
+<section class="cadre" id="IG-213-calcul-1-6" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">6 / 6</span>
+<div class="f" style="right:-140px;top:-140px;width:520px;height:520px;border-radius:50%;background:var(--bleu)"></div>
+<div class="f" style="right:84px;bottom:84px;width:150px;height:150px;background:var(--jaune);border:6px solid var(--encre)"></div>
+<h2 style="top:300px;font-size:110px">Enregistrez-le.</h2>
+<p class="p" style="top:480px;font-size:56px;font-weight:600;right:120px">Envoyez-le à quelqu'un qui dit&nbsp;: «&nbsp;ce n'est que <b>10&nbsp;minutes</b>&nbsp;».</p>
+<div class="bouton" style="top:820px;box-shadow:14px 14px 0 var(--bleu)">n°2 la semaine prochaine</div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+</section>
+</body></html>

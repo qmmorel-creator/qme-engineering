@@ -5,6 +5,13 @@ description: Créer et programmer les publications « classiques » LinkedIn et 
 
 # Publications classiques LinkedIn et Instagram
 
+> **Règle absolue (décision de Quentin du 24/11/2026) : une seule publication par plateforme et par jour** (Instagram,
+> TikTok, YouTube, LinkedIn, X), tous formats confondus (post, carrousel, Reel, vidéo, Short). Avant de programmer, relire
+> le planning de la plateforme et prendre un jour **sans aucune ligne** (statut ≠ « Annulé ») : jamais deux lignes le
+> même jour sur une plateforme. TikTok suit Instagram. Un Short jumeau d'un Reel prend le jour du Reel (ce jour ne doit
+> avoir aucun autre Short). Les contenus audacieux (nouveaux formats, Reels de référence) vont dans les jours libres les
+> plus proches. Détails et calendrier refait le 24/11/2026 : `docs/templates/communication/REGLES-CONTENU.md` § 1.
+
 > **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
 > 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
 > aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
@@ -35,8 +42,9 @@ Explique chaque étape à Quentin en français, sans flatterie ; dis ce qui est 
 
 1. Relire **en entier** les deux onglets `Planning` (LinkedIn `1EejYs9y4AsdoAtQgHc2HzXK6LgWQHwNnZmqbesSxpWU` A1:N,
    Instagram `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8` A1:P).
-2. Ne compter que les publications **classiques** : statut ≠ « Annulé », Thème ≠ « Vidéo démo ».
-3. Pour chaque réseau, trouver le **premier jour sans publication classique** à partir de demain. La
+2. Compter **toutes** les publications (statut ≠ « Annulé »), quel que soit leur format ou leur thème : depuis le
+   24/11/2026, une seule publication par plateforme et par jour, un jour occupé par un Reel ou une vidéo est complet.
+3. Pour chaque réseau, trouver le **premier jour sans aucune publication** à partir de demain. La
    **date de référence commune** est le plus tôt des deux (décision de Quentin du 15/11/2026 : les deux réseaux
    démarrent ensemble, sur le réseau le moins couvert ; au 15/11/2026, LinkedIn couvert jusqu'au 22/03/2027).
 4. Si cette date de référence est à **plus de 7 jours** : ne rien produire, ajouter une ligne « contrôle,

@@ -5,12 +5,19 @@ description: Produire et programmer un « Reel du soir » QME (motion design en 
 
 # Reel du soir (Instagram 21:00 + YouTube Short 20:00)
 
+> **Règle absolue (décision de Quentin du 24/11/2026) : une seule publication par plateforme et par jour** (Instagram,
+> TikTok, YouTube, LinkedIn, X), tous formats confondus (post, carrousel, Reel, vidéo, Short). Avant de programmer, relire
+> le planning de la plateforme et prendre un jour **sans aucune ligne** (statut ≠ « Annulé ») : jamais deux lignes le
+> même jour sur une plateforme. TikTok suit Instagram. Un Short jumeau d'un Reel prend le jour du Reel (ce jour ne doit
+> avoir aucun autre Short). Les contenus audacieux (nouveaux formats, Reels de référence) vont dans les jours libres les
+> plus proches. Détails et calendrier refait le 24/11/2026 : `docs/templates/communication/REGLES-CONTENU.md` § 1.
+
 > **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
 > 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
 > aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
 
-Décision de Quentin du 16/11/2026 : en plus des vidéos démo du matin (skill `video-demo`), trois Reels du soir par
-semaine, pour garder deux Shorts par jour sur YouTube les lundis, mercredis et vendredis. Explique chaque étape en
+Décision de Quentin du 16/11/2026 : en plus des vidéos démo du matin (skill `video-demo`), des Reels du soir
+(à l'origine trois par semaine ; depuis le 24/11/2026, uniquement les jours encore libres sur Instagram et YouTube). Explique chaque étape en
 français, sans flatterie ; dis ce qui a été vérifié et ce qui ne l'a pas été.
 
 ## Règles non négociables
@@ -35,8 +42,9 @@ français, sans flatterie ; dis ce qui a été vérifié et ce qui ne l'a pas é
 
 Relire **juste avant d'écrire** les plannings Instagram (`A1:P`) et YouTube (`A1:O`) (IDs dans
 `.claude/skills/video-demo/reference.md` § Programmation et `docs/templates/communication/youtube/README.md`).
-Date = le **premier lundi, mercredi ou vendredi**, entre demain et J+45, qui n'a **ni Short à 20:00** sur YouTube
-**ni Reel en soirée** (19:00 ou plus tard ; avant le 18/11/2026 : 18:30 ou 18:45 ; statut ≠ « Annulé ») sur Instagram. Aucune date libre : ne rien produire.
+Date = le **premier jour**, entre demain et J+45 (de préférence un lundi, mercredi ou vendredi), qui n'a **aucune
+publication Instagram ni aucun Short YouTube** (tous formats, statut ≠ « Annulé ») : règle « une seule publication par
+plateforme et par jour » du 24/11/2026. Aucune date libre : ne rien produire.
 
 ## 2. Fabriquer
 

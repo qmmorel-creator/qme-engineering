@@ -5,6 +5,13 @@ description: Générer l'idée de la prochaine vidéo de démonstration QME (Ree
 
 # Générateur d'idées de vidéos QME
 
+> **Règle absolue (décision de Quentin du 24/11/2026) : une seule publication par plateforme et par jour** (Instagram,
+> TikTok, YouTube, LinkedIn, X), tous formats confondus (post, carrousel, Reel, vidéo, Short). Avant de programmer, relire
+> le planning de la plateforme et prendre un jour **sans aucune ligne** (statut ≠ « Annulé ») : jamais deux lignes le
+> même jour sur une plateforme. TikTok suit Instagram. Un Short jumeau d'un Reel prend le jour du Reel (ce jour ne doit
+> avoir aucun autre Short). Les contenus audacieux (nouveaux formats, Reels de référence) vont dans les jours libres les
+> plus proches. Détails et calendrier refait le 24/11/2026 : `docs/templates/communication/REGLES-CONTENU.md` § 1.
+
 > **Règles communes (18/11/2026)** : appliquer `docs/templates/communication/REGLES-CONTENU.md` (au moins 1 publication par jour et
 > 7 jours d'avance par plateforme, problème posé puis résolu, accroche, rétention, couleur d'accent Bauhaus en rotation,
 > aucune vidéo muette) et les heures de `docs/templates/communication/HEURES.md`. Elles priment sur ce skill.
@@ -82,5 +89,5 @@ programmation LinkedIn 17:30 / Instagram 12:30 / YouTube Shorts 12:00 à la date
 
 ## Tâche quotidienne
 
-Si Quentin le demande, une tâche planifiée peut lancer ce skill chaque jour (une vidéo par jour). Ne la
-créer qu'à sa demande explicite, avec l'heure qu'il choisit.
+Depuis le 24/11/2026, ce skill est lancé au besoin par la seule tâche « Agent contenu réseaux sociaux QME (quotidien) »
+(`docs/templates/communication/ROUTINES-RESEAUX.md`) : ne pas créer d'autre tâche planifiée pour lui.

@@ -1,0 +1,22 @@
+// Capture réelle de la démo Gestion Dépenses Communes pour IG-215 (vue Soldes), et lecture du solde affiché.
+import { createRequire } from 'node:module';
+import { writeFileSync } from 'node:fs';
+const require = createRequire(import.meta.url);
+const { chromium } = (() => { try { return require('playwright'); } catch { return require('/opt/node-tools/node_modules/playwright'); } })();
+const [, , sortie] = process.argv;
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 430, height: 760 }, deviceScaleFactor: 2 });
+await p.goto('http://localhost:8888/templates/budget-commun/?demo&reinit');
+await p.waitForTimeout(3000);
+await p.addStyleTag({ content: '.bandeau-demo,.qme-bandeau,nav.onglets,dialog{display:none!important}' });
+await p.$eval('.onglet[data-vue="soldes"]', (e) => e.click());
+await p.waitForTimeout(800);
+await p.evaluate(() => window.scrollTo(0, 0));
+const titre = (await p.innerText('.jour-titre h1')).replace(/\s+/g, ' ').trim();
+const solde = (await p.innerText('.jour-titre h1 mark')).replace(/\s+/g, ' ').trim();
+const mois = (await p.innerText('.jour-titre')).replace(/\s+/g, ' ');
+if (!/^Sami doit .+ à Camille\.$/.test(titre)) throw new Error('Solde inattendu : ' + titre);
+await p.screenshot({ path: `${sortie}/bcm-soldes.png` });
+writeFileSync(`${sortie}/bcm-soldes.json`, JSON.stringify({ titre, solde, mois, le: new Date().toISOString() }, null, 1));
+console.log(titre, '|', solde, '|', mois);
+await b.close();

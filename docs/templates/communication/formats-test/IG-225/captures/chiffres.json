@@ -1,0 +1,46 @@
+{
+  "tuiles": "ABSENTS AUJOURD'HUI 1 sur 8 salariés DEMANDES À TRAITER 4 la plus proche le 7 déc. CHEVAUCHE­MENTS 3 dans les 60 jours · 8 jours au-delà du seuil CONGÉS À PRENDRE 251,2 j. ouvrables restants pour l'équipe",
+  "ines": "C CONGÉS PAYÉS CHEVAUCHEMENT Inès Petit 21 déc. → 25 déc. Atelier · 4 j. ouvrables de congés payés · solde après validation : 0,25 j. ouvrables 4 jours au-delà du seuil de l'équipe (1 absent au plus) : Camille Martin du 21 déc. au 24 déc. Demandée le 21 nov. Refuser Valider",
+  "atelier": [
+    3,
+    1
+  ],
+  "calendrier": "Calendrier Les absences de l'équipe mois par mois. Les demandes en attente sont hachurées ; la ligne « Absents » passe en rouge au-delà du seuil de l'équipe. Saisir une absence ‹ Décembre 2026 › Aujourd'hui Équipe Toutes les équipes Atelier Pose Bureau Absences de décembre 2026 Salarié M 1 M 2 J 3 V 4 S 5 D 6 L 7 M 8 M 9 J 10 V 11 S 12 D 13 L 14 M 15 M 16 J 17 V 18 S 19 D 20 L 21 M 22 M 23 J 24 V 25 S 26 D 27 L 28 M 29 M 30 J 31 Atelier 1 absent au plus Camille M. C C C C C C C C C Inès P. C C C C Lucas B. M M Absents 1 1 1 1 1 1 1 2 : au-delà du seuil 2 : au-delà du seuil 2 : au-delà du seuil 2 : au-delà du seuil C Congés payés R RTT M Arrêt maladie F Événement familial S Congé sans solde A Accident du travail, maladie pro. X Autre absence Demande en attente Demi-journée Férié chômé ce mois-ci : Noël (25 déc.). Voir la liste du mois (3 absences) Outil d'aide au suivi des congés : ce n'est ni un logiciel de paie ni un conseil juridique. Les soldes sont calculés à partir de ta saisie et des règles des Réglages ; la convention collective, les accords d'entreprise et le Code du travail font foi.",
+  "absents": [
+    [
+      "D 20",
+      "",
+      "repos "
+    ],
+    [
+      "L 21",
+      "2\n: au-delà du seuil",
+      "depasse "
+    ],
+    [
+      "M 22",
+      "2\n: au-delà du seuil",
+      "depasse "
+    ],
+    [
+      "M 23",
+      "2\n: au-delà du seuil",
+      "depasse "
+    ],
+    [
+      "J 24",
+      "2\n: au-delà du seuil",
+      "depasse "
+    ],
+    [
+      "V 25",
+      "",
+      "repos ferie"
+    ],
+    [
+      "S 26",
+      "",
+      "repos "
+    ]
+  ]
+}
