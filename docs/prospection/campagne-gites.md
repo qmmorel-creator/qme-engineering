@@ -1,4 +1,4 @@
-# Campagne ciblée « gîtes » (préparée le 25/11/2026)
+# Campagne ciblée « gîtes » (lancée le 25/11/2026)
 
 Demande de Quentin du 25/11/2026 : présenter le template **Location saisonnière** (T64, `SJR`, 25 €, en vente) aux
 gîtes, chambres d'hôtes et meublés de tourisme de 1 à 10 logements exploités par une entreprise ou un exploitant
@@ -28,7 +28,7 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
 - **Quota** (mis à jour le 25/11/2026 à 13 h 35) : le plafond global de 50 par jour est supprimé en production (PR #303,
   un envoi toutes les 2 minutes, 300 par jour au plus). `auto-ecole` n'a plus de `parJour` (144 en file), `btp` est
   en pause à 12. La consigne de départ (« 50 par jour toutes campagnes confondues, somme des parJour ≤ 50 ») ne peut
-  plus être vérifiée telle quelle : décision de Quentin attendue. L'envoi sert les campagnes dans l'ordre de lecture
+  plus être vérifiée telle quelle : Quentin a donné son feu vert le 25/11/2026 (« Fusionne et lance la campagne ») : `gites` part à 12 par jour, `auto-ecole` inchangée. L'envoi sert les campagnes dans l'ordre de lecture
   (`auto-ecole`, `btp`, `gites`) : `gites` ne part qu'une fois la file d'`auto-ecole` vide ou plafonnée.
 
 ## Lot 1 (25/11/2026)
@@ -45,3 +45,4 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora (brouillon) ; lot 1 : 71 adresses vérifiées ; lancement bloqué par le quota et en attente du feu vert |
+| 2026-11-25 | 0 | 0 | 0 | Feu vert de Quentin : PR fusionnée, campagne `gites` créée (`parJour: 12`), lot 1 (71) mis en file, fiches Nexora `a-contacter` |
