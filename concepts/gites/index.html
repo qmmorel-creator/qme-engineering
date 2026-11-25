@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les gîtes et chambres d'hôtes · QME</title>
+<meta name="description" content="Gestion de location saisonnière prête à l'emploi pour gîtes, chambres d'hôtes et meublés de tourisme : calendrier sans double réservation, ménage entre deux séjours, taxe de séjour, net par canal. Adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/templates/location-saisonniere/?demo" data-goatcounter-click="concept-gites-demo-haut" data-goatcounter-title="Concept gîtes : démo (haut)">Ouvrir la démo</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les gîtes, chambres d'hôtes et meublés de tourisme · gestion prête à l'emploi</p>
+    <h1>Chaque nuit réservée une seule fois, chaque euro compté.</h1>
+    <p class="lede">Un outil en ligne déjà prêt pour les gîtes, les chambres d'hôtes et les meublés de tourisme de 1 à 10 logements : un calendrier qui réunit les réservations de tous vos canaux sans double réservation, le ménage calé entre deux séjours, la taxe de séjour calculée au tarif de votre commune et ce qui vous reste vraiment, canal par canal, après commissions. Il s'utilise tel quel dès le premier jour, et je peux l'adapter sur mesure à votre façon de travailler.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/location-saisonniere/?demo" data-goatcounter-click="concept-gites-demo" data-goatcounter-title="Concept gîtes : démo">Essayer la démo</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20g%C3%AEtes%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-gites-contact" data-goatcounter-title="Concept gîtes : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">La démo ouvre une activité fictive (trois logements, trois canaux de réservation, six mois d'historique), sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Des réservations qui arrivent en direct, par téléphone et par une ou deux plateformes, un calendrier par canal, le ménage à caler entre un départ et une arrivée, et la taxe de séjour à déclarer.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Deux séjours sur les mêmes nuits, un ménage oublié avant une arrivée le jour même, une taxe recalculée à la main, et aucune idée claire de ce que rapporte chaque canal une fois les commissions payées.</p></div>
+    <div><h2>Ce que fait l'outil</h2><p>Il refuse les doubles réservations, crée le ménage après chaque départ, calcule la taxe de séjour et le net de chaque séjour, puis réunit tout par canal, par logement et par mois.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Calendrier</p><h2>Tous vos canaux sur un seul calendrier</h2><p>Une ligne par logement, une colonne par jour : les séjours vont de l'après-midi d'arrivée au matin du départ.</p>
+      <ul><li>Deux réservations confirmées sur les mêmes nuits : l'enregistrement est refusé</li><li>Une option qui en chevauche une autre est signalée</li><li>Un départ et une arrivée le même jour se suivent sans conflit</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Calendrier du mois · démo</span></div><img src="calendrier.webp" width="1600" height="813" alt="Calendrier du mois : trois logements, séjours en barres par jour, taux d'occupation de chaque logement"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Réservations</p><h2>Chaque séjour, son canal et ce qu'il rapporte</h2><p>Voyageurs, dates, nuits, canal, état du paiement, net et reste à encaisser, avec des filtres pour ne voir que l'essentiel.</p>
+      <ul><li>Brut, commission du canal et net calculés pour chaque séjour</li><li>Taxe de séjour : personnes imposables × nuits × tarif de votre commune</li><li>Acompte et solde suivis, paiements datés</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Réservations à venir · démo</span></div><img src="reservations.webp" width="1600" height="813" alt="Liste des réservations à venir : voyageurs, logement, dates, canal, état du paiement, net et reste dû" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Ménage</p><h2>Le ménage calé entre deux séjours</h2><p>Un ménage est créé après chaque départ, à faire avant la prochaine arrivée dans le logement.</p>
+      <ul><li>En retard, aujourd'hui, dans les quatorze jours</li><li>Rotation le jour même repérée</li><li>Check-list type, marquée faite en un geste</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Ménage · démo</span></div><img src="menage.webp" width="1600" height="813" alt="Ménages en retard et du jour, avec la prochaine arrivée de chaque logement" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Revenus</p><h2>Ce que rapporte vraiment chaque canal</h2><p>Net par mois, occupation, prix moyen par nuit et taxe de séjour, puis les mêmes chiffres par canal et par logement.</p>
+      <ul><li>Brut, commissions et net, canal par canal</li><li>Taxe à reverser par vous ou collectée par les canaux</li><li>Export CSV pour la comptabilité</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Revenus par canal · démo</span></div><img src="canal.webp" width="1600" height="813" alt="Tableau des revenus par canal de réservation : séjours, nuits, brut, commission, net et part du net, puis par logement" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">L'outil est prêt : il s'ouvre en ligne, sur ordinateur, tablette ou téléphone, et vos données sont synchronisées. Il ne se connecte à aucune plateforme : vous saisissez vos réservations, il fait les calculs. Si votre activité demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le template prêt à l'emploi</h3>
+      <p class="prix">25 €, achat unique, utilisable tel quel dès le premier jour</p>
+      <ul><li>Calendrier, réservations, ménage, revenus, 1 à 10 logements</li><li>Accès en ligne par clé, données synchronisées</li><li>Démo complète à tester avant toute décision</li></ul>
+      <div class="ctas"><a class="btn" href="/catalogue/location-saisonniere/" data-goatcounter-click="concept-gites-achat" data-goatcounter-title="Concept gîtes : fiche du template">Voir le template · 25 €</a><a class="btn line" href="/templates/location-saisonniere/?demo" data-goatcounter-click="concept-gites-demo-offre" data-goatcounter-title="Concept gîtes : démo (offre)">Essayer la démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre établissement</p>
+      <ul><li>Vos tarifs par saison, vos options et vos prestations (petits-déjeuners, tables d'hôtes)</li><li>Vos contrats, vos factures, vos documents d'accueil</li><li>Vos règles de ménage, d'acompte et de solde</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=G%C3%AEte%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-gites-sur-mesure" data-goatcounter-title="Concept gîtes : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">L'outil calcule la taxe de séjour avec le tarif que vous saisissez pour votre commune : aucun barème n'est intégré, et il ne calcule aucun régime fiscal. Il contient des noms de voyageurs, que vous pouvez effacer à tout moment. Les données de la démo sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez la démo, puis dites-moi comment vous gérez vos réservations aujourd'hui : je vous dis franchement si l'outil prêt à l'emploi suffit, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20g%C3%AEtes%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-gites-contact-bas" data-goatcounter-title="Concept gîtes : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/templates/location-saisonniere/?demo" data-goatcounter-click="concept-gites-demo-bas" data-goatcounter-title="Concept gîtes : démo (bas)">Ouvrir la démo</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
