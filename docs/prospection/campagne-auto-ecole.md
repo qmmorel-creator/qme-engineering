@@ -35,4 +35,4 @@ sur-mesure. Skill : `.claude/skills/campagne-ciblee-pack/`.
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-25 | 0 | 0 | 0 | Page, file d'envoi, modèle de mail, brouillon de validation ; premier lot de sourcing en cours |
-| 2026-11-25 (après-midi) | en cours | — | — | Lancement à 11:00, lots 1 et 2 en file (454), envoi en parallèle des autres campagnes ; bilan au point de 18:17 |
+| 2026-11-25 | 34 | 0 | 0 | Premiers envois de 11:12 à 17:56, aucune erreur d'envoi, aucun retour en erreur ni réponse dans Gmail ; 34 fiches Nexora en `contacte` (relance le 02/12) ; 420 en file (lots 1 et 2), en parallèle des campagnes btp, formation et gîtes |
