@@ -91,6 +91,17 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   pas, rien ne part. Réponses aux prospects intéressés : **toujours en brouillon**, Quentin valide. Seuls partent seuls les
   premiers mails de campagne et la relance unique à J+7.
 
+## Campagnes ciblées par pack (décision du 25/11/2026)
+
+- **Skill `.claude/skills/campagne-ciblee-pack/`** : un template ou un pack prêt présenté à tout un secteur (page concept
+  avec captures réelles de la démo, mail personnalisé « template tout prêt, sur mesure possible »), sourcing sans
+  limite d'adresses vérifiées. Première vague : auto-écoles (`docs/prospection/campagne-auto-ecole.md`).
+- **Envoi par OVH via le site** : file `/api/prospection` et tâche `prospection-envoi` (un mail toutes les 12 minutes,
+  lundi–samedi, 8 h–18 h à Paris, 50 par jour au plus), copie cachée vers la boîte pro de Quentin, signature et mention
+  d'opposition ajoutées par le serveur, opposition relue avant chaque envoi.
+- **Page et brouillon validés par Quentin avant tout envoi** ; projets Nexora seulement pour les retours intéressés,
+  après son accord. Prospects tenus à jour dans Nexora Optim › QME (`vague: "cible-<sujet>"`).
+
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 
 - **Tout agent qui crée ou modifie un concept** (page `concepts/<slug>/`, PDF, démo de concept, généré à la main ou par

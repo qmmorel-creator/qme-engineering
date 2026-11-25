@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les auto-écoles · QME</title>
+<meta name="description" content="Gestion d'auto-école prête à l'emploi : planning des leçons sans double réservation, heures et paiements des élèves, véhicules, bilan. Adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/templates/auto-ecole/?demo" data-goatcounter-click="concept-auto-ecole-demo-haut" data-goatcounter-title="Concept auto-école : démo (haut)">Ouvrir la démo</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les auto-écoles · gestion prête à l'emploi</p>
+    <h1>Chaque leçon à sa place, chaque heure comptée.</h1>
+    <p class="lede">Un outil en ligne déjà prêt pour les auto-écoles et les moniteurs indépendants : le planning des leçons par moniteur et par véhicule, sans double réservation, le solde d'heures et de paiements de chaque élève, le suivi des véhicules et un bilan du mois. Il s'utilise tel quel dès le premier jour, et je peux l'adapter sur mesure à votre façon de travailler.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/auto-ecole/?demo" data-goatcounter-click="concept-auto-ecole-demo" data-goatcounter-title="Concept auto-école : démo">Essayer la démo</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20auto-%C3%A9cole%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-auto-ecole-contact" data-goatcounter-title="Concept auto-école : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">La démo ouvre une auto-école fictive (trois moniteurs, trois véhicules, une dizaine d'élèves), sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Un planning sur papier ou dans plusieurs tableurs, des forfaits suivis à la main, des véhicules à faire entretenir et contrôler, et des élèves qui appellent pour savoir où ils en sont.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Deux leçons calées sur la même voiture, des heures faites au-delà du forfait, un reste à payer oublié, un contrôle technique qui passe la date sans que personne ne le voie.</p></div>
+    <div><h2>Ce que fait l'outil</h2><p>Il refuse les doubles réservations, tient le compte des heures et des paiements de chaque élève, prévient avant les échéances des véhicules et réunit tout dans un bilan.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Planning</p><h2>Un planning qui refuse les doublons</h2><p>Vue semaine par moniteur ou par véhicule, vue jour sur téléphone.</p>
+      <ul><li>Une leçon qui chevauche celle d'un même moniteur, véhicule ou élève est refusée</li><li>Hors disponibilités ou pendant une absence : confirmation demandée</li><li>Pointage en un geste : faite, élève absent, annulée</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Planning de la semaine · démo</span></div><img src="planning.webp" width="1600" height="813" alt="Planning de la semaine par moniteur : leçons par jour et par heure, une absence, une leçon passée à pointer"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Élèves</p><h2>« Il me reste combien d'heures ? » en un coup d'œil</h2><p>Pour chaque élève : heures achetées, faites, planifiées et restantes, reste à payer, compétences acquises.</p>
+      <ul><li>Forfait dépassé et impayé signalés</li><li>Élèves mineurs et boîte automatique repérés</li><li>Suivi pédagogique coché et daté, sur une liste que vous adaptez</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Élèves actifs · démo</span></div><img src="eleves.webp" width="1600" height="813" alt="Fiches élèves : heures restantes, reste dû, compétences, prochaine leçon" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Véhicules</p><h2>Contrôle technique et entretien sous contrôle</h2><p>Kilométrage, date limite du contrôle technique, entretien selon le carnet, et ce que coûte réellement une heure de conduite sur douze mois.</p>
+      <ul><li>Échéances « à jour », « bientôt », « dépassé »</li><li>Relevés de kilométrage et interventions datés</li><li>Coût par heure de conduite, véhicule par véhicule</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Véhicules · démo</span></div><img src="vehicules.webp" width="1600" height="813" alt="Trois véhicules avec kilométrage, contrôle technique, entretien et coût par heure" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Bilan</p><h2>Le mois en quatre chiffres, et ce qui est à traiter</h2><p>Heures vendues et faites, heures dues aux élèves, reste à encaisser, et une liste d'alertes classées par urgence.</p>
+      <ul><li>Occupation des moniteurs et des véhicules</li><li>Alertes : contrôle dépassé, forfait épuisé, impayé, leçon à pointer</li><li>Exports CSV pour la comptabilité</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Bilan du mois · démo</span></div><img src="bilan.webp" width="1600" height="813" alt="Bilan : heures vendues, faites, dues, reste à encaisser, puis alertes urgentes et à voir" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">L'outil est prêt : il s'ouvre en ligne, sur ordinateur, tablette ou téléphone, et vos données sont synchronisées. Si votre organisation demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le template prêt à l'emploi</h3>
+      <p class="prix">Utilisable tel quel dès le premier jour</p>
+      <ul><li>Planning, élèves, moniteurs, véhicules, bilan</li><li>Accès en ligne par clé, données synchronisées</li><li>Démo complète à tester avant toute décision</li></ul>
+      <a class="btn" href="/templates/auto-ecole/?demo" data-goatcounter-click="concept-auto-ecole-demo-offre" data-goatcounter-title="Concept auto-école : démo (offre)">Essayer la démo</a>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre auto-école</p>
+      <ul><li>Vos formules, forfaits et modes de financement</li><li>Plusieurs agences, plusieurs catégories de permis</li><li>Vos documents, vos exports, vos règles de planning</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Auto-%C3%A9cole%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-auto-ecole-sur-mesure" data-goatcounter-title="Concept auto-école : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">L'outil contient des données d'élèves, parfois mineurs : il appartient à l'auto-école d'en informer les personnes concernées. Les données de la démo sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez la démo, puis dites-moi comment vous travaillez aujourd'hui : je vous dis franchement si l'outil prêt à l'emploi suffit, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20auto-%C3%A9cole%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-auto-ecole-contact-bas" data-goatcounter-title="Concept auto-école : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/templates/auto-ecole/?demo" data-goatcounter-click="concept-auto-ecole-demo-bas" data-goatcounter-title="Concept auto-école : démo (bas)">Ouvrir la démo</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
