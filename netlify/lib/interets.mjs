@@ -31,6 +31,18 @@ export function estAdmin(saisie, { secret, admin }) {
   return Boolean(secret && secret.length >= 32) && egal(n, normaliser(codeAdmin(secret)));
 }
 
+// Jeton de LECTURE SEULE (Nexora Optim › QME) : en-tête X-Lecture, variable QME_LECTURE_TOKEN (32 caractères
+// au moins). Il ouvre seulement les lectures GET du tableau de bord, des essais, du registre et des intérêts :
+// jamais une écriture, un effacement, une annonce ni l'accès aux templates (contrairement au code ADM-…).
+export function estLecteur(requete, lecture) {
+  const l = String(lecture || ''), j = String(requete.headers.get('x-lecture') || '').trim();
+  return l.length >= 32 && j.length > 0 && egal(j, l);
+}
+// Lecture administrateur : code ADM-… (toute méthode) ou jeton de lecture (GET seulement).
+export function peutLireAdmin(requete, { secret, admin, lecture }) {
+  return estAdmin(requete.headers.get('x-admin') || '', { secret, admin }) || (requete.method === 'GET' && estLecteur(requete, lecture));
+}
+
 // Clé d'un clic : clic/<module>/<horodatage ISO>~<aléa>
 export const cleClic = (module, date, alea = base32(randomBytes(5)), type = 'clic') => `${type}/${module}/${date.toISOString()}~${alea}`;
 export const cleEmail = (module, date, alea) => cleClic(module, date, alea, 'email');
@@ -89,7 +101,7 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
 //  GET  /api/interets (en-tête X-Admin)               → synthèse JSON
 //  GET  /api/interets?format=csv (en-tête X-Admin)    → CSV de tous les clics
 // Le stockage expose ajouter(cle, valeur), lire(cle), supprimer(cle) et lister(prefixe) → [cles].
-export async function traiterInterets(requete, { secret, admin, stockage, maintenant = () => new Date() }) {
+export async function traiterInterets(requete, { secret, admin, stockage, maintenant = () => new Date(), lecture = '' }) {
   const url = new URL(requete.url);
   if (requete.method === 'POST') {
     const texte = await requete.text();
@@ -106,7 +118,7 @@ export async function traiterInterets(requete, { secret, admin, stockage, mainte
     return json(200, { ok: true });
   }
   if (requete.method === 'GET' || requete.method === 'DELETE') {
-    if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+    if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
     const clesEmails = await stockage.lister('email/');
     const entrees = async () => Promise.all(clesEmails.map(async (cle) => ({ cle, email: await stockage.lire(cle) })));
     if (requete.method === 'DELETE') {

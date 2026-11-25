@@ -1,0 +1,189 @@
+// node outils/concepts/registres.mjs [slug…] → concepts/<slug>/index.html
+// Concepts « registre de contrôle d'équipements » (stratégie docs/prospection/strategie-2026-12.md).
+// Après génération : enregistrer chaque concept dans Nexora (CLAUDE.md, § Concepts) avec
+// node outils/concepts/registre-nexora.mjs <slug…> puis mutate_qme (entity concept, upsert_many).
+// Données : outils/concepts/registres.json. Page générique d'un thème : champs facultatifs « court » (objet du mail de
+// contact) et « coeur » (bandeau central), le nom pouvant alors être « les … » (ex. « les frigoristes et climaticiens »). Maquettes en HTML (données fictives), page non indexée (netlify.toml).
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const donnees = JSON.parse(fs.readFileSync(path.join(racine, 'outils/concepts/registres.json'), 'utf8'));
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const STATUT = { ok: ['ok', 'À jour'], alerte: ['al', 'Bientôt'], retard: ['re', 'En retard'], manque: ['ma', 'À compléter'] };
+const pastille = (s) => { const [c, t] = STATUT[s] || ['ok', s]; return `<span class="st ${c}">${t}</span>`; };
+const cellule = (v) => (STATUT[v] ? pastille(v) : esc(v));
+
+function page(slug, d) {
+  const lien = `mailto:quentin.morel@qm-engineering.fr?subject=${encodeURIComponent(`Concept ${d.court || d.nom} · échange de 30 minutes`)}`;
+  const parc = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.parc.titre)}</span></div>
+      <div class="kpis"><div><b>${d.parc.lignes.filter((l) => l.includes('ok')).length}</b>à jour</div><div><b>${d.parc.lignes.filter((l) => l.includes('alerte')).length}</b>bientôt</div><div><b>${d.parc.lignes.filter((l) => l.includes('retard')).length}</b>en retard</div><div><b>${d.parc.lignes.filter((l) => l.includes('manque')).length}</b>à compléter</div></div>
+      <ul class="parc">${d.parc.lignes.map((l) => {
+        const c = d.parc.colonnes, n = l.length - 1;
+        const milieu = l.slice(2, n).map((v, i) => `<div><dt>${esc(c[i + 2])}</dt><dd>${cellule(v)}</dd></div>`).join('');
+        return `<li><div class="p1"><b>${esc(l[0])}</b><small>${esc(l[1])}</small></div><dl class="p2">${milieu}</dl><div class="p3" title="${esc(c[n])}">${cellule(l[n])}</div></li>`;
+      }).join('')}</ul></div>`;
+  const fiche = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.fiche.id)}</span></div>
+      <div class="fiche"><h4>${esc(d.fiche.titre)}</h4><dl>${d.fiche.infos.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+      <ol class="hist">${d.fiche.historique.map(([dt, t]) => `<li><time>${esc(dt)}</time>${esc(t)}</li>`).join('')}</ol></div></div>`;
+  const planning = `<div class="fen"><div class="barre"><i></i><i></i><i></i><span>${esc(d.planning.titre)}</span></div>
+      <ul class="plan">${d.planning.lignes.map(([j, l, q, w]) => `<li><b>${esc(j)}</b><span>${esc(l)}<small>${esc(q)}</small></span><em>${esc(w)}</em></li>`).join('')}</ul>
+      <div class="rel"><p>Relances automatiques</p><ul>${d.planning.relances.map((r) => `<li>${esc(r)}</li>`).join('')}</ul></div></div>`;
+  const client = `<div class="tel"><div class="ecran"><p class="tt">${esc(d.client.titre)}</p>
+      ${d.client.lignes.map(([n, s, t]) => `<div class="li"><b>${esc(n)}</b>${pastille(s)}<small>${esc(t)}</small></div>`).join('')}
+      <div class="qr" aria-hidden="true">${Array.from({ length: 49 }, (_, i) => `<i${(i * 7 + (i % 5) * 3) % 4 === 0 || [0, 1, 2, 7, 9, 14, 15, 16, 4, 5, 6, 11, 13, 18, 19, 20, 28, 29, 30, 35, 37, 42, 43, 44].includes(i) ? ' class="n"' : ''}></i>`).join('')}</div>
+      <p class="pied">${esc(d.client.pied)}</p></div></div>`;
+  const sections = [
+    ['01 · Pilotage', `Tout le parc, ${esc(d.equipement)} par ${esc(d.equipement)}`, 'Ce qui est à jour, ce qui arrive à échéance, ce qui est en retard, client par client.', ['Le parc complet en une liste, filtrable par client, secteur ou modèle', 'Les échéances des 30, 60 et 90 prochains jours', 'Chaque matin, la liste de ce qui est à traiter'], parc],
+    ['02 · Fiche de vie', `Chaque ${esc(d.equipement)} a son histoire`, 'Pose, contrôles, réparations, documents : tout est dans la fiche, daté, avec sa source et ses photos.', ['Répondre en quelques secondes à « où en est cet équipement ? »', 'Les rapports et les notices au même endroit', 'Un historique qui tient face à un contrôle ou à un litige'], fiche],
+    ['03 · Échéances et relances', 'Les relances partent seules', 'Avant la date, la bonne personne est prévenue. Le contrôle fait, la relance s\'arrête.', ['Planning par semaine, par secteur ou par intervenant', 'Rappels au client, à l\'intervenant, puis à vous', 'Moins d\'appels et d\'e-mails de suivi'], planning],
+    ['04 · Côté client', 'Un registre que le client ouvre quand il veut', 'Un QR code sur l\'équipement ou un lien : le client voit l\'état, télécharge ses rapports et signale une anomalie.', ['La preuve à jour, sans demande à votre service', 'Une anomalie signalée avec photo arrive chez vous', 'Une raison de plus de renouveler le contrat avec vous'], client]
+  ];
+  return `<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour ${esc(d.nom)} · QME</title>
+<meta name="description" content="${esc(`Concept d'outil sur mesure pour ${d.nom} : ${d.sujet}. Données fictives.`)}">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9;--ok:#1d7a46}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:64ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 50px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec>div,.flux>div{min-width:0}
+.sec{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.sec .num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec .txt li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec .txt li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.fen{background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden;font-size:14px}
+.barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.barre i{width:9px;height:9px;border-radius:50%;background:#555}.barre i:first-child{background:var(--red)}.barre i:nth-child(2){background:var(--yel)}
+.barre span{margin-left:8px;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.kpis div{padding:10px 12px;color:var(--muted);font-size:12.5px}.kpis b{display:block;font-size:22px;color:var(--ink)}
+.kpis div:nth-child(2) b{color:#a16f00}.kpis div:nth-child(3) b{color:var(--red)}
+.parc{list-style:none;margin:0;padding:0}
+.parc li{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,2fr) auto;gap:6px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.parc li:last-child{border-bottom:0}
+.parc .p1 b{display:block;line-height:1.25}.parc .p1 small{color:var(--muted)}
+.parc .p2{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:4px 10px;margin:0}
+.parc dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.parc dd{margin:0;font-weight:600;font-size:13.5px;overflow-wrap:anywhere}
+.st{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.st.ok{background:#e3f3e9;color:var(--ok)}.st.al{background:#fff1cc;color:#7a5500}.st.re{background:#fde3e1;color:#a3201b}.st.ma{background:#e6ecf7;color:var(--blue)}
+.fiche{padding:16px 18px}.fiche h4{margin:0 0 12px;font-size:16px}
+.fiche dl{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0 0 14px}
+.fiche dt{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.fiche dd{margin:0;font-weight:600}
+.hist{list-style:none;margin:0;padding:0 0 0 14px;border-left:3px solid var(--ink)}
+.hist li{position:relative;padding:6px 0 6px 10px}.hist li::before{content:"";position:absolute;left:-21px;top:12px;width:11px;height:11px;background:var(--red);border-radius:50%}
+.hist time{display:block;font-size:12px;color:var(--muted)}
+.plan{list-style:none;margin:0;padding:6px 0}
+.plan li{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line)}
+.plan small{display:block;color:var(--muted)}.plan em{font-style:normal;font-size:12.5px;background:var(--paper);padding:3px 9px;border-radius:999px}
+.rel{padding:12px 14px;background:#fbfaf7}.rel p{margin:0 0 6px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.rel ul{list-style:none;margin:0;padding:0}.rel li{padding:3px 0 3px 18px;position:relative}.rel li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;background:var(--yel)}
+.tel{width:270px;max-width:100%;margin:0 auto;background:var(--ink);border-radius:34px;padding:12px;box-shadow:0 14px 40px rgba(20,20,20,.2)}
+.ecran{background:#fff;border-radius:24px;padding:20px 16px;font-size:14px}
+.ecran .tt{font-weight:700;margin:0 0 12px}
+.ecran .li{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.ecran .li small{grid-column:1/-1;color:var(--muted)}
+.qr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;width:84px;margin:16px auto 10px}.qr i{aspect-ratio:1;background:#eee}.qr i.n{background:var(--ink)}
+.pied{font-size:12.5px;color:var(--muted);text-align:center;margin:0}
+.flux{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;background:#fff;border-radius:8px;padding:26px;margin:0 0 60px}
+.flux h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 10px;color:var(--muted)}
+.flux ul{list-style:none;margin:0;padding:0}.flux li{padding:8px 0;border-bottom:1px solid var(--line)}.flux li small{display:block;color:var(--muted)}
+.coeur{background:var(--ink);color:#fff;border-radius:8px;padding:18px;max-width:220px;text-align:center;border-bottom:8px solid var(--red)}
+.coeur b{display:block;font-size:18px;margin-bottom:6px}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 60px;padding:0;list-style:none}
+.mods li{background:#fff;border-radius:6px;padding:18px;position:relative}
+.mods b{display:block;margin:6px 0 4px}.mods span{font-size:30px;font-weight:700;color:var(--red);line-height:1}
+.mods p{margin:0;color:var(--muted);font-size:14.5px}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
+@media (max-width:860px){.trio,.mods{grid-template-columns:1fr 1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:20px}.sec:nth-of-type(even) .txt{order:0}.flux{grid-template-columns:1fr}.coeur{max-width:none}}
+@media (max-width:560px){.parc li{grid-template-columns:minmax(0,1fr) auto}.parc .p2{grid-column:1/-1;grid-row:2}.kpis div{padding:8px}.kpis b{font-size:19px}.trio,.mods{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr}.plan li{grid-template-columns:70px 1fr}.plan em{grid-column:2}.fin{padding:24px 18px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="${lien}" data-goatcounter-click="concept-${slug}-contact-haut" data-goatcounter-title="Concept ${esc(d.nom)} : contact (haut)">Échanger 30 minutes</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour ${esc(d.nom)} · ${esc(d.sujet)}</p>
+    <h1>${esc(d.titre)}</h1>
+    <p class="lede">${esc(d.lede)}</p>
+    <div class="ctas"><a class="btn" href="${lien}" data-goatcounter-click="concept-${slug}-contact" data-goatcounter-title="Concept ${esc(d.nom)} : contact">Échanger 30 minutes</a><a class="btn line" href="/sur-mesure/#references">Voir mes réalisations</a></div>
+    <p class="fict">Concept réalisé à partir de ce qui est visible publiquement. Toutes les données affichées sont fictives.</p>
+  </section>
+  <div class="trio">
+    <div><h2>Ce que l'on voit</h2><p>${esc(d.voit)}</p></div>
+    <div><h2>Ce que cela demande</h2><p>${esc(d.demande)}</p></div>
+    <div><h2>Ce que propose le concept</h2><p>${esc(d.propose)}</p></div>
+  </div>
+${sections.map(([n, t, p, l, m]) => `  <section class="sec"><div class="txt"><p class="num">${n}</p><h2>${t}</h2><p>${p}</p><ul>${l.map((x) => `<li>${x}</li>`).join('')}</ul></div><div>${m}</div></section>`).join('\n')}
+  <h2 class="t">Comment ça se branche</h2>
+  <p class="sous">Vos outils restent en place. Le registre les relie et supprime les doubles saisies ; le détail des branchements se vérifie ensemble, outil par outil.</p>
+  <div class="flux">
+    <div><h3>Ce qui existe</h3><ul>${d.branchements.map(([a, b]) => `<li>${esc(a)}<small>${esc(b)}</small></li>`).join('')}</ul></div>
+    <div class="coeur"><b>${esc(d.coeur || `Registre ${d.nom}`)}</b>une fiche par ${esc(d.equipement)}, à jour en permanence</div>
+    <div><h3>Ce que vous obtenez</h3><ul>${d.sorties.map(([a, b]) => `<li>${esc(a)}<small>${esc(b)}</small></li>`).join('')}</ul></div>
+  </div>
+  <h2 class="t">Construit par modules</h2>
+  <p class="sous">On commence par celui qui vous fait gagner le plus de temps, on le teste en conditions réelles, puis on ajoute les autres.</p>
+  <ol class="mods">${d.modules.map(([t, p], i) => `<li><span>${i + 1}</span><b>${esc(t)}</b><p>${esc(p)}</p></li>`).join('')}</ol>
+  <section class="fin">
+    <h2>Un outil construit autour de votre organisation</h2>
+    <p>Ce concept est un point de départ : chaque écran s'adapte à vos produits, à votre vocabulaire et à vos outils. Un échange de 30 minutes suffit pour voir ce qui vous ferait gagner le plus.</p>
+    <div class="ctas"><a class="btn" href="${lien}" data-goatcounter-click="concept-${slug}-contact-bas" data-goatcounter-title="Concept ${esc(d.nom)} : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/sur-mesure/">Ma méthode sur mesure</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
+`;
+}
+
+const choix = process.argv.slice(2);
+for (const slug of Object.keys(donnees).filter((k) => !k.startsWith('_') && (!choix.length || choix.includes(k)))) {
+  const dir = path.join(racine, 'concepts', slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), page(slug, donnees[slug]));
+  console.log(`concepts/${slug}/index.html`);
+}

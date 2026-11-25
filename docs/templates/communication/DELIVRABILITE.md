@@ -17,6 +17,14 @@ réponses, mails automatiques du site) soit authentifié par le domaine, pour so
 Vérifié le 23/11/2026 : test mail-tester 10/10 depuis Gmail ; lien de connexion du site reçu par Gmail avec
 `spf=pass`, `dkim=pass` (`d=qm-engineering.fr`, `s=ovhmo-selector-1`) et `dmarc=pass`.
 
+## Essai Google Workspace (24/11/2026), abandonné
+
+Quentin a pris un abonnement Workspace le 24/11/2026 (MX passé sur `smtp.google.com`, SPF et DKIM Google ajoutés,
+transfert vers le Gmail perso), puis l'a abandonné le soir même : retour à la configuration ci-dessus. Retour arrière :
+MX remis sur OVH, puis retrait de `include:_spf.google.com` du SPF et du TXT `google._domainkey`, désabonnement
+seulement une fois le MX OVH revenu (sinon les mails sont refusés). Mails reçus pendant l'essai : dans Workspace
+(à vérifier avant la résiliation) ; Agence des Mots (« stop » du 24/11) déjà traitée.
+
 ## Pourquoi pas l'envoi direct par Gmail
 
 Un Gmail personnel envoie avec un Return-Path `@gmail.com` et une signature DKIM `gmail.com` : ni le SPF ni le DKIM ne
@@ -47,6 +55,10 @@ Le SMTP d'OVH ne garde aucune copie : les e-mails du site n'apparaissent ni dans
 - **Journaux Netlify** de la fonction `essais-quotidien` (chaque jour à 9:10, Paris) : nombre d'e-mails envoyés par type
   (`Essais gratuits : …`, `Accompagnements d'achat : …`), sans adresse.
 - **Page admin des essais** (`/admin/essais/`, code administrateur) : colonne des e-mails envoyés pour chaque essai.
+- **Nexora Optim › QME › E-mails** (référence depuis le 24/11/2026) : frise de chaque essai (partis, à venir, sautés,
+  arrêtés, manqués), accompagnements J+3, remerciements d'achat (`achat/*`), bilan de chaque tournée quotidienne avec
+  ses erreurs (`tournee/<jour>`, gardé 90 jours) et formulaires reçus (idée, concours : `submission-created.mjs`),
+  lus par `GET /api/essai/essais` au jeton de lecture.
 
 ## Étape suivante : durcir le DMARC
 

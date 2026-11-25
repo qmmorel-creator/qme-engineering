@@ -25,7 +25,9 @@ La mention vient après la signature graphique QME (version HTML, obligatoire de
 **Signature impérative (décision du 23/11/2026)** : tout e-mail de prospection, qu'il porte sur du sur-mesure ou sur
 de l'affiliation avec un influenceur ou une agence d'influenceurs (relances et réponses comprises), porte la signature
 graphique « Bandeau ». Sans elle, le mail ne part pas, au même titre que sans la mention d'opposition. Avant d'écrire
-à un prospect déjà en discussion, lire `docs/prospection/suivi-prospects.md` et le mettre à jour après l'envoi.
+à un prospect déjà en discussion, lire sa fiche dans Nexora Optim › QME, sa tâche « État global du prospect » et sa
+Note Bible, puis tout mettre à jour le jour même après l'envoi (`docs/prospection/NEXORA-PROSPECTS.md` § 2 ;
+`suivi-prospects.md` est une archive).
 
 Lien personnel : `https://qm-engineering.fr/ne-plus-recevoir/?email=<adresse du destinataire, encodée>` (page publique :
 l'adresse est préremplie, la personne confirme d'un clic ; elle rejoint la liste d'opposition). Encoder l'adresse

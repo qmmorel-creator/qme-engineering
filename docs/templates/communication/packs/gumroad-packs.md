@@ -6,6 +6,7 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc
 
 | Pack | Permalien | Prix | Templates en vente | Manquent |
 |---|---|---|---|---|
+| Pack Associations et clubs | pack-associations | 156 € | 7/7 | — |
 | Pack Budget perso et famille | pack-budget-perso-famille | 47 € | 5/5 | — |
 | Pack Chef de projet BTP | pack-chef-de-projet-btp | 192 € | 8/8 | — |
 | Pack Commerçant et artisan | pack-commercant-artisan | 95 € | 5/5 | — |
@@ -21,6 +22,5 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc
 | Pack Propriétaire | pack-proprietaire | 131 € | 9/9 | — |
 | Pack Vie à deux | pack-vie-a-deux | 79 € | 6/6 | — |
 | Pack Papiers et décisions d’argent | pack-argent | 60 € | 4/5 | Remboursements santé |
-| Pack Associations et clubs | pack-associations | 156 € | 4/7 | Subventions, Bénévoles et planning des créneaux, Assemblée générale et vie statutaire |
+| Pack Écoles et formateurs | pack-enseignant | 111 € | 2/5 | Gestion de classe, Emploi du temps d'établissement, Gestion d'auto-école |
 | Pack Maison et famille | pack-famille | 67 € | 4/7 | Suivi du bébé, Suivi d'un animal de compagnie, Calendrier du potager |
-| Pack Écoles et formateurs | pack-enseignant | 111 € | 0/5 | Progression pédagogique, Banque de questions et quiz, Gestion de classe, Emploi du temps d'établissement, Gestion d'auto-école |

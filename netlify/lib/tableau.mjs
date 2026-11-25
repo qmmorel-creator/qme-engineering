@@ -7,7 +7,7 @@
 // Route : GET /api/tableau?jours=30 (en-tête X-Admin : code administrateur).
 // Variables Netlify : GOATCOUNTER_TOKEN (jeton d'API GoatCounter « lecture des statistiques »), GOATCOUNTER_SITE
 // (facultatif, https://qme-engineering.goatcounter.com par défaut), COMPTEUR_SHEET_PUB (déjà utilisée par le compteur).
-import { estAdmin, synthese } from './interets.mjs';
+import { peutLireAdmin, synthese } from './interets.mjs';
 import { PRODUITS, jourParis, estEssaiTest, cleDonnees, cleDonneesEssai, idAdminProduit } from './templates-acces.mjs';
 import { ONGLETS, adressePublication, lireCsv } from './compteur.mjs';
 import { lireRegistre } from './preferences.mjs';
@@ -55,7 +55,22 @@ async function audience({ goatcounter, recuperer, debut, fin, jours }) {
       throw new Error(`GoatCounter ${r.status} sur ${chemin.split('?')[0]}${detail ? ` : ${detail}` : ''}`); }
     return r.json();
   };
-  const [total, pages, sources, pays] = await Promise.all([lire('/stats/total'), lire('/stats/hits?limit=12'), lire('/stats/toprefs?limit=30'), lire('/stats/locations?limit=8')]);
+  // Toutes les pages vues (100 par page, pagination par exclusion des chemins déjà lus ; 5 pages au plus) : les pages
+  // concept et les démos personnalisées (Nexora Optim › QME › Concepts et Affiliation). Le paramètre « filter » de
+  // GoatCounter ne filtre pas sur le chemin (vérifié le 24/11/2026). Une erreur ici n'empêche pas le reste.
+  const toutesPages = async () => {
+    const l = [];
+    for (let i = 0; i < 5; i++) {
+      const p = await lire(`/stats/hits?limit=100${l.length ? `&exclude_paths=${l.map((h) => h.path_id).join(',')}` : ''}`);
+      l.push(...(p.hits || []));
+      if (!p.more) break;
+    }
+    return l;
+  };
+  const [total, pages, sources, pays, toutes] = await Promise.all([
+    lire('/stats/total'), lire('/stats/hits?limit=12'), lire('/stats/toprefs?limit=30'), lire('/stats/locations?limit=8'), toutesPages().catch(() => []),
+  ]);
+  const parPrefixe = (prefixe) => toutes.filter((h) => !h.event && String(h.path || '').startsWith(prefixe)).map((h) => ({ chemin: h.path, titre: h.title || '', n: h.count || 0 })).sort((a, b) => b.n - a.n);
   const sourcesFusion = new Map();
   for (const s of sources.stats || []) { const n = nomSource(s.name); if (n) sourcesFusion.set(n, (sourcesFusion.get(n) || 0) + (s.count || 0)); }
   return {
@@ -65,6 +80,7 @@ async function audience({ goatcounter, recuperer, debut, fin, jours }) {
     pages: (pages.hits || []).filter((h) => !h.event).slice(0, 10).map((h) => ({ chemin: h.path, titre: h.title || '', n: h.count || 0 })),
     sources: [...sourcesFusion].map(([nom, n]) => ({ nom, n })).sort((a, b) => b.n - a.n).slice(0, 8),
     pays: (pays.stats || []).map((p) => ({ nom: nomPays(p.id, p.name), n: p.count || 0 })),
+    concepts: parPrefixe('/concepts/'), demos: parPrefixe('/demo/'),
   };
 }
 
@@ -273,10 +289,10 @@ export async function tableau({ secret, store, donnees = null, interets = null, 
   };
 }
 
-export async function traiterTableau(requete, { secret, admin = '', ...reste }) {
+export async function traiterTableau(requete, { secret, admin = '', lecture = '', ...reste }) {
   if (requete.method !== 'GET') return json(405, { erreur: 'Méthode non permise.' });
   if (!secret || secret.length < 32 || !reste.store) return json(503, { erreur: 'Service non configuré' });
-  if (!estAdmin(requete.headers.get('x-admin') || '', { secret, admin })) return json(401, { erreur: 'Code administrateur requis.' });
+  if (!peutLireAdmin(requete, { secret, admin, lecture })) return json(401, { erreur: 'Code administrateur requis.' });
   const jours = Number(new URL(requete.url).searchParams.get('jours')) || 30;
   return json(200, await tableau({ secret, jours, ...reste }));
 }

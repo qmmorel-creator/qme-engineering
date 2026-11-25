@@ -135,8 +135,8 @@ déjà).
 | T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
 | T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
 | T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
-| T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | prêt | 19 € | M | P3 | Backlog Quentin n° 35 |
-| T59 | Progression pédagogique | Éducation | Enseignants, formateurs | prêt | 15 € | S | P3 | Backlog Quentin n° 36 |
+| T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | en vente | 19 € | M | P3 | Backlog Quentin n° 35 |
+| T59 | Progression pédagogique | Éducation | Enseignants, formateurs | en vente | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` dépubliée |
 | T61 | Maintenance préventive (GMAO légère) | Exploitation | Ateliers, services techniques, exploitants multi-sites | en vente | 39 € | M | P2 | Backlog Quentin n° 39. Absorbe T60 le 22/11/2026 (option plusieurs sites) |
 | T62 | Stocks et inventaire | Commerce | Petits commerces, artisans | en vente | 25 € | S | P2 | Backlog Quentin n° 40 |
@@ -166,9 +166,9 @@ déjà).
 | T88 | Notes et moyennes (coefficients, ECTS, objectifs) | Études | Lycéens, étudiants | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
 | T89 | Suivi de candidatures (modèles Études et stages, Emploi, Appels d'offres et plateformes ; ex-Candidatures études, stages, alternance, T76 fusionné le 22/11/2026) | Études / emploi / commercial | Lycéens, étudiants, demandeurs d'emploi, freelances et PME | en vente | 12 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) ; rationalisation F3 du 22/11/2026 (packs Étudiant et Freelance : trouver ses clients) |
 | T90 | Planning de mémoire ou de thèse | Études | Étudiants, doctorants | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Étudiant) |
-| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | prêt | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | prêt | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
-| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | prêt | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T91 | Subventions (dossiers, échéances, justificatifs) | Associatif | Associations | en vente | 25 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T92 | Bénévoles et planning des créneaux | Associatif | Associations, clubs, organisateurs | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
+| T93 | Assemblée générale et vie statutaire | Associatif | Bureaux d'associations | en vente | 19 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Associations) |
 | T94 | État des lieux d’entrée et de sortie (ancien nom : État des lieux d'entrée et de sortie) | Immobilier | Propriétaires bailleurs, locataires | en vente | 19 € | M | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T95 | Rentabilité d'un investissement locatif | Immobilier | Investisseurs particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |
 | T96 | Charges et AG de copropriété (ancien nom : Charges et assemblées générales de copropriété) | Immobilier | Copropriétaires | en vente | 15 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Propriétaire) |

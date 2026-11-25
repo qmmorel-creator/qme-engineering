@@ -9,11 +9,11 @@
 // générique présent dans les deux (lire avec publics()). phrases (facultatif) : { pro, perso }, la phrase de carte
 // propre à chaque partie (pages /pro/ et /perso/, composeur de packs) ; sinon `phrase`.
 export const TEMPLATES = {
-  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', pour: 'pro' },
+  PRG: { slug: 'progression', prix: 1500, phrase: 'Séquences et séances, prévu face au réel, fin projetée.', permalien: 'progression-pedagogique', pour: 'pro' },
   BBE: { slug: 'bebe', prix: 1300, phrase: 'Tétées, sommeil, couches, à deux parents, d’une main.', pour: 'perso' },
   FRM: { slug: 'competences', prix: 2500, phrase: 'Niveaux, écarts au poste, compétences fragiles, plan de formation.', pour: 'pro' },
   PTG: { slug: 'potager', prix: 1300, phrase: 'Vos semis à leur date, la rotation de vos planches suivie.', pour: 'perso' },
-  AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', pour: 'pro' },
+  AGS: { slug: 'assemblee-generale', prix: 1900, phrase: 'Convocations, quorum, PV et mandats du bureau.', permalien: 'assemblee-generale-association', pour: 'pro' },
   CDX: { slug: 'remerciements', prix: 1200, phrase: 'Qui a offert quoi, et à qui il reste à dire merci.', permalien: 'cadeaux-remerciements', pour: 'perso' },
   GRD: { slug: 'garde-manger', prix: 1200, phrase: 'DLC et DDM, à consommer en priorité, gaspillage suivi.', permalien: 'garde-manger-dates-peremption', pour: 'perso' },
   ETD: { slug: 'etat-des-lieux', prix: 1900, phrase: 'Pièce par pièce, photos, sortie comparée à l’entrée et document à signer.', permalien: 'etat-des-lieux', pour: 'perso' },
@@ -27,9 +27,9 @@ export const TEMPLATES = {
   MMR: { slug: 'memoire', prix: 1500, phrase: 'Plan, rétroplanning et mots par jour jusqu’au rendu.', permalien: 'planning-memoire', pour: 'perso' },
   RBS: { slug: 'remboursements-sante', prix: 1200, phrase: 'Ce qui a été payé, remboursé, et ce qu’on vous doit encore.', pour: 'perso' },
   KRF: { slug: 'references-plaquette', prix: 1900, phrase: 'Vos réalisations mises en valeur, plaquette imprimable par prospect.', permalien: 'kit-references-plaquette', pour: 'pro' },
-  BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', pour: 'pro' },
+  BNV: { slug: 'benevoles', prix: 1900, phrase: 'Qui tient quel créneau, sans trou ni doublon.', permalien: 'benevoles-planning-creneaux', pour: 'pro' },
   ACH: { slug: 'achats', prix: 1900, phrase: 'Demandes, validation, commandes et budget par service.', permalien: 'demandes-achat-fournitures', pour: 'pro' },
-  SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', pour: 'pro' },
+  SBV: { slug: 'subventions', prix: 2500, phrase: 'Dossiers, échéances, justificatifs et bilans.', permalien: 'subventions-association', pour: 'pro' },
   CPR: { slug: 'copropriete', prix: 1500, phrase: 'Appels de fonds, charges, régularisation et votes en AG.', permalien: 'charges-ag-copropriete', pour: 'perso' },
   TMP: { slug: 'suivi-temps', prix: 1900, phrase: 'Le temps réellement passé, comparé au tarif et au devis.', permalien: 'suivi-temps-rentabilite', pour: 'pro' },
   BSC: { slug: 'bascule', prix: 2900, phrase: 'Déroulé horaire, go/no-go, retour arrière, retard en direct.', permalien: 'pilotage-bascule', pour: 'pro' },
@@ -102,7 +102,7 @@ export const TEMPLATES = {
   // Suivi de candidatures (fusion F3 du 22/11/2026) : présent dans les deux parties du site, une phrase par public.
   CAN: { slug: 'candidatures', prix: 1200, phrase: 'Études, emploi ou appels d’offres : pièces, dates limites, relances et réponses.', phrases: { pro: 'Appels d’offres et plateformes : go/no-go, pièces à rebours, dépôt, relances et résultats.', perso: 'Vœux, stages, alternance ou emploi : pièces, dates limites, relances et réponses.' }, permalien: 'candidatures-etudes-stages-alternance', pour: 'pro perso' },
   RNT: { slug: 'investissement-locatif', prix: 1500, phrase: 'Rendement brut, net et cash-flow avant d’acheter.', permalien: 'rentabilite-investissement-locatif', pour: 'perso' },
-  QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', pour: 'pro' },
+  QZZ: { slug: 'quiz', prix: 1900, phrase: 'Questions taguées, quiz générés et corrigés.', permalien: 'banque-questions-quiz', pour: 'pro' },
   SVT: { slug: 'sans-voiture', prix: 900, phrase: 'Le gain annuel de vivre sans voiture, sortie comprise, et une parade à chaque urgence.', permalien: 'simulateur-vivre-sans-voiture', pour: 'perso' },
 };
 

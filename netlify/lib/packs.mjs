@@ -44,7 +44,7 @@ export const PACKS = {
   PPR: { slug: 'productivite', nom: 'Pack Productivité perso', produits: ['TCH', 'PHR', 'HBT', 'RDV', 'RVH'], gumroad: 'DGl_v1KCgWfTxbstgh_PWw==', permalien: 'pack-productivite' },
   PET: { slug: 'etudiant', nom: 'Pack Étudiant', produits: ['REV', 'PHR', 'HBT', 'PGS', 'NTS', 'CAN', 'MMR'], gumroad: 'YtS6AIhqXdCedt-AqQtjmw==', permalien: 'pack-etudiant' },
   PAS: { slug: 'associations', nom: 'Pack Associations et clubs', produits: ['ASC', 'EVT', 'TRS', 'CMP', 'SBV', 'BNV', 'AGS'] },
-  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT', 'RNT', 'CPR', 'ETD'] },
+  PPB: { slug: 'proprietaire', nom: 'Pack Propriétaire', produits: ['SJR', 'TRV', 'ENT', 'GST', 'SNH', 'CPT', 'RNT', 'CPR', 'ETD'], gumroad: '6t2dFMV7m7ZFZi9WCufCbA==', permalien: 'pack-proprietaire' },
   PFM: { slug: 'forme', nom: 'Pack Forme', produits: ['NTR', 'HBT', 'RPS', 'MSC', 'CRS'], gumroad: 'tJE8UvI9P1QAjGsqyFFe2g==', permalien: 'pack-forme' },
   // Packs ouverts le 14/11/2026 ; ceux dont les templates sont encore en préparation n'ont pas de produits.
   PFA: { slug: 'famille', nom: 'Pack Maison et famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM', 'PTG'] },
