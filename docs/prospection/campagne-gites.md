@@ -25,10 +25,11 @@ identifiable, comme outil prêt à l'emploi, avec l'ouverture sur du sur-mesure.
 
 ## Points ouverts au 25/11/2026
 
-- **Quota** : la campagne `auto-ecole` est active avec `parJour: 50`. Ajouter `gites` à 12 porterait la somme à 62,
-  au-delà du plafond de 50 par jour. De plus, l'envoi sert les campagnes dans l'ordre de lecture : tant qu'`auto-ecole`
-  a 50 de quota et du stock, `gites` ne recevrait aucun créneau. Décision à prendre par Quentin (par exemple
-  `auto-ecole` à 38) ; cette session ne modifie pas le `parJour` d'une autre campagne.
+- **Quota** (mis à jour le 25/11/2026 à 13 h 35) : le plafond global de 50 par jour est supprimé en production (PR #303,
+  un envoi toutes les 2 minutes, 300 par jour au plus). `auto-ecole` n'a plus de `parJour` (144 en file), `btp` est
+  en pause à 12. La consigne de départ (« 50 par jour toutes campagnes confondues, somme des parJour ≤ 50 ») ne peut
+  plus être vérifiée telle quelle : décision de Quentin attendue. L'envoi sert les campagnes dans l'ordre de lecture
+  (`auto-ecole`, `btp`, `gites`) : `gites` ne part qu'une fois la file d'`auto-ecole` vide ou plafonnée.
 
 ## Lot 1 (25/11/2026)
 
