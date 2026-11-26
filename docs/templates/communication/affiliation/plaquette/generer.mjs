@@ -258,9 +258,11 @@ const pageSite = html
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
 <link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">`)
-  .replace('</style>', `@media screen{
-  body{padding:56px 0 24px}
-  .page{margin:0 auto;background:var(--papier);box-shadow:0 0 0 2px var(--encre),6px 6px 0 2px var(--encre)}
+  .replace('</style>', `html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media screen{
+  body{padding:56px 0 24px;overflow-x:hidden}
+  .cadre{margin:0 auto;width:210mm;position:relative}
+  .page{height:auto;min-height:297mm;overflow:visible;background:var(--papier);box-shadow:0 0 0 2px var(--encre),6px 6px 0 2px var(--encre);transform-origin:0 0}
   .barre{position:fixed;inset:0 0 auto 0;z-index:5;background:var(--encre);color:var(--papier);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 16px;font:600 15px/1.2 Outfit,sans-serif}
   .barre a{color:var(--papier);text-decoration:none}
   .barre .pdf{background:var(--jaune);color:var(--encre);padding:8px 14px;font-weight:800;white-space:nowrap}
@@ -269,14 +271,21 @@ const pageSite = html
 </style>`)
   .replace('<body><main class="page">', `<body>
 <div class="barre"><a href="/">← qm-engineering.fr</a><a class="pdf" href="/partenariat/${PDF_SITE}" download data-goatcounter-click="partenariat-pdf" data-goatcounter-title="Plaquette partenariat : PDF">Télécharger le PDF</a></div>
-<main class="page">`)
-  .replace('</main></body></html>', `</main>
+<div class="cadre"><main class="page">`)
+  .replace('</main></body></html>', `</main></div>
 <script>
-// Met la page A4 (794 px) à l'échelle de l'écran, sans défilement horizontal.
+// Met la page A4 (794 px) à l'échelle de l'écran par transformation (fiable sur Safari iOS),
+// le cadre prend la taille réduite : ni défilement horizontal, ni bas de page coupé.
 (function () {
-  var page = document.querySelector('.page');
-  function ajuster() { page.style.zoom = Math.min(1, (window.innerWidth - 16) / 794); }
+  var page = document.querySelector('.page'), cadre = document.querySelector('.cadre');
+  function ajuster() {
+    var z = Math.min(1, (document.documentElement.clientWidth - 16) / page.offsetWidth);
+    page.style.transform = z < 1 ? 'scale(' + z + ')' : '';
+    cadre.style.width = (page.offsetWidth * z) + 'px';
+    cadre.style.height = (page.offsetHeight * z) + 'px';
+  }
   ajuster(); window.addEventListener('resize', ajuster);
+  if (document.fonts) document.fonts.ready.then(ajuster);
 })();
 </script>
 <script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
