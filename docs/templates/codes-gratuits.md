@@ -11,3 +11,4 @@ Dossier `docs/` non servi par Netlify (404).
 | Date | Produit | Code | Id (révocation) | Destinataire | Statut |
 |---|---|---|---|---|---|
 | 13/11/2026 | HBT | `HBT-QK5A-C4M8-HYQE-WV5X` | `QK5AC4M8` | Floriane Jolliot | actif |
+| 26/11/2026 | HBT | `HBT-AY27-XWVD-6ZZW-ZSD8` | `AY27XWVD` | Christian | actif |
