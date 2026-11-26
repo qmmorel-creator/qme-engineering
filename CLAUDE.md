@@ -178,6 +178,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Carreau, commission de 25 % par vente
   Gumroad, outil sur mesure offert. Page : `qm-engineering.fr/partenariat/` ; Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
   `docs/templates/communication/affiliation/plaquette/`. Jointe à un mail seulement avec l'accord de Quentin.
+- **Lien vers la plaquette dans toute prospection d'influenceurs** (décision de Quentin du 26/11/2026) : tout e-mail
+  de prospection à un influenceur, un créateur ou une agence d'influence (premier contact, relance, réponse, suite
+  d'échange) contient **systématiquement** le lien `https://qm-engineering.fr/partenariat/` vers la plaquette en ligne.
+  Le PDF en pièce jointe reste soumis à l'accord de Quentin ; le lien, lui, est toujours présent.
 
 ## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts, TikTok)
 

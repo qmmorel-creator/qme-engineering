@@ -30,6 +30,9 @@ Explique chaque étape à Quentin en français, sans flatterie. Dis ce qui a ét
 6. **Mention d'opposition (règle absolue)** : vérifier que l'adresse et son domaine ne sont pas sur la liste
    d'opposition avant d'écrire, et terminer chaque brouillon par la mention « Ne plus recevoir les informations »
    (lien personnel `/ne-plus-recevoir/?email=…`), texte et HTML : `docs/templates/communication/REGLES-PROSPECTION.md`.
+7. **Lien vers la plaquette partenariat (décision du 26/11/2026)** : tout brouillon ou envoi à un influenceur, un
+   créateur ou une agence d'influence contient systématiquement le lien https://qm-engineering.fr/partenariat/
+   (plaquette en ligne), texte et HTML. Le PDF en pièce jointe reste soumis à l'accord de Quentin.
 
 ## Sous-conversation de suivi (décision du 25/11/2026)
 
