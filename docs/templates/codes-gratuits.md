@@ -12,3 +12,4 @@ Dossier `docs/` non servi par Netlify (404).
 |---|---|---|---|---|---|
 | 13/11/2026 | HBT | `HBT-QK5A-C4M8-HYQE-WV5X` | `QK5AC4M8` | Floriane Jolliot | actif |
 | 26/11/2026 | HBT | `HBT-AY27-XWVD-6ZZW-ZSD8` | `AY27XWVD` | Christian | actif |
+| 26/11/2026 | HBT (Gumroad, 100 %, 1 utilisation, sans expiration) | `CHRISTIAN-HBT-100` | — (expirer côté Gumroad) | Christian | actif |
