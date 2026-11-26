@@ -18,5 +18,8 @@ une conversation dédiée (session enfant de Master Tunnel de vente, `session_01
 | Kieran Hicks · Tignes Spirit | `session_0183EW53fsWt9dUdbsnnqhtD` | `p-cfd212ed3b` | `fd9abc6f-2680-48c8-8dd7-9fef98d8103e` | 25/11/2026 | ouvert |
 | Bryan Durand · GMT Bordeaux | `session_0183EW53bhFMHeqjVPHoiyK8` | `p-911afd9212` | `49f0bdd6-fe9c-4a31-bc39-9a61f9ef6dd4` | 25/11/2026 | ouvert |
 | Armelle Derne · Qui Plus Est architectes | `session_0183EW52an9vojGtV2Nc74aR` | `p-9cebdee894` | `1c583333-7604-44ce-8b88-07a07b9542b6` | 25/11/2026 | ouvert |
+| Inès · Agence Moor | `session_0183EW54LqZquqSEswnums98` | `p-5fca9f1ed1` | `33cfd33e-8073-4d5a-9a47-a50619ed16df` | 25/11/2026 | ouvert |
+| Christelle · Allegretto (école de musique) | `session_0183EW55NiCU5czywDq5adA8` | `p-3bfbb64bdd` | `2f5d1dee-8063-456d-bd71-327ea630499b` | 25/11/2026 | ouvert |
+| Laurent · Alpes Premium | `session_0183EW55J9roScKM2ESeUrbQ` | `p-c415b37ca9` | `3eb73f68-ad65-4171-95d6-f7fcd82570d4` | 25/11/2026 | ouvert |
 
 Hors registre (affiliation, session [MASTER] Suivi Influenceurs) : Optimind, Yuzu Agency / Odélia, Le van à la française.
