@@ -34,10 +34,40 @@ le mail et la page le disent tels quels, ce qui appuie « chaque outil s'achète
 
 ## Lots
 
-(à compléter : nombre sourcé, écartés par contrôle, retenus)
+Fichiers de lot hors dépôt (adresses ; un lot versé dans `docs/` serait ensuite vu comme « déjà dans le dépôt » par
+`campagne.mjs doublons`). Un code postal sert seulement aux fiches Nexora, jamais au mail.
+
+### Lot 1 · fleuristes (27/11/2026)
+
+- 110 candidats examinés, 70 écartés au sourcing : 44 sans adresse lisible (formulaire ou adresse masquée), 5 adresses
+  nominatives, 4 adresses douteuses, 4 sans boutique confirmée, 2 réseaux ou franchises, 5 sites injoignables, 4 valides
+  gardés en réserve (répartition des départements).
+- **40 retenus**, 23 départements. Contrôles : `doublons` 0 écarté ; Nexora (`list_qme` par nom) 0 ; Gmail
+  (`in:anywhere <domaine>`, une requête par domaine ou adresse, 64 requêtes) 0 ; opposition 0 ; `desinscrits.md` 0.
+- Réserves : 3 adresses sur un domaine différent du site (lues sur le site même) ; 4 maisons locales à plusieurs
+  boutiques (sans franchise) ; code postal de Fouras ajouté de mémoire.
+
+### Lot 1 · micro-brasseries (27/11/2026)
+
+- 82 candidats examinés, 38 écartés au sourcing (18 sans adresse lisible, 8 sites vides ou repris, 3 nominatives,
+  3 hors cible dont un réseau de brasseries-restaurants, 6 autres), puis 3 retirés par la session : Brasserie du Mont
+  Blanc (seule adresse : service marketing ; taille), Page 24 / Saint-Germain (11 500 hl par an), Pays Flamand (deux
+  sites de production).
+- **41 retenus**, 33 départements. Contrôles : `doublons` 0 ; Nexora 0 ; Gmail 0 (50 requêtes) ; opposition 0 ;
+  `desinscrits.md` 0.
+- Réserves : codes postaux de Gallia, Paname, Cap d'Ona et Guerlédan complétés hors de la page ; Maison Alaryk lancée
+  par un distributeur familial indépendant ; nom « Smeele - Fabrique de bière » ramené à « Smeele » pour le mail.
+
+### Méthode Gmail (constat du 27/11/2026)
+
+- Une recherche groupée (`in:anywhere (a OR b OR …)`, 9 à 11 termes) a renvoyé 0 fil pour `pois-de-senteur.fr` alors
+  que la recherche isolée en renvoie un : **une requête par domaine**, jamais groupée.
+- Un domaine à tirets est découpé en mots par Gmail (`la-fleuriste.com` : 13 fils, `c-ma-nature.fr` : 61) : refaire
+  alors la recherche entre guillemets (`"la-fleuriste.com"`) et lire les fils restants. Les 4 cas du lot étaient des
+  faux positifs (aucun fil entre guillemets ; « décoration et fleurs » pour `etfleurs.fr`).
 
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail ; sourcing du lot 1 lancé ; en attente du feu vert de Quentin |
+| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail (PR #336), concept Nexora `brouillon`, campagne créée en pause ; lot 1 : 40 fleuristes et 41 brasseries contrôlés (0 écarté par les contrôles), ateliers en sourcing ; brouillon de validation dans Gmail ; en attente du feu vert de Quentin |
