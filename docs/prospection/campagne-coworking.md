@@ -33,3 +33,13 @@ Sous-campagne lancée le 27/11/2026 depuis la session « Audit campagnes ciblée
   sur la page avant chaque lot.
 
 ## Lots
+
+### Lot A (27/11/2026) · Île-de-France, Hauts-de-France, Normandie, Bretagne, Pays de la Loire, Centre-Val de Loire, Grand Est, Bourgogne-Franche-Comté
+
+- 47 lieux sourcés (adresse relue sur la page exacte du site), 50 écartés au sourcing (pas d'adresse 14, réseau 12,
+  adresse nominative 7, site anti-robot 5, structure publique 5, hors cible 4, sites injoignables ou fermés).
+- 7 écartés au tri : adresse d'un tiers (1), coworking activité secondaire (4), opérateur possible (1), jardin
+  d'entreprises peut-être public (1). **40 retenus.**
+- Contrôles anti-doublon : `doublons --campagne coworking` 0 écarté ; Nexora (nom puis radical du domaine, 95
+  recherches) 0 écarté ; Gmail (une requête par domaine, 52 clés, témoins connu et inventé valides) 0 écarté.
+- Opposition : à vérifier par l'API au moment de la mise en file (après feu vert). Fichier de lot hors dépôt.
