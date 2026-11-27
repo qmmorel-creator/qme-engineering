@@ -102,7 +102,10 @@ export async function mettreEnFile({ store, secret, campagne, messages, maintena
       if (!premier || premier.statut !== 'envoye' || premier.email !== email) { refuses.push({ id: m.id, raison: 'premier mail non envoyé à cette adresse' }); continue; }
     } else {
       const deja = await store.get(`${P}adresse/${campagne}/${cleEmail(secret, email)}`);
-      if (deja) { refuses.push({ id: m.id, raison: `adresse déjà dans la campagne (${deja.id})` }); continue; }
+      // Seule exception : le message précédent à cette adresse a fini en erreur (jamais parti) ; il peut repartir sous un
+      // nouvel id. Encore en file, envoyé ou écarté (opposition, retrait) : refusé.
+      const precedent = deja && (await store.get(`${P}fait/${campagne}/${deja.id}`));
+      if (deja && precedent?.statut !== 'erreur') { refuses.push({ id: m.id, raison: `adresse déjà dans la campagne (${deja.id})` }); continue; }
     }
     const rang = relance ? `0-${m.pasAvant || jourParis(new Date(n))}-${n}` : `1-${n}`;
     n += 1;
