@@ -38,3 +38,4 @@ sur-mesure. Skill : `.claude/skills/campagne-ciblee-pack/`.
 | 2026-11-25 | 34 | 0 | 0 | Premiers envois de 11:12 à 17:56, aucune erreur d'envoi, aucun retour en erreur ni réponse dans Gmail ; 34 fiches Nexora en `contacte` (relance le 02/12) ; 420 en file (lots 1 et 2), en parallèle des campagnes btp, formation et gîtes |
 | 2026-11-26 | 78 | 1 « stop » | 1 | Lot Ô École (Cahors) : « STOP STOP STOP » → liste d'opposition (adresses + domaine), étape `oppose` ; Lexo (Lisieux) : réponse automatique de changement d'adresse ; aucune erreur d'envoi ni retour en erreur |
 | 2026-11-27 (matin) | 18 | 0 | 0 | Point du 26/11 traité le 27/11 au matin ; 324 en file |
+| 2026-11-27 | 93 | 0 | 0 | 1 échec (CESR 20 Bastia, 11:14 Paris) : « 550 Mail quota exceeded » de la boîte OVH, comme 4 envois gîtes entre 11:06 et 12:12 ; envois normaux ensuite jusqu'à 17:58 ; aucune nouvelle réponse ; 248 en file |
