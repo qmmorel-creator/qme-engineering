@@ -136,3 +136,12 @@ par vidéo.** D'ici là : commentaire épinglé et lien en bio vers la démo gra
   https://www.wati.io/en/blog/keyword-triggered-instagram-automation/
 - Données internes : Nexora `get_qme_dashboard`, 30 jours au 27/11/2026 ; épisodes, règles et journaux du dépôt.
 - Chiffres écartés faute de source solide : « 71 % décident en 3 s », pondérations « sauvegarde ×10 », durée idéale.
+
+## 8. Décisions de Quentin (27/11/2026)
+
+1. **5 créneaux par semaine** pour les mini-stories sur Instagram (TikTok suit). Le premier, le pilote « Le salaire a
+   disparu ! », est sorti le 27/11.
+2. **Choix des épisodes publiés** : délégué à l'agent master.
+3. **Carton final** : délégué à l'agent master. Décision : carton officiel 4 s sur Instagram ; version TikTok coupée
+   pour garder 1,5 s de carton (même fichier, fin raccourcie, sans nouvelle voix).
+4. **Sujets tendancieux écartés** : n° 11 (fonds d'urgence) et n° 12 (dettes).

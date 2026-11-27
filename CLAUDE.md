@@ -230,6 +230,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
   dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
   contenu unique, dans la règle d'une publication par plateforme et par jour.
+- **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
+  choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
+  thème « Mini-story », en respectant une seule publication par jour : les lignes sans date imposée déplacées par une
+  mini-story vont en fin de planning. Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
+  ne remplace jamais une ligne « Mini-story ».
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
   (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
   Ministories ». Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
