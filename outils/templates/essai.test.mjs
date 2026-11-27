@@ -285,7 +285,7 @@ test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async (
   await creer(w, { produit: 'lecture', email: 'a@b.fr' });
   w.horloge.t = T0 + 5 * JOUR; w.mails.length = 0;
   await tourner();
-  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi de lecture : par où commencer']);
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi culturel : par où commencer']);
   const w2 = monde();
   await creer(w2, { produit: 'lecture', email: 'a@b.fr' });
   w2.horloge.t = T0 + 6 * JOUR; w2.mails.length = 0;

@@ -6,7 +6,7 @@ window.BASE = {
   version: '2026-11-27',
   // Nom du produit, affiché partout dans l'application (un seul endroit à changer). Nom actuel gardé jusqu'au choix
   // de Quentin ; proposition : « Suivi culturel » (docs/production/suivi-culturel.md).
-  nom: 'Suivi de lecture',
+  nom: 'Suivi culturel',
 
   // Genres proposés au premier lancement (l'utilisateur les renomme, en ajoute ou en retire).
   genres: [
