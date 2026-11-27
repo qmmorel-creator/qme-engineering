@@ -11,10 +11,15 @@ sont validés par Quentin (via le GOD) avant toute fusion.
 | Médias | livres (papier, numérique, audio) | livres, livres audio, films, séries (saisons, épisodes), podcasts |
 | Saisie | tout à la main | recherche au fil de la frappe (Open Library, TMDB, iTunes), tolérante aux accents et aux fautes ; saisie à la main toujours possible |
 | Objectifs | livres, pages | livres (audio compris), pages, films, séries, podcasts, épisodes |
-| Nom | Suivi de lecture | **Suivi culturel** (provisoire, à valider) |
+| Nom | Suivi de lecture | inchangé dans la PR ; « Suivi culturel » proposé, renommage prêt (voir ci-dessous) |
 | Code, fiche Gumroad, URL, prix | PGS, `cfXnYcVohgvMwrn0ONglsQ==`, `/templates/lecture/`, 12 € | **inchangés** (licences et données des acheteurs valables), reste dans le Pack Étudiant |
 
-Noms proposés : 1) **Suivi culturel** (recommandé) ; 2) Carnet de culture ; 3) Mes lectures et écrans. Le nom
+Noms proposés : 1) **Suivi culturel** (recommandé) ; 2) Carnet de culture ; 3) Mes lectures et écrans.
+
+**État du nom** (consigne du Master Production) : la PR garde le nom actuel « Suivi de lecture » partout. Le
+renommage en « Suivi culturel » tient dans **un seul commit**, prêt sur la branche `claude/prod-suivi-culturel-nom`
+(commit `35d8bb8`, basé sur la PR) : une fois le nom validé, le fusionner dans `claude/prod-suivi-culturel`. Pour un
+autre nom, refaire le même commit avec ce nom (mêmes fichiers). Le nom
 s'écrit dans `templates/lecture/donnees.js` (`nom`), `netlify/lib/templates-acces.mjs` (`PRODUITS.PGS.nom`),
 `outils/packs/donnees.mjs`, la page `catalogue/lecture/` et les cartes ; relancer ensuite `node outils/packs/generer.mjs`,
 `node outils/connexion/generer.mjs`, `node outils/packs/generer.mjs`, `node outils/essai/generer.mjs`,
@@ -57,10 +62,10 @@ secours.) Sans variable : films et séries en saisie manuelle, tout le reste fon
 
 ## 5. Points ouverts
 
-- **Logo TMDB** : les règles d'attribution TMDB demandent leur logo officiel (moins visible que celui de QME) à côté de
-  la mention. Mention texte en place (« This product uses the TMDB API but is not endorsed or certified by TMDB. »,
-  résultats de recherche et Réglages › Sources) ; le logo est à télécharger sur themoviedb.org (page
-  « Logos & Attribution ») et à ajouter.
+- **Logo TMDB** : fait. Logo officiel « blue_short » téléchargé le 27/11/2026 depuis themoviedb.org (page « Logos &
+  Attribution »), rangé dans `templates/lecture/tmdb-logo.svg` (SVG d'origine, sans script), affiché sans déformation
+  à 70 px de large à côté de la mention « This product uses the TMDB API but is not endorsed or certified by TMDB. »
+  (résultats de recherche, fiche préremplie, Réglages › Sources).
 - **iTunes Search API** : gratuite et sans clé, environ 20 appels par minute ; ses conditions visent la promotion des
   contenus Apple. Seuls titre, créateur et année sont utilisés. À valider par Quentin.
 - **Pages anglaises** (`en/templates/`, `en/english-version/`) : texte « Reading tracker » non modifié.

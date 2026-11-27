@@ -118,3 +118,21 @@ test('recherche tolérante côté serveur identique à celle de l\'application',
   assert.ok(scoreRecherche('misreables', 'Les Misérables') > 0);
   assert.equal(scoreRecherche('balzac', 'Les Misérables'), 0);
 });
+
+test('panne d\'une source : message générique sans le jeton, les autres sources répondent', async () => {
+  const st = memoire();
+  const { f } = sources();
+  // TMDB en panne avec un message d'erreur qui contiendrait le jeton : rien ne fuit dans la réponse.
+  const panneTmdb = async (url, init) => { if (String(url).includes('themoviedb')) throw new Error(`échec ${JETON_TMDB}`); return f(url, init); };
+  const opts = { stockage: st, fetchImpl: panneTmdb, tmdbJeton: JETON_TMDB };
+  const r = await appeler(req('recherche?media=film&q=grand depart'), opts);
+  assert.equal(r.statut, 200);
+  assert.equal(r.corps.indisponible, true);
+  assert.ok(!JSON.stringify(r.corps).includes(JETON_TMDB));
+  const d = await appeler(req('detail?media=film&s=tmdb&id=603'), opts);
+  assert.equal(d.statut, 502);
+  assert.ok(!JSON.stringify(d.corps).includes(JETON_TMDB));
+  // Open Library et iTunes répondent normalement pendant la panne de TMDB.
+  assert.equal((await appeler(req('recherche?media=livre&q=miserables'), opts)).corps.resultats.length, 1);
+  assert.equal((await appeler(req('recherche?media=podcast&q=questions'), opts)).corps.resultats.length, 1);
+});
