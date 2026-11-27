@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>La résolution du 2 janvier · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 28.3 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-habitudes-tel.webp" alt=""><img class="pre" src="../assets/templates-habitudes-bilan.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (formes et couleurs fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+// Page de calendrier : en-tête rouge « JANV », grand numéro du jour
+const calendrier = (x, y, jour, s = 1, rot = 0) => `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})"><rect x="-170" y="-190" width="340" height="380" fill="${C.noir}" transform="translate(14 14)"/><rect x="-170" y="-190" width="340" height="380" fill="#fff" stroke="${C.noir}" stroke-width="10"/><rect x="-170" y="-190" width="340" height="96" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><text y="-124" font-size="50" font-weight="800" letter-spacing="8" text-anchor="middle" fill="#fff">JANV</text><text y="120" font-size="200" font-weight="800" text-anchor="middle">${jour}</text></g>`;
+// Haltère bleu
+const haltere = (x, y, r = 0, s = 1, poussiere = 0) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-90" y="-10" width="180" height="20" fill="${C.noir}"/><rect x="-120" y="-55" width="44" height="110" fill="${C.bleu}" stroke="${C.noir}" stroke-width="8"/><rect x="76" y="-55" width="44" height="110" fill="${C.bleu}" stroke="${C.noir}" stroke-width="8"/>${poussiere ? `<path d="M-120 -55 L-60 -110 M-100 -55 L-60 -110 L-20 -60 M-60 -110 V-10" stroke="#888" stroke-width="3" fill="none" opacity="${poussiere}"/>` : ''}</g>`;
+// Canapé rouge personnifié (accessoire, pas une mascotte) : yeux mi-clos, sourire satisfait
+function canape(x, y, s = 1, sourire = 0) {
+  const oeil = (cx) => `<circle cx="${cx}" cy="-70" r="18" fill="#fff" stroke="${C.noir}" stroke-width="6"/><rect x="${cx - 20}" y="-90" width="40" height="${18 - sourire * 6}" fill="${C.rouge}"/><path d="M${cx - 20} ${-72 - sourire * 6} h40" stroke="${C.noir}" stroke-width="6"/><circle cx="${cx + 3}" cy="-64" r="7" fill="${C.noir}"/>`;
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-300" y="-160" width="600" height="190" fill="${C.noir}" transform="translate(14 14)"/><rect x="-300" y="-160" width="600" height="190" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><rect x="-360" y="-60" width="90" height="190" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><rect x="270" y="-60" width="90" height="190" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><rect x="-270" y="20" width="540" height="110" fill="#B8241F" stroke="${C.noir}" stroke-width="10"/><rect x="-330" y="130" width="30" height="40" fill="${C.noir}"/><rect x="300" y="130" width="30" height="40" fill="${C.noir}"/>${oeil(-90)}${oeil(90)}<path d="M-60 -20 q60 ${25 + sourire * 25} 120 0" stroke="${C.noir}" stroke-width="8" fill="none"/></g>`;
+}
+// Case de jour cochée (chaîne de la série)
+const caseJour = (x, y, n, coche) => `<g transform="translate(${x} ${y})"><rect x="-58" y="-58" width="116" height="116" fill="${C.noir}" transform="translate(8 8)"/><rect x="-58" y="-58" width="116" height="116" fill="${coche ? C.bleu : '#fff'}" stroke="${C.noir}" stroke-width="8"/>${coche ? `<path d="M-28 2 L-8 24 L30 -22" stroke="#fff" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` : `<text y="16" font-size="44" font-weight="800" text-anchor="middle">${n}</text>`}</g>`;
+
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // 1er janvier : la résolution
+  const arrive = rebond(prog(pose(l), 0, 400));
+  let g = decor(t, 0) + sol();
+  g += calendrier(540, 610, '1', .72 * arrive, -4);
+  if (t >= 1.0) { const p = rebond(prog(pose(l), 1000, 1350)); g += `<g transform="translate(540 790) scale(${p}) rotate(-3)">` + etiquette(0, 0, 'SPORT TOUS LES JOURS', C.jaune, C.noir, 46) + `</g>`; }
+  const leve = t >= 1.0 ? Math.abs(Math.sin(pose(l) / 140)) * 60 : 0;
+  g += mascotte({x: 540, y: 1300 - leve * .3, s: 1.0, expr: t < 1.0 ? 'neutre' : 'fier', bras: 'haut'});
+  g += haltere(540, 930 - leve, 0, .9);
+  return g;
+};
+S.S2 = (t, l) => {                       // 2 janvier : canapé
+  let g = decor(t, 1) + sol();
+  g += calendrier(300, 470, '2', .7, 4);
+  g += canape(540, 1130, 1.05, t >= 3.6 ? 1 : 0);
+  g += haltere(890, 1262, 0, .5);
+  const enfonce = sortie(prog(pose(l), 250, 700)) * 60;
+  g += mascotte({x: 540, y: 1080 + enfonce, s: .75, expr: 'blase', bras: 'bas', ecrase: 1 - enfonce / 600});
+  return g;
+};
+S.S3 = (t, l) => {                       // Les jours défilent
+  const jours = [3, 4, 5, 6, 7, 8, 9];
+  const k = Math.min(jours.length - 1, Math.floor(Math.max(0, pose(l) - 1300) / 160));
+  let g = decor(t, 2) + sol();
+  g += calendrier(540, 500, String(l < 1300 ? 3 : jours[k]), .8, (k % 2 ? 3 : -3));
+  g += canape(540, 1130, 1.05, 1);
+  g += haltere(890, 1262, 0, .5, prog(l, 600, 2200));
+  g += mascotte({x: 540, y: 1150, s: .75, expr: 'blase', bras: 'bas', ecrase: .9});
+  return g;
+};
+S.S4 = (t, l) => {                       // Canapé 10, Carreau 0
+  const buzz = t >= 9.2 && t < 10.6;
+  const flash = buzz && Math.floor((t - 9.2) / .33) % 2 === 0;
+  const tremble = buzz ? (hash(pose(l)) - .5) * 24 : 0;
+  let g = `<rect width="1080" height="1920" fill="${flash ? '#F6D7D0' : C.creme}"/><circle cx="540" cy="600" r="420" fill="${C.jaune}"/>`;
+  g += calendrier(220, 330, '10', .55, -6);
+  const sb = rebond(prog(pose(l), 1800, 2200));
+  g += `<g transform="translate(${560 + tremble} 640) scale(${sb})"><rect x="-380" y="-150" width="760" height="300" fill="${C.noir}"/><text x="-190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">CANAPÉ</text><text x="190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">CARREAU</text><text x="-190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="#fff">10</text><text x="190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="${C.rouge}">0</text><rect x="-6" y="-60" width="12" height="160" fill="#fff"/></g>`;
+  g += canape(540, 1130, 1.05, 1);
+  const pan = t >= 8.95;
+  g += mascotte({x: 540 + tremble * .5, y: pan ? 1150 - Math.abs(Math.sin(pose(l) / 120)) * 30 : 1150, s: .75, expr: pan ? 'panique' : 'choc', bras: pan ? 'tete' : 'bas'});
+  return g;
+};
+S.S5 = (t, l) => {                       // Suivi d'habitudes et routines : capture réelle
+  const bilan = t >= 15.0;
+  let g = decor(t, 0).replace(C.rouge, C.jaune);
+  if (!bilan) {
+    const apparait = rebond(prog(pose(l), 0, 420));
+    const k = 652 / 780;
+    const coche = (cx, cy, a) => { if (t < a) return ''; const p = rebond(prog(pose(t * 1000), a * 1000, a * 1000 + 200)); return `<g transform="translate(${24 + cx * k} ${24 + cy * k}) scale(${p})"><circle r="${37 * k}" fill="${C.bleu}"/><path d="M-12 1 L-4 10 L13 -9" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="scale(${k * 1.6})"/></g>`; };
+    const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><g clip-path="url(#ecr)"><image href="../assets/templates-habitudes-tel.webp" x="24" y="24" width="652" height="1110"/>${coche(78, 1147, 14.78)}</g>`;
+    g += telephone(540, 720, .66 * apparait, capt);
+    // le doigt (cercle) tape la case vide « Pas d'écran au lit »
+    if (t >= 14.4 && t < 15.0) { const ox = 540 - 350 * .66 + (24 + 78 * k) * .66, oy = 720 - 650 * .66 + (24 + 1147 * k) * .66; const appui = t >= 14.78 ? .85 : 1; g += `<circle cx="${ox + 40}" cy="${oy + 40}" r="${46 * appui}" fill="${C.jaune}" stroke="${C.noir}" stroke-width="8" opacity=".9"/>`; }
+  } else {
+    const p = rebond(prog(pose(t * 1000), 15000, 15350));
+    g += `<g transform="translate(540 600) scale(${p})"><rect x="-480" y="-170" width="960" height="340" fill="${C.noir}" transform="translate(14 14)"/><rect x="-480" y="-170" width="960" height="340" fill="#fff" stroke="${C.noir}" stroke-width="10"/>
+          <svg x="-465" y="-155" width="930" height="310" viewBox="84 284 708 236" preserveAspectRatio="xMidYMid slice"><image href="../assets/templates-habitudes-bilan.webp" width="1600" height="1000"/></svg></g>`;
+    if (t >= 16.0) g += `<rect x="537" y="434" width="481" height="261" rx="18" fill="none" stroke="${C.rouge}" stroke-width="10"/>`;
+  }
+  g += mascotte({x: 150, y: 1300, s: .6, expr: bilan ? 'fier' : 'joie', bras: 'montrer'});
+  return g;
+};
+S.S6 = (t, l) => {                       // La série tient (payoff : même calendrier, même haltère)
+  let g = decor(t, 1) + sol();
+  const coches = [17.55, 18.95, 20.4];
+  const n = t >= 20.4 ? 10 : t >= 18.95 ? 2 : 1;
+  // compteur de série
+  g += `<g transform="translate(540 420)"><rect x="-260" y="-110" width="520" height="220" fill="${C.noir}" transform="translate(12 12)"/><rect x="-260" y="-110" width="520" height="220" fill="#fff" stroke="${C.noir}" stroke-width="10"/><text x="-220" y="-50" font-size="32" font-weight="800" letter-spacing="5" fill="#555">SÉRIE</text><text x="220" y="80" font-size="130" font-weight="800" text-anchor="end" fill="${C.bleu}">${n} j</text></g>`;
+  // chaîne de cases : 5 visibles, la dernière porte le numéro du jour
+  for (let i = 0; i < 5; i++) { const jour = n >= 10 ? 6 + i : i + 1; g += caseJour(180 + i * 180, 720, jour, jour <= n); }
+  const saut = Math.abs(Math.sin(pose(l) / 150)) * 70;
+  g += canape(220, 1210, .45, 0).replace(/q60 \d+ 120 0/, 'q60 -20 120 0');   // canapé vide et boudeur au fond
+  g += mascotte({x: 620, y: 1300 - saut * .3, s: 1.0, expr: t >= 21.3 ? 'fier' : 'joie', bras: 'haut'});
+  g += haltere(620, 930 - saut, 0, .9);
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v01: 'Sport tous les jours,<br>promis !', v04: 'Dix janvier.<br>Canapé dix, Carreau zéro.', v06: 'Un jour. Deux jours.<br>Dix jours.', v07: 'Sport tous les jours.<br>Pour de vrai.' };
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 2.4 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="84" font-weight="800" text-anchor="middle" fill="${C.noir}">Sport tous les jours.</text><text x="540" y="372" font-size="72" font-weight="800" text-anchor="middle" fill="${C.rouge}">Tenu : 24 heures.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  st.innerHTML = v ? `<span>${COUPES[v.id] || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>
