@@ -227,9 +227,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
   `_elevenlabs.txt` dans le Drive, supprimés avec le MP4 provisoire dès que la version Caroline est déposée.
 - **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie
-  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
-  dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
-  contenu unique, dans la règle d'une publication par plateforme et par jour.
+  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle produit (MP4, voix Caroline,
+  dépôt Drive « QME - Vidéos Ministories ») et programme les 5 créneaux hebdomadaires des mini-stories (voir
+  « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
 - **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
   choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
   thème « Mini-story », en respectant une seule publication par jour : les lignes sans date imposée déplacées par une
