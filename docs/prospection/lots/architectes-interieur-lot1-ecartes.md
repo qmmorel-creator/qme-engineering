@@ -6,7 +6,7 @@
 
 - `campagne.mjs doublons` : 0 sur 96.
 - Nexora (2 567 fiches comparées par nom, puis `list_qme` par radical de domaine pour chaque retenu) : 0.
-- Gmail (`in:anywhere`, groupes de 6 domaines, témoins quiplusest.fr trouvé / domaine inventé absent) : 1, **Marion Lanoë Architecture d'intérieur** (Venelles), fil existant de contact@lanoemarion.com.
+- Gmail (`in:anywhere`, groupes de 6 domaines, témoins quiplusest.fr trouvé / domaine inventé absent) : 1, **Marion Lanoë Architecture d'intérieur** (Venelles), fil existant de contact@lanoemarion.com. Contrôle refait avec une requête par domaine pour les 95 retenus : 0 fil.
 - Opposition (API) : 0 sur 95.
 
 ## Au sourcing (142)
