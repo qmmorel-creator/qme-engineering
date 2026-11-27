@@ -329,3 +329,14 @@ bouton CSE « Ouvrir ma classe » (26 caractères max), tag RBS « finances-pers
 | CSE | Gestion de classe | N0d_juDeqcKyEc39Hjhtxw== | /l/gestion-classe | 25 € | **en vente** (27/11/2026) |
 | BBE | Suivi du bébé | N0y4vz6Fr5o-N3RegOv6ug== | /l/suivi-bebe | 13 € | **en vente** (27/11/2026) |
 | RBS | Remboursements santé | 0RqWTv8TckHFj_8bbMmo5Q== | /l/remboursements-sante | 12 € | **en vente** (27/11/2026) |
+
+## Vague du 27/11/2026 (agent Gumroad, packs devenus complets)
+
+Fiches `packs/gumroad-packs.json` (une version, « Templates ajoutés plus tard : inclus »), lien `/connexion/`,
+bouton « Ouvrir mon pack ». Aucune couverture : pas d'image `packs-<slug>-couverture.png` sur le site. Tag réécrit : `pédagogie`.
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| PNS | Pack Écoles et formateurs | ShSmzOm_zm-_El2YWLbgYg== | /l/pack-enseignant | 111 € | **en vente** (27/11/2026) |
+| PFA | Pack Maison et famille | 99eGWGaue9QqJFk_Rh_4SA== | /l/pack-famille | 67 € | **en vente** (27/11/2026) |
+| PAR | Pack Papiers et décisions d’argent | M6p4-RqavJe9FM9mxSsokw== | /l/pack-argent | 60 € | **en vente** (27/11/2026) |
