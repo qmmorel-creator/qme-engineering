@@ -232,7 +232,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
 - **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
   choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
-  thème « Mini-story », à 20:30, **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
+  thème « Mini-story », à 20:15 (passage d'Instinct), **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
   publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
   ne remplace jamais une ligne « Mini-story ».
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
