@@ -1,0 +1,244 @@
+window.TL = {
+  "episode": "01-abonnement-fantome",
+  "duree": 21.7,
+  "carton": {
+    "debut": 17.7,
+    "fin": 21.7
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.15,
+      "nom": "Prélèvement fantôme"
+    },
+    {
+      "id": "S2",
+      "debut": 3.15,
+      "fin": 6.0,
+      "nom": "Ouverte une fois en 2024"
+    },
+    {
+      "id": "S3",
+      "debut": 6.0,
+      "fin": 11.8,
+      "nom": "Les fantômes sortent du placard"
+    },
+    {
+      "id": "S4",
+      "debut": 11.8,
+      "fin": 15.35,
+      "nom": "87 € par mois : panique"
+    },
+    {
+      "id": "S5",
+      "debut": 15.35,
+      "fin": 18.85,
+      "nom": "Suivi des abonnements : au mois et à l'année"
+    },
+    {
+      "id": "S6",
+      "debut": 18.85,
+      "fin": 22.5,
+      "nom": "L'alerte avant le prélèvement"
+    },
+    {
+      "id": "S7",
+      "debut": 22.5,
+      "fin": 25.6,
+      "nom": "Caro médite gratuitement"
+    },
+    {
+      "id": "S8",
+      "debut": 25.6,
+      "fin": 29.6,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.2,
+      "texte": "Neuf euros quatre-vingt-dix-neuf. Pour méditer.",
+      "fin": 2.71
+    },
+    {
+      "id": "v02",
+      "t": 2.97,
+      "texte": "Ouverte une fois. En 2024.",
+      "fin": 5.01
+    },
+    {
+      "id": "v03",
+      "t": 5.27,
+      "texte": "Attendez… il y en a d'autres.",
+      "fin": 6.87
+    },
+    {
+      "id": "v04",
+      "t": 7.13,
+      "texte": "Streaming. Sport. Magazine.",
+      "fin": 9.42
+    },
+    {
+      "id": "v05",
+      "t": 9.68,
+      "texte": "Quatre-vingt-sept euros par mois. De fantômes.",
+      "fin": 12.07
+    },
+    {
+      "id": "v06",
+      "t": 12.33,
+      "texte": "Le tableau : tout, au mois et à l'année.",
+      "fin": 14.66
+    },
+    {
+      "id": "v07",
+      "t": 14.92,
+      "texte": "Cette fois, Caro médite… gratuitement.",
+      "fin": 17.48
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.0
+    },
+    {
+      "son": "pop",
+      "t": 5.03
+    },
+    {
+      "son": "pop",
+      "t": 6.89
+    },
+    {
+      "son": "pose",
+      "t": 7.8
+    },
+    {
+      "son": "pose",
+      "t": 8.55
+    },
+    {
+      "son": "zap",
+      "t": 9.43
+    },
+    {
+      "son": "pop",
+      "t": 12.09
+    },
+    {
+      "son": "pose",
+      "t": 13.36
+    },
+    {
+      "son": "pop",
+      "t": 14.68
+    },
+    {
+      "son": "ding",
+      "t": 17.52
+    }
+  ],
+  "reperes": {
+    "fantomes": [
+      7.85,
+      9.45,
+      10.85
+    ],
+    "panique": 13.3,
+    "cadre_mois": 18.0,
+    "cadre_an": 18.4,
+    "alerte": 20.8,
+    "prelevement": 21.8
+  },
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, une prise le 27/11/2026 (format v2), silences ramenés à 0,26 s"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      2.84,
+      3.1
+    ],
+    [
+      2.9,
+      3.2
+    ],
+    [
+      5.02,
+      5.82
+    ],
+    [
+      5.1,
+      6.1
+    ],
+    [
+      6.88,
+      7.42
+    ],
+    [
+      7.13,
+      7.85
+    ],
+    [
+      8.04,
+      9.45
+    ],
+    [
+      8.79,
+      10.85
+    ],
+    [
+      9.4,
+      11.75
+    ],
+    [
+      9.45,
+      11.85
+    ],
+    [
+      10.7,
+      13.3
+    ],
+    [
+      12.05,
+      15.3
+    ],
+    [
+      12.1,
+      15.4
+    ],
+    [
+      13.36,
+      18.0
+    ],
+    [
+      14.4,
+      18.4
+    ],
+    [
+      14.68,
+      18.84
+    ],
+    [
+      14.72,
+      22.5
+    ],
+    [
+      17.7,
+      25.5
+    ],
+    [
+      21.7,
+      29.5
+    ]
+  ],
+  "accroche": "87 € par mois. Pour des applis jamais ouvertes."
+};
