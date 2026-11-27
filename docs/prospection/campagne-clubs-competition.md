@@ -46,3 +46,7 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
   lots A et B (faits par groupes de 6) sont **à refaire** : ces deux lots ne sont pas prêts avant cette passe. Lot C
   (une requête par domaine) prêt : 43. Nexora : on garde deux recherches par prospect (nom, radical du domaine) ; la
   portée exacte de `list_qme` (site, adresse) n'est pas établie.
+- 27/11/2026 : Gmail refait pour A et B, une requête par domaine ou adresse (113 requêtes, sans OR), témoins conformes
+  (domaine inventé : 0 ; `qm-engineering.fr` : environ 4 265 ; `chambery-escalade.fr`, doublon connu : 1 fil, relancé en fin de passe) :
+  0 écarté. **Prêts : 118 adresses (A 29, B 46, C 43)**, rien en file. À relancer juste avant la mise en file :
+  `doublons --campagne clubs-competition` et opposition.
