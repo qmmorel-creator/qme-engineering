@@ -155,7 +155,7 @@ test('lectures datées : sessions plus complément d\'un livre lu sans détail',
   const e = exemple();
   const l = R.lectures(e);
   assert.equal(l.length, 5);
-  assert.deepEqual(simple(l[0]), { date: '2026-03-10', livre: 'c', quantite: 200, unite: 'pages', complement: true });
+  assert.deepEqual(simple(l[0]), { date: '2026-03-10', livre: 'c', quantite: 200, unite: 'pages', media: 'livre', complement: true });
   // Livre lu avec une partie en sessions : seul le reste est ajouté à la date de fin.
   const e2 = R.normaliser({ livres: [{ id: 'k', total: 100, statut: 'lu', fin: '2026-04-02' }], sessions: [{ livre: 'k', date: '2026-04-01', quantite: 60 }] }, B);
   assert.deepEqual(simple(R.lectures(e2).map((x) => [x.date, x.quantite])), [['2026-04-01', 60], ['2026-04-02', 40]]);
@@ -268,4 +268,136 @@ test('taille : une année de lecture tient largement dans la limite', () => {
   const sessions = Array.from({ length: 3000 }, (_, i) => ({ id: `s${i}`, livre: `l${i % 300}`, date: '2026-01-15', quantite: 25 }));
   const t = R.taille(R.normaliser({ livres, sessions }, B));
   assert.ok(t < 600000, `taille ${t}`);
+});
+
+// ---------- Version 2 : films, séries, podcasts, livres audio (27/11/2026) ----------
+
+// Données réelles au format v1 (avant l'extension aux médias), telles qu'enregistrées par l'application du 22/11/2026.
+const V1 = {
+  version: 1,
+  tutorielVu: true,
+  majLe: '2026-11-20T08:00:00.000Z',
+  reglages: { genres: ['Roman', 'Essai', 'Mon genre à moi'], objectifs: { 2025: { livres: 20, pages: 0 }, 2026: { livres: 24, pages: 8000 } } },
+  livres: [
+    { id: 'a1', titre: 'Le Phare des Brumes', auteur: 'Lise Arnaud', genre: 'Roman', format: 'papier', total: 300, statut: 'encours', priorite: 2, ordre: 0, ajoute: '2026-10-20', debut: '2026-11-01', fin: '', note: 0, citations: [{ id: 'c1', texte: 'Une phrase.', page: 12 }] },
+    { id: 'a2', titre: 'Voix du Nord', auteur: 'Paul Méry', genre: 'Essai', format: 'audio', total: 600, statut: 'lu', priorite: 2, ordre: 0, ajoute: '2026-09-01', debut: '2026-09-02', fin: '2026-09-20', note: 5, avis: 'Très bien lu.' },
+    { id: 'a3', titre: 'Les Saisons', auteur: '', genre: 'Mon genre à moi', format: 'numerique', total: 0, statut: 'alire', priorite: 1, ordre: 3, ajoute: '2026-08-01', debut: '', fin: '', note: 0 },
+  ],
+  sessions: [{ id: 's1', livre: 'a1', date: '2026-11-01', quantite: 40 }, { id: 's2', livre: 'a2', date: '2026-09-10', quantite: 300 }],
+};
+
+test('migration v1 → v2 sans perte : livres, sessions, citations, avis, objectifs, champs inconnus', () => {
+  const e = R.normaliser(structuredClone(V1), B);
+  assert.equal(e.version, 2);
+  assert.deepEqual(simple(e.livres.map((l) => [l.id, l.media, l.format])), [['a1', 'livre', 'papier'], ['a2', 'livreaudio', 'audio'], ['a3', 'livre', 'numerique']]);
+  // Chaque champ v1 est conservé à l'identique ; seul `media` s'ajoute.
+  for (const ancien of V1.livres) {
+    const nouveau = simple(e.livres.find((l) => l.id === ancien.id));
+    delete nouveau.media;
+    assert.deepEqual(nouveau, ancien);
+  }
+  assert.deepEqual(simple(e.sessions), V1.sessions);
+  assert.deepEqual(simple(e.reglages), V1.reglages);
+  assert.equal(e.tutorielVu, true);
+  assert.equal(e.majLe, V1.majLe);
+  // Unités et statistiques inchangées pour un lecteur v1.
+  assert.equal(R.unite(e.livres[1]), 'minutes');
+  const o = R.objectifAnnee(e, 2026, '2026-11-20');
+  assert.equal(o.livres.fait, 1);
+  assert.equal(o.pages.fait, 40);
+  assert.equal(o.films, null);
+  // Rejouer la normalisation ne change plus rien (idempotence).
+  assert.deepEqual(simple(R.normaliser(simple(e), B)), simple(e));
+  assert.ok(R.csvLivres(e).includes('Voix du Nord;Paul Méry;Essai;Audio;600;minutes;Écouté;'));
+});
+
+test('médias : unités, libellés de statut accordés, champs propres à chaque média', () => {
+  const e = R.normaliser({ livres: [
+    { id: 'f', media: 'film', titre: 'Le Grand Départ', auteur: 'Réa Lisatrice', total: 112, annee: 2024, source: { s: 'tmdb', id: '603' }, format: 'papier' },
+    { id: 's', media: 'serie', titre: 'Les Phares', saisons: [{ n: 1, episodes: 8 }, { n: 2, episodes: 10 }, { n: 3, episodes: 0 }], total: 3 },
+    { id: 'p', media: 'podcast', titre: 'Midi Science', source: { s: 'itunes', id: 'javascript:alert(1)' } },
+    { id: 'x', media: 'vinyle', titre: 'Inconnu', format: 'audio' },
+  ] }, B);
+  const [f, s, p, x] = e.livres;
+  assert.deepEqual([f.media, f.format, R.unite(f), f.annee, f.source.s], ['film', '', 'minutes', 2024, 'tmdb']);
+  assert.deepEqual([s.media, R.unite(s), s.total, s.saisons.length], ['serie', 'episodes', 18, 2], 'total = somme des saisons');
+  assert.equal(p.source, undefined, 'identifiant de source suspect écarté');
+  assert.equal(x.media, 'livreaudio', 'média inconnu : déduit du format');
+  assert.equal(R.statutTexte('alire', 'film'), 'À voir');
+  assert.equal(R.statutTexte('lu', 'serie'), 'Vue');
+  assert.equal(R.statutTexte('abandonne', 'serie'), 'Abandonnée');
+  assert.equal(R.statutTexte('alire', 'podcast'), 'À écouter');
+  assert.equal(R.statutTexte('lu', 'livre'), 'Lu');
+  assert.equal(R.statutTexte('lu', ''), 'Terminé');
+  assert.equal(R.quantiteTexte(1, 'episodes'), '1 épisode');
+  assert.equal(R.quantiteTexte(12, 'episodes'), '12 épisodes');
+});
+
+test('série : position saison · épisode, rang, fin automatique au dernier épisode', () => {
+  const sa = [{ n: 1, episodes: 8 }, { n: 2, episodes: 10 }];
+  assert.deepEqual(simple(R.positionEpisode(sa, 1)), { saison: 1, episode: 1 });
+  assert.deepEqual(simple(R.positionEpisode(sa, 8)), { saison: 1, episode: 8 });
+  assert.deepEqual(simple(R.positionEpisode(sa, 9)), { saison: 2, episode: 1 });
+  assert.equal(R.positionEpisode(sa, 0), null);
+  assert.equal(R.positionEpisode(sa, 30).fini, true);
+  assert.equal(R.rangEpisode(sa, 2, 3), 11);
+  assert.equal(R.rangEpisode(sa, 2, 11), null);
+  assert.equal(R.rangEpisode(sa, 4, 1), null);
+  assert.equal(R.episodeTexte(R.positionEpisode(sa, 11)), 'S2 · É3');
+  let e = R.normaliser({ livres: [{ id: 's', media: 'serie', titre: 'Les Phares', saisons: sa, statut: 'alire' }] }, B);
+  e = R.appliquerSession(e, { livre: 's', date: '2026-11-01', quantite: 8 }).etat;
+  assert.equal(e.livres[0].statut, 'encours');
+  const r = R.appliquerSession(e, { livre: 's', date: '2026-11-05', quantite: 10 });
+  assert.equal(r.termine, true);
+  assert.equal(r.etat.livres[0].statut, 'lu');
+});
+
+test('objectifs et bilan par média : films, séries, podcasts, épisodes, minutes de film', () => {
+  const e = R.normaliser({
+    reglages: { objectifs: { 2026: { livres: 10, pages: 0, films: 50, series: 4, episodes: 200, podcasts: 0, inconnu: 3 } } },
+    livres: [
+      { id: 'l', titre: 'Un livre', total: 200, statut: 'lu', debut: '2026-02-01', fin: '2026-02-10', genre: 'Drame' },
+      { id: 'f1', media: 'film', titre: 'Film A', total: 120, statut: 'lu', fin: '2026-02-11', genre: 'Drame', note: 4 },
+      { id: 'f2', media: 'film', titre: 'Film B', total: 90, statut: 'lu', fin: '2026-03-02', genre: 'Comédie' },
+      { id: 's', media: 'serie', titre: 'Série', saisons: [{ n: 1, episodes: 6 }], statut: 'encours' },
+      { id: 'p', media: 'podcast', titre: 'Podcast', statut: 'encours' },
+    ],
+    sessions: [{ livre: 's', date: '2026-03-01', quantite: 4 }, { livre: 'p', date: '2026-03-03', quantite: 7 }],
+  }, B);
+  assert.deepEqual(simple(e.reglages.objectifs[2026]), { livres: 10, pages: 0, films: 50, series: 4, episodes: 200 });
+  const b = R.bilanAnnee(e, 2026, '2026-03-31');
+  assert.equal(b.nbLivres, 1);
+  assert.equal(b.nbOeuvres, 3);
+  assert.equal(b.nbFilms, 2);
+  assert.equal(b.minutesFilms, 210);
+  assert.equal(b.minutes, 0, 'les films ne comptent pas comme écoute');
+  assert.equal(b.episodes, 11);
+  assert.equal(b.pages, 200);
+  assert.deepEqual(simple(b.parMedia.map((m) => [m.media, m.termines, m.quantite])), [['livre', 1, 200], ['livreaudio', 0, 0], ['film', 2, 210], ['serie', 0, 4], ['podcast', 0, 7]]);
+  assert.deepEqual(simple(b.parGenre.map((g) => [g.nom, g.oeuvres, g.livres])), [['Drame', 2, 1], ['Comédie', 1, 0]]);
+  assert.deepEqual(simple(b.parMois.slice(1, 3).map((m) => [m.livres, m.oeuvres, m.minutesFilms, m.episodes])), [[1, 2, 120, 0], [0, 1, 90, 11]]);
+  const o = R.objectifAnnee(e, 2026, '2026-03-31');
+  assert.equal(o.films.fait, 2);
+  assert.equal(o.episodes.fait, 11);
+  assert.equal(o.series.fait, 0);
+  assert.equal(o.pages, null);
+  assert.equal(o.podcasts, null);
+  const j = R.derniersJours(e, '2026-03-03', 3);
+  // Seules les sessions comptent jour par jour (un film noté vu sans session n'y figure pas).
+  assert.deepEqual(simple(j.map((x) => [x.minutesFilms, x.episodes])), [[0, 4], [0, 0], [0, 7]]);
+});
+
+test('recherche tolérante : accents, casse, fautes de frappe, saisie partielle', () => {
+  const t = 'Les Misérables · Victor Hugo';
+  assert.ok(R.scoreRecherche('miserables', t) > 0);
+  assert.ok(R.scoreRecherche('MISÉR', t) > 0);
+  assert.ok(R.scoreRecherche('misreables hugo', t) > 0, 'inversion de lettres');
+  assert.ok(R.scoreRecherche('victr', t) > 0, 'lettre oubliée');
+  assert.ok(R.scoreRecherche('hugo vic', t) > 0, 'ordre libre');
+  assert.equal(R.scoreRecherche('balzac', t), 0);
+  assert.equal(R.scoreRecherche('lez', t), 0, 'pas de faute tolérée sous 4 lettres');
+  assert.ok(R.scoreRecherche('les mis', t) > R.scoreRecherche('les msi', t), 'le mot exact passe devant');
+  assert.equal(R.scoreRecherche('', t), 1);
+  assert.equal(R.distance('chat', 'chta'), 1);
+  assert.equal(R.distance('abc', 'abcdefgh', 2), 3);
 });
