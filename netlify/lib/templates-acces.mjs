@@ -101,7 +101,7 @@ export const PRODUITS = {
   // Suivi de lecture étendu aux livres audio, films, séries et podcasts le 27/11/2026 (même code, même fiche Gumroad,
   // même URL : les licences et les données des acheteurs restent valables). Nouveau nom proposé : « Suivi culturel »,
   // gardé en attente du choix de Quentin (docs/production/suivi-culturel.md).
-  PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
+  PGS: { nom: 'Suivi culturel', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },
   ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/', gumroad: 'qTRUd4Yu81y5L2aUm3_BXA==' },
