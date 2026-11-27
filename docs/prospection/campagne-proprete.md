@@ -49,6 +49,9 @@ Bande « Mode démo » masquée, fenêtre d'accueil fermée. Les démos sont des
   l'angle du mail porte sur la gestion du personnel et les obligations d'employeur, pas sur le planning de chantiers.
 - Planning d'équipe : il raisonne en heures par semaine et par projet (le site client devient un « poste à couvrir »),
   pas en créneaux horaires ni en tournées ; une entreprise qui planifie à l'heure près le verra vite.
+- **Vague 31 de Nexora** (« Sécurité privée et propreté multisite », 45 fiches, Auvergne-Rhône-Alpes, PACA,
+  Occitanie, premier mail le 06/11/2026) : des entreprises de propreté ont déjà été approchées. Elles ne sont que dans
+  Nexora (l'outil `doublons` ne les voit pas) : 3 retirées du lot 1. Tout lot suivant passe le contrôle Nexora.
 - Modèle de secteur « propreté » absent du document unique : à ajouter au template si Quentin le souhaite (hors de
   cette campagne).
 
@@ -56,9 +59,22 @@ Bande « Mode démo » masquée, fenêtre d'accueil fermée. Les démos sont des
 
 | Lot | Fichier | Adresses | Contrôles (27/11/2026) |
 |---|---|---|---|
+| 1 | `docs/prospection/lots/proprete-lot1.json` (écartés : `proprete-lot1-ecartes.md`) | 96, 56 départements (49 nord, 47 sud) ; 19 webmails affichés sur le site de l'entreprise | 100 sourcées → 1 écartée à la relecture (taille) ; `doublons --campagne proprete` : 0 écarté ; Nexora par nom : 3 écartés (vague 31) ; Nexora par radical du domaine : 0 ; Gmail, une requête par domaine entre guillemets, témoins `melko-nettoyage.fr` (trouvé) et domaine inventé (rien) : 3 écartés (les mêmes) ; désinscrits : 0 ; opposition (API) : 0 |
+
+À surveiller dans le lot 1 : taille incertaine ou faible (Solhygie, Allo Services, Ann'Net, DRT Propreté, Aquitaine
+Nettoyage, Clair & Net, ABC Propreté, ECOCLEAN 07, SouaClean, Éclat Vitres Services, Propreté Mosellane, MS PRO',
+Puissance Propre, Magnou, PropreTIX, Green Propreté, LB Propreté, Indigo Propreté, Novalis, SV Propreté, Atout
+Propreté) ; peut-être plus de 50 salariés (SPN NET, RegioNettoyage, Astic et Clean Aveyron à 50) ; activité en partie
+chez les particuliers (Top Clean, Caen c'est propre, DL Nettoyage 51, ISM, Airnova, RM Services, Net et Clean, SDI,
+Éclat Vitres, SouaClean) ; adresse relevée seulement dans les mentions légales (MIL'SERVICES écartée, Senet, Toupin,
+Clean Aveyron, SDI, Ann'Net, Pro Service, Perez) ; domaine de l'adresse différent du site, serveur de messagerie
+vérifié (Alpes Maintenance Nettoyage, ATN Services, PPS, RegioNettoyage, E.N.S, Puissance Propre, IMA Propreté, Clean
+Action Services, Green Propreté) ; EDEN Nettoyage écrit depuis `eden-groupe.net` (aucun site, deux agences :
+pas de groupe national identifié) ; Atout Propreté (Lorient, `.bzh`) homonyme sans lien de la fiche vague 31 de
+Grésy-sur-Aix. Effectifs non recoupés avec l'annuaire des entreprises (inaccessible depuis la session).
 
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora `cpt-proprete` (brouillon) ; sourcing du lot 1 en cours ; en attente de validation |
+| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail, concept Nexora `cpt-proprete` (brouillon), PR #333 (aperçu contrôlé), brouillon Gmail de validation ; lot 1 : 96 adresses contrôlées ; campagne non créée sur le serveur, rien en file ; en attente de validation |
