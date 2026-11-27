@@ -1,0 +1,193 @@
+/* Révisions QME X Laurine : ajouts de la version privée (thème sombre, ordre réordonnable, énergie, ressources,
+   notifications internes, objectifs, minuteurs, import CSV, tutoriel). Charte Bauhaus du template de base conservée. */
+
+/* ===================== Thème sombre =====================
+   Automatique (préférence du système) sauf choix explicite « clair » ; forcé par data-theme="sombre". */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) {
+    color-scheme: dark;
+    --papier:#17181C;--surface:#212329;--encre:#F1ECE3;--texte-2:#D3CCC0;--discret:#ABA498;--trait:#3A3D46;
+    --rose:#3D2622;--beurre:#3A3120;--ciel:#1E2B3B;--sable:#2A2C33;--rose-texte:#F4BCAA;--beurre-texte:#F1D68E;--ciel-texte:#AFCBEA;
+    --texte-rouge:#F29C86;--texte-bleu:#9EC1EA;--fond-pastille:#2A2C33;
+  }
+}
+:root[data-theme="sombre"] {
+  color-scheme: dark;
+  --papier:#17181C;--surface:#212329;--encre:#F1ECE3;--texte-2:#D3CCC0;--discret:#ABA498;--trait:#3A3D46;
+  --rose:#3D2622;--beurre:#3A3120;--ciel:#1E2B3B;--sable:#2A2C33;--rose-texte:#F4BCAA;--beurre-texte:#F1D68E;--ciel-texte:#AFCBEA;
+  --texte-rouge:#F29C86;--texte-bleu:#9EC1EA;--fond-pastille:#2A2C33;
+}
+:root{--texte-rouge:#9E3B27;--texte-bleu:#2E5A88;--fond-pastille:#F3EDE3;--encre-fixe:#24221F}
+
+/* En sombre, --encre devient clair : les fonds jaunes et clairs gardent un texte foncé. */
+:root[data-theme="sombre"] :is(.btn:hover,.btn.jaune,.cellule.aujourdhui .num,.etiquette.jaune,.ev.moyen:hover,.ev.moyen:focus-visible,.palier.atteint,.filiere[aria-pressed="true"]:hover){color:var(--encre-fixe)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]) :is(.btn:hover,.btn.jaune,.cellule.aujourdhui .num,.etiquette.jaune,.ev.moyen:hover,.ev.moyen:focus-visible,.palier.atteint,.filiere[aria-pressed="true"]:hover){color:var(--encre-fixe)}}
+/* Textes rouges et bleus éclaircis sur fond sombre (contraste 4,5:1). */
+.btn.lien:hover,.btn.danger,.erreur,.cellule.charge .nb,.chapitre .retard,.session-chrono.pause b{color:var(--texte-rouge)}
+.btn.danger{border-color:var(--texte-rouge)}
+.btn.danger:hover{color:#fff}
+.barre .marque .m,.composition .marque .m{color:var(--texte-bleu)}
+:root[data-theme="sombre"] .btn.primaire:hover{color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]) .btn.primaire:hover{color:#fff}}
+:root[data-theme="sombre"] .modale::backdrop{background:rgba(0,0,0,.6)}
+:root[data-theme="sombre"] :is(.modale-tete button,.session-fermer){border-color:var(--trait)}
+:root[data-theme="sombre"] .session-points i{background:rgba(255,255,255,.18)}
+:root[data-theme="sombre"] :is(.n2){background:#35557A!important}
+:root[data-theme="sombre"] :is(.n3){background:#4F78A6!important}
+:root[data-theme="sombre"] .n4{background:#8FB4E0!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]){
+  .modale::backdrop{background:rgba(0,0,0,.6)}
+  .modale-tete button,.session-fermer{border-color:var(--trait)}
+  .session-points i{background:rgba(255,255,255,.18)}
+  .n2{background:#35557A!important}.n3{background:#4F78A6!important}.n4{background:#8FB4E0!important}
+}}
+/* Liens de couleur de texte « style="color:var(--rouge)" » posés par le script */
+[style*="color:var(--rouge)"]{color:var(--texte-rouge)!important}
+
+/* ===================== Accueil du jour ===================== */
+.infos-jour{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.info-jour{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:15px;color:var(--texte-2)}
+.info-jour b{color:var(--encre)}
+.info-jour svg{flex:none}
+.info-jour .btn.lien{min-height:44px;font-size:14px}
+.jauge-energie{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--encre);background:conic-gradient(var(--encre) var(--e,50%),transparent 0)}
+.energie-forte .jauge-energie{--e:100%}.energie-moyenne .jauge-energie{--e:50%}.energie-faible .jauge-energie{--e:20%}.energie-aucune .jauge-energie{--e:0%}
+.anneau{flex:none;width:22px;height:22px;border-radius:50%;background:conic-gradient(var(--bleu) calc(var(--p,0) * 1%),var(--trait) 0);display:inline-flex;align-items:center;justify-content:center}
+.anneau.grand{width:112px;height:112px;margin:6px 0 10px;position:relative}
+.anneau.grand::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--surface)}
+.anneau.grand b{position:relative;font-size:26px;font-weight:800}
+
+/* Ordre suggéré et réordonnable */
+.barre-ordre{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:-6px 0 12px}
+.aide-ordre{font-size:13px;color:var(--discret)}
+.carte{position:relative}
+.ordre-carte{position:absolute;top:8px;right:8px;z-index:1;display:flex;align-items:center;gap:4px}
+.ordre-carte .poignee{display:inline-flex;align-items:center;justify-content:center;width:32px;height:44px;color:var(--discret);cursor:grab;touch-action:none}
+.btn-ordre{width:44px;height:44px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);color:var(--encre);font-size:18px;font-weight:700;line-height:1}
+.btn-ordre:hover:not(:disabled){background:var(--beurre)}
+.btn-ordre:disabled{opacity:.35;cursor:not-allowed}
+.carte .carte-corps{padding-right:150px}
+.carte.tiree{opacity:.5}
+.carte.cible{outline:3px dashed var(--bleu);outline-offset:3px}
+.etiquette.energie{background:var(--fond-pastille);color:var(--texte-2);border:1px solid var(--trait)}
+.etiquette.energie.forte{background:var(--rose);color:var(--rose-texte);border-color:transparent}
+.etiquette.energie.faible{background:var(--ciel);color:var(--ciel-texte);border-color:transparent}
+.actions-ligne{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+
+/* Ressources (liens) */
+.ressources{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.ressources a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 12px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);font-size:14px;font-weight:600;text-decoration:none}
+.ressources a:hover{background:var(--ciel)}
+.ressources a svg{flex:none;color:var(--discret)}
+.type-lien{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--discret)}
+.ressources.compactes{margin-top:0}
+.matiere-infos{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid var(--trait)}
+
+/* Feuille blanche sur les mots-clés */
+.feuille-blanche-carte{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:18px 20px;border:1px solid var(--trait);border-radius:16px;background:var(--beurre)}
+.feuille-blanche-carte>div{flex:1 1 360px}
+.feuille-blanche-carte .surtitre{color:var(--beurre-texte);margin-bottom:6px}
+.feuille-blanche-carte h3{font-size:22px;margin-bottom:6px}
+.feuille-blanche-carte p:not(.surtitre){color:var(--texte-2);font-size:15px}
+.intro-feuille{color:var(--texte-2)}
+.details-cles summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
+
+/* Notifications internes */
+.cloche{position:relative}
+.pastille-notif{position:absolute;top:2px;right:2px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#B84A34;color:#fff;font-size:11px;font-weight:800;line-height:20px;text-align:center}
+.notifs{display:flex;flex-direction:column;gap:8px}
+.notif{display:grid;grid-template-columns:10px minmax(0,1fr) auto;align-items:center;gap:4px 12px;padding:12px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--surface)}
+.notif i{align-self:stretch;width:6px;border-radius:999px;background:var(--trait)}
+.notif.rouge i{background:#B84A34}.notif.jaune i{background:var(--jaune)}.notif.bleu i{background:#2E5A88}
+.notif div{display:flex;flex-direction:column;gap:2px}
+.notif span{font-size:14px;color:var(--texte-2)}
+.notif.lue{opacity:.8}
+
+/* Objectifs, auto-évaluation */
+.objectifs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.objectif-carte{border:1px solid var(--trait);border-radius:16px;background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.objectif-carte .surtitre{margin:0}
+.objectif-carte p:not(.surtitre){font-size:14px;color:var(--texte-2)}
+.grand-chiffre{font-size:52px;font-weight:800;line-height:1.1}
+.grand-chiffre small{font-size:20px;margin-left:2px}
+.barres-notes{display:flex;align-items:flex-end;gap:6px;height:56px;width:100%;max-width:280px;margin-top:6px}
+.barres-notes i{flex:1;height:var(--h);min-height:6px;border-radius:6px 6px 2px 2px;background:var(--bleu)}
+.auto-eval{border:0;padding:0;margin:8px 0 0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.auto-eval legend{font-weight:700;font-size:17px;margin:0 auto 10px;padding:0}
+.notes-seance{display:flex;gap:8px}
+.note-seance{width:52px;height:52px;border-radius:50%;border:2px solid var(--trait);background:var(--surface);color:var(--encre);font-size:20px;font-weight:800}
+.note-seance:hover{border-color:var(--encre)}
+.note-seance[aria-pressed="true"]{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+
+/* Réglages : thème, minuteurs, horaires, énergie */
+.choix-theme{border:0;padding:0;margin:0}
+.choix-theme legend{padding:0;margin-bottom:6px}
+.segments{display:flex;flex-wrap:wrap;gap:6px}
+.segments label{position:relative}
+.segments input{position:absolute;opacity:0;width:1px;height:1px}
+.segments span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--trait);border-radius:999px;background:var(--surface);font-weight:600;cursor:pointer}
+.segments input:checked+span{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.segments input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+.deux-champs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.liste-pomodoros{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.liste-pomodoros li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;padding:12px 14px;border:1px solid var(--trait);border-radius:14px;background:var(--surface)}
+.liste-pomodoros li>div:first-child{display:flex;flex-direction:column;gap:2px;flex:1 1 220px}
+.liste-pomodoros span:not(.etiquette){font-size:14px;color:var(--texte-2)}
+.liste-pomodoros .rang{display:flex;gap:6px}
+.horaires{display:flex;flex-direction:column;gap:8px}
+.horaire{display:grid;grid-template-columns:110px 130px 1fr 1fr;align-items:end;gap:8px 10px;border:1px solid var(--trait);border-radius:14px;padding:8px 12px 10px;margin:0;background:var(--surface)}
+.horaire legend{font-weight:700;padding:0 4px;font-size:14px}
+.horaire .champ{font-size:13px}
+.creneau-energie{display:grid;grid-template-columns:1fr 1fr 1.2fr auto;align-items:end;gap:8px;border:0;border-bottom:1px solid var(--trait);padding:0 0 10px;margin:0 0 10px}
+.choix-jours{border:0;padding:0;margin:0}
+.choix-jours legend{font-weight:700;padding:0;margin-bottom:8px}
+.jours-proches{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.jours-proches label{position:relative}
+.jours-proches input{position:absolute;opacity:0;width:1px;height:1px}
+.jours-proches span{display:flex;flex-direction:column;gap:2px;min-height:56px;padding:8px 12px;border:1px solid var(--trait);border-radius:14px;background:var(--surface);cursor:pointer}
+.jours-proches small{color:var(--discret);font-size:12px}
+.jours-proches input:checked+span{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+.jours-proches input:checked+span small{color:var(--papier)}
+.jours-proches input:focus-visible+span{outline:3px solid var(--bleu);outline-offset:2px}
+
+/* Import CSV */
+.prompt-pdf summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
+.prompt-pdf pre{white-space:pre-wrap;font-size:13px;line-height:1.45;padding:12px;border:1px solid var(--trait);border-radius:12px;background:var(--surface);max-height:220px;overflow:auto}
+.erreurs-import{padding:10px 12px;border-radius:12px;background:var(--rose);color:var(--rose-texte);font-size:14px;margin-bottom:8px}
+.erreurs-import ul{list-style:disc;padding-left:18px;margin-top:4px}
+.apercu-import .tableau{font-size:13px}
+code{font-size:13px;padding:1px 5px;border-radius:6px;background:var(--sable);word-break:break-word}
+
+/* Tutoriel en écrans */
+.tuto-ecran{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:16px;border-radius:18px;background:var(--f,var(--sable));color:var(--encre)}
+.tuto-ecran .surtitre{margin:0;color:var(--texte-2)}
+.tuto-ecran h3{font-size:24px}
+.tuto-ecran p:not(.surtitre){font-size:16px;line-height:1.5;color:var(--encre)}
+.tuto-points{display:flex;gap:6px;margin-top:6px}
+.tuto-points i{width:28px;height:6px;border-radius:999px;background:rgba(127,127,127,.35)}
+.tuto-points i.fait{background:var(--texte-2)}
+.tuto-points i.actif{background:var(--encre)}
+
+@media (max-width:720px){
+  .carte .carte-corps{padding-right:16px;padding-top:56px}
+  .ordre-carte{top:6px;right:6px}
+  .objectifs{grid-template-columns:1fr}
+  .deux-champs{grid-template-columns:1fr}
+  .horaire{grid-template-columns:1fr 1fr}
+  .horaire .case{grid-column:1/-1}
+  .creneau-energie{grid-template-columns:1fr 1fr}
+  .notif{grid-template-columns:8px minmax(0,1fr)}
+  .notif .btn{grid-column:2;justify-self:start}
+}
+
+/* Sombre : fonds clairs codés en dur dans app.css (survol, jours passés, jour choisi). */
+:root[data-theme="sombre"]{--survol:#2C2F37;--hachure:#2A2C33}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]){--survol:#2C2F37;--hachure:#2A2C33}}
+:root{--survol:#F6F1E3;--hachure:#EEEAE0}
+.cellule:hover,.chapitre:hover{background:var(--survol)}
+.cellule.passe{background:repeating-linear-gradient(135deg,var(--surface) 0 6px,var(--hachure) 6px 7px)}
+.cellule[aria-pressed="true"]:hover{background:var(--encre)}
+:root[data-theme="sombre"] .cellule[aria-pressed="true"].charge .nb{color:#9E3B27}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]) .cellule[aria-pressed="true"].charge .nb{color:#9E3B27}}
+:root[data-theme="sombre"] .filiere[aria-pressed="true"] span{color:#514C44}
+@media (prefers-color-scheme: dark){:root:not([data-theme="clair"]) .filiere[aria-pressed="true"] span{color:#514C44}}

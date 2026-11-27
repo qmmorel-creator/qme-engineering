@@ -320,7 +320,7 @@
     const grille = Array.from({ length: 28 }, (_, i) => {
       const x = 10 + (i % 7) * 38, y = 30 + Math.floor(i / 7) * 38;
       const plein = [0, 1, 2, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25].includes(i);
-      return `<rect x="${x}" y="${y}" width="30" height="30" rx="8" ${plein ? `fill="${['#1D4E89', '#D9302A', '#F5B400'][i % 3]}"` : 'fill="none" stroke="#2E5A88" stroke-width="3" stroke-dasharray="6 5"'}/>`;
+      return `<rect x="${x}" y="${y}" width="30" height="30" rx="3" ${plein ? `fill="${['#1D4E89', '#D9302A', '#F5B400'][i % 3]}"` : 'fill="none" stroke="#2E5A88" stroke-width="3" stroke-dasharray="6 5"'}/>`;
     }).join('');
     $('#racine').innerHTML = `
     <div class="connexion">
