@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les entreprises de propreté · QME</title>
+<meta name="description" content="Pack Petite entreprise pour une entreprise de propreté de 10 à 50 salariés : planning des équipes, congés, arrivées et départs, entretiens professionnels, document unique, notes de frais, réunions, trésorerie et indicateurs. Neuf outils prêts à l'emploi, adaptables sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+.sec .lien{display:inline-block;margin-top:14px;font-weight:600}
+.etapes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px;padding:0;list-style:none}
+.etapes li{background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.etapes li span{color:var(--red);margin-right:6px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/packs/petite-entreprise/" data-goatcounter-click="concept-proprete-pack-haut" data-goatcounter-title="Concept propreté : pack (haut)">Voir le pack</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les entreprises de propreté · pack prêt à l'emploi</p>
+    <h1>Vos agents, vos sites et vos obligations d'employeur, au même endroit.</h1>
+    <p class="lede">Neuf outils en ligne, déjà prêts, conçus par un ingénieur pour une entreprise de 10 à 50 salariés : le planning des équipes, les congés, les arrivées et les départs, les entretiens professionnels, le document unique, les notes de frais, les réunions, la trésorerie et les indicateurs. Chacun s'ouvre tout de suite en démo, sans inscription, et l'ensemble peut être adapté sur mesure à votre façon de travailler.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/planning-equipe/?demo" data-goatcounter-click="concept-proprete-demo" data-goatcounter-title="Concept propreté : démo planning">Essayer la démo du planning</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20propret%C3%A9%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-proprete-contact" data-goatcounter-title="Concept propreté : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">Chaque démo ouvre une entreprise fictive (salariés, projets et chiffres inventés, souvent un atelier ou une agence), sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Des agents à temps partiel répartis sur des dizaines de sites, des absences à remplacer le matin même, des arrivées et des départs tout au long de l'année, le tout suivi sur un tableur et dans le téléphone du gérant.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Un site découvert parce que deux congés se chevauchaient, un badge jamais rendu, un entretien professionnel oublié depuis des années, un document unique qui n'a pas bougé depuis sa création.</p></div>
+    <div><h2>Ce que fait le pack</h2><p>Il tient les plannings, les soldes, les checklists et les échéances d'employeur, met ce qui est en retard en tête de liste et imprime ce qu'il faut présenter.</p></div>
+  </div>
+
+  <h2 class="t">La gestion de l'entreprise, en neuf outils</h2>
+  <p class="sous">Regroupés par usage. Chaque capture vient de la démo réelle de l'outil.</p>
+  <ol class="etapes">
+    <li><span>01</span>Planning</li><li><span>02</span>Congés</li><li><span>03</span>Arrivées et départs</li><li><span>04</span>Entretiens</li><li><span>05</span>Document unique</li><li><span>06</span>Notes de frais</li><li><span>07</span>Réunions</li><li><span>08</span>Trésorerie</li><li><span>09</span>Indicateurs</li>
+  </ol>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Les équipes</p><h2>Chaque site client couvert, chaque agent à sa charge réelle</h2><p>Les sites et les postes à couvrir, semaine par semaine : qui va où, combien d'heures, et ce qui manque quand quelqu'un est absent.</p>
+      <ul><li>Chaque site client tenu comme un poste à couvrir, avec ses heures par semaine</li><li>Temps partiels et jours travaillés de chaque agent pris en compte</li><li>Surcharges, trous et agent affecté pendant ses congés signalés</li></ul>
+      <a class="lien" href="/templates/planning-equipe/?demo" data-goatcounter-click="concept-proprete-demo-planning-equipe" data-goatcounter-title="Concept propreté : démo Planning d'équipe">Ouvrir la démo · Planning d'équipe →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Planning d'équipe · démo</span></div><img src="planning.webp" width="1600" height="813" alt="Planning de la semaine par personne : affectations jour par jour, heures planifiées et taux de charge de chacun"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Les équipes</p><h2>Congés et absences, sans site découvert</h2><p>Les soldes calculés, les demandes validées en un geste, et les périodes où trop d'agents d'une même équipe manquent en même temps.</p>
+      <ul><li>Soldes de congés et de RTT, demi-journées comprises</li><li>Chevauchements dans une même équipe signalés avant validation</li><li>Absents du jour et prochaines absences en un coup d'œil</li></ul>
+      <a class="lien" href="/templates/conges/?demo" data-goatcounter-click="concept-proprete-demo-conges" data-goatcounter-title="Concept propreté : démo Congés et absences">Ouvrir la démo · Congés et absences →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Congés et absences · démo</span></div><img src="conges.webp" width="1600" height="813" alt="Tableau de bord des congés : absents du jour, demandes à traiter, chevauchements dans les 60 jours et congés restant à prendre" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Les équipes</p><h2>Les arrivées fréquentes, préparées sans rien oublier</h2><p>Chaque nouvel agent suit sa checklist, de la déclaration préalable à l'embauche au premier mois ; chaque départ, la sienne.</p>
+      <ul><li>Tâches datées de J-15 à J+90, avec un responsable pour chacune</li><li>Clés, badges des sites, tenues et matériel remis, puis récupérés au départ</li><li>Parcours terminés effacés pour ne garder que le nécessaire</li></ul>
+      <a class="lien" href="/templates/onboarding/?demo" data-goatcounter-click="concept-proprete-demo-onboarding" data-goatcounter-title="Concept propreté : démo Arrivées et départs">Ouvrir la démo · Arrivées et départs →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Arrivées et départs · démo</span></div><img src="onboarding.webp" width="1600" height="813" alt="Tableau de bord des arrivées et départs : parcours en cours, tâches en retard, tâches de la semaine et objets non rendus" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Obligations d'employeur</p><h2>Les entretiens professionnels à l'heure</h2><p>Les échéances se calculent seules pour chaque salarié ; la trame est prête et le compte rendu s'imprime.</p>
+      <ul><li>Entretien de parcours professionnel et état des lieux récapitulatif : échéances calculées et paramétrables</li><li>Échéances dépassées et entretiens à venir en tête de liste</li><li>Objectifs et demandes de formation suivis d'une année sur l'autre</li></ul>
+      <a class="lien" href="/templates/entretiens-annuels/?demo" data-goatcounter-click="concept-proprete-demo-entretiens" data-goatcounter-title="Concept propreté : démo Entretiens annuels et professionnels">Ouvrir la démo · Entretiens annuels et professionnels →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Entretiens annuels et professionnels · démo</span></div><img src="entretiens.webp" width="1600" height="813" alt="Échéances des entretiens : en retard, à venir, planifiés, à finaliser, et alerte sur un état des lieux à surveiller" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Obligations d'employeur</p><h2>Le document unique, tenu à jour</h2><p>Les risques évalués par unité de travail, cotés, suivis par un plan d'actions, archivés à chaque mise à jour et imprimables à tout moment.</p>
+      <ul><li>Familles de risques intégrées, dont « produits chimiques » (produits de nettoyage utilisés sans aération, produits transvasés sans étiquette, fiches de données de sécurité absentes), chute de hauteur, chute de plain-pied, postures et risque routier</li><li>Vos unités de travail : bureaux, parties communes, vitrerie, fin de chantier, trajets entre sites</li><li>Mise à jour annuelle rappelée (obligatoire dès 11 salariés) et versions conservées</li></ul>
+      <a class="lien" href="/templates/document-unique/?demo" data-goatcounter-click="concept-proprete-demo-document-unique" data-goatcounter-title="Concept propreté : démo Document unique">Ouvrir la démo · Document unique →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Document unique · démo</span></div><img src="document-unique.webp" width="1600" height="813" alt="Tableau de bord du document unique : risques en priorité 1, actions en retard, prochaine mise à jour et matrice des risques" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Le quotidien</p><h2>Les trajets entre les sites, remboursés au barème</h2><p>Les frais avancés et les kilomètres des chefs d'équipe et des agents, avec le justificatif et le statut de remboursement.</p>
+      <ul><li>Indemnités kilométriques calculées au barème, modifiable chaque année</li><li>Justificatifs à fournir et notes du mois à soumettre signalés</li><li>Note de frais mensuelle prête à imprimer</li></ul>
+      <a class="lien" href="/templates/notes-de-frais/?demo" data-goatcounter-click="concept-proprete-demo-notes-de-frais" data-goatcounter-title="Concept propreté : démo Notes de frais et IK">Ouvrir la démo · Notes de frais et IK →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Notes de frais et IK · démo</span></div><img src="notes-de-frais.webp" width="1600" height="813" alt="Aperçu des notes de frais : montants à rembourser et à soumettre, kilomètres de l'année et indemnité au barème" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">07 · Le quotidien</p><h2>Des réunions qui finissent en actions suivies</h2><p>Réunion des chefs d'équipe, point qualité avec un client : les décisions et les actions sont datées et suivies d'une réunion à l'autre.</p>
+      <ul><li>Actions ouvertes, en retard et de la semaine, par personne</li><li>Actions non faites reportées à la réunion suivante</li><li>Compte rendu prêt à diffuser</li></ul>
+      <a class="lien" href="/templates/compte-rendu/?demo" data-goatcounter-click="concept-proprete-demo-compte-rendu" data-goatcounter-title="Concept propreté : démo Compte rendu et plan d'actions">Ouvrir la démo · Compte rendu et plan d'actions →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Compte rendu et plan d'actions · démo</span></div><img src="comptes-rendus.webp" width="1600" height="813" alt="Plan d'actions : actions ouvertes, en retard, des sept prochains jours et faites, regroupées par personne" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">08 · Le pilotage</p><h2>La trésorerie sur douze mois, salaires et charges compris</h2><p>Le solde de chaque fin de mois, avec les clients qui paient à terme, et le creux vu avant qu'il n'arrive.</p>
+      <ul><li>Trois scénarios : prudent, central, optimiste</li><li>Seuil d'alerte et mois sous le seuil signalés</li><li>Prévu face au réalisé, mois par mois</li></ul>
+      <a class="lien" href="/templates/tresorerie/?demo" data-goatcounter-click="concept-proprete-demo-tresorerie" data-goatcounter-title="Concept propreté : démo Trésorerie prévisionnelle">Ouvrir la démo · Trésorerie prévisionnelle →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Trésorerie prévisionnelle · démo</span></div><img src="tresorerie.webp" width="1600" height="813" alt="Synthèse de trésorerie : passage sous le seuil prévu en mars, solde de fin de mois, point bas, encaissements et décaissements sur douze mois" loading="lazy"></figure></div>
+  </section>
+  <section class="sec">
+    <div class="txt"><p class="num">09 · Le pilotage</p><h2>Vos indicateurs du mois, face à vos objectifs</h2><p>Une dizaine d'indicateurs choisis dans une bibliothèque, saisis en quelques minutes, avec les écarts et les alertes calculés.</p>
+      <ul><li>Chiffre d'affaires, marge, délai de paiement des clients, taux d'absentéisme…</li><li>Indicateurs en alerte et à surveiller en tête</li><li>Revue mensuelle prête à imprimer</li></ul>
+      <a class="lien" href="/templates/pilotage-pme/?demo" data-goatcounter-click="concept-proprete-demo-pilotage-pme" data-goatcounter-title="Concept propreté : démo Tableau de bord PME">Ouvrir la démo · Tableau de bord PME →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Tableau de bord PME · démo</span></div><img src="tableau-de-bord.webp" width="1600" height="813" alt="Tableau de bord du mois : indicateurs en alerte, à surveiller, atteints, et points d'attention avec leur écart à l'objectif" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, au bureau sur ordinateur comme sur téléphone en tournée, et les données sont synchronisées. Si votre organisation demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack prêt à l'emploi</h3>
+      <p class="prix">164 € au lieu de 219 €, les neuf outils</p>
+      <ul><li>Achat unique, sans abonnement ni renouvellement</li><li>Chaque outil aussi vendu seul, de 15 € à 39 €</li><li>14 jours d'essai gratuit de chaque outil, sans carte bancaire</li></ul>
+      <div class="ctas"><a class="btn" href="/packs/petite-entreprise/" data-goatcounter-click="concept-proprete-achat" data-goatcounter-title="Concept propreté : fiche du pack">Voir le pack · 164 €</a><a class="btn line" href="/templates/planning-equipe/?demo" data-goatcounter-click="concept-proprete-demo-offre" data-goatcounter-title="Concept propreté : démo (offre)">Essayer une démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre entreprise</p>
+      <ul><li>Vos sites clients, vos fréquences de passage et vos heures contractuelles</li><li>Vos unités de travail et vos produits dans le document unique</li><li>Un accès pour chaque chef d'équipe, vos exports, vos indicateurs</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Propret%C3%A9%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-proprete-sur-mesure" data-goatcounter-title="Concept propreté : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Les outils contiennent des données de salariés (noms, absences, entretiens, frais) : elles restent minimales, s'exportent et s'effacent. Ce sont des outils d'aide : la convention collective et le Code du travail font foi. Les données des démos sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez une démo, puis dites-moi comment vous gérez vos équipes aujourd'hui : je vous dis franchement si les outils prêts à l'emploi suffisent, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20propret%C3%A9%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-proprete-contact-bas" data-goatcounter-title="Concept propreté : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/petite-entreprise/" data-goatcounter-click="concept-proprete-pack-bas" data-goatcounter-title="Concept propreté : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
