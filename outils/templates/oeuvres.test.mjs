@@ -1,7 +1,7 @@
 // Tests du proxy de recherche d'œuvres du Suivi culturel (netlify/lib/oeuvres.mjs) : sources simulées, aucun appel réel.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { traiterOeuvres, LIMITE_DEMO, scoreRecherche, requeteRepli } from '../../netlify/lib/oeuvres.mjs';
+import { traiterOeuvres, LIMITE_DEMO, scoreRecherche, requeteRepli, VERSION_CACHE } from '../../netlify/lib/oeuvres.mjs';
 import { genererCode } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'secret-de-test-oeuvres-0123456789abcdef';
@@ -90,8 +90,8 @@ test('index partagé : une œuvre ajoutée revient en tête, même avec des faut
   assert.deepEqual((await appeler(req('ajout', { methode: 'POST', corps: { media: 'podcast', s: 'itunes', id: 42 } }), opts)).corps, { ok: true });
   // Fiche jamais lue par le serveur : refusée (un navigateur ne peut pas écrire dans le cache partagé).
   assert.deepEqual((await appeler(req('ajout', { methode: 'POST', corps: { media: 'podcast', s: 'itunes', id: 999, titre: 'Pub' } }), opts)).corps, { ok: false });
-  assert.equal((await st.get('index/podcast')).length, 1);
-  assert.equal((await st.get('index/podcast'))[0].annee, undefined, 'pas d\'année pour un podcast (date du dernier épisode chez iTunes)');
+  assert.equal((await st.get(`index${VERSION_CACHE}/podcast`)).length, 1);
+  assert.equal((await st.get(`index${VERSION_CACHE}/podcast`))[0].annee, undefined, 'pas d\'année pour un podcast (date du dernier épisode chez iTunes)');
   // Source en panne : l'index répond seul, avec la fiche tolérante aux fautes.
   const panne = async () => { throw new Error('hors ligne'); };
   const r = await appeler(req('recherche?media=podcast&q=petittes questons'), { stockage: st, fetchImpl: panne });
@@ -153,4 +153,16 @@ test('faute de frappe : repli par début de mot quand la source ne trouve rien, 
   const r = await appeler(req('recherche?media=livre&q=les%20miserabls'), { stockage: memoire(), fetchImpl: f });
   assert.deepEqual(appels, ['les miserabls', 'les misera*']);
   assert.deepEqual(r.corps.resultats.map((x) => x.titre), ['Les Misérables', 'Les Miserables abrégé'], '« Misery » écarté : trop éloigné de la saisie');
+});
+
+test('cache : une réponse vide n\'est pas gardée, les clés portent la version du format', async () => {
+  const st = memoire();
+  let n = 0;
+  const vide = async () => { n++; return new Response(JSON.stringify({ docs: [] }), { status: 200 }); };
+  await appeler(req('recherche?media=livre&q=introuvable'), { stockage: st, fetchImpl: vide });
+  await appeler(req('recherche?media=livre&q=introuvable'), { stockage: st, fetchImpl: vide });
+  assert.equal(n, 4, 'deux recherches, chacune avec son repli : rien servi depuis le cache');
+  const { f } = sources();
+  await appeler(req('recherche?media=livre&q=miserables'), { stockage: st, fetchImpl: f });
+  assert.ok([...st.m.keys()].some((k) => k.startsWith(`q${VERSION_CACHE}/livre/`)));
 });

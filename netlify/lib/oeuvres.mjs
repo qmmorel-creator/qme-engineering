@@ -19,6 +19,9 @@ import { verifierCode, verifierCodeEssai } from './templates-acces.mjs';
 
 export const MEDIAS = ['livre', 'livreaudio', 'film', 'serie', 'podcast'];
 export const DUREE_CACHE = 7 * 86400000; // réponses d'une recherche : 7 jours
+// Version du format du cache (recherches, fiches vues, index) : à incrémenter quand la lecture des sources change ;
+// les anciennes entrées sont alors ignorées. Le store est commun aux aperçus et à la production.
+export const VERSION_CACHE = 2;
 export const MAX_INDEX = 5000; // fiches gardées par média dans l'index partagé
 export const LIMITE_DEMO = 60; // appels par jour et par IP sans jeton
 const UA = 'QME-SuiviCulturel/1.0 (+https://qm-engineering.fr)';
@@ -74,7 +77,7 @@ function fiche(media, s, id, { titre, auteur, annee: a, total, saisons }) {
   return f.titre && idOk(id) ? f : null;
 }
 const cleFiche = (f) => `${f.media}:${f.source.s}:${f.source.id}`;
-const cleVu = (media, s, id) => `vu/${media}/${s}/${hache(String(id))}`;
+const cleVu = (media, s, id) => `vu${VERSION_CACHE}/${media}/${s}/${hache(String(id))}`;
 
 // ---------- Sources ----------
 async function lireJson(fetchImpl, url, entetes = {}) {
@@ -152,14 +155,14 @@ export async function detailSource(media, s, id, { fetchImpl, tmdbAcces }) {
 // ---------- Index partagé (la base grandit avec l'usage) ----------
 async function indexer(stockage, f) {
   if (!f) return;
-  const cle = `index/${f.media}`;
+  const cle = `index${VERSION_CACHE}/${f.media}`;
   const liste = (await stockage.get(cle)) || [];
   const k = cleFiche(f);
   const reste = liste.filter((x) => cleFiche(x) !== k);
   await stockage.set(cle, [f, ...reste].slice(0, MAX_INDEX));
 }
 async function chercherIndex(stockage, media, q) {
-  const liste = (await stockage.get(`index/${media}`)) || [];
+  const liste = (await stockage.get(`index${VERSION_CACHE}/${media}`)) || [];
   return liste.map((f) => ({ f, sc: scoreRecherche(q, `${f.titre} ${f.auteur} ${f.annee || ''}`) })).filter((x) => x.sc > 0)
     .sort((a, b) => b.sc - a.sc).slice(0, 5).map((x) => x.f);
 }
@@ -200,14 +203,15 @@ export async function traiterOeuvres(requete, { secret, revoques = [], stockage,
       if (q.length < 2) return json(400, { erreur: 'Tape au moins 2 caractères.' });
       const locaux = await chercherIndex(stockage, media, q);
       if ((media === 'film' || media === 'serie') && !tmdbOk) return json(200, { resultats: locaux, indisponible: true });
-      const cleQ = `q/${media}/${hache(mots(q).join(' '))}`;
+      const cleQ = `q${VERSION_CACHE}/${media}/${hache(mots(q).join(' '))}`;
       const c = await stockage.get(cleQ);
       let distants;
       if (c && maintenant() - c.t < DUREE_CACHE) distants = c.r;
       else {
         try {
           distants = await chercherTolerant(media, q, dep);
-          await stockage.set(cleQ, { t: maintenant(), r: distants });
+          // Une réponse vide n'est pas gardée : elle bloquerait 7 jours une œuvre que la source ajouterait entre-temps.
+          if (distants.length) await stockage.set(cleQ, { t: maintenant(), r: distants });
           // Chaque fiche lue chez la source est mémorisée : c'est elle (jamais une fiche envoyée par un navigateur)
           // qui entrera dans l'index si un utilisateur ajoute l'œuvre.
           await Promise.all(distants.map((f) => stockage.set(cleVu(f.media, f.source.s, f.source.id), f)));
