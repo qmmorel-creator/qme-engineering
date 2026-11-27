@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les hôtels indépendants · QME</title>
+<meta name="description" content="Pack Exploitation et maintenance pour hôtels indépendants : vérifications réglementaires, maintenance des chambres et des équipements, stocks de linge et d'accueil, réclamations et non-conformités. Prêt à l'emploi, adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.outils{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 18px}
+.outils a{display:block;background:var(--paper);border-radius:6px;padding:10px 12px;text-decoration:none;font-size:14.5px}
+.outils b{display:block}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.outils{grid-template-columns:minmax(0,1fr)}.fin{padding:24px}.btn{padding:11px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/packs/exploitation/" data-goatcounter-click="concept-hotels-pack-haut" data-goatcounter-title="Concept hôtels : pack (haut)">Voir le pack</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les hôtels indépendants · pack prêt à l'emploi</p>
+    <h1>Le jour de la visite de sécurité, chaque rapport est déjà rangé.</h1>
+    <p class="lede">Quatre outils en ligne déjà prêts, réunis dans le pack « Exploitation et maintenance » : les vérifications obligatoires de l'hôtel suivies à leur périodicité, l'entretien des chambres et des équipements, les stocks de linge, de produits d'accueil et du bar, et les réclamations traitées jusqu'à l'action corrective. Ils s'utilisent tels quels dès le premier jour, et je peux les adapter sur mesure à votre établissement.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/verifications/?demo" data-goatcounter-click="concept-hotels-demo-haut" data-goatcounter-title="Concept hôtels : démo vérifications (haut)">Essayer la démo</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20h%C3%B4tels%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-hotels-contact" data-goatcounter-title="Concept hôtels : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">Les captures de cette page viennent des applications réelles, remplies avec un hôtel fictif (« Hôtel Exemple ») : établissement, équipements, prestataires et chiffres sont inventés. Chaque démo s'ouvre sans inscription, reste dans votre navigateur et n'envoie rien.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Extincteurs, électricité, gaz, cuisine, désenfumage, éclairage de sécurité, alarme incendie, ascenseur : chaque contrôle a sa périodicité et son prestataire, et les rapports s'accumulent dans des classeurs.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Une échéance dépassée découverte la veille de la commission de sécurité, une observation jamais levée, une chambre fermée pour une panne évitable, une rupture de draps un samedi de pleine saison.</p></div>
+    <div><h2>Ce que font les outils</h2><p>Ils calculent chaque échéance, signalent ce qui approche, rangent les rapports et leurs preuves, planifient l'entretien et préparent la liste à commander.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Vérifications réglementaires</p><h2>Les contrôles obligatoires, à leur date</h2><p>La base intégrée couvre déjà les contrôles d'un hôtel recevant du public, avec leur périodicité et leur source (brochure INRS ED 828).</p>
+      <ul><li>Extincteurs, installations électriques et gaz, grandes cuisines, désenfumage</li><li>Éclairage de sécurité, système de sécurité incendie, ascenseur, portes automatiques</li><li>Échéance qui approche signalée, observations à lever suivies jusqu'à la preuve</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Vérifications · tableau de bord · données fictives</span></div><img src="vrf-bord.webp" width="1600" height="813" alt="Tableau de bord des vérifications d'un hôtel fictif : un contrôle en retard, trois à prévoir, quatre observations à lever, état des contrôles par bâtiment"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Le registre par bâtiment</p><h2>Chaque installation, sa prochaine échéance</h2><p>Les équipements sont rangés par partie de l'hôtel (chambres et étages, restaurant et cuisine, salons), avec le dernier rapport et l'organisme qui l'a fait.</p>
+      <ul><li>En retard, à prévoir, à compléter, à jour : un filtre suffit</li><li>Rapport et lien de chaque vérification conservés</li><li>Registre imprimable à présenter le jour de la visite</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Vérifications · équipements · données fictives</span></div><img src="vrf-equipements.webp" width="1600" height="813" alt="Liste des équipements contrôlés de l'hôtel fictif, avec leur prochaine échéance et leur état" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Maintenance préventive</p><h2>Les chambres et les équipements entretenus à temps</h2><p>Chambre froide, lave-vaisselle, lave-linge, chaudière, climatisation, porte automatique : chaque entretien revient à sa date, ou au compteur.</p>
+      <ul><li>Pannes signalées et équipements à l'arrêt en tête</li><li>Bons d'intervention imprimables, internes ou prestataires</li><li>Coût de maintenance sur 12 mois, part du correctif comprise</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Maintenance · tableau de bord · données fictives</span></div><img src="gma-bord.webp" width="1600" height="813" alt="Tableau de bord de maintenance de l'hôtel fictif : opérations en retard, taux de réalisation, coût sur 12 mois, lave-linge à l'arrêt" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Stocks et inventaire</p><h2>Le linge et l'accueil, jamais en rupture</h2><p>Draps, serviettes, produits d'accueil, petit-déjeuner, bar : le stock se calcule à partir des entrées et des sorties.</p>
+      <ul><li>Seuil d'alerte par article, liste à commander par fournisseur</li><li>Valeur du stock par catégorie</li><li>Inventaire tournant, écarts corrigés d'un geste</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Stocks · tableau de bord · données fictives</span></div><img src="stk-bord.webp" width="1600" height="813" alt="Tableau de bord des stocks de l'hôtel fictif : alertes sur les mini-savons, les draps et le vin, valeur par catégorie" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Non-conformités</p><h2>Une réclamation traitée jusqu'au bout</h2><p>Réclamation d'un client, écart relevé par la gouvernante, observation d'un contrôle : chaque cas suit cinq étapes, du constat à la vérification que l'action a marché.</p>
+      <ul><li>Cause recherchée en quelques « pourquoi »</li><li>Actions correctives avec responsable et échéance</li><li>Indicateurs par service : étages, cuisine, réception</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Non-conformités · registre · données fictives</span></div><img src="ncf-registre.webp" width="1600" height="813" alt="Registre des non-conformités de l'hôtel fictif : infiltration en chambre, produits d'accueil manquants, porte coupe-feu" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, sur ordinateur, tablette ou téléphone, et vos données sont synchronisées. Achat unique, sans abonnement ni renouvellement. Si votre établissement demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack Exploitation et maintenance</h3>
+      <p class="prix">95 € au lieu de 119 €, achat unique, sans abonnement</p>
+      <div class="outils">
+        <a href="/templates/verifications/?demo" data-goatcounter-click="concept-hotels-demo-vrf" data-goatcounter-title="Concept hôtels : démo vérifications"><b>Vérifications réglementaires</b>35 € seul · démo</a>
+        <a href="/templates/maintenance/?demo" data-goatcounter-click="concept-hotels-demo-gma" data-goatcounter-title="Concept hôtels : démo maintenance"><b>Maintenance préventive</b>39 € seul · démo</a>
+        <a href="/templates/stocks/?demo" data-goatcounter-click="concept-hotels-demo-stk" data-goatcounter-title="Concept hôtels : démo stocks"><b>Stocks et inventaire</b>25 € seul · démo</a>
+        <a href="/templates/non-conformites/?demo" data-goatcounter-click="concept-hotels-demo-ncf" data-goatcounter-title="Concept hôtels : démo non-conformités"><b>Non-conformités</b>20 € seul · démo</a>
+      </div>
+      <ul><li>Chaque outil s'achète aussi seul, de 20 à 39 €</li><li>14 jours d'essai gratuit avec vos données, sans carte bancaire</li></ul>
+      <div class="ctas"><a class="btn" href="/packs/exploitation/" data-goatcounter-click="concept-hotels-pack" data-goatcounter-title="Concept hôtels : page du pack">Voir le pack · 95 €</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre établissement</p>
+      <ul><li>Plusieurs établissements suivis ensemble</li><li>Vos propres grilles de contrôle et check-lists de chambres</li><li>Un lien avec votre logiciel de réservation ou votre façon de travailler</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=H%C3%B4tel%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-hotels-sur-mesure" data-goatcounter-title="Concept hôtels : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Les périodicités intégrées citent leur source ; un contrôle absent de la base se crée avec la périodicité que vous saisissez. Les outils vous aident à suivre vos obligations, ils ne remplacent ni l'organisme agréé ni la commission de sécurité. Les données des démos sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez une démo, puis dites-moi comment vous suivez aujourd'hui vos contrôles, votre entretien et vos stocks : je vous dis franchement si le pack prêt à l'emploi suffit, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20h%C3%B4tels%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-hotels-contact-bas" data-goatcounter-title="Concept hôtels : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/exploitation/" data-goatcounter-click="concept-hotels-pack-bas" data-goatcounter-title="Concept hôtels : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
