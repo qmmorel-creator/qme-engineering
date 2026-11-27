@@ -56,7 +56,9 @@ de la Fondation pour l'école ; chaque adresse a été relevée sur une page pr�
 | Relecture (statut à confirmer, réseau, établissement en double, grande école internationale, adresse d'un tiers) | 14 : Al-Kindi, IBS of Provence, Le Lieu Utile, Cours Aliénor d'Aquitaine (Excellence Ruralités), Cours Charles Péguy, Cours Charlemagne, Cours La Boussole (Espérance banlieues), École de Tarcisius (même lieu que le Collège de la Trinité), American School of Paris, British School of Paris, International School of Paris, IDSP, Kingsworth, École de l'Étoile-du-Matin (réseau FSSPX) |
 | `campagne.mjs doublons` | 0 |
 | Nexora (2 567 fiches, comparaison des noms) | 8 : Steiner-Waldorf Lyon, L'Envolée, Da Vinci School, Mésanges, CIPEC, Boutons d'Or, English School Lyon, Les Pouces Verts |
-| Gmail (`in:anywhere`, domaine ou adresse entière) | 0 |
+| Gmail, paquets de 6 domaines (`in:anywhere {…}`) | 0 (méthode jugée insuffisante, refaite ci-dessous) |
+| Nexora, seconde recherche par radical du domaine (160 requêtes, témoin `steiner-aix` trouvé) | 0 |
+| Gmail, une requête par domaine `in:anywhere "<domaine>"` (160 requêtes ; témoins : `cipec.com` trouvé, domaine inventé vide ; 13 requêtes refaites après dépassement du quota Gmail) | 0 |
 | Liste d'opposition | 0 |
 
 Répartition : Sud 47, Ouest 48, Nord et Île-de-France 65. À revoir par Quentin s'il le souhaite : Ein Gedi (jeunes
