@@ -23,6 +23,7 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
 | Lot | Date | Sourcés | Écartés `doublons` | Écartés Nexora | Écartés Gmail | Écartés opposition | Retenus |
 |---|---|---|---|---|---|---|---|
 | A (judo, karaté, gym, escalade) | 27/11/2026 | 40 (9 retirés : 4 faits datés 2019-2022, 5 compétitions internes) | 0 | 2 | 2 (les mêmes) | 0 | 29 |
+| B (trail, course, triathlon) | 27/11/2026 | 50 (4 retirés : 2 associations non sportives, 1 adresse d'épreuve, 1 adresse mal orthographiée) | 0 | 0 | 0 | 0 | 46 |
 | C (natation, badminton, tennis de table, vélo) | 27/11/2026 | 45 (2 retirés : ville non lue sur le site) | 0 | 0 | 0 | 0 | 43 |
 
 ## Journal
@@ -39,3 +40,5 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
   commités, contrôle relancé (0 écarté). Lot A : 40 sourcés, 9 retirés (4 faits de 2019 à 2022, 5 compétitions internes),
   31 ; doublons 0, opposition 0. Nexora (nom, radical, ville) et Gmail (témoins conformes) : 2 écartés, Chambéry
   Escalade et Drac Vercors Escalade (vague 16, même adresse, fil Gmail), que `doublons` ne voyait pas. Lot A : 29.
+- 27/11/2026 : lot B contrôlé (doublons `--campagne`, opposition, Nexora par nom, épreuve, radical et ville, Gmail
+  par groupes de 6 au plus, témoins conformes) : 46 retenus. **Total prêt : 118 adresses (A 29, B 46, C 43)**, rien en file.
