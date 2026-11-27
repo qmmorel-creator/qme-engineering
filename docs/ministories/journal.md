@@ -5,7 +5,7 @@ de suite, ni la même musique que la veille, ni le même ressort comique (escala
 
 | Date | Produit (fiche) | Titre | Ressort comique | Musique | Dossier | Drive | Voix |
 |---|---|---|---|---|---|---|---|
-| 27/11/2026 | Mon Budget (`catalogue/budget/`) | Le salaire a disparu ! | escalade + ellipse | alex-morgan-funny-bouncy-cartoon-mischief | `episodes/2026-11-27-le-salaire-a-disparu/` | [MP4](https://drive.google.com/file/d/1kKWPe25B_4DrLuBx_0ZH0oCuOA2-Jl2P/view) | ElevenLabs (Caroline) |
+| 27/11/2026 | Mon Budget (`catalogue/budget/`) | Le salaire a disparu ! | escalade + ellipse | alex-morgan-funny-bouncy-cartoon-mischief | `episodes/2026-11-27-le-salaire-a-disparu/` | [MP4](https://drive.google.com/file/d/1kKWPe25B_4DrLuBx_0ZH0oCuOA2-Jl2P/view) | ElevenLabs (Caroline) · publié par Quentin le 27/11/2026 (Instagram) |
 | 27/11/2026 | Suivi d’habitudes | 18 · La résolution du 2 janvier | escalade + score | atlasaudio-funny-606256 | `episodes/2026-11-27-18-resolution-2-janvier/` | [MP4](https://drive.google.com/file/d/11UwclWbjmWycPTR_JGpp49s6Q1T9ZilA/view) | ElevenLabs Caroline |
 | 27/11/2026 | Suivi des abonnements | 01 · L’abonnement fantôme | apparitions | nastelbom-comedy-617004 | `episodes/2026-11-27-01-abonnement-fantome/` | [MP4](https://drive.google.com/file/d/1HsX7PXg0_KCX44Y8LpmeL4a5v1uiDL8r/view) | ElevenLabs Caroline |
 | 27/11/2026 | Gestion Dépenses Communes | 02 · Qui a payé les croissants ? | procès / quiproquo | alex-morgan-funny-545489 | `episodes/2026-11-27-02-qui-a-paye-les-croissants/` | [MP4](https://drive.google.com/file/d/1LRaRUjW0Zu68bG4G0hvOnLKyR2SIizpp/view) | ElevenLabs Caroline |
