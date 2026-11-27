@@ -53,8 +53,13 @@ sous-titres. Tous les temps vivent dans **`sources/timeline.json`** (scènes, vo
 
 ## 4. Voix : ElevenLabs, voix « Caroline » (décision de Quentin du 27/11/2026)
 
-Voix définitive générée par le **connecteur ElevenLabs** (outils `mcp__*elevenlabs*__*`, à charger par ToolSearch
-« elevenlabs ») avec la voix **« Caroline - Warm, Sweet and Soft »** (celle du pilote), en français. Générer le **texte
+Voix définitive générée par le **connecteur ElevenLabs** (outils `mcp__ElevenLabs__*`, à charger par ToolSearch
+« elevenlabs ») avec la voix **« Caroline - Warm, Sweet and Soft »** (celle du pilote), en français :
+`creative_generate_speech` avec `voice_id: "kwhMCf63M8O3rCfnQ3oQ"` (relevé le 27/11/2026 par `creative_list_voices`,
+recherche « Caroline », langue `fr` ; le revérifier si l'appel échoue), `model_id: "eleven_v4"`, **`generations_count: 1`**,
+`prompt` = texte continu du script. Puis `creative_get_flow_run_status` (flow_id, session_ids) en attendant
+`poll_after_seconds` entre deux appels, jusqu'à `all_completed` ; télécharger l'audio par l'URL de la génération.
+Ne jamais relancer une génération pour « réessayer » : chaque appel est facturé. Générer le **texte
 continu** du script en une seule prise (meilleure interprétation), récupérer le MP3, puis le recaler comme le pilote
 (`references/production.md` § Voix ElevenLabs : `voix_source`, répliques relevées par silences et transcription,
 `montage` si la durée change). Copie du MP3 dans `audio/elevenlabs/`. Consomme les crédits ElevenLabs de Quentin : une
