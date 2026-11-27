@@ -112,6 +112,16 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Page et brouillon validés par Quentin avant tout envoi** ; projets Nexora seulement pour les retours intéressés,
   après son accord. Prospects tenus à jour dans Nexora Optim › QME (`vague: "cible-<sujet>"`).
 
+## Concepts : personnalisés au secteur, jamais un SaaS générique (décision du 27/11/2026)
+
+- **Tout concept** (skill `concept-prospect`, page `concepts/<slug>/`, démo, PDF, pages des campagnes par concept) est
+  conçu pour le métier du prospect, sur le modèle de Kelly (`concepts/conciergerie-en-provence/`) et d'ARVA
+  (`concepts/arva/`) : démonstration interactive publiée dans `concepts/<slug>/demo/`, identité propre (nom de l'outil,
+  palette, typographies), grand chiffre métier, entonnoir de leur processus, visuels du terrain, vocabulaire et objets du
+  secteur, vue téléphone, page de concept écrite sur mesure. Interdits : la coquille SaaS neutre des gabarits du skill et
+  la page brute de `concept_page.py`. Cette règle prime sur les gabarits du skill. Détail et contrôle avant PR :
+  `docs/prospection/CONCEPTS-SUR-MESURE.md`.
+
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 
 - **Tout agent qui crée ou modifie un concept** (page `concepts/<slug>/`, PDF, démo de concept, généré à la main ou par
