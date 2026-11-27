@@ -315,5 +315,17 @@ ajoutés, couverture ajoutée. Tags réécrits par Gumroad : `auto-école`.
 | EDT | Emploi du temps d'établissement | -QR6i4YdVpKiitm12RP6Ag== | /l/emploi-du-temps-etablissement | 45 € | **en vente** (25/11/2026) |
 | FRM | Matrice compétences et formations | C4nN47ATR7v4pbDgAb7xRQ== | /l/matrice-competences-formations | 25 € | **en vente** (25/11/2026) |
 | PTG | Calendrier du potager | ufjDjj77mM7DcT2U36eugw== | /l/calendrier-potager | 13 € | **en vente** (25/11/2026) |
-| ANM | Suivi d'un animal de compagnie | — | /l/suivi-animal-compagnie | 12 € | à créer le 25/11 à 19 h 45 |
-| PAS | Pack Associations et clubs | — | /l/pack-associations | 156 € | à créer le 25/11 à 19 h 45 |
+| ANM | Suivi d'un animal de compagnie | qTRUd4Yu81y5L2aUm3_BXA== | /l/suivi-animal-compagnie | 12 € | **en vente** (27/11/2026) |
+| PAS | Pack Associations et clubs | DhT6c4E8Oxyl2FLStzkI5A== | /l/pack-associations | 156 € | **en vente** (27/11/2026) |
+
+## Vague du 26/11/2026 (agent Gumroad, passage quotidien)
+
+Décisions de Quentin du 25/11 : Gestion de classe, Suivi du bébé et Remboursements santé vendus tels quels. Fiches
+`docs/…/gumroad.json` avec paragraphe, détail et reçu de l'essai ; couverture et lien `/connexion/` ajoutés. Corrections :
+bouton CSE « Ouvrir ma classe » (26 caractères max), tag RBS « finances-perso ». Tags réécrits par Gumroad : `bébé`, `santé`.
+
+| Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
+|------|---------|---------------------|-----------|------|--------|
+| CSE | Gestion de classe | N0d_juDeqcKyEc39Hjhtxw== | /l/gestion-classe | 25 € | **en vente** (27/11/2026) |
+| BBE | Suivi du bébé | N0y4vz6Fr5o-N3RegOv6ug== | /l/suivi-bebe | 13 € | **en vente** (27/11/2026) |
+| RBS | Remboursements santé | 0RqWTv8TckHFj_8bbMmo5Q== | /l/remboursements-sante | 12 € | **en vente** (27/11/2026) |

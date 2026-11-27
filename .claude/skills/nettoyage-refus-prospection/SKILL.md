@@ -59,7 +59,10 @@ Lire le **dernier message du prospect** et ce qui suit :
 - **Déjà traité** : un message de Quentin postérieur au refus existe déjà dans le fil → aucune réponse, seulement
   vérifier libellé + archivage.
 - **Refus poli** : « pas intéressé », « pas pour le moment », « nous ne donnons pas suite », « pas dans notre
-  ligne », « nous ne faisons pas de partenariat », même avec « merci de nous retirer de votre liste » → réponse type.
+  ligne », « nous ne faisons pas de partenariat » → réponse type.
+- **Retrait demandé** (« merci de nous retirer de votre liste », « ne plus nous écrire »), même poliment → **aucune
+  réponse** (décision de Quentin du 27/11/2026, conforme à `REGLES-PROSPECTION.md` § 3) : étape `oppose`, liste
+  d'opposition le jour même, libellé `qme/Prospects/Énervé`.
 - **Hostile** → **aucune réponse** : injure, mépris, menace (signalement, CNIL, avocat), reproche agressif
   (« arrêtez de spammer », « je ne veux pas de vos mails »), rejet de principe virulent (« pas de collaboration
   avec ceux qui utilisent l'IA »), majuscules agressives. En cas de doute entre poli et hostile : hostile, ne pas répondre.

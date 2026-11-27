@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le salaire a disparu ! · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 26.7 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-budget-tel.webp" alt=""><img class="pre" src="../assets/templates-budget-flux.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires ----------
+const billet = (x, y, r = 0, s = 1) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-70" y="-38" width="140" height="76" rx="6" fill="${C.pale}" stroke="${C.noir}" stroke-width="7"/><circle cx="0" cy="0" r="22" fill="none" stroke="${C.noir}" stroke-width="6"/><text x="0" y="10" font-size="28" font-weight="800" text-anchor="middle">€</text></g>`;
+function tas(x, y, n) { let g = ''; for (let i = 0; i < n; i++) g += billet(x + (hash(i) - .5) * 60, y - i * 22, (hash(i + 4) - .5) * 14); return g; }
+const piece = (x, y, r = 34) => `<g transform="translate(${x} ${y})"><circle r="${r}" fill="${C.jaune}" stroke="${C.noir}" stroke-width="7"/><text y="${r * .36}" font-size="${r}" font-weight="800" text-anchor="middle">€</text></g>`;
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+const compteur = (x, y, v, secousse = 0, couleur = C.noir) => `<g transform="translate(${x + secousse} ${y})"><rect x="-260" y="-70" width="520" height="140" fill="${C.noir}" transform="translate(12 12)"/><rect x="-260" y="-70" width="520" height="140" fill="#fff" stroke="${C.noir}" stroke-width="10"/><text x="-230" y="-32" font-size="26" font-weight="700" letter-spacing="3" fill="#555">SOLDE</text><text x="230" y="46" font-size="84" font-weight="800" text-anchor="end" fill="${couleur}">${euros(v)}</text></g>`;
+
+// Monstres-dépenses : formes Bauhaus avec bouche (une forme et une couleur par dépense, constantes dans l'épisode)
+function monstre(type, x, y, s = 1, bouche = 0, rot = 0) {
+  const oeil = (cx, cy) => `<circle cx="${cx}" cy="${cy}" r="16" fill="#fff" stroke="${C.noir}" stroke-width="6"/><circle cx="${cx + 4}" cy="${cy}" r="7" fill="${C.noir}"/>`;
+  const dents = (cx, cy, w) => `<path d="M${cx - w / 2} ${cy} h${w} v${10 + bouche * 50} h${-w} z" fill="${C.noir}"/><path d="M${cx - w / 2 + 6} ${cy} l10 14 l10 -14 l10 14 l10 -14" fill="#fff"/>`;
+  let corps = '', label = '';
+  if (type === 'loyer') { corps = `<path d="M-110 -40 L0 -150 L110 -40 V110 H-110 Z" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>` + oeil(-40, -10) + oeil(40, -10) + dents(0, 40, 90); label = etiquette(0, 175, 'LOYER'); }
+  if (type === 'factures') { corps = `<path d="M0 -150 L130 100 H-130 Z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><path d="M-20 -60 l30 0 l-20 40 l30 0 l-50 60 l12 -42 l-26 0z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="5"/>` + oeil(-50, 20) + oeil(50, 20) + dents(0, 55, 80); label = etiquette(0, 165, 'FACTURES'); }
+  if (type === 'courses') { corps = `<path d="M-130 -90 h30 l30 150 h170 l25 -110 h-210" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10" stroke-linejoin="round"/><circle cx="-40" cy="95" r="20" fill="${C.noir}"/><circle cx="80" cy="95" r="20" fill="${C.noir}"/>` + oeil(-10, -20) + oeil(60, -20) + dents(25, 15, 80); label = etiquette(15, 175, 'COURSES'); }
+  if (type === 'abo') { corps = `<circle r="58" fill="${C.noir}"/><path d="M-16 -26 L30 0 L-16 26 Z" fill="#fff"/><circle cx="-24" cy="-62" r="10" fill="${C.rouge}"/>`; }
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">${corps}${label}</g>`;
+}
+
+// Téléphone avec une vraie capture de Mon Budget (assets/templates-budget-tel.webp, 780 × 1328)
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Jour de paie
+  const saut = Math.abs(Math.sin(pose(l) / 160)) * 70;
+  const notif = rebond(prog(pose(l), 0, 380));
+  let g = decor(t, 0) + sol();
+  g += `<g transform="translate(540 ${-200 + notif * 520})"><rect x="-370" y="-110" width="740" height="220" rx="36" fill="${C.noir}" transform="translate(12 12)"/><rect x="-370" y="-110" width="740" height="220" rx="36" fill="#fff" stroke="${C.noir}" stroke-width="10"/>
+        <text x="-320" y="-40" font-size="34" font-weight="700" letter-spacing="3" fill="#555">VIREMENT REÇU</text><text x="-320" y="50" font-size="86" font-weight="800">Salaire</text><text x="330" y="50" font-size="86" font-weight="800" text-anchor="end" fill="${C.vert}">+${euros(2100)}</text></g>`;
+  for (let i = 0; i < 6; i++) { const p = prog(l, 120 + i * 60, 900 + i * 60); if (p > 0 && p < 1) g += piece(540 + (hash(i) - .5) * 700 * sortie(p), 760 - Math.sin(p * Math.PI) * 300 + p * 300, 30); }
+  g += mascotte({x: 540, y: 1300 - saut, s: 1.25, expr: 'joie', bras: 'haut', ecrase: saut < 8 ? .9 : 1.04});
+  return g;
+};
+S.S2 = (t, l) => {                       // Champagne… eau pétillante
+  const eau = l >= 1000;                  // 2,30 s : coupe franche vers la petite bouteille d'eau
+  let g = decor(t, 1) + sol();
+  const bx = 640, by = 1080;
+  if (!eau) {
+    g += `<g transform="translate(${bx} ${by}) rotate(-18)"><path d="M-55 160 V-10 q0 -50 35 -70 V-170 h40 V-80 q35 20 35 70 V160 z" fill="${C.vert}" stroke="${C.noir}" stroke-width="10"/><rect x="-55" y="10" width="110" height="80" fill="${C.pale}" stroke="${C.noir}" stroke-width="6"/><text y="60" font-size="22" font-weight="800" text-anchor="middle">CHAMPAGNE</text><rect x="-22" y="-200" width="44" height="30" fill="${C.moutarde}" stroke="${C.noir}" stroke-width="6"/></g>`;
+    const p = prog(l, 20, 700);
+    g += `<circle cx="${bx - 60 + p * -320}" cy="${by - 220 - Math.sin(p * Math.PI) * 420}" r="22" fill="${C.noir}"/>`;
+    for (let i = 0; i < 14; i++) { const q = prog(l, 30, 900); g += `<rect x="${bx - 80 + (hash(i) - .5) * 600 * q}" y="${by - 250 - Math.sin(q * Math.PI) * 300 * hash(i + 2) + q * 200}" width="22" height="22" fill="${[C.rouge, C.jaune, C.bleu][i % 3]}" transform="rotate(${hash(i) * 90} ${bx} ${by})"/>`; }
+    g += mascotte({x: 360, y: 1300, s: 1.15, expr: 'joie', bras: 'haut'});
+  } else {
+    g += `<g transform="translate(${bx} ${by + 120})"><path d="M-34 100 V-20 q0 -24 20 -34 V-90 h28 V-54 q20 10 20 34 V100 z" fill="#CFE3F2" stroke="${C.noir}" stroke-width="8"/><rect x="-34" y="0" width="68" height="56" fill="${C.bleu}" stroke="${C.noir}" stroke-width="5"/><text y="24" font-size="15" font-weight="800" text-anchor="middle" fill="#fff">EAU</text><text y="45" font-size="11" font-weight="800" text-anchor="middle" fill="#fff">PÉTILLANTE</text>`;
+    for (let i = 0; i < 6; i++) { const q = ((pose(l) / 600) + hash(i)) % 1; g += `<circle cx="${(hash(i + 1) - .5) * 30}" cy="${-100 - q * 160}" r="${5 + hash(i) * 6}" fill="none" stroke="${C.noir}" stroke-width="4"/>`; }
+    g += `</g>`;
+    g += mascotte({x: 360, y: 1300, s: 1.15, expr: 'blase', bras: 'bas'});
+  }
+  return g;
+};
+S.S3 = (t, l) => {                       // Les dépenses se servent
+  let v = T.soldes[0].v; for (let i = 1; i < T.soldes.length; i++) { const a = T.soldes[i - 1], b = T.soldes[i]; if (t >= b.t) v = b.v; else if (t > a.t && a.v !== b.v) { v = Math.round(a.v + (b.v - a.v) * prog(t, a.t, b.t)); break; } else break; }
+  const morsures = [4.95, 6.0, 6.95, 8.9].map((m) => Math.abs(t - m) < .25);
+  const secousse = morsures.some(Boolean) ? (hash(pose(l)) - .5) * 30 : 0;
+  let g = decor(t, 2) + sol();
+  g += compteur(540, 330, v, secousse, v < 700 ? C.rouge : C.noir);
+  const n = Math.max(2, Math.round(v / 2100 * 14));
+  g += tas(540, 1240, n);
+  const expr = t < 5.4 ? 'joie' : t < 7.3 ? 'inquiet' : 'choc';
+  g += mascotte({x: 540, y: 1240 - n * 22 - 10, s: .72, expr, bras: t < 5.4 ? 'tenir' : 'tete', });
+  const entree = (a, de) => de + (1 - sortie(prog(pose(t * 1000), a * 1000, a * 1000 + 450))) * (de < 540 ? -600 : 600);
+  const mord = (m) => Math.max(0, 1 - Math.abs(t - m) / .25);
+  const part = (b) => (t > b ? sortie(prog(t, b, b + .2)) : 0);
+  if (t >= 4.1 && t < 5.45) g += monstre('loyer', entree(4.1, 230) - part(5.25) * 700, 1100, .95, mord(4.95), t > 4.9 && t < 5.1 ? 8 : 0);
+  if (t >= 5.3 && t < 6.55) g += monstre('factures', entree(5.3, 850) + part(6.35) * 700, 1110, .9, mord(6.0));
+  if (t >= 6.4 && t < 7.5) g += monstre('courses', entree(6.4, 230) - part(7.3) * 700, 1115, .85, mord(6.95));
+  if (t >= 7.3) for (let i = 0; i < 9; i++) { const a = 7.35 + i * .13; if (t < a) break; const p = prog(t, a, a + .5);
+    const x = 1100 - p * (560 + (hash(i) - .5) * 300), y = 560 + hash(i + 3) * 500 + Math.sin(p * 6) * 30; g += monstre('abo', x, y, .7 + hash(i) * .25); }
+  if (t >= 7.3) g += etiquette(800, 520, 'ABONNEMENTS', C.noir, '#fff', 38);
+  return g;
+};
+S.S4 = (t, l) => {                       // Trois jours plus tard
+  const pages = ['LUN', 'MAR', 'MER', 'JEU'];
+  const k = Math.min(3, Math.floor(l / 300));
+  let g = `<rect width="1080" height="1920" fill="${C.jaune}"/>` + `<circle cx="540" cy="760" r="420" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += `<g transform="translate(540 760)"><rect x="-230" y="-250" width="460" height="460" fill="${C.noir}" transform="translate(16 16)"/><rect x="-230" y="-250" width="460" height="460" fill="#fff" stroke="${C.noir}" stroke-width="10"/><rect x="-230" y="-250" width="460" height="110" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><text y="-175" font-size="56" font-weight="800" text-anchor="middle" fill="#fff" letter-spacing="6">${pages[k]}</text><text y="120" font-size="230" font-weight="800" text-anchor="middle">J+${k}</text></g>`;
+  return g;
+};
+S.S5 = (t, l) => {                       // 3 € : panique
+  const alarme = t >= 11.15 && t < 12.5; // repère du montage de référence
+  const flash = alarme && Math.floor((t - 11.15) / .33) % 2 === 0;
+  const tremble = (hash(pose(l)) - .5) * (alarme ? 28 : 10);
+  let g = `<rect width="1080" height="1920" fill="${flash ? '#F6D7D0' : C.creme}"/>` + `<circle cx="540" cy="700" r="${430 + (flash ? 25 : 0)}" fill="${C.rouge}"/>`;
+  const zoom = 1 + sortie(prog(l, 0, 250)) * .08;
+  g += `<g transform="translate(${540 + tremble} 640) scale(${zoom})"><rect x="-250" y="-330" width="500" height="560" rx="44" fill="${C.noir}"/><rect x="-224" y="-304" width="448" height="508" rx="28" fill="#fff"/>
+        <text x="-180" y="-210" font-size="32" font-weight="700" letter-spacing="3" fill="#555">SOLDE DU COMPTE</text><text y="-30" font-size="128" font-weight="800" text-anchor="middle" fill="${C.rouge}">3,00\u00a0€</text>
+        <rect x="-180" y="60" width="360" height="22" rx="11" fill="#eee"/><rect x="-180" y="60" width="10" height="22" rx="11" fill="${C.rouge}"/></g>`;
+  g += mascotte({x: 540 + tremble * .6, y: 1310, s: 1.05, expr: l < 300 ? 'choc' : 'panique', bras: l < 300 ? 'bas' : 'tete'});
+  return g;
+};
+S.S6 = (t, l) => {                       // Mon Budget
+  const flux = t >= 17.55;               // « … et où part l'argent » : trajet de l'argent (capture réelle)
+  let g = decor(t, 0).replace(C.rouge, C.jaune);
+  const apparait = rebond(prog(pose(l), 0, 420));
+  const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><image href="../assets/templates-budget-tel.webp" x="24" y="24" width="652" height="1110" clip-path="url(#ecr)" preserveAspectRatio="xMidYMin slice"/>`;
+  g += telephone(540, 700, .6 * apparait, capt);
+  // enveloppes autour du téléphone, posées sur « chaque euro a son enveloppe »
+  const env = [['LOYER', C.bleu, 165, 470, 13.7], ['FACTURES', C.rouge, 915, 470, 14.2], ['COURSES', C.jaune, 165, 880, 14.7], ['ABONNEMENTS', C.noir, 915, 880, 15.2]];
+  for (const [nom, coul, x, y, a] of env) {
+    if (t < a) continue;
+    const p = rebond(prog(pose(t * 1000), a * 1000, a * 1000 + 300));
+    g += `<g transform="translate(${x} ${y}) scale(${p * .72})"><rect x="-120" y="-80" width="240" height="160" fill="${C.noir}" transform="translate(10 10)"/><rect x="-120" y="-80" width="240" height="160" fill="#fff" stroke="${C.noir}" stroke-width="8"/><path d="M-120 -80 L0 10 L120 -80" fill="${coul}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/>${piece(70, 40, 26)}</g>` + etiquette(x, y + 92, nom, coul, coul === C.jaune ? C.noir : '#fff', nom.length > 9 ? 22 : 26);
+  }
+  // « le prévu, le réel » : cadres sur les cartes Revenus (prévu) et Dépenses (réel) de la capture
+  if (t >= 16.3 && !flux) {
+    const ox = 540 - 350 * .6 + 24 * .6, oy = 700 - 650 * .6 + 24 * .6, k = 652 / 780 * .6;
+    const cadre = (x, y, w, h, c) => `<rect x="${ox + x * k}" y="${oy + y * k}" width="${w * k}" height="${h * k}" rx="14" fill="none" stroke="${c}" stroke-width="10"/>`;
+    if (t >= 16.6) g += cadre(18, 776, 362, 256, C.rouge);
+    if (t >= 17.0) g += cadre(400, 776, 362, 256, C.rouge);
+  }
+  if (flux) {
+    const p = rebond(prog(pose(t * 1000), 17550, 17900));
+    g += `<g transform="translate(540 700) scale(${p})"><rect x="-470" y="-280" width="940" height="560" fill="${C.noir}" transform="translate(14 14)"/><rect x="-470" y="-280" width="940" height="560" fill="#fff" stroke="${C.noir}" stroke-width="10"/>
+          <svg x="-450" y="-260" width="900" height="520" viewBox="100 90 1420 820" preserveAspectRatio="xMidYMid slice"><image href="../assets/templates-budget-flux.webp" width="1600" height="1000"/></svg></g>`;
+  }
+  g += mascotte({x: 140, y: 1300, s: .62, expr: t < 16.2 ? 'joie' : 'fier', bras: 'montrer'});
+  return g;
+};
+S.S7 = (t, l) => {                       // Il avait juste besoin d'un plan
+  let g = decor(t, 1) + sol();
+  // gag de fin : les dépenses font sagement la queue, chacune devant son enveloppe
+  const file = [['loyer', 140, 1170, .55], ['factures', 330, 1185, .5], ['courses', 520, 1190, .48]];
+  for (const [ty, x, y, s] of file) g += monstre(ty, x, y + Math.sin(pose(l) / 200 + x) * 4, s);
+  g += monstre('abo', 680, 1215, .5);
+  g += `<g transform="translate(540 520)"><rect x="-300" y="-170" width="600" height="340" fill="${C.noir}" transform="translate(14 14)"/><rect x="-300" y="-170" width="600" height="340" fill="#fff" stroke="${C.noir}" stroke-width="10"/>
+        <text x="-260" y="-100" font-size="34" font-weight="800" letter-spacing="6">LE PLAN</text>
+        ${[['Loyer', 1, C.bleu], ['Factures', .8, C.rouge], ['Courses', .6, C.jaune], ['Abonnements', .3, C.noir]].map(([n, f, c], i) => { const p = sortie(prog(pose(l), 200 + i * 150, 600 + i * 150)); return `<text x="-260" y="${-35 + i * 58}" font-size="32" font-weight="700">${n}</text><rect x="20" y="${-60 + i * 58}" width="240" height="30" fill="#eee"/><rect x="20" y="${-60 + i * 58}" width="${240 * f * p}" height="30" fill="${c}"/>`; }).join('')}</g>`;
+  const pouce = t >= 22.2;
+  g += mascotte({x: 850, y: 1300, s: .9, expr: pouce ? 'fier' : 'joie', bras: pouce ? 'pouce' : 'bas'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v07: 'Et les abonnements,<br>en rafale !', v10: 'Avec Mon Budget, de QME,<br>chaque euro a son enveloppe.', v11: 'Vous voyez le prévu, le réel,<br>et où part l’argent.', v13: 'Il avait juste besoin<br>d’un plan.' };
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  st.innerHTML = v ? `<span>${COUPES[v.id] || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>
