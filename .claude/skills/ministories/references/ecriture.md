@@ -31,3 +31,18 @@
 1. Lire à voix haute au rythme de la scène ; mesurer la durée réelle des voix générées.
 2. Chaque réplique fait avancer l'histoire ou un gag ; sinon, la couper.
 3. Chaque affirmation produit est retrouvée dans la fiche catalogue.
+
+## Format v2 (décision de Quentin du 27/11/2026, issu de l'audit `docs/ministories/AUDIT-VIRALITE-2026-11-27.md`)
+
+S'applique à toute mini-story produite ou refaite à partir du 27/11/2026 ; il prime sur le squelette ci-dessus.
+
+- **Durée : 15 à 22 s** carton compris (Instagram : carton 4 s ; TikTok : 1,5 s). 30 s n'est plus un objectif.
+- **Première image = accroche complète** : texte à l'écran (12 mots au plus, lisible sans le son) qui pose une tension ou
+  un chiffre, différent de la 1re réplique. **1re réplique = tension, jamais un décor** (« Janvier. » interdit).
+- **Pas de pub au milieu** : jamais « Avec <produit>, de QME », jamais de liste de fonctions. Le produit arrive dans le
+  dernier tiers, **agit à l'écran** (vraie capture, geste, un chiffre) et tient en **une seule réplique de 8 mots au plus**,
+  idéalement le gag lui-même (ex. la recherche qui répond « carton 47 »). Le nom du produit et le lien vont dans la
+  légende et le premier commentaire, pas dans la voix.
+- **Fin = chute qui boucle sur le début**, puis le carton.
+- **Envoi** : le script répond par écrit à « à qui le spectateur va-t-il l'envoyer ? » (coloc, conjoint, pote de promo…).
+- 30 à 45 mots de voix au plus. Rythme rapide, une idée par plan.
