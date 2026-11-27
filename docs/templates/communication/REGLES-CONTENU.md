@@ -6,7 +6,7 @@ TikTok, YouTube Shorts et X, par toutes les tâches planifiées et tous les skil
 ## 1. Cadence
 
 - **Exception mini-stories** (décision de Quentin du 27/11/2026) : les lignes de thème « Mini-story » (Instagram, TikTok
-  suit) viennent **en plus** et ne comptent pas dans la règle d'une publication par jour : 5 par semaine, à 20:30, à côté
+  suit) viennent **en plus** et ne comptent pas dans la règle d'une publication par jour : 5 par semaine, à 20:15 (heure d'un passage d'Instinct), à côté
   de la publication du jour. Elles ne sont jamais traitées comme un doublon, ni déplacées, ni remplacées par l'agent de
   contenu. Programmation : agent master des mini-stories (`CLAUDE.md`, section Mini-stories).
 

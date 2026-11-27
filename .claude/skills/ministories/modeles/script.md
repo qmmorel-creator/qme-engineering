@@ -6,7 +6,7 @@
 - Émotion (trajet) :
 - Promesse narrative / payoff :
 
-## Voix (narrateur hors champ ; Carreau ne parle pas)
+## Voix (narrateur hors champ ; Grillon ne parle pas)
 | # | Début | Réplique | Jeu |
 |---|---|---|---|
 

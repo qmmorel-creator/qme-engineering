@@ -7,6 +7,17 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Pilotage des sessions : GOD, masters, sous-sessions (décision du 27/11/2026)
+
+- **Hiérarchie à trois niveaux** : la session **GOD** (`session_0183EW54bFyxAQcskkhnKJvb`) pilote les sessions
+  **MASTER**, qui pilotent leurs sous-sessions (`[Tunnel]`, `[Affiliation]`, campagnes ciblées…). Le GOD arbitre les
+  périmètres, transmet les consignes de Quentin et tient le registre ; il ne fait pas le travail d'un master.
+- **Registre unique** : `docs/pilotage/REGISTRE-SESSIONS.md` (masters, identifiants, tâches planifiées, sous-sessions).
+  Toute session qui crée un master, rattache une sous-session ou crée une tâche planifiée récurrente le signale au GOD
+  (`send_message`), qui met le registre à jour. Aucune session sans master ni tâche planifiée orpheline.
+- **Supprimer une tâche planifiée supprime les sessions qu'elle a lancées** : on désactive (`enabled: false`), on ne
+  supprime que si sa session n'existe plus.
+
 ## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
 
 - **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
@@ -195,7 +206,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   titre `[Affiliation] <Prénom Nom> · <compte>`, tags `affiliation` et `affiliation:<prénom-nom>`) qui tient ce dossier
   jusqu'au bout et rend compte à la master. Identifiant noté dans la fiche du créateur. Détail : skill
   `retour-affiliation`, § « Sous-conversation de suivi ».
-- **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Carreau, commission de 25 % par vente
+- **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Grillon, commission de 25 % par vente
   Gumroad, outil sur mesure offert. Page : `qm-engineering.fr/partenariat/` ; Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
   `docs/templates/communication/affiliation/plaquette/`. Jointe à un mail seulement avec l'accord de Quentin.
 
@@ -231,11 +242,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Mini-stories QME (décision du 27/11/2026)
 
 - **Agent master des mini-stories** (décision de Quentin du 27/11/2026) : la session `session_0183EW55iLAYXDKQ2SE6AK5p`
-  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Carreau, audit et
+  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Grillon, audit et
   stratégie). Les autres sessions lui transmettent les demandes (`send_message`) ou y renvoient Quentin. Cible : Instagram
-  et TikTok, public jeune, volet personnel ; charte de Carreau (« Caro »).
-- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
-  (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
+  et TikTok, public jeune, volet personnel ; charte de Grillon.
+- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 15 à 22 s (format v2) avec la mascotte **Grillon**
+  (anciennement Carreau, renommée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
   2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
   `_elevenlabs.txt` dans le Drive, supprimés avec le MP4 provisoire dès que la version Caroline est déposée.
 - **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie
@@ -244,9 +255,20 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
 - **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
   choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
-  thème « Mini-story », à 20:30, **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
+  thème « Mini-story », à 20:15 (passage d'Instinct), **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
   publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
   ne remplace jamais une ligne « Mini-story ».
+- **Rangement après publication** (décision du 27/11/2026) : dès qu'une mini-story est publiée (Instagram et TikTok),
+  **Instinct** déplace sa vidéo et sa version TikTok dans le sous-dossier Drive « Publiées »
+  (`1SQ-ivu-pPCfd8Od6FD6vwq-tFkQb-DbP`) de « QME - Vidéos Ministories » (consigne `instagram/PROMPT-INSTINCT-v8.md`) ;
+  la tâche quotidienne de 8:40 rattrape ce qui n'a pas été rangé. Seules les vidéos à la racine du dossier comptent dans
+  la réserve de 7.
+- **Format v2 obligatoire** (validé par Quentin le 27/11/2026) : 15 à 22 s, accroche écrite à l'écran dès la 1re image,
+  **aucune pub au milieu** (jamais « Avec <produit>, de QME » ni liste de fonctions : le produit arrive en chute, en une
+  réplique de 8 mots au plus), fin qui boucle sur le début, 30 à 45 mots. Détail : skill `ministories`,
+  `references/ecriture.md` § Format v2. Référence : épisode `2026-11-27-03-carton-47-v2`.
+- **Avance** : toujours **au moins 7 jours** de mini-stories programmées dans le planning Instagram (jours ouvrés), et
+  7 vidéos prêtes non programmées dans le Drive ; la tâche de 8:40 le vérifie chaque matin et comble tout manque.
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
   (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
   Ministories ». Branche de production : `claude/mini-stories-qme-caro-b07mx2`.

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Garde tout, on sait jamais · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 30 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-papiers-tel.webp" alt=""><img class="pre" src="../assets/templates-papiers-documents.webp" alt=""><img class="pre" src="../assets/templates-papiers-echeances.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+const COUL_F = ['#fff', C.pale, '#fff', '#DCE6F2', '#fff', C.pale];
+// Tour de papiers vue de profil : n feuilles de 20 px, la feuille 0 (en bas) est l'avis d'imposition (rouge).
+// penche : déplacement horizontal du sommet (px), en courbe (la tour plie vers le haut).
+function tour(x, yb, n, penche = 0, opts = {}) {
+  let g = '';
+  for (let i = 0; i < n; i++) {
+    const h = i / Math.max(1, n - 1), dx = penche * h * h + (hash(i) - .5) * 26, w = 360 + (hash(i + 9) - .5) * 50;
+    const y = yb - (i + 1) * 20, avis = i === 0, sort = avis ? (opts.sortie || 0) : 0;
+    g += `<rect x="${x - w / 2 + dx - sort}" y="${y}" width="${w}" height="20" fill="${avis ? C.rouge : COUL_F[i % 6]}" stroke="${C.noir}" stroke-width="5"/>`;
+    if (avis && opts.lab) g += `<text x="${x + dx - sort}" y="${y + 16}" font-size="15" font-weight="800" letter-spacing="2" text-anchor="middle" fill="#fff">AVIS D’IMPOSITION</text>`;
+  }
+  return g;
+}
+// Document vu de face (carte) avec un titre
+function doc(x, y, titre, coul, r = 0, s = 1, icone = '') {
+  return `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-150" y="-100" width="300" height="200" fill="${C.noir}" transform="translate(10 10)"/><rect x="-150" y="-100" width="300" height="200" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="-150" y="-100" width="300" height="56" fill="${coul}" stroke="${C.noir}" stroke-width="8"/><text y="-62" font-size="${titre.length > 10 ? 24 : 32}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul === C.jaune || coul === C.pale ? C.noir : '#fff'}">${titre}</text>${icone || [0, 1, 2].map((k) => `<rect x="-120" y="${-20 + k * 34}" width="${[230, 180, 210][k]}" height="14" fill="#ccc"/>`).join('')}</g>`;
+}
+const grillepain = `<g><rect x="-80" y="-24" width="160" height="96" rx="22" fill="${C.creme}" stroke="${C.noir}" stroke-width="7"/><rect x="-50" y="-40" width="34" height="22" fill="${C.pale}" stroke="${C.noir}" stroke-width="5"/><rect x="14" y="-40" width="34" height="22" fill="${C.pale}" stroke="${C.noir}" stroke-width="5"/><rect x="88" y="10" width="20" height="10" fill="${C.noir}"/><text y="54" font-size="26" font-weight="800" text-anchor="middle">2009</text></g>`;
+const feuille = (x, y, r, c = '#fff') => `<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-70" y="-45" width="140" height="90" fill="${c}" stroke="${C.noir}" stroke-width="6"/><rect x="-50" y="-22" width="90" height="10" fill="#bbb"/><rect x="-50" y="2" width="70" height="10" fill="#bbb"/></g>`;
+// Tas après l'avalanche : feuilles en vrac, l'avis rouge tout en bas
+function tas(cx, yb, larg, haut, seed = 0) {
+  let g = `<path d="M${cx - larg / 2} ${yb} Q${cx - larg / 4} ${yb - haut} ${cx} ${yb - haut} Q${cx + larg / 4} ${yb - haut} ${cx + larg / 2} ${yb} Z" fill="${C.pale}" stroke="${C.noir}" stroke-width="8"/>`;
+  for (let i = 0; i < 26; i++) { const u = hash(i + seed) - .5, v = hash(i * 3 + seed + 1); const xx = cx + u * larg * .8; const top = yb - haut * (1 - 4 * u * u * .64); g += feuille(xx, top + v * (yb - top) * .7, (hash(i + 40) - .5) * 70, COUL_F[i % 6]); }
+  return g;
+}
+function poubelle(x, yb, n = 0) {
+  let g = '';
+  for (let i = 0; i < Math.min(n, 9); i++) g += feuille(x + (hash(i + 70) - .5) * 120, yb - 250 - i * 6, (hash(i + 80) - .5) * 60, COUL_F[i % 6]);
+  g += `<path d="M${x - 130} ${yb - 260} h260 l-26 260 h-208 z" fill="${C.noir}" transform="translate(12 0)"/><path d="M${x - 130} ${yb - 260} h260 l-26 260 h-208 z" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/><rect x="${x - 146}" y="${yb - 286}" width="292" height="34" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += `<path d="M${x} ${yb - 200} l52 90 h-104 z" fill="none" stroke="#fff" stroke-width="12" stroke-linejoin="round"/>`;
+  return g + etiquette(x, yb - 330, 'RECYCLAGE', C.bleu, '#fff', 34);
+}
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+// Carte avec un recadrage d'une vraie capture (1600 × 1000), cadres optionnels dans le repère de la capture
+function carteCapture(x, y, s, img, vb, cadres = '') {
+  const [vx, vy, vw, vh] = vb, W = 960, H = W * vh / vw;
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="${-W / 2 - 20}" y="${-H / 2 - 20}" width="${W + 40}" height="${H + 40}" fill="${C.noir}" transform="translate(14 14)"/><rect x="${-W / 2 - 20}" y="${-H / 2 - 20}" width="${W + 40}" height="${H + 40}" fill="#FAF7F0" stroke="${C.noir}" stroke-width="10"/>
+    <svg x="${-W / 2}" y="${-H / 2}" width="${W}" height="${H}" viewBox="${vb.join(' ')}"><image href="../assets/${img}" width="1600" height="1000"/>${cadres}</svg></g>`;
+}
+const cadre = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="none" stroke="${C.rouge}" stroke-width="5"/>`;
+
+// ---------- Scènes ----------
+const S = {};
+const TX = 640, SOL = 1300;
+const ajout = [[2.0, 'FACTURE', C.rouge, ''], [2.85, 'RELEVÉ', C.bleu, ''], [3.65, 'GARANTIE', C.jaune, 'gp']];
+const hauteur = (t) => 30 + ajout.filter(([a]) => t >= a + .3).length * 3;
+S.S1 = (t, l) => {                       // Accroche : une tour de papiers qui penche au-dessus de Carreau
+  const p = pose(l), penche = 40 + Math.sin(p / 260) * 45;
+  let g = decor(t, 2) + sol(SOL) + tour(TX, SOL, hauteur(t), penche, {lab: true});
+  g += mascotte({x: 250, y: SOL, s: .85, expr: 'choc', bras: 'bas', rot: Math.sin(p / 130) * 3});
+  return g;
+};
+S.S2 = (t, l) => {                       // On empile : facture, relevé, garantie du grille-pain de 2009
+  const p = pose(l), penche = 50 + Math.sin(p / 220) * 60 + l / 60;
+  let g = decor(t, 2) + sol(SOL) + tour(TX, SOL, hauteur(t), penche, {lab: true});
+  for (const [a, titre, coul, ic] of ajout) {
+    if (t < a - .05 || t > a + .35 && t < 3.9 || t > 6.3) continue;
+    const q = prog(pose(t * 1000), a * 1000, a * 1000 + 300);
+    const yTop = SOL - hauteur(t) * 20 - 120;
+    if (ic && t >= a) {                   // la garantie reste en vue, en haut, avec son grille-pain
+      const r = rebond(prog(pose(t * 1000), a * 1000, a * 1000 + 350));
+      g += doc(TX + 40 + penche, 300 + 20, titre, coul, -8, r * .95, `<g transform="translate(0 30) scale(.8)">${grillepain}</g>`);
+    } else if (!ic) g += doc(TX + penche * .8, -150 + q * (yTop + 150), titre, coul, (hash(a) - .5) * 20, .8);
+  }
+  g += mascotte({x: 250, y: SOL, s: .85, expr: t < 4.5 ? 'choc' : 'blase', bras: 'bas'});
+  return g;
+};
+S.S3 = (t, l) => {                       // On cherche l'avis d'imposition : Carreau tire la feuille du bas
+  const p = pose(l), amp = 40 + l / 18, penche = 120 + Math.sin(p / 150) * amp;
+  const tire = sortie(prog(p, 600, 1600)) * 90;
+  let g = decor(t, 2) + sol(SOL) + tour(TX, SOL, hauteur(t), penche, {lab: true, sortie: tire});
+  g += mascotte({x: 330 - tire, y: SOL, s: .8, expr: l > 1500 ? 'choc' : 'neutre', bras: 'montrer', rot: -6});
+  return g;
+};
+S.S4 = (t, l) => {                       // Avalanche : tout s'écroule sur Carreau
+  const p = pose(l), q = prog(p, 0, 900);
+  let g = decor(t, 1) + sol(SOL);
+  g += mascotte({x: 470, y: SOL, s: .95, expr: 'panique', bras: 'haut', rot: (hash(p) - .5) * 8});
+  for (let i = 0; i < 22; i++) {
+    const d = i * 25, u = prog(p, d, d + 650); if (u <= 0 || u >= 1) continue;
+    g += feuille(620 + (hash(i) - .5) * 700, 200 + u * (1050 - hash(i + 2) * 200), (hash(i + 5) - .5) * 300 * u, COUL_F[i % 6]);
+  }
+  g += tas(540, SOL, 900 * Math.min(1, .3 + q), 260 * sortie(q), 3);
+  return g;
+};
+S.S5 = (t, l) => {                       // Il est tout en bas
+  const p = pose(l);
+  let g = decor(t, 1) + sol(SOL + 220);
+  g += `<path d="M90 ${SOL + 220} Q300 560 540 560 Q780 560 990 ${SOL + 220} Z" fill="${C.pale}" stroke="${C.noir}" stroke-width="10"/>`;
+  for (let i = 0; i < 40; i++) { const u = hash(i + 11) - .5, v = hash(i * 7 + 2); const top = 600 + 4 * u * u * 700; g += feuille(540 + u * 760, top + 40 + v * (SOL + 120 - top), (hash(i + 3) - .5) * 80, COUL_F[i % 6]); }
+  const clig = Math.floor(p / 250) % 2 === 0;
+  g += `<g transform="translate(540 ${SOL - 60})"><rect x="-150" y="-36" width="300" height="72" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/><text y="12" font-size="26" font-weight="800" letter-spacing="2" text-anchor="middle" fill="#fff">AVIS D’IMPOSITION</text></g>`;
+  if (clig) g += `<ellipse cx="540" cy="${SOL - 60}" rx="200" ry="70" fill="none" stroke="${C.jaune}" stroke-width="12"/>`;
+  g += mascotte({x: 540, y: 620, s: .7, expr: l < 1200 ? 'choc' : 'blase', bras: l < 1200 ? 'tete' : 'bas'});
+  return g;
+};
+S.S6 = (t, l) => {                       // Papiers du foyer : vraies captures
+  let g = decor(t, 0).replace(C.rouge, C.jaune);
+  if (t < 15.15) {
+    const app = rebond(prog(pose(l), 0, 420));
+    const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><image href="../assets/templates-papiers-tel.webp" x="24" y="24" width="652" height="1110" clip-path="url(#ecr)" preserveAspectRatio="xMidYMin slice"/>`;
+    g += telephone(560, 720, .66 * app, capt);
+  } else if (t < 17.4) {                 // « combien de temps garder chaque papier » : durées affichées par document
+    const app = rebond(prog(pose(t * 1000), 15150, 15500));
+    const cad = (t >= 15.9 ? cadre(302, 534, 238, 42) : '') + (t >= 16.4 ? cadre(302, 659, 238, 42) + cadre(302, 771, 238, 42) : '');
+    g += carteCapture(540, 760, app, 'templates-papiers-documents.webp', [222, 470, 590, 360], cad);
+  } else {                               // « la liste de ce qui peut être jeté se remplit seule »
+    const app = rebond(prog(pose(t * 1000), 17400, 17750));
+    const cad = t >= 17.9 ? cadre(222, 692, 140, 34) : '';
+    g += carteCapture(540, 760, app, 'templates-papiers-echeances.webp', [220, 685, 590, 270], cad + (t >= 18.5 ? cadre(300, 796, 260, 34) + cadre(316, 907, 266, 34) : ''));
+  }
+  g += mascotte({x: 150, y: 1310, s: .62, expr: t < 15.1 ? 'joie' : 'fier', bras: 'montrer'});
+  return g;
+};
+S.S7 = (t, l) => {                       // Payoff : la moitié part au recyclage, l'avis reste à sa place
+  const p = pose(l), X = 450, BX = 800;
+  const partis = Math.min(18, Math.max(0, Math.floor((p - 100) / 75)));
+  let g = decor(t, 2) + sol(SOL);
+  g += poubelle(BX, SOL, partis);
+  g += tour(X, SOL, 36 - partis, partis < 18 ? Math.sin(p / 200) * 10 : 0, {lab: true});
+  const k = partis < 18 ? (p - 100) / 75 - partis : 0;
+  if (partis < 18 && p > 100) { const yy = SOL - (36 - partis) * 20; g += feuille(X + (BX - X) * k, yy - Math.sin(k * Math.PI) * 220 - 30 + k * 80, k * 200, COUL_F[partis % 6]); }
+  if (t >= 21.7) {                       // l'avis d'imposition, signalé à sa place
+    const r = rebond(prog(pose(t * 1000), 21700, 22050));
+    g += `<g transform="translate(${X} ${SOL - 10}) scale(${r})"><ellipse rx="230" ry="48" fill="none" stroke="${C.jaune}" stroke-width="12"/></g>`;
+    g += `<g transform="translate(${X + 40} ${SOL - 36 * 20 + 18 * 20 - 120}) scale(${r})"><path d="M-40 -40 l40 40 l90 -110" fill="none" stroke="${C.vert}" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  }
+  const fier = t >= 24.7;
+  g += mascotte({x: 170, y: SOL, s: .7, expr: fier ? 'fier' : 'joie', bras: fier ? 'pouce' : 'bas'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v04: 'Garantie du grille-pain…<br>de 2009.', v05: 'Puis on cherche<br>l’avis d’imposition.', v07: 'Une liste : ce qui<br>peut être jeté.' };
+const DECOUPE = {};
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 2.3 ? `<g><rect x="72" y="132" width="936" height="360" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="360" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="250" font-size="92" font-weight="800" text-anchor="middle" fill="${C.noir}">Il garde tout.</text><text x="540" y="348" font-size="60" font-weight="800" text-anchor="middle" fill="${C.rouge}">Même la garantie</text><text x="540" y="428" font-size="60" font-weight="800" text-anchor="middle" fill="${C.rouge}">du grille-pain de 2009.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  let txt = v ? (COUPES[v.id] || v.texte.replace(/'/g, '’')) : '';
+  if (v && DECOUPE[v.id]) for (const [d, x] of DECOUPE[v.id]) if (tv >= v.t + d - .05) txt = x;
+  st.innerHTML = txt ? `<span>${txt}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>
