@@ -131,12 +131,29 @@ export const PRODUITS = {
 // autres, mais absents de PRODUITS, que lisent le site, les essais et l'espace acheteurs. Préfixe sans O, I ni L
 // (normaliser les change en 0 et 1).
 //  - RVX : « Révisions QME X Laurine », version privée du planning de révision pour Laurine Mebs (Optimind
-//    Formation) et ses bêta-testeurs (décision du 26/11/2026). Codes : npm run code -- RVX <nombre>.
+//    Formation) et ses bêta-testeurs. Accès par Gumroad (RVX_GUMROAD_ID, voir configPrives) ; code manuel en secours.
 export const PRODUITS_PRIVES = {
   RVX: { nom: 'Révisions QME X Laurine', url: '/prive/revisions-laurine/' },
 };
 // Produits ouvrables par code : vendus et privés (les préfixes privés ne recouvrent aucun préfixe vendu).
 const OUVRABLES = { ...PRODUITS, ...PRODUITS_PRIVES };
+
+// Configuration des produits privés vendus par Gumroad, lue dans les variables Netlify (rien en dur dans le code) :
+//  - RVX_GUMROAD_ID : identifiant du produit Gumroad « Révisions QME X Laurine » (vide tant qu'il n'existe pas :
+//    RVX n'est alors relié à rien, et le comportement des produits vendus est strictement inchangé) ;
+//  - RVX_ACCES_DEMO : accès de démonstration par adresse d'acheteur, « adresse:profil » séparés par des virgules
+//    (profils : pass, pcsi). Un compte encore vide de cet acheteur s'ouvre sur le jeu de démo fictif correspondant.
+export const PROFILS_DEMO_PRIVES = { RVX: ['pass', 'pcsi'] };
+export function configPrives(env = globalThis.process?.env || {}) {
+  const demos = {};
+  for (const x of String(env.RVX_ACCES_DEMO || '').split(',')) {
+    const [email, profil] = x.split(':').map((v) => String(v || '').trim().toLowerCase());
+    if (email && PROFILS_DEMO_PRIVES.RVX.includes(profil)) demos[email] = profil;
+  }
+  return { RVX: { gumroad: String(env.RVX_GUMROAD_ID || '').trim() || null, demos } };
+}
+// Profil de démo rattaché à un achat (adresse de l'acheteur vérifiée par Gumroad), ou null.
+export const profilDemoPrive = (prives, produit, email) => (email && prives?.[produit]?.demos?.[String(email).trim().toLowerCase()]) || null;
 
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
@@ -418,7 +435,7 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
 //  GET  /donnees     (en-tête X-Code)    → { donnees }
 //  PUT  /donnees     { donnees, base }   → { ok, majLe } ou 409 { donnees } si une version plus récente existe
 // Le stockage expose get(cle) → objet|null et set(cle, objet).
-export async function traiter(requete, { secret, revoques = [], stockage, essais = null, maintenant = Date.now, verifierLicence = verifierLicenceGumroad }) {
+export async function traiter(requete, { secret, revoques = [], stockage, essais = null, maintenant = Date.now, verifierLicence = verifierLicenceGumroad, prives = configPrives() }) {
   if (!secret) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/templates/, '').replace(/\/$/, '');
 
@@ -445,7 +462,9 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES)].filter(([, p]) => p.gumroad);
+    // Produits privés (RVX) : seulement si leur identifiant Gumroad est configuré.
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES),
+      ...Object.keys(PRODUITS_PRIVES).map((k) => [k, { gumroad: prives?.[k]?.gumroad || null }])].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
@@ -515,7 +534,9 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   if (chemin === '/connexion' && requete.method === 'POST') {
     if (achatVerifie && !essai) await reporter(acces.produit, cle);
     const jeton = essai ? essai.code : formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
-    return json(200, { ok: true, produit: acces.produit, url: OUVRABLES[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra });
+    // Produit privé : profil de démo rattaché à l'adresse de l'acheteur (configuration serveur), jamais pour les produits vendus.
+    const demo = PRODUITS_PRIVES[acces.produit] ? profilDemoPrive(prives, acces.produit, achatVerifie?.email) : null;
+    return json(200, { ok: true, produit: acces.produit, url: OUVRABLES[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra, ...(demo ? { demo } : {}) });
   }
   if (chemin === '/donnees' && requete.method === 'GET') {
     return json(200, { donnees: (await stockage.get(cle)) ?? null, ...extra });

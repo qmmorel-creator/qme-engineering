@@ -5,8 +5,8 @@ Dossier `docs/` non servi par Netlify (404).
 
 - Générer : `TEMPLATES_SECRET=… npm run code -- <PRODUIT> 1` (préfixes dans `PRODUITS` de
   `netlify/lib/templates-acces.mjs`), puis ajouter une ligne ici.
-- Version privée « Révisions QME X Laurine » (produit `RVX`, clés de bêta-test par école) :
-  `TEMPLATES_SECRET=… npm run code -- RVX <nombre>` ; détail : `docs/templates/revisions-laurine.md`.
+- Version privée « Révisions QME X Laurine » (produit `RVX`) : accès par Gumroad ; un code manuel n'est possible qu'en
+  secours, avec `TEMPLATES_SECRET=… npm run code -- RVX 1`. Détail : `docs/templates/revisions-laurine.md`.
 - Révoquer : ajouter l'identifiant (colonne « Id ») à la variable Netlify `TEMPLATES_CODES_REVOQUES`,
   et passer le statut à `révoqué`.
 

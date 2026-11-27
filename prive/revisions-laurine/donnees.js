@@ -24,6 +24,8 @@ window.BASE = {
       matieres: ['Philosophie', 'Grand oral', 'Histoire-géographie', 'Enseignement scientifique', 'Anglais', 'LV2', 'Mathématiques', 'Physique-chimie', 'SVT', 'SES', 'HGGSP', 'NSI', 'Maths expertes'] },
     { id: 'techno', nom: 'Lycée · Bac technologique', detail: 'STMG, STI2D, ST2S…',
       matieres: ['Français', 'Philosophie', 'Histoire-géographie', 'Mathématiques', 'Anglais', 'LV2', 'Spécialité 1', 'Spécialité 2'] },
+    { id: 'pcsi', nom: 'Classe prépa · PCSI', detail: 'Maths, physique-chimie, SI, colles',
+      matieres: ['Mathématiques', 'Physique-chimie', 'Sciences de l\'ingénieur', 'Informatique (Python)', 'Français-philosophie', 'Anglais', 'Colles (oraux)'] },
     { id: 'pass', nom: 'Santé · PASS / L.AS', detail: 'Première année de santé',
       matieres: ['Biologie cellulaire', 'Biochimie', 'Anatomie', 'Physiologie', 'Histologie-embryologie', 'Biophysique', 'Biostatistiques', 'Chimie', 'Sciences humaines et sociales', 'UE spécifique'] },
     { id: 'droit', nom: 'Droit · Licence', detail: 'L1 à L3',

@@ -176,7 +176,8 @@
   let packEnLigne = false;
   function lirePack() {
     pack = {};
-    if (session.demo) { Object.assign(pack, E?.demoPack || {}); return; }
+    // Démo locale ou compte de démonstration (accès Gumroad rattaché à un profil de démo) : données d'exemple du pack.
+    if (session.demo || E?.demoCompte) { Object.assign(pack, E?.demoPack || {}); return; }
     for (const p of PACK) {
       const c = stock.lire(`qme-${p.pre}-cache`);
       if (c?.etat && c.jeton) pack[p.cle] = c.etat;
@@ -294,17 +295,27 @@
   async function connecter(code, memoriser) {
     if (code.replace(/-/g, '') === CODE_DEMO) return ouvrirDemo();
     const { statut, corps } = await appel('/connexion', { method: 'POST', body: JSON.stringify({ code, produit: PRODUIT }) });
-    if (statut === 401) throw new Error('Clé inconnue. Copie-la telle qu\'elle t\'a été transmise par ton école ou par QME.');
+    if (statut === 401) throw new Error('Clé inconnue. Copie-la depuis le reçu Gumroad reçu par e-mail.');
     if (statut !== 200) throw new Error(corps?.erreur || 'Le service ne répond pas. Réessaie dans un instant.');
     // Clé d'un autre template : ne jamais écrire nos données dans son espace.
     if (corps.produit !== PRODUIT) throw new Error('Cette clé ouvre un autre outil QME : elle ne donne pas accès à cette version privée.');
     session.code = code; session.jeton = corps.jeton; session.demo = false; session.memoriser = memoriser;
     stock.suppr(CLE_CODE);
     stock.ecrire(CLE_CODE, code, !memoriser);
-    chargerDepuisServeur(corps.donnees);
+    chargerDepuisServeur(corps.donnees, corps.demo);
   }
 
-  function chargerDepuisServeur(donnees) {
+  // Compte de démonstration (profil renvoyé par le serveur pour certains acheteurs) : données fictives enregistrées
+  // dans le compte, donc modifiables et synchronisées ; « Réinitialiser la démo » les régénère.
+  function creerCompteDemo(profil) {
+    E = donneesDemo(profil);
+    E.demoCompte = profil;
+    E.tutorielVu = false;
+    return E;
+  }
+
+  function chargerDepuisServeur(donnees, demo = null) {
+    if (!donnees && demo && DEMOS[demo]) { creerCompteDemo(demo); session.base = null; sauver(); demarrer(); return; }
     const c = stock.lire(CLE_CACHE);
     // Modifications faites hors ligne sur la version encore à jour du serveur : on les garde.
     if (c && c.code === session.code && c.nonEnvoye && (!donnees || c.base === donnees.majLe)) {
@@ -374,6 +385,22 @@
       ],
       notes: { 'Biochimie': [9.5, 11], 'Biologie cellulaire': [13], 'Anatomie': [14.5], 'Physiologie': [10], 'Biophysique': [8.5], 'Biostatistiques': [12], 'Chimie': [11.5], 'Sciences humaines et sociales': [13] },
       planner: { cours: [[0, 8 * 60, 8 * 60 + 30], [1, 8 * 60, 9 * 60], [2, 8 * 60, 4 * 60], [3, 8 * 60, 9 * 60], [4, 8 * 60, 8 * 60]], autres: [[1, 18 * 60, 120, 'Tutorat'], [3, 18 * 60, 120, 'Tutorat'], [2, 17 * 60 + 30, 90, 'Natation']] },
+    },
+    // Élève de PCSI (classe prépa, première année) : colles chaque semaine, DS le samedi matin, concours blanc
+    // de fin d'année. Données entièrement fictives (compte de démonstration de Quentin).
+    pcsi: {
+      prenom: 'Hugo', filiere: 'pcsi', graine: 2034, debut: -80, pauses: [-26, -27, -52], retards: 3, manquees: 6,
+      matieres: [
+        ['Mathématiques', 'rouge', 175, 12, ['Nombres complexes|-76|module, argument, exponentielle complexe, racines n-ièmes, De Moivre', 'Calcul intégral et primitives|-66|intégration par parties, changement de variable, primitives usuelles', 'Équations différentielles linéaires|-55|équation homogène, solution particulière, variation de la constante, ordre 2 à coefficients constants', 'Suites réelles|-44|suites adjacentes, théorème de la limite monotone, Bolzano-Weierstrass, suites récurrentes', 'Limites et continuité|-31|théorème des valeurs intermédiaires, bornes atteintes, continuité uniforme', 'Dérivabilité|-18|Rolle, accroissements finis, Taylor-Lagrange, classe C1', 'Arithmétique dans Z|-6|PGCD, Bézout, Gauss, nombres premiers, congruences', 'Structures algébriques|', 'Polynômes|', 'Espaces vectoriels|']],
+        ['Physique-chimie', 'bleu', 175, 10, ['Optique géométrique|-75|lois de Snell-Descartes, lentilles minces, conjugaison, stigmatisme', 'Circuits électriques|-63|loi des mailles, loi des nœuds, diviseur de tension, régime transitoire RC', 'Oscillateur harmonique|-50|pulsation propre, énergie mécanique, portrait de phase', 'Cinématique et dynamique du point|-37|référentiel galiléen, principe fondamental, frottements, projectile', 'Transformations chimiques|-24|avancement, constante d\'équilibre, quotient de réaction, réactif limitant', 'Architecture de la matière|-10|configuration électronique, Lewis, VSEPR, électronégativité', 'Filtrage linéaire|', 'Cinétique chimique|']],
+        ['Sciences de l\'ingénieur', 'jaune', 175, 6, ['Analyse fonctionnelle et SysML|-70|diagramme de cas d\'utilisation, exigences, blocs, chaîne d\'information', 'Modélisation des systèmes asservis|-49|fonction de transfert, Laplace, schéma-bloc, boucle fermée', 'Cinématique des solides|-27|torseur cinématique, liaisons, composition des vitesses', 'Statique des solides|']],
+        ['Informatique (Python)', 'vert', 175, 4, ['Types et structures de base|-72|listes, dictionnaires, boucles, fonctions', 'Algorithmes de tri|-48|tri par insertion, tri fusion, complexité, invariant de boucle', 'Récursivité|-28|cas de base, pile d\'appels, terminaison, diviser pour régner', 'Graphes|-8|parcours en largeur, parcours en profondeur, liste d\'adjacence', 'Programmation dynamique|']],
+        ['Français-philosophie', 'prune', 175, 6, ['Thème de l\'année : présentation|-68|problématique du thème, œuvres au programme, notions clés', 'Première œuvre : lecture analytique|-45|citations, structure, enjeux, personnages', 'Méthode de la dissertation|-25|analyse du sujet, problématique, plan dialectique, transitions', 'Deuxième œuvre|-5|', 'Troisième œuvre|']],
+        ['Anglais', 'ciel', 175, 4, ['Synthèse de documents|-60|reformulation, connecteurs logiques, neutralité, nombre de mots', 'Vocabulaire scientifique|-34|renewable energy, artificial intelligence, research funding', 'Grammaire : temps et modaux|-12|present perfect, would, should have', 'Essai argumentatif|']],
+        ['Colles (oraux)', 'orange', 175, 0, ['Colle de maths : complexes et trigonométrie|-58|question de cours, démonstration, exercice au tableau', 'Colle de physique : circuits|-41|régime transitoire, bilan énergétique', 'Colle d\'anglais : article de presse|-23|résumé oral, commentaire, interaction', 'Colle de maths : suites|-9|suites adjacentes, récurrence', 'Colle de chimie : équilibres|']],
+      ],
+      notes: { 'Mathématiques': [8.5, 10, 11], 'Physique-chimie': [9, 11.5], 'Sciences de l\'ingénieur': [12], 'Informatique (Python)': [14], 'Français-philosophie': [9.5], 'Anglais': [13], 'Colles (oraux)': [12, 9, 14] },
+      planner: { cours: [[0, 8 * 60, 10 * 60], [1, 8 * 60, 10 * 60], [2, 8 * 60, 9 * 60], [3, 8 * 60, 10 * 60], [4, 8 * 60, 9 * 60]], autres: [[5, 8 * 60, 240, 'DS (devoir surveillé)'], [1, 18 * 60, 60, 'Colle de maths'], [3, 17 * 60, 60, 'Colle de physique'], [4, 18 * 60, 60, 'Colle d\'anglais']] },
     },
     // Candidate au concours externe d'attaché territorial, en poste : écrits dans sept semaines, oral ensuite.
     concours: {
@@ -482,7 +509,7 @@
 
   // Ajouts de la version privée sur les données d'exemple : énergie requise par matière (et quelques cours),
   // liens de ressources fictifs, auto-évaluations des séances passées. Profil PASS : énergie détaillée.
-  const ENERGIE_DEMO = { 'Biochimie': 'forte', 'Biophysique': 'forte', 'Biostatistiques': 'forte', 'Chimie': 'moyenne', 'Anatomie': 'moyenne', 'Physiologie': 'moyenne', 'Biologie cellulaire': 'moyenne', 'Sciences humaines et sociales': 'faible' };
+  const ENERGIE_DEMO = { 'Mathématiques': 'forte', 'Physique-chimie': 'forte', 'Sciences de l\'ingénieur': 'moyenne', 'Informatique (Python)': 'moyenne', 'Français-philosophie': 'moyenne', 'Anglais': 'faible', 'Colles (oraux)': 'forte', 'Biochimie': 'forte', 'Biophysique': 'forte', 'Biostatistiques': 'forte', 'Chimie': 'moyenne', 'Anatomie': 'moyenne', 'Physiologie': 'moyenne', 'Biologie cellulaire': 'moyenne', 'Sciences humaines et sociales': 'faible' };
   function enrichirDemo(def, t, hasard) {
     const lien = (m) => m.nom.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     E.matieres.forEach((m, i) => {
@@ -549,10 +576,10 @@
           <p class="surtitre">Accès bêta-testeur</p>
           <h2>Ouvre ton planning</h2>
         </div>
-        <p>Saisis la clé d'accès transmise par ton école ou par QME. Tes révisions sont enregistrées en ligne et te suivent sur tous tes appareils.</p>
+        <p>Colle la clé de licence reçue par e-mail (reçu Gumroad). Tes révisions sont enregistrées en ligne et te suivent sur tous tes appareils.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
-          <label class="champ code-saisie">Clé d'accès
-            <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="RVX-XXXX-XXXX-XXXX-XXXX" inputmode="text" required>
+          <label class="champ code-saisie">Clé de licence
+            <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
           </label>
           <label class="case"><input type="checkbox" id="memoriser" checked> Rester connecté sur cet appareil</label>
           <p class="erreur" id="erreur-code" role="alert">${esc(message)}</p>
@@ -574,7 +601,7 @@
       const code = formaterCode(champ.value);
       const err = $('#erreur-code');
       const bouton = e.target.querySelector('button[type=submit]');
-      if (!codeComplet(code) && code !== CODE_DEMO) { err.textContent = 'Clé incomplète : elle a la forme RVX-XXXX-XXXX-XXXX-XXXX.'; champ.focus(); return; }
+      if (!codeComplet(code) && code !== CODE_DEMO) { err.textContent = 'Clé incomplète : elle compte 4 blocs de 8 caractères (copie-la depuis le reçu Gumroad).'; champ.focus(); return; }
       bouton.disabled = true; bouton.textContent = 'Vérification…'; err.textContent = '';
       try { await connecter(code, $('#memoriser').checked); } catch (x) {
         err.textContent = x.message === 'Failed to fetch' ? 'Pas de connexion internet. Réessaie une fois en ligne.' : x.message;
@@ -1397,6 +1424,8 @@
       <p class="erreur" role="alert"></p>
       <div class="groupe"><h3>Rappels</h3><p class="aide">Ajoute tes séances de révision à l'agenda de ton téléphone : il te prévient chaque jour de révision, à l'heure choisie.</p>
         <div class="rang"><button class="btn petit" type="button" data-action="agenda">Ajouter à mon agenda</button></div></div>
+      ${E.demoCompte && !session.demo ? `<div class="groupe"><h3>Compte de démonstration</h3><p class="aide">Ton accès ouvre des données fictives (${E.demoCompte === 'pcsi' ? 'classe prépa PCSI' : 'PASS médecine'}), modifiables librement. Tu peux revenir à tout moment au jeu de départ.</p>
+        <div class="rang"><button class="btn petit danger" type="button" data-action="demo-compte-reinit">Réinitialiser la démo</button></div></div>` : ''}
       <div class="groupe"><h3>Sauvegarde</h3><p class="aide">${session.demo ? 'En démo, les données restent dans ce navigateur.' : 'Tes données sont enregistrées en ligne avec ton code. Tu peux aussi garder une copie sur ton ordinateur.'}</p>
         <div class="rang"><button class="btn petit" type="button" data-action="exporter">Télécharger une copie</button><label class="btn petit" style="cursor:pointer">Restaurer une copie<input type="file" accept="application/json,.json" id="import" hidden></label></div></div>
       <div class="groupe"><h3>Compte</h3>${session.demo ? '<p>Mode démo.</p>' : `<p>Clé ou code d'accès : <span class="code-affiche">${esc(code)}</span></p>`}
@@ -2241,6 +2270,14 @@
       case 'importer': modaleImport(); break;
       case 'partager': partagerSemaine(); break;
       case 'notifications': modaleNotifications(); break;
+      case 'demo-compte-reinit': {
+        if (!E?.demoCompte || !confirm('Remplacer toutes les données de ce compte par le jeu de démonstration de départ ?')) break;
+        const profil = E.demoCompte, theme = E.reglages.theme;
+        creerCompteDemo(profil); E.tutorielVu = true; E.reglages.theme = theme;
+        if (modale().open) modale().close();
+        sauver(); lirePack(); rendre(); toast('Démo réinitialisée.');
+        break;
+      }
       case 'vue-aujourdhui': if (modale().open) modale().close(); changerVue('aujourdhui'); break;
       case 'monter': reordonner(id, -1); break;
       case 'descendre': reordonner(id, 1); break;
@@ -2291,7 +2328,7 @@
       if (statut !== 200) throw new Error();
       if (corps.produit !== PRODUIT) return deconnecter('Cette clé ouvre un autre template QME.');
       session.jeton = corps.jeton;
-      chargerDepuisServeur(corps.donnees);
+      chargerDepuisServeur(corps.donnees, corps.demo);
     } catch {
       // Hors ligne : on reprend la dernière version gardée sur l'appareil.
       const c = stock.lire(CLE_CACHE);

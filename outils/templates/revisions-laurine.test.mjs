@@ -87,3 +87,54 @@ test('déplacer, regrouper, réordonner', () => {
   assert.deepEqual(X.deplacerDans(['a', 'b', 'c'], 'a', 'c'), ['b', 'c', 'a']);
   assert.deepEqual(X.deplacerDans(['a', 'b'], 'a', -1), ['a', 'b']);
 });
+
+// ---------- Accès par Gumroad (ping d'achat, licence, profil de démo rattaché à l'acheteur) ----------
+import { configPrives } from '../../netlify/lib/templates-acces.mjs';
+import { traiterAchat, produitVendu } from '../../netlify/lib/achats.mjs';
+
+const ID_RVX = 'rvx-produit-gumroad-test';
+const PRIVES = configPrives({ RVX_GUMROAD_ID: ID_RVX, RVX_ACCES_DEMO: 'laurine@exemple.fr:pass, Quentin@Exemple.fr:pcsi, x@y.fr:inconnu' });
+const LICENCES = { 'AAAAAAAA-00000000-00000000-00000001': 'eleve@exemple.fr', 'AAAAAAAA-00000000-00000000-00000002': 'laurine@exemple.fr', 'AAAAAAAA-00000000-00000000-00000003': 'quentin@exemple.fr' };
+const verifier = async (gumroad, licence) => (gumroad === ID_RVX && LICENCES[licence] ? { ok: true, achat: { email: LICENCES[licence], price: 0, currency: 'eur' } } : { ok: false, raison: 'inconnue' });
+const memoire = () => { const m = new Map(); return { m, get: async (k) => structuredClone(m.get(k) ?? null), set: async (k, v) => { m.set(k, structuredClone(v)); }, supprimer: async (k) => { m.delete(k); }, lister: async (p) => [...m.keys()].filter((k) => k.startsWith(p)) }; };
+
+test('RVX Gumroad : configuration lue dans l\'environnement, rien sans identifiant', () => {
+  assert.deepEqual(PRIVES.RVX.demos, { 'laurine@exemple.fr': 'pass', 'quentin@exemple.fr': 'pcsi' });
+  assert.equal(configPrives({}).RVX.gumroad, null);
+  assert.equal(produitVendu(ID_RVX, configPrives({})), null);
+  assert.equal(produitVendu(ID_RVX, PRIVES).code, 'RVX');
+  assert.equal(produitVendu(PRODUITS.REV.gumroad, PRIVES).code, 'REV');
+});
+
+test('RVX Gumroad : ping d\'achat → mail avec le lien privé, copie cachée par défaut, ni compte ni suivi', async () => {
+  const essais = memoire(), mails = [];
+  const ping = (licence) => new Request('http://t/api/achat', { method: 'POST', body: new URLSearchParams({ product_id: ID_RVX, license_key: licence, full_name: 'Camille Test' }) });
+  const r = await traiterAchat(ping('AAAAAAAA-00000000-00000000-00000001'), { secret: SECRET, essais, envoyer: async (m) => { mails.push(m); }, notifier: 'q@local', verifierLicence: verifier, prives: PRIVES });
+  assert.equal((await r.json()).mail, 'achat-prive');
+  assert.equal(mails[0].a, 'eleve@exemple.fr');
+  assert.match(mails[0].texte, /\/prive\/revisions-laurine\//);
+  assert.ok(!mails[0].texte.includes('/connexion/'));
+  assert.notEqual(mails[0].copieCachee, false); // copie cachée par défaut (mail.mjs)
+  assert.ok(![...essais.m.keys()].some((k) => k.startsWith('suivi-') || k.startsWith('compte')));
+  assert.equal(mails[1].a, 'q@local');
+});
+
+test('RVX Gumroad : connexion par licence → compte vide, démo PASS (Laurine), démo PCSI (Quentin)', async () => {
+  const stockage = memoire();
+  const connexion = async (code) => (await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code, produit: 'RVX' }) }), { secret: SECRET, stockage, verifierLicence: verifier, prives: PRIVES })).json();
+  const a = await connexion('AAAAAAAA-00000000-00000000-00000001');
+  assert.equal(a.produit, 'RVX'); assert.equal(a.donnees, null); assert.equal(a.demo, undefined);
+  assert.equal((await connexion('AAAAAAAA-00000000-00000000-00000002')).demo, 'pass');
+  assert.equal((await connexion('AAAAAAAA-00000000-00000000-00000003')).demo, 'pcsi');
+  assert.equal((await connexion('AAAAAAAA-00000000-00000000-00000009')).erreur, 'Clé de licence inconnue.');
+});
+
+test('produits vendus inchangés : sans RVX_GUMROAD_ID, aucune vérification Gumroad de plus', async () => {
+  const appels = [];
+  const v = async (g) => { appels.push(g); return { ok: false, raison: 'inconnue' }; };
+  await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: 'BBBBBBBB-00000000-00000000-00000001' }) }), { secret: SECRET, stockage: memoire(), verifierLicence: v, prives: configPrives({}) });
+  assert.ok(!appels.includes(null) && !appels.includes(ID_RVX));
+  const n = appels.length; appels.length = 0;
+  await traiter(new Request('http://t/api/templates/connexion', { method: 'POST', body: JSON.stringify({ code: 'BBBBBBBB-00000000-00000000-00000001' }) }), { secret: SECRET, stockage: memoire(), verifierLicence: v, prives: PRIVES });
+  assert.equal(appels.length, n + 1);
+});
