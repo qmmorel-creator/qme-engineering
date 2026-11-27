@@ -56,6 +56,20 @@
     "templates_a_mettre_en_vente": []
   },
   {
+    "code": "PNS",
+    "slug": "enseignant",
+    "nom": "Pack Écoles et formateurs",
+    "permalien": "pack-enseignant",
+    "prix_cents": 11100,
+    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
+    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique, emploi du temps et auto-école : les outils des écoles, des centres de formation et des formateurs.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Banque de questions et quiz</strong> : Questions taguées, quiz générés et corrigés. (19 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li><li><strong>Gestion d'auto-école</strong> : Élèves, leçons, moniteurs et véhicules. (45 € seul)</li></ul>\n<p>149 € à l’achat séparé, 111 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "5/5",
+    "templates_a_mettre_en_vente": []
+  },
+  {
     "code": "PET",
     "slug": "etudiant",
     "nom": "Pack Étudiant",
@@ -140,6 +154,20 @@
     "templates_a_mettre_en_vente": []
   },
   {
+    "code": "PFA",
+    "slug": "famille",
+    "nom": "Pack Maison et famille",
+    "permalien": "pack-famille",
+    "prix_cents": 6700,
+    "resume": "La maison qui tourne, sans tout garder en tête.",
+    "description_html": "<p><strong>La maison qui tourne, sans tout garder en tête.</strong></p>\n<p>Budget, entretien de la maison, repas, placards et animal : la logistique familiale au même endroit.</p>\n<p><strong>Pour qui ?</strong> Vous êtes parents. Entre le budget du mois, les menus, ce qui reste au frigo, les rendez-vous du petit et le vaccin du chien, la charge mentale déborde. Ce pack la sort de votre tête.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Entretien de la maison</strong> : Chaudière, ramonage, VMC : échéances calculées. (12 € seul)</li><li><strong>Repas de la semaine et liste de courses</strong> : Menus de la semaine, liste de courses par rayon à cocher. (13 € seul)</li><li><strong>Garde-manger et dates de péremption</strong> : DLC et DDM, à consommer en priorité, gaspillage suivi. (12 € seul)</li><li><strong>Suivi du bébé</strong> : Tétées, sommeil, couches, à deux parents, d’une main. (13 € seul)</li><li><strong>Suivi d'un animal de compagnie</strong> : Soins aux dates du vétérinaire, poids, visites, frais par an. (12 € seul)</li><li><strong>Calendrier du potager</strong> : Vos semis à leur date, la rotation de vos planches suivie. (13 € seul)</li></ul>\n<p>90 € à l’achat séparé, 67 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "7/7",
+    "templates_a_mettre_en_vente": []
+  },
+  {
     "code": "PMG",
     "slug": "moyens-generaux",
     "nom": "Pack Moyens généraux",
@@ -151,6 +179,20 @@
     "texte_bouton": "Ouvrir mon pack",
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
     "templates_en_vente": "10/10",
+    "templates_a_mettre_en_vente": []
+  },
+  {
+    "code": "PAR",
+    "slug": "argent",
+    "nom": "Pack Papiers et décisions d’argent",
+    "permalien": "pack-argent",
+    "prix_cents": 6000,
+    "resume": "Les décisions d’argent qui comptent, et les papiers qui vont avec.",
+    "description_html": "<p><strong>Les décisions d’argent qui comptent, et les papiers qui vont avec.</strong></p>\n<p>Ce que coûte vraiment une dépense, ce que valent vos biens, ce que vous pouvez emprunter, vos papiers et vos remboursements santé : le complément du budget du mois.</p>\n<p><strong>Pour qui ?</strong> Votre budget du mois est tenu ; restent les grandes questions. Puis-je emprunter, et quelle offre coûte le moins ? Que valent mes affaires ? Où est ce papier, et combien de temps le garder ? La mutuelle a-t-elle tout remboursé ? Ce pack y répond, en cinq outils.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Temps de vie</strong> : Vos dépenses converties en heures de travail. (19 € seul)</li><li><strong>Inventaire valorisé</strong> : Ce que valent vos objets, et ce que leur revente rapporterait. (19 € seul)</li><li><strong>Papiers du foyer</strong> : Où est chaque document, et combien de temps le garder. (15 € seul)</li><li><strong>Remboursements santé</strong> : Ce qui a été payé, remboursé, et ce qu’on vous doit encore. (12 € seul)</li><li><strong>Capacité d'emprunt et comparateur de prêts</strong> : Ce que vous pouvez emprunter, et quelle offre coûte le moins. (15 € seul)</li></ul>\n<p>80 € à l’achat séparé, 60 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Essai gratuit :</strong> chaque outil du pack s’essaie 14 jours gratuitement, sans carte bancaire, sur qm-engineering.fr/essai. Si vous prenez ensuite le pack, vos données d’essai sont reprises.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
+    "lien_contenu": "https://qm-engineering.fr/connexion/",
+    "texte_bouton": "Ouvrir mon pack",
+    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
+    "templates_en_vente": "5/5",
     "templates_a_mettre_en_vente": []
   },
   {
@@ -208,54 +250,5 @@
     "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
     "templates_en_vente": "6/6",
     "templates_a_mettre_en_vente": []
-  },
-  {
-    "code": "PNS",
-    "slug": "enseignant",
-    "nom": "Pack Écoles et formateurs",
-    "permalien": "pack-enseignant",
-    "prix_cents": 11100,
-    "resume": "Préparer, évaluer, organiser : la classe sous contrôle.",
-    "description_html": "<p><strong>Préparer, évaluer, organiser : la classe sous contrôle.</strong></p>\n<p>Gestion de classe, banque de questions, progression pédagogique, emploi du temps et auto-école : les outils des écoles, des centres de formation et des formateurs.</p>\n<p><strong>Pour qui ?</strong> Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Progression pédagogique</strong> : Séquences et séances, prévu face au réel, fin projetée. (15 € seul)</li><li><strong>Banque de questions et quiz</strong> : Questions taguées, quiz générés et corrigés. (19 € seul)</li><li><strong>Gestion de classe</strong> : Notes, moyennes, compétences, appréciations, bulletins. (25 € seul)</li><li><strong>Emploi du temps d'établissement</strong> : Groupes, formateurs, salles, conflits détectés, heures suivies. (45 € seul)</li><li><strong>Gestion d'auto-école</strong> : Élèves, leçons, moniteurs et véhicules. (45 € seul)</li></ul>\n<p>149 € à l’achat séparé, 111 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "4/5",
-    "templates_a_mettre_en_vente": [
-      "Gestion de classe"
-    ]
-  },
-  {
-    "code": "PAR",
-    "slug": "argent",
-    "nom": "Pack Papiers et décisions d’argent",
-    "permalien": "pack-argent",
-    "prix_cents": 6000,
-    "resume": "Les décisions d’argent qui comptent, et les papiers qui vont avec.",
-    "description_html": "<p><strong>Les décisions d’argent qui comptent, et les papiers qui vont avec.</strong></p>\n<p>Ce que coûte vraiment une dépense, ce que valent vos biens, ce que vous pouvez emprunter, vos papiers et vos remboursements santé : le complément du budget du mois.</p>\n<p><strong>Pour qui ?</strong> Votre budget du mois est tenu ; restent les grandes questions. Puis-je emprunter, et quelle offre coûte le moins ? Que valent mes affaires ? Où est ce papier, et combien de temps le garder ? La mutuelle a-t-elle tout remboursé ? Ce pack y répond, en cinq outils.</p>\n<p><strong>Le contenu du pack (5 templates) :</strong></p>\n<ul><li><strong>Temps de vie</strong> : Vos dépenses converties en heures de travail. (19 € seul)</li><li><strong>Inventaire valorisé</strong> : Ce que valent vos objets, et ce que leur revente rapporterait. (19 € seul)</li><li><strong>Papiers du foyer</strong> : Où est chaque document, et combien de temps le garder. (15 € seul)</li><li><strong>Remboursements santé</strong> : Ce qui a été payé, remboursé, et ce qu’on vous doit encore. (12 € seul)</li><li><strong>Capacité d'emprunt et comparateur de prêts</strong> : Ce que vous pouvez emprunter, et quelle offre coûte le moins. (15 € seul)</li></ul>\n<p>80 € à l’achat séparé, 60 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "4/5",
-    "templates_a_mettre_en_vente": [
-      "Remboursements santé"
-    ]
-  },
-  {
-    "code": "PFA",
-    "slug": "famille",
-    "nom": "Pack Maison et famille",
-    "permalien": "pack-famille",
-    "prix_cents": 6700,
-    "resume": "La maison qui tourne, sans tout garder en tête.",
-    "description_html": "<p><strong>La maison qui tourne, sans tout garder en tête.</strong></p>\n<p>Budget, entretien de la maison, repas, placards et animal : la logistique familiale au même endroit.</p>\n<p><strong>Pour qui ?</strong> Vous êtes parents. Entre le budget du mois, les menus, ce qui reste au frigo, les rendez-vous du petit et le vaccin du chien, la charge mentale déborde. Ce pack la sort de votre tête.</p>\n<p><strong>Le contenu du pack (7 templates) :</strong></p>\n<ul><li><strong>Mon Budget</strong> : Dépenses, enveloppes et écart au budget, mois par mois. (15 € seul)</li><li><strong>Entretien de la maison</strong> : Chaudière, ramonage, VMC : échéances calculées. (12 € seul)</li><li><strong>Repas de la semaine et liste de courses</strong> : Menus de la semaine, liste de courses par rayon à cocher. (13 € seul)</li><li><strong>Garde-manger et dates de péremption</strong> : DLC et DDM, à consommer en priorité, gaspillage suivi. (12 € seul)</li><li><strong>Suivi du bébé</strong> : Tétées, sommeil, couches, à deux parents, d’une main. (13 € seul)</li><li><strong>Suivi d'un animal de compagnie</strong> : Soins aux dates du vétérinaire, poids, visites, frais par an. (12 € seul)</li><li><strong>Calendrier du potager</strong> : Vos semis à leur date, la rotation de vos planches suivie. (13 € seul)</li></ul>\n<p>90 € à l’achat séparé, 67 € en pack (−25 %).</p>\n<p><strong>Templates ajoutés plus tard :</strong> inclus. Chaque template ajouté au pack après votre achat s’ouvre aussi avec votre clé, sans supplément.</p>\n<p><strong>Après l’achat :</strong> collez la clé reçue sur qm-engineering.fr/connexion : le tableau de bord du pack s’ouvre, avec un bouton par template, sur tous vos appareils. Achat unique, pas d’abonnement. Templates en français.</p>\n<p>Outils d’aide à l’organisation : ils ne remplacent pas un avis professionnel (juridique, financier, médical).</p>",
-    "lien_contenu": "https://qm-engineering.fr/connexion/",
-    "texte_bouton": "Ouvrir mon pack",
-    "texte_recu": "Merci ! Collez la clé de licence ci-dessous sur qm-engineering.fr/connexion : le tableau de bord de votre pack s’ouvre, avec un bouton par template.",
-    "templates_en_vente": "5/7",
-    "templates_a_mettre_en_vente": [
-      "Suivi du bébé",
-      "Suivi d'un animal de compagnie"
-    ]
   }
 ]

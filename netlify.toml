@@ -46,6 +46,19 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+# Versions privées (hors catalogue, hors sitemap, hors Gumroad) : jamais indexées, toujours revalidées.
+# « Révisions QME X Laurine » : prive/revisions-laurine/ (produit RVX, clés de bêta-test).
+[[headers]]
+  for = "/prive/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/prive/revisions-laurine/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
 [[headers]]
   for = "/templates/compte-rendu/*"
   [headers.values]
@@ -1230,6 +1243,14 @@
 [[redirects]]
   from = "/demo/angelique"
   to = "/templates/voyage/?demo=van&prenom=Ang%C3%A9lique"
+  status = 302
+  force = true
+
+# Démo du road trip d'Angélique (27/11/2026, feu vert de Quentin), mise à son itinéraire réel en Catalogne le même jour
+# (profil « catalogne » : une version gardée sur l'appareil n'est pas rouverte). Albums photos en liens d'exemple. Placée avant toute règle plus large sur /demo/*.
+[[redirects]]
+  from = "/demo/angelique-espagne"
+  to = "/templates/voyage/?demo=catalogne&prenom=Ang%C3%A9lique"
   status = 302
   force = true
 

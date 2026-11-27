@@ -315,3 +315,19 @@ test('CSV des dépenses : parts par voyageur, séparateur point-virgule, BOM', (
   assert.equal(tete, 'Date;Libellé;Poste;Montant;Payé par;Part A;Part B;Part C;Note');
   assert.equal(ligne, '2026-06-11;"Dîner; ""terrasse""";Repas et restaurants;60,00;A;20,00;20,00;20,00;');
 });
+
+test('liens photos : https seulement, gardés sur le voyage et sur chaque étape', () => {
+  assert.equal(R.lireLien(''), '');
+  assert.equal(R.lireLien('  https://drive.google.com/drive/folders/abc  '), 'https://drive.google.com/drive/folders/abc');
+  assert.equal(R.lireLien('http://drive.google.com/x'), null, 'http refusé');
+  assert.equal(R.lireLien('javascript:alert(1)'), null);
+  assert.equal(R.lireLien('https://exemple.fr/a b'), null, 'espace refusé');
+  assert.equal(R.lireLien(`https://x.fr/${'a'.repeat(500)}`), null, 'trop long');
+  const e = R.normaliser({ voyage: { nom: 'V', debut: '2026-06-01', fin: '2026-06-05', album: 'https://drive.google.com/drive/folders/album' }, etapes: [{ id: 'e1', lieu: 'A', arrivee: '2026-06-01', depart: '2026-06-03', photos: 'https://drive.google.com/drive/folders/a' }, { id: 'e2', lieu: 'B', arrivee: '2026-06-03', depart: '2026-06-05', photos: 'javascript:alert(1)' }] }, BASE.postes);
+  assert.equal(e.voyage.album, 'https://drive.google.com/drive/folders/album');
+  assert.equal(e.etapes[0].photos, 'https://drive.google.com/drive/folders/a');
+  assert.equal(e.etapes[1].photos, '', 'lien dangereux effacé à la normalisation');
+  assert.equal(R.normaliser({}, BASE.postes).voyage.album, '', 'ancien voyage sans album');
+  const it = R.itineraire(e, BASE.modes);
+  assert.equal(it.find((x) => x.id === 'e1').photos, 'https://drive.google.com/drive/folders/a');
+});

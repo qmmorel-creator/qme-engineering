@@ -1,8 +1,8 @@
 // Service worker du suivi du bébé : garde l'interface disponible hors ligne (minuteurs compris).
 // Les appels à l'API ne sont jamais mis en cache (données de santé, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'bebe-20261115t';
-const COQUILLE = ['./', 'app.css?v=20261115t', 'donnees.js?v=20261115t', 'regles.js?v=20261115t', 'app.js?v=20261115t', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123b'];
+const VERSION = 'bebe-20261127a';
+const COQUILLE = ['./', 'app.css?v=20261127a', 'donnees.js?v=20261127a', 'regles.js?v=20261127a', 'app.js?v=20261127a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123b'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));

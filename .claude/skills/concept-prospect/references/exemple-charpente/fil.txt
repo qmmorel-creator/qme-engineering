@@ -1,0 +1,32 @@
+FIL GMAIL FICTIF (exemple de démonstration du skill concept-prospect)
+
+--- Message 1 · 29/10/2026 · De : Quentin Morel <quentin.morel@qm-engineering.fr> · À : contact@charpentes-obiou.example
+Objet : Planning des équipes de pose et remontée des heures
+
+Bonjour,
+
+Je m'appelle Quentin Morel. Ingénieur et chef de projet depuis 15 ans, dont 7 en bureau d'études, je conçois des outils sur mesure [...]
+
+J'ai vu votre offre de conducteur de travaux publiée le 20 octobre 2026, qui mentionne la coordination de quatre équipes de pose.
+
+Une piste pour vous : un planning partagé des équipes, consultable sur téléphone par les chefs d'équipe, qui alimente le suivi des heures par chantier. [...]
+
+--- Message 2 · 30/10/2026 · De : Marc D. <contact@charpentes-obiou.example> · À : quentin.morel@qm-engineering.fr
+Objet : Re: Planning des équipes de pose et remontée des heures
+
+Bonjour Monsieur Morel,
+
+Votre mail tombe au bon moment. Nous sommes 18, avec 4 équipes (charpente, couverture, ossature bois, menuiserie). Tout le planning est sur un tableau Excel que je suis le seul à mettre à jour, et les chefs d'équipe m'appellent tous les soirs pour savoir où ils vont le lendemain. Les heures remontent sur des feuilles papier le vendredi, et je découvre trop tard qu'un chantier dépasse.
+
+Les devis sont faits sur notre logiciel de chiffrage.
+
+Trois questions :
+1. Est-ce que ça peut fonctionner sur le téléphone des gars, sur le chantier ?
+2. Peut-on récupérer nos devis existants sans tout ressaisir ?
+3. Quel budget faut-il prévoir pour quelque chose comme ça ?
+
+Je veux bien voir un exemple concret.
+
+Cordialement,
+Marc D.
+Gérant

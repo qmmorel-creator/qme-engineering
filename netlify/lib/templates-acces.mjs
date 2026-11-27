@@ -89,7 +89,7 @@ export const PRODUITS = {
   GST: { nom: 'Gestion locative', url: '/templates/gestion-locative/', gumroad: 'CkLescudHVhLiY3Az2CNsg==' },
   SDR: { nom: 'Réservation de salles et bureaux', url: '/templates/salles/', gumroad: 'JfjqpZBC0Qk1T2ouOdMcNQ==' },
   BSC: { nom: "Pilotage d'une journée de bascule", url: '/templates/bascule/', gumroad: 'xH5b6U76Zzjy5ADJBYu03g==' },
-  CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/' },
+  CSE: { nom: 'Gestion de classe', url: '/templates/gestion-classe/', gumroad: 'N0d_juDeqcKyEc39Hjhtxw==' },
   EDT: { nom: "Emploi du temps d'établissement", url: '/templates/emploi-du-temps/', gumroad: '-QR6i4YdVpKiitm12RP6Ag==' },
   TMP: { nom: 'Suivi du temps et rentabilité par mission', url: '/templates/suivi-temps/', gumroad: 'u-ySqLkS21aA1mhfeG9EFQ==' },
   KRF: { nom: 'Kit références et plaquette', url: '/templates/references-plaquette/', gumroad: 'Y_zjhtlT4nxXqSdqeT_mEA==' },
@@ -101,10 +101,10 @@ export const PRODUITS = {
   PGS: { nom: 'Suivi de lecture', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },
-  ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/' },
+  ANM: { nom: "Suivi d'un animal de compagnie", url: '/templates/animal/', gumroad: 'qTRUd4Yu81y5L2aUm3_BXA==' },
   TVA: { nom: 'Suivi de TVA', url: '/templates/tva/', gumroad: 'aGMrUCFVZ9yzLWfaNIWQ1w==' },
   DCS: { nom: 'Papiers du foyer', url: '/templates/papiers/', gumroad: 'uJxPWSYtiXp3nixYfudDoQ==' },
-  RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/' },
+  RBS: { nom: 'Remboursements santé', url: '/templates/remboursements-sante/', gumroad: '0RqWTv8TckHFj_8bbMmo5Q==' },
   ACH: { nom: 'Demandes d\'achat et fournitures', url: '/templates/achats/', gumroad: 'qdpoGVR4hsFttsxDiKTSyw==' },
   CPT: { nom: 'Capacité d\'emprunt et comparateur de prêts', url: '/templates/emprunt/', gumroad: '-yAS1RKHFCUmacHWd-lOAw==' },
   CDX: { nom: 'Cadeaux reçus et remerciements', url: '/templates/remerciements/', gumroad: 'MCs3LoKvVl7DtQhtn_dWTA==' },
@@ -121,12 +121,40 @@ export const PRODUITS = {
   FRM: { nom: 'Matrice compétences et formations', url: '/templates/competences/', gumroad: 'C4nN47ATR7v4pbDgAb7xRQ==' },
   PRG: { nom: 'Progression pédagogique', url: '/templates/progression/', gumroad: 'UyQhzM7uwEOVCI-QjMJP0Q==' },
   PTG: { nom: 'Calendrier du potager', url: '/templates/potager/', gumroad: 'ufjDjj77mM7DcT2U36eugw==' },
-  BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/' },
+  BBE: { nom: 'Suivi du bébé', url: '/templates/bebe/', gumroad: 'N0y4vz6Fr5o-N3RegOv6ug==' },
   CPR: { nom: 'Charges et AG de copropriété', url: '/templates/copropriete/', gumroad: 'renWMolXr2qZZPKpWtlnnA==' },
   CRS: { nom: 'Plan d\'entraînement course à pied', url: '/templates/course-a-pied/', gumroad: 'AGzHi8ozc6S4vQwmvGmOPA==' },
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/', gumroad: 'LmF33uw6vlpiC0CrcqnQPQ==' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
+// Templates privés (hors Gumroad, hors catalogue, hors espace /connexion/) : ouverts par code PRODUIT-… comme les
+// autres, mais absents de PRODUITS, que lisent le site, les essais et l'espace acheteurs. Préfixe sans O, I ni L
+// (normaliser les change en 0 et 1).
+//  - RVX : « Révisions QME X Laurine », version privée du planning de révision pour Laurine Mebs (Optimind
+//    Formation) et ses bêta-testeurs. Accès par Gumroad (RVX_GUMROAD_ID, voir configPrives) ; code manuel en secours.
+export const PRODUITS_PRIVES = {
+  RVX: { nom: 'Révisions QME X Laurine', url: '/prive/revisions-laurine/' },
+};
+// Produits ouvrables par code : vendus et privés (les préfixes privés ne recouvrent aucun préfixe vendu).
+const OUVRABLES = { ...PRODUITS, ...PRODUITS_PRIVES };
+
+// Configuration des produits privés vendus par Gumroad, lue dans les variables Netlify (rien en dur dans le code) :
+//  - RVX_GUMROAD_ID : identifiant du produit Gumroad « Révisions QME X Laurine » (vide tant qu'il n'existe pas :
+//    RVX n'est alors relié à rien, et le comportement des produits vendus est strictement inchangé) ;
+//  - RVX_ACCES_DEMO : accès de démonstration par adresse d'acheteur, « adresse:profil » séparés par des virgules
+//    (profils : pass, pcsi). Un compte encore vide de cet acheteur s'ouvre sur le jeu de démo fictif correspondant.
+export const PROFILS_DEMO_PRIVES = { RVX: ['pass', 'pcsi'] };
+export function configPrives(env = globalThis.process?.env || {}) {
+  const demos = {};
+  for (const x of String(env.RVX_ACCES_DEMO || '').split(',')) {
+    const [email, profil] = x.split(':').map((v) => String(v || '').trim().toLowerCase());
+    if (email && PROFILS_DEMO_PRIVES.RVX.includes(profil)) demos[email] = profil;
+  }
+  return { RVX: { gumroad: String(env.RVX_GUMROAD_ID || '').trim() || null, demos } };
+}
+// Profil de démo rattaché à un achat (adresse de l'acheteur vérifiée par Gumroad), ou null.
+export const profilDemoPrive = (prives, produit, email) => (email && prives?.[produit]?.demos?.[String(email).trim().toLowerCase()]) || null;
+
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
 
@@ -173,7 +201,7 @@ const formater = (produit, id, sig) => `${produit}-${id.slice(0, 4)}-${id.slice(
 
 export function genererCode(secret, produit) {
   if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
-  if (!PRODUITS[produit]) throw new Error(`Produit inconnu : ${produit}`);
+  if (!OUVRABLES[produit]) throw new Error(`Produit inconnu : ${produit}`);
   const id = base32(randomBytes(5));
   return formater(produit, id, signature(secret, produit, id));
 }
@@ -383,7 +411,7 @@ function reponsePack(secret, acces, code) {
 export function verifierCode(secret, saisie, revoques = []) {
   if (!secret) return null;
   const n = normaliser(saisie);
-  const produit = Object.keys(PRODUITS).find((p) => n.startsWith(normaliser(p)) && n.length === normaliser(p).length + 16);
+  const produit = Object.keys(OUVRABLES).find((p) => n.startsWith(normaliser(p)) && n.length === normaliser(p).length + 16);
   if (!produit) return null;
   const reste = n.slice(normaliser(produit).length);
   const id = reste.slice(0, 8), sig = reste.slice(8);
@@ -407,7 +435,7 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), {
 //  GET  /donnees     (en-tête X-Code)    → { donnees }
 //  PUT  /donnees     { donnees, base }   → { ok, majLe } ou 409 { donnees } si une version plus récente existe
 // Le stockage expose get(cle) → objet|null et set(cle, objet).
-export async function traiter(requete, { secret, revoques = [], stockage, essais = null, maintenant = Date.now, verifierLicence = verifierLicenceGumroad }) {
+export async function traiter(requete, { secret, revoques = [], stockage, essais = null, maintenant = Date.now, verifierLicence = verifierLicenceGumroad, prives = configPrives() }) {
   if (!secret) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/templates/, '').replace(/\/$/, '');
 
@@ -434,7 +462,9 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   // Connexion par clé de licence Gumroad : vérifiée auprès de Gumroad, puis convertie en code interne.
   if (chemin === '/connexion' && requete.method === 'POST' && estLicence(code)) {
     // Tous les produits sont interrogés en parallèle : le temps de réponse ne dépend pas du nombre de produits.
-    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES)].filter(([, p]) => p.gumroad);
+    // Produits privés (RVX) : seulement si leur identifiant Gumroad est configuré.
+    const candidats = [...Object.entries(PRODUITS), ...Object.entries(PACKS), [SUR_MESURE, ACHAT_SUR_MESURE], ...Object.entries(FUSIONNES),
+      ...Object.keys(PRODUITS_PRIVES).map((k) => [k, { gumroad: prives?.[k]?.gumroad || null }])].filter(([, p]) => p.gumroad);
     const reponses = await Promise.allSettled(candidats.map(([, p]) => verifierLicence(p.gumroad, code)));
     const trouve = reponses.findIndex((r) => r.status === 'fulfilled' && r.value.ok);
     const rembourse = reponses.some((r) => r.status === 'fulfilled' && r.value.raison === 'rembourse');
@@ -470,7 +500,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
 
   // Code administrateur : ouvre le template qui le demande (champ produit), avec l'espace personnel de Quentin.
   if (chemin === '/connexion' && requete.method === 'POST' && estCodeAdmin(secret, code)) {
-    if (!PRODUITS[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
+    if (!OUVRABLES[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
     code = codeAdminProduit(secret, corps.produit);
   }
 
@@ -504,7 +534,9 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   if (chemin === '/connexion' && requete.method === 'POST') {
     if (achatVerifie && !essai) await reporter(acces.produit, cle);
     const jeton = essai ? essai.code : formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
-    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra });
+    // Produit privé : profil de démo rattaché à l'adresse de l'acheteur (configuration serveur), jamais pour les produits vendus.
+    const demo = PRODUITS_PRIVES[acces.produit] ? profilDemoPrive(prives, acces.produit, achatVerifie?.email) : null;
+    return json(200, { ok: true, produit: acces.produit, url: OUVRABLES[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra, ...(demo ? { demo } : {}) });
   }
   if (chemin === '/donnees' && requete.method === 'GET') {
     return json(200, { donnees: (await stockage.get(cle)) ?? null, ...extra });
