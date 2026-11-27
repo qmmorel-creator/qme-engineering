@@ -223,7 +223,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   stratégie). Les autres sessions lui transmettent les demandes (`send_message`) ou y renvoient Quentin. Cible : Instagram
   et TikTok, public jeune, volet personnel ; charte de Grillon.
 - **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 15 à 22 s (format v2) avec la mascotte **Grillon**
- , du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
+  (anciennement Carreau, renommée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
   2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
   `_elevenlabs.txt` dans le Drive, supprimés avec le MP4 provisoire dès que la version Caroline est déposée.
 - **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie
