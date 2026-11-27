@@ -1,0 +1,33 @@
+@page{size:A4;margin:0}
+:root{--red:#D9302A;--yel:#F2B705;--ink:#141414;--mut:#5d5a55;--beige:#F3F0EA;--line:#dcd7ce}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font:9.1pt/1.38 "Outfit",Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{position:relative;width:210mm;height:297mm;padding:13mm 14mm 16mm 22mm;overflow:hidden;page-break-after:always}
+.page:last-child{page-break-after:auto}
+.page::before{content:"";position:absolute;left:0;top:0;width:5.5mm;height:80%;background:var(--red)}
+.page::after{content:"";position:absolute;left:0;bottom:0;width:5.5mm;height:20%;background:var(--yel)}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5mm}
+.brand{display:flex;gap:9px;align-items:center}
+.brand b{display:block;font-size:12.5pt;font-weight:700;line-height:1.1}
+.brand small{font-size:7.5pt;color:var(--ink)}
+.hd .r{text-align:right}
+.hd .r h1{font-size:13pt;margin:0 0 3px;font-weight:700}
+.hd .r div{font-size:8.2pt;color:var(--mut)}
+.ft{position:absolute;left:22mm;right:14mm;bottom:8mm;display:flex;justify-content:space-between;font-size:7.6pt;color:var(--ink);border-top:1px solid var(--line);padding-top:2.5mm}
+.eb{font-size:8pt;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--red);margin:0 0 2mm}
+h2{font-size:17.5pt;line-height:1.12;margin:0 0 2.5mm;font-weight:700;letter-spacing:-.01em}
+h3{font-size:8.2pt;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin:0 0 2mm;padding-bottom:1.4mm;border-bottom:1.4px solid var(--ink)}
+p{margin:0 0 2mm}
+ul{margin:0;padding-left:4.5mm} li{margin:0 0 .7mm}
+.muted{color:var(--mut)} .sm{font-size:8.2pt}
+table{width:100%;border-collapse:collapse}
+th{font-size:7.2pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink);padding:1.3mm 2mm;border-bottom:1.4px solid var(--ink)}
+td{padding:1.25mm 2mm;border-bottom:1px solid var(--line);vertical-align:top}
+.r{text-align:right} .n{white-space:nowrap;text-align:right}
+.box{background:var(--ink);color:#fff;padding:4mm 5mm;border-left:2.2mm solid var(--yel)}
+.box .eb{color:var(--yel)}
+.cols{display:grid;gap:4mm}
+.card{background:var(--beige);padding:3.5mm 4mm}
+.card .eb{color:var(--mut);font-size:7.2pt}
+.card b.t{display:block;font-size:11pt;margin-bottom:1.5mm}

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Proposition commerciale · ARVA</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="commun.css">
+<style>
+.lots{grid-template-columns:1fr 1fr}
+.lot{border:1.4px solid var(--ink);padding:3.5mm 4mm}
+.lot.l2{border-color:var(--line);background:var(--beige)}
+.lot .h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2mm}
+.lot .h b{font-size:10.5pt}
+.lot .h span{font-size:10.5pt;font-weight:700;white-space:nowrap;margin-left:3mm}
+.budget{grid-template-columns:repeat(4,1fr)}
+.budget .card{border-top:1.2mm solid var(--ink)}
+.budget .card.red{border-top-color:var(--red)}
+.budget b.v{display:block;font-size:13.5pt;font-weight:700;margin:1mm 0;white-space:nowrap}
+.gain{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:#fff;padding:3.5mm 5mm;margin:4mm 0 2mm}
+.gain b{font-size:12pt}
+.gain .v{font-size:20pt;font-weight:700;color:var(--yel)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.cal td:first-child{color:var(--red);font-weight:600;width:33mm}
+</style></head><body>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page">
+  <div class="hd">
+    <div class="brand"><svg viewBox="0 0 80 80" width="34" height="34"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><div><b>QME</b><small>Quentin Morel Engineering</small></div></div>
+    <div class="r"><h1>Proposition commerciale</h1><div>23 novembre 2026</div><div>Réf. devis QME-2026-013</div></div>
+  </div>
+
+  <p class="eb">Préparée pour ARVA · Nic Impex · M. Antoine Ferrero, responsable des ventes</p>
+  <h2>Chaque NEO BT PRO suivi,<br>du contrôle à l'échange</h2>
+  <p style="font-size:10.6pt;max-width:165mm">Un outil construit autour de votre campagne de contrôle de sécurité obligatoire : un registre par numéro de série, alimenté par vos outils actuels, qui relance les propriétaires à votre place, suit chaque colis jusqu'à l'Atelier du Cairn et informe chaque propriétaire de l'avancement de son échange.</p>
+
+  <div class="box" style="margin:3mm 0 4mm">
+    <p class="eb">Ce que nous savons de votre campagne</p>
+    <ul>
+      <li>Le contrôle se fait dans l'application ARVA ; le résultat (conforme ou non) se rattache au numéro de série.</li>
+      <li>Un appareil non conforme donne lieu à un échange à neuf : formulaire de retour et étiquette générée en Europe, demande traitée par l'équipe aux États-Unis et dans les autres pays.</li>
+      <li>Les propriétaires sont en Europe et en Amérique du Nord ; une partie des appareils est en stock chez les revendeurs, en location ou dans des parcs professionnels.</li>
+      <li>À compléter lors de notre échange du 1er décembre : volumes réels, outils de suivi actuels, équipe concernée.</li>
+    </ul>
+  </div>
+
+  <h3>Un forfait fixe, en deux lots, sans abonnement</h3>
+  <div class="cols lots">
+    <div class="lot">
+      <div class="h"><b>Lot 1 · Le registre et les relances</b><span>9 500 € HT</span></div>
+      <ul>
+        <li>Registre par numéro de série et tableau de pilotage</li>
+        <li>Reprise des enregistrements, des demandes de retour et des résultats de contrôle</li>
+        <li>Connexions à l'enregistrement produit, au formulaire de retour et à l'application ARVA</li>
+        <li>Carte des appareils pas encore contrôlés, zone par zone</li>
+        <li>Relances e-mail en 5 langues, liste d'appels du SAV</li>
+      </ul>
+      <p class="sm muted" style="margin:2mm 0 0">En service 3 à 4 semaines après la signature.</p>
+    </div>
+    <div class="lot l2">
+      <div class="h"><b>Lot 2 · L'atelier et les propriétaires</b><span>7 000 € HT</span></div>
+      <ul>
+        <li>Atelier du Cairn sur téléphone : scan du colis, contrôle à réception, scan de l'appareil neuf, expédition</li>
+        <li>Page de suivi personnelle pour chaque propriétaire, en 5 langues</li>
+        <li>Relances par SMS</li>
+        <li>Formation de l'équipe SAV et accompagnement des premières semaines</li>
+      </ul>
+      <p class="sm muted" style="margin:2mm 0 0">Optionnel ; peut démarrer après le lot 1.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:4mm">Ce que l'outil fait pour chaque équipe</h3>
+  <table>
+    <tr><th style="width:36mm">Équipe</th><th>Au quotidien</th></tr>
+    <tr><td><b>Direction</b></td><td>Combien d'appareils restent à contrôler, où ils se trouvent, l'effet de chaque relance, un export pour les points de suivi.</td></tr>
+    <tr><td><b>SAV</b></td><td>L'historique complet de chaque numéro de série en quelques secondes, les réponses prêtes, la liste des propriétaires à appeler, triée par pays et par langue.</td></tr>
+    <tr><td><b>Logistique</b></td><td>Les colis attendus, la réception et l'échange scannés sur téléphone, le propriétaire prévenu automatiquement.</td></tr>
+    <tr><td><b>Ventes</b></td><td>Les revendeurs, loueurs et professionnels du secours qui ont encore des appareils à contrôler, avec la relance à faire.</td></tr>
+  </table>
+
+  <div class="ft"><span>QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · qm-engineering.fr</span><span>Page 1 / 2</span></div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page">
+  <div class="hd">
+    <div class="brand"><svg viewBox="0 0 80 80" width="34" height="34"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><div><b>QME</b><small>Quentin Morel Engineering</small></div></div>
+    <div class="r"><h1>Proposition commerciale</h1><div>23 novembre 2026</div><div>Réf. devis QME-2026-013</div></div>
+  </div>
+
+  <h3>Budget</h3>
+  <div class="cols budget">
+    <div class="card red"><p class="eb">Forfait complet</p><b class="v">19 500 € HT</b><span class="sm">Deux lots, installation chez ARVA, 6 mois de garantie et d'accompagnement</span></div>
+    <div class="card"><p class="eb">Lot 1 seul</p><b class="v">11 500 € HT</b><span class="sm">Lot 1, installation, 3 mois de garantie et d'accompagnement</span></div>
+    <div class="card"><p class="eb">Aucun abonnement QME</p><b class="v">≈ 40 à 80 €</b><span class="sm">par mois d'hébergement et d'envois, payés directement par ARVA à ses prestataires ; SMS au volume</span></div>
+    <div class="card"><p class="eb">Après la garantie</p><b class="v">À la demande</b><span class="sm">500 € HT par jour ou 65 € HT de l'heure, sur accord préalable</span></div>
+  </div>
+
+  <div class="gain"><div><b>Environ 336 heures de travail rendues par campagne</b><div class="sm" style="color:#cfcfcf">soit environ 48 journées de 7 h pour le SAV et la logistique</div></div><div style="text-align:right"><span class="v">10 080 €</span><div class="sm" style="color:#cfcfcf">par campagne, à 30 € de l'heure</div></div></div>
+  <table class="sm">
+    <tr><th>Ce qui prend du temps aujourd'hui</th><th class="n">Volume</th><th class="n">Aujourd'hui</th><th class="n">Avec l'outil</th><th class="n">Temps rendu</th></tr>
+    <tr><td>Traiter une demande hors Europe (formulaire, dossier, étiquette)</td><td class="n">300</td><td class="n">12 min</td><td class="n">3 min</td><td class="n"><b>45 h</b></td></tr>
+    <tr><td>Réceptionner un appareil et le rapprocher de sa demande</td><td class="n">900</td><td class="n">6 min</td><td class="n">2 min</td><td class="n"><b>60 h</b></td></tr>
+    <tr><td>Prévenir le propriétaire de l'expédition de son échange</td><td class="n">900</td><td class="n">4 min</td><td class="n">30 s</td><td class="n"><b>53 h</b></td></tr>
+    <tr><td>Relancer un propriétaire qui n'a pas fait le contrôle</td><td class="n">1 200</td><td class="n">3 min</td><td class="n">12 s</td><td class="n"><b>56 h</b></td></tr>
+    <tr><td>Répondre à « où en est mon appareil ? »</td><td class="n">600</td><td class="n">6 min</td><td class="n">1 min 30</td><td class="n"><b>45 h</b></td></tr>
+    <tr><td>Relancer un revendeur ou un parc professionnel</td><td class="n">150</td><td class="n">20 min</td><td class="n">5 min</td><td class="n"><b>38 h</b></td></tr>
+    <tr><td>Faire le point de la campagne (tableau, export)</td><td class="n">30 sem.</td><td class="n">1 h 30</td><td class="n">10 min</td><td class="n"><b>40 h</b></td></tr>
+  </table>
+  <p class="sm muted" style="margin-top:1.5mm">Volumes supposés, à remplacer par les vôtres : le calcul se refait sur la page du concept. La valorisation mesure le temps rendu, pas une dépense économisée. L'outil reste ensuite utile pour les prochaines campagnes, les révisions SAV et l'enregistrement des produits.</p>
+
+  <div class="two" style="margin-top:4mm">
+    <div>
+      <h3>Calendrier</h3>
+      <table class="cal sm">
+        <tr><td>Début décembre</td><td>Signature, cadrage, accès aux données</td></tr>
+        <tr><td>3 à 4 semaines après</td><td>Lot 1 testé avec l'équipe, puis mis en service</td></tr>
+        <tr><td>Janvier 2027</td><td>Lot 2 : atelier, page propriétaire, SMS</td></tr>
+      </table>
+      <h3 style="margin-top:4mm">À préciser ensemble au cadrage</h3>
+      <ul class="sm">
+        <li>Ce que l'application ARVA et le site permettent d'exporter (résultats de contrôle, demandes de retour).</li>
+        <li>Les volumes réels et l'avancement de la campagne.</li>
+        <li>Les langues et les textes des relances, relus par vos équipes.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mes engagements</h3>
+      <ul class="sm">
+        <li>Données hébergées en Europe, accès nominatifs réservés à vos équipes.</li>
+        <li>Contrat de sous-traitance des données (RGPD, article 28) signé avec le devis.</li>
+        <li>L'outil suit et informe : le résultat du contrôle reste celui de l'application ARVA.</li>
+        <li>L'outil appartient à ARVA : code, comptes et données à son nom, sans abonnement.</li>
+        <li>Vos outils actuels sont connectés, pas remplacés.</li>
+      </ul>
+      <h3 style="margin-top:4mm">Prochaines étapes</h3>
+      <ol class="sm" style="margin:0;padding-left:4.5mm">
+        <li>Vous relisez cette proposition et le devis n° QME-2026-013.</li>
+        <li>Nous ajustons le périmètre ensemble si besoin.</li>
+        <li>Après signature, l'atelier de cadrage lance la réalisation.</li>
+      </ol>
+      <p style="margin-top:4mm;font-weight:700">Quentin Morel</p>
+    </div>
+  </div>
+
+  <div class="ft"><span>QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · qm-engineering.fr</span><span>Page 2 / 2</span></div>
+</section>
+</body></html>
