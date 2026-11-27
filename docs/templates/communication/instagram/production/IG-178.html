@@ -1,0 +1,113 @@
+<!doctype html>
+<!-- Reel du soir IG-178 / YT-51 · « LLD à 379 € par mois… puis 1 440 € à la restitution » (Simulateur leasing ou achat).
+     Angle : chiffre vérifiable (coût caché du forfait kilométrique). Couleur dominante : rouge (publication Instagram
+     précédente, IG-56 du 02/12 à 12:30 : jaune).
+     Script : accroche (loyer de 379 € par mois, puis 1 440 € à payer en rendant la voiture), boucle ouverte (d'où vient
+     ce montant, et la LLD reste-t-elle un bon choix ?), le calcul (18 000 km parcourus par an, forfait 15 000 km,
+     12 000 km de trop sur 4 ans × 0,12 € = 1 440 €), capture de l'offre LLD (dépassement estimé), capture de la
+     comparaison (coût total net : LOA option levée 25 928 €, LLD 26 390 €, 2e à + 461 €), capture « Et si tu roulais… »
+     à 15 000 km par an (LLD 1re à 24 950 €), réponse : votre vrai kilométrage décide ; fin « Simulateur leasing ou
+     achat · démo gratuite · qm-engineering.fr » et essai gratuit 14 jours.
+     Chiffres lus dans la démo (?demo, comparaison « SUV hybride », 22/11/2026) et recalculés avec R.comparer, R.alertes
+     et R.calculer (templates/leasing/regles.js) : dépassement 12 000 km, 1 440 € ; nets 25 928,29 € / 26 389,53 € ;
+     à 15 000 km : LLD 24 949,53 €, LOA 25 328 €. Données fictives, sans marque ni modèle réel.
+     Captures : IG-178-captures.cjs (Playwright, viewport 430 px, dpr 2, bandeau démo, onglets et fenêtres masqués).
+     Motion design avec musique QME, 1080 × 1920, 30 i/s, 27,5 s. Rendu, depuis docs/templates/communication/instagram :
+       node video.mjs production/IG-178.html 27.5 15500
+       puis png/IG-178.mp4 → png/IG-178-leasing.mp4 et png/IG-178-couverture.png → png/IG-178-leasing-couverture.png
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-178</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--rouge);color:var(--surface);padding:0 12px;white-space:nowrap}
+.f{position:absolute}
+.bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:60px;padding:28px 44px;box-shadow:16px 16px 0 var(--jaune);letter-spacing:-.025em}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em;color:var(--surface)}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--jaune)}.signe .e{color:var(--surface)}
+.site{position:absolute;right:96px;font-weight:700;font-size:34px;color:var(--surface)}
+.carte{position:absolute;left:84px;right:84px;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--rouge);background:var(--surface)}
+.carte img{width:100%;display:block}
+.note{position:absolute;left:96px;right:96px;font-size:28px;font-weight:600;color:var(--texte-2)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes glisse-d{from{transform:translateX(900px)}to{transform:none}}
+@keyframes defile{from{transform:translateY(0)}to{transform:translateY(-2200px)}}
+
+.ligne{position:absolute;left:96px;right:96px}
+.ligne b{display:block;font-size:104px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--papier)}
+.ligne span{display:block;margin-top:8px;font-size:38px;font-weight:600;line-height:1.2;color:var(--trait)}
+</style>
+</head>
+<body>
+<div class="s" id="s1" style="animation:sortie 300ms 3500ms;background:var(--rouge);color:var(--surface)">
+  <div class="f" style="right:-120px;top:120px;width:420px;height:420px;border-radius:50%;background:var(--jaune);animation:pop 600ms 0ms"></div>
+  <div class="f" style="right:230px;top:430px;width:120px;height:120px;background:var(--bleu);border:6px solid var(--encre);animation:pop 500ms 250ms"></div>
+  <div class="f" style="left:0;bottom:0;width:420px;height:420px;background:var(--encre);border-top-right-radius:420px;animation:glisse-g 700ms 100ms"></div>
+  <!-- Accroche visible dès la première image : aucune animation d'entrée sur le texte. -->
+  <p class="sourcil" style="top:600px;color:var(--jaune)">Leasing · exemple fictif</p>
+  <p class="x" style="top:660px;font-size:100px;line-height:1.16">LLD à 379 € par mois… puis <span style="background:var(--surface);color:var(--rouge);padding:0 12px;white-space:nowrap">1 440 €</span> en rendant la voiture.</p>
+  <p class="x" style="top:1180px;font-size:58px;font-weight:700;line-height:1.15">D'où vient ce montant ? Et la LLD reste-t-elle le bon choix ?</p>
+</div>
+
+<div class="s" id="s2" style="animation:entree-fond 350ms 3800ms,sortie 300ms 9700ms;background:var(--encre);color:var(--papier)">
+  <p class="sourcil" style="top:300px;color:var(--jaune);animation:monte 500ms 3900ms">Le calcul · LLD sur 4 ans · exemple fictif</p>
+  <div class="ligne" style="top:380px;animation:monte 500ms 4100ms"><b>18 000 km</b><span>parcourus par an</span></div>
+  <div class="ligne" style="top:580px;animation:monte 500ms 5100ms"><b>15 000 km</b><span>compris dans le forfait</span></div>
+  <div class="ligne" style="top:780px;animation:monte 500ms 6100ms"><b>12 000 km</b><span>de trop sur 4 ans, à 0,12 € le km</span></div>
+  <div class="f" style="left:96px;top:1010px;width:888px;height:8px;background:var(--rouge);transform-origin:left;animation:largeur 500ms 7200ms"></div>
+  <p class="x" style="top:1060px;font-size:92px;animation:monte 500ms 7400ms"><mark>1 440 €</mark><br>à payer à la fin.</p>
+  <p class="note" style="top:1360px;color:var(--trait);animation:monte 500ms 8000ms">Le loyer affiché ne le montre pas.</p>
+</div>
+
+<div class="s" id="s3" style="animation:entree-fond 350ms 10000ms,sortie 300ms 14700ms;">
+  <p class="sourcil" style="top:270px;color:var(--rouge);animation:monte 500ms 10100ms">Simulateur leasing ou achat · Offres</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 10200ms">Le dépassement, estimé avant de signer.</p>
+  <div class="carte" style="top:470px;left:150px;right:150px;animation:monte 500ms 10400ms"><img src="captures/leasing-lld.webp" alt=""></div>
+  <p class="note" style="top:1300px;animation:monte 500ms 10600ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1360px;font-size:46px;font-weight:700;line-height:1.25;animation:monte 500ms 11800ms">379 € de loyer, mais <span style="background:var(--rouge);color:var(--surface);padding:0 10px;white-space:nowrap">550 € par mois</span> au total.</p>
+</div>
+
+<div class="s" id="s4" style="animation:entree-fond 350ms 15000ms,sortie 300ms 19700ms;">
+  <p class="sourcil" style="top:270px;color:var(--rouge);animation:monte 500ms 15100ms">Comparaison · 4 offres</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 15200ms">Le coût total net, revente déduite.</p>
+  <div class="carte" style="top:430px;left:150px;right:150px;animation:monte 500ms 15400ms"><img src="captures/leasing-comparaison.webp" alt=""></div>
+  <p class="note" style="top:1410px;animation:monte 500ms 15600ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1460px;font-size:46px;font-weight:700;line-height:1.25;animation:monte 500ms 16600ms">À 18 000 km par an, la LLD finit <span style="background:var(--rouge);color:var(--surface);padding:0 10px;white-space:nowrap">2e, + 461 €</span>.</p>
+</div>
+
+<div class="s" id="s5" style="animation:entree-fond 350ms 20000ms,sortie 300ms 23700ms;">
+  <p class="sourcil" style="top:270px;color:var(--rouge);animation:monte 500ms 20100ms">Et si vous rouliez moins ?</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 20200ms">À 15 000 km par an, le classement change.</p>
+  <div class="carte" style="top:520px;left:150px;right:150px;animation:monte 500ms 20400ms"><img src="captures/leasing-essai15000.webp" alt=""></div>
+  <p class="note" style="top:1160px;animation:monte 500ms 20600ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1220px;font-size:56px;font-weight:800;line-height:1.2;animation:monte 500ms 21400ms">La LLD repasse 1re : <mark>24 950 €</mark>.<br>Votre vrai kilométrage décide.</p>
+</div>
+
+<div class="s" id="s6" style="animation:entree-fond 350ms 24000ms;background:var(--rouge);color:var(--surface)">
+  <p class="x" style="top:400px;font-size:96px;animation:monte 500ms 24100ms">Comparez le coût total, pas le loyer.</p>
+  <p class="x" style="top:800px;font-size:52px;font-weight:600;line-height:1.2;animation:monte 500ms 24500ms">Simulateur leasing ou achat · <b>démo gratuite</b> · <span style="white-space:nowrap">qm-engineering.fr</span></p>
+  <div class="bouton" style="top:1060px;animation:pop 450ms 25000ms">14 jours d'essai gratuit</div>
+  <div class="signe" style="top:1400px;animation:monte 400ms 25200ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#F5B400"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site" style="top:1424px;animation:monte 400ms 25300ms">qm-engineering.fr</p>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

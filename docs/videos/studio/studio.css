@@ -108,6 +108,7 @@ body{font:400 40px/1.2 Outfit,system-ui,sans-serif;color:var(--encre);-webkit-fo
 #accroche .mot{display:inline-block;opacity:0;transform:translateY(80px) rotate(6deg);animation:mot .6s var(--ressort) forwards;margin-right:.2em}
 #accroche .mot mark{background:var(--jaune);color:var(--encre);padding:0 14px;border-radius:18px}
 #accroche .mot.rouge mark{background:var(--rouge);color:#fff}
+#accroche .mot.bleu mark{background:var(--bleu);color:#fff}
 #accroche.sort{animation:sortAcc .45s ease-in forwards}
 @keyframes mot{to{opacity:1;transform:none}}
 @keyframes sortAcc{to{opacity:0;transform:translateY(-160px)}}

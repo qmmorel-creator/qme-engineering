@@ -213,9 +213,10 @@
     let d = 0;
     for (const ligne of lignes) {
       const l = document.createElement('div'); l.className = 'l';
-      const rouge = ligne.startsWith('!');
-      for (const m of mots(ligne.replace(/^!/, ''))) {
-        const s = document.createElement('span'); s.className = 'mot' + (rouge && m.fort ? ' rouge' : '');
+      // Ligne commençant par « ! » : surlignage rouge ; par « ^ » : surlignage bleu (rotation des couleurs d'accent).
+      const teinte = ligne.startsWith('!') ? ' rouge' : ligne.startsWith('^') ? ' bleu' : '';
+      for (const m of mots(ligne.replace(/^[!^]/, ''))) {
+        const s = document.createElement('span'); s.className = 'mot' + (teinte && m.fort ? teinte : '');
         s.innerHTML = m.html; l.append(s);
         // pas = 0 : accroche affichée entière dès la première image (aucune animation d'entrée).
         if (pas === 0) { s.style.animation = 'none'; s.style.opacity = '1'; s.style.transform = 'none'; } else { s.style.animationDelay = `${d}ms`; d += pas; }

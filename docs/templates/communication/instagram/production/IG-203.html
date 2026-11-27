@@ -1,0 +1,83 @@
+<!-- Carrousel IG-203 (dimanche 13/12/2026, 19:00) · Template · Planificateur de voyage : qui doit combien à qui. Couleur dominante : rouge. Style d'accroche : question directe. Tous les chiffres sont lus le 22/11/2026 dans la démo locale http://localhost:8888/templates/voyage/?demo (onglet Budget : 15 dépenses, 1 451 € sur 3 384 € prévus, Souvenirs 25 € sur 20 € « Dépassé » ; Qui doit quoi : 3 virements, a payé 572 / 421 / 304 / 154 €, parts 353 / 353 / 385 / 360 €). 1 451 / 4 = 362,75 € (calcul). Prix 13 € : outils/packs/donnees.mjs (VYG) et /catalogue/voyage/ ; essai : /essai/?t=voyage. Captures : captures/IG-203-voyage-*.png. Rendu : node docs/templates/communication/instagram/rendre.mjs production/IG-203.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-203</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+h2 mark.r{background:var(--rouge);color:#fff}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.note{position:absolute;left:84px;right:300px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.marque.pied{left:auto;right:84px;font-size:30px;gap:12px}.marque.pied svg{width:38px;height:38px}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.capture{position:absolute;left:84px;width:780px;border:6px solid var(--encre);box-shadow:16px 16px 0 var(--rouge);background:var(--surface)}
+.capture img{display:block;width:100%}
+.fictif{position:absolute;right:-6px;top:-6px;background:var(--encre);color:var(--papier);font-weight:700;font-size:24px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px}
+.barres{position:absolute;left:84px;right:84px;display:grid;gap:22px}
+.barres div{display:grid;grid-template-columns:200px 1fr 190px;align-items:center;gap:24px;font-size:40px;font-weight:700}
+.barres i{display:block;height:56px;background:var(--papier)}
+.barres b{text-align:right;font-weight:800;white-space:nowrap}
+</style></head><body>
+<section class="cadre" id="IG-203-voyage-1" style="background:var(--rouge);color:#fff">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:0;bottom:0;width:440px;height:440px;background:var(--encre);border-top-left-radius:440px"></div>
+<div class="f" style="right:330px;bottom:300px;width:150px;height:150px;background:var(--jaune);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:200px;opacity:.9">Vacances à quatre</p>
+<h1 style="top:260px;font-size:104px">1&nbsp;451&nbsp;€ dépensés à quatre&nbsp;: <mark>qui doit combien</mark> à qui&nbsp;?</h1>
+<p class="p" style="top:770px;right:300px">10 jours, 15 dépenses, 4 payeurs. La réponse en vue 3.</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+
+<section class="cadre" id="IG-203-voyage-2" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">2 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--jaune)">Qui a payé quoi</p>
+<h2 style="top:260px;font-size:80px">Personne n'a payé pareil.</h2>
+<div class="barres" style="top:430px">
+<div><span>Alex</span><i style="background:var(--rouge);width:100%"></i><b>572 €</b></div>
+<div><span>Sam</span><i style="background:var(--papier);width:73.6%"></i><b>421 €</b></div>
+<div><span>Camille</span><i style="background:var(--papier);width:53.1%"></i><b>304 €</b></div>
+<div><span>Noé</span><i style="background:var(--papier);width:26.9%"></i><b>154 €</b></div>
+</div>
+<p class="p" style="top:800px">Diviser 1&nbsp;451&nbsp;€ par quatre&nbsp;? 362,75&nbsp;€ chacun. <b style="color:var(--jaune)">Faux</b>&nbsp;: des glaces pour deux, des souvenirs pour une seule. Les parts vont de 353&nbsp;€ à 385&nbsp;€.</p>
+<p class="note" style="color:var(--trait)">Démo du Planificateur de voyage. Données fictives.</p>
+<div class="marque pied"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m" style="color:#5C8FD1">M</span><span class="e">E</span></span></div></section>
+
+<section class="cadre" id="IG-203-voyage-3" style="background:var(--papier)">
+<span class="compteur">3 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Qui doit quoi</p>
+<h2 style="top:260px;font-size:76px"><mark class="r">3 virements</mark>, et les comptes sont faits.</h2>
+<p class="p" style="top:460px;font-size:38px">Chacun note ce qu'il paie et pour qui. Le partage tombe au centime, avec le minimum de virements.</p>
+<div class="capture" style="top:600px"><img src="captures/IG-203-voyage-qui-doit-quoi.png" alt=""><span class="fictif">Données fictives</span></div>
+<div class="marque pied"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+
+<section class="cadre" id="IG-203-voyage-4" style="background:var(--papier)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Prévu et réel</p>
+<h2 style="top:260px;font-size:76px">Le budget qui <mark class="r">dérape</mark> se voit pendant le voyage.</h2>
+<p class="p" style="top:460px;font-size:38px">1&nbsp;451&nbsp;€ dépensés sur 3&nbsp;384&nbsp;€ prévus, poste par poste. Souvenirs&nbsp;: 25&nbsp;€ sur 20&nbsp;€, signalé.</p>
+<div class="capture" style="top:600px"><img src="captures/IG-203-voyage-budget.png" alt=""><span class="fictif">Données fictives</span></div>
+<div class="marque pied"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+
+<section class="cadre" id="IG-203-voyage-5" style="background:var(--jaune)">
+<span class="compteur">5 / 5</span>
+<div class="f" style="right:0;bottom:0;width:300px;height:300px;background:var(--rouge);border-top-left-radius:300px"></div>
+<p class="sourcil" style="top:200px">Planificateur de voyage</p>
+<h2 style="top:260px;font-size:92px">Essayez-le avec votre prochain voyage.</h2>
+<p class="p" style="top:540px;font-weight:600">Étapes, nuits, budget et qui doit quoi, au même endroit. Aucune réservation, aucune publicité.</p>
+<div class="bouton" style="top:780px;font-size:46px;line-height:1.25">14 jours d'essai gratuit,<br>sans carte bancaire · lien en bio</div>
+<p class="p" style="top:1010px;font-size:36px;font-weight:700">Puis achat unique, 13&nbsp;€.</p>
+<p class="note" style="bottom:170px;color:var(--encre)">Besoin de plus&nbsp;? Vos règles, vos outils&nbsp;: je le construis sur mesure.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Vidéo X-10 · 28/11/2026 · « Out of stock? A customer tells you first. » (campagne X, anglais, sur mesure) ·
+     erreur fréquente · tableur qui déborde · template stocks (vues Tableau de bord et À commander, données fictives).
+     Couleur dominante : jaune (texte encre). Motion design en musique, 1080 × 1920, 30 i/s, 25 s. Rendu, depuis la racine :
+       node docs/videos/rendu.mjs docs/templates/communication/x/production/X-10.html 25 6000 --sortie docs/templates/communication/x/production/X-10-stock.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>X-10</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2')}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--jaune);color:var(--encre);padding:0 14px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.f{position:absolute}
+.carte{position:absolute;left:84px;right:84px;top:600px;height:640px;overflow:hidden;border:6px solid var(--encre);border-radius:18px;box-shadow:20px 20px 0 var(--encre);background:var(--surface)}
+.carte img{width:100%;display:block;transform-origin:0 0}
+.bandeau{position:absolute;left:84px;top:470px;background:var(--encre);color:var(--papier);font-weight:700;font-size:34px;padding:14px 24px;letter-spacing:.04em}
+.st{position:absolute;left:96px;right:96px;top:1310px;font-weight:800;font-size:76px;letter-spacing:-.025em;line-height:1.05}
+.st b{background:var(--jaune);padding:0 10px}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:84px;height:84px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes glisse-d{from{transform:translateX(1100px)}to{transform:none}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* image affichée : 900 px de large (1600 × 1000 d'origine → 900 × 562) */
+@keyframes zoom-kpi{from{transform:none}to{transform:translate(-80px,-230px) scale(1.8)}}
+@keyframes zoom-droite{from{transform:none}to{transform:translateX(-300px)}}
+@keyframes zoom-cmd{from{transform:none}to{transform:translate(-30px,-270px) scale(1.5)}}
+.tab{position:absolute;left:84px;right:84px;top:620px;border:4px solid #8F8A80;background:#fff;font-size:40px;font-family:Arial,sans-serif;color:#333}
+.tab div{display:grid;grid-template-columns:70px 1fr 160px 160px;border-bottom:2px solid #C9C4BA}
+.tab span{padding:16px 14px;border-right:2px solid #C9C4BA}
+.tab .h{background:#E4E1DA;font-weight:700}
+.tab .n{background:#EFEDE8;color:#888;text-align:center}
+</style>
+</head>
+<body>
+<!-- 1 · accroche (0-3,4 s), fond jaune, texte encre -->
+<div class="s" style="animation:sortie 300ms 3300ms;background:var(--jaune);color:var(--encre)">
+  <div class="f" style="right:-120px;top:260px;width:420px;height:420px;border-radius:50%;background:var(--bleu);animation:pop 600ms 0ms"></div>
+  <div class="f" style="left:96px;top:430px;width:140px;height:140px;background:var(--rouge);border:6px solid var(--encre);animation:pop 500ms 200ms"></div>
+  <p class="sourcil" style="top:700px;animation:monte 500ms 200ms">Small shops, workshops</p>
+  <p class="x" style="top:770px;font-size:132px;animation:monte 550ms 350ms">Out of stock?<br>A customer<br>tells you <span style="background:var(--encre);color:var(--jaune);padding:0 14px">first.</span></p>
+  <p class="x" style="top:1270px;font-size:56px;font-weight:700;animation:monte 500ms 1200ms">Here is why, and the fix.</p>
+</div>
+
+<!-- 2 · avant : le tableur (3,5-8 s) -->
+<div class="s" style="animation:entree-fond 350ms 3400ms,sortie 300ms 7900ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 3600ms">BEFORE · THE SPREADSHEET</p>
+  <div class="tab" style="animation:glisse-d 450ms 3500ms">
+    <div class="h"><span class="n"></span><span>Item</span><span>Qty</span><span>Unit</span></div>
+    <div><span class="n">2</span><span>Cotton wick no. 4</span><span>0</span><span>pcs</span></div>
+    <div><span class="n">3</span><span>Soy wax</span><span>4.8</span><span>kg</span></div>
+    <div><span class="n">4</span><span>Glass jar 200 ml</span><span>38</span><span>pcs</span></div>
+    <div><span class="n">5</span><span>Shipping box S</span><span>28</span><span>pcs</span></div>
+    <div><span class="n">6</span><span>Fig candle 200 g</span><span>12</span><span>pcs</span></div>
+  </div>
+  <div class="s" style="animation:sortie 200ms 5900ms"><p class="st" style="top:1260px;animation:monte 400ms 3900ms">Numbers.<br>No warning.</p></div>
+  <p class="st" style="top:1260px;animation:monte 400ms 6000ms">Nobody sees the <b>0</b><br>until it is too late.</p>
+</div>
+
+<!-- 3 · après : tableau de bord (8,1-15 s) -->
+<div class="s" style="animation:entree-fond 350ms 8000ms,sortie 300ms 14900ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 8100ms">AFTER · FRENCH INTERFACE · SAMPLE DATA</p>
+  <div class="carte" style="animation:glisse-d 450ms 8000ms">
+    <div style="transform-origin:0 0;animation:zoom-kpi 900ms 9600ms"><img src="../../../../../assets/templates-stocks-tableau.webp" alt="" style="transform-origin:0 0;animation:zoom-droite 900ms 12300ms"></div>
+  </div>
+  <div class="s" style="animation:sortie 200ms 9500ms"><p class="st" style="animation:monte 400ms 8400ms">The tool opens on<br>what is missing.</p></div>
+  <div class="s" style="animation:sortie 200ms 12200ms"><p class="st" style="animation:monte 400ms 9800ms"><b>5 alerts.</b><br>1 out of stock, 4 below the minimum.</p></div>
+  <p class="st" style="animation:monte 400ms 12500ms"><b>€540</b> to reorder.<br><b>€101</b> of stock asleep.</p>
+</div>
+
+<!-- 4 · la liste à commander (15,1-20 s) -->
+<div class="s" style="animation:entree-fond 350ms 15000ms,sortie 300ms 19900ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 15100ms">FRENCH INTERFACE · SAMPLE DATA</p>
+  <div class="carte" style="animation:glisse-d 450ms 15000ms">
+    <img src="../../../../../assets/templates-stocks-commandes.webp" alt="" style="animation:zoom-cmd 900ms 16200ms">
+  </div>
+  <div class="s" style="animation:sortie 200ms 17400ms"><p class="st" style="animation:monte 400ms 15400ms">Then the order list,<br>by supplier.</p></div>
+  <p class="st" style="animation:monte 400ms 17600ms"><b>5 items</b>, 4 suppliers.<br>One click to copy each order.</p>
+</div>
+
+<!-- 5 · fin (20,1-25 s), encre -->
+<div class="s" style="animation:entree-fond 350ms 20000ms;background:var(--encre);color:var(--surface)">
+  <p class="x" style="top:560px;font-size:108px;animation:monte 500ms 20200ms">Want one built<br><mark>for your stock?</mark></p>
+  <p class="x" style="top:900px;font-size:56px;color:#D9D4C8;animation:monte 500ms 20800ms">Built in French. Custom tools for small businesses.</p>
+  <p class="x" style="top:1130px;font-size:72px;color:var(--jaune);animation:monte 500ms 21300ms">qm-engineering.fr/x</p>
+  <div class="signe" style="top:1360px;animation:monte 500ms 21700ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#FBFAF6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg><span>QME</span></div>
+</div>
+</body>
+</html>

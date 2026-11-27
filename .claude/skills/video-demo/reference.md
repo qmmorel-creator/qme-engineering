@@ -81,7 +81,7 @@ quand l'élément sort du champ.
   `eclat(sel, couleurs)` (formes qui jaillissent : bonne nouvelle), `secouer(id)` (mauvaise nouvelle),
   `retirer(id?)`.
 - Textes : `accroche(lignes, pas)` (`*mot*` surligné, `_` = espace insécable pour garder « 3_jours »
-  dans une seule pastille, ligne commençant par `!` : surlignage rouge), `accrocheSortie()`,
+  dans une seule pastille, ligne commençant par `!` : surlignage rouge, par `^` : surlignage bleu), `accrocheSortie()`,
   `question(texte)` (titre persistant en haut), `legende(html, pastille)` (`<b>` en jaune ; pastille
   « Cas 1 »…), `tampon(titre, sous, couleur, y = 1530)` (masque la légende le temps du verdict),
   `tamponFin()`, `fenetre(visible)`, `volet()`, `outro({titre, sous, url})`.

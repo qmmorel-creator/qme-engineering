@@ -1,0 +1,87 @@
+<!-- Carrousel IG-204 (jeudi 17/12/2026, 19:00) · Sur mesure · écrire dans un agenda partagé sans rien écraser. Pendant Instagram de LI-16 (Doc 1LyMQH4wYhZ5DtOwCUXyKldC-W51si4AOxS-H5i8ibSw) : seuls ses faits sont repris (relecture de l'événement et écriture avec sa version, calendriers « modifiable », aucune notification, suppression après le délai « Annuler » de 10 s, modification 1,5 s après le dernier geste, vingt invités prévenus pour un horaire corrigé). Aucune marque d'agenda nommée ; heures et numéros de version : exemple illustratif. Couleur dominante : jaune. Rendu : node docs/templates/communication/instagram/rendre.mjs production/IG-204.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-204</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.mk{background:var(--encre)!important;color:var(--jaune)!important}
+.evt{position:absolute;left:84px;right:84px;background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:26px 34px;display:flex;align-items:center;gap:28px}
+.evt .h{font-weight:800;font-size:54px;letter-spacing:-.03em;white-space:nowrap}
+.evt .t{font-weight:600;font-size:34px;line-height:1.25}
+.evt .t small{display:block;font-size:26px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texte-2)}
+.barre{text-decoration:line-through;text-decoration-thickness:6px;text-decoration-color:var(--rouge);opacity:.55}
+.etape{position:absolute;left:84px;right:84px;display:flex;gap:30px;align-items:flex-start}
+.etape i{flex:none;width:84px;height:84px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:48px;background:var(--jaune);color:var(--encre)}
+.etape p{font-size:40px;line-height:1.28;font-weight:500}
+.etape b{font-weight:800}
+.ligne{position:absolute;left:84px;right:84px;font-size:40px;line-height:1.3;font-weight:500;padding-left:52px}
+.ligne::before{content:"";position:absolute;left:0;top:16px;width:26px;height:26px;background:var(--encre)}
+.ligne b{font-weight:800}
+</style></head><body>
+<section class="cadre" id="IG-204-agenda-partage-1" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:-180px;top:-180px;width:420px;height:420px;border-radius:50%;background:var(--encre);opacity:.08"></div>
+<p class="sourcil" style="top:200px">Sur mesure · agenda partagé</p>
+<h1 style="top:260px;font-size:98px">Vous déplacez la réunion. L'outil, lui, remet <mark class="mk">l'ancienne heure</mark>.</h1>
+<div class="evt" style="top:800px"><span class="h">9:02</span><span class="t"><small>Vous</small>Réunion d'équipe : <span class="barre">10 h</span> → 14 h</span></div>
+<div class="evt" style="top:960px;background:var(--encre);color:var(--papier);box-shadow:14px 14px 0 var(--rouge)"><span class="h">9:02</span><span class="t"><small style="color:var(--jaune)">L'outil</small>Réunion d'équipe : 10 h</span></div>
+<p class="note" style="bottom:150px;color:var(--encre);opacity:.75">Exemple illustratif.</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+<section class="cadre" id="IG-204-agenda-partage-2" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">2 / 5</span>
+<div class="f" style="left:84px;top:200px;width:150px;height:150px;background:var(--jaune);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:420px;color:var(--texte-2)">Pourquoi personne ne l'a vu</p>
+<h2 style="top:480px;font-size:76px">En test, tout marche. Seul, rien ne bouge entre la lecture et l'écriture.</h2>
+<p class="p" style="top:800px">En équipe, un collègue modifie l'événement pendant que l'outil prépare sa modification. <b>C'est la version de l'outil qui gagne.</b></p>
+<div class="f" style="left:84px;right:84px;top:1040px;background:var(--encre);color:var(--papier);padding:28px 34px;font-size:36px;line-height:1.3;font-weight:600;box-shadow:14px 14px 0 var(--jaune)">L'autre coût classique : <b style="color:var(--jaune);font-weight:800">vingt invités prévenus</b> par mail pour un horaire corrigé.</div>
+</section>
+<section class="cadre" id="IG-204-agenda-partage-3" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">3 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--jaune)">La règle qui change tout</p>
+<h2 style="top:260px;font-size:80px">Écrire avec la <mark>version</mark> de l'événement.</h2>
+<div class="etape" style="top:530px"><i>1</i><p>Juste avant d'écrire, l'outil <b>relit l'événement</b> : version 7.</p></div>
+<div class="etape" style="top:700px"><i>2</i><p>Entre-temps, un collègue l'a déplacé : il passe en <b>version 8</b>.</p></div>
+<div class="etape" style="top:870px"><i style="background:var(--rouge);color:#fff">3</i><p>L'écriture porte la version 7 : l'agenda <b>refuse</b>. Rien n'est écrasé.</p></div>
+<p class="note" style="color:var(--trait)">Schéma illustratif : les numéros de version sont un exemple.</p>
+</section>
+<section class="cadre" id="IG-204-agenda-partage-4" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--texte-2)">Et trois garde-fous de plus</p>
+<h2 style="top:260px;font-size:80px">Ce que l'outil <mark>ne fait pas</mark> de lui-même.</h2>
+<p class="ligne" style="top:540px">Il ne modifie que les calendriers cochés <b style="white-space:nowrap">«&nbsp;modifiable&nbsp;»</b>. Les autres restent en lecture.</p>
+<p class="ligne" style="top:730px">Il ne notifie <b>jamais</b> les invités.</p>
+<p class="ligne" style="top:860px">Une suppression attend la fin du délai «&nbsp;Annuler&nbsp;» (<b>10&nbsp;secondes</b>). Une modification part <b>1,5&nbsp;seconde</b> après le dernier geste, pas à chaque frappe.</p>
+<p class="note">La même prudence vaut pour un CRM, une caisse ou un outil de facturation.</p>
+</section>
+<section class="cadre" id="IG-204-agenda-partage-5" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">5 / 5</span>
+<div class="f" style="right:0;bottom:0;width:300px;height:300px;background:var(--encre);border-top-left-radius:300px"></div>
+<p class="sourcil" style="top:200px">Avant « ça se connecte ? »</p>
+<h2 style="top:260px;font-size:84px">Que se passe-t-il quand deux personnes modifient la même chose&nbsp;?</h2>
+<p class="p" style="top:720px;font-weight:600">Pour toute intégration, c'est la question que je règle en premier.</p>
+<p class="p" style="top:870px;font-weight:800">Votre métier a ses règles&nbsp;?</p>
+<div class="bouton" style="top:980px">Parlons-en : lien en bio</div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>

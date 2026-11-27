@@ -1,0 +1,105 @@
+<!-- Carrousel IG-207 (mardi 22/12/2026, 19:00) · Sur mesure · pendant Instagram de LI-28 « La caméra thermique des dossiers oubliés » (Google Doc 1gECrN5nMSn90Sf0eudOAkZ4733TyJML3rdCVhM1Edm4, lu le 22/11/2026). Style : contre-intuition. Couleur dominante : jaune. Seuls les faits du Doc sont repris (échelle rouge / orange, jaune, beige : 2, 5, 9, 14 jours / bleu : 21, 30 jours / « gelée » ; chaleur par projet ; trois encarts ; tâche « sans trace » hachurée ; commerciaux, chargés d'affaires, associations). L'outil d'origine n'est ni nommé ni montré (outil personnel) : schémas et maquette en HTML, exemple illustratif, dossiers fictifs. Rendu : cd docs/templates/communication/instagram && node rendre.mjs production/IG-207.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-207</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89;
+--c0:#D9302A;--c2:#E8692A;--c5:#F5B400;--c9:#E9D9A6;--c14:#E6DFD0;--c21:#9DB4D2;--c30:#4F78AE;--cg:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.note{position:absolute;left:84px;right:330px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2);line-height:1.3}
+.illus{position:absolute;font-weight:700;font-size:28px;background:var(--encre);color:var(--papier);padding:8px 18px;letter-spacing:.02em;z-index:2}
+.marque{position:absolute;right:84px;bottom:84px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+/* échelle */
+.echelle{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:repeat(8,1fr);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre)}
+.echelle div{height:150px;border-right:3px solid var(--encre)}
+.echelle div:last-child{border-right:0}
+.reperes{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:repeat(8,1fr);font-weight:700;font-size:26px;text-align:center;line-height:1.2}
+.legende{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.legende div{background:var(--surface);border:5px solid var(--encre);padding:20px 22px;font-size:30px;font-weight:600;line-height:1.25}
+.legende b{display:block;font-size:34px;font-weight:800;margin-bottom:6px}
+.hachure{background:repeating-linear-gradient(45deg,var(--surface) 0 12px,#BDB6A6 12px 18px)}
+/* maquette */
+.maq{position:absolute;left:84px;right:84px;background:var(--surface);border:6px solid var(--encre);box-shadow:16px 16px 0 var(--jaune);padding:26px 28px}
+.maq .titre{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:34px;margin-bottom:18px}
+.maq .titre span{font-size:26px;font-weight:700;color:var(--texte-2)}
+.ligne{display:grid;grid-template-columns:1fr 210px;align-items:center;border-top:3px solid var(--trait);padding:12px 0;font-size:30px;font-weight:600}
+.ligne i{font-style:normal;display:block;text-align:center;font-weight:800;font-size:26px;padding:8px 0;border:3px solid var(--encre)}
+.encarts{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+.encarts div{border:5px solid var(--encre);padding:18px 20px;font-size:27px;font-weight:600;line-height:1.25;background:var(--surface)}
+.encarts b{display:block;font-size:30px;font-weight:800;margin-bottom:4px}
+</style></head><body>
+
+<section class="cadre" id="IG-207-dossiers-oublies-1" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:-140px;top:700px;width:480px;height:480px;border-radius:50%;background:var(--bleu);border:6px solid var(--encre)"></div>
+<div class="f" style="right:270px;top:1010px;width:150px;height:150px;background:var(--rouge);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:200px">Sur mesure · suivi des dossiers</p>
+<h1 style="top:260px;font-size:100px">Vos dossiers les plus dangereux ne sont <mark style="background:var(--encre);color:var(--jaune)">pas en retard</mark>.</h1>
+<p class="p" style="top:740px;right:440px;font-weight:600">Ce sont ceux que personne n'a touchés depuis trois semaines.</p>
+<p class="glisser">Faites glisser <span></span></p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+
+<section class="cadre" id="IG-207-dossiers-oublies-2" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">2 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--jaune)">Pourquoi on ne les voit pas</p>
+<h2 style="top:260px;font-size:84px">Pas en retard. Pas urgents. <span style="color:var(--jaune)">Ils dorment.</span></h2>
+<p class="p" style="top:560px">Aucun signal ne les annonce. Le retard se voit&nbsp;; le dossier qui dort, non. <b>Trois semaines sans une action</b>, en silence.</p>
+<div class="f" style="left:84px;top:900px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;right:84px;font-size:30px;font-weight:700;line-height:1.25">
+<div style="border:5px solid var(--papier);padding:20px">Le commercial et ses prospects</div>
+<div style="border:5px solid var(--papier);padding:20px">Le chargé d'affaires et ses dossiers</div>
+<div style="border:5px solid var(--papier);padding:20px">L'association et ses demandes de subvention</div></div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m" style="color:var(--rouge)">M</span><span class="e" style="color:var(--jaune)">E</span></span></div>
+</section>
+
+<section class="cadre" id="IG-207-dossiers-oublies-3" style="background:var(--papier)">
+<span class="compteur">3 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">La bascule</p>
+<h2 style="top:260px;font-size:76px">Colorer chaque tâche selon sa <mark>dernière action</mark>.</h2>
+<p class="p" style="top:460px;font-size:38px">Comme une caméra thermique&nbsp;: ce qui bouge est chaud, ce qui dort refroidit.</p>
+<span class="illus" style="right:110px;top:580px">Exemple illustratif</span>
+<div class="echelle" style="top:610px"><div style="background:var(--c0)"></div><div style="background:var(--c2)"></div><div style="background:var(--c5)"></div><div style="background:var(--c9)"></div><div style="background:var(--c14)"></div><div style="background:var(--c21)"></div><div style="background:var(--c30)"></div><div style="background:var(--cg)"></div></div>
+<div class="reperes" style="top:790px"><span>auj.</span><span>2 j</span><span>5 j</span><span>9 j</span><span>14 j</span><span>21 j</span><span>30 j</span><span>gelée</span></div>
+<div class="legende" style="top:880px"><div><b>Chaud</b>Rouge&nbsp;: une action aujourd'hui.</div><div><b>Tiède</b>Orange, jaune, beige&nbsp;: 2 à 14 jours.</div><div><b>Froid</b>Bleu&nbsp;: 21, 30 jours. Puis «&nbsp;gelée&nbsp;».</div></div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e" style="color:var(--jaune)">E</span></span></div>
+</section>
+
+<section class="cadre" id="IG-207-dossiers-oublies-4" style="background:var(--papier)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">Ce que l'outil dit</p>
+<h2 style="top:260px;font-size:68px">Trois encarts, et <mark>quoi faire</mark>.</h2>
+<span class="illus" style="right:110px;top:366px">Exemple illustratif</span>
+<div class="maq" style="top:396px">
+<div class="titre">Projet « Rénovation école » <span>chaleur&nbsp;: tiède</span></div>
+<div class="ligne">Devis du lot peinture<i style="background:var(--c0);color:#fff">auj.</i></div>
+<div class="ligne">Relance du fournisseur<i style="background:var(--c5)">5 j</i></div>
+<div class="ligne">Visite de réception<i style="background:var(--c14)">14 j</i></div>
+<div class="ligne">Dossier de subvention<i style="background:var(--c21)">21 j</i></div>
+<div class="ligne">Avenant au contrat<i class="hachure"><span style="background:var(--surface);padding:0 10px">sans trace</span></i></div>
+</div>
+<div class="encarts" style="top:966px"><div><b>Gèle sous 7 jours</b>Visite de réception</div><div><b>Points chauds</b>Devis du lot peinture</div><div><b>Gelés</b>À relancer ou à archiver</div></div>
+<p class="p" style="top:1138px;font-size:32px;right:330px;line-height:1.25">Sans action connue&nbsp;: <b>hachuré, «&nbsp;sans trace&nbsp;»</b>. Pas «&nbsp;gelé&nbsp;» par défaut.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e" style="color:var(--jaune)">E</span></span></div>
+</section>
+
+<section class="cadre" id="IG-207-dossiers-oublies-5" style="background:var(--jaune);color:var(--encre)">
+<span class="compteur">5 / 5</span>
+<div class="f" style="right:0;bottom:0;width:320px;height:320px;background:var(--bleu);border-top-left-radius:320px"></div>
+<p class="sourcil" style="top:200px">Sur mesure</p>
+<h2 style="top:260px;font-size:84px">Combien de vos dossiers dorment depuis trois semaines&nbsp;?</h2>
+<p class="p" style="top:640px;font-weight:600;right:84px">Pouvez-vous le dire sans chercher&nbsp;? Vos dossiers, vos délais, vos couleurs&nbsp;: je construis l'outil qui le montre.</p>
+<div class="f" style="left:84px;right:84px;top:920px;background:var(--encre);color:var(--papier);font-weight:800;font-size:46px;padding:26px 36px;box-shadow:14px 14px 0 var(--rouge);line-height:1.2">Votre métier a ses règles&nbsp;?<br><span style="color:var(--jaune)">Parlons-en&nbsp;: lien en bio.</span></div>
+<div class="marque" style="left:84px;right:auto"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>

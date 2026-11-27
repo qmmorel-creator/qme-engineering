@@ -228,9 +228,9 @@ produire par le skill `campagne-x` la veille au plus tard.
 | X-09 | 27/11/2026 | Post | Traduire ne suffit pas : 34 outils suivent des règles françaises | — |
 | X-10 | 28/11/2026 | Vidéo | « Your spreadsheet, as an app » : avant / après | Stocks |
 | X-11 | 29/11/2026 | Post | La méthode en 4 étapes | — |
-| X-12 | 30/11/2026 | Vidéo | « Snags, by contractor, with delays computed » | Levée de réserves |
+| X-12 | 30/11/2026 | Vidéo | « 3 snags overdue. The oldest: 11 days. » | Levée de réserves |
 | X-13 | 01/12/2026 | Post | Question aux freelances : que suivez-vous dans un tableur ? | — |
-| X-14 | 02/12/2026 | Vidéo | « How a custom tool starts » : la méthode en motion design | — |
+| X-14 | 02/12/2026 | Post | Conseil honnête : quand ne pas faire de sur-mesure (vidéo Méthode abandonnée : 3 vidéos sur 7 jours sinon, X-13 image la veille, thème méthode déjà le 29/11) | — |
 
 ### X-01 · 19/11 · post
 
@@ -318,6 +318,101 @@ Unpaid invoices? Time per client? Prospects to follow up?
 I built a tool for each of these (in French). Reply with yours, I'll tell you honestly if a custom tool is worth it.
 
 qm-engineering.fr/x
+```
+
+### X-14 · 02/12 · Post · conseil honnête · tableur qui déborde
+
+```
+Honest advice: you don't always need a custom tool.
+
+One person, a spreadsheet that does the job? Keep it.
+An existing app covers your needs? Buy it.
+
+Custom pays off when several people share the data, the rules get complex, or mistakes cost money.
+
+qm-engineering.fr/x
+```
+
+### X-15 · 20/11 · Image · coulisses · associations et clubs
+
+```
+When I built a volunteer tool for associations, the screen I cared most about was not the rota.
+
+It was this one: hours given per volunteer and per post. In the sample data, 6 of 22 volunteers give 38% of the hours.
+
+Spot that before they burn out.
+
+qm-engineering.fr/x
+```
+
+### X-16 · 03/12 · Image · erreur fréquente · planning et charge d'équipe
+
+```
+A common planning mistake: work assigned to someone who is on leave. In a spreadsheet, you see it on the day.
+
+My team planning tool flags it. Sample data, week of 16 Nov: a designer away with 21 h still assigned, support at 167%.
+
+Want one for your team? qm-engineering.fr/x
+```
+
+### X-04 · 22/11 · Vidéo · question directe · facturation et relances
+
+```
+Freelancers: who do you follow up today?
+
+If the answer lives in your inbox, invoices wait.
+
+I built a CRM that opens on today's follow-ups and what's left to collect. In the sample data: 5 follow-ups, €4,416 to collect.
+
+Want one built for your clients? qm-engineering.fr/x
+```
+
+### X-06 · 24/11 · Image (prévue en vidéo) · idée à contre-courant · planning et charge d'équipe
+
+```
+Most project plans watch the end date. The useful question is which tasks can move it.
+
+In my Gantt tool's sample plan, 9 of 14 tasks have no slack: one day late on any of them and the project slips.
+
+I build planning tools around how your team works.
+
+qm-engineering.fr/x
+```
+
+### X-08 · 26/11 · Image (prévue en vidéo) · avant / après · facturation et relances
+
+```
+Before: a shared spreadsheet and the same monthly question. Who owes what?
+
+After: one sentence. In my shared-expenses tool's sample data: "Sami owes Camille €309.89." One transfer settles it.
+
+Co-founders, partners, teams: what do you split by hand?
+
+qm-engineering.fr/x
+```
+
+### X-10 · 28/11 · Vidéo · erreur fréquente · tableur qui déborde
+
+```
+Out of stock? Often, a customer tells you first.
+
+A spreadsheet stores numbers. It doesn't warn you.
+
+I built a stock tool that opens on what's missing. Sample data: 5 alerts, 5 items to reorder for €540, grouped by supplier.
+
+Want one for your stock? qm-engineering.fr/x
+```
+
+### X-12 · 30/11 · Vidéo · chiffre vrai · maintenance et conformité
+
+```
+3 snags overdue after handover. The oldest: 11 days.
+
+Which contractor is holding up the site?
+
+I built a snag-list tool that computes delays by contractor. Sample data: 27 snags, 30% cleared, one printable report per contractor.
+
+Want one for your sites? qm-engineering.fr/x
 ```
 
 ### Vidéos : scénarios

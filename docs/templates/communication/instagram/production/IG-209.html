@@ -1,0 +1,83 @@
+<!-- Carrousel IG-209 (mardi 29/12/2026, 19:00) · Template Papiers du foyer · fin d'année, le tri. Chiffres lus dans la démo (http://localhost:8888/templates/papiers/?demo, foyer fictif « Famille Martin », capturée le 22/11/2026) : 34 documents, 7 peuvent être jetés (et 4 dans les 90 jours), 3 à renouveler dont 1 dépassée, 18 essentiels ; carte d'identité de Sacha expirée. Les dates de la démo sont relatives au jour de capture. Prix 15 € : catalogue/papiers/index.html. Captures : captures/IG-209-papiers-*.png (bandeau démo masqué). Couleur dominante : rouge. Rendu : node docs/templates/communication/instagram/rendre.mjs production/IG-209.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-209</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.marque.droite{left:auto;right:84px}
+.marque.clair .q{color:var(--papier)}
+mark.r{background:var(--rouge);color:#fff;padding:0 10px;white-space:nowrap}
+mark.b{background:var(--bleu);color:#fff;padding:0 10px;white-space:nowrap}
+.carte{position:absolute;left:84px;right:84px;background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre)}
+.carte img{display:block;width:100%}
+.fictif{position:absolute;right:84px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:26px;padding:8px 16px;border:4px solid var(--encre);z-index:3}
+.bareme{position:absolute;left:84px;right:84px;border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);background:var(--surface);border-collapse:collapse;font-size:36px}
+.bareme th{background:var(--encre);color:var(--papier);text-align:left;font-size:26px;letter-spacing:.1em;text-transform:uppercase;padding:18px 24px}
+.bareme td{padding:22px 24px;border-top:3px solid var(--trait);font-weight:600}
+.bareme td.n{text-align:right;font-weight:800;white-space:nowrap}
+.formule{position:absolute;left:84px;right:84px;background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--bleu);padding:34px 40px;font-size:40px;line-height:1.45;font-weight:600}
+.formule b{font-weight:800}
+</style></head><body>
+<section class="cadre" id="IG-209-papiers-tri-1" style="background:var(--rouge);color:#fff">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:0;bottom:0;border-right:520px solid var(--encre);border-top:520px solid transparent;width:0;height:0"></div>
+<div class="f" style="right:260px;bottom:320px;width:160px;height:160px;border-radius:50%;background:var(--jaune);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:200px;opacity:.9">Papiers du foyer · fin d'année</p>
+<h1 style="top:260px;font-size:100px">34 papiers gardés «&nbsp;au cas où&nbsp;». 7&nbsp;peuvent <mark>déjà partir</mark>.</h1>
+<p class="p" style="top:770px;right:200px">Lesquels&nbsp;? Et lequel a expiré sans que personne le voie&nbsp;?</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+<section class="cadre" id="IG-209-papiers-tri-2" style="background:var(--papier)">
+<span class="compteur">2 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Pendant ce temps</p>
+<h2 style="top:260px;font-size:76px">La carte d'identité de Sacha a <mark class="r">expiré</mark>.</h2>
+<div class="carte" style="top:520px"><img src="captures/IG-209-papiers-renouveler.png" alt=""></div>
+<p class="fictif" style="top:494px">Données fictives</p>
+<p class="p" style="top:860px"><b>3 papiers à renouveler</b>, dont 1 déjà dépassé. Et le délai pour en obtenir une nouvelle varie selon la période et la commune.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+<section class="cadre" id="IG-209-papiers-tri-3" style="background:var(--papier)">
+<span class="compteur">3 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Papiers du foyer</p>
+<h2 style="top:260px;font-size:76px">Tout le foyer sur <mark class="r">un écran</mark>.</h2>
+<div class="carte" style="top:460px"><img src="captures/IG-209-papiers-tableau.png" alt=""></div>
+<p class="fictif" style="top:434px">Données fictives</p>
+<p class="p" style="top:1010px;font-size:40px">Où est chaque papier, ce qui expire, ce qui peut partir. Une recherche suffit pour le retrouver.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+<section class="cadre" id="IG-209-papiers-tri-4" style="background:var(--papier)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Les 7 à trier</p>
+<h2 style="top:260px;font-size:76px">Chaque papier, avec la date où il <mark class="r">peut partir</mark>.</h2>
+<div class="carte" style="top:520px"><img src="captures/IG-209-papiers-a-jeter.png" alt=""></div>
+<p class="fictif" style="top:494px">Données fictives</p>
+<p class="p" style="top:1060px;font-size:38px">Durées tirées de service-public.gouv.fr. Rien n'est jeté sans vous.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+<section class="cadre" id="IG-209-papiers-tri-5" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">5 / 5</span>
+<div class="f" style="right:0;bottom:0;width:320px;height:320px;background:var(--rouge);border-top-left-radius:320px"></div>
+<h2 style="top:260px;font-size:92px">Faites le tri avant le&nbsp;31.</h2>
+<div class="bouton" style="top:520px;background:var(--rouge);color:#fff;box-shadow:14px 14px 0 var(--jaune);font-size:44px;right:84px">14 jours d'essai gratuit, sans carte bancaire · lien en bio</div>
+<p class="p" style="top:800px;font-weight:600">Puis achat unique : <b>15 €</b>. Vos données sont reprises.</p>
+<p class="p" style="top:960px;font-size:36px;opacity:.85;right:300px">Besoin de plus&nbsp;? Vos règles, vos outils : je le construis sur mesure.</p>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#1D4E89"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span><span style="color:var(--papier)">Q</span><span style="color:#fff">M</span><span style="color:var(--jaune)">E</span></span></div></section>
+</body></html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- Vidéo X-12 · 30/11/2026 · « 3 snags overdue. The oldest: 11 days. » (campagne X, anglais, sur mesure) ·
+     chiffre vrai · maintenance et conformité · template reserves (vues Réserves, Tableau de bord, PV ; données fictives).
+     Valeurs lues dans les captures assets/templates-reserves-*.webp : 3 en retard sur 19 en cours, plus ancien 11 jours,
+     27 réserves, 30 % levées, 5 entreprises, un document par entreprise (Imprimer ou PDF).
+     Couleur dominante : bleu (texte blanc). Motion design en musique, 1080 × 1920, 30 i/s, 27 s. Rendu, depuis la racine :
+       node docs/videos/rendu.mjs docs/templates/communication/x/production/X-12.html 27 300 --sortie docs/templates/communication/x/production/X-12-snags.mp4
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>X-12</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2')}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre)}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.nw{white-space:nowrap}
+mark{background:var(--bleu);color:#fff;padding:0 14px;white-space:nowrap}
+.f{position:absolute}
+.carte{position:absolute;left:84px;right:84px;top:600px;height:640px;overflow:hidden;border:6px solid var(--encre);border-radius:18px;box-shadow:20px 20px 0 var(--encre);background:var(--surface)}
+.carte img{width:900px;display:block;transform-origin:0 0}
+.bandeau{position:absolute;left:84px;top:470px;background:var(--bleu);color:#fff;font-weight:700;font-size:34px;padding:14px 24px;letter-spacing:.04em}
+.st{position:absolute;left:96px;right:96px;top:1310px;font-weight:800;font-size:76px;letter-spacing:-.025em;line-height:1.05}
+.st b{background:var(--bleu);color:#fff;padding:0 10px;white-space:nowrap}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:84px;height:84px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes glisse-d{from{transform:translateX(1100px)}to{transform:none}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* captures 1600 × 1000 affichées sur 900 px (× 0,5625) */
+@keyframes zoom-titre{from{transform:none}to{transform:translate(-50px,-110px) scale(1.6)}}
+@keyframes zoom-r001{from{transform:translate(-50px,-110px) scale(1.6)}to{transform:translate(-60px,-260px) scale(1.6)}}
+@keyframes zoom-barres{from{transform:none}to{transform:translate(-40px,-330px) scale(1.3)}}
+.tab{position:absolute;left:84px;right:84px;top:620px;border:4px solid #8F8A80;background:#fff;font-size:38px;font-family:Arial,sans-serif;color:#333}
+.tab div{display:grid;grid-template-columns:70px 1fr 190px;border-bottom:2px solid #C9C4BA}
+.tab span{padding:16px 14px;border-right:2px solid #C9C4BA;white-space:nowrap;overflow:hidden}
+.tab .h{background:#E4E1DA;font-weight:700}
+.tab .n{background:#EFEDE8;color:#888;text-align:center}
+.tab .q{color:#999}
+</style>
+</head>
+<body>
+<!-- 1 · accroche (0-3,6 s), fond bleu, texte blanc, affichée entière dès la première image -->
+<div class="s" style="animation:sortie 300ms 3500ms;background:var(--bleu);color:#fff">
+  <div class="f" style="right:-120px;top:250px;width:420px;height:420px;border-radius:50%;background:var(--jaune);animation:pop 600ms 0ms"></div>
+  <div class="f" style="left:96px;top:430px;width:140px;height:140px;background:var(--rouge);border:6px solid var(--encre);animation:pop 500ms 200ms"></div>
+  <p class="sourcil" style="top:700px">After the handover</p>
+  <p class="x" style="top:770px;font-size:118px"><span class="nw">3 snags overdue.</span><br>The oldest:<br><span style="background:var(--jaune);color:var(--encre);padding:0 14px;white-space:nowrap">11 days.</span></p>
+  <p class="x" style="top:1290px;font-size:58px;font-weight:700">Which contractor is holding<br>up the site?</p>
+</div>
+
+<!-- 2 · le problème : liste figée (3,6-8,4 s) -->
+<div class="s" style="animation:entree-fond 350ms 3600ms,sortie 300ms 8300ms;background:var(--papier)">
+  <p class="bandeau" style="background:var(--encre);animation:monte 400ms 3800ms">THE USUAL WAY · A SHARED LIST</p>
+  <div class="tab" style="animation:glisse-d 450ms 3700ms">
+    <div class="h"><span class="n"></span><span>Snag</span><span>Who</span></div>
+    <div><span class="n">2</span><span>Plaster crack, flat A12</span><span class="q">?</span></div>
+    <div><span class="n">3</span><span>Leak under kitchen sink</span><span class="q">?</span></div>
+    <div><span class="n">4</span><span>Cracked floor tile</span><span class="q">?</span></div>
+    <div><span class="n">5</span><span>Socket not working</span><span class="q">?</span></div>
+    <div><span class="n">6</span><span>Door does not close</span><span class="q">?</span></div>
+  </div>
+  <div class="s" style="animation:sortie 200ms 6100ms"><p class="st" style="top:1260px;animation:monte 400ms 4100ms">Emails. Photos.<br>No deadlines.</p></div>
+  <p class="st" style="top:1260px;animation:monte 400ms 6200ms">The fix: a deadline<br>on <b>every snag.</b></p>
+</div>
+
+<!-- 3 · vue Réserves (8,4-14,4 s) -->
+<div class="s" style="animation:entree-fond 350ms 8400ms,sortie 300ms 14300ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 8500ms">FRENCH INTERFACE · SAMPLE DATA</p>
+  <div class="carte" style="animation:glisse-d 450ms 8400ms">
+    <div style="transform-origin:0 0;animation:zoom-titre 900ms 9300ms"><img src="../../../../../assets/templates-reserves-reserves.webp" alt="" style="animation:none"></div>
+  </div>
+  <div class="s" style="animation:sortie 200ms 9200ms"><p class="st" style="animation:monte 400ms 8700ms">The tool computes<br>the delays.</p></div>
+  <div class="s" style="animation:sortie 200ms 11600ms"><p class="st" style="animation:monte 400ms 9400ms"><b>3 overdue</b><br>out of 19 open.</p></div>
+  <p class="st" style="animation:monte 400ms 11800ms">Each one flagged,<br>with its contractor.</p>
+</div>
+<!-- zoom sur la ligne R-001 (même carte, second plan) -->
+<div class="s" style="animation:apparait 1ms 11700ms;pointer-events:none"><div class="s" style="animation:sortie 300ms 14300ms">
+  <div class="carte" style="background:var(--surface)">
+    <div style="transform-origin:0 0;animation:zoom-r001 800ms 11700ms"><img src="../../../../../assets/templates-reserves-reserves.webp" alt=""></div>
+  </div>
+  <p class="bandeau">FRENCH INTERFACE · SAMPLE DATA</p>
+</div></div>
+
+<!-- 4 · Tableau de bord par entreprise (14,4-20,4 s) -->
+<div class="s" style="animation:entree-fond 350ms 14400ms,sortie 300ms 20300ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 14500ms">FRENCH INTERFACE · SAMPLE DATA</p>
+  <div class="carte" style="animation:glisse-d 450ms 14400ms">
+    <div style="transform-origin:0 0;animation:zoom-barres 900ms 17200ms"><img src="../../../../../assets/templates-reserves-bord.webp" alt=""></div>
+  </div>
+  <div class="s" style="animation:sortie 200ms 17100ms"><p class="st" style="animation:monte 400ms 14700ms"><b>27 snags.</b><br><b>30%</b> cleared so far.</p></div>
+  <p class="st" style="animation:monte 400ms 17300ms">By contractor:<br>who is late, at a glance.</p>
+</div>
+
+<!-- 5 · PV par entreprise (20,4-23,9 s) -->
+<div class="s" style="animation:entree-fond 350ms 20400ms,sortie 300ms 23800ms;background:var(--papier)">
+  <p class="bandeau" style="animation:monte 400ms 20500ms">FRENCH INTERFACE · SAMPLE DATA</p>
+  <div class="carte" style="animation:glisse-d 450ms 20400ms">
+    <img src="../../../../../assets/templates-reserves-pv.webp" alt="">
+  </div>
+  <p class="st" style="animation:monte 400ms 20700ms">One report per contractor.<br><b>Print or PDF.</b></p>
+</div>
+
+<!-- 6 · fin (23,9-27 s), encre -->
+<div class="s" style="animation:entree-fond 350ms 23900ms;background:var(--encre);color:var(--surface)">
+  <p class="x" style="top:560px;font-size:108px;animation:monte 500ms 24000ms">Want one built<br><mark>for your sites?</mark></p>
+  <p class="x" style="top:900px;font-size:56px;color:#D9D4C8;animation:monte 500ms 24500ms">Built in French. Custom tools for small businesses.</p>
+  <p class="x" style="top:1130px;font-size:72px;color:#7FA6D9;animation:monte 500ms 24900ms">qm-engineering.fr/x</p>
+  <div class="signe" style="top:1360px;animation:monte 500ms 25200ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#FBFAF6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg><span>QME</span></div>
+</div>
+</body>
+</html>

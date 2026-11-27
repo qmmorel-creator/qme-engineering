@@ -49,6 +49,8 @@ Lien en bio Instagram et TikTok : **à remplacer par `qm-engineering.fr/concours
 
 ## Boost (fait par Quentin dans les applications)
 
+> **Annulé par Quentin le 26/11/2026 (trop cher pour le moment)** : aucun boost ; la portée du concours est organique. Lien en bio et texte TikTok en place ; participation de test reçue dans Netlify le 26/11 à 08:50 (via le lien en bio Instagram) puis supprimée.
+
 - Une seule publication boostée : **le Reel de lancement IG-220**, dès sa mise en ligne.
 - **Budget validé par Quentin le 24/11/2026 : 10 € sur Instagram, 10 € sur TikTok.**
 - Instagram : 10 € sur 3 jours, objectif « plus de visites du profil », France, 22–55 ans, centres d'intérêt :

@@ -1,0 +1,82 @@
+<!-- Carrousel IG-205 (samedi 19/12/2026, 19:00) · Template · Carnet de voiture, avant le départ en vacances. Captures réelles de la démo http://localhost:8888/templates/voiture/?demo, voiture « Citadine essence », horloge du navigateur fixée au 18/12/2026 (la démo calcule ses données à partir du jour : c'est ce qu'un visiteur verra la veille de la publication) ; script : captures prises le 22/11/2026 (Playwright, page.clock.setFixedTime). Chiffres lus dans la démo : vidange en retard « date passée depuis 30 jours », contrôle technique au plus tard le 04/01/2027, pneus « encore 1 333 km » (onglet Entretiens), 2 361 € sur 12 mois, 197 € par mois, 0,23 € par km, énergie 1 355 € (1 355 / 12 = 112,9 → 113 € par mois). Prix 13 € : catalogue/voiture/index.html et voiture/gumroad.json (price_cents 1300). Couleur dominante : bleu. Rendu : node docs/templates/communication/instagram/rendre.mjs production/IG-205.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-205</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark{background:var(--jaune);color:var(--encre);padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.num{position:absolute;left:84px;top:200px;width:150px;height:150px;display:grid;place-items:center;font-weight:800;font-size:96px;background:var(--encre);color:var(--papier)}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.duo{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.duo div{background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);padding:30px 34px}
+.duo small{display:block;font-size:30px;font-weight:700;color:var(--texte-2);letter-spacing:.06em;text-transform:uppercase}
+.duo b{display:block;font-size:84px;font-weight:800;letter-spacing:-.03em;margin-top:10px;white-space:nowrap}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.capture{position:absolute;left:84px;right:84px;border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);background:var(--surface);overflow:hidden}
+.capture img{display:block;width:100%;margin-top:52px}
+.fictif{position:absolute;right:0;top:0;background:var(--encre);color:var(--papier);font-weight:700;font-size:26px;padding:10px 18px;letter-spacing:.04em}
+.q{position:absolute;left:84px;right:84px;display:flex;gap:28px;align-items:flex-start}
+.q i{flex:none;width:84px;height:84px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:48px;background:var(--bleu);color:#fff}
+.q p{font-size:42px;line-height:1.25;font-weight:700}
+.q p span{display:block;font-weight:500;color:var(--texte-2);font-style:italic}
+.liste{position:absolute;left:84px;right:84px;display:grid;gap:22px}
+.liste div{font-size:40px;font-weight:600;padding-left:52px;position:relative}
+.liste div::before{content:"";position:absolute;left:0;top:14px;width:26px;height:26px;background:var(--jaune)}
+.plus{position:absolute;left:84px;right:84px;background:var(--surface);color:var(--encre);border:6px solid var(--encre);padding:26px 34px;font-size:36px;line-height:1.35}
+.cta{position:absolute;left:84px;right:84px;top:990px;background:var(--jaune);color:var(--encre);box-shadow:14px 14px 0 var(--encre);display:flex;justify-content:space-between;align-items:center;padding:34px 44px}
+.cta b{font-size:56px;font-weight:800;letter-spacing:-.03em}.cta span{font-size:32px;font-weight:700}
+</style></head><body>
+<section class="cadre" id="IG-205-voiture-vacances-1" style="background:var(--bleu);color:#fff">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:-200px;bottom:-200px;width:640px;height:640px;border-radius:50%;background:var(--jaune)"></div>
+<div class="f" style="right:330px;bottom:300px;width:140px;height:140px;background:var(--rouge)"></div>
+<p class="sourcil" style="top:200px;opacity:.9">Avant de partir</p>
+<h1 style="top:260px;font-size:100px">Départ en vacances samedi. La vidange a <mark>30 jours de retard</mark>.</h1>
+<p class="p" style="top:800px;right:300px">Et ce n'est pas la seule chose qu'on vérifie de tête.</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+<section class="cadre" id="IG-205-voiture-vacances-2" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">2 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">La veille du départ</p>
+<h2 style="top:260px;font-size:80px">Trois questions, trois réponses <mark>au jugé</mark>.</h2>
+<div class="q" style="top:520px"><i>1</i><p>La dernière vidange&nbsp;?<span>« L'an dernier, je crois. »</span></p></div>
+<div class="q" style="top:700px"><i>2</i><p>Le contrôle technique&nbsp;?<span>« C'est l'an prochain. »</span></p></div>
+<div class="q" style="top:880px"><i>3</i><p>Ce que coûte la voiture&nbsp;?<span>« Surtout l'essence. »</span></p></div>
+<p class="p" style="top:1110px;font-size:40px;font-weight:700">Les vraies réponses, lues dans la démo : vue suivante.</p>
+</section>
+<section class="cadre" id="IG-205-voiture-vacances-3" style="background:var(--papier);color:var(--encre)">
+<span class="compteur" style="color:#fff">3 / 5</span>
+<div class="f" style="left:0;right:0;top:0;height:450px;background:var(--bleu)"></div>
+<p class="sourcil" style="top:200px;color:#fff;opacity:.9">Carnet de voiture · réponses 1 et 2</p>
+<h2 style="top:255px;font-size:60px;color:#fff;right:84px">Vidange en retard. Contrôle technique au plus tard le 4&nbsp;janvier.</h2>
+<div class="capture" style="top:490px;left:190px;right:190px"><img src="captures/IG-205-a-faire.png" alt=""><span class="fictif">Données fictives</span></div>
+<p class="note" style="bottom:84px">À la date ou au kilométrage, la première atteinte compte. Et les pneus&nbsp;? Encore 1&nbsp;333&nbsp;km.</p>
+</section>
+<section class="cadre" id="IG-205-voiture-vacances-4" style="background:var(--papier);color:var(--encre)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--bleu)">Réponse 3 · le coût réel</p>
+<h2 style="top:260px;font-size:72px">197&nbsp;€ par mois. L'essence n'en fait que <mark>113&nbsp;€</mark>.</h2>
+<div class="capture" style="top:470px"><img src="captures/IG-205-cout.png" alt=""><span class="fictif">Données fictives</span></div>
+<p class="note" style="bottom:84px">Démo, citadine essence, 12 derniers mois : énergie 1&nbsp;355&nbsp;€, soit 113&nbsp;€ par mois. Assurance, entretien, réparations, péages : le reste.</p>
+</section>
+<section class="cadre" id="IG-205-voiture-vacances-5" style="background:var(--bleu);color:#fff">
+<span class="compteur">5 / 5</span>
+<h2 style="top:220px;font-size:96px">Essayez-le 14&nbsp;jours, gratuitement.</h2>
+<div class="liste" style="top:470px"><div>Sans carte bancaire, avec vos données</div><div>Ordinateur, tablette, téléphone</div><div>Si vous achetez, tout est repris</div></div>
+<div class="plus" style="top:760px"><b>Besoin de plus ?</b> Vos règles, votre métier, vos outils : <b>je le construis sur mesure.</b></div>
+<div class="cta"><b>Lien en bio</b><span>Essai gratuit · puis 13&nbsp;€, achat unique</span></div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m" style="color:var(--jaune)">M</span><span class="e" style="color:var(--surface)">E</span></span></div></section>
+</body></html>

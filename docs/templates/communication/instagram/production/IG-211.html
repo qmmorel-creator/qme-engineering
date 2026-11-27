@@ -1,0 +1,107 @@
+<!doctype html>
+<!-- Reel du soir IG-211 / YT-67 · « 264 200 € empruntés, 38 703 € d'écart » (Capacité d'emprunt et comparateur de prêts).
+     Angle : chiffre-choc suivi de sa cause (coût total du crédit, pas la mensualité). Couleur dominante : bleu
+     (publication Instagram précédente, IG-12 du 04/12 à 19:00 : jaune).
+     Script : accroche (même projet, 264 200 € empruntés, 38 703 € d'écart entre deux offres), boucle ouverte (où passe
+     cet argent ?), le calcul (banque du quartier contre courtier : + 24 517 € d'intérêts, 3 ans de plus ; + 15 286 €
+     d'assurance sur capital initial ; − 1 100 € de frais ; pour 60,11 € de moins par mois), capture des offres
+     (la mensualité la plus basse finit 2e, + 23 759 €), capture du graphique du coût (assurance 22 458 € contre 7 172 €),
+     réponse : comparez le coût total, pas la mensualité ; fin « Capacité d'emprunt · démo gratuite · qm-engineering.fr »,
+     essai gratuit 14 jours, « ne remplace pas un avis professionnel ».
+     Chiffres lus dans la démo (?demo, onglet Offres, 23/11/2026) et recalculés avec R.calculerOffre
+     (templates/emprunt/regles.js) : coûts totaux 156 730,62 € / 141 786,16 € / 118 027,61 € ; écart 38 703,01 € ;
+     intérêts 130 472,62 € / 105 955,25 € (écart 24 517,37 €) ; assurance 22 458,00 € / 7 172,36 € (écart 15 285,64 €) ;
+     frais 3 800 € / 4 900 € ; mensualités 1 390,43 € / 1 450,54 € (écart 60,11 €). Données fictives, aucune banque réelle.
+     Captures : IG-211-captures.cjs (Playwright, viewport 430 px, dpr 2, bandeau démo, onglets et fenêtres masqués).
+     Motion design avec musique QME, 1080 × 1920, 30 i/s, 26,5 s. Rendu, depuis docs/templates/communication/instagram :
+       node video.mjs production/IG-211.html 26.5 11500
+       puis png/IG-211.mp4 → png/IG-211-emprunt.mp4 et png/IG-211-couverture.png → png/IG-211-emprunt-couverture.png
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-211</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:96px;right:96px;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.sourcil{position:absolute;left:96px;right:96px;font-weight:700;font-size:32px;letter-spacing:.14em;text-transform:uppercase}
+mark{background:var(--bleu);color:var(--surface);padding:0 12px;white-space:nowrap}
+.f{position:absolute}
+.bouton{position:absolute;left:96px;background:var(--encre);color:var(--papier);font-weight:800;font-size:60px;padding:28px 44px;box-shadow:16px 16px 0 var(--jaune);letter-spacing:-.025em}
+.signe{position:absolute;left:96px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em;color:var(--surface)}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--jaune)}.signe .e{color:var(--surface)}
+.site{position:absolute;right:96px;font-weight:700;font-size:34px;color:var(--surface)}
+.carte{position:absolute;left:84px;right:84px;overflow:hidden;border:6px solid var(--encre);box-shadow:20px 20px 0 var(--jaune);background:var(--surface)}
+.carte img{width:100%;display:block}
+.note{position:absolute;left:96px;right:96px;font-size:28px;font-weight:600;color:var(--texte-2)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glisse-g{from{transform:translateX(-900px)}to{transform:none}}
+@keyframes glisse-d{from{transform:translateX(900px)}to{transform:none}}
+@keyframes defile{from{transform:translateY(0)}to{transform:translateY(-2200px)}}
+
+.ligne{position:absolute;left:96px;right:96px}
+.ligne b{display:block;font-size:104px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--papier)}
+.ligne span{display:block;margin-top:8px;font-size:38px;font-weight:600;line-height:1.2;color:var(--trait)}
+</style>
+</head>
+<body>
+<div class="s" id="s1" style="animation:sortie 300ms 3500ms;background:var(--bleu);color:var(--surface)">
+  <div class="f" style="right:-120px;top:120px;width:420px;height:420px;border-radius:50%;background:var(--jaune);animation:pop 600ms 0ms"></div>
+  <div class="f" style="right:230px;top:430px;width:120px;height:120px;background:var(--rouge);border:6px solid var(--encre);animation:pop 500ms 250ms"></div>
+  <div class="f" style="left:0;bottom:0;width:420px;height:420px;background:var(--encre);border-top-right-radius:420px;animation:glisse-g 700ms 100ms"></div>
+  <!-- Accroche visible dès la première image : aucune animation d'entrée sur le texte. -->
+  <p class="sourcil" style="top:600px;color:var(--jaune)">Crédit immobilier · exemple fictif</p>
+  <p class="x" style="top:660px;font-size:100px;line-height:1.16">264 200 € empruntés. Même projet, <span style="background:var(--surface);color:var(--bleu);padding:0 12px;white-space:nowrap">38 703 €</span> d'écart.</p>
+  <p class="x" style="top:1180px;font-size:58px;font-weight:700;line-height:1.15">Entre deux offres de prêt. Où passe cet argent ?</p>
+</div>
+
+<div class="s" id="s2" style="animation:entree-fond 350ms 3800ms,sortie 300ms 9700ms;background:var(--encre);color:var(--papier)">
+  <p class="sourcil" style="top:300px;color:var(--jaune);animation:monte 500ms 3900ms">Quartier contre courtier · fictif</p>
+  <div class="ligne" style="top:380px;animation:monte 500ms 4100ms"><b>+ 24 517 €</b><span>d'intérêts : 25 ans au lieu de 22</span></div>
+  <div class="ligne" style="top:580px;animation:monte 500ms 5100ms"><b>+ 15 286 €</b><span>d'assurance, calculée sur le capital initial</span></div>
+  <div class="ligne" style="top:780px;animation:monte 500ms 6100ms"><b>− 1 100 €</b><span>de frais de dossier et de garantie</span></div>
+  <div class="f" style="left:96px;top:1010px;width:888px;height:8px;background:var(--bleu);transform-origin:left;animation:largeur 500ms 7200ms"></div>
+  <p class="x" style="top:1060px;font-size:92px;animation:monte 500ms 7400ms"><mark>38 703 €</mark><br>de plus au total.</p>
+  <p class="note" style="top:1360px;color:var(--trait);font-size:40px;animation:monte 500ms 8000ms">Pour 60,11 € de moins par mois.</p>
+</div>
+
+<div class="s" id="s3" style="animation:entree-fond 350ms 10000ms,sortie 300ms 14700ms;">
+  <p class="sourcil" style="top:270px;color:var(--bleu);animation:monte 500ms 10100ms">Capacité d'emprunt · Offres</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 10200ms">Le coût total, offre par offre.</p>
+  <div class="carte" style="top:420px;left:150px;right:150px;animation:monte 500ms 10400ms"><img src="captures/emprunt-offres.webp" alt=""></div>
+  <p class="note" style="top:1422px;animation:monte 500ms 10600ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1466px;font-size:44px;font-weight:700;line-height:1.25;animation:monte 500ms 11600ms">La mensualité la plus basse finit <span style="background:var(--bleu);color:var(--surface);padding:0 10px;white-space:nowrap">2e, + 23 759 €</span>.</p>
+</div>
+
+<div class="s" id="s4" style="animation:entree-fond 350ms 15000ms,sortie 300ms 19700ms;">
+  <p class="sourcil" style="top:270px;color:var(--bleu);animation:monte 500ms 15100ms">Ce que coûte chaque offre</p>
+  <p class="x" style="top:325px;font-size:56px;animation:monte 500ms 15200ms">Intérêts, assurance, frais : tout compté.</p>
+  <div class="carte" style="top:520px;left:120px;right:120px;animation:monte 500ms 15400ms"><img src="captures/emprunt-graphique.webp" alt=""></div>
+  <p class="note" style="top:1260px;animation:monte 500ms 15600ms">Capture de la démo · données fictives</p>
+  <p class="x" style="top:1320px;font-size:50px;font-weight:800;line-height:1.2;animation:monte 500ms 16600ms">Assurance sur la durée :<br><mark>22 458 €</mark> contre 7 172 €.</p>
+</div>
+
+<div class="s" id="s5" style="animation:entree-fond 350ms 20000ms;background:var(--bleu);color:var(--surface)">
+  <p class="x" style="top:380px;font-size:96px;animation:monte 500ms 20100ms">Comparez le coût total, pas la mensualité.</p>
+  <p class="x" style="top:800px;font-size:52px;font-weight:600;line-height:1.2;animation:monte 500ms 20500ms">Capacité d'emprunt et comparateur de prêts · <b>démo gratuite</b> · <span style="white-space:nowrap">qm-engineering.fr</span></p>
+  <div class="bouton" style="top:1120px;animation:pop 450ms 21000ms">14 jours d'essai gratuit</div>
+  <p class="note" style="top:1290px;color:var(--papier);animation:monte 400ms 21300ms">Simulation : ne remplace pas un avis professionnel.</p>
+  <div class="signe" style="top:1400px;animation:monte 400ms 21500ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#F5B400"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+  <p class="site" style="top:1424px;animation:monte 400ms 21600ms">qm-engineering.fr</p>
+</div>
+<script>
+window.placer=(ms)=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms;});};
+</script>
+</body>
+</html>

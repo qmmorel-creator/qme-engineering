@@ -1,0 +1,80 @@
+<!-- Carrousel IG-200 (mardi 01/12/2026, 19:00) · Sur mesure · Une automatisation qu'on teste avant de l'allumer. Pendant Instagram de LI-09 (Google Doc 1_FY-7l8BA4Hf7hdDBcA6XEGLoi9sFT1AEMwRFZyU55c) : seuls ses faits sont repris (règle écrite comme une phrase, 3 déclencheurs et 3 actions, simulation sur les 30 derniers jours, pas d'effet rétroactif, plafond de 20 actions par jour, annulation, clé unique par exécution). Maquettes : exemple illustratif, aucune capture d'outil. Couleur dominante : rouge. Rendu : cd docs/templates/communication/instagram && node rendre.mjs production/IG-200.html -->
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Carrousel IG-200</title><style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--trait:#D9D4C8;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Outfit,system-ui,sans-serif;color:var(--encre);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start;font-variant-numeric:tabular-nums}
+.cadre{position:relative;overflow:hidden;flex:none;width:1080px;height:1350px;background:var(--papier)}
+.compteur{position:absolute;right:84px;top:84px;font-weight:700;font-size:30px;border:4px solid currentColor;padding:8px 16px;z-index:3}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h1 mark,h2 mark,.p mark{padding:0 10px;white-space:nowrap}
+.p{position:absolute;left:84px;right:84px;font-size:44px;line-height:1.3;font-weight:500}
+.p b{font-weight:800}
+.f{position:absolute}
+.glisser{position:absolute;left:84px;bottom:84px;font-weight:700;font-size:32px;display:flex;align-items:center;gap:16px;z-index:3}
+.glisser span{display:inline-block;width:80px;height:6px;background:currentColor;position:relative}
+.glisser span::after{content:"";position:absolute;right:-4px;top:-12px;border-left:22px solid currentColor;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.note{position:absolute;left:84px;right:84px;bottom:84px;font-size:26px;font-weight:600;color:var(--texte-2)}
+.marque{position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.03em}
+.marque svg{width:52px;height:52px}.marque .m{color:var(--bleu)}.marque .e{color:var(--rouge)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--papier);font-weight:800;font-size:52px;padding:24px 40px;box-shadow:14px 14px 0 var(--rouge)}
+.carte{position:absolute;left:84px;right:84px;background:var(--surface);border:6px solid var(--encre);box-shadow:14px 14px 0 var(--encre);color:var(--encre)}
+.tache{display:flex;align-items:center;gap:22px;padding:22px 30px;border-bottom:4px solid var(--trait);font-size:38px;font-weight:600}
+.tache:last-child{border-bottom:0}
+.tache i{flex:none;width:34px;height:34px;border:5px solid var(--encre)}
+.tache em{margin-left:auto;font-style:normal;font-size:26px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--rouge);color:#fff;padding:6px 14px}
+.phrase{font-size:50px;line-height:1.45;font-weight:600;padding:44px 48px}
+.phrase u{text-decoration:none;border-bottom:7px solid var(--rouge);font-weight:800}
+.gf{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:96px 1fr;gap:26px;align-items:start}
+.gf b{display:grid;place-items:center;width:96px;height:96px;background:var(--rouge);color:#fff;font-size:56px;font-weight:800}
+.gf p{font-size:38px;line-height:1.28;font-weight:500}.gf p strong{font-weight:800}
+</style></head><body>
+<section class="cadre" id="IG-200-tester-automatisation-1" style="background:var(--rouge);color:#fff">
+<span class="compteur">1 / 5</span>
+<div class="f" style="right:0;bottom:0;width:440px;height:440px;background:var(--encre);border-top-left-radius:440px"></div>
+<div class="f" style="right:250px;bottom:300px;width:150px;height:150px;background:var(--jaune);border:6px solid var(--encre)"></div>
+<p class="sourcil" style="top:200px;opacity:.9">Sur mesure · automatisations</p>
+<h1 style="top:260px;font-size:96px">Une automatisation allumée sans test, et les tâches se créent <mark style="background:var(--encre);color:#fff">en double</mark>.</h1>
+<p class="p" style="top:760px;right:420px">Des statuts changent. Personne ne sait pourquoi.</p>
+<p class="glisser">Faites glisser <span></span></p></section>
+<section class="cadre" id="IG-200-tester-automatisation-2" style="background:var(--encre);color:var(--papier)">
+<span class="compteur">2 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Lundi matin</p>
+<h2 style="top:260px;font-size:76px">Le plus long n'est pas de réparer. C'est de <mark style="background:var(--rouge);color:#fff">comprendre</mark>.</h2>
+<div class="carte" style="top:560px">
+<div class="tache"><i></i>Écrire le CR · réunion chantier<em>double</em></div>
+<div class="tache"><i></i>Écrire le CR · réunion chantier<em>double</em></div>
+<div class="tache"><i></i>Écrire le CR · réunion chantier<em>double</em></div>
+<div class="tache"><i></i>Statut : Réalisée → En attente<em>qui ?</em></div>
+</div>
+<p class="p" style="top:1000px;font-size:40px">Qu'a fait la règle, sur quoi, et comment revenir en arrière ?</p>
+<p class="note" style="color:inherit;opacity:.75">Exemple illustratif.</p></section>
+<section class="cadre" id="IG-200-tester-automatisation-3" style="background:var(--papier)">
+<span class="compteur">3 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">La règle</p>
+<h2 style="top:260px;font-size:80px">Une automatisation qui se lit <mark style="background:var(--rouge);color:#fff">comme une phrase</mark>.</h2>
+<div class="carte" style="top:520px"><p class="phrase">Quand une réunion passe à <u>Réalisée</u> sans compte rendu depuis <u>24&nbsp;h</u>, alors créer la tâche <u>« Écrire le CR »</u>, échéance <u>le lendemain</u>, <u>urgente</u>.</p></div>
+<p class="p" style="top:1040px;font-size:40px">Chaque mot souligné se modifie. <b>Trois déclencheurs, trois actions</b> : peu de choix, volontairement.</p>
+<p class="note">Exemple illustratif.</p></section>
+<section class="cadre" id="IG-200-tester-automatisation-4" style="background:var(--papier)">
+<span class="compteur">4 / 5</span>
+<p class="sourcil" style="top:200px;color:var(--rouge)">Avant de l'allumer</p>
+<h2 style="top:260px;font-size:80px">Quatre garde-fous.</h2>
+<div class="gf" style="top:420px"><b>1</b><p><strong>Simulation</strong> : la règle montre ce qu'elle aurait fait sur les 30 derniers jours, sans rien écrire.</p></div>
+<div class="gf" style="top:590px"><b>2</b><p><strong>Pas d'effet rétroactif</strong> : seuls les déclenchements après l'activation comptent.</p></div>
+<div class="gf" style="top:760px"><b>3</b><p><strong>Un plafond</strong> de 20 actions par jour, toutes règles confondues.</p></div>
+<div class="gf" style="top:930px"><b>4</b><p><strong>Tout s'annule</strong> : une tâche créée est archivée, une tâche modifiée retrouve ses valeurs.</p></div>
+<p class="p" style="top:1110px;font-size:34px;font-weight:600">Et une clé unique par exécution : jamais deux fois sur la même tâche.</p>
+</section>
+<section class="cadre" id="IG-200-tester-automatisation-5" style="background:var(--papier)">
+<span class="compteur">5 / 5</span>
+<div class="f" style="right:0;top:0;width:360px;height:360px;background:var(--rouge);border-bottom-left-radius:360px"></div>
+<div class="f" style="right:84px;bottom:84px;width:0;height:0;border-left:200px solid transparent;border-bottom:200px solid var(--encre)"></div>
+<h2 style="top:300px;font-size:68px;right:160px">Avant de demander ce qu'une automatisation sait faire, demandez comment <mark style="background:var(--rouge);color:#fff">on revient</mark> en arrière.</h2>
+<p class="p" style="top:800px;font-weight:700;font-size:52px">Votre métier a ses règles&nbsp;?</p>
+<div class="bouton" style="top:920px">Parlons-en : lien en bio.</div>
+<div class="marque"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F5B400"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div></section>
+</body></html>
