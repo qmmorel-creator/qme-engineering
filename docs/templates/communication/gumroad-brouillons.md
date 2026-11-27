@@ -337,6 +337,6 @@ bouton « Ouvrir mon pack ». Aucune couverture : pas d'image `packs-<slug>-couv
 
 | Code | Produit | Identifiant Gumroad | Permalien | Prix | Statut |
 |------|---------|---------------------|-----------|------|--------|
-| PNS | Pack Écoles et formateurs | ShSmzOm_zm-_El2YWLbgYg== | /l/pack-enseignant | 111 € | brouillon, clé à activer |
-| PFA | Pack Maison et famille | 99eGWGaue9QqJFk_Rh_4SA== | /l/pack-famille | 67 € | brouillon, clé à activer |
-| PAR | Pack Papiers et décisions d’argent | M6p4-RqavJe9FM9mxSsokw== | /l/pack-argent | 60 € | brouillon, clé à activer |
+| PNS | Pack Écoles et formateurs | ShSmzOm_zm-_El2YWLbgYg== | /l/pack-enseignant | 111 € | **en vente** (27/11/2026) |
+| PFA | Pack Maison et famille | 99eGWGaue9QqJFk_Rh_4SA== | /l/pack-famille | 67 € | **en vente** (27/11/2026) |
+| PAR | Pack Papiers et décisions d’argent | M6p4-RqavJe9FM9mxSsokw== | /l/pack-argent | 60 € | **en vente** (27/11/2026) |
