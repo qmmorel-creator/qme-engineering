@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les écoles hors contrat · QME</title>
+<meta name="description" content="Pack Écoles et formateurs prêt à l'emploi pour les écoles privées hors contrat et les centres de soutien scolaire : notes, compétences et bulletins, progression par classe, banque de questions et quiz, emploi du temps des classes et des salles. Adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0 0 14px;padding:0}
+.sec .txt a{font-weight:600}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+.tarifs{list-style:none;margin:0 0 18px;padding:0}.tarifs li{display:flex;justify-content:space-between;gap:12px}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-haut" data-goatcounter-title="Concept écoles hors contrat : démo (haut)">Ouvrir la démo</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les écoles hors contrat et le soutien scolaire · pack prêt à l'emploi</p>
+    <h1>Les notes, les bulletins et l'emploi du temps, au même endroit.</h1>
+    <p class="lede">Quatre outils en ligne déjà prêts pour les écoles privées hors contrat, du primaire au lycée, et les centres de soutien scolaire indépendants : le carnet de notes qui calcule les moyennes et prépare les bulletins, la progression de chaque classe sur l'année, une banque de questions qui génère les quiz, et l'emploi du temps des classes, des enseignants et des salles. Ils s'utilisent tels quels dès le premier jour, et je peux les adapter sur mesure à votre école.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo" data-goatcounter-title="Concept écoles hors contrat : démo">Essayer la démo</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20%C3%A9coles%20hors%20contrat%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-ecoles-hors-contrat-contact" data-goatcounter-title="Concept écoles hors contrat : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">Chaque démo s'ouvre sans inscription sur des données fictives (classes, élèves désignés par un prénom et une initiale, enseignants, salles) et reste dans votre navigateur. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Un tableur de notes par enseignant, des appréciations recopiées à la main dans chaque bulletin, une progression dans un classeur et un emploi du temps refait à chaque changement de salle.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Des moyennes recalculées le soir du conseil de classe, un coefficient oublié, un chapitre qui prend trois semaines de retard sans que personne ne le voie, une salle donnée à deux classes.</p></div>
+    <div><h2>Ce que fait l'outil</h2><p>Il calcule moyennes et bilans de compétences, compose les bulletins, compare la progression prévue au réalisé et signale chaque conflit d'enseignant ou de salle à la saisie.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Notes</p><h2>Le carnet de notes qui calcule seul</h2><p>Chaque note ramenée sur 20 et pondérée par son coefficient ; absences et dispenses exclues.</p>
+      <ul><li>Moyenne, médiane, plus basse et plus haute de la classe</li><li>Évaluations bonus qui ne comptent que si elles font monter la moyenne</li><li>Notes manquantes et évaluations en retard signalées</li></ul>
+      <p><a href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-notes" data-goatcounter-title="Concept écoles hors contrat : démo notes">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Notes · démo</span></div><img src="notes.webp" width="1600" height="813" alt="Carnet de notes d'une classe fictive : moyennes de classe, médiane, évaluations avec barème et coefficient, moyenne par élève"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Compétences</p><h2>Les compétences positionnées sur quatre échelons</h2><p>Chaque compétence rattachée à une évaluation ; le bilan de la période se calcule seul.</p>
+      <ul><li>Référentiel repris du socle commun ou construit par vous</li><li>De « maîtrise insuffisante » à « très bonne maîtrise »</li><li>Bilan par élève et par domaine sur la période</li></ul>
+      <p><a href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-competences" data-goatcounter-title="Concept écoles hors contrat : démo competences">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Compétences · démo</span></div><img src="competences.webp" width="1600" height="813" alt="Tableau des compétences d'une classe fictive : domaines du socle en colonnes, positionnement de 1 à 4 par élève" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Bulletins</p><h2>Des appréciations rédigées plus vite, un bulletin prêt à imprimer</h2><p>Une banque de phrases pour composer l'appréciation, puis modifiable librement.</p>
+      <ul><li>Avancement : « 15 / 24 appréciations rédigées »</li><li>Bulletin avec moyenne, évaluations, compétences et appréciation</li><li>Impression de toute la classe en une fois</li></ul>
+      <p><a href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-bulletins" data-goatcounter-title="Concept écoles hors contrat : démo bulletins">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Bulletins · démo</span></div><img src="bulletins.webp" width="1600" height="813" alt="Vue des bulletins d'une classe fictive : moyenne et appréciation de chaque élève, appréciations à rédiger signalées" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Progression</p><h2>La progression de chaque classe, prévu face au réalisé</h2><p>Séquences et séances planifiées sur l'année, vacances comprises.</p>
+      <ul><li>Frise de l'année : prévu, réalisé et fin projetée</li><li>Retard d'une séquence visible avant la fin du trimestre</li><li>Une progression par classe et par matière</li></ul>
+      <p><a href="/templates/progression/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-progression" data-goatcounter-title="Concept écoles hors contrat : démo progression">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Progression · démo</span></div><img src="progression.webp" width="1600" height="813" alt="Frise annuelle d'une classe fictive : séquences prévues, réalisées et projetées, vacances et fenêtres de fin" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Quiz</p><h2>Une banque de questions qui génère les quiz</h2><p>QCM, vrai ou faux et réponses courtes, étiquetés par thème et par difficulté.</p>
+      <ul><li>Quiz tiré de la banque, sujet et corrigé imprimés</li><li>Taux de réussite réel de chaque question</li><li>Corrections, puis réussite par question et par étiquette</li></ul>
+      <p><a href="/templates/quiz/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-quiz" data-goatcounter-title="Concept écoles hors contrat : démo quiz">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Quiz · démo</span></div><img src="quiz.webp" width="1600" height="813" alt="Quiz généré depuis la banque de questions : dix questions, durée, répartition par difficulté et par étiquette" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Emploi du temps</p><h2>Les classes, les enseignants et les salles, sans conflit</h2><p>Vue semaine par classe, par enseignant ou par salle ; vue jour sur téléphone.</p>
+      <ul><li>Enseignant, salle ou classe pris deux fois au même moment : signalé avant d'enregistrer</li><li>Capacité des salles, disponibilités et absences des enseignants</li><li>Heures réalisées par classe et par matière, comparées au volume prévu</li></ul>
+      <p><a href="/templates/emploi-du-temps/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-edt" data-goatcounter-title="Concept écoles hors contrat : démo edt">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Emploi du temps · démo</span></div><img src="emploi-du-temps.webp" width="1600" height="813" alt="Planning de la semaine d'un établissement fictif : séances par jour et par créneau, conflits encadrés de rouge" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, sur ordinateur, tablette ou téléphone, avec une seule clé, et vos données sont synchronisées. Achat unique, sans abonnement ni renouvellement. Chaque outil s'essaie 14 jours, sans carte bancaire.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack « Écoles et formateurs »</h3>
+      <p class="prix">111 € au lieu de 149 €, achat unique</p>
+      <ul><li>Gestion de classe, progression pédagogique, banque de questions et quiz, emploi du temps d'établissement</li><li>Le pack comprend aussi un outil de gestion d'auto-école, qui ne vous servira pas</li><li>Les outils ajoutés plus tard au pack inclus, sans supplément</li></ul>
+      <p class="prix">Ou chaque outil seul</p>
+      <ul class="tarifs"><li><span>Progression pédagogique</span><b>15 €</b></li><li><span>Banque de questions et quiz</span><b>19 €</b></li><li><span>Gestion de classe</span><b>25 €</b></li><li><span>Emploi du temps d'établissement</span><b>45 €</b></li></ul>
+      <div class="ctas"><a class="btn" href="/packs/enseignant/" data-goatcounter-click="concept-ecoles-hors-contrat-pack" data-goatcounter-title="Concept écoles hors contrat : page du pack">Voir le pack</a><a class="btn line" href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-offre" data-goatcounter-title="Concept écoles hors contrat : démo (offre)">Essayer la démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre école</p>
+      <ul><li>Votre propre modèle de bulletin, vos périodes et vos grilles d'appréciation</li><li>Plusieurs enseignants sur les mêmes classes, accès de chacun à son emploi du temps</li><li>Pour le soutien scolaire : suivi des élèves par stage, groupes de niveau, heures par famille</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=%C3%89coles%20hors%20contrat%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-ecoles-hors-contrat-sur-mesure" data-goatcounter-title="Concept écoles hors contrat : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Les élèves sont désignés par un prénom et l'initiale du nom, ou par un pseudonyme : aucune date de naissance, adresse, photo ni information de santé. Les outils ne remplacent pas un logiciel de vie scolaire complet (absences, familles, facturation) ; c'est ce qu'une version sur mesure peut ajouter. Les données des démos sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez la démo, puis dites-moi comment vous tenez aujourd'hui vos notes, vos bulletins et votre emploi du temps : je vous dis franchement si les outils prêts à l'emploi suffisent, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20%C3%A9coles%20hors%20contrat%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-ecoles-hors-contrat-contact-bas" data-goatcounter-title="Concept écoles hors contrat : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/templates/gestion-classe/?demo" data-goatcounter-click="concept-ecoles-hors-contrat-demo-bas" data-goatcounter-title="Concept écoles hors contrat : démo (bas)">Ouvrir la démo</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
