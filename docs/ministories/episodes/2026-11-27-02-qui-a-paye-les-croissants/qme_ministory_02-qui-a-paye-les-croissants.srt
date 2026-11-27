@@ -1,0 +1,39 @@
+1
+00:00:00,250 --> 00:00:01,287
+Qui a payé les croissants ?
+
+2
+00:00:01,450 --> 00:00:03,432
+Dans cette coloc, tout le monde a tout payé.
+
+3
+00:00:03,550 --> 00:00:05,299
+Le loyer ? Payé.
+
+4
+00:00:05,400 --> 00:00:07,475
+Le papier toilette ? Payé.
+
+5
+00:00:07,550 --> 00:00:09,631
+Les courses ? Payées deux fois !
+
+6
+00:00:09,950 --> 00:00:11,750
+Le tribunal des colocs est ouvert.
+
+7
+00:00:12,800 --> 00:00:15,669
+Avec Gestion Dépenses Communes, chacun note ce qu'il paie.
+
+8
+00:00:15,850 --> 00:00:18,570
+Verdict : qui doit combien à qui, au centime près.
+
+9
+00:00:18,750 --> 00:00:20,332
+Avec le moins de virements possible.
+
+10
+00:00:20,500 --> 00:00:24,998
+Affaire classée. Les croissants ? Chacun son tour.

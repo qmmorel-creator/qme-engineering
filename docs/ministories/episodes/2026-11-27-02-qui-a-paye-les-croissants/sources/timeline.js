@@ -1,0 +1,162 @@
+window.TL = {
+  "episode": "qui-a-paye-les-croissants",
+  "duree": 29.4,
+  "carton": {
+    "debut": 25.4,
+    "fin": 29.4
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.4,
+      "nom": "Les croissants ont disparu"
+    },
+    {
+      "id": "S2",
+      "debut": 3.4,
+      "fin": 9.75,
+      "nom": "Tout le monde a tout payé"
+    },
+    {
+      "id": "S3",
+      "debut": 9.75,
+      "fin": 12.6,
+      "nom": "Le tribunal des colocs"
+    },
+    {
+      "id": "S4",
+      "debut": 12.6,
+      "fin": 20.35,
+      "nom": "Gestion Dépenses Communes rend le verdict"
+    },
+    {
+      "id": "S5",
+      "debut": 20.35,
+      "fin": 25.4,
+      "nom": "Affaire classée"
+    },
+    {
+      "id": "S6",
+      "debut": 25.4,
+      "fin": 29.4,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.25,
+      "texte": "Qui a payé les croissants ?",
+      "fin": 1.167
+    },
+    {
+      "id": "v02",
+      "t": 1.45,
+      "texte": "Dans cette coloc, tout le monde a tout payé.",
+      "fin": 3.312
+    },
+    {
+      "id": "v03",
+      "t": 3.55,
+      "texte": "Le loyer ? Payé.",
+      "fin": 5.179
+    },
+    {
+      "id": "v04",
+      "t": 5.4,
+      "texte": "Le papier toilette ? Payé.",
+      "fin": 7.355
+    },
+    {
+      "id": "v05",
+      "t": 7.55,
+      "texte": "Les courses ? Payées deux fois !",
+      "fin": 9.511
+    },
+    {
+      "id": "v06",
+      "t": 9.95,
+      "texte": "Le tribunal des colocs est ouvert.",
+      "fin": 11.63
+    },
+    {
+      "id": "v07",
+      "t": 12.8,
+      "texte": "Avec Gestion Dépenses Communes, chacun note ce qu'il paie.",
+      "fin": 15.549
+    },
+    {
+      "id": "v08",
+      "t": 15.85,
+      "texte": "Verdict : qui doit combien à qui, au centime près.",
+      "fin": 18.45
+    },
+    {
+      "id": "v09",
+      "t": 18.75,
+      "texte": "Avec le moins de virements possible.",
+      "fin": 20.212
+    },
+    {
+      "id": "v10",
+      "t": 20.5,
+      "texte": "Affaire classée. Les croissants ? Chacun son tour.",
+      "fin": 24.878
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.08
+    },
+    {
+      "son": "whoosh",
+      "t": 3.32
+    },
+    {
+      "son": "pose",
+      "t": 4.85
+    },
+    {
+      "son": "pose",
+      "t": 6.95
+    },
+    {
+      "son": "pose",
+      "t": 8.75
+    },
+    {
+      "son": "pose",
+      "t": 8.82
+    },
+    {
+      "son": "marteau",
+      "t": 11.7
+    },
+    {
+      "son": "chute",
+      "t": 11.85
+    },
+    {
+      "son": "whoosh",
+      "t": 12.55
+    },
+    {
+      "son": "kaching",
+      "t": 18.5
+    },
+    {
+      "son": "ding",
+      "t": 20.22
+    },
+    {
+      "son": "marteau",
+      "t": 21.3
+    },
+    {
+      "son": "pop",
+      "t": 23.05
+    }
+  ]
+};
