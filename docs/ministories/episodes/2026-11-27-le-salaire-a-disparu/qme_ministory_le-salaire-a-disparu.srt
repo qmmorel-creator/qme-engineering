@@ -1,0 +1,55 @@
+1
+00:00:00,250 --> 00:00:00,948
+Jour de paie !
+
+2
+00:00:01,400 --> 00:00:02,102
+Champagne !
+
+3
+00:00:02,400 --> 00:00:03,951
+Enfin… eau pétillante.
+
+4
+00:00:04,150 --> 00:00:05,146
+Mais le loyer a faim.
+
+5
+00:00:05,350 --> 00:00:06,280
+Les factures aussi.
+
+6
+00:00:06,450 --> 00:00:07,172
+Les courses.
+
+7
+00:00:07,250 --> 00:00:08,658
+Et les abonnements,
+en rafale !
+
+8
+00:00:09,150 --> 00:00:10,301
+Trois jours plus tard…
+
+9
+00:00:10,550 --> 00:00:11,176
+Trois euros ?!
+
+10
+00:00:12,850 --> 00:00:16,071
+Avec Mon Budget, de QME,
+chaque euro a son enveloppe.
+
+11
+00:00:16,200 --> 00:00:18,890
+Vous voyez le prévu, le réel,
+et où part l’argent.
+
+12
+00:00:19,200 --> 00:00:20,615
+Le salaire n’a pas disparu.
+
+13
+00:00:20,700 --> 00:00:22,261
+Il avait juste besoin
+d’un plan.
