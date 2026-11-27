@@ -1,0 +1,174 @@
+window.TL = {
+  "episode": "18-resolution-2-janvier",
+  "duree": 28.3,
+  "carton": {
+    "debut": 24.3,
+    "fin": 28.3
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 2.7,
+      "nom": "1er janvier : la résolution"
+    },
+    {
+      "id": "S2",
+      "debut": 2.7,
+      "fin": 4.6,
+      "nom": "2 janvier : canapé"
+    },
+    {
+      "id": "S3",
+      "debut": 4.6,
+      "fin": 7.0,
+      "nom": "Les jours défilent"
+    },
+    {
+      "id": "S4",
+      "debut": 7.0,
+      "fin": 11.1,
+      "nom": "Canapé 10, Carreau 0"
+    },
+    {
+      "id": "S5",
+      "debut": 11.1,
+      "fin": 17.4,
+      "nom": "Suivi d'habitudes et routines"
+    },
+    {
+      "id": "S6",
+      "debut": 17.4,
+      "fin": 24.3,
+      "nom": "La série tient"
+    },
+    {
+      "id": "S7",
+      "debut": 24.3,
+      "fin": 28.3,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.25,
+      "fin": 0.867,
+      "texte": "Premier janvier."
+    },
+    {
+      "id": "v02",
+      "t": 1.0,
+      "fin": 2.509,
+      "texte": "Cette année, sport tous les jours !"
+    },
+    {
+      "id": "v03",
+      "t": 2.85,
+      "fin": 3.442,
+      "texte": "Deux janvier."
+    },
+    {
+      "id": "v04",
+      "t": 3.6,
+      "fin": 4.42,
+      "texte": "Bon… demain."
+    },
+    {
+      "id": "v05",
+      "t": 4.75,
+      "fin": 6.76,
+      "texte": "Trois janvier. Demain aussi."
+    },
+    {
+      "id": "v06",
+      "t": 7.1,
+      "fin": 8.839,
+      "texte": "Dix janvier : le canapé a gagné."
+    },
+    {
+      "id": "v07",
+      "t": 11.2,
+      "fin": 13.281,
+      "texte": "Avec le Suivi d'habitudes et routines de QME,"
+    },
+    {
+      "id": "v08",
+      "t": 13.55,
+      "fin": 14.771,
+      "texte": "on coche en quelques secondes."
+    },
+    {
+      "id": "v09",
+      "t": 15.05,
+      "fin": 17.246,
+      "texte": "Les séries et le taux de réussite, sous les yeux."
+    },
+    {
+      "id": "v10",
+      "t": 17.6,
+      "fin": 20.935,
+      "texte": "Un jour. Deux jours. Dix jours."
+    },
+    {
+      "id": "v11",
+      "t": 21.3,
+      "fin": 23.786,
+      "texte": "La série tient. Et Carreau aussi."
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "kaching",
+      "t": 0.1
+    },
+    {
+      "son": "whoosh",
+      "t": 2.65
+    },
+    {
+      "son": "chute",
+      "t": 3.0
+    },
+    {
+      "son": "tick",
+      "t": 4.55
+    },
+    {
+      "son": "whoosh",
+      "t": 6.95
+    },
+    {
+      "son": "chomp",
+      "t": 8.95
+    },
+    {
+      "son": "alarme",
+      "t": 9.2
+    },
+    {
+      "son": "whoosh",
+      "t": 11.0
+    },
+    {
+      "son": "pose",
+      "t": 14.78
+    },
+    {
+      "son": "pose",
+      "t": 17.55
+    },
+    {
+      "son": "pose",
+      "t": 18.95
+    },
+    {
+      "son": "pose",
+      "t": 20.4
+    },
+    {
+      "son": "ding",
+      "t": 24.0
+    }
+  ]
+};
