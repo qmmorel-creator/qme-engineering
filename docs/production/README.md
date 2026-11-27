@@ -76,7 +76,7 @@ Partage avec l'agent Gumroad (`session_0183EW569cgV6TXMdunVEq3r`) :
 
 | Licences | Agent Gumroad |
 |---|---|
-| option « clé de licence » vérifiée sur chaque fiche ; identifiant `gumroad` de `PRODUITS` et `ALIAS` (`netlify/lib/templates-acces.mjs`) cohérent | fiches produits, prix, descriptions, packs, publication et dépublication |
+| option « clé de licence » vérifiée sur chaque fiche ; identifiant `gumroad` de `PRODUITS` et `FUSIONNES` (`netlify/lib/templates-acces.mjs`) cohérent | fiches produits, prix, descriptions, packs, publication et dépublication |
 | codes d'accès hors Gumroad : `TEMPLATES_SECRET=… npm run code -- <PRODUIT> 1`, ligne le jour même dans `docs/templates/codes-gratuits.md` | — |
 | révocation : Id ajouté à `TEMPLATES_CODES_REVOQUES` (Netlify), statut `révoqué` | — |
 | suivi des acheteurs : produit, version, accès perdu, remboursement | lecture des ventes pour ses écarts |
